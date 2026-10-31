@@ -250,37 +250,37 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 
 | File | Holds | Chain length | Vectors | Read by | Label |
 |---|---|---|---|---|---|
-| `usr/diags/IR/data/bpln.short.Z` | shorts test vectors for the `bpln` chain. | 12682 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/bpln_hilo.short.Z` | shorts test vectors for the `bpln_hilo` chain. | 12726 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/bpln_hilolite.short.Z` | shorts test vectors for the `bpln_hilolite` chain. | 8296 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln.short.Z` | Shorts test vectors for the `bpln` chain, 9446 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 12682 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilo.short.Z` | Shorts test vectors for the `bpln_hilo` chain, 9469 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 12726 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilolite.short.Z` | Shorts test vectors for the `bpln_hilolite` chain, 7274 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 8296 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/bpln_oheo.short` | shorts test vectors for the `bpln_oheo` chain. The compressed copy holds the same content once decompressed. | 12870 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/bpln_oheo.short.Z` | shorts test vectors for the `bpln_oheo` chain. The plain copy holds the same content. | 12870 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_2voc.short.Z` | shorts test vectors for the `dg4_2voc` chain. | 2166 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_2voc_dacsamp.short.Z` | shorts test vectors for the `dg4_2voc_dacsamp` chain. | 2166 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc.short.Z` | Shorts test vectors for the `dg4_2voc` chain, 3776 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2166 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dacsamp.short.Z` | Shorts test vectors for the `dg4_2voc_dacsamp` chain, 4880 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2166 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short` | shorts test vectors for the `dg4_2voc_dplex_dacsamp` chain. The compressed copy holds the same content once decompressed. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z` | shorts test vectors for the `dg4_2voc_dplex_dacsamp` chain. The plain copy holds the same content. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The compressed copy holds the same content once decompressed. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The plain copy holds the same content. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_2voc_dvp.short.Z` | shorts test vectors for the `dg4_2voc_dvp` chain. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dvp.short.Z` | Shorts test vectors for the `dg4_2voc_dvp` chain, 4633 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_hdgvo.short` | shorts test vectors for the `dg4_2voc_hdgvo` chain. The compressed copy holds the same content once decompressed. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_hdgvo.short.Z` | shorts test vectors for the `dg4_2voc_hdgvo` chain. The plain copy holds the same content. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_8voc.short.Z` | shorts test vectors for the `dg4_8voc` chain. | 4776 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_8voc_dacsamp.short.Z` | shorts test vectors for the `dg4_8voc_dacsamp` chain. | 4776 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/dg4_8voc_dvp.short.Z` | shorts test vectors for the `dg4_8voc_dvp` chain. | 5384 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc.short.Z` | shorts test vectors for the `fpln_2voc` chain. | 13613 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_2voc_2rm_0` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_2voc_2rm_1` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_4rm_0.short.Z` | shorts test vectors for the `fpln_2voc_4rm_0` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_4rm_1.short.Z` | shorts test vectors for the `fpln_2voc_4rm_1` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_4rm_2.short.Z` | shorts test vectors for the `fpln_2voc_4rm_2` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_2voc_4rm_3.short.Z` | shorts test vectors for the `fpln_2voc_4rm_3` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc.short.Z` | shorts test vectors for the `fpln_8voc` chain. | 16223 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_2rm_0.short.Z` | shorts test vectors for the `fpln_8voc_2rm_0` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_2rm_1.short.Z` | shorts test vectors for the `fpln_8voc_2rm_1` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_4rm_0.short.Z` | shorts test vectors for the `fpln_8voc_4rm_0` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_4rm_1.short.Z` | shorts test vectors for the `fpln_8voc_4rm_1` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_4rm_2.short.Z` | shorts test vectors for the `fpln_8voc_4rm_2` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_8voc_4rm_3` chain. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc.short.Z` | Shorts test vectors for the `dg4_8voc` chain, 6963 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4776 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dacsamp.short.Z` | Shorts test vectors for the `dg4_8voc_dacsamp` chain, 10465 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4776 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dvp.short.Z` | Shorts test vectors for the `dg4_8voc_dvp` chain, 7888 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 5384 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc.short.Z` | Shorts test vectors for the `fpln_2voc` chain, 11482 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_2voc_2rm_0` chain, 10325 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_2voc_2rm_1` chain, 10337 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_2voc_4rm_0` chain, 10182 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_1.short.Z` | Shorts test vectors for the `fpln_2voc_4rm_1` chain, 10226 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_2.short.Z` | Shorts test vectors for the `fpln_2voc_4rm_2` chain, 10194 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_3.short.Z` | Shorts test vectors for the `fpln_2voc_4rm_3` chain, 10165 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc.short.Z` | Shorts test vectors for the `fpln_8voc` chain, 12631 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_8voc_2rm_0` chain, 11278 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_8voc_2rm_1` chain, 11312 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_8voc_4rm_0` chain, 11170 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_1.short.Z` | Shorts test vectors for the `fpln_8voc_4rm_1` chain, 11216 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_2.short.Z` | Shorts test vectors for the `fpln_8voc_4rm_2` chain, 11164 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_8voc_4rm_3.short.Z` | Shorts test vectors for the `fpln_8voc_4rm_3` chain, 11208 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_2voc.short` | shorts test vectors for the `fpln_rm11_2voc` chain. The compressed copy holds the same content once decompressed. | 13757 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_2voc.short.Z` | shorts test vectors for the `fpln_rm11_2voc` chain. The plain copy holds the same content. | 13757 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_2voc_2rm_0.short` | shorts test vectors for the `fpln_rm11_2voc_2rm_0` chain. The compressed copy holds the same content once decompressed. | 13757 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
@@ -309,44 +309,44 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rm11_8voc_4rm_2` chain. The plain copy holds the same content. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The compressed copy holds the same content once decompressed. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The plain copy holds the same content. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_2voc.short.Z` | shorts test vectors for the `fpln_rm8_2voc` chain. | 9183 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rm8_2voc_2rm_0` chain. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rm8_2voc_2rm_1` chain. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_8voc.short.Z` | shorts test vectors for the `fpln_rm8_8voc` chain. | 11793 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rm8_8voc_2rm_0` chain. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rm8_8voc_2rm_1` chain. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_2rm_0` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_2rm_1` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_0` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_1` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_2` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_3` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_2rm_0` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_2rm_1` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_0` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_1` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_2` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rmtm7_8voc_4rm_3` chain. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge12_4ge.short.Z` | shorts test vectors for the `ge12_4ge` chain. | 2795 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge12_btm4ges.short.Z` | shorts test vectors for the `ge12_btm4ges` chain. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge12_noge.short.Z` | shorts test vectors for the `ge12_noge` chain. | 1235 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge12_top4ges.short.Z` | shorts test vectors for the `ge12_top4ges` chain. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge14_2ge.short.Z` | shorts test vectors for the `ge14_2ge` chain. | 2059 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge14_4ge.short.Z` | shorts test vectors for the `ge14_4ge` chain. | 2839 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge14_btm4ges.short.Z` | shorts test vectors for the `ge14_btm4ges` chain. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge14_noge.short.Z` | shorts test vectors for the `ge14_noge` chain. | 1279 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/ge14_top4ges.short.Z` | shorts test vectors for the `ge14_top4ges` chain. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc.short.Z` | Shorts test vectors for the `fpln_rm8_2voc` chain, 5564 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rm8_2voc_2rm_0` chain, 4877 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rm8_2voc_2rm_1` chain, 4876 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc.short.Z` | Shorts test vectors for the `fpln_rm8_8voc` chain, 6499 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rm8_8voc_2rm_0` chain, 5637 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rm8_8voc_2rm_1` chain, 5626 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc` chain, 27579 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_2rm_0` chain, 27092 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_2rm_1` chain, 27110 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_0` chain, 27005 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_1` chain, 27062 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_2` chain, 27033 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_3` chain, 27093 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc` chain, 29103 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_2rm_0` chain, 28706 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_2rm_1` chain, 28668 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_4rm_0` chain, 28595 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_4rm_1` chain, 28635 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_4rm_2` chain, 28586 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_4rm_3` chain, 28652 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_4ge.short.Z` | Shorts test vectors for the `ge12_4ge` chain, 4693 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2795 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_btm4ges.short.Z` | Shorts test vectors for the `ge12_btm4ges` chain, 5813 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_noge.short.Z` | Shorts test vectors for the `ge12_noge` chain, 1737 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 1235 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge12_top4ges.short.Z` | Shorts test vectors for the `ge12_top4ges` chain, 5800 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_2ge.short.Z` | Shorts test vectors for the `ge14_2ge` chain, 3301 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2059 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_4ge.short.Z` | Shorts test vectors for the `ge14_4ge` chain, 4642 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 2839 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_btm4ges.short.Z` | Shorts test vectors for the `ge14_btm4ges` chain, 5788 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_noge.short.Z` | Shorts test vectors for the `ge14_noge` chain, 1730 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 1279 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_top4ges.short.Z` | Shorts test vectors for the `ge14_top4ges` chain, 5751 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm10.short` | shorts test vectors for the `rm10` chain. The compressed copy holds the same content once decompressed. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm10.short.Z` | shorts test vectors for the `rm10` chain. The plain copy holds the same content. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm11.short` | shorts test vectors for the `rm11` chain. The compressed copy holds the same content once decompressed. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm11.short.Z` | shorts test vectors for the `rm11` chain. The plain copy holds the same content. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm6.short.Z` | shorts test vectors for the `rm6` chain. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm7.short.Z` | shorts test vectors for the `rm7` chain. | 6540 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm8.short.Z` | shorts test vectors for the `rm8` chain. | 7017 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rmtm7.short.Z` | shorts test vectors for the `rmtm7` chain. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm7.short.Z` | shorts test vectors for the `tm7` chain. | 4907 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm6.short.Z` | Shorts test vectors for the `rm6` chain, 22714 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm7.short.Z` | Shorts test vectors for the `rm7` chain, 5335 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 6540 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm8.short.Z` | Shorts test vectors for the `rm8` chain, 16929 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 7017 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rmtm7.short.Z` | Shorts test vectors for the `rmtm7` chain, 22972 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm7.short.Z` | Shorts test vectors for the `tm7` chain, 11250 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4907 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.short` | shorts test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.short.Z` | shorts test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 
