@@ -15728,7 +15728,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3e90	216	__glConvertS
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e401c	80	__glImageSize3D	dynsym+mdebug	5b1b38f22199		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e4ce8	1328	__glEmptyImage	dynsym+mdebug	c6dc89c519e3		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e5220	68	__glScaleColorf	dynsym+mdebug	c1fea87e72a5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e5264	296	__glClampAndScaleColorf	dynsym+mdebug	5ca34613ceca		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
@@ -32427,7 +32427,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3e90	216	__glConvertS
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e3f68	180	__glImageSize	dynsym+mdebug	748377e959e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e401c	80	__glImageSize3D	dynsym+mdebug	5b1b38f22199		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e406c	3104	__glFillImage3D	dynsym+mdebug	ca2b5711a5ae		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	located	docs/sample-implementation.md#so_imagec	so_image.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e4c8c	92	__glFillImage	dynsym+mdebug	0d47820a11f1		in	understood	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e4ce8	1328	__glEmptyImage	dynsym+mdebug	c6dc89c519e3		in	located	docs/sample-implementation.md#so_imagec	so_image.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e5220	68	__glScaleColorf	dynsym+mdebug	c1fea87e72a5		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e5264	296	__glClampAndScaleColorf	dynsym+mdebug	5ca34613ceca		in	located	docs/sample-implementation.md#so_lightingc	so_lighting.c
