@@ -334,16 +334,16 @@ usr/diags/IR/data/ge12_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1451	
 usr/diags/IR/data/ge14_2ge.netmap.Z	diagnostics	board-diagnostic	data	-	22067	be1da62ba1133836		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_2ge.short.Z	diagnostics	board-diagnostic	data	-	3301	34e67be65c252406		0		0	0	undocumented		
 usr/diags/IR/data/ge14_2ge.stuck.Z	diagnostics	board-diagnostic	data	-	845	0a100c1d22897a61		0		0	0	undocumented		
-usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0		0	0	named-only	ucode/ge_isa.md#the-engines-microcode-port	The engine's microcode port
+usr/diags/IR/data/ge14_4ge.netmap.Z	diagnostics	board-diagnostic	data	-	29617	3fc12f10ab249aeb		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_4ge.short.Z	diagnostics	board-diagnostic	data	-	4642	4c7fdea7d4585236		0		0	0	undocumented		
 usr/diags/IR/data/ge14_4ge.stuck.Z	diagnostics	board-diagnostic	data	-	1186	bfc559d675927d18		0		0	0	undocumented		
-usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40524	6802bad154e34f19		0		0	0	undocumented		
+usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40524	6802bad154e34f19		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5788	4681a14a1af195e3		0		0	0	undocumented		
 usr/diags/IR/data/ge14_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1472	24777623c23332c9		0		0	0	undocumented		
-usr/diags/IR/data/ge14_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13987	b60fc3b315264b72		0		0	0	undocumented		
+usr/diags/IR/data/ge14_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13987	b60fc3b315264b72		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_noge.short.Z	diagnostics	board-diagnostic	data	-	1730	a0a3a6659e8e24ef		0		0	0	undocumented		
 usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d11f41a8418747		0		0	0	undocumented		
-usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0		0	0	undocumented		
+usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5751	3a592a9275839cf8		0		0	0	undocumented		
 usr/diags/IR/data/ge14_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1464	0885566bbca6a8c2		0		0	0	undocumented		
 usr/diags/IR/data/ged1.qtcbist	diagnostics	board-diagnostic	data	-	5126	d1d0ab5bb9d01ea7		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
@@ -368,28 +368,28 @@ usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af
 usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/pg2b.tcbist	diagnostics	board-diagnostic	data	-	20595	0325cccaa1d0e4af		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/rm10.netmap	diagnostics	board-diagnostic	data	-	353174	78d7e0796b316383		0		0	0	undocumented		
-usr/diags/IR/data/rm10.netmap.Z	diagnostics	board-diagnostic	data	-	64125	48629c4f022067d8		0		0	0	undocumented		
+usr/diags/IR/data/rm10.netmap	diagnostics	board-diagnostic	data	-	353174	78d7e0796b316383		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
+usr/diags/IR/data/rm10.netmap.Z	diagnostics	board-diagnostic	data	-	64125	48629c4f022067d8		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rm10.short	diagnostics	board-diagnostic	data	-	184896	99c04d91418ad9f3		0		0	0	undocumented		
 usr/diags/IR/data/rm10.short.Z	diagnostics	board-diagnostic	data	-	4165	769cd3fc9817460f		0		0	0	undocumented		
 usr/diags/IR/data/rm10.stuck	diagnostics	board-diagnostic	data	-	26471	77647577632f8ba2		0		0	0	undocumented		
 usr/diags/IR/data/rm10.stuck.Z	diagnostics	board-diagnostic	data	-	839	67755a913083556a		0		0	0	undocumented		
 usr/diags/IR/data/rm11.netmap	diagnostics	board-diagnostic	data	-	639268	a8eef3bc489233cc		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/rm11.netmap.Z	diagnostics	board-diagnostic	data	-	124417	135c8f9e67567629		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/rm11.netmap.Z	diagnostics	board-diagnostic	data	-	124417	135c8f9e67567629		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rm11.short	diagnostics	board-diagnostic	data	-	510117	b918b9d433dab6fb		0		0	0	undocumented		
 usr/diags/IR/data/rm11.short.Z	diagnostics	board-diagnostic	data	-	20907	b8cb06848a444f51		0		0	0	undocumented		
 usr/diags/IR/data/rm11.stuck	diagnostics	board-diagnostic	data	-	46436	4fa37d4f2c974cc0		0		0	0	undocumented		
 usr/diags/IR/data/rm11.stuck.Z	diagnostics	board-diagnostic	data	-	2434	85206c3dfbe7448b		0		0	0	undocumented		
-usr/diags/IR/data/rm6.netmap.Z	diagnostics	board-diagnostic	data	-	126017	5f0b6853ecc1bd7c		0		0	0	undocumented		
+usr/diags/IR/data/rm6.netmap.Z	diagnostics	board-diagnostic	data	-	126017	5f0b6853ecc1bd7c		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rm6.short.Z	diagnostics	board-diagnostic	data	-	22714	fe24ec40b7671d21		0		0	0	undocumented		
 usr/diags/IR/data/rm6.stuck.Z	diagnostics	board-diagnostic	data	-	2360	72998c43f51d58f1		0		0	0	undocumented		
-usr/diags/IR/data/rm7.netmap.Z	diagnostics	board-diagnostic	data	-	69213	e7d47f31c7a60ecf		0		0	0	undocumented		
+usr/diags/IR/data/rm7.netmap.Z	diagnostics	board-diagnostic	data	-	69213	e7d47f31c7a60ecf		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rm7.short.Z	diagnostics	board-diagnostic	data	-	5335	831b6f2ab8fbcc71		0		0	0	undocumented		
 usr/diags/IR/data/rm7.stuck.Z	diagnostics	board-diagnostic	data	-	814	791e173513331e71		0		0	0	undocumented		
-usr/diags/IR/data/rm8.netmap.Z	diagnostics	board-diagnostic	data	-	79181	0cee40f587aed3d5		0		0	0	undocumented		
+usr/diags/IR/data/rm8.netmap.Z	diagnostics	board-diagnostic	data	-	79181	0cee40f587aed3d5		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rm8.short.Z	diagnostics	board-diagnostic	data	-	16929	75eb88774f3043ad		0		0	0	undocumented		
 usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa538415327432		0		0	0	undocumented		
-usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0		0	0	undocumented		
+usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	undocumented		
 usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	undocumented		
 usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
