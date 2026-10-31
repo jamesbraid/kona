@@ -76,7 +76,7 @@ usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b7
 usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	named-only	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/bpln.short.Z	diagnostics	board-diagnostic	data	-	9446	54cc798e37dc625e		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
