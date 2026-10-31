@@ -15872,7 +15872,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f2530	376	__glNamesFre
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f27a0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f282c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2a20	88	computeMax	mdebug	7b0ccc82ef66		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2a78	96	pushMaxVal	mdebug	d350bb49af2d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2ad8	272	allocLeafData	mdebug	7264e4985cb3		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -32571,7 +32571,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f2530	376	__glNamesFre
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f27a0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f282c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2a20	88	computeMax	mdebug	7b0ccc82ef66		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2a78	96	pushMaxVal	mdebug	d350bb49af2d		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2ad8	272	allocLeafData	mdebug	7264e4985cb3		in	located	docs/sample-implementation.md#so_namesc	so_names.c
