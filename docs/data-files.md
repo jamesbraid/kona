@@ -262,3 +262,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The compressed copy holds the same content once decompressed. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The plain copy holds the same content. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/dg4_2voc_dvp.short.Z` | shorts test vectors for the `dg4_2voc_dvp` chain. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_hdgvo.short` | shorts test vectors for the `dg4_2voc_hdgvo` chain. The compressed copy holds the same content once decompressed. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_hdgvo.short.Z` | shorts test vectors for the `dg4_2voc_hdgvo` chain. The plain copy holds the same content. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc.short.Z` | shorts test vectors for the `dg4_8voc` chain. | 4776 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dacsamp.short.Z` | shorts test vectors for the `dg4_8voc_dacsamp` chain. | 4776 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_8voc_dvp.short.Z` | shorts test vectors for the `dg4_8voc_dvp` chain. | 5384 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc.short.Z` | shorts test vectors for the `fpln_2voc` chain. | 13613 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_2voc_2rm_0` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_2voc_2rm_1` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_0.short.Z` | shorts test vectors for the `fpln_2voc_4rm_0` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_1.short.Z` | shorts test vectors for the `fpln_2voc_4rm_1` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_2.short.Z` | shorts test vectors for the `fpln_2voc_4rm_2` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_2voc_4rm_3.short.Z` | shorts test vectors for the `fpln_2voc_4rm_3` chain. | 13613 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
