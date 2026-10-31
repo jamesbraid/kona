@@ -15610,13 +15610,13 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6274	76	__glim_EvalCo
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d62c0	88	__glim_EvalCoord2dv	dynsym+mdebug	847ca579b284		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6318	68	__glim_EvalCoord2f	dynsym+mdebug	4a151bb62d14		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d635c	72	__glim_EvalCoord2fv	dynsym+mdebug	d8e49d9324ae		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d63a4	148	__glim_MapGrid1d	dynsym+mdebug	24b543850980		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6438	136	__glim_MapGrid1f	dynsym+mdebug	c5f6cec95189		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d64c0	184	__glim_MapGrid2d	dynsym+mdebug	a1470c4e6068		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6578	164	__glim_MapGrid2f	dynsym+mdebug	0ffc8c9d4acf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d661c	244	__glim_EvalMesh1	dynsym+mdebug	00f14641fe6a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d63a4	148	__glim_MapGrid1d	dynsym+mdebug	24b543850980		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6438	136	__glim_MapGrid1f	dynsym+mdebug	c5f6cec95189		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d64c0	184	__glim_MapGrid2d	dynsym+mdebug	a1470c4e6068		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6578	164	__glim_MapGrid2f	dynsym+mdebug	0ffc8c9d4acf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d661c	244	__glim_EvalMesh1	dynsym+mdebug	00f14641fe6a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6710	128	__glim_EvalPoint1	dynsym+mdebug	c1dc915031ce		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6790	308	__glim_EvalMesh2	dynsym+mdebug	e1bf4707d39b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6790	308	__glim_EvalMesh2	dynsym+mdebug	e1bf4707d39b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d68c4	200	__glim_EvalPoint2	dynsym+mdebug	fbfb0810084b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d698c	292	__glFillMap1f	dynsym+mdebug	bf58993283c6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6ab0	212	__glFillMap1d	dynsym+mdebug	fc339ee87dbd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -21146,13 +21146,13 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2350	64	__glim_Eval
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2390	72	__glim_EvalCoord2dv	dwarf+dynsym	633510dcbf04		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d23e0	60	__glim_EvalCoord2f	dwarf+dynsym	a95c36b7680a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2420	64	__glim_EvalCoord2fv	dwarf+dynsym	9ab69a3683d3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2460	132	__glim_MapGrid1d	dwarf+dynsym	62e90542d357		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d24f0	124	__glim_MapGrid1f	dwarf+dynsym	3f8964e83558		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2570	164	__glim_MapGrid2d	dwarf+dynsym	6142d8f0299a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2620	148	__glim_MapGrid2f	dwarf+dynsym	9901cb5ab9a3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d26c0	208	__glim_EvalMesh1	dwarf+dynsym	a172486a0d2a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2460	132	__glim_MapGrid1d	dwarf+dynsym	62e90542d357		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d24f0	124	__glim_MapGrid1f	dwarf+dynsym	3f8964e83558		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2570	164	__glim_MapGrid2d	dwarf+dynsym	6142d8f0299a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2620	148	__glim_MapGrid2f	dwarf+dynsym	9901cb5ab9a3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d26c0	208	__glim_EvalMesh1	dwarf+dynsym	a172486a0d2a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2790	112	__glim_EvalPoint1	dwarf+dynsym	036524697163		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2800	280	__glim_EvalMesh2	dwarf+dynsym	8fcc7f1550d5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2800	280	__glim_EvalMesh2	dwarf+dynsym	8fcc7f1550d5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2920	164	__glim_EvalPoint2	dwarf+dynsym	1b672681fd70		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d29d0	248	__glFillMap1f	dwarf+dynsym	e1a880f97820		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2ad0	196	__glFillMap1d	dwarf+dynsym	fae0c138a37b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -26726,13 +26726,13 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36100	64	__glim_Eval
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36140	72	__glim_EvalCoord2dv	dwarf+dynsym	c23652c81b7c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36190	60	__glim_EvalCoord2f	dwarf+dynsym	f0197ed0d848		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e361d0	64	__glim_EvalCoord2fv	dwarf+dynsym	fd032b04bc5a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36210	132	__glim_MapGrid1d	dwarf+dynsym	1c8b1b767e3d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e362a0	124	__glim_MapGrid1f	dwarf+dynsym	0f87226ed462		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36320	164	__glim_MapGrid2d	dwarf+dynsym	fb2824d2d8c9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e363d0	148	__glim_MapGrid2f	dwarf+dynsym	b1151ba6abc6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36470	208	__glim_EvalMesh1	dwarf+dynsym	ca28ccb64fbf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36210	132	__glim_MapGrid1d	dwarf+dynsym	1c8b1b767e3d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e362a0	124	__glim_MapGrid1f	dwarf+dynsym	0f87226ed462		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36320	164	__glim_MapGrid2d	dwarf+dynsym	fb2824d2d8c9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e363d0	148	__glim_MapGrid2f	dwarf+dynsym	b1151ba6abc6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36470	208	__glim_EvalMesh1	dwarf+dynsym	ca28ccb64fbf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36540	112	__glim_EvalPoint1	dwarf+dynsym	b1aee125ffe4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e365b0	280	__glim_EvalMesh2	dwarf+dynsym	72615f728edb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e365b0	280	__glim_EvalMesh2	dwarf+dynsym	72615f728edb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e366d0	164	__glim_EvalPoint2	dwarf+dynsym	30b16ce8bb27		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36780	248	__glFillMap1f	dwarf+dynsym	8b2d7226036e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36880	196	__glFillMap1d	dwarf+dynsym	f96aebbc813b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -32309,13 +32309,13 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6274	76	__glim_EvalCo
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d62c0	88	__glim_EvalCoord2dv	dynsym+mdebug	847ca579b284		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6318	68	__glim_EvalCoord2f	dynsym+mdebug	4a151bb62d14		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d635c	72	__glim_EvalCoord2fv	dynsym+mdebug	d8e49d9324ae		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d63a4	148	__glim_MapGrid1d	dynsym+mdebug	24b543850980		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6438	136	__glim_MapGrid1f	dynsym+mdebug	c5f6cec95189		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d64c0	184	__glim_MapGrid2d	dynsym+mdebug	a1470c4e6068		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6578	164	__glim_MapGrid2f	dynsym+mdebug	0ffc8c9d4acf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d661c	244	__glim_EvalMesh1	dynsym+mdebug	00f14641fe6a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d63a4	148	__glim_MapGrid1d	dynsym+mdebug	24b543850980		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6438	136	__glim_MapGrid1f	dynsym+mdebug	c5f6cec95189		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d64c0	184	__glim_MapGrid2d	dynsym+mdebug	a1470c4e6068		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6578	164	__glim_MapGrid2f	dynsym+mdebug	0ffc8c9d4acf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d661c	244	__glim_EvalMesh1	dynsym+mdebug	00f14641fe6a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6710	128	__glim_EvalPoint1	dynsym+mdebug	c1dc915031ce		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6790	308	__glim_EvalMesh2	dynsym+mdebug	e1bf4707d39b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6790	308	__glim_EvalMesh2	dynsym+mdebug	e1bf4707d39b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d68c4	200	__glim_EvalPoint2	dynsym+mdebug	fbfb0810084b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d698c	292	__glFillMap1f	dynsym+mdebug	bf58993283c6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6ab0	212	__glFillMap1d	dynsym+mdebug	fc339ee87dbd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -37845,13 +37845,13 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2350	64	__glim_Eval
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2390	72	__glim_EvalCoord2dv	dwarf+dynsym	633510dcbf04		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d23e0	60	__glim_EvalCoord2f	dwarf+dynsym	a95c36b7680a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2420	64	__glim_EvalCoord2fv	dwarf+dynsym	9ab69a3683d3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2460	132	__glim_MapGrid1d	dwarf+dynsym	62e90542d357		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d24f0	124	__glim_MapGrid1f	dwarf+dynsym	3f8964e83558		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2570	164	__glim_MapGrid2d	dwarf+dynsym	6142d8f0299a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2620	148	__glim_MapGrid2f	dwarf+dynsym	9901cb5ab9a3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d26c0	208	__glim_EvalMesh1	dwarf+dynsym	a172486a0d2a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2460	132	__glim_MapGrid1d	dwarf+dynsym	62e90542d357		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d24f0	124	__glim_MapGrid1f	dwarf+dynsym	3f8964e83558		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2570	164	__glim_MapGrid2d	dwarf+dynsym	6142d8f0299a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2620	148	__glim_MapGrid2f	dwarf+dynsym	9901cb5ab9a3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d26c0	208	__glim_EvalMesh1	dwarf+dynsym	a172486a0d2a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2790	112	__glim_EvalPoint1	dwarf+dynsym	036524697163		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2800	280	__glim_EvalMesh2	dwarf+dynsym	8fcc7f1550d5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2800	280	__glim_EvalMesh2	dwarf+dynsym	8fcc7f1550d5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2920	164	__glim_EvalPoint2	dwarf+dynsym	1b672681fd70		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d29d0	248	__glFillMap1f	dwarf+dynsym	e1a880f97820		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2ad0	196	__glFillMap1d	dwarf+dynsym	fae0c138a37b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -43425,13 +43425,13 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216100	64	__glim_Eval
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216140	72	__glim_EvalCoord2dv	dwarf+dynsym	c23652c81b7c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216190	60	__glim_EvalCoord2f	dwarf+dynsym	f0197ed0d848		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22161d0	64	__glim_EvalCoord2fv	dwarf+dynsym	fd032b04bc5a		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216210	132	__glim_MapGrid1d	dwarf+dynsym	1c8b1b767e3d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22162a0	124	__glim_MapGrid1f	dwarf+dynsym	0f87226ed462		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216320	164	__glim_MapGrid2d	dwarf+dynsym	fb2824d2d8c9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22163d0	148	__glim_MapGrid2f	dwarf+dynsym	b1151ba6abc6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216470	208	__glim_EvalMesh1	dwarf+dynsym	ca28ccb64fbf		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216210	132	__glim_MapGrid1d	dwarf+dynsym	1c8b1b767e3d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22162a0	124	__glim_MapGrid1f	dwarf+dynsym	0f87226ed462		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216320	164	__glim_MapGrid2d	dwarf+dynsym	fb2824d2d8c9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22163d0	148	__glim_MapGrid2f	dwarf+dynsym	b1151ba6abc6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216470	208	__glim_EvalMesh1	dwarf+dynsym	ca28ccb64fbf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216540	112	__glim_EvalPoint1	dwarf+dynsym	b1aee125ffe4		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22165b0	280	__glim_EvalMesh2	dwarf+dynsym	72615f728edb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22165b0	280	__glim_EvalMesh2	dwarf+dynsym	72615f728edb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22166d0	164	__glim_EvalPoint2	dwarf+dynsym	30b16ce8bb27		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216780	248	__glFillMap1f	dwarf+dynsym	8b2d7226036e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216880	196	__glFillMap1d	dwarf+dynsym	f96aebbc813b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
