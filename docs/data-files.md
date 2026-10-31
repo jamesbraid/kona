@@ -452,3 +452,6 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/rm7.stuck.Z` | stuck-at test vectors for the `rm7` chain. | 6540 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm8.stuck.Z` | stuck-at test vectors for the `rm8` chain. | 7017 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rmtm7.stuck.Z` | stuck-at test vectors for the `rmtm7` chain. | 11447 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm7.stuck.Z` | stuck-at test vectors for the `tm7` chain. | 4907 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.stuck` | stuck-at test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.stuck.Z` | stuck-at test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
