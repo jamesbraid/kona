@@ -14,6 +14,19 @@ Sources: `usr/gfx/gfxinit` (also installed as `gfxinfo`), `usr/gfx/setmon`, `usr
 | Boundary-scan wrappers | thin wrappers over the boundary-scan library ([kpm.md](kpm.md#boundary-scan-library-jt_)) for chain select, instruction and data sends | `_jt_select_chain`, `_jt_send_data`, `_jt_send_instruction` |
 | Helpers | lookup-table, encoder-register, file and conversion helpers: `calculate_linear_lut`, `init_luts`, `loadfile`, `generateFilename`, `read_encoder_reg`, `write_encoder_reg`, `set_dac_cmd2`, `set_edgeMem_for_edge`, `vector_to_int` | `calculate_linear_lut`, `generateFilename`, `init_luts`, `loadfile`, `read_encoder_reg`, `set_dac_cmd2`, `set_edgeMem_for_edge`, `vector_to_int`, `write_encoder_reg` |
 
+### The InfiniteReality report of `gfxinfo`
+
+**Established** (`gfxinit` 6.5.30m, the routine `kona_info` at 0x1000a218-0x1000a8f0 and the strings at 0x100215e8-0x10021758 and 0x10027c38-0x10027cc8). The report for a Kona pipe prints, in order: the board name, 'Display has N channels', 'N GEs (of M), occmask = 0x..', the back-end FIFO RAM and path width, the RM line with one count per slot, the per-slot texture memory, the pixel-depth class, the colour-map size and optionally the external-gamma suffix, then option lines (GPI, TVO, DPLEX, DVP, GVO, Sirius).
+
+- **RM name by board set.** The first word of the configuration record picks it: set 0 RM6, set 2 RM8, set 5 RM10, set 6 RM11. Sets 1, 3 and 4 print RM7, or RM9 when every populated slot's three-byte name field reads RM9 and its flag bit 2 is clear. **Inferred** that the first word is the board-set number, from `vfmtActualHWToKonaTarget` reading it as `bdset`. The textport's names for the same sets are in [ucode/tport.md](../ucode/tport.md).
+- **Texture memory per slot.** Code 0 None, 1 16MB, 2 64MB, 3 128MB, 4 256MB, 5 512MB, 6 1024MB; an empty slot prints a dash, and slots are separated by a slash. The `GL_RENDERER` builder in `libGLcore` (`GetBoardInfo`, [opengl.md](opengl.md#getboardinfo)) indexes the same ladder, 0, 16, 64, 128, 256, 512, 1024, with board-reply word +80, which is configuration offset +40, the first RM slot's texture word ([kernel.md](kernel.md#the-configuration-record-and-its-identity-words); the reply's configuration record starts at +40).
+- **Pixel depth.** 0 Small, 1 Medium, 2 Large, 3 Extra-Large; set 2 prints 3 as 'Extra-Small (Tiny)'. The single letters S, M, L and X that `GetBoardInfo` appends to the `GL_RENDERER` string index the same field (reply +180, configuration +140).
+- **Colour map and gamma.** 32K for field value 0, 128K for 1, then a computed value for others; the suffix ', 64K external gamma' prints for external-gamma field 1.
+- **Back-end FIFO.** '4MB external', '16MB external' or 'Internal', then '32bit path' or '16bit path'.
+- **Board name.** Taken from the kernel's board record (ioctl 102). The IP27 kernel object `kona_edtinit.o` holds KONAL (+0x1260) and the IP35 `kona.a` holds KONAD (+0x17ff0). The tool carries the strings KONA, KONAT, KONAS, KONAL and KONAD; no shipped kernel produces KONA, KONAT or KONAS, so the sets that report those names are **unknown**.
+- **Not printed.** No GE revision and no DG revision appear for this pipe; the `brd:`, ` ge:`, `rm%d:` and ` dg:` lines of the verbose form print raw identity words whose decoding is **unknown** ([dg.md](dg.md#gfxinfo--v-sample-dplex-guide)).
+- **Microcode.** `kona_loaducode` (0x1000ca5c) loads `arm1.u`, `geif.u`, `ged1b.u` and `ge11.u` by name, in that order, with no board-set choice between them. **Established** by reading the four call sites.
+
 ## `setmon`
 
 The command-line monitor and video-format setter. It shares the board-family code with `gfxinit`; the functions not already listed above are:
@@ -194,11 +207,11 @@ The digital-media configuration tool: a main frame whose callbacks choose among 
 
 ## `ireeprom`
 
-**Inferred**: the display-board EEPROM utility (the name and the `-` operations): erase, write, verify and report the board's EEPROM and the stored combination; `KonWGWrite` writes a word through the write-gather window and `get_rdata` and `set_rdata` read and set the pipe's read-back data.
+**Established** (`usr/gfx/KONA/bin/ireeprom` 6.5.30m, option string `wrveiFp:f:hcd:s` at 0x100042b0, help text at 0x10004469-0x10004599): the pipe's EEPROM holds the pipe's firmware image (boot code and data, with a revision, timestamp, length and checksum that `-i` prints) and, separately, the stored video combination. The options are -w (write the EEPROM from a file in 'EEPROM boot-format'; a file whose revision is not newer than the stored one is refused unless -F), -r (read the EEPROM into a file), -e (erase it), -c (erase only the video combination), -v (compare the EEPROM with a file), -i (print its information), -F (force an older revision), -h, -p (pipe number) and -f (data file); -d and -s are in the option string but not in the help. `-w` writes firmware, not a combination. Writes go through the write-gather window (`KonWGWrite`, 0x10002a4c); `erase_combo` (0x10003430) prints 'Erasing KONA EEPROM video combination...' and sends two words, 492 and 6. What those two words ask of the pipe is **unknown**.
 
 | Group | Role | Functions |
 |---|---|---|
-| EEPROM operations | as above | `KonWGWrite`, `debug_enable`, `erase_combo`, `erase_eeprom`, `get_rdata`, `info_eeprom`, `set_rdata`, `verify_eeprom`, `write_eeprom` |
+| EEPROM operations | firmware write, read, verify and erase; erase of the video combination only; information print | `KonWGWrite`, `debug_enable`, `erase_combo`, `erase_eeprom`, `get_rdata`, `info_eeprom`, `set_rdata`, `verify_eeprom`, `write_eeprom` |
 
 ## `hyper`
 

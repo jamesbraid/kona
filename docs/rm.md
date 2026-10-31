@@ -47,6 +47,7 @@ Which of the other combined indexes each chip answers follows the same letters; 
 - Texture-memory DRAM: four 16-bit banks (`drama` to `dramd`) per chip, with a 14-bit address on `tm` and `tm1c` and 15-bit on `tm1cc`.
 - `tf` to image processors: five 16-bit outputs (`tfimp0_data` to `tfimp4_data`); a 20-bit return `imptf_data[20]`.
 - Image processor framebuffer: `imp` has four 32-bit SDRAM ports with 10-bit addresses; `imp9` two 16-bit ports with 12-bit addresses; `imp8dc` eight 32-bit ports with 15-bit addresses. Each sends 8-bit video data to the display board (`impdg_data[8]`).
+- **Established** (`diags/netmap_chips.tsv`): an RM netlist with `imp` has 20 of them, so 80 SDRAM ports and 80 framebuffer processors per RM and 320 on four RMs; the `imp9` netlists have 10 chips and the `imp8dc` netlists, which are the `rm11` ones, have 10. Each texture memory chip has four 16-bit DRAM ports and a board has 8 of them, 32 ports per RM.
 
 **Inferred** from the connections: `pg` walks primitives into fragments, giving their screen position to `tg` and per-fragment data to the filters; `tg` turns texture coordinates into texture-memory addresses; each filter receives 16 bits from every one of the eight texture memories, combines them and passes the result to the image processors that write the framebuffer.
 

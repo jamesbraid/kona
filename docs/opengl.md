@@ -930,6 +930,7 @@ It caches one target: it rebuilds it only when the pipe number differs from the 
 It takes (record, target) and counts the allocated pixels: the width rounded up to a multiple of 160, times the height.
 It divides raster boards x 5 x 2^22 by that count (halved for class 2; class 3 uses 2^27).
 It maps the requested depth (a jump on values 0-7) and that quotient through thresholds at 64, 32 and 16, then 8 and 4, to a depth code, or 0 when nothing fits.
+**Established** reading of the classes: the class is the target's first word (0 for set 0, 2 for set 2, 3 for set 6, 1 otherwise), so the budget is RM count x 5 x 2^22 for classes 0 and 1, half that for class 2 and RM count x 5 x 2^27 for class 3. For class 2 the paths that return codes 5 and 6 (quotient at least 32 and 64) are skipped, and the auto path returns only 3 (quotient at least 8), 7 (at least 4) or none. **Inferred** with a 32-bit unit (80 image engines per RM, each with a 256K x 32 memory, [published-sources.md](published-sources.md)): 80 MB per RM for classes 0 and 1, 40 MB for class 2 and 2.5 GB for class 3, the range the Onyx 350 upgrade document gives; the thresholds 4, 8, 16, 32 and 64 then stand for 128, 256, 512, 1024 and 2048 bits per pixel. How the codes 0-7 map to the names Small to Extra-Large is **unknown**.
 
 #### `vfmtSwapRateCloseEnough`
 

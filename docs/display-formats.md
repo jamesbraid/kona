@@ -85,6 +85,10 @@ One row per `.vfo` file under `dg4/vfo/`. Columns: the active and total raster, 
 | `HDGVO_720x486_5994i.vfo` | established | 720x486 | 858x525 | 29.97 | 13.5 | 60 | 60 | 18 | 3 | 14 | 3 | interlaced | mono | 2 fields | 1 pixel/clock | csync | 24 states | 17 line types | 29 edges | table at 0x2be4 | clock at +0x2b8c | 181 fields |
 | `HDGVO_720x576_50i.vfo` | established | 720x576 | 864x625 | 25 | 13.5 | 65 | 66 | 13 | 2.5 | 20 | 2.5 | interlaced | mono | 2 fields | 1 pixel/clock | csync | 22 states | 15 line types | 29 edges | table at 0x2be4 | clock at +0x2b8c | 181 fields |
 
+### Line rates of the stereo formats
+
+**Established.** The README in `usr/gfx/ucode/KONA/dg4/vfo`, written by the shipped format compiler (dated 2006-07-20), prints a line frequency for each format. The eight stereo formats read 96.84 kHz (1024x768_120s), 77.472 (1024x768_96s), 84.384 (1120x840_96s), 124.602 (1280x1024_114s), 131.16 (1280x1024_120s), 63.96 (1280x492_120s), 60.84 (640x480_120s) and 65.28 (640x512_120s), at 60, 48, 48, 57, 60, 60, 60 and 60 frames per second. Each equals the total line count times the frame rate in the table above. Only three of them (1280x492_120s, 640x480_120s, 640x512_120s) have a combination file in the shipped `dg4/cmb` directory.
+
 ## Video formats the diagnostics load
 
 The same container, in `usr/diags/IR/data/`. Two files carry the names of formats in the install tree (`1280x1024_60.vfo` and `CCIR601_525_DGO.vfo`) with different contents; the other two are test formats.
