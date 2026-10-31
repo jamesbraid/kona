@@ -15869,7 +15869,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2450	56	freeLeaf
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2488	112	freeLeaf	mdebug	1cd4fe85cafe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f24f8	680	freeBranch	mdebug	58dc224df8b2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f2530	376	__glNamesFreeTree	dynsym+mdebug	c2521cfeefd2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f27a0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f282c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -15900,7 +15900,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGen
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f54c0	1048	__glNamesDeleteRange	dynsym+mdebug	d83f47c3155f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f58d8	92	__glNamesIsName	dynsym+mdebug	c60a6ec5b678		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5934	188	__glNamesGenNames	dynsym+mdebug	5d4de713929f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDeleteNames	dynsym+mdebug	e9c783f7d1da		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDeleteNames	dynsym+mdebug	e9c783f7d1da		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5ad0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5af4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
@@ -32568,7 +32568,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2450	56	freeLeaf
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2488	112	freeLeaf	mdebug	1cd4fe85cafe		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f24f8	680	freeBranch	mdebug	58dc224df8b2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f2530	376	__glNamesFreeTree	dynsym+mdebug	c2521cfeefd2		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f26a8	248	__glNamesFreeArray	dynsym+mdebug	0c3d71df66aa		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f27a0	140	findLeaf	mdebug	d8ceeab8c782		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f282c	244	copyLeafInfo	mdebug	56f4f385c783		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9f2920	256	fixMemoryProblem	mdebug	c4a206278dda		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -32599,7 +32599,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5158	872	__glNamesGen
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f54c0	1048	__glNamesDeleteRange	dynsym+mdebug	d83f47c3155f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f58d8	92	__glNamesIsName	dynsym+mdebug	c60a6ec5b678		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5934	188	__glNamesGenNames	dynsym+mdebug	5d4de713929f		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDeleteNames	dynsym+mdebug	e9c783f7d1da		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDeleteNames	dynsym+mdebug	e9c783f7d1da		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5ad0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5af4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
