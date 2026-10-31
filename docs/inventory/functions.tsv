@@ -15907,7 +15907,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Norma
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5c00	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5c78	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5d50	132	__glim_Normal3iv	dynsym+mdebug	b10bb19a1f03		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5de0	1920	__glGenericPickSpanProcs	dynsym+mdebug	feda8632e530		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f6560	296	__glGenericPickPointProcs	dynsym+mdebug	054a2ce04c0c		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -21443,7 +21443,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4140	84	__glim_Norm
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4200	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4260	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4320	104	__glim_Normal3iv	dwarf+dynsym	efc1b7a83fe4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4390	1948	__glGenericPickSpanProcs	dwarf+dynsym	8f79b5f2e073		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4b30	272	__glGenericPickPointProcs	dwarf+dynsym	bbbd38c7bf2b		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -27023,7 +27023,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58390	84	__glim_Norm
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e583f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58450	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e584b0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58570	104	__glim_Normal3iv	dwarf+dynsym	8f579a4c5190		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e585e0	1984	__glGenericPickSpanProcs	dwarf+dynsym	96e10653553b		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58da0	280	__glGenericPickPointProcs	dwarf+dynsym	e07befdcac13		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -32606,7 +32606,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Norma
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5c00	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5c78	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5d50	132	__glim_Normal3iv	dynsym+mdebug	b10bb19a1f03		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5de0	1920	__glGenericPickSpanProcs	dynsym+mdebug	feda8632e530		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f6560	296	__glGenericPickPointProcs	dynsym+mdebug	054a2ce04c0c		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -38142,7 +38142,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4140	84	__glim_Norm
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4200	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4260	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4320	104	__glim_Normal3iv	dwarf+dynsym	efc1b7a83fe4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4390	1948	__glGenericPickSpanProcs	dwarf+dynsym	8f79b5f2e073		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4b30	272	__glGenericPickPointProcs	dwarf+dynsym	bbbd38c7bf2b		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
@@ -43722,7 +43722,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238390	84	__glim_Norm
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22383f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238450	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22384b0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	located	docs/sample-implementation.md#so_napic	so_napi.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238570	104	__glim_Normal3iv	dwarf+dynsym	8f579a4c5190		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22385e0	1984	__glGenericPickSpanProcs	dwarf+dynsym	96e10653553b		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238da0	280	__glGenericPickPointProcs	dwarf+dynsym	e07befdcac13		in	located	docs/sample-implementation.md#so_pickc	so_pick.c
