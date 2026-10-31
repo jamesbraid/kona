@@ -118,4 +118,23 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/voc1.qtcbist` | RAM instances in the built-in self test of the `voc1` chip | 150 | 15 | `tcbist_ram 1 voc1_core.resizing1.resizing_sch1.vert_rgb3.memory.dpr0` | `tcbist_ram 15 voc1_core.vof1.vsd_lut` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/voc1.tcbist` | RAM instances in the built-in self test of the `voc1` chip | 950 | 15 | `tcbist_ram 1 voc1_core.resizing1.resizing_sch1.vert_rgb3.memory.dpr0` | `tcbist_ram 15 voc1_core.vof1.vsd_lut` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/voc1b.qtcbist` | RAM instances in the built-in self test of the `voc1b` chip | 188 | 37 | `tcbist_ram 13 voc1_core.resizing1.odd_mem` | `tcbist_ram 13 voc1_core.resizing1.odd_mem-7` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/voc1b.tcbist` | RAM instances in the built-in self test of the `voc1b` chip | 1071 | 20 | `tcbist_ram 13 voc1_core.resizing1.odd_mem` | `tcbist_ram 13 voc1_core.resizing1.odd_mem-7` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/xmap8.qtcbist` | RAM instances in the built-in self test of the `xmap8` chip | 77 | 22 | `tcbist_ram 1 core.pix_interp.glyph_ram` | `tcbist_ram 22 core.fastlist.FL_DATA` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/xmap8.tcbist` | RAM instances in the built-in self test of the `xmap8` chip | 377 | 22 | `tcbist_ram 1 core.pix_interp.glyph_ram` | `tcbist_ram 22 core.fastlist.FL_DATA` | `usr/diags/IR/bin/irsaudit` | inferred |
+
+### SDRAM bit lists
+
+**Established** (file contents). Each `*.sdbist` gives one `sdbist_bit` line per SDRAM data or address bit that the external memory test checks, with the bit index and the net name. One file exists per memory organisation (the file name gives depth and width).
+
+| File | Holds | Lines | Bits | First bit | Last bit | Read by | Label |
+|---|---|---|---|---|---|---|---|
+| `usr/diags/IR/data/bef1_256Kx16.sdbist` | SDRAM bits checked for the `bef1_256Kx16` memory | 187 | 174 | `sdbist_bit 96 sdram8_data[0]` | `sdbist_bit 287 sdram0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/hip1_2Mx8.sdbist` | SDRAM bits checked for the `hip1_2Mx8` memory | 101 | 88 | `sdbist_bit 49 sd_addr1[11]` | `sdbist_bit 147 sd_addr0[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/imp8_256Kx16.sdbist` | SDRAM bits checked for the `imp8_256Kx16` memory | 181 | 168 | `sdbist_bit 11 fb3_data[0]` | `sdbist_bit 254 fb0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/imp8d_16Mx16.sdbist` | SDRAM bits checked for the `imp8d_16Mx16` memory | 391 | 376 | `sdbist_bit 19 fb7_data[0]` | `sdbist_bit 525 fb0_addr[13]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1_1Mx16.sdbist` | SDRAM bits checked for the `tm1_1Mx16` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1_256Kx16.sdbist` | SDRAM bits checked for the `tm1_256Kx16` memory | 117 | 104 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 139 drama_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1_2Mx8.sdbist` | SDRAM bits checked for the `tm1_2Mx8` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1_4Mx8.sdbist` | SDRAM bits checked for the `tm1_4Mx8` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1c_16Mx16.sdbist` | SDRAM bits checked for the `tm1c_16Mx16` memory | 138 | 124 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 151 drama_addr[13]` | `usr/diags/IR/bin/irsaudit` | inferred |
 
