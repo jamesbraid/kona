@@ -407,11 +407,11 @@ usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b6
 usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	undocumented		
+usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	undocumented		
 usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0		0	0	undocumented		
-usr/diags/IR/data/tm9.netmap	diagnostics	board-diagnostic	data	-	286094	b7fb0fdec0dfc58c		0		0	0	undocumented		
-usr/diags/IR/data/tm9.netmap.Z	diagnostics	board-diagnostic	data	-	55798	523e205d5189e442		0		0	0	undocumented		
+usr/diags/IR/data/tm9.netmap	diagnostics	board-diagnostic	data	-	286094	b7fb0fdec0dfc58c		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
+usr/diags/IR/data/tm9.netmap.Z	diagnostics	board-diagnostic	data	-	55798	523e205d5189e442		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/tm9.short	diagnostics	board-diagnostic	data	-	219714	435e5dca19d05f65		0		0	0	undocumented		
 usr/diags/IR/data/tm9.short.Z	diagnostics	board-diagnostic	data	-	11395	62dfd6b4cc17737c		0		0	0	undocumented		
 usr/diags/IR/data/tm9.stuck	diagnostics	board-diagnostic	data	-	20033	2a75040397208027		0		0	0	undocumented		
