@@ -60,13 +60,13 @@ usr/cpu/sysgen/IP35boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	243
 usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)	kernel	board-kernel	object	n64	6612	7a40f54311a18f08		2	symtab	5	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)	kernel	board-kernel	object	n64	8564	b74e02764644bb5e		2	symtab	20	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)	kernel	board-kernel	object	n64	5540	85fc5556ab1a72ec		2	symtab	0	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
-usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	none	0	0	named-only	docs/kernel-functions.md#sharing-genlock-information-scheduling-hooks-and-stubs	Sharing, genlock, information, scheduling hooks and stubs
+usr/cpu/sysgen/IP35boot/kona.a(kona_stubs.o)	kernel	board-kernel	object	n64	4276	9ddba61a71ff1d05		1	none	0	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_timeout.o)	kernel	board-kernel	object	n64	12740	86d948058c5563ef		10	symtab	2	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)	kernel	board-kernel	object	n64	26836	31ebede97fc0663e		21	symtab	98	0	named-only	docs/kernel-functions.md#remaining-kernel-entries	Remaining kernel entries
 usr/cpu/sysgen/IP35boot/kona.a(kona_tport.o)	kernel	board-kernel	object	n64	24324	10b9a948c8087221		19	symtab	0	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_edtinit_hip2.o)	kernel	board-kernel	object	n64	22036	387a5f25e1abc8f2		9	symtab	24	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	kernel	board-kernel	object	n64	8068	8af55035550b9e02		3	symtab	4	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
-usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	symtab	2	3	named-only	docs/kernel-functions.md#map-ram-kona_mapram_hip2o	Map RAM: `kona_mapram_hip2.o`
+usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	kernel	board-kernel	object	n64	7412	d3526393bde60851		5	symtab	2	3	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/cpu/sysgen/IP35boot/rrm.o	kernel-shared	shared-kernel	object	n64	63896	99d3964176b0218c		72	symtab	0	0	understood	docs/kernel-objects.md#ip35-builds	IP35 builds
 usr/diags/IR/bin/availmon	diagnostics	board-diagnostic	data	-	1140	0830da204c6694ce		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/diags/IR/bin/hyper	diagnostics	board-diagnostic	executable	n32	38544	c9c31f17ce8a9831		11	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
