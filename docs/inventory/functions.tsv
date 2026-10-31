@@ -16050,15 +16050,15 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda062ec	244	__glim_Raste
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda063e0	400	__glRasterPos2	dynsym+mdebug	3e86f716feea		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06570	404	__glRasterPos3	dynsym+mdebug	b53460f201b1		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06704	404	__glRasterPos4	dynsym+mdebug	274a638e5fa6		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda068a0	200	__glim_Rectd	dynsym+mdebug	1e28743b032e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06968	216	__glim_Rectdv	dynsym+mdebug	d747cff4b6a9		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06a40	180	__glim_Rectf	dynsym+mdebug	f5de7c0cf359		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06af4	188	__glim_Rectfv	dynsym+mdebug	2c3d13968e65		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06bb0	232	__glim_Recti	dynsym+mdebug	f408c5c24b71		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06c98	232	__glim_Rectiv	dynsym+mdebug	1f559d651e49		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06d80	232	__glim_Rects	dynsym+mdebug	be9c6ebc6247		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06e68	232	__glim_Rectsv	dynsym+mdebug	b923a333a3d8		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dynsym+mdebug	1768c281033d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda068a0	200	__glim_Rectd	dynsym+mdebug	1e28743b032e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06968	216	__glim_Rectdv	dynsym+mdebug	d747cff4b6a9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06a40	180	__glim_Rectf	dynsym+mdebug	f5de7c0cf359		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06af4	188	__glim_Rectfv	dynsym+mdebug	2c3d13968e65		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06bb0	232	__glim_Recti	dynsym+mdebug	f408c5c24b71		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06c98	232	__glim_Rectiv	dynsym+mdebug	1f559d651e49		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06d80	232	__glim_Rects	dynsym+mdebug	be9c6ebc6247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06e68	232	__glim_Rectsv	dynsym+mdebug	b923a333a3d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dynsym+mdebug	1768c281033d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07010	176	__glim_SelectBuffer	dynsym+mdebug	534217755d8f		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda070c0	116	__glim_InitNames	dynsym+mdebug	89447caa1590		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07134	152	__glim_LoadName	dynsym+mdebug	6facf942e000		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -21586,15 +21586,15 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda032b0	204	__glim_Ras
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03380	376	__glRasterPos2	dwarf+dynsym	cdd21cc6a50f		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03500	376	__glRasterPos3	dwarf+dynsym	09eb27c27d3c		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03680	376	__glRasterPos4	dwarf+dynsym	5e597e0655eb		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03800	184	__glim_Rectd	dwarf+dynsym	24a3409e9b9d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda038c0	176	__glim_Rectdv	dwarf+dynsym	bbf512cac965		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03970	184	__glim_Rectf	dwarf+dynsym	dd376a404914		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03a30	160	__glim_Rectfv	dwarf+dynsym	7df02ec5cccb		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03ad0	192	__glim_Recti	dwarf+dynsym	02056c2f4419		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03b90	192	__glim_Rectiv	dwarf+dynsym	d5d08c12ca6e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03c50	192	__glim_Rects	dwarf+dynsym	b2e0805a7108		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03d10	192	__glim_Rectsv	dwarf+dynsym	5bf7067046e6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	dwarf+dynsym	9cd6070a7d59		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03800	184	__glim_Rectd	dwarf+dynsym	24a3409e9b9d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda038c0	176	__glim_Rectdv	dwarf+dynsym	bbf512cac965		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03970	184	__glim_Rectf	dwarf+dynsym	dd376a404914		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03a30	160	__glim_Rectfv	dwarf+dynsym	7df02ec5cccb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03ad0	192	__glim_Recti	dwarf+dynsym	02056c2f4419		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03b90	192	__glim_Rectiv	dwarf+dynsym	d5d08c12ca6e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03c50	192	__glim_Rects	dwarf+dynsym	b2e0805a7108		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03d10	192	__glim_Rectsv	dwarf+dynsym	5bf7067046e6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	dwarf+dynsym	9cd6070a7d59		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03ea0	160	__glim_SelectBuffer	dwarf+dynsym	7990aaf86ecc		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03f40	108	__glim_InitNames	dwarf+dynsym	be17da6d7569		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03fb0	144	__glim_LoadName	dwarf+dynsym	2ef8908d81af		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -27166,15 +27166,15 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e676d0	196	__glim_Ras
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e677a0	392	__glRasterPos2	dwarf+dynsym	96785373546b		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67930	392	__glRasterPos3	dwarf+dynsym	f40be18d5b0b		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67ac0	392	__glRasterPos4	dwarf+dynsym	bad198ee97e5		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67c50	180	__glim_Rectd	dwarf+dynsym	00cc3d76d2b6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67d10	168	__glim_Rectdv	dwarf+dynsym	c71617ac6f6d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67dc0	180	__glim_Rectf	dwarf+dynsym	7afa03999a2f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67e80	152	__glim_Rectfv	dwarf+dynsym	01e1ee8f3e31		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67f20	184	__glim_Recti	dwarf+dynsym	374eb6155931		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67fe0	184	__glim_Rectiv	dwarf+dynsym	b78e3272b1c2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e680a0	184	__glim_Rects	dwarf+dynsym	ce1c51d5ed32		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68160	184	__glim_Rectsv	dwarf+dynsym	fb07ad1576e1		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68220	200	__glRect	dwarf+dynsym	d57924defc4b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67c50	180	__glim_Rectd	dwarf+dynsym	00cc3d76d2b6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67d10	168	__glim_Rectdv	dwarf+dynsym	c71617ac6f6d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67dc0	180	__glim_Rectf	dwarf+dynsym	7afa03999a2f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67e80	152	__glim_Rectfv	dwarf+dynsym	01e1ee8f3e31		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67f20	184	__glim_Recti	dwarf+dynsym	374eb6155931		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e67fe0	184	__glim_Rectiv	dwarf+dynsym	b78e3272b1c2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e680a0	184	__glim_Rects	dwarf+dynsym	ce1c51d5ed32		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68160	184	__glim_Rectsv	dwarf+dynsym	fb07ad1576e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68220	200	__glRect	dwarf+dynsym	d57924defc4b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e682f0	160	__glim_SelectBuffer	dwarf+dynsym	7dfcf566236d		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68390	108	__glim_InitNames	dwarf+dynsym	6e2f2e45acfa		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68400	144	__glim_LoadName	dwarf+dynsym	419669e230e9		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -32749,15 +32749,15 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda062ec	244	__glim_Raste
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda063e0	400	__glRasterPos2	dynsym+mdebug	3e86f716feea		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06570	404	__glRasterPos3	dynsym+mdebug	b53460f201b1		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06704	404	__glRasterPos4	dynsym+mdebug	274a638e5fa6		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda068a0	200	__glim_Rectd	dynsym+mdebug	1e28743b032e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06968	216	__glim_Rectdv	dynsym+mdebug	d747cff4b6a9		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06a40	180	__glim_Rectf	dynsym+mdebug	f5de7c0cf359		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06af4	188	__glim_Rectfv	dynsym+mdebug	2c3d13968e65		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06bb0	232	__glim_Recti	dynsym+mdebug	f408c5c24b71		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06c98	232	__glim_Rectiv	dynsym+mdebug	1f559d651e49		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06d80	232	__glim_Rects	dynsym+mdebug	be9c6ebc6247		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06e68	232	__glim_Rectsv	dynsym+mdebug	b923a333a3d8		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dynsym+mdebug	1768c281033d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda068a0	200	__glim_Rectd	dynsym+mdebug	1e28743b032e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06968	216	__glim_Rectdv	dynsym+mdebug	d747cff4b6a9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06a40	180	__glim_Rectf	dynsym+mdebug	f5de7c0cf359		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06af4	188	__glim_Rectfv	dynsym+mdebug	2c3d13968e65		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06bb0	232	__glim_Recti	dynsym+mdebug	f408c5c24b71		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06c98	232	__glim_Rectiv	dynsym+mdebug	1f559d651e49		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06d80	232	__glim_Rects	dynsym+mdebug	be9c6ebc6247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06e68	232	__glim_Rectsv	dynsym+mdebug	b923a333a3d8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dynsym+mdebug	1768c281033d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07010	176	__glim_SelectBuffer	dynsym+mdebug	534217755d8f		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda070c0	116	__glim_InitNames	dynsym+mdebug	89447caa1590		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07134	152	__glim_LoadName	dynsym+mdebug	6facf942e000		in	located	docs/sample-implementation.md#so_selectc	so_select.c
@@ -38285,15 +38285,15 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda032b0	204	__glim_Ras
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03380	376	__glRasterPos2	dwarf+dynsym	cdd21cc6a50f		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03500	376	__glRasterPos3	dwarf+dynsym	09eb27c27d3c		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03680	376	__glRasterPos4	dwarf+dynsym	5e597e0655eb		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03800	184	__glim_Rectd	dwarf+dynsym	24a3409e9b9d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda038c0	176	__glim_Rectdv	dwarf+dynsym	bbf512cac965		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03970	184	__glim_Rectf	dwarf+dynsym	dd376a404914		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03a30	160	__glim_Rectfv	dwarf+dynsym	7df02ec5cccb		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03ad0	192	__glim_Recti	dwarf+dynsym	02056c2f4419		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03b90	192	__glim_Rectiv	dwarf+dynsym	d5d08c12ca6e		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03c50	192	__glim_Rects	dwarf+dynsym	b2e0805a7108		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03d10	192	__glim_Rectsv	dwarf+dynsym	5bf7067046e6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	dwarf+dynsym	9cd6070a7d59		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03800	184	__glim_Rectd	dwarf+dynsym	24a3409e9b9d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda038c0	176	__glim_Rectdv	dwarf+dynsym	bbf512cac965		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03970	184	__glim_Rectf	dwarf+dynsym	dd376a404914		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03a30	160	__glim_Rectfv	dwarf+dynsym	7df02ec5cccb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03ad0	192	__glim_Recti	dwarf+dynsym	02056c2f4419		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03b90	192	__glim_Rectiv	dwarf+dynsym	d5d08c12ca6e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03c50	192	__glim_Rects	dwarf+dynsym	b2e0805a7108		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03d10	192	__glim_Rectsv	dwarf+dynsym	5bf7067046e6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	dwarf+dynsym	9cd6070a7d59		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03ea0	160	__glim_SelectBuffer	dwarf+dynsym	7990aaf86ecc		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03f40	108	__glim_InitNames	dwarf+dynsym	be17da6d7569		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03fb0	144	__glim_LoadName	dwarf+dynsym	2ef8908d81af		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -43865,15 +43865,15 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22476d0	196	__glim_Ras
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22477a0	392	__glRasterPos2	dwarf+dynsym	96785373546b		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247930	392	__glRasterPos3	dwarf+dynsym	f40be18d5b0b		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247ac0	392	__glRasterPos4	dwarf+dynsym	bad198ee97e5		in	located	docs/sample-implementation.md#so_rasterposc	so_rasterpos.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247c50	180	__glim_Rectd	dwarf+dynsym	00cc3d76d2b6		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247d10	168	__glim_Rectdv	dwarf+dynsym	c71617ac6f6d		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247dc0	180	__glim_Rectf	dwarf+dynsym	7afa03999a2f		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247e80	152	__glim_Rectfv	dwarf+dynsym	01e1ee8f3e31		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247f20	184	__glim_Recti	dwarf+dynsym	374eb6155931		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247fe0	184	__glim_Rectiv	dwarf+dynsym	b78e3272b1c2		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22480a0	184	__glim_Rects	dwarf+dynsym	ce1c51d5ed32		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248160	184	__glim_Rectsv	dwarf+dynsym	fb07ad1576e1		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248220	200	__glRect	dwarf+dynsym	d57924defc4b		in	located	docs/sample-implementation.md#so_rectc	so_rect.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247c50	180	__glim_Rectd	dwarf+dynsym	00cc3d76d2b6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247d10	168	__glim_Rectdv	dwarf+dynsym	c71617ac6f6d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247dc0	180	__glim_Rectf	dwarf+dynsym	7afa03999a2f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247e80	152	__glim_Rectfv	dwarf+dynsym	01e1ee8f3e31		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247f20	184	__glim_Recti	dwarf+dynsym	374eb6155931		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2247fe0	184	__glim_Rectiv	dwarf+dynsym	b78e3272b1c2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22480a0	184	__glim_Rects	dwarf+dynsym	ce1c51d5ed32		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248160	184	__glim_Rectsv	dwarf+dynsym	fb07ad1576e1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248220	200	__glRect	dwarf+dynsym	d57924defc4b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22482f0	160	__glim_SelectBuffer	dwarf+dynsym	7dfcf566236d		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248390	108	__glim_InitNames	dwarf+dynsym	6e2f2e45acfa		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248400	144	__glim_LoadName	dwarf+dynsym	419669e230e9		in	located	docs/sample-implementation.md#so_selectc	so_select.c
