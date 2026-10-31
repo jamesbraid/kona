@@ -304,3 +304,31 @@ Limits of the comparison: the target of a pc-relative or table-slot reference to
 | What the 433 `__glx_` routines of `libGL.so` do, the client stubs that pack each GL call into a GLX request | The public source names the table that holds them (`__glx_dispatchTable`) but not the generator that writes their bodies, and carries no source for the stubs themselves | Read the stubs in the disassembly in groups by request layout and write each one's entry from its own body |
 | The static routines of `libGL.so` that the public GLX client source holds (the context create and destroy helpers, the visual scoring routines, the pixel helpers) | The library keeps no symbol for them, and the addresses that the DWARF information gives for many `libGL.so` functions do not match the symbol table (for example the symbol table puts `glXQueryVersion` at 0x0d833278 where the DWARF address in the inventory is 0xd80f0a0) | Find each static routine from the call to it in a symbol-bearing routine, then compare with the public source; fix the inventory so that `libGL.so` rows take their address from the symbol table where one exists |
 | Which of the 426 soft-renderer, 36 display-list and 70 pixel-path routines of libGLcore that have no name in the public source are renamed public routines and which SGI added | Matched by name only, for example the blend-equation routines whose names the public source lacks | Compare each against the public routine of the same shape in the same source file |
+
+## Recollections and history leads (unverified)
+
+Leads from posts, forum threads and a talk, with no source behind them yet. Each one is checked by the software route named; the claims and the route are in [published-sources.md](published-sources.md#recollections-and-history-leads-unverified).
+
+- GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`).
+- IR2 and IR2E internal names against the marketing names: a guest's hinv must print the internal name for each configured product.
+- IR3 gfxinfo report: diff a guest's gfxinfo output against the posted IR3 text, field by field.
+- Framebuffer and texture per RM for IR3 and IR4: texture allocation should fail at one RM's texture memory, not the sum.
+- Reality against IR visuals and pixel depth: check which multisample and alpha visuals findvis and ircombine -validate offer per RM revision.
+- ircombine video bandwidth: find the accept and reject boundary for channel mixes, and check it does not depend on RM count.
+- Stereo line rates: compile the shipped .vfo files and compare the line frequencies with the posted figures.
+- ireeprom: a combination written with -w must survive a guest reset, and -c must restore the default format.
+- Clip-map limits on IR: find the maximum level count and addressable size with libGL on the guest.
+- Immediate-mode and display-list throughput: use the posted rates as bounds for a timing model.
+- Display-list size: create lists beyond 15 MB and check the change in behaviour.
+- Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
+- DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
+- Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
+- GE fault word pairs: check whether the shipped KONA syslog strings use the same two-word format.
+- IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries.
+- Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
+- Code-name claim ("Kona" as the InfiniteReality code name): check against the product names in the shipped binaries and PROM tables.
+- Processor count in the oral-history lead: check against the repo's count of per-RM pixel processors.
+- Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
+- RM repair thread: model the rm_extbist and irsaudit self-test sequence per TM, and check the TM-to-SDRAM bank count.
+- IR4 half-dome output: check the 8-channel DG5 limit in the video-format tools.
+- OpenGL extensions history: compare SGIS_point_parameters and SGIS_multitexture against the IR GL_EXTENSIONS strings.
