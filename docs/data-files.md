@@ -79,13 +79,13 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 
 | File | Holds | Lines | Sections | First section | Last section | Read by | Label |
 |---|---|---|---|---|---|---|---|
-| `usr/diags/IR/data/irsaudit.h.gold` | golden CRC words of the test sections of the `irsaudit` run | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.h.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.hl.gold` | golden CRC words of the test sections of the `irsaudit` run | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.hl.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.k.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 79327 | 967 | `#clearfb.g4r1t64` | `#texfmt3d_draw.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.oh.gold` | golden CRC words of the test sections of the `irsaudit` run | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/irsaudit.oh.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.h.gold` | Golden CRC log of 2402 test sections, the largest of the four logs. Of its 202736 non-empty lines, 160106 start with r, 7206 with g and 19216 with an xx-prefixed code, and the rest start with the other xx codes. | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.h.gold.Z` | Compressed copy of the plain h log: decompressed, it is byte-identical to that log, so its 2402 sections and row counts apply. | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.hl.gold` | Golden CRC log of 764 test sections, the second-smallest of the four logs: 26592 rows start with r and 2292 with g, and the rest carry xx-prefixed codes. | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.hl.gold.Z` | Compressed copy of the hl log, byte-identical once decompressed, so its 764 sections and row counts are those of the plain log. | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.k.gold.Z` | Golden CRC log of 967 test sections in two configuration groups, with no plain copy in the tree: 59772 rows start with r, 2967 with g and the rest with xx-prefixed codes, over 79277 lines. | 79327 | 967 | `#clearfb.g4r1t64` | `#texfmt3d_draw.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.oh.gold` | Golden CRC log of 416 test sections, all in one configuration group, with 22655 rows starting with r, 1248 with g and the xx-prefixed rows making up the rest. | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.oh.gold.Z` | Compressed copy of the oh log, byte-identical once decompressed, so its 416 sections and row counts are those of the plain log. | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
 
 ### Built-in self-test lists
 
@@ -130,11 +130,11 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 
 | File | Holds | Lines | Bits | First bit | Last bit | Read by | Label |
 |---|---|---|---|---|---|---|---|
-| `usr/diags/IR/data/bef1_256Kx16.sdbist` | SDRAM bits checked for the `bef1_256Kx16` memory | 187 | 174 | `sdbist_bit 96 sdram8_data[0]` | `sdbist_bit 287 sdram0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/hip1_2Mx8.sdbist` | SDRAM bits checked for the `hip1_2Mx8` memory | 101 | 88 | `sdbist_bit 49 sd_addr1[11]` | `sdbist_bit 147 sd_addr0[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/imp8_256Kx16.sdbist` | SDRAM bits checked for the `imp8_256Kx16` memory | 181 | 168 | `sdbist_bit 11 fb3_data[0]` | `sdbist_bit 254 fb0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/imp8d_16Mx16.sdbist` | SDRAM bits checked for the `imp8d_16Mx16` memory | 391 | 376 | `sdbist_bit 19 fb7_data[0]` | `sdbist_bit 525 fb0_addr[13]` | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm1_1Mx16.sdbist` | SDRAM bits checked for the `tm1_1Mx16` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bef1_256Kx16.sdbist` | Bit list for the `bef1_256Kx16` memory: 174 bits, 144 of them data bits on nine 16-wide groups, and 30 address bits on three 10-wide groups, plus 13 control lines. | 187 | 174 | `sdbist_bit 96 sdram8_data[0]` | `sdbist_bit 287 sdram0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/hip1_2Mx8.sdbist` | Bit list for the `hip1_2Mx8` memory: 88 bits, 64 on the data nets and 24 on the address nets, plus 13 control lines. | 101 | 88 | `sdbist_bit 49 sd_addr1[11]` | `sdbist_bit 147 sd_addr0[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/imp8_256Kx16.sdbist` | Bit list for the `imp8_256Kx16` memory: 168 bits on four groups, 128 data bits (32 each) and 40 address bits (10 each), plus 13 control lines. | 181 | 168 | `sdbist_bit 11 fb3_data[0]` | `sdbist_bit 254 fb0_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/imp8d_16Mx16.sdbist` | Bit list for the `imp8d_16Mx16` memory: 376 bits on eight groups, 256 data bits (32 each) and 120 address bits (15 each), the longest list of the set, plus 15 control lines. | 391 | 376 | `sdbist_bit 19 fb7_data[0]` | `sdbist_bit 525 fb0_addr[13]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm1_1Mx16.sdbist` | Bit list for the `tm1_1Mx16` memory: 112 bits, 64 data bits (16 in each of four DRAM groups) and 48 address bits (12 each), plus 13 control lines. | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm1_256Kx16.sdbist` | SDRAM bits checked for the `tm1_256Kx16` memory | 117 | 104 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 139 drama_addr[8]` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm1_2Mx8.sdbist` | SDRAM bits checked for the `tm1_2Mx8` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm1_4Mx8.sdbist` | SDRAM bits checked for the `tm1_4Mx8` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |

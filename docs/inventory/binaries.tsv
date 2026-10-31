@@ -77,7 +77,7 @@ usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	
 usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/data-files.md#test-bus-and-video-format-files	Test-bus and video format files
 usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/bpln.short.Z	diagnostics	board-diagnostic	data	-	9446	54cc798e37dc625e		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/bpln.stuck.Z	diagnostics	board-diagnostic	data	-	1228	b15ee592e34962af		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
@@ -352,18 +352,18 @@ usr/diags/IR/data/ged1b.qtcbist	diagnostics	board-diagnostic	data	-	4910	b684965
 usr/diags/IR/data/ged1b.tcbist	diagnostics	board-diagnostic	data	-	22335	2509d717b0ae69a0		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/hip1.qtcbist	diagnostics	board-diagnostic	data	-	2483	38a2deae9fe264fd		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/hip1.tcbist	diagnostics	board-diagnostic	data	-	9453	440366e7aa861a39		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/hip1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	4878	b0e97dfa0d5537f3	usr/diags/IR/data/hip1b_2Mx8.sdbist	0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/hip1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	4878	b0e97dfa0d5537f3	usr/diags/IR/data/hip1b_2Mx8.sdbist	0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b6217c1ba00d4		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af1b575c3		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
@@ -401,12 +401,12 @@ usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e32789
 usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
-usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	located	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
+usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
