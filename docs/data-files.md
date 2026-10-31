@@ -57,3 +57,41 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | `tport.o` | the kernel textport STREAMS driver, a member of `tport.a` ([setup-tools.md](setup-tools.md#kernel-textport-tporta)) |
 | `Dmconf`, `Ircombine`, `XSetmon` | the X resource files of the three graphical tools; each starts with the RapidApp generator banner and turns on the SGI look and feel schemes |
 | `gfx.sm`, `gfxs` and the tuning file `gfx` | the kernel configuration: `gfx.sm` is the system file that lists the graphics drivers autoconfig links (the Kona driver among them, "KONA graphics w/ HIP2 via Xtalk bus"), `gfxs` is the master file of the graphics streams device and sets the board limit (128 heads on IP27 and IP35, 8 elsewhere), and `gfx` holds the tunable parameters |
+
+## Per-file register of the diagnostic data
+
+One row per file in `usr/diags/IR/data/` and the listings beside it. A script read the first lines of each file to fill the figures, so every row is labelled inferred until a reader has opened that file; the family descriptions are established from the file contents.
+
+### Listings of the diagnostic program
+
+**Established** (file headers and first lines). The two files in `usr/diags/IR/` are text dumps of `irsaudit`, not inputs it reads. The first is an objdump disassembly of that binary (its first line names the ELF32 big-endian MIPS file it came from); the second is its dynamic symbol table in readelf layout.
+
+| File | Holds | Lines | Content | Label |
+|---|---|---|---|---|
+| `usr/diags/IR/irsaudit_disasm.txt` | objdump text listing | 358272 | objdump of `usr/diags/IR/bin/irsaudit`, sections `.MIPS.stubs`, `.text` and `.init`, 1171 labelled routines | inferred |
+| `usr/diags/IR/irsaudit_dynsym_disasm.txt` | readelf symbol table listing | 1805 | readelf dynamic symbol table of `usr/diags/IR/bin/irsaudit`, 1802 numbered entries | inferred |
+
+### Gold CRC logs
+
+**Established** (file contents). Each `irsaudit.*.gold` file is the golden log of CRC words that `irsaudit -goldfile` compares against. Sections begin with `#` and name a test and a configuration tag such as `g2r1t64` or `g4r4t16`; the tag's fields are not spelled out in the files, so their meaning is **unknown**. The `.Z` copy of a log has the same contents as the plain file where both exist.
+
+| File | Holds | Lines | Sections | First section | Last section | Read by | Label |
+|---|---|---|---|---|---|---|---|
+| `usr/diags/IR/data/irsaudit.h.gold` | golden CRC words of the test sections of the `irsaudit` run | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.h.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 203015 | 2402 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.hl.gold` | golden CRC words of the test sections of the `irsaudit` run | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.hl.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 39774 | 764 | `#clearfb.g2r1t64` | `#SetupChTVO.g4r2t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.k.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 79327 | 967 | `#clearfb.g4r1t64` | `#texfmt3d_draw.g4r4t16` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.oh.gold` | golden CRC words of the test sections of the `irsaudit` run | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/irsaudit.oh.gold.Z` | golden CRC words of the test sections of the `irsaudit` run | 29932 | 416 | `#clearfb.g4r1t1024` | `#rm_crc_imptest1.g4r4t1024` | `usr/diags/IR/bin/irsaudit` | inferred |
+
+### Built-in self-test lists
+
+**Established** (file contents). Each `*.tcbist` (and `*.qtcbist`, the shorter list) names the RAM instances one chip's test-control self test covers, one `tcbist_ram` line per instance, followed by the reset and control lines the test sequence uses. Chip and memory names are the ones the file's own instance names give.
+
+| File | Holds | Lines | RAM instances | First instance | Last instance | Read by | Label |
+|---|---|---|---|---|---|---|---|
+| `usr/diags/IR/data/bef1.qtcbist` | RAM instances in the built-in self test of the `bef1` chip | 190 | 39 | `tcbist_ram 1 core.in.idu0.ififo.dpr0` | `tcbist_ram 4 core.in.idu7.ififo.dpr3` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bef1.tcbist` | RAM instances in the built-in self test of the `bef1` chip | 1090 | 39 | `tcbist_ram 1 core.in.idu0.ififo.dpr0` | `tcbist_ram 4 core.in.idu7.ififo.dpr3` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fm2.qtcbist` | RAM instances in the built-in self test of the `fm2` chip | 24 | 1 | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `tcbist_ram 1 fm2_core1.imp_sm1.imp_ram1.impram` | `usr/diags/IR/bin/irsaudit` | inferred |
+

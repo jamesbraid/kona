@@ -75,8 +75,8 @@ usr/diags/IR/data/1280x1024_60.vfo	diagnostics	board-diagnostic	data	-	17920	fbc
 usr/diags/IR/data/160x100_5000.vfo	diagnostics	board-diagnostic	data	-	17967	8b776633a7cf9df6		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
 usr/diags/IR/data/CCIR601_525_DGO.vfo	diagnostics	board-diagnostic	data	-	17920	bba183206ff10567		0		0	0	undocumented		
 usr/diags/IR/data/aaspoke.tbus	diagnostics	board-diagnostic	data	-	23268	7318d08a61358a11		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	undocumented		
-usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	undocumented		
+usr/diags/IR/data/bef1.qtcbist	diagnostics	board-diagnostic	data	-	6739	67fed9ca1743f173		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/bef1.tcbist	diagnostics	board-diagnostic	data	-	38120	6e3912a86607444d		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/bef1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	9261	06a29fa0dc60f29e		0		0	0	undocumented		
 usr/diags/IR/data/bpln.netmap.Z	diagnostics	board-diagnostic	data	-	110673	79d6d9087ab547e4		0		0	0	undocumented		
 usr/diags/IR/data/bpln.short.Z	diagnostics	board-diagnostic	data	-	9446	54cc798e37dc625e		0		0	0	undocumented		
@@ -129,7 +129,7 @@ usr/diags/IR/data/dg4_8voc_dacsamp.stuck.Z	diagnostics	board-diagnostic	data	-	3
 usr/diags/IR/data/dg4_8voc_dvp.netmap.Z	diagnostics	board-diagnostic	data	-	58825	f216bb50f04a36fc		0		0	0	undocumented		
 usr/diags/IR/data/dg4_8voc_dvp.short.Z	diagnostics	board-diagnostic	data	-	7888	3497cbf8564ae6c1		0		0	0	undocumented		
 usr/diags/IR/data/dg4_8voc_dvp.stuck.Z	diagnostics	board-diagnostic	data	-	3536	53ee4c6f2253167b		0		0	0	undocumented		
-usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	undocumented		
+usr/diags/IR/data/fm2.qtcbist	diagnostics	board-diagnostic	data	-	805	24180c5ea0dca631		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/fm2.tcbist	diagnostics	board-diagnostic	data	-	4290	fa93346ddf252603		0		0	0	undocumented		
 usr/diags/IR/data/fm2null.qtcbist	diagnostics	board-diagnostic	data	-	826	658adb67b6bc0dd1		0		0	0	undocumented		
 usr/diags/IR/data/fm2null.tcbist	diagnostics	board-diagnostic	data	-	4397	e7e59eb968264f60		0		0	0	undocumented		
@@ -357,13 +357,13 @@ usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b621
 usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0		0	0	undocumented		
 usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	undocumented		
 usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0		0	0	undocumented		
-usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5476050582b43069		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af1b575c3		0		0	0	undocumented		
 usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	undocumented		
