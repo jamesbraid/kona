@@ -243,3 +243,22 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/tm7.netmap.Z` | compressed net map of the `tm7` scan chain, one line per boundary-scan bit. | 4907 | 142 | `0 rm0.tmm0.ram3_d[0] rm0.tmm0.tm:dramd_data[0]` | `4906 rm0.pgtfp_val rm0.tfp:pgtf_val` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.netmap` | uncompressed net map of the `tm9` scan chain, one line per boundary-scan bit. The compressed copy holds the same content once decompressed. | 4991 | 89 | `0 tm90.tmm0.ram3_d[0] tm90.tmm0.tm1c.tm1cc:dramd_data[0]` | `4990 tm90.pgtfp_val tm90.tfp:pgtf_val` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm9.netmap.Z` | compressed net map of the `tm9` scan chain, one line per boundary-scan bit. The plain copy holds the same content. | 4991 | 89 | `0 tm90.tmm0.ram3_d[0] tm90.tmm0.tm1c.tm1cc:dramd_data[0]` | `4990 tm90.pgtfp_val tm90.tfp:pgtf_val` | `usr/diags/IR/bin/irsaudit` | inferred |
+
+### Shorts vectors
+
+**Established** (file contents, all 78 chains). A `*.short` file has a four-line header: `chain` names a `vchains/<chain>.vchain` file, which is not among the shipped files; `netmap` names the net map of the chain; `length` is the chain length in bits, equal to that net map's bit count in every file; `vectors` is the vector count. After the header each vector is two lines of `length` characters, and the characters are `.`, `0`, `1` and `X`. What those characters mean is **unknown**; the file contents and the `irsaudit` strings do not say. The `irsaudit` binary builds these file names from format strings such as `dg4_%dvoc.short`, so it reads them.
+
+| File | Holds | Chain length | Vectors | Read by | Label |
+|---|---|---|---|---|---|
+| `usr/diags/IR/data/bpln.short.Z` | shorts test vectors for the `bpln` chain. | 12682 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilo.short.Z` | shorts test vectors for the `bpln_hilo` chain. | 12726 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilolite.short.Z` | shorts test vectors for the `bpln_hilolite` chain. | 8296 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.short` | shorts test vectors for the `bpln_oheo` chain. The compressed copy holds the same content once decompressed. | 12870 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.short.Z` | shorts test vectors for the `bpln_oheo` chain. The plain copy holds the same content. | 12870 | 20 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc.short.Z` | shorts test vectors for the `dg4_2voc` chain. | 2166 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dacsamp.short.Z` | shorts test vectors for the `dg4_2voc_dacsamp` chain. | 2166 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short` | shorts test vectors for the `dg4_2voc_dplex_dacsamp` chain. The compressed copy holds the same content once decompressed. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z` | shorts test vectors for the `dg4_2voc_dplex_dacsamp` chain. The plain copy holds the same content. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The compressed copy holds the same content once decompressed. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z` | shorts test vectors for the `dg4_2voc_dplex_dacsamp_lvds` chain. The plain copy holds the same content. | 4461 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dvp.short.Z` | shorts test vectors for the `dg4_2voc_dvp` chain. | 2774 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
