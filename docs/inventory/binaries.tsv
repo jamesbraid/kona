@@ -226,41 +226,41 @@ usr/diags/IR/data/fpln_rm11_8voc.stuck.Z	diagnostics	board-diagnostic	data	-	307
 usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap	diagnostics	board-diagnostic	data	-	802048	9fef03fad5498f21		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165621	afc64bf6138bdd8e		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short	diagnostics	board-diagnostic	data	-	720287	ee9d3258c7ef41db		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	25752	f8204fc20959923a		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	25752	f8204fc20959923a		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	7e7a4042e6bacc90		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3127	5002e312a8515540		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap	diagnostics	board-diagnostic	data	-	802118	71ca27b13659b5fb		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	165585	18801876e60515ef		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short	diagnostics	board-diagnostic	data	-	720287	887015ef1317573b		0		0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	25768	2cbf57dc61304802		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short	diagnostics	board-diagnostic	data	-	720287	887015ef1317573b		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z	diagnostics	board-diagnostic	data	-	25768	2cbf57dc61304802		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	e82dc8228511380e		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3134	4f4e437b159dd5fb		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap	diagnostics	board-diagnostic	data	-	801093	99ca4597427ac299		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	165953	f6deaecafdda9107		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short	diagnostics	board-diagnostic	data	-	720287	0409e637f0aa589a		0		0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	25831	7eaefa70f2b4308d		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short	diagnostics	board-diagnostic	data	-	720287	0409e637f0aa589a		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z	diagnostics	board-diagnostic	data	-	25831	7eaefa70f2b4308d		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck	diagnostics	board-diagnostic	data	-	65566	6b00b5810a8261fa		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck.Z	diagnostics	board-diagnostic	data	-	3091	c7726978915801aa		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap	diagnostics	board-diagnostic	data	-	801128	cf7c3059c221884c		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap.Z	diagnostics	board-diagnostic	data	-	166168	c167f93faaebcf83		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short	diagnostics	board-diagnostic	data	-	720287	7c02f7e009a1a88c		0		0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	25831	a54bf9d56219b459		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short	diagnostics	board-diagnostic	data	-	720287	7c02f7e009a1a88c		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z	diagnostics	board-diagnostic	data	-	25831	a54bf9d56219b459		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck	diagnostics	board-diagnostic	data	-	65566	bc68b1ccb3b29ac2		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck.Z	diagnostics	board-diagnostic	data	-	3095	ccf2e6d69002ffb6		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap	diagnostics	board-diagnostic	data	-	801093	3f20822d8463c086		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap.Z	diagnostics	board-diagnostic	data	-	165990	a8babb9757b7527c		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short	diagnostics	board-diagnostic	data	-	720287	9943d09b3f75bb30		0		0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	25772	5f26af4391793935		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short	diagnostics	board-diagnostic	data	-	720287	9943d09b3f75bb30		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z	diagnostics	board-diagnostic	data	-	25772	5f26af4391793935		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck	diagnostics	board-diagnostic	data	-	65566	2704003cbf3cb4f7		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z	diagnostics	board-diagnostic	data	-	3100	79f0636c39cdc4ba		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap	diagnostics	board-diagnostic	data	-	801128	45dac3aae0a6810b		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap.Z	diagnostics	board-diagnostic	data	-	166081	b791ad53be251872		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short	diagnostics	board-diagnostic	data	-	720287	c4791f3a3752e306		0		0	0	undocumented		
-usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	25847	67ef05f2fcb8ed81		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short	diagnostics	board-diagnostic	data	-	720287	c4791f3a3752e306		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z	diagnostics	board-diagnostic	data	-	25847	67ef05f2fcb8ed81		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck	diagnostics	board-diagnostic	data	-	65566	aa6307b53b27daf8		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z	diagnostics	board-diagnostic	data	-	3110	b8fbc18db445e71e		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm8_2voc.netmap.Z	diagnostics	board-diagnostic	data	-	86443	b71c111db93084da		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/fpln_rm8_2voc.short.Z	diagnostics	board-diagnostic	data	-	5564	639b03090fc0610b		0		0	0	undocumented		
+usr/diags/IR/data/fpln_rm8_2voc.short.Z	diagnostics	board-diagnostic	data	-	5564	639b03090fc0610b		0		0	0	named-only	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/fpln_rm8_2voc.stuck.Z	diagnostics	board-diagnostic	data	-	986	a1c7cbf5cbd4290a		0		0	0	undocumented		
 usr/diags/IR/data/fpln_rm8_2voc_2rm_0.netmap.Z	diagnostics	board-diagnostic	data	-	86027	afd31f91dce0d4ef		0		0	0	located	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z	diagnostics	board-diagnostic	data	-	4877	f3f5744bd9f294a3		0		0	0	undocumented		
