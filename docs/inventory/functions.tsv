@@ -30093,7 +30093,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edef20	32	__glim_Colo
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edef40	48	__glim_Color4fv	dwarf+dynsym	2c1d3d45278d		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edef70	24	__glim_Normal3f	dwarf+dynsym	74631043b804		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edef88	32	__glim_Normal3fv	dwarf+dynsym	d2c9ebb32344		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edefa8	28	__glim_TexCoord2f	dwarf+dynsym	5f0ae4488098		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edefa8	28	__glim_TexCoord2f	dwarf+dynsym	5f0ae4488098		in	understood	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edefc4	36	__glim_TexCoord2fv	dwarf+dynsym	08e60cf6d33e		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edeff0	144	__glEvenTStripVertex	dwarf+dynsym	a42ed3e242c2		in	located	docs/sample-implementation.md#mips_polyfinc	mips_polyfin.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edf080	144	__glOddTStripVertex	dwarf+dynsym	dfbd0654a6fb		in	located	docs/sample-implementation.md#mips_polyfinc	mips_polyfin.c
@@ -46792,7 +46792,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bef20	32	__glim_Colo
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bef40	48	__glim_Color4fv	dwarf+dynsym	2c1d3d45278d		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bef70	24	__glim_Normal3f	dwarf+dynsym	74631043b804		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bef88	32	__glim_Normal3fv	dwarf+dynsym	d2c9ebb32344		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22befa8	28	__glim_TexCoord2f	dwarf+dynsym	5f0ae4488098		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22befa8	28	__glim_TexCoord2f	dwarf+dynsym	5f0ae4488098		in	understood	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22befc4	36	__glim_TexCoord2fv	dwarf+dynsym	08e60cf6d33e		in	located	docs/sample-implementation.md#mips_fastapic	mips_fastapi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22beff0	144	__glEvenTStripVertex	dwarf+dynsym	a42ed3e242c2		in	located	docs/sample-implementation.md#mips_polyfinc	mips_polyfin.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bf080	144	__glOddTStripVertex	dwarf+dynsym	dfbd0654a6fb		in	located	docs/sample-implementation.md#mips_polyfinc	mips_polyfin.c
