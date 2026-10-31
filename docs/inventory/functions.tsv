@@ -16068,7 +16068,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0731c	608	__glSelectHi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0757c	340	__glSelectTriangle	dynsym+mdebug	af94b28d8d96		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda076d0	92	__glSelectLine	dynsym+mdebug	e7b0de3eb5cb		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0772c	56	__glSelectPoint	dynsym+mdebug	0933258a320a		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07770	112	__glFogiv_size	dynsym+mdebug	42ef0b0a3914		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07770	112	__glFogiv_size	dynsym+mdebug	42ef0b0a3914		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda077e0	52	__glFogfv_size	dynsym+mdebug	fe1fcb0b667f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07814	144	__glLightfv_size	dynsym+mdebug	da8254b5a629		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda078a4	52	__glLightiv_size	dynsym+mdebug	df9db1eb5cbb		in	located	docs/sample-implementation.md#so_sizec	so_size.c
@@ -21604,7 +21604,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04190	320	__glSelect
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda042d0	296	__glSelectTriangle	dwarf+dynsym	9fdbc172381c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04400	92	__glSelectLine	dwarf+dynsym	8c2b2361634c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04460	52	__glSelectPoint	dwarf+dynsym	99d6c9eaa654		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda044a0	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda044a0	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04520	52	__glFogfv_size	dwarf+dynsym	631d15c6b273		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04560	136	__glLightfv_size	dwarf+dynsym	7a5601373b29		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda045f0	52	__glLightiv_size	dwarf+dynsym	796782998f1e		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
@@ -27184,7 +27184,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e685e0	328	__glSelect
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68730	296	__glSelectTriangle	dwarf+dynsym	db300d48e320		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68860	92	__glSelectLine	dwarf+dynsym	60995c3e8b5b		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e688c0	52	__glSelectPoint	dwarf+dynsym	d5521f764a6c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68900	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68900	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68980	52	__glFogfv_size	dwarf+dynsym	f4643b44ce8c		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e689c0	144	__glLightfv_size	dwarf+dynsym	2da22f22d228		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68a50	52	__glLightiv_size	dwarf+dynsym	e488a979f41f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
@@ -32767,7 +32767,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0731c	608	__glSelectHi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0757c	340	__glSelectTriangle	dynsym+mdebug	af94b28d8d96		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda076d0	92	__glSelectLine	dynsym+mdebug	e7b0de3eb5cb		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0772c	56	__glSelectPoint	dynsym+mdebug	0933258a320a		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07770	112	__glFogiv_size	dynsym+mdebug	42ef0b0a3914		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07770	112	__glFogiv_size	dynsym+mdebug	42ef0b0a3914		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda077e0	52	__glFogfv_size	dynsym+mdebug	fe1fcb0b667f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07814	144	__glLightfv_size	dynsym+mdebug	da8254b5a629		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda078a4	52	__glLightiv_size	dynsym+mdebug	df9db1eb5cbb		in	located	docs/sample-implementation.md#so_sizec	so_size.c
@@ -38303,7 +38303,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04190	320	__glSelect
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda042d0	296	__glSelectTriangle	dwarf+dynsym	9fdbc172381c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04400	92	__glSelectLine	dwarf+dynsym	8c2b2361634c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04460	52	__glSelectPoint	dwarf+dynsym	99d6c9eaa654		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda044a0	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda044a0	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04520	52	__glFogfv_size	dwarf+dynsym	631d15c6b273		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04560	136	__glLightfv_size	dwarf+dynsym	7a5601373b29		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda045f0	52	__glLightiv_size	dwarf+dynsym	796782998f1e		in	understood	docs/sample-implementation.md#so_sizec	so_size.c
@@ -43883,7 +43883,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22485e0	328	__glSelect
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248730	296	__glSelectTriangle	dwarf+dynsym	db300d48e320		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248860	92	__glSelectLine	dwarf+dynsym	60995c3e8b5b		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22488c0	52	__glSelectPoint	dwarf+dynsym	d5521f764a6c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248900	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	located	docs/sample-implementation.md#so_sizec	so_size.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248900	120	__glFogiv_size	dwarf+dynsym	9600d27f98f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248980	52	__glFogfv_size	dwarf+dynsym	f4643b44ce8c		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22489c0	144	__glLightfv_size	dwarf+dynsym	2da22f22d228		in	located	docs/sample-implementation.md#so_sizec	so_size.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248a50	52	__glLightiv_size	dwarf+dynsym	e488a979f41f		in	located	docs/sample-implementation.md#so_sizec	so_size.c
