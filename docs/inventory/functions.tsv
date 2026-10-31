@@ -15661,8 +15661,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackB
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db3fc	228	__glFeedbackLine	dynsym+mdebug	ef1c07b6d8d4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9db4e0	1496	__glFeedbackTriangle	dynsym+mdebug	f89256191ddc		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbb28	104	__glim_Flush	dynsym+mdebug	9b1a6d0cc6fd		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbb28	104	__glim_Flush	dynsym+mdebug	9b1a6d0cc6fd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbb90	240	__glFogSpan	dynsym+mdebug	0b555203539b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbc80	296	__glFogStippledSpan	dynsym+mdebug	f57feba3b4f5		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dbda8	516	__glFogSpanSlow	dynsym+mdebug	1cbbeb2f56e2		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -21197,8 +21197,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6b00	88	__glFeedbac
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6b60	88	__glFeedbackPoint	dwarf+dynsym	fc8e646a6ba4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6bc0	212	__glFeedbackLine	dwarf+dynsym	54217dab4c6e		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7220	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d72e0	568	__glFogStippledSpan	dwarf+dynsym	03bc4e0adc5f		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d7520	472	__glFogSpanSlow	dwarf+dynsym	1b7d5787e05b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -26777,8 +26777,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a910	88	__glFeedbac
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3aab0	1248	__glFeedbackTriangle	dwarf+dynsym	51443e938fb6		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3b050	196	__glFogSpan	dwarf+dynsym	a1963f0767ce		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3b120	584	__glFogStippledSpan	dwarf+dynsym	59ce1d217d94		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3b370	492	__glFogSpanSlow	dwarf+dynsym	9baf0009220b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -32360,8 +32360,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db33c	96	__glFeedbackB
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db39c	96	__glFeedbackPoint	dynsym+mdebug	0783d4cf1ed0		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db3fc	228	__glFeedbackLine	dynsym+mdebug	ef1c07b6d8d4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9db4e0	1496	__glFeedbackTriangle	dynsym+mdebug	f89256191ddc		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbb28	104	__glim_Flush	dynsym+mdebug	9b1a6d0cc6fd		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbac0	104	__glim_Finish	dynsym+mdebug	f089f4fdc637		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbb28	104	__glim_Flush	dynsym+mdebug	9b1a6d0cc6fd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbb90	240	__glFogSpan	dynsym+mdebug	0b555203539b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbc80	296	__glFogStippledSpan	dynsym+mdebug	f57feba3b4f5		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dbda8	516	__glFogSpanSlow	dynsym+mdebug	1cbbeb2f56e2		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -37896,8 +37896,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6b00	88	__glFeedbac
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6b60	88	__glFeedbackPoint	dwarf+dynsym	fc8e646a6ba4		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6bc0	212	__glFeedbackLine	dwarf+dynsym	54217dab4c6e		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d6ca0	1204	__glFeedbackTriangle	dwarf+dynsym	50624d503d40		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7160	88	__glim_Finish	dwarf+dynsym	3f88467004de		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d71c0	88	__glim_Flush	dwarf+dynsym	1dd2dffc8117		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7220	180	__glFogSpan	dwarf+dynsym	f6d0deb32387		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d72e0	568	__glFogStippledSpan	dwarf+dynsym	03bc4e0adc5f		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d7520	472	__glFogSpanSlow	dwarf+dynsym	1b7d5787e05b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
@@ -43476,8 +43476,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a910	88	__glFeedbac
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a970	88	__glFeedbackPoint	dwarf+dynsym	b3eff50423a3		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221a9d0	224	__glFeedbackLine	dwarf+dynsym	f583d89ce8ca		in	understood	docs/sample-implementation.md#so_feedbackc	so_feedback.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221aab0	1248	__glFeedbackTriangle	dwarf+dynsym	51443e938fb6		in	located	docs/sample-implementation.md#so_feedbackc	so_feedback.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	located	docs/sample-implementation.md#so_finishc	so_finish.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221af90	88	__glim_Finish	dwarf+dynsym	95e0f8e801d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221aff0	88	__glim_Flush	dwarf+dynsym	48baab1e4a92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221b050	196	__glFogSpan	dwarf+dynsym	a1963f0767ce		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221b120	584	__glFogStippledSpan	dwarf+dynsym	59ce1d217d94		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221b370	492	__glFogSpanSlow	dwarf+dynsym	9baf0009220b		in	located	docs/sample-implementation.md#so_fogc	so_fog.c
