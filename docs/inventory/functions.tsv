@@ -14848,7 +14848,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd99183c	260	__glDlistHea
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991940	172	__glDlistHeapRemove	dynsym+mdebug	7692262c943e		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9919ec	100	__glDlistHeapPriorityChanged	dynsym+mdebug	8de35f42dc69		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991a50	180	__glDlistPrintHeap	dynsym+mdebug	df714257af8a		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlist	dynsym+mdebug	b9566c05ba4a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
@@ -31547,7 +31547,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd99183c	260	__glDlistHea
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991940	172	__glDlistHeapRemove	dynsym+mdebug	7692262c943e		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9919ec	100	__glDlistHeapPriorityChanged	dynsym+mdebug	8de35f42dc69		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991a50	180	__glDlistPrintHeap	dynsym+mdebug	df714257af8a		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlist	dynsym+mdebug	b9566c05ba4a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
