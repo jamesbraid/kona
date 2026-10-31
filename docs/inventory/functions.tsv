@@ -15683,7 +15683,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd4d8	588	__glim_GetTe
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd724	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	558a8d8abc73		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd840	224	__glim_GetClipPlane	dynsym+mdebug	330c1bc2e9b1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd920	164	__glInitImagePack	dynsym+mdebug	eeea39223bb8		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd9c4	1000	__glim_GetTexImage	dynsym+mdebug	9cdbf28bce4b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dd9c4	1000	__glim_GetTexImage	dynsym+mdebug	9cdbf28bce4b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9dddac	244	__glim_GetPolygonStipple	dynsym+mdebug	760564fe63e6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ddea0	452	__glim_GetLightfv	dynsym+mdebug	32cd6c08709d		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9de064	636	__glim_GetLightiv	dynsym+mdebug	77c30462ed31		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -21219,7 +21219,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d8b80	716	__glim_Get
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d8e50	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	764271f68872		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d8f40	236	__glim_GetClipPlane	dwarf+dynsym	e3721589dc56		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d9030	148	__glInitImagePack	dwarf+dynsym	a14a9ea24d6b		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d90d0	1292	__glim_GetTexImage	dwarf+dynsym	05b115fa9c25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d90d0	1292	__glim_GetTexImage	dwarf+dynsym	05b115fa9c25		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d95e0	188	__glim_GetPolygonStipple	dwarf+dynsym	0980f447be3b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d96a0	452	__glim_GetLightfv	dwarf+dynsym	f6a05fb4e9f1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d9870	548	__glim_GetLightiv	dwarf+dynsym	0770a480f902		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -26799,7 +26799,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3c9e0	708	__glim_Get
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3ccb0	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	af19091bc1a6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3cda0	236	__glim_GetClipPlane	dwarf+dynsym	2f9e62de1466		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3ce90	148	__glInitImagePack	dwarf+dynsym	354fc76f3de7		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3cf30	1260	__glim_GetTexImage	dwarf+dynsym	2f7cfb81ad1d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3cf30	1260	__glim_GetTexImage	dwarf+dynsym	2f7cfb81ad1d		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3d420	188	__glim_GetPolygonStipple	dwarf+dynsym	cf699a7976ab		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3d4e0	460	__glim_GetLightfv	dwarf+dynsym	f62193215c4a		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e3d6b0	556	__glim_GetLightiv	dwarf+dynsym	a91d10c19a44		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -32382,7 +32382,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd4d8	588	__glim_GetTe
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd724	284	__glim_GetTexFilterFuncSGIS	dynsym+mdebug	558a8d8abc73		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd840	224	__glim_GetClipPlane	dynsym+mdebug	330c1bc2e9b1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd920	164	__glInitImagePack	dynsym+mdebug	eeea39223bb8		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd9c4	1000	__glim_GetTexImage	dynsym+mdebug	9cdbf28bce4b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dd9c4	1000	__glim_GetTexImage	dynsym+mdebug	9cdbf28bce4b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9dddac	244	__glim_GetPolygonStipple	dynsym+mdebug	760564fe63e6		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ddea0	452	__glim_GetLightfv	dynsym+mdebug	32cd6c08709d		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9de064	636	__glim_GetLightiv	dynsym+mdebug	77c30462ed31		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -37918,7 +37918,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d8b80	716	__glim_Get
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d8e50	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	764271f68872		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d8f40	236	__glim_GetClipPlane	dwarf+dynsym	e3721589dc56		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d9030	148	__glInitImagePack	dwarf+dynsym	a14a9ea24d6b		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d90d0	1292	__glim_GetTexImage	dwarf+dynsym	05b115fa9c25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d90d0	1292	__glim_GetTexImage	dwarf+dynsym	05b115fa9c25		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d95e0	188	__glim_GetPolygonStipple	dwarf+dynsym	0980f447be3b		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d96a0	452	__glim_GetLightfv	dwarf+dynsym	f6a05fb4e9f1		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d9870	548	__glim_GetLightiv	dwarf+dynsym	0770a480f902		in	located	docs/sample-implementation.md#so_getc	so_get.c
@@ -43498,7 +43498,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221c9e0	708	__glim_Get
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221ccb0	236	__glim_GetTexFilterFuncSGIS	dwarf+dynsym	af19091bc1a6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221cda0	236	__glim_GetClipPlane	dwarf+dynsym	2f9e62de1466		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221ce90	148	__glInitImagePack	dwarf+dynsym	354fc76f3de7		in	located	docs/sample-implementation.md#so_getc	so_get.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221cf30	1260	__glim_GetTexImage	dwarf+dynsym	2f7cfb81ad1d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221cf30	1260	__glim_GetTexImage	dwarf+dynsym	2f7cfb81ad1d		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221d420	188	__glim_GetPolygonStipple	dwarf+dynsym	cf699a7976ab		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221d4e0	460	__glim_GetLightfv	dwarf+dynsym	f62193215c4a		in	located	docs/sample-implementation.md#so_getc	so_get.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x221d6b0	556	__glim_GetLightiv	dwarf+dynsym	a91d10c19a44		in	located	docs/sample-implementation.md#so_getc	so_get.c
