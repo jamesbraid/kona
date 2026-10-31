@@ -26984,8 +26984,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54b60	340	__glNamesN
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54cc0	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54cd0	72	freeLeaf	dwarf	0236891f5223		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54d20	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e54ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e54f90	128	findLeaf	dwarf	5dc3b34fa960		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e55010	284	copyLeafInfo	dwarf	56b78ef953cf		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e55130	328	fixMemoryProblem	dwarf	40c8ddfaaa49		in	located	docs/sample-implementation.md#so_namesc	so_names.c
@@ -43683,8 +43683,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234b60	340	__glNamesN
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234cc0	16	freeLeafData	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234cd0	72	freeLeaf	dwarf	0236891f5223		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234d20	16	freeBranch	dwarf	5a7d2342f377		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	located	docs/sample-implementation.md#so_namesc	so_names.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	located	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234d30	360	__glNamesFreeTree	dwarf+dynsym	de995f94abbc		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2234ea0	236	__glNamesFreeArray	dwarf+dynsym	f4236d6dbf70		in	understood	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2234f90	128	findLeaf	dwarf	5dc3b34fa960		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2235010	284	copyLeafInfo	dwarf	56b78ef953cf		in	located	docs/sample-implementation.md#so_namesc	so_names.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2235130	328	fixMemoryProblem	dwarf	40c8ddfaaa49		in	located	docs/sample-implementation.md#so_namesc	so_names.c
