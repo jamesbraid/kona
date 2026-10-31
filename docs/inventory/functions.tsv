@@ -14223,7 +14223,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBuff
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	0ed3ab1f2726		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
@@ -14236,7 +14236,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd947fbc	172	QueryHy
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948068	136	HyperpipeAttrib	mdebug	0ae1b74d7631		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9480f0	184	__glkonCompressPlist	mdebug	f61991e4c5b8		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9481a8	12	__glSdramFree	mdebug	d02b773dc99f		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdramSbrk	mdebug	e9b3750836cb		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdramSbrk	mdebug	e9b3750836cb		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
@@ -25345,7 +25345,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa530	52	PickBu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa630	260	DestroyContext	dwarf	638d6fa7fe0f		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa790	376	map_rtc	dwarf	c051c62aae87		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only		
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dab960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
@@ -25358,7 +25358,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac150	172	Query
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac200	120	HyperpipeAttrib	dwarf	2152aaf90f03		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac280	200	__glkonCompressPlist	dwarf	3c975c51f52c		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac350	8	__glSdramFree	dwarf	a7e7ca11a6b8		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac360	348	__glSdramSbrk	dwarf	00529a73d3bb		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac360	348	__glSdramSbrk	dwarf	00529a73d3bb		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4c0	28	__glSdramInit	dwarf	34a74c5dc659		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac4e0	28	__glSdramMemmove	dwarf	30bac91e9d92		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dac500	144	__glSdramCopyIn	dwarf	9b361b5ca161		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
@@ -30922,7 +30922,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468a4	52	PickBuff
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9468d8	188	LoseCurrent	mdebug	7c25ed635536	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946994	304	DestroyContext	mdebug	0ed3ab1f2726		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946ac4	76	initialDestroyContext	mdebug	f9aec81ca025		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946b10	460	map_rtc	mdebug	27ff1e172de2		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd946cdc	2608	MakeCurrentRead	mdebug	736c038cb4f6		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd94770c	116	MakeCurrent	mdebug	6ac3d04c65ec	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947780	980	VisualsMatch	mdebug	ac52618daf0e		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
@@ -30935,7 +30935,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd947fbc	172	QueryHy
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948068	136	HyperpipeAttrib	mdebug	0ae1b74d7631		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9480f0	184	__glkonCompressPlist	mdebug	f61991e4c5b8		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9481a8	12	__glSdramFree	mdebug	d02b773dc99f		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdramSbrk	mdebug	e9b3750836cb		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9481b4	404	__glSdramSbrk	mdebug	e9b3750836cb		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948348	28	__glSdramInit	mdebug	f4808d1f88fb		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948364	32	__glSdramMemmove	mdebug	e0fe149dc7a0		in	located	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd948384	168	__glSdramCopyIn	mdebug	d8f85b033c5f		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
@@ -42044,7 +42044,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a530	52	PickBu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a570	184	LoseCurrent	dwarf	1d6c03cf29e6	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a630	260	DestroyContext	dwarf	638d6fa7fe0f		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a740	76	initialDestroyContext	dwarf	252b44a9b516		in	located	docs/opengl.md#initialdestroycontext	`initialDestroyContext`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	c051c62aae87		in	located	docs/libglcore-driver-functions.md#context-entry-points	Context entry points
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a790	376	map_rtc	dwarf	c051c62aae87		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a910	4060	MakeCurrentRead	dwarf	93d9d2d8459d		in	located	docs/opengl.md#makecurrentread	`MakeCurrentRead`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b8f0	108	MakeCurrent	dwarf	91e9de6fd992	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218b960	136	VisualsMatch	dwarf	d930c5a1f5ba		in	located	docs/opengl.md#visualsmatch	`VisualsMatch`
@@ -42057,7 +42057,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c150	172	Query
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c200	120	HyperpipeAttrib	dwarf	2152aaf90f03		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c280	200	__glkonCompressPlist	dwarf	3c975c51f52c		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c350	8	__glSdramFree	dwarf	a7e7ca11a6b8		in	understood	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c360	348	__glSdramSbrk	dwarf	00529a73d3bb		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c360	348	__glSdramSbrk	dwarf	00529a73d3bb		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4c0	28	__glSdramInit	dwarf	34a74c5dc659		in	located	docs/libglcore-functions.md#support-routines-of-the-kona-driver	Support routines of the Kona driver
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c4e0	28	__glSdramMemmove	dwarf	30bac91e9d92		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218c500	144	__glSdramCopyIn	dwarf	9b361b5ca161		in	located	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
