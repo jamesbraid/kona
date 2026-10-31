@@ -346,3 +346,6 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/rm7.short.Z` | shorts test vectors for the `rm7` chain. | 6540 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm8.short.Z` | shorts test vectors for the `rm8` chain. | 7017 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rmtm7.short.Z` | shorts test vectors for the `rmtm7` chain. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm7.short.Z` | shorts test vectors for the `tm7` chain. | 4907 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.short` | shorts test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.short.Z` | shorts test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
