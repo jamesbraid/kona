@@ -15625,11 +15625,11 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6b94	372	__glFillMap2
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6d08	288	__glFillMap2d	dynsym+mdebug	1400dcc970eb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6e28	32	__glMap2_size	dynsym+mdebug	f0cafc12f3cd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6e48	324	__glSetUpMap1	dynsym+mdebug	27b47143062b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6f8c	400	__glSetUpMap2	dynsym+mdebug	0647136b716e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d6f8c	400	__glSetUpMap2	dynsym+mdebug	0647136b716e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d711c	484	PreEvaluate	mdebug	0d4299d79a02		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7300	956	PreEvaluateWithDeriv	mdebug	3553eca62b0d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7300	956	PreEvaluateWithDeriv	mdebug	3553eca62b0d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d76bc	312	DoDomain1	mdebug	247b77ca2e72		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d77f4	1268	DoEvalCoord1	mdebug	a994bc22d0e9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d77f4	1268	DoEvalCoord1	mdebug	a994bc22d0e9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9d7bac	316	__glDoEvalCoord1	dynsym+mdebug	6dfcedfe65fd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7ce8	180	ComputeFirstPartials	mdebug	b0307197b75f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9d7d9c	164	ComputeNormal2	mdebug	d1f16daa8500		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -21161,11 +21161,11 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2bb0	308	__glFillMa
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2cf0	276	__glFillMap2d	dwarf+dynsym	71d1bdf99314		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2e10	32	__glMap2_size	dwarf+dynsym	5901dfe17ba6		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2e30	288	__glSetUpMap1	dwarf+dynsym	2ec92c9d396e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2f50	332	__glSetUpMap2	dwarf+dynsym	1e2b56ba2c80		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d2f50	332	__glSetUpMap2	dwarf+dynsym	1e2b56ba2c80		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d30a0	284	PreEvaluate	dwarf+funcnames	58b5d94e9bdc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d31c0	676	PreEvaluateWithDeriv	dwarf+funcnames	d816bed226b3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d31c0	676	PreEvaluateWithDeriv	dwarf+funcnames	d816bed226b3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3470	312	DoDomain1	dwarf+funcnames	97f0f925de50		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d35b0	1000	DoEvalCoord1	dwarf+funcnames	8cb3df1faf95		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d35b0	1000	DoEvalCoord1	dwarf+funcnames	8cb3df1faf95		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9d39a0	256	__glDoEvalCoord1	dwarf+dynsym	3a5fada04bd5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3aa0	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9d3b40	100	ComputeNormal2	dwarf+funcnames	673aa399880c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -26741,11 +26741,11 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36960	308	__glFillMa
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36aa0	276	__glFillMap2d	dwarf+dynsym	ba2d6a705f41		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36bc0	32	__glMap2_size	dwarf+dynsym	5901dfe17ba6		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36be0	284	__glSetUpMap1	dwarf+dynsym	7bb5f7eb18b6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36d00	340	__glSetUpMap2	dwarf+dynsym	51330a17ca64		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e36d00	340	__glSetUpMap2	dwarf+dynsym	51330a17ca64		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e36e60	284	PreEvaluate	dwarf	2aa60e7149fd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e36f80	676	PreEvaluateWithDeriv	dwarf	211600458ec7		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e36f80	676	PreEvaluateWithDeriv	dwarf	211600458ec7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37230	312	DoDomain1	dwarf	e3c53591a357		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37370	1000	DoEvalCoord1	dwarf	bff414bcc7b9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37370	1000	DoEvalCoord1	dwarf	bff414bcc7b9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e37760	256	__glDoEvalCoord1	dwarf+dynsym	cc7053cc5ad5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37860	156	ComputeFirstPartials	dwarf	6652c635ac34		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e37900	100	ComputeNormal2	dwarf	62b0f2f28ffe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -32324,11 +32324,11 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6b94	372	__glFillMap2
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6d08	288	__glFillMap2d	dynsym+mdebug	1400dcc970eb		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6e28	32	__glMap2_size	dynsym+mdebug	f0cafc12f3cd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6e48	324	__glSetUpMap1	dynsym+mdebug	27b47143062b		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6f8c	400	__glSetUpMap2	dynsym+mdebug	0647136b716e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d6f8c	400	__glSetUpMap2	dynsym+mdebug	0647136b716e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d711c	484	PreEvaluate	mdebug	0d4299d79a02		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7300	956	PreEvaluateWithDeriv	mdebug	3553eca62b0d		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7300	956	PreEvaluateWithDeriv	mdebug	3553eca62b0d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d76bc	312	DoDomain1	mdebug	247b77ca2e72		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d77f4	1268	DoEvalCoord1	mdebug	a994bc22d0e9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d77f4	1268	DoEvalCoord1	mdebug	a994bc22d0e9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9d7bac	316	__glDoEvalCoord1	dynsym+mdebug	6dfcedfe65fd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7ce8	180	ComputeFirstPartials	mdebug	b0307197b75f		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9d7d9c	164	ComputeNormal2	mdebug	d1f16daa8500		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -37860,11 +37860,11 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2bb0	308	__glFillMa
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2cf0	276	__glFillMap2d	dwarf+dynsym	71d1bdf99314		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2e10	32	__glMap2_size	dwarf+dynsym	5901dfe17ba6		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2e30	288	__glSetUpMap1	dwarf+dynsym	2ec92c9d396e		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2f50	332	__glSetUpMap2	dwarf+dynsym	1e2b56ba2c80		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d2f50	332	__glSetUpMap2	dwarf+dynsym	1e2b56ba2c80		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d30a0	284	PreEvaluate	dwarf+funcnames	58b5d94e9bdc		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d31c0	676	PreEvaluateWithDeriv	dwarf+funcnames	d816bed226b3		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d31c0	676	PreEvaluateWithDeriv	dwarf+funcnames	d816bed226b3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3470	312	DoDomain1	dwarf+funcnames	97f0f925de50		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d35b0	1000	DoEvalCoord1	dwarf+funcnames	8cb3df1faf95		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d35b0	1000	DoEvalCoord1	dwarf+funcnames	8cb3df1faf95		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9d39a0	256	__glDoEvalCoord1	dwarf+dynsym	3a5fada04bd5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3aa0	156	ComputeFirstPartials	dwarf+funcnames	6652c635ac34		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9d3b40	100	ComputeNormal2	dwarf+funcnames	673aa399880c		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
@@ -43440,11 +43440,11 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216960	308	__glFillMa
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216aa0	276	__glFillMap2d	dwarf+dynsym	ba2d6a705f41		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216bc0	32	__glMap2_size	dwarf+dynsym	5901dfe17ba6		in	understood	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216be0	284	__glSetUpMap1	dwarf+dynsym	7bb5f7eb18b6		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216d00	340	__glSetUpMap2	dwarf+dynsym	51330a17ca64		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2216d00	340	__glSetUpMap2	dwarf+dynsym	51330a17ca64		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2216e60	284	PreEvaluate	dwarf	2aa60e7149fd		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2216f80	676	PreEvaluateWithDeriv	dwarf	211600458ec7		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2216f80	676	PreEvaluateWithDeriv	dwarf	211600458ec7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217230	312	DoDomain1	dwarf	e3c53591a357		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217370	1000	DoEvalCoord1	dwarf	bff414bcc7b9		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217370	1000	DoEvalCoord1	dwarf	bff414bcc7b9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2217760	256	__glDoEvalCoord1	dwarf+dynsym	cc7053cc5ad5		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217860	156	ComputeFirstPartials	dwarf	6652c635ac34		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2217900	100	ComputeNormal2	dwarf	62b0f2f28ffe		in	located	docs/sample-implementation.md#so_evalc	so_eval.c
