@@ -16062,8 +16062,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dyn
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07010	176	__glim_SelectBuffer	dynsym+mdebug	534217755d8f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda070c0	116	__glim_InitNames	dynsym+mdebug	89447caa1590		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07134	152	__glim_LoadName	dynsym+mdebug	6facf942e000		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda071cc	156	__glim_PopName	dynsym+mdebug	edc334470a92		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07268	180	__glim_PushName	dynsym+mdebug	74dbebfe985c		in	located	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda071cc	156	__glim_PopName	dynsym+mdebug	edc334470a92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07268	180	__glim_PushName	dynsym+mdebug	74dbebfe985c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0731c	608	__glSelectHit	dynsym+mdebug	cd06239f5ad8		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda0757c	340	__glSelectTriangle	dynsym+mdebug	af94b28d8d96		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda076d0	92	__glSelectLine	dynsym+mdebug	e7b0de3eb5cb		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -21598,8 +21598,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	d
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03ea0	160	__glim_SelectBuffer	dwarf+dynsym	7990aaf86ecc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03f40	108	__glim_InitNames	dwarf+dynsym	be17da6d7569		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda03fb0	144	__glim_LoadName	dwarf+dynsym	2ef8908d81af		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04040	148	__glim_PopName	dwarf+dynsym	545e404d7704		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda040e0	172	__glim_PushName	dwarf+dynsym	ab4071fd3b8f		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04040	148	__glim_PopName	dwarf+dynsym	545e404d7704		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda040e0	172	__glim_PushName	dwarf+dynsym	ab4071fd3b8f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04190	320	__glSelectHit	dwarf+dynsym	a393c9886ffe		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda042d0	296	__glSelectTriangle	dwarf+dynsym	9fdbc172381c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04400	92	__glSelectLine	dwarf+dynsym	8c2b2361634c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -27178,8 +27178,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68220	200	__glRect	d
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e682f0	160	__glim_SelectBuffer	dwarf+dynsym	7dfcf566236d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68390	108	__glim_InitNames	dwarf+dynsym	6e2f2e45acfa		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68400	144	__glim_LoadName	dwarf+dynsym	419669e230e9		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68490	148	__glim_PopName	dwarf+dynsym	184afb72b907		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68530	172	__glim_PushName	dwarf+dynsym	fd247dde1580		in	located	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68490	148	__glim_PopName	dwarf+dynsym	184afb72b907		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68530	172	__glim_PushName	dwarf+dynsym	fd247dde1580		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e685e0	328	__glSelectHit	dwarf+dynsym	7a820d5e8fed		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68730	296	__glSelectTriangle	dwarf+dynsym	db300d48e320		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68860	92	__glSelectLine	dwarf+dynsym	60995c3e8b5b		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -32761,8 +32761,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda06f50	192	__glRect	dyn
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07010	176	__glim_SelectBuffer	dynsym+mdebug	534217755d8f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda070c0	116	__glim_InitNames	dynsym+mdebug	89447caa1590		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07134	152	__glim_LoadName	dynsym+mdebug	6facf942e000		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda071cc	156	__glim_PopName	dynsym+mdebug	edc334470a92		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07268	180	__glim_PushName	dynsym+mdebug	74dbebfe985c		in	located	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda071cc	156	__glim_PopName	dynsym+mdebug	edc334470a92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07268	180	__glim_PushName	dynsym+mdebug	74dbebfe985c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0731c	608	__glSelectHit	dynsym+mdebug	cd06239f5ad8		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda0757c	340	__glSelectTriangle	dynsym+mdebug	af94b28d8d96		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda076d0	92	__glSelectLine	dynsym+mdebug	e7b0de3eb5cb		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -38297,8 +38297,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03dd0	200	__glRect	d
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03ea0	160	__glim_SelectBuffer	dwarf+dynsym	7990aaf86ecc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03f40	108	__glim_InitNames	dwarf+dynsym	be17da6d7569		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda03fb0	144	__glim_LoadName	dwarf+dynsym	2ef8908d81af		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04040	148	__glim_PopName	dwarf+dynsym	545e404d7704		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda040e0	172	__glim_PushName	dwarf+dynsym	ab4071fd3b8f		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04040	148	__glim_PopName	dwarf+dynsym	545e404d7704		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda040e0	172	__glim_PushName	dwarf+dynsym	ab4071fd3b8f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04190	320	__glSelectHit	dwarf+dynsym	a393c9886ffe		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda042d0	296	__glSelectTriangle	dwarf+dynsym	9fdbc172381c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04400	92	__glSelectLine	dwarf+dynsym	8c2b2361634c		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
@@ -43877,8 +43877,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248220	200	__glRect	d
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22482f0	160	__glim_SelectBuffer	dwarf+dynsym	7dfcf566236d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248390	108	__glim_InitNames	dwarf+dynsym	6e2f2e45acfa		in	located	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248400	144	__glim_LoadName	dwarf+dynsym	419669e230e9		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248490	148	__glim_PopName	dwarf+dynsym	184afb72b907		in	located	docs/sample-implementation.md#so_selectc	so_select.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248530	172	__glim_PushName	dwarf+dynsym	fd247dde1580		in	located	docs/sample-implementation.md#so_selectc	so_select.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248490	148	__glim_PopName	dwarf+dynsym	184afb72b907		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248530	172	__glim_PushName	dwarf+dynsym	fd247dde1580		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22485e0	328	__glSelectHit	dwarf+dynsym	7a820d5e8fed		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248730	296	__glSelectTriangle	dwarf+dynsym	db300d48e320		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248860	92	__glSelectLine	dwarf+dynsym	60995c3e8b5b		in	understood	docs/sample-implementation.md#so_selectc	so_select.c
