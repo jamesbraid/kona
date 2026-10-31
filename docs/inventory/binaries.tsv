@@ -366,8 +366,8 @@ usr/diags/IR/data/irsaudit.oh.gold	diagnostics	board-diagnostic	data	-	2161143	5
 usr/diags/IR/data/irsaudit.oh.gold.Z	diagnostics	board-diagnostic	data	-	610603	1e2e1ea223fc603d		0		0	0	located	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/pg2.qtcbist	diagnostics	board-diagnostic	data	-	3170	217c840af1b575c3		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/pg2.tcbist	diagnostics	board-diagnostic	data	-	20595	f3f3647fc265ee96		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	undocumented		
-usr/diags/IR/data/pg2b.tcbist	diagnostics	board-diagnostic	data	-	20595	0325cccaa1d0e4af		0		0	0	undocumented		
+usr/diags/IR/data/pg2b.qtcbist	diagnostics	board-diagnostic	data	-	3206	c9065942058d594d		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/pg2b.tcbist	diagnostics	board-diagnostic	data	-	20595	0325cccaa1d0e4af		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/rm10.netmap	diagnostics	board-diagnostic	data	-	353174	78d7e0796b316383		0		0	0	undocumented		
 usr/diags/IR/data/rm10.netmap.Z	diagnostics	board-diagnostic	data	-	64125	48629c4f022067d8		0		0	0	undocumented		
 usr/diags/IR/data/rm10.short	diagnostics	board-diagnostic	data	-	184896	99c04d91418ad9f3		0		0	0	undocumented		
@@ -393,19 +393,19 @@ usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39
 usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	undocumented		
 usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	undocumented		
 usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0		0	0	undocumented		
+usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0		0	0	undocumented		
-usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0		0	0	undocumented		
-usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0		0	0	undocumented		
-usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	undocumented		
+usr/diags/IR/data/tf1c.qtcbist	diagnostics	board-diagnostic	data	-	3945	1cf764978a6c4615		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/tf1c.tcbist	diagnostics	board-diagnostic	data	-	14378	0d4d757c5ad6d71f		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/tg1.qtcbist	diagnostics	board-diagnostic	data	-	1505	007e327890b1bd1a		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/tg1.tcbist	diagnostics	board-diagnostic	data	-	8475	d534a5247ffd7e67		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tg2.qtcbist	diagnostics	board-diagnostic	data	-	1520	fc19e8ac1a785b65		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
-usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	named-only	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
+usr/diags/IR/data/tg2.tcbist	diagnostics	board-diagnostic	data	-	8475	0e579dc1da233c28		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tm1_1Mx16.sdbist	diagnostics	board-diagnostic	data	-	5681	a9c33952e414c6b1		0		0	0	undocumented		
 usr/diags/IR/data/tm1_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	5333	2270d92a5af4cefe		0		0	0	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
 usr/diags/IR/data/tm1_2Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	8a1b63004817d4d4		0		0	0	undocumented		
 usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a2506f7c9806		0		0	0	undocumented		
-usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	undocumented		
+usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	undocumented		
 usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	undocumented		
 usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	undocumented		
@@ -417,9 +417,9 @@ usr/diags/IR/data/tm9.short.Z	diagnostics	board-diagnostic	data	-	11395	62dfd6b4
 usr/diags/IR/data/tm9.stuck	diagnostics	board-diagnostic	data	-	20033	2a75040397208027		0		0	0	undocumented		
 usr/diags/IR/data/tm9.stuck.Z	diagnostics	board-diagnostic	data	-	1209	f23976a9ed0f768a		0		0	0	undocumented		
 usr/diags/IR/data/tvo.vfo	diagnostics	board-diagnostic	data	-	17988	4759678be2e5a789		0		0	0	understood	docs/display-formats.md#video-formats-the-diagnostics-load	Video formats the diagnostics load
-usr/diags/IR/data/voc1.qtcbist	diagnostics	board-diagnostic	data	-	5508	87e9203d91c7f76b		0		0	0	undocumented		
-usr/diags/IR/data/voc1.tcbist	diagnostics	board-diagnostic	data	-	33388	684dfdb933dc10e1		0		0	0	undocumented		
-usr/diags/IR/data/voc1b.qtcbist	diagnostics	board-diagnostic	data	-	6832	ee41e9a4fc881cf0		0		0	0	undocumented		
+usr/diags/IR/data/voc1.qtcbist	diagnostics	board-diagnostic	data	-	5508	87e9203d91c7f76b		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/voc1.tcbist	diagnostics	board-diagnostic	data	-	33388	684dfdb933dc10e1		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
+usr/diags/IR/data/voc1b.qtcbist	diagnostics	board-diagnostic	data	-	6832	ee41e9a4fc881cf0		0		0	0	located	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/voc1b.tcbist	diagnostics	board-diagnostic	data	-	37378	0b99329c83b5079c		0		0	0	undocumented		
 usr/diags/IR/data/xmap8.qtcbist	diagnostics	board-diagnostic	data	-	2954	33b7137fe9a1a956		0		0	0	undocumented		
 usr/diags/IR/data/xmap8.tcbist	diagnostics	board-diagnostic	data	-	13409	b728f4f3471a6105		0		0	0	undocumented		
