@@ -334,3 +334,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/ge12_noge.short.Z` | shorts test vectors for the `ge12_noge` chain. | 1235 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge12_top4ges.short.Z` | shorts test vectors for the `ge12_top4ges` chain. | 4355 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_2ge.short.Z` | shorts test vectors for the `ge14_2ge` chain. | 2059 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_4ge.short.Z` | shorts test vectors for the `ge14_4ge` chain. | 2839 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_btm4ges.short.Z` | shorts test vectors for the `ge14_btm4ges` chain. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_noge.short.Z` | shorts test vectors for the `ge14_noge` chain. | 1279 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/ge14_top4ges.short.Z` | shorts test vectors for the `ge14_top4ges` chain. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.short` | shorts test vectors for the `rm10` chain. The compressed copy holds the same content once decompressed. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.short.Z` | shorts test vectors for the `rm10` chain. The plain copy holds the same content. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.short` | shorts test vectors for the `rm11` chain. The compressed copy holds the same content once decompressed. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.short.Z` | shorts test vectors for the `rm11` chain. The plain copy holds the same content. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm6.short.Z` | shorts test vectors for the `rm6` chain. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm7.short.Z` | shorts test vectors for the `rm7` chain. | 6540 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm8.short.Z` | shorts test vectors for the `rm8` chain. | 7017 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rmtm7.short.Z` | shorts test vectors for the `rmtm7` chain. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
