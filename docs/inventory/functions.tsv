@@ -2113,7 +2113,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011bcb8	352	TEST_gvo_lsb	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011be18	352	TEST_gvo_ll	dynsym	b3de09bd3c9a		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011bf78	456	TEST_gvo_fb_lite	dynsym	1c6e753603c2		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011c140	476	TEST_gvo_fb_pixel_readback	dynsym	1336439bce55		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011c44c	1080	diagLoadDGOXilinxes	dynsym	2bed7857556f		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011c44c	1080	diagLoadDGOXilinxes	dynsym	2bed7857556f		in	named-only	docs/data-files.md#option-board-xilinx-image	Option-board Xilinx image
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011cd2c	872	dgo_gamma_lut_cell_test	dynsym	b4bbf7aabe96		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011d094	1320	dgo_gamma_lut_funky_cell_test	dynsym	7dae976bec71		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011d5bc	1796	dgo_gamma_lut_abus_test	dynsym	ffe6969e56c3		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards

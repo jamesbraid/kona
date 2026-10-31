@@ -470,3 +470,11 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/tvo.vfo` | video format whose header holds `1024x768_60` | 17988 | 67 | `usr/diags/IR/bin/irsaudit` (names `tvo.vfo`) | inferred |
 | `usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo` | video format whose header holds `1280x1024_60@N`, a different build from the data-directory copy | 17992 | 68 | `usr/diags/IR/bin/irsaudit` (names `1280x1024_60.vfo`) | inferred |
 | `usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo` | video format whose header only names the `dVideoFormatCompiler` program, a different build from the data-directory copy | 17952 | 65 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
+
+### Option-board Xilinx image
+
+**Established** (file contents, read by a script). `dgo.mcs` is an Intel HEX file: one record per line, each starting with `:`, 2134 data records, one extended-address record and the end-of-file record. The role is **inferred** from the strings of `irsaudit`: its `diagLoadDGOXilinxes` routine names the file and prints `Downloading xilinx file to GVO...` and `Loading GVO Xilinxes from %s`.
+
+| File | Holds | Bytes | Records | Read by | Label |
+|---|---|---|---|---|---|
+| `usr/diags/IR/ucode/dgo.mcs` | Intel HEX configuration image of the Xilinx chips that `diagLoadDGOXilinxes` downloads to the GVO option | 93912 | 2136 | `usr/diags/IR/bin/irsaudit` (names `dgo.mcs`) | inferred |

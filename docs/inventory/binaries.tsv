@@ -427,7 +427,7 @@ usr/diags/IR/irsaudit_disasm.txt	diagnostics	board-diagnostic	data	-	9212110	5b9
 usr/diags/IR/irsaudit_dynsym_disasm.txt	diagnostics	board-diagnostic	data	-	128545	8bff24a378a29c2e		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/arm1.u	diagnostics	board-diagnostic	data	-	40072	cc20b24f7c1e4da9		0		0	0	named-only	ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command	Refused tokens: begin/end, divert, bad command
 usr/diags/IR/ucode/arm1_nic.u	diagnostics	board-diagnostic	data	-	13400	872331fc9285edfa		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
-usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0		0	0	undocumented		
+usr/diags/IR/ucode/dgo.mcs	diagnostics	board-diagnostic	data	-	93912	518cd70fa8b71474		0		0	0	understood	docs/data-files.md#option-board-xilinx-image	Option-board Xilinx image
 usr/diags/IR/ucode/diag_arm_init.u	diagnostics	board-diagnostic	data	-	520	da008146e38bf9a0		0		0	0	named-only	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/diags/IR/ucode/ge.hex	diagnostics	board-diagnostic	data	-	363650	ae8bfbf6f4060058		0		0	0	named-only	ucode/ge_ops.md#the-diagnostic-programs-instruction-test	The diagnostic program's instruction test
 usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3edf		0		0	0	named-only	ucode/ge_isa.md#which-ge11-facts-konas-own-software-confirms	Which GE11 facts KONA's own software confirms
