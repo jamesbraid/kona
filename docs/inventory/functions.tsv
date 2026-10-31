@@ -14840,7 +14840,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991370	604	__glDlistCom
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9915cc	52	__glDlistIsBlock	dynsym+mdebug	fd15d476b713		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991600	88	__glDlistTransientBlock	dynsym+mdebug	4690e7fae4df		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991658	132	__glDlistFreeTransient	dynsym+mdebug	bc61aa1daab6		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9916e0	128	__glDlistHeapInit	dynsym+mdebug	3548f2ed9f4f		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9916e0	128	__glDlistHeapInit	dynsym+mdebug	3548f2ed9f4f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991760	88	__glDlistHeapFree	dynsym+mdebug	6aa82c4da939		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9917b8	40	__glDlistHeapQueryMin	dynsym+mdebug	3949e04ca7e7		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9917e0	92	__glDlistHeapRemoveMin	dynsym+mdebug	a6068093e001		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -17947,7 +17947,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c7c4	104	__glkonSendP
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c82c	140	__glkonSendPackedVertexV3F_C4UB_T2S	dynsym+mdebug	65988cdbcad3		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c8b8	160	__glkonSendPackedVertexV3F_N3S_T2S	dynsym+mdebug	f8328cc7c809		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c958	192	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dynsym+mdebug	608ef909c33b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6cab4	168	__glSPInterpret	dynsym+mdebug	c5d7593a3028		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6cb5c	20	__glsple_Sentinel	dynsym+mdebug	2b8979be3cf9		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -20376,7 +20376,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98dbb0	648	__glDlistC
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98de40	60	__glDlistIsBlock	dwarf+dynsym	55d0fd8dcf65		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98de80	76	__glDlistTransientBlock	dwarf+dynsym	786fe58d6061		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98ded0	132	__glDlistFreeTransient	dwarf+dynsym	480a7eb2a2db		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98df60	92	__glDlistHeapInit	dwarf+dynsym	4cf13c6d19ba		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98df60	92	__glDlistHeapInit	dwarf+dynsym	4cf13c6d19ba		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98dfc0	72	__glDlistHeapFree	dwarf+dynsym	d9b3ef7a7eac		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e010	36	__glDlistHeapQueryMin	dwarf+dynsym	a781e90f1d30		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e040	92	__glDlistHeapRemoveMin	dwarf+dynsym	45c5bada0f32		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -23946,7 +23946,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7779c	112	__glkonSen
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7780c	148	__glkonSendPackedVertexV3F_C4UB_T2S	dwarf+dynsym	1b5e3aad4e1e		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda778a0	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	1c3448d0a397		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77944	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	9ed1739ac648		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77a10	132	__glDoInterpret	dwarf+dynsym	57b369fec4bf		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77a10	132	__glDoInterpret	dwarf+dynsym	57b369fec4bf		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77a94	16	__glle_Sentinel	dwarf+dynsym	67d504ec783f		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77aa4	168	__glSPInterpret	dwarf+dynsym	291233a5e237		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda77b4c	20	__glsple_Sentinel	dwarf+dynsym	a38d5eba5e4a		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -25956,7 +25956,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0f90	676	__glDlistC
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1240	68	__glDlistIsBlock	dwarf+dynsym	6d62f58064da		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1290	80	__glDlistTransientBlock	dwarf+dynsym	bd6b04dadf94		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df12e0	132	__glDlistFreeTransient	dwarf+dynsym	cb8e2fd781c4		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1370	88	__glDlistHeapInit	dwarf+dynsym	ac61f0c4e69b		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1370	88	__glDlistHeapInit	dwarf+dynsym	ac61f0c4e69b		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df13d0	72	__glDlistHeapFree	dwarf+dynsym	4c1832d5985c		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1420	36	__glDlistHeapQueryMin	dwarf+dynsym	d9bc929ad671		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1450	92	__glDlistHeapRemoveMin	dwarf+dynsym	6b28ab2f16d3		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -26483,7 +26483,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e23970	2432	__glim_Pu
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e242f0	3704	__glim_PopAttrib	dwarf+dynsym	6604ff75eeda		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e25170	3248	__glim_Enable	dwarf+dynsym	feee58688f05		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e25e20	3320	__glim_Disable	dwarf+dynsym	65cdbc48299a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e26b20	2252	__glim_IsEnabled	dwarf+dynsym	78174826334c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e26b20	2252	__glim_IsEnabled	dwarf+dynsym	78174826334c		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e273f0	184	__glim_BlendColorEXT	dwarf+dynsym	7ab2e76fb074		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e274b0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	37158820b1af		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e27520	120	__glim_PolygonOffset	dwarf+dynsym	f39cf1f47550		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -29526,7 +29526,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcd7c	112	__glkonSen
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcdec	148	__glkonSendPackedVertexV3F_C4UB_T2S	dwarf+dynsym	996f6f9289f8		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edce80	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	b04601f68175		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcf24	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	5ce04cdb6ea0		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd084	168	__glSPInterpret	dwarf+dynsym	af752d34a4de		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd12c	20	__glsple_Sentinel	dwarf+dynsym	99138bf4876c		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -31539,7 +31539,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991370	604	__glDlistCom
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9915cc	52	__glDlistIsBlock	dynsym+mdebug	fd15d476b713		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991600	88	__glDlistTransientBlock	dynsym+mdebug	4690e7fae4df		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991658	132	__glDlistFreeTransient	dynsym+mdebug	bc61aa1daab6		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9916e0	128	__glDlistHeapInit	dynsym+mdebug	3548f2ed9f4f		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9916e0	128	__glDlistHeapInit	dynsym+mdebug	3548f2ed9f4f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991760	88	__glDlistHeapFree	dynsym+mdebug	6aa82c4da939		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9917b8	40	__glDlistHeapQueryMin	dynsym+mdebug	3949e04ca7e7		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9917e0	92	__glDlistHeapRemoveMin	dynsym+mdebug	a6068093e001		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -34646,7 +34646,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c7c4	104	__glkonSendP
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c82c	140	__glkonSendPackedVertexV3F_C4UB_T2S	dynsym+mdebug	65988cdbcad3		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c8b8	160	__glkonSendPackedVertexV3F_N3S_T2S	dynsym+mdebug	f8328cc7c809		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c958	192	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dynsym+mdebug	608ef909c33b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6cab4	168	__glSPInterpret	dynsym+mdebug	c5d7593a3028		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6cb5c	20	__glsple_Sentinel	dynsym+mdebug	2b8979be3cf9		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -37075,7 +37075,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98dbb0	648	__glDlistC
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98de40	60	__glDlistIsBlock	dwarf+dynsym	55d0fd8dcf65		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98de80	76	__glDlistTransientBlock	dwarf+dynsym	786fe58d6061		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98ded0	132	__glDlistFreeTransient	dwarf+dynsym	480a7eb2a2db		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98df60	92	__glDlistHeapInit	dwarf+dynsym	4cf13c6d19ba		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98df60	92	__glDlistHeapInit	dwarf+dynsym	4cf13c6d19ba		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98dfc0	72	__glDlistHeapFree	dwarf+dynsym	d9b3ef7a7eac		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e010	36	__glDlistHeapQueryMin	dwarf+dynsym	a781e90f1d30		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e040	92	__glDlistHeapRemoveMin	dwarf+dynsym	45c5bada0f32		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -40645,7 +40645,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7779c	112	__glkonSen
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7780c	148	__glkonSendPackedVertexV3F_C4UB_T2S	dwarf+dynsym	1b5e3aad4e1e		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda778a0	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	1c3448d0a397		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77944	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	9ed1739ac648		in	understood	docs/libglcore-functions.md#packed-vertex-senders-the-interleaved-array-formats	Packed-vertex senders (the interleaved-array formats)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77a10	132	__glDoInterpret	dwarf+dynsym	57b369fec4bf		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77a10	132	__glDoInterpret	dwarf+dynsym	57b369fec4bf		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77a94	16	__glle_Sentinel	dwarf+dynsym	67d504ec783f		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77aa4	168	__glSPInterpret	dwarf+dynsym	291233a5e237		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda77b4c	20	__glsple_Sentinel	dwarf+dynsym	a38d5eba5e4a		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -42655,7 +42655,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0f90	676	__glDlistC
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1240	68	__glDlistIsBlock	dwarf+dynsym	6d62f58064da		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1290	80	__glDlistTransientBlock	dwarf+dynsym	bd6b04dadf94		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d12e0	132	__glDlistFreeTransient	dwarf+dynsym	cb8e2fd781c4		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1370	88	__glDlistHeapInit	dwarf+dynsym	ac61f0c4e69b		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1370	88	__glDlistHeapInit	dwarf+dynsym	ac61f0c4e69b		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d13d0	72	__glDlistHeapFree	dwarf+dynsym	4c1832d5985c		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1420	36	__glDlistHeapQueryMin	dwarf+dynsym	d9bc929ad671		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1450	92	__glDlistHeapRemoveMin	dwarf+dynsym	6b28ab2f16d3		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
@@ -43182,7 +43182,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2203970	2432	__glim_Pu
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22042f0	3704	__glim_PopAttrib	dwarf+dynsym	6604ff75eeda		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2205170	3248	__glim_Enable	dwarf+dynsym	feee58688f05		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2205e20	3320	__glim_Disable	dwarf+dynsym	65cdbc48299a		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2206b20	2252	__glim_IsEnabled	dwarf+dynsym	78174826334c		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2206b20	2252	__glim_IsEnabled	dwarf+dynsym	78174826334c		in	understood	docs/sample-implementation.md#so_attribc	so_attrib.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22073f0	184	__glim_BlendColorEXT	dwarf+dynsym	7ab2e76fb074		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22074b0	112	__glim_PolygonOffsetEXT	dwarf+dynsym	37158820b1af		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2207520	120	__glim_PolygonOffset	dwarf+dynsym	f39cf1f47550		in	located	docs/sample-implementation.md#so_attribc	so_attrib.c
@@ -46225,7 +46225,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcd7c	112	__glkonSen
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcdec	148	__glkonSendPackedVertexV3F_C4UB_T2S	dwarf+dynsym	996f6f9289f8		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bce80	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	b04601f68175		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcf24	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	5ce04cdb6ea0		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd084	168	__glSPInterpret	dwarf+dynsym	af752d34a4de		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd12c	20	__glsple_Sentinel	dwarf+dynsym	99138bf4876c		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
