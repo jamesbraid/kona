@@ -2451,9 +2451,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101656e0	860	jt_insert_bits	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166080	68	jt_expand_portlist	dynsym	9709103908c3		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101660d0	672	jt_nullify	dynsym	f69f1e751a4e		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166370	596	jt_copy_bits	dynsym	39ae49218243		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101665d0	756	read_netmap	dynsym	3ab55ff7f347		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101668d0	216	dispose_netmap	dynsym	789afad9221e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101669b0	188	print_netmap	dynsym	62ed2fdcb08f		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101665d0	756	read_netmap	dynsym	3ab55ff7f347		in	named-only	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101668d0	216	dispose_netmap	dynsym	789afad9221e		in	named-only	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101669b0	188	print_netmap	dynsym	62ed2fdcb08f		in	named-only	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166a70	592	jt_test_idcode	dynsym	dbdae0bec26a		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166cc0	408	jt_lookup_pin_from_bit_offset	dynsym	ca291818e66d		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166e60	876	jt_set_global_instruction	dynsym	6285c5ac6971		in	named-only	ucode/ged.md#engine-selection	Engine selection

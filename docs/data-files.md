@@ -9,7 +9,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | Kind | What it holds |
 |---|---|
 | `*.netmap` | the net map of one scan chain: one line per boundary-scan bit giving the bit index, the nets it drives or senses and the chip pin (`rm100.im1.imp.imp8dc:impbdg_data[0]` and the like); the connection tables of [rm.md](rm.md) and [dg.md](dg.md) are read from these |
-| `*.stuck` | stuck-at test vectors for the chain: a header naming the virtual chain file and the net map, the chain length in bits (6600 for the raster board `rm10`) and the vector count, then one line of bits per vector |
+| `*.stuck` | stuck-at test vectors for the chain: a header naming the virtual chain file and the net map, the chain length in bits (6600 for the raster board `rm10`) and the vector count, then two lines of bits per vector |
 | `*.short` | shorts test vectors in the same format (more vectors per chain than the stuck-at set: 14 against 2 for `rm10`) |
 
 | Family | Role | Files |
@@ -30,7 +30,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 
 ## Video format, combination and monitor files
 
-**Established** (`usr/gfx/ucode/KONA/dg4/vfo/README` and the file headers). A `.vfo` file is a compiled video format in the symbol-database binary format whose header reads "dKona video format"; the `README` beside them is a generated listing of every format with its timing (total and active lines and pixels, frame rate, fields per frame, pixel clock, sync and porch lengths, the line analysis), so the numbers need not be repeated here. A `.cmb` file is a "Kona video format combination": which format each channel of the pipe drives, named by the formats' `.vfo` files (`1280x1024+NTSC_60.cmb` combines a 1280x1024 channel with an NTSC channel; a leading `2@`, `3@` or `8@` is a channel count). The `.monitor` and `.vof` files under `vof/` describe the video output format in the older text syntax (`default.monitor` is a fake display with field and porch counts).
+**Established** (`usr/gfx/ucode/KONA/dg4/vfo/README` and the file headers). A `.vfo` file is a compiled video format in the symbol-database binary format whose header names the `dVideoFormatCompiler` program; the `README` beside them is a generated listing of every format with its timing (total and active lines and pixels, frame rate, fields per frame, pixel clock, sync and porch lengths, the line analysis), so the numbers need not be repeated here. A `.cmb` file is a "Kona video format combination": which format each channel of the pipe drives, named by the formats' `.vfo` files (`1280x1024+NTSC_60.cmb` combines a 1280x1024 channel with an NTSC channel; a leading `2@`, `3@` or `8@` is a channel count). The `.monitor` and `.vof` files under `vof/` describe the video output format in the older text syntax (`default.monitor` is a fake display with field and porch counts).
 
 | Group | Role | Files |
 |---|---|---|
@@ -138,3 +138,21 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/tm1_4Mx8.sdbist` | SDRAM bits checked for the `tm1_4Mx8` memory | 125 | 112 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 141 drama_addr[10]` | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm1c_16Mx16.sdbist` | SDRAM bits checked for the `tm1c_16Mx16` memory | 138 | 124 | `sdbist_bit 0 dramd_data[0]` | `sdbist_bit 151 drama_addr[13]` | `usr/diags/IR/bin/irsaudit` | inferred |
 
+### Scan-chain net maps
+
+**Established** (file contents, all 99 net map files). Each `*.netmap` has one line per boundary-scan bit: the bit index, the net names that bit drives or senses (`-` when it has none), then the chip pin, separated by tabs. Indices run from 0 to the bit count minus one in every file. The `irsaudit` binary holds the `read_netmap`, `print_netmap` and `dispose_netmap` routines, so it reads these files. Each row gives the bit count, the number of unnamed bits and the first and last lines.
+
+| File | Holds | Bits | Unnamed bits | First bit | Last bit | Read by | Label |
+|---|---|---|---|---|---|---|---|
+| `usr/diags/IR/data/bpln.netmap.Z` | compressed net map of the `bpln` scan chain, one line per boundary-scan bit. | 12682 | 9486 | `0 rm.tgpg_scrdy_l rm.pg:tgpg_scrdy_l` | `12681 - gebrd.hip:fci_db_l[31]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilo.netmap.Z` | compressed net map of the `bpln_hilo` scan chain, one line per boundary-scan bit. | 12726 | 9530 | `0 - rm0.tmm0.tm:Zdramd_data[0]` | `12725 - gebrd.hip:EXTRA_CRC_0[7]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_hilolite.netmap.Z` | compressed net map of the `bpln_hilolite` scan chain, one line per boundary-scan bit. | 8296 | 5100 | `0 rm0.tgpg_scrdy_l rm0.pg:tgpg_scrdy_l` | `8295 - gebrd.hip:EXTRA_CRC_0[7]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.netmap` | uncompressed net map of the `bpln_oheo` scan chain, one line per boundary-scan bit. The compressed copy holds the same content once decompressed. | 12870 | 9424 | `0 - tm90.tmm0.tm1c.tm1cc:Zdramd_data[0]` | `12869 - gebrd.hip:EXTRA_CRC_0[7]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/bpln_oheo.netmap.Z` | compressed net map of the `bpln_oheo` scan chain, one line per boundary-scan bit. The plain copy holds the same content. | 12870 | 9424 | `0 - tm90.tmm0.tm1c.tm1cc:Zdramd_data[0]` | `12869 - gebrd.hip:EXTRA_CRC_0[7]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc.netmap.Z` | compressed net map of the `dg4_2voc` scan chain, one line per boundary-scan bit. | 2166 | 952 | `0 fb_rd_fld voc00:fb_rd_fld` | `2165 loc_clk fm0:loc_clk` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dacsamp.netmap.Z` | compressed net map of the `dg4_2voc_dacsamp` scan chain, one line per boundary-scan bit. | 2166 | 757 | `0 fb_rd_fld voc00:fb_rd_fld` | `2165 loc_clk fm0:loc_clk` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap` | uncompressed net map of the `dg4_2voc_dplex_dacsamp` scan chain, one line per boundary-scan bit. The compressed copy holds the same content once decompressed. | 4461 | 2585 | `0 dg.fb_rd_fld dg.voc00:fb_rd_fld` | `4460 - ddo3.voc:bd_id[11]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap.Z` | compressed net map of the `dg4_2voc_dplex_dacsamp` scan chain, one line per boundary-scan bit. The plain copy holds the same content. | 4461 | 2585 | `0 dg.fb_rd_fld dg.voc00:fb_rd_fld` | `4460 - ddo3.voc:bd_id[11]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap` | uncompressed net map of the `dg4_2voc_dplex_dacsamp_lvds` scan chain, one line per boundary-scan bit. The compressed copy holds the same content once decompressed. | 4461 | 2524 | `0 dg.fb_rd_fld dg.voc00:fb_rd_fld` | `4460 - ddo3.voc:bd_id[11]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap.Z` | compressed net map of the `dg4_2voc_dplex_dacsamp_lvds` scan chain, one line per boundary-scan bit. The plain copy holds the same content. | 4461 | 2524 | `0 dg.fb_rd_fld dg.voc00:fb_rd_fld` | `4460 - ddo3.voc:bd_id[11]` | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/dg4_2voc_dvp.netmap.Z` | compressed net map of the `dg4_2voc_dvp` scan chain, one line per boundary-scan bit. | 2774 | 1283 | `0 dg.fb_rd_fld dg.voc00:fb_rd_fld` | `2773 - dvp1.voc1e:bd_id[11]` | `usr/diags/IR/bin/irsaudit` | inferred |
