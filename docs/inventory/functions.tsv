@@ -21561,8 +21561,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda021c0	32	__glEndPrim
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda021e0	52	__glim_UnimplementedExtension	dwarf+dynsym	d1e418ce98ae		in	located	docs/sample-implementation.md#so_primc	so_prim.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02220	164	__glim_RasterPos2dv	dwarf+dynsym	80598f1591ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda022d0	136	__glim_RasterPos2fv	dwarf+dynsym	d96f7baa680d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02360	164	__glim_RasterPos2d	dwarf+dynsym	6c8f6e367275		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02410	156	__glim_RasterPos2f	dwarf+dynsym	8fd7c847b238		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02360	164	__glim_RasterPos2d	dwarf+dynsym	6c8f6e367275		in	understood	docs/sample-implementation.md#so_rapic	so_rapi.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02410	156	__glim_RasterPos2f	dwarf+dynsym	8fd7c847b238		in	understood	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda024b0	176	__glim_RasterPos2i	dwarf+dynsym	40ca8254c440		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02560	172	__glim_RasterPos2iv	dwarf+dynsym	04d9f06c35c7		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda02610	176	__glim_RasterPos2s	dwarf+dynsym	7cb7bbc713b2		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
@@ -38260,8 +38260,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda021c0	32	__glEndPrim
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda021e0	52	__glim_UnimplementedExtension	dwarf+dynsym	d1e418ce98ae		in	located	docs/sample-implementation.md#so_primc	so_prim.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02220	164	__glim_RasterPos2dv	dwarf+dynsym	80598f1591ce		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda022d0	136	__glim_RasterPos2fv	dwarf+dynsym	d96f7baa680d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02360	164	__glim_RasterPos2d	dwarf+dynsym	6c8f6e367275		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02410	156	__glim_RasterPos2f	dwarf+dynsym	8fd7c847b238		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02360	164	__glim_RasterPos2d	dwarf+dynsym	6c8f6e367275		in	understood	docs/sample-implementation.md#so_rapic	so_rapi.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02410	156	__glim_RasterPos2f	dwarf+dynsym	8fd7c847b238		in	understood	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda024b0	176	__glim_RasterPos2i	dwarf+dynsym	40ca8254c440		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02560	172	__glim_RasterPos2iv	dwarf+dynsym	04d9f06c35c7		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda02610	176	__glim_RasterPos2s	dwarf+dynsym	7cb7bbc713b2		in	located	docs/sample-implementation.md#so_rapic	so_rapi.c
