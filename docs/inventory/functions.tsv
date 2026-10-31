@@ -15771,14 +15771,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e8f34	1436	__glInitAAL
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e94d0	1856	__glRenderAntiAliasLine	dynsym+mdebug	324729bb0e62		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c10	76	__glPolygonOffsetLine	dynsym+mdebug	db29e327f45f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c60	20	__glFirstLinesVertex	dynsym+mdebug	7339ef4d2bea		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c74	40	__glBeginLines	dynsym+mdebug	47a6f6b69c77		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c74	40	__glBeginLines	dynsym+mdebug	47a6f6b69c77		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9c9c	180	__glOtherLStripVertex	dynsym+mdebug	d84b66460c4c		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9d50	196	__glSecondLStripVertex	dynsym+mdebug	a0effe1fe1ab		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9e14	116	__glFirstLStripVertex	dynsym+mdebug	7762eabac93e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9e88	44	__glBeginLStrip	dynsym+mdebug	ced1c1cb2a7d		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9e88	44	__glBeginLStrip	dynsym+mdebug	ced1c1cb2a7d		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9e9eb4	32956	FirstLLoopVertex	mdebug	e3bcd90c8036		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9ed4	120	__glEndLLoop	dynsym+mdebug	7bc56976222e		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9f4c	56	__glBeginLLoop	dynsym+mdebug	3e103680ba78		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9f4c	56	__glBeginLLoop	dynsym+mdebug	3e103680ba78		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9e9f90	308	__glProcessLine	dynsym+mdebug	474f65aec2eb		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea0c4	264	__glProcessLine3NW	dynsym+mdebug	307b5e8842d4		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea1cc	348	__glWideLineRep	dynsym+mdebug	23b5900e0e75		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -21314,7 +21314,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6e50	112	__glFirstL
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6ec0	44	__glBeginLStrip	dwarf+dynsym	d87245fac424		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9e6ef0	32	FirstLLoopVertex	dwarf+funcnames	9f8e19f772ec		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6f10	112	__glEndLLoop	dwarf+dynsym	89562025b6a5		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6f80	56	__glBeginLLoop	dwarf+dynsym	fc3513591bfc		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6f80	56	__glBeginLLoop	dwarf+dynsym	fc3513591bfc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e6fc0	400	__glProcessLine	dwarf+dynsym	19efdca1a1a3		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e7150	352	__glProcessLine3NW	dwarf+dynsym	f57c9803510a		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9e72b0	376	__glWideLineRep	dwarf+dynsym	0b99f48b7a00		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -26887,14 +26887,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e49fd0	1268	__glInitA
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4a4d0	1848	__glRenderAntiAliasLine	dwarf+dynsym	dffbf8178b6d		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ac10	80	__glPolygonOffsetLine	dwarf+dynsym	314f2eb5bbd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ac60	20	__glFirstLinesVertex	dwarf+dynsym	09467835f178		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ac80	40	__glBeginLines	dwarf+dynsym	0e428ff844e8		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ac80	40	__glBeginLines	dwarf+dynsym	0e428ff844e8		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4acb0	172	__glOtherLStripVertex	dwarf+dynsym	bc188deb0652		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ad60	188	__glSecondLStripVertex	dwarf+dynsym	37f81acfac92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4ae20	120	__glFirstLStripVertex	dwarf+dynsym	c69357d0db25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4aea0	52	__glBeginLStrip	dwarf+dynsym	be5d9abe0f9c		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e4aee0	32	FirstLLoopVertex	dwarf	c750bb0a7403		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4aea0	52	__glBeginLStrip	dwarf+dynsym	be5d9abe0f9c		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e4aee0	32	FirstLLoopVertex	dwarf	c750bb0a7403		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4af00	112	__glEndLLoop	dwarf+dynsym	b3afcb2209bb		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4af70	64	__glBeginLLoop	dwarf+dynsym	612ba432bcc5		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4af70	64	__glBeginLLoop	dwarf+dynsym	612ba432bcc5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4afb0	396	__glProcessLine	dwarf+dynsym	55e09dabcdde		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b140	368	__glProcessLine3NW	dwarf+dynsym	9ba18850c279		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b2b0	384	__glWideLineRep	dwarf+dynsym	a829d356cb6d		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -32470,14 +32470,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e8f34	1436	__glInitAAL
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e94d0	1856	__glRenderAntiAliasLine	dynsym+mdebug	324729bb0e62		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c10	76	__glPolygonOffsetLine	dynsym+mdebug	db29e327f45f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c60	20	__glFirstLinesVertex	dynsym+mdebug	7339ef4d2bea		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c74	40	__glBeginLines	dynsym+mdebug	47a6f6b69c77		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c74	40	__glBeginLines	dynsym+mdebug	47a6f6b69c77		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9c9c	180	__glOtherLStripVertex	dynsym+mdebug	d84b66460c4c		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9d50	196	__glSecondLStripVertex	dynsym+mdebug	a0effe1fe1ab		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9e14	116	__glFirstLStripVertex	dynsym+mdebug	7762eabac93e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9e88	44	__glBeginLStrip	dynsym+mdebug	ced1c1cb2a7d		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9e88	44	__glBeginLStrip	dynsym+mdebug	ced1c1cb2a7d		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9e9eb4	32956	FirstLLoopVertex	mdebug	e3bcd90c8036		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9ed4	120	__glEndLLoop	dynsym+mdebug	7bc56976222e		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9f4c	56	__glBeginLLoop	dynsym+mdebug	3e103680ba78		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9f4c	56	__glBeginLLoop	dynsym+mdebug	3e103680ba78		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9e9f90	308	__glProcessLine	dynsym+mdebug	474f65aec2eb		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea0c4	264	__glProcessLine3NW	dynsym+mdebug	307b5e8842d4		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea1cc	348	__glWideLineRep	dynsym+mdebug	23b5900e0e75		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -38013,7 +38013,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6e50	112	__glFirstL
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6ec0	44	__glBeginLStrip	dwarf+dynsym	d87245fac424		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9e6ef0	32	FirstLLoopVertex	dwarf+funcnames	9f8e19f772ec		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6f10	112	__glEndLLoop	dwarf+dynsym	89562025b6a5		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6f80	56	__glBeginLLoop	dwarf+dynsym	fc3513591bfc		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6f80	56	__glBeginLLoop	dwarf+dynsym	fc3513591bfc		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e6fc0	400	__glProcessLine	dwarf+dynsym	19efdca1a1a3		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e7150	352	__glProcessLine3NW	dwarf+dynsym	f57c9803510a		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9e72b0	376	__glWideLineRep	dwarf+dynsym	0b99f48b7a00		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -43586,14 +43586,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2229fd0	1268	__glInitA
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222a4d0	1848	__glRenderAntiAliasLine	dwarf+dynsym	dffbf8178b6d		in	located	docs/sample-implementation.md#so_linedrawc	so_linedraw.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ac10	80	__glPolygonOffsetLine	dwarf+dynsym	314f2eb5bbd6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ac60	20	__glFirstLinesVertex	dwarf+dynsym	09467835f178		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ac80	40	__glBeginLines	dwarf+dynsym	0e428ff844e8		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ac80	40	__glBeginLines	dwarf+dynsym	0e428ff844e8		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222acb0	172	__glOtherLStripVertex	dwarf+dynsym	bc188deb0652		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ad60	188	__glSecondLStripVertex	dwarf+dynsym	37f81acfac92		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222ae20	120	__glFirstLStripVertex	dwarf+dynsym	c69357d0db25		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222aea0	52	__glBeginLStrip	dwarf+dynsym	be5d9abe0f9c		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x222aee0	32	FirstLLoopVertex	dwarf	c750bb0a7403		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222aea0	52	__glBeginLStrip	dwarf+dynsym	be5d9abe0f9c		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x222aee0	32	FirstLLoopVertex	dwarf	c750bb0a7403		in	understood	docs/sample-implementation.md#so_linefinc	so_linefin.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222af00	112	__glEndLLoop	dwarf+dynsym	b3afcb2209bb		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222af70	64	__glBeginLLoop	dwarf+dynsym	612ba432bcc5		in	located	docs/sample-implementation.md#so_linefinc	so_linefin.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222af70	64	__glBeginLLoop	dwarf+dynsym	612ba432bcc5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222afb0	396	__glProcessLine	dwarf+dynsym	55e09dabcdde		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b140	368	__glProcessLine3NW	dwarf+dynsym	9ba18850c279		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b2b0	384	__glWideLineRep	dwarf+dynsym	a829d356cb6d		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
