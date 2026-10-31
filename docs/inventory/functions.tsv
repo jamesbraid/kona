@@ -15784,7 +15784,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea0c4	264	__glProcessL
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea1cc	348	__glWideLineRep	dynsym+mdebug	23b5900e0e75		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea328	440	__glWideStippleLineRep	dynsym+mdebug	751259cd5063		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea4e0	996	__glDrawBothLine	dynsym+mdebug	42930a357b55		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea8c4	1100	__glDrawBothStippledLine	dynsym+mdebug	413fe4c3de6a		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ea8c4	1100	__glDrawBothStippledLine	dynsym+mdebug	413fe4c3de6a		in	understood	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9ead10	668	__glScissorLine	dynsym+mdebug	872e7f64e807		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9eafac	692	__glScissorStippledLine	dynsym+mdebug	5da3a9960344		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9eb260	204	__glStippleLine	dynsym+mdebug	a345c0679d43		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -26900,7 +26900,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b140	368	__glProces
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b2b0	384	__glWideLineRep	dwarf+dynsym	a829d356cb6d		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b430	500	__glWideStippleLineRep	dwarf+dynsym	ec7e7f73cfbf		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4b630	1160	__glDrawBothLine	dwarf+dynsym	2c04811db996		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4bac0	1320	__glDrawBothStippledLine	dwarf+dynsym	1cb1e9b6d7d9		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4bac0	1320	__glDrawBothStippledLine	dwarf+dynsym	1cb1e9b6d7d9		in	understood	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4bff0	1064	__glScissorLine	dwarf+dynsym	b69bbf1c1abe		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4c420	1128	__glScissorStippledLine	dwarf+dynsym	2db0c03a7a27		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e4c890	704	__glStippleLine	dwarf+dynsym	8058905cff83		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -32483,7 +32483,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea0c4	264	__glProcessL
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea1cc	348	__glWideLineRep	dynsym+mdebug	23b5900e0e75		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea328	440	__glWideStippleLineRep	dynsym+mdebug	751259cd5063		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea4e0	996	__glDrawBothLine	dynsym+mdebug	42930a357b55		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea8c4	1100	__glDrawBothStippledLine	dynsym+mdebug	413fe4c3de6a		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ea8c4	1100	__glDrawBothStippledLine	dynsym+mdebug	413fe4c3de6a		in	understood	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9ead10	668	__glScissorLine	dynsym+mdebug	872e7f64e807		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9eafac	692	__glScissorStippledLine	dynsym+mdebug	5da3a9960344		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9eb260	204	__glStippleLine	dynsym+mdebug	a345c0679d43		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
@@ -43599,7 +43599,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b140	368	__glProces
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b2b0	384	__glWideLineRep	dwarf+dynsym	a829d356cb6d		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b430	500	__glWideStippleLineRep	dwarf+dynsym	ec7e7f73cfbf		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222b630	1160	__glDrawBothLine	dwarf+dynsym	2c04811db996		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222bac0	1320	__glDrawBothStippledLine	dwarf+dynsym	1cb1e9b6d7d9		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222bac0	1320	__glDrawBothStippledLine	dwarf+dynsym	1cb1e9b6d7d9		in	understood	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222bff0	1064	__glScissorLine	dwarf+dynsym	b69bbf1c1abe		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222c420	1128	__glScissorStippledLine	dwarf+dynsym	2db0c03a7a27		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x222c890	704	__glStippleLine	dwarf+dynsym	8058905cff83		in	located	docs/sample-implementation.md#so_linespanc	so_linespan.c
