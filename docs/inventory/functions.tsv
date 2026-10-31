@@ -14854,12 +14854,12 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlis
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991d38	196	__glFreeDlistState	dynsym+mdebug	e307da7a1fca		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991e00	552	__glim_NewList	dynsym+mdebug	5ba68f3aab7f		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992028	64	__glce_EndList	dynsym+mdebug	8519e80e1489		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992028	64	__glce_EndList	dynsym+mdebug	8519e80e1489		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992068	400	__glim_EndList	dynsym+mdebug	c36c4876d9f5		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9921f8	1016	DoCallList	mdebug	bd9ac4dc976e		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9922b4	148	__gllc_CallList	dynsym+mdebug	2a15f4c6cfd2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992348	68	__glle_CallList	dynsym+mdebug	284e136086ca		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd99238c	244	__glce_CallList	dynsym+mdebug	6106b50c31f3		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd99238c	244	__glce_CallList	dynsym+mdebug	6106b50c31f3		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992480	264	__glce_CallLists	dynsym+mdebug	7a47359b01f2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd992588	104	__glim_CallList	dynsym+mdebug	e092f55544c7		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9925f0	4496	DoCallLists	mdebug	4eedc61378a2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
@@ -20390,11 +20390,11 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e510	44	__glShareDl
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e540	160	__glInitDlistState	dwarf+dynsym	cb9f6c28dd3c		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e5e0	176	__glFreeDlistState	dwarf+dynsym	ccec6390614a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e690	408	__glim_NewList	dwarf+dynsym	48b082c1809a		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e830	60	__glce_EndList	dwarf+dynsym	71db3588207a		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e830	60	__glce_EndList	dwarf+dynsym	71db3588207a		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98e870	312	__glim_EndList	dwarf+dynsym	2255d279ed98		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd98e9b0	160	DoCallList	dwarf+funcnames	a9e2e38a64eb		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98ea50	140	__gllc_CallList	dwarf+dynsym	6f1468e19e41		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98eae0	72	__glle_CallList	dwarf+dynsym	5dccac7a56e6		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98eae0	72	__glle_CallList	dwarf+dynsym	5dccac7a56e6		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98eb30	204	__glce_CallList	dwarf+dynsym	4af207a44e8c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98ec00	244	__glce_CallLists	dwarf+dynsym	10f1af5be778		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98ed00	108	__glim_CallList	dwarf+dynsym	e46873fb1676		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
@@ -25970,12 +25970,12 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1920	44	__glShareDl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1950	160	__glInitDlistState	dwarf+dynsym	ebc437137d7a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df19f0	176	__glFreeDlistState	dwarf+dynsym	c4fb5545e8f2		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1aa0	408	__glim_NewList	dwarf+dynsym	128d870bf4c3		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1c40	60	__glce_EndList	dwarf+dynsym	29c0d545d27c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1c40	60	__glce_EndList	dwarf+dynsym	29c0d545d27c		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1c80	312	__glim_EndList	dwarf+dynsym	aacd5200f3dd		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2df1dc0	152	DoCallList	dwarf	82c7edc1e140		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2df1dc0	152	DoCallList	dwarf	82c7edc1e140		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1e60	140	__gllc_CallList	dwarf+dynsym	45db05354bf8		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1ef0	72	__glle_CallList	dwarf+dynsym	516945681bdb		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1f40	204	__glce_CallList	dwarf+dynsym	0e9fa3dba0cd		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1ef0	72	__glle_CallList	dwarf+dynsym	516945681bdb		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1f40	204	__glce_CallList	dwarf+dynsym	0e9fa3dba0cd		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df2010	244	__glce_CallLists	dwarf+dynsym	0091d3873737		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df2110	108	__glim_CallList	dwarf+dynsym	936eef19362c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2df2180	396	DoCallLists	dwarf	5a3b53fea426		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
@@ -31553,12 +31553,12 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlis
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991d38	196	__glFreeDlistState	dynsym+mdebug	e307da7a1fca		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991e00	552	__glim_NewList	dynsym+mdebug	5ba68f3aab7f		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992028	64	__glce_EndList	dynsym+mdebug	8519e80e1489		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992028	64	__glce_EndList	dynsym+mdebug	8519e80e1489		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992068	400	__glim_EndList	dynsym+mdebug	c36c4876d9f5		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9921f8	1016	DoCallList	mdebug	bd9ac4dc976e		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9922b4	148	__gllc_CallList	dynsym+mdebug	2a15f4c6cfd2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992348	68	__glle_CallList	dynsym+mdebug	284e136086ca		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd99238c	244	__glce_CallList	dynsym+mdebug	6106b50c31f3		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd99238c	244	__glce_CallList	dynsym+mdebug	6106b50c31f3		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992480	264	__glce_CallLists	dynsym+mdebug	7a47359b01f2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd992588	104	__glim_CallList	dynsym+mdebug	e092f55544c7		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9925f0	4496	DoCallLists	mdebug	4eedc61378a2		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
@@ -37089,11 +37089,11 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e510	44	__glShareDl
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e540	160	__glInitDlistState	dwarf+dynsym	cb9f6c28dd3c		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e5e0	176	__glFreeDlistState	dwarf+dynsym	ccec6390614a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e690	408	__glim_NewList	dwarf+dynsym	48b082c1809a		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e830	60	__glce_EndList	dwarf+dynsym	71db3588207a		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e830	60	__glce_EndList	dwarf+dynsym	71db3588207a		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98e870	312	__glim_EndList	dwarf+dynsym	2255d279ed98		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd98e9b0	160	DoCallList	dwarf+funcnames	a9e2e38a64eb		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98ea50	140	__gllc_CallList	dwarf+dynsym	6f1468e19e41		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98eae0	72	__glle_CallList	dwarf+dynsym	5dccac7a56e6		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98eae0	72	__glle_CallList	dwarf+dynsym	5dccac7a56e6		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98eb30	204	__glce_CallList	dwarf+dynsym	4af207a44e8c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98ec00	244	__glce_CallLists	dwarf+dynsym	10f1af5be778		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98ed00	108	__glim_CallList	dwarf+dynsym	e46873fb1676		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
@@ -42669,12 +42669,12 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1920	44	__glShareDl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1950	160	__glInitDlistState	dwarf+dynsym	ebc437137d7a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d19f0	176	__glFreeDlistState	dwarf+dynsym	c4fb5545e8f2		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1aa0	408	__glim_NewList	dwarf+dynsym	128d870bf4c3		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1c40	60	__glce_EndList	dwarf+dynsym	29c0d545d27c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1c40	60	__glce_EndList	dwarf+dynsym	29c0d545d27c		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1c80	312	__glim_EndList	dwarf+dynsym	aacd5200f3dd		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21d1dc0	152	DoCallList	dwarf	82c7edc1e140		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21d1dc0	152	DoCallList	dwarf	82c7edc1e140		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1e60	140	__gllc_CallList	dwarf+dynsym	45db05354bf8		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1ef0	72	__glle_CallList	dwarf+dynsym	516945681bdb		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1f40	204	__glce_CallList	dwarf+dynsym	0e9fa3dba0cd		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1ef0	72	__glle_CallList	dwarf+dynsym	516945681bdb		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1f40	204	__glce_CallList	dwarf+dynsym	0e9fa3dba0cd		in	understood	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d2010	244	__glce_CallLists	dwarf+dynsym	0091d3873737		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d2110	108	__glim_CallList	dwarf+dynsym	936eef19362c		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21d2180	396	DoCallLists	dwarf	5a3b53fea426		in	located	docs/sample-implementation.md#dl_listc	dl_list.c
