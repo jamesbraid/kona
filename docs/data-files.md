@@ -310,3 +310,15 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The compressed copy holds the same content once decompressed. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The plain copy holds the same content. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_2voc.short.Z` | shorts test vectors for the `fpln_rm8_2voc` chain. | 9183 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rm8_2voc_2rm_0` chain. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rm8_2voc_2rm_1` chain. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc.short.Z` | shorts test vectors for the `fpln_rm8_8voc` chain. | 11793 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rm8_8voc_2rm_0` chain. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rm8_8voc_2rm_1` chain. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_2rm_0` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_2rm_1` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_0` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_1` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_2` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rmtm7_2voc_4rm_3` chain. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
