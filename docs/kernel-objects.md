@@ -145,3 +145,27 @@ The Kona kernel driver is the archive `usr/cpu/sysgen/IP27boot/kona.a` (and the 
   The same 18 eight-byte stubs as the IP27 member, with identical code hashes; its object is 7300 bytes where the IP27 one is 8948.
 - `usr/cpu/sysgen/IP35boot/rrm.o`: **established.**
   Of 72 routines, 68 match the IP27 code and 4 differ (`RRM_init`, `rrmResume`, `rrmValidateMyPcx` and `RRM_SwapBuf`).
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_attach.o)`: **inferred.**
+  Its 540-byte text section is byte-identical to the IP27 member (0 bytes differ), so the three routines are the IP27 ones: `new_pipe_to_region` at +0x0, `KONAattach` at +0x5c (364 bytes) and `KONAdetach` at +0x1c8 (84 bytes). Board access is the connection's user address-space mapping (the 16 KB alignment check and the four-entry range table), not a register.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_crash.o)`: **inferred.**
+  The 1360-byte text section is identical to the IP27 member (0 bytes differ), with `kona_die` at +0x0 (372 bytes), `kona_checkpipe_complete` at +0x174 (100 bytes) and `kona_checkpipe` at +0x1d8 (888 bytes). Board access: `kona_die` reads `HH_TBUS_STATUS` and `HH_GFIFO_LEVEL` and writes `HH_ODMA_FLUSH` (0x800298); the liveness check goes through the geometry engine's token loop.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_ddrn.o)`: **inferred.**
+  The 1572-byte text section is identical to the IP27 member (0 bytes differ): `KONAcreateddrn` at +0x0 (224 bytes), `kona_mopup_complete` at +0xe0 (120 bytes) and `KONAdestroyddrn` at +0x158 (1228 bytes). Board access is by geometry-engine events: completion of event 0x103 and the pipe's context drop, with a wait on the semaphore at +5320; no register is named.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_debug.o)`: **inferred.**
+  The 44-byte text section is identical to the IP27 member (0 bytes differ) and holds one routine, `kona_debug_init` at +0x0, which prints the repeat-initialisation warning and sets its done flag. Board access: none.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_frs.o)`: **inferred.**
+  The 148-byte text section is identical to the IP27 member (0 bytes differ): `KONAfrsinstall` at +0x0 (80 bytes) and `KONAfrsuninstall` at +0x50 (68 bytes), which set and clear the frame-rate scheduler handle under the state lock at +2576. Board access: none; neither writes a register.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_genlock.o)`: **inferred.**
+  The 32-byte text section is identical to the IP27 member (0 bytes differ) and holds `kona_voc_intr`, the video-output-clock interrupt service that passes -1 to `rrmGenlockNotify`. Board access: the genlock cause, but no register is read or written here.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_info.o)`: **inferred.**
+  The 84-byte text section is identical to the IP27 member (0 bytes differ) and holds `KONAinfo` at +0x0, the board-information ioctl that clamps its length to 1952 and copies out the block at pipe state +204. Board access: none; it touches no register.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_intr.o)`: **inferred.**
+  The 1440-byte text section is identical to the IP27 member (0 bytes differ): `kona_arm_intr` at +0x0 (528 bytes) reads the event word the ARM firmware leaves in `HH_ARM_MBOX` (0x800240), and `kona_ge_intr` at +0x210 (912 bytes) reads the `HH_ODMA_*` position registers (0x800260 to 0x8002b8) and decodes the geometry-engine record at pipe host buffer +2584.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_ioctl.o)`: **inferred.**
+  The 2364-byte text section is identical to the IP27 member (0 bytes differ), and `KONAprivate` at +0x0 is the same private-ioctl dispatcher: it subtracts 10000 from the request and jumps through the table at `.rodata` +0x18. Board access: the ioctls above 9999 listed in [kernel.md](kernel.md#kona-private-ioctls), no register.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_sched.o)`: **inferred.**
+  The 712-byte text section is identical to the IP27 member (0 bytes differ): `KONAsuspend` at +0x0 (400 bytes) takes the connection off the pipe and returns credits through `gfx_flow_detach_me`, and `KONAresume` at +0x190 (312 bytes) puts it back through `gfx_flow_attach_me` and widget register 0x7c when the pipe is alive.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_setup.o)`: **inferred.**
+  The 1084-byte text section is identical to the IP27 member (0 bytes differ): `KONAinitialize` at +0x0 (304 bytes) pulses `HH_RESET` (0x800300) with 1 then 0, enables the parity interrupt through `HH_INTR_ENABLE` (0x800230) and sets 0x8000 in `HH_INTR_INFO` (0x800220); `KONAstart` at +0x130 (780 bytes) enables the running mask 0xf7c and sends token 497 with the scratch page's address pair and size 16384 to the command port.
+- `usr/cpu/sysgen/IP35boot/kona.a(kona_share.o)`: **inferred.**
+  The 420-byte text section is identical to the IP27 member (0 bytes differ): `kona_share` at +0x0 (248 bytes) joins a node to a share group on the pipe's list at +4968, and `kona_unshare` at +0xf8 (172 bytes) leaves it, destroying the group's pipe memory and DMA pool when the last member goes. Board access: the pipe's share-group list and memory pools, no register.
