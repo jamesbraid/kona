@@ -1650,18 +1650,15 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x061; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3b. */
 
-    /* `HP_COLOR3B` (0x061). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 3 data components, byte
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue as byte normalised values; the first two components packed
-     * into the upper bits of the token word itself, the rest in the following
-     * word. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0x930850c7: command 16, geometry form, count
-     * field 3 (bits 6-8), untyped words. Sent by libGLcore.so
-     * __glkonim_Color3b and Color3bv (kon_cfuncs.s; packs the token with the
-     * data). */
+    /* `HP_COLOR3B` (0x061). Inferred: sets the current colour from three
+     * signed bytes, each scaled into the colour range, and the hardware
+     * fills in alpha. Established: map word 0x930850c7 is a geometry-form
+     * entry for command 16 with count field 3, byte components and three
+     * valid bytes in the last word, storing at vertex-record word 8
+     * (icu_map.tsv). Established: libGLcore.so `__glkonim_Color3b`, read
+     * in full, puts red in bits 24-31 and green in bits 16-23 of the
+     * token word, and blue in bits 24-31 of the next word, so one token
+     * travels as two words. */
     KONA_HP_COLOR3B                      = 0x061,
 
     /* Read at icu_map.tsv 0x062; ged.md geometry control fields (offset 8,
@@ -1699,102 +1696,76 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x064; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3i. */
 
-    /* `HP_COLOR3I` (0x064). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 3 data words, integer
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 3: 3
-     * colour components (red, green, blue) as integer normalised values.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0xdb0850c7: command 16, geometry form, count field 3
-     * (bits 6-8), single floats. Established: libGLcore.so
-     * `__glkonim_Color3i` stores 3 words after the token. Sent by
-     * libGLcore.so __glkonim_Color3i and Color3iv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_COLOR3I` (0x064). Inferred: sets the current colour from three
+     * signed integers, scaled into the colour range, alpha from the
+     * hardware. Established: map word 0xdb0850c7 is a geometry entry for
+     * command 16, count field 3, one 32-bit integer per component,
+     * storing at vertex-record word 8 (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Color3i`, read in full, writes the token
+     * 0x64 and then the three integer arguments as three separate words. */
     KONA_HP_COLOR3I                      = 0x064,
 
     /* Read at icu_map.tsv 0x065; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3s. */
 
-    /* `HP_COLOR3S` (0x065). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 3 data components, short
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue as short normalised values; the first component packed into
-     * the upper bits of the token word itself, the rest in the following
-     * word. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xab0850c7: command 16, geometry form, count
-     * field 3 (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Color3s and
-     * Color3sv (kon_cfuncs.s; packs the token with the data). */
+    /* `HP_COLOR3S` (0x065). Inferred: sets the current colour from three
+     * signed shorts, scaled into the colour range, with alpha left to the
+     * hardware. Established: map word 0xab0850c7 is a geometry entry for
+     * command 16, count field 3, short components and two valid bytes in
+     * the last word (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Color3s`, read in full, carries red in bits 16-31 of the
+     * token word and green in bits 16-31 of the next word, with blue
+     * masked to bits 0-15 of that word. */
     KONA_HP_COLOR3S                      = 0x065,
 
     /* Read at icu_map.tsv 0x066; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3ub. */
 
-    /* `HP_COLOR3UB` (0x066). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 3 data components, unsigned
-     * byte normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue as unsigned byte normalised values; the first two
-     * components packed into the upper bits of the token word itself, the
-     * rest in the following word. Established: routed by the host interface
-     * with no ARM code, arm1.u token-map entry 0x938850c7: command 272,
-     * geometry form, count field 3 (bits 6-8), untyped words. Sent by
-     * libGLcore.so __glkonim_Color3ub and Color3ubv (kon_cfuncs.s; packs the
-     * token with the data). */
+    /* `HP_COLOR3UB` (0x066). Inferred: sets the current colour from three
+     * unsigned bytes mapped onto the colour range, alpha to the hardware.
+     * Established: map word 0x938850c7 is a geometry entry for command
+     * 272, count field 3, byte components (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Color3ub`, read in full, packs red and
+     * green into the token word at bits 24-31 and 16-23 under the low
+     * byte 0x66, and sends blue at bits 24-31 of the following word. */
     KONA_HP_COLOR3UB                     = 0x066,
 
     /* Read at icu_map.tsv 0x067; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3ui. */
 
-    /* `HP_COLOR3UI` (0x067). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 3 data words, unsigned integer
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 3: 3
-     * colour components (red, green, blue) as unsigned integer normalised
-     * values. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xdb8850c7: command 272, geometry form, count
-     * field 3 (bits 6-8), single floats. Established: libGLcore.so
-     * `__glkonim_Color3ui` stores 3 words after the token. Sent by
-     * libGLcore.so __glkonim_Color3ui and Color3uiv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_COLOR3UI` (0x067). Inferred: sets the current colour from three
+     * unsigned integers, normalised into the colour range, with the
+     * hardware filling alpha. Established: map word 0xdb8850c7 is a
+     * geometry entry for command 272, count field 3, one 32-bit word per
+     * component (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Color3ui`, read in full, emits the token 0x67 and then
+     * the three arguments as separate words. */
     KONA_HP_COLOR3UI                     = 0x067,
 
     /* Read at icu_map.tsv 0x068; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color3us. */
 
-    /* `HP_COLOR3US` (0x068). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 3 data components, unsigned
-     * short normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue as unsigned short normalised values; the first component
-     * packed into the upper bits of the token word itself, the rest in the
-     * following word. Established: routed by the host interface with no ARM
-     * code, arm1.u token-map entry 0xab8850c7: command 272, geometry form,
-     * count field 3 (bits 6-8), type 1. Sent by libGLcore.so
-     * __glkonim_Color3us and Color3usv (kon_cfuncs.s; packs the token with
-     * the data). */
+    /* `HP_COLOR3US` (0x068). Inferred: sets the current colour from three
+     * unsigned shorts, normalised into the colour range with alpha from
+     * the hardware. Established: map word 0xab8850c7 is a geometry entry
+     * for command 272, count field 3, short components (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Color3us`, read in full,
+     * places red at bits 16-31 of the token word, green at bits 16-31 of
+     * the next word, and blue unmasked in its low half, so any bits of
+     * blue above 15 reach the same word. */
     KONA_HP_COLOR3US                     = 0x068,
 
     /* Read at icu_map.tsv 0x069; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4b. */
 
-    /* `HP_COLOR4B` (0x069). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 4 data components, byte
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue, alpha as byte normalised values; the first two components
-     * packed into the upper bits of the token word itself, the rest in the
-     * following word. Established: routed by the host interface with no ARM
-     * code, arm1.u token-map entry 0x99085107: command 16, geometry form,
-     * count field 4 (bits 6-8), untyped words. Sent by libGLcore.so
-     * __glkonim_Color4b and Color4bv (kon_cfuncs.s; packs the token with the
-     * data). */
+    /* `HP_COLOR4B` (0x069). Inferred: sets the current colour from four
+     * signed bytes, each scaled into the colour range; alpha comes from
+     * the data. Established: map word 0x99085107 is a geometry entry for
+     * command 16, count field 4, byte components and four valid bytes in
+     * the last word (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Color4b`, read in full, puts red in bits 24-31 and green
+     * in bits 16-23 of the token word; the word after it holds blue in
+     * bits 24-31 and alpha in bits 16-23. */
     KONA_HP_COLOR4B                      = 0x069,
 
     /* Read at icu_map.tsv 0x06a; ged.md geometry control fields (offset 8,
@@ -1832,86 +1803,61 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x06c; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4i. */
 
-    /* `HP_COLOR4I` (0x06c). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 4 data words, integer
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 4: 4
-     * colour components (red, green, blue, alpha) as integer normalised
-     * values. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xd9085107: command 16, geometry form, count
-     * field 4 (bits 6-8), single floats. Established: libGLcore.so
-     * `__glkonim_Color4i` stores 4 words after the token. Sent by
-     * libGLcore.so __glkonim_Color4i and Color4iv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_COLOR4I` (0x06c). Inferred: sets the current colour from four
+     * signed integers, scaled into the colour range, alpha included.
+     * Established: map word 0xd9085107 is a geometry entry for command
+     * 16, count field 4, one 32-bit word per component (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Color4i`, read in full, sends
+     * the token 0x6c and then its four integer arguments as four words. */
     KONA_HP_COLOR4I                      = 0x06c,
 
     /* Read at icu_map.tsv 0x06d; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4s. */
 
-    /* `HP_COLOR4S` (0x06d). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 16, 4 data components, short
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 2: red,
-     * green, blue, alpha as short normalised values; the first component
-     * packed into the upper bits of the token word itself, the rest in the
-     * following words. Established: routed by the host interface with no ARM
-     * code, arm1.u token-map entry 0xb9085107: command 16, geometry form,
-     * count field 4 (bits 6-8), type 1. Sent by libGLcore.so
-     * __glkonim_Color4s and Color4sv (kon_cfuncs.s; packs the token with the
-     * data). */
+    /* `HP_COLOR4S` (0x06d). Inferred: sets the current colour from four
+     * signed shorts, normalised into the colour range, alpha included.
+     * Established: map word 0xb9085107 is a geometry entry for command
+     * 16, count field 4, short components (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Color4s`, read in full, leads with red in
+     * bits 16-31 of the token word, then sends green in bits 16-31 with
+     * blue in bits 0-15 as the second word, and alpha in bits 16-31 as
+     * the third. */
     KONA_HP_COLOR4S                      = 0x06d,
 
     /* Read at icu_map.tsv 0x06e; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4ub. */
 
-    /* `HP_COLOR4UB` (0x06e). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 4 data components, unsigned
-     * byte normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 1: red,
-     * green, blue, alpha as unsigned byte normalised values; the first two
-     * components packed into the upper bits of the token word itself, the
-     * rest in the following word. Established: routed by the host interface
-     * with no ARM code, arm1.u token-map entry 0x99885107: command 272,
-     * geometry form, count field 4 (bits 6-8), untyped words. Sent by
-     * libGLcore.so __glkonim_Color4ub and Color4ubv (kon_cfuncs.s; packs the
-     * token with the data). */
+    /* `HP_COLOR4UB` (0x06e). Inferred: sets the current colour from four
+     * unsigned bytes mapped onto the colour range, alpha included.
+     * Established: map word 0x99885107 is a geometry entry for command
+     * 272, count field 4, byte components (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Color4ub`, read in full, packs red and
+     * green into the token word under 0x6e, and the next word holds blue
+     * at bits 24-31 and alpha at bits 16-23. */
     KONA_HP_COLOR4UB                     = 0x06e,
 
     /* Read at icu_map.tsv 0x06f; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4ui. */
 
-    /* `HP_COLOR4UI` (0x06f). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 4 data words, unsigned integer
-     * normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 4: 4
-     * colour components (red, green, blue, alpha) as unsigned integer
-     * normalised values. Established: routed by the host interface with no
-     * ARM code, arm1.u token-map entry 0xd9885107: command 272, geometry
-     * form, count field 4 (bits 6-8), single floats. Established:
-     * libGLcore.so `__glkonim_Color4ui` stores 4 words after the token. Sent
-     * by libGLcore.so __glkonim_Color4ui and Color4uiv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_COLOR4UI` (0x06f). Inferred: sets the current colour from four
+     * unsigned integers, normalised into the colour range. Established:
+     * map word 0xd9885107 is a geometry entry for command 272, count
+     * field 4, one 32-bit word per component (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Color4ui`, read in full, emits the token
+     * 0x6f and then the four arguments as separate words. */
     KONA_HP_COLOR4UI                     = 0x06f,
 
     /* Read at icu_map.tsv 0x070; ged.md geometry control fields (offset 8,
      * bits 22-30); ged_banks.tsv k=16; kon_cfuncs.s __glkonim_Color4us. */
 
-    /* `HP_COLOR4US` (0x070). Inferred: Sets the current colour. Routed
-     * geometry attribute (kind 3, command 272, 4 data components, unsigned
-     * short normalised). In the idle class the program entry is the null loop
-     * (dist.s:13); the hardware is inferred to convert the data and store it
-     * at vertex-record word 8, filling missing components. Payload 2: red,
-     * green, blue, alpha as unsigned short normalised values; the first
-     * component packed into the upper bits of the token word itself, the rest
-     * in the following words. Established: routed by the host interface with
-     * no ARM code, arm1.u token-map entry 0xb9885107: command 272, geometry
-     * form, count field 4 (bits 6-8), type 1. Sent by libGLcore.so
-     * __glkonim_Color4us and Color4usv (kon_cfuncs.s; packs the token with
-     * the data). */
+    /* `HP_COLOR4US` (0x070). Inferred: sets the current colour from four
+     * unsigned shorts, normalised into the colour range. Established: map
+     * word 0xb9885107 is a geometry entry for command 272, count field 4,
+     * short components (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Color4us`, read in full, places red at bits 16-31 of the
+     * token word, green at bits 16-31 of the second word with blue
+     * unmasked in its low half, and alpha at bits 16-31 of the third
+     * word. */
     KONA_HP_COLOR4US                     = 0x070,
 
     /* Read at icu_map.tsv 0x071 (kind 2, command 386); ged_banks.tsv k=2;
