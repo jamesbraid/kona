@@ -764,6 +764,8 @@ Small helpers of the host-side driver: the hyperpipe stubs, the kernel memory ca
   **Established.** Replays a recorded run of words to the command port. The record starts with a count word, and the data follows it. When the record's address has bit 2 clear it first sends one word alone so that the doubleword stores that follow are 8-byte aligned, then sends 8-byte units while at least two words remain, then a final single word if one is left. It returns the address just past the data.
 - `__glkon_datavn` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda77304, 40 bytes):
   **Established.** Sends a counted run of words from a pointer to the command port: if the pointer has bit 2 set it sends one word alone to restore 8-byte alignment, then 8-byte units while two or more words remain, then a trailing single word. It returns the address after the data. Unlike `__glkonle_Push` the count is its own second argument.
+- `__invalid_enum` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda79480, 40 bytes, `kon_sdlfuncs.c`; `usr/gfx/arch/IP35KONA32/libGLcore.so` holds the same 40 bytes of code at the same address):
+  **Established.** Two 20-byte error stubs back to back, each a complete routine ending in `jr ra`. The first, at 0xda79480, loads 228 into `a1`, stores it to the command port at address 16384 (`sw a1,16384(zero)`), loads 1280 (0x500, invalid enum) into `a0` and stores that to 16384 in the delay slot of the return; the second, at 0xda79494, does the same with 228 and 1281 (0x501, invalid value). Neither reads an argument, the context or any memory, and neither sets `v0`. They are the token-228 error send with the code fixed. The inventory size of 40 covers both stubs; the symbol is the first of the pair.
 
 ## The glDrawArrays senders by array combination
 
