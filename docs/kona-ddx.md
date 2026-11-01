@@ -6411,11 +6411,21 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   (thirteen) and seventy-one screen or window entries through registers. At about 1400 instructions it was checked for call sites
   only and not read in full, so the order of the steps and their conditions stay inferred. Against `konal.so`: 1 of 1414; immediates
   only; low halves: 1; first at +0x120c.
-- `ShareSwappingID` (konad.so, address 0x493e30, 724 bytes): **located.** Window-swap id sharing: takes (window) and returns 1
-  after giving the window an id through the routine at 0x583bc0, or 0 when none fits. It walks the screen's rrm record table
-  (36-byte entries from +152, count at +0) from the top down, in a first pass and a second one, using `compareModes` and the routine
-  at 0x52a130. The rules inside the two passes, and the earlier text's statements about which routines set and clear bit 0x8 of the
-  private byte +4, were not re-read in full. Against `konal.so`: 1 of 181; immediates only; low halves: 1; first at +0x64.
+- `ShareSwappingID` (konad.so, address 0x493e30, 724 bytes): **established.** Picks a clip-id table slot for a window being
+  swapped, read in full. It takes (window) and returns 1 after calling the routine at 0x583bc0 with (window, slot index), or 0
+  when no slot fits. R is the screen's rrm record (screen +436 at `rrmScreenPrivateIndex`) and P the window's private record
+  (window +132 at `rrmWindowPrivateIndex`); R word +0 minus one is the top slot index, and slot i is the 36-byte entry at R +
+  152 + 36*i, whose first word is its first holder window and whose halfword +16 holds its flags. Both passes walk the slots from the top down and
+  stop after index 1, or after any slot whose flag bit 0x1 is set, and both skip a slot whose flag bit 0x10 is clear or whose
+  index equals P word +20. The first pass also skips a slot whose first holder's private word +36 differs from P word +36. Entry
+  0's holder chain (R +152, next link at private +48) is then scanned for a private whose byte +4 has bit 0x8, and the index at
+  that point is kept in a marker that stays set for the rest of the pass. With no marker the first surviving slot gets the
+  call to 0x583bc0 and the function returns 1; with a marker every slot is skipped and the second pass starts, or the function
+  returns 0 when no marker was ever set. The second pass redoes the scan for each surviving slot: every window in entry 0's
+  chain with bit 0x8 is passed to the routine at 0x52a130 with (R, address of that slot's holder word), then `compareModes` runs
+  with (that address, P, 0, R). A non-zero result calls 0x583bc0 with (window, slot index) and returns 1; zero moves to the next
+  slot. When the passes find nothing the result is 0. Against `konal.so`: 1 of 181; immediates only; low halves: 1; first at
+  +0x64.
 - `cfbPolyFillArcSolidCopy` (`konad.so` 0x4a0e80, 544 bytes):
   **Established.** Solid copy PolyFillArc for 8-bit pixels, read in full from 0x4a0e80 to its return at 0x4a108c. The arguments are the drawable
   (a0), the GC (a1), the arc count (a2) and the arc array (a3); it returns no value. The GC's private record comes
@@ -6750,8 +6760,9 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   with the screen private, then closes the lower layers in the order `rrmCloseScreen`, `nfbHWColormapScreenClose` and
   `nfbCloseScreen`, whose result it returns. Against `konal.so`: 2 of 117; immediates only; low halves: 2; first at +0x10; gp
   0x7ce90 and 0x7ceb0.
-- `mfbWhiteStippleFS` (konad.so, address 0x522f90, 1252 bytes): **established.** FillSpans with a white stipple on one-bit
-  drawables: takes (drawable a0, gc a1, span count a2, start points a3, widths a4, sorted flag a5) and returns nothing. It returns
+- `mfbWhiteStippleFS` (konad.so, address 0x522f90, 1252 bytes): **established.** Fills spans on one-bit drawables by
+  setting the bits a stipple selects, read in full. It takes (drawable a0, gc a1, span count a2, start points a3, widths a4, sorted
+  flag a5) and returns nothing. It returns
   at once when bit 0 of gc word +20 is clear. Otherwise it calls `miFindMaxBand` on the composite clip (word +8 of the GC's mfb
   private record through gc +76 and `mfbGCPrivateIndex`), reserves two aligned stack arrays of count times that band count times
   four bytes each (returning if either is null), and calls `miClipSpans` with the clip, the points, widths, count, the two arrays
@@ -6784,8 +6795,8 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   reached only when bit 7 of the first word of the GC private is set and a stack flag left by the clip steps is clear, and its
   result is returned, otherwise 0. In all 17 call sites, fifteen of them indirect. Rare paths for a pixmap source were not traced.
   Against `konal.so`: 1 of 534; immediates only; low halves: 1; first at +0x3c.
-- `cfbPolyPoint` (konad.so, address 0x5251f0, 1244 bytes): **established.** PolyPoint for 8-bit drawables: takes (drawable a0, gc
-  a1, mode a2, count a3, points a4) and returns nothing. From the GC private record (gc +76 through `cfbGCPrivateIndex`) it takes
+- `cfbPolyPoint` (konad.so, address 0x5251f0, 1244 bytes): **established.** Plots single points on 8-bit-pixel
+  drawables, read in full. It takes (drawable a0, gc a1, mode a2, count a3, points a4) and returns nothing. From the GC private record (gc +76 through `cfbGCPrivateIndex`) it takes
   the raster-op byte +0 (op 5 returns at once), the composite clip region at +8, the foreground word +12 and the and word +16. A
   mode of 1 first turns the points into absolute positions in place: from the second point on, each halfword pair is added to the
   one before. The base address and row pitch come from the drawable itself when its type byte is 1, otherwise from the screen's +116
@@ -6952,8 +6963,9 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   calls were not traced, so what each `ErrorF` message reports stays inferred. Against `konal.so` only the threshold differs: three
   two-instruction constants here against `li 0x9000` (36864 bytes) there, 12 bytes more code (3944 against 3932), and the
   global-pointer offset of the prologue.
-- `mfbBlackStippleFS` (konad.so, address 0x55f610, 1284 bytes): **established.** FillSpans with a black stipple on one-bit
-  drawables: takes (drawable a0, gc a1, span count a2, start points a3, widths a4, sorted flag a5) and returns nothing. It has the
+- `mfbBlackStippleFS` (konad.so, address 0x55f610, 1284 bytes): **established.** Fills spans on one-bit drawables by
+  clearing the bits a stipple selects, read in full. It takes (drawable a0, gc a1, span count a2, start points a3, widths a4,
+  sorted flag a5) and returns nothing. It has the
   same flow as `mfbWhiteStippleFS`: it returns at once when bit 0 of gc word +20 is clear, calls `miFindMaxBand` on the composite
   clip, reserves two aligned stack arrays and calls `miClipSpans`, takes the stipple pixmap from the GC private record's word +4
   (data word +32, row selected by y modulo its halfword +14, one 32-bit word per row), takes the destination base and pitch from the
