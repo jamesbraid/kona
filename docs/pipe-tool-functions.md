@@ -1,6 +1,6 @@
 # Pipe tools: one entry per function
 
-Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom`, `usr/diags/IR/bin/hyper` and `usr/gfx/hyperpipeinfo`, whose roles are in [install-tools.md](install-tools.md#programs-that-reach-the-pipe) and [setup-tools.md](setup-tools.md#ireeprom). Offsets are file addresses of the build. A word written to the pipe goes through `KonWGWrite`, and an operation is a token word (492) followed by a command word and its arguments. Routines without a symbol, such as the ones at 0x10002960, 0x1000280c, 0x10003b44, 0x10003c60, 0x10003c98 and 0x10003d64, are named by address.
+Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR/bin/hyper`, whose roles are in [install-tools.md](install-tools.md#programs-that-reach-the-pipe) and [setup-tools.md](setup-tools.md#ireeprom). Offsets are file addresses of the build. A word written to the pipe goes through `KonWGWrite`, and an operation is a token word (492) followed by a command word and its arguments. Routines without a symbol, such as the ones at 0x10002960, 0x1000280c, 0x10003b44, 0x10003c60, 0x10003c98 and 0x10003d64, are named by address.
 
 ## `ireeprom`: pipe EEPROM tool
 
@@ -218,34 +218,3 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom`, `usr/diags/IR/bi
   calls `XFree` on the list and `XCloseDisplay` and returns 0. The failure cleanup sets `done`, sleeps
   `sginap(100)`, sends signal 9 with `kill` to every child whose id is not -1, repeats the destroy, `XFree` and
   `XCloseDisplay`, and returns 1. The routine writes no board register.
-
-## `hyperpipeinfo`: hyperpipe network lister
-
-- `__start` (`usr/gfx/hyperpipeinfo` 0x10000ed0, 268 bytes): **Established.**
-  The process entry, the same shape as the entry of the other two pipe tools. It reads the argument count from
-  sp+0 and takes sp+4 as the vector, rounds sp down to 16 and reserves 16 bytes, and works out the environment
-  as the vector plus four plus four bytes per argument. That value goes into `_environ` only when `_environ` is
-  still zero, the count goes into `__Argc` and the vector into `__Argv`. It then calls `__istart` and
-  `__readenv_sigfpe`, calls `main` with `__Argc`, `__Argv` and `_environ` loaded back, hands the result to
-  `exit` and ends in a `break` that cannot be reached. It makes no X, GL or board call.
-- `main` (`usr/gfx/hyperpipeinfo` 0x10000ff0, 956 bytes): **Established.**
-  Lists the pipes of the hyperpipe network of one X display, one line each, and always leaves through `exit`: 0
-  after the list, 1 on every failure. The first argument and second are the count and vector, saved at sp+68 and
-  sp+76. A `getopt` loop with the option string `d:` (string at 0x10004230) accepts only `-d`: for it the
-  `optarg` global (gp-32652) is saved at sp+8 and a flag word at sp+0 is incremented, so the last `-d` wins; any
-  other option prints "usage: %s [-d <displayname>]" with the program name (the word at argv+0) through `printf`
-  and calls `exit(1)`. With no `-d` (flag zero) it reads `getenv("DISPLAY")`, prints "opening default display
-  %s" with the result, and calls `XOpenDisplay(0)`; with `-d` it prints "opening display %s" with the saved name
-  and calls `XOpenDisplay` on it. A null display prints "can't connect to display "%s"" (the `DISPLAY` value in
-  the default case, the saved name otherwise) and exits 1. It takes the word at display+132 as the screen number
-  and calls `glXQueryExtensionsString(display, screen)`: a null string prints "can't obtain extension string"
-  and exits 1; `strstr` for "GLX_SGIX_hyperpipe" (0x10004098) finding nothing prints "GLX_SGIX_hyperpipe
-  extension not present" and exits 1. It then calls `glXQueryHyperpipeNetworkSGIX(display, &count)` and passes
-  the stack address sp+24 for the count; the list pointer is saved at sp+28. A null list or a zero count prints
-  "no hyperpipe capable pipes in the system" and exits 1. Otherwise a loop over the count prints
-  `pipe %s \t network id %d` once per entry, where the string is the address list + 84*i (the multiply is built
-  from shifts and adds, 21*4 per step) and the number is the word at list + 84*i + 80, so the entries are 84
-  bytes with a pipe name at +0 and a network identifier at +80. A pipe outside any network reports -1 there (the
-  DPLEX guide's sample, see [dg.md](dg.md)). It ends with `XFree(list)` and `exit(0)`; the `jr ra` at 0x100013a4
-  is behind that call and is not reached. Derived from the 6.5.30m N32 binary alone; the routine touches no
-  register window and sends no pipe word.
