@@ -7669,9 +7669,14 @@ enum kona_hp_token {
      * routines mem_reserve_arm/sarm/ge/tex 0x0c023b3c-0x0c0241e0). */
 
     /* `HP_MEM_RESERVE` (0x1e4). Established: Requires the privileged stream,
-     * then calls the reserve routine for the pool, which checks the key,
-     * offset and size and records the reservation (an offset and size of 0
-     * release it). Payload 4: pool, key byte, offset, size (page units).
+     * then calls the reserve routine for the pool. That routine checks only
+     * the key (0 for the first and second ARM areas and the texture pool, 0
+     * to 10 for the engine-memory pool; any other key prints an invalid-key
+     * message) and records the page number, plus the page count for the two
+     * ARM areas; the engine-memory and texture routines read no size. The
+     * kernel's free path sends offset 0 and size 0. Payload 4: pool, key
+     * (a byte in the kernel's call, a whole word to the ARM), page number,
+     * page count.
      * Established: the token map runs `arm_mem_reserve` at arm1.u 0x0c024378.
      * Sent by kona.a kona_mem.o kona_mem_reserve_func (called from
      * kona_mem_update_driver, kona_mem_free). */
