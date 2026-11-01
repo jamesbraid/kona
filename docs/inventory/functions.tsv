@@ -16333,8 +16333,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1e414	776	__glLinearFi
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1e71c	1512	__glLinearFilter2	dynsym+mdebug	45c3ada3471e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1ed04	2852	__glLinearFilter3	dynsym+mdebug	81a51fa8b462		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f828	96	__glFilter4Func	dynsym+mdebug	01d8ebb63492		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f888	96	__glLinearFilter	dynsym+mdebug	0aaaad8adb7c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f8e8	96	__glNearestFilter	dynsym+mdebug	41ed1b9ab0cf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f888	96	__glLinearFilter	dynsym+mdebug	0aaaad8adb7c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f8e8	96	__glNearestFilter	dynsym+mdebug	41ed1b9ab0cf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1f948	188	__glNMNFilter	dynsym+mdebug	b5fa9d7d5063		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1fa04	188	__glLMNFilter	dynsym+mdebug	b48143b5e1d5		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda1fac0	648	__glNMLFilter	dynsym+mdebug	f2d38d082241		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -21869,8 +21869,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1a5a0	676	__glLinear
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1a850	1284	__glLinearFilter2	dwarf+dynsym	312911bb4223		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1ad60	2144	__glLinearFilter3	dwarf+dynsym	a57e3765f5dc		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b5c0	52	__glFilter4Func	dwarf+dynsym	8e93cfa9ef16		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b600	52	__glLinearFilter	dwarf+dynsym	a70b6bbbd413		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b640	52	__glNearestFilter	dwarf+dynsym	e8b304affdeb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b600	52	__glLinearFilter	dwarf+dynsym	a70b6bbbd413		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b640	52	__glNearestFilter	dwarf+dynsym	e8b304affdeb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b680	136	__glNMNFilter	dwarf+dynsym	764e3b747511		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b710	136	__glLMNFilter	dwarf+dynsym	ea2ef12a410c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1b7a0	600	__glNMLFilter	dwarf+dynsym	7f46eee22f9d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -27449,8 +27449,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e7f4c0	676	__glLinear
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e7f770	1284	__glLinearFilter2	dwarf+dynsym	b1af93d322dd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e7fc80	2144	__glLinearFilter3	dwarf+dynsym	8a73fe2c3040		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e804e0	52	__glFilter4Func	dwarf+dynsym	8fd6e2f46e13		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e80520	52	__glLinearFilter	dwarf+dynsym	b038fba4afff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e80560	52	__glNearestFilter	dwarf+dynsym	21ed6cac1cf9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e80520	52	__glLinearFilter	dwarf+dynsym	b038fba4afff		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e80560	52	__glNearestFilter	dwarf+dynsym	21ed6cac1cf9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e805a0	128	__glNMNFilter	dwarf+dynsym	5f258cb60418		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e80620	128	__glLMNFilter	dwarf+dynsym	71aa61b396ba		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e806a0	584	__glNMLFilter	dwarf+dynsym	a6061ae73182		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -33032,8 +33032,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1e414	776	__glLinearFi
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1e71c	1512	__glLinearFilter2	dynsym+mdebug	45c3ada3471e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1ed04	2852	__glLinearFilter3	dynsym+mdebug	81a51fa8b462		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f828	96	__glFilter4Func	dynsym+mdebug	01d8ebb63492		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f888	96	__glLinearFilter	dynsym+mdebug	0aaaad8adb7c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f8e8	96	__glNearestFilter	dynsym+mdebug	41ed1b9ab0cf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f888	96	__glLinearFilter	dynsym+mdebug	0aaaad8adb7c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f8e8	96	__glNearestFilter	dynsym+mdebug	41ed1b9ab0cf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1f948	188	__glNMNFilter	dynsym+mdebug	b5fa9d7d5063		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1fa04	188	__glLMNFilter	dynsym+mdebug	b48143b5e1d5		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda1fac0	648	__glNMLFilter	dynsym+mdebug	f2d38d082241		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -38568,8 +38568,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1a5a0	676	__glLinear
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1a850	1284	__glLinearFilter2	dwarf+dynsym	312911bb4223		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1ad60	2144	__glLinearFilter3	dwarf+dynsym	a57e3765f5dc		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b5c0	52	__glFilter4Func	dwarf+dynsym	8e93cfa9ef16		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b600	52	__glLinearFilter	dwarf+dynsym	a70b6bbbd413		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b640	52	__glNearestFilter	dwarf+dynsym	e8b304affdeb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b600	52	__glLinearFilter	dwarf+dynsym	a70b6bbbd413		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b640	52	__glNearestFilter	dwarf+dynsym	e8b304affdeb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b680	136	__glNMNFilter	dwarf+dynsym	764e3b747511		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b710	136	__glLMNFilter	dwarf+dynsym	ea2ef12a410c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1b7a0	600	__glNMLFilter	dwarf+dynsym	7f46eee22f9d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -44148,8 +44148,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x225f4c0	676	__glLinear
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x225f770	1284	__glLinearFilter2	dwarf+dynsym	b1af93d322dd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x225fc80	2144	__glLinearFilter3	dwarf+dynsym	8a73fe2c3040		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22604e0	52	__glFilter4Func	dwarf+dynsym	8fd6e2f46e13		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2260520	52	__glLinearFilter	dwarf+dynsym	b038fba4afff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2260560	52	__glNearestFilter	dwarf+dynsym	21ed6cac1cf9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2260520	52	__glLinearFilter	dwarf+dynsym	b038fba4afff		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2260560	52	__glNearestFilter	dwarf+dynsym	21ed6cac1cf9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22605a0	128	__glNMNFilter	dwarf+dynsym	5f258cb60418		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2260620	128	__glLMNFilter	dwarf+dynsym	71aa61b396ba		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22606a0	584	__glNMLFilter	dwarf+dynsym	a6061ae73182		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
