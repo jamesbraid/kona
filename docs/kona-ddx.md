@@ -6369,17 +6369,21 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   bit 0x2 set, it calls hook R +32 with (that window, 2, 0) and then the routine at 0x56c8d0 with (that window, 0). It then calls
   the screen hook +344 with (the current entry plus 16, window +44) and hook R +76 with (window, the current entry plus 16), and
   returns that last hook's result. Against `konal.so`: 1 of 131; immediates only; low halves: 1; first at +0x154.
-- `cfb16PolyFillArcSolidCopy` (konad.so, address 0x486c60, 544 bytes): **established.** Solid copy PolyFillArc for 16-bit pixels:
-  takes (drawable, gc, count, arcs) in a0 to a3 and returns nothing. It takes word +8 of the GC private record found through gc +76
-  and `cfb16GCPrivateIndex` and returns at once when the count is not positive (there is no raster-op or GC-flag test). For each
-  12-byte arc (x, y, width, height, angle1, angle2 as halfwords at +0 to +10) it skips the arc when angle2, width or height is zero,
-  and when the width is 1 and the height odd. An arc is handled directly when its width equals its height or both are at most 800;
-  otherwise it goes to the fallback. For a direct arc it builds a box in a local (x and y added to the drawable's +8 and +10, then
-  widened by width+1 and height+1); a right or bottom edge above 32767 (compared before truncation to a halfword) sends it to the
-  fallback. It then calls entry +380 of the screen record at drawable +16 with (private word +8, box) and takes the fallback unless
-  the result is 1. Otherwise an angle2 of 23040 or more, or of -23040 or less, calls the routine at 0x51b980 with (drawable, gc,
-  arc), and any other angle2 calls the routine at 0x49b9a0 with (drawable, gc, arc). The fallback is `miPolyFillArc` with (drawable,
-  gc, 1, the one arc). Against `konal.so`: 1 of 136; immediates only; low halves: 1; first at +0x78.
+- `cfb16PolyFillArcSolidCopy` (`konad.so` 0x486c60, 544 bytes):
+  **Established.** Solid copy PolyFillArc for 16-bit pixels, read in full from 0x486c60 to its return at 0x486e6c. The arguments are the drawable
+  (a0), the GC (a1), the arc count (a2) and the arc array (a3); it returns no value. The GC's private record comes
+  from the word at GC +76 indexed by `cfb16GCPrivateIndex`, and its word +8 is kept for the screen call below. A count that is not
+  positive returns at once (the load of that word is in the delay slot of the test); there is no raster-op or GC-flag test.
+  Each arc is 12 bytes: x, y, width, height, angle1 and angle2 as halfwords at +0, +2, +4, +6, +8 and +10. An arc is skipped
+  when angle2, width or height is zero, and when the width is 1 and the height is odd. It is handled by the screen call
+  only when the width equals the height or both are at most 800; otherwise it goes to the fallback. For the screen call it
+  builds a box in a local at sp+0: x and y are the arc's plus the drawable's halfwords at +8 and +10 (stored as halfwords),
+  and the box's far corner is x plus width plus 1 and y plus height plus 1; a far corner above 32767, compared before
+  truncation to a halfword, goes to the fallback. It then calls entry +380 of the screen record at drawable +16 with the
+  private word +8 and the box address, and goes to the fallback unless the result is 1. After a result of 1, an angle2 of
+  23040 or more, or -23040 or less, calls the routine at 0x51b980 with (drawable, GC, arc address), and any other angle2 calls the
+  routine at 0x49b9a0 with the same three. The fallback is `miPolyFillArc` with (drawable, GC, 1, the arc address). Both
+  routines are local to the module and are called through a register.
 - `miRegionValidate` (konad.so, address 0x490c30, 1904 bytes): **inferred.** Canonicalises a region whose boxes were appended out
   of order into y-x banded form: takes (region a0, flag pointer a1) and stores zero through a1 first. It returns 1 at once for a
   null data pointer or a zero count word (data +4); when the extents already have x1 below x2 it only tidies the storage: a count of
@@ -6401,18 +6405,21 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   (36-byte entries from +152, count at +0) from the top down, in a first pass and a second one, using `compareModes` and the routine
   at 0x52a130. The rules inside the two passes, and the earlier text's statements about which routines set and clear bit 0x8 of the
   private byte +4, were not re-read in full. Against `konal.so`: 1 of 181; immediates only; low halves: 1; first at +0x64.
-- `cfbPolyFillArcSolidCopy` (konad.so, address 0x4a0e80, 544 bytes): **established.** Solid copy PolyFillArc for 8-bit pixels:
-  takes (drawable, gc, count, arcs) in a0 to a3 and returns nothing. It takes word +8 of the GC private record found through gc +76
-  and `cfbGCPrivateIndex` and returns at once when the count is not positive (there is no raster-op or GC-flag test). For each
-  12-byte arc (x, y, width, height, angle1, angle2 as halfwords at +0 to +10) it skips the arc when angle2, width or height is zero,
-  and when the width is 1 and the height odd. An arc is handled directly when its width equals its height or both are at most 800;
-  otherwise it goes to the fallback. For a direct arc it builds a box in a local (x and y added to the drawable's +8 and +10, then
-  widened by width+1 and height+1); a right or bottom edge above 32767 (compared before truncation to a halfword) sends it to the
-  fallback. It then calls entry +380 of the screen record at drawable +16 with (private word +8, box) and takes the fallback unless
-  the result is 1. Otherwise an angle2 of 23040 or more, or of -23040 or less, calls the routine at 0x51b410 with (drawable, gc,
-  arc), and any other angle2 calls the routine at 0x49ab60 (reached by an always-taken branch-and-link, `bgezall zero`) with
-  (drawable, gc, arc). The fallback is `miPolyFillArc` with (drawable, gc, 1, the one arc). Against `konal.so`: 1 of 136; immediates
-  only; low halves: 1; first at +0x78.
+- `cfbPolyFillArcSolidCopy` (`konad.so` 0x4a0e80, 544 bytes):
+  **Established.** Solid copy PolyFillArc for 8-bit pixels, read in full from 0x4a0e80 to its return at 0x4a108c. The arguments are the drawable
+  (a0), the GC (a1), the arc count (a2) and the arc array (a3); it returns no value. The GC's private record comes
+  from the word at GC +76 indexed by `cfbGCPrivateIndex`, and its word +8 is kept for the screen call below. A count that is not
+  positive returns at once (the load of that word is in the delay slot of the test); there is no raster-op or GC-flag test.
+  Each arc is 12 bytes: x, y, width, height, angle1 and angle2 as halfwords at +0, +2, +4, +6, +8 and +10. An arc is skipped
+  when angle2, width or height is zero, and when the width is 1 and the height is odd. It is handled by the screen call
+  only when the width equals the height or both are at most 800; otherwise it goes to the fallback. For the screen call it
+  builds a box in a local at sp+0: x and y are the arc's plus the drawable's halfwords at +8 and +10 (stored as halfwords),
+  and the box's far corner is x plus width plus 1 and y plus height plus 1; a far corner above 32767, compared before
+  truncation to a halfword, goes to the fallback. It then calls entry +380 of the screen record at drawable +16 with the
+  private word +8 and the box address, and goes to the fallback unless the result is 1. After a result of 1, an angle2 of
+  23040 or more, or -23040 or less, calls the routine at 0x51b410 with (drawable, GC, arc address), and any other angle2 calls the
+  routine at 0x49ab60 with the same three. The fallback is `miPolyFillArc` with (drawable, GC, 1, the arc address). Both
+  routines are local to the module and are called through a register.
 - `mfbValidateGC` (konad.so, address 0x4ace80, 3204 bytes): **inferred.** ValidateGC for the one-bit layer. By its calls and
   symbol references it calls `miComputeCompositeClip`, `mfbReduceRop` (two sites), `miDestroyGCOps` and `miCreateGCOps`,
   `mfbCopyRotatePixmap` (two sites) and the routine at 0x5740b0, and points the GC's operation entries at `mfb` and `mi` routines
@@ -6478,14 +6485,16 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   (window +4) and stores the new serial number at window +20. For bit 0x2, when word +4 of the screen's rrm record is non-zero and
   the window's `glxWindowPrivateIndex` private is missing or has a zero word at +4, it calls `rrmInvalidateCID` (window). Returns no
   value. Against `konal.so`: 1 of 140; immediates only; low halves: 1; first at +0x14; gp 0x96a90 and 0x96ab0.
-- `miPolyText16` (konad.so, address 0x509520, 556 bytes): **established.** PolyText for 16-bit fonts: takes (drawable a0, gc a1, x
-  a2, y a3, chars a4, count a5) and returns x plus the summed advance. It takes the font from gc +44 and picks an encoding of 3 when
-  the font's halfword +10 is non-zero and 2 when it is zero, then makes one call to `GetGlyphs` (font, chars, count, encoding,
-  address of a local glyph count, address of a local array of character-info pointers). When the glyph count is zero it returns x
-  unchanged. Otherwise it sums the halfword at +4 of each character-info record (the advance), in a loop unrolled four at a time
-  with the remainder handled first, then calls entry +72 of the GC's operations vector (gc +72) with (drawable, gc, x, y, glyph
-  count, glyph array, 0) and returns x plus the sum. There is no font-change or text-item dispatch. Against `konal.so`: 1 of 139;
-  immediates only; low halves: 1; first at +0x30.
+- `miPolyText16` (`konad.so` 0x509520, 556 bytes):
+  **Established.** PolyText for 16-bit fonts, read in full from 0x509520 to its two returns at 0x5096d4 and 0x50970c. Its
+  arguments are the drawable (a0), the GC (a1), x (a2), y (a3), the character array (a4) and the count (a5). It takes the
+  font from the GC's word +44 and chooses an encoding argument of 3 when the font's halfword +10 is non-zero and 2 when it
+  is zero, then makes one call to `GetGlyphs` (font, characters, count, encoding, the address of a local count at sp+0, the
+  address of a local array of character-info pointers at sp+8). A returned count of zero returns x unchanged. Otherwise it
+  adds up the halfword at +4 of every character-info record: the count mod 4 first, one at a time, then the remaining
+  groups of four in an unrolled loop, ending with a block of the last four. It then calls entry +72 of the GC's
+  operations vector (the word at GC +72) with (drawable, GC, x, y, glyph count, glyph array, 0) and returns x plus the
+  sum, so the value does not come from the callee. There is no font-change or text-item dispatch.
 - `cfbSegmentSD` (konad.so, address 0x509af0, 2560 bytes): **inferred.** Dashed
   PolySegment for 8-bit drawables. It reduces the raster op once, at entry, with `cfbReduceRasterOp` (a single call site), steps
   the dash pattern with `miStepDash` (two call sites), draws each dash by calling `cfbBresD` (two call sites) and trims clipped
@@ -6572,15 +6581,24 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   second restores both with P +96. The first pass's non-zero region is destroyed through the screen's +348 entry. Finally it
   restores P +8, gc +72 and zeroes P +104, and returns the second pass's region. Against `konal.so`: 1 of 305; immediates only; low
   halves: 1; first at +0x10; gp 0x8e790 and 0x8e7b0.
-- `kon_freeCachedStipple` (konad.so, address 0x511980, 572 bytes): **established.** Takes a stipple cache slot (a0). The owner is
-  the GC at slot +12; the screen is the word at GC +0. It clears the owner's reference to the slot: the word at the GC's private
-  record +104 when it equals the slot, otherwise the first of the four words at private +148, +152, +156, +160 that equals it; when
-  none matches it calls `ErrorF` with a message string. It then zeroes slot +12, sets the screen record's word +96 to -1 when it
-  equals the slot's word +0, and moves the slot to the tail of the screen record's list (head at +104, tail at +108, next at slot
-  +4, previous at slot +8). A slot that is already the tail is left alone; the head is moved by making the head word its next, with
-  no reinsertion; any other slot is unlinked and reinserted after the old tail. In both moving cases the tail word +108 is then set
-  to the slot. Returns no value. Against `konal.so`: 1 of 143; immediates only; low halves: 1; first at +0x10; gp 0x8e2c0 and
-  0x8e2e0.
+- `kon_freeCachedStipple` (`konad.so` 0x511980, 572 bytes):
+  **Established.** Releases one stipple cache slot and makes it the most recently freed, read in full from 0x511980 to the
+  return at 0x511bb4. Its one argument is the slot, kept at sp+52. The slot's word +12 is the owning graphics context (GC);
+  the GC's word +0 is its screen, whose word +436 is an array of private records that `konScreenPrivateIndex` (0x5a57e8) selects
+  (kept at sp+0), and the GC's word +76 is an array that `konGCPrivateIndex` (0x5a57f0) selects, giving the GC's private
+  record (sp+4). From the screen record it keeps the word at +108 (sp+8) and the word at +104 (sp+12).
+  It first clears the owner's reference to the slot. The private record's word +104 is zeroed when it equals the slot.
+  Otherwise a loop over the words at private +148, +152, +156 and +160 stops at the first that equals the slot; the word at
+  +148 plus four times the loop index is then compared again (index 4, address +164, when nothing matched) and zeroed when
+  it equals the slot, and when it does not the routine calls `ErrorF` with "kon_freeCachedStipple: freeing ref/unref
+  stipple" (the string at 0x5883e0) and carries on. It then zeroes the slot's word +12 and stores -1 in the screen record's
+  word +96 when that word equals the slot's word +0.
+  Last it reorders the list, whose head is the screen record's +104 and tail +108, with next at slot +4 and previous at slot
+  +8. A slot equal to the tail is left alone and the routine returns. A slot equal to the head makes the head word its next
+  (slot +4) and then sets the tail word to the slot. Any other slot is unlinked (its previous's next takes its next and its
+  next's previous takes its previous), then placed after the old tail: its next becomes the old tail's next, its previous
+  the old tail, the old tail's next's previous the slot and the old tail's next the slot; the tail word is then set to the
+  slot. The routine returns no value.
 - `cfb32PolyPoint` (konad.so, address 0x511bc0, 1312 bytes): **inferred.**
   PolyPoint for 32-bit drawables. The clip region and the colour words come from the GC private (+8; +12 and +16), and a
   separate loop handles the mode argument equal to 1. Each point is tested against the clip boxes with a combined sign check on
@@ -6881,17 +6899,21 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   `mfbValidateGC`. Against `konal.so`: 1 of 881; immediates only; low halves: 1; first at +0x28.
 - `rrmValidateTree` (`konad.so` 0x54ba60, 180 bytes):
   **Established.** Hook for ValidateTree, read in full from 0x54ba60 to its return at 0x54baf4, called with the window in a0 and the tree in a1. It loads the window's rrm private record from the word at window +132 indexed by `rrmWindowPrivateIndex` (GOT slot 934). When that record is non-null it first calls the local routine at 0x528a60 (local GOT entry 18) with the same two arguments, saving a2 around the call; this is in addition to the chained hook, not instead of it. On both paths it then takes the screen from the word at window +16, finds the saved ValidateTree hook as the word at +124 of the record that screen +436 holds at `rrmScreenPrivateIndex` (GOT slot 1035), stores that hook's address at screen +204 (0x54bacc), calls it (0x54bad0) with the window and the tree, and in the delay slot of the final return (0x54baf8) stores its own address, local GOT entry 672, at screen +204. It returns the saved hook's result in v0.
-- `cfb32PolyFillArcSolidCopy` (konad.so, address 0x5547e0, 544 bytes): **established.** Solid copy PolyFillArc for 32-bit pixels:
-  takes (drawable, gc, count, arcs) in a0 to a3 and returns nothing. It takes word +8 of the GC private record found through gc +76
-  and `cfb32GCPrivateIndex` and returns at once when the count is not positive (there is no raster-op or GC-flag test). For each
-  12-byte arc (x, y, width, height, angle1, angle2 as halfwords at +0 to +10) it skips the arc when angle2, width or height is zero,
-  and when the width is 1 and the height odd. An arc is handled directly when its width equals its height or both are at most 800;
-  otherwise it goes to the fallback. For a direct arc it builds a box in a local (x and y added to the drawable's +8 and +10, then
-  widened by width+1 and height+1); a right or bottom edge above 32767 (compared before truncation to a halfword) sends it to the
-  fallback. It then calls entry +380 of the screen record at drawable +16 with (private word +8, box) and takes the fallback unless
-  the result is 1. Otherwise an angle2 of 23040 or more, or of -23040 or less, calls the routine at 0x51bf00 with (drawable, gc,
-  arc), and any other angle2 calls the routine at 0x49c800 with (drawable, gc, arc). The fallback is `miPolyFillArc` with (drawable,
-  gc, 1, the one arc). Against `konal.so`: 1 of 136; immediates only; low halves: 1; first at +0x78.
+- `cfb32PolyFillArcSolidCopy` (`konad.so` 0x5547e0, 544 bytes):
+  **Established.** Solid copy PolyFillArc for 32-bit pixels, read in full from 0x5547e0 to its return at 0x5549ec. The arguments are the drawable
+  (a0), the GC (a1), the arc count (a2) and the arc array (a3); it returns no value. The GC's private record comes
+  from the word at GC +76 indexed by `cfb32GCPrivateIndex`, and its word +8 is kept for the screen call below. A count that is not
+  positive returns at once (the load of that word is in the delay slot of the test); there is no raster-op or GC-flag test.
+  Each arc is 12 bytes: x, y, width, height, angle1 and angle2 as halfwords at +0, +2, +4, +6, +8 and +10. An arc is skipped
+  when angle2, width or height is zero, and when the width is 1 and the height is odd. It is handled by the screen call
+  only when the width equals the height or both are at most 800; otherwise it goes to the fallback. For the screen call it
+  builds a box in a local at sp+0: x and y are the arc's plus the drawable's halfwords at +8 and +10 (stored as halfwords),
+  and the box's far corner is x plus width plus 1 and y plus height plus 1; a far corner above 32767, compared before
+  truncation to a halfword, goes to the fallback. It then calls entry +380 of the screen record at drawable +16 with the
+  private word +8 and the box address, and goes to the fallback unless the result is 1. After a result of 1, an angle2 of
+  23040 or more, or -23040 or less, calls the routine at 0x51bf00 with (drawable, GC, arc address), and any other angle2 calls the
+  routine at 0x49c800 with the same three. The fallback is `miPolyFillArc` with (drawable, GC, 1, the arc address). Both
+  routines are local to the module and are called through a register.
 - `konAttachXvc` (konad.so, address 0x555bb0, 228 bytes): **established.** Connects the screen to the video-control extension. It
   reads the environment variable `XVC_DEBUG` with `getenv` and stores a flag, passes four callback addresses to
   `SDBsetupMemoryInterface` (the extension's memory interface), calls a local routine at 0x4f4490 with the screen and, when that
@@ -7106,18 +7128,22 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   `rop_needs_src`, `rop_needs_dst` and `nfbWindowPrivateIndex`. At about 740 instructions it was checked for call sites and symbols
   only and not read in full, so how the tables are selected stays inferred. Against `konal.so`: 1 of 742; immediates only; low
   halves: 1; first at +0x28.
-- `nfbDoBitBltSS` (konad.so, address 0x56e780, 744 bytes): **established.** Screen-to-screen box copy driver: takes (window a0,
-  region a1, dx a2, dy a3, two pass-through words a4 and a5) and returns nothing. The boxes are the region's data records (data
-  pointer at +8, count at data +4, 8-byte boxes from data +8), or the region's own extents as one box when the data pointer is null;
-  a zero count returns at once. It loads a routine pointer by following the window's nfb private (window +132 through
-  `nfbWindowPrivateIndex`) through two words at offset 0, and for each box calls it with (box, address of a local point holding the
-  box's x1+dx and y1+dy as halfwords, a4, a5, window); the four call sites are one per visiting order. The order depends on the
-  signs of dy and dx, and a count of one skips the choice. With dy not negative and dx not negative the boxes go first to last. With
-  dy greater than zero and dx negative they go band by band first to last (a band ends where the next box's y1 differs), and within
-  each band last to first. With dy zero and dx negative, or with dy negative and dx zero or negative, every box goes last to first.
-  With dy negative and dx positive they go band by band last to first and within each band first to last. The routine pointer is
-  called through a register, so the copy routine itself is not named here. Against `konal.so`: 1 of 186; immediates only; low
-  halves: 1; first at +0x44.
+- `nfbDoBitBltSS` (`konad.so` 0x56e780, 744 bytes):
+  **Established.** Screen-to-screen box copy driver, read in full from 0x56e780 to its return at 0x56e88c (the same epilogue
+  is reached from every loop). The arguments are the window (a0), the region (a1), dx (a2), dy (a3) and two words a4 and
+  a5 that it only passes on. The boxes are the region's data records: the data pointer at region +8, the count at data +4
+  and 8-byte boxes from data +8; a null data pointer makes the region's own first 8 bytes the single box (count 1), and a
+  zero count returns at once.
+  The copy routine is the word at +0 of the record at +0 of the window's nfb private record (window +132, indexed by
+  `nfbWindowPrivateIndex`). The routine is called with (the box
+  address, the address of a local point at sp+4 whose two halfwords are the box's x1 plus dx at sp+4 and y1 plus dy at
+  sp+6, a4, a5, the window) at four call sites, one per visiting order: 0x56e84c, 0x56e928, 0x56e9e8 and 0x56ea4c. A count
+  of one skips the choice and uses the first-to-last site. With dy and dx both not negative the boxes go first to last.
+  With dy above zero and dx negative they go band by band first to last, and within each band last to first (a band ends
+  where the next box's y1 differs, compared as halfwords). With dy zero and dx negative, or dy negative and dx zero or
+  negative, every box goes last to first. With dy negative and dx positive they go band by band last to first, and within
+  each band first to last. The two band loops use branch-likely tests (0x56e938 and 0x56e9f8) to repeat the call. The routine
+  returns no value and the copy routine itself is reached through a register.
 - `cfb16CopyArea` (konad.so, address 0x56ea70, 164 bytes): **established.**
   CopyArea for 16-bit drawables with the same shape as the 8-bit selector, comparing the plane mask with 0xffff and passing one of
   `cfb16DoBitbltGeneral`, `cfb16DoBitbltCopy`, `cfb16DoBitbltXor` or
@@ -7173,21 +7199,25 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
 - `cfb16DestroyPixmap` (konad.so, address 0x572840, 88 bytes): **established.** Decrements the reference count (word +24) and
   stores it; when it reaches zero it calls `Xfree` once, with the pixmap record itself (the argument unchanged), and does not free a
   separate data block. Returns 1 on both paths. Against `konal.so`: 1 of 22; immediates only; low halves: 1; first at +0x18.
-- `rrmOGLUnbindRNFromClip` (konad.so, address 0x5728a0, 624 bytes): **established.** The OpenGL form of the unbind hook: takes the
-  window in a0 and returns a Bool. It fetches the window's rrm private (through window +132 and `rrmWindowPrivateIndex`) and its nfb
-  private (`nfbWindowPrivateIndex`), and returns 0 when the rrm private is null. It then calls entry +32 of the per-screen rrm
-  record (reached through screen +436 and `rrmScreenPrivateIndex`) with (window, 0, 0) and calls `rrmUnqueueRequest` when bit 0x20
-  of the rrm private's halfword 0 is set. When the window's GLX private (`glxWindowPrivateIndex`) is non-null and its word +4 is
-  non-null, it calls `Xfree` on the rrm private itself, clears the window's slot for it and returns 1. Otherwise, if bit 0x800 of
-  window word +124 is set, it first releases ids: `FreeID` on the window when rrm private word +20 differs from word +0 of the
-  screen record, or else it stores -1 in word +20; then, when the screen record's word +4 is non-zero and differs from rrm private
-  word +24, `FreeCID` on the window; then `decrRRMFlags` on the window's parent (window +24). Every path that gets past those steps
-  calls `cmapDID` on the window and stores the result in nfb private word +4, and calls `ErrorF` with "prrmBoundWins non zero" when
-  rrm private word +40 is non-zero. When rrm private word +20 differs from screen record word +0 it also sets bit 0x1 in nfb private
-  word +32, calls `nfbSetDidFlags` on the window and, if bit 0x800 of window word +124 is set, calls entry +72 of the screen record
-  with the window. It ends by either calling `Xfree` on the rrm private, clearing its slot and returning 1 (when rrm private word
-  +16 is zero) or clearing bit 0x1 of halfword 0 and returning 1. Against `konal.so`: 1 of 156; immediates only; low halves: 1;
-  first at +0xc; gp 0x2d3a0 and 0x2d380.
+- `rrmOGLUnbindRNFromClip` (`konad.so` 0x5728a0, 624 bytes):
+  **Established.** The OpenGL form of the hook that detaches a window's rendering node from its clip, read in full from
+  0x5728a0 to its two returns at 0x572a18 and 0x572a30. Its one argument is the window; it returns 1, or 0 when the window has
+  no rrm private record. The records come from the array at window +132: the rrm private R at `rrmWindowPrivateIndex`,
+  the nfb private N (kept at sp+16) at `nfbWindowPrivateIndex`, and, later, the GLX private at `glxWindowPrivateIndex`.
+  Order of work after the null test:
+  the per-screen rrm record S (screen at window +16, its word +436 array at `rrmScreenPrivateIndex`, kept at sp+8) has its
+  entry +32 called with (window, 0, 0); `rrmUnqueueRequest` is called on the window when bit 0x20 of R's halfword +0 is set.
+  When the GLX private is non-null and its word +4 is non-null the routine calls `Xfree` on R, zeroes the window's slot for
+  R and returns 1, and nothing below runs.
+  Otherwise, when bit 0x800 of window word +124 is set, it releases ids: if R word +20 differs from S word +0 it calls
+  `FreeID` on the window, else it stores -1 in R word +20; then, when S word +4 is non-zero and differs from R word +24, it
+  calls `FreeCID` on the window; then it calls `decrRRMFlags` on the window's parent (window +24). Every path that gets past
+  the GLX test then calls `cmapDID` on the window and stores the result in N word +4, and calls `ErrorF` with
+  "rrmOGLUnbindRNFromClip: pPriv->prrmBoundWins non zero! 0x%08X" and R word +40 when that word is non-zero. When R word +20
+  differs from S word +0 it sets bit 0x1 in N word +32 (the store sits in the delay slot of the call) and calls
+  `nfbSetDidFlags` on the window with R word +20, and, if bit 0x800 of window word +124 is set, calls entry +72 of S with the
+  window. It ends in one of two ways: with R word +16 zero it calls `Xfree` on R, zeroes the window's slot for R and
+  returns 1; otherwise it clears bit 0x1 of R's halfword +0 and returns 1.
 - `nfbInitHWCmapArrays` (konad.so, address 0x572b20, 2276 bytes): **inferred.** Builds the arrays that track the hardware
   colormaps and their groups: by its call sites it calls `Xalloc` at four sites, `memcpy` at one and `Xfree` at five (the temporary
   lists and the old arrays). At about 570 instructions it was checked for call sites only and not read in full, so which arrays are
