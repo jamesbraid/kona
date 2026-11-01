@@ -629,3 +629,13 @@ The 6.5.22 copies of `usr/diags/IR/ucode/arm1_nic.u` and `usr/diags/IR/ucode/ge_
 | `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo` | `c020fe7290806d8c6bf2f274a5bf58e1c3951a646212a36bee9bbcd411eef79d` | `c020fe7290806d8c6bf2f274a5bf58e1c3951a646212a36bee9bbcd411eef79d` |
 | `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1280x720_60p.vfo` | `11c883d91239aab4e38ed9c56526ab65197a4b52e863a4d2546af8ebecda89ec` | `11c883d91239aab4e38ed9c56526ab65197a4b52e863a4d2546af8ebecda89ec` |
 | `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398p.vfo` | `a35c8d1a12c6c15682a960c47c7a15042c4cac766a84f532b56edcdbddd301cf` | `a35c8d1a12c6c15682a960c47c7a15042c4cac766a84f532b56edcdbddd301cf` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398psf.vfo` | `0555e3ef37546475a91dd4dc61be51e07bc68b0092adc8615c347ac45bddde73` | `0555e3ef37546475a91dd4dc61be51e07bc68b0092adc8615c347ac45bddde73` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24p.vfo` | `090938c415b7641a47aaeda37702f8fe4fddd913d3f6d546d13833ab7e101c92` | `090938c415b7641a47aaeda37702f8fe4fddd913d3f6d546d13833ab7e101c92` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24psf.vfo` | `7073b7896431a8737698d2a5b43f34da3c6e5ffe861edc940cc740f15a726d3c` | `7073b7896431a8737698d2a5b43f34da3c6e5ffe861edc940cc740f15a726d3c` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_50i.vfo` | `25e938c2dcc516cc684bdd13e9d1239e883ae3f256b25f818fc166fd31e5fc14` | `25e938c2dcc516cc684bdd13e9d1239e883ae3f256b25f818fc166fd31e5fc14` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo` | `78899532e1e992dd6a0e06543cb21d83bf49d3e39741de5dcef3d86380fe6925` | `78899532e1e992dd6a0e06543cb21d83bf49d3e39741de5dcef3d86380fe6925` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo` | `720623f379920d0b3fcfd21317b66b2de0a8be5585b50591965f2b07ebb7b5b6` | `720623f379920d0b3fcfd21317b66b2de0a8be5585b50591965f2b07ebb7b5b6` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo` | `6d2a822a29a5f4dc2eea6cece4da04d41ddd686d5f6669df0854bb4541326d55` | `6d2a822a29a5f4dc2eea6cece4da04d41ddd686d5f6669df0854bb4541326d55` |
+| `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo` | `72a05060016445dd87de66b00fb563428c71464a2e324cbde2ab597e866b4aa5` | `72a05060016445dd87de66b00fb563428c71464a2e324cbde2ab597e866b4aa5` |
+| `usr/gfx/ucode/vfc/rules/dg4.def` | `aac372e63b5f7a2ada7a2b24389cafaf141684baacc0ab7b70256509dc0b7d5d` | `aac372e63b5f7a2ada7a2b24389cafaf141684baacc0ab7b70256509dc0b7d5d` |
+| `usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def` | `d73fb0145682bdbc99d080d770fa3707f8ce628ba873b0a944027412131e0516` | `d73fb0145682bdbc99d080d770fa3707f8ce628ba873b0a944027412131e0516` |
