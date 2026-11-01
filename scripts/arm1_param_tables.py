@@ -192,7 +192,7 @@ for name in names:
         target = 'plane flag at word 0x%x' % (0x904 + num)
     runs = '`%s` for %s %d' % (eng, 'light' if light else 'plane', num)
     p840 = '0x%x' % r[0x840] if 0x840 in r else 'not written'
-    lines.append('| `%s` | 0x%08x | `arm1.u` +0x%x | +0x%x | %s | 0x%x | %s | %s | %s | %s | %s | %s | **Established** |'
+    lines.append('| `%s` | 0x%08x | `arm1.u` +0x%x | +0x%x | %s | 0x%x | %s | %s | %s | %s | %s | %s | **Inferred** |'
                  % (name, r['addr'], r['addr'] - 0x0c000000, r['flag'][0], flagval(r['flag'][1]),
                     r[0x478], p840, handler(r[0x8c0]), kind, effect, runs, target))
 lines.append('')
