@@ -408,21 +408,29 @@
 #define KONA_RM_BEF_DUMP                                 0x0001
 
 /*
- * BEF_PERF_COUNTALL (index 0x2): back-end event counter covering all primitives, inferred from its
- * name and neighbours. Established that `mges_ContextDeactivate` loads the bus high word 0x20000
- * at address 0x695b of ge.u as the last of five words of its save request (shadow read 0x6956,
- * then indexes 1, 3, 6 and this one), and that no load handler in `mges_ContextLoadBEF` sends
- * index 2, so the value is read at context switch and not restored. kpm's BEF dump prints it as
- * one 32-bit hex word. irsaudit, arm1.u and the vector files never write it. */
+ * BEF_PERF_COUNTALL (index 0x2): the first of four event counters of the back-end FIFO that kpm's
+ * BEF dump prints, saved at a context switch and never restored. Established in ge.u:
+ * `mges_ContextDeactivate` sends the bus high word 0x20000 at address 0x695b as the last of the
+ * four words it queues after the shadow read word 0x2100476 (0x6956: 0x10000, 0x30000, 0x60000,
+ * then this one), and `mges_ContextLoadBEF` sends only 0x30000 and 0x60000 at 0x676a and 0x676b,
+ * so index 2 is read out at a switch-out and no load handler writes it back. kpm prints it as one
+ * 32-bit hex word; irsaudit, arm1.u and the vector files never write it. Inferred: the back-end
+ * FIFO is the 4 MB FIFO with separate draw and load queues of the published OpenGL implementation
+ * paper (section 3.3), and the SIGGRAPH 1997 InfiniteReality paper (section 3.3.1) says counters
+ * kept in that FIFO record vertex-bus stalls and upstream waits for load management, so this is
+ * one of those counters. Unknown: which of those conditions it counts. */
 #define KONA_RM_BEF_PERF_COUNTALL                        0x0002
 
 /*
- * BEF_PERF_COUNTDRAW (index 0x3): back-end event counter for drawn primitives, inferred from its
- * name beside the other counters. Established in ge.u: `mges_ContextDeactivate` loads the bus high
- * word 0x30000 at address 0x6958 as the third word of its save request, and `mges_ContextLoadBEF`
- * sends the same word at address 0x676a, so the counter is saved at a switch-out and restored at a
- * switch-in. kpm's BEF dump prints the counters as 32-bit hex words. irsaudit, arm1.u and the
- * vector files never write index 3. */
+ * BEF_PERF_COUNTDRAW (index 0x3): the second back-end FIFO event counter in kpm's BEF dump, the
+ * only counter that goes out at a switch-out and comes back at a switch-in. Established in ge.u:
+ * `mges_ContextDeactivate` sends the bus high word 0x30000 at address 0x6958 as the second word
+ * after its shadow read, and `mges_ContextLoadBEF` sends the same word at 0x676a, so the saved
+ * value is written back. kpm prints it as a 32-bit hex word; irsaudit, arm1.u and the vector files
+ * never write index 3. Inferred: the counter that belongs to the FIFO's draw queue, since the
+ * published design keeps separate draw and load queues in that FIFO (OpenGL implementation paper,
+ * section 3.3) and kpm names a load counter beside it. Unknown: whether it counts words, packets
+ * or stall cycles. */
 #define KONA_RM_BEF_PERF_COUNTDRAW                       0x0003
 
 /* BEF_PERF_COUNTLOAD: geometry-board counter, as BEF_PERF_COUNTALL: printed
@@ -481,20 +489,22 @@
 #define KONA_RM_BEF_REGSHADOW_WRITE                      0x0300
 
 /*
- * HTL_LOAD_STALL (index 0x44a8): load stall control named only in kpm's raster table. Unknown: no
- * shipped software or published source depends on it. Routes tried: irsaudit (no constant of this
- * index reaches `tbRegWrite`), arm1.u (no address word 0x01xx44a8 and no immediate of this value
- * in a `tbus_regwrite` call), ge.u (no listing loads it), the vector files (no mode-1 word) and
- * libGLcore (no use). */
+ * HTL_LOAD_STALL (index 0x44a8): a stall control that only kpm's raster table names. Unknown: no
+ * shipped software or published source depends on what a write to this index stalls, because
+ * nothing sends one. Routes tried: irsaudit (no constant of this index reaches `tbRegWrite`),
+ * arm1.u (no address word 0x01xx44a8 and no immediate of this value in a `tbus_regwrite` call),
+ * ge.u (no listing loads it), the vector files (no mode-1 word), libGLcore (no use). */
+ 
 #define KONA_RM_HTL_LOAD_STALL                           0x44a8
 
 /*
- * TG_DNOP (index 0xc00): no-op slot of the texture generator block. Unknown: no shipped software
- * or published source depends on it. Routes tried: irsaudit (no constant of this index reaches
- * `tbRegWrite`; the restore routine `tbuRegReset` at 0x10154cb4 skips action registers), the
- * vector files (no mode-1 word of this index), arm1.u (no address word 0x01xx0c00), ge.u (no
- * immediate with it in the high half), kpm and libGLcore (the name appears only in kpm's raster
- * table). */
+ * TG_DNOP (index 0xc00): a no-op slot of the texture generator block. Unknown: no shipped software
+ * or published source depends on what a write to this slot does, since no program sends it. Routes
+ * tried: irsaudit (no constant of this index reaches `tbRegWrite`; the restore routine
+ * `tbuRegReset` at 0x10154cb4 skips action registers), the vector files (no mode-1 word of this
+ * index), arm1.u (no address word 0x01xx0c00), ge.u (the 0xc00 in an immediate such as 0x400c0c00
+ * or 0x20c0c00 at 0x91b7 and 0x3eb9 is part of a larger word, not a select), kpm and libGLcore
+ * (the name appears only in kpm's raster table). */
 #define KONA_RM_TG_DNOP                                  0x0c00
 
 /*
@@ -1021,16 +1031,23 @@
 #define KONA_RM_TML_COMPAT                                0,  1  /* shift, width */
 
 /*
- * TML_RAMSYNC (index 0x53ff): load-side RAM synchronisation by name, named only in kpm's raster
- * table. Unknown: no shipped software or published source depends on it. Routes tried: irsaudit
- * (no constant of this index reaches `tbRegWrite`), arm1.u (no address word 0x01xx53ff, no
- * immediate in a `tbus_regwrite` call), ge.u (no listing loads it), the vector files (no mode-1
- * word) and libGLcore (no use). */
+ * TML_RAMSYNC (index 0x53ff): a slot that only kpm's raster table names, grouped with the texture-
+ * load registers. Unknown: no shipped software or published source depends on what RAM state a
+ * write to this index synchronises, because nothing sends one. Routes tried: irsaudit (no constant
+ * of this index reaches `tbRegWrite`), arm1.u (no address word 0x01xx53ff, no immediate in a
+ * `tbus_regwrite` call), ge.u (no listing loads it), the vector files (no mode-1 word), libGLcore
+ * (no use). */
 #define KONA_RM_TML_RAMSYNC                              0x53ff
 
-/* TFP_TEX: texture enable in the filter (TEX_EN). ESTABLISHED: irsaudit
- * tbuTexOnOff, TEST_texread (1, then 0 after the read-back) and TEST_texmem*
- * write it; tbuRegReset (0x10154cb4) restores 0; in the BEF shadow (GE.h). */
+/*
+ * TFP_TEX (index 0x1500): the one-bit texture enable of the filter, field EN at bit 0 in kpm's
+ * table. Established: ge.u `mgebi_Texture` (0x43f3) loads select 0x015c1500 at 0x43f7 with the
+ * value 1 (0x43fa) behind the mask word 0x70000, and its callers are the texture bind and active-
+ * texture handlers; arm1.u `PixEnd_FFT` (0x0c026a14) and `PixEndConvolve` (0x0c026c1c) write 0 to
+ * the same select at the end of a pixel path, so texturing is off after pixel work; irsaudit
+ * `tbuRegReset` restores 0, and the vector files carry 67 words, 58 with value 0 and 9 with value
+ * 1. Inferred: setting it turns texture lookup on in the filter, because the texture handler sets
+ * it and every pixel path clears it. */
 #define KONA_RM_TFP_TEX                                  0x1500
 #define KONA_RM_TFP_TEX_EN                                0,  1  /* shift, width */
 
@@ -1287,26 +1304,41 @@
 #define KONA_RM_TFP_PIX_FMT                              0x1410
 #define KONA_RM_TFP_PIX_FMT_LA                            0,  1  /* shift, width */
 
-/* TFP_NOP: tf no-op. ESTABLISHED: ge.u mgesi_FlushRM (0x3824) loads 0x1411
- * after IMP_NOP. INFERRED: the flush pushes no-ops through the filter; no
- * field, never restored. */
+/*
+ * TFP_NOP (index 0x1411): the filter's no-op index, one of the three that the geometry engine's
+ * raster flush writes. Established in ge.u: `mgesi_FlushRM` (0x380b) loads 0x1411 at 0x3824 as its
+ * second no-op word, between `IMP_NOP` (0x1c3a at 0x3810) and `PG_NOP` (0x87f at 0x3837), sends it
+ * to bus address 0x1f7 (0x3825), and counts down a wait of 0xb0 (loaded at 0x3823, loop
+ * 0x3827-0x3829), against 8 after the image processor word and 0x56 after the pixel generator
+ * word. No arm1.u select, irsaudit constant or vector-file word carries it, and `tbuRegReset` has
+ * no entry. Inferred: the flush pushes a word through the filter chip and waits long enough for
+ * the words ahead of it to leave, so the filter is drained between the image processors and the
+ * pixel generator. */
 #define KONA_RM_TFP_NOP                                  0x1411
 
 /*
- * TFP_FAKE (index 0x1412): twelve-bit test identifier of the simulation-only block, named TEST_ID
- * in kpm. Established that only irsaudit `tbuRegReset` writes it, with zero at address 0x10156770,
- * and that arm1.u, ge.u and the vector files never address it. Inferred from the name FAKE and the
- * lone zero write that the field belongs to a simulation or test block, since no shipped program
- * sets it to anything else. */
+ * TFP_FAKE (index 0x1412): the twelve-bit test identifier (TEST_ID) of a simulation-only block on
+ * the filter's fog half, in kpm's table. Established: irsaudit `tbuRegReset` writes zero to it at
+ * address 0x10156770 (the call to `tbRegWrite` with index 5138 at 0x1015676c-0x10156770), and no
+ * vector-file word, arm1.u routine or ge.u select addresses it; the 0x1411 and 0x1412 in ge.u at
+ * 0x6d4c-0x6d50 and 0x76d6 are address immediates of other loads. Unknown: no shipped software or
+ * published source depends on what a non-zero identifier changes in the chip, because zero is the
+ * only value ever sent. Routes tried: irsaudit,
+ * arm1.u, ge.u, the vector files, kpm and libGLcore, the published papers and patents (no mention
+ * of a test identifier). */
 #define KONA_RM_TFP_FAKE                                 0x1412
 #define KONA_RM_TFP_FAKE_TEST_ID                          0, 12  /* shift, width */
 
 /*
- * TFT_EXTRAP (index 0x1800): first of sixteen consecutive lookup entries, four ten-bit values
- * each, that hold the level-of-detail extrapolation function. Established in arm1.u:
- * `sendTexTable` (0x0c02539c) writes sixteen words from index 0x1800 with `tbus_write_word` for
- * the table kind that is neither bicubic nor detail, at 0x0c02541c, and irsaudit `tbuRegReset`
- * zeroes the first at 0x10156940. Inferred from the name that this table is the sharpen curve. */
+ * TFT_EXTRAP (index 0x1800): first of sixteen consecutive entries, four ten-bit values each, that
+ * hold the sharpen texture function. Established in arm1.u: `sendTexTable` (0x0c02539c) writes
+ * sixteen word pairs from index 0x1800 with `tbus_write_word` (call at 0x0c02541c, loop bound 0x10
+ * at 0x0c02542c) for every table kind other than 0 and 1, and from 0x1810 for kind 1; irsaudit
+ * `tbuRegReset` zeroes the first entry at 0x10156940. The host call `__glkonim_SharpenTexFuncSGIS`
+ * (libGLcore) negates the samples before packing, which matches the published sharpen-texture
+ * patent's weight K that is zero or negative (US 5,438,654). Inferred: the table is the sharpen
+ * curve that the filter indexes by level of detail and scales the difference of the two finest
+ * levels with. */
 #define KONA_RM_TFT_EXTRAP                               0x1800
 #define KONA_RM_TFT_EXTRAP_N0                             0, 10  /* shift, width */
 #define KONA_RM_TFT_EXTRAP_N1                            10, 10  /* shift, width */
@@ -1316,9 +1348,12 @@
 /*
  * TFT_DETAILTEX (index 0x1810): first of sixteen consecutive entries, four ten-bit values each,
  * that hold the detail texture function. Established in arm1.u: `sendTexTable` (0x0c02539c) writes
- * sixteen words from index 0x1810 for table kind 1, with `tbus_write_word` at address 0x0c02541c,
- * and the vector files send this index 31 times. irsaudit `tbuRegReset` zeroes it at 0x101569a0.
- * Inferred from the name and the table kind that the entries are the detail blend curve. */
+ * sixteen word pairs from index 0x1810 for table kind 1 with `tbus_write_word` (0x0c02541c),
+ * irsaudit `tbuRegReset` zeroes the first entry at 0x101569a0, and the vector files send the index
+ * 31 times. The host call `__glkonim_DetailTexFuncSGIS` (libGLcore) doubles the samples before
+ * packing, which fits the published detail-texture patent (US 5,471,572) and the
+ * SGIS_detail_texture definition. Inferred: the entries are the detail blend curve, indexed by
+ * level of detail, that scales the signed detail texel added to the base level. */
 #define KONA_RM_TFT_DETAILTEX                            0x1810
 #define KONA_RM_TFT_DETAILTEX_N0                          0, 10  /* shift, width */
 #define KONA_RM_TFT_DETAILTEX_N1                         10, 10  /* shift, width */
@@ -1337,9 +1372,16 @@
 #define KONA_RM_TFT_BICUBIC_K2K6                         16,  8  /* shift, width */
 #define KONA_RM_TFT_BICUBIC_K3K7                         24,  8  /* shift, width */
 
-/* TFT_SBIAS_EN: per-component scale-and-bias enables (A, B, G, R).
- * ESTABLISHED: irsaudit my_glKonTexParameter writes it with TFT_SCALE and
- * TFT_BIAS; tbuRegReset (0x10154cb4) restores 0; in the BEF shadow (GE.h). */
+/*
+ * TFT_SBIAS_EN (index 0x1850): four enable bits for the filter's per-component texel scale and
+ * bias, A at bit 0, B at 1, G at 2 and R at 3 in kpm's table. Established: ge.u
+ * `mgebi_TextureScaleBias` (0x424e) loads select 0x01541850 at 0x4255 together with the selects
+ * 0x01551851 and 0x01561852 of the scale and bias registers (0x425b, 0x425d) and the masks
+ * 0x1000000 and 0xffffffff, from four command words; `init_ged` in arm1.u is its caller. irsaudit
+ * `my_glKonTexParameter` writes it with `TFT_SCALE` and `TFT_BIAS`, `tbuRegReset` restores 0, and
+ * all 131 vector-file words for the index carry 0. Inferred: each bit applies the scale and bias
+ * of one colour component to the filtered texel, as the registers written with it hold per-
+ * component fields. */
 #define KONA_RM_TFT_SBIAS_EN                             0x1850
 #define KONA_RM_TFT_SBIAS_EN_A                            0,  1  /* shift, width */
 #define KONA_RM_TFT_SBIAS_EN_B                            1,  1  /* shift, width */
@@ -1403,26 +1445,33 @@
 #define KONA_RM_TFT_TEXRB                                0x1855
 
 /*
- * TFT_NOP (index 0x1856): no-op slot of the filter lookup half. Unknown: no shipped software or
- * published source depends on it. Routes tried: irsaudit (no constant of this index reaches
- * `tbRegWrite`), arm1.u (no address word 0x01xx1856), ge.u (no bus high word 0x1856 in any
- * listing), the vector files (no mode-1 word) and libGLcore (no use); only kpm's raster table
- * names it. */
+ * TFT_NOP (index 0x1856): a no-op slot of the filter's lookup half. Unknown: no shipped software
+ * or published source depends on what a write to this slot does, because nothing sends one; only
+ * kpm's raster table names it. Routes tried: irsaudit (no constant of this index reaches
+ * `tbRegWrite`), arm1.u (no address word 0x01xx1856), ge.u (no listing loads 0x1856 as a select or
+ * bus high word), the vector files (no mode-1 word), libGLcore (no use). */
+ 
 #define KONA_RM_TFT_NOP                                  0x1856
 
 /*
- * TFT_FAKE (index 0x1857): twelve-bit test identifier of the simulation-only block, named TEST_ID
- * in kpm. Established: only irsaudit `tbuRegReset` writes it, zero, at address 0x10156c40, and
- * arm1.u, ge.u and the vector files never address it. Inferred from the name that it parallels the
- * FAKE register of the fog half, and no program writes it other than the restore. */
+ * TFT_FAKE (index 0x1857): the twelve-bit test identifier (TEST_ID) of the simulation-only block
+ * on the filter's lookup half, in kpm's table. Established: irsaudit `tbuRegReset` writes zero to
+ * it at address 0x10156c40 (index 6231 passed to `tbRegWrite` at 0x10156c3c-0x10156c40), and no
+ * vector-file word, arm1.u routine or ge.u select addresses it. Unknown: no shipped software or
+ * published source depends on what a non-zero identifier changes here, because the restore
+ * routine's zero is the only value sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm and libGLcore, and the published papers
+
+ * and patents (no mention). */
 #define KONA_RM_TFT_FAKE                                 0x1857
 #define KONA_RM_TFT_FAKE_TEST_ID                          0, 12  /* shift, width */
 
 /*
- * TFT_EOR (index 0x1858): end-of-run marker of the filter lookup half, named only in kpm's raster
- * table. Unknown: no shipped software or published source depends on it. Routes tried: irsaudit
- * (no constant of this index reaches `tbRegWrite`), arm1.u (no address word 0x01xx1858), ge.u (no
- * listing loads it), the vector files (no mode-1 word) and libGLcore, none of which uses it. */
+ * TFT_EOR (index 0x1858): a slot of the filter's lookup half that kpm's raster table names and
+ * nothing else touches. Unknown: no shipped software or published source depends on what a write
+ * to this slot marks, because nothing sends one. Routes tried: irsaudit (no constant of this index
+ * reaches `tbRegWrite`), arm1.u (no address word 0x01xx1858), ge.u (no listing loads it), the
+ * vector files (no mode-1 word), libGLcore (no use). */
+ * match). */
 #define KONA_RM_TFT_EOR                                  0x1858
 
 /*
@@ -1606,11 +1655,14 @@
 #define KONA_RM_IMP_DEPTH_CLEAR                          0x1c09
 
 /*
- * IMP_TAG_CLEAR (index 0x1c0a): value to clear the pixel tag memory with, inferred from the name;
- * kpm lists no fields. Established that the only writer in any shipped program is irsaudit
- * `tbuRegReset` (0x10154cb4), which writes zero at address 0x10156f4c, and that arm1.u, ge.u and
- * the vector files never address it. The clear operation bit in IMP_OP selects tag clearing, but
- * no program sets a non-zero tag value. */
+ * IMP_TAG_CLEAR (index 0x1c0a): a whole-word image processor register that kpm lists without
+ * fields; its name suggests the value that clears the pixel tag memory. Established: the only
+ * writer is irsaudit `tbuRegReset` (0x10154cb4), which writes zero at address 0x10156f4c (index
+ * 7178 passed to `tbRegWrite` at 0x10156f48-0x10156f4c); arm1.u, ge.u and the vector files never
+ * address it. Unknown: no shipped software or published source depends on what tag value a non-
+ * zero write would load, because no program sends one. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm, libGLcore, and the published
+
+ * papers and patents (no tag memory register). */
 #define KONA_RM_IMP_TAG_CLEAR                            0x1c0a
 
 /*
@@ -1717,18 +1769,25 @@
 #define KONA_RM_IMP_WMASK_BIT_ALPHA                      12, 12  /* shift, width */
 
 /*
- * IMP_RAMSYNC (index 0x1c3f): pixel memory RAM synchronisation write, no fields. Established: the
- * last four mode-1 words of the vector file aaspoke.tbus are IMP_FLAG with 1, this index with 1
- * twice, then IMP_FLAG with 1 again, and irsaudit `tbuRegReset` skips it as an action register. No
- * irsaudit, arm1.u or ge.u routine writes it with a literal. Inferred from the name and that
- * placement that it is a barrier between completion flags. */
+ * IMP_RAMSYNC (index 0x1c3f): an image processor index that carries no fields and sits among the
+ * completion writes of a test. Established: the last four mode-1 words of `aaspoke.tbus` (lines
+ * 1105-1108) are `IMP_FLAG` (0x1c0f) with 1, this index with 1 twice, then `IMP_FLAG` with 1
+ * again; `tbuRegReset` skips it as an action register, and no irsaudit, arm1.u or ge.u routine
+ * writes it with a literal. Inferred: the two writes are a barrier between two completion flags,
+ * since nothing else in the shipped vectors separates them. Unknown: no shipped software or
+ * published source depends on what RAM state the write synchronises. Routes tried: irsaudit, arm1.u (no address word 0x01xx1c3f), ge.u (no select),
+
+ * the other 260,000 vector lines (no other use), kpm and libGLcore. */
 #define KONA_RM_IMP_RAMSYNC                              0x1c3f
 
 /*
- * IMP_FAKE_DRAW_OFFSET (index 0x1c3e): draw offset of the simulation block, a twelve-bit x and
- * twelve-bit y. Established that irsaudit `tbuRegReset` writes zero at address 0x1015731c and that
- * no other irsaudit, arm1.u or ge.u routine and no vector-file word carries it. Inferred from the
- * name that it shifts where a simulated draw lands in the framebuffer. */
+ * IMP_FAKE_DRAW_OFFSET (index 0x1c3e): the simulation block's draw offset, a twelve-bit x field at
+ * bit 0 and a twelve-bit y field at bit 12 in kpm's table. Established: irsaudit `tbuRegReset`
+ * writes zero at address 0x1015731c (index 7230 passed to `tbRegWrite` at 0x10157318-0x1015731c),
+ * and no vector-file word, arm1.u routine or ge.u select addresses it. Unknown: no shipped
+ * software or published source depends on what a non-zero offset does to a simulated draw, because
+ * only zero is ever written. Routes tried: irsaudit,
+ * arm1.u, ge.u, the vector files, kpm, libGLcore, and the published papers and patents. */
 #define KONA_RM_IMP_FAKE_DRAW_OFFSET                     0x1c3e
 #define KONA_RM_IMP_FAKE_DRAW_OFFSET_X                    0, 12  /* shift, width */
 #define KONA_RM_IMP_FAKE_DRAW_OFFSET_Y                   12, 12  /* shift, width */
@@ -1746,11 +1805,16 @@
 #define KONA_RM_IMP_FAKE_DRAWMODE_DM_Z                   0x3
 
 /*
- * IMP_FAKE_SIMPLE_FB_ORIGIN (index 0x1c3c): x and y origin of the simple framebuffer, two
- * sixteen-bit fields. Established: irsaudit `tbuRegReset` writes zero at address 0x101573dc and
- * the vector files carry thirteen mode-1 words for this index. No arm1.u or ge.u routine writes
- * it. Inferred from its name and its position beside the size register that the pair places a
- * framebuffer rectangle for chip simulation. */
+ * IMP_FAKE_SIMPLE_FB_ORIGIN (index 0x1c3c): the x and y origin of the image processors' simple
+ * framebuffer, a 16-bit y field at bit 0 and a 16-bit x field at bit 16 in kpm's table.
+ * Established in arm1.u: `arm_validate_clip` selects index 0x1c3c through port 0x474
+ * (0x0c018548-0x0c018550), sends the first payload word in the high half and the second in the low
+ * half (`orr r0, r5, r6, lsl #16`, 0x0c018554) through port 0x840, and then the low half of state
+ * word 0x11c through port 0x8c0, so every window validation rewrites it. irsaudit `tbuRegReset`
+ * writes zero at 0x101573dc, and the vector files carry 13 words: 0x3ff six times, 0x01400100 six
+ * times and 0 once. Inferred: the window origin that the image processors take for addressing,
+ * since the high half is the same first payload word that feeds the x offset of `PG_WIN_OFFSET_X`;
+ * the FAKE in kpm's block name marks a simulation block, yet the production window path writes it. */
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN                0x1c3c
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN_YORG            0, 16  /* shift, width */
 #define KONA_RM_IMP_FAKE_SIMPLE_FB_ORIGIN_XORG           16, 16  /* shift, width */
@@ -2019,11 +2083,14 @@
 #define KONA_RM_TGTM_TEX_TCENTER_TEX_TCENTER              0, 15  /* shift, width */
 
 /*
- * COMMON_VERBOSE (index 0x3ff0): verbosity switch of the common block, inferred from its name
- * since kpm lists no fields. Established that the only writer in any shipped program is irsaudit
- * `tbuRegReset` (0x10154cb4), which writes zero at address 0x10157e3c, and that arm1.u, ge.u and
- * the vector files never address the index. What a non-zero value would print or trace is not
- * stated by any program. */
+ * COMMON_VERBOSE (index 0x3ff0): a whole-word register of the common block that kpm lists without
+ * fields; its name suggests a verbosity switch. Established: the only writer in any shipped
+ * program is irsaudit `tbuRegReset` (0x10154cb4), which writes zero at address 0x10157e3c (index
+ * 16368 passed to `tbRegWrite` at 0x10157e38-0x10157e3c); arm1.u, ge.u and the vector files never
+ * address it. Unknown: no shipped software or published source depends on what a non-zero value
+ * prints or traces, because only zero is sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm, libGLcore, and the published papers and
+
+ * patents. */
 #define KONA_RM_COMMON_VERBOSE                           0x3ff0
 
 /* COMMON_PFLUSH: flushes the pixel-generator path. ESTABLISHED: ge.u
@@ -2033,18 +2100,23 @@
 #define KONA_RM_COMMON_PFLUSH                            0x3ff1
 
 /*
- * COMMON_PSTART (index 0x3ff3): primitive start marker of the common block, inferred from the
- * name; kpm lists no fields. Established that only irsaudit `tbuRegReset` writes it, with zero at
- * address 0x10157efc, and that arm1.u, ge.u and the vector files carry no write. The stop marker
- * is the next index and the diagnostic restores both the same way. */
+ * COMMON_PSTART (index 0x3ff3): a whole-word register of the common block that sits one index
+ * below COMMON_PSTOP in kpm's table. Established: only irsaudit `tbuRegReset` writes it, with zero
+ * at address 0x10157efc (index 16371 passed to `tbRegWrite` at 0x10157ef8-0x10157efc), and arm1.u,
+ * ge.u and the vector files carry no write. Unknown: no shipped software or published source
+ * depends on what a non-zero value of this register starts, because only the restore routine's
+ * zero is ever sent. Routes tried: irsaudit, arm1.u,
+ * ge.u, the vector files, kpm, libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_PSTART                            0x3ff3
 
 /*
- * COMMON_PSTOP (index 0x3ff4): primitive stop marker of the common block, inferred from its name.
- * Established that irsaudit `tbuRegReset` writes zero to it at address 0x10157f5c and that nothing
- * else in irsaudit, arm1.u, ge.u or the vector files addresses it. Together with the start marker
- * one index below it brackets the pixel generator's work on one primitive, by name only, because
- * no program sends a non-zero value. */
+ * COMMON_PSTOP (index 0x3ff4): a whole-word register of the common block that sits one index above
+ * COMMON_PSTART in kpm's table. Established: irsaudit `tbuRegReset` writes zero to it at address
+ * 0x10157f5c (index 16372 passed to `tbRegWrite` at 0x10157f58-0x10157f5c), and nothing else in
+ * irsaudit, arm1.u, ge.u or the vector files addresses it. Unknown: no shipped software or
+ * published source depends on what a non-zero value of this register stops or brackets, because no
+ * program sends one. Routes tried: irsaudit, arm1.u,
+ * ge.u, the vector files, kpm, libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_PSTOP                             0x3ff4
 
 /*
@@ -2058,18 +2130,25 @@
 #define KONA_RM_COMMON_FB_AE                              1,  1  /* shift, width */
 
 /*
- * COMMON_PRIMID (index 0x3ff6): identifier of the primitive being drawn, passed to every chip.
- * Established in arm1.u: `init_pg` writes 1 through `tbus_regwrite` at address 0x0c003844, ending
- * its register run. irsaudit writes a saved copy at 34 call sites, the first in `TEST_framebuf`
- * (0x1006a4f8), and the vector files carry six words. Inferred from the name that the pixel chips
- * tag fragments with it. */
+ * COMMON_PRIMID (index 0x3ff6): a whole-word register of the common block, written at the start of
+ * a pixel generator setup and by the diagnostic. Established in arm1.u: `init_pg` ends its
+ * register run with a write of 1 through `tbus_regwrite` (call at 0x0c003844, value 1 loaded at
+ * 0x0c003838); irsaudit writes a saved copy at 34 call sites, the first in `TEST_framebuf`
+ * (0x1006a4f8); the vector files carry six words and all have the value 1. Unknown: no shipped
+ * software or published source depends on what the chips do with this identifier, because every
+ * writer sends the one value 1 (the diagnostic restores what it saved). Routes tried: arm1.u, ge.u (no select), the vector files, kpm's raster
+
+ * table (a bare record), libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_PRIMID                            0x3ff6
 
 /*
- * COMMON_STALL (index 0x3ff7): stall control of the common block, a four-bit count named COUNT_P
- * in kpm. Established that irsaudit `tbuRegReset` writes zero at address 0x1015807c and that no
- * other irsaudit, arm1.u, ge.u or vector-file word carries the index. Inferred from the name that
- * the count sets how many cycles the pixel path holds between primitives. */
+ * COMMON_STALL (index 0x3ff7): a register of the common block with one four-bit field, COUNT_P
+ * (bit 0), in kpm's table. Established: irsaudit `tbuRegReset` writes zero at address 0x1015807c
+ * (index 16375 passed to `tbRegWrite` at 0x10158078-0x1015807c), and no other irsaudit, arm1.u,
+ * ge.u or vector-file word carries the index. Unknown: no shipped software or published source
+ * depends on what a non-zero COUNT_P holds back, because only zero is sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm,
+
+ * libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_STALL                             0x3ff7
 #define KONA_RM_COMMON_STALL_COUNT_P                      0,  4  /* shift, width */
 
@@ -2210,19 +2289,33 @@
 #define KONA_RM_PG_PSPEC_HEIGHT                          12, 12  /* shift, width */
 
 /*
- * PG_BLOAT (index 0x804): primitive growth amount for the pixel generator, inferred from the name
- * alone because kpm lists no fields. Established in arm1.u: `prim_init` stores 0 at address
- * 0x0c016714 with address word 0x01290804, and irsaudit `crc_pgtest` writes its saved copy at
- * 0x100d53b0. Texture memory tests such as `TEST_texmem` (0x1008fc70) clear it to 0 before
- * drawing, and the vector files write it 13 times. */
+ * PG_BLOAT (index 0x804): a pixel generator register whose name suggests primitive growth; kpm
+ * lists it as one whole word with no fields. Established in arm1.u: `prim_init` loads address word
+ * 0x01290804 at 0x0c016714 and sends value 0 at 0x0c016720 behind an all-ones mask word, irsaudit
+ * `crc_pgtest` writes its saved copy at 0x100d53b0, and all 13 vector-file words for the index
+ * carry 0, as does the shadow slot's start-up value. Unknown: no shipped software or published
+ * source depends on what a non-zero growth value does to a primitive, because every program that
+ * writes this register sends zero. Routes tried: the geometry engine listings (no select word 0x01290804; the immediate 0x804 in
+
+ * `xsetup.S` is not a select), the published papers, technical reports and patents (none describes
+ * a growth amount), kpm's raster table (a bare record) and libGLcore (no use). */
 #define KONA_RM_PG_BLOAT                                 0x0804
 
 /*
- * PG_Z_OFF (index 0x805): depth offset added to generated fragments, inferred from the name since
- * kpm gives no fields. Established in arm1.u: `prim_init` stores 0 at address 0x0c01672c (address
- * word 0x012a0805) and irsaudit `crc_pgtest` writes its saved copy at 0x100d5560. `TEST_rmstress`
- * (0x10088b80) and the texture tests clear it to 0, and the vector files write it 13 times, all
- * with the same count as PG_BLOAT. */
+ * PG_Z_OFF (index 0x805): a pixel generator register whose name suggests a depth offset; kpm lists
+ * it as one whole word with no fields. Established in arm1.u: `prim_init` loads address word
+ * 0x012a0805 at 0x0c01672c and sends value 0 at 0x0c016734, and all 13 vector-file words for the
+ * index carry 0. The glPolygonOffset handlers do not write it: `arm_polygonoffset` (0x0c016428)
+ * and `arm_polygonoffsetext` (0x0c016408) forward their operands to the geometry engine through
+ * ports 0x840 and 0x8c0, where `mgeb_PolygonOffset` (0xb2ab) stores them in external words 0xa43
+ * and 0xa44 (0xb2bb, 0xb2bf) and `mmo_DrawTriPrimOffset` (0x8dc0) reads both back (0x8dd8, 0x8ddd)
+ * for its vertex arithmetic, so the engine applies the offset to vertex depth. Unknown: no shipped
+ * software or published source depends on what a non-zero value of this register adds to depth,
+ * because only zero is ever written. Routes tried: the geometry engine listings (the bare 0x805 in `drawtri.S` and `polymode.S` is a command
+
+ * word sent to bus address 0x1f7, not the select form 0x012a0805), irsaudit (zero only), the
+ * vector files (0 in all 13 words), the published papers and patents (none gives a depth-offset
+ * register) and libGLcore (no use). */
 #define KONA_RM_PG_Z_OFF                                 0x0805
 
 /*
@@ -2277,29 +2370,43 @@
 #define KONA_RM_PG_MSK_LRULES                            18,  8  /* shift, width */
 
 /*
- * PG_WIN_OFFSET_X (index 0x807): horizontal window offset applied by the pixel generator, inferred
- * from the name. Established in arm1.u: `arm_validate_clip` stores the negated half of a value it
- * derives from the clip origin, rounded to a 32-pixel boundary and kept in state bytes 0x882 and
- * 0x883, under mask 0x7ff, at address 0x0c018390 (address word 0x012c0807). irsaudit writes 0 in
- * `TEST_rmstress` (0x10088ba0) and its saved copy in `ReqVideo` (0x10099214), and the shadow
- * start-up value is 0. */
+ * PG_WIN_OFFSET_X (index 0x807): the pixel generator's horizontal window offset, an 11-bit signed
+ * value. Established in arm1.u: `arm_validate_clip` (token 0x1f3) forms the first payload word
+ * plus half the low 16 bits of the third, subtracts that sum from 0xf, adds 0x800 and clears the
+ * low five bits, keeps the 16-bit result in state bytes 0x882 (high) and 0x883 (low), then sends
+ * mask 0x7ff, address word 0x012c0807 (loaded at 0x0c018390) and the negated half of the sign-
+ * extended result. The geometry engine's `mgebi_XSetupWindow` (0x4e30, word 0x4e9f) and
+ * `mgebi_XLoadPosition` (word 0x4ddd) load the same select 0x012c0807 behind the mask 0x7ff. The
+ * vector files carry 19 words for the index: 0 six times, 0x400 six times, 0x540 six times and
+ * 0x4a0 once. Inferred: a window translation, because the value follows the window's x origin and
+ * width and moves in steps of 16 pixels (a multiple of 32, halved). */
 #define KONA_RM_PG_WIN_OFFSET_X                          0x0807
 
 /*
- * PG_WIN_OFFSET_Y (index 0x808): vertical window offset applied by the pixel generator, inferred
- * from the name. Established in arm1.u: right after the x offset, `arm_validate_clip` stores the
- * negated half of the matching y value, rounded to an 8-line boundary and kept in state bytes
- * 0x884 and 0x885, under the same 11-bit mask at address 0x0c0183bc (address word 0x012d0808).
- * irsaudit writes it with the x offset in `ReqVideo` (0x1009923c) and `TEST_framebuf`
- * (0x1006a4d0), and the vector files carry 19 writes, one per x write. */
+ * PG_WIN_OFFSET_Y (index 0x808): the pixel generator's vertical window offset, an 11-bit signed
+ * value. Established in arm1.u: right after the x offset `arm_validate_clip` forms the second
+ * payload word plus half the low 16 bits of the fourth, subtracts that sum from 3, adds 0x800 and
+ * clears the low three bits, keeps the 16-bit result in state bytes 0x884 (high) and 0x885 (low),
+ * then sends mask 0x7ff, address word 0x012d0808 (loaded at 0x0c0183bc) and the negated half of
+ * the sign-extended result. The geometry engine's `mgebi_XSetupWindow` (word 0x4ea2) and
+ * `mgebi_XLoadPosition` (word 0x4de0) load the same select 0x012d0808. The vector files carry 19
+ * words: 0 six times, 0x600 six times, 0x500 six times and 0x478 once. Inferred: the vertical
+ * counterpart of the x offset, moving in steps of 4 lines (a multiple of 8, halved). */
 #define KONA_RM_PG_WIN_OFFSET_Y                          0x0808
 
 /*
- * PG_SMASK (index 0x809): 32-bit sample mask for multisample coverage, inferred from the name and
- * its all-ones start-up value. Established in arm1.u: `prim_init` stores 0xffffffff at address
- * 0x0c016740 (address word 0x012e0809), and irsaudit writes the upper half of a saved 64-bit value
- * in `TEST_framebuf` (0x1006a9c8) and `ReqVideo` (0x100998fc). befsh_init holds 0xffffffff for the
- * slot, matching the diagnostic's restore value. */
+ * PG_SMASK (index 0x809): a 32-bit pixel generator register that the name and the start-up value
+ * suggest is a sample mask; kpm lists it as one whole word. Established in arm1.u: `prim_init`
+ * loads address word 0x012e0809 at 0x0c016740 and sends value 0xffffffff, the same all-ones word
+ * it uses as the mask word of every write, and all 13 vector-file words for the index carry
+ * 0xffffffff. `arm_samplemask` (0x0c03c350), the handler of glSampleMaskSGIS, does not reach it:
+ * it builds a table word from the mask and sends it to index 0x140b (`TFP_FADE_MASK_LUT`, address
+ * word 0x0161140b). Unknown: no shipped software or published source depends on which samples a
+ * bit of this mask selects, because the only value ever written is all ones. Routes tried: the geometry engine listings (no select
+
+ * 0x012e0809), irsaudit (writes back the saved copy only), the vector files (all ones in 13 of
+ * 13), the published papers (they give a coverage mask per fragment but no register) and libGLcore
+ * (no use). */
 #define KONA_RM_PG_SMASK                                 0x0809
 
 /*
@@ -2343,11 +2450,15 @@
 #define KONA_RM_PG_PRAM                                  0x0880
 
 /*
- * PG_NOP (index 0x87f): carrier slot that does no register update, inferred from its name and from
- * the 0x10f shadow slot below the table. Established in arm1.u: `PixelRestore` (0x0c02926c) and
- * `XPixelRestore` (0x0c035a90) send address word 0x010f087f with a value taken from r7 shifted
- * left by 18. irsaudit `crc_pgtest` writes it 32 times from its saved array at 0x100d52d4, and the
- * vector files carry 6 such words. */
+ * PG_NOP (index 0x87f): a pixel generator index that updates no register, used as a carrier.
+ * Established: ge.u `mgesi_FlushRM` loads 0x87f at 0x3837 as the third of its no-op words, after
+ * `IMP_NOP` and `TFP_NOP`, sends it to bus address 0x1f7 and counts down a wait of 0x56 (loaded at
+ * 0x3836); arm1.u `PixelRestore` (0x0c02926c) and `XPixelRestore` (0x0c035a90) send the all-ones
+ * mask word, address word 0x010f087f and a value of r7 shifted left by 18, so the write lands in
+ * shadow slot 0x0f, below the table of 89 slots that start at 0x10; kpm's command-name table row
+ * 0x20f (0x100bb074) names that slot PIXELS_STARTGEID. The vector files carry six words, all with
+ * value 1. Inferred: the write records the position at which an interrupted pixel transfer resumes
+ * and the pixel generator itself changes nothing. */
 #define KONA_RM_PG_NOP                                   0x087f
 
 /*
