@@ -159,16 +159,19 @@ lines.append('**Established** (each body). `glEnable` and `glDisable` of `GL_LIG
              'instead of a constant 0. **Inferred:** that byte is 0. The reset and exception entries load '
              'r8 with 0 (`mov r8, #0x0` at 0x0c000000 and eight more), and the state-block offsets in '
              'every handler are taken from that base, so the flag is cleared as in the light handlers. '
-             '**Inferred:** the engine routine each handler starts (the slot named by the half-word it sends to '
-             'port r9 + 0x8c0) is `mgeb_LiEnableLightS` for a light enable (low half of the word at r8 + 0x78, '
+             '**Established** (the engine routine started): the slot named by the half-word sent to port '
+             'r9 + 0x8c0 is `mgeb_LiEnableLightS` for a light enable (low half of the word at r8 + 0x78, '
              'entry 51 of [geif_entries.md](geif_entries.md)), `mgeb_LiDisableLightS` for a light disable (high '
              'half of r8 + 0x74, entry 45), `mgeb_EnableUserClipPlane` for a plane enable (low half of r8 + 0x58, '
-             'entry 19) and `mgeb_DisableUserClipPlane` for a plane disable (high half of r8 + 0x50, entry 9), '
-             'read in [ge_compute.md](ge_compute.md); so the Effect column is the effect on the engine, with '
-             'light n or plane n the number sent to port r9 + 0x478. The Engine target column is the word the engine '
-             'routine works on: the light block address the handler sends to port r9 + 0x840 (0x2c7 + 0x23 n), '
-             'and for a plane the flag word 0x904 + n, which is the capability code less 0x3000 plus the 0x904 '
-             'base that `mgeb_EnableUserClipPlane` and `mgeb_DisableUserClipPlane` add (both from ge_compute.md).')
+             'entry 19) and `mgeb_DisableUserClipPlane` for a plane disable (high half of r8 + 0x50, entry 9); '
+             'the labels come from the shipped label table. **Inferred:** the Effect column and the Engine target '
+             'column. [ge_compute.md](ge_compute.md) describes the instruction words of the four engine routines '
+             'and labels their roles from the operands they use: the light routines add (or remove) the converted '
+             'selector to the enabled-light control word 0x87, and the plane routines store a flag pattern at the '
+             'plane flag word (0x904 plus the enum less 0x3000) and go on to the clip-state rebuild. Light n or '
+             'plane n is the number sent to port r9 + 0x478. The Engine target of a plane is that flag word; the '
+             'Engine target of a light is the second operand, 0x2c7 + 0x23 n, which the handler sends to port '
+             'r9 + 0x840 and which the light routine is inferred to use as its block address.')
 lines.append('')
 lines.append('| Handler | Address | Source | Flag byte | Flag value | Port 0x478 | Port 0x840 | '
              'Engine handler from | Kind | Effect | Engine routine run | Engine target | Label |')
@@ -185,8 +188,8 @@ for name in names:
     eng = ('mgeb_LiEnableLightS' if on else 'mgeb_LiDisableLightS') if light else \
         ('mgeb_EnableUserClipPlane' if on else 'mgeb_DisableUserClipPlane')
     if light:
-        effect = 'light %d %s enabled set' % (num, 'joins' if on else 'leaves')
-        target = 'light block at word 0x%x' % (0x2c7 + 0x23 * num)
+        effect = 'light %d %s the enabled set in control word 0x87' % (num, 'joins' if on else 'leaves')
+        target = 'second operand word 0x%x sent to port 0x840' % (0x2c7 + 0x23 * num)
     else:
         effect = 'plane %d flag %s, recount' % (num, 'set' if on else 'cleared')
         target = 'plane flag at word 0x%x' % (0x904 + num)
