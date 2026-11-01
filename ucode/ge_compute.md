@@ -1673,10 +1673,17 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   bit 26 (AND with 0x4000000) and calls `uEvalCoord2D`, looping on `cc` 0x14.
 - `evalcoord1dloop` (`uevalcoord.s` lines 127-168, at 0x3d9): **inferred**, the one-coordinate loop: bit 25 (AND with
   0x2000000) selects the queued 1D coordinates, each handed to `uEvalCoord1D`.
-- `uEvalCoord1D` (`uevalcoord.s` lines 195-251, at 0x406): **inferred**, maps one u into the domain of each enabled 1D map:
-  four subtracts of the low end (0x421-0x424), a multiply by the reciprocal width and unit-1 code 0x08 (not fixed by the
-  test) at 0x425-0x426, then calls `uEvalChangeBasis1D` when a map changed and stores the mapped u as the input of the
-  polynomial modules.
+- `uEvalCoord1D` (`uevalcoord.s` lines 195-251, at 0x406): **inferred**, maps one u into the domain of each enabled 1D
+  map. Its input is u, word 0 of the block at address register 4 (moved into register 0x13 at 0x410), and it writes 1.0
+  into word 3 of that block (0x412). Control words 0x1ec, 0x1ee, 0x1ed and 0x1f1 decide whether the 1D map state must
+  first be swapped in or loaded (calls to `uEvalSwapState2D` at 0x416 and `uEvalLoadState1D` at 0x417) and whether the
+  basis changed (`uEvalChangeBasis1D`, 0x420). It then subtracts each map's low end u1, word 1 of the map blocks at
+  registers 5 and 6, from u (0x421, 0x422), subtracts the high end, word 2, with the flags enabled (0x423, 0x424), and
+  multiplies the first difference by word 3 of the block, the stored 1/(u2 - u1) (0x425; the second map uses unit-1 code
+  0x08 at 0x426). The result (u - u1) / (u2 - u1) is stored to word 0x12 of each map block, and the predicated stores at
+  0x427 and 0x428 replace it with exactly 1.0 when the flags of the high-end subtract select them. It ends the command
+  at 0x436, clearing words 0xc and 0xd and setting word 0xe of the input block to 1.0 under a predicate in the delay
+  words (0x43a-0x43c).
 - `uEvalCoord2D` (`uevalcoord.s` lines 264-332, at 0x43f): **inferred**, the 2D form: subtracts and multiplies map u and v
   into each 2D map's domain, swaps state with `uEvalSwapState1D` when the 1D set is resident, and stores the mapped pair.
 - `uEvalChangeBasis1D` (`uevalbasis.s` lines 102-135, at 0x484): **inferred**, converts every changed 1D map from
@@ -1768,9 +1775,15 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
 - `lPOLYUDUUSIZELOOP` (`eval.s` lines 543-558, at 0x674): **inferred**, the first pass of the u-derivative form over the
   v size.
 - `lPOLYUDUUORDERLOOP` (`eval.s` lines 560-597, at 0x684): **inferred**, the second pass, value and u derivative.
-- `umo_EvalComputeNormals3D` (`eval.s` lines 628-709, at 0x6ad): **inferred**, the `GL_AUTO_NORMAL` normal: from the u and
-  v derivatives at 0x8004 and 0x8028 it computes the cross product with multiply-subtract words (0x6c4-0x6d0), then
-  normalises it with the reciprocal-square-root seed and Newton-Raphson steps, storing the result in the normal block.
+- `umo_EvalComputeNormals3D` (`eval.s` lines 628-709, at 0x6ad): **inferred**, the `GL_AUTO_NORMAL` normal of a
+  three-component map, two evaluated points per pass (one per thread). Its inputs are the u-derivative vector at data
+  words 0x8004-0x8006 plus register 0x14 and the v-derivative vector at register 0x14 plus register 6 (or 7 for the
+  second point). It computes their cross product, (du_y dv_z - du_z dv_y, du_z dv_x - du_x dv_z, du_x dv_y - du_y dv_x),
+  with multiply-subtract words (0x6c4-0x6d0), sums the squares of the three components, seeds the reciprocal square root
+  of that sum (0x6df, 0x6e0, reseeded at 0x6e7 and 0x6e8) and refines it with two Newton steps of code 0x57
+  (0x6e5-0x6e6, 0x6f1-0x6f2). It multiplies each component by the refined value and stores the unit normal, its result,
+  at offsets 0-2 through address registers 6 and 7 (0x6f9-0x6fe), the last three in the delay words of the
+  end-of-command transfer at 0x6f7.
 - `umo_EvalComputeNormals4D` (`eval.s` lines 748-857, at 0x700): **inferred**, the normal for homogeneous (four-component)
   maps: the derivative of x/w by the quotient rule, with twelve multiply-subtract pairs, before the cross product and
   normalisation.
@@ -2505,11 +2518,13 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   takes the enable flag as operand 0, shifts it left (unit-1 0x5f, 0x39c1), and writes the result to `TFP_AFUNC`
   (address word 0x015b1407) through the shadow with mask 0x8000 (0x39bd, 0x39c2-0x39c6). The output is bit 15 of
   `TFP_AFUNC`, the enable bit of [RM.h](../RM.h), set or cleared.
-- `mgesi_AlphaFunc` (`raster.S` lines 307-337, at 0x39c8): **inferred**, `glAlphaFunc`. It writes `TFP_AFUNC` through
-  the shadow with mask 0x7fff, which covers the twelve-bit reference and the three-bit function (0x39cb,
-  0x39d1-0x39d3). Its inputs are the function and the reference. The reference is multiplied by engine word 0xc5 (read
-  at 0x39ca, multiply-and-convert store with `r95` = 0x20 at 0x39d5), the colour scale that `mgeb_RGBA_Mode` sets to
-  just under 4096.0. So a reference of 1.0 becomes the field's top value 0xfff.
+- `mgesi_AlphaFunc` (`raster.S` lines 307-337, at 0x39c8): **inferred**, `glAlphaFunc`. Its inputs are the function and
+  the reference value. It writes `TFP_AFUNC` (address word 0x15b1407, staged at 0x39c9) through the shadow with mask
+  0x7fff (0x39cb), which covers the twelve-bit reference and the three-bit function, sending the words to bus addresses
+  0x1f8 and 0x1f5 (0x39d1-0x39d3). It multiplies the reference, operand 1 read at 0x39d4, by engine word 0xc5 (loaded
+  into register 0x1c at 0x39ca) in the unit-2 word at 0x39d5, whose `r95` = 0x20 store sends the product as the field
+  value. Word 0xc5 is the colour scale `mgeb_RGBA_Mode` sets to just under 4096.0, so a reference of 1.0 produces the
+  field's top value 0xfff.
 - `mgebi_ShadeModel` (`raster.S` lines 167-197, at 0x3a0a): **inferred**, `glShadeModel` (operand 0,
   0x1d00 flat or 0x1d01 smooth, [GE.h](../GE.h)). It tests the operand with an AND that sets the flags (0x3a12) and,
   under that predicate (`r198` = 0x11), writes `PG_GENERAL` (address word 0x01270800) through the shadow with mask 1,
@@ -2543,11 +2558,13 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   (0x38a8-0x38ab). It sends `TFP_AMASK` and `IMP_ACCUM` as `mgesi_Accum` does (0x38ac, 0x38ae-0x38b4) and ends with
   the same zero-mask shadowed write (0x38bb-0x38be).
 - `mgesi_UserColor` (`raster.S` lines 840-882, at 0x38e5): **inferred**, `glBlendColorEXT`. It takes four floats, red,
-  green, blue and alpha (operands 0-3), and multiplies each by engine word 0xc5 into registers 0x19-0x1c
-  (0x38ea-0x38ed). It then sends two shadowed writes with mask 0xffffff, to address words 0x013d1c14 and 0x013e1c15
-  (0x38ee-0x38fb). The format words 0xc0000 and 0x400c0c00 go with the converted pairs (0x38f3-0x38f5, 0x38f7, 0x38fa,
-  0x38fb). With the 4096 scale each component becomes a twelve-bit field, two per 24-bit value. kpm names those two
-  indexes `IMP_WMASK_BIT` ([RM.h](../RM.h)), so the blend colour shares slots with that name.
+  green, blue and alpha (operands 0-3), and multiplies each by engine word 0xc5, read by immediate in the same word,
+  into registers 0x19-0x1c (0x38ea-0x38ed). It then sends two shadowed writes with mask 0xffffff (staged 0x38ee), to
+  address words 0x013d1c14 and 0x013e1c15 (staged 0x38f0, 0x38f6; sent to bus address 0x1f8 at 0x38f2 and 0x38f8). The
+  format words 0xc0000 and 0x400c0c00 (0x38f3, 0x38f5) go out with the four scaled values, which are its results
+  (register moves 0x38f4, 0x38f7, 0x38fa and 0x38fb). With the 4096 scale each component becomes a twelve-bit field, two
+  per 24-bit value. kpm names those two indexes `IMP_WMASK_BIT` ([RM.h](../RM.h)), so the blend colour shares slots with
+  that name.
 - `mgeb_CI_Mode` (`raster.S` lines 754-818, at 0x38fd): **inferred**, switches the context to colour-index mode. Its
   input is the index width (operand 0) and a second operand. From operand 0 it builds an integer with a
   float-to-integer conversion of 16.0 (unit-1 0x71, 0x38ff), a left shift of 1 (0x5f, 0x3901), the integer multiply
@@ -2605,14 +2622,17 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
 
 The handlers of `glmodes.S` change no vertex data. They rewrite mode words in engine memory and the successor words of [How the vertex path is chained](#how-the-vertex-path-is-chained-successor-words), so that the next vertex batch first runs a "dirty" module, which picks the real module for the new state. Read in full from the [glmodes.S listing](ge_listing/glmodes.S.lst) (`ge.u`, IRIX 6.5.30m). Which value a `r95` = 4 store writes follows the nine-word pairing of that section, so each such reading is **inferred**. The set and clear patterns are the stores of registers 0x1d and 0x1e (`r148` = 0x3a0 and 0x3c0) described there.
 
-- `mgeb_PointParameter` (`glmodes.S` lines 1524-1618, at 0xf21b): **inferred**, `glPointParameterfEXT`. It compares
-  operand 0 with 0x8126-0x8129 (staged 0xf21c-0xf21f, flag-setting compares 0xf220-0xf223) and branches on the equal
-  flag to one case per name (0xf22c-0xf22f). For the minimum size, the maximum size and the fade threshold it
-  multiplies operand 1 by 0.5 (0x3f000000, 0xf233) and stores the product to word 0x241, 0x242 or 0x243
-  (0xf242-0xf263): a diameter becomes a radius. For the distance attenuation it copies operands 1-3 to words
-  0x23e-0x240 (0xf265-0xf27a). It tests the first against 1.0 and the other two against zero (0xf26f-0xf271), sets or
-  clears bit 2 of engine word 4 from that test (0xf272, 0xf27b-0xf27e) and points successor word 8 at
-  `mmo_DirtyXformAndObjToClipModule` (0xf273, 0xf27f). So the default (1, 0, 0) turns attenuation off.
+- `mgeb_PointParameter` (`glmodes.S` lines 1524-1618, at 0xf21b): **inferred**, `glPointParameterfEXT`. Its input is
+  operand 0, the parameter name, and the values in operands 1-3. It compares the name with 0x8126-0x8129 (staged
+  0xf21c-0xf21f, flag-setting integer subtracts 0xf220-0xf223) and branches on the equal flag to one case per name
+  (0xf22c-0xf22f). For the minimum size (0x8126), the maximum size (0x8127) and the fade threshold (0x8128) it
+  multiplies operand 1 by 0.5 (0x3f000000, staged at 0xf233; multiplies 0xf242, 0xf24e, 0xf25a) and the product is its
+  result, stored nine words on to ERAM word 0x241, 0x242 or 0x243 (0xf24b, 0xf257, 0xf263): a diameter becomes a radius.
+  For the distance attenuation (0x8129) it copies operands 1-3 to words 0x23e-0x240 (0xf265-0xf27a), subtracts 1.0
+  (register 0x1f) from the first with the flags enabled (0xf26f) and tests the other two with unit-1 code 0x6a (0xf270,
+  0xf271). From those flags it sets or clears bit 2 of engine word 4 (OR with 4 at 0xf272, predicated stores 0xf27b and
+  0xf27e) and points successor word 8 at `mmo_DirtyXformAndObjToClipModule` (staged 0xf273, stored 0xf27f). So the
+  default (1, 0, 0) turns attenuation off.
 - `mgeb_Enable_Multipass` (`glmodes.S` lines 1403-1431, at 0xf293): **inferred**, turns on the multipass pre-path. It
   ORs 8 into engine words 0xdf and 0x19 (0xf299-0xf29a, stores 0xf2a2-0xf2a3) and stores the set pattern to special
   registers 0x27 and 0x2a (0xf297-0xf298). It points successor words 0xda and 0xdb at `mmo_DirtyPrePathModule`
