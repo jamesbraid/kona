@@ -2881,31 +2881,31 @@ geif.u	dispatch entry	3	mgeb_BitmapApplyOrig	handler 0xa7e8	located	ucode/geif_e
 geif.u	dispatch entry	4	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	5	mgeb_BitmapApplyMove	handler 0xa7cf	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	6	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	7	mgeb_CullFace	handler 0xf366	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	7	mgeb_CullFace	handler 0xf366	understood	ucode/geif_commands.md#face-culling-and-winding-glmodess	Face culling and winding (`glmodes.S`)
 geif.u	dispatch entry	8	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	9	mgeb_DisableUserClipPlane	handler 0xf37c	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	9	mgeb_DisableUserClipPlane	handler 0xf37c	understood	ucode/geif_commands.md#user-clip-planes-glmodess	User clip planes (`glmodes.S`)
 geif.u	dispatch entry	10	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	11	mgeb_Disable_Cull_Face	handler 0xf33e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	11	mgeb_Disable_Cull_Face	handler 0xf33e	understood	ucode/geif_commands.md#face-culling-and-winding-glmodess	Face culling and winding (`glmodes.S`)
 geif.u	dispatch entry	12	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	13	mgeb_Disable_EnablePolyOffsetExt	handler 0xb27b	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	14	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	15	mgeb_Disable_Normalize	handler 0x393e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	16	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	17	mgeb_DisableSprite	handler 0xf2a6	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	17	mgeb_DisableSprite	handler 0xf2a6	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	18	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	19	mgeb_EnableUserClipPlane	handler 0xf390	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	19	mgeb_EnableUserClipPlane	handler 0xf390	understood	ucode/geif_commands.md#user-clip-planes-glmodess	User clip planes (`glmodes.S`)
 geif.u	dispatch entry	20	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	21	mgeb_Enable_Cull_Face	handler 0xf352	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	21	mgeb_Enable_Cull_Face	handler 0xf352	understood	ucode/geif_commands.md#face-culling-and-winding-glmodess	Face culling and winding (`glmodes.S`)
 geif.u	dispatch entry	22	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	23	mgeb_Enable_Normalize	handler 0x394e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	24	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	25	mgeb_EnableSprite	handler 0xf2b9	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	25	mgeb_EnableSprite	handler 0xf2b9	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	26	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	27	mgeb_EvalMapData1D	handler 0x9c	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	28	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	29	mgeb_EvalMapData2D	handler 0x205	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	30	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	31	mgeb_FrontFace	handler 0xf3db	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	31	mgeb_FrontFace	handler 0xf3db	understood	ucode/geif_commands.md#face-culling-and-winding-glmodess	Face culling and winding (`glmodes.S`)
 geif.u	dispatch entry	32	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	33	mgeb_Frustum_Projection	handler 0xbc0c	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	34	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3001,7 +3001,7 @@ geif.u	dispatch entry	123	mgeb_PixEndRGBStream	handler 0xa6e8	located	ucode/geif
 geif.u	dispatch entry	124	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	125	mgeb_PixPolygonStippleSetup	handler 0xa75f	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	126	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	127	mgeb_PointParameter	handler 0xf21b	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	127	mgeb_PointParameter	handler 0xf21b	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	128	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	129	mgeb_PolygonOffsetExt	handler 0xb2c3	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	130	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3037,7 +3037,7 @@ geif.u	dispatch entry	159	mgeb_Scale_Projection	handler 0xbce6	located	ucode/gei
 geif.u	dispatch entry	160	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	161	mgeb_Scale_Texture	handler 0xbcc8	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	162	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	163	mgeb_Sprite	handler 0xf2cc	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	163	mgeb_Sprite	handler 0xf2cc	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	164	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	165	mgeb_TexGen	handler 0xcabe	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	166	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3053,9 +3053,9 @@ geif.u	dispatch entry	175	mgeb_Translate_Texture	handler 0xbc4b	located	ucode/ge
 geif.u	dispatch entry	176	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	177	mgeb_TransparentBitmapSetup	handler 0xa747	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	178	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	179	mgeb_UserClipPlane	handler 0xf3a4	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	179	mgeb_UserClipPlane	handler 0xf3a4	understood	ucode/geif_commands.md#user-clip-planes-glmodess	User clip planes (`glmodes.S`)
 geif.u	dispatch entry	180	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	181	mgeb_ViewPort	handler 0xf404	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	181	mgeb_ViewPort	handler 0xf404	understood	ucode/geif_commands.md#viewport-depth-range-and-engine-identity-glmodess	Viewport, depth range and engine identity (`glmodes.S`)
 geif.u	dispatch entry	182	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	183	mgesi_AlphaFunc	handler 0x39c8	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	184	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3109,9 +3109,9 @@ geif.u	dispatch entry	231	mgebi_FogOffsetEnableDisable	handler 0x6eea	located	uc
 geif.u	dispatch entry	232	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	233	mgesi_XPixRmSetup	handler 0x4c70	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	234	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	235	mgebi_ReferencePlane_Enable	handler 0x5b2f	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	235	mgebi_ReferencePlane_Enable	handler 0x5b2f	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	236	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	237	mgebi_ReferencePlane_Disable	handler 0x5b15	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	237	mgebi_ReferencePlane_Disable	handler 0x5b15	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	238	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	239	mgeb_EnableUnpack	handler 0x583e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	240	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3145,11 +3145,11 @@ geif.u	dispatch entry	267	mgeb_ContextLoadFlagRegs	handler 0x66ed	located	ucode/
 geif.u	dispatch entry	268	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	269	mgeb_ContextLoadWram	handler 0x66ff	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	270	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	271	mgeb_Disable_Multipass	handler 0xf280	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	271	mgeb_Disable_Multipass	handler 0xf280	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	272	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	273	mgeb_ERAMBlockClear	handler 0x16e7	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	274	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	275	mgeb_Enable_Multipass	handler 0xf293	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	275	mgeb_Enable_Multipass	handler 0xf293	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	276	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	277	mgeb_EndFeedbackMode	handler 0xb720	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	278	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3323,7 +3323,7 @@ geif.u	dispatch entry	445	mgesi_GetCurrent	handler 0x95cd	located	ucode/geif_ent
 geif.u	dispatch entry	446	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	447	mgesi_SR2ODMA	handler 0x6a9e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	448	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	449	mgesi_SetGeId	handler 0xf435	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	449	mgesi_SetGeId	handler 0xf435	understood	ucode/geif_commands.md#viewport-depth-range-and-engine-identity-glmodess	Viewport, depth range and engine identity (`glmodes.S`)
 geif.u	dispatch entry	450	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	451	mgesi_TBUS_1	handler 0x39ab	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	452	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3545,7 +3545,7 @@ geif.u	dispatch entry	667	mgeb_RGBA_Mode	handler 0x3923	located	ucode/geif_entri
 geif.u	dispatch entry	668	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	669	mgeb_CI_Mode	handler 0x38fd	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	670	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	671	mgeb_DepthRange	handler 0xf3ea	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	671	mgeb_DepthRange	handler 0xf3ea	understood	ucode/geif_commands.md#viewport-depth-range-and-engine-identity-glmodess	Viewport, depth range and engine identity (`glmodes.S`)
 geif.u	dispatch entry	672	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	673	mgesi_ClearColor	handler 0x91ce	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	674	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3617,17 +3617,17 @@ geif.u	dispatch entry	739	mmo_X_pixout_4Comp	handler 0x9c14	located	ucode/geif_e
 geif.u	dispatch entry	740	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	741	mmo_X_DrawBitmapOpaque	handler 0x9b8f	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	742	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	743	mSpriteAxial	handler 0x8800	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	743	mSpriteAxial	handler 0x8800	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	744	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	745	mSpriteObject	handler 0x86d3	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	745	mSpriteObject	handler 0x86d3	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	746	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	747	mSpriteEye	handler 0x87f7	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	747	mSpriteEye	handler 0x87f7	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	748	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	749	mgesi_PipeSetup	handler 0xab9d	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	750	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	751	mgeb_DownLoadAALineTable	handler 0x6319	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	752	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	753	mgebi_ReferencePlane	handler 0x59a2	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	753	mgebi_ReferencePlane	handler 0x59a2	understood	ucode/geif_commands.md#sprite-modes-and-the-reference-plane-sprites-refplanes	Sprite modes and the reference plane (`sprite.S`, `refplane.S`)
 geif.u	dispatch entry	754	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	755	mgeb_RestoreColor	handler 0x581b	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	756	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3685,9 +3685,9 @@ geif.u	dispatch entry	807	mgeb_PixLastGECounterSetup	handler 0xa79b	located	ucod
 geif.u	dispatch entry	808	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	809	mgeb_DeathCommand	handler 0x3a52	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	810	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	811	mgeb_SetLMCFlag	handler 0xf32f	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	811	mgeb_SetLMCFlag	handler 0xf32f	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	812	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	813	mgeb_ClearLMCFlag	handler 0xf320	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	813	mgeb_ClearLMCFlag	handler 0xf320	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	814	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	815	mgeb_DeformationMap3_1	handler 0x482e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	816	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one

@@ -4299,16 +4299,16 @@ Read from the [refplane.S listing](ge_listing/refplane.S.lst) (`ge.u`, IRIX 6.5.
   loads the guard constants 100.0 (0x42c80000, 0x5a05) and 1e-6 (0x358637bd, 0x5a06), and builds a twelve-word block of
   differences and products (0x5a0b-0x5a4e) that the loops at 0x5a58-0x5a78 and 0x5a85-0x5a99 test with sign comparisons
   (branches 0x5a66-0x5a6b, 0x5aae, 0x5abe, all to 0x5aea). Its outputs are the plane terms stored to words 0x94b-0x957
-  again (0x5ad0-0x5ae8), the enable bit 0x4000000 in control-memory word 3 (0x5af5-0x5af6) and a call to `mRefPlane`
-  (0x5b02, `cc` 3) to send the raster registers, with the closing word to 0x1f4 (0x5b0b). Its operands are those four command words.
+  again (0x5ad0-0x5ae8), then tests the enable bit 0x4000000 of control-memory word 3 with a flag-setting AND (0x5af5-0x5af6;
+  the routine never stores word 3) and may skip a call to `mRefPlane` (0x5b02, `cc` 3) that sends the raster registers, with the closing word to 0x1f4 (0x5b0b). Its operands are those four command words.
 - `mgebi_ReferencePlane_Disable` (`refplane.S` line 75, at 0x5b15): **inferred**, turns the reference plane off. It clears
   bit 0x4000000 of control-memory word 3 by ANDing with 0xfbffffff (0x5b19, 0x5b21, store 0x5b2e) and sends two raster
   writes, each preceded by the `0x70000` select (0x5b1c): the select 0x1243fd3 to 0x1f8 with the data 6 to 0x1f5
   (0x5b1d-0x5b23), then a closing zero to 0x1f4 (0x5b24-0x5b25). Both data stores are predicated (0x5b1f, 0x5b23) on the
   state tested at 0x5b27. It takes no command words; it combines the flag clear with the two bus writes, and its result is the plane switched off.
 - `mgebi_ReferencePlane_Enable` (`refplane.S` line 41, at 0x5b2f): **inferred**, turns the reference plane on. The first
-  command word goes to address register 0x1a (0x5b2f), the second is discarded (0x5b30) and the third goes to register 0x13
-  and staging word 0x10 (0x5b32); 0x5b36 sets the flags from register 0x13. It ORs 0x4000000 into control-memory word 3
+  two words are the framing words of every handler (0x5b2f, 0x5b30), not operand reads; 0x5b32 loads staging word 0x10 and register 0x13
+  from register 0x1d and 0x5b36 sets the flags from register 0x13. It reads no command word. It ORs 0x4000000 into control-memory word 3
   (stage 0x5b35, OR 0x5b37, store 0x5b40) and calls `mRefPlane` (0x5b38) to send the stored plane to the raster back end.
   The call word carries `cc` 0x11, the same value as the unconditional jump that ends `mDispatchCentral` (0xe755) and the
   calls elsewhere that nothing gates (for example 0x8123), so the call is not conditional on the flags set at 0x5b36
@@ -4353,7 +4353,7 @@ register 0x16). Read from the [sprite.S listing](ge_listing/sprite.S.lst) (`ge.u
   axis onto that direction, and jumps to `mSpriteRotateMatrix` (0x87ee) for the final roll about the eye direction. Its inputs are the sprite point and axis; its output is the updated modelview rows 0x3b-0x3e and the rotated matrix.
 - `mSpriteEye` (`sprite.S` line 365, at 0x87f7): **inferred**, the eye-aligned sprite mode, a one-word dispatcher. Its
   only word is the unconditional transfer at 0x87f7 to `mSpriteObject` at 0x86d3; it reads, computes and stores nothing
-  itself, so eye-aligned sprites take the object-mode path unchanged. It takes no operand and returns whatever `mSpriteObject` produces.
+  itself. `mSpriteObject` then compares the mode word with its own address (0x8707) and skips the section 0x871c-0x8733 only on a match, so the eye-aligned mode takes the other path ([geif_commands.md](geif_commands.md)). It takes no operand and returns whatever `mSpriteObject` produces.
 - `mSpriteAxial` (`sprite.S` line 167, at 0x8800): **inferred**, the axis-aligned sprite mode: the sprite rotates about
   the axis stored with it so its face turns toward the eye as far as that axis allows. It reads the axis from external
   memory 0x93a-0x93c and the point from 0x93e-0x940 (0x8800-0x8819) and control-memory word 0x30 (0x8814), forms the
