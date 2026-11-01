@@ -15904,7 +15904,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDel
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5ad0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5af4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5c00	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5c78	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -17948,7 +17948,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c82c	140	__glkonSendP
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c8b8	160	__glkonSendPackedVertexV3F_N3S_T2S	dynsym+mdebug	f8328cc7c809		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6c958	192	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dynsym+mdebug	608ef909c33b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6cab4	168	__glSPInterpret	dynsym+mdebug	c5d7593a3028		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6cb5c	20	__glsple_Sentinel	dynsym+mdebug	2b8979be3cf9		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6cb70	256	__glMipsCopyDispatch	dynsym+mdebug	d6e8a69b68c1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21440,7 +21440,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f3fb0	320	__glNamesD
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f40f0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4110	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4140	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4200	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f4260	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -27020,7 +27020,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58200	312	__glNamesD
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58340	32	__glim_Normal3d	dwarf+dynsym	b59d59723518		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58360	44	__glim_Normal3dv	dwarf+dynsym	293f74622766		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58390	84	__glim_Normal3b	dwarf+dynsym	4712e7989a33		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e583f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e583f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58450	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e584b0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e58510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -29527,7 +29527,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcdec	148	__glkonSen
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edce80	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	b04601f68175		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcf24	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	5ce04cdb6ea0		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd084	168	__glSPInterpret	dwarf+dynsym	af752d34a4de		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd12c	20	__glsple_Sentinel	dwarf+dynsym	99138bf4876c		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd140	256	__glMipsCopyDispatch	dwarf+dynsym	55edd88ee060		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -32603,7 +32603,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f59f0	212	__glNamesDel
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5ad0	36	__glim_Normal3d	dynsym+mdebug	3f1eef7121f5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5af4	44	__glim_Normal3dv	dynsym+mdebug	02c872244ba9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b20	120	__glim_Normal3b	dynsym+mdebug	1fa7dabd3971		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5b98	104	__glim_Normal3bv	dynsym+mdebug	7fb8153c1b17		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5c00	120	__glim_Normal3s	dynsym+mdebug	c00b5c583567		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5c78	104	__glim_Normal3sv	dynsym+mdebug	577b98482a55		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9f5ce0	112	__glim_Normal3i	dynsym+mdebug	25bc0be5e36e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -34647,7 +34647,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c82c	140	__glkonSendP
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c8b8	160	__glkonSendPackedVertexV3F_N3S_T2S	dynsym+mdebug	f8328cc7c809		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6c958	192	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dynsym+mdebug	608ef909c33b		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ca20	132	__glDoInterpret	dynsym+mdebug	c618976d60be		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6caa4	16	__glle_Sentinel	dynsym+mdebug	feef1bb2e041		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6cab4	168	__glSPInterpret	dynsym+mdebug	c5d7593a3028		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6cb5c	20	__glsple_Sentinel	dynsym+mdebug	2b8979be3cf9		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6cb70	256	__glMipsCopyDispatch	dynsym+mdebug	d6e8a69b68c1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38139,7 +38139,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f3fb0	320	__glNamesD
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f40f0	32	__glim_Normal3d	dwarf+dynsym	37e3f67df0d5		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4110	44	__glim_Normal3dv	dwarf+dynsym	6f624c5015b5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4140	84	__glim_Normal3b	dwarf+dynsym	0bdc4c79e1d6		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f41a0	96	__glim_Normal3bv	dwarf+dynsym	fee8b6a14594		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4200	84	__glim_Normal3s	dwarf+dynsym	05ea6a363bb3		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f4260	96	__glim_Normal3sv	dwarf+dynsym	796b4b697e69		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9f42c0	92	__glim_Normal3i	dwarf+dynsym	9e00e503b34e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -43719,7 +43719,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238200	312	__glNamesD
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238340	32	__glim_Normal3d	dwarf+dynsym	b59d59723518		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238360	44	__glim_Normal3dv	dwarf+dynsym	293f74622766		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238390	84	__glim_Normal3b	dwarf+dynsym	4712e7989a33		in	located	docs/sample-implementation.md#so_napic	so_napi.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22383f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22383f0	96	__glim_Normal3bv	dwarf+dynsym	00ecb04ac8ad		in	understood	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238450	84	__glim_Normal3s	dwarf+dynsym	baa3b4299948		in	located	docs/sample-implementation.md#so_napic	so_napi.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22384b0	96	__glim_Normal3sv	dwarf+dynsym	84b920fc0247		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2238510	92	__glim_Normal3i	dwarf+dynsym	2dcbfc392a7e		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -46226,7 +46226,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcdec	148	__glkonSen
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bce80	164	__glkonSendPackedVertexV3F_N3S_T2S	dwarf+dynsym	b04601f68175		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcf24	204	__glkonSendPackedVertexV3F_C4UB_N3S_T2S	dwarf+dynsym	5ce04cdb6ea0		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bcff0	132	__glDoInterpret	dwarf+dynsym	36508466039f		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	located	docs/sample-implementation.md#dl_interpc	dl_interp.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd074	16	__glle_Sentinel	dwarf+dynsym	efed4461ec56		in	understood	docs/sample-implementation.md#dl_interpc	dl_interp.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd084	168	__glSPInterpret	dwarf+dynsym	af752d34a4de		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd12c	20	__glsple_Sentinel	dwarf+dynsym	99138bf4876c		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd140	256	__glMipsCopyDispatch	dwarf+dynsym	55edd88ee060		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
