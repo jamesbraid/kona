@@ -1773,6 +1773,25 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   converting its stored size with float-to-integer.
 - `uEvalLoadState2D` (`evalmisc.s` lines 194-208, at 0x9ad): **inferred**, the 2D counterpart, restoring size 0x555 from
   external memory.
+- `uEvalSwapState1D` (`evalmisc.s` line 228, at 0x9bf): **inferred** from its listing, saves the one-dimensional map set
+  out to external memory and loads the two-dimensional set in, which makes the 2D set resident for the evaluator; the
+  copies are two calls with no arithmetic beyond one float-to-integer conversion (code 0x71 at 0x9c5). It takes two words
+  of control memory 0x1ef and 0x1f0 and stores them as staging words 0 and 1 at register 0x18 (0x9c0, 0x9c1), and does an
+  `r95` = 7 store at 0x9c2. The call to `mWramToEram` (0x1025) at 0x9c8 has the delay words 0x9c9-0x9cc: register 2 takes
+  staging word 0, register 0 the constant 0x8000 and register 1 the sum of register 0x16 and 0x461, the 1D set's size
+  constant, and the first of three stores of the store-data register to control words 0x1ec, 0x1ed and 0x1ee is the word
+  at 0x9cc, the others 0x9cd and 0x9ce. The jump to `mEramToWram` (0xd45d) at 0x9d1 has the delay words 0x9d2-0x9d5:
+  register 2 takes staging word 1, register 0 the sum of register 0x16 and 0x555, the 2D set's size constant, register 1
+  the constant 0x8000, and an `r95` = 2 read at 0x9d5. The routine ends in that jump.
+- `uEvalSwapState2D` (`evalmisc.s` line 272, at 0x9da): **inferred** from its listing, the mirror of `uEvalSwapState1D`:
+  it saves the two-dimensional set out to external memory and loads the one-dimensional set in, which makes the 1D set
+  resident. It stores control words 0x1f0 and 0x1ef as staging words 0 and 1 (0x9db, 0x9dc, the reverse order of the 1D
+  routine), does the `r95` = 7 store at 0x9dd and converts one word with float-to-integer (0x9e0). The call to
+  `mWramToEram` at 0x9e3 has the delay words 0x9e4-0x9e7: register 2 takes staging word 0, register 0 the constant 0x8000
+  and register 1 the sum of register 0x16 and 0x555, the 2D size constant; the stores to control words 0x1ec, 0x1ee and
+  0x1ed, in that order, are at 0x9e7-0x9e9. The jump to `mEramToWram` at 0x9ec has the delay words 0x9ed-0x9f0: register 2
+  takes staging word 1, register 0 the sum of register 0x16 and 0x461, register 1 the constant 0x8000, and an `r95` = 2
+  read at 0x9f0. The size constants and the order of the stores to 0x1ed and 0x1ee are what differ from the 1D routine.
 - `umo_EvalPolyV` (`eval.s` lines 186-204, at 0x586): **inferred**, set-up of the 2D vertex evaluation without derivative:
   it ANDs the order word, converts it with integer-to-float and subtracts to form the loop counts from the input u and v.
 - `lPOLYVUORDERLOOP` (`eval.s` lines 206-225, at 0x599): **inferred**, Horner's rule in u: multiply-adds fold each row of
@@ -5201,20 +5220,27 @@ row-pass loop and a column-pass loop that returns to the caller. Four components
   0x29a8) and by the kernel word fetched from control memory at address register 3 plus 2 (0x29a4). The multiply-add at
   0x29a7 adds an earlier product, and words 0x29a3 and 0x29a6 set address registers 0xa and 0xb to 8 and 9 plus 2. It has
   no transfer and runs into `RowConv3Loop`. Its results are the first partial products, left for the row loop.
-- `RowConv3Loop` (`usepconv3x3.s` line 80, at 0x29a9): **inferred**, the row pass of the separable 3 x 3 convolution, one
-  pixel group per pass. Four of the twelve words 0x29a9-0x29b4 are unit-2 multiplies (M = 0x47f at 0x29a9, 0x29ac, 0x29af,
-  0x29b2) and eight carry M = 0x460; they read the row buffers through address registers 8-0xb, and four words store through
-  registers 8, 9, 0xa and 0xb (0x29ab, 0x29ae, 0x29b1, 0x29b4). The relative transfer at 0x29ac (group 4, `cc` 0x11) targets
-  0x29a9. After it, 0x29b5-0x29b8 multiply the words at address register 7 (D = 0-3) by the column kernel words read from
-  control memory (address registers 3-6 plus 3), the opening products of the column pass. Which products each store sums,
-  how many taps a pass covers and how the transfer's delay words split the loop from its exit are not derived here.
-- `ColumnConv3Loop` (`usepconv3x3.s` line 108, at 0x29b9): **inferred**, the column filter, which sums three filtered rows
-  per component. Twelve multiply-add words read the row buffers through address registers 0xe and 0xf (D = 0-3) and chain
-  each product onto the forwarded sum (`r128` = 0x2c and 0x20); words 0x29ba, 0x29bb, 0x29bf and 0x29c0 advance address
-  registers 7, 2, 0xe and 0xf by 4, one pixel. The result is four output words stored at E = 0-3 through address register 2
-  (0x29c1-0x29c4), each a final multiply-add with a kernel word from control memory plus 3. The transfer at 0x29bc loops
-  back three words on `cc` 0x11, and the return at 0x29bd leaves to the caller. What each output word sums is not derived
-  here.
+- `RowConv3Loop` (`usepconv3x3.s` line 80, at 0x29a9): **inferred** from the unit codes and word counts of its listing, the
+  row pass of the separable 3 x 3 filter. It takes three neighbouring pixels of a row, four components each, as row-buffer
+  operands through address registers 8-0xb, multiplies each by a kernel word and sums the products, so one pass yields one
+  filtered pixel as four component sums. Of the twelve words 0x29a9-0x29b4, four are plain multiplies (unit-2 code 0x47,
+  M = 0x47f at 0x29a9, 0x29ac, 0x29af, 0x29b2) and eight are multiply-adds (M = 0x460, a unit-2 multiply with a unit-1
+  single-precision add): twelve products, three per component. The four results are stored through address registers 8, 9,
+  0xa and 0xb (0x29ab, 0x29ae, 0x29b1, 0x29b4). The relative transfer at 0x29ac (group 4, `cc` 0x11) targets 0x29a9. Falling
+  out of the loop, 0x29b5-0x29b8 multiply the words at address register 7 (D = 0-3) by the column kernel words read from
+  control memory at registers 3-6 plus 3, the opening products of the column pass.
+  Which kernel word meets which pixel in each multiply is unknown.
+- `ColumnConv3Loop` (`usepconv3x3.s` line 108, at 0x29b9): **inferred** from the unit codes and word counts of its listing,
+  the column pass of the separable 3 x 3 filter. It takes the row-pass words of three rows as operands, multiplies each by
+  a column kernel word and adds the products into running sums, one output pixel of four components per pass. All twelve
+  words 0x29b9-0x29c4 are multiply-adds (M = 0x460): three products for each of the four components. The adds at
+  0x29b9-0x29bc take registers 0, 1, 2 and 3 (named by `r148`) and the unit-2 product forwarded from four words earlier
+  (`r128` = 0x2c), so each component's first add joins its product to the word in its own register; the other eight adds
+  take a product and the unit-1 sum forwarded from four words earlier (`r128` = 0x20), a chain. Words 0x29ba, 0x29bb,
+  0x29bf and 0x29c0 advance address registers 7, 2, 0xe and 0xf by 4, one pixel. The four results are stored at E = 0-3
+  through address register 2 (0x29c1-0x29c4); those four words also multiply the words at register 7 plus 0-3 by control
+  memory words at registers 3-6 plus 3. The transfer at 0x29bc loops back three words on `cc` 0x11 and the return at
+  0x29bd leaves to the caller. Which row buffer feeds which multiply is unknown.
 
 ## Separable 5 x 5 convolution (usepconv5x5.s)
 
@@ -5228,20 +5254,25 @@ the [usepconv5x5.s listing](ge_listing/usepconv5x5.s.lst) (`ge.u`, IRIX 6.5.30m)
   (0x29c7, 0x29c8, 0x29ca) and at register 4 plus 1 and 2 (0x29cc, 0x29cd). The multiply-adds at 0x29cb and 0x29cd start
   the sums, and the address-unit parts of 0x29c6 and 0x29cb set address registers 9 and 0xa to 8 and 9 plus 1. It runs
   into `RowConv5Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
-- `RowConv5Loop` (`usepconv5x5.s` line 91, at 0x29cf): **inferred**, the row pass of the separable 5 x 5 convolution. The
-  twenty words 0x29cf-0x29e2 hold four unit-2 multiplies (M = 0x47f at 0x29d1, 0x29d6, 0x29db, 0x29e0) and sixteen words
-  with M = 0x460; they read through address registers 8-0xb and store four words through registers 8, 9, 0xa and 0xb
-  (0x29d3, 0x29d8, 0x29dd, 0x29e2). The group-4 transfer at 0x29da (`cc` 0x11) targets 0x29cf, 11 words back. After the
-  loop, 0x29e3-0x29e6 reload address registers 8-0xb from the words at address register 1 plus 1-4, 0x29e7 loads register 0
-  from staging word 0x14, and 0x29e8-0x29eb multiply the words at register 7 by the first column kernel words (control
-  memory at registers 3-6 plus 5). The tap count, which products each store sums and how the delay words of the transfer
-  split the loop from its exit are not derived here.
-- `ColumnConv5Loop` (`usepconv5x5.s` line 133, at 0x29ec): **inferred**, the column pass of the separable 5 x 5 convolution.
-  The sixteen words 0x29ec-0x29fb all carry M = 0x460 (no plain multiply word); they read the row buffers at address
-  registers 8-0xb and 7 and kernel words from control memory at registers 3-6 plus 6 and 7 (0x29ec-0x29f3), and
-  0x29f4-0x29f6 and 0x29f9-0x29fb advance registers 2 and 7-0xb by 4. The transfer at 0x29f7 (`cc` 0x11) targets 0x29ec, 11
-  words back, and the end-of-command transfer at 0x29f8 sits in its delay words. Four stores at E = 0-3 through address
-  register 2 (0x29fc-0x29ff) follow. What each output word sums is not derived here.
+- `RowConv5Loop` (`usepconv5x5.s` line 91, at 0x29cf): **inferred** from the unit codes and word counts of its listing, the
+  row pass of the separable 5 x 5 filter. It takes five neighbouring pixels of a row, four components each, as row-buffer
+  operands through address registers 8-0xb, multiplies each by a kernel word and sums the products, so one pass yields one
+  filtered pixel as four component sums. Of the twenty words 0x29cf-0x29e2 four are plain multiplies (M = 0x47f at 0x29d1,
+  0x29d6, 0x29db, 0x29e0) and sixteen are multiply-adds (M = 0x460): twenty products, five per component. The four results
+  are stored through registers 8, 9, 0xa and 0xb (0x29d3, 0x29d8, 0x29dd, 0x29e2). The group-4 transfer at 0x29da (`cc`
+  0x11) targets 0x29cf, 11 words back. After the loop, 0x29e3-0x29e6 reload address registers 8-0xb from the words at
+  address register 1 plus 1-4, 0x29e7 loads register 0 from staging word 0x14, and 0x29e8-0x29eb multiply the words at
+  register 7 by the first column kernel words (control memory at registers 3-6 plus 5).
+  Which kernel word meets which pixel in each multiply is unknown.
+- `ColumnConv5Loop` (`usepconv5x5.s` line 133, at 0x29ec): **inferred** from the unit codes and word counts of its listing,
+  the column pass of the separable 5 x 5 filter. It takes the row-pass products of five rows as operands through address
+  registers 8-0xb and 7, multiplies each by a column kernel word (control memory at registers 3-6 plus 6 and 7) and adds the
+  products into running sums, one output pixel of four components per pass. All twenty words 0x29ec-0x29ff are
+  multiply-adds (M = 0x460, no plain multiply): five products for each of the four components. Words 0x29f4-0x29f6 and
+  0x29f9-0x29fb advance registers 2 and 7-0xb by 4 words, one pixel. The transfer at 0x29f7 (`cc` 0x11) targets 0x29ec, 11
+  words back, and the end-of-command transfer at 0x29f8 sits in its delay words. The four results are stored at E = 0-3
+  through address register 2 (0x29fc-0x29ff), each in a word that also multiplies the word at register 7 by a kernel word.
+  Which product enters which running sum is unknown.
 - `uFastSepConv5_124` (`usepconv5x5.s` line 188, at 0x2a01): **inferred**,
   the start of the fast form, which takes integer pixel input. It converts the first sixteen stream words (four pixels,
   four components) to float with `itof` and the multiply-and-convert word `fmul.itof` (M = 0x473, 0x2a01-0x2a16), storing
@@ -5258,10 +5289,14 @@ the [usepconv5x5.s listing](ge_listing/usepconv5x5.s.lst) (`ge.u`, IRIX 6.5.30m)
   address register 1 plus 1-4 (0x2a48-0x2a4c), register 0 and register 0x10 from staging words 0x14 and 0x10 (0x2a4d,
   0x2a4e), and issues four multiplies of the words at register 7 by the first column kernel words (0x2a4f-0x2a52, plus 5).
   The conditional group-31 transfer at 0x2a4a, on `cc` 0x10, leaves for `mmo_PixLineNextGE` at 0xa6ad. It takes the pointer words at address register 1 as input and its results are the reloaded address registers and the opening column products, which it multiplies.
-- `FastColumnConv5Loop` (`usepconv5x5.s` line 301, at 0x2a53): **inferred**, the column filter of the fast form, the same in
-  shape as `ColumnConv5Loop`: it accumulates five rows of the converted data per output component with multiply-adds
-  (0x2a53-0x2a62), stores four results at E = 0-3 through address register 2 (0x2a63-0x2a66), repeats 11 words back at
-  0x2a5e on `cc` 0x11 and returns at 0x2a5f. What each output word sums is not derived here.
+- `FastColumnConv5Loop` (`usepconv5x5.s` line 301, at 0x2a53): **inferred** from the unit codes and word counts of its
+  listing, the column pass of the fast 5 x 5 filter. Its twenty words 0x2a53-0x2a66 carry the same instruction fields as the
+  twenty of `ColumnConv5Loop` (0x29ec-0x29ff): the same multiply-add code, forwarding fields, address registers and kernel
+  offsets. It takes the row-pass products of five rows as operands, multiplies each by a column kernel word and adds the
+  products into running sums, five products for each of the four components. The four results are stored at E = 0-3 through
+  address register 2 (0x2a63-0x2a66). The transfer at 0x2a5e (`cc` 0x11) goes back 11 words to 0x2a53 and the end-of-command
+  transfer at 0x2a5f sits in its delay words. The fast form differs from the ordinary form in its row pass, which
+  converts integer pixels as it filters them.
 
 ## Separable 7 x 7 convolution (usepconv7x7.s)
 
@@ -5274,20 +5309,25 @@ taps and a column loop that returns to the caller. Read from the [usepconv7x7.s 
   from control memory at address register 3 plus 1, 2, 4, 5 and 6 (`r95` = 0x13 at 0x2a69, 0x2a6a, 0x2a6c, 0x2a6d, 0x2a6e) and
   two more at register 4 plus 1 and 2 (0x2a70, 0x2a71). The multiply-adds at 0x2a6d, 0x2a6f and 0x2a71 start the sums, and
   the word at 0x2a6b stores through the staging pointer (`r215` = 3, B = 0x18). It runs into `RowConv7Loop`. It takes the first row words as input, multiplies them by kernel values, and its results are the opening partial sums for the row loop.
-- `RowConv7Loop` (`usepconv7x7.s` line 97, at 0x2a73): **inferred**, the row pass of the separable 7 x 7 convolution. The
-  twenty-eight words 0x2a73-0x2a8e hold four unit-2 multiplies (M = 0x47f at 0x2a77, 0x2a7e, 0x2a85, 0x2a8c) and twenty-four
-  words with M = 0x460; they read through address registers 8-0xb and store four words through registers 8, 9, 0xa and 0xb
-  (0x2a79, 0x2a80, 0x2a87, 0x2a8e). The group-4 transfer at 0x2a86 (`cc` 0x11) targets 0x2a73. After the loop, 0x2a8f-0x2a94
-  reload address registers 8-0xd from the words at register 1 plus 1-6, 0x2a95 loads register 0 from staging word 0, and
-  0x2a96-0x2a99 multiply the words at register 7 by the first column kernel words (control memory at registers 3-6 plus 7).
-  The tap count, which products each store sums and how the delay words of the transfer split the loop from its exit are not
-  derived here.
-- `ColumnConv7Loop` (`usepconv7x7.s` line 149, at 0x2a9a): **inferred**, the seven-tap column filter. Multiply-adds read the
-  row buffers at address registers 8-0xd against kernel words from control memory (registers 3-6 plus 8, 9, 0xa and 0xb,
-  0x2a9a-0x2aa6) and add each product into the sums, advancing the buffer pointers 7-0xd by 4 words, one pixel
-  (0x2aa7-0x2ab1). It stores four output words at E = 0-3 through address register 2 (0x2ab2-0x2ab5), loops back at 0x2aad
-  on `cc` 0x11 and returns at 0x2aaf; the two words after the final store (0x2ab6, 0x2ab7) load address registers 0x1b and
-  0x16 with the immediate 0x1e. What each output word sums is not derived here.
+- `RowConv7Loop` (`usepconv7x7.s` line 97, at 0x2a73): **inferred** from the unit codes and word counts of its listing, the
+  row pass of the separable 7 x 7 filter. It takes seven neighbouring pixels of a row, four components each, as row-buffer
+  operands through address registers 8-0xb, multiplies each by a kernel word and sums the products, so one pass yields one
+  filtered pixel as four component sums. Of the twenty-eight words 0x2a73-0x2a8e four are plain multiplies (M = 0x47f at
+  0x2a77, 0x2a7e, 0x2a85, 0x2a8c) and twenty-four are multiply-adds (M = 0x460): twenty-eight products, seven per
+  component. The four results are stored through registers 8, 9, 0xa and 0xb (0x2a79, 0x2a80, 0x2a87, 0x2a8e). The
+  group-4 transfer at 0x2a86 (`cc` 0x11) targets 0x2a73. After the loop, 0x2a8f-0x2a94 reload address registers 8-0xd from
+  the words at register 1 plus 1-6, 0x2a95 loads register 0 from staging word 0, and 0x2a96-0x2a99 multiply the words at
+  register 7 by the first column kernel words (control memory at registers 3-6 plus 7).
+  Which kernel word meets which pixel in each multiply is unknown.
+- `ColumnConv7Loop` (`usepconv7x7.s` line 149, at 0x2a9a): **inferred** from the unit codes and word counts of its listing,
+  the column pass of the separable 7 x 7 filter. It takes the row-pass products of seven rows as operands through address
+  registers 8-0xd and 7, multiplies each by a column kernel word (control memory at registers 3-6 plus 8-0xb) and adds the
+  products into running sums, one output pixel of four components per pass. All twenty-eight words 0x2a9a-0x2ab5 are
+  multiply-adds (M = 0x460): seven products for each of the four components. Words 0x2aa7-0x2ab1 advance the buffer
+  pointers 7-0xd by 4 words, one pixel. The four results are stored at E = 0-3 through address register 2 (0x2ab2-0x2ab5).
+  The transfer at 0x2aad (`cc` 0x11) loops back to 0x2a9a and the end-of-command transfer at 0x2aaf sits in its delay
+  words; the two words after the final store (0x2ab6, 0x2ab7) load address registers 0x1b and 0x16 with the immediate 0x1e.
+  Which product enters which running sum is unknown.
 
 ## Texture state handlers (texture.S)
 

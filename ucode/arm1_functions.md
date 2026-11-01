@@ -841,6 +841,43 @@ The six texture-environment records are raster register values, one per texture 
 | `addTevFunc` | 0x0404966c | `arm1.u` RW +0x940c | raster texture value, each format | add path, 0x597b | 0x739b | 0x00 | 0x02 | 0x50 | 0x52 | 0x55 | **Established** |
 | `addSignedTevFunc` | 0x04049680 | `arm1.u` RW +0x9420 | raster texture value, each format | add path, 0x597c | 0x73a0 | 0x00 | 0x02 | 0x60 | 0x62 | 0x66 | **Established** |
 
+Each record, read word by word from the image (`arm1.u` 6.5.30m, big-endian words), holds the function bytes that the engine hands to the raster board for one GL texture-environment mode. Colour function codes 0-6 are fragment, texture, modulate, blend, decal, add and add minus a half; the alpha function uses the same codes in the low nibble.
+
+- `modulateTevFunc` (`arm1.u` RW +0x93bc, at 0x0404961c): **inferred**, the table for GL_MODULATE (0x2100), selected
+  at engine address 0x7387, holding 0x00, 0x02, 0x20, 0x22, 0x22. For each texture format it takes the fragment colour
+  and the texel as operands and multiplies them: the luminance or RGB format (index 2), the luminance-alpha or RGBA
+  format (index 3) and the intensity format (index 4) carry colour code 2, so the result colour is fragment times
+  texel, while indices 3 and 4 also carry alpha code 2, so the result alpha is fragment alpha times texel alpha. The
+  alpha-only format (index 1) leaves the colour untouched (code 0) and multiplies alpha alone. Index 0 is a zero word,
+  no texture applied.
+- `decalTevFunc` (`arm1.u` RW +0x93d0, at 0x04049630): **inferred**, the table for GL_DECAL (0x2101), selected at
+  engine address 0x738c, holding 0x00, 0x00, 0x10, 0x40, 0x00. It yields a defined result only for two formats: index
+  2 (RGB) carries colour code 1, so the texel colour replaces the fragment colour, and index 3 (RGBA) carries colour
+  code 4, which mixes the texel colour over the fragment colour in proportion to the texel alpha. The alpha nibble is
+  0 for both, so the fragment alpha is the result alpha, and the other three indices are zero words, the fragment
+  unchanged.
+- `blendTevFunc` (`arm1.u` RW +0x93e4, at 0x04049644): **inferred**, the table for GL_BLEND (0x0be2), selected at
+  engine address 0x7391, with the five words 0x00, 0x02, 0x30, 0x32, 0x33. Colour code 3 at indices 2-4 combines the
+  fragment colour and the environment colour (the pair of values the engine sends to the texture-environment colour
+  register) weighted by the texel; alpha code 2 at index 3 multiplies fragment and texel alpha, while the intensity
+  format (index 4) carries alpha code 3 and so blends alpha as it blends colour. The alpha-only format (index 1)
+  multiplies alpha only.
+- `replaceTevFunc` (`arm1.u` RW +0x93f8, at 0x04049658): **inferred**, the table for GL_REPLACE (0x1e01) and its
+  extension form (0x8062), both selected at engine address 0x7396; the five words 0x00, 0x01, 0x10, 0x11, 0x11 make it
+  the one table that does no arithmetic: colour code 1 passes the texel colour through at indices 2-4 and alpha code 1
+  passes the texel alpha through at indices 1, 3 and 4. The alpha-only format (index 1) keeps the fragment colour, and
+  the RGB and luminance formats (index 2) keep the fragment alpha.
+- `addTevFunc` (`arm1.u` RW +0x940c, at 0x0404966c): **inferred**, the table for GL_ADD (0x104), reached at engine
+  address 0x739b by the path at 0x597b that follows the five base-mode compares, where the words read 0x00, 0x02,
+  0x50, 0x52, 0x55. Colour code 5 adds the texel colour to the fragment colour at indices 2-4; alpha code 2 multiplies
+  the alphas at indices 1 and 3, and alpha code 5 at the intensity format (index 4) adds the texel alpha to the
+  fragment alpha.
+- `addSignedTevFunc` (`arm1.u` RW +0x9420, at 0x04049680): **inferred**, the add-minus-a-half variant of the add
+  table, chosen at engine address 0x73a0 by the predicated load at 0x597c, whose words are 0x00, 0x02, 0x60, 0x62,
+  0x66. Colour code 6 adds the texel colour to the fragment colour and subtracts one half at indices 2-4; the alpha
+  nibble follows the add table, multiplying alphas at indices 1 and 3 and, at the intensity format (index 4), code 6,
+  adding and subtracting one half.
+
 ## Pixel path: set-up and state
 
 How a pixel command is classified and its state resolved before the hardware is programmed.

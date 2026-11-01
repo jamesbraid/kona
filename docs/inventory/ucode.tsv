@@ -134,12 +134,12 @@ arm1.u	symbol	0x04049508	copydown	flags=4	understood	ucode/arm1_functions.md#con
 arm1.u	symbol	0x04049518	mem_mgr_pnum	flags=5	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x0404951c	mem_mgr_poff	flags=5	understood	ucode/arm1_functions.md#queries-and-read-back	Queries and read-back
 arm1.u	symbol	0x04049520	texComps	flags=5	understood	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0404961c	modulateTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049630	decalTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049644	blendTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049658	replaceTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x0404966c	addTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
-arm1.u	symbol	0x04049680	addSignedTevFunc	flags=4	located	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0404961c	modulateTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049630	decalTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049644	blendTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049658	replaceTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x0404966c	addTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
+arm1.u	symbol	0x04049680	addSignedTevFunc	flags=4	understood	ucode/arm1_functions.md#texture-management	Texture management
 arm1.u	symbol	0x04049694	overlap	flags=5	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x04049698	path	flags=4	understood	ucode/arm1_functions.md#pixel-path-set-up-and-state	Pixel path: set-up and state
 arm1.u	symbol	0x04049760	wramBuf	flags=4	understood	ucode/arm1_functions.md#pixel-path-splitting-the-data-across-engines	Pixel path: splitting the data across engines
@@ -1860,8 +1860,8 @@ ge.u	label	0x00000977	uEvalSaveState1D		understood	ucode/ge_compute.md#evaluator
 ge.u	label	0x00000989	uEvalSaveState2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x0000099b	uEvalLoadState1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x000009ad	uEvalLoadState2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
-ge.u	label	0x000009bf	uEvalSwapState1D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
-ge.u	label	0x000009da	uEvalSwapState2D		located	ucode/ge_handlers.md#evalmiscs	evalmisc.s
+ge.u	label	0x000009bf	uEvalSwapState1D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
+ge.u	label	0x000009da	uEvalSwapState2D		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x000009f5	uEvalChangeBasis1and2		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x00000a04	uEvalChangeBasis3		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
 ge.u	label	0x00000a0c	lCB3LOOP		understood	ucode/ge_compute.md#evaluators-evals-evalbasiss-evalmiscs-ueval1ds-ueval2ds-uevalbasiss-uevalcoords	Evaluators (eval*.s, evalbasis.s, evalmisc.s, ueval1D.s, ueval2D.s, uevalbasis.s, uevalcoord.s)
@@ -2145,18 +2145,18 @@ ge.u	label	0x0000290e	lDI1		understood	ucode/ge_compute.md#triangle-output-udraw
 ge.u	label	0x0000298a	uColorMatrix		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x0000298e	clrmtrixloop		understood	ucode/ge_compute.md#pixel-path-stages-mask-shift-and-add-expand-look-up-min-max-and-colour-matrix	Pixel-path stages: mask, shift and add, expand, look-up, min-max and colour matrix
 ge.u	label	0x000029a2	uSepConv3_124		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
-ge.u	label	0x000029a9	RowConv3Loop		located	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
-ge.u	label	0x000029b9	ColumnConv3Loop		located	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
+ge.u	label	0x000029a9	RowConv3Loop		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
+ge.u	label	0x000029b9	ColumnConv3Loop		understood	ucode/ge_compute.md#separable-3-x-3-convolution-usepconv3x3s	Separable 3 x 3 convolution (usepconv3x3.s)
 ge.u	label	0x000029c6	uSepConv5_124		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
-ge.u	label	0x000029cf	RowConv5Loop		located	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
-ge.u	label	0x000029ec	ColumnConv5Loop		located	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x000029cf	RowConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x000029ec	ColumnConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
 ge.u	label	0x00002a01	uFastSepConv5_124		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
 ge.u	label	0x00002a30	FastRowConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
 ge.u	label	0x00002a48	FastRowConv5Epilog		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
-ge.u	label	0x00002a53	FastColumnConv5Loop		located	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
+ge.u	label	0x00002a53	FastColumnConv5Loop		understood	ucode/ge_compute.md#separable-5-x-5-convolution-usepconv5x5s	Separable 5 x 5 convolution (usepconv5x5.s)
 ge.u	label	0x00002a68	uSepConv7_124		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
-ge.u	label	0x00002a73	RowConv7Loop		located	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
-ge.u	label	0x00002a9a	ColumnConv7Loop		located	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
+ge.u	label	0x00002a73	RowConv7Loop		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
+ge.u	label	0x00002a9a	ColumnConv7Loop		understood	ucode/ge_compute.md#separable-7-x-7-convolution-usepconv7x7s	Separable 7 x 7 convolution (usepconv7x7.s)
 ge.u	label	0x00002ab8	mmo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
 ge.u	label	0x00002ab8	umo_DeformCoord		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
 ge.u	label	0x00002acb	loopDC		understood	ucode/ge_compute.md#vertex-deformation-udeforms	Vertex deformation (udeform.s)
