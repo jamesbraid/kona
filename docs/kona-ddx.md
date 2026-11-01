@@ -6373,18 +6373,11 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   `TraverseTree` over the children, `SetWinSize`, `SetBorderSize`,
   `MoveWindowInStack` and `ResizeChildrenWinSize`, calling many screen entries (+336 to +492) and `WindowsRestructured` at the
   end. Against `konal.so`: 1 of 1414; immediates only; low halves: 1; first at +0x120c.
-- `ShareSwappingID` (konad.so, address 0x493e30, 724 bytes): **established.** Lets a window that starts a buffer swap join a
-  display id already mid-swap in the same mode; it returns 1 when the window was given an id, else 0. Pass 1 walks the ids from
-  the highest down to 1 and considers entries with bit 0x10 (swap pending) other than the window's own, whose first holder has the
-  same hardware-dependent mode (+36) as the window. For each it walks the holder list of id 0 (entry +0 of the table, whatever
-  entry it is considering) and notes whether any holder has bit 0x8 in its private byte +4. When none does, it gives the window
-  the entry's id through a static helper and returns 1; the scan stops at an entry with bit 0x1. When some holder of id 0 does,
-  pass 2 walks the same entries again. For each swap-pending entry other than the window's own it calls a static routine on the
-  entry once per holder of id 0 with that bit, and gives the window the entry's id if `compareModes` accepts the window's modes
-  against it. Bit 0x8 of private byte +4 is the swap-buffer resource: `konValidateSwapbuf` sets it after a successful validation
-  (1012) and `rrmInvalidate` clears it (hooks). Id 0 is the first of the colour-index ids the server reserves at start-up.
-  **Inferred:** a window that starts a swap may join an id that is mid-swap when the modes agree. Against `konal.so`: 1 of 181;
-  immediates only; low halves: 1; first at +0x64.
+- `ShareSwappingID` (konad.so, address 0x493e30, 724 bytes): **located.** Window-swap id sharing: takes (window) and returns 1
+  after giving the window an id through the routine at 0x583bc0, or 0 when none fits. It walks the screen's rrm record table
+  (36-byte entries from +152, count at +0) from the top down, in a first pass and a second one, using `compareModes` and the routine
+  at 0x52a130. The rules inside the two passes, and the earlier text's statements about which routines set and clear bit 0x8 of the
+  private byte +4, were not re-read in full. Against `konal.so`: 1 of 181; immediates only; low halves: 1; first at +0x64.
 - `cfbPolyFillArcSolidCopy` (konad.so, address 0x4a0e80, 544 bytes): **inferred.**
   PolyFillArc with a solid colour and copy operation, 8 bits per pixel: fetches the clip through entry +380 and calls a shared
   helper; 136 instructions. Against `konal.so`: 1 of 136; immediates only; low halves: 1; first at +0x78.
@@ -6740,9 +6733,15 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   When the word at that record +220 is not 1 the order is P +100 with y plus the offset, then P +96 with y minus it; when it is 1
   the order is reversed. Afterwards P +8 and gc +72 are restored and P +104 is zeroed. Returns no value. Against `konal.so`: 1 of
   113; immediates only; low halves: 1; first at +0x1c.
-- `nfbStereoPolyRectangle` (konad.so, address 0x5299c0, 716 bytes): **established.** Stereo
-  PolyRectangle, saved entry +0x20, with the same copied rectangle array (`Xalloc`, `Xfree`) as the segment wrapper. Against
-  `konal.so`: 1 of 179; immediates only; low halves: 1; first at +0x38.
+- `nfbStereoPolyRectangle` (konad.so, address 0x5299c0, 716 bytes): **established.** Stereo PolyRectangle wrapper over the saved
+  operations vector, calling entry +32 twice, once per eye, with (drawable, gc, count, rectangles). It allocates count times 8 bytes
+  with `Xalloc` (the result is not checked) and copies the rectangle array into it unchanged (four halfwords per 8-byte rectangle;
+  none for a non-positive count). With the GC's nfb private record P (gc +76) it saves gc +72 and P word +8, sets gc +72 to P +92
+  and P +104 to 1, and makes the two calls. The eye offset is the halfword at the screen's +116 record +226. When the word at that
+  record +220 is not 1, the first call uses the copy with P +8 loaded from P +100 and the offset added to the drawable's y (+10) and
+  to P's halfword +90, and the second the original array with P +96 and the offset subtracted; when it is 1 the order is reversed.
+  Afterwards it calls `Xfree` on the copy, restores P +8 and gc +72, zeroes P +104 and returns `Xfree`'s result. Against `konal.so`:
+  1 of 179; immediates only; low halves: 1; first at +0x38.
 - `mfbStippleWhiteArea` (konad.so, address 0x52a1a0, 3524 bytes): **established.** Sets bits through a stipple over a list of
   boxes; a leaf that rotates the stipple row for each scanline and merges it with the edge masks, and it is called from
   `mfbValidateGC`. Against `konal.so`: 1 of 881; immediates only; low halves: 1; first at +0x28.
@@ -6852,9 +6851,15 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   (rounded up to 16); when that stack pointer is zero it returns without moving anything. Otherwise it moves the data in three
   `memmove` calls: the first (height - rows) rows into the temporary, then the last rows rows to the start of the data, then the
   temporary back to data + rows times pitch. Against `konal.so`: 1 of 59; immediates only; low halves: 1; first at +0x1c.
-- `miInsertEdgeInET` (konad.so, address 0x56a4f0, 452 bytes): **established.** Inserts a polygon edge into the edge table bucket
-  for its starting scanline, allocating a bucket record of 304 bytes with `Xalloc` when it needs one. Against `konal.so`: 1 of
-  113; immediates only; low halves: 1; first at +0x34.
+- `miInsertEdgeInET` (konad.so, address 0x56a4f0, 452 bytes): **established.** Takes (table, edge, scanline, block-list pointer,
+  block count pointer). It walks the table's scanline list (the address table +8 stands in as the previous node, the first node is
+  the word at table +16, nodes of 12 bytes: scanline, edge list head, next at +8) to the first node whose scanline is not below the
+  requested one; when there is none or it is above, it makes a new node: if the block count (word at the fifth argument) is 25 or
+  more it first calls `Xalloc` (304 bytes), returns 0 when that fails, chains the new block through its word +300 (the old block's
+  +300 gets the new block, the new one's is zero), makes it the current block and zeroes the count; the node is then taken as index
+  count in the current block (count incremented), linked in after the previous node and given the scanline. It then inserts the edge
+  into the node's list sorted by the edge word +4 (next at edge +28): ahead of the first entry whose word +4 is not below the
+  edge's, or at the end, and returns 1. Against `konal.so`: 1 of 113; immediates only; low halves: 1; first at +0x34.
 - `cfb16ValidateGC` (konad.so, address 0x56a6c0, 2928 bytes): **established.**
   ValidateGC for the 16-bit layer: the same sequence with the 16-bit calls `cfb16ReduceRasterOp`, `cfb16MatchCommon`,
   `cfb16CopyRotatePixmap` and `cfb16PadPixmap`, after `miComputeCompositeClip`. Against `konal.so`: 1 of 732; immediates only; low
@@ -6979,8 +6984,13 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   extents from the box argument (or from `miEmptyBox` when none is given), and either points the data field at +0x8 at
   `miEmptyData` or allocates a rectangle array with `Xalloc` for a count above one. Against `konal.so`: 1 of 58; immediates only;
   low halves: 1; first at +0x1c.
-- `cfb16XRotatePixmap` (konad.so, address 0x576840, 448 bytes): **established.** Horizontal rotation of a 16-bit pixmap with three
-  `ErrorF` reports for unsupported widths and `cfb16endtab` for the masks. Against `konal.so`: 1 of 112; immediates only; low
+- `cfb16XRotatePixmap` (konad.so, address 0x576840, 448 bytes): **established.** Takes (pixmap, amount). It does nothing for a
+  null pixmap. On the byte at +3 (depth): 16 takes the rotate path below, 1 calls `mfbXRotatePixmap` (pixmap, amount) and returns
+  its result, and any other depth calls `ErrorF` with a message string and returns. On the 16-bit path the amount is reduced modulo
+  the width halfword at +12 (a negative remainder has the width added; the divide traps on zero); a width other than 2 calls
+  `ErrorF` with a second message string and returns. Otherwise, with bits = remainder times 16, it replaces each data word (data at
+  +32, one word per row, halfword +14 rows; modulo four one at a time, then four per pass) w with (`cfb16endtab` word [remainder]
+  and (w shifted left by 32 minus bits)) or (w shifted right by bits, logical). Against `konal.so`: 1 of 112; immediates only; low
   halves: 1; first at +0x18.
 - `nfbMarkWindow` (konad.so, address 0x576ae0, 180 bytes): **inferred.** Marks a window as needing revalidation: sets the flag
   word for its colour-map group (found through the window record at +0x18 and the screen's table at +0x3c), and allocates a

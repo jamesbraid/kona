@@ -51383,7 +51383,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x491460	472	nfbStereoPolyText8	d
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x491640	1496	miLineProjectingCap	dynsym	8605c6e82ee1		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x491c20	5656	nfbSlideAndSizeWindow	dynsym	dae7348c8a40		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x493240	3052	mfbSolidInvertArea	dynsym	526e0e36e735		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x493e30	724	ShareSwappingID	dynsym	a3eebd9bdb97		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x493e30	724	ShareSwappingID	dynsym	a3eebd9bdb97		in	located	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x494480	32	konTiledCFillRects	dynsym	57a474c38871		in	understood	docs/kona-ddx.md#fills-spans-and-tiles	Fills, spans and tiles
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x494540	1532	miPushPixels	dynsym	d3ff812b3591		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x494b40	2808	cfb16FillBoxTileOddCopy	dynsym	0b91950a8162		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -51716,7 +51716,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5289d0	136	cfbDoBitblt	dynsym	9
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x528e50	2088	cfb8LineSS1RectCopy	dynsym	b0df781a60d8		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x529680	356	miInverse	dynsym	ba81d9898f96		in	located	docs/kona-ddx.md#machine-independent-layer-mi	Machine-independent layer (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5297f0	452	nfbStereoPolyPoint	dynsym	5fc45006c760		in	located	docs/kona-ddx.md#stereo-wrappers	Stereo wrappers
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5299c0	716	nfbStereoPolyRectangle	dynsym	bb06652f6108		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5299c0	716	nfbStereoPolyRectangle	dynsym	bb06652f6108		in	located	docs/kona-ddx.md#stereo-wrappers	Stereo wrappers
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52a1a0	3524	mfbStippleWhiteArea	dynsym	1f4048e9bd7a		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52af70	4596	cfbDoBitbltXor	dynsym	eb0031fe61bd		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c170	8	nfbPositionWindow	dynsym	a7e7ca11a6b8		in	understood	docs/kona-ddx.md#drawing-validation-and-window-hooks	Drawing, validation and window hooks
