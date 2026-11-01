@@ -14833,9 +14833,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd990e24	120	__glkonim_Ge
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd990ea0	148	__glDlistBlockStateInit	dynsym+mdebug	0e4f32903219		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd990f34	172	__glDlistBlockStateFree	dynsym+mdebug	1fea312dec97		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd990fe0	2852	block_grow_region	mdebug	ee4cf0506355		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd99115c	100	__glDlistPreallocBlocks	dynsym+mdebug	2af2dbcd594b		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd99115c	100	__glDlistPreallocBlocks	dynsym+mdebug	2af2dbcd594b		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9911c0	340	__glDlistAllocBlock	dynsym+mdebug	623eb1833cf8		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991314	92	__glDlistFreeBlock	dynsym+mdebug	4fa33f777bc2		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991314	92	__glDlistFreeBlock	dynsym+mdebug	4fa33f777bc2		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991370	604	__glDlistCompactBlocks	dynsym+mdebug	349ed6b5ab33		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9915cc	52	__glDlistIsBlock	dynsym+mdebug	fd15d476b713		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991600	88	__glDlistTransientBlock	dynsym+mdebug	4690e7fae4df		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -14849,7 +14849,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991940	172	__glDlistHea
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9919ec	100	__glDlistHeapPriorityChanged	dynsym+mdebug	8de35f42dc69		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991a50	180	__glDlistPrintHeap	dynsym+mdebug	df714257af8a		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlist	dynsym+mdebug	b9566c05ba4a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd991d38	196	__glFreeDlistState	dynsym+mdebug	e307da7a1fca		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
@@ -20369,9 +20369,9 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d550	200	__glkonim_
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d620	148	__glDlistBlockStateInit	dwarf+dynsym	4c993894e637		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d6c0	164	__glDlistBlockStateFree	dwarf+dynsym	d492062d6e1a		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd98d770	488	block_grow_region	dwarf+funcnames	07a93fbae7cf		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d960	104	__glDlistPreallocBlocks	dwarf+dynsym	8c8c629ec45e		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d960	104	__glDlistPreallocBlocks	dwarf+dynsym	8c8c629ec45e		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98d9d0	392	__glDlistAllocBlock	dwarf+dynsym	eb3c39541afb		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98db60	80	__glDlistFreeBlock	dwarf+dynsym	4fc2cb1c9fb5		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98db60	80	__glDlistFreeBlock	dwarf+dynsym	4fc2cb1c9fb5		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98dbb0	648	__glDlistCompactBlocks	dwarf+dynsym	a43bea099dbe		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98de40	60	__glDlistIsBlock	dwarf+dynsym	55d0fd8dcf65		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd98de80	76	__glDlistTransientBlock	dwarf+dynsym	786fe58d6061		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -25949,9 +25949,9 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0920	200	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df09f0	148	__glDlistBlockStateInit	dwarf+dynsym	81b7c3e0bf62		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0a90	164	__glDlistBlockStateFree	dwarf+dynsym	b307843b6718		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2df0b40	488	block_grow_region	dwarf	37d1850fd2d6		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0d30	104	__glDlistPreallocBlocks	dwarf+dynsym	e867ac9bbb64		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0d30	104	__glDlistPreallocBlocks	dwarf+dynsym	e867ac9bbb64		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0da0	400	__glDlistAllocBlock	dwarf+dynsym	637a283fdea4		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0f30	84	__glDlistFreeBlock	dwarf+dynsym	21847294d73f		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0f30	84	__glDlistFreeBlock	dwarf+dynsym	21847294d73f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df0f90	676	__glDlistCompactBlocks	dwarf+dynsym	6a80768af88d		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1240	68	__glDlistIsBlock	dwarf+dynsym	6d62f58064da		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2df1290	80	__glDlistTransientBlock	dwarf+dynsym	bd6b04dadf94		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -31532,9 +31532,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd990e24	120	__glkonim_Ge
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd990ea0	148	__glDlistBlockStateInit	dynsym+mdebug	0e4f32903219		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd990f34	172	__glDlistBlockStateFree	dynsym+mdebug	1fea312dec97		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd990fe0	2852	block_grow_region	mdebug	ee4cf0506355		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd99115c	100	__glDlistPreallocBlocks	dynsym+mdebug	2af2dbcd594b		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd99115c	100	__glDlistPreallocBlocks	dynsym+mdebug	2af2dbcd594b		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9911c0	340	__glDlistAllocBlock	dynsym+mdebug	623eb1833cf8		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991314	92	__glDlistFreeBlock	dynsym+mdebug	4fa33f777bc2		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991314	92	__glDlistFreeBlock	dynsym+mdebug	4fa33f777bc2		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991370	604	__glDlistCompactBlocks	dynsym+mdebug	349ed6b5ab33		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9915cc	52	__glDlistIsBlock	dynsym+mdebug	fd15d476b713		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991600	88	__glDlistTransientBlock	dynsym+mdebug	4690e7fae4df		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -31548,7 +31548,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991940	172	__glDlistHea
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9919ec	100	__glDlistHeapPriorityChanged	dynsym+mdebug	8de35f42dc69		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991a50	180	__glDlistPrintHeap	dynsym+mdebug	df714257af8a		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991b04	164	upheap	mdebug	87c3396ff2d7		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	located	docs/sample-implementation.md#dl_heapc	dl_heap.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd991ba8	1616	downheap	mdebug	b9d486dc00f8		in	understood	docs/sample-implementation.md#dl_heapc	dl_heap.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c70	44	__glShareDlist	dynsym+mdebug	b9566c05ba4a		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991c9c	156	__glInitDlistState	dynsym+mdebug	208f105392b7		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd991d38	196	__glFreeDlistState	dynsym+mdebug	e307da7a1fca		in	located	docs/sample-implementation.md#dl_initc	dl_init.c
@@ -37068,9 +37068,9 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d550	200	__glkonim_
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d620	148	__glDlistBlockStateInit	dwarf+dynsym	4c993894e637		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d6c0	164	__glDlistBlockStateFree	dwarf+dynsym	d492062d6e1a		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd98d770	488	block_grow_region	dwarf+funcnames	07a93fbae7cf		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d960	104	__glDlistPreallocBlocks	dwarf+dynsym	8c8c629ec45e		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d960	104	__glDlistPreallocBlocks	dwarf+dynsym	8c8c629ec45e		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98d9d0	392	__glDlistAllocBlock	dwarf+dynsym	eb3c39541afb		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98db60	80	__glDlistFreeBlock	dwarf+dynsym	4fc2cb1c9fb5		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98db60	80	__glDlistFreeBlock	dwarf+dynsym	4fc2cb1c9fb5		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98dbb0	648	__glDlistCompactBlocks	dwarf+dynsym	a43bea099dbe		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98de40	60	__glDlistIsBlock	dwarf+dynsym	55d0fd8dcf65		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd98de80	76	__glDlistTransientBlock	dwarf+dynsym	786fe58d6061		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -42648,9 +42648,9 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0920	200	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d09f0	148	__glDlistBlockStateInit	dwarf+dynsym	81b7c3e0bf62		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0a90	164	__glDlistBlockStateFree	dwarf+dynsym	b307843b6718		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21d0b40	488	block_grow_region	dwarf	37d1850fd2d6		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0d30	104	__glDlistPreallocBlocks	dwarf+dynsym	e867ac9bbb64		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0d30	104	__glDlistPreallocBlocks	dwarf+dynsym	e867ac9bbb64		in	named-only	docs/libglcore-driver-functions.md#display-list-memory-management	Display-list memory management
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0da0	400	__glDlistAllocBlock	dwarf+dynsym	637a283fdea4		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0f30	84	__glDlistFreeBlock	dwarf+dynsym	21847294d73f		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0f30	84	__glDlistFreeBlock	dwarf+dynsym	21847294d73f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d0f90	676	__glDlistCompactBlocks	dwarf+dynsym	6a80768af88d		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1240	68	__glDlistIsBlock	dwarf+dynsym	6d62f58064da		in	located	docs/sample-implementation.md#dl_blockc	dl_block.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21d1290	80	__glDlistTransientBlock	dwarf+dynsym	bd6b04dadf94		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
