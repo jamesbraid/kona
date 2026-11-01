@@ -6568,19 +6568,20 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   halfword at +226 of the screen record, down for one call and up for the other, with the order set by whether the word at +220
   equals 1. A non-zero result of the first call goes to screen hook +348; the second call's result is returned. Against
   `konal.so`: 1 of 221; immediates only; low halves: 1; first at +0x24.
-- `konStereoCopyArea` (konad.so, address 0x5114b0, 1220 bytes): **established.** Stereo CopyArea wrapper with nine arguments,
-  (source a0, destination a1, gc a2, source x a3, source y a4, width a5, height a6, destination x a7, destination y on the stack),
-  returning the region from the last call. With the GC's nfb private record P (gc +76 through `nfbGCPrivateIndex`) it keeps the word
-  P +8 and the operations vector gc +72. When the destination's type byte +0 is 1 (a pixmap) it calls entry +12 of the gc +72 vector
-  once with all nine arguments and returns that result, changing nothing else. Otherwise the eye offset is the halfword at the
-  screen record's +116 record +226 (screen at destination +16). It sets gc +72 to the word at P +92 and P +104 to 1, then makes two
-  passes, each preceded by a call to `konValidateWindowGC` (gc, 8192, destination) and each calling entry +12 of the new gc +72
-  vector. When the word at that record +220 is 1, the first pass sets P +8 from P +96 and subtracts the offset from the halfword P
-  +90 and from the destination y (the ninth argument when source equals destination, else the halfword +10 of the destination); the
-  second pass restores both, with P +8 from P +100. When the word is not 1, the first pass uses P +100 and adds the offset, and the
-  second restores both with P +96. The first pass's non-zero region is destroyed through the screen's +348 entry. Finally it
-  restores P +8, gc +72 and zeroes P +104, and returns the second pass's region. Against `konal.so`: 1 of 305; immediates only; low
-  halves: 1; first at +0x10; gp 0x8e790 and 0x8e7b0.
+- `konStereoCopyArea` (`konad.so` 0x5114b0, 1220 bytes):
+  **Established.** Stereo CopyArea wrapper with nine arguments, (source a0, destination a1, gc a2, source x a3, source y a4,
+  width a5, height a6, destination x a7, destination y on the stack), returning the region from the last call, read in full
+  from 0x5114b0 to its return at 0x51196c. With the GC's nfb private record P (gc +76 through `nfbGCPrivateIndex`) it keeps
+  the word P +8 and the operations vector gc +72. When the destination's type byte +0 is 1 (a pixmap) it calls entry +12 of
+  the gc +72 vector once with all nine arguments and returns that result, changing nothing else. Otherwise the eye offset is
+  the halfword at the screen record's +116 record +226 (screen at destination +16). It sets gc +72 to the word at P +92 and
+  P +104 to 1, then makes two passes, each preceded by a call to `konValidateWindowGC` (gc, 8192, destination) and each
+  calling entry +12 of the new gc +72 vector. When the word at that record +220 is 1, the first pass sets P +8 from P +96
+  and subtracts the offset from the halfword P +90 and from the destination y (the ninth argument when source equals
+  destination, else the halfword +10 of the destination); the second pass restores both, with P +8 from P +100. When the
+  word is not 1, the first pass uses P +100 and adds the offset, and the second restores both with P +96. The first pass's
+  non-zero region is destroyed through the screen's +348 entry. Finally it restores P +8, gc +72 and zeroes P +104, and
+  returns the second pass's region.
 - `kon_freeCachedStipple` (`konad.so` 0x511980, 572 bytes):
   **Established.** Releases one stipple cache slot and makes it the most recently freed, read in full from 0x511980 to the
   return at 0x511bb4. Its one argument is the slot, kept at sp+52. The slot's word +12 is the owning graphics context (GC);
@@ -6676,16 +6677,17 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
 - `cfb32FillRectSolidCopy` (konad.so, address 0x51d0f0, 764 bytes): **established.** Solid copy-mode rectangle fill for 32-bit
   pixels. The screen private record supplies the frame buffer base and stride (at +0x1c and +0x20) and the loop stores one word
   per pixel, with no edge masks needed. Against `konal.so`: 1 of 191; immediates only; low halves: 1; first at +0x24.
-- `konStereoSetSpans` (konad.so, address 0x51d480, 1204 bytes): **established.** Stereo SetSpans wrapper with seven arguments,
-  (drawable a0, gc a1, source data a2, points a3, widths a4, count a5, sorted flag a6), returning nothing. With the GC's nfb private
-  record P (gc +76 through `nfbGCPrivateIndex`) it keeps P +8 and gc +72, takes the eye offset from the halfword at +226 of the
-  record at the screen's +116 (screen at drawable +16), sets gc +72 to the word at P +92 and P +104 to 1. It then makes two passes,
-  each calling `konValidateWindowGC` (gc, 8192, drawable) and entry +4 of the new gc +72 vector with the seven arguments unchanged.
-  When the word at that record +220 is 1, the first pass sets P +8 from P +96 and lowers by the offset the y halfword (+2) of each
-  of the count 4-byte points in the caller's array, the drawable's halfword +10 and P's halfword +90; the second sets P +8 from P
-  +100 and raises the three back. When the word is not 1, the first pass uses P +100 and raises them and the second uses P +96 and
-  lowers them back. The array is therefore back to its input values on return. It finally restores P +8 and gc +72 and zeroes P
-  +104. Against `konal.so`: 1 of 301; immediates only; low halves: 1; first at +0x10; gp 0x827c0 and 0x827d0.
+- `konStereoSetSpans` (`konad.so` 0x51d480, 1204 bytes):
+  **Established.** Stereo SetSpans wrapper with seven arguments, (drawable a0, gc a1, source data a2, points a3, widths a4,
+  count a5, sorted flag a6), returning nothing, read in full from 0x51d480 to its return at 0x51d92c. With the GC's nfb
+  private record P (gc +76 through `nfbGCPrivateIndex`) it keeps P +8 and gc +72, takes the eye offset from the halfword at
+  +226 of the record at the screen's +116 (screen at drawable +16), sets gc +72 to the word at P +92 and P +104 to 1. It
+  then makes two passes, each calling `konValidateWindowGC` (gc, 8192, drawable) and entry +4 of the new gc +72 vector with
+  the seven arguments unchanged. When the word at that record +220 is 1, the first pass sets P +8 from P +96 and lowers by
+  the offset the y halfword (+2) of each of the count 4-byte points in the caller's array, the drawable's halfword +10 and
+  P's halfword +90; the second sets P +8 from P +100 and raises the three back. When the word is not 1, the first pass uses
+  P +100 and raises them and the second uses P +96 and lowers them back. The array is therefore back to its input values on
+  return. It finally restores P +8 and gc +72 and zeroes P +104.
 - `cfb16MatchCommon` (konad.so, address 0x51d940, 216 bytes): **established.** The 16-bit version of the table chooser; it returns
   0 unless every precondition holds: the halfword at GC +6 is 0, bits 30-31 and bits 24-25 of the word at GC +16 are 0, the byte at
   the second argument +0 is 3, the clip record at GC +44 exists with its halfword +22 minus halfword +32 at most 32 and its halfword
@@ -6959,17 +6961,18 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   halfword +90) or from P +96 (offset subtracted), with the order reversed when the word at the screen's +116 record +220 is 1.
   Afterwards P +8 and gc +72 are restored and P +104 is zeroed. Returns no value. Against `konal.so`: 1 of 113; immediates only; low
   halves: 1; first at +0x1c.
-- `konStereoFillPolygon` (konad.so, address 0x560600, 912 bytes): **established.** Stereo FillPolygon wrapper with six arguments,
-  (drawable a0, gc a1, shape a2, mode a3, count a4, points a5), returning nothing. With the GC's nfb private record P (gc +76
+- `konStereoFillPolygon` (`konad.so` 0x560600, 912 bytes):
+  **Established.** Stereo FillPolygon wrapper with six arguments, (drawable a0, gc a1, shape a2, mode a3, count a4, points
+  a5), returning nothing, read in full from 0x560600 to its return at 0x560988. With the GC's nfb private record P (gc +76
   through `nfbGCPrivateIndex`) it keeps P +8 and gc +72, takes the eye offset from the halfword at +226 of the record at the
-  screen's +116 (screen at drawable +16), sets gc +72 to the word at P +92 and P +104 to 1. It allocates count times 4 bytes with
-  `Xalloc` (the result is not checked) and copies the x and y halfwords of each point into it, unshifted. It then makes two passes,
-  each calling `konValidateWindowGC` (gc, 8192, drawable) and entry +40 of the new gc +72 vector with (drawable, gc, shape, mode,
-  count, points): the first pass with the copy, the second with the caller's array. The eye offset is applied to the drawable's
-  halfword +10 and to P's halfword +90, never to the points. When the word at that record +220 is 1, the first pass sets P +8 from P
-  +96 and lowers both, and the second sets P +8 from P +100 and raises them back. When the word is not 1, the first raises them with
-  P +100 and the second lowers them with P +96. It finally sets P +8 back, frees the copy with `Xfree`, restores gc +72 and zeroes P
-  +104. Against `konal.so`: 1 of 228; immediates only; low halves: 1; first at +0x10; gp 0x3f640 and 0x3f630.
+  screen's +116 (screen at drawable +16), sets gc +72 to the word at P +92 and P +104 to 1. It allocates count times 4 bytes
+  with `Xalloc` (the result is not checked) and copies the x and y halfwords of each point into it, unshifted. It then makes
+  two passes, each calling `konValidateWindowGC` (gc, 8192, drawable) and entry +40 of the new gc +72 vector with (drawable,
+  gc, shape, mode, count, points): the first pass with the copy, the second with the caller's array. The eye offset is
+  applied to the drawable's halfword +10 and to P's halfword +90, never to the points. When the word at that record +220 is
+  1, the first pass sets P +8 from P +96 and lowers both, and the second sets P +8 from P +100 and raises them back. When
+  the word is not 1, the first raises them with P +100 and the second lowers them with P +96. It finally sets P +8 back,
+  frees the copy with `Xfree`, restores gc +72 and zeroes P +104.
 - `cfb32FillRectSolidXor` (konad.so, address 0x560990, 1032 bytes): **established.** Xor solid fill for 32-bit pixels: takes
   (drawable a0, gc a1, box count a2, boxes a3) and returns nothing; each destination word becomes word ^ the GC private word +12.
   The base pointer (word +32) and stride (word +28 divided by four, in words) come from the drawable itself when its type byte is 1,
