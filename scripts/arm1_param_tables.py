@@ -194,7 +194,7 @@ for name in names:
     eng = ('mgeb_LiEnableLightS' if on else 'mgeb_LiDisableLightS') if light else \
         ('mgeb_EnableUserClipPlane' if on else 'mgeb_DisableUserClipPlane')
     if light:
-        effect = '%s light %d %s 0x87' % ('adds' if on else 'drops', num, 'to' if on else 'from')
+        effect = '%s one %s the count in 0x87 (the light is named only by its block, 0x%x)' % ('adds' if on else 'subtracts', 'to' if on else 'from', 0x2c7 + 0x23 * num)
         target = 'block word 0x%x %s' % (0x2c7 + 0x23 * num, 'gets count' if on else 'gets zero')
     else:
         effect = 'plane %d flag %s, recount' % (num, 'set' if on else 'cleared')

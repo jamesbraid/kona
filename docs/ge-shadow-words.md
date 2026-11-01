@@ -29,7 +29,7 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 | `KONA_PGTG_ENABLES` | 20 | 0x3fd3 | 0xf | at 0x04067c5c | at 0x0c0038f8 | internal routines only | Inferred from kpm raster record 0x10147f40: four one-bit switches, the texture generator (bit 0), scan conversion (1), the ZPU (2) and the draw-pixels path (3); all four are on after start-up. |
 | `KONA_PGTFPIMP_MSLOC` | 21 | 0x3be0 | 0xc8b640 | at 0x04067c60 | at 0x0c003810 | `HP_SAMPLEPATTERN` | Inferred from kpm raster record 0x10147ba0, which is shared by the pixel generator, the texture filter and the image processor: the sub-pixel positions of multisamples zero to three, a 3-bit x and y offset each in bits 0-23; the sample-pattern handler and the multisample start-up and context-load paths write it. |
 | `KONA_PGTFPIMP_MSLOC_1` | 22 | 0x3be1 | 0x916f6f | at 0x04067c64 | at 0x0c003828 | `HP_SAMPLEPATTERN` | Inferred: the sub-pixel positions of multisamples four to seven in the same layout as the first word, the second half of the `PGTFPIMP_MSLOC` fields; the pixel-generator start-up routine writes both words with descriptor 0x584fc800. |
-| `KONA_PG_GENERAL` | 23 | 0x0800 | 0x0 | at 0x04067c68 | none | none | Inferred from kpm raster record 0x10148920: two mode bits, flat shading (bit 0, where kpm calls 0 on and 1 off) and the direction mask source (bit 1, packet or register); init_pg writes 1 here, turning flat shading off. |
+| `KONA_PG_GENERAL` | 23 | 0x0800 | 0x0 | at 0x04067c68 | at 0x0c0037c0 | internal routines only | Inferred from kpm raster record 0x10148920: two mode bits, flat shading (bit 0, where kpm calls 0 on and 1 off) and the direction mask source (bit 1, packet or register); init_pg writes 1 here, turning flat shading off. |
 | `KONA_PG_PSPEC` | 24 | 0x080f | 0x100100 | at 0x04067c6c | at 0x0c0037d8 | internal routines only | Inferred from kpm raster record 0x10148a60: the point size, width in bits 0-11 and height in 12-23; start-up 0x100 in each. |
 | `KONA_PG_BLOAT` | 25 | 0x0804 | 0x0 | at 0x04067c70 | at 0x0c016714 | internal routines only | Inferred from kpm raster record 0x10148a90 (a whole-word value) and its one writer: `prim_init` stores zero to it with the same sequence that clears the depth-offset word, so it is the pixel generator's primitive-widening amount, reset at the start of each primitive. |
 | `KONA_PG_Z_OFF` | 26 | 0x0805 | 0x0 | at 0x04067c74 | at 0x0c01672c | internal routines only | Inferred from kpm raster record 0x10148aa0 (a whole-word value) and its one writer: `prim_init` stores zero to it when a primitive starts, and `arm_polygonoffset` is the host handler that feeds the polygon-offset engine routine, so the word is the depth offset the pixel generator adds to a primitive. |
@@ -42,7 +42,7 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 | `KONA_PG_STIPPLE_2` | 33 | 0x080c | 0x55 | at 0x04067c90 | none | none | Inferred: the second pattern byte `PAT1`, also 0x55 at start-up. |
 | `KONA_PG_STIPPLE_3` | 34 | 0x080d | 0xff | at 0x04067c94 | at 0x0c0273f8 | `HP_X_LOADSTIPPLE` | Inferred: the stipple repeat lengths, x modulus in bits 0-3 and y modulus in bits 4-7; start-up 0xff sets both to 15. |
 | `KONA_PG_PRU` | 35 | 0x0810 | 0x0 | at 0x04067c98 | at 0x0c01606c | internal routines only | Inferred from kpm raster record 0x10148e50: a single bit choosing the primitive rule unit's mode, none or line. |
-| `KONA_IMP_CONFIG` | 36 | 0x1c00 | 0x3c2 | at 0x04067c9c | none | none | Inferred from kpm raster record 0x10146fa0: the image processor's framebuffer configuration, with the pixel size (bits 0-1), the colour format (bits 2-5, ten-bit RGB, twelve-bit RGBA, luminance-alpha and colour-index layouts among them), per-channel write enables for red, green, blue and alpha (bits 6-9), a bit-mask enable (bit 10), the read format (bits 11-13) and a double eight-bit colour-index flag (bit 14); the start-up value makes pixels large, ten-bit RGB, with all four channels writable. |
+| `KONA_IMP_CONFIG` | 36 | 0x1c00 | 0x3c2 | at 0x04067c9c | at 0x0c003aec | 3 host tokens | Inferred from kpm raster record 0x10146fa0: the image processor's framebuffer configuration, with the pixel size (bits 0-1), the colour format (bits 2-5, ten-bit RGB, twelve-bit RGBA, luminance-alpha and colour-index layouts among them), per-channel write enables for red, green, blue and alpha (bits 6-9), a bit-mask enable (bit 10), the read format (bits 11-13) and a double eight-bit colour-index flag (bit 14); the start-up value makes pixels large, ten-bit RGB, with all four channels writable. |
 | `KONA_IMP_OP` | 37 | 0x1c02 | 0x1 | at 0x04067ca0 | at 0x0c003b08 | 3 host tokens | Inferred from kpm raster record 0x101471b0: the image processor's operation, with the draw buffer (bits 0-3), the address packet kind (clear, read, accumulate or copy), clear repeat and clear enables for tag, colour, depth, stencil and accumulation, the read-back format (14-17), the read base, and several mode enables; start-up selects draw buffer 1. |
 | `KONA_IMP_MS` | 38 | 0x1c03 | 0x17f8 | at 0x04067ca4 | at 0x0c003b20 | `HP_COLORMASK` | Inferred from kpm raster record 0x101473e0: multisample control, an enable bit, a choice of four or eight samples, whether the coverage mask is ANDed or replaced, an eight-bit mask (bits 3-10), a keep-two bit and an optimisation field; the start-up value sets the whole mask. |
 | `KONA_IMP_CLIP` | 39 | 0x1c06 | 0x0 | at 0x04067ca8 | at 0x0c003b3c | `HP_VALIDATE_CLIP` | Inferred from kpm raster record 0x101474c0: the window-id clip test, an enable bit with a 12-bit reference (bits 1-12) and mask (13-24); off at start-up. |
@@ -61,7 +61,7 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 | `KONA_TGTML_TEXLD_STEND` | 52 | 0x7fc4 | 0x0 | at 0x04067cdc | at 0x0c03675c | internal routines only | Inferred from kpm raster record 0x10148830: the s end (bits 0-15) and t end (16-31) of a texture load. |
 | `KONA_TML_TEXLD_GLOBALOFFSET` | 53 | 0x5001 | 0x0 | at 0x04067ce0 | at 0x0c03677c | internal routines only | Inferred from kpm raster record 0x10146500: the texture-memory address a load starts at, a 21-bit offset plus 3 high bits at bit 21. |
 | `KONA_TM_DRAW_GLOBALOFFSET` | 54 | 0x101a | 0x0 | at 0x04067ce4 | at 0x0c024200 | internal routines only | Inferred from kpm raster record 0x10146260: the texture-memory offset used while drawing, the same 21-plus-3-bit layout as the load offset. |
-| `KONA_TM_MEMCONF` | 55 | 0x1000 | 0x0 | at 0x04067ce8 | none | none | Inferred from kpm raster record 0x10145b10: the texture memory's geometry, the number of s and t address bits (4 bits each). |
+| `KONA_TM_MEMCONF` | 55 | 0x1000 | 0x0 | at 0x04067ce8 | at 0x0c025d30 | 3 host tokens | Inferred from kpm raster record 0x10145b10: the texture memory's geometry, the number of s and t address bits (4 bits each). |
 | `KONA_TGTM_TEX_SIZE` | 56 | 0x3fd5 | 0x0 | at 0x04067cec | at 0x0c026738 | internal routines only | Inferred from kpm raster record 0x101484c0: the bound texture's s, t and r sizes (4 bits each) and one address-control bit per axis (bits 12-14) that the texture generator and texture memory share. |
 | `KONA_TGTMTFT` | 57 | 0x3fd4 | 0x30 | at 0x04067cf0 | at 0x0c025ffc | `HP_BIND_DETAIL_TEXTURE` | Inferred from kpm raster record 0x10148010: the main texture mode, dimensionality (2D, 3D, 3D mipmap or bicubic), minify and magnify filters, shadow compare, clamp style, environment enable, texel format (7 bits at 14) and more; start-up 0x30 selects nearest-mipmap-linear minify and linear magnify, the GL defaults. |
 | `KONA_TG_MAP_LEVEL` | 58 | 0x0c04 | 0x0 | at 0x04067cf4 | at 0x0c025d64 | `HP_BIND_3D_MIPMAP_TEXTURE` | Inferred from kpm raster record 0x10145a90: the lowest and highest mipmap levels in use, 10 bits each. |
@@ -82,7 +82,7 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 | `KONA_TM_DRAW_REDUNDANCY` | 73 | 0x101f | 0x0 | at 0x04067d30 | at 0x0c026234 | `HP_SHADOW_TEXTURE` | Inferred from kpm raster record 0x10146380: a single redundancy bit in the texture memory chip. |
 | `KONA_TG_MISC` | 74 | 0x0c02 | 0x0 | at 0x04067d34 | at 0x0c026248 | `HP_SHADOW_TEXTURE` | Inferred from kpm raster record 0x10145a60: two texture-generator bits, priority (bit 0) and compression (bit 1). |
 | `KONA_TFP_AFUNC` | 75 | 0x1407 | 0x7000 | at 0x04067d38 | at 0x0c03b5c8 | `HP_ALPHAFUNC` (engine route) | Inferred from kpm raster record 0x10146900: the alpha test, a 12-bit reference, a 3-bit comparison and an enable (bit 15); start-up 0x7000 is compare-always with the test off. The first ARM write stores zero from the masked-clear routine; no ARM handler loads this address word, because the alpha-function handler sends its operands to an engine handler that writes the word through the shadow with mask 0x7fff (`mgesi_AlphaFunc`, ge_compute.md). |
-| `KONA_TFP_TEX` | 76 | 0x1500 | 0x0 | at 0x04067d3c | none | none | Inferred from kpm raster record 0x101465a0: the one-bit texturing enable of the texture filter. |
+| `KONA_TFP_TEX` | 76 | 0x1500 | 0x0 | at 0x04067d3c | at 0x0c026680 | internal routines only | Inferred from kpm raster record 0x101465a0: the one-bit texturing enable of the texture filter. |
 | `KONA_TFP_TEV` | 77 | 0x1401 | 0x22 | at 0x04067d40 | none | none | Inferred from kpm raster record 0x10146640: the texture environment, separate 4-bit alpha and colour functions (replace fragment, replace texture, modulate, blend, decal, add, add minus a half); start-up 0x22 sets both to modulate. |
 | `KONA_TFP_TEV_CC` | 78 | 0x1402 | 0x0 | at 0x04067d44 | none | none | Inferred from kpm raster record 0x10146750: the texture environment colour's green (bits 0-11) and red (12-23). |
 | `KONA_TFP_TEV_CC1` | 79 | 0x1413 | 0x0 | at 0x04067d48 | none | none | Inferred from kpm raster record 0x10146780: the environment colour's alpha (bits 0-11) and blue (12-23). |
@@ -102,21 +102,21 @@ The inverse of the last-but-one column, for tokens whose handler loads the addre
 
 | Host token | Shadow words written |
 |---|---|
-| `HP_ACCUM` | `IMP_OP` |
+| `HP_ACCUM` | `IMP_CONFIG`, `IMP_OP` |
 | `HP_BIND_2D_CLIPMAP_TEXTURE` | `TGTM_DCTEX_SIZE`, `TM_DRAW_CLIP_OFFSET`, `TM_DRAW_CLIP_BKPT`, `TGTM_TEX_SCENTER`, `TGTM_TEX_TCENTER` |
-| `HP_BIND_3D_MIPMAP_TEXTURE` | `TG_MAP_LEVEL`, `TG_LOD_SCALEST`, `TG_LOD_SCALER`, `TM_TEX_SIZE` |
-| `HP_BIND_3D_TEXTURE` | `TM_TEX_SIZE` |
-| `HP_BIND_BICUBIC_TEXTURE` | `TM_TEX_SIZE` |
+| `HP_BIND_3D_MIPMAP_TEXTURE` | `TM_MEMCONF`, `TG_MAP_LEVEL`, `TG_LOD_SCALEST`, `TG_LOD_SCALER`, `TM_TEX_SIZE` |
+| `HP_BIND_3D_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` |
+| `HP_BIND_BICUBIC_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` |
 | `HP_BIND_DETAIL_TEXTURE` | `TGTMTFT`, `TGTM_DCTEX_SIZE`, `TM_DRAW_DETAILMAP` |
 | `HP_BIND_TEXTURE` | `TM_DRAW_DETAILMAP` |
 | `HP_BLENDCOLOR` | `TFP_AMASK` |
 | `HP_BLENDEQUATION` | `IMP_BL` |
 | `HP_BLENDFUNC` | `IMP_BL` |
-| `HP_BUFFER_CONFIG` | `IMP_SZ0`, `IMP_SZ1`, `IMP_ADDR`, `IMP_WMASK_BIT`, `TFP_FOG`, `TFP_PIX_FMT`, `TFP_COLOR_FMT`, `TFP_AMASK` |
+| `HP_BUFFER_CONFIG` | `IMP_CONFIG`, `IMP_SZ0`, `IMP_SZ1`, `IMP_ADDR`, `IMP_WMASK_BIT`, `TFP_FOG`, `TFP_PIX_FMT`, `TFP_COLOR_FMT`, `TFP_AMASK` |
 | `HP_CLEAR` | `IMP_OP`, `IMP_SZ0`, `IMP_WMASK_BIT`, `IMP_WMASK_BIT_1`, `TFP_AMASK` |
 | `HP_CLEARDEPTH` | `IMP_DEPTH_CLEAR` |
 | `HP_CLEARSTENCIL` | `IMP_DEPTH_CLEAR` |
-| `HP_COLORMASK` | `IMP_MS`, `IMP_BL`, `TFP_AMASK` |
+| `HP_COLORMASK` | `IMP_CONFIG`, `IMP_MS`, `IMP_BL`, `TFP_AMASK` |
 | `HP_COLORTABLE` | `TFT_TLUT` |
 | `HP_COPYCONVOLUTIONFILTER1D` | `PGTG_DRECT` |
 | `HP_COPYCONVOLUTIONFILTER2D` | `PGTG_DRECT` |
