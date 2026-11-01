@@ -299,15 +299,12 @@ The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.t
 | `DoDGRqstOutputGain` | 0x0c0071a4 | **Established** (`arm1.u` +0x71a4). Sets the output gain of a video DAC channel (payload word 0, ids 0-7 or 0xde; word 1 the gain 0-255). Stores the gain in the channel record and writes 255 minus the gain to the gain DAC through the gain-DAC writer; channel 1, when its record marks encoder drive, instead stores it in the encoder gain word and writes display-bus register 0x1708. |
 | `DoDGRqstGetOutputGain` | 0x0c007270 | **Established** (`arm1.u` +0x7270). Replies (type 0xa) with one word, the gain last set for the channel in payload word 0: the stored value in its channel record, or for channel 1 with the encoder-drive flag set the shared encoder gain word. Reads no display hardware. |
 | `dgResolveVDacGain` | 0x0c0072d8 | **Established** (`arm1.u` +0x72d8). Recomputes the gain-select field, bits 4-3, of video-DAC control register 8 from the sync and pedestal switches held in registers 6 and 8: gain code 2 when no switch is set, 1 when exactly one of the two groups is set, 0 when both are. Argument 0 is the channel (0xde maps to 0xdc); ids outside 0-7 are ignored. |
-| `DoDGRqstSyncSelects` | 0x0c007394 | **Established** (`arm1.u` +0x7394). Sets one sync-output option of a video DAC channel: payload word 0 is the channel, word 1 picks one of five options (control register 8 bit 1, register 6 bit 2, register 8 bit 2, the gain-DAC sync bit, or the sync-source bits of display-bus register 0x8400), word 2 the on/off value, word 3 control register 8 bit 0. Option-board ids use registers 0x3400/0xcd00 instead; it ends by recomputing the DAC gain select. |
 | `DoDGRqstGetSyncSelects` | 0x0c007808 | **Established** (`arm1.u` +0x7808). Replies (type 0xb) with six words giving the sync options of the channel in payload word 0: control register 8 bit 1, register 6 bit 2, register 8 bit 2, register 8 bit 0, the record's stored gain-DAC sync bit, and a sync-source code read from register 0x8400 or the option-board register. Unsupported ids return minus one in four of them. |
 | `DoDGRqstOutputPedestal` | 0x0c0079ec | **Established** (`arm1.u` +0x79ec). Sets the output pedestal (payload word 1, low bit) of the channel in payload word 0: channel 1 additionally goes through the encoder pedestal routine; ids 0-7 set bit 3 of video-DAC control register 6 from the value, then the gain select is recomputed. |
 | `DoDGRqstGetOutputPedestal` | 0x0c007a54 | **Established** (`arm1.u` +0x7a54). Replies (type 0xc) with one word: bit 3 of control register 6 of the video DAC for the channel in payload word 0 (ids 0-7), or minus one for any other id. |
-| `DoDGRqstLoadDacCursor` | 0x0c007aa8 | **Established** (`arm1.u` +0x7aa8). Loads a video DAC's hardware cursor (263 payload words: channel, six colour words, 256 image words): selects the DAC's indexed register 0x0303 and writes six colour bytes to the data port, then selects index 0x0400 and streams 1024 image bytes, four from each image word, low byte first. Only ids 0-7 and 0xde are accepted. **Inferred:** index 0x0303 is the cursor colours and 0x0400 the cursor RAM, from the byte counts and the 64 by 64 two-bit size of the image. |
 | `DoDGRqstDiagXmapColor` | 0x0c007ef0 | **Established** (`arm1.u` +0x7ef0). Diagnostic request 3 (ten payload words): packs the colour in the payload, in a layout chosen by word 7, into two words written to XMAP registers 0x106 and 0x107 for every XMAP chip whose bit is set in the mask in word 9 (the chip number goes to 0x108 first), switches on the substitute colour in XMAP register 0x105 and forces an XMAP copy-buffer update. |
 | `DoDGRqstDisableDiagXmapColor` | 0x0c008120 | **Established** (`arm1.u` +0x8120). Diagnostic request 4: writes 0 to XMAP register 0x105, turning the substitute colour off, then forces an XMAP copy-buffer update. It reads no payload. |
 | `DoDGRqstVCBusTrace` | 0x0c00816c | **Established** (`arm1.u` +0x816c). Diagnostic request 5: prints the message that the firmware must be compiled with bus tracing enabled and returns, so in this build the request does nothing to the hardware and ignores its four payload words. |
-| `DoDGRqstDiagCursorFromImage` | 0x0c0081a0 | **Established** (`arm1.u` +0x81a0). Diagnostic request 6 (4107 payload words): writes payload word 0 to XMAP register 0x118, then converts a 64 by 64 image of two-bit pixels, one pixel per word, taken from the bottom row up, into four packed words per row (two bit planes of 64 pixels) written to XMAP data port 0x119, then writes colour words packed from ten-bit fields near the payload end to port 0x119 and a closing 0-3 value sequence to ports 0x11f and 0x11e. |
 | `dgEncoderControlWrite` | 0x0c00852c | **Established** (`arm1.u` +0x852c). Writes one register of the video encoder chip: argument 0 is the register number, sent to the encoder index port at display-bus address 0x1800, argument 1 the value written to the control data port at 0x1802, with delay loops between the accesses. |
 | `dgEncoderControlRead` | 0x0c0085bc | **Established** (`arm1.u` +0x85bc). Reads one register of the video encoder chip: sends the register number (argument 0) to the encoder index port at display-bus address 0x1800, waits, and returns the value read from the control data port at 0x1802. |
 | `dgEncoderClutWrite` | 0x0c008614 | **Established** (`arm1.u` +0x8614). Writes one byte of the video encoder's colour map: argument 0 is the index sent to the encoder's map index port at display-bus address 0x1801, argument 1 the value written to the map data port at 0x1803. No caller in the image uses it. |
@@ -317,10 +314,8 @@ The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.t
 | `DoDGRqstGetEncoderOutputGain` | 0x0c0087e8 | **Established** (`arm1.u` +0x87e8). Replies (type 0xe) with one word, the encoder output gain last stored by the encoder gain request; reads no display hardware. |
 | `DoDGRqstSCHPhase` | 0x0c008814 | **Established** (`arm1.u` +0x8814). Sets the encoder's subcarrier-to-sync phase: writes the low and high bytes of payload word 0 to encoder registers 0x24-0x25, then the low and high bytes of that value plus 0x2000 to registers 0x26-0x27. |
 | `DoDGRqstGetSCHPhase` | 0x0c008870 | **Established** (`arm1.u` +0x8870). Replies (type 0xf) with one word, the encoder's phase value rebuilt from the bytes read back from encoder registers 0x24 (low) and 0x25 (high). |
-| `DoDGRqstLoadEncoder` | 0x0c0088b4 | **Established** (`arm1.u` +0x88b4). Programs the video encoder from scratch: clears control register 0 twice, sets it again from the master-clock-select word, then writes registers 0xe/0xf/1/2 (bit 2 from payload word 0), clears registers 3-4, loads one of two fixed tables into registers 0x10-0x23 chosen by the master-clock-select word, and clears registers 0x26-0x27 (0x27 gets 0x20 for the second table). **Inferred:** the two tables are the two video standards, since the choice follows the master clock select. |
 | `DoDGRqstEncoderTestPattern` | 0x0c008c00 | **Established** (`arm1.u` +0x8c00). Controls the encoder test pattern: reads encoder register 1, clears bit 5 and sets bit 4, then payload 1 clears bit 4 and payload 2 sets bit 5 (other values leave bit 4 set and bit 5 clear), and writes the result back to register 1. |
 | `DoDGRqstEnableEncoder` | 0x0c008c44 | **Established** (`arm1.u` +0x8c44). Enables or disables the video encoder: writes encoder control register 0 twice with bit 0 and bit 4 both taken from bit 0 of payload word 0 and bit 3 set when the master-clock-select word is zero. |
-| `DoDGRqstFetal` | 0x0c008cb0 | **Established** (`arm1.u` +0x8cb0). Builds the display board's default state from scratch (the payload is ignored): clears the blank-depth counter, writes 0xff to display-bus register 0x1711, sets the raster-board count to zero, fills display-bus words 0-0x3f with 0x20 and 0x40-0x5f with 0, zeroes three 4096-word XMAP banks, then runs the XMAP, channel, VOC, video-DAC, gain-DAC and encoder default builders for each VOC the board reports present, the option-board builders by board type, and a board-generation-specific final register write. |
 | `dgFetal` | 0x0c009628 | **Established** (`arm1.u` +0x9628). Thin wrapper that pushes a zero word as a payload and calls the default-state request; the request ignores its payload. Called by the start-up code unless the firmware runs in the simulator, and again by the stored-combination loader when the flash image fails to load, just before it loads the emergency format. It calls `DoDGRqstFetal` at 0x0c009640; `init` calls it at 0x0c0041a4 only when the simulator flag is zero. |
 | `DoDGRqstXServerVideoInit` | 0x0c009648 | **Established** (`arm1.u` +0x9648). Dispatch-table request 83: when the board option word is 6 it pulses display-bus register 0xc000 to 1 then 0 with sleeps between, then walks the 17 option VOC entries, rebuilding default VOC state for each present option VOC (printing warnings for unexpected or missing ones), and finishes by tail-calling the late-channel auto-initialisation. |
 | `dgMakeXmapFetal` | 0x0c0097d4 | **Established** (`arm1.u` +0x97d4). Writes the XMAP defaults: zero to seven of the registers 0x100-0x109, then 2 to 0x10c, a board-dependent pair of values (0xa5 with 6, or 0x64 with 3) to 0x10d-0x10e, 0x339 to 0x10f and zero to 0x110, then forces an XMAP copy-buffer update so the values take effect. |
@@ -334,14 +329,11 @@ The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.t
 | `dgMakeDplexFetal` | 0x0c00a5b4 | **Established** (`arm1.u` +0xa5b4). Selects the DPLEX option board: sets the two mode bits 12-11 of the saved copy of display-bus register 0x8400 to 2 and writes it, writes 0 to 0x8001, writes 1 to 0xe300 and to 0xe500, then resets the option VOC id 0xde and video DAC id 0xdc to their defaults. A table of sequencer signal names follows it in the image. |
 | `dgLoadFieldSequentialAndStereo` | 0x0c00a7ac | **Established** (`arm1.u` +0xa7ac). Builds the per-field colour and eye selects of a loaded format: for each field (count in payload word 20) combines the field's colour word and eye code from the format payload into a field word, writes it to the channel's VOC register 0x60 plus the field number, and keeps a copy in the channel record; an eye code above 3 prints an error. |
 | `dgEnableRequester` | 0x0c00a930 | **Established** (`arm1.u` +0xa930). Starts or stops a channel's video requester: argument 0 is the channel and argument 1 the enable bit, written to bit 0 of VOC register 0x44 (read, modify, write with delays), and mirrored into bit 27 of the channel record's flag word. |
-| `DoDGRqstLoadFormat` | 0x0c00a9b0 | **Established** (`arm1.u` +0xa9b0). Loads a video format (383 payload words) into a channel: disables the channel, copies the summary words into the channel record, loads both clock parameter sets and starts the VOC clock, writes the state table, edge and line-type registers of the sequencer, sets pixel mux, blanking, FIFO and vertical-phase registers, loads partner VOCs of option boards by recursion, sets the DAC pixel mux for ids 0-7, then the field selects and the XMAP channel format. Does not enable the channel. |
 | `dgSyncWithMasterVoc` | 0x0c00b9a0 | **Established** (`arm1.u` +0xb9a0). Waits for a frame boundary on the master VOC: reads its status at display-bus 0x300 until bit 7 goes high, then until it goes low, each wait bounded at one million ticks of the free-running counter at 0x2000b0. Returns the ticks elapsed since entry. |
-| `DoDGRqstEnableChannel` | 0x0c00ba20 | **Established** (`arm1.u` +0xba20). Turns a channel on (payload: channel, turn-on flag, set-up flag). A set-up flag pauses the channel, sets VOC register 0x01 bits 1-0 to 1, computes a FIFO threshold from the record's width into register 0x8a (also on option-board copies), starts the requester and resumes it. A turn-on flag clears VOC 0x01 bits 1-0 on the write VOC, syncs to the master VOC, sets bit 0 of register 0x06 and marks the record enabled. |
 | `DoDGRqstGetChannelEnables` | 0x0c00bf50 | **Established** (`arm1.u` +0xbf50). Replies (type 0x13) with two words from the channel record's flag word: the requester-enabled bit 27 and the channel-enabled bit 28 for the channel in payload word 0. Reads no display hardware. |
 | `DoDGRqstDisableChannel` | 0x0c00bfb4 | **Established** (`arm1.u` +0xbfb4). Turns a channel off: clears bits 1-0 of VOC register 0x01 and bit 0 of register 0x06 on the channel's write VOC, clears the enabled bit 28 in the record flag word (and in the partner option-board channel's record), and stops the requester. |
 | `DoDGRqstGetChannelFormatInfo` | 0x0c00c10c | **Established** (`arm1.u` +0xc10c). Replies (type 0x17) with five words about the channel's loaded format, all from its record and none from the hardware: the saved pixel-format word at offset 0xac, flag bits 30 and 26, a constant minus one, and the saved vertical-phase word at offset 0x164. |
 | `dgWriteDgoTMC22071a` | 0x0c00c1a4 | **Established** (`arm1.u` +0xc1a4). Shifts a 47-bit configuration image out to the digital-video-output board's encoder chip: bits 46 down to 1 of the image (argument 0, an array of words) go one at a time to display-bus register 0xc400, each followed by a sleep of 50 ticks, then bit 0 of word 0 goes to 0xc401 as a final strobe. **Inferred:** a bit-serial load, from the one-bit writes and sleeps. |
-| `DoDGRqstDataFormat` | 0x0c00c280 | **Established** (`arm1.u` +0xc280). Sets the data format of an output channel (payload: channel, format code, flag): stores the format and the flag in the channel record, then by channel id programs the option board. Ids 0x5e-0x60 write the same 0x8400 mode value as the TVO default builder and send a serial-bus byte for device 0xee chosen from the format; the digital video output ids load registers 0xc006/0xc104, the range 0xc200-0xc216 and the encoder bit image; the remaining option ids set mode bit 12 of 0x8400, and 0xde also writes three more registers. |
 | `DoDGRqstGetDataFormat` | 0x0c00ca44 | **Established** (`arm1.u` +0xca44). Replies (type 0x1e) with two words about the channel in payload word 0: the data-format code kept at offset 0xb0 of its record, and 1 when bit 20 of the record's flag word is clear, else 0. Reads no display hardware. |
 | `dgConfigureHDGVO` | 0x0c00caa4 | **Established** (`arm1.u` +0xcaa4). Programs the HDGVO option board for one video format over the two-wire serial bus at display-bus address 0xa000. It sends nine short transactions to slave address 0xee, each a start, three or four fixed bytes, the format words (through the format-info sender) or a value that depends on whether the record's total-lines field is one of the two standard-definition line counts, and a stop. Three fixed values compared with the field at record offset 0x4c select further bytes. Takes the format record as its only argument and is called once from the format loader. |
 | `dgSendHDGVOFormatInfo` | 0x0c00cea4 | **Established** (`arm1.u` +0xcea4). Sends a format's timing words to the HDGVO option board, each as two serial-bus bytes (high then low) at display-bus address 0xa000: the words at record offsets 0x54-0x60, then the word at offset 0x4bc (plus one when the total-lines field is the 525-line standard). It then branches on that total-lines value for four video standards and appends a fixed tail of register numbers and bytes, including the word at offset 0x4c0. Called twice by the HDGVO configurator with the format record as its argument; writes only to the bus. |
@@ -393,7 +385,6 @@ The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.t
 | `DoDGRqstGetInputSync` | 0x0c0114f4 | **Established** (`arm1.u` +0x114f4). Display request 10: replies (type 2, 4 bytes) with bits 21-20 of display-bus register 0x8b, the input-sync source last written. Reads the register on the display board. |
 | `DoDGRqstBoardResetRatio` | 0x0c011528 | **Established** (`arm1.u` +0x11528). Display request 72: sets bit 22 of display-bus register 0x8b to bit 0 of payload word 0, by read-modify-write with a short delay loop. Returns nothing and sends no reply. |
 | `DoDGRqstGetBoardResetRatio` | 0x0c01158c | **Established** (`arm1.u` +0x1158c). Display request 73: replies (type 0x16, 4 bytes) with bit 22 of display-bus register 0x8b, the reset-ratio bit last written. Reads the register on the display board. |
-| `DoDGRqstHPhase` | 0x0c0115c0 | **Established** (`arm1.u` +0x115c0 to the return at +0x1191c, all 0xd8 instructions, literal pool after). Display request 11. Inputs: the channel and a horizontal phase h in hundredths of a pixel (payload word 1), with the channel record's line length L (+0x94) and pixels per clock group P (+0x98). It computes s = (100L - h) mod 100L, the coarse count c = s / 100 / P, the second count (c + 3) mod (L / P) and the fine result 255 x (100P - r) / 100P, with r = s - 100Pc. The three encoder channels from 0xc6 instead get the coarse counts zero and three; when such a channel is not the record's master it also gets a delay written to bus address 0x633000: (858 for a 525-line frame, otherwise 864) x (record +0x168 + 4) + h / 100. h is saved to record +0x16c. Channel 0x5e with record flag +0x180 = 1 is sent a VBOB command (0xa3, mode 2 up to 625 lines and 1 above, then +0x168 and h / 100 as byte pairs) and the VOC is left alone. Every other channel gets the coarse counts in VOC register 0x0c and the register after it, with bits 8-4 of register 0x06 set to 9, and channels 0-7 the fine result through `dgGDacChannelWrite`. |
 | `DoDGRqstGetHPhase` | 0x0c011928 | **Established** (`arm1.u` +0x11928). Display request 12: replies (type 3, 4 bytes) with the horizontal phase last stored for the channel, the word at record offset 0x16c. Reads only firmware state. |
 | `dgAdjustVPhase` | 0x0c011964 | **Established** (`arm1.u` +0x11964 to the return at +0x11b40, every instruction). Enumeration callback for one video-output chip. Inputs: the chip's channel and a pointer to the requested vertical phase v. For the three encoder channels from 0xc6 it subtracts 1 from v in a 625-line frame and, unless the channel is the record's master, writes the delay (858 for a 525-line frame, otherwise 864) x (v + 4) + record +0x16c to bus address 0x633000. Channel 0x5e with record flag +0x180 = 1 is sent a VBOB command instead (0xa3, mode 2 up to 600 lines and 1 above, v and record +0x16c / 100 as byte pairs) and the function returns. Otherwise it takes the value of VOC register 0x08 (read at +0x1197c; for an encoder channel that was sent the delay, the delay word, which overwrote the same register) and, when its bits 25-13 already hold all ones, leaves the chip alone; else it computes v + the channel offset (record +0x164), brought into 0 up to the line count (record +0x90) by one add or subtract, and writes that result into bits 25-13. |
 | `DoDGRqstVPhase` | 0x0c011b44 | **Established** (`arm1.u` +0x11b44). Display request 13: decodes payload word 0 as a signed vertical phase (sign bit 20, magnitude bits 19-0) with the channel number plus one in bits 31-22. For -1 it stores the value in the shared slot at offset 0x36cc of the state and applies it to every present chip; for channel 1 it stores it in that slot and applies it there; otherwise it stores it at the channel's record offset 0x168. It applies it through the vertical-phase adjuster. |
@@ -435,6 +426,163 @@ The display-generator requests (`arm_video_cmd`, [dg_dispatch.tsv](dg_dispatch.t
 | `nGreyDecode` | 0x04041afc | **Established** (`arm1.u` 6.5.30m). Lookup table of 37 words. The first 32 decode a Gray-style hardware code: the first 16 words are the same lookup as the one in the scratch block named trash, and the next 16 give 16 plus the complement of the low four bits of the first half. The VOC clock, genlock and format-load routines index it with a code word from the board block and compare the result against a small threshold. The last 5 words are very small single-precision constants (the largest is 0.00024); the late-state initialiser picks one by two state-block bytes (offsets 0x1d2-0x1d3) and writes it to engine memory address 0xa46. |
 | `DGGlobalState` | 0x04069654 | **Established** (`arm1.u` 6.5.30m). The display generator's 0x37e0-byte state record (channels, formats, genlock and option-board state), cleared by `DoDGRqstAutoInit` and read and written by nearly every display-request handler. |
 | `sdram_scratch` | 0x0406ce34 | **Established** (`arm1.u` 6.5.30m). A 128 KB scratch buffer used for flash PROM contents: `eeprom_read` and the write routine move data through it, and the display auto-initialisation checks the stored video combination in it. |
+
+### Long display requests, read in full
+
+The nine display requests whose handlers run to hundreds of instructions. Each entry below was written from the whole handler body in [arm1.s](arm1.s), branch by branch; ARM addresses 0x600000 onward are the display bus, and bus word n is ARM address 0x600000 + 4n. The other handlers are in the table above.
+
+- `DoDGRqstSyncSelects` (at 0x0c007394): **Established** (`arm1.u` +0x7394 to +0x7804, the five-way jump table and the
+  option-board branch read). Display request 35 (payload: channel, option, value, bit; no reply). For channels 0-7 and
+  0xde (rewritten to 0xdc in the payload), option 0 sets bit 1 of video-DAC control register 8 when the value is 1 and
+  clears it otherwise; option 1 does the same to bit 2 of register 6, option 2 to bit 2 of register 8; option 3 writes
+  value == 1 to bit 29 of record +0x184 and the opposite, 0 for a value of 1 and 1 otherwise, to gain-DAC slot 2
+  through `dgGDacChannelWrite`; option 4 acts only for channel 1 and a nonzero board word at 0x04067edc, setting bits
+  14-13 of the mode word at `DGGlobalState`+8 to 3, 2 or 1 for a value of 0, 3 or 4 (any other value returns), writing
+  it to 0x621000 (bus word 0x8400) and saving it. After options 0-3, and option 4 when it acted, the routine sets bit
+  0 of register 8 to payload word 3 bit 0 and tail-calls `dgResolveVDacGain`; an option above 4 returns at once.
+  Channels 0x2e-0x31, 0xc9, 0xca and 0xd9 handle only two options, on the option word at 0x633400 when the board word
+  is nonzero and 0x60d000 otherwise, and skip the register 8 step: option 3 writes value == 1 to record +0x184 bit 29
+  and sets bit 6 of the option word when the value is not 1; option 4 sets bits 5-3 to value - 5 for values 5-12 and
+  otherwise writes the word back unchanged. Other channels return.
+- `DoDGRqstLoadDacCursor` (at 0x0c007aa8): **Established** (`arm1.u` +0x7aa8 to +0x7ee8, the six colour writes and the
+  256-word byte loop read). Display request 56 (263 payload words: channel, six colour words, 256 image words; no
+  reply). It returns at once unless the channel is 0-7 or 0xde. With the channel's window at ARM address 0x602c00 +
+  (channel << 10) as the select port and 0x602c08 + (channel << 10) as the data port, it writes 3 and 3 to the select
+  port, payload words 1-6 whole to the data port, then 0 and 4 to the select port, and then, for each of payload words
+  7-262, its four bytes low byte first to the data port: 1024 byte writes. Every write sits between delay loops.
+  **Inferred:** select 0x0303 is the cursor colour registers and 0x0400 the cursor RAM, from the counts and the 64 by
+  64 two-bit image size.
+- `DoDGRqstDiagCursorFromImage` (at 0x0c0081a0): **Established** (`arm1.u` +0x81a0 to +0x8528, every instruction read,
+  the 64-pass row loop and the colour loop included). Display request 6 (4107 payload words, no reply). After a
+  three-pass stack delay loop it writes payload word 0 to ARM address 0x600460 (display-bus word 0x118). It then reads
+  a 64 by 64 image kept one two-bit pixel per word in payload words 1-4096, last stored row first (pass n reads row 63
+  - n). Each half row of 32 pixels becomes two words, one gathering bit 1 of every pixel and one gathering bit 0, the
+  first pixel in bit 31. A row goes out as four words to 0x600464 (bus word 0x119) in the order bit 1 of pixels 0-31,
+  bit 1 of pixels 32-63, bit 0 of pixels 0-31, bit 0 of pixels 32-63, with two delay loops between writes. Next it
+  forms three words (a << 20) | (b << 10) | c, with no masking of a, b or c, from payload words 0x100a-0x100c,
+  0x1007-0x1009 and 0x1004-0x1006, sends them to 0x119 in that order and then sends a fourth word from a stack slot
+  the routine never writes. The first group reads two words past the 4107-word payload. It ends by writing 0, 1 and 2
+  to 0x60047c (bus word 0x11f) and 3 to 0x600478 (bus word 0x11e), each between delay loops.
+- `DoDGRqstLoadEncoder` (at 0x0c0088b4): **Established** (`arm1.u` +0x88b4 to the tail calls at +0x8aec and +0x8bfc,
+  both 19-register tables read value by value). Display request 46 (1 payload word, no reply). Every register goes
+  through `dgEncoderControlWrite` (register, then value). With M the master-clock-select word (0x0406c654 + 0x6c4):
+  register 0 gets 0, then 0 again, then 0x19 when M is zero and 0x11 otherwise; register 0xe gets 0x81; register 0xf
+  gets 0xea when M is zero and 0x90 otherwise; register 1 gets 8; register 2 gets bit 0 of payload word 0 shifted to
+  bit 2; registers 3 and 4 get 0. Registers 0x10-0x1e and 0x20-0x23 (0x1f is skipped) then take one of two tables: for
+  M zero 0x45, 0x0d, 0x21, 0x21, 0x16d, 0x303, 0x12b, 0x1b7, 0x75, 0x19, 0x23, 0xb5, 0x93, 0x45, 0x61, 0x19, 0x18,
+  0xf3, 0x4c; for M nonzero 0x3a, 0x07, 0x1f, 0x0f, 0x123, 0x28b, 0x105, 0x177, 0x65, 0x12, 0x1c, 0x6a, 0x4d, 0x3a,
+  0x52, 0xc7, 0xaa, 0xaa, 0x4a. Register 0x26 then gets 0 and register 0x27 gets 0 (M zero) or 0x20 (M nonzero).
+  **Inferred:** the two tables are the two video standards, since the choice follows the master clock select.
+- `DoDGRqstFetal` (at 0x0c008cb0): **Established** (`arm1.u` +0x8cb0 to +0x9624, the VOC loop, the 17-entry option
+  loop and the closing board-type switch read word by word; strings and literal words sit inside the body). Display
+  request 17 (1 payload word, ignored, no reply). With G the display state `DGGlobalState` (0x04069654) and B the
+  board-type block at 0x04067edc, it clears G+0x36d0, writes 0xff to 0x605c44 (bus word 0x1711), sets G+0x36c0 to 2
+  and G+0x36cc to 0, clears bit 27 of G+0x36c8, calls `dgSetNumRMs` with 0 and clears bit 29 of the same word. It
+  writes 0x20 to bus words 0-0x3f and 0 to bus words 0x40-0x5f, and for n = 0, 1, 2 writes n << 12 to bus word 0x118
+  and then 0 to bus word 0x11b 4096 times, each access between delay loops, then calls `dgMakeXmapFetal`. It points
+  all 254 channel record slots (G+0x3294 + 4 x id, ids 0-0xfd) at the default record G+0xc. The expected VOC mask is 3
+  when B+0x14 is 2 and 0xff when it is 8; any other value prints "illegal jtag channel count" with the word at B+0x44
+  (not B+0x14) and gives 0. For VOCs 0-7 it calls `dgIsVocPresent`: a missing expected VOC prints "voc %d not
+  detected" and is removed from the mask; a present VOC not expected prints "voc %d is present" and joins the mask;
+  each present VOC gets the next 392-byte record from G+0x194, `dgMakeChannelFetal` with the VOC and a running count,
+  bit 26 of record +0x184 cleared, and `dgMakeVocFetal`, `dgMakeVDacFetal` and `dgMakeGDacFetal`. The mask goes to G+4
+  and `dgMakeEncoderFetal` runs. For the 17 entries of `OptVocAddress` (16 bytes: id, board mask, board type, flags) a
+  channel is expected when bit B+0 of the mask is set and the type equals B+0x18. A present channel is skipped when
+  B+0x18 is 6 and its id is not 0xc6, 0xc7 or 0xe6. A missing channel is skipped unless expected; an expected missing
+  one with flags bit 30 set then follows the same B+0x18 rule, and one with bit 30 clear is skipped for id 0x30 when
+  B+0 is zero and otherwise prints "Option voc %d not detected". Each kept channel gets a record,
+  `dgMakeChannelFetal`, bit 26 of record +0x184 from flags bit 31 and, only when present, `dgMakeVocFetal`; an
+  unexpected present one also prints "Option voc %d is present". More than 32 records prints "fatal dg channel state
+  overflow" and carries on. B+0x18 equal to 6, 4 or 3 then runs `dgMakeGvoFetal`, `dgMakeDplexFetal` or
+  `dgMakeTvoFetal`. A code k comes from B+0x18: with B+0 zero, 1 for types 1 and 2, 0 for 7, and 0 with the "unknown
+  jtag dg4 option" message otherwise; with B+0 nonzero, 2 for types 3 and 6, 1 for 4, 0 for 7, 1 for 5 after clearing
+  bit 2 of 0x633400 (bus word 0xcd00), and 0 with "unknown jtag dg5 option" otherwise. k goes to bits 4-0 of bus word
+  0x90, then bus word 0x80 has bit 0 cleared and bit 1 set. With B+0 zero it writes 1 to bus word 0x1920; otherwise
+  0x5800 to bus word 0x8400 (copied to G+8) and 1 to bus word 0x8001. It ends by writing 0xffffffff and then 0 to bus
+  word 0. **Inferred** from the callee names: the builders write each block's default state.
+- `DoDGRqstLoadFormat` (at 0x0c00a9b0): **Established** (`arm1.u` +0xa9b0 to +0xb994, all 1008 listing lines read, the
+  partner recursion included; p[n] below is payload word n). Display request 22 (383 payload words, no reply). It
+  calls `DoDGRqstDisableChannel` with p[0], then fills the channel record: +0xac = p[0x1a], bit 30 of +0x184 = p[0x1b]
+  bit 0, +0x48 = p[0x12], +0xb4 = p[0x12d], +0xb8 = p[0x12e], +0xa4 = p[0x14], +0x160 = 0; for i below p[0x14] the
+  pair +0xe0 + 16i and +0xe4 + 16i get p[0x13f + i] and p[0x14f + i], and +0xa8 receives the number of distinct values
+  among the p[0x13f + i] (the bits set in a mask of 1 << value); +8 to +0x44 take p[2]-p[0x11]. It calls
+  `dgLoadVocClockParams` with p[0x117] (set 0) and with p[0x11f] (set 1) and `dgStartVocClock` with the channel and
+  two zeros. VOC register 0x07 receives p[0x20], with bits 18-17 set when the board word at 0x04067edc is zero and the
+  `nGreyDecode` entry for board word +0x48 is below 1; the first such load prints "rev %d DG4 disables H & V sync
+  outputs" and sets the flag at 0x040416c0. Register 0x06 bit 3 is set and cleared again. Register 0x09 takes p[0x21]
+  onward, (p[0x1f] + 1) / 2 + 1 words. For i = 0-31 it sets bits 8-4 of register 0x06 to i and writes p[0xa1 + i] to
+  register 0x0a and p[0xc1 + i] to register 0x0b. With bits 8-4 back at 0 it writes p[0xe1]-p[0x112], 50 words, to
+  registers 0x0c onward, stepping bits 8-4 to the next group and restarting at 0x0c whenever a group of
+  `EdgeDescArray` is full (14 groups of 4, 4, 8, 6, 6, 2, 2, 2, 6, 2, 2, 2, 2 and 2 words). After the edge words,
+  partner channels load by recursion with p[0] rewritten and restored: 0x1e loads 0x1f, 0x2e loads 0x2f and then 0x30
+  when its slot is not the default record, 0x5e loads 0x5f, 0xc6 loads 0xc7 and 0xc9 loads 0xca. Record +0x88 and bit
+  26 of +0x184: for channel 1, and 0xc6 or 0xc7, when p[0x113] is nonzero, bit 26 is set, register 0x07 is rewritten
+  with bits 18-17 set, and +0x88 becomes 0x400 with bit 9 from p[0x114], bits 13-12 from p[0x115] and bit 14 from
+  p[0x116]; for 0x1e and 0x1f, bit 26 is set and +0x88 keeps its bit 9, adds 0x400, takes bits 13-12 = 3 when
+  `isvoc1b` on 0x04068608 returns 0 and 1 otherwise, and bit 14 from p[0x116]; every other case clears bit 26 and
+  +0x88. Register 0x8a then gets bit 12 = p[0x116] bit 0 (0 on the cleared path) and bit 13 set when that word is
+  zero. Register 0x14 gets p[0x1d] in bits 7-0, p[0x1e] in bits 15-8 and, only when bit 26 is clear, p[0x1c] bit 0 in
+  bit 16. p[0x19] outside 0-9 is rewritten to 4 in the payload; the word table at 0x040416c4 (5, 2, 1, -1, 0, -1, -1,
+  -1, 3, -1) indexed by it gives bits 11-9 of register 0x01, with 2 turned into 1 when bit 26 is set. Channels 0-7 and
+  0xde call `dgSetDacPixelMux` with the channel and p[0x19], with 2 for a zero p[0x19]; channels 0x2e-0x30, 0xc9 and
+  0xca set bits 1-0 of the option word (0x633400 when the board word is nonzero, otherwise 0x60d000) to 0 for p[0x19]
+  = 1, 1 for 2 and 2 otherwise; channels 0x5e-0x60 rewrite 0x618c00 with bits 5-0 = 0x20 for p[0x19] = 1, 0x0c for 2
+  and 0x1f otherwise, and bit 6 cleared. Channel 0x5e with p[0x113] nonzero sets its record +0x180 to 1 and calls
+  `dgConfigureHDGVO`. Every channel then runs `dgLoadFieldSequentialAndStereo` on the payload and
+  `dgResolveXMapChannelFormat` on the channel, sets bits 21-14 of register 0x82 to p[0x128] and bits 11-2 of register
+  0x81 to p[0x127], stores p[0x13], p[0x15], p[0x16], p[0x19] and p[0x12a] at record +0x8c, +0x90, +0x94, +0x98 and
+  +0x164, and writes register 0x08 as p[0x129] in bits 12-0, p[0x12a] in bits 25-13, p[0x12b] in bits 28-26 and
+  p[0x12c] bit 0 in bit 29. VOC register n is ARM address 0x600800 + (channel << 10) + 4n, and every write sits
+  between delay loops. It does not enable the channel.
+- `DoDGRqstEnableChannel` (at 0x0c00ba20): **Established** (`arm1.u` +0xba20 to +0xbf4c, both the set-up half and the
+  turn-on half read). Display request 23 (payload: channel, turn-on flag, set-up flag; no reply). VOC register n below
+  is ARM address 0x600800 + (channel << 10) + 4n, and each write sits between delay loops. A nonzero set-up flag: when
+  bit 0 of register 0x06 is set it writes 0 to register 0x02 and sets bits 1-0 of register 0x01 to 1; then, always, it
+  reads register 0x01 and discards the value, takes the record's width w (+0x58) and writes 1023 - (512 mod ((w + 3) /
+  4)), or 0x370 when w is at most 1024, cut to 12 bits and with bit 13 set, to register 0x8a. Channels 0x1e, 0x2e,
+  0x5e, 0xc6 and 0xc9 also write that value with bit 14 set to register 0x8a of the next id (0x1f, 0x2f, 0x5f, 0xc7,
+  0xca), and 0x2e to 0x30's as well. It calls `dgEnableRequester` with the channel and 1 and, when bit 0 of register
+  0x06 was set, writes 1 to register 0x02. A nonzero turn-on flag: it reads register 0x01 of the channel, clears bits
+  1-0 and writes it to the VOC `dgGetWriteVoc` names, calls `dgSyncWithMasterVoc` for every channel but 1, writes
+  register 0x06 of the channel with bit 0 set to the same write VOC, and sets bit 28 of record +0x184, also in the
+  partner records of 0x1e (0x1f), 0x2e (0x2f and 0x30), 0x5e (0x5f), 0xc6 (0xc7) and 0xc9 (0xca). Both flags run both
+  parts, set-up first.
+- `DoDGRqstDataFormat` (at 0x0c00c280): **Established** (`arm1.u` +0xc280 to the returns at +0xc940, +0xc980 and
+  +0xca3c, the four channel-group branches and the coefficient loop read). Display request 88 (payload: channel,
+  format code, flag; no reply). It stores the format at record +0xb0 and sets bit 20 of record +0x184 when the flag is
+  zero, clearing it otherwise. Channels 0x5e-0x60 set bits 12-11 of the mode word at `DGGlobalState`+8 to 1, save it
+  and write it to 0x621000 (bus word 0x8400), then send the serial-bus sequence start (device 0xee), 3, 1, 0x99, one
+  byte chosen by format (3 gives 7, 4 gives 3, 5 gives 4, 6 gives 1, 7 gives 2, 8 gives 5, 9 gives 6; any other format
+  sends none) and stop, all on bus 0xa000. Channels 0xc9, 0xca and 0xd9 set bits 12-11 of the mode word to 2 and write
+  it. Channel 0xde does the same, then writes 0 to bus word 0x8001, sets bit 0 of bus word 0xe300 and writes 1 to bus
+  word 0xe500. Channels 0xc6, 0xc7 and 0xe6, with b the record's +0x184 bit 26: register 0xc006 gets bit 4 = not b,
+  bit 7 = b, bit 2 and bit 10 set and bits 0, 1, 3, 5, 8 and 9 cleared; after a sleep of 50 the mode word gets bits
+  12-11 = 1 and is written; a two-word image on the stack, partly built from uninitialised stack words, is set (word
+  0: bit 0, bit 1 for a nonzero flag or bit 3 for a zero one, bits 24-17 = 0x7b, bit 30, bits 7-9, 12-16 and 25-26 and
+  31 clear; word 1: bit 2, bit 12, bits 11-8 = 3, bits 1 and 14 clear) and passed to `dgWriteDgoTMC22071a`; register
+  0xc104 gets bits 4-0 = b << 1, bit 6 = flag is zero and bits 5 and 7 cleared; register 0xc214 gets 0x31 for formats
+  2 and 3 and 0x10 otherwise, 0xc215 gets 0xa7 for format 3 and 0xa3 otherwise, 0xc216 gets 0; and registers
+  0xc200-0xc213 get the ten 13-bit values of one table as pairs, value << 3 in bits 7-3 and value >> 5 in bits 7-0,
+  the table at 0x0c00d1b0 for formats 0-2 and the one at 0x0c00d1d8 otherwise, each write followed by a sleep of 50.
+  Other channels only store the format and flag. **Inferred:** the first table (515, 100, 262, -297, 448, -151, -376,
+  -73, 448, 877) is an RGB to luma and colour-difference matrix scaled by 1024, each value within two of the published
+  601 coefficients times 1024 taken in green, blue, red order, and the second (877 on the diagonal of the first nine,
+  0 elsewhere) scales each component by about 219/256, the studio-range factor; the tenth value, 877 in both, has no
+  reading.
+- `DoDGRqstHPhase` (at 0x0c0115c0): **Established** (`arm1.u` +0x115c0 to +0x1191c, all five signed divides and both
+  channel branches read; one literal word at +0x11810 sits inside the body). Display request 11 (2 payload words, no
+  reply). Inputs: the channel (payload word 0) and a horizontal phase h in hundredths of a pixel (payload word 1),
+  with the channel record's line length L (+0x94) and pixels per clock group P (+0x98). With the library's signed
+  divide it computes s = (100L - h) mod 100L, the coarse count c = s / 100 / P, the second count (c + 3) mod (L / P)
+  and the fine value 255 x (100P - r) / 100P with r = s - 100Pc. Channels 0xc6, 0xc7 and 0xe6 instead take the counts
+  0 and 3; when such a channel is not the one named at record +0x4c, it also writes (858 when record +0x90 is 525,
+  otherwise 864) x (record +0x168 + 4) + h / 100 to ARM address 0x633000 between two delay loops. h is then saved at
+  record +0x16c. Channel 0x5e with record +0x180 equal to 1 calls the divide-by-zero check with 100 and sends
+  `DoDGRqstVBOBCommand` a seven-word packet on the stack, 5, 0xa3, then 2 when record +0x90 is at most 625 and 1
+  above, the high and low bytes of record +0x168 and the high and low bytes of h / 100, and returns without touching
+  the VOC. Every other channel, the three above included, sets bits 8-4 of VOC register 0x06 to 9 and writes c to
+  register 0x0c and the second count to register 0x0d, with delay loops between; channels 0-7 then get the fine value
+  through `dgGDacChannelWrite` (slot 1).
 
 ## State shadow: initialisation, push and pop
 
