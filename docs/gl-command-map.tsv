@@ -1,12 +1,12 @@
 entry	entry_address	global_slot	table_index	sender	sender_address	token	token_name	grade	first_store	words	note
-glNewList	0xda77c80	0x1050	0	__glim_NewList	0xd98e690			located			stores no command word; calls None, __glMipsCopyDispatch, __glSetError
-glEndList	0xda77c8c	0x1054	1	__glim_EndList	0xd98e870			located			stores no command word; calls None, __glMipsCopyDispatch, __glNamesNewData
+glNewList	0xda77c80	0x1050	0	__glim_NewList	0xd98e690			located			stores no command word; calls __glMipsCopyDispatch, __glSetError, indirect call
+glEndList	0xda77c8c	0x1054	1	__glim_EndList	0xd98e870			located			stores no command word; calls __glMipsCopyDispatch, __glNamesNewData, __glSetError
 glCallList	0xda77c98	0x1058	2	__glim_CallList	0xd98ed00			located			stores no command word; calls DoCallList, __glSetError
 glCallLists	0xda77ca4	0x105c	3	__glim_CallLists	0xd98f0f0			located			stores no command word; calls DoCallLists, __glSetError
 glDeleteLists	0xda77cb0	0x1060	4	__glim_DeleteLists	0xd990d60			located			stores no command word; calls __glNamesDeleteRange, __glSetError
 glGenLists	0xda77cbc	0x1064	5	__glim_GenLists	0xd990c50			located			stores no command word; calls __glNamesGenRange, __glSetError
 glListBase	0xda77cc8	0x1068	6	__glim_ListBase	0xd990d00			located			stores no command word; calls __glSetError
-glBegin	0xda77cd4	0x106c	7	__glkonim_Begin	0xd94dbb0			inferred		0xd94dbc4:a0+87 (0x57 plus the mode); 0xd94dbc8:0x0; 0xd94dbd4:0xe4; 0xd94dbe0:0x500	first word is KONA_HP_BEGIN_POINTS (0x057) plus the mode in a0; the error path stores 0xe4 and 0x500 through the same sender
+glBegin	0xda77cd4	0x106c	7	__glkonim_Begin	0xd94dbb0			inferred		0xd94dbc4:a0+87 (0x57 plus the mode); 0xd94dbc8:0x0; 0xd94dbd4:0xe4; 0xd94dbe0:0x500	first word is KONA_HP_BEGIN_POINTS (0x057) plus the mode in a0, for modes 0 to 9 (sltiu against 10 at 0xd94dbb0); other modes branch to the error path at 0xd94dbd4, which stores 0xe4 and 0x500
 glBitmap	0xda77ce0	0x1070	8	__glkonim_Bitmap	0xd953eb0			inferred	0x5	0xd954014:0x5; 0xd95401c:?; 0xd954020:a1; 0xd954030:f14; 0xd954044:f15; 0xd954050:?; 0xd954060:?; 0xd954068:?; 0xd954070:?; 0xd954080:0x6; 0xd954084:0x0; 0xd954088:0x0; 0xd95408c:0x0; 0xd954090:0x0; 0xd954094:0x0; 0xd954098:f14; 0xd95409c:f15; 0xd9540b8:f16; 0xd9540bc:f17; 0xd9540e8:0x6; 0xd9540ec:a0; 0xd9540f0:a1; 0xd954118:?; 0xd95411c:?; 0xd954120:?; 0xd954124:f14; 0xd95412c:f15; 0xd954138:f16; 0xd954144:f17	path-dependent: a branch or call comes before a command-port store
 glColor3b	0xda77cec	0x15d8	354	__glkonim_Color3b	0xda65180	0x061	HP_COLOR3B	established		0xda65198:(a0<<24)|((a1&0xff)<<16)|0x61; 0xda651a0:a2<<24	read whole; the first word is (a0 << 24) | ((a1 & 0xff) << 16) | 0x61 and the second is a2 << 24
 glColor3bv	0xda77cf8	0x15dc	355	__glkonim_Color3bv	0xda651b0	0x061	HP_COLOR3B	established	((([a0]:1 << 0x18) | ([a0+1]:1 << 0x10)) | 0x61)	0xda651d0:((([a0]:1 << 0x18) | ([a0+1]:1 << 0x10)) | 0x61); 0xda651d8:([a0+2]:1 << 0x18)	
@@ -85,14 +85,14 @@ glRasterPos4i	0xda78164	0x1778	458	__glkonim_RasterPos4i	0xda65860	0x0b2	HP_RAST
 glRasterPos4iv	0xda78170	0x177c	459	__glkonim_RasterPos4iv	0xda796c4	0x0b2	HP_RASTERPOS4I	established	0xb2	0xda796c8:0xb2; 0xda796cc:?; 0xda796d8:?	token read whole; a payload word is not evaluated by the fact sheet
 glRasterPos4s	0xda78184	0x1780	460	__glkonim_RasterPos4s	0xda65880	0x0b3	HP_RASTERPOS4S	established	0xb3	0xda65884:0xb3; 0xda65888:a0; 0xda6588c:a1; 0xda65890:a2; 0xda65898:a3	
 glRasterPos4sv	0xda78190	0x1784	461	__glkonim_RasterPos4sv	0xda796dc	0x0b3	HP_RASTERPOS4S	established	0xb3	0xda796e8:0xb3; 0xda796f0:?; 0xda79700:((t0 << 0x20) | [a0+6]:2)	token read whole; a payload word is not evaluated by the fact sheet
-glRectd	0xda781a4	0x1788	462	__glkonim_Rectd	0xd983720			inferred	0x3	0xd983724:0x3; 0xd98372c:0x16; 0xd9837b0:0x71; 0xd9837b4:0x0	path-dependent: a branch or call comes before a command-port store
-glRectdv	0xda781b0	0x178c	463	__glkonim_Rectdv	0xd9837d0			inferred	0x3	0xd9837dc:0x3; 0xd9837e8:0x16; 0xd98384c:0x71; 0xd983850:0x0	path-dependent: a branch or call comes before a command-port store
-glRectf	0xda781bc	0x1790	464	__glkonim_Rectf	0xd983870			inferred	0x3	0xd983874:0x3; 0xd98387c:0xe; 0xd983900:0x71; 0xd983904:0x0	path-dependent: a branch or call comes before a command-port store
-glRectfv	0xda781c8	0x1794	465	__glkonim_Rectfv	0xd983920			inferred	0x3	0xd98392c:0x3; 0xd983938:0xe; 0xd98399c:0x71; 0xd9839a0:0x0	path-dependent: a branch or call comes before a command-port store
-glRecti	0xda781d4	0x1798	466	__glkonim_Recti	0xd9839c0			inferred	0x3	0xd9839c4:0x3; 0xd9839cc:0xe; 0xd983a50:0x71; 0xd983a54:0x0	path-dependent: a branch or call comes before a command-port store
-glRectiv	0xda781e0	0x179c	467	__glkonim_Rectiv	0xd983a70			inferred	0x3	0xd983a74:0x3; 0xd983a7c:0xe; 0xd983aec:0x71; 0xd983af0:0x0	path-dependent: a branch or call comes before a command-port store
-glRects	0xda781ec	0x17a0	468	__glkonim_Rects	0xd983b10			inferred	0x3	0xd983b14:0x3; 0xd983b1c:0xa; 0xd983ba0:0x71; 0xd983ba4:0x0	path-dependent: a branch or call comes before a command-port store
-glRectsv	0xda781f8	0x17a4	469	__glkonim_Rectsv	0xd983bc0			inferred	0x3	0xd983bc4:0x3; 0xd983bcc:0xa; 0xd983c3c:0x71; 0xd983c40:0x0	path-dependent: a branch or call comes before a command-port store
+glRectd	0xda781a4	0x1788	462	__glkonim_Rectd	0xd983720			inferred	0x3	0xd983724:0x3; 0xd98372c:0x16; 0xd9837b0:0x71; 0xd9837b4:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (22), not a command; the four vertex calls between it and the END send their own words
+glRectdv	0xda781b0	0x178c	463	__glkonim_Rectdv	0xd9837d0			inferred	0x3	0xd9837dc:0x3; 0xd9837e8:0x16; 0xd98384c:0x71; 0xd983850:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (22), not a command; the four vertex calls between it and the END send their own words
+glRectf	0xda781bc	0x1790	464	__glkonim_Rectf	0xd983870			inferred	0x3	0xd983874:0x3; 0xd98387c:0xe; 0xd983900:0x71; 0xd983904:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (14), not a command; the four vertex calls between it and the END send their own words
+glRectfv	0xda781c8	0x1794	465	__glkonim_Rectfv	0xd983920			inferred	0x3	0xd98392c:0x3; 0xd983938:0xe; 0xd98399c:0x71; 0xd9839a0:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (14), not a command; the four vertex calls between it and the END send their own words
+glRecti	0xda781d4	0x1798	466	__glkonim_Recti	0xd9839c0			inferred	0x3	0xd9839c4:0x3; 0xd9839cc:0xe; 0xd983a50:0x71; 0xd983a54:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (14), not a command; the four vertex calls between it and the END send their own words
+glRectiv	0xda781e0	0x179c	467	__glkonim_Rectiv	0xd983a70			inferred	0x3	0xd983a74:0x3; 0xd983a7c:0xe; 0xd983aec:0x71; 0xd983af0:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (14), not a command; the four vertex calls between it and the END send their own words
+glRects	0xda781ec	0x17a0	468	__glkonim_Rects	0xd983b10			inferred	0x3	0xd983b14:0x3; 0xd983b1c:0xa; 0xd983ba0:0x71; 0xd983ba4:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (10), not a command; the four vertex calls between it and the END send their own words
+glRectsv	0xda781f8	0x17a4	469	__glkonim_Rectsv	0xd983bc0			inferred	0x3	0xd983bc4:0x3; 0xd983bcc:0xa; 0xd983c3c:0x71; 0xd983c40:0x0	path-dependent: a branch or call comes before a command-port store; the second word is the vertex format (10), not a command; the four vertex calls between it and the END send their own words
 glTexCoord1d	0xda78204	0x16a8	406	__glkonim_TexCoord1d	0xda658a0	0x07b	HP_TEXCOORD1D	established	0x7b	0xda658a4:0x7b; 0xda658ac:f12	
 glTexCoord1dv	0xda78210	0x16ac	407	__glkonim_TexCoord1dv	0xda79704	0x07b	HP_TEXCOORD1D	established	0x7b	0xda79708:0x7b; 0xda79710:?	token read whole; a payload word is not evaluated by the fact sheet
 glTexCoord1f	0xda78220	0x16b0	408	__glkonim_TexCoord1f	0xda658b0	0x07c	HP_TEXCOORD1F	established	0x7c	0xda658b4:0x7c; 0xda658bc:f12	
@@ -194,7 +194,7 @@ glTexGenfv	0xda78760	0x1124	53	__glkonim_TexGenfv	0xd94f110			inferred	0x14	0xd9
 glTexGeni	0xda7876c	0x1128	54	__glkonim_TexGeni	0xda66610	0x014	HP_TEXGENF	established	0x14	0xda66614:0x14; 0xda66618:a0; 0xda6661c:a1; 0xda66620:a2; 0xda66624:0x0; 0xda66628:0x0; 0xda6662c:0x0; 0xda66630:0x0; 0xda66634:0x0; 0xda6663c:0x0	
 glTexGeniv	0xda78778	0x112c	55	__glkonim_TexGeniv	0xd94f1f0			inferred	0x14	0xd94f1f4:0x14; 0xd94f200:a0; 0xd94f20c:a1; 0xd94f240:[a2]; 0xd94f244:0x0; 0xd94f248:0x0; 0xd94f24c:0x0; 0xd94f250:0x0; 0xd94f254:0x0; 0xd94f25c:0x0; 0xd94f290:?; 0xd94f294:?; 0xd94f298:?; 0xd94f29c:?; 0xd94f2a0:0x0; 0xd94f2a4:0x0; 0xd94f2ac:0x0; 0xd94f2f8:?; 0xd94f300:?; 0xd94f308:?; 0xd94f310:?; 0xd94f314:?; 0xd94f318:?; 0xd94f320:?	path-dependent: a branch or call comes before a command-port store
 glFeedbackBuffer	0xda78784	0x1130	56	__glkonim_FeedbackBuffer	0xd95cf30			inferred	0x17	0xd95cf98:0x17; 0xd95cf9c:a1	path-dependent: a branch or call comes before a command-port store
-glSelectBuffer	0xda78790	0x1134	57	__glkonim_SelectBuffer	0xd95ce20			located			stores no command word; calls None, __glSetError
+glSelectBuffer	0xda78790	0x1134	57	__glkonim_SelectBuffer	0xd95ce20			located			stores no command word; calls __glSetError, indirect call
 glRenderMode	0xda7879c	0x1138	58	__glkonim_RenderMode	0xd95d460			inferred	0x19	0xd95d4cc:0x19; 0xd95d4d4:a0	path-dependent: a branch or call comes before a command-port store
 glInitNames	0xda787a8	0x113c	59	__glkonim_InitNames	0xda66640	0x10c	HP_INITNAMES	established	0x10c	0xda66644:0x10c; 0xda6664c:0x0	
 glLoadName	0xda787b4	0x1140	60	__glkonim_LoadName	0xda66650	0x10d	HP_LOADNAME	established	0x10d	0xda66654:0x10d; 0xda6665c:a0	
@@ -227,18 +227,18 @@ glMapGrid1d	0xda788ec	0x11a8	86	__glkonim_MapGrid1d	0xd97f8e0			inferred	0x28	0x
 glMapGrid1f	0xda788f8	0x11ac	87	__glkonim_MapGrid1f	0xd97f9b0			inferred	0x28	0xd97fa04:0x28; 0xd97fa08:a0; 0xd97fa0c:f13; 0xd97fa10:f14; 0xd97fa14:?; 0xd97fa40:0xe4; 0xd97fa48:0x501	path-dependent: a branch or call comes before a command-port store
 glMapGrid2d	0xda78904	0x11b0	88	__glkonim_MapGrid2d	0xd97fa70			inferred	0x29	0xd97fb04:0x29; 0xd97fb08:a0; 0xd97fb0c:?; 0xd97fb10:?; 0xd97fb14:?; 0xd97fb18:a3; 0xd97fb1c:?; 0xd97fb20:?; 0xd97fb24:?; 0xd97fb60:0xe4; 0xd97fb68:0x501	path-dependent: a branch or call comes before a command-port store
 glMapGrid2f	0xda78910	0x11b4	89	__glkonim_MapGrid2f	0xd97fb90			inferred	0x29	0xd97fc14:0x29; 0xd97fc18:a0; 0xd97fc1c:f13; 0xd97fc20:f14; 0xd97fc24:?; 0xd97fc28:a3; 0xd97fc2c:f16; 0xd97fc30:f17; 0xd97fc34:?; 0xd97fc70:0xe4; 0xd97fc78:0x501	path-dependent: a branch or call comes before a command-port store
-glEvalCoord1d	0xda7891c	0x11b8	90	__glkonim_EvalCoord1d	0xd97f640			located			stores no command word; calls None
-glEvalCoord1dv	0xda78928	0x11bc	91	__glkonim_EvalCoord1dv	0xd97f690			located			stores no command word; calls None
-glEvalCoord1f	0xda78934	0x11c0	92	__glkonim_EvalCoord1f	0xd97f6e0			located			stores no command word; calls None
-glEvalCoord1fv	0xda78940	0x11c4	93	__glkonim_EvalCoord1fv	0xd97f730			located			stores no command word; calls None
-glEvalCoord2d	0xda7894c	0x11c8	94	__glkonim_EvalCoord2d	0xd97f780			located			stores no command word; calls None
-glEvalCoord2dv	0xda78958	0x11cc	95	__glkonim_EvalCoord2dv	0xd97f7e0			located			stores no command word; calls None
-glEvalCoord2f	0xda78964	0x11d0	96	__glkonim_EvalCoord2f	0xd97f840			located			stores no command word; calls None
-glEvalCoord2fv	0xda78970	0x11d4	97	__glkonim_EvalCoord2fv	0xd97f890			located			stores no command word; calls None
-glEvalMesh1	0xda7897c	0x11d8	98	__glkonim_EvalMesh1	0xd97fca0			located			stores no command word; calls None, __glSetError
-glEvalPoint1	0xda78988	0x11dc	99	__glkonim_EvalPoint1	0xd97fd40			located			stores no command word; calls None
-glEvalMesh2	0xda78994	0x11e0	100	__glkonim_EvalMesh2	0xd97fdb0			located			stores no command word; calls None, __glSetError
-glEvalPoint2	0xda789a0	0x11e4	101	__glkonim_EvalPoint2	0xd97fe50			located			stores no command word; calls None
+glEvalCoord1d	0xda7891c	0x11b8	90	__glkonim_EvalCoord1d	0xd97f640			located			stores no command word; calls indirect call
+glEvalCoord1dv	0xda78928	0x11bc	91	__glkonim_EvalCoord1dv	0xd97f690			located			stores no command word; calls indirect call
+glEvalCoord1f	0xda78934	0x11c0	92	__glkonim_EvalCoord1f	0xd97f6e0			located			stores no command word; calls indirect call
+glEvalCoord1fv	0xda78940	0x11c4	93	__glkonim_EvalCoord1fv	0xd97f730			located			stores no command word; calls indirect call
+glEvalCoord2d	0xda7894c	0x11c8	94	__glkonim_EvalCoord2d	0xd97f780			located			stores no command word; calls indirect call
+glEvalCoord2dv	0xda78958	0x11cc	95	__glkonim_EvalCoord2dv	0xd97f7e0			located			stores no command word; calls indirect call
+glEvalCoord2f	0xda78964	0x11d0	96	__glkonim_EvalCoord2f	0xd97f840			located			stores no command word; calls indirect call
+glEvalCoord2fv	0xda78970	0x11d4	97	__glkonim_EvalCoord2fv	0xd97f890			located			stores no command word; calls indirect call
+glEvalMesh1	0xda7897c	0x11d8	98	__glkonim_EvalMesh1	0xd97fca0			located			stores no command word; calls __glSetError, indirect call
+glEvalPoint1	0xda78988	0x11dc	99	__glkonim_EvalPoint1	0xd97fd40			located			stores no command word; calls indirect call
+glEvalMesh2	0xda78994	0x11e0	100	__glkonim_EvalMesh2	0xd97fdb0			located			stores no command word; calls __glSetError, indirect call
+glEvalPoint2	0xda789a0	0x11e4	101	__glkonim_EvalPoint2	0xd97fe50			located			stores no command word; calls indirect call
 glAlphaFunc	0xda789ac	0x11e8	102	__glkonim_AlphaFunc	0xd94dc90			inferred	0xca	0xd94dcb4:0xca; 0xd94dcb8:a0; 0xd94dcc0:?; 0xd94dccc:0xca; 0xd94dcd0:a0; 0xd94dcdc:?	path-dependent: a branch or call comes before a command-port store
 glBlendFunc	0xda789b8	0x11ec	103	__glkonim_BlendFunc	0xda66730			inferred	0xcb	0xda667d4:0xcb; 0xda667d8:a0; 0xda667e0:a1; 0xda667e8:0xe4; 0xda667f4:0x500; 0xda667f8:0xe4; 0xda66800:0x500	path-dependent: a branch or call comes before a command-port store
 glLogicOp	0xda789c4	0x11f0	104	__glkonim_LogicOp	0xda66810			inferred	0x2e	0xda6682c:0x2e; 0xda66834:a0; 0xda66838:0xe4; 0xda66844:0x500	path-dependent: a branch or call comes before a command-port store
@@ -257,12 +257,12 @@ glReadBuffer	0xda78a54	0x1220	116	__glkonim_ReadBuffer	0xda66990	0x037	HP_READBU
 glCopyPixels	0xda78a60	0x1224	117	__glkonim_CopyPixels	0xd951f10			inferred	0x38	0xd952078:0x38; 0xd952080:a0; 0xd952084:a1; 0xd952088:a2; 0xd95208c:a3; 0xd952094:0x0; 0xd952098:a4; 0xd9520ac:?; 0xd952298:0x38; 0xd9522a0:a0; 0xd9522a4:a1; 0xd9522a8:a2; 0xd9522ac:a3; 0xd9522b0:0x0; 0xd9522b4:a4; 0xd9522b8:0x0; 0xd952500:0x38; 0xd952514:?; 0xd952518:a1; 0xd95251c:?; 0xd952520:a3; 0xd952524:?; 0xd952528:a4; 0xd95252c:[ret(CopyConvIsOverlapped)]; 0xd95255c:0x38; 0xd952560:?; 0xd952564:a1; 0xd952568:?; 0xd95256c:a3; 0xd952570:?; 0xd95257c:a4; 0xd952588:[ret(CopyConvIsOverlapped)]; 0xd95272c:0x38; 0xd952738:?; 0xd95273c:a1; 0xd952744:?; 0xd952748:a3; 0xd95274c:?; 0xd952750:a4; 0xd952754:[ret(CopyConvIsOverlapped)]; 0xd952780:0x38; 0xd952784:?; 0xd952788:a1; 0xd95278c:?; 0xd952790:a3; 0xd952794:?; 0xd9527a0:a4; 0xd9527ac:[ret(CopyConvIsOverlapped)]; 0xd9527d0:0x38; 0xd9527d4:?; 0xd9527d8:a1; 0xd9527dc:?; 0xd9527e0:a3; 0xd9527e4:?; 0xd9527f0:a4; 0xd9527fc:[ret(CopyConvIsOverlapped)]; 0xd952824:0x38; 0xd952838:?; 0xd95283c:a1; 0xd952840:?; 0xd952844:a3; 0xd95284c:?; 0xd952850:a4; 0xd95285c:[ret(CopyConvIsOverlapped)]	path-dependent: a branch or call comes before a command-port store
 glReadPixels	0xda78a6c	0x1228	118	__glkonim_ReadPixels	0xd9531d0			located			stores no command word; calls __glKonParseErrorRead, __glKonParseInput, __glSetError
 glDrawPixels	0xda78a78	0x122c	119	__glkonim_DrawPixels	0xd951370			located			stores no command word; calls DrawPixels, __glKonParseErrorDraw, __glKonParseHostImage
-glGetBooleanv	0xda78a84	0x1230	120	__glkonim_GetBooleanv	0xd958d00			located			stores no command word; calls None, __glSetError, kona_get
+glGetBooleanv	0xda78a84	0x1230	120	__glkonim_GetBooleanv	0xd958d00			located			stores no command word; calls __glSetError, indirect call, kona_get
 glGetClipPlane	0xda78a90	0x1234	121	__glkonim_GetClipPlane	0xd959640			located			stores no command word; calls __glSetError, __glkon_get_special
-glGetDoublev	0xda78a9c	0x1238	122	__glkonim_GetDoublev	0xd958f10			located			stores no command word; calls None, __glSetError, kona_get
+glGetDoublev	0xda78a9c	0x1238	122	__glkonim_GetDoublev	0xd958f10			located			stores no command word; calls __glSetError, indirect call, kona_get
 glGetError	0xda78aa8	0x123c	123	__glkonim_GetError	0xd959560			located			stores no command word; calls __glSetError, __glkon_get_special
-glGetFloatv	0xda78ab4	0x1240	124	__glkonim_GetFloatv	0xd959120			located			stores no command word; calls None, __glSetError, kona_get
-glGetIntegerv	0xda78ac0	0x1244	125	__glkonim_GetIntegerv	0xd959330			located			stores no command word; calls None, __glSetError, kona_get
+glGetFloatv	0xda78ab4	0x1240	124	__glkonim_GetFloatv	0xd959120			located			stores no command word; calls __glSetError, indirect call, kona_get
+glGetIntegerv	0xda78ac0	0x1244	125	__glkonim_GetIntegerv	0xd959330			located			stores no command word; calls __glSetError, indirect call, kona_get
 glGetLightfv	0xda78acc	0x1248	126	__glkonim_GetLightfv	0xd959710			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetLightiv	0xda78ad8	0x124c	127	__glkonim_GetLightiv	0xd959820			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetMapdv	0xda78ae4	0x1250	128	__glkonim_GetMapdv	0xd9807c0			located			stores no command word; calls __glSetError, __glkon_GetDeformationd
@@ -273,14 +273,14 @@ glGetMaterialiv	0xda78b14	0x1260	132	__glkonim_GetMaterialiv	0xd959b50			located
 glGetPixelMapfv	0xda78b20	0x1264	133	__glkonim_GetPixelMapfv	0xd982c60			located			stores no command word; calls __glSetError, __glkon_get_special3, get_pixel_map_setup
 glGetPixelMapuiv	0xda78b2c	0x1268	134	__glkonim_GetPixelMapuiv	0xd982dd0			located			stores no command word; calls __glSetError, __glkon_get_special3, get_pixel_map_setup
 glGetPixelMapusv	0xda78b38	0x126c	135	__glkonim_GetPixelMapusv	0xd982fd0			located			stores no command word; calls __glSetError, __glkon_get_special3, get_pixel_map_setup
-glGetPolygonStipple	0xda78b44	0x1270	136	__glkonim_GetPolygonStipple	0xd954580			located			stores no command word; calls None, __glInitImagePack, __glInitPacker
+glGetPolygonStipple	0xda78b44	0x1270	136	__glkonim_GetPolygonStipple	0xd954580			located			stores no command word; calls __glInitImagePack, __glInitPacker, __glInitUnpacker
 glGetString	0xda78b50	0x1274	137	__glim_GetString	0xd9df610			located			stores no command word; calls __glSetError
 glGetTexEnvfv	0xda78b5c	0x1278	138	__glkonim_GetTexEnvfv	0xd959e60			located			stores no command word; calls __glSetError, do_gettexenv
 glGetTexEnviv	0xda78b68	0x127c	139	__glkonim_GetTexEnviv	0xd959ec0			located			stores no command word; calls __glSetError, do_gettexenv
 glGetTexGendv	0xda78b74	0x1280	140	__glkonim_GetTexGendv	0xd95a1e0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetTexGenfv	0xda78b80	0x1284	141	__glkonim_GetTexGenfv	0xd95a3d0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetTexGeniv	0xda78b8c	0x1288	142	__glkonim_GetTexGeniv	0xd959ff0			located			stores no command word; calls __glSetError, __glkon_get_special2
-glGetTexImage	0xda78b98	0x128c	143	__glkonim_GetTexImage	0xd972870			located			stores no command word; calls None, __glSetError, fprintf
+glGetTexImage	0xda78b98	0x128c	143	__glkonim_GetTexImage	0xd972870			located			stores no command word; calls __glSetError, fprintf, getLevel
 glGetTexParameterfv	0xda78ba4	0x1290	144	__glkonim_GetTexParameterfv	0xd974650			located			stores no command word; calls __glKonGetTexParameter, __glSetError, targetIndex
 glGetTexParameteriv	0xda78bb0	0x1294	145	__glkonim_GetTexParameteriv	0xd974560			located			stores no command word; calls __glKonGetTexParameter, __glSetError, targetIndex
 glGetTexLevelParameterfv	0xda78bbc	0x1298	146	__glkonim_GetTexLevelParameterfv	0xd974510			located			stores no command word; calls __glkonim_GetTexLevelParameteriv
@@ -339,7 +339,7 @@ glSeparableFilter2DEXT	0xda78d90	0x1334	185	__glkonim_SeparableFilter2DEXT	0xd95
 glGetHistogramEXT	0xda78d9c	0x1338	186	__glkonim_GetHistogramEXT	0xd984c00			inferred	0x103	0xd984e80:0x103; 0xd984e88:?	path-dependent: a branch or call comes before a command-port store
 glGetHistogramParameterfvEXT	0xda78da8	0x133c	187	__glkonim_GetHistogramParameterfvEXT	0xd986ab0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetHistogramParameterivEXT	0xda78db4	0x1340	188	__glkonim_GetHistogramParameterivEXT	0xd9869c0			located			stores no command word; calls __glSetError, __glkon_get_special2
-glGetMinmaxEXT	0xda78dc0	0x1344	189	__glkonim_GetMinmaxEXT	0xd986d00			located			stores no command word; calls None, __glSetError, __glSpecBytesPerElement
+glGetMinmaxEXT	0xda78dc0	0x1344	189	__glkonim_GetMinmaxEXT	0xd986d00			located			stores no command word; calls __glSetError, __glSpecBytesPerElement, __glkon_byteSwapMaybe
 glGetMinmaxParameterfvEXT	0xda78dcc	0x1348	190	__glkonim_GetMinmaxParameterfvEXT	0xd987500			located			stores no command word; calls __glSetError, __glkon_get_special
 glGetMinmaxParameterivEXT	0xda78dd8	0x134c	191	__glkonim_GetMinmaxParameterivEXT	0xd987460			located			stores no command word; calls __glSetError, __glkon_get_special
 glHistogram	0xda78de4	0x1350	192	__glkonim_HistogramEXT	0xd984a10			inferred	0x102	0xd984b08:0x102; 0xd984b18:a0; 0xd984b20:?; 0xd984b28:?; 0xd984b2c:a2; 0xd984b38:a3; 0xd984b7c:0x102; 0xd984b84:a0; 0xd984b8c:0x0; 0xd984b90:?; 0xd984b98:a2; 0xd984ba8:?	path-dependent: a branch or call comes before a command-port store
@@ -354,8 +354,8 @@ glTexImage3D	0xda78e14	0x1360	196	__glkonim_TexImage3DEXT	0xd971400			located			
 glTexImage3DEXT	0xda78e14	0x1360	196	__glkonim_TexImage3DEXT	0xd971400			located			stores no command word; calls __glSetError, __glkonim_TexImage
 glTexSubImage3D	0xda78e20	0x1364	197	__glkonim_TexSubImage3DEXT	0xd9725a0			located			stores no command word; calls __glSetError, __glkonim_TexSubImage
 glTexSubImage3DEXT	0xda78e20	0x1364	197	__glkonim_TexSubImage3DEXT	0xd9725a0			located			stores no command word; calls __glSetError, __glkonim_TexSubImage
-glArrayElement	0xda78e2c	0x1368	198	__glim_ArrayElementEXT	0xda32d80			located			stores no command word; calls None
-glArrayElementEXT	0xda78e2c	0x1368	198	__glim_ArrayElementEXT	0xda32d80			located			stores no command word; calls None
+glArrayElement	0xda78e2c	0x1368	198	__glim_ArrayElementEXT	0xda32d80			located			stores no command word; calls indirect call
+glArrayElementEXT	0xda78e2c	0x1368	198	__glim_ArrayElementEXT	0xda32d80			located			stores no command word; calls indirect call
 glColorPointerEXT	0xda78e38	0x136c	199	__glkonim_ColorPointerEXT	0xd95be50			located			stores no command word; calls __glim_ColorPointerEXT, compute_func_ptr
 glDrawArraysEXT	0xda78e44	0x1370	200	__glkonim_DrawArraysEXT	0xd95af60			inferred	0x181	0xd95b1d0:0x181; 0xd95b1dc:0x0; 0xd95b1f4:0x1a3; 0xd95b1fc:0x0; 0xd95b38c:0x181; 0xd95b398:0x0; 0xd95b3ac:0x1a3; 0xd95b3b4:0x0; 0xd95b560:0x181; 0xd95b568:0x0; 0xd95b58c:0x1a3; 0xd95b594:0x0; 0xd95b7b0:0x181; 0xd95b7bc:0x0; 0xd95b7d0:0x1a3; 0xd95b7d8:0x0	path-dependent: a branch or call comes before a command-port store
 glEdgeFlagPointerEXT	0xda78e50	0x1374	201	__glkonim_EdgeFlagPointerEXT	0xd95c170			located			stores no command word; calls __glim_EdgeFlagPointerEXT, compute_func_ptr
@@ -365,14 +365,14 @@ glIndexPointerEXT	0xda78e68	0x137c	203	__glkonim_IndexPointerEXT	0xd95bf60			loc
 glNormalPointerEXT	0xda78e74	0x1380	204	__glkonim_NormalPointerEXT	0xd95bd50			located			stores no command word; calls __glim_NormalPointerEXT, compute_func_ptr
 glTexCoordPointerEXT	0xda78e80	0x1384	205	__glkonim_TexCoordPointerEXT	0xd95c060			located			stores no command word; calls __glim_TexCoordPointerEXT, compute_func_ptr
 glVertexPointerEXT	0xda78e8c	0x1388	206	__glkonim_VertexPointerEXT	0xd95bc40			located			stores no command word; calls __glim_VertexPointerEXT, compute_func_ptr
-glAreTexturesResidentEXT	0xda78e98	0x138c	207	__glkonim_AreTexturesResidentEXT	0xd96fba0			located			stores no command word; calls None, __glSetError
-glBindTexture	0xda78ea4	0x1390	208	__glkonim_BindTextureEXT	0xd96f840			located			stores no command word; calls None, __glKonDeleteTextureObj, __glSetError
-glBindTextureEXT	0xda78ea4	0x1390	208	__glkonim_BindTextureEXT	0xd96f840			located			stores no command word; calls None, __glKonDeleteTextureObj, __glSetError
-glDeleteTexturesEXT	0xda78eb0	0x1394	209	__glkonim_DeleteTexturesEXT	0xd96f480			located			stores no command word; calls None, __glKonDeleteTexturesEXT, __glKonFreeTextureObj
-glGenTexturesEXT	0xda78ebc	0x1398	210	__glkonim_GenTexturesEXT	0xd96ee20			located			stores no command word; calls None, __glSetError, __glkonim_GenTexturesEXT_Slow
-glIsTextureEXT	0xda78ec8	0x139c	211	__glkonim_IsTextureEXT	0xd96fed0			located			stores no command word; calls None, __glSetError
-glPrioritizeTextures	0xda78ed4	0x13a0	212	__glkonim_PrioritizeTexturesEXT	0xd96fd30			located			stores no command word; calls None, __glKonTexUpdatePriority, __glSetError
-glPrioritizeTexturesEXT	0xda78ed4	0x13a0	212	__glkonim_PrioritizeTexturesEXT	0xd96fd30			located			stores no command word; calls None, __glKonTexUpdatePriority, __glSetError
+glAreTexturesResidentEXT	0xda78e98	0x138c	207	__glkonim_AreTexturesResidentEXT	0xd96fba0			located			stores no command word; calls __glSetError, indirect call
+glBindTexture	0xda78ea4	0x1390	208	__glkonim_BindTextureEXT	0xd96f840			located			stores no command word; calls __glKonDeleteTextureObj, __glSetError, indirect call
+glBindTextureEXT	0xda78ea4	0x1390	208	__glkonim_BindTextureEXT	0xd96f840			located			stores no command word; calls __glKonDeleteTextureObj, __glSetError, indirect call
+glDeleteTexturesEXT	0xda78eb0	0x1394	209	__glkonim_DeleteTexturesEXT	0xd96f480			located			stores no command word; calls __glKonDeleteTexturesEXT, __glKonFreeTextureObj, __glSetError
+glGenTexturesEXT	0xda78ebc	0x1398	210	__glkonim_GenTexturesEXT	0xd96ee20			located			stores no command word; calls __glSetError, __glkonim_GenTexturesEXT_Slow, bzero
+glIsTextureEXT	0xda78ec8	0x139c	211	__glkonim_IsTextureEXT	0xd96fed0			located			stores no command word; calls __glSetError, indirect call
+glPrioritizeTextures	0xda78ed4	0x13a0	212	__glkonim_PrioritizeTexturesEXT	0xd96fd30			located			stores no command word; calls __glKonTexUpdatePriority, __glSetError, indirect call
+glPrioritizeTexturesEXT	0xda78ed4	0x13a0	212	__glkonim_PrioritizeTexturesEXT	0xd96fd30			located			stores no command word; calls __glKonTexUpdatePriority, __glSetError, indirect call
 glCopyTexImage1D	0xda78ee0	0x13a4	213	__glkonim_CopyTexImage1DEXT	0xd971580			located			stores no command word; calls __glSetError, __glkonim_CopyTexImage
 glCopyTexImage1DEXT	0xda78ee0	0x13a4	213	__glkonim_CopyTexImage1DEXT	0xd971580			located			stores no command word; calls __glSetError, __glkonim_CopyTexImage
 glCopyTexImage2D	0xda78eec	0x13a8	214	__glkonim_CopyTexImage2DEXT	0xd9715e0			located			stores no command word; calls __glSetError, __glkonim_CopyTexImage
@@ -385,11 +385,11 @@ glCopyTexSubImage3D	0xda78f10	0x13b4	217	__glkonim_CopyTexSubImage3DEXT	0xd97281
 glCopyTexSubImage3DEXT	0xda78f10	0x13b4	217	__glkonim_CopyTexSubImage3DEXT	0xd972810			located			stores no command word; calls __glSetError, __glkonim_CopyTexSubImage
 glColorPointer	0xda78f1c	0x13b8	218	__glkonim_ColorPointer	0xd95c4b0			located			stores no command word; calls __glSetError, __glim_ColorPointerEXT, compute_func_ptr
 glDisableClientState	0xda78f28	0x13bc	219	__glkonim_DisableClientState	0xd94ed90			inferred	0xe4	0xd94efa0:0xe4; 0xd94efa8:0x502	path-dependent: a branch or call comes before a command-port store
-glDrawElements	0xda78f34	0x13c0	220	__glim_DrawElements	0xda33d70			located			stores no command word; calls None, __glSetError
+glDrawElements	0xda78f34	0x13c0	220	__glim_DrawElements	0xda33d70			located			stores no command word; calls __glSetError, indirect call
 glEdgeFlagPointer	0xda78f40	0x13c4	221	__glkonim_EdgeFlagPointer	0xd95c860			located			stores no command word; calls __glSetError, __glim_EdgeFlagPointerEXT, compute_func_ptr
 glEnableClientState	0xda78f4c	0x13c8	222	__glkonim_EnableClientState	0xd94eba0			inferred	0xe4	0xd94ec50:0xe4; 0xd94ec5c:0x502	path-dependent: a branch or call comes before a command-port store
 glIndexPointer	0xda78f58	0x13cc	223	__glkonim_IndexPointer	0xd95c5f0			located			stores no command word; calls __glSetError, __glim_IndexPointerEXT, compute_func_ptr
-glInterleavedArrays	0xda78f64	0x13d0	224	__glim_InterleavedArrays	0xda34030			located			stores no command word; calls None, __glSetError
+glInterleavedArrays	0xda78f64	0x13d0	224	__glim_InterleavedArrays	0xda34030			located			stores no command word; calls __glSetError, indirect call
 glNormalPointer	0xda78f70	0x13d4	225	__glkonim_NormalPointer	0xd95c380			located			stores no command word; calls __glSetError, __glim_NormalPointerEXT, compute_func_ptr
 glTexCoordPointer	0xda78f7c	0x13d8	226	__glkonim_TexCoordPointer	0xd95c720			located			stores no command word; calls __glSetError, __glim_TexCoordPointerEXT, compute_func_ptr
 glVertexPointer	0xda78f88	0x13dc	227	__glkonim_VertexPointer	0xd95c240			located			stores no command word; calls __glSetError, __glim_VertexPointerEXT, compute_func_ptr
@@ -397,13 +397,13 @@ glPolygonOffset	0xda78f94	0x13e0	228	__glkonim_PolygonOffset	0xda66e60	0x168	HP_
 glIndexub	0xda78fa0	0x1678	394	__glkonim_Indexub	0xda66e80	0x075	HP_INDEXS	established	0x75	0xda66e84:0x75; 0xda66e90:(a0 << 0x18)	
 glIndexubv	0xda78fac	0x167c	395	__glkonim_Indexubv	0xda66ea0	0x075	HP_INDEXS	established	0x75	0xda66ea8:0x75; 0xda66eb4:([a0]:1 << 0x18)	
 glPopClientAttrib	0xda78fbc	0x13e4	229	__glkonim_PopClientAttrib	0xd95f8b0			located			stores no command word; calls __glSetError
-glPushClientAttrib	0xda78fc8	0x13e8	230	__glkonim_PushClientAttrib	0xd95f5f0			located			stores no command word; calls None, __glSetError
+glPushClientAttrib	0xda78fc8	0x13e8	230	__glkonim_PushClientAttrib	0xd95f5f0			located			stores no command word; calls __glSetError, indirect call
 glSampleMaskSGIS	0xda78fd4	0x13ec	231	__glkonim_SampleMaskSGIS	0xd94dd90			inferred	0x118	0xd94ddb4:0x118; 0xd94ddb8:?; 0xd94ddc0:a1; 0xd94ddcc:0x118; 0xd94ddd4:?; 0xd94dddc:a1	path-dependent: a branch or call comes before a command-port store
 glSamplePatternSGIS	0xda78fe0	0x13f0	232	__glkonim_SamplePatternSGIS	0xda66ec0	0x117	HP_SAMPLEPATTERN	established	0x117	0xda66ec4:0x117; 0xda66ecc:a0	
 glTagSampleBufferSGIX	0xda78fec	0x13f4	233	__glim_UnimplementedExtension	0xda021e0			located			stores no command word; calls __glSetError
-glDetailTexFuncSGIS	0xda78ff8	0x13f8	234	__glkonim_DetailTexFuncSGIS	0xd9733e0			located			stores no command word; calls None, __glSetError, addTexTableUsage
+glDetailTexFuncSGIS	0xda78ff8	0x13f8	234	__glkonim_DetailTexFuncSGIS	0xd9733e0			located			stores no command word; calls __glSetError, addTexTableUsage, bindTexTable
 glGetDetailTexFuncSGIS	0xda79004	0x13fc	235	__glkonim_GetDetailTexFuncSGIS	0xd973570			located			stores no command word; calls __glSetError, getTexTableUsage
-glSharpenTexFuncSGIS	0xda79010	0x1400	236	__glkonim_SharpenTexFuncSGIS	0xd973600			located			stores no command word; calls None, __glSetError, addTexTableUsage
+glSharpenTexFuncSGIS	0xda79010	0x1400	236	__glkonim_SharpenTexFuncSGIS	0xd973600			located			stores no command word; calls __glSetError, addTexTableUsage, bindTexTable
 glGetSharpenTexFuncSGIS	0xda7901c	0x1404	237	__glkonim_GetSharpenTexFuncSGIS	0xd9737e0			located			stores no command word; calls __glSetError, getTexTableUsage, targetIndex
 glColorTable	0xda79028	0x1408	238	__glkonim_ColorTableSGI	0xd981420			located			stores no command word; calls __glSetError
 glColorTableSGI	0xda79028	0x1408	238	__glkonim_ColorTableSGI	0xd981420			located			stores no command word; calls __glSetError
@@ -413,7 +413,7 @@ glColorTableParameteriv	0xda79040	0x1410	240	__glkonim_ColorTableParameterivSGI	
 glColorTableParameterivSGI	0xda79040	0x1410	240	__glkonim_ColorTableParameterivSGI	0xda66f20	0x0eb	HP_COLORTABLEPARAMETERFV	established	0xeb	0xda66f40:0xeb; 0xda66f4c:a0; 0xda66f54:a1; 0xda66f60:?; 0xda66f64:?; 0xda66f68:?; 0xda66f70:?	token read whole; a payload word is not evaluated by the fact sheet
 glCopyColorTable	0xda7904c	0x1414	241	__glkonim_CopyColorTableSGI	0xd982710			inferred	0x111	0xd9827a8:0x111; 0xd9827b8:0x8; 0xd9827c8:0x40000000; 0xd982824:0x111; 0xd982830:0x8; 0xd98283c:0x0	path-dependent: a branch or call comes before a command-port store
 glCopyColorTableSGI	0xda7904c	0x1414	241	__glkonim_CopyColorTableSGI	0xd982710			inferred	0x111	0xd9827a8:0x111; 0xd9827b8:0x8; 0xd9827c8:0x40000000; 0xd982824:0x111; 0xd982830:0x8; 0xd98283c:0x0	path-dependent: a branch or call comes before a command-port store
-glGetColorTableSGI	0xda79058	0x1418	242	__glkonim_GetColorTableSGI	0xd982870			located			stores no command word; calls None, __glInitMemGet, __glInitMemPack
+glGetColorTableSGI	0xda79058	0x1418	242	__glkonim_GetColorTableSGI	0xd982870			located			stores no command word; calls __glInitMemGet, __glInitMemPack, __glInitPacker
 glGetColorTableParameterfvSGI	0xda79064	0x141c	243	__glkonim_GetColorTableParameterfvSGI	0xd9831d0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetColorTableParameterivSGI	0xda79070	0x1420	244	__glkonim_GetColorTableParameterivSGI	0xd9832e0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glTexImage4DSGIS	0xda7907c	0x1424	245	__glim_UnimplementedExtension	0xda021e0			located			stores no command word; calls __glSetError
@@ -424,7 +424,7 @@ glSpriteParameterfvSGIX	0xda790ac	0x1434	249	__glkonim_SpriteParameterfvSGIX	0xd
 glSpriteParameteriSGIX	0xda790b8	0x1438	250	__glkonim_SpriteParameteriSGIX	0xda67000			inferred	0xe4	0xda6701c:0xe4; 0xda67028:0x500; 0xda67048:0xe4; 0xda67050:0x500; 0xda67058:0x1a4; 0xda6705c:a0; 0xda67064:a1	path-dependent: a branch or call comes before a command-port store
 glSpriteParameterivSGIX	0xda790c4	0x143c	251	__glkonim_SpriteParameterivSGIX	0xd963e20			located			stores no command word; calls __glkonim_SpriteParameterfvSGIX
 glGetTexFilterFuncSGIS	0xda790d0	0x1440	252	__glkonim_GetTexFilterFuncSGIS	0xd973aa0			located			stores no command word; calls __glSetError, getTexTableUsage, targetIndex
-glTexFilterFuncSGIS	0xda790dc	0x1444	253	__glkonim_TexFilterFuncSGIS	0xd9738d0			located			stores no command word; calls None, __glSetError, addTexTableUsage
+glTexFilterFuncSGIS	0xda790dc	0x1444	253	__glkonim_TexFilterFuncSGIS	0xd9738d0			located			stores no command word; calls __glSetError, addTexTableUsage, bindTexTable
 glPointParameterfEXT	0xda790e8	0x1448	254	__glkonim_PointParameterfSGIS	0xd9646d0			inferred	0x1a7	0xd964728:0x1a7; 0xd96472c:a0; 0xd964730:?; 0xd964768:0x1a7; 0xd964770:a0; 0xd964784:?	path-dependent: a branch or call comes before a command-port store
 glPointParameterfSGIS	0xda790e8	0x1448	254	__glkonim_PointParameterfSGIS	0xd9646d0			inferred	0x1a7	0xd964728:0x1a7; 0xd96472c:a0; 0xd964730:?; 0xd964768:0x1a7; 0xd964770:a0; 0xd964784:?	path-dependent: a branch or call comes before a command-port store
 glPointParameterfvEXT	0xda790f4	0x144c	255	__glkonim_PointParameterfvSGIS	0xd9647c0			inferred	0x1a7	0xd96482c:0x1a7; 0xd964830:a0; 0xd964834:?; 0xd964848:0x1a8; 0xd96484c:a0; 0xd96485c:[a1]; 0xd964860:[a1+4]; 0xd96486c:[a1+8]; 0xd964890:0x1a7; 0xd964898:a0; 0xd9648ac:?	path-dependent: a branch or call comes before a command-port store
@@ -487,11 +487,11 @@ glGetFragmentMaterialivSGIX	0xda7937c	0x1524	309	__glim_UnimplementedExtension	0
 glLightEnviSGIX	0xda79388	0x1528	310	__glim_UnimplementedExtension	0xda021e0			located			stores no command word; calls __glSetError
 glTextureColorMaskSGIS	0xda79394	0x152c	311	__glim_UnimplementedExtension	0xda021e0			located			stores no command word; calls __glSetError
 glDrawArrays	0xda793a0	0x1530	312	__glkonim_DrawArraysEXT	0xd95af60			inferred	0x181	0xd95b1d0:0x181; 0xd95b1dc:0x0; 0xd95b1f4:0x1a3; 0xd95b1fc:0x0; 0xd95b38c:0x181; 0xd95b398:0x0; 0xd95b3ac:0x1a3; 0xd95b3b4:0x0; 0xd95b560:0x181; 0xd95b568:0x0; 0xd95b58c:0x1a3; 0xd95b594:0x0; 0xd95b7b0:0x181; 0xd95b7bc:0x0; 0xd95b7d0:0x1a3; 0xd95b7d8:0x0	path-dependent: a branch or call comes before a command-port store
-glAreTexturesResident	0xda793ac	0x1534	313	__glkonim_AreTexturesResidentEXT	0xd96fba0			located			stores no command word; calls None, __glSetError
-glDeleteTextures	0xda793b8	0x1538	314	__glkonim_DeleteTexturesEXT	0xd96f480			located			stores no command word; calls None, __glKonDeleteTexturesEXT, __glKonFreeTextureObj
-glGenTextures	0xda793c4	0x153c	315	__glkonim_GenTexturesEXT	0xd96ee20			located			stores no command word; calls None, __glSetError, __glkonim_GenTexturesEXT_Slow
-glIsTexture	0xda793d0	0x1540	316	__glkonim_IsTextureEXT	0xd96fed0			located			stores no command word; calls None, __glSetError
-glGetColorTable	0xda793dc	0x1544	317	__glkonim_GetColorTableSGI	0xd982870			located			stores no command word; calls None, __glInitMemGet, __glInitMemPack
+glAreTexturesResident	0xda793ac	0x1534	313	__glkonim_AreTexturesResidentEXT	0xd96fba0			located			stores no command word; calls __glSetError, indirect call
+glDeleteTextures	0xda793b8	0x1538	314	__glkonim_DeleteTexturesEXT	0xd96f480			located			stores no command word; calls __glKonDeleteTexturesEXT, __glKonFreeTextureObj, __glSetError
+glGenTextures	0xda793c4	0x153c	315	__glkonim_GenTexturesEXT	0xd96ee20			located			stores no command word; calls __glSetError, __glkonim_GenTexturesEXT_Slow, bzero
+glIsTexture	0xda793d0	0x1540	316	__glkonim_IsTextureEXT	0xd96fed0			located			stores no command word; calls __glSetError, indirect call
+glGetColorTable	0xda793dc	0x1544	317	__glkonim_GetColorTableSGI	0xd982870			located			stores no command word; calls __glInitMemGet, __glInitMemPack, __glInitPacker
 glGetColorTableParameterfv	0xda793e8	0x1548	318	__glkonim_GetColorTableParameterfvSGI	0xd9831d0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetColorTableParameteriv	0xda793f4	0x154c	319	__glkonim_GetColorTableParameterivSGI	0xd9832e0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetConvolutionFilter	0xda79400	0x1550	320	__glkonim_GetConvolutionFilterEXT	0xd957d40			inferred	0x111	0xd957ea4:0x111; 0xd957eac:0x10; 0xd957eb8:0x40000000; 0xd957ec8:0xf4; 0xd957ed0:a0; 0xd957ed4:?; 0xd957ee0:?; 0xd957f50:0x111; 0xd957f60:0x10; 0xd957f68:0x0	path-dependent: a branch or call comes before a command-port store
@@ -501,6 +501,6 @@ glGetSeparableFilter	0xda79424	0x155c	323	__glkonim_GetSeparableFilterEXT	0xd957
 glGetHistogram	0xda79430	0x1560	324	__glkonim_GetHistogramEXT	0xd984c00			inferred	0x103	0xd984e80:0x103; 0xd984e88:?	path-dependent: a branch or call comes before a command-port store
 glGetHistogramParameterfv	0xda7943c	0x1564	325	__glkonim_GetHistogramParameterfvEXT	0xd986ab0			located			stores no command word; calls __glSetError, __glkon_get_special2
 glGetHistogramParameteriv	0xda79448	0x1568	326	__glkonim_GetHistogramParameterivEXT	0xd9869c0			located			stores no command word; calls __glSetError, __glkon_get_special2
-glGetMinmax	0xda79454	0x156c	327	__glkonim_GetMinmaxEXT	0xd986d00			located			stores no command word; calls None, __glSetError, __glSpecBytesPerElement
+glGetMinmax	0xda79454	0x156c	327	__glkonim_GetMinmaxEXT	0xd986d00			located			stores no command word; calls __glSetError, __glSpecBytesPerElement, __glkon_byteSwapMaybe
 glGetMinmaxParameterfv	0xda79460	0x1570	328	__glkonim_GetMinmaxParameterfvEXT	0xd987500			located			stores no command word; calls __glSetError, __glkon_get_special
 glGetMinmaxParameteriv	0xda7946c	0x1574	329	__glkonim_GetMinmaxParameterivEXT	0xd987460			located			stores no command word; calls __glSetError, __glkon_get_special

@@ -26,11 +26,13 @@ The fact sheet did not evaluate the masked byte words of three senders, so each 
 - `__glkonim_Color4b`: token 0x069.
 - `__glkonim_Normal3b`: token 0x076.
 
-`__glkonim_Begin` stores KONA_HP_BEGIN_POINTS (0x057) plus the mode in `a0`, the same as the GE.h macro `KONA_HP_BEGIN`. Its error path stores 0xe4 and 0x500, so the row is inferred.
+`__glkonim_Begin` stores KONA_HP_BEGIN_POINTS (0x057) plus the mode in `a0`, the same as the GE.h macro `KONA_HP_BEGIN`, for modes 0 to 9 (`sltiu` against 10). Other modes branch to an error path that stores 0xe4 and 0x500, so the row is inferred.
 
 ## Limits
 
 - The list-compile senders in `g_lcompex.s` (`__glce_*`) write their own addresses into the global table, so the immediate map applies only while the immediate table is installed. Entries inside a display list do not follow it.
 - Path-dependent rows list all their stores. For example, the sender at 0xda663c4 sends 0xe4 (HP_SETERROR) with payload 0x500 on its invalid-mode path and 0x011 (HP_TEXENVF) otherwise.
 - Located senders include the texture, pixel and transform senders that send through helpers. The helpers were not followed.
+- Some located senders make an indirect call through a context pointer (the eval-coordinate and eval-point senders, for example). The row says indirect call; the target was not followed.
+- The rectangle senders store KONA_HP_BEGIN_RECT (0x003), then a vertex format word (22 for double, 14 for float and int, 10 for short), then four vertex calls, then END. Those format values are also the numbers of KONA_HP_TEXBIND, KONA_HP_TEXPARAMETERI and KONA_HP_LIGHTMODELI, so read the words by position, not by name.
 - Token names are the `KONA_HP_*` names in [GE.h](../GE.h). A name is the first one listed for the value.

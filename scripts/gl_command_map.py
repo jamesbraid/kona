@@ -74,8 +74,17 @@ MANUAL = {
                            'read whole; the first word is (a0 << 24) | ((a1 & 0xff) << 16) | 0x76 and the second is a2 << 24',
                            '0xda65628:(a0<<24)|((a1&0xff)<<16)|0x76; 0xda65630:a2<<24'),
     '__glkonim_Begin': (None, 'inferred',
-                        'first word is KONA_HP_BEGIN_POINTS (0x057) plus the mode in a0; the error path stores 0xe4 and 0x500 through the same sender',
+                        'first word is KONA_HP_BEGIN_POINTS (0x057) plus the mode in a0, for modes 0 to 9 (sltiu against 10 at 0xd94dbb0); other modes branch to the error path at 0xd94dbd4, which stores 0xe4 and 0x500',
                         '0xd94dbc4:a0+87 (0x57 plus the mode); 0xd94dbc8:0x0; 0xd94dbd4:0xe4; 0xd94dbe0:0x500'),
+}
+# Rect senders: BEGIN_RECT, then a vertex-format word, then four vertex calls, then END.
+# The format word is 22 for double, 14 for float and int, 10 for short (GE.h, KONA_HP_BEGIN_RECT).
+# Its value collides with other token numbers (22 is KONA_HP_TEXBIND, 14 KONA_HP_TEXPARAMETERI,
+# 10 KONA_HP_LIGHTMODELI), so the row's words are read by position, not by token name.
+RECT_FORMAT = {
+    '__glkonim_Rectd': 22, '__glkonim_Rectdv': 22,
+    '__glkonim_Rectf': 14, '__glkonim_Rectfv': 14, '__glkonim_Recti': 14, '__glkonim_Rectiv': 14,
+    '__glkonim_Rects': 10, '__glkonim_Rectsv': 10,
 }
 
 
@@ -176,7 +185,8 @@ def build_rows(binary, tokens):
         fs = facts.fact_sheet(binary, '0x%x' % target)
         stores = [a for a in fs['accesses'] if a.get('absolute') == '0x%x' % COMMAND_PORT and a['kind'] == 'store']
         if not stores:
-            calls = sorted({str(c.get('callee') or c.get('target')) for c in fs.get('calls', [])})
+            calls = sorted({str(c.get('callee') or ('indirect call' if c.get('kind') == 'register' else c.get('target')))
+                            for c in fs.get('calls', [])})
             row['note'] = 'stores no command word' + ('; calls ' + ', '.join(str(c) for c in calls[:3]) if calls else '')
             continue
         first = stores[0]
@@ -200,6 +210,10 @@ def build_rows(binary, tokens):
         if path_dependent(fs, last_addr):
             row['grade'] = 'inferred'
             row['note'] = 'path-dependent: a branch or call comes before a command-port store'
+            if target_name(names, target) in RECT_FORMAT:
+                row['note'] += ('; the second word is the vertex format (%d), not a command; '
+                                'the four vertex calls between it and the END send their own words'
+                                % RECT_FORMAT[target_name(names, target)])
         else:
             row['grade'] = 'established'
             row['token'] = '0x%03x' % tok
