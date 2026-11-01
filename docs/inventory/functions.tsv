@@ -47134,8 +47134,8 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	1c53f0b255e3		in	u
 usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	2d27950426ee		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000693c	848	lg1_info	dynsym	a882b266a68a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10006c8c	2628	loadfile	dynsym	0ad174b7798e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10007a18	8	ev1_init	dynsym	87506497337c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10007a20	860	gr2_init	dynsym	47ab036133e1		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x10007a18	8	ev1_init	dynsym	87506497337c		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10007a20	860	gr2_init	dynsym	47ab036133e1		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10007d7c	1152	gr2_info	dynsym	7dafed2e67db		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100081fc	868	gr2ev_info	dynsym	4915d12ca0f9		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/gfxinfo	shared-tool	n32		0x10008970	1248	ven_info	dynsym	977f5853a8a4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47316,7 +47316,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001accc	1124	venice_loadsection_vs2_body	dyn
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b130	1148	loadVofToDataStructure	dynsym	6ecf1f40e27e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b5ac	196	loadVS2ModeDG2VOF	dynsym	0bfb4dd18d4e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b670	212	loadVS2VOFFromData	dynsym	514d381a942d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001b744	860	vs2_set_MasterGenlock	dynsym	ac5a380d2b64		in	located	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001b744	860	vs2_set_MasterGenlock	dynsym	ac5a380d2b64		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001baa0	640	venice_vs2init	dynsym	1ab51fe1ce68		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001c3bc	136	vs2MapScreenToChannel	dynsym	aaafa281e9e7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001c444	180	vs2WriteDACAlternateRAM	dynsym	cf419ed83ac1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
