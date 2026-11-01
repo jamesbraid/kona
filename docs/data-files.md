@@ -529,3 +529,13 @@ The 6.5.22 copies of `usr/diags/IR/ucode/arm1_nic.u` and `usr/diags/IR/ucode/ge_
 | `usr/diags/IR/ucode/diag_arm_init.u` | `da008146e38bf9a0c98da0eadbb2dd34737c0565c3e85acabb54b1772f37636b` | `da008146e38bf9a0c98da0eadbb2dd34737c0565c3e85acabb54b1772f37636b` |
 | `usr/diags/IR/ucode/ge.hex` | `ae8bfbf6f406005841632add6080d77cf2a8b94cb2a2753194bea846ec03fadd` | `ae8bfbf6f406005841632add6080d77cf2a8b94cb2a2753194bea846ec03fadd` |
 | `usr/diags/IR/ucode/ge.u` | `c3676bf1ca0f3edf0844ad28bdb0adc885ebae376d241d7741ea0e47d2da364f` | `c3676bf1ca0f3edf0844ad28bdb0adc885ebae376d241d7741ea0e47d2da364f` |
+| `usr/diags/IR/ucode/ge_diag_init.hex` | `66ef30c611850ef60f736397a4f43765e74a2731b371455cbedafe17d5f38393` | `66ef30c611850ef60f736397a4f43765e74a2731b371455cbedafe17d5f38393` |
+| `usr/diags/IR/ucode/geif.u` | `67596e208eb62491729b20e6b861b8da39a43d7de1065b0a3c949b14fc0e9ed9` | `67596e208eb62491729b20e6b861b8da39a43d7de1065b0a3c949b14fc0e9ed9` |
+| `usr/gfx/ucode/KONA/dgo1/dgo.mcs` | `ec92153b2b6da903ec277f5c399bf2ae5f0aca18d9198e8b36dca3145903ab1e` | `ec92153b2b6da903ec277f5c399bf2ae5f0aca18d9198e8b36dca3145903ab1e` |
+| `usr/gfx/ucode/KONA/vof/1280x1024.monitor` | `55c148a0d113b0ebf04c68c5b9f524d2a17aeb435f2579e3735df447bc1de7f8` | `55c148a0d113b0ebf04c68c5b9f524d2a17aeb435f2579e3735df447bc1de7f8` |
+| `usr/gfx/ucode/KONA/vof/640x480_60.vof` | `87aa18319bb63ea84e06cb045f75cb20d57870963d609f031f34ff606f0d41f4` | `87aa18319bb63ea84e06cb045f75cb20d57870963d609f031f34ff606f0d41f4` |
+| `usr/gfx/ucode/KONA/vof/default.monitor` | `42159a9309bb4ea36bc53c35d5013dcc4805dcb37794df99df5f329e3e7b1d20` | `42159a9309bb4ea36bc53c35d5013dcc4805dcb37794df99df5f329e3e7b1d20` |
+| `usr/gfx/ucode/KONA/vof/default.vof` | `b694ac093f7548666a149e5bfebe25d902700b426a9d7f592bf013d365172dad` | `b694ac093f7548666a149e5bfebe25d902700b426a9d7f592bf013d365172dad` |
+| `usr/gfx/ucode/KONA/vof/ntsc.monitor` | `d36a59b944f39f21fa7c2ebd0fdaf048d0d9f731de8071ce18fe61db18c54951` | `d36a59b944f39f21fa7c2ebd0fdaf048d0d9f731de8071ce18fe61db18c54951` |
+| `usr/gfx/ucode/KONA/vof/vga.monitor` | `60d3cbbb46fd5f0dbe793b5a6597be05efbc02893732aff380745ccc2c6904b6` | `60d3cbbb46fd5f0dbe793b5a6597be05efbc02893732aff380745ccc2c6904b6` |
+| `usr/gfx/ucode/KONA/vof/vga.vof` | `9b366dae30983d76b472192d4a70c84e10ea178c65e921b82114c3a8b3a1622c` | `9b366dae30983d76b472192d4a70c84e10ea178c65e921b82114c3a8b3a1622c` |
