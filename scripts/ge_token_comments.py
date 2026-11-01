@@ -1,8 +1,20 @@
-"""Write the per-token comments of GE.h: one labelled, cited entry per host token.
+"""Compare the per-token comments of GE.h with the ones this script would generate.
 
-Usage: ge_token_comments.py [GE_H]     default: GE.h
+Usage: ge_token_comments.py [GE_H]                         dry run: write nothing, report drift
+       ge_token_comments.py [GE_H] --overwrite-hand-edits  rewrite GE.h from the tables below
 
-Rewrites three parts of GE.h (IRIX 6.5.30m throughout):
+GE.h is the source of truth for the token comments. Since the last time this script
+wrote them (2026-10-29) the entries were corrected by hand, token by token, as the
+handlers were re-read (commits 0a7fa3c, 3234ef3, efd0b56 and 76784cc among them), and the
+ROLES, SHADOW and SPARE tables below were not kept in step. Writing from them now
+replaces about 900 hand-edited lines of GE.h with the older text, so the default is a
+dry run that counts the lines that would change and names the first few entries.
+What the script is still good for is the routing facts it extracts from the tables under
+ucode/ and libglcore/: read the dry-run drift for a token to see whether a regenerated
+routing sentence disagrees with the hand-edited entry, then edit GE.h by hand. Pass
+--overwrite-hand-edits only to rebuild GE.h from scratch, and update the tables first.
+
+When it does write, it rewrites three parts of GE.h (IRIX 6.5.30m throughout):
 
   enum kona_hp_token        the 512 host tokens 0x000-0x1ff
   enum kona_kpm_spare_token kpm's name-table rows 0x200-0x20f
@@ -858,7 +870,9 @@ def shadow_writers():
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else 'GE.h'
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    overwrite = '--overwrite-hand-edits' in sys.argv[1:]
+    path = args[0] if args else 'GE.h'
     icu = rows('ucode/icu_map.tsv')
     arm = rows('ucode/arm1_handlers.tsv')
     ged = rows('ucode/ged_route.tsv')
@@ -933,7 +947,17 @@ def main():
                 out.append(ln)
             continue
         out.append(ln)
-    open(path, 'w').write('\n'.join(out))
+    new = '\n'.join(out)
+    if overwrite:
+        open(path, 'w').write(new)
+        return
+    import difflib
+    old = open(path).read()
+    diff = [d for d in difflib.unified_diff(old.split('\n'), new.split('\n'), lineterm='', n=0)
+            if d[:1] in '+-' and d[:3] not in ('+++', '---')]
+    print('%s: dry run, nothing written; %d lines would change' % (path, len(diff)))
+    for d in diff[:10]:
+        print('  ' + d[:110])
 
 
 if __name__ == '__main__':
