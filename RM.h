@@ -417,8 +417,9 @@
  * 32-bit hex word; irsaudit, arm1.u and the vector files never write it. Inferred: the back-end
  * FIFO is the 4 MB FIFO with separate draw and load queues of the published OpenGL implementation
  * paper (section 3.3), and the SIGGRAPH 1997 InfiniteReality paper (section 3.3.1) says counters
- * kept in that FIFO record vertex-bus stalls and upstream waits for load management, so this is
- * one of those counters. Unknown: which of those conditions it counts. */
+ * kept in the Geometry-Raster FIFO record vertex-bus stalls and upstream waits for load
+ * management. That paper does not use the name back-end FIFO; reading its FIFO as the same one is
+ * inferred, so this is one of those counters only if the two are the same. Unknown: which of those conditions it counts. */
 #define KONA_RM_BEF_PERF_COUNTALL                        0x0002
 
 /*
