@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 149 (hardware-facing 71, microcode 26, driver and library 50, product and history 2; the queued next-step lists are included under microcode and driver), route b 14, route c 10. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 148 (hardware-facing 70, microcode 26, driver and library 50, product and history 2; the queued next-step lists are included under microcode and driver), route b 14, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -37,7 +37,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - DG LoadFormat words 299-300, SyncSource, SyncMethod, genlock words, hwd_mode bits 2-4
 - GE DMA, interrupt, reset and context handlers; ctx_load.S, mClearEram loop
 - 93 arm1.u display-request rows; dgTempBlankAllChannels etc.; cursor channels above 7
-- GED transfer ops 1, 3, 5, 6, 7; control fields; registers 0x280-0x2b0
 - KONA_DG_DAC_CURSOR_POS value 0x22 vs DAC register 0x200 (owner edit)
 - HP_X_DATA1-10 consumer unit; token effect columns; gepc slot names
 - vertex record word 0x26 bits 31-29 on later strip vertices
@@ -124,7 +123,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - o32 and 64-bit context builds unread; selector names
 - o32 and 64-bit texture builds unread
 - six display functions without entries
-- 0x9 in the address low word; activate token details
+- kernel-slice entries to rewrite one function per line; engine half of the activate-token store
 - O32 and 64-bit Kona driver routines whose fingerprint or offsets do not match N32
 - binaries table rows: IP35 kona.a twins, tport.a, kona.so family, irsaudit, kpm
 - located binaries rows; microcode image files
@@ -193,7 +192,6 @@ Route b, named:
 
 Route c, recorded only:
 - texture sharpen/detail product rounding and widths
-- kernel functions with no shipped-software reference (invalidate_pane_buffer, CushionBuffer off case)
 - throughput, clocks, chassis, cancelled successor, multi-pipe cost, Onyx4
 - throughput; posted rates bound only
 - share of pipe time in multi-pipe compositing
@@ -296,7 +294,7 @@ Where this slice stopped (second pass, after the stricter grader of commit e1496
 
 ## Geometry distributor
 
-[route a] No open entries. **Where this section stopped (2026-10-29, fourth pass).** The `irsaudit` sequencer and stress tests are read into [ucode/ged.md](../ucode/ged.md#the-diagnostics-sequencer-and-stress-tests): the register/pixel form's transfer bit, the programs `gedSequencer` and `gedStressTd` build, the registers each test loads and the pointer and data pairs among them. Every such test is checked only by CRC signatures against `irsaudit.*.gold`, so the state-or-token entry choice, transfer ops 1, 3, 5, 6 and 7, the control fields, the small-constant registers and the roles of 0x280-0x2b0 are labelled unknown there with the routes tried.
+**Where this section stopped (2026-10-29, fourth pass).** No open entries. The `irsaudit` sequencer and stress tests are read into [ucode/ged.md](../ucode/ged.md#the-diagnostics-sequencer-and-stress-tests): the register/pixel form's transfer bit, the programs `gedSequencer` and `gedStressTd` build, the registers each test loads and the pointer and data pairs among them. Every such test is checked only by CRC signatures against `irsaudit.*.gold`, so the state-or-token entry choice, transfer ops 1, 3, 5, 6 and 7, the control fields, the small-constant registers and the roles of 0x280-0x2b0 are labelled unknown there with the routes tried.
 
 ## Kernel driver
 
@@ -304,7 +302,7 @@ Where this slice stopped (second pass, after the stricter grader of commit e1496
 
 ### Kernel functions
 
-[route c] No open questions. Answered and moved to [kernel.md](kernel.md#function-reference) (2026-10-29): the `copyin_xlate` descriptor ([the copy routine](kernel.md#the-copy-routine-copyin_xlate), read in the linked kernel `/unix`); the callers of the four stubs (`cn_init`, `cn_write`, `allocshaddr`, `pckm_attach` in `/unix`); the `streams_timeout` literals (-100 is "due now", the trailing 0 an unread third argument); why `rrmValidateMyPcx` lets go of the big semaphore after a node's first clip-requesting load (it forces `RRM_ValidFault` to re-check and ask the manager for the clip). Labelled no-software-dependency with the routes tried, in their entries: why `invalidate_pane_buffer` exists (no reference anywhere in `/unix`), and whether the off case of `RRM_CushionBuffer` behaves as intended (nothing reads byte +177 and no shipped binary sends ioctl 1018).
+No open questions. Answered and moved to [kernel.md](kernel.md#function-reference) (2026-10-29): the `copyin_xlate` descriptor ([the copy routine](kernel.md#the-copy-routine-copyin_xlate), read in the linked kernel `/unix`); the callers of the four stubs (`cn_init`, `cn_write`, `allocshaddr`, `pckm_attach` in `/unix`); the `streams_timeout` literals (-100 is "due now", the trailing 0 an unread third argument); why `rrmValidateMyPcx` lets go of the big semaphore after a node's first clip-requesting load (it forces `RRM_ValidFault` to re-check and ask the manager for the clip). Labelled no-software-dependency with the routes tried, in their entries: why `invalidate_pane_buffer` exists (no reference anywhere in `/unix`), and whether the off case of `RRM_CushionBuffer` behaves as intended (nothing reads byte +177 and no shipped binary sends ioctl 1018).
 
 **Where this slice stopped (2026-10-29, kernel function reader).** Every kernel function row in [inventory/functions.tsv](inventory/functions.tsv) (the `kona.a`, `gfx.o`, `rrm.o`, `gfxs.a`, `gfxstubs.a` and `tport.a` members of the `IP27boot` and `IP35boot` kernels) is understood or finished as no-software-dependency: 855 understood and 4 no-software-dependency, from 83 located and 239 named-only. The cause of most of the fall was the per-build rule: where the two kernels hold different code an entry credits only the build it names. [kernel-functions.md](kernel-functions.md) now has one entry per function naming its object and offset, and a separate IP35 entry wherever the IP35 code differs (the 13 `kona.a` members, `gfxopen`, `gfxclose`, `gfxioctl`, nine flow-control functions, `find_gfxpipe` and four `rrm.o` functions). What differs in the IP35 builds, read from the disassembly: node addresses are shifted by 33 bits where IP27 shifts by 32, the per-processor CPU number sits at 0xffffffffffffc428 instead of 0xffffffffffffc420, the connection record is 256 bytes with a 512-CPU mask instead of 128 bytes with a 128-CPU one, the hub's graphics-attach word is packed differently (no valid bit, no hub-revision error-mask calls), and `gfx_flow_alloc` has one credit parameter set instead of two. This supersedes the "Next" list in the Kernel driver paragraph above: the entries it asks for are written. The six kernel driver and four XG coverage rows are set to done on that basis, since every kernel function, register, ioctl and token row they draw on is done.
 
@@ -605,7 +603,7 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route b] Slashdot IR, IR2 and IR3 revisions: diff GE and RM revisions per product; only clocks and sizes may differ.
 - [route a] Slashdot 32-CPU simulator: build a 3200x3400 at 60 Hz format for a four-RM pipe and see whether it compiles.
 - [route a] Slashdot 128-channel claim: ircombine accepts 8 channels on one pipe and rejects 9.
-- [route a] Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 guest.
+- [route a; c for the port speed] Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 guest.
 - [route b] HN RAM-growth claim: check per-RM texture sizes and that IR3 and IR4 registers match IR2 except sizes and clocks.
 - [route a] HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
 - [route a] GLUT videoresize and shadowmap: run both demos on an IR guest; videoresize must change the scanned-out size.
