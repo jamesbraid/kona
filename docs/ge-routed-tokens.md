@@ -120,7 +120,7 @@ Each packed-vertex token is a whole vertex taken from an interleaved array. All 
 |---|---|---|---|---|---|---|---|
 | `HP_PVERTEX_V3F` | entry 0xd86740c7 | 206 | 3 | 0 | `__glkonSendPackedVertexV3F` | Position only: a vertex of three floats. | inferred |
 | `HP_PVERTEX_V3F_C4UB` | entry 0xd8674107 | 206 | 4 | 1 | `__glkonSendPackedVertexV3F_C4UB` | Position and a colour packed into one word of four unsigned bytes. | inferred |
-| `HP_PVERTEX_V3F_N3S` | entry 0xd8674107 | 206 | 4 | 1 | `__glkonSendPackedVertexV3F_N3S` | Position and a normal packed into one word of three signed shorts. | inferred |
+| `HP_PVERTEX_V3F_N3S` | entry 0xd8674107 | 206 | 4 | 1 | `__glkonSendPackedVertexV3F_N3S` | Position and a normal packed into one word: the first two signed shorts, with bit 0 replaced by the sign bit of the third (`__glkonSendPackedVertexV3F_N3S` lines 701-703); the engine rebuilds the third from unit length. | inferred |
 | `HP_PVERTEX_V3F_C4UB_N3S` | entry 0xd8674147 | 206 | 5 | 2 | `__glkonSendPackedVertexV3F_C4UB_N3S` | Position, packed colour word and packed normal word. | inferred |
 | `HP_PVERTEX_V3F_T2F` | entry 0xd8674147 | 206 | 5 | 2 | `__glkonSendPackedVertexV3F_T2F` | Position and a texture coordinate of two floats. | inferred |
 | `HP_PVERTEX_V3F_C4UB_T2F` | entry 0xd8674187 | 206 | 6 | 3 | `__glkonSendPackedVertexV3F_C4UB_T2F` | Position, packed colour word and two texture floats. | inferred |

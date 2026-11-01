@@ -296,9 +296,14 @@ Window coordinates go to vertex record words 0x23 (x), 0x24 (y) and 0x25 (z).
 - `lSC4` (`uscreen2.s` lines 161-176): **inferred**, the loop at 0x1103 of the textured guard-band retest: two vertices per
   pass, it multiplies the w input by the guard-band factor and subtracts the x coordinate, the two side results stored to
   special registers 0x10 and 0x11; after it, the y results go to 0x12 and 0x13 and the jump at 0x110b leads to `uBackInvQ`.
-- `uBackInvQ` (`uscreen2.s` lines 186-197): **inferred**, the set-up of the textured divide at 0x1115. It loads the pair
-  count and pointers, takes the w input of the first pair, and multiplies the texture-coordinate inputs (record word 0xb) by
-  the first texture-matrix words 0x5f and 0x60 (0x111d-0x111f) to start the products whose results the loop `lSC3` completes and stores.
+- `uBackInvQ` (`uscreen2.s` lines 186-197, at 0x1115): **inferred**, the prologue of the textured divide loop `lSC3`. It
+  copies engine words 0xbb, 0xbc and 0xbd into staging words 3, 4 and 5 (moves 0x1115, 0x1117, 0x1119), points address
+  registers 1 and 2 at the two vertex records from registers 0x10 and 0x11 (0x1116, 0x1118) and register 0xa at the
+  texture matrix at engine word 0x5f (0x111a), and steps the pass count in register 0 from register 0x19 (F = 0x25 at
+  0x111b). It takes w of both vertices (record word 0x1a) and adds register 0x1e to each (unit-1 add M = 0x6e0 into
+  registers 0 and 1, 0x111b and 0x111c), the value the loop's reciprocal seeds read. Its unit-2 words multiply each
+  vertex's s (record word 0xb) by texture-matrix words 0x5f and 0x60 (0x111d-0x1120), the first products of the texture
+  transform whose sums `lSC3` completes and stores as results.
 - `lSC3` (`uscreen2.s` lines 199-331): **inferred**, the textured divide loop at 0x1121 and its output tail. Per pass it
   multiplies two vertices' s, t, r and q inputs by the texture matrix, adds the words at 0x75-0x77 (0x1143-0x1147),
   computes reciprocals of w and q, and stores window x, y and clamped z to words 0x23-0x25 and the projected texture results
@@ -703,23 +708,38 @@ group-31 transfer to the successor. In every form the output record gets x, y an
 - `V3Floop` (`uunpack.s` lines 60-69, at 0x2c78): **inferred**, the position-only loop. It writes w = register 0x1f
   (0x2c78) and the staged colour into words 4-7 of both records (0x2c7a-0x2c81), and advances both pointers by register
   0x13 (0x2c7e, 0x2c7f).
-- `mmo_UnpackVertexV3F_C4UB` (`uunpack.s` lines 78-94, at 0x2c83): **inferred**, set-up for position plus 4-byte colour.
-  It stages the shift counts into registers 0x15-0x17 (0x2c86-0x2c8a), the mask 0xff into staging word 3 (0x2c8b) and
-  1/255 (0x3b808080) into staging word 4 (0x2c8d), and starts the first record's byte extraction with right shifts
-  (unit-1 0x5d) of record word 3 (0x2c90-0x2c93).
+- `mmo_UnpackVertexV3F_C4UB` (`uunpack.s` lines 78-94, at 0x2c83): **inferred**, the prologue of the byte-colour unpack.
+  It stages three shift counts and loads them into registers 0x15, 0x16 and 0x17 (0x2c85-0x2c8a), the mask 0xff into
+  register 0x14 through staging word 3 (0x2c8b, 0x2c8c) and 1/255 (0x3b808080) into staging word 4 (0x2c8d). The counts
+  are 24, 16 and 8: only those make the three shifted words below land on disjoint bytes once ANDed with 0xff. It then
+  takes record word 3, the packed colour, as input and shifts it right logically by registers 0x15, 0x17 and 0x16
+  (unit-1 code 0x5d at 0x2c90, 0x2c92 and 0x2c93), the first extraction whose results `V3F_C4UBloop` converts.
 - `umo_UnpackVertexV3F_C4UB`: **inferred**, alias at 0x2c83 (`uunpack.s` line 78) of the byte-colour set-up. Its input
   is the packed colour in record word 3 and its result is the shift, mask and scale constants the loop uses.
-- `V3F_C4UBloop` (`uunpack.s` lines 97-120, at 0x2c94): **inferred**, the byte-colour loop. Per record it masks each
-  shifted byte with 0xff (unit-1 0x50), converts it to float (0x73) and multiplies by 1/255 in unit 2 (M = 0x45d and
-  0x47f, 0x2c9c-0x2c9f), storing red, green, blue and alpha to words 4-7. Word 3 gets register 0x1f. GL's unsigned-byte
-  colour is in [0, 1] as a result.
+- `V3F_C4UBloop` (`uunpack.s` lines 97-120, at 0x2c94): **inferred**, the byte-colour loop, two records per pass. Its
+  input is record word 3, from which it computes the four bytes (w >> 24), (w >> 16) & 0xff, (w >> 8) & 0xff and w &
+  0xff (logical right shifts 0x5d, ANDs 0x50 with register 0x14 at 0x2c95-0x2c97 and 0x2ca1-0x2ca3), converts each to
+  float (0x73 at 0x2c94, 0x2c99-0x2c9b) and multiplies it by 1/255 read from staging word 4 (unit-2 multiplies M = 0x45d
+  and 0x47f at 0x2c9c-0x2c9f). The results go to the colour words of the output record: bits 31-24 to word 4 (red),
+  23-16 to word 5, 15-8 to word 6 and 7-0 to word 7 (alpha), each in [0, 1]. Word 3 is overwritten with register 0x1f,
+  the w of 1.0 (0x2c98, 0x2ca4). The relative transfer at 0x2ca3 repeats it and 0x2ca4 ends the command.
 - `umo_UnpackVertexV3F_N3S` (`uunpack.s` lines 129-146, at 0x2cad): **inferred**, set-up for position plus a
   short-integer normal. It loads the current colour from 0x13a7-0x13aa as `mmo_UnpackVertexV3F` does (0x2caf-0x2cb5) and
   stages 0x380000fd, about 1/32767, into staging word 4 (0x2cbb) as the normal's scale.
-- `V3F_N3Sloop` (`uunpack.s` lines 150-200, at 0x2cbf): **inferred**, the short-normal loop. It splits record word 3 into
-  signed shorts with a left shift (0x5f) and arithmetic right shifts (0x5b, 0x2cbf-0x2cc6), converts them (0x73) and scales
-  them by the staged 1/32767 into normal words 8, 9 and 0xa (0x2cc7-0x2cd7). It then normalises with the square-root seed
-  (`r110` = 0x2bd at 0x2cdc) and a Newton step (unit-2 0x57, 0x2ce2, 0x2ce4), and writes the current colour to words 4-7.
+- `V3F_N3Sloop` (`uunpack.s` lines 150-200, at 0x2cbf): **inferred**, the short-normal loop. It takes record word 3 as
+  two signed 16-bit values: the high half by an arithmetic right shift (0x5b, 0x2cbf, 0x2cc1) and the low half by a left
+  shift then an arithmetic right shift (0x5f then 0x5b, 0x2cc0-0x2cc6), both by register 0x17. Each is converted (0x73)
+  and multiplied by staging word 4, about 1/32767, and stored as normal x (word 8, high half) and normal y (word 9)
+  (0x2cc7-0x2ccd). It then computes the third component: it squares words 8 and 9 (0x2cce-0x2cd1), adds the squares
+  (0x2cd3), subtracts the sum from register 0x1f, 1.0 (0x2cd7, kept in register 0x1c), seeds the reciprocal square root
+  of that difference (`r110` = 0x2bd at 0x2cdc), refines it with one Newton step (unit-2 code 0x57 at 0x2ce2) and
+  multiplies the refined value by the difference (0x2cea), so the result in word 0xa is sqrt(1 - x^2 - y^2). So this
+  record carries two normal components and the engine rebuilds the third as the positive unit-length z. The host packer
+  agrees: `__glkonSendPackedVertexV3F_N3S` in `libGLcore.so` (0x0da773ec, source lines 693-705) loads the first two
+  shorts of the normal as one word, clears its bit 0 and ORs in the sign bit of the third short, so word 3 carries x, y
+  and only the sign of z. The predicated subtracts at 0x2cee and 0x2cf0 (register 0x1f minus the stored z) are where the
+  sign could be applied; which bit chooses them is open. It also writes w = 1.0 to word 3 and the current colour from
+  registers 0, 2, 4 and 6 to words 4-7 (0x2cd4-0x2ce9).
 - `mmo_UnpackVertexV3F_T2F` (`uunpack.s` lines 209-220, at 0x2cf3): **inferred**, set-up for position plus two float
   texture coordinates. Like the position-only set-up it stages the current colour from 0x13a7-0x13aa.
 - `umo_UnpackVertexV3F_T2F`: **inferred**, second name at 0x2cf3 (`uunpack.s` line 209) of the float-texture set-up.
@@ -732,25 +752,43 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   staging word 0 (0x2d1b).
 - `umo_UnpackVertexV3F_C4UB_T2F`: **inferred**, alias at 0x2d12 (`uunpack.s` line 249) of that set-up. Its result is the
   shift counts and colour scale, and its input the per-context successor word 0xda.
-- `V3F_C4UB_T2Floop` (`uunpack.s` lines 261-296, at 0x2d1c): **inferred**, the byte-colour and float-texture loop. Per
-  record it isolates each colour byte of word 3 with a left shift then a right shift by 24 (0x5f at 0x2d1c-0x2d21, 0x5d
-  at 0x2d22-0x2d2f), converts (0x73) and scales by 1/255 (M = 0x473, 0x2d34-0x2d3b) into words 4-7. It moves words 4 and
-  5 (s, t) to 0xb and 0xc (0x2d26-0x2d29) and sets r = 0 and q = 1 (0x2d3c-0x2d3f).
+- `V3F_C4UB_T2Floop` (`uunpack.s` lines 261-296, at 0x2d1c): **inferred**, the byte-colour and float-texture loop, two
+  records per pass. Its input is the packed colour in record word 3 and the float s and t in words 4 and 5. It isolates
+  each colour byte of word 3 with a left shift by registers 0x18, 0x17 and 0x16 (24, 16 and 8; 0x5f at 0x2d1c-0x2d21)
+  followed by a logical right shift by 24 (0x5d at 0x2d2a-0x2d2f), and takes the top byte with one right shift by 24
+  (0x2d22, 0x2d23). Each byte is converted (0x73 at 0x2d30-0x2d33, then the multiply-and-convert words M = 0x473 at
+  0x2d34-0x2d37) and multiplied by 1/255 from staging word 0, and the products are its colour results, stored as bits
+  31-24 to word 4, 23-16 to word 5, 15-8 to word 6 and 7-0 to word 7 (0x2d34-0x2d3b). It moves the float s and t from
+  words 4 and 5 to words 0xb and 0xc (0x2d26-0x2d29) before the colour overwrites them, and stores r = 0 and q = 1
+  (0x2d3c-0x2d3f) and w = 1.0 in word 3 (0x2d24, 0x2d25).
 - `umo_UnpackVertexV3F_N3S_T2F` (`uunpack.s` lines 306-323, at 0x2d42): **inferred**, set-up for position, short normal and
   float texture. It stages the current colour (0x13a7-0x13aa) and the normal scale 0x380000fd, the union of the N3S and
   T2F set-ups.
-- `V3F_N3S_T2Floop` (`uunpack.s` lines 327-383, at 0x2d54): **inferred**, the loop for that form: the N3S normal
-  extraction, scaling and normalisation into words 8-0xa, the float texture move into 0xb and 0xc with r = 0 and q = 1, and
-  the current colour into words 4-7. It is the longest of the loops, with 16 unit-2 words per pass.
+- `V3F_N3S_T2Floop` (`uunpack.s` lines 327-383, at 0x2d54): **inferred**, the loop for position, short normal and float
+  texture, two records per pass. It takes the packed normal in record word 3 and the float texture pair in words 4 and 5
+  as input. It moves the float s from record word 4 to texture word 0xb (0x2d54, 0x2d55), t from word 5 to word 0xc
+  (0x2d56, 0x2d57) and r = 0 to word 0xd (0x2d58, 0x2d59), then unpacks word 3 as `V3F_N3Sloop` does: the high and low
+  signed halves are shifted out (0x5b at 0x2d5a, 0x2d5c), converted, multiplied by staging word 4 (about 1/32767) and
+  stored as normal x and y in words 8 and 9 (0x2d62-0x2d68). The third component is computed, not delivered: 1.0
+  (register 0x1f) minus x^2 + y^2 is subtracted and kept (0x2d72, 0x2d74), its reciprocal square root is seeded (0x2d77)
+  and refined with the step code 0x57 (0x2d7d, 0x2d7f), and the product of the refined root and the difference, sqrt(1 -
+  x^2 - y^2), is the result stored to word 0xa (0x2d85, 0x2d87). The predicated subtracts at 0x2d89 and 0x2d8b mirror
+  those of `V3F_N3Sloop`. It also stores q = 1 at word 0xe (0x2d66, 0x2d6d) and writes the current colour to words 4-7.
+  It has 16 unit-2 words per pass, the most of the unpack loops.
 - `mmo_UnpackVertexV3F_T2S` (`uunpack.s` lines 392-405, at 0x2d8e): **inferred**, set-up for position plus two short
   texture coordinates. It stages the shift count into register 0x17 (0x2d90, 0x2d91) and the current colour from
   0x13a7-0x13aa.
 - `umo_UnpackVertexV3F_T2S`: **inferred**, alias at 0x2d8e (`uunpack.s` line 392) of the short-texture set-up. Its inputs
   are the colour block and the shift count, and the loop consumes its results.
-- `V3F_T2Sloop` (`uunpack.s` lines 408-431, at 0x2d9c): **inferred**, the short-texture loop. It splits record word 3 into
-  two signed shorts (0x5f then 0x5b at 0x2d9c-0x2d9f, 0x5b again at 0x2da4), converts them (0x73) into texture words 0xb and
-  0xc (0x2dac-0x2daf) unscaled, and sets r = 0 and q = 1 (0x2db0-0x2db3). GL's short texture coordinates are not
-  normalised, which fits the missing scale.
+- `V3F_T2Sloop` (`uunpack.s` lines 408-431, at 0x2d9c): **inferred**, the short-texture loop, two records per pass. Its
+  input is record word 3, which it splits into two signed 16-bit coordinates: an arithmetic right shift by register 0x17
+  gives the high half (0x5b at 0x2d9e, 0x2d9f), and a left shift followed by an arithmetic right shift gives the low
+  half (0x5f at 0x2d9c, 0x2d9d, then 0x5b at 0x2da4, 0x2da5). It converts both to float with no scale (0x73 at
+  0x2dac-0x2daf) and its results are the high half as s (word 0xb) and the low half as t (word 0xc), with r = register
+  0x1e (zero) and q = register 0x1f (one) at words 0xd and 0xe (0x2db0-0x2db3). GL short texture coordinates are not
+  normalised, which matches the missing multiply. It also writes w = 1.0 to word 3 (0x2da0) and the current colour to
+  words 4-7 (0x2da2-0x2dab). The conversions and stores sit in the delay words of the transfer at 0x2dab and write the
+  records the trailing pointers 3 and 4 hold.
 - `mmo_UnpackVertexV3F_C4UB_T2S` (`uunpack.s` lines 440-449, at 0x2db5): **inferred**, set-up for position, byte colour and
   short texture coordinates: the byte shift counts and 1/255, as in the C4UB_T2F set-up.
 - `umo_UnpackVertexV3F_C4UB_T2S`: **inferred**, second name at 0x2db5 (`uunpack.s` line 440) of that set-up, which
@@ -760,9 +798,14 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   two records) with the short split of `V3F_T2Sloop`.
 - `umo_UnpackVertexV3F_N3S_T2S` (`uunpack.s` lines 502-519, at 0x2dea): **inferred**, set-up for position, short normal and
   short texture. It stages the current colour and the normal scale 0x380000fd, as the N3S set-ups do.
-- `V3F_N3S_T2Sloop` (`uunpack.s` lines 523-574, at 0x2dfc): **inferred**, the loop for that form. It reads the texture pair from record word 4 (0x2dfc-0x2dff) and the normal from word 3 (0x2e08,
-  0x2e0a), two short pairs per record, the normal (scaled by 1/32767 and normalised) into words 8-0xa and the texture coordinates
-  (unscaled) into 0xb and 0xc, and writes the current colour. It repeats through the relative transfer at 0x2e32 and ends at 0x2e33.
+- `V3F_N3S_T2Sloop` (`uunpack.s` lines 523-574, at 0x2dfc): **inferred**, the loop for position, short normal and short
+  texture. Its inputs are the packed texture pair in record word 4 and the packed normal in word 3. It splits record
+  word 4 into two signed halves for the texture (0x5f and 0x5b at 0x2dfc-0x2dff), which it converts unscaled into s and
+  t (words 0xb and 0xc), and record word 3 into the two normal halves (0x5b at 0x2e08, 0x2e0a), which it converts and
+  multiplies by staging word 4 (about 1/32767) into words 8 and 9 (0x2e10-0x2e16). The result in word 0xa is sqrt(1 -
+  x^2 - y^2): the subtract from register 0x1f at 0x2e20 and 0x2e22, the seed at 0x2e25, the Newton steps at 0x2e2b and
+  0x2e2d and the final multiply stored at 0x2e33. It writes the current colour to words 4-7, repeats through the
+  relative transfer at 0x2e32 and ends at 0x2e33.
 
 ## Polygon clipping (clip.S)
 
@@ -2611,13 +2654,17 @@ The handlers of `glmodes.S` change no vertex data. They rewrite mode words in en
 - `mgeb_FrontFace` (`glmodes.S` lines 291-311, at 0xf3db): **inferred**, `glFrontFace`. It compares operand 0 with
   0x900, `GL_CW` (0xf3dd-0xf3de), and stores the set or the clear pattern to engine word 0x6f, under the comparison's
   predicate for the second store (0xf3df-0xf3e9).
-- `mgeb_UserClipPlane` (`glmodes.S` lines 329-373, at 0xf3a4): **inferred**, `glClipPlane`. If the inverse modelview
-  is stale (`cc` 0x76) it calls `mMatrixInverse` first (0xf3a4). It takes the plane index (operand 0, address register
-  0x1a) and the four coefficients (operands 1-4) as input. It multiplies the coefficient row by the inverse matrix in
-  engine words 0x1f-0x2e with single multiplies and multiply-adds (M = 0x47f and 0x460, 0xf3ae-0xf3c6), which gives
-  the plane in eye coordinates. It points register 0x1a at the plane's slot from 0x904 and 0x90a in the block at
-  register 0x16 (0xf3b5-0xf3c5), stores the input coefficients there and then the transformed ones (0xf3c8-0xf3d7),
-  and continues in `mUserClipResolve` (0xf3d2).
+- `mgeb_UserClipPlane` (`glmodes.S` lines 329-373, at 0xf3a4): **inferred**, `glClipPlane`. If the inverse modelview is
+  stale (`cc` 0x76) it calls `mMatrixInverse` first (0xf3a4). Its inputs are operand 0, the GL plane enumerant, and the
+  four plane coefficients in operands 1-4. It computes the plane's slot from the enumerant: it subtracts 0x3000
+  (`GL_CLIP_PLANE0`, immediate 0xffffd000 at 0xf3b5), doubles the result twice (0xf3b9, 0xf3bd, `r176` = 2), adds 0x90a
+  (0xf3c1) and then the external-memory base in register 0x16 (0xf3c5), so plane i sits at 0x90a + 4i. It multiplies
+  coefficient k by the four inverse-modelview words 0x1f + 4(k - 1) to 0x22 + 4(k - 1) (single multiplies M = 0x47f at
+  0xf3ae-0xf3b4, multiply-adds M = 0x460 at 0xf3b6-0xf3c2, final float adds at 0xf3bf, 0xf3c4 and 0xf3c6), which gives
+  the plane in eye coordinates. The four sums are its result: ERAM stores (`r95` = 8) at 0xf3c9, 0xf3cb, 0xf3cd and
+  0xf3cf, nine words after the words that load them, write them to slot offsets 0-3, and the operands themselves, moved
+  at 0xf3c8-0xf3ce, go to offsets 0x18-0x1b (stores 0xf3d1-0xf3d7, F = 7 down to 4). It then jumps to `mUserClipResolve`
+  (0xf3d2).
 - `mgeb_EnableUserClipPlane` (`glmodes.S` lines 386-400, at 0xf390): **inferred**, `glEnable(GL_CLIP_PLANEi)`. It
   forms the plane's flag address from operand 0 with the offsets 0xffffd000 and 0x904 (0xf390, 0xf398, 0xf39c) and
   stores the set pattern there through register 0x16 (0xf397, 0xf3a0). Then it goes to `mUserClipResolve` (0xf39b).
@@ -3123,20 +3170,24 @@ per-format tables the ARM loads at 0x7387-0x73a4 are in [arm1_functions.md](arm1
 Read in full from the [ucull.s listing](ge_listing/ucull.s.lst) (`ge.u`, IRIX 6.5.30m). The cull module takes the
 triangle list the decomposers build, two triangles per pass, and tests each triangle's orientation in clip space.
 
-- `mmo_FaceCull` (`ucull.s` lines 29-40, at 0xc76): **inferred**, the set-up of the cull loop. It points address
-  register 1 at the triangle list, from register 0x15 and the constant 0x8bb0 (0xc76), copies list words 0 and 1 to
-  special registers 0x2e and 0x2c (0xc7a, 0xc7b), and loads address registers 6-8 and 9-0xb with the three vertex pointers of two triangles, list words
-  0-2 and 0xf-0x11 (0xc7a-0xc7f), the same layout `lDI1` reads. Its output is those six pointers for `lCU1`.
-- `umo_FaceCull`: **inferred**, the second name at 0xc76 (`ucull.s` line 29) of the same entry: it takes the triangle
-  list as input and produces the six vertex pointers the cull loop consumes.
-- `lCU1` (`ucull.s` lines 47-91, at 0xc87): **inferred**, the cull loop, two triangles per pass. For each triangle it
-  multiplies the clip-space x, y and w of its vertices (record words 0x17, 0x18 and 0x1a) in pairs and sums and
-  subtracts the products (multiplies 0xc83-0xc9d, adds and subtracts 0xc87-0xc9c), which computes the determinant
-  of the three (x, y, w) rows: the triangle's signed area in homogeneous coordinates, positive for one winding and
-  negative for the other. It XORs each result's sign with the control word at 0x6f (0xc9e, 0xca1) and, through
-  unit-1 code 0x51 and ORs (0xca2-0xca9, 0xcaf-0xcb2), merges the outcome into special register 0x1c, the cull
-  accumulator, with two stores (0xcaa, 0xcab). It loops on `cc` 0x11 back to its start (0xcb3) and ends the command
-  at 0xcb4.
+- `mmo_FaceCull` (`ucull.s` lines 29-40, at 0xc76): **inferred**, the set-up of the cull loop. Its input is the triangle
+  list the decomposers build: it points address register 1 at it from register 0x15 plus the constant 0x8bb0 (0xc76),
+  copies list words 0 and 1 to special registers 0x2e and 0x2c (0xc7a, 0xc7b), and loads address registers 6-8 and 9-0xb
+  with the three vertex pointers of two triangles, list words 0-2 and 0xf-0x11 (0xc7a-0xc7f), the layout `lDI1` also
+  reads. Its last words read clip x and y (record words 0x17 and 0x18) of the first vertices and issue the first unit-2 multiplies of the loop's products (0xc82-0xc86). Its output is the six pointers and those products, which `lCU1` consumes.
+- `umo_FaceCull`: **inferred**, the second name at 0xc76 (`ucull.s` line 29) of the cull set-up. It takes the triangle
+  list from register 0x15 as input, produces the six vertex pointers in address registers 6-0xb, and starts the multiplies of clip x and y (record words 0x17 and 0x18) whose products `lCU1` sums.
+- `lCU1` (`ucull.s` lines 47-91, at 0xc87): **inferred**, the cull loop, two triangles per pass. Its inputs are the
+  clip-space x, y and w (record words 0x17, 0x18 and 0x1a) of the three vertices each list entry names, through address
+  registers 6-8 and 9-0xb. It multiplies them in pairs and adds and subtracts the products (multiplies 0xc87-0xc9d,
+  float adds and subtracts M = 0x6e0 and 0x6e2 interleaved) to compute w0 (x1 y2 - x2 y1) + w1 (x2 y0 - x0 y2) + w2 (x0
+  y1 - x1 y0), the determinant of the three (x, y, w) rows, whose sign is the triangle's winding after the perspective
+  divide when every w is positive. It XORs list word 4 of the triangle (0x13 for the second) with control word 0x6f
+  (0xc9e, 0xca1), XORs that with the complement of control word 0x70 (bitwise NOT at 0xca5, M = 0x6d8) and with the
+  determinant, and stores the result to special register 0x1c, the cull accumulator, once per triangle (0xcaa, 0xcab).
+  Unit-1 code 0x51 and ORs with register 0x1d (0xca2, 0xca6, 0xca8-0xca9, 0xcaf-0xcb2) update the flags the transfers
+  test. It repeats through 0xcb3 (immediate -0x2c, `cc` 0x11) and ends the command at 0xcb4; at 0xc91 `cc` 0x78 sends it
+  to `lCU2`.
 - `lCU2` (`ucull.s` line 104, at 0xcbd): **established**, the abort exit of the cull loop: one group-31 transfer to
   `mmo_AbortGeometry`, reached from the loop when `cc` 0x78 is set at 0xc91.
 
