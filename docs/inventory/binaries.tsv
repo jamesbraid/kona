@@ -326,8 +326,8 @@ usr/diags/IR/data/ge12_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	4011
 usr/diags/IR/data/ge12_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5813	bed915c0b6e4b36d		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/ge12_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1455	4ce22049aaf1796b		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/ge12_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13551	de9d4ebd1c9298a9		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/ge12_noge.short.Z	diagnostics	board-diagnostic	data	-	1737	e3f185169656264d		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/ge12_noge.stuck.Z	diagnostics	board-diagnostic	data	-	359	d77ffdbcbfdd4190		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
+usr/diags/IR/data/ge12_noge.short.Z	diagnostics	board-diagnostic	data	-	1737	e3f185169656264d		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/ge12_noge.stuck.Z	diagnostics	board-diagnostic	data	-	359	d77ffdbcbfdd4190		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/ge12_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40089	7db96ddd9437d4ad		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge12_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5800	3b333483a8318e35		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/ge12_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1451	c6a3b447edeb7868		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
@@ -341,8 +341,8 @@ usr/diags/IR/data/ge14_btm4ges.netmap.Z	diagnostics	board-diagnostic	data	-	4052
 usr/diags/IR/data/ge14_btm4ges.short.Z	diagnostics	board-diagnostic	data	-	5788	4681a14a1af195e3		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/ge14_btm4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1472	24777623c23332c9		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/ge14_noge.netmap.Z	diagnostics	board-diagnostic	data	-	13987	b60fc3b315264b72		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/ge14_noge.short.Z	diagnostics	board-diagnostic	data	-	1730	a0a3a6659e8e24ef		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d11f41a8418747		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
+usr/diags/IR/data/ge14_noge.short.Z	diagnostics	board-diagnostic	data	-	1730	a0a3a6659e8e24ef		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/ge14_noge.stuck.Z	diagnostics	board-diagnostic	data	-	360	b8d11f41a8418747		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/ge14_top4ges.netmap.Z	diagnostics	board-diagnostic	data	-	40554	f00b10e46fefe3db		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/ge14_top4ges.short.Z	diagnostics	board-diagnostic	data	-	5751	3a592a9275839cf8		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/ge14_top4ges.stuck.Z	diagnostics	board-diagnostic	data	-	1464	0885566bbca6a8c2		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
@@ -387,11 +387,11 @@ usr/diags/IR/data/rm7.netmap.Z	diagnostics	board-diagnostic	data	-	69213	e7d47f3
 usr/diags/IR/data/rm7.short.Z	diagnostics	board-diagnostic	data	-	5335	831b6f2ab8fbcc71		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
 usr/diags/IR/data/rm7.stuck.Z	diagnostics	board-diagnostic	data	-	814	791e173513331e71		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/rm8.netmap.Z	diagnostics	board-diagnostic	data	-	79181	0cee40f587aed3d5		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/rm8.short.Z	diagnostics	board-diagnostic	data	-	16929	75eb88774f3043ad		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa538415327432		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
+usr/diags/IR/data/rm8.short.Z	diagnostics	board-diagnostic	data	-	16929	75eb88774f3043ad		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/rm8.stuck.Z	diagnostics	board-diagnostic	data	-	1902	4baa538415327432		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/rmtm7.netmap.Z	diagnostics	board-diagnostic	data	-	126335	ba39c8394a400b3a		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
+usr/diags/IR/data/rmtm7.short.Z	diagnostics	board-diagnostic	data	-	22972	293f29901c3494ea		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/rmtm7.stuck.Z	diagnostics	board-diagnostic	data	-	2374	5087baed7202287f		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/tbusdata.Z	diagnostics	board-diagnostic	data	-	1281374	b4b801dcc9310b9f		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
 usr/diags/IR/data/tf1.qtcbist	diagnostics	board-diagnostic	data	-	3905	93c33eeaee4af026		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tf1.tcbist	diagnostics	board-diagnostic	data	-	14360	a6f3c8ae199e67c9		0		0	0	understood	docs/rm.md#the-diagnostic-data-files	The diagnostic data files
@@ -408,8 +408,8 @@ usr/diags/IR/data/tm1_4Mx8.sdbist	diagnostics	board-diagnostic	data	-	5681	2b91a
 usr/diags/IR/data/tm1c.qtcbist	diagnostics	board-diagnostic	data	-	126	667e3ebae9f1bbaf	usr/diags/IR/data/tm1c.tcbist	0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/tm1c_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	6282	ada5e8ae88f3ec79		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/tm7.netmap.Z	diagnostics	board-diagnostic	data	-	52305	933d83f9c8fb792b		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
-usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	located	docs/data-files.md#shorts-vectors	Shorts vectors
-usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0		0	0	located	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
+usr/diags/IR/data/tm7.short.Z	diagnostics	board-diagnostic	data	-	11250	0e2106d568d003c7		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
+usr/diags/IR/data/tm7.stuck.Z	diagnostics	board-diagnostic	data	-	1213	c68c202baee3a470		0		0	0	understood	docs/data-files.md#stuck-at-vectors	Stuck-at vectors
 usr/diags/IR/data/tm9.netmap	diagnostics	board-diagnostic	data	-	286094	b7fb0fdec0dfc58c		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/tm9.netmap.Z	diagnostics	board-diagnostic	data	-	55798	523e205d5189e442		0		0	0	understood	docs/data-files.md#scan-chain-net-maps	Scan-chain net maps
 usr/diags/IR/data/tm9.short	diagnostics	board-diagnostic	data	-	219714	435e5dca19d05f65		0		0	0	understood	docs/data-files.md#shorts-vectors	Shorts vectors
