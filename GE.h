@@ -5356,25 +5356,21 @@ enum kona_hp_token {
      * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
      * remainder rule. */
 
-    /* `HP_X_DATA8` (0x149). Inferred: Map entry 0x58400201: pass form,
-     * command 128, count 8, 32-bit words. Command 128 is index 0 (qualifier
-     * 2). The words are held for the following X drawing command (the
-     * remainder rule). Neither table names their consumer: the handler bound
-     * at index 0, mgesi_BshRegisterWrite, reads only words 0-2; and B[128]
-     * (0x226, qstrip.s:22) is the quad-strip class entry of ged.md's layout,
-     * not a program for this command. Which unit holds the words is unknown:
-     * no shipped software or published source depends on it beyond the count
-     * and order; routes tried: hw_route.tsv, ged_route.tsv, ged.md, the
-     * handler listings and the X module senders. Payload 8: 8 word(s) of the
-     * first items of a remainder list: points (one word each) or
-     * rectangle/box corners (two words each), preloading the next X drawing
-     * command. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0x58400201: command 128, count field 8 (bits
-     * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) the 8 rectangle routines (konDrawSolidRects,
-     * konSolidFillRects, konTiledCAccelFillRects, konPolyFillRect*,
-     * konStippledCFillRects, konValidateClip); the first payload word is
-     * stored at FIFO pointer + 0x2920 (32 x token), the rest at +0. */
+    /* `HP_X_DATA8` (0x149). Inferred: map entry 0x58400201 is a pass-form
+     * word for command 128 (index 0, qualifier 2) with count field 8 and
+     * 32-bit words. The eight payload words are four corner pairs, which only
+     * the rectangle fill routines send: the X module's eight rectangle
+     * routines (konDrawSolidRects, konSolidFillRects, konTiledCAccelFillRects,
+     * konPolyFillRect*, konStippledCFillRects, konValidateClip) each store
+     * their first word at FIFO pointer + 0x2920 (32 x 0x149) and the rest at
+     * +0. The handler bound at index 0, mgesi_BshRegisterWrite, reads words
+     * 0 to 2 only. B[128] at 0x226 (qstrip.s:22) is the quad-strip class
+     * entry, not a program for this command. No table names the unit that
+     * holds words 3 to 7. Routes tried: hw_route.tsv, ged_route.tsv, ged.md,
+     * the handler listings and the X module senders. The map word and count
+     * are read from the token table (arm1.u entry 0x58400201, bits 6-10 = 8,
+     * with 0 read as 32). The store offset comes from the earlier X module
+     * note; the stores were not re-read for this entry. */
     KONA_HP_X_DATA8                      = 0x149,
 
     /* Read at icu_map.tsv 0x14a; hw_route.tsv; ged.md how an entry is chosen;
