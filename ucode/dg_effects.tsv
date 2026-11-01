@@ -31,66 +31,66 @@ request	effect
 27	combines the 13-bit horizontal position in payload word 0 with the vertical position in word 1 shifted into bits 25-13 and writes the result to XMAP cursor register 0x102
 28	looks up the channel record named by payload word 0 and writes its first word, the channel index, to XMAP register 0x100, choosing which channel owns the hardware cursor
 29	writes XMAP register 0x103 with 2 for payload value zero and 1 for payload value one; any other value writes zero, cursor off, and no state is kept
-30	stores priority, record offset 4
-31	records and applies channel blank
+30	stores payload word 1, the cursor priority, at offset 4 of the channel record named by payload word 0, with no range check and no display register write, so only the firmware's own record changes; sends no reply
+31	masks payload word 1 to one bit and merges it into bit 31 of the channel record's flag word at offset 0x184 for the channel in payload word 0; then calls the blanking routine for that channel only when the shared all-channel blank counter at display-state offset 0x36d0 is zero; nothing is sent back to the host
 32	replies with the channel blank bit, bit 31 of the record control word at offset 0x184, or with 1 when the shared blanking-depth word at display-state offset 0x36d0 is above zero
 33	sets gain-DAC output gain
 34	replies with the output gain: for channel 1 with bit 26 of its control word set the shared word at display-state offset 0x36bc, otherwise the record word at offset 0x15c
 35	sets one sync-output option
 36	returns six sync options
-37	sets video-DAC pedestal bit
+37	for channel 1 first passes payload word 1 to the encoder pedestal routine; for channels 0 to 7 it then reads video-DAC control register 6, replaces bit 3 with bit 0 of payload word 1, writes it back and recomputes the DAC gain select; other channel numbers do nothing further; no reply
 38	reads video-DAC control register 6 for a channel numbered 0-7 and replies with its bit 3, the pedestal enable, or with -1 for any other channel number
-39	writes 0x118 and 0x11c
-40	streams 260-word textport glyph
-41	packs three 10-bit components
-42	sets VOC 0x44 bit 1
-43	sets register 0x8e bit 23
-44	returns master-clock select word
-45	runs EEPROM combination at 0x20000
+39	writes 0 to display-bus word 0x118 (ARM address 0x00600460) and then 0x80050 to word 0x11c (0x00600470), each write preceded and followed by a three-pass delay loop; reads no payload and sends no reply
+40	clears display-bus words 0x101 and 0x100, sets word 0x103 to 2 and clears word 0x118, then copies the 260 words of the firmware's textport glyph buffer one by one to word 0x119 (ARM address 0x00600464), a delay loop after each; reads no payload and sends no reply
+41	takes the low ten bits of payload word 3 as bits 9-0 of one word, of word 2 as bits 19-10 and of word 1 as bits 29-20; writes payload word 0 plus 0x1000 to display-bus word 0x118, then the packed word to word 0x119, with delay loops around each write; no reply
+42	loads a fixed clock-parameter set built on the stack into the chip named by payload word 0 with the clock-parameter loader, restarts that chip's clock with mode 0, then sets bit 1 of the chip's word at ARM address 0x00600910 plus 0x400 times the chip number, after a three-pass delay loop and followed by a second; no reply
+43	replaces bit 23 of display-bus word 0x8e (ARM address 0x00600238) with 1 when payload word 0 equals 1 and 0 otherwise, after a three-pass delay loop, then stores payload word 0 at display-state offset 0x36c4 for the matching query; no reply
+44	replies with a four-byte word, reply type 0xd, loaded from display-state offset 0x36c4 (0x0406cd18); the word is the master-clock select the set request stored, and no display register is read
+45	clears the first word of the display state, reads an eight-byte header from the EEPROM at 0x20000 and accepts it when word 0 is 0xfacefeed and word 1, the length, is non-negative and below 0x8000; accepted: reads length plus 2 words, clears bit 28 of the display-state word at offset 0x36c8 and runs the stored combination through the combination loader; if that sets bit 28 or returns zero it prints a message and rebuilds the default state, then falls to the built-in emergency format of 0x3fe words; a rejected header goes straight to the emergency format; a failed emergency load prints "combination load failed"; no reply
 46	programs encoder from scratch
-47	writes 255 minus gain, 0x1708
-48	returns stored encoder gain
-49	writes encoder registers 0x24-0x27
-50	reads encoder registers 0x24-0x25
-51	sets encoder register 1 bits
-52	stores channel X window id
+47	keeps the low byte of payload word 0 in display-state offset 0x36bc and writes 255 minus that byte to display-bus word 0x1708 (ARM address 0x00605c20), between delay loops; no reply
+48	replies with a four-byte word, reply type 0xe, loaded from display-state offset 0x36bc (0x0406cd10); the word is the encoder output gain the encoder-gain request stored, and no display register is read
+49	writes the low byte of payload word 0 to encoder register 0x24 and its next byte to 0x25; then adds 0x2000 to the word and writes the low byte of the sum to register 0x26 and the next byte to 0x27; nothing is sent back to the host
+50	reads encoder register 0x24 as the low byte and register 0x25 as the high byte, combines them into one 16-bit value and replies with it as a four-byte reply of type 0xf
+51	reads encoder register 1, clears bit 5 and sets bit 4, then clears bit 4 when payload word 0 is 1 or sets bit 5 when it is 2, and writes the result back to register 1; any other payload leaves bit 4 set and bit 5 clear
+52	stores payload word 1, the window id, in the per-channel table at display-state offset 0x368c; when the id is zero it also calls the resize handler (request 20) with eight words built from the record's four rectangle words at offsets 0x60 to 0x6c, bits 23 and 22 of the control word at 0x184 and a final zero; a non-zero id returns after the store
 53	shifts 1328-word logic image out
-54	writes registers 0x2300-0x2303
-55	writes register 0x2304
+54	writes payload words 0 to 3 in order, unmodified, to display-bus words 0x2300 to 0x2303 (ARM addresses 0x00608c00 to 0x00608c0c), each write followed by a three-pass delay loop; no reply
+55	writes payload word 0 unmodified to display-bus word 0x2304 (ARM address 0x00608c10) between two three-pass delay loops; payload word 1 is never read, no reply
 56	loads DAC cursor, 256 words
-57	channel 0x1e flag, then 79
-58	returns channel copy state
-59	writes 0x320 into 0x10f
-60	nests all-channel temporary blank
+57	for channel 0x1e copies bit 31 of payload word 4 into bit 9 of the record's flag word at offset 0x88; for every channel it then clears bit 31 of payload word 4 in place and jumps to the vampire handler (request 79) to process the payload; no hardware write of its own
+58	for the channel in payload word 0 copies six words from its record into a reply buffer, the word at offset 0x4c, the pair at 0x80, then the three words from 0xd0, and sends them unchanged as a 24-byte reply of type 0x10; the read-back of request 79, no hardware access
+59	ORs the low five bits of payload word 0 with 0x320 and writes the result to display-bus word 0x10f (ARM address 0x0060043c) between two three-pass delay loops; no reply
+60	nests an all-channel blank: a nonzero payload adds one to the counter at display-state offset 0x36d0 and, if the old value was zero or negative, blanks every present video-output chip; a zero payload subtracts one, floors a negative result at zero and, if the result is not above zero, unblanks every present chip through the blanking routine; no reply
 61	returns 12-byte interrupt state
-62	writes 0x1900 or 0x8000
-63	returns XMAP clock select word
-64	stores record words 0x9c, 0xa0
-65	resets raster-board image processors
+62	returns at once when payload word 0 equals the word stored at display-state offset 0x36c0; for any value other than zero or one it tail-calls the printf routine with a message naming the unknown XMapClockSelect value and stores nothing; otherwise it writes the value to ARM address 0x00606400 when the board-type word at 0x04067edc is zero, or to 0x00620000 when it is not, with delay loops, and stores it at 0x36c0; no reply
+63	replies with a four-byte word, reply type 0x12, loaded from display-state offset 0x36c0 (0x0406cd14); the word is the colour-map clock select the set request stored, and no display register is read
+64	stores payload word 1 at offset 0x9c of the channel record named by payload word 0, then payload word 2 at offset 0xa0; firmware state only, no hardware access and no reply
+65	prints a start message, nests an all-channel blank, stops the requesters on every present chip, clears bits 1-0 of display-bus word 0x301 and bit 0 of word 0x306, sleeps, resets the image-processor chips, prints a message, sets bit 0 of word 0x306 again, sleeps, restarts the requesters on every present chip, sleeps, ends the blank and prints a completion message; bits 1-0 of word 0x301 stay clear; no reply
 66	replies with two words from the record control word at offset 0x184: first bit 28, the enabled flag, then bit 27, as an eight-byte reply of type 0x13
-67	stores eight placement words
-68	sets state flag bit 30
+67	stores payload words 1 to 4 at offsets 0xc0 up to 0xcc and payload words 5 to 8 at offsets 0x70 up to 0x7c, each at 4-byte steps, of the channel record named by payload word 0, unmodified; touches no hardware and sends no reply
+68	copies bit 0 of payload word 0 into bit 30 of the display-state flag word at 0x0406cd1c, the genlock-switching flag, leaving the other bits alone; no hardware write and no reply
 69	pulses 0x343 bit 0, replies
-70	sets VOC 0x8f bit 9
+70	reads the channel's field-select word at ARM address 0x00600a3c plus 0x400 times the channel, replaces bit 9 with bit 0 of payload word 1 (cleared instead for channels 0x1e and 0x1f when the board-revision test on 0x04068608 passes) and writes it back after a three-pass delay loop, keeping the same value in record offset 0x88; no reply
 71	replies with bit 9 of the channel record word at offset 0x88, the field-dominance flag, as a four-byte reply of type 0x15
-72	sets register 0x8b bit 22
+72	reads display-bus word 0x8b (ARM address 0x0060022c), replaces bit 22 with bit 0 of payload word 0 and writes it back after a three-pass delay loop, followed by a second delay; no reply
 73	reads register 0x8b bit 22
-74	returns five format words
-75	records gamma-map state words
-76	returns 16-byte gamma state
-77	writes encoder control register 0
-78	sets record 0x184 bit 24
+74	replies with five words, type 0x17, for the channel in payload word 0: the pixel-format word at record offset 0xac, bit 30 of the control word at offset 0x184, bit 26 of that word, the constant -1, then the word at record offset 0x164; every value comes from the firmware's channel record, none from the display hardware
+75	for payload word 0 equal to -1 copies bit 0 of payload word 1 into bit 29 of the shared state word at display-state offset 0x36c8 and payload words 2 to 4 into the three words at 0x36d4; for ids 0 to 7 and 0x1e to 0xfd it copies that bit into bit 25 of the channel record's control word at offset 0x184 and the three words into record offset 0x174; any other id returns with nothing stored; firmware state only, no reply
+76	replies with four words, type 0x18: a flag followed by the three words request 75 stored; for channel -1 the flag is bit 29 of the word at display-state offset 0x36c8 and the words come from 0x36d4; for ids from 0 up to 7, and from 0x1e up to 0xfd, the flag is bit 25 of the record's control word at offset 0x184 and the words come from record offset 0x174; any other id sends a zero flag; no hardware access
+77	builds encoder control register 0 as bit 0 and bit 4 both equal to bit 0 of payload word 0, bit 3 set when the master-clock-select word at display-state offset 0x36c4 is zero, all other bits zero; writes that value to the register twice; nothing is sent back to the host
+78	sets bit 24 of the channel record's control word at offset 0x184 to 1 when payload word 1 equals 1 and to 0 for any other value, for the channel in payload word 0; firmware state only, no hardware write and no reply
 79	records channel copy source
 80	returns 0x44-byte monitor identity
-81	single return, ignores 34 words
+81	a single return instruction; the dispatch table passes it 34 payload words but it reads none of them; it changes no hardware or firmware state and sends nothing back
 82	loads option-board logic image
 83	pulses 0xc000, rebuilds option VOCs
-84	sets state flag bit 27
+84	copies bit 0 of payload word 0 into bit 27 of the display-state flag word at 0x0406cd1c, the internal-genlock flag, leaving the other bits alone; no hardware write and no reply
 85	replies with bit 27 of the display status word at 0x0406cd1c, the internal genlock flag, as a four-byte reply of type 0x1c
-86	stores record 0x184 bit 21
+86	merges bit 0 of payload word 1 into bit 21 of the channel record's control word at offset 0x184 and, for every channel except 0x5e, stores payload word 2 unchanged at record offset 0x180; firmware records only, no hardware write and no reply
 87	replies with two words, bit 21 of the record control word at offset 0x184 and then the record word at offset 0x180, as an eight-byte reply of type 0x1d
 88	stores format, programs option board
-89	returns data-format code, flag
-90	sets DVP register bit 7
-91	sends VBOB packet at 0xa000
+89	replies with two words, type 0x1e: the data-format code at offset 0xb0 of the channel record named by payload word 0, then 1 when bit 20 of the record's control word at offset 0x184 is clear and 0 when it is set; every value comes from the firmware's channel record, none from the display hardware
+90	replaces bit 7 of the option board's register with bit 0 of payload word 0, read-modify-write after a three-pass delay loop and followed by a second delay; the register is the word at ARM address 0x0060d000 (display-bus word 0x3400) when the board-type word at 0x04067edc is zero and 0x00633400 (word 0xcd00) otherwise; no reply
+91	sends a packet to the option board over the two-wire bus at port 0xa000: a start to address 0xee, then payload word 0 plus 2 as the length byte, a zero byte, payload word 1, and payload words 2 onward for as many words as word 0 gives, one byte each, then a stop; no reply; also the routine the channel-0x5e phase handlers call
 92	reads VBOB reply at 0xa000
