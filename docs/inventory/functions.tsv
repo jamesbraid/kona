@@ -15144,18 +15144,18 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0898	96	__glSpanUnpac
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b08f8	84	__glSpanSwapBytes2	dynsym+mdebug	9f4236e11089		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b094c	84	__glSpanSwapBytes2Dst	dynsym+mdebug	8b19dc6c4f50		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b09a0	220	__glSpanSwapAndSkipBytes2	dynsym+mdebug	15ccc71344f1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0a7c	100	__glSpanSwapBytes4	dynsym+mdebug	c6730c4925a1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0ae0	100	__glSpanSwapBytes4Dst	dynsym+mdebug	013ad511d9ec		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0b44	312	__glSpanSwapAndSkipBytes4	dynsym+mdebug	1c4ca30f5ed2		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0c7c	180	__glSpanSkipPixels1	dynsym+mdebug	f1a1e5de4d21		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0d30	180	__glSpanSkipPixels2	dynsym+mdebug	30ced904c554		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0de4	180	__glSpanSkipPixels4	dynsym+mdebug	6c7e4f633a49		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0a7c	100	__glSpanSwapBytes4	dynsym+mdebug	c6730c4925a1		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0ae0	100	__glSpanSwapBytes4Dst	dynsym+mdebug	013ad511d9ec		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0b44	312	__glSpanSwapAndSkipBytes4	dynsym+mdebug	1c4ca30f5ed2		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0c7c	180	__glSpanSkipPixels1	dynsym+mdebug	f1a1e5de4d21		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0d30	180	__glSpanSkipPixels2	dynsym+mdebug	30ced904c554		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0de4	180	__glSpanSkipPixels4	dynsym+mdebug	6c7e4f633a49		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0e98	220	__glSpanSlowSkipPixels2	dynsym+mdebug	f5f4b0763e8d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0f74	312	__glSpanSlowSkipPixels4	dynsym+mdebug	e86166cc1bdd		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b0f74	312	__glSpanSlowSkipPixels4	dynsym+mdebug	e86166cc1bdd		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b10ac	84	__glSpanAlignPixels2	dynsym+mdebug	30162b2a1e93		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b1100	84	__glSpanAlignPixels2Dst	dynsym+mdebug	484165a43f54		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b1154	100	__glSpanAlignPixels4	dynsym+mdebug	bd14460efd77		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b11b8	100	__glSpanAlignPixels4Dst	dynsym+mdebug	149bf0f206bf		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b1154	100	__glSpanAlignPixels4	dynsym+mdebug	bd14460efd77		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b11b8	100	__glSpanAlignPixels4Dst	dynsym+mdebug	149bf0f206bf		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b121c	84	__glSpanUnpackUbyte	dynsym+mdebug	f0307782e1a7		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b1270	96	__glSpanUnpackByte	dynsym+mdebug	4bbd79ffb74f		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9b12d0	120	__glSpanUnpackUshort	dynsym+mdebug	120063b78d19		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -20680,18 +20680,18 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acb10	104	__glSpanUn
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acb80	72	__glSpanSwapBytes2	dwarf+dynsym	2e6df3bf7fb6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acbd0	72	__glSpanSwapBytes2Dst	dwarf+dynsym	25e58e40e00b		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acc20	120	__glSpanSwapAndSkipBytes2	dwarf+dynsym	79e729aae8e5		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acca0	88	__glSpanSwapBytes4	dwarf+dynsym	2a3feb18eb52		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acd00	88	__glSpanSwapBytes4Dst	dwarf+dynsym	3e59f99f0044		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acd60	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	e03eee66ec66		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acdf0	188	__glSpanSkipPixels1	dwarf+dynsym	3956eb96c0ed		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9aceb0	188	__glSpanSkipPixels2	dwarf+dynsym	f8a1b0aef28e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acf70	188	__glSpanSkipPixels4	dwarf+dynsym	9fb5a266c6f4		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acca0	88	__glSpanSwapBytes4	dwarf+dynsym	2a3feb18eb52		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acd00	88	__glSpanSwapBytes4Dst	dwarf+dynsym	3e59f99f0044		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acd60	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	e03eee66ec66		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acdf0	188	__glSpanSkipPixels1	dwarf+dynsym	3956eb96c0ed		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9aceb0	188	__glSpanSkipPixels2	dwarf+dynsym	f8a1b0aef28e		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9acf70	188	__glSpanSkipPixels4	dwarf+dynsym	9fb5a266c6f4		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad030	120	__glSpanSlowSkipPixels2	dwarf+dynsym	6534135ea1cf		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad0b0	136	__glSpanSlowSkipPixels4	dwarf+dynsym	78b22bde2e1a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad0b0	136	__glSpanSlowSkipPixels4	dwarf+dynsym	78b22bde2e1a		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad140	72	__glSpanAlignPixels2	dwarf+dynsym	a992e574608d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad190	72	__glSpanAlignPixels2Dst	dwarf+dynsym	2faf2460842e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad1e0	88	__glSpanAlignPixels4	dwarf+dynsym	4b7d885834ef		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad240	88	__glSpanAlignPixels4Dst	dwarf+dynsym	3859a3a07554		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad1e0	88	__glSpanAlignPixels4	dwarf+dynsym	4b7d885834ef		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad240	88	__glSpanAlignPixels4Dst	dwarf+dynsym	3859a3a07554		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad2a0	200	__glSpanUnpackUbyte	dwarf+dynsym	44583df27b05		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad370	264	__glSpanUnpackByte	dwarf+dynsym	a519ca8769f9		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9ad480	232	__glSpanUnpackUshort	dwarf+dynsym	85f61e8b0925		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -26260,18 +26260,18 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e104f0	104	__glSpanUn
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10560	72	__glSpanSwapBytes2	dwarf+dynsym	cb9ac09b5242		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e105b0	72	__glSpanSwapBytes2Dst	dwarf+dynsym	cd811c42e61e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10600	120	__glSpanSwapAndSkipBytes2	dwarf+dynsym	3da419875333		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10680	88	__glSpanSwapBytes4	dwarf+dynsym	0d2881c284fc		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e106e0	88	__glSpanSwapBytes4Dst	dwarf+dynsym	ec4c67006040		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10740	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	1df7217290e8		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e107d0	188	__glSpanSkipPixels1	dwarf+dynsym	a98302bd686d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10890	188	__glSpanSkipPixels2	dwarf+dynsym	00f823be4041		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10950	188	__glSpanSkipPixels4	dwarf+dynsym	312181786c68		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10680	88	__glSpanSwapBytes4	dwarf+dynsym	0d2881c284fc		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e106e0	88	__glSpanSwapBytes4Dst	dwarf+dynsym	ec4c67006040		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10740	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	1df7217290e8		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e107d0	188	__glSpanSkipPixels1	dwarf+dynsym	a98302bd686d		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10890	188	__glSpanSkipPixels2	dwarf+dynsym	00f823be4041		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10950	188	__glSpanSkipPixels4	dwarf+dynsym	312181786c68		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10a10	120	__glSpanSlowSkipPixels2	dwarf+dynsym	e9c9b63bb0c4		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10a90	136	__glSpanSlowSkipPixels4	dwarf+dynsym	a2048a8d6bbd		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10a90	136	__glSpanSlowSkipPixels4	dwarf+dynsym	a2048a8d6bbd		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10b20	72	__glSpanAlignPixels2	dwarf+dynsym	def821a456ca		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10b70	72	__glSpanAlignPixels2Dst	dwarf+dynsym	23f6ca570051		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10bc0	88	__glSpanAlignPixels4	dwarf+dynsym	ff98d26a18c2		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10c20	88	__glSpanAlignPixels4Dst	dwarf+dynsym	a9746faa32f1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10bc0	88	__glSpanAlignPixels4	dwarf+dynsym	ff98d26a18c2		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10c20	88	__glSpanAlignPixels4Dst	dwarf+dynsym	a9746faa32f1		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10c80	200	__glSpanUnpackUbyte	dwarf+dynsym	d179a430a90a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10d50	264	__glSpanUnpackByte	dwarf+dynsym	d3ccdf2d7dfe		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e10e60	232	__glSpanUnpackUshort	dwarf+dynsym	22f7b8cb2665		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -31843,18 +31843,18 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0898	96	__glSpanUnpac
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b08f8	84	__glSpanSwapBytes2	dynsym+mdebug	9f4236e11089		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b094c	84	__glSpanSwapBytes2Dst	dynsym+mdebug	8b19dc6c4f50		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b09a0	220	__glSpanSwapAndSkipBytes2	dynsym+mdebug	15ccc71344f1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0a7c	100	__glSpanSwapBytes4	dynsym+mdebug	c6730c4925a1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0ae0	100	__glSpanSwapBytes4Dst	dynsym+mdebug	013ad511d9ec		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0b44	312	__glSpanSwapAndSkipBytes4	dynsym+mdebug	1c4ca30f5ed2		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0c7c	180	__glSpanSkipPixels1	dynsym+mdebug	f1a1e5de4d21		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0d30	180	__glSpanSkipPixels2	dynsym+mdebug	30ced904c554		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0de4	180	__glSpanSkipPixels4	dynsym+mdebug	6c7e4f633a49		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0a7c	100	__glSpanSwapBytes4	dynsym+mdebug	c6730c4925a1		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0ae0	100	__glSpanSwapBytes4Dst	dynsym+mdebug	013ad511d9ec		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0b44	312	__glSpanSwapAndSkipBytes4	dynsym+mdebug	1c4ca30f5ed2		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0c7c	180	__glSpanSkipPixels1	dynsym+mdebug	f1a1e5de4d21		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0d30	180	__glSpanSkipPixels2	dynsym+mdebug	30ced904c554		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0de4	180	__glSpanSkipPixels4	dynsym+mdebug	6c7e4f633a49		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0e98	220	__glSpanSlowSkipPixels2	dynsym+mdebug	f5f4b0763e8d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0f74	312	__glSpanSlowSkipPixels4	dynsym+mdebug	e86166cc1bdd		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b0f74	312	__glSpanSlowSkipPixels4	dynsym+mdebug	e86166cc1bdd		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b10ac	84	__glSpanAlignPixels2	dynsym+mdebug	30162b2a1e93		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b1100	84	__glSpanAlignPixels2Dst	dynsym+mdebug	484165a43f54		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b1154	100	__glSpanAlignPixels4	dynsym+mdebug	bd14460efd77		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b11b8	100	__glSpanAlignPixels4Dst	dynsym+mdebug	149bf0f206bf		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b1154	100	__glSpanAlignPixels4	dynsym+mdebug	bd14460efd77		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b11b8	100	__glSpanAlignPixels4Dst	dynsym+mdebug	149bf0f206bf		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b121c	84	__glSpanUnpackUbyte	dynsym+mdebug	f0307782e1a7		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b1270	96	__glSpanUnpackByte	dynsym+mdebug	4bbd79ffb74f		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9b12d0	120	__glSpanUnpackUshort	dynsym+mdebug	120063b78d19		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -37379,18 +37379,18 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acb10	104	__glSpanUn
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acb80	72	__glSpanSwapBytes2	dwarf+dynsym	2e6df3bf7fb6		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acbd0	72	__glSpanSwapBytes2Dst	dwarf+dynsym	25e58e40e00b		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acc20	120	__glSpanSwapAndSkipBytes2	dwarf+dynsym	79e729aae8e5		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acca0	88	__glSpanSwapBytes4	dwarf+dynsym	2a3feb18eb52		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acd00	88	__glSpanSwapBytes4Dst	dwarf+dynsym	3e59f99f0044		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acd60	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	e03eee66ec66		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acdf0	188	__glSpanSkipPixels1	dwarf+dynsym	3956eb96c0ed		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9aceb0	188	__glSpanSkipPixels2	dwarf+dynsym	f8a1b0aef28e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acf70	188	__glSpanSkipPixels4	dwarf+dynsym	9fb5a266c6f4		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acca0	88	__glSpanSwapBytes4	dwarf+dynsym	2a3feb18eb52		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acd00	88	__glSpanSwapBytes4Dst	dwarf+dynsym	3e59f99f0044		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acd60	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	e03eee66ec66		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acdf0	188	__glSpanSkipPixels1	dwarf+dynsym	3956eb96c0ed		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9aceb0	188	__glSpanSkipPixels2	dwarf+dynsym	f8a1b0aef28e		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9acf70	188	__glSpanSkipPixels4	dwarf+dynsym	9fb5a266c6f4		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad030	120	__glSpanSlowSkipPixels2	dwarf+dynsym	6534135ea1cf		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad0b0	136	__glSpanSlowSkipPixels4	dwarf+dynsym	78b22bde2e1a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad0b0	136	__glSpanSlowSkipPixels4	dwarf+dynsym	78b22bde2e1a		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad140	72	__glSpanAlignPixels2	dwarf+dynsym	a992e574608d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad190	72	__glSpanAlignPixels2Dst	dwarf+dynsym	2faf2460842e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad1e0	88	__glSpanAlignPixels4	dwarf+dynsym	4b7d885834ef		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad240	88	__glSpanAlignPixels4Dst	dwarf+dynsym	3859a3a07554		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad1e0	88	__glSpanAlignPixels4	dwarf+dynsym	4b7d885834ef		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad240	88	__glSpanAlignPixels4Dst	dwarf+dynsym	3859a3a07554		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad2a0	200	__glSpanUnpackUbyte	dwarf+dynsym	44583df27b05		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad370	264	__glSpanUnpackByte	dwarf+dynsym	a519ca8769f9		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9ad480	232	__glSpanUnpackUshort	dwarf+dynsym	85f61e8b0925		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
@@ -42959,18 +42959,18 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f04f0	104	__glSpanUn
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0560	72	__glSpanSwapBytes2	dwarf+dynsym	cb9ac09b5242		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f05b0	72	__glSpanSwapBytes2Dst	dwarf+dynsym	cd811c42e61e		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0600	120	__glSpanSwapAndSkipBytes2	dwarf+dynsym	3da419875333		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0680	88	__glSpanSwapBytes4	dwarf+dynsym	0d2881c284fc		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f06e0	88	__glSpanSwapBytes4Dst	dwarf+dynsym	ec4c67006040		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0740	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	1df7217290e8		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f07d0	188	__glSpanSkipPixels1	dwarf+dynsym	a98302bd686d		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0890	188	__glSpanSkipPixels2	dwarf+dynsym	00f823be4041		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0950	188	__glSpanSkipPixels4	dwarf+dynsym	312181786c68		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0680	88	__glSpanSwapBytes4	dwarf+dynsym	0d2881c284fc		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f06e0	88	__glSpanSwapBytes4Dst	dwarf+dynsym	ec4c67006040		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0740	136	__glSpanSwapAndSkipBytes4	dwarf+dynsym	1df7217290e8		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f07d0	188	__glSpanSkipPixels1	dwarf+dynsym	a98302bd686d		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0890	188	__glSpanSkipPixels2	dwarf+dynsym	00f823be4041		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0950	188	__glSpanSkipPixels4	dwarf+dynsym	312181786c68		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0a10	120	__glSpanSlowSkipPixels2	dwarf+dynsym	e9c9b63bb0c4		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0a90	136	__glSpanSlowSkipPixels4	dwarf+dynsym	a2048a8d6bbd		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0a90	136	__glSpanSlowSkipPixels4	dwarf+dynsym	a2048a8d6bbd		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0b20	72	__glSpanAlignPixels2	dwarf+dynsym	def821a456ca		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0b70	72	__glSpanAlignPixels2Dst	dwarf+dynsym	23f6ca570051		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0bc0	88	__glSpanAlignPixels4	dwarf+dynsym	ff98d26a18c2		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0c20	88	__glSpanAlignPixels4Dst	dwarf+dynsym	a9746faa32f1		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0bc0	88	__glSpanAlignPixels4	dwarf+dynsym	ff98d26a18c2		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0c20	88	__glSpanAlignPixels4Dst	dwarf+dynsym	a9746faa32f1		in	named-only	docs/libglcore.md#software-pixel-path	Software pixel path
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0c80	200	__glSpanUnpackUbyte	dwarf+dynsym	d179a430a90a		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0d50	264	__glSpanUnpackByte	dwarf+dynsym	d3ccdf2d7dfe		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21f0e60	232	__glSpanUnpackUshort	dwarf+dynsym	22f7b8cb2665		in	located	docs/sample-implementation.md#px_unpackc	px_unpack.c
