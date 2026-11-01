@@ -1,45 +1,45 @@
-# What each display-generator request does, in five words or fewer, written by hand from the handler readings
+# What each display-generator request does, one line each (older rows are five words or fewer), written by hand from the handler readings
 # in ucode/arm1_functions.md (arm1.u, IRIX 6.5.30m). scripts/dg_requests.py joins it with DGDispatchTable.
 request	effect
-0	echoes payload plus one
-1	writes any display-bus word
+0	reads payload word 0, adds one and sends the sum back as a one-word reply, a loop-back check of the command path that touches no hardware
+1	writes payload word 1 to the display-bus word indexed by payload word 0, ARM address 0x600000 plus four times the index, between short delay loops and with no range check
 2	reads any display-bus word
 3	sets XMAP substitute colour
-4	clears XMAP 0x105 substitute
-5	prints tracing message only
+4	writes 0 to XMAP register 0x105, which turns the diagnostic substitute colour off, between delay loops and then forces an XMAP copy-buffer update; reads no payload
+5	prints a message that bus tracing was not compiled in and returns; it ignores its four payload words and touches no hardware
 6	loads cursor from image
-7	stores DGGlobalState+0, prints it
+7	stores payload word 0 as the firmware debug-print mask in the first word of the display state and prints the new value; no hardware access and no reply
 8	derives frame-buffer tile layout
-9	sets register 0x8b bits 21-20
+9	read-modify-writes bits 21-20 of display-bus register 0x8b with the low two bits of payload word 0, which pick the input sync source; sends no reply
 10	reads register 0x8b bits 21-20
 11	sets channel horizontal phase
-12	returns stored horizontal phase
-13	sets channel vertical phase
-14	returns stored vertical phase
-15	record 0x184 bit 25 or 0x170
-16	returns channel gamma map
+12	replies with the horizontal phase last stored for the channel named by payload word 0, the word at channel record offset 0x16c, as a four-byte reply of type 3
+13	decodes payload word 0 as a signed vertical phase with the channel number plus one in its top ten bits; it stores the value in the shared slot for all channels or channel 1, or in the channel record at offset 0x168, and applies it through the vertical-phase adjuster
+14	replies with the vertical phase last stored, the shared slot at display-state offset 0x36cc for channel 1 and otherwise the channel record word at offset 0x168, as a four-byte reply of type 4
+15	sets bit 25 of the channel control word when payload word 1 is -2, meaning no gamma map; any other value clears the bit and stores the map index at record offset 0x170, then XMAP channel-format register 0x11d is updated
+16	replies with the gamma-map index at record offset 0x170 of the channel named by payload word 0, as a four-byte reply of type 5, without a range check on the channel
 17	rebuilds board default state
-18	returns five-word board record
+18	builds the five-word board-configuration record on the stack through the configuration reader and sends it as a 20-byte reply of type 6; reads no hardware itself
 19	returns 0x4c-byte channel description
-20	resizes channel and its copies
-21	returns 18-word resize state
+20	calls the channel resize routine with the eight payload words; when other channels copy this one (record offset 0xbc above zero) it applies the same resize to every dependent channel
+21	replies with 18 words of the channel resize state, the record words 0x50-0x6f and the placement words and bits 23 and 22 of the control word at offset 0x184, as a 72-byte reply of type 8
 22	loads video format into channel
 23	turns a channel on
 24	turns a channel off
-25	writes genlock parameters per VOC
+25	hands the 16-word payload to the per-channel genlock-parameter writer for every present video-output chip; it is a tail call with no hardware access of its own
 26	genlock all channels, flag bit 31
-27	writes XMAP 0x102 cursor position
-28	writes XMAP 0x100 cursor channel
-29	writes XMAP 0x103 cursor mode
+27	combines the 13-bit horizontal position in payload word 0 with the vertical position in word 1 shifted into bits 25-13 and writes the result to XMAP cursor register 0x102
+28	looks up the channel record named by payload word 0 and writes its first word, the channel index, to XMAP register 0x100, choosing which channel owns the hardware cursor
+29	writes XMAP register 0x103 with 2 for payload value zero and 1 for payload value one; any other value writes zero, cursor off, and no state is kept
 30	stores priority, record offset 4
 31	records and applies channel blank
-32	returns channel blank bit
+32	replies with the channel blank bit, bit 31 of the record control word at offset 0x184, or with 1 when the shared blanking-depth word at display-state offset 0x36d0 is above zero
 33	sets gain-DAC output gain
-34	returns stored output gain
+34	replies with the output gain: for channel 1 with bit 26 of its control word set the shared word at display-state offset 0x36bc, otherwise the record word at offset 0x15c
 35	sets one sync-output option
 36	returns six sync options
 37	sets video-DAC pedestal bit
-38	returns DAC register 6 bit 3
+38	reads video-DAC control register 6 for a channel numbered 0-7 and replies with its bit 3, the pedestal enable, or with -1 for any other channel number
 39	writes 0x118 and 0x11c
 40	streams 260-word textport glyph
 41	packs three 10-bit components
@@ -67,12 +67,12 @@ request	effect
 63	returns XMAP clock select word
 64	stores record words 0x9c, 0xa0
 65	resets raster-board image processors
-66	returns enable bits 27, 28
+66	replies with two words from the record control word at offset 0x184: first bit 28, the enabled flag, then bit 27, as an eight-byte reply of type 0x13
 67	stores eight placement words
 68	sets state flag bit 30
 69	pulses 0x343 bit 0, replies
 70	sets VOC 0x8f bit 9
-71	returns record flag bit 9
+71	replies with bit 9 of the channel record word at offset 0x88, the field-dominance flag, as a four-byte reply of type 0x15
 72	sets register 0x8b bit 22
 73	reads register 0x8b bit 22
 74	returns five format words
@@ -86,9 +86,9 @@ request	effect
 82	loads option-board logic image
 83	pulses 0xc000, rebuilds option VOCs
 84	sets state flag bit 27
-85	returns state flag bit 27
+85	replies with bit 27 of the display status word at 0x0406cd1c, the internal genlock flag, as a four-byte reply of type 0x1c
 86	stores record 0x184 bit 21
-87	returns two buffer words
+87	replies with two words, bit 21 of the record control word at offset 0x184 and then the record word at offset 0x180, as an eight-byte reply of type 0x1d
 88	stores format, programs option board
 89	returns data-format code, flag
 90	sets DVP register bit 7
