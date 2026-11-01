@@ -57,3 +57,29 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
 - `__istart` (`usr/gfx/KONA/bin/ireeprom` 0x10003eec, 4 bytes): **Established.** The start-up hook
   `__start` calls before `main`. Its 4-byte symbol is one `nop` word (0x00000000) in the `.init` section, and the
   `jr ra` that returns sits at 0x10003ef0, just past the symbol, so the hook does nothing and touches no register or memory.
+
+## `hyper`: hyperpipe test program
+
+- `__start` (`usr/diags/IR/bin/hyper` 0x10002680, 268 bytes): **Established.** The process entry of the test program, laid out like the entry of the EEPROM tool but bound to this program's own global slots. It reads the argument count from sp+0, takes the vector address from sp+4, rounds the stack down to 16 bytes and finds the environment as vector plus four plus four bytes per argument. The environment goes into
+  `_environ` only while that is zero; the count and vector go into `__Argc` and `__Argv`. After
+  `__istart` and `__readenv_sigfpe` it calls `main` with count, vector and `_environ`, hands the result to
+  `exit` and ends in a `break` that cannot be reached.
+- `_mcount` (`usr/diags/IR/bin/hyper` 0x1000278c, 12 bytes): **Established.** The compiler's call-counting stub in this build. Its three words drop the 16 bytes the caller pushed, return with `jr ra` and copy
+  `at` into `ra` in the delay slot, so no count is kept and nothing is drawn or sent.
+- `usage` (`usr/diags/IR/bin/hyper` 0x10003f00, 460 bytes): **Established.** Prints the help text and quits. It writes the line "usage: %s -[d e# h# l# n# p# r# s# t w# x# y# z]" with the program name from
+  `_pname`, then one `fprintf` line each for the thirteen options d, e, h, l, n, p, r, s, t, w, x, y and z, all to stderr, and calls `exit(1)`, so it never returns. The text says -e is the frame count to exit after, -h the window height (default 1024), -l the most random lines per frame, -n the most pipes, -p the pipe list, -r the hardware ring, -s the frames per image in slow mode, -t test mode without hyperpipe hardware, -w the width (default 1280), -x and -y the origin and -z a random sleep per frame. The option string at 0x10008000 also holds `v`, which the help does not list.
+- `getScreenFromDisplay` (`usr/diags/IR/bin/hyper` 0x10005300, 228 bytes): **Established.** Pulls the screen number out of a display name. Its argument is the display string;
+  `strchr` looks for ':' and, when none is found, the routine prints "invalid display name" with the name and `_pname` to stderr and calls `exit(1)`. From the colon it looks for '.' with `strchr`; no dot returns 0, otherwise the result is `atoi` of the text after the dot. It makes no X call, so the video-control queries of the program happen elsewhere, in
+  `perPipeMainProc`.
+- `waitForMapNotify` (`usr/diags/IR/bin/hyper` 0x100053f0, 104 bytes): **Established.** The event test that
+  `perPipeMainProc` passes to `XIfEvent` while waiting for its window to appear. It takes the display, the event and a pointer to the wanted window, and returns 1 only when the event's type word (+0) is 19, the map notification, and the window the pointer designates equals the word at +16 of the event; any other event returns 0. It stores nothing outside its own frame.
+- `perPipeGfxInit` (`usr/diags/IR/bin/hyper` 0x10005460, 784 bytes): **Established.** Sets the drawing state of one pipe's window and loads a font for its labels. It takes the display (first argument), the pipe number (third) and the window width and height (fourth and fifth). It selects the modelview matrix mode (5888) and then the projection mode (5889), loading the identity in each, and in the projection mode sets an orthographic box of 0 to 1 in x and y and -1 to 1 in z, a viewport of the full width and height, disables depth test (0xb71), lighting (0xb50) and dither (0xbd0), enables capability 0x809d, sets the raster position to 0,
+  0 with a pixel zoom of 1 and -1, selects the front buffer (0x404) for drawing, clears it to green (0, 1, 0,
+  0) and then selects the back buffer (0x405). It then tries `XLoadQueryFont` with a Palatino, a New Century Schoolbook and a Times italic name, in that order, stopping at the first that loads; if none does it prints "no suitable font found" and returns 0. With a font it calls `glGenLists` for the font's character range (a zero result prints "couldn't generate display lists" and returns 0), `glXUseXFont` over that range, `glListBase` and
+  `glFinish`, and returns 1.
+- `perPipeGfxScribble` (`usr/diags/IR/bin/hyper` 0x10006610, 280 bytes): **Established.** Draws random coloured line segments for the scribble mode. Only its third argument, the count, is read. It calls `glBegin(3)` (line strip) and, for each of the count's iterations, takes three
+  `drand48` values as the colour for `glColor3f` and two more for `glVertex2f`, whose second coordinate is the second value times 0.25 (the double at 0x10008f38); it ends with
+  `glEnd` and returns its result.
+- `__istart` (`usr/diags/IR/bin/hyper` 0x1000673c, 4 bytes): **Established.** The start-up hook that
+  `__start` calls before `main`. The symbol covers one `nop` word (0x00000000) at the end of the `.init` padding; the
+  `jr ra` that returns is the next word, at 0x10006740, outside the symbol, so the hook changes no register or memory.

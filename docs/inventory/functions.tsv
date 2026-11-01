@@ -518,7 +518,7 @@ usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x7a8	88	gthread_detach_gr
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	located	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
@@ -600,7 +600,7 @@ usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x7a8	88	gthread_d
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	located	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
@@ -962,7 +962,7 @@ usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x7a8	88	gthread_detach_gr
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	located	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfx.o	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
@@ -1045,7 +1045,7 @@ usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x7a8	88	gthread_d
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x800	220	gthread_find	dwarf+symtab	768863a1ec63		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x8dc	56	gthread_find_gfxp	dwarf+symtab	0996b24160e0		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0x914	336	gthread_scan	dwarf+symtab	9166d5385b51		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
-usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	located	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
+usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xa64	228	GfxRegisterBoard	dwarf+symtab	eec27be4f9ab		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xb48	224	GfxAddHwgraphEdge	dwarf+symtab	53f980b8e360		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xc28	308	gfx_disp	dwarf+symtab	fadc7ac0d258		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP35boot/gfxs.a(gfx.o)	shared-kernel	n64	.text	0xd5c	216	gfx_fault	dwarf+symtab	1135e4221427		in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
@@ -1359,16 +1359,16 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x45f8	120	RRM_MapClipToSw
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	dwarf+symtab	54a4272e17c6		in	understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	5e5f7d961908		in	understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	6d876a5b9bb8		in	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dynsym	33b0bfd92df6		in	named-only	docs/setup-tools.md#hyper	`hyper`
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	623f9a6b3848		in	named-only	docs/setup-tools.md#hyper	`hyper`
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dynsym	33b0bfd92df6		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	623f9a6b3848		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
@@ -47042,7 +47042,7 @@ usr/gfx/dmconf	shared-tool	n32		0x1000cc30	264	VkUnimplemented__GP10_WidgetRecPC
 usr/gfx/dmconf	shared-tool	n32		0x1000ced0	1284	vfcGetNextTokenValuePair	dynsym	dd439b3da2fd		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000e6e0	624	vfcGetOption	dynsym	f2451911a9d7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1000e950	2488	vfcParseCommand	dynsym	b6a668d130f5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/dmconf	shared-tool	n32		0x1000f310	188	usage	dynsym	ecd3cb189e73		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/dmconf	shared-tool	n32		0x1000f310	188	usage	dynsym	ecd3cb189e73		in	located	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/gfx/dmconf	shared-tool	n32		0x1000f3d0	688	vfcDoCommandLine	dynsym	4acac7c8e301		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/dmconf	shared-tool	n32		0x1000f740	472	vfcGetDmxCombination	dynsym	5c579fd374dc		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x1000f920	1596	vfcPutDmxCombination	dynsym	e94d7f240f34		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
@@ -48476,7 +48476,7 @@ usr/gfx/ircombine	board-tool	n32		0x10070530	120	saveasCallback__18VkwindowMainW
 usr/gfx/ircombine	board-tool	n32		0x100705b0	120	snapChannelCallback__18VkwindowMainWindowSGP10_WidgetRecPvT2	dynsym	be4b2b14a613		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070630	140	userHardwareCallback__18VkwindowMainWindowSGP10_WidgetRecPvT2	dynsym	8b8054997903		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10070700	264	VkUnimplemented__GP10_WidgetRecPCc	dynsym	e1cbea599636		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10070880	244	usage	dynsym	253fba9165b4		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/ircombine	board-tool	n32		0x10070880	244	usage	dynsym	253fba9165b4		in	located	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/gfx/ircombine	board-tool	n32		0x10070980	1024	vfcDoCommandLine	dynsym	52c3bce72583		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/ircombine	board-tool	n32		0x10071090	1284	vfcGetNextTokenValuePair	dynsym	65d8572c3aec		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10078090	180	vfcGetCombinationDescription	dynsym	b72ce29ff56b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49169,7 +49169,7 @@ usr/gfx/sgcombine	shared-tool	n32		0x1001e1d0	208	VkUnimplemented__GP10_WidgetRe
 usr/gfx/sgcombine	shared-tool	n32		0x1001e4d0	868	vfcGetNextTokenValuePair	dynsym	5b8911ad49b0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001e900	480	vfcGetOption	dynsym	19ba1acebaa3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001eae0	1440	vfcParseCommand	dynsym	938e29bca82d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1001f080	60	usage	dynsym	802e5e29509f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/sgcombine	shared-tool	n32		0x1001f080	60	usage	dynsym	802e5e29509f		in	located	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/gfx/sgcombine	shared-tool	n32		0x1001f0c0	68	vfcInitCmpCombination	dynsym	150f0158e4ad		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1001f110	228	vfcDoCommandLine	dynsym	a0a91a4cc5e0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/sgcombine	shared-tool	n32		0x1001f200	124	vfcQueryXSGIvc	dynsym	faddce359dbd		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
