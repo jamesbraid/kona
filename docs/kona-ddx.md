@@ -6326,18 +6326,22 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   its result. After the scan, a remembered index calls the routine at 0x52a130 with (screen record, that entry) and then 0x583bc0
   with (window, index). With no match or a zero count it calls `cmapDID` (window) and, unless that equals the private record's word
   +20, calls 0x583bc0 with (window, that id). Against `konal.so`: 1 of 106; immediates only; low halves: 1; first at +0x124.
-- `mfbPolyFillArcSolid` (konad.so, address 0x44b9b0, 576 bytes): **established.** PolyFillArc for solid fills of one-bit
-  drawables: takes (drawable, gc, count, arcs) in a0..a3 and returns nothing. It reads the GC's mfb private record through gc +76
-  and `mfbGCPrivateIndex`, taking its byte +0 (the raster op) and word +8. It returns at once when the op is 5, when bit 0 of the GC
-  word +20 is clear, or when the count is not positive. For each 12-byte arc (x, y, width, height, angle1, angle2 as halfwords at +0
-  to +10) it skips the arc when angle2, width or height is zero, and when the width is 1 and the height odd. An arc is handled
-  directly when its width equals its height or both are at most 800; otherwise it goes to the fallback. For a direct arc it builds a
-  box in a local (x and y added to the drawable's +8 and +10, then widened by width+1 and height+1); a right or bottom edge above
-  32767 (compared before truncation to a halfword) sends it to the fallback. It then calls entry +380 of the screen record at
-  drawable +16 with (private word +8, box) and takes the fallback unless the result is 1. Otherwise an angle2 of 23040 or more, or
-  of -23040 or less, calls the routine at 0x519a10 with (drawable, arc, op), and any other angle2 calls the routine at 0x5203f0 with
-  (drawable, gc, arc, op). The fallback is `miPolyFillArc` with (drawable, gc, 1, the one arc). Against `konal.so`: 2 of 144;
-  immediates only; low halves: 2; first at +0x98.
+- `mfbPolyFillArcSolid` (`konad.so` 0x44b9b0, 576 bytes):
+  **Established.** PolyFillArc for solid fills of one-bit drawables, read in full from 0x44b9b0 to its return at 0x44bbdc. The
+  arguments are the drawable (a0), the GC (a1), the arc count (a2) and the arc array (a3); it returns no value. The GC's mfb
+  private record comes from the word at GC +76 indexed by `mfbGCPrivateIndex`; its byte +0 (the raster op, kept in s7) and word
+  +8 (kept in s6 for the screen call) are read. It returns at once when the op is 5, when bit 0 of the GC word +20 is clear, or
+  when the count is not positive.
+  Each arc is 12 bytes: x, y, width, height, angle1 and angle2 as halfwords at +0 to +10. An arc is skipped when angle2,
+  width or height is zero, and when the width is 1 and the height is odd. It is handled by the screen call only when the
+  width equals the height or both are at most 800; otherwise it goes to the fallback. For the screen call it builds a box
+  at sp+0: x and y are the arc's plus the drawable's halfwords at +8 and +10, and the far corner is x plus width plus 1
+  and y plus height plus 1; a far corner above 32767, compared before truncation to a halfword, goes to the fallback. It then
+  calls entry +380 of the screen record at drawable +16 with the private word +8 and the box address, and goes to the
+  fallback unless the result is 1. After a result of 1, an angle2 of 23040 or more, or -23040 or less, calls the module-local
+  routine at 0x519a10 with (drawable, arc address, op), and any other angle2 calls the routine at 0x5203f0 with (drawable,
+  GC, arc address, op); both are called through a register. The fallback is `miPolyFillArc` with (drawable, GC, 1, the arc
+  address).
 - `FindFreeCID` (konad.so, address 0x460670, 628 bytes): **established.** Gives a window a clip id, the hardware tag that lets a
   window with a complex clip be drawn without per-rectangle clipping (**inferred** from `rrmNeedCID`). It works on the clip-id
   table: 28-byte entries from screen-private +148, count at +4; entry +0 first holder, +8 flags, +10 kind, +12 holder count;
@@ -6351,15 +6355,22 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   current clip id with `FreeCID` and joins the new one through a static helper, which stores the id at private +24 and adds the
   window as a holder. With `kona.so` the clip-id count is 0, so no clip-id table exists and the guarded callers never reach this
   function (descriptor) Against `konal.so`: 3 of 157; immediates only; low halves: 3; first at +0x178; gp 0x13f5d0 and 0x13f5d0.
-- `miUnion` (konad.so, address 0x463000, 748 bytes): **established.** Region union: takes (newReg, reg1, reg2) and returns 1, 0 or
-  the result of `miRegionCopy`. With reg1 equal to reg2 it returns `miRegionCopy(newReg, reg1)`. A region whose data pointer (+8) is
-  non-null and whose count word at +4 of that data record is zero is empty: when reg1 is empty the result is `miRegionCopy(newReg,
-  reg2)`, or 1 when newReg already is reg2, and when reg2 is empty the same with the roles swapped. When a region has a null data
-  pointer (a single rectangle) and its extents (halfwords +0, +2, +4, +6) enclose the other region's extents, the result is a copy
-  of the enclosing region, or 1 when newReg is that region. That makes five `miRegionCopy` call sites. Otherwise it calls the
-  routine at 0x4da030 with (newReg, reg1, reg2, 0x523480, 1, 1, address of a local); when that returns zero the function returns 0,
-  and when it returns non-zero it stores the extents of newReg as the smaller of the two x1 and y1 and the larger of the two x2 and
-  y2 and returns 1. Against `konal.so`: 1 of 187; immediates only; low halves: 1; first at +0xfc.
+- `miUnion` (`konad.so` 0x463000, 748 bytes):
+  **Established.** Region union, read in full from 0x463000 to its three returns at 0x46318c, 0x4631a0 and 0x4631c0. The
+  arguments are the result region (a0, called newReg here), reg1 (a1) and reg2 (a2). It returns 1, 0 or the result of
+  `miRegionCopy`. A region's data pointer is its word +8 and the count is the word at +4 of that data record; a null data
+  pointer means a single rectangle whose extents are the halfwords at +0, +2, +4 and +6 (x1, y1, x2, y2).
+  The tests run in this order. reg1 equal to reg2 returns `miRegionCopy(newReg, reg1)`. A reg1 with non-null data and a zero
+  count is empty: the result is `miRegionCopy(newReg, reg2)`, or 1 when newReg already is reg2. A reg2 with non-null data and
+  a zero count is empty in the same way: `miRegionCopy(newReg, reg1)`, or 1 when newReg is reg1. A reg1 with a null data pointer
+  whose extents enclose reg2's (reg2's x1 and y1 not below reg1's, reg2's x2 and y2 not above) gives `miRegionCopy(newReg,
+  reg1)` or 1 when newReg is reg1. Next, only when reg2's data pointer is null, the same enclosure test with the roles swapped
+  gives `miRegionCopy(newReg, reg2)` or 1 when newReg is reg2. The five `miRegionCopy` sites are at 0x463244, 0x463274,
+  0x463294, 0x4632b4 and 0x4632d4.
+  Otherwise it calls the module-local routine at 0x4da030 (reached through a register) with (newReg, reg1, reg2, the address
+  0x523480, 1, 1, the address of a local at sp+0). A zero result returns 0. A non-zero result stores into newReg's extents
+  the smaller of the two x1 values, the smaller of the two y1 values, the larger of the two x2 values and the larger of the two
+  y2 values, and returns 1.
 - `rrmValidateCID` (konad.so, address 0x476550, 524 bytes): **established.** Takes (window). The screen's rrm record R (screen
   +436 at `rrmScreenPrivateIndex`) holds a table of 28-byte entries at +148 (count at +4); the window's private record P (window
   +132) has the current entry index at +24. When P +24 equals R +4 it returns that word. Otherwise it calls hook R +92 (window);

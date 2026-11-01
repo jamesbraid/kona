@@ -51224,7 +51224,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b150	264	rrmDestroyDrawable	d
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b260	84	decrRRMFlags	dynsym	5b28cac6950e		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b3a0	572	konQueryHyperpipeNetwork	dynsym	daacbadb1f75		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b5e0	972	miStepDash	dynsym	c7f88d8264e2		in	understood	docs/kona-ddx.md#machine-independent-routines-spans-and-lines	Machine-independent routines: spans and lines
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b9b0	576	mfbPolyFillArcSolid	dynsym	eb2958900bb0		in	located	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44b9b0	576	mfbPolyFillArcSolid	dynsym	eb2958900bb0		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44bbf0	564	miShapedWindowIn	dynsym	3eec29a7db7f		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44be30	116	miRegionReset	dynsym	d7b2545b9b6f		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44c290	768	konStereoPolyText8	dynsym	d4efa1ac9b43		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
@@ -51293,7 +51293,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x462690	8	mfbUnrealizeFont	dynsy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4626a0	500	kon_loadImpWordGC	dynsym	7c3d77444932		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x462ab0	148	cfbCopyPixmap	dynsym	c56e93f6d7f6		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x462b50	1196	miSendExposures	dynsym	acc31894da6b		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463000	748	miUnion	dynsym	54f7dce9ad08		in	located	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463000	748	miUnion	dynsym	54f7dce9ad08		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4636b0	1604	miFillSppPoly	dynsym	0757c00a61e1		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463d00	96	konReloadAllGammas	dynsym	557dba977a3a		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x463d60	912	konStereoPolyArc	dynsym	dfa90d78e86f		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
