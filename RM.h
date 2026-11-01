@@ -433,14 +433,24 @@
  * or stall cycles. */
 #define KONA_RM_BEF_PERF_COUNTDRAW                       0x0003
 
-/* BEF_PERF_COUNTLOAD: geometry-board counter, as BEF_PERF_COUNTALL: printed
- * by kpm's BEF dump, written by nothing (same routes). unknown: no shipped
- * software or published source depends on what it counts. */
+/*
+ * BEF_PERF_COUNTLOAD (index 4, 6.5.30m): the third back-end FIFO counter that kpm's BEF dump
+ * prints as a 32-bit hex word. Established: nothing writes it. `mges_ContextDeactivate` queues
+ * bus words for indices 1, 3, 6 and 2 only and `mges_ContextLoadBEF` sends 0x30000 and 0x60000
+ * only, so those handlers never send the word 0x40000; irsaudit, arm1.u and the vector files never
+ * address the index. Unknown: no shipped software or published source depends on what it
+ * counts. Routes tried: the context save and load handlers of ge.u, irsaudit, arm1.u, the
+ * vector files, kpm and libGLcore. */
 #define KONA_RM_BEF_PERF_COUNTLOAD                       0x0004
 
-/* BEF_PERF_COUNTEMPTY: geometry-board counter, as BEF_PERF_COUNTALL: printed
- * by kpm's BEF dump, written by nothing (same routes). unknown: no shipped
- * software or published source depends on what it counts. */
+/*
+ * BEF_PERF_COUNTEMPTY (index 5, 6.5.30m): the fourth back-end FIFO counter that kpm's BEF dump
+ * prints as a 32-bit hex word. Established: nothing writes it. `mges_ContextDeactivate` queues
+ * bus words for indices 1, 3, 6 and 2 only and `mges_ContextLoadBEF` sends 0x30000 and 0x60000
+ * only, so those handlers never send the word 0x50000; irsaudit, arm1.u and the vector files never
+ * address the index. Unknown: no shipped software or published source depends on what it
+ * counts. Routes tried: the context save and load handlers of ge.u, irsaudit, arm1.u, the
+ * vector files, kpm and libGLcore. */
 #define KONA_RM_BEF_PERF_COUNTEMPTY                      0x0005
 
 /*

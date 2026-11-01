@@ -9503,7 +9503,11 @@ enum kona_kpm_shadow_row {
 /*
  * OFIFO0 B Status Register (0x40024) is the companion of the half A register for half B of output
  * FIFO 0, with the same pointer fields. Established: read by kpm's register dump at 0x1001e894 and
- * written by nothing. Inferred: comparing it with
+ * written by nothing. It is the eleventh of the sixteen reads `ge11ReadDiagRegisters` issues
+ * (0x40000 twice, then 0x40004 to 0x40038 in steps of 4): each `ge_register_read` call passes the
+ * address to `ged_register_write` as index 564 and writes 0x80000001 to index 566, the data comes
+ * back in a 64-byte transfer, and `memcpy` at 0x1001e9a4 copies those 64 bytes to a kpm buffer with
+ * no field split, so no kpm code decodes the pointers. Inferred: comparing it with
 
 
  * half A shows whether one thread's output stalled. Whether B is the engine's second thread is
@@ -9513,7 +9517,9 @@ enum kona_kpm_shadow_row {
 
 /*
  * OFIFO1 A Status Register (0x40028) reports output FIFO 1, half A: write pointer low, read pointer
- * above it, seven bits each. Established as a kpm table entry, dumped at 0x1001e8a4. Inferred: a
+ * above it, seven bits each. Established as a kpm table entry, dumped at 0x1001e8a4 as the twelfth
+ * of the sixteen reads of `ge11ReadDiagRegisters`, whose `memcpy` at 0x1001e9a4 moves the 64-byte
+ * result on with no field split. Inferred: a
  * gap between the pointers in a hung pipe means the next stage stopped taking words from FIFO 1. */
 #define KONA_GE11_REG_OFIFO1_A_STATUS                0x40028  /* "OFIFO1 A Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
@@ -9522,7 +9528,9 @@ enum kona_kpm_shadow_row {
 /*
  * OFIFO1 B Status Register (0x4002c): the read and write pointers of the second half of output
  * FIFO 1, laid out like the other status words. kpm reads it at 0x1001e8b4 and nothing else in the
- * shipped software touches it (established); inferred, it is a read-only view of FIFO occupancy for
+ * shipped software touches it (established); it is the thirteenth of the sixteen reads of
+ * `ge11ReadDiagRegisters`, whose `memcpy` at 0x1001e9a4 moves the 64-byte result on with no field
+ * split. Inferred, it is a read-only view of FIFO occupancy for
 
  
 #define KONA_GE11_REG_OFIFO1_B_STATUS                0x4002c  /* "OFIFO1 B Status Register" */
