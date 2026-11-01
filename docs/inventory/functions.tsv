@@ -1361,13 +1361,13 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_Va
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	6d876a5b9bb8		in	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dynsym	33b0bfd92df6		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	623f9a6b3848		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
