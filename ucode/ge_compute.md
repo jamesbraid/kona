@@ -4973,15 +4973,27 @@ listing](ge_listing/lightenables.S.lst) (`ge.u`, IRIX 6.5.30m).
   colour-material result to special register 0x2e (0xdca8), queues the dirty modules into words 0xc and 0xb (0xdcb9,
   0xdcba), and on `cc` 0x7c branches at 0xdcb6 to `mLiUpdateMtrlColor` (0xdef0) before waiting at 0xdcb7. It combines
   control word 0x84 with the mask by AND, and the colour operands are its inputs.
-- `mgeb_LiDisableLightS` (`lightenables.S` line 832, at 0xdcc0): **inferred**, drops one light from the enabled set.
-  Command word 1, the light's selector, goes into register 0x1a at 0xdcc0; the routine converts it to an integer
-  (0xdcc4, 0xdcd1) and combines it with control word 0x87, the enabled-light word read at 0xdcc7, by integer
-  subtraction (0xdcc8, 0xdcd7). The light's block address is the operand plus the external-memory base (0xdcc8,
-  0xdcdc); the routine reads external-memory words at 0x2ba (0xdcda) and at 0x2af plus register 10 (0xdce0). It writes
-  the new control word 0x87 (0xdcf6), 0xd9a2 into word 0x9a (0xdce8), 0xf449 into word 8 (0xdcf2), clears bit 5 of
-  control word 4 with 0xffffffdf (0xdce9, 0xdcea, 0xdcf3), ORs 1 into word 0x86 (0xdceb, 0xdcf4) and queues words 0xc
-  and 0xb; special registers 0x2e, 0x25 and 0x26 are written at 0xdcd5, 0xdce5 and 0xdcec. The rewritten control word
-  0x87 is its result.
+- `mgeb_LiDisableLightS` (`lightenables.S` line 832, at 0xdcc0): **inferred**, subtracts one from the enabled-light
+  count in control word 0x87 and zeroes word 0 of the light's block, only when that word is nonzero. It reads command
+  word 1 into address register 0x1a (0xdcc0): the block address 0x2c7 + 0x23 n that the ARM sends on port 0x840. It
+  never reads command word 0, the light number from port 0x478. 0xdcc8 sets address register 3 to register 0x16 plus
+  register 0x1a, the block in external memory, and subtracts (code 0x42, routing 0x77d) the result of 0xdcc4,
+  forwarded by `r128` code 0, from control word 0x87, read at 0xdcc7, into staging word 2. 0xdcc4 converts register
+  0x1f with code 0x71, and register 0x1f is the constant 1.0 (the identity diagonal of `mMatrixLoadIdentityC`,
+  0xd403), so the step is one. 0xdccc and 0xdcce read block words 1 and 0. With a seven-word load delay, 0xdcd4 sets the
+  unit-1 flags from word 1 (code 0x6a) and 0xdcd5 writes word 0 to special register 0x2e. The routine stores under predicate
+  0x7c: the new count to word 0x87 (0xdcf6, store data loaded at 0xdced), zero to block word 0 (0xdd07, zero moved
+  from register 0x1e at 0xdcfe), 0xd9a2 to word 0x9a (0xdce8) and zero to ERAM 0x2af plus address register 0xa
+  (0xdd09). ERAM 0x2ba, read at 0xdcda, is written back at 0xdcf1 less register 0x1b (0xdce1), and register 0x1b is
+  1 under predicate code 3 (0xdcd8) and 0 under 0x7d (0xdcd9). Under predicate 0x6b, which tests special register
+  0x25 (the new 0x2ba value, 0xdce5), it clears bit 5 of control word 4 (mask 0xffffffdf, 0xdce9, 0xdcea, store
+  0xdcf3) and queues 0xf449 into word 8 (0xdcf2); under code 2 it stores word 0x86 ORed with 1 (0xdceb, 0xdcf4), and it queues words 0xc
+  (0xdd02) and 0xb (0xdce6). The predicate reading: predicate and branch codes 0x60-0x7f test special registers
+  0x20-0x2f, two codes per register with bit 0 inverting, the way `mLiSwichSpotPrwTable2` writes special registers
+  0x20 + n and branches on `cc` 0x60 + 2n; 0x7c tests 0x2e. The disable stores under 0x7c and the enable under 0x7d,
+  so 0x7c reads as "nonzero" by function: disabling a light that is already off changes nothing. What address
+  register 0xa holds at 0xdd09 is unknown: 0xdcdc sets it to register 0x16 plus register 0x1a after 0xdcd2 reloads
+  register 0x1a, and the value of that reload is not traced; the next route is the reload's source word.
 - `mgeb_LiDisableLighting` (`lightenables.S` line 722, at 0xdd0d): **inferred**, clears the master lighting bits spread
   over four control words. One command word (register 0x1a, 0xdd0d) is consumed, and the masks 0xfffffffd, 0xffffffdb
   and 0xffffff7f and the constants 0x80000000 and 8 are staged (0xdd0f-0xdd15) and ANDed into control words 5, 4 and
@@ -4998,14 +5010,28 @@ listing](ge_listing/lightenables.S.lst) (`ge.u`, IRIX 6.5.30m).
   control word 0x84 (the OR at 0xdd34, store at 0xdd3d) and queues 0xf50d and 0xf547 in control words 0xc and 0xb
   (0xdd3b, 0xdd3c), then ends at 0xdd35. It combines the operand with 0x10 by AND and ORs bit 3 into control word 0x84;
   the rewritten word is its output.
-- `mgeb_LiEnableLightS` (`lightenables.S` line 546, at 0xdd3e): **inferred**, adds one light to the enabled set.
-  Command word 1 is the light's selector (register 0x1a, 0xdd3e); the block address is formed the block address from
-  the external-memory base plus the selector (0xdd46, 0xdd66), and the converted selector (0xdd5e) is added to control
-  word 0x87, the enabled-light word read at 0xdd4d (the `iadd` at 0xdd62, store at 0xdd6b). External-memory stores go
-  to 0x2af plus register 11 (0xdd6a) and to 0x2ba (0xdd73). It writes 0xd9a2 into control word 0x9a (0xdd60), ORs the
-  staged 0x20 into control word 4 (0xdd63, 0xdd6d) and 1 into word 0x86 (0xdd6f, 0xdd70), loads 0xf449, 0xf50d and
-  0xf547 for words 8, 0xc and 0xb (0xdd65, 0xdd58, 0xdd57) and ends at 0xdd7a. Its operand is the selector, it adds it
-  to control word 0x87, and the new word is its output.
+- `mgeb_LiEnableLightS` (`lightenables.S` line 546, at 0xdd3e): **inferred**, adds one to the enabled-light count in
+  control word 0x87 and writes the new count into word 0 of the light's block, only when that word is zero. It reads
+  command word 1, the block address from port 0x840, into address register 0x1a (0xdd3e), sets address register 3 to
+  register 0x16 plus that address (0xdd46) and reads block words 0 and 1 (0xdd4a, 0xdd4c). 0xdd4d moves control word
+  0x87 into staging word 9. 0xdd5e converts the constant register 0x1f (1.0) with code 0x71, and 0xdd62 adds the
+  result, forwarded four words by `r128` code 0, to staging word 9 (code 0x40). Under predicate 0x7d that sum goes to
+  word 0x87 (0xdd6b) and to block word 0 (0xdd6c), both from the store data 0xdd62 loads. The predicate tests special
+  register 0x2e, which 0xdd52 loads with block word 0; 0xdd53 sets the unit-1 flags from block word 1 (code 0x6a).
+  A seven-word load delay gives that pairing here and in the disable, where the two reads come in the other order, and
+  matches `mpixelSetup.S`, whose reads at 0xa7e8 and 0xa7ea are used at 0xa7ef and 0xa7f1. Under the same predicate the routine keeps a second
+  count in ERAM 0x2ba. 0xdd5d reads that word into address register 0x1a after 0xdd5f has saved the block address in
+  staging word 0xa. 0xdd66 sets address register 0xb to register 0x16 plus the word read, and 0xdd6a stores the block
+  address (store data loaded at 0xdd61) at 0x2af plus that word. 0xdd73 writes 0x2ba back as the word plus register
+  0x1c (0xdd64). Register 0x1c is 0 (0xdd5a), 1 under predicate code 3 (0xdd5b) and 0 under 0x7c (0xdd5c). Under 0x7d
+  it also writes 0xd9a2 to word 0x9a (0xdd60). It writes 0xf547 to word 0xb (0xdd61) and 0xf50d to word 0xc (0xdd67)
+  unconditionally. Under predicate 0x6a, which tests special register 0x25 (the new 0x2ba value, 0xdd68), it stores
+  control word 4 ORed with 0x20 (0xdd6d, 0xdd76). Under 0x6e it queues 0xf449 into word 8 (0xdd78), and under code 2
+  it stores word 0x86 ORed with 1 (0xdd70, 0xdd7c). The command ends at 0xdd7a. The predicate codes are read as under
+  `mgeb_LiDisableLightS`; with them, enabling a light that is already on changes nothing. Bit 5 of control word 4 then
+  follows whether the 0x2ba count is nonzero, set here and cleared by the disable. Which light property the code-3
+  predicate tests (it follows the flags of block word 1) is unknown; the next route is the light-parameter handlers that
+  write block word 1.
 - `mgeb_LiReCmpPwrTable` (`lightenables.S` line 462, at 0xdd83): **inferred**, stores the exponent-table control word
   and asks for a rebuild of the spot power table. One command word (register 0x1a, 0xdd90) is converted to an integer
   (0xdd91) and delivered to special register 0x2f (0xdd92) and external-memory word 0x1bfe (the store at 0xdd9c). It

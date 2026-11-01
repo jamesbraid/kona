@@ -165,13 +165,19 @@ lines.append('**Established** (each body). `glEnable` and `glDisable` of `GL_LIG
              'half of r8 + 0x74, entry 45), `mgeb_EnableUserClipPlane` for a plane enable (low half of r8 + 0x58, '
              'entry 19) and `mgeb_DisableUserClipPlane` for a plane disable (high half of r8 + 0x50, entry 9); '
              'the labels come from the shipped label table. **Inferred:** the Effect column and the Engine target '
-             'column. [ge_compute.md](ge_compute.md) describes the instruction words of the four engine routines '
-             'and labels their roles from the operands they use: the light routines add (or remove) the converted '
-             'selector to the enabled-light control word 0x87, and the plane routines store a flag pattern at the '
-             'plane flag word (0x904 plus the enum less 0x3000) and go on to the clip-state rebuild. Light n or '
-             'plane n is the number sent to port r9 + 0x478. The Engine target of a plane is that flag word; the '
-             'Engine target of a light is the second operand, 0x2c7 + 0x23 n, which the handler sends to port '
-             'r9 + 0x840 and which the light routine is inferred to use as its block address.')
+             'column, from the instruction words of the four engine routines in [ge_compute.md](ge_compute.md). '
+             'The plane routines store a flag pattern at the plane flag word (0x904 plus the enum less 0x3000) and '
+             'go on to the clip-state rebuild; plane n is the number sent to port r9 + 0x478 and the Engine target '
+             'of a plane is that flag word. The light routines never read the light number: they read only the '
+             'second command word, the block address 0x2c7 + 0x23 n sent to port r9 + 0x840 (`mgeb_LiEnableLightS` '
+             '0xdd3e, `mgeb_LiDisableLightS` 0xdcc0). Control word 0x87 is a count of enabled lights, not a bit '
+             'set: each routine converts the constant register 0x1f (1.0) to the integer 1 and adds it to, or '
+             'subtracts it from, the word (0xdd5e and 0xdd62; 0xdcc4 and 0xdcc8). The enable stores the new count '
+             'in word 0 of the light\'s block (0xdd6c) and the disable stores 0 there (0xdd07). Both store only '
+             'under a predicate on special register 0x2e, which receives block word 0 (0xdd52, 0xdcd5): the '
+             'disable acts under code 0x7c and the enable under its inverse 0x7d, so an enable of a light already '
+             'on, or a disable of one already off, leaves the count alone. The Engine target of a light is that '
+             'block word.')
 lines.append('')
 lines.append('| Handler | Address | Source | Flag byte | Flag value | Port 0x478 | Port 0x840 | '
              'Engine handler from | Kind | Effect | Engine routine run | Engine target | Label |')
@@ -188,8 +194,8 @@ for name in names:
     eng = ('mgeb_LiEnableLightS' if on else 'mgeb_LiDisableLightS') if light else \
         ('mgeb_EnableUserClipPlane' if on else 'mgeb_DisableUserClipPlane')
     if light:
-        effect = 'light %d %s the enabled set in control word 0x87' % (num, 'joins' if on else 'leaves')
-        target = 'second operand word 0x%x sent to port 0x840' % (0x2c7 + 0x23 * num)
+        effect = '%s light %d %s 0x87' % ('adds' if on else 'drops', num, 'to' if on else 'from')
+        target = 'block word 0x%x %s' % (0x2c7 + 0x23 * num, 'gets count' if on else 'gets zero')
     else:
         effect = 'plane %d flag %s, recount' % (num, 'set' if on else 'cleared')
         target = 'plane flag at word 0x%x' % (0x904 + num)
