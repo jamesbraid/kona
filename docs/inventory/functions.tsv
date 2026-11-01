@@ -13545,7 +13545,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80e650	2716	glXChooseVisual
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f0ec	76	__glXMalloc	dynsym+mdebug	e54341755fd5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f138	200	__glXFindVisualConfig	dynsym+mdebug	de27d27f4e0c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f200	88	__glXCalloc	dynsym+mdebug	17f04d6ad70e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f258	900	__glXInitialize	dynsym+mdebug	13f2120222df		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f258	900	__glXInitialize	dynsym+mdebug	13f2120222df		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd80f5dc	60	glXMakeCurrentReadSGI	dynsym+mdebug	8f1409754202		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd80f618	2324	CreateContext	mdebug	c92a977e98a4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd80ff2c	28	ColorScore	mdebug	0919e2ce7421		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -13575,7 +13575,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd811c34	8	AuxScore	mdeb
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd811c3c	2464	OverrideVisuals	mdebug	9e61a14a7dbe		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8125dc	8	StencilScore	mdebug	c748c35b2239		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8125e4	132	sampleBuffersScore	mdebug	179277dd2376		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8125ec	508	__glXOpenGraphics	dynsym+mdebug	72f51c94ebe1		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8125ec	508	__glXOpenGraphics	dynsym+mdebug	72f51c94ebe1		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd812668	51392	isLocal	mdebug	8f3283e44437		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8127e8	96	glXCreateContext	dynsym+mdebug	b5736cc1377c		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd812848	160	__glXGetModes	dynsym+mdebug	264472286ad5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -13848,7 +13848,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f164	172	__glXFreeDisplay
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd81f210	260	FreeScreenConfigs	mdebug	b980d05ad670		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd81f314	6108	__glXWireToEvent	mdebug	2cfdf0375950		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f4c8	320	__glXCloseDisplay	dynsym+mdebug	838d28e2df18		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f608	60	glXGetCurrentDrawable	dynsym+mdebug	a00227c51ef9		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f608	60	glXGetCurrentDrawable	dynsym+mdebug	a00227c51ef9		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f644	80	glXGetCurrentContext	dynsym+mdebug	50ad6a6583a0		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd81f694	3108	__glXUseXFont	dynsym+mdebug	3b811d751c52		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8202bc	40	__glXGetReadDrawablePrivate	dynsym+mdebug	8ff7a0097178		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -13914,14 +13914,14 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd825fc8	72	glXGetFBConfigAtt
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826010	56	glXFreeContextEXT	dynsym+mdebug	bfe14ef8559d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826048	204	glXImportContextEXT	dynsym+mdebug	15ade36e94aa		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd826114	1676	combine_strings	mdebug	0a536677ea4f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826398	368	glXWaitX	dynsym+mdebug	7bfd11b6c24d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym+mdebug	d285a4dca7dc		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826398	368	glXWaitX	dynsym+mdebug	7bfd11b6c24d		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym+mdebug	d285a4dca7dc		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826670	132	glXQueryExtension	dynsym+mdebug	153356951258		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8266f4	116	glXQueryVersion	dynsym+mdebug	7773d57f705a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826768	56	glXDestroyContext	dynsym+mdebug	2e3832e2bd9f		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	554c5d655b62		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826904	480	__glXFreeContext	dynsym+mdebug	9dd7b99623ac		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	05b458ae9d6a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	05b458ae9d6a		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd826c7c	17708	IndexScore	mdebug	80ec43ec995f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd826c84	928	glXGetConfig	dynsym+mdebug	37e2d7fad5de		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd827024	280	glXDestroyGLXPixmap	dynsym+mdebug	4550493077a2		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -14092,7 +14092,7 @@ usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8342dc	500	isNotProxy	mdebug	93d61b111e4b		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd8344d0	200	__glXFindFBConfigFromVid	mdebug	737995c1c4f4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd834598	1492	__glXFindFBConfig	mdebug	cd3e7f6e2ae2		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd834660	76	glXGetCurrentDisplay	dynsym+mdebug	84af115de949		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd834660	76	glXGetCurrentDisplay	dynsym+mdebug	84af115de949		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd8346ac	948	glXGetFBConfigAttrib	dynsym+mdebug	73d0a668aaf6		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32		0xd834a60	268	glXGetFBConfigFltAttribSGIX	dynsym+mdebug	fe5c9dabc95f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA/libGL.so	board-library	o32	.text	0xd834b6c	4924	orderFBConfigSGIXs	mdebug	09fcfaddf58c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -14526,17 +14526,17 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setShar
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb		in	located	docs/opengl.md#changefilter	`changeFilter`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/opengl.md#changeclamp	`changeClamp`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4		in	located	docs/opengl.md#changeshadow	`changeShadow`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	dd84773d5cb9		in	located	docs/opengl.md#changeclipmapparams	`changeClipmapParams`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	a30de34cfb3b		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6		in	located	docs/opengl.md#bind2dclipmaptexture	`bind2DClipmapTexture`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a680	280	bindBicubicTexture	mdebug	3143dd981f6d		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a798	344	bind3DMipmapTexture	mdebug	b3ed65fa92c4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96a8f0	228	bind3DTexture	mdebug	5af2a93d2b1d		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -14680,7 +14680,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQu
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	4e3c71a48193		in	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	88f0c1441523		in	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97aac4	1100	__glKonEvalDisable	dynsym+mdebug	90d478c4b41e		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd97af10	15912	changebasis	mdebug	7c85b9f0b21a		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd97ed38	532	EvalV	mdebug	f9185bfc82d4		in	located	docs/libglcore-driver-functions.md#evaluator-arithmetic	Evaluator arithmetic
@@ -14712,8 +14712,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981e30	412	__glKonSetUp
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd981fcc	576	__glKonSetUpMap2	dynsym+mdebug	90d6d123a62a		in	located	docs/libglcore-driver-functions.md#evaluator-set-up-and-map-data	Evaluator set-up and map data
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98220c	428	__glkonim_Map1d	dynsym+mdebug	9b42661c35d0		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9823b8	408	__glkonim_Map1f	dynsym+mdebug	a8a3ee6fabe3		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd982550	556	__glkonim_Map2d	dynsym+mdebug	7f6928bc0d15		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98277c	528	__glkonim_Map2f	dynsym+mdebug	3c53e6ca70d9		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd982550	556	__glkonim_Map2d	dynsym+mdebug	7f6928bc0d15		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98277c	528	__glkonim_Map2f	dynsym+mdebug	3c53e6ca70d9		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd98298c	84	__glkonim_EvalCoord1d	dynsym+mdebug	07702e9c7291		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9829e0	84	__glkonim_EvalCoord1dv	dynsym+mdebug	21781ffe5aa3		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd982a34	80	__glkonim_EvalCoord1f	dynsym+mdebug	bbcc94db49a4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -18635,13 +18635,13 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e99c	12	glIndexMask	d
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9a8	12	glAccum	dynsym+mdebug	938ab780af25		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9b4	12	glDisable	dynsym+mdebug	ceaa3192a540		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9c0	12	glEnable	dynsym+mdebug	9d7c75a01100		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9cc	12	glFinish	dynsym+mdebug	a57311008f8e		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9cc	12	glFinish	dynsym+mdebug	a57311008f8e		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9d8	12	glFlush	dynsym+mdebug	8baeda61b9d1		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9e4	12	glPopAttrib	dynsym+mdebug	505bef217ac6		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9f0	12	glPushAttrib	dynsym+mdebug	a3e88dcd3e4f		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e9fc	12	glMap1d	dynsym+mdebug	1b8c77b9173c		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea08	12	glMap1f	dynsym+mdebug	276835356cf9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea14	12	glMap2d	dynsym+mdebug	86dc4fea9c11		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea14	12	glMap2d	dynsym+mdebug	86dc4fea9c11		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea20	12	glMap2f	dynsym+mdebug	dd53dadce119		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea2c	12	glMapGrid1d	dynsym+mdebug	8eef7e2665a3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6ea38	12	glMapGrid1f	dynsym+mdebug	ddd734553233		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -19145,7 +19145,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e2f8	460	__glXGetDrawab
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e4dc	8	__glXGetPipeAddress	dynsym	21898fea7e65		in	named-only	docs/kernel.md#what-a-process-maps	What a process maps
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dynsym	4b6d5f351e9f		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e670	264	__glXHWAttach	dynsym	64c6b408d54f		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dynsym	88e9bae9a969		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dynsym	88e9bae9a969		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e7f4	204	__glXAllocHWContext	dynsym	141ca7c853b1		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e8c0	124	__glXUnbindHWContextFromThread	dynsym	09cf259ffee0		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd80e93c	692	__glXBindHWContextToWindow	dynsym	b7f54caef779		in	named-only	docs/kernel.md#who-sends-them	Who sends them
@@ -19420,7 +19420,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81a30c	220	__glXFillMap1f
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81a57c	136	__glXFreeDisplayPrivate	dynsym	c5cbda2ce53d		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81a73c	380	__glXQueryServerString	dynsym	e64ee1622764		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dynsym	9cafbc9b9df4		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dynsym	0e84bc841e8c		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dynsym	0e84bc841e8c		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d8c4	216	__glXSetupForCommand	dynsym	52dd87bed99d		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81d99c	340	__glXFlushRenderBuffer	dynsym	624c7dad805c		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81daf0	872	__glXSendLargeCommand	dynsym	5bf93fb3dd74		in	located	docs/sample-implementation.md#glxextc	glxext.c
@@ -19434,7 +19434,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f7b8	144	__glXDispatchE
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f848	400	__glXBeginDispatchOverride	dynsym	c7d3372be2a8		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd81f9d8	416	__glXEndDispatchOverride	dynsym	4108831e9367		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd820934	544	__glXCloseDisplay	dynsym	8a55f5180040		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd820b54	64	glXGetCurrentDrawable	dynsym	201670829185		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd820b54	64	glXGetCurrentDrawable	dynsym	201670829185		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd820b94	76	glXGetCurrentContext	dynsym	4d3ba5f5ca4f		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd820be0	2656	__glXUseXFont	dynsym	b858b45f0297		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd821640	20	__glXGetReadDrawablePrivate	dynsym	07df79dd70d7		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -19622,9 +19622,9 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd832f70	412	__glXFreeConte
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd833240	56	glXDestroyContext	dynsym	fa59ba1ac1b1		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd833278	148	glXQueryVersion	dynsym	ad39697af926		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83330c	164	glXQueryExtension	dynsym	62070b16df94		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8333b0	300	glXWaitGL	dynsym	4234a03d661e		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8334dc	304	glXWaitX	dynsym	ad94068293cf		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83360c	364	glXUseXFont	dynsym	a993dd070880		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8333b0	300	glXWaitGL	dynsym	4234a03d661e		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8334dc	304	glXWaitX	dynsym	ad94068293cf		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd83360c	364	glXUseXFont	dynsym	a993dd070880		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd833778	492	glXCopyContext	dynsym	c18a8793083a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd833964	320	__glXIsDirect	dynsym	487ffac74b39		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd833aa4	76	glXIsDirect	dynsym	f0fb7d359b30		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -19639,7 +19639,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8361e4	276	glXQueryExtens
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8362f8	80	glXGetClientString	dynsym	0aa66d8590df		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836348	444	glXQueryServerString	dynsym	0aa36494ccea		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836504	368	__glXClientInfo	dynsym	6c6687ee2178		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836674	88	glXGetCurrentDisplay	dynsym	771bf85cb943		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836674	88	glXGetCurrentDisplay	dynsym	771bf85cb943		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8366cc	52	glXGetCurrentDisplayEXT	dynsym	41a058bc1cc5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836ad8	256	glXQueryContextInfoEXT	dynsym	866618ad8c8b		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd836bd8	8	glXGetContextIDEXT	dynsym	036d45786ba3		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -24169,13 +24169,13 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7885c	12	glIndexMask
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78868	12	glAccum	dwarf+dynsym	938ab780af25		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78874	12	glDisable	dwarf+dynsym	ceaa3192a540		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78880	12	glEnable	dwarf+dynsym	9d7c75a01100		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7888c	12	glFinish	dwarf+dynsym	a57311008f8e		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7888c	12	glFinish	dwarf+dynsym	a57311008f8e		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78898	12	glFlush	dwarf+dynsym	8baeda61b9d1		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788a4	12	glPopAttrib	dwarf+dynsym	505bef217ac6		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788b0	12	glPushAttrib	dwarf+dynsym	a3e88dcd3e4f		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788bc	12	glMap1d	dwarf+dynsym	1b8c77b9173c		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788c8	12	glMap1f	dwarf+dynsym	276835356cf9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788d4	12	glMap2d	dwarf+dynsym	86dc4fea9c11		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788d4	12	glMap2d	dwarf+dynsym	86dc4fea9c11		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788e0	12	glMap2f	dwarf+dynsym	dd53dadce119		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788ec	12	glMapGrid1d	dwarf+dynsym	8eef7e2665a3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda788f8	12	glMapGrid1f	dwarf+dynsym	ddd734553233		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -24725,7 +24725,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2642e20	460	__glXGetDrawab
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643004	8	__glXGetPipeAddress	dynsym	21898fea7e65		in	named-only	docs/kernel.md#what-a-process-maps	What a process maps
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264300c	396	__glXOpenGraphicsDevice	dynsym	82f7f6b8490e		in	located	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643198	264	__glXHWAttach	dynsym	fee863129d5b		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26432a0	124	__glXOpenGraphics	dynsym	10acc62c27de		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26432a0	124	__glXOpenGraphics	dynsym	10acc62c27de		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264331c	204	__glXAllocHWContext	dynsym	1a33e632b4ba		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26433e8	124	__glXUnbindHWContextFromThread	dynsym	efd5fc3e8d6d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2643464	696	__glXBindHWContextToWindow	dynsym	07f4a0244ac5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
@@ -25000,7 +25000,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264ef48	220	__glXFillMap1f
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264f1bc	136	__glXFreeDisplayPrivate	dynsym	c6d2ef9b42af		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x264f37c	380	__glXQueryServerString	dynsym	5f0f865bddcc		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x265200c	404	__glXInitThread	dynsym	5ad9e38c0d71		in	located	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26521a0	808	__glXInitialize	dynsym	1dedb0c1bfb1		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26521a0	808	__glXInitialize	dynsym	1dedb0c1bfb1		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26524c8	216	__glXSetupForCommand	dynsym	eedfc6316435		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26525a0	336	__glXFlushRenderBuffer	dynsym	18e98e3734a1		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26526f0	872	__glXSendLargeCommand	dynsym	6985384efcb7		in	located	docs/sample-implementation.md#glxextc	glxext.c
@@ -25014,7 +25014,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26542bc	144	__glXDispatchE
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x265434c	324	__glXBeginDispatchOverride	dynsym	c1badaee5492		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2654490	340	__glXEndDispatchOverride	dynsym	a33b7c7b257f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2655374	448	__glXCloseDisplay	dynsym	ab407f14f0bd		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2655534	64	glXGetCurrentDrawable	dynsym	f972665d685e		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2655534	64	glXGetCurrentDrawable	dynsym	f972665d685e		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2655574	76	glXGetCurrentContext	dynsym	c9d3d71da640		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26555c0	2656	__glXUseXFont	dynsym	d6623aa0b23e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2656020	20	__glXGetReadDrawablePrivate	dynsym	bc9f12f0a301		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -25202,9 +25202,9 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667b10	412	__glXFreeConte
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667de0	56	glXDestroyContext	dynsym	d2acfa99fcda		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667e18	148	glXQueryVersion	dynsym	801295064fb6		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667eac	164	glXQueryExtension	dynsym	eba9bd9a1c81		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667f50	300	glXWaitGL	dynsym	b35c72385f14		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266807c	304	glXWaitX	dynsym	21ff062d0969		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26681ac	364	glXUseXFont	dynsym	1107af3baf4c		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2667f50	300	glXWaitGL	dynsym	b35c72385f14		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266807c	304	glXWaitX	dynsym	21ff062d0969		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26681ac	364	glXUseXFont	dynsym	1107af3baf4c		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2668318	488	glXCopyContext	dynsym	1a0ada8953fa		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2668500	320	__glXIsDirect	dynsym	1d03ae056e91		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2668640	76	glXIsDirect	dynsym	4f24b499d2f0		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -25219,7 +25219,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266ae00	276	glXQueryExtens
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266af14	80	glXGetClientString	dynsym	cb7cdd56c946		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266af64	432	glXQueryServerString	dynsym	5dbe6c3263fe		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b114	372	__glXClientInfo	dynsym	700262ff960f		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b288	88	glXGetCurrentDisplay	dynsym	a851da448649		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b288	88	glXGetCurrentDisplay	dynsym	a851da448649		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b2e0	52	glXGetCurrentDisplayEXT	dynsym	c28ef4e2b88c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b6f4	252	glXQueryContextInfoEXT	dynsym	4f66f4aee5db		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x266b7f0	8	glXGetContextIDEXT	dynsym	e7201485a58d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -25488,7 +25488,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db5ff0	700	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db62b0	576	__glkonlc_Bitmap	dwarf+dynsym	d551b4d2e134		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db64f0	116	__glkonle_Bitmap	dwarf+dynsym	c071fdcb72be		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6570	232	__glkonim_PolygonStipple	dwarf+dynsym	644c2ca3a0b4		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db66c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db67b0	3012	DrawSubTexels	dwarf	d8d337130f6e		in	located	docs/libglcore-driver-functions.md#texel-draw-splitting	Texel draw splitting
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917		in	located	docs/libglcore-driver-functions.md#pixel-reads-and-draws	Pixel reads and draws
@@ -25648,17 +25648,17 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc86c0	288	setSh
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1		in	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8ce0	4916	changeFilter	dwarf	1a1a6986a431		in	located	docs/opengl.md#changefilter	`changeFilter`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	changeClamp	dwarf	69abaa85072a		in	located	docs/opengl.md#changeclamp	`changeClamp`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	changeClamp	dwarf	69abaa85072a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca2c0	172	setShadowRegs	dwarf	e5d5ccabeca6		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca370	164	changeShadow	dwarf	74396169d2aa		in	located	docs/opengl.md#changeshadow	`changeShadow`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca370	164	changeShadow	dwarf	74396169d2aa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca420	140	lodBias2Scale	dwarf	d099770ddcd6		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca4b0	792	changeClipmapParams	dwarf	bc8e58755664		in	located	docs/opengl.md#changeclipmapparams	`changeClipmapParams`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dca7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dcbfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc640	448	bind2DMipmapTexture	dwarf	fdeac58983f4		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc800	72	setClipmapRegisters	dwarf	bf173099a5f2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004		in	located	docs/opengl.md#bind2dclipmaptexture	`bind2DClipmapTexture`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcc960	268	bindBicubicTexture	dwarf	0fef740662b0		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcca70	300	bind3DMipmapTexture	dwarf	a8020f9fb479		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dccba0	220	bind3DTexture	dwarf	aa3d17378c91		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -25802,7 +25802,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb890	456	__glKonTex
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	64f6622ee4aa		in	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	977ae09563cf		in	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddc310	1000	__glKonEvalDisable	dwarf+dynsym	7b881cb60352		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2ddc700	7040	changebasis	dwarf	89b0c2e56127		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dde280	496	EvalV	dwarf	0af77cfecaa9		in	located	docs/libglcore-driver-functions.md#evaluator-arithmetic	Evaluator arithmetic
@@ -25834,8 +25834,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1500	316	__glKonSet
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1640	436	__glKonSetUpMap2	dwarf+dynsym	3ffcf577d497		in	located	docs/libglcore-driver-functions.md#evaluator-set-up-and-map-data	Evaluator set-up and map data
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1800	424	__glkonim_Map1d	dwarf+dynsym	4b87aefdf1c2		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de19b0	412	__glkonim_Map1f	dwarf+dynsym	f93816226868		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1b50	548	__glkonim_Map2d	dwarf+dynsym	cfaabd01f28b		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1d80	524	__glkonim_Map2f	dwarf+dynsym	5030a5e9b7a5		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1b50	548	__glkonim_Map2d	dwarf+dynsym	cfaabd01f28b		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1d80	524	__glkonim_Map2f	dwarf+dynsym	5030a5e9b7a5		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1f90	80	__glkonim_EvalCoord1d	dwarf+dynsym	e9b0c23c7078		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de1fe0	80	__glkonim_EvalCoord1dv	dwarf+dynsym	8213a31c0774		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2de2030	76	__glkonim_EvalCoord1f	dwarf+dynsym	69c1589ae450		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -29749,13 +29749,13 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde3c	12	glIndexMask
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde48	12	glAccum	dwarf+dynsym	df9932534370		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde54	12	glDisable	dwarf+dynsym	4e190a59f02f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde60	12	glEnable	dwarf+dynsym	40636b2f08fe		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde6c	12	glFinish	dwarf+dynsym	862e6b501874		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde6c	12	glFinish	dwarf+dynsym	862e6b501874		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde78	12	glFlush	dwarf+dynsym	88e5750714b8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde84	12	glPopAttrib	dwarf+dynsym	f8af35b29267		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde90	12	glPushAttrib	dwarf+dynsym	05ed6855fe0b		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edde9c	12	glMap1d	dwarf+dynsym	511c01153e95		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddea8	12	glMap1f	dwarf+dynsym	69b85a7704e9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddeb4	12	glMap2d	dwarf+dynsym	245f1165d263		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddeb4	12	glMap2d	dwarf+dynsym	245f1165d263		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddec0	12	glMap2f	dwarf+dynsym	4ce1246e96ff		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddecc	12	glMapGrid1d	dwarf+dynsym	6de7eb21cab3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edded8	12	glMapGrid1f	dwarf+dynsym	f26dcc542e47		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -30244,7 +30244,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80e650	2716	glXChooseVisual
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f0ec	76	__glXMalloc	dynsym+mdebug	e54341755fd5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f138	200	__glXFindVisualConfig	dynsym+mdebug	de27d27f4e0c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f200	88	__glXCalloc	dynsym+mdebug	17f04d6ad70e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f258	900	__glXInitialize	dynsym+mdebug	13f2120222df		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f258	900	__glXInitialize	dynsym+mdebug	13f2120222df		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd80f5dc	60	glXMakeCurrentReadSGI	dynsym+mdebug	8f1409754202		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd80f618	2324	CreateContext	mdebug	c92a977e98a4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd80ff2c	28	ColorScore	mdebug	0919e2ce7421		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30274,7 +30274,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd811c34	8	AuxScore	mdeb
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd811c3c	2464	OverrideVisuals	mdebug	9e61a14a7dbe		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8125dc	8	StencilScore	mdebug	c748c35b2239		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8125e4	132	sampleBuffersScore	mdebug	179277dd2376		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8125ec	508	__glXOpenGraphics	dynsym+mdebug	72f51c94ebe1		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8125ec	508	__glXOpenGraphics	dynsym+mdebug	72f51c94ebe1		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd812668	51392	isLocal	mdebug	8f3283e44437		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8127e8	96	glXCreateContext	dynsym+mdebug	b5736cc1377c		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd812848	160	__glXGetModes	dynsym+mdebug	264472286ad5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30547,7 +30547,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f164	172	__glXFreeDisplay
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd81f210	260	FreeScreenConfigs	mdebug	b980d05ad670		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd81f314	6108	__glXWireToEvent	mdebug	2cfdf0375950		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f4c8	320	__glXCloseDisplay	dynsym+mdebug	838d28e2df18		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f608	60	glXGetCurrentDrawable	dynsym+mdebug	a00227c51ef9		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f608	60	glXGetCurrentDrawable	dynsym+mdebug	a00227c51ef9		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f644	80	glXGetCurrentContext	dynsym+mdebug	50ad6a6583a0		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd81f694	3108	__glXUseXFont	dynsym+mdebug	3b811d751c52		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8202bc	40	__glXGetReadDrawablePrivate	dynsym+mdebug	8ff7a0097178		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -30613,14 +30613,14 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd825fc8	72	glXGetFBConfigAtt
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826010	56	glXFreeContextEXT	dynsym+mdebug	bfe14ef8559d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826048	204	glXImportContextEXT	dynsym+mdebug	15ade36e94aa		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd826114	1676	combine_strings	mdebug	0a536677ea4f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826398	368	glXWaitX	dynsym+mdebug	7bfd11b6c24d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym+mdebug	d285a4dca7dc		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826398	368	glXWaitX	dynsym+mdebug	7bfd11b6c24d		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826508	360	glXWaitGL	dynsym+mdebug	d285a4dca7dc		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826670	132	glXQueryExtension	dynsym+mdebug	153356951258		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8266f4	116	glXQueryVersion	dynsym+mdebug	7773d57f705a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826768	56	glXDestroyContext	dynsym+mdebug	2e3832e2bd9f		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8267a0	1244	DestroyContext	mdebug	554c5d655b62		in	located	docs/opengl.md#destroycontext	`DestroyContext`
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826904	480	__glXFreeContext	dynsym+mdebug	9dd7b99623ac		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	05b458ae9d6a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826ae4	408	glXUseXFont	dynsym+mdebug	05b458ae9d6a		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd826c7c	17708	IndexScore	mdebug	80ec43ec995f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd826c84	928	glXGetConfig	dynsym+mdebug	37e2d7fad5de		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd827024	280	glXDestroyGLXPixmap	dynsym+mdebug	4550493077a2		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -30791,7 +30791,7 @@ usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd833fe8	756	__glx_GetString	
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8342dc	500	isNotProxy	mdebug	93d61b111e4b		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd8344d0	200	__glXFindFBConfigFromVid	mdebug	737995c1c4f4		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd834598	1492	__glXFindFBConfig	mdebug	cd3e7f6e2ae2		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
-usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd834660	76	glXGetCurrentDisplay	dynsym+mdebug	84af115de949		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd834660	76	glXGetCurrentDisplay	dynsym+mdebug	84af115de949		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd8346ac	948	glXGetFBConfigAttrib	dynsym+mdebug	73d0a668aaf6		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32		0xd834a60	268	glXGetFBConfigFltAttribSGIX	dynsym+mdebug	fe5c9dabc95f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA/libGL.so	board-library	o32	.text	0xd834b6c	4924	orderFBConfigSGIXs	mdebug	09fcfaddf58c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -31225,17 +31225,17 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setShar
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb		in	located	docs/opengl.md#changefilter	`changeFilter`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/opengl.md#changeclamp	`changeClamp`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a20	40	loadPostTextureScaleBias	mdebug	f2b05be99aa6		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967a48	208	setShadowRegs	mdebug	3596df9d6b2a		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4		in	located	docs/opengl.md#changeshadow	`changeShadow`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967b18	212	changeShadow	mdebug	9b183de19ee4		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967bec	208	lodBias2Scale	mdebug	62c1647ea4ab		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967cbc	9836	changeClipmapParams	mdebug	dd84773d5cb9		in	located	docs/opengl.md#changeclipmapparams	`changeClipmapParams`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9680c0	6932	__glKonTexParameter	dynsym+mdebug	3aad6baa12c4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd969bd4	1876	__glKonGetTexParameter	dynsym+mdebug	db22947090dc		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a328	536	bind2DMipmapTexture	mdebug	a30de34cfb3b		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a540	72	setClipmapRegisters	mdebug	d68cf4f31c14		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6		in	located	docs/opengl.md#bind2dclipmaptexture	`bind2DClipmapTexture`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a588	248	bind2DClipmapTexture	mdebug	17542b2c1fc6		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a680	280	bindBicubicTexture	mdebug	3143dd981f6d		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a798	344	bind3DMipmapTexture	mdebug	b3ed65fa92c4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96a8f0	228	bind3DTexture	mdebug	5af2a93d2b1d		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -31379,7 +31379,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a204	376	__glKonTexQu
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a37c	392	__glKonTexGetCubicSpline	dynsym+mdebug	d0905719817d		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a504	432	__glKonTexEvaluateCubicSpline	dynsym+mdebug	4e3c71a48193		in	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a6b4	172	__glKonTexExp2NegX64	dynsym+mdebug	88f0c1441523		in	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97a760	868	__glKonEvalEnable	dynsym+mdebug	596b68d65109		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97aac4	1100	__glKonEvalDisable	dynsym+mdebug	90d478c4b41e		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd97af10	15912	changebasis	mdebug	7c85b9f0b21a		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd97ed38	532	EvalV	mdebug	f9185bfc82d4		in	located	docs/libglcore-driver-functions.md#evaluator-arithmetic	Evaluator arithmetic
@@ -31411,8 +31411,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981e30	412	__glKonSetUp
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd981fcc	576	__glKonSetUpMap2	dynsym+mdebug	90d6d123a62a		in	located	docs/libglcore-driver-functions.md#evaluator-set-up-and-map-data	Evaluator set-up and map data
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98220c	428	__glkonim_Map1d	dynsym+mdebug	9b42661c35d0		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9823b8	408	__glkonim_Map1f	dynsym+mdebug	a8a3ee6fabe3		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd982550	556	__glkonim_Map2d	dynsym+mdebug	7f6928bc0d15		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98277c	528	__glkonim_Map2f	dynsym+mdebug	3c53e6ca70d9		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd982550	556	__glkonim_Map2d	dynsym+mdebug	7f6928bc0d15		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98277c	528	__glkonim_Map2f	dynsym+mdebug	3c53e6ca70d9		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd98298c	84	__glkonim_EvalCoord1d	dynsym+mdebug	07702e9c7291		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9829e0	84	__glkonim_EvalCoord1dv	dynsym+mdebug	21781ffe5aa3		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd982a34	80	__glkonim_EvalCoord1f	dynsym+mdebug	bbcc94db49a4		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -35334,13 +35334,13 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e99c	12	glIndexMask	d
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9a8	12	glAccum	dynsym+mdebug	938ab780af25		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9b4	12	glDisable	dynsym+mdebug	ceaa3192a540		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9c0	12	glEnable	dynsym+mdebug	9d7c75a01100		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9cc	12	glFinish	dynsym+mdebug	a57311008f8e		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9cc	12	glFinish	dynsym+mdebug	a57311008f8e		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9d8	12	glFlush	dynsym+mdebug	8baeda61b9d1		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9e4	12	glPopAttrib	dynsym+mdebug	505bef217ac6		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9f0	12	glPushAttrib	dynsym+mdebug	a3e88dcd3e4f		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e9fc	12	glMap1d	dynsym+mdebug	1b8c77b9173c		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea08	12	glMap1f	dynsym+mdebug	276835356cf9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea14	12	glMap2d	dynsym+mdebug	86dc4fea9c11		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea14	12	glMap2d	dynsym+mdebug	86dc4fea9c11		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea20	12	glMap2f	dynsym+mdebug	dd53dadce119		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea2c	12	glMapGrid1d	dynsym+mdebug	8eef7e2665a3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6ea38	12	glMapGrid1f	dynsym+mdebug	ddd734553233		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -35844,7 +35844,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e2f8	460	__glXGetDrawab
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e4dc	8	__glXGetPipeAddress	dynsym	21898fea7e65		in	named-only	docs/kernel.md#what-a-process-maps	What a process maps
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e4e4	396	__glXOpenGraphicsDevice	dynsym	4b6d5f351e9f		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e670	264	__glXHWAttach	dynsym	64c6b408d54f		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dynsym	88e9bae9a969		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e778	124	__glXOpenGraphics	dynsym	88e9bae9a969		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e7f4	204	__glXAllocHWContext	dynsym	141ca7c853b1		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e8c0	124	__glXUnbindHWContextFromThread	dynsym	09cf259ffee0		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd80e93c	692	__glXBindHWContextToWindow	dynsym	b7f54caef779		in	named-only	docs/kernel.md#who-sends-them	Who sends them
@@ -36119,7 +36119,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81a30c	220	__glXFillMap1f
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81a57c	136	__glXFreeDisplayPrivate	dynsym	c5cbda2ce53d		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81a73c	380	__glXQueryServerString	dynsym	e64ee1622764		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d408	404	__glXInitThread	dynsym	9cafbc9b9df4		in	understood	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dynsym	0e84bc841e8c		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d59c	808	__glXInitialize	dynsym	0e84bc841e8c		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d8c4	216	__glXSetupForCommand	dynsym	52dd87bed99d		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81d99c	340	__glXFlushRenderBuffer	dynsym	624c7dad805c		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81daf0	872	__glXSendLargeCommand	dynsym	5bf93fb3dd74		in	located	docs/sample-implementation.md#glxextc	glxext.c
@@ -36133,7 +36133,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f7b8	144	__glXDispatchE
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f848	400	__glXBeginDispatchOverride	dynsym	c7d3372be2a8		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd81f9d8	416	__glXEndDispatchOverride	dynsym	4108831e9367		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd820934	544	__glXCloseDisplay	dynsym	8a55f5180040		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd820b54	64	glXGetCurrentDrawable	dynsym	201670829185		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd820b54	64	glXGetCurrentDrawable	dynsym	201670829185		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd820b94	76	glXGetCurrentContext	dynsym	4d3ba5f5ca4f		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd820be0	2656	__glXUseXFont	dynsym	b858b45f0297		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd821640	20	__glXGetReadDrawablePrivate	dynsym	07df79dd70d7		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -36321,9 +36321,9 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd832f70	412	__glXFreeConte
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd833240	56	glXDestroyContext	dynsym	fa59ba1ac1b1		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd833278	148	glXQueryVersion	dynsym	ad39697af926		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83330c	164	glXQueryExtension	dynsym	62070b16df94		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8333b0	300	glXWaitGL	dynsym	4234a03d661e		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8334dc	304	glXWaitX	dynsym	ad94068293cf		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83360c	364	glXUseXFont	dynsym	a993dd070880		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8333b0	300	glXWaitGL	dynsym	4234a03d661e		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8334dc	304	glXWaitX	dynsym	ad94068293cf		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd83360c	364	glXUseXFont	dynsym	a993dd070880		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd833778	492	glXCopyContext	dynsym	c18a8793083a		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd833964	320	__glXIsDirect	dynsym	487ffac74b39		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd833aa4	76	glXIsDirect	dynsym	f0fb7d359b30		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -36338,7 +36338,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8361e4	276	glXQueryExtens
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8362f8	80	glXGetClientString	dynsym	0aa66d8590df		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836348	444	glXQueryServerString	dynsym	0aa36494ccea		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836504	368	__glXClientInfo	dynsym	6c6687ee2178		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836674	88	glXGetCurrentDisplay	dynsym	771bf85cb943		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836674	88	glXGetCurrentDisplay	dynsym	771bf85cb943		in	understood	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8366cc	52	glXGetCurrentDisplayEXT	dynsym	41a058bc1cc5		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836ad8	256	glXQueryContextInfoEXT	dynsym	866618ad8c8b		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd836bd8	8	glXGetContextIDEXT	dynsym	036d45786ba3		in	understood	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -40868,13 +40868,13 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7885c	12	glIndexMask
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78868	12	glAccum	dwarf+dynsym	938ab780af25		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78874	12	glDisable	dwarf+dynsym	ceaa3192a540		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78880	12	glEnable	dwarf+dynsym	9d7c75a01100		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7888c	12	glFinish	dwarf+dynsym	a57311008f8e		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7888c	12	glFinish	dwarf+dynsym	a57311008f8e		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78898	12	glFlush	dwarf+dynsym	8baeda61b9d1		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788a4	12	glPopAttrib	dwarf+dynsym	505bef217ac6		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788b0	12	glPushAttrib	dwarf+dynsym	a3e88dcd3e4f		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788bc	12	glMap1d	dwarf+dynsym	1b8c77b9173c		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788c8	12	glMap1f	dwarf+dynsym	276835356cf9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788d4	12	glMap2d	dwarf+dynsym	86dc4fea9c11		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788d4	12	glMap2d	dwarf+dynsym	86dc4fea9c11		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788e0	12	glMap2f	dwarf+dynsym	dd53dadce119		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788ec	12	glMapGrid1d	dwarf+dynsym	8eef7e2665a3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda788f8	12	glMapGrid1f	dwarf+dynsym	ddd734553233		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
@@ -41424,7 +41424,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2142e20	460	__glXGetDrawab
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143004	8	__glXGetPipeAddress	dynsym	21898fea7e65		in	named-only	docs/kernel.md#what-a-process-maps	What a process maps
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214300c	396	__glXOpenGraphicsDevice	dynsym	82f7f6b8490e		in	located	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143198	264	__glXHWAttach	dynsym	fee863129d5b		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21432a0	124	__glXOpenGraphics	dynsym	10acc62c27de		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21432a0	124	__glXOpenGraphics	dynsym	10acc62c27de		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214331c	204	__glXAllocHWContext	dynsym	1a33e632b4ba		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21433e8	124	__glXUnbindHWContextFromThread	dynsym	efd5fc3e8d6d		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2143464	696	__glXBindHWContextToWindow	dynsym	07f4a0244ac5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
@@ -41699,7 +41699,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214ef48	220	__glXFillMap1f
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214f1bc	136	__glXFreeDisplayPrivate	dynsym	c6d2ef9b42af		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x214f37c	380	__glXQueryServerString	dynsym	5f0f865bddcc		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x215200c	404	__glXInitThread	dynsym	5ad9e38c0d71		in	located	docs/libgl.md#thread-set-up-and-device-open-routines-read-in-full	Thread set-up and device-open routines read in full
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21521a0	808	__glXInitialize	dynsym	1dedb0c1bfb1		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21521a0	808	__glXInitialize	dynsym	1dedb0c1bfb1		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21524c8	216	__glXSetupForCommand	dynsym	eedfc6316435		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21525a0	336	__glXFlushRenderBuffer	dynsym	18e98e3734a1		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21526f0	872	__glXSendLargeCommand	dynsym	6985384efcb7		in	located	docs/sample-implementation.md#glxextc	glxext.c
@@ -41713,7 +41713,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21542bc	144	__glXDispatchE
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x215434c	324	__glXBeginDispatchOverride	dynsym	c1badaee5492		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2154490	340	__glXEndDispatchOverride	dynsym	a33b7c7b257f		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2155374	448	__glXCloseDisplay	dynsym	ab407f14f0bd		in	located	docs/sample-implementation.md#glxextc	glxext.c
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2155534	64	glXGetCurrentDrawable	dynsym	f972665d685e		in	located	docs/sample-implementation.md#glxextc	glxext.c
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2155534	64	glXGetCurrentDrawable	dynsym	f972665d685e		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2155574	76	glXGetCurrentContext	dynsym	c9d3d71da640		in	located	docs/sample-implementation.md#glxextc	glxext.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21555c0	2656	__glXUseXFont	dynsym	d6623aa0b23e		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2156020	20	__glXGetReadDrawablePrivate	dynsym	bc9f12f0a301		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
@@ -41901,9 +41901,9 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167b10	412	__glXFreeConte
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167de0	56	glXDestroyContext	dynsym	d2acfa99fcda		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167e18	148	glXQueryVersion	dynsym	801295064fb6		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167eac	164	glXQueryExtension	dynsym	eba9bd9a1c81		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167f50	300	glXWaitGL	dynsym	b35c72385f14		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216807c	304	glXWaitX	dynsym	21ff062d0969		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21681ac	364	glXUseXFont	dynsym	1107af3baf4c		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2167f50	300	glXWaitGL	dynsym	b35c72385f14		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216807c	304	glXWaitX	dynsym	21ff062d0969		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21681ac	364	glXUseXFont	dynsym	1107af3baf4c		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2168318	488	glXCopyContext	dynsym	1a0ada8953fa		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2168500	320	__glXIsDirect	dynsym	1d03ae056e91		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2168640	76	glXIsDirect	dynsym	4f24b499d2f0		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -41918,7 +41918,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216ae00	276	glXQueryExtens
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216af14	80	glXGetClientString	dynsym	cb7cdd56c946		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216af64	432	glXQueryServerString	dynsym	5dbe6c3263fe		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b114	372	__glXClientInfo	dynsym	700262ff960f		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b288	88	glXGetCurrentDisplay	dynsym	a851da448649		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b288	88	glXGetCurrentDisplay	dynsym	a851da448649		in	located	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b2e0	52	glXGetCurrentDisplayEXT	dynsym	c28ef4e2b88c		in	named-only	docs/libgl.md#the-glx-client-library-libglso-function-reference	The GLX client library (`libGL.so`): function reference
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b6f4	252	glXQueryContextInfoEXT	dynsym	4f66f4aee5db		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x216b7f0	8	glXGetContextIDEXT	dynsym	e7201485a58d		in	located	docs/sample-implementation.md#glxcmdsc	glxcmds.c
@@ -42187,7 +42187,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2195ff0	700	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21962b0	576	__glkonlc_Bitmap	dwarf+dynsym	d551b4d2e134		in	located	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21964f0	116	__glkonle_Bitmap	dwarf+dynsym	c071fdcb72be		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196570	232	__glkonim_PolygonStipple	dwarf+dynsym	644c2ca3a0b4		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196660	88	__glkonConvertPolygonStipple	dwarf+dynsym	9fc596214863		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21966c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21967b0	3012	DrawSubTexels	dwarf	d8d337130f6e		in	located	docs/libglcore-driver-functions.md#texel-draw-splitting	Texel draw splitting
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917		in	located	docs/libglcore-driver-functions.md#pixel-reads-and-draws	Pixel reads and draws
@@ -42347,17 +42347,17 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a86c0	288	setSh
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1		in	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8ce0	4916	changeFilter	dwarf	1a1a6986a431		in	located	docs/opengl.md#changefilter	`changeFilter`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	changeClamp	dwarf	69abaa85072a		in	located	docs/opengl.md#changeclamp	`changeClamp`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	changeClamp	dwarf	69abaa85072a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa290	40	loadPostTextureScaleBias	dwarf	2593b30b6fcf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa2c0	172	setShadowRegs	dwarf	e5d5ccabeca6		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa370	164	changeShadow	dwarf	74396169d2aa		in	located	docs/opengl.md#changeshadow	`changeShadow`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa370	164	changeShadow	dwarf	74396169d2aa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa420	140	lodBias2Scale	dwarf	d099770ddcd6		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa4b0	792	changeClipmapParams	dwarf	bc8e58755664		in	located	docs/opengl.md#changeclipmapparams	`changeClipmapParams`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21aa7d0	6156	__glKonTexParameter	dwarf+dynsym	3103171a7231		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21abfe0	1632	__glKonGetTexParameter	dwarf+dynsym	d6a0406341e3		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac640	448	bind2DMipmapTexture	dwarf	fdeac58983f4		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac800	72	setClipmapRegisters	dwarf	bf173099a5f2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004		in	located	docs/opengl.md#bind2dclipmaptexture	`bind2DClipmapTexture`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac850	272	bind2DClipmapTexture	dwarf	4f4c62a2a004		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ac960	268	bindBicubicTexture	dwarf	0fef740662b0		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aca70	300	bind3DMipmapTexture	dwarf	a8020f9fb479		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21acba0	220	bind3DTexture	dwarf	aa3d17378c91		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -42501,7 +42501,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb890	456	__glKonTex
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bba60	820	__glKonTexGetCubicSpline	dwarf+dynsym	2aca1f6240af		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbda0	436	__glKonTexEvaluateCubicSpline	dwarf+dynsym	64f6622ee4aa		in	located	docs/opengl.md#__glkontexevaluatecubicspline	`__glKonTexEvaluateCubicSpline`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbf60	124	__glKonTexExp2NegX64	dwarf+dynsym	977ae09563cf		in	located	docs/opengl.md#__glkontexexp2negx64	`__glKonTexExp2NegX64`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bbfe0	804	__glKonEvalEnable	dwarf+dynsym	c812d529eb57		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bc310	1000	__glKonEvalDisable	dwarf+dynsym	7b881cb60352		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21bc700	7040	changebasis	dwarf	89b0c2e56127		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21be280	496	EvalV	dwarf	0af77cfecaa9		in	located	docs/libglcore-driver-functions.md#evaluator-arithmetic	Evaluator arithmetic
@@ -42533,8 +42533,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1500	316	__glKonSet
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1640	436	__glKonSetUpMap2	dwarf+dynsym	3ffcf577d497		in	located	docs/libglcore-driver-functions.md#evaluator-set-up-and-map-data	Evaluator set-up and map data
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1800	424	__glkonim_Map1d	dwarf+dynsym	4b87aefdf1c2		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c19b0	412	__glkonim_Map1f	dwarf+dynsym	f93816226868		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1b50	548	__glkonim_Map2d	dwarf+dynsym	cfaabd01f28b		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1d80	524	__glkonim_Map2f	dwarf+dynsym	5030a5e9b7a5		in	located	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1b50	548	__glkonim_Map2d	dwarf+dynsym	cfaabd01f28b		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1d80	524	__glkonim_Map2f	dwarf+dynsym	5030a5e9b7a5		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1f90	80	__glkonim_EvalCoord1d	dwarf+dynsym	e9b0c23c7078		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c1fe0	80	__glkonim_EvalCoord1dv	dwarf+dynsym	8213a31c0774		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21c2030	76	__glkonim_EvalCoord1f	dwarf+dynsym	69c1589ae450		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -46448,13 +46448,13 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde3c	12	glIndexMask
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde48	12	glAccum	dwarf+dynsym	df9932534370		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde54	12	glDisable	dwarf+dynsym	4e190a59f02f		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde60	12	glEnable	dwarf+dynsym	40636b2f08fe		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde6c	12	glFinish	dwarf+dynsym	862e6b501874		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde6c	12	glFinish	dwarf+dynsym	862e6b501874		in	named-only	docs/libgl.md#glx-current-context-and-wait-routines-read-in-full	GLX current-context and wait routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde78	12	glFlush	dwarf+dynsym	88e5750714b8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde84	12	glPopAttrib	dwarf+dynsym	f8af35b29267		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde90	12	glPushAttrib	dwarf+dynsym	05ed6855fe0b		in	named-only	docs/libglcore-driver-functions.md#state-and-context-routines	State and context routines
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bde9c	12	glMap1d	dwarf+dynsym	511c01153e95		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdea8	12	glMap1f	dwarf+dynsym	69b85a7704e9		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdeb4	12	glMap2d	dwarf+dynsym	245f1165d263		in	named-only	docs/libglcore-driver-functions.md#evaluator-enables-and-mesh-drivers	Evaluator enables and mesh drivers
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdeb4	12	glMap2d	dwarf+dynsym	245f1165d263		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdec0	12	glMap2f	dwarf+dynsym	4ce1246e96ff		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdecc	12	glMapGrid1d	dwarf+dynsym	6de7eb21cab3		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bded8	12	glMapGrid1f	dwarf+dynsym	f26dcc542e47		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
