@@ -6,6 +6,206 @@ Each entry gives the owning file, the routes already tried and the next route to
 
 The "Next route" cells below were converted from requests for measurements on a running pipe and still describe that measurement. Each owner rewrites its section into software routes and works through them.
 
+## Route triage (2026-11-01)
+
+Each open entry below carries a route tag. The tag says what can settle it:
+
+- **route a**: software we hold can settle it. The entry names the binary, routine, table or published text to read, or a shipped tool to run under the emulator. The evidence rule in AGENTS.md counts a shipped binary run under an emulator as software evidence, but a guest configuration the emulator does not model is still missing.
+- **route b**: needs a release, binary or document we do not hold. The entry names it.
+- **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
+
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 151 (hardware-facing 73, microcode 26, driver and library 50, product and history 2; the queued next-step lists are included under microcode and driver), route b 13, route c 10. Two stale entries on the subtract operand order are marked superseded and are not counted.
+
+Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
+
+**Hardware-facing**
+- fan/strip choice in vertex words
+- special-register offsets and r95 = 0x33 words
+- raster set-up widths, sub-pixel rule, slopes
+- clip-map register fields
+- DG state tables (line type, count, length, signal)
+- RM count per pipe on Onyx 3000
+- VIO5H channel count
+- DPLEX pixel clock range and release
+- RM per InfiniteReality generation (hinv part needs hinv, route b)
+- RM11 raster memory size
+- cursor tie-break between channels
+- 24-bit floating-point Z format
+- GE special-register offsets kpm does not name
+- HIP command and FIFO formats (arm1.u arm_data); DMA and interrupt words gecomm_*
+- RM tag bits 16-17, ContextReloadFromBEF passes, texel and raster widths, slots 0x00-0x0e
+- DG LoadFormat words 299-300, SyncSource, SyncMethod, genlock words, hwd_mode bits 2-4
+- GE DMA, interrupt, reset and context handlers; ctx_load.S, mClearEram loop
+- 93 arm1.u display-request rows; dgTempBlankAllChannels etc.; cursor channels above 7
+- GED transfer ops 1, 3, 5, 6, 7; control fields; registers 0x280-0x2b0
+- KONA_DG_DAC_CURSOR_POS value 0x22 vs DAC register 0x200 (owner edit)
+- HP_X_DATA1-10 consumer unit; token effect columns; gepc slot names
+- vertex record word 0x26 bits 31-29 on later strip vertices
+- vertex record word 0x26 bits 31-29 on later strip vertices
+- vertex record word 0x26 (repeat)
+- fan bit: E field of triangle output stores
+- fan bit: E field of triangle output stores
+- fan bit: E field of triangle output stores
+- scan-chain net maps and stuck/short vector files; two undocumented microcode images
+- RM.h raster register entries; tbu helpers in irsaudit
+- GE and DG revision per product (decode board id, DG identity word)
+- video bandwidth accept point for 8@ combinations
+- clip-map 4-bit size fields log2
+- stereo formats without a shipped cmb
+- RM self-test walking-ones sequence per TM
+- GE, RM and DG names per product against gfxinfo strings
+- multisample and alpha visuals per RM revision
+- channel-mix bandwidth accept and reject boundary
+- stereo .vfo line frequencies
+- ireeprom -w survives reset; -c restores default
+- clip-map level count and addressable size
+- DG5 sync source and format round trip
+- GE14/GE16 and RM7/RM9 register and feature dumps
+- 32768 per-texture clip-map limit
+- TM self-test sequence and TM-to-SDRAM bank count
+- 8-channel DG5 limit in video-format tools
+- garbage-count report and death_reason 17 with empty RM slot
+- GFX FIFO watermarks 0x380 and 0x180 in kpm
+- single RM10 gfxinfo text
+- first-generation board names and texture sizes
+- ircombine and setmon EEPROM round trip
+- ireeprom -c factory default
+- video format DAC ceiling in vfc and ircombine
+- findvis on RM8 guest: RGBA multisample and 22 MB sizing
+- proxy-texture ladder and 2048x2048 RGBA texture
+- pixel depth classes per RM count
+- encoder channel timing and analog composite
+- sync-type field and DG sync-output mux
+- 1280x492_120s stereo visuals with and without .cmb
+- C-brick to G-brick link rejection
+- vfc rule files and setmon acceptance
+- 220 and 170 MHz DAC limits per channel
+- DPLEX pre-DAC path and pipe-frame mapping
+- stuck framebuffer bit reproducing the impsq2 failure line
+- rendered size in 4-pixel steps; 320x320 floor
+- ircombine source-channel choices and stacked option
+- nicprobe and empty-pipe gfxinfo for GE14-2, DG5-2, RM8
+- PROM refusal of 0x2020202 EEPROM value
+- gfxinfo with 0xFF or 0x20 EEPROM image
+- IR4 gfxinfo -vv: no RM11 printed
+- 3200x3400 at 60 Hz format for four-RM pipe
+- 8 channels accepted and 9 rejected on one pipe
+- XIO widget identity on Onyx 3000 (port speed is route c)
+- frame scheduler period against video format
+
+**Microcode**
+- microcode word width, compressed form
+- engine working memory size
+- uMatrixMultCCC lane-1 address encoding
+- sign of rebuilt normal z in short-normal unpack
+- spot term of mLiLocalLight; codes 0x6a, 0x6c, 0x77
+- code-3 predicate in block word 1; mgeb_LiDisableLightS reload; texture-environment records
+- queued next steps (paragraph lists them)
+- separable-convolution loops; mLiLocalLight located
+- located ge.u rows: convolution, FFT, lights, spot handlers
+- link stack; lane-1 encoding; located rows
+- uMatrixMultCCC lane 1 encoding (repeat of table row)
+- queued next steps (paragraph lists them)
+- spot-exponent register latency; lane-selecting address words
+- uMatrixMultCCC lane 1 encoding (repeat)
+- r95 = 7 store as link stack
+- queued next steps (paragraph lists them)
+- r95 stores 7 and 0xb; R83-81; lane model
+- r95 stores 7 and 0xb
+- uMatrixMultCCC lane 1 (repeat)
+- R83-81 lane-mask field
+- queued next steps (paragraph lists them)
+- uMatrixMultCCC lane 1 (repeat)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- tport.bin sub-command names (PROM strings)
+
+**Driver, library and inventory**
+- per-field citation rule for data-file rows (inventory decision)
+- o32 and 64-bit context builds unread; selector names
+- o32 and 64-bit texture builds unread
+- six display functions without entries
+- 0x9 in the address low word; activate token details
+- O32 and 64-bit Kona driver routines whose fingerprint or offsets do not match N32
+- binaries table rows: IP35 kona.a twins, tport.a, kona.so family, irsaudit, kpm
+- located binaries rows; microcode image files
+- O32 and 64-bit Kona driver routines whose fingerprint or offsets do not match N32
+- small and medium O32 and 64-bit routines that differ from N32
+- changebasis weights, histogram loops, other large N32 routines
+- 32 display-list compilers not yet read; o32 and 64-bit copies
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- queued next steps (paragraph lists them)
+- token senders missing from the tokens table
+- senders not found: ireeprom EEPROM_OP, irsaudit DIAG_DISPATCH
+- kona.so routines at 0x53e7b0 and 0x4817f0 not read
+- kona.so inferred mfb/cfb/mi routines: inner loops not traced
+- which X module Xsgi loads (trace ddxGetBoardName)
+- 20 same-length konal.so functions: instruction-level diff
+- konad.so and konas.so below-split twins not read
+- jump-table entries not compared one by one
+- O32 and 64-bit routines with N32 entry but no own entry
+- 433 __glx_ client stubs in libGL.so
+- static libGL.so routines matched to public GLX source
+- 426 soft-renderer routines without public name
+- display-list capacity limit in __glSdramSbrk
+- texture download and colour-matrix span converters
+- GL_RENDERER composition in GetBoardInfo
+- display-list size beyond 15 MB
+- colour matrix on texture load and stencil visuals
+- KONA syslog strings for GE fault words
+- SGIS_point_parameters and SGIS_multitexture against GL_EXTENSIONS
+- swap timeout log sequence and bad-state code
+- fatal-error death_reason table from driver strings
+- GL_DEPTH_COMPONENT bit layout
+- many-display-list test with and without GLKONA_NOIDMA
+- texture border and GL_CLAMP border colour
+- SGIX_shadow extension strings and depth textures
+- glBitmap at fractional positions; FILTER4 against bilinear
+- window IDs on two pipes
+- xdpyinfo screen numbering on two pipes
+- glDrawPixels widths 4095 to 4097
+- pbuffer count against framebuffer-per-RM sizing
+- RGB10 and RGB12 visual lists
+- videoresize scanned-out size and shadowmap demo
+
+**Product and history**
+- Kona as the InfiniteReality code name
+- processor count against per-RM pixel processors
+
+Route b, named:
+- board sets KONA, KONAT, KONAS: needs an IP19 or IP25 kernel or published hinv
+- hinv strings per product: hinv not on the media
+- IR2 internal vs marketing names: needs hinv
+- IR3 gfxinfo against posted text: posted text and IR3 configuration not held
+- IR3 and IR4 framebuffer and texture sizes: their binaries not held
+- hinv -mvv record: hinv not on the media
+- Fchip rev 2 on IO4: 5.3-era media not held
+- RM-type hinv strings: needs hinv
+- per-ASIC ID words: posted words not held
+- Nekonomicon topology source not held
+- Reality hinv and gfxinfo figures: hinv not held
+- IR3 revisions per product: IR3 binaries not held
+- IR3 and IR4 registers against IR2: their binaries not held
+
+Route c, recorded only:
+- texture sharpen/detail product rounding and widths
+- kernel functions with no shipped-software reference (invalidate_pane_buffer, CushionBuffer off case)
+- throughput, clocks, chassis, cancelled successor, multi-pipe cost, Onyx4
+- throughput; posted rates bound only
+- share of pipe time in multi-pipe compositing
+- W=0 precision: the model shows model behaviour, not chip behaviour
+- graphics-rack module fan state
+- swap-ready cabling state
+- deskside hang field report on a pipe with no RM in slot 0
+- COUNTALL against wall time on the 50 MHz clock
+
+---
+
 ## Published sources, route tried (2026-10-29)
 
 Papers, technical reports and patents were searched for every open entry below; [published-sources.md](published-sources.md) holds the identity and facts of each source. Result by entry, so no later reader repeats the route:
