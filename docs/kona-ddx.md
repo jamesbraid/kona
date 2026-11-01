@@ -7091,11 +7091,15 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   prologue is jumped over and never runs. `konValidateWindowGC` calls it. Against `konal.so`: 1 of 51; immediates only; low halves:
   1; first at +0x10; gp 0x34740 and 0x34720.
 - `cfbFillRectSolidGeneral` (konad.so, address 0x56b5d0, 2080 bytes): **inferred.** Solid rectangle fill for 8-bit pixels under
-  any raster op, a leaf with no calls (507 instructions). It takes the GC private record through GC +76 and `cfbGCPrivateIndex`,
-  whose words at +12 and +16 are the merge pair, and the drawable's row pitch from the screen's private record. Each store is `(dst
-  & (private16 | ~mask)) ^ (private12 & mask)`, with masks from `cfbstarttab` (two sites), `cfbendtab`, `cfbstartpartial` and
-  `cfbendpartial`; single pixels are written with byte stores. The word loops were not traced to the end. Against `konal.so`: 1 of
-  520; immediates only; low halves: 1; first at +0x24.
+  any raster op, a leaf with no calls (507 instructions). It takes (drawable a0, GC a1, box count a2, box array a3) with boxes of 8
+  bytes read as four halfwords x1, y1, x2, y2. The drawable is used directly when its type byte is 1, otherwise its screen private
+  (+16, +116) gives the row pitch (+28, converted to words) and base (+32). The GC private record is the entry at GC +76 plus 4
+  times `cfbGCPrivateIndex`; its word at +12 is `A` and its word at +16 is `B`. Every destination word, in the first, middle and
+  last columns alike, becomes `(dst & (B | ~mask)) ^ (A & mask)`, with `mask` from `cfbstarttab` and `cfbendtab` for a span within
+  one word, or `cfbstartpartial` and `cfbendpartial` for the edge words, and an all-ones mask for whole words. A box one pixel wide
+  is written with byte loads and stores, down the rows. The middle words are written in an unrolled loop of four. Only these paths
+  were read, not each column-alignment variant to its exit, so it stays inferred. Against `konal.so`: 1 of 520; immediates only; low
+  halves: 1; first at +0x24.
 - `cfb16CopyRotatePixmap` (konad.so, address 0x56bdf0, 312 bytes): **established.** Takes (source pixmap, address of the
   destination pixmap pointer, x rotation, y rotation). When a destination exists with the same row pitch (+28) and height (halfword
   +14) it reuses it: `memmove` of pitch times height bytes of the data at +32, copy of halfword +12 and bytes +2 and +3, and a fresh
