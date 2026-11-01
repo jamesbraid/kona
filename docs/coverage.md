@@ -24,11 +24,12 @@ The share of understood rows that an independent audit found real when it re-der
 
 | Table | Audited real | Sample | Date |
 |---|---:|---:|---|
-| binaries | 85.7% | 14 | 2026-10-30 |
+| binaries | 87.5% | 8 | 2026-11-01 |
 | functions | 100.0% | 20 | 2026-11-01 |
-| tokens | 86.7% | 30 | 2026-10-30 |
+| tokens | 87.5% | 8 | 2026-11-01 |
 | ioctls | 90.0% | 10 | 2026-10-29 |
-| ucode | 100.0% | 8 | 2026-10-31 |
+| ucode | 62.5% | 8 | 2026-11-01 |
+| spec-registers | 100.0% | 8 | 2026-11-01 |
 
 Cross-workspace role check: compared 3073 entries with the entries of crime and odsy for the same function and capped 12 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
