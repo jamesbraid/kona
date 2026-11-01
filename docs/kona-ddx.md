@@ -6998,11 +6998,17 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   its four arguments and branches over its only call, an `ErrorF` with a message string, to the epilogue. The call is unreachable,
   so the function prints nothing and returns without setting a result. Against `konal.so`: 1 of 23; immediates only; low halves: 1;
   first at +0x10; gp 0x3e930 and 0x3e920.
-- `cfbFillSpanTile32sGeneral` (konad.so, address 0x561370, 1864 bytes): **inferred.** Span fill with a 32-pixel tile for 8-bit
-  pixels under any raster op, a leaf with no calls (461 instructions). It loads the addresses of `mergeRopBits`, `cfbstarttab`,
-  `cfbendtab`, `cfbstartpartial` and `cfbendpartial`, uses two signed divisions for the tile column and row, and combines words with
-  `and`, `nor` and `xor`. The merge itself was not traced to the end. Against `konal.so`: 1 of 466; immediates only; low halves: 1;
-  first at +0x40.
+- `cfbFillSpanTile32sGeneral` (konad.so, address 0x561370, 1864 bytes): **inferred.** Span fill from a 32-pixel-wide tile for
+  8-bit pixels under any raster op, a leaf with no calls (461 instructions). It replicates the low byte of its last stack argument
+  into a word `p`, then reads the four-word row of `mergeRopBits` indexed by the raster op (argument 7, times 16) and ANDs rows 0, 1
+  and 3 with `p`, giving constants A, B and C, with D = row 2 OR `~p`. Each destination word is stored as `(dst & ((src & A ^ D) |
+  ~mask)) ^ ((src & B ^ C) & mask)`, where `src` is the tile word. The drawable is taken directly when its type byte is 1, otherwise
+  through the screen private (+16, +116) for the row pitch (+28, in words) and base (+32). The tile row and column come from two
+  signed divisions of the span origin minus the tile origin by the tile height and width, corrected to non-negative remainders. The
+  first and last partial words use `cfbstarttab`, `cfbendtab`, `cfbstartpartial` and `cfbendpartial`. Middle words are written in an
+  unrolled loop of four, and when the tile column is not word aligned each source word is built from two tile words with `sllv` and
+  `srlv`. The ordering of the partial-word and wrap-around branches was not followed to every exit, so it stays inferred. Against
+  `konal.so`: 1 of 466; immediates only; low halves: 1; first at +0x40.
 - `konUnbindDestroyedWindow` (konad.so, address 0x561f00, 696 bytes): **established.** Releases the display-generator bindings of
   a window being destroyed: takes (screen a0, window a1) and returns nothing. It takes the record S at the screen's +436 table entry
   `vcScreenPrivateIndex`, and its array pointer at S +936. When the window is null it stores -1454 in a global (at gp -28072), calls
