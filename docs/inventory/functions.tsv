@@ -16252,12 +16252,12 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda182b0	440	__glFreeText
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18468	704	__glim_TexGenfv	dynsym+mdebug	7862228cd566		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18728	96	__glim_TexGenf	dynsym+mdebug	2bc99f81a538		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18788	740	__glim_TexGendv	dynsym+mdebug	acad870f84d3		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18a6c	100	__glim_TexGend	dynsym+mdebug	aa34b793d8aa		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18a6c	100	__glim_TexGend	dynsym+mdebug	aa34b793d8aa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18ad0	672	__glim_TexGeniv	dynsym+mdebug	303b52e6df6c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18d70	96	__glim_TexGeni	dynsym+mdebug	132ef8bb2808		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18dd0	60	__glTexGendv_size	dynsym+mdebug	447d93d400bc		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18e0c	52	__glTexGenfv_size	dynsym+mdebug	212a1e339635		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18e40	52	__glTexGeniv_size	dynsym+mdebug	d631a52dd857		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18e0c	52	__glTexGenfv_size	dynsym+mdebug	212a1e339635		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18e40	52	__glTexGeniv_size	dynsym+mdebug	d631a52dd857		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda18e74	1936	__glim_TexParameterfv	dynsym+mdebug	424b0f9a4eff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda19604	188	__glim_TexParameterf	dynsym+mdebug	0f07aef18094		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda196c0	1192	__glim_TexParameteriv	dynsym+mdebug	6ff2c69bf081		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -21788,12 +21788,12 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14690	436	__glFreeTe
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14850	528	__glim_TexGenfv	dwarf+dynsym	02730e3ae1ca		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14a60	84	__glim_TexGenf	dwarf+dynsym	04ce5a5f2e14		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14ac0	560	__glim_TexGendv	dwarf+dynsym	84d22ed9d92c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14cf0	84	__glim_TexGend	dwarf+dynsym	93ab95cc17f4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14cf0	84	__glim_TexGend	dwarf+dynsym	93ab95cc17f4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14d50	580	__glim_TexGeniv	dwarf+dynsym	9651b20f6521		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda14fa0	84	__glim_TexGeni	dwarf+dynsym	246671abadd0		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15000	60	__glTexGendv_size	dwarf+dynsym	c84ef1da36c7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15040	52	__glTexGenfv_size	dwarf+dynsym	5ba6a74b61cb		in	understood	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15080	52	__glTexGeniv_size	dwarf+dynsym	7d3140c8b9d0		in	understood	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15040	52	__glTexGenfv_size	dwarf+dynsym	5ba6a74b61cb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15080	52	__glTexGeniv_size	dwarf+dynsym	7d3140c8b9d0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda150c0	1328	__glim_TexParameterfv	dwarf+dynsym	200ea62146ec		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda155f0	264	__glim_TexParameterf	dwarf+dynsym	b8a9f9bd49f4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda15700	1360	__glim_TexParameteriv	dwarf+dynsym	ec56a72c4f60		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -27368,12 +27368,12 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79570	440	__glFreeTe
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79730	536	__glim_TexGenfv	dwarf+dynsym	6a8ac90f399b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79950	84	__glim_TexGenf	dwarf+dynsym	4fab59e12d20		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e799b0	568	__glim_TexGendv	dwarf+dynsym	91548fab712d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79bf0	84	__glim_TexGend	dwarf+dynsym	373d6acbc426		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79bf0	84	__glim_TexGend	dwarf+dynsym	373d6acbc426		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79c50	588	__glim_TexGeniv	dwarf+dynsym	d5531ca908ce		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79ea0	84	__glim_TexGeni	dwarf+dynsym	c1d687672799		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79f00	60	__glTexGendv_size	dwarf+dynsym	c84ef1da36c7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79f40	52	__glTexGenfv_size	dwarf+dynsym	087f70979fdf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79f80	52	__glTexGeniv_size	dwarf+dynsym	5b7e64cd26d7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79f40	52	__glTexGenfv_size	dwarf+dynsym	087f70979fdf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79f80	52	__glTexGeniv_size	dwarf+dynsym	5b7e64cd26d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e79fc0	1328	__glim_TexParameterfv	dwarf+dynsym	a339beee460a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e7a4f0	264	__glim_TexParameterf	dwarf+dynsym	85799f944b7e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e7a600	1360	__glim_TexParameteriv	dwarf+dynsym	c9adcde04715		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -32951,12 +32951,12 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda182b0	440	__glFreeText
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18468	704	__glim_TexGenfv	dynsym+mdebug	7862228cd566		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18728	96	__glim_TexGenf	dynsym+mdebug	2bc99f81a538		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18788	740	__glim_TexGendv	dynsym+mdebug	acad870f84d3		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18a6c	100	__glim_TexGend	dynsym+mdebug	aa34b793d8aa		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18a6c	100	__glim_TexGend	dynsym+mdebug	aa34b793d8aa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18ad0	672	__glim_TexGeniv	dynsym+mdebug	303b52e6df6c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18d70	96	__glim_TexGeni	dynsym+mdebug	132ef8bb2808		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18dd0	60	__glTexGendv_size	dynsym+mdebug	447d93d400bc		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18e0c	52	__glTexGenfv_size	dynsym+mdebug	212a1e339635		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18e40	52	__glTexGeniv_size	dynsym+mdebug	d631a52dd857		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18e0c	52	__glTexGenfv_size	dynsym+mdebug	212a1e339635		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18e40	52	__glTexGeniv_size	dynsym+mdebug	d631a52dd857		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda18e74	1936	__glim_TexParameterfv	dynsym+mdebug	424b0f9a4eff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda19604	188	__glim_TexParameterf	dynsym+mdebug	0f07aef18094		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda196c0	1192	__glim_TexParameteriv	dynsym+mdebug	6ff2c69bf081		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -38487,12 +38487,12 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14690	436	__glFreeTe
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14850	528	__glim_TexGenfv	dwarf+dynsym	02730e3ae1ca		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14a60	84	__glim_TexGenf	dwarf+dynsym	04ce5a5f2e14		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14ac0	560	__glim_TexGendv	dwarf+dynsym	84d22ed9d92c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14cf0	84	__glim_TexGend	dwarf+dynsym	93ab95cc17f4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14cf0	84	__glim_TexGend	dwarf+dynsym	93ab95cc17f4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14d50	580	__glim_TexGeniv	dwarf+dynsym	9651b20f6521		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda14fa0	84	__glim_TexGeni	dwarf+dynsym	246671abadd0		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15000	60	__glTexGendv_size	dwarf+dynsym	c84ef1da36c7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15040	52	__glTexGenfv_size	dwarf+dynsym	5ba6a74b61cb		in	understood	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15080	52	__glTexGeniv_size	dwarf+dynsym	7d3140c8b9d0		in	understood	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15040	52	__glTexGenfv_size	dwarf+dynsym	5ba6a74b61cb		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15080	52	__glTexGeniv_size	dwarf+dynsym	7d3140c8b9d0		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda150c0	1328	__glim_TexParameterfv	dwarf+dynsym	200ea62146ec		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda155f0	264	__glim_TexParameterf	dwarf+dynsym	b8a9f9bd49f4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda15700	1360	__glim_TexParameteriv	dwarf+dynsym	ec56a72c4f60		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -44067,12 +44067,12 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259570	440	__glFreeTe
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259730	536	__glim_TexGenfv	dwarf+dynsym	6a8ac90f399b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259950	84	__glim_TexGenf	dwarf+dynsym	4fab59e12d20		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22599b0	568	__glim_TexGendv	dwarf+dynsym	91548fab712d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259bf0	84	__glim_TexGend	dwarf+dynsym	373d6acbc426		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259bf0	84	__glim_TexGend	dwarf+dynsym	373d6acbc426		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259c50	588	__glim_TexGeniv	dwarf+dynsym	d5531ca908ce		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259ea0	84	__glim_TexGeni	dwarf+dynsym	c1d687672799		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259f00	60	__glTexGendv_size	dwarf+dynsym	c84ef1da36c7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259f40	52	__glTexGenfv_size	dwarf+dynsym	087f70979fdf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259f80	52	__glTexGeniv_size	dwarf+dynsym	5b7e64cd26d7		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259f40	52	__glTexGenfv_size	dwarf+dynsym	087f70979fdf		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259f80	52	__glTexGeniv_size	dwarf+dynsym	5b7e64cd26d7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2259fc0	1328	__glim_TexParameterfv	dwarf+dynsym	a339beee460a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x225a4f0	264	__glim_TexParameterf	dwarf+dynsym	85799f944b7e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x225a600	1360	__glim_TexParameteriv	dwarf+dynsym	c9adcde04715		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
