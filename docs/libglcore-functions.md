@@ -649,7 +649,7 @@ Small helpers of the host-side driver: the hyperpipe stubs, the kernel memory ca
 - `__glkon_unique_per_ge_mem_alloc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94dae0, 68 bytes):
   **Established.** Allocates a block per geometry engine with fixed fields: `__glkon_mem_alloc` is called with 2, 9, 1, 1 and 0, and no argument of its own is used.
 - `GetLineModeDist` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd94fb70, 124 bytes):
-  **Established.** Reads the line-mode distance table from the pipe: it calls `__glkon_get_special` with token 0xee and then copies 16 words (64 bytes) from the reply to the destination array in the second argument, two words at a time.
+  **Established.** Reads the line-mode distance table from the pipe: it calls `__glkon_get_special` with token 0xee and then splits 32 words (128 bytes) of the reply between two caller arrays in eight passes of four words: each pass sends the first two words to the array of the second argument and the next two to the array of the first, so each array receives 16 words (64 bytes). The bound in the loop is the second argument plus 64.
 - `GetConvolutionFilter` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd950920, 68 bytes):
   **Established.** Chooses a state record by target. Target 0xde0 gives the record at `ctx` +0x300, and any target other than 0, 0xde0 and 0xde1 gives the one at +0x354. Targets 0 and 0xde1 test bit 26 (0x4000000) of the word at `ctx` +0x700 and give +0x3a8 when it is clear and +0x354 when it is set. It returns the record's address.
 - `__glKonSetPixelLEModes` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9511c0, 84 bytes):
