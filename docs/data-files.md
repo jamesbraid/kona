@@ -350,17 +350,17 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/ge14_btm4ges.short.Z` | Shorts test vectors for the `ge14_btm4ges` chain, 5788 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_noge.short.Z` | Shorts test vectors for the `ge14_noge` chain, 1730 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 1279 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_top4ges.short.Z` | Shorts test vectors for the `ge14_top4ges` chain, 5751 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4399 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm10.short` | shorts test vectors for the `rm10` chain. The compressed copy holds the same content once decompressed. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm10.short.Z` | shorts test vectors for the `rm10` chain. The plain copy holds the same content. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm11.short` | shorts test vectors for the `rm11` chain. The compressed copy holds the same content once decompressed. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm11.short.Z` | shorts test vectors for the `rm11` chain. The plain copy holds the same content. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.short` | Plain text of the rm10 shorts set, 184896 bytes over 14 vectors. Each vector is two 6600-character lines. Across the file there are 1260 zeros and 3500 ones, with 91140 Xs and 88900 dots, or 90 zeros and 250 ones per vector. Its netmap `rm10.netmap` has 6600 lines, one per bit. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.short.Z` | Compressed copy of the rm10 shorts set. Decoded, it is the 184896-byte text beside it, so the 14 vectors and the totals of 1260 zeros, 3500 ones, 91140 Xs and 88900 dots apply to both files. | 6600 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.short` | Plain shorts vectors for rm11: 510117 bytes, 22 vectors of 11591 characters per line. The file holds 44660 zeros, 48884 ones, 205392 Xs and 211068 dots, which averages 2030 zeros and 2222 ones per vector. Netmap `rm11.netmap` has 11591 lines. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.short.Z` | Compressed form of the rm11 shorts set, decoding to the same 510117 bytes as the plain file. Its 22 vectors hold 205392 Xs and 211068 dots, against the 44660 zeros and 48884 ones counted over the whole file. | 11591 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm6.short.Z` | Shorts test vectors for the `rm6` chain, 22714 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm7.short.Z` | Shorts test vectors for the `rm7` chain, 5335 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 6540 | 18 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm8.short.Z` | Shorts test vectors for the `rm8` chain, 16929 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 7017 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rmtm7.short.Z` | Shorts test vectors for the `rmtm7` chain, 22972 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11447 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm7.short.Z` | Shorts test vectors for the `tm7` chain, 11250 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 4907 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm9.short` | shorts test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm9.short.Z` | shorts test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.short` | Plain shorts vectors for tm9, 219714 bytes over 22 vectors. The file holds 33440 zeros, 34144 ones, 71412 Xs and 80608 dots, about 1520 zeros and 1552 ones per vector, on 4991-character lines. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.short.Z` | Compressed tm9 shorts set. Its 219714 decoded bytes equal the plain file, so the 22 vectors and the 71412 Xs and 80608 dots apply to both. | 4991 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 
 ### Stuck-at vectors
 
@@ -456,10 +456,10 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/ge14_btm4ges.stuck.Z` | stuck-at test vectors for the `ge14_btm4ges` chain. | 4399 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_noge.stuck.Z` | stuck-at test vectors for the `ge14_noge` chain. | 1279 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/ge14_top4ges.stuck.Z` | stuck-at test vectors for the `ge14_top4ges` chain. | 4399 | 4 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm10.stuck` | stuck-at test vectors for the `rm10` chain. The compressed copy holds the same content once decompressed. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm10.stuck.Z` | stuck-at test vectors for the `rm10` chain. The plain copy holds the same content. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm11.stuck` | stuck-at test vectors for the `rm11` chain. The compressed copy holds the same content once decompressed. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/rm11.stuck.Z` | stuck-at test vectors for the `rm11` chain. The plain copy holds the same content. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.stuck` | Plain stuck-at text for rm10: 26471 bytes and 2 vectors. The vectors hold 180 zeros, 500 ones, 180 Xs and 25540 dots between them, on 6600-character lines. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm10.stuck.Z` | Packed rm10 stuck-at set; decoded, its 26471 bytes match the plain file. The two vectors together carry 180 Xs against 25540 dots, so dots make up almost all of the file. | 6600 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.stuck` | Plain stuck-at text for rm11, 46436 bytes and 2 vectors. Together the vectors hold 4060 zeros, 4444 ones, 3610 Xs and 34250 dots across 11591-character lines. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/rm11.stuck.Z` | Compressed rm11 stuck-at set. Decoded, it gives the 46436-byte plain file, and its two vectors contain 3610 Xs, fewer than the 4060 zeros they hold. | 11591 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm6.stuck.Z` | stuck-at test vectors for the `rm6` chain. | 11447 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm7.stuck.Z` | stuck-at test vectors for the `rm7` chain. | 6540 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rm8.stuck.Z` | stuck-at test vectors for the `rm8` chain. | 7017 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
