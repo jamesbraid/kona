@@ -321,20 +321,20 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z` | shorts test vectors for the `fpln_rm11_8voc_4rm_2` chain. The plain copy holds the same content. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The compressed copy holds the same content once decompressed. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z` | shorts test vectors for the `fpln_rm11_8voc_4rm_3` chain. The plain copy holds the same content. | 16367 | 22 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_2voc.short.Z` | Shorts test vectors for the `fpln_rm8_2voc` chain, 5564 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc.short.Z` | Shorts vectors for the two-VOC rm8 chain: 293974 decoded bytes, 16 vectors of 9183-character lines. Totals are 2992 zeros, 4448 ones, 143712 Xs and 142704 dots, so each vector averages 187 zeros and 278 ones. | 9183 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rm8_2voc_2rm_0` chain, 4877 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rm8_2voc_2rm_1` chain, 4876 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 9183 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc.short.Z` | Shorts test vectors for the `fpln_rm8_8voc` chain, 6499 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 16 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rm8_8voc_2rm_0` chain, 5637 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rm8_8voc_2rm_1` chain, 5626 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 11793 | 14 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc` chain, 27579 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_2rm_0` chain, 27092 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc.short.Z` | Decoded, the shorts set for the two-VOC rmtm7 chain runs 653563 bytes over 24 vectors. The vectors hold 60408 zeros, 64224 ones, 260328 Xs and 268464 dots, which is 2517 zeros and 2676 ones per vector. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z` | Shorts set for the 2rm_0 variant of the two-VOC chain. It decodes to 653569 bytes, and its 24 vectors carry 58488 zeros, 62304 ones, 262248 Xs and 270384 dots, about 2437 zeros per vector. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_2rm_1` chain, 27110 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_0` chain, 27005 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_1` chain, 27062 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_2` chain, 27033 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z` | Shorts test vectors for the `fpln_rmtm7_2voc_4rm_3` chain, 27093 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 13613 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc` chain, 29103 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc.short.Z` | Eight-VOC shorts set, 778843 decoded bytes over 24 vectors of 16223-character lines. Totals are 60408 zeros, 65232 ones, 322968 Xs and 330096 dots, or 2517 zeros and 2718 ones per vector. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_2rm_0` chain, 28706 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_2rm_1` chain, 28668 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z` | Shorts test vectors for the `fpln_rmtm7_8voc_4rm_0` chain, 28595 bytes; what its `.`, `0`, `1` and `X` characters mean is unknown. | 16223 | 24 | `usr/diags/IR/bin/irsaudit` | inferred |
@@ -427,20 +427,20 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z` | stuck-at test vectors for the `fpln_rm11_8voc_4rm_2` chain. The plain copy holds the same content. | 16367 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck` | stuck-at test vectors for the `fpln_rm11_8voc_4rm_3` chain. The compressed copy holds the same content once decompressed. | 16367 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z` | stuck-at test vectors for the `fpln_rm11_8voc_4rm_3` chain. The plain copy holds the same content. | 16367 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rm8_2voc.stuck.Z` | stuck-at test vectors for the `fpln_rm8_2voc` chain. | 9183 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rm8_2voc.stuck.Z` | Stuck-at set for the rm8 two-VOC chain, 36821 bytes and 2 vectors. Across them there are 374 zeros, 556 ones, 346 Xs and 35456 dots, on 9183-character lines. | 9183 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_2voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rm8_2voc_2rm_0` chain. | 9183 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_2voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_rm8_2voc_2rm_1` chain. | 9183 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc.stuck.Z` | stuck-at test vectors for the `fpln_rm8_8voc` chain. | 11793 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rm8_8voc_2rm_0` chain. | 11793 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rm8_8voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_rm8_8voc_2rm_1` chain. | 11793 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_2rm_0` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc.stuck.Z` | Stuck-at set for the two-VOC rmtm7 chain. Decoded it is 54546 bytes over 2 vectors, holding 5034 zeros, 5352 ones, 4536 Xs and 39530 dots, on 13613-character lines. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z` | Stuck-at text for the 2rm_0 variant of the two-VOC chain: 54552 bytes, 2 vectors, 4874 zeros, 5192 ones, 4376 Xs and 40010 dots. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_2rm_1` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_4rm_0` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_1.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_4rm_1` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_2.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_4rm_2` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_2voc_4rm_3.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_2voc_4rm_3` chain. | 13613 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/fpln_rmtm7_8voc.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_8voc` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/fpln_rmtm7_8voc.stuck.Z` | Eight-VOC stuck-at file, 64986 bytes with 2 vectors on 16223-character lines. It holds 5034 zeros, 5436 ones, 4536 Xs and 49886 dots in total. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_8voc_2rm_0` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_2rm_1.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_8voc_2rm_1` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/fpln_rmtm7_8voc_4rm_0.stuck.Z` | stuck-at test vectors for the `fpln_rmtm7_8voc_4rm_0` chain. | 16223 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
@@ -465,8 +465,8 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/rm8.stuck.Z` | stuck-at test vectors for the `rm8` chain. | 7017 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/rmtm7.stuck.Z` | stuck-at test vectors for the `rmtm7` chain. | 11447 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 | `usr/diags/IR/data/tm7.stuck.Z` | stuck-at test vectors for the `tm7` chain. | 4907 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm9.stuck` | stuck-at test vectors for the `tm9` chain. The compressed copy holds the same content once decompressed. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
-| `usr/diags/IR/data/tm9.stuck.Z` | stuck-at test vectors for the `tm9` chain. The plain copy holds the same content. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.stuck` | Plain tm9 stuck-at vectors, 20033 bytes with two vectors. Across the file there are 3040 zeros, 3104 ones, 2590 Xs and 11230 dots, on lines of 4991 characters. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
+| `usr/diags/IR/data/tm9.stuck.Z` | Packed tm9 stuck-at set, decoded to the 20033-byte plain text. Its 11230 dots outnumber the 2590 Xs, 3104 ones and 3040 zeros it holds in total. | 4991 | 2 | `usr/diags/IR/bin/irsaudit` | inferred |
 
 ### Test-bus and video format files
 
