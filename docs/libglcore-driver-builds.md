@@ -1600,6 +1600,40 @@ The routines below are in the O32 and 64-bit builds and do not fit the tables ab
   **Established.** Gives driver memory back. If the context word at +31564 (0x7b4c) is zero it returns 0 and makes no call. Otherwise it writes its two byte arguments, a0 then a1, into the first two bytes of the block at sp+32 and calls `__glKon_ioctl` (local GOT entry 199) with the context, request 10011 (0x271b) and the block, returning 0 for a zero result and -1 for any other. The N32 routine is at 0xd94d8e0 (116 bytes).
 - `__glkonle_Bitmap` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd952b08, 144 bytes):
   **Established.** The list-execution glBitmap. It keeps the record pointer (a1) in s0 and calls `__glKonSetPixelLEModes` (local GOT entry 116) with a save area in its own frame. It then calls `__glkonim_Bitmap` (local GOT entry 126) with the words at record +0, +4, +8 and +12 in a0 to a3, the 32-bit values at +16 and +20 (loaded with `lwc1`) at sp+16 and sp+20, and its own third argument (a2, spilled at 152(sp)) at sp+24. It finishes with `__glKonUnsetLEModes` (local GOT entry 117) and returns that call's v0. The N32 routine is at 0xd9543b0 (116 bytes).
+- `__glKon_ioctl` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd95be10, 56 bytes):
+  **Established.** The driver call used by the memory, selection and full-screen routines above. It takes the context in a0 and replaces a0 with the descriptor word at +31560 (0x7b48), loaded in the delay slot of the call, then calls the C library `ioctl` (global GOT slot 3560) with a1 and a2 as they arrived. The result of `ioctl` is returned unchanged. The N32 routine is at 0xd95d660 (52 bytes).
+- `CopyIsOverlapped` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd950fcc, 92 bytes):
+  **Established.** Asks the pipe whether a pixel copy's source and destination overlap. It stores the token 272 (0x110) to the command port at process address 0x4000 and then a0, a1, a2 and a3 in that order, calls `__glkona_wait_rdata` (local GOT entry 156) with the context saved in the delay slot, and then loads the return-data pointer from `ctx` +31588 (0x7b64) and returns the word at offset 8 of the buffer it points to. The N32 routine is at 0xd952a00 (72 bytes).
+- `CopyConvIsOverlapped` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd951028, 92 bytes):
+  **Established.** The convolution form of the overlap question. The token is 277 (0x115), followed by a0 to a3 on the command port, and after `__glkona_wait_rdata` it returns an address rather than a value: the pointer at `ctx` +31588 plus 8, formed with `addiu`, so the caller reads the answer itself. The N32 routine is at 0xd952a50 (72 bytes).
+- `GetSingleCompFromPipe` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd94f600, 92 bytes):
+  **Established.** Reads one component back from the pipe. The command words are the token 278 (0x116) and then a0 to a3, followed by a wait through `__glkona_wait_rdata`. The result is the word at offset 8 of the buffer that the context word at +31588 points to. The N32 routine is at 0xd951310 (92 bytes).
+- `__glKonExecuteLDMA` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd948e2c, 36 bytes):
+  **Established.** Plays back one list-DMA record. It reads the pointer at +20 of the second argument (a1) and writes three words to the command port at process address 0x4000, in this order: the token 365 (0x16d), then the first and the second words at that pointer. The first argument is only spilled to sp+0. The N32 routine is at 0xd94b060 (32 bytes) and writes the same three words.
+- `__glkonim_IsEnabled` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd957bc4, 100 bytes):
+  **Established.** The glIsEnabled query. It calls the local `kona_get_offset` at 0xd956b50 with a0, and when that returns a negative value the capability is unknown and the routine returns 0 without asking the pipe (the zero is set in the delay slot of the branch to the exit). Otherwise it calls `__glkonim_GetBooleanv` (local GOT entry 162) with a0 and a one-byte buffer at sp+39, then returns that byte, zero-extended with `lbu`. The N32 routine is at 0xd9595d0 (100 bytes).
+- `pass_dword` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9590d0, 12 bytes):
+  **Established.** Sends one 8-byte element to the command port: `ldc1` loads the double at +0 of a0, and the `sdc1` in the delay slot of `jr ra` stores it at process address 0x4000.
+- `pass_word` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd959184, 12 bytes):
+  **Established.** Sends one 4-byte element: the word at +0 of a0 goes to the command port at process address 0x4000, stored in the delay slot of the return.
+- `pass_hword` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9591e4, 16 bytes):
+  **Established.** Sends one halfword as a full command word. `lhu` reads the halfword at +0 of a0 and `sll` by 16 puts it in the upper half, so the low 16 bits of the word written to the port are zero.
+- `pass_hword_hword` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9591f4, 24 bytes):
+  **Established.** Packs two halfwords into one command word. The halfword at +0 of a0 is shifted left by 16 and ORed with the halfword at +2, and the result is stored once to the port.
+- `pass_byte` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd95925c, 16 bytes):
+  **Established.** Sends one byte as a command word. `lbu` reads the byte at +0 of a0 and `sll` by 24 puts it in the top eight bits of the word stored to the port, leaving the other 24 bits zero.
+- `pass_byte_byte_byte_byte` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9592b0, 48 bytes):
+  **Established.** Packs four bytes into one command word. The byte at +0 is shifted left by 24, the byte at +1 by 16, the byte at +2 by 8 and the byte at +3 is not shifted, so the bytes of the source are placed in memory order from the high end; the four are ORed together and stored once to the port.
+- `pass_invalid` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9592e0, 8 bytes):
+  **Established.** It sends nothing to the port: the only store is the spill of a0 to sp+0 in the delay slot of `jr ra`.
+- `pass_dword_word` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9590dc, 20 bytes):
+  **Established.** Sends a double and then a word. The double at +0 of a0 is loaded with `ldc1` and stored to the command port at process address 0x4000, then the word at +8 is loaded and stored to the same address in the delay slot of the return.
+- `pass_word_word_word_word` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9591c0, 36 bytes):
+  **Established.** Sends four consecutive words of a 16-byte element. The loads are at +0, +4, +8 and +12 of a0, each followed by its own store to the port, and the last store is in the delay slot of `jr ra`; no packing or shifting is done.
+- `pass_hword_hword_hword_hword` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd959230, 44 bytes):
+  **Established.** Sends four halfwords as two command words. The halfwords at +0 and +2 are combined as (first shifted left 16) ORed with the second and stored to the port; the halfwords at +4 and +6 are combined the same way into a second word, stored in the delay slot of the return.
+- `pass_byte_byte` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd95926c, 28 bytes):
+  **Established.** Sends two bytes as one command word. The byte at +0 is shifted left by 24 and the byte at +1 by 16; the two are ORed and stored once to the port, so the lower 16 bits of the word are zero.
 
 ### 64-bit routines read in full
 
