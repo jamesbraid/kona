@@ -433,15 +433,35 @@ and every store below sits exactly there. Read in full from the [lightsource.S l
   block, at offsets 5-7 (0xc61e-0xc622) and 0x14-0x16 (0xc616-0xc61a), with a further store at offset 0x22 (0xc61c),
   and the command ends at 0xc61d. Its operands are command words 1-3; the unit vector it produces is the stored result,
   derived from the inverse-matrix products.
-- `mgeb_LightSpotExp` (`lightsource.S` line 450, at 0xc626): **inferred**, installs a spotlight exponent and calls the
-  routine that rebuilds the exponent power table. Its operands are the light (command word 0, into register 3 at 0xc64d),
-  the exponent (word 1, converted to an integer at 0xc62a) and the table slot index (word 2, into address register 4 at
-  0xc62d). The exponent is compared with the limit 128.0 (0x43000000, staged at 0xc644 and subtracted at 0xc648); the
-  branches at 0xc653 and 0xc654 send an out-of-range value to 0xc689, which jumps to `mErrInvalidValue` (0xd50a). Otherwise
-  it writes the result into the light block and the table slot at 0x1bff plus the index (stores 0xc667, 0xc669 and 0xc66b)
-  and calls `mLiPwrTable` (0xdc9) on `cc` 0x7e at 0xc655. After the call, 0xc656-0xc685 run multiplies, adds and ERAM stores
-  with the constants 0x3d042108 (one thirty-first), 0x41f7fff0 (just under 31.0), 32.0 and 262144.0 (0x48800000), staged at
-  0xc650, 0xc661, 0xc66e and 0xc66c; what they compute is not derived here.
+- `mgeb_LightSpotExp` (`lightsource.S` line 450, at 0xc626): **inferred**, read word by word from 0xc626 to 0xc68e.
+  It installs a spotlight exponent e, picks the cosine below which e's power falls under 0.002, and from it derives the
+  light-block words the spot term reads. Operands: the light (command word 0, address register 3 at 0xc64d, offset by
+  address register 0x16 at 0xc659), e (word 1) and the table slot index (word 2, address register 4 at 0xc62d).
+  Range check: 0xc648 subtracts the staged 128.0 (0x43000000, 0xc644) from e and the branch at 0xc654 (`cc` 1,
+  twelve words later) sends e > 128 to 0xc689 and `mErrInvalidValue` (0xd50a); the branch at 0xc653 tests the flags of
+  the unit-1 operation 0x6a on e (0xc645) for a negative result and takes the same path.
+  Cut-off cosine: 0xc62a converts the result of unit-1 operation 0x77 on e (0xc626) to an integer n, which 0xc633 puts
+  in address register 0x1a; 0xc63b reads the word c at 0x1448 + n, an entry of the 0.002^(1/k) table `mGL_LightInitialize`
+  builds there, so c^k = 0.002. 0xc642 subtracts c from register 0x1f (1.0), giving x = 1 - c.
+  Reciprocal: the seeds at 0xc647 and 0xc64c and the steps at 0xc649 and 0xc64e give y1 = y0(2 - x y0); 0xc652 and
+  0xc656 refine it to y1(2 - x y1), about 1/x, in register 0. 0xc651 multiplies x by the staged one thirty-first (0x3d042108,
+  0xc650) into register 3, the cosine step `mLiPwrTable` multiplies by register 3 at 0x0dd7; `mLiPwrTable` (0xdc9) is
+  called on `cc` 0x7e at 0xc655. This reading needs a unit-2 result to reach its register later than five words after
+  the word that computes it and by eight (0xc651's x/31 is not yet in register 3 at 0xc652 or 0xc656, 0xc64e's y1 is
+  at 0xc656), while unit 1 reaches it in four (0xc666 writes register 0x1c and 0xc670 reads it).
+  Stores, by the nine-word store-data rule and a seven-word delay from each read through C to the loaded port (the
+  reads at 0xc66f, 0xc671 and 0xc675 feed 0xc676, 0xc678 and 0xc67c; `mgeb_BitmapApplyOrig` 0xa7e8 and 0xa7ef show
+  the same delay): e to light word 0x1d (0xc65e, store 0xc667) and to the slot at 0x1bff plus the index (0xc669);
+  30.99997 (0x41f7fff0) times 1/x to word 0x1e (0xc662, 0xc66b), the scale that maps cos - c onto the 31 steps of
+  the light's table; min(word 0x1b / x, 1.0) to word 0x1c (0xc675, `fmin` with register 0x1f at 0xc67a, store 0xc683),
+  word 0x1b being the cut-off word `mgeb_LightSpotCutAng` stores at 0xc6c3; 32.0 x (262144.0 + index) to word 0x20
+  (0xc666, 0xc670, 0xc674, store 0xc67d), the float 2^23 + 32 x index whose low mantissa bits are the light's 32-word
+  offset in the power tables at 0x1100; and, under predicate `r198` = 3, the spot direction copy at words 0x14-0x16
+  that `mgeb_LightSpotDir` writes, divided by x, to words 5-7 (stores 0xc67f, 0xc681, 0xc685). Word 0x1f gets 1/x
+  times the unit-1 operation 0x6c of register 1 (0xc66d, 0xc672, store 0xc67b).
+  Unknown: what the operations 0x6c, 0x6a and 0x77 compute, so what word 0x1f holds and how n is rounded from e; the
+  condition behind predicate `r198` = 3 (set by 0x6a at 0xc673) and behind the predicated words 0xc638, 0xc63d and
+  0xc63e. Special register 0xb is saved in staging word 0 (0xc63a), replaced (0xc640) and restored (0xc67b, 0xc689).
 - `mgeb_LightSpotCutAng` (`lightsource.S` line 350, at 0xc697): **inferred**, installs a spotlight cut-off angle after
   range-checking it. The light address (command word 0, 0xc697) and the angle in degrees (word 1) are the operands, and
   the angle has the staged limits subtracted from it 180.0 and 90.0 (0x43340000 at 0xc69a, 0x42b40000 at 0xc699;

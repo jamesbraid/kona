@@ -2691,7 +2691,7 @@ ge.u	label	0x0000c426	mLiLocVInfLi		understood	ucode/ge_compute.md#general-light
 ge.u	label	0x0000c493	mLiLocVInfLiInit		understood	ucode/ge_compute.md#general-lighting-per-light-steps-generallight2s	General lighting, per-light steps (generallight2.S)
 ge.u	label	0x0000c500	mgeb_LightPos		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c5cd	mgeb_LightSpotDir		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
-ge.u	label	0x0000c626	mgeb_LightSpotExp		located	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
+ge.u	label	0x0000c626	mgeb_LightSpotExp		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c697	mgeb_LightSpotCutAng		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c6cb	mgeb_LightK2		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
 ge.u	label	0x0000c6d8	mgeb_LightK1		understood	ucode/ge_compute.md#light-source-parameters-lightsources	Light-source parameters (lightsource.S)
