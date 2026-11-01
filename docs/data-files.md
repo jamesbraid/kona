@@ -506,3 +506,26 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/ucode/ge.hex` | **Established** (file text, 14546 lines): the same text form as the production copy, starting `0000 77f24007c880f80144` and ending `3f5d 000000000000000000`, so its addresses run 0x0000-0x3f5d. `irsaudit` carries the name `ge.hex` in its strings, at file offset 0x186808. **Inferred:** it is the word listing of the diagnostic engine program `usr/diags/IR/ucode/ge.u`, which [ucode/ge_isa.md](../ucode/ge_isa.md#the-program-files) gives as the one with 14546 lines. |
 | `usr/diags/IR/ucode/ge.u` | **Established** (file header, 571281 bytes): magic 0x45900003, a build string at 0x2c with length 0x25, code at file offset 0x51 with length 0x71a58, and a line table at 0x71aa9, with 32-byte records as [ucode/ge.md](../ucode/ge.md) describes for the container. **Inferred:** it is the instruction-test program `irsaudit` runs: `TEST_ge_instTest` at 0x1006f460 loads it, and [ucode/ge_ops.md](../ucode/ge_ops.md#the-diagnostic-programs-instruction-test) gives the replies it checks against `expected_token`. |
 | `usr/diags/IR/ucode/geif.u` | **Established** (file bytes, 2048): 1024 big-endian 16-bit entries, every even entry zero and 21 odd entries nonzero, the largest 0x3dbe. `LoadGeifFile` in `irsaudit` (0x10039110) checks the byte count against 2048 at 0x100391b0. **Inferred:** the nonzero values are handler addresses of the diagnostic's command table, in the production layout. |
+
+## Release copies of the microcode and video-format images
+
+**Established** (file hashes and install sets). Each row below gives the copy that IRIX 6.5.22 leaves at an install path that also holds an image of the 6.5.30m tree. The scope is 136 paths: the files under `usr/gfx/ucode/KONA/`, the `.def` rules under `usr/gfx/ucode/vfc/rules/`, the files under `usr/diags/IR/ucode/` and the `.vfo` files under `usr/diags/IR/data/`. The 6.5.22 copy is the one that the last disc of its install set carrying the path leaves behind. The install set is read in install order: the base discs first, then the 6.5.22 overlay discs and its two applications discs. The 6.5.30m hashes are of the files in the reference tree, and the 6.5.30m install set leaves the same bytes at all 136 paths.
+
+**Established** (install lists of the carriers). The patches held against 6.5.30m, SG0007114 and SG0007149, and the IP35 patch SG0005762 install system-controller firmware and field diagnostics. None of the three names a path under `usr/gfx/ucode/` or `usr/diags/IR/`, in its install list or in its nested product archives, so none of them changes a copy in this section.
+
+### Identical in IRIX 6.5.22
+
+The 6.5.22 copies of `usr/diags/IR/ucode/arm1_nic.u` and `usr/diags/IR/ucode/ge_diag_init.u` are identical to 6.5.30m too. Their 6.5.30m entries are only located, not understood, so they have no row here.
+
+| Install path | IRIX 6.5.22 sha256 | IRIX 6.5.30m sha256 |
+|---|---|---|
+| `usr/gfx/ucode/KONA/arm1_kpm.u` | `0938c672c1bf6b5af716d4972cfb4ddb7f9ba97c7be6893775d070a327930e48` | `0938c672c1bf6b5af716d4972cfb4ddb7f9ba97c7be6893775d070a327930e48` |
+| `usr/gfx/ucode/KONA/ge.hex` | `6258b8ae9e67dd328c765f6d59793cf9f5e79a8d0f2cf30414ef32eff86aa626` | `6258b8ae9e67dd328c765f6d59793cf9f5e79a8d0f2cf30414ef32eff86aa626` |
+| `usr/gfx/ucode/KONA/ge_kpm.hex` | `617b3f0afd02ae0e20aa58648b1a3377d4e6298393bc414ee03eaaef8e57622f` | `617b3f0afd02ae0e20aa58648b1a3377d4e6298393bc414ee03eaaef8e57622f` |
+| `usr/gfx/ucode/KONA/ge_symbols` | `67126e0f66aea9361c8c205bc9db435441597210c73ad4720835fc9d01e26328` | `67126e0f66aea9361c8c205bc9db435441597210c73ad4720835fc9d01e26328` |
+| `usr/gfx/ucode/KONA/geif.u` | `c077a24af259d0a9e23d4b15cd460bfb48f352d557d1ec94e722776ed2fd5952` | `c077a24af259d0a9e23d4b15cd460bfb48f352d557d1ec94e722776ed2fd5952` |
+| `usr/diags/IR/ucode/arm1.u` | `cc20b24f7c1e4da996beb71a053b1247576af619bf923dd80221ffc888be6438` | `cc20b24f7c1e4da996beb71a053b1247576af619bf923dd80221ffc888be6438` |
+| `usr/diags/IR/ucode/dgo.mcs` | `518cd70fa8b714748db380cec7c3340637cbdec4f1847981546cc1b2c4bbf38c` | `518cd70fa8b714748db380cec7c3340637cbdec4f1847981546cc1b2c4bbf38c` |
+| `usr/diags/IR/ucode/diag_arm_init.u` | `da008146e38bf9a0c98da0eadbb2dd34737c0565c3e85acabb54b1772f37636b` | `da008146e38bf9a0c98da0eadbb2dd34737c0565c3e85acabb54b1772f37636b` |
+| `usr/diags/IR/ucode/ge.hex` | `ae8bfbf6f406005841632add6080d77cf2a8b94cb2a2753194bea846ec03fadd` | `ae8bfbf6f406005841632add6080d77cf2a8b94cb2a2753194bea846ec03fadd` |
+| `usr/diags/IR/ucode/ge.u` | `c3676bf1ca0f3edf0844ad28bdb0adc885ebae376d241d7741ea0e47d2da364f` | `c3676bf1ca0f3edf0844ad28bdb0adc885ebae376d241d7741ea0e47d2da364f` |
