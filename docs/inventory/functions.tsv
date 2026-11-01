@@ -3379,7 +3379,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a3e00	1364	ProcXineramaCreat
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4360	176	ProcSGIXineramaQueryVersion	dynsym	888fc075f963		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4410	204	ShmInfoInitProps..NJ	dynsym	08eb37325f34		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a44e0	396	AccessCreateGlyphCursor	dynsym	9a2c31c0a5d8		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4670	688	memalign	dynsym	615065c7089b		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4670	688	memalign	dynsym	615065c7089b		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4920	452	NMBX_Reset..GAF	dynsym	3c4da3dc8efa		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4af0	324	RealizeTree..AB	dynsym	09a83b1681a8		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100a4c40	2128	XkbApplyLedStateChanges	dynsym	1560424d9380		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -47146,7 +47146,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000916c	40	ng2_kludge_info	dynsym	943894c64a
 usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	b153192016ed		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 usr/gfx/gfxinfo	shared-tool	n32		0x10009bec	1044	_mgras_info	dynsym	5770d175438d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000acbc	468	kona_info	dynsym	605dac4dadb2		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41caf		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41caf		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000b0e0	68	kona_init	dynsym	df15e4ca1e17		in	located	docs/kernel-functions.md#attach-and-crosstalk-set-up-kona_edtinit_hip2o	Attach and Crosstalk set-up: `kona_edtinit_hip2.o`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000b1f8	540	kona_diagnose	dynsym	a67ac91e3773		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ca5c	532	kona_loaducode	dynsym	06a8883d0d64		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
@@ -47156,7 +47156,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000dcfc	216	crime_monitor_info	dynsym	a48030
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ddd4	412	crime_info	dynsym	0a40c6b700f9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000df70	204	odsy_monitor_info	dynsym	5d4cf5ab8e92		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e03c	648	_odsy_info	dynsym	9b827a844437		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000e2c4	584	odsy_init	dynsym	674d83ba4289		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000e2c4	584	odsy_init	dynsym	674d83ba4289		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e50c	236	sg2_info	dynsym	d306cb09c1c7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e5f8	176	fcg_get_ge_cnt	dynsym	303788d6d2f4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000e6a8	268	venice_loadsection_fcg	dynsym	bc16a72ddd03		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47172,13 +47172,13 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000f5dc	336	fcg_venice_set_pipeaddr	dynsym	6
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f72c	52	fcg_venice_get_vcreg	dynsym	475f787881cd		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f760	52	fcg_venice_set_vcreg	dynsym	56534c7fe850		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f794	268	venice_get_dg2_eeprom	dynsym	cb48f2fa319f		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000f8a0	416	venice_set_dg2_eeprom	dynsym	0b0fa8f11970		in	located	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000f8a0	416	venice_set_dg2_eeprom	dynsym	0b0fa8f11970		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fa40	236	venice_grok_dg2_eeprom_error	dynsym	30a34fa9d0b9		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fb2c	240	get_ven_type	dynsym	8922ee557225		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fc1c	92	get_ven_iptype	dynsym	625d80b9f319		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fc78	60	venice_set_pipeaddr	dynsym	c8a1dedc3891		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000fcb4	52	venice_get_vcreg	dynsym	83a44f09505a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000fce8	52	venice_set_vcreg	dynsym	652e23bd4d23		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000fcb4	52	venice_get_vcreg	dynsym	83a44f09505a		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000fce8	52	venice_set_vcreg	dynsym	652e23bd4d23		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fd1c	220	venice_fifo_hack	dynsym	578590a3327e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fdf8	340	venice_rmfifo	dynsym	1865307a21d3		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ffbc	288	venice_imprev	dynsym	d9116e8680c7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47212,16 +47212,16 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001199c	540	venice_loadfile_ge8	dynsym	ee284
 usr/gfx/gfxinfo	shared-tool	n32		0x10011bb8	1312	venice_loaducode	dynsym	cb4e389a7296		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100120d8	8	internal_fifo_flow_control	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100120ec	240	set_edgeMem_for_edge	dynsym	2a369035fc29		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10012518	220	venice_loadsection_dg2	dynsym	846b929eef12		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100125f4	484	venice_load_clockDivider	dynsym	77594873f5d4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100127d8	144	venice_set_vif_gensrc_cntrl	dynsym	a32188673ec8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10012868	1292	venice_loadsection_dg2_top	dynsym	d63455f91569		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10012d74	2192	venice_loadsection_dg2_body	dynsym	06a64564df1d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10012518	220	venice_loadsection_dg2	dynsym	846b929eef12		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x100125f4	484	venice_load_clockDivider	dynsym	77594873f5d4		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x100127d8	144	venice_set_vif_gensrc_cntrl	dynsym	a32188673ec8		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10012868	1292	venice_loadsection_dg2_top	dynsym	d63455f91569		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10012d74	2192	venice_loadsection_dg2_body	dynsym	06a64564df1d		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10013604	500	venice_clamp_dg2_pan	dynsym	3cac1b6d1b2d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100137f8	164	venice_write_vdrc_sram_byte	dynsym	b15010ddc3f2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001389c	264	venice_write_video_request	dynsym	ddcd4d62c803		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100139a4	508	venice_video_request	dynsym	f1218c8005be		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001447c	1332	venice_calcframebuffer	dynsym	ce8964024a69		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x1001447c	1332	venice_calcframebuffer	dynsym	ce8964024a69		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10014b60	272	venice_grok_fname	dynsym	c07025746ecf		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10014c70	112	venice_clock_serial_dataBit	dynsym	c9780f613a48		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10014ce0	56	venice_wait_configMem_clear	dynsym	deb987f8f3fd		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47251,7 +47251,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001595c	372	venice_dg2init	dynsym	a6865eb346
 usr/gfx/gfxinfo	shared-tool	n32		0x10015ad0	100	venice_dg2_resetDacClk	dynsym	bb726d95562d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10015b34	492	venice_dg2initIMPS	dynsym	d024988de6e7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10015d20	808	venice_dg2initXMAPRegs	dynsym	c701c874ba84		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10016048	2340	venice_dg2initRegs	dynsym	6604ae2820ab		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10016048	2340	venice_dg2initRegs	dynsym	6604ae2820ab		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001696c	220	venice_dg2initVlist	dynsym	f754c140193a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10016a48	60	venice_dg2initStopVof	dynsym	c992f49d42ed		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10016a84	88	venice_dg2resetVof	dynsym	8cea5674da44		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47260,24 +47260,24 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10016b2c	92	venice_dg2initResetXmap	dynsym	2b
 usr/gfx/gfxinfo	shared-tool	n32		0x10016c28	120	venice_dg2resetRM	dynsym	f4d5d3496b7a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10016ca0	112	venice_dg_present	dynsym	5caeb7c2b228		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10016d10	496	venice_center_dpots	dynsym	89701105b45c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10016f00	204	set_dac_cmd2	dynsym	3cbafc82e3ac		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10016f00	204	set_dac_cmd2	dynsym	3cbafc82e3ac		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10016fcc	948	venice_dg2initXilinx	dynsym	bd622db7959a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017380	128	write_encoder_reg	dynsym	fda2d6eedf57		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10017400	120	read_encoder_reg	dynsym	94800f32da7e		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x10017400	120	read_encoder_reg	dynsym	94800f32da7e		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017478	60	calculate_linear_lut	dynsym	7eef8188e9ab		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100174b4	188	init_luts	dynsym	d2eca2630d8c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017570	1104	venice_dg2initEncoder	dynsym	cac5426ffe74		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100179c0	460	venice_dg2initVof	dynsym	09c85def6fdf		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017b8c	308	venice_load_vof	dynsym	1ec404e35443		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017cc0	68	generateFilename	dynsym	20686213ddf8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10017d04	200	pipeCountOfSystem	dynsym	f1d3daea1156		in	located	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x10017d04	200	pipeCountOfSystem	dynsym	f1d3daea1156		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017dcc	104	vs2GeneratePath	dynsym	156822fd72ab		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017e34	372	vs2ConsistencyCheck	dynsym	3cb224d1e156		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10017fa8	268	vs2GetHeadInfo	dynsym	d45fddb7c526		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10017fa8	268	vs2GetHeadInfo	dynsym	d45fddb7c526		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100180b4	92	vs2Initialize	dynsym	980a6c83b966		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018110	56	vs2Installed	dynsym	0c8d69a001da		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018148	256	vs2LoadVdrc	dynsym	d1c3ce316689		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018248	116	vs2ManagedArea	dynsym	22f5662ed7de		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10018248	116	vs2ManagedArea	dynsym	22f5662ed7de		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100182bc	144	vs2ReadRegisterBlock	dynsym	ba1a1a78ffe7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001834c	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018360	104	vs2RegisterClearBit	dynsym	bd906a702d7a		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
@@ -47300,7 +47300,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x100191ac	276	venice_grok_vs2_fname	dynsym	c07
 usr/gfx/gfxinfo	shared-tool	n32		0x100192c0	52	venice_free_vs2_xilinx_config	dynsym	104355912d7c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100192f4	1364	vs2_loaducode	dynsym	1b5608eaf61e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019848	92	vs2GetShadow	dynsym	83b333124556		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100198a4	104	vs2SetShadow	dynsym	0467e87678b6		in	located	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x100198a4	104	vs2SetShadow	dynsym	0467e87678b6		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001990c	92	vs2GetHphaseShadow	dynsym	f419cee50a76		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100199e4	480	vs2DefaultEEPROMValues	dynsym	b2d5b8e5de2e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019bc4	340	vs2ReadEEPROMBlock	dynsym	0fded638fccc		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48600,26 +48600,26 @@ usr/gfx/ircombine	board-tool	n32		0x10092530	100	GLwDrawingAreaSwapBuffers	dynsy
 usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	2c0ec17aee41		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	751005097950		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	751005097950		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	3545cab228e9		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	f5131d53ddd4		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	f5131d53ddd4		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	49dcb2459e90		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	d49d2c83acc5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	e5fa9a8d0422		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	named-only	docs/setup-tools.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000d4dc	164	odyGetVOFpath	dynsym	05748c0d2ee4		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000d580	740	odyDoFramelock	dynsym	1fba2ecd279b		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	bbd7604aa716		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	ba1eeea60a5e		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	970d30b7d895		in	named-only	docs/kernel.md#who-sends-them	Who sends them
+usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	bbd7604aa716		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	ba1eeea60a5e		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	970d30b7d895		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000f064	1676	ng1_setmon	dynsym	2ec81e45b71a		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000fa18	268	venice_get_dg2_eeprom	dynsym	c08795730712		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000fb24	416	venice_set_dg2_eeprom	dynsym	f69ca1487b42		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
@@ -48627,8 +48627,8 @@ usr/gfx/setmon	shared-tool	n32		0x1000fcc4	236	venice_grok_dg2_eeprom_error	dyns
 usr/gfx/setmon	shared-tool	n32		0x1000fdb0	240	get_ven_type	dynsym	83e61e2d40a4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1000fea0	92	get_ven_iptype	dynsym	f06221146ff2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1000fefc	60	venice_set_pipeaddr	dynsym	302eb8e6d988		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000ff38	52	venice_get_vcreg	dynsym	9c05a147be3a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x1000ff6c	52	venice_set_vcreg	dynsym	e785790b68de		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x1000ff38	52	venice_get_vcreg	dynsym	9c05a147be3a		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x1000ff6c	52	venice_set_vcreg	dynsym	e785790b68de		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1000ffa0	176	fcg_get_ge_cnt	dynsym	7423d50a9451		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10010050	268	venice_loadsection_fcg	dynsym	21e792283cc9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001015c	64	fcg_get_gfx_fifo_count	dynsym	264ca0003f59		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48672,11 +48672,11 @@ usr/gfx/setmon	shared-tool	n32		0x10012564	68	generateFilename	dynsym	909f3ada52
 usr/gfx/setmon	shared-tool	n32		0x100125a8	200	pipeCountOfSystem	dynsym	276be793206a		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10012670	104	vs2GeneratePath	dynsym	e26c14b22e23		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100126d8	372	vs2ConsistencyCheck	dynsym	103df8e00324		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x1001284c	268	vs2GetHeadInfo	dynsym	0d0a9eae2fa1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x1001284c	268	vs2GetHeadInfo	dynsym	0d0a9eae2fa1		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012958	92	vs2Initialize	dynsym	59645fe37ecb		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100129b4	56	vs2Installed	dynsym	822f5d6591ea		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100129ec	256	vs2LoadVdrc	dynsym	38e7a0ccfb59		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10012aec	116	vs2ManagedArea	dynsym	36ea32a2345d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10012aec	116	vs2ManagedArea	dynsym	36ea32a2345d		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012b60	144	vs2ReadRegisterBlock	dynsym	0074ff5e5a8a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012bf0	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012c04	104	vs2RegisterClearBit	dynsym	10d3fa4ffbe8		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
