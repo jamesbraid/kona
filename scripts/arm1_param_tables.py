@@ -116,7 +116,7 @@ def param_row(name):
 
 
 def flagval(v):
-    return 'low byte of r8' if v == 'r8' else str(v)
+    return 'r8' if v == 'r8' else str(v)
 
 
 def handler(w):
@@ -155,14 +155,24 @@ lines.append('**Established** (each body). `glEnable` and `glDisable` of `GL_LIG
              'a light also sends the engine-memory address of that light\'s parameter block to port '
              'r9 + 0x840, and then sends half of a state word to port r9 + 0x8c0, the engine handler '
              'that applies the change. The light blocks are 0x23 words apart from 0x2c7. The disable '
-             'handlers of the clip planes write the low byte of the state-block pointer r8 as the flag '
+             'handlers of the clip planes write the low byte of the state-block pointer r8 (shown as r8) as the flag '
              'instead of a constant 0. **Inferred:** that byte is 0. The reset and exception entries load '
              'r8 with 0 (`mov r8, #0x0` at 0x0c000000 and eight more), and the state-block offsets in '
-             'every handler are taken from that base, so the flag is cleared as in the light handlers.')
+             'every handler are taken from that base, so the flag is cleared as in the light handlers. '
+             '**Inferred:** the engine routine each handler starts (the slot named by the half-word it sends to '
+             'port r9 + 0x8c0) is `mgeb_LiEnableLightS` for a light enable (low half of the word at r8 + 0x78, '
+             'entry 51 of [geif_entries.md](geif_entries.md)), `mgeb_LiDisableLightS` for a light disable (high '
+             'half of r8 + 0x74, entry 45), `mgeb_EnableUserClipPlane` for a plane enable (low half of r8 + 0x58, '
+             'entry 19) and `mgeb_DisableUserClipPlane` for a plane disable (high half of r8 + 0x50, entry 9), '
+             'read in [ge_compute.md](ge_compute.md); so the Effect column is the effect on the engine, with '
+             'light n or plane n the number sent to port r9 + 0x478. The Engine target column is the word the engine '
+             'routine works on: the light block address the handler sends to port r9 + 0x840 (0x2c7 + 0x23 n), '
+             'and for a plane the flag word 0x904 + n, which is the capability code less 0x3000 plus the 0x904 '
+             'base that `mgeb_EnableUserClipPlane` and `mgeb_DisableUserClipPlane` add (both from ge_compute.md).')
 lines.append('')
 lines.append('| Handler | Address | Source | Flag byte | Flag value | Port 0x478 | Port 0x840 | '
-             'Engine handler from | Kind | Effect | Label |')
-lines.append('|---|---|---|---|---|---|---|---|---|---|---|')
+             'Engine handler from | Kind | Effect | Engine routine run | Engine target | Label |')
+lines.append('|---|---|---|---|---|---|---|---|---|---|---|---|---|')
 names = (['e_light%d' % i for i in range(8)] + ['d_light%d' % i for i in range(8)]
          + ['e_clip_plane%d' % i for i in range(6)] + ['d_clip_plane%d' % i for i in range(6)])
 for name in names:
@@ -171,11 +181,19 @@ for name in names:
     on = name.startswith('e_')
     kind = ('light enable' if on else 'light disable') if light else \
         ('clip-plane enable' if on else 'clip-plane disable')
-    effect = ('turns engine lighting term %s' % ('on' if on else 'off')) if light else \
-        ('turns engine plane clipping %s' % ('on' if on else 'off'))
+    num = int(name[-1])
+    eng = ('mgeb_LiEnableLightS' if on else 'mgeb_LiDisableLightS') if light else \
+        ('mgeb_EnableUserClipPlane' if on else 'mgeb_DisableUserClipPlane')
+    if light:
+        effect = 'light %d %s enabled set' % (num, 'joins' if on else 'leaves')
+        target = 'light block at word 0x%x' % (0x2c7 + 0x23 * num)
+    else:
+        effect = 'plane %d flag %s, recount' % (num, 'set' if on else 'cleared')
+        target = 'plane flag at word 0x%x' % (0x904 + num)
+    runs = '`%s` for %s %d' % (eng, 'light' if light else 'plane', num)
     p840 = '0x%x' % r[0x840] if 0x840 in r else 'not written'
-    lines.append('| `%s` | 0x%08x | `arm1.u` +0x%x | +0x%x | %s | 0x%x | %s | %s | %s | %s | **Established** |'
+    lines.append('| `%s` | 0x%08x | `arm1.u` +0x%x | +0x%x | %s | 0x%x | %s | %s | %s | %s | %s | %s | **Established** |'
                  % (name, r['addr'], r['addr'] - 0x0c000000, r['flag'][0], flagval(r['flag'][1]),
-                    r[0x478], p840, handler(r[0x8c0]), kind, effect))
+                    r[0x478], p840, handler(r[0x8c0]), kind, effect, runs, target))
 lines.append('')
 open(OUT, 'w').write('\n'.join(lines))
