@@ -17536,7 +17536,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b604	24	__glkonim_Nor
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b61c	72	__glkonim_Normal3s	dynsym+mdebug	b418fafa9989		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b664	40	__glkonim_Normal3sv	dynsym+mdebug	5c31777b9403		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -17553,7 +17553,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b85c	16	__glkonim_Tex
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b86c	32	__glkonim_TexCoord1s	dynsym+mdebug	c1c5356a3381		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b88c	24	__glkonim_TexCoord1sv	dynsym+mdebug	69515da669a7		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b8a4	20	__glkonim_TexCoord2d	dynsym+mdebug	7cb055279578		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b8b8	20	__glkonim_TexCoord2f	dynsym+mdebug	85dad54c7c2c		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b8b8	20	__glkonim_TexCoord2f	dynsym+mdebug	85dad54c7c2c		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b8cc	20	__glkonim_TexCoord2i	dynsym+mdebug	290ceb9add38		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b8e0	52	__glkonim_TexCoord2s	dynsym+mdebug	9a82736d585a		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5b914	32	__glkonim_TexCoord2sv	dynsym+mdebug	de9ad117bd00		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -17568,7 +17568,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5ba48	28	__glkonim_Tex
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5ba64	92	__glkonim_TexCoord4s	dynsym+mdebug	2158d31d1e1e		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bac0	52	__glkonim_TexCoord4sv	dynsym+mdebug	9c2f9d03a531		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5baf4	20	__glkonim_Vertex2d	dynsym+mdebug	db353e136168		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bb08	20	__glkonim_Vertex2f	dynsym+mdebug	ddcd58899cf1		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bb08	20	__glkonim_Vertex2f	dynsym+mdebug	ddcd58899cf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bb1c	20	__glkonim_Vertex2i	dynsym+mdebug	4710ce5463a2		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bb30	52	__glkonim_Vertex2s	dynsym+mdebug	e26c870a6fe5		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda5bb64	32	__glkonim_Vertex2sv	dynsym+mdebug	2bb2a9e4f177		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -18483,7 +18483,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e144	12	glNormal3s	dy
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e150	20	glNormal3sv	dynsym+mdebug	ab28e8685da1		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e164	12	glRasterPos2d	dynsym+mdebug	7af1decd3631		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e170	20	glRasterPos2dv	dynsym+mdebug	3fc096626daf		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e184	12	glRasterPos2f	dynsym+mdebug	d7788771e597		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e184	12	glRasterPos2f	dynsym+mdebug	d7788771e597		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e190	20	glRasterPos2fv	dynsym+mdebug	890efc55f6b0		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e1a4	12	glRasterPos2i	dynsym+mdebug	802c47e6e682		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e1b0	20	glRasterPos2iv	dynsym+mdebug	c480527bce7a		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -18523,7 +18523,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e398	12	glTexCoord1s	
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3a4	16	glTexCoord1sv	dynsym+mdebug	05ec339e0754		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3b4	12	glTexCoord2d	dynsym+mdebug	6c101ae496c3		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3c0	20	glTexCoord2dv	dynsym+mdebug	3819108d6e5f		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3d4	12	glTexCoord2f	dynsym+mdebug	7ce4e95f12a9		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3d4	12	glTexCoord2f	dynsym+mdebug	7ce4e95f12a9		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3e0	20	glTexCoord2fv	dynsym+mdebug	4511b2934c6c		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e3f4	12	glTexCoord2i	dynsym+mdebug	8970e5fc65af		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e400	20	glTexCoord2iv	dynsym+mdebug	80894f63f65c		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -23535,7 +23535,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656b0	24	__glkonim_N
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656d0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda656f0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -23552,7 +23552,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658c0	16	__glkonim_T
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658d0	20	__glkonim_TexCoord1s	dwarf+dynsym	f7083c3f9b9b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda658f0	24	__glkonim_TexCoord1sv	dwarf+dynsym	755493dc72bf		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65910	20	__glkonim_TexCoord2d	dwarf+dynsym	cdc5995d2c88		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65930	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65930	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65950	20	__glkonim_TexCoord2i	dwarf+dynsym	ca6d90ebeb8b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65970	24	__glkonim_TexCoord2s	dwarf+dynsym	2dc374fcb113		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65990	32	__glkonim_TexCoord2sv	dwarf+dynsym	74165b275f2a		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -23567,7 +23567,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65aa0	28	__glkonim_T
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65ac0	40	__glkonim_TexCoord4s	dwarf+dynsym	2386969bb276		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65af0	52	__glkonim_TexCoord4sv	dwarf+dynsym	5425fec996e4		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65b30	20	__glkonim_Vertex2d	dwarf+dynsym	7be69e6d8b6d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65b50	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65b50	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65b70	20	__glkonim_Vertex2i	dwarf+dynsym	150dead2c96f		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65b90	24	__glkonim_Vertex2s	dwarf+dynsym	8f741948395b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda65bb0	32	__glkonim_Vertex2sv	dwarf+dynsym	8c4d433f81dc		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -24017,7 +24017,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78004	12	glNormal3s	
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78010	20	glNormal3sv	dwarf+dynsym	e8ea1a7cbedd		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78024	12	glRasterPos2d	dwarf+dynsym	7af1decd3631		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78030	20	glRasterPos2dv	dwarf+dynsym	2cfe916f4371		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78044	12	glRasterPos2f	dwarf+dynsym	d7788771e597		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78044	12	glRasterPos2f	dwarf+dynsym	d7788771e597		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78050	20	glRasterPos2fv	dwarf+dynsym	704737faf3ae		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78064	12	glRasterPos2i	dwarf+dynsym	802c47e6e682		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78070	20	glRasterPos2iv	dwarf+dynsym	2373fdde4aad		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -24057,7 +24057,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78258	12	glTexCoord1
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78264	16	glTexCoord1sv	dwarf+dynsym	05ec339e0754		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78274	12	glTexCoord2d	dwarf+dynsym	6c101ae496c3		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78280	20	glTexCoord2dv	dwarf+dynsym	a06103718221		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78294	12	glTexCoord2f	dwarf+dynsym	7ce4e95f12a9		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78294	12	glTexCoord2f	dwarf+dynsym	7ce4e95f12a9		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda782a0	20	glTexCoord2fv	dwarf+dynsym	d25a3f8529ad		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda782b4	12	glTexCoord2i	dwarf+dynsym	8970e5fc65af		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda782c0	20	glTexCoord2iv	dwarf+dynsym	4cf88e299d05		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -25492,7 +25492,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db6660	88	__glkonConv
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db66c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2db67b0	3012	DrawSubTexels	dwarf	d8d337130f6e		in	located	docs/libglcore-driver-functions.md#texel-draw-splitting	Texel draw splitting
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917		in	located	docs/libglcore-driver-functions.md#pixel-reads-and-draws	Pixel reads and draws
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7f40	164	__glkonInvalidBytes	dwarf+dynsym	eb8562d237d5		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db7ff0	36	__glkonNumCompInPix	dwarf+dynsym	9f96979dc5e1		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2db8020	36	__glkonNumByteInType	dwarf+dynsym	9da3aa9caa6c		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -25575,7 +25575,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbd200	48	pass_b
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbd230	8	pass_invalid	dwarf	78aa5094d5ec		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbd240	236	compute_func_ptr	dwarf	263096acafa5		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dbd330	52	update_cmpnd_cmd	dwarf	97465e8e7094		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbd370	2204	__glkonim_DrawArraysEXT	dwarf+dynsym	f7e71638a2bc		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbd370	2204	__glkonim_DrawArraysEXT	dwarf+dynsym	f7e71638a2bc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbdc10	1076	__glkonlc_DrawArraysEXT	dwarf+dynsym	52eeef4b95e4		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbe050	260	__glkonim_VertexPointerEXT	dwarf+dynsym	49f406e0c4aa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dbe160	248	__glkonim_NormalPointerEXT	dwarf+dynsym	ecab21ba2acd		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -26637,7 +26637,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e30000	260	__glB
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2e30110	28	__glEndDispatchOverride	dwarf	a2c9f8c9177a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30130	404	__glEarlyInitContext	dwarf+dynsym	b3c327f6414c		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e302d0	940	__glContextSetColorScales	dwarf+dynsym	7ba8a8b74553		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30680	3036	__glSoftResetContext	dwarf+dynsym	2da5455823a2		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e30680	3036	__glSoftResetContext	dwarf+dynsym	2da5455823a2		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31260	112	__glDestroyContext	dwarf+dynsym	0a2e26096f9c		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e312d0	552	__glDestroySoftContext	dwarf+dynsym	855aa4d6bf1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e31500	208	__glFreePrivate	dwarf+dynsym	b9b8bf1554d5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -29115,7 +29115,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecab80	24	__glkonim_N
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecaba0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecabc0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -29132,7 +29132,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecad90	16	__glkonim_T
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecada0	20	__glkonim_TexCoord1s	dwarf+dynsym	f7083c3f9b9b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecadc0	24	__glkonim_TexCoord1sv	dwarf+dynsym	755493dc72bf		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecade0	20	__glkonim_TexCoord2d	dwarf+dynsym	cdc5995d2c88		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecae00	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecae00	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecae20	20	__glkonim_TexCoord2i	dwarf+dynsym	ca6d90ebeb8b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecae40	24	__glkonim_TexCoord2s	dwarf+dynsym	2dc374fcb113		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecae60	32	__glkonim_TexCoord2sv	dwarf+dynsym	74165b275f2a		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -29147,7 +29147,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecaf70	28	__glkonim_T
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecaf90	40	__glkonim_TexCoord4s	dwarf+dynsym	2386969bb276		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecafc0	52	__glkonim_TexCoord4sv	dwarf+dynsym	5425fec996e4		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb000	20	__glkonim_Vertex2d	dwarf+dynsym	7be69e6d8b6d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb020	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb020	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb040	20	__glkonim_Vertex2i	dwarf+dynsym	150dead2c96f		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb060	24	__glkonim_Vertex2s	dwarf+dynsym	8f741948395b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ecb080	32	__glkonim_Vertex2sv	dwarf+dynsym	8c4d433f81dc		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -29597,7 +29597,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd5e4	12	glNormal3s	
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd5f0	20	glNormal3sv	dwarf+dynsym	2e965ae42981		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd604	12	glRasterPos2d	dwarf+dynsym	e100acf7e0ac		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd610	20	glRasterPos2dv	dwarf+dynsym	9dd485eea496		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd624	12	glRasterPos2f	dwarf+dynsym	5acefb2c735c		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd624	12	glRasterPos2f	dwarf+dynsym	5acefb2c735c		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd630	20	glRasterPos2fv	dwarf+dynsym	17766461357b		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd644	12	glRasterPos2i	dwarf+dynsym	85f537334e7d		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd650	20	glRasterPos2iv	dwarf+dynsym	118bcca27df1		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -29637,7 +29637,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd838	12	glTexCoord1
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd844	16	glTexCoord1sv	dwarf+dynsym	a65b393aed73		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd854	12	glTexCoord2d	dwarf+dynsym	aed1f34a078b		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd860	20	glTexCoord2dv	dwarf+dynsym	832e130ca275		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd874	12	glTexCoord2f	dwarf+dynsym	0e09d6a8752e		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd874	12	glTexCoord2f	dwarf+dynsym	0e09d6a8752e		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd880	20	glTexCoord2fv	dwarf+dynsym	0bfa81a16054		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd894	12	glTexCoord2i	dwarf+dynsym	5d712ba1c65b		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2edd8a0	20	glTexCoord2iv	dwarf+dynsym	c506991e563f		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -34235,7 +34235,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b604	24	__glkonim_Nor
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b61c	72	__glkonim_Normal3s	dynsym+mdebug	b418fafa9989		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b664	40	__glkonim_Normal3sv	dynsym+mdebug	5c31777b9403		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b68c	20	__glkonim_RasterPos2d	dynsym+mdebug	227460c1bcf9		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6a0	20	__glkonim_RasterPos2f	dynsym+mdebug	f7fb9e30fd6f		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6b4	20	__glkonim_RasterPos2i	dynsym+mdebug	fff48c470220		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6c8	44	__glkonim_RasterPos2s	dynsym+mdebug	ad34e09fc683		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b6f4	28	__glkonim_RasterPos3d	dynsym+mdebug	278480323c8a		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -34252,7 +34252,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b85c	16	__glkonim_Tex
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b86c	32	__glkonim_TexCoord1s	dynsym+mdebug	c1c5356a3381		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b88c	24	__glkonim_TexCoord1sv	dynsym+mdebug	69515da669a7		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b8a4	20	__glkonim_TexCoord2d	dynsym+mdebug	7cb055279578		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b8b8	20	__glkonim_TexCoord2f	dynsym+mdebug	85dad54c7c2c		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b8b8	20	__glkonim_TexCoord2f	dynsym+mdebug	85dad54c7c2c		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b8cc	20	__glkonim_TexCoord2i	dynsym+mdebug	290ceb9add38		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b8e0	52	__glkonim_TexCoord2s	dynsym+mdebug	9a82736d585a		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5b914	32	__glkonim_TexCoord2sv	dynsym+mdebug	de9ad117bd00		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -34267,7 +34267,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5ba48	28	__glkonim_Tex
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5ba64	92	__glkonim_TexCoord4s	dynsym+mdebug	2158d31d1e1e		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bac0	52	__glkonim_TexCoord4sv	dynsym+mdebug	9c2f9d03a531		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5baf4	20	__glkonim_Vertex2d	dynsym+mdebug	db353e136168		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bb08	20	__glkonim_Vertex2f	dynsym+mdebug	ddcd58899cf1		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bb08	20	__glkonim_Vertex2f	dynsym+mdebug	ddcd58899cf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bb1c	20	__glkonim_Vertex2i	dynsym+mdebug	4710ce5463a2		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bb30	52	__glkonim_Vertex2s	dynsym+mdebug	e26c870a6fe5		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda5bb64	32	__glkonim_Vertex2sv	dynsym+mdebug	2bb2a9e4f177		in	located	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -35182,7 +35182,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e144	12	glNormal3s	dy
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e150	20	glNormal3sv	dynsym+mdebug	ab28e8685da1		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e164	12	glRasterPos2d	dynsym+mdebug	7af1decd3631		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e170	20	glRasterPos2dv	dynsym+mdebug	3fc096626daf		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e184	12	glRasterPos2f	dynsym+mdebug	d7788771e597		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e184	12	glRasterPos2f	dynsym+mdebug	d7788771e597		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e190	20	glRasterPos2fv	dynsym+mdebug	890efc55f6b0		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e1a4	12	glRasterPos2i	dynsym+mdebug	802c47e6e682		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e1b0	20	glRasterPos2iv	dynsym+mdebug	c480527bce7a		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -35222,7 +35222,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e398	12	glTexCoord1s	
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3a4	16	glTexCoord1sv	dynsym+mdebug	05ec339e0754		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3b4	12	glTexCoord2d	dynsym+mdebug	6c101ae496c3		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3c0	20	glTexCoord2dv	dynsym+mdebug	3819108d6e5f		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3d4	12	glTexCoord2f	dynsym+mdebug	7ce4e95f12a9		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3d4	12	glTexCoord2f	dynsym+mdebug	7ce4e95f12a9		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3e0	20	glTexCoord2fv	dynsym+mdebug	4511b2934c6c		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e3f4	12	glTexCoord2i	dynsym+mdebug	8970e5fc65af		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e400	20	glTexCoord2iv	dynsym+mdebug	80894f63f65c		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -40234,7 +40234,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656b0	24	__glkonim_N
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656d0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda656f0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65720	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65740	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65760	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65780	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda657a0	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -40251,7 +40251,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658c0	16	__glkonim_T
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658d0	20	__glkonim_TexCoord1s	dwarf+dynsym	f7083c3f9b9b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda658f0	24	__glkonim_TexCoord1sv	dwarf+dynsym	755493dc72bf		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65910	20	__glkonim_TexCoord2d	dwarf+dynsym	cdc5995d2c88		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65930	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65930	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65950	20	__glkonim_TexCoord2i	dwarf+dynsym	ca6d90ebeb8b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65970	24	__glkonim_TexCoord2s	dwarf+dynsym	2dc374fcb113		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65990	32	__glkonim_TexCoord2sv	dwarf+dynsym	74165b275f2a		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -40266,7 +40266,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65aa0	28	__glkonim_T
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65ac0	40	__glkonim_TexCoord4s	dwarf+dynsym	2386969bb276		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65af0	52	__glkonim_TexCoord4sv	dwarf+dynsym	5425fec996e4		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65b30	20	__glkonim_Vertex2d	dwarf+dynsym	7be69e6d8b6d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65b50	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65b50	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65b70	20	__glkonim_Vertex2i	dwarf+dynsym	150dead2c96f		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65b90	24	__glkonim_Vertex2s	dwarf+dynsym	8f741948395b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda65bb0	32	__glkonim_Vertex2sv	dwarf+dynsym	8c4d433f81dc		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -40716,7 +40716,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78004	12	glNormal3s	
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78010	20	glNormal3sv	dwarf+dynsym	e8ea1a7cbedd		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78024	12	glRasterPos2d	dwarf+dynsym	7af1decd3631		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78030	20	glRasterPos2dv	dwarf+dynsym	2cfe916f4371		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78044	12	glRasterPos2f	dwarf+dynsym	d7788771e597		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78044	12	glRasterPos2f	dwarf+dynsym	d7788771e597		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78050	20	glRasterPos2fv	dwarf+dynsym	704737faf3ae		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78064	12	glRasterPos2i	dwarf+dynsym	802c47e6e682		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78070	20	glRasterPos2iv	dwarf+dynsym	2373fdde4aad		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -40756,7 +40756,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78258	12	glTexCoord1
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78264	16	glTexCoord1sv	dwarf+dynsym	05ec339e0754		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78274	12	glTexCoord2d	dwarf+dynsym	6c101ae496c3		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78280	20	glTexCoord2dv	dwarf+dynsym	a06103718221		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78294	12	glTexCoord2f	dwarf+dynsym	7ce4e95f12a9		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78294	12	glTexCoord2f	dwarf+dynsym	7ce4e95f12a9		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda782a0	20	glTexCoord2fv	dwarf+dynsym	d25a3f8529ad		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda782b4	12	glTexCoord2i	dwarf+dynsym	8970e5fc65af		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda782c0	20	glTexCoord2iv	dwarf+dynsym	4cf88e299d05		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -42036,7 +42036,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	Change
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a2c0	104	FindWindowSize	dwarf	c28b61f76bdd		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only		
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a420	176	ChannelRect	dwarf	e3b468726bb9		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a4d0	76	ChannelRectSync	dwarf	e65b41323efa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a520	16	Error	dwarf	37635ea22bf8		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -42191,7 +42191,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2196660	88	__glkonConv
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21966c0	228	__glkonim_GetPolygonStipple	dwarf+dynsym	6d226c0ce6c2		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21967b0	3012	DrawSubTexels	dwarf	d8d337130f6e		in	located	docs/libglcore-driver-functions.md#texel-draw-splitting	Texel draw splitting
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197380	416	__glKonDrawTexels3D	dwarf+dynsym	a26096809917		in	located	docs/libglcore-driver-functions.md#pixel-reads-and-draws	Pixel reads and draws
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197520	2588	__glKonCopyTexImage	dwarf+dynsym	85f833642fd9		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197f40	164	__glkonInvalidBytes	dwarf+dynsym	eb8562d237d5		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2197ff0	36	__glkonNumCompInPix	dwarf+dynsym	9f96979dc5e1		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2198020	36	__glkonNumByteInType	dwarf+dynsym	9da3aa9caa6c		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -42274,7 +42274,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219d200	48	pass_b
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219d230	8	pass_invalid	dwarf	78aa5094d5ec		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219d240	236	compute_func_ptr	dwarf	263096acafa5		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x219d330	52	update_cmpnd_cmd	dwarf	97465e8e7094		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219d370	2204	__glkonim_DrawArraysEXT	dwarf+dynsym	f7e71638a2bc		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219d370	2204	__glkonim_DrawArraysEXT	dwarf+dynsym	f7e71638a2bc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219dc10	1076	__glkonlc_DrawArraysEXT	dwarf+dynsym	52eeef4b95e4		in	located	docs/libglcore-driver-functions.md#instruments-deformation-subdivision-and-packed-vertices	Instruments, deformation, subdivision and packed vertices
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219e050	260	__glkonim_VertexPointerEXT	dwarf+dynsym	49f406e0c4aa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x219e160	248	__glkonim_NormalPointerEXT	dwarf+dynsym	ecab21ba2acd		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -43336,7 +43336,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2210000	260	__glB
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2210110	28	__glEndDispatchOverride	dwarf	a2c9f8c9177a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210130	404	__glEarlyInitContext	dwarf+dynsym	b3c327f6414c		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22102d0	940	__glContextSetColorScales	dwarf+dynsym	7ba8a8b74553		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210680	3036	__glSoftResetContext	dwarf+dynsym	2da5455823a2		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2210680	3036	__glSoftResetContext	dwarf+dynsym	2da5455823a2		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211260	112	__glDestroyContext	dwarf+dynsym	0a2e26096f9c		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22112d0	552	__glDestroySoftContext	dwarf+dynsym	855aa4d6bf1a		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2211500	208	__glFreePrivate	dwarf+dynsym	b9b8bf1554d5		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -45814,7 +45814,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aab80	24	__glkonim_N
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aaba0	32	__glkonim_Normal3s	dwarf+dynsym	3a680ab8a62d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aabc0	40	__glkonim_Normal3sv	dwarf+dynsym	b09a096a94fb		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aabf0	20	__glkonim_RasterPos2d	dwarf+dynsym	5c870ca31138		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac10	20	__glkonim_RasterPos2f	dwarf+dynsym	16e955a4ed1a		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac30	20	__glkonim_RasterPos2i	dwarf+dynsym	1677c7a4a98e		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac50	20	__glkonim_RasterPos2s	dwarf+dynsym	ff05ca0ad461		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aac70	24	__glkonim_RasterPos3d	dwarf+dynsym	fff94069cf27		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -45831,7 +45831,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aad90	16	__glkonim_T
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aada0	20	__glkonim_TexCoord1s	dwarf+dynsym	f7083c3f9b9b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aadc0	24	__glkonim_TexCoord1sv	dwarf+dynsym	755493dc72bf		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aade0	20	__glkonim_TexCoord2d	dwarf+dynsym	cdc5995d2c88		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aae00	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aae00	20	__glkonim_TexCoord2f	dwarf+dynsym	4469ebb3d434		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aae20	20	__glkonim_TexCoord2i	dwarf+dynsym	ca6d90ebeb8b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aae40	24	__glkonim_TexCoord2s	dwarf+dynsym	2dc374fcb113		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aae60	32	__glkonim_TexCoord2sv	dwarf+dynsym	74165b275f2a		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -45846,7 +45846,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aaf70	28	__glkonim_T
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aaf90	40	__glkonim_TexCoord4s	dwarf+dynsym	2386969bb276		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22aafc0	52	__glkonim_TexCoord4sv	dwarf+dynsym	5425fec996e4		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab000	20	__glkonim_Vertex2d	dwarf+dynsym	7be69e6d8b6d		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab020	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	located	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab020	20	__glkonim_Vertex2f	dwarf+dynsym	0a0ab5f527e6		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab040	20	__glkonim_Vertex2i	dwarf+dynsym	150dead2c96f		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab060	24	__glkonim_Vertex2s	dwarf+dynsym	8f741948395b		in	understood	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22ab080	32	__glkonim_Vertex2sv	dwarf+dynsym	8c4d433f81dc		in	understood	docs/libglcore-functions.md#libglcore-one-entry-per-function-immediate-mode-senders-and-display-list-compilers	libGLcore: one entry per function (immediate-mode senders and display-list compilers)
@@ -46296,7 +46296,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd5e4	12	glNormal3s	
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd5f0	20	glNormal3sv	dwarf+dynsym	2e965ae42981		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd604	12	glRasterPos2d	dwarf+dynsym	e100acf7e0ac		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd610	20	glRasterPos2dv	dwarf+dynsym	9dd485eea496		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd624	12	glRasterPos2f	dwarf+dynsym	5acefb2c735c		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd624	12	glRasterPos2f	dwarf+dynsym	5acefb2c735c		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd630	20	glRasterPos2fv	dwarf+dynsym	17766461357b		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd644	12	glRasterPos2i	dwarf+dynsym	85f537334e7d		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd650	20	glRasterPos2iv	dwarf+dynsym	118bcca27df1		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -46336,7 +46336,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd838	12	glTexCoord1
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd844	16	glTexCoord1sv	dwarf+dynsym	a65b393aed73		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd854	12	glTexCoord2d	dwarf+dynsym	aed1f34a078b		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd860	20	glTexCoord2dv	dwarf+dynsym	832e130ca275		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd874	12	glTexCoord2f	dwarf+dynsym	0e09d6a8752e		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd874	12	glTexCoord2f	dwarf+dynsym	0e09d6a8752e		in	named-only	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd880	20	glTexCoord2fv	dwarf+dynsym	0bfa81a16054		in	named-only	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd894	12	glTexCoord2i	dwarf+dynsym	5d712ba1c65b		in	named-only	docs/libglcore-functions.md#further-immediate-mode-senders	Further immediate-mode senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bd8a0	20	glTexCoord2iv	dwarf+dynsym	c506991e563f		in	named-only	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -46737,7 +46737,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea28	12	glGetHistog
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea34	12	glGetMinmax	dwarf+dynsym	ee2da59b6530		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea40	12	glGetMinmaxParameterfv	dwarf+dynsym	d9d026a75d55		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea4c	12	glGetMinmaxParameteriv	dwarf+dynsym	0fe3620ee756		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22bea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x22bea60	40	__invalid_enum	dwarf	9814c2f92be7	multi-unit	in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bea88	24	__glkonim_Color3dv	dwarf+dynsym	1a84cf99d2b7		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22beaa0	20	__glkonim_Color3fv	dwarf+dynsym	1911585473c5		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22beab4	20	__glkonim_Color3iv	dwarf+dynsym	1e36716f943c		in	understood	docs/libglcore-functions.md#vector-senders-and-their-entry-stubs	Vector senders and their entry stubs
@@ -47171,9 +47171,9 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1000f508	212	fcg_cp_ge_goto	dynsym	34f9c3bc0c
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f5dc	336	fcg_venice_set_pipeaddr	dynsym	6c35f5d973f6		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f72c	52	fcg_venice_get_vcreg	dynsym	475f787881cd		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000f760	52	fcg_venice_set_vcreg	dynsym	56534c7fe850		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000f794	268	venice_get_dg2_eeprom	dynsym	cb48f2fa319f		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
-usr/gfx/gfxinfo	shared-tool	n32		0x1000f8a0	416	venice_set_dg2_eeprom	dynsym	0b0fa8f11970		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1000fa40	236	venice_grok_dg2_eeprom_error	dynsym	30a34fa9d0b9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000f794	268	venice_get_dg2_eeprom	dynsym	cb48f2fa319f		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000f8a0	416	venice_set_dg2_eeprom	dynsym	0b0fa8f11970		in	located	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x1000fa40	236	venice_grok_dg2_eeprom_error	dynsym	30a34fa9d0b9		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fb2c	240	get_ven_type	dynsym	8922ee557225		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fc1c	92	get_ven_iptype	dynsym	625d80b9f319		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000fc78	60	venice_set_pipeaddr	dynsym	c8a1dedc3891		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47270,7 +47270,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10017570	1104	venice_dg2initEncoder	dynsym	ca
 usr/gfx/gfxinfo	shared-tool	n32		0x100179c0	460	venice_dg2initVof	dynsym	09c85def6fdf		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017b8c	308	venice_load_vof	dynsym	1ec404e35443		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017cc0	68	generateFilename	dynsym	20686213ddf8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10017d04	200	pipeCountOfSystem	dynsym	f1d3daea1156		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10017d04	200	pipeCountOfSystem	dynsym	f1d3daea1156		in	located	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017dcc	104	vs2GeneratePath	dynsym	156822fd72ab		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017e34	372	vs2ConsistencyCheck	dynsym	3cb224d1e156		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10017fa8	268	vs2GetHeadInfo	dynsym	d45fddb7c526		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47280,16 +47280,16 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10018148	256	vs2LoadVdrc	dynsym	d1c3ce316689	
 usr/gfx/gfxinfo	shared-tool	n32		0x10018248	116	vs2ManagedArea	dynsym	22f5662ed7de		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100182bc	144	vs2ReadRegisterBlock	dynsym	ba1a1a78ffe7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001834c	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018360	104	vs2RegisterClearBit	dynsym	bd906a702d7a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100183c8	100	vs2RegisterSetBit	dynsym	173cb0c76c58		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10018360	104	vs2RegisterClearBit	dynsym	bd906a702d7a		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x100183c8	100	vs2RegisterSetBit	dynsym	173cb0c76c58		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001842c	136	vs2ReadStatus	dynsym	dd3f36790035		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100184b4	712	vs2Setmon	dynsym	29d63642477d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001877c	88	vs2ToggleSerialClock	dynsym	d0c16c8e5221		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100187d4	144	vs2WriteRegisterBlock	dynsym	07ca2ec22031		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018864	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018878	80	vs2WriteProgClock	dynsym	1528135ec6c1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100188c8	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100188e0	560	getVeniceInfo	dynsym	4dedb387fa1c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10018864	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x10018878	80	vs2WriteProgClock	dynsym	1528135ec6c1		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x100188c8	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x100188e0	560	getVeniceInfo	dynsym	4dedb387fa1c		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018b10	56	getRMCount	dynsym	a27ca6c048c3		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018d64	88	vs2Close	dynsym	0e7557c61831		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018dbc	168	vs2Delay	dynsym	0d3dec16e561		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47299,8 +47299,8 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001906c	320	venice_get_vs2_xilinx_config	dyn
 usr/gfx/gfxinfo	shared-tool	n32		0x100191ac	276	venice_grok_vs2_fname	dynsym	c07f076d1274		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100192c0	52	venice_free_vs2_xilinx_config	dynsym	104355912d7c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100192f4	1364	vs2_loaducode	dynsym	1b5608eaf61e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10019848	92	vs2GetShadow	dynsym	83b333124556		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
-usr/gfx/gfxinfo	shared-tool	n32		0x100198a4	104	vs2SetShadow	dynsym	0467e87678b6		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/gfxinfo	shared-tool	n32		0x10019848	92	vs2GetShadow	dynsym	83b333124556		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x100198a4	104	vs2SetShadow	dynsym	0467e87678b6		in	located	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001990c	92	vs2GetHphaseShadow	dynsym	f419cee50a76		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100199e4	480	vs2DefaultEEPROMValues	dynsym	b2d5b8e5de2e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019bc4	340	vs2ReadEEPROMBlock	dynsym	0fded638fccc		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47310,13 +47310,13 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10019e60	76	vs2WriteEEPROMCode	dynsym	02f420c
 usr/gfx/gfxinfo	shared-tool	n32		0x10019eac	300	vs2WriteEEPROMData	dynsym	19a38a1087e2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019fd8	380	vs2WriteEEPROMBlock	dynsym	3ca7e36ee3ae		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a154	88	venice_clock_vs2_serial_dataBit	dynsym	bbfc0ce11afd		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001a674	424	venice_load_vs2_clockDivider	dynsym	e3ebf59b08e5		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001a81c	1200	venice_loadsection_vs2_top	dynsym	89ac69078605		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/gfxinfo	shared-tool	n32		0x1001a674	424	venice_load_vs2_clockDivider	dynsym	e3ebf59b08e5		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001a81c	1200	venice_loadsection_vs2_top	dynsym	89ac69078605		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001accc	1124	venice_loadsection_vs2_body	dynsym	ccd782d0402e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b130	1148	loadVofToDataStructure	dynsym	6ecf1f40e27e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b5ac	196	loadVS2ModeDG2VOF	dynsym	0bfb4dd18d4e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b670	212	loadVS2VOFFromData	dynsym	514d381a942d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001b744	860	vs2_set_MasterGenlock	dynsym	ac5a380d2b64		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/gfxinfo	shared-tool	n32		0x1001b744	860	vs2_set_MasterGenlock	dynsym	ac5a380d2b64		in	located	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001baa0	640	venice_vs2init	dynsym	1ab51fe1ce68		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001c3bc	136	vs2MapScreenToChannel	dynsym	aaafa281e9e7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001c444	180	vs2WriteDACAlternateRAM	dynsym	cf419ed83ac1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48611,7 +48611,7 @@ usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd	
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	f5131d53ddd4		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	49dcb2459e90		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	d49d2c83acc5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	e5fa9a8d0422		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	named-only	docs/setup-tools.md#setmon	`setmon`
@@ -48621,9 +48621,9 @@ usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	bbd7604aa716		i
 usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	ba1eeea60a5e		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	970d30b7d895		in	named-only	docs/kernel.md#who-sends-them	Who sends them
 usr/gfx/setmon	shared-tool	n32		0x1000f064	1676	ng1_setmon	dynsym	2ec81e45b71a		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/setmon	shared-tool	n32		0x1000fa18	268	venice_get_dg2_eeprom	dynsym	c08795730712		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
-usr/gfx/setmon	shared-tool	n32		0x1000fb24	416	venice_set_dg2_eeprom	dynsym	f69ca1487b42		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x1000fcc4	236	venice_grok_dg2_eeprom_error	dynsym	b0b0377bf0ce		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x1000fa18	268	venice_get_dg2_eeprom	dynsym	c08795730712		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000fb24	416	venice_set_dg2_eeprom	dynsym	f69ca1487b42		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000fcc4	236	venice_grok_dg2_eeprom_error	dynsym	b0b0377bf0ce		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000fdb0	240	get_ven_type	dynsym	83e61e2d40a4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1000fea0	92	get_ven_iptype	dynsym	f06221146ff2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1000fefc	60	venice_set_pipeaddr	dynsym	302eb8e6d988		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48669,7 +48669,7 @@ usr/gfx/setmon	shared-tool	n32		0x10011ff8	188	fcg_jt_select_chain	dynsym	ad6d8f
 usr/gfx/setmon	shared-tool	n32		0x100120b4	600	fcg_jt_send_instruction	dynsym	75e23a05a33a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001230c	600	fcg_jt_send_data	dynsym	f875b2620c49		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012564	68	generateFilename	dynsym	909f3ada5266		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100125a8	200	pipeCountOfSystem	dynsym	276be793206a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x100125a8	200	pipeCountOfSystem	dynsym	276be793206a		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10012670	104	vs2GeneratePath	dynsym	e26c14b22e23		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100126d8	372	vs2ConsistencyCheck	dynsym	103df8e00324		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001284c	268	vs2GetHeadInfo	dynsym	0d0a9eae2fa1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48679,16 +48679,16 @@ usr/gfx/setmon	shared-tool	n32		0x100129ec	256	vs2LoadVdrc	dynsym	38e7a0ccfb59		
 usr/gfx/setmon	shared-tool	n32		0x10012aec	116	vs2ManagedArea	dynsym	36ea32a2345d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012b60	144	vs2ReadRegisterBlock	dynsym	0074ff5e5a8a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012bf0	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10012c04	104	vs2RegisterClearBit	dynsym	10d3fa4ffbe8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10012c6c	100	vs2RegisterSetBit	dynsym	7699df6babb6		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10012c04	104	vs2RegisterClearBit	dynsym	10d3fa4ffbe8		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10012c6c	100	vs2RegisterSetBit	dynsym	7699df6babb6		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10012cd0	136	vs2ReadStatus	dynsym	f5e31ea09a8e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012d58	712	vs2Setmon	dynsym	3aa511947685		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013020	88	vs2ToggleSerialClock	dynsym	e0db993cfac5		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013078	144	vs2WriteRegisterBlock	dynsym	13acddd0a90f		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013108	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x1001311c	80	vs2WriteProgClock	dynsym	0a275d165831		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x1001316c	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013184	560	getVeniceInfo	dynsym	1a56b8130803		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10013108	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1001311c	80	vs2WriteProgClock	dynsym	0a275d165831		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1001316c	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10013184	560	getVeniceInfo	dynsym	1a56b8130803		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100133b4	56	getRMCount	dynsym	d140a5ac55cc		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013608	88	vs2Close	dynsym	d161999ab022		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013660	168	vs2Delay	dynsym	7c1cd3a3ce20		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48698,8 +48698,8 @@ usr/gfx/setmon	shared-tool	n32		0x10013910	320	venice_get_vs2_xilinx_config	dyns
 usr/gfx/setmon	shared-tool	n32		0x10013a50	276	venice_grok_vs2_fname	dynsym	f219812b96a1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013b64	52	venice_free_vs2_xilinx_config	dynsym	1a6e6e3eae2d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013b98	1364	vs2_loaducode	dynsym	5bc6443c8e94		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100140ec	92	vs2GetShadow	dynsym	3dcd1ef75622		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
-usr/gfx/setmon	shared-tool	n32		0x10014148	104	vs2SetShadow	dynsym	e5442a53027e		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/setmon	shared-tool	n32		0x100140ec	92	vs2GetShadow	dynsym	3dcd1ef75622		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x10014148	104	vs2SetShadow	dynsym	e5442a53027e		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100141b0	92	vs2GetHphaseShadow	dynsym	39856b1633a7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10014288	480	vs2DefaultEEPROMValues	dynsym	4135cc7b2083		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10014468	340	vs2ReadEEPROMBlock	dynsym	3363c6433147		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48709,13 +48709,13 @@ usr/gfx/setmon	shared-tool	n32		0x10014704	76	vs2WriteEEPROMCode	dynsym	65ecc00c
 usr/gfx/setmon	shared-tool	n32		0x10014750	300	vs2WriteEEPROMData	dynsym	0bee1c119786		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001487c	380	vs2WriteEEPROMBlock	dynsym	5a5cad726ca9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100149f8	88	venice_clock_vs2_serial_dataBit	dynsym	348df2490437		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10014f18	424	venice_load_vs2_clockDivider	dynsym	28bd9d5023e7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100150c0	1200	venice_loadsection_vs2_top	dynsym	5310a0df88b6		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/setmon	shared-tool	n32		0x10014f18	424	venice_load_vs2_clockDivider	dynsym	28bd9d5023e7		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x100150c0	1200	venice_loadsection_vs2_top	dynsym	5310a0df88b6		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10015570	1124	venice_loadsection_vs2_body	dynsym	0036ab5b614a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100159d4	1148	loadVofToDataStructure	dynsym	3eb2ea94f3c4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10015e50	196	loadVS2ModeDG2VOF	dynsym	dbea150e8b45		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10015f14	212	loadVS2VOFFromData	dynsym	9d0a51ecf7ad		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10015fe8	860	vs2_set_MasterGenlock	dynsym	d85aa7b5da63		in	named-only	docs/kernel.md#private-ioctls	Private ioctls
+usr/gfx/setmon	shared-tool	n32		0x10015fe8	860	vs2_set_MasterGenlock	dynsym	d85aa7b5da63		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10016344	640	venice_vs2init	dynsym	3a4b93db43e5		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10016c60	136	vs2MapScreenToChannel	dynsym	ef4ef803a7c5		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10016ce8	180	vs2WriteDACAlternateRAM	dynsym	69bdb8052ec9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48813,7 +48813,7 @@ usr/gfx/setmon	shared-tool	n32		0x10026b10	72	saXSGIvcQueryScreenGammaMaps	dynsy
 usr/gfx/setmon	shared-tool	n32		0x10026b60	56	saXSGIvcQueryMonitorName	dynsym	4efbc0c78f64		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	22124b5fa292		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10027340	384	saXSGIvcQueryOutputGain	dynsym	790a86d70624		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x100278e0	264	KonWaitRData	dynsym	f71e312fa9e5		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	shared-tool	n32		0x100278e0	264	KonWaitRData	dynsym	f71e312fa9e5		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100279f0	248	saXSGIvcQueryGammaColors	dynsym	3c81b285f74b		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100280e0	168	KonData	dynsym	eb2f7ca0f2dd		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x10028d30	156	saXSGIvcLoadVideoFormatCombination	dynsym	63463d0795c7		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
