@@ -16345,7 +16345,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21674	56	__glTextureMo
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda216ac	72	__glTextureModulateLA	dynsym+mdebug	1a741aaab6dd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda216f4	56	__glTextureModulateRGB	dynsym+mdebug	044ee3c68757		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda2172c	72	__glTextureModulateRGBA	dynsym+mdebug	df5dd507af0a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21774	24	__glTextureModulateA	dynsym+mdebug	20c43523e8c6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21774	24	__glTextureModulateA	dynsym+mdebug	20c43523e8c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda2178c	72	__glTextureModulateI	dynsym+mdebug	0ebf1226efd1		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda217d4	52	__glTextureDecalRGB	dynsym+mdebug	f8e9967adb06		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21808	112	__glTextureDecalRGBA	dynsym+mdebug	d378900c635c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -16353,13 +16353,13 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21878	96	__glTextureBl
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda218d8	112	__glTextureBlendLA	dynsym+mdebug	e7d191bb9871		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21948	120	__glTextureBlendRGB	dynsym+mdebug	a7e3f79f6a45		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda219c0	136	__glTextureBlendRGBA	dynsym+mdebug	4d721636d7af		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21a48	24	__glTextureBlendA	dynsym+mdebug	20c43523e8c6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21a48	24	__glTextureBlendA	dynsym+mdebug	20c43523e8c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21a60	120	__glTextureBlendI	dynsym+mdebug	060297714b61		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21ad8	52	__glTextureReplaceL	dynsym+mdebug	28a5493a6a7c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21b0c	68	__glTextureReplaceLA	dynsym+mdebug	d63c43f079b6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21b50	52	__glTextureReplaceRGB	dynsym+mdebug	f8e9967adb06		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21b84	68	__glTextureReplaceRGBA	dynsym+mdebug	7267d41be9e9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21bc8	20	__glTextureReplaceA	dynsym+mdebug	0135a4d03ea9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21bc8	20	__glTextureReplaceA	dynsym+mdebug	0135a4d03ea9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21bdc	68	__glTextureReplaceI	dynsym+mdebug	033dc6d4d4c5		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21c20	68	__GL_TEXENV_CLAMP	dynsym+mdebug	1383c98bb06c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda21c64	284	__glTextureSBModulateL	dynsym+mdebug	53c771af8d93		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -16402,9 +16402,9 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda28690	932	__glTextureC
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda28a34	1740	__glTextureCTReplaceRGBA	dynsym+mdebug	d13130498298		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29100	500	__glTextureCTReplaceA	dynsym+mdebug	1f5e29386cd7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda292f4	1760	__glTextureCTReplaceI	dynsym+mdebug	50d965c260d6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda299d4	36	__glNopPolygonRho	dynsym+mdebug	53e55a0c3120		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda299d4	36	__glNopPolygonRho	dynsym+mdebug	53e55a0c3120		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda299f8	500	__glComputePolygonRho	dynsym+mdebug	f97a6d29c454		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29bec	36	__glNopLineRho	dynsym+mdebug	82f8394d36fa		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29bec	36	__glNopLineRho	dynsym+mdebug	82f8394d36fa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29c10	504	__glComputeLineRho	dynsym+mdebug	d3f8b00c98b6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29e08	136	__glFastTextureFragment	dynsym+mdebug	2416362a2a61		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda29e90	196	__glTextureFragment	dynsym+mdebug	c1dac0277561		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -21881,7 +21881,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cea0	52	__glTexture
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cee0	68	__glTextureModulateLA	dwarf+dynsym	c0ed17f7c0f8		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cf30	52	__glTextureModulateRGB	dwarf+dynsym	d7f9d11fe05d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cf70	68	__glTextureModulateRGBA	dwarf+dynsym	fd9ea9630b2b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cfc0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cfc0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1cfe0	68	__glTextureModulateI	dwarf+dynsym	1618256b58d4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d030	52	__glTextureDecalRGB	dwarf+dynsym	af3adf2ba9cb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d070	100	__glTextureDecalRGBA	dwarf+dynsym	a3bd5f1c4113		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -21889,13 +21889,13 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d0e0	80	__glTexture
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d130	96	__glTextureBlendLA	dwarf+dynsym	994465f28300		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d190	104	__glTextureBlendRGB	dwarf+dynsym	a1b3916a0c1d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d200	120	__glTextureBlendRGBA	dwarf+dynsym	e863d53326cd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d280	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d280	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d2a0	100	__glTextureBlendI	dwarf+dynsym	40e81eba5a7a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d310	52	__glTextureReplaceL	dwarf+dynsym	8e3a43f904df		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d350	68	__glTextureReplaceLA	dwarf+dynsym	776597b27185		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d3a0	52	__glTextureReplaceRGB	dwarf+dynsym	af3adf2ba9cb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d3e0	68	__glTextureReplaceRGBA	dwarf+dynsym	2ff071c121ff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d430	20	__glTextureReplaceA	dwarf+dynsym	2e62fa6c000c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d430	20	__glTextureReplaceA	dwarf+dynsym	2e62fa6c000c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d450	68	__glTextureReplaceI	dwarf+dynsym	247e5341f647		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d4a0	36	__GL_TEXENV_CLAMP	dwarf+dynsym	ccc805ae7669		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda1d4d0	272	__glTextureSBModulateL	dwarf+dynsym	0bea16ce7c1c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -21938,9 +21938,9 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda23860	860	__glTextur
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda23bc0	1616	__glTextureCTReplaceRGBA	dwarf+dynsym	b527ee907b01		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24210	464	__glTextureCTReplaceA	dwarf+dynsym	e9f468490833		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda243e0	1620	__glTextureCTReplaceI	dwarf+dynsym	0af3687ae57b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24a40	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24a40	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24a50	324	__glComputePolygonRho	dwarf+dynsym	798610bef28a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24ba0	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24ba0	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24bb0	296	__glComputeLineRho	dwarf+dynsym	e405e9957d9a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24ce0	108	__glFastTextureFragment	dwarf+dynsym	a9a2dcc26421		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda24d50	136	__glTextureFragment	dwarf+dynsym	b207d0b99dbb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -27461,7 +27461,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81d80	52	__glTexture
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81dc0	68	__glTextureModulateLA	dwarf+dynsym	c0ed17f7c0f8		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81e10	52	__glTextureModulateRGB	dwarf+dynsym	d7f9d11fe05d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81e50	68	__glTextureModulateRGBA	dwarf+dynsym	fd9ea9630b2b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81ea0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81ea0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81ec0	68	__glTextureModulateI	dwarf+dynsym	1618256b58d4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81f10	60	__glTextureDecalRGB	dwarf+dynsym	5cb3042c9f2c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81f50	108	__glTextureDecalRGBA	dwarf+dynsym	d8a4f69eb3a4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -27469,13 +27469,13 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e81fc0	80	__glTexture
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82010	96	__glTextureBlendLA	dwarf+dynsym	abd442f4fb46		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82070	104	__glTextureBlendRGB	dwarf+dynsym	738028cb8b57		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e820e0	120	__glTextureBlendRGBA	dwarf+dynsym	e6d9f4ab0f93		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82160	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82160	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82180	100	__glTextureBlendI	dwarf+dynsym	8cc38b76cf3d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e821f0	60	__glTextureReplaceL	dwarf+dynsym	dcaa39158433		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82230	76	__glTextureReplaceLA	dwarf+dynsym	8c397f55848a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82280	60	__glTextureReplaceRGB	dwarf+dynsym	5cb3042c9f2c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e822c0	76	__glTextureReplaceRGBA	dwarf+dynsym	0d4314c0791e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82310	28	__glTextureReplaceA	dwarf+dynsym	97d13bf19ffd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82310	28	__glTextureReplaceA	dwarf+dynsym	97d13bf19ffd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82330	76	__glTextureReplaceI	dwarf+dynsym	1697c927bfdf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e82380	36	__GL_TEXENV_CLAMP	dwarf+dynsym	ccc805ae7669		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e823b0	280	__glTextureSBModulateL	dwarf+dynsym	2163b8352685		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -27518,9 +27518,9 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e888c0	900	__glTextur
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e88c50	1620	__glTextureCTReplaceRGBA	dwarf+dynsym	298694c3cf74		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e892b0	488	__glTextureCTReplaceA	dwarf+dynsym	5709e97eeec8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e894a0	1640	__glTextureCTReplaceI	dwarf+dynsym	72ec3d821d29		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89b10	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89b10	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89b20	332	__glComputePolygonRho	dwarf+dynsym	ab61dd9c6167		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89c70	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89c70	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89c80	304	__glComputeLineRho	dwarf+dynsym	34b5ac6ade93		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89db0	116	__glFastTextureFragment	dwarf+dynsym	1ff911fe3def		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e89e30	144	__glTextureFragment	dwarf+dynsym	a1ea3c756488		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -33044,7 +33044,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21674	56	__glTextureMo
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda216ac	72	__glTextureModulateLA	dynsym+mdebug	1a741aaab6dd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda216f4	56	__glTextureModulateRGB	dynsym+mdebug	044ee3c68757		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda2172c	72	__glTextureModulateRGBA	dynsym+mdebug	df5dd507af0a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21774	24	__glTextureModulateA	dynsym+mdebug	20c43523e8c6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21774	24	__glTextureModulateA	dynsym+mdebug	20c43523e8c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda2178c	72	__glTextureModulateI	dynsym+mdebug	0ebf1226efd1		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda217d4	52	__glTextureDecalRGB	dynsym+mdebug	f8e9967adb06		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21808	112	__glTextureDecalRGBA	dynsym+mdebug	d378900c635c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -33052,13 +33052,13 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21878	96	__glTextureBl
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda218d8	112	__glTextureBlendLA	dynsym+mdebug	e7d191bb9871		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21948	120	__glTextureBlendRGB	dynsym+mdebug	a7e3f79f6a45		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda219c0	136	__glTextureBlendRGBA	dynsym+mdebug	4d721636d7af		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21a48	24	__glTextureBlendA	dynsym+mdebug	20c43523e8c6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21a48	24	__glTextureBlendA	dynsym+mdebug	20c43523e8c6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21a60	120	__glTextureBlendI	dynsym+mdebug	060297714b61		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21ad8	52	__glTextureReplaceL	dynsym+mdebug	28a5493a6a7c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21b0c	68	__glTextureReplaceLA	dynsym+mdebug	d63c43f079b6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21b50	52	__glTextureReplaceRGB	dynsym+mdebug	f8e9967adb06		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21b84	68	__glTextureReplaceRGBA	dynsym+mdebug	7267d41be9e9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21bc8	20	__glTextureReplaceA	dynsym+mdebug	0135a4d03ea9		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21bc8	20	__glTextureReplaceA	dynsym+mdebug	0135a4d03ea9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21bdc	68	__glTextureReplaceI	dynsym+mdebug	033dc6d4d4c5		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21c20	68	__GL_TEXENV_CLAMP	dynsym+mdebug	1383c98bb06c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda21c64	284	__glTextureSBModulateL	dynsym+mdebug	53c771af8d93		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -33101,9 +33101,9 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda28690	932	__glTextureC
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda28a34	1740	__glTextureCTReplaceRGBA	dynsym+mdebug	d13130498298		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29100	500	__glTextureCTReplaceA	dynsym+mdebug	1f5e29386cd7		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda292f4	1760	__glTextureCTReplaceI	dynsym+mdebug	50d965c260d6		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda299d4	36	__glNopPolygonRho	dynsym+mdebug	53e55a0c3120		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda299d4	36	__glNopPolygonRho	dynsym+mdebug	53e55a0c3120		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda299f8	500	__glComputePolygonRho	dynsym+mdebug	f97a6d29c454		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29bec	36	__glNopLineRho	dynsym+mdebug	82f8394d36fa		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29bec	36	__glNopLineRho	dynsym+mdebug	82f8394d36fa		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29c10	504	__glComputeLineRho	dynsym+mdebug	d3f8b00c98b6		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29e08	136	__glFastTextureFragment	dynsym+mdebug	2416362a2a61		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda29e90	196	__glTextureFragment	dynsym+mdebug	c1dac0277561		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -38580,7 +38580,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cea0	52	__glTexture
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cee0	68	__glTextureModulateLA	dwarf+dynsym	c0ed17f7c0f8		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cf30	52	__glTextureModulateRGB	dwarf+dynsym	d7f9d11fe05d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cf70	68	__glTextureModulateRGBA	dwarf+dynsym	fd9ea9630b2b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cfc0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cfc0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1cfe0	68	__glTextureModulateI	dwarf+dynsym	1618256b58d4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d030	52	__glTextureDecalRGB	dwarf+dynsym	af3adf2ba9cb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d070	100	__glTextureDecalRGBA	dwarf+dynsym	a3bd5f1c4113		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -38588,13 +38588,13 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d0e0	80	__glTexture
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d130	96	__glTextureBlendLA	dwarf+dynsym	994465f28300		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d190	104	__glTextureBlendRGB	dwarf+dynsym	a1b3916a0c1d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d200	120	__glTextureBlendRGBA	dwarf+dynsym	e863d53326cd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d280	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d280	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d2a0	100	__glTextureBlendI	dwarf+dynsym	40e81eba5a7a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d310	52	__glTextureReplaceL	dwarf+dynsym	8e3a43f904df		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d350	68	__glTextureReplaceLA	dwarf+dynsym	776597b27185		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d3a0	52	__glTextureReplaceRGB	dwarf+dynsym	af3adf2ba9cb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d3e0	68	__glTextureReplaceRGBA	dwarf+dynsym	2ff071c121ff		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d430	20	__glTextureReplaceA	dwarf+dynsym	2e62fa6c000c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d430	20	__glTextureReplaceA	dwarf+dynsym	2e62fa6c000c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d450	68	__glTextureReplaceI	dwarf+dynsym	247e5341f647		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d4a0	36	__GL_TEXENV_CLAMP	dwarf+dynsym	ccc805ae7669		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda1d4d0	272	__glTextureSBModulateL	dwarf+dynsym	0bea16ce7c1c		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38637,9 +38637,9 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda23860	860	__glTextur
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda23bc0	1616	__glTextureCTReplaceRGBA	dwarf+dynsym	b527ee907b01		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24210	464	__glTextureCTReplaceA	dwarf+dynsym	e9f468490833		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda243e0	1620	__glTextureCTReplaceI	dwarf+dynsym	0af3687ae57b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24a40	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24a40	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24a50	324	__glComputePolygonRho	dwarf+dynsym	798610bef28a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24ba0	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24ba0	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24bb0	296	__glComputeLineRho	dwarf+dynsym	e405e9957d9a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24ce0	108	__glFastTextureFragment	dwarf+dynsym	a9a2dcc26421		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda24d50	136	__glTextureFragment	dwarf+dynsym	b207d0b99dbb		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -44160,7 +44160,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261d80	52	__glTexture
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261dc0	68	__glTextureModulateLA	dwarf+dynsym	c0ed17f7c0f8		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261e10	52	__glTextureModulateRGB	dwarf+dynsym	d7f9d11fe05d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261e50	68	__glTextureModulateRGBA	dwarf+dynsym	fd9ea9630b2b		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261ea0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261ea0	20	__glTextureModulateA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261ec0	68	__glTextureModulateI	dwarf+dynsym	1618256b58d4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261f10	60	__glTextureDecalRGB	dwarf+dynsym	5cb3042c9f2c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261f50	108	__glTextureDecalRGBA	dwarf+dynsym	d8a4f69eb3a4		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
@@ -44168,13 +44168,13 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2261fc0	80	__glTexture
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262010	96	__glTextureBlendLA	dwarf+dynsym	abd442f4fb46		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262070	104	__glTextureBlendRGB	dwarf+dynsym	738028cb8b57		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22620e0	120	__glTextureBlendRGBA	dwarf+dynsym	e6d9f4ab0f93		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262160	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262160	20	__glTextureBlendA	dwarf+dynsym	e32947060236		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262180	100	__glTextureBlendI	dwarf+dynsym	8cc38b76cf3d		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22621f0	60	__glTextureReplaceL	dwarf+dynsym	dcaa39158433		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262230	76	__glTextureReplaceLA	dwarf+dynsym	8c397f55848a		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262280	60	__glTextureReplaceRGB	dwarf+dynsym	5cb3042c9f2c		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22622c0	76	__glTextureReplaceRGBA	dwarf+dynsym	0d4314c0791e		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262310	28	__glTextureReplaceA	dwarf+dynsym	97d13bf19ffd		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262310	28	__glTextureReplaceA	dwarf+dynsym	97d13bf19ffd		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262330	76	__glTextureReplaceI	dwarf+dynsym	1697c927bfdf		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2262380	36	__GL_TEXENV_CLAMP	dwarf+dynsym	ccc805ae7669		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22623b0	280	__glTextureSBModulateL	dwarf+dynsym	2163b8352685		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -44217,9 +44217,9 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22688c0	900	__glTextur
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2268c50	1620	__glTextureCTReplaceRGBA	dwarf+dynsym	298694c3cf74		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22692b0	488	__glTextureCTReplaceA	dwarf+dynsym	5709e97eeec8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22694a0	1640	__glTextureCTReplaceI	dwarf+dynsym	72ec3d821d29		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269b10	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269b10	8	__glNopPolygonRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269b20	332	__glComputePolygonRho	dwarf+dynsym	ab61dd9c6167		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269c70	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269c70	8	__glNopLineRho	dwarf+dynsym	c56f035b0568		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269c80	304	__glComputeLineRho	dwarf+dynsym	34b5ac6ade93		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269db0	116	__glFastTextureFragment	dwarf+dynsym	1ff911fe3def		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2269e30	144	__glTextureFragment	dwarf+dynsym	a1ea3c756488		in	located	docs/sample-implementation.md#so_texturec	so_texture.c
