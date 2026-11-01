@@ -71,6 +71,7 @@ One entry per file the graphics packages install beside the InfiniteReality driv
   Every operation starts with the token word 492 (0x1ec): `erase_eeprom` at 0x10003274 follows it with 1 and 4096 data words, `erase_combo` at 0x10003430 with 6, `write_eeprom` at 0x10002bdc with 1 and the image, and `setup_ucode` with 3 followed by the two address words just mapped and the length 16384 (at 0x100024b4 to 0x100024ec, and again at 0x1000255c to 0x10002594), and with 4 before each `get_rdata` handshake.
   Results come back through `get_rdata` at 0x100026cc, which polls the first word of the read-back area with `sginap(2)` and returns the second.
   The sub-command words 1, 3, 4 and 6 are named only by the string each operation prints, so their meaning at the hardware is **inferred**.
+  Each function of the program has its own entry in [pipe-tool-functions.md](pipe-tool-functions.md#ireeprom-pipe-eeprom-tool).
 - `usr/gfx/hyperpipeinfo`: **established.**
   An 18328-byte program that prints the hyperpipe network of one display; `main` at 0x10000ff0.
   It parses `-d <displayname>` with `getopt` (option character 100 at 0x10001050), opens that display or the default one with `XOpenDisplay`, and requires `GLX_SGIX_hyperpipe` in `glXQueryExtensionsString` of the screen (strstr at 0x10001244).
