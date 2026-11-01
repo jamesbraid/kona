@@ -320,12 +320,12 @@ token	0x13d	HP_X_STORESTIPPLE;KONA_HP_X_STORESTIPPLE		handler=arm_x_storestipple
 token	0x13e	HP_X_ROTATESTIPPLE;KONA_HP_X_ROTATESTIPPLE		handler=arm_x_rotatestipple route=arm	GE.h,firmware map,kpm	0	0		understood	docs/ge-arm-tokens.md#arm-run-host-tokens-read-one-by-one	ARM-run host tokens read one by one
 token	0x13f	HP_X_UNUSED4;KONA_HP_X_UNUSED4		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5152	
 token	0x140	HP_X_UNUSED5;KONA_HP_X_UNUSED5		handler=C$$code$$Base,arm_badcmd route=arm	GE.h,firmware map,kpm	0	0		understood	GE.h:5167	
-token	0x141	HP_X_DATA1;KONA_HP_X_DATA1		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x142	HP_X_DATA2;KONA_HP_X_DATA2		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x143	HP_X_DATA3;KONA_HP_X_DATA3		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
-token	0x144	HP_X_DATA4;KONA_HP_X_DATA4		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x141	HP_X_DATA1;KONA_HP_X_DATA1		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x142	HP_X_DATA2;KONA_HP_X_DATA2		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x143	HP_X_DATA3;KONA_HP_X_DATA3		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x144	HP_X_DATA4;KONA_HP_X_DATA4		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x145	HP_X_BDATA4;KONA_HP_X_BDATA4		route=hw	GE.h,firmware map,kpm	0	0		understood	GE.h:5282	
-token	0x146	HP_X_DATA5;KONA_HP_X_DATA5		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
+token	0x146	HP_X_DATA5;KONA_HP_X_DATA5		route=hw	GE.h,firmware map,kpm	0	0		understood	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x147	HP_X_DATA6;KONA_HP_X_DATA6		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x148	HP_X_DATA7;KONA_HP_X_DATA7		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
 token	0x149	HP_X_DATA8;KONA_HP_X_DATA8		route=hw	GE.h,firmware map,kpm	0	0		located	docs/ge-routed-tokens.md#x-server-drawing-tokens	X server drawing tokens
@@ -596,7 +596,7 @@ token	0x251	TM_DRAW_CLIP_BKPT			kpm	0	0		understood	docs/ge-shadow-words.md#shad
 token	0x252	TGTM_TEX_SCENTER			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x253	TGTM_TEX_TCENTER			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x254	TFT_SBIAS_EN			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
-token	0x255	TFT_SCALE			kpm	0	0		located	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
+token	0x255	TFT_SCALE			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x256	TFT_BIAS			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x257	TFT_TLUT			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
 token	0x258	TM_DRAW_SHA_AMBIENT			kpm	0	0		understood	docs/ge-shadow-words.md#shadow-word-map	Shadow word map
