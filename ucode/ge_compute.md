@@ -735,7 +735,7 @@ group-31 transfer to the successor. In every form the output record gets x, y an
   of that difference (`r110` = 0x2bd at 0x2cdc), refines it with one Newton step (unit-2 code 0x57 at 0x2ce2) and
   multiplies the refined value by the difference (0x2cea), so the result in word 0xa is sqrt(1 - x^2 - y^2). So this
   record carries two normal components and the engine rebuilds the third as the positive unit-length z. The host packer
-  agrees: `__glkonSendPackedVertexV3F_N3S` in `libGLcore.so` (0x0da773ec, source lines 693-705) loads the first two
+  agrees: `__glkonSendPackedVertexV3F_N3S` in `libGLcore_n32.so` (0x0da773ec, source lines 693-705; the 64-bit `libGLcore.so` has it at 0x02edc9cc) loads the first two
   shorts of the normal as one word, clears its bit 0 and ORs in the sign bit of the third short, so word 3 carries x, y
   and only the sign of z. The predicated subtracts at 0x2cee and 0x2cf0 (register 0x1f minus the stored z) are where the
   sign could be applied; which bit chooses them is open. It also writes w = 1.0 to word 3 and the current colour from
@@ -1622,11 +1622,11 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   address 0x8000 (address register 5, loaded at 0xf0), whose word 1 is the grid start and word 3 the step. It keeps the
   two point indices as floats in registers 0x13 and 0x14, steps them with float adds (0xf6, 0xf8), multiplies each by
   the step (0xff, 0x100), compares each with word 0 of the block by a flag-setting subtract (0x101, 0x102) and adds the
-  start (0x103, 0x104), so u = start + i x step. Each u is then mapped into every 1D map's domain: for the map blocks
-  from 0x8010 in steps of 0x70 (address registers 6, 8, 0xa and 0xc, loaded at 0x114, 0x108, 0x116), it subtracts the
+  start (0x103, 0x104), so u = start + i x step. Each u is then mapped into every 1D map's domain: for the four map blocks
+  from 0x8010 in steps of 0x70 (address registers 6, 8, 0xa and 0xc, loaded at 0x114, 0x108, 0x116 and 0x117), it subtracts the
   low end, word 1, and the high end, word 2 with flags (0x11c-0x11f and the same pattern at 0x124, 0x12c, 0x134), and
   multiplies the first difference by the reciprocal width in word 3. The mapped results go to words 0x12 and 0x15 of
-  each block, one per point (0x120, 0x121, 0x128, 0x129, 0x130, 0x131), for the evaluation modules that produce the
+  each block, one per point (0x120, 0x121, 0x128, 0x129, 0x130, 0x131, 0x138, 0x139), for the evaluation modules that produce the
   line-strip vertices. Before that it calls `uEvalSwapState2D` or `uEvalLoadState1D` (0xf4, 0xf5) and
   `uEvalChangeBasis1D` (0xfe) when the control words at 0x1ec-0x1f1 ask for them.
 - `mgesi_EvalStrip1D` (`ueval1D.s` line 324, at 0xe1): **inferred**, slot name of the 1D mesh handler on its first word,

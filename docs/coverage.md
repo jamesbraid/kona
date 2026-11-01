@@ -28,11 +28,11 @@ The share of understood rows that an independent audit found real when it re-der
 | functions | 53.3% | 30 | 2026-10-31 |
 | tokens | 86.7% | 30 | 2026-10-30 |
 | ioctls | 90.0% | 10 | 2026-10-29 |
-| ucode | 85.0% | 60 | 2026-10-30 |
+| ucode | 100.0% | 8 | 2026-10-31 |
 
-Cross-workspace role check: compared 2764 entries with the entries of crime and odsy for the same function and capped 8 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
+Cross-workspace role check: compared 2936 entries with the entries of crime and odsy for the same function and capped 11 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
-Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 6d50c95c1a1e6021, 545 files; sibling crime a42d4b0650dc; sibling odsy cf7842fb49c8.
+Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 6d50c95c1a1e6021, 545 files; sibling crime a42d4b0650dc; sibling odsy d26e4eb50277.
 
 Function rows rejected as ambiguous, at most named-only: 126 whose name is defined in several compilation units, 2668 whose address another name shares (a row can be in both).
 
