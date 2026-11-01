@@ -6863,21 +6863,26 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   steps use `and`, `nor` and `xor` on destination words. At 887 instructions it was not read in full: which table value each source
   bit selects stays inferred, so the foreground and background selection is not established. Against `konal.so`: 1 of 892;
   immediates only; low halves: 1; first at +0x34.
-- `miGetImage` (konad.so, address 0x5286d0, 768 bytes): **established.** Default GetImage built on the screen's GetSpans: takes
-  (drawable a0, x a1, y a2, width a3, height a4, format a5, plane mask a6, destination a7) and returns nothing. A format other than
-  2 (the packed pixel form) is not handled here: it calls ffs on the plane mask and tail-calls the routine at 0x4b18b0 with
-  (drawable, ffs result minus one, x, y, width, height, destination). For format 2 it takes the depth from drawable byte +2 and
-  compares the plane mask against the all-ones mask for that depth. The row pitch in bytes comes from the three words at the depth's
-  12-byte entry of `PixmapWidthPaddingInfo`: ((width + word 0) shifted right by word 4) shifted left by word 8. With a full mask it
-  loops over the rows, adding the drawable's halfwords +8 and +10 to x and y, and calls entry +168 of the screen record at drawable
-  +16 (GetSpans) with (drawable, width, a local point, a local width, 1, the row of the destination), stepping the destination by
-  the pitch. With a partial mask it first takes a scratch GC from `GetScratchGC` (returning if that fails), creates a one-row
-  temporary pixmap through entry +236 of the screen (width, 1, depth) and frees the scratch GC and returns if that fails, validates
-  the GC against the pixmap, clears the pixmap row with the GC's FillSpans (ops entry 0), sets the GC plane mask with `DoChangeGC`
-  (mask 2) and validates again. Each row is then fetched with GetSpans into the destination, written with the GC's SetSpans (ops
-  entry +4) into the temporary pixmap at (0, 0), and fetched again from the pixmap into the destination row, so only the masked
-  planes survive. After the loop it destroys the temporary pixmap through screen entry +240 and calls `FreeScratchGC`. A height that
-  is not positive returns without any rows. Against `konal.so`: 1 of 192; immediates only; low halves: 1; first at +0x4c.
+- `miGetImage` (`konad.so` 0x5286d0, 768 bytes):
+  **Established.** The default GetImage, built on the screen's GetSpans, read in full from 0x5286d0 to its one return at
+  0x52888c. The arguments are the drawable (a0), x (a1), y (a2), width (a3), height (a4), format (a5), plane mask (a6) and
+  the destination buffer (a7); it returns no value of its own. A format other than 2 (the packed pixel form) is not handled
+  here: it calls `ffs` on the plane mask and then calls the module-local routine at 0x4b18b0 with (drawable, the `ffs` result
+  minus one, x, y, width, height, destination), and the routine returns after that call.
+  For format 2 it takes the depth from the drawable's byte +2 and forms the all-ones mask for that depth (1 shifted left by
+  the depth, minus 1); a plane mask that does not contain all of those bits is the partial case. The row pitch in bytes comes
+  from the three words of the depth's 12-byte entry in `PixmapWidthPaddingInfo`: ((width + word 0) shifted right by word 4)
+  shifted left by word 8. The rows run from y plus the drawable's halfword +10 for as many rows as the height, with x plus
+  the drawable's halfword +8 as the column; a height that is not positive does no row. Each row calls entry +168 of the
+  screen record at drawable +16 (GetSpans) with (drawable, width, the address of a local point at sp+24, the address of a local
+  width at sp+8, 1, the destination row), and the destination then advances by the pitch.
+  With a partial mask it first takes a scratch GC from `GetScratchGC` (depth, screen) and returns when that is null. It creates
+  a one-row temporary pixmap through screen entry +236 (width, 1, depth), and on failure calls `FreeScratchGC` and returns. It
+  validates the GC against the pixmap with `ValidateGC`, clears the pixmap row by calling the GC's operations entry +0 (FillSpans)
+  with a point at (0, 0), sets the GC plane mask with `DoChangeGC` (mask 2, the plane mask value at sp+16) and validates again.
+  Each row is then fetched with GetSpans into the destination row, written back by the GC's operations entry +4 (SetSpans)
+  into the temporary pixmap at (0, 0), and fetched again from the pixmap into the destination row, so only the masked planes
+  keep their values. At the end it destroys the temporary pixmap through the GC's screen entry +240 and calls `FreeScratchGC`.
 - `cfbDoBitblt` (konad.so, address 0x5289d0, 136 bytes): **established.** Chooser for an 8-bit blit: when the low byte of the
   plane mask (a5) is not 255 it calls `cfbDoBitbltGeneral`; otherwise it picks by raster op (a2): 3 calls `cfbDoBitbltCopy`, 6 calls
   `cfbDoBitbltXor`, 7 calls `cfbDoBitbltOr`, and any other op calls `cfbDoBitbltGeneral`. The arguments pass through unchanged and
