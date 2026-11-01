@@ -6382,17 +6382,24 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   (`KONA_DMAWRITE`), a failure printing "KONA_DMAWRITE failed" through `ErrorF` and `perror`. Against `konal.so` the instruction
   stream is the same except for that size threshold, a two-instruction constant here and `li 0x9000` (36864 bytes) there, which
   makes this build 4 bytes longer (3892 against 3888) and shifts some register choices.
-- `miRegionEmpty` (konad.so, address 0x506940, 104 bytes): **established.** Resets a region to empty: frees the rectangle data
-  with `Xfree` unless it is the shared block, then stores `miEmptyData` back at +0x8. Against `konal.so`: 1 of 26; immediates
-  only; low halves: 1; first at +0x14.
-- `rrmDelayValidateClipCancel` (konad.so, address 0x507430, 136 bytes): **established.** Drops a queued clip validation. Against
-  `konal.so`: 1 of 34; immediates only; low halves: 1; first at +0x8; gp 0x98810 and 0x98830.
-- `cfb32FillBoxTileOdd` (konad.so, address 0x5074c0, 56 bytes): **established.** Tiny wrapper: for the copy and xor-compatible
-  cases it calls `cfb32FillBoxTile32sCopy` for the box, testing the raster op against 3 first. Against `konal.so`: 1 of 14;
-  immediates only; low halves: 1; first at +0x8; gp 0x98780 and 0x987a0.
-- `nfbSaveAreas` (konad.so, address 0x507500, 80 bytes): **inferred.** Save-under hook: forwards to
-  `nfbDoBitBltSP` with the saved-area record to copy the covered screen area into a pixmap (the arguments 3 and -1 select the copy
-  and all planes) Against `konal.so`: 1 of 20; immediates only; low halves: 1; first at +0x8; gp 0x98740 and 0x98760.
+- `miRegionEmpty` (konad.so, address 0x506940, 104 bytes): **established.** Resets a region (argument a0) to empty. When the data
+  pointer at +8 is non-null and the first word of the block it points to is non-zero, it calls `Xfree` on that block (a block whose
+  first word is zero, the shared empty block, is not freed). It then stores the address of the static empty block (`miEmptyData`) at
+  +8 and sets the extents' second corner to the first: the halfword at +4 takes the one at +0 and the one at +6 the one at +2.
+  Against `konal.so`: 1 of 26; immediates only; low halves: 1; first at +0x14.
+- `rrmDelayValidateClipCancel` (konad.so, address 0x507430, 136 bytes): **established.** Drops a queued clip validation. It
+  fetches the window's rrm private record (window +132 at `rrmWindowPrivateIndex`) and returns when there is none or when its word
+  +68 (the timer) is zero. Otherwise it calls `Xfree` on the word at +72, `TimerFree` on the word at +68, and zeroes both words.
+  Against `konal.so`: 1 of 34; immediates only; low halves: 1; first at +0x8; gp 0x98810 and 0x98830.
+- `cfb32FillBoxTileOdd` (konad.so, address 0x5074c0, 56 bytes): **established.** Wrapper with no test of its own: it calls
+  `cfb32FillBoxTile32sCopy` with its first six arguments unchanged and the seventh and eighth set to 3 and -1 (n32 registers a6 and
+  a7), then returns that call's result. The raster-op test the earlier text described is not in this body. Against `konal.so`: 1 of
+  14; immediates only; low halves: 1; first at +0x8; gp 0x98780 and 0x987a0.
+- `nfbSaveAreas` (konad.so, address 0x507500, 80 bytes): **inferred.** Save-under hook that calls `nfbDoBitBltSP` with its five
+  arguments rotated: the arguments (a0, a1, a2, a3, a4) go out as (a0, a4, a1, a2, a3), followed by 3 and -1 as the sixth and
+  seventh (a5, a6), and it returns that call's result. That 3 is the copy raster op is inferred from `cfbDoBitblt`, which treats 3
+  as its copy case; that -1 is an all-planes mask is inferred. Against `konal.so`: 1 of 20; immediates only; low halves: 1; first at
+  +0x8; gp 0x98740 and 0x98760.
 - `mfbReduceRop` (konad.so, address 0x507550, 404 bytes): **established.** Collapses a raster op and a one-bit source pixel into
   one of the four simple results (clear, set, invert or leave alone, returned as 0, 15, 10 and
   5): a jump table over the sixteen raster ops, with one table for source bit set and one for clear. A leaf, and it is called from
@@ -6402,9 +6409,9 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   `cfbHorzS`, verticals to `cfbVertS`, diagonals to `cfbBresS`, and clipped segments to
   `miZeroClipLine`. Against `konal.so`: 1 of 759; immediates only; low halves: 1; first at +0x2c.
 - `konCopyGC` (konad.so, address 0x5082e0, 168 bytes): **established.** Copy-GC wrapper: it puts back the original function table
-  saved at +0xa4 of the GC private record over the context's own (gc +0x44), calls the original entry at +0x8, then saves the
-  table and reinstalls the module's table from its read-only data. No token. Against `konal.so`: 1 of 42; immediates only; low
-  halves: 1; first at +0x10; gp 0x97960 and 0x97980.
+  saved at +0xa4 of the GC private record over the context's own (gc +0x44), calls the original entry at +0x8, then saves the table
+  at +0xa4 again and reinstalls the module's own table, which lives at 0x593e58 in the writable data section. No token. Against
+  `konal.so`: 1 of 42; immediates only; low halves: 1; first at +0x10; gp 0x97960 and 0x97980.
 - `nfbUnrealizeCursor` (konad.so, address 0x508540, 204 bytes): **established.** Releases a cursor's realised copy: frees up to
   three blocks with `Xfree` and reports a bad cursor with `ErrorF`. Against `konal.so`: 1 of 51; immediates only; low halves: 1;
   first at +0x20.
@@ -6431,8 +6438,10 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   wholly inside is drawn here, one glyph at a time, dispatching on four glyph bits at a time through a 16-entry jump table, with
   the `endtab` mask on the right edge. It makes no call through a stippled-fill pointer. Against `konal.so`: 1 of 445;
   immediates only; low halves: 1; first at +0x5c.
-- `miMarkWindow` (konad.so, address 0x50ada0, 108 bytes): **established.** Allocates a 24-byte per-window validation record with
-  `XNFalloc` when the window has none. Against `konal.so`: 1 of 27; immediates only; low halves: 1; first at +0x10; gp 0x94ea0 and 0x94ec0.
+- `miMarkWindow` (konad.so, address 0x50ada0, 108 bytes): **established.** Returns at once when the window already has a record at
+  +68. Otherwise it allocates a 24-byte record with `XNFalloc`, fills halfword +0 from window halfword +8 and halfword +2 from
+  window halfword +10, zeroes words +4 and +8 and stores the record at window +68. Against `konal.so`: 1 of 27; immediates only; low
+  halves: 1; first at +0x10; gp 0x94ea0 and 0x94ec0.
 - `miComputeCompositeClip` (konad.so, address 0x50ae10, 748 bytes): **established.** Recomputes a GC's composite clip from the
   drawable's clip and the client clip, using `NotClippedByChildren` when the GC subwindow mode is clip-by-children, and storing
   the result in the GC's private record found through `miGCPrivateIndex`. Against `konal.so`: 1 of 187; immediates only; low
@@ -6494,20 +6503,26 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   rectangles, one per run of set bits, reallocating the box list with `miRectAlloc` (six sites) and reporting an oversized
   transition list with `ErrorF`. Against `konal.so`: 1 of 736; immediates only; low halves: 1; first at +0x20.
 - `konLocatorFilter` (konad.so, address 0x513b70, 100 bytes): **established.** The pointer-locator filter hook. After saving its
-  four arguments it branches straight to the epilogue at +0x50, so the `ErrorF` call that follows (format "x = %d, y = %d" with
-  the first two arguments) is never reached; the function returns without effect. Against `konal.so`: 1 of 25; immediates only;
-  low halves: 1; first at +0x10; gp 0x8c0d0 and 0x8c0e0.
-- `nfbReadDisplayRegisterInfo` (konad.so, address 0x513be0, 168 bytes): **established.** Reserves a screen private slot with
-  `AllocateScreenPrivateIndex` and calls `ReadDisplayRegisterInfo` to fill the register description for the read-display
-  extension. Against `konal.so`: 1 of 42; immediates only; low halves: 1; first at +0x10; gp 0x8c060 and 0x8c070.
+  four arguments it branches straight to the epilogue at +0x50, so the `ErrorF` call that follows (format "konLocatorFilter:  x =
+  %d, y = %d\n", with the first two arguments) is never reached; the function returns without effect. Against `konal.so`: 1 of 25;
+  immediates only; low halves: 1; first at +0x10; gp 0x8c0d0 and 0x8c0e0.
+- `nfbReadDisplayRegisterInfo` (konad.so, address 0x513be0, 168 bytes): **established.** Takes (screen, info). It copies the word
+  at info +8, ored with 4, to +8 of a static record at 0x594410, calls `ReadDisplayRegisterInfo` with the screen and that record,
+  and then, once per server generation, calls `AllocateScreenPrivateIndex` (the index and the generation are kept in statics). When
+  the index is not negative it stores `info` in the screen's private slot (screen +436). The return value is the new index (or the
+  allocator's error) on the allocating call, and the `ReadDisplayRegisterInfo` result on later calls. Against `konal.so`: 1 of 42;
+  immediates only; low halves: 1; first at +0x10; gp 0x8c060 and 0x8c070.
 - `mfbZeroPolyArcSS` (konad.so, address 0x513c90, 476 bytes): **inferred.** Zero-width arc entry for one-bit drawables: skipped
   when the GC's plane word at +0x14 is zero, otherwise the same walk as the colour versions. For each arc, a non-square arc with
   a side over 800 pixels goes to `miPolyArc` (a square one is never diverted for size); an arc whose box passes 0x7fff, or is
   not wholly inside the clip (the screen hook at +380 must answer 1), goes to `miZeroPolyArc`; a wholly visible one goes to the
   one-bit routine at a local address. Against `konal.so`: 1 of 119; immediates only; low halves: 1; first at +0x44.
-- `rrmCopyWindow` (konad.so, address 0x5141e0, 120 bytes): **inferred.** Copy-window wrapper: it calls the saved copy-window hook
-  at +0x78 of the rrm screen record with the window and the old origin passed through, saving and restoring the word at screen
-  +0xe0 around the call, and returns its result. Against `konal.so`: 1 of 30; immediates only; low halves: 1; first at +0x10; gp 0x8ba60 and 0x8ba70.
+- `rrmCopyWindow` (konad.so, address 0x5141e0, 120 bytes): **inferred.** Copy-window wrapper. It finds the rrm screen record
+  through the screen's private array (screen +436 at `rrmScreenPrivateIndex`) and calls the hook at +120 of that record with the
+  window and the region unchanged and the second argument rebuilt (its upper 32 bits kept, the lower 32 cleared with `dsra32` then
+  `dsll32`). While the hook runs the word at screen +224 holds the hook's own address (stored in the call's delay slot); afterwards
+  the word it held before is put back. The function leaves that old word in `v0` and does not return the hook's result. Against
+  `konal.so`: 1 of 30; immediates only; low halves: 1; first at +0x10; gp 0x8ba60 and 0x8ba70.
 - `konPolyGlyphBltSolidTE3` (konad.so, address 0x514260, 5716 bytes): **established.** Solid poly-text glyph blit for -pixel
   fonts, konad.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`,
   `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, each token stored as a word at offset 0 ahead of its payload
@@ -6623,16 +6638,20 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
 - `nfbMarkUnrealizedWindow` (konad.so, address 0x527440, 292 bytes): **inferred.** Marks a window when it is unrealised: it makes
   three indirect calls into the screen's mark hooks to flag the window and its parents; in `konad.so` its address is stored at
   0x592804. Against `konal.so`: 1 of 73; immediates only; low halves: 1; first at +0x8; gp 0x78800 and 0x78820.
-- `miDestroyGC` (konad.so, address 0x527570, 160 bytes): **inferred.** Destroys a GC: frees its client clip and composite clip
-  through the screen hooks, and calls `miDestroyGCOps` twice. Against `konal.so`: 1 of 40; immediates only; low halves: 1; first
+- `miDestroyGC` (konad.so, address 0x527570, 160 bytes): **inferred.** Destroys a GC. The record at GC +76 (at the static
+  `miGCPrivateIndex`) holds two clip pointers: when the word at +4 is non-null it is released through the screen hook at +240; when
+  bit 6 (0x40) of the word at +0 is set the word at +8 is released through the screen hook at +348. It then calls `miDestroyGCOps`
+  once, with the word at GC +72, and returns that call's result. Against `konal.so`: 1 of 40; immediates only; low halves: 1; first
   at +0x8; gp 0x786d0 and 0x786f0.
 - `SetNoStealID` (konad.so, address 0x527610, 68 bytes): **established.** Protects a display id from stealing. It takes the
   screen's rrm private through the screen's private array (+436) at `rrmScreenPrivateIndex`, steps to the id's 36-byte entry (the
   table starts at +152) and ors 0x20 into the entry's flag halfword at +168 from the private. Against `konal.so`: 1 of 17;
   immediates only; low halves: 1; first at +0x4.
-- `cfb16CopyPixmap` (konad.so, address 0x527660, 148 bytes): **established.** Duplicates a 16-bit pixmap: allocates through a
-  function pointer, then copies the pixel data with `memmove`. Against `konal.so`: 1 of 37; immediates only; low halves: 1; first
-  at +0x28.
+- `cfb16CopyPixmap` (konad.so, address 0x527660, 148 bytes): **established.** Duplicates a pixmap: it calls the hook at screen
+  +236 (the screen is the word at pixmap +16) with the screen, the halfwords at +12 and +14, the byte at +2 and the word at +28,
+  then copies word-pitch times height bytes (word +28 times the halfword at +14) with `memmove` from the data pointer at +32 of the
+  source to +32 of the new pixmap. It returns the new pixmap, or 0 when the hook returns 0. Against `konal.so`: 1 of 37; immediates
+  only; low halves: 1; first at +0x28.
 - `cfb32ZeroPolyArcSSGeneral` (konad.so, address 0x527700, 468 bytes): **inferred.** Zero-width arc entry for 32-bit pixels under
   any raster op: the arc walk of the 16-bit entry, sending big arcs to `miZeroPolyArc`, clipped or out-of-range ones to
   `miPolyArc` and wholly visible ones to the 32-bit routine. Against `konal.so`: 1 of 117; immediates only; low halves: 1; first
@@ -6644,9 +6663,11 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   GetImage built on CopyArea: it gets a scratch GC with `GetScratchGC`, adjusts it with
   `DoChangeGC`, validates with `ValidateGC`, copies into a temporary pixmap and frees the scratch GC with `FreeScratchGC`. It also
   calls `ffs` and the local routine at 0x4b18b0. Against `konal.so`: 1 of 192; immediates only; low halves: 1; first at +0x4c.
-- `cfbDoBitblt` (konad.so, address 0x5289d0, 136 bytes): **established.** Chooser that picks the raster op's blit routine for an
-  8-bit blit: it tests the op against 3, 6 and 7 and the plane mask against 255, and sends everything else to
-  `cfbDoBitbltGeneral`. Against `konal.so`: 1 of 34; immediates only; low halves: 1; first at +0x10; gp 0x77270 and 0x77290.
+- `cfbDoBitblt` (konad.so, address 0x5289d0, 136 bytes): **established.** Chooser for an 8-bit blit: when the low byte of the
+  plane mask (a5) is not 255 it calls `cfbDoBitbltGeneral`; otherwise it picks by raster op (a2): 3 calls `cfbDoBitbltCopy`, 6 calls
+  `cfbDoBitbltXor`, 7 calls `cfbDoBitbltOr`, and any other op calls `cfbDoBitbltGeneral`. The arguments pass through unchanged and
+  the chosen routine's result is not used. Against `konal.so`: 1 of 34; immediates only; low halves: 1; first at +0x10; gp 0x77270
+  and 0x77290.
 - `cfb8LineSS1RectCopy` (konad.so, address 0x528e50, 2088 bytes): **established.** Copy-mode 8-bit polyline in one clip rectangle.
   It reads the zero-line screen index, takes the root pixmap pointer from screen +0x74 for a window and the clip rectangle from
   the composite clip in the GC private data, and steps every segment inline with no callees. Against `konal.so`: 1 of 522;
@@ -6718,9 +6739,10 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   two-pass method: `GetScratchGC` for a work context, `dixChangeGC` (four sites) and `ValidateGC` (five sites) to switch between
   background and foreground fills, `miClearDrawable` for the background and `FreeScratchGC` when done. Against `konal.so`: 1 of
   342; immediates only; low halves: 1; first at +0x40.
-- `konTiledFillRects` (konad.so, address 0x561310, 92 bytes): **established.** Stub for tiled
-  FillRects on the pipe path: it only prints a debug message with `ErrorF` and returns. Against `konal.so`: 1 of 23; immediates
-  only; low halves: 1; first at +0x10; gp 0x3e930 and 0x3e920.
+- `konTiledFillRects` (konad.so, address 0x561310, 92 bytes): **established.** Stub for tiled FillRects on the pipe path: it saves
+  its four arguments and branches over its only call, an `ErrorF` with a message string, to the epilogue. The call is unreachable,
+  so the function prints nothing and returns without setting a result. Against `konal.so`: 1 of 23; immediates only; low halves: 1;
+  first at +0x10; gp 0x3e930 and 0x3e920.
 - `cfbFillSpanTile32sGeneral` (konad.so, address 0x561370, 1864 bytes): **inferred.** Span fill with a 32-pixel tile for 8-bit
   pixels under any raster op, a leaf merging by `mergeRopBits` and masking ends with the 8-bit tables. Against `konal.so`: 1 of
   466; immediates only; low halves: 1; first at +0x40.
@@ -6812,16 +6834,19 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   tile height (a divide that traps on zero), and the partial words at the ends use `cfbstarttab`, `cfbendtab`, `cfbstartpartial`
   and `cfbendpartial`. It is called from `cfbPolyFillRect`. Against `konal.so`: 1 of 483; immediates only; low halves: 1; first
   at +0x20.
-- `konDetachXvc` (konad.so, address 0x570780, 168 bytes): **established.** Disconnects the video-control extension: when
-  `vcScreenPrivateIndex` is valid and `XSGIvcScreens` has an entry for the screen it calls the routine at 0x44b2c0 to release it,
-  then zeroes the screen's private slot and the `XSGIvcScreens` entry. Against `konal.so`: 1 of 42; immediates only; low halves:
-  1; first at +0x10; gp 0x2f4c0 and 0x2f4a0.
+- `konDetachXvc` (konad.so, address 0x570780, 168 bytes): **established.** Disconnects the video-control extension. It calls the
+  routine at 0x44b2c0 with the screen when `vcScreenPrivateIndex` is not negative, or, when it is negative, when `XSGIvcScreens` has
+  a non-null entry for the screen's index (the word at screen +0). It then zeroes the screen's private slot (screen +436 at
+  `vcScreenPrivateIndex`) and that `XSGIvcScreens` entry; with the index negative and an entry present the slot written is the one
+  at the negative index. Otherwise it does nothing. Against `konal.so`: 1 of 42; immediates only; low halves: 1; first at +0x10; gp
+  0x2f4c0 and 0x2f4a0.
 - `cfbFillRectSolidXor` (konad.so, address 0x5711b0, 2984 bytes): **inferred.** Solid rectangle fill for 8-bit pixels that xors
   the foreground into the frame buffer; a leaf using the partial-word tables for ragged edges and unrolled whole-word stores in
   between, and it is called from `cfbPolyFillRect`. Against `konal.so`: 1 of 746; immediates only; low halves: 1; first at +0x34.
-- `miDestroyClip` (konad.so, address 0x571ee0, 152 bytes): **inferred.** Releases a GC's client clip, calling the screen's region
-  destroy hook for a region clip; in `konad.so` its address is stored at 0x595e3c. Against `konal.so`: 1 of 38; immediates only;
-  low halves: 1; first at +0x20.
+- `miDestroyClip` (konad.so, address 0x571ee0, 152 bytes): **inferred.** Releases a GC's client clip. The clip type is bits 18-19
+  of the word at GC +16: type 0 returns at once, type 1 calls the screen hook at +240 and any other type the hook at +348, each with
+  the clip pointer at GC +56. Afterwards it zeroes GC +56 and clears the two type bits. Its address is stored at 0x595e3c in
+  `konad.so`. Against `konal.so`: 1 of 38; immediates only; low halves: 1; first at +0x20.
 - `miCopyClip` (konad.so, address 0x571f80, 244 bytes): **inferred.** Copies a GC's client clip into another by calling the
   screen's region copy hook (four sites); in `konad.so` its address is stored at 0x595e40. Against `konal.so`: 1 of 61; immediates
   only; low halves: 1; first at +0x24.
@@ -6833,9 +6858,9 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
 - `cfbPadPixmap` (konad.so, address 0x572610, 556 bytes): **established.** Replicates an 8-bit tile horizontally until its row
   fills 32 bits, when the tile width divides 32; the code tests the width times depth against 32 and uses `endtab` for the row
   masks. A leaf. Against `konal.so`: 1 of 139; immediates only; low halves: 1; first at +0x2c.
-- `cfb16DestroyPixmap` (konad.so, address 0x572840, 88 bytes): **established.** The 16-bit pixmap release: a reference count test
-  followed by `Xfree` of the pixmap's data and record. Against `konal.so`: 1 of 22; immediates only; low halves: 1; first at
-  +0x18.
+- `cfb16DestroyPixmap` (konad.so, address 0x572840, 88 bytes): **established.** Decrements the reference count (word +24) and
+  stores it; when it reaches zero it calls `Xfree` once, with the pixmap record itself (the argument unchanged), and does not free a
+  separate data block. Returns 1 on both paths. Against `konal.so`: 1 of 22; immediates only; low halves: 1; first at +0x18.
 - `rrmOGLUnbindRNFromClip` (konad.so, address 0x5728a0, 624 bytes): **established.** The
   OpenGL form of the unbind hook. It invalidates the window's resources through the hook at +32, calls `rrmUnqueueRequest` when
   the flag halfword has bit 0x20, and frees the buffer in the window's GLX private with `Xfree`. A non-empty bound-window list
