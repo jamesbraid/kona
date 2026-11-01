@@ -1968,7 +1968,7 @@ It calls `changeMinMaxLod` first.
 #### `changeMinMaxLod`
 
 `changeMinMaxLod` at 0x0d9663c0 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it converts the minimum and maximum level of detail into the hardware fields and refreshes the object.
-It sets the first and last level (+24 and +20) from the tiling kind: kinds 1 and 3 give 0 and 0; kind 0 gives the stored base level at +344 for both when the minification filter is 0x2600 or 0x2601, and otherwise +344 and the smaller of the log2 sizes at +332 and +336 and the stored maximum level at +348; kind 2 gives +344 and the smallest of +332, +336, +340 and +348.
+It sets the first and last level (+24 and +20) from the tiling kind: kinds 1 and 3 give 0 and 0; kind 0 gives the stored base level at +344 for both when the minification filter is 0x2600 or 0x2601, and otherwise +344 and the smaller of the stored maximum level at +348 and the larger of the log2 sizes at +332 and +336; kind 2 gives +344 and the smaller of +348 and the largest of +332, +336 and +340.
 For the clip-map filters (0x8170 and 0x844d to 0x844f) with the flag at +436 set it also uses the clip-map levels at +432 and +440.
 It scales the float minimum (+352) and maximum (+356) levels by 64 with the help of `__glKonTexExp2NegX64`, caps the maximum at 1023, and stores them as 10-bit fields at bits 0 to 9 and 10 to 19 of the word at +80.
 When the object is bound it then calls its hook at +256.

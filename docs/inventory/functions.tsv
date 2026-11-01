@@ -2602,7 +2602,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	303f3
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	6480cbcb8a16		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	b70c1abe376a		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	7adc3a402b41		in	named-only	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	925125369ea4		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	925125369ea4		in	understood	docs/kpm.md#capture-routines-read-in-full	Capture routines read in full
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	a2b07bf3a79b		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	721b27390890		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001529c	448	show_adap_registers_section	dynsym	40f7a85158e1		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -8213,7 +8213,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec7486c	420	makeGversionS
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec748f0	288	gl_g_gversion	dynsym+mdebug	b95d99ba29fb		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec74a10	260	__iglooInitializeVersion	mdebug	4247ca5294f7		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74ad0	68	__iglooGetGraphicsType	dynsym+mdebug	53951a7caed0		in	named-only	docs/kernel.md#who-sends-them	Who sends them
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec74b14	3196	gversionIoctl	mdebug	725324ab92f2		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32	.text	0xec74b14	3196	gversionIoctl	mdebug	725324ab92f2		in	understood	docs/irisgl.md#version-string-routine-read-in-full	Version-string routine read in full
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74d40	296	gl_free_objects	dynsym+mdebug	b8ec7ef9f565		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74e68	152	gl_addhash	dynsym+mdebug	7fb4520acd87		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec74f00	248	gl_removehash	dynsym+mdebug	ecd1ce42e205		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -10006,7 +10006,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gl_tevdef	dwarf+funcnames
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gl_texdef	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gl_transform4d	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gl_winconstraints	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gversionIoctl	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		gversionIoctl	dwarf+funcnames			in	located	docs/irisgl.md#version-string-routine-read-in-full	Version-string routine read in full
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		iglToOglFormat	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		iglToOglType	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0x0		igl_initnames	dwarf+funcnames			in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -14523,7 +14523,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatch
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0		in	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831		in	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/opengl.md#changeminmaxlod	`changeMinMaxLod`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb		in	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/opengl.md#changeclamp	`changeClamp`
@@ -14550,14 +14550,14 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloa
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e		in	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloadLevel	mdebug	af93f34f54d7		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73		in	located	docs/opengl.md#subgetsimple	`subgetSimple`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c		in	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	f6a6c8e600c7		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da		in	located	docs/opengl.md#copybacklods	`copyBackLods`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a		in	located	docs/opengl.md#reppixels	`repPixels`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4		in	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266		in	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8		in	located	docs/opengl.md#whichcomps	`whichComps`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2		in	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd96df8c	2892	calcObjSize	mdebug	ba1747cfaa2c		in	located	docs/opengl.md#calcobjsize	`calcObjSize`
@@ -14583,7 +14583,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefin
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd970d8c	2824	checkTexImage	mdebug	eb5d579518cd		in	located	docs/opengl.md#checkteximage	`checkTexImage`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd971894	344	computeDestinationDims	mdebug	863ef91f01c0		in	located	docs/opengl.md#computedestinationdims	`computeDestinationDims`
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd9719ec	2692	checkPixelError	mdebug	2e795238b073		in	located	docs/opengl.md#checkpixelerror	`checkPixelError`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd971f6c	600	__glkonim_CopyTexImage	dynsym+mdebug	4533e5aae870		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9721c4	144	__glkonim_TexImage3DEXT	dynsym+mdebug	47efbf85677a		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6		in	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
@@ -14591,8 +14591,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9722ec	144	__glkonim_Te
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd97237c	116	__glkonim_CopyTexImage1DEXT	dynsym+mdebug	6cb61f9b63d7		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9723f0	128	__glkonim_CopyTexImage2DEXT	dynsym+mdebug	9420e45ad3cd		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32	.text	0xd972470	9832	checkTexSubImage	mdebug	1bacb72f1641		in	located	docs/opengl.md#checktexsubimage	`checkTexSubImage`
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9726dc	1684	__glkonim_TexSubImage	dynsym+mdebug	5820f78c838d		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd972d70	1800	__glkonim_CopyTexSubImage	dynsym+mdebug	e558c8870a63		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd9726dc	1684	__glkonim_TexSubImage	dynsym+mdebug	5820f78c838d		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd972d70	1800	__glkonim_CopyTexSubImage	dynsym+mdebug	e558c8870a63		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973478	140	__glkonim_TexSubImage3DEXT	dynsym+mdebug	0a29ba30dd1d		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973504	148	__glkonim_TexSubImage2DEXT	dynsym+mdebug	5c7fc6a6e7ac		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xd973598	144	__glkonim_TexSubImage1DEXT	dynsym+mdebug	750f35fea097		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -21057,7 +21057,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cc330	372	__glB
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	387f8e54afca		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	cdfd0cff44c8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	cb1743e341c5		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	cb1743e341c5		in	understood	docs/libglcore-driver-functions.md#context-reset	Context reset
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	2d0a719eccd8		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	3b0f492c2377		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	760d469de6da		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -25645,7 +25645,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8300	504	unmat
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8500	192	allocLevelImage	dwarf	e8e5bc978623		in	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc85c0	244	setDetailFilter	dwarf	336aeb2d6c55		in	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	located	docs/opengl.md#changeminmaxlod	`changeMinMaxLod`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8c60	116	guessBaseLevel	dwarf	43f2125a21d1		in	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dc8ce0	4916	changeFilter	dwarf	1a1a6986a431		in	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dca020	612	changeClamp	dwarf	69abaa85072a		in	located	docs/opengl.md#changeclamp	`changeClamp`
@@ -25672,14 +25672,14 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcd760	2216	subl
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce010	220	subloadClipLevel	dwarf	4b2a3d6d102b		in	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce0f0	2124	subloadLevel	dwarf	c523cefdb774		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce940	160	subgetSimple	dwarf	1dc2fe96242c		in	located	docs/opengl.md#subgetsimple	`subgetSimple`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	46e47660017e		in	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dce9e0	1144	getLevel	dwarf	46e47660017e		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcee60	168	validDimension	dwarf	2fba24c0b12d		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef10	56	log2	dwarf	9b6432f02abb		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcef50	208	areLodsConsistent	dwarf	76f7857d2063		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf020	668	copyBackLods	dwarf	395a3ad48f70		in	located	docs/opengl.md#copybacklods	`copyBackLods`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf2c0	132	repPixels	dwarf	4cc0aa1cc030		in	located	docs/opengl.md#reppixels	`repPixels`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf350	1268	fillBorderColorLevel	dwarf	1c1523ec8096		in	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf850	740	downloadLods	dwarf	c712018886cf		in	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcf850	740	downloadLods	dwarf	c712018886cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb40	52	whichComps	dwarf	1c7e8409836f		in	located	docs/opengl.md#whichcomps	`whichComps`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfb80	64	storage2Comp	dwarf	1a0f8e58d108		in	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dcfbc0	2556	calcObjSize	dwarf	86cf48b426a0		in	located	docs/opengl.md#calcobjsize	`calcObjSize`
@@ -25705,7 +25705,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd25c0	324	undef
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd2710	2480	checkTexImage	dwarf	770cdf355997		in	located	docs/opengl.md#checkteximage	`checkTexImage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd30c0	324	computeDestinationDims	dwarf	07f321b3fb34		in	located	docs/opengl.md#computedestinationdims	`computeDestinationDims`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd3210	232	checkPixelError	dwarf	81fadbd4cabf		in	located	docs/opengl.md#checkpixelerror	`checkPixelError`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd36f0	552	__glkonim_CopyTexImage	dwarf+dynsym	ed0f30e10785		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3920	100	__glkonim_TexImage3DEXT	dwarf+dynsym	ae5feb455993		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85		in	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
@@ -25713,8 +25713,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3a20	128	__glkonim_
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3aa0	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	c3a083394da7		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3b00	88	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	27fc9abe24a5		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd3b60	640	checkTexSubImage	dwarf	28989c236740		in	located	docs/opengl.md#checktexsubimage	`checkTexSubImage`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b00	100	__glkonim_TexSubImage3DEXT	dwarf+dynsym	5d8db5f9f33e		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
@@ -31222,7 +31222,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9661b8	572	unmatch
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9663f4	228	allocLevelImage	mdebug	5b0a282a25d0		in	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9664d8	236	setDetailFilter	mdebug	88225a4a2831		in	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9665c4	320	setSharpenFilter	mdebug	22260cca3eb9		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/opengl.md#changeminmaxlod	`changeMinMaxLod`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966704	1572	changeMinMaxLod	mdebug	22d2b27bfcf1		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d28	96	guessBaseLevel	mdebug	393acb001283		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd966d88	2576	changeFilter	mdebug	00df2425e6bb		in	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd967798	648	changeClamp	mdebug	0e9d6a147fff		in	located	docs/opengl.md#changeclamp	`changeClamp`
@@ -31249,14 +31249,14 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96b5a4	2720	subloa
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c044	300	subloadClipLevel	mdebug	9f27ab21889e		in	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96c170	2228	subloadLevel	mdebug	af93f34f54d7		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96ca24	204	subgetSimple	mdebug	a90ac6d8ac73		in	located	docs/opengl.md#subgetsimple	`subgetSimple`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c		in	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96caf0	1352	getLevel	mdebug	7e692cc91f1c		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d038	192	validDimension	mdebug	d3678100d330		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d0f8	32	log2	mdebug	f6a6c8e600c7		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d118	164	areLodsConsistent	mdebug	4a1af1d26d0f		in	understood	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d1bc	484	copyBackLods	mdebug	6c59368c99da		in	located	docs/opengl.md#copybacklods	`copyBackLods`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d3a0	172	repPixels	mdebug	4eec8c5b819a		in	located	docs/opengl.md#reppixels	`repPixels`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96d44c	1568	fillBorderColorLevel	mdebug	bf4da7ad2aa4		in	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266		in	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96da6c	768	downloadLods	mdebug	84e1e8380266		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96dd6c	204	whichComps	mdebug	5547856afcc8		in	located	docs/opengl.md#whichcomps	`whichComps`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96de38	340	storage2Comp	mdebug	0eb8074db6b2		in	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd96df8c	2892	calcObjSize	mdebug	ba1747cfaa2c		in	located	docs/opengl.md#calcobjsize	`calcObjSize`
@@ -31282,7 +31282,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970c10	380	undefin
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd970d8c	2824	checkTexImage	mdebug	eb5d579518cd		in	located	docs/opengl.md#checkteximage	`checkTexImage`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd971894	344	computeDestinationDims	mdebug	863ef91f01c0		in	located	docs/opengl.md#computedestinationdims	`computeDestinationDims`
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd9719ec	2692	checkPixelError	mdebug	2e795238b073		in	located	docs/opengl.md#checkpixelerror	`checkPixelError`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd971af8	1140	__glkonim_TexImage	dynsym+mdebug	1bc64ec18577		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd971f6c	600	__glkonim_CopyTexImage	dynsym+mdebug	4533e5aae870		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9721c4	144	__glkonim_TexImage3DEXT	dynsym+mdebug	47efbf85677a		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd972254	152	__glkonim_TexImage2D	dynsym+mdebug	a1174d1523a6		in	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
@@ -31290,8 +31290,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9722ec	144	__glkonim_Te
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd97237c	116	__glkonim_CopyTexImage1DEXT	dynsym+mdebug	6cb61f9b63d7		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9723f0	128	__glkonim_CopyTexImage2DEXT	dynsym+mdebug	9420e45ad3cd		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32	.text	0xd972470	9832	checkTexSubImage	mdebug	1bacb72f1641		in	located	docs/opengl.md#checktexsubimage	`checkTexSubImage`
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9726dc	1684	__glkonim_TexSubImage	dynsym+mdebug	5820f78c838d		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd972d70	1800	__glkonim_CopyTexSubImage	dynsym+mdebug	e558c8870a63		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd9726dc	1684	__glkonim_TexSubImage	dynsym+mdebug	5820f78c838d		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd972d70	1800	__glkonim_CopyTexSubImage	dynsym+mdebug	e558c8870a63		in	located	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973478	140	__glkonim_TexSubImage3DEXT	dynsym+mdebug	0a29ba30dd1d		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973504	148	__glkonim_TexSubImage2DEXT	dynsym+mdebug	5c7fc6a6e7ac		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xd973598	144	__glkonim_TexSubImage1DEXT	dynsym+mdebug	750f35fea097		in	understood	docs/libglcore-driver-builds.md#o32-build-usrgfxarchip27konalibglcoreso	O32 build (`usr/gfx/arch/IP27KONA/libGLcore.so`)
@@ -37756,7 +37756,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cc330	372	__glB
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd9cc4b0	28	__glEndDispatchOverride	dwarf+funcnames	63573b80f7ee		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc4d0	388	__glEarlyInitContext	dwarf+dynsym	387f8e54afca		in	located	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc660	908	__glContextSetColorScales	dwarf+dynsym	cdfd0cff44c8		in	located	docs/sample-implementation.md#so_contextc	so_context.c
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	cb1743e341c5		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cc9f0	2980	__glSoftResetContext	dwarf+dynsym	cb1743e341c5		in	understood	docs/libglcore-driver-functions.md#context-reset	Context reset
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd5a0	112	__glDestroyContext	dwarf+dynsym	2d0a719eccd8		in	understood	docs/sample-implementation.md#so_contextc	so_context.c
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd610	536	__glDestroySoftContext	dwarf+dynsym	3b0f492c2377		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xd9cd830	208	__glFreePrivate	dwarf+dynsym	760d469de6da		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -42344,7 +42344,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8300	504	unmat
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8500	192	allocLevelImage	dwarf	e8e5bc978623		in	located	docs/opengl.md#alloclevelimage	`allocLevelImage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a85c0	244	setDetailFilter	dwarf	336aeb2d6c55		in	located	docs/opengl.md#setdetailfilter	`setDetailFilter`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a86c0	288	setSharpenFilter	dwarf	8155d4fd1fa6		in	understood	docs/rm.md#host-side-texture-routines	Host-side texture routines
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	located	docs/opengl.md#changeminmaxlod	`changeMinMaxLod`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a87e0	1148	changeMinMaxLod	dwarf	aa208316f62f		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8c60	116	guessBaseLevel	dwarf	43f2125a21d1		in	understood	docs/opengl.md#guessbaselevel	`guessBaseLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21a8ce0	4916	changeFilter	dwarf	1a1a6986a431		in	located	docs/opengl.md#changefilter	`changeFilter`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aa020	612	changeClamp	dwarf	69abaa85072a		in	located	docs/opengl.md#changeclamp	`changeClamp`
@@ -42371,14 +42371,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ad760	2216	subl
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae010	220	subloadClipLevel	dwarf	4b2a3d6d102b		in	located	docs/opengl.md#subloadcliplevel	`subloadClipLevel`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae0f0	2124	subloadLevel	dwarf	c523cefdb774		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae940	160	subgetSimple	dwarf	1dc2fe96242c		in	located	docs/opengl.md#subgetsimple	`subgetSimple`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	46e47660017e		in	located	docs/opengl.md#getlevel	`getLevel`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21ae9e0	1144	getLevel	dwarf	46e47660017e		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aee60	168	validDimension	dwarf	2fba24c0b12d		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef10	56	log2	dwarf	9b6432f02abb		in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21aef50	208	areLodsConsistent	dwarf	76f7857d2063		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af020	668	copyBackLods	dwarf	395a3ad48f70		in	located	docs/opengl.md#copybacklods	`copyBackLods`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af2c0	132	repPixels	dwarf	4cc0aa1cc030		in	located	docs/opengl.md#reppixels	`repPixels`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af350	1268	fillBorderColorLevel	dwarf	1c1523ec8096		in	located	docs/opengl.md#fillbordercolorlevel	`fillBorderColorLevel`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af850	740	downloadLods	dwarf	c712018886cf		in	located	docs/opengl.md#downloadlods	`downloadLods`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21af850	740	downloadLods	dwarf	c712018886cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb40	52	whichComps	dwarf	1c7e8409836f		in	located	docs/opengl.md#whichcomps	`whichComps`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afb80	64	storage2Comp	dwarf	1a0f8e58d108		in	located	docs/opengl.md#storage2comp	`storage2Comp`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21afbc0	2556	calcObjSize	dwarf	86cf48b426a0		in	located	docs/opengl.md#calcobjsize	`calcObjSize`
@@ -42404,7 +42404,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b25c0	324	undef
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b2710	2480	checkTexImage	dwarf	770cdf355997		in	located	docs/opengl.md#checkteximage	`checkTexImage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b30c0	324	computeDestinationDims	dwarf	07f321b3fb34		in	located	docs/opengl.md#computedestinationdims	`computeDestinationDims`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b3210	232	checkPixelError	dwarf	81fadbd4cabf		in	located	docs/opengl.md#checkpixelerror	`checkPixelError`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769		in	located	docs/libglcore-driver-functions.md#texture-binding-and-load-routines	Texture binding and load routines
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3300	1008	__glkonim_TexImage	dwarf+dynsym	0cb58a219769		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b36f0	552	__glkonim_CopyTexImage	dwarf+dynsym	ed0f30e10785		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3920	100	__glkonim_TexImage3DEXT	dwarf+dynsym	ae5feb455993		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3990	132	__glkonim_TexImage2D	dwarf+dynsym	4683173e1f85		in	located	docs/opengl.md#__glkonim_teximage2d	`__glkonim_TexImage2D`
@@ -42412,8 +42412,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3a20	128	__glkonim_
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3aa0	84	__glkonim_CopyTexImage1DEXT	dwarf+dynsym	c3a083394da7		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3b00	88	__glkonim_CopyTexImage2DEXT	dwarf+dynsym	27fc9abe24a5		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b3b60	640	checkTexSubImage	dwarf	28989c236740		in	located	docs/opengl.md#checktexsubimage	`checkTexSubImage`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	located	docs/libglcore-driver-functions.md#texture-sub-image-copy-and-upload-routines	Texture sub-image copy and upload routines
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b00	100	__glkonim_TexSubImage3DEXT	dwarf+dynsym	5d8db5f9f33e		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
@@ -47143,7 +47143,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10008e50	144	ven_init	dynsym	d8b3273b46e4		in
 usr/gfx/gfxinfo	shared-tool	n32		0x10008ee0	644	ng1_info	dynsym	6231262d0eb8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10009164	8	ng1_init	dynsym	87506497337c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000916c	40	ng2_kludge_info	dynsym	943894c64a85		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	b153192016ed		in	named-only	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+usr/gfx/gfxinfo	shared-tool	n32		0x10009290	2396	mgras_init	dynsym	b153192016ed		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10009bec	1044	_mgras_info	dynsym	5770d175438d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1000acbc	468	kona_info	dynsym	605dac4dadb2		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/gfxinfo	shared-tool	n32		0x1000ae90	592	kona_getconfig	dynsym	aea921a41caf		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
