@@ -2256,204 +2256,153 @@ enum kona_hp_token {
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex2d. */
 
-    /* `HP_VERTEX2D` (0x08b). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 2 components, double, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 4: 2
-     * components (x, y) as double values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xfc674107: command
-     * 206, geometry form, count field 4 (bits 6-8), doubles. Established:
-     * libGLcore.so `__glkonim_Vertex2d` stores 4 words after the token. Sent
-     * by libGLcore.so __glkonim_Vertex2d and Vertex2dv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_VERTEX2D` (0x08b). Inferred: completes a vertex from two
+     * doubles, defaults the z and w components, and enters the vertex
+     * into the primitive. Established: map word 0xfc674107 is a geometry
+     * entry for command 206 with count field 4 and double data, record
+     * word 0 (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Vertex2d`, read in full, emits the token 0x8b and then
+     * the doubles in f12 and f13, four words in all. */
     KONA_HP_VERTEX2D                     = 0x08b,
 
     /* Read at icu_map.tsv 0x08c; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex2f. */
 
-    /* `HP_VERTEX2F` (0x08c). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 2 components, float, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 2: 2
-     * components (x, y) as float values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xdc674087: command
-     * 206, geometry form, count field 2 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex2f` stores 2 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex2f and Vertex2fv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX2F` (0x08c). Inferred: completes a vertex from two
+     * floats, defaults the z and w components, and enters the vertex into
+     * the primitive. Established: map word 0xdc674087 is a geometry entry
+     * for command 206 with count field 2 and single-float data
+     * (icu_map.tsv). Established: libGLcore.so `__glkonim_Vertex2f`, read
+     * in full, writes the token 0x8c and then the floats in f12 and f13
+     * as two words. */
     KONA_HP_VERTEX2F                     = 0x08c,
 
     /* Read at icu_map.tsv 0x08d; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex2i. */
 
-    /* `HP_VERTEX2I` (0x08d). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 2 components, integer, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 2: 2
-     * components (x, y) as integer values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xdc274087: command
-     * 78, geometry form, count field 2 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex2i` stores 2 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex2i and Vertex2iv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX2I` (0x08d). Inferred: completes a vertex from two 32-bit
+     * integers, defaults the z and w components, and enters the vertex
+     * into the primitive. Established: map word 0xdc274087 is a geometry
+     * entry for command 78 with count field 2 and plain-integer data
+     * (icu_map.tsv). Established: libGLcore.so `__glkonim_Vertex2i`, read
+     * in full, sends the token 0x8d and then the integers in a0 and a1. */
     KONA_HP_VERTEX2I                     = 0x08d,
 
     /* Read at icu_map.tsv 0x08e; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex2s. */
 
-    /* `HP_VERTEX2S` (0x08e). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 2 components, short, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 1: 2
-     * components (x, y) as short values; the first component packed into the
-     * upper 16 bits of the token word, the rest in the following word.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0xbc274087: command 78, geometry form, count field 2
-     * (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex2s and
-     * Vertex2sv (kon_cfuncs.s). */
+    /* `HP_VERTEX2S` (0x08e). Inferred: completes a vertex from two
+     * shorts, defaults the z and w components, and enters the vertex into
+     * the primitive. Established: map word 0xbc274087 is a geometry entry
+     * for command 78 with count field 2 and short data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex2s`, read in full,
+     * places x in bits 16-31 of the token word under 0x8e, and y in bits
+     * 16-31 of the next word. */
     KONA_HP_VERTEX2S                     = 0x08e,
 
     /* Read at icu_map.tsv 0x08f; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex3d. */
 
-    /* `HP_VERTEX3D` (0x08f). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 3 components, double, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 6: 3
-     * components (x, y, z) as double values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xfa674187: command
-     * 206, geometry form, count field 6 (bits 6-8), doubles. Established:
-     * libGLcore.so `__glkonim_Vertex3d` stores 6 words after the token. Sent
-     * by libGLcore.so __glkonim_Vertex3d and Vertex3dv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_VERTEX3D` (0x08f). Inferred: completes a vertex from three
+     * doubles, defaults w, and enters the vertex into the primitive.
+     * Established: map word 0xfa674187 is a geometry entry for command
+     * 206 with count field 6 and double data (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Vertex3d`, read in full, sends the token
+     * 0x8f and then the doubles in f12, f13 and f14, six words. */
     KONA_HP_VERTEX3D                     = 0x08f,
 
     /* Read at icu_map.tsv 0x090; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex3f. */
 
-    /* `HP_VERTEX3F` (0x090). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 3 components, float, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 3: 3
-     * components (x, y, z) as float values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xda6740c7: command
-     * 206, geometry form, count field 3 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex3f` stores 3 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex3f and Vertex3fv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX3F` (0x090). Inferred: completes a vertex from three
+     * floats, defaults w, and enters the vertex into the primitive.
+     * Established: map word 0xda6740c7 is a geometry entry for command
+     * 206 with count field 3 and single-float data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex3f`, read in full,
+     * writes the token 0x90 and the floats in f12, f13 and f14 as three
+     * words. */
     KONA_HP_VERTEX3F                     = 0x090,
 
     /* Read at icu_map.tsv 0x091; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex3i. */
 
-    /* `HP_VERTEX3I` (0x091). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 3 components, integer, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 3: 3
-     * components (x, y, z) as integer values. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xda2740c7: command
-     * 78, geometry form, count field 3 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex3i` stores 3 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex3i and Vertex3iv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX3I` (0x091). Inferred: completes a vertex from three
+     * 32-bit integers, defaults w, and enters the vertex into the
+     * primitive. Established: map word 0xda2740c7 is a geometry entry for
+     * command 78 with count field 3 and plain-integer data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex3i`, read in full, emits
+     * the token 0x91 and then the integers in a0, a1 and a2. */
     KONA_HP_VERTEX3I                     = 0x091,
 
     /* Read at icu_map.tsv 0x092; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex3s. */
 
-    /* `HP_VERTEX3S` (0x092). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 3 components, short, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 1: 3
-     * components (x, y, z) as short values; the first component packed into
-     * the upper 16 bits of the token word, the rest in the following word.
-     * Established: routed by the host interface with no ARM code, arm1.u
-     * token-map entry 0xaa2740c7: command 78, geometry form, count field 3
-     * (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex3s and
-     * Vertex3sv (kon_cfuncs.s). */
+    /* `HP_VERTEX3S` (0x092). Inferred: completes a vertex from three
+     * shorts, defaults w, and enters the vertex into the primitive.
+     * Established: map word 0xaa2740c7 is a geometry entry for command 78
+     * with count field 3 and short data (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Vertex3s`, read in full, places x in bits
+     * 16-31 of the token word under 0x92, and the second word holds y in
+     * bits 16-31 with z masked to bits 0-15. */
     KONA_HP_VERTEX3S                     = 0x092,
 
     /* Read at icu_map.tsv 0x093; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex4d. */
 
-    /* `HP_VERTEX4D` (0x093). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 4 components, double, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 8: 4
-     * components (x, y, z, w) as double values. Established: routed by the
-     * host interface with no ARM code, arm1.u token-map entry 0xf8674007:
-     * command 206, geometry form, count field 0 (bits 6-8), doubles.
-     * Established: libGLcore.so `__glkonim_Vertex4d` stores 8 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex4d and Vertex4dv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX4D` (0x093). Inferred: completes a vertex from four
+     * doubles and enters it into the primitive, with no component
+     * defaulted. Established: map word 0xf8674007 is a geometry entry for
+     * command 206 with count field 0 and double data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex4d`, read in full, sends
+     * the token 0x93 and then the doubles in f12 to f15, eight words in
+     * all. */
     KONA_HP_VERTEX4D                     = 0x093,
 
     /* Read at icu_map.tsv 0x094; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex4f. */
 
-    /* `HP_VERTEX4F` (0x094). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 206, 4 components, float, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 4: 4
-     * components (x, y, z, w) as float values. Established: routed by the
-     * host interface with no ARM code, arm1.u token-map entry 0xd8674107:
-     * command 206, geometry form, count field 4 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex4f` stores 4 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex4f and Vertex4fv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX4F` (0x094). Inferred: completes a vertex from four
+     * floats and enters it into the primitive, with no component
+     * defaulted. Established: map word 0xd8674107 is a geometry entry for
+     * command 206 with count field 4 and single-float data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex4f`, read in full,
+     * writes the token 0x94 and then the floats in f12 to f15 as four
+     * words. */
     KONA_HP_VERTEX4F                     = 0x094,
 
     /* Read at icu_map.tsv 0x095; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex4i. */
 
-    /* `HP_VERTEX4I` (0x095). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 4 components, integer, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 4: 4
-     * components (x, y, z, w) as integer values. Established: routed by the
-     * host interface with no ARM code, arm1.u token-map entry 0xd8274107:
-     * command 78, geometry form, count field 4 (bits 6-8), single floats.
-     * Established: libGLcore.so `__glkonim_Vertex4i` stores 4 words after the
-     * token. Sent by libGLcore.so __glkonim_Vertex4i and Vertex4iv
-     * (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_VERTEX4I` (0x095). Inferred: completes a vertex from four
+     * 32-bit integers and enters it into the primitive, with no component
+     * defaulted. Established: map word 0xd8274107 is a geometry entry for
+     * command 78 with count field 4 and plain-integer data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex4i`, read in full, emits
+     * the token 0x95 and then the integers in a0 to a3. */
     KONA_HP_VERTEX4I                     = 0x095,
 
     /* Read at icu_map.tsv 0x096; ged.md How an entry is chosen (k=14, vertex
      * flag); ged_listing.txt trigger.s:7; ged_relocs.tsv; kon_cfuncs.s
      * __glkonim_Vertex4s. */
 
-    /* `HP_VERTEX4S` (0x096). Inferred: Submits a vertex. Routed vertex token
-     * (kind 3, command 78, 4 components, short, vertex flag set): outside
-     * begin/end the idle code (trigger.s:7) leaves mges_NullCommand pending;
-     * inside, it runs the active class's vertex code at the state in r49,
-     * which queues the class handler (mgesi_*) for the engines. Payload 2: 4
-     * components (x, y, z, w) as short values; the first component packed
-     * into the upper 16 bits of the token word, the rest in the following
-     * words. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xb8274107: command 78, geometry form, count
-     * field 4 (bits 6-8), type 1. Sent by libGLcore.so __glkonim_Vertex4s and
-     * Vertex4sv (kon_cfuncs.s). */
+    /* `HP_VERTEX4S` (0x096). Inferred: completes a vertex from four
+     * shorts and enters it into the primitive, with no component
+     * defaulted. Established: map word 0xb8274107 is a geometry entry for
+     * command 78 with count field 4 and short data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Vertex4s`, read in full,
+     * places x in bits 16-31 of the token word under 0x96, y in bits
+     * 16-31 of the second word with z masked to its low half, and w in
+     * bits 16-31 of the third. */
     KONA_HP_VERTEX4S                     = 0x096,
 
     /* Read at icu_map.tsv 0x097; ged_listing.txt material.s:6-8, 11-18 (r71 =
