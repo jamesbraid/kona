@@ -645,3 +645,18 @@ The 6.5.22 copies of `usr/diags/IR/ucode/arm1_nic.u` and `usr/diags/IR/ucode/ge_
 | `usr/diags/IR/data/160x100_5000.vfo` | `8b776633a7cf9df60ca8fdbdddea4de28b09fbaae1d9c184981245c651820edc` | `8b776633a7cf9df60ca8fdbdddea4de28b09fbaae1d9c184981245c651820edc` |
 | `usr/diags/IR/data/CCIR601_525_DGO.vfo` | `bba183206ff105679434ab9df34cb1080b0d9adf3979a3d82a08b622e026cab4` | `bba183206ff105679434ab9df34cb1080b0d9adf3979a3d82a08b622e026cab4` |
 | `usr/diags/IR/data/tvo.vfo` | `4759678be2e5a7891b78a214b21e9ea4ad578b333acad4af9784e384e7e95c8c` | `4759678be2e5a7891b78a214b21e9ea4ad578b333acad4af9784e384e7e95c8c` |
+
+### Changed in IRIX 6.5.22 (reading queue)
+
+These eight images differ between the two releases. Their 6.5.22 copies are queued for reading. This table only records the hashes and sizes.
+
+| Install path | IRIX 6.5.22 bytes | IRIX 6.5.22 sha256 | IRIX 6.5.30m bytes | IRIX 6.5.30m sha256 |
+|---|---|---|---|---|
+| `usr/gfx/ucode/KONA/arm1.u` | 465440 | `21b1518809c362b726acb2f9ae2a087eecfcaa983debb366377e9462d623245f` | 465452 | `8431a8e3184c858f9426355dadf3368950e7858d425fee0b4c9d3450ab54e857` |
+| `usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60.cmb` | 2312 | `72ef92b377041c80184e9a80b48778a3cd6d076aa8a88f6b57277b9c5bdac9b1` | 2312 | `65f72a1fd94f723a8d4ded81e494a1bd05458e999ad1ca6ef0ed5bfaa1912927` |
+| `usr/gfx/ucode/KONA/dg4/cmb/1600x1024_60p.cmb` | 2316 | `c3e84076b6976f4708969d0ef6822d9d5e652a0669c6fc4086c585d06621df95` | 2316 | `945bf01bf95db751faacd5f5e69686f73559bb14a9c4d264e6e720aee37244f5` |
+| `usr/gfx/ucode/KONA/dg4/vfo/README` | 86997 | `239318f2596f6ae20e39dd624e00d58b6198e7b6b791af3c1cca678d9ff4bdd4` | 86997 | `bf7cb03493b3b264f94e13ffa1bac7bff1f3e3e58bde009fec2634a6942c46fc` |
+| `usr/gfx/ucode/KONA/ge.u` | 2526129 | `31f413f502a61eb2490946da0b513e5316e8a63f213f2b9f4249fb911049e9a5` | 2526129 | `89066cc1dc88d87fbc5a5d2a12eca36e8901107c83b29fe76f02796b8261cbce` |
+| `usr/gfx/ucode/KONA/ge11.u` | 1275741 | `fb10745cb8969a50a625e7886f57b0c93fa0f318e31acd6edc9adcf617d77ed4` | 1275741 | `95724af2dc9dc5be2917f1b80927b7a43da2b1d0121b879bc0361303c6bd0e7c` |
+| `usr/gfx/ucode/KONA/ged1b.u` | 14411 | `77baab4ffb821e539af4d6d5765c86377ea7e92b29862c333890d5bcb5597cce` | 14411 | `41c4b5724774fe427399d8e44fd342ee2c6c521a88c21c4e3b56d59398fa97bb` |
+| `usr/gfx/ucode/KONA/tport.bin` | 127889 | `24928bf7b4197ed749b142fa27bba35b31c6574a96227af6ee31dbefccbdf52d` | 127889 | `ba8efd1cc0f830680e68948908d3da0d637fb43b5765c1eb4e3bc6f03097584a` |
