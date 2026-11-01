@@ -1617,10 +1617,18 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   `ugesi_EvalStrip1D` steps through.
 - `mgeb_EvalGrid1D` (`ueval1D.s` line 292, at 0xd1): **inferred**, slot name of the 1D grid handler on the same word,
   storing the same count and end points.
-- `ugesi_EvalStrip1D` (`ueval1D.s` lines 324-438, at 0xe1): **inferred**, `glEvalMesh1`: from the grid words it computes
-  each u as start plus i times the step (float adds and multiplies, the index converted with integer-to-float), maps it
-  into the map's domain by subtracting the low end and multiplying by the reciprocal width, and runs the evaluation
-  modules for each point, the results being the vertices of a line strip.
+- `ugesi_EvalStrip1D` (`ueval1D.s` lines 324-438, at 0xe1): **inferred**, `glEvalMesh1`, two grid points per pass. Its
+  inputs are the command operands (operand 1 converted with integer-to-float at 0xef) and the grid block at engine
+  address 0x8000 (address register 5, loaded at 0xf0), whose word 1 is the grid start and word 3 the step. It keeps the
+  two point indices as floats in registers 0x13 and 0x14, steps them with float adds (0xf6, 0xf8), multiplies each by
+  the step (0xff, 0x100), compares each with word 0 of the block by a flag-setting subtract (0x101, 0x102) and adds the
+  start (0x103, 0x104), so u = start + i x step. Each u is then mapped into every 1D map's domain: for the map blocks
+  from 0x8010 in steps of 0x70 (address registers 6, 8, 0xa and 0xc, loaded at 0x114, 0x108, 0x116), it subtracts the
+  low end, word 1, and the high end, word 2 with flags (0x11c-0x11f and the same pattern at 0x124, 0x12c, 0x134), and
+  multiplies the first difference by the reciprocal width in word 3. The mapped results go to words 0x12 and 0x15 of
+  each block, one per point (0x120, 0x121, 0x128, 0x129, 0x130, 0x131), for the evaluation modules that produce the
+  line-strip vertices. Before that it calls `uEvalSwapState2D` or `uEvalLoadState1D` (0xf4, 0xf5) and
+  `uEvalChangeBasis1D` (0xfe) when the control words at 0x1ec-0x1f1 ask for them.
 - `mgesi_EvalStrip1D` (`ueval1D.s` line 324, at 0xe1): **inferred**, slot name of the 1D mesh handler on its first word,
   which computes the same grid of u values.
 - `lstrip1dreturn` (`ueval1D.s` lines 443-457, at 0x157): **inferred**, the return point after each evaluated point:
@@ -1684,8 +1692,17 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   0x427 and 0x428 replace it with exactly 1.0 when the flags of the high-end subtract select them. It ends the command
   at 0x436, clearing words 0xc and 0xd and setting word 0xe of the input block to 1.0 under a predicate in the delay
   words (0x43a-0x43c).
-- `uEvalCoord2D` (`uevalcoord.s` lines 264-332, at 0x43f): **inferred**, the 2D form: subtracts and multiplies map u and v
-  into each 2D map's domain, swaps state with `uEvalSwapState1D` when the 1D set is resident, and stores the mapped pair.
+- `uEvalCoord2D` (`uevalcoord.s` lines 264-332, at 0x43f): **inferred**, maps one (u, v) pair into the domain of each
+  enabled 2D map. Its inputs are u and v, words 0 and 1 of the block at address register 4 (moved into registers 0x13
+  and 0x14 at 0x451 and 0x452); it writes 1.0 into word 3 of that block (0x457). Control words 0x1ec, 0x1ed, 0x1ee and
+  0x1f2 decide whether the 2D state must be swapped in or loaded first (calls to `uEvalSwapState1D` at 0x44f and
+  `uEvalLoadState2D` at 0x450) and whether the basis changed (`uEvalChangeBasis2D`, 0x459). For each map block (address
+  register 5, then 6) it subtracts the low ends, word 1 from u and word 4 from v (0x45a, 0x45b; 0x469, 0x46a), subtracts
+  the high ends, words 2 and 5, with the flags enabled (0x45c, 0x45d; 0x46b, 0x46c), and multiplies the first
+  differences by the stored reciprocal widths in words 3 and 6 (0x45e, 0x45f; 0x46d, 0x46e). The results, (u - u1) / (u2
+  - u1) and (v - v1) / (v2 - v1), go to words 0x12 and 0x11 of the block, and predicated stores replace each with
+  exactly 1.0 when the matching high-end subtract selects them (0x460, 0x461; 0x46f, 0x470). It ends the command at
+  0x47b and clears words 0xc and 0xd and sets word 0xe of the input block to 1.0 under a predicate (0x478-0x47a).
 - `uEvalChangeBasis1D` (`uevalbasis.s` lines 102-135, at 0x484): **inferred**, converts every changed 1D map from
   Bernstein to power basis: it adds the block offsets, stores the order-indexed routine address (0x4a6, 0x4b6, 0x4c6,
   0x4d6) and calls the order-specific `uEvalChangeBasisN` through the indirect transfer, one per map type.
@@ -1784,9 +1801,15 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
   (0x6e5-0x6e6, 0x6f1-0x6f2). It multiplies each component by the refined value and stores the unit normal, its result,
   at offsets 0-2 through address registers 6 and 7 (0x6f9-0x6fe), the last three in the delay words of the
   end-of-command transfer at 0x6f7.
-- `umo_EvalComputeNormals4D` (`eval.s` lines 748-857, at 0x700): **inferred**, the normal for homogeneous (four-component)
-  maps: the derivative of x/w by the quotient rule, with twelve multiply-subtract pairs, before the cross product and
-  normalisation.
+- `umo_EvalComputeNormals4D` (`eval.s` lines 748-857, at 0x700): **inferred**, the `GL_AUTO_NORMAL` normal of a
+  homogeneous (four-component) map, two points per pass. Its inputs are the evaluated point P (x, y, z, w at register
+  0x14 plus register 0xa, or 0xb for the second point), the u derivative at data words 0x8004-0x8007 plus register 0x14
+  and the v derivative at register 0x14 plus register 6 (or 7). Twelve multiply-subtract pairs compute du_xyz w - P_xyz
+  du_w and dv_xyz w - P_xyz dv_w, the numerators of the quotient-rule derivatives of P/w; the common factor 1/w^2 is
+  dropped because the vector is normalised afterwards. It then computes the cross product of the two vectors, seeds the
+  reciprocal square root of its squared length (0x74e, 0x74f, reseeded at 0x756 and 0x757), refines it with two Newton
+  steps of code 0x57 (0x754-0x755, 0x760-0x761), and stores the scaled components, the unit normal, at offsets 0-2
+  through address registers 6 and 7 (0x768-0x76d), in the delay words of the end-of-command transfer at 0x766.
 - `umo_EvalPoly1V` (`eval1.s` lines 84-103, at 0x76f): **inferred**, the one-coefficient (constant) 2D map: no arithmetic;
   the set-up points at the coefficient.
 - `lPOLY1VLOOP` (`eval1.s` lines 104-114, at 0x783): **inferred**, copies the constant input coefficients to the output
