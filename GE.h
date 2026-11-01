@@ -1881,45 +1881,35 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x072; ged.md geometry control fields (offset 12);
      * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexd. */
 
-    /* `HP_INDEXD` (0x072). Inferred: Sets the current colour index. Routed
-     * geometry attribute (kind 3, command 145, 2 data words, double). The
-     * idle program entry is the null loop (dist.s:13); the hardware is
-     * inferred to convert and store it at vertex-record word 12. Payload 2:
-     * colour index as one double. Established: routed by the host interface
-     * with no ARM code, arm1.u token-map entry 0xf848d887: command 145,
-     * geometry form, count field 2 (bits 6-8), doubles. Established:
-     * libGLcore.so `__glkonim_Indexd` stores 2 words after the token. Sent by
-     * libGLcore.so __glkonim_Indexd, __glkonim_Indexdv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_INDEXD` (0x072). Inferred: sets the current colour index from
+     * one double, converted and stored at vertex-record word 12.
+     * Established: map word 0xf848d887 is a geometry entry for command
+     * 145 with count field 2 and double data (icu_map.tsv). Established:
+     * libGLcore.so `__glkonim_Indexd`, read in full, writes the token
+     * 0x72 and then the double in f12 as one doubleword, two words in
+     * all. */
     KONA_HP_INDEXD                       = 0x072,
 
     /* Read at icu_map.tsv 0x073; ged.md geometry control fields (offset 12);
      * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexf. */
 
-    /* `HP_INDEXF` (0x073). Inferred: Sets the current colour index. Routed
-     * geometry attribute (kind 3, command 145, 1 data words, float). The idle
-     * program entry is the null loop (dist.s:13); the hardware is inferred to
-     * convert and store it at vertex-record word 12. Payload 1: colour index
-     * as one float. Established: routed by the host interface with no ARM
-     * code, arm1.u token-map entry 0xd848d847: command 145, geometry form,
-     * count field 1 (bits 6-8), single floats. Established: libGLcore.so
-     * `__glkonim_Indexf` stores 1 word after the token. Sent by libGLcore.so
-     * __glkonim_Indexf, __glkonim_Indexfv (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_INDEXF` (0x073). Inferred: sets the current colour index from
+     * one float, converted and stored at vertex-record word 12.
+     * Established: map word 0xd848d847 is a geometry entry for command
+     * 145 with count field 1 and single-float data (icu_map.tsv).
+     * Established: libGLcore.so `__glkonim_Indexf`, read in full, writes
+     * the token 0x73 and then the float in f12 as a single word. */
     KONA_HP_INDEXF                       = 0x073,
 
     /* Read at icu_map.tsv 0x074; ged.md geometry control fields (offset 12);
      * ged_banks.tsv k=17; kon_cfuncs.s __glkonim_Indexi. */
 
-    /* `HP_INDEXI` (0x074). Inferred: Sets the current colour index. Routed
-     * geometry attribute (kind 3, command 17, 1 data words, integer). The
-     * idle program entry is the null loop (dist.s:13); the hardware is
-     * inferred to convert and store it at vertex-record word 12. Payload 1:
-     * colour index as one integer. Established: routed by the host interface
-     * with no ARM code, arm1.u token-map entry 0xd808d847: command 17,
-     * geometry form, count field 1 (bits 6-8), single floats. Established:
-     * libGLcore.so `__glkonim_Indexi` stores 1 word after the token. Sent by
-     * libGLcore.so __glkonim_Indexi, __glkonim_Indexiv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_INDEXI` (0x074). Inferred: sets the current colour index from
+     * one 32-bit integer, converted and stored at vertex-record word 12.
+     * Established: map word 0xd808d847 is a geometry entry for command 17
+     * with count field 1 (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_Indexi`, read in full, writes the token 0x74 and then
+     * the integer argument in a0 as a single word. */
     KONA_HP_INDEXI                       = 0x074,
 
     /* Read at icu_map.tsv 0x075 (0xa808d847); ged.md geometry control fields
@@ -1964,32 +1954,25 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x077; ged.md geometry control fields (offset 13);
      * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3d. */
 
-    /* `HP_NORMAL3D` (0x077). Inferred: Sets the current normal. Routed
-     * geometry attribute (kind 3, command 143, 3 components, double). The
-     * idle program entry is the null loop (dist.s:13); the hardware is
-     * inferred to convert, normalise integer data and store it at
-     * vertex-record word 13. Payload 6: x, y, z of the normal as double
-     * values. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xf847db87: command 143, geometry form, count
-     * field 6 (bits 6-8), doubles. Established: libGLcore.so
-     * `__glkonim_Normal3d` stores 6 words after the token. Sent by
-     * libGLcore.so __glkonim_Normal3d and Normal3dv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_NORMAL3D` (0x077). Inferred: sets the current normal from three
+     * doubles, the distributor normalising the vector before it lands in
+     * vertex-record word 13. Established: map word 0xf847db87 is a
+     * geometry entry for command 143 with count field 6 and double data
+     * (icu_map.tsv). Established: libGLcore.so `__glkonim_Normal3d`, read
+     * in full, sends the token 0x77 and then the doubles in f12, f13 and
+     * f14, six words in all. */
     KONA_HP_NORMAL3D                     = 0x077,
 
     /* Read at icu_map.tsv 0x078; ged.md geometry control fields (offset 13);
      * ged_banks.tsv k=15; kon_cfuncs.s __glkonim_Normal3f. */
 
-    /* `HP_NORMAL3F` (0x078). Inferred: Sets the current normal. Routed
-     * geometry attribute (kind 3, command 143, 3 components, float). The idle
-     * program entry is the null loop (dist.s:13); the hardware is inferred to
-     * convert, normalise integer data and store it at vertex-record word 13.
-     * Payload 3: x, y, z of the normal as float values. Established: routed
-     * by the host interface with no ARM code, arm1.u token-map entry
-     * 0xd847dac7: command 143, geometry form, count field 3 (bits 6-8),
-     * single floats. Established: libGLcore.so `__glkonim_Normal3f` stores 3
-     * words after the token. Sent by libGLcore.so __glkonim_Normal3f and
-     * Normal3fv (kon_cfuncs.s, kon_sfuncs.s). */
+    /* `HP_NORMAL3F` (0x078). Inferred: sets the current normal from three
+     * floats, the distributor normalising the vector before it lands in
+     * vertex-record word 13. Established: map word 0xd847dac7 is a
+     * geometry entry for command 143 with count field 3 and single-float
+     * data (icu_map.tsv). Established: libGLcore.so `__glkonim_Normal3f`,
+     * read in full, writes the token 0x78 and then the floats in f12, f13
+     * and f14 as three words. */
     KONA_HP_NORMAL3F                     = 0x078,
 
     /* Read at icu_map.tsv 0x079; ged.md geometry control fields (offset 13);
@@ -2246,32 +2229,27 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x089; ged.md geometry control fields (offset 16);
      * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4i. */
 
-    /* `HP_TEXCOORD4I` (0x089). Inferred: Sets the current texture coordinate.
-     * Routed geometry attribute (kind 3, command 18, 4 components, integer).
-     * The idle program entry is the null loop (dist.s:13); the hardware is
-     * inferred to convert, fill missing components and store it at
-     * vertex-record word 16. Payload 4: 4 components (s, t, r, q) as integer
-     * values. Established: routed by the host interface with no ARM code,
-     * arm1.u token-map entry 0xd8096107: command 18, geometry form, count
-     * field 4 (bits 6-8), single floats. Established: libGLcore.so
-     * `__glkonim_TexCoord4i` stores 4 words after the token. Sent by
-     * libGLcore.so __glkonim_TexCoord4i and TexCoord4iv (kon_cfuncs.s,
-     * kon_sfuncs.s). */
+    /* `HP_TEXCOORD4I` (0x089). Inferred: sets the current texture
+     * coordinate from four signed integers, taken without scaling and
+     * stored at vertex-record word 16. Established: map word 0xd8096107
+     * is a geometry entry for command 18 with count field 4 and
+     * plain-integer data (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_TexCoord4i`, read in full, stores the token 0x89 and
+     * then the four integer arguments in order. */
     KONA_HP_TEXCOORD4I                   = 0x089,
 
     /* Read at icu_map.tsv 0x08a; ged.md geometry control fields (offset 16);
      * ged_banks.tsv k=18; kon_cfuncs.s __glkonim_TexCoord4s. */
 
-    /* `HP_TEXCOORD4S` (0x08a). Inferred: Sets the current texture coordinate.
-     * Routed geometry attribute (kind 3, command 18, 4 components, short).
-     * The idle program entry is the null loop (dist.s:13); the hardware is
-     * inferred to convert, fill missing components and store it at
-     * vertex-record word 16. Payload 2: 4 components (s, t, r, q) as short
-     * values; the first component packed into the upper 16 bits of the token
-     * word, the rest in the following words. Established: routed by the host
-     * interface with no ARM code, arm1.u token-map entry 0xb8096107: command
-     * 18, geometry form, count field 4 (bits 6-8), type 1. Sent by
-     * libGLcore.so __glkonim_TexCoord4s and TexCoord4sv (kon_cfuncs.s). */
+    /* `HP_TEXCOORD4S` (0x08a). Inferred: sets the current texture
+     * coordinate from four signed shorts, taken without scaling and
+     * stored at vertex-record word 16. Established: map word 0xb8096107
+     * is a geometry entry for command 18 with count field 4 and short
+     * data (icu_map.tsv). Established: libGLcore.so
+     * `__glkonim_TexCoord4s`, read in full, packs the first short into
+     * bits 16-31 of the token word under 0x8a, the next two into the
+     * second word (second short high, third short masked to the low
+     * half), and the fourth short into bits 16-31 of the third word. */
     KONA_HP_TEXCOORD4S                   = 0x08a,
 
     /* Read at icu_map.tsv 0x08b; ged.md How an entry is chosen (k=14, vertex
@@ -2808,19 +2786,18 @@ enum kona_hp_token {
     /* Read at arm1.u arm_rasterpos2s 0x0c035e4c; set_ged_xfer_mask
      * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
 
-    /* `HP_RASTERPOS2S` (0x0ab). Inferred: Pops 2 words, sends a filler word
-     * 0x12121212 in pass form, sets the distributor transfer mask to the
-     * raster-position mask (r8+0xc94), injects the coordinates as hardware
-     * command 83 (geometry form, short), brackets it with writes through
-     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
-     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
-     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 2:
-     * glRasterPos2s coordinates: 2 shorts as full words (shorts arrive
-     * sign-extended). Established: the token map runs `arm_rasterpos2s` at
-     * arm1.u 0x0c035e4c. Established: libGLcore.so `__glkonim_RasterPos2s`
-     * stores 2 words after the token. Sent by libGLcore.so
-     * __glkonim_RasterPos2s (kon_cfuncs.s), 2sv form in kon_sfuncs.s, list
-     * compiler __glkonlc_RasterPos2s(v) (kon_cdlfuncs.s). */
+    /* `HP_RASTERPOS2S` (0x0ab). Inferred: the ARM handler pops two words
+     * off its input, puts the filler 0x12121212 into pass form, and moves
+     * the distributor transfer mask to the raster-position mask
+     * (r8+0xc94) before it injects the coordinates as hardware command 83
+     * in short geometry form. Established: the token-map entry 0xc035e4c0
+     * runs the ARM handler `arm_rasterpos2s` at arm1.u 0x0c035e4c. The
+     * handler brackets the injection with writes through descriptor
+     * 0x4a000020 and restores the normal mask (r8+0xc90); for shorts it
+     * writes 1 through descriptor 0x06400020 first and 0 after the
+     * injection when bit 6 of the byte at r8+0xcf0 is set. Established:
+     * libGLcore.so `__glkonim_RasterPos2s`, read in full, writes the
+     * token 0xab and then the arguments a0 and a1 as two words. */
     KONA_HP_RASTERPOS2S                  = 0x0ab,
 
     /* Read at arm1.u arm_rasterpos3d 0x0c035ee0; set_ged_xfer_mask
@@ -2872,19 +2849,18 @@ enum kona_hp_token {
     /* Read at arm1.u arm_rasterpos3s 0x0c036060; set_ged_xfer_mask
      * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
 
-    /* `HP_RASTERPOS3S` (0x0af). Inferred: Pops 3 words, sends a filler word
-     * 0x12121212 in pass form, sets the distributor transfer mask to the
-     * raster-position mask (r8+0xc94), injects the coordinates as hardware
-     * command 83 (geometry form, short), brackets it with writes through
-     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
-     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
-     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 3:
-     * glRasterPos3s coordinates: 3 shorts as full words (shorts arrive
-     * sign-extended). Established: the token map runs `arm_rasterpos3s` at
-     * arm1.u 0x0c036060. Established: libGLcore.so `__glkonim_RasterPos3s`
-     * stores 3 words after the token. Sent by libGLcore.so
-     * __glkonim_RasterPos3s (kon_cfuncs.s), 3sv form in kon_sfuncs.s, list
-     * compiler __glkonlc_RasterPos3s(v) (kon_cdlfuncs.s). */
+    /* `HP_RASTERPOS3S` (0x0af). Inferred: the ARM handler pops three
+     * words off its input, puts the filler 0x12121212 into pass form, and
+     * moves the distributor transfer mask to the raster-position mask
+     * (r8+0xc94) before it injects the coordinates as hardware command 83
+     * in short geometry form. Established: the token-map entry 0xc0360600
+     * runs the ARM handler `arm_rasterpos3s` at arm1.u 0x0c036060. The
+     * handler brackets the injection with writes through descriptor
+     * 0x4a000020 and restores the normal mask (r8+0xc90); for shorts it
+     * writes 1 through descriptor 0x06400020 first and 0 after the
+     * injection when bit 6 of the byte at r8+0xcf0 is set. Established:
+     * libGLcore.so `__glkonim_RasterPos3s`, read in full, writes the
+     * token 0xaf and then the arguments a0, a1 and a2 as three words. */
     KONA_HP_RASTERPOS3S                  = 0x0af,
 
     /* Read at arm1.u arm_rasterpos4d 0x0c0360fc; set_ged_xfer_mask
@@ -2936,19 +2912,18 @@ enum kona_hp_token {
     /* Read at arm1.u arm_rasterpos4s 0x0c0362ac; set_ged_xfer_mask
      * 0x0c012ba8; XferMaskRpos 0x0c01315c (arm1_functions.md). */
 
-    /* `HP_RASTERPOS4S` (0x0b3). Inferred: Pops 4 words, sends a filler word
-     * 0x12121212 in pass form, sets the distributor transfer mask to the
-     * raster-position mask (r8+0xc94), injects the coordinates as hardware
-     * command 83 (geometry form, short), brackets it with writes through
-     * descriptor 0x4a000020, then restores the normal mask (r8+0xc90). For
-     * shorts it also writes 1 through descriptor 0x06400020 first, and 0
-     * afterwards when bit 6 of the byte at r8+0xcf0 is set. Payload 4:
-     * glRasterPos4s coordinates: 4 shorts as full words (shorts arrive
-     * sign-extended). Established: the token map runs `arm_rasterpos4s` at
-     * arm1.u 0x0c0362ac. Established: libGLcore.so `__glkonim_RasterPos4s`
-     * stores 4 words after the token. Sent by libGLcore.so
-     * __glkonim_RasterPos4s (kon_cfuncs.s), 4sv form in kon_sfuncs.s, list
-     * compiler __glkonlc_RasterPos4s(v) (kon_cdlfuncs.s). */
+    /* `HP_RASTERPOS4S` (0x0b3). Inferred: the ARM handler pops four words
+     * off its input, puts the filler 0x12121212 into pass form, and moves
+     * the distributor transfer mask to the raster-position mask
+     * (r8+0xc94) before it injects the coordinates as hardware command 83
+     * in short geometry form. Established: the token-map entry 0xc0362ac0
+     * runs the ARM handler `arm_rasterpos4s` at arm1.u 0x0c0362ac. The
+     * handler brackets the injection with writes through descriptor
+     * 0x4a000020 and restores the normal mask (r8+0xc90); for shorts it
+     * writes 1 through descriptor 0x06400020 first and 0 after the
+     * injection when bit 6 of the byte at r8+0xcf0 is set. Established:
+     * libGLcore.so `__glkonim_RasterPos4s`, read in full, writes the
+     * token 0xb3 and then the arguments a0 to a3 as four words. */
     KONA_HP_RASTERPOS4S                  = 0x0b3,
 
     /* Engine handlers whose slots the code of `arm_clipplane` loads, in
