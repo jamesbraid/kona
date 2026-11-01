@@ -639,3 +639,9 @@ The 6.5.22 copies of `usr/diags/IR/ucode/arm1_nic.u` and `usr/diags/IR/ucode/ge_
 | `usr/gfx/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo` | `72a05060016445dd87de66b00fb563428c71464a2e324cbde2ab597e866b4aa5` | `72a05060016445dd87de66b00fb563428c71464a2e324cbde2ab597e866b4aa5` |
 | `usr/gfx/ucode/vfc/rules/dg4.def` | `aac372e63b5f7a2ada7a2b24389cafaf141684baacc0ab7b70256509dc0b7d5d` | `aac372e63b5f7a2ada7a2b24389cafaf141684baacc0ab7b70256509dc0b7d5d` |
 | `usr/gfx/ucode/vfc/rules/dg4_ddo_gvo.def` | `d73fb0145682bdbc99d080d770fa3707f8ce628ba873b0a944027412131e0516` | `d73fb0145682bdbc99d080d770fa3707f8ce628ba873b0a944027412131e0516` |
+| `usr/gfx/ucode/vfc/rules/dplex.def` | `dcd806610ebc3c4175b04df4e26c2609fba45ca6fb1191c21749146f7b7b1593` | `dcd806610ebc3c4175b04df4e26c2609fba45ca6fb1191c21749146f7b7b1593` |
+| `usr/gfx/ucode/vfc/rules/voc1.def` | `125832d2727b529f18742e4abbbf0f185729d6f870c3d201f0acfe80533cdb3f` | `125832d2727b529f18742e4abbbf0f185729d6f870c3d201f0acfe80533cdb3f` |
+| `usr/diags/IR/data/1280x1024_60.vfo` | `fbcaab1b00af730ff0a099e7ccf39b2c507e45bfef595c8c34c33cdf8e2e0403` | `fbcaab1b00af730ff0a099e7ccf39b2c507e45bfef595c8c34c33cdf8e2e0403` |
+| `usr/diags/IR/data/160x100_5000.vfo` | `8b776633a7cf9df60ca8fdbdddea4de28b09fbaae1d9c184981245c651820edc` | `8b776633a7cf9df60ca8fdbdddea4de28b09fbaae1d9c184981245c651820edc` |
+| `usr/diags/IR/data/CCIR601_525_DGO.vfo` | `bba183206ff105679434ab9df34cb1080b0d9adf3979a3d82a08b622e026cab4` | `bba183206ff105679434ab9df34cb1080b0d9adf3979a3d82a08b622e026cab4` |
+| `usr/diags/IR/data/tvo.vfo` | `4759678be2e5a7891b78a214b21e9ea4ad578b333acad4af9784e384e7e95c8c` | `4759678be2e5a7891b78a214b21e9ea4ad578b333acad4af9784e384e7e95c8c` |
