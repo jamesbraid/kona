@@ -60,6 +60,16 @@ Each token carries one attribute of the current vertex. Vertex data are not conv
 | `HP_VERTEX4F` | entry 0xd8674107 | 206 | 4 | 32-bit | 0 | 0 | 4 | float | `__glkonim_Vertex4f` | Four single floats supply all of x, y, z and w for a vertex that enters the open primitive without defaults. | inferred |
 | `HP_VERTEX4I` | entry 0xd8274107 | 78 | 4 | 32-bit | 0 | 0 | 4 | plain integer | `__glkonim_Vertex4i` | Four integers supply x, y, z and w, converted without scaling, and the vertex enters the open primitive undefaulted. | inferred |
 | `HP_VERTEX4S` | entry 0xb8274107 | 78 | 4 | short | 0 | 0 | 4 | plain integer | `__glkonim_Vertex4s` | Four signed shorts supply x, y, z and w for a vertex that enters the open primitive, and nothing is defaulted. | inferred |
+## Index and normal tokens
+
+| Token | Map word | Command | Count | Data | Record word | Sender | Effect | Grade |
+|---|---|---|---|---|---|---|---|---|
+| `HP_INDEXD` | entry 0xf848d887 | 145 | 2 | double | 12 | `__glkonim_Indexd` | Sets the current colour index from one double, two words after the token; the hardware converts it and stores it at vertex-record word 12. | inferred |
+| `HP_INDEXF` | entry 0xd848d847 | 145 | 1 | single float | 12 | `__glkonim_Indexf` | Sets the current colour index from one single float held in the word after the token; the hardware converts it and stores it at vertex-record word 12. | inferred |
+| `HP_INDEXI` | entry 0xd808d847 | 17 | 1 | integer | 12 | `__glkonim_Indexi` | An integer colour index occupies one word after the token and goes to vertex-record word 12 after conversion. | inferred |
+| `HP_NORMAL3D` | entry 0xf847db87 | 143 | 6 | double | 13 | `__glkonim_Normal3d` | Three doubles x, y and z take six words after the token; the hardware converts them and stores the normal at vertex-record word 13. | inferred |
+| `HP_NORMAL3F` | entry 0xd847dac7 | 143 | 3 | single float | 13 | `__glkonim_Normal3f` | Three single floats x, y and z occupy one word each after the token and are stored at vertex-record word 13 as the current normal. | inferred |
+
 ## Primitive begin tokens
 
 A begin token runs a short stub in the distributor (one per primitive class). The stub loads the class register r48, the handler register r62 and the first vertex state into r49; the distributor tables are described in [ucode/ged.md](../ucode/ged.md#how-an-entry-is-chosen). All ten tokens carry one zero payload word, because the primitive is chosen by the token number.
