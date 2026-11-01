@@ -88,6 +88,14 @@ RECT_FORMAT = {
 }
 
 
+# Paths the word lists above leave out. Begin stores 1 at absolute 4120 on its valid path and
+# End stores 0 there; the sender reads that word and branches on it.
+SENDER_NOTES = {
+    '__glkonim_Finish': 'when the word at absolute 4120 is 1, the sender calls __glSetError with 1282 and '
+                        'sends no command word; otherwise it calls __glkona_wait_rdata with a1 = 1 between the two words',
+}
+
+
 def target_name(names, addr):
     return names.get(addr, '')
 
@@ -210,6 +218,8 @@ def build_rows(binary, tokens):
         if path_dependent(fs, last_addr):
             row['grade'] = 'inferred'
             row['note'] = 'path-dependent: a branch or call comes before a command-port store'
+            if target_name(names, target) in SENDER_NOTES:
+                row['note'] += '; ' + SENDER_NOTES[target_name(names, target)]
             if target_name(names, target) in RECT_FORMAT:
                 row['note'] += ('; the second word is the vertex format (%d), not a command; '
                                 'the four vertex calls between it and the END send their own words'
