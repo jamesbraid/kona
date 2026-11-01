@@ -1,6 +1,6 @@
 binary	role	abi	elf_section	address	size	name	source	code_sha	rejected	scope	status	doc	section
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	11eaa1b2c622		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6ac	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e5a0	268	__start	dynsym	11eaa1b2c622		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6ac	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e6c0	180	_main	dynsym	e6dd324d7437		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e780	84	_fini	dynsym	3b2bab124135		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1001e7e0	128	__process_needed_destructions__Gv	dynsym	2a1a1c2f9a7b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -406,7 +406,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x1003bb20	1328	create__21GammaMapEditorCla
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c050	88	__ct__21SetmonMasterFormClassGPCc	dynsym	0cd13729af63		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003c0b0	116	doOptionSyncSourceInternal__19ServerInfoFormClassGP10_WidgetRecPv	dynsym	68b45a655e30		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca00	108	__dt__21SetmonMasterFormClassGv	dynsym	2182f436e004		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
-usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	32439f2a6712		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/bin/X11/xsetmon	shared-tool	n32		0x1003ca70	296	main	dynsym	32439f2a6712		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cba0	24	RegisterStatisticsFormClassInterface__19StatisticsFormClassSGv	dynsym	9e47a2ac7a00		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbc0	8	doArmScalarDrag__21GammaMapEditorClassUIGP10_WidgetRecP7_XEvent	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x1003cbd0	116	__ct__19SyncSelectorFrameUIGPCcP10_WidgetRec	dynsym	43b56cd8de74		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
@@ -499,7 +499,7 @@ usr/bin/X11/xsetmon	shared-tool	n32		0x10043040	180	populateSyncPortWithChannel_
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043100	80	__ct__23SetmonMasterFormClassUIGPCc	dynsym	16696d1e5423		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043150	36	fDistanceFunction__19GammaMapEditorClassGfN31	dynsym	a8551b7ac058		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
 usr/bin/X11/xsetmon	shared-tool	n32		0x10043180	68	doDownloadFormatButtonCallback__29FormatCombinationListsClassUISGP10_WidgetRecPvT2	dynsym	0dae8807293e		in	named-only	docs/setup-tools.md#xsetmon	`xsetmon`
-usr/bin/X11/xsetmon	shared-tool	n32		0x100431dc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/bin/X11/xsetmon	shared-tool	n32		0x100431dc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64		0x0		gfxtable_readerlock	dwarf+symtab			in	understood	docs/kernel-functions.md#generic-graphics-layer-gfxo	Generic graphics layer: `gfx.o`
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x44	68	gfxtable_readerunlock	dwarf+symtab	e9a8d85b7392		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
 usr/cpu/sysgen/IP27boot/gfx.o	shared-kernel	n64	.text	0x88	128	gfxtable_writerlock	dwarf+symtab	c4824acddc51		in	understood	docs/kernel.md#further-functions-of-gfxo-and-gfxstubsa	Further functions of gfx.o and gfxstubs.a
@@ -1360,8 +1360,8 @@ usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4670	1148	RRM_Dispatch	d
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4aec	208	irix5_to_RRM_ValidateClip	dwarf+symtab	5e5f7d961908		in	understood	docs/kernel-functions.md#rendering-resource-manager-rrmo	Rendering resource manager: `rrm.o`
 usr/cpu/sysgen/IP35boot/rrm.o	shared-kernel	n64	.text	0x4bbc	120	irix5_to_RRM_GetDisplayModes	dwarf+symtab	6d876a5b9bb8		in	understood	docs/kernel.md#further-functions-of-rrmo	Further functions of rrm.o
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10002680	268	__start	dynsym	d497b08c45b9		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000278c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100027b0	5968	main	dynsym	e5fcddfe0571		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10003f00	460	usage	dynsym	e28538f95d8f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100040d0	4644	perPipeMainProc	dynsym	a34198cc4633		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005300	228	getScreenFromDisplay	dynsym	5b3082f21c1f		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
@@ -1369,9 +1369,9 @@ usr/diags/IR/bin/hyper	board-diagnostic	n32		0x100053f0	104	waitForMapNotify	dyn
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005460	784	perPipeGfxInit	dynsym	623f9a6b3848		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10005770	3744	perPipeGfxDraw	dynsym	83f83edfaedd		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/hyper	board-diagnostic	n32		0x10006610	280	perPipeGfxScribble	dynsym	85863b09beb8		in	understood	docs/pipe-tool-functions.md#hyper-hyperpipe-test-program	`hyper`: hyperpipe test program
-usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/diags/IR/bin/hyper	board-diagnostic	n32		0x1000673c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015380	268	__start	dynsym	512f417857fb		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001548c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015498	88	output_revision_info	dynsym	45f06f834366		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100154f0	2304	jt_load_internal_bist	dynsym	b7b1330792af		in	named-only	docs/data-files.md#built-in-self-test-descriptions	Built-in self-test descriptions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10015df0	524	jt_dump_internal_bist	dynsym	bd8f6acd4541		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1507,7 +1507,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e3e4	176	post_fatal_error	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e494	128	maybe_print_meta_results	dynsym	d53a7d543255		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e514	1192	run_tests	dynsym	e7545ea30bc6		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003e9bc	436	output_command_line	dynsym	ef8678360c6e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	3518492947ec		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003eb70	2224	main	dynsym	3518492947ec		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10041b24	68	cmp_nic_sn	dynsym	19c331307f4f		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10042548	4684	TEST_nicprobe	dynsym	5e7e134de7d9		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10044798	152	kt_init_time	dynsym	3ba984def90e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -2539,9 +2539,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706a0	56	isetname	dynsym	06
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706d8	8	isetcolormap	dynsym	241543538aa1		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101706e0	564	iclose	dynsym	b68ebb2f9998		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10170914	152	iflush	dynsym	c5fcdd4dcf60		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101709bc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10001540	268	__start	dynsym	3c04e7ed614a		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000164c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000165c	964	main	dynsym	dfc728a880ff		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x1000228c	900	setup_ucode	dynsym	4bc61b9d003b		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10002610	188	debug_enable	dynsym	6c72dbc333c4		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
@@ -2554,16 +2554,16 @@ usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003430	84	erase_combo	dynsym	249aa
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003484	296	info_eeprom	dynsym	44eaf4e024e8		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x100035ac	628	read_eeprom	dynsym	7c08742cdef0		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
 usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003820	804	verify_eeprom	dynsym	e2bb100efeb2		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003eec	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	d3b9c712cbc2		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ffc	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/KONA/bin/ireeprom	board-tool	n32		0x10003eec	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ef0	268	__start	dynsym	d3b9c712cbc2		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10009ffc	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a008	88	V_inspect	dynsym	2a34ee0c73ea		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a060	444	V_list	dynsym	7de5feefd271		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a21c	152	V_mark	dynsym	2ffcf9c9129b		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a2b4	496	V_show	dynsym	15c3a8e90ea0		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a4a4	152	V_unmark	dynsym	4582f9e5f841		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a5c0	268	show_general_section	dynsym	66a521209dcc		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	c31c0da7628c		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000a6cc	2172	main	dynsym	c31c0da7628c		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000afdc	452	dfCreateDumpFile	dynsym	92823da1fee0		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b1a0	296	dfNewSection	dynsym	4dc4efcc3788		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000b2c8	228	dfWriteSection	dynsym	d9f4dcf7ab67		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
@@ -2980,9 +2980,9 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061950	124	xmalloc	dynsym	f1c97c77d8bd	
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100619d0	192	xrealloc	dynsym	8d62db836ca9		in	named-only	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10061ec0	752	tilde_expand	dynsym	04133f490c3a		in	named-only	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100621b0	1380	tilde_expand_word	dynsym	16503230d1de		in	named-only	docs/kpm.md#gnu-readline-and-history-compiled-in	GNU readline and history (compiled in)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1006272c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	f54c3ce6c601		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7ac	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1006272c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f6a0	268	__start	dynsym	f54c3ce6c601		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7ac	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005f7c0	640	XkbInitNames..FBF	dynsym	617a89de8b36		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005fa40	364	ProcXineramaDestroyWindow	dynsym	8ead7bd7c1db		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1005fbb0	1228	ProcXkbSetIndicatorMap	dynsym	4068bf43eb5a		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5301,7 +5301,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217b10	444	XkbRF_ClearVarDesc
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217cd0	376	AccessAllocColorCells	dynsym	b1c91cb221a4		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10217e60	552	SProcXineramaSGICapDispatch..DAE	dynsym	5ada37d3ddfe		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218090	468	SProcSGIDispatch..PBD	dynsym	be42464dc8d2		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	89ee22ffad44		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10218270	5600	main	dynsym	89ee22ffad44		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219850	484	DbeResetProc..HJC	dynsym	7cc69224a467		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219a40	332	ProcSGIQueryStereoMode..NLD	dynsym	19b481e1e0f3		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10219b90	332	ProcXkbUseExtension	dynsym	a326df8ddc15		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5916,7 +5916,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102897c0	976	LbxReplyCallback..
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289b90	400	sgiCapPolyText8..KCE	dynsym	a65999c4a550		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289d20	324	ddxFindFirstTypedBoard	dynsym	717805ee56c6		in	named-only	docs/kona-ddx.md#kona-layer	Kona layer
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10289e70	608	ProcXGrabDevice	dynsym	99e65cd50a39		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1028a0dc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1028a0dc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec31170	116	gl_g_pushattributes	dynsym+mdebug	1172095460b7		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec311e4	96	gl_n_pushattributes	dynsym+mdebug	9ad8207f2da2		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec31244	116	gl_g_popattributes	dynsym+mdebug	053cc7a61cb1		in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -7786,7 +7786,7 @@ usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cee0	136	polf2i	dynsym	7262
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cf68	136	__GLdisplacepolygon	dynsym+mdebug	3219b9c2973e	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cf68	136	displacepolygon	dynsym	3219b9c2973e	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	__GLmove	dynsym+mdebug	49fed76d4b16	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	move	dynsym	49fed76d4b16	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6cff0	136	move	dynsym	49fed76d4b16	shared-address	in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d078	136	__GLpmv2	dynsym+mdebug	382d06344de9	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d078	136	pmv2	dynsym	382d06344de9	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO/libgl.so	shared-library	o32		0xec6d100	64	__GLv2f	dynsym+mdebug	9ad29a71b84b	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -11914,7 +11914,7 @@ usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6f96c	180	polf2i	dynsym	9d
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fa20	180	__GLdisplacepolygon	dynsym	55240e71f868	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fa20	180	displacepolygon	dynsym	55240e71f868	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	__GLmove	dynsym	6488fd30ee99	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
-usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	move	dynsym	6488fd30ee99	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
+usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fad4	180	move	dynsym	6488fd30ee99	shared-address	in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fb88	180	__GLpmv2	dynsym	f135872c2267	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fb88	180	pmv2	dynsym	f135872c2267	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
 usr/gfx/arch/IGLOO32/libgl.so	shared-library	n32		0xec6fc3c	68	__GLv2f	dynsym	2da48ef52950	shared-address	in	named-only	docs/irisgl.md#the-irisgl-compatibility-library-libglso-igloo-build-function-reference	The IrisGL compatibility library (`libgl.so`, IGLOO build): function reference
@@ -46937,14 +46937,14 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c33dc	148	__glMipsXF
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3470	192	__glMipsXForm4_W	dwarf+dynsym	34ecf8340617		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3530	240	__glMipsXForm4	dwarf+dynsym	3b3119fa2db2		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22c3620	204	__glMipsMultMatrix	dwarf+dynsym	abe240f89e87		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	2658d604ca89		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/dmconf	shared-tool	n32		0x1000862c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/dmconf	shared-tool	n32		0x10008520	268	__start	dynsym	2658d604ca89		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/dmconf	shared-tool	n32		0x1000862c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x10008640	180	_main	dynsym	b635cb301187		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x10008700	84	_fini	dynsym	261573285f1e		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x10008760	128	__process_needed_destructions__Gv	dynsym	16cbce07afe6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x100087e0	40	__record_needed_destruction	dynsym	431726becd52		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x10008810	60	__std__needed_destruction_list	dynsym	dbd26a89106d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	8b3c169bfe0a		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/dmconf	shared-tool	n32		0x10008850	484	main	dynsym	8b3c169bfe0a		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/dmconf	shared-tool	n32		0x10008a80	604	__ct__20DmconfMainFrameClassGPCcP10_WidgetRec	dynsym	c1b6fc1a9ac0		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x10008ce0	108	__ct__20DmconfMainFrameClassGPCc	dynsym	43f3c1f3244c		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
 usr/gfx/dmconf	shared-tool	n32		0x10008d50	148	__dt__20DmconfMainFrameClassGv	dynsym	1a6945b8b078		in	named-only	docs/setup-tools.md#dmconf	`dmconf`
@@ -47128,10 +47128,10 @@ usr/gfx/dmconf	shared-tool	n32		0x1001bb90	500	getstring__9EZWrapperGv	dynsym	e9
 usr/gfx/dmconf	shared-tool	n32		0x1001c9cc	80	GLwCreateMDrawingArea	dynsym	1b916d0d6ac1		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1001ca1c	104	GLwDrawingAreaMakeCurrent	dynsym	92d56d43122f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/dmconf	shared-tool	n32		0x1001ca84	100	GLwDrawingAreaSwapBuffers	dynsym	a0f6246f8ed0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	354bd274e9c2		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	2d27950426ee		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/dmconf	shared-tool	n32		0x1001cafc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/gfxinfo	shared-tool	n32		0x10005770	268	__start	dynsym	354bd274e9c2		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/gfxinfo	shared-tool	n32		0x1000587c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/gfxinfo	shared-tool	n32		0x10005888	2192	main	dynsym	2d27950426ee		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/gfxinfo	shared-tool	n32		0x1000693c	848	lg1_info	dynsym	a882b266a68a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10006c8c	2628	loadfile	dynsym	0ad174b7798e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10007a18	8	ev1_init	dynsym	87506497337c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47355,19 +47355,19 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001dc04	384	read_4000_serial	dynsym	82e6f6a4
 usr/gfx/gfxinfo	shared-tool	n32		0x1001dd84	212	dump_xilinx_config	dynsym	617fa502674a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001de58	156	get_config_size	dynsym	d590354cf85e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	d71e0008c56e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	4b92a32d4cd4		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	08fd127fb19f		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	eb47e85d0c4b		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	4b92a32d4cd4		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ff0	956	main	dynsym	08fd127fb19f		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/hyperpipeinfo	board-tool	n32		0x100013bc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/ircombine	board-tool	n32		0x1001fd10	268	__start	dynsym	eb47e85d0c4b		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/ircombine	board-tool	n32		0x1001fe1c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x1001fe30	180	_main	dynsym	4dc663f30330		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x1001fef0	84	_fini	dynsym	172c89e05e3c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__Gv	dynsym	985bd51cbf47		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	df23200ac5ab		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	095ae85b9d96		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
 usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	12338278bfb0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	602601180c81		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48597,11 +48597,11 @@ usr/gfx/ircombine	board-tool	n32		0x10091640	500	getstring__9EZWrapperGv	dynsym	
 usr/gfx/ircombine	board-tool	n32		0x10092478	80	GLwCreateMDrawingArea	dynsym	0252ee2914c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x100924c8	104	GLwDrawingAreaMakeCurrent	dynsym	fa71db4d966c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10092530	100	GLwDrawingAreaSwapBuffers	dynsym	a778a32690fe		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	2c0ec17aee41		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/ircombine	board-tool	n32		0x100925ac	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/setmon	shared-tool	n32		0x10008d20	268	__start	dynsym	2c0ec17aee41		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/setmon	shared-tool	n32		0x10008e2c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10008e38	64	Usage	dynsym	751005097950		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
@@ -48846,15 +48846,15 @@ usr/gfx/setmon	shared-tool	n32		0x10034f10	8	konUnbindDestroyedWindow	dynsym	78a
 usr/gfx/setmon	shared-tool	n32		0x10034fe0	96	saXSGIvcSetChannelGammaMap	dynsym	4e772d5128e1		in	named-only	docs/kernel.md#private-ioctls-kona_ioctlo	Private ioctls (`kona_ioctl.o`)
 usr/gfx/setmon	shared-tool	n32		0x10035360	84	KonData2	dynsym	f9f75d4b3d93		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x100353c0	164	KonData5	dynsym	a68a9bdd4153		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	97e564342a80		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/setmon	shared-tool	n32		0x100354fc	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/sgcombine	shared-tool	n32		0x1000f870	268	__start	dynsym	97e564342a80		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/sgcombine	shared-tool	n32		0x1000f97c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000f990	180	_main	dynsym	978e7e7fde74		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000fa50	84	_fini	dynsym	1fce8159ad1f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fab0	128	__process_needed_destructions__Gv	dynsym	60633bdd6555		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb30	40	__record_needed_destruction	dynsym	f6dcabe2aeaf		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fb60	60	__std__needed_destruction_list	dynsym	c7e485ac20ba		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	f7c71e7a4161		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/sgcombine	shared-tool	n32		0x1000fba0	404	main	dynsym	f7c71e7a4161		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/sgcombine	shared-tool	n32		0x1000fd40	412	iGUIReadFormatFile__GPCcP11cmpFormat_t	dynsym	c26ceae1c60a		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1000fee0	580	iGUIReadOdsyFormatFile__GPCcP11cmpFormat_t	dynsym	4d868c6c2fd1		in	named-only	docs/setup-tools.md#sgcombine	`sgcombine`
 usr/gfx/sgcombine	shared-tool	n32		0x10010150	132	__ct__22SmallFormatFileBrowserGPCc	dynsym	784741060283		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49248,9 +49248,9 @@ usr/gfx/sgcombine	shared-tool	n32		0x10029aa0	500	getstring__9EZWrapperGv	dynsym
 usr/gfx/sgcombine	shared-tool	n32		0x1002a8d8	80	GLwCreateMDrawingArea	dynsym	70286d91bb0b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1002a928	104	GLwDrawingAreaMakeCurrent	dynsym	b8404ae284b4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/sgcombine	shared-tool	n32		0x1002a990	100	GLwDrawingAreaSwapBuffers	dynsym	a23a273d684f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/sgcombine	shared-tool	n32		0x1002aa0c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	e6d2e8753717		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f1c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/sgcombine	shared-tool	n32		0x1002aa0c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003e10	268	__start	dynsym	e6d2e8753717		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f1c	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003f30	180	_main	dynsym	c40426049dd0		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10003ff0	84	_fini	dynsym	db8337558f32		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004050	128	__process_needed_destructions__Gv	dynsym	8adf1154c059		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -49282,7 +49282,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047a0	68	binToAsc_float__GPcT1	dy
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100047e4	92	binToAsc_double__GPcT1	dynsym	875747339fba		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004890	120	checkKeywords__GPc	dynsym	f7f31fe4b9b7		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004908	116	keywordFromToken__Gi	dynsym	6f6b844037bd		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	37c61b5ae33c		in	located	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004b60	424	main	dynsym	37c61b5ae33c		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004d08	8	bpt__Gv	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x10004fbc	248	yyerror__GPc	dynsym	4531dc3ba6c6		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x100050b4	108	yymark__Gv	dynsym	a5b7e8dfd57e		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
@@ -49341,7 +49341,7 @@ usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b618	200	xdr_SDBsymbolTableEntry
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b6e0	104	xdr_SDBversionNumber	dynsym	8384bb7b4fff		in	located	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b748	36	SDBsetupMemoryInterface	dynsym	928ad47442d1		in	located	docs/kona-ddx.md#symbol-database-reader-and-writer	Symbol database reader and writer
 usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b76c	8	yywrap	dynsym	a7e7ca11a6b8		in	named-only	docs/setup-tools.md#sdbutil	`sdbutil`
-usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b78c	4	__istart	dynsym	df3f619804a9		in	understood	docs/pipe-tool-functions.md#ireeprom-pipe-eeprom-tool	`ireeprom`: pipe EEPROM tool
+usr/gfx/ucode/vfc/sdbutil	board-tool	n32		0x1000b78c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaa8a0	324	glx_rt_DispSwapIsTextureEXT	dynsym	9ba3527dd861		in	named-only	docs/x-server-glx.md#the-server-side-glx-module-glxso-function-reference	The server-side GLX module (`glx.so`): function reference
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaa9f0	76	glxGetMapivSize	dynsym	464e4b73716a		in	named-only	docs/x-server-glx.md#the-server-side-glx-module-glxso-function-reference	The server-side GLX module (`glx.so`): function reference
 usr/lib/X11/dyDDX/glx.so	shared-x-server	n32		0xeaaa40	844	glx_rt_DispGetSeparableFilterEXT	dynsym	2059242deb53		in	named-only	docs/x-server-glx.md#the-server-side-glx-module-glxso-function-reference	The server-side GLX module (`glx.so`): function reference
@@ -51205,7 +51205,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x441740	4644	cfb16DoBitbltXor	dy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x442c40	2012	cfbFillSpanTile32sCopy	dynsym	f8803d31d7dc		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x443420	160	cfb32CopyArea	dynsym	70ad31be85f6		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4434c0	548	cfb32PolyFillArcSolidGeneral	dynsym	630a5bd2696c		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4436f0	400	miInitializeBackingStore	dynsym	66aa5b262d35		in	located	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4436f0	400	miInitializeBackingStore	dynsym	66aa5b262d35		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4438f0	640	miScreenInit	dynsym	9fd9c8df89a1		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x445d20	2324	cfb32FillPoly1RectGeneral	dynsym	9458e48b8ed6		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x446640	2880	cfb8ClippedLineCopy	dynsym	aeacb7406189		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -51641,11 +51641,11 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5021d0	2076	nfbStereoFillSpans	
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5029f0	352	realAllocSpan	dynsym	308bb2001117		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x502b50	528	konCreateGC	dynsym	42fd27202b05		in	understood	docs/kona-ddx.md#konalso-builds-of-the-hooks-that-have-no-konalso-entry-above	konal.so builds of the hooks that have no konal.so entry above
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x502ed0	3892	konWriteFBSubBlock	dynsym	93ea971814f3		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x506940	104	miRegionEmpty	dynsym	f4bef6b7d394		in	located	docs/kona-ddx.md#machine-independent-layer-mi	Machine-independent layer (`mi*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x506940	104	miRegionEmpty	dynsym	f4bef6b7d394		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x507430	136	rrmDelayValidateClipCancel	dynsym	c25f481c373c		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5074c0	56	cfb32FillBoxTileOdd	dynsym	f5ace46665b2		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x507500	80	nfbSaveAreas	dynsym	8a9e7c138d25		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x507550	404	mfbReduceRop	dynsym	b08470097d09		in	located	docs/kona-ddx.md#monochrome-frame-buffer-layer-mfb	Monochrome frame-buffer layer (`mfb*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x507550	404	mfbReduceRop	dynsym	b08470097d09		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5076f0	3036	cfbSegmentSS	dynsym	a56d9e16731b		in	located	docs/kona-ddx.md#colour-frame-buffer-lines-segments-points-and-arcs-cfb-cfb16-cfb32	Colour frame-buffer lines, segments, points and arcs (`cfb*`, `cfb16*`, `cfb32*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5082e0	168	konCopyGC	dynsym	49e43c7d55e7		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x508540	204	nfbUnrealizeCursor	dynsym	b6bae24aa308		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
@@ -51696,7 +51696,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x51fc00	2028	cfb16FillSpanTile32
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x522810	1428	cfb32BresD	dynsym	d288e23ad095		in	understood	docs/kona-ddx.md#colour-frame-buffer-lines-segments-points-and-arcs-cfb-cfb16-cfb32	Colour frame-buffer lines, segments, points and arcs (`cfb*`, `cfb16*`, `cfb32*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x522db0	468	konCloseScreen	dynsym	aa9f9b8ab9e6		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x522f90	1252	mfbWhiteStippleFS	dynsym	70928bb2dbb3		in	located	docs/kona-ddx.md#monochrome-frame-buffer-layer-mfb	Monochrome frame-buffer layer (`mfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x523920	332	nfbTiledFS	dynsym	db6834585ec9		in	located	docs/kona-ddx.md#drawing-validation-and-window-hooks	Drawing, validation and window hooks
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x523920	332	nfbTiledFS	dynsym	db6834585ec9		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x523ac0	2628	cfb16FillSpanTileOddCopy	dynsym	50c30f0a31fd		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x524510	2136	mfbCopyArea	dynsym	65bc24ea3dc4		in	located	docs/kona-ddx.md#monochrome-frame-buffer-layer-mfb	Monochrome frame-buffer layer (`mfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x524d70	60	kon_unloadStipple	dynsym	d5ea8b180055		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
@@ -51714,9 +51714,9 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5278e0	3568	cfbCopyPlane1to8	dy
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5286d0	768	miGetImage	dynsym	f5a7b1fe34e3		in	located	docs/kona-ddx.md#machine-independent-layer-mi	Machine-independent layer (`mi*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5289d0	136	cfbDoBitblt	dynsym	9743966db3f2		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x528e50	2088	cfb8LineSS1RectCopy	dynsym	b0df781a60d8		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x529680	356	miInverse	dynsym	ba81d9898f96		in	located	docs/kona-ddx.md#machine-independent-layer-mi	Machine-independent layer (`mi*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5297f0	452	nfbStereoPolyPoint	dynsym	5fc45006c760		in	located	docs/kona-ddx.md#stereo-wrappers	Stereo wrappers
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5299c0	716	nfbStereoPolyRectangle	dynsym	bb06652f6108		in	located	docs/kona-ddx.md#stereo-wrappers	Stereo wrappers
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x529680	356	miInverse	dynsym	ba81d9898f96		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5297f0	452	nfbStereoPolyPoint	dynsym	5fc45006c760		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5299c0	716	nfbStereoPolyRectangle	dynsym	bb06652f6108		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52a1a0	3524	mfbStippleWhiteArea	dynsym	1f4048e9bd7a		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52af70	4596	cfbDoBitbltXor	dynsym	eb0031fe61bd		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x52c170	8	nfbPositionWindow	dynsym	a7e7ca11a6b8		in	understood	docs/kona-ddx.md#drawing-validation-and-window-hooks	Drawing, validation and window hooks
@@ -51794,7 +51794,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54ab60	164	cfbCopyArea	dynsym	7
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54ac10	3128	cfbValidateGC	dynsym	ce58a0ebd448		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54b850	320	cfb8SegmentSS1Rect	dynsym	494ffcfef0dc		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54b990	200	rrmMGRSwapBuf	dynsym	5962124d5674		in	understood	docs/opengl.md#swap-blanking-and-stereo	Swap, blanking and stereo
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54ba60	180	rrmValidateTree	dynsym	ec30529565b8		in	located	docs/kona-ddx.md#screen-set-up-hyperpipe-video-control-and-rendering-manager-client-koninit-konattachxvc-rrm	Screen set-up, hyperpipe, video control and rendering-manager client (`konInit`, `konAttachXvc`, `rrm*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54ba60	180	rrmValidateTree	dynsym	ec30529565b8		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54bb20	468	cfb16ZeroPolyArcSSGeneral	dynsym	ef3b97037836		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54bd00	4596	cfbDoBitbltOr	dynsym	a682bfa5a475		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x54cf10	1376	cfb32FillRectTile32General	dynsym	03d3b705d014		in	understood	docs/kona-ddx.md#konalso-functions-matching-the-konaso-range-from-0x4cdd80	konal.so functions matching the kona.so range from 0x4cdd80
@@ -51838,10 +51838,10 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x560600	912	konStereoFillPolygon
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x560990	1032	cfb32FillRectSolidXor	dynsym	a52bb7ff5495		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x560da0	1368	miOpqStipDrawable	dynsym	ef79e11d91cf		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x561300	8	nfbNoopDDACreateScreenResources	dynsym	a7e7ca11a6b8		in	understood	docs/kona-ddx.md#drawing-validation-and-window-hooks	Drawing, validation and window hooks
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x561310	92	konTiledFillRects	dynsym	1228a161e8db		in	located	docs/kona-ddx.md#kona-graphics-context-loading-and-caches-kon_load-kon_stipple-konvalidate	Kona graphics-context loading and caches (`kon_load*`, `kon_*Stipple`, `konValidate*`)
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x561310	92	konTiledFillRects	dynsym	1228a161e8db		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x561370	1864	cfbFillSpanTile32sGeneral	dynsym	df9f97fb2c92		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x561f00	696	konUnbindDestroyedWindow	dynsym	4d8e14c65a83		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5622a0	532	nfbCreateStereoGC	dynsym	038b2b78e754		in	located	docs/kona-ddx.md#drawing-validation-and-window-hooks	Drawing, validation and window hooks
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5622a0	532	nfbCreateStereoGC	dynsym	038b2b78e754		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x5624c0	2568	konDrawMonoImage	dynsym	ac866478ca53		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x562ed0	744	cfb32FillRectSolidGeneral	dynsym	38bf53d7208a		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x563500	23240	cfbTEGlyphBlt8	dynsym	81a6c3e4dedd		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
