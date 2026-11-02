@@ -2390,6 +2390,44 @@ These entries describe exact bodies in usr/gfx/arch/IP35KONA/libGLcore.so. Three
 - `__glkonim_GetPixelMapuiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd985d48; occupies 1872 bytes.
   **Inferred.** Fetches pixel-map blocks and converts float values to output words in software. A state word equal to one at absolute 0x1018 selects `__glSetError` with 0x502 (`lw` at 0xd985d84, `bne` at 0xd985d8c, `jalr` at 0xd985d9c). `get_pixel_map_setup` receives the map selector and output slots at entry-stack -4 and -16 (`jalr` at 0xd985dbc). A later call invokes `__glkon_get_special3` with code 0x48 and the original map selector (`jalr` at 0xd985e04). Selectors 0xc70 and 0xc71 choose conversion arms distinct from the scaled path (`beq` at 0xd985e50, `bnel` at 0xd985e58). Output word stores include scalar and unrolled paths (`sw` at 0xd985ee8, 0xd985f78, 0xd98602c, 0xd9860bc, 0xd986160, 0xd9861f0, 0xd986294, 0xd986324, 0xd9863c8, 0xd986458). All effective output addresses and the final result remain unknown in hostfacts. The full 1872-byte range was read, including floating-point control save/restore and conversion-error handling, without borrowing the N64 routine's shorter body.
+### IP35 O32 byte-identical routine entries
+
+These exact IP35 O32 bodies are byte-identical to the same-address IP27 O32 bodies shown in the comparison column. This records code identity only; it makes no additional role claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | IP27 O32 build / address / size | IP27 SHA-256 |
+|---|---|---|---|---|
+| __glkonlc_FogFuncSGIS | 0xd986f68 / 564 | 0558251aff86dbcc963a49f77ac5374f299dd2cff82c67da1b53ca6011b160b4 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd986f68 / 564 | 0558251aff86dbcc963a49f77ac5374f299dd2cff82c67da1b53ca6011b160b4 |
+| __glkonim_GetHistogramParameterfvEXT | 0xd98a998 / 520 | c3e90c72ab4a7f959c6e868f0f368aed7152a866aeda3d516c2094df8acfdcef | usr/gfx/arch/IP27KONA/libGLcore.so 0xd98a998 / 520 | c3e90c72ab4a7f959c6e868f0f368aed7152a866aeda3d516c2094df8acfdcef |
+| __glkonlc_DeformationMap3fSGIX | 0xd98c9e0 / 160 | ba8101348d6ea09e6545f6358ce0d328a40e6786d0c50e1d8924109548c704c6 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd98c9e0 / 160 | ba8101348d6ea09e6545f6358ce0d328a40e6786d0c50e1d8924109548c704c6 |
+| __glkonlc_DeformationMap3dSGIX | 0xd98ca80 / 188 | 4ced2b308a879f0962675de20faae3b449321b02169fed1bea05fd5ca95567d8 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd98ca80 / 188 | 4ced2b308a879f0962675de20faae3b449321b02169fed1bea05fd5ca95567d8 |
+| __glkon_GetDeformationd | 0xd98ce5c / 204 | 3c023a43ef999c05eb301e97f21476aef8c3e2da86d53d22f0e780413a119d49 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd98ce5c / 204 | 3c023a43ef999c05eb301e97f21476aef8c3e2da86d53d22f0e780413a119d49 |
+| __glkon_GetDeformationi | 0xd98cf28 / 236 | d4eca8d9ddc0231983dcde816b356b3b4ee9cb02d0ca50e532e89223a56b0126 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd98cf28 / 236 | d4eca8d9ddc0231983dcde816b356b3b4ee9cb02d0ca50e532e89223a56b0126 |
+| __glkonim_PixelTransformParameterivSGI | 0xd990930 / 472 | ebee1cb41dffb0575973e4be4330d08ae99245e0e4249d5fe2b9fad61ff00baa | usr/gfx/arch/IP27KONA/libGLcore.so 0xd990930 / 472 | ebee1cb41dffb0575973e4be4330d08ae99245e0e4249d5fe2b9fad61ff00baa |
+| __glkonim_GetPixelTransformParameterivSGI | 0xd990e24 / 120 | 6061c03c074f214730709112b5b02e53e9d40d4b091adaa0720d67bd1c88c2fa | usr/gfx/arch/IP27KONA/libGLcore.so 0xd990e24 / 120 | 6061c03c074f214730709112b5b02e53e9d40d4b091adaa0720d67bd1c88c2fa |
+
+- `__glkonlc_FogFuncSGIS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd986f68; occupies 564 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd986f68 over the complete 564-byte body. SHA-256 0558251aff86dbcc963a49f77ac5374f299dd2cff82c67da1b53ca6011b160b4.
+
+- `__glkonim_GetHistogramParameterfvEXT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd98a998; occupies 520 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd98a998 over the complete 520-byte body. SHA-256 c3e90c72ab4a7f959c6e868f0f368aed7152a866aeda3d516c2094df8acfdcef.
+
+- `__glkonlc_DeformationMap3fSGIX` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd98c9e0; occupies 160 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd98c9e0 over the complete 160-byte body. SHA-256 ba8101348d6ea09e6545f6358ce0d328a40e6786d0c50e1d8924109548c704c6.
+
+- `__glkonlc_DeformationMap3dSGIX` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd98ca80; occupies 188 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd98ca80 over the complete 188-byte body. SHA-256 4ced2b308a879f0962675de20faae3b449321b02169fed1bea05fd5ca95567d8.
+
+- `__glkon_GetDeformationd` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd98ce5c; occupies 204 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd98ce5c over the complete 204-byte body. SHA-256 3c023a43ef999c05eb301e97f21476aef8c3e2da86d53d22f0e780413a119d49.
+
+- `__glkon_GetDeformationi` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd98cf28; occupies 236 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd98cf28 over the complete 236-byte body. SHA-256 d4eca8d9ddc0231983dcde816b356b3b4ee9cb02d0ca50e532e89223a56b0126.
+
+- `__glkonim_PixelTransformParameterivSGI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd990930; occupies 472 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd990930 over the complete 472-byte body. SHA-256 ebee1cb41dffb0575973e4be4330d08ae99245e0e4249d5fe2b9fad61ff00baa.
+
+- `__glkonim_GetPixelTransformParameterivSGI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd990e24; occupies 120 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd990e24 over the complete 120-byte body. SHA-256 6061c03c074f214730709112b5b02e53e9d40d4b091adaa0720d67bd1c88c2fa.
 ### 64-bit routines read in full
 
 - `__glkonResolveContext` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2dc3a00, 8636 bytes):

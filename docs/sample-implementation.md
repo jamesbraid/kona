@@ -1080,6 +1080,60 @@ These entries report effects from exact N64 bodies in usr/gfx/arch/IP27KONA64/li
 - `__glDepthTestStencilStippledOffsetSpan` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2e64600; occupies 1700 bytes.
   **Inferred.** Inferred stippled stencil/depth traversal. It loads the context's +0x4928 procedure pointer and +0x9828 and +0x9818 data pointers with doubleword width (`ld` at 0x2e64600, 0x2e64630, 0x2e64634). Two other doublewords come from +0x9ca8 and +0x9cb0 (`ld` at 0x2e6463c, 0x2e64640). The indirect calls have unknown arguments and callee identities (`jalr` at 0x2e64adc, 0x2e64c08). Separate result paths write bytes through unresolved destinations (`sb` at 0x2e64afc, 0x2e64b5c, 0x2e64c28, 0x2e64c8c), and a computed output mask is a word store (`sw` at 0x2e64b88). Local return paths produce zero or one (`jr` at 0x2e648dc, 0x2e64a98). The complete stipple condition, stencil mapping and FP comparisons are unassigned.
+## IP35 O32 byte-identical target entries
+
+These target bodies are byte-identical over their complete ranges to the documented IP27 O32 entries. The notes establish exact-build identity only; they add no behavior claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | IP27 O32 build / address / size | IP27 SHA-256 |
+|---|---|---|---|---|
+| __glDlistBlockStateFree | 0xd990f34 / 172 | 1fea312dec9725062a4572a1beca3e7cfa886baab82c92640b16081a4e94b8ab | usr/gfx/arch/IP27KONA/libGLcore.so 0xd990f34 / 172 | 1fea312dec9725062a4572a1beca3e7cfa886baab82c92640b16081a4e94b8ab |
+| __glDlistAllocBlock | 0xd9911c0 / 340 | 623eb1833cf80f9799593c81a4f4812da2914fccd6d571b868de900cf1e0edfe | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9911c0 / 340 | 623eb1833cf80f9799593c81a4f4812da2914fccd6d571b868de900cf1e0edfe |
+| __glDlistCompactBlocks | 0xd991370 / 604 | 349ed6b5ab337724a44a3328261fc1e8103f0ce6b0c7829cd5a043c892961db3 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991370 / 604 | 349ed6b5ab337724a44a3328261fc1e8103f0ce6b0c7829cd5a043c892961db3 |
+| __glDlistIsBlock | 0xd9915cc / 52 | fd15d476b713dfb6015a1805d017ae06d3b82b6f1124a999e859e3e15bbbf85d | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9915cc / 52 | fd15d476b713dfb6015a1805d017ae06d3b82b6f1124a999e859e3e15bbbf85d |
+| __glDlistHeapInsert | 0xd99183c / 260 | 87f511f72272ce7121f89420508d9aa62b82d34647f7facef07d8c9bbac2bb91 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99183c / 260 | 87f511f72272ce7121f89420508d9aa62b82d34647f7facef07d8c9bbac2bb91 |
+| __glDlistHeapRemove | 0xd991940 / 172 | 7692262c943e82d68cbfe71ef40e37b4f352bca841425472318956d151c07cba | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991940 / 172 | 7692262c943e82d68cbfe71ef40e37b4f352bca841425472318956d151c07cba |
+| __glDlistHeapPriorityChanged | 0xd9919ec / 100 | 8de35f42dc69a8e8a0da7983baf392e1ebbedbb8f03e16134f815d5467cc3452 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9919ec / 100 | 8de35f42dc69a8e8a0da7983baf392e1ebbedbb8f03e16134f815d5467cc3452 |
+| upheap | 0xd991b04 / 164 | 87c3396ff2d7159264c2b9ac260da289eda842f83d9cd92dd3273a76b3f45a4d | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991b04 / 164 | 87c3396ff2d7159264c2b9ac260da289eda842f83d9cd92dd3273a76b3f45a4d |
+| __glShareDlist | 0xd991c70 / 44 | b9566c05ba4aaf1b3826eb861d74f46479398fb772ef0c2f30ffa5a12d8e2e2d | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991c70 / 44 | b9566c05ba4aaf1b3826eb861d74f46479398fb772ef0c2f30ffa5a12d8e2e2d |
+| __glInitDlistState | 0xd991c9c / 156 | 208f105392b791f83ab9029fc11e58d7d36638f48d16cd95253b9e5295d5fbf8 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991c9c / 156 | 208f105392b791f83ab9029fc11e58d7d36638f48d16cd95253b9e5295d5fbf8 |
+| __glFreeDlistState | 0xd991d38 / 196 | e307da7a1fca985578ceb78bb0189096ca52ed3b331f3620828cd1af221c13ee | usr/gfx/arch/IP27KONA/libGLcore.so 0xd991d38 / 196 | e307da7a1fca985578ceb78bb0189096ca52ed3b331f3620828cd1af221c13ee |
+| __glim_EndList | 0xd992068 / 400 | c36c4876d9f523710323514c992a71d537fd99fd2f8d1817bb635dcc9814ab02 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd992068 / 400 | c36c4876d9f523710323514c992a71d537fd99fd2f8d1817bb635dcc9814ab02 |
+
+- `__glDlistBlockStateFree` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd990f34; occupies 172 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd990f34 over the complete 172-byte body. SHA-256 1fea312dec9725062a4572a1beca3e7cfa886baab82c92640b16081a4e94b8ab.
+
+- `__glDlistAllocBlock` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9911c0; occupies 340 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9911c0 over the complete 340-byte body. SHA-256 623eb1833cf80f9799593c81a4f4812da2914fccd6d571b868de900cf1e0edfe.
+
+- `__glDlistCompactBlocks` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991370; occupies 604 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991370 over the complete 604-byte body. SHA-256 349ed6b5ab337724a44a3328261fc1e8103f0ce6b0c7829cd5a043c892961db3.
+
+- `__glDlistIsBlock` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9915cc; occupies 52 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9915cc over the complete 52-byte body. SHA-256 fd15d476b713dfb6015a1805d017ae06d3b82b6f1124a999e859e3e15bbbf85d.
+
+- `__glDlistHeapInsert` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99183c; occupies 260 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99183c over the complete 260-byte body. SHA-256 87f511f72272ce7121f89420508d9aa62b82d34647f7facef07d8c9bbac2bb91.
+
+- `__glDlistHeapRemove` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991940; occupies 172 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991940 over the complete 172-byte body. SHA-256 7692262c943e82d68cbfe71ef40e37b4f352bca841425472318956d151c07cba.
+
+- `__glDlistHeapPriorityChanged` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9919ec; occupies 100 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9919ec over the complete 100-byte body. SHA-256 8de35f42dc69a8e8a0da7983baf392e1ebbedbb8f03e16134f815d5467cc3452.
+
+- `upheap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991b04; occupies 164 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991b04 over the complete 164-byte body. SHA-256 87c3396ff2d7159264c2b9ac260da289eda842f83d9cd92dd3273a76b3f45a4d.
+
+- `__glShareDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991c70; occupies 44 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991c70 over the complete 44-byte body. SHA-256 b9566c05ba4aaf1b3826eb861d74f46479398fb772ef0c2f30ffa5a12d8e2e2d.
+
+- `__glInitDlistState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991c9c; occupies 156 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991c9c over the complete 156-byte body. SHA-256 208f105392b791f83ab9029fc11e58d7d36638f48d16cd95253b9e5295d5fbf8.
+
+- `__glFreeDlistState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd991d38; occupies 196 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd991d38 over the complete 196-byte body. SHA-256 e307da7a1fca985578ceb78bb0189096ca52ed3b331f3620828cd1af221c13ee.
+
+- `__glim_EndList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd992068; occupies 400 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd992068 over the complete 400-byte body. SHA-256 c36c4876d9f523710323514c992a71d537fd99fd2f8d1817bb635dcc9814ab02.
 ## Software renderer (soft)
 
 ### so_accumop.c
