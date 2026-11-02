@@ -131,6 +131,148 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
 - `diagLoadDGOXilinxes` (`usr/diags/IR/bin/irsaudit`): **Established.**
   Its 1080-byte body starts at 0x1011c44c. It builds a local download descriptor, obtains the diagnostic data-file handle at 0x1011c4c4, and passes the loaded image and the instruction value `0x855a` to the option-board programming helper at 0x1011c584. A failed load reports the failure and returns 1 at 0x1011c5b0; the successful path selects VC address `0x8a02` and writes payload bytes through `vcWrite` at 0x1011c718, then writes zero to address `0xc008` at 0x1011c728. The completion path closes the data source and returns the status from the final diagnostic result helper.
 
+- `TEST_vocreg` (`usr/diags/IR/bin/irsaudit`, 988 bytes): **Established.**
+  The routine begins at 0x100a61f8. It loads the board word at offset 0xdbc
+  (`lw` at 0x100a6218); a zero word prints information and diagnostic lines
+  from 0x100a6538 and rejoins the main path at 0x100a6240 instead of
+  returning. It calls `reset_dacs` at 0x100a6258 and reads the word at offset
+  0xe2c (`lw` at 0x100a6260): 8 or 2 selects that many iterations, and any
+  other value prints two information lines and runs two. Each iteration stores
+  three target words into the checker record at offsets 0x10, 0x14 and 0x18
+  (`sw` at 0x100a6338, 0x100a6330 and 0x100a6344), calls the register checker
+  at 0x100a634c and adds its return to the failure count. A nonzero return is
+  printed and `kt_code_chip` is called at 0x100a6398 with the loop index plus
+  61. The word at offset 0xe48 plus 20 times the index of the iteration about
+  to run (`lw` at 0x100a63d0) is compared with 0x5631057: a match stores the
+  alternate target set at 0x100a641c-0x100a6428 and any other value keeps the
+  normal targets. After the loop, an iteration count different from the word
+  at 0xe2c is printed and adds one to the failure count. A nonzero count goes
+  to `kt_output_diag` (0x100a6454), `kt_code_result` (0x100a6470) and
+  `kt_output_rslt` (0x100a6498); a zero count goes to `kt_code_result`
+  (0x100a6510) and `kt_output_rslt` (0x100a6528).
+
+- `TEST_gvo_vocreg` (`usr/diags/IR/bin/irsaudit`, 1184 bytes): **Established.**
+  At 0x100a65d4 this variant loads the board word at offset 0xdbc (`lw` at
+  0x100a65e4) and the enable word at offset 0xfb4 (`lw` at 0x100a660c); a zero
+  in either prints information and diagnostic lines (from 0x100a690c and
+  0x100a6988) and continues into the test. It then reads the word that the GOT
+  slot at gp-23680 points to. When that word is zero it calls
+  `dgo_loadXilinx_reset` at 0x100a68b8 and reads the word again; if it is
+  still zero it prints a message, reports through `kt_code_result`
+  (0x100a6a1c) and `kt_output_rslt` (0x100a6a44) with a count of 1 and returns
+  without calling the checker. The loop index starts at 198 and the loop runs
+  twice. Each iteration stores the three target words at offsets 0x10, 0x14
+  and 0x18 of the checker record (`sw` at 0x100a66fc, 0x100a66f0 and
+  0x100a66e8), calls the common register checker at 0x100a6704 and adds the
+  return to the failure count. A nonzero return is printed and `kt_code_chip`
+  at 0x100a6750 receives the loop index minus 129. When the word at offset
+  0x54 plus 20 times the index of the iteration about to run (`lw` at
+  0x100a6784) equals 0x5631057, the alternate target record is stored by `sw`
+  at 0x100a67d0-0x100a67dc. A nonzero failure count goes to `kt_output_diag`
+  (0x100a6808), `kt_code_result` (0x100a6824) and `kt_output_rslt`
+  (0x100a684c).
+
+- `TEST_dvp_vocreg` (`usr/diags/IR/bin/irsaudit`, 1064 bytes): **Established.**
+  This entry at 0x100a6a74 loads the board word at 0xdbc (`lw` at 0x100a6a8c)
+  and the enable word at 0xfb4 (`lw` at 0x100a6ab0). A zero in either prints
+  information and diagnostic lines (from 0x100a6d8c and 0x100a6e08) and
+  continues into the test, so neither word ends the routine. Two loads through
+  the GOT slot at gp-24928 select the first loop index: 201 when the final
+  word is nonzero and 46 when it is zero (`li` at 0x100a6af0 and 0x100a6d40).
+  Each iteration stores the checker record's target words at offsets 0x10,
+  0x14 and 0x18 (`sw` at 0x100a6b88, 0x100a6b6c and 0x100a6b84) and calls the
+  checker at 0x100a6b90. When the return is nonzero it is printed and
+  `kt_code_chip` is called at 0x100a6be0 with the loop index plus 69. The word
+  at 0xfcc plus 20 times the index of the iteration about to run (`lw` at
+  0x100a6c1c) is compared with 0x5631057, and a match replaces all three
+  target words at 0x100a6c64-0x100a6c70. A nonzero failure total goes to
+  `kt_output_diag` (0x100a6c9c), `kt_code_result` (0x100a6cb8) and
+  `kt_output_rslt` (0x100a6ce0); a zero total goes to `kt_code_result`
+  (0x100a6d64) and `kt_output_rslt` (0x100a6d7c).
+
+- `TEST_tvo_vocreg` (`usr/diags/IR/bin/irsaudit`, 1020 bytes): **Established.**
+  The TV-output register pass starts at 0x100a7298. It loads the board word at
+  0xdbc (`lw` at 0x100a72bc) and the enable word at 0xfb4 (`lw` at
+  0x100a72e0); a zero in either prints information and diagnostic lines (from
+  0x100a7588 and 0x100a7604) and continues into the test. The loop index
+  starts at 94 (`li` at 0x100a72f4). Each iteration stores the three checker
+  target words with `sw` at 0x100a737c (offset 0x10), 0x100a7374 (0x14) and
+  0x100a7388 (0x18) and calls the shared checker at 0x100a7390. A nonzero
+  return is printed and `kt_code_chip` is called at 0x100a73dc with the loop
+  index minus 25. The word at 0x874 plus 20 times the index of the iteration
+  about to run (`lw` at 0x100a7414) is compared with 0x5631057, and a match
+  writes the alternate target words at 0x100a745c-0x100a7468. A nonzero
+  failure total goes to `kt_output_diag` (0x100a7498), `kt_code_result`
+  (0x100a74b4) and `kt_output_rslt` (0x100a74dc); a zero total goes to
+  `kt_code_result` (0x100a7560) and `kt_output_rslt` (0x100a7578).
+
+- `TEST_vocspreg` (`usr/diags/IR/bin/irsaudit`, 904 bytes): **Established.**
+  This special-register pass begins at 0x100a9680. It loads the board word at
+  offset 0xdbc (`lw` at 0x100a96a4); a zero prints information and diagnostic
+  lines from 0x100a9974 and then continues into the test instead of returning.
+  It calls `reset_dacs` at 0x100a96e0 and reads the word at 0xe2c (`lw` at
+  0x100a96e8) to run two or eight iterations. Each iteration stores one
+  special-register target word at offset 8 of the checker record (`sw` at
+  0x100a97b0) and calls the shared checker at 0x100aa9b0 (call at 0x100a97b8),
+  adding its return to the failure count. A nonzero return is printed and
+  `kt_code_chip` is called at 0x100a9804 with the loop index plus 61. The word
+  at 0xe48 plus 20 times the index of the iteration about to run (`lw` at
+  0x100a9834) is compared with 0x5631057, and a match stores the alternate
+  target at 0x100a986c. A nonzero total goes to `kt_output_diag` (0x100a989c),
+  `kt_code_result` (0x100a98b8) and `kt_output_rslt` (0x100a98e0); a zero
+  total goes to `kt_code_result` (0x100a994c) and `kt_output_rslt`
+  (0x100a9964).
+
+- `TEST_gvo_vocspreg` (`usr/diags/IR/bin/irsaudit`, 1112 bytes): **Established.**
+  The graphics-video special-register check begins at 0x100a9a08. It loads the
+  board word at 0xdbc (`lw` at 0x100a9a18) and the enable word at 0xfb4 (`lw`
+  at 0x100a9a40); a zero in either prints messages (from 0x100a9d00 and
+  0x100a9d7c) and continues. It then reads the word that the GOT slot at
+  gp-23680 points to: when that word is zero it calls `dgo_loadXilinx_reset`
+  at 0x100a9cac and reads it again, and if it is still zero it reports a
+  failure with `kt_code_result` (0x100a9e10) and `kt_output_rslt` (0x100a9e38)
+  without running the checker. The loop index starts at 198. Each iteration
+  stores one target word at offset 8 of the checker record (`sw` at
+  0x100a9b1c) and enters the checker at 0x100aa9b0 (call at 0x100a9b24). A
+  nonzero return is printed and `kt_code_chip` at 0x100a9b70 receives the loop
+  index minus 129. The word at offset 0x54 plus 20 times the index of the
+  iteration about to run (`lw` at 0x100a9b9c) is compared with 0x5631057, and
+  a match stores the alternate target at 0x100a9bd4. A nonzero total goes to
+  `kt_output_diag` (0x100a9c00), `kt_code_result` (0x100a9c1c) and
+  `kt_output_rslt` (0x100a9c44).
+
+- `TEST_dvp_vocspreg` (`usr/diags/IR/bin/irsaudit`, 1000 bytes): **Established.**
+  The DVP special-register test starts at 0x100a9e60. It loads the board word
+  at 0xdbc (`lw` at 0x100a9e78) and the enable word at 0xfb4 (`lw` at
+  0x100a9e9c); a zero in either prints messages (from 0x100aa138 and
+  0x100aa1b4) and continues into the test. Two loads through the GOT slot at
+  gp-24928 select the first loop index, 201 when the word is nonzero and 46
+  when it is zero (`li` at 0x100a9ed0 and 0x100aa0ec). Each iteration stores
+  one target word at offset 8 of the checker record (`sw` at 0x100a9f50)
+  before the checker is called at 0x100a9f58. A nonzero return is printed and
+  `kt_code_chip` at 0x100a9fa8 receives the loop index plus 69. The word at
+  0xfcc plus 20 times the index of the iteration about to run (`lw` at
+  0x100a9fe4) is compared with 0x5631057, and a match installs the replacement
+  target with `sw` at 0x100aa01c. A nonzero failure total goes to
+  `kt_output_diag` (0x100aa048), `kt_code_result` (0x100aa064) and
+  `kt_output_rslt` (0x100aa08c); a zero total goes to `kt_code_result`
+  (0x100aa110) and `kt_output_rslt` (0x100aa128).
+
+- `TEST_tvo_vocspreg` (`usr/diags/IR/bin/irsaudit`, 948 bytes): **Established.**
+  This TV special-register wrapper begins at 0x100aa5fc. It loads the board
+  word at 0xdbc (`lw` at 0x100aa620) and the enable word at 0xfb4 (`lw` at
+  0x100aa644); a zero in either prints messages (from 0x100aa8ac and
+  0x100aa928) and continues into the test. The loop index starts at 94 (`li`
+  at 0x100aa690). Each iteration stores one target word at offset 8 of the
+  checker record (`sw` at 0x100aa6d0) and calls the checker at 0x100aa6d8. A
+  nonzero return is printed and `kt_code_chip` at 0x100aa724 receives the loop
+  index minus 25. The word at 0x874 plus 20 times the index of the iteration
+  about to run (`lw` at 0x100aa754) is compared with 0x5631057, and a match
+  writes the alternate target at 0x100aa78c. A nonzero total goes to
+  `kt_output_diag` (0x100aa7bc), `kt_code_result` (0x100aa7d8) and
+  `kt_output_rslt` (0x100aa800); a zero total goes to `kt_code_result`
+  (0x100aa884) and `kt_output_rslt` (0x100aa89c).
+
 - `tbuInterlaceDownLoads` (`usr/diags/IR/bin/irsaudit`): **Established.**
   At 0x10141b8c it occupies 224 bytes and reads the 64-bit texture shadow at the second argument plus 0x3fe28 (`ld` at 0x10141b94). It compares bit 15 of that shadow with the requested mode in the first argument. When they are equal it skips the update and the trace report. When they differ it replaces bit 15 with the mode, keeps every other shadow bit, issues token 0x7fc5 through the command writer (`jal` at 0x10141bec) and commits the new shadow with `sd` at 0x10141bf0. On that differing path only, a nonzero trace word at offset 4 of the diagnostic state selects the call at 0x10141c40, which reports the requested mode. On both paths the mode is then stored in the word at offset 0 of the diagnostic state with `sw` at 0x10141c5c.
 
