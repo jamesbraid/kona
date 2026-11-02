@@ -719,6 +719,19 @@ same executable.
   scan procedure (call at 0x10035008). The selected chain record receives the
   packed offset and length (`sw` at 0x10034ef0 and 0x10034f14); vector or scan
   failure returns -1, otherwise cleanup returns zero.
+
+- `jt_read_chain` (`usr/gfx/KONA/bin/kpm` 0x100352a0): **Established.**
+  Size 2388 bytes. It resolves and opens the chain description (`jt_findfile`
+  at 0x100352d0 and `jt_zopen` at 0x10035314), allocates the chain and its
+  chip-record array, and reads the description's chip lines into 56-byte
+  records (`sw` at 0x10035384 through 0x1003539c). It skips spaces and tabs
+  while extracting each non-empty line (`lbu` at 0x10035980-0x10035a54), then
+  canonicalizes the chip name and loads its boundary-register description
+  (`jt_canonize` at 0x10035acc). For each chip it accumulates instruction and
+  data lengths into the chain totals at +16 and +20 (`sw` at 0x10035848 and
+  0x1003587c), closes the compressed input at 0x10035bc8, and returns the
+  chain object; allocation, parse, or lookup errors return null after the
+  library error callback.
 | `jt_send_instruction`, `jt_set_individual_instructions`, `jt_conditional_reset`, `jt_powerup_chain`, `jt_free_bist` | send an instruction to one chip or one to each, reset the chain only when needed, power up the chips' test logic, release a chip's built-in self-test state |
 
 These boundary-scan helpers were read in their complete N32 address ranges.
