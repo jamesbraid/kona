@@ -58,20 +58,6 @@ written.
   saved engine selector. Without the mapping it performs the scan-chain reset
   sequence and retries; it returns zero on success and -1 on an error. (`kpm`,
   6.5.30m, full routine at 0x10019c50.)
-- `ged_register_write` (`usr/gfx/KONA/bin/kpm` 0x10019e3c, 164 bytes):
-  **Established.** Selects distributor register 0x600 (`sw` at 0x10019e94),
-  encodes the register index as bit 5 plus the index's upper bits masked by
-  0x1ff00, writes the caller's value through offset 0x3f0 (`sw` at 0x10019eb0),
-  then selects 0xac0 (`sw` at 0x10019ec0) and writes the same value there (`sw`
-  at 0x10019ecc). It returns zero. (`kpm`, 6.5.30m, full routine at 0x10019e3c.)
-- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm` 0x10019ee0, 228 bytes):
-  **Established.** Converts the caller's engine number to a one-bit mask (`sllv`
-  at 0x10019f10), writes that mask five times (calls at 0x10019f1c, 0x10019f2c,
-  0x10019f3c, 0x10019f4c and 0x10019f5c) to distributor register 0x222, then
-  selects 0x200600 at offset 0x3e8 (`sw` at 0x10019f80) and writes 0x58400800 at
-  offset 0x3f0 (`sw` at 0x10019f94), and selects 0x200a80 at 0x3e8 (`sw` at
-  0x10019fa4) and writes 1 at 0x3f0 (`sw` at 0x10019fc0). It returns zero.
-  (`kpm`, 6.5.30m, full routine at 0x10019ee0.)
 - `ge_register_write` (`usr/gfx/KONA/bin/kpm` 0x1001b730, 108 bytes):
   **Established.** Writes its first argument, the geometry-engine register
   number, to distributor register 0x234 (call at 0x1001b768), then writes its
@@ -185,6 +171,83 @@ written.
   offset 0x34, stores the result through the caller's pointer, and returns
   zero. A missing key reports the same diagnostic error and returns -1.
   (`kpm`, 6.5.30m, lookup at 0x100122bc and extraction at 0x100122e0.)
+
+- `locate_register` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10012068; size 396 bytes. Walks the six-word register records until the
+  record terminator or a matching name is found; active records are selected
+  by their kind at record offset 0x8 (`lw` at 0x100120cc), and the match is
+  returned through the caller's record pointer. Kinds 1 and 3-6 take the
+  normal lookup path, while kinds 2 and 5 use an alternate descriptor before
+  continuing; an empty table returns -1 (`addiu` at 0x10012164). (`kpm`,
+  6.5.30m, complete N32 body read at 0x10012068-0x100121f0.)
+- `kjiSetSubField` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x100116f0; size 548 bytes. Locates a scan-field descriptor, masks the
+  caller's value to the field width, shifts it to the descriptor's bit
+  position, and merges it into the supplied instruction or data word. The
+  field-width and shift values are read from the descriptor rather than
+  assumed by the caller; an unknown field follows the diagnostic error path.
+  (`kpm`, 6.5.30m, complete N32 body read at 0x100116f0-0x10011913.)
+- `kjiGetSubField` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10011914; size 528 bytes. Finds a named scan field, extracts the selected
+  bits from the caller's word, right-shifts them by the descriptor's start bit,
+  and returns the field value. It reports a missing field through the same
+  diagnostic path used by `kjiSetSubField` and returns the extracted value only
+  after the descriptor bounds have been checked. (`kpm`, 6.5.30m, complete N32
+  body read at 0x10011914-0x10011b23.)
+- `kjiGetSubFieldV` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10011b24; size 720 bytes. Reads a named field from each element of a
+  caller-supplied vector, using the descriptor's element stride and bit range,
+  and writes the extracted values to the destination vector. A missing field
+  or invalid vector takes the diagnostic error return; successful extraction
+  preserves the vector order. (`kpm`, 6.5.30m, complete N32 body read at
+  0x10011b24-0x10011df3.)
+- `kj_arrange_global_instruction` (`usr/gfx/KONA/bin/kpm`): **Established.**
+  Address 0x10011df4; size 564 bytes. Builds a global scan instruction by
+  clearing the destination word, selecting the requested chip and register
+  descriptor, and inserting the descriptor's instruction field at its mapped
+  bit position. It returns the arranged word or the diagnostic error result
+  when the chip/register pair is not present. (`kpm`, 6.5.30m, complete N32
+  body read at 0x10011df4-0x10012027.)
+- `show_general_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1000a5c0; size 268 bytes. Reads the general capture section into a 0x1000-
+  byte local buffer (`addiu` at 0x1000a65c), repeatedly formats each returned
+  record, and stops when the formatter returns zero (`bnez` at 0x1000a698).
+  The successful path returns zero; a section-reader failure follows the
+  formatter's error path. (`kpm`, 6.5.30m, complete N32 body read at
+  0x1000a5c0-0x1000a6c7.)
+- `show_overview_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1000dc90; size 780 bytes. Requests one overview record, formats the pipe
+  and FIFO fields, then examines the eight per-engine status bits in the
+  record's status word (`and` at 0x1000dd9c). It emits either the ordinary
+  engine line or the special bypass line for each selected engine and formats
+  the DMA, bus-status and stalled-engine fields on their corresponding paths.
+  A non-positive section result reports the section error and returns -1
+  (`addiu` at 0x1000df38); a complete decode returns zero. (`kpm`, 6.5.30m,
+  complete N32 body read at 0x1000dc90-0x1000df9b.)
+- `show_bef_fifo_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x100193cc; size 1500 bytes. Reads the BEF FIFO section as four-byte records,
+  rejects an empty section, derives the byte count from the returned record
+  count (`sll` at 0x1001946c), and decodes each record through
+  `disassemble_tbus` when the requested display mode is below 3. The raw and
+  decoded words are copied into the section output in bounded chunks; malformed
+  counts and failed reads select the error returns, while a complete walk
+  returns zero. (`kpm`, 6.5.30m, complete N32 body read at
+  0x100193cc-0x1001999b.)
+- `ged_register_write` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019e3c; size 164 bytes. Selects distributor register 0x600 (`sw` at
+  0x10019e94), encodes the caller's index as bit 5 plus its upper bits masked
+  by 0x1ff00 (`and` at 0x10019ea8), writes the value through offset 0x3f0
+  (`sw` at 0x10019eb0), then selects 0xac0 (`sw` at 0x10019ec0) and writes
+  the same value there (`sw` at 0x10019ecc). It returns zero. (`kpm`,
+  6.5.30m, complete N32 body read at 0x10019e3c-0x10019edf.)
+- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019ee0; size 228 bytes. Converts the requested engine number to a one-bit
+  mask (`sllv` at 0x10019f10), writes that mask five times to distributor
+  register 0x222 through `ged_register_write` (calls at 0x10019f1c,
+  0x10019f2c, 0x10019f3c, 0x10019f4c and 0x10019f5c), then writes
+  0x58400800 to selected register 0x200600 (`sw` at 0x10019f94) and 1 to
+  0x200a80 (`sw` at 0x10019fc0). It returns zero. (`kpm`, 6.5.30m,
+  complete N32 body read at 0x10019ee0-0x10019fbf.)
 
 The following routines were read in their complete N32 address ranges in the
 same executable.
