@@ -229,7 +229,7 @@ What this settles:
 - `HH_INTR_STATUS` is write-one-to-clear, and clearing the ARM bit also clears the ARM's doorbell 0x200094. That is how the kernel's text loop ([ARM events](#arm-events-kona_arm_intr)) paces the ARM: writing 0x10 lets the firmware's `send_host_intr` post the next character.
 - `HH_INTR_ACK` is only ever written with 0, and only after a status write-back, by the kernel (0xbadc0ffe) and by both diagnostics. The test that most needs it (the ARM bit) works without it. **Inferred:** it is an end-of-interrupt strobe for the interrupt message, with its data ignored; no shipped software relies on it to clear status.
 - The FIFO marks compare against the level with "at or above" for HI and "at or below" for LO, since two words reach a HI field of 2 and an empty FIFO raises LO. **Inferred:** the level counts 32-bit words; the "#requests" in the HIP2 log is the only hint of another unit.
-- The FIFO holds fewer than 2051 words on HIP1. **Inferred** from the 11-bit HIP1 level field (`HIP1_GFIFO_LEVEL` 0x7fe of 0x208): 2048 words.
+- The FIFO holds fewer than 2051 words on HIP1. **Inferred** from the 11-bit HIP1 level field (`HIP1_GFIFO_LEVEL` 0xffe of 0x208; HIP2 is 0x7fe): 2048 words.
 
 ### The token map seen from the host
 
