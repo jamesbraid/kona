@@ -36,6 +36,89 @@ Sources: `usr/gfx/KONA/bin/kpm` (6.5.30m, an N32 executable with symbols, with t
 | `disassemble_tbus` | decode the raster-bus words saved in the BEF FIFO into token and register writes |
 | `dump_indata_as_bits`, `dump_outdata_as_bits` | debug print of the bits sent to and read from a scan chain |
 
+The dump-file helpers below are the complete N32 bodies from the same `kpm`
+image. They operate on a file record whose type byte is at +8, section count
+is at +12, section table at +20, and current file position at +28.
+
+- `dfNewSection` (`usr/gfx/KONA/bin/kpm` 0x1000b1a0): **Established.**
+  Size 296 bytes. It appends a 16-byte section record after growing the table
+  by ten records when the current count reaches its capacity (`lw` at
+  0x1000b204; allocator call at 0x1000b22c). The record stores the new
+  section's returned file offset, caller-supplied position, and zero length at
+  offsets 0, 4, and 8 (`sw` at 0x1000b26c, 0x1000b284, and 0x1000b298), then
+  increments the count at +12 (`sw` at 0x1000b2ac). It returns zero for a null
+  record or allocation failure and one after the record is appended.
+
+- `dfWriteSection` (`usr/gfx/KONA/bin/kpm` 0x1000b2c8): **Established.**
+  Size 228 bytes. It rejects a null record with zero, otherwise calls the
+  record's write callback with the caller's buffer and byte count (`jalr` at
+  0x1000b348). The callback result is added to the current section length at
+  record +8 (`lw` at 0x1000b360; `sw` at 0x1000b368) and to the file position
+  at +28 (`lw` at 0x1000b36c; `sw` at 0x1000b37c). It returns zero when the
+  callback wrote the requested count and one when it wrote a short count.
+
+- `dfWriteNewSectionFromPipe` (`usr/gfx/KONA/bin/kpm` 0x1000b3ac):
+  **Established.** Size 392 bytes. It creates a section with `dfNewSection`
+  (call at 0x1000b434), captures a shell command into a 0x1000-byte stack
+  buffer (`addiu` at 0x1000b4c8), and appends the captured bytes with
+  `dfWriteSection` (call at 0x1000b4f4). A capture or append failure closes the
+  section handle through the cleanup callback and retries the caller's
+  cleanup path; the function returns zero only after the section is complete.
+
+- `dfListSections` (`usr/gfx/KONA/bin/kpm` 0x1000b934): **Established.**
+  Size 384 bytes. It obtains the section-list buffer from the file callback
+  (call at 0x1000b970), walks the count at record +12 in 16-byte steps, and
+  replaces each list entry with the result of the section-name callback (call
+  at 0x1000b9c4). If a name lookup fails it marks the result as incomplete and
+  stores zero for that entry (`sw` at 0x1000b9dc); it returns the list buffer
+  and stores the section count through the caller's pointer (`sw` at
+  0x1000ba78).
+
+- `dfFindSection` (`usr/gfx/KONA/bin/kpm` 0x1000bb8c): **Established.**
+  Size 260 bytes. It scans the section records in 16-byte steps, comparing
+  each record's name with the caller's string (call at 0x1000bc20). On a match
+  it calls `dfSeekSection` with the matched index (call at 0x1000bc80), stores
+  that index at record +24 (`sw` at 0x1000bc84), and returns the seek result;
+  the no-match path returns -1 (`addiu` at 0x1000bc44).
+
+- `dfReadSection` (`usr/gfx/KONA/bin/kpm` 0x1000bc90): **Established.**
+  Size 180 bytes. It rejects a non-reader file type through the diagnostic
+  error callback (call at 0x1000bce8), then invokes the record's read callback
+  with the destination and requested count (`jalr` at 0x1000bd08). The number
+  returned is added to the current position at +28 (`lw` at 0x1000bd14;
+  `sw` at 0x1000bd24), and the return value is zero for a full read or one for
+  a short read.
+
+- `dfMarkSection` (`usr/gfx/KONA/bin/kpm` 0x1000bd44): **Established.**
+  Size 244 bytes. It scans the section records and compares their names with
+  the requested section (`jalr` at 0x1000bdd8). On a match it stores one in
+  that record's mark field at +12 (`sw` at 0x1000be34) and returns zero after
+  the scan; when no record matches it returns one. A non-reader record first
+  reports error 398 through the diagnostic callback at 0x1000bda4.
+
+- `dfUnmarkSection` (`usr/gfx/KONA/bin/kpm` 0x1000be38): **Established.**
+  Size 240 bytes. It uses the same 16-byte record walk and name comparison as
+  `dfMarkSection` (call at 0x1000becc), but clears the matching record's mark
+  field at +12 (`sw` at 0x1000bf24). It returns one on every path, whether the
+  requested name matches or is absent, and a non-reader file takes the diagnostic
+  error path at 0x1000be98.
+
+- `dfIsSectionMarked` (`usr/gfx/KONA/bin/kpm` 0x1000bf28): **Established.**
+  Size 240 bytes. It compares the requested name with each section record and
+  returns that record's mark word at +12 (`lw` at 0x1000c014) on the first
+  match. A complete scan without a match returns -1 (`addiu` at 0x1000bfe0),
+  and a non-reader record reports error 429 through the callback at
+  0x1000bf80.
+
+- `dfOpenDumpFile` (`usr/gfx/KONA/bin/kpm` 0x1000b5c4): **Established.**
+  Size 880 bytes. It opens the requested path, allocates the file record and
+  initializes its type and callbacks (`sw` at 0x1000b644 and `sb` at
+  0x1000b67c). Reader mode allocates the section table from the header count
+  (`lw` at 0x1000b770; allocator call at 0x1000b77c), loads each 16-byte
+  record, and marks a malformed or short header with count -1 at +24
+  (`sw` at 0x1000b900). Allocation or header failure closes the path and
+  returns zero; success returns the initialized file record.
+
 ### Hardware helper readings
 
 The following entries are separate readings of the N32 `kpm` routines; each
