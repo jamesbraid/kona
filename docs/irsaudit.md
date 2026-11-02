@@ -29,6 +29,27 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
   Address 0x10038954; size 52 bytes. It follows the diagnostic's board-pointer chain through the global adapter record, adds host offset 0xc008 to the selected register base, loads the resulting 64-bit revision word and returns it. The final load is at 0x1003897c.
 - `f3RevRead` (`usr/diags/IR/bin/irsaudit`): **Established.**
   Address 0x10038988; size 52 bytes. It follows the same board-pointer chain, adds host offset 0xc000 to the selected register base, loads the resulting 64-bit revision word and returns it. The final load is at 0x100389b0.
+- `destroy_map_diag` (`usr/diags/IR/bin/irsaudit` 0x10037218): **Established.** Size 188
+  bytes. It submits ioctl 0x2774 with the caller's address, a byte length of
+  four times the third argument, zero flags, and type 6 when the first
+  argument is nonzero or type 10 otherwise. A successful ioctl returns zero;
+  the error callback is called and the routine returns -1 when it fails.
+  (`irsaudit`, 6.5.30m, full routine at 0x10037218.)
+- `ged_host_reg_write` (`usr/diags/IR/bin/irsaudit` 0x100372d4): **Established.** Size
+  156 bytes. It converts the first argument into the distributor host-address
+  field, sets the low control bit and the 0x20 access flag, writes that word
+  through the host helper for selection 0x200600, then writes the second
+  argument through selection 0x200ac0. (`irsaudit`, 6.5.30m, full routine at
+  0x100372d4.)
+- `set_ge11_bypass_pointer` (`usr/diags/IR/bin/irsaudit` 0x100377c4): **Established.**
+  Size 176 bytes. It writes 0x40038 to distributor register 0x235, selects
+  register 0x233 with 0x8e1 when the current engine count is below five and
+  0xce1 otherwise, and finally writes the caller's pointer to register 0x235.
+  (`irsaudit`, 6.5.30m, full routine at 0x100377c4.)
+- `fcAdapPioWrite64` (`usr/diags/IR/bin/irsaudit` 0x1013dcec): **Established.** Size
+  52 bytes. It adds the adapter's mapped base at record offset 0x1b38 to
+  caller offset plus 0xc000 and stores the 64-bit value there. (`irsaudit`,
+  6.5.30m, full routine at 0x1013dcec.)
 - `PioReadArm32` (`usr/diags/IR/bin/irsaudit`): **Established.**
   Address 0x100384ac; size 84 bytes. It writes its argument to ARM address port 0x3e8, reads the non-incrementing data port 0x3f0, and returns the read word. The two helper calls are at 0x100384d4 and 0x100384e8.
 - `PioReadArm32` calls `fcPioWrite32` at 0x100384d4 for address port 0x3e8, then `fcPioRead32` at 0x100384e8 for data port 0x3f0. **Established.**
