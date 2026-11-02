@@ -54,6 +54,62 @@ symbol ranges in the same binary:
   fixed ARM register sequence 1, 0x16, the caller's register, and the caller's
   value through the diagnostic graphics-register writer. It returns after the
   fourth write.
+- `PioWriteArm32` (0x10038444, 104 bytes): **Established.** Writes the caller's
+  address to host offset 0x3e8 and its value to the incrementing ARM data port
+  at 0x3f8. It returns the second PIO-write result. (`irsaudit`, calls to
+  `fcPioWrite32` at 0x1003847c and 0x10038488.)
+- `PioReadArmIncr32` (0x10038500, 84 bytes): **Established.** Writes the
+  caller's address to offset 0x3e8, reads one word from the incrementing data
+  port at 0x3f8, and returns that word. (`irsaudit`, calls at 0x10038528 and
+  0x1003853c.)
+- `arm_init_ge` (0x10038314, 304 bytes): **Established.** Writes the engine
+  selector 546 with value 1 five times, advances to the next engine, masks the
+  saved engine count into a one-bit-per-engine mask, and writes that mask five
+  more times to the same selector. It returns without a status value.
+  (`irsaudit`, calls to the distributor writer at 0x1003835c-0x10038424.)
+- `switch_ged_ge` (0x10037a68, 104 bytes): **Established.** Selects distributor
+  register 0x20600 with value 0x5840800 through the ARM path, then writes 1 to
+  register 0x20a80. It returns after the two ARM writes. (`irsaudit`, calls at
+  0x10037aa0 and 0x10037ab0.)
+- `befSelCurrGE` (0x10037648, 288 bytes): **Established.** If the boundary-scan
+  chain is available, selects chain 19, inserts the requested engine value into
+  field 1121, and pokes the updated chain before freeing it. Without a chain it
+  calls the BEF configuration path with the saved engine count. The sentinel
+  engine value -1 becomes zero before either path. (`irsaudit`, calls at
+  0x10037698-0x10037758.)
+- `ge_bypass_read_nomap` (0x10037ad0, 408 bytes): **Established.** Programs the
+  no-map bypass transfer with the caller's address, buffer, and word count,
+  polls the transfer count at host offset 0x2b8, reads one distributor value per
+  requested word, waits for output DMA mode 2, and restores the distributor
+  control values 0x438 and either 0x8e0 or 0xce0. A zero count skips the read
+  loop and the routine returns zero. (`irsaudit`, calls at 0x10037b24-0x10037c38.)
+- `waitBefDone` (0x1002c060, 368 bytes): **Established.** Writes 0x3ff to
+  raster-bus register 0x238, writes 0x5a5a5a5a to register 0x400, then polls
+  host offset 0x238 up to 99 times for status bit 0x20. It returns zero when
+  the bit appears and -1 after the final diagnostic report. (`irsaudit`, calls
+  at 0x1002c0b0, 0x1002c0d8 and 0x1002c12c.)
+- `modify_bef_config_reg` (0x1001b808, 2096 bytes): **Established.** Isolates
+  the BEF scan chain, creates a data vector from the caller's low nine-bit
+  configuration value, and conditionally updates field 1103 when bit 0x100 is
+  set. It separately handles the all-ones mask 0x1ff, sends the vector through
+  the chain, and returns the scan-library result after restoring the chain.
+  (`irsaudit`, scan operations at 0x1001b88c-0x1001b988.)
+- `query_bef_config_reg` (0x1001c038, 976 bytes): **Established.** Isolates the
+  BEF chain, extracts the configuration register, reads fields 1114 and 1115,
+  stores the first field in the caller's result pointer, reports both values,
+  and returns the scan-library status. (`irsaudit`, extraction at 0x1001c128
+  and field reads at 0x1001c14c and 0x1001c194.)
+- `query_bef_user_reg` (0x1001c408, 824 bytes): **Established.** Isolates the
+  user-register scan path, extracts its register, reads the paired fields 1307
+  and 1308, stores the first value through the caller's pointer, and reports
+  both extracted values. Its return value is the final scan status.
+  (`irsaudit`, extraction at 0x1001c4fc and field reads at 0x1001c51c and
+  0x1001c564.)
+- `query_bef_status_reg` (0x1001c740, 1356 bytes): **Established.** Isolates the
+  status-register chain, extracts the register, reads status fields 1102 and
+  1101, stores the first result through the caller's pointer, and reports the
+  two values before returning the final scan status. (`irsaudit`, extraction at
+  0x1001c834 and field reads at 0x1001c854 and 0x1001c89c.)
 
 ## Tests
 
