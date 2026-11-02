@@ -1767,6 +1767,99 @@ These complete IP35 O32 routine ranges are byte-identical to the exact same-addr
 | __glim_AlphaFunc | 0xd9c0dc0 / 220 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c0dc0 / 220 | 3751d8104b5a1c2b8c44ddb55884d3cf506cb5db593d9438cfce6f902d4106a2 |
 - `__glim_AlphaFunc` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9c0dc0; occupies 220 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c0dc0. SHA-256 3751d8104b5a1c2b8c44ddb55884d3cf506cb5db593d9438cfce6f902d4106a2.
+## IP35 O32 state setters with exact IP27 O32 identities
+
+Seventeen complete target bodies are byte-identical to the same-address IP27 O32 routines. The rows record exact identity and retain the prior behavior grades. Five O32 source entries were marked not rechecked, so no inherited semantic details are added here.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) | Existing grade |
+|---|---|---|---|---|
+| __glim_BlendFunc | 0xd9c0e9c / 440 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c0e9c / 440 | 45484b733de9fbf701911b5539f1992159441f6ff352f8a4f4f8a04805975c5f | Established |
+| __glim_ClearAccum | 0xd9c114c / 324 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c114c / 324 | c9ad5531dbe50331850e4347e826c80a2e3b2475c0ac5895e45c0effec634b38 | Established |
+| __glim_ClearDepth | 0xd9c13bc / 172 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c13bc / 172 | 5ac381c2d8e9b7edc23fbf41e57dc45ee6f1839400d99b5f30717f880f520bfa | Established |
+| __glim_ClearIndex | 0xd9c1468 / 148 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1468 / 148 | 26942df7f765c5aed8c776cf049b89f7ec9cad59e45a5a5f1601c1ad7a23693b | Established |
+| __glim_ClearStencil | 0xd9c14fc / 132 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c14fc / 132 | 2805c152b3294807ecfdeb20c3b2bedc2a94727a06b0dadb2e1a7a255fe95193 | Established |
+| __glim_ColorMask | 0xd9c1580 / 152 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1580 / 152 | c5a1a5e65e6f377deffffdc52a16890d341632aec196260edd58a84781087630 | Established |
+| __glim_ColorMaterial | 0xd9c1618 / 276 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1618 / 276 | 9b497af11c250144581271941444fcac9019f156446c7d1b62f0cf841a9139c3 | Established |
+| __glim_CullFace | 0xd9c172c / 164 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c172c / 164 | bf9eeb2446df70d9e5f24209e2e315a4a38bddb905db0e2e0b4c1eccad3983f5 | Established |
+| __glim_DrawBuffer | 0xd9c1a08 / 324 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1a08 / 324 | bd17e991b49eb06d741b8d97f8d4d137a82eeaf7e3416c95f8acaa4999fcab0b | Inferred |
+| __glim_Fogfv | 0xd9c1b4c / 616 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1b4c / 616 | 32ce4e87694940dd8eb384ef209ff40e786bd6417a22f4c7275e54e841355d9c | Inferred |
+| __glim_Fogf | 0xd9c1db4 / 128 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1db4 / 128 | 35db42b93abcc893fbbca1ab89574529d97a72ae59c12a2deb71e18e087f9c25 | Established |
+| __glim_Fogiv | 0xd9c1e34 / 496 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c1e34 / 496 | a167790e2394801432a10468b6498c2edf05a4119a7677f9b36bcf5e6757e5d0 | Inferred |
+| __glim_Fogi | 0xd9c2024 / 128 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c2024 / 128 | 6e20509e74ca2b4fb56e9a9cf6f319b5d07434b4d9ef6bb9f0d7e55857ae26e0 | Established |
+| __glim_FrontFace | 0xd9c20a4 / 156 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c20a4 / 156 | ffa15e594665b181af3b02c745befab36a6ef7d4cfec57d4b24123f068e9bc96 | Established |
+| __glim_Hint | 0xd9c2140 / 404 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c2140 / 404 | 10abddb7d5f07d10284abd7aa913918541cc6b69556ae238c05865dd2d2ecbe6 | Inferred |
+| __glim_IndexMask | 0xd9c22d4 / 120 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c22d4 / 120 | f27ae007b8cb3c2a865ebfa651dca53596b9e8d5e28e463972c63b684eeb39df | Established |
+| __glTransformLightDirection | 0xd9c234c / 320 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c234c / 320 | b70a40314247c8edad1a3befdfa72bcd8596b300e121611168ee5d6ff18ae937 | Inferred |
+
+## IP35 O32 state setters with N32-different bodies
+
+The following target-specific readings use exact O32 facts and retain unresolved context values and callbacks.
+
+| Routine | IP35 O32 address / size | N32 build / address / size | IP35 SHA-256 | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glim_ClearColor | 0xd9c1290 / 300 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9bc120 / 184 | cf8b3beacff725ead1211e7785c4bbf2b111e572b449d955da24148c83f8a600 | 32c9e7cb5733aa5bf0d7d9580d735efa24fba6973c7bf1c773fa852780a5f22a | 170 |
+| __glim_DepthFunc | 0xd9c17d0 / 372 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9bc5b0 / 408 | 37d603498f96d4e317fff66d4ff08063be3bf59e0d32b8f8eaf10b622a16486e | 0f3666ee6a1c546d800fbd419a197e9b3ca05617cfec296cd9734bc2c43dac66 | 344 |
+| __glim_DepthMask | 0xd9c1944 / 196 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9bc750 / 200 | 66b8662df8a4bdf2b98f7051e0cffd899bc28453af22844def727552aa4115a4 | 86c7871d64e376ce8f5829df42f5ad3585bb2e93c35522dbb41632e5c5683c73 | 179 |
+
+- `__glim_BlendFunc` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c0e9c; occupies 440 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c0e9c over the full body. SHA-256 45484b733de9fbf701911b5539f1992159441f6ff352f8a4f4f8a04805975c5f. Existing grade Established retained.
+
+- `__glim_ClearAccum` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c114c; occupies 324 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c114c over the full body. SHA-256 c9ad5531dbe50331850e4347e826c80a2e3b2475c0ac5895e45c0effec634b38. Existing grade Established retained.
+
+- `__glim_ClearColor` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1290; occupies 300 bytes. **Inferred.**** Clear-colour state is reached through C, the pointer word loaded from absolute 0x1010 (`lw` at 0xd9c12bc). The mode word at absolute 0x1018 is checked against 1 (`lw` at 0xd9c12b4 and `bne` at 0xd9c12c0). Equality falls through to `__glSetError` with first argument 0x502 (`jalr` at 0xd9c12d0). Inequality takes the float-update path. That path loads a float at C +0xdd8 (`lwc1` at 0xd9c12e4). A branch-likely is taken when that float is not less than f12 (`bc1fl` at 0xd9c1304). Output includes float words at C +0x744/+0x748/+0x74c/+0x750 (`swc1` at 0xd9c1394, `swc1` at 0xd9c1398, `swc1` at 0xd9c13a0, and `swc1` at 0xd9c13a8). Hostfacts leaves the combined return value unknown (`jr` at 0xd9c13b4). The full clamp formula is not transferred from N32. The documented N32 entry remains Established. This separate target-specific draft is Inferred.
+
+- `__glim_ClearDepth` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c13bc; occupies 172 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c13bc over the full body. SHA-256 5ac381c2d8e9b7edc23fbf41e57dc45ee6f1839400d99b5f30717f880f520bfa. Existing grade Established retained.
+
+- `__glim_ClearIndex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1468; occupies 148 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1468 over the full body. SHA-256 26942df7f765c5aed8c776cf049b89f7ec9cad59e45a5a5f1601c1ad7a23693b. Existing grade Established retained.
+
+- `__glim_ClearStencil` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c14fc; occupies 132 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c14fc over the full body. SHA-256 2805c152b3294807ecfdeb20c3b2bedc2a94727a06b0dadb2e1a7a255fe95193. Existing grade Established retained.
+
+- `__glim_ColorMask` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1580; occupies 152 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1580 over the full body. SHA-256 c5a1a5e65e6f377deffffdc52a16890d341632aec196260edd58a84781087630. Existing grade Established retained.
+
+- `__glim_ColorMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1618; occupies 276 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1618 over the full body. SHA-256 9b497af11c250144581271941444fcac9019f156446c7d1b62f0cf841a9139c3. Existing grade Established retained.
+
+- `__glim_CullFace` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c172c; occupies 164 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c172c over the full body. SHA-256 bf9eeb2446df70d9e5f24209e2e315a4a38bddb905db0e2e0b4c1eccad3983f5. Existing grade Established retained.
+
+- `__glim_DepthFunc` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c17d0; occupies 372 bytes. **Inferred.**** Depth-function selection loads the context pointer C from absolute 0x1010 (`lw` at 0xd9c1800). It calls `__glSetError` with first arguments 0x502 and 0x500 on different paths (`jalr` at 0xd9c180c and `jalr` at 0xd9c1838). An unsigned input below 0x200 takes the 0x500 error path (`bnez` at 0xd9c1820). The later upper-bound branch operand is unresolved by hostfacts (`bnel` at 0xd9c1828). One conditional path stores 0x1000000 at C +0x7a98 (`sw` at 0xd9c1888). Its callback is bypassed when bit 0x10 in C +0x700 is clear or the byte at C +0xc99 is zero (`beql` at 0xd9c1870 and `beql` at 0xd9c1880). The unknown callback receives C, C +0x7a34, and the word loaded from C +0x7a84 as its first three arguments (`jalr` at 0xd9c18a0). The second callback's callee and all four arguments remain unknown (`jalr` at 0xd9c1908). Later word stores have unresolved bases (`sw` at 0xd9c1918 and `sw` at 0xd9c192c), while a store of 2 resolves to absolute 0x1018 (`sw` at 0xd9c1920). The callback effects and complete state-transition contract remain unresolved.
+
+- `__glim_DepthMask` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1944; occupies 196 bytes. **Inferred.**** Depth-write mask state uses C, the pointer loaded from absolute 0x1010 (`lw` at 0xd9c1974). The entry error call receives 0x502 as its first argument (`jalr` at 0xd9c1980). When bit 0x4000 in the word at C +0x700 is clear, a branch-likely goes to the final state update (`beql` at 0xd9c1998). Its delay slot stores a byte at C +0x664 only when the branch is taken (`sb` at 0xd9c199c). With that bit set, unresolved a2 equal to zero selects the callback path (`beqz` at 0xd9c19a0). That path calls `__glReadjustZCounts` with C as its first argument (`jalr` at 0xd9c19cc). A different path copies the word from C +0x7a84 to C +0x7a88 (`lw` at 0xd9c19b4 and `sw` at 0xd9c19bc). The later byte store and dirty-word store have unknown bases (`sb` at 0xd9c19e0 and `sw` at 0xd9c19f4). A separate store writes 2 at absolute 0x1018 (`sw` at 0xd9c19e8). Hostfacts does not resolve a2's value, the later context origin or the callback's effects.
+
+- `__glim_DrawBuffer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1a08; occupies 324 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1a08 over the full body. SHA-256 bd17e991b49eb06d741b8d97f8d4d137a82eeaf7e3416c95f8acaa4999fcab0b. Existing grade Inferred retained.
+
+- `__glim_Fogfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1b4c; occupies 616 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1b4c over the full body. SHA-256 32ce4e87694940dd8eb384ef209ff40e786bd6417a22f4c7275e54e841355d9c. Existing grade Inferred retained.
+
+- `__glim_Fogf` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1db4; occupies 128 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1db4 over the full body. SHA-256 35db42b93abcc893fbbca1ab89574529d97a72ae59c12a2deb71e18e087f9c25. Existing grade Established retained.
+
+- `__glim_Fogiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c1e34; occupies 496 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c1e34 over the full body. SHA-256 a167790e2394801432a10468b6498c2edf05a4119a7677f9b36bcf5e6757e5d0. Existing grade Inferred retained.
+
+- `__glim_Fogi` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2024; occupies 128 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c2024 over the full body. SHA-256 6e20509e74ca2b4fb56e9a9cf6f319b5d07434b4d9ef6bb9f0d7e55857ae26e0. Existing grade Established retained.
+
+- `__glim_FrontFace` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c20a4; occupies 156 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c20a4 over the full body. SHA-256 ffa15e594665b181af3b02c745befab36a6ef7d4cfec57d4b24123f068e9bc96. Existing grade Established retained.
+
+- `__glim_Hint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2140; occupies 404 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c2140 over the full body. SHA-256 10abddb7d5f07d10284abd7aa913918541cc6b69556ae238c05865dd2d2ecbe6. Existing grade Inferred retained.
+
+- `__glim_IndexMask` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c22d4; occupies 120 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c22d4 over the full body. SHA-256 f27ae007b8cb3c2a865ebfa651dca53596b9e8d5e28e463972c63b684eeb39df. Existing grade Established retained.
+
+- `__glTransformLightDirection` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c234c; occupies 320 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c234c over the full body. SHA-256 b70a40314247c8edad1a3befdfa72bcd8596b300e121611168ee5d6ff18ae937. Existing grade Inferred retained.
 ## Software renderer (soft)
 
 ### so_accumop.c
