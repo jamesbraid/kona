@@ -702,6 +702,16 @@ same executable.
   one-byte name terminator (`lbu` at 0x10032bac) and returns the table's
   terminal pointer when no later record qualifies. (`kpm`, 6.5.30m, complete
   N32 body read at 0x10032b90-0x10032c4b.)
+- `analyze_rbus` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1002d2ac;
+  size 8 bytes. It immediately returns zero through the delay-slot move at
+  0x1002d2b0 and performs no raster-bus reads, writes, or report calls in its
+  complete body. (`kpm`, 6.5.30m, instructions at 0x1002d2ac and
+  0x1002d2b0.)
+- `kpm_interact` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f538;
+  size 8 bytes. Its only instructions are the return at 0x1000f538 and the
+  delay-slot `nop` at 0x1000f53c, so the advertised interactive mode has no
+  body behavior in this executable. (`kpm`, 6.5.30m, complete N32 body read at
+  0x1000f538-0x1000f53f.)
 
 ## Register tables and logging
 
