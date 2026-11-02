@@ -836,6 +836,106 @@ These boundary-scan helpers were read in their complete N32 address ranges.
 
 The following additional readings were taken from complete N32 address ranges.
 
+- `V_inspect` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a008;
+  size 88 bytes. It passes the selected dump and inspection arguments to the
+  inspection callback (`jalr` at 0x1000a044) and returns zero after the
+  callback completes (`move` at 0x1000a050).
+
+- `V_list` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a060;
+  size 444 bytes. It lists section names from `dfListSections` (call at
+  0x1000a090), prints each name, and marks or unmarks entries when the viewer's
+  state requests it (`dfIsSectionMarked` call at 0x1000a148). It frees the
+  returned list at 0x1000a1a4 and returns zero; a list failure takes the
+  diagnostic formatter at 0x1000a204.
+
+- `V_mark` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a21c;
+  size 152 bytes. It walks the viewer's section-name array from the fourth
+  stack argument (`lw` at 0x1000a500), calls `dfMarkSection` once per name
+  (`jal` at 0x1000a274), and returns zero after the requested count (`slt` at
+  0x1000a508).
+
+- `V_show` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a2b4;
+  size 496 bytes. It obtains the current file position (`dfGetFilePointer`
+  call at 0x1000a2f0), seeks the requested section (`dfFindSection` call at
+  0x1000a324), reads each selected section record, and dispatches its content
+  to the viewer formatter (`jalr` at 0x1000a3f4). It handles the one-section
+  shortcut by calling `V_list` at 0x1000a474 and returns -1 for a missing
+  section (`addiu` at 0x1000a480).
+
+- `V_unmark` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a4a4;
+  size 152 bytes. It walks the viewer's section-name array and calls
+  `dfUnmarkSection` for each entry (`jal` at 0x1000a4fc), then returns zero
+  after the count loop (`slt` at 0x1000a508).
+
+- `dfCreateDumpFile` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1000afdc; size 452 bytes. It creates the underlying file (`create_file`
+  call at 0x1000b018), allocates a 0x20-byte file record (`jalr` at
+  0x1000b034), initializes type 2 and an 0x800-byte section capacity (`sb` at
+  0x1000b090 and `sw` at 0x1000b06c), and writes the dump header. Any
+  allocation or header failure closes the file and returns null (`jalr` calls
+  at 0x1000b0ac-0x1000b0d8).
+
+- `dfPrintf` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000b534;
+  size 144 bytes. It formats the variadic arguments into a 0x450-byte stack
+  buffer (`addiu` at 0x1000b534), then appends the resulting byte count through
+  `dfWriteSection` (`jal` at 0x1000b5ac). Its return value is the section-write
+  result.
+
+- `dfSeekSection` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000bab4;
+  size 216 bytes. It rejects non-reader records (`lbu` at 0x1000babc and
+  diagnostic call at 0x1000bb00), seeks to the selected 16-byte section record
+  (`sll` at 0x1000bb20 and read callback at 0x1000bb38), and stores the new
+  file position at record offset +0x1c (`sw` at 0x1000bb80). It returns zero on
+  success and one when the read callback fails (`addiu` at 0x1000bb48).
+
+- `dfGetFilePointer` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1000c018; size 104 bytes. It checks that the file is a reader (`lbu` at
+  0x1000c01c), reports the wrong type through the error callback at
+  0x1000c060, and returns the file's current position from record offset zero
+  (`lw` at 0x1000c074).
+
+- `dfCloseDumpFile` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1000c080; size 656 bytes. It distinguishes reader and writer records
+  (`lbu` at 0x1000c08c), flushes and closes a reader through the file callback
+  (`jalr` at 0x1000c11c), and for a writer closes every section, releases its
+  16-byte records (`addiu` at 0x1000c1cc), writes the final header, and frees
+  the file, path, and record allocations (`jalr` calls at 0x1000c29c-0x1000c2c4).
+  It returns zero on success and one on a close failure (`addiu` at
+  0x1000c130).
+
+- `kpm_dump` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000d510;
+  size 1604 bytes. It initializes the report timestamp and capture state,
+  opens the requested dump (`dfCreateDumpFile` call at 0x1000d650), loads ARM
+  and GE symbols when enabled (`jal` calls at 0x1000d678 and 0x1000d6a0),
+  then runs the adapter, HIP and JTAG inspections in sequence (`jal` calls at
+  0x1000d714-0x1000d744). It writes the overview, closes the dump, cleans the
+  DMA map, and reports errors at each negative return branch.
+
+- `kpm_status` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000e210;
+  size 288 bytes. It sets the status-mode bit in the global pipe flags
+  (`ori` at 0x1000e258), runs the pipe check (`jal` at 0x1000e25c), then reads
+  the JTAG state with `jtagInspection` (`jal` at 0x1000e294). Each negative
+  result is logged and the routine returns zero on completion (`move` at
+  0x1000e2a8).
+
+- `kerror` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f540;
+  size 596 bytes. It formats an error message into the caller's variadic
+  buffer (`jalr` at 0x1000f5d8), writes it to the diagnostic report and log
+  streams (`jalr` at 0x1000f60c and 0x1000f638), and sets the global error flag
+  (`sw` at 0x1000f6a0). When report output is enabled it also closes the report
+  and emits the terminal error status (`jal` at 0x1000f730).
+
+- `klog` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f794;
+  size 504 bytes. It checks the report and logging enable flags (`lw` at
+  0x1000f7d8 and 0x1000f7e8), formats the supplied message, and sends it to
+  the enabled report streams (`jalr` at 0x1000f838 and 0x1000f858). Disabled
+  output returns directly through 0x1000f878.
+
+- `get_time` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f98c;
+  size 84 bytes. It obtains the current clock value (`jalr` at 0x1000f9b0),
+  converts it to printable time text through the caller's buffer (`jalr` at
+  0x1000f9c8), and returns the conversion result.
+
 - `read_chains` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100216dc;
   size 2464 bytes. It initializes the boundary-scan lookup tables and selects
   a chain-description parser through the configuration jump table (`lw` at
