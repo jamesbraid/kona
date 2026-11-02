@@ -1385,12 +1385,12 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100192bc	1104	jt_read_external
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10019e28	4704	jt_execute_external_bists	dynsym	3c08df2dde0a		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b088	364	compare	dynsym	05a31e592c29		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b1f4	1468	modify_bef_user_reg	dynsym	3c9db9036863		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b7b0	88	set_bef_user_reg	dynsym	a2f64eec191b		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b7b0	88	set_bef_user_reg	dynsym	a2f64eec191b		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b808	2096	modify_bef_config_reg	dynsym	8c7afaab1413		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c038	976	query_bef_config_reg	dynsym	baac12f78301		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c408	824	query_bef_user_reg	dynsym	a95badda2361		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c740	1356	query_bef_status_reg	dynsym	b3a7d9c81502		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cc8c	100	set_bef_config_reg	dynsym	b719dfb28e89		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cc8c	100	set_bef_config_reg	dynsym	b719dfb28e89		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001ccf0	84	select_bef_current_ge	dynsym	5df4cc19b291		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cd44	268	TEST_befconfig	dynsym	82263a9c90a9		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001ce54	280	determine_crc_goldfile	dynsym	70ff7b8eac6e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1451,12 +1451,12 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f0c	64	dgVDacModeWrite	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036f4c	152	dgVDacControlWrite	dynsym	131e428383f6		in	located	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10036fe4	372	dgMakeVDacFetal	dynsym	748907ffdbd5		in	located	ucode/arm1_functions.md#display-generator	Display generator
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037158	192	dg_make_dac_fetal	dynsym	3bf5fe7b765d		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037218	188	destroy_map_diag	dynsym	a1ffdac98534		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100372d4	156	ged_host_reg_write	dynsym	41978782f98a		in	named-only	ucode/ged.md#registers-the-host-writes	Registers the host writes
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037218	188	destroy_map_diag	dynsym	a1ffdac98534		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100372d4	156	ged_host_reg_write	dynsym	41978782f98a		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037370	728	ged_set_ge	dynsym	94ec268df3d6		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037648	288	befSelCurrGE	dynsym	602f51989c29		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037768	92	set_current_ge	dynsym	bc26c9d55170		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100377c4	176	set_ge11_bypass_pointer	dynsym	5af4a718dd27		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100377c4	176	set_ge11_bypass_pointer	dynsym	5af4a718dd27		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037874	272	ge11_bypass_write	dynsym	82570fed57c4		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037984	228	ge11_bypass_read	dynsym	af725af6c138		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	d08ffe81de46		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
@@ -1465,8 +1465,8 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	b39dc2b4c152		in	located	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	b17eda2c1075		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	86815e8d4523		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	2ca90159f887		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	d5735582ec6b		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	2ca90159f887		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	d5735582ec6b		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038314	304	arm_init_ge	dynsym	a7abbec039da		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038444	104	PioWriteArm32	dynsym	0fc7eba2546e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100384ac	84	PioReadArm32	dynsym	c086e4cc3063		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
@@ -1475,11 +1475,11 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038554	64	StallArm	dynsym	39
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038594	64	UnStallArm	dynsym	fce1038e852d		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100385d4	444	initialize_icu	dynsym	ca7a5db62b57		in	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038790	104	enable_hip_intr	dynsym	960eb691b725		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100387f8	108	init_hip_interrupt_regs	dynsym	8bc1365c607f		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100387f8	108	init_hip_interrupt_regs	dynsym	8bc1365c607f		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038864	124	set_hip_intr_info	dynsym	f930d8780b24		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	e655c7ee6695		in	named-only	docs/ge.md#reset-and-start-up	Reset and start-up
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	3bd60b391f7b		in	named-only	docs/hip.md#arm-side-register-names	ARM-side register names
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038988	52	f3RevRead	dynsym	74450b796d1e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100388e0	116	ResetKona	dynsym	e655c7ee6695		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038954	52	HipRevRead	dynsym	3bd60b391f7b		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038988	52	f3RevRead	dynsym	74450b796d1e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100389c0	256	load_arm_mem	dynsym	838acd814cbd		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038ac0	144	zero_arm_mem	dynsym	70a09944bf8d		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038b50	288	verify_arm_mem	dynsym	fdebea07db65		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -2248,18 +2248,18 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d99c	92	evCheck	dynsym	e16
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d9f8	80	tbTraceOff	dynsym	3016f3c3f9e3		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013da48	80	tbTraceOn	dynsym	8c15b9cce0a4		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013da98	80	tlTraceComment	dynsym	b05195e13dac		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dae8	244	fcPioWrite32	dynsym	60e62430db3a		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dbdc	220	fcPioWrite64	dynsym	16a7c0bf9462		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dae8	244	fcPioWrite32	dynsym	60e62430db3a		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dbdc	220	fcPioWrite64	dynsym	16a7c0bf9462		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dcb8	52	fcAdapPioWrite32	dynsym	f92fa4b06887		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dcec	52	fcAdapPioWrite64	dynsym	76295e2d44a6		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dcec	52	fcAdapPioWrite64	dynsym	76295e2d44a6		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd20	52	fcAdapPioRead32	dynsym	15d4c02ce283		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd54	52	fcAdapPioRead64	dynsym	7c60b9a3c63b		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd88	292	fcPioRead32	dynsym	cffeaefa7421		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013deac	128	fcGfxWrite	dynsym	1d56780c52ea		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd88	292	fcPioRead32	dynsym	cffeaefa7421		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013deac	128	fcGfxWrite	dynsym	1d56780c52ea		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013df2c	932	fcGfxWrite32	dynsym	1edf98182bac		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e2d0	768	fcGfxWrite64	dynsym	faaec479e366		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e5d0	588	fcGfxFlush	dynsym	917481b0f606		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e81c	128	fcTbusWrite	dynsym	c9d710e1f4f0		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e81c	128	fcTbusWrite	dynsym	c9d710e1f4f0		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e89c	76	fcIntrCount	dynsym	af709a994715		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e8e8	76	fcIntrGet	dynsym	d5dc26c14a6b		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e934	284	read_hub_rtc	dynsym	245bd73f5075		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -2430,7 +2430,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101634ac	516	jt_insert	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101636b0	392	jtPinsert	dynsym	87e050014f15		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10163838	200	jtInsert	dynsym	147b32533b55		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10163938	3304	init_kona_hw_access	dynsym	a7b168cb3bd5		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164620	420	init_kona_access	dynsym	dfb8c98760d4		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164620	420	init_kona_access	dynsym	dfb8c98760d4		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101647c4	368	kt_read_chain	dynsym	ec412162ab53		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164934	140	kt_dispose_chain	dynsym	6a267ac4fb9b		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101649c0	212	jt_reverse_unpacked_vector	dynsym	f0ecf9edd180		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2444,9 +2444,9 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164ef0	64	jt_dispose_vector	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164f30	100	jt_vector_to_int	dynsym	ab326ca1c1ec		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10164fa0	124	jt_int_to_vector	dynsym	dfb1081489b6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165020	252	jt_find_chip	dynsym	27fab07a438c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	9ffa162c1f11		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165290	292	jt_insert_chip_register	dynsym	b29aec83ccda		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101653c0	796	jt_extract_bits	dynsym	9c494d17a399		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165130	348	jt_extract_chip_register	dynsym	9ffa162c1f11		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10165290	292	jt_insert_chip_register	dynsym	b29aec83ccda		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101653c0	796	jt_extract_bits	dynsym	9c494d17a399		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101656e0	860	jt_insert_bits	dynsym	994bd8974a33		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166080	68	jt_expand_portlist	dynsym	9709103908c3		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101660d0	672	jt_nullify	dynsym	f69f1e751a4e		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2460,26 +2460,26 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10166e60	876	jt_set_global_ins
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101671d0	1816	jt_conditional_reset	dynsym	6d77e8b82065		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101678f0	904	jt_set_individual_instructions	dynsym	53934f9061ce		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10167c80	960	jt_isolate_chip	dynsym	5d70a8cdea57		in	named-only	docs/hip.md#reset	Reset
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	543b5d8236f3		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168040	548	jt_powerup_chain	dynsym	543b5d8236f3		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168270	104	jt_set_procs	dynsym	437b07e1d4ad		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168530	60	jt_init	dynsym	0b6102fcb0c9		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	011ee45f9275		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	9fb250ccd7f0		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	b3cb51b2edcc		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168570	68	jt_select_chain	dynsym	011ee45f9275		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101685c0	60	jt_soft_reset	dynsym	9fb250ccd7f0		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168600	60	jt_hard_reset	dynsym	b3cb51b2edcc		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168640	60	jt_test_thyself	dynsym	66010444a482		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	244214d8138d		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101686e0	84	jt_send_data	dynsym	3c61feeb31f2		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168680	84	jt_send_instruction	dynsym	244214d8138d		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101686e0	84	jt_send_data	dynsym	3c61feeb31f2		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168740	40	jt_set_error_handler	dynsym	77167ebcd81b		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168770	40	jt_set_debug_handler	dynsym	812d12cf4b0c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101687a0	184	jt_error	dynsym	8b234e064037		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168860	116	jt_debug	dynsym	8702e6a2601c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101688e0	120	jt_perror	dynsym	acc886fc7300		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10168970	2388	jt_read_chain	dynsym	87b8e0d97f66		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101692d0	6000	read_bsr	dynsym	9f2e21cdc72d		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101692d0	6000	read_bsr	dynsym	9f2e21cdc72d		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aa40	236	type_to_func	dynsym	10977f82bbf2		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ab30	272	type_to_safe	dynsym	f06a2e9ed8de		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ac40	88	premature_eof	dynsym	116479923aa3		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aca0	300	read_bsdl	dynsym	75080321f417		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016aca0	300	read_bsdl	dynsym	75080321f417		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016add0	1144	jt_print_chain	dynsym	2b082da32843		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016b250	1756	jt_print_bsr	dynsym	544eac8d890f		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bae0	232	jt_lookup_port	dynsym	d41ed675d205		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2606,18 +2606,18 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	92
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	a2b07bf3a79b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10013cdc	5072	hipInspectionPostJtag	dynsym	721b27390890		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001529c	448	show_adap_registers_section	dynsym	40f7a85158e1		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001545c	1028	show_hip_host_registers_section	dynsym	4bb2f3c4205b		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015860	972	show_arm_registers_section	dynsym	47081b730aa5		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001545c	1028	show_hip_host_registers_section	dynsym	4bb2f3c4205b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015860	972	show_arm_registers_section	dynsym	47081b730aa5		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015c2c	376	show_hip_clock_status_section	dynsym	457dca845ffe		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10015da4	1892	show_arm_status_section	dynsym	c09b80c175f5		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016508	452	show_fifo_section	dynsym	ba950d6fbb96		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100166cc	256	show_arm_ge_mbox_section	dynsym	be45669961d7		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym	cdd186a6f6b4		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016508	452	show_fifo_section	dynsym	ba950d6fbb96		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100166cc	256	show_arm_ge_mbox_section	dynsym	be45669961d7		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100167cc	292	show_icu_map0_section	dynsym	cdd186a6f6b4		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100168f0	796	show_arm_eeprom_section	dynsym	5415d409bbe5		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	1692e169f719		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	70d211e4b62f		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016c0c	408	show_arm_sram_section	dynsym	1692e169f719		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10016da4	1120	show_arm_sdram_section	dynsym	70d211e4b62f		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017204	368	hipReset	dynsym	07ebe0a81e5b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	54d0d733f148		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100173b0	1152	analyze_hip	dynsym	54d0d733f148		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10017830	1872	befFIFOInspection	dynsym	ce867d740a53		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100180cc	228	bef_reset	dynsym	f348cb50ed4f		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001890c	340	bef_set_current_ge	dynsym	cd811c894669		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
@@ -2626,13 +2626,13 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10018d30	864	save_bef_configuration	dynsy
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019090	384	show_bef_perfregs_section	dynsym	4b7aedffb38e		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019210	444	show_bef_shadow_section	dynsym	86db95b4e695		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100193cc	1500	show_bef_fifo_section	dynsym	da2af7c807eb		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	5d3433388cc1		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100199a8	680	analyze_bef	dynsym	5d3433388cc1		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019c50	456	gedReset	dynsym	4fb25c34327b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019e3c	164	ged_register_write	dynsym	f76f6b99efd2		in	located	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019ee0	228	ged_set_current_ge	dynsym	e26ba1002d25		in	located	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10019fc4	2680	gedStateDrain	dynsym	a4fe576f7b0f		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001aa3c	2016	show_ged_section	dynsym	6e95688f385d		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b21c	824	analyze_ged	dynsym	c91feaa3a1ef		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b21c	824	analyze_ged	dynsym	c91feaa3a1ef		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b554	476	read_ge_symbols	dynsym	f496bb7479c8		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b730	108	ge_register_write	dynsym	86adc513f3ed		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001b79c	100	ge_register_read	dynsym	56e614b8365e		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
@@ -2642,17 +2642,17 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001bbf0	1332	ge11LoadUcode	dynsym	4c7cf8
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c124	200	tbRegisterWrite	dynsym	ab24a699b4bb		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001c44c	772	show_ge_core	dynsym	e3cb68ed5035		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001cb0c	1296	show_ge_section	dynsym	1fb9a0296ac1		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001d218	364	analyze_ge	dynsym	82a356c8837a		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001d218	364	analyze_ge	dynsym	82a356c8837a		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e748	620	ge11ReadDiagRegisters	dynsym	91e1ef9eb9c9		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001e9b4	976	ge11RamScan	dynsym	6f9cf270168b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ed84	496	ge11EramScan	dynsym	e8085b2f7a47		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ef74	208	ge11WriteSection	dynsym	fe5faf79f4c8		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001ef74	208	ge11WriteSection	dynsym	fe5faf79f4c8		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f044	444	dgInspection	dynsym	faf20f3ba1ff		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f200	424	show_fm_section	dynsym	76ada315d11d		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f3a8	396	show_xmap_section	dynsym	7efa922e3078		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	dffa795f6463		in	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f534	568	set_transfer_address	dynsym	dffa795f6463		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f76c	84	setup_dma	dynsym	6ae68f24bb89		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	989e7b6e7ae8		in	located	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f7c0	216	wait_for_dma_completion	dynsym	989e7b6e7ae8		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1001f898	352	cleanup_dma	dynsym	d24722b147b1		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100216dc	2464	read_chains	dynsym	cd33d09328ca		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002207c	568	jtagInspection	dynsym	2ea1ed767f46		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
@@ -2665,7 +2665,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2ac	8	analyze_rbus	dynsym	8750649733
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2b8	2248	show_rm6_jtag_section	dynsym	52591b1a1d09		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002e200	3836	get_rm_status	dynsym	9e11991a2494		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f0fc	1756	rm_backward_analysis	dynsym	f91b1aa4c1e7		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f7d8	344	analyze_rmstatus	dynsym	5baf0fd76f3a		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f7d8	344	analyze_rmstatus	dynsym	5baf0fd76f3a		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f930	1772	rm_forward_analysis	dynsym	e0d98b5d5f4d		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003001c	884	Vpseudo_jtag	dynsym	998bacf9fa99		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030a48	900	nicInspection	dynsym	20925044b325		in	named-only	docs/kpm.md#capture	Capture
@@ -2692,12 +2692,12 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033600	124	jt_int_to_vector	dynsym	dfb1
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033680	252	jt_find_chip	dynsym	273d6789416c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033780	104	jt_set_procs	dynsym	8d5e421b8b1a		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a40	60	jt_init	dynsym	0563b0c5899f		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	cc3857e54058		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	d410a29d542d		in	located	ucode/arm1_functions.md#boundary-scan-boards-and-serial-numbers	Boundary scan, boards and serial numbers
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	9aa939db17a1		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033a80	68	jt_select_chain	dynsym	cc3857e54058		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033ad0	60	jt_soft_reset	dynsym	d410a29d542d		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b10	60	jt_hard_reset	dynsym	9aa939db17a1		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b50	60	jt_test_thyself	dynsym	f93dd5060c24		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	07766ab1f717		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033bf0	84	jt_send_data	dynsym	4bac92fc8d4b		in	named-only	ucode/ge_ops.md#settling-the-ties	Settling the ties
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033b90	84	jt_send_instruction	dynsym	07766ab1f717		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033bf0	84	jt_send_data	dynsym	4bac92fc8d4b		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c50	40	jt_set_error_handler	dynsym	ebab2e28f3b6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033c80	40	jt_set_debug_handler	dynsym	d9973190d304		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033cb0	184	jt_error	dynsym	edfa005dbe51		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2707,13 +2707,13 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033e70	876	jt_set_global_instruction	dy
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100341e0	1816	jt_conditional_reset	dynsym	0cbe99ef8391		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034900	904	jt_set_individual_instructions	dynsym	a6b3f8831b1b		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10034c90	960	jt_isolate_chip	dynsym	08b8fdf5cf06		in	named-only	docs/hip.md#reset	Reset
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035050	548	jt_powerup_chain	dynsym	0f034013562d		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035050	548	jt_powerup_chain	dynsym	0f034013562d		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100352a0	2388	jt_read_chain	dynsym	04c5e3488c86		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035c00	6000	read_bsr	dynsym	d57085e541b9		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10035c00	6000	read_bsr	dynsym	d57085e541b9		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037370	236	type_to_func	dynsym	031f28e35cc2		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037460	272	type_to_safe	dynsym	9a4a9f82f3cb		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037570	88	premature_eof	dynsym	0c3939b32a8f		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100375d0	300	read_bsdl	dynsym	08e982e2c876		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100375d0	300	read_bsdl	dynsym	08e982e2c876		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037700	1144	jt_print_chain	dynsym	5ec3ca13e2c6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10037b80	1756	jt_print_bsr	dynsym	08b0d6071d32		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038410	232	jt_lookup_port	dynsym	28d66bc2e78f		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2725,9 +2725,9 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038f10	268	jt_dispose_chain	dynsym	0842
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039020	536	jt_findfile	dynsym	74b4e07a7f47		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100393a0	156	jt_zclose	dynsym	c267e87c73ec		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039440	656	jt_zopen	dynsym	f9da46fcd49f		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100396d0	348	jt_extract_chip_register	dynsym	480e4ac1f56b		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039830	292	jt_insert_chip_register	dynsym	0667d0af0b2c		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039960	796	jt_extract_bits	dynsym	8081a8e1e1c6		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100396d0	348	jt_extract_chip_register	dynsym	480e4ac1f56b		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039830	292	jt_insert_chip_register	dynsym	0667d0af0b2c		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039960	796	jt_extract_bits	dynsym	8081a8e1e1c6		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039c80	860	jt_insert_bits	dynsym	cf0723b3c172		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a620	68	jt_expand_portlist	dynsym	fd63861d0394		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003a670	672	jt_nullify	dynsym	3788d16e92f2		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -25716,11 +25716,11 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd3b60	640	check
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b00	100	__glkonim_TexSubImage3DEXT	dwarf+dynsym	5d8db5f9f33e		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4c80	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	f9ffe993175d		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d		in	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4dd0	536	__glkonim_GetTexImage	dwarf+dynsym	f88bacc34365		in	located	docs/opengl.md#__glkonim_getteximage	`__glkonim_GetTexImage`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd4ff0	336	__glkon_EnableTexture	dwarf+dynsym	de4283765d75		in	located	docs/opengl.md#__glkon_enabletexture	`__glkon_EnableTexture`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd5140	300	__glkonim_TexParameterfv	dwarf+dynsym	312b6e577e6e		in	located	docs/opengl.md#__glkonim_texparameterfv	`__glkonim_TexParameterfv`
@@ -25749,13 +25749,13 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd75c0	196	__glKonSha
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7690	688	__glKonPushTextureAttrib	dwarf+dynsym	e3986e0eb261		in	located	docs/opengl.md#__glkonpushtextureattrib	`__glKonPushTextureAttrib`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7940	500	__glKonPopTextureAttrib	dwarf+dynsym	05cbf7ed4211		in	located	docs/opengl.md#__glkonpoptextureattrib	`__glKonPopTextureAttrib`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd7b40	292	__glkonlc_TexImage	dwarf	095d647f9382		in	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb		in	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851		in	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68		in	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d		in	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55		in	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98		in	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d		in	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd81b0	208	globalAlloc	dwarf	012ebe49a68a		in	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd8280	152	whichBucket	dwarf	4408931580d2		in	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd8320	320	findFreeBank	dwarf+dynsym	dda116cb6d01		in	located	docs/opengl.md#findfreebank	`findFreeBank`
@@ -25773,16 +25773,16 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd95d0	352	relea
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd9730	280	addFreeBank	dwarf	0f3ab7140cfb		in	located	docs/opengl.md#addfreebank	`addFreeBank`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2dd9850	1048	getFreeBank	dwarf	a7ec3fa0f095		in	located	docs/opengl.md#getfreebank	`getFreeBank`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dd9c70	2332	__glKonTexAlloc	dwarf+dynsym	90409f302433		in	located	docs/opengl.md#__glkontexalloc	`__glKonTexAlloc`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda590	232	__glKonTexFree	dwarf+dynsym	5d0fa3f9a1c4		in	located	docs/opengl.md#__glkontexfree	`__glKonTexFree`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda590	232	__glKonTexFree	dwarf+dynsym	5d0fa3f9a1c4		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda680	512	__glKonTexUpdatePriority	dwarf+dynsym	2bb8838ad84a		in	located	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda880	140	__glKonInitTextureMemory	dwarf+dynsym	ffd71a180503		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda910	172	__glKonFreeTextureMemory	dwarf+dynsym	6b2740a583cd		in	located	docs/opengl.md#__glkonfreetexturememory	`__glKonFreeTextureMemory`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda880	140	__glKonInitTextureMemory	dwarf+dynsym	ffd71a180503		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda910	172	__glKonFreeTextureMemory	dwarf+dynsym	6b2740a583cd		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2dda9c0	100	allocHashBlock	dwarf+dynsym	2410df60c3be		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2ddaa30	116	wrapHashCacheLRU	dwarf	3d4ee92276af		in	located	docs/opengl.md#wraphashcachelru	`wrapHashCacheLRU`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2ddaab0	264	insertHashBlock	dwarf	57b156e07933		in	located	docs/opengl.md#inserthashblock	`insertHashBlock`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddabc0	108	__glKonHashFindTexFast	dwarf+dynsym	7d3e605fa836		in	located	docs/opengl.md#__glkonhashfindtexfast	`__glKonHashFindTexFast`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddabc0	108	__glKonHashFindTexFast	dwarf+dynsym	7d3e605fa836		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddac30	568	__glKonHashFindTexSlow	dwarf+dynsym	b195dd757341		in	located	docs/opengl.md#__glkonhashfindtexslow	`__glKonHashFindTexSlow`
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddae70	112	__glKonHashDeleteTexFast	dwarf+dynsym	c6e9c4a76eb1		in	located	docs/opengl.md#__glkonhashdeletetexfast	`__glKonHashDeleteTexFast`
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddae70	112	__glKonHashDeleteTexFast	dwarf+dynsym	c6e9c4a76eb1		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddaee0	224	__glKonHashDeleteTexSlow	dwarf+dynsym	a0753d443fe6		in	located	docs/opengl.md#__glkonhashdeletetexslow	`__glKonHashDeleteTexSlow`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddafc0	204	__glKonHashInsertTexSlow	dwarf+dynsym	f4de103d32b4		in	located	docs/opengl.md#__glkonhashinserttexslow	`__glKonHashInsertTexSlow`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ddb090	236	__glKonHashInsertTexFast	dwarf+dynsym	e64d0fd20157		in	located	docs/opengl.md#__glkonhashinserttexfast	`__glKonHashInsertTexFast`
@@ -42415,11 +42415,11 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b3b60	640	check
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b3de0	1572	__glkonim_TexSubImage	dwarf+dynsym	55f3cb4771fc		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4410	1772	__glkonim_CopyTexSubImage	dwarf+dynsym	4dd2e06e99cf		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b00	100	__glkonim_TexSubImage3DEXT	dwarf+dynsym	5d8db5f9f33e		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4b70	132	__glkonim_TexSubImage2DEXT	dwarf+dynsym	c75bbb3f1b7c		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4c00	124	__glkonim_TexSubImage1DEXT	dwarf+dynsym	1ee2d908c2ea		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4c80	108	__glkonim_CopyTexSubImage1DEXT	dwarf+dynsym	f9ffe993175d		in	understood	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32		in	located	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d		in	located	docs/opengl.md#__glkonim_copytexsubimage3dext	`__glkonim_CopyTexSubImage3DEXT`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4cf0	120	__glkonim_CopyTexSubImage2DEXT	dwarf+dynsym	12e71f29cc32		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4d70	84	__glkonim_CopyTexSubImage3DEXT	dwarf+dynsym	9a19c1e6359d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4dd0	536	__glkonim_GetTexImage	dwarf+dynsym	f88bacc34365		in	located	docs/opengl.md#__glkonim_getteximage	`__glkonim_GetTexImage`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b4ff0	336	__glkon_EnableTexture	dwarf+dynsym	de4283765d75		in	located	docs/opengl.md#__glkon_enabletexture	`__glkon_EnableTexture`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b5140	300	__glkonim_TexParameterfv	dwarf+dynsym	312b6e577e6e		in	located	docs/opengl.md#__glkonim_texparameterfv	`__glkonim_TexParameterfv`
@@ -42448,13 +42448,13 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b75c0	196	__glKonSha
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7690	688	__glKonPushTextureAttrib	dwarf+dynsym	e3986e0eb261		in	located	docs/opengl.md#__glkonpushtextureattrib	`__glKonPushTextureAttrib`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7940	500	__glKonPopTextureAttrib	dwarf+dynsym	05cbf7ed4211		in	located	docs/opengl.md#__glkonpoptextureattrib	`__glKonPopTextureAttrib`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b7b40	292	__glkonlc_TexImage	dwarf	095d647f9382		in	located	docs/opengl.md#__glkonlc_teximage	`__glkonlc_TexImage`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb		in	located	docs/opengl.md#__glkonlc_teximage1d	`__glkonlc_TexImage1D`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851		in	located	docs/opengl.md#__glkonlc_teximage2d	`__glkonlc_TexImage2D`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68		in	located	docs/opengl.md#__glkonlc_teximage3dext	`__glkonlc_TexImage3DEXT`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d		in	located	docs/opengl.md#__glkonle_teximage	`__glkonle_TexImage`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55		in	located	docs/opengl.md#__glkonle_texsubimage1dext	`__glkonle_TexSubImage1DEXT`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98		in	located	docs/opengl.md#__glkonle_texsubimage2dext	`__glkonle_TexSubImage2DEXT`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d		in	located	docs/opengl.md#__glkonle_texsubimage3dext	`__glkonle_TexSubImage3DEXT`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7c70	224	__glkonlc_TexImage1D	dwarf+dynsym	68075bc503eb		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7d50	220	__glkonlc_TexImage2D	dwarf+dynsym	c0346c920851		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7e30	208	__glkonlc_TexImage3DEXT	dwarf+dynsym	693eb87fea68		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7f00	156	__glkonle_TexImage	dwarf+dynsym	4ac7cf20bd8d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b7fa0	164	__glkonle_TexSubImage1DEXT	dwarf+dynsym	b32b44207a55		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8050	164	__glkonle_TexSubImage2DEXT	dwarf+dynsym	bf19c248cd98		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8100	164	__glkonle_TexSubImage3DEXT	dwarf+dynsym	1ca3cd163a0d		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b81b0	208	globalAlloc	dwarf	012ebe49a68a		in	located	docs/opengl.md#globalalloc	`globalAlloc`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b8280	152	whichBucket	dwarf	4408931580d2		in	located	docs/opengl.md#whichbucket	`whichBucket`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b8320	320	findFreeBank	dwarf+dynsym	dda116cb6d01		in	located	docs/opengl.md#findfreebank	`findFreeBank`
@@ -42472,16 +42472,16 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b95d0	352	relea
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b9730	280	addFreeBank	dwarf	0f3ab7140cfb		in	located	docs/opengl.md#addfreebank	`addFreeBank`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21b9850	1048	getFreeBank	dwarf	a7ec3fa0f095		in	located	docs/opengl.md#getfreebank	`getFreeBank`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21b9c70	2332	__glKonTexAlloc	dwarf+dynsym	90409f302433		in	located	docs/opengl.md#__glkontexalloc	`__glKonTexAlloc`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba590	232	__glKonTexFree	dwarf+dynsym	5d0fa3f9a1c4		in	located	docs/opengl.md#__glkontexfree	`__glKonTexFree`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba590	232	__glKonTexFree	dwarf+dynsym	5d0fa3f9a1c4		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba680	512	__glKonTexUpdatePriority	dwarf+dynsym	2bb8838ad84a		in	located	docs/opengl.md#__glkontexupdatepriority	`__glKonTexUpdatePriority`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba880	140	__glKonInitTextureMemory	dwarf+dynsym	ffd71a180503		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba910	172	__glKonFreeTextureMemory	dwarf+dynsym	6b2740a583cd		in	located	docs/opengl.md#__glkonfreetexturememory	`__glKonFreeTextureMemory`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba880	140	__glKonInitTextureMemory	dwarf+dynsym	ffd71a180503		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba910	172	__glKonFreeTextureMemory	dwarf+dynsym	6b2740a583cd		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21ba9c0	100	allocHashBlock	dwarf+dynsym	2410df60c3be		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21baa30	116	wrapHashCacheLRU	dwarf	3d4ee92276af		in	located	docs/opengl.md#wraphashcachelru	`wrapHashCacheLRU`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x21baab0	264	insertHashBlock	dwarf	57b156e07933		in	located	docs/opengl.md#inserthashblock	`insertHashBlock`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21babc0	108	__glKonHashFindTexFast	dwarf+dynsym	7d3e605fa836		in	located	docs/opengl.md#__glkonhashfindtexfast	`__glKonHashFindTexFast`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21babc0	108	__glKonHashFindTexFast	dwarf+dynsym	7d3e605fa836		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bac30	568	__glKonHashFindTexSlow	dwarf+dynsym	b195dd757341		in	located	docs/opengl.md#__glkonhashfindtexslow	`__glKonHashFindTexSlow`
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bae70	112	__glKonHashDeleteTexFast	dwarf+dynsym	c6e9c4a76eb1		in	located	docs/opengl.md#__glkonhashdeletetexfast	`__glKonHashDeleteTexFast`
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bae70	112	__glKonHashDeleteTexFast	dwarf+dynsym	c6e9c4a76eb1		in	understood	docs/opengl.md#64-bit-texture-routines-read-in-full	64-bit texture routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21baee0	224	__glKonHashDeleteTexSlow	dwarf+dynsym	a0753d443fe6		in	located	docs/opengl.md#__glkonhashdeletetexslow	`__glKonHashDeleteTexSlow`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bafc0	204	__glKonHashInsertTexSlow	dwarf+dynsym	f4de103d32b4		in	located	docs/opengl.md#__glkonhashinserttexslow	`__glKonHashInsertTexSlow`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x21bb090	236	__glKonHashInsertTexFast	dwarf+dynsym	e64d0fd20157		in	located	docs/opengl.md#__glkonhashinserttexfast	`__glKonHashInsertTexFast`
