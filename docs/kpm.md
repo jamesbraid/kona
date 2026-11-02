@@ -821,7 +821,7 @@ reports.
   canonicalizes the chip name and loads its boundary-register description
   (`jt_canonize` at 0x10035acc). For each chip it accumulates instruction and
   data lengths into the chain totals at +16 and +20 (`sw` at 0x10035848 and
-  0x1003587c), closes the compressed input at 0x10035bc8, and returns the
+  0x10035880), closes the compressed input at 0x10035bc8, and returns the
   chain object; allocation, parse, or lookup errors return null after the
   library error callback.
 | `jt_send_instruction`, `jt_set_individual_instructions`, `jt_conditional_reset`, `jt_powerup_chain`, `jt_free_bist` | send an instruction to one chip or one to each, reset the chain only when needed, power up the chips' test logic, release a chip's built-in self-test state |
@@ -1112,7 +1112,7 @@ The following additional readings were taken from complete N32 address ranges.
   filename and then the library suffix form (`jalr` calls at 0x1003904c,
   0x100390a8 and 0x100390f8), and returns the matching path buffer. On a
   successful search it strips the final separator byte (`sb` at 0x10039134
-  and 0x100391fc); failed searches return null at 0x10039218.
+  and 0x10039200); failed searches return null at 0x10039218.
 
 - `jt_zopen` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10039440;
   size 656 bytes. It allocates an aligned input buffer from the filename
@@ -1193,7 +1193,7 @@ The following boundary-scan wrappers were read in their complete N32 address ran
 - `jt_vector_to_int` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
   0x10033590; size 100 bytes. It reads four bytes from the supplied vector,
   with the first byte as the least-significant part (`lbu` at 0x100335a0, 0x100335ac,
-  0x100335bc and 0x100335cc), combines them at shifts 0, 8, 16 and 24, and
+  0x100335c0 and 0x100335d4), combines them at shifts 0, 8, 16 and 24, and
   stores the resulting word through the output pointer (`sw` at 0x100335e4).
   (`kpm`, 6.5.30m, complete routine 0x10033590-0x100335f3.)
 

@@ -248,7 +248,7 @@ symbol ranges in the same binary:
 - `diag_arm_reg_write` (`usr/diags/IR/bin/irsaudit`): **Established.**
   Address 0x1003820c; size 124 bytes. It sends four words through the graphics-register writer at 0x10038244-0x1003826c: 1, 0x16, the caller's register, and the caller's value. The fourth writer result is returned.
 - `PioWriteArm32` (`usr/diags/IR/bin/irsaudit`): **Established.**
-  Address 0x10038444; size 104 bytes. It writes the caller's address to host offset 0x3e8 and its value to the non-incrementing ARM data port 0x3f0. It returns the second PIO-write result; the calls are at 0x1003847c and 0x10038488.
+  Address 0x10038444; size 104 bytes. It writes the caller's address to host offset 0x3e8 and its value to the non-incrementing ARM data port 0x3f0. It returns the second PIO-write result; the calls are at 0x1003847c and 0x1003848c.
 - `PioReadArmIncr32` (`usr/diags/IR/bin/irsaudit`): **Established.**
   Address 0x10038500; size 84 bytes. It writes the caller's address to offset 0x3e8, reads one word from the incrementing data port 0x3f8, and returns that word. The calls are at 0x10038528 and 0x1003853c.
 - `arm_init_ge` (0x10038314, 304 bytes): **Established.** Writes the engine
@@ -259,7 +259,7 @@ symbol ranges in the same binary:
 - `switch_ged_ge` (0x10037a68, 104 bytes): **Established.** Selects distributor
   register 0x20600 with value 0x5840800 through the ARM path, then writes 1 to
   register 0x20a80. It returns after the two ARM writes. (`irsaudit`, calls at
-  0x10037aa0 and 0x10037ab0.)
+  0x10037aa0 and 0x10037ab4.)
 - `befSelCurrGE` (0x10037648, 288 bytes): **Established.** If the boundary-scan
   chain is available, selects chain 19, inserts the requested engine value into
   field 1121, and pokes the updated chain before freeing it. Without a chain it
