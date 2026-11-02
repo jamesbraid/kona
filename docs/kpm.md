@@ -724,6 +724,74 @@ The following boundary-scan wrappers were read in their complete N32 address ran
   message and the original context to `jt_error` through the call at
   0x10033e4c. (`kpm`, 6.5.30m, complete routine 0x10033df0-0x10033e67.)
 
+- `type_to_func` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10037370;
+  size 236 bytes. It maps the type byte after subtracting 0x62 through a
+  0x17-entry jump table (`sll` at 0x1003739c and indirect jump at
+  0x100373bc), returning the table's values 0, 1, 2, 3 or 4. An out-of-range
+  type reports an error and returns -1. (`kpm`, 6.5.30m, complete routine
+  0x10037370-0x1003745b.)
+
+- `type_to_safe` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10037460;
+  size 272 bytes. It accepts the type characters `0`, `1`, `X`, `M` and `I`
+  and returns the corresponding safety values 0 through 4. Other characters
+  invoke the error formatter at 0x1003753c and return -1. (`kpm`, 6.5.30m,
+  complete routine 0x10037460-0x1003756f.)
+
+- `premature_eof` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10037570;
+  size 88 bytes. It sends the supplied parser context and position to the
+  library error routine, using the fixed premature-end message selected by
+  the string pointer loaded at 0x10037598. It returns after reporting the
+  error. (`kpm`, 6.5.30m, complete routine 0x10037570-0x100375c7.)
+
+- `jt_lookup_port` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10038410; size 232 bytes. It resolves the port-list index, follows the
+  selected entry's linked records through the pointer at +0x20 (`lw` at
+  0x100384c0), and compares each record's name against the requested name.
+  A match returns the record offset relative to the table base divided by
+  0x24 (`div` at 0x100384a8); an exhausted list returns -1. (`kpm`,
+  6.5.30m, complete routine 0x10038410-0x100384f7.)
+
+- `porttopin` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10038500;
+  size 260 bytes. It scans the port entries up to the count at +0x3c
+  (`lw` at 0x1003852c), compares the requested port with each entry's second
+  word (`lw` at 0x10038554), and returns the matching entry's first word
+  (`lw` at 0x10038580). No match reports an error and returns the installed
+  failure result. (`kpm`, 6.5.30m, complete routine 0x10038500-0x10038603.)
+
+- `pintoport` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10038610;
+  size 260 bytes. It performs the inverse table walk: each entry's first word
+  is compared with the requested pin (`lw` at 0x10038664), and a match returns
+  the entry's second word (`lw` at 0x10038690). It reports an absent mapping
+  through the error path and returns its failure result. (`kpm`, 6.5.30m,
+  complete routine 0x10038610-0x10038713.)
+
+- `jt_canonize` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10038720;
+  size 172 bytes. It walks a NUL-terminated string, converts ASCII uppercase
+  bytes in the range 0x41-0x5a to lowercase by adding 0x20 (`lbu` at
+  0x10038770 and `sb` at 0x10038798), and modifies the string in place. It
+  returns the original pointer. (`kpm`, 6.5.30m, complete routine
+  0x10038720-0x100387cb.)
+
+- `jt_expand_portlist` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1003a620; size 68 bytes. It forwards the port-list object to the expanded
+  port-list builder through the call at 0x1003a648 and propagates that
+  builder's result. (`kpm`, 6.5.30m, complete routine 0x1003a620-0x1003a663.)
+
+- `jt_zclose` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100393a0;
+  size 156 bytes. It tests the supplied compressed-stream handle with the
+  predicate call at 0x100393c8, then dispatches to the compressed close path
+  or the ordinary close path. The selected cleanup result is returned through
+  the final load at 0x10039424. (`kpm`, 6.5.30m, complete routine
+  0x100393a0-0x1003943b.)
+
+- `jt_find_chain_length` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1003ab70; size 564 bytes. It builds two test instruction vectors filled
+  with the chain's two scan-state bytes (`sb` at 0x1003abf0 and 0x1003ac04),
+  sends both vectors through the installed scan procedures, and compares the
+  returned bytes from the two paths. It returns the first differing index or
+  -1 when all requested positions match. (`kpm`, 6.5.30m, complete routine
+  0x1003ab70-0x1003ada3.)
+
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
