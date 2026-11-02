@@ -27,8 +27,9 @@ Each row's "grade" is "mechanical" unless docs/diag-messages-reads.tsv holds a r
 for it. That file is written by hand: each line gives the item id, the grade "read", the
 condition under which the call runs and a note on what the disassembly shows. A row
 without a reading keeps the mechanical fields only. Its skip_branch is the nearest
-forward conditional branch that jumps over the call; it is a candidate, not the
-condition, because a call can also be reached by a taken branch.
+conditional branch before the call, with no jump or return between, that jumps over it;
+it is a candidate, not the condition,
+because a call can also be reached by a taken branch.
 """
 import argparse
 import os
@@ -68,8 +69,8 @@ BOARD_CALLS = {'gfx_pio_read_32', 'gfx_pio_write_32', 'gfx_pio_read_64', 'gfx_pi
                'gfx_waitf_off', 'us_delay', 'gfx_io_space_alloc', 'kvtophys', 'xwidget_info_get'}
 # words in the text of a message that name board hardware or its flow
 BOARD_WORDS = re.compile(r'fifo|interrupt|intr|dma|register|timeout|time out|timed out|guava|xg|xtalk|parity|pipe|'
-                         r'arm|map ?ram|reset|tbus|now bit|hi.?water|lo.?water|credit|hang|swap|mopup|'
-                         r'checkpipe|selectfeed|pio|ge\d*\b|odma|idma|hwgraph|dplex|nclops|discover|'
+                         r'arm|map ?ram|tbus|now bit|hi.?water|lo.?water|credit|hang|swap|mopup|'
+                         r'checkpipe|selectfeed|pio|\bge\d*\b|odma|idma|hwgraph|dplex|nclops|discover|'
                          r'backed up|spurious|garbage', re.I)
 
 
@@ -146,7 +147,9 @@ def run_text(mnem, ops):
 
 def meet(a, b):
     """Register values that two paths agree on; the rest become unknown."""
-    return {r: v for r, v in a.items() if b.get(r) == v}
+    # Two paths that build the same pointer at different addresses agree on the pointer; the
+    # address kept is the first path's.
+    return {r: v for r, v in a.items() if b.get(r) == v or (v[0] == 'ptr' and b.get(r, ('?',))[:3] == v[:3])}
 
 
 def cstr(elf, sec, off):
@@ -164,6 +167,37 @@ def analyse(obj):
         calls = []
         branches = []
         callees = set()
+
+        # A callee-saved register that the routine loads only from one $gp slot, and
+        # never writes otherwise, holds that pointer wherever it is read. The flow walk
+        # loses it at labels reached only through a jump table or a branch it has not seen
+        # yet, and the routines in the table keep their string base in such a register.
+        sdefs = {}
+        for x in ins:
+            ops = split_ops(x['ops'])
+            if x['mnem'] in NOWRITE or x['mnem'] in BRANCH or not ops or ops[0] not in SAVED:
+                continue
+            if x['mnem'] == 'ld' and len(ops) == 2 and re.match(r'-?\d+\(sp\)$', ops[1]):
+                continue
+            sdefs.setdefault(ops[0], []).append(x)
+        fixed = {}
+        for r, xs in sdefs.items():
+            found = set()
+            for x in xs:
+                o = split_ops(x['ops'])
+                mm = re.match(r'(-?\d+)\(gp\)$', o[1]) if len(o) == 2 else None
+                if (x['mnem'] == 'ld' and mm and x['relocs'] and x['relocs'][0][0] == 'R_MIPS_GPREL16'
+                        and x['relocs'][0][1] == '.srdata' and int(mm.group(1)) + gp0 in slots):
+                    nm, add = slots[int(mm.group(1)) + gp0]
+                    found.add((nm, add))
+                else:
+                    found.add(None)
+            if len(found) == 1 and None not in found:
+                nm, add = next(iter(found))
+                fixed[r] = ('ptr', nm, add, xs[0]['addr'])
+
+        def val(r):
+            return st.get(r) or fixed.get(r, ('?',))
 
         def apply(x):
             m = x['mnem']
@@ -188,7 +222,7 @@ def analyse(obj):
                 st[dst] = ('?',)
                 return
             if m in ('daddiu', 'addiu') and len(ops) == 3:
-                src = st.get(ops[1], ('?',))
+                src = val(ops[1])
                 try:
                     imm = int(ops[2], 0)
                 except ValueError:
@@ -205,10 +239,10 @@ def analyse(obj):
                 st[dst] = ('const', int(ops[2], 0))
                 return
             if m in ('or', 'daddu', 'addu') and len(ops) == 3 and ops[2] == 'zero':
-                st[dst] = st.get(ops[1], ('?',)) if ops[1] != 'zero' else ('const', 0)
+                st[dst] = val(ops[1]) if ops[1] != 'zero' else ('const', 0)
                 return
             if m == 'move' and len(ops) == 2:
-                st[dst] = st.get(ops[1], ('?',)) if ops[1] != 'zero' else ('const', 0)
+                st[dst] = val(ops[1]) if ops[1] != 'zero' else ('const', 0)
                 return
             if m == 'lui' and len(ops) == 2:
                 st[dst] = ('const', int(ops[1], 0) << 16)
@@ -253,7 +287,7 @@ def analyse(obj):
                     if target is not None:
                         callees.add(target)
                     calls.append({'addr': x['addr'], 'target': target,
-                                  'args': {a: st.get(a, ('?',)) for a in ARGS},
+                                  'args': {a: val(a) for a in ARGS},
                                   'ds_addr': ds['addr'] if ds else None})
                     for r in CALLER_SAVED:
                         st[r] = ('?',)
@@ -271,12 +305,16 @@ def analyse(obj):
             apply(x)
             i += 1
 
+        jumps = [x['addr'] for x in ins if x['mnem'] in ('b', 'j', 'jr')]
         board = bool(callees & BOARD_CALLS)
         for c in calls:
             if c['target'] not in PRINTERS:
                 continue
+            # A jump or return between the branch and the call means the call is entered by a
+            # taken branch from elsewhere, so the branch does not guard it.
             guards = [b for b in branches if b['addr'] < c['addr'] and b['target'] is not None
-                      and c['addr'] < b['target']]
+                      and c['addr'] < b['target']
+                      and not any(b['addr'] < u < c['addr'] for u in jumps)]
             guard = max(guards, key=lambda b: b['addr']) if guards else None
             fa = FMT_ARG[c['target']]
             fmt = c['args'][fa]

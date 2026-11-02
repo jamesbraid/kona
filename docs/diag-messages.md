@@ -25,10 +25,14 @@ The hand readings that the table carries are in [diag-messages-reads.tsv](diag-m
    format argument (cmn_err: a1, cmn_err_tag: a2, sprintf: a1) are taken from the register
    state at the call.
 4. A register that the code sets on two paths is kept only where both paths agree. A label
-   reached through a jump table is not followed, so its registers are unknown.
-5. The skip branch is the nearest forward conditional branch whose target lies past the call.
-   It is a candidate only. A call can also be reached by a taken branch, so only a hand reading
-   gives the condition (the `runs_when` column).
+   reached through a jump table is not followed, so its registers are unknown, except that a
+   callee-saved register the routine loads only from one `$gp` slot (the string base most
+   routines keep in `s7` or `s8`) keeps that pointer everywhere.
+5. The skip branch is the nearest conditional branch before the call whose target lies past
+   it, with no jump or return in between. It is a candidate only. A call after a jump or
+   return is entered by a taken branch from elsewhere and gets no candidate, and even with
+   one a call can also be reached by a taken branch, so only a hand reading gives the
+   condition (the `runs_when` column).
 
 Grades: **mechanical** rows have the fields above and nothing else. **read** rows were checked
 against the disassembly of the routine by hand; their `runs_when` and `note` say what that
@@ -67,9 +71,9 @@ taken from). The text names `kona_lowater_intr` while the code is in `kona_hiwat
 | Measure | Count |
 | --- | ---: |
 | Print-call sites in scope | 141 |
-| Sites whose format string was traced | 117 |
-| Sites with no traced format string | 24 |
-| Board-facing sites (sorted first) | 94 |
+| Sites whose format string was traced | 141 |
+| Sites with no traced format string | 0 |
+| Board-facing sites (sorted first) | 88 |
 | Sites read by hand (grade read) | 12 |
 | Calls to cmn_err | 89 |
 | Calls to cmn_err_tag | 27 |
@@ -81,9 +85,9 @@ taken from). The text names `kona_lowater_intr` while the code is in `kona_hiwat
 ## Open items
 
 - The diagnostic programs and the IP35 copies are not catalogued (see Scope).
-- Rows with status `unresolved` have a print call whose format argument could not be traced.
-  In `kona_nclops_discover` (DPLEX messages) the format is the `s8` base plus an offset, and the
-  branch at 0x194 jumps past the load of `s8` at 0x19c, so the scan cannot give the format on
-  every path. Reading it by hand is open.
-- `kona_geprint` prints through `sprintf` into a buffer. Many of its format arguments are
-  unresolved because the scan does not follow every path into the routine (a switch or a join).
+- A row with status `unresolved` has a print call whose format argument could not be traced.
+  None remain: the DPLEX messages in `kona_nclops_discover` and the `kona_geprint` formats are
+  reached through an `s8` or `s7` string base that the scan now takes from its one `$gp` slot
+  load, and each format was checked against the string in the object's `.rodata`.
+- `kona_geprint` prints through `sprintf` into a buffer; its rows give the format, not the
+  value printed.
