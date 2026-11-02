@@ -2252,6 +2252,36 @@ These target routines are in usr/gfx/arch/IP35KONA/libGLcore.so.
 - `__glkonAdjustPlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd94908c; occupies 136 bytes.
   **Inferred.** This complete 136-byte body is byte-identical to the explicit IP27 O32 range at the same address. The existing role remains Inferred; the identity does not strengthen that interpretation.
+### IP35 O32 bodies identical to IP27 O32
+
+The following IP35 O32 entry bodies are byte-identical to the same-address IP27 O32 bodies. The comparison covers each independently bounded routine extent. The two oversized supplied ranges are excluded from the routine identity.
+
+| Routine | IP35 O32 build / address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glkonim_ListParameteriSGIX | usr/gfx/arch/IP35KONA/libGLcore.so 0xd949494 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd949494 / 60 | 7e50f03f142b5001d055c227b70565f5fe8f6df11f1e749c1f55d19086fa674d |
+| __glKonLockedMemoryForceSwapIn | usr/gfx/arch/IP35KONA/libGLcore.so 0xd949824 / 252 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd949824 / 252 | 072226c5bd4728709e733cda42fb87c39c7640635bba1f572ddba06b49b0b1d2 |
+| __glkon_DlistInit | usr/gfx/arch/IP35KONA/libGLcore.so 0xd94a2d0 / 100 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd94a2d0 / 100 | 38051d1d68de8d0b01e3289d527422e53b76529521b3da1f1f69f3f254a743a8 |
+| __glkonSPValidateLocalDlist | usr/gfx/arch/IP35KONA/libGLcore.so 0xd94b078 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd94b078 / 72 | f0c807216d28b2b0c63b3e52e723c77ffe712f2b3ca88bf73fb84eb17f0ff459 |
+| __glkonSPValidateOnlyDlist | usr/gfx/arch/IP35KONA/libGLcore.so 0xd94b0c0 / 500 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd94b0c0 / 500 | db3aca756b385a8be841bd3c6c9a69a17cbeddd25e795a0771fa3e1f8c6e8787 |
+| __glkonReadTexels3D | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9520f0 / 416 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9520f0 / 416 | 1861f7690448f040d4c13ec0e9fe055c0a2fcf4a3923047474151797ffac109a |
+| __glkonlc_Bitmap | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9528d0 / 568 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9528d0 / 568 | 87beaf33d940baa16eb2972b6f0fc386a2870ceb94d6724728a92b56f44ecefe |
+| __glKonInitConvolutionState | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9554a0 / 284 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9554a0 / 284 | 8889bb52fc37d4c7ea7e3742e0f170c7b2358497526e1d7a219588754066d813 |
+| __glkon_SuspendSelectfeed | usr/gfx/arch/IP35KONA/libGLcore.so 0xd95b388 / 280 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd95b388 / 280 | 1ddda1ebd13c0ea620edea422b1d6b07caf55f01760e94012450f096023fb0b8 |
+| __glkon_ResumeSelectfeed | usr/gfx/arch/IP35KONA/libGLcore.so 0xd95b4a0 / 268 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd95b4a0 / 268 | 78d0f347c404880d320f875dd5c60a277e9dd0167c58222201699a8b3f597516 |
+| __glkonlc_PointParameterfvSGIS | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9649ec / 588 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9649ec / 588 | 3fb85c03a75734d4ab44ace5d150803609478d40b44791d0bef7798699fb72b1 |
+| __glkonim_ProcImage | usr/gfx/arch/IP35KONA/libGLcore.so 0xd964cc0 / 592 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd964cc0 / 592 | a01e21457ef4b126d558cf196de78bf91eaf0ff88e4f096a2d249e7a2a946c09 |
+| __glKonGetTexParameter | usr/gfx/arch/IP35KONA/libGLcore.so 0xd969bd4 / 1876 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd969bd4 / 1876 | db22947090dcf6410f49815eb78a0cc88c49f86edba713eed6403e541f38c618 |
+| __glkonim_AreTexturesResidentEXT | usr/gfx/arch/IP35KONA/libGLcore.so 0xd97076c / 360 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd97076c / 360 | 21e6a3653af79538b1d4397f70552625e3acabecf2857971df5c1642675bb20d |
+| __glkonim_PrioritizeTexturesEXT | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9708d4 / 420 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9708d4 / 420 | 5aa7e759afc9a2943677208b8202a3317ac864e9ed2113bbd4d583b19b79e98e |
+| __glkonim_TexImage3DEXT | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9721c4 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9721c4 / 144 | 47efbf85677a656b76c5a17c8227710ee65a6290077d941b51a2dad1e4d6804c |
+| __glkonim_TexImage2D | usr/gfx/arch/IP35KONA/libGLcore.so 0xd972254 / 152 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd972254 / 152 | a1174d1523a64fc95bdd4604b1334a39b307ead6e70caed13ddfe4978b5b5524 |
+| __glkonim_TexImage1D | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9722ec / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9722ec / 144 | 58cbd4734a8d85c79b0a76e18ee8da2663d258d90ad20cd34ad1345538d80869 |
+| __glkonim_CopyTexImage2DEXT | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9723f0 / 128 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9723f0 / 128 | 9420e45ad3cdf1e4343d2c469f40241bc6a639160ad066a7fe75223978b0bebc |
+| __glkonim_TexSubImage2DEXT | usr/gfx/arch/IP35KONA/libGLcore.so 0xd973504 / 148 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd973504 / 148 | 5c7fc6a6e7ac3a7930db9f1c1125b42dd54498db19b73f9c2081f43b50385b61 |
+
+Independent ELF metadata bounded all twenty bodies. The supplied ranges for __glkon_DlistInit (328 bytes to 100 bytes), __glkonSPValidateLocalDlist (11304 bytes to 72 bytes) include following functions; the identity table uses only the bounded bodies. Their original oversized facts and comparisons remain in the scratch record.
+
+Each row records byte identity only. Where a separate build-specific entry is absent, this table does not assign behavior to that sibling.
 ### 64-bit routines read in full
 
 - `__glkonResolveContext` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2dc3a00, 8636 bytes):
