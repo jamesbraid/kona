@@ -6,6 +6,65 @@ Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help
 
 ## Function readings from the shipped diagnostic
 
+- `probe_rm6_chain` (`usr/diags/IR/bin/irsaudit` 0x1004f078): **Established.**
+  The 6076-byte body first checks host access by calling the 32-bit PIO reader
+  with offset `0x370` at 0x1004f0b0.  On success it builds the RM6 chain
+  description, formats the chain description (call at 0x1004f154), selects the chain (`jt_select_chain`, call at 0x1004f168), soft-resets it (`jt_soft_reset`, call at 0x1004f1d8), measures its length (`jt_find_chain_length`, call at 0x1004f2fc), and records the selected
+  chain data in the caller's result object; an access or chain failure reports
+  the corresponding diagnostic and returns one.  Successful completion stores
+  the discovered chain state through the caller's records at 0x1004f35c,
+  0x1004f360, 0x1004f36c, 0x1004f3e0, 0x1004f3ec and
+  0x1004f44c (the chain read is the call at 0x1004f448), then returns the probe status.
+
+- `probe_dg4_chain` (`usr/diags/IR/bin/irsaudit` 0x10053ff8): **Established.**
+  This 5100-byte probe marks the caller's DG result record active with a word
+  store of one at offset `0xdbc` (0x1005402c), verifies host access through
+  PIO offset `0x370` (call at 0x10054030), and then selects the DG4 chain (`jt_select_chain`, call at 0x100540cc), soft-resets it (`jt_soft_reset`, call at 0x10054138) and copies a name with `strdup` (call at 0x100542fc).
+  It writes the resulting chain and board identifiers into the caller's
+  record at offsets `0xdbc`, `0xe30`, `0xe2c`, `0xf80` and `0xf7c` (stores at
+  0x1005428c, 0x10054294, 0x1005429c, 0x10054318 and 0x10054320); failures
+  clear `0xdbc` and return one, while the completed probe returns its helper
+  status.
+
+- `probe_dg5_chain` (`usr/diags/IR/bin/irsaudit` 0x100553e4): **Established.**
+  The complete 5040-byte body is the DG5 variant of the chain probe: it marks
+  the result record with one at `0xdbc` (store at 0x10055414), checks host PIO
+  access at offset `0x370` (call at 0x10055418), selects the chain (`jt_select_chain`, call at
+  0x100554b4), soft-resets it (`jt_soft_reset`, call at 0x10055520) and copies a name (`strdup`, call at 0x100556e0).  The successful path
+  records the chain result, board data and extracted status at `0xdbc`,
+  `0xe30`, `0xe2c`, `0xf80` and `0xf7c` (stores at 0x10055670,
+  0x1005567c, 0x10055680, 0x100556fc and 0x10055704); each failure clears
+  `0xdbc` and returns one.
+
+- `probe_ge12_chain` (`usr/diags/IR/bin/irsaudit` 0x1004d25c): **Established.**
+  Its 3052-byte body rejects unavailable host access after the PIO read of
+  offset `0x370` at 0x1004d288, then selects chain code `0x31` through the
+  chain setup call at 0x1004d3e8 and passes the GE list to `locate_break` (call at
+  0x1004d410) and copies a name with `strdup` (call at 0x1004d4e0).  The resulting chain handle and
+  decoded board values are stored in the caller's GE record at offsets
+  `0x15c` and `0x158` (stores at 0x1004d4fc and 0x1004d520); setup, read or
+  decode failure returns one, and the normal path returns the final probe
+  result.
+
+- `run_video1` (`usr/diags/IR/bin/irsaudit` 0x1009eca0): **Established.**
+  The 2040-byte routine accepts only video modes one, two or four and returns
+  two after reporting another mode.  For an accepted mode it initializes the
+  geometry path, waits for the graphics FIFO status at host offset `0x208`
+  (reads at 0x1009edf0 and 0x1009ee20), submits ioctl `0x2775` through the
+  caller's pipe handle (call at 0x1009ee68), and then invokes the video-format
+  and display-generator setup chain at 0x100969b4.  A negative ioctl result
+  or failed setup selects the diagnostic error path; the normal completion
+  returns the setup result after restoring the saved registers.
+
+- `run_video` (`usr/diags/IR/bin/irsaudit` 0x10096ea4): **Established.**
+  This 1944-byte entry has the same mode gate for one, two and four, then
+  initializes the selected geometry engines, polls host FIFO status offset
+  `0x208` at 0x10096fe8 and 0x10097014, and submits ioctl `0x2775` at
+  0x1009705c.  It passes the ioctl result into the display/video setup path
+  beginning at 0x100969b4; a negative ioctl or failed setup takes the failure
+  reporting branches, while unsupported modes return two before any hardware
+  access.
+
 The following entries are **Established** from complete `irsaudit` 6.5.30m fact sheets. Addresses and sizes are the symbol ranges in that binary; register offsets are the arguments passed to the diagnostic's 32-bit PIO helpers.
 
 - `fcGfxWrite64` (`usr/diags/IR/bin/irsaudit`): **Established.**
