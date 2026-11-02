@@ -2330,6 +2330,114 @@ The complete IP35 O32 target bodies below are byte-identical to their exact same
 | __glFogStippledSpan | 0xd9dbc80 / 296 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dbc80 / 296 | f57feba3b4f5a6d5f26ba110709a799ea39bd7ad48fc88866ae9602624707c1a |
 - `__glFogStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9dbc80; occupies 296 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dbc80. SHA-256 f57feba3b4f5a6d5f26ba110709a799ea39bd7ad48fc88866ae9602624707c1a.
+## IP35 O32 display-list and evaluator support routines read in full
+
+These complete O32 target bodies are from usr/gfx/arch/IP35KONA/libGLcore.so. Each was compared with its exact N32 counterpart in usr/gfx/arch/IP27KONA32/libGLcore.so. The ranges differ, so behavior is described from the target body only.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glNopFreeDlist | 0xd9d57f4 / 60 | 9daaf5b04e9edd8ba545dfae0ef651d4fd80ff8102bf56ac3212681d37ebcf0b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1930 / 52 | b978fec33b9a59e784024e59674140c1935963c8ae8982330e122bca626259f1 | 43 |
+| __glNopExecuteDlist | 0xd9d5830 / 12 | 691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1970 / 8 | 78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378 | 6 |
+| __glNopAllocDlist | 0xd9d583c / 116 | 7ff2b41b9b9971d75811f9b5f39bae10e9cf40dece6f4ff4a3b43ff90c4f8b6f | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1980 / 112 | 8e489cf41ba0cb8b47b58ed2f01ce813c386184ee0a3a103039195f34776aa85 | 103 |
+| __glNopDlistCompiler | 0xd9d58b0 / 148 | 20b822e445f28d1fbef74b28c542ec6bf0d16c53bff70b6cc330e8f35c0b5c55 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d19f0 / 124 | 3a1e635d421a43ee796c67483fc1c034c3a3f457975d2fea439570ff51c95280 | 96 |
+| __glEvalComputeK | 0xd9d5950 / 100 | 9f286dd17c29f3d64644c4430078595a6fc7ed2099950f0ff77f131cd2b16f0e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1a70 / 96 | d05c0313207d0737b19ede92fb272bc9347503a206c9789b449a334029a95a34 | 54 |
+| __glInitEvaluatorState | 0xd9d59b4 / 588 | d4dc4c8ad1a12b521c3a950a40cdfc0a1233e8d7fc2c0efc0998fbf4870b232c | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1ad0 / 644 | 2b860c5abd6c9f4fc72a4b5b94cd29b4d0e6a47bc042a91609ba10ae4864c45a | 513 |
+| __glFreeEvaluatorState | 0xd9d5c00 / 276 | 7deac3d2d073237f4752e81e28666a256ba244c9dbdb6715d62e610eff02347b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d1d60 / 228 | 3a49984fa729b8de225830c973eddc9518ea80977d04c75af402c0551240b296 | 196 |
+| __glim_EvalCoord1d | 0xd9d6160 / 68 | e0d472c09167c6cf8e1c644eaef251f57122540fef0c0dc9644a4abe3ed2e1e2 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2250 / 56 | 858b3b5d4dabc37fb18ca61b1b5c8630f7592d5faf01614d557bbac04be27bb5 | 52 |
+| __glim_EvalCoord1dv | 0xd9d61a4 / 76 | c6a15af9d03fcc9174e169a9d6112423428f89fa0bca2b98219c93016b9d1141 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2290 / 64 | 0a42dab56eeb75180bbe4555af13094c9836da38b4db9821ebefddd594176037 | 57 |
+| __glim_EvalCoord1f | 0xd9d61f0 / 64 | 49692f0a64754c6277b8e2572877f91e9f6f56eea321c8be2636d6b7a04303d0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d22d0 / 56 | 65c4f50838f439da3288236458ccd486369a8ef236666145468cad06f078aa6d | 48 |
+| __glim_EvalCoord1fv | 0xd9d6230 / 68 | ddc996e798ec18b8e7d03fc7fdb3bcaf92e0a44a729113d69761f4f7dc408471 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2310 / 60 | 86b73aea0e6d2a38b3c9ebc6f53a8f2e3b5d83679e600fc68d96661b3a029c0f | 51 |
+| __glim_EvalCoord2d | 0xd9d6274 / 76 | ab49de41a1874cb18109cf2ee50ee060b6fb88def7688f3429eac5e1d2ba451a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2350 / 64 | 752cec81b21ae289186062ea165bc8857a721954b73ec4c6dc684b4ef35331f6 | 59 |
+| __glim_EvalCoord2dv | 0xd9d62c0 / 88 | 847ca579b28421acb6474ca1927d0c12b1d15e9788cc75406b54ad528276b9d8 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2390 / 72 | 633510dcbf04398f567df51d61ddf508e4db2d9db1b42bd71a4e62b1a14f7161 | 59 |
+| __glim_EvalCoord2f | 0xd9d6318 / 68 | 4a151bb62d14c1a40083b1f518f078a490eda2098c1a330829aebd42fd0a8950 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d23e0 / 60 | a95c36b7680afa2620e290cd9b82f54cad28f0c1c36f5e2fd854fe1ca20e9e83 | 52 |
+| __glim_EvalCoord2fv | 0xd9d635c / 72 | d8e49d9324ae058845b7242809d05cf3fa6605b24feabcd689a2400392f009da | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2420 / 64 | 9ab69a3683d306a91343bac64299591bd70d3aee62b534a55811d56c5c63e0f8 | 54 |
+| __glim_EvalPoint1 | 0xd9d6710 / 128 | c1dc915031ce6ec6c1d7fd99401fa0217e4ea25564db49877b9d9da41ed4d270 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2790 / 112 | 0365246971639148db37f2ac1204e6a93601237401861f4580bb44874c7d69e3 | 103 |
+| __glim_EvalPoint2 | 0xd9d68c4 / 200 | fbfb0810084b9c10488c8e325ba43b694fc431b3105c474dcc90a3e7fbbddad4 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2920 / 164 | 1b672681fd70f99d1abeaee66d75485a82457cd2905d2197830c2170215d95d6 | 154 |
+| __glFillMap1f | 0xd9d698c / 292 | bf58993283c6c9f7058e66d664fb739e2b389aef5f06dcd83c78a407ebaebeb6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d29d0 / 248 | e1a880f97820b60da835b48f5b0c16db7e56209a7b5991a0e92e78b3afa89dce | 225 |
+| __glFillMap1d | 0xd9d6ab0 / 212 | fc339ee87dbdee467a0882f517d04972b97289b8dd611a22a6d2dc4abd39623d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2ad0 / 196 | fae0c138a37bc513be12b6a9f4efc6dbe7fc3d40d4e33684682a0923a13e00f0 | 174 |
+| __glMap1_size | 0xd9d6b84 / 16 | b41bf1833e0bd1fd17a5983de9db5a8396b0ba363568c32e0df86359e0342d6e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9d2ba0 / 16 | e92836addc71711406a3353700f270ad35465c17628aac0efe95dd72fa4d9b49 | 1 |
+
+#### Target-build readings
+
+- `__glNopFreeDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d57f4; occupies 60 bytes.
+  **Inferred.** Frees original argument 1 through the resolved `free` call (`jalr` at 0xd9d5814). Original argument 0 is saved at entry-stack +0 (`sw` at 0xd9d580c). The call target is fetched through absolute 0xda8736c (`lw` at 0xd9d5800). The complete wrapper has only stack stores, and v0 retains the helper result at its return (`jr` at 0xd9d5828).
+
+- `__glNopExecuteDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5830; occupies 12 bytes.
+  **Inferred.** Saves its two arguments at entry-stack +0 and +4 (`sw` at 0xd9d5830, 0xd9d5838). The second save occupies the return delay slot (`jr` at 0xd9d5834). Those three instructions make up the whole body. It makes no call, allocates no stack frame and leaves the v0 value unknown.
+
+- `__glNopAllocDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d583c; occupies 116 bytes.
+  **Inferred.** Calls an unnamed allocator through original argument 0 +0x1398 (`lw` at 0xd9d5854, `jalr` at 0xd9d5864). Hostfacts preserves argument 0 at the call but cannot resolve the size argument. A nonzero result takes the initialization path (`bnez` at 0xd9d5870). That path writes one at result +0, zero at +0xc, and pointers 0xd9d57f4 and 0xd9d5830 at +4 and +8 (`sw` at 0xd9d588c, 0xd9d5890, 0xd9d5898, 0xd9d589c). The null arm returns zero, while the other returns the callback result. The merged return is unknown to hostfacts.
+
+- `__glNopDlistCompiler` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d58b0; occupies 148 bytes.
+  **Inferred.** Invokes `__glNopAllocDlist` with original argument 0 and zero (`jalr` at 0xd9d58d4). A nonzero result skips the failure path (`bnez` at 0xd9d58e4). On failure, it reads original argument 0 +0x1394 and calls an unknown pointer from +0x3198 (`lw` at 0xd9d58f0, 0xd9d58f8, `jalr` at 0xd9d58fc). It then clears original argument 1 +0xc and +0x10 and makes another zero store whose destination is unknown (`sw` at 0xd9d5910, 0xd9d5914, 0xd9d5918). The final failure call reports 0x505 through `__glSetError` (`jalr` at 0xd9d5924). The supplied body ends after its return, 12 bytes before the next function symbol. The merged return remains unresolved.
+
+- `__glEvalComputeK` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5950; occupies 100 bytes.
+  **Inferred.** Selects a small integer through a jump table. The initial unsigned range test rejects argument 0 minus 0xd90 when it is at least 0x29 (`beql` at 0xd9d5964). Its branch-likely delay slot runs only on that taken path. The table access is based at 0xda79118 (`lw` at 0xd9d5978). Recorded return paths produce four, three, two, one or minus one (`jr` at 0xd9d5988, 0xd9d5990, 0xd9d5998, 0xd9d59a0, 0xd9d59ac). There are no stores or calls.
+
+- `__glInitEvaluatorState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d59b4; occupies 588 bytes.
+  **Inferred.** Initializes software evaluator state through five unresolved callback sites (`jalr` at 0xd9d5a84, 0xd9d5aa0, 0xd9d5abc, 0xd9d5adc, 0xd9d5afc). Each receives original argument 0, and the last three pass eight as argument 1. Their target pointers are loaded from original argument 0 +0 (`lw` at 0xd9d5a7c, 0xd9d5a94, 0xd9d5ab0, 0xd9d5ad4, 0xd9d5af4). Hostfacts leaves the loop's indexed initialization addresses unknown. After the loop, it clears argument 0 +0x7400 and +0x7404 and writes one at +0x798, +0x7a8 and +0x7b8 (`sw` at 0xd9d5ba0, 0xd9d5ba4, 0xd9d5bb4, 0xd9d5bb8, 0xd9d5bbc). The float read at argument 0 +0xdd8 is copied to +0x790, +0x7a0 and +0x7b0 (`lwc1` at 0xd9d5b9c, `swc1` at 0xd9d5bc0, 0xd9d5bc4, 0xd9d5bc8). Its numeric value is unknown.
+
+- `__glFreeEvaluatorState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5c00; occupies 276 bytes.
+  **Inferred.** Loops through software state with five conditional callback sites. Each target is loaded from original argument 0 +0xc (`lw` at 0xd9d5c44, 0xd9d5c68, 0xd9d5c8c, 0xd9d5cb0, 0xd9d5cd4). Calls pass original argument 0, while argument 1 is unknown (`jalr` at 0xd9d5c4c, 0xd9d5c70, 0xd9d5c94, 0xd9d5cb8, 0xd9d5cdc). Zero tests skip those calls (`beql` at 0xd9d5c3c, 0xd9d5c60, 0xd9d5c84, 0xd9d5ca8, 0xd9d5ccc). Each call arm clears a word, but the indexed destination addresses remain unknown (`sw` at 0xd9d5c58, 0xd9d5c7c, 0xd9d5ca0, 0xd9d5cc4, 0xd9d5ce8). The callback identity and final result are unresolved.
+
+- `__glim_EvalCoord1d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6160; occupies 68 bytes.
+  **Inferred.** Narrows an incoming double for one-coordinate evaluation (`cvt.s.d` at 0xd9d6174). It loads context from absolute 0x1010 and the callback from context +0x2f0c (`lw` at 0xd9d616c, 0xd9d6180). The indirect call has context as argument 0, but hostfacts cannot resolve argument 1 (`jalr` at 0xd9d6188). The local return retains the callback's unknown v0 result (`jr` at 0xd9d619c).
+
+- `__glim_EvalCoord1dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d61a4; occupies 76 bytes.
+  **Inferred.** Loads one double at original input +0 (`ldc1` at 0xd9d61c0) and narrows it (`cvt.s.d` at 0xd9d61c8). Context comes from absolute 0x1010, with the callback pointer at context +0x2f0c (`lw` at 0xd9d61c4, 0xd9d61cc). The call preserves the original input pointer as argument 2 and passes context as argument 0 (`jalr` at 0xd9d61d4). Argument 1 and callback identity remain unknown in hostfacts.
+
+- `__glim_EvalCoord1f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d61f0; occupies 64 bytes.
+  **Inferred.** Transfers incoming f12 to a1 for one-coordinate dispatch (`mfc1` at 0xd9d6210). Its context load is absolute 0x1010, and its indirect target comes from context +0x2f0c (`lw` at 0xd9d61fc, 0xd9d620c). Hostfacts records context as call argument 0 and leaves argument 1 unknown (`jalr` at 0xd9d6214). Only stack bookkeeping is stored locally, with the unnamed helper's result retained at return (`jr` at 0xd9d6228).
+
+- `__glim_EvalCoord1fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6230; occupies 68 bytes.
+  **Inferred.** Fetches the input vector's first word at original argument 0 +0 (`lw` at 0xd9d6254). The context pointer at absolute 0x1010 supplies an unnamed callback at context +0x2f0c (`lw` at 0xd9d6240, 0xd9d6250). That callback receives context, the loaded word and the original vector pointer as arguments 0 through 2 (`jalr` at 0xd9d6258). There is no local evaluator-state write beyond stack saves.
+
+- `__glim_EvalCoord2d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6274; occupies 76 bytes.
+  **Inferred.** Converts the two incoming doubles to float precision (`cvt.s.d` at 0xd9d6288, 0xd9d6294). It reads context from absolute 0x1010 and selects the callback at context +0x2f10 (`lw` at 0xd9d6280, 0xd9d6298). Hostfacts knows the context argument but leaves call arguments 1 and 2 unresolved (`jalr` at 0xd9d62a4). The callback result survives the local return (`jr` at 0xd9d62b8), without establishing its hardware effects.
+
+- `__glim_EvalCoord2dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d62c0; occupies 88 bytes.
+  **Inferred.** Reads doubles at input +0 and +8 (`ldc1` at 0xd9d62dc, 0xd9d62e0) and narrows both (`cvt.s.d` at 0xd9d62e8, 0xd9d62f0). Context is obtained from absolute 0x1010 (`lw` at 0xd9d62e4). Its +0x2f10 callback is loaded and called with context argument 0 and the original vector in argument 3 (`lw` at 0xd9d62ec, `jalr` at 0xd9d62fc). The converted arguments 1 and 2 remain unknown to hostfacts.
+
+- `__glim_EvalCoord2f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6318; occupies 68 bytes.
+  **Inferred.** Moves incoming f12 and f14 into a1 and a2 for two-coordinate dispatch (`mfc1` at 0xd9d6338, 0xd9d633c). The context and its +0x2f10 callback come from two word loads (`lw` at 0xd9d6324, 0xd9d6334), the first at absolute 0x1010. The call's argument 0 is context, while arguments 1 and 2 are unknown in hostfacts (`jalr` at 0xd9d6340). This wrapper makes no local software-state stores other than its stack frame.
+
+- `__glim_EvalCoord2fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d635c; occupies 72 bytes.
+  **Inferred.** Loads the second and first vector words at original input +4 and +0 (`lw` at 0xd9d6380, 0xd9d6384). It reads context at absolute 0x1010 and the callback at context +0x2f10 (`lw` at 0xd9d636c, 0xd9d637c). The call receives context, the first word, the second word and the original pointer in that order (`jalr` at 0xd9d6388). Its target remains unnamed, and the return preserves that helper's unknown result (`jr` at 0xd9d639c).
+
+- `__glim_EvalPoint1` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6710; occupies 128 bytes.
+  **Inferred.** Derives a one-dimensional evaluator coordinate using software grid state. Context is read from absolute 0x1010 (`lw` at 0xd9d671c). The grid count is context +0x798, with float endpoints at +0x78c and +0x790 (`lw` at 0xd9d672c, `lwc1` at 0xd9d6730, 0xd9d6734). When the input equals the count, the branch falls through to reload +0x790 (`bne` at 0xd9d6744, `lwc1` at 0xd9d6750). Other inputs take the arithmetic path. Dispatch uses the unknown callback at context +0x2f0c (`lw` at 0xd9d6768, `jalr` at 0xd9d6774), with the computed argument unresolved in hostfacts.
+
+- `__glim_EvalPoint2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d68c4; occupies 200 bytes.
+  **Inferred.** Uses two software grid dimensions before dispatch. Context is the pointer at absolute 0x1010 (`lw` at 0xd9d68d0). Counts come from context +0x7a8 and +0x7b8 (`lw` at 0xd9d68e0, 0xd9d68f0), with endpoint floats at +0x79c, +0x7a0, +0x7ac and +0x7b0 (`lwc1` at 0xd9d68e4, 0xd9d68e8, 0xd9d68f8, 0xd9d68fc). Count-equal inputs use the endpoint paths (`bne` at 0xd9d6914, `bnel` at 0xd9d6940). It invokes the unresolved context +0x2f10 callback with context argument 0 (`lw` at 0xd9d6964, `jalr` at 0xd9d6970). Both computed coordinate arguments remain unknown.
+
+- `__glFillMap1f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d698c; occupies 292 bytes.
+  **Inferred.** Copies float map data using a contiguous helper path or local loops. Equality of original arguments 0 and 2 takes the helper path (`bne` at 0xd9d69bc). It calls `__glMap1_size`, then `memcpy` with original argument 3 as source and the size result shifted left two as byte count (`jalr` at 0xd9d69c8, 0xd9d69e4). The destination argument is unknown to hostfacts. Local paths load and store float words, including the unrolled loop (`lwc1` at 0xd9d6a28, 0xd9d6a50, 0xd9d6a60, 0xd9d6a6c, 0xd9d6a74, `swc1` at 0xd9d6a3c, 0xd9d6a5c, 0xd9d6a68, 0xd9d6a70, 0xd9d6a7c). Their indexed addresses and merged return remain unresolved.
+
+- `__glFillMap1d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6ab0; occupies 212 bytes.
+  **Inferred.** Reads double map elements and stores float results in nested local loops. A nonpositive original argument 1 takes the early exit (`blez` at 0xd9d6abc). The destination pointer is loaded from entry-stack +0x10 (`lw` at 0xd9d6ac8). Five double-load sites and their float stores cover scalar and unrolled paths (`ldc1` at 0xd9d6af4, 0xd9d6b24, 0xd9d6b3c, 0xd9d6b48, 0xd9d6b54, `swc1` at 0xd9d6b0c, 0xd9d6b38, 0xd9d6b44, 0xd9d6b50, 0xd9d6b60). Hostfacts cannot resolve their indexed effective addresses. The routine makes no helper call.
+
+- `__glMap1_size` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d6b84; occupies 16 bytes.
+  **Inferred.** Multiplies a0 and a1 as unsigned words and moves the low product word into v0 (`multu` at 0xd9d6b84, `mflo` at 0xd9d6b88). The full four-word body has no memory access, call or stack frame. Hostfacts does not model the multiply result and reports v0 unknown at the return (`jr` at 0xd9d6b8c).
 ## Software renderer (soft)
 
 ### so_accumop.c
