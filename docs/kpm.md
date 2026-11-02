@@ -58,32 +58,38 @@ written.
   saved engine selector. Without the mapping it performs the scan-chain reset
   sequence and retries; it returns zero on success and -1 on an error. (`kpm`,
   6.5.30m, full routine at 0x10019c50.)
-- `ged_register_write` (`usr/gfx/KONA/bin/kpm` 0x10019e3c, 164 bytes): **Established.** Selects
-  distributor register 0x600, encodes the register index as bit 5 plus the
-  index's upper bits masked by 0x1ff00, writes the caller's value through
-  offset 0x3f0, then selects 0xac0 and writes the same value there. It returns
-  zero. (`kpm`, 6.5.30m, full routine at 0x10019e3c.)
-- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm` 0x10019ee0, 228 bytes): **Established.** Converts
-  the caller's engine number to a one-bit mask, writes that mask five times to
-  distributor register 0x222, then selects 0x200600 at offset 0x3e8 and writes
-  0x58400800 at offset 0x3f0, and selects 0x200a80 at 0x3e8 and writes 1 at
-  0x3f0. It returns zero. (`kpm`, 6.5.30m, full routine at 0x10019ee0.)
-- `ge_register_write` (`usr/gfx/KONA/bin/kpm` 0x1001b730, 108 bytes): **Established.** Writes
-  its first argument, the geometry-engine register number, to distributor
-  register 0x234, then writes its second argument, the value, to register 0x232,
-  and returns zero. (`kpm`, 6.5.30m, full
-  routine at 0x1001b730.)
-- `ge_register_read` (`usr/gfx/KONA/bin/kpm` 0x1001b79c, 100 bytes): **Established.** Writes the
-  requested register number to distributor register 0x234, then writes 0x80000001
-  to register 0x236 to request the readback; it returns zero. The caller reads
-  the resulting value through the surrounding diagnostic state path. (`kpm`,
+- `ged_register_write` (`usr/gfx/KONA/bin/kpm` 0x10019e3c, 164 bytes):
+  **Established.** Selects distributor register 0x600 (`sw` at 0x10019e94),
+  encodes the register index as bit 5 plus the index's upper bits masked by
+  0x1ff00, writes the caller's value through offset 0x3f0 (`sw` at 0x10019eb0),
+  then selects 0xac0 (`sw` at 0x10019ec0) and writes the same value there (`sw`
+  at 0x10019ecc). It returns zero. (`kpm`, 6.5.30m, full routine at 0x10019e3c.)
+- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm` 0x10019ee0, 228 bytes):
+  **Established.** Converts the caller's engine number to a one-bit mask (`sllv`
+  at 0x10019f10), writes that mask five times (calls at 0x10019f1c, 0x10019f2c,
+  0x10019f3c, 0x10019f4c and 0x10019f5c) to distributor register 0x222, then
+  selects 0x200600 at offset 0x3e8 (`sw` at 0x10019f80) and writes 0x58400800 at
+  offset 0x3f0 (`sw` at 0x10019f94), and selects 0x200a80 at 0x3e8 (`sw` at
+  0x10019fa4) and writes 1 at 0x3f0 (`sw` at 0x10019fc0). It returns zero.
+  (`kpm`, 6.5.30m, full routine at 0x10019ee0.)
+- `ge_register_write` (`usr/gfx/KONA/bin/kpm` 0x1001b730, 108 bytes):
+  **Established.** Writes its first argument, the geometry-engine register
+  number, to distributor register 0x234 (call at 0x1001b768), then writes its
+  second argument, the value, to register 0x232 (call at 0x1001b778), and
+  returns zero. (`kpm`, 6.5.30m, full routine at 0x1001b730.)
+- `ge_register_read` (`usr/gfx/KONA/bin/kpm` 0x1001b79c, 100 bytes):
+  **Established.** Writes the requested register number to distributor register
+  0x234 (call at 0x1001b7cc), then writes 0x80000001 to register 0x236 (call at
+  0x1001b7e0) to request the readback; it returns zero. The caller reads the
+  resulting value through the surrounding diagnostic state path. (`kpm`,
   6.5.30m, full routine at 0x1001b79c.)
-- `ge11BypassEnable` (`usr/gfx/KONA/bin/kpm` 0x1001b800, 304 bytes): **Established.** Chooses
-  0x800 or 0xc00 from the engine status field at +0x10, scans engine numbers
-  0..7, and for every set status bit calls `ged_set_current_ge` followed by
-  `ge_register_write(0x438 or 0xc38, 0x400001)`. It then selects the saved
-  current engine and returns zero. (`kpm`, 6.5.30m, full routine at
-  0x1001b800.)
+- `ge11BypassEnable` (`usr/gfx/KONA/bin/kpm` 0x1001b800, 304 bytes):
+  **Established.** Chooses 0x800 or 0xc00 from the engine status field at +0x10
+  (`lw` at 0x1001b85c), scans engine numbers 0..7, and for every set status bit
+  calls `ged_set_current_ge` (call at 0x1001b8ac) followed by
+  `ge_register_write(0x438 or 0xc38, 0x400001)` (call at 0x1001b8bc). It then
+  selects the saved current engine (call at 0x1001b8f4) and returns zero.
+  (`kpm`, 6.5.30m, full routine at 0x1001b800.)
 - `ge11LoadUcode` (`usr/gfx/KONA/bin/kpm` 0x1001bbf0, 1332 bytes): **Established.** Opens and
   parses the engine image as address plus three words. It stops the engine by
   writing zero to 0x40000 and 0x40018, selects 0xce0 or 0x8e0 from the engine
@@ -92,15 +98,18 @@ written.
   1 to register 0x40000. Non-contiguous records first write 0x200000 plus four times
   the new address to register 0x234; it reports parse, open and write failures
   and returns -1, otherwise zero. (`kpm`, 6.5.30m, full routine at 0x1001bbf0.)
-- `ge11StateDrain` (`usr/gfx/KONA/bin/kpm` 0x1001b930, 704 bytes): **Established.** Iterates
-  the selected engine's state records, uses the diagnostic register-read path
-  for each record and writes the captured words to the current dump section;
-  it stops after the table's count or the first failed read and returns the
+- `ge11StateDrain` (`usr/gfx/KONA/bin/kpm` 0x1001b930, 704 bytes):
+  **Established.** Iterates the selected engine's state records, uses the
+  diagnostic register-read path (call at 0x1001ba78) for each record and writes
+  the captured words to the current dump section (call at 0x1001bae4); it stops
+  after the table's count or the first failed read and returns the
   section-writing result. (`kpm`, 6.5.30m, full routine at 0x1001b930.)
-- `tbRegisterWrite` (`usr/gfx/KONA/bin/kpm` 0x1001c124, 200 bytes): **Established.** Selects
-  raster-bus register 0x20630, writes zero, selects 0x20a40, writes the
-  inverted low bit of the caller-selected field shifted left once, and selects
-  0x20a40 again before returning. (`kpm`, 6.5.30m, full routine at 0x1001c124.)
+- `tbRegisterWrite` (`usr/gfx/KONA/bin/kpm` 0x1001c124, 200 bytes):
+  **Established.** Selects raster-bus register 0x20630 (`sw` at 0x1001c14c),
+  writes zero (`sw` at 0x1001c15c), selects 0x20a40 (`sw` at 0x1001c16c), writes
+  the inverted low bit of the caller-selected field shifted left once (`sw` at
+  0x1001c17c), and selects 0x20a40 again (`sw` at 0x1001c184) before returning.
+  (`kpm`, 6.5.30m, full routine at 0x1001c124.)
 - `hipInspectionPreJtag` (`usr/gfx/KONA/bin/kpm` 0x10012834, 5288 bytes): **Established.**
   Creates the `hip-registers` capture section, reads the host-interface words
   at offsets 0x220, 0x390, 0x398, 0x238 and the remaining table-selected
