@@ -267,9 +267,12 @@ written.
   0x100116f0; size 548 bytes. Locates a scan-field descriptor, masks the
   caller's value to the field width, shifts it to the descriptor's bit
   position, and merges it into the supplied instruction or data word. The
-  field-width and shift values are read from the descriptor rather than
-  assumed by the caller; an unknown field follows the diagnostic error path.
-  (`kpm`, 6.5.30m, complete N32 body read at 0x100116f0-0x10011913.)
+  descriptor's field record supplies the source word and field index
+  (`lw` at 0x100117e4 and 0x1001180c), while its start and end positions
+  bound the inserted value (`lw` at 0x10011818 and `0x1001182c`). A failed
+  descriptor lookup reports the field error at 0x100118d4 and returns -1
+  (`addiu` at 0x10011910); a successful insertion returns zero. (`kpm`,
+  6.5.30m, complete N32 body read at 0x100116f0-0x10011913.)
 - `kjiGetSubField` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
   0x10011914; size 528 bytes. Finds a named scan field, extracts the selected
   bits from the caller's word, right-shifts them by the descriptor's start bit,
@@ -678,6 +681,27 @@ same executable.
   matching message formatter. It exits quietly when the board flag or required
   record pointers are absent. (`kpm`, 6.5.30m, four-record loop at
   0x1002f840-0x1002f8ec.)
+- `free_arm_symbols` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10032a98; size 116 bytes. Walks the ARM-symbol list in eight-byte records,
+  frees each non-zero symbol pointer at record offset 0 (`lw` at 0x10032ac0),
+  follows the next record at offset 8 (`lw` at 0x10032ae4), and returns zero
+  after the list terminator. (`kpm`, 6.5.30m, complete N32 body read at
+  0x10032a98-0x10032b0b.)
+- `asym_address` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10032b0c; size 132 bytes. Scans eight-byte ARM-symbol records until the
+  name pointer is null (`lw` at 0x10032b64), passes each name and the caller's
+  query to the match callback (`jalr` at 0x10032b50), and returns the matched
+  record's second word (`lw` at 0x10032b74). A non-match advances by one
+  record and returns the terminal record's second word. (`kpm`, 6.5.30m,
+  complete N32 body read at 0x10032b0c-0x10032b8f.)
+- `asym_symbol` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10032b90; size 188 bytes. Searches the ARM-symbol records by address,
+  comparing each record's value at offset 4 with the query (`lw` at
+  0x10032bf8 and 0x10032c10), and returns the matching name pointer or the
+  preceding record's name pointer (`lw` at 0x10032c28). It stops at the
+  one-byte name terminator (`lbu` at 0x10032bac) and returns the table's
+  terminal pointer when no later record qualifies. (`kpm`, 6.5.30m, complete
+  N32 body read at 0x10032b90-0x10032c4b.)
 
 ## Register tables and logging
 
