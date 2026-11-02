@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 148 (hardware-facing 70, microcode 26, driver and library 50, product and history 2; the queued next-step lists are included under microcode and driver), route b 14, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 139 (hardware-facing 64, microcode 26, driver and library 47, product and history 2; the queued next-step lists are included under microcode and driver), route b 15, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -24,12 +24,8 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - raster set-up widths, sub-pixel rule, slopes
 - clip-map register fields
 - DG state tables (line type, count, length, signal)
-- RM count per pipe on Onyx 3000
-- VIO5H channel count
-- DPLEX pixel clock range and release
 - RM per InfiniteReality generation (hinv part needs hinv, route b)
 - RM11 raster memory size
-- cursor tie-break between channels
 - 24-bit floating-point Z format
 - GE special-register offsets kpm does not name
 - HIP command and FIFO formats (arm1.u arm_data); DMA and interrupt words gecomm_*
@@ -61,7 +57,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - GE14/GE16 and RM7/RM9 register and feature dumps
 - 32768 per-texture clip-map limit
 - TM self-test sequence and TM-to-SDRAM bank count
-- 8-channel DG5 limit in video-format tools
 - garbage-count report and death_reason 17 with empty RM slot
 - GFX FIFO watermarks 0x380 and 0x180 in kpm
 - single RM10 gfxinfo text
@@ -86,7 +81,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - gfxinfo with 0xFF or 0x20 EEPROM image
 - IR4 gfxinfo -vv: no RM11 printed
 - 3200x3400 at 60 Hz format for four-RM pipe
-- 8 channels accepted and 9 rejected on one pipe
 - XIO widget identity on Onyx 3000 (port speed is route c)
 - frame scheduler period against video format
 
@@ -154,10 +148,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - GL_RENDERER composition in GetBoardInfo
 - display-list size beyond 15 MB
 - colour matrix on texture load and stencil visuals
-- KONA syslog strings for GE fault words
-- SGIS_point_parameters and SGIS_multitexture against GL_EXTENSIONS
 - swap timeout log sequence and bad-state code
-- fatal-error death_reason table from driver strings
 - GL_DEPTH_COMPONENT bit layout
 - many-display-list test with and without GLKONA_NOIDMA
 - texture border and GL_CLAMP border colour
@@ -175,6 +166,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - processor count against per-RM pixel processors
 
 Route b, named:
+- DPLEX first IRIX release (6.5.2 in the datasheet, 6.5.3 in the guide): needs the release notes of those releases
 - PROM refusal of 0x2020202 EEPROM value: needs the Onyx IO4 base-I/O PROM image
 - board sets KONA, KONAT, KONAS: needs an IP19 or IP25 kernel or published hinv
 - hinv strings per product: hinv not on the media
@@ -222,13 +214,9 @@ Places where two published SGI documents, or a document and a binary, say differ
 
 | Question | Owner | Routes tried | Next route |
 |---|---|---|---|
-| [route a] Which RM count belongs to which pipe on the Onyx 3000: the owner's guide's feature list says "the first pipe has one or two RMs, and the second pipe has one, two, or four RMs" (007-4264-002 PDF p. 28), while its own slot text (PDF p. 57), the family reference guide (PDF p. 13), the Onyx 300 and Onyx 350 guides and the IR4 addendum give the first pipe (six slots, right of the Ktown2 board) up to four RM and the second (four slots) up to two. | [rm.md](rm.md#board-sets-and-pipe-configurations) | Read the sentence and the slot text of 007-4264-002; the family guide, 007-4509-002, 007-4632-001 and 007-4525-001. Four sources against one sentence; the sentence reads as an error. | Check the 6.5.30 `gfxinfo` and `ircombine` strings for a per-pipe RM limit, and the later revision of the owner's guide if one is in the TechPubs mirror. |
-| [route a] Whether the VIO5H adds five or six channels: the Onyx2 owner's guides say it "outputs five high-resolution video channels" (007-3454-005 PDF p. 67; 007-3457-005 PDF p. 80), their connector table lists monitors 0 to 7, and the IR4 addendum says it adds six monitor connectors for a total of eight (PDF p. 2). | [dg.md](dg.md#channels-and-boards-owners-guides-ir4-addendum) | The three documents above. Eight channels is also what `NIC_channels` and the 8-VOC variant of `dg4` give. | Read the VIO5H signal list in the Onyx 3000 guide (the DG5-8 table, PDF p. 61-62) and the `dg4` netlist's connector pin count in [diags/netmap_chips.tsv](../diags/netmap_chips.tsv). |
-| [route a] DPLEX pixel clock range and IRIX release: the user's guide says formats with pixel clocks of 31 to 110 MHz, IRIX 6.5.3 or later, 8-bit digital video (007-3849-001 PDF p. 13, 45, 52); the datasheet says any format up to 175 MHz, IRIX 6.5.2 or later (specs/sgi-2003-dplex-datasheet.pdf PDF p. 2). | [dg.md](dg.md#video-option-boards) | Both documents. The datasheet is dated August 1998, before shipment; the guide is the later, installer-facing text, so it is the better reading for the shipped board, **inferred**. | Find the DPLEX clock limits in the `dg4_ddo_gvo` and `dplex` rule files (`SystemVideoClockRateMaximum`, `DACRateMaximum`, [ucode/dg.md](../ucode/dg.md)) and in `DoDGRqstDataFormat`'s DPLEX branch. |
 | [route a] Which RM each InfiniteReality generation carries: the Onyx2 technical report says InfiniteReality is GE14 with RM7 and InfiniteReality2 is GE16 with RM9 (source 3); the hardware developer handbook's hinv table lists InfiniteReality for Onyx as "4 GEs, RM6" and InfiniteReality2 for Onyx as "4 GEs, RM7", and Onyx2 as GE14 with RM7/TM7 or RM8 (PDF p. 85, 274-275). The DPLEX guide's `gfxinfo` shows a GE14 system with one RM7 called `KONAL` graphics. | [rm.md](rm.md#board-sets-and-pipe-configurations) | The three documents; the netlist names in [rm.md](rm.md#chips-on-each-board) (`rm6`, `rm7`, `rm8`, `rm10`, `rm11`, `ge12_*`, `ge14_*`). The handbook is dated May 1997 and names generations by the first-Onyx board sets, so the two are probably describing different products under one marketing name, **inferred**. | Map each hinv graphics name to the `board type` word and `gfxinfo` string the 6.5.30 tools print for it. |
-| [route a] How an RM11 holds 2.5 GB: the IR4 addendum and datasheet give 2.5 GB of raster memory per RM11, from 80 MB per RM before (007-4525-001 PDF p. 4), but the `rm11` netlist has the same ten `imp8dc` chips as `rm10` ([rm.md](rm.md#chips-on-each-board)). | [rm.md](rm.md#board-sets-and-pipe-configurations) | The addendum, datasheet 3353 and the netlist table. | Read the `imp*.tcbist` RAM lists under `usr/diags/IR/data/` for the size of one `imp8dc` and count them per board. |
-| [route a] Cursor tie-break: the combiner guide says that with equal priority the channel that last showed the cursor keeps it (007-3279-003 PDF p. 32); `kona_determine_cursor_channel` takes the lowest channel index among equals ([dg.md](dg.md#choosing-the-cursor-channel)). | [dg.md](dg.md#channels-and-boards-owners-guides-ir4-addendum) | The manual's text and the kernel function. | Find where the X module or the driver passes the current channel into the choice; the retention may live in `kona.so`. |
-| [route a] What the "24-bit floating-point Z" of the Onyx2 specification sheet is in the pipe, given the 23-bit smallest depth of the first-generation report (source 2) and the 24-bit Z output of the combiner: the sheet gives the word, not its format. | [rm.md](rm.md#board-sets-and-pipe-configurations) | The specification sheet, source 2, the combiner guide (PDF p. 31). | Read the depth-format fields of `IMP_` registers and the stencil and depth size tables of the `HP_BUFFER_CONFIG` path in [opengl.md](opengl.md). |
+| [route a] How an RM11 holds 2.5 GB: the IR4 addendum and datasheet give 2.5 GB of raster memory per RM11, from 80 MB per RM before (007-4525-001 PDF p. 4), but the `rm11` netlist has the same ten `imp8dc` chips as `rm10` ([rm.md](rm.md#chips-on-each-board)). | [rm.md](rm.md#board-sets-and-pipe-configurations) | The addendum, datasheet 3353 and the netlist table. | The `imp8d_16Mx16.sdbist` bit list (eight 32-bit groups of 16-word-M parts) gives 512 MB per `imp8dc` and 5 GB per ten-chip RM, twice the published figure ([rm.md](rm.md#board-sets-and-pipe-configurations)); no `imp` test-control script is shipped to count populated groups. | Read the 6.5.30 driver's per-RM pixel capacity for an RM11 pipe, and whether it halves for a ten-chip board. |
+| [route a] What the "24-bit floating-point Z" of the Onyx2 specification sheet is in the pipe, given the 23-bit smallest depth of the first-generation report (source 2) and the 24-bit Z output of the combiner: the sheet gives the word, not its format. | [rm.md](rm.md#board-sets-and-pipe-configurations) | The specification sheet, source 2, the combiner guide (PDF p. 31); `IMP_SZ1` depth size 16, 20, 24 or 32 with a compress bit names no encoding ([rm.md](rm.md#board-sets-and-pipe-configurations)). | Read the depth read-back and draw-pixels span converters of the GL driver for the word they turn depth into, and what unit-1 operation 0x7e does to window z. |
 
 ## Geometry engine program
 
@@ -548,19 +536,15 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route c] Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
 - [route a] DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
 - [route a] Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
-- [route a] GE fault word pairs: check whether the shipped KONA syslog strings use the same two-word format.
 - [route a] IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries.
 - [route c] Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
 - [route a] Code-name claim ("Kona" as the InfiniteReality code name): check against the product names in the shipped binaries and PROM tables.
 - [route a] Processor count in the oral-history lead: check against the repo's count of per-RM pixel processors.
 - [route a] Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
 - [route a] RM repair thread: model the rm_extbist and irsaudit self-test sequence per TM, and check the TM-to-SDRAM bank count.
-- [route a] IR4 half-dome output: check the 8-channel DG5 limit in the video-format tools.
-- [route a] OpenGL extensions history: compare SGIS_point_parameters and SGIS_multitexture against the IR GL_EXTENSIONS strings.
 - [route a] RM9 upgrade garbage counts: boot with RM slot 0 empty or unreadable; expect the garbage-count report and death_reason 17.
 - [route a] IR2E kpm stall: flood the pipe and check the GFX FIFO watermarks (0x380, 0x180); kpm must parse a model dump.
 - [route a] Swapbuffer timeout sequence: force a swap timeout or GE stall and compare the log sequence and bad-state code.
-- [route a] Fatal-error death_reason table: grep the driver strings and inject each failure to compare the message sequence.
 - [route a] Onyx3 single RM10 gfxinfo: diff a one-RM10 GVO guest's gfxinfo against the posted text (KONAL or KONAD, Medium or Extra-Large).
 - [route a] First-generation board names and texture sizes: boot RM6, RM7 and RM9 configurations and compare the strings.
 - [route b] hinv -mvv GE14-2 record: compare the /hw path and board record with the posted listing.
@@ -605,7 +589,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route b] Onyx2 Reality product figures: match hinv and gfxinfo for a modelled Reality (RM8, 40 MB, 16 or 64 MB texture).
 - [route b] Slashdot IR, IR2 and IR3 revisions: diff GE and RM revisions per product; only clocks and sizes may differ.
 - [route a] Slashdot 32-CPU simulator: build a 3200x3400 at 60 Hz format for a four-RM pipe and see whether it compiles.
-- [route a] Slashdot 128-channel claim: ircombine accepts 8 channels on one pipe and rejects 9.
 - [route a; c for the port speed] Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 guest.
 - [route b] HN RAM-growth claim: check per-RM texture sizes and that IR3 and IR4 registers match IR2 except sizes and clocks.
 - [route a] HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
