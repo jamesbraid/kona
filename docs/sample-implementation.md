@@ -3329,6 +3329,17 @@ These entries describe the exact O32 bodies in `usr/gfx/arch/IP27KONA/libGLcore.
 - `__glSpanHistogramRGBA` in usr/gfx/arch/IP27KONA/libGLcore.so: counts the pixels of red, green, blue and alpha into the histogram bins and passes the span on unchanged, and in the original 32-bit build it occupies 568 bytes at address 0xd9be35c; the public sample-implementation source gfx/lib/opengl/glcore/px_hist.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glSpanHistogramSinkRGBA` in usr/gfx/arch/IP27KONA/libGLcore.so: counts the pixels of red, green, blue and alpha into the histogram bins and then discards the span, the sink form used when only the counts are wanted, and in the original 32-bit build it occupies 512 bytes at address 0xd9bea50; the public sample-implementation source gfx/lib/opengl/glcore/px_hist.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 
+#### O32 entries read in full for `px_histogram.c`
+
+These notes report binary observations from the exact O32 build. The N32 descriptions remain references; no public-source comparison was made for these O32 bodies. Each O32/N32 byte comparison differs, and the difference alone does not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glSpanMinmaxSinkA` | 0xd9bd4d0 / 412 | `9bc68d7734645495355afc031cbca36500e9c86947f8f8a4fc8aa04ca938a1a0` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8020 / 256 | `5dc9896b0677449c934cb493955b53460deb1f918a81589262609971bf7e04a4` | 220 |
+
+- `__glSpanMinmaxSinkA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bd4d0; occupies 412 bytes.
+  **Inferred.** Alpha-statistics accumulation reads count at a1 +0xb8 and a float scale at a0 +0x7894 (`lw` at 0xd9bd4d4 and `lwc1` at 0xd9bd4d8). The body multiplies an input float (`mul.s` at 0xd9bd504). Its lower-bound test falls through when f2 is less than the state at a0 +0x534, writing f2 there (`bc1fl` at 0xd9bd510 and `swc1` at 0xd9bd518). The upper-bound test falls through when state a0 +0x538 is less than f2 and writes f2 to that field (`bc1f` at 0xd9bd530 and `swc1` at 0xd9bd538). The input traversal base is unknown in hostfacts, so the exact alpha component address and all sample progression are not established by this entry.
 ### px_modify.c
 
 - `__glSpanModifyRGBA` in usr/gfx/arch/IP27KONA32/libGLcore.so: applies the pixel-transfer modification to a span of pixels laid out as red, green, blue, alpha: scale, bias and the pixel-map lookups per channel, writing the modified span, and it occupies 680 bytes at address 0x0d997fb0; the public sample-implementation source gfx/lib/opengl/glcore/px_mod.c holds the same routine, matched by name, no direct call in either, a shipped body of 92 source lines against 112 in the public file, and it makes no access to the board. Inferred.
@@ -4103,6 +4114,107 @@ The IP27 Kona N32 `libGL.so` also carries the client half of the GLX code from t
 
 - `__glx_ConvolutionFilter1D2D` in usr/gfx/arch/IP27KONA32/libGL.so: packs a one- or two-dimensional convolution filter into a render command, with a large-command path when it does not fit the buffer, and it occupies 584 bytes at address 0xd82bd24; the public sample-implementation source glx/lib/renderpix.c holds the same routine, matched by name, 5 calls in the disassembly against 30 in the public body, 584 bytes of code against 53 source lines, and it makes no access to the board. Inferred.
 
+#### O32 entries read in full for `px_unpack.c`
+
+These notes report binary observations from the exact O32 build. The N32 descriptions remain references; no public-source comparison was made for these O32 bodies. Each O32/N32 byte comparison differs, and the difference alone does not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glSpanClampRed` | 0xd9b28e0 / 524 | `5695a340c7bcfe5549cc6593f5aa051c3761f40d0b45b08654faf35b63335ab1` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af540 / 260 | `63141edfb21941b7a6eeaca811dc44a3ab4b90b888f6f754de202c90647c6a2e` | 221 |
+| `__glSpanClampGreen` | 0xd9b2aec / 532 | `a6d5a0f5faa509181afc086cbcd5c32125e7d6c584d932066024b328d97067cc` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af650 / 260 | `7426f15a33fb92bc71444fec48d077d7939fca7f1ea7d998faa7f625461ce19b` | 220 |
+| `__glSpanClampBlue` | 0xd9b2d00 / 532 | `9754f5eb662f9e43b6f111e82c00b1795467f61d9c5b093f558f2b59b4ebd00f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af760 / 260 | `4d7b6eb77f5327ee6353d04c342bdd0ea5df8c57881c034c043dee469c373add` | 222 |
+| `__glSpanClampAlpha` | 0xd9b2f14 / 524 | `9a2fbac3ddae6625593db5d034b8daa55ac0ff1cc4b700f48a187a371e6822b8` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af870 / 256 | `690afaa9917259059be6798e2e0e59eff29b2e04f0c1b0599b36e2951ecc061c` | 221 |
+| `__glSpanClampRGBA` | 0xd9b33cc / 836 | `4dd7a733fc6082be5f2c0795374ab97361f0b9deba9d52275c36658b499f4c3e` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afb30 / 208 | `c0a8ffa1ddbeb21c38eef9597e092cb4bd248e527a74b4ba374945d082d33ed3` | 182 |
+| `__glSpanExpandRed` | 0xd9b3780 / 236 | `69a97e9ab0a97206f93069e3fb78139ced85eeb700a5c514d24c4682ba84f722` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afcc0 / 80 | `b048c1391e1522da2cf58faab794c1aba7761336f5659667f4adba7f9af2f7e3` | 72 |
+| `__glSpanExpandGreen` | 0xd9b386c / 388 | `53e3fdc3021cdde4e67e7d4f00272a548cf862f6b4ae7306ebf4af5927bcef9a` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afd10 / 80 | `ddec1b7e27911d35bc32df88d9545602c97a04f4a78de8c9bcad9ad11f32f08a` | 68 |
+| `__glSpanExpandBlue` | 0xd9b39f0 / 388 | `6145884da175d9754d7b9b742e3776aae2b58ffed239437c532735fd7dec76c0` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afd60 / 80 | `138887217fed88bfe42bf469e02c648b236de2467b44a19a07738f83f170211a` | 66 |
+| `__glSpanExpandAlpha` | 0xd9b3b74 / 384 | `2b6b10333a2b31aec74d0b66724b420a4ac645a4ad448fbcc6836005023af3ca` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afdb0 / 80 | `46180430754381ddcf9e8938b738fcdbca834253656be784d63791b612826f2d` | 67 |
+| `__glSpanExpandLuminance` | 0xd9b3f5c / 256 | `e98ff8538bce05463f31a2b65f717b18438f60ed175b9f2fc507b6bf3bc58d25` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0080 / 104 | `9b953cb03e2079a5c508f14e32ecbeeee41e77387506eeb21f026d6e6197a49e` | 76 |
+| `__glSpanExpandRedAlpha` | 0xd9b4184 / 276 | `e9e28938874c72a650e5ac0b752b713a80ae66f27af70eaa67469754b9c9b6ec` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0230 / 88 | `fc51b1b2b73cfcdd9d6ccafa12bfc25c1699c6418acee4fb46811e3c9d261ae2` | 75 |
+| `__glSpanExpandRedNS` | 0xd9b43ac / 220 | `dbe9287457c0b191a571f9b1c041de73c75b87dedc60a002d973941c94dff5c9` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0360 / 92 | `e3b55923511a91ae4d62bc8d827d122284201bcd47ee9ceda51a0def8e56ef33` | 84 |
+| `__glSpanExpandGreenNS` | 0xd9b4488 / 220 | `5e1d31eeaf9bda68f1c5b3b6d1559b2ec595cc0189bb36ad7513152740b83553` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b03c0 / 92 | `d0e206fc696a533b3eae02b2d7ea628b38ce4aa4e193476983590bc918c931eb` | 85 |
+| `__glSpanExpandBlueNS` | 0xd9b4564 / 220 | `682a59783b3584bc106d7edf40b9164e0dc492102fff225be0d500ebe434d9c0` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0420 / 92 | `093df9be3e5a3952912c94634b2439473fe98cc9d33029e8cd7c5f24e0bdf3c1` | 83 |
+| `__glSpanExpandAlphaNS` | 0xd9b4640 / 212 | `552d6b0904150d963eefe076bccf3e208e61782a4d5e306aceb0562f1c0b73cc` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0480 / 76 | `8687e0fb2308627a41006fc46438f8c4c67ae336a21c2c5558df9d94bc0de8ea` | 63 |
+| `__glSpanExpandLuminanceNS` | 0xd9b490c / 212 | `a7f7bc09b37f402f18c00ea42f719686df61c6f579fd0c7106a68c08eeddaa8c` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b06d0 / 92 | `9f9ca9053f87ab41bde64dc56b66dedcd3798201606bdd84881a8c4b2598e6c8` | 84 |
+| `__glSpanExpandLuminanceAlphaNS` | 0xd9b49e0 / 204 | `980791e160f7f3cd8a1352b0fcd948b5129b7828d5b993967811a2fabcef2e97` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0730 / 80 | `592b7914a008597a7039bc944c1b234dd33ed8a54f22cb63ad784e0d3070c950` | 66 |
+| `__glSpanExpandRedAlphaNS` | 0xd9b4aac / 232 | `95175b59749e6925e144bdc00f17b6f45477bd87df8d74d9dcda1bcddb73424f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0780 / 80 | `178de3f308433397a33fee5cda6985ea80185b80c0654d7b2c120a4759f63740` | 67 |
+| `__glSpanExpandIntensityNS` | 0xd9b4b94 / 280 | `1e8f0065e7def1c8958a413339e6600c428ec92a1aa656c7403d64366c28dac5` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b07d0 / 76 | `891cde12301f00b57566d02498e155ed35c71d0a9168febfd4ca95235da3a5aa` | 61 |
+
+- `__glSpanClampRed` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b28e0; occupies 524 bytes.
+  **Inferred.** Red-channel clamping. The body reads a word at entry a1 +0xb8 and a float word at entry a0 +0x7858 (`lw` at 0xd9b28ec and `lwc1` at 0xd9b28f8). Float comparisons include `c.lt.s` at 0xd9b2920 and `c.lt.s` at 0xd9b2938, with word-sized float writes at 0xd9b2944 and 0xd9b294c (`swc1` at 0xd9b2944 and `swc1` at 0xd9b294c). JSON facts leave those store bases and values unknown. Text rendering fails with `KeyError: 22`, so the exact clamp decisions are unresolved.
+
+- `__glSpanClampGreen` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b2aec; occupies 532 bytes.
+  **Inferred.** Green-channel clamping. Target facts resolve the span count at a1 +0xb8 and a state float at a0 +0x785c (`lw` at 0xd9b2af8 and `lwc1` at 0xd9b2b04). The body compares float values (`c.lt.s` at 0xd9b2b38 and `c.lt.s` at 0xd9b2b50) and performs word float stores (`swc1` at 0xd9b2b30 and `swc1` at 0xd9b2b5c). Those destinations are unknown in the JSON output. The text renderer raises `KeyError: 25`, preventing resolved taken/fall-through evidence for a full clamping contract.
+
+- `__glSpanClampBlue` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b2d00; occupies 532 bytes.
+  **Inferred.** Blue-channel clamping. This build obtains its channel state from a0 +0x7860 and count from a1 +0xb8 (`lwc1` at 0xd9b2d18 and `lw` at 0xd9b2d0c). It reads float words and writes float words through unresolved pointers (`lwc1` at 0xd9b2d38, `swc1` at 0xd9b2d44, and `swc1` at 0xd9b2d50). The float tests are visible at 0xd9b2d58 and 0xd9b2d70 (`c.lt.s` at 0xd9b2d58 and `c.lt.s` at 0xd9b2d70). JSON analysis succeeds, but `KeyError: 28` prevents the text renderer from establishing their branch effects.
+
+- `__glSpanClampAlpha` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b2f14; occupies 524 bytes.
+  **Inferred.** Alpha clamping. Its state word is read from a0 +0x7880 (`lwc1` at 0xd9b2f2c), with the count word at a1 +0xb8 (`lw` at 0xd9b2f20). Initial accesses include one float read and three float writes through bases the tool cannot resolve (`lwc1` at 0xd9b2f4c, `swc1` at 0xd9b2f58, `swc1` at 0xd9b2f64, and `swc1` at 0xd9b2f6c). The available JSON preserves those effects without establishing their final addresses or values. `KeyError: 30` in text rendering leaves the clamp conditions unproved.
+
+- `__glSpanClampRGBA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b33cc; occupies 836 bytes.
+  **Inferred.** Four-channel clamping. The target reads channel state floats at entry a0 +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd9b33ec, `lwc1` at 0xd9b33f0, `lwc1` at 0xd9b33f4, and `lwc1` at 0xd9b33f8). Its first resolved output store writes a float word at entry a3 +0, with an unknown value (`swc1` at 0xd9b344c). The following store to that same location also has an unresolved value (`swc1` at 0xd9b3454). Text rendering stops with `KeyError: 44`. The JSON evidence does not resolve the branch conditions needed to establish the full RGBA limits.
+
+- `__glSpanExpandRed` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b3780; occupies 236 bytes.
+  **Inferred.** Red expansion uses float state at a0 +0x7858 and a0 +0x7880 (`lwc1` at 0xd9b379c and `lwc1` at 0xd9b3798). A nonpositive count from a1 +0xb4 takes the immediate exit, with positive count falling through (`lw` at 0xd9b378c and `blez` at 0xd9b37a0). The body multiplies a loaded float and writes float words (`mul.s` at 0xd9b37c8 and `swc1` at 0xd9b37e0). Another write carries the state value from a0 +0x7880 (`swc1` at 0xd9b37c4), but its base is unknown. These observations do not resolve the full RGBA destination tuple.
+
+- `__glSpanExpandGreen` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b386c; occupies 388 bytes.
+  **Inferred.** The green-named expansion path reads two float state values at a0 +0x785c/+0x7880 (`lwc1` at 0xd9b3884 and `lwc1` at 0xd9b3888), then writes a word-sized float at entry a3 +0 (`swc1` at 0xd9b38b0). Its numerical path includes float multiplication (`mul.s` at 0xd9b38c0) and writes the second state value through an unresolved base (`swc1` at 0xd9b38c8). The count comes from a1 +0xb4 (`lw` at 0xd9b3878). Complete channel placement remains inferred because later destination pointers and some values are unknown.
+
+- `__glSpanExpandBlue` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b39f0; occupies 388 bytes.
+  **Inferred.** Blue expansion's state loads address a0 +0x7860 and +0x7880 (`lwc1` at 0xd9b3a08 and `lwc1` at 0xd9b3a0c). It has resolved float stores to entry a3 +0 and +4 (`swc1` at 0xd9b3a30 and `swc1` at 0xd9b3a38), whose value is the unresolved f12 register. The scaled-value operation is a float multiply (`mul.s` at 0xd9b3a48), followed by a float store with unknown base (`swc1` at 0xd9b3a60). The title's blue-to-RGBA interpretation is inferred rather than a fully resolved output map.
+
+- `__glSpanExpandAlpha` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b3b74; occupies 384 bytes.
+  **Inferred.** Alpha expansion loads the state float at a0 +0x7880 (`lwc1` at 0xd9b3b8c). Positive count at a1 +0xb4 falls through to processing, while nonpositive count takes the exit (`lw` at 0xd9b3b80 and `blez` at 0xd9b3b90). Three float-word writes resolve to entry a3 +0/+4/+8 (`swc1` at 0xd9b3bb0, `swc1` at 0xd9b3bb4, and `swc1` at 0xd9b3bbc). Subsequent multiplication and float output are visible (`mul.s` at 0xd9b3bcc and `swc1` at 0xd9b3be4), but hostfacts leaves the later destination and constant fill values unknown.
+
+- `__glSpanExpandLuminance` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b3f5c; occupies 256 bytes.
+  **Inferred.** Luminance expansion reads four float state words at a0 +0x7880/+0x7858/+0x785c/+0x7860 (`lwc1` at 0xd9b3f68, `lwc1` at 0xd9b3f6c, `lwc1` at 0xd9b3f70, and `lwc1` at 0xd9b3f74). One loaded float feeds three multiplications (`mul.s` at 0xd9b3f98, `mul.s` at 0xd9b3fa4, and `mul.s` at 0xd9b3fa8), and the results are written as float words (`swc1` at 0xd9b3fac, `swc1` at 0xd9b3fb0, and `swc1` at 0xd9b3fb8). All three store bases are unresolved. This supports a three-result expansion without establishing exact channel addresses from the tool output.
+
+- `__glSpanExpandRedAlpha` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4184; occupies 276 bytes.
+  **Inferred.** The red/alpha path loads float state at a0 +0x7880 and +0x7858 (`lwc1` at 0xd9b419c and `lwc1` at 0xd9b41a0). Its count word is at a1 +0xb4 (`lw` at 0xd9b4190), and a nonpositive count takes the return path (`blez` at 0xd9b41a4). Two multiplications and float stores are observed (`mul.s` at 0xd9b41cc, `mul.s` at 0xd9b41e4, `swc1` at 0xd9b41dc, and `swc1` at 0xd9b41ec). The corresponding source and destination bases are unknown, so exact pair-to-RGBA placement is still inferred.
+
+- `__glSpanExpandRedNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b43ac; occupies 220 bytes.
+  **Inferred.** Red expansion without scaling. The target count word is a1 +0xb4 (`lw` at 0xd9b43bc). It reads float data and emits float words (`lwc1` at 0xd9b43e8, `swc1` at 0xd9b43f0, `swc1` at 0xd9b43f4, `swc1` at 0xd9b43f8, and `swc1` at 0xd9b4408). Hostfacts leaves those bases and fill values unresolved, so the apparent constant channel fills cannot be specified from its facts. The body has no calls and no float multiply instruction in the complete listing.
+
+- `__glSpanExpandGreenNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4488; occupies 220 bytes.
+  **Inferred.** Unscaled green expansion. A float read is surrounded by four float stores in the short path (`swc1` at 0xd9b44c4, `lwc1` at 0xd9b44c8, `swc1` at 0xd9b44d0, `swc1` at 0xd9b44d4, and `swc1` at 0xd9b44e4). The accesses' resolved bases and values remain unknown. The known count field is a1 +0xb4 (`lw` at 0xd9b4498). Its complete body contains copy/fill operations and no call or float multiply, which supports the no-scale interpretation without establishing the green destination index.
+
+- `__glSpanExpandBlueNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4564; occupies 220 bytes.
+  **Inferred.** Blue expansion without a scale multiply. The routine reads the count from a1 +0xb4 (`lw` at 0xd9b4574), with nonpositive count taking the exit (`blez` at 0xd9b4580). Its data path includes one float read and four float-word stores (`lwc1` at 0xd9b45a8, `swc1` at 0xd9b45a0, `swc1` at 0xd9b45a4, `swc1` at 0xd9b45b0, and `swc1` at 0xd9b45c0). The tool cannot resolve those pointer origins or constant values. An exact output tuple is therefore not imported from the N32 entry.
+
+- `__glSpanExpandAlphaNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4640; occupies 212 bytes.
+  **Inferred.** Copying alpha into an expanded pixel record. Float stores precede the source read, followed by another float write (`swc1` at 0xd9b4678, `swc1` at 0xd9b467c, `swc1` at 0xd9b4680, `lwc1` at 0xd9b4684, and `swc1` at 0xd9b4698). These accesses have unknown bases and values in hostfacts. The body reads its length at a1 +0xb4 (`lw` at 0xd9b4650) and contains neither a call nor a float multiply. The constant-fill interpretation stays inferred.
+
+- `__glSpanExpandLuminanceNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b490c; occupies 212 bytes.
+  **Inferred.** Luminance replication without scaling. One input float register feeds three observed word stores (`lwc1` at 0xd9b4944, `swc1` at 0xd9b4958, `swc1` at 0xd9b495c, and `swc1` at 0xd9b4964), while another register supplies a fourth store (`swc1` at 0xd9b494c). Hostfacts leaves their address origins and resolved values unknown. The count comes from a1 +0xb4 (`lw` at 0xd9b491c). The complete listing establishes the absence of a scale multiply, but not the missing component's numeric fill.
+
+- `__glSpanExpandLuminanceAlphaNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b49e0; occupies 204 bytes.
+  **Inferred.** The target uses a1 +0xb4 for its count (`lw` at 0xd9b49e4). Its first loaded float register is stored three times, then a second float register is stored once (`lwc1` at 0xd9b4a04, `swc1` at 0xd9b4a10, `swc1` at 0xd9b4a14, `swc1` at 0xd9b4a18, `lwc1` at 0xd9b4a1c, and `swc1` at 0xd9b4a28). The facts do not resolve the input or output pointer bases. This establishes the observed replication pattern, while calling it luminance-plus-alpha placement depends on the symbol's role.
+
+- `__glSpanExpandRedAlphaNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4aac; occupies 232 bytes.
+  **Inferred.** Unscaled red/alpha pair expansion. The routine includes float writes from a fill register and two data registers (`swc1` at 0xd9b4ae8, `swc1` at 0xd9b4aec, `swc1` at 0xd9b4af0, and `swc1` at 0xd9b4b08). The two source reads are visible (`lwc1` at 0xd9b4ae4 and `lwc1` at 0xd9b4af4), but their origins and the output bases are unknown. Count is loaded from a1 +0xb4 (`lw` at 0xd9b4abc). The no-scale reading is supported by the complete body's lack of floating multiplication. Exact channel offsets remain unsettled.
+
+- `__glSpanExpandIntensityNS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b4b94; occupies 280 bytes.
+  **Inferred.** Intensity replication into all components. A loaded float register is written four times (`lwc1` at 0xd9b4bb8, `swc1` at 0xd9b4bc8, `swc1` at 0xd9b4bcc, `swc1` at 0xd9b4bd0, and `swc1` at 0xd9b4bd8). Hostfacts marks those pointer bases and resolved values unknown. The routine takes the immediate exit for a nonpositive count at a1 +0xb4 (`lw` at 0xd9b4b98 and `blez` at 0xd9b4ba4). Its observed repeated-register writes support replication, without proving a caller-buffer layout from these unresolved addresses.
 ### vertarr.c
 
 - `__glXInitVertexArrayState` in usr/gfx/arch/IP27KONA32/libGL.so: sets the client vertex-array state of a context to defaults: no arrays enabled, sizes, types and strides zeroed, and the lock state cleared, and it occupies 268 bytes at address 0xd80f088; the public sample-implementation source glx/lib/vertarr.c holds the same routine, matched by name, 1 call in the disassembly against 1 in the public body, 268 bytes of code against 60 source lines, and it makes no access to the board. Inferred.
