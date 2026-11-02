@@ -1367,7 +1367,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033410,
   68 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_new_data_vector.existing.txt`, `facts/jt_new_data_vector.compare.txt`.
 
 - `jt_new_data_bvector` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10164e00; occupies 76 bytes.
@@ -1381,7 +1380,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033460,
   76 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_new_data_bvector.existing.txt`, `facts/jt_new_data_bvector.compare.txt`.
 
 - `jt_new_inst_vector` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10164e50; occupies 68 bytes.
@@ -1392,7 +1390,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x100334b0,
   68 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_new_inst_vector.existing.txt`, `facts/jt_new_inst_vector.compare.txt`.
 
 - `jt_new_inst_bvector` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10164ea0; occupies 76 bytes.
@@ -1404,7 +1401,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033500,
   76 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_new_inst_bvector.existing.txt`, `facts/jt_new_inst_bvector.compare.txt`.
 
 - `jt_dispose_vector` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10164ef0; occupies 64 bytes.
@@ -1415,7 +1411,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033550,
   64 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_dispose_vector.existing.txt`, `facts/jt_dispose_vector.compare.txt`.
 
 - `jt_find_chip` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10165020; occupies 252 bytes.
@@ -1432,7 +1427,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033680,
   252 bytes. Comparison: 5 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_find_chip.existing.txt`, `facts/jt_find_chip.compare.txt`.
 
 - `jt_extract_chip_register` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10165130; occupies 348 bytes.
@@ -1451,7 +1445,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x100396d0,
   348 bytes. Comparison: 15 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_extract_chip_register.existing.txt`, `facts/jt_extract_chip_register.compare.txt`.
 
 - `jt_insert_chip_register` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10165290; occupies 292 bytes.
@@ -1466,7 +1459,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10039830,
   292 bytes. Comparison: 13 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_insert_chip_register.existing.txt`, `facts/jt_insert_chip_register.compare.txt`.
 
 - `jt_extract_bits` in `usr/diags/IR/bin/irsaudit`:
   Address 0x101653c0; occupies 796 bytes.
@@ -1486,7 +1478,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10039960,
   796 bytes. Comparison: 34 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_extract_bits.existing.txt`, `facts/jt_extract_bits.compare.txt`.
 
 - `jt_insert_bits` in `usr/diags/IR/bin/irsaudit`:
   Address 0x101656e0; occupies 860 bytes.
@@ -1506,7 +1497,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10039c80,
   860 bytes. Comparison: 56 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_insert_bits.existing.txt`, `facts/jt_insert_bits.compare.txt`.
 
 - `jt_expand_portlist` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10166080; occupies 68 bytes.
@@ -1530,7 +1520,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x1003a670,
   672 bytes. Comparison: 13 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_nullify.existing.txt`, `facts/jt_nullify.compare.txt`.
 
 - `jt_conditional_reset` in `usr/diags/IR/bin/irsaudit`:
   Address 0x101671d0; occupies 1816 bytes.
@@ -1557,7 +1546,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x100341e0,
   1816 bytes. Comparison: 43 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_conditional_reset.existing.txt`, `facts/jt_conditional_reset.compare.txt`.
 
 - `jt_isolate_chip` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10167c80; occupies 960 bytes.
@@ -1586,7 +1574,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10034c90,
   960 bytes. Comparison: 48 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_isolate_chip.existing.txt`, `facts/jt_isolate_chip.compare.txt`.
 
 - `jt_powerup_chain` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10168040; occupies 548 bytes.
@@ -1606,7 +1593,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10035050,
   548 bytes. Comparison: 7 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_powerup_chain.existing.txt`, `facts/jt_powerup_chain.compare.txt`.
 
 - `jt_set_procs` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10168270; occupies 104 bytes.
@@ -1621,7 +1607,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033780,
   104 bytes. Comparison: 6 differing byte offsets,
   first at +0x7 (target 0x16, existing 0x12).
-  `facts/jt_set_procs.existing.txt`, `facts/jt_set_procs.compare.txt`.
 
 - `jt_init` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10168530; occupies 60 bytes.
@@ -1633,7 +1618,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033a40,
   60 bytes. Comparison: 6 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_init.existing.txt`, `facts/jt_init.compare.txt`.
 
 - `jt_select_chain` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10168570; occupies 68 bytes.
@@ -1645,7 +1629,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033a80,
   68 bytes. Comparison: 6 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_select_chain.existing.txt`, `facts/jt_select_chain.compare.txt`.
 
 - `jt_soft_reset` in `usr/diags/IR/bin/irsaudit`:
   Address 0x101685c0; occupies 60 bytes.
@@ -1657,7 +1640,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033ad0,
   60 bytes. Comparison: 6 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_soft_reset.existing.txt`, `facts/jt_soft_reset.compare.txt`.
 
 - `jt_hard_reset` in `usr/diags/IR/bin/irsaudit`:
   Address 0x10168600; occupies 60 bytes.
@@ -1670,7 +1652,6 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
   `usr/gfx/KONA/bin/kpm` at 0x10033b10,
   60 bytes. Comparison: 6 differing byte offsets,
   first at +0xf (target 0x16, existing 0x12).
-  `facts/jt_hard_reset.existing.txt`, `facts/jt_hard_reset.compare.txt`.
 
 | Routine | irsaudit address / size | irsaudit SHA-256 | Existing build path / address / size | Existing SHA-256 | Different bytes |
 |---|---|---|---|---|---|
