@@ -1941,7 +1941,7 @@ It follows the same steps as the integer-vector version: error 0x502 for the wor
 It raises 0x502 for the word at 0x1018 being 1 and 0x500 for an unrecognised target, and calls `isLodInvalid` for the level, raising 0x501 for an invalid one that is not below the clip-map value at +436.
 When the level has a current host copy (+48) it prints "__glkonim_GetTexImage: proc_image not implemented" to stderr and returns.
 When the level is only in texture memory (+40) it picks a component count from the format row's group word, calls `getLevel`, and then calls the object's hook at +256 so the object is rebound.
-- `__glkonim_GetTexImage` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9737a8, 580 bytes): **Established.** It rejects a begin with 0x502, resolves the target with `targetIndex`, rejects an invalid target with 0x500 and an invalid level with 0x501, and prints a diagnostic when the level already has a host copy. For a texture-memory-only level it chooses the component count, calls `getLevel`, and invokes the object's rebind hook.
+- `__glkonim_GetTexImage` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9737a8, 580 bytes): **Established.** It rejects a begin with 0x502, resolves the target with `targetIndex`, rejects an invalid target with 0x500 and an invalid level with 0x501, and prints a diagnostic when the level already has a host copy. For a texture-memory-only level it picks a size from the format table entry (the table word for class 1, 8 for class 2, 16 for classes 3 and 4), calls `getLevel` with it, and then calls the function at +256 of the texture object with the shared state.
 
 #### `initTexture`
 
@@ -2070,7 +2070,7 @@ The following entries are from the 6.5.30m `usr/gfx/arch/IP27KONA64/libGLcore.so
 - `__glkonlc_TexImage1D` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
   Address 0x2dd7c70, size 224. The display-list compiler accepts targets 0xde0 and 0x8063; other targets go to the library error hook. It calls the immediate image sender with a one-dimensional flag, passes the saved width and format words through stack offsets 4 and 8, and supplies the pixel pointer from the caller's saved argument area.
 - `__glkonlc_TexImage2D` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
-  Address 0x2dd7d50, size 220. It accepts 0xde1 and 0x8064, reports 0x500 for other targets, and calls the immediate image sender with the two-dimensional flag and the record's saved target, level, dimensions, format and pixel pointer. The list compiler leaves the sender's result in the normal return register.
+  Address 0x2dd7d50, size 220. It compares the target with 0xde1 and 0x8064 and takes a different path for each. Target 0xde1 calls the routine at 0x2dd7b40 with a flag of 1 and the record's remaining arguments. Target 0x8064 calls a different routine, at 0x2dd3300, with a flag of 1 in the sixth argument. Any other target calls the function in GOT slot 501 with the arguments unchanged, so `a0` is still the target; no 0x500 is formed in this build, and that callee is unknown. No return value is set in this routine; `v0` is whatever the callee left.
 - `__glkonlc_TexImage3DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
   Address 0x2dd7e30, size 208. It accepts targets 0x806f and 0x8070, reports 0x500 otherwise, and forwards the saved depth and pixel pointer along with the three-dimensional flag to the immediate image sender. The wrapper itself writes no command-port word.
 - `__glkonle_TexImage` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
@@ -2080,7 +2080,7 @@ The following entries are from the 6.5.30m `usr/gfx/arch/IP27KONA64/libGLcore.so
 - `__glkonle_TexSubImage2DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
   Address 0x2dd8050, size 164. It parses the record and forwards its target, level, x and y offsets, width, height, format, type and pixels to the two-dimensional sender; the next record is the +0x20 size rounded up to an 8-byte boundary.
 - `__glkonle_TexSubImage3DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
-  Address 0x2dd8100, size 164. It parses the three-dimensional list record, forwards target through z offset, width, height, depth, format, type and pixels, and advances by the +0x28 record size rounded to an 8-byte boundary. No hardware access occurs outside the sender it calls.
+  Address 0x2dd8100, size 164. It parses the three-dimensional list record, forwards target through z offset, width, height, depth, format, type and pixels, and returns the address of the next list record: the record pointer plus 0x30 (the pixels start at record +0x30) plus the word at +0x28 rounded up to a multiple of 8. It brackets the forwarded call with two helpers from GOT slots 118 and 119, whose roles are unknown. This routine makes no hardware access itself.
 - `__glKonTexFree` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
   Address 0x2dda590, size 232. For a texture object whose flag word at +0x20 has bit 20 set, it unlinks the cache entry at +0x1c0 from its doubly linked list, clears that flag, and frees the associated table through the context allocator. It then frees the object banks at +0x198 and +0x1a0 with allocator modes 0 and 1 when present, clears both pointers, and returns zero.
 - `__glKonInitTextureMemory` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**

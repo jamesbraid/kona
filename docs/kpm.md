@@ -153,11 +153,16 @@ written.
   resulting value through the surrounding diagnostic state path. (`kpm`,
   6.5.30m, full routine at 0x1001b79c.)
 - `ge11BypassEnable` (`usr/gfx/KONA/bin/kpm` 0x1001b800, 304 bytes):
-  **Established.** Chooses 0x800 or 0xc00 from the engine status field at +0x10
-  (`lw` at 0x1001b85c), scans engine numbers 0..7, and for every set status bit
-  calls `ged_set_current_ge` (call at 0x1001b8ac) followed by
-  `ge_register_write(0x438 or 0xc38, 0x400001)` (call at 0x1001b8bc). It then
-  selects the saved current engine (call at 0x1001b8f4) and returns zero.
+  **Established.** Calls `klog` with priority 5 (call at 0x1001b840), then reads
+  the engine status word at +0x10 of the `kpminfo` record (`lw` at 0x1001b85c).
+  The value it writes is 0x801 when no bit of 0xf0 is set in that word and 0xc01
+  otherwise (0x800 or 0xc00 ORed with 1; `andi` at 0x1001b874, `ori` at
+  0x1001b8a0). It scans engine numbers 0..7 and, for every engine whose bit is
+  set in the status word, calls `ged_set_current_ge` with the engine number
+  (call at 0x1001b8ac) and `ge_register_write` with register 0x40038 and that
+  value (call at 0x1001b8bc; the register is `lui` 4 and `ori` 0x38). It then
+  calls `ged_set_current_ge` with the word at +0x18 of the same record (call at
+  0x1001b8f4) and returns zero.
   (`kpm`, 6.5.30m, full routine at 0x1001b800.)
 - `ge11LoadUcode` (`usr/gfx/KONA/bin/kpm` 0x1001bbf0, 1332 bytes): **Established.** Opens and
   parses the engine image as address plus three words. It stops the engine by
@@ -593,10 +598,14 @@ same executable.
   (`kpm`, 6.5.30m, loop at 0x10016774.)
 
 - `show_icu_map0_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
-  0x100167cc; size 292 bytes. It requests 0x200 four-byte entries, reads the
-  map word at the address formed from the pipe base plus 0x8218, and formats
-  each entry with its index and corresponding map value. A short request takes
-  the section error path; the 0x200-entry loop otherwise finishes with zero.
+  0x100167cc; size 292 bytes. It reads 0x200 four-byte entries with `fread`
+  (call at 0x100167fc; the stream is its argument `a0`) into a stack buffer. A
+  short read prints a message and returns -1. Otherwise it loops over the 0x200
+  entries and prints, with `fprintf` to `output`, the index, the word read from
+  the stream and the word at the same index of an array in memory whose base is
+  a global pointer (GOT slot 85) plus 0x8218 (load at 0x100168a8). It then
+  returns zero. What that array is, and what the two printed columns mean, is
+  unknown.
   (`kpm`, 6.5.30m, address formation at 0x10016868 and loop at 0x1001688c.)
 
 - `show_arm_sram_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
@@ -951,10 +960,12 @@ The following additional readings were taken from complete N32 address ranges.
   diagnostic formatter at 0x1000a204.
 
 - `V_mark` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a21c;
-  size 152 bytes. It walks the viewer's section-name array from the fourth
-  stack argument (`lw` at 0x1000a500), calls `dfMarkSection` once per name
-  (`jal` at 0x1000a274), and returns zero after the requested count (`slt` at
-  0x1000a508).
+  size 152 bytes. It calls `dfMarkSection` (`jal` at 0x1000a274) once for
+  each pointer in the array passed as the third argument (`a2`), starting at
+  index 1 (array plus 4, `addiu` at 0x1000a25c) and passing its first argument
+  through. The count is the second argument (`a1`): the loop ends when the index
+  reaches it (`slt` at 0x1000a280) and a count below 2 skips it (`slti` at
+  0x1000a23c). It returns zero.
 
 - `V_show` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000a2b4;
   size 496 bytes. It obtains the current file position (`dfGetFilePointer`
@@ -1028,10 +1039,16 @@ The following additional readings were taken from complete N32 address ranges.
   and emits the terminal error status (`jal` at 0x1000f730).
 
 - `klog` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f794;
-  size 504 bytes. It checks the report and logging enable flags (`lw` at
-  0x1000f7d8 and 0x1000f7e8), formats the supplied message, and sends it to
-  the enabled report streams (`jalr` at 0x1000f838 and 0x1000f858). Disabled
-  output returns directly through 0x1000f878.
+  size 504 bytes. `a0` is a priority, `a1` a format string and the remaining
+  argument registers the variadic values, which it spills to the frame. It
+  returns at once, through 0x1000f878, when the priority is not below the word
+  at +1192 of the `opts` record (`slt` at 0x1000f7e4). Otherwise it writes to
+  the stream held in `output`: `fprintf` of a string chosen by the priority
+  (call at 0x1000f838), then `vfprintf` of the caller's format and arguments
+  (call at 0x1000f858). When the `opts` word at +1200 is non-zero and the
+  priority is below 3 it also calls `vsyslog` (0x1000f8b8), `vfprintf` to a
+  second stream (0x1000f8d8) and stores 1 in a global word (0x1000f8f4). The
+  meaning of the `opts` words at +1192, +1200 and +1204 is unknown.
 
 - `get_time` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1000f98c;
   size 84 bytes. It obtains the current clock value (`jalr` at 0x1000f9b0),

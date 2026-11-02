@@ -2585,7 +2585,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	7182e2ba2d
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	7e450367847f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	78aa5094d5ec		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f540	596	kerror	dynsym	55fe4a284bc9		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	82ead94e5a04		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	82ead94e5a04		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f98c	84	get_time	dynsym	0a967dc0c132		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f9e0	300	findfile	dynsym	b5ecaefb3da0		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	8e2fa57cf089		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
