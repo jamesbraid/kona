@@ -221,6 +221,8 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
 
 ## `ircombine` routine readings
 
+These entries read the 6.5.30m N32 binary.
+
 - `vfcInitKonaCombinationGlobal` (`usr/gfx/ircombine`, 0x1007e5a0):
   **Established effects; role unknown.** It clears the first byte and the
   word at offset 0x100 of the supplied object (`sb` at 0x1007e5b8, `sw` at
@@ -228,8 +230,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
   (`addiu` at 0x1007e5c4, `addiu` at 0x1007e5cc, `sw` at 0x1007e5d0,
   `addiu` at 0x1007e5d4, `addiu` at 0x1007e5dc, `sw` at 0x1007e5e0). Its remaining writes include 2 at offset 0x10c
   (`addiu` at 0x1007e604, `sw` at 0x1007e60c) and zero at offset 0x248
-  (`sw` at 0x1007e6ac). Read from the complete 284-byte routine in the
-  6.5.30m binary.
+  (`sw` at 0x1007e6ac).
 
 - `vfcInitKonaCombinationChannel` (`usr/gfx/ircombine`, 0x1007e130):
   **Established effects; role unknown.** It clears the first byte and the
@@ -240,8 +241,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
   `addiu` at 0x1007e248, `beq` at 0x1007e250, `addiu` at 0x1007e258,
   `beq` at 0x1007e260). In the 8 path, a nonzero result from the first direct call
   takes the `bnez` at 0x1007e2c4 past the second call (`jal` at 0x1007e2b8,
-  `jal` at 0x1007e2d8). Read from the complete 1128-byte routine in the
-  6.5.30m binary.
+  `jal` at 0x1007e2d8).
 
 - `vfcSetKonaCombinationDefaults` (`usr/gfx/ircombine`, 0x1007d070):
   **Established effects; role unknown.** A loop starts its index at zero
@@ -253,7 +253,6 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
   another routine (`jal` at 0x1007d144). The final copy reads a word
   at second argument plus 0x57d4 plus 0x2a4 and stores it at offset 0x228
   (`addiu` at 0x1007d43c, `lw` at 0x1007d440, `sw` at 0x1007d448).
-  Read from the complete 1012-byte routine in the 6.5.30m binary.
 
 - `vfcModifyKonaCombination` (`usr/gfx/ircombine`, 0x10079ab0):
   **Established effects; role unknown.** It forms two pointers at offsets
@@ -265,4 +264,31 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
   `sb` at 0x10079b30, `slti` at 0x10079b44, `bnez` at 0x10079b48).
   Its other conditional copies include the word at offset 0x100 (`lw` at
   0x10079b68, `sw` at 0x10079b70), skipped when the `beqz` at 0x10079b5c
-  is taken. Read from the complete 952-byte routine in the 6.5.30m binary.
+  is taken.
+
+- `vfcPutKonaCombination` (`usr/gfx/ircombine`, 0x1007c620):
+  **Established effects; role unknown.** It reads a selector from the first
+  argument plus 0xad8c (`dli` at 0x1007c654, `addu` at 0x1007c658, `lw`
+  at 0x1007c65c). Zero takes the `beqz` at 0x1007c664 to a path returning
+  zero (`sd` at 0x1007c6a4, `ld` at 0x1007cd18). The following `beq`
+  instructions select separate paths for 1, 2 and 3 (`addiu` at
+  0x1007c66c, `beq` at 0x1007c674, `addiu` at 0x1007c67c, `beq` at
+  0x1007c684, `addiu` at 0x1007c68c, `beq` at 0x1007c694).
+
+- `update__5FrameGv` (`usr/gfx/ircombine`, 0x10043c50):
+  **Established effects; role unknown.** It divides a loaded integer from a
+  separate object by the integer at offset 0xf8 of the argument after
+  converting both to single precision, and stores the result at offset
+  0x100 (`lw` at 0x10043c70, `cvt.s.w` at 0x10043c7c, `lw` at 0x10043c84,
+  `cvt.s.w` at 0x10043c90, `div.s` at 0x10043c94, `swc1` at 0x10043c9c).
+  A second division uses offset 0xfc and stores at offset 0x104 (`lw` at
+  0x10043cb8, `div.s` at 0x10043cc8, `swc1` at 0x10043cd0). It calls
+  `update_fast__5FrameGv` (`jal` at 0x10043cdc).
+
+- `update_fast__5FrameGv` (`usr/gfx/ircombine`, 0x100442e0):
+  **Established effects; role unknown.** It reads the argument's word at
+  offset 0x108 (`lw` at 0x10044310). If that word is -1 (`addiu` at
+  0x10044314), the `beq` at 0x10044318 takes a path that clears the byte at
+  stack offset 8 (`sb` at 0x10044658). Otherwise it multiplies the word by
+  0xab0 to form part of an address (`addiu` at 0x10044330, `multu` at
+  0x10044334, `mflo` at 0x10044338).

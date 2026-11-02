@@ -47312,7 +47312,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10019fd8	380	vs2WriteEEPROMBlock	dynsym	3ca7e
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a154	88	venice_clock_vs2_serial_dataBit	dynsym	bbfc0ce11afd		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a674	424	venice_load_vs2_clockDivider	dynsym	e3ebf59b08e5		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a81c	1200	venice_loadsection_vs2_top	dynsym	89ac69078605		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001accc	1124	venice_loadsection_vs2_body	dynsym	ccd782d0402e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001accc	1124	venice_loadsection_vs2_body	dynsym	ccd782d0402e		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b130	1148	loadVofToDataStructure	dynsym	6ecf1f40e27e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b5ac	196	loadVS2ModeDG2VOF	dynsym	0bfb4dd18d4e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001b670	212	loadVS2VOFFromData	dynsym	514d381a942d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47842,8 +47842,8 @@ usr/gfx/ircombine	board-tool	n32		0x10043270	1468	snapChannel__5FrameGP10_Widget
 usr/gfx/ircombine	board-tool	n32		0x10043830	120	userHardware__5FrameGP10_WidgetRecPv	dynsym	68ef52b632d5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x100438b0	264	okToQuit__5FrameGv	dynsym	fddb3d3618db		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x100439c0	644	cleanup__5FrameGv	dynsym	e60384ca1dd4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10043c50	1676	update__5FrameGv	dynsym	a2453708f8dc		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100442e0	996	update_fast__5FrameGv	dynsym	4c7e498507b3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10043c50	1676	update__5FrameGv	dynsym	a2453708f8dc		in	located	docs/pipe-tool-functions.md#ircombine-routine-readings	`ircombine` routine readings
+usr/gfx/ircombine	board-tool	n32		0x100442e0	996	update_fast__5FrameGv	dynsym	4c7e498507b3		in	located	docs/pipe-tool-functions.md#ircombine-routine-readings	`ircombine` routine readings
 usr/gfx/ircombine	board-tool	n32		0x100446d0	1972	setSensitive__5FrameGv	dynsym	25b143e86e3f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10044e90	1728	clamp_channel__5FrameGiN21	dynsym	bde25146a37c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10045550	1528	clamp_encoder__5FrameGiN21	dynsym	2eb9f391d4bc		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48490,7 +48490,7 @@ usr/gfx/ircombine	board-tool	n32		0x1007bb20	136	vfcKonaHwChannelValid	dynsym	0b
 usr/gfx/ircombine	board-tool	n32		0x1007c0b0	388	vfcQueryKonaHw	dynsym	9442ab7fc2d4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1007c240	268	vfcLoadSyncFormat	dynsym	749702c71676		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1007c410	524	vfcGetKonaCombination	dynsym	0b9c8eb7fac3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1007c620	1808	vfcPutKonaCombination	dynsym	2edb398665ca		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x1007c620	1808	vfcPutKonaCombination	dynsym	2edb398665ca		in	located	docs/pipe-tool-functions.md#ircombine-routine-readings	`ircombine` routine readings
 usr/gfx/ircombine	board-tool	n32		0x1007cd30	436	vfcSetKonaChannelFormatParameters	dynsym	95c8c6b49759		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1007d070	1012	vfcSetKonaCombinationDefaults	dynsym	28efa30ce343		in	located	docs/pipe-tool-functions.md#ircombine-routine-readings	`ircombine` routine readings
 usr/gfx/ircombine	board-tool	n32		0x1007d470	180	vfcGenerateChannelMask	dynsym	4dd41a755d71		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48612,13 +48612,13 @@ usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		
 usr/gfx/setmon	shared-tool	n32		0x1000aea0	3112	vensetmon	dynsym	f5131d53ddd4		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bac8	748	vs2setmon	dynsym	49dcb2459e90		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000bdb4	144	pipenumToString	dynsym	ac67e0375a42		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	d49d2c83acc5		in	named-only	docs/kernel.md#who-sends-them	Who sends them
+usr/gfx/setmon	shared-tool	n32		0x1000bec0	704	xgsetmon	dynsym	d49d2c83acc5		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
 usr/gfx/setmon	shared-tool	n32		0x1000ce90	252	mgGetVOFpath	dynsym	e5fa9a8d0422		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000cf8c	1360	mgsetmon	dynsym	65e4df5f6da3		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
 usr/gfx/setmon	shared-tool	n32		0x1000d4dc	164	odyGetVOFpath	dynsym	05748c0d2ee4		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000d580	740	odyDoFramelock	dynsym	1fba2ecd279b		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	bbd7604aa716		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	ba1eeea60a5e		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
+usr/gfx/setmon	shared-tool	n32		0x1000d864	2252	odysetmon	dynsym	bbd7604aa716		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
+usr/gfx/setmon	shared-tool	n32		0x1000e130	732	npsetmon	dynsym	ba1eeea60a5e		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
 usr/gfx/setmon	shared-tool	n32		0x1000e40c	3160	crm_setmon	dynsym	970d30b7d895		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000f064	1676	ng1_setmon	dynsym	2ec81e45b71a		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000fa18	268	venice_get_dg2_eeprom	dynsym	c08795730712		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
@@ -48711,7 +48711,7 @@ usr/gfx/setmon	shared-tool	n32		0x1001487c	380	vs2WriteEEPROMBlock	dynsym	5a5cad
 usr/gfx/setmon	shared-tool	n32		0x100149f8	88	venice_clock_vs2_serial_dataBit	dynsym	348df2490437		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/setmon	shared-tool	n32		0x10014f18	424	venice_load_vs2_clockDivider	dynsym	28bd9d5023e7		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100150c0	1200	venice_loadsection_vs2_top	dynsym	5310a0df88b6		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10015570	1124	venice_loadsection_vs2_body	dynsym	0036ab5b614a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10015570	1124	venice_loadsection_vs2_body	dynsym	0036ab5b614a		in	located	docs/setup-tool-functions.md#setmon-routine-readings	`setmon` routine readings
 usr/gfx/setmon	shared-tool	n32		0x100159d4	1148	loadVofToDataStructure	dynsym	3eb2ea94f3c4		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10015e50	196	loadVS2ModeDG2VOF	dynsym	dbea150e8b45		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10015f14	212	loadVS2VOFFromData	dynsym	9d0a51ecf7ad		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`

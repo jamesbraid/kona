@@ -155,6 +155,8 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
 
 ## `setmon` routine readings
 
+These entries read the 6.5.30m N32 binary.
+
 - `venice_cprev` (`usr/gfx/setmon`, 0x10011868):
   **Established effects; role unknown.** A zero result from the initial call (`jal` at 0x10011884) takes
   the `beqz` at 0x10011890 to select index 0 (`move` at 0x100119a4). Otherwise,
@@ -165,7 +167,6 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   the later `jal` at 0x10011960, the `bne` at 0x10011974 returns 1 if its
   result differs from 0x6d6d6d6d (`lui` at 0x10011968, `ori` at 0x1001196c,
   `move` at 0x10011990); equality returns 0 (`move` at 0x10011980).
-  Read from the complete 336-byte routine in the 6.5.30m binary.
 
 - `venice_grok_vs2_fname` (`usr/gfx/setmon`, 0x10013a50):
   **Established effects; role unknown.** It reads the first input byte (`lbu`
@@ -175,7 +176,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   result from the `jalr` at 0x10013a98 takes the `beqz` at 0x10013aa0 and
   clears the first byte of the destination (`sb` at 0x10013af8). A later
   call receives the destination and 4 (`jalr` at 0x10013b20, `addiu` at
-  0x10013b24). Read from the complete 276-byte routine in the 6.5.30m binary.
+  0x10013b24).
 
 - `fcg_venice_set_pipeaddr` (`usr/gfx/setmon`, 0x10010f84):
   **Established effects; role unknown.** It copies 0xea words from the first
@@ -186,8 +187,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   addresses (`sw` at 0x10010fdc, `sw` at 0x10010fe0, `sw` at 0x10010ff4).
   The `beq` at 0x10011010 selects the path that adds 0xc to the third
   argument when the tested value equals 0x13 (`addiu` at 0x1001100c,
-  `addiu` at 0x10011078). Read from the complete 336-byte routine in the
-  6.5.30m binary.
+  `addiu` at 0x10011078).
 
 - `venice_rmfifo` (`usr/gfx/setmon`, 0x10011218):
   **Established effects; role unknown.** It masks the fourth argument to
@@ -198,8 +198,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   0x100112e8, `bnez` at 0x10011308). An outer loop repeats while its counter
   is less than 5 (`slti` at 0x100112cc, `bnez` at 0x10011310). It then
   makes three direct calls (`jal` at 0x10011324, `jal` at 0x10011338,
-  `jal` at 0x1001134c) and returns 0 (`move` at 0x10011358). Read from
-  the complete 340-byte routine in the 6.5.30m binary.
+  `jal` at 0x1001134c) and returns 0 (`move` at 0x10011358).
 
 - `fcg_cp_ge_load` (`usr/gfx/setmon`, 0x100109ec):
   **Established effects; role unknown.** On the path where the `beq` at
@@ -209,8 +208,7 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   OR operations (`lw` at 0x10010ae8, `srl` at 0x10010aec, `sll` at
   0x10010af4, `andi` at 0x10010af8, `or` at 0x10010b0c). A subsequent
   loop writes 0xdeadbeef (`lui` at 0x10010b70, `ori` at 0x10010b7c,
-  `sw` at 0x10010bd4). Read from the complete 712-byte routine in the
-  6.5.30m binary.
+  `sw` at 0x10010bd4).
 
 - `fcg_jt_test_thyself` (`usr/gfx/setmon`, 0x10011c40):
   **Established effects; role unknown.** When the loaded base is zero, the
@@ -220,5 +218,50 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   0x18 and tests bit 0 (`lw` at 0x10011cd4, `andi` at 0x10011cdc). The
   `beqz` at 0x10011ce8 takes a return-1 path if that bit is clear (`addiu`
   at 0x10011f40). A later loop repeats while its counter is less than 13
-  (`slti` at 0x10011e60, `bnez` at 0x10011e70). Read from the complete
-  952-byte routine in the 6.5.30m binary.
+  (`slti` at 0x10011e60, `bnez` at 0x10011e70).
+
+- `xgsetmon` (`usr/gfx/setmon`, 0x1000bec0):
+  **Established effects; role unknown.** It passes the second argument,
+  zero, and the first argument to a direct call (`move` at 0x1000bedc,
+  `move` at 0x1000bee0, `move` at 0x1000bef0, `move` at 0x1000bef4,
+  `jal` at 0x1000bef8). A loaded flag of zero takes the `beqz` at
+  0x1000bf08 past an indirect call (`lw` at 0x1000bf04, `jalr` at
+  0x1000bf14). If that call runs and returns nonzero, the `beqz` at
+  0x1000bf1c falls through to a path returning 10 (`addiu` at 0x1000bf40).
+
+- `npsetmon` (`usr/gfx/setmon`, 0x1000e130):
+  **Established effects; role unknown.** A loaded flag of zero takes the
+  `beqz` at 0x1000e160 past the first indirect call (`lw` at 0x1000e14c,
+  `jalr` at 0x1000e16c). If the call runs and returns nonzero, the `beqz`
+  at 0x1000e174 falls through to a path returning 10 (`addiu` at
+  0x1000e198). Later, a second loaded flag of zero takes the `beqz` at
+  0x1000e23c to a zero return (`lw` at 0x1000e238, `move` at 0x1000e35c).
+
+- `mgsetmon` (`usr/gfx/setmon`, 0x1000cf8c):
+  **Established effects; role unknown.** The first loaded flag controls a
+  branch around an indirect call (`lw` at 0x1000cfa8, `beqz` at
+  0x1000cfbc, `jalr` at 0x1000cfc8). Later, a zero value in a different
+  loaded flag takes the `beqz` at 0x1000d090 past the direct `jal` at
+  0x1000d09c (`lw` at 0x1000d08c). On the path that reaches the second
+  call, its result is stored through a separately loaded pointer (`sw` at
+  0x1000d0b0).
+
+- `odysetmon` (`usr/gfx/setmon`, 0x1000d864):
+  **Established effects; role unknown.** It tests a loaded word against
+  zero, 8, 16 and 32 (`lw` at 0x1000d89c, `beqz` at 0x1000d8b0, `addiu`
+  at 0x1000d8b8, `beq` at 0x1000d8bc, `addiu` at 0x1000d8c0, `beq` at
+  0x1000d8c4, `addiu` at 0x1000d8c8, `beq` at 0x1000d8cc). Each taken
+  branch bypasses the two indirect calls immediately following those tests
+  (`jalr` at 0x1000d8e0, `jalr` at 0x1000d8ec). A later zero flag takes
+  the `beqz` at 0x1000d944 past another call (`lw` at 0x1000d940, `jalr`
+  at 0x1000d94c).
+
+- `venice_loadsection_vs2_body` (`usr/gfx/setmon`, 0x10015570):
+  **Established effects; role unknown.** It preserves the fourth argument
+  and the sixth argument, a pointer (`move` at 0x10015594, `move` at
+  0x100155b4). A zero fourth argument takes the `beqz` at 0x100155fc past
+  the update of that pointer's word at offset 0xd40; otherwise the update
+  sets bit 0x40 (`lw` at 0x10015604, `ori` at 0x10015608, `sw` at
+  0x1001560c). The routine then tests the third argument (`beqz` at
+  0x10015610). It returns zero on the path ending at `jr` (`move` at
+  0x100156f8, `jr` at 0x10015704).
