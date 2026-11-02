@@ -4970,6 +4970,102 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
   Address 0x2dfb0e0; occupies 500 bytes.
   **Inferred.**** Partially decoded body. Table preparation sets byte 1 at entry a1 +0x90 (`sb` at 0x2dfb124). A null pointer at a1 +0x98 takes the allocation path (`beqz` at 0x2dfb120), whose unknown callback receives entry a0 and size 0x400 (`jalr` at 0x2dfb2b4), and its result is stored as a doubleword at a1 +0x98 (`sd` at 0x2dfb2d0). Float table stores have unknown bases (`swc1` at 0x2dfb1c0 and `swc1` at 0x2dfb244). The original word 0x4608213c at 0x2dfb248 is not decoded by Capstone and is preserved explicitly. Its predicate and resulting control flow remain unknown, so this body is not claimed fully read.
 
+#### IP35 O32 pixel routines identical to IP27 O32
+
+Each body below is byte-identical over the complete listed range to the same-address IP27 O32 build. This records code identity only; the original Inferred grades remain in the comparison table.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glFreePixelState | 0xd997f74 / 592 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd997f74 / 592 | a13e518f3d6d2904fc33688777e579d694498296d8d9f7f2cb657d88047eacf4 |
+| __glInitPixelState | 0xd9981c4 / 828 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9981c4 / 828 | db547bb0f411fed667078072125f125bcca2f5b18cf73c8969c7e407fb2a78bb |
+| __glim_PixelStoref | 0xd998500 / 396 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd998500 / 396 | 159efbbd460250fff0092c149eb5568985561820b30f25d56a5452625e9a5423 |
+| __glim_PixelStorei | 0xd99868c / 1312 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99868c / 1312 | 45f79d2046a0875730936c59349b653803cc254009be27b6eb4a0b7d23b9128c |
+| __glim_PixelZoom | 0xd998bac / 288 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd998bac / 288 | 280439666b26a9e47a47c862b644102cabd72c0bf6a67f48f958270efe490289 |
+| __glim_PixelTransferf | 0xd998ccc / 724 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd998ccc / 724 | 286db94eb78b7a1e84cc518e717d1c4cbe2500233e37043990366d37fcb04b52 |
+| __glim_PixelTransferi | 0xd998fa0 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd998fa0 / 72 | a3f357312035805fa98291f580c3c8fd212485e0b0a21fcb4b06a9995d5056b9 |
+| __glim_PixelMapfv | 0xd998fe8 / 848 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd998fe8 / 848 | f4bc60aa88821bb90a3f5a48be2b912ace480dcf2c4c99339e7bf0ad1c8a755e |
+| __glim_PixelMapuiv | 0xd999338 / 732 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd999338 / 732 | 65f82c5f9dfc400cdc5abcb77e920370b658e4a9f5660d50cb3fd218cf37d5c3 |
+| __glim_PixelMapusv | 0xd999614 / 744 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd999614 / 744 | 396a1f661ceef3341dd5d9681b1743931a59e27048ff39fca178d4171229b302 |
+| __glim_ReadBuffer | 0xd9998fc / 312 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9998fc / 312 | c7d1f47e142def467b81dcb407ce4cabc204436f5dfec517374979e1c2ea2144 |
+| __glCheckDrawPixelArgs | 0xd999a34 / 844 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd999a34 / 844 | 35f99a4afe621406606763fa55d8663708b7c4258d9bfc868ceebd49edf86dea |
+| __glCheckReadPixelArgs | 0xd999d80 / 884 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd999d80 / 884 | 89a80b30989b054cb26a3fa0cccb68927f2abd97ed9060f85adf305817197cd1 |
+| __glim_DrawPixels | 0xd99a0f4 / 332 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99a0f4 / 332 | 26fca0cca5b24dd7489c0a249e124e22dca7be93e049627bdc128463d48e02ff |
+| __glim_ReadPixels | 0xd99a240 / 296 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99a240 / 296 | 5d729da42f2db55407a3e56e8ca34c88f1a5aa0eae240c26ab088611fcca00f3 |
+| __glim_CopyPixels | 0xd99a368 / 496 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99a368 / 496 | 1cdf7ee7d4596df07048919f933e7d19633a7de268bbfbed9a6460e3a1a3fb05 |
+| __glBuildRGBAModifyTables | 0xd99a560 / 1120 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99a560 / 1120 | e0980f695645d80c284b38198b4440a0675b4490dab9e50603b291909b67e3ca |
+| __glSpanModifyRGBA | 0xd99aea4 / 840 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd99aea4 / 840 | a4bf2d35685d73ad411a6eb7ed4da59c36a4b18aea6578c8b9b91ec99902e826 |
+
+#### IP35 O32 pixel routines with different bytes
+
+These two target bodies were read from their own ranges; their N32 counterparts are separate comparisons.
+
+| Routine | IP35 O32 address / size | IP27 N32 address / size | IP35 SHA-256 | N32 SHA-256 | Prefix differences |
+|---|---|---|---|---|---:|
+| __glBuildItoIModifyTables | 0xd99a9c0 / 604 | 0x0d997ba0 / 484 | 217576af7a4fa23ec88f05b0242d25604ab70f77c1efb0ddd5e2f9cd9dba1e6d | ab5c2fcf7cad57835e01f928b31dafcd5047d5a332eb996219699e6e258a78eb | 441 |
+| __glBuildItoRGBAModifyTables | 0xd99ac1c / 648 | 0x0d997d90 / 532 | 6dbecdbb8e5a2362aff1130894f8c00c49c2a3a54d2266f3f68b5391a73f893d | cf2a76ef48e99d43d64a29fc7f9a23fe5a4c267fa9852175c5e9466beccced05 | 490 |
+
+- `__glFreePixelState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd997f74; occupies 592 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd997f74. SHA-256 a13e518f3d6d2904fc33688777e579d694498296d8d9f7f2cb657d88047eacf4.
+
+- `__glInitPixelState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9981c4; occupies 828 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9981c4. SHA-256 db547bb0f411fed667078072125f125bcca2f5b18cf73c8969c7e407fb2a78bb.
+
+- `__glim_PixelStoref` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd998500; occupies 396 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd998500. SHA-256 159efbbd460250fff0092c149eb5568985561820b30f25d56a5452625e9a5423.
+
+- `__glim_PixelStorei` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99868c; occupies 1312 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99868c. SHA-256 45f79d2046a0875730936c59349b653803cc254009be27b6eb4a0b7d23b9128c.
+
+- `__glim_PixelZoom` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd998bac; occupies 288 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd998bac. SHA-256 280439666b26a9e47a47c862b644102cabd72c0bf6a67f48f958270efe490289.
+
+- `__glim_PixelTransferf` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd998ccc; occupies 724 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd998ccc. SHA-256 286db94eb78b7a1e84cc518e717d1c4cbe2500233e37043990366d37fcb04b52.
+
+- `__glim_PixelTransferi` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd998fa0; occupies 72 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd998fa0. SHA-256 a3f357312035805fa98291f580c3c8fd212485e0b0a21fcb4b06a9995d5056b9.
+
+- `__glim_PixelMapfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd998fe8; occupies 848 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd998fe8. SHA-256 f4bc60aa88821bb90a3f5a48be2b912ace480dcf2c4c99339e7bf0ad1c8a755e.
+
+- `__glim_PixelMapuiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd999338; occupies 732 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd999338. SHA-256 65f82c5f9dfc400cdc5abcb77e920370b658e4a9f5660d50cb3fd218cf37d5c3.
+
+- `__glim_PixelMapusv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd999614; occupies 744 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd999614. SHA-256 396a1f661ceef3341dd5d9681b1743931a59e27048ff39fca178d4171229b302.
+
+- `__glim_ReadBuffer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9998fc; occupies 312 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9998fc. SHA-256 c7d1f47e142def467b81dcb407ce4cabc204436f5dfec517374979e1c2ea2144.
+
+- `__glCheckDrawPixelArgs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd999a34; occupies 844 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd999a34. SHA-256 35f99a4afe621406606763fa55d8663708b7c4258d9bfc868ceebd49edf86dea.
+
+- `__glCheckReadPixelArgs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd999d80; occupies 884 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd999d80. SHA-256 89a80b30989b054cb26a3fa0cccb68927f2abd97ed9060f85adf305817197cd1.
+
+- `__glim_DrawPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99a0f4; occupies 332 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99a0f4. SHA-256 26fca0cca5b24dd7489c0a249e124e22dca7be93e049627bdc128463d48e02ff.
+
+- `__glim_ReadPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99a240; occupies 296 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99a240. SHA-256 5d729da42f2db55407a3e56e8ca34c88f1a5aa0eae240c26ab088611fcca00f3.
+
+- `__glim_CopyPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99a368; occupies 496 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99a368. SHA-256 1cdf7ee7d4596df07048919f933e7d19633a7de268bbfbed9a6460e3a1a3fb05.
+
+- `__glBuildRGBAModifyTables` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99a560; occupies 1120 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99a560. SHA-256 e0980f695645d80c284b38198b4440a0675b4490dab9e50603b291909b67e3ca.
+
+- `__glSpanModifyRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99aea4; occupies 840 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99aea4. SHA-256 a4bf2d35685d73ad411a6eb7ed4da59c36a4b18aea6578c8b9b91ec99902e826.
+
+- `__glBuildItoIModifyTables` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99a9c0; occupies 604 bytes.
+  **Inferred.** **Inferred.** The index-table body marks byte a1 +0x54 as 1 (`sb` at 0xd99a9f4). A nonnull pointer at entry a1 +0x58 takes the existing-storage path, while null falls through to an unknown callback with entry a0 and 0x400 as its first two arguments (`bnez` at 0xd99a9f0 and `jalr` at 0xd99aa10). Its result is stored as a word at a1 +0x58 (`sw` at 0xd99aa30). Further input words come from entry a0 +0x2f0/+0x2f4 (`lw` at 0xd99aa34 and `lw` at 0xd99aa38). Float output includes `swc1` at 0xd99ab78 and `swc1` at 0xd99ac08, with destination bases unknown. The full index mapping, allocator identity and table traversal remain unresolved.
+
+- `__glBuildItoRGBAModifyTables` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99ac1c; occupies 648 bytes.
+  **Inferred.** **Inferred.** Index-to-colour table preparation sets byte a1 +0x5c to 1 (`sb` at 0xd99ac48). A nonnull a1 +0x60 pointer takes the existing-table path (`bnez` at 0xd99ac54). Otherwise four unknown callbacks receive entry a0 and size 0x400 (`jalr` at 0xd99ac64, `jalr` at 0xd99ac84, `jalr` at 0xd99aca0, and `jalr` at 0xd99acbc), with returned pointers stored at a1 +0x60/+0x64/+0x68/+0x6c (`sw` at 0xd99ac70, `sw` at 0xd99ac90, `sw` at 0xd99acac, and `sw` at 0xd99acc8). The later body writes float words through four unresolved bases (`swc1` at 0xd99ae2c, `swc1` at 0xd99ae4c, `swc1` at 0xd99ae6c, and `swc1` at 0xd99ae88). Exact channel-map formulas are not taken from the differently compiled N32 entry.
+
 ### px_pack.c
 
 - `__glSpanReduceRed` in usr/gfx/arch/IP27KONA32/libGLcore.so: reduces a span of float RGBA pixels to red, dividing each channel by the frame buffer's colour scale on the way, and it occupies 152 bytes at address 0x0d99adc0; the public sample-implementation source gfx/lib/opengl/glcore/px_pack.c holds the same routine, matched by name, no direct call in either, a shipped body of 12 source lines against 14 in the public file, and it makes no access to the board. Inferred.
