@@ -326,6 +326,82 @@ same executable.
 | `jt_find_chip`, `jt_find_chain_length`, `jt_expand_portlist`, `jt_lookup_port`, `jt_extract_chip_register`, `jt_insert_chip_register`, `jt_print_chain`, `jt_print_bsr`, `jt_dispose_chain`, `jt_read_chain` | the chain model: find a chip by name, measure the chain, resolve pin names, move a register's bits in and out of the chain image, print and free it |
 | `jt_send_instruction`, `jt_set_individual_instructions`, `jt_conditional_reset`, `jt_powerup_chain`, `jt_free_bist` | send an instruction to one chip or one to each, reset the chain only when needed, power up the chips' test logic, release a chip's built-in self-test state |
 
+These boundary-scan helpers were read in their complete N32 address ranges.
+
+- `jt_select_chain` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033a80; size 68 bytes. It forwards the caller's chain selector to the
+  installed low-level chain procedure and returns that procedure's result.
+  (`kpm`, 6.5.30m, indirect call at 0x10033aa0.)
+
+- `jt_soft_reset` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033ad0; size 60 bytes. It invokes the installed soft-reset procedure
+  without arguments and propagates its result to the caller. (`kpm`, 6.5.30m,
+  indirect call at 0x10033aec.)
+
+- `jt_hard_reset` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033b10; size 60 bytes. It invokes the installed hard-reset procedure
+  without arguments and returns its result unchanged. (`kpm`, 6.5.30m, indirect
+  call at 0x10033b2c.)
+
+- `jt_send_instruction` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033b90; size 84 bytes. It forwards its three arguments to the installed
+  instruction-shift procedure and returns that procedure's result. (`kpm`,
+  6.5.30m, argument reloads at 0x10033bb4-0x10033bc4.)
+
+- `jt_send_data` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10033bf0;
+  size 84 bytes. It forwards its three arguments to the installed data-shift
+  procedure and passes the returned status back unchanged. (`kpm`, 6.5.30m,
+  argument reloads at 0x10033c14-0x10033c24.)
+
+- `jt_extract_chip_register` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100396d0; size 348 bytes. It finds a chip by the supplied chain and chip
+  selectors, computes the selected register's byte length by rounding its bit
+  count up to a byte, allocates that many bytes, and extracts the register bits
+  into the caller's buffer. It stores the bit count through the fourth output
+  pointer and returns the allocated byte-vector handle, or zero when the chip
+  lookup fails. (`kpm`, 6.5.30m, lookup and sizing at 0x100396f8-0x100397cc.)
+
+- `jt_insert_chip_register` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10039830; size 292 bytes. It finds the selected chip register, reads its bit
+  count from the chain description, and inserts the caller's byte vector into
+  the register image starting at bit zero. A failed chip lookup returns -1;
+  the normal path returns zero after the insertion call. (`kpm`, 6.5.30m,
+  register-size calculation at 0x1003988c-0x10039910.)
+
+- `jt_extract_bits` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10039960; size 796 bytes. It resolves a chip and register, walks the
+  register's field descriptors, and copies each selected bit from the packed
+  source image into the destination bit vector. It preserves destination bits
+  outside the selected range, reports an unknown pin or bit position through
+  the error hook, and returns -1 on lookup or allocation failure. (`kpm`,
+  6.5.30m, bit extraction and destination writes at 0x10039a6c-0x10039bbc.)
+
+- `read_bsdl` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100375d0;
+  size 300 bytes. It opens the requested BSDL path and its associated stream,
+  allocates the parser record, reads the two supplied names into that record,
+  closes the stream, and returns the record pointer. A failed open reports the
+  path and returns zero. (`kpm`, 6.5.30m, file operations at
+  0x100375f0-0x100376d0.)
+
+- `read_bsr` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10035c00;
+  size 6000 bytes. It tries up to 32 registered scan descriptions, allocates a
+  0x248-byte parser object and its input stream, reads the register data, and
+  creates a chain record with the parsed instruction and data vectors. It then
+  walks the description entries to accumulate instruction and data lengths,
+  closes the stream, and returns the chain record. Missing entries advance to
+  the next slot; allocation or parse failures release the temporary objects.
+  (`kpm`, 6.5.30m, 32-entry search at 0x10035c2c and chain construction at
+  0x10035eac.)
+
+- `jt_powerup_chain` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10035050; size 548 bytes. It walks the chain from the last chip toward the
+  first, selects each active chip's power-up instruction, and inserts the
+  instruction into the chain image. Chips with a one-bit bypass state use the
+  per-chip instruction vector and update the accumulated bit length from the
+  selected data register; other chips receive the bypass instruction and add
+  one bit. It stores the accumulated length at chain offset 0x18. (`kpm`,
+  6.5.30m, reverse chain loop at 0x10035090-0x1003524c.)
+
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
