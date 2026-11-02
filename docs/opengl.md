@@ -1498,6 +1498,7 @@ It then calls `__glkonim_TexImage`, adding the depth argument 1 and passing the 
 `__glkonim_CopyTexSubImage3DEXT` at 0x0d972810 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it allows the three-dimensional copy-sub-image call only for the 3D texture target.
 A target other than 0x806f gives `__glSetError` with 0x500.
 Otherwise it forwards its arguments and the stack argument to `__glkonim_CopyTexSubImage`.
+- `__glkonim_CopyTexSubImage3DEXT` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd97372c, 124 bytes): **Established.** It accepts only target 0x806f, reports 0x500 otherwise, moves its stack-resident arguments into the O32 outgoing frame, and forwards the three-dimensional request to `__glkonim_CopyTexSubImage`.
 
 #### `__glkonlc_TexImage`
 
@@ -1778,6 +1779,7 @@ Otherwise the word at +372 chooses bits 5 to 7: 4 for 0x2100, 3 for 0x104 and no
 `__glkonim_ProcImage` at 0x0d964c90 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it runs an image through the texture upload path and reads the converted texels back into a level record.
 Unless bit 16 of the context word at +31632 is already set (which makes it return at once) it sets that bit, calls `allocLevelImage` for the level, generates a scratch texture with `__glkonim_GenTexturesEXT`, binds it for the target, sets the minification filter (0x2801) to linear (0x2601), uploads the caller's image with `__glkonim_TexImage`, and reads it back as 16-bit values with `getLevel` into the level's host buffer.
 It then rebinds the previous texture, deletes the scratch one with `__glkonim_DeleteTexturesEXT`, sets the level's bit in the mask at object +48 and clears bit 16 of the context word.
+- `__glkonim_ProcImage` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd964cc0, 592 bytes): **Established.** Unless bit 16 is already set in the context word at 0x1010+31632, it allocates the level image, creates and binds one temporary texture, sets 0x2801 to 0x2601, uploads through `__glkonim_TexImage`, reads the converted level with `getLevel`, restores the no-mode state, rebinds the previous texture, deletes the temporary name, sets the level's host-copy bit and clears bit 16.
 
 #### `undefineTextureLevel`
 
@@ -1888,12 +1890,14 @@ It ends by freeing the array itself through the same hook.
 A negative count or an unrecognised name raises 0x501 and the word at process address 0x1018 being 1 raises 0x502, each returning 0.
 For each name it finds the object with the hash's find function at +0xc008 and writes 1 to the output byte when every level from +24 to +20 is set in the mask at +40, and 0 otherwise.
 It returns 1 only if every texture was resident.
+- `__glkonim_AreTexturesResidentEXT` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd97076c, 360 bytes): **Established.** It rejects a begin or invalid name with 0x502 or 0x501 and returns zero on those paths. For each name it tests the level mask in the texture object, writes one or zero to the caller's byte array, and returns one only when every requested texture is resident.
 
 #### `__glkonim_PrioritizeTexturesEXT`
 
 `__glkonim_PrioritizeTexturesEXT` at 0x0d96fd30 (`kon_texture_api.s`, `IP27KONA32/libGLcore.so`): **Established** it sets the priorities of the named textures.
 A negative count or an unrecognised name raises 0x501 and the word at process address 0x1018 being 1 raises 0x502.
 For each name it finds the object through the hash, clamps the priority to the range 0.0 to 1.0, stores it as a float at object +328, and, when the object's target index at +376 is not negative, calls `__glKonTexUpdatePriority` with the integer part of twice the priority, which is 0, 1 or 2.
+- `__glkonim_PrioritizeTexturesEXT` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9708d4, 420 bytes): **Established.** It rejects a begin or invalid name with 0x502 or 0x501. For each valid object it clamps the incoming priority to 0.0 through 1.0, stores it at object +328, and calls `__glKonTexUpdatePriority` with the resulting priority class when the target index is valid.
 
 #### `__glKonPushTextureAttrib`
 
@@ -1937,6 +1941,7 @@ It follows the same steps as the integer-vector version: error 0x502 for the wor
 It raises 0x502 for the word at 0x1018 being 1 and 0x500 for an unrecognised target, and calls `isLodInvalid` for the level, raising 0x501 for an invalid one that is not below the clip-map value at +436.
 When the level has a current host copy (+48) it prints "__glkonim_GetTexImage: proc_image not implemented" to stderr and returns.
 When the level is only in texture memory (+40) it picks a component count from the format row's group word, calls `getLevel`, and then calls the object's hook at +256 so the object is rebound.
+- `__glkonim_GetTexImage` (`usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9737a8, 580 bytes): **Established.** It rejects a begin with 0x502, resolves the target with `targetIndex`, rejects an invalid target with 0x500 and an invalid level with 0x501, and prints a diagnostic when the level already has a host copy. For a texture-memory-only level it chooses the component count, calls `getLevel`, and invokes the object's rebind hook.
 
 #### `initTexture`
 
