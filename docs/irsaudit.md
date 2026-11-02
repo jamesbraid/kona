@@ -14,17 +14,29 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
 - `setup_dma` calls `ioctl` at 0x10037ea8 and `tbRegWrite` at 0x10037ee0, 0x10037f08 and 0x10037f4c; those call sites establish the mapping and the raster-bus writes above. **Established.**
 - `wait_for_dma_completion` (0x10037fd4, 184 bytes): **Established.** Polls the secondary output-DMA total at host offset 0x2b8, with the loop bounded by its caller-supplied condition, then reads host offset 0x278 before returning. The success path returns zero; the completion/failure branch returns one. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `wait_for_dma_completion`.)
 - `initialize_icu` (0x100385d4, 444 bytes): **Established.** Enables token-map access by writing 1 to host offset 0x3e8, writes the initial token-map words through 0x3f0 and 0x3f8, writes `0xbabebabe` to the ARM error-PC address 0x20006c, and clears the control word. Its loop distinguishes the two caller-selected map modes and returns the final PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `initialize_icu`.)
-- `enable_hip_intr` (0x10038790, 104 bytes): **Established.** Reads host interrupt-enable offset 0x230, shifts its argument into a bit mask, ORs that mask into the current enable value, writes the result back to 0x230, and returns the PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `enable_hip_intr`.)
+- `enable_hip_intr` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038790; size 104 bytes. It reads host interrupt-enable offset 0x230, forms `1 <<` the first argument, ORs that bit into the read value, and writes the result back to 0x230. The second PIO helper's result is returned; the calls are at 0x100387bc and 0x100387dc.
 - `enable_hip_intr` calls `fcPioRead32` at 0x100387bc and `fcPioWrite32` at 0x100387dc for host offset 0x230. **Established.**
-- `init_hip_interrupt_regs` (0x100387f8, 108 bytes): **Established.** Clears host offsets 0x230 and 0x220, then writes `0xfff` to status offset 0x238 to acknowledge all diagnostic-visible causes. It returns the last PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `init_hip_interrupt_regs`.)
+- `init_hip_interrupt_regs` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x100387f8; size 108 bytes. It writes 0 to interrupt-enable offset 0x230, writes `0xfff` to status offset 0x238, then writes 0 to interrupt-information offset 0x220. The final PIO-write result is returned; the calls are at 0x10038828, 0x10038838 and 0x10038848.
 - `init_hip_interrupt_regs` calls `fcPioWrite32` at 0x10038828, 0x10038838 and 0x10038848 for offsets 0x230, 0x238 and 0x220. **Established.**
-- `set_hip_intr_info` (0x10038864, 124 bytes): **Established.** Reads interrupt information at offset 0x220, preserves bit 15, places the low byte of its second argument in bits 0-7 and the low byte of its first argument in bits 8-15, and writes the combined value back to 0x220. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `set_hip_intr_info`.)
+- `set_hip_intr_info` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038864; size 124 bytes. It reads offset 0x220, keeps only bit 15, places the low byte of the second argument in bits 0-7 and the low byte of the first argument in bits 8-15, and writes that combined word back to 0x220. The read and write calls occur at 0x10038894 and 0x100388c4.
 - `set_hip_intr_info` calls `fcPioRead32` and `fcPioWrite32` for host offset 0x220; the write call returns the routine's result. **Established.**
-- `PioReadArm32` (0x100384ac, 84 bytes): **Established.** Writes its argument to ARM address port 0x3e8, reads the non-incrementing ARM data port 0x3f0, and returns that read value. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `PioReadArm32`.)
+- `ResetKona` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x100388e0; size 116 bytes. It calls the diagnostic control callback with command 0x6a and zero arguments. When that callback returns nonzero it calls the error-reporting routine at 0x10046fd0 with the callback object's address plus 0x80; otherwise it only restores its saved registers and returns. The callback call is at 0x10038918.
+- `HipRevRead` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038954; size 52 bytes. It follows the diagnostic's board-pointer chain through the global adapter record, adds host offset 0xc008 to the selected register base, loads the resulting 64-bit revision word and returns it. The final load is at 0x1003897c.
+- `f3RevRead` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038988; size 52 bytes. It follows the same board-pointer chain, adds host offset 0xc000 to the selected register base, loads the resulting 64-bit revision word and returns it. The final load is at 0x100389b0.
+- `PioReadArm32` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x100384ac; size 84 bytes. It writes its argument to ARM address port 0x3e8, reads the non-incrementing data port 0x3f0, and returns the read word. The two helper calls are at 0x100384d4 and 0x100384e8.
 - `PioReadArm32` calls `fcPioWrite32` at 0x100384d4 for address port 0x3e8, then `fcPioRead32` at 0x100384e8 for data port 0x3f0. **Established.**
-- `StallArm` (0x10038554, 64 bytes): **Established.** Writes 1 to the ARM stall trigger at host offset 0x320 and returns the PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `StallArm`.)
+- `StallArm` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038554; size 64 bytes. It writes 1 to host offset 0x320 and returns the PIO-write result from the call at 0x1003857c.
 - `StallArm` calls `fcPioWrite32` for host offset 0x320 and returns its result. **Established.**
-- `UnStallArm` (0x10038594, 64 bytes): **Established.** Writes 1 to the ARM unstall trigger at host offset 0x328 and returns the PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `UnStallArm`.)
+- `UnStallArm` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038594; size 64 bytes. It writes 1 to host offset 0x328 and returns the PIO-write result from the call at 0x100385bc.
 - `UnStallArm` calls `fcPioWrite32` for host offset 0x328 and returns its result. **Established.**
 - `load_arm_mem` (0x100389c0, 256 bytes): **Established.** Writes its first argument to ARM address port 0x3e8, writes each word of the buffer at its second argument through incrementing data port 0x3f8, using the third argument divided by four as the count, and emits start/end diagnostic messages. A zero count skips the loop. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `load_arm_mem`.)
 - `vdEnableDgInterrupts` (0x10130c98, 140 bytes): **Established.** Clears host interrupt-enable offset 0x230, acknowledges all status bits at 0x238 with `0x3ff`, writes `0x8000` to interrupt information 0x220, writes `0x30000` to global interrupt information 0x108, and enables mask `0x208` at 0x230. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `vdEnableDgInterrupts`.)
@@ -79,33 +91,22 @@ ranges in `usr/diags/IR/bin/irsaudit` (6.5.30m).
 The following geometry and distributor helpers were read from their complete
 symbol ranges in the same binary:
 
-- `set_bef_user_reg` (0x1001b7b0, 88 bytes): **Established.** Saves the
-  variadic register words on its stack, selects user-register field 0x3f, and
-  passes that field and the saved words to `modify_bef_user_reg`. It returns
-  the helper's result.
-- `set_bef_config_reg` (0x1001cc8c, 100 bytes): **Established.** Saves the
-  variadic register words, selects the complete 0x1ff configuration mask, and
-  passes them to `modify_bef_config_reg`. It returns the helper's result.
+- `set_bef_user_reg` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x1001b7b0; size 88 bytes. It saves the variadic words at stack offsets 0 through 0x14, passes field mask 0x3f and that saved block to `modify_bef_user_reg` at call site 0x1001b7f0, and returns its result.
+- `set_bef_config_reg` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x1001cc8c; size 100 bytes. It saves the variadic words at stack offsets 0 through 0x1c, passes mask 0x1ff and that block to `modify_bef_config_reg` at call site 0x1001ccd8, and returns its result.
 - `init_ge_num` (0x1003808c, 384 bytes): **Established.** Builds a one-bit
   engine mask from its argument, writes it repeatedly to distributor selector
   0x222, calls `PioWriteArm32` with 0x200600 and 0x58400800 and then with
   0x200a80 and 1, then masks the saved engine count and repeats selector 0x222 writes with the resulting mask.
-- `arm_ged_write` (0x10038288, 140 bytes): **Established.** Writes the ARM
-  register sequence 1, 0xb, the caller's register, 0, and the caller's value
-  through the diagnostic graphics-register writer. It returns after the fifth
-  write.
-- `diag_arm_reg_write` (0x1003820c, 124 bytes): **Established.** Writes the
-  fixed ARM register sequence 1, 0x16, the caller's register, and the caller's
-  value through the diagnostic graphics-register writer. It returns after the
-  fourth write.
-- `PioWriteArm32` (0x10038444, 104 bytes): **Established.** Writes the caller's
-  address to host offset 0x3e8 and its value to the incrementing ARM data port
-  at 0x3f8. It returns the second PIO-write result. (`irsaudit`, calls to
-  `fcPioWrite32` at 0x1003847c and 0x10038488.)
-- `PioReadArmIncr32` (0x10038500, 84 bytes): **Established.** Writes the
-  caller's address to offset 0x3e8, reads one word from the incrementing data
-  port at 0x3f8, and returns that word. (`irsaudit`, calls at 0x10038528 and
-  0x1003853c.)
+- `arm_ged_write` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038288; size 140 bytes. It sends five words through the graphics-register writer at call sites 0x100382c0-0x100382f4: 1, 0xb, the caller's register, 0, and the caller's value. The fifth writer result is left in the return register.
+- `diag_arm_reg_write` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x1003820c; size 124 bytes. It sends four words through the graphics-register writer at 0x10038244-0x1003826c: 1, 0x16, the caller's register, and the caller's value. The fourth writer result is returned.
+- `PioWriteArm32` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038444; size 104 bytes. It writes the caller's address to host offset 0x3e8 and its value to the non-incrementing ARM data port 0x3f0. It returns the second PIO-write result; the calls are at 0x1003847c and 0x10038488.
+- `PioReadArmIncr32` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  Address 0x10038500; size 84 bytes. It writes the caller's address to offset 0x3e8, reads one word from the incrementing data port 0x3f8, and returns that word. The calls are at 0x10038528 and 0x1003853c.
 - `arm_init_ge` (0x10038314, 304 bytes): **Established.** Writes the engine
   selector 546 with value 1 five times, advances to the next engine, masks the
   saved engine count into a one-bit-per-engine mask, and writes that mask five
