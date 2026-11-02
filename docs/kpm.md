@@ -620,6 +620,110 @@ These boundary-scan helpers were read in their complete N32 address ranges.
   one bit. It stores the accumulated length at chain offset 0x18. (`kpm`,
   6.5.30m, reverse chain loop at 0x10035090-0x1003524c.)
 
+The following boundary-scan wrappers were read in their complete N32 address ranges.
+
+- `jt_new_data_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033410; size 68 bytes. It reads the requested data-register bit count
+  from the descriptor's word at +0x18 (`lw` at 0x10033430), passes that count
+  to the vector allocator, and returns the allocator's handle. No scan-chain
+  register is touched by this wrapper. (`kpm`, 6.5.30m, complete routine
+  0x10033410-0x10033453.)
+
+- `jt_new_data_bvector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033460; size 76 bytes. It loads the data-vector bit count from +0x18
+  (`lw` at 0x10033480), rounds it up by seven and divides by eight (`addiu`
+  at 0x10033484 and `srl` at 0x10033488), then returns the byte-vector
+  allocator's result. (`kpm`, 6.5.30m, complete routine 0x10033460-0x100334ab.)
+
+- `jt_new_inst_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100334b0; size 68 bytes. It obtains the instruction-register bit count
+  from descriptor offset +0x14 (`lw` at 0x100334d0), calls the instruction
+  vector allocator with that count, and returns its result unchanged. The
+  wrapper itself performs no hardware access. (`kpm`, 6.5.30m, complete
+  routine 0x100334b0-0x100334f3.)
+
+- `jt_new_inst_bvector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033500; size 76 bytes. It reads the instruction bit count at +0x14
+  (`lw` at 0x10033520), converts it to a rounded byte count with `addiu` at
+  0x10033524 and `srl` at 0x10033528, and returns the byte-vector allocation
+  result. (`kpm`, 6.5.30m, complete routine 0x10033500-0x1003354b.)
+
+- `jt_dispose_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033550; size 64 bytes. It forwards the caller's vector handle to the
+  installed disposal procedure (`lw` at 0x10033570 followed by `jalr` at
+  0x10033574) and returns after that procedure completes. (`kpm`, 6.5.30m,
+  complete routine 0x10033550-0x1003358f.)
+
+- `jt_vector_to_int` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033590; size 100 bytes. It reads four bytes from the supplied vector,
+  with the first byte as the least-significant part (`lbu` at 0x100335a0, 0x100335ac,
+  0x100335bc and 0x100335cc), combines them at shifts 0, 8, 16 and 24, and
+  stores the resulting word through the output pointer (`sw` at 0x100335e4).
+  (`kpm`, 6.5.30m, complete routine 0x10033590-0x100335f3.)
+
+- `jt_int_to_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033600; size 124 bytes. It emits the input word's four bytes into the
+  destination vector, storing at offsets 0, 1, 2 and 3 (`sb` at 0x10033614,
+  0x10033630, 0x1003364c and 0x10033668) while shifting the source right by
+  eight between stores. It returns zero. (`kpm`, 6.5.30m, complete routine
+  0x10033600-0x1003367b.)
+
+- `jt_find_chip` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033680; size 252 bytes. It scans the chain's record array up to the
+  count at descriptor offset +8 (`lw` at 0x100336a8), considers only records
+  whose kind word is one (`lw` at 0x100336d8 and compare at 0x100336e0), and
+  invokes the record matcher with the chip descriptor and caller's selector.
+  It returns the first matching index, or -1 after the count is exhausted.
+  (`kpm`, 6.5.30m, complete routine 0x10033680-0x1003377b.)
+
+- `jt_set_procs` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033780; size 104 bytes. It copies the seven procedure pointers from the
+  caller's table at offsets 0, 4, 8, 0xc, 0x10, 0x14 and 0x18 (`lw` at
+  0x100337a0-0x100337d0) into the library's installed-procedure table and
+  returns zero. (`kpm`, 6.5.30m, complete routine 0x10033780-0x100337e7.)
+
+- `jt_init` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10033a40;
+  size 60 bytes. It calls the currently installed initialization procedure
+  through the table load at 0x10033a58 and the indirect call at 0x10033a60;
+  its return value is passed through unchanged. (`kpm`, 6.5.30m, complete
+  routine 0x10033a40-0x10033a7b.)
+
+- `jt_test_thyself` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033b50; size 60 bytes. It invokes the installed boundary-scan self-test
+  procedure through the table loads at 0x10033b68-0x10033b6c and leaves that
+  procedure's result as its own return value. (`kpm`, 6.5.30m, complete
+  routine 0x10033b50-0x10033b8b.)
+
+- `jt_set_error_handler` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033c50; size 40 bytes. It stores the caller's error callback in the
+  library slot written by `sw` at 0x10033c68 and returns without invoking it.
+  (`kpm`, 6.5.30m, complete routine 0x10033c50-0x10033c77.)
+
+- `jt_set_debug_handler` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10033c80; size 40 bytes. It records the supplied debug callback in the
+  separate library slot written by `sw` at 0x10033c98; the setter has no
+  diagnostic side effect and returns void. (`kpm`, 6.5.30m, complete routine
+  0x10033c80-0x10033ca7.)
+
+- `jt_error` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10033cb0;
+  size 184 bytes. It collects the variadic arguments into a local argument
+  area, then either calls the installed error callback at the slot loaded by
+  `lw` at 0x10033cf0 or formats the message into the library's fallback error
+  stream before writing it. (`kpm`, 6.5.30m, complete routine
+  0x10033cb0-0x10033d67.)
+
+- `jt_debug` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10033d70;
+  size 116 bytes. It saves the variadic debug arguments, tests the debug
+  callback slot with `lw` at 0x10033db0, and calls that callback only when it
+  is nonzero; an unset callback makes the function return without output.
+  (`kpm`, 6.5.30m, complete routine 0x10033d70-0x10033de3.)
+
+- `jt_perror` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10033df0;
+  size 120 bytes. It formats the supplied error number and text into its local
+  buffer through the formatter call at 0x10033e34, then passes that formatted
+  message and the original context to `jt_error` through the call at
+  0x10033e4c. (`kpm`, 6.5.30m, complete routine 0x10033df0-0x10033e67.)
+
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
