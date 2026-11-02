@@ -7426,6 +7426,110 @@ These readings describe functions in the IRIX 6.5.30m `usr/gfx/ircombine` build.
 - `vfmtWriteKonaCombination` in `usr/gfx/ircombine`:
   Address 0x10089870; occupies 2304 bytes.
   **Established.** Serializes a combination into a new symbol database. It resolves the name with `vfmtFindKonaCombinationFile`, then calls `SDBopenNewDatabase` with three stack buffers (`jal` at 0x100898d8, 0x100898f0). A null database result falls through to result one (`bnez` at 0x10089904). The initial scalar writes use `xdr_u_short` for symbols at 0x100a0258 and 0x100a0268 calls to `SDBaddNewScalarSymbol` (`jal` at 0x10089938, 0x10089964). Later serialized fields include entry argument 1 +0x100, +0x10c and +0x110 through `xdr_int` (`jal` at 0x10089a88, 0x10089bc8, 0x10089c30), and two-element integer arrays from argument 1 +0x104 and +0x24c calls to `SDBaddNewArraySymbol` (`jal` at 0x10089af4, 0x10089b60). These are examples rather than a complete field list. The array at argument 1 +0x22c uses three float elements (`jal` at 0x1008a048). Repeated records go through the unnamed routine at 0x10088820 (`jal` at 0x1008a11c). Completion closes the database and returns zero after calling `SDBcloseNewDatabase` (`jal` at 0x1008a148). Checked symbol-add failures produce two. The body writes a host file, with no direct display-programming operation.
+### IRIX 6.5.30m ircombine symbol-database helpers
+
+These readings describe the IRIX 6.5.30m `usr/gfx/ircombine` copies of the symbol-database and XDR helpers. Each exact range differs from the `konal.so` counterpart; byte differences alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `SDBaddNewArraySymbol` | 0x1008cfa4 / 56 | `608553e5ec2984c0749e6f72bf1684595530353ef82143e4d3753ad16c6daf72` | `usr/lib/X11/dyDDX/konal.so` 0x13b1704 / 56 | `e09bddaef8397d0cc0e05b21d67c586575f51759d019504b2df7f626b39dcff3` | 10 |
+| `SDBaddNewScalarSymbol` | 0x1008cfdc / 64 | `cb12dd72ed6d603365a5e8b33d29bb3e1246c27f05326cab0e771ca9509f1cf2` | `usr/lib/X11/dyDDX/konal.so` 0x13b173c / 64 | `be13581eba399d792970c6411098504022c7053f0a4964760675ba47d0c985e5` | 10 |
+| `SDBcloseNewDatabase` | 0x1008d01c / 404 | `51f67c556cc5a2a0f9fb1a1992e4db9998e7dcaa9dd80109c2cede478c598d1b` | `usr/lib/X11/dyDDX/konal.so` 0x13b177c / 404 | `1e09b562fb33773e35ce358098298c2a672eaf28f8d26378e92b1656351b365a` | 31 |
+| `SDBopenNewDatabase` | 0x1008d1b0 / 356 | `e0d3a12400d6b72cfa9974062f35b63325e961746cdcb4c651cb0858ea1cef76` | `usr/lib/X11/dyDDX/konal.so` 0x13b1910 / 356 | `d627a8e6612ea835836b46ae15ba813e0efef4a5e4a2898d76ce7145113981a7` | 46 |
+| `SDBsetHeader` | 0x1008d314 / 120 | `fc49041ab9fc4541c4e3dad2f4ff99327df330199b2f3f32aa706ec67f283a8d` | `usr/lib/X11/dyDDX/konal.so` 0x13b1a74 / 120 | `4a8f790c3e8249b18bf99103f76b1c1cecacc1373f72b4fab75c61cba7a9235f` | 7 |
+| `SDBgetSymbolDataAddress` | 0x1008d544 / 104 | `5ae205387acb2df4c67f21fd9de6aae58023d71dcb74b019166a1956583f83dd` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ca4 / 104 | `bcf5d5d8490159078cf1a8d237d0e2b52486f29215e003105d53599917574eeb` | 10 |
+| `SDBgetSymbolDatatype` | 0x1008d5ac / 88 | `17ce5cf1837a4620ac4fc41dbd6a779c1d4318bc8483fa39b2f1d06c4abd47cb` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d0c / 88 | `53ecb29590881868ae1922b06a597f2b80c9bb139bfcf292c4f0e6a2a50376c1` | 10 |
+| `SDBgetSymbolElementCount` | 0x1008d604 / 92 | `46816b4b77bfc06a77641f0fa98bd7e5812aa4748c171ec285a1d0f64b511bd4` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d64 / 92 | `0ad309c805b8a592742812c12845edb6c54ad675b29bd4d270e506e827c1abed` | 10 |
+| `SDBgetSymbolValueArray` | 0x1008d660 / 56 | `bd02caca21c507c27379aef5fd6a5dffc9af4adf77bd972959a3ef2629f15d38` | `usr/lib/X11/dyDDX/konal.so` 0x13b1dc0 / 56 | `084ab080b9f927d944c228a66904d103eae6198d676482e8bd29f1294caeeb9b` | 10 |
+| `SDBgetSymbolValueScalar` | 0x1008d698 / 56 | `8c0bd6b225bb9b500b2e01a0f67dfe69b0611aca40ef4eee15c85162d78506c3` | `usr/lib/X11/dyDDX/konal.so` 0x13b1df8 / 56 | `146678c380edd02877f305a86fae862a0e0d1a833083a91eac1453fae4e9ec9f` | 10 |
+| `SDBcloseReadDatabase` | 0x1008d6d0 / 184 | `c32dfc9d60e0e9112ab86c52d6b1b3fbc9457af687f35bc095f00596417937cc` | `usr/lib/X11/dyDDX/konal.so` 0x13b1e30 / 184 | `7f9fb1c5f9264d8b152f9b2f9a4c8593f59d5d3f011948f7a3b0cf8fa8f02edd` | 13 |
+| `SDBreadOpenDatabase` | 0x1008d788 / 424 | `e793bfac049978ecd9ca63931a25ad8790ad20c62883c176d90b318ebfa9096a` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ee8 / 424 | `a3ed2bf752ec533b77a941b678875f563e8cecc6cf2df3a49fc78d9c96133423` | 60 |
+| `SDBprocessOneUserMethod` | 0x1008d988 / 420 | `20b4e42afcd3a95e88a706600eed4af135123d88446619e525048e512c7d6b9a` | `usr/lib/X11/dyDDX/konal.so` 0x13b20e8 / 420 | `f9c38ddbddc71d557e8bd6c9df10ed8657e0933d64b08b0ebd7a60e3305dbbf1` | 31 |
+| `compareSTEName` | 0x1008db2c / 56 | `7cac6d9ee07bde0662fe76d2170b8b7cef110eeb14da52b6290ab22b7e9cf76e` | `usr/lib/X11/dyDDX/konal.so` 0x13b228c / 56 | `8156f0e1747cccbe228bfcca1e149a3ba3da2fef1a93006d5332b3683a07c14d` | 5 |
+| `mapTypeToXDRPROC` | 0x1008db64 / 524 | `87e6fec5a9b3efd32456c460b57af8137875577b18119007b17336b250be491b` | `usr/lib/X11/dyDDX/konal.so` 0x13b22c4 / 524 | `35d07415061a8bfbedf7b8ed7ca74713ec82065e561aba71af317fd2d613ca7c` | 76 |
+| `xdr_SDBelementIndex` | 0x1008dda4 / 52 | `9400ac59c4cecfb6758539626cf1695063029f9253a1551983975f7beb980b5a` | `usr/lib/X11/dyDDX/konal.so` 0x13b2504 / 52 | `85e24cbc68459f68e5f817cb06219e3c435134fc5b10ac08d3e7b643eb9787ed` | 5 |
+| `xdr_SDBfileOffset` | 0x1008ddd8 / 52 | `6372444d67af21334e465d3c63467fee1b905b8b23d48460c62b377b0152d473` | `usr/lib/X11/dyDDX/konal.so` 0x13b2538 / 52 | `ddcba119df4854ca04373befdf4c5efa949e83b0c5b1da0706fc8760c893f9a9` | 5 |
+| `xdr_typedData` | 0x1008de0c / 340 | `c54bc1fc61e00a656090602915bddce75e0793bb57fe6467c52026d5e264b0be` | `usr/lib/X11/dyDDX/konal.so` 0x13b256c / 340 | `d0a39cf01f5a3e35ba2f23aca437fcf559d871f323fedf83c09d67f082609622` | 23 |
+| `xdr_SDBfileHeader` | 0x1008df60 / 320 | `ac689486cb70218fd6025d71a97816a98aacc09cbb93ec683aac1e0c576febec` | `usr/lib/X11/dyDDX/konal.so` 0x13b26c0 / 320 | `43e22bfb7d57f306632b2675cf78fe2b6bf1c5e2119334c076118617ac73539c` | 43 |
+
+#### Target-build readings
+
+- `SDBaddNewArraySymbol` in `usr/gfx/ircombine`:
+  Address 0x1008cfa4; occupies 56 bytes.
+  **Inferred.** The array-symbol interface calls the shared helper at 0x1008cce4 with the first four arguments unchanged (`jal` at 0x1008cfc4). Its result is returned without conversion (`jr` at 0x1008cfd4). The array-adder role is inferred from this exported interface's name and the documented counterpart. The wrapper itself neither decodes values nor writes a database record.
+
+- `SDBaddNewScalarSymbol` in `usr/gfx/ircombine`:
+  Address 0x1008cfdc; occupies 64 bytes.
+  **Inferred.** Scalar insertion uses the same helper at 0x1008cce4 (`jal` at 0x1008d004), but supplies a3 equal to zero, a4 equal to the original fourth argument, and a5 equal to the original fifth argument. The first three arguments are retained. Hostfacts records the helper result as the wrapper's return (`jr` at 0x1008d014). The zero-count scalar convention is inferred from the interface name and sibling entry, while the argument rearrangement is observed here.
+
+- `SDBcloseNewDatabase` in `usr/gfx/ircombine`:
+  Address 0x1008d01c; occupies 404 bytes.
+  **Established.** Writer finalization sorts the table with `qsort`, using 0x2c-byte records and `compareSTEName` (`jalr` at 0x1008d07c). It writes the table with `xdr_array`, passing a maximum count of 0xffff and record codec `xdr_SDBsymbolTableEntry` (`jalr` at 0x1008d0bc), then rewrites the header through `xdr_SDBfileHeader` (`jal` at 0x1008d0e4). Cleanup invokes unresolved memory-interface callbacks and clears the handle's header, stream and table words (`sw` at 0x1008d10c, 0x1008d13c, 0x1008d178). A nonnull file pointer different from `__iob` plus 16 takes the `bne` at 0x1008d150 to `fclose` (`jalr` at 0x1008d1a0). The indirect cleanup callees remain unknown.
+
+- `SDBopenNewDatabase` in `usr/gfx/ircombine`:
+  Address 0x1008d1b0; occupies 356 bytes.
+  **Established.** Database creation compares the name against the string at 0x100aaef6 using `strcmp` (`jalr` at 0x1008d1dc). A nonzero comparison takes the `bnez` at 0x1008d1e4 to `fopen` (`jalr` at 0x1008d218). The other path selects `__iob` plus 16. Two unresolved memory-interface calls receive (1, 0x14) and (1, 0x18) (`jalr` at 0x1008d234 and `jalr` at 0x1008d2a8). Setup uses `xdrstdio_create` with operation 0 (`jalr` at 0x1008d2e0), followed by the unnamed helper at 0x1008cda4 (`jal` at 0x1008d2f8). Failure handling writes errno values 2, 12 or 9 (`sw` at 0x1008d204, 0x1008d24c, 0x1008d310) and includes `SDBcloseNewDatabase` (`jal` at 0x1008d274). The memory-interface callbacks and the fopen mode string's content are not resolved by hostfacts.
+
+- `SDBsetHeader` in `usr/gfx/ircombine`:
+  Address 0x1008d314; occupies 120 bytes.
+  **Established.** Header setup follows the pointer at handle +8 (`lw` at 0x1008d320). Nonnull a1 falls through the `beqz` at 0x1008d330 and loads two halfwords from a1 +0 and +2 (`lhu` at 0x1008d338, 0x1008d340), copying them into header +8 and +0xa (`sh` at 0x1008d33c and `sh` at 0x1008d348). Null a1 takes that branch to zero both fields (`sh` at 0x1008d34c and `sh` at 0x1008d354). The description copy calls `strncpy` for 0x64 bytes to header +12 (`jalr` at 0x1008d374). Hostfacts leaves its selected source argument unknown.
+
+- `SDBgetSymbolDataAddress` in `usr/gfx/ircombine`:
+  Address 0x1008d544; occupies 104 bytes.
+  **Established.** The data-position interface calls the lookup helper at 0x1008d444 (`jal` at 0x1008d564). A nonzero lookup takes the `bnez` at 0x1008d56c to an indirect operation loaded from the stream's operations pointer plus 0x10 (`lw` at 0x1008d590). That operation receives the stream pointer (`jalr` at 0x1008d594), and its result is returned. Lookup failure falls through to a zero return (`jr` at 0x1008d580). The indirect operation's name is unknown in hostfacts.
+
+- `SDBgetSymbolDatatype` in `usr/gfx/ircombine`:
+  Address 0x1008d5ac; occupies 88 bytes.
+  **Established.** A symbol's type is the first word of the lookup result (`lw` at 0x1008d5e4), obtained after the helper call to 0x1008d444 (`jal` at 0x1008d5cc). The `beqz` at 0x1008d5d8 takes the null-result arm, which returns zero (`jr` at 0x1008d5fc). The nonnull fall-through returns the loaded type word.
+
+- `SDBgetSymbolElementCount` in `usr/gfx/ircombine`:
+  Address 0x1008d604; occupies 92 bytes.
+  **Established.** Count retrieval looks up the requested symbol through 0x1008d444 (`jal` at 0x1008d624), then reads the result's word at +4 (`lw` at 0x1008d63c). A null lookup takes the `beqz` at 0x1008d630 to the other return. Hostfacts reports that failure return as unknown (`jr` at 0x1008d658), so the sibling entry's zero-on-missing claim is not transferred to this build.
+
+- `SDBgetSymbolValueArray` in `usr/gfx/ircombine`:
+  Address 0x1008d660; occupies 56 bytes.
+  **Inferred.** The array-value wrapper forwards a0 through a3 unchanged to 0x1008d4e4 (`jal` at 0x1008d680), then returns that helper's result (`jr` at 0x1008d690). Its array-reader role is inferred from its exported name and the documented sibling. The wrapper contains no value conversion or caller-buffer stores of its own.
+
+- `SDBgetSymbolValueScalar` in `usr/gfx/ircombine`:
+  Address 0x1008d698; occupies 56 bytes.
+  **Inferred.** This scalar-value interface invokes 0x1008d4e4 with the original first three arguments and a3 fixed to zero (`jal` at 0x1008d6b8). It returns the shared reader's result (`jr` at 0x1008d6c8). The body establishes a distinct argument convention for scalar reads, without establishing what the shared helper writes.
+
+- `SDBcloseReadDatabase` in `usr/gfx/ircombine`:
+  Address 0x1008d6d0; occupies 184 bytes.
+  **Established.** Reader cleanup checks the table pointer at handle +0xac (`lw` at 0x1008d6d4). Its nonzero arm invokes an unknown callback with that pointer (`jalr` at 0x1008d700) and clears the table field (`sw` at 0x1008d708). The stream is passed through its operations entry +0x1c (`lw` at 0x1008d71c, `jalr` at 0x1008d720), followed by a separate memory-interface callback (`jalr` at 0x1008d730) and a cleared stream word (`sw` at 0x1008d738). A file pointer different from `__iob` takes the `bne` at 0x1008d748 to `fclose` (`jalr` at 0x1008d778). The final callback receives the handle itself (`jalr` at 0x1008d75c). These indirect callback identities remain unknown.
+
+- `SDBreadOpenDatabase` in `usr/gfx/ircombine`:
+  Address 0x1008d788; occupies 424 bytes.
+  **Established.** Database reading selects either `__iob` or a file opened through `fopen`, according to `strcmp` against 0x100aaefc (`jalr` at 0x1008d7ac and `jalr` at 0x1008d7e0). Memory-interface calls receive (1, 0xb0) and (1, 0x18) (`jalr` at 0x1008d800 and `jalr` at 0x1008d82c). The resulting stream is initialized with XDR operation 1 `xdrstdio_create` (`jalr` at 0x1008d8ac), and its header is decoded by `xdr_SDBfileHeader` (`jal` at 0x1008d8c0). The unnamed table-loading helper at 0x1008d38c is called next (`jal` at 0x1008d8e4). A four-byte `strncmp` follows, with its second argument loaded from `SDBidentificationString` (`lw` at 0x1008d914, `jalr` at 0x1008d910). A zero comparison takes the `beqz` at 0x1008d918 to successful return. Other failures set errno to 2, 12 or 20 (`sw` at 0x1008d7d4, 0x1008d81c, 0x1008d8dc) and use `SDBcloseReadDatabase` when a handle exists (`jal` at 0x1008d85c). The memory-interface callbacks and fopen mode remain unresolved in the facts output.
+
+- `SDBprocessOneUserMethod` in `usr/gfx/ircombine`:
+  Address 0x1008d988; occupies 420 bytes.
+  **Established.** Method processing loads the symbol-name pointer from the method record (`lw` at 0x1008d9b0) and passes it to the lookup helper (`jal` at 0x1008d9bc). Equality between the symbol's first word and method +4 (`lw` at 0x1008d9d0, 0x1008d9d4) takes the `beq` at 0x1008d9d8 to the value-reading path. That path calls the unnamed helper at 0x1008d930 (`jal` at 0x1008dab4) and `xdr_typedData` (`jal` at 0x1008db08). A method capacity smaller than the symbol count in an unsigned comparison falls through the `beqz` at 0x1008dad8 and stores errno 22 (`sw` at 0x1008daec). Callback processing uses `mapTypeToXDRPROC` (`jal` at 0x1008da10), then the function pointer at method +0x18 (`lw` at 0x1008da38), passing the word loaded from method +0x1c as the second argument (`lw` at 0x1008da44, `jalr` at 0x1008da40). The callback's first argument and the overall return value remain unknown to hostfacts.
+
+- `compareSTEName` in `usr/gfx/ircombine`:
+  Address 0x1008db2c; occupies 56 bytes.
+  **Established.** The symbol-table comparator passes each input pointer plus 12 to `strcmp` (`jalr` at 0x1008db4c). It returns that comparison result unchanged (`jr` at 0x1008db5c).
+
+- `mapTypeToXDRPROC` in `usr/gfx/ircombine`:
+  Address 0x1008db64; occupies 524 bytes.
+  **Established.** Type selection rejects unsigned values at least 0x15 by taking the `beqz` at 0x1008dba0 to `__assert` (`jalr` at 0x1008dbcc). Remaining selectors dispatch through the table at 0x100a07d0 (`jr` at 0x1008dbb0). The procedure-selection arms choose an element size, with observed sizes including 1, 2, 4 and 8 in the constants output. The selected words are written through the second and third arguments (`sw` at 0x1008dbe8 and `sw` at 0x1008dbfc). A zero procedure takes the `beqz` at 0x1008dbdc to another assertion (`jalr` at 0x1008dc28). The custom-procedure arm requires a nonzero fourth argument, otherwise the `beqz` at 0x1008dc4c reaches `__assert` (`jalr` at 0x1008dd40).
+
+- `xdr_SDBelementIndex` in `usr/gfx/ircombine`:
+  Address 0x1008dda4; occupies 52 bytes.
+  **Established.** Element-index serialization delegates directly to `xdr_u_long` with the entry arguments unchanged (`jalr` at 0x1008ddc0). The codec's status becomes the wrapper's result (`jr` at 0x1008ddd0).
+
+- `xdr_SDBfileOffset` in `usr/gfx/ircombine`:
+  Address 0x1008ddd8; occupies 52 bytes.
+  **Established.** File-offset serialization invokes `xdr_u_long` (`jalr` at 0x1008ddf4), preserving the incoming stream and value pointers. The body adds no validation before returning the codec status (`jr` at 0x1008de04).
+
+- `xdr_typedData` in `usr/gfx/ircombine`:
+  Address 0x1008de0c; occupies 340 bytes.
+  **Established.** The typed-value codec obtains a procedure and size from `mapTypeToXDRPROC` (`jal` at 0x1008de70). A nonzero count through the third argument takes the `bnez` at 0x1008de7c to `xdr_array` (`jalr` at 0x1008deb4). The zero-count path can invoke the selected unknown procedure with the original stream and fourth argument (`jalr` at 0x1008de94), then writes count 1 (`sw` at 0x1008dee8). Its separate string path uses `xdr_wrapstring` (`jalr` at 0x1008df10), measures the temporary string with `strlen` (`jalr` at 0x1008df24), requests length plus one from an unresolved memory callback (`jalr` at 0x1008df34), and copies with `strcpy` (`jalr` at 0x1008df48). That path stores the callback's returned pointer through the fourth argument and count 1 through the third (`sw` at 0x1008df44 and `sw` at 0x1008df54). Hostfacts labels the internal branch target 0x1008de60 as outside its block map, so this entry does not assert a complete condition for entering the string path.
+
+- `xdr_SDBfileHeader` in `usr/gfx/ircombine`:
+  Address 0x1008df60; occupies 320 bytes.
+  **Established.** Header serialization begins with `strlen` on the input header (`jalr` at 0x1008df90), followed by `xdr_bytes` with a maximum of 4 (`jalr` at 0x1008dfc8). It then serializes two version records at header +4 and +8 through `xdr_SDBversionNumber` (`jal` at 0x1008dfdc, 0x1008dff0), and a second byte sequence with a maximum of 0x64 (`jalr` at 0x1008e00c). The count at header +112 goes through `xdr_SDBelementIndex` (`jal` at 0x1008e020). Header +116 and +120 use `xdr_SDBfileOffset` (`jal` at 0x1008e034 and 0x1008e048). The final `xdr_array` uses maximum 10, element size 4 and codec `xdr_u_long` (`jalr` at 0x1008e06c). A zero result from that array codec takes the failure branch (`beqz` at 0x1008e074). The observed return paths yield only 0 or 1 (`jr` at 0x1008e098).
+
 ## The X module files
 
 - `konal.so` (usr/lib/X11/dyDDX/konal.so, 1759116 bytes): **established.** The X server module of the 6.5.30m install that this
