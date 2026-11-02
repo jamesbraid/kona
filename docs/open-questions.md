@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 130 (hardware-facing 60, microcode 26, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 123 (hardware-facing 54, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -42,13 +42,10 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - scan-chain net maps and stuck/short vector files; two undocumented microcode images
 - RM.h raster register entries; tbu helpers in irsaudit
 - GE and DG revision per product (decode board id, DG identity word)
-- video bandwidth accept point for 8@ combinations
 - stereo formats without a shipped cmb
 - RM self-test walking-ones sequence per TM
 - GE, RM and DG names per product against gfxinfo strings
 - multisample and alpha visuals per RM revision
-- channel-mix bandwidth accept and reject boundary
-- ireeprom -w survives reset; -c restores default
 - clip-map level count and addressable size
 - DG5 sync source and format round trip
 - GE14/GE16 and RM7/RM9 register and feature dumps
@@ -59,8 +56,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - single RM10 gfxinfo text
 - first-generation board names and texture sizes
 - ircombine and setmon EEPROM round trip
-- ireeprom -c factory default
-- video format DAC ceiling in vfc and ircombine
 - findvis on RM8 guest: RGBA multisample and 22 MB sizing
 - proxy-texture ladder and 2048x2048 RGBA texture
 - pixel depth classes per RM count
@@ -69,7 +64,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - 1280x492_120s stereo visuals with and without .cmb
 - C-brick to G-brick link rejection
 - vfc rule files and setmon acceptance
-- 220 and 170 MHz DAC limits per channel
 - DPLEX pre-DAC path and pipe-frame mapping
 - stuck framebuffer bit reproducing the impsq2 failure line
 - rendered size in 4-pixel steps; 320x320 floor
@@ -83,7 +77,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 
 **Microcode**
 - microcode word width, compressed form
-- engine working memory size
 - uMatrixMultCCC lane-1 address encoding
 - sign of rebuilt normal z in short-normal unpack
 - spot term of mLiLocalLight; codes 0x6a, 0x6c, 0x77
@@ -197,7 +190,6 @@ Papers, technical reports and patents were searched for every open entry below; 
 - [route a] **Special-register offsets and the `r95` = 0x33 words:** the paper's "float-to-fix convert and merge" stage is the only published name for the block the `r95` = 0x33 words feed (inferred, [published-sources.md](published-sources.md#1-infinitereality-architecture-paper-siggraph-1997)). No source names the special registers.
 - [route a] **Raster set-up widths, the sub-pixel rule and slopes** ([rm.md](rm.md#set-up-arithmetic-what-the-software-fixes)): published text puts the set-up in the fragment generator and says scan conversion evaluates plane equations per pixel (paper), with 8 x 8 sub-pixel accuracy (technical reports). No source gives plane-coefficient widths or the edge rule. Still unknown: no shipped software or published source gives them; the remaining routes are the `tbusdata.Z` vectors and the IMP and TF diagnostic expected values.
 - [route a] **Microcode word width:** a 195-bit microinstruction compressed 2.7 times (Hot Chips slides) agrees with the 72-bit word in [ucode/ge_isa.md](../ucode/ge_isa.md) as the compressed form, inferred.
-- [route a] **Working memory size:** the paper gives 2560 words for the first-generation engine; the shipped listings address up to 0xc00. Open; route: the highest data-memory address `ge.u` uses outside the special-register window.
 - [route c] **Sharpen and detail curve tables** (the sign and doubling in [RM.h](../RM.h)): two patents explain them as the hardware forms of the two features (sharpen `A + K (B - A)` with K negative, detail `K (texel - 1/2)` with K doubled), inferred; the stale "which GL function" remark in RM.h is replaced. Widths and rounding of the product: no source.
 - [route a] **Clip-map registers** (`TM_DRAW_CLIP_OFFSET`, `TM_DRAW_CLIP_BKPT` in [RM.h](../RM.h)): the clip-map patent and the paper support the readings (offset pair, stack-to-pyramid break point, 16 levels), inferred.
 - [route a] **Display-generator state tables** ([dg.md](dg.md)): the video-format patent gives the roles of line-type, line-count, line-length and signal tables (inferred).
@@ -507,7 +499,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route b] GE and DG generation per product (GE12, GE14, GE16, DG4 against DG5): the identity words are decoded ([setup-tools.md](setup-tools.md#the-infinitereality-report-of-gfxinfo)) but no shipped binary maps a word to a generation name; the names come from the serial chips' part numbers. Route: published `gfxinfo -v` dumps that print both the `brd:` words and the part-number blocks for a pipe of known generation.
 - [route b] Which board sets report KONA, KONAT and KONAS: the 6.5.30m media carry only the IP27 (KONAL) and IP35 (KONAD) kernels. Route: an IP19 or IP25 kernel object from another release, or a published hinv.
 - [route b] hinv strings per product: `hinv` and its library are not on the media. Route: a published hinv listing, or the `hinv` and `libinvent` of another release.
-- [route a] Video bandwidth accept point (two 1024x768 plus six 640x480 at 60 Hz): port `vfmtIsKonaCombinationValidForTarget` (`kona.so` 0x428590) to a script and run the shipped `8@` combinations through it; first read which record field feeds each of the three sums.
 - [route a] Stereo: a shipped `cmb` exists for only three of the eight stereo formats; read what `setmon` does with the other five (`konBuildCmbList`).
 - [route a] RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM.
 - [route c] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
@@ -516,8 +507,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route b] IR3 gfxinfo report: diff a guest's gfxinfo output against the posted IR3 text, field by field.
 - [route b] Framebuffer and texture per RM for IR3 and IR4: texture allocation should fail at one RM's texture memory, not the sum.
 - [route a] Reality against IR visuals and pixel depth: check which multisample and alpha visuals findvis and ircombine -validate offer per RM revision.
-- [route a] ircombine video bandwidth: find the accept and reject boundary for channel mixes, and check it does not depend on RM count.
-- [route a] ireeprom: a combination written with -w must survive a guest reset, and -c must restore the default format.
 - [route a] Clip-map limits on IR: find the maximum level count and addressable size with libGL on the guest.
 - [route c] Immediate-mode and display-list throughput: use the posted rates as bounds for a timing model.
 - [route a] Display-list size: create lists beyond 14 MiB (the pool size, [published-sources.md](published-sources.md)) and check that the driver falls back to host-locked memory; needs a pipe model that runs the shipped library.
@@ -535,9 +524,7 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] First-generation board names and texture sizes: boot RM6, RM7 and RM9 configurations and compare the strings.
 - [route b] hinv -mvv GE14-2 record: compare the /hw path and board record with the posted listing.
 - [route b] Fchip rev 2 on Onyx IO4: flag or refuse an IR pipe; 5.3-era media must not offer IR.
-- [route a] ircombine and setmon EEPROM round trip: the .cmb must survive a gfx restart; 1920x1200 above 66 Hz must be refused.
-- [route a] ireeprom -c factory default: after a bad format, -c must restore 1280x1024 and EEPROM contents must persist across resets.
-- [route a] Video format DAC ceiling: vfc and ircombine must reject formats above about 222 MHz plus blanking.
+- [route a] ircombine and setmon EEPROM round trip: the .cmb must survive a gfx restart. (The 66 Hz limit for 1920x1200 is settled in [dg.md](dg.md#loading-a-combination-channel); what remains is which request stream `saveToHardware` and setmon store, read from `ircombine` and the X module's save path.)
 - [route a] Reality visuals: findvis on an RM8 guest shows no RGBA multisample or 10-bit visuals; check the 22 MB sizing.
 - [route b] Reality to IR2E mixing and DG5-8 swap: check RM-type hinv strings, reject three RMs on a pipe, decode the illegal-options word.
 - [route c] KCar fan state: the graphics-rack module must read High and not be settable.
@@ -556,7 +543,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] Multipipe X screens: xdpyinfo screen numbering on a two-pipe model and the multi-keyboard names.
 - [route a] Programmable VOF boards: run vfc with each board's rule files and check setmon accepts the output.
 - [route b] IR2 chip-ID words: compare per-ASIC ID values for GE14, RM7 and DG5 with the posted words.
-- [route a] Field-sequential 180q formats: compile each .vfo and check the 220 and 170 MHz DAC limits per channel.
 - [route a] DPLEX path: the pre-DAC path must not touch RM memory; frame N must go to pipe N mod k.
 - [route c] Swapready cabling: a two-pipe swap-group test must hang until both pipes swap; check GL_EXTENSIONS strings.
 - [route a] irsaudit test list: run the shipped irsaudit on a guest; a stuck framebuffer address bit must reproduce the impsq2 failure line.
