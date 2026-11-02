@@ -180,6 +180,148 @@ written.
 The following routines were read in their complete N32 address ranges in the
 same executable.
 
+- `show_adap_registers_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1001529c; size 448 bytes. It requests a 0x91-record adapter-register
+  section with four-byte elements, then sends the returned section through the
+  adapter formatter for offsets 0xc, 0x14, 0x1c, 0x24, 0x2c, 0x34, 0x3c,
+  0x64, 0x6c, 0x74, 0x7c, 0x84, 0x8c and 0x94. A short request calls the
+  section-error reporter and returns -1; a valid request returns zero after the
+  last formatter call. (`kpm`, 6.5.30m, request at 0x100152c8 and formatter
+  calls at 0x10015330-0x10015400.)
+
+- `show_hip_clock_status_section` (`usr/gfx/KONA/bin/kpm`): **Established.**
+  Address 0x10015c2c; size 376 bytes. It requests one four-byte record and
+  branches on the returned value: a nonzero value is formatted through the
+  HIP clock-status descriptor at the table offset loaded at 0x10015cac,
+  while zero causes a read of the clock-status record followed by twenty
+  formatter calls over the returned words. A failed or empty request reports
+  the section error and returns -1; both successful paths return zero.
+  (`kpm`, 6.5.30m, request at 0x10015c50, selector at 0x10015c90 and loop at
+  0x10015d30.)
+
+- `show_arm_status_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10015da4; size 1892 bytes. It obtains the ARM-status section, requires the
+  pipe capability bit tested at 0x10015e18, and dispatches the returned status
+  selector to the individual status formatters. The body handles the three
+  ARM-address selectors 0x200200, 0x20023c and 0x200240 as special cases,
+  then emits the remaining status words through the formatter table and the
+  ARM-symbol helper. Missing data, an unsupported capability or a formatter
+  failure takes the error return; a complete decode returns zero. (`kpm`,
+  6.5.30m, capability test at 0x10015e14 and selector dispatch at
+  0x10015e50-0x10015e74.)
+
+- `show_arm_eeprom_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x100168f0; size 796 bytes. It walks the EEPROM section records returned by
+  the capture reader, rejects a missing or non-positive record count, and
+  formats each record's address, length and status through the EEPROM display
+  handlers. The header path prints the section failure on a negative reader
+  result; a nonnegative read with no records is handled separately, and the
+  normal record loop ends with zero. (`kpm`, 6.5.30m, complete body
+  0x100168f0-0x10016c0b; count and record fields are loaded at
+  0x1001698c-0x10016a94.)
+
+- `show_bef_perfregs_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019090; size 384 bytes. It requests six four-byte performance-register
+  values, reports the section error and returns -2 when fewer than six arrive,
+  then formats them as the six BEF performance fields at descriptor offsets
+  0x420, 0x440, 0x460, 0x480, 0x4a0 and 0x4c0. The formatter receives the six
+  saved values at stack offsets 0, 4, 8, 0xc, 0x10 and 0x14, as loaded at
+  0x10019144-0x100191e8. (`kpm`, 6.5.30m, request at 0x100190b4 and field
+  calls at 0x1001914c-0x100191ec.)
+
+- `show_bef_shadow_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019210; size 444 bytes. It requests 0x100 four-byte BEF shadow words,
+  formats the first 0x59 words with the fixed descriptor at 0x508, and, when
+  the caller supplies a positive count, formats the requested extra values
+  through the descriptor at 0x518. A nonzero result from that optional read
+  selects the alternate descriptor at 0x520; otherwise the routine formats up
+  to 0x100 captured words through the indexed descriptor at 0x538. It returns
+  zero after a complete pass and -1 for the short initial request. (`kpm`,
+  6.5.30m, request at 0x10019240, 0x59-word loop at 0x100192f0 and indexed
+  loop at 0x10019390.)
+
+- `ged_register_write` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019e3c; size 164 bytes. It maps the requested GED register with the
+  helper at 0x10019e6c, writes the GED address command 0x20000600 to host
+  offset 0x3e8 and the derived register selector to host offset 0x3f0, then
+  writes 0x20000ac0 to 0x3e8 and the caller's value to 0x3f0. The five-bit
+  register index is shifted by five and its half-index is shifted by nine
+  before the first selector is assembled. It returns zero. (`kpm`, 6.5.30m,
+  host stores at 0x10019e94, 0x10019eb0, 0x10019ec0 and 0x10019ecc.)
+
+- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10019ee0; size 228 bytes. It forms a one-bit engine mask from the caller's
+  engine number, writes register 0x222 through `ged_register_write` five
+  times, then selects the GED address command 0x20000600, writes selector
+  0x58400800, selects 0x20000a80 and writes 1 to the host command/data ports.
+  The repeated writes preserve the diagnostic sequence in the body; the
+  routine returns zero after the final store at 0x10019fc0. (`kpm`, 6.5.30m,
+  mask formation at 0x10019f0c and host sequence at 0x10019f7c-0x10019fc0.)
+
+- `show_ged_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1001aa3c; size 2016 bytes. It reads the GED capture records, formats the
+  fixed header and per-engine state through the GED descriptors, and passes
+  the captured words to the register/status decoders used by the diagnostic
+  viewer. The body has separate paths for an empty capture, a failed section
+  read and a valid capture; valid records are emitted in the engine order
+  supplied by the capture table and the function returns zero. (`kpm`,
+  6.5.30m, complete routine 0x1001aa3c-0x1001b21b; record dispatch begins at
+  0x1001ab24.)
+
+- `read_ge_symbols` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1001b554; size 476 bytes. It reads the GE symbol file into a four-byte
+  record buffer, allocates the symbol table, and parses records in 0x54-byte
+  steps until the parser returns its end marker (2). The first record is
+  cleared at byte 0 and word 0x50 (stores at 0x1001b624 and 0x1001b630), and
+  parser or allocation failures are logged and return -1. A null input loops
+  through the file-open path rather than dereferencing it; a completed read
+  returns zero. (`kpm`, 6.5.30m, file read at 0x1001b590 and record loop at
+  0x1001b6ec-0x1001b720.)
+
+- `show_ge_core` (`usr/gfx/KONA/bin/kpm`): **Established.** Address 0x1001c44c;
+  size 772 bytes. It formats the GE core capture header, the saved engine
+  identity and the fixed status fields at capture offsets 0x2980, 0x2984,
+  0x2988, 0x2a08, 0x2a88, 0x2c88, 0x2c8c, 0x2c90, 0x2c94 and 0x2c98. The
+  status path selects one of two formatter sequences based on the captured
+  engine value and only emits the alternate fields when the corresponding
+  flag differs. (`kpm`, 6.5.30m, capture loads at 0x1001c4f4-0x1001c71c.)
+
+- `show_ge_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address 0x1001cb0c;
+  size 1296 bytes. It reads the GE section, rejects an empty or failed read,
+  and uses `show_ge_core` for each valid core record. The valid path then
+  emits the GE register, symbol, diagnostic and engine-state subsections in
+  the order of the descriptor table; the count is checked before each group
+  and the routine returns zero only after all requested groups have been
+  formatted. (`kpm`, 6.5.30m, section read at 0x1001cb70 and core calls at
+  0x1001cc80 and 0x1001ce74-0x1001ce9c.)
+
+- `dgInspection` (`usr/gfx/KONA/bin/kpm`): **Established.** Address 0x1001f044;
+  size 444 bytes. It runs only when board-status bit 3 is set (the `lw` at
+  0x1001f064 and `andi` at 0x1001f06c), snapshots eleven display-generator
+  words into the capture record at offset 0x3c0, and then snapshots eighteen
+  more words while clearing the associated status word at offset 0x3d0. It
+  creates and writes the two capture sections through the dump-file helpers;
+  with the capability absent it returns zero without creating either section.
+  (`kpm`, 6.5.30m, first loop at 0x1001f0d0-0x1001f0f4 and second loop at
+  0x1001f184-0x1001f1a8.)
+
+- `show_fm_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address 0x1001f200;
+  size 424 bytes. It requests the FM section and accepts only the 0x11-word
+  result identified by the selector comparison at 0x1001f258. It masks each
+  of the seventeen returned words with the matching field mask from the FM
+  descriptor table and formats the result; an invalid count follows the
+  section-error path and returns -1, while a valid decode returns zero.
+  (`kpm`, 6.5.30m, section request at 0x1001f2c4 and field loop at
+  0x1001f32c-0x1001f368.)
+
+- `show_xmap_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1001f3a8; size 396 bytes. It requests the XMAP section and accepts the
+  0x12-word form selected at 0x1001f400. Each returned word is masked with its
+  XMAP field mask and formatted with the field descriptor at 0x88; a short
+  section invokes the error reporter and returns -1, while all eighteen
+  fields decode and return zero. (`kpm`, 6.5.30m, request at 0x1001f46c and
+  field loop at 0x1001f4ec-0x1001f528.)
+
 - `show_hip_host_registers_section` (`usr/gfx/KONA/bin/kpm`). **Established.**
   Address 0x1001545c; size 1028 bytes. It allocates a 0xb6-entry register
   section, then reads the host-interface offsets 0x220, 0x390, 0x398, 0x238,
