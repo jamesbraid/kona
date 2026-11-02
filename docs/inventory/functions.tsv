@@ -1417,7 +1417,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d7e0	6016	init_rm_jtag	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ef60	292	TEST_rmjtaginit	dynsym	6f324346b814		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f084	132	dump_indata_as_bits	dynsym	43929a32267c		in	named-only	docs/kpm.md#capture	Capture
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f108	156	dump_outdata_as_bits	dynsym	7a2227a401d9		in	named-only	docs/kpm.md#capture	Capture
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f1a4	32	kona_jt_set_custom_error_report	dynsym	9ec18ca44e4b		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f1a4	32	kona_jt_set_custom_error_report	dynsym	9ec18ca44e4b		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002f3dc	204	kt_current_chain	dynsym	19d360fac7c5		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10030dec	236	kt_setup_pin_status	dynsym	dae8b1be19c3		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10030ed8	2256	kt_report_pin_status	dynsym	8123e8d257f5		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -2486,7 +2486,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bae0	232	jt_lookup_port	dy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bbd0	260	porttopin	dynsym	af8b9ed807fb		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bce0	260	pintoport	dynsym	58e7bacd441d		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016bdf0	172	jt_canonize	dynsym	4639ba6696a7		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c0c0	528	jt_free_bist	dynsym	1c1633065a9d		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c0c0	528	jt_free_bist	dynsym	1c1633065a9d		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c5e0	268	jt_dispose_chain	dynsym	18652d002395		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016c6f0	536	jt_findfile	dynsym	78cd73f2485f		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1016ca70	156	jt_zclose	dynsym	1bd88596ce35		in	located	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2583,21 +2583,21 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000d510	1604	kpm_dump	dynsym	6a29d164f37
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000dc90	780	show_overview_section	dynsym	182c82a22789		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e210	288	kpm_status	dynsym	7182e2ba2d6c		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000e330	1300	kpm_view	dynsym	7e450367847f		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	78aa5094d5ec		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f538	8	kpm_interact	dynsym	78aa5094d5ec		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f540	596	kerror	dynsym	55fe4a284bc9		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f794	504	klog	dynsym	82ead94e5a04		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f98c	84	get_time	dynsym	0a967dc0c132		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f9e0	300	findfile	dynsym	b5ecaefb3da0		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	8e2fa57cf089		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fd90	692	open_file	dynsym	6d2425551c96		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000f9e0	300	findfile	dynsym	b5ecaefb3da0		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fb0c	644	create_file	dynsym	8e2fa57cf089		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1000fd90	692	open_file	dynsym	6d2425551c96		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010044	132	dump_indata_as_bits	dynsym	660b6b146844		in	named-only	docs/kpm.md#capture	Capture
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100100c8	156	dump_outdata_as_bits	dynsym	230ee00de4af		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010164	32	kona_jt_set_custom_error_report	dynsym	0a0e5731417d		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100116f0	548	kjiSetSubField	dynsym	7a691a37efeb		in	located	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10010164	32	kona_jt_set_custom_error_report	dynsym	0a0e5731417d		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100116f0	548	kjiSetSubField	dynsym	7a691a37efeb		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011914	528	kjiGetSubField	dynsym	85543169e942		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011b24	720	kjiGetSubFieldV	dynsym	2b933859d45d		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011df4	564	kj_arrange_global_instruction	dynsym	091368269b7c		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	09f1b7d4f424		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	09f1b7d4f424		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	303f3b24e7a0		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	6480cbcb8a16		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	b70c1abe376a		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
@@ -2661,7 +2661,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x100225a0	612	show_jtag_register	dynsym	3e
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10022804	1164	show_ge12_jtag_section	dynsym	1956b12c3e2c		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002cf5c	424	ge12_backward_analysis	dynsym	5e86ec4d7904		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d104	424	ge12_forward_analysis	dynsym	c824a5d800ba		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2ac	8	analyze_rbus	dynsym	87506497337c		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2ac	8	analyze_rbus	dynsym	87506497337c		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002d2b8	2248	show_rm6_jtag_section	dynsym	52591b1a1d09		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002e200	3836	get_rm_status	dynsym	9e11991a2494		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1002f0fc	1756	rm_backward_analysis	dynsym	f91b1aa4c1e7		in	named-only	docs/kpm.md#capture	Capture
@@ -2671,14 +2671,14 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003001c	884	Vpseudo_jtag	dynsym	998bacf9
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030a48	900	nicInspection	dynsym	20925044b325		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10030dcc	372	show_nic_section	dynsym	52c796756969		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003141c	1924	disassemble_tbus	dynsym	bd51aaefd4ee		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	9cd533529666		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	503624663902		in	named-only	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x1003206c	920	init_report	dynsym	9cd533529666		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032404	428	close_report	dynsym	503624663902		in	understood	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100325b0	1256	read_arm_symbols	dynsym	dc5b6fc02ab9		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032a98	116	free_arm_symbols	dynsym	5d94db98661b		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b0c	132	asym_address	dynsym	4faa967b1ddf		in	named-only	docs/kpm.md#capture	Capture
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b90	188	asym_symbol	dynsym	622774c952bb		in	named-only	docs/kpm.md#capture	Capture
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032a98	116	free_arm_symbols	dynsym	5d94db98661b		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b0c	132	asym_address	dynsym	4faa967b1ddf		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032b90	188	asym_symbol	dynsym	622774c952bb		in	understood	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032c4c	652	armInspection	dynsym	fc2b1ae1d16d		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032ed8	324	show_arm_symbols_section	dynsym	02bb1f8f9a13		in	named-only	docs/kpm.md#dump-file-and-viewer	Dump file and viewer
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10032ed8	324	show_arm_symbols_section	dynsym	02bb1f8f9a13		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033020	212	jt_reverse_unpacked_vector	dynsym	f0ecf9edd180		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033100	388	jt_pack_vector	dynsym	cb074ef2c9e3		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10033290	376	jt_unpack_vector	dynsym	646dce032073		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -2720,7 +2720,7 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038410	232	jt_lookup_port	dynsym	28d66b
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038500	260	porttopin	dynsym	e53c88281b1a		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038610	260	pintoport	dynsym	a00c6e74a3fe		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038720	172	jt_canonize	dynsym	4639ba6696a7		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100389f0	528	jt_free_bist	dynsym	b88d26bbf7f3		in	named-only	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100389f0	528	jt_free_bist	dynsym	b88d26bbf7f3		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10038f10	268	jt_dispose_chain	dynsym	0842db9c5c66		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10039020	536	jt_findfile	dynsym	74b4e07a7f47		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x100393a0	156	jt_zclose	dynsym	c267e87c73ec		in	understood	docs/kpm.md#boundary-scan-library-jt_	Boundary-scan library (`jt_*`)
@@ -3927,7 +3927,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1010fe30	144	SProcSGIvcMonitorC
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1010fec0	1936	SProcXineramaFreeColors	dynsym	a9f3bb57bc94		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10110650	228	SProcLbxCopyPlane..HAG	dynsym	4ad65d8e1ed8		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10110740	172	sgiCapChangeGC..FBE	dynsym	775d99f32c20		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101107f0	6252	dixChangeGC	dynsym	7d53c6c787e7		in	named-only	docs/kona-ddx.md#machine-independent-layer-mi	Machine-independent layer (`mi*`)
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x101107f0	6252	dixChangeGC	dynsym	7d53c6c787e7		in	named-only	docs/kona-ddx.md#generic-x-server-forwarding-routine	Generic X server forwarding routine
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10112060	276	RADIX_NUMBER..IPB	dynsym	7f43bcd226eb		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10112180	120	lazySpeedoGetInfoScalable..IAB	dynsym	1e665082cc92		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10112200	424	clean_aborted_blockrec..AEB	dynsym	8ba78feac03f		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -5693,7 +5693,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x1025fc50	1356	SyncAwaitTriggerF
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102601a0	1096	glxServerStartUpInit	dynsym	698320cf01a2		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102605f0	196	SProcLbxCopyArea..GAG	dynsym	93e8c5b04f02		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x102606c0	1228	sgiResetDefaultFontPath	dynsym	f6e7e1fc67ca		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260b90	72	ChangeGC	dynsym	47918f86a6dd		in	named-only	docs/kona-ddx.md#kona-layer	Kona layer
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260b90	72	ChangeGC	dynsym	47918f86a6dd		in	understood	docs/kona-ddx.md#generic-x-server-forwarding-routine	Generic X server forwarding routine
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260be0	440	ProcRecordUnregisterClients..PJG	dynsym	c2301dc5a74f		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260da0	332	RecordExtensionInit	dynsym	09ef634797a0		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10260ef0	1136	_fs_try_alternates..GGB	dynsym	bdca5dfee90d		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -47212,7 +47212,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001199c	540	venice_loadfile_ge8	dynsym	ee284
 usr/gfx/gfxinfo	shared-tool	n32		0x10011bb8	1312	venice_loaducode	dynsym	cb4e389a7296		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100120d8	8	internal_fifo_flow_control	dynsym	78aa5094d5ec		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100120ec	240	set_edgeMem_for_edge	dynsym	2a369035fc29		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10012518	220	venice_loadsection_dg2	dynsym	846b929eef12		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10012518	220	venice_loadsection_dg2	dynsym	846b929eef12		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100125f4	484	venice_load_clockDivider	dynsym	77594873f5d4		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100127d8	144	venice_set_vif_gensrc_cntrl	dynsym	a32188673ec8		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10012868	1292	venice_loadsection_dg2_top	dynsym	d63455f91569		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
@@ -48823,7 +48823,7 @@ usr/gfx/setmon	shared-tool	n32		0x1002a1b0	84	saXSGIvcDisableChannel	dynsym	cec6
 usr/gfx/setmon	shared-tool	n32		0x1002a210	140	saXSGIvcStoreGammaColors16	dynsym	7b66896191b7		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002a800	96	saXSGIvcSetOutputPhaseH	dynsym	ff8a71043919		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002a860	96	saXSGIvcSetOutputPhaseV	dynsym	bf6cfac0b275		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x1002b510	104	saXSGIvcQueryChannelGammaMap	dynsym	6c499f0a8598		in	undocumented		
+usr/gfx/setmon	shared-tool	n32		0x1002b510	104	saXSGIvcQueryChannelGammaMap	dynsym	6c499f0a8598		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002f670	104	saXSGIvcQueryOutputPhaseV	dynsym	510b2e56a42e		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002f6e0	104	saXSGIvcQueryOutputPhaseH	dynsym	0d1d52589a69		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1002fa40	388	XSGIvcInitTestJig	dynsym	d00520d7b4ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
