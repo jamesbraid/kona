@@ -1860,6 +1860,121 @@ The following target-specific readings use exact O32 facts and retain unresolved
 
 - `__glTransformLightDirection` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9c234c; occupies 320 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c234c over the full body. SHA-256 b70a40314247c8edad1a3befdfa72bcd8596b300e121611168ee5d6ff18ae937. Existing grade Inferred retained.
+## IP35 O32 lighting, material and primitive routines read in full
+
+These entries give target-specific observations from complete bodies in usr/gfx/arch/IP35KONA/libGLcore.so. N32 comparison routines and their original grades are named separately; no N32 behavior or source claim is transferred to the O32 target. Two supplied material-helper ranges include following functions, so their entry-body comparisons are shown separately.
+
+| Routine | O32 supplied address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes | Source grade |
+|---|---|---|---|---|---:|---|
+| __glim_Lightfv | 0xd9c248c / 732 | aa8ea6ac7bcc2be9589ed00eb3a2c81728a3538ad660e89520f428e7ebf6f7d5 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bd310 / 636 | 8f024d17f96b3416f43028f86a7196340bcb0e1a88cd07d5b72720b04bc0a85f | 564 | Established |
+| __glim_Lightf | 0xd9c2768 / 128 | de74cd45f936f67454276c7f581a48cfa4837ffdb7c2ab7293be742cd9923089 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bd590 / 132 | 1940b8f73264433f8c07ff52025040af2c93c91afe87d622115ac26ec0ba52d9 | 115 | Established |
+| __glim_Lightiv | 0xd9c27e8 / 752 | 7403ba43e741fa4c6f08d58cde6dd8ad50a592d5c14356b51438369cfb67a0be | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bd620 / 668 | 8186608ace9b2ed90d8e9570adf300558379fab7de7e2b29f0b175a0ae69a393 | 588 | Established |
+| __glim_Lighti | 0xd9c2ad8 / 128 | 11969851f1eae1325532876bd7289d01c929e49b9776f9ca98adcc34b7cd0c24 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bd8c0 / 120 | 3eed5ad07026a740a8d24326d2a17c315d1f26bbf266147058937cfe39a7b323 | 104 | Established |
+| __glim_LightModelfv | 0xd9c2b58 / 472 | 02e954164f7934e5dfa6766288b29e27bdfff43c5a2e257c2c6659b31013138d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bd940 / 312 | 9213461db94b65e4ee3d6e5bc2b5c3acad5ea8ce576ecd93f79b7ce24c17c8f1 | 278 | Established |
+| __glim_LightModelf | 0xd9c2d30 / 116 | 6cec25737712717f6a44e8772644d1e80d275480e66842095cc6594fa265ea09 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bda80 / 108 | 338afe7b1cfaf10d743f3950bd9e3bb352d93eb82965782bb3b97122245a56ef | 83 | Established |
+| __glim_LightModeliv | 0xd9c2da4 / 300 | 7365c8a7b9ee356e8030e6a5028b5686ea2e24fea53ef2c3bfbfc49dd9af4f41 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bdaf0 / 276 | 9780d6638ddf94d8f110e3970a6d6e106c7183e816ed375195dff3e3dac015d5 | 241 | Established |
+| __glim_LightModeli | 0xd9c2ed0 / 116 | deb49edbc83b5133fda346c1083e169db5f8544e5b82e786170f9b25838a93c0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bdc10 / 100 | c17da89d69477c9f87d4e5b86ea1c5e422fc5f65a6102d8c3ddf7dd6ff2d3d54 | 77 | Established |
+| __glim_LineStipple | 0xd9c2f44 / 144 | c9e200d2ba3d79b66a4ee9cab4acfc28fb2230ccd99733218d9d2b7ee36036b6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bdc80 / 136 | 17f7518feb04d692f1b26bf12a96b05ff7f128d5397b20c401471110c5e326e8 | 126 | Established |
+| __glim_LineWidth | 0xd9c30a0 / 228 | 01c1bf20c9b4a250fbc5fd7f9c66c60e8ce2813d1ae73c179a7d619dc9829d0a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bdd90 / 212 | a6f4c81fb958a318b9521c3c570bd71aa1f63f37fad98e2062005727dc17f019 | 185 | Established |
+| __glim_LogicOp | 0xd9c3184 / 152 | 794f9bcb4def00d95534b8c25913d10f6793c8a31dfd2f35eadad6a074f311ed | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bde70 / 156 | 829beae8eb658dfc1bd2b7de6473d37786a3baf86c5bd0b875ebfbf08987c969 | 134 | Established |
+| ApplyParameterF | 0xd9c321c / 1112 | d996582fc3eae36d24a1bc9a7d5ace8791b3a54527114df8566001488ba62b2a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9bdf10 / 388 | 4601448a8791afd66962ea32011b1d1a5cb6c616f66532748720d3e972edda79 | 297 | Established |
+| __glErrorCheckMaterial | 0xd9c339c / 196 | 6e5399d573b8c3043a34a0a35265478d35cdc13eedb66efa0202b78a0fd407d0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be0a0 / 220 | 8aec13e0723e0d0f1b038e6a338ab840a068df320adb9147c1a73d3dafcc7c0b | 147 | Established |
+| __glim_Materialfv | 0xd9c3460 / 436 | ffb7131b602f3238f98ea0901ab969bfeb50d23e8b66e076dd8164aac58355e1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be180 / 388 | 5af6201a53890464ea9b6c0717de6e0ebd3ffbb345c17fedee2d8af6a55885a2 | 334 | Inferred |
+| __glim_Materialf | 0xd9c3614 / 96 | cc6c33cb89a742df62ff1c8f9f44576bc8990b6dc2b53226074b9f798917e0e2 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be310 / 84 | 792f20fc22a450afb29e2eff50930a5a3a4637a7ddfe3199c5ed32a1eb524cc4 | 72 | Established |
+| ApplyParameterI | 0xd9c3674 / 1472 | 36e6a71b2ff805690344090184c4f859d4f4d550cf4aa5da6f3865c547d899a8 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be370 / 776 | 16e5c657119a5d653b7d5a2de3ddb7a2076ef8d7be910f8d911fb3e541bebb75 | 715 | Inferred |
+| __glim_Materialiv | 0xd9c3a10 / 452 | c08d12b612f045fb6ca236b891ca6e01fb146fc954c90534d7eac5169b02389d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be680 / 392 | 76294377e0dbfc6dcb4256736d02c563d309e3981bec8b48b7b94009924d4be4 | 340 | Inferred |
+| __glim_Materiali | 0xd9c3bd4 / 96 | aa6d0aeb976dc1e42226abbfd1b2bcb12d5b85d3293090ae97701dfa6cba3802 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be810 / 84 | e99b5bc35c493a5f8e0afc39325f9fbbc55fd90a27e6fb030bba83c1dd0c7edd | 72 | Established |
+| __glim_PointSize | 0xd9c3d00 / 228 | 57599d98bb5768c4542fcade19ce269218cd15e105c863d9523005588932a3b6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be8f0 / 212 | 2500737189263973fd0c43aac68671fe1db5251db27dad6354fcd0e33069fd5a | 186 | Established |
+| __glim_PolygonMode | 0xd9c3de4 / 300 | a10cf2089e141107a4a532a9dec7ead7db0180b3286330631a90af34fa6e74aa | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9be9d0 / 268 | 42e35bcf4fbca7a9b719b9140756ae634c657e248cf8c077f3ab7d6e28e7409e | 234 | Established |
+
+Corrected material-helper entry bodies:
+
+| Routine | O32 body address / size / SHA-256 | N32 address / size / SHA-256 | Prefix differences |
+|---|---|---|---:|
+| ApplyParameterF | 0xd9c321c / 384 / c1a0b66a2633123973befa09702735605322121ab8fef9d3e735a40209e40acd | 0xd9bdf10 / 388 / 4601448a8791afd66962ea32011b1d1a5cb6c616f66532748720d3e972edda79 | 294 |
+| ApplyParameterI | 0xd9c3674 / 924 / c282225364089bab732706c19951676c689b7e2dacba0d2831859c4d0c8f2d49 | 0xd9be370 / 776 / 16e5c657119a5d653b7d5a2de3ddb7a2076ef8d7be910f8d911fb3e541bebb75 | 715 |
+
+#### Target-build readings
+
+- `__glim_Lightfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c248c; occupies 732 bytes.
+  **Inferred.** Updates software light state from a float vector. It reads the context pointer at absolute 0x1010, a light-count word at context +0xe04 and the light-array pointer at +0x630 (`lw` at 0xd9c24ac, 0xd9c24c8, 0xd9c251c). Three colour paths call `__glScaleColorf` with the context and original input vector, but their output record addresses are unknown (`jalr` at 0xd9c2560, 0xd9c257c, 0xd9c2598). Position processing includes an unresolved callback, and direction processing calls `__glTransformLightDirection` (`jalr` at 0xd9c25dc, 0xd9c261c). Error sites report 0x502, 0x500 and 0x501 (`jalr` at 0xd9c24d4, 0xd9c2504, 0xd9c2668). Completion writes two to absolute 0x1018 (`sw` at 0xd9c2744). The exact per-light destinations and merged return remain unknown in hostfacts.
+
+- `__glim_Lightf` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2768; occupies 128 bytes.
+  **Inferred.** Adapts a scalar light parameter to the vector setter. Its delegated call preserves the light and parameter arguments and points argument 2 at entry-stack +8 (`jalr` at 0xd9c27b4 to `__glim_Lightfv`). The scalar word is saved there before dispatch (`sw` at 0xd9c278c). A separate path calls `__glSetError` with 0x500 (`jalr` at 0xd9c27cc). The full body includes the parameter jump table, with no direct lighting-register store. Its return is whichever helper result survives the selected path.
+
+- `__glim_Lightiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c27e8; occupies 752 bytes.
+  **Inferred.** Uses integer-vector colour conversion and software light transformation. It loads context +0xe04 and +0x630 through the pointer at absolute 0x1010 (`lw` at 0xd9c2808, 0xd9c2824, 0xd9c2878). Three paths invoke `__glScaleColori` with the original vector (`jalr` at 0xd9c28bc, 0xd9c28d8, 0xd9c28f4). An unnamed transform callback and `__glTransformLightDirection` occur on other paths (`jalr` at 0xd9c2968, 0xd9c29cc). Validation failures can report 0x502, 0x500 or 0x501 (`jalr` at 0xd9c2830, 0xd9c2860, 0xd9c29f8). It marks software status two at absolute 0x1018 (`sw` at 0xd9c2ab4). Hostfacts leaves the indexed light-record addresses unresolved.
+
+- `__glim_Lighti` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2ad8; occupies 128 bytes.
+  **Inferred.** Passes an integer scalar as a one-word input vector to `__glim_Lightiv`. The scalar is stored at entry-stack +8 (`sw` at 0xd9c2afc), which becomes the third argument of the delegated call (`jalr` at 0xd9c2b24). A second call site supplies error 0x500 to `__glSetError` (`jalr` at 0xd9c2b3c). The delegated vector-setter call preserves the incoming light and parameter values. The error call replaces the light argument with 0x500. The entire O32 dispatch table and return were read, and the wrapper itself performs only stack stores.
+
+- `__glim_LightModelfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2b58; occupies 472 bytes.
+  **Inferred.** Sets global software lighting-model colour, flags and control words from float input. The colour helper `__glScaleColorf` receives context +0x574 as its destination and original argument 1 as input (`jalr` at 0xd9c2bd8). Flag writes use one-byte fields at context +0x584 and +0x585, with values zero or one (`sb` at 0xd9c2c10, 0xd9c2c38). Another path stores an unknown converted control word at +0x588 (`sw` at 0xd9c2cd8). Error calls include 0x502 and two 0x500 sites (`jalr` at 0xd9c2b90, 0xd9c2ce4, 0xd9c2cfc). The conversion fallback was read in full rather than inferred from the shorter N32 body. Hostfacts cannot follow the later dirty-state base or the final return.
+
+- `__glim_LightModelf` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2d30; occupies 116 bytes.
+  **Inferred.** Packages a scalar lighting-model input into a stack vector. The accepted dispatch path calls `__glim_LightModelfv` with original argument 0 and entry-stack +4 (`jalr` at 0xd9c2d70). That saved input word is written (`sw` at 0xd9c2d50). The alternate path reports 0x500 through `__glSetError` (`jalr` at 0xd9c2d88). The complete comparisons and both return paths are retained. This wrapper establishes argument adaptation, with the vector setter owning the state changes.
+
+- `__glim_LightModeliv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2da4; occupies 300 bytes.
+  **Inferred.** Applies integer-vector values to software lighting-model state. Ambient conversion invokes `__glScaleColori` with the context, context +0x574 and the original vector (`jalr` at 0xd9c2e24). Other branches write byte flags at context +0x584 and +0x585 (`sb` at 0xd9c2e44 and 0xd9c2e54). A separate word store writes the first input at context +0x588 (`sw` at 0xd9c2e78). The body contains error 0x502 and two invalid-enum calls carrying 0x500 (`jalr` at 0xd9c2ddc, 0xd9c2e84, 0xd9c2e9c). A final software-status store writes two at absolute 0x1018 (`sw` at 0xd9c2eb0). No board register meaning is assigned to that low absolute address.
+
+- `__glim_LightModeli` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2ed0; occupies 116 bytes.
+  **Inferred.** Routes a scalar integer lighting-model request to its vector implementation. Incoming argument 1 is saved at entry-stack +4 (`sw` at 0xd9c2ef0). `__glim_LightModeliv` receives the original parameter name and that stack address (`jalr` at 0xd9c2f10). The error path calls `__glSetError` with 0x500 (`jalr` at 0xd9c2f28). The wrapper does not copy a fixed result into v0, leaving the merged helper return unresolved. Its observed writes are stack bookkeeping.
+
+- `__glim_LineStipple` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c2f44; occupies 144 bytes.
+  **Inferred.** Stores a software line-stipple repeat count and pattern. The first branch takes when original argument 0 is signed-positive (`bgtz` at 0xd9c2f90). The upper test takes when unresolved a0 is signed-less-than 0x101 (`bnel` at 0xd9c2fa0). Its halfword-store delay slot runs only when taken (`sh` at 0xd9c2fa4). Count stores are halfwords at context +0x1e2, including the upper value 0x100 (`sh` at 0xd9c2fa4, 0xd9c2fac). The pattern is another halfword at context +0x1e0 (`sh` at 0xd9c2fb0). It ORs mask two into context +0x2e24 (`ori` at 0xd9c2fbc, `sw` at 0xd9c2fc0). The error call supplies 0x502 (`jalr` at 0xd9c2f80). Context is the pointer read from absolute 0x1010 (`lw` at 0xd9c2f74), and the merged return remains unknown.
+
+- `__glim_LineWidth` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c30a0; occupies 228 bytes.
+  **Inferred.** Saves the requested width and obtains software rounded and clamped forms. The incoming float is stored at context +0x1d4 (`swc1` at 0xd9c311c). `RoundWidth` and `ClampWidth` are resolved local callees (`jalr` at 0xd9c3128, 0xd9c314c), while their later result- store addresses are unknown to hostfacts. Two error sites report 0x502 and 0x501 (`jalr` at 0xd9c30d8, 0xd9c3108). The full body also writes two at absolute 0x1018 (`sw` at 0xd9c3164). Context comes from absolute 0x1010. No exact rounding or hardware width encoding is inferred from the helper names. The context-pointer load is explicit (`lw` at 0xd9c30c4).
+
+- `__glim_LogicOp` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3184; occupies 152 bytes.
+  **Inferred.** Records the requested logic operation in software state after validation. It reads the context pointer and state word at absolute 0x1010 and 0x1018 (`lw` at 0xd9c31a8, 0xd9c31a0). Its two error sites report 0x502 and 0x500 through `__glSetError` (`jalr` at 0xd9c31bc, 0xd9c31e8). The state-update arm stores original argument 0 at context +0x740, writes two to absolute 0x1018 and ORs mask one into context +0x2e24 (`sw` at 0xd9c31f8, 0xd9c31fc, 0xd9c3208, `ori` at 0xd9c3204). Hostfacts leaves the merged return unresolved. These state stores do not identify a hardware logic-operation register.
+
+- `ApplyParameterF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c321c; occupies 384 bytes.
+  **Inferred.** Applies a float material parameter and returns a group mask for the selected case. The sole callee is `__glScaleColorf`, with destination argument 1 +0x30 and input original argument 3 (`jalr` at 0xd9c32a4). For selector 0x1601, the path writes the first input float at material +0x40 and returns mask 0x10 (`beq` at 0xd9c3260, `swc1` at 0xd9c32ec). Other exit paths report zero, one, two, three, four, eight or 0x20 at the common return (`jr` at 0xd9c3394), as recorded in hostfacts' per-path results. The merged v0 remains unknown. Material means argument 1. Native O32 procedure/end records confirm the 384-byte body ending at `__glErrorCheckMaterial` 0xd9c339c. The supplied 1112-byte range includes following functions. The supplied range includes later functions; this entry describes only its independently bounded body.
+
+- `__glErrorCheckMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c339c; occupies 196 bytes.
+  **Inferred.** Checks material face/parameter inputs and returns an error code without calling a helper. Its face comparisons cover 0x404, 0x405 and 0x408 (`beq` at 0xd9c33b0, 0xd9c33b8, `beql` at 0xd9c33c0). Parameter validation has a separate scalar-range path. The recorded exits return 0x500, 0x501 or zero (`jr` at 0xd9c33c8, 0xd9c3410, 0xd9c3448, 0xd9c3458). It makes no memory-access operation or software state update. The whole 196-byte target body was read independently of the different-sized N32 routine.
+
+- `__glim_Materialfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3460; occupies 436 bytes.
+  **Inferred.** Validates and applies float-vector material state through local helpers. `__glErrorCheckMaterial` receives the face, parameter and first vector word. A nonzero error result falls through to `__glSetError`. Zero takes the branch past it (`jalr` at 0xd9c3490, 0xd9c34ac, `beqz` at 0xd9c34a0). Four `ApplyParameterF` sites target context +0x590 or +0x5e0 and pass the original parameter/vector (`jalr` at 0xd9c3530, 0xd9c3558, 0xd9c3580, 0xd9c35a4). Material validation uses `__glValidateMaterial` (`jalr` at 0xd9c35d0). Two additional context callbacks remain unresolved (`jalr` at 0xd9c34e4, 0xd9c35f4). Their roles, several returned group values and the final result are unknown to hostfacts. The complete conditional body is preserved without turning callback success into hardware evidence.
+
+- `__glim_Materialf` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3614; occupies 96 bytes.
+  **Inferred.** Accepts the scalar material parameter 0x1601 and adapts it to the float-vector setter (`bne` at 0xd9c3630). It saves the scalar at entry-stack +8 (`sw` at 0xd9c3634), then passes that address to `__glim_Materialfv` (`jalr` at 0xd9c3640). Other parameter names take the error path, which calls `__glSetError` with 0x500 (`jalr` at 0xd9c3658). The return is not fixed across those helper paths. No material record is written directly by this scalar wrapper.
+
+- `ApplyParameterI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3674; occupies 924 bytes.
+  **Inferred.** Converts integer material input into software material values and returns case- specific group masks. Its sole call is `__glScaleColori`, receiving original argument 0, material +0x30 and original argument 3 (`jalr` at 0xd9c3720). A scalar 0x1601 path writes a float at material +0x40 and returns 0x10 (`beq` at 0xd9c36b8, `swc1` at 0xd9c37f0). Integer colour paths include a context conversion factor at +0xdf0 (`lwc1` at 0xd9c3750), but the complete conversion formula is not filled in where hostfacts loses values. The common exit records masks zero, one, two, three, four, eight, 0x10 or 0x20 (`jr` at 0xd9c3a08), while merged v0 remains unknown. The scalar store value also remains unresolved. Material is argument 1. Native O32 procedure/end records confirm its 924-byte body up to `__glim_Materialiv` 0xd9c3a10. The supplied 1472-byte range includes following functions. No N32 fused-conversion formula is carried over. The supplied range includes later functions; this entry describes only its independently bounded body.
+
+- `__glim_Materialiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3a10; occupies 452 bytes.
+  **Inferred.** Applies integer-vector material values after common validation. The first calls resolve to `__glErrorCheckMaterial` and `__glSetError` (`jalr` at 0xd9c3a50, 0xd9c3a6c). Four application sites use `ApplyParameterI`, targeting context +0x590 and +0x5e0 with the original parameter and vector (`jalr` at 0xd9c3af0, 0xd9c3b18, 0xd9c3b40, 0xd9c3b64). A later site invokes `__glValidateMaterial` (`jalr` at 0xd9c3b90). The two context callbacks remain unnamed (`jalr` at 0xd9c3aa4, 0xd9c3bb4). Hostfacts also leaves the validation call's converted scalar argument and final result unresolved. This body establishes software material orchestration, not the callbacks' hardware behavior.
+
+- `__glim_Materiali` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3bd4; occupies 96 bytes.
+  **Inferred.** Adapts scalar integer material input only for parameter 0x1601 (`bne` at 0xd9c3bf0). It stores the scalar at entry-stack +8 (`sw` at 0xd9c3bf4), then calls `__glim_Materialiv` with that address as argument 2 (`jalr` at 0xd9c3c00). Its other arm calls `__glSetError` with 0x500 (`jalr` at 0xd9c3c18). The incoming face and parameter are preserved until delegation. The complete return paths leave a merged helper result, and local stores are confined to the stack.
+
+- `__glim_PointSize` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3d00; occupies 228 bytes.
+  **Inferred.** Stores a requested software point size and delegates rounding and clamping. The request float goes to context +0x1c8 (`swc1` at 0xd9c3d7c). `RoundSize` and `ClampSize` are the resolved helpers (`jalr` at 0xd9c3d88, 0xd9c3dac). Their result stores have unknown effective addresses in hostfacts. Two error calls carry 0x502 and 0x501 (`jalr` at 0xd9c3d38, 0xd9c3d68). A status store writes two to absolute 0x1018 (`sw` at 0xd9c3dc4). Context is loaded from absolute 0x1010, and neither an exact rounding equation nor a hardware point-size encoding is established here. The context-pointer load is explicit (`lw` at 0xd9c3d24).
+
+- `__glim_PolygonMode` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3de4; occupies 300 bytes.
+  **Inferred.** Selects software polygon drawing modes by updating one or both face fields. The stored mode words target context +0x1e4 and +0x1e8 (`sw` at 0xd9c3ec0, 0xd9c3ec8, 0xd9c3ed4). Completion writes two to absolute 0x1018 and ORs mask four into context +0x2e24 (`sw` at 0xd9c3ef0, 0xd9c3efc, `ori` at 0xd9c3ef8). Error calls include 0x502 and two 0x500 sites (`jalr` at 0xd9c3e1c, 0xd9c3e88, 0xd9c3ee0). Context comes from absolute 0x1010 (`lw` at 0xd9c3e08). The full mode and face-selection body was read, while its merged return remains unknown. Those software fields are not presented as device register addresses.
 ## Software renderer (soft)
 
 ### so_accumop.c
