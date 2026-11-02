@@ -5242,6 +5242,23 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
   Address 0xda72498; occupies 600 bytes.
   **Inferred.**** A fast RGB lighting calculation. This body loads a linked-state pointer from a0 +0x6e4c and float inputs from a2 +0x20/+0x24/+0x28 (`lw` at 0xda724b0, `lwc1` at 0xda724b4, `lwc1` at 0xda724b8, and `lwc1` at 0xda724c0). Entry a1 nonzero takes an alternate arm, while zero falls through (`bnez` at 0xda724bc). Result word stores resolve to two possible groups relative to entry a2: +0x90/+0x94/+0x98 or +0xa0/+0xa4/+0xa8 (`sw` at 0xda726b8, `sw` at 0xda726c8, and `sw` at 0xda726cc). The individual results and some traversal bases are unknown, so a complete ambient/diffuse/specular formula is not inferred from the sibling.
 
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glClampAndScaleColor | 0x2ee1a90 / 232 | 83d9571b2a76d48f81a624a64b3d057f30e975fb3eef3a9f8c25b6a9d9a5015d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7c2c0 / 204 | 5e0d688e4ffd5b4e62a2571b32b5cddc3a25975516536df1ef3e35b33f849a35 | no |
+| __glFastCalcRGBColor | 0x2ee1b78 / 628 | 7c674e3efa71397e8b09f258c44069f29084858cfb034ce8b46112b63c696400 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7c38c / 600 | 5e8fbbdb3ffec4bcb09c499c87cc347fa5db5f4507570ece695c66d444fa2db1 | no |
+
+- `__glClampAndScaleColor` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee1a90; occupies 232 bytes.
+  **Inferred.** Scales four software colour values and selects component endpoints through separate branch paths. Inputs are argument 0 +0x260, +0x264, +0x268 and +0x26c (`lwc1` at 0x2ee1a94, 0x2ee1a98, 0x2ee1aa0, 0x2ee1aa8). The associated scale fields are +0x9a08, +0x9a0c, +0x9a10 and +0x9a30 (`lwc1` at 0x2ee1ab4, 0x2ee1ac8, 0x2ee1ad8, 0x2ee1ae8). Output goes to +0x168, +0x16c, +0x170 and +0x174 (`swc1` at 0x2ee1b0c, 0x2ee1b1c, 0x2ee1b2c, 0x2ee1b34). The first negative-register case is selected by v0 < 0 (`bltz` at 0x2ee1af0), but hostfacts cannot track that register back to an input float. Its block graph is incomplete around delay-slot control flow, so the full clamp interpretation remains inferred. No call appears in the preserved body.
+
+- `__glFastCalcRGBColor` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee1b78; occupies 628 bytes.
+  **Inferred.** Accumulates three float values from vertex fields and a linked data sequence. Vertex inputs are argument 2 +0x28, +0x2c and +0x30 (`lwc1` at 0x2ee1b98, 0x2ee1b9c, 0x2ee1ba4), and the sequence starts with a word at argument 0 +0x8d80 (`lw` at 0x2ee1b94). An input selector chooses one of two paths (`bnez` at 0x2ee1ba0). Hostfacts reports destination alternatives at vertex +0x98/+0xa8, +0x9c/+0xac, +0xa0/+0xb0 and +0xa4/+0xb4 (`sw` at 0x2ee1db4, 0x2ee1dc4, 0x2ee1dc8, 0x2ee1dcc). Internal sequence accesses and the final return value remain unknown. Its negative context-relative offsets and outside-file labels are retained as tool limitations, not identified hardware registers. The complete routine has no callee.
+
 ### mips_poly.c
 
 - `__glRenderFlatTriangle` in usr/gfx/arch/IP27KONA32/libGLcore.so: draws a flat-shaded triangle: culls by facing and draws the triangle with the colour of its provoking vertex, in hand-written code, and it occupies 576 bytes at address 0x0da7c6d0; the public sample-implementation source gfx/lib/opengl/glcore/s_pgmode.c holds the same routine, matched by name, no direct call in either, 5 indirect calls, a shipped body of 284 source lines against 65 in the public file, and it makes no access to the board. Inferred.
@@ -5264,6 +5281,23 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
   Address 0xda72c1c; occupies 572 bytes.
   **Inferred.**** The smooth-triangle body reads the +0x84 words of its three input records (`lw` at 0xda72c20, `lw` at 0xda72c24, and `lw` at 0xda72c28) and stores float setup values at context +0x7620/+0x761c/+0x7624/+0x7628/+0x7618 (`swc1` at 0xda72ce8, `swc1` at 0xda72cf4, `swc1` at 0xda72cf8, `swc1` at 0xda72cfc, and `swc1` at 0xda72d10). Four indirect calls preserve the context in a0 (`jalr` at 0xda72db0, `jalr` at 0xda72ddc, `jalr` at 0xda72e08, and `jalr` at 0xda72e20). The decoded body establishes setup and dispatch, without resolving callback names or every facing decision.
 
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glRenderFlatTriangle | 0x2ee1ed0 / 652 | 73466a471643d471ee633a515bdcbfb5eeded468259559ab1f2a4baea760aa32 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7c6d0 / 576 | 81625074202eb7f8772e40afb4ae002e74ba7b5686d18a0ecc70f2dcd629a52f | no |
+| __glRenderSmoothTriangle | 0x2ee23b4 / 640 | a08b3572bae543e2a318735f8b81fd23fc0c82d96480055fface2dac9f3f4f2c | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7cb24 / 576 | 7534b8a9576e4e75f207edecfe0a9f1f0b001f3ff8742d0b1395c94df2e76961 | no |
+
+- `__glRenderFlatTriangle` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee1ed0; occupies 652 bytes.
+  **Inferred.** Prepares triangle geometry, then conditionally calls unresolved procedures with vertex records. It compares the words at +0x8c of the three incoming vertex records (`lw` at 0x2ee1ed4, 0x2ee1ed8, 0x2ee1edc). Computed float values go to context +0x9718, +0x9714, +0x971c, +0x9720 and +0x9710 (`swc1` at 0x2ee1fa4, 0x2ee1fb8, 0x2ee1fc4, 0x2ee1fd0, 0x2ee1ff4). A zero shifted context word selects the early return (`beqz` at 0x2ee2024). The body contains four conditional indirect calls and a final call through context +0x4998 (`jalr` at 0x2ee2050, 0x2ee2060, 0x2ee2070, 0x2ee2080, 0x2ee213c, `lw` at 0x2ee2134). All five targets remain unresolved, and several internal destinations are incorrectly labelled outside by hostfacts. Flat- shading and physical rendering behavior beyond those calls are not established.
+
+- `__glRenderSmoothTriangle` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee23b4; occupies 640 bytes.
+  **Inferred.** Builds software triangle state and arranges per-vertex records before indirect dispatch. Initial comparisons read +0x8c from arguments 1, 2 and 3 (`lw` at 0x2ee23b8, 0x2ee23bc, 0x2ee23c0). Geometry results fill context +0x9718, +0x9714, +0x971c, +0x9720 and +0x9710 (`swc1` at 0x2ee2488, 0x2ee249c, 0x2ee24a8, 0x2ee24b4, 0x2ee24d8). Three word stores prepare record pointers, though their effective addresses are unknown in hostfacts (`sw` at 0x2ee2558, 0x2ee2564, 0x2ee2588). Three conditional callbacks precede the final context +0x4998 dispatch (`jalr` at 0x2ee258c, 0x2ee25b8, 0x2ee25e4, 0x2ee25fc, `lw` at 0x2ee25f4). The four target identities and their hardware effects remain unresolved. The complete body supports software preparation rather than a direct board-store claim.
+
 ### mips_polyfin.c
 
 - `__glEvenTStripVertex` in usr/gfx/arch/IP27KONA32/libGLcore.so: handles an even-numbered vertex of a triangle strip: shifts the vertex window, tests the clip codes of the new triangle and draws or clips it, in hand-written code, and it occupies 136 bytes at address 0x0da79a10; the public sample-implementation source gfx/lib/opengl/glcore/s_pgfin.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 40 source lines against 34 in the public file, and it makes no access to the board. Inferred.
@@ -5281,16 +5315,67 @@ These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.s
   Address 0x2edeff0; occupies 144 bytes.
   **Inferred.** **Inferred.** Even-strip vertex handling loads the previous two vertex pointers from a0 +0x4e50/+0x4e58 (`ld` at 0x2edeff0 and `ld` at 0x2edeff4). It clears byte a0 +0x95b8, sets entry a1 +0xc0 to 1 and saves entry a1 at a0 +0x8cf0 (`sb` at 0x2edf000, `sb` at 0x2edf004, and `sd` at 0x2edf018). The combined input flag words control a branch that is taken on nonzero and falls through on zero (`bnez` at 0x2edf028). The two resulting dispatch sites are an indirect tail jump and a normal indirect call (`jr` at 0x2edf03c and `jalr` at 0x2edf068). Their targets remain unknown, so full draw-versus-clip semantics are inferred rather than established. Unequal exact ranges: target 144 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79a10 +136 bytes / 116 changed common-prefix positions
 
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glOddTStripVertex | 0x2edf080 / 144 | dfbd0654a6fbe7d25855a40d77cf18c33ba8904343a3d1dfaeb76085686aa674 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda79a98 / 136 | fb2eacc438b169e22189a36a02718fd4668c67fc5a0f75bff6ef32a30744ad4d | no |
+
+- `__glOddTStripVertex` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edf080; occupies 144 bytes.
+  **Inferred.** Advances the triangle-strip vertex window and chooses an indirect triangle path. Prior vertices come from argument 0 +0x4e50 and +0x4e58 (`ld` at 0x2edf080, 0x2edf084). It clears argument 0 +0x95b8 and sets argument 1 +0xc0 to one (`sb` at 0x2edf090, 0x2edf094). A zero union of the three +4 words falls through to the tail-call path (`bnez` at 0x2edf0b8, `jr` at 0x2edf0cc). The nonzero arm can call another unresolved target (`jalr` at 0x2edf0f8). Vertex-window stores include argument 0 +0x4e48, +0x4e58 and +0x4e50 (`sd` at 0x2edf0c4, 0x2edf0c8, 0x2edf0d0). These are software updates. Neither callback's graphics-device effect is resolved.
+
 ### mips_prim.c
 
 - `__glPoint` in usr/gfx/arch/IP27KONA32/libGLcore.so: draws one point: when the vertex is inside the clip volume it validates the vertex for the front colour and calls the context's point renderer, in hand-written code, and it occupies 76 bytes at address 0x0da79e1c; the public sample-implementation source gfx/lib/opengl/glcore/s_ptfin.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 27 source lines against 7 in the public file, and it makes no access to the board. Inferred.
 - `__glPointFast` in usr/gfx/arch/IP27KONA32/libGLcore.so: draws one point on the fast path: when the vertex is inside the clip volume it calls the context's point renderer directly, in hand-written code, and it occupies 28 bytes at address 0x0da79e68; the public sample-implementation source gfx/lib/opengl/glcore/s_ptfin.c holds the same routine, matched by name, no direct call in either, a shipped body of 11 source lines against 6 in the public file, and it makes no access to the board. Inferred.
+
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glPoint | 0x2edf410 / 80 | ca8919593ee467afdda6f19ac54d0dcde72273527e6bcff02686ddf83e43f1e0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda79e1c / 76 | 35da28a1a3d39028d3647aa6abe98c9fd851317c20a02c39d87a6a2dec682a6d | no |
+| __glPointFast | 0x2edf460 / 28 | 12cc5f244dd41935369172b6f51d6dc0b60e4be896bc78a1375bc3ee0f9898ba | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda79e68 / 28 | 74baf3d32ec74c6867d7f75f3fcc957ddde362e7e0193c791e436c0971dd4bcd | no |
+
+- `__glPoint` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edf410; occupies 80 bytes.
+  **Inferred.** Calls one unresolved procedure and then tail-dispatches through another. Its first callback pointer is argument 1 +0x10 (`ld` at 0x2edf418). The call receives the original context and vertex arguments plus the word from argument 0 +0x8cfc with mask 0x1 set (`lw` at 0x2edf414, `jalr` at 0x2edf430). It then loads the next target from argument 0 +0x4cc8 and jumps to it (`ld` at 0x2edf444, `jr` at 0x2edf450). The early return depends on incoming v0, whose meaning hostfacts leaves unknown (`bnez` at 0x2edf41c). A clip-code interpretation is therefore not established for this build.
+
+- `__glPointFast` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edf460; occupies 28 bytes.
+  **Inferred.** Tail-dispatches directly through the pointer at argument 0 +0x4cc8 (`ld` at 0x2edf460, `jr` at 0x2edf46c). A nonzero v0 selects the local return instead (`bnez` at 0x2edf464, `jr` at 0x2edf474). The body does not define v0 before testing it, and hostfacts does not identify its meaning. The tail call preserves the four incoming argument registers. There is no direct data store here, and the unresolved target's hardware behavior remains unknown.
 
 ### mips_vertex.c
 
 - `__glValidateVertex2` in usr/gfx/arch/IP27KONA32/libGLcore.so: fills in what a two-component vertex still lacks for the needed attributes, transform, lighting, fog and texture, in hand-written code, and it occupies 444 bytes at address 0x0da7a940; the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c holds the same routine, matched by name, no direct call in either, 9 indirect calls, a shipped body of 177 source lines against 52 in the public file, and it makes no access to the board. Inferred.
 - `__glValidateVertex3` in usr/gfx/arch/IP27KONA32/libGLcore.so: fills in what a three-component vertex still lacks for the needed attributes, transform, lighting, fog and texture, in hand-written code, and it occupies 452 bytes at address 0x0da7aafc; the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c holds the same routine, matched by name, no direct call in either, 9 indirect calls, a shipped body of 179 source lines against 53 in the public file, and it makes no access to the board. Inferred.
 - `__glValidateVertex4` in usr/gfx/arch/IP27KONA32/libGLcore.so: fills in what a four-component vertex still lacks for the needed attributes, transform, lighting, fog and texture, in hand-written code, and it occupies 460 bytes at address 0x0da7acc0; the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c holds the same routine, matched by name, no direct call in either, 9 indirect calls, a shipped body of 182 source lines against 53 in the public file, and it makes no access to the board. Inferred.
+
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glValidateVertex2 | 0x2edff80 / 448 | 74787fd2f133a8fd52f0f964fabb40e6e37b35266a06a22047afbf691c3e5b11 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7a940 / 444 | 90272dc026ccd40757d4d26ba07d9a4af0f86b2aefaabfc946512a7a89ea0b64 | no |
+| __glValidateVertex3 | 0x2ee0140 / 456 | acdc568336f48a5bf5c94222a0677f1b516020a73070cf67f170148be9daa970 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7aafc / 452 | a72dc82f5396880ac17fa01c180dc7ffa1c5cf0119c50d26bf1d480b73fddb5d | no |
+| __glValidateVertex4 | 0x2ee0308 / 464 | 69b898e74505cbdd35588d3a702eb63750622a352cf7e20bc4541bf6cbc0888a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7acc0 / 460 | dcfbd4dbea5dce959e267e544380ff02a5f73113fcb55e5275fd694daca37278 | no |
+
+- `__glValidateVertex2` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edff80; occupies 448 bytes.
+  **Inferred.** Fills software vertex attributes through conditional callbacks. It loads a state pointer from argument 0 +0x94c0 and writes 0x3f800000 to argument 1 +0x74 (`ld` at 0x2edffa8, `sw` at 0x2edffc0). A bit-0x10 test of unresolved s3 selects the call whose arguments are vertex +0x68, vertex +0x18 and the state pointer (`bnez` at 0x2edffbc, `jalr` at 0x2ee0024). Other paths write a float at vertex +0x34 and a callback result at vertex +0xb8 (`swc1` at 0x2ee005c, 0x2ee009c). Calls through the context's +0x4900 pointer use selector zero or one (`jalr` at 0x2ee00f4, 0x2ee0110). The final word update targets vertex +0 (`sw` at 0x2ee0128). All nine callees are unresolved. Hostfacts also marks some internal delay-slot destinations outside the routine, so its block graph is not treated as complete.
+
+- `__glValidateVertex3` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee0140; occupies 456 bytes.
+  **Inferred.** Uses an unresolved callback at state +0x50, where state is loaded from argument 0 +0x94c0 (`ld` at 0x2ee0168, 0x2ee01d8). That call receives vertex +0x68, vertex +0x18 and state (`jalr` at 0x2ee01e4). The body initializes vertex +0x74 to 0x3f800000 and can store a computed float at +0x34 (`sw` at 0x2ee0180, `swc1` at 0x2ee0228). Two final attribute callbacks take the context, selector zero or one, and vertex (`jalr` at 0x2ee02bc, 0x2ee02d8). It updates the vertex's first word before returning (`sw` at 0x2ee02f0). Nine indirect callees remain unnamed, and the s3 condition value is unknown in hostfacts. Internal-target outside labels limit the graph, not the preserved full listing.
+
+- `__glValidateVertex4` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee0308; occupies 464 bytes.
+  **Inferred.** Prepares vertex fields with a separate zero-word case. Its state pointer comes from argument 0 +0x94c0 (`ld` at 0x2ee0330). The callback at state +0x58 receives vertex +0x68, vertex +0x18 and state (`ld` at 0x2ee03a4, `jalr` at 0x2ee03b0). A nonzero vertex +0x24 word selects the computed +0x34 result, while the branch delay slot clears +0x34 on both paths (`lw` at 0x2ee0354, `bnez` at 0x2ee0360, `sw` at 0x2ee0364, `swc1` at 0x2ee03fc). Later calls supply selectors zero and one (`jalr` at 0x2ee048c, 0x2ee04a8), and the first vertex word is updated (`sw` at 0x2ee04c0). Hostfacts leaves all nine targets unresolved and mislabels internal delay- slot branch destinations outside the body. The supported effect is software attribute preparation, with downstream graphics activity unknown.
 
 ### mips_vsave.c
 
@@ -5314,6 +5399,53 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
 - `__glSaveCIAll` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xda71374; occupies 52 bytes.
   **Established.** **Established.** Vertex-state saving copies the word at entry a0 +0x1c0 into a1 +0x90 (`lw` at 0xda71374 and `sw` at 0xda71380). It also copies doublewords from a0 +0xd0/+0xe0/+0xe8 into a1 +0x20/+0x30/+0x38, and a word from a0 +0xd8 into a1 +0x28 (`sdc1` at 0xda71394, `sdc1` at 0xda7139c, `sdc1` at 0xda713a4, and `sw` at 0xda71398). The final indirect jump uses the pointer loaded from a0 +0x2ee4 (`lw` at 0xda71378 and `jr` at 0xda713a0), with entry a0 through a3 retained. Its target identity is unknown.
+
+#### O32 target readings
+
+These are exact target-build observations from usr/gfx/arch/IP27KONA/libGLcore.so. The N64 or N32 build named in the comparison table is a separate binary reference; it does not establish behavior for this O32 target.
+
+| Routine | O32 address / size | O32 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glSaveN | 0x2ee07e0 / 24 | 3817b7f6f8941870eb9d79d04fc34a7ab4f2ee86a4b39847d45b6ae806a81cbe | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b180 / 24 | d59ec2f7f17606fb683c91c16f134df7948b76317745d373c31032daf06dbc8a | no |
+| __glSaveCI | 0x2ee07f8 / 20 | 1e0a698c273a71c1f9e4775c9bec496960304b41a667cc982bea2d39a2a7cc3c | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b198 / 20 | 3c40416970f67030fde0dc7ae51e99e42d5ada4616eed370fc107758656f294d | no |
+| __glSaveC | 0x2ee080c / 24 | 9da1a9fff222125491392da50f32ce1950357b1d772aa8ed09e49285f3b1b0a1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b1ac / 24 | 42749e42cb63d591f86d700c2abb9fbf97914b6c89a64b78e57552829605d676 | no |
+| __glSaveT | 0x2ee0824 / 24 | ba32302ddce569a758e1d572c80e2dc8c77aed8c5c35657cd3e3eadcef42e860 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b1c4 / 24 | 4054a15cb43bd240a78d62f79a0fd5a59142c33f9efb9b0f47b0d4993b7fde9a | no |
+| __glSaveCT | 0x2ee083c / 40 | 22c1cacc19d21c3e92242ad73bb4e059bbdbc6d3d1f3354e362f34780622339c | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b1dc / 40 | 53743f85b13bb2a764e888aee8f687f4835d817b4cb42a2383fe36e1c1cf5f69 | no |
+| __glSaveNT | 0x2ee0864 / 40 | 3dda84c8bfb08bb9c0c192209d02a78a20fc8113548c1fe3443521a7588b7394 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b204 / 40 | 191f5c78ba32e6b0fe58c63bf2379144697ccf1f08062892c85ef24ef89ca586 | no |
+| __glSaveCAll | 0x2ee088c / 56 | 52ed2908247ff63b28dad670d953b527844c9cc068616cfcff7169a697698451 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b22c / 56 | 34d00d440ef584ec8688aac15260be027362ca8308fcc701571e1889dc7e854c | no |
+| __glSaveCIAll | 0x2ee08c4 / 52 | 98c4a72f92b07beeede7666ce2f6d57a702e677eb3e886ae839a4405ba1daaf6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xda7b264 / 52 | 9260a5b2f754e26c9d369ac7618838f5a9eaf4d16c505cf101a8e74ea2f473a0 | no |
+
+- `__glSaveN` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee07e0; occupies 24 bytes.
+  **Established.** Copies a 12-byte attribute from the context into the vertex. The first eight bytes come from argument 0 +0x178 and go to argument 1 +0x28 (`ldc1` at 0x2ee07e0, `sdc1` at 0x2ee07ec). The remaining word moves from context +0x180 to vertex +0x30 (`lw` at 0x2ee07e8, `sw` at 0x2ee07f4). It loads a procedure pointer at context +0x4890 and tail-jumps through it (`ld` at 0x2ee07e4, `jr` at 0x2ee07f0). The word store is the jump's delay slot. No arithmetic changes the copied attribute bits.
+
+- `__glSaveCI` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee07f8; occupies 20 bytes.
+  **Established.** Saves one context word into the vertex's index slot. Argument 0 +0x270 supplies the word, and argument 1 +0x98 receives it (`lw` at 0x2ee07fc, `sw` at 0x2ee0808). The procedure address is loaded from context +0x4890 (`ld` at 0x2ee07f8). Its tail jump executes the store in the delay slot (`jr` at 0x2ee0804). The callee is unknown, so this body establishes the copy and dispatch only.
+
+- `__glSaveC` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee080c; occupies 24 bytes.
+  **Established.** Transfers a 16-byte colour-sized attribute without conversion. Two doubleword reads at argument 0 +0x168 and +0x170 feed argument 1 +0x98 and +0xa0 (`ldc1` at 0x2ee080c, 0x2ee0814, `sdc1` at 0x2ee0818, 0x2ee0820). It dispatches through the pointer loaded from context +0x4890 (`ld` at 0x2ee0810, `jr` at 0x2ee081c). The second doubleword store runs in the jump delay slot. The observed writes are to the caller's vertex record.
+
+- `__glSaveT` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee0824; occupies 24 bytes.
+  **Established.** Places a texture-coordinate-sized attribute in the vertex. Its two eight-byte source fields are argument 0 +0x188 and +0x190 (`ldc1` at 0x2ee0824, 0x2ee082c). Destinations are argument 1 +0x38 and +0x40 (`sdc1` at 0x2ee0830, 0x2ee0838). A pointer read at context +0x4890 supplies the tail target (`ld` at 0x2ee0828, `jr` at 0x2ee0834). The +0x40 copy completes in that jump's delay slot.
+
+- `__glSaveCT` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee083c; occupies 40 bytes.
+  **Established.** Copies both 16-byte colour and texture attributes before dispatch. Context +0x168 and +0x170 are copied to vertex +0x98 and +0xa0 (`ldc1` at 0x2ee083c, 0x2ee0840, `sdc1` at 0x2ee0850, 0x2ee0854). Context +0x188 and +0x190 become vertex +0x38 and +0x40 (`ldc1` at 0x2ee0844, 0x2ee0848, `sdc1` at 0x2ee0858, 0x2ee0860). The tail target comes from argument 0 +0x4890 (`ld` at 0x2ee084c, `jr` at 0x2ee085c). Here context and vertex mean arguments 0 and 1. The body performs memory copies, with the callee's further effect unresolved.
+
+- `__glSaveNT` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee0864; occupies 40 bytes.
+  **Established.** Combines a 12-byte normal-sized copy with a 16-byte texture-sized copy. From argument 0 it reads +0x178 as eight bytes and +0x180 as a word, storing them at argument 1 +0x28 and +0x30 (`ldc1` at 0x2ee0868, `lw` at 0x2ee086c, `sdc1` at 0x2ee0878, `sw` at 0x2ee087c). Two more doublewords move from context +0x188 and +0x190 to vertex +0x38 and +0x40 (`ldc1` at 0x2ee0870, 0x2ee0874, `sdc1` at 0x2ee0880, 0x2ee0888). The context's +0x4890 procedure pointer is read before these copies and used for tail dispatch (`ld` at 0x2ee0864, `jr` at 0x2ee0884). Its delay slot writes the final doubleword.
+
+- `__glSaveCAll` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee088c; occupies 56 bytes.
+  **Established.** Saves three attribute groups in one vertex record. Five doubleword inputs are context +0x168, +0x170, +0x178, +0x188 and +0x190 (`ldc1` at 0x2ee088c, 0x2ee0890, 0x2ee0894, 0x2ee08a8, 0x2ee08ac). They fill vertex +0x98, +0xa0, +0x28, +0x38 and +0x40 (`sdc1` at 0x2ee08a0, 0x2ee08a4, 0x2ee08b0, 0x2ee08b8, 0x2ee08c0). A separate word moves context +0x180 to vertex +0x30 (`lw` at 0x2ee0898, `sw` at 0x2ee08b4). Context and vertex are arguments 0 and 1. The pointer at context +0x4890 is the unresolved tail target (`ld` at 0x2ee089c, `jr` at 0x2ee08bc).
+
+- `__glSaveCIAll` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2ee08c4; occupies 52 bytes.
+  **Established.** Stores an index word alongside normal and texture attribute bits. The index source is argument 0 +0x270, copied to argument 1 +0x98 (`lw` at 0x2ee08c4, `sw` at 0x2ee08d0). Normal-sized data moves context +0x178 and +0x180 to vertex +0x28 and +0x30 (`ldc1` at 0x2ee08d4, `lw` at 0x2ee08d8, `sdc1` at 0x2ee08e4, `sw` at 0x2ee08e8). Texture-sized data moves context +0x188 and +0x190 to vertex +0x38 and +0x40 (`ldc1` at 0x2ee08dc, 0x2ee08e0, `sdc1` at 0x2ee08ec, 0x2ee08f4). Context and vertex denote arguments 0 and 1. The routine ends with dispatch through context +0x4890, completing the last doubleword copy in its delay slot (`ld` at 0x2ee08c8, `jr` at 0x2ee08f0).
 
 ### mips_zfuncs.c
 
