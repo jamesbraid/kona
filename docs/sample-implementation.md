@@ -1975,6 +1975,94 @@ Corrected material-helper entry bodies:
 - `__glim_PolygonMode` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9c3de4; occupies 300 bytes.
   **Inferred.** Selects software polygon drawing modes by updating one or both face fields. The stored mode words target context +0x1e4 and +0x1e8 (`sw` at 0xd9c3ec0, 0xd9c3ec8, 0xd9c3ed4). Completion writes two to absolute 0x1018 and ORs mask four into context +0x2e24 (`sw` at 0xd9c3ef0, 0xd9c3efc, `ori` at 0xd9c3ef8). Error calls include 0x502 and two 0x500 sites (`jalr` at 0xd9c3e1c, 0xd9c3e88, 0xd9c3ee0). Context comes from absolute 0x1010 (`lw` at 0xd9c3e08). The full mode and face-selection body was read, while its merged return remains unknown. Those software fields are not presented as device register addresses.
+## IP35 O32 code-identical context entries
+
+## IP35 O32 context and bitmap routines identical to IP27 O32
+
+The complete target bodies below are byte-identical to same-address IP27 O32 counterparts. This records exact build identity and preserves each sibling’s original behavior grade; it makes no new selector, callback or hardware-role claim.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glim_PolygonStipple | 0xd9c3f10 / 188 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c3f10 / 188 | cfa1eaddecfb3cce4ed0f3969b2b5454a1a77548ea3da0068d72a5d33230b112 |
+| __glim_ShadeModel | 0xd9c3fcc / 152 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c3fcc / 152 | 4eed1efbc069f5d037f432368c891b57aabc57affb25ebfd4d438306e4dc479c |
+| __glim_StencilMask | 0xd9c4064 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c4064 / 144 | b9fcd6a862f4bd7e7b41c65df34bf723a2b1058b7483235e1c49cb3a23bf428a |
+| __glim_StencilFunc | 0xd9c40f4 / 216 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c40f4 / 216 | db6189d992494ffd1810a214e78d4e939919109c6e28c733815fdcc053ab40cd |
+| __glim_StencilOp | 0xd9c41cc / 360 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c41cc / 360 | 1bd97c730ec4eadae80b5e4cc4a9055ad17e269ff8cb10d89cefde102b4b74de |
+| __glCopyContext | 0xd9c4334 / 2924 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c4334 / 2924 | 69b30b330bbc117f71c896b9ec29c19c66632d8b325c55507e9e1666199839e0 |
+| __glim_PushAttrib | 0xd9c4ea0 / 2124 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c4ea0 / 2124 | b6e6ff8c796ec1d7823fbe4265d7264f29e635ffc7819260b1f70ad57040f45f |
+| __glim_PopAttrib | 0xd9c56ec / 3476 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c56ec / 3476 | c0e33d275fe184f8846ec7b0c35b6e9f6b774cf5854a5c4d365ac5ec356eb984 |
+| __glim_Enable | 0xd9c6480 / 2448 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c6480 / 2448 | d3074e8c525a0536d73f0515b48fc5bb4e902a4af66f7d2cc34f2552f8a4c5b0 |
+| __glim_Disable | 0xd9c6e10 / 2540 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c6e10 / 2540 | 7ab5bee47c8ff0c550d1fbd09e8fd5d7064e56d5afc10190d9fb777aa1ed8c1e |
+| __glim_IsEnabled | 0xd9c77fc / 1656 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c77fc / 1656 | 67154119fe5910983257a3fa98ec042129810574682873f97de1a4f98393b579 |
+| __glim_PolygonOffset | 0xd9c8010 / 124 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c8010 / 124 | d1a47c3abe1fa95215fac11c5b4a108b7e5d3529810040bd833e3ac583a73299 |
+| __glFreeAttributeState | 0xd9c808c / 400 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c808c / 400 | 114cf5c1d7602f5dadefa1adbf3db9ce0dfc01aa014fbc9bd9d9d89b575da016 |
+| __glim_EnableClientState | 0xd9c821c / 480 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c821c / 480 | 9518bf540c6f824824e8c4e9141e7310636d028287918fe2b44fcc76741da510 |
+| __glim_DisableClientState | 0xd9c83fc / 536 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c83fc / 536 | 43e77513b6b59bf5e961319c3ef5b7cc1769b5846336fedd238dd8b7d19d7ddb |
+| __glim_PushClientAttrib | 0xd9c8614 / 444 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c8614 / 444 | 7823b99c77671e91831813352d2736e3be5d74a0aa1bfa0dec9e579eb37dd00e |
+| __glim_PopClientAttrib | 0xd9c87d0 / 360 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c87d0 / 360 | 176109ac733f893fe1bf883a81b16e8c07289e44126defa83b9b523f30743ded |
+| __glDrawBitmap | 0xd9c8940 / 280 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c8940 / 280 | ccc3a0c4e8d3345b2bee10dba5dce3bd14c2975eff7b93ea6921ba77e08a9ccb |
+| __glRenderBitmap | 0xd9c8bbc / 932 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9c8bbc / 932 | f2f75d428c469c93122b070a0320a5b49353bc5204ab5c977c3e65079e80debf |
+| __glGenericPickBlendProcs | 0xd9ca8a0 / 1408 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ca8a0 / 1408 | d38cf85f208797148772bd69cdbe1cb53461aad49bab6d1e19b6f7c39c6411d4 |
+
+- `__glim_PolygonStipple` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3f10; occupies 188 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c3f10. SHA-256 cfa1eaddecfb3cce4ed0f3969b2b5454a1a77548ea3da0068d72a5d33230b112. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_ShadeModel` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c3fcc; occupies 152 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c3fcc. SHA-256 4eed1efbc069f5d037f432368c891b57aabc57affb25ebfd4d438306e4dc479c. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_StencilMask` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c4064; occupies 144 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c4064. SHA-256 b9fcd6a862f4bd7e7b41c65df34bf723a2b1058b7483235e1c49cb3a23bf428a. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_StencilFunc` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c40f4; occupies 216 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c40f4. SHA-256 db6189d992494ffd1810a214e78d4e939919109c6e28c733815fdcc053ab40cd. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_StencilOp` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c41cc; occupies 360 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c41cc. SHA-256 1bd97c730ec4eadae80b5e4cc4a9055ad17e269ff8cb10d89cefde102b4b74de. This note records identity only and does not revise the existing behavior grade.
+
+- `__glCopyContext` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c4334; occupies 2924 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c4334. SHA-256 69b30b330bbc117f71c896b9ec29c19c66632d8b325c55507e9e1666199839e0. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_PushAttrib` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c4ea0; occupies 2124 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c4ea0. SHA-256 b6e6ff8c796ec1d7823fbe4265d7264f29e635ffc7819260b1f70ad57040f45f. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_PopAttrib` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c56ec; occupies 3476 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c56ec. SHA-256 c0e33d275fe184f8846ec7b0c35b6e9f6b774cf5854a5c4d365ac5ec356eb984. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_Enable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c6480; occupies 2448 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c6480. SHA-256 d3074e8c525a0536d73f0515b48fc5bb4e902a4af66f7d2cc34f2552f8a4c5b0. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_Disable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c6e10; occupies 2540 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c6e10. SHA-256 7ab5bee47c8ff0c550d1fbd09e8fd5d7064e56d5afc10190d9fb777aa1ed8c1e. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_IsEnabled` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c77fc; occupies 1656 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c77fc. SHA-256 67154119fe5910983257a3fa98ec042129810574682873f97de1a4f98393b579. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_PolygonOffset` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c8010; occupies 124 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c8010. SHA-256 d1a47c3abe1fa95215fac11c5b4a108b7e5d3529810040bd833e3ac583a73299. This note records identity only and does not revise the existing behavior grade.
+
+- `__glFreeAttributeState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c808c; occupies 400 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c808c. SHA-256 114cf5c1d7602f5dadefa1adbf3db9ce0dfc01aa014fbc9bd9d9d89b575da016. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_EnableClientState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c821c; occupies 480 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c821c. SHA-256 9518bf540c6f824824e8c4e9141e7310636d028287918fe2b44fcc76741da510. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_DisableClientState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c83fc; occupies 536 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c83fc. SHA-256 43e77513b6b59bf5e961319c3ef5b7cc1769b5846336fedd238dd8b7d19d7ddb. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_PushClientAttrib` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c8614; occupies 444 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c8614. SHA-256 7823b99c77671e91831813352d2736e3be5d74a0aa1bfa0dec9e579eb37dd00e. This note records identity only and does not revise the existing behavior grade.
+
+- `__glim_PopClientAttrib` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c87d0; occupies 360 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c87d0. SHA-256 176109ac733f893fe1bf883a81b16e8c07289e44126defa83b9b523f30743ded. This note records identity only and does not revise the existing behavior grade.
+
+- `__glDrawBitmap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c8940; occupies 280 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c8940. SHA-256 ccc3a0c4e8d3345b2bee10dba5dce3bd14c2975eff7b93ea6921ba77e08a9ccb. This note records identity only and does not revise the existing behavior grade.
+
+- `__glRenderBitmap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9c8bbc; occupies 932 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9c8bbc. SHA-256 f2f75d428c469c93122b070a0320a5b49353bc5204ab5c977c3e65079e80debf. This note records identity only and does not revise the existing behavior grade.
+
+- `__glGenericPickBlendProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ca8a0; occupies 1408 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ca8a0. SHA-256 d38cf85f208797148772bd69cdbe1cb53461aad49bab6d1e19b6f7c39c6411d4. This note records identity only and does not revise the existing behavior grade.
 ## Software renderer (soft)
 
 ### so_accumop.c
