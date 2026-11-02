@@ -152,3 +152,73 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
   **Established.** Downloads the two microcode files of the older display-board family, "hq2.bin" and then "ge7.bin", through the generic download request. `a0` is the pipe descriptor (`s3`), `a1` a board record (saved at sp+448), `a2` the directory string (sp+440) and `a3` a verbose flag (`s2`). For each file it builds the path in a buffer at sp+0 with `strcpy` (slot 43) of `a2` and `strcat` (slot 43 or 76) of the file name ("hq2.bin" 0x10027ae8, then "ge7.bin" 0x10027af8), prints "gr2_init: Loading HQ2 ucode from %s\n" (0x10020698) or "gr2_init: Loading GE7 ucode from %s\n" (0x100206d8) with `printf` (slot 59) when `a3` is non-zero, opens the file (`open`, slot 45, flags 0x800), calls `fstat` (slot 53 or 45) into sp+256 and maps it with `mmap` (slot 51: no address hint, the low word of the size at sp+316 as length, protection 1, flags 1, offset 0), closes the descriptor and builds a request block at sp+408 of the low 32 bits of the file size (the doubleword at sp+312) and the mapped address at sp+412. It sends `ioctl` (slot 65) request 108 (`GFX_DOWNLOAD`) on `a0` with the block, then calls `munmap` (slot 50) on the mapping. A failed `open`, a failed `fstat` (after a `close` of the descriptor) or an `mmap` result of -1 calls `syslog` (slot 64) with priority 2, "%s: %m" (0x10027af0) and the path, and returns -1; a failed `GFX_DOWNLOAD` calls `munmap` and `syslog` with "GFX_DOWNLOAD failed" (0x100206c0) and returns -1. A failure in the first file ends the routine before the second. After the second download, when the byte at the board record's +56 is positive, it calls `ev1_init` (0x10007a18), which in this build does nothing and returns 0, and would log "Video Initialization failed" (0x10020700) at priority 2 for a non-zero result, which does not occur. It returns 0.
 - `mgras_init` (`usr/gfx/gfxinfo` 0x10009290, 2396 bytes):
   **Established.** The loader for the older MGRAS display-board family, which `gfxinfo` links beside the Kona code; it never touches the Kona pipe. `a0` (`s7`) is the open graphics-device descriptor used for every `ioctl`, `a1` (`s3`) a board-information record of which it reads the bytes at +40, +43, +44 and +56, `a2` (`s4`) a directory prefix, `a3` (`s2`) a verbose flag and `a4` (kept at sp+4232) a number handed to a dump command; the frame is 4336 bytes. It first calls the file-local routine at 0x10009194 with `a0` unchanged and ignores the result. (1) Optional dump. It runs `system` (GOT entry at gp-32628) on "/sbin/chkconfig impact_trace" (0x10020ce0) and opens "/usr/gfx/MGRAS/ge11dump" (0x10020d00, copied to sp+0) read-only. When `system` returned 0 and the open succeeded it builds the command "cd /usr/tmp; /usr/gfx/MGRAS/ge11dump" (the 14 bytes at 0x10020d18 with the program path appended by `strcat`) followed by `a4` formatted with " %d" (0x10027be8), closes the descriptor, runs the command with `system`, prints "'%s' returned %d\n" (0x10020d28) when verbose, calls `sginap` with 1000, and then calls `ioctl` 106 (`GFX_INITIALIZE`) on `a0` with a zero argument. A result of -1 prints "mgras gfxinit " (0x10020d40) with `perror`, logs "graphics initialize failed" (0x10020d50) at priority 2 with `syslog` (GOT entry at gp-32496) and exits with 1; any other result sets `s5` to 1. When `system` returned 0 but the open failed and the flag is set it prints "cannot open %s\n" (0x10020d70) with the program path. `s5` is 0 on every other path. (2) File names. A zero byte at +43 returns 0 at once. Otherwise three 256-byte buffers at sp+112, sp+368 and sp+624 each start as a `strcpy` of `a2` and receive a name by `strcat` (GOT entry at gp-32448): the first a GE11 microcode file, the second the HQ3 microcode file, the third the HQ3 symbol-table file. A byte at +40 of 2 or 3 selects the `_revB_HQ4` names (ge11_revB_HQ4.bin, hq3_revB_HQ4.bin, MGRAS/hq3_revB_HQ4.u). Otherwise the base names (ge11.bin, hq3.bin, MGRAS/hq3.u) are used when the byte at +43 is 2 and the byte at +44 is 1, or when the unsigned byte at +56 is 1 or less; the `_revB` names (ge11_revB.bin, hq3_revB.bin, MGRAS/hq3_revB.u) are used when the byte at +56 is above 1. When `s5` is 1 each of the three is the `_DB` form instead (for example ge11_revB_HQ4_DB.bin, hq3_DB.bin, MGRAS/hq3_revB_DB.u). (3) HQ3 download. When verbose it prints "mgras_init: Loading HQ3 ucode from %s\n" (0x10020ed8). It opens the second buffer's path with flags 2048 (a failure logs "%s: %m" at 0x10027bf8 and returns -1), calls `fstat` (the 64-bit size is at sp+936 and its low word at sp+940; a failure logs the same format, closes the descriptor and returns -1), maps the file with `mmap` (length that low word, protection 1, flags 1, offset 0), closes the descriptor, and on a failed map logs and returns -1. It then fills a request at sp+1032: the size's low word at +0, the mapped address at +4, the kind 3 at +8 and zero words at +12 to +28. When verbose it prints "Downloading HQ3 ucode from %s (%lld bytes)\n" (0x10020f00) first. `ioctl` 108 (`GFX_DOWNLOAD`) on `a0` sends it; a negative result unmaps, logs "GFX_DOWNLOAD failed" (0x10020f30) and returns -1; otherwise it unmaps. (4) GE11 download. The same steps run on the first buffer's path (message "mgras_init: Loading GE11 ucode from %s\n" at 0x10020f48, then "Downloading GE11 ucode from %s (%lld bytes = %lld lines)\n" at 0x10020f70 with the size divided by 12), the request's kind is 11 and the words at +12 to +28 are as left by the first request. (5) Configuration. It opens the third buffer's path with `fopen` and "r" (0x10027c00); a failure formats "cannot open %s" (0x10020fb0) into sp+1064, logs it at priority 2 and returns -1. It reads one record of 2092 bytes into sp+2088 with `fread`; any count but 1 logs "cannot read hq3 microcode symbol table" (0x10020fc0) and returns -1. From the record's words at offsets 896, 900, 148, 152, 128, 384, 1072, 256, 1068 and 1180 it builds a request at sp+4184: +0 is (0xc000 minus the word at 896) divided by the word at 900 (a signed `div`, with a trap on a zero divisor), +4 the word at 896, +8 the word at 900, +12 the constant 162, +16 the word at 148, +20 the word at 152, +24 the word at 128, +28 the word at 384, +32 the word at 1072, +36 the word at 256, +40 the word at 1068 and +44 the word at 1180. When verbose it prints them in the order +4, +8, +0, +12, +16, +20, +24, +28, +32, +36, +40, +44 as the `config_args` lines glContextBase, glContextSize, glContextMax, ge_get_data_token, blockxy_start_offset, blockxy_end_offset, xfrsize_offset, re_fillmode_offset, crambackup_offset, texmode1_offset, emh_offset and em_screenres (strings 0x10020fe8 to 0x10021188). It sends the request with `ioctl` 0x6d670009 on `a0`; a negative result logs "MGRAS_GE11_CONFIG failed" (0x100211b0) and returns -1, otherwise it returns 0. The symbol-table file is never closed.
+
+## `setmon` routine readings
+
+- `venice_cprev` (`usr/gfx/setmon`, 0x10011868):
+  **Established effects; role unknown.** A zero result from the initial call (`jal` at 0x10011884) takes
+  the `beqz` at 0x10011890 to select index 0 (`move` at 0x100119a4). Otherwise,
+  the word loaded from the selected address is shifted right four bits and
+  masked with 7 (`lw` at 0x100118b0, `srl` at 0x100118b4, `andi` at
+  0x100118b8). The `beq` at 0x100118bc selects index 1 when the masked value
+  equals 7 (`addiu` at 0x100118a8); its fall-through selects index 2 (`addiu` at 0x100118c4). After
+  the later `jal` at 0x10011960, the `bne` at 0x10011974 returns 1 if its
+  result differs from 0x6d6d6d6d (`lui` at 0x10011968, `ori` at 0x1001196c,
+  `move` at 0x10011990); equality returns 0 (`move` at 0x10011980).
+  Read from the complete 336-byte routine in the 6.5.30m binary.
+
+- `venice_grok_vs2_fname` (`usr/gfx/setmon`, 0x10013a50):
+  **Established effects; role unknown.** It reads the first input byte (`lbu`
+  at 0x10013a60). A slash takes the `beq` at 0x10013a80, and a dot takes
+  the `beq` at 0x10013a88; both reach the `jalr` at 0x10013b0c with the input
+  as its second argument (`move` at 0x10013b04). On the other path, a zero
+  result from the `jalr` at 0x10013a98 takes the `beqz` at 0x10013aa0 and
+  clears the first byte of the destination (`sb` at 0x10013af8). A later
+  call receives the destination and 4 (`jalr` at 0x10013b20, `addiu` at
+  0x10013b24). Read from the complete 276-byte routine in the 6.5.30m binary.
+
+- `fcg_venice_set_pipeaddr` (`usr/gfx/setmon`, 0x10010f84):
+  **Established effects; role unknown.** It copies 0xea words from the first
+  argument to a separately loaded destination: the counter starts at 0xea
+  (`addiu` at 0x10010fac), and `bgtz` repeats the load and store while it
+  remains positive (`lw` at 0x10010fcc, `bgtz` at 0x10010fd4, `sw` at
+  0x10010fd8). It also stores the other three arguments at separately loaded
+  addresses (`sw` at 0x10010fdc, `sw` at 0x10010fe0, `sw` at 0x10010ff4).
+  The `beq` at 0x10011010 selects the path that adds 0xc to the third
+  argument when the tested value equals 0x13 (`addiu` at 0x1001100c,
+  `addiu` at 0x10011078). Read from the complete 336-byte routine in the
+  6.5.30m binary.
+
+- `venice_rmfifo` (`usr/gfx/setmon`, 0x10011218):
+  **Established effects; role unknown.** It masks the fourth argument to
+  four bits (`andi` at 0x10011218). Two inner loops insert bits into a
+  stack buffer (`lbu` at 0x1001129c, `sb` at 0x100112b8, `lbu` at
+  0x100112f0, `sb` at 0x1001130c). Each loop repeats while its counter is
+  less than 7 (`slti` at 0x10011294, `bnez` at 0x100112b4, `slti` at
+  0x100112e8, `bnez` at 0x10011308). An outer loop repeats while its counter
+  is less than 5 (`slti` at 0x100112cc, `bnez` at 0x10011310). It then
+  makes three direct calls (`jal` at 0x10011324, `jal` at 0x10011338,
+  `jal` at 0x1001134c) and returns 0 (`move` at 0x10011358). Read from
+  the complete 340-byte routine in the 6.5.30m binary.
+
+- `fcg_cp_ge_load` (`usr/gfx/setmon`, 0x100109ec):
+  **Established effects; role unknown.** On the path where the `beq` at
+  0x10010a68 falls through, the routine writes the first argument at offset
+  0x6560 of a loaded pointer (`sw` at 0x10010a70). Later it loads words
+  from the fourth argument and rearranges their bytes with shifts, masks and
+  OR operations (`lw` at 0x10010ae8, `srl` at 0x10010aec, `sll` at
+  0x10010af4, `andi` at 0x10010af8, `or` at 0x10010b0c). A subsequent
+  loop writes 0xdeadbeef (`lui` at 0x10010b70, `ori` at 0x10010b7c,
+  `sw` at 0x10010bd4). Read from the complete 712-byte routine in the
+  6.5.30m binary.
+
+- `fcg_jt_test_thyself` (`usr/gfx/setmon`, 0x10011c40):
+  **Established effects; role unknown.** When the loaded base is zero, the
+  `beqz` at 0x10011c78 keeps the fallback address 0x2a800 (`lui` at
+  0x10011c6c, `ori` at 0x10011c74); otherwise it adds 0xa800 to the base
+  (`dli` at 0x10011c68, `addu` at 0x10011c80). It reads a word at offset
+  0x18 and tests bit 0 (`lw` at 0x10011cd4, `andi` at 0x10011cdc). The
+  `beqz` at 0x10011ce8 takes a return-1 path if that bit is clear (`addiu`
+  at 0x10011f40). A later loop repeats while its counter is less than 13
+  (`slti` at 0x10011e60, `bnez` at 0x10011e70). Read from the complete
+  952-byte routine in the 6.5.30m binary.

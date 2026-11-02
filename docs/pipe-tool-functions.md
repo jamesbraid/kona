@@ -218,3 +218,51 @@ Read from the 6.5.30m N32 programs `usr/gfx/KONA/bin/ireeprom` and `usr/diags/IR
   calls `XFree` on the list and `XCloseDisplay` and returns 0. The failure cleanup sets `done`, sleeps
   `sginap(100)`, sends signal 9 with `kill` to every child whose id is not -1, repeats the destroy, `XFree` and
   `XCloseDisplay`, and returns 1. The routine writes no board register.
+
+## `ircombine` routine readings
+
+- `vfcInitKonaCombinationGlobal` (`usr/gfx/ircombine`, 0x1007e5a0):
+  **Established effects; role unknown.** It clears the first byte and the
+  word at offset 0x100 of the supplied object (`sb` at 0x1007e5b8, `sw` at
+  0x1007e5c0). It writes 0x500 and 0x400 at offsets 0x104 and 0x108
+  (`addiu` at 0x1007e5c4, `addiu` at 0x1007e5cc, `sw` at 0x1007e5d0,
+  `addiu` at 0x1007e5d4, `addiu` at 0x1007e5dc, `sw` at 0x1007e5e0). Its remaining writes include 2 at offset 0x10c
+  (`addiu` at 0x1007e604, `sw` at 0x1007e60c) and zero at offset 0x248
+  (`sw` at 0x1007e6ac). Read from the complete 284-byte routine in the
+  6.5.30m binary.
+
+- `vfcInitKonaCombinationChannel` (`usr/gfx/ircombine`, 0x1007e130):
+  **Established effects; role unknown.** It clears the first byte and the
+  word at offset 0x100 of the first argument (`sb` at 0x1007e154, `sw` at
+  0x1007e15c), and stores the second argument at offsets 0x104 and 0x294
+  (`sw` at 0x1007e168, `sw` at 0x1007e518). It compares that argument
+  with 8, 9 and 11 (`addiu` at 0x1007e23c, `beq` at 0x1007e240,
+  `addiu` at 0x1007e248, `beq` at 0x1007e250, `addiu` at 0x1007e258,
+  `beq` at 0x1007e260). In the 8 path, a nonzero result from the first direct call
+  takes the `bnez` at 0x1007e2c4 past the second call (`jal` at 0x1007e2b8,
+  `jal` at 0x1007e2d8). Read from the complete 1128-byte routine in the
+  6.5.30m binary.
+
+- `vfcSetKonaCombinationDefaults` (`usr/gfx/ircombine`, 0x1007d070):
+  **Established effects; role unknown.** A loop starts its index at zero
+  (`sw` at 0x1007d098) and repeats while it is less than 15 (`slti` at
+  0x1007d16c, `bnez` at 0x1007d170). Within it, the `beqz` at 0x1007d0cc
+  skips the call when the selected word is zero (`lw` at 0x1007d0c8).
+  The `beqz` at 0x1007d0f8 also skips it when bit 0 of another selected
+  word is clear (`andi` at 0x1007d0f4); otherwise the routine calls
+  another routine (`jal` at 0x1007d144). The final copy reads a word
+  at second argument plus 0x57d4 plus 0x2a4 and stores it at offset 0x228
+  (`addiu` at 0x1007d43c, `lw` at 0x1007d440, `sw` at 0x1007d448).
+  Read from the complete 1012-byte routine in the 6.5.30m binary.
+
+- `vfcModifyKonaCombination` (`usr/gfx/ircombine`, 0x10079ab0):
+  **Established effects; role unknown.** It forms two pointers at offsets
+  0xc and 0x9a4 from the first argument (`addiu` at 0x10079ad8, `addiu` at
+  0x10079ae4). When bit 0 of the word at offset 4 from the first pointer is
+  clear, the `beqz` at 0x10079af8 skips a byte-copy loop (`lw` at
+  0x10079af0, `andi` at 0x10079af4). Otherwise the loop copies 0xff bytes
+  from the second pointer to the second argument (`lbu` at 0x10079b20,
+  `sb` at 0x10079b30, `slti` at 0x10079b44, `bnez` at 0x10079b48).
+  Its other conditional copies include the word at offset 0x100 (`lw` at
+  0x10079b68, `sw` at 0x10079b70), skipped when the `beqz` at 0x10079b5c
+  is taken. Read from the complete 952-byte routine in the 6.5.30m binary.
