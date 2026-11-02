@@ -609,6 +609,30 @@ same executable.
 
 These boundary-scan helpers were read in their complete N32 address ranges.
 
+- `jt_reverse_unpacked_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** It
+  swaps the first and last bytes of the caller's vector, then advances inward
+  until the index reaches half the supplied length; the two byte reads are at
+  0x10033074 and 0x10033088, and the writes are at 0x10033098 and
+  0x100330ac. Address 0x10033020; the routine occupies 212 bytes and returns
+  through its normal `jr` at 0x100330ec. (`kpm`, 6.5.30m.)
+
+- `jt_pack_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** It converts an
+  ASCII bit string into packed bytes, consuming eight characters per output
+  byte and placing each `0`/`1` value at its bit position; the character load
+  is at 0x10033170 and the full-byte store is at 0x100331bc. A final partial
+  byte is emitted when the bit count is not divisible by eight, using the load
+  at 0x10033224 and store at 0x1003326c. It returns the requested bit count
+  at 0x10033270. Address 0x10033100; the routine occupies 388 bytes. (`kpm`,
+  6.5.30m.)
+
+- `jt_unpack_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** It expands
+  packed bytes into ASCII `0`/`1` characters, reading the partial leading byte
+  when the bit count has a remainder and then walking complete bytes in reverse
+  order; the partial-byte read is at 0x100332d8, the complete-byte read at
+  0x10033374, and the output character store at 0x100333bc. It returns the
+  supplied bit count at 0x100333f4. Address 0x10033290; the routine occupies
+  376 bytes. (`kpm`, 6.5.30m.)
+
 - `jt_select_chain` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
   0x10033a80; size 68 bytes. It forwards the caller's chain selector to the
   installed low-level chain procedure and returns that procedure's result.
