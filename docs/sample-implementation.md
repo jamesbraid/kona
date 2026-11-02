@@ -1134,6 +1134,114 @@ These target bodies are byte-identical over their complete ranges to the documen
 
 - `__glim_EndList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd992068; occupies 400 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd992068 over the complete 400-byte body. SHA-256 c36c4876d9f523710323514c992a71d537fd99fd2f8d1817bb635dcc9814ab02.
+## IP35 O32 code-identical build entries
+
+## IP35 O32 routines identical to IP27 O32
+
+Each complete IP35 O32 body in this table is byte-identical to the same-address IP27 O32 body. The rows record code identity only. The matching IP27 build note is cited as the comparison entry; no behavior is inferred from the routine name.
+
+| Routine | IP35 build / address / size | IP27 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| DoCallList | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9921f8 / 188 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9921f8 / 188 | 68d80eab7835dd36dbfb6424ca01d31e44f208721a91e3338d713a5622ed165b |
+- `DoCallList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9921f8; occupies 188 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9921f8. SHA-256 68d80eab7835dd36dbfb6424ca01d31e44f208721a91e3338d713a5622ed165b.
+  Existing comparison entry: docs/sample-implementation.md:DoCallList, grade Established.
+
+| __glim_CallList | usr/gfx/arch/IP35KONA/libGLcore.so 0xd992588 / 104 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd992588 / 104 | e092f55544c7c9282051d2e3bb0ac5fa00616b547ebe1f41cf4bd571295330dd |
+- `__glim_CallList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd992588; occupies 104 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd992588. SHA-256 e092f55544c7c9282051d2e3bb0ac5fa00616b547ebe1f41cf4bd571295330dd.
+  Existing comparison entry: docs/sample-implementation.md:__glim_CallList, grade Established.
+
+| DoCallLists | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9925f0 / 392 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9925f0 / 392 | d8e0724582aaa03dede278ff6bdaba43290495950dce548a2074bba286278b1b |
+- `DoCallLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9925f0; occupies 392 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9925f0. SHA-256 d8e0724582aaa03dede278ff6bdaba43290495950dce548a2074bba286278b1b.
+  Existing comparison entry: docs/sample-implementation.md:DoCallLists, grade Established.
+
+| __glle_CallLists | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9928a4 / 152 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9928a4 / 152 | 57d20ae66df49825bcdb9cd798dab07c3c6945f76baaa68f8ef3aff3c7f96967 |
+- `__glle_CallLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9928a4; occupies 152 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9928a4. SHA-256 57d20ae66df49825bcdb9cd798dab07c3c6945f76baaa68f8ef3aff3c7f96967.
+  Existing comparison entry: docs/sample-implementation.md:__glle_CallLists, grade Established.
+
+| __glim_CallLists | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99293c / 180 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99293c / 180 | 425fc17b3c4ea6edec9e7942a7c3d23893f8095d38c5230bc11e4424d375e7bd |
+- `__glim_CallLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99293c; occupies 180 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99293c. SHA-256 425fc17b3c4ea6edec9e7942a7c3d23893f8095d38c5230bc11e4424d375e7bd.
+  Existing comparison entry: docs/sample-implementation.md:__glim_CallLists, grade Established.
+
+| __glDlistAllocOp2 | usr/gfx/arch/IP35KONA/libGLcore.so 0xd992e30 / 140 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd992e30 / 140 | 7daf9437e1aa95950627bc46a2f3e11c07ec2b77ae788527c7e7e991e5500db0 |
+- `__glDlistAllocOp2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd992e30; occupies 140 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd992e30. SHA-256 7daf9437e1aa95950627bc46a2f3e11c07ec2b77ae788527c7e7e991e5500db0.
+  Existing comparison entry: docs/sample-implementation.md:__glDlistAllocOp2, grade Established.
+
+| __glGenericDlistOptimizer | usr/gfx/arch/IP35KONA/libGLcore.so 0xd992fe0 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd992fe0 / 52 | a97f891a4aef4a88717be1127406e19ee1258b1a7ec83bf1de5339e790355c7a |
+- `__glGenericDlistOptimizer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd992fe0; occupies 52 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd992fe0. SHA-256 a97f891a4aef4a88717be1127406e19ee1258b1a7ec83bf1de5339e790355c7a.
+  Existing comparison entry: docs/sample-implementation.md:__glGenericDlistOptimizer, grade Inferred.
+
+| __gllc_Begin | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993014 / 308 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993014 / 308 | af04376dc6da9202e2c63f35fc0edd5471a4a7ab1bc1cc76227c7ed68d3bfd07 |
+- `__gllc_Begin` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993014; occupies 308 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993014. SHA-256 af04376dc6da9202e2c63f35fc0edd5471a4a7ab1bc1cc76227c7ed68d3bfd07.
+  Existing comparison entry: docs/sample-implementation.md:__gllc_Begin, grade Inferred.
+
+| __glle_Begin_LineLoop | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993148 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993148 / 60 | 6d5b5844624104e0cc83a3391e1215b98df7bd9c386233cf4d8873188384fc2b |
+- `__glle_Begin_LineLoop` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993148; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993148. SHA-256 6d5b5844624104e0cc83a3391e1215b98df7bd9c386233cf4d8873188384fc2b.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_LineLoop, grade Inferred.
+
+| __glle_Begin_LineStrip | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993184 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993184 / 60 | 8ee6e17032d1b3fdef15c0b20e6808ffa8100c7fdd22601b35725199482588bf |
+- `__glle_Begin_LineStrip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993184; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993184. SHA-256 8ee6e17032d1b3fdef15c0b20e6808ffa8100c7fdd22601b35725199482588bf.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_LineStrip, grade Inferred.
+
+| __glle_Begin_Lines | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9931c0 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9931c0 / 60 | 5b1fc9a05eb79cdebd79265fc1eeb0f5d33bdf7f6a42e89ff81342c9df4d96f6 |
+- `__glle_Begin_Lines` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9931c0; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9931c0. SHA-256 5b1fc9a05eb79cdebd79265fc1eeb0f5d33bdf7f6a42e89ff81342c9df4d96f6.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_Lines, grade Inferred.
+
+| __glle_Begin_Points | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9931fc / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9931fc / 60 | 10faceb10d0ed553590240234f1e852d1aab1d63429ecc6bd733b0bb5819094b |
+- `__glle_Begin_Points` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9931fc; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9931fc. SHA-256 10faceb10d0ed553590240234f1e852d1aab1d63429ecc6bd733b0bb5819094b.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_Points, grade Inferred.
+
+| __glle_Begin_Polygon | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993238 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993238 / 60 | ebbcc15b8fb22681be501f0838779da3b430754e918a13c1cbd93b209cb4109f |
+- `__glle_Begin_Polygon` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993238; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993238. SHA-256 ebbcc15b8fb22681be501f0838779da3b430754e918a13c1cbd93b209cb4109f.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_Polygon, grade Inferred.
+
+| __glle_Begin_TriangleStrip | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993274 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993274 / 60 | dc01028fda2f20fe4f13a18e5e7127a6bed2b9ce00ad9d202c3be95d792498ad |
+- `__glle_Begin_TriangleStrip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993274; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993274. SHA-256 dc01028fda2f20fe4f13a18e5e7127a6bed2b9ce00ad9d202c3be95d792498ad.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_TriangleStrip, grade Inferred.
+
+| __glle_Begin_TriangleFan | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9932b0 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9932b0 / 60 | 868bed7a375461e1f97d972651edcd6331b99d638f9f3c593d52a575102e8f01 |
+- `__glle_Begin_TriangleFan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9932b0; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9932b0. SHA-256 868bed7a375461e1f97d972651edcd6331b99d638f9f3c593d52a575102e8f01.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_TriangleFan, grade Inferred.
+
+| __glle_Begin_Triangles | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9932ec / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9932ec / 60 | e24d2ff074bcdb83fdb5892b25a7babf66f4c4aa109d015e3ff16e3b032f3ff0 |
+- `__glle_Begin_Triangles` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9932ec; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9932ec. SHA-256 e24d2ff074bcdb83fdb5892b25a7babf66f4c4aa109d015e3ff16e3b032f3ff0.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_Triangles, grade Inferred.
+
+| __glle_Begin_QuadStrip | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993328 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993328 / 60 | fc9e7a0ffc328de4fa288bda92de8b107a5f41c422d4edade2f54a4721408ba7 |
+- `__glle_Begin_QuadStrip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993328; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993328. SHA-256 fc9e7a0ffc328de4fa288bda92de8b107a5f41c422d4edade2f54a4721408ba7.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_QuadStrip, grade Inferred.
+
+| __glle_Begin_Quads | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993364 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993364 / 60 | 47868f669c298ccb1cd932690dd633137ec72db698b459e418159eb67022c6d0 |
+- `__glle_Begin_Quads` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993364; occupies 60 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993364. SHA-256 47868f669c298ccb1cd932690dd633137ec72db698b459e418159eb67022c6d0.
+  Existing comparison entry: docs/sample-implementation.md:__glle_Begin_Quads, grade Inferred.
+
+| __gllc_InvalidValue | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9933a0 / 100 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9933a0 / 100 | 909375d671370e32a67cb0597a3d87fd379d32c551480739a81a583b8284cca1 |
+- `__gllc_InvalidValue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9933a0; occupies 100 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9933a0. SHA-256 909375d671370e32a67cb0597a3d87fd379d32c551480739a81a583b8284cca1.
+  Existing comparison entry: docs/sample-implementation.md:__gllc_InvalidValue, grade Inferred.
+
+| __gllc_InvalidEnum | usr/gfx/arch/IP35KONA/libGLcore.so 0xd993404 / 100 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993404 / 100 | f4330049c93d7277f45d862ae52d334a1ac225a1080410c5df0fa86f317a2418 |
+- `__gllc_InvalidEnum` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993404; occupies 100 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993404. SHA-256 f4330049c93d7277f45d862ae52d334a1ac225a1080410c5df0fa86f317a2418.
+  Existing comparison entry: docs/sample-implementation.md:__gllc_InvalidEnum, grade Inferred.
+
 ## Software renderer (soft)
 
 ### so_accumop.c
