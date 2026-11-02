@@ -2822,6 +2822,41 @@ These entries record the stated effects read from complete bodies in `usr/gfx/ar
   Address 0xd9cdf70; occupies 492 bytes.
   **Established.** Edge-data interpolation reads float words at a1 +0x7c and a2 +0x7c, combines them through subtraction, multiplication and addition, then stores at a0 +0x7c (`lwc1` at 0xd9cdf80, `lwc1` at 0xd9cdf7c, `sub.s` at 0xd9cdf8c, `mul.s` at 0xd9cdf94, `add.s` at 0xd9cdf98, and `swc1` at 0xd9cdf9c). It divides by that stored field and writes a0 +0x8c (`div.s` at 0xd9cdfa4 and `swc1` at 0xd9cdfa8). A clear 0x40 bit in the word at a1 +0 takes the +0x68-field arm. A set bit falls through to the +0xb0-field arm (`beql` at 0xd9ce0bc, `swc1` at 0xd9ce0f4, and `swc1` at 0xd9ce0dc). Those are distinct alternatives, not a combined store list. The O32 range ends at the next mdebug symbol after 492 bytes. The queued 5856-byte range includes later routines.
 
+#### IP35 O32 target entries
+
+These target-specific notes are from usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from differing N32 comparisons. A byte identity does not add a complete semantic claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| ClipBCF | 0xd9cd888 / 400 | cd5760a03018f4d6a1a28c252855f59ed47ba1a75725d4bb92d72cbe06843306 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd888 / 400 | cd5760a03018f4d6a1a28c252855f59ed47ba1a75725d4bb92d72cbe06843306 | yes |
+| ClipFT | 0xd9cda18 / 300 | 93de8210fd02e1d1d43bdd81834bb0973352ef261fbb920a1fde8960fd8228b5 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cda18 / 300 | 93de8210fd02e1d1d43bdd81834bb0973352ef261fbb920a1fde8960fd8228b5 | yes |
+| ClipIFT | 0xd9cdb44 / 324 | 54b36690d6c4e464a1b8694b58157a98f7d42302de20a64da47194eb02b88d12 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cdb44 / 324 | 54b36690d6c4e464a1b8694b58157a98f7d42302de20a64da47194eb02b88d12 | yes |
+| ClipBIFT | 0xd9cdc88 / 348 | 9cec1386f1ae1b2f4db5c2b1b51f6009758b7a2d5a92320e04df6746a0668331 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cdc88 / 348 | 9cec1386f1ae1b2f4db5c2b1b51f6009758b7a2d5a92320e04df6746a0668331 | yes |
+| ClipCFT | 0xd9cdde4 / 396 | 6b6f567de5dc764ed49e0d34918db0a0dafc897659f50fa6a3bfdd804041e760 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cdde4 / 396 | 6b6f567de5dc764ed49e0d34918db0a0dafc897659f50fa6a3bfdd804041e760 | yes |
+| ClipBCFT | 0xd9cdf70 / 492 | df45fa1388ddd6219a3161f12c0373c09ec5ab85d973a65a35ddf3a6c74f4dcc | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c9550 / 408 | ccfc3ef0b062867450460bd3215e758a245dd9339ecd7dd0ac2c2f27ca9f12aa | no |
+| __glGenericPickParameterClipProcs | 0xd9ce15c / 260 | 4ea70302b30cca2ac262e60007a415f33a9cc26a777013dee41b07b7adbcf73b | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ce15c / 260 | 4ea70302b30cca2ac262e60007a415f33a9cc26a777013dee41b07b7adbcf73b | yes |
+
+- `ClipBCF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd888; occupies 400 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd888. SHA-256 cd5760a03018f4d6a1a28c252855f59ed47ba1a75725d4bb92d72cbe06843306. Original grade Inferred retained.
+
+- `ClipFT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cda18; occupies 300 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cda18. SHA-256 93de8210fd02e1d1d43bdd81834bb0973352ef261fbb920a1fde8960fd8228b5. Original grade Inferred retained.
+
+- `ClipIFT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cdb44; occupies 324 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cdb44. SHA-256 54b36690d6c4e464a1b8694b58157a98f7d42302de20a64da47194eb02b88d12. Original grade Inferred retained.
+
+- `ClipBIFT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cdc88; occupies 348 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cdc88. SHA-256 9cec1386f1ae1b2f4db5c2b1b51f6009758b7a2d5a92320e04df6746a0668331. Original grade Inferred retained.
+
+- `ClipCFT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cdde4; occupies 396 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cdde4. SHA-256 6b6f567de5dc764ed49e0d34918db0a0dafc897659f50fa6a3bfdd804041e760. Original grade Inferred retained.
+
+- `ClipBCFT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cdf70; occupies 492 bytes. **Inferred.** Edge interpolation begins with float inputs at entry a1 +0x7c and a2 +0x7c (`lwc1` at 0xd9cdf80 and `lwc1` at 0xd9cdf7c). Subtraction, multiplication and addition precede the a0 +0x7c float store (`sub.s` at 0xd9cdf8c, `mul.s` at 0xd9cdf94, `add.s` at 0xd9cdf98, and `swc1` at 0xd9cdf9c). A float division feeds the a0 +0x8c output (`div.s` at 0xd9cdfa4 and `swc1` at 0xd9cdfa8). Further output includes entry a0 +0x90/+0x9c/+0xa0/+0xac (`swc1` at 0xd9ce008, `swc1` at 0xd9ce050, `swc1` at 0xd9ce068, and `swc1` at 0xd9ce0b0). When bit 0x40 of the word at entry a1 +0x0 is clear, a branch-likely selects the a0 +0x68 path (`beql` at 0xd9ce0bc and `swc1` at 0xd9ce0f4). Its delay-slot load from entry a2 +0x68 runs only when taken (`lwc1` at 0xd9ce0c0). The set-bit arm instead stores a float at entry a0 +0xb0 (`swc1` at 0xd9ce0dc). Texture-related output sites include a0 +0x30/+0x34/+0x38/+0x3c (`swc1` at 0xd9ce10c, `swc1` at 0xd9ce124, `swc1` at 0xd9ce13c, and `swc1` at 0xd9ce158). The semantic attribute labels come from the existing Inferred entry. No stronger hardware contract is claimed. The verified target occupies 492 bytes, ending exclusively at 0xd9ce15c, rather than the queued 5,856-byte range.
+
+- `__glGenericPickParameterClipProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ce15c; occupies 260 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ce15c. SHA-256 4ea70302b30cca2ac262e60007a415f33a9cc26a777013dee41b07b7adbcf73b. Original grade Inferred retained.
+
 ### so_colortable.c
 
 - `__glCheckColorTableArgs` in usr/gfx/arch/IP27KONA32/libGLcore.so: validates the arguments of a colour table definition, the target, internal format, width, pixel format and type, and returns the error to report or none; unlike the public routine it also returns GL_TABLE_TOO_LARGE (0x8031) when the width is too large for 32768 bytes at four bytes per element, a check the public routine leaves to its table allocation, and it occupies 2060 bytes at address 0x0d9c9800; the public sample-implementation source gfx/lib/opengl/glcore/s_ctable.c holds the same routine, matched by name, a shipped body of 146 source lines against 134 in the public file, and it makes no access to the board. Inferred.
@@ -2845,6 +2880,25 @@ These entries record the stated effects read from complete bodies in `usr/gfx/ar
 - `__glCheckColorTableArgs` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd9ce260; occupies 788 bytes.
   **Inferred.** Colour-table validation includes a signed test on entry a3, with nonnegative values taking the path to further checks and negative values falling through to the 0x501 result (`bgez` at 0xd9ce344). It calls `__glElementsPerGroup` twice, first with entry a2 as a0 and later with a0 unknown (`jalr` at 0xd9ce35c and `jalr` at 0xd9ce3a0). A later test takes the continuing path when `(a3 -1) & a3` is zero and falls through to another 0x501 result otherwise (`beqz` at 0xd9ce3ec). Return facts include 0, 0x500, 0x501, 0x502 and 0x8031 at the shared return (`jr` at 0xd9ce56c). The merged return and some size-check operands are unknown, so this entry does not supply a complete legal-enumeration or size-limit contract.
+
+#### IP35 O32 target entries
+
+These target-specific notes are from usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from differing N32 comparisons. A byte identity does not add a complete semantic claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glCheckColorTableArgs | 0xd9ce260 / 788 | 20e7194254cf8222c2b4831d686c964002815d6cb0adfdc6b7ad0cae318a8420 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c9800 / 2060 | f30e739ffcf8381958c88de76c3b7ef9f8b18d60eae38cbabd43f1878285409b | no |
+| __glCheckColorSubTableArgs | 0xd9ce574 / 520 | a3389c109a00cd19eb42f9361930a2f57f1abaf2f4e1dd1d0765d4f5785c8a17 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ce574 / 520 | a3389c109a00cd19eb42f9361930a2f57f1abaf2f4e1dd1d0765d4f5785c8a17 | yes |
+| __glim_CopyColorSubTable | 0xd9cfec0 / 860 | 2b3e739a7ba2a02dc0eb2bd9a17289b973f1ed7453e13c414444e949a6cbb948 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cfec0 / 860 | 2b3e739a7ba2a02dc0eb2bd9a17289b973f1ed7453e13c414444e949a6cbb948 | yes |
+
+- `__glCheckColorTableArgs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ce260; occupies 788 bytes. **Inferred.** Colour-table argument validation takes a branch when entry a3 is signed-nonnegative at one width check (`bgez` at 0xd9ce344). The negative arm returns 0x501 according to hostfacts (`addiu` at 0xd9ce350 and `jr` at 0xd9ce56c). Two calls target `__glElementsPerGroup` (`jalr` at 0xd9ce35c and `jalr` at 0xd9ce3a0). The first receives entry a2 as its first argument. The second call's first three arguments are unresolved. Unsigned division follows each call (`divu` at 0xd9ce36c and `divu` at 0xd9ce3b0). The first size-check branch is taken when unresolved t1 is unsigned-less-than entry a3 (`bnez` at 0xd9ce38c). One failure path returns 0x8031 (`ori` at 0xd9ce3e4 and `jr` at 0xd9ce56c). Another branch is taken when (a3 - 1) AND a3 is zero (`beqz` at 0xd9ce3ec). The full target/type decision matrix, quotient values and combined return remain unresolved by hostfacts, so they are not filled from the N32 entry.
+
+- `__glCheckColorSubTableArgs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ce574; occupies 520 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ce574. SHA-256 a3389c109a00cd19eb42f9361930a2f57f1abaf2f4e1dd1d0765d4f5785c8a17. Original grade Inferred retained.
+
+- `__glim_CopyColorSubTable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cfec0; occupies 860 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cfec0. SHA-256 2b3e739a7ba2a02dc0eb2bd9a17289b973f1ed7453e13c414444e949a6cbb948. Original grade Inferred retained.
 
 ### so_context.c
 
@@ -2887,6 +2941,25 @@ These entries record the stated effects read from complete bodies in `usr/gfx/ar
 - `__glMakeCurrentBuffers` in usr/gfx/arch/IP27KONA/libGLcore.so: makes a drawable's buffers current for the context. It takes the drawable from the function at context offset 60, stores it at context offset 31552 and reads its buffer record at drawable offset 28. When the record is missing it calls the file-local routine at 0xd9d1f9c with the context and the drawable, stores the result at drawable offset 28, clears the words at context offsets 3700 and 3704, and returns 1 at the end; otherwise it returns 0. It stores the record word at offset 48 through its second argument, copies the record's words at offsets 0 and 4 to context offsets 3700 and 3704, and calls the makeCurrent hook at offset 44 of each buffer block with the block, a part of the record and the context: the block at context offset 30720 with the record part at offset 8 always, then the blocks at 30940, 31416, 31284 and 31164 with the record parts at offsets 28, 120, 72 and 52, each when the byte at context offset 3222, 3224, 3225 or 3226 is set, and it occupies 356 bytes at address 0xd9d200c; the public sample-implementation source gfx/lib/opengl/glcore/s_buffer.c holds the same routine, matched by name, and the whole body was read against it: the public routine installs its free hook in the drawable, revalidates the context when the drawable's vertical orientation differs, copies the orientation, width, height and accelerator mask into the context, takes and releases the drawable lock, and takes only the context as an argument; the shipped body does none of these and takes a second pointer argument that receives the record word. The public routine calls its buffers in the order front, back, accumulation, depth and stencil, and the shipped body calls them in the order of its offsets above, which it does not name, and it makes no access to the board. Established.
 - `__glLoseCurrentBuffers` in usr/gfx/arch/IP27KONA/libGLcore.so: calls the loseCurrent hook of the context's buffers and saves the context's words in the drawable's record. It takes the drawable from context offset 31552 and its record from drawable offset 28, stores the second argument at record offset 48, and copies the context's words at offsets 3700 and 3704 to record offsets 0 and 4. It then calls the loseCurrent hook at offset 48 of the block at context offset 30720 with the block and the context, then the same hook of the blocks at 30940, 31416, 31284 and 31164, each when the byte at context offset 3222, 3224, 3225 or 3226 is set, in that order, and returns 1, and it occupies 248 bytes at address 0xd9d2170; the public sample-implementation source gfx/lib/opengl/glcore/s_buffer.c holds the same routine, matched by name, and the whole body was read against it: the public routine takes the drawable lock, sets the context's drawable pointer to NULL and unlocks; the shipped body makes no call of its own to lock or unlock the drawable, does not clear the context's drawable pointer, and stores its second argument in the record, and it calls its buffers in the public routine's order of front, back, accumulation, depth and stencil, and it makes no access to the board. Established.
 - `__glFreeBufData` in usr/gfx/arch/IP27KONA/libGLcore.so: frees the data of the context's buffers through their free hooks at block offset 64. It calls the hook of the block at context offset 30720 (the front buffer) with the block and the context when it is set. When the hook word of the block at 30940 is set it calls the hook of the front block (at 30784) with the block at 30940, not that block's own hook. It then calls the hooks of the blocks at 31164, 31284 and 31416, in that order, each with its block and the context when set, and it occupies 212 bytes at address 0xd9d2268; the public sample-implementation source gfx/lib/opengl/glcore/s_buffer.c holds the same routine, matched by name, and the whole body was read against it: the public routine tests the back buffer's free hook and calls the front buffer's, which the shipped body reproduces. The public routine's last three calls are for the stencil, depth and accumulation buffers in that order, and it has an auxiliary-buffer loop; the shipped body has no auxiliary loop and names its last three blocks by offset only, and it makes no access to the board. Established.
+
+#### IP35 O32 target entries
+
+These target-specific notes are from usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from differing N32 comparisons. A byte identity does not add a complete semantic claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glEarlyInitContext | 0xd9d0638 / 428 | 20fb0c4739e9844f4bb7d5164686ef2cfd9169a27f5890c2ce463b8b55be9682 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d0638 / 428 | 20fb0c4739e9844f4bb7d5164686ef2cfd9169a27f5890c2ce463b8b55be9682 | yes |
+| __glContextSetColorScales | 0xd9d07e4 / 980 | b89538b8561dc145ef9715c5940fbd4df8bccee48fa948d4af1b649f993ae85b | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d07e4 / 980 | b89538b8561dc145ef9715c5940fbd4df8bccee48fa948d4af1b649f993ae85b | yes |
+| __glim_RenderMode | 0xd9d1bbc / 448 | 2fdcad98c6cf97e24059bcdb8f0c4461422df783269daefe5434c8c53211dd3d | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d1bbc / 448 | 2fdcad98c6cf97e24059bcdb8f0c4461422df783269daefe5434c8c53211dd3d | yes |
+
+- `__glEarlyInitContext` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d0638; occupies 428 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d0638. SHA-256 20fb0c4739e9844f4bb7d5164686ef2cfd9169a27f5890c2ce463b8b55be9682. Original grade Inferred retained.
+
+- `__glContextSetColorScales` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d07e4; occupies 980 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d07e4. SHA-256 b89538b8561dc145ef9715c5940fbd4df8bccee48fa948d4af1b649f993ae85b. Original grade Inferred retained.
+
+- `__glim_RenderMode` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d1bbc; occupies 448 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d1bbc. SHA-256 2fdcad98c6cf97e24059bcdb8f0c4461422df783269daefe5434c8c53211dd3d. Original grade Inferred retained.
 
 ### so_depthop.c
 
@@ -2996,6 +3069,25 @@ These entries record the stated effects read from complete bodies in `usr/gfx/ar
   Address 0xd9d47b8; occupies 24 bytes.
   **Established.** This always-pass predicate sets v0 to 1 in its return delay slot (`addiu` at 0xd9d47cc), after four argument words are saved to entry sp +0/+4/+8/+0xc (`sw` at 0xd9d47b8, `sw` at 0xd9d47bc, `sw` at 0xd9d47c0, and `sw` at 0xd9d47c4). Hostfacts reports no other accesses or calls. The next mdebug symbol bounds this O32 body at 24 bytes. The queued 1368-byte range includes adjacent depth routines.
 
+#### IP35 O32 target entries
+
+These target-specific notes are from usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from differing N32 comparisons. A byte identity does not add a complete semantic claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| StoreNEVER | 0xd9d3f6c / 24 | 75810d9327293d6232cd134ea485acb3ffd758e1c3608f661b1516dfbfa3bd0d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9cfd80 / 8 | 87506497337c503078b658b916ef9eb4961eb62b06349fd8ecf2dbe4e451e4e7 | no |
+| StoreALWAYS_W | 0xd9d47b8 / 24 | 6302d50acef94503f40b90f7e6e4dd044158f8826ac337fb80282e6c888e13a0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9d0610 / 8 | a7e7ca11a6b853f66aed197e962cbe2e8f22691c363f271a0a6e780f4ceb9b83 | no |
+| __glInitDepth32 | 0xd9d51e8 / 224 | 320882f1712b2fbc86c4652544679f52ced8898c16acda637a94cb2d64e2ffab | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d51e8 / 224 | 320882f1712b2fbc86c4652544679f52ced8898c16acda637a94cb2d64e2ffab | yes |
+
+- `StoreNEVER` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d3f6c; occupies 24 bytes. **Inferred.** The O32 never-pass depth-store helper saves entry a0/a1/a2/a3 as words at entry sp +0x0/+0x4/+0x8/+0xc (`sw` at 0xd9d3f6c, `sw` at 0xd9d3f70, `sw` at 0xd9d3f74, and `sw` at 0xd9d3f78). It returns zero (`jr` at 0xd9d3f7c), with the return value set in the delay slot (`move` at 0xd9d3f80). Hostfacts lists no call or memory access beyond those four stack saves. The documented N32 body is 8 bytes and remains Established. This separate O32 draft is Inferred and occupies 24 bytes.
+
+- `StoreALWAYS_W` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d47b8; occupies 24 bytes. **Inferred.** The O32 always-pass helper writes its four entry arguments to entry sp +0x0/+0x4/+0x8/+0xc (`sw` at 0xd9d47b8, `sw` at 0xd9d47bc, `sw` at 0xd9d47c0, and `sw` at 0xd9d47c4). Its return value is one (`jr` at 0xd9d47c8), assigned by the delay-slot instruction (`addiu` at 0xd9d47cc). Those stack saves are its only memory accesses, and hostfacts reports no calls. The routine ends exclusively at 0xd9d47d0 and occupies 24 bytes, rather than the queued 1,368 bytes. The N32 source entry remains Established for its 8-byte body. This distinct target-specific draft is Inferred.
+
+- `__glInitDepth32` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d51e8; occupies 224 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d51e8. SHA-256 320882f1712b2fbc86c4652544679f52ced8898c16acda637a94cb2d64e2ffab. Original grade Inferred retained.
+
 ### so_dlist.c
 
 - `__glGenericFreeDlist` in usr/gfx/arch/IP27KONA32/libGLcore.so: frees a compiled display list: runs each recorded free function for the list's owned segments, then releases the list through the context's free hook, and it occupies 192 bytes at address 0x0d9d13b0; the public sample-implementation source gfx/lib/opengl/glcore/s_dlist.c holds the same routine, matched by name, no direct call in either, 3 indirect calls, a shipped body of 23 source lines against 33 in the public file, and it makes no access to the board. Inferred.
@@ -3025,6 +3117,29 @@ These entries record the stated effects read from complete bodies in `usr/gfx/ar
 - `__glNopExecuteDlist` in usr/gfx/arch/IP27KONA/libGLcore.so: does nothing apart from spilling its two arguments, the execute step of a dummy display list, and in the original 32-bit build it occupies 12 bytes at address 0xd9d5830; the public sample-implementation source gfx/lib/opengl/glcore/s_dlist.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. The whole body was read against the public body: it stores its two arguments to the caller's argument slots at 0(sp) and 4(sp) in the delay slot of the return, and has no other stores, calls or branches; the public routine has no stores, so that is the only difference. Established.
 - `__glNopAllocDlist` in usr/gfx/arch/IP27KONA/libGLcore.so: allocates a dummy display-list record of the requested size through the context's list allocation hook and returns null when that fails, and in the original 32-bit build it occupies 116 bytes at address 0xd9d583c; the public sample-implementation source gfx/lib/opengl/glcore/s_dlist.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glNopDlistCompiler` in usr/gfx/arch/IP27KONA/libGLcore.so: compiles a display list to an empty dummy record, freeing the working arena if the allocation fails, and in the original 32-bit build it occupies 148 bytes at address 0xd9d58b0; the public sample-implementation source gfx/lib/opengl/glcore/s_dlist.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
+
+#### IP35 O32 target entries
+
+These target-specific notes are from usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from differing N32 comparisons. A byte identity does not add a complete semantic claim.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glGenericFreeDlist | 0xd9d5390 / 200 | b2b056d9f600837eb971d444129863a78671e15cd325427ec0e657643e01cddb | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d5390 / 200 | b2b056d9f600837eb971d444129863a78671e15cd325427ec0e657643e01cddb | yes |
+| __glGenericExecuteDlist | 0xd9d5458 / 60 | 49e3e13306b509c43255c975d2bb621f01b6768118f5daedd33ce6ee444ae472 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d5458 / 60 | 49e3e13306b509c43255c975d2bb621f01b6768118f5daedd33ce6ee444ae472 | yes |
+| __glGenericAllocDlist | 0xd9d5494 / 212 | be1bb1bd99aa470480aeeadbd3a725c5a08575709db35535106e143067e71c30 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d5494 / 212 | be1bb1bd99aa470480aeeadbd3a725c5a08575709db35535106e143067e71c30 | yes |
+| __glGenericDlistCompiler | 0xd9d5570 / 644 | 4748482f8891ae5e09e14e4547d9101238511e686a6ea621191c8d3f9f70c38e | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9d5570 / 644 | 4748482f8891ae5e09e14e4547d9101238511e686a6ea621191c8d3f9f70c38e | yes |
+
+- `__glGenericFreeDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5390; occupies 200 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d5390. SHA-256 b2b056d9f600837eb971d444129863a78671e15cd325427ec0e657643e01cddb. Original grade Inferred retained.
+
+- `__glGenericExecuteDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5458; occupies 60 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d5458. SHA-256 49e3e13306b509c43255c975d2bb621f01b6768118f5daedd33ce6ee444ae472. Original grade Established retained.
+
+- `__glGenericAllocDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5494; occupies 212 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d5494. SHA-256 be1bb1bd99aa470480aeeadbd3a725c5a08575709db35535106e143067e71c30. Original grade Inferred retained.
+
+- `__glGenericDlistCompiler` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9d5570; occupies 644 bytes. Byte-identical over the complete range to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9d5570. SHA-256 4748482f8891ae5e09e14e4547d9101238511e686a6ea621191c8d3f9f70c38e. Original grade Inferred retained.
 
 ### so_eval.c
 
