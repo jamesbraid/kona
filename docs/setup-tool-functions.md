@@ -4,6 +4,15 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
 
 ## `setmon`
 
+- `saXSGIvcQueryChannelGammaMap` (`usr/gfx/setmon`): **Established.**
+  Address 0x1002b510; size 104 bytes. It obtains the video-control state,
+  calls the state callback at table offset +0x5c with zero, the caller's
+  channel argument, selector 0xa and a stack reply area (`addiu` at
+  0x1002b548), then stores the reply word at local offset +0x20 through the
+  caller's fourth argument (`lw` at 0x1002b568 and `sw` at 0x1002b574).
+  It returns 1 after the callback. (`setmon`, 6.5.30m, complete N32 body read
+  at 0x1002b510-0x1002b577.)
+
 - `saXSGIvcQueryOutputSync` (`usr/gfx/setmon` 0x100247b0): **Established.** Size 96 bytes. It obtains the video-control state, calls its query callback at table offset +0x64 with selector 0, the caller's channel argument, the saved third argument and the saved fifth argument, then returns 1. The callback result is not propagated.
 - `saXSGIvcQueryGammaMap` (`usr/gfx/setmon` 0x10024970): **Established.** Size 172 bytes. It obtains the video-control state and rejects a negative or out-of-range map index; otherwise it computes an entry address as the index times 16 (`sll` at 0x100249d4), copies the entry's first two words to the two caller buffers (`lw` at 0x100249ec and 0x10024a04; `sw` at 0x100249f0 and 0x10024a0c), clears the saved status word (`sw` at 0x10024a18), and returns 1. Invalid indices return 0 without writing the outputs.
 - `saXSGIvcSetPlatformParameter` (`usr/gfx/setmon` 0x10024a20): **Established.** Size 116 bytes. It obtains the video-control state and accepts parameter selectors below 0x5d; for a selector at least 0x5d it returns 0 without calling the state callback. Otherwise it calls the callback at table offset +0x70 with the selector, the caller's data pointer and length, and returns 1.
@@ -93,7 +102,17 @@ Read from the 6.5.30m N32 programs `usr/gfx/setmon` and `usr/gfx/gfxinfo`, whose
 
 ## `gfxinfo`
 
-`gfxinfo` links the same display-board routines as `setmon`. For the four routines below every instruction after the prologue was compared with the `setmon` copy, and the only differences are the global offset table slots and the string and global-variable addresses, which the entries give for this binary.
+`gfxinfo` links the same display-board routines as `setmon`. For the routines below every instruction after the prologue was compared with the `setmon` copy, and the only differences are the global offset table slots and the string and global-variable addresses, which the entries give for this binary.
+
+- `venice_loadsection_dg2` (`usr/gfx/gfxinfo`): **Established.** Address
+  0x10012518; size 220 bytes. It opens the requested display-board section
+  through the helper called at 0x10012548, returns -1 when that yields no
+  section, and otherwise passes the section handle, caller's section value
+  and saved destination to the reader callback at 0x10012568. A short read
+  returns -1 after releasing the handle; a complete read selects the special
+  loader at 0x10012868 when the saved mode is -0x4581, otherwise the ordinary
+  loader at 0x10012d74, releases the handle and returns zero. (`gfxinfo`,
+  6.5.30m, complete N32 body read at 0x10012518-0x100125ef.)
 
 - `getVeniceInfo` (`usr/gfx/gfxinfo` 0x100188e0, 560 bytes):
   **Established.** The display-board information fetch, with the same flow as the `setmon` routine at 0x10013184: `a0` is the pipe number and `a1` the destination of the 234-word (936-byte) block. With the global `ven_pipeMapped` zero it prints "getVeniceInfo(): pipe not mapped, unable to probe for MCO.\n" (0x10023078) with `fprintf` (slot 66) on `__iob` plus 32 and returns 0. Otherwise it asks `ioctl` (slot 65) for the board count (request 101) and returns -1 through `syslog` (slot 64) with "Unable to find number of graphics boards during %s initialization:  %m" (0x100230b8) when that fails, or with "Invalid pipe number during %s initialization" (0x10023100) when the pipe number is above the count. The board-name request 102 uses a request of the pipe number, a reply pointer at sp+16 and length 40; failure logs "graphics getboardinfo() failed during %s initialization:  %m" (0x10023130) and returns -1. `strncmp` (slot 60) of the reply with "RE" (0x10027ebc) over 2 bytes must be zero, otherwise "Performing %s initialization on hardware not a RealityEngine" (0x10023170) is logged and -1 returned. `malloc` (slot 56) takes the last word of the name reply (sp+52); a null result logs "unable to malloc() for getboardinfo() during %s initialization" (0x100231b0) and returns -1. The second request 102 with length 936 fills that buffer (failure logs the getboardinfo message and returns -1 without freeing), 234 words are copied to the caller, `free` (slot 62) releases the buffer and the routine returns 0. The product name in each log line is the string behind the global `vs2ProductName`.

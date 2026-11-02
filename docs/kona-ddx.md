@@ -21,6 +21,20 @@ One entry per function for the stereo wrappers, context hooks, caches, cursor an
 
 ## Rendering resource manager client (`rrm*`)
 
+### Generic X server forwarding routine
+
+- `ChangeGC` (`usr/gfx/arch/GENERIC/Xsgi` 0x10260b90, 72 bytes): **Established.**
+  It forwards to `dixChangeGC`. It loads that routine's GOT slot into `t9` (`lw`
+  at 0x10260ba8), saves the original first argument in `at` (`move` at
+  0x10260ba0), sets argument 0 and argument 4 to zero (`move` at 0x10260ba4 and
+  0x10260bac), moves the original second and third arguments into `a2` and `a3`
+  (`move` at 0x10260bb8 and 0x10260bb4), and copies the saved first argument
+  into `a1` in the delay slot of the call (`move a1,at` at 0x10260bc4). It then
+  calls `dixChangeGC` directly (`jal` at 0x10260bc0). The result is the callee's
+  return value in `v0`, since the earlier copy of the second argument into `v0`
+  (`move` at 0x10260bb0) is overwritten by the call. It touches no hardware
+  directly. (`Xsgi`, 6.5.30m, complete N32 body read at 0x10260b90-0x10260bd7.)
+
 **Inferred** from the names and [kernel.md](kernel.md#generic-and-manager-ioctls-who-sends-them): these functions are the X server's side of the kernel's rendering resource manager. They create and destroy the window's clip and buffer resources and send the manager ioctls (`RRM_BINDRNTOCLIP`, `RRM_UNBINDRNFROMCLIP`, `RRM_INVALIDATERN` and their OpenGL variants) when a window is mapped, unmapped, moved, double-buffered or destroyed.
 
 | Group | Role | Functions |

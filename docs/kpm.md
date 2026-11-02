@@ -724,6 +724,12 @@ same executable.
 
 ## Boundary-scan library (`jt_*`)
 
+- `kona_jt_set_custom_error_report` (`usr/gfx/KONA/bin/kpm`): **Established.**
+  Address 0x10010164; the 32-byte body stores the caller's function pointer in
+  the boundary-scan library's custom-error slot (`sw` at 0x10010180) and
+  returns the old slot value loaded at 0x10010178. It performs no scan-chain
+  access. (`kpm`, 6.5.30m, complete N32 body read at 0x10010164-0x10010183.)
+
 **Established** (names, strings and the host procedures in [hip.md](hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window)). `kpm` and `irsaudit` link the same boundary-scan library: it reads chain and chip descriptions from boundary-scan description files (`read_bsdl`, `read_bsr`, `jt_findfile`, `jt_zopen`, `jt_zclose`, `jt_canonize`, `type_to_func`, `type_to_safe`, `porttopin`, `pintoport`, `premature_eof`), builds instruction and data vectors for each chip on a chain, and sends them through a set of low-level procedures that the tool installs (`jt_set_procs`; for `kpm` those are the host-register routines of the previous reference).
 
 | Function | Role |
