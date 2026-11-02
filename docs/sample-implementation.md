@@ -5501,6 +5501,48 @@ Each exact O32 body here is byte-identical to its same-address IP27 O32 counterp
 - `__glSpanPackNonCompUbyte` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9a2354; occupies 216 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a2354. SHA-256 d997c25680152e6c561727f7dc583769105db0aa623732b90af21f081d4f4131.
 
+#### IP35 O32 target entries
+
+The target routines are in usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from N32 comparisons; code identity does not by itself explain behavior.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glSpanPackNonCompByte | 0xd9a242c / 84 | e6993b4134a820a5cec4230f99dbf77cf48495fa512b148bd47b6b1b89284e4f | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d99df60 / 184 | eb32e2bf59470c27b27eeb1261400e8135580c80e1e95caab1744c68e0e289e3 | no |
+| __glSpanPackNonCompUshort | 0xd9a2480 / 216 | 0a53d1b3059b5cc09514094d6483fcaf4849eed540e5579b85b558c42c8b6db5 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a2480 / 216 | 0a53d1b3059b5cc09514094d6483fcaf4849eed540e5579b85b558c42c8b6db5 | yes |
+| __glSpanPackNonCompShort | 0xd9a2558 / 84 | ac5a51aa55dc48f448fd3820aaa96df429badac843b662b43571669431797cab | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d99e0e0 / 184 | 9669c4657a6f29cd751cb5d2aec591e35535898edb675447fb139d2c663a6afa | no |
+| __glSpanPackNonCompUint | 0xd9a25ac / 216 | 05b438a18c471e00f7ff1535afee5954d028f9b11a4b82684156803e85e6c294 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a25ac / 216 | 05b438a18c471e00f7ff1535afee5954d028f9b11a4b82684156803e85e6c294 | yes |
+| __glSpanPackNonCompInt | 0xd9a2684 / 84 | f0ffa1f09d8823d2026d642f00c7cb43b396a4c911a6365f1053f4b2dc6ae028 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d99e260 / 168 | cff27eaf0d5a55e36a137a03086bd65ae4b1bff61a712fca4663a165fd653318 | no |
+| __glSpanCopy | 0xd9a26d8 / 112 | c514f42b05e5fcfe07808e38765a6706b1d9ea85896147272f675881893c4f84 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a26d8 / 112 | c514f42b05e5fcfe07808e38765a6706b1d9ea85896147272f675881893c4f84 | yes |
+| __glSpanPackBitmap | 0xd9a2748 / 2604 | 3d974c6f081709582c4c3143e5464929871504b74be3cae7e74238a8e26d2433 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a2748 / 2604 | 3d974c6f081709582c4c3143e5464929871504b74be3cae7e74238a8e26d2433 | yes |
+
+- `__glSpanPackNonCompByte` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a242c; occupies 84 bytes.
+  **Inferred.** **Inferred.** This non-component packer reads words at entry a1 +0xb8 and +0x6c (`lw` at 0xd9a2430 and `lw` at 0xd9a2434). It uses unsigned multiplication (`multu` at 0xd9a2440) and obtains the low product word (`mflo` at 0xd9a2448). Hostfacts leaves the loop bound t1 unknown: a signed t1 <= 0 skips the loop (`blez` at 0xd9a244c). The loop loads a float word through an unresolved base (`lwc1` at 0xd9a2454), truncates it to an integer (`trunc.w.s` at 0xd9a2460), and emits a byte through another unresolved base (`sb` at 0xd9a2474). The store is the loop branch's delay slot and runs on both outcomes (`bnez` at 0xd9a2470). Hostfacts does not resolve the advancing source or destination addresses. It reports v0 as the word loaded from entry a1 +0xb8 on return (`jr` at 0xd9a2478). Unequal exact ranges: target 84 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99df60 +184 bytes / 63 changed common-prefix byte positions SHA-256 target `e6993b4134a820a5cec4230f99dbf77cf48495fa512b148bd47b6b1b89284e4f` / documented N32 `eb32e2bf59470c27b27eeb1261400e8135580c80e1e95caab1744c68e0e289e3` Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompByte` in `usr/gfx/arch/IP27KONA32/libGLcore.so`
+
+- `__glSpanPackNonCompUshort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a2480; occupies 216 bytes.
+  **Inferred.** Byte-identical over the complete 216-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a2480. SHA-256 0a53d1b3059b5cc09514094d6483fcaf4849eed540e5579b85b558c42c8b6db5. The documented behavior grade remains Inferred.
+
+- `__glSpanPackNonCompShort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a2558; occupies 84 bytes.
+  **Inferred.** **Inferred.** This non-component packer reads words at entry a1 +0xb8 and +0x6c (`lw` at 0xd9a255c and `lw` at 0xd9a2560). It uses unsigned multiplication (`multu` at 0xd9a256c) and obtains the low product word (`mflo` at 0xd9a2574). Hostfacts leaves the loop bound t1 unknown: a signed t1 <= 0 skips the loop (`blez` at 0xd9a2578). The loop loads a float word through an unresolved base (`lwc1` at 0xd9a2580), truncates it to an integer (`trunc.w.s` at 0xd9a258c), and emits a halfword through another unresolved base (`sh` at 0xd9a25a0). The store is the loop branch's delay slot and runs on both outcomes (`bnez` at 0xd9a259c). Hostfacts does not resolve the advancing source or destination addresses. It reports v0 as the word loaded from entry a1 +0xb8 on return (`jr` at 0xd9a25a4). Unequal exact ranges: target 84 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99e0e0 +184 bytes / 64 changed common-prefix byte positions SHA-256 target `ac5a51aa55dc48f448fd3820aaa96df429badac843b662b43571669431797cab` / documented N32 `9669c4657a6f29cd751cb5d2aec591e35535898edb675447fb139d2c663a6afa` Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompShort` in `usr/gfx/arch/IP27KONA32/libGLcore.so`
+
+- `__glSpanPackNonCompUint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a25ac; occupies 216 bytes.
+  **Inferred.** Byte-identical over the complete 216-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a25ac. SHA-256 05b438a18c471e00f7ff1535afee5954d028f9b11a4b82684156803e85e6c294. The documented behavior grade remains Inferred.
+
+- `__glSpanPackNonCompInt` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a2684; occupies 84 bytes.
+  **Inferred.** **Inferred.** This non-component packer reads words at entry a1 +0xb8 and +0x6c (`lw` at 0xd9a2688 and `lw` at 0xd9a268c). It uses unsigned multiplication (`multu` at 0xd9a2698) and obtains the low product word (`mflo` at 0xd9a26a0). Hostfacts leaves the loop bound t1 unknown: a signed t1 <= 0 skips the loop (`blez` at 0xd9a26a4). The loop loads a float word through an unresolved base (`lwc1` at 0xd9a26ac), truncates it to an integer (`trunc.w.s` at 0xd9a26b8), and emits a word through another unresolved base (`sw` at 0xd9a26cc). The store is the loop branch's delay slot and runs on both outcomes (`bnez` at 0xd9a26c8). Hostfacts does not resolve the advancing source or destination addresses. It reports v0 as the word loaded from entry a1 +0xb8 on return (`jr` at 0xd9a26d0). Unequal exact ranges: target 84 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99e260 +168 bytes / 63 changed common-prefix byte positions SHA-256 target `f0ffa1f09d8823d2026d642f00c7cb43b396a4c911a6365f1053f4b2dc6ae028` / documented N32 `cff27eaf0d5a55e36a137a03086bd65ae4b1bff61a712fca4663a165fd653318` Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompInt` in `usr/gfx/arch/IP27KONA32/libGLcore.so`
+
+- `__glSpanCopy` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a26d8; occupies 112 bytes.
+  **Inferred.** Byte-identical over the complete 112-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a26d8. SHA-256 c514f42b05e5fcfe07808e38765a6706b1d9ea85896147272f675881893c4f84. The documented behavior grade remains Inferred.
+
+- `__glSpanPackBitmap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a2748; occupies 2604 bytes.
+  **Inferred.** Byte-identical over the complete 2604-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a2748. SHA-256 3d974c6f081709582c4c3143e5464929871504b74be3cae7e74238a8e26d2433. The documented behavior grade remains Inferred.
+
 ### px_paths.c
 
 - `PickSpanModifiers` in usr/gfx/arch/IP27KONA32/libGLcore.so: chooses the span-modifier routines of a pixel path from the transfer modes, maps, scale and bias and the pixel format; the shipped routine is far larger, 2033 source lines against 258 in the public file, with the format-specialised variants unrolled, and it occupies 14816 bytes at address 0x0d99f000; the public sample-implementation source gfx/lib/opengl/glcore/px_paths.c holds the same routine, matched by name, the shipped body being many times larger than the public one, and it makes no access to the board. Inferred.
@@ -5610,6 +5652,78 @@ Each exact O32 body here is byte-identical to its same-address IP27 O32 counterp
 - `__glInitMemGet` in usr/gfx/arch/IP27KONA/libGLcore.so: fills a span descriptor for reading an image back from library storage in an internal format, and in the original 32-bit build it occupies 304 bytes at address 0xd9abb34; the public sample-implementation source gfx/lib/opengl/glcore/px_paths.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glInitMemUnpack` in usr/gfx/arch/IP27KONA/libGLcore.so: fills a span descriptor for unpacking a client image of a size, format and type from memory, and in the original 32-bit build it occupies 140 bytes at address 0xd9abc64; the public sample-implementation source gfx/lib/opengl/glcore/px_paths.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glInitMemPack` in usr/gfx/arch/IP27KONA/libGLcore.so: fills a span descriptor for packing an image of a size, format and type into client memory, and in the original 32-bit build it occupies 120 bytes at address 0xd9abcf0; the public sample-implementation source gfx/lib/opengl/glcore/px_paths.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
+
+#### IP35 O32 target entries
+
+The target routines are in usr/gfx/arch/IP35KONA/libGLcore.so. Exact IP27 O32 byte identities are separated from N32 comparisons; code identity does not by itself explain behavior.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | Comparison build / address / size | Comparison SHA-256 | Identical |
+|---|---|---|---|---|---|
+| PickSpanModifiers | 0xd9a39c0 / 13768 | c8324f7f066ed33418e6855daa47e147958f595e232f458cef8de5e5f02eaf79 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d99f000 / 14816 | 832cca75d09fdcbcfa4602b297cd72481baaa76a870aace6c8291a34b15a46d8 | no |
+| __glClipDrawPixels | 0xd9a6f88 / 1768 | ad17320f316329b317310f600cc092a48722f131280f391f4c7e8853953d5e26 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a6f88 / 1768 | ad17320f316329b317310f600cc092a48722f131280f391f4c7e8853953d5e26 | yes |
+| __glComputeSpanPixelArray | 0xd9a7670 / 668 | 63bda55cf2b4aa6841880985766476287d94dcff247ab4ef04edafc62337e153 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a7670 / 668 | 63bda55cf2b4aa6841880985766476287d94dcff247ab4ef04edafc62337e153 | yes |
+| __glLoadUnpackModes | 0xd9a790c / 148 | 4fbd364e51be4ff57ba579692400d8bb565926e648bdc7f3274ebd1274913c03 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a790c / 148 | 4fbd364e51be4ff57ba579692400d8bb565926e648bdc7f3274ebd1274913c03 | yes |
+| __glInitDrawPixelsInfo | 0xd9a79a0 / 460 | 55241a680369c989300e215d4140619fc584b9295616560a072cc243a88b3c32 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a79a0 / 460 | 55241a680369c989300e215d4140619fc584b9295616560a072cc243a88b3c32 | yes |
+| __glDrawPixels2 | 0xd9a7dd0 / 492 | 7fbc8fde074abec3d96149c4bf9e84ca11efa9a8a71e7561dcf741a0893e8bde | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a7dd0 / 492 | 7fbc8fde074abec3d96149c4bf9e84ca11efa9a8a71e7561dcf741a0893e8bde | yes |
+| __glDrawPixels1 | 0xd9a7fbc / 448 | a51cf2dc79a6b9c0c45d8adeec7521e100a664e4552fd273c183bf2ab9c8fa8f | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a7fbc / 448 | a51cf2dc79a6b9c0c45d8adeec7521e100a664e4552fd273c183bf2ab9c8fa8f | yes |
+| __glDrawPixels0 | 0xd9a817c / 364 | 8467a517eb79e8f4b1aea98a25a93dc78d09ddeb6fc857be9846c5b35094f9cf | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a817c / 364 | 8467a517eb79e8f4b1aea98a25a93dc78d09ddeb6fc857be9846c5b35094f9cf | yes |
+| __glSlowPickDrawPixels | 0xd9a86e8 / 280 | f7914f64ad8d13297ebd2cb9b81750ff4d561e4ccc3ab8419b5b188093946cd5 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a86e8 / 280 | f7914f64ad8d13297ebd2cb9b81750ff4d561e4ccc3ab8419b5b188093946cd5 | yes |
+| __glGenericPickDrawPixels | 0xd9a8800 / 336 | 2dc284d08d0f8c4b5bad8940e41c757bccbaf644fa9f4d864fb57aabf8d390b4 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a8800 / 336 | 2dc284d08d0f8c4b5bad8940e41c757bccbaf644fa9f4d864fb57aabf8d390b4 | yes |
+| __glClipReadPixels | 0xd9a8950 / 460 | 5038ab8f9d5efe46217296f99c8e1a4b5fd7902273b29c1fb910c87b905e223c | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a8950 / 460 | 5038ab8f9d5efe46217296f99c8e1a4b5fd7902273b29c1fb910c87b905e223c | yes |
+| __glLoadPackModes | 0xd9a8b1c / 84 | ead6bca31d1e6db01997d4587eb159100f2101feb37c833b15f33794ced7f6b7 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a8b1c / 84 | ead6bca31d1e6db01997d4587eb159100f2101feb37c833b15f33794ced7f6b7 | yes |
+| __glInitReadPixelsInfo | 0xd9a8b70 / 336 | 7159b503abeb3206718eff1a873f92226b13fa3e461db3f54a8eb021c4f1e845 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9a8b70 / 336 | 7159b503abeb3206718eff1a873f92226b13fa3e461db3f54a8eb021c4f1e845 | yes |
+
+- `PickSpanModifiers` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a39c0; occupies 13768 bytes.
+  **Inferred.** **Inferred.** Span-modifier selection reads entry a1 +0x1b0 (`lw` at 0xd9a39e4). A zero value selects the branch target (`beqz` at 0xd9a39ec). The body includes stores of alternative descriptor pointers at a1 +0x1b4 (`sw` at 0xd9a3a10, `sw` at 0xd9a3a54, `sw` at 0xd9a3aa0, and `sw` at 0xd9a3ae4). These resolve respectively to 0xda88380, entry a0 +0x300, entry a0 +0x354, and entry a0 +0x3a8. They occur on different paths. The context word at entry a0 +0x77f0 is cleared (`sw` at 0xd9a3bc4). Later paths OR in masks 0x1, 0x2 and 0x4 (`sw` at 0xd9a3bf8, `sw` at 0xd9a3c2c, and `sw` at 0xd9a3c5c). Calls include `__glBuildRGBAModifyTables` (`jalr` at 0xd9a5fc8, `jalr` at 0xd9a60b0, and `jalr` at 0xd9a6178), `__glBuildItoRGBAModifyTables` (`jalr` at 0xd9a629c), and `__glBuildItoIModifyTables` (`jalr` at 0xd9a6310). Hostfacts gives each call entry a0, entry a0 +0x7774, one of 0 or 1, and entry a1 as its first four arguments. Output includes a word at entry a2 +0x10 (`sw` at 0xd9a6f34) and alternative words at entry a2 +0x14 (`sw` at 0xd9a6f44, `sw` at 0xd9a6f60, and `sw` at 0xd9a6f6c). The last two values resolve to 0xd9a82e8 and 0xda05088. The first output value and the returned v0 remain unknown to hostfacts (`jr` at 0xd9a6f80). The complete format/state decision matrix and indexed output addresses remain unresolved. Native mdebug evidence and the next dynamic function bound this O32 range at 13768 bytes, ending at 0xd9a6f88 after the return delay slot. The queued 112864 bytes include later functions. Unequal exact ranges: target 13768 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99f000 +14816 bytes / 12646 changed common-prefix byte positions SHA-256 target `c8324f7f066ed33418e6855daa47e147958f595e232f458cef8de5e5f02eaf79` / documented N32 `832cca75d09fdcbcfa4602b297cd72481baaa76a870aace6c8291a34b15a46d8` Existing entry: `docs/sample-implementation.md`, `PickSpanModifiers` in `usr/gfx/arch/IP27KONA32/libGLcore.so`
+
+- `__glClipDrawPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a6f88; occupies 1768 bytes.
+  **Inferred.** Byte-identical over the complete 1768-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a6f88. SHA-256 ad17320f316329b317310f600cc092a48722f131280f391f4c7e8853953d5e26. The documented behavior grade remains Inferred.
+
+- `__glComputeSpanPixelArray` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a7670; occupies 668 bytes.
+  **Inferred.** Byte-identical over the complete 668-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a7670. SHA-256 63bda55cf2b4aa6841880985766476287d94dcff247ab4ef04edafc62337e153. The documented behavior grade remains Inferred.
+
+- `__glLoadUnpackModes` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a790c; occupies 148 bytes.
+  **Inferred.** Byte-identical over the complete 148-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a790c. SHA-256 4fbd364e51be4ff57ba579692400d8bb565926e648bdc7f3274ebd1274913c03. The documented behavior grade remains Inferred.
+
+- `__glInitDrawPixelsInfo` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a79a0; occupies 460 bytes.
+  **Inferred.** Byte-identical over the complete 460-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a79a0. SHA-256 55241a680369c989300e215d4140619fc584b9295616560a072cc243a88b3c32. The documented behavior grade remains Inferred.
+
+- `__glDrawPixels2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a7dd0; occupies 492 bytes.
+  **Inferred.** Byte-identical over the complete 492-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a7dd0. SHA-256 7fbc8fde074abec3d96149c4bf9e84ca11efa9a8a71e7561dcf741a0893e8bde. The documented behavior grade remains Inferred.
+
+- `__glDrawPixels1` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a7fbc; occupies 448 bytes.
+  **Inferred.** Byte-identical over the complete 448-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a7fbc. SHA-256 a51cf2dc79a6b9c0c45d8adeec7521e100a664e4552fd273c183bf2ab9c8fa8f. The documented behavior grade remains Inferred.
+
+- `__glDrawPixels0` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a817c; occupies 364 bytes.
+  **Inferred.** Byte-identical over the complete 364-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a817c. SHA-256 8467a517eb79e8f4b1aea98a25a93dc78d09ddeb6fc857be9846c5b35094f9cf. The documented behavior grade remains Inferred.
+
+- `__glSlowPickDrawPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a86e8; occupies 280 bytes.
+  **Inferred.** Byte-identical over the complete 280-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a86e8. SHA-256 f7914f64ad8d13297ebd2cb9b81750ff4d561e4ccc3ab8419b5b188093946cd5. The documented behavior grade remains Inferred.
+
+- `__glGenericPickDrawPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a8800; occupies 336 bytes.
+  **Inferred.** Byte-identical over the complete 336-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a8800. SHA-256 2dc284d08d0f8c4b5bad8940e41c757bccbaf644fa9f4d864fb57aabf8d390b4. The documented behavior grade remains Inferred.
+
+- `__glClipReadPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a8950; occupies 460 bytes.
+  **Inferred.** Byte-identical over the complete 460-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a8950. SHA-256 5038ab8f9d5efe46217296f99c8e1a4b5fd7902273b29c1fb910c87b905e223c. The documented behavior grade remains Inferred.
+
+- `__glLoadPackModes` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a8b1c; occupies 84 bytes.
+  **Inferred.** Byte-identical over the complete 84-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a8b1c. SHA-256 ead6bca31d1e6db01997d4587eb159100f2101feb37c833b15f33794ced7f6b7. The documented behavior grade remains Inferred.
+
+- `__glInitReadPixelsInfo` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9a8b70; occupies 336 bytes.
+  **Inferred.** Byte-identical over the complete 336-byte body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9a8b70. SHA-256 7159b503abeb3206718eff1a873f92226b13fa3e461db3f54a8eb021c4f1e845. The documented behavior grade remains Inferred.
 
 ### px_read.c
 
