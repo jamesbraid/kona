@@ -1572,6 +1572,114 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP35KONA/libGLcore.s
 - `__glInitMemLoad` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9ab9d8; occupies 348 bytes.
   **Inferred.** Sets defaults and format-specific fields for a memory-load descriptor. It saves incoming argument 3 at descriptor +0x58, clears +0x80, +0x84, +0x88 and +0x78, and writes one to +0x7c (`sw` at 0xd9aba04, 0xd9aba08, 0xd9aba0c, 0xd9aba10, 0xd9aba14, 0xd9aba18). Float defaults include descriptor +0x13c, +0x140, +0x144, +0x148, +0x14c and +0x150 (`swc1` at 0xd9aba20, 0xd9aba24, 0xd9aba28, 0xd9aba2c, 0xd9aba30, 0xd9aba34). A decoded format arm stores 0x1903, 0x1406 and four at +0x50, +0x54 and +0x94 (`sw` at 0xd9abb20, 0xd9abb24, 0xd9abb28). Descriptor denotes argument 1. The complete routine makes no calls and does not set a known numeric return. Existing entry: `docs/sample-implementation.md`, `__glInitMemLoad` in `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7120, 316 bytes, labelled Inferred. Comparison: target 348 bytes, existing 316 bytes, 249 mismatching bytes over the shared prefix.
+## IP35 span expansion, scaling and statistics routines read in full
+
+These entries report target-specific facts from complete bodies in usr/gfx/arch/IP35KONA/libGLcore.so. All exact ranges differ from the named N32 comparisons; byte differences alone do not establish changed behavior. Hostfacts leaves loop addresses, address spaces, channel mappings or numeric values unresolved where noted.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glSpanExpandLuminanceAlphaNS | 0xd9b49e0 / 204 | 980791e160f7f3cd8a1352b0fcd948b5129b7828d5b993967811a2fabcef2e97 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0730 / 80 | 592b7914a008597a7039bc944c1b234dd33ed8a54f22cb63ad784e0d3070c950 | 66 |
+| __glSpanExpandRedAlphaNS | 0xd9b4aac / 232 | 95175b59749e6925e144bdc00f17b6f45477bd87df8d74d9dcda1bcddb73424f | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0780 / 80 | 178de3f308433397a33fee5cda6985ea80185b80c0654d7b2c120a4759f63740 | 67 |
+| __glSpanExpandIntensityNS | 0xd9b4b94 / 280 | 1e8f0065e7def1c8958a413339e6600c428ec92a1aa656c7403d64366c28dac5 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b07d0 / 76 | 891cde12301f00b57566d02498e155ed35c71d0a9168febfd4ca95235da3a5aa | 61 |
+| __glSpanScaleRGBA | 0xd9b4da8 / 356 | dfff31dde87f89771696dc789ea60a8b229c9bba1efdc830bc1ba09c5a9e38e4 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0910 / 344 | 76244c7b85ab47e87167a7b8b9602c39778d37485fa4c63344c5486f3fb2d894 | 311 |
+| __glSpanScaleABGR | 0xd9b4f0c / 356 | 501eb397e0af24beae335249fd940ae78458eacf780dd0c9765590921b4aaa2c | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0a70 / 344 | 547316a0b71b6023e8c09942cd02ecaf1116833f0d5bfb23d35372d25321fb7e | 299 |
+| __glSpanScaleBGRA | 0xd9b5070 / 356 | a907c1bc1bf991219ee0768b9891b6955631222956a6225f925bb0c1c14ced37 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0bd0 / 344 | 297e9b3445e3f8be876adc8720e8f17cca1e130154699908ea89f554fa3c3bc7 | 298 |
+| __glSpanPreReorderABGR | 0xd9b51d4 / 244 | 4f88571d87f9942a618df3c65250e29307dc4d21e4eaa93adab048892cb826b0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0d30 / 248 | fbe4869d193b94860da8d41d1263262b34bf964adfae333c8400c4b622a9d6ac | 163 |
+| __glSpanPreReorderBGRA | 0xd9b52c8 / 244 | 2e07b643b63aba1254062d11901b014bdefe401b51d4f8d1e9793f9e8c45cde4 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0e30 / 248 | f0ac4739e981d881df171c09e17a55c5accb6ac6bb57271bc95e0a0736b32e35 | 158 |
+| __glSpanPreUnscaleRGBA | 0xd9b53bc / 356 | 1e25bb2eddbb59f77f556cb2440ee36447de80d15adf9828860fbb924e9b09ba | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b0f30 / 344 | 820964f33531c9c76e8b42887598fdb622802db6af2f9b89ce736a1b73e4b830 | 311 |
+| __glSpanPostUnscaleRGBA | 0xd9b5520 / 356 | 9570a6e946c818ae124262eb910a1f0769f5189af0797f13669d7ae799e7b5f9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b1090 / 344 | ac7fd9136d36553fa3db742e13c0bc9c6b48d7508d77119bf7d198770becd78f | 311 |
+| __glSpanUnscaleABGR | 0xd9b5684 / 356 | aa98f589ab20aed3406363dfd603efbce8bdfb30ed575b8b99e63aae0c56c20e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b11f0 / 344 | d0729fe431e6e3565d76f841259fb59fe5f70f2bb544d7f6f081708fb4b975ce | 299 |
+| __glSpanUnscaleBGRA | 0xd9b57e8 / 356 | 910a29fcbdb492401e503b0a0ca9977b0bb3ec5852ea47049b25fac51e2f97ae | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b1350 / 344 | 603c61aac984912c32d251491fdae9b2159b693eb81d03dd606e318147549f65 | 298 |
+| __glSpanMinmaxA | 0xd9bccb4 / 404 | f0a2c454c6d3b6b93e71b5d85cf4fe14a8a5ce03fc67ee45708015b03147406d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b7900 / 348 | eca04635e290eddd6f8e4043e2bbe61be7ef7eea9b4edb493160ebf6d6083193 | 286 |
+| __glSpanMinmaxL | 0xd9bce48 / 388 | 3d555632a801d9210d360789948bdfd6c31729c3ff1c218281ae2f248e46882b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b7a60 / 352 | 9184ecb8e9383a0ed19701baff575d050386b5020fe0323e674cbde9f14889f9 | 288 |
+| __glSpanMinmaxLA | 0xd9bcfcc / 608 | 8d5ff31e63fb044cf86151375f9f32788be423c8e2b88fd5ebe618ca31370fc6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b7bc0 / 508 | 6f77e93c1ac8d4a82a0e94ed8af1e74e14ebbe29afa2b3b39281722edb5ffe9f | 426 |
+| __glSpanMinmaxRGB | 0xd9bd22c / 300 | 6dd2ea2f7a828e6c00d8818bfba581a442072a3be77818a132e00474c040f5de | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b7dc0 / 272 | 6085e29e55be5367863b8f548f5f60a98f4618dfa43f37d20314e046f4aec601 | 226 |
+| __glSpanMinmaxRGBA | 0xd9bd358 / 376 | 3ca0ecf2906a4c206dec632e6ada0c875d312cc5db9640ed4dbb709fee88cd64 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b7ed0 / 324 | 11581ababcb8e398015a5e1f3c249c51e20ed8a9c26c545fd90f3d7ac058a8e2 | 268 |
+| __glSpanMinmaxSinkA | 0xd9bd4d0 / 412 | 9bc68d7734645495355afc031cbca36500e9c86947f8f8a4fc8aa04ca938a1a0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b8020 / 256 | 5dc9896b0677449c934cb493955b53460deb1f918a81589262609971bf7e04a4 | 220 |
+| __glSpanMinmaxSinkL | 0xd9bd66c / 412 | 3debd5407b1cf97ef17562bf60b3332d33c9d8f90fd55737b5b9190e57bd2cf9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b8120 / 256 | d43be64fa1c6e1999fa46a549dccfd7170cde91f60081a1801d8a8aadcb20778 | 220 |
+| __glSpanMinmaxSinkLA | 0xd9bd808 / 480 | 2d10f459da2c64ab2310fd864a95db81b930a116110207ff9c730c3fd9a41cba | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9b8220 / 184 | ee5280600ad7ec2e2459ea266346b819616e0a83177d1e8d7c350dbff6d2c99b | 148 |
+
+#### Target-build readings
+
+- `__glSpanExpandLuminanceAlphaNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b49e0; occupies 204 bytes.
+  **Inferred.** Expands two float inputs into four output words without arithmetic scaling. The first scalar input is read once and stored three times (`lwc1` at 0xd9b4a04, `swc1` at 0xd9b4a10, 0xd9b4a14, 0xd9b4a18). A second input read supplies the remaining float store (`lwc1` at 0xd9b4a1c, `swc1` at 0xd9b4a28). Hostfacts cannot resolve the effective span addresses, so it does not independently name the output channels. The initial count is argument 1 +0xb4 (`lw` at 0xd9b49e4). Both remainder and four-pixel bodies were read, and v0 retains that count at the local return (`jr` at 0xd9b4aa4).
+
+- `__glSpanExpandRedAlphaNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4aac; occupies 232 bytes.
+  **Inferred.** Produces a four-word software pixel from two input floats and an additional register value. Its scalar input reads are `lwc1` at 0xd9b4ae4 and 0xd9b4af4. The two direct copies use `swc1` at 0xd9b4af0 and 0xd9b4b08, while two other float stores use f2 (`swc1` at 0xd9b4ae8, 0xd9b4aec). Their numeric value and effective destinations remain untracked in hostfacts. It reads the pixel count from argument 1 +0xb4 (`lw` at 0xd9b4abc), with no call or scaling operation in the complete body. The source sibling's missing-channel values are not used to fill the tool's unknowns.
+
+- `__glSpanExpandIntensityNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4b94; occupies 280 bytes.
+  **Inferred.** Replicates one input float into four software output words. The scalar path loads f0 and writes it four times (`lwc1` at 0xd9b4bb8, `swc1` at 0xd9b4bc8, 0xd9b4bcc, 0xd9b4bd0, 0xd9b4bd8). The unrolled tail likewise ends with four stores of f16 (`swc1` at 0xd9b4c94, 0xd9b4c98, 0xd9b4c9c, 0xd9b4ca0). Effective input/output addresses are unknown in hostfacts. The count word is argument 1 +0xb4 (`lw` at 0xd9b4b98). The complete 280-byte body contains remainder, loop and tail paths, rather than inheriting the much shorter N32 range.
+
+- `__glSpanScaleRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4da8; occupies 356 bytes.
+  **Inferred.** Multiplies four float components by context parameters (`mul.s` at 0xd9b4df0, 0xd9b4dfc, 0xd9b4e10 and 0xd9b4e14). The parameter fields are argument 0 +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd9b4dc0, 0xd9b4dc4, 0xd9b4dc8, 0xd9b4dcc). Scalar output includes four word-sized float stores (`swc1` at 0xd9b4e00, 0xd9b4e04, 0xd9b4e18, 0xd9b4e20), but their effective addresses remain unresolved. The input count comes from argument 1 +0xb4 (`lw` at 0xd9b4db4). It preserves two floating-point registers using eight-byte stack stores (`sdc1` at 0xd9b4dac, 0xd9b4db0). No board-scale encoding is inferred from the context field names.
+
+- `__glSpanScaleABGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4f0c; occupies 356 bytes.
+  **Inferred.** Combines four component multiplications with reordered stores (`mul.s` at 0xd9b4f54, 0xd9b4f60, 0xd9b4f6c and 0xd9b4f74). Context parameter loads occupy +0x7858, +0x785c, +0x7860 and +0x7880 from argument 0 (`lwc1` at 0xd9b4f24, 0xd9b4f28, 0xd9b4f2c, 0xd9b4f30). Scalar outputs include `swc1` at 0xd9b4f70, 0xd9b4f78, 0xd9b4f7c and 0xd9b4f84. The full four-pixel path was examined through its final stores (`swc1` at 0xd9b5048, 0xd9b5050, 0xd9b5054, 0xd9b505c). Hostfacts leaves the loop-buffer addresses unknown, limiting the ABGR-to-RGBA mapping. The original count at argument 1 +0xb4 reaches v0 at return (`lw` at 0xd9b4f18, `jr` at 0xd9b5068).
+
+- `__glSpanScaleBGRA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b5070; occupies 356 bytes.
+  **Inferred.** Multiplies four input register values and changes their store arrangement (`mul.s` at 0xd9b50b8, 0xd9b50c4, 0xd9b50d0 and 0xd9b50d8). Its four context parameters are argument 0 +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd9b5088, 0xd9b508c, 0xd9b5090, 0xd9b5094). The scalar result stores occur (`swc1` at 0xd9b50d4, 0xd9b50dc, 0xd9b50e0 and 0xd9b50e8). Their effective destinations cannot be followed by hostfacts, so exact channel correspondence remains inferred. The metadata count is argument 1 +0xb4 (`lw` at 0xd9b507c). Its saved floating-point registers are restored before the return (`ldc1` at 0xd9b51c4, 0xd9b51c8, `jr` at 0xd9b51cc).
+
+- `__glSpanPreReorderABGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b51d4; occupies 244 bytes.
+  **Inferred.** Reorders four float register values without multiplying or dividing them. The scalar loads are `lwc1` at 0xd9b51f8, 0xd9b51fc, 0xd9b5200 and 0xd9b5204, with stores (`swc1` at 0xd9b5214, 0xd9b5218, 0xd9b521c and 0xd9b5224). An unrolled path ends with a different scheduled store group (`swc1` at 0xd9b52ac, 0xd9b52b0, 0xd9b52b4, 0xd9b52bc). Hostfacts reports unknown span bases and therefore supplies no complete channel-to-address map. It preserves original argument 0 in entry-stack +0 (`sw` at 0xd9b51d4). The count comes from argument 1 +0xb4 (`lw` at 0xd9b51d8).
+
+- `__glSpanPreReorderBGRA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b52c8; occupies 244 bytes.
+  **Inferred.** Moves four input floats into a reordered output span in the pre-processing path. Scalar reads (`lwc1` at 0xd9b52ec, 0xd9b52f0, 0xd9b52f4 and 0xd9b52f8) feed stores (`swc1` at 0xd9b5308, 0xd9b530c, 0xd9b5310 and 0xd9b5318). The final unrolled stores are `swc1` at 0xd9b53a0, 0xd9b53a4, 0xd9b53a8 and 0xd9b53b0. These buffer addresses remain unknown to hostfacts, although the full body has no scale arithmetic. Its input count is argument 1 +0xb4 (`lw` at 0xd9b52cc), retained in v0 at the local return (`jr` at 0xd9b53b4).
+
+- `__glSpanPreUnscaleRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b53bc; occupies 356 bytes.
+  **Inferred.** Applies four context float parameters to a software span counted by argument 1 +0xb4 (`lw` at 0xd9b53c8). The parameters come from context +0x7888, +0x788c, +0x7890 and +0x7894 (`lwc1` at 0xd9b53d4, 0xd9b53d8, 0xd9b53dc, 0xd9b53e0). Scalar output stores include `swc1` at 0xd9b5414, 0xd9b5418, 0xd9b542c and 0xd9b5434. Their input/output effective addresses are unknown in hostfacts. The body multiplies floats (`mul.s` at 0xd9b5404, 0xd9b5410, 0xd9b5424 and 0xd9b5428), without proving that the context values are reciprocal framebuffer scales. Remainder and unrolled paths both reach the local return with the initial count (`jr` at 0xd9b5518).
+
+- `__glSpanPostUnscaleRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b5520; occupies 356 bytes.
+  **Inferred.** Uses the post-processing count at argument 1 +0xb8 while multiplying four float components (`lw` at 0xd9b552c, `mul.s` at 0xd9b5568, 0xd9b5574, 0xd9b5588 and 0xd9b558c). The four context fields are +0x7888, +0x788c, +0x7890 and +0x7894 (`lwc1` at 0xd9b5538, 0xd9b553c, 0xd9b5540, 0xd9b5544). The scalar result group uses `swc1` at 0xd9b5578, 0xd9b557c, 0xd9b5590 and 0xd9b5598. Effective buffer pointers remain unresolved, so the sibling's reciprocal-scale interpretation is not treated as established. The saved float registers are recovered before the return (`ldc1` at 0xd9b5674, 0xd9b5678). Its direct effect is float-span transformation in software.
+
+- `__glSpanUnscaleABGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b5684; occupies 356 bytes.
+  **Inferred.** Multiplies and reorders four float values (`mul.s` at 0xd9b56cc, 0xd9b56d8, 0xd9b56e4 and 0xd9b56ec), using context parameters +0x7888, +0x788c, +0x7890 and +0x7894 (`lwc1` at 0xd9b569c, 0xd9b56a0, 0xd9b56a4, 0xd9b56a8). Scalar output writes include `swc1` at 0xd9b56e8, 0xd9b56f0, 0xd9b56f4 and 0xd9b56fc. The final unrolled group is (`swc1` at 0xd9b57c0, 0xd9b57c8, 0xd9b57cc and 0xd9b57d4). Hostfacts cannot resolve those store destinations or fully map channel names to input fields. The counter is read from argument 1 +0xb8 (`lw` at 0xd9b5690), and v0 retains it at return (`jr` at 0xd9b57e0).
+
+- `__glSpanUnscaleBGRA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b57e8; occupies 356 bytes.
+  **Inferred.** Runs the alternate four-component store arrangement with the post-span count at argument 1 +0xb8 (`lw` at 0xd9b57f4). Context float reads are +0x7888, +0x788c, +0x7890 and +0x7894 (`lwc1` at 0xd9b5800, 0xd9b5804, 0xd9b5808, 0xd9b580c). Scalar stores occur (`swc1` at 0xd9b584c, 0xd9b5854, 0xd9b5858 and 0xd9b5860). Each loop- buffer address is unknown to hostfacts. The complete body supports software multiplication and reordered stores (`mul.s` at 0xd9b5830, 0xd9b583c, 0xd9b5848 and 0xd9b5850). Reciprocal-scale and exact BGRA roles remain inferred. It reloads its saved floating-point registers before the local return (`ldc1` at 0xd9b593c, 0xd9b5940, `jr` at 0xd9b5944).
+
+- `__glSpanMinmaxA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bccb4; occupies 404 bytes.
+  **Inferred.** Updates two software statistics while preserving the input record in an output span. It reads the scale-related parameter at context +0x7894 (`lwc1` at 0xd9bccc0). The first record's +0, +4 and +8 words are copied to output +0, +4 and +8 (`lwc1` at 0xd9bccd8, 0xd9bcce8, 0xd9bccf8, `swc1` at 0xd9bcce4, 0xd9bccf4, 0xd9bcd04). Statistics accesses reach context +0x534 and +0x538, with update stores in the unrolled body (`swc1` at 0xd9bce08, 0xd9bce28). Later input/output loop addresses and the return remain unresolved. The full comparisons and copy paths were read, but channel names are not substituted for missing address facts. The numerical values written to both statistics fields remain unknown.
+
+- `__glSpanMinmaxL` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bce48; occupies 388 bytes.
+  **Inferred.** Tracks a scaled component's software bounds and passes the record onward. The context multiplier is +0x7888 (`lwc1` at 0xd9bce54). Initial statistics updates target context +0x534 and +0x538 (`swc1` at 0xd9bce90, 0xd9bceb0). The first input word is also copied unchanged from argument 2 +0 to argument 3 +0 (`lwc1` at 0xd9bce6c, `swc1` at 0xd9bceac). Other component copies continue through the remainder and paired loop paths. Hostfacts leaves the later effective span addresses unknown and does not report a fixed return. The two context fields have unknown numerical update values and no independently established address space.
+
+- `__glSpanMinmaxLA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bcfcc; occupies 608 bytes.
+  **Inferred.** Maintains two pairs of statistics while copying complete software pixel records. Context parameters are +0x7888 and +0x7894 (`lwc1` at 0xd9bcfd8, 0xd9bcfdc). The first statistics pair uses context +0x534 and +0x53c (`swc1` at 0xd9bd01c, 0xd9bd03c), while later second-pair writes include +0x538 and +0x540 (`swc1` at 0xd9bd1ec, 0xd9bd20c). A first-word copy is explicit at argument 2 +0 to argument 3 +0 (`lwc1` at 0xd9bcff4, `swc1` at 0xd9bd038). Other effective input/output addresses become unknown after loop merges. The complete 608-byte body has no callee and leaves the merged return unresolved. Both statistics pairs have unknown numerical endpoint values.
+
+- `__glSpanMinmaxRGB` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bd22c; occupies 300 bytes.
+  **Inferred.** Updates three scaled-component bound pairs and copies the pixel data onward. It loads context floats at +0x7888, +0x788c and +0x7890 (`lwc1` at 0xd9bd238, 0xd9bd23c, 0xd9bd240). Statistics writes include context +0x534 and +0x540 for one pair, plus +0x53c and +0x548 for another (`swc1` at 0xd9bd270, 0xd9bd290, 0xd9bd310, 0xd9bd330). Output copies include `swc1` at 0xd9bd28c, 0xd9bd2dc and 0xd9bd32c, whose effective destinations are unknown. The input count comes from argument 1 +0xb8 (`lw` at 0xd9bd22c). Hostfacts leaves all six numerical endpoint values unknown, so these accesses do not establish a complete min/max formula.
+
+- `__glSpanMinmaxRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bd358; occupies 376 bytes.
+  **Inferred.** Combines four scaled-component statistics updates with output copies. Context multipliers reside at +0x7888, +0x788c, +0x7890 and +0x7894 (`lwc1` at 0xd9bd364, 0xd9bd368, 0xd9bd36c, 0xd9bd370). Statistics stores include context +0x534 and +0x544, followed by the final component's +0x540 and +0x550 (`swc1` at 0xd9bd3a0, 0xd9bd3c0, 0xd9bd490, 0xd9bd4b0). Separate output writes occur (`swc1` at 0xd9bd3bc and 0xd9bd4ac). Their addresses remain unknown through the loop, as does the return value. The complete body has no calls. Its context statistics stores have unknown numerical values, so a full four-component min/max formula remains unresolved.
+
+- `__glSpanMinmaxSinkA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bd4d0; occupies 412 bytes.
+  **Inferred.** Updates a single statistics pair while omitting an output-span copy. The scale parameter is context +0x7894 (`lwc1` at 0xd9bd4d8). Statistics stores target context +0x534 and +0x538 (`swc1` at 0xd9bd518, 0xd9bd538), repeated through the four-entry body. Its only other store preserves incoming argument 3 at entry-stack +0xc (`sw` at 0xd9bd4d0). Effective input addresses are unknown to hostfacts, but every non-stack store in the complete body belongs to those two context fields. The local return is unresolved (`jr` at 0xd9bd664). Neither endpoint's stored numerical value is established by hostfacts.
+
+- `__glSpanMinmaxSinkL` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bd66c; occupies 412 bytes.
+  **Inferred.** Consumes a software span for statistics without forwarding a copied output span. In this exact target it reads the multiplier at context +0x7894 (`lwc1` at 0xd9bd678), so a different luminance multiplier is not supplied from the name or sibling. Initial pair updates target context +0x534 and +0x538 (`swc1` at 0xd9bd6b4, 0xd9bd6d4). The same pair is used in the last unrolled group (`swc1` at 0xd9bd7d4, 0xd9bd7f4). The sole non-statistics store is argument 3's save at entry-stack +0xc (`sw` at 0xd9bd66c). Hostfacts leaves input addresses, both stored endpoint values and the merged return unknown.
+
+- `__glSpanMinmaxSinkLA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9bd808; occupies 480 bytes.
+  **Inferred.** Accumulates two statistics pairs without copying a result span. The multiplier fields are context +0x7888 and +0x7894 (`lwc1` at 0xd9bd814, 0xd9bd818). Pair stores include context +0x534, +0x53c, +0x538 and +0x540 (`swc1` at 0xd9bd858, 0xd9bd878, 0xd9bd898, 0xd9bd8b8). Apart from repeated writes to those statistics, the complete store list contains only argument 3's save at entry-stack +0xc (`sw` at 0xd9bd808). The first input word is identified as argument 2 +0 (`lwc1` at 0xd9bd830), while later effective addresses remain unknown. All four numerical endpoint values and the return stay unresolved. No device statistics behavior is established.
 ## Software renderer (soft)
 
 ### so_accumop.c
