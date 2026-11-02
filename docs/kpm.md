@@ -1908,6 +1908,206 @@ established entries are in `docs/kpm.md`, under the same routine names, for
 #### Skips and limits
 
 No routines skipped. No missing source-build blockers. All comparison sources use `root/usr/gfx/KONA/bin/kpm`, with the addresses recorded above. No vendor source was opened. No repository or generated inventory files were edited.
+### IRIX 6.5.30m irsaudit file and XDR helpers
+
+These readings describe software helper effects in the IRIX 6.5.30m `usr/diags/IR/bin/irsaudit` build. Each range differs byte-for-byte from its named KPM or konal.so counterpart; those byte differences alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `jt_dispose_chain` | 0x1016c5e0 / 268 | `18652d00239502a86a1797a4b6c5a0e8f5920ff809919cccabbe0157b49c4745` | `usr/gfx/KONA/bin/kpm` 0x10038f10 / 268 | `0842db9c5c66a5b804c1d1ae0de9eb375032f4df9ac38a3489fb20688c237ff2` | 17 |
+| `jt_findfile` | 0x1016c6f0 / 536 | `78cd73f2485f7924789732e3605d709422c78f9faea2b8a9a06a62f407e31ef5` | `usr/gfx/KONA/bin/kpm` 0x10039020 / 536 | `74b4e07a7f47786695154b15583d3fa17f705bba32dac63750fcb42e9a9834ae` | 85 |
+| `jt_zclose` | 0x1016ca70 / 156 | `1bd88596ce3584c55e4e976f1f4c39ba7b6f99e7afa6ed04b005a2b161517ad6` | `usr/gfx/KONA/bin/kpm` 0x100393a0 / 156 | `c267e87c73ec5f12fcf0b87555d30f806cedacdb55bef28cbcdcff1c7f13105d` | 13 |
+| `jt_zopen` | 0x1016cb10 / 656 | `ab7ebe4aa77d2299caf1a0fbf049d1170b7bc4aa5b1a06721ff48844093da92c` | `usr/gfx/KONA/bin/kpm` 0x10039440 / 656 | `f9da46fcd49f0a98455bc58047691332f7cf9a2ee198754f886917c0145469e9` | 55 |
+| `jt_find_chain_length` | 0x1016cf70 / 564 | `47abaa4e4e43beb2bd982ac4ee2dfe4bb6be4c54cc987c8927c00a5ae02c79c1` | `usr/gfx/KONA/bin/kpm` 0x1003ab70 / 564 | `fda8520fb0b2697f5cadd3b411fa8a66644f8fa6ca34f51ab3882b4ac5db1264` | 43 |
+| `SDBgetSymbolDataAddress` | 0x1016daa0 / 104 | `2a45a7aaac2257aaf3bde4db26223ccfcb4398157c98b4768b830e4bc989abc8` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ca4 / 104 | `bcf5d5d8490159078cf1a8d237d0e2b52486f29215e003105d53599917574eeb` | 10 |
+| `SDBgetSymbolDatatype` | 0x1016db08 / 88 | `458c5962b003cd7edeae9825c7b825672c6fc44b19acb61de5d2b219dac46f84` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d0c / 88 | `53ecb29590881868ae1922b06a597f2b80c9bb139bfcf292c4f0e6a2a50376c1` | 10 |
+| `SDBgetSymbolElementCount` | 0x1016db60 / 92 | `ea7a68dbbb4f9b7b23f0fac82cd96df187e2e3422f62b4c75a997f7780969425` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d64 / 92 | `0ad309c805b8a592742812c12845edb6c54ad675b29bd4d270e506e827c1abed` | 10 |
+| `SDBgetSymbolValueArray` | 0x1016dbbc / 56 | `cdacd97427d683b721c2da3e40d81d64f2b8a0e77b03a74ada5e3a4e53a28aaf` | `usr/lib/X11/dyDDX/konal.so` 0x13b1dc0 / 56 | `084ab080b9f927d944c228a66904d103eae6198d676482e8bd29f1294caeeb9b` | 10 |
+| `SDBgetSymbolValueScalar` | 0x1016dbf4 / 56 | `1001cd2bcbb4a44c0403c52c086dd7ce1cf1fe41a73f482df3b0e9ca999e09c4` | `usr/lib/X11/dyDDX/konal.so` 0x13b1df8 / 56 | `146678c380edd02877f305a86fae862a0e0d1a833083a91eac1453fae4e9ec9f` | 10 |
+| `SDBcloseReadDatabase` | 0x1016dc2c / 184 | `89cf1b5ac3819cac87c29f0cab460525529db2b803ff4aadc39a4174082a14ea` | `usr/lib/X11/dyDDX/konal.so` 0x13b1e30 / 184 | `7f9fb1c5f9264d8b152f9b2f9a4c8593f59d5d3f011948f7a3b0cf8fa8f02edd` | 12 |
+| `SDBreadOpenDatabase` | 0x1016dce4 / 424 | `aaef3dfeaedfe857642d09a8d59f7e80cba607856c1f57a788ca7aeb1e86dd9e` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ee8 / 424 | `a3ed2bf752ec533b77a941b678875f563e8cecc6cf2df3a49fc78d9c96133423` | 52 |
+| `SDBprocessOneUserMethod` | 0x1016dee4 / 420 | `9047dd1fdda134ae509dffb6a5276f1ef9145c4e3c3dc41462e69b0500555dc8` | `usr/lib/X11/dyDDX/konal.so` 0x13b20e8 / 420 | `f9c38ddbddc71d557e8bd6c9df10ed8657e0933d64b08b0ebd7a60e3305dbbf1` | 30 |
+| `compareSTEName` | 0x1016e088 / 56 | `493ff835c4ec69ccfdb74edf051eeb9c774f1f2ef63544d0361248caec5ca5af` | `usr/lib/X11/dyDDX/konal.so` 0x13b228c / 56 | `8156f0e1747cccbe228bfcca1e149a3ba3da2fef1a93006d5332b3683a07c14d` | 5 |
+| `mapTypeToXDRPROC` | 0x1016e0c0 / 524 | `d4719f7621d1de4c13de81fa9d02d343be70b01a34002dc24d779530c455f639` | `usr/lib/X11/dyDDX/konal.so` 0x13b22c4 / 524 | `35d07415061a8bfbedf7b8ed7ca74713ec82065e561aba71af317fd2d613ca7c` | 76 |
+| `xdr_SDBelementIndex` | 0x1016e300 / 52 | `ec2eb8196aebae3ba546a995b975fbcfaa838a30e35400c83c8801abbc76412a` | `usr/lib/X11/dyDDX/konal.so` 0x13b2504 / 52 | `85e24cbc68459f68e5f817cb06219e3c435134fc5b10ac08d3e7b643eb9787ed` | 5 |
+| `xdr_SDBfileOffset` | 0x1016e334 / 52 | `b3cc2ec7d93341bf7996f742daf02b343bead98ba253e8e49ebe4e5988aa3ea8` | `usr/lib/X11/dyDDX/konal.so` 0x13b2538 / 52 | `ddcba119df4854ca04373befdf4c5efa949e83b0c5b1da0706fc8760c893f9a9` | 5 |
+| `xdr_typedData` | 0x1016e368 / 340 | `5c27ba21caa412aa31640df79d8f851a7e45bdf5e8c9d7a523b8f6e1a3310951` | `usr/lib/X11/dyDDX/konal.so` 0x13b256c / 340 | `d0a39cf01f5a3e35ba2f23aca437fcf559d871f323fedf83c09d67f082609622` | 23 |
+| `xdr_SDBfileHeader` | 0x1016e4bc / 320 | `6c15395c6f585b3315e2d1d3869cb3c375265d5a0a95e5538f247e89d7285c64` | `usr/lib/X11/dyDDX/konal.so` 0x13b26c0 / 320 | `43e22bfb7d57f306632b2675cf78fe2b6bf1c5e2119334c076118617ac73539c` | 43 |
+| `xdr_SDBdataType` | 0x1016e5fc / 52 | `38f55bbfbc3baa731a37e1de80ff61cbc23185bd656db185cab4152ac5c97263` | `usr/lib/X11/dyDDX/konal.so` 0x13b2800 / 52 | `55674fffd6aafaa421d4baecf619468c9bc2c28600c1b75b9d08f4311af7436e` | 5 |
+
+#### Target-build readings
+
+- `jt_dispose_chain` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016c5e0; occupies 268 bytes.
+  **Established.** Chain cleanup reads the count from a0 +8 (`lw` at 0x1016c600), then takes the cleanup-only path when count minus one is negative (`bltz` at 0x1016c610). Within its backward traversal an unnamed helper is called at 0x1016c2d0 (`jal` at 0x1016c66c), but hostfacts cannot resolve that call's arguments. Final `free` calls release the pointers held at a0 +0xc, +0 and +4, then a0 itself (`jalr` at 0x1016c698, `jalr` at 0x1016c6ac, `jalr` at 0x1016c6c0, and `jalr` at 0x1016c6d0). This body disposes software records. The helper's identity and any effects inside it are outside this reading.
+
+- `jt_findfile` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016c6f0; occupies 536 bytes.
+  **Established.** File lookup calls `getenv` (`jalr` at 0x1016c71c). A zero result takes the
+  direct-name path, while nonzero falls through to the environment-prefixed path (`beqz` at
+  0x1016c730). The latter copies the environment value to buffer 0x104754f8 (`jalr` at
+  0x1016c748) and appends entry a0 with `strcat` (`jalr` at 0x1016c760). The direct-name path
+  copies entry a0 to that buffer with `strcpy` (`jalr` at 0x1016c82c). Each path calls `access`
+  with entry a1 unchanged (`jalr` at 0x1016c778 and `jalr` at 0x1016c844). A nonzero access
+  result takes the suffix retry (`bnez` at 0x1016c784 and `bnez` at 0x1016c850). Those retries
+  append the suffix pointer 0x102be888 through `strcat` (`jalr` at 0x1016c7b0 and `jalr` at
+  0x1016c87c), then call `access` with the same mode (`jalr` at 0x1016c7c8 and `jalr` at
+  0x1016c894). Successful suffix paths write a zero byte (`sb` at 0x1016c804 and `sb` at
+  0x1016c8d0). Hostfacts represents those destinations as table-derived, leaving their exact
+  index unknown. The return is the buffer address or null (`jr` at 0x1016c900).
+
+- `jt_zclose` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016ca70; occupies 156 bytes.
+  **Established.** This stream closer first passes the handle to the unnamed predicate at 0x1016c910 (`jal` at 0x1016ca98). A zero predicate result takes the ordinary-file path, while nonzero falls through (`beqz` at 0x1016caa4). The latter calls `pclose` (`jalr` at 0x1016cab4), and the former calls `fclose` (`jalr` at 0x1016cad8), both with entry a0. Their selected result is restored into v0 (`ld` at 0x1016caf4). The predicate's internals are not established here.
+
+- `jt_zopen` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016cb10; occupies 656 bytes.
+  **Established.** File opening examines two candidates with `stat` (`jalr` at 0x1016cb88 and
+  `jalr` at 0x1016cba4), using local records at entry sp -0xb8 and -0x158. It builds command
+  text through `sprintf` (`jalr` at 0x1016cc20 and `jalr` at 0x1016cd24) and has both `popen`
+  paths (`jalr` at 0x1016cc34 and `jalr` at 0x1016cd38) and ordinary `fopen` paths (`jalr` at
+  0x1016cc80 and `jalr` at 0x1016ccb8). A null first `popen` result takes the branch to the
+  ordinary-file path (`beqz` at 0x1016cc48). A nonnull result falls through to the unnamed
+  helper at 0x1016c9c0 (`jal` at 0x1016cc5c). A nonzero second pipe result falls through its
+  check (`beqz` at 0x1016cd4c) to that helper (`jal` at 0x1016cd60). The helper's role is
+  unknown. Hostfacts leaves the command-buffer bases, some metadata conditions and the merged
+  return value unknown. The observed operations are filesystem metadata and stdio calls, not
+  compressed-header parsing.
+
+- `jt_find_chain_length` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016cf70; occupies 564 bytes.
+  **Established.** The chain-length probe prepares two byte streams containing 0x30 and 0x31
+  (`sb` at 0x1016cff0 and `sb` at 0x1016d004), with bases unknown in hostfacts. The body calls
+  `jt_soft_reset`, `jt_pack_vector`, `jt_send_data`, and `jt_unpack_vector` in two sequences:
+  first (`jal` at 0x1016d02c, `jal` at 0x1016d044, `jal` at 0x1016d05c, and `jal` at
+  0x1016d074), then (`jal` at 0x1016d080, `jal` at 0x1016d098, `jal` at 0x1016d0b0, and `jal` at
+  0x1016d0c8). Hostfacts leaves the buffer arguments unresolved. The send calls receive the
+  entry count as a0, while the pack and unpack calls receive it as a2. The byte comparison takes
+  the continuing path when its operands match and falls through to the exit path when they
+  differ (`beq` at 0x1016d140). Hostfacts reports -1 on exhaustion and an unknown value on that
+  early exit, so the exact detected-length return is not established by its analysis.
+
+- `SDBgetSymbolDataAddress` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016daa0; occupies 104 bytes.
+  **Established.** This wrapper calls the unnamed helper at 0x1016d9a0 (`jal` at 0x1016dac0). A
+  nonzero result takes the indirect-dispatch path. Zero falls through (`bnez` at 0x1016dac8) to
+  return zero (`jr` at 0x1016dadc). On success it loads the first pointer from entry a0 +0, the
+  operations pointer from that object +4, and the callback from operations +0x10 (`lw` at
+  0x1016dae4, `lw` at 0x1016dae8, and `lw` at 0x1016daec). The callback receives the first
+  pointer in a0 and supplies the returned v0 (`jalr` at 0x1016daf0 and `jr` at 0x1016db00). The
+  callback's identity and role are unknown.
+
+- `SDBgetSymbolDatatype` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016db08; occupies 88 bytes.
+  **Established.** Symbol-type retrieval passes the caller's arguments to the unnamed helper at
+  0x1016d9a0 (`jal` at 0x1016db28). A null helper result takes the zero-return path (`beqz` at
+  0x1016db34). Otherwise the routine returns the word at +0 of the returned record (`lw` at
+  0x1016db40). This body contains no symbol-value decoding or hardware dispatch.
+
+- `SDBgetSymbolElementCount` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016db60; occupies 92 bytes.
+  **Established.** The count accessor invokes the unnamed helper at 0x1016d9a0 (`jal` at
+  0x1016db80). A nonnull result falls through to return the word at record +4 (`beqz` at
+  0x1016db8c and `lw` at 0x1016db98). A null result takes the other arm, whose v0 is unknown in
+  hostfacts at the return (`jr` at 0x1016dbb4).
+
+- `SDBgetSymbolValueArray` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016dbbc; occupies 56 bytes.
+  **Established.** This wrapper calls the unnamed helper at 0x1016da40 (`jal` at 0x1016dbdc). It
+  retains entry a0 through a3 at that call and returns the helper's v0 (`jr` at 0x1016dbec). The
+  helper's internals and the array layout are unknown in this reading.
+
+- `SDBgetSymbolValueScalar` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016dbf4; occupies 56 bytes.
+  **Established.** The scalar accessor reaches 0x1016da40 with entry a0, a1 and a2 preserved and a3 forced to zero by the delay slot (`jal` at 0x1016dc14). Its return is that helper's v0 (`jr` at 0x1016dc24). This identifies the scalar wrapper's concrete difference from the array wrapper without assigning meaning to the helper's internal data structures.
+
+- `SDBcloseReadDatabase` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016dc2c; occupies 184 bytes.
+  **Established.** A nonzero word at entry a0 +0xac falls through the null check (`beqz` at
+  0x1016dc4c) to a callback loaded from `_SDBmemface` +0xc (`lw` at 0x1016dc58 and `jalr` at
+  0x1016dc5c), then the word is cleared (`sw` at 0x1016dc64). A nonnull first pointer falls
+  through its check (`beqz` at 0x1016dc6c) to a call through operations +0x1c (`lw` at
+  0x1016dc78 and `jalr` at 0x1016dc7c), followed by a memory-interface callback on that pointer
+  and clearing entry a0 +0 (`jalr` at 0x1016dc8c and `sw` at 0x1016dc94). The file pointer comes
+  from entry a0 +4 (`lw` at 0x1016dc98). A zero pointer takes the bypass (`beqz` at 0x1016dc9c).
+  A nonzero pointer unequal to `__iob` takes the close path (`bne` at 0x1016dca4), calling
+  `fclose` (`jalr` at 0x1016dcd4). The final memory-interface callback receives entry a0 (`jalr`
+  at 0x1016dcb8). The indirect targets and their deallocation effects are unknown.
+
+- `SDBreadOpenDatabase` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016dce4; occupies 424 bytes.
+  **Established.** The read-side opener compares the input name through `strcmp` (`jalr` at
+  0x1016dd08), uses `fopen` on the nonmatching path (`jalr` at 0x1016dd3c), and calls unknown
+  `_SDBmemface` +4 callbacks with argument pairs (1, 0xb0) and (1, 0x18) (`jalr` at 0x1016dd5c
+  and `jalr` at 0x1016dd88). It creates an XDR stdio stream with operation argument 1 (`jalr` at
+  0x1016de08), decodes the header (`jal` at 0x1016de1c), invokes the helper at 0x1016d8e8 (`jal`
+  at 0x1016de40), and compares four bytes against `SDBidentificationString` (`jalr` at
+  0x1016de6c). Error stores include errno 2 for the input-open path, 12 after a zero callback result,
+  and 20 for decode, helper or identification failures (`sw` at 0x1016dd30, `sw` at 0x1016dd78,
+  `sw` at 0x1016dda0, `sw` at 0x1016de38, `sw` at 0x1016de5c, and `sw` at 0x1016de88). Cleanup
+  uses `SDBcloseReadDatabase` (`jal` at 0x1016ddb8). The callbacks' identities, their allocation
+  effects and some merged result values remain unknown.
+
+- `SDBprocessOneUserMethod` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016dee4; occupies 420 bytes.
+  **Established.** Method processing passes the word at entry a1 +0 as a1 to the unnamed helper
+  at 0x1016d9a0 (`lw` at 0x1016df0c and `jal` at 0x1016df18), then takes the value-reading arm
+  when the record's type word equals the method's +4 word (`beq` at 0x1016df34). That arm calls
+  0x1016de8c (`jal` at 0x1016e010) and `xdr_typedData` (`jal` at 0x1016e064). If the method
+  capacity at +8 is smaller than the record count, the unsigned comparison falls through to set
+  errno 22 (`beqz` at 0x1016e034 and `sw` at 0x1016e048). The callback arm maps the method type
+  with `mapTypeToXDRPROC` (`jal` at 0x1016df6c), then invokes the pointer from method +0x18,
+  passing method +0x1c's word as a1 (`lw` at 0x1016df94 and `jalr` at 0x1016df9c). Hostfacts
+  leaves the callback's a0 and merged return unknown. This establishes dispatch and validation
+  effects without claiming a resolved pointer for every element.
+
+- `compareSTEName` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e088; occupies 56 bytes.
+  **Established.** Symbol-table name ordering is delegated to `strcmp` with entry a0 +0xc and entry a1 +0xc as its first two arguments (`jalr` at 0x1016e0a8). The routine returns the comparator's result (`jr` at 0x1016e0b8). Only the field's starting offset is established here. This wrapper does not establish a maximum name length or an enclosing record size.
+
+- `mapTypeToXDRPROC` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e0c0; occupies 524 bytes.
+  **Established.** Type dispatch rejects unsigned type values at least 0x15 by taking the assertion path (`beqz` at 0x1016e0fc), otherwise falling through to the jump table at 0x101dd750 (`jr` at 0x1016e10c). Its selected codec and element size are written as words through entry a1 and a2 (`sw` at 0x1016e144 and `sw` at 0x1016e158). A null selected codec takes another assertion path (`beqz` at 0x1016e138), and the supplied-callback case asserts when entry a3 is zero (`beqz` at 0x1016e1a8). The observed assertion calls include `__assert` (`jalr` at 0x1016e128, `jalr` at 0x1016e184, `jalr` at 0x1016e29c, and `jalr` at 0x1016e2bc). Hostfacts leaves the merged selected values unknown, so this entry does not claim a complete type-to-codec table.
+
+- `xdr_SDBelementIndex` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e300; occupies 52 bytes.
+  **Established.** This unsigned-long serialization wrapper forwards entry a0 through a3 to
+  `xdr_u_long` (`jalr` at 0x1016e31c). It returns that codec's result (`jr` at 0x1016e32c), with
+  no local field conversion or value-dependent branch. The wider field role is unknown from this
+  body.
+
+- `xdr_SDBfileOffset` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e334; occupies 52 bytes.
+  **Established.** The database-file-offset codec has one operation: invoke `xdr_u_long` with the incoming arguments (`jalr` at 0x1016e350). The XDR result remains in v0 at return (`jr` at 0x1016e360). It supplies no file seeking, offset validation or hardware access in its own body.
+
+- `xdr_typedData` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e368; occupies 340 bytes.
+  **Established.** Value serialization calls `mapTypeToXDRPROC` with entry a1 as the type and
+  entry a4 as the supplied callback (`jal` at 0x1016e3cc). The count word at entry a2 selects
+  the array call when nonzero, taking the branch to 0x1016e400. Zero falls through to the
+  scalar-codec path (`bnez` at 0x1016e3d8, `jalr` at 0x1016e410, and `jalr` at 0x1016e3f0). A
+  separate string path uses `xdr_wrapstring`, `strlen`, the unknown callback at `_SDBmemface`
+  +0, and `strcpy` (`jalr` at 0x1016e46c, `jalr` at 0x1016e480, `jalr` at 0x1016e490, and `jalr`
+  at 0x1016e4a4). That path writes the callback's returned pointer through entry a3 and sets the
+  count word through entry a2 to 1 (`sw` at 0x1016e4a0 and `sw` at 0x1016e4b0). Hostfacts marks
+  the earlier branch target at 0x1016e3bc as outside its block map, so the type-specific entry
+  conditions and merged return remain unresolved rather than reconstructed from assembly.
+
+- `xdr_SDBfileHeader` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e4bc; occupies 320 bytes.
+  **Established.** Header serialization begins with `strlen` (`jalr` at 0x1016e4ec) and an
+  `xdr_bytes` call whose maximum argument is 4 (`jalr` at 0x1016e524). It processes version
+  fields at entry a1 +4 and +8 with `xdr_SDBversionNumber` (`jal` at 0x1016e538 and `jal` at
+  0x1016e54c), then another byte sequence with maximum 100 (`jalr` at 0x1016e568). The element
+  index and file offsets are passed at +0x70, +0x74 and +0x78 (`jal` at 0x1016e57c, `jal` at
+  0x1016e590, and `jal` at 0x1016e5a4). Finally `xdr_array` receives maximum count 10, element
+  size 4 and `xdr_u_long` as its codec (`jalr` at 0x1016e5c8). Codec failures take the
+  zero-return path, including a zero final-array result (`beqz` at 0x1016e5d0). Success falls
+  through to return 1.
+
+- `xdr_SDBdataType` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e5fc; occupies 52 bytes.
+  **Established.** Symbol data-type serialization calls `xdr_enum` with entry a0 through a3 unchanged (`jalr` at 0x1016e618). Its only result is the enum codec's v0 (`jr` at 0x1016e628). No type-to-hardware encoding or device access appears in this wrapper.
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
