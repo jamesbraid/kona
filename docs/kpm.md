@@ -722,6 +722,49 @@ same executable.
 | `kerror`, `klog`, `get_time`, `findfile`, `create_file`, `open_file`, `init_report`, `close_report` | the tool's logging and files: error and information lines ("EFATAL", "EINFO"), the time stamp, a path search under the `GL_GRROOT` root, and the summary and error report files |
 | `__start`, `__istart`, `_mcount` | C runtime start-up and the profiling hook the compiler inserts |
 
+The following readings pin down the small helpers used by those tables and
+reports.
+
+- `findfile` (`usr/gfx/KONA/bin/kpm` 0x1000f9e0): **Established.** The
+  300-byte body first asks the path helper for the graphics-root directory,
+  then tries the caller's first name and second name in that directory. It
+  returns the first successful path result, frees the temporary path after
+  each failed attempt, and returns null after both lookups fail; the two
+  search calls are at 0x1000fa50 and 0x1000fac4.
+
+- `create_file` (`usr/gfx/KONA/bin/kpm` 0x1000fb0c): **Established.** Its
+  644-byte body creates a 0x1000-byte temporary path buffer, asks the path
+  helper for the caller's root, and opens the requested name with the selected
+  mode. It loops over generated output records, flushing each record through
+  the file callback at 0x1000fc40 and appending it to the destination at
+  0x1000fc50; a negative callback result closes the destination and returns
+  zero. The alternate two-byte header path reads a halfword at 0x1000fd68
+  and stores it at 0x1000fd70 before entering the same loop.
+
+- `open_file` (`usr/gfx/KONA/bin/kpm` 0x1000fd90): **Established.** The
+  692-byte body chooses the reader or writer path from the global mode word at
+  +0x4ac, allocates the file record, and reads the fixed header through the
+  file callback. Reader mode loads the record's type halfword at +0xa (`lhu` at
+  0x1000fea8), checks the header descriptor, and repeatedly reads section
+  records until the requested count is satisfied; malformed input releases
+  the record and returns zero. A valid writer returns the initialized record,
+  while a failed path or callback returns the saved error value.
+
+- `init_report` (`usr/gfx/KONA/bin/kpm` 0x1003206c): **Established.** The
+  920-byte body returns zero when reporting is disabled, otherwise initializes
+  the report descriptor, writes the caller's leading values and each of its
+  words, adds the fixed report fields 5 and 6 through callbacks at 0x100322a0
+  and 0x100322c8, then creates the report file. It stores the resulting handle
+  in the global slot at 0x10032400 and returns zero on success or -1 after
+  closing the partial report.
+
+- `close_report` (`usr/gfx/KONA/bin/kpm` 0x10032404): **Established.** The
+  428-byte body returns immediately when reporting is disabled or no current
+  report exists. Otherwise it writes the final report descriptor, emits the
+  completion field 6, closes the file, and clears the global report slot; if
+  the close path has no descriptor it creates one from the saved status word
+  before doing the same cleanup.
+
 ## Boundary-scan library (`jt_*`)
 
 - `kona_jt_set_custom_error_report` (`usr/gfx/KONA/bin/kpm`): **Established.**
@@ -782,6 +825,16 @@ same executable.
   chain object; allocation, parse, or lookup errors return null after the
   library error callback.
 | `jt_send_instruction`, `jt_set_individual_instructions`, `jt_conditional_reset`, `jt_powerup_chain`, `jt_free_bist` | send an instruction to one chip or one to each, reset the chain only when needed, power up the chips' test logic, release a chip's built-in self-test state |
+
+- `jt_free_bist` (`usr/gfx/KONA/bin/kpm` 0x100389f0): **Established.** Its
+  528-byte body walks the 16-byte chip records from the chain pointer at
+  record +0x244, dispatching records whose type is not 6 through the callback
+  selected by the table at 0x10038a68. The callback argument is the selected
+  record field at +4, +8 or +0xc, with the exact choice determined by the
+  record subtype; the loop increments its index at 0x10038ba8 and stops when
+  the next record has type 6 (`lw` at 0x10038bc0). It then invokes the final
+  cleanup callback on the chain pointer and clears the owner field with the
+  word store at 0x10038be8.
 
 These boundary-scan helpers were read in their complete N32 address ranges.
 
