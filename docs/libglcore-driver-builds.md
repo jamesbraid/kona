@@ -2118,6 +2118,39 @@ These entries describe the exact O32 target bodies in `usr/gfx/arch/IP27KONA/lib
 - `__glkonlc_DeformationMap3fSGIX` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd98c9e0; occupies 160 bytes.
   **Established.** Forwards the deformation-map request to `lcDeformationMap3` (`jalr` at 0xd98ca64). Hostfacts resolves its first and fourth register arguments as the caller's entry arguments 0 and 3, but leaves the second and third unknown. The routine rearranges stack arguments and returns the helper's result (`jr` at 0xd98ca78). It performs no direct graphics-register stores.
+### O32 IP27 KONA routines read in full
+
+These entries record complete readings of the exact O32 binary bodies in `usr/gfx/arch/IP27KONA/libGLcore.so`. Grades apply to the stated binary effects; the comparison table names the N32 build used for byte comparison and does not establish source correspondence.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glkonlc_DeformationMap3dSGIX` | 0xd98ca80 / 188 | `4ced2b308a879f0962675de20faae3b449321b02169fed1bea05fd5ca95567d8` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988910 / 128 | `2178522c9d7b599ab69c663de2c29a481ed932e5c71f199fcd5fd7c8d053af1c` | 110 |
+| `__glkon_GetDeformationd` | 0xd98ce5c / 204 | `3c023a43ef999c05eb301e97f21476aef8c3e2da86d53d22f0e780413a119d49` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988ce0 / 204 | `b8d31b07b771a1919c84c34791c9a1b8d97ceb401c946354c165656ab26c4442` | 178 |
+| `__glkon_GetDeformationi` | 0xd98cf28 / 236 | `d4eca8d9ddc0231983dcde816b356b3b4ee9cb02d0ca50e532e89223a56b0126` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd988db0 / 204 | `2eaa1f94d7544ed55a6d9be2fb8f97f81f4b23ccfd01235c60e756bd546dd7dd` | 185 |
+| `__glkonim_PixelTransformParameterivSGI` | 0xd990930 / 472 | `ebee1cb41dffb0575973e4be4330d08ae99245e0e4249d5fe2b9fad61ff00baa` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd98d140 / 316 | `d8820068d9bea96c599a030a349da5e55d3ffd43c2e867ec7340193a8376592f` | 279 |
+| `__glkonim_GetPixelTransformParameterivSGI` | 0xd990e24 / 120 | `6061c03c074f214730709112b5b02e53e9d40d4b091adaa0720d67bd1c88c2fa` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd98d550 / 200 | `862967ec21bf36ac382685bbc25ff8966ca3690e1520b5e4e4a3c6494805d54e` | 94 |
+
+#### Target-build readings
+
+- `__glkonlc_DeformationMap3dSGIX` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd98ca80; occupies 188 bytes.
+  **Established.** The double-argument deformation wrapper performs double-to-single conversions (`cvt.s.d` at 0xd98caa0, `cvt.s.d` at 0xd98caac, and `cvt.s.d` at 0xd98cab8). Its one call is `lcDeformationMap3`, preserving entry a0 while hostfacts leaves a1 through a3 unknown (`jalr` at 0xd98cb20). Stack accesses include doubleword loads at entry sp +0x10 and +0x20 (`ldc1` at 0xd98ca98 and `ldc1` at 0xd98ca9c) and a word store of zero at entry sp -0x18 (`sw` at 0xd98cb0c). The returned v0 is the helper's result (`jr` at 0xd98cb34). Exact converted call-argument assignments are not established by the tool.
+
+- `__glkon_GetDeformationd` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd98ce5c; occupies 204 bytes.
+  **Established.** The double query calls `getDeformationf` with entry a0/a1 retained, a2 pointing to entry sp -0x60, and a3 carrying entry a2 (`jalr` at 0xd98ce88). Zero helper result takes the exit branch and nonzero falls through (`beqz` at 0xd98ce9c). The conversion body loads single words and widens them (`lwc1` at 0xd98ceb4 and `cvt.d.s` at 0xd98cec0), with doubleword output stores (`sdc1` at 0xd98cecc and `sdc1` at 0xd98ceec). Their resolved destination bases are unknown. V0 preserves the helper's result at return (`jr` at 0xd98cf20), while the full output-address progression remains unresolved.
+
+- `__glkon_GetDeformationi` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd98cf28; occupies 236 bytes.
+  **Established.** Integer deformation retrieval first calls `getDeformationf` with a local float destination at entry sp -0x60 and the caller's third argument in a3 (`jalr` at 0xd98cf54). A zero result takes the epilogue path (`beqz` at 0xd98cf68). The body truncates float values to words (`trunc.w.s` at 0xd98cf8c and `trunc.w.s` at 0xd98cfb4) and emits word stores (`sw` at 0xd98cf9c and `sw` at 0xd98cfc4), but hostfacts cannot resolve the output bases. Its return retains `getDeformationf`'s v0 (`jr` at 0xd98d00c).
+
+- `__glkonim_PixelTransformParameterivSGI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd990930; occupies 472 bytes.
+  **Established.** Integer pixel-transform parameter submission checks the word at absolute 0x1018 (`lw` at 0xd990940). A value different from 1 takes the normal path. Equality falls through to `__glSetError(0x502)` (`bne` at 0xd990958 and `jalr` at 0xd990968). The size query receives entry a1 (`jalr` at 0xd990980 to `__glPixelTransformParameterfvSGI_size`), with a negative result falling through to `__glSetError(0x500)` (`bgez` at 0xd990990 and `jalr` at 0xd9909a0). Word-to-float conversion appears in the body (`cvt.s.w` at 0xd9909ec), followed by `__glkonim_PixelTransformParameterfvSGI` with original a0/a1 and a local buffer at entry sp -0x10 (`jalr` at 0xd990aec). The converted store bases and merged return are unknown. Hostfacts also labels the remainder-path target 0xd990a18 outside its block map, so the full conversion traversal is not asserted.
+
+- `__glkonim_GetPixelTransformParameterivSGI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd990e24; occupies 120 bytes.
+  **Established.** The integer query calls `GetPixelTransformParameterfvSGI` with a local destination at entry sp -0x10 (`jalr` at 0xd990e48). A result at most zero takes the return path, while a positive result falls through to conversion (`blez` at 0xd990e54). Single-word input is truncated to a word and stored (`lwc1` at 0xd990e6c, `trunc.w.s` at 0xd990e78, and `sw` at 0xd990e88). Hostfacts marks both traversal bases and the merged v0 unknown, so no exact count return or output offset is claimed.
 ### 64-bit routines read in full
 
 - `__glkonResolveContext` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2dc3a00, 8636 bytes):
