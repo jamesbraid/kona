@@ -4511,6 +4511,93 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
   Address 0x2df45a0; occupies 284 bytes.
   **Inferred.**** Bitmap compilation rejects negative entry a0 through `__glsplc_InvalidValue` (`bltz` at 0x2df45dc and `bgezall` at 0x2df46ac). It calls `__glSPDlalloc` with selector 4 and an unknown size (`jalr` at 0x2df4628), then stores entry width/height as words at result +0/+4 (`sw` at 0x2df4658 and `sw` at 0x2df4650). `__glFillImage` receives entry a0/a1 as a1/a2, format 0x1900, type 0x1a00 and destination result +0x20 (`jalr` at 0x2df4698). The remaining allocation arithmetic and complete context argument remain unresolved.
 
+#### IP35 O32 target readings
+
+These notes report stated binary effects from usr/gfx/arch/IP35KONA/libGLcore.so. The explicitly named N32 ranges are comparison references only; all differ byte-for-byte, and roles or layouts are not transferred from them.
+
+| Routine | IP35 O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glsplc_CallList | 0xd9945fc / 104 | 5ec3db33caad02b79fad398e7ce3c48c1ca750e27328df706a0c97e507cb0492 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990f20 / 108 | eb09373ad207dbccd9375770524c7a3e02e1c5198b6a8cd985792dc4240d11c6 | 86 |
+| __glsplc_CallLists | 0xd994664 / 240 | 3efd42c1c5d31008dac79604bd82c46bc50505824bb31e2ef80021ccbc55637a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990f90 / 252 | f8784a24a9526f2a6ab6734f73ae2d3af1af475c9efa043f632eb0ab9c469215 | 216 |
+| __glsplc_Bitmap | 0xd994754 / 264 | 8f45c50aea9e779b9d91e9bf5006baa8da4cb95a646d3e767761e26452af9671 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd991090 / 284 | a17c11a3104d8e5a129685f10c08586e95464006413d93904ceabb02d861f3a0 | 225 |
+| __glsplc_PolygonStipple | 0xd99485c / 156 | 46d1c79a7bd866217a8480f086529d20482ebf1fd67f76cf9adc0dae423cbfd3 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9911b0 / 140 | 06bf5fbc00835a8740e0f25b8ed41f6c81701d3ae201b81e8d9085054fb24dd6 | 107 |
+| __glsplc_Map1f | 0xd9948f8 / 304 | 66744a58d906e9e39c5a43500db010dcd7957a997274caf0873395266c7c6bb1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd991240 / 300 | ed05616840c7c386085e8c21e2235f1ab2d37651f24d69f526057e848960dc8c | 258 |
+| __glsplc_Map1d | 0xd994a28 / 308 | 00acaf2b8acbb3d8c65fdc86052b3a4a0e289ca52c430378a7ac82836943ebfa | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd991370 / 320 | 4bc324c90bcfb88a8b415c1ea04341316ade29c222d4f167828522270b2cc758 | 258 |
+| __glsplc_Map2f | 0xd994b5c / 392 | 0d44d4cc5c98bd3893ee26e98c6b7fe6447aad06741f3cc4b2601dbb93558096 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9914b0 / 388 | 30730a2463f246f48bfa7089d326ed3e7b8019a1ce5be531801b8107f34dc0d9 | 313 |
+| __glsplc_Map2d | 0xd994ce4 / 404 | db8de49462fe39bd60a18f82efdb644493f5e6c4598c2c7608ef4d3314dcc8f9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd991640 / 416 | 7f807ba9cccbc790c29006203000af3438de63e268cac4556f082c2221ca07d0 | 347 |
+| __glsplc_DrawPixels | 0xd9953fc / 680 | 702533467bb6e30a39aaadd43781cf55bd676dfe1858d9375ab86c5b57c83ab0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd991ea0 / 1164 | cfa8f205430e9ca48f92926fab1ebcd8090d95d0b531448c5d971081fd066a0f | 624 |
+| __glsplc_TexImage1D | 0xd9956a4 / 416 | da4dfc13af09955649e972d1e59eec01b4d8369b9bf83994e67d474da88dc79a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd992330 / 396 | 461b6f76996b0ec686c1b20aa65532c227b2ae1fc990cfa657c75654fb75724b | 345 |
+| __glsplc_TexImage2D | 0xd995844 / 444 | 805f9b6c8a4b124a0b51aa91c138fd041a26e6ddec0045007ef40afbac599661 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9924c0 / 412 | 57cd96a718c3212cd73223ff4537ae521914dd3f441fb0308140ce8033bb48ea | 361 |
+| __glsplc_Disable | 0xd996480 / 532 | 17344bfd104927f8ed681d5a69bfa325e7bc2d25b2830a1be1db34acf0cb010f | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd993090 / 620 | e518c962d9c3071054dbdc91a4cec0d1e61677957482e9615657bfaf6d4fb137 | 494 |
+| __glsplc_Enable | 0xd996694 / 468 | adae0d7ea039c195640aa990f4de336355865c264df834e039a30108d4d5dab2 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd993300 / 556 | 1fd6243d6578dbf246b43d0d05f897c08ffe63f4255d1885a4d74df005548b87 | 431 |
+| __glsplc_ColorSubTable | 0xd9969ec / 364 | 158698bd08cd40fa560ba1003b416f14457d79cfde270db96605e434d2d48d4b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9936a0 / 356 | 8666e49c355302056d39a20dc2b50ea3e4c0ced827d73ab4dae6dfa04383f8db | 310 |
+| __glsplc_DrawElements | 0xd996d70 / 384 | f9be5277f1f8655d626b6b4b31ca1c7c9ad8d5eaa5e9f8dc94b88c5cfee3238f | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd993a00 / 400 | e526cad2edb5cabc5dfbd6c4301c21e287854bb2ac6273cd230530cc4176ae22 | 335 |
+| __glsplc_DrawRangeElements | 0xd996ef0 / 108 | 74ee9ae7bfcd9ec19bfddf589a12d521332c51ad1355060ae13147db07a52ebd | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd993b90 / 92 | d6bfce4ae747d2995c409ffc74309fddaf1840d6dfb7054a84135e507c01f3c0 | 86 |
+
+- `__glsplc_CallList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9945fc; occupies 104 bytes.
+  **Established.** Compiles a single list-name word into a static list record. Zero names call `__glsplc_InvalidEnum` (`bnez` at 0xd994614, `jalr` at 0xd994620). The nonzero arm calls `__glSPDlalloc` with size four and operation selector zero (`jalr` at 0xd99463c). A nonnull allocation receives the original name at record +0 (`beqz` at 0xd994648, `sw` at 0xd994650). It does not call the named display list itself. The allocation/error paths leave a merged result that hostfacts cannot resolve.
+
+- `__glsplc_CallLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994664; occupies 240 bytes.
+  **Inferred.** Builds an array-of-list-names record. Negative counts go to `__glsplc_InvalidValue` (`bgez` at 0xd994684, `jalr` at 0xd994690). The type is checked against unsigned bounds 0x1400 and 0x140a (`bnez` at 0xd9946a4, `beql` at 0xd9946b0). Record allocation uses selector one, with total size unknown to hostfacts (`jalr` at 0xd994708 to `__glSPDlalloc`). The original count and type become record +0 and +4 (`sw` at 0xd99472c, 0xd994724). `memcpy` copies from original argument 2 to record +8, with its byte count unresolved (`jalr` at 0xd994738). The body records a future operation in host memory.
+
+- `__glsplc_Bitmap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994754; occupies 264 bytes.
+  **Inferred.** Allocates a static bitmap record and fills its image data. Invalid dimensions can call `__glsplc_InvalidValue`, and the record allocation uses selector four (`jalr` at 0xd99479c, 0xd9947d8). The width and height words occupy allocation +0 and +4 (`sw` at 0xd9947f4, 0xd9947f8). Four saved float parameters occupy +8, +0xc, +0x10 and +0x14 (`swc1` at 0xd994808, 0xd994814, 0xd99481c, 0xd994828). The final `__glFillImage` call receives original width and height plus format 0x1900 (`jalr` at 0xd994840). Its context argument and the overall allocation size remain unknown in hostfacts. This is software record construction, with no identified device-register store.
+
+- `__glsplc_PolygonStipple` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99485c; occupies 156 bytes.
+  **Inferred.** Compiles the fixed-size stipple image through the shared image helpers. `__glImageSize` receives 0x20 by 0x20 with format 0x1900 and type 0x1a00 (`jalr` at 0xd994890). `__glSPDlalloc` receives that returned size and operation selector 0x65 (`jalr` at 0xd9948a8). A null allocation skips filling (`beqz` at 0xd9948b0). The remaining path calls `__glFillImage` with width and height 0x20 and format 0x1900 (`jalr` at 0xd9948dc). Hostfacts cannot follow the restored context argument or merged return value. All local stores prepare the stack arguments.
+
+- `__glsplc_Map1f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9948f8; occupies 304 bytes.
+  **Inferred.** Records a one-dimensional float evaluator map after shared validation and sizing. It calls `__glEvalComputeK`, then `__glMap1_size` (`jalr` at 0xd994928, 0xd9949ac). Allocation size is four times that size result plus 16, with selector 0x8e (`jalr` at 0xd9949c8 to `__glSPDlalloc`). The record stores the original target at +0, two float endpoint words at +4 and +8, and a word at +0xc (`sw` at 0xd9949e4, 0xd9949f4, `swc1` at 0xd9949ec, 0xd9949f8). The fill call resolves to `__glFillMap1f` (`jalr` at 0xd994a0c). Separate calls handle invalid enum and value paths (`jalr` at 0xd994940, 0xd994994). Several fill arguments and the final return remain unknown.
+
+- `__glsplc_Map1d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994a28; occupies 308 bytes.
+  **Inferred.** Creates the double-input form of the one-dimensional map record. The shared path calls `__glEvalComputeK` and `__glMap1_size` (`jalr` at 0xd994a54, 0xd994ad8). Its allocation has four times the size helper's result plus 16 bytes and selector 0x8d (`jalr` to `__glSPDlalloc` at 0xd994af4). Header output includes float stores at record +4 and +8 and word stores at +0 and +0xc (`swc1` at 0xd994b1c, 0xd994b2c, `sw` at 0xd994b10, 0xd994b24). It delegates control-point filling to `__glFillMap1d` (`jalr` at 0xd994b40). Invalid enum/value helpers are also present (`jalr` at 0xd994a6c, 0xd994ac0). The callee argument values not tracked by hostfacts stay unknown.
+
+- `__glsplc_Map2f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994b5c; occupies 392 bytes.
+  **Inferred.** Assembles a two-dimensional float-map header before filling the control-point payload. The body calls `__glEvalComputeK`, `__glMap2_size` and `__glSPDlalloc` (`jalr` at 0xd994b8c, 0xd994c44, 0xd994c60). Allocation is four times the size helper's result plus 28, with selector 0x90. Four endpoint floats go to record +4, +8, +0x10 and +0x14 (`swc1` at 0xd994c88, 0xd994c94, 0xd994c9c, 0xd994ca8). Two words occupy +0xc and +0x18 (`sw` at 0xd994c90, 0xd994ca4). The payload helper is `__glFillMap2f`, whose first three register arguments are unresolved (`jalr` at 0xd994cc8). Error paths invoke the named invalid-enum and invalid-value compilers (`jalr` at 0xd994ba4, 0xd994c2c).
+
+- `__glsplc_Map2d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994ce4; occupies 404 bytes.
+  **Inferred.** Uses the double-input map helper while storing a float-sized static header. It obtains component and payload sizes from `__glEvalComputeK` and `__glMap2_size` (`jalr` at 0xd994d10, 0xd994dc8). `__glSPDlalloc` takes four times the size result plus 28 and selector 0x8f (`jalr` at 0xd994de4). The header has four single-word float stores at +4, +8, +0x10 and +0x14 (`swc1` at 0xd994e10, 0xd994e20, 0xd994e2c, 0xd994e3c), alongside words at +0xc and +0x18 (`sw` at 0xd994e18, 0xd994e34). It calls `__glFillMap2d` with unresolved register arguments (`jalr` at 0xd994e5c). The separate enum/value error calls and merged return remain software behavior, not an evaluator hardware contract.
+
+- `__glsplc_DrawPixels` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9953fc; occupies 680 bytes.
+  **Inferred.** Checks pixel formats and types before recording an image. Its complete call list includes `__glsplc_InvalidValue`, three `__glsplc_InvalidEnum` sites and two `__glsplc_InvalidOperation` sites (`jalr` at 0xd99542c, 0xd995500, 0xd995598, 0xd9955fc, 0xd9955b8, 0xd9955e8). The recording path calls `__glImageSize` and allocates with selector 0xab (`jalr` at 0xd99561c, 0xd99563c). It writes the original four register arguments to allocation +0, +4, +8 and +0xc (`sw` at 0xd995664, 0xd995668, 0xd99566c, 0xd995660). `__glFillImage` receives the original width, height and format after an unresolved context argument (`jalr` at 0xd995688). The full listing retains all computed-jump validation arms. Allocation size and final result remain unknown in hostfacts.
+
+- `__glsplc_TexImage1D` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9956a4; occupies 416 bytes.
+  **Inferred.** Separates proxy execution from static texture-image recording. Target 0x8063 falls through to a callback loaded through context +0x17f4 and its +0xb0 slot (`bne` at 0xd9956cc, `lw` at 0xd9956f4, 0xd9956f8, `jalr` at 0xd9956fc). That target identity remains unknown. The recording path calls `FormatAndType`, `__glImageSize` and `__glSPDlalloc` with selector 0x6c (`jalr` at 0xd995760, 0xd995780, 0xd9957a4). Original register arguments fill record +0, +4, +8 and +0xc (`sw` at 0xd9957c0, 0xd9957c8, 0xd9957d0, 0xd9957d8). A later `__glFillImage` call supplies height one (`jalr` at 0xd995828). The image size, proxy behavior and merged result are not resolved by these local facts.
+
+- `__glsplc_TexImage2D` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd995844; occupies 444 bytes.
+  **Inferred.** Records a two-dimensional image while dispatching proxy target 0x8064 through an unresolved callback (`bne` at 0xd99586c, `jalr` at 0xd9958a4). That callback pointer comes through context +0x17f4 and its +0xb4 slot (`lw` at 0xd99589c, 0xd9958a0). The recording arm calls `FormatAndType`, `__glImageSize` and `__glSPDlalloc` with selector 0x6d (`jalr` at 0xd995910, 0xd995930, 0xd995954). Header words include original arguments 0 through 3 at record +0 through +0xc (`sw` at 0xd995970, 0xd995978, 0xd995980, 0xd995988). Remaining header fields and the `__glFillImage` call are preserved in the complete evidence (`jalr` at 0xd9959e4). Hostfacts leaves the context and several image arguments, allocation size and return value unknown.
+
+- `__glsplc_Disable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd996480; occupies 532 bytes.
+  **Inferred.** Either updates software client-array state or emits a static capability record. Decoded state-update paths store at context +0x151c, +0x1528, +0x1520 and +0x1524 (`sw` at 0xd99653c, 0xd996544, 0xd9965e4, 0xd996648). The context pointer is read from absolute 0x1010 (`lw` at 0xd9964c0). The record path calls `__glSPDlalloc` with size four and selector 0x89, then stores the original capability at allocation +0 (`jalr` at 0xd99666c, `sw` at 0xd996680). The complete listing preserves the computed-jump selection and all decoded mask-update arms. The merged return is unresolved, and no board-register meaning is assigned to the software-state offsets.
+
+- `__glsplc_Enable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd996694; occupies 468 bytes.
+  **Inferred.** Sets client-array state locally or records a capability enable. One decoded path ORs masks 0xff and 0x20 into context +0x151c and +0x1528 (`sw` at 0xd996748, 0xd996750). Other decoded arms include context +0x1520 and +0x1524 stores (`sw` at 0xd9967d0, 0xd996820, 0xd996830). The static-list path allocates four bytes with selector 0x8a (`jalr` to `__glSPDlalloc` at 0xd996840), writing the original capability into allocation +0 (`sw` at 0xd996854). Its state and record paths are both retained rather than merged into one action. Hostfacts does not establish a fixed return or a direct hardware enable operation.
+
+- `__glsplc_ColorSubTable` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9969ec; occupies 364 bytes.
+  **Inferred.** Validates and records a colour-subtable request. `__glCheckColorSubTableArgs` receives the context and first three original request arguments (`jalr` at 0xd996a38). It can dispatch to invalid-enum, invalid-value and invalid-operation helpers (`jalr` at 0xd996a6c, 0xd996a80, 0xd996a94). The recording path uses `__glImageSize` with height one and allocates with selector 0xfb (`jalr` at 0xd996ab0, 0xd996ad4). Six words fill allocation +0, +4, +8, +0xc, +0x10 and +0x14 (`sw` at 0xd996af0, 0xd996af8, 0xd996b00, 0xd996b08, 0xd996b10, 0xd996b18). `__glFillImage` then receives original argument 2 as width and one as height (`jalr` at 0xd996b3c). Several restored arguments and the final result remain unresolved.
+
+- `__glsplc_DrawElements` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd996d70; occupies 384 bytes.
+  **Inferred.** Expands indexed drawing into the public begin/element/end calls. The body invokes `glBegin` with the incoming mode and later `glEnd` (`jalr` at 0xd996e00, 0xd996ecc). Its three index loops include byte, unsigned-halfword and word reads (`lbu` at 0xd996e44, `lhu` at 0xd996e7c, `lw` at 0xd996eb0), each followed by `glArrayElement` (`jalr` at 0xd996e48, 0xd996e80, 0xd996eb4). Hostfacts cannot resolve the effective index addresses or the element-call argument values. Invalid-value and invalid-enum paths call the list-error recorders (`jalr` at 0xd996dac, 0xd996de8). These calls show software expansion, without proving the downstream device behavior.
+
+- `__glsplc_DrawRangeElements` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd996ef0; occupies 108 bytes.
+  **Established.** Checks the unsigned bounds, then delegates the draw to `__glsplc_DrawElements`. Argument 2 at least argument 1 selects delegation (`beqz` at 0xd996f14). The opposite arm calls `__gllc_InvalidValue` with the context loaded from absolute 0x1010 (`lw` at 0xd996f00, `jalr` at 0xd996f24). The delegated call preserves the original mode and uses original argument 3 as its count (`jalr` at 0xd996f40). Its remaining register arguments are unknown in hostfacts. The wrapper returns the selected helper's result and performs only stack stores locally.
+
 ### dl_table.c
 
 - `__glDisposeDlist` in usr/gfx/arch/IP27KONA32/libGLcore.so: drops a reference on a display list held in the name table and frees it when the count reaches zero, and it occupies 72 bytes at address 0x0d990a50; the public sample-implementation source gfx/lib/opengl/glcore/dl_table.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 15 source lines against 16 in the public file, and it makes no access to the board. Inferred.
@@ -4552,6 +4639,23 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
 - `__glim_ListBase` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2df4200; occupies 88 bytes.
   **Established.** **Established.** Process state at absolute 0x1030 is compared with 1 (`lw` at 0x2df4200 and `beq` at 0x2df4218). Equality takes the arm that calls `__glSetError(0x502)` (`jalr` at 0x2df4248). Other values fall through to write entry a0 as a word at C +0x8c4 in the return delay slot (`sw` at 0x2df4230). This establishes the 64-bit context field rather than importing the N32 offset.
+
+#### IP35 O32 target readings
+
+These notes report stated binary effects from usr/gfx/arch/IP35KONA/libGLcore.so. The explicitly named N32 ranges are comparison references only; all differ byte-for-byte, and roles or layouts are not transferred from them.
+
+| Routine | IP35 O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glim_ListBase | 0xd9943bc / 92 | 969a97a67cbc410b9dd8421a53083aafec083702f4961207dbc2722c3f2a2788 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990d00 / 88 | 06182973e0687e1ac3ec825368f77a8e77ccbce9dbcbd97bfb252b4b26f22977 | 76 |
+| __glim_DeleteLists | 0xd994418 / 160 | 8830c8cdde404a9bd7906569cff2b44904ea36c20502098cd30ace318ffab4aa | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990d60 / 128 | 49d13d2a73a226e6adec799ff2b3680e2bcf8b20164bfd268d1a50b9c0eeaccc | 104 |
+
+- `__glim_ListBase` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9943bc; occupies 92 bytes.
+  **Established.** Sets the software list-base word at context +0x7bc to argument 0 (`sw` at 0xd9943e8), with context loaded from absolute 0x1010 (`lw` at 0xd9943e0). The store is the delay slot of a branch-likely and runs only when the state word at absolute 0x1018 differs from one (`lw` at 0xd9943d8, `bnel` at 0xd9943e4). The state-equals-one arm instead calls `__glSetError` with 0x502 (`jalr` at 0xd9943f4). Hostfacts identifies the duplicate later store as unreachable. The routine's merged return is unknown, and its reachable non-stack store is software state rather than identified board MMIO.
+
+- `__glim_DeleteLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994418; occupies 160 bytes.
+  **Established.** Checks state and count before deleting a software name range. State one at absolute 0x1018 reports 0x502 (`lw` at 0xd994444, `bne` at 0xd99444c, `jalr` at 0xd99445c). A negative argument 1 reports 0x501, while zero skips deletion (`bgez` at 0xd99446c, `jalr` at 0xd99447c, `beql` at 0xd99448c). Positive counts reach `__glNamesDeleteRange` with context, its +0x1340 table pointer, original first name and original count (`lw` at 0xd9944a0, `jalr` at 0xd99449c). The final result is not a fixed success value in hostfacts. The examined range contains the return and delay slot before the next named function.
 
 ### px_api.c
 
@@ -4608,6 +4712,23 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
 - `__glim_DrawPixels` in usr/gfx/arch/IP27KONA/libGLcore.so: is the draw-pixels entry point: outside a Begin it validates the arguments and draws, sends it to feedback mode when feedback is active, and reports errors otherwise, and in the original 32-bit build it occupies 332 bytes at address 0xd99a0f4; the public sample-implementation source gfx/lib/opengl/glcore/px_api.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glim_ReadPixels` in usr/gfx/arch/IP27KONA/libGLcore.so: is the read-pixels entry point: validates the arguments and reads the pixels into caller memory through the dispatch table, and in the original 32-bit build it occupies 296 bytes at address 0xd99a240; the public sample-implementation source gfx/lib/opengl/glcore/px_api.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glim_CopyPixels` in usr/gfx/arch/IP27KONA/libGLcore.so: is the copy-pixels entry point: validates the copy type, then copies the pixels through the dispatch table, or reports to feedback mode, and in the original 32-bit build it occupies 496 bytes at address 0xd99a368; the public sample-implementation source gfx/lib/opengl/glcore/px_api.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
+
+#### IP35 O32 target readings
+
+These notes report stated binary effects from usr/gfx/arch/IP35KONA/libGLcore.so. The explicitly named N32 ranges are comparison references only; all differ byte-for-byte, and roles or layouts are not transferred from them.
+
+| Routine | IP35 O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glInitDefaultPixelMap | 0xd997ba0 / 284 | d5051028f37ee95a5dbcedc38191e51ae53e6c06bfb7fd260dee062cb432d13d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd994850 / 276 | cc7fc0c4a3c89ea176052c348c192ba13a1470f9095ae84095783cf6cac4c474 | 231 |
+| __glPixelSetColorScales | 0xd997cbc / 696 | 363c360c902faa2c92bdc5de7c2286a5d873ca9d2ebf8f5febae6d0908510b60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd994970 / 432 | 42c1148db785f5547c4229836cc178c839b59f85f21b08a77c4da859f809ae91 | 398 |
+
+- `__glInitDefaultPixelMap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd997ba0; occupies 284 bytes.
+  **Inferred.** Calls an unresolved callback with size four through two paths. Both callback sites pass original argument 0 with size four (`jalr` at 0xd997bf4, 0xd997c4c). The callback target is loaded at context +0 (`lw` at 0xd997bec, 0xd997c44), but its identity is unresolved. A nonnull result receives integer zero or a float-word store whose value is unresolved (`sw` at 0xd997c2c, `swc1` at 0xd997c8c). Null results skip initialization (`beqz` at 0xd997c24, 0xd997c7c). The only explicit error call is `__glSetError` with 0x500 (`jalr` at 0xd997ca0). Hostfacts misidentifies computed map- descriptor addresses as negative tables, so those descriptor offsets stay unknown.
+
+- `__glPixelSetColorScales` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd997cbc; occupies 696 bytes.
+  **Inferred.** Builds software pixel conversion tables from context scales. Five unresolved callback calls request 0x400 bytes each with the original context (`jalr` at 0xd997cf4, 0xd997d14, 0xd997d30, 0xd997d4c, 0xd997d68). Their returned pointers populate context +0x778c, +0x7790, +0x7794, +0x7798 and +0x779c (`sw` at 0xd997d04, 0xd997d20, 0xd997d3c, 0xd997d58, 0xd997d74). Four scale floats come from +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd997d80, 0xd997d84, 0xd997d88, 0xd997d8c). The loop contains two groups of five float stores and a tail fill, with effective table addresses unresolved (`swc1` at 0xd997de0, 0xd997df8, 0xd997e0c, 0xd997e20, 0xd997e34). It clears context byte +0x77b4 at completion (`sb` at 0xd997f5c). Hostfacts does not identify the callback purpose, complete table traversal or final return.
 
 ### px_histogram.c
 
