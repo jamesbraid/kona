@@ -2092,6 +2092,69 @@ The following entries are from the 6.5.30m `usr/gfx/arch/IP27KONA64/libGLcore.so
 - `__glKonHashDeleteTexFast` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
   Address 0x2ddae70, size 112. It uses the same initial bucket and three-step probe sequence as the fast lookup, returns the matched value at +0x10, and clears the matching key at +0x1c. A miss returns zero without changing the table.
 
+### O32 IP27 KONA libGLcore target-build readings
+
+These entries describe the exact O32 target bodies in `usr/gfx/arch/IP27KONA/libGLcore.so`. Each was compared with its documented build counterpart; differing bytes alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glkonlc_TexImage1D` | 0xd976564 / 276 | `b706708fa7fd2a4217a383c60266b0259480e049463585d9eb5245a5efc1422f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd975540 / 224 | `e06a4831df16a3cd9fe0712b04cbf6358db526c49a59698d5e36bca9ee7aa656` | 192 |
+| `__glkonlc_TexImage2D` | 0xd976678 / 276 | `c24cffaecd65da4df3c63583cf1c58edc3418184112fcebff3b096b9b1e9f1ac` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd975620 / 220 | `1715279b110be7ce67e3ef8eca5d8e5b176b045d73118fd9a5d5ac3e10c514c0` | 191 |
+| `__glkonlc_TexImage3DEXT` | 0xd97678c / 276 | `6032a4fef2bc58101c886683d29871ff41fc9d34ea1162c016d3edc33f59d849` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd975700 / 208 | `5a22211779739d2389f93e4240c6281d0ff5c2fd59461589270e76fa3118d8b8` | 173 |
+| `__glkonle_TexImage` | 0xd9768a0 / 184 | `7b40851b9cafba28a8b62c147df982af7dd0895019f0b0cf26d37051092b7ac9` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9757d0 / 156 | `1394d1dc975633d9a8e5ae67d6299dd4a88cfd7a396f094f5f1d749ae9419a79` | 115 |
+| `__glkonle_TexSubImage1DEXT` | 0xd976958 / 188 | `808a2003665334dac6fc54a25ac597a6816280303b8d0ed97a847534758de0ec` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd975870 / 164 | `fed7b53b299e86a9d207e42ed857a4aee4a21f381b8a5d84b3d78f2871913dd3` | 131 |
+| `__glkonle_TexSubImage2DEXT` | 0xd976a14 / 188 | `7b204b126c047c60f1c1c1f32a0e4e6ce16dcb2f3686ad07f0e993413716ec86` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd975920 / 164 | `e2d2e6798b0dddcdf4c11c541106e72ec1ac8cdb4f1a79cd4c444e28c9336154` | 126 |
+| `__glkonle_TexSubImage3DEXT` | 0xd976ad0 / 192 | `7e026d60aecd61d88446fe615b5811757ffae1565ebd49334d2ceb238f86a0f3` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9759d0 / 164 | `a9289efae4e901462a90fbfb694b4ce66cbd6d06f97d1bb0746482fff8495574` | 124 |
+| `__glKonTexFree` | 0xd978d98 / 228 | `81ada91c4376164ff73aee00616944b7080697bb6f8ef897d6a2b3aa46e2f7e2` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd977ce0 / 228 | `080b4597d3f601d1c04bb24068e469068d79fc9001343e21b67d1a3dea8e02b4` | 191 |
+| `__glKonFreeTextureMemory` | 0xd9790ac / 168 | `56b23fca31434818043f71f08acd9aaff8fb8324a7307a601b266e9736d428bf` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd978050 / 172 | `008dcc64344e116551a63a7faecaf7d4fb8afc493dc03eb392ff7b1f3724a51c` | 148 |
+| `__glKonHashFindTexFast` | 0xd97937c / 240 | `a875c59991756c110017b3657887594689c5a1fb0c12c5cb1be1fe347e73b900` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd978300 / 124 | `f2c9089e52a12a47ea1aac92a252f22168c5599aca94a14a09fad0fd56eca81e` | 102 |
+| `__glKonHashDeleteTexFast` | 0xd9796c4 / 264 | `722721feabc5c852a213fa87b9aac1f9168d2d1129e6542cd99c26932ac15cc7` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9785d0 / 128 | `9208673da370c353829d0fb44863335939de533e7321ae224730d404121bf649` | 108 |
+
+#### Target-build readings
+
+- `__glkonlc_TexImage1D` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd976564; occupies 276 bytes.
+  **Established.** Routes a one-dimensional image request by its target. Entry argument 0 equal to 0xde0 takes the compilation path (`beq` at 0xd976594), calling `__glkonlc_TexImage` with the word at 0x1010 (`lw` at 0xd976574) and the first three caller arguments (`jalr` at 0xd9765fc). Target 0x8063 takes the immediate path (`beq` at 0xd9765a0, `jalr` at 0xd976648 to `__glkonim_TexImage`). Other targets reach `__glsplc_InvalidEnum` (`jalr` at 0xd97665c). Its stores are stack argument preparation, with texture processing delegated to those callees. Hostfacts leaves the merged return unknown.
+
+- `__glkonlc_TexImage2D` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd976678; occupies 276 bytes.
+  **Established.** Compiles target 0xde1 through `__glkonlc_TexImage` (`beq` at 0xd9766a8, `jalr` at 0xd976710), passing the word from 0x1010 (`lw` at 0xd976688) before the caller's target, level and format arguments. Target 0x8064 instead reaches `__glkonim_TexImage` (`beq` at 0xd9766b4, `jalr` at 0xd97675c). The remaining path calls `__glsplc_InvalidEnum` (`jalr` at 0xd976770). This wrapper constructs outgoing stack arguments rather than writing a texture command itself. The return depends on the selected callee.
+
+- `__glkonlc_TexImage3DEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd97678c; occupies 276 bytes.
+  **Established.** Separates the recorded and immediate three-dimensional texture cases. Target 0x806f selects `__glkonlc_TexImage` (`beq` at 0xd9767bc, `jalr` at 0xd976824), whose first argument is the word at 0x1010 (`lw` at 0xd97679c). Target 0x8070 selects `__glkonim_TexImage` with the caller's first four arguments retained (`beq` at 0xd9767c8, `jalr` at 0xd976870). If neither target matches, it calls `__glsplc_InvalidEnum` (`jalr` at 0xd976884). The body only stores stack data. Hostfacts does not resolve the merged result.
+
+- `__glkonle_TexImage` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9768a0; occupies 184 bytes.
+  **Established.** Replays a recorded texture image between `__glKonSetPixelLEModes` and `__glKonUnsetLEModes` (`jalr` at 0xd9768c4, 0xd976924). The immediate image call receives the record words at entry argument 0 +0, +4, +8 and +0xc as its first four arguments (`lw` at 0xd9768d0, 0xd9768d4, 0xd9768d8, 0xd9768dc, `jalr` at 0xd976910 to `__glkonim_TexImage`). Additional record reads include +0x10, +0x14 and +0x24 (`lw` at 0xd9768cc, 0xd9768e4, 0xd97692c). The body's stores are stack-local, and the callees' hardware effects remain unknown here. Its computed return remains unknown in hostfacts.
+
+- `__glkonle_TexSubImage1DEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd976958; occupies 188 bytes.
+  **Established.** Wraps one recorded subimage replay in pixel-mode setup and restoration (`jalr` at 0xd97697c, 0xd9769e0). `__glkonim_TexSubImage` receives record words +0, +4 and +8 (`lw` at 0xd976984, 0xd976988, 0xd97698c) and a zero fourth argument (`jalr` at 0xd9769cc). The record's later fields are read at +0xc, +0x10, +0x14 and +0x18 (`lw` at 0xd976994, 0xd9769ac, 0xd9769c0, 0xd9769e8). No command-port store appears in this body. Hostfacts cannot resolve the returned record position.
+
+- `__glkonle_TexSubImage2DEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd976a14; occupies 188 bytes.
+  **Established.** Forwards a two-dimensional display-list subimage to `__glkonim_TexSubImage`, using record words +0, +4, +8 and +0xc as the first four arguments (`lw` at 0xd976a40, 0xd976a44, 0xd976a48, 0xd976a4c, `jalr` at 0xd976a88). Setup and restoration call `__glKonSetPixelLEModes` and `__glKonUnsetLEModes` (`jalr` at 0xd976a38, 0xd976a9c), both with a save area at entry stack pointer -0x5c. The record word at +0x20 is read after replay (`lw` at 0xd976aa4). The wrapper stores only stack data and has an unresolved computed return in hostfacts.
+
+- `__glkonle_TexSubImage3DEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd976ad0; occupies 192 bytes.
+  **Established.** Replays the three-dimensional record through `__glkonim_TexSubImage` (`jalr` at 0xd976b48), bracketed by `__glKonSetPixelLEModes` and `__glKonUnsetLEModes` (`jalr` at 0xd976af4, 0xd976b5c). The forwarded register arguments are entry-record words +0, +4, +8 and +0xc (`lw` at 0xd976b00, 0xd976b04, 0xd976b08, 0xd976b0c). Additional reads include +0x20, +0x24 and +0x28 (`lw` at 0xd976b34, 0xd976b40, 0xd976b64). This body prepares stack arguments. The immediate routine's hardware effect is unknown here. Its final pointer calculation is unknown in hostfacts.
+
+- `__glKonTexFree` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd978d98; occupies 228 bytes.
+  **Established.** Releases texture banks and updates residency links. A nonnegative signed value of the object flag word at +0x20 (`lw` at 0xd978db0) shifted left by 11 skips unlinking (`bgezl` at 0xd978dbc). The link path includes a store to state +0xc2b0 and neighbor-link stores (`sw` at 0xd978dd4, 0xd978ddc, 0xd978dec). The head store is the delay slot of a branch taken only when object +0x124 is zero (`lw` at 0xd978dc4, `beql` at 0xd978dd0), and is annulled otherwise. Nonzero bank pointers reach `releaseMemBank` with modes zero and one, using object +0x108 and +0x10c (`jalr` at 0xd978e20, 0xd978e54). Those pointer fields are cleared after their calls (`sw` at 0xd978e34, 0xd978e64). The routine returns zero (`jr` at 0xd978e74). The link and object-field writes are observed here. The release helper's effects are unknown.
+
+- `__glKonFreeTextureMemory` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9790ac; occupies 168 bytes.
+  **Inferred.** Calls an inferred bank-table cleanup procedure loaded from entry argument 0 +0xc (`lw` at 0xd9790f4, 0xd979120). A count at state argument 1 +0xc2cc (`lw` at 0xd9790dc) that is nonpositive skips the element loop (`blez` at 0xd9790e8). The loop invokes the unknown callback with entry argument 0 and an unresolved element pointer (`jalr` at 0xd979100). It then invokes the procedure reloaded from the same +0xc slot with the table word from state +0xc2c8 (`lw` at 0xd979128, `jalr` at 0xd97912c). Its result is the final callback's return. The cleanup role follows the interface name, while callback effects remain unknown. Only stack stores occur locally.
+
+- `__glKonHashFindTexFast` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd97937c; occupies 240 bytes.
+  **Established.** Looks for entry argument 1 through five key comparisons. An initial mismatch takes the next probe (`bnel` at 0xd97939c), while a match returns via the word load in `jr` at 0xd9793a4's delay slot (`lw` at 0xd9793a8). Four later mismatch branches advance or reject the search (`bne` at 0xd9793e0, 0xd979408, 0xd979430, 0xd979454). Hostfacts leaves all computed probe addresses and matching values unknown. The final miss returns zero (`jr` at 0xd979464). The routine makes no stores or calls. The computed access addresses remain unresolved.
+
+- `__glKonHashDeleteTexFast` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9796c4; occupies 264 bytes.
+  **Established.** Deletes a matching key along a five-probe search. Entry argument 1 differing from the first loaded key takes the next probe (`bnel` at 0xd9796ec). Match paths write zero at five possible store sites (`sw` at 0xd9796f4, 0xd979738, 0xd979764, 0xd979790, 0xd9797b8), then load their result in the return delay slot. Effective key and value addresses remain unknown in hostfacts. All misses return zero (`jr` at 0xd9797c4), and there is no call. The address space of the unresolved accesses is not established.
 ## What the published manuals add
 
 Labels follow [published-sources.md](published-sources.md); page numbers are PDF page indexes of the stored copies ([docs/sources/](sources/README.md)).

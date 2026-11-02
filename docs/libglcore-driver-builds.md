@@ -2065,6 +2065,59 @@ These are complete readings of the listed O32 routines in `usr/gfx/arch/IP27KONA
 - `__glkonim_TexImage2D` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd972254; occupies 152 bytes.
   **Established.** The 2-D texture-image wrapper accepts first-argument targets 0xde1, 0x8095 and 0x8064 through `beq` at 0xd97226c, `beq` at 0xd972278 and `beql` at 0xd972280. Other targets report 0x500 through `__glSetError` (`jalr` at 0xd972290). Accepted targets invoke `__glkonim_TexImage` with the original first four arguments (`jalr` at 0xd9722d0), and the stack argument area includes the constant 1 (`sw` at 0xd9722c0). Hostfacts does not give meanings for the additional stack arguments, so the entry does not assign them dimensions or flags. The return paths retain the result of the selected callee.
+### O32 IP27 KONA libGLcore target-build readings
+
+These entries describe the exact O32 target bodies in `usr/gfx/arch/IP27KONA/libGLcore.so`. Each was compared with its documented build counterpart; differing bytes alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glKonEvalMesh1DHost` | 0xd980174 / 548 | `4fe35aa03030c958f9d901410a28a0054ab2584a715a98b911475c9aad0e382b` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2ddf5b0 / 540 | `84adcd5ac37da9c511602e91ebd47d9f284b4605cd737f2aa720f6ffa45508c3` | 502 |
+| `__glKonInitEvaluators` | 0xd981ad0 / 592 | `a806dc85a9a8fd097a52d7e2ce98cca4214eaf575e3943f8a253ba676120a722` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de1080 / 740 | `ae4ef6dc1092e7650b75a83157454fae451ee98ec4b266d4f0e9c98e09b4aecc` | 543 |
+| `__glkonim_PixelMapfv` | 0xd9855c0 / 60 | `9c0988c5ec1f475d0d72da8eb4f7083ed9c3bd2b5bf563cda3912500cc03c8cd` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de4fe0 / 56 | `5e966d5f54e29b971af2a04f934655799894f5ed6393dda92e70054402907ab9` | 46 |
+| `__glkonim_PixelMapuiv` | 0xd9855fc / 60 | `ecb4cd624876e8436dae814407534e26ea5c7fa974b42326e2afe3bc92a2772c` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de5020 / 56 | `76783c49a2972bd30bc4d4d3e345db719e7700993cc7f01f0ca3713c0774b005` | 46 |
+| `__glkonim_PixelMapusv` | 0xd985638 / 60 | `e31d76c30293c5dcfb8c8cf69d68ef3769072b91fbc39a782eb2e7a8f9851241` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de5060 / 56 | `669f102d2d6545d288698b314269d9aa63a8df034fe77fcf02096d019b9a3108` | 46 |
+| `__glkonim_GetPixelMapuiv` | 0xd985d48 / 1872 | `5a73f0c8e6ba065cc54763d4083dbaa890366b235c67e50670659b3c386ae4e6` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de5780 / 524 | `2630e658d4f9031136316ea1a783128b00cfbc988a92cd13a0ef201df6558fc0` | 465 |
+| `__glkonlc_FogFuncSGIS` | 0xd986f68 / 564 | `0558251aff86dbcc963a49f77ac5374f299dd2cff82c67da1b53ca6011b160b4` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de5f10 / 524 | `478db907ee9cb46704e0e897403adab0ece857acc1081594dda24375ebb809ec` | 478 |
+| `__glkonim_GetHistogramParameterfvEXT` | 0xd98a998 / 520 | `c3e90c72ab4a7f959c6e868f0f368aed7152a866aeda3d516c2094df8acfdcef` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2de9530 / 348 | `04cc0b27931924b056aaaaba28335afe0fdb3a5490e99f12251d79cacc3b48e7` | 318 |
+| `__glkonlc_DeformationMap3fSGIX` | 0xd98c9e0 / 160 | `ba8101348d6ea09e6545f6358ce0d328a40e6786d0c50e1d8924109548c704c6` | `usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2deb3c0 / 108 | `ef4e80ae990fb734d669e2731a89efda494a4083d2f84b6c8219e33e8f27bda3` | 91 |
+
+#### Target-build readings
+
+- `__glKonEvalMesh1DHost` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd980174; occupies 548 bytes.
+  **Inferred.** Evaluates one-dimensional mesh rows using the context pointer at 0x1010 (`lw` at 0xd980188). A zero word at context +0x798 (`lw` at 0xd9801a8) takes the early exit (`beqz` at 0xd9801b4). Modes 0x1b00 and 0x1b01 select separate paths (`beq` at 0xd9801c4, 0xd9801d0). Four sites call `EvalRow1D` with context +0x78c and a buffer at entry stack pointer -0x4004 (`jalr` at 0xd980220, 0xd980288, 0xd9802ec, 0xd980354). The first and third pass count 0x100, while the other counts remain unknown. Unknown callbacks loaded through the context's +0x17f4 table bracket those calls. Examples include the first and last calls (`lw` at 0xd9801f0, 0xd98035c, `jalr` at 0xd9801fc, 0xd980368). Their drawing effects and the merged return remain unknown.
+
+- `__glKonInitEvaluators` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd981ad0; occupies 592 bytes.
+  **Established.** Initializes evaluator state in entry argument 0. It sets byte +0x9098 to one and installs four code addresses at +0x909c, +0x90a4, +0x90a0 and +0x90a8 (`sb` at 0xd981b2c, `sw` at 0xd981b30, 0xd981b34, 0xd981b38, 0xd981b3c). The values are 0xd980d2c, 0xd980d60, 0xd980d44 and 0xd980e2c in that store order. Later initialization includes zero word stores at unresolved bases (`sw` at 0xd981b64, 0xd981b68, 0xd981b6c) and two calls through the procedure at entry argument 0 +0 (`lw` at 0xd981c58, 0xd981c70, `jalr` at 0xd981c60, 0xd981c7c). Their first argument is the context, and size arguments are unknown in hostfacts. The unresolved store bases do not establish an address space. Callback effects and the return remain unknown.
+
+- `__glkonim_PixelMapfv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9855c0; occupies 60 bytes.
+  **Established.** Calls `do_pixelmap` with entry arguments 0, 1 and 2 retained and argument 3 equal to 0x1406 (`jalr` at 0xd9855e0). Its result is the shared helper's return (`jr` at 0xd9855f4). The wrapper performs no pixel-buffer or command-port stores of its own.
+
+- `__glkonim_PixelMapuiv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9855fc; occupies 60 bytes.
+  **Established.** Forwards the pixel-map request to `do_pixelmap` with element selector 0x1405 as its fourth argument (`jalr` at 0xd98561c). The first three caller arguments pass through, and the result passes back unchanged (`jr` at 0xd985630). The helper's memory-transfer effects remain unknown from this wrapper.
+
+- `__glkonim_PixelMapusv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd985638; occupies 60 bytes.
+  **Established.** Uses element selector 0x1403 for `do_pixelmap` while retaining the first three caller arguments (`jalr` at 0xd985658). The selector is supplied in the call's delay slot. It returns the helper's result (`jr` at 0xd98566c), with only stack and linkage accesses in this wrapper.
+
+- `__glkonim_GetPixelMapuiv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd985d48; occupies 1872 bytes.
+  **Established.** Reads a pixel-map reply and writes converted words. The process word at 0x1018 (`lw` at 0xd985d84) equal to one falls through to `__glSetError` with 0x502 (`bne` at 0xd985d8c, `jalr` at 0xd985d9c). The other path calls `get_pixel_map_setup` with output addresses at entry stack pointer -4 and -0x10 (`jalr` at 0xd985dbc), then requests selector 0x48 through `__glkon_get_special3` (`jalr` at 0xd985e04). Conversion paths distinguish entry selector 0xc70 from 0xc71 (`beq` at 0xd985e50, `bnel` at 0xd985e58). Output includes word stores at unresolved effective bases (`sw` at 0xd985ee8, 0xd985f78, 0xd98602c, 0xd9860bc). This is an example store list, not the full unrolled conversion. Hostfacts cannot resolve reply-buffer addresses or the final return.
+
+- `__glkonlc_FogFuncSGIS` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd986f68; occupies 564 bytes.
+  **Established.** Validates and records a fog-function request. Nonpositive entry count takes an error path (`blez` at 0xd986f84). A count below 0x21 continues, while a larger count falls through to `__glsplc_InvalidValue` (`bnez` at 0xd986f90, `jalr` at 0xd986f9c). Later validation includes floating-point comparisons whose operands remain unresolved (`bc1t` at 0xd987034, 0xd98704c). Space allocation calls `__glSPDlistSpace` with arguments zero, an unknown value and twice the entry count plus two (`jalr` at 0xd9870ac). Recording writes 0x10f and the entry count through the pointer held at 0x1030 (`lw` at 0xd9870c8, `sw` at 0xd9870d4, 0xd9870e8). It updates process words 0x1034, 0x1030 and 0x1028 (`sw` at 0xd987180, 0xd987184, 0xd987188). These stores build a list record. The return is unknown.
+
+- `__glkonim_GetHistogramParameterfvEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd98a998; occupies 520 bytes.
+  **Established.** Retrieves histogram parameters through `__glkon_get_special2`, using selector 0x105, entry arguments 0 and 1, and the word at 0x1010 (`lw` at 0xd98a9c8, `jalr` at 0xd98a9f8). The process word at 0x1018 (`lw` at 0xd98a9c0) equal to one instead falls through to error 0x502 (`bne` at 0xd98a9cc, `jalr` at 0xd98a9dc to `__glSetError`). Result processing includes floating-point output stores with unresolved effective bases (`swc1` at 0xd98aa58, 0xd98aa80, 0xd98aabc, 0xd98aad8). The reply count, buffer bases and merged return are unknown in hostfacts. The called helper's hardware effect and the address space of the unresolved stores are not established.
+
+- `__glkonlc_DeformationMap3fSGIX` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd98c9e0; occupies 160 bytes.
+  **Established.** Forwards the deformation-map request to `lcDeformationMap3` (`jalr` at 0xd98ca64). Hostfacts resolves its first and fourth register arguments as the caller's entry arguments 0 and 3, but leaves the second and third unknown. The routine rearranges stack arguments and returns the helper's result (`jr` at 0xd98ca78). It performs no direct graphics-register stores.
 ### 64-bit routines read in full
 
 - `__glkonResolveContext` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2dc3a00, 8636 bytes):
