@@ -177,6 +177,135 @@ written.
   zero. A missing key reports the same diagnostic error and returns -1.
   (`kpm`, 6.5.30m, lookup at 0x100122bc and extraction at 0x100122e0.)
 
+The following routines were read in their complete N32 address ranges in the
+same executable.
+
+- `show_hip_host_registers_section` (`usr/gfx/KONA/bin/kpm`). **Established.**
+  Address 0x1001545c; size 1028 bytes. It allocates a 0xb6-entry register
+  section, then reads the host-interface offsets 0x220, 0x390, 0x398, 0x238,
+  0x310, 0x3a8, 0x108, 0x200, 0x208, 0x210, 0x218, 0x220, 0x230, 0x240,
+  0x248, 0x250, 0x258, 0x260, 0x268, 0x270, 0x278, 0x280, 0x288, 0x290,
+  0x298, 0x2a0, 0x2a8, 0x2b0, 0x2b8, 0x2c0, 0x308, 0x338, 0x340, 0x348,
+  0x350, 0x358, 0x360, 0x368, 0x370, 0x378 and either 0x380/0x388 or
+  0x3a0, followed by 0x3b0, 0x3c0, 0x3c8 and 0x3e8. A short allocation falls
+  back to the report error path; otherwise it records every value and returns
+  zero. (`kpm`, 6.5.30m, calls at 0x1001549c-0x100157bc.)
+
+- `show_arm_registers_section` (`usr/gfx/KONA/bin/kpm`). **Established.**
+  Address 0x10015860; size 972 bytes. It allocates 0xe4 four-byte records for
+  the ARM register section, rejects a short result, and otherwise records the
+  ARM offsets 0x200000, 0x200004, 0x200008, 0x20000c, 0x200010, 0x200014,
+  0x200018, 0x200020, 0x200024, 0x200030, 0x200034, 0x20003c, 0x200040,
+  0x200048, 0x200050, 0x200054, 0x200058, 0x20005c, 0x200060, 0x200064,
+  0x200068, 0x20006c, 0x200070, 0x200074, 0x200078, 0x20007c, 0x200090,
+  0x200094, 0x200098, 0x20009c, 0x2000b0, 0x2000b4, 0x2000b8, 0x2000bc,
+  0x2000c0, 0x2000c4, 0x2000c8, 0x2000cc, 0x2000f0 and 0x2000f4. It returns
+  zero after the final record is stored. (`kpm`, 6.5.30m, calls at
+  0x100158a0 and 0x10015908-0x10015c08.)
+
+- `show_fifo_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10016508; size 452 bytes. It requests four four-byte values, allocates a
+  buffer sized by the returned count, and passes each value with its index to
+  the section formatter. A missing buffer or non-positive count reports an
+  error and returns -1; a complete loop frees the buffer and returns zero.
+  (`kpm`, 6.5.30m, allocation at 0x1001655c and loop at 0x100165c8.)
+
+- `show_arm_ge_mbox_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100166cc; size 256 bytes. It requests four four-byte mailbox words, formats
+  all four with indices 0 through 3, and returns zero. When the request yields
+  fewer than four words it reports the section error and returns -1.
+  (`kpm`, 6.5.30m, loop at 0x10016774.)
+
+- `show_icu_map0_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100167cc; size 292 bytes. It requests 0x200 four-byte entries, reads the
+  map word at the address formed from the pipe base plus 0x8218, and formats
+  each entry with its index and corresponding map value. A short request takes
+  the section error path; the 0x200-entry loop otherwise finishes with zero.
+  (`kpm`, 6.5.30m, address formation at 0x10016868 and loop at 0x1001688c.)
+
+- `show_arm_sram_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10016c0c; size 408 bytes. It requires bit 6 in the pipe flags, requests
+  0x400 words, and formats each word as four byte fields in the ARM SRAM
+  section. A short request or a clear flag reports an error and returns -1;
+  0x400 formatted words lead to zero. (`kpm`, 6.5.30m, flag test at
+  0x10016c40 and byte extraction at 0x10016cbc.)
+
+- `show_arm_sdram_section` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10016da4; size 1120 bytes. It requires pipe flag 0x100, accepts only the
+  two supported display selectors (the first byte of the selected name must be
+  `p` or `s`), and uses the requested selector and channel arguments to format
+  the SDRAM capture. A missing flag, invalid selector or failed section read
+  follows the error path; the four-channel loop stores each result before
+  returning zero. (`kpm`, 6.5.30m, selector checks at 0x10016e00 and channel
+  loop through 0x100170b0.)
+
+- `analyze_hip` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100173b0;
+  size 1152 bytes. It checks the capture counters at offsets 0x4b8 and 0x4c0,
+  reports an empty or inconsistent capture, then classifies the saved register
+  at 0x4c8 against the host-interface ranges 0x2000200-0x20009fc and
+  0x2000a00-0x2000bfc plus the special values 0x2000400, 0x2000200,
+  0x200023c and 0x2000240. It also reports decoded values from offsets 0x4b0,
+  0x4b4, 0x4cc and 0x4d0 and conditionally reports flags from 0x4a4 and 0x4a8.
+  (`kpm`, 6.5.30m, classification branches at 0x10017474-0x10017510.)
+
+- `analyze_bef` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100199a8;
+  size 680 bytes. It scans eight engine records, reports each set bit in the
+  capture mask at record offset 0x10 only when that engine's record flag at
+  +0x564 is clear, and distinguishes a missing capture at +0x5ac. It then
+  reports the saved state words at +0x55c, +0x560, +0x58c, +0x590, +0x594,
+  +0x598, +0x5a4 and +0x5a8, with separate messages for bits 0 and 1 of the
+  flags at +0x4a4. (`kpm`, 6.5.30m, engine loop at 0x100199e4.)
+
+- `analyze_ged` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1001b21c;
+  size 824 bytes. It requires both capture state at +0x4d4 and a non-zero
+  validity word at +0x4d8, derives the selected engine from bits 6:8 of +0x4e0,
+  and scans eight engine bits in +0x10 against the corresponding bits in +0x4e4.
+  It reports each mismatch, then decodes flags in +0x4dc (bits 2, 1 and 0),
+  status bits 13 and 12 of +0x4e0, and the three three-bit fields at positions
+  9, 0 and 3. (`kpm`, 6.5.30m, validity and engine scan at 0x1001b254-0x1001b2c8.)
+
+- `analyze_ge` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1001d218;
+  size 364 bytes. It scans eight engine records whose active bits are in each
+  record's word at +4, calls the status decoder with the saved value at +0x5b0,
+  and formats the engine number, decoded status and words at +0x500 and +0x510
+  from the selected record. It advances records by 0x20 bytes and ends with a
+  summary message after all eight slots. (`kpm`, 6.5.30m, record loop at
+  0x1001d28c-0x1001d32c.)
+
+- `ge11WriteSection` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1001ef74; size 208 bytes. It writes a section header of 0x43314 bytes from
+  the supplied buffer, copies the captured count at +0x32f4 into each selected
+  engine record at +0x5b0, saves the first handler pointer at +0x5cc, and copies
+  six words from the table at +0x32d8 into consecutive record slots. The engine
+  index selects records in a 0x20-byte stride. (`kpm`, 6.5.30m, record writes
+  at 0x1001eff8-0x1001f034.)
+
+- `set_transfer_address` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1001f534; size 568 bytes. It rejects a zero address, clears the current DMA
+  handle, and for an address below 0x80000000 allocates a 0x200000-byte map,
+  records kind 9 and submits ioctl 0x2774. On success it marks the transfer
+  active and returns the mapped page, offset and length through its three output
+  pointers; allocation, ioctl, or negative adapter-state paths log an error and
+  return the sentinel 0xdeadbabe. (`kpm`, 6.5.30m, map setup at
+  0x1001f5a0-0x1001f638.)
+
+- `wait_for_dma_completion` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1001f7c0; size 216 bytes. It polls the DMA length at host record offset
+  0x2b8, calling the delay hook between polls, for at most the caller's positive
+  limit; the first two polls pass the loop index as the delay argument and later
+  polls pass zero. It stores 1 at host offset 0x298 and returns the final DMA
+  length, including a non-zero value when the limit expires. (`kpm`, 6.5.30m,
+  polling loop at 0x1001f820-0x1001f864.)
+
+- `analyze_rmstatus` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1002f7d8; size 344 bytes. It requires bit 2 of the board status word, then
+  scans four raster-manager records at 0x108-byte and 0x14-byte strides. For
+  each record with a non-zero presence word at +0x20 and status pointer at
+  +0x44c, it reports the three status bits in the word at +0x6b8 by calling the
+  matching message formatter. It exits quietly when the board flag or required
+  record pointers are absent. (`kpm`, 6.5.30m, four-record loop at
+  0x1002f840-0x1002f8ec.)
+
 ## Register tables and logging
 
 | Function | Role |
