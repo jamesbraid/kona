@@ -240,24 +240,6 @@ same executable.
   6.5.30m, request at 0x10019240, 0x59-word loop at 0x100192f0 and indexed
   loop at 0x10019390.)
 
-- `ged_register_write` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
-  0x10019e3c; size 164 bytes. It maps the requested GED register with the
-  helper at 0x10019e6c, writes the GED address command 0x20000600 to host
-  offset 0x3e8 and the derived register selector to host offset 0x3f0, then
-  writes 0x20000ac0 to 0x3e8 and the caller's value to 0x3f0. The five-bit
-  register index is shifted by five and its half-index is shifted by nine
-  before the first selector is assembled. It returns zero. (`kpm`, 6.5.30m,
-  host stores at 0x10019e94, 0x10019eb0, 0x10019ec0 and 0x10019ecc.)
-
-- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
-  0x10019ee0; size 228 bytes. It forms a one-bit engine mask from the caller's
-  engine number, writes register 0x222 through `ged_register_write` five
-  times, then selects the GED address command 0x20000600, writes selector
-  0x58400800, selects 0x20000a80 and writes 1 to the host command/data ports.
-  The repeated writes preserve the diagnostic sequence in the body; the
-  routine returns zero after the final store at 0x10019fc0. (`kpm`, 6.5.30m,
-  mask formation at 0x10019f0c and host sequence at 0x10019f7c-0x10019fc0.)
-
 - `show_ged_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
   0x1001aa3c; size 2016 bytes. It reads the GED capture records, formats the
   fixed header and per-engine state through the GED descriptors, and passes
@@ -321,6 +303,91 @@ same executable.
   section invokes the error reporter and returns -1, while all eighteen
   fields decode and return zero. (`kpm`, 6.5.30m, request at 0x1001f46c and
   field loop at 0x1001f4ec-0x1001f528.)
+
+- `jtagInspection` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1002207c; size 568 bytes. It opens the JTAG inspection path, checks the
+  board's capability and pipe configuration, then walks the configured scan
+  records and invokes the JTAG vector reader for each active entry. A missing
+  scan configuration or failed vector read takes the diagnostic error path;
+  successful inspection stores the final scan result in the pipe record at
+  offset 0x440, written by `sw` at 0x100222a4. (`kpm`, 6.5.30m, complete body
+  0x1002207c-0x100222a7.)
+
+- `read_jtag_vector` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10022410; size 400 bytes. It validates the caller's vector descriptor,
+  arranges the global boundary-scan instruction state, reads the requested
+  vector into the caller's output pointer and returns the scan result. A
+  negative vector setup result branches to cleanup at 0x1002252c; a nonzero
+  saved completion flag at 0x10022508 selects the alternate cleanup path.
+  (`kpm`, 6.5.30m, setup call at 0x10022450, result store at 0x100224f0 and
+  completion test at 0x10022508.)
+
+- `show_jtag_register` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x100225a0; size 612 bytes. It finds the selected JTAG register descriptor,
+  reads its bit range and display metadata, and passes the extracted value to
+  the register formatter. Missing descriptor data or a zero register pointer
+  returns through the empty-section path; otherwise it computes the field
+  length with the helper at 0x10022738 and formats the register value and
+  mask. (`kpm`, 6.5.30m, descriptor loads at 0x1002266c-0x10022724 and
+  extraction call at 0x10022768.)
+
+- `show_ge12_jtag_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10022804; size 1164 bytes. It builds the GE12 scan-register descriptors,
+  reads each configured vector with `read_jtag_vector`, and formats the
+  returned fields through `show_jtag_register`. The initial vector failure
+  branches to the error return at 0x10022c58; the normal path emits the
+  register groups in table order, including the records whose values are
+  loaded at 0x10022ab4, 0x10022aec, 0x10022b84 and 0x10022bf4. (`kpm`,
+  6.5.30m, vector call at 0x100228c4 and formatter calls at
+  0x10022954-0x10022c78.)
+
+- `ge12_backward_analysis` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1002cf5c; size 424 bytes. It walks the captured GE12 engine records in
+  reverse scan order, skips records whose validity flag at offset 0x564 is
+  clear, and reports the saved control and status values at offsets 0x500 and
+  0x520. The loop stops at the capture boundary words at offsets 0x4d4 and
+  0x4d8 and returns after the final diagnostic message. (`kpm`, 6.5.30m,
+  record loads at 0x1002cfc0, 0x1002d01c and 0x1002d02c.)
+
+- `ge12_forward_analysis` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1002d104; size 424 bytes. It performs the corresponding forward scan of
+  the GE12 capture records, using the same validity, control and status fields
+  but advancing through the record chain. It reports each valid transition,
+  then checks the capture boundary at 0x1002d214-0x1002d220 before returning.
+  (`kpm`, 6.5.30m, record validity load at 0x1002d168 and state loads at
+  0x1002d1c4 and 0x1002d1d4.)
+
+- `show_rm6_jtag_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x1002d2b8; size 2248 bytes. It assembles the RM6 scan descriptors from the
+  board's register tables, reads the configured chains and formats the raster
+  manager fields. The body separates absent chains from valid chain data and
+  emits the field groups through the same JTAG register formatter; a failed
+  chain read follows the section error return. (`kpm`, 6.5.30m, complete body
+  0x1002d2b8-0x1002db77; descriptor setup begins at 0x1002d2c0.)
+
+- `get_rm_status` (`usr/gfx/KONA/bin/kpm`): **Established.** Address 0x1002e200;
+  size 3836 bytes. It selects each present raster-manager record, reads its
+  status blocks and returns the captured status pointer used by the RM6
+  inspection and viewer paths. The record walk tests the board presence and
+  per-record validity before decoding the status fields, and the error paths
+  leave the caller's output unchanged. (`kpm`, 6.5.30m, complete body
+  0x1002e200-0x1002f0fb; callers use the result in the inspection code at
+  0x1002d2b8.)
+
+- `nicInspection` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10030a48; size 900 bytes. It reads the board serial-number device through
+  the configured NIC access procedure, checks the returned device status and
+  records the serial and identity fields in the capture structure. An absent
+  NIC or failed transaction reports the inspection error; successful device
+  reads proceed to `show_nic_section`. (`kpm`, 6.5.30m, complete body
+  0x10030a48-0x10030dcb.)
+
+- `show_nic_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10030dcc; size 372 bytes. It reads the NIC capture record, formats the
+  board identity and serial fields through the section formatter, and returns
+  the formatter result. A missing capture record takes the section-error
+  path, so the viewer does not print an invented identity. (`kpm`, 6.5.30m,
+  complete body 0x10030dcc-0x10030f3f.)
 
 - `show_hip_host_registers_section` (`usr/gfx/KONA/bin/kpm`). **Established.**
   Address 0x1001545c; size 1028 bytes. It allocates a 0xb6-entry register
