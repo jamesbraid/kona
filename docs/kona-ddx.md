@@ -7741,6 +7741,41 @@ These readings describe `usr/gfx/setmon` copies of the symbol-database and XDR h
 - `xdr_SDBfileHeader` in `usr/gfx/setmon`:
   Address 0x10024470; occupies 320 bytes.
   **Established.** Header serialization measures the initial bytes with `strlen` and sends them through `xdr_bytes` with maximum 4 (`jalr` at 0x100244a0 and `jalr` at 0x100244d8). The version fields are passed at entry a1 +4 and +8 (`jal` at 0x100244ec and `jal` at 0x10024500 to `xdr_SDBversionNumber`), followed by an `xdr_bytes` call with maximum 100 (`jalr` at 0x1002451c). It serializes the index at +0x70 and offsets at +0x74 and +0x78 (`jal` at 0x10024530 to `xdr_SDBelementIndex`, `jal` at 0x10024544 and `jal` at 0x10024558 to `xdr_SDBfileOffset`). The final `xdr_array` call receives maximum count 10, element size 4 and codec `xdr_u_long` (`jalr` at 0x1002457c). A zero array result takes the zero-return arm, while nonzero falls through to a result of 1 (`beqz` at 0x10024584).
+### IRIX 6.5.30m setmon helper readings
+
+These readings describe exact functions in `usr/gfx/setmon`. Their comparison ranges and byte differences are recorded in the batch evidence; differing bytes alone do not establish different behavior.
+
+- `xdr_SDBdataType` in `usr/gfx/setmon`:
+  Address 0x100245b0; occupies 52 bytes.
+  **Established.** The database type codec forwards its entry arguments unchanged to `xdr_enum` (`jalr` at 0x100245cc). Its return is the codec's status (`jr` at 0x100245dc). This wrapper serializes an enumeration without adding a hardware transaction.
+
+- `xdr_SDBsymbolName` in `usr/gfx/setmon`:
+  Address 0x100245e4; occupies 112 bytes.
+  **Established.** Name serialization rejects a null second argument or a null pointer stored through it, taking the `beqz` at 0x100245f4 or `beqz` at 0x10024600 to a zero return. Otherwise `xdr_string` receives the original stream, a stack-local pointer slot and maximum length 0x1f (`jalr` at 0x10024614). Nonzero codec status falls through the `beqz` at 0x1002461c to a terminating zero-byte store (`sb` at 0x10024628) and return 1. Hostfacts leaves that store's base unknown, so the terminating byte is not assigned a resolved destination offset here.
+
+- `xdr_SDBsymbolTableEntry` in `usr/gfx/setmon`:
+  Address 0x10024654; occupies 200 bytes.
+  **Established.** Table-entry serialization first places second-argument plus 12 in a stack pointer slot (`sw` at 0x10024660) and passes the slot to `xdr_SDBsymbolName` (`jal` at 0x1002468c). It then calls `xdr_SDBdataType` on the original entry pointer, `xdr_SDBelementIndex` on entry +4, and `xdr_SDBfileOffset` on entry +8 (`jal` at 0x100246a4, `jal` at 0x100246bc, `jal` at 0x100246d4). Each zero codec result takes its own failure branch (`beqz` at 0x10024694, `beqz` at 0x100246ac, `beqz` at 0x100246c4, `beqz` at 0x100246dc). Hostfacts records return 1 only after all four codecs succeed, otherwise 0.
+
+- `xdr_SDBversionNumber` in `usr/gfx/setmon`:
+  Address 0x1002471c; occupies 104 bytes.
+  **Established.** The version codec invokes `xdr_u_short` twice, first with the entry value pointer and then that pointer plus 2 (`jalr` at 0x1002473c and `jalr` at 0x10024758). A zero result takes the corresponding `beqz` at 0x10024744 or `beqz` at 0x10024760 to the zero return. Passing both calls reaches the return-1 arm, with the final return (`jr` at 0x1002477c).
+
+- `SDBsetupMemoryInterface` in `usr/gfx/setmon`:
+  Address 0x10024784; occupies 36 bytes.
+  **Established.** Interface setup installs the caller's four arguments as words in `_SDBmemface`: a3 at +0xc, a2 at +8, a1 at +4 and a0 at +0 (`sw` at 0x10024794, `sw` at 0x10024798, `sw` at 0x1002479c, `sw` at 0x100247a4). It invokes no callback. The return register contains the table's address (`jr` at 0x100247a0), while the last word store runs in that return's delay slot.
+
+- `konReloadAllGammas` in `usr/gfx/setmon`:
+  Address 0x10026a40; occupies 80 bytes.
+  **Inferred.** This setmon interface obtains a test-jig record from `XSGIvcInitTestJig` (`jal` at 0x10026a60). It passes the original first argument and that result as a0 and a1 to the unnamed helper at 0x10025a50 (`jal` at 0x10026a74), then returns the helper result (`jr` at 0x10026a88). Gamma reloading is the interface's inferred role. The wrapper contains no direct gamma-register write, and hostfacts does not name its second callee.
+
+- `konTempBlankAllChannels` in `usr/gfx/setmon`:
+  Address 0x10026a90; occupies 124 bytes.
+  **Inferred.** The blanking interface stores the original second argument in a one-word stack payload (`sw` at 0x10026ab0), then calls the unnamed helper at 0x1002c600 (`jal` at 0x10026ab4). A zero result takes the `beqz` at 0x10026abc to 0x10026ae4. That arm calls 0x10032fe0 with arguments (60, payload, 4) (`jal` at 0x10026af4). Nonzero falls through to the arm that calls 0x100334e0 with the original first argument followed by (60, payload, 4) (`jal` at 0x10026ad4). The role of command 60 as temporary display blanking is inferred from the interface name and documented sibling. Neither concrete sender is named in hostfacts.
+
+- `konUnbindDestroyedWindow` in `usr/gfx/setmon`:
+  Address 0x10034f10; occupies 8 bytes.
+  **Established.** This setmon symbol is an empty function: it returns immediately with a no-op delay slot (`jr` at 0x10034f10). Hostfacts reports no accesses, no calls and an unknown return value. It performs none of the window-unbinding work described for the 696-byte `usr/lib/X11/dyDDX/konal.so` counterpart.
 ## The X module files
 
 - `konal.so` (usr/lib/X11/dyDDX/konal.so, 1759116 bytes): **established.** The X server module of the 6.5.30m install that this
