@@ -6416,6 +6416,100 @@ These routines retain target-specific O32 observations. Their IP27 N32 entries a
 - `__glSpanUnpack233RevUbyte` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9b1594; occupies 192 bytes. **Inferred.** Reversed packed-byte conversion reads entry a1 +0xb4 (`lw` at 0xd9b15a4), with a signed nonpositive count selecting the exit (`blez` at 0xd9b15b0). An unsigned-byte read uses an unresolved base (`lbu` at 0xd9b15d4). The bit masks are 7, 0x38 and 0xc0 (`andi` at 0xd9b15e0, `andi` at 0xd9b15e8, and `andi` at 0xd9b15f8). The second and third groups are shifted right by 3 and 6 (`sra` at 0xd9b15ec and `sra` at 0xd9b15fc). The arithmetic includes three double-precision divisions (`div.d` at 0xd9b1614, `div.d` at 0xd9b1618, and `div.d` at 0xd9b1634). Output consists of three float-word store sites with unknown bases (`swc1` at 0xd9b1620, `swc1` at 0xd9b163c, and `swc1` at 0xd9b1648). Advancing addresses and the returned v0 remain unresolved (`jr` at 0xd9b164c). The target body has three float-store sites; the complete output mapping remains unknown.
 
+#### IP35 O32 unpack bodies identical to IP27 O32
+
+Five target bodies are byte-identical over their exact ranges to the same-address IP27 O32 routines. This records build identity only.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glSpanUnpack8888Uint | 0xd9b1b14 / 300 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b1b14 / 300 | 2776c3385aa68164e1b3ec2859144260f9ab6d9f1e65639a355c4959603cfaa8 |
+| __glSpanUnpack8888RevUint | 0xd9b1c40 / 300 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b1c40 / 300 | 9475b6bd38a56138b764b6cb9b4d6797d49e3b052658ef05756546450b9443f1 |
+| __glSpanUnpack_10_10_10_2_Uint | 0xd9b1d6c / 316 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b1d6c / 316 | b470fc58ee215a7f9d68db29e3fb33e6e102709024284e4a053c6c9a2de15d33 |
+| __glSpanUnpack_2_10_10_10_RevUint | 0xd9b1ea8 / 320 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b1ea8 / 320 | 2c8f5f6a400b32d24032956a8ccd8cb67031b19281ebf70bcd4a7dff511f0bca |
+| __glSpanUnpackUintI | 0xd9b2490 / 300 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b2490 / 300 | af13129a163c3d1b89f8c9e1fa99b7efff652e1b1254618c6b706e1b54b40856 |
+
+#### IP35 O32 unpack bodies differing from N32
+
+These entries describe exact O32 target observations. All comparison ranges differ; N32 channel descriptions are not used to fill unresolved O32 addresses or formulas.
+
+| Routine | IP35 O32 address / size | N32 build / address / size | IP35 SHA-256 | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glSpanUnpack565Ushort | 0xd9b1654 / 188 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9adbc0 / 392 | feb9a26e962844b9e7ae314c473a5b8f6ded7b75bc548037ff0b63679a992478 | 421eb40e172b91b754b9d58304d16bc8faf68bcb5c50e36bd20296b642b855ec | 169 |
+| __glSpanUnpack565RevUshort | 0xd9b1710 / 188 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9add50 / 392 | f930d1a2231d11c96fb10b140951c8d2ddcd3228a1e2a278c796cbb50229939e | a8085c15900f2d6bfbaddae12dc7961e606d378632c7171d0e892600b3d7297b | 169 |
+| __glSpanUnpack4444Ushort | 0xd9b17cc / 216 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9adee0 / 488 | 391f1344d94c7f2cfaccd78336a35e95d72e23de778200ba760aa7c0fce5f98c | 4348c0df65b0eb7a3ca1ed768e75968fd1c1b64d0f33c65e32d903da1f890339 | 192 |
+| __glSpanUnpack4444RevUshort | 0xd9b18a4 / 216 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9ae0d0 / 488 | 180d3358547aa4eafd0592f4c8a0557b1189bd83355d654cf00aa2e085e95f37 | 623ebab3dcd601732d9d8b67e0095e7d7289090888eef87d8fb40a0ccb9be178 | 191 |
+| __glSpanUnpack5551Ushort | 0xd9b197c / 204 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9ae2c0 / 448 | 9eca58423f9f4830e6cddc827049de7b25d78f7a809bee1a5d49e3cf2f1a3c22 | 1699646c15a4f758b3bf29c14cff42cd7a84165242e0fa738ffca46ee8faac5a | 186 |
+| __glSpanUnpack1555RevUshort | 0xd9b1a48 / 204 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9ae480 / 448 | d868df043fdddca718f25b98ad3a977f88a02e08f6fb651a5e0f54cccbb697ea | 58aef83ee4a238d25a43b560c8112426e6b8ee30680cb65fe7a9a4ab04c7a0c3 | 187 |
+| __glSpanUnpackUbyteI | 0xd9b1fe8 / 300 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9aedc0 / 168 | f22b6068d1328a20419b867db8047a93cd78b4168ca8762e86898f101dc79f4c | 3151d5623fa8de220462d4485c09ff49f7142bfdd14f1b92a5081593d1120207 | 147 |
+| __glSpanUnpackByteI | 0xd9b2114 / 296 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9aee70 / 168 | 6d0a45580d9db53586895194674cb25fa2c0ca59cf75abb69e1918ed3e09baa1 | f9968554c4dccb50ebb975d7639fd45a3a66243f727b263c7311f09d98068c37 | 144 |
+| __glSpanUnpackUshortI | 0xd9b223c / 300 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9aef20 / 168 | e9525bd2a637144bf49fcb39306c28cd0cead5ccb8c472ca2cf6707f5d166266 | 5c55ba334ce2110aac5331086957a6f516a97d856ac56049c7182939e3f4a79c | 147 |
+| __glSpanUnpackShortI | 0xd9b2368 / 296 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9aefd0 / 168 | 0c78d4bb057f87b4bdbba717bb45bedb15571e7f8c084c2a08aaca16fa4e491f | 04d6a1414d82ccc58eb640294580d2e7f23b918d21baa7f37edb5f38760341c2 | 144 |
+| __glSpanUnpackIntI | 0xd9b25bc / 296 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af160 / 168 | ef3e321fabf184fc4840944cd5f31fa177e94f4c11cd8744679d735fdd348d9b | e2722c2344f297b7bf69f6616f23bfa08eb2e6d654a58f4bc2267c9976a87d5b | 143 |
+| __glSpanUnpackNonCompUint | 0xd9b26e4 / 116 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af210 / 232 | 3f5bd6a514c1fd172c966304e74ab5f84b4b3a4c26aa92aee89047d90f8fb142 | 01574a070deb98bae1f1b7ec3f72bef1ca20fd6aaaffa7bcbcc6a6bc08b9f6f2 | 102 |
+| __glSpanClampRed | 0xd9b28e0 / 524 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af540 / 260 | 5695a340c7bcfe5549cc6593f5aa051c3761f40d0b45b08654faf35b63335ab1 | 63141edfb21941b7a6eeaca811dc44a3ab4b90b888f6f754de202c90647c6a2e | 221 |
+| __glSpanClampGreen | 0xd9b2aec / 532 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af650 / 260 | a6d5a0f5faa509181afc086cbcd5c32125e7d6c584d932066024b328d97067cc | 7426f15a33fb92bc71444fec48d077d7939fca7f1ea7d998faa7f625461ce19b | 220 |
+| __glSpanClampBlue | 0xd9b2d00 / 532 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af760 / 260 | 9754f5eb662f9e43b6f111e82c00b1795467f61d9c5b093f558f2b59b4ebd00f | 4d7b6eb77f5327ee6353d04c342bdd0ea5df8c57881c034c043dee469c373add | 222 |
+
+- `__glSpanUnpack565Ushort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1654; occupies 188 bytes. **Inferred.**** The 5-6-5 target extracts three groups using masks 0xf800, 0x7e0 and 0x1f (`andi` at 0xd9b169c, `andi` at 0xd9b16a8, and `andi` at 0xd9b16b8). It loads an unsigned halfword through an unknown base (`lhu` at 0xd9b1690), and a doubleword at absolute 0xda77bc0 (`ldc1` at 0xd9b1680). The count word comes from entry a1 +0xb4, with a signed nonpositive count selecting the exit (`lw` at 0xd9b1664 and `blez` at 0xd9b1670). Three float-store sites have unresolved output bases (`swc1` at 0xd9b16dc, `swc1` at 0xd9b16f8, and `swc1` at 0xd9b1704). The target's three stores do not establish the four-channel output described by the N32 entry.
+
+- `__glSpanUnpack565RevUshort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1710; occupies 188 bytes. **Inferred.**** Reversed 5-6-5 unpacking masks the low, middle and high groups with 0x1f, 0x7e0 and 0xf800 (`andi` at 0xd9b1758, `andi` at 0xd9b1760, and `andi` at 0xd9b1770). The middle and high groups are shifted right by 5 and 11 (`sra` at 0xd9b1764 and `sra` at 0xd9b1774). A doubleword load resolves to absolute 0xda77bc8 (`ldc1` at 0xd9b173c). The halfword input and all three float outputs have unknown bases (`lhu` at 0xd9b174c, `swc1` at 0xd9b1798, `swc1` at 0xd9b17b4, and `swc1` at 0xd9b17c0). The body exits when the word from entry a1 +0xb4 is signed <= 0 (`blez` at 0xd9b172c). Advancing addresses and a four-channel interpretation remain unestablished.
+
+- `__glSpanUnpack4444Ushort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b17cc; occupies 216 bytes. **Inferred.**** Four-nibble unpacking loads an unsigned halfword at an unresolved address (`lhu` at 0xd9b1800). Masks select 0xf000, 0xf00, 0xf0 and 0xf (`andi` at 0xd9b180c, `andi` at 0xd9b1818, `andi` at 0xd9b1828, and `andi` at 0xd9b1830). The arithmetic includes four double-precision divisions (`div.d` at 0xd9b1848, `div.d` at 0xd9b184c, `div.d` at 0xd9b1868, and `div.d` at 0xd9b1884). Four float-store sites use unknown bases (`swc1` at 0xd9b1854, `swc1` at 0xd9b1870, `swc1` at 0xd9b188c, and `swc1` at 0xd9b1898). Its initial return branch is taken for a signed nonpositive a1 +0xb4 count (`blez` at 0xd9b17e8). Hostfacts does not resolve the traversed addresses.
+
+- `__glSpanUnpack4444RevUshort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b18a4; occupies 216 bytes. **Inferred.**** The reversed four-nibble path selects 0xf, 0xf0, 0xf00 and 0xf000 in that order (`andi` at 0xd9b18e4, `andi` at 0xd9b18ec, `andi` at 0xd9b18fc, and `andi` at 0xd9b1904). An unsigned-halfword load supplies the input (`lhu` at 0xd9b18d8), with its base unresolved. The word at entry a1 +0xb4 supplies the count (`lw` at 0xd9b18b4). When that count is signed <= 0, the branch bypasses the conversion body (`blez` at 0xd9b18c0). Output includes four float stores through unknown bases (`swc1` at 0xd9b192c, `swc1` at 0xd9b1948, `swc1` at 0xd9b1964, and `swc1` at 0xd9b1970). Exact source and destination traversal remains unknown.
+
+- `__glSpanUnpack5551Ushort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b197c; occupies 204 bytes. **Inferred.**** The 5-5-5-1 body isolates 0xf800, 0x7c0, 0x3e and 1 (`andi` at 0xd9b19bc, `andi` at 0xd9b19c8, `andi` at 0xd9b19d8, and `andi` at 0xd9b19e0). Its halfword load has an unresolved input base (`lhu` at 0xd9b19b0). The last isolated bit is converted to float (`cvt.s.w` at 0xd9b1a2c), then stored through an unknown base (`swc1` at 0xd9b1a30). The other float-store sites are also unresolved (`swc1` at 0xd9b1a04, `swc1` at 0xd9b1a20, and `swc1` at 0xd9b1a3c). A signed nonpositive count from entry a1 +0xb4 returns before these accesses (`blez` at 0xd9b1998). The emitted addresses are not reconstructed from the raw cursor arithmetic.
+
+- `__glSpanUnpack1555RevUshort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1a48; occupies 204 bytes. **Inferred.**** Reversed 1-5-5-5 conversion starts from an unsigned-halfword load with unknown base (`lhu` at 0xd9b1a7c). The masks are 0x1f, 0x3e0, 0x7c00 and 0x8000 (`andi` at 0xd9b1a88, `andi` at 0xd9b1a90, `andi` at 0xd9b1aa0, and `andi` at 0xd9b1aa8). The high bit is shifted right by 15 and converted to float (`sra` at 0xd9b1ab0 and `cvt.s.w` at 0xd9b1af8). Four float stores appear in the body, all at unresolved addresses (`swc1` at 0xd9b1ad0, `swc1` at 0xd9b1aec, `swc1` at 0xd9b1afc, and `swc1` at 0xd9b1b08). Its entry count is loaded from a1 +0xb4 (`lw` at 0xd9b1a58), and signed values <= 0 take the return path (`blez` at 0xd9b1a64). Input and output traversal remain unknown.
+
+- `__glSpanUnpack8888Uint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1b14; occupies 300 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b1b14 over the complete body. SHA-256 2776c3385aa68164e1b3ec2859144260f9ab6d9f1e65639a355c4959603cfaa8. Existing behavior grade remains Inferred.
+
+- `__glSpanUnpack8888RevUint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1c40; occupies 300 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b1c40 over the complete body. SHA-256 9475b6bd38a56138b764b6cb9b4d6797d49e3b052658ef05756546450b9443f1. Existing behavior grade remains Inferred.
+
+- `__glSpanUnpack_10_10_10_2_Uint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1d6c; occupies 316 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b1d6c over the complete body. SHA-256 b470fc58ee215a7f9d68db29e3fb33e6e102709024284e4a053c6c9a2de15d33. Existing behavior grade remains Inferred.
+
+- `__glSpanUnpack_2_10_10_10_RevUint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1ea8; occupies 320 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b1ea8 over the complete body. SHA-256 2c8f5f6a400b32d24032956a8ccd8cb67031b19281ebf70bcd4a7dff511f0bca. Existing behavior grade remains Inferred.
+
+- `__glSpanUnpackUbyteI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b1fe8; occupies 300 bytes. **Inferred.**** Unsigned-byte index conversion reads its count at entry a1 +0xb4 and exits for signed values <= 0 (`lw` at 0xd9b1ff8 and `blez` at 0xd9b2004). The remainder path reads an unsigned byte through an unknown base (`lbu` at 0xd9b2018). A signed-to-float conversion occurs in a branch delay slot, while the negative arm adds a float correction (`bgez` at 0xd9b202c, `cvt.s.w` at 0xd9b2030, and `add.s` at 0xd9b203c). Float output sites include `swc1` at 0xd9b2040, `swc1` at 0xd9b2078, `swc1` at 0xd9b20a4, `swc1` at 0xd9b20d0, and `swc1` at 0xd9b2100. Hostfacts leaves their output bases and the later source addresses unknown.
+
+- `__glSpanUnpackByteI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2114; occupies 296 bytes. **Inferred.**** Signed-byte index expansion has an initial input at entry a2 +0x0 (`lb` at 0xd9b2140). It converts the integer value to float (`cvt.s.w` at 0xd9b2150) and stores a float word through an unresolved output base (`swc1` at 0xd9b2158). The unrolled body includes four further output sites (`swc1` at 0xd9b219c, `swc1` at 0xd9b21b0, `swc1` at 0xd9b21c4, and `swc1` at 0xd9b21d8). A signed nonpositive count from entry a1 +0xb4 takes the initial exit (`blez` at 0xd9b2124). Repeated source and output addresses are unresolved.
+
+- `__glSpanUnpackUshortI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b223c; occupies 300 bytes. **Inferred.**** The unsigned-halfword index body reads a count from entry a1 +0xb4 (`lw` at 0xd9b224c). A signed count <= 0 bypasses conversion (`blez` at 0xd9b2258). It loads an unsigned halfword through an unknown base, converts to float, and includes a float correction arm (`lhu` at 0xd9b226c, `cvt.s.w` at 0xd9b2284, and `add.s` at 0xd9b2290). Its float stores include `swc1` at 0xd9b2294, `swc1` at 0xd9b22cc, `swc1` at 0xd9b22f8, `swc1` at 0xd9b2324, and `swc1` at 0xd9b2354. The advancing input and output bases are unknown.
+
+- `__glSpanUnpackShortI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2368; occupies 296 bytes. **Inferred.**** Signed-halfword index unpacking initially reads entry a2 +0x0 (`lh` at 0xd9b2394). The conversion result is a float word (`cvt.s.w` at 0xd9b23a4 and `swc1` at 0xd9b23ac), with the store address unresolved. The grouped path has four float-store sites (`swc1` at 0xd9b23f0, `swc1` at 0xd9b2404, `swc1` at 0xd9b2418, and `swc1` at 0xd9b242c). The entry branch selects the return when the a1 +0xb4 word is signed <= 0 (`blez` at 0xd9b2378). Hostfacts does not follow the later halfword/output cursors.
+
+- `__glSpanUnpackUintI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2490; occupies 300 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b2490 over the complete body. SHA-256 af13129a163c3d1b89f8c9e1fa99b7efff652e1b1254618c6b706e1b54b40856. Existing behavior grade remains Inferred.
+
+- `__glSpanUnpackIntI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b25bc; occupies 296 bytes. **Inferred.**** Signed-word index conversion loads an initial word from entry a2 +0x0 (`lw` at 0xd9b25e8). Its signed integer-to-float conversion feeds a store with unresolved base (`cvt.s.w` at 0xd9b25f8 and `swc1` at 0xd9b2600). The unrolled path includes four float outputs (`swc1` at 0xd9b2644, `swc1` at 0xd9b2658, `swc1` at 0xd9b266c, and `swc1` at 0xd9b2680). The count comes from entry a1 +0xb4 (`lw` at 0xd9b25c0), and signed nonpositive counts return immediately (`blez` at 0xd9b25cc). Later source addresses and every output base remain unresolved.
+
+- `__glSpanUnpackNonCompUint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b26e4; occupies 116 bytes. **Inferred.**** Non-component unsigned-word conversion reads descriptor words at entry a1 +0xb4 and +0x1c (`lw` at 0xd9b26f4 and `lw` at 0xd9b26f8). It multiplies and takes the low product word (`multu` at 0xd9b2704 and `mflo` at 0xd9b270c). Hostfacts leaves that loop bound t1 unknown, with signed t1 <= 0 selecting the exit (`blez` at 0xd9b2710). The input word and float output have unknown bases (`lw` at 0xd9b2718 and `swc1` at 0xd9b2744). The conversion is in the delay slot of a signed-nonnegative branch, and the other arm adds a float correction (`bgez` at 0xd9b272c, `cvt.s.w` at 0xd9b2730, and `add.s` at 0xd9b273c). Neither traversal is resolved.
+
+- `__glSpanClampRed` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b28e0; occupies 524 bytes. **Inferred.**** The red-clamp candidate reads a count at entry a1 +0xb8 and a float word at entry a0 +0x7858 (`lw` at 0xd9b28ec and `lwc1` at 0xd9b28f8). Its first candidate float load and two float-store sites have unresolved bases (`lwc1` at 0xd9b2918, `swc1` at 0xd9b2944, and `swc1` at 0xd9b294c). Other float outputs include `swc1` at 0xd9b295c, `swc1` at 0xd9b2968, and `swc1` at 0xd9b2974. The JSON fallback supplies these accesses, but the text renderer fails with `KeyError: 22`. The full clamping conditions, traversed addresses and output values are not resolved by that fallback.
+
+- `__glSpanClampGreen` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2aec; occupies 532 bytes. **Inferred.**** The green-clamp candidate obtains its float parameter from entry a0 +0x785c (`lwc1` at 0xd9b2b04) and count from entry a1 +0xb8 (`lw` at 0xd9b2af8). Two early float loads use unknown bases (`lwc1` at 0xd9b2b24 and `lwc1` at 0xd9b2b34). Output includes an initial float store followed by two further float-store sites (`swc1` at 0xd9b2b30, `swc1` at 0xd9b2b5c, and `swc1` at 0xd9b2b64). Further output sites include `swc1` at 0xd9b2b74 and `swc1` at 0xd9b2b84. The target text renderer reports `KeyError: 25`. The successful JSON fallback leaves the accessed bases and selected float values unknown. A complete clamp formula is not claimed.
+
+- `__glSpanClampBlue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2d00; occupies 532 bytes. **Inferred.**** The blue-clamp candidate loads the a1 +0xb8 count and a float parameter at entry a0 +0x7860 (`lw` at 0xd9b2d0c and `lwc1` at 0xd9b2d18). Its early float access sites include `lwc1` at 0xd9b2d38, `lwc1` at 0xd9b2d48, and `lwc1` at 0xd9b2d54. Float-store sites include `swc1` at 0xd9b2d44, `swc1` at 0xd9b2d50, `swc1` at 0xd9b2d7c, `swc1` at 0xd9b2d84, and `swc1` at 0xd9b2d98. All those input/output bases are unresolved. Its JSON fallback succeeds after the text renderer fails with `KeyError: 28`. The float conditions and advancing addresses remain unknown to the retained facts.
+
 ### pix_ci.c
 
 - `Store_8` in usr/gfx/arch/IP27KONA32/libGLcore.so: stores a fragment into an 8-bit colour-index buffer: applies the index write mask, the logic operation and the dither state and writes one byte at the pixel, and it occupies 424 bytes at address 0x0da394c0; the public sample-implementation source gfx/lib/opengl/glcore/s_ci.c holds the same routine, matched by name, a shipped body of 41 source lines against 48 in the public file, and it makes no access to the board. Inferred.
