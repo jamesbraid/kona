@@ -3163,6 +3163,18 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
   Address 0xda082ec; occupies 152 bytes.
   **Inferred.** **Inferred.** A binary search over float-keyed cache records. The target reads its count from entry a0 +0 (`lw` at 0xda082f4). A nonpositive count takes the no-match path (`blez` at 0xda08300), which writes through entry a2 +0 and sets v0 to zero (`sw` at 0xda08374 and `move` at 0xda08378). Float equality falls through to the match arm and inequality takes the search-continuation arm (`bc1fl` at 0xda08334). The match arm writes another word at entry a2 +0 and loads its returned word from a base the tool cannot resolve (`sw` at 0xda08344 and `lw` at 0xda0833c). Its complete body occupies 152 bytes up to the next mdebug symbol, compared with the queued 948-byte extent. Exact candidate-address and insertion-index values remain unknown. Unequal ranges: target 152 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da05250 +140 bytes / 123 changed common-prefix positions The supplied range extended to 948 bytes; this reading ends at the next mdebug symbol after the final return delay slot.
 
+#### N64 target readings
+
+These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.so. N32 ranges are listed for comparison only. Two static N64 target names remain inventory-derived, and two bodies contain undecoded FP words whose predicates stay unknown.
+
+| Routine | N64 address / size | N64 SHA-256 | N32 build / address / size | N32 SHA-256 | Identical |
+|---|---|---|---|---|---|
+| findEntry | 0x2e696d0 / 140 | 36ef1284aebe929e97bd00637e5f209185a3b5d0a3d5974624c2521c847c85d9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da05250 / 140 | a2426a14ab024d2c5f9bf817edfb7825248f9133a54073a68716094cba3b4161 | no |
+
+- `findEntry` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e696d0; occupies 140 bytes.
+  **Inferred.** **Inferred.** Partially decoded search body. The target reads its count from entry a0 +0 (`lw` at 0x2e696d0), with nonpositive count taking the no-match exit (`blez` at 0x2e696dc). Its two result paths write words through entry a2 +0 (`sw` at 0x2e69744 and `sw` at 0x2e69750). One path loads an eight-byte result through an unknown candidate base (`ld` at 0x2e69748). Original word 0x4604693c at 0x2e6971c is undecodable in every available Capstone MIPS mode. Its predicate, search-bound updates and complete result-index meaning remain unknown. A full reading is not claimed. Unequal exact ranges: target 140 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da05250 +140 bytes / 5 changed common-prefix positions Its undecoded target word at 0x2e6971c and dependent search predicate remain unknown.
+
 ### so_stencilop.c
 
 - `Clear` in usr/gfx/arch/IP27KONA32/libGLcore.so: clears the clipped region of the stencil buffer to the stencil clear value through the write mask, and it occupies 968 bytes at address 0x0da057f0; the public sample-implementation source gfx/lib/opengl/glcore/s_sten.c holds the routine of the same name, no direct call in either, a shipped body of 62 source lines against 71 in the public file, and it makes no access to the board; the shipped body makes no call, where the public body locks and unlocks the stencil buffer through the context; it reads the base and row stride from offsets 16 and 28 of the stencil record, not from the drawable buffer; it takes the full-write-mask path when the write mask equals 1 shifted left by the count at offset 3248 of the context, less one, where the public body compares with the maximum stencil value; it returns at once for an empty clip width or height, as the public body does; the row loops store 8 pixels at a time, with a 4-pixel loop and then a single-pixel loop for the remainder, where the public body has an 8-pixel loop and a single-pixel loop. Established.
@@ -3664,6 +3676,33 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
   Address 0xda17a18; occupies 64 bytes.
   **Inferred.** **Inferred.** Clamping a float between two supplied bounds. The complete 64-byte target compares f12 with f14, then another loaded float with f12 (`c.lt.s` at 0xda17a18 and `c.lt.s` at 0xda17a34). Its only memory accesses save entry a2 as a word at entry sp +8 and reload that word as a float (`sw` at 0xda17a1c and `lwc1` at 0xda17a20). One return copies f14 into f0 in its delay slot (`mov.s` at 0xda17a30). JSON return facts leave f0 unknown at the other two (`jr` at 0xda17a44 and `jr` at 0xda17a50). The text renderer raises `KeyError: 7`, so the exact bound-selection conditions stay unresolved. The complete body ends after 64 bytes at the next mdebug symbol, rather than the queued 812-byte range. Unequal ranges: target 64 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da13c80 +36 bytes / 20 changed common-prefix positions The supplied range extended to 812 bytes; this reading ends at the next mdebug symbol after the final return delay slot.
 
+#### N64 target readings
+
+These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.so. N32 ranges are listed for comparison only. Two static N64 target names remain inventory-derived, and two bodies contain undecoded FP words whose predicates stay unknown.
+
+| Routine | N64 address / size | N64 SHA-256 | N32 build / address / size | N32 SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glExtractTexelRGB8_B | 0x2e7b860 / 112 | e627ab9c2ca2edf12a9dd4e8da8faea96a968980d377d5ea33368355ede31910 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da16960 / 112 | 5285759a982840a734c09c712bef062aa42249a1d162377aff75b8af1a856035 | no |
+| __glExtractTexelRGBA8_B | 0x2e7b8d0 / 136 | b632a123730fa4383d33e7f48a80a4efd4b97de13c46752d2b7ba26baad11bff | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da169d0 / 136 | 4b7b5236c0458535bfd1a7bde75bf7284e6a94f7945fb86b14c3cf4702f4301c | no |
+| CheckTexSubImageArgs | 0x2e8a760 / 1068 | 998cf0df403fdd41cccf28d1c0a0843ce932f8e05abef8f962f31784345524f0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da25670 / 1064 | 1aedc182fe9326b82db631faaf796fc4d1ac5954a2f88da0cebb5db3c0777739 | no |
+| CheckTexSubImageRange | 0x2e8ac50 / 92 | 21cbe2b66147775222f699f6f9a955793232b518bb90b070f659dfd5f302c6fc | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da25b60 / 92 | 9fb0e664c84625385c951c3013eb7bc06d27c13ff09d5bb08211e5dd9bff4d66 | no |
+
+- `__glExtractTexelRGB8_B` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e7b860; occupies 112 bytes.
+  **Inferred.** **Inferred.** RGB extraction reads the image pointer at a0 +0 and a word at a0 +8 (`ld` at 0x2e7b870 and `lw` at 0x2e7b860). Three unsigned byte reads are converted and multiplied as floats (`lbu` at 0x2e7b880, `lbu` at 0x2e7b89c, `lbu` at 0x2e7b8b4, `cvt.s.w` at 0x2e7b88c, and `mul.s` at 0x2e7b894). Float outputs resolve to entry a5 +0/+4/+8 (`swc1` at 0x2e7b898, `swc1` at 0x2e7b8b0, and `swc1` at 0x2e7b8cc). The scale source is [a1] +0xf34 (`lwc1` at 0x2e7b890), but the indexed texel bases and full border-address calculation are unknown. Unequal exact ranges: target 112 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da16960 +112 bytes / 10 changed common-prefix positions
+
+- `__glExtractTexelRGBA8_B` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e7b8d0; occupies 136 bytes.
+  **Inferred.** **Inferred.** Four unsigned texel bytes feed float conversions and scaled output (`lbu` at 0x2e7b8f0, `lbu` at 0x2e7b90c, `lbu` at 0x2e7b924, and `lbu` at 0x2e7b93c). The four stores address entry a5 +0/+4/+8/+0x10 (`swc1` at 0x2e7b908, `swc1` at 0x2e7b920, `swc1` at 0x2e7b938, and `swc1` at 0x2e7b954). The last observed field is +0x10, so this entry does not substitute the contiguous +0xc layout suggested by the name. Texel pointer arithmetic remains unresolved in hostfacts. Unequal exact ranges: target 136 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da169d0 +136 bytes / 12 changed common-prefix positions
+
+- `CheckTexSubImageArgs` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e8a760; occupies 1068 bytes.
+  **Inferred.** **Inferred.** Sub-image validation begins with `__glLookUpTexture` using the entry arguments (`jalr` at 0x2e8a78c). A null result takes the enum-error arm (`beqz` at 0x2e8a794), whose `__glSetError` argument is 0x500 (`jalr` at 0x2e8a880). Other error sites pass 0x502 and 0x501 (`jalr` at 0x2e8a860 and `jalr` at 0x2e8aa40). The validator also reads lookup result +0xf0 and context a0 +0xff8 (`lw` at 0x2e8a7c4 and `lw` at 0x2e8a9bc). Its success return retains the lookup result (`jr` at 0x2e8a9dc), while error returns are zero. The full accepted format/type matrix is not reconstructed from the sibling. Unequal exact ranges: target 1068 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da25670 +1064 bytes / 772 changed common-prefix positions
+
+- `CheckTexSubImageRange` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e8ac50; occupies 92 bytes.
+  **Inferred.** **Inferred.** Range validation takes its error path when entry a3 is negative (`bltz` at 0x2e8ac58). It reads a word from a1 +0x3c (`lw` at 0x2e8ac60), and failure paths call `__glSetError` with 0x501 (`jalr` at 0x2e8ac94). Return facts distinguish a valid-path 1 and error-path 0 (`jr` at 0x2e8ac88 and `jr` at 0x2e8aca4). The remaining offset/extent comparisons are not assigned a complete texture-border contract here. Unequal exact ranges: target 92 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da25b60 +92 bytes / 10 changed common-prefix positions
+
 ### so_vapi.c
 
 - `__glim_Vertex2d` in usr/gfx/arch/IP27KONA32/libGLcore.so: sends a vertex from 2 double arguments, narrowing each to float into a float array and calling the float-vector vertex entry point fetched from the dispatch table, and it occupies 80 bytes at address 0x0da324e0; the public sample-implementation source gfx/lib/opengl/glcore/s_vapi.c holds the same routine, matched by name, 1 indirect call, a shipped body of 12 source lines against 11 in the public file, and it makes no access to the board. The whole body was read against the public body: The two double-to-float conversions, y converted first and then x, and then the array fill with y stored at array word 1 and x at word 0 in the call's delay slot, the reverse of the public x-then-y order, one indirect call through the float dispatch slot at 1332 from the dispatch pointer at context +6132 (the context is loaded from process-page word 4112), and no branches, as the public body has none. Established.
@@ -3963,6 +4002,53 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
 - `__glGenericPickInvTransposeProcs` in usr/gfx/arch/IP27KONA/libGLcore.so: chooses the normal-transform procedures from the inverse-transpose matrix's type, the shipped body being 40 source lines against 65 in the public file, and in the original 32-bit build it occupies 112 bytes at address 0xda3d080; the public sample-implementation source gfx/lib/opengl/glcore/s_xform.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. The whole body was read against the public body and differs: the shipped body stores the `__glMips` assembly variants of the transform routines where the public file names the C routines (the mips header that would substitute them is not in the public tree), so the routine identity was not compared. The six-way type dispatch and which routine family each type receives match. Inferred.
 
 ## Display lists (dlist)
+
+#### N64 target readings
+
+These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.so. N32 ranges are listed for comparison only. Two static N64 target names remain inventory-derived, and two bodies contain undecoded FP words whose predicates stay unknown.
+
+| Routine | N64 address / size | N64 SHA-256 | N32 build / address / size | N32 SHA-256 | Identical |
+|---|---|---|---|---|---|
+| SetDepthRange | 0x2e99b10 / 136 | 049b2cf5c01cb2404ef82cbf747e80bf76b02223db10e225e95bb2aa99fbf7d5 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da34a80 / 124 | a71c34ee2d00f87ab597d3191ad09579ebdfe6bfef99926275c13eaf633a1bca | no |
+| __glUpdateDepthRange | 0x2e99ba0 / 60 | dafe77263d2b7012f1fa78ce8f90b9d2bcca6e5c6b9ac426fd04c19eb161e0b7 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da34b00 / 60 | fb2b9c7c4c32ac50a133d062c4d454c2d6697446afc42bdb9f88134a9161ee56 | no |
+| __glUpdateViewport | 0x2e9ad10 / 176 | 74ec5d64a9999afbdd347e19c0394b6d451caeb751bf0485d56dda31b0912843 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da35c70 / 176 | 626df4fddde1e762fe5c6848f1c205eceb3d8d29e9b07ebac2fcbfef57a2b519 | no |
+| __glUpdateViewportTransform | 0x2e9adc0 / 184 | 79fa72c0585ec432c887dbcd6e131b4a7d17f987facbfa885bf370c6f7a24c3a | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da35d20 / 172 | fdba2ba04a7f4b3f4c8a7eaf72e6e51246e40d003f3cb0d640e262397ec000d1 | no |
+| __glPushTextureMatrix | 0x2e9b8a0 / 196 | c396d59bcd0928976fda400c7d2ff162df3cc9573f782f351071a92785f4c5c0 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da36880 / 272 | 27c7d5bbf1019be7049317dfacabf7f7434f5f061b3609982b85d608f189577c | no |
+| __glPushColorMatrix | 0x2e9ba40 / 196 | c9874d6c133388d542fec3b78b1c632126d525f75497a4dca2157eb380aaf31e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da36a50 / 272 | 57b46fa96ccaeae6a410ed2d4442b8c3b613babe5c743addec10709a495c6816 | no |
+| __glTranslateMatrix | 0x2e9c2a0 / 180 | a5bff024181698e04f8a558c52fab3e0e561f59f40b56e9a83da4c5c23efb0db | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da37270 / 180 | a5bff024181698e04f8a558c52fab3e0e561f59f40b56e9a83da4c5c23efb0db | yes |
+| __glDoTranslate | 0x2e9c360 / 68 | 3872352b445349096c792823b714ab2733ccdd363ba5a472d1e8ba18b391a8a1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da37330 / 68 | bf49a401e8fcc06a51e871ffa22aa1fc14647cbe4777ce339ff11ed34e2940fc | no |
+
+- `SetDepthRange` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e99b10; occupies 136 bytes.
+  **Inferred.** **Inferred.** Partially decoded depth-range setup. The body reads float state at a0 +0xf2c/+0xf28 and an integer word at +0x9d74 (`lwc1` at 0x2e99b14, `lwc1` at 0x2e99b68, and `lw` at 0x2e99b54). It writes doublewords at a0 +0x7b0/+0x7a8 and float words at +0x7cc/+0x7c8 (`sdc1` at 0x2e99b48, `sdc1` at 0x2e99b50, `swc1` at 0x2e99b8c, and `swc1` at 0x2e99b94). Original words at 0x2e99b1c, 0x2e99b20 and 0x2e99b34 are undecodable and are retained in the supplemental listing. Their predicates and all dependent bound-selection behavior remain unknown, so the full clamp-and-scale formula is not established. Unequal exact ranges: target 136 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da34a80 +124 bytes / 108 changed common-prefix positions Three undecoded target words keep the dependent bounds and formula unknown.
+
+- `__glUpdateDepthRange` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e99ba0; occupies 60 bytes.
+  **Established.**** Depth-range refresh loads the stored doublewords at a0 +0x7b0 and +0x7a8 (`ldc1` at 0x2e99bc0 and `ldc1` at 0x2e99bc8). It calls `SetDepthRange` with those values in f14 and f13, preserving entry a0 (`bgezall` at 0x2e99bc4). The wrapper's returned v0 is the helper result (`jr` at 0x2e99bd4). This wrapper is decoded completely, but it does not settle the helper's undecodable bound tests. Unequal exact ranges: target 60 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da34b00 +60 bytes / 13 changed common-prefix positions
+
+- `__glUpdateViewport` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9ad10; occupies 176 bytes.
+  **Inferred.** **Inferred.** The target reads viewport words at a0 +0x7a0/+0x798/+0x7a4 (`lw` at 0x2e9ad10, `lw` at 0x2e9ad14, and `lw` at 0x2e9ad28). Its known writes include float fields at +0x7b8/+0x7bc/+0x7c0/+0x7c4 (`swc1` at 0x2e9ad48, `swc1` at 0x2e9ad5c, `swc1` at 0x2e9ad8c, and `swc1` at 0x2e9ad98). Both the supplied disassembler and hostfacts report original word 0x4d0431a0 at 0x2e9ad74 as `bc3f` to external 0x2ea73f8. Its interpretation and the affected viewport path remain unresolved. Full viewport formulas or absence of an external transfer are not claimed. Unequal exact ranges: target 176 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da35c70 +176 bytes / 68 changed common-prefix positions The reported external transfer and its condition remain uninterpreted.
+
+- `__glUpdateViewportTransform` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9adc0; occupies 184 bytes.
+  **Inferred.** **Inferred.** Viewport-transform setup writes integer words at context a0 +0x9520/+0x9528 and float words at +0x9530/+0x9538 (`sw` at 0x2e9add4, `sw` at 0x2e9adf0, `swc1` at 0x2e9adf4, and `swc1` at 0x2e9adf8). The first integer value is the sum of words at a0 +0x798 and +0xfb0, as resolved by hostfacts. Its final indirect callback receives entry a0 and [a0 +0x94c0] +0xd0 as a1 (`jalr` at 0x2e9ae60). The callback identity and complete transform interpretation remain unknown. Unequal exact ranges: target 184 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da35d20 +172 bytes / 164 changed common-prefix positions
+
+- `__glPushTextureMatrix` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9b8a0; occupies 196 bytes.
+  **Inferred.** **Inferred.** Texture-stack setup reads a0 +0x1038 as a word and pointers at +0x94e0/+0x94e8 as doublewords (`lw` at 0x2e9b8a0, `ld` at 0x2e9b8b0, and `ld` at 0x2e9b8bc). Its copy path stores a doubleword at current-pointer +0x140 and advances the current pointer at context +0x94e8 by 0x140 (`sd` at 0x2e9b8f8 and `sd` at 0x2e9b934). The overflow arm calls `__glSetError` with 0x503 (`jalr` at 0x2e9b954). Interior copy bases are unresolved, so the pointer step is not presented as a measured full copy size. Unequal exact ranges: target 196 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da36880 +272 bytes / 176 changed common-prefix positions
+
+- `__glPushColorMatrix` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9ba40; occupies 196 bytes.
+  **Inferred.** **Inferred.** The colour-stack body uses count word a0 +0x103c and doubleword pointers +0x94f0/+0x94f8 (`lw` at 0x2e9ba40, `ld` at 0x2e9ba50, and `ld` at 0x2e9ba5c). A doubleword copy to current-pointer +0x140 precedes the current-pointer update to old pointer +0x140 (`sd` at 0x2e9ba98 and `sd` at 0x2e9bad4). Its error call carries 0x503 (`jalr` at 0x2e9baf4 to `__glSetError`). Hostfacts leaves some indexed copying addresses unknown, so a complete record copy layout is not inherited from N32. Unequal exact ranges: target 196 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da36a50 +272 bytes / 176 changed common-prefix positions
+
+- `__glTranslateMatrix` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9c2a0; occupies 180 bytes.
+  **Established.** The complete 180-byte target body is byte-identical to `__glTranslateMatrix` at 0x0da37270 in `usr/gfx/arch/IP27KONA32/libGLcore.so`, documented in `docs/sample-implementation.md`. The shared bytes support that entry's in-place matrix-translation reading. Both exact ranges have the SHA-256 recorded below. Identical exact ranges: target 180 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da37270 +180 bytes / 0 changed common-prefix positions Exact byte identity is verified for this 180-byte target/N32 range.
+
+- `__glDoTranslate` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2e9c360; occupies 68 bytes.
+  **Established.**** Translation dispatch saves three float inputs at entry sp -0x18/-0x1c/-0x20 (`swc1` at 0x2e9c364, `swc1` at 0x2e9c36c, and `swc1` at 0x2e9c380). It invokes `__glDoMultMatrix` with entry a0, that local record at entry sp -0x20, and the `__glTranslateMatrix` address 0x2e9c2a0 (`bgezall` at 0x2e9c38c). Hostfacts reports the helper result in v0 at the wrapper return (`jr` at 0x2e9c39c). Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da37330 +68 bytes / 13 changed common-prefix positions
 
 ### dl_block.c
 
@@ -5107,6 +5193,33 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
 - `__glim_TexCoord2f` in usr/gfx/arch/IP27KONA/libGLcore.so: sets the first texture unit's coordinate from two floats, with the third component zero and the fourth one, and returns, and in the original 32-bit build it occupies 28 bytes at address 0xda6fb08; read in full against the public sample-implementation source gfx/lib/opengl/glcore/s_tapi.c, the whole body compared: the context pointer is the word at process-page word 4112, the two float arguments in f12 and f14 are stored at context +224 and +228, the zero word at +232 and the word 0x3f800000 (1.0) at +236, and the public __GL_API_VAPI call expands to nothing, so the shipped body has no code at that site; it makes no access to the board. Established.
 - `__glim_TexCoord2fv` in usr/gfx/arch/IP27KONA/libGLcore.so: sets the first texture unit's coordinate from an array of two floats, with the third component zero and the fourth one, and returns, and in the original 32-bit build it occupies 36 bytes at address 0xda6fb24; read in full against the public sample-implementation source gfx/lib/opengl/glcore/s_tapi.c, the whole body compared: the context pointer is the word at process-page word 4112, the floats at offsets 0 and 4 of the array are stored at context +224 and +228, the zero word at +232 and the word 0x3f800000 (1.0) at +236, and the public __GL_API_VAPI call expands to nothing, so the shipped body has no code at that site; it makes no access to the board. Established.
 
+#### N64 target readings
+
+These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.so. N32 ranges are listed for comparison only. Two static N64 target names remain inventory-derived, and two bodies contain undecoded FP words whose predicates stay unknown.
+
+| Routine | N64 address / size | N64 SHA-256 | N32 build / address / size | N32 SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glim_Color3f | 0x2edeed0 / 32 | 1829cfec28b9b450ba163df8e4acfa7d8b66012e0f1aa759b426be3c77f98fdc | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da798f0 / 32 | 9f527b124e3aefe108847e910b0d5ed2a7e59e1874516e7833f9672eb3feef61 | no |
+| __glim_Color3fv | 0x2edeef0 / 48 | 9c6280600b24ab2fb93408327b7da547c6c8d049f2a34e58f9b9c91b37dd4d00 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da79910 / 48 | 4822fc5fda3a22cf8136cba5b219a10371e48c05e100029bf284f7680ab3e759 | no |
+| __glim_Color4f | 0x2edef20 / 32 | 91b548c195460eef0ea192a57eeb5a02eebcf922e8adae08b2d60627f2b5211d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da79940 / 32 | 1c87757dda909c6cc05d2167f7d5fbdb20bdde41158ebc72f38bf234f89d4b53 | no |
+| __glim_Color4fv | 0x2edef40 / 48 | 2c1d3d45278dd508e442e86c6b09b0977b890471a1ad95724937f1b389053ef4 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da79960 / 48 | 15c580a139d78c8b9a79c758894cac6a6b15e326b35e168628785adcafac7914 | no |
+
+- `__glim_Color3f` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edeed0; occupies 32 bytes.
+  **Inferred.** **Established.** Three incoming float registers are stored at C +0x260/+0x264/+0x268 (`swc1` at 0x2edeedc, `swc1` at 0x2edeee0, and `swc1` at 0x2edeee4). A word with bit pattern 0x3f800000 is placed at C +0x26c in the final jump's delay slot (`jr` at 0x2edeee8 and `sw` at 0x2edeeec). The jump target is loaded from C +0x48f8 (`ld` at 0x2edeed8). Its identity is unknown, while the tail-call argument a0 is C. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da798f0 +32 bytes / 13 changed common-prefix positions
+
+- `__glim_Color3fv` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edeef0; occupies 48 bytes.
+  **Inferred.** **Established.** The vector form copies float words from entry a0 +0/+4/+8 to C +0x260/+0x264/+0x268 (`lwc1` at 0x2edeef4, `lwc1` at 0x2edeef8, `lwc1` at 0x2edeefc, `swc1` at 0x2edef08, `swc1` at 0x2edef0c, and `swc1` at 0x2edef10). C +0x26c receives word pattern 0x3f800000 (`sw` at 0x2edef14). It then tail-jumps through C +0x48f8, with C passed in a0 (`ld` at 0x2edef04 and `jr` at 0x2edef18), without resolving that callback's name. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79910 +48 bytes / 13 changed common-prefix positions
+
+- `__glim_Color4f` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edef20; occupies 32 bytes.
+  **Inferred.** **Established.** Four-float colour assignment stores f12/f13/f14/f15 as words at C +0x260/+0x264/+0x268/+0x26c (`swc1` at 0x2edef2c, `swc1` at 0x2edef30, `swc1` at 0x2edef34, and `swc1` at 0x2edef3c). The target loaded from C +0x48f8 is reached by a tail jump (`ld` at 0x2edef28 and `jr` at 0x2edef38). No numeric conversion occurs in this complete body. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79940 +32 bytes / 13 changed common-prefix positions
+
+- `__glim_Color4fv` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edef40; occupies 48 bytes.
+  **Inferred.** **Established.** Four float words at the caller's +0/+4/+8/+0xc are copied to C +0x260/+0x264/+0x268/+0x26c (`lwc1` at 0x2edef44, `lwc1` at 0x2edef48, `lwc1` at 0x2edef4c, `lwc1` at 0x2edef50, `swc1` at 0x2edef58, `swc1` at 0x2edef5c, `swc1` at 0x2edef60, and `swc1` at 0x2edef64). The final indirect jump passes C in both a0 and a1 (`jr` at 0x2edef68). The callback's implementation is outside this entry. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79960 +48 bytes / 13 changed common-prefix positions
+
 ### mips_lighting.c
 
 - `__glClampAndScaleColor` in usr/gfx/arch/IP27KONA32/libGLcore.so: clamps a colour's four components to zero to one and scales them by the context's colour scales, in hand-written code, and it occupies 204 bytes at address 0x0da7c2c0; the public sample-implementation source gfx/lib/opengl/glcore/s_light.c holds the same routine, matched by name, no direct call in either, a shipped body of 76 source lines against 47 in the public file, and it makes no access to the board. Inferred.
@@ -5155,6 +5268,18 @@ These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.s
 
 - `__glEvenTStripVertex` in usr/gfx/arch/IP27KONA32/libGLcore.so: handles an even-numbered vertex of a triangle strip: shifts the vertex window, tests the clip codes of the new triangle and draws or clips it, in hand-written code, and it occupies 136 bytes at address 0x0da79a10; the public sample-implementation source gfx/lib/opengl/glcore/s_pgfin.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 40 source lines against 34 in the public file, and it makes no access to the board. Inferred.
 - `__glOddTStripVertex` in usr/gfx/arch/IP27KONA32/libGLcore.so: handles an odd-numbered vertex of a triangle strip: shifts the vertex window with the winding swapped, tests the clip codes and draws or clips the new triangle, in hand-written code, and it occupies 136 bytes at address 0x0da79a98; the public sample-implementation source gfx/lib/opengl/glcore/s_pgfin.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 38 source lines against 34 in the public file, and it makes no access to the board. Inferred.
+
+#### N64 target readings
+
+These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.so. N32 ranges are listed for comparison only. Two static N64 target names remain inventory-derived, and two bodies contain undecoded FP words whose predicates stay unknown.
+
+| Routine | N64 address / size | N64 SHA-256 | N32 build / address / size | N32 SHA-256 | Identical |
+|---|---|---|---|---|---|
+| __glEvenTStripVertex | 0x2edeff0 / 144 | a42ed3e242c2d71258ca82a17f77e592efef13a98259c0d0b217eb4cb4100533 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da79a10 / 136 | 758ed674b9db139e1bc8c07c630e48c2911ba5748d3ef126e19ef7586baf2057 | no |
+
+- `__glEvenTStripVertex` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2edeff0; occupies 144 bytes.
+  **Inferred.** **Inferred.** Even-strip vertex handling loads the previous two vertex pointers from a0 +0x4e50/+0x4e58 (`ld` at 0x2edeff0 and `ld` at 0x2edeff4). It clears byte a0 +0x95b8, sets entry a1 +0xc0 to 1 and saves entry a1 at a0 +0x8cf0 (`sb` at 0x2edf000, `sb` at 0x2edf004, and `sd` at 0x2edf018). The combined input flag words control a branch that is taken on nonzero and falls through on zero (`bnez` at 0x2edf028). The two resulting dispatch sites are an indirect tail jump and a normal indirect call (`jr` at 0x2edf03c and `jalr` at 0x2edf068). Their targets remain unknown, so full draw-versus-clip semantics are inferred rather than established. Unequal exact ranges: target 144 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79a10 +136 bytes / 116 changed common-prefix positions
 
 ### mips_prim.c
 
