@@ -2611,6 +2611,99 @@ These entries describe exact O32 target bodies from usr/gfx/arch/IP35KONA/libGLc
 
 - `ChangeMaterialEmission` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9e6c48; occupies 128 bytes. **Inferred.** Updates software material emission and a derived three-float result. Current colour floats at original argument 0 +0x1b0, +0x1b4, +0x1b8 and +0x1bc are read (`lwc1` at 0xd9e6c48, 0xd9e6c50, 0xd9e6c5c, 0xd9e6c80). Products use argument 0 scale fields +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd9e6c4c, 0xd9e6c54, 0xd9e6c60, 0xd9e6c7c), then write argument 1 +0x30, +0x34, +0x38 and +0x3c (`swc1` at 0xd9e6c70, 0xd9e6c74, 0xd9e6c78, 0xd9e6c88). Derived RGB stores target argument 2 +0, +4 and +8 (`swc1` at 0xd9e6c98, 0xd9e6cac, 0xd9e6cc4). The whole body has no helper call. The exact 116-byte N32 comparison name lacks independent native-symbol confirmation; this remains an inventory-derived counterpart.
+## IP35 O32 matrix, material and line routines with exact O32 identities
+
+Sixteen complete target bodies are byte-identical to same-address IP27 O32 routines. The identity record preserves each source grade without promoting its behavior claim.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) | Existing grade |
+|---|---|---|---|---|
+| ChangeMaterialSpecular | 0xd9e6cc8 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e6cc8 / 136 | 9cc79a96b482c60a6baf436b55d2b7b17adc725ec2f59427344c67a12619d701 | Established |
+| ChangeMaterialAmbient | 0xd9e6d50 / 200 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e6d50 / 200 | 4f1b550ab03a5f8a26b5094742499938459359f3ef857e80d14397d73fb54b33 | Inferred |
+| ChangeMaterialDiffuse | 0xd9e6e18 / 208 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e6e18 / 208 | 5bbb1161e875230b38ce0eb2e86dc71c1d83e54f020e1d4484e8b6b28ef7b790 | Established |
+| __glChangeOneMaterialColor | 0xd9e7028 / 152 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e7028 / 152 | 460a9ef35ed1dd84d9c07e0841fd52f9c292154cd654e5b974f2a455228e1baa | Established |
+| __glChangeBothMaterialColors | 0xd9e70c0 / 176 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e70c0 / 176 | 1d612a49567e3e5b31578eab4ad66e678df95e21ec91c368bf5816611df63873 | Established |
+| ComputeMaterialState | 0xd9e7170 / 372 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e7170 / 372 | 8b270b45b3a1d320ab88185e14acb822fc27a6ccd2596876e73d42bf80c29fd9 | Inferred |
+| ComputeLightState | 0xd9e72e4 / 824 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e72e4 / 824 | dc6ebf9bc21757f2db7ccdf2b1449d006a07d4dacce8e311c99b6d3e4c314dca | Inferred |
+| ComputeLightProcs | 0xd9e761c / 332 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e761c / 332 | 7a89160f1798dc2daecac32f2381e1aabe4d92c116c2da98567b4f31a8357129 | Established |
+| __glValidateMaterial | 0xd9e78f4 / 148 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e78f4 / 148 | f6b65e9c0ae2f936ca7bab706ce069c1ce6947e0d658241374346102007e720f | Established |
+| __glValidateLighting | 0xd9e7988 / 156 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e7988 / 156 | b854b5404dd220c022cc4a0e6fd5c0137c06d6dc0d641685cd3d624589c7b754 | Inferred |
+| __glGenericPickColorMaterialProcs | 0xd9e7a24 / 328 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e7a24 / 328 | 02d82cb843598045f8107001340195e3d8c3b4a45d841d55dc0d56225224f2d2 | Established |
+| __glRenderAliasLine | 0xd9e8930 / 1340 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e8930 / 1340 | 1cf0a3f0ab2bd54f5d4b97b5a6b22738b3a97bb4e03d922b203319fcf8f15ada | Inferred |
+| __glRenderFlatFogLine | 0xd9e8e6c / 200 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e8e6c / 200 | dd81620b25e4c2c55d766698680f769560fdc58af4f4a2de2e97eda395be9b0f | Established |
+| __glRenderAntiAliasLine | 0xd9e94d0 / 1856 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e94d0 / 1856 | 324729bb0e62cb7111fa043907dba5cd9a40058dc704adefb9eeafe158174c21 | Inferred |
+| __glOtherLStripVertex | 0xd9e9c9c / 180 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e9c9c / 180 | d84b66460c4c2850f5ef6273a2786825f3a69fde51888315f05cf6726fbe0ef7 | Established |
+| __glEndLLoop | 0xd9e9ed4 / 120 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9e9ed4 / 120 | 7bc56976222e3e4355d500ee5ab00fd4b1cd7b335f61fbaabad7d59e4cf61e52 | Established |
+
+#### IP35 O32 target-specific bodies compared with N32
+
+Four target readings differ from the documented N32 ranges and keep their target formulas separate.
+
+| Routine | IP35 O32 address / size | N32 build / address / size | IP35 SHA-256 | N32 SHA-256 | Prefix differences |
+|---|---|---|---|---|---:|
+| ChangeMaterialAmbientAndDiffuse | 0xd9e6ee8 / 320 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9e4360 / 276 | 24158eced5674c97003f3467ec4fab3d25310c1f7d0f9488d590cf79a7c7468d | e826e4d9d548732f3ccdfcf33f829783598a1945b9f360721e5231b8005ee69c | 244 |
+| ComputeLightMaterialState | 0xd9e7768 / 396 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9e4b50 / 456 | e31ee55cde858bc7295353c3ce739c4e2e338b4c2e18abb6e490b85f90fd3a6b | 4e51377437658e4ba8f61b1228f176c7e74ee9d66c242d7747c4099b50b3f995 | 327 |
+| __glInitLineData | 0xd9e83a0 / 1424 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9e5720 / 1196 | abcff77dc025168a74dada725579f99d9feac27319d91781cfd5f317fdedd4a6 | f22ebc4dadc7d57148f5f8a41fc860c07c470436295d492361bb373b43070958 | 1072 |
+| FirstLLoopVertex | 0xd9e9eb4 / 32 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9e6ef0 / 32 | 36b00f89b167abd88c3ce292ec6845ca09c1c49324543a8e48532c881cb799d4 | 9f8e19f772ecf8adfee9300e49869d379d8838541f1a99caedb6f48a9c0b5d65 | 22 |
+
+- `ChangeMaterialSpecular` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e6cc8; occupies 136 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e6cc8. SHA-256 9cc79a96b482c60a6baf436b55d2b7b17adc725ec2f59427344c67a12619d701. Source grade Established retained.
+
+- `ChangeMaterialAmbient` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e6d50; occupies 200 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e6d50. SHA-256 4f1b550ab03a5f8a26b5094742499938459359f3ef857e80d14397d73fb54b33. Source grade Inferred retained.
+
+- `ChangeMaterialDiffuse` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e6e18; occupies 208 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e6e18. SHA-256 5bbb1161e875230b38ce0eb2e86dc71c1d83e54f020e1d4484e8b6b28ef7b790. Source grade Established retained.
+
+- `ChangeMaterialAmbientAndDiffuse` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e6ee8; occupies 320 bytes. **Inferred.** The current four-component colour at entry a0 +0x1b0/+0x1b4/+0x1b8/+0x1bc is copied into two material groups at entry a1 +0x0/+0x4/+0x8/+0xc and +0x10/+0x14/+0x18/+0x1c (`lwc1` at 0xd9e6ef4, `lwc1` at 0xd9e6ef8, `lwc1` at 0xd9e6efc, and `lwc1` at 0xd9e6f00). The eight writes are `swc1` at 0xd9e6f04, `swc1` at 0xd9e6f08, `swc1` at 0xd9e6f0c, `swc1` at 0xd9e6f10, `swc1` at 0xd9e6f14, `swc1` at 0xd9e6f18, `swc1` at 0xd9e6f1c, and `swc1` at 0xd9e6f20. Three computed words go to entry a2 +0x0/+0x4/+0x8 (`swc1` at 0xd9e6f40, `swc1` at 0xd9e6f54, and `swc1` at 0xd9e6f88). A separate multiplication precedes the store at entry a2 +0x24 (`mul.s` at 0xd9e6fb0 and `swc1` at 0xd9e6fb4). The three initial computed words and this stored product have unknown numerical values. The list is read from entry a0 +0x6e4c, and a null value skips the loop (`lw` at 0xd9e6fb8 and `beqz` at 0xd9e6fbc). The loop includes six float stores whose bases hostfacts cannot resolve (`swc1` at 0xd9e6fd4, `swc1` at 0xd9e6fe0, `swc1` at 0xd9e6fec, `swc1` at 0xd9e6ff8, `swc1` at 0xd9e7004, and `swc1` at 0xd9e7010). There are no calls. The precise loop destinations and full clamp condition remain unresolved. Unequal exact ranges: target 320 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9e4360 +276 bytes / 244 changed common-prefix byte positions Supplied range also covers later routines; this entry describes the independently bounded function body.
+
+- `__glChangeOneMaterialColor` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e7028; occupies 152 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e7028. SHA-256 460a9ef35ed1dd84d9c07e0841fd52f9c292154cd654e5b974f2a455228e1baa. Source grade Established retained.
+
+- `__glChangeBothMaterialColors` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e70c0; occupies 176 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e70c0. SHA-256 1d612a49567e3e5b31578eab4ad66e678df95e21ec91c368bf5816611df63873. Source grade Established retained.
+
+- `ComputeMaterialState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e7170; occupies 372 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e7170. SHA-256 8b270b45b3a1d320ab88185e14acb822fc27a6ccd2596876e73d42bf80c29fd9. Source grade Inferred retained.
+
+- `ComputeLightState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e72e4; occupies 824 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e72e4. SHA-256 dc6ebf9bc21757f2db7ccdf2b1449d006a07d4dacce8e311c99b6d3e4c314dca. Source grade Inferred retained.
+
+- `ComputeLightProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e761c; occupies 332 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e761c. SHA-256 7a89160f1798dc2daecac32f2381e1aabe4d92c116c2da98567b4f31a8357129. Source grade Established retained.
+
+- `ComputeLightMaterialState` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e7768; occupies 396 bytes. **Inferred.** The routine exits when ((entry a1 | entry a2) & 7) is zero (`beqz` at 0xd9e7770). It also exits for a null list pointer read from entry a0 +0x6e4c (`lw` at 0xd9e7778 and `beqz` at 0xd9e7784). Material reads include entry a0 +0x590/+0x594/+0x598 and +0x5e0/+0x5e4/+0x5e8 (`lwc1` at 0xd9e77b0, `lwc1` at 0xd9e77bc, `lwc1` at 0xd9e77c8, `lwc1` at 0xd9e77dc, `lwc1` at 0xd9e77e8, and `lwc1` at 0xd9e77f4). Further groups read entry a0 +0x5a0 and +0x5f0, then +0x5b0 and +0x600 (`lwc1` at 0xd9e7820, `lwc1` at 0xd9e784c, `lwc1` at 0xd9e7890, and `lwc1` at 0xd9e78bc). The sampled products use `mul.s` at 0xd9e77b4, 0xd9e77e0, 0xd9e7824, 0xd9e7850, 0xd9e7894 and 0xd9e78c0. Their store sites include `swc1` at 0xd9e77b8, `swc1` at 0xd9e77e4, `swc1` at 0xd9e7828, `swc1` at 0xd9e7854, `swc1` at 0xd9e7898, and `swc1` at 0xd9e78c4. All numerical product values remain unknown. Their output bases remain unknown to hostfacts, as do the repeated list cursor and several merged change-bit conditions. The body has no calls. Its per-light field mapping is not reconstructed from the N32 entry. Unequal exact ranges: target 396 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9e4b50 +456 bytes / 327 changed common-prefix byte positions Supplied range also covers later routines; this entry describes the independently bounded function body.
+
+- `__glValidateMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e78f4; occupies 148 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e78f4. SHA-256 f6b65e9c0ae2f936ca7bab706ce069c1ce6947e0d658241374346102007e720f. Source grade Established retained.
+
+- `__glValidateLighting` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e7988; occupies 156 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e7988. SHA-256 b854b5404dd220c022cc4a0e6fd5c0137c06d6dc0d641685cd3d624589c7b754. Source grade Inferred retained.
+
+- `__glGenericPickColorMaterialProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e7a24; occupies 328 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e7a24. SHA-256 02d82cb843598045f8107001340195e3d8c3b4a45d841d55dc0d56225224f2d2. Source grade Established retained.
+
+- `__glInitLineData` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e83a0; occupies 1424 bytes. **Inferred.** Line setup saves entry a1 and a2 at context a0 +0x7534/+0x7538, clears +0x74d8 and copies the word from +0x1dc to +0x7530 (`sw` at 0xd9e83b0, `sw` at 0xd9e83b4, `sw` at 0xd9e83b8, `lw` at 0xd9e83ac, and `sw` at 0xd9e83bc). It reads endpoint coordinates at entry a1 +0x80/+0x84 and entry a2 +0x80/+0x84 (`lwc1` at 0xd9e83c4, `lwc1` at 0xd9e83c0, `lwc1` at 0xd9e83dc, and `lwc1` at 0xd9e83ec). Coordinate conversion includes `trunc.w.s` at 0xd9e83d8 and `trunc.w.s` at 0xd9e83f8. One setup path writes 1 at context +0x74f8 (`sw` at 0xd9e84b8). Later selected stores update context +0x74d8, +0x7500 and +0x74fc with values hostfacts leaves unknown (`sw` at 0xd9e8560, `swc1` at 0xd9e85c4, and `swc1` at 0xd9e85d8). The complete major-axis, rounding and step-count mapping remains unresolved. The text renderer fails with `KeyError: 335`. The successful exact-body JSON contains these accesses and no calls, but records six unreached instructions and an unknown merged v0. Missing branch analysis is not reconstructed from assembly. Unequal exact ranges: target 1424 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9e5720 +1196 bytes / 1072 changed common-prefix byte positions
+
+- `__glRenderAliasLine` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e8930; occupies 1340 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e8930. SHA-256 1cf0a3f0ab2bd54f5d4b97b5a6b22738b3a97bb4e03d922b203319fcf8f15ada. Source grade Inferred retained.
+
+- `__glRenderFlatFogLine` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e8e6c; occupies 200 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e8e6c. SHA-256 dd81620b25e4c2c55d766698680f769560fdc58af4f4a2de2e97eda395be9b0f. Source grade Established retained.
+
+- `__glRenderAntiAliasLine` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e94d0; occupies 1856 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e94d0. SHA-256 324729bb0e62cb7111fa043907dba5cd9a40058dc704adefb9eeafe158174c21. Source grade Inferred retained.
+
+- `__glOtherLStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e9c9c; occupies 180 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e9c9c. SHA-256 d84b66460c4c2850f5ef6273a2786825f3a69fde51888315f05cf6726fbe0ef7. Source grade Established retained.
+
+- `FirstLLoopVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e9eb4; occupies 32 bytes. **Inferred.** The first line-loop vertex advances the incoming vertex pointer by 192 and stores it at entry a0 +0x31c8 (`addiu` at 0xd9e9ec4 and `sw` at 0xd9e9ec8). It loads a word from absolute address 0xda870c4, resolved by hostfacts to 0xda6fefc, and installs that value at entry a0 +0x2ee4 (`lw` at 0xd9e9ec0 and `sw` at 0xd9e9ed0). The second store runs in the return delay slot (`jr` at 0xd9e9ecc). There are no calls. Native procedure/end records confirm the 32-byte O32 body. The queued 32956-byte extent includes following functions. The documented N32 source remains Established, while this distinct target draft is Inferred. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9e6ef0 +32 bytes / 22 changed common-prefix byte positions Supplied range also covers later routines; this entry describes the independently bounded function body.
+
+- `__glEndLLoop` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9e9ed4; occupies 120 bytes. Byte-identical over the full routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9e9ed4. SHA-256 7bc56976222e3e4355d500ee5ab00fd4b1cd7b335f61fbaabad7d59e4cf61e52. Source grade Established retained.
 ## Software renderer (soft)
 
 ### so_accumop.c
