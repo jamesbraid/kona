@@ -24,6 +24,19 @@ The IRIX 6.5.30m `usr/gfx/ircombine` copy of the format reader has a byte-differ
   Address 0x1008c9e0; occupies 772 bytes.
   **Established.** The format-file loader resolves the requested name through `vfmtFindKonaFormatFile` (`jal` at 0x1008ca18). Zero from that helper takes the `beqz` at 0x1008ca2c to database opening through `SDBreadOpenDatabase` (`jal` at 0x1008ca68). It clears 0x7e4 bytes of the caller's record with `bzero` (`jalr` at 0x1008cabc), copies at most 0x40 bytes to record +460 with `strncpy` (`jalr` at 0x1008cb30), and writes a terminating zero byte at record +0x20b (`sb` at 0x1008cb3c). After `vfmtGetLastKonaFileStat` (`jal` at 0x1008cb48), it loads a word from entry sp minus 0x74 (`lw` at 0x1008cb88) and copies it into record +0x20c and +0x104 (`sw` at 0x1008cb94 and `sw` at 0x1008cb9c). Seven unnamed section helpers follow (`jal` at 0x1008cbb8, 0x1008cbdc, 0x1008cc00, 0x1008cc24, 0x1008cc48, 0x1008cc6c, 0x1008cc90). Each zero return takes its corresponding branch to cleanup (`beqz` at 0x1008cbc4, 0x1008cbe8, 0x1008cc0c, 0x1008cc30, 0x1008cc54, 0x1008cc78, 0x1008cc9c). A retained database handle is closed through `SDBcloseReadDatabase` (`jal` at 0x1008ccbc). Hostfacts leaves the section helpers' a1 values unknown, so this entry assigns no argument structure to them.
 
+### IRIX 6.5.30m setmon format-reader copy
+
+This is the byte-different `usr/gfx/setmon` copy of the format reader. The table records the exact ranges; byte differences alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `vfmtReadKonaVideoFormat` | 0x10022ef0 / 772 | `f309a8e3e010b6ea6528a4daa7489df5e8b62d007c26a073216f772f78d031a8` | `usr/lib/X11/dyDDX/konal.so` 0x13b1140 / 772 | `233e0c4df1af0c3265ce1b3d6e87035937262867f6107d6202271e06482876fe` | 113 |
+
+#### Target-build readings
+
+- `vfmtReadKonaVideoFormat` in `usr/gfx/setmon`:
+  Address 0x10022ef0; occupies 772 bytes.
+  **Established.** Format-file loading begins with `vfmtFindKonaFormatFile` and `SDBreadOpenDatabase` (`jal` at 0x10022f28 and `jal` at 0x10022f78). A nonnull database takes the record-initialization path (`bnez` at 0x10022f8c), which clears 0x7e4 bytes through entry a1 (`jalr` at 0x10022fcc to `bzero`). It copies at most 64 bytes into a1 +0x1cc (`jalr` at 0x10023040 to `strncpy`) and writes a terminating zero at a1 +0x20b (`sb` at 0x1002304c). `vfmtGetLastKonaFileStat` is called (`jal` at 0x10023058), followed by word stores to a1 +0x20c and +0x104 with values unknown in hostfacts (`sw` at 0x100230a4 and `sw` at 0x100230ac). The calls include seven unnamed helpers at 0x100207b0, 0x100211e0, 0x10021740, 0x10021ab0, 0x10021df0, 0x10022710 and 0x10022a00 (`jal` at 0x100230c8, `jal` at 0x100230ec, `jal` at 0x10023110, `jal` at 0x10023134, `jal` at 0x10023158, `jal` at 0x1002317c, and `jal` at 0x100231a0). Each helper's zero result takes the cleanup path, as illustrated by the first and last tests (`beqz` at 0x100230d4 and `beqz` at 0x100231ac). Cleanup includes `SDBcloseReadDatabase` (`jal` at 0x100231cc). The exact helper roles, stored metadata values and final result remain unknown.
 ## The container
 
 **Established**, from `xdr_SDBfileHeader` (konal.so, address 0x13b26c0), `xdr_SDBsymbolTableEntry` (address 0x13b28a4) and `xdr_SDBversionNumber` (address 0x13b296c), and checked against the bytes of all 104 container files (74 and 4 `.vfo` files and 26 `.cmb` files). Everything is XDR, so each item is a big-endian 32-bit word or a run of such words.

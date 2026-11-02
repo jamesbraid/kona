@@ -7638,6 +7638,109 @@ These readings describe the IRIX 6.5.30m `usr/gfx/ircombine` and `usr/gfx/setmon
 - `vfmtWriteKonaCombination` in `usr/gfx/setmon`:
   Address 0x1001fd70; occupies 2304 bytes.
   **Established.** Writes a software combination as a symbol database. Name resolution uses `vfmtFindKonaCombinationFile`, followed by `SDBopenNewDatabase` with three stack-buffer arguments (`jal` at 0x1001fdd8, 0x1001fdf0). A null database result falls through to return one (`bnez` at 0x1001fe04). The initial scalar symbols at 0x1003e578 and 0x1003e588 use `xdr_u_short` (calls to `SDBaddNewScalarSymbol` (`jal` at 0x1001fe38, 0x1001fe64)). Later fields include entry argument 1 +0x100, +0x10c and +0x110 with `xdr_int` (`jal` at 0x1001ff88, 0x100200c8, 0x10020130). Two-element integer arrays use argument 1 +0x104 and +0x24c (calls to `SDBaddNewArraySymbol` (`jal` at 0x1001fff4, 0x10020060)). These are examples, not a complete field list. A three-element float array comes from argument 1 +0x22c (`jal` at 0x10020548). The record loop calls the unnamed routine at 0x1001ed20 (`jal` at 0x1002061c). Normal completion closes the database and returns zero (calls to `SDBcloseNewDatabase` (`jal` at 0x10020648)), while checked symbol-add failures return two. It serializes a host file rather than programming graphics registers.
+### IRIX 6.5.30m setmon symbol-database helpers
+
+These readings describe `usr/gfx/setmon` copies of the symbol-database and XDR helpers. Each exact range differs from the `konal.so` counterpart; byte differences alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `SDBaddNewArraySymbol` | 0x100234b4 / 56 | `de90d54dd71d5fac04d7c5553f35be4e5c421f31cabd2d2195e5a6229332dcd3` | `usr/lib/X11/dyDDX/konal.so` 0x13b1704 / 56 | `e09bddaef8397d0cc0e05b21d67c586575f51759d019504b2df7f626b39dcff3` | 10 |
+| `SDBaddNewScalarSymbol` | 0x100234ec / 64 | `8b554f6c5b7bcb1e6fd18655615d3ad2b6d711971b089a2c648b6bb3f9b6916c` | `usr/lib/X11/dyDDX/konal.so` 0x13b173c / 64 | `be13581eba399d792970c6411098504022c7053f0a4964760675ba47d0c985e5` | 10 |
+| `SDBcloseNewDatabase` | 0x1002352c / 404 | `0d83235e8b03962f59d8348f92833a1d341c4694f830f46f835b773841580c24` | `usr/lib/X11/dyDDX/konal.so` 0x13b177c / 404 | `1e09b562fb33773e35ce358098298c2a672eaf28f8d26378e92b1656351b365a` | 31 |
+| `SDBopenNewDatabase` | 0x100236c0 / 356 | `c6608fced425092b2736a0cebc9bd1c2b54cb41bdf922ffb2476f0a922caa12f` | `usr/lib/X11/dyDDX/konal.so` 0x13b1910 / 356 | `d627a8e6612ea835836b46ae15ba813e0efef4a5e4a2898d76ce7145113981a7` | 46 |
+| `SDBsetHeader` | 0x10023824 / 120 | `c579bafe876d289bc03a330417a60f851fcf4bac48d5b0d0db5fa272a838d354` | `usr/lib/X11/dyDDX/konal.so` 0x13b1a74 / 120 | `4a8f790c3e8249b18bf99103f76b1c1cecacc1373f72b4fab75c61cba7a9235f` | 7 |
+| `SDBgetSymbolDataAddress` | 0x10023a54 / 104 | `0f2ec10b01c06183fb297af17b8dc9660a506881ed1f175e1a8f7afdc086ceca` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ca4 / 104 | `bcf5d5d8490159078cf1a8d237d0e2b52486f29215e003105d53599917574eeb` | 10 |
+| `SDBgetSymbolDatatype` | 0x10023abc / 88 | `e5babb9edbf280ef840c29c70a7036d52ca6ec416d5f86efc8cfd73a5eea8bd1` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d0c / 88 | `53ecb29590881868ae1922b06a597f2b80c9bb139bfcf292c4f0e6a2a50376c1` | 10 |
+| `SDBgetSymbolElementCount` | 0x10023b14 / 92 | `4cc6b092ec5814d11f5d887e4be306ac6fea999f39c9b12c88a2861234ae48da` | `usr/lib/X11/dyDDX/konal.so` 0x13b1d64 / 92 | `0ad309c805b8a592742812c12845edb6c54ad675b29bd4d270e506e827c1abed` | 10 |
+| `SDBgetSymbolValueArray` | 0x10023b70 / 56 | `b4fdc507c3230845c2d8e5fc15adac282ea03d6ffaf9c32ac94df84f81add00a` | `usr/lib/X11/dyDDX/konal.so` 0x13b1dc0 / 56 | `084ab080b9f927d944c228a66904d103eae6198d676482e8bd29f1294caeeb9b` | 10 |
+| `SDBgetSymbolValueScalar` | 0x10023ba8 / 56 | `7758986827c35d33ada2eb243c395d9e6d6f66e7c5a20b775118f9778b2be32f` | `usr/lib/X11/dyDDX/konal.so` 0x13b1df8 / 56 | `146678c380edd02877f305a86fae862a0e0d1a833083a91eac1453fae4e9ec9f` | 10 |
+| `SDBcloseReadDatabase` | 0x10023be0 / 184 | `b5929f42c35a4ce3f789acde219be0ecb5cdfc47f2080629f0be2627a4e07961` | `usr/lib/X11/dyDDX/konal.so` 0x13b1e30 / 184 | `7f9fb1c5f9264d8b152f9b2f9a4c8593f59d5d3f011948f7a3b0cf8fa8f02edd` | 13 |
+| `SDBreadOpenDatabase` | 0x10023c98 / 424 | `a8e07a92b84d84cb211af173ef6d0a73141ff63010ff1803f417a3150a4685cc` | `usr/lib/X11/dyDDX/konal.so` 0x13b1ee8 / 424 | `a3ed2bf752ec533b77a941b678875f563e8cecc6cf2df3a49fc78d9c96133423` | 60 |
+| `SDBprocessOneUserMethod` | 0x10023e98 / 420 | `a72ac131268146cfa87b28e6e3a215535fccdd1ee0e6bdf4c44a5e3104f16136` | `usr/lib/X11/dyDDX/konal.so` 0x13b20e8 / 420 | `f9c38ddbddc71d557e8bd6c9df10ed8657e0933d64b08b0ebd7a60e3305dbbf1` | 31 |
+| `compareSTEName` | 0x1002403c / 56 | `5cc35f1442f274f19ddf4c8ec05185b9067c8d515d9e45dc6ac180a1f475a863` | `usr/lib/X11/dyDDX/konal.so` 0x13b228c / 56 | `8156f0e1747cccbe228bfcca1e149a3ba3da2fef1a93006d5332b3683a07c14d` | 5 |
+| `mapTypeToXDRPROC` | 0x10024074 / 524 | `7fa230a612d295472d8d1cdfd2c4d5f9bb847026bcae7881234175903d2d2e05` | `usr/lib/X11/dyDDX/konal.so` 0x13b22c4 / 524 | `35d07415061a8bfbedf7b8ed7ca74713ec82065e561aba71af317fd2d613ca7c` | 76 |
+| `xdr_SDBelementIndex` | 0x100242b4 / 52 | `ca294bea62cbd9bb63f914ba0d30ad7267b4a8a94643001559939945592685e0` | `usr/lib/X11/dyDDX/konal.so` 0x13b2504 / 52 | `85e24cbc68459f68e5f817cb06219e3c435134fc5b10ac08d3e7b643eb9787ed` | 5 |
+| `xdr_SDBfileOffset` | 0x100242e8 / 52 | `8b36dbd30a08e9f09d11547e1469313f6c6a5d707444536cbf73da91426da94c` | `usr/lib/X11/dyDDX/konal.so` 0x13b2538 / 52 | `ddcba119df4854ca04373befdf4c5efa949e83b0c5b1da0706fc8760c893f9a9` | 5 |
+| `xdr_typedData` | 0x1002431c / 340 | `e4949ffb94195c0061a937717acd836c9e00298be282b8b125dea39d705deb07` | `usr/lib/X11/dyDDX/konal.so` 0x13b256c / 340 | `d0a39cf01f5a3e35ba2f23aca437fcf559d871f323fedf83c09d67f082609622` | 23 |
+| `xdr_SDBfileHeader` | 0x10024470 / 320 | `f5491d823e0bfa0236a11233bdb43fe7546185a403bacaf54202c5a2e2ffc2d9` | `usr/lib/X11/dyDDX/konal.so` 0x13b26c0 / 320 | `43e22bfb7d57f306632b2675cf78fe2b6bf1c5e2119334c076118617ac73539c` | 43 |
+
+#### Target-build readings
+
+- `SDBaddNewArraySymbol` in `usr/gfx/setmon`:
+  Address 0x100234b4; occupies 56 bytes.
+  **Inferred.** Array-symbol insertion is a wrapper around the unnamed helper at 0x100231f4 (`jal` at 0x100234d4). Entry a0 through a3 reach the helper unchanged, and the wrapper propagates its v0 (`jr` at 0x100234e4). Table growth and symbol-record layout remain unknown from this wrapper's body.
+
+- `SDBaddNewScalarSymbol` in `usr/gfx/setmon`:
+  Address 0x100234ec; occupies 64 bytes.
+  **Inferred.** Scalar insertion calls 0x100231f4 with entry a0 through a2 retained, a3 set to zero, entry a3 moved into a4, and entry a4 moved into a5 (`jal` at 0x10023514). The helper's result supplies v0 at return (`jr` at 0x10023524). This establishes the scalar-specific argument adaptation, while the helper's effects on records remain unknown.
+
+- `SDBcloseNewDatabase` in `usr/gfx/setmon`:
+  Address 0x1002352c; occupies 404 bytes.
+  **Established.** Write-side database finalization loads the table pointer at entry a0 +0xc (`lw` at 0x10023574) and sorts it with record size 0x2c and comparator `compareSTEName` (`jalr` at 0x1002358c to `qsort`). It writes the table through `xdr_array`, passing maximum count 0xffff, record size 0x2c and `xdr_SDBsymbolTableEntry` (`jalr` at 0x100235cc), then invokes `xdr_SDBfileHeader` (`jal` at 0x100235f4). An intervening unknown stream callback's result is stored in the header at [a0 +8] +0x78 (`sw` at 0x100235b0). Cleanup clears handle words +8, +0 and +0xc after indirect memory-interface calls (`sw` at 0x1002361c, `sw` at 0x1002364c, and `sw` at 0x10023688). A nonnull file pointer unequal to `__iob` +16 takes the ordinary close path (`bne` at 0x10023660), which calls `fclose` (`jalr` at 0x100236b0). Hostfacts does not identify the other cleanup callbacks or the merged return.
+
+- `SDBopenNewDatabase` in `usr/gfx/setmon`:
+  Address 0x100236c0; occupies 356 bytes.
+  **Established.** The write-side opener compares the name with a fixed string (`jalr` at 0x100236ec to `strcmp`), taking the `fopen` path when the comparison is nonzero (`bnez` at 0x100236f4 and `jalr` at 0x10023728). Two unknown memory-interface callbacks receive (1, 0x14) and (1, 0x18) (`jalr` at 0x10023744 and `jalr` at 0x100237b8). The resulting stream is passed to `xdrstdio_create` with operation argument zero (`jalr` at 0x100237f0), followed by the unnamed setup helper at 0x100232b4 with entry a1 and a2 preserved (`jal` at 0x10023808). Observable errno stores include 2, 12 and 9 (`sw` at 0x10023714, `sw` at 0x1002375c, and `sw` at 0x10023820). Failure cleanup calls `SDBcloseNewDatabase` (`jal` at 0x10023784). Callback identities and the merged returned value remain unresolved.
+
+- `SDBsetHeader` in `usr/gfx/setmon`:
+  Address 0x10023824; occupies 120 bytes.
+  **Established.** Header initialization follows the pointer at entry a0 +8 (`lw` at 0x10023830). Nonnull entry a1 supplies halfwords from +0 and +2 (`lhu` at 0x10023848, 0x10023850) to header +8 and +0xa (`sh` at 0x1002384c and `sh` at 0x10023858). Null a1 takes the arm that zeros those same halfwords (`beqz` at 0x10023840, `sh` at 0x1002385c, and `sh` at 0x10023864). It then calls `strncpy` with destination header +0xc and count 100 (`jalr` at 0x10023884). Hostfacts leaves the merged source pointer unknown, so this entry does not establish the default description string. The returned v0 is the string-copy result (`jr` at 0x10023894).
+
+- `SDBgetSymbolDataAddress` in `usr/gfx/setmon`:
+  Address 0x10023a54; occupies 104 bytes.
+  **Established.** This data-address accessor queries the helper at 0x10023954 (`jal` at 0x10023a74). A nonzero query result takes the callback path and zero falls through to a zero return (`bnez` at 0x10023a7c). The callback pointer is loaded through entry a0 +0, stream +4 and operations +0x10 (`lw` at 0x10023a98, `lw` at 0x10023a9c, and `lw` at 0x10023aa0). The callback receives the stream pointer and supplies the returned value (`jalr` at 0x10023aa4). Its identity is unknown, so a stream-position interpretation is inferred rather than established.
+
+- `SDBgetSymbolDatatype` in `usr/gfx/setmon`:
+  Address 0x10023abc; occupies 88 bytes.
+  **Established.** Type lookup sends the entry arguments to 0x10023954 (`jal` at 0x10023adc). A null helper result takes the zero-result arm (`beqz` at 0x10023ae8). The other arm returns the first word of the returned record (`lw` at 0x10023af4). The body reads a stored type field without converting it into a device encoding.
+
+- `SDBgetSymbolElementCount` in `usr/gfx/setmon`:
+  Address 0x10023b14; occupies 92 bytes.
+  **Established.** The symbol-count query invokes 0x10023954 (`jal` at 0x10023b34) and returns the word at record +4 on its nonnull path (`lw` at 0x10023b4c). A null result takes the branch to the alternate return (`beqz` at 0x10023b40). Hostfacts reports that arm's v0 as unknown (`jr` at 0x10023b68), so a missing symbol is not established to return zero in this build.
+
+- `SDBgetSymbolValueArray` in `usr/gfx/setmon`:
+  Address 0x10023b70; occupies 56 bytes.
+  **Inferred.** The array-value entry delegates to 0x100239f4 with the first four incoming arguments intact (`jal` at 0x10023b90). It passes the helper's v0 back to its caller (`jr` at 0x10023ba0). No local element loop or symbol-table access appears in this body. The helper's value format remains unknown.
+
+- `SDBgetSymbolValueScalar` in `usr/gfx/setmon`:
+  Address 0x10023ba8; occupies 56 bytes.
+  **Inferred.** Scalar-value access uses the same reader at 0x100239f4 while retaining entry a0 through a2 and replacing a3 with zero (`jal` at 0x10023bc8). Hostfacts ties the return value to that reader's result (`jr` at 0x10023bd8). The distinct calling convention is the zero fourth argument. No local value decoding occurs.
+
+- `SDBcloseReadDatabase` in `usr/gfx/setmon`:
+  Address 0x10023be0; occupies 184 bytes.
+  **Established.** Read-handle cleanup loads the pointer at entry a0 +0xac (`lw` at 0x10023be4) and dispatches it through the memory interface, then clears that field (`jalr` at 0x10023c10 and `sw` at 0x10023c18). Its stream path invokes operations +0x1c, calls another memory-interface function and clears handle +0 (`lw` at 0x10023c2c, `jalr` at 0x10023c30, `jalr` at 0x10023c40, and `sw` at 0x10023c48). The file-pointer comparison takes the `fclose` path when the nonnull pointer from handle +4 (`lw` at 0x10023c4c) differs from `__iob` (`bne` at 0x10023c58 and `jalr` at 0x10023c88). A final indirect call receives the handle (`jalr` at 0x10023c6c). The indirect targets and resulting v0 are unknown in the facts output.
+
+- `SDBreadOpenDatabase` in `usr/gfx/setmon`:
+  Address 0x10023c98; occupies 424 bytes.
+  **Established.** Read-side opening calls `strcmp` (`jalr` at 0x10023cbc) and takes the `fopen` path only for a nonzero comparison (`bnez` at 0x10023cc4, `jalr` at 0x10023cf0), then requests objects through unknown memory-interface callbacks with argument pairs (1, 0xb0) and (1, 0x18) (`jalr` at 0x10023d10 and `jalr` at 0x10023d3c). The decode stream is created with operation 1 (`jalr` at 0x10023dbc to `xdrstdio_create`). Header reading, an unnamed validation helper and a four-byte identification comparison follow (`jal` at 0x10023dd0 to `xdr_SDBfileHeader`, `jal` at 0x10023df4 to 0x1002389c, and `jalr` at 0x10023e20 to `strncmp`). Errno writes observed in this body include 2, 12 and 20 (`sw` at 0x10023ce4, `sw` at 0x10023d2c, and `sw` at 0x10023dec). Cleanup reaches `SDBcloseReadDatabase` (`jal` at 0x10023d6c). Hostfacts preserves a zero failure result but leaves the merged success result unresolved.
+
+- `SDBprocessOneUserMethod` in `usr/gfx/setmon`:
+  Address 0x10023e98; occupies 420 bytes.
+  **Established.** Method execution loads the name pointer at entry a1 +0 (`lw` at 0x10023ec0) and passes it to 0x10023954 (`jal` at 0x10023ecc). Equality between the returned record's first word and method +4 (`lw` at 0x10023ee0, 0x10023ee4) takes the value-reading arm (`beq` at 0x10023ee8). That arm calls 0x10023e40 (`jal` at 0x10023fc4) and `xdr_typedData` (`jal` at 0x10024018). An unsigned capacity comparison falls through to errno 22 when method +8 is smaller than the returned record's +4 word (`lw` at 0x10023fe0, 0x10023fd4) (`beqz` at 0x10023fe8 and `sw` at 0x10023ffc). The callback arm obtains a codec/size through `mapTypeToXDRPROC` (`jal` at 0x10023f20), then invokes the pointer loaded from method +0x18 with method +0x1c's word as a1 (`lw` at 0x10023f48, 0x10023f54, `jalr` at 0x10023f50). Its a0 and the function's merged return remain unknown.
+
+- `compareSTEName` in `usr/gfx/setmon`:
+  Address 0x1002403c; occupies 56 bytes.
+  **Established.** Symbol-name comparison sends entry a0 +0xc and a1 +0xc to `strcmp` (`jalr` at 0x1002405c), preserving its ordering result through the return (`jr` at 0x1002406c). This establishes the compared field start, without establishing a 32-byte length limit from the comparator alone.
+
+- `mapTypeToXDRPROC` in `usr/gfx/setmon`:
+  Address 0x10024074; occupies 524 bytes.
+  **Established.** The type mapper takes its range-error path when entry a0 is at least 0x15 unsigned, otherwise falling through to indexed dispatch (`beqz` at 0x100240b0). The jump uses the table rooted at 0x1003eaf0 (`jr` at 0x100240c0). Selected values are written as words through entry a1 and a2 (`sw` at 0x100240f8 and `sw` at 0x1002410c). The assertion paths include `__assert` calls for the range check, a null selected function, a missing supplied callback and a zero-type check (`jalr` at 0x100240dc, `jalr` at 0x10024138, `jalr` at 0x10024250, and `jalr` at 0x10024270). Hostfacts leaves merged selected values and return unknown, so individual type-to-codec assignments are not supplied here.
+
+- `xdr_SDBelementIndex` in `usr/gfx/setmon`:
+  Address 0x100242b4; occupies 52 bytes.
+  **Established.** The element-index wrapper invokes `xdr_u_long` without changing entry a0 through a3 (`jalr` at 0x100242d0). Its result is the codec's v0 (`jr` at 0x100242e0). There is no local index-range check.
+
+- `xdr_SDBfileOffset` in `usr/gfx/setmon`:
+  Address 0x100242e8; occupies 52 bytes.
+  **Established.** File-offset serialization is delegated to `xdr_u_long` (`jalr` at 0x10024304), with the incoming argument registers retained. Hostfacts reports the same codec result at the return (`jr` at 0x10024314). This wrapper serializes a field rather than moving a file position itself.
+
+- `xdr_typedData` in `usr/gfx/setmon`:
+  Address 0x1002431c; occupies 340 bytes.
+  **Established.** Typed-value processing calls `mapTypeToXDRPROC` with entry a1 as the type and entry a4 as the optional callback (`jal` at 0x10024380). After mapping, a nonzero count word through entry a2 takes the array path (`bnez` at 0x1002438c), calling `xdr_array` (`jalr` at 0x100243c4). Zero count falls through to the scalar arm, which invokes the unknown codec only when its selected pointer is nonzero (`beqz` at 0x10024394, `jalr` at 0x100243a4). A string path calls `xdr_wrapstring`, `strlen`, an unknown memory-interface function and `strcpy` (`jalr` at 0x10024420, `jalr` at 0x10024434, `jalr` at 0x10024444, and `jalr` at 0x10024458). It stores the unknown memory-interface callback's result through entry a3 and writes count 1 through entry a2 (`sw` at 0x10024454 and `sw` at 0x10024464). Hostfacts labels the earlier target 0x10024370 outside its block map. The complete string-entry conditions and merged returned value stay unresolved.
+
+- `xdr_SDBfileHeader` in `usr/gfx/setmon`:
+  Address 0x10024470; occupies 320 bytes.
+  **Established.** Header serialization measures the initial bytes with `strlen` and sends them through `xdr_bytes` with maximum 4 (`jalr` at 0x100244a0 and `jalr` at 0x100244d8). The version fields are passed at entry a1 +4 and +8 (`jal` at 0x100244ec and `jal` at 0x10024500 to `xdr_SDBversionNumber`), followed by an `xdr_bytes` call with maximum 100 (`jalr` at 0x1002451c). It serializes the index at +0x70 and offsets at +0x74 and +0x78 (`jal` at 0x10024530 to `xdr_SDBelementIndex`, `jal` at 0x10024544 and `jal` at 0x10024558 to `xdr_SDBfileOffset`). The final `xdr_array` call receives maximum count 10, element size 4 and codec `xdr_u_long` (`jalr` at 0x1002457c). A zero array result takes the zero-return arm, while nonzero falls through to a result of 1 (`beqz` at 0x10024584).
 ## The X module files
 
 - `konal.so` (usr/lib/X11/dyDDX/konal.so, 1759116 bytes): **established.** The X server module of the 6.5.30m install that this
