@@ -2438,6 +2438,93 @@ These complete O32 target bodies are from usr/gfx/arch/IP35KONA/libGLcore.so. Ea
 - `__glMap1_size` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9d6b84; occupies 16 bytes.
   **Inferred.** Multiplies a0 and a1 as unsigned words and moves the low product word into v0 (`multu` at 0xd9d6b84, `mflo` at 0xd9d6b88). The full four-word body has no memory access, call or stack frame. Hostfacts does not model the multiply result and reports v0 unknown at the return (`jr` at 0xd9d6b8c).
+## IP35 O32 code-identical target entries
+
+## IP35 O32 routines identical to IP27 O32
+
+The complete O32 bodies below are byte-identical to same-address routines already documented for the IP27 O32 build. Each entry records identity only and retains its existing Established grade. No role or public-source result is re-derived here.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) | Grade |
+|---|---|---|---|---|
+| __glFogSpanSlow | 0xd9dbda8 / 516 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dbda8 / 516 | 1cbbeb2f56e2ff27b68a29ce47ac1a091482c82d83d5508cead2297609355e6c | Established |
+- `__glFogSpanSlow` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dbda8; occupies 516 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dbda8. SHA-256 1cbbeb2f56e2ff27b68a29ce47ac1a091482c82d83d5508cead2297609355e6c. Existing Established grade retained.
+
+| __glFogStippledSpanSlow | 0xd9dbfac / 620 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dbfac / 620 | fa377b1de7b09da165a9396c9390bccad1f0db17ebc5ee2f234d027302530927 | Established |
+- `__glFogStippledSpanSlow` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dbfac; occupies 620 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dbfac. SHA-256 fa377b1de7b09da165a9396c9390bccad1f0db17ebc5ee2f234d027302530927. Existing Established grade retained.
+
+| __glFogFragmentSlow | 0xd9dc218 / 428 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc218 / 428 | f0e8c3da2da88310e403dff7e9e7f6ac76cb3837ec656233fe3a5d94606c71d7 | Established |
+- `__glFogFragmentSlow` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc218; occupies 428 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc218. SHA-256 f0e8c3da2da88310e403dff7e9e7f6ac76cb3837ec656233fe3a5d94606c71d7. Existing Established grade retained.
+
+| __glFogVertex | 0xd9dc3c4 / 280 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc3c4 / 280 | 049751e161cdd3eee8e6fb72d72af3bc87b3218aa90713e5166aec007ceff036 | Established |
+- `__glFogVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc3c4; occupies 280 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc3c4. SHA-256 049751e161cdd3eee8e6fb72d72af3bc87b3218aa90713e5166aec007ceff036. Existing Established grade retained.
+
+| __glFogVertexLinear | 0xd9dc4dc / 112 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc4dc / 112 | 28987983b58eb6a0f194276b12db653487647d33b6d3657d1a275c6c5b4e1c5a | Established |
+- `__glFogVertexLinear` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc4dc; occupies 112 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc4dc. SHA-256 28987983b58eb6a0f194276b12db653487647d33b6d3657d1a275c6c5b4e1c5a. Existing Established grade retained.
+
+| __glFogColorSlow | 0xd9dc54c / 136 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc54c / 136 | 5f5ddbaf28250cc415456ea5faed748c8e385997b89d6b4abecf6a2ef0409051 | Established |
+- `__glFogColorSlow` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc54c; occupies 136 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc54c. SHA-256 5f5ddbaf28250cc415456ea5faed748c8e385997b89d6b4abecf6a2ef0409051. Existing Established grade retained.
+
+| __glim_GetTexEnvfv | 0xd9dc5e0 / 252 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc5e0 / 252 | 4914986cb60e879534cb793469529dde5233a7cc6e8d74741d52a6832fa4344a | Established |
+- `__glim_GetTexEnvfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc5e0; occupies 252 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc5e0. SHA-256 4914986cb60e879534cb793469529dde5233a7cc6e8d74741d52a6832fa4344a. Existing Established grade retained.
+
+| __glim_GetTexEnviv | 0xd9dc6dc / 224 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc6dc / 224 | 2ff9ceb00318622082ed297cd724bbac96cec543ccca6510f432aab13b3766dc | Established |
+- `__glim_GetTexEnviv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc6dc; occupies 224 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc6dc. SHA-256 2ff9ceb00318622082ed297cd724bbac96cec543ccca6510f432aab13b3766dc. Existing Established grade retained.
+
+| __glim_GetTexGenfv | 0xd9dc7bc / 356 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc7bc / 356 | 1066ea305561702e3ff66d72d5acccb1355f4f60cc9822ca28853f043d514a6f | Established |
+- `__glim_GetTexGenfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc7bc; occupies 356 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc7bc. SHA-256 1066ea305561702e3ff66d72d5acccb1355f4f60cc9822ca28853f043d514a6f. Existing Established grade retained.
+
+| __glim_GetTexGendv | 0xd9dc920 / 392 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dc920 / 392 | dcaf5795921e5a94602194cc03ec4030b50c7a33a9de984e6eb522037e9e4c50 | Established |
+- `__glim_GetTexGendv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dc920; occupies 392 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dc920. SHA-256 dcaf5795921e5a94602194cc03ec4030b50c7a33a9de984e6eb522037e9e4c50. Existing Established grade retained.
+
+| __glim_GetTexGeniv | 0xd9dcaa8 / 364 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dcaa8 / 364 | 10ed78e79370e92188d41ee3826896d36477e7ca509f1a3fcee9f1d4ba62cb1d | Established |
+- `__glim_GetTexGeniv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dcaa8; occupies 364 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dcaa8. SHA-256 10ed78e79370e92188d41ee3826896d36477e7ca509f1a3fcee9f1d4ba62cb1d. Existing Established grade retained.
+
+| __glim_GetTexParameterfv | 0xd9dcc14 / 788 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dcc14 / 788 | 64ed4165ffd5e907b8ab6a35179f9767107317e43ab4c6a2fa9987b8a9895146 | Established |
+- `__glim_GetTexParameterfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dcc14; occupies 788 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dcc14. SHA-256 64ed4165ffd5e907b8ab6a35179f9767107317e43ab4c6a2fa9987b8a9895146. Existing Established grade retained.
+
+| __glim_GetTexParameteriv | 0xd9dcf28 / 712 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dcf28 / 712 | 324d2a7dc3e5294d6a8ac8e055f3e28915e99ba3ac332b8756b403a088b168de | Established |
+- `__glim_GetTexParameteriv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dcf28; occupies 712 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dcf28. SHA-256 324d2a7dc3e5294d6a8ac8e055f3e28915e99ba3ac332b8756b403a088b168de. Existing Established grade retained.
+
+| __glim_GetTexLevelParameterfv | 0xd9dd1f0 / 744 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dd1f0 / 744 | b81279523dac0d14bc760a1efcab112a744c7c61846d1fb63784736819ea8866 | Established |
+- `__glim_GetTexLevelParameterfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dd1f0; occupies 744 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dd1f0. SHA-256 b81279523dac0d14bc760a1efcab112a744c7c61846d1fb63784736819ea8866. Existing Established grade retained.
+
+| __glim_GetTexLevelParameteriv | 0xd9dd4d8 / 588 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dd4d8 / 588 | 03b20beba43dde91c5b76d6c93c6838ca9e74bc3a4bf3e931014bcd0a5d537d5 | Established |
+- `__glim_GetTexLevelParameteriv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dd4d8; occupies 588 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dd4d8. SHA-256 03b20beba43dde91c5b76d6c93c6838ca9e74bc3a4bf3e931014bcd0a5d537d5. Existing Established grade retained.
+
+| __glim_GetClipPlane | 0xd9dd840 / 224 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dd840 / 224 | 330c1bc2e9b1d2996b0cebddea08fbbf3c82e1eaf91e4278ea0b54c93c8f96c0 | Established |
+- `__glim_GetClipPlane` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dd840; occupies 224 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dd840. SHA-256 330c1bc2e9b1d2996b0cebddea08fbbf3c82e1eaf91e4278ea0b54c93c8f96c0. Existing Established grade retained.
+
+| __glInitImagePack | 0xd9dd920 / 164 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dd920 / 164 | eeea39223bb847912d6340c2200d28786d0530045909c1ebd59b4b901dea6162 | Established |
+- `__glInitImagePack` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dd920; occupies 164 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dd920. SHA-256 eeea39223bb847912d6340c2200d28786d0530045909c1ebd59b4b901dea6162. Existing Established grade retained.
+
+| __glim_GetTexImage | 0xd9dd9c4 / 1000 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dd9c4 / 1000 | 9cdbf28bce4b9e27f601da97ed88c8378509e0d5fc30a6458ca875efbe955576 | Established |
+- `__glim_GetTexImage` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dd9c4; occupies 1000 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dd9c4. SHA-256 9cdbf28bce4b9e27f601da97ed88c8378509e0d5fc30a6458ca875efbe955576. Existing Established grade retained.
+
+| __glim_GetPolygonStipple | 0xd9dddac / 244 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9dddac / 244 | 760564fe63e61d1599c23359d678c9c8cfe203e4d6ca887e588438e5d02c9898 | Established |
+- `__glim_GetPolygonStipple` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9dddac; occupies 244 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9dddac. SHA-256 760564fe63e61d1599c23359d678c9c8cfe203e4d6ca887e588438e5d02c9898. Existing Established grade retained.
+
+| __glim_GetLightfv | 0xd9ddea0 / 452 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ddea0 / 452 | 32cd6c08709dfcc450fac36a4f7427b4e307f962fa97af874cca4ea8e37f4220 | Established |
+- `__glim_GetLightfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ddea0; occupies 452 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ddea0. SHA-256 32cd6c08709dfcc450fac36a4f7427b4e307f962fa97af874cca4ea8e37f4220. Existing Established grade retained.
 ## Software renderer (soft)
 
 ### so_accumop.c
