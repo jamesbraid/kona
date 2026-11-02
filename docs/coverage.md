@@ -25,7 +25,7 @@ The share of understood rows that an independent audit found real when it re-der
 | Table | Audited real | Sample | Date |
 |---|---:|---:|---|
 | binaries | 100.0% | 20 | 2026-11-02 |
-| functions | 100.0% | 11 | 2026-11-01 |
+| functions | 90.0% | 20 | 2026-11-02 |
 | tokens | 95.5% | 89 | 2026-11-01 |
 | ioctls | 90.0% | 10 | 2026-10-29 |
 | ucode | 100.0% | 7 | 2026-11-01 |
