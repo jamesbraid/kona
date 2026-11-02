@@ -77,15 +77,16 @@ Six planes, each with an enable flag and an eye-space slot in external memory. F
 ## Viewport, depth range and engine identity (`glmodes.S`)
 
 - `geif.u entry 181` (slot 90, established words, inferred meaning): `mgeb_ViewPort` at 0xf404, `glmodes.S` line
-  107, 47 words, takes eleven operand words (command words 0-10 read at 0xf404-0xf421). Words 0-3, the window x,
+  107, 47 words, takes eleven operand words (command words 0-10 read at 0xf404-0xf423). Words 0-3, the window x,
   y, width and height, are converted from integer to single float with unit-1 code 0x73 (M = 0x6f3, 0xf405,
   0xf407, 0xf409, 0xf410) into registers 0x19,
   0x1a, 0x1b and 0x1c, and the integers themselves are stored to external memory at register 0x16 + 0x248 to +
   0x24b (stores 0xf40d, 0xf40f, 0xf411,
   0xf413, `r95` = 8). The extents are multiplied by the staged 0.5 (0x3f000000 at 0xf412, multiply 0xf414); a
   reciprocal follows with the seed and a Newton-Raphson step (`r110` = 0x6bf at 0xf415, M = 0x4ff at 0xf417,
-  0xf420 and 0xf422); operands 5-10 are converted the same way (0xf41a,
-  0xf41b, 0xf41f, 0xf421) and the constant 49152.0 (0x47400000) is staged at 0xf423. Results are stored to
+  0xf420 and 0xf422); operands 6, 7, 9 and 10 are converted the same way (0xf41a,
+  0xf41b, 0xf41f, 0xf421). Operands 5 and 8 are read at 0xf418 and 0xf41e by form-11 words that do not use that
+  conversion code, and operand 4 is read at 0xf423, the word that also stages the constant 49152.0 (0x47400000). Results are stored to
   engine words 0x7e (0xf41d), 0x7f (0xf42f), 0x80 (0xf427), 0x81 (0xf430) and 0x71 to 0x74 (0xf431-0xf434), and
   two more words go through register 0x16 at the F offsets 0x1a and 0x19 (0xf429,
   0xf42b, `r95` = 0x48). Which result lands in which word follows the nine-word store pairing and is inferred;
@@ -218,8 +219,9 @@ The three sprite mode routines are entered through consecutive slots chosen by t
   0x5b19, AND 0x5b21, store 0x5b2e), clearing bit 26 (0x4000000), the reference-plane enable bit. Sends five
   raster-bus words: the staged 0x70000 to address 0x1f8 (0x5b1d), the staged 6 to address 0x1f5 (0x5b1f), the
   staged 0x1243fd3 to 0x1f8 (0x5b20), 6 to 0x1f5 again (0x5b23) and staging word 0x10 to 0x1f4 (0x5b25). The
-  three writes to 0x1f5 and 0x1f4 are predicated (`r198` = 0x11) on the state tested at 0x5b27; the two writes
-  to 0x1f8 are not. Staging word 0x10 was loaded from register 0x1d at 0x5b18, which the framing words zero by
+  three writes to 0x1f5 and 0x1f4 are predicated (`r198` = 0x11); the two writes to 0x1f8 are not. The only
+  flag-setting word, on register 0x13 at 0x5b27, comes after all five stores, so no word of this handler sets the
+  flags those predicates use, as in `mgebi_NullCommand`. Staging word 0x10 was loaded from register 0x1d at 0x5b18, which the framing words zero by
   the repository's reading, so the last word is a zero.
 
 - `geif.u entry 235` (slot 117, established words, inferred meaning): `mgebi_ReferencePlane_Enable` at 0x5b2f,
@@ -253,7 +255,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   18 words, takes one operand. It stages 0x452 into staging word 2 (0x3a5c), 0x700 into word 1 (0x3a5d, which also
   names staging word 2 in A and D), 0x476 into word 0 (0x3a5e), 0x477 into word 2 again (0x3a5f) and 8 into word 3 (0x3a62).
   The wait is the word at 0x3a64. Bus stores in issue order, all unconditional: 0x1f7 (0x3a64, a word that carries
-  the wait and names no source, so by the rule above it sends staging word 2, which still holds 0x452), 0x1f5 with
+  the wait and names no source, so by the rule above it sends the word the last read left, staging word 2 as read at 0x3a5d, 0x452; 0x3a5f restages that word later), 0x1f5 with
   staging word 3, 8 (0x3a65), 0x1f7 with staging word 0, 0x476 (0x3a66), 0x1f5 with staging word 1 through the
   integer-to-float code M = 0x6f3 (0x3a67, 0x700 becomes 1792.0), 0x1f5 with operand 0 (0x3a69), 0x1f7 with staging
   word 2, now 0x477 (0x3a6a), 0x1f5 with register 0x1e, zero (0x3a6b) and 0x1f4 with staging word 0x10 (0x3a6c).
