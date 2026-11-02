@@ -6510,6 +6510,100 @@ These entries describe exact O32 target observations. All comparison ranges diff
 - `__glSpanClampBlue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9b2d00; occupies 532 bytes. **Inferred.**** The blue-clamp candidate loads the a1 +0xb8 count and a float parameter at entry a0 +0x7860 (`lw` at 0xd9b2d0c and `lwc1` at 0xd9b2d18). Its early float access sites include `lwc1` at 0xd9b2d38, `lwc1` at 0xd9b2d48, and `lwc1` at 0xd9b2d54. Float-store sites include `swc1` at 0xd9b2d44, `swc1` at 0xd9b2d50, `swc1` at 0xd9b2d7c, `swc1` at 0xd9b2d84, and `swc1` at 0xd9b2d98. All those input/output bases are unresolved. Its JSON fallback succeeds after the text renderer fails with `KeyError: 28`. The float conditions and advancing addresses remain unknown to the retained facts.
 
+#### IP35 O32 clamp/expand bodies identical to IP27 O32
+
+Seven target bodies are byte-identical to the same-address IP27 O32 routines over the complete symbol range. This records code identity only and leaves the inherited behavior grade Inferred.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glSpanClampRGB | 0xd9b3120 / 684 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b3120 / 684 | 087102840777a396b7db096788b2b493e531333dba96248d273e9c4dc83347ef |
+| __glSpanExpandRGB | 0xd9b3cf4 / 308 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b3cf4 / 308 | 9346609d2d6d80c3c9b401b3ab7eef63b430a60ff578cf0cba06a2897eb31220 |
+| __glSpanExpandBGR | 0xd9b3e28 / 308 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b3e28 / 308 | 0c094f394edfe61024368363b4ba40ae92930335fca6fa7bc46f9a70d583b5e3 |
+| __glSpanExpandLuminanceAlpha | 0xd9b405c / 296 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b405c / 296 | 0f15b9d4647826991b847d95614c1dd077acc30d07b0fb5e50213601511d3a19 |
+| __glSpanExpandIntensity | 0xd9b4298 / 276 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b4298 / 276 | 10afe868a3a3ab1622d0e910bbed454562329dcb932362088932cdb6e6b02071 |
+| __glSpanExpandRGBNS | 0xd9b4714 / 252 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b4714 / 252 | 237c89282693870a47ffe2ac3e180cc61aad356c55c37d54153445a497a93734 |
+| __glSpanExpandBGRNS | 0xd9b4810 / 252 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9b4810 / 252 | b29990710e8e8f0d3fe5116d42a2d6db1b14719701c7089f2d8f97bf616bf986 |
+
+#### IP35 O32 clamp/expand target readings
+
+Thirteen target ranges differ from documented N32 bodies. Five clamping entries retain unresolved float conditions and store bases; the evidence does not establish the complete formulas.
+
+| Routine | IP35 O32 address / size | N32 build / address / size | IP35 SHA-256 | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glSpanClampAlpha | 0xd9b2f14 / 524 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9af870 / 256 | 9a2fbac3ddae6625593db5d034b8daa55ac0ff1cc4b700f48a187a371e6822b8 | 690afaa9917259059be6798e2e0e59eff29b2e04f0c1b0599b36e2951ecc061c | 221 |
+| __glSpanClampRGBA | 0xd9b33cc / 836 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9afb30 / 208 | 4dd7a733fc6082be5f2c0795374ab97361f0b9deba9d52275c36658b499f4c3e | c0a8ffa1ddbeb21c38eef9597e092cb4bd248e527a74b4ba374945d082d33ed3 | 182 |
+| __glSpanExpandRed | 0xd9b3780 / 236 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9afcc0 / 80 | 69a97e9ab0a97206f93069e3fb78139ced85eeb700a5c514d24c4682ba84f722 | b048c1391e1522da2cf58faab794c1aba7761336f5659667f4adba7f9af2f7e3 | 72 |
+| __glSpanExpandGreen | 0xd9b386c / 388 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9afd10 / 80 | 53e3fdc3021cdde4e67e7d4f00272a548cf862f6b4ae7306ebf4af5927bcef9a | ddec1b7e27911d35bc32df88d9545602c97a04f4a78de8c9bcad9ad11f32f08a | 68 |
+| __glSpanExpandBlue | 0xd9b39f0 / 388 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9afd60 / 80 | 6145884da175d9754d7b9b742e3776aae2b58ffed239437c532735fd7dec76c0 | 138887217fed88bfe42bf469e02c648b236de2467b44a19a07738f83f170211a | 66 |
+| __glSpanExpandAlpha | 0xd9b3b74 / 384 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9afdb0 / 80 | 2b6b10333a2b31aec74d0b66724b420a4ac645a4ad448fbcc6836005023af3ca | 46180430754381ddcf9e8938b738fcdbca834253656be784d63791b612826f2d | 67 |
+| __glSpanExpandLuminance | 0xd9b3f5c / 256 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b0080 / 104 | e98ff8538bce05463f31a2b65f717b18438f60ed175b9f2fc507b6bf3bc58d25 | 9b953cb03e2079a5c508f14e32ecbeeee41e77387506eeb21f026d6e6197a49e | 76 |
+| __glSpanExpandRedAlpha | 0xd9b4184 / 276 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b0230 / 88 | e9e28938874c72a650e5ac0b752b713a80ae66f27af70eaa67469754b9c9b6ec | fc51b1b2b73cfcdd9d6ccafa12bfc25c1699c6418acee4fb46811e3c9d261ae2 | 75 |
+| __glSpanExpandRedNS | 0xd9b43ac / 220 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b0360 / 92 | dbe9287457c0b191a571f9b1c041de73c75b87dedc60a002d973941c94dff5c9 | e3b55923511a91ae4d62bc8d827d122284201bcd47ee9ceda51a0def8e56ef33 | 84 |
+| __glSpanExpandGreenNS | 0xd9b4488 / 220 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b03c0 / 92 | 5e1d31eeaf9bda68f1c5b3b6d1559b2ec595cc0189bb36ad7513152740b83553 | d0e206fc696a533b3eae02b2d7ea628b38ce4aa4e193476983590bc918c931eb | 85 |
+| __glSpanExpandBlueNS | 0xd9b4564 / 220 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b0420 / 92 | 682a59783b3584bc106d7edf40b9164e0dc492102fff225be0d500ebe434d9c0 | 093df9be3e5a3952912c94634b2439473fe98cc9d33029e8cd7c5f24e0bdf3c1 | 83 |
+| __glSpanExpandAlphaNS | 0xd9b4640 / 212 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b0480 / 76 | 552d6b0904150d963eefe076bccf3e208e61782a4d5e306aceb0562f1c0b73cc | 8687e0fb2308627a41006fc46438f8c4c67ae336a21c2c5558df9d94bc0de8ea | 63 |
+| __glSpanExpandLuminanceNS | 0xd9b490c / 212 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9b06d0 / 92 | a7f7bc09b37f402f18c00ea42f719686df61c6f579fd0c7106a68c08eeddaa8c | 9f9ca9053f87ab41bde64dc56b66dedcd3798201606bdd84881a8c4b2598e6c8 | 84 |
+
+- `__glSpanClampAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b2f14; occupies 524 bytes. **Inferred.**** The alpha-clamp candidate reads entry a1 +0xb8 and a float parameter at entry a0 +0x7880 (`lw` at 0xd9b2f20 and `lwc1` at 0xd9b2f2c). Early float loads and stores use unresolved bases (`lwc1` at 0xd9b2f4c, `swc1` at 0xd9b2f58, `swc1` at 0xd9b2f64, and `swc1` at 0xd9b2f6c). The alternative float-store sites include `swc1` at 0xd9b2f98 and `swc1` at 0xd9b2fa0. The text renderer fails with `KeyError: 30`. Its JSON fallback succeeds but leaves the float conditions and advancing addresses unresolved.
+
+- `__glSpanClampRGB` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3120; occupies 684 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b3120 over the full body. SHA-256 087102840777a396b7db096788b2b493e531333dba96248d273e9c4dc83347ef. Inferred behavior grade retained.
+
+- `__glSpanClampRGBA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b33cc; occupies 836 bytes. **Inferred.**** The four-channel clamp candidate reads float parameters at entry a0 +0x7858/+0x785c/+0x7860/+0x7880 (`lwc1` at 0xd9b33ec, `lwc1` at 0xd9b33f0, `lwc1` at 0xd9b33f4, and `lwc1` at 0xd9b33f8). The count word is at entry a1 +0xb8 (`lw` at 0xd9b33e0). An initial float comes from entry a2 +0x0 (`lwc1` at 0xd9b3410), and two alternative stores reach entry a3 +0x0 (`swc1` at 0xd9b344c and `swc1` at 0xd9b3454). Their selected values remain unknown. The target text renderer reports `KeyError: 44`, with a successful JSON fallback. The complete clamp formula and subsequent cursor origins are unresolved.
+
+- `__glSpanExpandRed` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3780; occupies 236 bytes. **Inferred.**** Red expansion loads float words at entry a0 +0x7880 and +0x7858 (`lwc1` at 0xd9b3798 and `lwc1` at 0xd9b379c). Its count at entry a1 +0xb4 returns immediately for signed values <= 0 (`lw` at 0xd9b378c and `blez` at 0xd9b37a0). A float input with unknown base is multiplied (`lwc1` at 0xd9b37bc and `mul.s` at 0xd9b37c8). The output sites include `swc1` at 0xd9b37c4, `swc1` at 0xd9b37cc, `swc1` at 0xd9b37d0, and `swc1` at 0xd9b37e0. The first stores the float loaded from entry a0 +0x7880. The others include unresolved float values. All four destination bases and the later input addresses remain unknown.
+
+- `__glSpanExpandGreen` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b386c; occupies 388 bytes. **Inferred.**** Green expansion obtains its float factors at entry a0 +0x785c and +0x7880 (`lwc1` at 0xd9b3884 and `lwc1` at 0xd9b3888). An early float store is resolved to entry a3 +0x0 (`swc1` at 0xd9b38b0), though its f12 value is not resolved. The following input load has an unknown base and feeds a multiplication (`lwc1` at 0xd9b38b4 and `mul.s` at 0xd9b38c0). Further output sites have unresolved bases (`swc1` at 0xd9b38c4, `swc1` at 0xd9b38c8, and `swc1` at 0xd9b38d8). The a1 +0xb4 count is checked for signed nonpositive values at entry (`blez` at 0xd9b388c). The complete output layout is not reconstructed from the N32 entry.
+
+- `__glSpanExpandBlue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b39f0; occupies 388 bytes. **Inferred.**** Blue expansion reads float parameters at entry a0 +0x7860 and +0x7880 (`lwc1` at 0xd9b3a08 and `lwc1` at 0xd9b3a0c). Its initial stores reach entry a3 +0x0 and +0x4, with f12 values unresolved (`swc1` at 0xd9b3a30 and `swc1` at 0xd9b3a38). The input float load has an unknown base (`lwc1` at 0xd9b3a3c). The arithmetic multiplies that float before a later output store (`mul.s` at 0xd9b3a48 and `swc1` at 0xd9b3a60). Other output sites include `swc1` at 0xd9b3a4c, `swc1` at 0xd9b3a54, and `swc1` at 0xd9b3a58. Their bases are unresolved, and the signed nonpositive a1 +0xb4 count takes the initial exit (`blez` at 0xd9b3a10).
+
+- `__glSpanExpandAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3b74; occupies 384 bytes. **Inferred.**** Alpha expansion fetches a float parameter from entry a0 +0x7880 (`lwc1` at 0xd9b3b8c). Three early float stores reach entry a3 +0x0/+0x4/+0x8 (`swc1` at 0xd9b3bb0, `swc1` at 0xd9b3bb4, and `swc1` at 0xd9b3bbc), with their values unresolved. A float load through an unknown base precedes a multiplication and float output (`lwc1` at 0xd9b3bc0, `mul.s` at 0xd9b3bcc, and `swc1` at 0xd9b3be4). The output base at that store is unknown. Signed nonpositive counts from entry a1 +0xb4 bypass the body (`blez` at 0xd9b3b90). Hostfacts does not resolve the later traversal or all channel-fill values.
+
+- `__glSpanExpandRGB` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3cf4; occupies 308 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b3cf4 over the full body. SHA-256 9346609d2d6d80c3c9b401b3ab7eef63b430a60ff578cf0cba06a2897eb31220. Inferred behavior grade retained.
+
+- `__glSpanExpandBGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3e28; occupies 308 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b3e28 over the full body. SHA-256 0c094f394edfe61024368363b4ba40ae92930335fca6fa7bc46f9a70d583b5e3. Inferred behavior grade retained.
+
+- `__glSpanExpandLuminance` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b3f5c; occupies 256 bytes. **Inferred.**** Luminance expansion reads four float words at entry a0 +0x7880/+0x7858/+0x785c/+0x7860 (`lwc1` at 0xd9b3f68, `lwc1` at 0xd9b3f6c, `lwc1` at 0xd9b3f70, and `lwc1` at 0xd9b3f74). An input float from an unknown base feeds three multiplications (`lwc1` at 0xd9b3f8c, `mul.s` at 0xd9b3f98, `mul.s` at 0xd9b3fa4, and `mul.s` at 0xd9b3fa8). Four output sites include the saved a0 +0x7880 float and three arithmetic results (`swc1` at 0xd9b3f94, `swc1` at 0xd9b3fac, `swc1` at 0xd9b3fb0, and `swc1` at 0xd9b3fb8). All their destination bases remain unknown. The count at entry a1 +0xb4 selects the exit when signed <= 0 (`blez` at 0xd9b3f78).
+
+- `__glSpanExpandLuminanceAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b405c; occupies 296 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b405c over the full body. SHA-256 0f15b9d4647826991b847d95614c1dd077acc30d07b0fb5e50213601511d3a19. Inferred behavior grade retained.
+
+- `__glSpanExpandRedAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4184; occupies 276 bytes. **Inferred.**** Red/alpha expansion reads the context floats at entry a0 +0x7880 and +0x7858 (`lwc1` at 0xd9b419c and `lwc1` at 0xd9b41a0). Two float loads through unresolved bases feed separate multiplications (`lwc1` at 0xd9b41c0, `mul.s` at 0xd9b41cc, `lwc1` at 0xd9b41e0, and `mul.s` at 0xd9b41e4). The output includes four float-store sites (`swc1` at 0xd9b41c4, `swc1` at 0xd9b41c8, `swc1` at 0xd9b41dc, and `swc1` at 0xd9b41ec). Their bases and the fill value f14 remain unresolved. The signed a1 +0xb4 count <= 0 takes the return path (`blez` at 0xd9b41a4). Exact source/output positioning is not inferred from the other ABI.
+
+- `__glSpanExpandIntensity` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4298; occupies 276 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b4298 over the full body. SHA-256 10afe868a3a3ab1622d0e910bbed454562329dcb932362088932cdb6e6b02071. Inferred behavior grade retained.
+
+- `__glSpanExpandRedNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b43ac; occupies 220 bytes. **Inferred.**** The unscaled red form reads a count at entry a1 +0xb4 (`lw` at 0xd9b43bc) and bypasses output for signed counts <= 0 (`blez` at 0xd9b43c8). Its float input and output bases are unresolved (`lwc1` at 0xd9b43e8, `swc1` at 0xd9b43f0, `swc1` at 0xd9b43f4, `swc1` at 0xd9b43f8, and `swc1` at 0xd9b4408). The last site stores the loaded f4 value. The other stores use f2 and f0, whose float values are not resolved by hostfacts. The grouped body includes another direct float copy (`lwc1` at 0xd9b4420 and `swc1` at 0xd9b4430). The exact output layout and traversal remain unknown.
+
+- `__glSpanExpandGreenNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4488; occupies 220 bytes. **Inferred.**** The unscaled green form has a float input at an unresolved address (`lwc1` at 0xd9b44c8). Output sites include `swc1` at 0xd9b44c4, `swc1` at 0xd9b44d0, `swc1` at 0xd9b44d4, and `swc1` at 0xd9b44e4, all with unknown bases. The last stores the input f4 value, while the other float values are unresolved. The grouped path contains a float load and direct store (`lwc1` at 0xd9b4500 and `swc1` at 0xd9b4510). Its entry a1 +0xb4 count returns on signed nonpositive values (`blez` at 0xd9b44a4). No target cursor addresses are borrowed from N32.
+
+- `__glSpanExpandBlueNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4564; occupies 220 bytes. **Inferred.**** Unscaled blue expansion reads the descriptor count at entry a1 +0xb4 (`lw` at 0xd9b4574). The initial exit is selected for signed count <= 0 (`blez` at 0xd9b4580). An unknown-base float load supplies a later float store (`lwc1` at 0xd9b45a8 and `swc1` at 0xd9b45c0). Other output sites include `swc1` at 0xd9b45a0, `swc1` at 0xd9b45a4, and `swc1` at 0xd9b45b0. Their bases and fill values are unresolved. A grouped-path input/output pair is `lwc1` at 0xd9b45e0 and `swc1` at 0xd9b45f0. Hostfacts also leaves both bases unknown.
+
+- `__glSpanExpandAlphaNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4640; occupies 212 bytes. **Inferred.**** Unscaled alpha expansion writes three float values through unresolved bases before loading an input float (`swc1` at 0xd9b4678, `swc1` at 0xd9b467c, `swc1` at 0xd9b4680, and `lwc1` at 0xd9b4684). It stores the loaded f4 value through another unresolved address (`swc1` at 0xd9b4698). The grouped path includes a float copy (`lwc1` at 0xd9b46b8 and `swc1` at 0xd9b46c8), without resolved cursor bases. The count comes from entry a1 +0xb4 (`lw` at 0xd9b4650), with signed nonpositive values selecting the exit (`blez` at 0xd9b465c). The f0 fill value remains unknown to hostfacts.
+
+- `__glSpanExpandRGBNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4714; occupies 252 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b4714 over the full body. SHA-256 237c89282693870a47ffe2ac3e180cc61aad356c55c37d54153445a497a93734. Inferred behavior grade retained.
+
+- `__glSpanExpandBGRNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b4810; occupies 252 bytes. Byte-identical to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9b4810 over the full body. SHA-256 b29990710e8e8f0d3fe5116d42a2d6db1b14719701c7089f2d8f97bf616bf986. Inferred behavior grade retained.
+
+- `__glSpanExpandLuminanceNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9b490c; occupies 212 bytes. **Inferred.**** Unscaled luminance expansion loads a float through an unknown base (`lwc1` at 0xd9b4944). Three sites store that same f0 register through unresolved output bases (`swc1` at 0xd9b4958, `swc1` at 0xd9b495c, and `swc1` at 0xd9b4964). Another store uses f2, whose value is unresolved (`swc1` at 0xd9b494c). The grouped path likewise loads a float and stores f0 at three sites (`lwc1` at 0xd9b4978, `swc1` at 0xd9b4984, `swc1` at 0xd9b4988, and `swc1` at 0xd9b498c). The a1 +0xb4 count exits for signed values <= 0 (`blez` at 0xd9b4928). The complete replicated-channel layout and advancing addresses remain unestablished.
+
 ### pix_ci.c
 
 - `Store_8` in usr/gfx/arch/IP27KONA32/libGLcore.so: stores a fragment into an 8-bit colour-index buffer: applies the index write mask, the logic operation and the dither state and writes one byte at the pixel, and it occupies 424 bytes at address 0x0da394c0; the public sample-implementation source gfx/lib/opengl/glcore/s_ci.c holds the same routine, matched by name, a shipped body of 41 source lines against 48 in the public file, and it makes no access to the board. Inferred.
