@@ -2248,13 +2248,13 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d99c	92	evCheck	dynsym	e16
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013d9f8	80	tbTraceOff	dynsym	3016f3c3f9e3		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013da48	80	tbTraceOn	dynsym	8c15b9cce0a4		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013da98	80	tlTraceComment	dynsym	b05195e13dac		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dae8	244	fcPioWrite32	dynsym	60e62430db3a		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dae8	244	fcPioWrite32	dynsym	60e62430db3a		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dbdc	220	fcPioWrite64	dynsym	16a7c0bf9462		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dcb8	52	fcAdapPioWrite32	dynsym	f92fa4b06887		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dcec	52	fcAdapPioWrite64	dynsym	76295e2d44a6		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd20	52	fcAdapPioRead32	dynsym	15d4c02ce283		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd54	52	fcAdapPioRead64	dynsym	7c60b9a3c63b		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd88	292	fcPioRead32	dynsym	cffeaefa7421		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013dd88	292	fcPioRead32	dynsym	cffeaefa7421		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013deac	128	fcGfxWrite	dynsym	1d56780c52ea		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013df2c	932	fcGfxWrite32	dynsym	1edf98182bac		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1013e2d0	768	fcGfxWrite64	dynsym	faaec479e366		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
@@ -3293,7 +3293,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094860	352	AccessWarpPointer	
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100949c0	92	SProcDCStubDispatch	dynsym	1b1740811b73		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094a20	600	AppendFakeRequest	dynsym	75f44a88eba5		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094c80	572	ProcSGIvcListVideoFormatCombinations	dynsym	a946cdfa0728		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9		in	named-only	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	f363aae2c5ca		in	named-only	docs/kona-ddx.md#kona-graphics-context-loading-and-caches-kon_load-kon_stipple-konvalidate	Kona graphics-context loading and caches (`kon_load*`, `kon_*Stipple`, `konValidate*`)
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094fd0	68	SClobberNotifyEvent..IAF	dynsym	772cead3cb30		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095020	212	LbxWriteGetpropReply..PCG	dynsym	b261febd07f4		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
@@ -47278,25 +47278,25 @@ usr/gfx/gfxinfo	shared-tool	n32		0x100180b4	92	vs2Initialize	dynsym	980a6c83b966
 usr/gfx/gfxinfo	shared-tool	n32		0x10018110	56	vs2Installed	dynsym	0c8d69a001da		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018148	256	vs2LoadVdrc	dynsym	d1c3ce316689		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018248	116	vs2ManagedArea	dynsym	22f5662ed7de		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100182bc	144	vs2ReadRegisterBlock	dynsym	ba1a1a78ffe7		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001834c	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x100182bc	144	vs2ReadRegisterBlock	dynsym	ba1a1a78ffe7		in	located	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
+usr/gfx/gfxinfo	shared-tool	n32		0x1001834c	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/gfxinfo	shared-tool	n32		0x10018360	104	vs2RegisterClearBit	dynsym	bd906a702d7a		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x100183c8	100	vs2RegisterSetBit	dynsym	173cb0c76c58		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001842c	136	vs2ReadStatus	dynsym	dd3f36790035		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100184b4	712	vs2Setmon	dynsym	29d63642477d		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001877c	88	vs2ToggleSerialClock	dynsym	d0c16c8e5221		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100187d4	144	vs2WriteRegisterBlock	dynsym	07ca2ec22031		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001877c	88	vs2ToggleSerialClock	dynsym	d0c16c8e5221		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
+usr/gfx/gfxinfo	shared-tool	n32		0x100187d4	144	vs2WriteRegisterBlock	dynsym	07ca2ec22031		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/gfxinfo	shared-tool	n32		0x10018864	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018878	80	vs2WriteProgClock	dynsym	1528135ec6c1		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x100188c8	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x100188e0	560	getVeniceInfo	dynsym	4dedb387fa1c		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10018b10	56	getRMCount	dynsym	a27ca6c048c3		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018d64	88	vs2Close	dynsym	0e7557c61831		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018dbc	168	vs2Delay	dynsym	0d3dec16e561		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018e64	140	vs2Open	dynsym	edad9c686672		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x10018f2c	320	vs2ProbeBoardType	dynsym	cc4f8258ac1d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001906c	320	venice_get_vs2_xilinx_config	dynsym	9270a83cdabf		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x100191ac	276	venice_grok_vs2_fname	dynsym	c07f076d1274		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x10018d64	88	vs2Close	dynsym	0e7557c61831		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/gfxinfo	shared-tool	n32		0x10018dbc	168	vs2Delay	dynsym	0d3dec16e561		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/gfxinfo	shared-tool	n32		0x10018e64	140	vs2Open	dynsym	edad9c686672		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/gfxinfo	shared-tool	n32		0x10018f2c	320	vs2ProbeBoardType	dynsym	cc4f8258ac1d		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/gfxinfo	shared-tool	n32		0x1001906c	320	venice_get_vs2_xilinx_config	dynsym	9270a83cdabf		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/gfxinfo	shared-tool	n32		0x100191ac	276	venice_grok_vs2_fname	dynsym	c07f076d1274		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
 usr/gfx/gfxinfo	shared-tool	n32		0x100192c0	52	venice_free_vs2_xilinx_config	dynsym	104355912d7c		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x100192f4	1364	vs2_loaducode	dynsym	1b5608eaf61e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019848	92	vs2GetShadow	dynsym	83b333124556		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
@@ -47309,7 +47309,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x10019da8	184	vs2ReadEEPROMData	dynsym	30be3a8
 usr/gfx/gfxinfo	shared-tool	n32		0x10019e60	76	vs2WriteEEPROMCode	dynsym	02f420c02ea8		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019eac	300	vs2WriteEEPROMData	dynsym	19a38a1087e2		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x10019fd8	380	vs2WriteEEPROMBlock	dynsym	3ca7e36ee3ae		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001a154	88	venice_clock_vs2_serial_dataBit	dynsym	bbfc0ce11afd		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001a154	88	venice_clock_vs2_serial_dataBit	dynsym	bbfc0ce11afd		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a674	424	venice_load_vs2_clockDivider	dynsym	e3ebf59b08e5		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001a81c	1200	venice_loadsection_vs2_top	dynsym	89ac69078605		in	understood	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001accc	1124	venice_loadsection_vs2_body	dynsym	ccd782d0402e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -47354,7 +47354,7 @@ usr/gfx/gfxinfo	shared-tool	n32		0x1001db0c	248	read_3000_serial	dynsym	c1f533bf
 usr/gfx/gfxinfo	shared-tool	n32		0x1001dc04	384	read_4000_serial	dynsym	82e6f6a431f6		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001dd84	212	dump_xilinx_config	dynsym	617fa502674a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/gfxinfo	shared-tool	n32		0x1001de58	156	get_config_size	dynsym	d590354cf85e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	d71e0008c56e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/gfxinfo	shared-tool	n32		0x1001e298	152	read_xilinx_file	dynsym	d71e0008c56e		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
 usr/gfx/gfxinfo	shared-tool	n32		0x1001e33c	4	__istart	dynsym	df3f619804a9		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000ed0	268	__start	dynsym	4b92a32d4cd4		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/hyperpipeinfo	board-tool	n32		0x10000fdc	12	_mcount	dynsym	1c53f0b255e3		in	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
@@ -47368,7 +47368,7 @@ usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	df23200ac5ab		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	095ae85b9d96		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
+usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	named-only	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	12338278bfb0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	602601180c81		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10020cf0	220	__dt__18ChannelWindowClassGv	dynsym	25ee42d16a81		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48605,7 +48605,7 @@ usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	und
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	named-only	docs/kona-ddx.md#kona-drawing-glyph-copy-and-image-routines-kon	Kona drawing, glyph, copy and image routines (`kon*`)
+usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	named-only	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	3545cab228e9		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
@@ -48677,25 +48677,25 @@ usr/gfx/setmon	shared-tool	n32		0x10012958	92	vs2Initialize	dynsym	59645fe37ecb	
 usr/gfx/setmon	shared-tool	n32		0x100129b4	56	vs2Installed	dynsym	822f5d6591ea		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100129ec	256	vs2LoadVdrc	dynsym	38e7a0ccfb59		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012aec	116	vs2ManagedArea	dynsym	36ea32a2345d		in	named-only	docs/setup-tool-functions.md#gfxinfo	`gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10012b60	144	vs2ReadRegisterBlock	dynsym	0074ff5e5a8a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10012bf0	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10012b60	144	vs2ReadRegisterBlock	dynsym	0074ff5e5a8a		in	understood	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
+usr/gfx/setmon	shared-tool	n32		0x10012bf0	20	vs2ReadByte	dynsym	2816784740aa		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/setmon	shared-tool	n32		0x10012c04	104	vs2RegisterClearBit	dynsym	10d3fa4ffbe8		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10012c6c	100	vs2RegisterSetBit	dynsym	7699df6babb6		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10012cd0	136	vs2ReadStatus	dynsym	f5e31ea09a8e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10012d58	712	vs2Setmon	dynsym	3aa511947685		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10013020	88	vs2ToggleSerialClock	dynsym	e0db993cfac5		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013078	144	vs2WriteRegisterBlock	dynsym	13acddd0a90f		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10013020	88	vs2ToggleSerialClock	dynsym	e0db993cfac5		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
+usr/gfx/setmon	shared-tool	n32		0x10013078	144	vs2WriteRegisterBlock	dynsym	13acddd0a90f		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/setmon	shared-tool	n32		0x10013108	20	vs2WriteByte	dynsym	7165e55c5a1b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1001311c	80	vs2WriteProgClock	dynsym	0a275d165831		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1001316c	24	vs2WriteXilinxReg	dynsym	8b4367d5f35c		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10013184	560	getVeniceInfo	dynsym	1a56b8130803		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100133b4	56	getRMCount	dynsym	d140a5ac55cc		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013608	88	vs2Close	dynsym	d161999ab022		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013660	168	vs2Delay	dynsym	7c1cd3a3ce20		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013708	140	vs2Open	dynsym	757ed25c104b		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100137d0	320	vs2ProbeBoardType	dynsym	49ab03d1a16d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013910	320	venice_get_vs2_xilinx_config	dynsym	55027165b4d0		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10013a50	276	venice_grok_vs2_fname	dynsym	f219812b96a1		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10013608	88	vs2Close	dynsym	d161999ab022		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/setmon	shared-tool	n32		0x10013660	168	vs2Delay	dynsym	7c1cd3a3ce20		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/setmon	shared-tool	n32		0x10013708	140	vs2Open	dynsym	757ed25c104b		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/setmon	shared-tool	n32		0x100137d0	320	vs2ProbeBoardType	dynsym	49ab03d1a16d		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/setmon	shared-tool	n32		0x10013910	320	venice_get_vs2_xilinx_config	dynsym	55027165b4d0		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
+usr/gfx/setmon	shared-tool	n32		0x10013a50	276	venice_grok_vs2_fname	dynsym	f219812b96a1		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
 usr/gfx/setmon	shared-tool	n32		0x10013b64	52	venice_free_vs2_xilinx_config	dynsym	1a6e6e3eae2d		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10013b98	1364	vs2_loaducode	dynsym	5bc6443c8e94		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100140ec	92	vs2GetShadow	dynsym	3dcd1ef75622		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
@@ -48708,7 +48708,7 @@ usr/gfx/setmon	shared-tool	n32		0x1001464c	184	vs2ReadEEPROMData	dynsym	74f18b8b
 usr/gfx/setmon	shared-tool	n32		0x10014704	76	vs2WriteEEPROMCode	dynsym	65ecc00c2574		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10014750	300	vs2WriteEEPROMData	dynsym	0bee1c119786		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x1001487c	380	vs2WriteEEPROMBlock	dynsym	5a5cad726ca9		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x100149f8	88	venice_clock_vs2_serial_dataBit	dynsym	348df2490437		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x100149f8	88	venice_clock_vs2_serial_dataBit	dynsym	348df2490437		in	named-only	docs/setup-tool-functions.md#vs2-register-and-serial-helpers	VS2 register and serial helpers
 usr/gfx/setmon	shared-tool	n32		0x10014f18	424	venice_load_vs2_clockDivider	dynsym	28bd9d5023e7		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x100150c0	1200	venice_loadsection_vs2_top	dynsym	5310a0df88b6		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10015570	1124	venice_loadsection_vs2_body	dynsym	0036ab5b614a		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
@@ -48753,7 +48753,7 @@ usr/gfx/setmon	shared-tool	n32		0x100183b0	248	read_3000_serial	dynsym	ba30c65a5
 usr/gfx/setmon	shared-tool	n32		0x100184a8	384	read_4000_serial	dynsym	ac54d5996174		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x10018628	212	dump_xilinx_config	dynsym	6cf22a3673ba		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
 usr/gfx/setmon	shared-tool	n32		0x100186fc	156	get_config_size	dynsym	d590354cf85e		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
-usr/gfx/setmon	shared-tool	n32		0x10018b3c	152	read_xilinx_file	dynsym	771a2f4943ce		in	named-only	docs/setup-tools.md#gfxinit-and-gfxinfo	`gfxinit` and `gfxinfo`
+usr/gfx/setmon	shared-tool	n32		0x10018b3c	152	read_xilinx_file	dynsym	771a2f4943ce		in	named-only	docs/setup-tool-functions.md#vs2-board-discovery-and-lifetime	VS2 board discovery and lifetime
 usr/gfx/setmon	shared-tool	n32		0x10018df0	1052	vfmtResolvePixelDepth	dynsym	29fc4e1e82b1		in	located	docs/kona-ddx.md#video-format-files	Video format files
 usr/gfx/setmon	shared-tool	n32		0x10019540	84	vfmtMinimalKonaTarget	dynsym	49ae7fe545f9		in	understood	docs/opengl.md#vfmtminimalkonatarget	`vfmtMinimalKonaTarget`
 usr/gfx/setmon	shared-tool	n32		0x100195a0	1312	vfmtActualHWToKonaTarget	dynsym	03413d9dea24		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
@@ -48807,8 +48807,8 @@ usr/gfx/setmon	shared-tool	n32		0x10025090	104	saXSGIvcListVideoFormats	dynsym	c
 usr/gfx/setmon	shared-tool	n32		0x10025290	96	saXSGIvcSetOutputPedestal	dynsym	ab52d7a4f021		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026850	192	KonCmd	dynsym	8de63668c204		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/setmon	shared-tool	n32		0x100269e0	92	saXSGIvcSetOutputSync	dynsym	2017d15693b9		in	named-only	docs/setup-tools.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	f25fe40f889c		in	located	docs/kona-ddx.md#kona-layer	Kona layer
-usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	e977025999d9		in	located	docs/kona-ddx.md#kona-layer	Kona layer
+usr/gfx/setmon	shared-tool	n32		0x10026a40	80	konReloadAllGammas	dynsym	f25fe40f889c		in	located	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
+usr/gfx/setmon	shared-tool	n32		0x10026a90	124	konTempBlankAllChannels	dynsym	e977025999d9		in	located	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/gfx/setmon	shared-tool	n32		0x10026b10	72	saXSGIvcQueryScreenGammaMaps	dynsym	b8089b8a82cb		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026b60	56	saXSGIvcQueryMonitorName	dynsym	4efbc0c78f64		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x10026e40	56	vcGetVideoRply	dynsym	22124b5fa292		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
@@ -50444,12 +50444,12 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e0d0	212	miClearDrawable	dynsy
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e1b0	748	konStereoPolyline	dynsym	955ed3e3add0		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44e4a0	1972	cfbFillRectSolidCopy	dynsym	6e4bf1110f1d		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44ee60	844	rrmUnbindRNFromClip	dynsym	8bbe4ca48f32		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1b0	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/opengl.md#konquerymaxswapbarrier	`konQueryMaxSwapBarrier`
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1b0	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f1d0	688	konChangeDIDCmap	dynsym	36e3178422dc		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44f490	1416	nfbPolyFillRect	dynsym	b1a4cf17817a		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fa20	132	cfb32DoBitblt	dynsym	490d45b33155		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fcf0	292	miPostChangeSaveUnder	dynsym	b9b764e0a151		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fff0	244	konCursorOn	dynsym	493f1a737abf		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x44fff0	244	konCursorOn	dynsym	493f1a737abf		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x450370	192	rrmUnqueueRequest	dynsym	223321817a10		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x450430	324	miSetExtents	dynsym	f7117f31d822		in	understood	docs/kona-ddx.md#machine-independent-routines-regions	Machine-independent routines: regions
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x450620	1844	cfb32SegmentSS1RectGeneral	dynsym	4d89ec6c2569		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -50490,7 +50490,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45eae0	2268	cfbFillBoxTile32sGen
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x45f3c0	3604	mfbLineSS	dynsym	8c2ac23db4df		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4601e0	2040	konValidateMode	dynsym	b16920baf0db		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4609e0	628	FindFreeCID	dynsym	41acdfbdbaff		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c60	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c60	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460c80	432	nfbValidateWindowVisual	dynsym	c38413457196		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x460f20	2576	cfb16SegmentSD	dynsym	f8411945b61c		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x461930	3052	cfb32SegmentSS	dynsym	c3ab94dff2b0		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -50500,14 +50500,14 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x462e10	148	cfbCopyPixmap	dynsym	
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x462eb0	1196	miSendExposures	dynsym	bafcd1b6338f		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x463360	748	miUnion	dynsym	cbfb34512165		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x463a10	1604	miFillSppPoly	dynsym	d0c08bf8e4b6		in	understood	docs/kona-ddx.md#machine-independent-routines-mi	Machine-independent routines (`mi*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464060	96	konReloadAllGammas	dynsym	9cd713926438		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464060	96	konReloadAllGammas	dynsym	9cd713926438		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4640c0	912	konStereoPolyArc	dynsym	ad49e723f9ef		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464450	2876	cfb32ClippedLineGeneral	dynsym	e2073104a8bc		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x464fa0	1432	cfb32FillBoxTileOddCopy	dynsym	27b0197537b2		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465540	120	rrmCreateWindow	dynsym	a0b3a2a60110		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4655c0	104	konSetSpans	dynsym	826fdaafad36		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4655c0	104	konSetSpans	dynsym	826fdaafad36		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465630	368	konDestroyGC	dynsym	df3592424d91		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChannels	dynsym	bc5058c3ef59		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4657a0	104	konTempBlankAllChannels	dynsym	bc5058c3ef59		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x465810	2172	konLineSS	dynsym	6c257f993e40		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x466090	1284	cfb32Tile32FSGeneral	dynsym	e08f5d2c0dbd		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4665a0	2628	cfb16FillPoly1RectCopy	dynsym	f9c687f13a7f		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -50620,7 +50620,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x499c10	2608	konPolyPoint	dynsym	
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49a6d0	468	cfb16ZeroPolyArcSSXor	dynsym	4f5d706edd53		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49ac60	148	FreeID	dynsym	d7719b490ea3		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49ad00	168	nfbStoreColors	dynsym	268eac9514d9		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49adb0	328	konProbe	dynsym	9c6223b1d0ef		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49adb0	328	konProbe	dynsym	9c6223b1d0ef		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49af00	84	incrRRMFlags	dynsym	4a682c888367		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49af60	208	allocRRMpriv	dynsym	d97b9c5a2a6b		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49b030	2920	cfb32ValidateGC	dynsym	c27b2ab6f8fb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -50636,7 +50636,7 @@ usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x49edd0	4924	konPolyFillRectTiled
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0720	772	cfbResolveColor	dynsym	272d900206d9		in	understood	docs/kona-ddx.md#colour-frame-buffer-set-up-graphics-context-and-pixmaps	Colour frame-buffer: set-up, graphics context and pixmaps
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0cd0	304	nfbPostChangeSaveUnder	dynsym	b51b9d40583d		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a0e00	3512	cfb16LineSS	dynsym	a437463aa3c3		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
-usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25a0	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
+usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25a0	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a25c0	468	cfb32ZeroPolyArcSSXor	dynsym	9855f78d294f		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a27a0	1132	mfbGetSpans	dynsym	973f2708bffa		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/kona.so	board-x-module	n32		0x4a2c10	228	konaSetStereoMode	dynsym	4ef036378273		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
@@ -51239,7 +51239,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44dc90	212	miClearDrawable	dyns
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44dd70	748	konStereoPolyline	dynsym	f1bb994275b2		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44e060	1972	cfbFillRectSolidCopy	dynsym	c5c9f451e803		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ea20	844	rrmUnbindRNFromClip	dynsym	8e6598186c6a		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/opengl.md#konquerymaxswapbarrier	`konQueryMaxSwapBarrier`
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	a69fa96fd169		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44f060	1416	nfbPolyFillRect	dynsym	3a410dd7a96d		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x44f5f0	132	cfb32DoBitblt	dynsym	c89f50f768f3		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -51285,7 +51285,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGe
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	bed08b314839		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	736d1e3bb928		in	understood	docs/kona-ddx.md#konadso-functions-whose-bytes-differ-from-konalso	konad.so functions whose bytes differ from konal.so
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x460bb0	2576	cfb16SegmentSD	dynsym	4ce0927ef2c5		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4615c0	3052	cfb32SegmentSS	dynsym	27a7bd82bfeb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -51431,7 +51431,7 @@ usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a6d80	5680	konPolyFillRectTile
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a89c0	772	cfbResolveColor	dynsym	272d900206d9		in	understood	docs/kona-ddx.md#colour-frame-buffer-set-up-graphics-context-and-pixmaps	Colour frame-buffer: set-up, graphics context and pixmaps
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a8f70	304	nfbPostChangeSaveUnder	dynsym	b9b544c3e6b9		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	fdee388785eb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
-usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
+usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	ac8122b37ed3		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konad.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
@@ -52034,7 +52034,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cdc90	212	miClearDrawable	dyn
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cdd70	748	konStereoPolyline	dynsym	f1bb994275b2		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ce060	1972	cfbFillRectSolidCopy	dynsym	c5c9f451e803		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cea20	844	rrmUnbindRNFromClip	dynsym	8e6598186c6a		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/opengl.md#konquerymaxswapbarrier	`konQueryMaxSwapBarrier`
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13ced90	696	konChangeDIDCmap	dynsym	a69fa96fd169		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cf060	1416	nfbPolyFillRect	dynsym	3a410dd7a96d		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13cf5f0	132	cfb32DoBitblt	dynsym	c89f50f768f3		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -52080,7 +52080,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13de770	2268	cfbFillBoxTile32sG
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13df050	3604	mfbLineSS	dynsym	bed08b314839		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13dfe70	2048	konValidateMode	dynsym	49eb1f0850a0		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0670	628	FindFreeCID	dynsym	18eff3c744e6		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e08f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e08f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e0bb0	2576	cfb16SegmentSD	dynsym	4ce0927ef2c5		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x13e15c0	3052	cfb32SegmentSS	dynsym	27a7bd82bfeb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -52226,7 +52226,7 @@ usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1426d80	5680	konPolyFillRectTil
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14289c0	772	cfbResolveColor	dynsym	272d900206d9		in	understood	docs/kona-ddx.md#colour-frame-buffer-set-up-graphics-context-and-pixmaps	Colour frame-buffer: set-up, graphics context and pixmaps
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x1428f70	304	nfbPostChangeSaveUnder	dynsym	b9b544c3e6b9		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x14290a0	3512	cfb16LineSS	dynsym	fdee388785eb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
-usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
+usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142a860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aa40	1132	mfbGetSpans	dynsym	ac8122b37ed3		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konal.so	board-x-module	n32		0x142aeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
@@ -52829,7 +52829,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44dc90	212	miClearDrawable	dyns
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44dd70	748	konStereoPolyline	dynsym	f1bb994275b2		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44e060	1972	cfbFillRectSolidCopy	dynsym	c5c9f451e803		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ea20	844	rrmUnbindRNFromClip	dynsym	8e6598186c6a		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/opengl.md#konquerymaxswapbarrier	`konQueryMaxSwapBarrier`
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed70	24	konQueryMaxSwapBarrier	dynsym	50c781dda391		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44ed90	696	konChangeDIDCmap	dynsym	a69fa96fd169		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44f060	1416	nfbPolyFillRect	dynsym	3a410dd7a96d		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x44f5f0	132	cfb32DoBitblt	dynsym	c89f50f768f3		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -52875,7 +52875,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45e770	2268	cfbFillBoxTile32sGe
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45f050	3604	mfbLineSS	dynsym	bed08b314839		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x45fe70	2048	konValidateMode	dynsym	49eb1f0850a0		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460670	628	FindFreeCID	dynsym	18eff3c744e6		in	understood	docs/kona-ddx.md#resource-manager-client-and-identifier-allocation	Resource manager client and identifier allocation
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/opengl.md#konstorefakecolors	`konStoreFakeColors`
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4608f0	28	konStoreFakeColors	dynsym	b8426775f7ed		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460910	432	nfbValidateWindowVisual	dynsym	68c7857a2dec		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x460bb0	2576	cfb16SegmentSD	dynsym	4ce0927ef2c5		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4615c0	3052	cfb32SegmentSS	dynsym	27a7bd82bfeb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
@@ -53021,7 +53021,7 @@ usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a6d80	5680	konPolyFillRectTile
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a89c0	772	cfbResolveColor	dynsym	272d900206d9		in	understood	docs/kona-ddx.md#colour-frame-buffer-set-up-graphics-context-and-pixmaps	Colour frame-buffer: set-up, graphics context and pixmaps
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a8f70	304	nfbPostChangeSaveUnder	dynsym	b9b544c3e6b9		in	understood	docs/kona-ddx.md#frame-buffer-layer-nfb	Frame-buffer layer (`nfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4a90a0	3512	cfb16LineSS	dynsym	fdee388785eb		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
-usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/opengl.md#konclearhwcolormap	`konClearHWColormap`
+usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa840	20	konClearHWColormap	dynsym	6bd96815d363		in	understood	docs/kona-ddx.md#hardware-facing-routines-read-in-full	Hardware-facing routines read in full
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aa860	468	cfb32ZeroPolyArcSSXor	dynsym	652e17126550		in	understood	docs/kona-ddx.md#colour-frame-buffer-routines-cfb	Colour frame-buffer routines (`cfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaa40	1132	mfbGetSpans	dynsym	ac8122b37ed3		in	understood	docs/kona-ddx.md#monochrome-frame-buffer-routines-mfb	Monochrome frame-buffer routines (`mfb*`)
 usr/lib/X11/dyDDX/konas.so	board-x-module	n32		0x4aaeb0	228	konaSetStereoMode	dynsym	9ad8b703c7ba		in	understood	docs/kona-ddx.md#kona-layer	Kona layer
