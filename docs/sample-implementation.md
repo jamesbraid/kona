@@ -313,6 +313,116 @@ These entries describe the exact O32 bodies in `usr/gfx/arch/IP27KONA/libGLcore.
 - `__glSpanUnpackNonCompUint` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd9b26e4; occupies 116 bytes.
   **Established.** Converts unsigned word data without a component-parameter load. It reads descriptor words at argument 1 +0xb4 and +0x1c (`lw` at 0xd9b26f4, 0xd9b26f8), loads a sample at an unknown effective address (`lw` at 0xd9b2718), and stores a float word through another unknown base (`swc1` at 0xd9b2744). A signed nonnegative tested sample takes `bgez` at 0xd9b272c past the extra addition (`add.s` at 0xd9b273c). Negative falls through to that addition. The conversion delay slot runs for both outcomes (`cvt.s.w` at 0xd9b2730). Descriptor +0xb4 is returned. The routine makes no calls.
+## O32 pixel statistics, state and blend routines read in full
+
+These are complete O32 target-body readings from `usr/gfx/arch/IP27KONA/libGLcore.so`. The raw comparisons include both the originally supplied extents and, for the two oversized `ApplyParameter` inputs, separately bounded entry-body extents. Byte differences do not establish changed behavior.
+
+| Routine | Comparison scope | Target address / size | N32 build / address / size | Target SHA-256 | N32 SHA-256 | Prefix differences |
+|---|---|---|---|---|---|---:|
+| `__glSpanMinmaxSinkL` | supplied | 0xd9bd66c / 412 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8120 / 256 | `3debd5407b1cf97ef17562bf60b3332d33c9d8f90fd55737b5b9190e57bd2cf9` | `d43be64fa1c6e1999fa46a549dccfd7170cde91f60081a1801d8a8aadcb20778` | 220 |
+| `__glSpanMinmaxSinkLA` | supplied | 0xd9bd808 / 480 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8220 / 184 | `2d10f459da2c64ab2310fd864a95db81b930a116110207ff9c730c3fd9a41cba` | `ee5280600ad7ec2e2459ea266346b819616e0a83177d1e8d7c350dbff6d2c99b` | 148 |
+| `__glSpanMinmaxSinkRGB` | supplied | 0xd9bd9e8 / 688 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b82e0 / 256 | `b44d26ba0bd9899e7dbe446e016c51a97500cee9460439af135f37dc0e08839e` | `d345f315534f970d6aa819a5fde471e894a65f3609e74261106de3f3740b18da` | 222 |
+| `__glSpanHistogramA` | supplied | 0xd9bdde0 / 268 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8530 / 492 | `4b8011593a896c9c73850d5edaab273e864658c4903ee197ebe2de9d5a3c4720` | `c5074157650c843d594d7d196066f241abfa9011d6637d2a7dcf4142eb79a453` | 248 |
+| `__glSpanHistogramL` | supplied | 0xd9bdeec / 260 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8720 / 492 | `031a813dd2d4ada11d9e605e3beb07b36e33a473b5f207f4f956d04fedf55d68` | `ecb23cf24ba94ccb6a0b7a3ad8220ee7f560e27d056b702c72f111b8524929e1` | 239 |
+| `__glSpanHistogramSinkA` | supplied | 0xd9be594 / 216 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8e40 / 372 | `474de0d1b7f5921f5406840f433886a268207295618d72c57321c6071c0b5b8a` | `482d2c9de189f87c62025c18e042772bbc0122e721fefce581428f5f850dff0a` | 197 |
+| `__glSpanHistogramSinkL` | supplied | 0xd9be66c / 216 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b8fc0 / 372 | `2e36c4d319492154766a9e48eb5f176e058315e0940c77cfc5b9ab5e7a045344` | `f017dbd2a4bdf94a16ee08a099cf5e72721e1b9efe0895f8f668158b1badb564` | 200 |
+| `__glim_ClearColor` | supplied | 0xd9c1290 / 300 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc120 / 184 | `cf8b3beacff725ead1211e7785c4bbf2b111e572b449d955da24148c83f8a600` | `32c9e7cb5733aa5bf0d7d9580d735efa24fba6973c7bf1c773fa852780a5f22a` | 170 |
+| `__glim_DepthFunc` | supplied | 0xd9c17d0 / 372 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc5b0 / 408 | `37d603498f96d4e317fff66d4ff08063be3bf59e0d32b8f8eaf10b622a16486e` | `0f3666ee6a1c546d800fbd419a197e9b3ca05617cfec296cd9734bc2c43dac66` | 344 |
+| `__glim_DepthMask` | supplied | 0xd9c1944 / 196 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc750 / 200 | `66b8662df8a4bdf2b98f7051e0cffd899bc28453af22844def727552aa4115a4` | `86c7871d64e376ce8f5829df42f5ad3585bb2e93c35522dbb41632e5c5683c73` | 179 |
+| `ApplyParameterF` | supplied | 0xd9c321c / 1112 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bdf10 / 388 | `d996582fc3eae36d24a1bc9a7d5ace8791b3a54527114df8566001488ba62b2a` | `4601448a8791afd66962ea32011b1d1a5cb6c616f66532748720d3e972edda79` | 297 |
+| `ApplyParameterF` | entry body | 0xd9c321c / 384 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bdf10 / 388 | `c1a0b66a2633123973befa09702735605322121ab8fef9d3e735a40209e40acd` | `4601448a8791afd66962ea32011b1d1a5cb6c616f66532748720d3e972edda79` | 294 |
+| `ApplyParameterI` | supplied | 0xd9c3674 / 1472 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9be370 / 776 | `36e6a71b2ff805690344090184c4f859d4f4d550cf4aa5da6f3865c547d899a8` | `16e5c657119a5d653b7d5a2de3ddb7a2076ef8d7be910f8d911fb3e541bebb75` | 715 |
+| `ApplyParameterI` | entry body | 0xd9c3674 / 924 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9be370 / 776 | `c282225364089bab732706c19951676c689b7e2dacba0d2831859c4d0c8f2d49` | `16e5c657119a5d653b7d5a2de3ddb7a2076ef8d7be910f8d911fb3e541bebb75` | 715 |
+| `__glim_PopClientAttrib` | supplied | 0xd9c87d0 / 360 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c41f0 / 684 | `176109ac733f893fe1bf883a81b16e8c07289e44126defa83b9b523f30743ded` | `897f22c13cf80e6182666aa900b4a62668d8c5d7d0747d274af65fbe718fd8ba` | 316 |
+| `__glDrawBitmap` | supplied | 0xd9c8940 / 280 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c44a0 / 268 | `ccc3a0c4e8d3345b2bee10dba5dce3bd14c2975eff7b93ea6921ba77e08a9ccb` | `60d2d87fec62786000eb8a2c6acfe7237bff543b7b619a7f4c2377d6d17ed08a` | 216 |
+| `__glBlendSpan_SA_MSA` | supplied | 0xd9caed8 / 188 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c6810 / 360 | `9ea16861216ed5ebdfd18e2ee0326da5b54b1df87bba94737a03528d7b1ebc65` | `49e50e9b0e701d5451c1f62e1636e55eed86c0072d96979e227e63f7fd4900b3` | 167 |
+| `__glBlendSpan_MSA_SA` | supplied | 0xd9caf94 / 180 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c6980 / 368 | `d6de98fb2b9b8bfea910e57498af12978694d7c13d3869057e84f6ae10758174` | `42e0ade7e4583fb78107b6f6fc5f3cdba8b6773bc1506e985a9684b877c2d4c8` | 155 |
+| `__glBlendSpan_SA_ZERO` | supplied | 0xd9cb048 / 112 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c6af0 / 340 | `ccdf9da5f312f6f5f936f48ef6644b6c975abcd184b150b6eb10bcf289dc0455` | `3ee73660ef0c6a5ac65e470718989bc07014bb1e637adc02b9b7bc79e5772fa7` | 101 |
+| `__glBlendSpan_SA_ONE` | supplied | 0xd9cb0b8 / 244 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c6c50 / 408 | `0cf03c4475a49d0e00899da11f213635c7ec96a07d07ca14bd5898d6b23e0501` | `d7d949826814357904c04d6b988ce3769b870c18b52abfc4684cd8c352108bce` | 214 |
+| `__glim_Color3ub` | supplied | 0xd9cb4c0 / 136 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c7140 / 112 | `ee73ddaccaa99ec1767b83097b5b6749141d73e0ec93567a7d9e8464590df129` | `dd01714c480f3c5388e03288e5cb17a20869699c2a12acdb494311a9b8587cbc` | 105 |
+| `__glim_Color3ubv` | supplied | 0xd9cb548 / 128 | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9c71b0 / 124 | `cdaa4ce4785e34e9e3bb9175e05280b5396f3fb540e7054772b4637ed88a677d` | `2ec6d656931b53883abd9205d9a7621ec11d7f457d1397a139120e5d79ee38db` | 108 |
+
+#### Target-build readings
+
+- `__glSpanMinmaxSinkL` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bd66c; occupies 412 bytes.
+  **Inferred.** luminance minimum/maximum accumulation. The count at second-argument +0xb8 is checked by `blez` at 0xd9bd67c, which skips all processing when that signed count is nonpositive. Two observed statistic fields are first-argument +0x534 and +0x538 (`swc1` at 0xd9bd6b4 and `swc1` at 0xd9bd6d4). The first update falls through `bc1fl` at 0xd9bd6ac when f2 is less than the current +0x534 float. The second falls through `bc1f` at 0xd9bd6cc when the current +0x538 float is less than f2. Hostfacts leaves f2's value and the moving input base unknown. No callee appears in this software statistics loop.
+
+- `__glSpanMinmaxSinkLA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bd808; occupies 480 bytes.
+  **Inferred.** The luminance/alpha sink reads two floats from first-argument +0x7888 and +0x7894 (`lwc1` at 0xd9bd814 and `lwc1` at 0xd9bd818). Its statistic destinations are +0x534, +0x538, +0x53c and +0x540, with updates including `swc1` at 0xd9bd858, 0xd9bd898, 0xd9bd878, 0xd9bd8b8. The initial input reads use original third-argument +0 and +0xc (`lwc1` at 0xd9bd830 and `lwc1` at 0xd9bd874). A nonpositive second-argument +0xb8 count takes `blez` at 0xd9bd81c to return. Calculated update values and the final return remain unresolved in hostfacts.
+
+- `__glSpanMinmaxSinkRGB` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bd9e8; occupies 688 bytes.
+  **Inferred.** This RGB statistics sink uses three context floats at first-argument +0x7888, +0x788c and +0x7890 (`lwc1` at 0xd9bd9f4, 0xd9bd9f8, 0xd9bd9fc). The observed statistic stores cover +0x534, +0x538, +0x53c, +0x540, +0x544 and +0x548 (`swc1` at 0xd9bda3c, 0xd9bda7c, 0xd9bdac0, 0xd9bda5c, 0xd9bda9c, 0xd9bdae0). It begins with third-argument floats at +0, +4 and +8 (`lwc1` at 0xd9bda14, 0xd9bda58, 0xd9bda98). `blez` at 0xd9bda00 returns early for a nonpositive count. The body has no calls, but hostfacts does not resolve the computed f14 updates or one common return value.
+
+- `__glSpanHistogramA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bdde0; occupies 268 bytes.
+  **Inferred.** Alpha histogram processing reads first-argument +0x7894 and the second argument's +0xb8 count (`lwc1` at 0xd9bde20 and `lw` at 0xd9bde14). Its loop invokes `__glFClamp` (`jalr` at 0xd9bde64), reads words at first-argument +0x504 and +0x4dc (`lw` at 0xd9bde6c and `lw` at 0xd9bde70), and contains a word-counter store (`sw` at 0xd9bdeb4). Floating-point output stores accompany the loop (`swc1` at 0xd9bde48, 0xd9bde50, 0xd9bde58, 0xd9bdec0). The moving output and bin bases, stored counter value and clamp arguments remain unknown, so no exact bin formula is asserted.
+
+- `__glSpanHistogramL` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9bdeec; occupies 260 bytes.
+  **Inferred.** Luminance histogram processing loads its scale-like float from first-argument +0x7888 (`lwc1` at 0xd9bdf2c), then calls `__glFClamp` (`jalr` at 0xd9bdf50). A nonpositive second-argument +0xb8 count takes `blez` at 0xd9bdf30 to return. The loop includes a counter-word store (`sw` at 0xd9bdfa0) and four floating-point stores (`swc1` at 0xd9bdfa8, 0xd9bdfb0, 0xd9bdfb8, 0xd9bdfc4). Hostfacts cannot resolve those moving destinations or the counter value. The body shows histogram-related software writes without establishing a direct board access.
+
+- `__glSpanHistogramSinkA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9be594; occupies 216 bytes.
+  **Inferred.** The alpha sink omits the outgoing floating-point span stores of the nonsink interface. It checks the second argument's +0xb8 count (`blez` at 0xd9be5d4), calls `__glFClamp` (`jalr` at 0xd9be5f4), and reads the histogram words at first-argument +0x504 and +0x4dc (`lw` at 0xd9be5fc and `lw` at 0xd9be600). Its nonstack output is a word store in the loop's delay slot (`sw` at 0xd9be644). That store's address and value are unknown in hostfacts, as are the call arguments and final result.
+
+- `__glSpanHistogramSinkL` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9be66c; occupies 216 bytes.
+  **Inferred.** This luminance-only histogram sink reads first-argument +0x7888 (`lwc1` at 0xd9be6a8) and passes through `__glFClamp` (`jalr` at 0xd9be6cc). It obtains histogram state from first-argument +0x504 and +0x4dc (`lw` at 0xd9be6d4 and `lw` at 0xd9be6d8). The `bne` at 0xd9be718 repeats until its unresolved index matches the count from second-argument +0xb8, with the word store (`sw` at 0xd9be71c) in its delay slot. No nonstack floating-point output store is listed. Hostfacts leaves the bin destination and numeric return unresolved.
+
+- `__glim_ClearColor` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c1290; occupies 300 bytes.
+  **Established.** Clear-colour setup reads the current context through absolute 0x1010 (`lw` at 0xd9c12bc). When the process word at absolute 0x1018 equals 1, the `bne` at 0xd9c12c0 falls through to error 0x502 `__glSetError` (`jalr` at 0xd9c12d0). The other path performs floating-point comparisons. The +0x744 write uses either the taken delay-slot site or the fall-through site selected by `bc1fl` at 0xd9c1388 (`swc1` at 0xd9c138c and `swc1` at 0xd9c1394). The context's +0x748, +0x74c and +0x750 fields are then written (`swc1` at 0xd9c1398, 0xd9c13a0, 0xd9c13a8). A comparison bound is loaded from context +0xdd8 (`lwc1` at 0xd9c12e4), but its numeric value and several other floating-point operands remain unresolved. The sibling's fixed zero-to-one description is not substituted for those target facts.
+
+- `__glim_DepthFunc` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c17d0; occupies 372 bytes.
+  **Inferred.** depth-comparison state update. The process word at absolute 0x1018 selects an error-0x502 path when it equals 1 (`bne` at 0xd9c17fc, `jalr` at 0xd9c180c). Other invalid parameters can call `__glSetError` with 0x500 (`jalr` at 0xd9c1838). The body reads the context word at +0x7a98 (`lw` at 0xd9c182c), writes 0x1000000 there on one arm (`sw` at 0xd9c1888), and can invoke the callback loaded from context +0x7aa0 (`lw` at 0xd9c1894 and `jalr` at 0xd9c18a0). That call receives a0 equal to the context, a1 equal to context +0x7a34 and a2 equal to the word at context +0x7a84. Subsequent state-store bases become unknown in hostfacts, so their displacements are not promoted to context offsets. The successful path writes process word 0x1018 to 2 (`sw` at 0xd9c1920).
+
+- `__glim_DepthMask` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c1944; occupies 196 bytes.
+  **Inferred.** Depth-write-mask setup checks bit 0x4000 in the context word at +0x700 (`lw` at 0xd9c1990) through `beql` at 0xd9c1998. When that bit is clear, the taken arm stores a byte at context +0x664 in the branch delay slot (`sb` at 0xd9c199c). With the bit set, one path copies the word at context +0x7a84 to +0x7a88 (`sw` at 0xd9c19bc), while another calls `__glReadjustZCounts` with the context (`jalr` at 0xd9c19cc). Hostfacts leaves the prospective mask byte and post-call store base unknown. The body finishes the state-change path by writing 2 to absolute 0x1018 (`sw` at 0xd9c19e8).
+
+- `ApplyParameterF` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c321c; occupies 384 bytes.
+  **Established.** The floating-point material helper dispatches its third argument among selectors 0x1200, 0x1201, 0x1202 and 0x1600 through 0x1603 (`beq` at 0xd9c323c, 0xd9c3248, 0xd9c3250, 0xd9c3258, 0xd9c3260, 0xd9c3268, and `bne` at 0xd9c3270). For example, the 0x1603 arm copies three words from fourth-argument +0, +4 and +8 to second-argument +0x44, +0x4c and +0x48 (`swc1` at 0xd9c3280, 0xd9c3288, 0xd9c3294). The 0x1600 arm calls `__glScaleColorf` with second-argument +48 and the original fourth argument (`jalr` at 0xd9c32a4). Recorded return arms produce 0, 0x20, 8, 4, 0x10, 1, 2 or 3 (`jr` at 0xd9c3394). The supplied range includes following routines; this reading is bounded to the independently verified entry body.
+
+- `ApplyParameterI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c3674; occupies 924 bytes.
+  **Established.** Integer material application reads input words through the fourth argument (`lw` at 0xd9c36d0, 0xd9c36e8, 0xd9c36fc), with one arm writing second-argument +0x44, +0x4c and +0x48 (`swc1` at 0xd9c36e4, 0xd9c36f8, 0xd9c3710). Selector 0x1600 takes `beq` at 0xd9c36b0 to `__glScaleColori`, passing second-argument +48 and the fourth argument (`jalr` at 0xd9c3720). Other paths read a float at first-argument +0xdf0 (`lwc1` at 0xd9c3750) before further stores, whose computed values remain unknown in hostfacts. The return arms list 0, 0x20, 8, 4, 0x10, 1, 2 and 3 (`jr` at 0xd9c3a08). The supplied range includes following routines; this reading is bounded to the independently verified entry body.
+
+- `__glim_PopClientAttrib` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c87d0; occupies 360 bytes.
+  **Inferred.** restore a saved client-attribute record. The stack-base and top words come from context +0x31c0 and +0x31c4 (`lw` at 0xd9c881c and `lw` at 0xd9c87fc). The `beqz` at 0xd9c8824 takes the underflow arm when unsigned base is at least top, reporting error 0x504 through `__glSetError` (`jalr` at 0xd9c891c). Otherwise it pops the top by four bytes (`sw` at 0xd9c883c) and conditionally runs word-copy loops under saved mask bits 1 and 2 (`beqz` at 0xd9c8848 and `beqz` at 0xd9c88c8). Hostfacts leaves the moving copy destinations unknown, so those loops are not assigned a complete client-state layout. The saved record's first word is cleared before normal return (`sw` at 0xd9c8910).
+
+- `__glDrawBitmap` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9c8940; occupies 280 bytes.
+  **Established.** . Bitmap drawing with positive second and third arguments calls `__glImageSize` with formats 0x1900 and 0x1a00 (`jalr` at 0xd9c89a8). The size result is passed to the callback at first-argument +0 (`lw` at 0xd9c89b0 and `jalr` at 0xd9c89bc), followed by `__glFillImage` (`jalr` at 0xd9c89f0). The procedure loaded from first-argument +0x3118 receives a stack record at entry sp minus 32 (`lw` at 0xd9c89f8 and `jalr` at 0xd9c8a08). A nonpositive dimension instead takes `blez` at 0xd9c898c or 0xd9c8994 to a call through the same slot with a2 equal to zero (`lw` at 0xd9c8a2c and `jalr` at 0xd9c8a38). Another callback at first-argument +0xc follows the positive-dimension path (`lw` at 0xd9c8a10 and `jalr` at 0xd9c8a1c). Callback identities and several buffer arguments remain unknown, so allocation, freeing and board effects are not asserted from this body alone.
+
+- `__glBlendSpan_SA_MSA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9caed8; occupies 188 bytes.
+  **Inferred.** software blending with source-alpha and complementary-alpha factors. The body reads its count at first-argument +0x7660, two span pointers at +0x7738 and +0x773c, and floats at +0xdd8 and +0x7894 (`lw` at 0xd9caee8, 0xd9caef0, 0xd9caef8, `lwc1` at 0xd9caeec and `lwc1` at 0xd9caf00). Each loop includes four floating-point writes (`swc1` at 0xd9caf58, 0xd9caf60, 0xd9caf6c, 0xd9caf78). Hostfacts cannot resolve their moving bases or computed values. No calls occur, and all return paths set v0 to zero (`jr` at 0xd9caf8c).
+
+- `__glBlendSpan_MSA_SA` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9caf94; occupies 180 bytes.
+  **Inferred.** The complementary/source-alpha blend interface loads the two spans from first-argument +0x7738 and +0x773c (`lw` at 0xd9cafa4 and `lw` at 0xd9cafa8). Its parameter floats are first-argument +0x7894 and +0xdd8 (`lwc1` at 0xd9cafb4 and `lwc1` at 0xd9cafbc). The loop writes four floats (`swc1` at 0xd9cb010, 0xd9cb018, 0xd9cb024, 0xd9cb030), but hostfacts leaves both their addresses and arithmetic values unknown. This is a leaf routine with a zero return (`jr` at 0xd9cb040).
+
+- `__glBlendSpan_SA_ZERO` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9cb048; occupies 112 bytes.
+  **Inferred.** The source-alpha/zero path reads one span pointer at first-argument +0x7738 and one parameter float at +0x7894 (`lw` at 0xd9cb054 and `lwc1` at 0xd9cb058). Its output consists of four floating-point stores in the loop (`swc1` at 0xd9cb090, 0xd9cb098, 0xd9cb09c, 0xd9cb0a4). Their moving destination and computed values are unresolved, so no numerical blend formula is substituted. There are no callees, and v0 is zero on return (`jr` at 0xd9cb0b0).
+
+- `__glBlendSpan_SA_ONE` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9cb0b8; occupies 244 bytes.
+  **Inferred.** This source-alpha/unit-factor blend path reads four component bounds from first-argument +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd9cb0dc, 0xd9cb0e0, 0xd9cb0e4, 0xd9cb0ec). It skips the loop when the count at +0x7660 minus one is negative (`bltz` at 0xd9cb0e8). Floating-point comparisons precede the output stores. The `bc1fl` at 0xd9cb170 selects between the taken delay-slot store (`swc1` at 0xd9cb174) and the fall-through store (`swc1` at 0xd9cb17c). Other float-store sites are `swc1` at 0xd9cb16c, 0xd9cb180, 0xd9cb184. Hostfacts does not resolve all comparison operands, the moving output pointer or its values, so the bounds' numeric meaning remains unassigned. Its sole return yields zero (`jr` at 0xd9cb1a4).
+
+- `__glim_Color3ub` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9cb4c0; occupies 136 bytes.
+  **Established.** The scalar byte-colour setter obtains the current context from absolute 0x1010 (`lw` at 0xd9cb4d8) and writes floats at context +0x1b0, +0x1b4 and +0x1b8 (`swc1` at 0xd9cb504, 0xd9cb51c, 0xd9cb530). It also copies the context's +0xdd8 float to +0x1bc (`lwc1` at 0xd9cb4f0 and `swc1` at 0xd9cb528). The callback loaded from context +0x2f18 (`lw` at 0xd9cb510) receives the context as a0 (`jalr` at 0xd9cb52c). Hostfacts does not resolve the scalar lookup bases or their results. The +0xdd8 value is not asserted to be one, and the callback's result is passed back unchanged.
+
+- `__glim_Color3ubv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9cb548; occupies 128 bytes.
+  **Established.** The vector colour setter reads bytes at original first-argument +0, +1 and +2 (`lbu` at 0xd9cb564, 0xd9cb580, 0xd9cb598). Each selects a float from the current context plus its unsigned byte shifted left two, plus 0xef0 (`lwc1` at 0xd9cb574, 0xd9cb58c, 0xd9cb5a4). Results go to context +0x1b0, +0x1b4 and +0x1b8 (`swc1` at 0xd9cb57c, 0xd9cb594, 0xd9cb5b0), while +0x1bc receives the context's +0xdd8 float (`lwc1` at 0xd9cb578 and `swc1` at 0xd9cb5a8). It then calls the unknown procedure at context +0x2f18 with the context and original byte-vector pointer (`lw` at 0xd9cb590 and `jalr` at 0xd9cb5ac), returning that procedure's result.
 ## Software renderer (soft)
 
 ### so_accumop.c
