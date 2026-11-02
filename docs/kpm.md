@@ -1676,6 +1676,238 @@ The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its 
 | jt_soft_reset | 0x101685c0 / 60 | 9fb250ccd7f0d120ef6f4098ea1204a24946946d31969e9f1a506425ad664b44 | 0x10033ad0 60 / usr/gfx/KONA/bin/kpm | d410a29d542d5ffb6f359080c1b0f85c6f3474a583d98e008f257fad630e4276 | 6 offsets: 0xf 16/12, 0x12 bd/01, 0x13 80/f0, 0x1b c8/7c, 0x1e c3/8e, 0x1f 00/f8 |
 | jt_hard_reset | 0x10168600 / 60 | b3cb51b2edcc8c4a6e9dda932cbe9f94ad96d0b940de83a51f5028d76182b4ea | 0x10033b10 60 / usr/gfx/KONA/bin/kpm | 9aa939db17a19f9c462fcad29e6575d579ed2ccc5df42bccfb9e11415d30f224 | 6 offsets: 0xf 16/12, 0x12 bd/01, 0x13 40/b0, 0x1b c8/7c, 0x1e c3/8e, 0x1f 04/fc |
 
+### IRIX 6.5.30m irsaudit boundary-scan routines
+
+These readings cover twenty additional routines in the IRIX 6.5.30m irsaudit build. The entries compare each exact byte range with its KPM counterpart; byte differences alone do not establish different behavior.
+
+#### Exact byte comparisons
+
+All 20 ranges differ. Equality was checked over the full supplied byte range with
+`compare-elf-range.py`, without relocation normalization. The table records raw SHA-256 values.
+The matching
+established entries are in `docs/kpm.md`, under the same routine names, for
+`usr/gfx/KONA/bin/kpm`. Byte differences do not by themselves establish a behavioral difference.
+
+| Routine | Target address | KPM address | Bytes | Target SHA-256 | KPM SHA-256 | Differing byte offsets |
+|---|---|---|---:|---|---|---:|
+| `jt_test_thyself` | 0x10168640 | 0x10033b50 | 60 | `66010444a482023253078ce0ba3583ee790752e0b16f9b20ce99032a70d2e89d` | `f93dd5060c24252b43f19e932e0952ecf318a7f32adb397b641fad0add460af9` | 6 |
+| `jt_send_instruction` | 0x10168680 | 0x10033b90 | 84 | `244214d8138dae078f99f2dbe835b589f28c68c6f1e6406219bb093f241c1b6f` | `07766ab1f717e672018197657bee1e26023176975fb97b45f3563dc7754c7340` | 6 |
+| `jt_send_data` | 0x101686e0 | 0x10033bf0 | 84 | `3c61feeb31f28ad2e30e48c5f877066496f9ac531b5137cf5639cc50804af267` | `4bac92fc8d4b8e5cd9c27fd573f58b763c36e73281c78e63b684ab182dd8a68a` | 6 |
+| `jt_set_error_handler` | 0x10168740 | 0x10033c50 | 40 | `77167ebcd81ba786cfbad403a0086933cb1cfe5085ff3bf6c3c1e870e362a2be` | `ebab2e28f3b6e190e54bae1d359f8b5704696e6a47949b12ab4003df805da1df` | 5 |
+| `jt_set_debug_handler` | 0x10168770 | 0x10033c80 | 40 | `812d12cf4b0c2ac50a1d886bec0ba186ef17f5a6bd21903505d35c8b7d6593ba` | `d9973190d304b4c36dd96b4d58438604f49564e61ce50ab461958c8a7f0d8579` | 5 |
+| `jt_error` | 0x101687a0 | 0x10033cb0 | 184 | `8b234e0640376208a302d3a4e981a519ea4e693eaacc5a2eddd6c08d5bacf991` | `edfa005dbe516438e11de3984d3d47dab1e02d7da4d9c275432ceac1874e42db` | 17 |
+| `jt_debug` | 0x10168860 | 0x10033d70 | 116 | `8702e6a2601ce5d8b92ea084df166e5f5d5e8627604253454b07bf9e81d38657` | `13052bc1f68e232f74662742627b62230dab25b9e59c1978370ba2c6567d3314` | 7 |
+| `jt_perror` | 0x101688e0 | 0x10033df0 | 120 | `acc886fc73000175d7f5280d17f6f768dc37565301d4c17e4faa13cb8a3e0fd1` | `d3d2f961d711d139eddcc557016daaa83c47dae9ea2cc19c90b36c4685df762a` | 16 |
+| `jt_read_chain` | 0x10168970 | 0x100352a0 | 2388 | `87b8e0d97f66e5c95adeb12cd164fded725e2e4383746981e65f45590cc2c00b` | `04c5e3488c86e3dfc46792e490aa798dff8e77304ba5e2d19aff8b8d4705ed99` | 121 |
+| `read_bsr` | 0x101692d0 | 0x10035c00 | 6000 | `9f2e21cdc72d47f79f60b0a06676d9fe12a63161876f45e2d8baf5891cfbe436` | `d57085e541b9ba4465c21b054e9a340df56c6888ed8811cd0bfff4aca997e4e0` | 466 |
+| `type_to_func` | 0x1016aa40 | 0x10037370 | 236 | `10977f82bbf29dc1f9240846891c74f6b6371e438ed23fb22ac889c996d0945c` | `031f28e35cc209bbaa1aa1d05778d2aa3abdb83e0236767992c9da11e485bb7e` | 17 |
+| `type_to_safe` | 0x1016ab30 | 0x10037460 | 272 | `f06a2e9ed8de74bcecbbf648b767b1ac19d1f95c5c69e5582a0ead6bd36f130e` | `9a4a9f82f3cb22fb4d7d65d75923d4563ad3ef3ee59498f90a2c7ebe17259401` | 14 |
+| `premature_eof` | 0x1016ac40 | 0x10037570 | 88 | `116479923aa344f73efd34037f066f17a7910367dabe3f1076388561d677a491` | `0c3939b32a8fba37b25d92d23d945eb371eea45acc62f7c78208c3d8d816a524` | 14 |
+| `read_bsdl` | 0x1016aca0 | 0x100375d0 | 300 | `75080321f417f2da700204abcd5d0fc4d4c9a96c6e953a2cc07431727c79c521` | `08e982e2c8763ef6522934d9d8aaab6700225c9553acdedb6955fdeb87c5d6af` | 34 |
+| `jt_print_chain` | 0x1016add0 | 0x10037700 | 1144 | `2b082da32843785fef0de03e74d4d48125cbba50f37dff65879e6d36dcc48305` | `5ec3ca13e2c6c631f75d83967ee69fcc0b00044cca1acbb42ba924b66fd66208` | 68 |
+| `jt_print_bsr` | 0x1016b250 | 0x10037b80 | 1756 | `544eac8d890fbf5ad6ea9af3686eceed146dab7b8757752e308a534fc824464a` | `08b0d6071d329c15b10e69af5d2635b14a26ed7ed040eeebc659bf5832c361f5` | 119 |
+| `jt_lookup_port` | 0x1016bae0 | 0x10038410 | 232 | `d41ed675d205252266ae27c8286462a9c5e37033c0476c20fca46fced6fd5386` | `28d66bc2e78f4a4c4dec65e417743feda0550bbe6b398168d3392b72a34e95a2` | 11 |
+| `porttopin` | 0x1016bbd0 | 0x10038500 | 260 | `af8b9ed807fb6b4fba57a80262fa8b6d6eede2e3772e9c23e44a1c047c5a4498` | `e53c88281b1a97258ea226c4df155ecc1024819f55b500c684890c2d7a632b45` | 18 |
+| `pintoport` | 0x1016bce0 | 0x10038610 | 260 | `58e7bacd441d7838cae8f672925e9e4ace9ba8177d7e1e11e09ad5e8903b30c9` | `a00c6e74a3feeb9325c653eb2b7fa39b38375f76101fef3b11ea4528198944c7` | 18 |
+| `jt_free_bist` | 0x1016c0c0 | 0x100389f0 | 528 | `1c1633065a9d580b47ca7abab0d7510755149cf0d35a5db556cbf52cf4c6169d` | `b88d26bbf7f3b9ef868d8df9709ef272ced365575d7a5a281090250ce499fc04` | 22 |
+
+#### Target-build readings
+
+- `jt_test_thyself` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168640, occupies 60 bytes.
+  **Established.** This wrapper loads an indirect procedure address from absolute 0x102bc308
+  (`lw` at 0x1016865c), invokes it (`jalr` at 0x10168660), and returns that call's result (`jr`
+  at 0x10168674). The callee and hardware role are unknown. This body only dispatches the
+  indirect call.
+
+- `jt_send_instruction` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168680, occupies 84 bytes.
+  **Established.** The first three entry arguments survive the wrapper unchanged in the
+  hostfacts call arguments at the indirect invocation (`jalr` at 0x101686b8). The procedure
+  pointer comes from absolute 0x102bc30c (`lw` at 0x101686b4), and the wrapper returns the
+  indirect result (`jr` at 0x101686cc). The callee and hardware role are unknown. The wrapper
+  contains no resolved hardware destination.
+
+- `jt_send_data` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x101686e0, occupies 84 bytes.
+  **Established.** This data-send wrapper selects the procedure at absolute 0x102bc310 (`lw` at
+  0x10168714). It invokes that unknown callee with a0, a1 and a2 equal to the original arguments
+  (`jalr` at 0x10168718), then passes back its result (`jr` at 0x1016872c). The callee's
+  hardware role is unknown.
+
+- `jt_set_error_handler` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168740, occupies 40 bytes.
+  **Established.** The setter writes its first argument as a 32-bit word to absolute 0x102be904
+  (`sw` at 0x10168758). There are no calls in the body. Hostfacts records v0 equal to the first
+  argument at return (`jr` at 0x10168760). The slot is the callback that this build's `jt_error`
+  reads.
+
+- `jt_set_debug_handler` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168770, occupies 40 bytes.
+  **Established.** Debug callback installation consists of a 32-bit write of the supplied first
+  argument to absolute 0x102be908 (`sw` at 0x10168788). The function invokes no callback and
+  returns with the supplied value in v0 (`jr` at 0x10168790). The matching reader is this
+  build's `jt_debug`.
+
+- `jt_error` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x101687a0, occupies 184 bytes.
+  **Established.** This diagnostic dispatcher selects between a callback and formatted stream
+  output. The `beqz` at 0x101687e4 takes the fallback path when the word at absolute 0x102be904
+  is zero. Its nonzero fall-through calls the unknown callback with the original a0 and a1 plus
+  a2 equal to entry sp minus 48 (`jalr` at 0x101687fc). The fallback uses `fprintf` (`jalr` at
+  0x10168820) and `vfprintf` (`jalr` at 0x1016883c), both with stream `__iob` plus 32. Hostfacts
+  leaves the latter call's a2 unknown.
+
+- `jt_debug` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168860, occupies 116 bytes.
+  **Established.** The debug reporter silently skips its callback when absolute 0x102be908
+  contains zero: the `beqz` at 0x101688a4 takes the return path in that case. Nonzero falls
+  through to an unknown callback with a0 unchanged and a1 equal to entry sp minus 56 (`jalr` at
+  0x101688b8). This body implements callback dispatch rather than a direct graphics-register
+  operation.
+
+- `jt_perror` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x101688e0, occupies 120 bytes.
+  **Established.** Error formatting reads `errno` (`lw` at 0x10168914), then selects the
+  corresponding word from `sys_errlist` (`lw` at 0x10168920). The `sprintf` call sets a0 to
+  entry sp minus 288, a1 to fixed format pointer 0x102be7d8, a2 to the caller's second argument
+  and a3 to that error-string pointer (`jalr` at 0x10168928). The formatted buffer and original
+  first argument become a1 and a0 of `jt_error` (`jal` at 0x1016893c).
+
+- `jt_read_chain` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x10168970, occupies 2388 bytes.
+  **Established.** The chain-description reader resolves its input through `jt_findfile` (`jal`
+  at 0x101689a0) and opens the resolved result through `jt_zopen` (`jal` at 0x101689e4). Failed
+  lookup falls through the `bnez` at 0x101689b4 to `jt_perror` and a zero return, while failed
+  open falls through the `bnez` at 0x101689fc to the corresponding error path. Allocation
+  requests include records of 0x20 and 0x18 bytes (`jalr` at 0x10168a2c and `jalr` at
+  0x10168a44). Parsing uses repeated calls to the unnamed helper at 0x1016bea0 (`jal` at
+  0x10168aa0 and `jal` at 0x101691a0), grows storage through `realloc` (`jalr` at 0x10168cd8),
+  dispatches to `read_bsr` (`jal` at 0x10168e1c) or `read_bsdl` (`jal` at 0x10168e7c), and
+  closes the stream through `jt_zclose` (`jal` at 0x10169298). Hostfacts cannot resolve the heap
+  bases of the parsed-record stores, so no structure offsets are assigned here. The body also
+  contains a fatal error path calling `exit(1)` (`jalr` at 0x10168c40).
+
+- `read_bsr` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x101692d0, occupies 6000 bytes.
+  **Established.** This boundary-register description reader first compares names with `strcmp`
+  (`jalr` at 0x10169354). The `bnez` at 0x10169360 advances past a mismatch, and the
+  cache-search `bnez` at 0x10169468 repeats while its index is below 0x20. The copy path
+  allocates a record of 0x248 bytes (`jalr` at 0x101693ac). The file path resolves a name
+  through `jt_findfile` (`jal` at 0x1016947c), opens it through `jt_zopen` (`jal` at
+  0x101694cc), and allocates another record of 0x248 bytes (`jalr` at 0x10169514). Failed lookup
+  falls through (`bnez` at 0x10169494) to `perror` (`jalr` at 0x101694a4) and `exit(1)` (`jalr`
+  at 0x101694b4). Failed open falls through (`bnez` at 0x101694e4) to `perror` (`jalr` at
+  0x101694f4) and `exit(1)` (`jalr` at 0x10169504). The parser calls `fgets` with a0 equal to
+  entry sp minus 1072 and a1 equal to buffer size 0x100 (`jalr` at 0x101695a4), extracts fields
+  with `sscanf` (`jalr` at 0x10169d6c), and converts the type and safety selectors through
+  `type_to_func` and `type_to_safe` (`jal` at 0x10169e3c and `jal` at 0x10169e58). Cleanup
+  includes `jt_zclose` (`jal` at 0x1016a9e8 and `jal` at 0x1016aa08), with the failure path
+  calling `free` with an unresolved a0 (`jalr` at 0x1016aa18) and selecting a zero return (`sd`
+  at 0x1016aa20). Heap-store bases and many parser arguments remain unknown in hostfacts and are
+  not turned into field-layout claims.
+
+- `type_to_func` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016aa40, occupies 236 bytes.
+  **Established.** The function translates a selector using the jump table at 0x101dd2c0 (`jr`
+  at 0x1016aa8c). The `beqz` at 0x1016aa7c takes the error path when unsigned first-argument
+  minus 98 is at least 0x17. The table's valid arms select 2, 1, 3, 0 or 4 (`sd` at 0x1016aa98,
+  0x1016aaa8, 0x1016aab8, 0x1016aac4, 0x1016aad4). The default arm reports through `jt_error`
+  (`jal` at 0x1016aaf8) and yields -1 (`sd` at 0x1016ab04). Its effect is software selector
+  decoding.
+
+- `type_to_safe` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016ab30, occupies 272 bytes.
+  **Established.** This safety-selector decoder returns 0, 1, 2, 3 or 4 for the values 0x30,
+  0x31, 0x58, 0x4d or 0x49 respectively. Equality takes the corresponding return arm (`beq` at
+  0x1016ab58, 0x1016ab68, 0x1016ab78, 0x1016ab88, 0x1016ab98). Falling through all five
+  comparisons reaches `jt_error` (`jal` at 0x1016ac0c) and the -1 return arm (`sd` at
+  0x1016ac18). Its effect is software parsing of the safe-value code.
+
+- `premature_eof` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016ac40, occupies 88 bytes.
+  **Established.** Premature-input reporting calls `jt_error` with fixed pointers 0x101dd320 and
+  0x101dd368 as a0 and a1, followed by the original second and first arguments as a2 and a3
+  (`jal` at 0x1016ac7c). It returns the error routine's result (`jr` at 0x1016ac90). No
+  additional parser update or hardware transaction occurs in this body.
+
+- `read_bsdl` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016aca0, occupies 300 bytes.
+  **Established.** This BSDL setup helper requests a record of 0x248 bytes (`jalr` at
+  0x1016acc8), resolves the caller's path with `jt_findfile` (`jal` at 0x1016ace4), then opens
+  the original first argument through `jt_zopen` (`jal` at 0x1016ad24). The `bnez` at 0x1016acf8
+  proceeds when lookup succeeds, while the `bnez` at 0x1016ad3c proceeds when open succeeds.
+  Either zero result falls through to `jt_perror` and a zero return. The successful path
+  duplicates both entry arguments (`jalr` at 0x1016ad68 and `jalr` at 0x1016ad84), stores the
+  returned pointers (`sw` at 0x1016ad78 and `sw` at 0x1016ad94), and calls `jt_zclose` (`jal` at
+  0x1016ada0). Hostfacts leaves both store bases and the close argument unknown.
+
+- `jt_print_chain` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016add0, occupies 1144 bytes.
+  **Established.** Chain reporting reads the count at first-argument plus 0x8 (`lw` at
+  0x1016ae18) and its record-array pointer at first-argument plus 0xc (`lw` at 0x1016ae30). A
+  nonpositive initial count takes the summary path at the `beqz` at 0x1016ae24. The record walk
+  includes `fprintf` (`jalr` at 0x1016aeb0) and `jt_print_bsr`, with the original second
+  argument retained as that helper's stream (`jal` at 0x1016aee0). The back-edge `bnez` at
+  0x1016b130 repeats while its index is less than the count. The final `fprintf` calls include
+  the last summary (`jalr` at 0x1016b22c). This routine produces text from software records.
+
+- `jt_print_bsr` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016b250, occupies 1756 bytes.
+  **Established.** Boundary-register reporting prints the first two words of its input record
+  through `fprintf` (`jalr` at 0x1016b298 and `jalr` at 0x1016b2b8). It tests the word at
+  first-argument plus 0x8: the `beqz` at 0x1016b2cc skips one output arm when bit 0 is clear,
+  and the `beqz` at 0x1016b300 skips another when bit 1 is clear. Those arms format the words at
+  first-argument plus 0xc and plus 0x10 respectively (`jalr` at 0x1016b2ec and `jalr` at
+  0x1016b320). Later loops compare names through `strcmp` (`jalr` at 0x1016b528), read the count
+  at first-argument plus 0x34 (`lw` at 0x1016b7bc), and emit per-record text (`jalr` at
+  0x1016b868). Nested pointer bases are unknown in hostfacts, so the entry does not assign them
+  offsets or hardware meaning.
+
+- `jt_lookup_port` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016bae0, occupies 232 bytes.
+  **Established.** Named-port lookup calls the unnamed helper at 0x1016b930 with the original
+  second argument (`jal` at 0x1016bb0c), then reads a bucket pointer at first-argument plus the
+  helper result shifted left two, plus 0x44 (`lw` at 0x1016bb2c). An empty bucket takes the -1
+  path at the `beqz` at 0x1016bb38. Each candidate is tested with `strcmp` (`jalr` at
+  0x1016bb50), whose nonzero result takes the next-candidate arm at the `bnez` at 0x1016bb5c.
+  The nested list-link base and matched return value remain unknown in hostfacts. This is a
+  software name lookup, not an observed hardware access.
+
+- `porttopin` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016bbd0, occupies 260 bytes.
+  **Established.** This name-mapping search reads its count and table pointer from
+  second-argument plus 0x3c and plus 0x40 (`lw` at 0x1016bbf8 and `lw` at 0x1016bc14). The
+  `strcmp` call receives the original first argument as a0 and an unresolved candidate as a1
+  (`jalr` at 0x1016bc2c). Its nonzero result takes the `bnez` at 0x1016bc34 to advance the
+  search. Exhaustion calls `jt_error` (`jal` at 0x1016bca4) followed by `exit(1)` (`jalr` at
+  0x1016bcb4). Hostfacts does not resolve the candidate pointer or matching return value, so
+  their content is left unknown.
+
+- `pintoport` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016bce0, occupies 260 bytes.
+  **Established.** The inverse-named mapper traverses a table whose count comes from
+  second-argument plus 0x3c (`lw` at 0x1016bd08) and whose pointer comes from second-argument
+  plus 0x40 (`lw` at 0x1016bd24). It compares the original first argument with a candidate using
+  `strcmp` (`jalr` at 0x1016bd3c). A mismatch takes the `bnez` at 0x1016bd44 to the next entry,
+  and the `bnez` at 0x1016bd8c continues while the index is below the count. Missing mappings
+  report through `jt_error` (`jal` at 0x1016bdb4) and terminate with `exit(1)` (`jalr` at
+  0x1016bdc4). The nested candidate and successful returned value are unknown to hostfacts.
+
+- `jt_free_bist` (`usr/diags/IR/bin/irsaudit`).
+  Address 0x1016c0c0, occupies 528 bytes.
+  **Established.** Cleanup reads the allocation pointer at first-argument plus 0x244 (`lw` at
+  0x1016c0e0). The `beqz` at 0x1016c0ec takes the return path when it is zero. Otherwise the
+  table-driven walk dispatches through 0x101dd5f0 (`jr` at 0x1016c154), with subtype arms
+  containing `free` calls such as the one (`jalr` at 0x1016c174). Hostfacts leaves those nested
+  allocation arguments unknown. The `bne` at 0x1016c298 repeats until the current type equals 6.
+  Final cleanup reloads the pointer from first-argument plus 0x244 (`lw` at 0x1016c2a4), frees
+  it (`jalr` at 0x1016c2ac) and clears its owner's word at first-argument plus 0x244 (`sw` at
+  0x1016c2b8).
+
+#### Skips and limits
+
+No routines skipped. No missing source-build blockers. All comparison sources use `root/usr/gfx/KONA/bin/kpm`, with the addresses recorded above. No vendor source was opened. No repository or generated inventory files were edited.
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
