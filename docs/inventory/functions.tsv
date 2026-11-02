@@ -1531,7 +1531,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100471d8	412	kt_output_code_st
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10047374	292	kt_output_code	dynsym	0949d75ee9b0		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10047498	472	kt_output_code_end	dynsym	a9a04afac4ad		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10047674	776	init_konainfo_BDinfo	dynsym	e14f3d915761		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004797c	1772	kt_code_chip	dynsym	e2cae55f0f7c		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004797c	1772	kt_code_chip	dynsym	e2cae55f0f7c		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10048068	832	kt_code_result	dynsym	f81d1c5b1724		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100483a8	11232	kt_code_generate	dynsym	d96f908228b2		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1004af88	3336	kt_code_summary	dynsym	a6b9968a5304		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1776,21 +1776,21 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a3cac	336	InitDestRectangle
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a3f18	200	TEST_video3_read	dynsym	f960c610b743		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a4bd8	1880	video_fbwrite_read	dynsym	f0249f61f023		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a6018	120	TestRegs	dynsym	8c3c2fbaa8a0		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a61f8	988	TEST_vocreg	dynsym	99693c16b0ca		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a65d4	1184	TEST_gvo_vocreg	dynsym	e69bfd3863e3		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a6a74	1064	TEST_dvp_vocreg	dynsym	0eaa1af2c23e		in	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a61f8	988	TEST_vocreg	dynsym	99693c16b0ca		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a65d4	1184	TEST_gvo_vocreg	dynsym	e69bfd3863e3		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a6a74	1064	TEST_dvp_vocreg	dynsym	0eaa1af2c23e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a6e9c	1020	TEST_ddo3_vocreg	dynsym	abdd45dee419		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a7298	1020	TEST_tvo_vocreg	dynsym	8c6b333c794d		in	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a7298	1020	TEST_tvo_vocreg	dynsym	8c6b333c794d		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a81e0	984	TEST_vocdblbuf	dynsym	b20789366f96		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a85b8	1184	TEST_gvo_vocdblbuf	dynsym	4a5524946652		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a8a58	1064	TEST_dvp_vocdblbuf	dynsym	e5d73cda7d63		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a8e80	1024	TEST_ddo3_vocdblbuf	dynsym	d0b7c1d17000		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9280	1024	TEST_tvo_vocdblbuf	dynsym	b20fd9d6e895		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9680	904	TEST_vocspreg	dynsym	287fca0e7cb6		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9a08	1112	TEST_gvo_vocspreg	dynsym	d6a1cdea1c50		in	named-only	docs/irsaudit.md#tests	Tests
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9e60	1000	TEST_dvp_vocspreg	dynsym	6a61f23f247c		in	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9680	904	TEST_vocspreg	dynsym	287fca0e7cb6		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9a08	1112	TEST_gvo_vocspreg	dynsym	d6a1cdea1c50		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100a9e60	1000	TEST_dvp_vocspreg	dynsym	6a61f23f247c		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100aa248	948	TEST_ddo3_vocspreg	dynsym	1e805f6c3ca3		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100aa5fc	948	TEST_tvo_vocspreg	dynsym	df252714eee5		in	named-only	docs/irsaudit.md#tests	Tests
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100aa5fc	948	TEST_tvo_vocspreg	dynsym	df252714eee5		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ab1d0	740	TEST_voccpbuf	dynsym	77eccf14d806		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ab4b4	996	TEST_gvo_voccpbuf	dynsym	f28c98663e6e		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100ab898	812	TEST_dvp_voccpbuf	dynsym	49f4441baf89		in	named-only	docs/irsaudit.md#tests	Tests
@@ -2090,7 +2090,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10118f6c	1008	dgo_status	dynsy
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1011935c	136	dgo_wait	dynsym	52cb975f7583		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101193e4	472	dgo_genlock	dynsym	8f8ee17f0d65		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101195bc	332	dgo_reset	dynsym	5fa6dbdec818		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10119708	284	dgo_loadXilinx_reset	dynsym	740c1b9d176b		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10119708	284	dgo_loadXilinx_reset	dynsym	740c1b9d176b		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10119824	464	dgo_csc_status	dynsym	dbfcf8a885a2		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101199f4	1464	dgo_genlock_status	dynsym	20bb31024c87		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10119fac	220	dgo_genlock_NTSC	dynsym	7ec5ec9e8eee		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
@@ -2317,7 +2317,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140d14	356	vcReadIncr	dynsym
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140e78	344	vcReadSame	dynsym	4459db4dd873		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140fd0	32	tbuFakeDownloadRegs	dynsym	358e7c73e10f		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10140ff0	32	tbuSetNextTexID	dynsym	fb9506eb1578		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141010	72	tbuGetNextTexID	dynsym	b7b49b80a2bf		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141010	72	tbuGetNextTexID	dynsym	b7b49b80a2bf		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141058	496	tbuPerspective	dynsym	7d015348310e		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141248	336	tbuWindow	dynsym	3ecd514ad7d7		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141398	412	tbuOrtho	dynsym	65d17200a912		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2329,7 +2329,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141790	508	tbuRotate	dynsym	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014198c	448	tbuTransform	dynsym	27418ce1003a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141b4c	32	tbuDebugMode	dynsym	bf9fa83793a2		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141b6c	32	tbuGlobalOffset	dynsym	561f718655d8		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141b8c	224	tbuInterlaceDownLoads	dynsym	579895e6eb79		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141b8c	224	tbuInterlaceDownLoads	dynsym	579895e6eb79		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141c6c	780	tbuGetComponentBits	dynsym	82bf31035480		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10141f78	632	tbuCompare3DMaps	dynsym	aa9fda93118f		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101421f0	612	tbuCompareMipmaps	dynsym	dd96c3a04097		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2354,10 +2354,10 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101448b4	1932	tbuDoShadow	dyns
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10145040	2044	tbuLoadDetail	dynsym	cdc3615adb0a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014583c	248	tbuAssignSTBits	dynsym	22413be83afe		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10145934	3368	tbuSubLoadMap	dynsym	e939dc01f355		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014665c	184	tbuLoadWaitOnDrawID	dynsym	efdb6bc12c21		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10146714	188	tbuSendDrawID	dynsym	436e4622450e		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101467d0	188	tbuSendLoadID	dynsym	6a8c3c865fb1		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014688c	184	tbuDrawWaitOnLoadID	dynsym	6cbe2569336e		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014665c	184	tbuLoadWaitOnDrawID	dynsym	efdb6bc12c21		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10146714	188	tbuSendDrawID	dynsym	436e4622450e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101467d0	188	tbuSendLoadID	dynsym	6a8c3c865fb1		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014688c	184	tbuDrawWaitOnLoadID	dynsym	6cbe2569336e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10146944	8	tbuMapNextLoadID	dynsym	051cbe378422		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014694c	3260	tbuLoadMipmap	dynsym	89a46c26e44a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10147608	2792	tbuLoadBicubic	dynsym	6eb6a430bc33		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
@@ -2370,25 +2370,25 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014aaac	7164	tbuBindTextureCC
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014c6a8	7504	tbuBindTexture	dynsym	0cdce9c561bb		in	named-only	RM.h:545	
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e548	16	tbuAttachDetailMap	dynsym	38805a62c7bb		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e558	52	log2	dynsym	6b949ff65de1		in	located	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	9998787fab68		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e58c	260	tbuClipBorder	dynsym	9998787fab68		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e690	772	tbuOffsetClip	dynsym	655a6f6c80d7		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014e994	1332	tbuMipToClipAndCenter	dynsym	a3bdd1881a1d		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014eec8	92	tbuMipToClip	dynsym	abd6cf5b934e		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014ef24	296	tbuInitTexture	dynsym	94b24325303e		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014f04c	320	tbuNewMipmap	dynsym	5f303b972978		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014f04c	320	tbuNewMipmap	dynsym	5f303b972978		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014f18c	524	tbuReplicateMap	dynsym	8e61c4c84e22		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014f398	1836	tbuGenerateMipmaps	dynsym	506adfec6cd4		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014fac4	96	tbuGenMipmap	dynsym	30edcc5f1dba		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014f398	1836	tbuGenerateMipmaps	dynsym	506adfec6cd4		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014fac4	96	tbuGenMipmap	dynsym	30edcc5f1dba		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014fb24	1124	tbuLoadImage	dynsym	f4468021e188		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014ff88	96	tbuGenPat	dynsym	19f6cfef98f3		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1014ffe8	8536	tbuGenPattern	dynsym	2c57205628a9		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10152140	5208	tbuGenPattern3D	dynsym	53f189299fc1		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10153598	212	tbuUnFormatTexels	dynsym	f2995cca687f		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015366c	3020	tbuFormatTexels	dynsym	8d096e2afb72		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154238	324	tbuLoadBicubicTable	dynsym	d1e2485e08e2		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015437c	324	tbuLoadBicubicTable2	dynsym	5b87b9d5c7ad		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101544c0	340	tbuLoadSharpenTable	dynsym	b17b4493128a		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154614	340	tbuLoadDetailTable	dynsym	3088949857d7		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154238	324	tbuLoadBicubicTable	dynsym	d1e2485e08e2		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015437c	324	tbuLoadBicubicTable2	dynsym	5b87b9d5c7ad		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x101544c0	340	tbuLoadSharpenTable	dynsym	b17b4493128a		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154614	340	tbuLoadDetailTable	dynsym	3088949857d7		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154768	728	tbuLoadTLut	dynsym	f3908a083a71		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154a40	296	tbuTexEnv	dynsym	fbd1a227d12c		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10154b68	332	tbuTexOnOff	dynsym	c1c1c6cb7c44		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
@@ -2400,7 +2400,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015ac48	1848	tbuLineStyle	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b380	248	tbuLineWidth	dynsym	074ef54e9f2b		in	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015b478	284	tbuLineEdgePos	dynsym	12e3453c5be5		in	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015bed8	1964	tbuRoundPoint	dynsym	d7049ea1a565		in	understood	docs/rm.md#set-up-arithmetic-what-the-software-fixes	Set-up arithmetic: what the software fixes
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015c684	684	tbuSetScissorRect	dynsym	ef14bcdc6ac2		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015c684	684	tbuSetScissorRect	dynsym	ef14bcdc6ac2		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015c930	140	tbuDestroyTexture	dynsym	4c3b54718f41		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015ca4c	136	crc_zclose	dynsym	a028b026fb5e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1015cad4	804	crc_zopen	dynsym	90e29849d163		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
