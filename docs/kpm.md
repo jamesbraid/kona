@@ -332,6 +332,15 @@ written.
   0x200a80 (`sw` at 0x10019fc0). It returns zero. (`kpm`, 6.5.30m,
   complete N32 body read at 0x10019ee0-0x10019fbf.)
 
+- `get_field_length` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10012028; size 64 bytes. It selects the caller's register-table row by
+  multiplying the index by nine (`sll` at 0x10012040, `addu` at 0x10012044
+  and `sll` at 0x1001204c), reads that row's end and start bit positions at
+  offsets +0x14 and +0x10 (`lw` at 0x10012054 and 0x10012058), and returns
+  end minus start plus one (`subu` at 0x1001205c and the delay-slot `addiu`
+  at 0x10012064). (`kpm`, 6.5.30m, complete N32 body read at
+  0x10012028-0x10012067.)
+
 The following routines were read in their complete N32 address ranges in the
 same executable.
 
@@ -963,6 +972,17 @@ The following additional readings were taken from complete N32 address ranges.
   window (`sw` at 0x10032e28 and loop bound at 0x10032e34), writes 0x8000
   bytes, frees the buffer, and returns zero. Allocation failure returns -1
   (`addiu` at 0x10032ed4).
+
+- `show_arm_symbols_section` (`usr/gfx/KONA/bin/kpm`): **Established.** Address
+  0x10032ed8; size 324 bytes. It requests a 20-byte ARM-symbol section with
+  element size one (`jalr` at 0x10032f08), and, when the returned count is
+  nonzero, prints the symbol records from the section at offsets +0x1f0 and
+  +0x208 through the section formatter (`jalr` at 0x10032f54 and 0x10032f74).
+  A requested auxiliary section at offset +0x220 is printed only when the
+  caller's flag at stack offset +0xc is nonzero (`beqz` at 0x10032f94 skips it when the flag is zero); a
+  failed section request reports the error and returns -1 (`bltz` at
+  0x10032f10 and `addiu` at 0x1003300c), while the normal path returns zero.
+  (`kpm`, 6.5.30m, complete N32 body read at 0x10032ed8-0x1003301b.)
 
 - `read_arm_symbols` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
   0x100325b0; size 1256 bytes. It reads the ARM symbol file into a temporary
