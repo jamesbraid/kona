@@ -42,49 +42,49 @@ The following entries are separate readings of the N32 `kpm` routines; each
 routine was disassembled from its complete address range before this entry was
 written.
 
-- `hipReset` (`kpm` 0x10017204, 368 bytes): **Established.** Returns zero after
+- `hipReset` (`usr/gfx/KONA/bin/kpm` 0x10017204, 368 bytes): **Established.** Returns zero after
   checking the adapter revision. For HIP2 it sets bit 0 at host offset 0x3a0
   and writes 5 to 0x3b0; for HIP1 it sets bit 0 at 0x380 and writes 5 to
   0x3b0. If the mapped adapter is absent it runs the boundary-scan reset and
   ID-code sequence through the scan-chain helpers, retrying the chain setup
   after a negative result. (`kpm`, 6.5.30m, full routine at 0x10017204.)
-- `armAccessEnable` (`kpm` 0x10012340, 56 bytes): **Established.** Clears host
+- `armAccessEnable` (`usr/gfx/KONA/bin/kpm` 0x10012340, 56 bytes): **Established.** Clears host
   offset 0x320, sets bit 0 in the word at 0x308, and returns zero; this enables
   the host-side ARM memory access path. (`kpm`, 6.5.30m, full routine at
   0x10012340.)
-- `gedReset` (`kpm` 0x10019c50, 456 bytes): **Established.** If the distributor
+- `gedReset` (`usr/gfx/KONA/bin/kpm` 0x10019c50, 456 bytes): **Established.** If the distributor
   is mapped, writes 0x200008 then either writes 0x200004 and the selected reset
   value at 0x3f0 or reports failure, and calls `ged_set_current_ge` with the
   saved engine selector. Without the mapping it performs the scan-chain reset
   sequence and retries; it returns zero on success and -1 on an error. (`kpm`,
   6.5.30m, full routine at 0x10019c50.)
-- `ged_register_write` (`kpm` 0x10019e3c, 164 bytes): **Established.** Selects
+- `ged_register_write` (`usr/gfx/KONA/bin/kpm` 0x10019e3c, 164 bytes): **Established.** Selects
   distributor register 0x600, encodes the register index as bit 5 plus the
   index's upper bits masked by 0x1ff00, writes the caller's value through
   offset 0x3f0, then selects 0xac0 and writes the same value there. It returns
   zero. (`kpm`, 6.5.30m, full routine at 0x10019e3c.)
-- `ged_set_current_ge` (`kpm` 0x10019ee0, 228 bytes): **Established.** Converts
+- `ged_set_current_ge` (`usr/gfx/KONA/bin/kpm` 0x10019ee0, 228 bytes): **Established.** Converts
   the caller's engine number to a one-bit mask, writes that mask five times to
   distributor register 0x222, then selects 0x200600 at offset 0x3e8 and writes
   0x58400800 at offset 0x3f0, and selects 0x200a80 at 0x3e8 and writes 1 at
   0x3f0. It returns zero. (`kpm`, 6.5.30m, full routine at 0x10019ee0.)
-- `ge_register_write` (`kpm` 0x1001b730, 108 bytes): **Established.** Writes
+- `ge_register_write` (`usr/gfx/KONA/bin/kpm` 0x1001b730, 108 bytes): **Established.** Writes
   its first argument, the geometry-engine register number, to distributor
   register 0x234, then writes its second argument, the value, to register 0x232,
   and returns zero. (`kpm`, 6.5.30m, full
   routine at 0x1001b730.)
-- `ge_register_read` (`kpm` 0x1001b79c, 100 bytes): **Established.** Writes the
+- `ge_register_read` (`usr/gfx/KONA/bin/kpm` 0x1001b79c, 100 bytes): **Established.** Writes the
   requested register number to distributor register 0x234, then writes 0x80000001
   to register 0x236 to request the readback; it returns zero. The caller reads
   the resulting value through the surrounding diagnostic state path. (`kpm`,
   6.5.30m, full routine at 0x1001b79c.)
-- `ge11BypassEnable` (`kpm` 0x1001b800, 304 bytes): **Established.** Chooses
+- `ge11BypassEnable` (`usr/gfx/KONA/bin/kpm` 0x1001b800, 304 bytes): **Established.** Chooses
   0x800 or 0xc00 from the engine status field at +0x10, scans engine numbers
   0..7, and for every set status bit calls `ged_set_current_ge` followed by
   `ge_register_write(0x438 or 0xc38, 0x400001)`. It then selects the saved
   current engine and returns zero. (`kpm`, 6.5.30m, full routine at
   0x1001b800.)
-- `ge11LoadUcode` (`kpm` 0x1001bbf0, 1332 bytes): **Established.** Opens and
+- `ge11LoadUcode` (`usr/gfx/KONA/bin/kpm` 0x1001bbf0, 1332 bytes): **Established.** Opens and
   parses the engine image as address plus three words. It stops the engine by
   writing zero to 0x40000 and 0x40018, selects 0xce0 or 0x8e0 from the engine
   status, writes the program address to distributor register 0x234 and each
@@ -92,86 +92,86 @@ written.
   1 to register 0x40000. Non-contiguous records first write 0x200000 plus four times
   the new address to register 0x234; it reports parse, open and write failures
   and returns -1, otherwise zero. (`kpm`, 6.5.30m, full routine at 0x1001bbf0.)
-- `ge11StateDrain` (`kpm` 0x1001b930, 704 bytes): **Established.** Iterates
+- `ge11StateDrain` (`usr/gfx/KONA/bin/kpm` 0x1001b930, 704 bytes): **Established.** Iterates
   the selected engine's state records, uses the diagnostic register-read path
   for each record and writes the captured words to the current dump section;
   it stops after the table's count or the first failed read and returns the
   section-writing result. (`kpm`, 6.5.30m, full routine at 0x1001b930.)
-- `tbRegisterWrite` (`kpm` 0x1001c124, 200 bytes): **Established.** Selects
+- `tbRegisterWrite` (`usr/gfx/KONA/bin/kpm` 0x1001c124, 200 bytes): **Established.** Selects
   raster-bus register 0x20630, writes zero, selects 0x20a40, writes the
   inverted low bit of the caller-selected field shifted left once, and selects
   0x20a40 again before returning. (`kpm`, 6.5.30m, full routine at 0x1001c124.)
-- `hipInspectionPreJtag` (`kpm` 0x10012834, 5288 bytes): **Established.**
+- `hipInspectionPreJtag` (`usr/gfx/KONA/bin/kpm` 0x10012834, 5288 bytes): **Established.**
   Creates the `hip-registers` capture section, reads the host-interface words
   at offsets 0x220, 0x390, 0x398, 0x238 and the remaining table-selected
   offsets into the 145-record register buffer, and records each value with
   `assign_register`. It preserves the pre-scan values and writes the complete
   section to the dump. (`kpm`, 6.5.30m, full routine at 0x10012834.)
-- `hipInspectionPostJtag` (`kpm` 0x10013cdc, 5072 bytes): **Established.**
+- `hipInspectionPostJtag` (`usr/gfx/KONA/bin/kpm` 0x10013cdc, 5072 bytes): **Established.**
   Clears the ARM-access trigger at 0x320, reads the ARM control word at 0x308,
   captures the host-interface and ARM-side register values after the scan, and
   writes the post-scan register section. It reports each captured field through
   the same 60-byte register records. (`kpm`, 6.5.30m, full routine at
   0x10013cdc.)
-- `befFIFOInspection` (`kpm` 0x10017830, 1872 bytes): **Established.** Captures
+- `befFIFOInspection` (`usr/gfx/KONA/bin/kpm` 0x10017830, 1872 bytes): **Established.** Captures
   the selected BEF FIFO address/count state, stores the FIFO counters in the
   pipe record, reads the FIFO through the diagnostic output-DMA path, and
   writes the raw and decoded values to the dump section. (`kpm`, 6.5.30m, full
   routine at 0x10017830.)
-- `befShadowDrain` (`kpm` 0x10018a60, 720 bytes): **Established.** Maps a
+- `befShadowDrain` (`usr/gfx/KONA/bin/kpm` 0x10018a60, 720 bytes): **Established.** Maps a
   0x418-byte diagnostic transfer, programs the output-DMA descriptor, toggles
   raster-bus control with `tbRegisterWrite`, and drains the selected BEF shadow
   registers into the dump buffer. (`kpm`, 6.5.30m, full routine at 0x10018a60.)
-- `bef_reset` (`kpm` 0x100180cc, 228 bytes): **Established.** Resets the BEF
+- `bef_reset` (`usr/gfx/KONA/bin/kpm` 0x100180cc, 228 bytes): **Established.** Resets the BEF
   through the scan-chain reset helper, retries the chain operation on a
   negative result, and emits the diagnostic status message before returning.
   (`kpm`, 6.5.30m, full routine at 0x100180cc.)
-- `bef_set_current_ge` (`kpm` 0x1001890c, 340 bytes): **Established.** Selects
+- `bef_set_current_ge` (`usr/gfx/KONA/bin/kpm` 0x1001890c, 340 bytes): **Established.** Selects
   the requested current geometry engine in the BEF scan record, updates the
   saved engine field, writes the corresponding subfield, and restores the
   scan-chain state. (`kpm`, 6.5.30m, full routine at 0x1001890c.)
-- `save_bef_configuration` (`kpm` 0x10018d30, 864 bytes): **Established.**
+- `save_bef_configuration` (`usr/gfx/KONA/bin/kpm` 0x10018d30, 864 bytes): **Established.**
   Reads the current BEF configuration and engine selection through the scan
   chain, extracts the configuration words for the selected engine, and stores
   the resulting records for later FIFO and shadow inspection. (`kpm`,
   6.5.30m, full routine at 0x10018d30.)
-- `gedStateDrain` (`kpm` 0x10019fc4, 2680 bytes): **Established.** Obtains a
+- `gedStateDrain` (`usr/gfx/KONA/bin/kpm` 0x10019fc4, 2680 bytes): **Established.** Obtains a
   diagnostic transfer for the distributor state, programs the DMA registers,
   reads distributor select/data pairs through offsets 0x3e8 and 0x3f0, and
   writes the captured state into the dump section. (`kpm`, 6.5.30m, full
   routine at 0x10019fc4.)
-- `ge11ReadDiagRegisters` (`kpm` 0x1001e748, 620 bytes): **Established.**
+- `ge11ReadDiagRegisters` (`usr/gfx/KONA/bin/kpm` 0x1001e748, 620 bytes): **Established.**
   Obtains a 0x40-byte diagnostic transfer, starts output DMA, requests the
   engine diagnostic registers through the readback helper for each table entry,
   waits for completion, and writes the captured words to the report. (`kpm`,
   6.5.30m, full routine at 0x1001e748.)
-- `ge11RamScan` (`kpm` 0x1001e9b4, 976 bytes): **Established.** Builds the
+- `ge11RamScan` (`usr/gfx/KONA/bin/kpm` 0x1001e9b4, 976 bytes): **Established.** Builds the
   selected working-RAM scan descriptor, maps its transfer, drains the engine
   RAM through the boundary-scan helpers, and restores the engine registers with
   the geometry-register writer before returning the captured section result.
   (`kpm`, 6.5.30m, full routine at 0x1001e9b4.)
-- `ge11EramScan` (`kpm` 0x1001ed84, 496 bytes): **Established.** Selects the
+- `ge11EramScan` (`usr/gfx/KONA/bin/kpm` 0x1001ed84, 496 bytes): **Established.** Selects the
   expression-RAM diagnostic window through distributor registers 0x234 and
   0x236, starts the mapped output-DMA transfer, waits with a ten-iteration
   bound, and writes the captured ERAM section. It reports a failed completion
   and returns -1 on that path. (`kpm`, 6.5.30m, full routine at 0x1001ed84.)
-- `setup_dma` (`kpm` 0x1001f76c, 84 bytes): **Established.** Clears overflow at
+- `setup_dma` (`usr/gfx/KONA/bin/kpm` 0x1001f76c, 84 bytes): **Established.** Clears overflow at
   host offset 0x2c0, stores the caller's page, offset and length at 0x2a0,
   0x2a8 and 0x2b0, mirrors the length to total at 0x2b8, and writes 1 to
   `HH_TBUS_STATUS` at 0x3a8. It returns zero. (`kpm`, 6.5.30m, stores at
   0x1001f788-0x1001f7b4.)
-- `cleanup_dma` (`kpm` 0x1001f898, 352 bytes): **Established.** If a DMA map is
+- `cleanup_dma` (`usr/gfx/KONA/bin/kpm` 0x1001f898, 352 bytes): **Established.** If a DMA map is
   active, submits ioctl 0x2774 with kind 10, marks the map released, and calls
   the mapped-buffer cleanup callback when a buffer handle is present. It
   returns zero when the map is absent or cleanup succeeds, and -1 after a
   negative map or cleanup result. (`kpm`, 6.5.30m, branches at
   0x1001f8d4-0x1001f9f4.)
-- `assign_register` (`kpm` 0x100121f4, 160 bytes): **Established.** Looks up a
+- `assign_register` (`usr/gfx/KONA/bin/kpm` 0x100121f4, 160 bytes): **Established.** Looks up a
   register key in the 60-byte register-record array, stores the caller's value
   at record offset 0x34, and returns zero. A missing key reports the diagnostic
   error and returns -1. (`kpm`, 6.5.30m, lookup at 0x1001221c and store at
   0x1001224c.)
-- `extract_register` (`kpm` 0x10012294, 172 bytes): **Established.** Looks up
+- `extract_register` (`usr/gfx/KONA/bin/kpm` 0x10012294, 172 bytes): **Established.** Looks up
   the register key, ANDs the record's value at offset 0x30 with its mask at
   offset 0x34, stores the result through the caller's pointer, and returns
   zero. A missing key reports the same diagnostic error and returns -1.
