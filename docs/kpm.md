@@ -1353,6 +1353,348 @@ The following boundary-scan wrappers were read in their complete N32 address ran
   -1 when all requested positions match. (`kpm`, 6.5.30m, complete routine
   0x1003ab70-0x1003ada3.)
 
+### IRIX 6.5.30m irsaudit build
+
+The IRIX 6.5.30m irsaudit copy uses the same JTAG library names as KPM, but its routine bodies have different bytes. Each entry records the irsaudit body and identifies the KPM counterpart.
+
+- `jt_new_data_vector` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10164db0; occupies 68 bytes.
+  **Established.** Allocates a data vector from the descriptor's word at +0x18
+  (`lw` at 0x10164dd0). The `malloc` call receives that word as its
+  first argument (`jalr` at 0x10164dd8), and its result becomes the
+  wrapper's result (`jr` at 0x10164dec). Its memory accesses are confined
+  to the descriptor, linkage data and stack.
+  `usr/gfx/KONA/bin/kpm` at 0x10033410,
+  68 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_new_data_vector.existing.txt`, `facts/jt_new_data_vector.compare.txt`.
+
+- `jt_new_data_bvector` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10164e00; occupies 76 bytes.
+  **Established.** Builds the allocation request for a packed data vector, starting
+  with the word at caller descriptor +0x18 (`lw` at 0x10164e20).
+  It calls `malloc` (`jalr` at 0x10164e30) and preserves the returned
+  handle (`jr` at 0x10164e44). Hostfacts leaves the allocator's first
+  argument unknown after the intervening arithmetic, so this entry does
+  not assign an allocation size. The wrapper contains no direct hardware
+  access.
+  `usr/gfx/KONA/bin/kpm` at 0x10033460,
+  76 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_new_data_bvector.existing.txt`, `facts/jt_new_data_bvector.compare.txt`.
+
+- `jt_new_inst_vector` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10164e50; occupies 68 bytes.
+  **Established.** Uses the instruction-vector length word at descriptor +0x14
+  as the allocation size (`lw` at 0x10164e70, `jalr` to `malloc` at
+  0x10164e78). The returned pointer passes back through `jr` at
+  0x10164e8c. This is host-memory allocation rather than a scan request.
+  `usr/gfx/KONA/bin/kpm` at 0x100334b0,
+  68 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_new_inst_vector.existing.txt`, `facts/jt_new_inst_vector.compare.txt`.
+
+- `jt_new_inst_bvector` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10164ea0; occupies 76 bytes.
+  **Established.** Obtains the instruction-vector word from descriptor +0x14
+  (`lw` at 0x10164ec0) before requesting memory from `malloc` (`jalr`
+  at 0x10164ed0). The packed-vector allocation size is unknown in
+  hostfacts, while the returned value is the allocator's result (`jr`
+  at 0x10164ee4). Only host-memory and linkage accesses appear here.
+  `usr/gfx/KONA/bin/kpm` at 0x10033500,
+  76 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_new_inst_bvector.existing.txt`, `facts/jt_new_inst_bvector.compare.txt`.
+
+- `jt_dispose_vector` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10164ef0; occupies 64 bytes.
+  **Established.** Releases the caller's vector through `free`, passing entry
+  argument 0 unchanged (`jalr` at 0x10164f14). The call is resolved
+  through this build's GOT, rather than through the scan-procedure
+  table. The routine has no vector-content store or hardware access.
+  `usr/gfx/KONA/bin/kpm` at 0x10033550,
+  64 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_dispose_vector.existing.txt`, `facts/jt_dispose_vector.compare.txt`.
+
+- `jt_find_chip` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10165020; occupies 252 bytes.
+  **Established.** Searches the chain records for a matching selector. It reads
+  the record count from argument 0 +0x8 and the record-array pointer
+  from argument 0 +0xc (`lw` at 0x10165048, 0x10165060). A record value
+  unequal to one takes the next-record path (`bne` at 0x10165080).
+  The name comparison calls `strcmp` with entry argument 1 as its second
+  argument and an unknown first argument (`jalr` at 0x101650b4).
+  A nonzero comparison advances the search (`bnez` at 0x101650bc).
+  Exhaustion reaches the -1 result recorded by `sd` at 0x101650fc.
+  Hostfacts leaves the matching result and the effective addresses
+  of the per-record loads unknown. No scan procedure is called.
+  `usr/gfx/KONA/bin/kpm` at 0x10033680,
+  252 bytes. Comparison: 5 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_find_chip.existing.txt`, `facts/jt_find_chip.compare.txt`.
+
+- `jt_extract_chip_register` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10165130; occupies 348 bytes.
+  **Established.** Prepares a register-image copy after calling `jt_find_chip`
+  with the caller's first two arguments (`jal` at 0x10165164).
+  A result other than -1 enters the copy path (`bne` at 0x10165178),
+  while -1 falls through to a zero result. The continuing path calls
+  `calloc` with an unknown first argument and second argument one
+  (`jalr` at 0x1016522c), then calls `jt_copy_bits` with entry argument 2
+  as its first argument, the allocated buffer as its third argument,
+  and zero as its fourth (`jal` at 0x10165254). It writes a word through
+  entry argument 3 at +0 (`sw` at 0x10165264). The value of that word
+  and the intermediate descriptor bases remain unknown in hostfacts.
+  The allocation and copy calls establish buffer preparation, while
+  unresolved effective addresses leave the other accesses unclassified.
+  `usr/gfx/KONA/bin/kpm` at 0x100396d0,
+  348 bytes. Comparison: 15 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_extract_chip_register.existing.txt`, `facts/jt_extract_chip_register.compare.txt`.
+
+- `jt_insert_chip_register` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10165290; occupies 292 bytes.
+  **Established.** Copies caller-supplied bits into a register image after a
+  `jt_find_chip` lookup (`jal` at 0x101652c4). The lookup result unequal
+  to -1 takes the copy path (`bne` at 0x101652d4), and the -1 path
+  returns failure. Its `jt_copy_bits` call passes entry argument 3,
+  zero, and entry argument 2 as its first three arguments, while the
+  fourth argument is unknown (`jal` at 0x1016538c). The copy path
+  records zero as the result (`sd` at 0x10165394). Descriptor-derived
+  copy positions and effective addresses remain unknown in hostfacts.
+  `usr/gfx/KONA/bin/kpm` at 0x10039830,
+  292 bytes. Comparison: 13 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_insert_chip_register.existing.txt`, `facts/jt_insert_chip_register.compare.txt`.
+
+- `jt_extract_bits` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x101653c0; occupies 796 bytes.
+  **Established.** Extracts selected bits through chip and port lookups, using
+  `jt_find_chip` (`jal` at 0x101653f8), the unnamed helper at 0x10165a40
+  (`jal` at 0x10165434), and `jt_lookup_port` (`jal` at 0x101654e8).
+  A chip result of -1 falls through the failure arm (`bne` at
+  0x10165410), and a zero helper result falls through another failure
+  arm (`bnez` at 0x1016544c). A port result of -1 falls through to
+  `jt_error` (`bne` at 0x10165504, `jal` at 0x10165538).
+  The data path includes byte loads and a byte store whose effective
+  bases are unknown (`lbu` at 0x10165598, 0x101655cc, `sb` at
+  0x10165618). Cleanup uses `free` at two call sites (`jalr` at
+  0x1016567c, 0x101656b4). Hostfacts records -1 on the failure arms
+  and zero after normal cleanup. The unresolved byte-access bases
+  do not establish the destination's address space.
+  `usr/gfx/KONA/bin/kpm` at 0x10039960,
+  796 bytes. Comparison: 34 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_extract_bits.existing.txt`, `facts/jt_extract_bits.compare.txt`.
+
+- `jt_insert_bits` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x101656e0; occupies 860 bytes.
+  **Established.** Updates a selected bit image using `jt_find_chip`, the
+  unnamed helper at 0x10165a40, and `jt_lookup_port` (`jal` at
+  0x10165718, 0x10165774, 0x10165848). The chip result equal to -1
+  falls through to an error call (`bne` at 0x10165730, `jal` at
+  0x10165750). A zero helper result falls through to its own error
+  call (`bnez` at 0x1016578c, `jal` at 0x101657ac). Port lookup
+  failure likewise falls through when the result is -1 (`bne` at
+  0x10165864, `jal` to `jt_error` at 0x10165898). Its buffer work
+  includes byte reads and a byte write at unknown effective bases
+  (`lbu` at 0x101658cc, 0x1016592c, `sb` at 0x10165978).
+  `free` handles cleanup (`jalr` at 0x101659dc, 0x10165a14).
+  The return paths distinguish -1 failure from zero after cleanup.
+  Hostfacts does not resolve the byte accesses to an address space.
+  `usr/gfx/KONA/bin/kpm` at 0x10039c80,
+  860 bytes. Comparison: 56 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_insert_bits.existing.txt`, `facts/jt_insert_bits.compare.txt`.
+
+- `jt_expand_portlist` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10166080; occupies 68 bytes.
+  **Established.** Acts as a forwarding wrapper for the unnamed routine at
+  0x10165a40, retaining entry argument 0 (`jal` at 0x101660a8).
+  Its return is that helper's result (`jr` at 0x101660bc).
+  The wrapper itself only saves arguments and accesses linkage data.
+- `jt_nullify` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x101660d0; occupies 672 bytes.
+  **Established.** Initializes the caller's output with `memset`, passing entry
+  argument 1, byte value 0x30, and the word at entry argument 0 +0x18
+  (`jalr` at 0x10166104). The record loop reads the count at argument
+  0 +0x8 (`lw` at 0x10166114), and skips a record when the tested value
+  differs from one (`bne` at 0x10166170). Two `strcmp` calls compare
+  against addresses 0x102be7a0 and 0x102be7a8 (`jalr` at 0x101661d8,
+  0x10166228). Either zero comparison enters the update path (`beqz`
+  at 0x101661e4, 0x10166230). The updates include byte stores at
+  unknown effective bases (`sb` at 0x101662c0, 0x101662fc).
+  No scan procedure is called here. Hostfacts leaves the byte-store
+  destinations unresolved.
+  `usr/gfx/KONA/bin/kpm` at 0x1003a670,
+  672 bytes. Comparison: 13 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_nullify.existing.txt`, `facts/jt_nullify.compare.txt`.
+
+- `jt_conditional_reset` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x101671d0; occupies 1816 bytes.
+  **Established.** Constructs and emits an instruction image. It duplicates the
+  string at 0x102be7c0, canonicalizes the resulting buffer, and allocates
+  an instruction vector (`strdup` through `jalr` at 0x10167208, `jal` to
+  `jt_canonize` at 0x10167270, `jal` to `jt_new_inst_vector` at
+  0x10167280). The initial reverse-loop index is the word at entry
+  argument 0 +0x8 minus one, and a negative index skips the loop
+  (`bltz` at 0x101672ac). Its selection logic tests caller arguments
+  and values at unresolved descriptor bases. For example, a nonzero
+  entry argument 1 takes the selection arm (`bnez` at 0x10167360),
+  and a nonzero entry argument 2 takes the same arm (`bnez` at
+  0x10167398). The other masks remain unknown in hostfacts.
+  Vector construction calls `jt_unpack_vector` with its second
+  argument at entry stack pointer -0x6c (`jal` at 0x10167758).
+  The final word store targets entry argument 0 +0x18 (`sw` at
+  0x10167874). It packs the vector (`jal` to `jt_pack_vector` at
+  0x1016788c), then calls `jt_send_instruction` with the word at
+  entry argument 0 +0x14 as argument 0 and zero as argument 2
+  (`jal` at 0x101678a8). `free` and `jt_dispose_vector` release
+  temporary storage (`jalr` at 0x101678b8, `jal` at 0x101678c8).
+  The scan effect is delegated to `jt_send_instruction`.
+  `usr/gfx/KONA/bin/kpm` at 0x100341e0,
+  1816 bytes. Comparison: 43 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_conditional_reset.existing.txt`, `facts/jt_conditional_reset.compare.txt`.
+
+- `jt_isolate_chip` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10167c80; occupies 960 bytes.
+  **Established.** Builds an instruction scan image around the requested chip
+  and instruction. It duplicates entry argument 2 and canonicalizes
+  that copy (`strdup` through `jalr` at 0x10167cac, `jal` to `jt_canonize`
+  at 0x10167cc4), then allocates an instruction vector from entry
+  argument 0 (`jal` to `jt_new_inst_vector` at 0x10167cd4).
+  A negative initial index, the word at argument 0 +0x8 minus one,
+  skips the reverse walk (`bltz` at 0x10167d00). A nonzero chip-name
+  comparison takes the alternate-instruction path through `strcmp` (`jalr` at
+  0x10167d88, `bnez` at 0x10167d94). In the selected-chip path,
+  zero from the instruction-name comparison reaches vector building
+  through `strcmp` (`jalr` at 0x10167e00, `beqz` at 0x10167e0c).
+  The construction calls `jt_unpack_vector` with its second argument
+  at entry stack pointer -0x50 (`jal` at 0x10167ea8).
+  The routine stores a word at entry argument 0 +0x18 (`sw` at
+  0x10167fc4), packs the vector (`jal` at 0x10167fdc), and calls
+  `jt_send_instruction` with the word at argument 0 +0x14 as its
+  first argument and zero as its third (`jal` at 0x10167ff8).
+  Both cleanup exits use `free` and `jt_dispose_vector` (`jalr` at
+  0x10167e44, 0x10168008, `jal` at 0x10167e54, 0x10168018).
+  Hostfacts records -1 on the unsuccessful lookup exit and zero
+  after the send call. The hardware effect of `jt_send_instruction`
+  is outside this routine's body.
+  `usr/gfx/KONA/bin/kpm` at 0x10034c90,
+  960 bytes. Comparison: 48 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_isolate_chip.existing.txt`, `facts/jt_isolate_chip.compare.txt`.
+
+- `jt_powerup_chain` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10168040; occupies 548 bytes.
+  **Established.** Recomputes chain state in a reverse record walk. The initial
+  index comes from entry argument 0 +0x8 minus one, and a negative
+  value skips the loop (`bltz` at 0x10168078). A tested record value
+  other than one takes the alternate path (`bne` at 0x101680a4).
+  In the active-record path, a clear low bit of the tested value
+  bypasses the name search (`beqz` at 0x101680dc). Otherwise
+  `strcmp` compares an unresolved first argument against address
+  0x102be7c8 (`jalr` at 0x10168128), and zero ends that search
+  (`beqz` at 0x10168134). Record updates include word stores at
+  unknown effective bases (`sw` at 0x101681a8, 0x101681cc,
+  0x1016821c). The final word goes to entry argument 0 +0x18
+  (`sw` at 0x1016824c). This body updates the software chain
+  description without calling a scan procedure.
+  `usr/gfx/KONA/bin/kpm` at 0x10035050,
+  548 bytes. Comparison: 7 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_powerup_chain.existing.txt`, `facts/jt_powerup_chain.compare.txt`.
+
+- `jt_set_procs` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10168270; occupies 104 bytes.
+  **Established.** Installs the caller's seven procedure words. Reads at caller
+  offsets 0, 4, 8, 0xc, 0x10, 0x14 and 0x18 feed the corresponding
+  seven absolute destinations 0x102bc2f8, 0x102bc2fc, 0x102bc300,
+  0x102bc304, 0x102bc308, 0x102bc30c and 0x102bc310 (`lw` at
+  0x10168290, 0x10168298, 0x101682a0, 0x101682a8, 0x101682b0,
+  0x101682b8, 0x101682c0, `sw` at 0x10168294, 0x1016829c,
+  0x101682a4, 0x101682ac, 0x101682b4, 0x101682bc, 0x101682c4).
+  It makes no calls and performs no hardware register access.
+  `usr/gfx/KONA/bin/kpm` at 0x10033780,
+  104 bytes. Comparison: 6 differing byte offsets,
+  first at +0x7 (target 0x16, existing 0x12).
+  `facts/jt_set_procs.existing.txt`, `facts/jt_set_procs.compare.txt`.
+
+- `jt_init` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10168530; occupies 60 bytes.
+  **Established.** Dispatches a call through the procedure word at
+  absolute address 0x102bc2f8 (`lw` at 0x1016854c, `jalr` at
+  0x10168550). The target is unknown in hostfacts, and its returned
+  value is retained (`jr` at 0x10168564). The wrapper does not establish
+  the callback's hardware effect.
+  `usr/gfx/KONA/bin/kpm` at 0x10033a40,
+  60 bytes. Comparison: 6 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_init.existing.txt`, `facts/jt_init.compare.txt`.
+
+- `jt_select_chain` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10168570; occupies 68 bytes.
+  **Established.** Forwards entry argument 0 to the installed chain-selection
+  procedure loaded from absolute address 0x102bc2fc (`lw` at
+  0x10168594, `jalr` at 0x10168598). The indirect target remains
+  unknown, while its result passes back through `jr` at 0x101685ac.
+  The wrapper does not directly address the scan controller.
+  `usr/gfx/KONA/bin/kpm` at 0x10033a80,
+  68 bytes. Comparison: 6 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_select_chain.existing.txt`, `facts/jt_select_chain.compare.txt`.
+
+- `jt_soft_reset` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x101685c0; occupies 60 bytes.
+  **Established.** Loads the installed soft-reset procedure from absolute
+  address 0x102bc300 (`lw` at 0x101685dc) and invokes that unknown
+  target (`jalr` at 0x101685e0). It leaves the callee's return value
+  intact (`jr` at 0x101685f4). The callback's hardware effect is unknown
+  from this wrapper.
+  `usr/gfx/KONA/bin/kpm` at 0x10033ad0,
+  60 bytes. Comparison: 6 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_soft_reset.existing.txt`, `facts/jt_soft_reset.compare.txt`.
+
+- `jt_hard_reset` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x10168600; occupies 60 bytes.
+  **Established.** Reaches the hard-reset callback through the word at absolute
+  address 0x102bc304 (`lw` at 0x1016861c). The register-indirect
+  call has an unknown target (`jalr` at 0x10168620), whose result
+  remains the wrapper's return (`jr` at 0x10168634). This wrapper
+  writes only its saved linkage on the stack (`sd` at 0x10168604,
+  0x10168608). The callback's hardware effect is unknown.
+  `usr/gfx/KONA/bin/kpm` at 0x10033b10,
+  60 bytes. Comparison: 6 differing byte offsets,
+  first at +0xf (target 0x16, existing 0x12).
+  `facts/jt_hard_reset.existing.txt`, `facts/jt_hard_reset.compare.txt`.
+
+| Routine | irsaudit address / size | irsaudit SHA-256 | Existing build path / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---|
+| jt_new_data_vector | 0x10164db0 / 68 | b2c888d92bf1b232ee278cbe2f2340282610af05e31da72294ffd6ceb26d183f | 0x10033410 68 / usr/gfx/KONA/bin/kpm | 68f210df1a1e52c0ab37eaa6b8acc67c26cf64e5f84b02ccb7c708d9894b189e | 5 offsets: 0xf 16/12, 0x12 f5/08, 0x13 90/b0, 0x26 91/84, 0x27 4c/0c |
+| jt_new_data_bvector | 0x10164e00 / 76 | a26de0bbdf25a5d04522878db1f8dcbbfa13ebf1b85b20ec6d091f0c827e8df1 | 0x10033460 76 / usr/gfx/KONA/bin/kpm | b6b27b6688669f42bd932afe43cbd600cd7167729f09c207b18dab5d6e7e53f5 | 5 offsets: 0xf 16/12, 0x12 f5/08, 0x13 40/60, 0x2e 91/84, 0x2f 4c/0c |
+| jt_new_inst_vector | 0x10164e50 / 68 | 6b8d07b66b4db937afd32ef1fee4b0bae2b952d216648dbdef46d23acfb6fedb | 0x100334b0 68 / usr/gfx/KONA/bin/kpm | b9aba9592a9225a18ebb192dcc9bb7ec53b953a2f69bedd13a5139eb0e175141 | 5 offsets: 0xf 16/12, 0x12 f4/08, 0x13 f0/10, 0x26 91/84, 0x27 4c/0c |
+| jt_new_inst_bvector | 0x10164ea0 / 76 | 4fcde72cf4828bff547f91e126d1fc86417d94666a8fb78bb34aeaae948ebf03 | 0x10033500 76 / usr/gfx/KONA/bin/kpm | 20fb625fe64ce92bd22e49d9632f44067f6c85d33f959ce25b38bf401a8289c7 | 5 offsets: 0xf 16/12, 0x12 f4/07, 0x13 a0/c0, 0x2e 91/84, 0x2f 4c/0c |
+| jt_dispose_vector | 0x10164ef0 / 64 | c12380a0af9271c2c72dd26e2ec1c673b39224d949027767baee3bfa8c7bab71 | 0x10033550 64 / usr/gfx/KONA/bin/kpm | ab1371c5f09bf314bcb4833011fec7a92e14751f61ac420d89c32a2439b3924d | 5 offsets: 0xf 16/12, 0x12 f4/07, 0x13 50/70, 0x22 90/84, 0x23 e0/54 |
+| jt_find_chip | 0x10165020 / 252 | 27fab07a438cbe8995373cf9c635cd67fc580e59ebe3e62249dcaf29ca2763db | 0x10033680 252 / usr/gfx/KONA/bin/kpm | 273d6789416cb2792fbb4ae219046500ef4882d47cfa0bf93e083b2ce3f5e08b | 5 offsets: 0xf 16/12, 0x12 f3/06, 0x13 20/40, 0x92 91/84, 0x93 20/90 |
+| jt_extract_chip_register | 0x10165130 / 348 | 9ffa162c1f11440b5e330f7b1983facf0dc1f2c4ba88c35f5ad1be276f5495c7 | 0x100396d0 348 / usr/gfx/KONA/bin/kpm | 480e4ac1f56b123d278e0cd30b557287696b9ab5307011eb157dc9bedade5c18 | 15 offsets: 0xf 16/12, 0x12 f2/a5, 0x13 10/f0, 0x32 9c/87, 0x33 e4/48, 0x35 05/00, 0x36 94/cd, 0x37 08/a0, 0xfa 91/85, 0xfb 54/3c, 0x122 9c/87, 0x123 f8/a4, 0x125 05/00, 0x126 98/ea, 0x127 dc/44 |
+| jt_insert_chip_register | 0x10165290 / 292 | b29aec83ccda9750833afa950e23e08862147629e33e884c92a4217a29f22427 | 0x10039830 292 / usr/gfx/KONA/bin/kpm | 0667d0af0b2c03b35fb398d8144e2dd258c7a618f4b856cc55d32f6be1df99b2 | 13 offsets: 0xf 16/12, 0x12 f0/a4, 0x13 b0/90, 0x32 9c/87, 0x33 e4/48, 0x35 05/00, 0x36 94/cd, 0x37 08/a0, 0xfa 9c/87, 0xfb f8/a4, 0xfd 05/00, 0xfe 98/ea, 0xff dc/44 |
+| jt_extract_bits | 0x101653c0 / 796 | 9c494d17a39986952ae7dd2df5aca10eef138734def8539e7638dcd915124bd0 | 0x10039960 796 / usr/gfx/KONA/bin/kpm | 8081a8e1e1c6cc49305d1249bc463477be4f7b0c672ae675ee729834fe90a5c7 | 34 offsets: 0xf 16/12, 0x12 ef/a3, 0x13 80/60, 0x36 9c/87, 0x37 e4/48, 0x39 05/00, 0x3a 94/cd, 0x3b 08/a0, 0x6f 68/24, 0x72 5a/9f, 0x73 40/e0, 0x75 05/00, 0x76 96/e7, 0x77 90/f8, 0x126 9d/87, 0x127 60/8c, 0x129 05/00, 0x12a ae/e1, 0x12b b8/04, 0x14f b8/68, 0x152 cc/28, 0x153 d0/78, 0x157 b8/68, 0x15a cc/28, 0x15b e0/88, 0x176 9d/87, 0x177 40/64, 0x179 05/00, 0x17a a1/cf, 0x17b e8/2c, 0x2ba 90/84, 0x2bb e0/54 |
+| jt_insert_bits | 0x101656e0 / 860 | 994bd8974a3334c384627fa2c1988121849a12d24da5852ce70b922c75416573 | 0x10039c80 860 / usr/gfx/KONA/bin/kpm | cf0723b3c172262f2fd25658ca5946d37f99ba7a151ea599aa925e0e0ba8af5a | 56 offsets: 0xf 16/12, 0x12 ec/a0, 0x13 60/40, 0x36 9c/87, 0x37 e4/48, 0x39 05/00, 0x3a 94/cd, 0x3b 08/a0, 0x5b b8/68, 0x5e cd/28, 0x5f 00/a8, 0x63 b8/68, 0x66 cd/28, 0x67 10/b8, 0x6e 9d/87, 0x6f 40/64, 0x71 05/00, 0x72 a1/cf, 0x73 e8/2c, 0x8f 68/24, 0x92 5a/9f, 0x93 40/e0, 0x95 05/00, 0x96 96/e7, 0x97 90/f8, 0xb7 b8/68, 0xba cd/28, 0xbb 00/a8, 0xbf b8/68, 0xc2 cd/28, 0xc3 28/d0, 0xca 9d/87 |
+| jt_expand_portlist | 0x10166080 / 68 | 9709103908c318b0cccba2dec0856f8be617b795e54a65328cfe612ba45ef98e | 0x1003a620 68 / usr/gfx/KONA/bin/kpm | fd63861d039427b5e0a33f0f1f95a1ae8b239d368783e8987cd429edd4f99fd6 | 9 offsets: 0xf 16/12, 0x12 e2/96, 0x13 c0/a0, 0x23 68/24, 0x26 5a/9f, 0x27 40/e0, 0x29 05/00, 0x2a 96/e7, 0x2b 90/f8 |
+| jt_nullify | 0x101660d0 / 672 | f69f1e751a4e16245d0a6accdc9e8039ce257b71c05ae0aa0c9ac2405260b92a | 0x1003a670 672 / usr/gfx/KONA/bin/kpm | 3788d16e92f2671637d17d7f431c1d5b62ad4fc89d975e2c085112821348dc88 | 13 offsets: 0xf 16/12, 0x12 e2/96, 0x13 70/50, 0x32 91/84, 0x33 88/e4, 0x102 a4/8e, 0x103 60/10, 0x106 91/84, 0x107 20/90, 0x152 a4/8e, 0x153 68/18, 0x156 91/84, 0x157 20/90 |
+| jt_conditional_reset | 0x101671d0 / 1816 | 6d77e8b82065fe5451ee1c692bf5bf16b08231d854d3685a40ae395c15230358 | 0x100341e0 1816 / usr/gfx/KONA/bin/kpm | 0cbe99ef8391fceb62d1324ebe2a20638d1e7128c7786d8a8849b60745a1575b | 43 offsets: 0xf 16/12, 0x12 d1/fa, 0x13 70/e0, 0x32 a4/8d, 0x33 80/18, 0x36 91/84, 0x37 58/6c, 0x9e 9d/87, 0x9f 64/90, 0xa1 05/00, 0xa2 af/e1, 0xa3 7c/c8, 0xae 9c/87, 0xaf d4/38, 0xb1 05/00, 0xb2 93/cd, 0xb3 94/2c, 0x472 91/84, 0x473 34/98, 0x516 91/84, 0x517 20/90, 0x586 9c/87, 0x587 c8/30, 0x589 05/00, 0x58a 93/cc, 0x58b 0c/a4, 0x6ba 9c/87, 0x6bb c4/2c, 0x6bd 05/00, 0x6be 92/cc, 0x6bf a8/40, 0x6d6 9d/87 |
+| jt_isolate_chip | 0x10167c80 / 960 | 5d70a8cdea57b2c54240a94d0872420be44c535df724657524a6f20e4b3cf63b | 0x10034c90 960 / usr/gfx/KONA/bin/kpm | 08b8fdf5cf06728f21f06ea9412d4792169aaab0b373d672349b96ec2a421020 | 48 offsets: 0xf 16/12, 0x12 c6/f0, 0x13 c0/30, 0x2a 91/84, 0x2b 58/6c, 0x42 9d/87, 0x43 64/90, 0x45 05/00, 0x46 af/e1, 0x47 7c/c8, 0x52 9c/87, 0x53 d4/38, 0x55 05/00, 0x56 93/cd, 0x57 94/2c, 0x106 91/84, 0x107 20/90, 0x17e 91/84, 0x17f 20/90, 0x1c2 90/84, 0x1c3 e0/54, 0x1d2 9c/87, 0x1d3 d8/3c, 0x1d5 05/00, 0x1d6 93/cd, 0x1d7 bc/54, 0x226 9c/87, 0x227 c8/30, 0x229 05/00, 0x22a 93/cc, 0x22b 0c/a4, 0x35a 9c/87 |
+| jt_powerup_chain | 0x10168040 / 548 | 543b5d8236f352599d489db039aaaf064eb0bb70087453e2fe8d8a7aa9e6f6ac | 0x10035050 548 / usr/gfx/KONA/bin/kpm | 0f034013562dbd5c91c53eb0f003e29934b963357275ea2a105eed9558661a3c | 7 offsets: 0xf 16/12, 0x12 c3/ec, 0x13 00/70, 0xe2 a4/8d, 0xe3 88/20, 0xe6 91/84, 0xe7 20/90 |
+| jt_set_procs | 0x10168270 / 104 | 437b07e1d4ad5533d00e7c859b642000abdf64a55bdf0c1c763657965cd8faec | 0x10033780 104 / usr/gfx/KONA/bin/kpm | 8d5e421b8b1ab168b4a438cb1f8d05925b59e49bb1b5e577b62c08c5ae99a364 | 6 offsets: 0x7 16/12, 0xa c0/05, 0xb d0/40, 0x1b c8/7c, 0x1e c2/8e, 0x1f f8/f0 |
+| jt_init | 0x10168530 / 60 | 0b6102fcb0c93908c567022f6513af3925100df0d0a71a3ed7b3d2548c3fb921 | 0x10033a40 60 / usr/gfx/KONA/bin/kpm | 0563b0c5899f8a0900bd0288fed2ee6b2cdf3695506ffe03d6a906fb1f89643d | 6 offsets: 0xf 16/12, 0x12 be/02, 0x13 10/80, 0x1b c8/7c, 0x1e c2/8e, 0x1f f8/f0 |
+| jt_select_chain | 0x10168570 / 68 | 011ee45f927557d1c9e245bc88d98af8dba177958292fbb1bbd0b0de4c832208 | 0x10033a80 68 / usr/gfx/KONA/bin/kpm | cc3857e54058bf825383095b01756eb66309a13ab03a390304956818bf9b7971 | 6 offsets: 0xf 16/12, 0x12 bd/02, 0x13 d0/40, 0x23 c8/7c, 0x26 c2/8e, 0x27 fc/f4 |
+| jt_soft_reset | 0x101685c0 / 60 | 9fb250ccd7f0d120ef6f4098ea1204a24946946d31969e9f1a506425ad664b44 | 0x10033ad0 60 / usr/gfx/KONA/bin/kpm | d410a29d542d5ffb6f359080c1b0f85c6f3474a583d98e008f257fad630e4276 | 6 offsets: 0xf 16/12, 0x12 bd/01, 0x13 80/f0, 0x1b c8/7c, 0x1e c3/8e, 0x1f 00/f8 |
+| jt_hard_reset | 0x10168600 / 60 | b3cb51b2edcc8c4a6e9dda932cbe9f94ad96d0b940de83a51f5028d76182b4ea | 0x10033b10 60 / usr/gfx/KONA/bin/kpm | 9aa939db17a19f9c462fcad29e6575d579ed2ccc5df42bccfb9e11415d30f224 | 6 offsets: 0xf 16/12, 0x12 bd/01, 0x13 40/b0, 0x1b c8/7c, 0x1e c3/8e, 0x1f 04/fc |
+
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
