@@ -7530,6 +7530,114 @@ These readings describe the IRIX 6.5.30m `usr/gfx/ircombine` copies of the symbo
   Address 0x1008df60; occupies 320 bytes.
   **Established.** Header serialization begins with `strlen` on the input header (`jalr` at 0x1008df90), followed by `xdr_bytes` with a maximum of 4 (`jalr` at 0x1008dfc8). It then serializes two version records at header +4 and +8 through `xdr_SDBversionNumber` (`jal` at 0x1008dfdc, 0x1008dff0), and a second byte sequence with a maximum of 0x64 (`jalr` at 0x1008e00c). The count at header +112 goes through `xdr_SDBelementIndex` (`jal` at 0x1008e020). Header +116 and +120 use `xdr_SDBfileOffset` (`jal` at 0x1008e034 and 0x1008e048). The final `xdr_array` uses maximum 10, element size 4 and codec `xdr_u_long` (`jalr` at 0x1008e06c). A zero result from that array codec takes the failure branch (`beqz` at 0x1008e074). The observed return paths yield only 0 or 1 (`jr` at 0x1008e098).
 
+### IRIX 6.5.30m ircombine and setmon helpers
+
+These readings describe the IRIX 6.5.30m `usr/gfx/ircombine` and `usr/gfx/setmon` copies of the listed helpers. Each exact range differs from the `konal.so` counterpart; byte differences alone do not establish different behavior.
+
+| Routine | Target build / address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---|
+| `xdr_SDBdataType` | `usr/gfx/ircombine` 0x1008e0a0 / 52 | `2aef280e3bcaa2623d2bbfb169e4ea677907eb826f733024d09440da4b0e0133` | `usr/lib/X11/dyDDX/konal.so` 0x13b2800 / 52 | `55674fffd6aafaa421d4baecf619468c9bc2c28600c1b75b9d08f4311af7436e` | 5 |
+| `xdr_SDBsymbolName` | `usr/gfx/ircombine` 0x1008e0d4 / 112 | `c85d246d30cb179e5021e55a1154e9e26bd8cce0a106c727eb35dcf4916e35fa` | `usr/lib/X11/dyDDX/konal.so` 0x13b2834 / 112 | `3baaa0d127eb369eea8254e0579cf48dbe9fe5b885606259e803202b5e2f7b7f` | 5 |
+| `xdr_SDBsymbolTableEntry` | `usr/gfx/ircombine` 0x1008e144 / 200 | `6ff5a4ddd26d0d086cb84bf1a9ed5524212ccca9d11293665f8233654276c4e6` | `usr/lib/X11/dyDDX/konal.so` 0x13b28a4 / 200 | `5b28f9d7ea23a0cf5d989b6acb7d2003514c5463aef073a6275a4ba4353984ff` | 27 |
+| `xdr_SDBversionNumber` | `usr/gfx/ircombine` 0x1008e20c / 104 | `69ac3c685fa6d850642634e15ddfa68d49952360759a1d6160604f4716d16dda` | `usr/lib/X11/dyDDX/konal.so` 0x13b296c / 104 | `8cf1b41c082a5e41f3f16cae7f3952a0056ef1ee2584d737efa2bd5e71ffc691` | 7 |
+| `SDBsetupMemoryInterface` | `usr/gfx/ircombine` 0x1008e274 / 36 | `5979a782da775c02e77cc4ea799b2ba55df66718cb8da62c72958522db831994` | `usr/lib/X11/dyDDX/konal.so` 0x13b29d4 / 36 | `752da45a0c861e60269c6ebcd7b47ee51c25b81d9b0604945e439cb5bb8ba0e2` | 5 |
+| `vfmtResolvePixelDepth` | `usr/gfx/setmon` 0x10018df0 / 1052 | `29fc4e1e82b141c79b8e8a34ddd7ec92b74214cb49b6ebb8089efe0b1897cc94` | `usr/lib/X11/dyDDX/konal.so` 0x13a7040 / 1052 | `dad806c813c89c4387862954531d2e5368a0ef134ac89869c46faa641c0be9ef` | 6 |
+| `vfmtIsKonaCombinationValidForActualHW` | `usr/gfx/setmon` 0x1001a520 / 148 | `474c829d66686cbfefbeeeef2147a12c30114df83ede03e662717fefd9961b09` | `usr/lib/X11/dyDDX/konal.so` 0x13a8770 / 148 | `8a5ee9c89d86de9d2fecdb640136a10f4d51bdc0e44246c3c383ca9867bff3a2` | 23 |
+| `vfmtSwapRateCloseEnough` | `usr/gfx/setmon` 0x1001a5c0 / 144 | `2c3e67b8a96aa952213749ab824ee576ca6185b0c1a1c39471be4714fac3f5fa` | `usr/lib/X11/dyDDX/konal.so` 0x13a8810 / 144 | `9865c29566e60bae2da5d3a5a00d1fcad38d9557aa2840fd799f54145aa0bbe5` | 5 |
+| `vfmtSyncFormatFrameRatesCompatible` | `usr/gfx/setmon` 0x1001a650 / 332 | `c74ac8395dd92413c6cf4a681bd71c095a622bc1849fde50bf8807e75bafda30` | `usr/lib/X11/dyDDX/konal.so` 0x13a88a0 / 332 | `551dc21e00572ce91bf3d5349fdf130a9ac3a7c32cce178fd181970eef1674f9` | 11 |
+| `vfmtUpdateFormatInfoInCombination` | `usr/gfx/setmon` 0x1001a850 / 392 | `3848b8f519f63644f82e4719e61e94563e98c8bac2708b71bb2f5f9a405ef57d` | `usr/lib/X11/dyDDX/konal.so` 0x13a8aa0 / 392 | `5e10c6133c36fc484998f137f679680e7e0e06b1bd02b271937ef0e51a7eb256` | 26 |
+| `vfmtFindFormatFile` | `usr/gfx/setmon` 0x1001cd00 / 592 | `2c98152fc9bb693a403271db4aa239793b574656536d03ce4260f3fc82a1195f` | `usr/lib/X11/dyDDX/konal.so` 0x13aaf50 / 592 | `16128643e488605797dbc02da53699953469eb90a9ca73f25a86406bea4f015a` | 57 |
+| `vfmtFindKonaFormatFile` | `usr/gfx/setmon` 0x1001cf50 / 76 | `572357e90cb40edc66931f98ae4741c902a7b28aae8c7b8b8ab1d5e6f507d4fd` | `usr/lib/X11/dyDDX/konal.so` 0x13ab1a0 / 76 | `1e949a7b6a5ca2aa1a988d7dae57e2577dc23ac1bda5bf889a198be5275afc7d` | 10 |
+| `vfmtFindCmpFormatFile` | `usr/gfx/setmon` 0x1001cfa0 / 156 | `6f2661a35091f10f7e6dc764f11215c53f2964083cf5f78e10539b98800552d3` | `usr/lib/X11/dyDDX/konal.so` 0x13ab1f0 / 156 | `84ac615f5f03e545157b5b0cc91dad2a12f5cbc1e44e1cfe094da80ee103a393` | 17 |
+| `vfmtFindOdyFormatFile` | `usr/gfx/setmon` 0x1001d040 / 76 | `27189b4d88ccb15936e04cd4ba4f831ce8cda8f82c98b2308e07d9b73e5b6706` | `usr/lib/X11/dyDDX/konal.so` 0x13ab290 / 76 | `923e28ffe1163092fee91a5f70c20b933f5cb5f2c18921e821c3744d093d85a3` | 10 |
+| `vfmtFindSG2FormatFile` | `usr/gfx/setmon` 0x1001d090 / 76 | `cbf593255f6c044d9508234e36b14a8499f7e51d49f38d0dac1a3e840b4ab9e8` | `usr/lib/X11/dyDDX/konal.so` 0x13ab2e0 / 76 | `a31c1a24dcf3765fb8b53b5079ed4ed07a126e65e632f63672f169b4fc50dd38` | 10 |
+| `vfmtFindKonaCombinationFile` | `usr/gfx/setmon` 0x1001d0e0 / 308 | `fa61df65fc7654153d91d64e557f8d68d0996ad76fb9a0668ba006d9b4ea7167` | `usr/lib/X11/dyDDX/konal.so` 0x13ab330 / 308 | `180a0f2f6583ee3d53e0a7c1a128b89c9f3e336dca0d10aaf63dcc4ee4efe09b` | 31 |
+| `vfmtFindCmpCombinationFile` | `usr/gfx/setmon` 0x1001d220 / 616 | `484725113ca868ad4ed13158709c16ff2669ef256b8aa60cfba325e7a4682351` | `usr/lib/X11/dyDDX/konal.so` 0x13ab470 / 616 | `40ab9f793788cff3dd18c7a1813c93c3c410b5cd533e824d36a1bcad95d050cc` | 66 |
+| `vfmtGetLastKonaFileStat` | `usr/gfx/setmon` 0x1001d490 / 132 | `3c80a7c6b43c5e34db04c5a40d2d9bd5e4441d622c236e5f3d0c06c035b7d16f` | `usr/lib/X11/dyDDX/konal.so` 0x13ab6e0 / 132 | `dc3f529373bdbbee1687f580bac704b96f13b57a32429d9dca85a5caf962b5fd` | 6 |
+| `vfmtReadKonaCombination` | `usr/gfx/setmon` 0x1001eb20 / 500 | `5bcdc8291a859a50084f24c1eaaf3fa807a49052655c10b5769190b64d7cfcc8` | `usr/lib/X11/dyDDX/konal.so` 0x13acd70 / 500 | `4995a79bd3f45f98cb7d0032f9c0667b5dded9f846a52a388533273a85f202aa` | 55 |
+| `vfmtWriteKonaCombination` | `usr/gfx/setmon` 0x1001fd70 / 2304 | `912d5e72f0f602cd93cea2fb1623fb6bc3325a125e9e498062eb12d1b3a4154e` | `usr/lib/X11/dyDDX/konal.so` 0x13adfc0 / 2304 | `6fb6b4bcea96321b7df6c41442751cb76bab7a4351198436f51373e89dfd0526` | 327 |
+
+#### Target-build readings
+
+- `xdr_SDBdataType` in `usr/gfx/ircombine`:
+  Address 0x1008e0a0; occupies 52 bytes.
+  **Established.** Implements the database type codec by forwarding the caller's arguments to `xdr_enum` (`jalr` at 0x1008e0bc). Its return value remains the enumeration codec's result (`jr` at 0x1008e0cc). The body only accesses stack state and the GOT. It contains no graphics register operation.
+
+- `xdr_SDBsymbolName` in `usr/gfx/ircombine`:
+  Address 0x1008e0d4; occupies 112 bytes.
+  **Established.** Handles the symbol-name XDR field with a maximum length of 0x1f, supplying entry argument 0 and entry stack pointer -0x20 to `xdr_string` (`jalr` at 0x1008e104). The checks on entry argument 1 and the word it points to take failure exits when zero (`beqz` at 0x1008e0e4, 0x1008e0f0). A zero codec result also selects failure (`beqz` at 0x1008e10c). The successful path writes a zero byte at an unresolved effective address (`sb` at 0x1008e118) and returns one. The failure paths return zero. Its effects concern serialized software data.
+
+- `xdr_SDBsymbolTableEntry` in `usr/gfx/ircombine`:
+  Address 0x1008e144; occupies 200 bytes.
+  **Established.** Combines name, type, element-index and file-offset codecs for a symbol-table record (`jal` at 0x1008e17c, 0x1008e194, 0x1008e1ac, 0x1008e1c4). The name pointer is entry argument 1 plus 12, saved at entry stack pointer -0x30 (`sw` at 0x1008e150). The index and file-offset calls receive entry argument 1 plus four and plus eight respectively. A zero return from any codec branches to failure (`beqz` at 0x1008e184, 0x1008e19c, 0x1008e1b4, 0x1008e1cc). It returns zero on failure or one after all four fields. The codec operates on a host record and XDR stream, without a hardware transaction.
+
+- `xdr_SDBversionNumber` in `usr/gfx/ircombine`:
+  Address 0x1008e20c; occupies 104 bytes.
+  **Established.** Uses `xdr_u_short` twice for the version record (`jalr` at 0x1008e22c, 0x1008e248). The second call retains entry argument 0 and advances entry argument 1 by two bytes. Each codec's zero result takes the zero-result exit (`beqz` at 0x1008e234, 0x1008e250). Only two nonzero results produce one. This routine serializes the version pair rather than setting hardware state.
+
+- `SDBsetupMemoryInterface` in `usr/gfx/ircombine`:
+  Address 0x1008e274; occupies 36 bytes.
+  **Established.** Replaces the four words of `_SDBmemface` with arguments 3, 2, 1 and 0 at offsets +0xc, +8, +4 and +0 respectively (`sw` at 0x1008e284, 0x1008e288, 0x1008e28c, 0x1008e294). The argument-0 store is the return delay slot (`jr` at 0x1008e290). It returns the `_SDBmemface` address. These are software callback-table stores, and no callback is invoked.
+
+- `vfmtResolvePixelDepth` in `usr/gfx/setmon`:
+  Address 0x10018df0; occupies 1052 bytes.
+  **Inferred.** Resolves a depth request using words at entry argument 0 +0x104, +0x108 and +0x10c (`lw` at 0x10018e14, 0x10018e34, 0x10018ef8), and target words at entry argument 1 +0 and +4 (`lw` at 0x10018e98, 0x10018e70). An unsigned request value at least eight takes a zero-result arm (`beqz` at 0x10018f14). The other arm dispatches through table 0x1003cf38 (`jr` at 0x10018f24). Subsequent tests include unsigned bounds 0x40, 0x20, 0x10, eight and four (`bnez` at 0x10018fec, 0x10019020, 0x10019054, 0x10019074, 0x10019094). Hostfacts leaves the tested computed values and merged return unknown, although several rejection arms return zero. The routine has no calls and writes only stack storage.
+
+- `vfmtIsKonaCombinationValidForActualHW` in `usr/gfx/setmon`:
+  Address 0x1001a520; occupies 148 bytes.
+  **Established.** Checks a combination against cached hardware-description data. Entry argument 0 matching the word at 0x100423ac skips reconstruction (`beq` at 0x1001a554). On mismatch, the routine updates that word and calls `vfmtActualHWToKonaTarget` with entry argument 0 and output address 0x100468d0 (`sw` at 0x1001a560, `jal` at 0x1001a574). Both paths call `vfmtIsKonaCombinationValidForTarget` with entry argument 1 and that cached address (`jal` at 0x1001a598), returning its result. Any device queries belong to the reconstruction callee.
+
+- `vfmtSwapRateCloseEnough` in `usr/gfx/setmon`:
+  Address 0x1001a5c0; occupies 144 bytes.
+  **Inferred.** Returns a Boolean rate-comparison result using a threshold loaded from 0x100425d8 (`ldc1` at 0x1001a628). Hostfacts identifies its bits as 0x3f847ae147ae147b, the double value 0.01. The final branch retains result one when f4 is below that threshold and otherwise falls through to zero (`bc1t` at 0x1001a634). The expression in f4 is unresolved in hostfacts. There are no calls or direct display-register accesses.
+
+- `vfmtSyncFormatFrameRatesCompatible` in `usr/gfx/setmon`:
+  Address 0x1001a650; occupies 332 bytes.
+  **Inferred.** Tests two frame rates in software and returns zero or one. The input-order branch is taken when entry f13 is not less than or equal to entry f12 (`bc1f` at 0x1001a6cc). A later branch falls through to zero when 16.0 is less than f9 (`bc1f` at 0x1001a710), while the surviving path calls `floorf` (`jalr` at 0x1001a72c). The final comparison retains one when 0.49 is below f11, else it falls through to zero (`bc1t` at 0x1001a770). Hostfacts resolves the constants but leaves f9 and f11 unknown. The body has no direct hardware programming effect.
+
+- `vfmtUpdateFormatInfoInCombination` in `usr/gfx/setmon`:
+  Address 0x1001a850; occupies 392 bytes.
+  **Inferred.** Loads format information into a software combination. The lookup and reader are `vfmtFindKonaFormatFile` and `vfmtReadKonaVideoFormat` (`jal` at 0x1001a8e8, 0x1001a8fc), with stack buffers at entry stack pointer -0xc30 and -0x830. A zero reader result takes the copy arm (`beqz` at 0x1001a904). That arm includes word stores at unresolved effective bases (`sw` at 0x1001a940, 0x1001a97c). Nonzero falls through to error value 0x3b9 at absolute address 0x100423a4 and the unnamed reporting callee at 0x10018be0 (`sw` at 0x1001a910, `jal` at 0x1001a928). The record loop continues while an unresolved value is less than 15 (`bnez` at 0x1001a9b0). Hostfacts shows one on normal completion and an unknown merged return. It does not write display-generator registers.
+
+- `vfmtFindFormatFile` in `usr/gfx/setmon`:
+  Address 0x1001cd00; occupies 592 bytes.
+  **Established.** Constructs and checks candidate format paths. Environment lookups use name addresses 0x1003e118 and 0x10042280 (calls to `getenv` (`jalr` at 0x1001cd30, 0x1001cea0)). Both `stat` calls use status address 0x100468f0 (`jalr` at 0x1001ce78, 0x1001cef8). Nonzero from the first check takes the fallback search (`bnez` at 0x1001ce84). Nonzero from the second takes the final failure copy (`bnez` at 0x1001cf04). A nonzero directory comparison falls through to result three (calls to `strcmp` (`jalr` at 0x1001ce30), `beqz` at 0x1001ce3c). Hostfacts records zero on successful file checks and one on other missing-file exits. This searches files and writes host path buffers without touching the graphics device.
+
+- `vfmtFindKonaFormatFile` in `usr/gfx/setmon`:
+  Address 0x1001cf50; occupies 76 bytes.
+  **Established.** Chooses the Kona lookup configuration from the word at 0x100423b4 (`lw` at 0x1001cf78). That word becomes argument 2 to `vfmtFindFormatFile`, with entry arguments 0 and 1 retained (`jal` at 0x1001cf80). It returns the helper's status (`jr` at 0x1001cf94). The configuration word's pointer value is unknown in hostfacts, so no directory string is inferred here.
+
+- `vfmtFindCmpFormatFile` in `usr/gfx/setmon`:
+  Address 0x1001cfa0; occupies 156 bytes.
+  **Established.** Selects between two compositor lookup configurations. `vfmtFindFormatFile` first receives the word at 0x100423bc as argument 2 (`jal` at 0x1001cfd0). Nonzero status takes a second call with the word at 0x100423b8 (`bnez` at 0x1001cfe4, `jal` at 0x1001d00c). Both searches preserve entry arguments 0 and 1, and the wrapper returns whichever search result applies. The directory pointer values are unresolved in hostfacts. This delegates filesystem lookup.
+
+- `vfmtFindOdyFormatFile` in `usr/gfx/setmon`:
+  Address 0x1001d040; occupies 76 bytes.
+  **Established.** Supplies the Odyssey configuration word from 0x100423c0 to the generic file finder (`lw` at 0x1001d068, calls to `vfmtFindFormatFile` (`jal` at 0x1001d070)). Entry arguments 0 and 1 pass through unchanged. The result is the file finder's return (`jr` at 0x1001d084), and the directory pointer held in the configuration word remains unknown in hostfacts.
+
+- `vfmtFindSG2FormatFile` in `usr/gfx/setmon`:
+  Address 0x1001d090; occupies 76 bytes.
+  **Established.** Uses the SG2 search configuration at absolute address 0x100423c4 (`lw` at 0x1001d0b8). Its single call passes that word as argument 2 and preserves entry arguments 0 and 1 (calls to `vfmtFindFormatFile` (`jal` at 0x1001d0c0)). The helper's result passes back to the caller (`jr` at 0x1001d0d4). Hostfacts does not resolve the directory pointer. The wrapper contains no direct graphics access.
+
+- `vfmtFindKonaCombinationFile` in `usr/gfx/setmon`:
+  Address 0x1001d0e0; occupies 308 bytes.
+  **Established.** Checks the supplied combination name and a constructed fallback path through `stat` (`jalr` at 0x1001d124, 0x1001d1bc), using status buffer 0x100468f0. A failed first check takes the environment-based construction path (`bnez` at 0x1001d130). That path calls `getenv` and `sprintf` (`jalr` at 0x1001d168, 0x1001d1a4). Nonzero from the fallback check takes the name-copy exit (`bnez` at 0x1001d1c8, calls to `strcpy` (`jalr` at 0x1001d1ec)). Found files return one, while failure after both attempts returns zero. This resolves host file names only.
+
+- `vfmtFindCmpCombinationFile` in `usr/gfx/setmon`:
+  Address 0x1001d220; occupies 616 bytes.
+  **Established.** Searches compositor combination candidates through four `stat` sites sharing status address 0x100468f0 (`jalr` at 0x1001d268, 0x1001d2fc, 0x1001d344, 0x1001d38c). Its directory-formatting calls supply a length of four to `snprintf` (`jalr` at 0x1001d2e4, 0x1001d32c, 0x1001d374). Thus those calls allow three output characters plus a terminator. The retry path includes `strstr` and `strncat`, the latter with limit 0x400 (`jalr` at 0x1001d3b8, 0x1001d3dc). Final output uses `snprintf` or `strncpy` with limit 0x400 (`jalr` at 0x1001d430, 0x1001d450). The routine returns zero for a found file or one after exhausting candidates. Its side effects concern host buffers and filesystem status.
+
+- `vfmtGetLastKonaFileStat` in `usr/gfx/setmon`:
+  Address 0x1001d490; occupies 132 bytes.
+  **Established.** Returns the cached file-status image through a doubleword copy loop (`ld` at 0x1001d4d4, `sd` at 0x1001d4e0). The initial source is 0x100468f0 and destination is entry argument 0 (`sd` at 0x1001d4b0, 0x1001d4b8). The loop counter starts at 0x13 (`sd` at 0x1001d4c4), and a positive tested value takes the next iteration (`bgtz` at 0x1001d4f8). Effective addresses inside the loop remain unknown in hostfacts. Completion returns one. There are no calls or hardware-register operations.
+
+- `vfmtReadKonaCombination` in `usr/gfx/setmon`:
+  Address 0x1001eb20; occupies 500 bytes.
+  **Established.** Reads a combination record from a symbol database. It clears entry argument 1 for 0xa2a4 bytes (calls to `bzero` (`jalr` at 0x1001eb64)), resolves entry argument 0 through `vfmtFindKonaCombinationFile`, and opens the resulting stack path (`jal` at 0x1001eb78, 0x1001eb88). Scalar reads request name addresses 0x1003e578 and 0x1003e588, with outputs at entry stack pointer -0x48 and -0x46 (calls to `SDBgetSymbolValueScalar` (`jal` at 0x1001ebc8, 0x1001ebf0)). A nonzero result from the unnamed helper at 0x1001e400 takes cleanup (`jal` at 0x1001ec40, `bnez` at 0x1001ec54). The repeated-record helper is 0x1001d520, with a zero result advancing the loop (`jal` at 0x1001ec9c, `beqz` at 0x1001eca8). `SDBcloseReadDatabase` closes the handle (`jal` at 0x1001ecf4). Hostfacts leaves the merged return unknown. The routine loads host records, without direct display writes.
+
+- `vfmtWriteKonaCombination` in `usr/gfx/setmon`:
+  Address 0x1001fd70; occupies 2304 bytes.
+  **Established.** Writes a software combination as a symbol database. Name resolution uses `vfmtFindKonaCombinationFile`, followed by `SDBopenNewDatabase` with three stack-buffer arguments (`jal` at 0x1001fdd8, 0x1001fdf0). A null database result falls through to return one (`bnez` at 0x1001fe04). The initial scalar symbols at 0x1003e578 and 0x1003e588 use `xdr_u_short` (calls to `SDBaddNewScalarSymbol` (`jal` at 0x1001fe38, 0x1001fe64)). Later fields include entry argument 1 +0x100, +0x10c and +0x110 with `xdr_int` (`jal` at 0x1001ff88, 0x100200c8, 0x10020130). Two-element integer arrays use argument 1 +0x104 and +0x24c (calls to `SDBaddNewArraySymbol` (`jal` at 0x1001fff4, 0x10020060)). These are examples, not a complete field list. A three-element float array comes from argument 1 +0x22c (`jal` at 0x10020548). The record loop calls the unnamed routine at 0x1001ed20 (`jal` at 0x1002061c). Normal completion closes the database and returns zero (calls to `SDBcloseNewDatabase` (`jal` at 0x10020648)), while checked symbol-add failures return two. It serializes a host file rather than programming graphics registers.
 ## The X module files
 
 - `konal.so` (usr/lib/X11/dyDDX/konal.so, 1759116 bytes): **established.** The X server module of the 6.5.30m install that this
