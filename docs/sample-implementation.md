@@ -1356,6 +1356,114 @@ Corrected entry-body comparison:
 - `__glim_GenLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd994318; occupies 164 bytes.
   **Inferred.** Reserves consecutive software display-list names after checking state and count. If absolute 0x1018 holds one, it reports 0x502 and returns zero (`bne` at 0xd994340, `jalr` at 0xd994350). A negative signed count instead reports 0x501. A zero count returns zero without reserving names (`bgez` at 0xd994364, `jalr` at 0xd994374, `bnez` at 0xd994388). A positive count reaches `__glNamesGenRange`, with the context, its +0x1340 name table and the original count (`lw` at 0xd994368, `jalr` at 0xd9943a0). The return is that helper's result on this arm (`jr` at 0xd9943b4).
+## IP35 O32 span-reduction, reorder and pack routines
+
+These entries describe complete target bodies in usr/gfx/arch/IP35KONA/libGLcore.so. All ranges differ from the named N32 counterparts; the difference does not establish changed behavior. The source conversion roles remain inferred where input/output addresses or numeric transformations are unresolved.
+
+| Routine | IP35 O32 address / size | IP35 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glSpanReduceBGR | 0xd99e870 / 272 | 07bb20b5f28143eed28a9543adc27e8028195bd5e8ada10005ba3c236a720019 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b160 / 280 | c190fb53d36354c24663f01b3e807a039e0390b7606728b2fe092913b9806ab4 | 235 |
+| __glSpanReorderABGR | 0xd99e980 / 356 | 9d2067aada77deac3da468f377e11d774a669c3a817d3ecb6b73785a9507dc0e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b280 / 344 | 9082a13c700d51f36433ad42bf15d97b75a435b82d15032c9fe2ea6cfa1ca213 | 298 |
+| __glSpanReorderBGRA | 0xd99eae4 / 356 | e7725d172e97caba28903b4da451041bdfbc1166b1e7d021135ec571a94c5b76 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b3e0 / 344 | f8e6c09d71402568c01c4d6312fa62d70eff15c683731bb8487ae71cdc5de841 | 297 |
+| __glSpanReduceLuminance | 0xd99ec48 / 400 | 5a6618dd1751c504ad8d8190c8c4bd0fffadf792d4c747a9b9ee541f37945fae | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b540 / 296 | 127ec281ed3eb929d6b97e88de4dafffbe482b3ef70d480b6723a3c29dacffe5 | 253 |
+| __glSpanReduceLuminanceAlpha | 0xd99edd8 / 464 | 3b7b24f006fe6d4b37c0469d7f5e7ccb98dfa5e8e163fa4a65be265be7d8dc89 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b670 / 360 | 9ab8ed1ac27eb881d0ac1d1ea2a0b99092e40206222db30929ac6f29b471e16c | 308 |
+| __glSpanReduceRedAlpha | 0xd99efa8 / 208 | c8da66aa3f27842c93274e1fd9dbdc1df57c1e66f921e4aa3e47472884dacad8 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b7e0 / 216 | 6ec8d372d59957ab99d6fa52e43fb346eaaafa7da1d19d97046fcb26a9e8db66 | 186 |
+| __glSpanReduceRedNS | 0xd99f078 / 124 | 9914d3b3304d0de8e11f2851c9e05a99c5c43001e048cfc8c60ba9e8b472f6b9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b8c0 / 136 | bd0979f761a3319c2eb6809f0ca6bc498023fa2a689104f0a53e4f18a66772c4 | 97 |
+| __glSpanReduceGreenNS | 0xd99f0f4 / 124 | 6f6488b24e769d061dec758132e3b51e91781d492855688eb577c52272a0531d | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b950 / 136 | 2e636b9cb618e6564d2ab65e02a07a8758929a4effd9137a226221387b8ba894 | 96 |
+| __glSpanReduceBlueNS | 0xd99f170 / 124 | 0b9180454d1762541516d984ce8a974618b36a5398a37bb57d4c442546b8954e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99b9e0 / 136 | 285288f9a806424e221d75102e7c36f1aea5dac879a10fd335e988b656f1ac9b | 96 |
+| __glSpanReduceAlphaNS | 0xd99f1ec / 124 | d26816cae04ace72f0bae8d12ebd8ce049b6067e3334d677bf062e68fa02c575 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99ba70 / 136 | 7b22d178298964d263f6acc6182645a773c456978c107e77fbab43989e9fec20 | 96 |
+| __glSpanReduceRGBNS | 0xd99f268 / 204 | dc465a2b99dc652f55bfa10d46758ed7742b6c4de8674640062cf7b8d5bc2d72 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bb00 / 216 | 517d155d54fa2b53ebf9b1f0022713af6cbce7e1cff040128be7667026a8c166 | 153 |
+| __glSpanReduceBGRNS | 0xd99f334 / 204 | dc465a2b99dc652f55bfa10d46758ed7742b6c4de8674640062cf7b8d5bc2d72 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bbe0 / 216 | 517d155d54fa2b53ebf9b1f0022713af6cbce7e1cff040128be7667026a8c166 | 153 |
+| __glSpanReorderABGRNS | 0xd99f400 / 244 | c683fa366d80fc5f74393f2f0b73e81940cfbe31fbb1be38a0c544b194fa1943 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bcc0 / 248 | d4f35351415823fd88fca1c861aacece930b3f23cfab9d8370dd26a62c5b3cb6 | 163 |
+| __glSpanReorderBGRANS | 0xd99f4f4 / 244 | e5f3240c8b9d78c1b3496aa76a207c4bc7cb8791d801a4e66ca7f2ff5ed883e5 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bdc0 / 248 | 2e4c479e6b7c532f747db9f419c2fad5bcb9d00c80ffc5f6483dd88759b5fc72 | 158 |
+| __glSpanReduceRedAlphaNS | 0xd99f5e8 / 164 | 9831d3a003b6ed415dc69e2a90737da8c61c315ea1bf68026f5d38f48aec661b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bec0 / 168 | ab4122e8fdd2a9b6f650b5bb7fe404728dd2b67597075f89ad217bd5c8c6f309 | 131 |
+| __glSpanPackUbyte | 0xd99f68c / 232 | 99f7d7447b295ec8a3a65cfb6fc189100a38413e65b97e4453475374c1403a4b | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99bf70 / 248 | 23f133a546616625531172754b1bacaba1a43f4f0278be6982a120dff14b614b | 201 |
+| __glSpanPackByte | 0xd99f774 / 180 | cfcb9fdfd767b0dbdc997eb27ddd265b9ff98337b369477ee2e54a022ab2a1d3 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99c070 / 172 | d5997454215d146f0b9b8a20b9d25021fdb46d13dfa4bc675a5d6dfce1c7ded1 | 128 |
+| __glSpanPackUshort | 0xd99f828 / 232 | 844079731b0305f41c0ded47ff5dfee9573064d88da76ce7ea387e3ed721a2b1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99c120 / 248 | b9064512f0d18c29c9b336235e194c7999134becf28ca735356130f0f07796eb | 201 |
+| __glSpanPackShort | 0xd99f910 / 180 | 0507e303e6b09e575925eef844589378911cd8412475e3f526f1893b62d39fa6 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99c220 / 172 | 0f723275d3afe6ad5d2e3d860b5c6bc0bfe040bdf83091170a514537e7ef70ef | 127 |
+| __glSpanPackUint | 0xd99f9c4 / 232 | 2311f66ba5bbe852dfc7b6d16d0de153f409d803bf258104002709e393f14d23 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd99c2d0 / 248 | b8600476baf563acef34e4af0764a09e699fc3cb6d96694417b6187b293c5909 | 200 |
+
+#### Target-build readings
+
+- `__glSpanReduceBGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e870; occupies 272 bytes.
+  **Inferred.** Loads, multiplies and stores three float values (`mul.s` at 0xd99e8a8, 0xd99e8b4 and 0xd99e8bc). Context parameters are argument 0 +0x7888, +0x7890 and +0x788c (`lwc1` at 0xd99e87c, 0xd99e880, 0xd99e884). The scalar input reads and output stores include three of each (`lwc1` at 0xd99e89c, 0xd99e8a0, 0xd99e8a4, `swc1` at 0xd99e8c0, 0xd99e8c4, 0xd99e8cc). Hostfacts leaves their effective buffer addresses unknown, so channel positions are not assigned from the routine name. The span-count word comes from argument 1 +0xb8 and is retained as v0 at return (`lw` at 0xd99e870, `jr` at 0xd99e978). Both scalar and four-pixel paths were read without transferring the sibling's division claim.
+
+- `__glSpanReorderABGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e980; occupies 356 bytes.
+  **Inferred.** Multiplies four float components and uses a different store-register order. The scale parameters occupy argument 0 +0x7888, +0x7890, +0x788c and +0x7894 (`lwc1` at 0xd99e998, 0xd99e99c, 0xd99e9a0, 0xd99e9a4). Its scalar stores include four single-word float writes (`swc1` at 0xd99e9e4, 0xd99e9ec, 0xd99e9f0, 0xd99e9f8). Exact input/output addresses stay unresolved in hostfacts, limiting the channel-order claim. It preserves two floating-point registers through eight-byte stack stores (`sdc1` at 0xd99e984, 0xd99e988), then reloads them on the return paths (`ldc1` at 0xd99ea00, 0xd99ead4 and 0xd99ead8). No callee appears in the complete scalar and unrolled body.
+
+- `__glSpanReorderBGRA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99eae4; occupies 356 bytes.
+  **Inferred.** Prepares a different four-component store arrangement after float scaling. Four context floats are read at argument 0 +0x7888, +0x7890, +0x788c and +0x7894 (`lwc1` at 0xd99eafc, 0xd99eb00, 0xd99eb04, 0xd99eb08). The scalar output uses `swc1` at 0xd99eb48, 0xd99eb50, 0xd99eb54 and 0xd99eb5c. Their effective destinations are unknown in hostfacts, so the complete RGBA-to-BGRA correspondence remains unassigned. The count word is argument 1 +0xb8 (`lw` at 0xd99eaf0), and the return retains that word (`jr` at 0xd99ec40). The record covers the four-pixel path as well as its scalar remainder.
+
+- `__glSpanReduceLuminance` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99ec48; occupies 400 bytes.
+  **Inferred.** Combines three scaled float inputs and branches on a floating-point comparison. The three scaling parameters and threshold are context +0x7888, +0x7890, +0x788c and +0xdd8 (`lwc1` at 0xd99ec54, 0xd99ec58, 0xd99ec5c, 0xd99ec60). When the comparison is not `(f14 < f16)`, the branch-likely takes its branch and executes the delay-slot store (`c.lt.s` at 0xd99eca0, `bc1fl` at 0xd99eca8, `swc1` at 0xd99ecac). The opposite arm uses a separate store (`swc1` at 0xd99ecb4). Hostfacts leaves both stored values, the output pointer and the threshold's numeric value unknown. A fixed clamp of one is not copied from the N32 sibling. The successful IP35 reading stands apart from that sibling's failed text rendering.
+
+- `__glSpanReduceLuminanceAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99edd8; occupies 464 bytes.
+  **Inferred.** Combines scaled float inputs before a comparison and a separate component store. It reads four context parameters at +0x7888, +0x7890, +0x788c and +0x7894, followed by a threshold at +0xdd8 (`lwc1` at 0xd99ede4, 0xd99ede8, 0xd99edec, 0xd99edf0, 0xd99edf4). The scalar test branches when the comparison is not `(f16 < f18)` (`c.lt.s` at 0xd99ee2c, `bc1fl` at 0xd99ee34). Its delay-slot store executes only on the taken path (`swc1` at 0xd99ee38). The other arm and the separate component use `swc1` at 0xd99ee40 and 0xd99ee5c. Hostfacts leaves all three stored values and effective span addresses unknown. It does not identify the threshold as one. No calls occur.
+
+- `__glSpanReduceRedAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99efa8; occupies 208 bytes.
+  **Inferred.** Reduces each software pixel to two scaled float outputs. It uses context floats at argument 0 +0x7888 and +0x7894 (`lwc1` at 0xd99efb4, 0xd99efb8). Scalar input accesses include two float reads (`lwc1` at 0xd99efd0, 0xd99efe8), followed by two float stores (`swc1` at 0xd99efe4, 0xd99eff4). Hostfacts cannot identify those buffer addresses, so the component-to-channel mapping stays inferred. The full body also contains a four- pixel path with eight output stores. The count from argument 1 +0xb8 reaches the local return (`lw` at 0xd99efa8, `jr` at 0xd99f070).
+
+- `__glSpanReduceRedNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f078; occupies 124 bytes.
+  **Inferred.** Copies one float per pixel without multiplying or dividing it. A non-positive signed count from argument 1 +0xb8 skips the copy (`lw` at 0xd99f07c, `blez` at 0xd99f088). The scalar transfer is a float read followed by a float store (`lwc1` at 0xd99f09c, `swc1` at 0xd99f0b0). Four explicit stores form the unrolled path (`swc1` at 0xd99f0c8, 0xd99f0d4, 0xd99f0dc, 0xd99f0e8). Effective input and output addresses remain unknown in hostfacts, including their address space. The body has no calls.
+
+- `__glSpanReduceGreenNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f0f4; occupies 124 bytes.
+  **Inferred.** Uses a scalar prefix and a four-entry copy body to extract a software float stream. The count word is argument 1 +0xb8 (`lw` at 0xd99f0f8). The prefix reads and writes one float (`lwc1` at 0xd99f118, `swc1` at 0xd99f12c). Its unrolled reads include `lwc1` at 0xd99f138, 0xd99f148, 0xd99f154 and 0xd99f15c, with no arithmetic conversion between input and output. The tool leaves the input base and output pointer unknown, so the name alone is not used to prove a green-channel offset. The routine returns locally without a callback (`jr` at 0xd99f168).
+
+- `__glSpanReduceBlueNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f170; occupies 124 bytes.
+  **Inferred.** Extracts one float from each input record with no scaling operation. It saves argument 0 in the caller's stack area and reads the count at argument 1 +0xb8 (`sw` at 0xd99f170, `lw` at 0xd99f174). The scalar load/store pair is (`lwc1` at 0xd99f194, `swc1` at 0xd99f1a8). The larger body includes four float stores (`swc1` at 0xd99f1c0, 0xd99f1cc, 0xd99f1d4, 0xd99f1e0). The effective component offset is unknown to hostfacts, and a blue-channel interpretation is not promoted from the sibling or name. There are no calls in the complete 124-byte body.
+
+- `__glSpanReduceAlphaNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f1ec; occupies 124 bytes.
+  **Inferred.** Copies one float value through scalar and unrolled paths. Its first metadata access reads argument 1 +0xb8 (`lw` at 0xd99f1f0). Scalar extraction uses `lwc1` at 0xd99f210 and `swc1` at 0xd99f224. Four-pixel copying ends with stores (`swc1` at 0xd99f23c, 0xd99f248, 0xd99f250 and 0xd99f25c). Hostfacts cannot resolve the buffer bases or confirm which channel those addresses represent. No arithmetic changes the copied float bits, and the original count word is retained at return (`jr` at 0xd99f260).
+
+- `__glSpanReduceRGBNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f268; occupies 204 bytes.
+  **Inferred.** Copies three float values per pixel without scale parameters or arithmetic conversion. The scalar reads are `lwc1` at 0xd99f28c, 0xd99f290 and 0xd99f294, with corresponding stores (`swc1` at 0xd99f2a4, 0xd99f2a8 and 0xd99f2b0). The unrolled path begins with another three-read/three-store group (`lwc1` at 0xd99f2bc, 0xd99f2c0, 0xd99f2c4, `swc1` at 0xd99f2c8, 0xd99f2cc, 0xd99f2d0). Effective addresses stay unknown, so no absolute component layout is claimed. The count field at argument 1 +0xb8 survives to the return (`lw` at 0xd99f26c, `jr` at 0xd99f32c).
+
+- `__glSpanReduceBGRNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f334; occupies 204 bytes.
+  **Inferred.** Runs a three-float copy path whose scalar reads and stores preserve the register values in the same sequence (`lwc1` at 0xd99f358, 0xd99f35c, 0xd99f360, `swc1` at 0xd99f370, 0xd99f374, 0xd99f37c). It also has a four-pixel body, including the final store group (`swc1` at 0xd99f3e8, 0xd99f3ec and 0xd99f3f4). Neither scale loading nor floating-point arithmetic occurs. The buffer addresses remain unknown in hostfacts, so the BGR name does not establish a channel exchange. Its metadata count comes from argument 1 +0xb8 (`lw` at 0xd99f338).
+
+- `__glSpanReorderABGRNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f400; occupies 244 bytes.
+  **Inferred.** Moves four float register values into reordered output stores without scaling. Scalar input reads include `lwc1` at 0xd99f424, 0xd99f428, 0xd99f42c and 0xd99f430. Those values are stored (`swc1` at 0xd99f440, 0xd99f444, 0xd99f448 and 0xd99f450). The unrolled body contains a distinct final store order (`swc1` at 0xd99f4d8, 0xd99f4dc, 0xd99f4e0, 0xd99f4e8). Hostfacts leaves the output addresses unresolved, preventing a complete channel-to-address mapping. The metadata count is read at argument 1 +0xb8 (`lw` at 0xd99f404), with no external call in this body.
+
+- `__glSpanReorderBGRANS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f4f4; occupies 244 bytes.
+  **Inferred.** Rearranges four single-word float values in the no-scale software path. Its scalar loads and stores occur (`lwc1` at 0xd99f518, 0xd99f51c, 0xd99f520 and 0xd99f524) and (`swc1` at 0xd99f534, 0xd99f538, 0xd99f53c and 0xd99f544). A separate unrolled set ends at stores (`swc1` at 0xd99f5cc, 0xd99f5d0, 0xd99f5d4 and 0xd99f5dc). No multiply or divide modifies these values. Since hostfacts cannot follow the buffer addresses through the loops, the full BGRA correspondence remains unclaimed. The local return retains the count from argument 1 +0xb8 (`lw` at 0xd99f4f8, `jr` at 0xd99f5e0).
+
+- `__glSpanReduceRedAlphaNS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f5e8; occupies 164 bytes.
+  **Inferred.** Extracts two unscaled float values per software pixel. The scalar pair reads (`lwc1` at 0xd99f60c and 0xd99f61c) and writes (`swc1` at 0xd99f618 and 0xd99f628). Its four-pixel body includes eight float stores, ending with `swc1` at 0xd99f674 and 0xd99f680. The input/output effective addresses remain unknown, so the channel names do not supply missing offsets. It takes its count from argument 1 +0xb8 (`lw` at 0xd99f5ec), and the complete routine contains no arithmetic scaling or calls.
+
+- `__glSpanPackUbyte` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f68c; occupies 232 bytes.
+  **Inferred.** Packs scaled float components into one-byte outputs. Metadata words come from argument 1 +0xb8 and +0x6c (`lw` at 0xd99f698, 0xd99f69c). Each iteration reads scale/bias- related context floats at argument 0 +0xddc and +0xdd4 (`lwc1` at 0xd99f6c0, 0xd99f6c4), then stores one byte (`sb` at 0xd99f760). The masked test takes its branch when `(t7(?) & 0x78) == 0` (`andi` at 0xd99f6f8, `beql` at 0xd99f6fc). Its delay-slot transfer runs only when taken (`mfc1` at 0xd99f700). The tested value, stored byte, input/output addresses and combined loop limit remain unknown to hostfacts. The unsigned conversion fallback and local return were read in full, with no callee involved.
+
+- `__glSpanPackByte` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f774; occupies 180 bytes.
+  **Inferred.** Uses `floorf` while packing a software float span into bytes (`jalr` at 0xd99f7e0). Context values at +0xddc and +0xdd4 are loaded in the conversion loop (`lwc1` at 0xd99f7cc, 0xd99f7d4). The input float access is `lwc1` at 0xd99f7c8, and the resulting output is a one-byte store (`sb` at 0xd99f804). The effective buffer addresses and call arguments are unknown to hostfacts. Its metadata reads argument 1 +0xb8 and +0x6c (`lw` at 0xd99f7a0, 0xd99f7a4). A signed-byte interpretation remains inferred because the store alone exposes only eight output bits.
+
+- `__glSpanPackUshort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f828; occupies 232 bytes.
+  **Inferred.** Converts float components to halfword output with the unsigned conversion fallback inline. It loads metadata at argument 1 +0xb8 and +0x6c (`lw` at 0xd99f834, 0xd99f838). The context parameters are +0xde4 and +0xdd4 (`lwc1` at 0xd99f85c, 0xd99f860), and its only output store writes two bytes (`sh` at 0xd99f8fc). Hostfacts leaves the stored value, input/output pointers and combined iteration count unknown. Its masked test takes its branch when `(t7(?) & 0x78) == 0` (`andi` at 0xd99f894, `beql` at 0xd99f898). The tested value remains unknown. This body has no calls.
+
+- `__glSpanPackShort` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f910; occupies 180 bytes.
+  **Inferred.** Rounds through `floorf` and stores halfwords in the signed-short packing path (`jalr` at 0xd99f97c, `sh` at 0xd99f9a0). Its per-component input read is `lwc1` at 0xd99f964. Context parameters at +0xde4 and +0xdd4 participate in that path (`lwc1` at 0xd99f968, 0xd99f970). The tool leaves both effective span addresses and the floating-point call argument unknown. Metadata comes from argument 1 +0xb8 and +0x6c (`lw` at 0xd99f93c, 0xd99f940). The merged return is unresolved, so it is not documented as a packed- element count.
+
+- `__glSpanPackUint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99f9c4; occupies 232 bytes.
+  **Inferred.** Produces one word per converted float component using an inline unsigned-conversion sequence. Its input metadata is argument 1 +0xb8 and +0x6c (`lw` at 0xd99f9d0, 0xd99f9d4). Scale/bias parameters are context +0xdec and +0xdd4 (`lwc1` at 0xd99f9f8, 0xd99f9fc). The loop reads one float and writes one four-byte word (`lwc1` at 0xd99f9f4, `sw` at 0xd99fa98). Those effective buffer addresses and the combined loop limit remain unknown to hostfacts. The local return retains the original +0xb8 metadata word (`jr` at 0xd99faa4), independently of how many component words were stored.
 ## Software renderer (soft)
 
 ### so_accumop.c
