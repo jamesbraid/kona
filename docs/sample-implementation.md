@@ -1242,6 +1242,120 @@ Each complete IP35 O32 body in this table is byte-identical to the same-address 
   Address 0xd993404; occupies 100 bytes. Byte-identical over the complete function body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd993404. SHA-256 f4330049c93d7277f45d862ae52d334a1ac225a1080410c5df0fa86f317a2418.
   Existing comparison entry: docs/sample-implementation.md:__gllc_InvalidEnum, grade Inferred.
 
+## IP35 O32 display-list errors, materials and name tables
+
+These are target-specific readings from exact routines in usr/gfx/arch/IP35KONA/libGLcore.so. The comparison ranges are the named N32 copies; byte differences do not establish changed behavior. Two N32 sibling identities remain inventory-derived because independent DWARF recovery was unavailable.
+
+| Routine | O32 supplied extent | N32 build / address / size | O32 SHA-256 | N32 SHA-256 | Prefix differences |
+|---|---|---|---|---|---:|
+| __gllc_InvalidOperation | 0xd993468 / 100 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fc80 / 96 | bf8f23a426c4bdb5e017b50f08ab80b724102e55510da2e951853782c73be7ec | ee97a8373bff1daf531d284445c5be194ad3138e279a68fb740b8c4d7f2e39c7 | 85 |
+| __gllc_TableTooLarge | 0xd9934cc / 100 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fce0 / 96 | ef1c48a4cba06c44fe4754e84816f1150d5178728cb6e0bfb4ca1acd9a7c7ad8 | e94852c5a9c34b9a09e21052b4994bf08ec56e9d7f22276536a0a7f474270d51 | 81 |
+| __gllc_UnimplementedExtension | 0xd993530 / 104 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fd40 / 100 | 4126eb8dbac7960982a9c9b891cc6998ed953025bf7003a76f70ccb853b678c8 | 24558c0367499420e7ebe6726f26ed714dd0ed45bbd5f7bf3aaaef759b400d55 | 81 |
+| __gllc_Error | 0xd993598 / 160 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fdb0 / 152 | 3cac534e54643b96efd3d24d349e95daff272b9e2f111d1b18c59c48d1235a5b | 932f359d8d6e36ce159b2d77079337abf718be4165114aed1f72cd6b2f5666e0 | 132 |
+| __glle_InvalidValue | 0xd993638 / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fe50 / 68 | ffcc9251087cd5977aa5c0c57e83be0e78ae3e6c3f5a82e2a7330d5db1b49f25 | 451166bb9b9af69c111bafee461e0682814aa6086e1ad2b3a4e240b112f6371d | 51 |
+| __glle_InvalidEnum | 0xd993674 / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fea0 / 68 | 03b6d98072436dbad31e84632abb9f453f1be47be87f71a60bcfefe2ee5afe42 | 2e1000648060d38a0b301e967ab347c0e546dcc45fe27db3963fd1d8f4a1fccb | 51 |
+| __glle_InvalidOperation | 0xd9936b0 / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98fef0 / 68 | f6dadb3ac6faeec4b65972d20eb2d5a069cf214b72e910440b1dba9f8402c5be | 65f4b07f7fbc1c3b29ef483213d7770d2a14c874dc428f68e3dbfcbe449dbe33 | 51 |
+| __glle_TableTooLarge | 0xd9936ec / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98ff40 / 68 | a497dd5daa850311f03b0737070f0294b9f8c1a413fc106e2ada4f8cdb427480 | d63f9cd322b31b2453783258bb0c58bca4ef828508615772512a2ca858753952 | 51 |
+| __glle_UnimplementedExtension | 0xd993728 / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98ff90 / 68 | 9d5dcd87ff26ce337fb7c8ec0d594dfebc230b96aa18a74841902857de84c5c1 | d5811f4e4590e1d0aac27f37eb4034be5cf1c0406c9845cfdecc6d323e6287bd | 51 |
+| ApplyMatChange | 0xd993780 / 404 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd98ffe0 / 436 | 32e38ebecc170b98576bedbcc1a0a6164cd3888e2b8cef9c76eb0971742c2198 | 498b6cabeeeb29b04ced0cc7aa1e91748c24ec292d421fdda156460ea3ec5565 | 272 |
+| FreeFastMaterial | 0xd993914 / 6356 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd9901a0 / 200 | d7e6658a5d3a0eb6b5b33e42af5e75037cdc3f9b393ba656cf517bc7fc1d3b72 | 555141118cba10f02b1ff624ae62b11da88b9cea16726a9ede44f350dbb1c087 | 153 |
+| __glDlistOptimizeMaterial | 0xd9939e8 / 1152 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990270 / 1296 | cff9a321d03a74faf7a91878459367d5903ba9ed246bb8f0a047a473460353c9 | d9d253e7a4ae8575529880a6cd9d7bf8e18f90335d3624666fd1a6eca7161ac0 | 989 |
+| __glle_FastMaterial | 0xd993e68 / 672 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990780 / 708 | 162e723abe80de67865394e79232598654a2c7fba2261329c7b52b3e1f912bb4 | 3cd44333be7026b36eedaa42783f37c083c2a66a8f22a983bc4f319667c31bc6 | 562 |
+| __glDisposeDlist | 0xd994110 / 72 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990a50 / 72 | 0de6d372ebf3a14b22b91003284742f6244d665c8f0dc3bce3502a7838c1e6f2 | 99e814525a36ad4ee9077107ba879e8fe678131f068f44319c607fbf32867bd1 | 58 |
+| __glEmptyFreeDlist | 0xd994158 / 12 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990aa0 / 8 | 691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b | 78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378 | 6 |
+| __glEmptyExecuteDlist | 0xd994164 / 12 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990ab0 / 8 | 691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b | 78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378 | 6 |
+| __glDlistNewArray | 0xd994170 / 184 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990ac0 / 168 | ce7ceac22a55fbb299c2075565f462783088f67056a9609cdc3e7f51609046bf | 887d798bbff57ffccba05dfba0e27a57b1ef150388ea51163662b86e01e04652 | 148 |
+| __glDlistFreeArray | 0xd994228 / 124 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990b70 / 112 | c163e0d79bbab5880a5eed806fe5c4e8dcc09d4581cdf1ec2e24fc9ab139aa62 | 6cb12e9dd85c12c6ee7b1638df174fdb5671c0024bd5cd7b21c6216c15771a5a | 100 |
+| __glim_IsList | 0xd9942a4 / 116 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990be0 / 108 | 6aa23044dc37b8225c40ee22473f280fce557d2ee073b3dc3257e7cfc40e9369 | 77ddba24314d119805a061070bccb7c225234e2ea9f7903a047d9fc9529a12d3 | 88 |
+| __glim_GenLists | 0xd994318 / 164 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0xd990c50 / 164 | f26a808389f3cb048c7c53d2f25dac2b36661f7f5ea804e94d3158fd7b3b77b7 | 9e283945d38f9487556f93a45267d14afff86b6f174be31be176124630f193a5 | 137 |
+
+Corrected entry-body comparison:
+
+| Routine | O32 entry address / size / SHA-256 | N32 address / size / SHA-256 | Prefix differences |
+|---|---|---|---:|
+| FreeFastMaterial | 0xd993914 / 212 / 0575609d2303ddca6399e7e7d4bea91e83b0aceadef4e22530df130bf63d40de | 0xd9901a0 / 200 / 555141118cba10f02b1ff624ae62b11da88b9cea16726a9ede44f350dbb1c087 | 153 |
+
+#### Target-build readings
+
+- `__gllc_InvalidOperation` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993468; occupies 100 bytes.
+  **Inferred.** Compiles an error operation into a software display list. It calls `__glDlistAllocOp2` with the original context and size zero (`jalr` at 0xd993488). A null allocation skips insertion (`beqz` at 0xd993494). Otherwise it writes halfword 0x3f4 at returned pointer +0xc (`sh` at 0xd9934a0), then passes that record and execution address 0xd9936b0 to `__glDlistAppendOp` (`jalr` at 0xd9934b0). The merged return is unknown.
+
+- `__gllc_TableTooLarge` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9934cc; occupies 100 bytes.
+  **Inferred.** Builds the table-too-large list marker. Allocation uses `__glDlistAllocOp2` with original argument 0 and zero in argument 1 (`jalr` at 0xd9934ec). The null result returns without append (`beqz` at 0xd9934f8). On success a halfword tag 0x3f7 is stored at allocation +0xc (`sh` at 0xd993504). `__glDlistAppendOp` receives the new record and execution address 0xd9936ec (`jalr` at 0xd993514). Hostfacts leaves the final return unresolved, and the observed non-stack store belongs to the software record.
+
+- `__gllc_UnimplementedExtension` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993530; occupies 104 bytes.
+  **Inferred.** Records an unimplemented-extension operation using the context pointer read at absolute 0x1010 (`lw` at 0xd993540). It allocates a zero-sized operation (`jalr` at 0xd993554 to `__glDlistAllocOp2`) and skips the append when that result is zero (`beqz` at 0xd993564). The operation tag is halfword 0x3f5 at allocation +0xc (`sh` at 0xd993570). The append call supplies the allocated record and executor address 0xd993728, while its context argument remains unknown in hostfacts (`jalr` at 0xd99357c). This establishes deferred software error recording, without assigning a board register to the low absolute address.
+
+- `__gllc_Error` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993598; occupies 160 bytes.
+  **Inferred.** Dispatches four recorded error codes to their named compiler helpers. Argument 1 values 0x500, 0x501 and 0x502 select `__gllc_InvalidEnum`, `__gllc_InvalidValue` and `__gllc_InvalidOperation` (`beq` at 0xd9935b0, 0xd9935bc and 0xd9935c4; calls at 0xd9935f4, 0xd9935e0 and 0xd993608). Value 0x8031 selects `__gllc_TableTooLarge` (`beq` at 0xd9935cc, call at 0xd99361c). All calls preserve the incoming register arguments. Any unmatched value reaches the return without a helper call, and hostfacts does not establish a fixed return value.
+
+- `__glle_InvalidValue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993638; occupies 60 bytes.
+  **Inferred.** Executes the recorded invalid-value marker by calling `__glSetError` with 0x501 (`jalr` at 0xd993658). It saves incoming argument 0 at entry-stack +0 and reloads that word into the return register (`sw` at 0xd993650, `lw` at 0xd993668). The local return therefore yields the original argument 0 (`jr` at 0xd99366c). The error call is the complete nonlocal behavior of this body.
+
+- `__glle_InvalidEnum` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993674; occupies 60 bytes.
+  **Inferred.** Raises error 0x500 through `__glSetError` during list playback (`jalr` at 0xd993694). Its incoming argument 0 is preserved at entry-stack +0 (`sw` at 0xd99368c). After the error call, the saved word is restored as the return value (`lw` at 0xd9936a4, `jr` at 0xd9936a8). This is a software error executor with stack-only data stores.
+
+- `__glle_InvalidOperation` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9936b0; occupies 60 bytes.
+  **Inferred.** Reports the invalid-operation code 0x502 (`jalr` at 0xd9936d0 to `__glSetError`). The caller's argument 0 survives in entry-stack +0 (`sw` at 0xd9936c8), then becomes the returned word (`lw` at 0xd9936e0, `jr` at 0xd9936e4). The argument-save and return sequence is explicit in this IP35 build. It performs no command-buffer write itself.
+
+- `__glle_TableTooLarge` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9936ec; occupies 60 bytes.
+  **Inferred.** Handles the table-too-large playback marker with a single `__glSetError` call carrying 0x8031 (`jalr` at 0xd99370c). The original first argument is saved and recovered from entry-stack +0 (`sw` at 0xd993704, `lw` at 0xd99371c). That original word is the local return (`jr` at 0xd993720). No data outside the stack is stored by this executor.
+
+- `__glle_UnimplementedExtension` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993728; occupies 60 bytes.
+  **Inferred.** Maps the extension marker to error 0x502 through `__glSetError` (`jalr` at 0xd993748). Before that call it saves argument 0 at entry-stack +0 (`sw` at 0xd993740). The word is recovered and returned after the call (`lw` at 0xd993758, `jr` at 0xd99375c). There is no separate extension-specific hardware access or return code in the examined body.
+
+- `ApplyMatChange` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993780; occupies 404 bytes.
+  **Inferred.** Copies selected material fields and sets change bits in argument 1 +4. For selector 0x1200, the branch chooses four float stores at material +8, +0xc, +0x10 and +0x14 (`beq` at 0xd993784, `swc1` at 0xd993868, 0xd993874, 0xd99387c, 0xd99388c). That arm sets mask 0x1 in the change word (`sw` at 0xd993884). Selector 0x1601 instead copies one float to material +0x48 and sets mask 0x10 (`beq` at 0xd9937a8, `swc1` at 0xd99385c, `sw` at 0xd993854). Other selector branches cover 0x1201, 0x1202, 0x1600 and 0x1602 (`beq` at 0xd993790, 0xd993798, 0xd9937a0, 0xd9937b0). The final comparison handles 0x1603 (`bne` at 0xd9937b8). Here material is argument 1 and input values are argument 3. The complete body makes no calls, and its return value is unknown.
+
+- `FreeFastMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993914; occupies 212 bytes.
+  **Inferred.** Traverses a compact material payload and releases its referenced specular lookup tables. The first record word is read at argument 1 +0, and a zero value selects the early return path (`lw` at 0xd993938, `beql` at 0xd993948). The only call in the bounded body is `__glFreeSpecLUT`, with original argument 0 and a lookup pointer that hostfacts cannot resolve (`jalr` at 0xd9939a0). Later payload reads also have unknown effective addresses (`lw` at 0xd9939b4, 0xd9939bc, 0xd9939cc). Its final return remains unknown (`jr` at 0xd9939e0). The supplied 6356-byte range contains following functions. This entry uses the separately collected 212-byte body, ending immediately before `__glDlistOptimizeMaterial` at 0xd9939e8. Independent native-symbol and control-flow checks confirm this bound. The sibling claim that this function also frees payload data is not transferred. The supplied extent includes later functions; only the independently confirmed 212-byte entry body is described here.
+
+- `__glDlistOptimizeMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9939e8; occupies 1152 bytes.
+  **Inferred.** Combines material operations into a new software list record. It reads the list flags and first-operation pointer at argument 1 +4 and +0xc (`lw` at 0xd993a24, 0xd993a54). The body calls `__glMaterialfv_size`, `ApplyMatChange`, `__glCreateSpecLUT` and `__glDlistAllocOp2` (`jalr` at 0xd993b34, 0xd993bb8, 0xd993d00, 0xd993d74). New records receive halfword 0x3f6 at allocation +0xc (`sh` at 0xd993d94, 0xd993da4). A cleanup hook address 0xd993914 can be stored at allocation +4 (`sw` at 0xd993da0). `memcpy` copies from entry-stack -628 to allocation +16, with byte count unknown to hostfacts (`jalr` at 0xd993dc8), and `__glDlistFreeOp` removes old records (`jalr` at 0xd993df8). Most traversal and temporary-buffer addresses, as well as the return value, remain unresolved.
+
+- `__glle_FastMaterial` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd993e68; occupies 672 bytes.
+  **Inferred.** Applies a compact material payload to software state and revalidates it. The context comes from absolute 0x1010 (`lw` at 0xd993eb4). A payload arm reads context scale floats at +0x7858, +0x785c, +0x7860 and +0x7880 (`lwc1` at 0xd993fcc, 0xd993fd4, 0xd993fe0, 0xd993fe8). Its resulting four stores have unresolved material destinations (`swc1` at 0xd993ff8, 0xd994000, 0xd994004, 0xd994008). The body can invoke an unresolved context hook, free a previous specular table through `__glFreeSpecLUT`, and call `__glValidateMaterial` (`jalr` at 0xd993ed8, 0xd994040, 0xd9940c8). The compact- stream return address remains unknown in hostfacts. Any graphics update caused by the callees is outside this routine's direct store evidence.
+
+- `__glDisposeDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994110; occupies 72 bytes.
+  **Inferred.** Drops one software reference from the object at argument 1. The initial word is read and decremented back into the same address (`lw` at 0xd994128, `sw` at 0xd994134). A nonzero decremented value skips disposal (`bnez` at 0xd994130). Zero instead selects a callback loaded from object +4, preserving the original register arguments (`lw` at 0xd994138, `jalr` at 0xd99413c). Hostfacts cannot identify the callback or the merged return. The refcount store executes in the branch delay slot on both paths.
+
+- `__glEmptyFreeDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994158; occupies 12 bytes.
+  **Inferred.** Returns after saving two incoming words in the caller's argument area. Argument 0 goes to entry-stack +0 and argument 1 to +4 (`sw` at 0xd994158, 0xd994160). The second save runs in the return delay slot (`jr` at 0xd99415c). There is no call or list-object access. Unlike the eight-byte N32 sibling, this O32 body includes those two stack stores, and it leaves the return value unspecified.
+
+- `__glEmptyExecuteDlist` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994164; occupies 12 bytes.
+  **Inferred.** Performs only the O32 argument saves and a local return. The stores at entry-stack +0 and +4 preserve arguments 0 and 1 (`sw` at 0xd994164, 0xd99416c). The +4 store is the delay-slot instruction of the return (`jr` at 0xd994168). It neither executes another function nor accesses a list record. Hostfacts reports an unknown return, so the empty-hook role implies no numeric result.
+
+- `__glDlistNewArray` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994170; occupies 184 bytes.
+  **Inferred.** Creates a software display-list array through a context callback. The callback pointer is argument 0 +0x1398, and the call receives original argument 0 plus size 0x14 (`lw` at 0xd99418c, `jalr` at 0xd994194). A nonzero result selects initialization. Failure reports 0x505 and returns zero (`bnez` at 0xd9941a4, `jalr` at 0xd9941b4). Success writes one at allocation +0 and invokes `__glDlistHeapInit` on allocation +4 (`sw` at 0xd9941cc, `jalr` at 0xd9941dc). An optional callback comes from context +0x1344 (`lw` at 0xd9941f0, `jalr` at 0xd994204). Its purpose, any lock semantics and the merged success return remain unknown in hostfacts.
+
+- `__glDlistFreeArray` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994228; occupies 124 bytes.
+  **Inferred.** Releases an array's priority heap, then passes the array to a context callback. The optional first callback is loaded from argument 0 +0x1348 and skipped when null (`lw` at 0xd994244, `beqz` at 0xd99424c, `jalr` at 0xd994254). `__glDlistHeapFree` receives original argument 1 +4 (`jalr` at 0xd994270). The final target is argument 0 +0x13a0, called with original arguments 0 and 1 (`lw` at 0xd994284, `jalr` at 0xd994288). Both indirect callback identities are unresolved. No lock behavior or hardware release protocol is established by these calls alone.
+
+- `__glim_IsList` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9942a4; occupies 116 bytes.
+  **Inferred.** Queries whether the incoming name belongs to the display-list name table. A state word of one at absolute 0x1018 routes to `__glSetError` with 0x502 and a zero return (`lw` at 0xd9942c0, `bne` at 0xd9942cc, `jalr` at 0xd9942dc). Otherwise `__glNamesIsName` receives the context from absolute 0x1010, its +0x1340 table pointer and the original name (`lw` at 0xd9942d0, 0xd9942f4, `jalr` at 0xd9942fc). That call's result reaches the local return (`jr` at 0xd994310). The low addresses are preserved as software- state accesses rather than accepted as board MMIO from hostfacts' generic label.
+
+- `__glim_GenLists` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd994318; occupies 164 bytes.
+  **Inferred.** Reserves consecutive software display-list names after checking state and count. If absolute 0x1018 holds one, it reports 0x502 and returns zero (`bne` at 0xd994340, `jalr` at 0xd994350). A negative signed count instead reports 0x501. A zero count returns zero without reserving names (`bgez` at 0xd994364, `jalr` at 0xd994374, `bnez` at 0xd994388). A positive count reaches `__glNamesGenRange`, with the context, its +0x1340 name table and the original count (`lw` at 0xd994368, `jalr` at 0xd9943a0). The return is that helper's result on this arm (`jr` at 0xd9943b4).
 ## Software renderer (soft)
 
 ### so_accumop.c
