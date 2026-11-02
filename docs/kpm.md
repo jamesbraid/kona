@@ -688,6 +688,37 @@ same executable.
 | `jt_init`, `jt_set_error_handler`, `jt_set_debug_handler`, `jt_error`, `jt_debug`, `jt_perror` | library start-up and the error and debug hooks (the tool's handler prints "KONAjtag:") |
 | `jt_new_data_vector`, `jt_new_data_bvector`, `jt_new_inst_vector`, `jt_new_inst_bvector`, `jt_dispose_vector`, `jt_int_to_vector`, `jt_reverse_unpacked_vector`, `jt_copy_bits`, `jt_extract_bits`, `jt_insert_bits`, `jt_nullify` | bit vectors for shifting: allocate, convert to and from integers, reverse, copy, cut out and splice bit ranges |
 | `jt_find_chip`, `jt_find_chain_length`, `jt_expand_portlist`, `jt_lookup_port`, `jt_extract_chip_register`, `jt_insert_chip_register`, `jt_print_chain`, `jt_print_bsr`, `jt_dispose_chain`, `jt_read_chain` | the chain model: find a chip by name, measure the chain, resolve pin names, move a register's bits in and out of the chain image, print and free it |
+
+- `jt_set_global_instruction` (`usr/gfx/KONA/bin/kpm` 0x10033e70):
+  **Established.** Size 876 bytes. It walks the chain records from the last
+  chip toward the first, packs the selected instruction bits into the chain
+  vector with `jt_unpack_vector` (call at 0x10034014), and records each
+  chip's resulting bit offset and length in its chain record (`sw` at
+  0x1003404c and 0x100340b0). It then writes the vector through the installed
+  scan procedure (call at 0x10034160), disposes the temporary vector, and
+  returns zero; a scan-procedure failure leaves -1 in the result slot at 32(sp) (`sd` at
+  0x100341bc), which the return path loads.
+
+- `jt_set_individual_instructions` (`usr/gfx/KONA/bin/kpm` 0x10034900):
+  **Established.** Size 904 bytes. It visits each chain record whose kind is
+  one, extracts the instruction value for that chip from the caller's array
+  (`lw` at 0x100349c4), and repeats the value across the chip's instruction
+  width while building the packed vector (call at 0x10034afc). It updates the
+  chain offset and packed length fields (`sw` at 0x10034b38 and 0x10034b9c),
+  sends the vector through the installed scan procedure (call at
+  0x10034c50), and returns zero after cleanup. An error from vector creation
+  or scanning leaves the saved result negative.
+
+- `jt_isolate_chip` (`usr/gfx/KONA/bin/kpm` 0x10034c90): **Established.**
+  Size 960 bytes. It finds the requested chip in the chain, reads its
+  instruction width and bypass value from the chip record (`lw` at
+  0x10034d60 and 0x10034d8c), and builds an instruction vector in which the
+  selected chip receives the caller's instruction while the other chips get
+  their bypass value. The per-chip vector words are packed with
+  `jt_unpack_vector` (call at 0x10034eb8), then emitted through the installed
+  scan procedure (call at 0x10035008). The selected chain record receives the
+  packed offset and length (`sw` at 0x10034ef0 and 0x10034f14); vector or scan
+  failure returns -1, otherwise cleanup returns zero.
 | `jt_send_instruction`, `jt_set_individual_instructions`, `jt_conditional_reset`, `jt_powerup_chain`, `jt_free_bist` | send an instruction to one chip or one to each, reset the chain only when needed, power up the chips' test logic, release a chip's built-in self-test state |
 
 These boundary-scan helpers were read in their complete N32 address ranges.
