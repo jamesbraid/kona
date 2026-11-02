@@ -423,6 +423,122 @@ These are complete O32 target-body readings from `usr/gfx/arch/IP27KONA/libGLcor
 - `__glim_Color3ubv` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd9cb548; occupies 128 bytes.
   **Established.** The vector colour setter reads bytes at original first-argument +0, +1 and +2 (`lbu` at 0xd9cb564, 0xd9cb580, 0xd9cb598). Each selects a float from the current context plus its unsigned byte shifted left two, plus 0xef0 (`lwc1` at 0xd9cb574, 0xd9cb58c, 0xd9cb5a4). Results go to context +0x1b0, +0x1b4 and +0x1b8 (`swc1` at 0xd9cb57c, 0xd9cb594, 0xd9cb5b0), while +0x1bc receives the context's +0xdd8 float (`lwc1` at 0xd9cb578 and `swc1` at 0xd9cb5a8). It then calls the unknown procedure at context +0x2f18 with the context and original byte-vector pointer (`lw` at 0xd9cb590 and `jalr` at 0xd9cb5ac), returning that procedure's result.
+## O32 lighting, line and storage routines read in full
+
+These entries report effects from complete bodies in usr/gfx/arch/IP27KONA/libGLcore.so. All target ranges differ from the named N32 build; byte differences alone do not establish changed behavior. Five supplied ranges include following functions, so their entries use the independently verified body bounds and retain the supplied comparisons separately.
+
+| Routine | Supplied O32 / N32 size | N32 address | O32 SHA-256 | N32 SHA-256 | Prefix differences |
+|---|---|---|---|---|---:|
+| __glConvertStipple | 216 / 128 | 0xd9e1710 | 6c755144c59ccabd90a5bf291fbc1051c07cb98a6dbb5c502478d2f9469411fb | b675fa4775b84e8d415d97dad5604cadadb0dc9f31abc5b86260f1bfe2005beb | 110 |
+| ChangeMaterialAmbientAndDiffuse | 648 / 276 | 0xd9e4360 | 282d6a27ead5abc23b339abf6602477737c8e4233b9fc9712bc0f314402960a7 | e826e4d9d548732f3ccdfcf33f829783598a1945b9f360721e5231b8005ee69c | 244 |
+| ComputeLightMaterialState | 10060 / 456 | 0xd9e4b50 | 10804cdee3768fae84fcfca7b5c31f7d43a849e7048f8d4693e3f9933648d505 | 4e51377437658e4ba8f61b1228f176c7e74ee9d66c242d7747c4099b50b3f995 | 383 |
+| __glInitLineData | 1424 / 1196 | 0xd9e5720 | abcff77dc025168a74dada725579f99d9feac27319d91781cfd5f317fdedd4a6 | f22ebc4dadc7d57148f5f8a41fc860c07c470436295d492361bb373b43070958 | 1072 |
+| FirstLLoopVertex | 32956 / 32 | 0xd9e6ef0 | e3bcd90c80361b143839624f3512f85b5e34d559fb8b1e8d850d87fa9159a4ab | 9f8e19f772ecf8adfee9300e49869d379d8838541f1a99caedb6f48a9c0b5d65 | 22 |
+| __glStippleLine | 204 / 712 | 0xd9e8830 | a345c0679d430ab6c914e9044d7c017beb7c1cc18646b07965950b699c05e4e2 | ea97819c8955ad93ed0d5df74bb250eccd64f0e44ae2a2dcbcd95ce666a00eb3 | 182 |
+| __glStencilTestLine | 388 / 672 | 0xd9e8b00 | ca4615fc03be3f0e9df0b1f5c997fa4864ec6233db1075454c9b020e78860b6b | d830d9608acb46c875c34acabc38d339e562d01f55e27c981a57b671e02bc854 | 355 |
+| __glStencilTestStippledLine | 396 / 712 | 0xd9e8da0 | 867fca7a95fb793626a0e7a3126b155150f0d8805b0c6c1c36ecf9240f5d612c | 147b1551b8dbcbea4c5e02b4cb8d9b00c6b873aadb01f2313feaf4e7b6adf578 | 359 |
+| __glDepthPassLine | 212 / 416 | 0xd9e9a60 | 74765bf25f077e80cbf2901ca3f93186f5789fd195f123902d93ca76f2cb701f | 75cb54cbfcd1ee132bc2e1d1826c3dd05759f68a066b1c32b9df97ff88293178 | 186 |
+| __glDepthPassStippledLine | 268 / 456 | 0xd9e9c00 | 9d993ff3af11469fd7960b7d7b70838ea046721135c75f1987ef6e5f29cea160 | 534c60c82f2b6f1372e7f70e8b0998bafe09a0f6c8dcfd72578e443228d8543c | 241 |
+| __gllc_Bitmap | 316 / 324 | 0xd9ea900 | 5b47a72fad73e4caf7222b71f1fff805850c9039d478193bc00e3ff8cd525ba6 | 02b7fae0d8349af3467ab18bed5204ba409af79e5cc92c8cac71ce32b82c9d01 | 271 |
+| __glMultMatrix | 608 / 240 | 0xd9f01d0 | aff277a6e637fc33e13383e892f8945c250c5cb606d7c5a5f5e345e11b8a46c1 | bfc3db566172f8179bba5bb2a6368917e8516ba66b18a59ef2565ae9f4001e1f | 194 |
+| __glInvertTransposeMatrix | 1612 / 964 | 0xd9f02c0 | 23a04f9f5cde758aa9d9fa267612f5e72f6e47aee15a99730f301b450d2c5941 | 1c1b83ad37adfb04d6e9bbec01e1e89c88b5d4aa7cfce42f8817b7b72ee8a3af | 857 |
+| __glFloorLog2 | 36 / 64 | 0xd9f0690 | 3fcbd2540f8e8dc773e3fdad1e2c5ca9696ba905addf7b22ceb29534e639dda2 | d5ec2525de99c9f5e2a752b87bc6d63fe2ead8dfac9670692286e86fe5536ff2 | 27 |
+| DeleteBlock | 1072 / 60 | 0xd9f0780 | 3b32c74afe480c25b543c80f136e6d16a7dcc39f72077f759dad81ddb6fd4775 | f186f9ff0bc0e56cf6fc100ad2e524e3e174c60af9e14aebe211673eff941fb1 | 49 |
+| freeLeafData | 56 / 16 | 0xd9f0bc0 | 7b8a9d775db1c207bcde3abb64cc0c6bbbb766157598977755f1947c9e936a92 | 68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263 | 15 |
+| freeBranch | 680 / 16 | 0xd9f0c20 | 58dc224df8b2028ed9b2a658c4f280a5e29f6a078a3add73137fdbd9ff326b8b | 68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263 | 15 |
+| copyLeafInfo | 244 / 252 | 0xd9f0f10 | 56f4f385c7838b1a3b3577ce27e9b9333cad90a23434c84f6ed64a42a78fc6da | 6b6dd3233f9a255b8c43ae4e533b58a84e2ff3df8d9b747d300ebe9c013999a7 | 182 |
+| allocLeafData | 272 / 152 | 0xd9f11f0 | 7264e4985cb3c0dcb6e6a4401371fd57ce5097e970237ca3f2ec5415beb8c5fc | 2200cd3010aab806c6e9643ea024788bb696cb1853fdcb1cd86ec81eea9c2200 | 126 |
+| firstLeaf | 100 / 60 | 0xd9f1fb0 | 9f2c229f91e92d838199dae1585260e01f7368791a18f98dce945175fc09c75b | 60e7c05aa141fa35efd7e1089d0bd17e96d42b1c66ecdf5d67d6eaa8200d5e5a | 48 |
+
+Corrected entry-body comparisons:
+
+| ChangeMaterialAmbientAndDiffuse | 0xd9e6ee8 / 320 | 0xd9e4360 / 276 | 24158eced5674c97003f3467ec4fab3d25310c1f7d0f9488d590cf79a7c7468d / e826e4d9d548732f3ccdfcf33f829783598a1945b9f360721e5231b8005ee69c | 244 |
+| ComputeLightMaterialState | 0xd9e7768 / 396 | 0xd9e4b50 / 456 | e31ee55cde858bc7295353c3ce739c4e2e338b4c2e18abb6e490b85f90fd3a6b / 4e51377437658e4ba8f61b1228f176c7e74ee9d66c242d7747c4099b50b3f995 | 383 |
+| FirstLLoopVertex | 0xd9e9eb4 / 32 | 0xd9e6ef0 / 32 | 36b00f89b167abd88c3ce292ec6845ca09c1c49324543a8e48532c881cb799d4 / 9f8e19f772ecf8adfee9300e49869d379d8838541f1a99caedb6f48a9c0b5d65 | 22 |
+| DeleteBlock | 0xd9f2020 / 92 | 0xd9f0780 / 60 | 188dd1bed2adc8eed14e6b6e1a8921b03a0365db096a0cc60b1fd8f1669c7e7b / f186f9ff0bc0e56cf6fc100ad2e524e3e174c60af9e14aebe211673eff941fb1 | 49 |
+| freeBranch | 0xd9f24f8 / 56 | 0xd9f0c20 / 16 | e0e1dd9bcfd1705afe0ed8b45beb8d67223e0f3a096614b82d87f70a76f3aed0 / 68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263 | 15 |
+
+#### Target-build readings
+
+- `__glConvertStipple` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9e3e90; occupies 216 bytes.
+  **Established.** Packs byte input into word output for software stipple storage. Its writes are four word-store sites (`sw` at 0xd9e3ec8, 0xd9e3ef4, 0xd9e3f20, 0xd9e3f50), fed by byte loads such as `lbu` at 0xd9e3ea0, 0xd9e3ea4, 0xd9e3ea8 and 0xd9e3eac. Hostfacts cannot resolve either effective buffer base. The loop repeats while its unknown counter differs from 0x20 (`bne` at 0xd9e3f58). There are no calls. The buffer address space and return remain unknown.
+
+- `ChangeMaterialAmbientAndDiffuse` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9e6ee8; occupies 320 bytes.
+  **Established.** Updates two material copies from floats at entry argument 0 +0x1b0, +0x1b4, +0x1b8 and +0x1bc (`lwc1` at 0xd9e6ef4, 0xd9e6ef8, 0xd9e6efc, 0xd9e6f00). The copies target argument 1 +0 through +0x1c (`swc1` at 0xd9e6f04, 0xd9e6f08, 0xd9e6f0c, 0xd9e6f10, 0xd9e6f14, 0xd9e6f18, 0xd9e6f1c, 0xd9e6f20). Other results go to argument 2 +0, +4, +8 and +0x24 (`swc1` at 0xd9e6f40, 0xd9e6f54, 0xd9e6f88, 0xd9e6fb4). A null list word at argument 0 +0x6e4c (`lw` at 0xd9e6fb8) skips the per-light update loop (`beqz` at 0xd9e6fbc). Its computed loop destinations and return remain unknown. The examined body makes no calls. Supplied extent includes following functions; this note covers only the bounded entry body.
+
+- `ComputeLightMaterialState` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9e7768; occupies 396 bytes.
+  **Established.** Recomputes software light/material products selected by the low three bits of the two change masks. No selected bit takes the early return (`beqz` at 0xd9e7770, when ((argument 1 | argument 2) & 7) is zero). A null word at context argument 0 +0x6e4c also exits (`lw` at 0xd9e7778, `beqz` at 0xd9e7784). Inputs include context +0x590, +0x594 and +0x598 (`lwc1` at 0xd9e77b0, 0xd9e77bc, 0xd9e77c8), and +0x5e0, +0x5e4 and +0x5e8 (`lwc1` at 0xd9e77dc, 0xd9e77e8, 0xd9e77f4). Product writes include `swc1` at 0xd9e77b8, 0xd9e77c4 and 0xd9e77d0, with unresolved effective bases. The body is call-free and its merged return is unknown. Supplied extent includes following functions; this note covers only the bounded entry body.
+
+- `__glInitLineData` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9e83a0; occupies 1424 bytes.
+  **Established.** Builds software rasterizer state from two vertices. Hostfacts JSON records argument 1 and argument 2 stored at context argument 0 +0x7534 and +0x7538, with +0x74d8 cleared (`sw` at 0xd9e83b0, 0xd9e83b4, 0xd9e83b8). The word at context +0x1dc is copied to +0x7530 (`lw` at 0xd9e83ac, `sw` at 0xd9e83bc). Endpoint floats are read at argument 1 +0x80 and +0x84 and argument 2 +0x80 and +0x84 (`lwc1` at 0xd9e83c4, 0xd9e83c0, 0xd9e83dc, 0xd9e83ec). Later output includes context +0x74e0 and +0x74dc (`swc1` at 0xd9e855c, 0xd9e8570), with values unknown to the analyzer. The JSON records no calls and an unknown return. Text rendering failed with a KeyError on an unreachable block, so this entry makes no branch-condition claim beyond the JSON facts.
+
+- `FirstLLoopVertex` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9e9eb4; occupies 32 bytes.
+  **Established.** Advances the software line-loop vertex state. It stores entry argument 1 plus 192 at context argument 0 +0x31c8 (`sw` at 0xd9e9ec8), and installs code address 0xda6fefc at context +0x2ee4 (`sw` at 0xd9e9ed0). The handler store runs in the return delay slot (`jr` at 0xd9e9ecc). The routine calls nothing, leaves its result unresolved in hostfacts. Its stores target only the two reported context fields. Supplied extent includes following functions; this note covers only the bounded entry body.
+
+- `__glStippleLine` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9eb260; occupies 204 bytes.
+  **Established.** Builds the software line stipple mask and saves pattern progress. The final state stores target context +0x74cc and +0x74c8 (`sw` at 0xd9eb2f0, 0xd9eb2f8), while mask output uses an unknown effective base (`sw` at 0xd9eb2e4). A matched count comparison sets byte context +0x7744 to one in the taken-only delay slot (`beql` at 0xd9eb310, `sb` at 0xd9eb314). The return is zero or one (`jr` at 0xd9eb2fc, 0xd9eb318, 0xd9eb324). Hostfacts labels the internal destination 0xd9eb2a4 of `bgez` at 0xd9eb2dc "outside", limiting the complete loop interpretation. It makes no calls.
+
+- `__glStencilTestLine` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9eb32c; occupies 388 bytes.
+  **Established.** Runs a software stencil test over line data. A zero count at context +0x7660 skips pixel processing (`lw` at 0xd9eb348, `beqz` at 0xd9eb3d0). Byte reads and a byte update operate through unresolved effective bases (`lbu` at 0xd9eb400, 0xd9eb414, 0xd9eb428, `sb` at 0xd9eb434). Output mask stores include `sw` at 0xd9eb3fc and 0xd9eb458. The final equal-count arm sets context byte +0x7744 to one (`beql` at 0xd9eb480, `sb` at 0xd9eb484), with that delay slot annulled on fall-through. It returns zero or one (`jr` at 0xd9eb4a8). The body makes no calls.
+
+- `__glStencilTestStippledLine` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9eb4b0; occupies 396 bytes.
+  **Established.** Applies software stencil testing while respecting the existing stipple mask. A zero tested mask intersection skips the byte-test arm (`beqz` at 0xd9eb598), while the other path reads and may update bytes through unknown bases (`lbu` at 0xd9eb5a0, 0xd9eb5b0, 0xd9eb5c0, `sb` at 0xd9eb5d0). The mask is written back by `sw` at 0xd9eb5fc, also at an unknown effective address. The result is zero or one (`jr` at 0xd9eb634). The address spaces of the unresolved accesses remain unclassified.
+
+- `__glDepthPassLine` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ebe64; occupies 212 bytes.
+  **Established.** Applies the software stencil depth-pass lookup along a line. The accesses include byte reads and a byte write at unknown bases (`lbu` at 0xd9ebef0, 0xd9ebf00, `sb` at 0xd9ebf08). The write runs in both outcomes of `bgez` at 0xd9ebf04. A signed negative value of context +0x7660 minus one skips processing (`lw` at 0xd9ebe98, `bltz` at 0xd9ebee4). Completion returns zero (`jr` at 0xd9ebf30). The body makes no calls.
+
+- `__glDepthPassStippledLine` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ebf38; occupies 268 bytes.
+  **Established.** Updates software stencil bytes on the selected pixels of a stippled line. A zero mask intersection skips the lookup and byte write (`beqz` at 0xd9ebff0). The active arm uses `lbu` at 0xd9ebff8 and 0xd9ec000 and `sb` at 0xd9ec004, with all effective bases unknown. Its outer loop repeats on a nonzero remaining value (`bnel` at 0xd9ec028). The return is zero (`jr` at 0xd9ec03c). No callee is invoked, and the moving byte-access bases remain unknown.
+
+- `__gllc_Bitmap` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ecb50; occupies 316 bytes.
+  **Established.** Compiles a bitmap into a display-list record. A negative entry width takes the error arm, and a nonnegative entry height selects allocation (`bltz` at 0xd9ecb88, `bgez` at 0xd9ecb90). It calls `__glDlistAllocOp2` (`jalr` at 0xd9ecbdc), writes halfword four at the returned record +0xc (`sh` at 0xd9ecc00), and stores width and height at +0x10 and +0x14 (`sw` at 0xd9ecc04, 0xd9ecc08). `__glFillImage` receives selector 0x1900 (`jalr` at 0xd9ecc50), then `__glDlistAppendOp` receives callback address 0xd9ecc8c (`jalr` at 0xd9ecc6c). These stores construct a list record. The called helpers' further effects remain unknown here. The merged return is unknown.
+
+- `__glMultMatrix` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f16a0; occupies 608 bytes.
+  **Established.** Multiplies software matrix data using single- precision arithmetic. The second source includes argument 2 +0, +4, +8 and +0xc (`lwc1` at 0xd9f16c4, 0xd9f16c0, 0xd9f16cc, 0xd9f16c8). Other source data begins at argument 1 +0, +4 and +8 (`lwc1` at 0xd9f1720, 0xd9f171c, 0xd9f172c). Output includes `swc1` at 0xd9f1760, 0xd9f1794, 0xd9f17c8 and 0xd9f17fc, whose effective bases are unknown. It returns 0x40 (`jr` at 0xd9f18f8) and makes no calls.
+
+- `__glInvertTransposeMatrix` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f1900; occupies 1612 bytes.
+  **Inferred.** Computes a software inverse-transpose matrix. It copies input argument 1 +0x40 to output argument 0 +0x40 even when the zero-tag branch is taken (`lw` at 0xd9f1928, `beqz` at 0xd9f192c, `sw` at 0xd9f1930). Two floating-point equality tests can jump to the epilogue (`bc1tl` at 0xd9f19b8, 0xd9f1e00), with arithmetic operands unresolved in hostfacts. Output examples are argument 0 +0, +4 and +8 (`swc1` at 0xd9f19f8, 0xd9f1a0c, 0xd9f1a24). The returned value is the input tag word (`jr` at 0xd9f1f44). The body makes no calls.
+
+- `__glFloorLog2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f1f4c; occupies 36 bytes.
+  **Established.** Counts shifts in an integer-only logarithm helper. The initial zero test takes an immediate zero-result path (`beqz` at 0xd9f1f50). Its repeat branch increments the counter only in the taken delay slot (`bnel` at 0xd9f1f60). Hostfacts leaves the general returned value unresolved. The body has no memory accesses or calls, so it affects no graphics state.
+
+- `DeleteBlock` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f2020; occupies 92 bytes.
+  **Inferred.** Uses two calls in an inferred arena-block cleanup interface, reloading their target from entry argument 0 +0xc (`lw` at 0xd9f2044, 0xd9f205c). The first callback receives entry argument 0 and the word at block argument 1 +8 (`lw` at 0xd9f203c, `jalr` at 0xd9f2048). The second receives the original first two arguments (`jalr` at 0xd9f2060). Both targets remain unknown, and the last callback's result passes back (`jr` at 0xd9f2074). The cleanup role is inferred. Callback effects are not established by this caller. Supplied extent includes following functions; this note covers only the bounded entry body.
+
+- `freeLeafData` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f2450; occupies 56 bytes.
+  **Inferred.** Calls an unknown callback loaded from context argument 0 +0xc (`lw` at 0xd9f2468, `jalr` at 0xd9f246c), retaining all four entry register arguments. Hostfacts cannot identify the target, but records the callback's result as this routine's return. There are no local data-list edits. The release role follows the interface name. The callback's memory effects remain unknown.
+
+- `freeBranch` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f24f8; occupies 56 bytes.
+  **Inferred.** Invokes the callback at entry argument 0 +0xc (`lw` at 0xd9f2510, `jalr` at 0xd9f2514). The call retains the caller's first four register arguments, and its result is returned unchanged (`jr` at 0xd9f2528). Branch-record release is inferred from the interface name. The bounded caller stores only stack state and leaves the callback's effects unknown. Supplied extent includes following functions; this note covers only the bounded entry body.
+
+- `copyLeafInfo` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f282c; occupies 244 bytes.
+  **Established.** Copies software leaf entries, using the data-list pointers from argument 0 +0xc and argument 1 +0xc (`lw` at 0xd9f2860, 0xd9f2868). Word-copy output includes `sw` at 0xd9f2888, 0xd9f28b8, 0xd9f28d4 and 0xd9f28f0, with effective bases unknown. Hostfacts labels internal address 0xd9f2890 targeted by `beqz` at 0xd9f2850 "outside", so complete loop coverage remains unresolved. The body makes no calls and has an unknown return.
+
+- `allocLeafData` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f2ad8; occupies 272 bytes.
+  **Inferred.** Uses an inferred leaf-allocation interface and fills the returned storage. The unknown memory-interface procedure is loaded from entry argument 0 +0 (`lw` at 0xd9f2b0c, `jalr` at 0xd9f2b14), receiving an unknown size. Its result is stored at leaf argument 1 +0xc (`sw` at 0xd9f2b2c), on both outcomes of the nonzero-result branch (`bnez` at 0xd9f2b28). Fill stores use the word at [argument 1 +0x10] +4 (`lw` at 0xd9f2b50, 0xd9f2b5c, 0xd9f2b7c, 0xd9f2b84, `sw` at 0xd9f2b6c, 0xd9f2b8c), with output bases unknown. Hostfacts marks internal target 0xd9f2b74 of `beqz` at 0xd9f2b44 "outside". The return is zero or one (`jr` at 0xd9f2be0). The procedure's allocation effect and the unresolved output address spaces remain unknown.
+
+- `firstLeaf` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9f39c8; occupies 100 bytes.
+  **Inferred.** Walks record pointers in an inferred first-leaf traversal. A nonzero root word at argument 0 +0 (`lw` at 0xd9f39c8) enters the walk (`bnez` at 0xd9f39d4). Zero falls through to return zero. The walk uses word loads through unresolved bases (`lw` at 0xd9f39fc, 0xd9f3a08, 0xd9f3a10, 0xd9f3a14, 0xd9f3a1c). Hostfacts cannot resolve the nonempty-tree result. No store or callee appears in the body.
 ## Software renderer (soft)
 
 ### so_accumop.c
