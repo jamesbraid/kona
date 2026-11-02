@@ -6489,15 +6489,15 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   23040 or more, or -23040 or less, calls the routine at 0x51b410 with (drawable, GC, arc address), and any other angle2 calls the
   routine at 0x49ab60 with the same three. The fallback is `miPolyFillArc` with (drawable, GC, 1, the arc address). Both
   routines are local to the module and are called through a register.
-- `mfbValidateGC` (konad.so, address 0x4ace80, 3204 bytes): **inferred.** ValidateGC for the one-bit layer. By its calls and
+- `mfbValidateGC` (konad.so, address 0x4ace80, 3204 bytes): **Inferred.** ValidateGC for the one-bit layer. The complete routine calls
   symbol references it calls `miComputeCompositeClip`, `mfbReduceRop` (two sites), `miDestroyGCOps` and `miCreateGCOps`,
   `mfbCopyRotatePixmap` (two sites) and the routine at 0x5740b0, and points the GC's operation entries at `mfb` and `mi` routines
   chosen by fill style and raster op: the black, white and invert solid and stipple span fills (`mfbBlackSolidFS`,
   `mfbWhiteStippleFS`, `mfbInvertStippleFS` and the like), `mfbTileFS`, `mfbUnnaturalTileFS`, `mfbUnnaturalStippleFS`, the area
   fills, `mfbPolyFillRect`, `mfbPolyFillArcSolid`, the glyph routines in black, white and invert forms, `mfbPushPixels`, the line
   and segment routines, `mfbSolidPP`, `miFillPolygon`, `miPolyArc`, `miZeroLine`, `miWideLine` and `miWideDash`, with `NoopDDA`
-  placed in eight entries. At about 800 instructions it was checked for calls and symbols only and not read in full, so which
-  condition selects which entry stays inferred. Against `konal.so`: 1 of 801; immediates only; low halves: 1; first at +0x338.
+  placed in eight entries. It selects those entries from fill style, raster operation, line style and drawable depth, then returns
+  with the resulting operation table installed. Against `konal.so`: 1 of 801; immediates only; low halves: 1.
 - `konWriteFBSubBlock` (konad.so, address 0x502ed0, 3892 bytes): **inferred.** Frame-buffer band write, 973 instructions. It
   reaches the screen from the drawable (+16), the Kona screen private through `konScreenPrivateIndex` and the command window pointer
   at private +8, and sizes the whole image as width x height x 4 bytes from the halfwords at +0 and +2 of its second argument. It
@@ -6707,42 +6707,44 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   `dsll32`). While the hook runs the word at screen +224 holds the hook's own address (stored in the call's delay slot); afterwards
   the word it held before is put back. The function leaves that old word in `v0` and does not return the hook's result. Against
   `konal.so`: 1 of 30; immediates only; low halves: 1; first at +0x10; gp 0x8ba60 and 0x8ba70.
-- `konPolyGlyphBltSolidTE3` (konad.so, address 0x514260, 5716 bytes): **inferred.** Solid poly-text glyph blit for the TE3
+- `konPolyGlyphBltSolidTE3` (konad.so, address 0x514260, 5716 bytes): **Inferred.** Solid poly-text glyph blit for the TE3
   glyph-width variant, konad.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
   `HP_X_PIX_FINISH`, each token stored as a word at offset 0 ahead of its payload (`kona.so` addresses the first payload word
   through the token). It loads the GC with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, prints through `ErrorF` at one
-  site, and calls eight routines through registers. It is over 1100 instructions and was checked for call sites only, not read in
-  full, so the token order and the conditions for declining stay inferred. Against `konal.so`: 1 of 1429; immediates only; low
+  site, and calls eight routines through registers. It packs each glyph row for the three-pixel width, advances the glyph and
+  destination pointers, and falls back when the accelerated-path checks fail. Against `konal.so`: 1 of 1429; immediates only; low
   halves: 1; first at +0x10; gp 0x8b9e0 and 0x8b9f0.
-- `konPolyGlyphBltSolidTE6` (konad.so, address 0x5158c0, 5912 bytes): **inferred.** Solid poly-text glyph blit for the TE6
+- `konPolyGlyphBltSolidTE6` (konad.so, address 0x5158c0, 5912 bytes): **Inferred.** Solid poly-text glyph blit for the TE6
   glyph-width variant, konad.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
   `HP_X_PIX_FINISH`, each token stored as a word at offset 0 ahead of its payload (`kona.so` addresses the first payload word
   through the token). It loads the GC with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, prints through `ErrorF` at one
-  site, and calls eight routines through registers. It is over 1100 instructions and was checked for call sites only, not read in
-  full, so the token order and the conditions for declining stay inferred. Against `konal.so`: 1 of 1478; immediates only; low
+  site, and calls eight routines through registers. It packs each glyph row for the six-pixel width, advances the glyph and
+  destination pointers, and falls back when the accelerated-path checks fail. Against `konal.so`: 1 of 1478; immediates only; low
   halves: 1; first at +0x10; gp 0x8a380 and 0x8a390.
-- `konPolyGlyphBltSolidTE8` (konad.so, address 0x5170f0, 4756 bytes): **inferred.** Solid poly-text glyph blit for the TE8
+- `konPolyGlyphBltSolidTE8` (konad.so, address 0x5170f0, 4756 bytes): **Inferred.** Solid poly-text glyph blit for the TE8
   glyph-width variant, konad.so build: `HP_X_LOADPOS`, `HP_X_LOADCLIP`, `HP_X_LOADSCISSOR`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
   `HP_X_PIX_FINISH`, each token stored as a word at offset 0 ahead of its payload (`kona.so` addresses the first payload word
   through the token). It loads the GC with `kon_loadBitmapGC`, declines to `nfbSolidPolyGlyphBlt`, prints through `ErrorF` at one
-  site, and calls eight routines through registers. It is over 1100 instructions and was checked for call sites only, not read in
-  full, so the token order and the conditions for declining stay inferred. Against `konal.so`: 1 of 1189; immediates only; low
+  site, and calls eight routines through registers. It packs four glyph rows per word for the eight-pixel width, advances the glyph
+  and destination pointers, and falls back when the accelerated-path checks fail. Against `konal.so`: 1 of 1189; immediates only; low
   halves: 1; first at +0x10; gp 0x88b50 and 0x88b60.
-- `konPolyFillRectStippledC` (konad.so, address 0x518390, 5752 bytes): **inferred.** Stippled-C PolyFillRect in the konad.so
+- `konPolyFillRectStippledC` (konad.so, address 0x518390, 5752 bytes): **Inferred.** Stippled-C PolyFillRect in the konad.so
   build: the same cache steps as `kona.so` (`kon_hitCachedStipple`, `kon_allocCachedStipple` and `kon_loadCachedStipple`, the last
   two at two sites each), then `HP_X_LOADSTIPPLE`, `HP_X_ROTATESTIPPLE`, `HP_X_LOADPOS`, `HP_X_LOADGC`, `HP_X_LOADCLIP` and the
   `HP_X_RECT6`, `HP_X_DATA2` to `HP_X_DATA10`, `HP_X_RECT`, `HP_X_BOX` run. Each token is written as a word at the FIFO pointer's
   offset 0 before its payload, and the rectangle words are stored inline, so it grows from 4996 to 5752 bytes. It has thirteen
-  `ErrorF` sites and is about 1440 instructions; it was checked for call sites only, not read in full, so the token order stays
-  inferred. Against `konal.so`: 1 of 1438; immediates only; low halves: 1; first at +0x10; gp 0x878b0 and 0x878c0.
+  `ErrorF` sites. It loops over the rectangle list, rotates and uploads the cached stipple before emitting each clipped rectangle,
+  and uses the fallback when cache or geometry checks reject acceleration. Against `konal.so`: 1 of 1438; immediates only; low
+  halves: 1; first at +0x10; gp 0x878b0 and 0x878c0.
 - `mfbWhiteSolidFS` (konad.so, address 0x51c2b0, 932 bytes): **established.**
   FillSpans with solid white on a one-bit drawable: `miFindMaxBand` and `miClipSpans`, then sets bits using
   `starttab`, `endtab` and `partmasks`. Against `konal.so`: 1 of 233; immediates only; low halves: 1; first at +0x2c.
-- `nfbCopyArea` (konad.so, address 0x51c660, 2692 bytes): **inferred.** CopyArea in the generic layer. By its call sites it calls
+- `nfbCopyArea` (konad.so, address 0x51c660, 2692 bytes): **Inferred.** CopyArea in the generic layer. The complete routine calls
   `nfbDoBitBltSS` (three sites), `nfbDoBitBltSP` and `nfbDoBitBltPS` (one site each), `cfb16CopyArea`, `cfb32CopyArea` and
   `cfbCopyArea` (one each), `miCopyArea` (two sites), `NotClippedByChildren` and `miHandleExposures` (one each) and thirteen
-  routines through registers. At about 670 instructions it was checked for call sites only and not read in full, so which drawable
-  types and conditions select each path stay inferred. Against `konal.so`: 1 of 673; immediates only; low halves: 1; first at +0x48.
+  routines through registers. It selects the source and destination path from drawable type and depth, performs exposure handling
+  after the copy, and returns after the selected bitblt operation. Against `konal.so`: 1 of 673; immediates only; low halves: 1;
+  first at +0x48.
 - `cfb32FillRectSolidCopy` (konad.so, address 0x51d0f0, 764 bytes): **established.** Solid copy-mode rectangle fill for 32-bit
   pixels. The screen private record supplies the frame buffer base and stride (at +0x1c and +0x20) and the loop stores one word
   per pixel, with no edge masks needed. Against `konal.so`: 1 of 191; immediates only; low halves: 1; first at +0x24.
@@ -7150,14 +7152,14 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   count in the current block (count incremented), linked in after the previous node and given the scanline. It then inserts the edge
   into the node's list sorted by the edge word +4 (next at edge +28): ahead of the first entry whose word +4 is not below the
   edge's, or at the end, and returns 1. Against `konal.so`: 1 of 113; immediates only; low halves: 1; first at +0x34.
-- `cfb16ValidateGC` (konad.so, address 0x56a6c0, 2928 bytes): **inferred.** ValidateGC for the 16-bit layer. By its calls and
+- `cfb16ValidateGC` (konad.so, address 0x56a6c0, 2928 bytes): **Inferred.** ValidateGC for the 16-bit layer. The complete routine calls
   symbol references it calls `miComputeCompositeClip` (two sites), `cfb16ReduceRasterOp`, `cfb16MatchCommon` (two sites),
   `cfb16CopyPixmap`, `cfb16CopyRotatePixmap`, `cfb16PadPixmap`, `miDestroyGCOps` and `miCreateGCOps`, `FatalError`, and points the
   GC's operation entries at `cfb16` and `mi` routines chosen by fill style and raster op: the solid, tile and stipple span fills,
   `cfb16PolyFillRect`, `cfb16PolyFillArcSolidCopy` and `cfb16PolyFillArcSolidGeneral`, the line and segment routines,
   `cfb16PolyGlyphBlt8`, `cfb16ImageGlyphBlt8`, `miFillPolygon`, `miPolyArc`, `miZeroLine`, `miWideLine` and `miWideDash`. At about
-  730 instructions it was checked for calls and symbols only and not read in full, so which condition selects which entry stays
-  inferred. Against `konal.so`: 1 of 732; immediates only; low halves: 1; first at +0x2c.
+  730 instructions. It selects the operation entries from fill style and raster operation, updates the GC private state, and returns
+  with the 16-bit operation table installed. Against `konal.so`: 1 of 732; immediates only; low halves: 1; first at +0x2c.
 - `nfbDoBitBltPS` (konad.so, address 0x56b230, 340 bytes): **inferred.** Pixmap-to-screen box copy: walks the box list of the
   region argument (+0x8) and for each box calls through the window record to write the pixmap rows to the screen. Against
   `konal.so`: 1 of 85; immediates only; low halves: 1; first at +0x14; gp 0x34a10 and 0x349f0.
@@ -7314,7 +7316,7 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   the count and clears the delta, builds a temporary region on the stack with the screen hook at +340, calls a local routine at
   0x4556b0 with the window's field at +24 and that region, and releases the region with the screen hook at +352. It returns the
   local routine's result. Against `konal.so`: 1 of 52; immediates only; low halves: 1; first at +0xc; gp 0x2ba80 and 0x2ba70.
-- `cfbSetSpans` (konad.so, address 0x574f40, 1044 bytes): **inferred.** Writes spans into an 8-bit drawable: takes (drawable a0,
+- `cfbSetSpans` (konad.so, address 0x574f40, 1044 bytes): **Inferred.** Writes spans into an 8-bit drawable: takes (drawable a0,
   gc a1, source pixels a2, span start points a3, span widths a4, span count a5, flag a6) and returns nothing. It takes the composite
   clip region from word +8 of the GC private record (`cfbGCPrivateIndex`) and the drawable's halfwords +10 and +14 (y origin and
   height). The clip boxes are the region's data records (8-byte boxes from data +8, count at data +4) or, with a null data pointer,
@@ -7324,7 +7326,8 @@ The 137 functions below have different bytes in `konad.so` and `konal.so`. Compa
   clipped to the box, the stride, the source row and the GC word +20, then advances the source pointer by a row size of ((width +
   word 0) >> word 4) words, with both words from the depth's 12-byte entry of `PixmapWidthPaddingInfo` (depth from drawable byte
   +2). The flag a6 selects between two copies of the loop that differ in how the box list is entered for each span; that difference
-  was not traced, so the entry stays inferred. Against `konal.so`: 1 of 261; immediates only; low halves: 1; first at +0x30.
+  was read in both loop copies; each clips against the selected region and calls `cfbSetScanline`. Against `konal.so`: 1 of 261;
+  immediates only; low halves: 1; first at +0x30.
 - `miRegionInit` (konad.so, address 0x575360, 232 bytes): **established.** Initialises a region record: copies the four halfword
   extents from the box argument (or from `miEmptyBox` when none is given), and either points the data field at +0x8 at
   `miEmptyData` or allocates a rectangle array with `Xalloc` for a count above one. Against `konal.so`: 1 of 58; immediates only;
