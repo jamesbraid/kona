@@ -32,6 +32,29 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
 - `fcGfxWrite32` (0x1013df2c, 932 bytes): **Established.** Accepts one graphics-FIFO word, applies the diagnostic access-delay and pending-write bookkeeping, writes the word through host FIFO offset 0, and checks the FIFO status at offset 0x208. Error paths report or assert the failing access; the normal path returns the final PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `fcGfxWrite32`.)
 - `fcGfxFlush` (0x1013e5d0, 588 bytes): **Established.** Drains pending graphics writes, waits between diagnostic accesses, reads host FIFO status offset 0x208, and asserts the expected status transitions before returning. Its error branches report failed adapter reads or assertions, and its normal path returns after the final FIFO write. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `fcGfxFlush`.)
 
+The following geometry and distributor helpers were read from their complete
+symbol ranges in the same binary:
+
+- `set_bef_user_reg` (0x1001b7b0, 88 bytes): **Established.** Saves the
+  variadic register words on its stack, selects user-register field 0x3f, and
+  passes that field and the saved words to `modify_bef_user_reg`. It returns
+  the helper's result.
+- `set_bef_config_reg` (0x1001cc8c, 100 bytes): **Established.** Saves the
+  variadic register words, selects the complete 0x1ff configuration mask, and
+  passes them to `modify_bef_config_reg`. It returns the helper's result.
+- `init_ge_num` (0x1003808c, 384 bytes): **Established.** Builds a one-bit
+  engine mask from its argument, writes it repeatedly to distributor selector
+  0x222, calls `PioWriteArm32` with 0x200600 and 0x58400800 and then with
+  0x200a80 and 1, then masks the saved engine count and repeats selector 0x222 writes with the resulting mask.
+- `arm_ged_write` (0x10038288, 140 bytes): **Established.** Writes the ARM
+  register sequence 1, 0xb, the caller's register, 0, and the caller's value
+  through the diagnostic graphics-register writer. It returns after the fifth
+  write.
+- `diag_arm_reg_write` (0x1003820c, 124 bytes): **Established.** Writes the
+  fixed ARM register sequence 1, 0x16, the caller's register, and the caller's
+  value through the diagnostic graphics-register writer. It returns after the
+  fourth write.
+
 ## Tests
 
 | Group | Functions | Role |
