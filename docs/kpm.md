@@ -101,6 +101,60 @@ written.
   raster-bus register 0x20630, writes zero, selects 0x20a40, writes the
   inverted low bit of the caller-selected field shifted left once, and selects
   0x20a40 again before returning. (`kpm`, 6.5.30m, full routine at 0x1001c124.)
+- `hipInspectionPreJtag` (`kpm` 0x10012834, 5288 bytes): **Established.**
+  Creates the `hip-registers` capture section, reads the host-interface words
+  at offsets 0x220, 0x390, 0x398, 0x238 and the remaining table-selected
+  offsets into the 145-record register buffer, and records each value with
+  `assign_register`. It preserves the pre-scan values and writes the complete
+  section to the dump. (`kpm`, 6.5.30m, full routine at 0x10012834.)
+- `hipInspectionPostJtag` (`kpm` 0x10013cdc, 5072 bytes): **Established.**
+  Clears the ARM-access trigger at 0x320, reads the ARM control word at 0x308,
+  captures the host-interface and ARM-side register values after the scan, and
+  writes the post-scan register section. It reports each captured field through
+  the same 60-byte register records. (`kpm`, 6.5.30m, full routine at
+  0x10013cdc.)
+- `befFIFOInspection` (`kpm` 0x10017830, 1872 bytes): **Established.** Captures
+  the selected BEF FIFO address/count state, stores the FIFO counters in the
+  pipe record, reads the FIFO through the diagnostic output-DMA path, and
+  writes the raw and decoded values to the dump section. (`kpm`, 6.5.30m, full
+  routine at 0x10017830.)
+- `befShadowDrain` (`kpm` 0x10018a60, 720 bytes): **Established.** Maps a
+  0x418-byte diagnostic transfer, programs the output-DMA descriptor, toggles
+  raster-bus control with `tbRegisterWrite`, and drains the selected BEF shadow
+  registers into the dump buffer. (`kpm`, 6.5.30m, full routine at 0x10018a60.)
+- `bef_reset` (`kpm` 0x100180cc, 228 bytes): **Established.** Resets the BEF
+  through the scan-chain reset helper, retries the chain operation on a
+  negative result, and emits the diagnostic status message before returning.
+  (`kpm`, 6.5.30m, full routine at 0x100180cc.)
+- `bef_set_current_ge` (`kpm` 0x1001890c, 340 bytes): **Established.** Selects
+  the requested current geometry engine in the BEF scan record, updates the
+  saved engine field, writes the corresponding subfield, and restores the
+  scan-chain state. (`kpm`, 6.5.30m, full routine at 0x1001890c.)
+- `save_bef_configuration` (`kpm` 0x10018d30, 864 bytes): **Established.**
+  Reads the current BEF configuration and engine selection through the scan
+  chain, extracts the configuration words for the selected engine, and stores
+  the resulting records for later FIFO and shadow inspection. (`kpm`,
+  6.5.30m, full routine at 0x10018d30.)
+- `gedStateDrain` (`kpm` 0x10019fc4, 2680 bytes): **Established.** Obtains a
+  diagnostic transfer for the distributor state, programs the DMA registers,
+  reads distributor select/data pairs through offsets 0x3e8 and 0x3f0, and
+  writes the captured state into the dump section. (`kpm`, 6.5.30m, full
+  routine at 0x10019fc4.)
+- `ge11ReadDiagRegisters` (`kpm` 0x1001e748, 620 bytes): **Established.**
+  Obtains a 0x40-byte diagnostic transfer, starts output DMA, requests the
+  engine diagnostic registers through the readback helper for each table entry,
+  waits for completion, and writes the captured words to the report. (`kpm`,
+  6.5.30m, full routine at 0x1001e748.)
+- `ge11RamScan` (`kpm` 0x1001e9b4, 976 bytes): **Established.** Builds the
+  selected working-RAM scan descriptor, maps its transfer, drains the engine
+  RAM through the boundary-scan helpers, and restores the engine registers with
+  the geometry-register writer before returning the captured section result.
+  (`kpm`, 6.5.30m, full routine at 0x1001e9b4.)
+- `ge11EramScan` (`kpm` 0x1001ed84, 496 bytes): **Established.** Selects the
+  expression-RAM diagnostic window through distributor registers 0x234 and
+  0x236, starts the mapped output-DMA transfer, waits with a ten-iteration
+  bound, and writes the captured ERAM section. It reports a failed completion
+  and returns -1 on that path. (`kpm`, 6.5.30m, full routine at 0x1001ed84.)
 
 ## Register tables and logging
 
