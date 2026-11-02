@@ -48,7 +48,7 @@ Reviewed and set aside, because they do not describe this board: US 5,548,709 (t
 ## 1. InfiniteReality architecture paper (SIGGRAPH 1997)
 
 - Identity: "InfiniteReality: A Real-Time Graphics System", SIGGRAPH 97 proceedings, pages 293-302. Copy read: https://people.csail.mit.edu/ericchan/bib/pdf/p293-montrym.pdf, 10 pages, SHA-256 `877a4c9e19ff82107b496c10a91339c41635e05d0e2dfa4a9d849e2e2d8647bb` (also https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/montrym97_infinitereality.pdf).
-- Stored copy: [docs/sources/papers/montrym97-infinitereality.pdf](sources/papers/montrym97-infinitereality.pdf), SHA-256 `877a4c9e19ff82107b496c10a91339c41635e05d0e2dfa4a9d849e2e2d8647bb`, library path `graphics/onyx/p293-montrym-infinite-reality.pdf`.
+- Stored copy: [docs/sources/papers/montrym97-infinitereality.pdf](sources/papers/montrym97-infinitereality.pdf), SHA-256 `877a4c9e19ff82107b496c10a91339c41635e05d0e2dfa4a9d849e2e2d8647bb`.
 - Covers: the whole pipe: host interface processor, geometry distributor, four geometry engines, the geometry-raster FIFO, the vertex bus, the fragment generator (SC, TA, TM, TF), 80 image engines per raster board, the display generator. First generation; the board set it names is the three-board Onyx set.
 - Match: close. The block structure matches the shipped netlist names. The paper predates the Onyx2 board revisions.
 
@@ -69,7 +69,7 @@ Open questions moved: none closed. Adds routes to the raster set-up, fan-bit and
 ## 2. InfiniteReality Technical Report
 
 - Identity: SGI, "InfiniteReality Technical Report" (first-generation Onyx and i-Station). Copy read: http://www.sgidepot.co.uk/onyx/IR_techreport.pdf, 42 pages, SHA-256 `b5bdbb3f054c36768f6ef17a648543dac4aafad115d0d4f0161e693ee2bcc4b3`.
-- Stored copy: [docs/sources/reports/infinitereality-technical-report.pdf](sources/reports/infinitereality-technical-report.pdf), SHA-256 `b5bdbb3f054c36768f6ef17a648543dac4aafad115d0d4f0161e693ee2bcc4b3`, library path `graphics/onyx/sgi-infinitereality-technical-report.pdf`.
+- Stored copy: [docs/sources/reports/infinitereality-technical-report.pdf](sources/reports/infinitereality-technical-report.pdf), SHA-256 `b5bdbb3f054c36768f6ef17a648543dac4aafad115d0d4f0161e693ee2bcc4b3`.
 - Covers: the Onyx-generation system with GE12, RM6 and DG4 (the block diagrams in section 1.1 name them).
 - Match: close for the pipeline model, first generation for boards.
 
@@ -86,7 +86,7 @@ Open questions moved: none closed.
 ## 3. Onyx2 Reality and InfiniteReality2 Technical Report (August 1998)
 
 - Identity: SGI, "Onyx2 Reality and Onyx2 InfiniteReality2 Technical Report", August 1998, 95 pages. Copy read: the SGI PDF as mirrored at https://techpubs.jurassic.nl and the archive sites, SHA-256 `0b2be85d655ae996d7e39bf3f22248060e3c7c493a852a2358e2e0afdc2d6305`.
-- Stored copy: [docs/sources/reports/onyx2-infinitereality2-technical-report-1998.pdf](sources/reports/onyx2-infinitereality2-technical-report-1998.pdf), SHA-256 `0b2be85d655ae996d7e39bf3f22248060e3c7c493a852a2358e2e0afdc2d6305`, library path `sgi-hw/onyx2-technical-report.pdf`.
+- Stored copy: [docs/sources/reports/onyx2-infinitereality2-technical-report-1998.pdf](sources/reports/onyx2-infinitereality2-technical-report-1998.pdf), SHA-256 `0b2be85d655ae996d7e39bf3f22248060e3c7c493a852a2358e2e0afdc2d6305`.
 - Covers: the Onyx2 generation. Section 1.1 states that InfiniteReality uses GE14 and RM7 and InfiniteReality2 uses GE16 and RM9, with DG5 in both, and that everything in the report applies to both. This is the exact generation of the reference install.
 - Match: exact.
 
@@ -103,7 +103,7 @@ Open questions moved: none closed. Confirms the generation.
 ## 4. Hot Chips 8 slides (1996)
 
 - Identity: "InfiniteReality Graphics: Power Through Complexity", Hot Chips 8, 1996, 20 slides. Copy read: https://old.hotchips.org/wp-content/uploads/hc_archives/hc08/3_Tue/HC8.S9/HC8.9.3.pdf, SHA-256 `2add1b6fe141645f0df472a2c15bfa1ff93c12b802da00889b9a2c576ee3a974`.
-- Stored copy: [docs/sources/papers/hotchips8-infinitereality.pdf](sources/papers/hotchips8-infinitereality.pdf), SHA-256 `2add1b6fe141645f0df472a2c15bfa1ff93c12b802da00889b9a2c576ee3a974`, library path `papers/hotchips8-infinitereality-power-through-complexity.pdf`.
+- Stored copy: [docs/sources/papers/hotchips8-infinitereality.pdf](sources/papers/hotchips8-infinitereality.pdf), SHA-256 `2add1b6fe141645f0df472a2c15bfa1ff93c12b802da00889b9a2c576ee3a974`.
 - Covers: first-generation InfiniteReality. First architecture pass September 1993, first customer shipment March 1996 (slide 20).
 - Match: close; first generation.
 
@@ -123,7 +123,7 @@ Open questions moved: none closed. Adds the 195-to-72-bit ratio as a cross-check
 ## 5. OpenGL implementations paper (Graphics Hardware 1997)
 
 - Identity: "Realizing OpenGL: Two Implementations of One Architecture", the Eurographics/SIGGRAPH Graphics Hardware workshop, 1997. Copy read: the 11-page proceedings PDF (SHA-256 `c568a0eaabffc399c548c18f9a768a4d3156def7a6ab548cbae1cccdfffa26c3`), the copy SGI and later hosts mirror.
-- Stored copy: [docs/sources/papers/kilgard97-realizing-opengl.pdf](sources/papers/kilgard97-realizing-opengl.pdf), SHA-256 `c568a0eaabffc399c548c18f9a768a4d3156def7a6ab548cbae1cccdfffa26c3`, library path `graphics/onyx/kilgard97-realizing-opengl.pdf`.
+- Stored copy: [docs/sources/papers/kilgard97-realizing-opengl.pdf](sources/papers/kilgard97-realizing-opengl.pdf), SHA-256 `c568a0eaabffc399c548c18f9a768a4d3156def7a6ab548cbae1cccdfffa26c3`.
 - Covers: Onyx2 InfiniteReality and, in the second half, O2.
 - Match: close. It uses PG, TG, TM, TF and IMP, the same chip names as the shipped netlists and firmware ([rm.md](rm.md#chips-on-each-board)).
 
@@ -139,7 +139,7 @@ Open questions moved: none closed.
 ## 6. RealityEngine Graphics (SIGGRAPH 1993)
 
 - Identity: "RealityEngine Graphics", SIGGRAPH 93 proceedings, pages 109-116. Copy read: https://cseweb.ucsd.edu/~ravir/6160-fall04/papers/p109-akeley.pdf (SHA-256 `76b3bf10b66d0e8ee4f03971a7ecfa6540bfc919c58afce8e37062e5d3b08e71`).
-- Stored copy: [docs/sources/papers/akeley93-realityengine-graphics.pdf](sources/papers/akeley93-realityengine-graphics.pdf), SHA-256 `76b3bf10b66d0e8ee4f03971a7ecfa6540bfc919c58afce8e37062e5d3b08e71`, library path `papers/akeley93-realityengine-graphics.pdf`.
+- Stored copy: [docs/sources/papers/akeley93-realityengine-graphics.pdf](sources/papers/akeley93-realityengine-graphics.pdf), SHA-256 `76b3bf10b66d0e8ee4f03971a7ecfa6540bfc919c58afce8e37062e5d3b08e71`.
 - Covers: the predecessor generation. Its geometry engines compute the per-triangle slopes; InfiniteReality moved that to the fragment generator.
 - Match: predecessor only. Everything below is **inferred** for InfiniteReality.
 
@@ -154,7 +154,7 @@ Open questions moved: none closed.
 ## 7. US 5,760,783, texture from a selected portion of a texture map
 
 - Identity: US 5,760,783, "Method and system for providing texture using a selected portion of a texture map", filed 1995-11-06, granted 1998-06-02, assigned to SGI. PCT WO 1997/017676. https://patents.google.com/patent/US5760783A/en
-- Stored copy: [docs/sources/patents/US5760783.pdf](sources/patents/US5760783.pdf), SHA-256 `ae3869ae81b87081f07fce5963a5b29c1f70a7f978b2b0cfb13488153df8f7c0`, library path `patents/US5760783-texture-selected-portion.pdf`.
+- Stored copy: [docs/sources/patents/US5760783.pdf](sources/patents/US5760783.pdf), SHA-256 `ae3869ae81b87081f07fce5963a5b29c1f70a7f978b2b0cfb13488153df8f7c0`.
 - Covers: the clip-map: a clip-map stack of fixed-size tiles centred on the eyepoint over a clip-map pyramid. The page names no product and no board. The block diagram has a texture generator, a texture memory manager and DRAM on a triangle bus, the arrangement of the first-generation board set.
 - Match: feature-level. The paper in source 1 says the feature ships, so the behaviour is a design the shipped chips implement; details such as register names are not given.
 
@@ -170,7 +170,7 @@ Bearing on the shipped board. [RM.h](../RM.h) has `TM_DRAW_CLIP_OFFSET` (index 0
 ## 8. US 5,490,240, three-dimensional textures
 
 - Identity: US 5,490,240, "System and method of generating interactive computer graphic images incorporating three dimensional textures", filed 1993-07-09, granted 1996-02-06, assigned to SGI. https://patents.google.com/patent/US5490240A/en
-- Stored copy: [docs/sources/patents/US5490240.pdf](sources/patents/US5490240.pdf), SHA-256 `5a458b3d356fdde064a1cd1a323a0b8aa1ec17be2f8986df59073bad199fa3cf`, library path `patents/US5490240-three-dimensional-textures.pdf`.
+- Stored copy: [docs/sources/patents/US5490240.pdf](sources/patents/US5490240.pdf), SHA-256 `5a458b3d356fdde064a1cd1a323a0b8aa1ec17be2f8986df59073bad199fa3cf`.
 - Covers: generic texture apparatus: level-of-detail generator, address generator, fraction generator, eight-bank texture storage, an interpolator. No product named.
 - Match: predecessor-level. Same generation as source 6.
 
@@ -185,7 +185,7 @@ Bearing: a level fraction linear in the maximum derivative is a candidate for th
 ## 9. US 5,455,627, programmable video output format generator
 
 - Identity: US 5,455,627, "Programmable video output format generator", filed 1993-06-30, granted 1995-10-03, assigned to SGI. https://patents.google.com/patent/US5455627A/en
-- Stored copy: [docs/sources/patents/US5455627.pdf](sources/patents/US5455627.pdf), SHA-256 `b07e8358745413a289c21c31d38e947bcf74b7ec53cc97402e54c1b97a89894d`, library path `patents/US5455627-programmable-video-output-format.pdf`.
+- Stored copy: [docs/sources/patents/US5455627.pdf](sources/patents/US5455627.pdf), SHA-256 `b07e8358745413a289c21c31d38e947bcf74b7ec53cc97402e54c1b97a89894d`.
 - Covers: a video format compiler reading a text description (the input file) and a reprogrammable timing state machine loaded from the compiler's tables. No product is named; the sample is a 1280 x 1024, 60 Hz format.
 - Match: design-level. The shipped `vof/` tables and the format compiler `sdbutil` follow the same two-part shape, which is the reason to read it.
 
@@ -200,7 +200,7 @@ Where it meets the shipped board: [dg.md](dg.md) reads a per-VOC state table of 
 ## 10. US 5,889,529, constant frame rate by dynamic resizing
 
 - Identity: US 5,889,529, "System and method for generating and displaying complex graphic images at a constant frame rate", filed 1996-03-22, granted 1999-03-30, assigned to SGI. https://patents.google.com/patent/US5889529A/en
-- Stored copy: [docs/sources/patents/US5889529.pdf](sources/patents/US5889529.pdf), SHA-256 `33c2e7fded5bbfefa5c5ed4baa67deaf8424a9db0bc08eb9a59f71e92f76dda9`, library path `patents/US5889529-constant-frame-rate-dynamic-resize.pdf`.
+- Stored copy: [docs/sources/patents/US5889529.pdf](sources/patents/US5889529.pdf), SHA-256 `33c2e7fded5bbfefa5c5ed4baa67deaf8424a9db0bc08eb9a59f71e92f76dda9`.
 - Covers: drawing at a reduced resolution chosen from the last frame's draw time and magnifying at output in the video output controller. The page names no product.
 - Match: design-level. The paper in source 1 and the technical reports describe the shipped feature (dynamic video resize); the shipped request is the Resize request in [dg.md](dg.md#the-resize-request-8-words).
 
@@ -215,7 +215,7 @@ Bearing: the buffered-then-latched coefficient register is the pattern to look f
 ## 11. US 6,147,695, combining multiple video streams
 
 - Identity: US 6,147,695, "System and method for combining multiple video streams", filed 1998-08-26 (priority 1996-03-22, a continuation in part of source 10), granted 2000-11-14, assigned to SGI. https://patents.google.com/patent/US6147695A/en
-- Stored copy: [docs/sources/patents/US6147695.pdf](sources/patents/US6147695.pdf), SHA-256 `2c2042bc55e35ebfcc8f3d67cc412301da89d0cc3f8804cbb22fd796bcf60ff1`, library path `patents/US6147695-combining-video-streams.pdf`.
+- Stored copy: [docs/sources/patents/US6147695.pdf](sources/patents/US6147695.pdf), SHA-256 `2c2042bc55e35ebfcc8f3d67cc412301da89d0cc3f8804cbb22fd796bcf60ff1`.
 - Covers: overlay and base streams read out and combined after resize; the example system is the InfiniteReality pipe on an Onyx2 module with a GE14 geometry board, RM7 raster boards and DG5 display boards.
 - Match: feature-level and the right generation: it names the Onyx2 board set of this workspace.
 
@@ -230,7 +230,7 @@ Bearing: the overlay-then-base multiplex after the colour-index look-up is the o
 ## 12. US 6,329,996, synchronising graphics pipelines
 
 - Identity: US 6,329,996 B1, "Method and apparatus for synchronizing graphics pipelines", filed 1999-01-08 (granted 2001-12-11), assigned to SGI. https://patents.google.com/patent/US6329996B1/en. The page cites the Onyx2 InfiniteReality and InfiniteReality2 technical report of August 1998.
-- Stored copy: [docs/sources/patents/US6329996.pdf](sources/patents/US6329996.pdf), SHA-256 `36d8e5719f24f28cf2329c41a23cd82ae39e09d185d5888df961a96948902531`, library path `patents/US6329996-synchronizing-graphics-pipelines.pdf`.
+- Stored copy: [docs/sources/patents/US6329996.pdf](sources/patents/US6329996.pdf), SHA-256 `36d8e5719f24f28cf2329c41a23cd82ae39e09d185d5888df961a96948902531`.
 - Covers: several pipes in a daisy chain; no register names.
 - Match: feature-level. The same wired-AND swap-ready line is in source 1 (the paper, section 2.9).
 
@@ -239,7 +239,7 @@ Facts (**inferred**): each pipe has three state bits, current, next and ready-di
 ## 13. US 5,438,654, sharpening texture imagery
 
 - Identity: US 5,438,654, "System and method for sharpening texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-08-01, assigned to SGI. https://patents.google.com/patent/US5438654A/en
-- Stored copy: [docs/sources/patents/US5438654.pdf](sources/patents/US5438654.pdf), SHA-256 `49354c9e5b12d21c1407edf3a5142b6a76df929a701b33fdf89da44b5d13a511`, library path `patents/US5438654-sharpening-texture-imagery.pdf`.
+- Stored copy: [docs/sources/patents/US5438654.pdf](sources/patents/US5438654.pdf), SHA-256 `49354c9e5b12d21c1407edf3a5142b6a76df929a701b33fdf89da44b5d13a511`.
 - Covers: sharpening a magnified texture by extrapolating from the two finest levels. No product is named. The report in source 3 and the paper in source 5 list sharpen texture as an InfiniteReality feature, so the arithmetic is the design the shipped filter chip implements.
 - Match: feature-level. Facts **inferred**.
 
@@ -253,7 +253,7 @@ Where it meets the shipped chip. [RM.h](../RM.h) reads the host's curve tables: 
 ## 14. US 5,471,572, adding detail to texture imagery
 
 - Identity: US 5,471,572, "System and method for adding detail to texture imagery in computer generated interactive graphics", filed 1993-07-09, granted 1995-11-28, assigned to SGI. https://patents.google.com/patent/US5471572A/en
-- Stored copy: [docs/sources/patents/US5471572.pdf](sources/patents/US5471572.pdf), SHA-256 `22ba9fcbbcc173f1ca343c12778685233b49356569dc4ee30fe04d703fb2c61f`, library path `patents/US5471572-adding-detail-texture-imagery.pdf`.
+- Stored copy: [docs/sources/patents/US5471572.pdf](sources/patents/US5471572.pdf), SHA-256 `22ba9fcbbcc173f1ca343c12778685233b49356569dc4ee30fe04d703fb2c61f`.
 - Covers: a detail texture, a signed high-frequency band repeated across the base, added or multiplied in as the surface is magnified. The only product it names is an earlier workstation, for making the detail texture offline.
 - Match: feature-level. Facts **inferred**.
 
@@ -268,8 +268,8 @@ Where it meets the shipped chip. The detail kind (`__glkonim_DetailTexFuncSGIS`,
 ## 15. Onyx2 owner's guides (007-3454-005 deskside, 007-3457-005 rackmount)
 
 - Identity: SGI, *Silicon Graphics Onyx2 Deskside Workstation Owner's Guide* (007-3454-005, 148 pages) and *Silicon Graphics Onyx2 Rackmount Owner's Guide* (007-3457-005, 206 pages). Copy read: the TechPubs Library PDFs.
-- Stored copy: [docs/sources/manuals/007-3454-005.pdf](sources/manuals/007-3454-005.pdf), SHA-256 `7284b14d16eb7f094c84a149502b9b21f847aa34fbc26e1f3dfe3313a318e408`, library path `techpubs/library/manuals/3000/007-3454-005/pdf/007-3454-005.pdf`.
-- Stored copy: [docs/sources/manuals/007-3457-005.pdf](sources/manuals/007-3457-005.pdf), SHA-256 `92e872585b7e1ae8fc8b6826b6ea4ac6dca515856ac8b250f347b90a18210ff5`, library path `techpubs/library/manuals/3000/007-3457-005/pdf/007-3457-005.pdf`.
+- Stored copy: [docs/sources/manuals/007-3454-005.pdf](sources/manuals/007-3454-005.pdf), SHA-256 `7284b14d16eb7f094c84a149502b9b21f847aa34fbc26e1f3dfe3313a318e408`.
+- Stored copy: [docs/sources/manuals/007-3457-005.pdf](sources/manuals/007-3457-005.pdf), SHA-256 `92e872585b7e1ae8fc8b6826b6ea4ac6dca515856ac8b250f347b90a18210ff5`.
 - Covers: Onyx2 Reality and InfiniteReality2 board sets in the deskside and the rack: GE, RM/TM and DG5 boards, DG5-2/DG5-8/GVO options, connector tables, multirack RealityMonster configurations, `ircombine` with GVO.
 - Match: exact generation (Onyx2, IP27, GE14/GE16, RM7/RM9, DG5).
 
@@ -278,10 +278,10 @@ Facts: Board names and counts, the RM8 against RM/TM rule, DG5 option table, the
 ## 16. Onyx 3000 graphics owner's guide (007-4264-002), N-brick addendum (007-4424-001), InfiniteReality3 errata (007-3784-001), InfiniteReality4 addendum (007-4525-001)
 
 - Identity: SGI, *SGI Onyx 3000 Series Graphics System Hardware Owner's Guide* (007-4264-002, 176 pages); *SGI Onyx 3000 N-Brick Addendum* (007-4424-001, 4 pages, 2001); *Silicon Graphics Onyx2 InfiniteReality3 Upgrade Errata* (007-3784-001, 2000); *InfiniteReality4 Addendum to Silicon Graphics Onyx2, SGI Onyx 3000 Series, and SGI Onyx 300 Guides* (007-4525-001, 4 pages, 2002).
-- Stored copy: [docs/sources/manuals/007-4264-002.pdf](sources/manuals/007-4264-002.pdf), SHA-256 `f80ffeb747fb935018f62cf80114a76e7d32d5967a26633b9dff25ea8ff5ef23`, library path `techpubs/library/manuals/4000/007-4264-002/pdf/007-4264-002.pdf`.
-- Stored copy: [docs/sources/manuals/007-4424-001.pdf](sources/manuals/007-4424-001.pdf), SHA-256 `75cdcaf195fde56854872e506ddce57e9187ed727617e69149a0d0eef00382ed`, library path `techpubs/library/manuals/4000/007-4424-001/pdf/007-4424-001.pdf`.
-- Stored copy: [docs/sources/manuals/007-3784-001.pdf](sources/manuals/007-3784-001.pdf), SHA-256 `13a0ec0fb67663fc38112a132300a54de412f4fe2b424796c26b3854e641de89`, library path `techpubs/library/manuals/3000/007-3784-001/pdf/007-3784-001.pdf`.
-- Stored copy: [docs/sources/manuals/007-4525-001.pdf](sources/manuals/007-4525-001.pdf), SHA-256 `b896dcb5c5687316ad53a75c9de05ab5913fbe92196d015e2a60c63c55a80075`, library path `techpubs/library/manuals/4000/007-4525-001/pdf/007-4525-001.pdf`.
+- Stored copy: [docs/sources/manuals/007-4264-002.pdf](sources/manuals/007-4264-002.pdf), SHA-256 `f80ffeb747fb935018f62cf80114a76e7d32d5967a26633b9dff25ea8ff5ef23`.
+- Stored copy: [docs/sources/manuals/007-4424-001.pdf](sources/manuals/007-4424-001.pdf), SHA-256 `75cdcaf195fde56854872e506ddce57e9187ed727617e69149a0d0eef00382ed`.
+- Stored copy: [docs/sources/manuals/007-3784-001.pdf](sources/manuals/007-3784-001.pdf), SHA-256 `13a0ec0fb67663fc38112a132300a54de412f4fe2b424796c26b3854e641de89`.
+- Stored copy: [docs/sources/manuals/007-4525-001.pdf](sources/manuals/007-4525-001.pdf), SHA-256 `b896dcb5c5687316ad53a75c9de05ab5913fbe92196d015e2a60c63c55a80075`.
 - Covers: The G-brick (two InfiniteReality pipes, Ktown2, 11 slots), the N-brick, the DG5 option table, and the IR3 and IR4 upgrade facts: IRIX 6.5.7 for IR3; GE16-4, DG5-2 and RM11 for IR4, with texture memory 256 MB to 1024 MB and frame buffer 80 MB to 2.5 GB per RM.
 - Match: exact generation for IR3 and IR4 on Onyx 3000 and Onyx 300; the only first-party statement of the IR4 board set.
 
@@ -290,8 +290,8 @@ Facts: Written into [rm.md](rm.md#what-the-published-manuals-add), [xg.md](xg.md
 ## 17. Onyx 300 and Onyx 350 guides (007-4509-002, 007-4632-001)
 
 - Identity: SGI, *SGI Onyx 300 Graphics System User's Guide* (007-4509-002, 188 pages, 2002) and *SGI Onyx 350 Visualization System User's Guide* (007-4632-001, 210 pages).
-- Stored copy: [docs/sources/manuals/007-4509-002.pdf](sources/manuals/007-4509-002.pdf), SHA-256 `d312f0efe3c4626545c7162170b8d97ce98c9c822c9ff164176e9656ff172f19`, library path `techpubs/library/manuals/4000/007-4509-002/pdf/007-4509-002.pdf`.
-- Stored copy: [docs/sources/manuals/007-4632-001.pdf](sources/manuals/007-4632-001.pdf), SHA-256 `4adc0c159a99ba8696edb5513bc5992d5badca33820a6cb10f0702520a6d4ada`, library path `techpubs/library/manuals/4000/007-4632-001/pdf/007-4632-001.pdf`.
+- Stored copy: [docs/sources/manuals/007-4509-002.pdf](sources/manuals/007-4509-002.pdf), SHA-256 `d312f0efe3c4626545c7162170b8d97ce98c9c822c9ff164176e9656ff172f19`.
+- Stored copy: [docs/sources/manuals/007-4632-001.pdf](sources/manuals/007-4632-001.pdf), SHA-256 `4adc0c159a99ba8696edb5513bc5992d5badca33820a6cb10f0702520a6d4ada`.
 - Covers: InfiniteReality and InfinitePerformance graphics on the Origin 300 and Origin 350 families: the two-pipe InfiniteReality graphics module (18U, 98 kg, about 2000 W), its Ktown2 and Crosstown2 connectors, the board set, DG5 options, XIO port bandwidth (800 MB/s each way) and eight pipes at most. The InfinitePerformance halves describe the V-brick class and are not used.
 - Match: IP35 host with IR4 (and IR3 on the Onyx 300); the second host generation for this board set.
 
@@ -300,7 +300,7 @@ Facts: Written into [xg.md](xg.md#what-the-published-manuals-add) and [rm.md](rm
 ## 18. InfiniteReality Video Format Combiner User's Guide (007-3279-003)
 
 - Identity: SGI, *InfiniteReality Video Format Combiner User's Guide* (007-3279-003, 112 pages). The earlier revision 001 is the one the DVP2 specification cites.
-- Stored copy: [docs/sources/manuals/007-3279-003.pdf](sources/manuals/007-3279-003.pdf), SHA-256 `9a38edb4f87a1bee1da17b76adaa291d50cd807bc0f8e3f2f86c1f06ec724093`, library path `techpubs/library/manuals/3000/007-3279-003/pdf/007-3279-003.pdf`.
+- Stored copy: [docs/sources/manuals/007-3279-003.pdf](sources/manuals/007-3279-003.pdf), SHA-256 `9a38edb4f87a1bee1da17b76adaa291d50cd807bc0f8e3f2f86c1f06ec724093`.
 - Covers: `ircombine`: channels, framebuffer tiles, pixel formats, swap rate, transmission and DAC bandwidth, pixel depth, emergency combination, the encoder channel and the option boards.
 - Match: exact generation (DG4/DG5 display generator, IRIX 6.5).
 
@@ -309,7 +309,7 @@ Facts: Almost all of it is written into [dg.md](dg.md#combination-limits-infinit
 ## 19. Video Format Compiler Programmer's Guide (007-3402-003)
 
 - Identity: SGI, *Video Format Compiler Programmer's Guide* (007-3402-003, 124 pages).
-- Stored copy: [docs/sources/manuals/007-3402-003.pdf](sources/manuals/007-3402-003.pdf), SHA-256 `c82422d6ae713acf5a281363921a69266bb96cbf35369e3daf41e4bcc2e0eaf5`, library path `techpubs/library/manuals/3000/007-3402-003/pdf/007-3402-003.pdf`.
+- Stored copy: [docs/sources/manuals/007-3402-003.pdf](sources/manuals/007-3402-003.pdf), SHA-256 `c82422d6ae713acf5a281363921a69266bb96cbf35369e3daf41e4bcc2e0eaf5`.
 - Covers: The compiler that makes the `.vfo` files: templates, the native format language, board hardware definition files (variables, signal assignment, special signals, the edge database) and the line-based language.
 - Match: exact; the rules files of the `dg4` family are instances of the board-definition language it documents.
 
@@ -318,8 +318,8 @@ Facts: The board-definition variable names and the special-signal roles are in [
 ## 20. Onyx2 DPLEX Option Hardware User's Guide (007-3849-001) and the DPLEX datasheet (2003)
 
 - Identity: SGI, *Onyx2 DPLEX Option Hardware User's Guide* (007-3849-001, 56 pages) and datasheet 2003 "Digital Video Multiplexer for Onyx2" (August 1998, two pages).
-- Stored copy: [docs/sources/manuals/007-3849-001.pdf](sources/manuals/007-3849-001.pdf), SHA-256 `7a9c887079958bc7559c617b1e4b715ce675914790d3a96983677b7dfc4dae4e`, library path `techpubs/library/manuals/3000/007-3849-001/pdf/007-3849-001.pdf`.
-- Stored copy: [docs/sources/specs/sgi-2003-dplex-datasheet.pdf](sources/specs/sgi-2003-dplex-datasheet.pdf), SHA-256 `f0e5fe05451ea7fa08ff7a801e84db2a102c3ff7145f2de7600bbd6dfc58c1a5`, library path `graphics/onyx/sgi-2003-onyx2-dplex-datasheet.pdf`.
+- Stored copy: [docs/sources/manuals/007-3849-001.pdf](sources/manuals/007-3849-001.pdf), SHA-256 `7a9c887079958bc7559c617b1e4b715ce675914790d3a96983677b7dfc4dae4e`.
+- Stored copy: [docs/sources/specs/sgi-2003-dplex-datasheet.pdf](sources/specs/sgi-2003-dplex-datasheet.pdf), SHA-256 `f0e5fe05451ea7fa08ff7a801e84db2a102c3ff7145f2de7600bbd6dfc58c1a5`.
 - Covers: The DPLEX option: LVDS, genlock and swap-ready cabling for up to eight pipes, `ircombine` set-up, `gfxinfo -v` and `hyperpipeinfo` samples, theory of operation; the datasheet gives time-composition, latency and the MonsterMode alternatives.
 - Match: exact generation (DG5-2 with the DPLEX daughtercard).
 
@@ -328,8 +328,8 @@ Facts: Written into [dg.md](dg.md#video-option-boards) and the `gfxinfo` sample 
 ## 21. HD GVO Owner's Guide (007-3868-001) and VBOB flashing note (007-4636-001)
 
 - Identity: SGI, *SGI HD GVO Owner's Guide* (007-3868-001, 30 pages) and *Flashing the VBOB for Use with HD GVO (DG5-2/TVO)* (007-4636-001, 2 pages).
-- Stored copy: [docs/sources/manuals/007-3868-001.pdf](sources/manuals/007-3868-001.pdf), SHA-256 `12294f002c82d36690e02c6e3baa84d470f5e54b3599845577d94c8a09b93844`, library path `techpubs/library/manuals/3000/007-3868-001/pdf/007-3868-001.pdf`.
-- Stored copy: [docs/sources/manuals/007-4636-001.pdf](sources/manuals/007-4636-001.pdf), SHA-256 `607cb8cd8e1169429c9421f852d783515426e497f4f884f7e37548519157da1f`, library path `techpubs/library/manuals/4000/007-4636-001/pdf/007-4636-001.pdf`.
+- Stored copy: [docs/sources/manuals/007-3868-001.pdf](sources/manuals/007-3868-001.pdf), SHA-256 `12294f002c82d36690e02c6e3baa84d470f5e54b3599845577d94c8a09b93844`.
+- Stored copy: [docs/sources/manuals/007-4636-001.pdf](sources/manuals/007-4636-001.pdf), SHA-256 `607cb8cd8e1169429c9421f852d783515426e497f4f884f7e37548519157da1f`.
 - Covers: The TMDS video output (TVO) daughterboard on a DG5-2, its connection to the Video Breakout Box, the HD and SD formats, and the combiner steps.
 - Match: exact generation (Onyx2 and Onyx 3000 DG5-2/TVO).
 
@@ -338,8 +338,8 @@ Facts: Written into [dg.md](dg.md#video-option-boards); the format files it name
 ## 22. Digital Video Port specifications (007-3594-001 DVP, 007-3651-001 DVP2)
 
 - Identity: SGI, *InfiniteReality Digital Video Port (DVP) Specification* (007-3594-001, 36 pages, 1997) and *Onyx2 InfiniteReality Digital Video Port (DVP2) Specification* (007-3651-001, 36 pages). An Internet Archive copy of the DVP2 specification is byte-identical to the TechPubs copy and is not stored twice.
-- Stored copy: [docs/sources/manuals/007-3594-001.pdf](sources/manuals/007-3594-001.pdf), SHA-256 `afbb92975deb38be9f5a03a1d1530a6f46904e19c82e63e7f006fd237c36ed05`, library path `techpubs/library/manuals/3000/007-3594-001/pdf/007-3594-001.pdf`.
-- Stored copy: [docs/sources/manuals/007-3651-001.pdf](sources/manuals/007-3651-001.pdf), SHA-256 `670d08d53350f79e29e0050f9204212a7a707246cff81f891ddd1b69fa3e8cea`, library path `techpubs/library/manuals/3000/007-3651-001/pdf/007-3651-001.pdf`.
+- Stored copy: [docs/sources/manuals/007-3594-001.pdf](sources/manuals/007-3594-001.pdf), SHA-256 `afbb92975deb38be9f5a03a1d1530a6f46904e19c82e63e7f006fd237c36ed05`.
+- Stored copy: [docs/sources/manuals/007-3651-001.pdf](sources/manuals/007-3651-001.pdf), SHA-256 `670d08d53350f79e29e0050f9204212a7a707246cff81f891ddd1b69fa3e8cea`.
 - Covers: The 45-pair 5 V PECL digital output of the display generator: signals, timing, clock limits, receiver design, pinouts, 16-bit luminance.
 - Match: exact; DVP is the first-generation option and DVP2 the Onyx2 option.
 
@@ -348,11 +348,11 @@ Facts: Written into [dg.md](dg.md#video-option-boards). It names the PLL, clock 
 ## 23. OpenGL Multipipe documents (007-4239-005, 007-4318-018, 007-4527-004, 007-4416-001, 007-4516-003)
 
 - Identity: SGI, *OpenGL Multipipe SDK User's Guide* (007-4239-005, 116 pages), *OpenGL Multipipe User's Guide* (007-4318-018, 114 pages), *OpenGL Multipipe SDK Programmer's Guide* (007-4527-004, 158 pages) and the two white papers (007-4416-001, 007-4516-003).
-- Stored copy: [docs/sources/manuals/007-4239-005.pdf](sources/manuals/007-4239-005.pdf), SHA-256 `ac58fed654f2eaa7b2a528cfd03b13b9f31fbf887e9c07efdf767df69f77607d`, library path `techpubs/library/manuals/4000/007-4239-005/pdf/007-4239-005.pdf`.
-- Stored copy: [docs/sources/manuals/007-4318-018.pdf](sources/manuals/007-4318-018.pdf), SHA-256 `9583d3181055d3053cefa5e4d08c851cfae2b601dd75d8eef31b557bd02024fd`, library path `techpubs/library/manuals/4000/007-4318-018/pdf/007-4318-018.pdf`.
-- Stored copy: [docs/sources/manuals/007-4527-004.pdf](sources/manuals/007-4527-004.pdf), SHA-256 `6f5a5b4f4b2bb6716859d90682fa50d2765ec046d764d5ae41418933d6d2eed2`, library path `techpubs/library/manuals/4000/007-4527-004/pdf/007-4527-004.pdf`.
-- Stored copy: [docs/sources/manuals/007-4416-001.pdf](sources/manuals/007-4416-001.pdf), SHA-256 `b10486add9dcce954402c87698d3f2d2e443ca31f727671b2b855d65f1084307`, library path `techpubs/library/manuals/4000/007-4416-001/pdf/007-4416-001.pdf`.
-- Stored copy: [docs/sources/manuals/007-4516-003.pdf](sources/manuals/007-4516-003.pdf), SHA-256 `4d174caaa20b699358aefb32eb6180dd67f9f1bcac6b35e71f99acc28ca3dbd3`, library path `techpubs/library/manuals/4000/007-4516-003/pdf/007-4516-003.pdf`.
+- Stored copy: [docs/sources/manuals/007-4239-005.pdf](sources/manuals/007-4239-005.pdf), SHA-256 `ac58fed654f2eaa7b2a528cfd03b13b9f31fbf887e9c07efdf767df69f77607d`.
+- Stored copy: [docs/sources/manuals/007-4318-018.pdf](sources/manuals/007-4318-018.pdf), SHA-256 `9583d3181055d3053cefa5e4d08c851cfae2b601dd75d8eef31b557bd02024fd`.
+- Stored copy: [docs/sources/manuals/007-4527-004.pdf](sources/manuals/007-4527-004.pdf), SHA-256 `6f5a5b4f4b2bb6716859d90682fa50d2765ec046d764d5ae41418933d6d2eed2`.
+- Stored copy: [docs/sources/manuals/007-4416-001.pdf](sources/manuals/007-4416-001.pdf), SHA-256 `b10486add9dcce954402c87698d3f2d2e443ca31f727671b2b855d65f1084307`.
+- Stored copy: [docs/sources/manuals/007-4516-003.pdf](sources/manuals/007-4516-003.pdf), SHA-256 `4d174caaa20b699358aefb32eb6180dd67f9f1bcac6b35e71f99acc28ca3dbd3`.
 - Covers: Software that spreads one application over several pipes: decomposition modes, compounds, configuration files, hyperpipe and DPLEX use, and the compositor (the InfinitePerformance hardware, not InfiniteReality).
 - Match: software-level; names the InfiniteReality hardware only for DPLEX and the hyperpipe.
 
@@ -361,8 +361,8 @@ Facts: The decomposition modes and the DPLEX mode are in [opengl.md](opengl.md#w
 ## 24. OpenGL on Silicon Graphics Systems (007-2392-003) and OpenGL Performer Programmer's Guide (007-1680-100)
 
 - Identity: SGI, *OpenGL on Silicon Graphics Systems* (007-2392-003, 602 pages) and *OpenGL Performer Programmer's Guide* (007-1680-100, 1018 pages). Both were already cited by [rm.md](rm.md) for the sub-pixel question; this entry stores them.
-- Stored copy: [docs/sources/manuals/007-2392-003.pdf](sources/manuals/007-2392-003.pdf), SHA-256 `6565e36a749d12aa77b48f706430ee7acd30e803f772855ea0d6830421575879`, library path `techpubs/library/manuals/2000/007-2392-003/pdf/007-2392-003.pdf`.
-- Stored copy: [docs/sources/manuals/007-1680-100.pdf](sources/manuals/007-1680-100.pdf), SHA-256 `a861b7565793d557c90fade31eb0b75c11935e2ab6d2ae239ce578d3937f6ace`, library path `techpubs/library/manuals/1000/007-1680-100/pdf/007-1680-100.pdf`.
+- Stored copy: [docs/sources/manuals/007-2392-003.pdf](sources/manuals/007-2392-003.pdf), SHA-256 `6565e36a749d12aa77b48f706430ee7acd30e803f772855ea0d6830421575879`.
+- Stored copy: [docs/sources/manuals/007-1680-100.pdf](sources/manuals/007-1680-100.pdf), SHA-256 `a861b7565793d557c90fade31eb0b75c11935e2ab6d2ae239ce578d3937f6ace`.
 - Covers: The two software guides with the most InfiniteReality-specific statements: extension notes, texture colour tables, texture select, swap barrier, video resize and channels, clip-map limits, the texture memory sizes and bank rule.
 - Match: software-level; exact for the statements that name InfiniteReality.
 
@@ -371,7 +371,7 @@ Facts: Written into [rm.md](rm.md#what-the-published-manuals-add), [opengl.md](o
 ## 25. Origin and Onyx2 Theory of Operations Manual (007-3439-002)
 
 - Identity: SGI, *Origin and Onyx2 Theory of Operations Manual* (007-3439-002, 124 pages, 1997).
-- Stored copy: [docs/sources/manuals/007-3439-002.pdf](sources/manuals/007-3439-002.pdf), SHA-256 `f6f30191b662aeef6c9888f109c4997d58ac9c4a77acd24263937c6392113309`, library path `techpubs/library/manuals/3000/007-3439-002/pdf/007-3439-002.pdf`.
+- Stored copy: [docs/sources/manuals/007-3439-002.pdf](sources/manuals/007-3439-002.pdf), SHA-256 `f6f30191b662aeef6c9888f109c4997d58ac9c4a77acd24263937c6392113309`.
 - Covers: The Origin family's nodes, routers, crossbar and XIO; for this workspace the Crosstown (KTOWN) conversion board and the graphics-chassis figure (crossbar to KTOWN to GE14, DG5, RM7/TM7).
 - Match: exact host generation (IP27 Onyx2).
 
@@ -380,7 +380,7 @@ Facts: Written into [xg.md](xg.md#what-the-published-manuals-add). The rest is h
 ## 26. Hardware Developer Handbook, release 2.0 (May 1997)
 
 - Identity: SGI, *Hardware Developer Handbook* release 2.0, 339 pages. Copy read: https://ftp.jurassic.nl/pub/irix/doc/devel/hardware_developer_handbook_2.0.pdf.
-- Stored copy: [docs/sources/manuals/hardware-developer-handbook-2.0.pdf](sources/manuals/hardware-developer-handbook-2.0.pdf), SHA-256 `3da04c67414ac5794a1f04cb4a207e68919db25d10f518c9b599adb7a3805d8d`, library path `sgi-hw/hardware-developer-handbook-2.0.pdf`.
+- Stored copy: [docs/sources/manuals/hardware-developer-handbook-2.0.pdf](sources/manuals/hardware-developer-handbook-2.0.pdf), SHA-256 `3da04c67414ac5794a1f04cb4a207e68919db25d10f518c9b599adb7a3805d8d`.
 - Covers: Hardware inventory (`hinv`) graphics names and the board population of each system, the Onyx2 rear-panel figures, and the bus and slot layouts. It gives no register and no packet format.
 - Match: contemporary with InfiniteReality and InfiniteReality2; the naming of the first Onyx2 sets.
 
@@ -389,16 +389,16 @@ Facts: Written into [rm.md](rm.md#board-sets-and-pipe-configurations). Its Infin
 ## 27. Datasheets, product guides and specification sheets
 
 - Identity: SGI, *Remanufactured Onyx2 Product Guide* (1073, June 1999), Onyx2 GroupStation datasheet 1840 and its longer original, Onyx2 technical specifications (1999) and the Onyx2 Tech Specs web page, the Onyx2 application scoping chart (2751), InfiniteReality4 datasheet 3353 (July 2002), SGI Onyx family datasheet (2003), SGI 3000 Family Reference Guide, and the Origin 3000 system cabling service guide.
-- Stored copy: [docs/sources/specs/sgi-1073-onyx2-product-guide-1999-06.pdf](sources/specs/sgi-1073-onyx2-product-guide-1999-06.pdf), SHA-256 `ba82123d7881a00fab10157d0a141d0ac330e8e4f14751f2b3f7cce6c06ae43b`, library path `sgi-hw/sgi-remanufactured-onyx2-product-guide-1073-1999-06.pdf`.
-- Stored copy: [docs/sources/specs/sgi-1840-onyx2-groupstation-datasheet.pdf](sources/specs/sgi-1840-onyx2-groupstation-datasheet.pdf), SHA-256 `5dba6f8c3c2dffd4e410186650c40d627fc8989d53951740198a5e3ef8358947`, library path `graphics/onyx/sgi-1840-onyx2-groupstation-datasheet.pdf`.
-- Stored copy: [docs/sources/specs/sgi-groupstation-defense-imaging.pdf](sources/specs/sgi-groupstation-defense-imaging.pdf), SHA-256 `8f0c4e1ada80656d19216778814c11d7693369a9e912e159216394990e4fb50e`, library path `graphics/onyx/sgi-groupstation-defense-imaging.pdf`.
-- Stored copy: [docs/sources/specs/sgi-onyx2-technical-specifications.pdf](sources/specs/sgi-onyx2-technical-specifications.pdf), SHA-256 `48f594641acfc490cadc041dc7905d4b6e74c00d36f4558d9c756d920cb3739d`, library path `graphics/onyx/sgi-onyx2-technical-specifications.pdf`.
-- Stored copy: [docs/sources/specs/sgidepot-onyx2-tech-specs.html](sources/specs/sgidepot-onyx2-tech-specs.html), SHA-256 `b362a369b7e84f2189c871011eb0818c887eb54b7978dfed2048adad796e380d`, library path `graphics/onyx/sgidepot-onyx2-tech-specs.html`.
-- Stored copy: [docs/sources/specs/sgi-2751-onyx2-scoping-chart.pdf](sources/specs/sgi-2751-onyx2-scoping-chart.pdf), SHA-256 `117facb62801c6eadd0cda15b9803d023f7bf093a34ab2a6e60d4bf5c7952614`, library path `graphics/onyx/sgi-2751-onyx2-scoping-chart.pdf`.
-- Stored copy: [docs/sources/specs/sgi-3353-infinitereality4-datasheet.pdf](sources/specs/sgi-3353-infinitereality4-datasheet.pdf), SHA-256 `27e877c9df472319938d41bfdfc740fa2e169b9e6dcf49533e043be3e6d1c24a`, library path `graphics/onyx/sgi-3353-infinitereality4-datasheet.pdf`.
-- Stored copy: [docs/sources/specs/sgi-onyx-family-datasheet.pdf](sources/specs/sgi-onyx-family-datasheet.pdf), SHA-256 `df3fe2684067cea6617631bee604e8b38708e9e501b00e06ea0de68867e31656`, library path `graphics/onyx/sgi-onyx-family-datasheet.pdf`.
-- Stored copy: [docs/sources/specs/sgi-3000-family-reference-guide.pdf](sources/specs/sgi-3000-family-reference-guide.pdf), SHA-256 `9626fa770129d64ab6ba194c804270109f3d106b3921c7097e262509d5a08f9d`, library path `sn1sn2/origin3000-family-reference-guide.pdf`.
-- Stored copy: [docs/sources/specs/sgi-3000-system-cabling.pdf](sources/specs/sgi-3000-system-cabling.pdf), SHA-256 `dd4050baef82e3f7e0e6b66ec0983bcc82b099378983068a5cab8e58480e508c`, library path `sn1sn2/108-xxxx-pr2-origin3000-system-cabling-guide.pdf`.
+- Stored copy: [docs/sources/specs/sgi-1073-onyx2-product-guide-1999-06.pdf](sources/specs/sgi-1073-onyx2-product-guide-1999-06.pdf), SHA-256 `ba82123d7881a00fab10157d0a141d0ac330e8e4f14751f2b3f7cce6c06ae43b`.
+- Stored copy: [docs/sources/specs/sgi-1840-onyx2-groupstation-datasheet.pdf](sources/specs/sgi-1840-onyx2-groupstation-datasheet.pdf), SHA-256 `5dba6f8c3c2dffd4e410186650c40d627fc8989d53951740198a5e3ef8358947`.
+- Stored copy: [docs/sources/specs/sgi-groupstation-defense-imaging.pdf](sources/specs/sgi-groupstation-defense-imaging.pdf), SHA-256 `8f0c4e1ada80656d19216778814c11d7693369a9e912e159216394990e4fb50e`.
+- Stored copy: [docs/sources/specs/sgi-onyx2-technical-specifications.pdf](sources/specs/sgi-onyx2-technical-specifications.pdf), SHA-256 `48f594641acfc490cadc041dc7905d4b6e74c00d36f4558d9c756d920cb3739d`.
+- Stored copy: [docs/sources/specs/sgidepot-onyx2-tech-specs.html](sources/specs/sgidepot-onyx2-tech-specs.html), SHA-256 `b362a369b7e84f2189c871011eb0818c887eb54b7978dfed2048adad796e380d`.
+- Stored copy: [docs/sources/specs/sgi-2751-onyx2-scoping-chart.pdf](sources/specs/sgi-2751-onyx2-scoping-chart.pdf), SHA-256 `117facb62801c6eadd0cda15b9803d023f7bf093a34ab2a6e60d4bf5c7952614`.
+- Stored copy: [docs/sources/specs/sgi-3353-infinitereality4-datasheet.pdf](sources/specs/sgi-3353-infinitereality4-datasheet.pdf), SHA-256 `27e877c9df472319938d41bfdfc740fa2e169b9e6dcf49533e043be3e6d1c24a`.
+- Stored copy: [docs/sources/specs/sgi-onyx-family-datasheet.pdf](sources/specs/sgi-onyx-family-datasheet.pdf), SHA-256 `df3fe2684067cea6617631bee604e8b38708e9e501b00e06ea0de68867e31656`.
+- Stored copy: [docs/sources/specs/sgi-3000-family-reference-guide.pdf](sources/specs/sgi-3000-family-reference-guide.pdf), SHA-256 `9626fa770129d64ab6ba194c804270109f3d106b3921c7097e262509d5a08f9d`.
+- Stored copy: [docs/sources/specs/sgi-3000-system-cabling.pdf](sources/specs/sgi-3000-system-cabling.pdf), SHA-256 `dd4050baef82e3f7e0e6b66ec0983bcc82b099378983068a5cab8e58480e508c`.
 - Covers: Marketing and planning figures per generation: polygon and fill rates, texture and frame-buffer sizes, pipes per system, per-pipe pixels, IRIX levels. The cabling guide covers the Origin 3000 bricks, with InfiniteReality in two sentences.
 - Match: figure-level; these are performance and size claims, not mechanisms.
 
@@ -407,8 +407,8 @@ Facts: The sizes and counts used are in [rm.md](rm.md#what-the-published-manuals
 ## 28. SGI web pages on InfiniteReality image quality and Onyx2 digital media options
 
 - Identity: SGI, "Perspectives on Image Quality in the Onyx2 InfiniteReality Graphics System" (web white paper dated 1 June 1998, captured 13 June 2000) and the Onyx2 Digital Media Options page (captured 11 February 2002), both from the Internet Archive.
-- Stored copy: [docs/sources/specs/sgi-onyx2-image-quality-whitepaper-20000613.html](sources/specs/sgi-onyx2-image-quality-whitepaper-20000613.html), SHA-256 `2cb8315c4777f5fed92f2dbfddfda21591e9041b2a67f4e3eb2116a4695d0165`, library path `graphics/onyx/sgi-onyx2-image-quality-whitepaper-20000613.html`.
-- Stored copy: [docs/sources/specs/sgi-onyx2-digital-media-options-20020211.html](sources/specs/sgi-onyx2-digital-media-options-20020211.html), SHA-256 `0d02fca535d449a685b9644fd36d9c2f86e4a7d8f11c649e099a904936da54e5`, library path `graphics/onyx/sgi-onyx2-digital-media-options-20020211.html`.
+- Stored copy: [docs/sources/specs/sgi-onyx2-image-quality-whitepaper-20000613.html](sources/specs/sgi-onyx2-image-quality-whitepaper-20000613.html), SHA-256 `2cb8315c4777f5fed92f2dbfddfda21591e9041b2a67f4e3eb2116a4695d0165`.
+- Stored copy: [docs/sources/specs/sgi-onyx2-digital-media-options-20020211.html](sources/specs/sgi-onyx2-digital-media-options-20020211.html), SHA-256 `0d02fca535d449a685b9644fd36d9c2f86e4a7d8f11c649e099a904936da54e5`.
 - Covers: The white paper: pipeline roles, 2.62 million pixels per RM board, 10-bit RGB and 12-bit RGBA, 12-bit gamma LUT input, 220 Mpixel/s DACs, convolution and resampling. The options page is a list of option names with no technical content.
 - Match: exact generation (Onyx2 InfiniteReality).
 

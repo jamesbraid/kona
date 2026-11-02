@@ -499,8 +499,8 @@ comments of [RM.h](../RM.h); the firmware's `init_pg`, `init_tg`, `prim_init` an
 
 (`kona_init.c`, `kona_tport.c`, `kona_logo.c` and `ktport.h`, read in full; the driver sends textport commands and
 
-only the `sys/kona.h`, `sys/kona_if.h` and `sys/kona_diag.h` headers, which carry no raster set-up; and a Library
-search of the TechPubs and mirror roots for InfiniteReality sub-pixel and multisample text; the full text of
+only the `sys/kona.h`, `sys/kona_if.h` and `sys/kona_diag.h` headers, which carry no raster set-up; and a search of
+the SGI manuals and web mirrors for InfiniteReality sub-pixel and multisample text; the full text of
 *OpenGL Performer Programmer's Guide* 007-1680-100 (its RealityEngine and InfiniteReality tuning notes and pfWindow
 set-up say only that "subpixel vertex positioning" is enabled), of *OpenGL on Silicon Graphics Systems* 007-2392-003
 (chapter 9 "Multisampled Lines" and "Multisampled Polygons", the InfiniteReality notes of chapter 18: lines are sampled as
