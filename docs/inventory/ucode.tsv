@@ -2875,7 +2875,7 @@ ge.u	label	0x0000f50d	mmo_DirtyLightModule		understood	ucode/ge_compute.md#gl-mo
 ge.u	label	0x0000f547	mmo_DirtyCullAndLightModule		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
 ge.u	label	0x0000f583	mUserClipResolve		understood	ucode/ge_compute.md#gl-mode-handlers-and-the-dirty-modules-glmodess	GL mode handlers and the dirty modules (glmodes.S)
 geif.u	dispatch entry	0	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	1	mges_TBUS_1	handler 0x399e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	1	mges_TBUS_1	handler 0x399e	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	2	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	3	mgeb_BitmapApplyOrig	handler 0xa7e8	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	4	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3073,7 +3073,7 @@ geif.u	dispatch entry	195	mgebi_PointSize_AlphaAA	handler 0x612c	located	ucode/g
 geif.u	dispatch entry	196	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	197	mgebi_PointSize_MS	handler 0x6094	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	198	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	199	mgebi_ShadeModel	handler 0x3a0a	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	199	mgebi_ShadeModel	handler 0x3a0a	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	200	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	201	mgebi_Texture	handler 0x43f3	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	202	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3089,9 +3089,9 @@ geif.u	dispatch entry	211	mgesi_PixConv5GVEntry	handler 0xa6be	located	ucode/gei
 geif.u	dispatch entry	212	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	213	mgesi_PixRasterPosSetup	handler 0xa990	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	214	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	215	mgesi_TbusRegWrite	handler 0x39fd	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	215	mgesi_TbusRegWrite	handler 0x39fd	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	216	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	217	mgesi_IMPtbusRegWrite	handler 0x39e7	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	217	mgesi_IMPtbusRegWrite	handler 0x39e7	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	218	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	219	mgebi_TexEnv	handler 0x5879	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	220	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3227,7 +3227,7 @@ geif.u	dispatch entry	349	mgeb_LineWidth_Feedback	handler 0x6289	located	ucode/g
 geif.u	dispatch entry	350	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	351	mgeb_LineWidth_Select	handler 0x6298	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	352	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	353	mgebi_NullCommand	handler 0x3a32	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	353	mgebi_NullCommand	handler 0x3a32	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	354	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	355	mgebi_PointSize_Aliased	handler 0x6163	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	356	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3257,15 +3257,15 @@ geif.u	dispatch entry	379	mges_ContextLoadFifo	handler 0x668a	located	ucode/geif
 geif.u	dispatch entry	380	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	381	mges_ContextLoadODMA	handler 0x6795	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	382	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	383	mges_DiagDeactivate	handler 0x3a25	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	383	mges_DiagDeactivate	handler 0x3a25	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	384	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	385	mges_EvalCoord	handler 0x3a0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	386	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	387	mges_NullCommand	handler 0x3a45	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	387	mges_NullCommand	handler 0x3a45	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	388	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	389	mgesi_BshRegisterWrite	handler 0x3991	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	389	mgesi_BshRegisterWrite	handler 0x3991	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	390	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	391	mgesi_IMPbshRegisterWrite	handler 0x395e	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	391	mgesi_IMPbshRegisterWrite	handler 0x395e	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	392	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	393	mgesi_Cram2ODMA	handler 0x6b13	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	394	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3297,7 +3297,7 @@ geif.u	dispatch entry	419	mgesi_LoadEram	handler 0x6ab0	located	ucode/geif_entri
 geif.u	dispatch entry	420	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	421	mgesi_LutUpload	handler 0x3a6d	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	422	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	423	mgesi_PassThrough	handler 0x3a5b	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	423	mgesi_PassThrough	handler 0x3a5b	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	424	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	425	mgesi_PixDrawColorEntry	handler 0x27d5	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	426	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3325,11 +3325,11 @@ geif.u	dispatch entry	447	mgesi_SR2ODMA	handler 0x6a9e	located	ucode/geif_entrie
 geif.u	dispatch entry	448	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	449	mgesi_SetGeId	handler 0xf435	understood	ucode/geif_commands.md#viewport-depth-range-and-engine-identity-glmodess	Viewport, depth range and engine identity (`glmodes.S`)
 geif.u	dispatch entry	450	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	451	mgesi_TBUS_1	handler 0x39ab	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	451	mgesi_TBUS_1	handler 0x39ab	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	452	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	453	mgesi_TLutDownload	handler 0x3f52	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	454	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	455	mges_TbusRegWriteNoIncr	handler 0x39da	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	455	mges_TbusRegWriteNoIncr	handler 0x39da	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	456	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	457	mgesi_TfanPoly	handler 0xb4f1	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	458	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
@@ -3683,7 +3683,7 @@ geif.u	dispatch entry	805	mgesi_ClearLA16	handler 0x91b6	located	ucode/geif_entr
 geif.u	dispatch entry	806	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	807	mgeb_PixLastGECounterSetup	handler 0xa79b	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	808	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
-geif.u	dispatch entry	809	mgeb_DeathCommand	handler 0x3a52	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
+geif.u	dispatch entry	809	mgeb_DeathCommand	handler 0x3a52	understood	ucode/geif_commands.md#raster-bus-commands-rasters	Raster bus commands (`raster.S`)
 geif.u	dispatch entry	810	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
 geif.u	dispatch entry	811	mgeb_SetLMCFlag	handler 0xf32f	understood	ucode/geif_commands.md#sprites-multipass-and-point-parameters-glmodess	Sprites, multipass and point parameters (`glmodes.S`)
 geif.u	dispatch entry	812	HereWeGo	handler 0x0	located	ucode/geif_entries.md#geifu-entries-one-by-one	geif.u entries one by one
