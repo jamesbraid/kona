@@ -32,6 +32,50 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
 - `fcGfxWrite32` (0x1013df2c, 932 bytes): **Established.** Accepts one graphics-FIFO word, applies the diagnostic access-delay and pending-write bookkeeping, writes the word through host FIFO offset 0, and checks the FIFO status at offset 0x208. Error paths report or assert the failing access; the normal path returns the final PIO-write result. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `fcGfxWrite32`.)
 - `fcGfxFlush` (0x1013e5d0, 588 bytes): **Established.** Drains pending graphics writes, waits between diagnostic accesses, reads host FIFO status offset 0x208, and asserts the expected status transitions before returning. Its error branches report failed adapter reads or assertions, and its normal path returns after the final FIFO write. (`usr/diags/IR/bin/irsaudit`, 6.5.30m fact sheet for `fcGfxFlush`.)
 
+The following pipe-access routines were also read from their complete symbol
+ranges in `usr/diags/IR/bin/irsaudit` (6.5.30m).
+
+- `fcPioWrite32` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x1013dae8; size 244 bytes. It stores a 32-bit value at the adapter word
+  selected by the caller's byte address divided by four. When diagnostic
+  tracing is enabled it reports the access first, and when the adapter status
+  is negative it calls the low-level flush hook after the store. (`irsaudit`,
+  store and status branch at 0x1013db78-0x1013dbd8.)
+
+- `fcPioWrite64` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x1013dbdc; size 220 bytes. It rounds the caller's byte address down to an
+  eight-byte boundary, stores the supplied 64-bit value at that adapter slot,
+  and performs the same optional trace and negative-status flush handling as
+  the 32-bit writer. (`irsaudit`, aligned store at 0x1013dc64-0x1013dc9c.)
+
+- `fcPioRead32` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x1013dd88; size 292 bytes. It optionally traces the requested byte address,
+  flushes pending graphics writes, reads the adapter word selected by the
+  address divided by four, and returns that word. A negative adapter status
+  still invokes the diagnostic flush hook before the value is returned.
+  (`irsaudit`, read and return path at 0x1013de18-0x1013dea8.)
+
+- `fcGfxWrite` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x1013deac; size 128 bytes. It accepts a word pointer and count, skips the
+  loop for a non-positive count, and sends each word to the graphics-register
+  writer at 0x1013df2c in pointer order. The pointer advances by four bytes per
+  transfer. (`irsaudit`, loop at 0x1013dee8-0x1013df08.)
+
+- `fcTbusWrite` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x1013e81c; size 128 bytes. It emits the raster-bus operation prefix 0xe2,
+  emits the caller's second argument shifted left one bit, then emits the two
+  words supplied at the caller's first argument. All four words go through the
+  graphics-register writer at 0x1013df2c. (`irsaudit`, four writes at
+  0x1013e854-0x1013e884.)
+
+- `init_kona_access` (`usr/diags/IR/bin/irsaudit`). **Established.** Address
+  0x10164620; size 420 bytes. It determines the host type, records a successful
+  result in the global access flag, conditionally logs the existing adapter,
+  DMA and interrupt state, and then calls the board-information initializer.
+  That initializer's result is returned as zero for success or -1 when it
+  reports failure. (`irsaudit`, state setup at 0x1016464c-0x10164778 and final
+  result test at 0x10164788-0x101647bc.)
+
 The following geometry and distributor helpers were read from their complete
 symbol ranges in the same binary:
 
