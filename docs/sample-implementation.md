@@ -5066,6 +5066,92 @@ These two target bodies were read from their own ranges; their N32 counterparts 
   Address 0xd99ac1c; occupies 648 bytes.
   **Inferred.** **Inferred.** Index-to-colour table preparation sets byte a1 +0x5c to 1 (`sb` at 0xd99ac48). A nonnull a1 +0x60 pointer takes the existing-table path (`bnez` at 0xd99ac54). Otherwise four unknown callbacks receive entry a0 and size 0x400 (`jalr` at 0xd99ac64, `jalr` at 0xd99ac84, `jalr` at 0xd99aca0, and `jalr` at 0xd99acbc), with returned pointers stored at a1 +0x60/+0x64/+0x68/+0x6c (`sw` at 0xd99ac70, `sw` at 0xd99ac90, `sw` at 0xd99acac, and `sw` at 0xd99acc8). The later body writes float words through four unresolved bases (`swc1` at 0xd99ae2c, `swc1` at 0xd99ae4c, `swc1` at 0xd99ae6c, and `swc1` at 0xd99ae88). Exact channel-map formulas are not taken from the differently compiled N32 entry.
 
+#### IP35 O32 routines identical to IP27 O32
+
+Every target routine below is byte-identical over its complete range to the same-address IP27 O32 routine. This records exact build identity only.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glSpanModifyABGR | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99b1ec / 840 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99b1ec / 840 | 4d7815cf9e5bc21fd2c9148a5f5c904c60577df21594623c79a777a6898c9a4d |
+- `__glSpanModifyABGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99b1ec; occupies 840 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99b1ec. SHA-256 4d7815cf9e5bc21fd2c9148a5f5c904c60577df21594623c79a777a6898c9a4d.
+
+| __glSpanModifyBGRA | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99b534 / 840 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99b534 / 840 | fb7bde1825674112f114bf4e07a802af13434867fa70051f17a8448f3460ff96 |
+- `__glSpanModifyBGRA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99b534; occupies 840 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99b534. SHA-256 fb7bde1825674112f114bf4e07a802af13434867fa70051f17a8448f3460ff96.
+
+| __glSpanModifyRed | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99b87c / 604 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99b87c / 604 | cb0d8805374c2e19264b9d2df43b747f3a860a4bf025aad64e97f47693661bd3 |
+- `__glSpanModifyRed` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99b87c; occupies 604 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99b87c. SHA-256 cb0d8805374c2e19264b9d2df43b747f3a860a4bf025aad64e97f47693661bd3.
+
+| __glSpanModifyGreen | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99bad8 / 604 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99bad8 / 604 | faf8f9c4278e4feb27fcd939c3b0ae796a4c7357b4b15f529dcf9d098b0376e3 |
+- `__glSpanModifyGreen` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99bad8; occupies 604 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99bad8. SHA-256 faf8f9c4278e4feb27fcd939c3b0ae796a4c7357b4b15f529dcf9d098b0376e3.
+
+| __glSpanModifyBlue | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99bd34 / 608 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99bd34 / 608 | e388f6cf950a6895f8ce5a72496035ee98adc565cf140f00d526e4689ea24597 |
+- `__glSpanModifyBlue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99bd34; occupies 608 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99bd34. SHA-256 e388f6cf950a6895f8ce5a72496035ee98adc565cf140f00d526e4689ea24597.
+
+| __glSpanModifyAlpha | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99bf94 / 608 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99bf94 / 608 | 710f6eef41b1258bf833dac327aec055fb4117543e7f71fc63f57e957bba11a3 |
+- `__glSpanModifyAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99bf94; occupies 608 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99bf94. SHA-256 710f6eef41b1258bf833dac327aec055fb4117543e7f71fc63f57e957bba11a3.
+
+| __glSpanModifyRGB | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99c1f4 / 628 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99c1f4 / 628 | 869251f51ce11c33459d7d01ca5753fa5d4410c88089dc5c9c66e1ef68bf0c62 |
+- `__glSpanModifyRGB` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99c1f4; occupies 628 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99c1f4. SHA-256 869251f51ce11c33459d7d01ca5753fa5d4410c88089dc5c9c66e1ef68bf0c62.
+
+| __glSpanModifyBGR | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99c468 / 628 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99c468 / 628 | 57899a52270b04e71eb52a3ed673fc4886e14112850b2497657c61456254e520 |
+- `__glSpanModifyBGR` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99c468; occupies 628 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99c468. SHA-256 57899a52270b04e71eb52a3ed673fc4886e14112850b2497657c61456254e520.
+
+| __glSpanModifyLuminance | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99c6dc / 620 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99c6dc / 620 | c87b57f6e6022f9273b0bac48586bb424043fca4853960b198cc7edb90752317 |
+- `__glSpanModifyLuminance` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99c6dc; occupies 620 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99c6dc. SHA-256 c87b57f6e6022f9273b0bac48586bb424043fca4853960b198cc7edb90752317.
+
+| __glSpanModifyLuminanceAlpha | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99c948 / 832 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99c948 / 832 | 2f4993c82c3c28f067d2ad09d3f25f038e17a1adeee3b209548ea1477c371468 |
+- `__glSpanModifyLuminanceAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99c948; occupies 832 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99c948. SHA-256 2f4993c82c3c28f067d2ad09d3f25f038e17a1adeee3b209548ea1477c371468.
+
+| __glSpanModifyRedAlpha | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99cc88 / 464 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99cc88 / 464 | 4b8ac0562a8c8ead73cc10f3f4c512cdc9fce6e917f908f22ff589134555dcf8 |
+- `__glSpanModifyRedAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99cc88; occupies 464 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99cc88. SHA-256 4b8ac0562a8c8ead73cc10f3f4c512cdc9fce6e917f908f22ff589134555dcf8.
+
+| __glSpanModifyDepth | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99ce58 / 444 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99ce58 / 444 | 0ab842f75ae20aa0574801ca0c50fbf21636540090859f638682be960513858c |
+- `__glSpanModifyDepth` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99ce58; occupies 444 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99ce58. SHA-256 0ab842f75ae20aa0574801ca0c50fbf21636540090859f638682be960513858c.
+
+| __glSpanModifyStencil | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99d014 / 1908 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99d014 / 1908 | 88d6509e05de1ed135d583f94fe7a04d4441250da2e969428b1177212ae80d72 |
+- `__glSpanModifyStencil` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99d014; occupies 1908 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99d014. SHA-256 88d6509e05de1ed135d583f94fe7a04d4441250da2e969428b1177212ae80d72.
+
+| __glSpanModifyCI | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99d788 / 648 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99d788 / 648 | 32ca0e7bb149736ed553a1553ae531d542ef0c5078d8564ce223057ed1351620 |
+- `__glSpanModifyCI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99d788; occupies 648 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99d788. SHA-256 32ca0e7bb149736ed553a1553ae531d542ef0c5078d8564ce223057ed1351620.
+
+| __glInitPacker | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e2a0 / 532 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e2a0 / 532 | e2eb7319c788f3be0768e6986d576d1120c50667e264e96d9e0fbf131eb40305 |
+- `__glInitPacker` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e2a0; occupies 532 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e2a0. SHA-256 e2eb7319c788f3be0768e6986d576d1120c50667e264e96d9e0fbf131eb40305.
+
+| __glSpanReduceRed | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e520 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e520 / 144 | 1422a43de0c2f69c961dfcc5d91e85d2d2a0cac8395020fc2ecdaa106f109a11 |
+- `__glSpanReduceRed` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e520; occupies 144 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e520. SHA-256 1422a43de0c2f69c961dfcc5d91e85d2d2a0cac8395020fc2ecdaa106f109a11.
+
+| __glSpanReduceGreen | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e5b0 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e5b0 / 144 | 6d5dacf761731ce6115b5a52f9afaa2d728ebfe5eec9486283dbed6d5fd1efad |
+- `__glSpanReduceGreen` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e5b0; occupies 144 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e5b0. SHA-256 6d5dacf761731ce6115b5a52f9afaa2d728ebfe5eec9486283dbed6d5fd1efad.
+
+| __glSpanReduceBlue | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e640 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e640 / 144 | 1fdd0e1067582da9227a25aa2acce2cd85db1e4d80b0b90583fabfe89dcb965c |
+- `__glSpanReduceBlue` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e640; occupies 144 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e640. SHA-256 1fdd0e1067582da9227a25aa2acce2cd85db1e4d80b0b90583fabfe89dcb965c.
+
+| __glSpanReduceAlpha | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e6d0 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e6d0 / 144 | 6af9995c9ecaa18f211576f0869fd992b1af76b8a87ec09d4365e6148d5be3fd |
+- `__glSpanReduceAlpha` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e6d0; occupies 144 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e6d0. SHA-256 6af9995c9ecaa18f211576f0869fd992b1af76b8a87ec09d4365e6148d5be3fd.
+
+| __glSpanReduceRGB | usr/gfx/arch/IP35KONA/libGLcore.so 0xd99e760 / 272 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99e760 / 272 | ae340e2882225af7d35d8781921794d17648fcf4f601bb10b394fabc3ab0a394 |
+- `__glSpanReduceRGB` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd99e760; occupies 272 bytes. Byte-identical over this complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd99e760. SHA-256 ae340e2882225af7d35d8781921794d17648fcf4f601bb10b394fabc3ab0a394.
+
 ### px_pack.c
 
 - `__glSpanReduceRed` in usr/gfx/arch/IP27KONA32/libGLcore.so: reduces a span of float RGBA pixels to red, dividing each channel by the frame buffer's colour scale on the way, and it occupies 152 bytes at address 0x0d99adc0; the public sample-implementation source gfx/lib/opengl/glcore/px_pack.c holds the same routine, matched by name, no direct call in either, a shipped body of 12 source lines against 14 in the public file, and it makes no access to the board. Inferred.
