@@ -64,6 +64,54 @@ One entry per function for the stereo wrappers, context hooks, caches, cursor an
 
 **Unknown: no shipped software or published source depends on it:** why the module carries per-depth sequence tables with an `_ip19` suffix. Routes tried: the names and the callers in the `kon` and `rrm` groups. The rules by which window and colour identifiers are allocated, shared, stolen and reserved are read from the code in [opengl.md](opengl.md#the-display-id-allocator).
 
+### Hardware-facing routines read in full
+
+- `konCursorOn` (`kona.so` 0x44fff0, 244 bytes): **Established.** It selects the
+  cursor state from the screen-private words at +76, +80, +84 and +88 when the
+  caller enables the cursor, or supplies zero mode when disabling it, then sends
+  the four-word request through the screen's driver connection. A failed request
+  prints an error and returns through the module's error path; the routine does
+  not write a graphics register. The complete body is in `ddx/asm/kona/kon/kon.s`
+  at the cited address.
+- `konReloadAllGammas` (`kona.so` 0x464060, 96 bytes): **Established.** It
+  indexes the screen's video-control private record through `vcScreenPrivateIndex`
+  and calls the gamma-table loader with that record. The loader emits the red,
+  green and blue `X_LOADGAMMA` display requests; this wrapper emits no request or
+  register access itself. Its only condition is the loader's handling of the
+  screen record, and it returns after that call. The complete body is in
+  `ddx/asm/kona/kon/kon.s` at the cited address.
+- `konTempBlankAllChannels` (`kona.so` 0x4657a0, 104 bytes): **Established.**
+  It forwards the caller's blank value and screen pointer to the display-request
+  helper with request number 60 and a four-word request shape. The helper therefore
+  controls whether all video channels are blanked; this wrapper has no direct
+  register access and returns after the helper call. The complete body is in
+  `ddx/asm/kona/kon/kon.s` at the cited address.
+- `konProbe` (`kona.so` 0x49adb0, 328 bytes): **Established.** It rejects a
+  null probe argument, accepts only board type 3, reads the board-name byte at
+  +12, and either asks for the board name and searches for the first matching
+  typed board or writes a discovered name byte back after the fallback lookup.
+  It returns false for a missing or invalid board and true only when the resulting
+  name is nonzero; failures are reported with `ErrorF`. It writes no device
+  register. The complete body is in `ddx/asm/kona/kon/kon.s` at the cited address.
+- `konQueryMaxSwapBarrier` (`kona.so` 0x44f1b0, 24 bytes): **Established.** It
+  ignores the screen argument and returns the constant 1, so the module advertises
+  one maximum swap barrier. It performs no allocation, ioctl or pipe write. The
+  complete body is in `ddx/asm/kona/kon/kon.s` at the cited address.
+- `konStoreFakeColors` (`kona.so` 0x460c60, 28 bytes): **Established.** It
+  accepts the colormap, colour count and colour array arguments, saves them only
+  in its stack frame, and returns without changing a colormap slot or sending a
+  display request. The complete body is in `ddx/asm/kona/kon/kon.s` at the cited
+  address.
+- `konClearHWColormap` (`kona.so` 0x4a25a0, 20 bytes): **Established.** It
+  accepts the colormap argument, does not dereference it, and returns immediately.
+  No hardware colour-map memory, pipe word or ioctl is changed. The complete body
+  is in `ddx/asm/kona/kon/kon.s` at the cited address.
+- `konSetSpans` (`kona.so` 0x4655c0, 104 bytes): **Established.** It saves the
+  drawable, graphics context, source span, span count, coordinate and width
+  arguments, reports the unsupported operation through `ErrorF`, and returns
+  without emitting a span token or modifying the pipe. The complete body is in
+  `ddx/asm/kona/kon/kon.s` at the cited address.
+
 ## kona.so functions from 0x4cdd80
 
 One entry per function, read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` through [ddx/asm/kona/](../ddx/asm/kona/), with callees resolved through the module's global offset table. Offsets after "+" are byte offsets into the record named. Whether the same functions in `konal.so` differ is covered in a separate section.
