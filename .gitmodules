@@ -29,3 +29,6 @@
 [submodule "linux"]
 	path = linux
 	url = https://github.com/torvalds/linux.git
+[submodule "retools"]
+	path = retools
+	url = ../sgi-retools.git

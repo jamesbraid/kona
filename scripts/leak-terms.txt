@@ -1,0 +1,26 @@
+# Terms the RE repositories must not carry. Kept outside the shared tooling on purpose.
+term: origami
+term: qemu
+term: jamesb
+term: hinv-archive
+term: /storage/(nvme|software)
+term: /scratch/
+term: /home/
+term: refs/irix
+term: irix-source
+term: irix-657
+term: docs/library
+term: \.codex
+term: emdash
+term: Co-Authored
+term: Generated with \[Claude
+term: claude
+term: anthropic
+term: pet.?name
+# the public cross-check tree may be named
+allow: qemu-irix
+# the public irix-657m-src submodule may be declared and named in these files
+exempt: ^(\.gitmodules|AGENTS\.md)$	irix-657m-src
+# files that name those things by design
+skip: scripts/inventory\.py|ghidra/
+message: Generated with \[Claude

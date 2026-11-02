@@ -12,7 +12,7 @@ ghidra/
   processors/<name>/   one Ghidra processor extension per directory
   import/<name>/       loader and import scripts for firmware images
   types/<name>/        data-type scripts
-  scripts/             the shared IRIX scripts, byte-identical across workspaces
+  scripts/             the shared IRIX scripts, linked from the retools submodule
 ```
 
 ## Build and run
