@@ -2063,6 +2063,99 @@ The complete target bodies below are byte-identical to same-address IP27 O32 cou
 
 - `__glGenericPickBlendProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9ca8a0; occupies 1408 bytes. Byte-identical over the complete body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ca8a0. SHA-256 d38cf85f208797148772bd69cdbe1cb53461aad49bab6d1e19b6f7c39c6411d4. This note records identity only and does not revise the existing behavior grade.
+## IP35 O32 blend and colour-state routines identical to IP27 O32
+
+Twelve exact target bodies are byte-identical to their same-address IP27 O32 counterparts. Their existing behavior grades remain unchanged; code identity alone makes no new role claim.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) | Existing grade |
+|---|---|---|---|---|
+| __glBlendStippledSpan | 0xd9cb1ac / 276 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb1ac / 276 | c1dc4e65f0f7e9d0a62a77383b4430c0fbff535610261d8189ba1dd915eb0e17 | Inferred |
+| __glInitBuffer | 0xd9cb2c0 / 56 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb2c0 / 56 | 8bec6005f94cd0e228bb298a0c74fa4c301f029093cc4269ba2c8cef040f5802 | Inferred |
+| __glMakeCurrentBuffer | 0xd9cb2f8 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb2f8 / 60 | 9599553520cbc059986b4e918ddda7880c82389e36a3bf0d9cabe13b0dd31bc0 | Established |
+| __glLoseCurrentBuffer | 0xd9cb334 / 64 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb334 / 64 | e7b2b56aed1546552bae6c1c286b961fbe05ab7eefa90982dc931ff1eb930a5d | Inferred |
+| __glim_Color3d | 0xd9cb718 / 92 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb718 / 92 | 1b96fbf588329bd95a69102f49d6bcdcd41743f4e2984b968c75d610a8d7152c | Established |
+| __glim_Color3dv | 0xd9cb774 / 104 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb774 / 104 | 8606ab82321c38d50b6a4a1d0bf92878a84478d5cbf4d5816173f3f98bd5805a | Inferred |
+| __glim_Color3i | 0xd9cb7dc / 160 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb7dc / 160 | b4f55a96154089b533c7c7e639565ea7cd3686f4f05c0293786805ac678de23f | Inferred |
+| __glim_Color3iv | 0xd9cb87c / 176 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb87c / 176 | 924aacd6a8e653af3111987cfb9028bf68cef856fff5c77d5ef132d7aac13d3d | Inferred |
+| __glim_Color3ui | 0xd9cb92c / 180 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb92c / 180 | d28d0fda14862d3f4e2aa035e2dd9056c292a2112d92ecb83b90a8b232d76dac | Inferred |
+| __glim_Color3uiv | 0xd9cb9e0 / 192 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cb9e0 / 192 | 889cb5bc23a4a4a84e992e558e7e56bc4b93bdf412b90565539db57662e80ba6 | Inferred |
+| __glim_Color3s | 0xd9cbaa0 / 176 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cbaa0 / 176 | a4fbbb7820b390740d9e8d63e10d75428a261eb31a7dcdaa6bcf22bc779faf00 | Inferred |
+| __glim_Color3sv | 0xd9cbb50 / 160 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cbb50 / 160 | 3dff508dc1a876a032d09f52dd442f00aeaeb838791f67bc434fd31d49aa616d | Inferred |
+
+## IP35 O32 blend and colour-state routines with N32 differences
+
+Eight target bodies differ from their documented N32 counterparts. Their formulas, callback effects and bases are stated only where the O32 facts resolve them.
+
+| Routine | IP35 O32 address / size | N32 build / address / size | IP35 SHA-256 | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glBlendSpan_SA_MSA | 0xd9caed8 / 188 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c6810 / 360 | 9ea16861216ed5ebdfd18e2ee0326da5b54b1df87bba94737a03528d7b1ebc65 | 49e50e9b0e701d5451c1f62e1636e55eed86c0072d96979e227e63f7fd4900b3 | 167 |
+| __glBlendSpan_MSA_SA | 0xd9caf94 / 180 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c6980 / 368 | d6de98fb2b9b8bfea910e57498af12978694d7c13d3869057e84f6ae10758174 | 42e0ade7e4583fb78107b6f6fc5f3cdba8b6773bc1506e985a9684b877c2d4c8 | 155 |
+| __glBlendSpan_SA_ZERO | 0xd9cb048 / 112 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c6af0 / 340 | ccdf9da5f312f6f5f936f48ef6644b6c975abcd184b150b6eb10bcf289dc0455 | 3ee73660ef0c6a5ac65e470718989bc07014bb1e637adc02b9b7bc79e5772fa7 | 101 |
+| __glBlendSpan_SA_ONE | 0xd9cb0b8 / 244 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c6c50 / 408 | 0cf03c4475a49d0e00899da11f213635c7ec96a07d07ca14bd5898d6b23e0501 | d7d949826814357904c04d6b988ce3769b870c18b52abfc4684cd8c352108bce | 214 |
+| __glim_Color3ub | 0xd9cb4c0 / 136 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c7140 / 112 | ee73ddaccaa99ec1767b83097b5b6749141d73e0ec93567a7d9e8464590df129 | dd01714c480f3c5388e03288e5cb17a20869699c2a12acdb494311a9b8587cbc | 105 |
+| __glim_Color3ubv | 0xd9cb548 / 128 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c71b0 / 124 | cdaa4ce4785e34e9e3bb9175e05280b5396f3fb540e7054772b4637ed88a677d | 2ec6d656931b53883abd9205d9a7621ec11d7f457d1397a139120e5d79ee38db | 108 |
+| __glim_Color3b | 0xd9cb5c8 / 176 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c7230 / 140 | ccc462422ff84d9e09e84cad297e18408d4b0148781bccb173ac3dc1e03e9716 | f0cee052707b36d7cc2403d9afda14081af3e8b4463bc953c196a13ed5b37390 | 132 |
+| __glim_Color3bv | 0xd9cb678 / 160 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d9c72c0 / 152 | 54614524e95ccc9866a971bf324435cc1088265fadf8953c10ec3103cc1c4a28 | 0520f14e568f3d5dc34da4e91b81190d8725e6ec773a7883abf3d10f45aee75b | 129 |
+
+- `__glBlendSpan_SA_MSA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9caed8; occupies 188 bytes. **Inferred.** This source-alpha blend candidate reads the count and two pointer words at entry a0 +0x7660/+0x7738/+0x773c (`lw` at 0xd9caee8, `lw` at 0xd9caef0, and `lw` at 0xd9caef8). Its float parameters are at entry a0 +0xdd8 and +0x7894 (`lwc1` at 0xd9caeec and `lwc1` at 0xd9caf00). A negative signed value of the count minus one takes the exit (`bltz` at 0xd9caefc). The arithmetic multiplies an input float, subtracts the result from another float, then multiplies and adds terms (`mul.s` at 0xd9caf10, `sub.s` at 0xd9caf20, `mul.s` at 0xd9caf24, and `add.s` at 0xd9caf38). Four float-output sites have unknown bases (`swc1` at 0xd9caf58, `swc1` at 0xd9caf60, `swc1` at 0xd9caf6c, and `swc1` at 0xd9caf78). Hostfacts does not resolve advancing span addresses or all scalar values, so the full N32 blend formula is not adopted.
+
+- `__glBlendSpan_MSA_SA` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9caf94; occupies 180 bytes. **Inferred.** The reversed-factor blend candidate loads words at entry a0 +0x7660/+0x7738/+0x773c (`lw` at 0xd9cafa0, `lw` at 0xd9cafa4, and `lw` at 0xd9cafa8). A float parameter at entry a0 +0x7894 and another at +0xdd8 supply the body (`lwc1` at 0xd9cafb4 and `lwc1` at 0xd9cafbc). The first float input is loaded through an unknown base (`lwc1` at 0xd9cafb8). Its arithmetic includes multiplication, subtraction and paired-term addition (`mul.s` at 0xd9cafc4, `sub.s` at 0xd9cafd8, and `add.s` at 0xd9caff0). Output consists of four float-store sites with unresolved bases (`swc1` at 0xd9cb010, `swc1` at 0xd9cb018, `swc1` at 0xd9cb024, and `swc1` at 0xd9cb030). The entry exit branch is taken when the signed count minus one is negative (`bltz` at 0xd9cafb0). Exact span traversal and the complete factor interpretation remain unresolved.
+
+- `__glBlendSpan_SA_ZERO` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb048; occupies 112 bytes. **Inferred.** The zero-destination blend candidate reads words at entry a0 +0x7660 and +0x7738, and a float at +0x7894 (`lw` at 0xd9cb050, `lw` at 0xd9cb054, and `lwc1` at 0xd9cb058). Its branch-likely takes the exit when the signed count minus one is negative (`bltzl` at 0xd9cb060). Four float loads use unresolved bases (`lwc1` at 0xd9cb068, `lwc1` at 0xd9cb06c, `lwc1` at 0xd9cb070, and `lwc1` at 0xd9cb078). The body multiplies an input float by the context float, then uses the product in further multiplications (`mul.s` at 0xd9cb074, `mul.s` at 0xd9cb084, `mul.s` at 0xd9cb088, `mul.s` at 0xd9cb08c, and `mul.s` at 0xd9cb094). The four float-store sites remain unresolved (`swc1` at 0xd9cb090, `swc1` at 0xd9cb098, `swc1` at 0xd9cb09c, and `swc1` at 0xd9cb0a4). No missing input/output addresses are reconstructed from the N32 body.
+
+- `__glBlendSpan_SA_ONE` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb0b8; occupies 244 bytes. **Inferred.** The unit-destination blend candidate fetches float parameters at entry a0 +0x7858/+0x785c/+0x7860/+0x7880 (`lwc1` at 0xd9cb0dc, `lwc1` at 0xd9cb0e0, `lwc1` at 0xd9cb0e4, and `lwc1` at 0xd9cb0ec). It also loads a float at entry a0 +0x7894 (`lwc1` at 0xd9cb0f4). Multiplication and addition form one candidate result (`mul.s` at 0xd9cb100, `mul.s` at 0xd9cb10c, and `add.s` at 0xd9cb114). The first selection branch is taken when f0 is not less than f20 (`bc1f` at 0xd9cb124). The final selection branch is taken when f14 is not less than f26 (`bc1fl` at 0xd9cb170). Float-output sites include `swc1` at 0xd9cb16c, `swc1` at 0xd9cb174, `swc1` at 0xd9cb17c, `swc1` at 0xd9cb180, and `swc1` at 0xd9cb184. Their bases, later input addresses and the complete numeric clamp contract remain unknown.
+
+- `__glBlendStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb1ac; occupies 276 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb1ac. SHA-256 c1dc4e65f0f7e9d0a62a77383b4430c0fbff535610261d8189ba1dd915eb0e17. Existing grade Inferred retained.
+
+- `__glInitBuffer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb2c0; occupies 56 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb2c0. SHA-256 8bec6005f94cd0e228bb298a0c74fa4c301f029093cc4269ba2c8cef040f5802. Existing grade Inferred retained.
+
+- `__glMakeCurrentBuffer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb2f8; occupies 60 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb2f8. SHA-256 9599553520cbc059986b4e918ddda7880c82389e36a3bf0d9cabe13b0dd31bc0. Existing grade Established retained.
+
+- `__glLoseCurrentBuffer` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb334; occupies 64 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb334. SHA-256 e7b2b56aed1546552bae6c1c286b961fbe05ab7eefa90982dc931ff1eb930a5d. Existing grade Inferred retained.
+
+- `__glim_Color3ub` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb4c0; occupies 136 bytes. **Inferred.** Unsigned-byte colour state uses C, the pointer loaded from absolute 0x1010 (`lw` at 0xd9cb4d8). Three float lookup loads have unresolved indexed addresses (`lwc1` at 0xd9cb4f8, `lwc1` at 0xd9cb50c, and `lwc1` at 0xd9cb524). The resulting float stores reach C +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9cb504, `swc1` at 0xd9cb51c, and `swc1` at 0xd9cb530). Another float is copied from C +0xdd8 to C +0x1bc (`lwc1` at 0xd9cb4f0 and `swc1` at 0xd9cb528). The callback word comes from C +0x2f18 (`lw` at 0xd9cb510), and the unknown callback receives C first (`jalr` at 0xd9cb52c). Hostfacts leaves its remaining arguments and effects unknown.
+
+- `__glim_Color3ubv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb548; occupies 128 bytes. **Inferred.** The unsigned-byte vector colour path reads entry a0 +0x0/+0x1/+0x2 (`lbu` at 0xd9cb564, `lbu` at 0xd9cb580, and `lbu` at 0xd9cb598). It obtains C from absolute 0x1010 (`lw` at 0xd9cb568). Hostfacts resolves each indexed float load as C +0xef0 plus four times its corresponding unsigned input byte (`lwc1` at 0xd9cb574, `lwc1` at 0xd9cb58c, and `lwc1` at 0xd9cb5a4). Float words are stored at C +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9cb57c, `swc1` at 0xd9cb594, and `swc1` at 0xd9cb5b0). The float from C +0xdd8 is copied to C +0x1bc (`lwc1` at 0xd9cb578 and `swc1` at 0xd9cb5a8). The unknown callback receives C and the original input pointer as its first two arguments (`jalr` at 0xd9cb5ac). Its effects and the lookup table's numeric contents remain unestablished.
+
+- `__glim_Color3b` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb5c8; occupies 176 bytes. **Inferred.** Signed-byte colour conversion extracts a signed byte from the first argument with left/right shifts (`sll` at 0xd9cb5d4 and `sra` at 0xd9cb5d8). Further arithmetic doubles that value, adds one and converts it to float (`sll` at 0xd9cb5dc, `addiu` at 0xd9cb5e4, and `cvt.s.w` at 0xd9cb5fc). C is the pointer loaded from absolute 0x1010 (`lw` at 0xd9cb600), with a float factor at C +0xde0 (`lwc1` at 0xd9cb624). Output includes float words at C +0x1b0/+0x1b4/+0x1b8/+0x1bc (`swc1` at 0xd9cb64c, `swc1` at 0xd9cb654, `swc1` at 0xd9cb660, and `swc1` at 0xd9cb648). The last receives the float loaded from C +0xdd8 (`lwc1` at 0xd9cb640). An unknown callback receives C as its first argument, with the remaining arguments unresolved (`jalr` at 0xd9cb65c). The factor's numeric value and callback effects are not established.
+
+- `__glim_Color3bv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb678; occupies 160 bytes. **Inferred.** Signed-byte vector colour conversion reads three signed bytes at entry a0 +0x0/+0x1/+0x2 (`lb` at 0xd9cb694, `lb` at 0xd9cb6b8, and `lb` at 0xd9cb6dc). C comes from absolute 0x1010 (`lw` at 0xd9cb698), and a float factor from C +0xde0 (`lwc1` at 0xd9cb6a8). The first integer is shifted, incremented, converted and multiplied (`sll` at 0xd9cb69c, `addiu` at 0xd9cb6a0, `cvt.s.w` at 0xd9cb6ac, and `mul.s` at 0xd9cb6b0). Float output reaches C +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9cb6b4, `swc1` at 0xd9cb6d8, and `swc1` at 0xd9cb700). A float copied from C +0xdd8 reaches C +0x1bc (`lwc1` at 0xd9cb6d0 and `swc1` at 0xd9cb6e0). The unknown callback receives C and the original input pointer first (`jalr` at 0xd9cb6fc). Its behavior and the scale's numeric value remain unresolved.
+
+- `__glim_Color3d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb718; occupies 92 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb718. SHA-256 1b96fbf588329bd95a69102f49d6bcdcd41743f4e2984b968c75d610a8d7152c. Existing grade Established retained.
+
+- `__glim_Color3dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb774; occupies 104 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb774. SHA-256 8606ab82321c38d50b6a4a1d0bf92878a84478d5cbf4d5816173f3f98bd5805a. Existing grade Inferred retained.
+
+- `__glim_Color3i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb7dc; occupies 160 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb7dc. SHA-256 b4f55a96154089b533c7c7e639565ea7cd3686f4f05c0293786805ac678de23f. Existing grade Inferred retained.
+
+- `__glim_Color3iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb87c; occupies 176 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb87c. SHA-256 924aacd6a8e653af3111987cfb9028bf68cef856fff5c77d5ef132d7aac13d3d. Existing grade Inferred retained.
+
+- `__glim_Color3ui` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb92c; occupies 180 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb92c. SHA-256 d28d0fda14862d3f4e2aa035e2dd9056c292a2112d92ecb83b90a8b232d76dac. Existing grade Inferred retained.
+
+- `__glim_Color3uiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cb9e0; occupies 192 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cb9e0. SHA-256 889cb5bc23a4a4a84e992e558e7e56bc4b93bdf412b90565539db57662e80ba6. Existing grade Inferred retained.
+
+- `__glim_Color3s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cbaa0; occupies 176 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cbaa0. SHA-256 a4fbbb7820b390740d9e8d63e10d75428a261eb31a7dcdaa6bcf22bc779faf00. Existing grade Inferred retained.
+
+- `__glim_Color3sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cbb50; occupies 160 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cbb50. SHA-256 3dff508dc1a876a032d09f52dd442f00aeaeb838791f67bc434fd31d49aa616d. Existing grade Inferred retained.
 ## Software renderer (soft)
 
 ### so_accumop.c
