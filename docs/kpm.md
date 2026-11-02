@@ -2108,6 +2108,34 @@ These readings describe software helper effects in the IRIX 6.5.30m `usr/diags/I
 - `xdr_SDBdataType` in `usr/diags/IR/bin/irsaudit`:
   Address 0x1016e5fc; occupies 52 bytes.
   **Established.** Symbol data-type serialization calls `xdr_enum` with entry a0 through a3 unchanged (`jalr` at 0x1016e618). Its only result is the enum codec's v0 (`jr` at 0x1016e628). No type-to-hardware encoding or device access appears in this wrapper.
+### IRIX 6.5.30m irsaudit XDR and symbol helpers
+
+These readings describe functions in the IRIX 6.5.30m `usr/diags/IR/bin/irsaudit` build. Every range differs byte-for-byte from the named `konal.so` counterpart; those differences alone do not establish different behavior.
+
+| Routine | Target address / size | Target SHA-256 | Existing build / address / size | Existing SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `xdr_SDBsymbolName` | 0x1016e630 / 112 | `b1c5415f12e37ade5881d99646589de3a09d29d02d12277d4b9299992f274df8` | `usr/lib/X11/dyDDX/konal.so` 0x13b2834 / 112 | `3baaa0d127eb369eea8254e0579cf48dbe9fe5b885606259e803202b5e2f7b7f` | 5 |
+| `xdr_SDBsymbolTableEntry` | 0x1016e6a0 / 200 | `a21c8be5a2b0b17b40685a22260dd8e1ea745f5cfaa37ccad5d3e0650157824b` | `usr/lib/X11/dyDDX/konal.so` 0x13b28a4 / 200 | `5b28f9d7ea23a0cf5d989b6acb7d2003514c5463aef073a6275a4ba4353984ff` | 27 |
+| `xdr_SDBversionNumber` | 0x1016e768 / 104 | `efcad0657e07ebcc3069a566ac7565bf14e5b0bbc9379044f0ef7f8dc4cf69a3` | `usr/lib/X11/dyDDX/konal.so` 0x13b296c / 104 | `8cf1b41c082a5e41f3f16cae7f3952a0056ef1ee2584d737efa2bd5e71ffc691` | 7 |
+| `SDBsetupMemoryInterface` | 0x1016e7d0 / 36 | `fd17aaabf0da6dd7afef900fbf0deb42ea3467a8c80de5774354e45279e1665c` | `usr/lib/X11/dyDDX/konal.so` 0x13b29d4 / 36 | `752da45a0c861e60269c6ebcd7b47ee51c25b81d9b0604945e439cb5bb8ba0e2` | 5 |
+
+#### Target-build readings
+
+- `xdr_SDBsymbolName` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e630; occupies 112 bytes.
+  **Established.** Processes a symbol name through `xdr_string`, passing entry argument 0, a pointer at entry stack pointer -0x20, and limit 0x1f (`jalr` at 0x1016e660). Null entry argument 1 or a null word loaded through it takes the zero-result exit (`beqz` at 0x1016e640, 0x1016e64c). A zero codec result takes another failure arm (`beqz` at 0x1016e668). Success includes a zero byte store at an unresolved effective address (`sb` at 0x1016e674) and returns one. Hostfacts cannot resolve that store's base, so the sibling's terminating-byte offset is not transferred here. This serializes host data rather than issuing a hardware command.
+
+- `xdr_SDBsymbolTableEntry` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e6a0; occupies 200 bytes.
+  **Established.** Serializes a symbol-table entry with four codec calls: `xdr_SDBsymbolName`, `xdr_SDBdataType`, `xdr_SDBelementIndex` and `xdr_SDBfileOffset` (`jal` at 0x1016e6d8, 0x1016e6f0, 0x1016e708, 0x1016e720). The latter two receive entry argument 1 plus 4 and plus 8 respectively. The name codec receives a pointer at entry stack pointer -0x30, containing entry argument 1 plus 12 (`sw` at 0x1016e6ac). Each zero codec result takes the failure exit (`beqz` at 0x1016e6e0, 0x1016e6f8, 0x1016e710, 0x1016e728). All four succeeding produces one, and any failure produces zero. Its effect is on the XDR stream and software record.
+
+- `xdr_SDBversionNumber` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e768; occupies 104 bytes.
+  **Established.** Encodes or decodes the version pair with two `xdr_u_short` calls (`jalr` at 0x1016e788, 0x1016e7a4). The first retains the caller's first two arguments, while the second advances entry argument 1 by two bytes. Either zero codec result selects zero (`beqz` at 0x1016e790, 0x1016e7ac), and completion of both selects one. The routine handles serialized version data without direct hardware accesses.
+
+- `SDBsetupMemoryInterface` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1016e7d0; occupies 36 bytes.
+  **Established.** Installs four caller-supplied words into `_SDBmemface`. Argument 3 goes to +0xc, argument 2 to +8, argument 1 to +4, and argument 0 to +0 (`sw` at 0x1016e7e0, 0x1016e7e4, 0x1016e7e8, 0x1016e7f0). The final store runs in the return delay slot (`jr` at 0x1016e7ec). This updates the symbol-database memory interface without calling the installed procedures or touching hardware.
 ## GNU readline and history (compiled in)
 
 **Established** (names and strings: "rl_", "history_", "tilde_expand" and the library's own key-binding and completion tables). `kpm`'s viewer links the GNU readline line-editing library and its history module; none of it touches the hardware.
