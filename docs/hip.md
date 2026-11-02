@@ -322,6 +322,32 @@ What this settles:
 
 The order a host program uses, as `kpm` does it for the secondary channel: clear `HH_ODMA2_OVER`; write `HH_ODMA2_PNUM`, `HH_ODMA2_POFF`, `HH_ODMA2_LEN` and `HH_ODMA2_TOTAL`; write 1 to `HH_TBUS_STATUS` (0x3a8, at the end of `setup_dma`; **inferred** to clear the sticky `TBUS_DRAW` bit, as the kernel's writes are read in [kernel.md](kernel.md#hh_tbus_status)); start the pipe-side transfer through the raster-bus path ([above](#output-dma-from-the-pipe-side)); poll `HH_ODMA2_TOTAL` for 0; write `HH_ODMA_FLUSH`. The buffer comes from the diagnostic-map ioctl 10100 with a 2 MB request and kind 8 (through the map RAM), so the page and offset are pipe-space values, not host physical addresses ([kernel.md](kernel.md#diagnostic-map-kona_diag_map)). **Unknown: no shipped software or published source depends on it:** the units of `LEN`, `TOTAL` and `STRIDE` beyond "bytes" (`kpm` uses byte counts, the firmware passes the pixel-read line length unchanged), the width of the counters inside the chip, and whether `OVER` is a count or a flag set; routes tried: `kpm`, `irsaudit`, the firmware's select-feedback and read-back code, the kernel's overflow handler (which only prints) and kpm's register table (masks only).
 
+Individual `kpm` helper readings (6.5.30m, complete N32 routines):
+
+- `set_transfer_address` (`kpm` 0x1001f534, 568 bytes): **Established.** Rejects a
+  zero or out-of-range request, clears the transfer descriptor's active field,
+  and, when the requested size is at least 0x800000, obtains a 2 MB diagnostic
+  map with ioctl 0x2774 and kind 9. It stores the returned page, offset and
+  length in the descriptor, copies its three address/length words to the
+  caller's outputs, and returns the success marker `0x21524541`; allocation,
+  ioctl and descriptor-state failures return `0xdeadbabe`. (`kpm`, full
+  routine at 0x1001f534.)
+- `setup_dma` (`kpm` 0x1001f76c, 84 bytes): **Established.** Clears host offset
+  0x2c0, writes its three arguments to offsets 0x2a0, 0x2a8 and 0x2b0, copies
+  the length to 0x2b8, writes 1 to `HH_TBUS_STATUS` at 0x3a8, and returns zero.
+  (`kpm`, full routine at 0x1001f76c.)
+- `wait_for_dma_completion` (`kpm` 0x1001f7c0, 216 bytes): **Established.**
+  Polls secondary output-DMA total at host offset 0x2b8, calling the supplied
+  delay callback between checks for at most the caller's count (with the first
+  two checks using argument zero). It writes 1 to offset 0x298 before restoring
+  registers and returns the final total value. (`kpm`, full routine at
+  0x1001f7c0.)
+- `cleanup_dma` (`kpm` 0x1001f898, 352 bytes): **Established.** If a transfer
+  descriptor is active, writes kind 10 and the descriptor to ioctl 0x2774,
+  marks the descriptor inactive, and frees its mapped buffer when present. It
+  returns zero on success, -1 when the mapping or ioctl path fails, and zero
+  immediately when no transfer is active. (`kpm`, full routine at 0x1001f898.)
+
 ### Reset
 
 `ResetKona` in irsaudit is only the pipe-initialise ioctl and nothing checks the state afterwards. kpm's `hipReset` (`usr/gfx/KONA/bin/kpm`, 0x10017204) either resets the chip through boundary scan (`jt_isolate_chip` "hip" "RESET", then "IDCODE"), or sets the overlap-disable bit (bit 0 of 0x380 on HIP1, 0x3a0 on HIP2) and writes 5 to `HH_TFIFO_HI`; it does not write `HH_RESET`. The FIFO_LO test passes straight after a reset, so whatever the reset leaves in the low-water mark, an empty FIFO is at or below it.

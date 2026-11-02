@@ -36,6 +36,72 @@ Sources: `usr/gfx/KONA/bin/kpm` (6.5.30m, an N32 executable with symbols, with t
 | `disassemble_tbus` | decode the raster-bus words saved in the BEF FIFO into token and register writes |
 | `dump_indata_as_bits`, `dump_outdata_as_bits` | debug print of the bits sent to and read from a scan chain |
 
+### Hardware helper readings
+
+The following entries are separate readings of the N32 `kpm` routines; each
+routine was disassembled from its complete address range before this entry was
+written.
+
+- `hipReset` (`kpm` 0x10017204, 368 bytes): **Established.** Returns zero after
+  checking the adapter revision. For HIP2 it sets bit 0 at host offset 0x3a0
+  and writes 5 to 0x3b0; for HIP1 it sets bit 0 at 0x380 and writes 5 to
+  0x3b0. If the mapped adapter is absent it runs the boundary-scan reset and
+  ID-code sequence through the scan-chain helpers, retrying the chain setup
+  after a negative result. (`kpm`, 6.5.30m, full routine at 0x10017204.)
+- `armAccessEnable` (`kpm` 0x10012340, 56 bytes): **Established.** Clears host
+  offset 0x320, sets bit 0 in the word at 0x308, and returns zero; this enables
+  the host-side ARM memory access path. (`kpm`, 6.5.30m, full routine at
+  0x10012340.)
+- `gedReset` (`kpm` 0x10019c50, 456 bytes): **Established.** If the distributor
+  is mapped, writes 0x200008 then either writes 0x200004 and the selected reset
+  value at 0x3f0 or reports failure, and calls `ged_set_current_ge` with the
+  saved engine selector. Without the mapping it performs the scan-chain reset
+  sequence and retries; it returns zero on success and -1 on an error. (`kpm`,
+  6.5.30m, full routine at 0x10019c50.)
+- `ged_register_write` (`kpm` 0x10019e3c, 164 bytes): **Established.** Selects
+  distributor register 0x600, encodes the register index as bit 5 plus the
+  index's upper bits masked by 0x1ff00, writes the caller's value through
+  offset 0x3f0, then selects 0xac0 and writes the same value there. It returns
+  zero. (`kpm`, 6.5.30m, full routine at 0x10019e3c.)
+- `ged_set_current_ge` (`kpm` 0x10019ee0, 228 bytes): **Established.** Converts
+  the caller's engine number to a one-bit mask, writes that mask five times to
+  distributor register 0x222, then selects 0x200600 at offset 0x3e8 and writes
+  0x58400800 at offset 0x3f0, and selects 0x200a80 at 0x3e8 and writes 1 at
+  0x3f0. It returns zero. (`kpm`, 6.5.30m, full routine at 0x10019ee0.)
+- `ge_register_write` (`kpm` 0x1001b730, 108 bytes): **Established.** Writes
+  its first argument, the geometry-engine register number, to distributor
+  register 0x234, then writes its second argument, the value, to register 0x232,
+  and returns zero. (`kpm`, 6.5.30m, full
+  routine at 0x1001b730.)
+- `ge_register_read` (`kpm` 0x1001b79c, 100 bytes): **Established.** Writes the
+  requested register number to distributor register 0x234, then writes 0x80000001
+  to register 0x236 to request the readback; it returns zero. The caller reads
+  the resulting value through the surrounding diagnostic state path. (`kpm`,
+  6.5.30m, full routine at 0x1001b79c.)
+- `ge11BypassEnable` (`kpm` 0x1001b800, 304 bytes): **Established.** Chooses
+  0x800 or 0xc00 from the engine status field at +0x10, scans engine numbers
+  0..7, and for every set status bit calls `ged_set_current_ge` followed by
+  `ge_register_write(0x438 or 0xc38, 0x400001)`. It then selects the saved
+  current engine and returns zero. (`kpm`, 6.5.30m, full routine at
+  0x1001b800.)
+- `ge11LoadUcode` (`kpm` 0x1001bbf0, 1332 bytes): **Established.** Opens and
+  parses the engine image as address plus three words. It stops the engine by
+  writing zero to 0x40000 and 0x40018, selects 0xce0 or 0x8e0 from the engine
+  status, writes the program address to distributor register 0x234 and each
+  three-word record to 0x232, then writes 0x100 to engine register 0x40010 and
+  1 to register 0x40000. Non-contiguous records first write 0x200000 plus four times
+  the new address to register 0x234; it reports parse, open and write failures
+  and returns -1, otherwise zero. (`kpm`, 6.5.30m, full routine at 0x1001bbf0.)
+- `ge11StateDrain` (`kpm` 0x1001b930, 704 bytes): **Established.** Iterates
+  the selected engine's state records, uses the diagnostic register-read path
+  for each record and writes the captured words to the current dump section;
+  it stops after the table's count or the first failed read and returns the
+  section-writing result. (`kpm`, 6.5.30m, full routine at 0x1001b930.)
+- `tbRegisterWrite` (`kpm` 0x1001c124, 200 bytes): **Established.** Selects
+  raster-bus register 0x20630, writes zero, selects 0x20a40, writes the
+  inverted low bit of the caller-selected field shifted left once, and selects
+  0x20a40 again before returning. (`kpm`, 6.5.30m, full routine at 0x1001c124.)
+
 ## Register tables and logging
 
 | Function | Role |
