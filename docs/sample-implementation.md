@@ -205,6 +205,114 @@ The `PickSpanModifiers` input comparison used an oversized supplied extent. Its 
 - `__glSpanUnpackIndexUbyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd9b0854; occupies 68 bytes.
   **Established.** Index unpacking reads second-argument +0xb4 and +0x138 (`lw` at 0xd9b0858 and `lw` at 0xd9b0864), then performs byte reads and writes (`lbu` at 0xd9b086c and `sb` at 0xd9b0878). The `bnez` at 0xd9b0888 continues while its unresolved index is below the signed +0xb4 count. A halfword read also participates in traversal (`lh` at 0xd9b087c), with its base and the moving byte-buffer addresses unknown. The observed destination stores are bytes, not float conversions. This leaf returns the original count (`jr` at 0xd9b0890).
+## O32 span-unpacking routines read in full
+
+These entries describe the exact O32 bodies in `usr/gfx/arch/IP27KONA/libGLcore.so`. Each was compared with the listed N32 range; differing bytes alone do not establish different behavior. The three entries that retain a hostfacts internal-target limitation say so in their own text.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| `__glSpanUnpackRGBAubyte` | 0xd9b0898 / 96 | `dc2d493bf9545f7ae87299f30a5b6242258ccf3a9972c4ed3601775b858b8e5b` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9acb10 / 104 | `002f210fc58c5326ae20801e7a586bc9014915c77410318fc794193ad7b32e01` | 78 |
+| `__glSpanUnpackUbyte` | 0xd9b121c / 84 | `f0307782e1a7fc1d37fd5c614772bfe3da9004334cfe1871cda1c244871dcf5b` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad2a0 / 200 | `44583df27b055fc4730749eb2d91a77708d13dc2304c1203e33d0979a8fdeb1e` | 63 |
+| `__glSpanUnpackByte` | 0xd9b1270 / 96 | `4bbd79ffb74f911e8ed6a812c6d2ed3227428d7a315bb7443868e78cafcc673f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad370 / 264 | `a519ca8769f92f3d442328a3e7bdcb5b8a06310c03b8776ccc71b7ebb4a816c1` | 72 |
+| `__glSpanUnpackUshort` | 0xd9b12d0 / 120 | `120063b78d199649a0aed8a869a3131d7a39cdc0beff21f13b9c235f88fb4529` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad480 / 232 | `85f61e8b09256acd616ccc3c59b56e334c3905d426b476f3ec260eae2e8516fa` | 107 |
+| `__glSpanUnpackShort` | 0xd9b1348 / 96 | `8b5f62c6bebe06334a89ea6a180a879e66406b7cacc9523d23e80aefe3b5b8e8` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad570 / 264 | `778d93b58461886ee62a1e4cbbe9830bfdf452cc2864e484e187ab4e24febca9` | 73 |
+| `__glSpanUnpackUint` | 0xd9b13a8 / 120 | `72d82b81ff02987af52351acbc9c3147c51b080950d5e029ef2109f8be33a367` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad680 / 264 | `3dba28928f72e306bac5e17df257fb8ec3c85d217c6d83f08d867618dd0a83f3` | 105 |
+| `__glSpanUnpack332Ubyte` | 0xd9b14d4 / 192 | `6b37734ec097b339822a0401748375b8f6ea27ff7b39a847728a369cfc1a691f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ad8a0 / 392 | `671e6bc00610c98c3db476eb5ad56667ecdd0bf8d9642fbfd23fe4c15d352e18` | 170 |
+| `__glSpanUnpack233RevUbyte` | 0xd9b1594 / 192 | `754c27b79961649973366f99e760dc212c70027b4401543eb573b5cd6ec5656a` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ada30 / 392 | `d7753ce77a80fd94a7f849c362f427d7d4bc94aa667e23e27e7de2c6737921f5` | 166 |
+| `__glSpanUnpack565Ushort` | 0xd9b1654 / 188 | `feb9a26e962844b9e7ae314c473a5b8f6ded7b75bc548037ff0b63679a992478` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9adbc0 / 392 | `421eb40e172b91b754b9d58304d16bc8faf68bcb5c50e36bd20296b642b855ec` | 169 |
+| `__glSpanUnpack565RevUshort` | 0xd9b1710 / 188 | `f930d1a2231d11c96fb10b140951c8d2ddcd3228a1e2a278c796cbb50229939e` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9add50 / 392 | `a8085c15900f2d6bfbaddae12dc7961e606d378632c7171d0e892600b3d7297b` | 169 |
+| `__glSpanUnpack4444Ushort` | 0xd9b17cc / 216 | `391f1344d94c7f2cfaccd78336a35e95d72e23de778200ba760aa7c0fce5f98c` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9adee0 / 488 | `4348c0df65b0eb7a3ca1ed768e75968fd1c1b64d0f33c65e32d903da1f890339` | 192 |
+| `__glSpanUnpack4444RevUshort` | 0xd9b18a4 / 216 | `180d3358547aa4eafd0592f4c8a0557b1189bd83355d654cf00aa2e085e95f37` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ae0d0 / 488 | `623ebab3dcd601732d9d8b67e0095e7d7289090888eef87d8fb40a0ccb9be178` | 191 |
+| `__glSpanUnpack5551Ushort` | 0xd9b197c / 204 | `9eca58423f9f4830e6cddc827049de7b25d78f7a809bee1a5d49e3cf2f1a3c22` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ae2c0 / 448 | `1699646c15a4f758b3bf29c14cff42cd7a84165242e0fa738ffca46ee8faac5a` | 186 |
+| `__glSpanUnpack1555RevUshort` | 0xd9b1a48 / 204 | `d868df043fdddca718f25b98ad3a977f88a02e08f6fb651a5e0f54cccbb697ea` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9ae480 / 448 | `58aef83ee4a238d25a43b560c8112426e6b8ee30680cb65fe7a9a4ab04c7a0c3` | 187 |
+| `__glSpanUnpackUbyteI` | 0xd9b1fe8 / 300 | `f22b6068d1328a20419b867db8047a93cd78b4168ca8762e86898f101dc79f4c` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9aedc0 / 168 | `3151d5623fa8de220462d4485c09ff49f7142bfdd14f1b92a5081593d1120207` | 147 |
+| `__glSpanUnpackByteI` | 0xd9b2114 / 296 | `6d0a45580d9db53586895194674cb25fa2c0ca59cf75abb69e1918ed3e09baa1` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9aee70 / 168 | `f9968554c4dccb50ebb975d7639fd45a3a66243f727b263c7311f09d98068c37` | 144 |
+| `__glSpanUnpackUshortI` | 0xd9b223c / 300 | `e9525bd2a637144bf49fcb39306c28cd0cead5ccb8c472ca2cf6707f5d166266` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9aef20 / 168 | `5c55ba334ce2110aac5331086957a6f516a97d856ac56049c7182939e3f4a79c` | 147 |
+| `__glSpanUnpackShortI` | 0xd9b2368 / 296 | `0c78d4bb057f87b4bdbba717bb45bedb15571e7f8c084c2a08aaca16fa4e491f` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9aefd0 / 168 | `04d6a1414d82ccc58eb640294580d2e7f23b918d21baa7f37edb5f38760341c2` | 144 |
+| `__glSpanUnpackIntI` | 0xd9b25bc / 296 | `ef3e321fabf184fc4840944cd5f31fa177e94f4c11cd8744679d735fdd348d9b` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9af160 / 168 | `e2722c2344f297b7bf69f6616f23bfa08eb2e6d654a58f4bc2267c9976a87d5b` | 143 |
+| `__glSpanUnpackNonCompUint` | 0xd9b26e4 / 116 | `3f5bd6a514c1fd172c966304e74ab5f84b4b3a4c26aa92aee89047d90f8fb142` | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9af210 / 232 | `01574a070deb98bae1f1b7ec3f72bef1ca20fd6aaaffa7bcbcc6a6bc08b9f6f2` | 102 |
+
+#### Target-build readings
+
+- `__glSpanUnpackRGBAubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b0898; occupies 96 bytes.
+  **Established.** Copies four byte components in each loop iteration, using `lbu` at 0xd9b08b0, 0xd9b08c0, 0xd9b08d0 and 0xd9b08d8, followed by `sb` at 0xd9b08bc, 0xd9b08cc, 0xd9b08d4 and 0xd9b08dc. Hostfacts leaves those effective source and destination addresses unresolved. The descriptor words read include argument 1 +0xb4 and +0x138 (`lw` at 0xd9b089c, 0xd9b08a8). The loop branch continues while its unknown index is below the first word (`bnez` at 0xd9b08e8), and that word is returned. The O32 body copies bytes without float conversion and makes no calls.
+
+- `__glSpanUnpackUbyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b121c; occupies 84 bytes.
+  **Established.** Uses unsigned-byte samples to select floating-point output values (`lbu` at 0xd9b1240, `lwc1` at 0xd9b1254, `swc1` at 0xd9b1264). All three effective addresses remain unknown in hostfacts. Descriptor words at argument 1 +0xb4 and +0x1c are read before the loop (`lw` at 0xd9b121c, 0xd9b1220). A nonpositive unresolved count skips conversion (`blez` at 0xd9b1238). The result is the descriptor's +0xb4 word (`jr` at 0xd9b1268).
+
+- `__glSpanUnpackByte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1270; occupies 96 bytes.
+  **Established.** Converts signed-byte span data to floating-point output. The loop reads with `lb` at 0xd9b1294, loads a float from argument 0 +0xde0 (`lwc1` at 0xd9b1298), and stores its result (`swc1` at 0xd9b12c4). Hostfacts cannot resolve the sample or output base. A nonpositive computed count takes the exit (`blez` at 0xd9b128c). Return data is the word read at argument 1 +0xb4 (`lw` at 0xd9b1270).
+
+- `__glSpanUnpackUshort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b12d0; occupies 120 bytes.
+  **Established.** Processes unsigned halfword samples (`lhu` at 0xd9b1300), combining their conversion with the float at argument 0 +0xde8 (`lwc1` at 0xd9b1320). Output is a float-word store at an unknown effective address (`swc1` at 0xd9b133c). The loop is skipped for a nonpositive unresolved count (`blez` at 0xd9b12f8). The descriptor word at entry a1 +0xb4 is returned (`jr` at 0xd9b1340).
+
+- `__glSpanUnpackShort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1348; occupies 96 bytes.
+  **Established.** Reads signed halfwords and a conversion parameter at argument 0 +0xde8 (`lh` at 0xd9b136c, `lwc1` at 0xd9b1370). Its float output store runs in the loop branch's delay slot (`bnez` at 0xd9b1398, `swc1` at 0xd9b139c), on both branch paths. The loop condition compares two unresolved values. The returned word comes from descriptor +0xb4 (`lw` at 0xd9b1348). These are host-span operations.
+
+- `__glSpanUnpackUint` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b13a8; occupies 120 bytes.
+  **Established.** Converts word-sized unsigned span data, loading a sample at an unresolved address (`lw` at 0xd9b13d8) and a float parameter at argument 0 +0xdf0 (`lwc1` at 0xd9b13f8). A signed nonnegative tested sample takes `bgez` at 0xd9b13e4 past the extra float addition. Negative falls through to that addition (`add.s` at 0xd9b13f4). Both outcomes execute the conversion delay slot (`cvt.s.w` at 0xd9b13e8). The result is stored as a float word through an unknown base (`swc1` at 0xd9b1414). Its integer return retains descriptor +0xb4 (`jr` at 0xd9b1418).
+
+- `__glSpanUnpack332Ubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b14d4; occupies 192 bytes.
+  **Established.** Expands packed byte samples into three float outputs. An unsigned byte load supplies the sample (`lbu` at 0xd9b1514), and its float writes are `swc1` at 0xd9b1560, 0xd9b157c and 0xd9b1588. The source and output effective addresses are unknown. A descriptor count at argument 1 +0xb4 that is nonpositive takes the early exit (`blez` at 0xd9b14f0). It makes no calls, while its return remains unresolved.
+
+- `__glSpanUnpack233RevUbyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1594; occupies 192 bytes.
+  **Established.** Handles the reversed packed-byte format with a byte read and three float stores (`lbu` at 0xd9b15d4, `swc1` at 0xd9b1620, 0xd9b163c, 0xd9b1648). Effective buffer addresses are unresolved in hostfacts. The final float store is the loop branch's delay slot and executes on both paths (`bnez` at 0xd9b1644). The loop compares an unknown index with argument 1 +0xb4. This is software unpacking with no calls.
+
+- `__glSpanUnpack565Ushort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1654; occupies 188 bytes.
+  **Established.** Unpacks unsigned halfword samples (`lhu` at 0xd9b1690) using a double-precision literal 63.0 at 0xda77bc0 (`ldc1` at 0xd9b1680). Each iteration writes three float words (`swc1` at 0xd9b16dc, 0xd9b16f8, 0xd9b1704), with effective output addresses unknown in hostfacts. A nonpositive descriptor count skips the work (`blez` at 0xd9b1670). There are no calls.
+
+- `__glSpanUnpack565RevUshort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1710; occupies 188 bytes.
+  **Established.** Uses the reversed halfword layout for a three-component float span. Sample reads are unsigned halfwords (`lhu` at 0xd9b174c), and a 63.0 literal comes from 0xda77bc8 (`ldc1` at 0xd9b173c). Its three output stores are `swc1` at 0xd9b1798, 0xd9b17b4 and 0xd9b17c0. Hostfacts cannot resolve either buffer base or the returned value. The body is call-free.
+
+- `__glSpanUnpack4444Ushort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b17cc; occupies 216 bytes.
+  **Established.** Builds four float outputs from a packed unsigned halfword (`lhu` at 0xd9b1800). The complete float-store list is `swc1` at 0xd9b1854, 0xd9b1870, 0xd9b188c and 0xd9b1898. The count at argument 1 +0xb4 being nonpositive skips all sample processing (`blez` at 0xd9b17e8). Sample and destination addresses, and the final result, are unknown in hostfacts.
+
+- `__glSpanUnpack4444RevUshort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b18a4; occupies 216 bytes.
+  **Established.** Processes the reversed packed four-component halfword format. It reads an unsigned halfword (`lhu` at 0xd9b18d8) and writes four float words (`swc1` at 0xd9b192c, 0xd9b1948, 0xd9b1964, 0xd9b1970). Buffer bases remain unknown. Its repeat branch tests an unresolved index against descriptor +0xb4 (`bnez` at 0xd9b196c), with the fourth output in the delay slot. There are no calls.
+
+- `__glSpanUnpack5551Ushort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b197c; occupies 204 bytes.
+  **Established.** Transforms a packed unsigned halfword into four software float components (`lhu` at 0xd9b19b0). Output stores are `swc1` at 0xd9b1a04, 0xd9b1a20, 0xd9b1a30 and 0xd9b1a3c, in that order. Hostfacts leaves their effective bases unresolved. Nonpositive descriptor +0xb4 takes the early exit (`blez` at 0xd9b1998). The routine has an unknown return.
+
+- `__glSpanUnpack1555RevUshort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1a48; occupies 204 bytes.
+  **Established.** Expands the reversed packed halfword variant through an unsigned load (`lhu` at 0xd9b1a7c) and four float stores (`swc1` at 0xd9b1ad0, 0xd9b1aec, 0xd9b1afc, 0xd9b1b08). The final store executes with both outcomes of the loop test (`bnez` at 0xd9b1b04). Hostfacts does not resolve the index, buffer addresses or return.
+
+- `__glSpanUnpackUbyteI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b1fe8; occupies 300 bytes.
+  **Established.** Converts unsigned-byte index samples into float-word output (`lbu` at 0xd9b2018, `swc1` at 0xd9b2040). A nonpositive descriptor +0xb4 skips conversion (`blez` at 0xd9b2004). The count's low two bits being zero selects the main processing path (`beqz` at 0xd9b2010). Later stores include `swc1` at 0xd9b2078, 0xd9b20a4, 0xd9b20d0 and 0xd9b2100. Effective buffer bases are unknown. Descriptor +0xb4 is returned (`jr` at 0xd9b210c).
+
+- `__glSpanUnpackByteI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b2114; occupies 296 bytes.
+  **Established.** Converts signed-byte indices from entry argument 2 (`lb` at 0xd9b2140), producing float-word stores such as `swc1` at 0xd9b2158, 0xd9b2174, 0xd9b219c and 0xd9b21b0. Later source and output addresses are unresolved. The descriptor +0xb4 count is returned. Hostfacts marks the destination 0xd9b217c of `beqz` at 0xd9b2130 as "outside", although it lies within this supplied range and appears in the listing as another branch's delay slot. No complete control-flow claim is made for that path. This is host conversion.
+
+- `__glSpanUnpackUshortI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b223c; occupies 300 bytes.
+  **Established.** Uses unsigned-halfword input for an index span (`lhu` at 0xd9b226c). A count at argument 1 +0xb4 that is nonpositive exits before conversion (`blez` at 0xd9b2258). The low two count bits equal to zero select the main path (`beqz` at 0xd9b2264). Float output stores include `swc1` at 0xd9b2294, 0xd9b22cc, 0xd9b22f8 and 0xd9b2324. Hostfacts cannot resolve their addresses. The original count word survives as the return. It calls no hardware-facing helper.
+
+- `__glSpanUnpackShortI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b2368; occupies 296 bytes.
+  **Established.** Produces a floating-point index span from signed-halfword data. The first input is entry argument 2 +0 (`lh` at 0xd9b2394), and output includes `swc1` at 0xd9b23ac, 0xd9b23c8, 0xd9b23f0 and 0xd9b2404, whose bases are unknown. It returns the descriptor word at argument 1 +0xb4. Hostfacts calls the destination 0xd9b23d0 of `beqz` at 0xd9b2384 "outside" despite that address being inside this range and listed as a delay slot. The complete path remains unresolved.
+
+- `__glSpanUnpackIntI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b25bc; occupies 296 bytes.
+  **Established.** Handles signed-word index conversion, starting with a word at entry argument 2 +0 (`lw` at 0xd9b25e8). Float output includes `swc1` at 0xd9b2600, 0xd9b261c, 0xd9b2644 and 0xd9b2658. Their effective destinations remain unknown. The returned value is descriptor +0xb4. The destination 0xd9b2624 of `beqz` at 0xd9b25d8 is labelled "outside" by hostfacts, while the supplied range and listing contain it as a delay-slot address. This limits the control-flow reading, not the observed host-buffer conversion.
+
+- `__glSpanUnpackNonCompUint` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b26e4; occupies 116 bytes.
+  **Established.** Converts unsigned word data without a component-parameter load. It reads descriptor words at argument 1 +0xb4 and +0x1c (`lw` at 0xd9b26f4, 0xd9b26f8), loads a sample at an unknown effective address (`lw` at 0xd9b2718), and stores a float word through another unknown base (`swc1` at 0xd9b2744). A signed nonnegative tested sample takes `bgez` at 0xd9b272c past the extra addition (`add.s` at 0xd9b273c). Negative falls through to that addition. The conversion delay slot runs for both outcomes (`cvt.s.w` at 0xd9b2730). Descriptor +0xb4 is returned. The routine makes no calls.
 ## Software renderer (soft)
 
 ### so_accumop.c
