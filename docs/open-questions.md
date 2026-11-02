@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 139 (hardware-facing 64, microcode 26, driver and library 47, product and history 2; the queued next-step lists are included under microcode and driver), route b 15, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 133 (hardware-facing 61, microcode 26, driver and library 46, product and history 0; the queued next-step lists are included under microcode and driver), route b 15, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -25,8 +25,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - clip-map register fields
 - DG state tables (line type, count, length, signal)
 - RM per InfiniteReality generation (hinv part needs hinv, route b)
-- RM11 raster memory size
-- 24-bit floating-point Z format
 - GE special-register offsets kpm does not name
 - HIP command and FIFO formats (arm1.u arm_data); DMA and interrupt words gecomm_*
 - RM tag bits 16-17, ContextReloadFromBEF passes, texel and raster widths, slots 0x00-0x0e
@@ -45,7 +43,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - RM.h raster register entries; tbu helpers in irsaudit
 - GE and DG revision per product (decode board id, DG identity word)
 - video bandwidth accept point for 8@ combinations
-- clip-map 4-bit size fields log2
 - stereo formats without a shipped cmb
 - RM self-test walking-ones sequence per TM
 - GE, RM and DG names per product against gfxinfo strings
@@ -145,7 +142,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - 426 soft-renderer routines without public name
 - display-list capacity limit in __glSdramSbrk
 - texture download and colour-matrix span converters
-- GL_RENDERER composition in GetBoardInfo
 - display-list size beyond 15 MB
 - colour matrix on texture load and stencil visuals
 - swap timeout log sequence and bad-state code
@@ -162,8 +158,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - videoresize scanned-out size and shadowmap demo
 
 **Product and history**
-- Kona as the InfiniteReality code name
-- processor count against per-RM pixel processors
+- none open
 
 Route b, named:
 - DPLEX first IRIX release (6.5.2 in the datasheet, 6.5.3 in the guide): needs the release notes of those releases
@@ -215,8 +210,6 @@ Places where two published SGI documents, or a document and a binary, say differ
 | Question | Owner | Routes tried | Next route |
 |---|---|---|---|
 | [route a] Which RM each InfiniteReality generation carries: the Onyx2 technical report says InfiniteReality is GE14 with RM7 and InfiniteReality2 is GE16 with RM9 (source 3); the hardware developer handbook's hinv table lists InfiniteReality for Onyx as "4 GEs, RM6" and InfiniteReality2 for Onyx as "4 GEs, RM7", and Onyx2 as GE14 with RM7/TM7 or RM8 (PDF p. 85, 274-275). The DPLEX guide's `gfxinfo` shows a GE14 system with one RM7 called `KONAL` graphics. | [rm.md](rm.md#board-sets-and-pipe-configurations) | The three documents; the netlist names in [rm.md](rm.md#chips-on-each-board) (`rm6`, `rm7`, `rm8`, `rm10`, `rm11`, `ge12_*`, `ge14_*`). The handbook is dated May 1997 and names generations by the first-Onyx board sets, so the two are probably describing different products under one marketing name, **inferred**. | Map each hinv graphics name to the `board type` word and `gfxinfo` string the 6.5.30 tools print for it. |
-| [route a] How an RM11 holds 2.5 GB: the IR4 addendum and datasheet give 2.5 GB of raster memory per RM11, from 80 MB per RM before (007-4525-001 PDF p. 4), but the `rm11` netlist has the same ten `imp8dc` chips as `rm10` ([rm.md](rm.md#chips-on-each-board)). | [rm.md](rm.md#board-sets-and-pipe-configurations) | The addendum, datasheet 3353 and the netlist table. | The `imp8d_16Mx16.sdbist` bit list (eight 32-bit groups of 16-word-M parts) gives 512 MB per `imp8dc` and 5 GB per ten-chip RM, twice the published figure ([rm.md](rm.md#board-sets-and-pipe-configurations)); no `imp` test-control script is shipped to count populated groups. | Read the 6.5.30 driver's per-RM pixel capacity for an RM11 pipe, and whether it halves for a ten-chip board. |
-| [route a] What the "24-bit floating-point Z" of the Onyx2 specification sheet is in the pipe, given the 23-bit smallest depth of the first-generation report (source 2) and the 24-bit Z output of the combiner: the sheet gives the word, not its format. | [rm.md](rm.md#board-sets-and-pipe-configurations) | The specification sheet, source 2, the combiner guide (PDF p. 31); `IMP_SZ1` depth size 16, 20, 24 or 32 with a compress bit names no encoding ([rm.md](rm.md#board-sets-and-pipe-configurations)). | Read the depth read-back and draw-pixels span converters of the GL driver for the word they turn depth into, and what unit-1 operation 0x7e does to window z. |
 
 ## Geometry engine program
 
@@ -518,10 +511,8 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] Video bandwidth accept point (two 1024x768 plus six 640x480 at 60 Hz): port `vfmtIsKonaCombinationValidForTarget` (`kona.so` 0x428590) to a script and run the shipped `8@` combinations through it; first read which record field feeds each of the three sums.
 - [route a] Display-list capacity (15 MB): read the limit `__glSdramSbrk` applies and the memory-type records of the configuration record.
 - [route a] Whether texture download runs the colour-matrix span converters: read `subloadLevel` in `kon_texture_api` against `px_paths`.
-- [route a] Clip-map: whether the 4-bit size fields are log2 (the 32768 per-axis bound rests on that); read the clip-map bind in `arm1.u`.
 - [route a] Stereo: a shipped `cmb` exists for only three of the eight stereo formats; read what `setmon` does with the other five (`konBuildCmbList`).
 - [route a] RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM.
-- [route a] GL_RENDERER string: decode the full composition in `GetBoardInfo` (the board-set 4 path at 0x0d9481fc is not read).
 - [route c] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
 - [route a] GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`).
 - [route b] IR2 and IR2E internal names against the marketing names: a guest's hinv must print the internal name for each configured product.
@@ -538,8 +529,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
 - [route a] IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries.
 - [route c] Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
-- [route a] Code-name claim ("Kona" as the InfiniteReality code name): check against the product names in the shipped binaries and PROM tables.
-- [route a] Processor count in the oral-history lead: check against the repo's count of per-RM pixel processors.
 - [route a] Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
 - [route a] RM repair thread: model the rm_extbist and irsaudit self-test sequence per TM, and check the TM-to-SDRAM bank count.
 - [route a] RM9 upgrade garbage counts: boot with RM slot 0 empty or unreadable; expect the garbage-count report and death_reason 17.
