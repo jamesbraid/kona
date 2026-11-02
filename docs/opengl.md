@@ -2057,6 +2057,41 @@ Otherwise it calls `__glKonParseInput` and returns -1 if that reports an error, 
 It stores the width and height it was given and, when the context words at +1792, +1796 and +1380 select a convolution (+1380 equal to 0x81c5), reduces the width, and for target 0xde1 the height, by the filter's own size minus 1, read through `GetConvolutionFilter`.
 When bit 5 of the context word at +1796 is set it doubles the height.
 
+### 64-bit texture routines read in full
+
+The following entries are from the 6.5.30m `usr/gfx/arch/IP27KONA64/libGLcore.so` body, not address or size transfers from the N32 build. The address and size on each continuation line are the values re-derived from that ELF.
+
+- `__glkonim_TexSubImage2DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd4b70, size 132. It accepts targets 0xde1 and 0x8095, raises 0x500 for either other target, then forwards a two-dimensional sub-image with the saved target arguments, a zero first mode word, a one-dimensional count of 1 and the source record at argument-stack offset 0x70. The body returns after the forwarding call.
+- `__glkonim_CopyTexSubImage2DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd4cf0, size 120. It accepts the same two targets, raises 0x500 otherwise, and forwards the copy with a zero first mode word, the original coordinates and the saved source target; the source depth argument is copied to stack offset 4 before the call. The wrapper returns without adding a command of its own.
+- `__glkonim_CopyTexSubImage3DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd4d70, size 84. It requires target 0x806f, raises 0x500 for any other target, loads the caller's depth word from stack offset 0x64 into the forwarding record, and calls the three-dimensional copy routine with that word at stack offset 4.
+- `__glkonlc_TexImage1D` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd7c70, size 224. The display-list compiler accepts targets 0xde0 and 0x8063; other targets go to the library error hook. It calls the immediate image sender with a one-dimensional flag, passes the saved width and format words through stack offsets 4 and 8, and supplies the pixel pointer from the caller's saved argument area.
+- `__glkonlc_TexImage2D` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd7d50, size 220. It accepts 0xde1 and 0x8064, reports 0x500 for other targets, and calls the immediate image sender with the two-dimensional flag and the record's saved target, level, dimensions, format and pixel pointer. The list compiler leaves the sender's result in the normal return register.
+- `__glkonlc_TexImage3DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd7e30, size 208. It accepts targets 0x806f and 0x8070, reports 0x500 otherwise, and forwards the saved depth and pixel pointer along with the three-dimensional flag to the immediate image sender. The wrapper itself writes no command-port word.
+- `__glkonle_TexImage` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd7f00, size 156. It parses a 40-byte display-list image record into a temporary argument block, calls the immediate image sender with the record's first six words and its trailing pixel pointer, then returns the next record address rounded up to an 8-byte boundary after the record's size word at +0x24.
+- `__glkonle_TexSubImage1DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd7fa0, size 164. It parses the list record, forwards target, level, x offset, width, format, type and pixels to the one-dimensional sub-image sender with zero y and z coordinates, then returns the next 8-byte-aligned record address from the size word at +0x18.
+- `__glkonle_TexSubImage2DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd8050, size 164. It parses the record and forwards its target, level, x and y offsets, width, height, format, type and pixels to the two-dimensional sender; the next record is the +0x20 size rounded up to an 8-byte boundary.
+- `__glkonle_TexSubImage3DEXT` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dd8100, size 164. It parses the three-dimensional list record, forwards target through z offset, width, height, depth, format, type and pixels, and advances by the +0x28 record size rounded to an 8-byte boundary. No hardware access occurs outside the sender it calls.
+- `__glKonTexFree` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dda590, size 232. For a texture object whose flag word at +0x20 has bit 20 set, it unlinks the cache entry at +0x1c0 from its doubly linked list, clears that flag, and frees the associated table through the context allocator. It then frees the object banks at +0x198 and +0x1a0 with allocator modes 0 and 1 when present, clears both pointers, and returns zero.
+- `__glKonInitTextureMemory` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dda880, size 140. It initialises the texture-memory state at context plus 0x10000: stores the supplied allocator handle at +0x4d8, clears usage counters and list heads, writes -2 to both free-count fields, links six empty lists to the sentinel at +0x150168, and sets the active flag words at +0x318 and +0x480 to 1.
+- `__glKonFreeTextureMemory` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2dda910, size 172. It walks the bank-pointer array at state +0x4f0 for the count at +0x4f8, calls the allocator's free entry at context offset +0x18 for each bank, then calls the same entry once for the array itself. A non-positive count skips the loop and still releases the array pointer.
+- `__glKonHashFindTexFast` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2ddabc0, size 108. It hashes the low 12 bits of the texture key into 16-byte buckets, compares the stored key at bucket +0x1c, and on a miss probes up to three more buckets using a step formed from key bits 6 through 17. It returns the value at +0x10 of the matching bucket or zero after four misses.
+- `__glKonHashDeleteTexFast` — `usr/gfx/arch/IP27KONA64/libGLcore.so`: **Established.**
+  Address 0x2ddae70, size 112. It uses the same initial bucket and three-step probe sequence as the fast lookup, returns the matched value at +0x10, and clears the matching key at +0x1c. A miss returns zero without changing the table.
+
 ## What the published manuals add
 
 Labels follow [published-sources.md](published-sources.md); page numbers are PDF page indexes of the stored copies ([docs/sources/](sources/README.md)).
