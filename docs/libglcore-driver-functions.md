@@ -251,6 +251,10 @@ Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/I
   **Established.** A wrapper that calls `FindWindowSize` and returns, with its arguments unchanged. It sends nothing.
 - `ApplyScissor` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd948330, 8 bytes, `kon_context.c`):
   **Established.** An empty function: it returns at once without touching any register or the context.
+- `ApplyScissor` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2daa370, 8 bytes):
+  **Established.** The 64-bit copy of the empty function above. Its body is the same two instructions, `jr ra` and a `nop`, with the same code hash (78aa5094d5ec) as the N32 build's `ApplyScissor` at 0xd948330, so it returns at once without touching any register or the context.
+- `ApplyScissor` (`usr/gfx/arch/IP35KONA64/libGLcore.so` 0x218a370, 8 bytes):
+  **Established.** The 64-bit copy of the empty function above in the IP35 build. Its body is the same `jr ra` and `nop`, with the same code hash (78aa5094d5ec) as the N32 build's `ApplyScissor` at 0xd948330, so it returns at once without touching any register or the context.
 - `Error` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd9484e0, 16 bytes, `kon_context.c`):
   **Established.** Reports an error code to the pipe: it writes the token 228 and its second argument to the command port (process address 0x4000). It records nothing in the host context.
 - `update_cmpnd_cmd` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xd95af20, 52 bytes, `kon_vertarray.c`):

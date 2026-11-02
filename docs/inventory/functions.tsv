@@ -25336,7 +25336,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBo
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa2c0	104	FindWindowSize	dwarf	c28b61f76bdd		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only		
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only		
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa420	176	ChannelRect	dwarf	e3b468726bb9		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa4d0	76	ChannelRectSync	dwarf	e65b41323efa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
@@ -42035,7 +42035,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBo
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a2c0	104	FindWindowSize	dwarf	c28b61f76bdd		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a330	56	ApplyViewport	dwarf	4ef20ea35ca9	multi-unit	in	named-only		
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	named-only		
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a370	8	ApplyScissor	dwarf	78aa5094d5ec	multi-unit	in	understood	docs/libglcore-driver-functions.md#small-command-senders-and-helpers	Small command senders and helpers
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a380	160	SwapBuffers	dwarf	c8abf11d9b11	multi-unit	in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a420	176	ChannelRect	dwarf	e3b468726bb9		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a4d0	76	ChannelRectSync	dwarf	e65b41323efa		in	understood	docs/libglcore-driver-builds.md#64-bit-routines-read-in-full	64-bit routines read in full
