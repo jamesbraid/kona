@@ -2156,6 +2156,93 @@ Eight target bodies differ from their documented N32 counterparts. Their formula
 
 - `__glim_Color3sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9cbb50; occupies 160 bytes. Byte-identical over the full body to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cbb50. SHA-256 3dff508dc1a876a032d09f52dd442f00aeaeb838791f67bc434fd31d49aa616d. Existing grade Inferred retained.
+## IP35 O32 index and clipping routine identities
+
+## IP35 O32 index and clipping routines identical to IP27 O32
+
+The complete target bodies listed below are byte-identical to the exact same-address IP27 O32 bodies. This records code identity only. Floating-point values and attribute meaning remain unresolved where the existing entries and target facts leave them unresolved.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) |
+|---|---|---|---|
+| __glim_Indexdv | 0xd9cc7b8 / 20 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc7b8 / 20 | 7a87558edb401ee581c039b50c85af7b3023341cfd8a54ca3824394ea5e0e6b0 |
+- `__glim_Indexdv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc7b8; occupies 20 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc7b8. SHA-256 7a87558edb401ee581c039b50c85af7b3023341cfd8a54ca3824394ea5e0e6b0.
+
+| __glim_Indexfv | 0xd9cc7cc / 16 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc7cc / 16 | fd889ce92333c164838e5f35370812935666193965d6e39cee6b54fa54bbb1e2 |
+- `__glim_Indexfv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc7cc; occupies 16 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc7cc. SHA-256 fd889ce92333c164838e5f35370812935666193965d6e39cee6b54fa54bbb1e2.
+
+| __glim_Indexiv | 0xd9cc7dc / 28 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc7dc / 28 | 6f7d870c911f34dc4927f4c2da185913f5fc633d40f2edf6ce70465cd1eaa3f5 |
+- `__glim_Indexiv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc7dc; occupies 28 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc7dc. SHA-256 6f7d870c911f34dc4927f4c2da185913f5fc633d40f2edf6ce70465cd1eaa3f5.
+
+| __glim_Indexsv | 0xd9cc7f8 / 28 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc7f8 / 28 | edb617e5b02cd42d31d032bf44deb5e6b3d29b71c81709b99f855b2b7eae6c12 |
+- `__glim_Indexsv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc7f8; occupies 28 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc7f8. SHA-256 edb617e5b02cd42d31d032bf44deb5e6b3d29b71c81709b99f855b2b7eae6c12.
+
+| __glim_Indexub | 0xd9cc814 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc814 / 60 | ee88577ca256c31fa4a53a27e3c23396673a56f8384159dc7444d465764f1553 |
+- `__glim_Indexub` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc814; occupies 60 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc814. SHA-256 ee88577ca256c31fa4a53a27e3c23396673a56f8384159dc7444d465764f1553.
+
+| __glim_Indexubv | 0xd9cc850 / 56 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cc850 / 56 | 9d6247d746dcd8e42d907d3f5b9478d266248e65e12d6b097dee99a44dfcff50 |
+- `__glim_Indexubv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cc850; occupies 56 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cc850. SHA-256 9d6247d746dcd8e42d907d3f5b9478d266248e65e12d6b097dee99a44dfcff50.
+
+| Clip | 0xd9ccaa0 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ccaa0 / 136 | c93f09e473fb7bb3dcac630e7fb61558b0f1fc8714223bca0d40560e7ca8b4e4 |
+- `Clip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ccaa0; occupies 136 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ccaa0. SHA-256 c93f09e473fb7bb3dcac630e7fb61558b0f1fc8714223bca0d40560e7ca8b4e4.
+
+| ClipC | 0xd9ccb28 / 232 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ccb28 / 232 | ea870d6a435a1f7120f7ac6a282660aa8409c04602a3a5aba83582778357ce4c |
+- `ClipC` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ccb28; occupies 232 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ccb28. SHA-256 ea870d6a435a1f7120f7ac6a282660aa8409c04602a3a5aba83582778357ce4c.
+
+| ClipI | 0xd9ccc10 / 160 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ccc10 / 160 | 331df11aafdc1f49bae0a1a4ad52678476da0d71902008e91bee723bba022c72 |
+- `ClipI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ccc10; occupies 160 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ccc10. SHA-256 331df11aafdc1f49bae0a1a4ad52678476da0d71902008e91bee723bba022c72.
+
+| ClipBC | 0xd9cccb0 / 328 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cccb0 / 328 | b92f590ce0465516f3190ca06a873c3166e731e9a3c5089cd23a094b2fda2495 |
+- `ClipBC` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cccb0; occupies 328 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cccb0. SHA-256 b92f590ce0465516f3190ca06a873c3166e731e9a3c5089cd23a094b2fda2495.
+
+| ClipBI | 0xd9ccdf8 / 184 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ccdf8 / 184 | 1f43573b6817a9f56048674b661512a579c1bc15d05a4b73c230a3edd1f312d0 |
+- `ClipBI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ccdf8; occupies 184 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ccdf8. SHA-256 1f43573b6817a9f56048674b661512a579c1bc15d05a4b73c230a3edd1f312d0.
+
+| ClipT | 0xd9cceb0 / 232 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cceb0 / 232 | ae1720b91f9b405ceeb7a0658cf6647b8b21427b44be1417c2f92ef6991500c3 |
+- `ClipT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cceb0; occupies 232 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cceb0. SHA-256 ae1720b91f9b405ceeb7a0658cf6647b8b21427b44be1417c2f92ef6991500c3.
+
+| ClipIT | 0xd9ccf98 / 256 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9ccf98 / 256 | 60640856d46d6d4b7595f20463db5987fa0d448d497562b880668c878cc77288 |
+- `ClipIT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ccf98; occupies 256 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9ccf98. SHA-256 60640856d46d6d4b7595f20463db5987fa0d448d497562b880668c878cc77288.
+
+| ClipBIT | 0xd9cd098 / 280 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd098 / 280 | de379336d2f9eef8bb5f58183452ce5d5373b0352a344aa741a61107d7e6d945 |
+- `ClipBIT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd098; occupies 280 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd098. SHA-256 de379336d2f9eef8bb5f58183452ce5d5373b0352a344aa741a61107d7e6d945.
+
+| ClipCT | 0xd9cd1b0 / 328 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd1b0 / 328 | 6e64ac2486dbb72dc4f8c1cb5b24fc60cb557e1031c94c812273d0e323a19f24 |
+- `ClipCT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd1b0; occupies 328 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd1b0. SHA-256 6e64ac2486dbb72dc4f8c1cb5b24fc60cb557e1031c94c812273d0e323a19f24.
+
+| ClipBCT | 0xd9cd2f8 / 424 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd2f8 / 424 | 0bd525bc38a9f7201b649435eba8f5aeb49e299fa69c853dd81e2b226cf8bb28 |
+- `ClipBCT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd2f8; occupies 424 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd2f8. SHA-256 0bd525bc38a9f7201b649435eba8f5aeb49e299fa69c853dd81e2b226cf8bb28.
+
+| ClipF | 0xd9cd4a0 / 208 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd4a0 / 208 | 0d8cdeb37394d3efe4f3d5d70979dc1bfa6dbcf6742811c70afc34f7732263cd |
+- `ClipF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd4a0; occupies 208 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd4a0. SHA-256 0d8cdeb37394d3efe4f3d5d70979dc1bfa6dbcf6742811c70afc34f7732263cd.
+
+| ClipIF | 0xd9cd570 / 232 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd570 / 232 | e45cca28feef9ffb278a0fa4795e14671f6b2743f0d36c512dee279ab3c7fcf9 |
+- `ClipIF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd570; occupies 232 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd570. SHA-256 e45cca28feef9ffb278a0fa4795e14671f6b2743f0d36c512dee279ab3c7fcf9.
+
+| ClipBIF | 0xd9cd658 / 256 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd658 / 256 | 10b440bc5344779d27a2938fd9ccc76d53937bc952e80cb27ecb4db101dadb01 |
+- `ClipBIF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd658; occupies 256 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd658. SHA-256 10b440bc5344779d27a2938fd9ccc76d53937bc952e80cb27ecb4db101dadb01.
+
+| ClipCF | 0xd9cd758 / 304 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xd9cd758 / 304 | a3a5b3c6494fa3f9dac81677140af60ada946e4c300ee0e86a2498bc9126d547 |
+- `ClipCF` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9cd758; occupies 304 bytes. Byte-identical over the complete routine to usr/gfx/arch/IP27KONA/libGLcore.so at 0xd9cd758. SHA-256 a3a5b3c6494fa3f9dac81677140af60ada946e4c300ee0e86a2498bc9126d547.
 ## Software renderer (soft)
 
 ### so_accumop.c
