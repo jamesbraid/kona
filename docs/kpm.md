@@ -155,6 +155,27 @@ written.
   0x236, starts the mapped output-DMA transfer, waits with a ten-iteration
   bound, and writes the captured ERAM section. It reports a failed completion
   and returns -1 on that path. (`kpm`, 6.5.30m, full routine at 0x1001ed84.)
+- `setup_dma` (`kpm` 0x1001f76c, 84 bytes): **Established.** Clears overflow at
+  host offset 0x2c0, stores the caller's page, offset and length at 0x2a0,
+  0x2a8 and 0x2b0, mirrors the length to total at 0x2b8, and writes 1 to
+  `HH_TBUS_STATUS` at 0x3a8. It returns zero. (`kpm`, 6.5.30m, stores at
+  0x1001f788-0x1001f7b4.)
+- `cleanup_dma` (`kpm` 0x1001f898, 352 bytes): **Established.** If a DMA map is
+  active, submits ioctl 0x2774 with kind 10, marks the map released, and calls
+  the mapped-buffer cleanup callback when a buffer handle is present. It
+  returns zero when the map is absent or cleanup succeeds, and -1 after a
+  negative map or cleanup result. (`kpm`, 6.5.30m, branches at
+  0x1001f8d4-0x1001f9f4.)
+- `assign_register` (`kpm` 0x100121f4, 160 bytes): **Established.** Looks up a
+  register key in the 60-byte register-record array, stores the caller's value
+  at record offset 0x34, and returns zero. A missing key reports the diagnostic
+  error and returns -1. (`kpm`, 6.5.30m, lookup at 0x1001221c and store at
+  0x1001224c.)
+- `extract_register` (`kpm` 0x10012294, 172 bytes): **Established.** Looks up
+  the register key, ANDs the record's value at offset 0x30 with its mask at
+  offset 0x34, stores the result through the caller's pointer, and returns
+  zero. A missing key reports the same diagnostic error and returns -1.
+  (`kpm`, 6.5.30m, lookup at 0x100122bc and extraction at 0x100122e0.)
 
 ## Register tables and logging
 
