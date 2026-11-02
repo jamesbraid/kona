@@ -1384,13 +1384,13 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100191cc	240	jt_dump_external_
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100192bc	1104	jt_read_external_bist_info	dynsym	f3b6c4237357		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10019e28	4704	jt_execute_external_bists	dynsym	3c08df2dde0a		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b088	364	compare	dynsym	05a31e592c29		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b1f4	1468	modify_bef_user_reg	dynsym	3c9db9036863		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b7b0	88	set_bef_user_reg	dynsym	a2f64eec191b		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b808	2096	modify_bef_config_reg	dynsym	8c7afaab1413		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c038	976	query_bef_config_reg	dynsym	baac12f78301		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c408	824	query_bef_user_reg	dynsym	a95badda2361		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c740	1356	query_bef_status_reg	dynsym	b3a7d9c81502		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cc8c	100	set_bef_config_reg	dynsym	b719dfb28e89		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b1f4	1468	modify_bef_user_reg	dynsym	3c9db9036863		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b7b0	88	set_bef_user_reg	dynsym	a2f64eec191b		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001b808	2096	modify_bef_config_reg	dynsym	8c7afaab1413		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c038	976	query_bef_config_reg	dynsym	baac12f78301		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c408	824	query_bef_user_reg	dynsym	a95badda2361		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001c740	1356	query_bef_status_reg	dynsym	b3a7d9c81502		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cc8c	100	set_bef_config_reg	dynsym	b719dfb28e89		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001ccf0	84	select_bef_current_ge	dynsym	5df4cc19b291		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001cd44	268	TEST_befconfig	dynsym	82263a9c90a9		in	named-only	docs/irsaudit.md#tests	Tests
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1001ce54	280	determine_crc_goldfile	dynsym	70ff7b8eac6e		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
@@ -1406,7 +1406,7 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002b380	68	set_decode_fcn	dyn
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002b3c4	532	mini_decode_func	dynsym	9d2e3b079fe9		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002b5d8	1100	wishy_washy_decode_func	dynsym	40372c8ecfc5		in	named-only	docs/irsaudit.md#drawing-test-support	Drawing test support
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002ba24	360	init_crc_structs	dynsym	e997a6d4bde4		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002c060	368	waitBefDone	dynsym	4c59b7dcdf51		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002c060	368	waitBefDone	dynsym	4c59b7dcdf51		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002c1d0	2420	waitDrawLoadDone	dynsym	60c1b4711bb0		in	named-only	docs/irsaudit.md#reporting-and-options	Reporting and options
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002cb44	1908	waitIMPVideoDone	dynsym	29022a915e53		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1002d2b8	116	waitRbusDone	dynsym	1091ce3188b5		in	named-only	docs/irsaudit.md#video-display-and-option-boards	Video, display and option boards
@@ -1454,23 +1454,23 @@ usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037158	192	dg_make_dac_fetal
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037218	188	destroy_map_diag	dynsym	a1ffdac98534		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100372d4	156	ged_host_reg_write	dynsym	41978782f98a		in	named-only	ucode/ged.md#registers-the-host-writes	Registers the host writes
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037370	728	ged_set_ge	dynsym	94ec268df3d6		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037648	288	befSelCurrGE	dynsym	602f51989c29		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037648	288	befSelCurrGE	dynsym	602f51989c29		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037768	92	set_current_ge	dynsym	bc26c9d55170		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100377c4	176	set_ge11_bypass_pointer	dynsym	5af4a718dd27		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037874	272	ge11_bypass_write	dynsym	82570fed57c4		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037984	228	ge11_bypass_read	dynsym	af725af6c138		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	d08ffe81de46		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037ad0	408	ge_bypass_read_nomap	dynsym	8eeb4e10bc19		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037a68	104	switch_ged_ge	dynsym	d08ffe81de46		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037ad0	408	ge_bypass_read_nomap	dynsym	8eeb4e10bc19		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037c68	480	wait_for_odma	dynsym	ff04d51a650d		in	named-only	docs/hip.md#output-dma-from-the-pipe-side	Output DMA from the pipe side
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037e48	396	setup_dma	dynsym	b39dc2b4c152		in	named-only	docs/hip.md#output-dma-registers-as-the-host-programs-them	Output-DMA registers as the host programs them
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10037fd4	184	wait_for_dma_completion	dynsym	b17eda2c1075		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	86815e8d4523		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	2ca90159f887		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	d5735582ec6b		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038314	304	arm_init_ge	dynsym	a7abbec039da		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038444	104	PioWriteArm32	dynsym	0fc7eba2546e		in	named-only	docs/ge.md#registers-the-arms-path-to-them	Registers: the ARM's path to them
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003808c	384	init_ge_num	dynsym	86815e8d4523		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x1003820c	124	diag_arm_reg_write	dynsym	2ca90159f887		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038288	140	arm_ged_write	dynsym	d5735582ec6b		in	named-only	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038314	304	arm_init_ge	dynsym	a7abbec039da		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038444	104	PioWriteArm32	dynsym	0fc7eba2546e		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100384ac	84	PioReadArm32	dynsym	c086e4cc3063		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
-usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038500	84	PioReadArmIncr32	dynsym	14ae5ee0f015		in	named-only	docs/irsaudit.md#hardware-access-layers	Hardware access layers
+usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038500	84	PioReadArmIncr32	dynsym	14ae5ee0f015		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038554	64	StallArm	dynsym	39521d3f62a5		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x10038594	64	UnStallArm	dynsym	fce1038e852d		in	understood	docs/irsaudit.md#function-readings-from-the-shipped-diagnostic	Function readings from the shipped diagnostic
 usr/diags/IR/bin/irsaudit	board-diagnostic	n32		0x100385d4	444	initialize_icu	dynsym	ca7a5db62b57		in	named-only	docs/hip.md#interrupt-conditions	Interrupt conditions
@@ -2599,8 +2599,8 @@ usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011b24	720	kjiGetSubFieldV	dynsym	2b933
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10011df4	564	kj_arrange_global_instruction	dynsym	091368269b7c		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012028	64	get_field_length	dynsym	09f1b7d4f424		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012068	396	locate_register	dynsym	303f3b24e7a0		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	6480cbcb8a16		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
-usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	b70c1abe376a		in	named-only	docs/kpm.md#register-tables-and-logging	Register tables and logging
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x100121f4	160	assign_register	dynsym	6480cbcb8a16		in	named-only	docs/kpm.md#hardware-helper-readings	Hardware helper readings
+usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012294	172	extract_register	dynsym	b70c1abe376a		in	named-only	docs/kpm.md#hardware-helper-readings	Hardware helper readings
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012340	56	armAccessEnable	dynsym	7adc3a402b41		in	named-only	docs/hip.md#stalling-and-unstalling-the-arm	Stalling and unstalling the ARM
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012378	1212	adapterInspection	dynsym	925125369ea4		in	understood	docs/kpm.md#capture-routines-read-in-full	Capture routines read in full
 usr/gfx/KONA/bin/kpm	board-tool	n32		0x10012834	5288	hipInspectionPreJtag	dynsym	a2b07bf3a79b		in	named-only	docs/hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window	The host's boundary-scan controller and the ARM debug window
