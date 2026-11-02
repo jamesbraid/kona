@@ -834,6 +834,115 @@ These boundary-scan helpers were read in their complete N32 address ranges.
   one bit. It stores the accumulated length at chain offset 0x18. (`kpm`,
   6.5.30m, reverse chain loop at 0x10035090-0x1003524c.)
 
+The following additional readings were taken from complete N32 address ranges.
+
+- `read_chains` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x100216dc;
+  size 2464 bytes. It initializes the boundary-scan lookup tables and selects
+  a chain-description parser through the configuration jump table (`lw` at
+  0x100218b4 and `jr` at 0x100218b8). The selected parser allocates a chain
+  record (`jalr` at 0x10021964), parses the description and chip records, and
+  stores the completed object in the global chain slot (`sw` at 0x10021980).
+  Invalid configuration releases the temporary record through the error path.
+
+- `disassemble_tbus` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x1003141c; size 1924 bytes. It keeps a pending raster-bus word in a state
+  record, combines the low two command bits with the caller's alignment
+  (`andi` at 0x10031480 and `or` at 0x10031508), and dispatches command
+  classes 9, 10, 11, 13, 14 and 15 through the decoder table (`beq` tests at
+  0x1003150c-0x10031544). Class 14 selects a handler from the upper command
+  bits (`and` at 0x100315d4 and table load at 0x100315ec); handled words clear
+  the pending state at 0x10031564. A partial command is retained in the state
+  record (`sw` at 0x100315ac-0x100315bc).
+
+- `armInspection` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10032c4c;
+  size 652 bytes. It creates an ARM-register dump section, selects an ARM
+  address, reads the host word at offset 0x3f0 (`sw` at 0x10032ce8 and `lw` at
+  0x10032d00), and writes a 20-byte record (`dfWriteSection` call at
+  0x10032d90 with length 0x14). When status bit 8 is set (`andi` at
+  0x10032da8), it allocates a second section, reads 0x2000 words from the ARM
+  window (`sw` at 0x10032e28 and loop bound at 0x10032e34), writes 0x8000
+  bytes, frees the buffer, and returns zero. Allocation failure returns -1
+  (`addiu` at 0x10032ed4).
+
+- `read_arm_symbols` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100325b0; size 1256 bytes. It reads the ARM symbol file into a temporary
+  table, parses each record's address and name, and stores the completed table
+  in the caller-visible state (`sw` at 0x100329d8 and loop at 0x100327f0).
+  The symbol-count and record-width variants come from the image header
+  (`lhu` at 0x100329fc); malformed input frees the temporary table and returns
+  -1 through the error path at 0x10032924.
+
+- `jt_print_chain` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10037700;
+  size 1144 bytes. It walks all chain records (`lw` at 0x10037748 and loop
+  branch at 0x10037a60), prints each chip's name and register description, and
+  dispatches register contents to `jt_print_bsr` (`jal` at 0x10037810). It
+  counts instruction and data fields in separate stack counters and prints
+  their totals through formatter calls near 0x10037a74-0x10037b58.
+
+- `jt_print_bsr` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10037b80;
+  size 1756 bytes. It prints the chip's descriptor words, conditionally prints
+  the instruction and data vectors (`andi` tests at 0x10037bf8 and
+  0x10037c2c), then walks the register list at +0x14 in 4-byte index steps
+  (`lw` at 0x10037c84 and loop at 0x10037cb0). It prints each register's bit
+  width and value, followed by bit names selected by the width at +0x1c
+  (`sllv` at 0x10037d14).
+
+- `jt_dispose_chain` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x10038f10; size 268 bytes. It walks the chain records backwards from count
+  minus one (`addiu` at 0x10038f34 and loop at 0x10038fb0), disposes each
+  active chip record through the cleanup callback (`jal` at 0x10038f9c), then
+  frees the record array, name and chain allocations (`jalr` calls at
+  0x10038fc8-0x10038ffc).
+
+- `jt_findfile` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10039020;
+  size 536 bytes. It obtains the configured search path, tries the caller's
+  filename and then the library suffix form (`jalr` calls at 0x1003904c,
+  0x100390a8 and 0x100390f8), and returns the matching path buffer. On a
+  successful search it strips the final separator byte (`sb` at 0x10039134
+  and 0x100391fc); failed searches return null at 0x10039218.
+
+- `jt_zopen` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10039440;
+  size 656 bytes. It allocates an aligned input buffer from the filename
+  length (`subu` at 0x1003948c), reads the compressed header, and stores its
+  two result words at frame offsets -0xbc and -0x15c (`sw` at 0x100394c4 and
+  0x100394e0). Uncompressed input allocates a second buffer and returns that
+  handle (`jal` at 0x10039690); compressed input builds the stream object and
+  returns the decompressor result (`jal` at 0x1003958c). Allocation or header
+  failure returns zero.
+
+- `jt_conditional_reset` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
+  0x100341e0; size 1816 bytes. It builds the reset instruction list,
+  canonicalizes the chain, and scans active records backwards from count minus
+  one (`lw` at 0x100342a8 and `bltz` at 0x100342bc). It skips power, test and
+  memory entries when the caller masks request them (tests at
+  0x10034340-0x10034498), inserts the selected instruction with
+  `jt_unpack_vector` (call at 0x10034768), and sends the vector with
+  `jt_send_instruction` (call at 0x100348b8). It records the packed length at
+  chain offset +0x18 (`sw` at 0x10034884) and returns zero after cleanup.
+
+- `jt_insert_bits` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x10039c80;
+  size 860 bytes. It resolves a chip and register, converts the selected bit
+  offset to a byte and bit position (`sra` at 0x10039e58), replaces target bits
+  while preserving the other bits (`and`/`or` at 0x10039ee4-0x10039ef8), and
+  stores the updated byte (`sb` at 0x10039f18). It frees the temporary lookup
+  vector and returns zero; lookup or allocation failures return -1 (`sd` at
+  0x10039cfc, 0x10039d58 and 0x10039e44).
+
+- `jt_nullify` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1003a670;
+  size 672 bytes. It walks every active chain record (`lw` at 0x1003a6e4 and
+  loop at 0x1003a8f4), resolves its instruction and data vectors, and replaces
+  selected bit ranges with zero or the descriptor's null value (`jalr` at
+  0x1003a778 and `sb` at 0x1003a860 and 0x1003a89c). It skips records whose
+  kind is not one (`bne` at 0x1003a710) and returns after the final record.
+
+- `jt_copy_bits` (`usr/gfx/KONA/bin/kpm`). **Established.** Address 0x1003a910;
+  size 596 bytes. It copies the requested number of bits between packed byte
+  vectors. Misaligned offsets use a per-bit loop (`andi` tests at 0x1003a944
+  and 0x1003a954), masking and merging one destination bit at a time
+  (`and`/`or` at 0x1003a9e0-0x1003aa00). Aligned full bytes use the direct
+  `lbu`/`sb` loop at 0x1003aa78-0x1003aa98, and a final partial byte is merged
+  at 0x1003aad0-0x1003ab50.
+
 The following boundary-scan wrappers were read in their complete N32 address ranges.
 
 - `jt_new_data_vector` (`usr/gfx/KONA/bin/kpm`). **Established.** Address
