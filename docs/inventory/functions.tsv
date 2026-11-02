@@ -16084,7 +16084,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07ae8	84	__glPointPara
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07b3c	156	__glPixelTransformParameterfvSGI_size	dynsym+mdebug	cd5a600e2a9c		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07bd8	52	__glPixelTransformParameterivSGI_size	dynsym+mdebug	17f290f2b4ba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07c0c	52	__glPixelTexGenParameterivSGIS_size	dynsym+mdebug	e10aa634324d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07c40	52	__glPixelTexGenParameterfvSGIS_size	dynsym+mdebug	f0f3028ce87b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07c40	52	__glPixelTexGenParameterfvSGIS_size	dynsym+mdebug	f0f3028ce87b		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07c74	116	__glFragmentMaterialfvSGIX_size	dynsym+mdebug	7e81e188a506		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07ce8	52	__glFragmentMaterialivSGIX_size	dynsym+mdebug	0bb6b14dc8f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda07d1c	184	__glFragmentLightfvSGIX_size	dynsym+mdebug	5146798bad56		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -16653,19 +16653,19 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42188	152	__gllc_Norma
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42220	152	__gllc_Normal3iv	dynsym+mdebug	91c2331ceafd		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda422b8	152	__gllc_Normal3s	dynsym+mdebug	95bce29b3c56		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42350	152	__gllc_Normal3sv	dynsym+mdebug	c4745db460f2		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda423e8	148	__gllc_RasterPos2d	dynsym+mdebug	41ebcaaf6052		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4247c	148	__gllc_RasterPos2dv	dynsym+mdebug	7463c5918747		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda423e8	148	__gllc_RasterPos2d	dynsym+mdebug	41ebcaaf6052		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4247c	148	__gllc_RasterPos2dv	dynsym+mdebug	7463c5918747		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42510	140	__gllc_RasterPos2f	dynsym+mdebug	f15dd3fb42ec		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4259c	140	__gllc_RasterPos2fv	dynsym+mdebug	5b61242787dd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42628	140	__gllc_RasterPos2i	dynsym+mdebug	b68bd336aaef		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda426b4	140	__gllc_RasterPos2iv	dynsym+mdebug	91f0df3393f6		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42740	140	__gllc_RasterPos2s	dynsym+mdebug	f0af8ee7e64e		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda427cc	140	__gllc_RasterPos2sv	dynsym+mdebug	2c173717d54f		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42858	156	__gllc_RasterPos3d	dynsym+mdebug	f307b5387082		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda428f4	160	__gllc_RasterPos3dv	dynsym+mdebug	392840eb55ba		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42994	152	__gllc_RasterPos3f	dynsym+mdebug	1d45dd42da09		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42a2c	152	__gllc_RasterPos3fv	dynsym+mdebug	e436ce7fb457		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42ac4	152	__gllc_RasterPos3i	dynsym+mdebug	8c472fc8a241		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42858	156	__gllc_RasterPos3d	dynsym+mdebug	f307b5387082		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda428f4	160	__gllc_RasterPos3dv	dynsym+mdebug	392840eb55ba		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42994	152	__gllc_RasterPos3f	dynsym+mdebug	1d45dd42da09		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42a2c	152	__gllc_RasterPos3fv	dynsym+mdebug	e436ce7fb457		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42ac4	152	__gllc_RasterPos3i	dynsym+mdebug	8c472fc8a241		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42b5c	152	__gllc_RasterPos3iv	dynsym+mdebug	2b8373d35f6f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42bf4	152	__gllc_RasterPos3s	dynsym+mdebug	c27df6b09ad4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda42c8c	152	__gllc_RasterPos3sv	dynsym+mdebug	8969c85eff2d		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -16900,7 +16900,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b2bc	160	__gllc_CopyC
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b35c	128	__gllc_PixelTexGenParameteriSGIS	dynsym+mdebug	6f45803526b4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b3dc	204	__gllc_PixelTexGenParameterivSGIS	dynsym+mdebug	617a57a2e55f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b4a8	128	__gllc_PixelTexGenParameterfSGIS	dynsym+mdebug	97df44b12797		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b528	204	__gllc_PixelTexGenParameterfvSGIS	dynsym+mdebug	cefc473c1108		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b528	204	__gllc_PixelTexGenParameterfvSGIS	dynsym+mdebug	cefc473c1108		in	located	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b5f4	116	__gllc_AsyncMarkerSGIX	dynsym+mdebug	392e221c7561		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b668	128	__gllc_FragmentColorMaterialSGIX	dynsym+mdebug	0b4c4804511f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda4b6e8	140	__gllc_FragmentLightfSGIX	dynsym+mdebug	abc4675062ef		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -18133,8 +18133,8 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d208	8	__glce_TexPara
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d210	8	__glce_TexParameterfv	dynsym+mdebug	b7853940db0c		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d218	8	__glce_TexParameteri	dynsym+mdebug	adc493303629		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d220	8	__glce_TexParameteriv	dynsym+mdebug	d5ea4302a992		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d228	8	__glce_TexImage1D	dynsym+mdebug	ec1e09b75fce		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d230	8	__glce_TexImage2D	dynsym+mdebug	432363cc3026		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d228	8	__glce_TexImage1D	dynsym+mdebug	ec1e09b75fce		in	located	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d230	8	__glce_TexImage2D	dynsym+mdebug	432363cc3026		in	located	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d238	8	__glce_TexEnvf	dynsym+mdebug	b0e89bdade64		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d240	8	__glce_TexEnvfv	dynsym+mdebug	2768fdc01df9		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6d248	8	__glce_TexEnvi	dynsym+mdebug	0ef9c524b3fe		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -18602,7 +18602,7 @@ usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e810	12	glTexParamete
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e81c	12	glTexParameteri	dynsym+mdebug	511512896f74		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e828	12	glTexParameteriv	dynsym+mdebug	1b4a0c388986		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e834	12	glTexImage1D	dynsym+mdebug	5d9e771f1858		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e840	12	glTexImage2D	dynsym+mdebug	9a6e284cb0df		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e840	12	glTexImage2D	dynsym+mdebug	9a6e284cb0df		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e84c	12	glTexEnvf	dynsym+mdebug	cda2659357e8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e858	12	glTexEnvfv	dynsym+mdebug	d7c72044ddc4		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA/libGLcore.so	board-library	o32		0xda6e864	12	glTexEnvi	dynsym+mdebug	929ddb5ee427		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -21620,7 +21620,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda048a0	80	__glPointPa
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda048f0	244	__glPixelTransformParameterfvSGI_size	dwarf+dynsym	65f7b7c1d76b		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda049f0	52	__glPixelTransformParameterivSGI_size	dwarf+dynsym	ff59eda8996d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04a30	60	__glPixelTexGenParameterivSGIS_size	dwarf+dynsym	ec16bd7634a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04a70	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	909639eb80d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04a70	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	909639eb80d9		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04ab0	120	__glFragmentMaterialfvSGIX_size	dwarf+dynsym	5f60a7384aa1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04b30	52	__glFragmentMaterialivSGIX_size	dwarf+dynsym	a30adbba707d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda04b70	300	__glFragmentLightfvSGIX_size	dwarf+dynsym	3ad58be3f36d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -22189,19 +22189,19 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c5e0	156	__gllc_Nor
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c680	152	__gllc_Normal3iv	dwarf+dynsym	281240547d9e		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c720	156	__gllc_Normal3s	dwarf+dynsym	285e26d4cdd9		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c7c0	152	__gllc_Normal3sv	dwarf+dynsym	5955463867b1		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c860	148	__gllc_RasterPos2d	dwarf+dynsym	75debd92bfdf		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c900	152	__gllc_RasterPos2dv	dwarf+dynsym	69af4e7d5bc3		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c860	148	__gllc_RasterPos2d	dwarf+dynsym	75debd92bfdf		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c900	152	__gllc_RasterPos2dv	dwarf+dynsym	69af4e7d5bc3		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3c9a0	140	__gllc_RasterPos2f	dwarf+dynsym	70fce3ba7da8		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3ca30	144	__gllc_RasterPos2fv	dwarf+dynsym	dc455cce965a		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cac0	144	__gllc_RasterPos2i	dwarf+dynsym	a36bec733558		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cb50	144	__gllc_RasterPos2iv	dwarf+dynsym	2771c05cb282		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cbe0	144	__gllc_RasterPos2s	dwarf+dynsym	89490f1b79c9		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cc70	144	__gllc_RasterPos2sv	dwarf+dynsym	0167109185fa		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cd00	160	__gllc_RasterPos3d	dwarf+dynsym	52b6bfdfd52a		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cda0	160	__gllc_RasterPos3dv	dwarf+dynsym	820243b1e82b		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3ce40	152	__gllc_RasterPos3f	dwarf+dynsym	2d5b9d989924		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cee0	152	__gllc_RasterPos3fv	dwarf+dynsym	954b7c168671		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cf80	156	__gllc_RasterPos3i	dwarf+dynsym	0f3b7246a4dc		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cd00	160	__gllc_RasterPos3d	dwarf+dynsym	52b6bfdfd52a		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cda0	160	__gllc_RasterPos3dv	dwarf+dynsym	820243b1e82b		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3ce40	152	__gllc_RasterPos3f	dwarf+dynsym	2d5b9d989924		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cee0	152	__gllc_RasterPos3fv	dwarf+dynsym	954b7c168671		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3cf80	156	__gllc_RasterPos3i	dwarf+dynsym	0f3b7246a4dc		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3d020	152	__gllc_RasterPos3iv	dwarf+dynsym	d573f5b0eb75		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3d0c0	156	__gllc_RasterPos3s	dwarf+dynsym	0289fecabcc3		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda3d160	152	__gllc_RasterPos3sv	dwarf+dynsym	e49f352f08f5		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -22436,7 +22436,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45ca0	164	__gllc_Cop
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45d50	128	__gllc_PixelTexGenParameteriSGIS	dwarf+dynsym	2a4617762387		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45dd0	196	__gllc_PixelTexGenParameterivSGIS	dwarf+dynsym	75310f79d595		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45ea0	128	__gllc_PixelTexGenParameterfSGIS	dwarf+dynsym	ec157a3bf74d		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45f20	196	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	ee4b5173128c		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45f20	196	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	ee4b5173128c		in	understood	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda45ff0	116	__gllc_AsyncMarkerSGIX	dwarf+dynsym	41062ffad9da		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda46070	128	__gllc_FragmentColorMaterialSGIX	dwarf+dynsym	ff0acccbfa51		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda460f0	140	__gllc_FragmentLightfSGIX	dwarf+dynsym	bd72decb7e3a		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -23180,8 +23180,8 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a020	140	__glce_Tex
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a0b0	132	__glce_TexParameterfv	dwarf+dynsym	4a6d87cc173e		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a140	132	__glce_TexParameteri	dwarf+dynsym	c0bff3f08795		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a1d0	132	__glce_TexParameteriv	dwarf+dynsym	3b98062bd971		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a260	172	__glce_TexImage1D	dwarf+dynsym	16dec5ac6aac		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a310	180	__glce_TexImage2D	dwarf+dynsym	5922abb2df33		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a260	172	__glce_TexImage1D	dwarf+dynsym	16dec5ac6aac		in	understood	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a310	180	__glce_TexImage2D	dwarf+dynsym	5922abb2df33		in	understood	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a3d0	140	__glce_TexEnvf	dwarf+dynsym	05cfbf1571f2		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a460	132	__glce_TexEnvfv	dwarf+dynsym	11221bc4a5fe		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda5a4f0	132	__glce_TexEnvi	dwarf+dynsym	4e8cf981eaf1		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -24136,7 +24136,7 @@ usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda786d0	12	glTexParame
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda786dc	12	glTexParameteri	dwarf+dynsym	511512896f74		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda786e8	12	glTexParameteriv	dwarf+dynsym	1b4a0c388986		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda786f4	12	glTexImage1D	dwarf+dynsym	5d9e771f1858		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78700	12	glTexImage2D	dwarf+dynsym	9a6e284cb0df		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78700	12	glTexImage2D	dwarf+dynsym	9a6e284cb0df		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda7870c	12	glTexEnvf	dwarf+dynsym	cda2659357e8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78718	12	glTexEnvfv	dwarf+dynsym	d7c72044ddc4		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32		0xda78724	12	glTexEnvi	dwarf+dynsym	929ddb5ee427		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -27200,7 +27200,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68d00	80	__glPointPa
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68d50	244	__glPixelTransformParameterfvSGI_size	dwarf+dynsym	65f7b7c1d76b		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68e50	52	__glPixelTransformParameterivSGI_size	dwarf+dynsym	ba62692cc6be		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68e90	60	__glPixelTexGenParameterivSGIS_size	dwarf+dynsym	ec16bd7634a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68ed0	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	464c3d3991f3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68ed0	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	464c3d3991f3		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68f10	120	__glFragmentMaterialfvSGIX_size	dwarf+dynsym	5f60a7384aa1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68f90	52	__glFragmentMaterialivSGIX_size	dwarf+dynsym	5679e288645f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2e68fd0	300	__glFragmentLightfvSGIX_size	dwarf+dynsym	3ad58be3f36d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -27769,19 +27769,19 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea15e0	156	__gllc_Nor
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1680	152	__gllc_Normal3iv	dwarf+dynsym	6bdb439ecbc6		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1720	156	__gllc_Normal3s	dwarf+dynsym	2d64afa41eb2		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea17c0	152	__gllc_Normal3sv	dwarf+dynsym	7a1cce0e6957		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1860	148	__gllc_RasterPos2d	dwarf+dynsym	2666ba39e4e2		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1900	152	__gllc_RasterPos2dv	dwarf+dynsym	11308fb1d12a		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1860	148	__gllc_RasterPos2d	dwarf+dynsym	2666ba39e4e2		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1900	152	__gllc_RasterPos2dv	dwarf+dynsym	11308fb1d12a		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea19a0	140	__gllc_RasterPos2f	dwarf+dynsym	17197b342a33		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1a30	144	__gllc_RasterPos2fv	dwarf+dynsym	6e7d47fd2acd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1ac0	144	__gllc_RasterPos2i	dwarf+dynsym	3ac14032e057		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1b50	144	__gllc_RasterPos2iv	dwarf+dynsym	7f56697af7c0		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1be0	144	__gllc_RasterPos2s	dwarf+dynsym	a46967ea59ed		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1c70	144	__gllc_RasterPos2sv	dwarf+dynsym	f07c7fe7eadd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1d00	160	__gllc_RasterPos3d	dwarf+dynsym	e0733dcde452		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1da0	160	__gllc_RasterPos3dv	dwarf+dynsym	873f8dfcb7d8		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1e40	152	__gllc_RasterPos3f	dwarf+dynsym	8d82635e930c		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1ee0	152	__gllc_RasterPos3fv	dwarf+dynsym	a0248fc217a5		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1f80	156	__gllc_RasterPos3i	dwarf+dynsym	aaeb9f0c6507		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1d00	160	__gllc_RasterPos3d	dwarf+dynsym	e0733dcde452		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1da0	160	__gllc_RasterPos3dv	dwarf+dynsym	873f8dfcb7d8		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1e40	152	__gllc_RasterPos3f	dwarf+dynsym	8d82635e930c		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1ee0	152	__gllc_RasterPos3fv	dwarf+dynsym	a0248fc217a5		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea1f80	156	__gllc_RasterPos3i	dwarf+dynsym	aaeb9f0c6507		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea2020	152	__gllc_RasterPos3iv	dwarf+dynsym	737eb88eccfc		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea20c0	156	__gllc_RasterPos3s	dwarf+dynsym	fc679d7d0905		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ea2160	152	__gllc_RasterPos3sv	dwarf+dynsym	9b77b6af087d		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -28016,7 +28016,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaacd0	164	__gllc_Cop
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaad80	128	__gllc_PixelTexGenParameteriSGIS	dwarf+dynsym	4b4cb0e7685b		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaae00	204	__gllc_PixelTexGenParameterivSGIS	dwarf+dynsym	2824de0c1c48		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaaed0	128	__gllc_PixelTexGenParameterfSGIS	dwarf+dynsym	defeeb03f8a3		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaaf50	204	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	4e747cfa15f5		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eaaf50	204	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	4e747cfa15f5		in	located	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eab020	116	__gllc_AsyncMarkerSGIX	dwarf+dynsym	b47fb4838427		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eab0a0	128	__gllc_FragmentColorMaterialSGIX	dwarf+dynsym	d987a79b947c		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eab120	140	__gllc_FragmentLightfSGIX	dwarf+dynsym	c869bc587596		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -28760,8 +28760,8 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf480	140	__glce_Tex
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf510	132	__glce_TexParameterfv	dwarf+dynsym	3fa1cd9293b4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf5a0	132	__glce_TexParameteri	dwarf+dynsym	e5eaa22e5854		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf630	132	__glce_TexParameteriv	dwarf+dynsym	8531ca1e7a16		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf6c0	172	__glce_TexImage1D	dwarf+dynsym	7a504586457b		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf770	180	__glce_TexImage2D	dwarf+dynsym	7ea5f4fb88f0		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf6c0	172	__glce_TexImage1D	dwarf+dynsym	7a504586457b		in	located	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf770	180	__glce_TexImage2D	dwarf+dynsym	7ea5f4fb88f0		in	located	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf830	140	__glce_TexEnvf	dwarf+dynsym	e77b6f5a0525		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf8c0	132	__glce_TexEnvfv	dwarf+dynsym	859bbd7dd3fe		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2ebf950	132	__glce_TexEnvi	dwarf+dynsym	98e4d473cdf8		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -29716,7 +29716,7 @@ usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcb0	12	glTexParame
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcbc	12	glTexParameteri	dwarf+dynsym	f78a786cd9ec		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcc8	12	glTexParameteriv	dwarf+dynsym	a403829b3ad8		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcd4	12	glTexImage1D	dwarf+dynsym	9bfa486cf8b8		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddce0	12	glTexImage2D	dwarf+dynsym	d92b3ce4943e		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddce0	12	glTexImage2D	dwarf+dynsym	d92b3ce4943e		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcec	12	glTexEnvf	dwarf+dynsym	ee1c482efb48		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddcf8	12	glTexEnvfv	dwarf+dynsym	b343b8558d3d		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64		0x2eddd04	12	glTexEnvi	dwarf+dynsym	588cc9e3a2ed		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -32783,7 +32783,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07ae8	84	__glPointPara
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07b3c	156	__glPixelTransformParameterfvSGI_size	dynsym+mdebug	cd5a600e2a9c		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07bd8	52	__glPixelTransformParameterivSGI_size	dynsym+mdebug	17f290f2b4ba		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07c0c	52	__glPixelTexGenParameterivSGIS_size	dynsym+mdebug	e10aa634324d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07c40	52	__glPixelTexGenParameterfvSGIS_size	dynsym+mdebug	f0f3028ce87b		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07c40	52	__glPixelTexGenParameterfvSGIS_size	dynsym+mdebug	f0f3028ce87b		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07c74	116	__glFragmentMaterialfvSGIX_size	dynsym+mdebug	7e81e188a506		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07ce8	52	__glFragmentMaterialivSGIX_size	dynsym+mdebug	0bb6b14dc8f8		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda07d1c	184	__glFragmentLightfvSGIX_size	dynsym+mdebug	5146798bad56		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -33352,19 +33352,19 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42188	152	__gllc_Norma
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42220	152	__gllc_Normal3iv	dynsym+mdebug	91c2331ceafd		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda422b8	152	__gllc_Normal3s	dynsym+mdebug	95bce29b3c56		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42350	152	__gllc_Normal3sv	dynsym+mdebug	c4745db460f2		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda423e8	148	__gllc_RasterPos2d	dynsym+mdebug	41ebcaaf6052		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4247c	148	__gllc_RasterPos2dv	dynsym+mdebug	7463c5918747		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda423e8	148	__gllc_RasterPos2d	dynsym+mdebug	41ebcaaf6052		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4247c	148	__gllc_RasterPos2dv	dynsym+mdebug	7463c5918747		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42510	140	__gllc_RasterPos2f	dynsym+mdebug	f15dd3fb42ec		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4259c	140	__gllc_RasterPos2fv	dynsym+mdebug	5b61242787dd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42628	140	__gllc_RasterPos2i	dynsym+mdebug	b68bd336aaef		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda426b4	140	__gllc_RasterPos2iv	dynsym+mdebug	91f0df3393f6		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42740	140	__gllc_RasterPos2s	dynsym+mdebug	f0af8ee7e64e		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda427cc	140	__gllc_RasterPos2sv	dynsym+mdebug	2c173717d54f		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42858	156	__gllc_RasterPos3d	dynsym+mdebug	f307b5387082		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda428f4	160	__gllc_RasterPos3dv	dynsym+mdebug	392840eb55ba		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42994	152	__gllc_RasterPos3f	dynsym+mdebug	1d45dd42da09		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42a2c	152	__gllc_RasterPos3fv	dynsym+mdebug	e436ce7fb457		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42ac4	152	__gllc_RasterPos3i	dynsym+mdebug	8c472fc8a241		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42858	156	__gllc_RasterPos3d	dynsym+mdebug	f307b5387082		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda428f4	160	__gllc_RasterPos3dv	dynsym+mdebug	392840eb55ba		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42994	152	__gllc_RasterPos3f	dynsym+mdebug	1d45dd42da09		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42a2c	152	__gllc_RasterPos3fv	dynsym+mdebug	e436ce7fb457		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42ac4	152	__gllc_RasterPos3i	dynsym+mdebug	8c472fc8a241		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42b5c	152	__gllc_RasterPos3iv	dynsym+mdebug	2b8373d35f6f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42bf4	152	__gllc_RasterPos3s	dynsym+mdebug	c27df6b09ad4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda42c8c	152	__gllc_RasterPos3sv	dynsym+mdebug	8969c85eff2d		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -33599,7 +33599,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b2bc	160	__gllc_CopyC
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b35c	128	__gllc_PixelTexGenParameteriSGIS	dynsym+mdebug	6f45803526b4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b3dc	204	__gllc_PixelTexGenParameterivSGIS	dynsym+mdebug	617a57a2e55f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b4a8	128	__gllc_PixelTexGenParameterfSGIS	dynsym+mdebug	97df44b12797		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b528	204	__gllc_PixelTexGenParameterfvSGIS	dynsym+mdebug	cefc473c1108		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b528	204	__gllc_PixelTexGenParameterfvSGIS	dynsym+mdebug	cefc473c1108		in	located	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b5f4	116	__gllc_AsyncMarkerSGIX	dynsym+mdebug	392e221c7561		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b668	128	__gllc_FragmentColorMaterialSGIX	dynsym+mdebug	0b4c4804511f		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda4b6e8	140	__gllc_FragmentLightfSGIX	dynsym+mdebug	abc4675062ef		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -34832,8 +34832,8 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d208	8	__glce_TexPara
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d210	8	__glce_TexParameterfv	dynsym+mdebug	b7853940db0c		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d218	8	__glce_TexParameteri	dynsym+mdebug	adc493303629		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d220	8	__glce_TexParameteriv	dynsym+mdebug	d5ea4302a992		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d228	8	__glce_TexImage1D	dynsym+mdebug	ec1e09b75fce		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d230	8	__glce_TexImage2D	dynsym+mdebug	432363cc3026		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d228	8	__glce_TexImage1D	dynsym+mdebug	ec1e09b75fce		in	located	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d230	8	__glce_TexImage2D	dynsym+mdebug	432363cc3026		in	located	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d238	8	__glce_TexEnvf	dynsym+mdebug	b0e89bdade64		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d240	8	__glce_TexEnvfv	dynsym+mdebug	2768fdc01df9		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6d248	8	__glce_TexEnvi	dynsym+mdebug	0ef9c524b3fe		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -35301,7 +35301,7 @@ usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e810	12	glTexParamete
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e81c	12	glTexParameteri	dynsym+mdebug	511512896f74		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e828	12	glTexParameteriv	dynsym+mdebug	1b4a0c388986		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e834	12	glTexImage1D	dynsym+mdebug	5d9e771f1858		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e840	12	glTexImage2D	dynsym+mdebug	9a6e284cb0df		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e840	12	glTexImage2D	dynsym+mdebug	9a6e284cb0df		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e84c	12	glTexEnvf	dynsym+mdebug	cda2659357e8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e858	12	glTexEnvfv	dynsym+mdebug	d7c72044ddc4		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA/libGLcore.so	board-library	o32		0xda6e864	12	glTexEnvi	dynsym+mdebug	929ddb5ee427		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -38319,7 +38319,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda048a0	80	__glPointPa
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda048f0	244	__glPixelTransformParameterfvSGI_size	dwarf+dynsym	65f7b7c1d76b		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda049f0	52	__glPixelTransformParameterivSGI_size	dwarf+dynsym	ff59eda8996d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04a30	60	__glPixelTexGenParameterivSGIS_size	dwarf+dynsym	ec16bd7634a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04a70	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	909639eb80d9		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04a70	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	909639eb80d9		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04ab0	120	__glFragmentMaterialfvSGIX_size	dwarf+dynsym	5f60a7384aa1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04b30	52	__glFragmentMaterialivSGIX_size	dwarf+dynsym	a30adbba707d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda04b70	300	__glFragmentLightfvSGIX_size	dwarf+dynsym	3ad58be3f36d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -38888,19 +38888,19 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c5e0	156	__gllc_Nor
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c680	152	__gllc_Normal3iv	dwarf+dynsym	281240547d9e		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c720	156	__gllc_Normal3s	dwarf+dynsym	285e26d4cdd9		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c7c0	152	__gllc_Normal3sv	dwarf+dynsym	5955463867b1		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c860	148	__gllc_RasterPos2d	dwarf+dynsym	75debd92bfdf		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c900	152	__gllc_RasterPos2dv	dwarf+dynsym	69af4e7d5bc3		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c860	148	__gllc_RasterPos2d	dwarf+dynsym	75debd92bfdf		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c900	152	__gllc_RasterPos2dv	dwarf+dynsym	69af4e7d5bc3		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3c9a0	140	__gllc_RasterPos2f	dwarf+dynsym	70fce3ba7da8		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3ca30	144	__gllc_RasterPos2fv	dwarf+dynsym	dc455cce965a		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cac0	144	__gllc_RasterPos2i	dwarf+dynsym	a36bec733558		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cb50	144	__gllc_RasterPos2iv	dwarf+dynsym	2771c05cb282		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cbe0	144	__gllc_RasterPos2s	dwarf+dynsym	89490f1b79c9		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cc70	144	__gllc_RasterPos2sv	dwarf+dynsym	0167109185fa		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cd00	160	__gllc_RasterPos3d	dwarf+dynsym	52b6bfdfd52a		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cda0	160	__gllc_RasterPos3dv	dwarf+dynsym	820243b1e82b		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3ce40	152	__gllc_RasterPos3f	dwarf+dynsym	2d5b9d989924		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cee0	152	__gllc_RasterPos3fv	dwarf+dynsym	954b7c168671		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cf80	156	__gllc_RasterPos3i	dwarf+dynsym	0f3b7246a4dc		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cd00	160	__gllc_RasterPos3d	dwarf+dynsym	52b6bfdfd52a		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cda0	160	__gllc_RasterPos3dv	dwarf+dynsym	820243b1e82b		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3ce40	152	__gllc_RasterPos3f	dwarf+dynsym	2d5b9d989924		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cee0	152	__gllc_RasterPos3fv	dwarf+dynsym	954b7c168671		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3cf80	156	__gllc_RasterPos3i	dwarf+dynsym	0f3b7246a4dc		in	understood	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3d020	152	__gllc_RasterPos3iv	dwarf+dynsym	d573f5b0eb75		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3d0c0	156	__gllc_RasterPos3s	dwarf+dynsym	0289fecabcc3		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda3d160	152	__gllc_RasterPos3sv	dwarf+dynsym	e49f352f08f5		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -39135,7 +39135,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45ca0	164	__gllc_Cop
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45d50	128	__gllc_PixelTexGenParameteriSGIS	dwarf+dynsym	2a4617762387		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45dd0	196	__gllc_PixelTexGenParameterivSGIS	dwarf+dynsym	75310f79d595		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45ea0	128	__gllc_PixelTexGenParameterfSGIS	dwarf+dynsym	ec157a3bf74d		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45f20	196	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	ee4b5173128c		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45f20	196	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	ee4b5173128c		in	understood	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda45ff0	116	__gllc_AsyncMarkerSGIX	dwarf+dynsym	41062ffad9da		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda46070	128	__gllc_FragmentColorMaterialSGIX	dwarf+dynsym	ff0acccbfa51		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda460f0	140	__gllc_FragmentLightfSGIX	dwarf+dynsym	bd72decb7e3a		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -39879,8 +39879,8 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a020	140	__glce_Tex
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a0b0	132	__glce_TexParameterfv	dwarf+dynsym	4a6d87cc173e		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a140	132	__glce_TexParameteri	dwarf+dynsym	c0bff3f08795		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a1d0	132	__glce_TexParameteriv	dwarf+dynsym	3b98062bd971		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a260	172	__glce_TexImage1D	dwarf+dynsym	16dec5ac6aac		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a310	180	__glce_TexImage2D	dwarf+dynsym	5922abb2df33		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a260	172	__glce_TexImage1D	dwarf+dynsym	16dec5ac6aac		in	understood	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a310	180	__glce_TexImage2D	dwarf+dynsym	5922abb2df33		in	understood	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a3d0	140	__glce_TexEnvf	dwarf+dynsym	05cfbf1571f2		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a460	132	__glce_TexEnvfv	dwarf+dynsym	11221bc4a5fe		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda5a4f0	132	__glce_TexEnvi	dwarf+dynsym	4e8cf981eaf1		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -40835,7 +40835,7 @@ usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda786d0	12	glTexParame
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda786dc	12	glTexParameteri	dwarf+dynsym	511512896f74		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda786e8	12	glTexParameteriv	dwarf+dynsym	1b4a0c388986		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda786f4	12	glTexImage1D	dwarf+dynsym	5d9e771f1858		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78700	12	glTexImage2D	dwarf+dynsym	9a6e284cb0df		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78700	12	glTexImage2D	dwarf+dynsym	9a6e284cb0df		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda7870c	12	glTexEnvf	dwarf+dynsym	cda2659357e8		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78718	12	glTexEnvfv	dwarf+dynsym	d7c72044ddc4		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32		0xda78724	12	glTexEnvi	dwarf+dynsym	929ddb5ee427		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
@@ -43899,7 +43899,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248d00	80	__glPointPa
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248d50	244	__glPixelTransformParameterfvSGI_size	dwarf+dynsym	65f7b7c1d76b		in	named-only	docs/libglcore-driver-builds.md#64-bit-build-usrgfxarchip27kona64libglcoreso	64-bit build (`usr/gfx/arch/IP27KONA64/libGLcore.so`)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248e50	52	__glPixelTransformParameterivSGI_size	dwarf+dynsym	ba62692cc6be		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248e90	60	__glPixelTexGenParameterivSGIS_size	dwarf+dynsym	ec16bd7634a4		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248ed0	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	464c3d3991f3		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248ed0	52	__glPixelTexGenParameterfvSGIS_size	dwarf+dynsym	464c3d3991f3		in	named-only	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248f10	120	__glFragmentMaterialfvSGIX_size	dwarf+dynsym	5f60a7384aa1		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248f90	52	__glFragmentMaterialivSGIX_size	dwarf+dynsym	5679e288645f		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2248fd0	300	__glFragmentLightfvSGIX_size	dwarf+dynsym	3ad58be3f36d		in	named-only	docs/libglcore.md#software-renderer-and-its-assembly-kernels	Software renderer and its assembly kernels
@@ -44468,19 +44468,19 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22815e0	156	__gllc_Nor
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281680	152	__gllc_Normal3iv	dwarf+dynsym	6bdb439ecbc6		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281720	156	__gllc_Normal3s	dwarf+dynsym	2d64afa41eb2		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22817c0	152	__gllc_Normal3sv	dwarf+dynsym	7a1cce0e6957		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281860	148	__gllc_RasterPos2d	dwarf+dynsym	2666ba39e4e2		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281900	152	__gllc_RasterPos2dv	dwarf+dynsym	11308fb1d12a		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281860	148	__gllc_RasterPos2d	dwarf+dynsym	2666ba39e4e2		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2d-ip27kona32	`__gllc_RasterPos2d` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281900	152	__gllc_RasterPos2dv	dwarf+dynsym	11308fb1d12a		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2dv-ip27kona32	`__gllc_RasterPos2dv` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22819a0	140	__gllc_RasterPos2f	dwarf+dynsym	17197b342a33		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2f-ip27kona32	`__gllc_RasterPos2f` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281a30	144	__gllc_RasterPos2fv	dwarf+dynsym	6e7d47fd2acd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2fv-ip27kona32	`__gllc_RasterPos2fv` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281ac0	144	__gllc_RasterPos2i	dwarf+dynsym	3ac14032e057		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2i-ip27kona32	`__gllc_RasterPos2i` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281b50	144	__gllc_RasterPos2iv	dwarf+dynsym	7f56697af7c0		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2iv-ip27kona32	`__gllc_RasterPos2iv` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281be0	144	__gllc_RasterPos2s	dwarf+dynsym	a46967ea59ed		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2s-ip27kona32	`__gllc_RasterPos2s` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281c70	144	__gllc_RasterPos2sv	dwarf+dynsym	f07c7fe7eadd		in	located	docs/libglcore-list-records.md#__gllc_rasterpos2sv-ip27kona32	`__gllc_RasterPos2sv` (IP27KONA32)
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281d00	160	__gllc_RasterPos3d	dwarf+dynsym	e0733dcde452		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281da0	160	__gllc_RasterPos3dv	dwarf+dynsym	873f8dfcb7d8		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281e40	152	__gllc_RasterPos3f	dwarf+dynsym	8d82635e930c		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281ee0	152	__gllc_RasterPos3fv	dwarf+dynsym	a0248fc217a5		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281f80	156	__gllc_RasterPos3i	dwarf+dynsym	aaeb9f0c6507		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281d00	160	__gllc_RasterPos3d	dwarf+dynsym	e0733dcde452		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3d-ip27kona32	`__gllc_RasterPos3d` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281da0	160	__gllc_RasterPos3dv	dwarf+dynsym	873f8dfcb7d8		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3dv-ip27kona32	`__gllc_RasterPos3dv` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281e40	152	__gllc_RasterPos3f	dwarf+dynsym	8d82635e930c		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3f-ip27kona32	`__gllc_RasterPos3f` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281ee0	152	__gllc_RasterPos3fv	dwarf+dynsym	a0248fc217a5		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3fv-ip27kona32	`__gllc_RasterPos3fv` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2281f80	156	__gllc_RasterPos3i	dwarf+dynsym	aaeb9f0c6507		in	located	docs/libglcore-list-records.md#__gllc_rasterpos3i-ip27kona32	`__gllc_RasterPos3i` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2282020	152	__gllc_RasterPos3iv	dwarf+dynsym	737eb88eccfc		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22820c0	156	__gllc_RasterPos3s	dwarf+dynsym	fc679d7d0905		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x2282160	152	__gllc_RasterPos3sv	dwarf+dynsym	9b77b6af087d		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -44715,7 +44715,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228acd0	164	__gllc_Cop
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228ad80	128	__gllc_PixelTexGenParameteriSGIS	dwarf+dynsym	4b4cb0e7685b		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228ae00	204	__gllc_PixelTexGenParameterivSGIS	dwarf+dynsym	2824de0c1c48		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228aed0	128	__gllc_PixelTexGenParameterfSGIS	dwarf+dynsym	defeeb03f8a3		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228af50	204	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	4e747cfa15f5		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228af50	204	__gllc_PixelTexGenParameterfvSGIS	dwarf+dynsym	4e747cfa15f5		in	located	docs/libglcore-list-records.md#__gllc_pixeltexgenparameterfvsgis-ip27kona32	`__gllc_PixelTexGenParameterfvSGIS` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228b020	116	__gllc_AsyncMarkerSGIX	dwarf+dynsym	b47fb4838427		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228b0a0	128	__gllc_FragmentColorMaterialSGIX	dwarf+dynsym	d987a79b947c		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x228b120	140	__gllc_FragmentLightfSGIX	dwarf+dynsym	c869bc587596		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -45459,8 +45459,8 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f480	140	__glce_Tex
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f510	132	__glce_TexParameterfv	dwarf+dynsym	3fa1cd9293b4		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f5a0	132	__glce_TexParameteri	dwarf+dynsym	e5eaa22e5854		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f630	132	__glce_TexParameteriv	dwarf+dynsym	8531ca1e7a16		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f6c0	172	__glce_TexImage1D	dwarf+dynsym	7a504586457b		in	named-only	docs/libglcore.md#display-lists	Display lists
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f770	180	__glce_TexImage2D	dwarf+dynsym	7ea5f4fb88f0		in	named-only	docs/libglcore.md#display-lists	Display lists
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f6c0	172	__glce_TexImage1D	dwarf+dynsym	7a504586457b		in	located	docs/libglcore-list-records.md#__glce_teximage1d-ip27kona32	`__glce_TexImage1D` (IP27KONA32)
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f770	180	__glce_TexImage2D	dwarf+dynsym	7ea5f4fb88f0		in	located	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f830	140	__glce_TexEnvf	dwarf+dynsym	e77b6f5a0525		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f8c0	132	__glce_TexEnvfv	dwarf+dynsym	859bbd7dd3fe		in	named-only	docs/libglcore.md#display-lists	Display lists
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x229f950	132	__glce_TexEnvi	dwarf+dynsym	98e4d473cdf8		in	named-only	docs/libglcore.md#display-lists	Display lists
@@ -46415,7 +46415,7 @@ usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcb0	12	glTexParame
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcbc	12	glTexParameteri	dwarf+dynsym	f78a786cd9ec		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcc8	12	glTexParameteriv	dwarf+dynsym	a403829b3ad8		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcd4	12	glTexImage1D	dwarf+dynsym	9bfa486cf8b8		in	named-only	docs/libglcore-functions.md#state-setters-and-small-senders	State setters and small senders
-usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdce0	12	glTexImage2D	dwarf+dynsym	d92b3ce4943e		in	named-only	docs/libglcore.md#immediate-mode-and-api-layer	Immediate-mode and API layer
+usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdce0	12	glTexImage2D	dwarf+dynsym	d92b3ce4943e		in	named-only	docs/libglcore-list-records.md#__glce_teximage2d-ip27kona32	`__glce_TexImage2D` (IP27KONA32)
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcec	12	glTexEnvf	dwarf+dynsym	ee1c482efb48		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdcf8	12	glTexEnvfv	dwarf+dynsym	b343b8558d3d		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64		0x22bdd04	12	glTexEnvi	dwarf+dynsym	588cc9e3a2ed		in	named-only	docs/libglcore-driver-builds.md#o32-routines-read-in-full	O32 routines read in full
