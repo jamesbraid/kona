@@ -777,10 +777,18 @@ reports.
 ## Boundary-scan library (`jt_*`)
 
 - `kona_jt_set_custom_error_report` (`usr/gfx/KONA/bin/kpm`): **Established.**
-  Address 0x10010164; the 32-byte body stores the caller's function pointer in
-  the boundary-scan library's custom-error slot (`sw` at 0x10010180) and
-  returns the old slot value loaded at 0x10010178. It performs no scan-chain
-  access. (`kpm`, 6.5.30m, complete N32 body read at 0x10010164-0x10010183.)
+  Address 0x10010164; occupies 32 bytes. It loads the callback-slot address
+  from absolute 0x1014be00 (`lw` at 0x10010178), returns that address
+  (`jr` at 0x1001017c) and stores the caller's function pointer through it
+  in the return delay slot (`sw` at 0x10010180). The body does not read the
+  callback value already in the slot.
+- `kona_jt_set_custom_error_report` in `usr/diags/IR/bin/irsaudit`:
+  Address 0x1002f1a4; occupies 32 bytes.
+  **Established.** It loads the callback-slot address from absolute 0x102bc558 (`lw` at 0x1002f1b8),
+  returns 0x102c1fb0 (`jr` at 0x1002f1bc) and stores the caller's function pointer through it
+  in the return delay slot (`sw` at 0x1002f1c0). Its body differs from
+  usr/gfx/KONA/bin/kpm at 0x10010164 in five byte positions; the slot pointer resolves to
+  0x102c1fb0 here and 0x1014e9a8 in KPM.
 
 **Established** (names, strings and the host procedures in [hip.md](hip.md#the-hosts-boundary-scan-controller-and-the-arm-debug-window)). `kpm` and `irsaudit` link the same boundary-scan library: it reads chain and chip descriptions from boundary-scan description files (`read_bsdl`, `read_bsr`, `jt_findfile`, `jt_zopen`, `jt_zclose`, `jt_canonize`, `type_to_func`, `type_to_safe`, `porttopin`, `pintoport`, `premature_eof`), builds instruction and data vectors for each chip on a chain, and sends them through a set of low-level procedures that the tool installs (`jt_set_procs`; for `kpm` those are the host-register routines of the previous reference).
 
