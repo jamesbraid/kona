@@ -91,6 +91,120 @@ These O32 entries record complete readings of the exact binary bodies in `usr/gf
 - `__glSpanPackUintI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
   Address 0xd9a1ebc; occupies 800 bytes.
   **Established.** Unsigned-index packing uses the count at entry a1 +0xb8 and takes the return path when it is nonpositive (`lw` at 0xd9a1ecc and `blez` at 0xd9a1ed8). The conversion sequence saves floating-point control state, changes it, converts a float word and later restores the saved control state (`cfc1` at 0xd9a1eec, `ctc1` at 0xd9a1ef4, `cvt.w.s` at 0xd9a1f04, and `ctc1` at 0xd9a1f74). Word output includes `sw` at 0xd9a1f78, `sw` at 0xd9a2018, and `sw` at 0xd9a21c8, with destination bases unknown in hostfacts. A zero masked status takes the branch at 0xd9a1f18 and a nonzero status falls through (`beql` at 0xd9a1f18). The status operand itself is unresolved, so the complete exception-to-result mapping is not asserted.
+## O32 span routines read in full
+
+These entries report target-specific observations from the exact IRIX 6.5.30m O32 `usr/gfx/arch/IP27KONA/libGLcore.so` bodies. Each range was read and compared with its named N32 build. The raw byte differences do not establish behavioral differences.
+
+| Routine | Supplied comparison extent | N32 build / address / size | O32 SHA-256 | N32 SHA-256 | Different prefix bytes |
+|---|---:|---|---|---|---:|
+| `__glSpanPackIntI` | 376 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99ddd0 / 200 | `ba000df93b1a37d691ec802e1be1ceb5e0631984c13ca3a91fe160e681a3ffb0` | `18560a73ea29423cab76d5f0ecae555e02734e026139123a0b091de2744c54b9` | 172 |
+| `__glSpanPackNonCompByte` | 84 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99df60 / 184 | `e6993b4134a820a5cec4230f99dbf77cf48495fa512b148bd47b6b1b89284e4f` | `eb32e2bf59470c27b27eeb1261400e8135580c80e1e95caab1744c68e0e289e3` | 63 |
+| `__glSpanPackNonCompShort` | 84 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99e0e0 / 184 | `ac5a51aa55dc48f448fd3820aaa96df429badac843b662b43571669431797cab` | `9669c4657a6f29cd751cb5d2aec591e35535898edb675447fb139d2c663a6afa` | 64 |
+| `__glSpanPackNonCompInt` | 84 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99e260 / 168 | `f0ffa1f09d8823d2026d642f00c7cb43b396a4c911a6365f1053f4b2dc6ae028` | `cff27eaf0d5a55e36a137a03086bd65ae4b1bff61a712fca4663a165fd653318` | 63 |
+| `PickSpanModifiers` | 112864 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d99f000 / 14816 | `05305dd7c495a269cb280030a5290560a0485156f6cfc871b30f908d0a8eda65` | `832cca75d09fdcbcfa4602b297cd72481baaa76a870aace6c8291a34b15a46d8` | 13641 |
+| `__glSpanRenderRGBubyte` | 496 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a7e80 / 488 | `3bc61c86f07e1720b6f0fd75c69d290baad4d1946ea308d4733ce23d34a1fe26` | `6c06aa5db6ec9727335f12a20b226904402531730e31882d63e335b8182f42ab` | 402 |
+| `__glSpanRenderBGRubyte` | 496 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8070 / 488 | `dd149ef9eba17e68fee06d91ed5587def60cfa313949e0e9c1f2614b71324c28` | `cd3efe9ff70b1dc53f3347658987024edcba1b8b5ea1fd3784709b81854f6d49` | 404 |
+| `__glSpanRenderRGBubyte2` | 424 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8260 / 412 | `8bd1d7d934c981a8aaebc9fa2908b53a105e60e7a4f656da368e1581a8628ac9` | `a5f056600bff98cac42ff329bf92a47a20c783b3acd28715fd040b0cefefa0de` | 333 |
+| `__glSpanRenderBGRubyte2` | 424 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8400 / 412 | `2642cc1392fe7c31860ba0768d72256515de4ab40cdd1238de4d1e7805691d8a` | `1b03f148354aac1b557102254820aefda0865abc91e5bf77da51b72084a9a844` | 333 |
+| `__glSpanRenderRGBAubyte` | 520 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a85a0 / 504 | `ce11d42b32e92ee19c362686efbd537dc941387e6abe39b2f0d6815e98414b8e` | `a66fcd503c2691f1a3420637b4b82e4cf0cbdba5d2c53c8d3c942d0f84105cd6` | 413 |
+| `__glSpanRenderRGBAubyte2` | 448 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a87a0 / 436 | `89aea7b90e16c58ea57ba6ce7282f464532f2b9d5573384cfbae9a99ee9e7193` | `8d82e067626e816873b7bfebfc5e77c41adc59aef2a7f3a160c243a9cd4e1def` | 354 |
+| `__glSpanRenderStencilUbyte` | 360 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8f30 / 372 | `8bfb1b88ab4f5016b3a33cd26cdc7e8a2518aebab234d0524903026ea72c22d3` | `64f479d2e8565f0187ab361945a0bef15089f9d1f92f88357564f4259601059c` | 282 |
+| `__glSpanRenderStencilUbyte2` | 288 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a90b0 / 272 | `4fe197d87151a132601ebbaeeb287b72a9fa4f6247dbf6774772094e76adad1e` | `7e70db927060d18e2b006ded99c794de3c72439e7fbdf3ffd237911b603fa51c` | 208 |
+| `__glSpanRenderCIubyte` | 400 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a94b0 / 408 | `1bfb54a6c54155cc889efa7eaeae2f448d5fe46bd077a325f8b7b433e83aefea` | `7a1c74eaf180496b0a34f6e2adf9dec457da4a48f4818c61f10dbcf1423df0c0` | 319 |
+| `__glSpanRenderCIubyte2` | 340 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a9650 / 328 | `a84b155502e755e29c81677eb80555d7ec6f6d5428428d6ff7ad0f0b7f277be1` | `d01ba4caf0cc8ee0a6b6868f26389f5643deeb5de6502de52c15a20eb4fb635b` | 250 |
+| `__glSpanRenderCIubyte3` | 468 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a97a0 / 488 | `47c5cc64d125910ec7402d64ef0bca6608f5cb68c0f233dd4e7f21e65d0036dc` | `f87ff16e7ef200501e6a258d4cc1343d935b51a6fb39e20f908a3c85c02d13f0` | 390 |
+| `__glSpanRenderCIubyte4` | 416 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a9990 / 412 | `c9f8c41b7559213a28eb508b626f112fb8920beb1637a7922d0d004b388529e7` | `15ce17d807544d1abb2a9111935346f0a7835d599418c7949630756964a8756c` | 325 |
+| `__glSpanUnpackBitmap` | 2476 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9ab020 / 4540 | `4eb967cadf92b68a1626b45e97660b15c49a6e32b1f6100bc5f3875ed4bd0b89` | `346048099c5e90f938e9fd8f6a79bfd65abb630059617ce348fae93ee98230e5` | 2056 |
+| `__glSpanUnpackRGBubyte` | 100 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9aca00 / 100 | `a46d51acec528c1a2a362d0e334a2f9f36724b9f8242c350fae589d639c1d705` | `5670803e6aa4fc3d3d50af7b6ba25677aca0d106717003067c1a5f287516395d` | 74 |
+| `__glSpanUnpackIndexUbyte` | 68 bytes | `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9aca70 / 156 | `f440e9f95e98b3ec9c0f95dee0241fdf3bd252c34fb180236655b183f858b409` | `fe2f8bd1fe0e89e7095caef8643e6722eb695b2ff6935ff5e4087e1219d989d4` | 58 |
+
+The `PickSpanModifiers` input comparison used an oversized supplied extent. Its corrected entry body is 13,768 bytes and has a separate raw comparison:
+
+| Routine | O32 body address / size / SHA-256 | N32 address / size / SHA-256 | Different prefix bytes |
+|---|---|---|---:|
+| `PickSpanModifiers` | 0xd9a39c0 / 13768 / `c8324f7f066ed33418e6855daa47e147958f595e232f458cef8de5e5f02eaf79` | 0xd99f000 / 14816 / `832cca75d09fdcbcfa4602b297cd72481baaa76a870aace6c8291a34b15a46d8` | 12646 |
+
+#### Target-build readings
+
+- `__glSpanPackIntI` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9a21dc; occupies 376 bytes.
+  **Established.** The span packer reads its count at second-argument plus 0xb8 (`lw` at 0xd9a21e0), and a nonpositive count takes `blez` at 0xd9a21ec directly to return. Its input starts with a floating-point word from the original third argument (`lwc1` at 0xd9a2210). The conversion loops include word stores (`sw` at 0xd9a2230 and `sw` at 0xd9a2290), with floating-point truncation in loop delay slots (`trunc.w.s` at 0xd9a223c and `trunc.w.s` at 0xd9a22e4). Hostfacts leaves the moving output bases and values unresolved. Signed-index packing is inferred from the interface name and truncation, without assigning unresolved stores to particular output indexes. The return register retains the original count (`jr` at 0xd9a234c).
+
+- `__glSpanPackNonCompByte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9a242c; occupies 84 bytes.
+  **Inferred.** noncomponent byte packing. The observed body loads words at second-argument plus 0xb8 and +0x6c (`lw` at 0xd9a2430 and `lw` at 0xd9a2434), then loops over floating-point-word reads and byte stores (`lwc1` at 0xd9a2454 and `sb` at 0xd9a2474). A signed nonpositive loop bound takes the `blez` at 0xd9a244c to return. Hostfacts cannot resolve that bound, either moving buffer base or the stored value, so no scaling or destination-offset claim is made. The original +0xb8 word remains the return value (`jr` at 0xd9a2478).
+
+- `__glSpanPackNonCompShort` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9a2558; occupies 84 bytes.
+  **Inferred.** This short-output packer has a halfword write in the loop's delay slot (`sh` at 0xd9a25a0), paired with floating-point-word input (`lwc1` at 0xd9a2580). The count fields are second-argument plus 0xb8 and +0x6c (`lw` at 0xd9a255c and `lw` at 0xd9a2560). Hostfacts's `blez` at 0xd9a2578 skips the loop when its unresolved signed bound is nonpositive. The moving input and output bases and the halfword's value remain unknown in those facts.
+
+- `__glSpanPackNonCompInt` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9a2684; occupies 84 bytes.
+  **Inferred.** The integer packing interface emits words (`sw` at 0xd9a26cc) after reading floating-point words (`lwc1` at 0xd9a26ac). It reads its two sizing fields from second-argument plus 0xb8 and +0x6c (`lw` at 0xd9a2688 and `lw` at 0xd9a268c). The `bnez` at 0xd9a26c8 repeats while the loop index is below the bound, but hostfacts cannot resolve either value. No callees appear, and the return register carries the original +0xb8 word (`jr` at 0xd9a26d0).
+
+- `PickSpanModifiers` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9a39c0; occupies 13768 bytes.
+  **Established.** It selects span-processing entries and prepares software records. It stores the address of the `__glDummyFilter` object at second-argument +0x1b4 (`sw` at 0xd9a3a24). One selection stores `__glSpanSwapAndSkipBytes2` at second-argument +0x168 (`sw` at 0xd9a4280). Its calls include `__glBuildRGBAModifyTables`, `__glBuildItoRGBAModifyTables` and `__glBuildItoIModifyTables` (`jalr` at 0xd9a5fc8, 0xd9a629c, 0xd9a6310). At those calls, a0 is the original first argument, a1 is that argument plus 30580, a2 is zero or one, and a3 is the original second argument. Two observed word-store sites target original third-argument +0x10 and +0x14 (`sw` at 0xd9a6f34 and `sw` at 0xd9a6f44). Hostfacts leaves both stored values unresolved. The second site is the taken-path delay slot of `beql` at 0xd9a6f40 and is annulled on fall-through. Its only local return site has an unresolved numeric result (`jr` at 0xd9a6f80). The body ends after that return's delay slot at 0xd9a6f84. The supplied 112864-byte comparison extent includes following code and remains separate from the body size. These calls and stores do not identify a hardware register or command.
+
+- `__glSpanRenderRGBubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ac6a8; occupies 496 bytes.
+  **Inferred.** The RGB-byte rendering interface loads three table pointers from first-argument plus 0x77a4, +0x77a8 and +0x77ac (`lw` at 0xd9ac72c, 0xd9ac730, 0xd9ac734), and a callback from +0x315c (`lw` at 0xd9ac738). Its first input-byte read uses the original third argument (`lbu` at 0xd9ac7a4). The callback receives the pointer at first-argument plus 0x2e28 and a stack record at entry sp minus 108 (`jalr` at 0xd9ac808). Completion writes the second argument's +0xdc and +0xd0 fields (`sw` at 0xd9ac858 and `sw` at 0xd9ac864). The callback's identity and rendering destination remain unknown.
+
+- `__glSpanRenderBGRubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ac898; occupies 496 bytes.
+  **Inferred.** This BGR-named path constructs a stack record and submits it through the callback read at first-argument plus 0x315c (`lw` at 0xd9ac928). Its table pointers come from +0x77a4, +0x77a8 and +0x77ac (`lw` at 0xd9ac91c, 0xd9ac920, 0xd9ac924). The indirect call uses the pointer at +0x2e28 as a0 and entry sp minus 108 as a1 (`jalr` at 0xd9ac9f8). The second argument's progress fields +0xdc and +0xd0 are written afterward (`sw` at 0xd9aca48 and `sw` at 0xd9aca54). Hostfacts does not establish which component each unresolved table lookup contributes.
+
+- `__glSpanRenderRGBubyte2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9aca88; occupies 424 bytes.
+  **Inferred.** The second RGB-byte path uses the end field at second-argument plus 0xd4 (`lw` at 0xd9acb2c) and an indirect sink read at first-argument plus 0x315c (`lw` at 0xd9acb24). It begins its source with a byte from the original third argument (`lbu` at 0xd9acb64). Submission passes the first argument's +0x2e28 pointer and the stack record at entry sp minus 96 (`jalr` at 0xd9acbb4). The writes at second-argument +0xdc and +0xd0 record progress (`sw` at 0xd9acbf0 and `sw` at 0xd9acbfc). The sink and final return value are unresolved.
+
+- `__glSpanRenderBGRubyte2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9acc30; occupies 424 bytes.
+  **Inferred.** BGR variant 2 reads its traversal end from second-argument plus 0xd4 (`lw` at 0xd9accd4), with the three table pointers at first-argument +0x77a4, +0x77a8 and +0x77ac (`lw` at 0xd9accc0, 0xd9accc4, 0xd9accc8). It supplies a stack record at entry sp minus 96 to an unknown callback (`jalr` at 0xd9acd5c), alongside the first argument's +0x2e28 pointer. Updated second-argument words are stored at +0xdc and +0xd0 (`sw` at 0xd9acd98 and `sw` at 0xd9acda4). The facts leave the component lookup results unknown, so no exact channel-value mapping is assigned.
+
+- `__glSpanRenderRGBAubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9acdd8; occupies 520 bytes.
+  **Inferred.** The RGBA-byte renderer reads four table pointers from first-argument +0x77a4 through +0x77b0 (`lw` at 0xd9ace58, 0xd9ace5c, 0xd9ace60, 0xd9ace64). Its source begins at the third argument (`lbu` at 0xd9aced4). A stack record at entry sp minus 112 reaches the unknown sink together with the first argument's +0x2e28 pointer (`jalr` at 0xd9acf50). It stores the traversal state back to second-argument +0xdc and +0xd0 (`sw` at 0xd9acfa4 and `sw` at 0xd9acfac). Those accesses show software record construction and dispatch, while the sink's effect is unresolved.
+
+- `__glSpanRenderRGBAubyte2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9acfe0; occupies 448 bytes.
+  **Inferred.** Variant 2 of the RGBA-byte interface loads its callback from first-argument +0x315c (`lw` at 0xd9ad074) and the fourth table pointer from +0x77b0 (`lw` at 0xd9ad070). The source's initial byte comes from the third argument (`lbu` at 0xd9ad0bc). The sink receives a0 equal to the first argument's +0x2e28 pointer and a1 equal to entry sp minus 100 (`jalr` at 0xd9ad124). Its progress stores target second-argument +0xdc and +0xd0 (`sw` at 0xd9ad160 and `sw` at 0xd9ad16c). Neither sink identity nor a single return status is established.
+
+- `__glSpanRenderStencilUbyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ad754; occupies 360 bytes.
+  **Inferred.** Stencil-byte rendering uses the callback at first-argument +0x7a18 (`lw` at 0xd9ad7d4). The indirect invocation receives first-argument plus 31164 as a0. Its other argument values are unknown in hostfacts (`jalr` at 0xd9ad838). The routine reads the span's auxiliary pointer at second-argument +0x138 (`lw` at 0xd9ad7f8), then records progress in second-argument +0xdc and +0xd0 (`sw` at 0xd9ad87c and `sw` at 0xd9ad888). The callback, rather than a named register write, is the observed output interface.
+
+- `__glSpanRenderStencilUbyte2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ad8bc; occupies 288 bytes.
+  **Inferred.** The second stencil-byte path takes its traversal end from second-argument +0xd4 (`lw` at 0xd9ad93c). It selects the same callback field at first-argument +0x7a18 (`lw` at 0xd9ad934), invoking the unknown function with a0 equal to first-argument plus 31164 (`jalr` at 0xd9ad970). Its only resolved caller-record writes update second-argument +0xdc and +0xd0 (`sw` at 0xd9ad99c and `sw` at 0xd9ad9a8). Hostfacts leaves the pixel coordinates, value arguments and final result unresolved.
+
+- `__glSpanRenderCIubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9adcc0; occupies 400 bytes.
+  **Inferred.** This colour-index-byte path obtains a lookup pointer from first-argument +0x77a0 (`lw` at 0xd9add44), distinct from the three RGB table fields. It reads the first source byte through the third argument (`lbu` at 0xd9add94) and passes a stack record at entry sp minus 108 to the unknown rendering callback (`jalr` at 0xd9addc8). That call's first argument is the pointer stored at first-argument +0x2e28. The two progress words return to second-argument +0xdc and +0xd0 (`sw` at 0xd9ade10 and `sw` at 0xd9ade1c). The looked-up value and sink semantics are unknown.
+
+- `__glSpanRenderCIubyte2` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ade50; occupies 340 bytes.
+  **Inferred.** The second colour-index renderer reads the mapping pointer at first-argument +0x77a0 (`lw` at 0xd9adecc) and the callback at +0x315c (`lw` at 0xd9aded0). Its loop uses second-argument +0xd4 as the traversal end (`lw` at 0xd9adee0). The indirect call sends entry sp minus 100 as a1 and the first argument's +0x2e28 pointer as a0 (`jalr` at 0xd9adf34). The routine writes second-argument +0xdc and +0xd0 on completion (`sw` at 0xd9adf64 and `sw` at 0xd9adf70), without a resolved numeric return status.
+
+- `__glSpanRenderCIubyte3` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9adfa4; occupies 468 bytes.
+  **Inferred.** Colour-index variant 3 loads four mapping pointers at first-argument +0x77a4, +0x77a8, +0x77ac and +0x77b0 (`lw` at 0xd9ae024, 0xd9ae02c, 0xd9ae034, 0xd9ae03c). A source byte is obtained from the third argument (`lbu` at 0xd9ae090). Its callback receives a stack record at entry sp minus 120 together with the first argument's +0x2e28 pointer (`jalr` at 0xd9ae0f4). The traversal updates second-argument +0xdc and +0xd0 (`sw` at 0xd9ae138 and `sw` at 0xd9ae144). Mapping colour indexes to a multicomponent record is inferred from the four-table interface, while the callback destination remains unknown.
+
+- `__glSpanRenderCIubyte4` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9ae178; occupies 416 bytes.
+  **Inferred.** The fourth colour-index interface combines the callback at first-argument +0x315c (`lw` at 0xd9ae1f0) with the four table fields at +0x77a4, +0x77a8, +0x77ac and +0x77b0 (`lw` at 0xd9ae1f4, 0xd9ae1f8, 0xd9ae1fc, 0xd9ae200). It submits the stack record at entry sp minus 116 through that unknown function (`jalr` at 0xd9ae29c). The callback's a0 is the first argument's +0x2e28 pointer. The span record receives updated +0xdc and +0xd0 words (`sw` at 0xd9ae2d8 and `sw` at 0xd9ae2e4). No callback identity or final result is assigned.
+
+- `__glSpanUnpackBitmap` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9af694; occupies 2476 bytes.
+  **Established.** Bitmap unpacking reads the bit-order selector at second-argument +0x2c, count at +0xa8, auxiliary pointer at +0x138 and initial bit position at +0x4c (`lw` at 0xd9af6a8, 0xd9af6ac, 0xd9af6b8, 0xd9af6bc). A zero selector takes the `beqz` at 0xd9af6cc to the alternate bit-order path. The first source byte comes from the third argument (`lbu` at 0xd9af6c0), and the selected output float comes from first-argument +0xdd8 (`lwc1` at 0xd9af6c4). One observed bit test takes `beqz` at 0xd9af708 when source bit 0x2 is clear. Its nonzero arm writes that float through the fourth argument (`swc1` at 0xd9af710), while the other arm writes another float whose value hostfacts does not resolve (`swc1` at 0xd9af724). Later moving output bases remain unknown in hostfacts. The body invokes no callee.
+
+- `__glSpanUnpackRGBubyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b07f0; occupies 100 bytes.
+  **Established.** This O32 body copies byte-valued components rather than producing float RGBA records. Its initial byte read uses the third argument (`lbu` at 0xd9b080c), and each iteration includes three byte writes (`sb` at 0xd9b0818, 0xd9b0828, 0xd9b0830). It reads a traversal field at second-argument +0x138 (`lw` at 0xd9b0800), and the `bnel` at 0xd9b0844 repeats while the unresolved index is below the signed count at +0xb4 (`lw` at 0xd9b07f8). Hostfacts cannot resolve the moving destination base. The count word is also the return value (`jr` at 0xd9b084c), and no floating-point stores or calls are listed.
+
+- `__glSpanUnpackIndexUbyte` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xd9b0854; occupies 68 bytes.
+  **Established.** Index unpacking reads second-argument +0xb4 and +0x138 (`lw` at 0xd9b0858 and `lw` at 0xd9b0864), then performs byte reads and writes (`lbu` at 0xd9b086c and `sb` at 0xd9b0878). The `bnez` at 0xd9b0888 continues while its unresolved index is below the signed +0xb4 count. A halfword read also participates in traversal (`lh` at 0xd9b087c), with its base and the moving byte-buffer addresses unknown. The observed destination stores are bytes, not float conversions. This leaf returns the original count (`jr` at 0xd9b0890).
 ## Software renderer (soft)
 
 ### so_accumop.c
