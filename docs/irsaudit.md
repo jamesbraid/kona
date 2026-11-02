@@ -65,6 +65,17 @@ Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help
   reporting branches, while unsupported modes return two before any hardware
   access.
 
+- `TEST_odma` (`usr/diags/IR/bin/irsaudit` 0x1007c9c4): **Established.**
+  The 4844-byte test allocates and maps a 0x1000-byte transfer buffer, scans
+  the returned mapping records, and releases a failed mapping through `destroy_map_diag` (call at 0x1007cc08, argument `0x400`).  Its primary output
+  channel selects raster-bus register `0x441` at 0x1007cc78, writes pack mode `0x43` to `0x441` at 0x1007ccf4, and writes the transfer length to `0x452`
+  and `0x453` at 0x1007cd04 and 0x1007cd14.  The mapped address and length are
+  then passed back through ioctl `0x2774` at 0x1007cd5c; the later body
+  programs the secondary channel's `0x440` and `0x460`-`0x463` fields and
+  finishes by polling the output-DMA totals.  Mapping or DMA failure takes the
+  diagnostic error path, while the successful path frees the mapping and
+  returns the test result.
+
 The following entries are **Established** from complete `irsaudit` 6.5.30m fact sheets. Addresses and sizes are the symbol ranges in that binary; register offsets are the arguments passed to the diagnostic's 32-bit PIO helpers.
 
 - `fcGfxWrite64` (`usr/diags/IR/bin/irsaudit`): **Established.**
