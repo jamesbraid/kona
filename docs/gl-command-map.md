@@ -5,7 +5,7 @@
 ## The chain
 
 1. **Established.** An entry stub is `lw $t9,OFF($zero)`, `jr $t9` and a delay-slot nop; The stub at 0xda78494 is 12 bytes. It loads the absolute word at OFF. Some stubs are longer (the one at 0xda784a0 is 20 bytes) but load their slot the same way.
-2. **Established** for the base: in `MakeCurrentRead` (`kon_context.s`) the copy loop writes each saved word to the global table at `$a1 + offset`, with `$a1` set to 4176. The offsets of the 505 stubs give table indexes 0 to 504 under that base. The sender name contains the entry name in 451 rows, and the rest are aliases, unimplemented stubs and list-mode routines.
+2. **Established** for the base: in `MakeCurrentRead` (`kon_context.s`) the copy loop writes each saved word to the global table at `$a1 + offset`, with `$a1` set to 4176. The offsets of the 505 stubs give table indexes 0 to 469 under that base (470 distinct slots, since aliases share one). The sender name contains the entry name in 451 rows, and the rest are aliases, unimplemented stubs and list-mode routines.
 3. **Established.** `__glkonim_dispatchState` is 1888 bytes at 0xda81298 in `.data`, 472 words. Each word holds the address of a sender, and the names agree with the entry names in the rows above.
 4. **Established**, from `MakeCurrentRead` in `kon_context.s`: the code copies `__glkonim_dispatchState` into the context at +8032, and on a second path copies the context's saved table (+8032) into the global table at 4176 and stores 4176 at context +6132. **Inferred:** the global table holds the immediate table while a context is in immediate mode. The rest of the function, which chooses between the two paths, was not read whole.
 5. **Established** for each row, from the sender's fact sheet: every store to 0x4000 in address order, with its value.
@@ -31,8 +31,8 @@ The fact sheet did not evaluate the masked byte words of three senders, so each 
 ## Limits
 
 - The list-compile senders in `g_lcompex.s` (`__glce_*`) write their own addresses into the global table, so the immediate map applies only while the immediate table is installed. Entries inside a display list do not follow it.
-- Path-dependent rows list all their stores. For example, the sender at 0xda663c4 sends 0xe4 (HP_SETERROR) with payload 0x500 on its invalid-mode path and 0x011 (HP_TEXENVF) otherwise.
+- Path-dependent rows list all their stores. For example, `__glkonim_TexEnvf` at 0xda663b0 sends 0xe4 (HP_SETERROR) with payload 0x500 when the target is not 0x2300 or the parameter name is not 0x2200, and 0x011 (HP_TEXENVF) otherwise.
 - Located senders include the texture, pixel and transform senders that send through helpers. The helpers were not followed.
 - Some located senders make an indirect call through a context pointer (the eval-coordinate and eval-point senders, for example). The row says indirect call; the target was not followed.
-- The rectangle senders store KONA_HP_BEGIN_RECT (0x003), then a vertex format word (22 for double, 14 for float and int, 10 for short), then four vertex calls, then END. Those format values are also the numbers of KONA_HP_TEXBIND, KONA_HP_TEXPARAMETERI and KONA_HP_LIGHTMODELI, so read the words by position, not by name.
+- The rectangle senders store KONA_HP_BEGIN_RECT (0x003), then a count word, then four vertex calls, then END. The count is the number of command words that follow it: the four vertices and the END send 22 words for double (4 x 5 + 2), 14 for float and int (4 x 3 + 2) and 10 for short (4 x 2 + 2), where `Vertex2d`, `Vertex2f` and `Vertex2s` send 5, 3 and 2. Those count values are also the numbers of KONA_HP_TEXBIND, KONA_HP_TEXPARAMETERI and KONA_HP_LIGHTMODELI, so read the words by position, not by name.
 - Token names are the `KONA_HP_*` names in [GE.h](../GE.h). A name is the first one listed for the value.
