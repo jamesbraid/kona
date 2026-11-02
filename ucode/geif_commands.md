@@ -251,7 +251,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
 
 - `geif.u entry 423` (slot 211, established words, inferred meaning): `mgesi_PassThrough` at 0x3a5b, `raster.S` line 39,
   18 words, takes one operand. It stages 0x452 into staging word 2 (0x3a5c), 0x700 into word 1 (0x3a5d, which also
-  reads staging word 2), 0x476 into word 0 (0x3a5e), 0x477 into word 2 again (0x3a5f) and 8 into word 3 (0x3a62).
+  names staging word 2 in A and D), 0x476 into word 0 (0x3a5e), 0x477 into word 2 again (0x3a5f) and 8 into word 3 (0x3a62).
   The wait is the word at 0x3a64. Bus stores in issue order, all unconditional: 0x1f7 (0x3a64, a word that carries
   the wait and names no source, so by the rule above it sends staging word 2, which still holds 0x452), 0x1f5 with
   staging word 3, 8 (0x3a65), 0x1f7 with staging word 0, 0x476 (0x3a66), 0x1f5 with staging word 1 through the
@@ -298,9 +298,9 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
 - `geif.u entry 199` (slot 99, established words, inferred meaning): `mgebi_ShadeModel` at 0x3a0a, `raster.S`
   line 169, 22 words, takes one operand, the shade-model enumerant (the public GL values 0x1d00 for `GL_FLAT` and
   0x1d01 for `GL_SMOOTH`). Staged: 1 into word 1 (0x3a0e), 0x70000 into word 0 (0x3a0f), 0x1270800 into word 2
-  (0x3a11, which also reads staging word 1) and, with a load of address register 0x13, staging word 0x10 (0x3a0d).
-  A flag-setting integer AND (M = 0x6d0, 0x3a12) takes operand 0 and the staged 1, so the flags show bit 0 of the
-  enumerant. Bus stores in issue order: 0x1f8 with staging word 0, 0x70000 (0x3a10, unconditional); 0x1f5 in a word
+  (0x3a11, which also names staging word 1 in A and D) and, with a load of address register 0x13, staging word 0x10 (0x3a0d).
+  A flag-setting integer AND (M = 0x6d0, 0x3a12) takes operand 0 and, inferred from the A and D fields of 0x3a11,
+  the staged 1, so the flags show bit 0 of the enumerant. Bus stores in issue order: 0x1f8 with staging word 0, 0x70000 (0x3a10, unconditional); 0x1f5 in a word
   that names no source (0x3a14, `r198` = 0x11), so by the last-read rule staging word 1; 0x1f8 with staging word 2
   (0x3a15, unconditional); 0x1f5 with operand 0 (0x3a17, `r198` = 0x11); 0x1f4 with staging word 0x10 (0x3a1b,
   `r198` = 0x11). The wait is 0x3a1c, which also sets flags from register 0x13. Engine word 3 is read twice, at
@@ -376,3 +376,122 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   0x13 as `mgesi_TBUS_1` does (C = 0x13, `r176` = 2, E = 0x3f). The word 0x39a9 carries the address 0x1f5 and reads
   operand 1; the store at 0x39aa sends the last word read, operand 1 (**inferred**, last-read rule). There is no
   0x1f4 store: no word stages staging word 0x10, so it is neither stored nor sent. It writes no engine word and sets no flag.
+
+## Raster state commands (`raster.S`)
+
+Same conventions as the section above. A word that is a store but carries no immediate and sits in no address-word pair (form 12 or form 1 with B = 0x1e and no `r95`) names no bus address of its own; where an entry needs one, it says so. Engine-word stores here use `r95` = 4 with the engine word as immediate, and send the store-data register as loaded by an earlier word with `r99` bit 1 set, normally nine words earlier ([The store-data register](ge_isa.md#the-store-data-register)). Unit-1 code 0x51 (M = 0x6d1) is not fixed by the diagnostic test; the entries below that use it follow the AND-NOT reading of the cull entries above.
+
+- `geif.u entry 185` (slot 92, established words, inferred meaning): `mgesi_AlphaTest` at 0x39b8, `raster.S` line
+  352, 16 words, takes one operand, the enable flag. Staged: 0x15b1407 into word 2 (0x39b9), 0xf into word 3
+  (0x39ba), 0x8000 into word 1 (0x39bd, a word that also moves staging word 3, 0xf, as a unit-1 result), 0x70000
+  into word 0 (0x39c0) and staging word 0x10 (0x39be). One computing word: a unit-1 shift-left code (M = 0x6df,
+  0x39c1) whose first source is operand 0 (A = 0x1f) and whose second is the unit-1 result four words earlier, the
+  move of 0xf at 0x39bd, so the result is operand 0 shifted left by 15. Bus stores, issue order: 0x1f8 with staging
+  word 0 (0x39c2), 0x1f5 with staging word 1, 0x8000 (0x39c3), 0x1f8 with staging word 2 (0x39c5), 0x1f5 with the
+  shift result, which the word at 0x39c6 takes from the unit-1 result five words earlier (0x39c1), and 0x1f4 with
+  staging word 0x10 (0x39c7). All are unconditional; the wait is 0x39bf. It writes no engine word and sets no
+  flag. **Inferred:** a shadowed write to the alpha-function register with mask 0x8000, so the enable bit of that
+  register ([RM.h](../RM.h)) takes operand 0 shifted to bit 15.
+
+- `geif.u entry 183` (slot 91, established words, inferred meaning): `mgesi_AlphaFunc` at 0x39c8, `raster.S` line
+  307, 18 words, takes two operands, the compare function and the reference value. Staged: 0x15b1407 into word 2
+  (0x39c9), 0x7fff into word 1 (0x39cb), 0x70000 into word 0 (0x39cf), 0xc0000 into word 4 (0x39d4, a word that
+  names operand 1 in A and D), 0x42030c00 into word 3 (0x39d7, a word that names operand 0) and staging word 0x10
+  (0x39d0). Engine word 0xc5 is read by immediate and moved into register 0x1c (0x39ca). One unit-2 multiply
+  (M = 0x47f, 0x39d5) takes register 0x1c on its second port and the word read through A and D on its first;
+  the nearest A and D read is operand 1 at 0x39d4, so the product is **inferred** to be operand 1 times engine
+  word 0xc5. Its word is also a store, the unit-2 output form (`r95` = 0x20). Bus stores with an address of
+  their own, issue order: 0x1f8 with staging word 0 (0x39d1, address from the word at 0x39cc), 0x1f5 with staging
+  word 1, 0x7fff (0x39d2), 0x1f8 with staging word 2 (0x39d3) and 0x1f4 with staging word 0x10 (0x39d9). Two more
+  stores carry no address: the product word 0x39d5 (A = 0x18, D = 4) and 0x39d8 (A = 0x18, D = 3, a move). They
+  name staging words 4 and 3, the two constants that nothing else here names, and operand 0 is the nearest A and
+  D read before 0x39d8. The words do not show which of those two readings each store uses, nor the address of
+  either store. The wait is 0x39d1. **Inferred:** a shadowed write to the alpha-function register with mask
+  0x7fff whose value combines the scaled reference (0xc5 is the colour scale that `mgeb_RGBA_Mode` below sets)
+  and the function code.
+
+- `geif.u entry 23` (slot 11, established words, inferred meaning): `mgeb_Enable_Normalize` at 0x394e, `raster.S`
+  line 614, 11 words, takes no operand. It reads engine word 3 by immediate (0x3950), stages 0xf449 into word 1
+  (0x3951) and 1 into word 0 (0x3952), ORs staging word 0 with the loaded word 3 (M = 0x6d4, 0x3953) and moves
+  staging word 1 (0x3954), loading the store-data register each time. Stores: engine word 3 (0x395c) with the OR
+  result, nine words after its load, and engine word 8 (0x395d) with 0xf449, nine words after 0x3954. The first
+  sets bit 0 of word 3. Word 8 receives the address 0xf449, which
+  [ge_compute.md](ge_compute.md#raster-board-commands-rasters) names `mmo_DirtyXformAndObjToClipModule`. Both stores are unconditional, nothing reaches the raster bus and no flag is
+  set.
+
+- `geif.u entry 15` (slot 7, established words, inferred meaning): `mgeb_Disable_Normalize` at 0x393e, `raster.S`
+  line 647, 11 words, takes no operand and has the words of `mgeb_Enable_Normalize` in the same positions (read of
+  engine word 3 at 0x3940, staged 0xf449 into word 1 at 0x3941 and 1 into word 0 at 0x3942, the store-data loads
+  at 0x3943 and 0x3944), except that the combine is unit-1 code 0x51 (M = 0x6d1) where the enable handler has OR.
+  The stores are the same two: engine word 3 (0x394c, nine words after 0x3943) and engine word 8 with 0xf449 (0x394d,
+  nine words after 0x3944). **Inferred:** with 0x51 as the AND-NOT, bit 0 of word 3 is cleared. It stores nothing
+  to the bus, sets no flag and runs no predicate.
+
+- `geif.u entry 667` (slot 333, established words, inferred meaning): `mgeb_RGBA_Mode` at 0x3923, `raster.S` line
+  682, 25 words, takes no operand. Staged: 0x10 into word 6 (0x3924), 0xf50d into word 4 (0x3929), 8 into word 5
+  (0x392a), 0x800 into word 2 (0x392b), 0xda3c into word 8 (0x392c), 0xf547 into word 7 (0x3931), 0xd831 into word
+  9 (0x3932) and 0x457ffff8 (4095.998) into word 1 (0x3933). It reads engine word 0x84 (0x3923) and word 3
+  (0x392d), applies code 0x51 to staging word 6 with word 0x84 (0x3925) and to staging word 2 with word 3
+  (0x392f), and sets the flags from staging word 5 ANDed (M = 0x6d0, `r220` = 1, 0x3930) with word 0x84. The loads
+  of the store-data register at 0x3925, 0x392e, 0x392f, 0x3931, 0x3932, 0x3933 and 0x3934 pair in order with seven
+  stores, all but one nine words apart (0x3939 is ten after 0x392f): engine word 0x84 (0x392e) with the 0x51 result
+  of 0x3925, engine word 0xa1 with 0xda3c (0x3937), engine word 3 with the 0x51 result of 0x392f (0x3939), engine
+  word 0xc with 0xf50d (0x393a), word 0xb with 0xf547 (0x393b), word 0xa1 again with 0xd831 under `r198` = 3
+  (0x393c, the only predicated store) and word 0xc5 with 0x457ffff8 (0x393d). Which flag outcome `r198` = 3 selects
+  is not read. **Inferred:** with 0x51 as the AND-NOT, bit 4 of word 0x84 and bit 11 of word 3 are cleared; word
+  0xa1 is 0xda3c or, under the predicate that the bit-3 test sets, 0xd831. The wait is 0x3935. Nothing reaches the raster bus.
+
+- `geif.u entry 685` (slot 342, established words, inferred meaning): `mgesi_UserColor` at 0x38e5, `raster.S`
+  line 842, 24 words, takes four operands. Four unit-2 multiplies (M = 0x47f, 0x38ea-0x38ed) take operands 0 to 3
+  (A = 0x1f, D = 0 to 3) and the engine word 0xc5 (read by immediate in the same words) into registers 0x19 to
+  0x1c. Staged: 0x70000 into word 0 (0x38e9), 0xffffff into word 1 (0x38ee), 0x13d1c14 into word 2 (0x38f0),
+  0xc0000 into word 4 (0x38f3), 0x400c0c00 into word 5 (0x38f5), 0x13e1c15 into word 3 (0x38f6) and staging word
+  0x10 (0x38e8). Bus stores in issue order: 0x1f8 with staging word 0 (0x38ef), 0x1f5 with staging word 1 (0x38f1),
+  0x1f8 with staging word 2 (0x38f2), four stores of registers 0x19, 0x1a, 0x1b and 0x1c that carry no address
+  (0x38f4, 0x38f7, 0x38fa, 0x38fb), 0x1f8 with staging word 3 (0x38f8) and 0x1f4 with staging word 0x10 (0x38fc).
+  The four register stores also name staging words 4, 5, 4 and 5 in A and D, the format constants 0xc0000 and
+  0x400c0c00, and the words do not show whether those constants reach the bus or what they do. The wait is 0x38f4. It writes
+  no engine word and sets no flag. **Inferred:** two shadowed writes with mask 0xffffff to address words
+  0x13d1c14 and 0x13e1c15, carrying the four scaled colour components, read as the blend colour in
+  [ge_compute.md](ge_compute.md#raster-board-commands-rasters).
+
+- `geif.u entry 679` (slot 339, established words, inferred meaning): `mgebi_ErrQuery` at 0x387d, `raster.S` line
+  1052, 17 words, takes no operand. It reads one external-memory word through register 0x16 (F = 0x1b, `r95` =
+  0x17, 0x387d). Staged: 0x476 into word 0 (0x3883), the immediate 0 into word 1 (0x3884, a word that
+  also runs a unit-1 move of the loaded word) and staging word 0x10 with register 0x13 (0x3882). Three predicated bus stores (`r213` = 2, `r198` = 0x11): 0x1f7 with staging word 0
+  (0x3886, address word 0x3885), 0x1f5 with the unit-1 move at 0x3884 forwarded four words (0x3888, address word
+  0x3887) and 0x1f4 with staging word 0x10 (0x388a, address word 0x3889). One unconditional external-memory store
+  (`r95` = 8, register 0x16, F = 0x1b, 0x3890) sends the store-data register, loaded with staging word 1 at 0x3885, to the same
+  address the read at 0x387d used. Staging word 1 is 0, so the store is **inferred** to clear that word. The flag-setting word is 0x388e
+  (`r222` = 1, register 0x13), after the predicated stores. The wait is 0x388b. It writes no engine word.
+  Which load the move at 0x3884 takes, the external-memory read at 0x387d or the C = 0x1d read at 0x3882, is not
+  read from the words. **Inferred:** it reports the recorded error word to board register 0x476
+  ([rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)) and clears it.
+
+- `geif.u entry 855` (slot 427, established words, inferred meaning): `mgeb_ClipmapXform` at 0x37f9, `raster.S`
+  line 1238, 17 words, takes four operands. Operand 0 only sets the flags (a move with `r220` = 1, 0x37fa). The
+  other three go to the store-data register in turn (A = 0x1f, D = 1, 2, 3 at 0x37fb, 0x37fd, 0x37fe). Staged:
+  0xf494 into word 1 (0x37fd) and 0x2000000 into word 0 (0x37fe). Engine word 3 is read by immediate (0x37ff) and
+  ORed with staging word 0 (M = 0x6d4, 0x37ff), and code 0x51 combines the same two (0x3800); staging word 1 is
+  moved at 0x3801. Six engine stores, each nine words after its load: word 0x75 with operand 1 (0x3804), 0x76 with
+  operand 2 (0x3806), 0x77 with operand 3 (0x3807), word 3 with the OR result (0x3808, unconditional), word 3 with
+  the 0x51 result under `r198` = 2 (0x3809) and word 0xd with 0xf494 (0x380a). The predicate uses the flags of
+  operand 0; which outcome `r198` = 2 selects is not read. **Inferred:** operand 0 is an enable flag, so bit 25 of
+  word 3 ends set or cleared by it (with 0x51 as the AND-NOT), and word 0xd is the successor word of the
+  texture-coordinate transform ([ge_compute.md](ge_compute.md#raster-board-commands-rasters) names 0xf494
+  `mmo_DirtyTextureAndScreenModule`). Nothing reaches the bus.
+
+- `geif.u entry 799` (slot 399, established words, inferred meaning): `mgesi_FlushRM` at 0x380b, `raster.S` line
+  1149, 46 words, takes no operand. Three groups of the same shape. Each loads register 0xf with a count (8 at
+  0x380e, 0xb0 at 0x3823, 0x56 at 0x3836, each with `r222` = 1), stages a register number (0x1c3a into word 0 at
+  0x3810, 0x1411 into word 1 at 0x3824, 0x87f into word 2 at 0x3837) and stores it to 0x1f7 (0x3811, 0x3825,
+  0x3838), then runs a wait loop of one decrement word (`r222` = 1, F = 0x25 on register 0xf: 0x3814, 0x3827,
+  0x383a) and a conditional transfer back to it (0x3816, 0x3829, 0x383c; `xfer5`, condition group 7). After the loop
+  come a 0x1f5 store that names no source and carries E = 1 (0x381b, 0x382e, 0x3842, the last carrying the end-of-command wait) and a
+  store of the NOT (M = 0x6d8) of register 0x1e, all ones, with E = 3 (0x381f, 0x3832, 0x3845) that carries no
+  address. Each of these stores has a twin with W71 set (0x3812 and 0x381d, 0x3826 and 0x3830, 0x3839 and 0x3843,
+  and the NOT twins 0x3820, 0x3833, 0x3847), which [ge_isa.md](ge_isa.md#forms) infers to be second-thread words.
+  The closing store sends staging word 0x10 to 0x1f4 (0x384a). The three register numbers are the no-operation
+  registers of the three raster chips that [ge_compute.md](ge_compute.md#raster-board-commands-rasters) names
+  (`IMP_NOP`, `TFP_NOP`, `PG_NOP`), **inferred** from [RM.h](../RM.h). The addresses of the stores that carry none,
+  and what the all-ones words select, are not read from the words.
