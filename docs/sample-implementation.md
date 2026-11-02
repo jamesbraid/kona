@@ -14167,6 +14167,18 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
 - `__glDlistFreeOp` in usr/gfx/arch/IP27KONA/libGLcore.so: is the operation-free hook for the list being built: the public body is empty, and this one stores its two arguments into the caller's argument slots (a0 at 0(sp), a1 at 4(sp)) and returns; in the original 32-bit build it occupies 12 bytes at address 0x0d992ebc; the public sample-implementation source gfx/lib/opengl/glcore/dl_list.c holds the same routine, matched by name, and the whole body was read: no call, branch or access to the context, and it makes no access to the board. Established.
 - `__glDlistAppendOp` in usr/gfx/arch/IP27KONA/libGLcore.so: appends a filled operation record to the list being built: calls the check function at context +4948 with the context and the record; when the mode word (context +4984) is COMPILE_AND_EXECUTE it copies the saved table (context +9920) into the global dispatch table, points the dispatch state at the global table, calls the record's execute function (the third argument) with the record data at +16, copies the global table back into the saved table, then copies into the global table the table at the address held in the word at absolute 0x1048 when that word is nonzero, otherwise the list-compiling table (context +6136), and points the dispatch state at the saved table; it then links the record at the list tail (the list head word at context +5004, the tail word at +5008, and the tail's first word as the next link, with a branch-likely on the empty-list test), and in the original 32-bit build it occupies 256 bytes at address 0x0d992ec8; the public sample-implementation source gfx/lib/opengl/glcore/dl_list.c holds the same routine, matched by name, and the whole body was read: the same steps in the same order, except that the restore copy takes its source from the override word at absolute 0x1048 when that word is nonzero, where the public body copies gc->listCompState unconditionally, and it makes no access to the board. Established.
 
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| DoCallLists | 0x2df2180 / 396 | 5a3b53fea426c5706b4717411526d0cd565891038c6ec5fb10879580eb75832e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d98ed70 / 380 | cfa3636806ca35115f97ec6f97487343901403daa40753a7fe2c23c4bba2468f | 300 |
+
+- `DoCallLists` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2df2180; occupies 396 bytes.
+  **Inferred.**** The 64-bit list-array body updates the nesting word at C +0x1538 (`sw` at 0x2df21f4 and `sw` at 0x2df22c0), and its overflow path writes 0x80 there (`sw` at 0x2df22f0). `__glNamesLockDataList` receives C, the doubleword pointer at C +0x14d0, and a local pointer array at entry sp -0x850 (`jalr` at 0x2df223c). A per-list indirect callback and `__glNamesUnlockDataList` follow (`jalr` at 0x2df2264 and `jalr` at 0x2df2284). Hostfacts does not resolve every batch count or callback identity, so the N32 batching contract is not transferred wholesale. Debug information bounds both this 396-byte target and the 380-byte N32 comparison.
+
 ### dl_matopt.c
 
 - `ApplyMatChange` in usr/gfx/arch/IP27KONA32/libGLcore.so: applies one recorded material change, a colour or the shininess, to a material state and reports which bits changed, and it occupies 436 bytes at address 0x0d98ffe0; the public sample-implementation source gfx/lib/opengl/glcore/dl_mopt.c holds the same routine, matched by name, no direct call in either, a shipped body of 49 source lines against 52 in the public file, and it makes no access to the board. Inferred.
@@ -14301,6 +14313,18 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
 - `__glsplc_DrawElements` in usr/gfx/arch/IP27KONA/libGLcore.so: compiles an indexed draw into a static display list by expanding it to begin, array-element calls and end, and in the original 32-bit build it occupies 384 bytes at address 0xd996d70; the public sample-implementation source gfx/lib/opengl/glcore/dl_splc.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glsplc_DrawRangeElements` in usr/gfx/arch/IP27KONA/libGLcore.so: compiles a ranged indexed draw into a static display list after rejecting an end below the start, and in the original 32-bit build it occupies 108 bytes at address 0xd996ef0; the public sample-implementation source gfx/lib/opengl/glcore/dl_splc.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glsplc_Bitmap | 0x2df45a0 / 284 | e64dd92a9c07b0f6993763a73f8c6c02091524ef18279655c6361af8ed46073e | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d991090 / 284 | a17c11a3104d8e5a129685f10c08586e95464006413d93904ceabb02d861f3a0 | 21 |
+
+- `__glsplc_Bitmap` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2df45a0; occupies 284 bytes.
+  **Inferred.**** Bitmap compilation rejects negative entry a0 through `__glsplc_InvalidValue` (`bltz` at 0x2df45dc and `bgezall` at 0x2df46ac). It calls `__glSPDlalloc` with selector 4 and an unknown size (`jalr` at 0x2df4628), then stores entry width/height as words at result +0/+4 (`sw` at 0x2df4658 and `sw` at 0x2df4650). `__glFillImage` receives entry a0/a1 as a1/a2, format 0x1900, type 0x1a00 and destination result +0x20 (`jalr` at 0x2df4698). The remaining allocation arithmetic and complete context argument remain unresolved.
+
 ### dl_table.c
 
 - `__glDisposeDlist` in usr/gfx/arch/IP27KONA32/libGLcore.so: drops a reference on a display list held in the name table and frees it when the count reaches zero, and it occupies 72 bytes at address 0x0d990a50; the public sample-implementation source gfx/lib/opengl/glcore/dl_table.c holds the same routine, matched by name, no direct call in either, 1 indirect call, a shipped body of 15 source lines against 16 in the public file, and it makes no access to the board. Inferred.
@@ -14330,6 +14354,18 @@ These entries describe the exact O32 binary bodies in usr/gfx/arch/IP27KONA/libG
 - `__glim_DeleteLists` in usr/gfx/arch/IP27KONA/libGLcore.so: deletes a range of display lists by name, rejecting a negative count, and in the original 32-bit build it occupies 160 bytes at address 0xd994418; the public sample-implementation source gfx/lib/opengl/glcore/dl_table.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 
 ## Pixel paths (pixel)
+
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glim_ListBase | 0x2df4200 / 88 | b39bb9f12cae48f8198fb981e34443fda4f7c27009b20b0c068c43127e281030 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d990d00 / 88 | 06182973e0687e1ac3ec825368f77a8e77ccbce9dbcbd97bfb252b4b26f22977 | 15 |
+
+- `__glim_ListBase` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2df4200; occupies 88 bytes.
+  **Established.** **Established.** Process state at absolute 0x1030 is compared with 1 (`lw` at 0x2df4200 and `beq` at 0x2df4218). Equality takes the arm that calls `__glSetError(0x502)` (`jalr` at 0x2df4248). Other values fall through to write entry a0 as a word at C +0x8c4 in the return delay slot (`sw` at 0x2df4230). This establishes the 64-bit context field rather than importing the N32 offset.
 
 ### px_api.c
 
@@ -14500,6 +14536,18 @@ These notes report binary observations from the exact O32 build. The N32 descrip
 - `__glSpanModifyLuminanceAlpha` in usr/gfx/arch/IP27KONA/libGLcore.so: applies the pixel-transfer modification to a span of pixels laid out as luminance and alpha: scale, bias and the pixel-map lookups per channel, writing the modified span, and in the original 32-bit build it occupies 832 bytes at address 0xd99c948; the public sample-implementation source gfx/lib/opengl/glcore/px_mod.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glSpanModifyRedAlpha` in usr/gfx/arch/IP27KONA/libGLcore.so: applies the pixel-transfer modification to a span of pixels laid out as red and alpha: scale, bias and the pixel-map lookups per channel, writing the modified span, and in the original 32-bit build it occupies 464 bytes at address 0xd99cc88; the public sample-implementation source gfx/lib/opengl/glcore/px_mod.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
 - `__glBuildRGBAModifyTables` in usr/gfx/arch/IP27KONA/libGLcore.so: builds the per-channel look-up tables used by the RGBA span modifiers from the pixel maps and the scale and bias, one table per colour channel, and in the original 32-bit build it occupies 1120 bytes at address 0xd99a560; the public sample-implementation source gfx/lib/opengl/glcore/px_mod.c holds the same routine, and this build makes the same number of calls as the N32 build and has a comparable size, and it makes no access to the board. Inferred.
+
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glBuildItoIModifyTables | 0x2dfb0e0 / 500 | 91c8b18706818b7d06b28bf5648c2d6eb430cf84385cc1d99ce3af52e20f1bc2 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0d997ba0 / 484 | ab5c2fcf7cad57835e01f928b31dafcd5047d5a332eb996219699e6e258a78eb | 428 |
+
+- `__glBuildItoIModifyTables` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
+  Address 0x2dfb0e0; occupies 500 bytes.
+  **Inferred.**** Partially decoded body. Table preparation sets byte 1 at entry a1 +0x90 (`sb` at 0x2dfb124). A null pointer at a1 +0x98 takes the allocation path (`beqz` at 0x2dfb120), whose unknown callback receives entry a0 and size 0x400 (`jalr` at 0x2dfb2b4), and its result is stored as a doubleword at a1 +0x98 (`sd` at 0x2dfb2d0). Float table stores have unknown bases (`swc1` at 0x2dfb1c0 and `swc1` at 0x2dfb244). The original word 0x4608213c at 0x2dfb248 is not decoded by Capstone and is preserved explicitly. Its predicate and resulting control flow remain unknown, so this body is not claimed fully read.
 
 ### px_pack.c
 
@@ -15126,10 +15174,44 @@ These notes report binary observations from the exact O32 build. The N32 descrip
 - `__glClampAndScaleColor` in usr/gfx/arch/IP27KONA32/libGLcore.so: clamps a colour's four components to zero to one and scales them by the context's colour scales, in hand-written code, and it occupies 204 bytes at address 0x0da7c2c0; the public sample-implementation source gfx/lib/opengl/glcore/s_light.c holds the same routine, matched by name, no direct call in either, a shipped body of 76 source lines against 47 in the public file, and it makes no access to the board. Inferred.
 - `__glFastCalcRGBColor` in usr/gfx/arch/IP27KONA32/libGLcore.so: computes a vertex's RGB lit colour on the fast path, accumulating each light's ambient, diffuse and specular terms onto the material and scene colour, in hand-written code, and it occupies 600 bytes at address 0x0da7c38c; the public sample-implementation source gfx/lib/opengl/glcore/s_light.c holds the same routine, matched by name, no direct call in either, a shipped body of 203 source lines against 133 in the public file, and it makes no access to the board. Inferred.
 
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glClampAndScaleColor | 0xda723d0 / 200 | 05e1a586c6d8382f1f43375fe25b131819469aa6f54d67e23517d988cde25bf7 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da7c2c0 / 204 | 5e0d688e4ffd5b4e62a2571b32b5cddc3a25975516536df1ef3e35b33f849a35 | 176 |
+| __glFastCalcRGBColor | 0xda72498 / 600 | dddf3a6cea813f88034c366a15372bd3a559fdda060fb88ce63d559fe71260f1 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da7c38c / 600 | 5e8fbbdb3ffec4bcb09c499c87cc347fa5db5f4507570ece695c66d444fa2db1 | 167 |
+
+- `__glClampAndScaleColor` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xda723d0; occupies 200 bytes.
+  **Inferred.**** Clamp and scale a colour. The target reads float words at a0 +0x1b0/+0x1b4/+0x1b8/+0x1bc and scale state at +0x7858/+0x785c/+0x7860/+0x7880 (`lwc1` at 0xda723d0, `lwc1` at 0xda723d8, `lwc1` at 0xda723e4, `lwc1` at 0xda723f4, `lwc1` at 0xda723d4, `lwc1` at 0xda723dc, `lwc1` at 0xda723e8, and `lwc1` at 0xda723f8). Multiplication and float-word stores are established (`mul.s` at 0xda723e0, `swc1` at 0xda7242c, `swc1` at 0xda7243c, `swc1` at 0xda7244c, and `swc1` at 0xda72454). The stores address a0 +0xc0/+0xc4/+0xc8/+0xcc. Hostfacts leaves the clamp-test operands and merged FP values unknown, so exact saturation limits are not supplied.
+
+- `__glFastCalcRGBColor` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xda72498; occupies 600 bytes.
+  **Inferred.**** A fast RGB lighting calculation. This body loads a linked-state pointer from a0 +0x6e4c and float inputs from a2 +0x20/+0x24/+0x28 (`lw` at 0xda724b0, `lwc1` at 0xda724b4, `lwc1` at 0xda724b8, and `lwc1` at 0xda724c0). Entry a1 nonzero takes an alternate arm, while zero falls through (`bnez` at 0xda724bc). Result word stores resolve to two possible groups relative to entry a2: +0x90/+0x94/+0x98 or +0xa0/+0xa4/+0xa8 (`sw` at 0xda726b8, `sw` at 0xda726c8, and `sw` at 0xda726cc). The individual results and some traversal bases are unknown, so a complete ambient/diffuse/specular formula is not inferred from the sibling.
+
 ### mips_poly.c
 
 - `__glRenderFlatTriangle` in usr/gfx/arch/IP27KONA32/libGLcore.so: draws a flat-shaded triangle: culls by facing and draws the triangle with the colour of its provoking vertex, in hand-written code, and it occupies 576 bytes at address 0x0da7c6d0; the public sample-implementation source gfx/lib/opengl/glcore/s_pgmode.c holds the same routine, matched by name, no direct call in either, 5 indirect calls, a shipped body of 284 source lines against 65 in the public file, and it makes no access to the board. Inferred.
 - `__glRenderSmoothTriangle` in usr/gfx/arch/IP27KONA32/libGLcore.so: draws a smooth-shaded triangle: culls by facing and draws the triangle with per-vertex colours, in hand-written code, and it occupies 576 bytes at address 0x0da7cb24; the public sample-implementation source gfx/lib/opengl/glcore/s_pgmode.c holds the same routine, matched by name, no direct call in either, 4 indirect calls, a shipped body of 267 source lines against 58 in the public file, and it makes no access to the board. Inferred.
+
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glRenderFlatTriangle | 0xda727d0 / 572 | 2f63157b8c20854faf49c08195b011774073d33ca4367e51a6c446b2c0a62be9 | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da7c6d0 / 576 | 81625074202eb7f8772e40afb4ae002e74ba7b5686d18a0ecc70f2dcd629a52f | 138 |
+| __glRenderSmoothTriangle | 0xda72c1c / 572 | af4adb544013d7f7d3175e0d933725aec3abfffcc4b9c92541f3f57ce6408eaa | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da7cb24 / 576 | 7534b8a9576e4e75f207edecfe0a9f1f0b001f3ff8742d0b1395c94df2e76961 | 157 |
+
+- `__glRenderFlatTriangle` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xda727d0; occupies 572 bytes.
+  **Inferred.**** Triangle preparation reads the +0x84 word of each of entry a1/a2/a3 (`lw` at 0xda727d4, `lw` at 0xda727d8, and `lw` at 0xda727dc). It writes five float words at context a0 +0x7620/+0x761c/+0x7624/+0x7628/+0x7618 (`swc1` at 0xda7289c, `swc1` at 0xda728a8, `swc1` at 0xda728ac, `swc1` at 0xda728b0, and `swc1` at 0xda728c4). The body has five indirect calls, including the final call through context +0x2f68 (`jalr` at 0xda72914, `jalr` at 0xda72924, `jalr` at 0xda72934, `jalr` at 0xda72944, and `jalr` at 0xda729ec). Their targets and several reordered vertex pointers are unknown, so the full culling and provoking-vertex behavior remains inferred.
+
+- `__glRenderSmoothTriangle` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xda72c1c; occupies 572 bytes.
+  **Inferred.**** The smooth-triangle body reads the +0x84 words of its three input records (`lw` at 0xda72c20, `lw` at 0xda72c24, and `lw` at 0xda72c28) and stores float setup values at context +0x7620/+0x761c/+0x7624/+0x7628/+0x7618 (`swc1` at 0xda72ce8, `swc1` at 0xda72cf4, `swc1` at 0xda72cf8, `swc1` at 0xda72cfc, and `swc1` at 0xda72d10). Four indirect calls preserve the context in a0 (`jalr` at 0xda72db0, `jalr` at 0xda72ddc, `jalr` at 0xda72e08, and `jalr` at 0xda72e20). The decoded body establishes setup and dispatch, without resolving callback names or every facing decision.
 
 ### mips_polyfin.c
 
@@ -15157,6 +15239,18 @@ These notes report binary observations from the exact O32 build. The N32 descrip
 - `__glSaveNT` in usr/gfx/arch/IP27KONA32/libGLcore.so: copies the current normal and the current texture coordinate into the vertex and then jumps to the context's vertex procedure, and it occupies 40 bytes at address 0x0da7b204; read in full against the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c, the whole body compared, a hand-written tail jump in place of the public C call, and it makes no access to the board. Established.
 - `__glSaveCAll` in usr/gfx/arch/IP27KONA32/libGLcore.so: copies the current colour, normal and texture coordinate into the vertex and then jumps to the context's vertex procedure, and it occupies 56 bytes at address 0x0da7b22c; read in full against the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c, the whole body compared, a hand-written tail jump in place of the public C call, and it makes no access to the board. Established.
 - `__glSaveCIAll` in usr/gfx/arch/IP27KONA32/libGLcore.so: copies the current colour index, normal and texture coordinate into the vertex and then jumps to the context's vertex procedure, and it occupies 52 bytes at address 0x0da7b264; read in full against the public sample-implementation source gfx/lib/opengl/glcore/s_vertex.c, the whole body compared, a hand-written tail jump in place of the public C call, and it makes no access to the board. Established.
+
+#### O32 target readings
+
+These entries describe the exact O32 bodies in usr/gfx/arch/IP27KONA/libGLcore.so. The explicit N32 comparison build is shown per routine; differing bytes alone do not establish changed behavior.
+
+| Routine | O32 address / size | O32 SHA-256 | N32 build / address / size | N32 SHA-256 | Different bytes |
+|---|---|---|---|---|---:|
+| __glSaveCIAll | 0xda71374 / 52 | fb868dfd383f057e4e5fcac5fe53daf6d12bbe5e2174984332e3657645ce7dfc | usr/gfx/arch/IP27KONA32/libGLcore.so / 0x0da7b264 / 52 | 9260a5b2f754e26c9d369ac7618838f5a9eaf4d16c505cf101a8e74ea2f473a0 | 11 |
+
+- `__glSaveCIAll` in `usr/gfx/arch/IP27KONA/libGLcore.so`:
+  Address 0xda71374; occupies 52 bytes.
+  **Established.** **Established.** Vertex-state saving copies the word at entry a0 +0x1c0 into a1 +0x90 (`lw` at 0xda71374 and `sw` at 0xda71380). It also copies doublewords from a0 +0xd0/+0xe0/+0xe8 into a1 +0x20/+0x30/+0x38, and a word from a0 +0xd8 into a1 +0x28 (`sdc1` at 0xda71394, `sdc1` at 0xda7139c, `sdc1` at 0xda713a4, and `sw` at 0xda71398). The final indirect jump uses the pointer loaded from a0 +0x2ee4 (`lw` at 0xda71378 and `jr` at 0xda713a0), with entry a0 through a3 retained. Its target identity is unknown.
 
 ### mips_zfuncs.c
 
