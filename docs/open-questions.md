@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 133 (hardware-facing 61, microcode 26, driver and library 46, product and history 0; the queued next-step lists are included under microcode and driver), route b 15, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 130 (hardware-facing 60, microcode 26, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -140,10 +140,8 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - 433 __glx_ client stubs in libGL.so
 - static libGL.so routines matched to public GLX source
 - 426 soft-renderer routines without public name
-- display-list capacity limit in __glSdramSbrk
-- texture download and colour-matrix span converters
-- display-list size beyond 15 MB
-- colour matrix on texture load and stencil visuals
+- display-list size beyond 14 MiB
+- stencil visuals and colour matrix into one- and two-component textures (guest run)
 - swap timeout log sequence and bad-state code
 - GL_DEPTH_COMPONENT bit layout
 - many-display-list test with and without GLKONA_NOIDMA
@@ -161,6 +159,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - none open
 
 Route b, named:
+- GE and DG generation per product: the identity words are decoded, no shipped binary names the generation; needs published `gfxinfo -v` dumps with part numbers
 - DPLEX first IRIX release (6.5.2 in the datasheet, 6.5.3 in the guide): needs the release notes of those releases
 - PROM refusal of 0x2020202 EEPROM value: needs the Onyx IO4 base-I/O PROM image
 - board sets KONA, KONAT, KONAS: needs an IP19 or IP25 kernel or published hinv
@@ -505,12 +504,10 @@ Observed oddities: `konTiledCFillRects` is an empty stub (it stores its four arg
 
 Leads from posts, forum threads and a talk. Each was checked against the shipped binaries and the repo's chapters on 2026-10-30; the result of each is in its entry in [published-sources.md](published-sources.md#recollections-and-history-leads-unverified), and the settled facts are in [setup-tools.md](setup-tools.md#the-infinitereality-report-of-gfxinfo), [opengl.md](opengl.md), [libglcore.md](libglcore.md#the-extension-string) and [display-formats.md](display-formats.md). What is still open, with the next software route:
 
-- [route a] GE and DG revision per product (GE12, GE14, GE16, DG4 against DG5): `gfxinfo` prints neither. Route: decode the GE board id and the DG identity word per board set (`init_ge_config`, the `dg:` line).
+- [route b] GE and DG generation per product (GE12, GE14, GE16, DG4 against DG5): the identity words are decoded ([setup-tools.md](setup-tools.md#the-infinitereality-report-of-gfxinfo)) but no shipped binary maps a word to a generation name; the names come from the serial chips' part numbers. Route: published `gfxinfo -v` dumps that print both the `brd:` words and the part-number blocks for a pipe of known generation.
 - [route b] Which board sets report KONA, KONAT and KONAS: the 6.5.30m media carry only the IP27 (KONAL) and IP35 (KONAD) kernels. Route: an IP19 or IP25 kernel object from another release, or a published hinv.
 - [route b] hinv strings per product: `hinv` and its library are not on the media. Route: a published hinv listing, or the `hinv` and `libinvent` of another release.
 - [route a] Video bandwidth accept point (two 1024x768 plus six 640x480 at 60 Hz): port `vfmtIsKonaCombinationValidForTarget` (`kona.so` 0x428590) to a script and run the shipped `8@` combinations through it; first read which record field feeds each of the three sums.
-- [route a] Display-list capacity (15 MB): read the limit `__glSdramSbrk` applies and the memory-type records of the configuration record.
-- [route a] Whether texture download runs the colour-matrix span converters: read `subloadLevel` in `kon_texture_api` against `px_paths`.
 - [route a] Stereo: a shipped `cmb` exists for only three of the eight stereo formats; read what `setmon` does with the other five (`konBuildCmbList`).
 - [route a] RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM.
 - [route c] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
@@ -523,7 +520,7 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] ireeprom: a combination written with -w must survive a guest reset, and -c must restore the default format.
 - [route a] Clip-map limits on IR: find the maximum level count and addressable size with libGL on the guest.
 - [route c] Immediate-mode and display-list throughput: use the posted rates as bounds for a timing model.
-- [route a] Display-list size: create lists beyond 15 MB and check the change in behaviour.
+- [route a] Display-list size: create lists beyond 14 MiB (the pool size, [published-sources.md](published-sources.md)) and check that the driver falls back to host-locked memory; needs a pipe model that runs the shipped library.
 - [route c] Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
 - [route a] DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
 - [route a] Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
