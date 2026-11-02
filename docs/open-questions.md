@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 123 (hardware-facing 54, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 122 (hardware-facing 53, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9. Two stale entries on the subtract operand order are marked superseded and are not counted.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -66,7 +66,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - vfc rule files and setmon acceptance
 - DPLEX pre-DAC path and pipe-frame mapping
 - stuck framebuffer bit reproducing the impsq2 failure line
-- rendered size in 4-pixel steps; 320x320 floor
 - ircombine source-channel choices and stacked option
 - nicprobe and empty-pipe gfxinfo for GE14-2, DG5-2, RM8
 - gfxinfo with 0xFF or 0x20 EEPROM image
@@ -547,7 +546,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route c] Swapready cabling: a two-pipe swap-group test must hang until both pipes swap; check GL_EXTENSIONS strings.
 - [route a] irsaudit test list: run the shipped irsaudit on a guest; a stuck framebuffer address bit must reproduce the impsq2 failure line.
 - [route a] glDrawPixels width above 4K: run widths 4095, 4096 and 4097 on an IR guest and check for wrap and GL errors.
-- [route a] Dynamic video resolution: set rendered size in 4-pixel steps through glXChannelRectSGIX; check the 320x320 floor.
 - [route a] Sirius source-channel rules: check the ircombine source-channel choices and the stacked option on a DG5 guest.
 - [route c] IRIXNet Onyx2 deskside hang: run irsaudit, ireeprom and the PROM graphics install on a pipe with no RM in slot 0.
 - [route a] IRIXNet no-RM Onyx2: diff nicprobe and empty-pipe gfxinfo for a modelled GE14-2, DG5-2 and RM8 pipe.
