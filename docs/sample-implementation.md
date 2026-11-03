@@ -34833,3 +34833,163 @@ comparison was not rerun and supplies no new target equation.
   **Inferred.** Source grade: Inferred.
   Target address 0x2242ad0. The routine occupies 260 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e62ad0, which occupies 260 bytes. Both ranges have SHA-256 `9249088bc55c9bf16647e54a726a3f3b28a628012a318d12f84f3ffe53015dd6`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glStippleStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2242be0, occupies 276 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e62be0, which occupies
+  276 bytes. Both ranges have SHA-256
+  `a5005e9ef4844d0c84f31e315f7e789e358dbc2c72b4daa3b38409fbebc7f8d8`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glAlphaTestSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2242d00, occupies 632 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e62d00, which occupies
+  632 bytes. Both ranges have SHA-256
+  `fc856c92ca602de13c79df1678aec9c0046378e5c0070a9ba6eba1c3b810805d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glAlphaTestStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2242f80, occupies 516 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e62f80, which occupies
+  516 bytes. Both ranges have SHA-256
+  `cc515d0657aa946bfa8f75ddbfb29d7890d171f5353223d9b8269985f9da15e2`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStencilTestStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2243190, occupies 488 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e63190, which occupies
+  488 bytes. Both ranges have SHA-256
+  `ba3b45a8b3f4cde403fb950a02c86dedf642e8f6723c2d0176f1c1681d150d70`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestOffsetSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2243380, occupies 1488 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e63380, which occupies
+  1488 bytes. Both ranges have SHA-256
+  `8527e98f5932cf833f5b88ddc8b9b1edee144b5ada74ccb78a998af2851e8d69`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStippledOffsetSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2243950, occupies 1560 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e63950, which occupies
+  1560 bytes. Both ranges have SHA-256
+  `024d0e54ed4d0d6876ee88ea9c3c36033f0710fb6fafb9264ed55f25632e6dc5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStencilOffsetSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2243f70, occupies 1672 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e63f70, which occupies
+  1672 bytes. Both ranges have SHA-256
+  `4b0ed3ad0b05015efdca929f3365da9f7bb3fb0aec5c25f14632853f743c0a06`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStencilStippledOffsetSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244600, occupies 1700 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64600, which occupies
+  1700 bytes. Both ranges have SHA-256
+  `af403240a1b42b2c147195d46ae372d080d82a394e588f4d527fd96bfbb87833`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthPassSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244cb0, occupies 132 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64cb0, which occupies
+  132 bytes. Both ranges have SHA-256
+  `104d4cd97bfb4add4dd5b6d8485d59897827c8aeeb68e1cc16767c3570733fb2`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthPassStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244d40, occupies 240 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64d40, which occupies
+  240 bytes. Both ranges have SHA-256
+  `9224593a1f08a5c9763040fc3dd4efba5ae85ac9f25f2bd793c0722250497fe2`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glShadeCISpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244e30, occupies 164 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64e30, which occupies
+  164 bytes. Both ranges have SHA-256
+  `f35e05be58b5442e12d758ac2abc2853042e683b33d54b8f1118a39cf7b6fdef`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glShadeRGBASpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244ee0, occupies 212 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64ee0, which occupies
+  212 bytes. Both ranges have SHA-256
+  `8e40792fce454baca1e360a455673b27572b534e13c4edd39d109d3345cbd05c`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glFlatCISpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2244fc0, occupies 116 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e64fc0, which occupies
+  116 bytes. Both ranges have SHA-256
+  `3c487f8760f8fe5eb48f9c3cec1693fc87edc0dcdca58fa001d5887c0ac60fc9`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glFlatRGBASpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2245040, occupies 84 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e65040, which occupies
+  84 bytes. Both ranges have SHA-256
+  `cf57712f0873204948eceae4cac5b89f0eedbb2665831f916be38d7789376d45`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22450a0, occupies 280 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e650a0, which occupies
+  280 bytes. Both ranges have SHA-256
+  `5d9de273a3f06bfef1f5836cbf2c6bd1f3993a38c305b6ad008abc7e5dda2d91`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22451c0, occupies 384 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e651c0, which occupies
+  384 bytes. Both ranges have SHA-256
+  `be34cce701396ce15012d89ccc57e3a8b8f587f4bed6a26e8c395db3c9cfbb79`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDitherCISpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2245340, occupies 484 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e65340, which occupies
+  484 bytes. Both ranges have SHA-256
+  `ea345d31ad506c442b721f21463a2a40982b41b65f3b6def5562d3526bad50b7`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDitherCIStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2245530, occupies 508 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e65530, which occupies
+  508 bytes. Both ranges have SHA-256
+  `96e69efbf82a708cee6a23c2b676f5e255aee3d39ac3f462668d104afff9f256`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDitherRGBASpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2245730, occupies 332 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e65730, which occupies
+  332 bytes. Both ranges have SHA-256
+  `50ce8d41461405419d759e582b9e5f8ad405fb87d7ebba354b6ef61a2f6ba8d5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDitherRGBAStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2245880, occupies 484 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e65880, which occupies
+  484 bytes. Both ranges have SHA-256
+  `924725cce4413c980bd5dd4399594d5fbc3c6023e9fce992f3819cd1b0cb2adc`.
+  Existing note: `docs/sample-implementation.md`.
