@@ -41051,3 +41051,129 @@ comparison was not rerun and supplies no new target equation.
   | Return instruction | Reported registers |
   |---|---|
   | `jr` at 0x22c262c | `v0 = ?` |
+
+- `__glBlendStippledSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c6df0, 292 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c6df0, 292 bytes.
+  Code SHA-256 `a096d470b8257ae81052cb3f85ce3938ee2198ebfd62b8dc841742a864ab25f6`.
+
+- `__glInitBuffer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c6f20, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c6f20, 52 bytes.
+  Code SHA-256 `a7dc455aa6b297a9bac6a37c30d0ba2dde6a01ecfcfda77c541913c7910275d4`.
+
+- `__glLoseCurrentBuffer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c6fa0, 60 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c6fa0, 60 bytes.
+  Code SHA-256 `5ffb619c732fe2aa37044b38d3a0b5dae8c29340143dbba864c755ca58e171d3`.
+
+- `__glim_Color3ub` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c7140, occupies 112 bytes.
+  Inferred unsigned-byte scalar colour update. The context pointer comes from absolute 0x1010
+  (`lw` at 0xd9c7144). Indexed table loads for original a0/a1/a2 use context +0xef0 plus each
+  argument shifted left two (`lwc1` at 0xd9c7158, 0xd9c7174, 0xd9c718c). The table values
+  reach context +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9c716c, 0xd9c7188, 0xd9c719c), while
+  context +0xdd8 is copied to +0x1bc (`swc1` at 0xd9c7190). The unknown callback receives
+  context as a0 (`jalr` at 0xd9c7198). Table contents and callback effects remain unknown.
+
+- `__glim_Color3ubv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c71b0, occupies 124 bytes.
+  Inferred unsigned-byte vector colour update. It reads original a0 +0/+1/+2 as bytes (`lbu`
+  at 0xd9c71b0, 0xd9c71c8, 0xd9c71e4), with context from absolute 0x1010 (`lw` at 0xd9c71b4).
+  Three table-derived floats reach context +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9c71c4,
+  0xd9c71e0, 0xd9c7218). Context +0xdd8 is copied to +0x1bc (`swc1` at 0xd9c720c). The unknown
+  callback receives context as a0 (`jalr` at 0xd9c7214). Table values, callback behavior and
+  numeric return remain unassigned.
+
+- `__glim_Color3b` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c7230, occupies 140 bytes.
+  Inferred signed-byte scalar colour conversion. It reads the context pointer and context
+  floats +0xdd8/+0xde0 (`lw` at 0xd9c724c and `lwc1` at 0xd9c7260, 0xd9c7268). Context +0xdd8
+  is copied to +0x1bc (`swc1` at 0xd9c727c). Three calculated floats update context
+  +0x1b8/+0x1b4/+0x1b0 (`swc1` at 0xd9c7294, 0xd9c729c, 0xd9c72a8). The callback receives
+  context as a0 (`jalr` at 0xd9c72a4). Complete conversion formulas, calculated values and
+  callback effects remain unresolved.
+
+- `__glim_Color3bv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c72c0, occupies 152 bytes.
+  Inferred signed-byte vector colour conversion. Original a0 +0/+1/+2 supply signed bytes
+  (`lb` at 0xd9c72c0, 0xd9c72e4, 0xd9c7300). The context pointer and +0xde0 float are read
+  (`lw` at 0xd9c72d0 and `lwc1` at 0xd9c72d8). Calculated floats update context
+  +0x1b0/+0x1b4/+0x1b8 (`swc1` at 0xd9c72e0, 0xd9c72fc, 0xd9c7344), while +0xdd8 is copied to
+  +0x1bc (`swc1` at 0xd9c7334). The callback receives context as a0 (`jalr` at 0xd9c7340).
+  Conversion values and callback behavior remain unknown.
+
+- `__glim_Color3dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c73c0, 100 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c73c0, 100 bytes.
+  Code SHA-256 `4c144e165c0d547f0f965df2862cd62844358ff18e07f30de33ec68c743209df`.
+
+- `__glim_Color3i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7430, 136 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7430, 136 bytes.
+  Code SHA-256 `6832c1c03dc4ae4ebc1718409fd954946bd087dc6f2a79d8167e9e1d6e2fb30f`.
+
+- `__glim_Color3iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c74c0, 148 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c74c0, 148 bytes.
+  Code SHA-256 `b2764abe325cd0300fe38ae6d4d66611b61c264e1af3f8dd8fae0296a2968328`.
+
+- `__glim_Color3ui` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7560, 140 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7560, 140 bytes.
+  Code SHA-256 `0f3bd0e6a57f5d5d28df1583ed648036061f82b91a0dc7dca210d8cd063f233a`.
+
+- `__glim_Color3uiv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c75f0, 152 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c75f0, 152 bytes.
+  Code SHA-256 `6e043e56fe131455c0d7b290441800cde09e63cc66c0273092e179e7b1e184e0`.
+
+- `__glim_Color3s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7690, 140 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7690, 140 bytes.
+  Code SHA-256 `8d73ec76b1d348c1c534c18e7645701c0adf016597aec5c1ad25ac34c532c3fb`.
+
+- `__glim_Color3sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7720, 152 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7720, 152 bytes.
+  Code SHA-256 `1e2f20f6e713e9bd0a21f65c6c0c5b268f1bb6da73463ceb8575b5cf8b2c04ff`.
+
+- `__glim_Color3us` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c77c0, 116 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c77c0, 116 bytes.
+  Code SHA-256 `0583da0e9b313e502bb31a334144289b3f62d25500927b817d9ec0838c0b4446`.
+
+- `__glim_Color3usv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7840, 128 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7840, 128 bytes.
+  Code SHA-256 `6ca5c2150d7f42a3a44b2da1b91015fcd522259746da6279e4533f3d721cf7f0`.
+
+- `__glim_Color4ubv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c7940, occupies 136 bytes.
+  Inferred four-byte vector colour update. It reads original a0 +0/+1/+2/+3 as unsigned bytes
+  (`lbu` at 0xd9c7940, 0xd9c7958, 0xd9c796c, 0xd9c7980), with context from absolute 0x1010
+  (`lw` at 0xd9c7944). Four table-derived floats update context +0x1b0/+0x1b4/+0x1b8/+0x1bc
+  (`swc1` at 0xd9c7954, 0xd9c7968, 0xd9c797c, 0xd9c79b4). The callback receives context as a0
+  (`jalr` at 0xd9c79b0). Table values, callback effects and numeric result remain unknown.
+
+- `__glim_Color4b` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c79d0, occupies 156 bytes.
+  Inferred four-component signed-byte conversion. The context pointer and +0xde0 float are
+  read (`lw` at 0xd9c79f4 and `lwc1` at 0xd9c7a0c). Four calculated float stores update
+  context +0x1bc/+0x1b8/+0x1b4/+0x1b0 (`swc1` at 0xd9c7a3c, 0xd9c7a44, 0xd9c7a4c, 0xd9c7a58).
+  The callback receives context as a0 (`jalr` at 0xd9c7a54). Complete input-to-float formulas,
+  values and callback behavior remain unresolved.
+
+- `__glim_Color4bv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xd9c7a70, occupies 172 bytes.
+  Inferred four-component signed-byte vector conversion. It reads original a0 +0/+1/+2/+3 as
+  signed bytes (`lb` at 0xd9c7a70, 0xd9c7a94, 0xd9c7ab0, 0xd9c7acc), with context from
+  absolute 0x1010 (`lw` at 0xd9c7a80). Four calculated float stores update context
+  +0x1b0/+0x1b4/+0x1b8/+0x1bc (`swc1` at 0xd9c7a90, 0xd9c7aac, 0xd9c7ac8, 0xd9c7b08). The
+  callback receives context as a0 (`jalr` at 0xd9c7b04). Complete conversion formulas and
+  helper effects remain unknown.
+
+- `__glim_Color4d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Target 0xd9c7b20, 88 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9c7b20, 88 bytes.
+  Code SHA-256 `97a719c99f586a7c902756076ebde97236b770e12f3bd2ef13e66d70515a42ed`.
