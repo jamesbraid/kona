@@ -26355,3 +26355,439 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `review-facts/__glSpanRenderStencil.target.txt`,
   `review-facts/__glSpanRenderStencil.sibling.txt`, `review-facts/__glSpanRenderStencil.words.txt`,
   `review-facts/__glSpanRenderStencil.bytes.txt`.
+
+- `__glSpanRenderStencil2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21edfb0, routine size 368 bytes.
+  Renders software stencil values through an unnamed
+  procedure loaded from context +0x9cc0
+  (`ld` at 0x21ee098).
+  Its call receives context +39968 as argument zero
+  (`jalr` at 0x21ee0b0). Other callback arguments remain
+  unknown to hostfacts.
+  Final writeback updates descriptor +0xe0 and +0xec
+  (`sw` at 0x21ee110, 0x21ee11c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencil2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0dfb0,
+  368 bytes, labelled Inferred.
+  Comparison: target 368 bytes, existing 368 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9cbb5fd77b14a20d9ad7ec5ef481c824c21acf79aa07fc41ac4fff9dc4074e44`.
+  Existing SHA-256: `9cbb5fd77b14a20d9ad7ec5ef481c824c21acf79aa07fc41ac4fff9dc4074e44`.
+  Evidence: `facts/__glSpanRenderStencil2.target.txt`,
+  `facts/__glSpanRenderStencil2.existing.txt`, `facts/__glSpanRenderStencil2.full.listing.txt`,
+  `facts/__glSpanRenderStencil2.compare.txt`.
+
+- `__glElementsPerGroup` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21ee120, routine size 292 bytes.
+  Selects the software element-group count without memory
+  accesses or calls. Return bodies yield four, one,
+  two and three (`jr` at 0x21ee168, 0x21ee1bc,
+  0x21ee21c, 0x21ee22c respectively).
+  Its complete body reads original argument zero,
+  with no dependency on the incoming type argument.
+  The default return is one (`jr` at 0x21ee1cc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glElementsPerGroup` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0e120,
+  292 bytes, labelled Inferred.
+  Comparison: target 292 bytes, existing 292 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c807ec9dca1aec8f4b100cfd5b75b056c02bb303fa3aa74e94247bc1db002eca`.
+  Existing SHA-256: `c807ec9dca1aec8f4b100cfd5b75b056c02bb303fa3aa74e94247bc1db002eca`.
+  Evidence: `facts/__glElementsPerGroup.target.txt`,
+  `facts/__glElementsPerGroup.existing.txt`, `facts/__glElementsPerGroup.full.listing.txt`,
+  `facts/__glElementsPerGroup.compare.txt`.
+
+- `__glBytesPerElement` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21ee250, routine size 412 bytes.
+  Returns software element-size values through floating
+  register f0. Loads include absolute floats 0x22e077c,
+  0x22e0778 and 0x22e07a8 (`lwc1` at 0x21ee2f8,
+  0x21ee33c, 0x21ee30c).
+  Observed f0 return bit patterns include 0x3f000000,
+  0x3f800000 and 0x40000000 (`jr` at 0x21ee2f4,
+  0x21ee338, 0x21ee3e4 respectively).
+  Integer temporaries are not treated as an element size.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBytesPerElement` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0e250,
+  412 bytes, labelled Inferred.
+  Comparison: target 412 bytes, existing 412 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b4e289b1a0c32d0af961c4d824d15ae03507058187806d09cc9cc29b45c9e028`.
+  Existing SHA-256: `b4e289b1a0c32d0af961c4d824d15ae03507058187806d09cc9cc29b45c9e028`.
+  Evidence: `facts/__glBytesPerElement.target.txt`,
+  `facts/__glBytesPerElement.existing.txt`, `facts/__glBytesPerElement.full.listing.txt`,
+  `facts/__glBytesPerElement.compare.txt`.
+
+- `__glInitUnpacker` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21ee790, routine size 484 bytes.
+  Initializes a software unpack descriptor through
+  `__glSpecElementsPerGroup` and `__glSpecBytesPerElement`
+  (`bgezall` at 0x21ee7f0, 0x21ee804 respectively).
+  The former result is saved in descriptor +0x28 and
+  +0x24 (`sw` at 0x21ee924, 0x21ee928).
+  Source pointers use doubleword descriptor +0x10
+  stores (`sd` at 0x21ee8f8, 0x21ee960).
+  Generated stride values remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitUnpacker` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0e790,
+  484 bytes, labelled Inferred.
+  Comparison: target 484 bytes, existing 484 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `39bc6501020e17860e345ca53bc7479ef2a07e560c5864ffca8f8a0a8e0b5947`.
+  Existing SHA-256: `39bc6501020e17860e345ca53bc7479ef2a07e560c5864ffca8f8a0a8e0b5947`.
+  Evidence: `facts/__glInitUnpacker.target.txt`,
+  `facts/__glInitUnpacker.existing.txt`, `facts/__glInitUnpacker.full.listing.txt`,
+  `facts/__glInitUnpacker.compare.txt`.
+
+- `__glSpanUnpackBitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21ee9f0, routine size 4540 bytes.
+  Expands software bitmap bits into floating output.
+  Reads bit-order and initial-bit fields at descriptor
+  +0x34 and +0x54 (`lw` at 0x21ee9fc, 0x21eea0c).
+  The signed-halfword skip pointer is a doubleword at
+  descriptor +0x160 (`ld` at 0x21eea18).
+  One output path writes context +0xf2c's float through
+  original argument-three +0 (`swc1` at 0x21ef38c).
+  Later output and skip-list addresses remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackBitmap` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0e9f0,
+  4540 bytes, labelled Inferred.
+  Comparison: target 4540 bytes, existing 4540 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0b86ca56a9a926ed79fdfe7118ef28851d2e42af027a2160c0dc9b7266e1fef3`.
+  Existing SHA-256: `0b86ca56a9a926ed79fdfe7118ef28851d2e42af027a2160c0dc9b7266e1fef3`.
+  Evidence: `facts/__glSpanUnpackBitmap.target.txt`,
+  `facts/__glSpanUnpackBitmap.existing.txt`, `facts/__glSpanUnpackBitmap.full.listing.txt`,
+  `facts/__glSpanUnpackBitmap.compare.txt`.
+
+- `__glSpanUnpackBitmap2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21efbb0, routine size 2092 bytes.
+  Unpacks the simpler software bitmap path. Fetches the
+  initial source byte at argument-two +0
+  (`lbu` at 0x21efbb8), with count at descriptor +0xc4
+  (`lw` at 0x21efbc0).
+  Loads the set-bit float from context +0xf2c
+  (`lwc1` at 0x21efc08) and writes it at argument-three
+  +0 (`swc1` at 0x21efc10).
+  Its complete 523-word body has no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackBitmap2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0fbb0,
+  2092 bytes, labelled Inferred.
+  Comparison: target 2092 bytes, existing 2092 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `72ce18ed720be735007fe8547cc223dc142296792e1e031d304c75fc784c9666`.
+  Existing SHA-256: `72ce18ed720be735007fe8547cc223dc142296792e1e031d304c75fc784c9666`.
+  Evidence: `facts/__glSpanUnpackBitmap2.target.txt`,
+  `facts/__glSpanUnpackBitmap2.existing.txt`, `facts/__glSpanUnpackBitmap2.full.listing.txt`,
+  `facts/__glSpanUnpackBitmap2.compare.txt`.
+
+- `__glSpanUnpackRGBubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f03e0, routine size 100 bytes.
+  Copies software RGB samples as three bytes per pass.
+  Byte reads are `lbu` at 0x21f0400, 0x21f0408,
+  0x21f0410. Writes are `sb` at 0x21f0404,
+  0x21f040c, 0x21f0414.
+  The count is descriptor +0xc4 (`lw` at 0x21f03ec).
+  A signed skip halfword is read at `lh` at 0x21f0418.
+  Buffer addresses are unresolved, and the complete
+  body contains no floating stores or conversion.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackRGBubyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e103e0,
+  100 bytes, labelled Established.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f53dcc9a83566dc984cc1951bd1b72403c22c91fb5cd10ec418208333c188df6`.
+  Existing SHA-256: `f53dcc9a83566dc984cc1951bd1b72403c22c91fb5cd10ec418208333c188df6`.
+  Evidence: `facts/__glSpanUnpackRGBubyte.target.txt`,
+  `facts/__glSpanUnpackRGBubyte.existing.txt`, `facts/__glSpanUnpackRGBubyte.full.listing.txt`,
+  `facts/__glSpanUnpackRGBubyte.compare.txt`.
+
+- `__glSpanUnpackIndexUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0450, routine size 156 bytes.
+  Copies unsigned software index bytes. Its scalar prefix
+  transfers argument-two +0 to argument-three +0
+  (`lbu` at 0x21f0478, `sb` at 0x21f047c).
+  The first signed-halfword skip is read through the
+  descriptor +0x160 pointer (`lh` at 0x21f0480).
+  Paired-loop copies use `sb` at 0x21f04b4 and
+  0x21f04c8, with later buffer addresses unknown.
+  No float conversion occurs in this body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackIndexUbyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10450,
+  156 bytes, labelled Established.
+  Comparison: target 156 bytes, existing 156 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `78a07d2ff486735f45b7ba73eea00dc73935d18f2fe2f823e0a6247405771b36`.
+  Existing SHA-256: `78a07d2ff486735f45b7ba73eea00dc73935d18f2fe2f823e0a6247405771b36`.
+  Evidence: `facts/__glSpanUnpackIndexUbyte.target.txt`,
+  `facts/__glSpanUnpackIndexUbyte.existing.txt`, `facts/__glSpanUnpackIndexUbyte.full.listing.txt`,
+  `facts/__glSpanUnpackIndexUbyte.compare.txt`.
+
+- `__glSpanUnpackRGBAubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f04f0, routine size 104 bytes.
+  Repackages software RGBA as four byte outputs
+  (`sb` at 0x21f0514, 0x21f051c, 0x21f0524,
+  0x21f052c), rather than floating values.
+  Reads the halfword-list pointer from descriptor
+  +0x160 (`ld` at 0x21f04f4) and count from +0xc4
+  (`lw` at 0x21f04fc).
+  The signed-halfword step read is `lh` at 0x21f0534.
+  Indexed source and output addresses remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackRGBAubyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e104f0,
+  104 bytes, labelled Established.
+  Comparison: target 104 bytes, existing 104 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `ae62cc1c16fdc538e95c223fe8f34c322a7c5ca79bf16ec4971dacafcabf9d3a`.
+  Existing SHA-256: `ae62cc1c16fdc538e95c223fe8f34c322a7c5ca79bf16ec4971dacafcabf9d3a`.
+  Evidence: `facts/__glSpanUnpackRGBAubyte.target.txt`,
+  `facts/__glSpanUnpackRGBAubyte.existing.txt`, `facts/__glSpanUnpackRGBAubyte.full.listing.txt`,
+  `facts/__glSpanUnpackRGBAubyte.compare.txt`.
+
+- `__glSpanSwapBytes2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0560, routine size 72 bytes.
+  Swaps software two-byte elements using unsigned-byte
+  reads (`lbu` at 0x21f0580, 0x21f0588) and byte
+  stores (`sb` at 0x21f0590, 0x21f059c).
+  Count inputs are descriptor +0x28 and +0xc4
+  (`lw` at 0x21f0560, 0x21f0564).
+  Their loop-buffer effective addresses are unresolved.
+  The complete routine has no calls or float operations.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanSwapBytes2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10560,
+  72 bytes, labelled Established.
+  Comparison: target 72 bytes, existing 72 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `cb9ac09b5242a24109f2bdfc16c9114203820a7fed3f8ba38243f553c6902086`.
+  Existing SHA-256: `cb9ac09b5242a24109f2bdfc16c9114203820a7fed3f8ba38243f553c6902086`.
+  Evidence: `facts/__glSpanSwapBytes2.target.txt`,
+  `facts/__glSpanSwapBytes2.existing.txt`, `facts/__glSpanSwapBytes2.full.listing.txt`,
+  `facts/__glSpanSwapBytes2.compare.txt`.
+
+- `__glSpanSwapBytes2Dst` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f05b0, routine size 72 bytes.
+  Uses destination-side counts for software byte swapping.
+  Reads descriptor +0x80 and +0xc4
+  (`lw` at 0x21f05b0, 0x21f05b4).
+  Byte-output sites are `sb` at 0x21f05e0 and
+  0x21f05ec, fed by unsigned reads at `lbu` at
+  0x21f05d0 and 0x21f05d8.
+  Hostfacts leaves the indexed buffer addresses unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanSwapBytes2Dst` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e105b0,
+  72 bytes, labelled Established.
+  Comparison: target 72 bytes, existing 72 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `cd811c42e61ec925fd9b8e7c5572dd9671eb2b3c34dbcef819b9d59b4018190a`.
+  Existing SHA-256: `cd811c42e61ec925fd9b8e7c5572dd9671eb2b3c34dbcef819b9d59b4018190a`.
+  Evidence: `facts/__glSpanSwapBytes2Dst.target.txt`,
+  `facts/__glSpanSwapBytes2Dst.existing.txt`, `facts/__glSpanSwapBytes2Dst.full.listing.txt`,
+  `facts/__glSpanSwapBytes2Dst.compare.txt`.
+
+- `__glSpanSwapAndSkipBytes2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0600, routine size 120 bytes.
+  Swaps software element bytes while following a skip
+  list. The list pointer is the doubleword at descriptor
+  +0x160 (`ld` at 0x21f0604).
+  Reads its signed halfword at `lh` at 0x21f0650.
+  Element stores use `sb` at 0x21f0640 and
+  0x21f064c. The multiplier word comes from descriptor
+  +0x1c (`lw` at 0x21f060c).
+  Indexed list and buffer addresses stay unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanSwapAndSkipBytes2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10600,
+  120 bytes, labelled Established.
+  Comparison: target 120 bytes, existing 120 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `3da419875333bb30c1afb2728af5712a9dd98b0f61fd32b2cade713187c289d0`.
+  Existing SHA-256: `3da419875333bb30c1afb2728af5712a9dd98b0f61fd32b2cade713187c289d0`.
+  Evidence: `facts/__glSpanSwapAndSkipBytes2.target.txt`,
+  `facts/__glSpanSwapAndSkipBytes2.existing.txt`, `facts/__glSpanSwapAndSkipBytes2.full.listing.txt`,
+  `facts/__glSpanSwapAndSkipBytes2.compare.txt`.
+
+- `__glSpanSlowSkipPixels2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0a10, routine size 120 bytes.
+  Copies software two-byte pixels through byte accesses
+  while applying halfword-list skips.
+  Loads descriptor +0x160 as a pointer
+  (`ld` at 0x21f0a14), and descriptor +0x1c as a word
+  (`lw` at 0x21f0a1c).
+  Byte writes are `sb` at 0x21f0a50 and 0x21f0a5c.
+  The skip read is `lh` at 0x21f0a60.
+  The loop's effective addresses are unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanSlowSkipPixels2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10a10,
+  120 bytes, labelled Established.
+  Comparison: target 120 bytes, existing 120 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e9c9b63bb0c4699f3a3052a36a0620ed2321b996b835c93317a50d382340f242`.
+  Existing SHA-256: `e9c9b63bb0c4699f3a3052a36a0620ed2321b996b835c93317a50d382340f242`.
+  Evidence: `facts/__glSpanSlowSkipPixels2.target.txt`,
+  `facts/__glSpanSlowSkipPixels2.existing.txt`, `facts/__glSpanSlowSkipPixels2.full.listing.txt`,
+  `facts/__glSpanSlowSkipPixels2.compare.txt`.
+
+- `__glSpanAlignPixels2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0b20, routine size 72 bytes.
+  Aligns software two-byte elements through byte copying.
+  Uses count inputs descriptor +0x28 and +0xc4
+  (`lw` at 0x21f0b20, 0x21f0b24).
+  Its two unsigned reads (`lbu` at 0x21f0b40,
+  0x21f0b48) feed two byte stores
+  (`sb` at 0x21f0b50, 0x21f0b5c).
+  No procedure calls appear, and the indexed buffer
+  bases remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanAlignPixels2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10b20,
+  72 bytes, labelled Established.
+  Comparison: target 72 bytes, existing 72 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `def821a456ca19f85379d73e2aba27843a76350d7ebbeba24acd6d6925362fd9`.
+  Existing SHA-256: `def821a456ca19f85379d73e2aba27843a76350d7ebbeba24acd6d6925362fd9`.
+  Evidence: `facts/__glSpanAlignPixels2.target.txt`,
+  `facts/__glSpanAlignPixels2.existing.txt`, `facts/__glSpanAlignPixels2.full.listing.txt`,
+  `facts/__glSpanAlignPixels2.compare.txt`.
+
+- `__glSpanAlignPixels2Dst` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x21f0b70, routine size 72 bytes.
+  Copies the destination-alignment software path using
+  byte stores (`sb` at 0x21f0ba0, 0x21f0bac).
+  The two count words come from descriptor +0x80
+  and +0xc4 (`lw` at 0x21f0b70, 0x21f0b74).
+  Source bytes are read with `lbu` at 0x21f0b90
+  and 0x21f0b98, with unknown effective addresses.
+  The complete body has no floating conversion.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanAlignPixels2Dst` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10b70,
+  72 bytes, labelled Established.
+  Comparison: target 72 bytes, existing 72 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `23f6ca5700517a8f5595fc9437adab3e6d6fb628bbc5b7ed11bcabc3782ed2d1`.
+  Existing SHA-256: `23f6ca5700517a8f5595fc9437adab3e6d6fb628bbc5b7ed11bcabc3782ed2d1`.
+  Evidence: `facts/__glSpanAlignPixels2Dst.target.txt`,
+  `facts/__glSpanAlignPixels2Dst.existing.txt`, `facts/__glSpanAlignPixels2Dst.full.listing.txt`,
+  `facts/__glSpanAlignPixels2Dst.compare.txt`.
+
+- `__glSpanUnpackUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21f0c80, routine size 200 bytes.
+  Expands software unsigned bytes through floating lookup
+  values. Sample reads include `lbu` at 0x21f0cac,
+  0x21f0ce0 and 0x21f0cf4.
+  Floating lookup results are loaded at `lwc1` at
+  0x21f0cbc, 0x21f0cec and 0x21f0d00.
+  Output sites include `swc1` at 0x21f0cd0,
+  0x21f0cf0 and 0x21f0d04. Table and output effective
+  addresses remain unresolved in hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackUbyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10c80,
+  200 bytes, labelled Inferred.
+  Comparison: target 200 bytes, existing 200 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d179a430a90a80f5aa41b6468753a5afc66ce5106f82a670f6fe3797abff96c2`.
+  Existing SHA-256: `d179a430a90a80f5aa41b6468753a5afc66ce5106f82a670f6fe3797abff96c2`.
+  Evidence: `facts/__glSpanUnpackUbyte.target.txt`,
+  `facts/__glSpanUnpackUbyte.existing.txt`, `facts/__glSpanUnpackUbyte.full.listing.txt`,
+  `facts/__glSpanUnpackUbyte.compare.txt`.
+
+- `__glSpanUnpackByte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21f0d50, routine size 264 bytes.
+  Converts signed software byte samples into floats
+  (`lb` at 0x21f0d7c, `cvt.s.w` at 0x21f0d8c).
+  Reads its context scale at +0xf34
+  (`lwc1` at 0x21f0d90).
+  Floating outputs include `swc1` at 0x21f0dac,
+  0x21f0ddc, 0x21f0dfc and 0x21f0e1c.
+  Descriptor +0x24 and +0xc4 are the count inputs
+  (`lw` at 0x21f0d50, 0x21f0d54).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackByte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10d50,
+  264 bytes, labelled Inferred.
+  Comparison: target 264 bytes, existing 264 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d3ccdf2d7dfe57b1af2d25b99b70c73f384d0be6dd6b7462b9804447d60a7b82`.
+  Existing SHA-256: `d3ccdf2d7dfe57b1af2d25b99b70c73f384d0be6dd6b7462b9804447d60a7b82`.
+  Evidence: `facts/__glSpanUnpackByte.target.txt`,
+  `facts/__glSpanUnpackByte.existing.txt`, `facts/__glSpanUnpackByte.full.listing.txt`,
+  `facts/__glSpanUnpackByte.compare.txt`.
+
+- `__glSpanUnpackUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21f0e60, routine size 232 bytes.
+  Unpacks software unsigned halfwords to floating samples.
+  The first load is `lhu` at 0x21f0e8c, followed by
+  `cvt.s.w` at 0x21f0e94.
+  Scale comes from context +0xf3c
+  (`lwc1` at 0x21f0e98).
+  Output includes `swc1` at 0x21f0eb4, 0x21f0ee4,
+  0x21f0efc and 0x21f0f14, whose destinations are
+  unresolved. There are no callbacks.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackUshort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10e60,
+  232 bytes, labelled Inferred.
+  Comparison: target 232 bytes, existing 232 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `22f7b8cb26654d3fff55d31e91cc40379ab2d02b6e56dbc0abd9ba516109645f`.
+  Existing SHA-256: `22f7b8cb26654d3fff55d31e91cc40379ab2d02b6e56dbc0abd9ba516109645f`.
+  Evidence: `facts/__glSpanUnpackUshort.target.txt`,
+  `facts/__glSpanUnpackUshort.existing.txt`, `facts/__glSpanUnpackUshort.full.listing.txt`,
+  `facts/__glSpanUnpackUshort.compare.txt`.
+
+- `__glSpanUnpackShort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21f0f50, routine size 264 bytes.
+  Produces floating software samples from signed
+  halfwords (`lh` at 0x21f0f7c,
+  `cvt.s.w` at 0x21f0f8c).
+  Loads context scale +0xf3c (`lwc1` at 0x21f0f90).
+  Float-store sites include `swc1` at 0x21f0fac,
+  0x21f0fdc, 0x21f0ffc, 0x21f101c and 0x21f104c.
+  The repeated input and output effective addresses
+  remain unknown to hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackShort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e10f50,
+  264 bytes, labelled Inferred.
+  Comparison: target 264 bytes, existing 264 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8b4fef96393890f16e3d8412e89643f5ef08c024504b3ea13a586ef179630474`.
+  Existing SHA-256: `8b4fef96393890f16e3d8412e89643f5ef08c024504b3ea13a586ef179630474`.
+  Evidence: `facts/__glSpanUnpackShort.target.txt`,
+  `facts/__glSpanUnpackShort.existing.txt`, `facts/__glSpanUnpackShort.full.listing.txt`,
+  `facts/__glSpanUnpackShort.compare.txt`.
+
+- `__glSpanUnpackUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x21f1060, routine size 264 bytes.
+  Unpacks software unsigned words with long-to-float
+  conversion (`cvt.s.l` at 0x21f109c,
+  0x21f10e0).
+  Reads context scale +0xf44 (`lwc1` at 0x21f10a0).
+  Float output includes `swc1` at 0x21f10bc,
+  0x21f10ec, 0x21f110c, 0x21f112c and 0x21f115c.
+  Those destinations and the repeated word-source
+  addresses are unresolved. The body makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanUnpackUint` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e11060,
+  264 bytes, labelled Inferred.
+  Comparison: target 264 bytes, existing 264 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `7ac31c8e5852605a31089aedca180835f3fb9332c0ae64a4b200c8b6c6177041`.
+  Existing SHA-256: `7ac31c8e5852605a31089aedca180835f3fb9332c0ae64a4b200c8b6c6177041`.
+  Evidence: `facts/__glSpanUnpackUint.target.txt`,
+  `facts/__glSpanUnpackUint.existing.txt`, `facts/__glSpanUnpackUint.full.listing.txt`,
+  `facts/__glSpanUnpackUint.compare.txt`.
