@@ -6915,6 +6915,214 @@ Each complete IP35 body below is byte-identical to the documented IP27 body at t
 
 - `__gllc_TableTooLarge` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
   Address 0xd98fce0; occupies 96 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd98fce0 for 96 bytes (SHA-256 `e94852c5a9c34b9a09e21052b4994bf08ec56e9d7f22276536a0a7f474270d51`). Documented sibling grade: Inferred.
+#### IP35 N32 routines compared with IP27 O32 siblings (batch 084)
+
+The target and documented sibling routine bodies differ. The table uses reviewer-confirmed native bounds; each entry reports target observations with per-entry grades.
+
+| Routine | Target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `__gllc_UnimplementedExtension` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98fd40 / 100 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993530 / 104 | `24558c0367499420e7ebe6726f26ed714dd0ed45bbd5f7bf3aaaef759b400d55` | `4126eb8dbac7960982a9c9b891cc6998ed953025bf7003a76f70ccb853b678c8` | 81 |
+| `__gllc_Error` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98fdb0 / 152 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993598 / 160 | `932f359d8d6e36ce159b2d77079337abf718be4165114aed1f72cd6b2f5666e0` | `3cac534e54643b96efd3d24d349e95daff272b9e2f111d1b18c59c48d1235a5b` | 132 |
+| `__glle_InvalidValue` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98fe50 / 68 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993638 / 60 | `451166bb9b9af69c111bafee461e0682814aa6086e1ad2b3a4e240b112f6371d` | `ffcc9251087cd5977aa5c0c57e83be0e78ae3e6c3f5a82e2a7330d5db1b49f25` | 51 |
+| `__glle_InvalidEnum` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98fea0 / 68 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993674 / 60 | `2e1000648060d38a0b301e967ab347c0e546dcc45fe27db3963fd1d8f4a1fccb` | `03b6d98072436dbad31e84632abb9f453f1be47be87f71a60bcfefe2ee5afe42` | 51 |
+| `__glle_InvalidOperation` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98fef0 / 68 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9936b0 / 60 | `65f4b07f7fbc1c3b29ef483213d7770d2a14c874dc428f68e3dbfcbe449dbe33` | `f6dadb3ac6faeec4b65972d20eb2d5a069cf214b72e910440b1dba9f8402c5be` | 51 |
+| `__glle_TableTooLarge` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98ff40 / 68 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9936ec / 60 | `d63f9cd322b31b2453783258bb0c58bca4ef828508615772512a2ca858753952` | `a497dd5daa850311f03b0737070f0294b9f8c1a413fc106e2ada4f8cdb427480` | 51 |
+| `__glle_UnimplementedExtension` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98ff90 / 68 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993728 / 60 | `d5811f4e4590e1d0aac27f37eb4034be5cf1c0406c9845cfdecc6d323e6287bd` | `9d5dcd87ff26ce337fb7c8ec0d594dfebc230b96aa18a74841902857de84c5c1` | 51 |
+| `ApplyMatChange` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd98ffe0 / 436 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993780 / 404 | `498b6cabeeeb29b04ced0cc7aa1e91748c24ec292d421fdda156460ea3ec5565` | `32e38ebecc170b98576bedbcc1a0a6164cd3888e2b8cef9c76eb0971742c2198` | 272 |
+| `FreeFastMaterial` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9901a0 / 200 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993914 / 212 | `555141118cba10f02b1ff624ae62b11da88b9cea16726a9ede44f350dbb1c087` | `0575609d2303ddca6399e7e7d4bea91e83b0aceadef4e22530df130bf63d40de` | 153 |
+| `__glDlistOptimizeMaterial` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990270 / 1296 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9939e8 / 1152 | `d9d253e7a4ae8575529880a6cd9d7bf8e18f90335d3624666fd1a6eca7161ac0` | `cff9a321d03a74faf7a91878459367d5903ba9ed246bb8f0a047a473460353c9` | 989 |
+| `__glle_FastMaterial` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990780 / 708 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd993e68 / 672 | `3cd44333be7026b36eedaa42783f37c083c2a66a8f22a983bc4f319667c31bc6` | `162e723abe80de67865394e79232598654a2c7fba2261329c7b52b3e1f912bb4` | 562 |
+| `__glDisposeDlist` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990a50 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994110 / 72 | `99e814525a36ad4ee9077107ba879e8fe678131f068f44319c607fbf32867bd1` | `0de6d372ebf3a14b22b91003284742f6244d665c8f0dc3bce3502a7838c1e6f2` | 58 |
+| `__glEmptyFreeDlist` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990aa0 / 8 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994158 / 12 | `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378` | `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b` | 6 |
+| `__glEmptyExecuteDlist` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990ab0 / 8 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994164 / 12 | `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378` | `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b` | 6 |
+| `__glDlistNewArray` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990ac0 / 168 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994170 / 184 | `887d798bbff57ffccba05dfba0e27a57b1ef150388ea51163662b86e01e04652` | `ce7ceac22a55fbb299c2075565f462783088f67056a9609cdc3e7f51609046bf` | 148 |
+| `__glDlistFreeArray` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990b70 / 112 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994228 / 124 | `6cb12e9dd85c12c6ee7b1638df174fdb5671c0024bd5cd7b21c6216c15771a5a` | `c163e0d79bbab5880a5eed806fe5c4e8dcc09d4581cdf1ec2e24fc9ab139aa62` | 100 |
+| `__glim_IsList` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990be0 / 108 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9942a4 / 116 | `77ddba24314d119805a061070bccb7c225234e2ea9f7903a047d9fc9529a12d3` | `6aa23044dc37b8225c40ee22473f280fce557d2ee073b3dc3257e7cfc40e9369` | 88 |
+| `__glim_GenLists` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990c50 / 164 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994318 / 164 | `9e283945d38f9487556f93a45267d14afff86b6f174be31be176124630f193a5` | `f26a808389f3cb048c7c53d2f25dac2b36661f7f5ea804e94d3158fd7b3b77b7` | 137 |
+| `__glim_ListBase` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990d00 / 88 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9943bc / 92 | `06182973e0687e1ac3ec825368f77a8e77ccbce9dbcbd97bfb252b4b26f22977` | `969a97a67cbc410b9dd8421a53083aafec083702f4961207dbc2722c3f2a2788` | 76 |
+| `__glim_DeleteLists` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990d60 / 128 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994418 / 160 | `49d13d2a73a226e6adec799ff2b3680e2bcf8b20164bfd268d1a50b9c0eeaccc` | `8830c8cdde404a9bd7906569cff2b44904ea36c20502098cd30ace318ffab4aa` | 104 |
+
+Target entries:
+
+- `__gllc_UnimplementedExtension` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98fd40, occupies 100 bytes.
+  Inferred unsupported-extension list-record compilation. `__glDlistAllocOp2` receives the
+  global context and zero payload size (`bgezall` at 0xd98fd64). The record's +0xc halfword
+  receives 0x3f5 (`sh` at 0xd98fd98). `__glDlistAppendOp` receives the allocation result as a1
+  and executor 0xd98ff90 as a2 (`bgezall` at 0xd98fd94). Its context argument is unresolved at
+  append. These N32 facts do not establish byte identity with O32.
+  Byte comparison: target 100 bytes, SHA-256 `24558c0367499420e7ebe6726f26ed714dd0ed45bbd5f7bf3aaaef759b400d55`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993530, 104 bytes, SHA-256 `4126eb8dbac7960982a9c9b891cc6998ed953025bf7003a76f70ccb853b678c8`; 81 differing bytes in the common prefix.
+
+- `__gllc_Error` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98fdb0, occupies 152 bytes.
+  Established error-dispatch call targets. The body calls `__gllc_TableTooLarge`,
+  `__gllc_InvalidValue`, `__gllc_InvalidEnum` and `__gllc_InvalidOperation` at four sites
+  (`bgezall` at 0xd98fe00, 0xd98fe14, 0xd98fe24, 0xd98fe38). The calls retain original a0/a1.
+  Its data accesses are stack saves/restores and GOT target reads. This entry does not enumerate the full error-code-
+  to-call mapping from the listing alone.
+  Byte comparison: target 152 bytes, SHA-256 `932f359d8d6e36ce159b2d77079337abf718be4165114aed1f72cd6b2f5666e0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993598, 160 bytes, SHA-256 `3cac534e54643b96efd3d24d349e95daff272b9e2f111d1b18c59c48d1235a5b`; 132 differing bytes in the common prefix.
+
+- `__glle_InvalidValue` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98fe50, occupies 68 bytes.
+  Established invalid-value playback stub. It calls `__glSetError` with a0 equal to 0x501
+  (`jalr` at 0xd98fe74). The local return preserves original a0 in v0 (`jr` at 0xd98fe8c). The
+  complete seventeen-word body has no non-stack writes, and original a1/a2/a3 are retained at
+  the error call.
+  Byte comparison: target 68 bytes, SHA-256 `451166bb9b9af69c111bafee461e0682814aa6086e1ad2b3a4e240b112f6371d`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993638, 60 bytes, SHA-256 `ffcc9251087cd5977aa5c0c57e83be0e78ae3e6c3f5a82e2a7330d5db1b49f25`; 51 differing bytes in the common prefix.
+
+- `__glle_InvalidEnum` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98fea0, occupies 68 bytes.
+  Established invalid-enum helper interface. `__glSetError` receives 0x500 as a0 with original
+  a1/a2/a3 unchanged (`jalr` at 0xd98fec4). The return value is the original first argument
+  (`jr` at 0xd98fedc). Its memory accesses are limited to stack saves/restores and the GOT
+  target load.
+  Byte comparison: target 68 bytes, SHA-256 `2e1000648060d38a0b301e967ab347c0e546dcc45fe27db3963fd1d8f4a1fccb`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993674, 60 bytes, SHA-256 `03b6d98072436dbad31e84632abb9f453f1be47be87f71a60bcfefe2ee5afe42`; 51 differing bytes in the common prefix.
+
+- `__glle_InvalidOperation` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98fef0, occupies 68 bytes.
+  Established error-and-return forwarding interface with inferred playback role. Its only
+  call targets `__glSetError` with 0x502, set in the call delay slot (`jalr` at 0xd98ff14
+  and `addiu` at 0xd98ff18). The local return preserves original a0 in v0 (`move` at
+  0xd98ff24 and `jr` at 0xd98ff2c). This N32 stub performs no direct context or
+  list-record stores.
+  Byte comparison: target 68 bytes, SHA-256 `65f4b07f7fbc1c3b29ef483213d7770d2a14c874dc428f68e3dbfcbe449dbe33`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9936b0, 60 bytes, SHA-256 `f6dadb3ac6faeec4b65972d20eb2d5a069cf214b72e910440b1dba9f8402c5be`; 51 differing bytes in the common prefix.
+
+- `__glle_TableTooLarge` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98ff40, occupies 68 bytes.
+  Established table-size error playback. It reports 0x8031 through `__glSetError`, retaining
+  original a1/a2/a3 (`jalr` at 0xd98ff64). The seventeen-word body returns original a0 (`jr`
+  at 0xd98ff7c). No table-memory access or size calculation occurs here, so the triggering
+  limit belongs to its caller.
+  Byte comparison: target 68 bytes, SHA-256 `d63f9cd322b31b2453783258bb0c58bca4ef828508615772512a2ca858753952`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9936ec, 60 bytes, SHA-256 `a497dd5daa850311f03b0737070f0294b9f8c1a413fc106e2ada4f8cdb427480`; 51 differing bytes in the common prefix.
+
+- `__glle_UnimplementedExtension` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98ff90, occupies 68 bytes.
+  Established error-call and return interface with inferred unsupported-extension role. Its
+  single error call supplies 0x502 in the call delay slot (`jalr` at 0xd98ffb4 and `addiu`
+  at 0xd98ffb8). It returns original a0 (`move` at 0xd98ffc4 and `jr` at 0xd98ffcc).
+  The complete body does not inspect an extension selector. Its memory accesses are stack
+  state and the GOT target load.
+  Byte comparison: target 68 bytes, SHA-256 `d5811f4e4590e1d0aac27f37eb4034be5cf1c0406c9845cfdecc6d323e6287bd`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993728, 60 bytes, SHA-256 `9d5dcd87ff26ce337fb7c8ec0d594dfebc230b96aa18a74841902857de84c5c1`; 51 differing bytes in the common prefix.
+
+- `ApplyMatChange` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd98ffe0, occupies 436 bytes.
+  Established material-field writes with inferred selector-driven update role. Fourth-argument
+  floats +0,+4,+8 can become second-argument +0x4c,+0x54,+0x50 (`lwc1` at 0xd990020,
+  0xd990028, 0xd990034 and `swc1` at 0xd990024, 0xd990030, 0xd990044). That path
+  ORs 0x20 into second-argument +4 (`lw` at 0xd99002c, `ori` at 0xd990038 and
+  `sw` at 0xd99003c).
+  Another path copies four floats into +0x28,+0x2c,+0x30,+0x34 (`lwc1` at 0xd990064,
+  0xd99006c, 0xd990074, 0xd990080 and `swc1` at 0xd990068, 0xd990070, 0xd99007c,
+  0xd990090). It ORs 4 into +4 (`lw` at 0xd990078, `ori` at 0xd990084 and
+  `sw` at 0xd990088). The body is call-free.
+  Its complete selector/layout mapping is not enumerated.
+  Byte comparison: target 436 bytes, SHA-256 `498b6cabeeeb29b04ced0cc7aa1e91748c24ec292d421fdda156460ea3ec5565`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993780, 404 bytes, SHA-256 `32e38ebecc170b98576bedbcc1a0a6164cd3888e2b8cef9c76eb0971742c2198`; 272 differing bytes in the common prefix.
+
+- `FreeFastMaterial` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9901a0, occupies 200 bytes.
+  Inferred packed-material cleanup. It reads the first word of the second argument (`lw` at
+  0xd9901a4). Its only call is `__glFreeSpecLUT`, with original context as a0 (`jalr` at
+  0xd99022c). Packed-record reads use unresolved indexed bases, including `lw` at 0xd9901e0,
+  0xd990228, 0xd990240. Their flags, callback argument and complete record-advance formula
+  remain unknown in hostfacts.
+  Byte comparison: target 200 bytes, SHA-256 `555141118cba10f02b1ff624ae62b11da88b9cea16726a9ede44f350dbb1c087`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993914, 212 bytes, SHA-256 `0575609d2303ddca6399e7e7d4bea91e83b0aceadef4e22530df130bf63d40de`; 153 differing bytes in the common prefix.
+
+- `__glDlistOptimizeMaterial` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990270, occupies 1296 bytes.
+  Inferred material-list compaction. It calls `ApplyMatChange`, `__glMaterialfv_size` and
+  `__glCreateSpecLUT` (`bgezall` at 0xd9903bc and `jalr` at 0xd990400, 0xd9905d0). The new
+  allocation can receive cleanup pointer 0xd9901a0 at +4 and opcode halfword 0x3f6 at +0xc
+  (`sw` at 0xd990668 and `sh` at 0xd990678). `memcpy` receives allocation +16 as a0 and entry-
+  stack -528 as a1 (`jalr` at 0xd99068c). Its byte count, packed addresses and several helper
+  arguments remain unresolved.
+  Byte comparison: target 1296 bytes, SHA-256 `d9d253e7a4ae8575529880a6cd9d7bf8e18f90335d3624666fd1a6eca7161ac0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9939e8, 1152 bytes, SHA-256 `cff9a321d03a74faf7a91878459367d5903ba9ed246bb8f0a047a473460353c9`; 989 differing bytes in the common prefix.
+
+- `__glle_FastMaterial` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990780, occupies 708 bytes.
+  Inferred packed-material list execution. Calls reach `__glFreeSpecLUT` and
+  `__glValidateMaterial`, both retaining the global context as a0 (`jalr` at 0xd990938,
+  0xd9909e4). A third unnamed callback also receives that context (`jalr` at 0xd990a34). Many
+  float-store sites have unknown record bases, including `swc1` at 0xd990844, 0xd99084c,
+  0xd990854, 0xd990860. Packed source addresses, scaled values and the complete record format
+  remain unassigned.
+  Byte comparison: target 708 bytes, SHA-256 `3cd44333be7026b36eedaa42783f37c083c2a66a8f22a983bc4f319667c31bc6`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd993e68, 672 bytes, SHA-256 `162e723abe80de67865394e79232598654a2c7fba2261329c7b52b3e1f912bb4`; 562 differing bytes in the common prefix.
+
+- `__glDisposeDlist` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990a50, occupies 72 bytes.
+  Established list-reference decrement and cleanup interface. Second-argument +0 is
+  decremented (`lw` at 0xd990a50, `addiu` at 0xd990a5c and `sw` at 0xd990a68). The cleanup function pointer is read at second-argument +4
+  (`lw` at 0xd990a80). Its call preserves original a0/a1/a2/a3 (`jalr` at 0xd990a88). The
+  callee is unnamed, and this body alone does not establish the contents it releases.
+  Byte comparison: target 72 bytes, SHA-256 `99e814525a36ad4ee9077107ba879e8fe678131f068f44319c607fbf32867bd1`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994110, 72 bytes, SHA-256 `0de6d372ebf3a14b22b91003284742f6244d665c8f0dc3bce3502a7838c1e6f2`; 58 differing bytes in the common prefix.
+
+- `__glEmptyFreeDlist` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990aa0, occupies 8 bytes.
+  Established empty free-list callback. Its entire two-word body returns through ra with a no-
+  op delay slot (`jr` at 0xd990aa0). There are no memory accesses or calls. Hostfacts leaves
+  v0 unknown, so no zero-return contract is assigned.
+  Byte comparison: target 8 bytes, SHA-256 `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994158, 12 bytes, SHA-256 `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b`; 6 differing bytes in the common prefix.
+
+- `__glEmptyExecuteDlist` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990ab0, occupies 8 bytes.
+  Established empty execution callback. The complete eight-byte body contains a local return
+  and no-op delay slot (`jr` at 0xd990ab0). It reads no list record, calls no helper and
+  writes no state. Its preexisting return-register value remains unresolved.
+  Byte comparison: target 8 bytes, SHA-256 `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994164, 12 bytes, SHA-256 `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b`; 6 differing bytes in the common prefix.
+
+- `__glDlistNewArray` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990ac0, occupies 168 bytes.
+  Inferred display-list array allocation. The initial callback receives original context and
+  20 as a1 (`jalr` at 0xd990ae8). The returned record's +0 word receives one (`sw` at
+  0xd990b08), and `__glDlistHeapInit` receives allocation +4 as a0 (`bgezall` at 0xd990b04). A
+  later callback takes context and the allocation (`jalr` at 0xd990b1c). The error call
+  supplies 0x505 (`jalr` at 0xd990b44). Callback identities and full heap behavior remain
+  unknown.
+  Byte comparison: target 168 bytes, SHA-256 `887d798bbff57ffccba05dfba0e27a57b1ef150388ea51163662b86e01e04652`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994170, 184 bytes, SHA-256 `ce7ceac22a55fbb299c2075565f462783088f67056a9609cdc3e7f51609046bf`; 148 differing bytes in the common prefix.
+
+- `__glDlistFreeArray` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990b70, occupies 112 bytes.
+  Established display-list array teardown calls. An optional unnamed callback preserves
+  original a0/a1 (`jalr` at 0xd990ba4). `__glDlistHeapFree` receives original second argument
+  +4 as a0 (`bgezall` at 0xd990bb0). A final callback receives original a0/a1 (`jalr` at
+  0xd990bc0), with target loaded from context +0x13a0 (`lw` at 0xd990bb8). The unnamed
+  callbacks' other effects and intermediate arguments remain unresolved.
+  Byte comparison: target 112 bytes, SHA-256 `6cb12e9dd85c12c6ee7b1638df174fdb5671c0024bd5cd7b21c6216c15771a5a`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994228, 124 bytes, SHA-256 `c163e0d79bbab5880a5eed806fe5c4e8dcc09d4581cdf1ec2e24fc9ab139aa62`; 100 differing bytes in the common prefix.
+
+- `__glim_IsList` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990be0, occupies 108 bytes.
+  Inferred list-name query wrapper. `__glNamesIsName` receives global context as a0, its
+  +0x1340 word as a1 and original a0 as a2 (`jalr` at 0xd990c10). The error call supplies
+  0x502 (`jalr` at 0xd990c30). That path returns zero (`jr` at 0xd990c44), while hostfacts
+  leaves the normal query result unresolved (`jr` at 0xd990c24). The wrapper has no non-stack
+  writes.
+  Byte comparison: target 108 bytes, SHA-256 `77ddba24314d119805a061070bccb7c225234e2ea9f7903a047d9fc9529a12d3`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9942a4, 116 bytes, SHA-256 `6aa23044dc37b8225c40ee22473f280fce557d2ee073b3dc3257e7cfc40e9369`; 88 differing bytes in the common prefix.
+
+- `__glim_GenLists` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990c50, occupies 164 bytes.
+  Established list-range generation interface. `__glNamesGenRange` takes global context, its
+  +0x1340 word and original a0 as a0/a1/a2 (`jalr` at 0xd990ca0). Error calls supply 0x502 and
+  0x501 (`jalr` at 0xd990cbc, 0xd990cd8). The body performs no direct non-stack stores. The
+  generated range and name-allocation behavior belong to the callee.
+  Byte comparison: target 164 bytes, SHA-256 `9e283945d38f9487556f93a45267d14afff86b6f174be31be176124630f193a5`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994318, 164 bytes, SHA-256 `f26a808389f3cb048c7c53d2f25dac2b36661f7f5ea804e94d3158fd7b3b77b7`; 137 differing bytes in the common prefix.
+
+- `__glim_ListBase` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990d00, occupies 88 bytes.
+  Established list-base state write. Original a0 can be stored at global-context +0x7bc in the
+  return delay slot (`sw` at 0xd990d30). Absolute 0x1018 is read as the state input (`lw` at
+  0xd990d00). The other call site reports 0x502 through `__glSetError` (`jalr` at 0xd990d48).
+  This entry assigns no downstream list-offset formula.
+  Byte comparison: target 88 bytes, SHA-256 `06182973e0687e1ac3ec825368f77a8e77ccbce9dbcbd97bfb252b4b26f22977`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9943bc, 92 bytes, SHA-256 `969a97a67cbc410b9dd8421a53083aafec083702f4961207dbc2722c3f2a2788`; 76 differing bytes in the common prefix.
+
+- `__glim_DeleteLists` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990d60, occupies 128 bytes.
+  Inferred display-list range removal. `__glNamesDeleteRange` receives global context, its
+  +0x1340 word, original a0 and original a1 as a0/a1/a2/a3 (`jalr` at 0xd990da4). Two error
+  calls supply 0x502 and 0x501 (`jalr` at 0xd990dc0, 0xd990dd0). The full body makes no direct
+  non-stack writes. Actual name-table deletion and resource release remain delegated to the
+  callee.
+  Byte comparison: target 128 bytes, SHA-256 `49d13d2a73a226e6adec799ff2b3680e2bcf8b20164bfd268d1a50b9c0eeaccc`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994418, 160 bytes, SHA-256 `8830c8cdde404a9bd7906569cff2b44904ea36c20502098cd30ace318ffab4aa`; 104 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
