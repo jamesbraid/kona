@@ -4581,6 +4581,69 @@ Target entries:
   Byte comparison: target SHA-256 `422138077757e9f0311fdf55a2d17fe00db6e99c24da3284f847b3bc78bbed10`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda02360, 164 bytes, SHA-256 `6c8f6e367275089c2e9c4d3ff7e00f4d331898414562eff55fc372445aec03d8`; 0 differing bytes in the common prefix.
 
 
+#### IP35 O32 routines identical to their documented IP27 siblings (batch 067)
+
+Each complete IP35 body below is byte-identical to the documented IP27 body at the listed range. These identity notes add no behavioral claims.
+
+- `__glim_RasterPos2f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05300; occupies 172 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05300 for 172 bytes (SHA-256 `f479499dd793326c073246c1e596c6ea7fd9badfc670e2ff34ff648998935190`).
+
+- `__glim_RasterPos2i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda053ac; occupies 196 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda053ac for 196 bytes (SHA-256 `d9c0e56d2c1f3cc3e6662b9a83da8be48ebfc40a260f6db69225f9b98d6ba644`).
+
+- `__glim_RasterPos2iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05470; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05470 for 204 bytes (SHA-256 `719ea88c492e6abfd6794d151314325ff4b3a6687e164d331e681507b121ad72`).
+
+- `__glim_RasterPos2s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0553c; occupies 196 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0553c for 196 bytes (SHA-256 `af045d5aa7de462a8069e9f3ae93a0916d5207c6e2a6ac80bc5fbfebdb50cbd7`).
+
+- `__glim_RasterPos2sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05600; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05600 for 204 bytes (SHA-256 `098629b5df9e80dc4d36e913ed0809c804d1e34c1b1f7ec4c075f26218921d15`).
+
+- `__glim_RasterPos3d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05834; occupies 192 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05834 for 192 bytes (SHA-256 `61b61373867746756475d47d8dc5bf64d93c495535b8d28aa95c8d9e6b1a7fdb`).
+
+- `__glim_RasterPos3f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda058f4; occupies 184 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda058f4 for 184 bytes (SHA-256 `43e3262fda16b2c5b3476cc7f671e251c54e0383b27b0c1cbfe0ddd20c263643`).
+
+- `__glim_RasterPos3i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda059ac; occupies 216 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda059ac for 216 bytes (SHA-256 `73b63d15f001d1cfb50c18d729eff5afceb2a69d82a10def3f412241c1a5a893`).
+
+- `__glim_RasterPos3iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05a84; occupies 224 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05a84 for 224 bytes (SHA-256 `fa911a0edc4443c1c48babe3645740d47bc85a5c8fe4d909b28acb164bbe8843`).
+
+- `__glim_RasterPos3s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05b64; occupies 216 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05b64 for 216 bytes (SHA-256 `e52a26ca8dfa41b21f17be26f3a22d89e594de33ee42ae51bdb172c9842ff997`).
+
+- `__glim_RasterPos3sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05c3c; occupies 224 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05c3c for 224 bytes (SHA-256 `c3162369a96107036862aa0083fecef9a207fca476b0a90d691335e2f6f361a8`).
+
+- `__glim_RasterPos4d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05e90; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05e90 for 204 bytes (SHA-256 `4afcfbe2c32ba8c3702f7c6b6f7d541a2749492f75a04d40124d535a88824432`).
+
+- `__glim_RasterPos4f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda05f5c; occupies 196 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05f5c for 196 bytes (SHA-256 `f48e839201d500487a9b0e86c68c35a4dcda9e1fc262664ff526f983e506ead6`).
+
+- `__glim_RasterPos4i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda06020; occupies 236 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda06020 for 236 bytes (SHA-256 `578d0e85805e094e9d562d00e629d0aa106eb860cae764185b69d3e680144c5d`).
+
+- `__glim_RasterPos4iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0610c; occupies 244 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0610c for 244 bytes (SHA-256 `af7588bfe2d89a99a001fc89184109b848bd8e7ff719db6d69870e73dc600564`).
+
+- `__glim_RasterPos4s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda06200; occupies 236 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda06200 for 236 bytes (SHA-256 `0b7cb266c5e0df1db4ea1df23c8765f7467b52364dfc491811b37746ef37ddcd`).
+
+- `__glim_RasterPos4sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda062ec; occupies 244 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda062ec for 244 bytes (SHA-256 `ba10f8916bffa71b07799a1d5eafee5fb6d77dc86404a1dba8e41c27c4994532`).
+
+- `__glRasterPos2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda063e0; occupies 400 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda063e0 for 400 bytes (SHA-256 `3e86f716feea0e9b3883b207f22af3202cbda789bf34a811d1526fbd1f86e419`).
+
+- `__glRasterPos3` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda06570; occupies 404 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda06570 for 404 bytes (SHA-256 `b53460f201b1b9f6402c9c7e28cfeb8dd05798f62580dbe475164b4e165e1be2`).
+
+- `__glRasterPos4` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda06704; occupies 404 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda06704 for 404 bytes (SHA-256 `274a638e5fa602676c64ec36448e0b2b765295216752d22220e620b0cb674053`).
 ## Software renderer (soft)
 
 ### so_accumop.c
