@@ -17771,3 +17771,455 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `review-facts/__glim_TexCoord4sv.target.txt`,
   `review-facts/__glim_TexCoord4sv.sibling.txt`, `review-facts/__glim_TexCoord4sv.words.txt`,
   `review-facts/__glim_TexCoord4sv.bytes.txt`.
+
+- `__glEarlyInitTextureState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda13d90, routine size 496 bytes.
+  Allocates initial software texture structures through
+  unnamed context procedures. One call requests six records
+  of 224 bytes (`jalr` at 0xda13e3c), another six records
+  of 304 bytes (`jalr` at 0xda13e90).
+  Calls `__glNamesNewArray` with argument one equal to one
+  (`jalr` at 0xda13f70), saving its result at context
+  +0x6e80 (`sw` at 0xda13f7c).
+  Indexed object destinations remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glEarlyInitTextureState` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda13d90,
+  496 bytes, labelled Inferred.
+  Comparison: target 496 bytes, existing 496 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `82c3c7e1ec46194bd5b0f6625fafad5c4eda660abec5e9435c792c8a5349985a`.
+  Existing SHA-256: `82c3c7e1ec46194bd5b0f6625fafad5c4eda660abec5e9435c792c8a5349985a`.
+  Evidence: `facts/__glEarlyInitTextureState.target.txt`,
+  `facts/__glEarlyInitTextureState.existing.txt`, `facts/__glEarlyInitTextureState.full.listing.txt`,
+  `facts/__glEarlyInitTextureState.compare.txt`.
+
+- `__glInitTextureState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda14160, routine size 1328 bytes.
+  Initializes software texture defaults. Writes mode
+  0x2400 to context +0x934, +0x8b8, +0x83c and +0x7c0
+  (`sw` at 0xda1463c, 0xda14640, 0xda14644, 0xda14648).
+  Sets bytes +0x9db through +0x9d8 to one
+  (`sb` at 0xda1464c, 0xda14650, 0xda14654, 0xda14658).
+  Calls `__glLoadDefaultFilterFuncSGIS` with arguments
+  unresolved by hostfacts (`bgezall` at 0xda143ac).
+  Per-object initialization effective addresses are unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitTextureState` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda14160,
+  1328 bytes, labelled Inferred.
+  Comparison: target 1328 bytes, existing 1328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8f175b06c10aaa6cb8230f3301ca28f75c78a75187e5ca8f3f224ab05072e43a`.
+  Existing SHA-256: `8f175b06c10aaa6cb8230f3301ca28f75c78a75187e5ca8f3f224ab05072e43a`.
+  Evidence: `facts/__glInitTextureState.target.txt`,
+  `facts/__glInitTextureState.existing.txt`, `facts/__glInitTextureState.full.listing.txt`,
+  `facts/__glInitTextureState.compare.txt`.
+
+- `__glFreeTextureState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda14690, routine size 436 bytes.
+  Tears down software texture state. Calls `__glBindTexture`
+  with argument two zero (`jalr` at 0xda14764).
+  Decrements word +8 of the array pointed to by context
+  +0x6e80 (`sw` at 0xda14794). A zero resulting word
+  selects `__glNamesFreeArray`
+  (`beqz` at 0xda147a0, `jalr` at 0xda14834).
+  Clears context pointers +0x9b4, +0x9b0, +0x6e64,
+  +0x6e60 and +0x6e5c (`sw` at 0xda14808,
+  0xda1480c, 0xda14810, 0xda14814, 0xda14818).
+
+  Existing entry: `docs/sample-implementation.md`, `__glFreeTextureState` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda14690,
+  436 bytes, labelled Inferred.
+  Comparison: target 436 bytes, existing 436 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c320d7ea982b08801842fdcf3f560c9e4af0bb99c9c8bd3c44d1b78fc5cf480c`.
+  Existing SHA-256: `c320d7ea982b08801842fdcf3f560c9e4af0bb99c9c8bd3c44d1b78fc5cf480c`.
+  Evidence: `facts/__glFreeTextureState.target.txt`,
+  `facts/__glFreeTextureState.existing.txt`, `facts/__glFreeTextureState.full.listing.txt`,
+  `facts/__glFreeTextureState.compare.txt`.
+
+- `__glim_TexGenfv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda14850, routine size 528 bytes.
+  Updates software texture-coordinate generation from
+  floats. Reads four words from argument-two +0, +4,
+  +8 and +0xc (`lwc1` at 0xda148f0, 0xda148f8,
+  0xda14900, 0xda14908).
+  The unnamed vector procedure receives entry-stack -64 as
+  argument one (`jalr` at 0xda1494c), with other arguments
+  unresolved. Completion writes two to absolute 0x1018
+  (`sw` at 0xda14958) and ORs 0x1 into pointed-context
+  +0x2e24 (`sw` at 0xda1496c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexGenfv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda14850,
+  528 bytes, labelled Inferred.
+  Comparison: target 528 bytes, existing 528 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `02730e3ae1ca6ac2781598f69e1e5232f797b1e03c98b13c77ca5da9f6fa9e6c`.
+  Existing SHA-256: `02730e3ae1ca6ac2781598f69e1e5232f797b1e03c98b13c77ca5da9f6fa9e6c`.
+  Evidence: `facts/__glim_TexGenfv.target.txt`,
+  `facts/__glim_TexGenfv.existing.txt`, `facts/__glim_TexGenfv.full.listing.txt`,
+  `facts/__glim_TexGenfv.compare.txt`.
+
+- `__glim_TexGendv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda14ac0, routine size 560 bytes.
+  Narrows double texture-generation coefficients into
+  floats (`cvt.s.d` at 0xda14b64, 0xda14b70,
+  0xda14b7c, 0xda14b88).
+  The source doublewords come from argument-two +0, +8,
+  +0x10 and +0x18 (`ldc1` at 0xda14b60, 0xda14b6c,
+  0xda14b78, 0xda14b84).
+  Invokes an unnamed plane procedure with entry-stack -64
+  (`jalr` at 0xda14bcc). A separate error call passes
+  0x502 to `__glSetError` (`jalr` at 0xda14cc8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexGendv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda14ac0,
+  560 bytes, labelled Inferred.
+  Comparison: target 560 bytes, existing 560 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `84d22ed9d92c083cc870d5e340d497c8b1e221df3268db1b1e21f11041581df9`.
+  Existing SHA-256: `84d22ed9d92c083cc870d5e340d497c8b1e221df3268db1b1e21f11041581df9`.
+  Evidence: `facts/__glim_TexGendv.target.txt`,
+  `facts/__glim_TexGendv.existing.txt`, `facts/__glim_TexGendv.full.listing.txt`,
+  `facts/__glim_TexGendv.compare.txt`.
+
+- `__glim_TexGeniv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda14d50, routine size 580 bytes.
+  Converts an integer texture-generation plane into
+  floating components (`cvt.s.w` at 0xda14df8,
+  0xda14e08, 0xda14e18, 0xda14e28).
+  Loads the four source words at argument-two +0, +4,
+  +8 and +0xc (`lw` at 0xda14df0, 0xda14e00,
+  0xda14e10, 0xda14e20).
+  Sets the absolute dispatch word 0x1018 to two
+  (`sw` at 0xda14e78). The two plane-related callback
+  identities are unknown (`jalr` at 0xda14e50, 0xda14e6c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexGeniv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda14d50,
+  580 bytes, labelled Inferred.
+  Comparison: target 580 bytes, existing 580 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9651b20f6521c1a1c3a67ef105f46b415cc9fcf238c1b17937779e1d3d1a61fb`.
+  Existing SHA-256: `9651b20f6521c1a1c3a67ef105f46b415cc9fcf238c1b17937779e1d3d1a61fb`.
+  Evidence: `facts/__glim_TexGeniv.target.txt`,
+  `facts/__glim_TexGeniv.existing.txt`, `facts/__glim_TexGeniv.full.listing.txt`,
+  `facts/__glim_TexGeniv.compare.txt`.
+
+- `__glim_TexParameterfv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda150c0, routine size 1328 bytes.
+  Applies software floating texture parameters after
+  `__glLookUpTextureParams`, `__glLookUpTexture` and
+  `__glLookUpTextureObject` calls (`bgezall` at
+  0xda15108, 0xda1511c, 0xda15138 respectively).
+  Includes `__glClampColorf` (`jalr` at 0xda15530)
+  and `Clampf` (`bgezall` at 0xda153b0).
+  Stores the clamp result four bytes past the pointer returned
+  by `__glLookUpTextureTexobjs` (`bgezall` at 0xda15390
+  and `swc1` at 0xda153bc).
+  Other selected parameter-store effective addresses
+  remain unresolved, including `sw` at 0xda151a0.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexParameterfv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda150c0,
+  1328 bytes, labelled Inferred.
+  Comparison: target 1328 bytes, existing 1328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `200ea62146ecac2d7394c9ea9443d69c7e1f5bdc2991296ee5e3fee5a8616c72`.
+  Existing SHA-256: `200ea62146ecac2d7394c9ea9443d69c7e1f5bdc2991296ee5e3fee5a8616c72`.
+  Evidence: `facts/__glim_TexParameterfv.target.txt`,
+  `facts/__glim_TexParameterfv.existing.txt`, `facts/__glim_TexParameterfv.full.listing.txt`,
+  `facts/__glim_TexParameterfv.compare.txt`.
+
+- `__glim_TexParameterf` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda155f0, routine size 264 bytes.
+  Adapts a scalar float texture parameter to the vector
+  entry. Saves f14 at entry-stack -0x10
+  (`swc1` at 0xda15604), then calls
+  `__glim_TexParameterfv` with that address as argument two
+  (`bgezall` at 0xda1567c).
+  Unsupported-name handling calls `__glSetError` with
+  argument zero 0x500 (`jalr` at 0xda15698).
+  Both return paths leave the integer result unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexParameterf` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda155f0,
+  264 bytes, labelled Inferred.
+  Comparison: target 264 bytes, existing 264 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b8a9f9bd49f4f7c2733b52509eaa098de94ded21d3dac0e0eb99c00fb56762fe`.
+  Existing SHA-256: `b8a9f9bd49f4f7c2733b52509eaa098de94ded21d3dac0e0eb99c00fb56762fe`.
+  Evidence: `facts/__glim_TexParameterf.target.txt`,
+  `facts/__glim_TexParameterf.existing.txt`, `facts/__glim_TexParameterf.full.listing.txt`,
+  `facts/__glim_TexParameterf.compare.txt`.
+
+- `__glim_TexParameteriv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda15700, routine size 1360 bytes.
+  Handles integer texture-parameter vectors in software.
+  Uses `__glLookUpTextureObject`
+  (`bgezall` at 0xda15778) and `__glClampColori`
+  (`jalr` at 0xda15b9c).
+  A scalar path calls `Clampf`
+  (`bgezall` at 0xda15a30) and stores its result four bytes
+  past the pointer returned by `__glLookUpTextureTexobjs`
+  (`bgezall` at 0xda159f4 and `swc1` at 0xda15a3c).
+  The common update writes two to absolute 0x1018
+  (`sw` at 0xda157e4). Indexed parameter destinations
+  remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexParameteriv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda15700,
+  1360 bytes, labelled Inferred.
+  Comparison: target 1360 bytes, existing 1360 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `ec56a72c4f6024d86bd677272dc57aa8e451100335903dae36abd98d6114b920`.
+  Existing SHA-256: `ec56a72c4f6024d86bd677272dc57aa8e451100335903dae36abd98d6114b920`.
+  Evidence: `facts/__glim_TexParameteriv.target.txt`,
+  `facts/__glim_TexParameteriv.existing.txt`, `facts/__glim_TexParameteriv.full.listing.txt`,
+  `facts/__glim_TexParameteriv.compare.txt`.
+
+- `__glim_TexParameteri` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda15c50, routine size 264 bytes.
+  Wraps the scalar integer texture-parameter interface.
+  Places original argument two at entry-stack -0xc
+  (`sw` at 0xda15c64), passing its address to
+  `__glim_TexParameteriv` (`bgezall` at 0xda15ce0).
+  Original arguments zero and one survive that call.
+  The alternative error site supplies 0x500 to
+  `__glSetError` (`jalr` at 0xda15cf8).
+  No heap or context stores appear in this body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexParameteri` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda15c50,
+  264 bytes, labelled Inferred.
+  Comparison: target 264 bytes, existing 264 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `87ea0a734a71f9099b1434ec36b20b177420e29d984dd76d364c4b9d918b228b`.
+  Existing SHA-256: `87ea0a734a71f9099b1434ec36b20b177420e29d984dd76d364c4b9d918b228b`.
+  Evidence: `facts/__glim_TexParameteri.target.txt`,
+  `facts/__glim_TexParameteri.existing.txt`, `facts/__glim_TexParameteri.full.listing.txt`,
+  `facts/__glim_TexParameteri.compare.txt`.
+
+- `__glTexParameterfv_size` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda15d60, routine size 480 bytes.
+  Returns software texture-parameter vector lengths without
+  loads, stores or calls. The return bodies yield one,
+  minus one, two and four (`jr` at 0xda15e0c,
+  0xda15ea0, 0xda15ed4, 0xda15ef8 respectively).
+  Argument zero 0x1004 explicitly selects the four-element
+  return (`beq` at 0xda15e98).
+  Additional extension parameters share these return bodies.
+
+  Existing entry: `docs/sample-implementation.md`, `__glTexParameterfv_size` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda15d60,
+  480 bytes, labelled Inferred.
+  Comparison: target 480 bytes, existing 480 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e6d751b7022af06b651f0cdcc0bdb2f5b5386966f6d9234b2df8bd34707ded15`.
+  Existing SHA-256: `e6d751b7022af06b651f0cdcc0bdb2f5b5386966f6d9234b2df8bd34707ded15`.
+  Evidence: `facts/__glTexParameterfv_size.target.txt`,
+  `facts/__glTexParameterfv_size.existing.txt`, `facts/__glTexParameterfv_size.full.listing.txt`,
+  `facts/__glTexParameterfv_size.compare.txt`.
+
+- `__glim_TexEnvfv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda15f80, routine size 328 bytes.
+  Sets floating texture-environment state. Calls
+  `__glClampAndScaleColorf` with original argument two as
+  its source vector (`jalr` at 0xda16000).
+  On the mode path, reads argument-two +0
+  (`lwc1` at 0xda16030).
+  ORs 0x1 into pointed-context +0x2e24
+  (`sw` at 0xda16094).
+  Its invalid-state call passes 0x502 to `__glSetError`
+  (`jalr` at 0xda160b8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexEnvfv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda15f80,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `54d07c5c13f99d99f0a31e6023528abe3afe0e010be7f4ef39ff5bb25aa85aed`.
+  Existing SHA-256: `54d07c5c13f99d99f0a31e6023528abe3afe0e010be7f4ef39ff5bb25aa85aed`.
+  Evidence: `facts/__glim_TexEnvfv.target.txt`,
+  `facts/__glim_TexEnvfv.existing.txt`, `facts/__glim_TexEnvfv.full.listing.txt`,
+  `facts/__glim_TexEnvfv.compare.txt`.
+
+- `__glim_TexEnviv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda16130, routine size 316 bytes.
+  Processes an integer texture-environment vector through
+  `__glClampAndScaleColori` (`jalr` at 0xda161b0),
+  retaining original argument two for the source.
+  The mode path reads a word at argument-two +0
+  (`lw` at 0xda161e0) and accepts mode 0x2100 through
+  an explicit equality branch (`beq` at 0xda16208).
+  Successful updates write two to absolute 0x1018
+  (`sw` at 0xda16228).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexEnviv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda16130,
+  316 bytes, labelled Inferred.
+  Comparison: target 316 bytes, existing 316 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d14d727cf617b8624d49108f9577bfbf1472d466f5fa4e576fb513d4407c6c11`.
+  Existing SHA-256: `d14d727cf617b8624d49108f9577bfbf1472d466f5fa4e576fb513d4407c6c11`.
+  Evidence: `facts/__glim_TexEnviv.target.txt`,
+  `facts/__glim_TexEnviv.existing.txt`, `facts/__glim_TexEnviv.full.listing.txt`,
+  `facts/__glim_TexEnviv.compare.txt`.
+
+- `__glExtractTexelRGB8` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda16670, routine size 172 bytes.
+  Extracts software RGB texel components. Negative argument
+  three selects the fallback (`bltz` at 0xda16670),
+  copying argument-one +0x9c, +0xa0 and +0xa4 to
+  argument-five +0, +4 and +8 (`swc1` at 0xda166a0,
+  0xda166a8, 0xda166b4).
+  The sampling path includes unsigned byte loads
+  (`lbu` at 0xda166d0, 0xda166e8, 0xda16700).
+  Their indexed addresses are unknown to hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glExtractTexelRGB8` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda16670,
+  172 bytes, labelled Inferred.
+  Comparison: target 172 bytes, existing 172 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `24c5af0fc09a86b0da58391af718d05ebadb5705bf3dac0800c3a53dac4027eb`.
+  Existing SHA-256: `24c5af0fc09a86b0da58391af718d05ebadb5705bf3dac0800c3a53dac4027eb`.
+  Evidence: `facts/__glExtractTexelRGB8.target.txt`,
+  `facts/__glExtractTexelRGB8.existing.txt`, `facts/__glExtractTexelRGB8.full.listing.txt`,
+  `facts/__glExtractTexelRGB8.compare.txt`.
+
+- `__glExtractTexelRGBA8` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda16720, routine size 204 bytes.
+  Reads a software RGBA texel, including a fourth floating
+  output at argument-five +0x10 (`swc1` at 0xda167e8).
+  The other sampled components occupy +0, +4 and +8
+  (`swc1` at 0xda1679c, 0xda167b4, 0xda167cc).
+  Scaling reads pointed-context +0xde0
+  (`lwc1` at 0xda16794).
+  Four byte-source effective addresses remain unresolved
+  (`lbu` at 0xda16788, 0xda167a0, 0xda167b8, 0xda167d0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glExtractTexelRGBA8` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda16720,
+  204 bytes, labelled Inferred.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `63ed088752ecb13164654d2483292b902037c0a0f0103b502b87846403410332`.
+  Existing SHA-256: `63ed088752ecb13164654d2483292b902037c0a0f0103b502b87846403410332`.
+  Evidence: `facts/__glExtractTexelRGBA8.target.txt`,
+  `facts/__glExtractTexelRGBA8.existing.txt`, `facts/__glExtractTexelRGBA8.full.listing.txt`,
+  `facts/__glExtractTexelRGBA8.compare.txt`.
+
+- `__glExtractTexelRGB8_B` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda16960, routine size 112 bytes.
+  Extracts bordered software RGB texel data. Reads the
+  image's argument-zero +4 word (`lw` at 0xda16960)
+  and converts three unsigned byte samples to floats
+  (`cvt.s.w` at 0xda1698c, 0xda169a4, 0xda169bc).
+  Multiplies using pointed-context +0xde0
+  (`lwc1` at 0xda16990).
+  Results reach argument-five +0, +4 and +8
+  (`swc1` at 0xda16998, 0xda169b0, 0xda169cc).
+  The indexed sample locations stay unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glExtractTexelRGB8_B` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda16960,
+  112 bytes, labelled Inferred.
+  Comparison: target 112 bytes, existing 112 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5285759a982840a734c09c712bef062aa42249a1d162377aff75b8af1a856035`.
+  Existing SHA-256: `5285759a982840a734c09c712bef062aa42249a1d162377aff75b8af1a856035`.
+  Evidence: `facts/__glExtractTexelRGB8_B.target.txt`,
+  `facts/__glExtractTexelRGB8_B.existing.txt`, `facts/__glExtractTexelRGB8_B.full.listing.txt`,
+  `facts/__glExtractTexelRGB8_B.compare.txt`.
+
+- `__glExtractTexelRGBA8_B` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda169d0, routine size 136 bytes.
+  Produces four floating outputs for bordered RGBA texels.
+  Writes argument-five +0, +4, +8 and +0x10
+  (`swc1` at 0xda16a08, 0xda16a20, 0xda16a38, 0xda16a54).
+  The image data pointer comes from argument-zero +0
+  (`lw` at 0xda169e0).
+  Its unsigned byte accesses include `lbu` at 0xda169f0,
+  0xda16a0c, 0xda16a24, 0xda16a3c, all with unresolved
+  effective addresses. This body makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glExtractTexelRGBA8_B` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda169d0,
+  136 bytes, labelled Inferred.
+  Comparison: target 136 bytes, existing 136 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4b7b5236c0458535bfd1a7bde75bf7284e6a94f7945fb86b14c3cf4702f4301c`.
+  Existing SHA-256: `4b7b5236c0458535bfd1a7bde75bf7284e6a94f7945fb86b14c3cf4702f4301c`.
+  Evidence: `facts/__glExtractTexelRGBA8_B.target.txt`,
+  `facts/__glExtractTexelRGBA8_B.existing.txt`, `facts/__glExtractTexelRGBA8_B.full.listing.txt`,
+  `facts/__glExtractTexelRGBA8_B.compare.txt`.
+
+- `CheckTexImageArgs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda17500, routine size 2076 bytes.
+  Validates software texture-image arguments after calling
+  `__glLookUpTexture` (`bgezall` at 0xda17534).
+  A null lookup result takes the error path
+  (`beqz` at 0xda1753c). Error calls include 0x500,
+  0x501 and 0x502 (`jalr` at 0xda17670, 0xda17888,
+  0xda175dc respectively).
+  Rejection returns zero (`jr` at 0xda17690).
+  The accepted path returns the texture lookup result
+  (`jr` at 0xda1784c).
+
+  Existing entry: `docs/sample-implementation.md`, `CheckTexImageArgs` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda17500,
+  2076 bytes, labelled Inferred.
+  Comparison: target 2076 bytes, existing 2076 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0e06593e5744560eaf696860c4494b90c9f462fb3f7b0673603d59ae0fde7328`.
+  Existing SHA-256: `0e06593e5744560eaf696860c4494b90c9f462fb3f7b0673603d59ae0fde7328`.
+  Evidence: `facts/CheckTexImageArgs.target.txt`,
+  `facts/CheckTexImageArgs.existing.txt`, `facts/CheckTexImageArgs.full.listing.txt`,
+  `facts/CheckTexImageArgs.compare.txt`.
+
+- `__glInitTexImageGet` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda18990, routine size 320 bytes.
+  Fills a software texture-image read descriptor. Clears
+  argument-one +0x30, +0x34, +0x38 and +0x28
+  (`sw` at 0xda189b0, 0xda189b4, 0xda189b8, 0xda189bc).
+  Sets +0x2c to one (`sw` at 0xda189c4) and copies
+  argument-two +0xe8 into descriptor +0x1b0
+  (`sw` at 0xda189e0).
+  The source texture-level accesses are indexed and
+  unresolved. No procedure calls occur in this routine.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitTexImageGet` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda18990,
+  320 bytes, labelled Inferred.
+  Comparison: target 320 bytes, existing 320 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b4ab7997bae1d2cf1ced9e96bae101414191e3cbbc702b128e316e3bd0f189f0`.
+  Existing SHA-256: `b4ab7997bae1d2cf1ced9e96bae101414191e3cbbc702b128e316e3bd0f189f0`.
+  Evidence: `facts/__glInitTexImageGet.target.txt`,
+  `facts/__glInitTexImageGet.existing.txt`, `facts/__glInitTexImageGet.full.listing.txt`,
+  `facts/__glInitTexImageGet.compare.txt`.
+
+- `__glInitTexDestPack` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda18b40, routine size 100 bytes.
+  Prepares the software destination packing descriptor.
+  Copies original arguments seven, six and five into
+  argument-one +0x58, +0x54 and +0x50
+  (`sw` at 0xda18b54, 0xda18b58, 0xda18b5c).
+  Replicates argument two at +0xb4, +0xb8 and +0xa8
+  (`sw` at 0xda18b6c, 0xda18b80, 0xda18b84).
+  Calls `__glLoadPackModes` with original arguments
+  zero through three (`jalr` at 0xda18b8c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitTexDestPack` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda18b40,
+  100 bytes, labelled Inferred.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a4cbe338ff67f768ccdfb9647a317c1f26651910723534d77c475b4982b41d2b`.
+  Existing SHA-256: `a4cbe338ff67f768ccdfb9647a317c1f26651910723534d77c475b4982b41d2b`.
+  Evidence: `facts/__glInitTexDestPack.target.txt`,
+  `facts/__glInitTexDestPack.existing.txt`, `facts/__glInitTexDestPack.full.listing.txt`,
+  `facts/__glInitTexDestPack.compare.txt`.
