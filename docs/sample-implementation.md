@@ -19454,3 +19454,297 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `facts/__glim_Vertex2f.target.txt`,
   `facts/__glim_Vertex2f.existing.txt`, `facts/__glim_Vertex2f.full.listing.txt`,
   `facts/__glim_Vertex2f.compare.txt`.
+
+- `__glim_Vertex2d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda324e0, occupies 80 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda324e0),
+  then context +0x17f4 (`lw` at 0xda324e4) and that object's
+  +0x534 callback (`lw` at 0xda324f0).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32510).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda3251c).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32518).
+  The return carries its result (`jr` at 0xda32528).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex2dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32530, occupies 88 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32530),
+  then context +0x17f4 (`lw` at 0xda32538) and that object's
+  +0x534 callback (`lw` at 0xda32548).
+  It reads 8 bytes at original a0 +0x0 (`ldc1` at 0xda32534).
+  It reads 8 bytes at original a0 +0x8 (`ldc1` at 0xda3253c).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32568).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32574).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32570).
+  The return carries its result (`jr` at 0xda32580).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex2i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32590, occupies 88 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32590),
+  then context +0x17f4 (`lw` at 0xda3259c) and that object's
+  +0x534 callback (`lw` at 0xda325ac).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda325c8).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda325d4).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda325d0).
+  The return carries its result (`jr` at 0xda325e0).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex2iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda325f0, occupies 96 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda325f8),
+  then context +0x17f4 (`lw` at 0xda32600) and that object's
+  +0x534 callback (`lw` at 0xda32610).
+  It reads 4 bytes at original a0 +0x0 (`lw` at 0xda325f0).
+  It reads 4 bytes at original a0 +0x4 (`lw` at 0xda325f4).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32630).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda3263c).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32638).
+  The return carries its result (`jr` at 0xda32648).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex2s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32650, occupies 88 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32650),
+  then context +0x17f4 (`lw` at 0xda3265c) and that object's
+  +0x534 callback (`lw` at 0xda3266c).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32688).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32694).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32690).
+  The return carries its result (`jr` at 0xda326a0).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex2sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda326b0, occupies 96 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda326b8),
+  then context +0x17f4 (`lw` at 0xda326c0) and that object's
+  +0x534 callback (`lw` at 0xda326d0).
+  It reads 2 bytes at original a0 +0x0 (`lh` at 0xda326b0).
+  It reads 2 bytes at original a0 +0x2 (`lh` at 0xda326b4).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda326f0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda326fc).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda326f8).
+  The return carries its result (`jr` at 0xda32708).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3f` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32710, occupies 76 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32710),
+  then context +0x17f4 (`lw` at 0xda32718) and that object's
+  +0x554 callback (`lw` at 0xda32724).
+  It writes four bytes at sp (at entry) -0x18 with value `f14` (`swc1` at 0xda32734).
+  It writes four bytes at sp (at entry) -0x1c with value `f13` (`swc1` at 0xda3273c).
+  It writes four bytes at sp (at entry) -0x20 with value `f12` (`swc1` at 0xda32748).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32744).
+  The return carries its result (`jr` at 0xda32754).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32760, occupies 88 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32760),
+  then context +0x17f4 (`lw` at 0xda32768) and that object's
+  +0x554 callback (`lw` at 0xda32774).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda3278c).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32798).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda327a4).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda327a0).
+  The return carries its result (`jr` at 0xda327b0).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda327c0, occupies 100 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda327cc),
+  then context +0x17f4 (`lw` at 0xda327d4) and that object's
+  +0x554 callback (`lw` at 0xda327e0).
+  It reads 8 bytes at original a0 +0x0 (`ldc1` at 0xda327c8).
+  It reads 8 bytes at original a0 +0x10 (`ldc1` at 0xda327d0).
+  It reads 8 bytes at original a0 +0x8 (`ldc1` at 0xda327d8).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda327f8).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32804).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32810).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda3280c).
+  The return carries its result (`jr` at 0xda3281c).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32830, occupies 100 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32834),
+  then context +0x17f4 (`lw` at 0xda32844) and that object's
+  +0x554 callback (`lw` at 0xda32858).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda3286c).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32874).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32880).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda3287c).
+  The return carries its result (`jr` at 0xda3288c).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda328a0, occupies 112 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda328ac),
+  then context +0x17f4 (`lw` at 0xda328bc) and that object's
+  +0x554 callback (`lw` at 0xda328d0).
+  It reads 4 bytes at original a0 +0x0 (`lw` at 0xda328a0).
+  It reads 4 bytes at original a0 +0x8 (`lw` at 0xda328a4).
+  It reads 4 bytes at original a0 +0x4 (`lw` at 0xda328a8).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda328ec).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda328f0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda328fc).
+  The indirect call takes `a0=sp-32, a1=[a0+8], a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda328f8).
+  The return carries its result (`jr` at 0xda32908).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex3sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32980, occupies 112 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda3298c),
+  then context +0x17f4 (`lw` at 0xda3299c) and that object's
+  +0x554 callback (`lw` at 0xda329b0).
+  It reads 2 bytes at original a0 +0x0 (`lh` at 0xda32980).
+  It reads 2 bytes at original a0 +0x4 (`lh` at 0xda32984).
+  It reads 2 bytes at original a0 +0x2 (`lh` at 0xda32988).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda329cc).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda329d0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda329dc).
+  The indirect call takes `a0=sp-32, a1=[a0+4]:2, a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda329d8).
+  The return carries its result (`jr` at 0xda329e8).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4f` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda329f0, occupies 80 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda329f4),
+  then context +0x17f4 (`lw` at 0xda329fc) and that object's
+  +0x574 callback (`lw` at 0xda32a08).
+  It writes four bytes at sp (at entry) -0x14 with value `f15` (`swc1` at 0xda32a10).
+  It writes four bytes at sp (at entry) -0x18 with value `f14` (`swc1` at 0xda32a18).
+  It writes four bytes at sp (at entry) -0x1c with value `f13` (`swc1` at 0xda32a20).
+  It writes four bytes at sp (at entry) -0x20 with value `f12` (`swc1` at 0xda32a2c).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32a28).
+  The return carries its result (`jr` at 0xda32a38).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32a40, occupies 96 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32a44),
+  then context +0x17f4 (`lw` at 0xda32a4c) and that object's
+  +0x574 callback (`lw` at 0xda32a5c).
+  It writes four bytes at sp (at entry) -0x14, with the value unresolved (`swc1` at 0xda32a68).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda32a74).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32a80).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32a8c).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32a88).
+  The return carries its result (`jr` at 0xda32a98).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32aa0, occupies 112 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32ab4),
+  then context +0x17f4 (`lw` at 0xda32abc) and that object's
+  +0x574 callback (`lw` at 0xda32acc).
+  It reads 8 bytes at original a0 +0x0 (`ldc1` at 0xda32aac).
+  It reads 8 bytes at original a0 +0x10 (`ldc1` at 0xda32ab0).
+  It reads 8 bytes at original a0 +0x18 (`ldc1` at 0xda32ab8).
+  It reads 8 bytes at original a0 +0x8 (`ldc1` at 0xda32ac0).
+  It writes four bytes at sp (at entry) -0x14, with the value unresolved (`swc1` at 0xda32ad8).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda32ae4).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32af0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32afc).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32af8).
+  The return carries its result (`jr` at 0xda32b08).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32b10, occupies 112 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32b1c),
+  then context +0x17f4 (`lw` at 0xda32b30) and that object's
+  +0x574 callback (`lw` at 0xda32b44).
+  It writes four bytes at sp (at entry) -0x14, with the value unresolved (`swc1` at 0xda32b50).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda32b58).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32b60).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32b6c).
+  The indirect call takes `a0=sp-32, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0xda32b68).
+  The return carries its result (`jr` at 0xda32b78).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32b80, occupies 128 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32b98),
+  then context +0x17f4 (`lw` at 0xda32ba8) and that object's
+  +0x574 callback (`lw` at 0xda32bc0).
+  It reads 4 bytes at original a0 +0x0 (`lw` at 0xda32b80).
+  It reads 4 bytes at original a0 +0xc (`lw` at 0xda32b84).
+  It reads 4 bytes at original a0 +0x8 (`lw` at 0xda32b88).
+  It reads 4 bytes at original a0 +0x4 (`lw` at 0xda32b8c).
+  It writes four bytes at sp (at entry) -0x14, with the value unresolved (`swc1` at 0xda32bd0).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda32bdc).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32be0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32bec).
+  The indirect call takes `a0=sp-32, a1=[a0+8], a2=[a0+12], a3=a3 at entry (arg3)` (`jalr` at 0xda32be8).
+  The return carries its result (`jr` at 0xda32bf8).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glim_Vertex4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32c70, occupies 128 bytes.
+  Established. It reads the context pointer at absolute 0x1010 (`lw` at 0xda32c88),
+  then context +0x17f4 (`lw` at 0xda32c98) and that object's
+  +0x574 callback (`lw` at 0xda32cb0).
+  It reads 2 bytes at original a0 +0x0 (`lh` at 0xda32c70).
+  It reads 2 bytes at original a0 +0x6 (`lh` at 0xda32c74).
+  It reads 2 bytes at original a0 +0x4 (`lh` at 0xda32c78).
+  It reads 2 bytes at original a0 +0x2 (`lh` at 0xda32c7c).
+  It writes four bytes at sp (at entry) -0x14, with the value unresolved (`swc1` at 0xda32cc0).
+  It writes four bytes at sp (at entry) -0x18, with the value unresolved (`swc1` at 0xda32ccc).
+  It writes four bytes at sp (at entry) -0x1c, with the value unresolved (`swc1` at 0xda32cd0).
+  It writes four bytes at sp (at entry) -0x20, with the value unresolved (`swc1` at 0xda32cdc).
+  The indirect call takes `a0=sp-32, a1=[a0+4]:2, a2=[a0+6]:2, a3=a3 at entry (arg3)` (`jalr` at 0xda32cd8).
+  The return carries its result (`jr` at 0xda32ce8).
+  The callback identity and effect remain unknown. Converted coordinate values not
+  reported by hostfacts remain unresolved.
+
+- `__glInitVertexArrayState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32cf0, occupies 136 bytes.
+  Established. It sets context +0x152c to 1 and clears +0x1524/+0x1520/+0x151c
+  (`sw` at 0xda32cf4, 0xda32cf8, 0xda32cfc, 0xda32d00).
+  It stores 0x1406 at +0x1504/+0x14ec/+0x1450/+0x1434/+0x141c/+0x1400/+0x13e8
+  (`sw` at 0xda32d08, 0xda32d0c, 0xda32d10, 0xda32d1c, 0xda32d20,
+  0xda32d28, 0xda32d2c). It sets +0x144c/+0x1418/+0x13e4 to 4
+  (`sw` at 0xda32d18, 0xda32d24, 0xda32d30), and +0x1534/+0x1530 to
+  0x7fffffff (`sw` at 0xda32d40, 0xda32d48).
+  A pointer value of 0xda021b0 is written at
+  +0x1514/+0x14fc/+0x1474/+0x1460/+0x1444/+0x142c/+0x1410/+0x13f8
+  (`sw` at 0xda32d54, 0xda32d58, 0xda32d5c, 0xda32d60, 0xda32d64,
+  0xda32d68, 0xda32d6c, 0xda32d74). The body makes no calls and returns
+  0xda021b0 (`jr` at 0xda32d70). These writes do not establish the meaning
+  of each field or the behavior of the stored pointer.
+
+- `__glim_ArrayElementEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda32d80, occupies 612 bytes.
+  Inferred. It reads the context at absolute 0x1010 and state words +0x1528/+0x1520/+0x1524
+  (`lw` at 0xda32d94, 0xda32d9c, 0xda32da8, 0xda32db8).
+  Bits 0 and 1 of +0x1528 select the first two callback paths (`beq` at
+  0xda32dc0, 0xda32de8). A context +0xe1c value of 1 selects a separate path
+  (`lw` at 0xda32e0c, `beq` at 0xda32e14).
+  The body contains twelve unidentified indirect call sites (`jalr` at
+  0xda32ddc, 0xda32e04, 0xda32e3c, 0xda32e68, 0xda32e94, 0xda32ec0,
+  0xda32ee8, 0xda32f10, 0xda32f3c, 0xda32f68, 0xda32f90, 0xda32fd4).
+  Four calls take a0=0x83c7/0x83c8/0x83c9/0x83ca respectively, while their
+  indexed a1 pointers remain unresolved (`jalr` at 0xda32e3c, 0xda32e68,
+  0xda32e94, 0xda32ec0). Those calls retain a3 from context
+  +0x1484/+0x14a0/+0x14bc/+0x14d8 respectively. Other calls use unresolved
+  indexed a0 pointers. Callback identities, index-address formulas, several
+  branch predicates and overall return semantics remain unknown.
