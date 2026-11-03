@@ -17300,3 +17300,207 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `review-facts/__glCreateSpecLUT.target.txt`,
   `review-facts/__glCreateSpecLUT.sibling.txt`, `review-facts/__glCreateSpecLUT.words.txt`,
   `review-facts/__glCreateSpecLUT.bytes.txt`.
+
+- `__glFreeSpecLUT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda055d0, occupies 80 bytes.
+  Established. A null second argument returns without dereferencing it (`beqz` at 0xda055e4).
+  Otherwise it reads and decrements its first word, storing the result on both outcomes of the signed
+  nonpositive test (`lw` at 0xda055ec, `sw` at 0xda055f8, `blez` at 0xda055f4).
+  The nonpositive path loads a callback from first argument +0xc and calls it with a0=0,
+  a1=the original second argument and a3=the original first argument (`lw` at 0xda05608,
+  `jalr` at 0xda05610). The callback identity and its effect are unknown. No stable return
+  value is established across the paths.
+
+- `__glDoStore_ASD` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda060f0, occupies 336 bytes.
+  Inferred. The store path reads its context through the first argument and two words from the
+  second argument (`lw` at 0xda060fc, 0xda06100, 0xda0610c). Signed comparisons reject
+  first-word values below context +0x743c or at least context +0x7444 (`bnez` at 0xda06124,
+  `beqz` at 0xda06144). The second-word lower bound is context +0x7440 (`bnez` at 0xda06134).
+  The later comparison and byte-table index remain unresolved. It reads context +0xe88
+  and argument +0x18 as floats, followed by an unresolved byte read (`lwc1` at 0xda06154,
+  0xda06158, `lbu` at 0xda06170). The first callback receives a0=context+0x79bc,
+  a1=argument word 0 and a2=argument word 1 (`jalr` at 0xda06194). Its zero result selects
+  an alternative callback (`beqz` at 0xda0619c). Another callback receives
+  (context+0x7a34, argument word 0, argument word 1, argument word 2) (`jalr` at 0xda061b8).
+  Six indirect call sites remain unidentified (`jalr` at 0xda061d4, 0xda061e4, 0xda06214,
+  0xda06230 also). The call at 0xda061e4 restores the original first two arguments.
+  Other missing arguments and the overall return remain unknown.
+
+- `__glDoStore_AS` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06240, occupies 272 bytes.
+  Inferred. It reads the context and two argument words (`lw` at 0xda06248, 0xda0624c, 0xda06258).
+  Signed comparisons reject the first word below context +0x743c or at least +0x7444,
+  and the second word below context +0x7440 (`bnez` at 0xda06270, 0xda06280,
+  `beqz` at 0xda06290). The remaining bounds expression is unresolved. Float reads use
+  context +0xe88 and argument +0x18, with a later byte read from an unresolved address
+  (`lwc1` at 0xda062a0, 0xda062a4, `lbu` at 0xda062bc). The first callback takes
+  (context+0x79bc, argument word 0, argument word 1), with a3 unresolved (`jalr` at
+  0xda062e4). Its zero result selects the alternative path (`beqz` at 0xda062f0).
+  The other indirect sites are unresolved (`jalr` at 0xda06304, 0xda06314, 0xda06340).
+  The middle site restores the original first two arguments. Full callback arguments,
+  byte indexing and return semantics remain unknown.
+
+- `__glDoStore_AD` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06350, occupies 208 bytes.
+  Inferred. The context and argument words 0 and 1 are loaded first (`lw` at 0xda06358,
+  0xda0635c, 0xda06364). Signed lower-bound comparisons use context +0x743c and +0x7440
+  (`bnez` at 0xda06384, 0xda06394). The later bounds expressions remain unresolved.
+  Float reads use context +0xe88 and argument +0x18 (`lwc1` at 0xda063ac, 0xda063b0).
+  The byte-table address remains unknown (`lbu` at 0xda063c8).
+  One callback receives (context+0x7a34, argument word 0, argument word 1, argument word 2)
+  (`jalr` at 0xda063ec). A zero result skips the later call (`beqz` at 0xda063f4).
+  That later call restores the original first two arguments (`jalr` at 0xda06404).
+  Callback identities, missing later arguments and the overall return are unknown.
+
+- `__glDoStore_SD` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06420, occupies 296 bytes.
+  Inferred. It reads a context pointer and two argument words (`lw` at 0xda06428,
+  0xda0642c, 0xda06438). Signed rejection compares word 0 below context +0x743c or at
+  least +0x7444, and word 1 below +0x7440 (`bnez` at 0xda06450, 0xda06460,
+  `beqz` at 0xda06470). The remaining bounds expression is unknown.
+  A callback receives (context+0x79bc, argument word 0, argument word 1), with a3
+  unresolved (`jalr` at 0xda0649c). A zero result selects another callback (`beqz` at
+  0xda064a4). The second callback has a0=context+0x7a34, a2=argument word 1 and
+  a3=argument word 2, but a1 is unresolved (`jalr` at 0xda064c0).
+  Its zero result selects a separate path (`beqz` at 0xda064cc).
+  Four additional call sites remain unidentified (`jalr` at 0xda064e0, 0xda064f0,
+  0xda0651c, 0xda06538). The site at 0xda064f0 restores the original first two
+  arguments. Missing callback arguments and return semantics remain unknown.
+
+- `__glDoStore_A` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06550, occupies 160 bytes.
+  Inferred. It reads the context and two argument words (`lw` at 0xda06550, 0xda06554,
+  0xda0655c). Signed lower bounds use context +0x743c and +0x7440 (`bnez` at
+  0xda06580, 0xda06590). The later bounds expressions remain unresolved.
+  It reads floats at context +0xe88 and argument +0x18 (`lwc1` at 0xda065a8,
+  0xda065ac). A byte from an unresolved address controls an early return (`lbu` at
+  0xda065c4, `beqz` at 0xda065c8). The remaining callback comes from context +0x317c
+  and keeps the original first two arguments (`lw` at 0xda065d0, `jalr` at 0xda065d8).
+  Its identity, further arguments, byte-table index and return semantics are unknown.
+
+- `__glDoStore_S` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda065f0, occupies 232 bytes.
+  Inferred. It reads the context and two argument words (`lw` at 0xda065f8, 0xda065fc,
+  0xda06608). Signed rejection compares word 0 below context +0x743c or at least
+  +0x7444, and word 1 below +0x7440 (`bnez` at 0xda06620, 0xda06630,
+  `beqz` at 0xda06640). The remaining bounds expression is unresolved.
+  The first callback takes (context+0x79bc, argument word 0, argument word 1), with
+  a3 unknown (`jalr` at 0xda0666c). Its zero result selects the alternative callback
+  (`beqz` at 0xda06678). Three more indirect sites remain unidentified (`jalr` at
+  0xda0668c, 0xda0669c, 0xda066c8). The site at 0xda0669c restores the original
+  first two arguments. Missing arguments and overall return semantics remain unknown.
+
+- `__glDoStore_D` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda066e0, occupies 168 bytes.
+  Inferred. It reads the context and argument words 0 and 1 (`lw` at 0xda066e8,
+  0xda066ec, 0xda066f4). Signed lower bounds use context +0x743c and +0x7440
+  (`bnez` at 0xda06714, 0xda06724). The later bounds expressions remain unresolved.
+  A callback loaded from context +0x7aa8 receives
+  (context+0x7a34, argument word 0, argument word 1, argument word 2)
+  (`lw` at 0xda06740, `jalr` at 0xda06754). A zero result skips the later call
+  (`beqz` at 0xda0675c). The later callback comes from context +0x317c and restores
+  the original first two arguments (`lw` at 0xda06764, `jalr` at 0xda0676c).
+  Callback identities, missing later arguments and the overall return are unknown.
+
+- `__glDoStore` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06790, occupies 124 bytes.
+  Inferred. It reads a context pointer and two argument words (`lw` at 0xda06790,
+  0xda06794, 0xda0679c). Signed lower bounds use context +0x743c and +0x7440
+  (`bnez` at 0xda067c0, 0xda067d0). The remaining bounds expressions are unresolved.
+  The conditional store callback comes from context +0x317c (`lw` at 0xda067f4).
+  It keeps the original first two arguments (`jalr` at 0xda067fc). Its identity,
+  missing further arguments and overall return semantics remain unknown.
+
+- `__glDoNullStore` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06810, occupies 8 bytes.
+  Established. The complete body returns directly with a no-op delay slot (`jr` at 0xda06810,
+  `nop` at 0xda06814). It contains no data access or call and establishes no return value.
+
+- `__glDoDoubleStore` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06820, occupies 92 bytes.
+  Inferred. It reads the context through the first argument, then reads context +0x77f8
+  and that object's +0xa4 callback (`lw` at 0xda06824, 0xda06830, 0xda06840).
+  The first call takes a0=[context+0x77f8] and retains the original a1 (`jalr` at
+  0xda0684c). A second object and callback read occur at unresolved bases (`lw` at
+  0xda06858, 0xda0685c). The second call retains original a1, while a0 and other
+  arguments are unresolved (`jalr` at 0xda06860). The callbacks and their effects
+  remain unknown. The final return carries the last callback result (`jr` at 0xda06874).
+
+- `__glGenericPickStoreProcs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda06880, occupies 360 bytes.
+  Inferred. The selector reads context +0x771c and tests its 0x200 bit (`lw` at 0xda06880,
+  `beqz` at 0xda06898). It also reads +0xc94, +0x760 and +0x77f4 (`lbu` at 0xda068a0,
+  `lw` at 0xda068b4, `lbu` at 0xda06928). The decision tree includes unsigned
+  comparisons against 0x409 and 0x40a (`bnez` at 0xda068d4, 0xda068e4).
+  Selected paths store 0xda06820 or 0xda06810 at context +0x317c (`sw` at
+  0xda06940, 0xda069c4). Other paths copy the callback at [context+0x2e28]+0xa4
+  into +0x317c or +0x3178 (`sw` at 0xda0698c, 0xda069e4).
+  Table-derived entries from base 0xda85dc8 are written to +0x3178 (`sw` at
+  0xda06950, 0xda06980, 0xda069d4). The complete index formula and several
+  predicates remain unresolved. The full body makes no calls. These writes do
+  not establish the behavior of the selected callbacks or table contents.
+
+- `__glim_TexCoord1d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda134b0, occupies 36 bytes.
+  Established. Narrows the double input with `cvt.s.d` at 0xda134c0 and writes the converted
+  value, unresolved in hostfacts, to context +0xe0 (`swc1` at 0xda134c8). The context pointer
+  comes from absolute 0x1010 (`lw` at 0xda134b4). Four-byte stores at +0xe8 and +0xe4 also
+  have unresolved values (`swc1` at 0xda134b8, 0xda134bc). A context float at +0xdd8 is copied
+  to +0xec (`lwc1` at 0xda134c4, `swc1` at 0xda134d0).
+
+- `__glim_TexCoord1i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13500, occupies 40 bytes.
+  Established. Converts the integer-register input to float (`cvt.s.w` at 0xda13514), then
+  stores an unresolved result at context +0xe0 (`swc1` at 0xda13524). Its four-byte +0xe8
+  and +0xe4 writes remain unresolved too (`swc1` at 0xda1350c, 0xda13518). The pointer read
+  at absolute 0x1010 supplies that context (`lw` at 0xda13504). The +0xec output preserves
+  the context's +0xdd8 float (`lwc1` at 0xda13510, `swc1` at 0xda1351c).
+
+- `__glim_TexCoord1s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13530, occupies 40 bytes.
+  Established. Uses integer-register conversion (`cvt.s.w` at 0xda13544) for the four-byte
+  output at context +0xe0, whose value remains unresolved (`swc1` at 0xda13554). Other
+  unresolved four-byte writes target +0xe8 and +0xe4 (`swc1` at 0xda1353c, 0xda13548).
+  Context is read from absolute 0x1010 (`lw` at 0xda13534). A separate field copy takes
+  the float at +0xdd8 to +0xec (`lwc1` at 0xda13540, `swc1` at 0xda1354c).
+
+- `__glim_TexCoord1dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13560, occupies 40 bytes.
+  Established. Reads eight bytes from input +0 (`ldc1` at 0xda13568) and narrows that
+  double (`cvt.s.d` at 0xda13578). The context comes from absolute 0x1010 (`lw` at
+  0xda13564). The four-byte +0xe8, +0xe4 and converted +0xe0 writes have unresolved values
+  (`swc1` at 0xda1356c, 0xda13574, 0xda13584). The remaining +0xec slot receives the
+  context float from +0xdd8 (`lwc1` at 0xda13570, `swc1` at 0xda1357c).
+
+- `__glim_TexCoord1fv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13590, occupies 36 bytes.
+  Established. Copies the four-byte input float at +0 into context +0xe0 (`lwc1` at
+  0xda13598, `swc1` at 0xda135a8). The pointer loaded from absolute 0x1010 identifies the
+  context (`lw` at 0xda13594). Two other four-byte slots, +0xe8 and +0xe4, receive values
+  that hostfacts does not resolve (`swc1` at 0xda1359c, 0xda135a0). The +0xec write copies
+  the context's +0xdd8 field (`lwc1` at 0xda135a4, `swc1` at 0xda135b0).
+
+- `__glim_TexCoord1iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda135c0, occupies 44 bytes.
+  Established. Starts with a four-byte input word at +0 (`lw` at 0xda135c0). Conversion
+  uses `cvt.s.w` at 0xda135d8, with its numerical result unresolved. The context pointer
+  is the word at absolute 0x1010 (`lw` at 0xda135c8). Four-byte outputs at +0xe8, +0xe4
+  and +0xe0 remain unresolved (`swc1` at 0xda135d0, 0xda135dc, 0xda135e8). Its +0xec field
+  receives the context float read at +0xdd8 (`lwc1` at 0xda135d4, `swc1` at 0xda135e0).
+
+- `__glim_TexCoord1sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda135f0, occupies 44 bytes.
+  Established. Loads a signed two-byte input at +0 (`lh` at 0xda135f0), then converts
+  it with `cvt.s.w` at 0xda13608. The word at absolute 0x1010 supplies context (`lw` at
+  0xda135f8). The four-byte +0xe8, +0xe4 and +0xe0 writes carry unresolved values
+  (`swc1` at 0xda13600, 0xda1360c, 0xda13618). Only the +0xec copy has a traced value,
+  from context +0xdd8 (`lwc1` at 0xda13604, `swc1` at 0xda13610).
+
+- `__glim_TexCoord2d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13620, occupies 40 bytes.
+  Established. Narrows two double-register inputs (`cvt.s.d` at 0xda13628, 0xda13634).
+  Their four-byte results at context +0xe4 and +0xe0 remain unresolved (`swc1` at
+  0xda13630, 0xda1363c), as does the four-byte +0xe8 write (`swc1` at 0xda1362c).
+  The context pointer is read from absolute 0x1010 (`lw` at 0xda13624). Its +0xdd8 float
+  supplies the +0xec field (`lwc1` at 0xda13638, `swc1` at 0xda13644).
