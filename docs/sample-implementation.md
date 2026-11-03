@@ -24038,3 +24038,245 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `review-facts/__glSpanReduceGreen.target.txt`,
   `review-facts/__glSpanReduceGreen.sibling.txt`, `review-facts/__glSpanReduceGreen.words.txt`,
   `review-facts/__glSpanReduceGreen.bytes.txt`.
+
+- `__glSpanReduceBlue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21de510, occupies 168 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21de510).
+  A signed nonpositive count selects the return path (`blez` at 0x21de528).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21de52c).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21de53c, 0x21de570, 0x21de57c, 0x21de588).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21de558, 0x21de578, 0x21de584, 0x21de590).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21de5b0).
+
+- `__glSpanReduceAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21de5c0, occupies 168 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21de5c0).
+  A signed nonpositive count selects the return path (`blez` at 0x21de5d8).
+  It reads a float at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21de5dc).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21de5ec, 0x21de620, 0x21de62c, 0x21de638).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21de608, 0x21de628, 0x21de634, 0x21de640).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21de660).
+
+- `__glSpanReduceRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21de670, occupies 296 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21de678).
+  A signed nonpositive count selects the return path (`blez` at 0x21de68c).
+  It reads a float at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21de67c).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21de684).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21de690).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21de6a4, 0x21de6a8, 0x21de6ac, 0x21de6f0).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21de6bc, 0x21de6cc, 0x21de6d8, 0x21de700).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21de790).
+
+- `__glSpanReduceBGR` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21de7a0, occupies 296 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21de7a8).
+  A signed nonpositive count selects the return path (`blez` at 0x21de7bc).
+  It reads a float at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21de7ac).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21de7b4).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21de7c0).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21de7d4, 0x21de7d8, 0x21de7dc, 0x21de820).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21de7ec, 0x21de7fc, 0x21de808, 0x21de830).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21de8c0).
+
+- `__glSpanReorderABGR` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21de8d0, occupies 360 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21de8dc).
+  A signed nonpositive count selects the return path (`blez` at 0x21de8f8).
+  It reads a float at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21de8d8).
+  It reads a float at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21de8e4).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21de8f0).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21de8fc).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21de908, 0x21de90c, 0x21de910, 0x21de91c).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21de920, 0x21de92c, 0x21de93c, 0x21de948).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21dea30).
+
+- `__glSpanReorderBGRA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21dea40, occupies 360 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21dea4c).
+  A signed nonpositive count selects the return path (`blez` at 0x21dea68).
+  It reads a float at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21dea48).
+  It reads a float at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21dea54).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21dea60).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21dea6c).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21dea78, 0x21dea7c, 0x21dea80, 0x21dea8c).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21dea90, 0x21dea9c, 0x21deaac, 0x21deab8).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21deba0).
+
+- `__glSpanReduceLuminance` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21debb0, occupies 296 bytes.
+  Inferred. The text renderer fails for this body. Its JSON facts supply the accesses below.
+  It reads the word at original a1 +0xc8 (`lw` at 0x21debbc).
+  It reads a float at `a0 +0xf2c` (`lwc1` at 0x21debb0).
+  It reads a float at `a0 +0x9a3c` (`lwc1` at 0x21debc4).
+  It reads a float at `a0 +0x9a40` (`lwc1` at 0x21debd0).
+  It reads a float at `a0 +0x9a38` (`lwc1` at 0x21debdc).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21debe8, 0x21debec, 0x21debf4, 0x21dec30).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21dec1c, 0x21dec50, 0x21dec74, 0x21dec98).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  Three raw words at `0x21dec6c`, `0x21dec90` and `0x21decb4` remain undecoded.
+  COP3 branches appear at `0x21dec40` and `0x21dec44`. Their predicates, dependent
+  values and control flow remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21decd0).
+
+- `__glSpanReduceLuminanceAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21dece0, occupies 360 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21decf0).
+  A signed nonpositive count selects the return path (`blez` at 0x21ded08).
+  It reads a float at `a0 (arg0 at entry) +0xf2c` (`lwc1` at 0x21dece4).
+  It reads a float at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21decec).
+  It reads a float at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21decf4).
+  It reads a float at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21ded00).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21ded0c).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21ded1c, 0x21ded20, 0x21ded28, 0x21ded40).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21ded3c, 0x21ded5c, 0x21ded90, 0x21ded9c).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  Three raw words at `0x21dedb8`, `0x21dede8` and `0x21dee18` remain undecoded.
+  Their predicates, dependent values and control flow remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21dee40).
+
+- `__glSpanReduceRedAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21dee50, occupies 232 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21dee54).
+  A signed nonpositive count selects the return path (`blez` at 0x21dee68).
+  It reads a float at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21dee60).
+  It reads a float at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21dee6c).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21dee80, 0x21dee8c, 0x21deec0, 0x21deecc).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21dee88, 0x21deea8, 0x21deec8, 0x21deed4).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21def30).
+
+- `__glSpanReduceRedNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21def40, occupies 136 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21def40).
+  A signed nonpositive count selects the return path (`blez` at 0x21def48).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21def64, 0x21def90, 0x21def98, 0x21defa0).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21def78, 0x21def94, 0x21def9c, 0x21defa4).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21defc0).
+
+- `__glSpanReduceGreenNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21defd0, occupies 136 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21defd0).
+  A signed nonpositive count selects the return path (`blez` at 0x21defd8).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21deff4, 0x21df020, 0x21df028, 0x21df030).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df008, 0x21df024, 0x21df02c, 0x21df034).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df050).
+
+- `__glSpanReduceBlueNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df060, occupies 136 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df060).
+  A signed nonpositive count selects the return path (`blez` at 0x21df068).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df084, 0x21df0b0, 0x21df0b8, 0x21df0c0).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df098, 0x21df0b4, 0x21df0bc, 0x21df0c4).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df0e0).
+
+- `__glSpanReduceAlphaNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df0f0, occupies 136 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df0f0).
+  A signed nonpositive count selects the return path (`blez` at 0x21df0f8).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df114, 0x21df140, 0x21df148, 0x21df150).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df128, 0x21df144, 0x21df14c, 0x21df154).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df170).
+
+- `__glSpanReduceRGBNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df180, occupies 216 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df180).
+  A signed nonpositive count selects the return path (`blez` at 0x21df188).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df1a0, 0x21df1a4, 0x21df1ac, 0x21df1e0).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df1b4, 0x21df1bc, 0x21df1c8, 0x21df1ec).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df250).
+
+- `__glSpanReduceBGRNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df260, occupies 216 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df260).
+  A signed nonpositive count selects the return path (`blez` at 0x21df268).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df280, 0x21df284, 0x21df28c, 0x21df2c0).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df294, 0x21df29c, 0x21df2a8, 0x21df2cc).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df330).
+
+- `__glSpanReorderABGRNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df340, occupies 248 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df340).
+  A signed nonpositive count selects the return path (`blez` at 0x21df348).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df360, 0x21df364, 0x21df368, 0x21df370).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df374, 0x21df37c, 0x21df384, 0x21df390).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df430).
+
+- `__glSpanReorderBGRANS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df440, occupies 248 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df440).
+  A signed nonpositive count selects the return path (`blez` at 0x21df448).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df460, 0x21df464, 0x21df468, 0x21df470).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df474, 0x21df47c, 0x21df484, 0x21df490).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df530).
+
+- `__glSpanReduceRedAlphaNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df540, occupies 168 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df540).
+  A signed nonpositive count selects the return path (`blez` at 0x21df548).
+  Float-input sites have unresolved moving bases (`lwc1` at 0x21df560, 0x21df56c, 0x21df590, 0x21df598).
+  Float-output sites have unresolved moving bases (`swc1` at 0x21df564, 0x21df580, 0x21df594, 0x21df59c).
+  The complete traversal, stored-value expressions and channel equations remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df5e0).
+
+- `__glSpanPackUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df5f0, occupies 248 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df5f4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x7c` (`lw` at 0x21df5f0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df620).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df624).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df664).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df668).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df680).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df684).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df69c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df6a0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df6b8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df6bc).
+  Byte-output sites have unresolved moving bases (`sb` at 0x21df648, 0x21df678, 0x21df694, 0x21df6b0, 0x21df6dc).
+  The multiplied count, byte values, conversion formula and complete traversal remain unknown.
+  The full body makes no calls.
+  The overall return value remains unresolved (`jr` at 0x21df6e0).
+
+- `__glSpanPackByte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21df6f0, occupies 172 bytes.
+  Inferred. It reads the word at original a1 +0xc8 (`lw` at 0x21df6f4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x7c` (`lw` at 0x21df6f0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf30` (`lwc1` at 0x21df740).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf28` (`lwc1` at 0x21df748).
+  Byte-output sites have unresolved moving bases (`sb` at 0x21df774).
+  The `floorf` call leaves a0 through a3 unresolved and reports f14=[original a0+3888] (`jalr` at 0x21df75c). Its f12 expression remains unknown.
+  The multiplied count, byte values, conversion formula and complete traversal remain unknown.
+  The overall return value remains unresolved (`jr` at 0x21df794).
