@@ -3297,3 +3297,419 @@ These are N64 target-body readings from usr/gfx/arch/IP27KONA64/libGLcore.so. Th
   Existing SHA-256: `d241420b69bb85c060cff52114a88e49c98fed409a979314ab81901de11356b2`.
   Evidence: `review-facts/__glkonim_GetInstrumentsSGIX.target.txt`, `review-facts/__glkonim_GetInstrumentsSGIX.sibling.txt`,
   `review-facts/__glkonim_GetInstrumentsSGIX.words.txt`, `review-facts/__glkonim_GetInstrumentsSGIX.bytes.txt`.
+
+- `__glkonim_ProcImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21a7080. Occupies 516 bytes.
+  The target name, address and supplied extent come from the inventory. Native metadata does not independently identify this target range.
+  Callee labels `allocLevelImage` and `getLevel` are also inventory-derived. Their call target addresses are directly resolved.
+  **Inferred.** Coordinates texture-image conversion through allocation, temporary texture and readback helpers.
+  It calls `allocLevelImage`, generates one temporary name and sets parameter 0x2801 to 0x2601 (`bgezall` at 0x21a710c, `jalr` at 0x21a7128 and `jalr` at 0x21a7160).
+  The upload and readback calls are `__glkonim_TexImage` and `getLevel` (`jalr` at 0x21a7198 and `bgezall` at 0x21a7204).
+  Most object, target and readback arguments remain unknown. The selected calls below do not establish complete conversion or state-restoration equivalence.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | allocLevelImage [0x21a8500] | a0=[([0x1020]:8 + (a0 << 0x3))+40768]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21a710c |
+  | __glkonim_GenTexturesEXT [0x21b1290] | a0=0x1, a1=sp-192, a2=?, a3=? | `jalr` at 0x21a7128 |
+  | __glkonim_BindTextureEXT [0x21b1d00] | a0=?, a1=?, a2=?, a3=? | `jalr` at 0x21a7248 |
+  | __glkonim_DeleteTexturesEXT [0x21b1910] | a0=0x1, a1=sp-192, a2=?, a3=? | `jalr` at 0x21a7258 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x9f18  value ([[0x1020]:8+40728] \| 0x10000) | `sw` at 0x21a7110 |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21a724c |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21a7280 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 516 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd964cc0 +592 bytes / 458 changed common-prefix byte positions
+  SHA-256 target `8d334bdd96dc25bbdd5bdf6e504ac033d71edc1bc99520a07edbd92656f67841` / documented O32 `a01e21457ef4b126d558cf196de78bf91eaf0ff88e4f096a2d249e7a2a946c09`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_ProcImage` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_ProcImage.target.txt`, `facts/__glkonim_ProcImage.sibling.txt`, `facts/__glkonim_ProcImage.disasm.txt`, `facts/__glkonim_ProcImage.comparison.txt`
+
+- `__glkonim_GenTexturesEXT_Slow` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21b1080. Occupies 524 bytes.
+  **Inferred.** Calls an unknown procedure with a 0x2d0-byte request, then passes its return value and that size to `bzero` (`jalr` at 0x21b115c and `jalr` at 0x21b1170).
+  The second path uses the same request and clear size (`jalr` at 0x21b11e8 and `jalr` at 0x21b11fc).
+  The two error calls pass 0x502 and 0x501 (`jalr` at 0x21b126c and `jalr` at 0x21b127c).
+  The allocation role is inferred, while the unknown callback effects and some output-name cursors remain Unknown. The O32 source's 0x220-byte record size is not transferred to this N64 body.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[0x1020]:8, a1=0x2d0, a2=?, a3=? | `jalr` at 0x21b115c |
+  | bzero | a0=ret(?), a1=0x2d0, a2=?, a3=? | `jalr` at 0x21b1170 |
+  | (unknown callee) | a0=[0x1020]:8, a1=0x2d0, a2=?, a3=? | `jalr` at 0x21b11e8 |
+  | bzero | a0=ret(?), a1=0x2d0, a2=?, a3=? | `jalr` at 0x21b11fc |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b126c |
+  | __glSetError [0x22115d0] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b127c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21b1150 |
+  | store | 4 bytes | ret(?) +0x78  value 0x0 | `sw` at 0x21b1178 |
+  | store | 4 bytes | ret(?) +0x1f8  value 0x3f800000 | `swc1` at 0x21b117c |
+  | store | 4 bytes | ret(?) +0x228  value -0x1 | `sw` at 0x21b1180 |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21b11bc |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21b11d8 |
+  | store | 4 bytes | ret(?) +0x78  value 0x0 | `sw` at 0x21b1204 |
+  | store | 4 bytes | ret(?) +0x1f8  value 0x3f800000 | `swc1` at 0x21b1208 |
+  | store | 4 bytes | ret(?) +0x228  value -0x1 | `sw` at 0x21b120c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 524 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd96f63c +644 bytes / 475 changed common-prefix byte positions
+  SHA-256 target `bbd281a6468173bf890fe3f14e14ef4c4b5f4fa0426acc0c99acbb6adaa53f90` / documented O32 `d105d2961e0132c4d025f1b9df001d3bcf5cacfe716bbef4badc7c1129868688`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_GenTexturesEXT_Slow` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_GenTexturesEXT_Slow.target.txt`, `facts/__glkonim_GenTexturesEXT_Slow.sibling.txt`, `facts/__glkonim_GenTexturesEXT_Slow.disasm.txt`, `facts/__glkonim_GenTexturesEXT_Slow.comparison.txt`
+
+- `__glkonim_AreTexturesResidentEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21b2090. Occupies 392 bytes.
+  **Inferred.** Queries texture objects through one unknown callback (`jalr` at 0x21b2128).
+  Its per-result writes use bytes, with distinct zero and one store sites below.
+  Invalid-object and negative-count error calls pass 0x501, while the begin-state error passes 0x502 (`jalr` at 0x21b21a8, `jalr` at 0x21b21fc and `jalr` at 0x21b21e8).
+  Unknown object-mask predicates, output cursors and the aggregate return leave full residency equivalence unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[[0x1020]:8+45864]:8+48, a1=?, a2=?, a3=? | `jalr` at 0x21b2128 |
+  | __glSetError [0x22115d0] | a0=0x501, a1=?, a2=?, a3=? | `jalr` at 0x21b21a8 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b21e8 |
+  | __glSetError [0x22115d0] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b21fc |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 1 bytes | ? (base unknown)  value 0x0 | `sb` at 0x21b2110 |
+  | store | 1 bytes | ? (base unknown)  value 0x1 | `sb` at 0x21b216c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 392 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd97076c +360 bytes / 324 changed common-prefix byte positions
+  SHA-256 target `a404aa297ba5d775b3484be5288dae3b5d5b39fb81c08f32be8ba2a6b976461e` / documented O32 `21e6a3653af79538b1d4397f70552625e3acabecf2857971df5c1642675bb20d`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_AreTexturesResidentEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_AreTexturesResidentEXT.target.txt`, `facts/__glkonim_AreTexturesResidentEXT.sibling.txt`, `facts/__glkonim_AreTexturesResidentEXT.disasm.txt`, `facts/__glkonim_AreTexturesResidentEXT.comparison.txt`
+
+- `__glkonim_PrioritizeTexturesEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21b2220. Occupies 408 bytes.
+  **Inferred.** Calls `__glKonTexUpdatePriority` with a shared-state pointer and the object returned by an unknown lookup (`jalr` at 0x21b22e8).
+  The priority-class argument remains unknown to hostfacts. One decoder-unknown word at 0x21b2328 also leaves a clamp predicate unresolved.
+  The selected float stores below preserve the observed priority writes without importing the O32 clamp rule.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glKonTexUpdatePriority [0x21ba680] | a0=[[0x1020]:8+45864]:8, a1=ret(?), a2=?, a3=? | `jalr` at 0x21b22e8 |
+  | (unknown callee) | a0=[[0x1020]:8+45864]:8+48, a1=?, a2=?, a3=? | `jalr` at 0x21b2308 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b2394 |
+  | __glSetError [0x22115d0] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21b23a8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ret(?) +0x1f8  value 0x3f800000 | `swc1` at 0x21b22c4 |
+  | store | 4 bytes | ret(?) +0x1f8  value f28 | `swc1` at 0x21b233c |
+  | store | 4 bytes | ret(?) +0x1f8 | `swc1` at 0x21b2344 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 408 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9708d4 +420 bytes / 356 changed common-prefix byte positions
+  SHA-256 target `1bd0f1d4b6b43c5511b83110ce104b11882173f214df1865559612d0b38c78ef` / documented O32 `5aa7e759afc9a2943677208b8202a3317ac864e9ed2113bbd4d583b19b79e98e`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_PrioritizeTexturesEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_PrioritizeTexturesEXT.target.txt`, `facts/__glkonim_PrioritizeTexturesEXT.sibling.txt`, `facts/__glkonim_PrioritizeTexturesEXT.sibling.json`, `facts/__glkonim_PrioritizeTexturesEXT.disasm.txt`, `facts/__glkonim_PrioritizeTexturesEXT.comparison.txt`
+
+- `__glkonim_GetTexImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21b4dd0. Occupies 536 bytes.
+  Callee labels `targetIndex`, `isLodInvalid` and `getLevel` are inventory-derived. Their call target addresses are resolved, but their names lack independent native metadata.
+  **Inferred.** Uses `targetIndex`, `isLodInvalid` and `getLevel` in its texture-read path (`jalr` at 0x21b4f5c, `jalr` at 0x21b4e58 and `bgezall` at 0x21b4f1c).
+  Its `fprintf` call is diagnostic output (`jalr` at 0x21b4eb4).
+  The final unknown callback receives the address at the N64 context plus 40728 first (`jalr` at 0x21b4f30).
+  Selected argument values are retained below. Unknown texture pointers and component-count choices prevent a complete image-read contract.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | isLodInvalid [0x21a8280] | a0=?, a1=a1 at entry (arg1), a2=0x10000, a3=? | `jalr` at 0x21b4e58 |
+  | fprintf | a0=sym(__iob)+64, a1=0x22c46a0, a2=0x3, a3=? | `jalr` at 0x21b4eb4 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a2 at entry (arg2), a6=0x1 | `jalr` at 0x21b4fc0 |
+  | __glSetError [0x22115d0] | a0=0x500, a1=?, a2=?, a3=? | `jalr` at 0x21b4fd8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown)  value ret(targetIndex) | `sw` at 0x21b4f7c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 536 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9737a8 +580 bytes / 477 changed common-prefix byte positions
+  SHA-256 target `f88bacc34365319b72c1ac97c604e6d28be1308f48aec61cb045a769c49acc5c` / documented O32 `f8421507cb7bffaea6d9d14f289526938996deb6dd413e034ca1812c5429d353`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_GetTexImage` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_GetTexImage.target.txt`, `facts/__glkonim_GetTexImage.sibling.txt`, `facts/__glkonim_GetTexImage.disasm.txt`, `facts/__glkonim_GetTexImage.comparison.txt`
+
+- `__glKonFreeEvaluators` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c1370. Occupies 392 bytes.
+  **Inferred.** Conditionally invokes the callback loaded from context +0x18 through ten indirect call sites, each retaining entry a0 first.
+  The first two sites have unknown buffer arguments (`jalr` at 0x21c13c0 and `jalr` at 0x21c13dc).
+  Later sites include the resolved pointer words at entry a0 +46408 and +47016 (`jalr` at 0x21c140c and `jalr` at 0x21c1428).
+  Actual callback release effects remain Unknown. The pointer clears below are eight-byte stores. The unresolved loop bases are not rebuilt from O32's smaller record layout.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=?, a2=?, a3=? | `jalr` at 0x21c13c0 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=?, a2=?, a3=? | `jalr` at 0x21c13dc |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[a0+46480]:8, a2=?, a3=? | `jalr` at 0x21c14b4 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[a0+47088]:8, a2=?, a3=? | `jalr` at 0x21c14d0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 8 bytes | ? (base unknown)  value 0x0 | `sd` at 0x21c13c8 |
+  | store | 8 bytes | ? (base unknown)  value 0x0 | `sd` at 0x21c13e4 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb548  value 0x0 | `sd` at 0x21c1414 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb7a8  value 0x0 | `sd` at 0x21c1430 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb560  value 0x0 | `sd` at 0x21c144c |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb7c0  value 0x0 | `sd` at 0x21c1468 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb578  value 0x0 | `sd` at 0x21c1484 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb7d8  value 0x0 | `sd` at 0x21c14a0 |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb590  value 0x0 | `sd` at 0x21c14bc |
+  | store | 8 bytes | a0 (arg0 at entry) +0xb7f0  value 0x0 | `sd` at 0x21c14d8 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 392 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd981d20 +272 bytes / 245 changed common-prefix byte positions
+  SHA-256 target `503fe6e06480f244b8807712bafee7a4954abfb1dee6e1011ea79bba711f0e93` / documented O32 `58cbb9d6588d65eccb5937c8b7a2b66187ed1daa1d4342433dcb6936e435d4d7`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glKonFreeEvaluators` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glKonFreeEvaluators.target.txt`, `facts/__glKonFreeEvaluators.sibling.txt`, `facts/__glKonFreeEvaluators.disasm.txt`, `facts/__glKonFreeEvaluators.comparison.txt`
+
+- `__glkonim_EvalCoord1d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c1f90. Occupies 80 bytes.
+  **Established.** Tests the one-coordinate enable field through an eight-byte load (`ld` at 0x21c1f9c).
+  A nonzero value takes the evaluator-call path (`bnez` at 0x21c1fb4).
+  It narrows f12 from double to float in the indirect-call delay slot (`cvt.s.d` at 0x21c1fd4). Callback identity and effects remain unknown.
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[0x1020]:8+65536, a2=0x10000, a3=a3 at entry (arg3) | `jalr` at 0x21c1fd0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c1f90 |
+  | load | 8 bytes | [0x1020]:8 +0xb538 | `ld` at 0x21c1f9c |
+  | load | 8 bytes | [0x1020]:8 +0xb9f8 | `ld` at 0x21c1fc8 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 80 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd98298c +84 bytes / 76 changed common-prefix byte positions
+  SHA-256 target `e9b0c23c7078e06006b07dee245503249276df3150e54225c1b886dc2e0ef16d` / documented O32 `07702e9c729136b2efc96c7989821e45afb79a2762446df77a83d8f1279d93c9`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord1d` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord1d.target.txt`, `facts/__glkonim_EvalCoord1d.sibling.txt`, `facts/__glkonim_EvalCoord1d.disasm.txt`, `facts/__glkonim_EvalCoord1d.comparison.txt`
+
+- `__glkonim_EvalCoord1dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c1fe0. Occupies 80 bytes.
+  **Established.** Loads a double from the input vector and narrows it in the callback's delay slot (`ldc1` at 0x21c2014 and `cvt.s.d` at 0x21c2024).
+  The enable branch takes the call path for a nonzero loaded field (`bnez` at 0x21c2000).
+  Its resolved N64 context and hook accesses appear below.
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[0x1020]:8+65536, a3=0x10000 | `jalr` at 0x21c2020 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c1fe0 |
+  | load | 8 bytes | [0x1020]:8 +0xb538 | `ld` at 0x21c1fec |
+  | load | 8 bytes | a0 (arg0 at entry) +0x0 | `ldc1` at 0x21c2014 |
+  | load | 8 bytes | [0x1020]:8 +0xb9f8 | `ld` at 0x21c2018 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 80 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9829e0 +84 bytes / 71 changed common-prefix byte positions
+  SHA-256 target `8213a31c0774caa2edb74a0adc00fe6c7b621697201e2aca8764b1d8195f7a0a` / documented O32 `21781ffe5aa39f5cec38501ea58ea4338452d25310db6484e74ed5f4dcf29f84`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord1dv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord1dv.target.txt`, `facts/__glkonim_EvalCoord1dv.sibling.txt`, `facts/__glkonim_EvalCoord1dv.disasm.txt`, `facts/__glkonim_EvalCoord1dv.comparison.txt`
+
+- `__glkonim_EvalCoord1f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c2030. Occupies 76 bytes.
+  **Established.** Uses the N64 one-coordinate enable and hook fields listed below.
+  The nonzero enable path reaches an unknown callback (`bnez` at 0x21c2050 and `jalr` at 0x21c206c).
+  The scalar float wrapper contains no coordinate conversion instruction.
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[0x1020]:8+65536, a2=0x10000, a3=a3 at entry (arg3) | `jalr` at 0x21c206c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c2030 |
+  | load | 8 bytes | [0x1020]:8 +0xb538 | `ld` at 0x21c203c |
+  | load | 8 bytes | [0x1020]:8 +0xb9f8 | `ld` at 0x21c2064 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 76 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd982a34 +80 bytes / 68 changed common-prefix byte positions
+  SHA-256 target `69c1589ae450f5c9fb2087937e7c16c9f1ca3a7ec46747303f3f9c74bc987b50` / documented O32 `bbcc94db49a41e0dd00cf1ef344828ee2d3a44abe3b5ca69842e4e8010a5cb53`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord1f` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord1f.target.txt`, `facts/__glkonim_EvalCoord1f.sibling.txt`, `facts/__glkonim_EvalCoord1f.disasm.txt`, `facts/__glkonim_EvalCoord1f.comparison.txt`
+
+- `__glkonim_EvalCoord2d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c20d0. Occupies 88 bytes.
+  **Established.** Narrows f13 before the call and f12 in the call's delay slot (`cvt.s.d` at 0x21c2110 and `cvt.s.d` at 0x21c211c).
+  The loaded two-coordinate enable field must be nonzero to take that callback path (`bnez` at 0x21c20f8).
+  The eight-byte procedure-pointer load is retained in the access table.
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[0x1020]:8+65536, a2=0x10000, a3=a3 at entry (arg3) | `jalr` at 0x21c2118 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c20d0 |
+  | load | 8 bytes | [0x1020]:8 +0xb798 | `ld` at 0x21c20dc |
+  | load | 8 bytes | [0x1020]:8 +0xba00 | `ld` at 0x21c210c |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd982ad8 +92 bytes / 82 changed common-prefix byte positions
+  SHA-256 target `9c6d375db0c625faeca73a04c05b359d747b600cbfdceeb35f40ca7e7ef8d49c` / documented O32 `e4f68a1c31320b2f0ee025895d056749379d4ac2bfb9f7079ecf292bcb3e173d`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord2d` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord2d.target.txt`, `facts/__glkonim_EvalCoord2d.sibling.txt`, `facts/__glkonim_EvalCoord2d.disasm.txt`, `facts/__glkonim_EvalCoord2d.comparison.txt`
+
+- `__glkonim_EvalCoord2dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c2130. Occupies 88 bytes.
+  **Established.** Reads two doubles at entry a0 +0 and +8 (`ldc1` at 0x21c2164 and `ldc1` at 0x21c2168).
+  It narrows f13 before calling and f12 in the delay slot (`cvt.s.d` at 0x21c2170 and `cvt.s.d` at 0x21c217c).
+  A nonzero enable value takes the callback path (`bnez` at 0x21c2150).
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[0x1020]:8+65536, a3=0x10000 | `jalr` at 0x21c2178 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c2130 |
+  | load | 8 bytes | [0x1020]:8 +0xb798 | `ld` at 0x21c213c |
+  | load | 8 bytes | a0 (arg0 at entry) +0x0 | `ldc1` at 0x21c2164 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x8 | `ldc1` at 0x21c2168 |
+  | load | 8 bytes | [0x1020]:8 +0xba00 | `ld` at 0x21c216c |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd982b34 +92 bytes / 75 changed common-prefix byte positions
+  SHA-256 target `b80f51740d8aaab0bebf317656215422a081c860d60d51a19767040cedda256b` / documented O32 `db57e175f161316f94ab4b641a03680262bb0be1fd530862bfff2d2e2da43d24`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord2dv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord2dv.target.txt`, `facts/__glkonim_EvalCoord2dv.sibling.txt`, `facts/__glkonim_EvalCoord2dv.disasm.txt`, `facts/__glkonim_EvalCoord2dv.comparison.txt`
+
+- `__glkonim_EvalCoord2f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c2190. Occupies 76 bytes.
+  **Established.** Selects the two-coordinate callback through N64 pointer fields, with no coordinate load or conversion in the scalar wrapper.
+  A nonzero enable field takes the call path (`bnez` at 0x21c21b0 and `jalr` at 0x21c21cc).
+  The procedure remains unidentified by fresh facts.
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[0x1020]:8+65536, a2=0x10000, a3=a3 at entry (arg3) | `jalr` at 0x21c21cc |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c2190 |
+  | load | 8 bytes | [0x1020]:8 +0xb798 | `ld` at 0x21c219c |
+  | load | 8 bytes | [0x1020]:8 +0xba00 | `ld` at 0x21c21c4 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 76 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd982b90 +80 bytes / 68 changed common-prefix byte positions
+  SHA-256 target `ca7e3d5d07e71bbd7cc3377ca4477298cf3357cf6d88dbf08ddfad099fbdec13` / documented O32 `2f207c933eb3f1dd7541089e3f41b9de58cb131b103b04be4910ce10b2a8c9c4`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord2f` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord2f.target.txt`, `facts/__glkonim_EvalCoord2f.sibling.txt`, `facts/__glkonim_EvalCoord2f.disasm.txt`, `facts/__glkonim_EvalCoord2f.comparison.txt`
+
+- `__glkonim_EvalCoord2fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c21e0. Occupies 80 bytes.
+  **Established.** Loads two floats from the vector into f13 and f12, with the first component loaded in the call delay slot (`lwc1` at 0x21c2218 and `lwc1` at 0x21c2224).
+  The indirect-call facts retain those floating values explicitly (`jalr` at 0x21c2220).
+  Its enable branch takes the call path only for a nonzero loaded field (`bnez` at 0x21c2200).
+  Established covers this local enable test, input handling and indirect call interface. Callback identity and effects remain Unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[0x1020]:8+65536, a3=0x10000, fp f12=[a0], f13=[a0+4] | `jalr` at 0x21c2220 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c21e0 |
+  | load | 8 bytes | [0x1020]:8 +0xb798 | `ld` at 0x21c21ec |
+  | load | 8 bytes | [0x1020]:8 +0xba00 | `ld` at 0x21c2214 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x4 | `lwc1` at 0x21c2218 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x0 | `lwc1` at 0x21c2224 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 80 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd982be0 +88 bytes / 70 changed common-prefix byte positions
+  SHA-256 target `be546e66fd7bc361d995e92f291081c80ab161bd57414881a4696006588589c5` / documented O32 `24dd235d01da510671e427e294c2f99a087870a695674a25897e399c79439592`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalCoord2fv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalCoord2fv.target.txt`, `facts/__glkonim_EvalCoord2fv.sibling.txt`, `facts/__glkonim_EvalCoord2fv.disasm.txt`, `facts/__glkonim_EvalCoord2fv.comparison.txt`
+
+- `__glkonim_EvalPoint1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c2690. Occupies 104 bytes.
+  **Inferred.** Chooses the stored grid endpoint when the input index equals the loaded grid count (`beq` at 0x21c26c8).
+  Otherwise it converts the index to float and uses one fused multiply-add (`cvt.s.w` at 0x21c26d0 and `madd.s` at 0x21c26d8).
+  An unknown evaluator callback follows (`jalr` at 0x21c26e0). The target's N64 grid offsets are listed below, without copying O32 offsets.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[0x1020]:8, a3=[0x1020]:8+65536, a4=[[0x1020]:8+2208], fp f14=[[0x1020]:8+2204] | `jalr` at 0x21c26e0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c2690 |
+  | load | 8 bytes | [0x1020]:8 +0xb538 | `ld` at 0x21c269c |
+  | load | 4 bytes | [0x1020]:8 +0x8a0 | `lw` at 0x21c26c0 |
+  | load | 4 bytes | [0x1020]:8 +0x89c | `lwc1` at 0x21c26c4 |
+  | load | 4 bytes | [0x1020]:8 +0x898 | `lwc1` at 0x21c26cc |
+  | load | 4 bytes | [0x1020]:8 +0x894 | `lwc1` at 0x21c26d4 |
+  | load | 8 bytes | [0x1020]:8 +0xb9f8 | `ld` at 0x21c26dc |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 104 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9830c8 +128 bytes / 96 changed common-prefix byte positions
+  SHA-256 target `0fbfcf1dd4850c7243df2f5ab14823a4a5bd5268442037652788e9f88b0f0846` / documented O32 `046975317cf9f59985d1befbfa1d5315639c2639c9ad83f0fc824bb9c4231d56`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalPoint1` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalPoint1.target.txt`, `facts/__glkonim_EvalPoint1.sibling.txt`, `facts/__glkonim_EvalPoint1.disasm.txt`, `facts/__glkonim_EvalPoint1.comparison.txt`
+
+- `__glkonim_EvalPoint2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c27a0. Occupies 140 bytes.
+  **Inferred.** Computes the two grid coordinates through separate index/count branches (`beq` at 0x21c27e0 and `bne` at 0x21c27f8).
+  The first equality skips its interpolation. The second inequality takes its interpolation path.
+  Each interpolated coordinate uses a fused multiply-add (`madd.s` at 0x21c27f0 and `madd.s` at 0x21c280c).
+  The callback identity and complete resulting coordinate values remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a4=[0x1020]:8+65536, a5=[[0x1020]:8+2224], a6=[[0x1020]:8+2240], fp f15=[[0x1020]:8+2236] | `jalr` at 0x21c2814 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x1020 | `ld` at 0x21c27a0 |
+  | load | 8 bytes | [0x1020]:8 +0xb798 | `ld` at 0x21c27ac |
+  | load | 4 bytes | [0x1020]:8 +0x8a8 | `lwc1` at 0x21c27d0 |
+  | load | 4 bytes | [0x1020]:8 +0x8b0 | `lw` at 0x21c27d4 |
+  | load | 4 bytes | [0x1020]:8 +0x8ac | `lwc1` at 0x21c27d8 |
+  | load | 4 bytes | [0x1020]:8 +0x8c0 | `lw` at 0x21c27dc |
+  | load | 4 bytes | [0x1020]:8 +0x8bc | `lwc1` at 0x21c27e4 |
+  | load | 4 bytes | [0x1020]:8 +0x8a4 | `lwc1` at 0x21c27ec |
+  | load | 4 bytes | [0x1020]:8 +0x8b4 | `lwc1` at 0x21c27f4 |
+  | load | 4 bytes | [0x1020]:8 +0x8b8 | `lwc1` at 0x21c2804 |
+  | load | 8 bytes | [0x1020]:8 +0xba00 | `ld` at 0x21c2810 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 140 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9831f8 +176 bytes / 127 changed common-prefix byte positions
+  SHA-256 target `feadefbf9c5bb2188a283161fb223ac5aaff4e086fee90d60a7c9b66ca36b903` / documented O32 `7b2a149b038e9c0122c15a8cfb94a784d43ad8e072d343561233cfb7be9df03e`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_EvalPoint2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_EvalPoint2.target.txt`, `facts/__glkonim_EvalPoint2.sibling.txt`, `facts/__glkonim_EvalPoint2.disasm.txt`, `facts/__glkonim_EvalPoint2.comparison.txt`
+
+- `__glkonim_GetHistogramParameterivEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21c9430. Occupies 248 bytes.
+  **Inferred.** Calls `__glkon_get_special2` with request 0x105, the original target and original name (`jalr` at 0x21c9478).
+  It copies reply words through an odd-word prefix and a two-word loop, with store sites below.
+  The error call passes 0x502 (`jalr` at 0x21c9518). Hostfacts leaves the loop cursors unknown, so the O32 four-word unrolling is not transferred.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glkon_get_special2 [0x219ac80] | a0=0x105, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=a1 at entry (arg1) | `jalr` at 0x21c9478 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=a1 at entry (arg1) | `jalr` at 0x21c9518 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a2 (arg2 at entry) +0x0  value [entry(0x9ec8)+8] | `sw` at 0x21c94bc |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21c94dc |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21c94fc |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 248 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd98a870 +296 bytes / 221 changed common-prefix byte positions
+  SHA-256 target `02700a4d1eef891cd2d1111e713feb1e2fa0e75250bd07f7da7c9b9357345378` / documented O32 `3a2f055b888fad05c53dcaf41ced638b1cf443abcd9d58047487e9e07f7d7bd0`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonim_GetHistogramParameterivEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glkonim_GetHistogramParameterivEXT.target.txt`, `facts/__glkonim_GetHistogramParameterivEXT.sibling.txt`, `facts/__glkonim_GetHistogramParameterivEXT.disasm.txt`, `facts/__glkonim_GetHistogramParameterivEXT.comparison.txt`

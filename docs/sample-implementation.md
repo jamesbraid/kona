@@ -21732,3 +21732,103 @@ comparison was not rerun and supplies no new target equation.
   Existing SHA-256: `7534b8a9576e4e75f207edecfe0a9f1f0b001f3ff8742d0b1395c94df2e76961`.
   Evidence: `review-facts/__glRenderSmoothTriangle.target.txt`, `review-facts/__glRenderSmoothTriangle.sibling.txt`,
   `review-facts/__glRenderSmoothTriangle.words.txt`, `review-facts/__glRenderSmoothTriangle.bytes.txt`.
+
+- `__glDlistBlockStateFree` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d0a90. Occupies 164 bytes.
+  **Inferred.** Calls an unidentified procedure with the saved break-state pointer second, while its first argument is unknown (`jalr` at 0x21d0acc).
+  A result other than -1 executes the two following callbacks (`bne` at 0x21d0ad8).
+  The next callbacks receive the original context and the eight-byte map pointers at entry a1 +0x28 and +0x40 (`jalr` at 0x21d0b00 and `jalr` at 0x21d0b18).
+  The callback effects remain Unknown. The O32 negated-size argument is not reconstructed where fresh N64 facts report unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=?, a1=[a1+32]:8, a2=[a1], a3=[a1+4] | `jalr` at 0x21d0acc |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[a1+40]:8, a2=?, a3=?, a4=-0x1 | `jalr` at 0x21d0b00 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[a1+64]:8, a2=?, a3=? | `jalr` at 0x21d0b18 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a1 (arg1 at entry) +0x4 | `lw` at 0x21d0a90 |
+  | load | 4 bytes | a1 (arg1 at entry) +0x0 | `lw` at 0x21d0a94 |
+  | load | 8 bytes | a1 (arg1 at entry) +0x10 | `ld` at 0x21d0ab4 |
+  | load | 8 bytes | a1 (arg1 at entry) +0x20 | `ld` at 0x21d0ac8 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x18 | `ld` at 0x21d0af8 |
+  | load | 8 bytes | a1 (arg1 at entry) +0x28 | `ld` at 0x21d0b04 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x18 | `ld` at 0x21d0b10 |
+  | load | 8 bytes | a1 (arg1 at entry) +0x40 | `ld` at 0x21d0b1c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 164 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd990f34 +172 bytes / 132 changed common-prefix byte positions
+  SHA-256 target `b307843b67188db3f313265e83081d5dfab73f13b0479bbbdd500ce91a083b51` / documented O32 `1fea312dec9725062a4572a1beca3e7cfa886baab82c92640b16081a4e94b8ab`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistBlockStateFree` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDlistBlockStateFree.target.txt`, `facts/__glDlistBlockStateFree.sibling.txt`, `facts/__glDlistBlockStateFree.disasm.txt`, `facts/__glDlistBlockStateFree.comparison.txt`
+
+- `__glDlistAllocBlock` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d0da0. Occupies 400 bytes.
+  Callee label `block_grow_region` is inventory-derived. Its call target address is directly resolved.
+  **Inferred.** Grows the block region by requesting the word at entry a0 +4 plus 32 and passing the record second (`bgezall` at 0x21d0ec8).
+  The initialization callback receives zero and the saved break-state pointer (`jalr` at 0x21d0ee8).
+  Selected writes include the map bit, decremented free count and eight-byte base-address result below.
+  Map cursors and the complete returned block address remain unresolved. The O32 source's omitted assertions and boundary-read caveats remain source provenance.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | block_grow_region [0x21d0b40] | a0=[a0+4]+32, a1=a0 at entry (arg0), a2=?, a3=?, a5=-0x1 | `bgezall` at 0x21d0ec8 |
+  | (unknown callee) | a0=0x0, a1=[a0+32]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=-0x1 | `jalr` at 0x21d0ee8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21d0e54 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x30  value [a0+48]-1 | `sw` at 0x21d0e64 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x8  value ret(?) | `sd` at 0x21d0efc |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 400 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9911c0 +340 bytes / 303 changed common-prefix byte positions
+  SHA-256 target `637a283fdea4ef3852f9ab521712364c30a9200186a7a5c8027e0a3f92f90b2c` / documented O32 `623eb1833cf80f9799593c81a4f4812da2914fccd6d571b868de900cf1e0edfe`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistAllocBlock` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDlistAllocBlock.target.txt`, `facts/__glDlistAllocBlock.sibling.txt`, `facts/__glDlistAllocBlock.disasm.txt`, `facts/__glDlistAllocBlock.comparison.txt`
+
+- `__glDlistCompactBlocks` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d0f90. Occupies 676 bytes.
+  **Inferred.** Updates allocator fields around three unknown callbacks (`jalr` at 0x21d116c, `jalr` at 0x21d1194 and `jalr` at 0x21d11f4).
+  Callback effects remain Unknown. The first callback's first three arguments are unknown to hostfacts. The second retains the saved break-state pointer, and the third receives the old map pointer second.
+  Resolved count and pointer updates are retained below. No complete relocation-order or failure-recovery claim is imported from O32.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=?, a1=?, a2=?, a3=[a0+32]:8, a4=[a0+8]:8 | `jalr` at 0x21d116c |
+  | (unknown callee) | a0=?, a1=[a0+32]:8, a2=[a0+48], a3=[a0+4] | `jalr` at 0x21d1194 |
+  | (unknown callee) | a0=?, a1=[a0+40]:8, a2=?, a3=[a0+48] | `jalr` at 0x21d11f4 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21d10f8 |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21d1124 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x30  value 0x0 | `sw` at 0x21d11cc |
+  | store | 4 bytes | a0 (arg0 at entry) +0x4 | `sw` at 0x21d11dc |
+  | store | 8 bytes | a0 (arg0 at entry) +0x28  value ret(?) | `sd` at 0x21d1204 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 676 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd991370 +604 bytes / 519 changed common-prefix byte positions
+  SHA-256 target `6a80768af88d8e7ea8f7b3b1bf24e1d2e656d1a6488dd1b35408fbb03a164d50` / documented O32 `349ed6b5ab337724a44a3328261fc1e8103f0ce6b0c7829cd5a043c892961db3`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistCompactBlocks` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glDlistCompactBlocks.target.txt`, `facts/__glDlistCompactBlocks.sibling.txt`, `facts/__glDlistCompactBlocks.disasm.txt`, `facts/__glDlistCompactBlocks.comparison.txt`
+
+- `__glDlistIsBlock` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d1240. Occupies 68 bytes.
+  **Inferred.** Performs signed lower and upper region comparisons. An address below the eight-byte base takes the zero-return path (`bnez` at 0x21d1248).
+  An address greater than or equal to the calculated upper bound also takes that path (`beqz` at 0x21d126c).
+  The intervening arithmetic zero-extends a low-word unsigned product before adding it to the 64-bit base (`multu` at 0x21d1254, `dsrl32` at 0x21d1260 and `daddu` at 0x21d1264).
+  The accepted path returns one, and the rejected path returns zero (`jr` at 0x21d1274 and `jr` at 0x21d127c). Fresh facts leave the upper-bound expression unknown. The O32 source's unsigned upper comparison is not transferred.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | a0 (arg0 at entry) +0x8 | `ld` at 0x21d1240 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x4 | `lw` at 0x21d124c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x0 | `lw` at 0x21d1250 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9915cc +52 bytes / 38 changed common-prefix byte positions
+  SHA-256 target `6d62f58064da7df8e6ce4c2210f8e407178f8902bfee144e93d802c02235155a` / documented O32 `fd15d476b713dfb6015a1805d017ae06d3b82b6f1124a999e859e3e15bbbf85d`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistIsBlock` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDlistIsBlock.target.txt`, `facts/__glDlistIsBlock.sibling.txt`, `facts/__glDlistIsBlock.disasm.txt`, `facts/__glDlistIsBlock.comparison.txt`
