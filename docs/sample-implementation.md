@@ -25042,3 +25042,385 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `review-facts/__glGenericPickDrawPixels.target.txt`,
   `review-facts/__glGenericPickDrawPixels.sibling.txt`, `review-facts/__glGenericPickDrawPixels.words.txt`,
   `review-facts/__glGenericPickDrawPixels.bytes.txt`.
+
+- `__glClipReadPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e7890, occupies 464 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0xfd8` (`lw` at 0x21e7890).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xfb4` (`lw` at 0x21e7894).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xcc` (`lwc1` at 0x21e7898).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xd0` (`lwc1` at 0x21e789c).
+  A 4-byte write at `a1 (arg1 at entry) +0x90` has value unresolved (`sw` at 0x21e7928).
+  A 4-byte write at `a1 (arg1 at entry) +0xcc` has value unresolved (`swc1` at 0x21e7930).
+  A 4-byte write at `a1 (arg1 at entry) +0x94` has value unresolved (`sw` at 0x21e799c).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e79a0).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e7910).
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e797c).
+  Hostfacts reports return registers `v0 = 0x1` (`jr` at 0x21e79e0).
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e79e8).
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e7a14).
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e7a1c).
+  Hostfacts reports return registers `v0 = 0x0` (`jr` at 0x21e7a58).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glLoadPackModes` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e7a60, occupies 96 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x580` (`lw` at 0x21e7a60).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x56c` (`lw` at 0x21e7a64).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x578` (`lw` at 0x21e7a68).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x574` (`lw` at 0x21e7a70).
+  A 4-byte write at `a1 (arg1 at entry) +0xa4` has value `[a0+1400]` (`sw` at 0x21e7a6c).
+  A 4-byte write at `a1 (arg1 at entry) +0x90` has value `[a0+1396]` (`sw` at 0x21e7a74).
+  A 4-byte write at `a1 (arg1 at entry) +0x94` has value `[a0+1392]` (`sw` at 0x21e7a7c).
+  A 4-byte write at `a1 (arg1 at entry) +0x98` has value `[a0+1404]` (`sw` at 0x21e7a84).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = [a0+1385]:1` (`jr` at 0x21e7aa4).
+  Hostfacts reports return registers `v0 = [a0+1385]:1` (`jr` at 0x21e7ab8).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glInitReadPixelsInfo` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e7ac0, occupies 336 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0xfb0` (`lw` at 0x21e7ac0).
+  It reads 1 byte at `a0 (arg0 at entry) +0x1454` (`lbu` at 0x21e7ae4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xfb4` (`lw` at 0x21e7b08).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xfdc` (`lw` at 0x21e7b0c).
+  A 4-byte write at `a1 (arg1 at entry) +0xcc` has value unresolved (`swc1` at 0x21e7adc).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e7b28).
+  A 4-byte write at `a1 (arg1 at entry) +0x5c` has value `a7` (`sw` at 0x21e7b2c).
+  A 4-byte write at `a1 (arg1 at entry) +0x58` has value `a6` (`sw` at 0x21e7b30).
+  The `__glLoadPackModes [0x21e7a60]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21e7b5c).
+  Hostfacts reports return registers `v0 = ret(__glLoadPackModes); f0 = ret(__glLoadPackModes)` (`jr` at 0x21e7bc4).
+  Hostfacts reports return registers `v0 = ret(__glLoadPackModes); f0 = ret(__glLoadPackModes)` (`jr` at 0x21e7c08).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glReadPixels2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e7de0, occupies 388 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e7df8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21e7e40).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x1458` (`lw` at 0x21e7e54).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xbc` (`lw` at 0x21e7e5c).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value `([a1+112] + [a1+104]:8)` (`sd` at 0x21e7f14).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e7f1c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e7ebc, 0x21e7ed8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a1+104]:8`
+  (`jalr` at 0x21e7ef4).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e7f5c).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glReadPixels1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e7f70, occupies 324 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e7f8c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21e7fc8).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xbc` (`lw` at 0x21e7fd8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x1458` (`lw` at 0x21e7fe4).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value `([a1+112] + [a1+104]:8)` (`sd` at 0x21e8064).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e806c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e802c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a1+104]:8`
+  (`jalr` at 0x21e8044).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e80ac).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glReadPixels0` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e80c0, occupies 188 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x1458` (`lw` at 0x21e80c0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xbc` (`lw` at 0x21e80d4).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x190` (`ld` at 0x21e80e8).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x68` (`ld` at 0x21e8108).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value `([a1+112] + [a1+104]:8)` (`sd` at 0x21e8144).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e8150).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e8128).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e8174).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glSlowPickReadPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e8180, occupies 160 bytes.
+  Inferred. The `__glInitReadPixelsInfo [0x21e7ac0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=a6 at entry (arg6)`
+  (`bgezall` at 0x21e81cc).
+  The `__glClipReadPixels [0x21e7890]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=?, a3=?`
+  (`bgezall` at 0x21e81dc).
+  The `__glInitPacker [0x21de160]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=?, a3=?`
+  (`jalr` at 0x21e81f4).
+  The `__glGenericPickReadPixels [0x21e8220]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=?, a3=?`
+  (`bgezall` at 0x21e8204).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e8218).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glGenericPickReadPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e8220, occupies 300 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x11c` (`lw` at 0x21e8274).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x228` (`ld` at 0x21e82a4).
+  It reads 4 bytes at `[a1+552]:8 +0x0` (`lw` at 0x21e82a8).
+  It reads 4 bytes at `[a1+552]:8 +0x4` (`lw` at 0x21e82dc).
+  An 8-byte write at `a1 (arg1 at entry) +0x190` has value unresolved (`sd` at 0x21e8298).
+  A 4-byte write at `a1 (arg1 at entry) +0x18c` has value unresolved (`sw` at 0x21e82d8).
+  A 4-byte write at `a1 (arg1 at entry) +0xc8` has value unresolved (`sw` at 0x21e8318).
+  A 4-byte write at `a1 (arg1 at entry) +0x11c` has value `ret(PickSpanModifiers)-1` (`sw` at 0x21e8330).
+  The `PickSpanModifiers [0x21e26a0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-64, a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21e8264).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x8011, a3=0x8012, a4=[a1+552]:8, a5=0x1, a7=[[a1+552]:8+4]`
+  (`jalr` at 0x21e82e8).
+  Hostfacts reports return registers `v0 = ret(?); f0 = ret(?)` (`jr` at 0x21e82fc).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glClipCopyPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e8350, occupies 1492 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x94` (`lw` at 0x21e8394).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x90` (`lw` at 0x21e8398).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xb4` (`lwc1` at 0x21e83a8).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xb0` (`lwc1` at 0x21e83b0).
+  A 4-byte write at `a1 (arg1 at entry) +0x90` has value `0x0` (`sw` at 0x21e8350).
+  A 4-byte write at `a1 (arg1 at entry) +0x94` has value `0x0` (`sw` at 0x21e8358).
+  A 4-byte write at `a1 (arg1 at entry) +0x38` has value `0x0` (`sw` at 0x21e83c4).
+  A 4-byte write at `a1 (arg1 at entry) +0x3c` has value `0x0` (`sw` at 0x21e83cc).
+  The `__glClipReadPixels [0x21e7890]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21e8384).
+  The `__glClipDrawPixels [0x21e60a0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`bgezall` at 0x21e83dc).
+  The `ceilf` call has hostfacts arguments
+  `a0=0x0, a1=?, a2=[a1+56], a3=[a0+5204]:1, a5=0x0, a6=0x0, a7=0x0; fp f14=0xffffffffbf800000`
+  (`jalr` at 0x21e87a8).
+  The `floorf` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x21e8848, 0x21e88e4).
+  Return predicates and overall clipping formulas remain unknown because
+  the body contains decoder limitations.
+  Unknown raw words remain at 0x021e84a8, 0x021e84ec, 0x021e8500, 0x021e8518, 0x021e8610, 0x021e8620, 0x021e8634, 0x021e86e4, 0x021e86fc, 0x021e8730, 0x021e87d4, 0x021e8870.
+  A COP3 rendering remains at 0x021e84c8.
+  These words receive no semantic assignment. Affected predicates, conditional
+  values, branch targets and formulas remain unknown.
+
+- `__glInitCopyPixelsInfo` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e8930, occupies 492 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x228` (`lwc1` at 0x21e8930).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x220` (`lwc1` at 0x21e8934).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x224` (`lwc1` at 0x21e8938).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x398` (`lwc1` at 0x21e8954).
+  A 4-byte write at `a1 (arg1 at entry) +0xd4` has value `[a0+544]` (`swc1` at 0x21e8940).
+  A 4-byte write at `a1 (arg1 at entry) +0xd8` has value `[a0+548]` (`swc1` at 0x21e8944).
+  A 4-byte write at `a1 (arg1 at entry) +0x108` has value unresolved (`sw` at 0x21e894c).
+  A 4-byte write at `a1 (arg1 at entry) +0x104` has value `[a0+3884]` (`swc1` at 0x21e8988).
+  The full body makes no calls.
+  Return predicates and overall clipping formulas remain unknown because
+  the body contains decoder limitations.
+  Unknown raw words remain at 0x021e8978, 0x021e899c, 0x021e89d0.
+  These words receive no semantic assignment. Affected predicates, conditional
+  values, branch targets and formulas remain unknown.
+
+- `__glCopyPixels2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e8de0, occupies 668 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e8e00).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21e8e7c).
+  It reads 1 byte at `a1 (arg1 at entry) +0xf0` (`lbu` at 0x21e8eb0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xd8` (`lwc1` at 0x21e8f10).
+  An 8-byte write at `a1 (arg1 at entry) +0x160` has value unresolved (`sd` at 0x21e8eac).
+  A 4-byte write at `a1 (arg1 at entry) +0xd8` has value unresolved (`swc1` at 0x21e8f68).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e8f88).
+  The `__glComputeSpanPixelArray [0x21e6590]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=-0x10`
+  (`bgezall` at 0x21e8ea8).
+  The `__glCopyPixelsOverlapping [0x21e9530]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x2, a3=?`
+  (`bgezall` at 0x21e8ec4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e8fc8, 0x21e8fe4, 0x21e9000, 0x21e9018).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e8f08).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyPixels1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e9080, occupies 640 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e90a0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21e9120).
+  It reads 1 byte at `a1 (arg1 at entry) +0xf0` (`lbu` at 0x21e9150).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xd8` (`lwc1` at 0x21e91b0).
+  An 8-byte write at `a1 (arg1 at entry) +0x160` has value unresolved (`sd` at 0x21e914c).
+  A 4-byte write at `a1 (arg1 at entry) +0xd8` has value unresolved (`swc1` at 0x21e9208).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e9228).
+  A 4-byte write at `a0 (arg0 at entry) +0x995c` has value unresolved (`sw` at 0x21e92c4).
+  The `__glComputeSpanPixelArray [0x21e6590]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a0+39260]`
+  (`bgezall` at 0x21e9148).
+  The `__glCopyPixelsOverlapping [0x21e9530]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1, a3=?`
+  (`bgezall` at 0x21e9164).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e9268, 0x21e9284, 0x21e929c).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e91a8).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyPixels0` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e9300, occupies 548 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e931c).
+  It reads 1 byte at `a1 (arg1 at entry) +0xf0` (`lbu` at 0x21e93b0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xd8` (`lwc1` at 0x21e9410).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xb4` (`lwc1` at 0x21e9414).
+  An 8-byte write at `a1 (arg1 at entry) +0x160` has value unresolved (`sd` at 0x21e93ac).
+  A 4-byte write at `a1 (arg1 at entry) +0xd8` has value unresolved (`swc1` at 0x21e9458).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e9478).
+  The `__glComputeSpanPixelArray [0x21e6590]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=-0x10, a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21e93a8).
+  The `__glCopyPixelsOverlapping [0x21e9530]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=?`
+  (`bgezall` at 0x21e93c4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e94b4, 0x21e94c8).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e9408).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyPixelsOverlapping` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e9530, occupies 2588 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21e9554).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21e95a4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x134` (`lw` at 0x21e95c4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x130` (`lw` at 0x21e95c8).
+  A 4-byte write at `a1 (arg1 at entry) +0xd8` has value `[a1+288]` (`swc1` at 0x21e9774).
+  A 4-byte write at `a1 (arg1 at entry) +0xd0` has value unresolved (`swc1` at 0x21e978c).
+  A 4-byte write at `a1 (arg1 at entry) +0xec` has value unresolved (`sw` at 0x21e9814).
+  A 4-byte write at `a1 (arg1 at entry) +0xe0` has value unresolved (`sw` at 0x21e981c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-672, a2=?, a3=?`
+  (`jalr` at 0x21e98ac, 0x21e99cc, 0x21e9a08, 0x21e9d20, 0x21e9d4c, 0x21e9d78, 0x21e9d9c, 0x21e9ea4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21e992c, 0x21e9968, 0x21e9988, 0x21e9aac, 0x21e9b84, 0x21e9c20, 0x21e9c54, 0x21e9e2c, 0x21e9e68, 0x21e9edc, 0x21e9f18).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e9e10).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glSlowPickCopyPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e9f50, occupies 128 bytes.
+  Inferred. The `__glInitCopyPixelsInfo [0x21e8930]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5)`
+  (`bgezall` at 0x21e9f90).
+  The `__glClipCopyPixels [0x21e8350]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=?, a3=?`
+  (`bgezall` at 0x21e9fa0).
+  The `__glGenericPickCopyPixels [0x21e9fd0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-656, a2=?, a3=?`
+  (`bgezall` at 0x21e9fb4).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21e9fc8).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glGenericPickCopyPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21e9fd0, occupies 292 bytes.
+  Inferred. It reads 8 bytes at `a1 (arg1 at entry) +0x228` (`ld` at 0x21ea028).
+  It reads 4 bytes at `[a1+552]:8 +0x0` (`lw` at 0x21ea034).
+  It reads 4 bytes at `[a1+552]:8 +0x4` (`lw` at 0x21ea084).
+  It reads 4 bytes at `[a1+552]:8 +0x40` (`lw` at 0x21ea0b4).
+  A 4-byte write at `a1 (arg1 at entry) +0x11c` has value `ret(PickSpanModifiers)-1` (`sw` at 0x21ea030).
+  A 4-byte write at `a1 (arg1 at entry) +0x18c` has value `ret(PickSpanModifiers)` (`sw` at 0x21ea080).
+  An 8-byte write at `a1 (arg1 at entry) +0x200` has value unresolved (`sd` at 0x21ea090).
+  An 8-byte write at `a1 (arg1 at entry) +0x190` has value unresolved (`sd` at 0x21ea094).
+  The `PickSpanModifiers [0x21e26a0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-64, a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21ea018).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=ret(PickSpanModifiers)-1, a3=0x8012`
+  (`jalr` at 0x21ea098).
+  Hostfacts reports return registers `v0 = ret(?); f0 = ret(?)` (`jr` at 0x21ea0ac).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyImage1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21ea100, occupies 208 bytes.
+  Inferred. It reads 8 bytes at `a1 (arg1 at entry) +0x198` (`ld` at 0x21ea108).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xbc` (`lw` at 0x21ea124).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21ea148).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x68` (`ld` at 0x21ea168).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value `([a1+112] + [a1+104]:8)` (`sd` at 0x21ea190).
+  An 8-byte write at `a1 (arg1 at entry) +0x10` has value `([a1+24] + [a1+16]:8)` (`sd` at 0x21ea198).
+  A 4-byte write at `a0 (arg0 at entry) +0x995c` has value `[a0+39260]` (`sw` at 0x21ea1a0).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=[a1+104]:8`
+  (`jalr` at 0x21ea170).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21ea1c8).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyImage2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21ea1d0, occupies 312 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xb8` (`lw` at 0x21ea1e8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x995c` (`lw` at 0x21ea224).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xbc` (`lw` at 0x21ea234).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x1a0` (`ld` at 0x21ea24c).
+  An 8-byte write at `a1 (arg1 at entry) +0x10` has value `([a1+24] + [a1+16]:8)` (`sd` at 0x21ea2ac).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value `([a1+112] + [a1+104]:8)` (`sd` at 0x21ea2c4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?`
+  (`jalr` at 0x21ea280).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a1+104]:8, a4=([a1+24] + [a1+16]:8), a5=[a1+16]:8`
+  (`jalr` at 0x21ea2a8).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21ea300).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glCopyImage3D` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21ea5c0, occupies 188 bytes.
+  Inferred. It reads 8 bytes at `a1 (arg1 at entry) +0x68` (`ld` at 0x21ea5c8).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc0` (`lw` at 0x21ea5e0).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x10` (`ld` at 0x21ea5f4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lw` at 0x21ea630).
+  An 8-byte write at `a1 (arg1 at entry) +0x68` has value unresolved (`sd` at 0x21ea640).
+  An 8-byte write at `a1 (arg1 at entry) +0x10` has value unresolved (`sd` at 0x21ea64c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?`
+  (`jalr` at 0x21ea628).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21ea674).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
+
+- `__glGenericPickCopyImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21ea680, occupies 248 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x11c` (`lw` at 0x21ea6b8).
+  It reads 8 bytes at `a1 (arg1 at entry) +0x228` (`ld` at 0x21ea704).
+  It reads 4 bytes at `[a1+552]:8 +0x0` (`lw` at 0x21ea708).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x20` (`lw` at 0x21ea718).
+  A 4-byte write at `a1 (arg1 at entry) +0x11c` has value `-0x1` (`sw` at 0x21ea684).
+  A 4-byte write at `a1 (arg1 at entry) +0x18c` has value unresolved (`sw` at 0x21ea720).
+  The `__glGenericPickCopyImageSpan [0x21ea4f0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21ea6b0).
+  The `__glCopyImage3D [0x21ea5c0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a1+32], a5=0x8011`
+  (`bgezall` at 0x21ea734).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[a1+32], a4=[a1+120], a5=0x8011`
+  (`jalr` at 0x21ea768).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21ea748).
+  Unreported pixel formulas, callback behavior, moving buffer addresses and
+  row traversal remain unknown.
