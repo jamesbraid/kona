@@ -17504,3 +17504,270 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   0xda13630, 0xda1363c), as does the four-byte +0xe8 write (`swc1` at 0xda1362c).
   The context pointer is read from absolute 0x1010 (`lw` at 0xda13624). Its +0xdd8 float
   supplies the +0xec field (`lwc1` at 0xda13638, `swc1` at 0xda13644).
+
+- `__glim_TexCoord2i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13650, occupies 48 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13654).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13660).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13668).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13670).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13674).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda1367c).
+  Evidence: `review-facts/__glim_TexCoord2i.target.txt`,
+  `review-facts/__glim_TexCoord2i.sibling.txt`, `review-facts/__glim_TexCoord2i.words.txt`,
+  `review-facts/__glim_TexCoord2i.bytes.txt`.
+
+- `__glim_TexCoord2s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13680, occupies 48 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13684).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13690).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13698).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda136a0).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda136a4).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda136ac).
+  Evidence: `review-facts/__glim_TexCoord2s.target.txt`,
+  `review-facts/__glim_TexCoord2s.sibling.txt`, `review-facts/__glim_TexCoord2s.words.txt`,
+  `review-facts/__glim_TexCoord2s.bytes.txt`.
+
+- `__glim_TexCoord2dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda136b0, occupies 48 bytes.
+  Established. It reads 8 bytes at input +0x0 (`ldc1` at 0xda136b0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda136b4).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda136b8).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda136c0).
+  It reads 8 bytes at input +0x8 (`ldc1` at 0xda136c4).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda136cc).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda136d0).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda136dc).
+  Evidence: `review-facts/__glim_TexCoord2dv.target.txt`,
+  `review-facts/__glim_TexCoord2dv.sibling.txt`, `review-facts/__glim_TexCoord2dv.words.txt`,
+  `review-facts/__glim_TexCoord2dv.bytes.txt`.
+
+- `__glim_TexCoord2iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda136e0, occupies 56 bytes.
+  Established. It reads 4 bytes at input +0x0 (`lw` at 0xda136e0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda136ec).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda136f0).
+  It reads 4 bytes at input +0x4 (`lw` at 0xda136f4).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda136fc).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13708).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda1370c).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13714).
+  Evidence: `review-facts/__glim_TexCoord2iv.target.txt`,
+  `review-facts/__glim_TexCoord2iv.sibling.txt`, `review-facts/__glim_TexCoord2iv.words.txt`,
+  `review-facts/__glim_TexCoord2iv.bytes.txt`.
+
+- `__glim_TexCoord2sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13720, occupies 56 bytes.
+  Established. It reads 2 bytes at input +0x0 (`lh` at 0xda13720).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda1372c).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda13730).
+  It reads 2 bytes at input +0x2 (`lh` at 0xda13734).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda1373c).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13748).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda1374c).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13754).
+  Evidence: `review-facts/__glim_TexCoord2sv.target.txt`,
+  `review-facts/__glim_TexCoord2sv.sibling.txt`, `review-facts/__glim_TexCoord2sv.words.txt`,
+  `review-facts/__glim_TexCoord2sv.bytes.txt`.
+
+- `__glim_TexCoord3d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13760, occupies 40 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13760).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda1376c).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13770).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13778).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda1377c).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13784).
+  Evidence: `review-facts/__glim_TexCoord3d.target.txt`,
+  `review-facts/__glim_TexCoord3d.sibling.txt`, `review-facts/__glim_TexCoord3d.words.txt`,
+  `review-facts/__glim_TexCoord3d.bytes.txt`.
+
+- `__glim_TexCoord3f` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13790, occupies 28 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13790).
+  It writes 4 bytes at context +0xe8 with hostfacts value `f14` (`swc1` at 0xda13794).
+  It writes 4 bytes at context +0xe4 with hostfacts value `f13` (`swc1` at 0xda13798).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda1379c).
+  It writes 4 bytes at context +0xe0 with hostfacts value `f12` (`swc1` at 0xda137a0).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda137a8).
+  Evidence: `review-facts/__glim_TexCoord3f.target.txt`,
+  `review-facts/__glim_TexCoord3f.sibling.txt`, `review-facts/__glim_TexCoord3f.words.txt`,
+  `review-facts/__glim_TexCoord3f.bytes.txt`.
+
+- `__glim_TexCoord3i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda137b0, occupies 52 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda137b4).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda137c0).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda137cc).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda137d4).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda137d8).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda137e0).
+  Evidence: `review-facts/__glim_TexCoord3i.target.txt`,
+  `review-facts/__glim_TexCoord3i.sibling.txt`, `review-facts/__glim_TexCoord3i.words.txt`,
+  `review-facts/__glim_TexCoord3i.bytes.txt`.
+
+- `__glim_TexCoord3s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda137f0, occupies 52 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda137f4).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13800).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda1380c).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13814).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13818).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda13820).
+  Evidence: `review-facts/__glim_TexCoord3s.target.txt`,
+  `review-facts/__glim_TexCoord3s.sibling.txt`, `review-facts/__glim_TexCoord3s.words.txt`,
+  `review-facts/__glim_TexCoord3s.bytes.txt`.
+
+- `__glim_TexCoord3dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13830, occupies 52 bytes.
+  Established. It reads 8 bytes at input +0x0 (`ldc1` at 0xda13830).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda13834).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda1383c).
+  It reads 8 bytes at input +0x8 (`ldc1` at 0xda13840).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13848).
+  It reads 8 bytes at input +0x10 (`ldc1` at 0xda1384c).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13850).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13854).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13860).
+  Evidence: `review-facts/__glim_TexCoord3dv.target.txt`,
+  `review-facts/__glim_TexCoord3dv.sibling.txt`, `review-facts/__glim_TexCoord3dv.words.txt`,
+  `review-facts/__glim_TexCoord3dv.bytes.txt`.
+
+- `__glim_TexCoord3fv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13870, occupies 40 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13870).
+  It reads 4 bytes at input +0x0 (`lwc1` at 0xda13874).
+  It writes 4 bytes at context +0xe0 with hostfacts value `[a0]` (`swc1` at 0xda13878).
+  It reads 4 bytes at input +0x4 (`lwc1` at 0xda1387c).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda13880).
+  It writes 4 bytes at context +0xe4 with hostfacts value `[a0+4]` (`swc1` at 0xda13884).
+  It reads 4 bytes at input +0x8 (`lwc1` at 0xda13888).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda1388c).
+  It writes 4 bytes at context +0xe8 with hostfacts value `[a0+8]` (`swc1` at 0xda13894).
+  Evidence: `review-facts/__glim_TexCoord3fv.target.txt`,
+  `review-facts/__glim_TexCoord3fv.sibling.txt`, `review-facts/__glim_TexCoord3fv.words.txt`,
+  `review-facts/__glim_TexCoord3fv.bytes.txt`.
+
+- `__glim_TexCoord3iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda138a0, occupies 64 bytes.
+  Established. It reads 4 bytes at input +0x0 (`lw` at 0xda138a0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda138ac).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda138b0).
+  It reads 4 bytes at input +0x4 (`lw` at 0xda138b4).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda138c0).
+  It reads 4 bytes at input +0x8 (`lw` at 0xda138c4).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda138cc).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda138d4).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda138dc).
+  Evidence: `review-facts/__glim_TexCoord3iv.target.txt`,
+  `review-facts/__glim_TexCoord3iv.sibling.txt`, `review-facts/__glim_TexCoord3iv.words.txt`,
+  `review-facts/__glim_TexCoord3iv.bytes.txt`.
+
+- `__glim_TexCoord3sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda138e0, occupies 64 bytes.
+  Established. It reads 2 bytes at input +0x0 (`lh` at 0xda138e0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda138ec).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda138f0).
+  It reads 2 bytes at input +0x2 (`lh` at 0xda138f4).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13900).
+  It reads 2 bytes at input +0x4 (`lh` at 0xda13904).
+  It reads a 4-byte context field at +0xdd8 (`lwc1` at 0xda1390c).
+  It writes 4 bytes at context +0xec with hostfacts value `[[0x1010]+3544]` (`swc1` at 0xda13914).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda1391c).
+  Evidence: `review-facts/__glim_TexCoord3sv.target.txt`,
+  `review-facts/__glim_TexCoord3sv.sibling.txt`, `review-facts/__glim_TexCoord3sv.words.txt`,
+  `review-facts/__glim_TexCoord3sv.bytes.txt`.
+
+- `__glim_TexCoord4d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13920, occupies 40 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13920).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda1392c).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13934).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda1393c).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda13944).
+  Evidence: `review-facts/__glim_TexCoord4d.target.txt`,
+  `review-facts/__glim_TexCoord4d.sibling.txt`, `review-facts/__glim_TexCoord4d.words.txt`,
+  `review-facts/__glim_TexCoord4d.bytes.txt`.
+
+- `__glim_TexCoord4i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13970, occupies 56 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13984).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda13994).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13998).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda1399c).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda139a4).
+  Evidence: `review-facts/__glim_TexCoord4i.target.txt`,
+  `review-facts/__glim_TexCoord4i.sibling.txt`, `review-facts/__glim_TexCoord4i.words.txt`,
+  `review-facts/__glim_TexCoord4i.bytes.txt`.
+
+- `__glim_TexCoord4s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda139b0, occupies 56 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda139c4).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda139d4).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda139d8).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda139dc).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda139e4).
+  Evidence: `review-facts/__glim_TexCoord4s.target.txt`,
+  `review-facts/__glim_TexCoord4s.sibling.txt`, `review-facts/__glim_TexCoord4s.words.txt`,
+  `review-facts/__glim_TexCoord4s.bytes.txt`.
+
+- `__glim_TexCoord4dv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda139f0, occupies 56 bytes.
+  Established. It reads 8 bytes at input +0x0 (`ldc1` at 0xda139f0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda139f4).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda139fc).
+  It reads 8 bytes at input +0x8 (`ldc1` at 0xda13a00).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13a08).
+  It reads 8 bytes at input +0x10 (`ldc1` at 0xda13a0c).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13a14).
+  It reads 8 bytes at input +0x18 (`ldc1` at 0xda13a18).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda13a24).
+  Evidence: `review-facts/__glim_TexCoord4dv.target.txt`,
+  `review-facts/__glim_TexCoord4dv.sibling.txt`, `review-facts/__glim_TexCoord4dv.words.txt`,
+  `review-facts/__glim_TexCoord4dv.bytes.txt`.
+
+- `__glim_TexCoord4fv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13a30, occupies 40 bytes.
+  Established. It reads the context pointer from absolute 0x1010 (`lw` at 0xda13a30).
+  It reads 4 bytes at input +0x0 (`lwc1` at 0xda13a34).
+  It writes 4 bytes at context +0xe0 with hostfacts value `[a0]` (`swc1` at 0xda13a38).
+  It reads 4 bytes at input +0x4 (`lwc1` at 0xda13a3c).
+  It writes 4 bytes at context +0xe4 with hostfacts value `[a0+4]` (`swc1` at 0xda13a40).
+  It reads 4 bytes at input +0x8 (`lwc1` at 0xda13a44).
+  It writes 4 bytes at context +0xe8 with hostfacts value `[a0+8]` (`swc1` at 0xda13a48).
+  It reads 4 bytes at input +0xc (`lwc1` at 0xda13a4c).
+  It writes 4 bytes at context +0xec with hostfacts value `[a0+12]` (`swc1` at 0xda13a54).
+  Evidence: `review-facts/__glim_TexCoord4fv.target.txt`,
+  `review-facts/__glim_TexCoord4fv.sibling.txt`, `review-facts/__glim_TexCoord4fv.words.txt`,
+  `review-facts/__glim_TexCoord4fv.bytes.txt`.
+
+- `__glim_TexCoord4iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13a60, occupies 72 bytes.
+  Established. It reads 4 bytes at input +0x0 (`lw` at 0xda13a60).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda13a6c).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda13a70).
+  It reads 4 bytes at input +0x4 (`lw` at 0xda13a74).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13a80).
+  It reads 4 bytes at input +0x8 (`lw` at 0xda13a84).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13a90).
+  It reads 4 bytes at input +0xc (`lw` at 0xda13a94).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda13aa4).
+  Evidence: `review-facts/__glim_TexCoord4iv.target.txt`,
+  `review-facts/__glim_TexCoord4iv.sibling.txt`, `review-facts/__glim_TexCoord4iv.words.txt`,
+  `review-facts/__glim_TexCoord4iv.bytes.txt`.
+
+- `__glim_TexCoord4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda13ab0, occupies 72 bytes.
+  Established. It reads 2 bytes at input +0x0 (`lh` at 0xda13ab0).
+  It reads the context pointer from absolute 0x1010 (`lw` at 0xda13abc).
+  It writes 4 bytes at context +0xe0, with the stored value unresolved (`swc1` at 0xda13ac0).
+  It reads 2 bytes at input +0x2 (`lh` at 0xda13ac4).
+  It writes 4 bytes at context +0xe4, with the stored value unresolved (`swc1` at 0xda13ad0).
+  It reads 2 bytes at input +0x4 (`lh` at 0xda13ad4).
+  It writes 4 bytes at context +0xe8, with the stored value unresolved (`swc1` at 0xda13ae0).
+  It reads 2 bytes at input +0x6 (`lh` at 0xda13ae4).
+  It writes 4 bytes at context +0xec, with the stored value unresolved (`swc1` at 0xda13af4).
+  Evidence: `review-facts/__glim_TexCoord4sv.target.txt`,
+  `review-facts/__glim_TexCoord4sv.sibling.txt`, `review-facts/__glim_TexCoord4sv.words.txt`,
+  `review-facts/__glim_TexCoord4sv.bytes.txt`.
