@@ -5857,6 +5857,69 @@ Target entries:
   Byte comparison: target 16 bytes, SHA-256 `01a1eaca647919484cdcf71a068df6882f72a33b71009f14b080792c4a689897`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda32260, 12 bytes, SHA-256 `7e4b0606176e4110f166e3a62728b398bdc6064be9d502924fc140d4728dd11c`; 8 differing bytes in the common prefix.
 
 
+#### IP35 O32 routines identical to their documented IP27 siblings (batch 075)
+
+Each complete IP35 body below is byte-identical to the documented IP27 body at the listed range. These identity notes add no behavioral claims.
+
+- `__glim_EdgeFlagv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37a30; occupies 16 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37a30 for 16 bytes (SHA-256 `c0e1cb0eb845528268cfd7dbcc9125b57ccd42d9abcc7a5b7512575920847356`). Documented sibling grade: Established.
+
+- `__glim_Vertex2fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37a40; occupies 184 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37a40 for 184 bytes (SHA-256 `59136840fa787f7b4888b490ac936a1ece5aeefbee323e1b396127dcb306c163`). Documented sibling grade: Established.
+
+- `__glim_Vertex3fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37af8; occupies 184 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37af8 for 184 bytes (SHA-256 `f0711d8139468072070258f34e26b50f9871adb51900eb8256770615efdf0020`). Documented sibling grade: Established.
+
+- `__glim_Vertex4fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37bb0; occupies 180 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37bb0 for 180 bytes (SHA-256 `6dea55f0ba5f44bd81f4a50d1a68ee618921292b6c4f75aced37e21d6089415a`). Documented sibling grade: Established.
+
+- `__glim_Vertex2f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37c64; occupies 76 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37c64 for 76 bytes (SHA-256 `187ba66e5c7c5261674fca34ab1ba4e06151a2a01f36193d419ed0c3b5fd4a4d`). Documented sibling grade: Established.
+
+- `__glim_Vertex2d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37cb0; occupies 84 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37cb0 for 84 bytes (SHA-256 `23017350a169fbfe87eebf45cf2b15abaa4261106f83cbc05724fd9e9612ae8f`). Documented sibling grade: Established.
+
+- `__glim_Vertex2dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37d04; occupies 92 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37d04 for 92 bytes (SHA-256 `1196ca4539cdf9095aff0a7f9d9e983e4d89d602c0644eb046c4afc43d9aaba4`). Documented sibling grade: Established.
+
+- `__glim_Vertex2i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37d60; occupies 96 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37d60 for 96 bytes (SHA-256 `f6d3859f78c28a8a380af61e4b1691e0c7dd428a7fe57d56a3f7480ea851bc62`). Documented sibling grade: Established.
+
+- `__glim_Vertex2iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37dc0; occupies 100 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37dc0 for 100 bytes (SHA-256 `89baefbe0cfc48253d910e75d11ce3fdea1d5a36e1841c3913489141fc42b409`). Documented sibling grade: Established.
+
+- `__glim_Vertex2s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37e24; occupies 116 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37e24 for 116 bytes (SHA-256 `969f2be4269ed1429c01b1ba13dbaad722d9206fe8dbd4ff80b823a900490826`). Documented sibling grade: Established.
+
+- `__glim_Vertex2sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37e98; occupies 100 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37e98 for 100 bytes (SHA-256 `6650648f71056df3fc3970bb6d46d08b1bbaa9b66b7d896b0f6e3ea9e0244b3b`). Documented sibling grade: Established.
+
+- `__glim_Vertex3f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37efc; occupies 88 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37efc for 88 bytes (SHA-256 `dccdc5e69f3e89a735ac6c6f05acdd68ef59731caa700135ea7afd4df4e069bb`). Documented sibling grade: Established.
+
+- `__glim_Vertex3d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37f54; occupies 96 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37f54 for 96 bytes (SHA-256 `ad8e463cea18bfa01ca76a5e77dd498529da8c38644fb59173496ef3043622c2`). Documented sibling grade: Established.
+
+- `__glim_Vertex3dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37fb4; occupies 104 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda37fb4 for 104 bytes (SHA-256 `9978d7d3400b3785687beda5f80454132f7233e1d91c8ced26bb7fdadc07461d`). Documented sibling grade: Established.
+
+- `__glim_Vertex3i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda3801c; occupies 112 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda3801c for 112 bytes (SHA-256 `3dccbac70628886b22e50555ae6618f13afa6a2f07ab546c71c3ba93da2d286b`). Documented sibling grade: Established.
+
+- `__glim_Vertex3iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda3808c; occupies 116 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda3808c for 116 bytes (SHA-256 `48403327744594ea4e8c324a3e7b0b905e26e02b62b603ff20c76f782e69949f`). Documented sibling grade: Established.
+
+- `__glim_Vertex3sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda38188; occupies 116 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda38188 for 116 bytes (SHA-256 `87be7c97a2320addd32b1979c067680889d886aed475c206a4652abba516a20d`). Documented sibling grade: Established.
+
+- `__glim_Vertex4f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda381fc; occupies 100 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda381fc for 100 bytes (SHA-256 `79675b305b4e11401a0b914778b98a606806b619b8bfa6bbf5749fe9db2aec9e`). Documented sibling grade: Established.
+
+- `__glim_Vertex4d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda38260; occupies 108 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda38260 for 108 bytes (SHA-256 `f6efea6b78563e022e5af53bd8199b0d11ec17b5040fa8209910b43e6101266a`). Documented sibling grade: Established.
+
+- `__glim_Vertex4dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda382cc; occupies 116 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda382cc for 116 bytes (SHA-256 `1f092df0fee996f401c2bd6a7afc87e713c6e7fbe739dfa93a73e7a8cef53186`). Documented sibling grade: Established.
 ## Software renderer (soft)
 
 ### so_accumop.c
