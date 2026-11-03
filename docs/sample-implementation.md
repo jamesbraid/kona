@@ -23587,3 +23587,454 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `c99c530272a6b234b8cca8be13fcaad307e38db1f97817e81eb93181c7aee78c` / documented sibling `e0980f695645d80c284b38198b4440a0675b4490dab9e50603b291909b67e3ca`
   Existing entry: `docs/sample-implementation.md`, `__glBuildRGBAModifyTables` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
   Evidence: `facts/__glBuildRGBAModifyTables.target.txt`, `facts/__glBuildRGBAModifyTables.target.json`, `facts/__glBuildRGBAModifyTables.sibling.txt`, `facts/__glBuildRGBAModifyTables.sibling.json`, `facts/__glBuildRGBAModifyTables.disasm.txt`, `facts/__glBuildRGBAModifyTables.comparison.txt`
+
+- `__glBuildItoIModifyTables` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21db0e0, routine size 500 bytes.
+  Prepares a software index-modification table. Sets byte
+  argument-one +0x90 to one (`sb` at 0x21db124).
+  An unnamed procedure receives original argument zero
+  and size 1024 (`jalr` at 0x21db2b4).
+  Saves its returned pointer as a doubleword at
+  argument-one +0x98 (`sd` at 0x21db2d0).
+  Output table addresses are unresolved, including
+  `swc1` at 0x21db1c0 and 0x21db244.
+  The word at 0x21db248 remains undecoded.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBuildItoIModifyTables` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfb0e0,
+  500 bytes, labelled Inferred.
+  Comparison: target 500 bytes, existing 500 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `91c8b18706818b7d06b28bf5648c2d6eb430cf84385cc1d99ce3af52e20f1bc2`.
+  Existing SHA-256: `91c8b18706818b7d06b28bf5648c2d6eb430cf84385cc1d99ce3af52e20f1bc2`.
+  Evidence: `review-facts/__glBuildItoIModifyTables.target.txt`,
+  `review-facts/__glBuildItoIModifyTables.sibling.txt`, `review-facts/__glBuildItoIModifyTables.words.txt`,
+  `review-facts/__glBuildItoIModifyTables.bytes.txt`.
+
+- `__glBuildItoRGBAModifyTables` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21db2e0, routine size 548 bytes.
+  Builds software index-to-colour tables through four
+  unnamed procedures, each receiving original context
+  and size 1024 (`jalr` at 0x21db4a8, 0x21db4c0,
+  0x21db4d4, 0x21db4e8).
+  Pointer results populate argument-one +0xa8, +0xb0,
+  +0xb8 and +0xc0 as doublewords (`sd` at 0x21db4b0,
+  0x21db4c8, 0x21db4dc, 0x21db500).
+  Four float-output sites have unknown effective
+  addresses (`swc1` at 0x21db3c0, 0x21db3e0,
+  0x21db400, 0x21db430).
+
+  Existing entry: `docs/sample-implementation.md`, `__glBuildItoRGBAModifyTables` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfb2e0,
+  548 bytes, labelled Inferred.
+  Comparison: target 548 bytes, existing 548 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8ec3924ed7f2df56302cdf65d99abf784e9cc139032059e2b7c76624ce6aefc8`.
+  Existing SHA-256: `8ec3924ed7f2df56302cdf65d99abf784e9cc139032059e2b7c76624ce6aefc8`.
+  Evidence: `review-facts/__glBuildItoRGBAModifyTables.target.txt`,
+  `review-facts/__glBuildItoRGBAModifyTables.sibling.txt`, `review-facts/__glBuildItoRGBAModifyTables.words.txt`,
+  `review-facts/__glBuildItoRGBAModifyTables.bytes.txt`.
+
+- `__glSpanModifyRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21db510, routine size 692 bytes.
+  Modifies software RGBA spans using context float fields
+  +0x330, +0x334, +0x338 and +0x33c
+  (`lwc1` at 0x21db514, 0x21db518, 0x21db51c,
+  0x21db520).
+  Reads span count from argument-one +0xc4
+  (`lw` at 0x21db5ac).
+  Generated float stores include `swc1` at 0x21db630,
+  0x21db674, 0x21db6b8, 0x21db700, with unknown
+  effective output addresses. No callbacks occur.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyRGBA` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfb510,
+  692 bytes, labelled Inferred.
+  Comparison: target 692 bytes, existing 692 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5af7349cf92c8f03610bf65449b204d7d5b4613ed5d2343427d5a6cb34917606`.
+  Existing SHA-256: `5af7349cf92c8f03610bf65449b204d7d5b4613ed5d2343427d5a6cb34917606`.
+  Evidence: `review-facts/__glSpanModifyRGBA.target.txt`,
+  `review-facts/__glSpanModifyRGBA.sibling.txt`, `review-facts/__glSpanModifyRGBA.words.txt`,
+  `review-facts/__glSpanModifyRGBA.bytes.txt`.
+
+- `__glSpanModifyABGR` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21db7d0, routine size 692 bytes.
+  Handles an ABGR software span. Its map-enable byte is
+  context +0x3a8 (`lbu` at 0x21db7e4).
+  Reads map-size words at +0x528 and +0x538
+  (`lw` at 0x21db820, 0x21db828).
+  Float map-scale fields include +0x9a08 and +0x9a0c
+  (`lwc1` at 0x21db8dc, 0x21db920).
+  The JSON fallback leaves destinations at `swc1` at
+  0x21db8f0 and 0x21db934 unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyABGR` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfb7d0,
+  692 bytes, labelled Inferred.
+  Comparison: target 692 bytes, existing 692 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b60b37fac826a1faebf053c34f7148904829ebfddf921367c7e9c75bfb2c477c`.
+  Existing SHA-256: `b60b37fac826a1faebf053c34f7148904829ebfddf921367c7e9c75bfb2c477c`.
+  Evidence: `review-facts/__glSpanModifyABGR.target.txt`,
+  `review-facts/__glSpanModifyABGR.sibling.txt`, `review-facts/__glSpanModifyABGR.words.txt`,
+  `review-facts/__glSpanModifyABGR.bytes.txt`, `review-facts/__glSpanModifyABGR.target.json`, `review-facts/__glSpanModifyABGR.sibling.json`.
+
+- `__glSpanModifyBGRA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dba90, routine size 692 bytes.
+  Processes software BGRA pixels without procedure calls.
+  Fetches the descriptor count at argument-one +0xc4
+  (`lw` at 0x21dbb2c).
+  Context scales are read at +0x9a08, +0x9a0c,
+  +0x9a10 and +0x9a30 (`lwc1` at 0x21dbb9c,
+  0x21dbbe0, 0x21dbc24, 0x21dbc68).
+  The resulting float writes include `swc1` at
+  0x21dbbb0, 0x21dbbf4, 0x21dbc38, 0x21dbc80.
+  Their indexed destinations remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyBGRA` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfba90,
+  692 bytes, labelled Inferred.
+  Comparison: target 692 bytes, existing 692 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8519ab5a4765be06c9db6a96febc1a385de40ef604dd9b7610d62ce10a66a4dd`.
+  Existing SHA-256: `8519ab5a4765be06c9db6a96febc1a385de40ef604dd9b7610d62ce10a66a4dd`.
+  Evidence: `review-facts/__glSpanModifyBGRA.target.txt`,
+  `review-facts/__glSpanModifyBGRA.sibling.txt`, `review-facts/__glSpanModifyBGRA.words.txt`,
+  `review-facts/__glSpanModifyBGRA.bytes.txt`.
+
+- `__glSpanModifyRed` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dbd50, routine size 520 bytes.
+  Expands a red software input sample, with the first
+  computed float stored at argument-three +0
+  (`swc1` at 0x21dbe14).
+  Copies context defaults into output +0xc, +8 and +4
+  (`swc1` at 0x21dbe18, 0x21dbe1c, 0x21dbe24).
+  Those defaults originate at context +0x989c, +0x9898
+  and +0x9894 (`lwc1` at 0x21dbd64, 0x21dbd6c,
+  0x21dbd74). Later output progression is unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyRed` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfbd50,
+  520 bytes, labelled Inferred.
+  Comparison: target 520 bytes, existing 520 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `59a4228f3c16f5e8461eea57920fd916255f48401b5ecb492a15ab934abee12e`.
+  Existing SHA-256: `59a4228f3c16f5e8461eea57920fd916255f48401b5ecb492a15ab934abee12e`.
+  Evidence: `review-facts/__glSpanModifyRed.target.txt`,
+  `review-facts/__glSpanModifyRed.sibling.txt`, `review-facts/__glSpanModifyRed.words.txt`,
+  `review-facts/__glSpanModifyRed.bytes.txt`, `review-facts/__glSpanModifyRed.target.json`, `review-facts/__glSpanModifyRed.sibling.json`.
+
+- `__glSpanModifyGreen` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dbf60, routine size 516 bytes.
+  Constructs green software span output. The first sample
+  is loaded from argument-two +0 (`lwc1` at 0x21dbfcc).
+  Its computed green component reaches argument-three +4
+  (`swc1` at 0x21dc028).
+  Other first-pixel writes use output +0, +0xc and +8
+  (`swc1` at 0x21dbfd4, 0x21dc02c, 0x21dc034).
+  Subsequent indexed table reads and float destinations
+  remain unresolved by hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyGreen` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfbf60,
+  516 bytes, labelled Inferred.
+  Comparison: target 516 bytes, existing 516 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c7a9670a5f5a533d7d4574087be139c8b93f827ed6aa9e4fe05edb878ed2caff`.
+  Existing SHA-256: `c7a9670a5f5a533d7d4574087be139c8b93f827ed6aa9e4fe05edb878ed2caff`.
+  Evidence: `review-facts/__glSpanModifyGreen.target.txt`,
+  `review-facts/__glSpanModifyGreen.sibling.txt`, `review-facts/__glSpanModifyGreen.words.txt`,
+  `review-facts/__glSpanModifyGreen.bytes.txt`.
+
+- `__glSpanModifyBlue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dc170, routine size 504 bytes.
+  Places a software blue result at argument-three +8
+  (`swc1` at 0x21dc23c).
+  The initial red and green defaults are written to
+  +0 and +4 (`swc1` at 0x21dc1e8, 0x21dc1e0).
+  Alpha reaches +0xc (`swc1` at 0x21dc240).
+  Reads the blue table-size word at context +0x548
+  (`lw` at 0x21dc1a4). This body has no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyBlue` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfc170,
+  504 bytes, labelled Inferred.
+  Comparison: target 504 bytes, existing 504 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d81ca50cd1fab7a296d8cbfe75a812b4562564aea184eb7792fc0e265e6bafcf`.
+  Existing SHA-256: `d81ca50cd1fab7a296d8cbfe75a812b4562564aea184eb7792fc0e265e6bafcf`.
+  Evidence: `review-facts/__glSpanModifyBlue.target.txt`,
+  `review-facts/__glSpanModifyBlue.sibling.txt`, `review-facts/__glSpanModifyBlue.words.txt`,
+  `review-facts/__glSpanModifyBlue.bytes.txt`.
+
+- `__glSpanModifyAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dc370, routine size 520 bytes.
+  Expands software alpha samples with context colour
+  defaults at argument-three +8, +4 and +0
+  (`swc1` at 0x21dc3e0, 0x21dc3e4, 0x21dc3f0).
+  The first computed alpha is written at +0xc
+  (`swc1` at 0x21dc444).
+  Its scale field is context +0x9a30
+  (`lwc1` at 0x21dc430).
+  Hostfacts cannot follow later output addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyAlpha` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfc370,
+  520 bytes, labelled Inferred.
+  Comparison: target 520 bytes, existing 520 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `452849f8a17ad2c451c9712a05d571f73dfe7180f0b364ef19d6c4307225f237`.
+  Existing SHA-256: `452849f8a17ad2c451c9712a05d571f73dfe7180f0b364ef19d6c4307225f237`.
+  Evidence: `review-facts/__glSpanModifyAlpha.target.txt`,
+  `review-facts/__glSpanModifyAlpha.sibling.txt`, `review-facts/__glSpanModifyAlpha.words.txt`,
+  `review-facts/__glSpanModifyAlpha.bytes.txt`.
+
+- `__glSpanModifyRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dc580, routine size 536 bytes.
+  Transforms a three-channel software RGB span. Context
+  float inputs include +0x330, +0x334 and +0x338
+  (`lwc1` at 0x21dc584, 0x21dc588, 0x21dc58c).
+  Reads the pixel count at argument-one +0xc4
+  (`lw` at 0x21dc604).
+  JSON evidence preserves float-output sites at
+  `swc1` at 0x21dc670, 0x21dc6b4 and 0x21dc6f8,
+  each with unknown effective destination.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyRGB` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfc580,
+  536 bytes, labelled Inferred.
+  Comparison: target 536 bytes, existing 536 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `85c4dbf41c7423e535a32293ab21a13b3e0b67e2a3941532e366b279fdd4cc6b`.
+  Existing SHA-256: `85c4dbf41c7423e535a32293ab21a13b3e0b67e2a3941532e366b279fdd4cc6b`.
+  Evidence: `review-facts/__glSpanModifyRGB.target.txt`,
+  `review-facts/__glSpanModifyRGB.sibling.txt`, `review-facts/__glSpanModifyRGB.words.txt`,
+  `review-facts/__glSpanModifyRGB.bytes.txt`, `review-facts/__glSpanModifyRGB.target.json`, `review-facts/__glSpanModifyRGB.sibling.json`.
+
+- `__glSpanModifyBGR` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dc7a0, routine size 536 bytes.
+  Modifies BGR software pixels while loading three map
+  sizes from context +0x528, +0x548 and +0x538
+  (`lw` at 0x21dc7ec, 0x21dc7f4, 0x21dc7fc).
+  Reads an input float at original argument-two +8
+  (`lwc1` at 0x21dc9b4).
+  Output includes `swc1` at 0x21dc890, 0x21dc8d4,
+  0x21dc918 and 0x21dc928. The bases of these writes
+  are unresolved. The routine makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyBGR` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfc7a0,
+  536 bytes, labelled Inferred.
+  Comparison: target 536 bytes, existing 536 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8d1e03e2b73a353be636fb6d2c1ebf2b937814dc2cd870fd18a0cf3fae795c48`.
+  Existing SHA-256: `8d1e03e2b73a353be636fb6d2c1ebf2b937814dc2cd870fd18a0cf3fae795c48`.
+  Evidence: `review-facts/__glSpanModifyBGR.target.txt`,
+  `review-facts/__glSpanModifyBGR.sibling.txt`, `review-facts/__glSpanModifyBGR.words.txt`,
+  `review-facts/__glSpanModifyBGR.bytes.txt`.
+
+- `__glSpanModifyLuminance` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dc9c0, routine size 528 bytes.
+  Expands luminance software data into colour output.
+  Reads a source float at argument-two +0
+  (`lwc1` at 0x21dcbcc).
+  Context scales are loaded at +0x9a10, +0x9a0c and
+  +0x9a08 (`lwc1` at 0x21dcb94, 0x21dcb98,
+  0x21dcba0).
+  The JSON fallback records output stores at
+  `swc1` at 0x21dcab0, 0x21dcaf4 and 0x21dcb38,
+  without recovering their destination addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyLuminance` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfc9c0,
+  528 bytes, labelled Inferred.
+  Comparison: target 528 bytes, existing 528 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f49d89aa8d5d53840b77e99943f4990412bdcec497abd5b4cbd8de76c44acb27`.
+  Existing SHA-256: `f49d89aa8d5d53840b77e99943f4990412bdcec497abd5b4cbd8de76c44acb27`.
+  Evidence: `review-facts/__glSpanModifyLuminance.target.txt`,
+  `review-facts/__glSpanModifyLuminance.sibling.txt`, `review-facts/__glSpanModifyLuminance.words.txt`,
+  `review-facts/__glSpanModifyLuminance.bytes.txt`, `review-facts/__glSpanModifyLuminance.target.json`, `review-facts/__glSpanModifyLuminance.sibling.json`.
+
+- `__glSpanModifyLuminanceAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dcbd0, routine size 684 bytes.
+  Converts software luminance-alpha spans. Reads an alpha
+  input from argument-two +4 (`lwc1` at 0x21dce78).
+  Its count comes from argument-one +0xc4
+  (`lw` at 0x21dcc6c).
+  Context +0x558 supplies one map-size word
+  (`lw` at 0x21dcc30).
+  Four float-output sites remain unresolved
+  (`swc1` at 0x21dccf0, 0x21dcd34, 0x21dcd78,
+  0x21dcdc0). No procedures are called.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyLuminanceAlpha` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfcbd0,
+  684 bytes, labelled Inferred.
+  Comparison: target 684 bytes, existing 684 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `643daf22e0fe90f331d2f249944ac9a4bb6828d2d68fa38561784a8bf1617c13`.
+  Existing SHA-256: `643daf22e0fe90f331d2f249944ac9a4bb6828d2d68fa38561784a8bf1617c13`.
+  Evidence: `review-facts/__glSpanModifyLuminanceAlpha.target.txt`,
+  `review-facts/__glSpanModifyLuminanceAlpha.sibling.txt`, `review-facts/__glSpanModifyLuminanceAlpha.words.txt`,
+  `review-facts/__glSpanModifyLuminanceAlpha.bytes.txt`.
+
+- `__glSpanModifyRedAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dce80, routine size 412 bytes.
+  Handles a software red-alpha span using context table
+  sizes +0x558 and +0x528 (`lw` at 0x21dcec0,
+  0x21dcec8).
+  Fetches default colours at context +0x9898 and
+  +0x9894 (`lwc1` at 0x21dcea0, 0x21dceac).
+  Writes those values through unresolved output addresses
+  (`swc1` at 0x21dcf4c, 0x21dcf50).
+  Later red and alpha stores also have unknown bases
+  (`swc1` at 0x21dcf58, 0x21dcfa0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyRedAlpha` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfce80,
+  412 bytes, labelled Inferred.
+  Comparison: target 412 bytes, existing 412 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4077aeac4ddcfbf24ee5cadb5eb484db1ad1f339c9b3c29dec9aedfe04b12738`.
+  Existing SHA-256: `4077aeac4ddcfbf24ee5cadb5eb484db1ad1f339c9b3c29dec9aedfe04b12738`.
+  Evidence: `review-facts/__glSpanModifyRedAlpha.target.txt`,
+  `review-facts/__glSpanModifyRedAlpha.sibling.txt`, `review-facts/__glSpanModifyRedAlpha.words.txt`,
+  `review-facts/__glSpanModifyRedAlpha.bytes.txt`.
+
+- `__glSpanModifyDepth` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21dd020, routine size 200 bytes.
+  Modifies software depth samples using context +0xf2c,
+  +0x340 and +0x354 (`lwc1` at 0x21dd024,
+  0x21dd02c, 0x21dd034).
+  Reads the first float at argument-two +0
+  (`lwc1` at 0x21dd050), then writes argument-three +0
+  (`swc1` at 0x21dd078).
+  Four words remain undecoded, so their
+  predicates and dependent clamp values are unknown.
+  The supplied body contains no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyDepth` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfd020,
+  200 bytes, labelled Inferred.
+  Comparison: target 200 bytes, existing 200 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b24b7b667abb41f0a1bc4714d6b31ad12f5988653c609dcba7f76ed8d7ce41c0`.
+  Existing SHA-256: `b24b7b667abb41f0a1bc4714d6b31ad12f5988653c609dcba7f76ed8d7ce41c0`.
+  Evidence: `review-facts/__glSpanModifyDepth.target.txt`,
+  `review-facts/__glSpanModifyDepth.sibling.txt`, `review-facts/__glSpanModifyDepth.words.txt`,
+  `review-facts/__glSpanModifyDepth.bytes.txt`.
+
+- `__glSpanModifyStencil` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x21dd0f0, routine size 1252 bytes.
+  Processes software stencil shifts and mapping. Reads
+  enable byte context +0x3a9 and input words +0x3a0
+  and +0x3a4 (`lbu` at 0x21dd0f0, `lw` at
+  0x21dd0f4, 0x21dd100).
+  The span count is argument-one +0xc4
+  (`lw` at 0x21dd13c).
+  Output sites include `swc1` at 0x21dd1e0,
+  0x21dd214, 0x21dd248 and 0x21dd28c.
+  Indexed source, map and output addresses are unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyStencil` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfd0f0,
+  1252 bytes, labelled Established.
+  Comparison: target 1252 bytes, existing 1252 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `af617e57319473f81775297c2f9b58856b395c7136126fd4542a7a968e0a5ac5`.
+  Existing SHA-256: `af617e57319473f81775297c2f9b58856b395c7136126fd4542a7a968e0a5ac5`.
+  Evidence: `review-facts/__glSpanModifyStencil.target.txt`,
+  `review-facts/__glSpanModifyStencil.sibling.txt`, `review-facts/__glSpanModifyStencil.words.txt`,
+  `review-facts/__glSpanModifyStencil.bytes.txt`.
+
+- `__glSpanModifyCI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x21dd5e0, routine size 1156 bytes.
+  Converts software colour-index spans, reading descriptor
+  format +0x58 (`lw` at 0x21dd5ec).
+  Initial RGBA output reaches argument-three +0, +4,
+  +8 and +0xc (`swc1` at 0x21dd750, 0x21dd768,
+  0x21dd780, 0x21dd7a0).
+  Context shift and offset words come from +0x3a0
+  and +0x3a4 (`lw` at 0x21dd5e0, 0x21dd5e4).
+  The table-source addresses and later output progression
+  stay unknown. No callbacks appear in this routine.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanModifyCI` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfd5e0,
+  1156 bytes, labelled Established.
+  Comparison: target 1156 bytes, existing 1156 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `00b8ed5032afc84d9aede354e3dbc3124631a656a5fcc4f061217ea52eb61ada`.
+  Existing SHA-256: `00b8ed5032afc84d9aede354e3dbc3124631a656a5fcc4f061217ea52eb61ada`.
+  Evidence: `review-facts/__glSpanModifyCI.target.txt`,
+  `review-facts/__glSpanModifyCI.sibling.txt`, `review-facts/__glSpanModifyCI.words.txt`,
+  `review-facts/__glSpanModifyCI.bytes.txt`.
+
+- `__glInitPacker` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21de160, routine size 480 bytes.
+  Initializes a software pixel-packing descriptor using
+  `__glSpecElementsPerGroup` and `__glSpecBytesPerElement`
+  (`jalr` at 0x21de1c0, 0x21de1d4 respectively).
+  Saves the first helper's result at argument-one
+  +0x80 and +0x7c (`sw` at 0x21de2f0, 0x21de2f4).
+  The destination pointer is stored as a doubleword
+  at +0x68 (`sd` at 0x21de2c8, 0x21de32c).
+  Generated row-size fields +0x74 and +0x70 remain
+  unresolved values (`sw` at 0x21de2f8, 0x21de2fc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitPacker` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfe160,
+  480 bytes, labelled Inferred.
+  Comparison: target 480 bytes, existing 480 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0f5927a66309d189a28607142e6a3798aa28df19b7d619bfb4f91595a1d2404e`.
+  Existing SHA-256: `0f5927a66309d189a28607142e6a3798aa28df19b7d619bfb4f91595a1d2404e`.
+  Evidence: `review-facts/__glInitPacker.target.txt`,
+  `review-facts/__glInitPacker.sibling.txt`, `review-facts/__glInitPacker.words.txt`,
+  `review-facts/__glInitPacker.bytes.txt`.
+
+- `__glSpanReduceRed` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21de3b0, routine size 168 bytes.
+  Reduces software RGBA pixels to red values. Reads the
+  descriptor count at argument-one +0xc8
+  (`lw` at 0x21de3b0) and scale at context +0x9a38
+  (`lwc1` at 0x21de3cc).
+  Floating stores include `swc1` at 0x21de3f8,
+  0x21de418, 0x21de424 and 0x21de430.
+  Their effective destinations and indexed source
+  addresses remain unknown to hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReduceRed` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfe3b0,
+  168 bytes, labelled Inferred.
+  Comparison: target 168 bytes, existing 168 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c86871e60bc0d56e1797ee81ef4a60ea4a509e6f7755a32b410688243966ae1a`.
+  Existing SHA-256: `c86871e60bc0d56e1797ee81ef4a60ea4a509e6f7755a32b410688243966ae1a`.
+  Evidence: `review-facts/__glSpanReduceRed.target.txt`,
+  `review-facts/__glSpanReduceRed.sibling.txt`, `review-facts/__glSpanReduceRed.words.txt`,
+  `review-facts/__glSpanReduceRed.bytes.txt`.
+
+- `__glSpanReduceGreen` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21de460, routine size 168 bytes.
+  Extracts green software span values with context scale
+  +0x9a3c (`lwc1` at 0x21de47c).
+  Its output stores include `swc1` at 0x21de4a8,
+  0x21de4c8, 0x21de4d4, 0x21de4e0 and 0x21de4fc.
+  None of those effective destinations is resolved.
+  The count word is argument-one +0xc8
+  (`lw` at 0x21de460).
+  The complete body performs no procedure calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReduceGreen` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2dfe460,
+  168 bytes, labelled Inferred.
+  Comparison: target 168 bytes, existing 168 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `eac5469c747392aaf5a1f1378c5b16c0a1d37a76328992465505e387798fa213`.
+  Existing SHA-256: `eac5469c747392aaf5a1f1378c5b16c0a1d37a76328992465505e387798fa213`.
+  Evidence: `review-facts/__glSpanReduceGreen.target.txt`,
+  `review-facts/__glSpanReduceGreen.sibling.txt`, `review-facts/__glSpanReduceGreen.words.txt`,
+  `review-facts/__glSpanReduceGreen.bytes.txt`.
