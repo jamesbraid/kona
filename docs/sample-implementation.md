@@ -33172,3 +33172,83 @@ comparison was not rerun and supplies no new target equation.
   stored values, branch targets and return conditions remain unknown.
   Unreported evaluator and fog equations, missing calculated values, dynamic
   addresses and callback behavior remain unknown.
+
+- `__glFogVertexLinear` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221ba60, 76 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3ba60, 76 bytes.
+
+- `__glFogColorSlow` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221bab0, 104 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3bab0, 104 bytes.
+
+- `__glim_GetTexEnvfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221bb20, 216 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3bb20, 216 bytes.
+
+- `__glim_GetTexEnviv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221bc00, 200 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3bc00, 200 bytes.
+
+- `__glim_GetTexGenfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221bcd0, 332 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3bcd0, 332 bytes.
+
+- `__glim_GetTexGendv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221be20, 364 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3be20, 364 bytes.
+
+- `__glim_GetTexGeniv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221bf90, 304 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3bf90, 304 bytes.
+
+- `__glim_GetTexParameterfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221c0c0, 780 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3c0c0, 780 bytes.
+
+- `__glim_GetTexParameteriv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221c3d0, 728 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3c3d0, 728 bytes.
+
+- `__glim_GetTexLevelParameterfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221c6b0, 812 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3c6b0, 812 bytes.
+
+- `__glim_GetTexLevelParameteriv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221c9e0, 708 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3c9e0, 708 bytes.
+
+- `__glim_GetClipPlane` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221cda0, 236 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3cda0, 236 bytes.
+
+- `__glInitImagePack` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221ce90, 148 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3ce90, 148 bytes.
+
+- `__glim_GetTexImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221cf30, 1260 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3cf30, 1260 bytes.
+
+- `__glim_GetPolygonStipple` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221d420, 188 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3d420, 188 bytes.
+
+- `__glim_GetLightfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221d4e0, 460 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3d4e0, 460 bytes.
+
+- `__glim_GetLightiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221d6b0, 556 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3d6b0, 556 bytes.
+
+- `__glim_GetMapfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221de10, 792 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3de10, 792 bytes.
+
+- `__glim_GetMapdv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x221e130, 880 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e3e130, 880 bytes.
+
+- `__glim_GetError` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2223440, 92 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e43440, 92 bytes.
