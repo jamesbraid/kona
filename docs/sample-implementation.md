@@ -5429,6 +5429,434 @@ Each complete IP35 body below is byte-identical to the documented IP27 body at t
 
 - `__glTextureReplaceI` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xda21bdc; occupies 68 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda21bdc for 68 bytes (SHA-256 `033dc6d4d4c5737431c5c9124e09b83112aef72521228fedb561337cf647402d`). Documented sibling grade: Established.
+#### IP35 O32 routines compared with their documented IP27 siblings (batch 074)
+
+The table uses reviewer-confirmed native routine bounds. Identical bodies receive only an identity note. Different bodies have separate target observations. All target-specific behavior notes are Inferred.
+
+| Routine | IP35 target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `__glComputePolygonRho` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda299f8 / 500 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24a50 / 324 | `f97a6d29c45482c8255f1b467471baf665889e07d4ba7af6cb53196af83fd66f` | `798610bef28a52411626e2f7460c75fecf3fa30e368e1048742bf04d640e0cf4` | 291 |
+| `__glComputeLineRho` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda29c10 / 504 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24bb0 / 296 | `d3f8b00c98b6a1a38638d267696255760b8fd658523d9354c8253991598877b5` | `e405e9957d9aadf33aa9a9b9f3aff8962ca623c84913fcbbe9f664f4ece6928d` | 257 |
+| `__glFastTextureFragment` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda29e08 / 136 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24ce0 / 108 | `2416362a2a61e1b8cb3182c8307cfbb97ba12853b6ccefccc69c23b43a47463b` | `a9a2dcc264216d6c96a861437a465b8718a0e39ec0c909ac95881bf0aec812e0` | 97 |
+| `__glTextureFragment` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda29e90 / 196 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24d50 / 136 | `c1dac027756106373742f863c9ee7d6612785b8d6054afa9ecc33c3ceb3ae263` | `b207d0b99dbb2b6ece1cac2a63e2aab348fc756d2aeb87e432214c63110fda11` | 122 |
+| `__glMipMapFragment` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda29f54 / 320 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24de0 / 268 | `aca2d1fbe6500cf27ab9166a5bdad5d67dc87ae1957a15c0cc51fd91b731c1b5` | `7c8fe43d0402bd1a9a14ef33a27e58fb25790212968ef19296c8a99d18a50859` | 244 |
+| `SphereGen` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a0c4 / 320 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda24f20 / 252 | `7f7aff8fabcdb205c4b484eafe12415cfbd136b8d490a2fd0d9ece1e1761b222` | `c5a8d1531fe8f678a46483e4e90609f0caecdcabf717638b717b88a8720064ba` | 228 |
+| `__glCalcMixedTexture` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a204 / 964 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25020 / 1000 | `6924f8962efaacb2f86a046d29141a67184e05f6075c8365786750d9ccf8286b` | `86b0a9e11ae25673ebccd425ec2f425b9d8d44534236b83af12921741b83fce6` | 873 |
+| `__glCalcSphereMap` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a5c8 / 120 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25410 / 116 | `977fe55810344de61941c457759426846d21ba7f5ce17e7a90c21ab04ee183ac` | `612c71e035699bcf3e1291d0abfb68f404cef135c925d6466a379f5b85455d2e` | 97 |
+| `__glCalcEyeLinear` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a640 / 216 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25490 / 180 | `f51fbed20b16592d71d3bbdc3c6125c11b621f0bc2cf1b756c961418a0a0da6e` | `2faac4faf8ce7829aad7df6d09843d295ed166445c640354035fbc62456ef5ef` | 159 |
+| `__glCalcObjectLinear` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a718 / 216 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25550 / 180 | `f1718145a23e5f8b00b90b63b5238277134722a566694c141c64ca5da2f8108b` | `05de3b6c3c812955cb9c7fe2eae825937ad53ef821041971abfb062448a8e061` | 159 |
+| `__glCalcTexture` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a7f0 / 104 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25610 / 92 | `2ef8ca38276a6be873f31d88c2d9458c8c4f3aa1570140d6cbe6cf858a0afb53` | `8155e40223a75941f71944623010ec818e25184f45afcdbd2846bc6ec46f9416` | 75 |
+| `CheckTexSubImageArgs` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2a858 / 648 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25670 / 1064 | `c550f99148edc9418873107113603237874239a13c87f804ef73604434a1b42d` | `1aedc182fe9326b82db631faaf796fc4d1ac5954a2f88da0cebb5db3c0777739` | 591 |
+| `CheckTexSubImageRange` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2ab90 / 116 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda25b60 / 92 | `7613b920f4cecc0479e0ae5130474b5512d15d9cebbe0b72b6eb3c227e0f14b3` | `9fb0e664c84625385c951c3013eb7bc06d27c13ff09d5bb08211e5dd9bff4d66` | 86 |
+| `__glim_GenTexturesEXT` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2bb84 / 176 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda26a20 / 176 | `8b62e335637140ba8b640b7c25676775cf0087b150ad259dfebea6c39b98ee43` | `8f9a22d637d8b776e1a90fcd1b91c5286a0afbcee9e60929e6cc617ef7bc204e` | 160 |
+| `__glim_DeleteTexturesEXT` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2bc34 / 596 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda26ad0 / 840 | `d8db71962ea5e2217f411b34167dd339924d7ab54e1588dea2fbb9f0fda33750` | `e188dab21e3390fd7659c6d3511886e2744e58d774bebdf3e618da3e5e508858` | 537 |
+| `__glBindTexture` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2be88 / 588 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda26e20 / 1096 | `e8af7d62a2e6c99fa73d95c35387ecfbe10285e8dddc13539ae4d273afaa9138` | `912c87904fb395c9500a9f5befdc3bebe27a744bc4a0bdc2f9d742dbfbe96bd9` | 507 |
+| `IsTextureResident` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2c384 / 124 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda274f0 / 152 | `d192b7a9ed30eb2543cd438ce8e914c18905e283769a48c5d3286dbbc0e97a0f` | `01088aa9270de042ac0e6ac2f130222c4cc5475b1a67d4341aab55771407f449` | 92 |
+| `__glim_AreTexturesResidentEXT` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2c400 / 460 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda27590 / 492 | `69570ebd2abe9343fefbde073153110b000d386f45d1ca559b346df196f71afb` | `f504fb32380df90e535e2b445d345313fdcbe93c059b15cdafa61d1828364625` | 407 |
+| `__glim_IsTextureEXT` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda2c5cc / 176 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda27780 / 196 | `b12d91837c3ceefcf8d6d45b43855bebdc3a463f086067f1b0b5769266c69f9e` | `9d741471962e0ef7ec8d0d6b028d25c720e4334abed617bef8b4f118ed95ac2d` | 156 |
+| `__glim_EdgeFlag` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda37a20 / 16 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda32260 / 12 | `01a1eaca647919484cdcf71a068df6882f72a33b71009f14b080792c4a689897` | `7e4b0606176e4110f166e3a62728b398bdc6064be9d502924fc140d4728dd11c` | 8 |
+
+Target entries:
+
+- `__glComputePolygonRho` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda299f8, examined routine size 500 bytes.
+  Computes a software polygon texture-size measure using local float arithmetic.
+  It reads original argument 0 +0x6e68, then that object's +0xe4 pointer
+  (`lw` at 0xda29a38, 0xda29a40). Three floats are read from the
+  second object +0x20, +0x24 and +0x28 (`lwc1` at 0xda29a48,
+  0xda29a64, 0xda29ab0). Original argument 1 supplies floats at
+  +0xf4, +0xf8 and +0x100 (`lwc1` at 0xda29a34,
+  0xda29a54, 0xda29a24). The complete body has only stack stores
+  and no call. Its exact symbolic float result remains unresolved.
+  Existing entry: `docs/sample-implementation.md`, `__glComputePolygonRho` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24a50,
+  324 bytes, labelled Inferred.
+  Comparison: examined target 500 bytes, existing 324 bytes,
+  291 mismatching bytes over the shared prefix.
+  Target SHA-256: `f97a6d29c45482c8255f1b467471baf665889e07d4ba7af6cb53196af83fd66f`.
+  Existing SHA-256: `798610bef28a52411626e2f7460c75fecf3fa30e368e1048742bf04d640e0cf4`.
+  Byte comparison: target 500 bytes, SHA-256 `f97a6d29c45482c8255f1b467471baf665889e07d4ba7af6cb53196af83fd66f`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24a50, 324 bytes, SHA-256 `798610bef28a52411626e2f7460c75fecf3fa30e368e1048742bf04d640e0cf4`; 291 differing bytes in the common prefix.
+
+- `__glComputeLineRho` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda29c10, examined routine size 504 bytes.
+  Derives a software line texture measure from two vertex pointers. Original
+  argument 0 supplies +0x7534, +0x7538 and +0x6e68 (`lw` at
+  0xda29c28, 0xda29c2c, 0xda29c30). The first two pointers supply
+  +0x80 and +0x84 floats (`lwc1` at 0xda29c34, 0xda29c38,
+  0xda29c3c, 0xda29c40). Later object data comes through the third
+  pointer +0xe4 (`lw` at 0xda29cdc). The whole 504-byte body
+  uses local arithmetic and stack stores, without a callback or established
+  hardware texture-size encoding.
+  Existing entry: `docs/sample-implementation.md`, `__glComputeLineRho` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24bb0,
+  296 bytes, labelled Inferred.
+  Comparison: examined target 504 bytes, existing 296 bytes,
+  257 mismatching bytes over the shared prefix.
+  Target SHA-256: `d3f8b00c98b6a1a38638d267696255760b8fd658523d9354c8253991598877b5`.
+  Existing SHA-256: `e405e9957d9aadf33aa9a9b9f3aff8962ca623c84913fcbbe9f664f4ece6928d`.
+  Byte comparison: target 504 bytes, SHA-256 `d3f8b00c98b6a1a38638d267696255760b8fd658523d9354c8253991598877b5`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24bb0, 296 bytes, SHA-256 `e405e9957d9aadf33aa9a9b9f3aff8962ca623c84913fcbbe9f664f4ece6928d`; 257 differing bytes in the common prefix.
+
+- `__glFastTextureFragment` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda29e08, examined routine size 136 bytes.
+  Invokes two unresolved software texture callbacks. The object pointer is
+  original argument 0 +0x6e68 (`lw` at 0xda29e28). Its +0x108
+  callback receives that object and zero as argument 1 (`lw` at
+  0xda29e48, `jalr` at 0xda29e54). The second call receives
+  original arguments 0 and 1 plus entry-stack -0x1c (`jalr` at
+  0xda29e74). Hostfacts leaves the second pointer-load address and
+  converted arguments unresolved (`lw` at 0xda29e68).
+  Existing entry: `docs/sample-implementation.md`, `__glFastTextureFragment` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24ce0,
+  108 bytes, labelled Inferred.
+  Comparison: examined target 136 bytes, existing 108 bytes,
+  97 mismatching bytes over the shared prefix.
+  Target SHA-256: `2416362a2a61e1b8cb3182c8307cfbb97ba12853b6ccefccc69c23b43a47463b`.
+  Existing SHA-256: `a9a2dcc264216d6c96a861437a465b8718a0e39ec0c909ac95881bf0aec812e0`.
+  Byte comparison: target 136 bytes, SHA-256 `2416362a2a61e1b8cb3182c8307cfbb97ba12853b6ccefccc69c23b43a47463b`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24ce0, 108 bytes, SHA-256 `a9a2dcc264216d6c96a861437a465b8718a0e39ec0c909ac95881bf0aec812e0`; 97 differing bytes in the common prefix.
+
+- `__glTextureFragment` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda29e90, examined routine size 196 bytes.
+  Selects software texture processing through an object at original argument
+  0 +0x6e68 (`lw` at 0xda29eb4). The object float at +0xf0
+  participates in selection (`lwc1` at 0xda29ec0). Two possible
+  callback loads use object +0x108 and +0x10c (`lw` at
+  0xda29ef0, 0xda29f14). Their calls receive the object and zero
+  as argument 1 (`jalr` at 0xda29efc, 0xda29f20). A final
+  object +0x104 callback receives original arguments 0 and 1 and
+  entry-stack -0x1c (`lw` at 0xda29f2c, `jalr` at 0xda29f38).
+  All callback identities remain unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glTextureFragment` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24d50,
+  136 bytes, labelled Inferred.
+  Comparison: examined target 196 bytes, existing 136 bytes,
+  122 mismatching bytes over the shared prefix.
+  Target SHA-256: `c1dac027756106373742f863c9ee7d6612785b8d6054afa9ecc33c3ceb3ae263`.
+  Existing SHA-256: `b207d0b99dbb2b6ece1cac2a63e2aab348fc756d2aeb87e432214c63110fda11`.
+  Byte comparison: target 196 bytes, SHA-256 `c1dac027756106373742f863c9ee7d6612785b8d6054afa9ecc33c3ceb3ae263`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24d50, 136 bytes, SHA-256 `b207d0b99dbb2b6ece1cac2a63e2aab348fc756d2aeb87e432214c63110fda11`; 122 differing bytes in the common prefix.
+
+- `__glMipMapFragment` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda29f54, examined routine size 320 bytes.
+  Adapts a software mipmap-selection value before texture callbacks. It reads
+  the object pointer from original argument 0 +0x6e68 and a float
+  at object +0xf0 (`lw` at 0xda29f7c, `lwc1` at 0xda29f88).
+  Two callback paths load object +0x108 or +0x10c (`lw` at
+  0xda29fac, 0xda2a054, `jalr` at 0xda29fb8, 0xda2a060).
+  The final callback comes from object +0x104 and receives original
+  arguments 0 and 1 plus entry-stack -0x1c (`lw` at 0xda2a06c,
+  `jalr` at 0xda2a078). Its target and converted selection remain unresolved.
+  Existing entry: `docs/sample-implementation.md`, `__glMipMapFragment` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24de0,
+  268 bytes, labelled Inferred.
+  Comparison: examined target 320 bytes, existing 268 bytes,
+  244 mismatching bytes over the shared prefix.
+  Target SHA-256: `aca2d1fbe6500cf27ab9166a5bdad5d67dc87ae1957a15c0cc51fd91b731c1b5`.
+  Existing SHA-256: `7c8fe43d0402bd1a9a14ef33a27e58fb25790212968ef19296c8a99d18a50859`.
+  Byte comparison: target 320 bytes, SHA-256 `aca2d1fbe6500cf27ab9166a5bdad5d67dc87ae1957a15c0cc51fd91b731c1b5`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24de0, 268 bytes, SHA-256 `7c8fe43d0402bd1a9a14ef33a27e58fb25790212968ef19296c8a99d18a50859`; 244 differing bytes in the common prefix.
+
+- `SphereGen` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a0c4, examined routine size 320 bytes.
+  Computes two software sphere-map coordinates. It calls an unnamed pointer
+  from original argument 0 +0x2eb8 with a stack destination and
+  original argument 1 +0x60 (`lw` at 0xda2a0f0, `jalr` at
+  0xda2a0fc). `Dot` receives original argument 1 +0x20 and
+  entry-stack -0x10 (`jalr` at 0xda2a11c). Output sites
+  write original argument 2 +0 and +4 (`swc1` at 0xda2a1c4,
+  0xda2a1dc, 0xda2a1e4, 0xda2a1ec). The examined body is
+  320 bytes to `__glCalcMixedTexture` 0xda2a204. The supplied
+  1940-byte range includes following functions. Bounded facts retain one unreached
+  instruction. Numerical results remain unresolved where hostfacts says so.
+  Existing entry: `docs/sample-implementation.md`, `SphereGen` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24f20,
+  252 bytes, labelled Inferred.
+  Comparison: examined target 320 bytes, existing 252 bytes,
+  228 mismatching bytes over the shared prefix.
+  Target SHA-256: `7f7aff8fabcdb205c4b484eafe12415cfbd136b8d490a2fd0d9ece1e1761b222`.
+  Existing SHA-256: `c5a8d1531fe8f678a46483e4e90609f0caecdcabf717638b717b88a8720064ba`.
+  Byte comparison: target 320 bytes, SHA-256 `7f7aff8fabcdb205c4b484eafe12415cfbd136b8d490a2fd0d9ece1e1761b222`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda24f20, 252 bytes, SHA-256 `c5a8d1531fe8f678a46483e4e90609f0caecdcabf717638b717b88a8720064ba`; 228 differing bytes in the common prefix.
+
+- `__glCalcMixedTexture` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a204, examined routine size 964 bytes.
+  Combines several software texture-coordinate generation paths. It reads
+  original argument 0 +0x700 and mode words including +0x7c0,
+  +0x83c, +0x8b8 and +0x934 (`lw` at 0xda2a220,
+  0xda2a238, 0xda2a334, 0xda2a434, 0xda2a4ec).
+  Two paths call `SphereGen` with a stack destination (`jalr` at
+  0xda2a2fc, 0xda2a400). Final dispatch uses the pointer at
+  argument 0 +0x7428, then object +0x50 (`lw` at 0xda2a59c,
+  0xda2a5a8). The call receives original argument 1 +0x30,
+  entry-stack -0x20 and that object (`jalr` at 0xda2a5ac).
+  Its identity and the selected coordinate values are unresolved.
+  Existing entry: `docs/sample-implementation.md`, `__glCalcMixedTexture` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25020,
+  1000 bytes, labelled Inferred.
+  Comparison: examined target 964 bytes, existing 1000 bytes,
+  873 mismatching bytes over the shared prefix.
+  Target SHA-256: `6924f8962efaacb2f86a046d29141a67184e05f6075c8365786750d9ccf8286b`.
+  Existing SHA-256: `86b0a9e11ae25673ebccd425ec2f425b9d8d44534236b83af12921741b83fce6`.
+  Byte comparison: target 964 bytes, SHA-256 `6924f8962efaacb2f86a046d29141a67184e05f6075c8365786750d9ccf8286b`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25020, 1000 bytes, SHA-256 `86b0a9e11ae25673ebccd425ec2f425b9d8d44534236b83af12921741b83fce6`; 873 differing bytes in the common prefix.
+
+- `__glCalcSphereMap` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a5c8, examined routine size 120 bytes.
+  Calls `SphereGen` with original arguments 0 and 1 and entry-stack
+  -0x10 (`jalr` at 0xda2a5f0). It reads original argument 1
+  +0x38 and +0x3c for the remaining coordinate fields (`lwc1`
+  at 0xda2a604, 0xda2a614). A pointer from original argument 0
+  +0x7428 supplies the unnamed object +0x50 callback (`lw` at
+  0xda2a61c, 0xda2a620). Its call receives argument 1 +0x30
+  and the stack coordinate record (`jalr` at 0xda2a624).
+  Existing entry: `docs/sample-implementation.md`, `__glCalcSphereMap` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25410,
+  116 bytes, labelled Inferred.
+  Comparison: examined target 120 bytes, existing 116 bytes,
+  97 mismatching bytes over the shared prefix.
+  Target SHA-256: `977fe55810344de61941c457759426846d21ba7f5ce17e7a90c21ab04ee183ac`.
+  Existing SHA-256: `612c71e035699bcf3e1291d0abfb68f404cef135c925d6466a379f5b85455d2e`.
+  Byte comparison: target 120 bytes, SHA-256 `977fe55810344de61941c457759426846d21ba7f5ce17e7a90c21ab04ee183ac`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25410, 116 bytes, SHA-256 `612c71e035699bcf3e1291d0abfb68f404cef135c925d6466a379f5b85455d2e`; 97 differing bytes in the common prefix.
+
+- `__glCalcEyeLinear` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a640, examined routine size 216 bytes.
+  Forms software eye-linear coordinates from float products. Original
+  argument 1 supplies +0x60, +0x64, +0x68 and +0x6c (`lwc1`
+  at 0xda2a65c, 0xda2a664, 0xda2a678, 0xda2a680).
+  The first coefficient set is argument 0 +0x7c4 through +0x7d0
+  (`lwc1` at 0xda2a660, 0xda2a668, 0xda2a670,
+  0xda2a688). Final dispatch follows argument 0 +0x7428 to
+  object +0x50 (`lw` at 0xda2a6ec, 0xda2a6f8), passing
+  argument 1 +0x30 and entry-stack -0x10 (`jalr` at 0xda2a6fc).
+  Local products and sums include `mul.s` at 0xda2a66c and `add.s` at
+  0xda2a684. Their numerical results and the callback identity remain unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glCalcEyeLinear` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25490,
+  180 bytes, labelled Inferred.
+  Comparison: examined target 216 bytes, existing 180 bytes,
+  159 mismatching bytes over the shared prefix.
+  Target SHA-256: `f51fbed20b16592d71d3bbdc3c6125c11b621f0bc2cf1b756c961418a0a0da6e`.
+  Existing SHA-256: `2faac4faf8ce7829aad7df6d09843d295ed166445c640354035fbc62456ef5ef`.
+  Byte comparison: target 216 bytes, SHA-256 `f51fbed20b16592d71d3bbdc3c6125c11b621f0bc2cf1b756c961418a0a0da6e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25490, 180 bytes, SHA-256 `2faac4faf8ce7829aad7df6d09843d295ed166445c640354035fbc62456ef5ef`; 159 differing bytes in the common prefix.
+
+- `__glCalcObjectLinear` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a718, examined routine size 216 bytes.
+  Forms software object-linear coordinates from original argument 1 +0x10,
+  +0x14, +0x18 and +0x1c (`lwc1` at 0xda2a734,
+  0xda2a73c, 0xda2a750, 0xda2a758). The first coefficients
+  occupy argument 0 +0x7d4 through +0x7e0 (`lwc1` at
+  0xda2a738, 0xda2a740, 0xda2a748, 0xda2a760).
+  An object from argument 0 +0x7428 supplies its +0x50 callback
+  (`lw` at 0xda2a7c4, 0xda2a7d0). The call receives
+  argument 1 +0x30, entry-stack -0x10 and the object (`jalr`
+  at 0xda2a7d4). Arithmetic includes `mul.s` at 0xda2a744 and `add.s` at
+  0xda2a75c. Numerical coordinate results remain unresolved.
+  Existing entry: `docs/sample-implementation.md`, `__glCalcObjectLinear` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25550,
+  180 bytes, labelled Inferred.
+  Comparison: examined target 216 bytes, existing 180 bytes,
+  159 mismatching bytes over the shared prefix.
+  Target SHA-256: `f1718145a23e5f8b00b90b63b5238277134722a566694c141c64ca5da2f8108b`.
+  Existing SHA-256: `05de3b6c3c812955cb9c7fe2eae825937ad53ef821041971abfb062448a8e061`.
+  Byte comparison: target 216 bytes, SHA-256 `f1718145a23e5f8b00b90b63b5238277134722a566694c141c64ca5da2f8108b`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25550, 180 bytes, SHA-256 `05de3b6c3c812955cb9c7fe2eae825937ad53ef821041971abfb062448a8e061`; 159 differing bytes in the common prefix.
+
+- `__glCalcTexture` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a7f0, examined routine size 104 bytes.
+  Copies four existing software texture-coordinate floats into a stack record.
+  The source is original argument 1 +0x30, +0x34, +0x38
+  and +0x3c (`lwc1` at 0xda2a80c, 0xda2a814,
+  0xda2a81c, 0xda2a824), with matching stack stores (`swc1` at
+  0xda2a810, 0xda2a818, 0xda2a820, 0xda2a828). The object pointer comes from
+  argument 0 +0x7428, with its callback at +0x50 (`lw` at
+  0xda2a82c, 0xda2a838). Dispatch receives argument 1 +0x30,
+  entry-stack -0x10 and that object (`jalr` at 0xda2a83c).
+  No non-stack store is performed locally.
+  Existing entry: `docs/sample-implementation.md`, `__glCalcTexture` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25610,
+  92 bytes, labelled Inferred.
+  Comparison: examined target 104 bytes, existing 92 bytes,
+  75 mismatching bytes over the shared prefix.
+  Target SHA-256: `2ef8ca38276a6be873f31d88c2d9458c8c4f3aa1570140d6cbe6cf858a0afb53`.
+  Existing SHA-256: `8155e40223a75941f71944623010ec818e25184f45afcdbd2846bc6ec46f9416`.
+  Byte comparison: target 104 bytes, SHA-256 `2ef8ca38276a6be873f31d88c2d9458c8c4f3aa1570140d6cbe6cf858a0afb53`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25610, 92 bytes, SHA-256 `8155e40223a75941f71944623010ec818e25184f45afcdbd2846bc6ec46f9416`; 75 differing bytes in the common prefix.
+
+- `CheckTexSubImageArgs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2a858, examined routine size 648 bytes.
+  Validates software texture-subimage arguments through lookup and dispatch.
+  It calls `__glLookUpTexture` with the original register arguments
+  (`jalr` at 0xda2a880). The returned object's +0xe8 word is
+  read (`lw` at 0xda2a8d8). Error sites report 0x500, two
+  0x502 cases and 0x501 (`jalr` at 0xda2a8c4, 0xda2a9dc,
+  0xda2aa14, 0xda2aabc). A limit comes from original argument
+  0 +0xe94 (`lw` at 0xda2aaa0). The examined body is
+  648 bytes to `__glInitTexSubImageStore` 0xda2aae0. The supplied
+  824-byte range includes following code, preserved separately.
+  Existing entry: `docs/sample-implementation.md`, `CheckTexSubImageArgs` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25670,
+  1064 bytes, labelled Inferred.
+  Comparison: examined target 648 bytes, existing 1064 bytes,
+  591 mismatching bytes over the shared prefix.
+  Target SHA-256: `c550f99148edc9418873107113603237874239a13c87f804ef73604434a1b42d`.
+  Existing SHA-256: `1aedc182fe9326b82db631faaf796fc4d1ac5954a2f88da0cebb5db3c0777739`.
+  Byte comparison: target 648 bytes, SHA-256 `c550f99148edc9418873107113603237874239a13c87f804ef73604434a1b42d`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25670, 1064 bytes, SHA-256 `1aedc182fe9326b82db631faaf796fc4d1ac5954a2f88da0cebb5db3c0777739`; 591 differing bytes in the common prefix.
+
+- `CheckTexSubImageRange` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2ab90, examined routine size 116 bytes.
+  Checks a software subimage interval. It reads original argument 1
+  +0x38 (`lw` at 0xda2abb0). Negative argument 3 enters
+  the error path (`bltz` at 0xda2aba8), which reports 0x501
+  through `__glSetError` (`jalr` at 0xda2abe0). The recorded
+  return alternatives are zero and one (`jr` at 0xda2abfc), with direct value
+  assignments (`move` at 0xda2abf0 and `addiu` at 0xda2abd4).
+  This examined body is 116 bytes to `__glCheckTexSubImage1DArgs`
+  0xda2ac04. The supplied 6132-byte range includes following functions.
+  Existing entry: `docs/sample-implementation.md`, `CheckTexSubImageRange` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25b60,
+  92 bytes, labelled Inferred.
+  Comparison: examined target 116 bytes, existing 92 bytes,
+  86 mismatching bytes over the shared prefix.
+  Target SHA-256: `7613b920f4cecc0479e0ae5130474b5512d15d9cebbe0b72b6eb3c227e0f14b3`.
+  Existing SHA-256: `9fb0e664c84625385c951c3013eb7bc06d27c13ff09d5bb08211e5dd9bff4d66`.
+  Byte comparison: target 116 bytes, SHA-256 `7613b920f4cecc0479e0ae5130474b5512d15d9cebbe0b72b6eb3c227e0f14b3`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda25b60, 92 bytes, SHA-256 `9fb0e664c84625385c951c3013eb7bc06d27c13ff09d5bb08211e5dd9bff4d66`; 86 differing bytes in the common prefix.
+
+- `__glim_GenTexturesEXT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2bb84, examined routine size 176 bytes.
+  Generates software texture names through `__glNamesGenNames` (`jalr`
+  at 0xda2bc18). That call preserves the original count and output
+  pointer as arguments 2 and 3. Hostfacts cannot resolve its first
+  two arguments or the object-load address (`lw` at 0xda2bc1c). That load
+  executes in the call delay slot.
+  Status and context originate at absolute 0x1018 and 0x1010
+  (`lw` at 0xda2bbb0, 0xda2bba0). Error sites supply 0x502
+  and 0x501 (`jalr` at 0xda2bbc8, 0xda2bbec).
+  The complete body leaves the merged return unresolved.
+  Existing entry: `docs/sample-implementation.md`, `__glim_GenTexturesEXT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26a20,
+  176 bytes, labelled Inferred.
+  Comparison: examined target 176 bytes, existing 176 bytes,
+  160 mismatching bytes over the shared prefix.
+  Target SHA-256: `8b62e335637140ba8b640b7c25676775cf0087b150ad259dfebea6c39b98ee43`.
+  Existing SHA-256: `8f9a22d637d8b776e1a90fcd1b91c5286a0afbcee9e60929e6cc617ef7bc204e`.
+  Byte comparison: target 176 bytes, SHA-256 `8b62e335637140ba8b640b7c25676775cf0087b150ad259dfebea6c39b98ee43`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26a20, 176 bytes, SHA-256 `8f9a22d637d8b776e1a90fcd1b91c5286a0afbcee9e60929e6cc617ef7bc204e`; 160 differing bytes in the common prefix.
+
+- `__glim_DeleteTexturesEXT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2bc34, examined routine size 596 bytes.
+  Deletes software texture names while maintaining texture state. It reads
+  context from absolute 0x1010 and that context's name table at
+  +0x6e80 (`lw` at 0xda2bc88, 0xda2bcd4).
+  Three sites call `__glNamesDeleteRange`, and another calls
+  `__glNamesUnlockData` (`jalr` at 0xda2bd14, 0xda2be14,
+  0xda2be4c, 0xda2bd58). A state-update path writes two to
+  absolute 0x1018 and ORs one into context +0x2e24 (`sw`
+  at 0xda2bddc, 0xda2bde8). The read/modify/write uses the context word
+  directly (`lw` at 0xda2bde0 and `ori` at 0xda2bde4). Indexed copies and several
+  name-range call arguments remain unknown to hostfacts.
+  Existing entry: `docs/sample-implementation.md`, `__glim_DeleteTexturesEXT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26ad0,
+  840 bytes, labelled Inferred.
+  Comparison: examined target 596 bytes, existing 840 bytes,
+  537 mismatching bytes over the shared prefix.
+  Target SHA-256: `d8db71962ea5e2217f411b34167dd339924d7ab54e1588dea2fbb9f0fda33750`.
+  Existing SHA-256: `e188dab21e3390fd7659c6d3511886e2744e58d774bebdf3e618da3e5e508858`.
+  Byte comparison: target 596 bytes, SHA-256 `d8db71962ea5e2217f411b34167dd339924d7ab54e1588dea2fbb9f0fda33750`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26ad0, 840 bytes, SHA-256 `e188dab21e3390fd7659c6d3511886e2744e58d774bebdf3e618da3e5e508858`; 537 differing bytes in the common prefix.
+
+- `__glBindTexture` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2be88, examined routine size 588 bytes.
+  Binds software texture objects using name-table helpers and local copies.
+  It calls `__glNamesLockData`, `InitTextureMachine`,
+  `__glNamesNewData` and `__glNamesUnlockData` (`jalr` at
+  0xda2bee8, 0xda2bf50, 0xda2bf70, 0xda2c048).
+  An unnamed allocation callback receives original argument 0, one
+  and 0x130 (`jalr` at 0xda2bf0c). Pointer fields include
+  argument 0 +0x6e5c and +0x6e60 (`lw` at 0xda2bfb8,
+  0xda2bfc8). A failure path reports 0x502 (`jalr` at
+  0xda2bfa4). The complete copy loops retain unknown indexed destinations.
+  Existing entry: `docs/sample-implementation.md`, `__glBindTexture` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26e20,
+  1096 bytes, labelled Inferred.
+  Comparison: examined target 588 bytes, existing 1096 bytes,
+  507 mismatching bytes over the shared prefix.
+  Target SHA-256: `e8af7d62a2e6c99fa73d95c35387ecfbe10285e8dddc13539ae4d273afaa9138`.
+  Existing SHA-256: `912c87904fb395c9500a9f5befdc3bebe27a744bc4a0bdc2f9d742dbfbe96bd9`.
+  Byte comparison: target 588 bytes, SHA-256 `e8af7d62a2e6c99fa73d95c35387ecfbe10285e8dddc13539ae4d273afaa9138`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda26e20, 1096 bytes, SHA-256 `912c87904fb395c9500a9f5befdc3bebe27a744bc4a0bdc2f9d742dbfbe96bd9`; 507 differing bytes in the common prefix.
+
+- `IsTextureResident` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2c384, examined routine size 124 bytes.
+  Checks software texture-residency records without a callback. It reads
+  original argument 0 +0xe94 and a record pointer from argument 1
+  +0xe4 (`lw` at 0xda2c384, 0xda2c398). A mode word is
+  argument 1 +0x10 (`lw` at 0xda2c3a8). Indexed record
+  reads remain unknown (`lw` at 0xda2c3a0, 0xda2c3c8,
+  0xda2c3e0). Recorded exits return zero or one (`jr` at
+  0xda2c3ac, 0xda2c3cc, 0xda2c3f8). Value definitions include `move` at
+  0xda2c3b0 and `addiu` at 0xda2c3d0, 0xda2c3e8, 0xda2c3f4. Bounded JSON
+  retains two unreached instructions. The examined body is
+  124 bytes to `__glim_AreTexturesResidentEXT` 0xda2c400. The
+  supplied 50872-byte range includes following functions.
+  Existing entry: `docs/sample-implementation.md`, `IsTextureResident` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda274f0,
+  152 bytes, labelled Inferred.
+  Comparison: examined target 124 bytes, existing 152 bytes,
+  92 mismatching bytes over the shared prefix.
+  Target SHA-256: `d192b7a9ed30eb2543cd438ce8e914c18905e283769a48c5d3286dbbc0e97a0f`.
+  Existing SHA-256: `01088aa9270de042ac0e6ac2f130222c4cc5475b1a67d4341aab55771407f449`.
+  Byte comparison: target 124 bytes, SHA-256 `d192b7a9ed30eb2543cd438ce8e914c18905e283769a48c5d3286dbbc0e97a0f`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda274f0, 152 bytes, SHA-256 `01088aa9270de042ac0e6ac2f130222c4cc5475b1a67d4341aab55771407f449`; 92 differing bytes in the common prefix.
+
+- `__glim_AreTexturesResidentEXT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2c400, examined routine size 460 bytes.
+  Checks named software textures through locked records. Context comes
+  from absolute 0x1010 (`lw` at 0xda2c45c).
+  `__glNamesLockData` supplies the record. `IsTextureConsistent`
+  and `IsTextureResident` receive the returned pointer +0x10
+  (`jalr` at 0xda2c4ec, 0xda2c534, 0xda2c554).
+  Two byte-store sites write zero and one at unknown indexed
+  output addresses (`sb` at 0xda2c56c, 0xda2c570).
+  `__glNamesUnlockData` releases the record (`jalr` at
+  0xda2c580). The software check returns zero or one, without
+  establishing actual hardware residency.
+  Existing entry: `docs/sample-implementation.md`, `__glim_AreTexturesResidentEXT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda27590,
+  492 bytes, labelled Inferred.
+  Comparison: examined target 460 bytes, existing 492 bytes,
+  407 mismatching bytes over the shared prefix.
+  Target SHA-256: `69570ebd2abe9343fefbde073153110b000d386f45d1ca559b346df196f71afb`.
+  Existing SHA-256: `f504fb32380df90e535e2b445d345313fdcbe93c059b15cdafa61d1828364625`.
+  Byte comparison: target 460 bytes, SHA-256 `69570ebd2abe9343fefbde073153110b000d386f45d1ca559b346df196f71afb`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda27590, 492 bytes, SHA-256 `f504fb32380df90e535e2b445d345313fdcbe93c059b15cdafa61d1828364625`; 407 differing bytes in the common prefix.
+
+- `__glim_IsTextureEXT` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda2c5cc, examined routine size 176 bytes.
+  Tests whether a software texture name resolves to a record. It loads
+  context at absolute 0x1010 and its table at +0x6e80 (`lw`
+  at 0xda2c5f8, 0xda2c62c). `__glNamesLockData` receives
+  context, that table and the original name (`jalr` at
+  0xda2c634). A nonzero lock result takes the record-release path
+  (`bnez` at 0xda2c644, `jalr` at 0xda2c65c).
+  The recorded return alternatives are zero and one (`jr` at
+  0xda2c674). The status-error site reports 0x502 (`jalr`
+  at 0xda2c604).
+  Existing entry: `docs/sample-implementation.md`, `__glim_IsTextureEXT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda27780,
+  196 bytes, labelled Inferred.
+  Comparison: examined target 176 bytes, existing 196 bytes,
+  156 mismatching bytes over the shared prefix.
+  Target SHA-256: `b12d91837c3ceefcf8d6d45b43855bebdc3a463f086067f1b0b5769266c69f9e`.
+  Existing SHA-256: `9d741471962e0ef7ec8d0d6b028d25c720e4334abed617bef8b4f118ed95ac2d`.
+  Byte comparison: target 176 bytes, SHA-256 `b12d91837c3ceefcf8d6d45b43855bebdc3a463f086067f1b0b5769266c69f9e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda27780, 196 bytes, SHA-256 `9d741471962e0ef7ec8d0d6b028d25c720e4334abed617bef8b4f118ed95ac2d`; 156 differing bytes in the common prefix.
+
+- `__glim_EdgeFlag` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda37a20, examined routine size 16 bytes.
+  Stores the argument byte without a zero/nonzero normalization test. It reads
+  context from absolute 0x1010 (`lw` at 0xda37a20), then saves argument 0
+  as a word at entry-stack +0 (`sw` at 0xda37a24). The byte store writes its
+  low byte at context +0x1c5 (`sb` at 0xda37a2c). The byte store occupies
+  the return delay slot (`jr` at 0xda37a28). All four
+  instructions were examined. The routine makes no call and leaves
+  the context pointer in v0.
+  Existing entry: `docs/sample-implementation.md`, `__glim_EdgeFlag` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda32260,
+  12 bytes, labelled Established.
+  Comparison: examined target 16 bytes, existing 12 bytes,
+  8 mismatching bytes over the shared prefix.
+  Target SHA-256: `01a1eaca647919484cdcf71a068df6882f72a33b71009f14b080792c4a689897`.
+  Existing SHA-256: `7e4b0606176e4110f166e3a62728b398bdc6064be9d502924fc140d4728dd11c`.
+  Byte comparison: target 16 bytes, SHA-256 `01a1eaca647919484cdcf71a068df6882f72a33b71009f14b080792c4a689897`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda32260, 12 bytes, SHA-256 `7e4b0606176e4110f166e3a62728b398bdc6064be9d502924fc140d4728dd11c`; 8 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
