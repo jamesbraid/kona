@@ -18223,3 +18223,315 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `facts/__glInitTexDestPack.target.txt`,
   `facts/__glInitTexDestPack.existing.txt`, `facts/__glInitTexDestPack.full.listing.txt`,
   `facts/__glInitTexDestPack.compare.txt`.
+
+- `IsLegalRange` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda18bb0, occupies 92 bytes.
+  Inferred. The computed range value and its complete legality formula remain unresolved.
+  The body has a signed negative test and a later zero test on an unresolved bitwise
+  expression (`bltz` at 0xda18bd8, `beqz` at 0xda18be4). One path calls `__glSetError`
+  with a0=0x501 (`jalr` at 0xda18bec) and returns 0 (`jr` at 0xda18bfc).
+  The other return carries 1 (`jr` at 0xda18c04). The documented N32 counterpart has the same complete body and is Inferred.
+  Evidence: `review-facts/IsLegalRange.target.txt`,
+  `review-facts/IsLegalRange.sibling.txt`, `review-facts/IsLegalRange.words.txt`,
+  `review-facts/IsLegalRange.bytes.txt`.
+
+- `__glCheckTexImage1DArgs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda18c10, occupies 200 bytes.
+  Inferred. It calls `CheckTexImageArgs` with original a0 through a3, original a5/a6/a7
+  shifted into a4/a5/a6, and a7=1 (`bgezall` at 0xda18c5c).
+  A zero result returns 0 (`beqz` at 0xda18c64, `jr` at 0xda18cd0).
+  Otherwise it reads the context's +0x2fc object and its first word (`lw` at
+  0xda18c70, 0xda18c74). A first word of 0x8010 selects an object +0x40 read
+  (`beq` at 0xda18c78, `lw` at 0xda18cc0).
+  It then calls `IsLegalRange` with original a0, original a4 as a1 and original a5
+  as a3 (`bgezall` at 0xda18c94). Hostfacts leaves a2 and the combined return unresolved.
+  The helper names do not establish their validation rules.
+  Evidence: `review-facts/__glCheckTexImage1DArgs.target.txt`,
+  `review-facts/__glCheckTexImage1DArgs.sibling.txt`, `review-facts/__glCheckTexImage1DArgs.words.txt`,
+  `review-facts/__glCheckTexImage1DArgs.bytes.txt`.
+
+- `__glCheckTexImage2DArgs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda18ce0, occupies 304 bytes.
+  Inferred. It calls `CheckTexImageArgs` with original a0 through a3, original a6/a7
+  as a4/a5 and a7=2 (`bgezall` at 0xda18d2c). A zero result returns 0 (`beqz` at
+  0xda18d34, `jr` at 0xda18df4). It reads the context's +0x2fc object and its
+  first word (`lw` at 0xda18d3c, 0xda18d40). Values 0x8011 or 0x8012 select
+  object-field reads at +0x40 and later +0x44 (`beq` at 0xda18d48, 0xda18d54,
+  `lw` at 0xda18dd8, 0xda18de0).
+  Two `IsLegalRange` calls retain original a0 and original a6 as a3, with original
+  a4 then a5 as a1 (`bgezall` at 0xda18d6c, 0xda18da8).
+  A zero first range result selects an early failure path (`beqz` at 0xda18d74).
+  Missing arguments and the combined success return remain unresolved.
+  Evidence: `review-facts/__glCheckTexImage2DArgs.target.txt`,
+  `review-facts/__glCheckTexImage2DArgs.sibling.txt`, `review-facts/__glCheckTexImage2DArgs.words.txt`,
+  `review-facts/__glCheckTexImage2DArgs.bytes.txt`.
+
+- `__glCheckTexImage3DArgs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda18e10, occupies 364 bytes.
+  Inferred. It calls `CheckTexImageArgs` with original a0 through a3, original a7 as
+  a4 and a7=3 (`bgezall` at 0xda18e5c). A zero result selects a zero-return path
+  (`beqz` at 0xda18e64). It reads the context's +0x2fc object and first word
+  (`lw` at 0xda18e6c, 0xda18e70). Object values 0x8011 or 0x8012 select a +0x40
+  read (`beq` at 0xda18e74, 0xda18e80, `lw` at 0xda18f24).
+  Three `IsLegalRange` calls retain original a0 and original a7 as a3, with original
+  a4, a5 and a6 respectively as a1 (`bgezall` at 0xda18ea0, 0xda18ed8, 0xda18ef4).
+  The first two leave a2 unknown, while the third has a2=0. Zero results from the
+  first two select failure paths (`beqz` at 0xda18ea8, 0xda18ee0).
+  A later object +0x44 read is explicit (`lw` at 0xda18f34).
+  Missing helper arguments and the combined success return remain unresolved.
+  Evidence: `review-facts/__glCheckTexImage3DArgs.target.txt`,
+  `review-facts/__glCheckTexImage3DArgs.sibling.txt`, `review-facts/__glCheckTexImage3DArgs.words.txt`,
+  `review-facts/__glCheckTexImage3DArgs.bytes.txt`.
+
+- `__glim_TexImage1D` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda19170, occupies 540 bytes.
+  Inferred. It reads the state at absolute 0x1018 (`lw` at 0xda19194), using context from absolute 0x1010 (`lw` at 0xda1919c).
+  The argument checker `__glCheckTexImage1DArgs` is called before object lookup (`bgezall` at
+  0xda19218). A zero checker result returns early (`beqz` at 0xda19220).
+  The lookup `__glLookUpTextureObject` receives a1=0xde0 (`bgezall` at 0xda19230).
+  Two error sites call `__glSetError` with a0=0x502 (`jalr` at 0xda191c8, 0xda1937c).
+  Three indirect sites remain unidentified (`jalr` at 0xda191e8, 0xda19298, 0xda19358).
+  The source-unpack and image-store helpers are called in sequence (`bgezall` at 0xda19308, 0xda19320).
+  The path also calls `__glInitUnpacker` and `__glInitPacker` (`jalr` at 0xda19330, 0xda19340).
+  The completion path writes 2 to absolute 0x1018 and sets bit 0 of context +0x2e24
+  (`sw` at 0xda192c8, 0xda192d8). Callback identities, missing helper arguments, data-transfer
+  effects and complete return semantics remain unresolved.
+  Evidence: `review-facts/__glim_TexImage1D.target.txt`,
+  `review-facts/__glim_TexImage1D.sibling.txt`, `review-facts/__glim_TexImage1D.words.txt`,
+  `review-facts/__glim_TexImage1D.bytes.txt`.
+
+- `__gllei_TexImage1D` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda19390, occupies 528 bytes.
+  Inferred. It reads the state at absolute 0x1018 (`lw` at 0xda193ac), using original a0 as context.
+  The argument checker `__glCheckTexImage1DArgs` is called before object lookup (`bgezall` at
+  0xda1942c). A zero checker result returns early (`beqz` at 0xda19434).
+  The lookup `__glLookUpTextureObject` receives a1=0xde0 (`bgezall` at 0xda19444).
+  Two error sites call `__glSetError` with a0=0x502 (`jalr` at 0xda193e0, 0xda19590).
+  Three indirect sites remain unidentified (`jalr` at 0xda19400, 0xda194ac, 0xda1956c).
+  The source-unpack and image-store helpers are called in sequence (`bgezall` at 0xda1951c, 0xda19534).
+  The path also calls `__glInitUnpacker` and `__glInitPacker` (`jalr` at 0xda19544, 0xda19554).
+  The completion path writes 2 to absolute 0x1018 and sets bit 0 of context +0x2e24
+  (`sw` at 0xda194d8, 0xda194e8). Callback identities, missing helper arguments, data-transfer
+  effects and complete return semantics remain unresolved.
+  Evidence: `review-facts/__gllei_TexImage1D.target.txt`,
+  `review-facts/__gllei_TexImage1D.sibling.txt`, `review-facts/__gllei_TexImage1D.words.txt`,
+  `review-facts/__gllei_TexImage1D.bytes.txt`.
+
+- `__glim_TexImage2D` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda195a0, occupies 576 bytes.
+  Inferred. It reads the state at absolute 0x1018 (`lw` at 0xda195c4), using context from absolute 0x1010 (`lw` at 0xda195c8).
+  The argument checker `__glCheckTexImage2DArgs` is called before object lookup (`bgezall` at
+  0xda19650). A zero checker result returns early (`beqz` at 0xda19658).
+  The lookup `__glLookUpTextureObject` receives a1=0xde1 (`bgezall` at 0xda19668).
+  Two error sites call `__glSetError` with a0=0x502 (`jalr` at 0xda195f8, 0xda197d0).
+  Three indirect sites remain unidentified (`jalr` at 0xda19618, 0xda196e0, 0xda197bc).
+  The source-unpack and image-store helpers are called in sequence (`bgezall` at 0xda1976c, 0xda19784).
+  The path also calls `__glInitUnpacker` and `__glInitPacker` (`jalr` at 0xda19794, 0xda197a4).
+  The completion path writes 2 to absolute 0x1018 and sets bit 0 of context +0x2e24
+  (`sw` at 0xda1970c, 0xda1971c). Callback identities, missing helper arguments, data-transfer
+  effects and complete return semantics remain unresolved.
+  Evidence: `review-facts/__glim_TexImage2D.target.txt`,
+  `review-facts/__glim_TexImage2D.sibling.txt`, `review-facts/__glim_TexImage2D.words.txt`,
+  `review-facts/__glim_TexImage2D.bytes.txt`.
+
+- `__gllei_TexImage2D` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda197e0, occupies 568 bytes.
+  Inferred. It reads the state at absolute 0x1018 (`lw` at 0xda197fc), using original a0 as context.
+  The argument checker `__glCheckTexImage2DArgs` is called before object lookup (`bgezall` at
+  0xda19884). A zero checker result returns early (`beqz` at 0xda1988c).
+  The lookup `__glLookUpTextureObject` receives a1=0xde1 (`bgezall` at 0xda1989c).
+  Two error sites call `__glSetError` with a0=0x502 (`jalr` at 0xda19830, 0xda19a08).
+  Three indirect sites remain unidentified (`jalr` at 0xda19850, 0xda19914, 0xda199f4).
+  The source-unpack and image-store helpers are called in sequence (`bgezall` at 0xda199a4, 0xda199bc).
+  The path also calls `__glInitUnpacker` and `__glInitPacker` (`jalr` at 0xda199cc, 0xda199dc).
+  The completion path writes 2 to absolute 0x1018 and sets bit 0 of context +0x2e24
+  (`sw` at 0xda19944, 0xda19954). Callback identities, missing helper arguments, data-transfer
+  effects and complete return semantics remain unresolved.
+  Evidence: `review-facts/__gllei_TexImage2D.target.txt`,
+  `review-facts/__gllei_TexImage2D.sibling.txt`, `review-facts/__gllei_TexImage2D.words.txt`,
+  `review-facts/__gllei_TexImage2D.bytes.txt`.
+
+- `__glNearestFilter1` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1a1f0, occupies 192 bytes.
+  Inferred. It reads the second argument's float at +0x20 and first argument's word at
+  +4 (`lwc1` at 0xda1a1f0, `lw` at 0xda1a1fc). A +4 value of 0x2901 selects
+  `__glFrac` with f12=original f14 (`beq` at 0xda1a21c, `jalr` at 0xda1a28c).
+  The other path reads argument 1 +0x14 (`lw` at 0xda1a22c), but the calculated
+  index and signed-negative predicate value remain unknown.
+  The callback loaded at argument 1 +0x60 takes original argument 1 as a0, original
+  argument 0 as a1, and a2=a3=0 (`lw` at 0xda1a248, `jalr` at 0xda1a258).
+  Its identity and calculated index remain unknown. The return carries its result
+  (`jr` at 0xda1a26c).
+  Evidence: `review-facts/__glNearestFilter1.target.txt`,
+  `review-facts/__glNearestFilter1.sibling.txt`, `review-facts/__glNearestFilter1.words.txt`,
+  `review-facts/__glNearestFilter1.bytes.txt`.
+
+- `__glNearestFilter2` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1a2b0, occupies 308 bytes.
+  Inferred. It reads argument 1 +0x20/+0x24 as floats and argument 0 +4/+8 as words
+  (`lwc1` at 0xda1a2b0, 0xda1a320, `lw` at 0xda1a2c8, 0xda1a318).
+  Each mode word is compared with 0x2901 (`beq` at 0xda1a2ec, 0xda1a324).
+  The corresponding paths call `__glFrac` with original f14 then f15 as f12
+  (`jalr` at 0xda1a39c, 0xda1a3c8). Calculated indices remain unresolved.
+  A callback loaded from argument 1 +0x60 receives original argument 1 as a0,
+  original argument 0 as a1 and a2=0 (`lw` at 0xda1a348, `jalr` at 0xda1a35c).
+  Its identity, remaining arguments and effect are unknown. The return carries
+  its result (`jr` at 0xda1a378).
+  Evidence: `review-facts/__glNearestFilter2.target.txt`,
+  `review-facts/__glNearestFilter2.sibling.txt`, `review-facts/__glNearestFilter2.words.txt`,
+  `review-facts/__glNearestFilter2.bytes.txt`.
+
+- `__glNearestFilter3` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1a3f0, occupies 420 bytes.
+  Inferred. It reads argument 1 +0x20/+0x24/+0x28 as floats and argument 0 +4/+8/+0xc
+  as words (`lwc1` at 0xda1a3f0, 0xda1a468, 0xda1a49c,
+  `lw` at 0xda1a410, 0xda1a460, 0xda1a490). Each mode word is compared with
+  0x2901 (`beq` at 0xda1a434, 0xda1a46c, 0xda1a4a0).
+  The corresponding `__glFrac` calls receive original f14/f15/f16 as f12
+  (`jalr` at 0xda1a524, 0xda1a550, 0xda1a578).
+  A callback loaded from argument 1 +0x60 receives original argument 1 as a0 and
+  original argument 0 as a1 (`lw` at 0xda1a4c4, `jalr` at 0xda1a4d8).
+  Its identity, calculated indices and remaining arguments are unknown.
+  The return carries its result (`jr` at 0xda1a4f8).
+  Evidence: `review-facts/__glNearestFilter3.target.txt`,
+  `review-facts/__glNearestFilter3.sibling.txt`, `review-facts/__glNearestFilter3.words.txt`,
+  `review-facts/__glNearestFilter3.bytes.txt`.
+
+- `__glLinearFilter1` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1a5a0, occupies 676 bytes.
+  Inferred. It reads argument 1 +0x14 and argument 0 +4
+  (`lw` at 0xda1a5ac, 0xda1a5c4). The full body contains calls to `floor`
+  (`jalr` at 0xda1a628, 0xda1a800) and `__glFrac` (`jalr` at 0xda1a654).
+  The indirect callback sites take original argument 1 as a0 and original argument 0
+  as a1 (`jalr` at 0xda1a678, 0xda1a698). Their identities and calculated coordinate
+  arguments remain unknown. The output has float-store sites at original a5 offsets
+  +0xc, +0x10, +0, +4, +8 and +0x14 respectively (`swc1` at 0xda1a744, 0xda1a720, 0xda1a7ac, 0xda1a7c0, 0xda1a7d8, 0xda1a7f0).
+  Stored values and interpolation equations remain unresolved.
+  2 raw words remain decoder-unknown and 1 COP3 rendering remains. Affected predicates,
+  conditional values and control flow receive no semantic assignment.
+  Evidence: `review-facts/__glLinearFilter1.target.txt`,
+  `review-facts/__glLinearFilter1.sibling.txt`, `review-facts/__glLinearFilter1.words.txt`,
+  `review-facts/__glLinearFilter1.bytes.txt`.
+
+- `__glLinearFilter2` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1a850, occupies 1284 bytes.
+  Inferred. It reads coordinate-scale floats from argument 1 and mode words from argument 0
+  (`lwc1` at 0xda1a85c, 0xda1a918, `lw` at 0xda1a890, 0xda1a924). The full body contains calls to `floor`
+  (`jalr` at 0xda1a8f0, 0xda1a960, 0xda1acac, 0xda1acf0) and `__glFrac` (`jalr` at 0xda1a98c, 0xda1a99c).
+  The indirect callback sites take original argument 1 as a0 and original argument 0
+  as a1 (`jalr` at 0xda1a9c0, 0xda1a9e0, 0xda1aa04, 0xda1aa28). Their identities and calculated coordinate
+  arguments remain unknown. The output has float-store sites at original a5 offsets
+  +0xc, +0x10, +0, +4, +8 and +0x14 respectively (`swc1` at 0xda1ab48, 0xda1ab88, 0xda1abc0, 0xda1abe4, 0xda1ac1c, 0xda1ac8c).
+  Stored values and interpolation equations remain unresolved.
+  5 raw words remain decoder-unknown. Affected predicates,
+  conditional values and control flow receive no semantic assignment.
+  Evidence: `review-facts/__glLinearFilter2.target.txt`,
+  `review-facts/__glLinearFilter2.sibling.txt`, `review-facts/__glLinearFilter2.words.txt`,
+  `review-facts/__glLinearFilter2.bytes.txt`.
+
+- `__glLinearFilter3` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1ad60, occupies 2144 bytes.
+  Inferred. It reads coordinate-scale floats from argument 1 and mode words from argument 0
+  (`lwc1` at 0xda1ad7c, 0xda1ae30, 0xda1aea0, `lw` at 0xda1adac, 0xda1ae3c, 0xda1aeac). The full body contains calls to `floor`
+  (`jalr` at 0xda1ae0c, 0xda1ae78, 0xda1aee8, 0xda1b494, 0xda1b4d4, 0xda1b518) and `__glFrac` (`jalr` at 0xda1af14, 0xda1af24, 0xda1af34).
+  The indirect callback sites take original argument 1 as a0 and original argument 0
+  as a1 (`jalr` at 0xda1af58, 0xda1af78, 0xda1af98, 0xda1afb8, 0xda1afdc, 0xda1affc, 0xda1b020, 0xda1b044). Their identities and calculated coordinate
+  arguments remain unknown. The output has float-store sites at original a5 offsets
+  +0xc, +0x10, +0, +4, +8 and +0x14 respectively (`swc1` at 0xda1b1d4, 0xda1b254, 0xda1b2cc, 0xda1b310, 0xda1b36c, 0xda1b478).
+  Stored values and interpolation equations remain unresolved.
+  7 raw words remain decoder-unknown. Affected predicates,
+  conditional values and control flow receive no semantic assignment.
+  Evidence: `review-facts/__glLinearFilter3.target.txt`,
+  `review-facts/__glLinearFilter3.sibling.txt`, `review-facts/__glLinearFilter3.words.txt`,
+  `review-facts/__glLinearFilter3.bytes.txt`.
+
+- `__glNMNFilter` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1b680, occupies 136 bytes.
+  Inferred. It reads the first argument's context pointer and context +0xdd4 float
+  (`lw` at 0xda1b680, `lwc1` at 0xda1b684). It compares original f13 with that
+  float (`c.le.s` at 0xda1b688, `bc1f` at 0xda1b6a0).
+  The other path reads literal 0x3efff972 and the object +0xec word
+  (`lwc1` at 0xda1b6b0, `lw` at 0xda1b6bc).
+  It reads the object +0x118 callback and +0xe4 data pointer
+  (`lw` at 0xda1b6dc, 0xda1b6e4). The call retains original a0, with a1 through
+  a3 unresolved (`jalr` at 0xda1b6f0). The selected index, callback identity
+  and effect remain unknown. The return carries the callback result (`jr` at 0xda1b700).
+  Evidence: `review-facts/__glNMNFilter.target.txt`,
+  `review-facts/__glNMNFilter.sibling.txt`, `review-facts/__glNMNFilter.words.txt`,
+  `review-facts/__glNMNFilter.bytes.txt`.
+
+- `__glLMNFilter` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1b710, occupies 136 bytes.
+  Inferred. It reads the first argument's context pointer and context +0xdd4 float
+  (`lw` at 0xda1b710, `lwc1` at 0xda1b714). It compares original f13 with that
+  float (`c.le.s` at 0xda1b718, `bc1f` at 0xda1b730).
+  The other path reads literal 0x3efff972 and the object +0xec word
+  (`lwc1` at 0xda1b740, `lw` at 0xda1b74c).
+  It reads the object +0x114 callback and +0xe4 data pointer
+  (`lw` at 0xda1b76c, 0xda1b774). The call retains original a0, with a1 through
+  a3 unresolved (`jalr` at 0xda1b780). The selected index, callback identity
+  and effect remain unknown. The return carries the callback result (`jr` at 0xda1b790).
+  Evidence: `review-facts/__glLMNFilter.target.txt`,
+  `review-facts/__glLMNFilter.sibling.txt`, `review-facts/__glLMNFilter.words.txt`,
+  `review-facts/__glLMNFilter.bytes.txt`.
+
+- `__glNMLFilter` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1b7a0, occupies 600 bytes.
+  Inferred. It reads object +0xec and uses an unresolved calculated value in a signed
+  bound comparison (`lw` at 0xda1b7b8, `bnez` at 0xda1b7f0).
+  It reads callbacks from object +0x118 and data pointers from +0xe4
+  (`lw` at 0xda1b80c, 0xda1b814, 0xda1b83c, 0xda1b844, 0xda1b8ec, 0xda1b8f8).
+  Three indirect calls retain original a0, with indexed pointers unresolved
+  (`jalr` at 0xda1b830, 0xda1b858, 0xda1b910).
+  A `__glFrac` call takes original f13 as f12 (`jalr` at 0xda1b870).
+  The format word at [object+0xe4]+0x40 is read (`lw` at 0xda1b880).
+  Float-store sites update original a5 +0x10/+0xc/+0/+4/+8/+0x14
+  (`swc1` at 0xda1b948, 0xda1b96c, 0xda1b998, 0xda1b9ac, 0xda1b9c4, 0xda1b9dc).
+  One COP3 rendering remains. Affected control flow, blend values, level indexing,
+  callback identities and missing arguments remain unresolved.
+  Evidence: `review-facts/__glNMLFilter.target.txt`,
+  `review-facts/__glNMLFilter.sibling.txt`, `review-facts/__glNMLFilter.words.txt`,
+  `review-facts/__glNMLFilter.bytes.txt`.
+
+- `__glLMLFilter` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1ba00, occupies 600 bytes.
+  Inferred. It reads object +0xec and uses an unresolved calculated value in a signed
+  bound comparison (`lw` at 0xda1ba18, `bnez` at 0xda1ba50).
+  It reads callbacks from object +0x114 and data pointers from +0xe4
+  (`lw` at 0xda1ba6c, 0xda1ba74, 0xda1ba9c, 0xda1baa4, 0xda1bb4c, 0xda1bb58).
+  Three indirect calls retain original a0, with indexed pointers unresolved
+  (`jalr` at 0xda1ba90, 0xda1bab8, 0xda1bb70).
+  A `__glFrac` call takes original f13 as f12 (`jalr` at 0xda1bad0).
+  The format word at [object+0xe4]+0x40 is read (`lw` at 0xda1bae0).
+  Float-store sites update original a5 +0x10/+0xc/+0/+4/+8/+0x14
+  (`swc1` at 0xda1bba8, 0xda1bbcc, 0xda1bbf8, 0xda1bc0c, 0xda1bc24, 0xda1bc3c).
+  One COP3 rendering remains. Affected control flow, blend values, level indexing,
+  callback identities and missing arguments remain unresolved.
+  Evidence: `review-facts/__glLMLFilter.target.txt`,
+  `review-facts/__glLMLFilter.sibling.txt`, `review-facts/__glLMLFilter.words.txt`,
+  `review-facts/__glLMLFilter.bytes.txt`.
+
+- `__glTextureModulateL` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1cea0, occupies 52 bytes.
+  Established. It reads argument 2 +0xc repeatedly and argument 1 +0/+4/+8 as floats
+  (`lwc1` at 0xda1cea0, 0xda1ceb4, 0xda1cec4, 0xda1cea4, 0xda1cea8, 0xda1ceb8).
+  It writes floats at argument 1 +0/+4/+8 (`swc1` at 0xda1ceb0, 0xda1cec0,
+  0xda1ced0). Hostfacts does not report the stored-value expressions, so the
+  modulation equations remain unknown. The complete body makes no calls and
+  establishes no return value.
+  Evidence: `review-facts/__glTextureModulateL.target.txt`,
+  `review-facts/__glTextureModulateL.sibling.txt`, `review-facts/__glTextureModulateL.words.txt`,
+  `review-facts/__glTextureModulateL.bytes.txt`.
+
+- `__glTextureModulateLA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda1cee0, occupies 68 bytes.
+  Established. It reads argument 2 +0xc repeatedly and +0x10 once (`lwc1` at 0xda1cee0,
+  0xda1cef4, 0xda1cf04, 0xda1cf14). Argument 1 +0/+4/+8/+0xc are read as floats
+  (`lwc1` at 0xda1cee4, 0xda1cee8, 0xda1cef8, 0xda1cf08).
+  Float writes update those same four offsets (`swc1` at 0xda1cef0, 0xda1cf00,
+  0xda1cf10, 0xda1cf20). Hostfacts leaves their stored-value expressions unresolved,
+  so the modulation equations remain unknown. The complete body makes no calls
+  and establishes no return value.
+  Evidence: `review-facts/__glTextureModulateLA.target.txt`,
+  `review-facts/__glTextureModulateLA.sibling.txt`, `review-facts/__glTextureModulateLA.words.txt`,
+  `review-facts/__glTextureModulateLA.bytes.txt`.
