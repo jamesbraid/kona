@@ -25424,3 +25424,490 @@ comparison was not rerun and supplies no new target equation.
   Hostfacts reports return registers `v0 = ?` (`jr` at 0x21ea748).
   Unreported pixel formulas, callback behavior, moving buffer addresses and
   row traversal remain unknown.
+
+- `__glInitReadImageSrcInfo` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ea780. Occupies 192 bytes.
+  **Inferred.** Initializes a read-image descriptor through word, byte, float and eight-byte pointer stores (selected writes below).
+  The y-orientation branch takes its alternate path when the byte at entry a0 +0x1454 is zero (`beqz` at 0x21ea798).
+  Both coordinate paths convert an integer y value to float (`cvt.s.w` at 0x21ea7b4 and `cvt.s.w` at 0x21ea834).
+  The complete body has no calls. The full descriptor-role mapping is not inferred from O32 offsets.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0xcc | `swc1` at 0x21ea790 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xd0 | `swc1` at 0x21ea7b8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4  value 0x1406 | `sw` at 0x21ea7c4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb8  value a4 | `sw` at 0x21ea7c8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0x1 | `sw` at 0x21ea81c |
+  | store | 4 bytes | a1 (arg1 at entry) +0xd4 | `swc1` at 0x21ea820 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb0  value [a0+3884] | `swc1` at 0x21ea828 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xd0 | `swc1` at 0x21ea83c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 192 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ab7b8 +232 bytes / 174 changed common-prefix byte positions
+  SHA-256 target `1de71d276c651562007ec8ef262984b89a7ede0991e989b518ea05bcff2b6557` / documented sibling `1617a5ae970b9ea2002eeef99fab59ccf8a67c8a37a299134e4e01fb7315091c`
+  Existing entry: `docs/sample-implementation.md`, `__glInitReadImageSrcInfo` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitReadImageSrcInfo.target.txt`, `facts/__glInitReadImageSrcInfo.sibling.txt`, `facts/__glInitReadImageSrcInfo.disasm.txt`, `facts/__glInitReadImageSrcInfo.comparison.txt`
+
+- `__glGenericPickReadImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ea840. Occupies 304 bytes.
+  **Inferred.** Calls `PickSpanModifiers` with the original context/descriptor and a temporary record at entry sp -64 (`jalr` at 0x21ea888).
+  The selected reader callback retains original entry a0 and a1 (`jalr` at 0x21ea90c).
+  Its procedure identity and complete row-read effects remain unknown. Selected descriptor updates below keep the target's widths and offsets.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | PickSpanModifiers [0x21e26a0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-64, a3=a3 at entry (arg3) | `jalr` at 0x21ea888 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=-0x1, a3=0x8011, a4=[a1+552]:8, a5=0x8012, a6=0x1 | `jalr` at 0x21ea90c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 8 bytes | a1 (arg1 at entry) +0x190 | `sd` at 0x21ea8bc |
+  | store | 4 bytes | a1 (arg1 at entry) +0x18c | `sw` at 0x21ea8fc |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc8 | `sw` at 0x21ea93c |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc8  value 0x0 | `sw` at 0x21ea944 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x11c  value ret(PickSpanModifiers)-1 | `sw` at 0x21ea954 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x18c | `sw` at 0x21ea95c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x18c | `sw` at 0x21ea96c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 304 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ab8a0 +312 bytes / 264 changed common-prefix byte positions
+  SHA-256 target `8ae842a82db99a209458e8c59028a9bafeadcc54cddb2ee8f801e917f681b8d9` / documented sibling `ebecb4aef24e33cc22d6ba1c536b9178db994edb2bf1bdb1caad1e2b8223f3ba`
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickReadImage` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glGenericPickReadImage.target.txt`, `facts/__glGenericPickReadImage.sibling.txt`, `facts/__glGenericPickReadImage.disasm.txt`, `facts/__glGenericPickReadImage.comparison.txt`
+
+- `__glInitMemLoad` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ea970. Occupies 316 bytes.
+  **Inferred.** Writes memory-load descriptor defaults and the incoming data pointer, including an eight-byte store at entry a1 +0x60 (`sd` at 0x21ea990).
+  Format-dependent paths update the output component/format fields. Selected writes below preserve those target values without reconstructing the complete format map.
+  This body performs no call.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0x220  value 0x0 | `sw` at 0x21ea970 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8c  value 0x1 | `sw` at 0x21ea978 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x88  value 0x0 | `sw` at 0x21ea97c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x98  value 0x0 | `sw` at 0x21ea980 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x58  value 0x1908 | `sw` at 0x21eaa90 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xa4  value 0x4 | `sw` at 0x21eaa98 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x5c  value 0x1406 | `sw` at 0x21eaaa0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x58  value 0x1906 | `sw` at 0x21eaaa8 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 316 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ab9d8 +348 bytes / 253 changed common-prefix byte positions
+  SHA-256 target `fc0645d104404412197fb7c7a0e13cbc4100384efc1c9426fb4e072fe1feb6bf` / documented sibling `0863f1ca57211e3746ac5806e68eb426d14aa358e9c7cfe30a6921c4937e3258`
+  Existing entry: `docs/sample-implementation.md`, `__glInitMemLoad` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitMemLoad.target.txt`, `facts/__glInitMemLoad.sibling.txt`, `facts/__glInitMemLoad.disasm.txt`, `facts/__glInitMemLoad.comparison.txt`
+
+- `__glInitMemGet` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eaab0. Occupies 248 bytes.
+  **Inferred.** Sets descriptor dimensions and its eight-byte memory pointer (`sw` at 0x21eaab4, `sw` at 0x21eaad4 and `sd` at 0x21eaadc).
+  It chooses format-specific words through several constant comparisons, with selected output writes listed below.
+  The full target has no calls, and no O32 descriptor layout is substituted.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0x220  value 0x0 | `sw` at 0x21eaab0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x48  value a3 | `sw` at 0x21eaab4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x34  value 0x1 | `sw` at 0x21eaabc |
+  | store | 4 bytes | a1 (arg1 at entry) +0x30  value 0x0 | `sw` at 0x21eaac0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0  value 0x1908 | `sw` at 0x21eab8c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0x4 | `sw` at 0x21eab94 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4  value 0x1406 | `sw` at 0x21eab9c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0  value 0x1906 | `sw` at 0x21eaba4 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 248 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abb34 +304 bytes / 184 changed common-prefix byte positions
+  SHA-256 target `91b17c93e3586b39fef054798c8516912fe3add40bf8ff00e0a7f743e13d90e1` / documented sibling `bb19acd2c1a8da583f13ca5bd304c9d13b671441b1ec54f9f51cc0d1db5d16f9`
+  Existing entry: `docs/sample-implementation.md`, `__glInitMemGet` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitMemGet.target.txt`, `facts/__glInitMemGet.sibling.txt`, `facts/__glInitMemGet.disasm.txt`, `facts/__glInitMemGet.comparison.txt`
+
+- `__glInitMemUnpack` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eabb0. Occupies 104 bytes.
+  **Inferred.** Stores unpack dimensions, type, format and an eight-byte client pointer in the descriptor (selected writes below).
+  It calls `__glLoadUnpackModes` with the original context and descriptor (`bgezall` at 0x21eac00).
+  Its third argument comes from the unsigned byte at entry sp +7 (`lbu` at 0x21eabd0).
+  The call table leaves the byte value unresolved. No named option is assigned.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glLoadUnpackModes [0x21e67a0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=a3 at entry (arg3) | `bgezall` at 0x21eac00 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0xd4 | `swc1` at 0x21eabbc |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc4  value a2 | `sw` at 0x21eabc4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc8  value a2 | `sw` at 0x21eabc8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb8  value a2 | `sw` at 0x21eabcc |
+  | store | 8 bytes | a1 (arg1 at entry) +0x8  value a7 | `sd` at 0x21eabd4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4  value a6 | `sw` at 0x21eabd8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0  value a5 | `sw` at 0x21eabe0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc0  value a4 | `sw` at 0x21eabf4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xbc  value a3 | `sw` at 0x21eabf8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb0  value [a0+3884] | `swc1` at 0x21eac04 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 104 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abc64 +140 bytes / 83 changed common-prefix byte positions
+  SHA-256 target `22b120a586758b2edd4e91f7a22f098e7a051125c8a3a230d84c691bc3935910` / documented sibling `7ba61d66c5d9532bd47ad47ede805cb1ea77e3af20347ce45162886598e3d32f`
+  Existing entry: `docs/sample-implementation.md`, `__glInitMemUnpack` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitMemUnpack.target.txt`, `facts/__glInitMemUnpack.sibling.txt`, `facts/__glInitMemUnpack.disasm.txt`, `facts/__glInitMemUnpack.comparison.txt`
+
+- `__glInitMemPack` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eac20. Occupies 100 bytes.
+  **Inferred.** Builds a pack descriptor with an eight-byte destination pointer at entry a1 +0x60 (`sd` at 0x21eac34).
+  The following `__glLoadPackModes` call preserves the original first four integer arguments (`bgezall` at 0x21eac6c).
+  The complete packing behavior belongs to the selected pack procedures, not these initialization writes.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glLoadPackModes [0x21e7a60] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21eac6c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0xd4 | `swc1` at 0x21eac2c |
+  | store | 8 bytes | a1 (arg1 at entry) +0x60  value a7 | `sd` at 0x21eac34 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x5c  value a6 | `sw` at 0x21eac38 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x58  value a5 | `sw` at 0x21eac3c |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc0  value a4 | `sw` at 0x21eac40 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xbc  value a3 | `sw` at 0x21eac44 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc4  value a2 | `sw` at 0x21eac4c |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc8  value a2 | `sw` at 0x21eac60 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb8  value a2 | `sw` at 0x21eac64 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xb0  value [a0+3884] | `swc1` at 0x21eac70 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 100 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abcf0 +120 bytes / 81 changed common-prefix byte positions
+  SHA-256 target `ef5b93bf9d344a72ac767d3f15189545ff5cae797a74f2b2e97af23a441cccce` / documented sibling `cda3d747945a445a9cdcabc51b8f805c70b92c05c8478f4f9df7999d83328d2b`
+  Existing entry: `docs/sample-implementation.md`, `__glInitMemPack` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitMemPack.target.txt`, `facts/__glInitMemPack.sibling.txt`, `facts/__glInitMemPack.disasm.txt`, `facts/__glInitMemPack.comparison.txt`
+
+- `__glSpanReadRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eac90. Occupies 208 bytes.
+  **Inferred.** Uses one per-pixel read callback with the buffer pointer at entry a0 +18208 first (`jalr` at 0x21ead10).
+  A signed halfword step is loaded during its coordinate walk (`lh` at 0x21ead18), but the base and subsequent pixel coordinates become unknown to hostfacts.
+  The complete callback arguments remain unresolved. No independent four-channel conversion is claimed for this wrapper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18208]:8, a1=?, a2=?, a3=? | `jalr` at 0x21ead10 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | a1 (arg1 at entry) +0x160 | `ld` at 0x21eac98 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xcc | `lwc1` at 0x21eaca4 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xd0 | `lwc1` at 0x21eaca8 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xc4 | `lw` at 0x21eacb0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 208 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abd70 +196 bytes / 163 changed common-prefix byte positions
+  SHA-256 target `3ee266c2a1b6643aa2e52cb0e15eadf1fbccae9cc4470fe26aadf408329a451a` / documented sibling `d34b7b7ad0664d7ea2bae942f2bcdc274916685c97f735097a8bdc0fc195291f`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadRGBA` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadRGBA.target.txt`, `facts/__glSpanReadRGBA.sibling.txt`, `facts/__glSpanReadRGBA.disasm.txt`, `facts/__glSpanReadRGBA.comparison.txt`
+
+- `__glSpanReadRGBA2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ead60. Occupies 96 bytes.
+  **Inferred.** Passes the original output pointer as the fourth argument to a single span callback (`jalr` at 0x21eada8).
+  The first argument is the buffer pointer at entry a0 +18208. The fifth is the count word loaded from entry a1 +184 (`jalr` at 0x21eada8).
+  The x/y values and procedure identity remain unknown, so the draft does not infer the callback's output format.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18208]:8, a1=?, a2=?, a3=a2 at entry (arg2), a4=[a1+184], a5=a0+39536, a6=0xf5a38 | `jalr` at 0x21eada8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a1 (arg1 at entry) +0xcc | `lwc1` at 0x21ead64 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xd0 | `lwc1` at 0x21ead68 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x9a70 | `ld` at 0x21ead84 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x4720 | `ld` at 0x21ead90 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 96 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abe34 +108 bytes / 84 changed common-prefix byte positions
+  SHA-256 target `a97631f19be2b51234f6efa411d6a7560d8de04631fc0bce6a6e7f18035031c0` / documented sibling `5596fe37e1c4c8c394e965aff1b21f4468eee4af82ecf6c8bc1afef81b568fe9`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadRGBA2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadRGBA2.target.txt`, `facts/__glSpanReadRGBA2.sibling.txt`, `facts/__glSpanReadRGBA2.disasm.txt`, `facts/__glSpanReadRGBA2.comparison.txt`
+
+- `__glSpanReadCI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eadc0. Occupies 208 bytes.
+  **Inferred.** Calls the same selected buffer interface with a colour-index output cursor (`jalr` at 0x21eae40).
+  Its coordinate-step load is a signed halfword (`lh` at 0x21eae48).
+  Fresh facts resolve the first buffer argument but leave the coordinates and destination argument unknown. The routine itself has no output-memory stores.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18208]:8, a1=?, a2=?, a3=? | `jalr` at 0x21eae40 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | a1 (arg1 at entry) +0x160 | `ld` at 0x21eadc8 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xcc | `lwc1` at 0x21eadd4 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xd0 | `lwc1` at 0x21eadd8 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xc4 | `lw` at 0x21eade0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 208 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abea0 +196 bytes / 163 changed common-prefix byte positions
+  SHA-256 target `bee4dbea8e722a7450c3a7bd14404fa7f597cf69e23f9f517c33acf33ac79087` / documented sibling `c2faa7e38775adc91cb9b6675231e129de01986372842249343b8129dcefb51c`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadCI` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadCI.target.txt`, `facts/__glSpanReadCI.sibling.txt`, `facts/__glSpanReadCI.disasm.txt`, `facts/__glSpanReadCI.comparison.txt`
+
+- `__glSpanReadCI2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eae90. Occupies 196 bytes.
+  **Inferred.** Walks the contiguous colour-index span through one unknown callback (`jalr` at 0x21eaf10).
+  The loop advances its output cursor by four bytes (`daddiu` at 0x21eaf24), without a direct pixel store in this body.
+  Hostfacts preserves the buffer pointer first and leaves the per-pixel arguments unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18208]:8, a1=?, a2=?, a3=? | `jalr` at 0x21eaf10 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a1 (arg1 at entry) +0xcc | `lwc1` at 0x21eae9c |
+  | load | 4 bytes | a1 (arg1 at entry) +0xd0 | `lwc1` at 0x21eaea0 |
+  | load | 4 bytes | a1 (arg1 at entry) +0xb8 | `lw` at 0x21eaea8 |
+  | load | 8 bytes | a0 (arg0 at entry) +0x9a68 | `ld` at 0x21eaf00 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 196 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9abf64 +176 bytes / 148 changed common-prefix byte positions
+  SHA-256 target `70a9db3e35304eed62dc76567f9b0ef7974bd6d2dff4e2d606d873903f32fac4` / documented sibling `f6fb4babd9a69e67078e035f82f25484a60166a13cd493a7429d2ac5c496b3cf`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadCI2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadCI2.target.txt`, `facts/__glSpanReadCI2.sibling.txt`, `facts/__glSpanReadCI2.disasm.txt`, `facts/__glSpanReadCI2.comparison.txt`
+
+- `__glSpanReadDepth` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eaf60. Occupies 412 bytes.
+  **Inferred.** Converts unsigned callback results to float and multiplies them by a depth scale (`dsrl32` at 0x21eb018, `cvt.s.l` at 0x21eb020 and `mul.s` at 0x21eb024).
+  It has three fetch-call sites retaining entry a0 +40184 first (`jalr` at 0x21eb00c, `jalr` at 0x21eb05c and `jalr` at 0x21eb094).
+  The first output store resolves to the original destination. Later output and step cursors remain unknown, as shown below.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=a3 at entry (arg3) | `jalr` at 0x21eb00c |
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=? | `jalr` at 0x21eb05c |
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=? | `jalr` at 0x21eb094 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a2 (arg2 at entry) +0x0 | `swc1` at 0x21eb028 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb078 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb0b0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 412 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac014 +284 bytes / 260 changed common-prefix byte positions
+  SHA-256 target `5d8913cb17a92bc5fa34f84fcfb4e9db11689b86b4f0f730d8203d3011680d4e` / documented sibling `501940a9ecc1d4df4532d541f2336bbc9425a53c1ea3a854b4968f3067f128c7`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadDepth` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadDepth.target.txt`, `facts/__glSpanReadDepth.sibling.txt`, `facts/__glSpanReadDepth.disasm.txt`, `facts/__glSpanReadDepth.comparison.txt`
+
+- `__glSpanReadDepth2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb100. Occupies 380 bytes.
+  **Inferred.** Reads contiguous depth values through three callback sites (`jalr` at 0x21eb1a4, `jalr` at 0x21eb1ec and `jalr` at 0x21eb220).
+  The first result is zero-extended, converted to float and scaled (`dsrl32` at 0x21eb1b0, `cvt.s.l` at 0x21eb1b8 and `mul.s` at 0x21eb1bc).
+  Selected float-store sites below preserve the unresolved later destination bases. The exact callback coordinates remain unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=a3 at entry (arg3) | `jalr` at 0x21eb1a4 |
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=? | `jalr` at 0x21eb1ec |
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=? | `jalr` at 0x21eb220 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a2 (arg2 at entry) +0x0 | `swc1` at 0x21eb1c8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb208 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb248 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 380 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac130 +264 bytes / 242 changed common-prefix byte positions
+  SHA-256 target `44071a7f9792f7af3be342bd11b5d64db49f12dd5f24506372fa921b75b1a89e` / documented sibling `6a8de6dad5b4311a11dbe9bfb6e091ab54a7a85ba21d775161e11a4f0a61a9bd`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadDepth2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadDepth2.target.txt`, `facts/__glSpanReadDepth2.sibling.txt`, `facts/__glSpanReadDepth2.disasm.txt`, `facts/__glSpanReadDepth2.comparison.txt`
+
+- `__glSpanReadDepthUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb380. Occupies 236 bytes.
+  **Inferred.** Fetches depth through an unknown callback with entry a0 +40184 first (`jalr` at 0x21eb420).
+  It shifts the returned word and writes an integer word (`sllv` at 0x21eb42c and `sw` at 0x21eb438).
+  The complete shift-count formula and output cursor are unknown to hostfacts.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0+40184, a1=?, a2=?, a3=? | `jalr` at 0x21eb420 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21eb438 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 236 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac324 +216 bytes / 192 changed common-prefix byte positions
+  SHA-256 target `e79855798e93b4826ead09b0699e66cc6c6564abe3e549c26d09faf444d3d34b` / documented sibling `9667c046e63e7b25eb01ecb5f335145c234c2a0ae365cd5e649fd6e5f2ac0ead`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadDepthUint` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadDepthUint.target.txt`, `facts/__glSpanReadDepthUint.sibling.txt`, `facts/__glSpanReadDepthUint.disasm.txt`, `facts/__glSpanReadDepthUint.comparison.txt`
+
+- `__glSpanReadStencil` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb470. Occupies 232 bytes.
+  **Inferred.** Converts each stencil callback result from signed integer to float, then stores a float word (`cvt.s.w` at 0x21eb50c and `swc1` at 0x21eb510).
+  Its callback receives entry a0 +39968 first (`jalr` at 0x21eb500).
+  The descriptor-step load is a signed halfword at an unknown cursor (`lh` at 0x21eb518).
+  The target's float output is stated independently of the older source's integer-span role.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0+39968, a1=?, a2=?, a3=? | `jalr` at 0x21eb500 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb510 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 232 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac3fc +212 bytes / 185 changed common-prefix byte positions
+  SHA-256 target `d90c17f929d8d07dd49fe8a5d30c4f0bfa10536c56e439bf5fc2ffa642705a08` / documented sibling `cd23d8554aa03feda253a2a15b62ac368b0d8522e577c96f83c392ffa3593588`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadStencil` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadStencil.target.txt`, `facts/__glSpanReadStencil.sibling.txt`, `facts/__glSpanReadStencil.disasm.txt`, `facts/__glSpanReadStencil.comparison.txt`
+
+- `__glSpanReadStencil2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb560. Occupies 204 bytes.
+  **Inferred.** Uses the contiguous stencil callback and converts its result to float (`jalr` at 0x21eb5e0 and `cvt.s.w` at 0x21eb5ec).
+  The float store executes in the loop branch's delay slot (`swc1` at 0x21eb5fc).
+  Hostfacts leaves coordinates and destination base unknown. This body does not expose the actual stencil-buffer fetch contract.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0+39968, a1=?, a2=?, a3=? | `jalr` at 0x21eb5e0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21eb5fc |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 204 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac4d0 +196 bytes / 171 changed common-prefix byte positions
+  SHA-256 target `baae7321654a5dcaad4d560bfa2fdc67372a9144aa52d906273afd3ef8ba84ee` / documented sibling `441644081c2901388eb4baa6e3a591557ac5848a81182f19c237094c3085de0a`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanReadStencil2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanReadStencil2.target.txt`, `facts/__glSpanReadStencil2.sibling.txt`, `facts/__glSpanReadStencil2.disasm.txt`, `facts/__glSpanReadStencil2.comparison.txt`
+
+- `__glSlowDrawPixelsStore` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb630. Occupies 260 bytes.
+  **Inferred.** Copies a fragment record to its stack and has three callback sites.
+  The first two receive the context loaded through entry a0 and stack records at entry sp -84 and -96 (`jalr` at 0x21eb6e4 and `jalr` at 0x21eb708).
+  The final callback instead receives original entry a0 and entry sp -96 (`jalr` at 0x21eb718).
+  The first callback is skipped when the byte at the loaded context +0x8dc4 is zero (`lbu` at 0x21eb6a8 and `beqz` at 0x21eb6b0).
+  The second is skipped when bit 0x20 of the word at loaded context +0x808 is clear (`lw` at 0x21eb6ec, `andi` at 0x21eb6f0 and `beqz` at 0x21eb6f4).
+  The final callback follows both paths. Unknown procedure identities leave complete fog, texture and store effects unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0]:8, a1=sp-84, a2=a2 at entry (arg2), a3=?, a5=sp-96, a6=a1 at entry (arg1), a7=0xf5168. Floating registers: f17=[[a0]:8+3884] | `jalr` at 0x21eb6e4 |
+  | (unknown callee) | a0=[a0]:8, a1=sp-96, a2=?, a3=?. Floating registers: f14=[[a0]:8+520] | `jalr` at 0x21eb708 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=sp-96, a2=?, a3=? | `jalr` at 0x21eb718 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21eb688 |
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21eb69c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 260 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9ac5a0 +264 bytes / 231 changed common-prefix byte positions
+  SHA-256 target `f4e4e9d3becc906ceff9ab9ccb4e80febf43198fcd9846389fcc7d6c518630bc` / documented sibling `8f771ffef52dff0f2201f3c333faa67965dcbb9697e4aa1acaf1a4df64982e61`
+  Existing entry: `docs/sample-implementation.md`, `__glSlowDrawPixelsStore` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSlowDrawPixelsStore.target.txt`, `facts/__glSlowDrawPixelsStore.sibling.txt`, `facts/__glSlowDrawPixelsStore.disasm.txt`, `facts/__glSlowDrawPixelsStore.comparison.txt`
+
+- `__glSpanRenderRGBubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb740. Occupies 504 bytes.
+  **Inferred.** Reads three unsigned bytes for a temporary RGB fragment (`lbu` at 0x21eb84c, `lbu` at 0x21eb868 and `lbu` at 0x21eb880).
+  The mapped component floats are stored in RGB order in its stack fragment (`swc1` at 0x21eb864, `swc1` at 0x21eb87c and `swc1` at 0x21eb8a0).
+  The store callback receives the context's buffer pointer and entry sp -224 (`jalr` at 0x21eb8b8).
+  Row and pixel cursors remain partly unknown. Final descriptor-state writes appear below.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18200]:8, a1=sp-224, a2=?, a3=? | `jalr` at 0x21eb8b8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0xc8  value [[a0+39144]:8+1020] | `swc1` at 0x21eb7d0 |
+  | store | 4 bytes | sp (at entry) -0xd4 | `swc1` at 0x21eb864 |
+  | store | 4 bytes | sp (at entry) -0xd0 | `swc1` at 0x21eb87c |
+  | store | 4 bytes | sp (at entry) -0xcc | `swc1` at 0x21eb8a0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xe0 | `sw` at 0x21eb928 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xec | `sw` at 0x21eb934 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 504 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a7e80 +488 bytes / 370 changed common-prefix byte positions
+  SHA-256 target `131a144f11c50d9d2bfe887158b6e84555081cc038e44e6a9e56da8de6c920a0` / documented sibling `6c06aa5db6ec9727335f12a20b226904402531730e31882d63e335b8182f42ab`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBubyte` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanRenderRGBubyte.target.txt`, `facts/__glSpanRenderRGBubyte.sibling.txt`, `facts/__glSpanRenderRGBubyte.disasm.txt`, `facts/__glSpanRenderRGBubyte.comparison.txt`
+
+- `__glSpanRenderBGRubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21eb940. Occupies 504 bytes.
+  **Inferred.** Reads the three BGR input bytes through unsigned loads (`lbu` at 0x21eba4c, `lbu` at 0x21eba68 and `lbu` at 0x21eba80).
+  The first mapped component is stored in the blue slot and the last in the red slot (`swc1` at 0x21eba64 and `swc1` at 0x21ebaa0).
+  A single callback site uses the buffer pointer and temporary fragment at entry sp -224 (`jalr` at 0x21ebab8).
+  Unknown cursor values prevent a complete replication/row-progress claim.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18200]:8, a1=sp-224, a2=?, a3=? | `jalr` at 0x21ebab8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0xc8  value [[a0+39144]:8+1020] | `swc1` at 0x21eb9d0 |
+  | store | 4 bytes | sp (at entry) -0xcc | `swc1` at 0x21eba64 |
+  | store | 4 bytes | sp (at entry) -0xd0 | `swc1` at 0x21eba7c |
+  | store | 4 bytes | sp (at entry) -0xd4 | `swc1` at 0x21ebaa0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xe0 | `sw` at 0x21ebb28 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xec | `sw` at 0x21ebb34 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 504 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8070 +488 bytes / 370 changed common-prefix byte positions
+  SHA-256 target `0c36e70c23314913d0a90c600f626cf74002eaf56499565e886362a212fe3d9b` / documented sibling `cd3efe9ff70b1dc53f3347658987024edcba1b8b5ea1fd3784709b81854f6d49`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderBGRubyte` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanRenderBGRubyte.target.txt`, `facts/__glSpanRenderBGRubyte.sibling.txt`, `facts/__glSpanRenderBGRubyte.disasm.txt`, `facts/__glSpanRenderBGRubyte.comparison.txt`
+
+- `__glSpanRenderRGBubyte2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ebb40. Occupies 428 bytes.
+  **Inferred.** Builds a direct-path RGB fragment from unsigned byte components (`lbu` at 0x21ebc2c, `lbu` at 0x21ebc40 and `lbu` at 0x21ebc54).
+  The mapped float stores use the temporary RGB slots listed below (`swc1` at 0x21ebc3c, `swc1` at 0x21ebc50 and `swc1` at 0x21ebc70).
+  Its store callback receives the saved buffer pointer and entry sp -208 (`jalr` at 0x21ebc78).
+  The complete row termination and output effects remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18200]:8, a1=sp-208, a2=?, a3=? | `jalr` at 0x21ebc78 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0xb8  value [[a0+39144]:8+1020] | `swc1` at 0x21ebb94 |
+  | store | 4 bytes | sp (at entry) -0xc4 | `swc1` at 0x21ebc3c |
+  | store | 4 bytes | sp (at entry) -0xc0 | `swc1` at 0x21ebc50 |
+  | store | 4 bytes | sp (at entry) -0xbc | `swc1` at 0x21ebc70 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xe0 | `sw` at 0x21ebcdc |
+  | store | 4 bytes | a1 (arg1 at entry) +0xec | `sw` at 0x21ebce8 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 428 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8260 +412 bytes / 320 changed common-prefix byte positions
+  SHA-256 target `f298093de78cd666084730e5661b8ad84d5c44a174857146a41cc452af51a835` / documented sibling `a5f056600bff98cac42ff329bf92a47a20c783b3acd28715fd040b0cefefa0de`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBubyte2` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanRenderRGBubyte2.target.txt`, `facts/__glSpanRenderRGBubyte2.sibling.txt`, `facts/__glSpanRenderRGBubyte2.disasm.txt`, `facts/__glSpanRenderRGBubyte2.comparison.txt`
+
+- `__glSpanRenderBGRubyte2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ebcf0. Occupies 428 bytes.
+  **Inferred.** Maps BGR byte input into the temporary fragment with reversed red/blue placement (`lbu` at 0x21ebddc, `swc1` at 0x21ebdec, `lbu` at 0x21ebe04 and `swc1` at 0x21ebe20).
+  The green mapped value uses the middle slot (`swc1` at 0x21ebe00).
+  Its indirect store receives the buffer pointer and a fragment at entry sp -208 (`jalr` at 0x21ebe28).
+  The final descriptor updates retain their resolved target offsets below, without importing N32 cursor formulas.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+18200]:8, a1=sp-208, a2=?, a3=? | `jalr` at 0x21ebe28 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0xb8  value [[a0+39144]:8+1020] | `swc1` at 0x21ebd44 |
+  | store | 4 bytes | sp (at entry) -0xbc | `swc1` at 0x21ebdec |
+  | store | 4 bytes | sp (at entry) -0xc0 | `swc1` at 0x21ebe00 |
+  | store | 4 bytes | sp (at entry) -0xc4 | `swc1` at 0x21ebe20 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xe0 | `sw` at 0x21ebe8c |
+  | store | 4 bytes | a1 (arg1 at entry) +0xec | `sw` at 0x21ebe98 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 428 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9a8400 +412 bytes / 320 changed common-prefix byte positions
+  SHA-256 target `4469a628e58008e4f0602cc4b7cf7a597937a335b4150e0d1f3fb4a66e6db0db` / documented sibling `1b03f148354aac1b557102254820aefda0865abc91e5bf77da51b72084a9a844`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderBGRubyte2` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `facts/__glSpanRenderBGRubyte2.target.txt`, `facts/__glSpanRenderBGRubyte2.sibling.txt`, `facts/__glSpanRenderBGRubyte2.disasm.txt`, `facts/__glSpanRenderBGRubyte2.comparison.txt`
