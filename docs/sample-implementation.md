@@ -22275,3 +22275,429 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `5b39b26248125759ba4464d81a673483038fe84738d3e4893dbbe66bcef3ba97` / documented sibling `fc9e7a0ffc328de4fa288bda92de8b107a5f41c422d4edade2f54a4721408ba7`
   Existing entry: `docs/sample-implementation.md`, `__glle_Begin_QuadStrip` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
   Evidence: `facts/__glle_Begin_QuadStrip.target.txt`, `facts/__glle_Begin_QuadStrip.sibling.txt`, `facts/__glle_Begin_QuadStrip.disasm.txt`, `facts/__glle_Begin_QuadStrip.comparison.txt`
+
+- `__glle_Begin_Quads` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d2fa0, routine size 68 bytes.
+  Executes a recorded software quad begin through an
+  unnamed procedure with argument zero seven
+  (`jalr` at 0x21d2fc4).
+  The procedure pointer is a doubleword at absolute
+  0x10c8 (`ld` at 0x21d2fb4).
+  Returns original argument zero as the list program
+  pointer (`jr` at 0x21d2fdc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_Quads` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df2fa0,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `32c33248f89fc7c85e0efa57b0f776ac6d4225ba27c1e0cd7a1cd8ec57d9999e`.
+  Existing SHA-256: `32c33248f89fc7c85e0efa57b0f776ac6d4225ba27c1e0cd7a1cd8ec57d9999e`.
+  Evidence: `review-facts/__glle_Begin_Quads.target.txt`,
+  `review-facts/__glle_Begin_Quads.sibling.txt`, `review-facts/__glle_Begin_Quads.words.txt`,
+  `review-facts/__glle_Begin_Quads.bytes.txt`.
+
+- `__gllc_InvalidValue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d2ff0, routine size 96 bytes.
+  Compiles an invalid-value list operation using
+  `__glDlistAllocOp2` with argument one zero
+  (`bgezall` at 0x21d3010).
+  The operation's halfword +0x14 receives 0x3f2
+  (`sh` at 0x21d3044).
+  Appends it through `__glDlistAppendOp`, supplying
+  procedure address 0x21d3280 as argument two
+  (`bgezall` at 0x21d3040).
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_InvalidValue` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df2ff0,
+  96 bytes, labelled Inferred.
+  Comparison: target 96 bytes, existing 96 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `568a9e5ce4665de2f55a5d0dab7d3d450a035afcf139c5f9e469cde36cfaaae4`.
+  Existing SHA-256: `568a9e5ce4665de2f55a5d0dab7d3d450a035afcf139c5f9e469cde36cfaaae4`.
+  Evidence: `review-facts/__gllc_InvalidValue.target.txt`,
+  `review-facts/__gllc_InvalidValue.sibling.txt`, `review-facts/__gllc_InvalidValue.words.txt`,
+  `review-facts/__gllc_InvalidValue.bytes.txt`.
+
+- `__gllc_InvalidEnum` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3050, routine size 96 bytes.
+  Records a software invalid-enumeration operation.
+  Allocates through `__glDlistAllocOp2`
+  (`bgezall` at 0x21d3070), then places operation code
+  0x3f3 in the returned record's +0x14 halfword
+  (`sh` at 0x21d30a4).
+  `__glDlistAppendOp` receives that record and execution
+  procedure address 0x21d32d0 (`bgezall` at 0x21d30a0).
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_InvalidEnum` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3050,
+  96 bytes, labelled Inferred.
+  Comparison: target 96 bytes, existing 96 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `75eaf4a6168ef9283b7c82faf112d80d0d9982ce390f00bdeffeda416f76a705`.
+  Existing SHA-256: `75eaf4a6168ef9283b7c82faf112d80d0d9982ce390f00bdeffeda416f76a705`.
+  Evidence: `review-facts/__gllc_InvalidEnum.target.txt`,
+  `review-facts/__gllc_InvalidEnum.sibling.txt`, `review-facts/__gllc_InvalidEnum.words.txt`,
+  `review-facts/__gllc_InvalidEnum.bytes.txt`.
+
+- `__gllc_InvalidOperation` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d30b0, routine size 96 bytes.
+  Builds an invalid-operation entry for software list
+  execution. Uses `__glDlistAllocOp2` with original
+  argument zero and a zero size argument
+  (`bgezall` at 0x21d30d0).
+  Tags the result with halfword 0x3f4 at +0x14
+  (`sh` at 0x21d3104), and passes procedure address
+  0x21d3320 to `__glDlistAppendOp`
+  (`bgezall` at 0x21d3100).
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_InvalidOperation` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df30b0,
+  96 bytes, labelled Inferred.
+  Comparison: target 96 bytes, existing 96 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fe30693e89040a4b03810a6a43ddb8bd796f6e6474ae0d7ee5a4f3865039783b`.
+  Existing SHA-256: `fe30693e89040a4b03810a6a43ddb8bd796f6e6474ae0d7ee5a4f3865039783b`.
+  Evidence: `review-facts/__gllc_InvalidOperation.target.txt`,
+  `review-facts/__gllc_InvalidOperation.sibling.txt`, `review-facts/__gllc_InvalidOperation.words.txt`,
+  `review-facts/__gllc_InvalidOperation.bytes.txt`.
+
+- `__gllc_TableTooLarge` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3110, routine size 96 bytes.
+  Adds a table-size error operation to a software display
+  list. The allocation call receives argument one zero
+  (`bgezall` at 0x21d3130).
+  Writes 0x3f7 at returned-record +0x14
+  (`sh` at 0x21d3164).
+  The subsequent `__glDlistAppendOp` call retains original
+  argument zero and supplies execution address 0x21d3370
+  (`bgezall` at 0x21d3160).
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_TableTooLarge` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3110,
+  96 bytes, labelled Inferred.
+  Comparison: target 96 bytes, existing 96 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0ffbf7c9b197120e754323cba4e4aae8efde46ca0cab90b4c44e6553f081c1b3`.
+  Existing SHA-256: `0ffbf7c9b197120e754323cba4e4aae8efde46ca0cab90b4c44e6553f081c1b3`.
+  Evidence: `review-facts/__gllc_TableTooLarge.target.txt`,
+  `review-facts/__gllc_TableTooLarge.sibling.txt`, `review-facts/__gllc_TableTooLarge.words.txt`,
+  `review-facts/__gllc_TableTooLarge.bytes.txt`.
+
+- `__gllc_UnimplementedExtension` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3170, routine size 100 bytes.
+  Compiles an unsupported-extension marker using the
+  context doubleword read from absolute 0x1020
+  (`ld` at 0x21d3188).
+  `__glDlistAllocOp2` receives that context and zero
+  (`bgezall` at 0x21d3194).
+  Stores halfword 0x3f5 in result +0x14
+  (`sh` at 0x21d31c8), then appends with procedure
+  address 0x21d33c0 (`bgezall` at 0x21d31c4).
+  The append call's context argument remains unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_UnimplementedExtension` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3170,
+  100 bytes, labelled Inferred.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6dd878e1ab4fa1421d423445cbd56340068fd1616f2d0f9738715a3077d28386`.
+  Existing SHA-256: `6dd878e1ab4fa1421d423445cbd56340068fd1616f2d0f9738715a3077d28386`.
+  Evidence: `review-facts/__gllc_UnimplementedExtension.target.txt`,
+  `review-facts/__gllc_UnimplementedExtension.sibling.txt`, `review-facts/__gllc_UnimplementedExtension.words.txt`,
+  `review-facts/__gllc_UnimplementedExtension.bytes.txt`.
+
+- `__gllc_Error` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d31e0, routine size 152 bytes.
+  Dispatches software error compilation to four named
+  routines: `__gllc_TableTooLarge`, `__gllc_InvalidValue`,
+  `__gllc_InvalidEnum` and `__gllc_InvalidOperation`
+  (`bgezall` at 0x21d3230, 0x21d3244, 0x21d3254,
+  0x21d3268 respectively).
+  Each call preserves original argument zero.
+  No non-stack stores occur in this dispatcher, and
+  hostfacts leaves its merged integer return unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__gllc_Error` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df31e0,
+  152 bytes, labelled Inferred.
+  Comparison: target 152 bytes, existing 152 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `709e3cc02d42254ab0cb889306faf7083bdd88182497f0533dde56e6bc6e7b37`.
+  Existing SHA-256: `709e3cc02d42254ab0cb889306faf7083bdd88182497f0533dde56e6bc6e7b37`.
+  Evidence: `review-facts/__gllc_Error.target.txt`,
+  `review-facts/__gllc_Error.sibling.txt`, `review-facts/__gllc_Error.words.txt`,
+  `review-facts/__gllc_Error.bytes.txt`.
+
+- `__glle_InvalidValue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3280, routine size 68 bytes.
+  Executes the recorded invalid-value operation by calling
+  `__glSetError` with 0x501 (`jalr` at 0x21d32a4).
+  Restores original argument zero as the integer return
+  (`jr` at 0x21d32bc).
+  The error code is an immediate call argument, with
+  no instruction that writes a device register.
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_InvalidValue` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3280,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `ca5ccda8d5706163b736b6b1387268acecbdf4672a70ea347d5aac881116ea14`.
+  Existing SHA-256: `ca5ccda8d5706163b736b6b1387268acecbdf4672a70ea347d5aac881116ea14`.
+  Evidence: `review-facts/__glle_InvalidValue.target.txt`,
+  `review-facts/__glle_InvalidValue.sibling.txt`, `review-facts/__glle_InvalidValue.words.txt`,
+  `review-facts/__glle_InvalidValue.bytes.txt`.
+
+- `__glle_InvalidEnum` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d32d0, routine size 68 bytes.
+  Raises the recorded invalid-enumeration error through
+  `__glSetError(0x500)` (`jalr` at 0x21d32f4).
+  Returns the saved list program pointer from original
+  argument zero (`jr` at 0x21d330c).
+  Its complete body performs only stack memory accesses
+  and the callee-pointer read.
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_InvalidEnum` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df32d0,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `2fac096369d762ad71828669f9739e556f036e3703d83cee1355d299078634c1`.
+  Existing SHA-256: `2fac096369d762ad71828669f9739e556f036e3703d83cee1355d299078634c1`.
+  Evidence: `review-facts/__glle_InvalidEnum.target.txt`,
+  `review-facts/__glle_InvalidEnum.sibling.txt`, `review-facts/__glle_InvalidEnum.words.txt`,
+  `review-facts/__glle_InvalidEnum.bytes.txt`.
+
+- `__glle_InvalidOperation` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3320, routine size 68 bytes.
+  Reports invalid operation during software list execution.
+  The sole call sends 0x502 to `__glSetError`
+  (`jalr` at 0x21d3344).
+  Completion yields original argument zero
+  (`jr` at 0x21d335c), preserving the list program pointer
+  across error reporting. No context fields are stored.
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_InvalidOperation` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3320,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4980282cfe114ddd09228b6f35dad45bb5ed39e5ef3f6082805a16cf42c9b1f7`.
+  Existing SHA-256: `4980282cfe114ddd09228b6f35dad45bb5ed39e5ef3f6082805a16cf42c9b1f7`.
+  Evidence: `review-facts/__glle_InvalidOperation.target.txt`,
+  `review-facts/__glle_InvalidOperation.sibling.txt`, `review-facts/__glle_InvalidOperation.words.txt`,
+  `review-facts/__glle_InvalidOperation.bytes.txt`.
+
+- `__glle_TableTooLarge` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3370, routine size 68 bytes.
+  Executes a stored table-size error with code 0x8031
+  passed to `__glSetError` (`jalr` at 0x21d3394).
+  The returned integer is original argument zero
+  (`jr` at 0x21d33ac).
+  The routine has one call and no conditional branches
+  or non-stack output writes.
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_TableTooLarge` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3370,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8667ee687901d4cdc85716b4b2d772cc120d11a01277c068eab9329e56190b2f`.
+  Existing SHA-256: `8667ee687901d4cdc85716b4b2d772cc120d11a01277c068eab9329e56190b2f`.
+  Evidence: `review-facts/__glle_TableTooLarge.target.txt`,
+  `review-facts/__glle_TableTooLarge.sibling.txt`, `review-facts/__glle_TableTooLarge.words.txt`,
+  `review-facts/__glle_TableTooLarge.bytes.txt`.
+
+- `__glle_UnimplementedExtension` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d33c0, routine size 68 bytes.
+  Handles a recorded unsupported extension as error 0x502
+  through `__glSetError` (`jalr` at 0x21d33e4).
+  Retains original argument zero as the next software
+  list pointer (`jr` at 0x21d33fc).
+  Stack saves preserve that pointer while the error
+  callee runs. This body does not emit a command.
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_UnimplementedExtension` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df33c0,
+  68 bytes, labelled Inferred.
+  Comparison: target 68 bytes, existing 68 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fac003502e2a6b736d2a898cd0220269e8d62f1faddb02e5313f80cb61f0721f`.
+  Existing SHA-256: `fac003502e2a6b736d2a898cd0220269e8d62f1faddb02e5313f80cb61f0721f`.
+  Evidence: `review-facts/__glle_UnimplementedExtension.target.txt`,
+  `review-facts/__glle_UnimplementedExtension.sibling.txt`, `review-facts/__glle_UnimplementedExtension.words.txt`,
+  `review-facts/__glle_UnimplementedExtension.bytes.txt`.
+
+- `ApplyMatChange` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3410, routine size 436 bytes.
+  Applies software material values to argument one's
+  record. One path copies argument-three +0, +4 and +8
+  to record +0x4c, +0x54 and +0x50
+  (`swc1` at 0x21d3454, 0x21d3460, 0x21d3474).
+  Its flags word +4 is ORed with 0x20
+  (`sw` at 0x21d346c).
+  Another path writes the scalar at +0x48 and ORs 0x10
+  into +4 (`swc1` at 0x21d34f0, `sw` at 0x21d34e8).
+  The complete routine contains no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `ApplyMatChange` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3410,
+  436 bytes, labelled Inferred.
+  Comparison: target 436 bytes, existing 436 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fb421482206ef79d3ca627adcfd98cb54c891bfc0d905de6cf3bbba30182b79a`.
+  Existing SHA-256: `fb421482206ef79d3ca627adcfd98cb54c891bfc0d905de6cf3bbba30182b79a`.
+  Evidence: `review-facts/ApplyMatChange.target.txt`,
+  `review-facts/ApplyMatChange.sibling.txt`, `review-facts/ApplyMatChange.words.txt`,
+  `review-facts/ApplyMatChange.bytes.txt`.
+
+- `FreeFastMaterial` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d35d0, routine size 204 bytes.
+  Releases software fast-material lookup references through
+  `__glFreeSpecLUT` (`jalr` at 0x21d3660), retaining
+  original argument zero as the context.
+  Packed pointer reads use `ldl` at 0x21d3654 and
+  `ldr` at 0x21d3664. Their effective addresses and
+  the resulting call argument one remain unresolved.
+  The routine makes no non-stack stores.
+
+  Existing entry: `docs/sample-implementation.md`, `FreeFastMaterial` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df35d0,
+  204 bytes, labelled Inferred.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a6db1e9bd700843453489c4e76f595603b7da9bfef0adb2b2785460e6d138841`.
+  Existing SHA-256: `a6db1e9bd700843453489c4e76f595603b7da9bfef0adb2b2785460e6d138841`.
+  Evidence: `review-facts/FreeFastMaterial.target.txt`,
+  `review-facts/FreeFastMaterial.sibling.txt`, `review-facts/FreeFastMaterial.words.txt`,
+  `review-facts/FreeFastMaterial.bytes.txt`.
+
+- `__glDlistOptimizeMaterial` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d36a0, routine size 1468 bytes.
+  Folds software material operations using `ApplyMatChange`
+  and `__glCreateSpecLUT` (`bgezall` at 0x21d37fc,
+  `jalr` at 0x21d3a84).
+  Allocates a replacement operation through
+  `__glDlistAllocOp2` (`bgezall` at 0x21d3b2c).
+  Its halfword +0x14 receives 0x3f6
+  (`sh` at 0x21d3b58).
+  Copies data with `memcpy`, passing result +24 and
+  entry-stack -624 (`jalr` at 0x21d3b78).
+  Indexed record destinations remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDlistOptimizeMaterial` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df36a0,
+  1468 bytes, labelled Inferred.
+  Comparison: target 1468 bytes, existing 1468 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b65e8d7fe6427b6902d4e890da62bac54b0d98911748f3d30bca7227a80cafa7`.
+  Existing SHA-256: `b65e8d7fe6427b6902d4e890da62bac54b0d98911748f3d30bca7227a80cafa7`.
+  Evidence: `review-facts/__glDlistOptimizeMaterial.target.txt`,
+  `review-facts/__glDlistOptimizeMaterial.sibling.txt`, `review-facts/__glDlistOptimizeMaterial.words.txt`,
+  `review-facts/__glDlistOptimizeMaterial.bytes.txt`.
+
+- `__glle_FastMaterial` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3c60, routine size 740 bytes.
+  Executes packed software material changes. Calls
+  `__glFreeSpecLUT` and `__glValidateMaterial`
+  (`jalr` at 0x21d3e2c, 0x21d3ed8 respectively).
+  Their context and material arguments remain unknown
+  after the packed-record traversal.
+  Floating output sites include `swc1` at 0x21d3d34,
+  0x21d3d60, 0x21d3d8c, with unresolved effective addresses.
+  A separate unnamed procedure receives the context
+  read from absolute 0x1020 (`jalr` at 0x21d3f34).
+
+  Existing entry: `docs/sample-implementation.md`, `__glle_FastMaterial` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3c60,
+  740 bytes, labelled Inferred.
+  Comparison: target 740 bytes, existing 740 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8d44108409cab872025fc000e2e5fb3505f4a3f72bc0b8057abb94ef8e0749f1`.
+  Existing SHA-256: `8d44108409cab872025fc000e2e5fb3505f4a3f72bc0b8057abb94ef8e0749f1`.
+  Evidence: `review-facts/__glle_FastMaterial.target.txt`,
+  `review-facts/__glle_FastMaterial.sibling.txt`, `review-facts/__glle_FastMaterial.words.txt`,
+  `review-facts/__glle_FastMaterial.bytes.txt`.
+
+- `__glDisposeDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3f50, routine size 72 bytes.
+  Drops a software display-list reference by subtracting
+  one from argument-one +0 (`sw` at 0x21d3f68).
+  Loads the disposal procedure as a doubleword at
+  argument-one +8 (`ld` at 0x21d3f80).
+  Its unnamed call preserves the original arguments
+  (`jalr` at 0x21d3f88).
+  The merged integer return is not a defined success code.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDisposeDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3f50,
+  72 bytes, labelled Inferred.
+  Comparison: target 72 bytes, existing 72 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `173382d919d27c25de96f14f59caf26e72c5c80fc53d551f4239030ae8b0abf8`.
+  Existing SHA-256: `173382d919d27c25de96f14f59caf26e72c5c80fc53d551f4239030ae8b0abf8`.
+  Evidence: `review-facts/__glDisposeDlist.target.txt`,
+  `review-facts/__glDisposeDlist.sibling.txt`, `review-facts/__glDisposeDlist.words.txt`,
+  `review-facts/__glDisposeDlist.bytes.txt`.
+
+- `__glEmptyFreeDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x21d3fa0, routine size 8 bytes.
+  Provides the empty software display-list disposal hook.
+  Its complete supplied body is `jr` at 0x21d3fa0
+  followed by `nop` at 0x21d3fa4.
+  No memory access or call occurs, and no integer return
+  value is assigned.
+
+  Existing entry: `docs/sample-implementation.md`, `__glEmptyFreeDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3fa0,
+  8 bytes, labelled Established.
+  Comparison: target 8 bytes, existing 8 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Existing SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Evidence: `review-facts/__glEmptyFreeDlist.target.txt`,
+  `review-facts/__glEmptyFreeDlist.sibling.txt`, `review-facts/__glEmptyFreeDlist.words.txt`,
+  `review-facts/__glEmptyFreeDlist.bytes.txt`.
+
+- `__glEmptyExecuteDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x21d3fb0, routine size 8 bytes.
+  Implements the empty software display-list execution hook
+  with `jr` at 0x21d3fb0 and delay-slot `nop` at
+  0x21d3fb4. These two instructions cover the full body.
+  It neither updates a program pointer nor accesses
+  memory. Hostfacts leaves the integer return unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glEmptyExecuteDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3fb0,
+  8 bytes, labelled Established.
+  Comparison: target 8 bytes, existing 8 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Existing SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Evidence: `review-facts/__glEmptyExecuteDlist.target.txt`,
+  `review-facts/__glEmptyExecuteDlist.sibling.txt`, `review-facts/__glEmptyExecuteDlist.words.txt`,
+  `review-facts/__glEmptyExecuteDlist.bytes.txt`.
+
+- `__glDlistNewArray` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21d3fc0, routine size 168 bytes.
+  Creates a software display-list array through an unnamed
+  allocator with original context and size 32
+  (`jalr` at 0x21d3fe8).
+  Initializes returned-record word +0 to one
+  (`sw` at 0x21d4008) and invokes `__glDlistHeapInit`
+  with returned pointer +8 (`bgezall` at 0x21d4004).
+  Allocation failure reports 0x505 through `__glSetError`
+  (`jalr` at 0x21d4044) and returns zero
+  (`jr` at 0x21d4060).
+
+  Existing entry: `docs/sample-implementation.md`, `__glDlistNewArray` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2df3fc0,
+  168 bytes, labelled Inferred.
+  Comparison: target 168 bytes, existing 168 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4f6087f61ae44fb7697eefda31d71644fb19bd5c7ea1c4c7b1a4e28a3a22676d`.
+  Existing SHA-256: `4f6087f61ae44fb7697eefda31d71644fb19bd5c7ea1c4c7b1a4e28a3a22676d`.
+  Evidence: `review-facts/__glDlistNewArray.target.txt`,
+  `review-facts/__glDlistNewArray.sibling.txt`, `review-facts/__glDlistNewArray.words.txt`,
+  `review-facts/__glDlistNewArray.bytes.txt`.
