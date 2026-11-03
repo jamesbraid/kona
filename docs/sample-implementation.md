@@ -39198,3 +39198,163 @@ comparison was not rerun and supplies no new target equation.
   188 bytes. Both ranges have SHA-256
   `4821bb17e8e602221f72b05420d8034b0f6fc15884ded4a44a9ca3f1593560c7`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcTexture` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a6f0, occupies 100 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a6f0, which occupies
+  100 bytes. Both ranges have SHA-256
+  `f37ab45023a5e178060bff8208f7baae7cd5d671568a9e585941dc860a68755d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `CheckTexSubImageArgs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a760, occupies 1068 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a760, which occupies
+  1068 bytes. Both ranges have SHA-256
+  `998cf0df403fdd41cccf28d1c0a0843ce932f8e05abef8f962f31784345524f0`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `CheckTexSubImageRange` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226ac50, occupies 92 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8ac50, which occupies
+  92 bytes. Both ranges have SHA-256
+  `21cbe2b66147775222f699f6f9a955793232b518bb90b070f659dfd5f302c6fc`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_GenTexturesEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226bac0, occupies 184 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8bac0, which occupies
+  184 bytes. Both ranges have SHA-256
+  `b9e199342f5158cd7ac4ada7108d12feca864bd981cb664b452ed0c506f374fc`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_DeleteTexturesEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226bb80, occupies 856 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8bb80, which occupies
+  856 bytes. Both ranges have SHA-256
+  `187904d3e6171ac20d7d0a81e3163607194cae8b29552bcc5ac71b4988565e1f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glBindTexture` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226bee0, occupies 940 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8bee0, which occupies
+  940 bytes. Both ranges have SHA-256
+  `a3769f0da7bc4aa19fc267a2d40dd26bc9030f97beab32e7c6c1223ac5fcd023`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `IsTextureResident` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226c520, occupies 152 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8c520, which occupies
+  152 bytes. Both ranges have SHA-256
+  `39dd7d52e1edf2ff4a81074591e227b084b830de1cb13397e30990ac6bed6a41`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_AreTexturesResidentEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226c5c0, occupies 500 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8c5c0, which occupies
+  500 bytes. Both ranges have SHA-256
+  `39e0b3a8f4ebf66774378f0328b9d7170e56a9605a769748a852918711f58a51`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_IsTextureEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226c7c0, occupies 204 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8c7c0, which occupies
+  204 bytes. Both ranges have SHA-256
+  `88900dc78b465ed4a0f5706e39298fa9b742230d9c1d55ef9fb97357876281ed`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_EdgeFlag` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22772d0, occupies 12 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e972d0, which occupies
+  12 bytes. Both ranges have SHA-256
+  `8e60a3e8446f466011d8d2102d53f85264177918a9838926cfd3a5ef43149234`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_EdgeFlagv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22772e0, occupies 16 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e972e0, which occupies
+  16 bytes. Both ranges have SHA-256
+  `28f74cb09e00c3b89b133c88cb45dd3079a362485f65fc42e1e27b9d89f31cdc`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22772f0, occupies 176 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e972f0, which occupies
+  176 bytes. Both ranges have SHA-256
+  `47097e0991ddb843f79beb8a29ff556ecc742f3770efbd102cfa683c0db6234c`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex3fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22773a0, occupies 176 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e973a0, which occupies
+  176 bytes. Both ranges have SHA-256
+  `61afc414efab1dd4bbf6f4b82e5080349daf82c00de28adcdf445bf22522b2a3`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex4fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2277450, occupies 176 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e97450, which occupies
+  176 bytes. Both ranges have SHA-256
+  `c60da83cfe66df9ff5bbf05afc634a945099db2647dbf7a5ca5f9f0a43671b8a`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2277500, occupies 72 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e97500, which occupies
+  72 bytes. Both ranges have SHA-256
+  `b1d80a8f6b558494ebce874c83c897c218efca5629dfe87b9162260f97b75b1b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2277550, occupies 80 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e97550, which occupies
+  80 bytes. Both ranges have SHA-256
+  `cd99016f8396782cf0efd0e98fccff5a05320f8759bc9caa7c433b8b114a9523`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22775a0, occupies 88 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e975a0, which occupies
+  88 bytes. Both ranges have SHA-256
+  `58758971814e15080fa0b743d662691823871344b488ff8a51cdd1d082ed1da9`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2277600, occupies 88 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e97600, which occupies
+  88 bytes. Both ranges have SHA-256
+  `9d69f6c09f147ce1f387af6c2c2249252b5b0427ef898d51c70975241998144c`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2277660, occupies 96 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e97660, which occupies
+  96 bytes. Both ranges have SHA-256
+  `4ed701f8761a4ec3dc3fe61a0f8a81dbc2eef65b9e185195d11f97cb69ceaf2a`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Vertex2s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22776c0, occupies 88 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e976c0, which occupies
+  88 bytes. Both ranges have SHA-256
+  `7fde1f47732f607c7eb62d941e5d740c1be389c1af720aa9a5a93dc1787716c2`.
+  Existing note: `docs/sample-implementation.md`.
