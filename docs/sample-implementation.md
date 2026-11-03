@@ -8238,6 +8238,69 @@ Target entries:
   Byte comparison: target 100 bytes, SHA-256 `b1a31824352a920efc08dfe55796eb23153fdb541c8cc01f49597cdbeb60a2c5`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9abcf0, 120 bytes, SHA-256 `cda3d747945a445a9cdcabc51b8f805c70b92c05c8478f4f9df7999d83328d2b`; 80 differing bytes in the common prefix.
 
 
+#### IP35 N32 routines identical to their documented IP27 N32 siblings (batch 092)
+
+Each complete IP35 body below is byte-identical to the documented IP27 body at the listed range. These identity notes add no behavioral claims.
+
+- `__glSpanReadRGBA` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7440; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7440 for 204 bytes (SHA-256 `c07ff930e6188001bbb6f56449b13f2a52c181fc8c889a6f0fda23012535aaad`). Documented sibling grade: Inferred.
+
+- `__glSpanReadRGBA2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7510; occupies 88 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7510 for 88 bytes (SHA-256 `43154ab483769f595a1f5c9008b14507e5ab57d8b18c4f1d48b46c4f50697569`). Documented sibling grade: Inferred.
+
+- `__glSpanReadCI` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7570; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7570 for 204 bytes (SHA-256 `b738636ebefcc4d86425a34c01ad57a6f36c628afc636f20f0e3d200d80ea1a6`). Documented sibling grade: Inferred.
+
+- `__glSpanReadCI2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7640; occupies 176 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7640 for 176 bytes (SHA-256 `6df85b0c51c0e42b63dca0ecbbacb489d7951d7c5f40f6e0322f650a55c471c3`). Documented sibling grade: Inferred.
+
+- `__glSpanReadDepth` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a76f0; occupies 396 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a76f0 for 396 bytes (SHA-256 `a7d378c1cdb7b106554c181430ad75acf0f57387b4816a93d974ea6e65df619e`). Documented sibling grade: Inferred.
+
+- `__glSpanReadDepth2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7880; occupies 364 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7880 for 364 bytes (SHA-256 `2b1b6c32c7d6a83bd9870e460feac142b71e7926eac59f267db4127caaef4280`). Documented sibling grade: Inferred.
+
+- `__glSpanReadDepthUint` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7af0; occupies 220 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7af0 for 220 bytes (SHA-256 `44039f4b29f95ee8f6b2bde78409d56302773a95d13fffc7b5ed35ef9aaa4750`). Documented sibling grade: Inferred.
+
+- `__glSpanReadStencil` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7bd0; occupies 216 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7bd0 for 216 bytes (SHA-256 `69eadb436333e1b8229fbc59969323d717d9b1768b1a976a88daf54ef4bc4cfe`). Documented sibling grade: Inferred.
+
+- `__glSpanReadStencil2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7cb0; occupies 204 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7cb0 for 204 bytes (SHA-256 `fc70008de2e7e0b806ee606b88e2826c1baf8ccf501d3e6c229a9da1c136387e`). Documented sibling grade: Inferred.
+
+- `__glSlowDrawPixelsStore` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7d80; occupies 248 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7d80 for 248 bytes (SHA-256 `41f77c95bb3092a0a116b6001bbf7c11705630cd7bfcf4ff6f358b5031d0fb69`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderRGBubyte` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7e80; occupies 488 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a7e80 for 488 bytes (SHA-256 `6c06aa5db6ec9727335f12a20b226904402531730e31882d63e335b8182f42ab`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderBGRubyte` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8070; occupies 488 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8070 for 488 bytes (SHA-256 `cd3efe9ff70b1dc53f3347658987024edcba1b8b5ea1fd3784709b81854f6d49`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderRGBubyte2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8260; occupies 412 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8260 for 412 bytes (SHA-256 `a5f056600bff98cac42ff329bf92a47a20c783b3acd28715fd040b0cefefa0de`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderBGRubyte2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8400; occupies 412 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8400 for 412 bytes (SHA-256 `1b03f148354aac1b557102254820aefda0865abc91e5bf77da51b72084a9a844`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderRGBAubyte` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a85a0; occupies 504 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a85a0 for 504 bytes (SHA-256 `a66fcd503c2691f1a3420637b4b82e4cf0cbdba5d2c53c8d3c942d0f84105cd6`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderRGBAubyte2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a87a0; occupies 436 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a87a0 for 436 bytes (SHA-256 `8d82e067626e816873b7bfebfc5e77c41adc59aef2a7f3a160c243a9cd4e1def`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderDepthUint` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8960; occupies 440 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8960 for 440 bytes (SHA-256 `7f7570a1e0e0dc530375f027d32250da944f76aef846aa87d257702a135004e1`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderStencilUshort` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8c80; occupies 388 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8c80 for 388 bytes (SHA-256 `7dda53c6ab0a4caf4385777a19f7d90f9a009dd445496b08f79205dae10e350e`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderStencilUshort2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8e10; occupies 288 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8e10 for 288 bytes (SHA-256 `2039bc5be3b490df31c431835c82853bcedbdb1365c48fc2a41abc10855dfc47`). Documented sibling grade: Inferred.
+
+- `__glSpanRenderStencilUbyte` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a8f30; occupies 372 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a8f30 for 372 bytes (SHA-256 `64f479d2e8565f0187ab361945a0bef15089f9d1f92f88357564f4259601059c`). Documented sibling grade: Inferred.
 ## Software renderer (soft)
 
 ### so_accumop.c
