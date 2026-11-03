@@ -3589,6 +3589,146 @@ Target entries:
   Byte comparison: target 84 bytes, SHA-256 `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcc30, 76 bytes, SHA-256 `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53`; 63 differing bytes in the common prefix.
 
 
+#### IP35 O32 routines compared with their documented IP27 siblings (batch 064)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies receive only an identity note. Different bodies have separate target observations.
+
+| Routine | IP35 range | Documented sibling range | IP35 SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glMatValidateV1V2 | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00654 / 140 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00654 / 140 | `094ca32cd1c3b1f10c7a272df944b3a1023582eb169952c741fc66291e274ab1` | `094ca32cd1c3b1f10c7a272df944b3a1023582eb169952c741fc66291e274ab1` | 0 |
+| __glMatValidateV1V2V3 | usr/gfx/arch/IP35KONA/libGLcore.so 0xda006e0 / 196 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda006e0 / 196 | `9a2fb51802d81c99ce5f68528ed18e7f4310ab79ff04b97d30de7c67622c086a` | `9a2fb51802d81c99ce5f68528ed18e7f4310ab79ff04b97d30de7c67622c086a` | 0 |
+| __glMatValidateV2V3 | usr/gfx/arch/IP35KONA/libGLcore.so 0xda007a4 / 140 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda007a4 / 140 | `bbc92e28474f3685874aec904c3521161908cf0f64cc13b57731ca3fbbc5e484` | `bbc92e28474f3685874aec904c3521161908cf0f64cc13b57731ca3fbbc5e484` | 0 |
+| SecondTFanVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda008d4 / 56 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda008d4 / 56 | `3aa86e159863683e05318e33137667b12fbc1c8add49b317f4bf62c68c76889e` | `3aa86e159863683e05318e33137667b12fbc1c8add49b317f4bf62c68c76889e` | 0 |
+| FirstTFanVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda0090c / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fcf20 / 44 | `9720ba88bf65c03b9e8d3abb8aa0a85db789537f370b0474eedf34ffcc0ac00b` | `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7` | 31 |
+| __glBeginTFan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00938 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00938 / 52 | `f34425ed4cb5d5652c12a9e5b71f8a930a097f08a2bda7ac61f933911e193ad3` | `f34425ed4cb5d5652c12a9e5b71f8a930a097f08a2bda7ac61f933911e193ad3` | 0 |
+| SecondTStripVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda0096c / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda0096c / 52 | `ca4dce8363f8451cc8904d847289a2afab2f517a54842074cb8310c62db6c7c6` | `ca4dce8363f8451cc8904d847289a2afab2f517a54842074cb8310c62db6c7c6` | 0 |
+| FirstTStripVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda009a0 / 48 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fcfd0 / 48 | `2d9e9a5da7312415e8fc160c6b659822026b951631e7aa12b8c336ee6d50a32d` | `2e2787961f4910fa8438b810ab066b1f855df90e9e1b8673e378a4be9e7df341` | 35 |
+| __glBeginTStrip | usr/gfx/arch/IP35KONA/libGLcore.so 0xda009d0 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda009d0 / 52 | `74f0db4f28e924349b23ab395ca157b6e9e222ea8f6c1a7d53f0b03453e07d84` | `74f0db4f28e924349b23ab395ca157b6e9e222ea8f6c1a7d53f0b03453e07d84` | 0 |
+| SecondTrianglesVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00ab4 / 44 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00ab4 / 44 | `734b353725064541d490f3dfdaf1b1a5c624a2d9c469789fe5a57634ef52044c` | `734b353725064541d490f3dfdaf1b1a5c624a2d9c469789fe5a57634ef52044c` | 0 |
+| FirstTrianglesVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00ae0 / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fd110 / 44 | `86266252d52eb78127fea5b2fe272ff4a39ba93f106993c773dbacb694631b63` | `73dbc6c85771a8051ff7b05fc56dba3b10df4b18b76f39399dced8a7e8838767` | 33 |
+| __glBeginTriangles | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00b0c / 44 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00b0c / 44 | `b7d14c2fff88b5b26fbabf9319e740c95f33fc800359c247807656f4c932e83c` | `b7d14c2fff88b5b26fbabf9319e740c95f33fc800359c247807656f4c932e83c` | 0 |
+| ThirdQStripVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00c60 / 56 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00c60 / 56 | `237a095e96b2c3506f00725c528302bef08c063199cba28c1a412d3e52a57a6f` | `237a095e96b2c3506f00725c528302bef08c063199cba28c1a412d3e52a57a6f` | 0 |
+| SecondQStripVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00c98 / 48 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00c98 / 48 | `6b6538d189344cdeae42c1b4412861f38121823700efd224579b084d074cc413` | `6b6538d189344cdeae42c1b4412861f38121823700efd224579b084d074cc413` | 0 |
+| FirstQStripVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00cc8 / 48 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fd310 / 48 | `226cbcda7ddf4b802d2e22ff61f3479f243b8878ca08f97e3f75db4e08150c0d` | `0ef34d3e78617c5d67aa5a35d8f3c632b34b1f29a9e1750ea2f5d363c11105d7` | 35 |
+| __glBeginQStrip | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00cf8 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00cf8 / 52 | `51f0af9c11b29e19d1afbcf095666b48c57ab22df11e1a83d2845ab81f9a5307` | `51f0af9c11b29e19d1afbcf095666b48c57ab22df11e1a83d2845ab81f9a5307` | 0 |
+| ThirdQuadsVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00d2c / 40 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00d2c / 40 | `6f63442071ef8e4b9aafc42452ab7e8cdbe09d12f50489ce43bcd9f60139c2da` | `6f63442071ef8e4b9aafc42452ab7e8cdbe09d12f50489ce43bcd9f60139c2da` | 0 |
+| SecondQuadsVertex | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00d54 / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fd3b0 / 44 | `86f60339fa4c73c6ce8ceceb76ead2a8f2920c0778d2ba62feaa6fe09ecb0c25` | `9684a6c79d6f30e99ce0c84a48ca29161ce245e7d58ab51630ba987e998a6fc2` | 33 |
+| __glBeginQuads | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00dac / 40 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00dac / 40 | `252c4df72fa1d4cebfe9266eeacd68ede0d9347211ff51fdf590225ea36cb511` | `252c4df72fa1d4cebfe9266eeacd68ede0d9347211ff51fdf590225ea36cb511` | 0 |
+| __glEndPolygon | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00edc / 120 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00edc / 120 | `3b20a0c3c46cd85f85dc39d1b0ccb38076c4f2c7df6fdd721bd6bdc7f4c9082d` | `3b20a0c3c46cd85f85dc39d1b0ccb38076c4f2c7df6fdd721bd6bdc7f4c9082d` | 0 |
+
+Target entries:
+
+- `__glMatValidateV1V2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00654; occupies 140 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00654 for 140 bytes (SHA-256 `094ca32cd1c3b1f10c7a272df944b3a1023582eb169952c741fc66291e274ab1`).
+
+- `__glMatValidateV1V2V3` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda006e0; occupies 196 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda006e0 for 196 bytes (SHA-256 `9a2fb51802d81c99ce5f68528ed18e7f4310ab79ff04b97d30de7c67622c086a`).
+
+- `__glMatValidateV2V3` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda007a4; occupies 140 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda007a4 for 140 bytes (SHA-256 `bbc92e28474f3685874aec904c3521161908cf0f64cc13b57731ca3fbbc5e484`).
+
+- `SecondTFanVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda008d4; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda008d4 for 56 bytes (SHA-256 `3aa86e159863683e05318e33137667b12fbc1c8add49b317f4bf62c68c76889e`).
+
+- `FirstTFanVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0090c. Occupies 44 bytes.
+  Inferred. The first triangle-fan vertex marks byte entry a1 +0xb8 as 1 (`sb` at 0xda00920).
+  It stores entry a1 +0xc0 at entry a0 +0x31c8 (`sw` at 0xda0092c).
+  The handler word at entry a0 +0x2ee4 becomes 0xda008d4, the address identified as `SecondTFanVertex` (`sw` at 0xda00934).
+  That store is the return delay slot and does not call the installed handler (`jr` at 0xda00930).
+  Hostfacts reports no calls and leaves v0 unknown.
+  The routine occupies 44 bytes through exclusive end 0xda00938, rather than the queued 96 bytes.
+  Unequal exact ranges: target 44 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9fcf20 +44 bytes / 31 changed common-prefix byte positions
+  SHA-256 target `9720ba88bf65c03b9e8d3abb8aa0a85db789537f370b0474eedf34ffcc0ac00b` / documented N32 `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7`
+  Existing entry: `docs/sample-implementation.md`, `FirstTFanVertex` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `9720ba88bf65c03b9e8d3abb8aa0a85db789537f370b0474eedf34ffcc0ac00b`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fcf20, 44 bytes, SHA-256 `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7`; 31 differing bytes in the common prefix.
+
+- `__glBeginTFan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00938; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00938 for 52 bytes (SHA-256 `f34425ed4cb5d5652c12a9e5b71f8a930a097f08a2bda7ac61f933911e193ad3`).
+
+- `SecondTStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0096c; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0096c for 52 bytes (SHA-256 `ca4dce8363f8451cc8904d847289a2afab2f517a54842074cb8310c62db6c7c6`).
+
+- `FirstTStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda009a0. Occupies 48 bytes.
+  Inferred. The first triangle-strip vertex writes 1 to entry a1 +0xb8 (`sb` at 0xda009b4).
+  Its cursor output at entry a0 +0x31c8 is entry a1 +0xc0, and its saved vertex at +0x31d0 is entry a1 (`sw` at 0xda009c0 and `sw` at 0xda009c4).
+  It writes 0xda0096c, identified as `SecondTStripVertex`, to entry a0 +0x2ee4 (`sw` at 0xda009cc).
+  The return executes that handler-pointer store in its delay slot (`jr` at 0xda009c8).
+  The installed procedure is not called by this body, and the returned v0 remains unknown.
+  The verified range is 48 bytes through exclusive end 0xda009d0.
+  The queue supplied 100 bytes.
+  Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9fcfd0 +48 bytes / 35 changed common-prefix byte positions
+  SHA-256 target `2d9e9a5da7312415e8fc160c6b659822026b951631e7aa12b8c336ee6d50a32d` / documented N32 `2e2787961f4910fa8438b810ab066b1f855df90e9e1b8673e378a4be9e7df341`
+  Existing entry: `docs/sample-implementation.md`, `FirstTStripVertex` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `2d9e9a5da7312415e8fc160c6b659822026b951631e7aa12b8c336ee6d50a32d`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fcfd0, 48 bytes, SHA-256 `2e2787961f4910fa8438b810ab066b1f855df90e9e1b8673e378a4be9e7df341`; 35 differing bytes in the common prefix.
+
+- `__glBeginTStrip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda009d0; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda009d0 for 52 bytes (SHA-256 `74f0db4f28e924349b23ab395ca157b6e9e222ea8f6c1a7d53f0b03453e07d84`).
+
+- `SecondTrianglesVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00ab4; occupies 44 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00ab4 for 44 bytes (SHA-256 `734b353725064541d490f3dfdaf1b1a5c624a2d9c469789fe5a57634ef52044c`).
+
+- `FirstTrianglesVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00ae0. Occupies 44 bytes.
+  Inferred. The first separate-triangle vertex copies the unsigned byte at entry a0 +0x1c5 to entry a1 +0xb8 (`lbu` at 0xda00aec and `sb` at 0xda00af8).
+  A word store sets entry a0 +0x31c8 to entry a1 +0xc0 (`sw` at 0xda00b00).
+  Its return delay slot sets the entry a0 +0x2ee4 handler pointer to 0xda00ab4, identified as `SecondTrianglesVertex` (`jr` at 0xda00b04 and `sw` at 0xda00b08).
+  No call occurs and hostfacts leaves the return value unknown.
+  The body occupies 44 bytes through exclusive end 0xda00b0c, rather than the queued 88-byte range.
+  Unequal exact ranges: target 44 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9fd110 +44 bytes / 33 changed common-prefix byte positions
+  SHA-256 target `86266252d52eb78127fea5b2fe272ff4a39ba93f106993c773dbacb694631b63` / documented N32 `73dbc6c85771a8051ff7b05fc56dba3b10df4b18b76f39399dced8a7e8838767`
+  Existing entry: `docs/sample-implementation.md`, `FirstTrianglesVertex` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `86266252d52eb78127fea5b2fe272ff4a39ba93f106993c773dbacb694631b63`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fd110, 44 bytes, SHA-256 `73dbc6c85771a8051ff7b05fc56dba3b10df4b18b76f39399dced8a7e8838767`; 33 differing bytes in the common prefix.
+
+- `__glBeginTriangles` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00b0c; occupies 44 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00b0c for 44 bytes (SHA-256 `b7d14c2fff88b5b26fbabf9319e740c95f33fc800359c247807656f4c932e83c`).
+
+- `ThirdQStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00c60; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00c60 for 56 bytes (SHA-256 `237a095e96b2c3506f00725c528302bef08c063199cba28c1a412d3e52a57a6f`).
+
+- `SecondQStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00c98; occupies 48 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00c98 for 48 bytes (SHA-256 `6b6538d189344cdeae42c1b4412861f38121823700efd224579b084d074cc413`).
+
+- `FirstQStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00cc8. Occupies 48 bytes.
+  Inferred. The first quad-strip vertex sets entry a1 +0xb8 to byte 1 (`sb` at 0xda00cdc).
+  It saves entry a1 at entry a0 +0x31d4 (`sw` at 0xda00cec) and advances the cursor word at entry a0 +0x31c8 to entry a1 +0xc0 (`sw` at 0xda00ce8).
+  The handler pointer at entry a0 +0x2ee4 receives 0xda00c98, identified as `SecondQStripVertex` (`sw` at 0xda00cf4).
+  The return executes that store as its delay slot, with v0 unresolved (`jr` at 0xda00cf0).
+  The handler is installed for later use rather than invoked here.
+  Its range determined from mdebug and the next symbol is 48 bytes through exclusive end 0xda00cf8.
+  The queue supplied 100 bytes.
+  Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9fd310 +48 bytes / 35 changed common-prefix byte positions
+  SHA-256 target `226cbcda7ddf4b802d2e22ff61f3479f243b8878ca08f97e3f75db4e08150c0d` / documented N32 `0ef34d3e78617c5d67aa5a35d8f3c632b34b1f29a9e1750ea2f5d363c11105d7`
+  Existing entry: `docs/sample-implementation.md`, `FirstQStripVertex` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `226cbcda7ddf4b802d2e22ff61f3479f243b8878ca08f97e3f75db4e08150c0d`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fd310, 48 bytes, SHA-256 `0ef34d3e78617c5d67aa5a35d8f3c632b34b1f29a9e1750ea2f5d363c11105d7`; 35 differing bytes in the common prefix.
+
+- `__glBeginQStrip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00cf8; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00cf8 for 52 bytes (SHA-256 `51f0af9c11b29e19d1afbcf095666b48c57ab22df11e1a83d2845ab81f9a5307`).
+
+- `ThirdQuadsVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00d2c; occupies 40 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00d2c for 40 bytes (SHA-256 `6f63442071ef8e4b9aafc42452ab7e8cdbe09d12f50489ce43bcd9f60139c2da`).
+
+- `SecondQuadsVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00d54. Occupies 44 bytes.
+  Inferred. The second separate-quad vertex reads the unsigned byte at entry a0 +0x1c5 and copies it to entry a1 +0xb8 (`lbu` at 0xda00d60 and `sb` at 0xda00d6c).
+  It sets entry a0 +0x31c8 to entry a1 +0xc0 (`sw` at 0xda00d74).
+  The return delay slot writes 0xda00d2c, identified as `ThirdQuadsVertex`, to the handler word at entry a0 +0x2ee4 (`jr` at 0xda00d78 and `sw` at 0xda00d7c).
+  Hostfacts finds no calls and leaves v0 unknown.
+  The verified size is 44 bytes, ending exclusively at 0xda00d80, rather than the queued 128 bytes.
+  Unequal exact ranges: target 44 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9fd3b0 +44 bytes / 33 changed common-prefix byte positions
+  SHA-256 target `86f60339fa4c73c6ce8ceceb76ead2a8f2920c0778d2ba62feaa6fe09ecb0c25` / documented N32 `9684a6c79d6f30e99ce0c84a48ca29161ce245e7d58ab51630ba987e998a6fc2`
+  Existing entry: `docs/sample-implementation.md`, `SecondQuadsVertex` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `86f60339fa4c73c6ce8ceceb76ead2a8f2920c0778d2ba62feaa6fe09ecb0c25`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fd3b0, 44 bytes, SHA-256 `9684a6c79d6f30e99ce0c84a48ca29161ce245e7d58ab51630ba987e998a6fc2`; 33 differing bytes in the common prefix.
+
+- `__glBeginQuads` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00dac; occupies 40 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00dac for 40 bytes (SHA-256 `252c4df72fa1d4cebfe9266eeacd68ede0d9347211ff51fdf590225ea36cb511`).
+
+- `__glEndPolygon` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00edc; occupies 120 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00edc for 120 bytes (SHA-256 `3b20a0c3c46cd85f85dc39d1b0ccb38076c4f2c7df6fdd721bd6bdc7f4c9082d`).
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
