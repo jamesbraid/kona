@@ -9608,6 +9608,197 @@ Each row records exact target and sibling bytes. Notes distinguish native routin
 
 - `__glEvalMesh2Point` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
   Address 0xd9d52d0; occupies 632 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9d52d0 for 632 bytes (SHA-256 `c5fbef8ce81f34127adf1fcd595f13460e40744a7698373ca11bb50cddca7adf`). Documented sibling grade: Established.
+#### IP35 N32 routines compared with IP27 O32 and N32 siblings (batch 107)
+
+The table uses reviewer-confirmed native routine bounds. Identical bodies receive only an identity note. Different bodies have separate target observations with their target grades retained per entry.
+
+| Routine | IP35 target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `__glim_FeedbackBuffer` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6530 / 208 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dac30 / 224 | `1392dc7034bfc3d52f16870ebae597dd31acf7b882ae975fce7e21979f7c4171` | `ff3a6889b76da8084a6b8577d74d5dcd56292d5b5bf606961546a99d5302ce8c` | 194 |
+| `__glim_PassThrough` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6600 / 144 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dad10 / 156 | `15b9ac8d3a1aef711fcf6cd2c654358dbb88be3b656f080a2f11ba6272470483` | `f950810f6574c0d9ea2c76654021c5ed6e708a98d192062566e34c7509a95794` | 123 |
+| `__glFeedbackTag` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6690 / 80 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dadac / 80 | `9aaec617e2143283861052584c2422547bcbcc95b88b96a71ec23ec2d300bd04` | `f5c2d6754429dddbd95bb53f577fc1910164f6706dc1cf006292156247c01869` | 63 |
+| `__glFeedbackCopyPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6a40 / 88 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9db27c / 96 | `6480a591322a455deab7b05d66777cd148ffff3caf6512dd39f4ecab21b4bf00` | `debcbee4b8153aacd4507d02d4e23d7ade2423679ef1df04340693da0dac07b1` | 77 |
+| `__glFeedbackDrawPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6aa0 / 88 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9db2dc / 96 | `33bbee80ff16b18fb10b0b5da6cb1653c2a5c520f433511eec388055afe2c730` | `2b9bc029a5afe2f721154d6d00cfe20e53b72c16fe1a786e88b967f1158fa313` | 79 |
+| `__glFeedbackBitmap` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6b00 / 88 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9db33c / 96 | `a884869943dd7ae6cf38fe8adbdecbef164e3b2c9ed46a84e672f2a1916ac65c` | `59a38f7ff4ad6e9f81750dcacd3ae19273c94a4d6636ddc0425e839305963604` | 79 |
+| `__glFeedbackPoint` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6b60 / 88 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9db39c / 96 | `fc8e646a6ba4e283ba57f2e103511c9f5aad00c4811522b197aa04d394257bd3` | `0783d4cf1ed04a10c5e7db92fb498ff10fea31010b2a27f3c27ae597dcd6f940` | 79 |
+| `__glFeedbackLine` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d6bc0 / 212 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9db3fc / 228 | `54217dab4c6ec04174235601890cab88853f4d8988d5796cdf51164136dde543` | `ef1c07b6d8d41138f5acdc37b4d9cee22c857861757458c6e039a1399aa567a0` | 195 |
+| `__glFogSpan` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7220 / 180 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dbb90 / 240 | `f6d0deb3238708527ba28c6f057dcf072453ef256a8b895ec873b80e52028feb` | `0b555203539b4c7a762cb165b237172ff81ae84e1c6091bb66414c95c0fb4ecd` | 169 |
+| `__glFogStippledSpan` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d72e0 / 568 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9d72e0 / 568 | `03bc4e0adc5f6250d5c5ee74843daf1f95d87c9c2edf43eacbb63603681ed330` | `03bc4e0adc5f6250d5c5ee74843daf1f95d87c9c2edf43eacbb63603681ed330` | 0 |
+| `__glFogSpanSlow` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7520 / 472 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dbda8 / 516 | `1b7d5787e05b70ae6a1c48794a279fd34973817b6fd20383c88811779b3d055c` | `1cbbeb2f56e2ff27b68a29ce47ac1a091482c82d83d5508cead2297609355e6c` | 428 |
+| `__glFogStippledSpanSlow` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7700 / 612 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dbfac / 620 | `ecfe2b88900cac55bb5c10b7bcedd0d24d71e55fb6dce6eb07e827c1d0db092b` | `fa377b1de7b09da165a9396c9390bccad1f0db17ebc5ee2f234d027302530927` | 533 |
+| `__glFogFragmentSlow` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7970 / 356 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc218 / 428 | `1c2b353bb1a5641bcb026b16583726a35ca8bf6e28766082848673683e85802d` | `f0e8c3da2da88310e403dff7e9e7f6ac76cb3837ec656233fe3a5d94606c71d7` | 318 |
+| `__glFogVertex` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7ae0 / 260 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc3c4 / 280 | `ee4799238f9c343086f3ba12648775e516d2bf841f718b80b1b5b4c8fe6e714a` | `049751e161cdd3eee8e6fb72d72af3bc87b3218aa90713e5166aec007ceff036` | 229 |
+| `__glFogVertexLinear` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7bf0 / 76 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc4dc / 112 | `88ca7d011e6340b49b66a1d0de9df073157daa556c52bb14eae60fb5cecdd86e` | `28987983b58eb6a0f194276b12db653487647d33b6d3657d1a275c6c5b4e1c5a` | 67 |
+| `__glFogColorSlow` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7c40 / 104 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc54c / 136 | `27bdda3e67ccc808ad312af0c33f96cfa5fee0e70178266a64007053cdb551b2` | `5f5ddbaf28250cc415456ea5faed748c8e385997b89d6b4abecf6a2ef0409051` | 91 |
+| `__glim_GetTexEnvfv` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7cb0 / 216 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc5e0 / 252 | `43b336ac6e1561fc40e934a8fe6dbd8d05ca5edf6deed6e073a5686634d93903` | `4914986cb60e879534cb793469529dde5233a7cc6e8d74741d52a6832fa4344a` | 182 |
+| `__glim_GetTexEnviv` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7d90 / 200 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc6dc / 224 | `449bd61681c6a6139ca6fcb0487698b4344183e0b7f39a15a8cfc4a8213ec6dd` | `2ff9ceb00318622082ed297cd724bbac96cec543ccca6510f432aab13b3766dc` | 170 |
+| `__glim_GetTexGenfv` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7e60 / 332 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc7bc / 356 | `4a509eed0d058f888db1329f988f8e8fa1a7ecf2becdbbedee41a7f43dd06071` | `1066ea305561702e3ff66d72d5acccb1355f4f60cc9822ca28853f043d514a6f` | 270 |
+| `__glim_GetTexGendv` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9d7fb0 / 364 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9dc920 / 392 | `1876b6719ec45b481198228b9c045ae14d9f84e3ad0b4d7882d5745a8487d339` | `dcaf5795921e5a94602194cc03ec4030b50c7a33a9de984e6eb522037e9e4c50` | 307 |
+
+Target entries:
+
+- `__glim_FeedbackBuffer` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6530. Occupies 208 bytes.
+  Inferred. Feedback-buffer setup reports 0x500, 0x502, 0x502 and 0x501 at its four `__glSetError` sites (`jalr` at 0xd9d65bc, `jalr` at 0xd9d65cc, `jalr` at 0xd9d65e0, and `jalr` at 0xd9d65f0).
+  The selected state writes below are grounded in this target. The complete validation order is not inherited from the differently sized O32 body.
+  Byte comparison: target 208 bytes, SHA-256 `1392dc7034bfc3d52f16870ebae597dd31acf7b882ae975fce7e21979f7c4171`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dac30, 224 bytes, SHA-256 `ff3a6889b76da8084a6b8577d74d5dcd56292d5b5bf606961546a99d5302ce8c`; 194 differing bytes in the common prefix.
+
+- `__glim_PassThrough` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6600. Occupies 144 bytes.
+  Inferred. Pass-through feedback calls `__glFeedbackTag` twice with the context first (`bgezall` at 0xd9d665c and `bgezall` at 0xd9d666c).
+  Hostfacts resolves the first f13 value to bits 0x44e00000 and the second to entry f12.
+  Its other call reports 0x502 through `__glSetError` (`jalr` at 0xd9d6680).
+  Byte comparison: target 144 bytes, SHA-256 `15b9ac8d3a1aef711fcf6cd2c654358dbb88be3b656f080a2f11ba6272470483`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dad10, 156 bytes, SHA-256 `f950810f6574c0d9ea2c76654021c5ed6e708a98d192062566e34c7509a95794`; 123 differing bytes in the common prefix.
+
+- `__glFeedbackTag` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6690. Occupies 80 bytes.
+  **Established.** Feedback insertion returns without writing when entry a0 +0x1304 is nonzero (`lbu` at 0xd9d6690 and `bnez` at 0xd9d6694).
+  Otherwise its write path is selected when the pointer at entry a0 +0x130c is unsigned less than the base at +0x1308 plus the count at +0x1310 shifted left by 2 (`bnez` at 0xd9d66b4).
+  It stores f13 through that pointer and advances the pointer by four (`swc1` at 0xd9d66cc and `sw` at 0xd9d66dc).
+  The full-buffer path writes 1 to entry a0 +0x1304 (`sb` at 0xd9d66c0). No call occurs in this body.
+  Byte comparison: target 80 bytes, SHA-256 `9aaec617e2143283861052584c2422547bcbcc95b88b96a71ec23ec2d300bd04`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dadac, 80 bytes, SHA-256 `f5c2d6754429dddbd95bb53f577fc1910164f6706dc1cf006292156247c01869`; 63 differing bytes in the common prefix.
+
+- `__glFeedbackCopyPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6a40. Occupies 88 bytes.
+  **Established.** The copy-pixel feedback wrapper invokes `__glFeedbackTag` with entry a0 and floating-point f13 bits 0x44e0c000 (`bgezall` at 0xd9d6a68).
+  Its second call is the file-local `feedback` routine, with entry a0 and entry a1 (`bgezall` at 0xd9d6a7c).
+  The callee's complete vertex record and downstream buffer effects are not reconstructed here.
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9db27c +96 bytes / 77 changed common-prefix byte positions
+  SHA-256 target `6480a591322a455deab7b05d66777cd148ffff3caf6512dd39f4ecab21b4bf00` / documented O32 `debcbee4b8153aacd4507d02d4e23d7ade2423679ef1df04340693da0dac07b1`
+  Existing entry: `docs/sample-implementation.md`, `__glFeedbackCopyPixels` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Byte comparison: target 88 bytes, SHA-256 `6480a591322a455deab7b05d66777cd148ffff3caf6512dd39f4ecab21b4bf00`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9db27c, 96 bytes, SHA-256 `debcbee4b8153aacd4507d02d4e23d7ade2423679ef1df04340693da0dac07b1`; 77 differing bytes in the common prefix.
+
+- `__glFeedbackDrawPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6aa0. Occupies 88 bytes.
+  **Established.** The draw-pixel feedback wrapper invokes `__glFeedbackTag` with entry a0 and floating-point f13 bits 0x44e0a000 (`bgezall` at 0xd9d6ac8).
+  Its second call is the file-local `feedback` routine, with entry a0 and entry a1 (`bgezall` at 0xd9d6adc).
+  The callee's complete vertex record and downstream buffer effects are not reconstructed here.
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9db2dc +96 bytes / 79 changed common-prefix byte positions
+  SHA-256 target `33bbee80ff16b18fb10b0b5da6cb1653c2a5c520f433511eec388055afe2c730` / documented O32 `2b9bc029a5afe2f721154d6d00cfe20e53b72c16fe1a786e88b967f1158fa313`
+  Existing entry: `docs/sample-implementation.md`, `__glFeedbackDrawPixels` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Byte comparison: target 88 bytes, SHA-256 `33bbee80ff16b18fb10b0b5da6cb1653c2a5c520f433511eec388055afe2c730`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9db2dc, 96 bytes, SHA-256 `2b9bc029a5afe2f721154d6d00cfe20e53b72c16fe1a786e88b967f1158fa313`; 79 differing bytes in the common prefix.
+
+- `__glFeedbackBitmap` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6b00. Occupies 88 bytes.
+  **Established.** The bitmap feedback wrapper invokes `__glFeedbackTag` with entry a0 and floating-point f13 bits 0x44e08000 (`bgezall` at 0xd9d6b28).
+  Its second call is the file-local `feedback` routine, with entry a0 and entry a1 (`bgezall` at 0xd9d6b3c).
+  The callee's complete vertex record and downstream buffer effects are not reconstructed here.
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9db33c +96 bytes / 79 changed common-prefix byte positions
+  SHA-256 target `a884869943dd7ae6cf38fe8adbdecbef164e3b2c9ed46a84e672f2a1916ac65c` / documented O32 `59a38f7ff4ad6e9f81750dcacd3ae19273c94a4d6636ddc0425e839305963604`
+  Existing entry: `docs/sample-implementation.md`, `__glFeedbackBitmap` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Byte comparison: target 88 bytes, SHA-256 `a884869943dd7ae6cf38fe8adbdecbef164e3b2c9ed46a84e672f2a1916ac65c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9db33c, 96 bytes, SHA-256 `59a38f7ff4ad6e9f81750dcacd3ae19273c94a4d6636ddc0425e839305963604`; 79 differing bytes in the common prefix.
+
+- `__glFeedbackPoint` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6b60. Occupies 88 bytes.
+  **Established.** The point feedback wrapper invokes `__glFeedbackTag` with entry a0 and floating-point f13 bits 0x44e02000 (`bgezall` at 0xd9d6b88).
+  Its second call is the file-local `feedback` routine, with entry a0 and entry a1 (`bgezall` at 0xd9d6b9c).
+  The callee's complete vertex record and downstream buffer effects are not reconstructed here.
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9db39c +96 bytes / 79 changed common-prefix byte positions
+  SHA-256 target `fc8e646a6ba4e283ba57f2e103511c9f5aad00c4811522b197aa04d394257bd3` / documented O32 `0783d4cf1ed04a10c5e7db92fb498ff10fea31010b2a27f3c27ae597dcd6f940`
+  Existing entry: `docs/sample-implementation.md`, `__glFeedbackPoint` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Byte comparison: target 88 bytes, SHA-256 `fc8e646a6ba4e283ba57f2e103511c9f5aad00c4811522b197aa04d394257bd3`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9db39c, 96 bytes, SHA-256 `0783d4cf1ed04a10c5e7db92fb498ff10fea31010b2a27f3c27ae597dcd6f940`; 79 differing bytes in the common prefix.
+
+- `__glFeedbackLine` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d6bc0. Occupies 212 bytes.
+  Inferred. Line feedback has two `__glFeedbackTag` sites, with f13 bits 0x44e04000 and 0x44e0e000 (`bgezall` at 0xd9d6c10 and `bgezall` at 0xd9d6c84).
+  Two calls to the local `feedback` helper receive entry a0 with entry a1 and entry a2 respectively (`bgezall` at 0xd9d6c24 and `bgezall` at 0xd9d6c3c).
+  The complete colour-pointer swap and token-selection condition remain limited to the resolved accesses and call arguments.
+  Byte comparison: target 212 bytes, SHA-256 `54217dab4c6ec04174235601890cab88853f4d8988d5796cdf51164136dde543`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9db3fc, 228 bytes, SHA-256 `ef1c07b6d8d41138f5acdc37b4d9cee22c857861757458c6e039a1399aa567a0`; 195 differing bytes in the common prefix.
+
+- `__glFogSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7220. Occupies 180 bytes.
+  Inferred. Fast span fog includes fused multiply-add arithmetic and float writes through an unresolved pixel base (`madd.s` at 0xd9d7250 and `swc1` at 0xd9d7254).
+  Its RGB path includes further fused arithmetic (`madd.s` at 0xd9d7298 and `madd.s` at 0xd9d72ac).
+  The word at 0xd9d7284 remains undecoded. No full clamp condition or blend formula is reconstructed from O32.
+  Byte comparison: target 180 bytes, SHA-256 `f6d0deb3238708527ba28c6f057dcf072453ef256a8b895ec873b80e52028feb`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dbb90, 240 bytes, SHA-256 `0b555203539b4c7a762cb165b237172ff81ae84e1c6091bb66414c95c0fb4ecd`; 169 differing bytes in the common prefix.
+
+- `__glFogStippledSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d72e0; occupies 568 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9d72e0 for 568 bytes (SHA-256 `03bc4e0adc5f6250d5c5ee74843daf1f95d87c9c2edf43eacbb63603681ed330`). Documented sibling grade: Established.
+
+- `__glFogSpanSlow` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7520. Occupies 472 bytes.
+  Inferred. Slow span fog calls `powf` at two sites, with f12 bits 0x402df854 (`jalr` at 0xd9d7680 and `jalr` at 0xd9d76a0).
+  JSON facts report a float read from entry sp -0x80 with unknown value (`lwc1` at 0xd9d7568).
+  The same facts resolve state-colour reads at entry a0 +0x658/+0x638/+0x63c/+0x640 (`lwc1` at 0xd9d75c0, `lwc1` at 0xd9d762c, `lwc1` at 0xd9d763c, and `lwc1` at 0xd9d7650).
+  Text rendering fails with KeyError 80. JSON succeeds without analysis errors and confirms the 472-byte bounds.
+  The fused multiply-add at 0xd9d765c is followed by an unconditional branch to 0xd9d75cc (`beq` at 0xd9d7660). Two unknown words remain uninterpreted, and the complete fraction and output formula stay unresolved.
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 472 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9dbda8 +516 bytes / 428 changed common-prefix byte positions
+  SHA-256 target `1b7d5787e05b70ae6a1c48794a279fd34973817b6fd20383c88811779b3d055c` / documented O32 `1cbbeb2f56e2ff27b68a29ce47ac1a091482c82d83d5508cead2297609355e6c`
+  Existing entry: `docs/sample-implementation.md`, `__glFogSpanSlow` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Byte comparison: target 472 bytes, SHA-256 `1b7d5787e05b70ae6a1c48794a279fd34973817b6fd20383c88811779b3d055c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dbda8, 516 bytes, SHA-256 `1cbbeb2f56e2ff27b68a29ce47ac1a091482c82d83d5508cead2297609355e6c`; 428 differing bytes in the common prefix.
+
+- `__glFogStippledSpanSlow` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7700. Occupies 612 bytes.
+  Inferred. Stippled slow-span fog has two `powf` call sites (`jalr` at 0xd9d78c8 and `jalr` at 0xd9d78e8).
+  Both have f12 bits 0x402df854 in hostfacts, while the full exponent remains unresolved.
+  A stack float read supplies an unknown value (`lwc1` at 0xd9d7768).
+  Two decoder-unknown words preserve missing comparison predicates. The complete fraction, clamp and output behavior are not imported from the O32 source entry.
+  Byte comparison: target 612 bytes, SHA-256 `ecfe2b88900cac55bb5c10b7bcedd0d24d71e55fb6dce6eb07e827c1d0db092b`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dbfac, 620 bytes, SHA-256 `fa377b1de7b09da165a9396c9390bccad1f0db17ebc5ee2f234d027302530927`; 533 differing bytes in the common prefix.
+
+- `__glFogFragmentSlow` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7970. Occupies 356 bytes.
+  Inferred. Single-fragment fog has two `powf` call sites (`jalr` at 0xd9d7a94 and `jalr` at 0xd9d7ac0).
+  Both have f12 bits 0x402df854 in hostfacts, while the full exponent remains unresolved.
+  A stack float read supplies an unknown value (`lwc1` at 0xd9d79a8).
+  Two decoder-unknown words preserve missing comparison predicates. The complete fraction, clamp and output behavior are not imported from the O32 source entry.
+  Byte comparison: target 356 bytes, SHA-256 `1c2b353bb1a5641bcb026b16583726a35ca8bf6e28766082848673683e85802d`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc218, 428 bytes, SHA-256 `f0e8c3da2da88310e403dff7e9e7f6ac76cb3837ec656233fe3a5d94606c71d7`; 318 differing bytes in the common prefix.
+
+- `__glFogVertex` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7ae0. Occupies 260 bytes.
+  Inferred. Vertex fog evaluation has two `powf` call sites (`jalr` at 0xd9d7ba4 and `jalr` at 0xd9d7bd0).
+  Both have f12 bits 0x402df854 in hostfacts, while the full exponent remains unresolved.
+  A stack float read supplies an unknown value (`lwc1` at 0xd9d7b14).
+  Two decoder-unknown words preserve missing comparison predicates. The complete fraction, clamp and output behavior are not imported from the O32 source entry.
+  Byte comparison: target 260 bytes, SHA-256 `ee4799238f9c343086f3ba12648775e516d2bf841f718b80b1b5b4c8fe6e714a`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc3c4, 280 bytes, SHA-256 `049751e161cdd3eee8e6fb72d72af3bc87b3218aa90713e5166aec007ceff036`; 229 differing bytes in the common prefix.
+
+- `__glFogVertexLinear` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7bf0. Occupies 76 bytes.
+  Inferred. Linear vertex fog reads the source float at entry a1 +0x68 and state words at entry a0 +0x654/+0x650 (`lwc1` at 0xd9d7bf4, `lwc1` at 0xd9d7c08, and `lwc1` at 0xd9d7c0c).
+  Arithmetic includes subtraction and multiplication (`sub.s` at 0xd9d7c10 and `mul.s` at 0xd9d7c14).
+  Two unknown words at 0xd9d7c18 and 0xd9d7c28 leave its full clamp conditions unresolved. There are no calls.
+  Byte comparison: target 76 bytes, SHA-256 `88ca7d011e6340b49b66a1d0de9df073157daa556c52bb14eae60fb5cecdd86e`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc4dc, 112 bytes, SHA-256 `28987983b58eb6a0f194276b12db653487647d33b6d3657d1a275c6c5b4e1c5a`; 67 differing bytes in the common prefix.
+
+- `__glFogColorSlow` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7c40. Occupies 104 bytes.
+  Inferred. Colour fog reads a float at entry a0 +0xdd8 (`lwc1` at 0xd9d7c40) and the colour-mode byte at +0xc95 (`lbu` at 0xd9d7c44).
+  Its selected arithmetic includes fused multiply-adds (`madd.s` at 0xd9d7c58 and `madd.s` at 0xd9d7c7c).
+  A fused multiply-add occurs at 0xd9d7c84 (`madd.s` at 0xd9d7c84). Its result remains unresolved, and the body has no calls.
+  Byte comparison: target 104 bytes, SHA-256 `27bdda3e67ccc808ad312af0c33f96cfa5fee0e70178266a64007053cdb551b2`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc54c, 136 bytes, SHA-256 `5f5ddbaf28250cc415456ea5faed748c8e385997b89d6b4abecf6a2ef0409051`; 91 differing bytes in the common prefix.
+
+- `__glim_GetTexEnvfv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7cb0. Occupies 216 bytes.
+  Inferred. Float texture-environment query invokes `__glUnScaleColorf` with the context, entry a2 as output and the active-record pointer at context +0x9b4 plus 4 as input (`jalr` at 0xd9d7d38).
+  Its error calls pass 0x500 twice and 0x502 once (`jalr` at 0xd9d7cf0, `jalr` at 0xd9d7d14, and `jalr` at 0xd9d7d78).
+  The complete enum dispatch and unscaling result remain separate from the O32 comparison.
+  Byte comparison: target 216 bytes, SHA-256 `43b336ac6e1561fc40e934a8fe6dbd8d05ca5edf6deed6e073a5686634d93903`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc5e0, 252 bytes, SHA-256 `4914986cb60e879534cb793469529dde5233a7cc6e8d74741d52a6832fa4344a`; 182 differing bytes in the common prefix.
+
+- `__glim_GetTexEnviv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7d90. Occupies 200 bytes.
+  Inferred. Integer texture-environment query invokes `__glUnScaleColori` with the context, entry a2 as output and the active-record pointer at context +0x9b4 plus 4 as input (`jalr` at 0xd9d7e18).
+  Its error calls pass 0x500 twice and 0x502 once (`jalr` at 0xd9d7dd0, `jalr` at 0xd9d7df0, and `jalr` at 0xd9d7e48).
+  The complete enum dispatch and unscaling result remain separate from the O32 comparison.
+  Byte comparison: target 200 bytes, SHA-256 `449bd61681c6a6139ca6fcb0487698b4344183e0b7f39a15a8cfc4a8213ec6dd`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc6dc, 224 bytes, SHA-256 `2ff9ceb00318622082ed297cd724bbac96cec543ccca6510f432aab13b3766dc`; 170 differing bytes in the common prefix.
+
+- `__glim_GetTexGenfv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7e60. Occupies 332 bytes.
+  Inferred. Float texture-coordinate-generation query includes unsigned-word mode conversion (`cvt.s.l` at 0xd9d7f54).
+  Three `__glSetError` sites pass 0x500, 0x500 and 0x502 (`jalr` at 0xd9d7eb4, `jalr` at 0xd9d7ee4, and `jalr` at 0xd9d7f9c).
+  Selected output stores below preserve the target widths. The complete plane-record selection is not inferred from the O32 source layout.
+  Byte comparison: target 332 bytes, SHA-256 `4a509eed0d058f888db1329f988f8e8fa1a7ecf2becdbbedee41a7f43dd06071`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc7bc, 356 bytes, SHA-256 `1066ea305561702e3ff66d72d5acccb1355f4f60cc9822ca28853f043d514a6f`; 270 differing bytes in the common prefix.
+
+- `__glim_GetTexGendv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9d7fb0. Occupies 364 bytes.
+  Inferred. Double texture-coordinate-generation query includes unsigned-word mode conversion (`cvt.d.l` at 0xd9d80b8).
+  Three `__glSetError` sites pass 0x500, 0x500 and 0x502 (`jalr` at 0xd9d8004, `jalr` at 0xd9d8034, and `jalr` at 0xd9d810c).
+  Selected output stores below preserve the target widths. The complete plane-record selection is not inferred from the O32 source layout.
+  Byte comparison: target 364 bytes, SHA-256 `1876b6719ec45b481198228b9c045ae14d9f84e3ad0b4d7882d5745a8487d339`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9dc920, 392 bytes, SHA-256 `dcaf5795921e5a94602194cc03ec4030b50c7a33a9de984e6eb522037e9e4c50`; 307 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
