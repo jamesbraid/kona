@@ -29060,3 +29060,436 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `734a880bc50c8fae7c6dde4df7d79a27700768b442381a2153d8017ee0b5c332` / documented sibling `10abddb7d5f07d10284abd7aa913918541cc6b69556ae238c05865dd2d2ecbe6`
   Existing entry: `docs/sample-implementation.md`, `__glim_Hint` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
   Evidence: `review-facts/__glim_Hint.target.txt`, `review-facts/__glim_Hint.sibling.txt`, `review-facts/__glim_Hint.words.txt`, `review-facts/__glim_Hint.bytes.txt`
+
+- `__glim_IndexMask` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2200f10, routine size 124 bytes.
+  Updates the software colour-index mask at pointed-context
+  +0x860 (`sw` at 0x2200f44).
+  The masking word is read at context +0x99f0
+  (`lw` at 0x2200f3c).
+  Marks pending state with two at absolute 0x1030
+  (`sw` at 0x2200f4c) and ORs 0x1 into context
+  +0x4714 (`sw` at 0x2200f64).
+  Error handling calls `__glSetError(0x502)`
+  (`jalr` at 0x2200f7c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_IndexMask` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e20f10,
+  124 bytes, labelled Established.
+  Comparison: target 124 bytes, existing 124 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c020a60ceaa44a7b89ea528037f774b16cf692b16f4e7b0f250e59e71a747b05`.
+  Existing SHA-256: `c020a60ceaa44a7b89ea528037f774b16cf692b16f4e7b0f250e59e71a747b05`.
+  Evidence: `facts/__glim_IndexMask.target.txt`,
+  `facts/__glim_IndexMask.existing.txt`, `facts/__glim_IndexMask.full.listing.txt`,
+  `facts/__glim_IndexMask.compare.txt`.
+
+- `__glTransformLightDirection` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2200f90, routine size 320 bytes.
+  Transforms a software light direction using a local
+  vector at entry-stack -0x50, -0x4c and -0x48
+  (`swc1` at 0x2200fc4, 0x2200fcc, 0x2200fd4).
+  One unnamed procedure receives original argument-one
+  +80, entry-stack -80 and the context +0x94c0 pointer
+  +104 (`jalr` at 0x2201084).
+  Two other unnamed calls appear (`jalr` at 0x2201068,
+  0x22010b0). The final call's arguments remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glTransformLightDirection` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e20f90,
+  320 bytes, labelled Inferred.
+  Comparison: target 320 bytes, existing 320 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `35ac112de9888ebba2ceda05bf343154b65e65512708244b5e10136370ce41b0`.
+  Existing SHA-256: `35ac112de9888ebba2ceda05bf343154b65e65512708244b5e10136370ce41b0`.
+  Evidence: `facts/__glTransformLightDirection.target.txt`,
+  `facts/__glTransformLightDirection.existing.txt`, `facts/__glTransformLightDirection.full.listing.txt`,
+  `facts/__glTransformLightDirection.compare.txt`.
+
+- `__glim_Lightfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22010d0, routine size 652 bytes.
+  Applies software light parameters from a float vector.
+  Calls `__glScaleColorf` (`jalr` at 0x220118c,
+  0x22011d4, 0x220131c) and
+  `__glTransformLightDirection` (`bgezall` at 0x22012bc).
+  A store at absolute 0x1030 writes two (`sw` at 0x2201198).
+  Another store ORs 0x20 into pointed-context +0x4714
+  (`sw` at 0x22011ac).
+  Six undecoded comparison words leave their predicates
+  unknown. Indexed light-record store addresses are unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Lightfv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e210d0,
+  652 bytes, labelled Established.
+  Comparison: target 652 bytes, existing 652 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `03a7a22b10fcdd3e95f3ee69548579b81a6807a371a0ed30b76c8c04073eda41`.
+  Existing SHA-256: `03a7a22b10fcdd3e95f3ee69548579b81a6807a371a0ed30b76c8c04073eda41`.
+  Evidence: `facts/__glim_Lightfv.target.txt`,
+  `facts/__glim_Lightfv.existing.txt`, `facts/__glim_Lightfv.full.listing.txt`,
+  `facts/__glim_Lightfv.compare.txt`.
+
+- `__glim_Lightf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201360, routine size 132 bytes.
+  Stores f14 at entry-stack -0x10 (`swc1` at 0x2201364).
+  `__glim_Lightfv` receives that address as argument two
+  and retains the original light and parameter arguments
+  (`bgezall` at 0x22013d4).
+  A call passes 0x500 to `__glSetError`
+  (`jalr` at 0x22013b8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Lightf` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21360,
+  132 bytes, labelled Established.
+  Comparison: target 132 bytes, existing 132 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `db4e7590a8cabc72c5a41d8cfcd453601f359d0ab5451c0dc5a336e68734b999`.
+  Existing SHA-256: `db4e7590a8cabc72c5a41d8cfcd453601f359d0ab5451c0dc5a336e68734b999`.
+  Evidence: `facts/__glim_Lightf.target.txt`,
+  `facts/__glim_Lightf.existing.txt`, `facts/__glim_Lightf.full.listing.txt`,
+  `facts/__glim_Lightf.compare.txt`.
+
+- `__glim_Lightiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22013f0, routine size 684 bytes.
+  Converts integer software light parameters through
+  `__glScaleColori` (`jalr` at 0x22014ac,
+  0x22014f0, 0x220165c).
+  Direction handling calls `__glTransformLightDirection`
+  (`bgezall` at 0x22015dc).
+  Writes two to absolute 0x1030 (`sw` at 0x22014b8)
+  and ORs 0x20 into context +0x4714
+  (`sw` at 0x22014cc).
+  Computed light-record effective addresses stay unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Lightiv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e213f0,
+  684 bytes, labelled Established.
+  Comparison: target 684 bytes, existing 684 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bcd2a7266038ae20f16d82653344c7d1275c79ad108b40070fbebcd60861fe0e`.
+  Existing SHA-256: `bcd2a7266038ae20f16d82653344c7d1275c79ad108b40070fbebcd60861fe0e`.
+  Evidence: `facts/__glim_Lightiv.target.txt`,
+  `facts/__glim_Lightiv.existing.txt`, `facts/__glim_Lightiv.full.listing.txt`,
+  `facts/__glim_Lightiv.compare.txt`.
+
+- `__glim_Lighti` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22016a0, routine size 120 bytes.
+  Saves original argument two as a word at entry-stack -0xc
+  (`sw` at 0x22016b0). Calls `__glim_Lightiv` with original
+  arguments zero and one plus that address (`bgezall` at 0x2201708).
+  A call passes error 0x500 to `__glSetError`
+  (`jalr` at 0x22016ec).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Lighti` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e216a0,
+  120 bytes, labelled Established.
+  Comparison: target 120 bytes, existing 120 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5a49bfacdc14059ccb029fe382f72286d5e6ee92e005fc013ad97cedd55cc1d6`.
+  Existing SHA-256: `5a49bfacdc14059ccb029fe382f72286d5e6ee92e005fc013ad97cedd55cc1d6`.
+  Evidence: `facts/__glim_Lighti.target.txt`,
+  `facts/__glim_Lighti.existing.txt`, `facts/__glim_Lighti.full.listing.txt`,
+  `facts/__glim_Lighti.compare.txt`.
+
+- `__glim_LightModelfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201720, routine size 308 bytes.
+  A word output reaches pointed-context +0x688
+  (`sw` at 0x22017bc), with byte outputs at +0x684
+  and +0x685 (`sb` at 0x2201808, 0x2201820).
+  A `__glScaleColorf` call receives the pointed-context
+  +1652 address and the original vector (`jalr` at 0x2201844).
+  The comparison word at 0x2201810 is undecoded,
+  so its dependent Boolean value remains unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LightModelfv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21720,
+  308 bytes, labelled Established.
+  Comparison: target 308 bytes, existing 308 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `da3399e5066127d3fabbece7ae1b511f8da65ca5051eca8c493cc105aab19cbd`.
+  Existing SHA-256: `da3399e5066127d3fabbece7ae1b511f8da65ca5051eca8c493cc105aab19cbd`.
+  Evidence: `facts/__glim_LightModelfv.target.txt`,
+  `facts/__glim_LightModelfv.existing.txt`, `facts/__glim_LightModelfv.full.listing.txt`,
+  `facts/__glim_LightModelfv.compare.txt`.
+
+- `__glim_LightModelf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201860, routine size 108 bytes.
+  Places f13 at entry-stack -8 (`swc1` at 0x2201864).
+  `__glim_LightModelfv` receives that pointer as argument one
+  and retains the parameter enumerant in argument zero
+  (`bgezall` at 0x22018bc).
+  A call passes error 0x500 to `__glSetError`
+  (`jalr` at 0x22018a0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LightModelf` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21860,
+  108 bytes, labelled Established.
+  Comparison: target 108 bytes, existing 108 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `05b5733b817a292ecc9e490a5d06f7924b3a7e426e0af0c64f55b195cad7bd29`.
+  Existing SHA-256: `05b5733b817a292ecc9e490a5d06f7924b3a7e426e0af0c64f55b195cad7bd29`.
+  Evidence: `facts/__glim_LightModelf.target.txt`,
+  `facts/__glim_LightModelf.existing.txt`, `facts/__glim_LightModelf.full.listing.txt`,
+  `facts/__glim_LightModelf.compare.txt`.
+
+- `__glim_LightModeliv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22018d0, routine size 272 bytes.
+  Copies the original vector's first word to context +0x688
+  (`sw` at 0x2201960).
+  Byte outputs reach +0x684 and +0x685
+  (`sb` at 0x22019a0, 0x22019b0).
+  Uses `__glScaleColori` with the pointed-context
+  +1652 destination (`jalr` at 0x22019d0).
+  Hostfacts leaves later dirty-word effective addresses
+  unresolved (`sw` at 0x2201984).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LightModeliv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e218d0,
+  272 bytes, labelled Established.
+  Comparison: target 272 bytes, existing 272 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d83150ce36f2bb5724664597972d29ba244d3c7bce1d38c4409489e234b0ce16`.
+  Existing SHA-256: `d83150ce36f2bb5724664597972d29ba244d3c7bce1d38c4409489e234b0ce16`.
+  Evidence: `facts/__glim_LightModeliv.target.txt`,
+  `facts/__glim_LightModeliv.existing.txt`, `facts/__glim_LightModeliv.full.listing.txt`,
+  `facts/__glim_LightModeliv.compare.txt`.
+
+- `__glim_LightModeli` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22019e0, routine size 100 bytes.
+  Supplies an integer scalar to the software lighting-model
+  vector interface. The value occupies entry-stack -4
+  (`sw` at 0x22019f0).
+  `__glim_LightModeliv` receives that address as argument
+  one (`bgezall` at 0x2201a34).
+  Its other call emits error 0x500 through
+  `__glSetError` (`jalr` at 0x2201a18).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LightModeli` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e219e0,
+  100 bytes, labelled Established.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `2859d398473f80349def332580a9cec8a1b838eed0db8aec88db120de4a83cc3`.
+  Existing SHA-256: `2859d398473f80349def332580a9cec8a1b838eed0db8aec88db120de4a83cc3`.
+  Evidence: `facts/__glim_LightModeli.target.txt`,
+  `facts/__glim_LightModeli.existing.txt`, `facts/__glim_LightModeli.full.listing.txt`,
+  `facts/__glim_LightModeli.compare.txt`.
+
+- `__glim_LineStipple` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201a50, routine size 136 bytes.
+  Sets software line-stipple state through halfwords at
+  context +0x290 and +0x292
+  (`sh` at 0x2201a80, 0x2201a90).
+  The first halfword write stores original argument one
+  (`sh` at 0x2201a80).
+  Writes two at absolute 0x1030 (`sw` at 0x2201a98)
+  and ORs 0x2 into context +0x4714
+  (`sw` at 0x2201ab0).
+  A `__glSetError` call carries 0x502 (`jalr` at 0x2201ac8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LineStipple` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21a50,
+  136 bytes, labelled Established.
+  Comparison: target 136 bytes, existing 136 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a0fab6c3172536375cf5242e88c5c7fc1bb8e8c174b632cc71932ba7ceb2f731`.
+  Existing SHA-256: `a0fab6c3172536375cf5242e88c5c7fc1bb8e8c174b632cc71932ba7ceb2f731`.
+  Evidence: `facts/__glim_LineStipple.target.txt`,
+  `facts/__glim_LineStipple.existing.txt`, `facts/__glim_LineStipple.full.listing.txt`,
+  `facts/__glim_LineStipple.compare.txt`.
+
+- `__glim_LineWidth` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201b60, routine size 208 bytes.
+  Derives software line widths using local `RoundWidth`
+  and `ClampWidth` (`bgezall` at 0x2201bc8,
+  0x2201be4 respectively).
+  Saves the requested f12 at context +0x284
+  (`swc1` at 0x2201bcc).
+  Later output stores retain the helpers' results
+  (`sw` at 0x2201be8, `swc1` at 0x2201bf8), but
+  their effective bases are unknown.
+  A `__glSetError` call carries 0x501 (`jalr` at 0x2201ba4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LineWidth` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21b60,
+  208 bytes, labelled Established.
+  Comparison: target 208 bytes, existing 208 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e6f5562e3380c085844ba361ed793a239ce92b16a657f540953e0c7fe8e2ee29`.
+  Existing SHA-256: `e6f5562e3380c085844ba361ed793a239ce92b16a657f540953e0c7fe8e2ee29`.
+  Evidence: `facts/__glim_LineWidth.target.txt`,
+  `facts/__glim_LineWidth.existing.txt`, `facts/__glim_LineWidth.full.listing.txt`,
+  `facts/__glim_LineWidth.compare.txt`.
+
+- `__glim_LogicOp` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201c30, routine size 156 bytes.
+  Records the software logic-operation enumerant at
+  context +0x848 (`sw` at 0x2201c78).
+  Pending state is two at absolute 0x1030
+  (`sw` at 0x2201c7c), with context +0x4714 ORed
+  by 0x1 (`sw` at 0x2201c94).
+  `__glSetError` receives 0x500 or 0x502 at distinct
+  calls (`jalr` at 0x2201ca8, 0x2201cbc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LogicOp` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21c30,
+  156 bytes, labelled Established.
+  Comparison: target 156 bytes, existing 156 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `25d5ec55c90b5b4397db2ad256c6cda1a1dd0d20f12f0da766ef787c69945d6e`.
+  Existing SHA-256: `25d5ec55c90b5b4397db2ad256c6cda1a1dd0d20f12f0da766ef787c69945d6e`.
+  Evidence: `facts/__glim_LogicOp.target.txt`,
+  `facts/__glim_LogicOp.existing.txt`, `facts/__glim_LogicOp.full.listing.txt`,
+  `facts/__glim_LogicOp.compare.txt`.
+
+- `ApplyParameterF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201cd0, routine size 388 bytes.
+  Copies argument-three +0, +4 and +8 to material
+  +0x44, +0x4c and +0x48 (`swc1` at 0x2201d14,
+  0x2201d1c, 0x2201d2c). It also copies a scalar to
+  material +0x40 (`swc1` at 0x2201da0).
+  Emission handling calls `__glScaleColorf` with original
+  context, material +48 and original vector
+  (`jalr` at 0x2201e14).
+
+  Existing entry: `docs/sample-implementation.md`, `ApplyParameterF` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21cd0,
+  388 bytes, labelled Established.
+  Comparison: target 388 bytes, existing 388 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `cf3f0540c3b58b92faa4f1a4f6a7b661ecde64f7bd9eb2024821c66c56a8c987`.
+  Existing SHA-256: `cf3f0540c3b58b92faa4f1a4f6a7b661ecde64f7bd9eb2024821c66c56a8c987`.
+  Evidence: `facts/ApplyParameterF.target.txt`,
+  `facts/ApplyParameterF.existing.txt`, `facts/ApplyParameterF.full.listing.txt`,
+  `facts/ApplyParameterF.compare.txt`.
+
+- `__glErrorCheckMaterial` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x2201e60, routine size 220 bytes.
+  Hostfacts reports return values 0x500 and 0x501
+  (`jr` at 0x2201e90, 0x2201f34).
+  Reads a floating range literal at absolute 0x22e07a0
+  (`lwc1` at 0x2201f24).
+  The comparison word at 0x2201f28 is undecoded.
+  Its predicate and complete shininess acceptance range
+  remain unresolved in this target entry.
+
+  Existing entry: `docs/sample-implementation.md`, `__glErrorCheckMaterial` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21e60,
+  220 bytes, labelled Established.
+  Comparison: target 220 bytes, existing 220 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c34a9e0953a6775ddb7bf544b88c412a317ff9b55a48e3bf4ab360da950f0645`.
+  Existing SHA-256: `c34a9e0953a6775ddb7bf544b88c412a317ff9b55a48e3bf4ab360da950f0645`.
+  Evidence: `facts/__glErrorCheckMaterial.target.txt`,
+  `facts/__glErrorCheckMaterial.existing.txt`, `facts/__glErrorCheckMaterial.full.listing.txt`,
+  `facts/__glErrorCheckMaterial.compare.txt`.
+
+- `__glim_Materialfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2201f40, routine size 396 bytes.
+  Calls `__glErrorCheckMaterial` (`bgezall` at 0x2201f78).
+  Calls `ApplyParameterF` with material addresses
+  pointed-context +1680 and +1760
+  (`bgezall` at 0x2202050, 0x2202074).
+  All four calls retain the original parameter and vector
+  in a2 and a3 (`bgezall` at 0x2202050, 0x2202074,
+  0x22020a0 and 0x22020bc).
+  Revalidation uses `__glValidateMaterial`
+  (`jalr` at 0x2201fe0), whose two change-mask
+  arguments remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Materialfv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e21f40,
+  396 bytes, labelled Inferred.
+  Comparison: target 396 bytes, existing 396 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4092b96eb49e671c88dfea3bbfca63409e26594e3f10565134682b0910c78eb4`.
+  Existing SHA-256: `4092b96eb49e671c88dfea3bbfca63409e26594e3f10565134682b0910c78eb4`.
+  Evidence: `facts/__glim_Materialfv.target.txt`,
+  `facts/__glim_Materialfv.existing.txt`, `facts/__glim_Materialfv.full.listing.txt`,
+  `facts/__glim_Materialfv.compare.txt`.
+
+- `__glim_Materialf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22020d0, routine size 84 bytes.
+  Adapts floating material shininess to the software
+  vector interface. Stores f14 at entry-stack -0x10
+  (`swc1` at 0x22020d4).
+  Passes its address to `__glim_Materialfv`
+  (`bgezall` at 0x2202114), preserving face and
+  parameter enumerants.
+  A `__glSetError` call supplies 0x500 (`jalr` at 0x22020f8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Materialf` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e220d0,
+  84 bytes, labelled Established.
+  Comparison: target 84 bytes, existing 84 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `da0582c6aa207d2659b81f033ac6dcda2f316b11383e19edcc85fee16713d96b`.
+  Existing SHA-256: `da0582c6aa207d2659b81f033ac6dcda2f316b11383e19edcc85fee16713d96b`.
+  Evidence: `facts/__glim_Materialf.target.txt`,
+  `facts/__glim_Materialf.existing.txt`, `facts/__glim_Materialf.full.listing.txt`,
+  `facts/__glim_Materialf.compare.txt`.
+
+- `ApplyParameterI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2202130, routine size 776 bytes.
+  Converted index values reach material +0x44, +0x4c
+  and +0x48 (`swc1` at 0x2202174, 0x2202184,
+  0x220219c).
+  Colour conversion reads context scale +0xf44
+  (`lwc1` at 0x22021dc).
+  The helper `__glScaleColori` receives original context,
+  material +48 and original integer vector
+  (`jalr` at 0x22023a0).
+
+  Existing entry: `docs/sample-implementation.md`, `ApplyParameterI` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e22130,
+  776 bytes, labelled Inferred.
+  Comparison: target 776 bytes, existing 776 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6d3674a9d886fbb7298aa99edc7fcd5e6337b34bf6cd4997d5c7e49e029c11ae`.
+  Existing SHA-256: `6d3674a9d886fbb7298aa99edc7fcd5e6337b34bf6cd4997d5c7e49e029c11ae`.
+  Evidence: `facts/ApplyParameterI.target.txt`,
+  `facts/ApplyParameterI.existing.txt`, `facts/ApplyParameterI.full.listing.txt`,
+  `facts/ApplyParameterI.compare.txt`.
+
+- `__glim_Materialiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2202440, routine size 400 bytes.
+  Calls `__glErrorCheckMaterial` (`bgezall` at 0x220247c).
+  Calls `ApplyParameterI` on pointed-context +1680
+  and +1760 (`bgezall` at 0x2202554, 0x2202578).
+  All four calls pass the original parameter and vector
+  as a2/a3 (`bgezall` at 0x2202554, 0x2202578,
+  0x22025a4 and 0x22025c0). `__glValidateMaterial` is
+  called (`jalr` at 0x22024e0). Its change-mask arguments
+  remain unresolved in hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Materialiv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e22440,
+  400 bytes, labelled Inferred.
+  Comparison: target 400 bytes, existing 400 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `dbb1aab60eb6e1daac0ffe6595653cee3657baa85d0b02a28f58bda21df65813`.
+  Existing SHA-256: `dbb1aab60eb6e1daac0ffe6595653cee3657baa85d0b02a28f58bda21df65813`.
+  Evidence: `facts/__glim_Materialiv.target.txt`,
+  `facts/__glim_Materialiv.existing.txt`, `facts/__glim_Materialiv.full.listing.txt`,
+  `facts/__glim_Materialiv.compare.txt`.
+
+- `__glim_Materiali` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Established.**
+  Address 0x22025d0, routine size 84 bytes.
+  Stores scalar integer material input at entry-stack
+  -0xc (`sw` at 0x22025d4).
+  The software `__glim_Materialiv` call receives that
+  pointer as argument two, preserving original face
+  and parameter (`bgezall` at 0x2202614).
+  A call passes 0x500 to `__glSetError`
+  (`jalr` at 0x22025f8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Materiali` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e225d0,
+  84 bytes, labelled Established.
+  Comparison: target 84 bytes, existing 84 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `57b352b5fbd1f3a641a49d80f417b8f3a8ab5da41edbe063a1d04ce0bcd2d879`.
+  Existing SHA-256: `57b352b5fbd1f3a641a49d80f417b8f3a8ab5da41edbe063a1d04ce0bcd2d879`.
+  Evidence: `facts/__glim_Materiali.target.txt`,
+  `facts/__glim_Materiali.existing.txt`, `facts/__glim_Materiali.full.listing.txt`,
+  `facts/__glim_Materiali.compare.txt`.
