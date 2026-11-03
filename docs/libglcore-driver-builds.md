@@ -3062,3 +3062,238 @@ These are N64 target-body readings from usr/gfx/arch/IP27KONA64/libGLcore.so. Th
   The return carries `[0x1034]+3` (`jr` at 0xda681a4).
   Missing packed values remain unknown. These list-memory accesses do not establish
   hardware command-port transactions.
+
+- `__glkonim_ListParameteriSGIX` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x218d5e0, routine size 56 bytes, ABI n64.
+  Adapts a scalar list parameter to the software vector
+  interface. Keeps original argument two as a word at
+  entry-stack -0xc (`sw` at 0x218d5f8).
+  Calls `__glkonim_ListParameterivSGIX` with original
+  arguments zero and one plus that word's address
+  (`bgezall` at 0x218d600).
+  This 64-bit body preserves the scalar's four-byte width.
+
+  Existing entry: `docs/libglcore-driver-builds.md:1044` for `__glkonim_ListParameteriSGIX` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd949494,
+  60 bytes, ABI o32, labelled Established.
+  Comparison: target 56 bytes, existing 60 bytes,
+  different, with 42 differing bytes over the shared 56-byte prefix only.
+  Target SHA-256: `2f24f54a099eef7c92a4cd065c01174a3a7f42088adfee5fe580661f846b00ef`.
+  Existing SHA-256: `7e50f03f142b5001d055c227b70565f5fe8f6df11f1e749c1f55d19086fa674d`.
+  Evidence: `review-facts/__glkonim_ListParameteriSGIX.target.txt`, `review-facts/__glkonim_ListParameteriSGIX.sibling.txt`,
+  `review-facts/__glkonim_ListParameteriSGIX.words.txt`, `review-facts/__glkonim_ListParameteriSGIX.bytes.txt`.
+
+- `__glKonParseHostImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21927d0, routine size 544 bytes, ABI n64.
+  Derives software host-image request fields. Reads request
+  flags at argument-zero +0x20 (`lw` at 0x21927d4).
+  One storage pointer comes from pointed-context +0xb510
+  as a doubleword (`ld` at 0x2192800).
+  Output word fields include request +0xb4, +0xac,
+  +0xb8 and +0xb0 (`sw` at 0x2192814, 0x2192848,
+  0x2192878, 0x219287c).
+  Table-dependent row-layout values remain unresolved.
+
+  Existing entry: `docs/libglcore-driver-builds.md:21` for `__glKonParseHostImage` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd94e848,
+  564 bytes, ABI o32, labelled Inferred.
+  Comparison: target 544 bytes, existing 564 bytes,
+  different, with 459 differing bytes over the shared 544-byte prefix only.
+  Target SHA-256: `b0beb0800792d6142b80b81844aa8107a2e64b49093d538c80fc761942670461`.
+  Existing SHA-256: `7af232af5283ac1bab0de770db658a56418be5fa205f6b54a0ca969986aa1412`.
+  Evidence: `review-facts/__glKonParseHostImage.target.txt`, `review-facts/__glKonParseHostImage.sibling.txt`,
+  `review-facts/__glKonParseHostImage.words.txt`, `review-facts/__glKonParseHostImage.bytes.txt`.
+
+- `__glkonim_DrawPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2193460, routine size 212 bytes, ABI n64.
+  Parses a 64-bit pixel-draw request on entry-stack -240.
+  Calls `__glKonParseInput`, `__glKonParseErrorDraw`,
+  `__glKonParseHostImage` and local `DrawPixels`
+  (`bgezall` at 0x21934b8, 0x21934d8, 0x2193500,
+  0x2193510 respectively).
+  The request flag word at entry-stack -0xd0 is 0x41
+  (`sw` at 0x2193494).
+  Error reporting passes 0x502 (`jalr` at 0x2193524).
+
+  Existing entry: `docs/libglcore-driver-builds.md:1405` for `__glkonim_DrawPixels` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd94f65c,
+  240 bytes, ABI o32, labelled Established.
+  Comparison: target 212 bytes, existing 240 bytes,
+  different, with 186 differing bytes over the shared 212-byte prefix only.
+  Target SHA-256: `2321cb8fd7b7850b0bfbfb9af065b77adf9e70545e8f0c07b7a89bd7cacc03ec`.
+  Existing SHA-256: `226d59a6a3b920deb14e915a9ccb68169c07486f48fbcc2c1d85effcd49c7488`.
+  Evidence: `review-facts/__glkonim_DrawPixels.target.txt`, `review-facts/__glkonim_DrawPixels.sibling.txt`,
+  `review-facts/__glkonim_DrawPixels.words.txt`, `review-facts/__glkonim_DrawPixels.bytes.txt`.
+
+- `__glkonim_ReadPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21952d0, routine size 184 bytes, ABI n64.
+  Builds a software pixel-read request using a 64-bit
+  stack layout. The flag word 0x22 is at entry-stack
+  -0xc0 (`sw` at 0x219531c).
+  Calls `__glKonParseInput` and `__glKonParseErrorRead`
+  (`bgezall` at 0x2195324, 0x2195344).
+  Dispatches `__glkonReadPixelsOrTexels` with request
+  address entry-stack -224 and callback address
+  0x2195720 (`bgezall` at 0x2195364).
+
+  Existing entry: `docs/libglcore-driver-builds.md:1393` for `__glkonim_ReadPixels` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9518b8,
+  208 bytes, ABI o32, labelled Established.
+  Comparison: target 184 bytes, existing 208 bytes,
+  different, with 161 differing bytes over the shared 184-byte prefix only.
+  Target SHA-256: `c6837b974f5194e9ac52dfc24bd76488b81ba5075ac45ceba19fc39c279a9845`.
+  Existing SHA-256: `b90fe2edc42368c500383ab7214960a721df7fcaa927fc9901d2cd6fa2aa950e`.
+  Evidence: `review-facts/__glkonim_ReadPixels.target.txt`, `review-facts/__glkonim_ReadPixels.sibling.txt`,
+  `review-facts/__glkonim_ReadPixels.words.txt`, `review-facts/__glkonim_ReadPixels.bytes.txt`.
+
+- `__glkonHostCopy` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2195650, routine size 204 bytes, ABI n64.
+  Copies software host-image data through two `bcopy`
+  sites. The bulk call receives original argument one
+  as source, original argument two as destination and
+  request +0xa8 as length (`jalr` at 0x219570c).
+  The repeated-copy call uses original argument three
+  as length (`jalr` at 0x21956bc), but hostfacts cannot
+  resolve either pointer argument there.
+
+  Existing entry: `docs/libglcore-driver-builds.md:27` for `__glkonHostCopy` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd951c28,
+  204 bytes, ABI o32, labelled Inferred.
+  Comparison: target 204 bytes, existing 204 bytes,
+  different, with 184 differing bytes over the shared 204-byte prefix only.
+  Target SHA-256: `82bcdd768ef8dcb0491357b915e85e88b7a44aa0266ba96773e92abfa0ef0358`.
+  Existing SHA-256: `4d37d08958ab519537ec26591d7213ffb3e09a4889fecefb8b65aaa33eb8ea06`.
+  Evidence: `review-facts/__glkonHostCopy.target.txt`, `review-facts/__glkonHostCopy.sibling.txt`,
+  `review-facts/__glkonHostCopy.words.txt`, `review-facts/__glkonHostCopy.bytes.txt`.
+
+- `__glkonReadTexels3D` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2195b30, routine size 388 bytes, ABI n64.
+  Reads software texture slices through
+  `__glkonReadPixelsOrTexels` (`bgezall` at 0x2195c38,
+  0x2195ca4), both using callback address 0x2195cc0.
+  Initializes request +0x20 to 0x24
+  (`sw` at 0x2195b4c).
+  Destination-pointer updates at request +0x18 use
+  doubleword stores (`sd` at 0x2195c1c, 0x2195c70).
+  Advances the slice word +0x4c (`sw` at 0x2195c64).
+  Pack-pointer effective addresses remain unresolved.
+
+  Existing entry: `docs/libglcore-driver-builds.md:2041` for `__glkonReadTexels3D` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9520f0,
+  416 bytes, ABI o32, labelled Inferred.
+  Comparison: target 388 bytes, existing 416 bytes,
+  different, with 338 differing bytes over the shared 388-byte prefix only.
+  Target SHA-256: `6563bf4b63f90b3eaa9b7ed479dc853df947395e50f6756c1bf18bef948a7580`.
+  Existing SHA-256: `1861f7690448f040d4c13ec0e9fe055c0a2fcf4a3923047474151797ffac109a`.
+  Evidence: `review-facts/__glkonReadTexels3D.target.txt`, `review-facts/__glkonReadTexels3D.sibling.txt`,
+  `review-facts/__glkonReadTexels3D.words.txt`, `review-facts/__glkonReadTexels3D.bytes.txt`.
+
+- `__glkonlc_Bitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21962b0, routine size 576 bytes, ABI n64.
+  Compiles a software bitmap display-list record. Writes
+  command five at the doubleword pointer stored in
+  absolute 0x1058 (`sw` at 0x2196410).
+  Clears the bitmap area with `bzero`, whose destination
+  is that pointer +36 (`jalr` at 0x2196414).
+  Calls `__glFillImage` with format 0x1900 and type
+  0x1a00 (`jalr` at 0x2196438).
+  The final context-store base remains unknown
+  (`sw` at 0x2196494).
+
+  Existing entry: `docs/libglcore-driver-builds.md:2045` for `__glkonlc_Bitmap` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9528d0,
+  568 bytes, ABI o32, labelled Inferred.
+  Comparison: target 576 bytes, existing 568 bytes,
+  different, with 499 differing bytes over the shared 568-byte prefix only.
+  Target SHA-256: `d551b4d2e1343922200fe5698e44a2704415984993aba0931a2f1e8995f30e87`.
+  Existing SHA-256: `87beaf33d940baa16eb2972b6f0fc386a2870ceb94d6724728a92b56f44ecefe`.
+  Evidence: `review-facts/__glkonlc_Bitmap.target.txt`, `review-facts/__glkonlc_Bitmap.sibling.txt`,
+  `review-facts/__glkonlc_Bitmap.words.txt`, `review-facts/__glkonlc_Bitmap.bytes.txt`.
+
+- `__glKonInitConvolutionState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2199390, routine size 280 bytes, ABI n64.
+  Initializes software convolution state. Stores context
+  +1040 as a doubleword pointer at context +0x3b0
+  (`sd` at 0x2199394).
+  Word defaults include 0x1908 at +0x470,
+  0x8016 at +0x46c and 0x8012 at +0x468
+  (`sw` at 0x21993b8, 0x21993c0, 0x21993c8).
+  Writes floating one to +0x358 and +0x35c
+  (`swc1` at 0x2199464, 0x2199468).
+  No procedure calls occur in this body.
+
+  Existing entry: `docs/libglcore-driver-builds.md:19` for `__glKonInitConvolutionState` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9554a0,
+  284 bytes, ABI o32, labelled Inferred.
+  Comparison: target 280 bytes, existing 284 bytes,
+  different, with 212 differing bytes over the shared 280-byte prefix only.
+  Target SHA-256: `4d9c5c3cd7161022b037ec60b51bb3c95f5d30e6c62cc554b600a873170eafa5`.
+  Existing SHA-256: `8889bb52fc37d4c7ea7e3742e0f170c7b2358497526e1d7a219588754066d813`.
+  Evidence: `review-facts/__glKonInitConvolutionState.target.txt`, `review-facts/__glKonInitConvolutionState.sibling.txt`,
+  `review-facts/__glKonInitConvolutionState.words.txt`, `review-facts/__glKonInitConvolutionState.bytes.txt`.
+
+- `__glkonim_EdgeFlagPointerEXT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x219e580, routine size 204 bytes, ABI n64.
+  Updates 64-bit edge-array state after calling
+  `__glim_EdgeFlagPointerEXT` with the entry arguments
+  (`jalr` at 0x219e5b0).
+  Calls `compute_func_ptr` with original argument two,
+  the word at context +0x16b8 and column one
+  (`bgezall` at 0x219e600).
+  Saves the result as a doubleword at context +0xb358
+  (`sd` at 0x219e60c).
+  Dirty-state stores include context +0xb364
+  (`sw` at 0x219e5d4).
+
+  Existing entry: `docs/libglcore-driver-builds.md:1045` for `__glkonim_EdgeFlagPointerEXT` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd95a830,
+  220 bytes, ABI o32, labelled Established.
+  Comparison: target 204 bytes, existing 220 bytes,
+  different, with 189 differing bytes over the shared 204-byte prefix only.
+  Target SHA-256: `6dbda23b200453c1058330aba55d11d82648035839bbac8d2b9b204fb56a0f04`.
+  Existing SHA-256: `e69c6274001d27abe24e16f15e8f88c331d51dfbdabe67adfb54d1b40b35dae8`.
+  Evidence: `review-facts/__glkonim_EdgeFlagPointerEXT.target.txt`, `review-facts/__glkonim_EdgeFlagPointerEXT.sibling.txt`,
+  `review-facts/__glkonim_EdgeFlagPointerEXT.words.txt`, `review-facts/__glkonim_EdgeFlagPointerEXT.bytes.txt`.
+
+- `__glkonim_PollInstrumentsSGIX` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21a68e0, routine size 200 bytes, ABI n64.
+  Consumes a software instrument record. Writes its marker
+  through argument-zero +0 (`sw` at 0x21a6948),
+  increments context +0x9f08 (`sw` at 0x21a6958)
+  and clears the record sequence word +0x24
+  (`sw` at 0x21a695c).
+  Advances the context's doubleword cursor +0x9ef8
+  by 40 (`sd` at 0x21a6970).
+  The producer of these records is outside this body.
+
+  Existing entry: `docs/libglcore-driver-builds.md:1046` for `__glkonim_PollInstrumentsSGIX` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd964444,
+  200 bytes, ABI o32, labelled Established.
+  Comparison: target 200 bytes, existing 200 bytes,
+  different, with 174 differing bytes over the shared 200-byte prefix only.
+  Target SHA-256: `7c0584ced593f950b62b93052c6b1867d70c6eb285706fa44a31c8514b32ed45`.
+  Existing SHA-256: `60d8485e3a0bbd04dcfc4807f676ea957b646ba90b037e8b3e431ff71227c566`.
+  Evidence: `review-facts/__glkonim_PollInstrumentsSGIX.target.txt`, `review-facts/__glkonim_PollInstrumentsSGIX.sibling.txt`,
+  `review-facts/__glkonim_PollInstrumentsSGIX.words.txt`, `review-facts/__glkonim_PollInstrumentsSGIX.bytes.txt`.
+
+- `__glkonim_GetInstrumentsSGIX` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21a69b0, routine size 260 bytes, ABI n64.
+  Examines software instrument cursors using doubleword
+  loads at context +0x9ef8 and +0x9f00
+  (`ld` at 0x21a69f8, 0x21a69fc).
+  Writes cursor +0x9f00 on two paths
+  (`sd` at 0x21a6a14, 0x21a6a80).
+  Its error call supplies 0x502 to `__glSetError`
+  (`jalr` at 0x21a6a98).
+  Indexed record-sequence addresses and the merged
+  return's complete count meaning remain unresolved.
+
+  Existing entry: `docs/libglcore-driver-builds.md:1047` for `__glkonim_GetInstrumentsSGIX` in
+  `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd96450c,
+  220 bytes, ABI o32, labelled Established.
+  Comparison: target 260 bytes, existing 220 bytes,
+  different, with 192 differing bytes over the shared 220-byte prefix only.
+  Target SHA-256: `23195b01616bc3f83539536797e7898f2c28753e1c0bdfeb2499b08de5c38166`.
+  Existing SHA-256: `d241420b69bb85c060cff52114a88e49c98fed409a979314ab81901de11356b2`.
+  Evidence: `review-facts/__glkonim_GetInstrumentsSGIX.target.txt`, `review-facts/__glkonim_GetInstrumentsSGIX.sibling.txt`,
+  `review-facts/__glkonim_GetInstrumentsSGIX.words.txt`, `review-facts/__glkonim_GetInstrumentsSGIX.bytes.txt`.

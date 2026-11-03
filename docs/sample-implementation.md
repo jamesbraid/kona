@@ -21545,3 +21545,190 @@ comparison was not rerun and supplies no new target equation.
   (`sdc1` at 0xda7b1b8, 0xda7b1c0). It loads the context +0x2ee4 callback
   and tail-calls it with original a0 through a3 (`lw` at 0xda7b1b0,
   `jr` at 0xda7b1bc). The callback identity and effect remain unknown.
+
+- `__glSaveT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda7b1c4, routine size 24 bytes, ABI n32.
+  Saves the current software texture vector using two
+  eight-byte transfers from argument-zero +0xe0 and
+  +0xe8 (`ldc1` at 0xda7b1c4, 0xda7b1cc) to
+  argument-one +0x30 and +0x38
+  (`sdc1` at 0xda7b1d0, 0xda7b1d8).
+  Tail-jumps to an unnamed procedure (`jr` at 0xda7b1d4).
+
+  Existing entry: `docs/sample-implementation.md:16625` for `__glSaveT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7b1c4,
+  24 bytes, ABI n32, labelled Established.
+  Comparison: target 24 bytes, existing 24 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4054a15cb43bd240a78d62f79a0fd5a59142c33f9efb9b0f47b0d4993b7fde9a`.
+  Existing SHA-256: `4054a15cb43bd240a78d62f79a0fd5a59142c33f9efb9b0f47b0d4993b7fde9a`.
+  Evidence: `review-facts/__glSaveT.target.txt`, `review-facts/__glSaveT.sibling.txt`,
+  `review-facts/__glSaveT.words.txt`, `review-facts/__glSaveT.bytes.txt`.
+
+- `__glSaveCT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda7b1dc, routine size 40 bytes, ABI n32.
+  Copies software colour and texture values into a vertex.
+  Eight-byte output stores reach argument-one +0x90,
+  +0x98, +0x30 and +0x38 (`sdc1` at 0xda7b1f0,
+  0xda7b1f4, 0xda7b1f8, 0xda7b200).
+  Loads the next procedure pointer from argument-zero
+  +0x2ee4 (`lw` at 0xda7b1ec) and transfers control
+  through it (`jr` at 0xda7b1fc).
+
+  Existing entry: `docs/sample-implementation.md:16626` for `__glSaveCT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7b1dc,
+  40 bytes, ABI n32, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `53743f85b13bb2a764e888aee8f687f4835d817b4cb42a2383fe36e1c1cf5f69`.
+  Existing SHA-256: `53743f85b13bb2a764e888aee8f687f4835d817b4cb42a2383fe36e1c1cf5f69`.
+  Evidence: `review-facts/__glSaveCT.target.txt`, `review-facts/__glSaveCT.sibling.txt`,
+  `review-facts/__glSaveCT.words.txt`, `review-facts/__glSaveCT.bytes.txt`.
+
+- `__glSaveNT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda7b204, routine size 40 bytes, ABI n32.
+  Preserves software normal and texture state. Copies a
+  normal doubleword to argument-one +0x20
+  (`sdc1` at 0xda7b218), with its final word at +0x28
+  (`sw` at 0xda7b21c).
+  Texture doublewords occupy +0x30 and +0x38
+  (`sdc1` at 0xda7b220, 0xda7b228).
+  Its unnamed continuation is a tail jump
+  (`jr` at 0xda7b224).
+
+  Existing entry: `docs/sample-implementation.md:16627` for `__glSaveNT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7b204,
+  40 bytes, ABI n32, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `191f5c78ba32e6b0fe58c63bf2379144697ccf1f08062892c85ef24ef89ca586`.
+  Existing SHA-256: `191f5c78ba32e6b0fe58c63bf2379144697ccf1f08062892c85ef24ef89ca586`.
+  Evidence: `review-facts/__glSaveNT.target.txt`, `review-facts/__glSaveNT.sibling.txt`,
+  `review-facts/__glSaveNT.words.txt`, `review-facts/__glSaveNT.bytes.txt`.
+
+- `__glSaveCAll` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda7b22c, routine size 56 bytes, ABI n32.
+  Collects software colour, normal and texture attributes.
+  Colour doublewords reach argument-one +0x90 and +0x98
+  (`sdc1` at 0xda7b240, 0xda7b244).
+  The normal doubleword is stored at +0x20 (`sdc1` at 0xda7b250). Its final word is stored at +0x28 (`sw` at 0xda7b254).
+  Ends by jumping through the unnamed continuation
+  (`jr` at 0xda7b25c), with the last texture doubleword
+  stored at +0x38 (`sdc1` at 0xda7b260).
+
+  Existing entry: `docs/sample-implementation.md:16628` for `__glSaveCAll` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7b22c,
+  56 bytes, ABI n32, labelled Established.
+  Comparison: target 56 bytes, existing 56 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `34d00d440ef584ec8688aac15260be027362ca8308fcc701571e1889dc7e854c`.
+  Existing SHA-256: `34d00d440ef584ec8688aac15260be027362ca8308fcc701571e1889dc7e854c`.
+  Evidence: `review-facts/__glSaveCAll.target.txt`, `review-facts/__glSaveCAll.sibling.txt`,
+  `review-facts/__glSaveCAll.words.txt`, `review-facts/__glSaveCAll.bytes.txt`.
+
+- `__glSaveCIAll` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda7b264, routine size 52 bytes, ABI n32.
+  Stores the current software colour-index word at
+  argument-one +0x90 (`sw` at 0xda7b270), sourced from
+  argument-zero +0x1c0 (`lw` at 0xda7b264).
+  Also saves a normal word at +0x28 and texture
+  doublewords at +0x30 and +0x38 (`sw` at 0xda7b288,
+  `sdc1` at 0xda7b28c, 0xda7b294).
+  Control passes through an unnamed tail procedure
+  (`jr` at 0xda7b290).
+
+  Existing entry: `docs/sample-implementation.md:16629` for `__glSaveCIAll` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7b264,
+  52 bytes, ABI n32, labelled Established.
+  Comparison: target 52 bytes, existing 52 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9260a5b2f754e26c9d369ac7618838f5a9eaf4d16c505cf101a8e74ea2f473a0`.
+  Existing SHA-256: `9260a5b2f754e26c9d369ac7618838f5a9eaf4d16c505cf101a8e74ea2f473a0`.
+  Evidence: `review-facts/__glSaveCIAll.target.txt`, `review-facts/__glSaveCIAll.sibling.txt`,
+  `review-facts/__glSaveCIAll.words.txt`, `review-facts/__glSaveCIAll.bytes.txt`.
+
+- `__glClampAndScaleColor` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda7c2c0, routine size 204 bytes, ABI n32.
+  The complete clamp/scale equations remain unknown. Reads
+  context scale fields +0x7858, +0x785c, +0x7860 and
+  +0x7880 (`lwc1` at 0xda7c2c8, 0xda7c2d4,
+  0xda7c2e0, 0xda7c2ec).
+  Floating outputs reach context +0xc0, +0xc4, +0xc8
+  and +0xcc (`swc1` at 0xda7c320, 0xda7c330,
+  0xda7c340, 0xda7c348).
+  The routine contains no calls.
+
+  Existing entry: `docs/sample-implementation.md:16465` for `__glClampAndScaleColor` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7c2c0,
+  204 bytes, ABI n32, labelled Inferred.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5e0d688e4ffd5b4e62a2571b32b5cddc3a25975516536df1ef3e35b33f849a35`.
+  Existing SHA-256: `5e0d688e4ffd5b4e62a2571b32b5cddc3a25975516536df1ef3e35b33f849a35`.
+  Evidence: `review-facts/__glClampAndScaleColor.target.txt`, `review-facts/__glClampAndScaleColor.sibling.txt`,
+  `review-facts/__glClampAndScaleColor.words.txt`, `review-facts/__glClampAndScaleColor.bytes.txt`.
+
+- `__glFastCalcRGBColor` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda7c38c, routine size 600 bytes, ABI n32.
+  The complete lighting equation remains unknown. Reads a
+  record pointer at argument-zero +0x6e4c
+  (`lw` at 0xda7c3a4).
+  Output words select one of argument-two +0x90/+0xa0,
+  +0x94/+0xa4 and +0x98/+0xa8 (`sw` at 0xda7c5ac,
+  0xda7c5bc, 0xda7c5c0).
+  The fourth output selects +0x9c or +0xac
+  (`sw` at 0xda7c5c4). Indexed light and lookup-table
+  effective addresses remain unknown. There are no calls.
+
+  Existing entry: `docs/sample-implementation.md:16466` for `__glFastCalcRGBColor` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7c38c,
+  600 bytes, ABI n32, labelled Inferred.
+  Comparison: target 600 bytes, existing 600 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5e8fbbdb3ffec4bcb09c499c87cc347fa5db5f4507570ece695c66d444fa2db1`.
+  Existing SHA-256: `5e8fbbdb3ffec4bcb09c499c87cc347fa5db5f4507570ece695c66d444fa2db1`.
+  Evidence: `review-facts/__glFastCalcRGBColor.target.txt`, `review-facts/__glFastCalcRGBColor.sibling.txt`,
+  `review-facts/__glFastCalcRGBColor.words.txt`, `review-facts/__glFastCalcRGBColor.bytes.txt`.
+
+- `__glRenderFlatTriangle` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda7c6d0, routine size 576 bytes, ABI n32.
+  The complete triangle effect remains unknown. Writes context
+  floating fields +0x7620, +0x761c, +0x7624, +0x7628
+  and +0x7618 (`swc1` at 0xda7c79c, 0xda7c7a8,
+  0xda7c7ac, 0xda7c7b0, 0xda7c7c4).
+  Five unnamed callback sites appear (`jalr` at
+  0xda7c814, 0xda7c824, 0xda7c834, 0xda7c844,
+  0xda7c8f0). Each receives original argument zero.
+  Reordered vertex addresses remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md:16504` for `__glRenderFlatTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7c6d0,
+  576 bytes, ABI n32, labelled Inferred.
+  Comparison: target 576 bytes, existing 576 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `81625074202eb7f8772e40afb4ae002e74ba7b5686d18a0ecc70f2dcd629a52f`.
+  Existing SHA-256: `81625074202eb7f8772e40afb4ae002e74ba7b5686d18a0ecc70f2dcd629a52f`.
+  Evidence: `review-facts/__glRenderFlatTriangle.target.txt`, `review-facts/__glRenderFlatTriangle.sibling.txt`,
+  `review-facts/__glRenderFlatTriangle.words.txt`, `review-facts/__glRenderFlatTriangle.bytes.txt`.
+
+- `__glRenderSmoothTriangle` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda7cb24, routine size 576 bytes, ABI n32.
+  The complete triangle effect remains unknown. Loads original
+  vertex words +0x84 (`lw` at 0xda7cb28,
+  0xda7cb2c, 0xda7cb30).
+  Records a floating result at context +0x7618
+  (`swc1` at 0xda7cc18).
+  Invokes four unnamed procedures (`jalr` at 0xda7ccb8,
+  0xda7cce4, 0xda7cd10, 0xda7cd2c).
+  Vertex pointer stores, including `sw` at 0xda7cd48,
+  have unknown effective addresses.
+
+  Existing entry: `docs/sample-implementation.md:16505` for `__glRenderSmoothTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7cb24,
+  576 bytes, ABI n32, labelled Inferred.
+  Comparison: target 576 bytes, existing 576 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `7534b8a9576e4e75f207edecfe0a9f1f0b001f3ff8742d0b1395c94df2e76961`.
+  Existing SHA-256: `7534b8a9576e4e75f207edecfe0a9f1f0b001f3ff8742d0b1395c94df2e76961`.
+  Evidence: `review-facts/__glRenderSmoothTriangle.target.txt`, `review-facts/__glRenderSmoothTriangle.sibling.txt`,
+  `review-facts/__glRenderSmoothTriangle.words.txt`, `review-facts/__glRenderSmoothTriangle.bytes.txt`.
