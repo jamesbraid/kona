@@ -3729,6 +3729,426 @@ Target entries:
   Address 0xda00edc; occupies 120 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00edc for 120 bytes (SHA-256 `3b20a0c3c46cd85f85dc39d1b0ccb38076c4f2c7df6fdd721bd6bdc7f4c9082d`).
 
 
+
+#### IP35 O32 routines compared with their documented IP27 siblings (batch 065)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies receive only an identity note. Different bodies have separate target observations.
+
+| Routine | IP35 range | Documented sibling range | IP35 SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glBeginPolygon | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00f54 / 56 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fd770 / 56 | `682c671cdd028fc2f02b5cdabbf46ac477b3f8babdfad31dc28bd2040d7713e0` | `ed813d4c19e46e64afb1659fd080215d4e86a589caf65b888c79958967144a60` | 47 |
+| __glRenderTriangle | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00f90 / 1216 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fd7b0 / 1144 | `d0b2cf987a7483b1cb05b99f7b1f8a037dce574600f593093562d2135ea80cdf` | `b2feea816ae15fbc49f734d234d7a07896150764d64f9a0439046f7daf25a637` | 1035 |
+| __glDontRenderTriangle | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01450 / 20 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fdc30 / 8 | `7008cedc7bc7666823ccb635b2fcb91203276ea030284707c9e8f52db2ea3448` | `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378` | 6 |
+| __glProcessSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01480 / 220 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fdc40 / 228 | `1df43fa09a89734f5d3425787d231edf82df7ca2095cc576109628471cd347d8` | `0d5dd7c6d1520dada0ac88fa6edf24c9290f879f8f63756607f4d6e476239df2` | 183 |
+| __glProcessReplicateSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda0155c / 2028 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fdd30 / 2264 | `2d79c332766e59a9f167b9e73a27d438f85d7f12575bb132bb63a06b2d19a95e` | `5f81921b931e6d9072117ea51cb673f18dd32b57a6423abd49ec5b7d8f5de2e7` | 1833 |
+| __glClipSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01d48 / 220 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fe610 / 388 | `97f74bb22ee27492e652b2b3d76e905698aae4c1c6a2e8586d6c343c79a85bd7` | `f3861949dccfbb5676eb6f1136beb8542770957acfba3e113600fb72bebd12fe` | 190 |
+| __glStippleSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01e24 / 164 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fe7a0 / 240 | `cd4b8bf52f20f1f46dfc474143d7decc1b945f98be855d9e4deb66d888bfb72a` | `43428381000571b96dab447ca96d0b303edaaf9fb52691289e5ff6b06fc97668` | 125 |
+| __glStippleStippledSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01ec8 / 172 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fe890 / 272 | `9542433f4b74b03e42853b22ede8f1bfdd8aafa18850a4129c521faff4052f92` | `998430d52edecf8585edd6851776cd19af1bfabc7bb9f4de47fd1399ae69921d` | 127 |
+| __glAlphaTestSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda01f74 / 236 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fe9a0 / 604 | `7691f2150bb557ef1a3d0f271160830b631e0d253c09cada8f780262767aecae` | `5770aeeace973127639c0c2802437701e3fdbac79f04d6019c443b63aaecac5a` | 214 |
+| __glAlphaTestStippledSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda02060 / 232 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fec00 / 500 | `06c744341828e19f1da5ae519eb7be8a2087af8b12c6cdcb93f9a6f0b5be7135` | `aa41ce8a9fa3c495659976aae0febb653fe8d4ef03855290142e6fedada2c0c1` | 201 |
+| __glStencilTestStippledSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda02148 / 212 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fee00 / 464 | `f3ce2d39e2212fa176b8c16a016e5ea3a7ff4b74e2951f5485359a02730689f5` | `52c0f129f79cb6ba6ce6459e73b084e83906d7622c5370db1c5c8dd2ddd0f5e7` | 188 |
+| __glDepthTestOffsetSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda0221c / 1680 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fefd0 / 1484 | `a509810beb37876f3f8fdac565da3ff5a62d35610ff7aaaad432dc82def8a391` | `0a5c8980794158e2ab7e32e3bf8320061ea6dcb5e5dbebce6e1dbe96066d2654` | 1340 |
+| __glDepthTestStippledOffsetSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda028ac / 1716 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ff5a0 / 1552 | `b81b0c1b7960c8febb388df7035364684f7000fbe3bf99de8def9e99d91d9196` | `a4a6455144ad850850ee13e3d4672e1f1630cf07c7425ccec3ed3ac3996d195d` | 1388 |
+| __glDepthTestStencilOffsetSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda02f60 / 1832 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ffbb0 / 1648 | `3f12e14fc2e6b1f86c5fb681c1f185a58b08c05c26e22de75e2386b5f7188004` | `d8e607f756abd25bc6684a7fa30ab86510fc3201aba7ca743783aeb35447de4e` | 1466 |
+| __glDepthTestStencilStippledOffsetSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03688 / 1884 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda00220 / 1692 | `fa9e40a1646bc210f2cb3dc67dcf139689891df8d23f2d5f39784e9e28734b8c` | `ea937ec19d3689f9c1fe0009b4cf70255222e3e33c0f2b2a01dc3d927fa9a1fa` | 1506 |
+| __glDepthPassSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03de4 / 60 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda008c0 / 132 | `ba42ce049db88d4189c35de1ba4e286d2c4f3f170e0cc1cf8da390f1b17641a2` | `b37f59ae2d6d7e5efc67dc9cd2263c7c47faab10b89208fc6a9a5bba7eb6717b` | 49 |
+| __glDepthPassStippledSpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03e20 / 116 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda00950 / 224 | `ec4143da0f44c593c7de7dac811d0037fd20bdb64315c3edfa210be76afb4d97` | `d2f13fea917f18e8319403b0d247e14fbe8b9cce32a343ca77ab1035f32a07a9` | 89 |
+| __glShadeCISpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03e94 / 52 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda00a30 / 164 | `d2b6a2975666ad85aae09590c1c642502e0181f12a5b02ab7967b4a2d56c0507` | `a19e7c4898cce0d0dcd6e11de5238e0b9d9e7407f3d98877a0e7d055e6ffc07c` | 43 |
+| __glShadeRGBASpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03ec8 / 124 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda00ae0 / 196 | `e7c833bb3bce5daf45fe5bdc9eefeede5e53398b5a4557ae3b079a347e87a2e7` | `e6b42f234c718351828e2d90a55a928bce3d8fe57720dc5a846d9f3a750d86dd` | 104 |
+| __glFlatCISpan | usr/gfx/arch/IP35KONA/libGLcore.so 0xda03f44 / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xda00bb0 / 100 | `15344b594de85f6eae59712884d02077550c57928f88de78c7800baf681d2f6e` | `2cce6283dff51f85de47d0238f25da5e3fb9b17ce03ddd364af290ce390b6fdf` | 37 |
+
+Target entries:
+
+- `__glBeginPolygon` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00f54, routine size 56 bytes.
+  Initializes software polygon dispatch. It clears original argument 0
+  +0x74d0 and sets +0x31c8 to argument 0 +0x31e0 (`sb` at
+  0xda00f74, `sw` at 0xda00f78). Three callback fields +0x2ee4,
+  +0x2f5c and +0x2f2c receive 0xda00dd4, 0xda00edc and
+  0xda004e0 (`sw` at 0xda00f7c, 0xda00f80, 0xda00f88).
+  The last store is the return delay slot (`jr` at 0xda00f84).
+  The supplied body ends four bytes before the next function, after its return.
+  Existing entry: `docs/sample-implementation.md`, `__glBeginPolygon` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fd770,
+  56 bytes, labelled Inferred.
+  Comparison: target 56 bytes, existing 56 bytes,
+  47 mismatching bytes over the shared prefix.
+  Target SHA-256: `682c671cdd028fc2f02b5cdabbf46ac477b3f8babdfad31dc28bd2040d7713e0`.
+  Existing SHA-256: `ed813d4c19e46e64afb1659fd080215d4e86a589caf65b888c79958967144a60`.
+  Byte comparison: target SHA-256 `682c671cdd028fc2f02b5cdabbf46ac477b3f8babdfad31dc28bd2040d7713e0`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fd770, 56 bytes, SHA-256 `ed813d4c19e46e64afb1659fd080215d4e86a589caf65b888c79958967144a60`; 47 differing bytes in the common prefix.
+
+- `__glRenderTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00f90, routine size 1216 bytes.
+  Prepares software triangle state and dispatches through callbacks. Initial
+  vertex-word reads use original arguments 1, 2 and 3 +0x84 (`lw`
+  at 0xda00fc8, 0xda00fc4, 0xda00fe8). Float stores write
+  argument 0 +0x7618 through +0x7628 in four-byte steps (`swc1`
+  at 0xda010d4, 0xda010d8, 0xda010e0, 0xda010e4,
+  0xda010ec). Two calls resolve to `__glPolygonOffsetForLineAndPoint`
+  (`jalr` at 0xda012e4, 0xda0138c). Other dispatch sites remain
+  unnamed, including the first validation call and later triangle callback
+  (`jalr` at 0xda011b0, 0xda012b4). Reordered vertex addresses
+  and several callback arguments are unknown to hostfacts.
+  Existing entry: `docs/sample-implementation.md`, `__glRenderTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fd7b0,
+  1144 bytes, labelled Inferred.
+  Comparison: target 1216 bytes, existing 1144 bytes,
+  1035 mismatching bytes over the shared prefix.
+  Target SHA-256: `d0b2cf987a7483b1cb05b99f7b1f8a037dce574600f593093562d2135ea80cdf`.
+  Existing SHA-256: `b2feea816ae15fbc49f734d234d7a07896150764d64f9a0439046f7daf25a637`.
+  Byte comparison: target SHA-256 `d0b2cf987a7483b1cb05b99f7b1f8a037dce574600f593093562d2135ea80cdf`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fd7b0, 1144 bytes, SHA-256 `b2feea816ae15fbc49f734d234d7a07896150764d64f9a0439046f7daf25a637`; 1035 differing bytes in the common prefix.
+
+- `__glDontRenderTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01450, routine size 20 bytes.
+  Saves four input words at entry-stack +0, +4, +8 and +0xc (`sw`
+  at 0xda01450, 0xda01454, 0xda01458, 0xda01460).
+  The fourth store runs in the return delay slot (`jr` at 0xda0145c).
+  Those five instructions comprise the supplied 20-byte body. It has no
+  helper call, state store or stack allocation, and v0 remains unknown.
+  The next function symbol is 28 bytes beyond the examined end.
+  Existing entry: `docs/sample-implementation.md`, `__glDontRenderTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdc30,
+  8 bytes, labelled Established.
+  Comparison: target 20 bytes, existing 8 bytes,
+  6 mismatching bytes over the shared prefix.
+  Target SHA-256: `7008cedc7bc7666823ccb635b2fcb91203276ea030284707c9e8f52db2ea3448`.
+  Existing SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Byte comparison: target SHA-256 `7008cedc7bc7666823ccb635b2fcb91203276ea030284707c9e8f52db2ea3448`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdc30, 8 bytes, SHA-256 `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`; 6 differing bytes in the common prefix.
+
+- `__glProcessSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01480, routine size 220 bytes.
+  Runs software span callbacks in two local loops. It reads a word at original
+  argument 0 +0x2ffc (`lw` at 0xda014a8). Separately, it clears the byte at
+  +0x7744 (`sb` at 0xda014b0). The two indexed callback-pointer
+  loads have unknown effective addresses (`lw` at 0xda014c0,
+  0xda01514). Both calls pass original argument 0, with the remaining
+  arguments unresolved (`jalr` at 0xda014c8, 0xda0151c).
+  A later read observes the +0x7744 byte (`lbu` at 0xda014f8).
+  Neither callback identity is established by the complete body.
+  Existing entry: `docs/sample-implementation.md`, `__glProcessSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdc40,
+  228 bytes, labelled Inferred.
+  Comparison: target 220 bytes, existing 228 bytes,
+  183 mismatching bytes over the shared prefix.
+  Target SHA-256: `1df43fa09a89734f5d3425787d231edf82df7ca2095cc576109628471cd347d8`.
+  Existing SHA-256: `0d5dd7c6d1520dada0ac88fa6edf24c9290f879f8f63756607f4d6e476239df2`.
+  Byte comparison: target SHA-256 `1df43fa09a89734f5d3425787d231edf82df7ca2095cc576109628471cd347d8`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdc40, 228 bytes, SHA-256 `0d5dd7c6d1520dada0ac88fa6edf24c9290f879f8f63756607f4d6e476239df2`; 183 differing bytes in the common prefix.
+
+- `__glProcessReplicateSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0155c, routine size 2028 bytes.
+  Copies software span data around six unresolved callback sites. Original
+  argument 0 supplies +0x2ff8, +0x2ffc, count +0x7660 and a byte
+  flag at +0xc94 (`lw` at 0xda01588, 0xda015a8, 0xda0158c,
+  `lbu` at 0xda0160c). It clears +0x7744 and reads the buffer
+  pointer at +0x7738 (`sb` at 0xda01598, `lw` at 0xda01610).
+  The calls all preserve original argument 0 (`jalr` at 0xda015c8,
+  0xda01794, 0xda01940, 0xda01998, 0xda01b60, 0xda01d08).
+  The complete 2028-byte body includes scalar and unrolled word/float
+  copies. Their indexed source and destination addresses remain unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glProcessReplicateSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdd30,
+  2264 bytes, labelled Inferred.
+  Comparison: target 2028 bytes, existing 2264 bytes,
+  1833 mismatching bytes over the shared prefix.
+  Target SHA-256: `2d79c332766e59a9f167b9e73a27d438f85d7f12575bb132bb63a06b2d19a95e`.
+  Existing SHA-256: `5f81921b931e6d9072117ea51cb673f18dd32b57a6423abd49ec5b7d8f5de2e7`.
+  Byte comparison: target SHA-256 `2d79c332766e59a9f167b9e73a27d438f85d7f12575bb132bb63a06b2d19a95e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fdd30, 2264 bytes, SHA-256 `5f81921b931e6d9072117ea51cb673f18dd32b57a6423abd49ec5b7d8f5de2e7`; 1833 differing bytes in the common prefix.
+
+- `__glClipSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01d48, routine size 220 bytes.
+  Clips software span state using position, count and boundary fields.
+  Original argument 0 +0x762c, +0x7660, +0x743c and +0x7444
+  are read (`lw` at 0xda01d48, 0xda01d50, 0xda01d4c,
+  0xda01d60). One path writes one at +0x7744 (`sb` at
+  0xda01d8c). Other paths use the pointer at +0x7740 for word
+  stores whose indexed addresses are unknown (`lw` at 0xda01dbc,
+  `sw` at 0xda01de4, 0xda01e04). Completion updates the count
+  field +0x7660 (`sw` at 0xda01e14). No helper is invoked.
+  Existing entry: `docs/sample-implementation.md`, `__glClipSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe610,
+  388 bytes, labelled Inferred.
+  Comparison: target 220 bytes, existing 388 bytes,
+  190 mismatching bytes over the shared prefix.
+  Target SHA-256: `97f74bb22ee27492e652b2b3d76e905698aae4c1c6a2e8586d6c343c79a85bd7`.
+  Existing SHA-256: `f3861949dccfbb5676eb6f1136beb8542770957acfba3e113600fb72bebd12fe`.
+  Byte comparison: target SHA-256 `97f74bb22ee27492e652b2b3d76e905698aae4c1c6a2e8586d6c343c79a85bd7`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe610, 388 bytes, SHA-256 `f3861949dccfbb5676eb6f1136beb8542770957acfba3e113600fb72bebd12fe`; 190 differing bytes in the common prefix.
+
+- `__glStippleSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01e24, routine size 164 bytes.
+  Builds software span stipple words. It reads a byte at original argument
+  0 +0x12f0, count at +0x7660 and position at +0x762c (`lbu`
+  at 0xda01e24, `lw` at 0xda01e28, 0xda01e74).
+  Two indexed pattern loads remain unknown (`lw` at 0xda01e5c,
+  0xda01e70). A path writes one to +0x7744 (`sb` at
+  0xda01e98). The word-output pointer comes from +0x7740, but
+  the effective loop-store address is unresolved (`lw` at 0xda01ea8,
+  `sw` at 0xda01eb0).
+  Existing entry: `docs/sample-implementation.md`, `__glStippleSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe7a0,
+  240 bytes, labelled Inferred.
+  Comparison: target 164 bytes, existing 240 bytes,
+  125 mismatching bytes over the shared prefix.
+  Target SHA-256: `cd4b8bf52f20f1f46dfc474143d7decc1b945f98be855d9e4deb66d888bfb72a`.
+  Existing SHA-256: `43428381000571b96dab447ca96d0b303edaaf9fb52691289e5ff6b06fc97668`.
+  Byte comparison: target SHA-256 `cd4b8bf52f20f1f46dfc474143d7decc1b945f98be855d9e4deb66d888bfb72a`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe7a0, 240 bytes, SHA-256 `43428381000571b96dab447ca96d0b303edaaf9fb52691289e5ff6b06fc97668`; 125 differing bytes in the common prefix.
+
+- `__glStippleStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01ec8, routine size 172 bytes.
+  Combines a generated stipple word with existing software mask words.
+  Its byte flag, count and x-position fields are original argument 0
+  +0x12f0, +0x7660 and +0x762c (`lbu` at 0xda01ec8,
+  `lw` at 0xda01ecc, 0xda01f18). Pattern lookup addresses are
+  unknown (`lw` at 0xda01f00, 0xda01f14). The loop loads a
+  mask word, applies AND and stores the result (`lw` at 0xda01f50,
+  `and` at 0xda01f5c, `sw` at 0xda01f64). Both indexed mask
+  addresses remain unresolved. A separate path sets +0x7744 to one
+  (`sb` at 0xda01f3c).
+  Existing entry: `docs/sample-implementation.md`, `__glStippleStippledSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe890,
+  272 bytes, labelled Inferred.
+  Comparison: target 172 bytes, existing 272 bytes,
+  127 mismatching bytes over the shared prefix.
+  Target SHA-256: `9542433f4b74b03e42853b22ede8f1bfdd8aafa18850a4129c521faff4052f92`.
+  Existing SHA-256: `998430d52edecf8585edd6851776cd19af1bfabc7bb9f4de47fd1399ae69921d`.
+  Byte comparison: target SHA-256 `9542433f4b74b03e42853b22ede8f1bfdd8aafa18850a4129c521faff4052f92`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe890, 272 bytes, SHA-256 `998430d52edecf8585edd6851776cd19af1bfabc7bb9f4de47fd1399ae69921d`; 127 differing bytes in the common prefix.
+
+- `__glAlphaTestSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda01f74, routine size 236 bytes.
+  Tests software alpha values through a byte lookup and produces span masks.
+  Original argument 0 supplies count +0x7660, range word +0xe84,
+  lookup pointer +0x7854 and colour-buffer pointer +0x7738 (`lw`
+  at 0xda01f74, 0xda01f78, 0xda01f7c, 0xda01f80).
+  A scale float at +0xe88 participates in conversion (`lwc1` at
+  0xda01fbc). The indexed alpha read, lookup byte and mask-output
+  store have unknown addresses (`lwc1` at 0xda01fc0, `lbu` at
+  0xda01ffc, `sw` at 0xda0201c). One path writes one to
+  argument 0 +0x7744 (`sb` at 0xda02048).
+  Existing entry: `docs/sample-implementation.md`, `__glAlphaTestSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe9a0,
+  604 bytes, labelled Inferred.
+  Comparison: target 236 bytes, existing 604 bytes,
+  214 mismatching bytes over the shared prefix.
+  Target SHA-256: `7691f2150bb557ef1a3d0f271160830b631e0d253c09cada8f780262767aecae`.
+  Existing SHA-256: `5770aeeace973127639c0c2802437701e3fdbac79f04d6019c443b63aaecac5a`.
+  Byte comparison: target SHA-256 `7691f2150bb557ef1a3d0f271160830b631e0d253c09cada8f780262767aecae`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fe9a0, 604 bytes, SHA-256 `5770aeeace973127639c0c2802437701e3fdbac79f04d6019c443b63aaecac5a`; 214 differing bytes in the common prefix.
+
+- `__glAlphaTestStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda02060, routine size 232 bytes.
+  Filters existing software stipple words using converted alpha values.
+  It reads original argument 0 +0xe84, +0x7740, +0x7854 and
+  +0x7738 (`lw` at 0xda02064, 0xda02068, 0xda0206c,
+  0xda02070). Conversion reads the float at +0xe88 and truncates
+  a product (`lwc1` at 0xda020b8, `trunc.w.s` at 0xda020c8).
+  The existing mask, alpha float and lookup byte have unknown indexed
+  addresses (`lw` at 0xda020a8, `lwc1` at 0xda020bc,
+  `lbu` at 0xda020f4). A word store updates the mask at an
+  unresolved destination (`sw` at 0xda02120).
+  Existing entry: `docs/sample-implementation.md`, `__glAlphaTestStippledSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fec00,
+  500 bytes, labelled Inferred.
+  Comparison: target 232 bytes, existing 500 bytes,
+  201 mismatching bytes over the shared prefix.
+  Target SHA-256: `06c744341828e19f1da5ae519eb7be8a2087af8b12c6cdcb93f9a6f0b5be7135`.
+  Existing SHA-256: `aa41ce8a9fa3c495659976aae0febb653fe8d4ef03855290142e6fedada2c0c1`.
+  Byte comparison: target SHA-256 `06c744341828e19f1da5ae519eb7be8a2087af8b12c6cdcb93f9a6f0b5be7135`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fec00, 500 bytes, SHA-256 `aa41ce8a9fa3c495659976aae0febb653fe8d4ef03855290142e6fedada2c0c1`; 201 differing bytes in the common prefix.
+
+- `__glStencilTestStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda02148, routine size 212 bytes.
+  Tests software stencil bytes and updates stipple words locally. Pointer
+  fields are original argument 0 +0x7740, +0x772c, +0x7a04
+  and +0x7a08 (`lw` at 0xda02154, 0xda02158, 0xda0215c,
+  0xda02160). The mask is read as a signed halfword at +0x688
+  (`lh` at 0xda02164). Indexed byte reads lead to a byte update,
+  and a word store updates the span mask (`lbu` at 0xda021a8,
+  0xda021b8, 0xda021c8, `sb` at 0xda021d8, `sw` at
+  0xda021f0). All those loop effective addresses remain unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glStencilTestStippledSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fee00,
+  464 bytes, labelled Inferred.
+  Comparison: target 212 bytes, existing 464 bytes,
+  188 mismatching bytes over the shared prefix.
+  Target SHA-256: `f3ce2d39e2212fa176b8c16a016e5ea3a7ff4b74e2951f5485359a02730689f5`.
+  Existing SHA-256: `52c0f129f79cb6ba6ce6459e73b084e83906d7622c5370db1c5c8dd2ddd0f5e7`.
+  Byte comparison: target SHA-256 `f3ce2d39e2212fa176b8c16a016e5ea3a7ff4b74e2951f5485359a02730689f5`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fee00, 464 bytes, SHA-256 `52c0f129f79cb6ba6ce6459e73b084e83906d7622c5370db1c5c8dd2ddd0f5e7`; 188 differing bytes in the common prefix.
+
+- `__glDepthTestOffsetSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0221c, routine size 1680 bytes.
+  Processes software depth-offset state through two unnamed test calls.
+  Original argument 0 supplies count +0x7660, callback field +0x2f30
+  and depth-buffer pointer +0x7720 (`lw` at 0xda02260,
+  0xda02270, 0xda02274). Float offset parameters are +0x775c,
+  +0x774c and +0x7760 (`lwc1` at 0xda022a4, 0xda022a8,
+  0xda022ac). Both indirect call sites have unresolved arguments
+  (`jalr` at 0xda026b4, 0xda027dc). Mask-word stores include
+  unknown indexed destinations (`sw` at 0xda026ec, 0xda02814).
+  A later path sets argument 0 +0x7744 to one (`sb` at 0xda02874).
+  The full conversion and split-loop body was read without assigning hardware depth encoding.
+  Existing entry: `docs/sample-implementation.md`, `__glDepthTestOffsetSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fefd0,
+  1484 bytes, labelled Inferred.
+  Comparison: target 1680 bytes, existing 1484 bytes,
+  1340 mismatching bytes over the shared prefix.
+  Target SHA-256: `a509810beb37876f3f8fdac565da3ff5a62d35610ff7aaaad432dc82def8a391`.
+  Existing SHA-256: `0a5c8980794158e2ab7e32e3bf8320061ea6dcb5e5dbebce6e1dbe96066d2654`.
+  Byte comparison: target SHA-256 `a509810beb37876f3f8fdac565da3ff5a62d35610ff7aaaad432dc82def8a391`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fefd0, 1484 bytes, SHA-256 `0a5c8980794158e2ab7e32e3bf8320061ea6dcb5e5dbebce6e1dbe96066d2654`; 1340 differing bytes in the common prefix.
+
+- `__glDepthTestStippledOffsetSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda028ac, routine size 1716 bytes.
+  Applies depth-offset testing under existing software stipple control.
+  Count, callback field, depth pointer and stipple pointer come from
+  original argument 0 +0x7660, +0x2f30, +0x7720 and +0x7740
+  (`lw` at 0xda028f0, 0xda02900, 0xda02904, 0xda02930).
+  Three float reads use +0x775c, +0x774c and +0x7760 (`lwc1`
+  at 0xda02938, 0xda0293c, 0xda02940). The two calls leave
+  all arguments unknown to hostfacts (`jalr` at 0xda02d54,
+  0xda02e94). Result mask stores also have unresolved indexed
+  addresses (`sw` at 0xda02d9c, 0xda02edc). Neither callback
+  success nor a converted numeric value is inferred.
+  Existing entry: `docs/sample-implementation.md`, `__glDepthTestStippledOffsetSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ff5a0,
+  1552 bytes, labelled Inferred.
+  Comparison: target 1716 bytes, existing 1552 bytes,
+  1388 mismatching bytes over the shared prefix.
+  Target SHA-256: `b81b0c1b7960c8febb388df7035364684f7000fbe3bf99de8def9e99d91d9196`.
+  Existing SHA-256: `a4a6455144ad850850ee13e3d4672e1f1630cf07c7425ccec3ed3ac3996d195d`.
+  Byte comparison: target SHA-256 `b81b0c1b7960c8febb388df7035364684f7000fbe3bf99de8def9e99d91d9196`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ff5a0, 1552 bytes, SHA-256 `a4a6455144ad850850ee13e3d4672e1f1630cf07c7425ccec3ed3ac3996d195d`; 1388 differing bytes in the common prefix.
+
+- `__glDepthTestStencilOffsetSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda02f60, routine size 1832 bytes.
+  Combines software depth-offset tests with stencil byte updates. Original
+  argument 0 supplies depth pointer +0x7720, stencil pointer +0x772c
+  and two lookup pointers at +0x7a0c and +0x7a10 (`lw` at
+  0xda02fb8, 0xda02fbc, 0xda02fc0, 0xda02fc4).
+  Float offset inputs are +0x775c, +0x774c and +0x7760 (`lwc1`
+  at 0xda02ff4, 0xda02ff8, 0xda02ffc). Two callback sites remain
+  unresolved (`jalr` at 0xda0340c, 0xda03578).
+  Four byte stores have unknown indexed destinations (`sb` at
+  0xda03434, 0xda03450, 0xda035a0, 0xda035bc). A separate
+  status-byte path writes one at argument 0 +0x7744 (`sb` at 0xda03650).
+  Existing entry: `docs/sample-implementation.md`, `__glDepthTestStencilOffsetSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ffbb0,
+  1648 bytes, labelled Inferred.
+  Comparison: target 1832 bytes, existing 1648 bytes,
+  1466 mismatching bytes over the shared prefix.
+  Target SHA-256: `3f12e14fc2e6b1f86c5fb681c1f185a58b08c05c26e22de75e2386b5f7188004`.
+  Existing SHA-256: `d8e607f756abd25bc6684a7fa30ab86510fc3201aba7ca743783aeb35447de4e`.
+  Byte comparison: target SHA-256 `3f12e14fc2e6b1f86c5fb681c1f185a58b08c05c26e22de75e2386b5f7188004`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ffbb0, 1648 bytes, SHA-256 `d8e607f756abd25bc6684a7fa30ab86510fc3201aba7ca743783aeb35447de4e`; 1466 differing bytes in the common prefix.
+
+- `__glDepthTestStencilStippledOffsetSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03688, routine size 1884 bytes.
+  Uses stipple masks while updating software depth-offset and stencil state.
+  It reads original argument 0 +0x7720, +0x772c, +0x7a0c,
+  +0x7a10 and +0x7740 (`lw` at 0xda036e0, 0xda036e4,
+  0xda036e8, 0xda036ec, 0xda03714). Offset floats come from
+  +0x775c, +0x774c and +0x7760 (`lwc1` at 0xda03724,
+  0xda03728, 0xda0372c). Its two test calls have unknown arguments
+  and identities (`jalr` at 0xda03b54, 0xda03ce0).
+  The stencil byte stores and merged mask-word stores remain unresolved
+  (`sb` at 0xda03b7c, 0xda03b98, 0xda03d08, 0xda03d24,
+  `sw` at 0xda03bd4, 0xda03d58).
+  Existing entry: `docs/sample-implementation.md`, `__glDepthTestStencilStippledOffsetSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00220,
+  1692 bytes, labelled Inferred.
+  Comparison: target 1884 bytes, existing 1692 bytes,
+  1506 mismatching bytes over the shared prefix.
+  Target SHA-256: `fa9e40a1646bc210f2cb3dc67dcf139689891df8d23f2d5f39784e9e28734b8c`.
+  Existing SHA-256: `ea937ec19d3689f9c1fe0009b4cf70255222e3e33c0f2b2a01dc3d927fa9a1fa`.
+  Byte comparison: target SHA-256 `fa9e40a1646bc210f2cb3dc67dcf139689891df8d23f2d5f39784e9e28734b8c`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00220, 1692 bytes, SHA-256 `ea937ec19d3689f9c1fe0009b4cf70255222e3e33c0f2b2a01dc3d927fa9a1fa`; 1506 differing bytes in the common prefix.
+
+- `__glDepthPassSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03de4, routine size 60 bytes.
+  Updates software stencil bytes through a lookup table. Count, byte-buffer
+  pointer and lookup pointer come from original argument 0 +0x7660,
+  +0x772c and +0x7a10 (`lw` at 0xda03de4, 0xda03de8,
+  0xda03dec). Two unsigned-byte reads feed a byte store (`lbu`
+  at 0xda03dfc, 0xda03e0c, `sb` at 0xda03e14).
+  Hostfacts leaves all three loop addresses unknown. The return clears
+  v0 in its delay slot (`jr` at 0xda03e18).
+  Existing entry: `docs/sample-implementation.md`, `__glDepthPassSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda008c0,
+  132 bytes, labelled Inferred.
+  Comparison: target 60 bytes, existing 132 bytes,
+  49 mismatching bytes over the shared prefix.
+  Target SHA-256: `ba42ce049db88d4189c35de1ba4e286d2c4f3f170e0cc1cf8da390f1b17641a2`.
+  Existing SHA-256: `b37f59ae2d6d7e5efc67dc9cd2263c7c47faab10b89208fc6a9a5bba7eb6717b`.
+  Byte comparison: target SHA-256 `ba42ce049db88d4189c35de1ba4e286d2c4f3f170e0cc1cf8da390f1b17641a2`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda008c0, 132 bytes, SHA-256 `b37f59ae2d6d7e5efc67dc9cd2263c7c47faab10b89208fc6a9a5bba7eb6717b`; 49 differing bytes in the common prefix.
+
+- `__glDepthPassStippledSpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03e20, routine size 116 bytes.
+  Performs lookup-based software byte updates for selected stipple bits.
+  Original argument 0 +0x7740 supplies the stipple pointer, +0x772c
+  the byte-buffer pointer and +0x7a10 the lookup pointer (`lw` at
+  0xda03e24, 0xda03e28, 0xda03e30). A zero masked bit skips
+  the byte-update arm (`beqz` at 0xda03e60). That arm has two
+  unsigned-byte reads and a byte store with unknown effective addresses
+  (`lbu` at 0xda03e68, 0xda03e70, `sb` at 0xda03e74).
+  The complete body has no callback and returns zero (`jr` at 0xda03e8c).
+  Existing entry: `docs/sample-implementation.md`, `__glDepthPassStippledSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00950,
+  224 bytes, labelled Inferred.
+  Comparison: target 116 bytes, existing 224 bytes,
+  89 mismatching bytes over the shared prefix.
+  Target SHA-256: `ec4143da0f44c593c7de7dac811d0037fd20bdb64315c3edfa210be76afb4d97`.
+  Existing SHA-256: `d2f13fea917f18e8319403b0d247e14fbe8b9cce32a343ca77ab1035f32a07a9`.
+  Byte comparison: target SHA-256 `ec4143da0f44c593c7de7dac811d0037fd20bdb64315c3edfa210be76afb4d97`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00950, 224 bytes, SHA-256 `d2f13fea917f18e8319403b0d247e14fbe8b9cce32a343ca77ab1035f32a07a9`; 89 differing bytes in the common prefix.
+
+- `__glShadeCISpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03e94, routine size 52 bytes.
+  Interpolates one software colour-index float across a span. Count and
+  buffer-pointer reads are original argument 0 +0x7660 and +0x7738
+  (`lw` at 0xda03e94, 0xda03ea8). The initial float and increment
+  come from +0x7638 and +0x7684 (`lwc1` at 0xda03e98,
+  0xda03e9c). The loop stores a float, then adds the increment
+  (`swc1` at 0xda03eb0, `add.s` at 0xda03eb4).
+  Its output effective address is unresolved. The local return produces
+  zero (`jr` at 0xda03ec0).
+  Existing entry: `docs/sample-implementation.md`, `__glShadeCISpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00a30,
+  164 bytes, labelled Inferred.
+  Comparison: target 52 bytes, existing 164 bytes,
+  43 mismatching bytes over the shared prefix.
+  Target SHA-256: `d2b6a2975666ad85aae09590c1c642502e0181f12a5b02ab7967b4a2d56c0507`.
+  Existing SHA-256: `a19e7c4898cce0d0dcd6e11de5238e0b9d9e7407f3d98877a0e7d055e6ffc07c`.
+  Byte comparison: target SHA-256 `d2b6a2975666ad85aae09590c1c642502e0181f12a5b02ab7967b4a2d56c0507`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00a30, 164 bytes, SHA-256 `a19e7c4898cce0d0dcd6e11de5238e0b9d9e7407f3d98877a0e7d055e6ffc07c`; 43 differing bytes in the common prefix.
+
+- `__glShadeRGBASpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03ec8, routine size 124 bytes.
+  Interpolates four software colour floats with separate increments.
+  Initial values occupy original argument 0 +0x7638, +0x763c,
+  +0x7640 and +0x7644 (`lwc1` at 0xda03ed8, 0xda03edc,
+  0xda03ee4, 0xda03ee8). Increments occupy +0x7684, +0x7688,
+  +0x768c and +0x7690 (`lwc1` at 0xda03eec, 0xda03ef0,
+  0xda03ef4, 0xda03ef8). Four loop stores have unknown indexed
+  addresses (`swc1` at 0xda03f04, 0xda03f0c, 0xda03f10,
+  0xda03f18). No helper call occurs in the complete 124-byte body.
+  Existing entry: `docs/sample-implementation.md`, `__glShadeRGBASpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00ae0,
+  196 bytes, labelled Inferred.
+  Comparison: target 124 bytes, existing 196 bytes,
+  104 mismatching bytes over the shared prefix.
+  Target SHA-256: `e7c833bb3bce5daf45fe5bdc9eefeede5e53398b5a4557ae3b079a347e87a2e7`.
+  Existing SHA-256: `e6b42f234c718351828e2d90a55a928bce3d8fe57720dc5a846d9f3a750d86dd`.
+  Byte comparison: target SHA-256 `e7c833bb3bce5daf45fe5bdc9eefeede5e53398b5a4557ae3b079a347e87a2e7`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00ae0, 196 bytes, SHA-256 `e6b42f234c718351828e2d90a55a928bce3d8fe57720dc5a846d9f3a750d86dd`; 104 differing bytes in the common prefix.
+
+- `__glFlatCISpan` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda03f44, routine size 44 bytes.
+  Repeats a single software colour-index float. Original argument 0 supplies
+  count +0x7660, value +0x7638 and buffer pointer +0x7738 (`lw`
+  at 0xda03f44, 0xda03f4c, `lwc1` at 0xda03f48).
+  The loop store preserves the loaded value, while its indexed address
+  is unknown (`swc1` at 0xda03f5c). Its pointer advances by 0x10
+  in the loop branch's delay slot (`addiu` at 0xda03f64).
+  The whole 44-byte body has no call or stack use.
+  Existing entry: `docs/sample-implementation.md`, `__glFlatCISpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00bb0,
+  100 bytes, labelled Inferred.
+  Comparison: target 44 bytes, existing 100 bytes,
+  37 mismatching bytes over the shared prefix.
+  Target SHA-256: `15344b594de85f6eae59712884d02077550c57928f88de78c7800baf681d2f6e`.
+  Existing SHA-256: `2cce6283dff51f85de47d0238f25da5e3fb9b17ce03ddd364af290ce390b6fdf`.
+  Byte comparison: target SHA-256 `15344b594de85f6eae59712884d02077550c57928f88de78c7800baf681d2f6e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda00bb0, 100 bytes, SHA-256 `2cce6283dff51f85de47d0238f25da5e3fb9b17ce03ddd364af290ce390b6fdf`; 37 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
