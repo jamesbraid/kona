@@ -18535,3 +18535,476 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `review-facts/__glTextureModulateLA.target.txt`,
   `review-facts/__glTextureModulateLA.sibling.txt`, `review-facts/__glTextureModulateLA.words.txt`,
   `review-facts/__glTextureModulateLA.bytes.txt`.
+
+- `__glTextureModulateRGB` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1cf30. Occupies 52 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1cf30 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1cf40 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1cf44 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1cf50 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1cf54 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1cf60 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1cf30,
+  52 bytes, Established.
+  SHA-256 of both ranges: `d7f9d11fe05d0626401ea69860171838bf09d4d759277f72db3b6786b6594167`.
+  Evidence: `review-facts/__glTextureModulateRGB.target.txt`, `review-facts/__glTextureModulateRGB.sibling.txt`,
+  `review-facts/__glTextureModulateRGB.words.txt`, `review-facts/__glTextureModulateRGB.bytes.txt`.
+
+- `__glTextureModulateRGBA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1cf70. Occupies 68 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1cf70 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1cf80 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1cf84 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1cf90 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1cf94 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1cfa0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1cfa4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1cfb0 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1cf70,
+  68 bytes, Established.
+  SHA-256 of both ranges: `fd9ea9630b2b1f701f1c0c9ddcf5f95f451e5ada62fe70d54c2ad44d0c95dffb`.
+  Evidence: `review-facts/__glTextureModulateRGBA.target.txt`, `review-facts/__glTextureModulateRGBA.sibling.txt`,
+  `review-facts/__glTextureModulateRGBA.words.txt`, `review-facts/__glTextureModulateRGBA.bytes.txt`.
+
+- `__glTextureModulateI` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1cfe0. Occupies 68 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x14 | `lwc1` at 0xda1cfe0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1cff0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d000 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d010 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d020 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1cfe0,
+  68 bytes, Established.
+  SHA-256 of both ranges: `1618256b58d4dbf4f2d1a80e9cce94a27d2f9df4f97e1cafc72ca09a93c985f2`.
+  Evidence: `review-facts/__glTextureModulateI.target.txt`, `review-facts/__glTextureModulateI.sibling.txt`,
+  `review-facts/__glTextureModulateI.words.txt`, `review-facts/__glTextureModulateI.bytes.txt`.
+
+- `__glTextureDecalRGB` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d030. Occupies 52 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d030 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d034 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d03c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d040 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d044 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d04c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d050 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d054 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d060 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d030,
+  52 bytes, Established.
+  SHA-256 of both ranges: `af3adf2ba9cbdf406c2a0578a2726e58f8bd1bf6a87b77da5e4df5aee539635f`.
+  Evidence: `review-facts/__glTextureDecalRGB.target.txt`, `review-facts/__glTextureDecalRGB.sibling.txt`,
+  `review-facts/__glTextureDecalRGB.words.txt`, `review-facts/__glTextureDecalRGB.bytes.txt`.
+
+- `__glTextureDecalRGBA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d070. Occupies 100 bytes.
+  Established.
+  A COP3 rendering at 0xda1d090 remains uninterpreted. Its
+  control-flow meaning and dependent channel values stay unknown.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1d070 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d074 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d078 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d07c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d094 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d098 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d09c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d0b0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d0b4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d0b8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d0d0 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d070,
+  100 bytes, Established.
+  SHA-256 of both ranges: `a3bd5f1c41134b09ae9f688ec0b58766048eeab95a93d63b775fbe3d15abc893`.
+  Evidence: `review-facts/__glTextureDecalRGBA.target.txt`, `review-facts/__glTextureDecalRGBA.sibling.txt`,
+  `review-facts/__glTextureDecalRGBA.words.txt`, `review-facts/__glTextureDecalRGBA.bytes.txt`.
+
+- `__glTextureBlendL` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d0e0. Occupies 80 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0xc | `lwc1` at 0xda1d0e0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9b4 | `lw` at 0xda1d0e4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d0e8 |
+  | load | 4 bytes | [a0+2484] +0x4 | `lwc1` at 0xda1d0ec |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d100 |
+  | load | 4 bytes | [a0+2484] +0x8 | `lwc1` at 0xda1d104 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d114 |
+  | load | 4 bytes | [a0+2484] +0xc | `lwc1` at 0xda1d118 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d12c |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d0e0,
+  80 bytes, Established.
+  SHA-256 of both ranges: `383d7906647b6fbda023a97edce0f129de928b49453cf8231169232548bff63a`.
+  Evidence: `review-facts/__glTextureBlendL.target.txt`, `review-facts/__glTextureBlendL.sibling.txt`,
+  `review-facts/__glTextureBlendL.words.txt`, `review-facts/__glTextureBlendL.bytes.txt`.
+
+- `__glTextureBlendLA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d130. Occupies 96 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0xc | `lwc1` at 0xda1d130 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9b4 | `lw` at 0xda1d134 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d138 |
+  | load | 4 bytes | [a0+2484] +0x4 | `lwc1` at 0xda1d13c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d150 |
+  | load | 4 bytes | [a0+2484] +0x8 | `lwc1` at 0xda1d154 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d164 |
+  | load | 4 bytes | [a0+2484] +0xc | `lwc1` at 0xda1d168 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d17c |
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1d180 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d18c |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d130,
+  96 bytes, Established.
+  SHA-256 of both ranges: `994465f28300b8c0bd7851d01aa58c4609744b645b4a1c3b649be8037464431d`.
+  Evidence: `review-facts/__glTextureBlendLA.target.txt`, `review-facts/__glTextureBlendLA.sibling.txt`,
+  `review-facts/__glTextureBlendLA.words.txt`, `review-facts/__glTextureBlendLA.bytes.txt`.
+
+- `__glTextureBlendRGB` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d190. Occupies 104 bytes.
+  Established.
+  A COP3 rendering at 0xda1d1ac remains uninterpreted. Its
+  control-flow meaning and dependent channel values stay unknown.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d190 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9b4 | `lw` at 0xda1d194 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d198 |
+  | load | 4 bytes | [a0+2484] +0x4 | `lwc1` at 0xda1d19c |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d1b0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d1b4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d1b8 |
+  | load | 4 bytes | [a0+2484] +0x8 | `lwc1` at 0xda1d1c0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d1d4 |
+  | load | 4 bytes | [a0+2484] +0xc | `lwc1` at 0xda1d1dc |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d1f4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d190,
+  104 bytes, Established.
+  SHA-256 of both ranges: `a1b3916a0c1d2e42f2ff3f96e974b652c30eff8c982c0301d879ae4c2583a891`.
+  Evidence: `review-facts/__glTextureBlendRGB.target.txt`, `review-facts/__glTextureBlendRGB.sibling.txt`,
+  `review-facts/__glTextureBlendRGB.words.txt`, `review-facts/__glTextureBlendRGB.bytes.txt`.
+
+- `__glTextureBlendRGBA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d200. Occupies 120 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d200 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9b4 | `lw` at 0xda1d204 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d208 |
+  | load | 4 bytes | [a0+2484] +0x4 | `lwc1` at 0xda1d20c |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d220 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d224 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d228 |
+  | load | 4 bytes | [a0+2484] +0x8 | `lwc1` at 0xda1d230 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d244 |
+  | load | 4 bytes | [a0+2484] +0xc | `lwc1` at 0xda1d24c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d264 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1d268 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d274 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d200,
+  120 bytes, Established.
+  SHA-256 of both ranges: `e863d53326cd864ba5d168c7d0b462a8afe0ee085b80a3b5f93c558df7838faa`.
+  Evidence: `review-facts/__glTextureBlendRGBA.target.txt`, `review-facts/__glTextureBlendRGBA.sibling.txt`,
+  `review-facts/__glTextureBlendRGBA.words.txt`, `review-facts/__glTextureBlendRGBA.bytes.txt`.
+
+- `__glTextureBlendI` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d2a0. Occupies 100 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a2 (arg2 at entry) +0x14 | `lwc1` at 0xda1d2a0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9b4 | `lw` at 0xda1d2a4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda1d2a8 |
+  | load | 4 bytes | [a0+2484] +0x4 | `lwc1` at 0xda1d2ac |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d2c0 |
+  | load | 4 bytes | [a0+2484] +0x8 | `lwc1` at 0xda1d2c4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d2d4 |
+  | load | 4 bytes | [a0+2484] +0xc | `lwc1` at 0xda1d2d8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d2e8 |
+  | load | 4 bytes | [a0+2484] +0x10 | `lwc1` at 0xda1d2ec |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d300 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d2a0,
+  100 bytes, Established.
+  SHA-256 of both ranges: `40e81eba5a7a943f23090d823f6ff481010abddf2fe92be289d84e5f3181ef0a`.
+  Evidence: `review-facts/__glTextureBlendI.target.txt`, `review-facts/__glTextureBlendI.sibling.txt`,
+  `review-facts/__glTextureBlendI.words.txt`, `review-facts/__glTextureBlendI.bytes.txt`.
+
+- `__glTextureReplaceL` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d310. Occupies 52 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d310 |
+  | load | 4 bytes | a2 (arg2 at entry) +0xc | `lwc1` at 0xda1d314 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d31c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d320 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d32c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d330 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d340 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d310,
+  52 bytes, Established.
+  SHA-256 of both ranges: `8e3a43f904dfecf62f7a063db0ce7987b1b73f460735e1ad9c1588dcd92ac4ee`.
+  Evidence: `review-facts/__glTextureReplaceL.target.txt`, `review-facts/__glTextureReplaceL.sibling.txt`,
+  `review-facts/__glTextureReplaceL.words.txt`, `review-facts/__glTextureReplaceL.bytes.txt`.
+
+- `__glTextureReplaceLA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d350. Occupies 68 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d350 |
+  | load | 4 bytes | a2 (arg2 at entry) +0xc | `lwc1` at 0xda1d354 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d35c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d360 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d36c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d370 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d37c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7880 | `lwc1` at 0xda1d380 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1d384 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d390 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d350,
+  68 bytes, Established.
+  SHA-256 of both ranges: `776597b271850306ab455dfa33772f687a7076b5d4485e397dad462d29a9a63a`.
+  Evidence: `review-facts/__glTextureReplaceLA.target.txt`, `review-facts/__glTextureReplaceLA.sibling.txt`,
+  `review-facts/__glTextureReplaceLA.words.txt`, `review-facts/__glTextureReplaceLA.bytes.txt`.
+
+- `__glTextureReplaceRGB` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d3a0. Occupies 52 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d3a0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d3a4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d3ac |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d3b0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d3b4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d3bc |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d3c0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d3c4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d3d0 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d3a0,
+  52 bytes, Established.
+  SHA-256 of both ranges: `af3adf2ba9cbdf406c2a0578a2726e58f8bd1bf6a87b77da5e4df5aee539635f`.
+  Evidence: `review-facts/__glTextureReplaceRGB.target.txt`, `review-facts/__glTextureReplaceRGB.sibling.txt`,
+  `review-facts/__glTextureReplaceRGB.words.txt`, `review-facts/__glTextureReplaceRGB.bytes.txt`.
+
+- `__glTextureReplaceRGBA` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d3e0. Occupies 68 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d3e0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x0 | `lwc1` at 0xda1d3e4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d3ec |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d3f0 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x4 | `lwc1` at 0xda1d3f4 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d3fc |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d400 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x8 | `lwc1` at 0xda1d404 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d40c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7880 | `lwc1` at 0xda1d410 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x10 | `lwc1` at 0xda1d414 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d420 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d3e0,
+  68 bytes, Established.
+  SHA-256 of both ranges: `2ff071c121ff8e29ff1a36953ee8b5bcd9efaa022a55a4ea18aef271cda48bc5`.
+  Evidence: `review-facts/__glTextureReplaceRGBA.target.txt`, `review-facts/__glTextureReplaceRGBA.sibling.txt`,
+  `review-facts/__glTextureReplaceRGBA.words.txt`, `review-facts/__glTextureReplaceRGBA.bytes.txt`.
+
+- `__glTextureReplaceI` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda1d450. Occupies 68 bytes.
+  Established.
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7858 | `lwc1` at 0xda1d450 |
+  | load | 4 bytes | a2 (arg2 at entry) +0x14 | `lwc1` at 0xda1d454 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x0 | `swc1` at 0xda1d45c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x785c | `lwc1` at 0xda1d460 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4 | `swc1` at 0xda1d46c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7860 | `lwc1` at 0xda1d470 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x8 | `swc1` at 0xda1d47c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7880 | `lwc1` at 0xda1d480 |
+  | store | 4 bytes | a1 (arg1 at entry) +0xc | `swc1` at 0xda1d490 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda1d450,
+  68 bytes, Established.
+  SHA-256 of both ranges: `247e5341f647b3e71aa2129c904a531391f2afd0acbc94a16b87d14f9af4d79d`.
+  Evidence: `review-facts/__glTextureReplaceI.target.txt`, `review-facts/__glTextureReplaceI.sibling.txt`,
+  `review-facts/__glTextureReplaceI.words.txt`, `review-facts/__glTextureReplaceI.bytes.txt`.
+
+- `__glComputePolygonRho` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda24a50. Occupies 324 bytes.
+  Inferred.
+  Reads the selected vertex and texture-state fields below, without calls or stores.
+  A signed dimension value below 3 takes the shorter calculation, while 3 or greater falls through to the additional component work (`bnez` at 0xda24aec).
+  The final floating comparison selects between two candidate magnitudes (`bc1f` at 0xda24b7c). The branch is taken when f5 is not less than f6.
+  Both return delay slots contain multiplication (`mul.s` at 0xda24b88 and `mul.s` at 0xda24b90). The complete derivative formula remains unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a1 (arg1 at entry) +0x100 | `lwc1` at 0xda24a50 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda24a54 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x6e68 | `lw` at 0xda24a94 |
+  | load | 4 bytes | a1 (arg1 at entry) +0x108 | `lwc1` at 0xda24a9c |
+  | load | 4 bytes | [a0+28264] +0xe4 | `lw` at 0xda24aa4 |
+  | load | 4 bytes | [a0+28264] +0xe8 | `lw` at 0xda24aa8 |
+  | load | 4 bytes | [[a0+28264]+228] +0x20 | `lwc1` at 0xda24ab0 |
+  | load | 4 bytes | [[a0+28264]+228] +0x24 | `lwc1` at 0xda24ab4 |
+  | load | 4 bytes | [[a0+28264]+228] +0x28 | `lwc1` at 0xda24b30 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda24a50,
+  324 bytes, Inferred.
+  SHA-256 of both ranges: `798610bef28a52411626e2f7460c75fecf3fa30e368e1048742bf04d640e0cf4`.
+  Evidence: `review-facts/__glComputePolygonRho.target.txt`, `review-facts/__glComputePolygonRho.sibling.txt`,
+  `review-facts/__glComputePolygonRho.words.txt`, `review-facts/__glComputePolygonRho.bytes.txt`.
+
+- `__glComputeLineRho` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda24bb0. Occupies 296 bytes.
+  Inferred.
+  Reads two object pointers from context +0x7534 and +0x7538 and float
+  fields through them, as listed below. A signed value from the texture-state
+  +0xe8 field below three takes the shorter path (`bnez` at 0xda24c8c).
+  Both return delay slots contain multiplication (`mul.s` at 0xda24ccc,
+  0xda24cd4). The complete numerical formula remains unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7534 | `lw` at 0xda24bb0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7538 | `lw` at 0xda24bb4 |
+  | load | 4 bytes | [a0+30004] +0x34 | `lwc1` at 0xda24bb8 |
+  | load | 4 bytes | [a0+30008] +0x8c | `lwc1` at 0xda24bbc |
+  | load | 4 bytes | [a0+30008] +0x34 | `lwc1` at 0xda24bc0 |
+  | load | 4 bytes | [a0+30004] +0x80 | `lwc1` at 0xda24bc4 |
+  | load | 4 bytes | [a0+30008] +0x80 | `lwc1` at 0xda24bc8 |
+  | load | 4 bytes | [a0+30004] +0x84 | `lwc1` at 0xda24bcc |
+  | load | 4 bytes | [a0+30008] +0x84 | `lwc1` at 0xda24bd0 |
+  | load | 4 bytes | [a0+30004] +0x8c | `lwc1` at 0xda24bd8 |
+  | load | 4 bytes | [a0+30008] +0x30 | `lwc1` at 0xda24bf0 |
+  | load | 4 bytes | [a0+30004] +0x30 | `lwc1` at 0xda24bf4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda24c18 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x6e68 | `lw` at 0xda24c20 |
+  | load | 4 bytes | [a0+28264] +0xe4 | `lw` at 0xda24c24 |
+  | load | 4 bytes | [[a0+28264]+228] +0x24 | `lwc1` at 0xda24c34 |
+  | load | 4 bytes | [[a0+28264]+228] +0x20 | `lwc1` at 0xda24c54 |
+  | load | 4 bytes | [a0+28264] +0xe8 | `lw` at 0xda24c70 |
+  | load | 4 bytes | [a0+30008] +0x38 | `lwc1` at 0xda24c78 |
+  | load | 4 bytes | [a0+30004] +0x38 | `lwc1` at 0xda24c80 |
+  | load | 4 bytes | [[a0+28264]+228] +0x28 | `lwc1` at 0xda24c88 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda24bb0,
+  296 bytes, Inferred.
+  SHA-256 of both ranges: `e405e9957d9aadf33aa9a9b9f3aff8962ca623c84913fcbbe9f664f4ece6928d`.
+  Evidence: `review-facts/__glComputeLineRho.target.txt`, `review-facts/__glComputeLineRho.sibling.txt`,
+  `review-facts/__glComputeLineRho.words.txt`, `review-facts/__glComputeLineRho.bytes.txt`.
+
+- `__glFastTextureFragment` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda24ce0. Occupies 108 bytes.
+  Inferred.
+  Invokes a filter callback with the texture-state pointer first and a temporary texel destination in a5 (`jalr` at 0xda24d18).
+  The apply callback receives the original context, original fragment pointer and the temporary texel record (`jalr` at 0xda24d30).
+  The call table preserves the exact arguments. Procedure identities and filtering effects are unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+28264], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=sp-64 | `jalr` at 0xda24d18 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-64, a3=? | `jalr` at 0xda24d30 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x6e68 | `lw` at 0xda24ce4 |
+  | load | 4 bytes | [a0+28264] +0x108 | `lw` at 0xda24cfc |
+  | load | 4 bytes | ? (base unknown) | `lw` at 0xda24d24 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda24ce0,
+  108 bytes, Inferred.
+  SHA-256 of both ranges: `a9a2dcc264216d6c96a861437a465b8718a0e39ec0c909ac95881bf0aec812e0`.
+  Evidence: `review-facts/__glFastTextureFragment.target.txt`, `review-facts/__glFastTextureFragment.sibling.txt`,
+  `review-facts/__glFastTextureFragment.words.txt`, `review-facts/__glFastTextureFragment.bytes.txt`.
+
+- `__glTextureFragment` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda24d50. Occupies 136 bytes.
+  Inferred.
+  Selects between two filter callbacks using the incoming f17 value and the threshold word loaded through texture state.
+  When f17 is not less than or equal to that threshold, the branch takes the alternate filter path. Otherwise it falls through to the first filter (`bc1f` at 0xda24d80).
+  Both filter sites receive the texture-state pointer first and a temporary texel destination in a5 (`jalr` at 0xda24d90 and `jalr` at 0xda24dc8).
+  The common apply callback receives the original context, original fragment and temporary texel (`jalr` at 0xda24da4). Callback effects remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+28264], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=sp-64 | `jalr` at 0xda24d90 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-64, a3=? | `jalr` at 0xda24da4 |
+  | (unknown callee) | a0=[a0+28264], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=sp-64 | `jalr` at 0xda24dc8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x6e68 | `lw` at 0xda24d58 |
+  | load | 4 bytes | [a0+28264] +0xf0 | `lwc1` at 0xda24d5c |
+  | load | 4 bytes | [a0+28264] +0x108 | `lw` at 0xda24d88 |
+  | load | 4 bytes | [a0+28264] +0x104 | `lw` at 0xda24d98 |
+  | load | 4 bytes | [a0+28264] +0x10c | `lw` at 0xda24dc0 |
+  | load | 4 bytes | [a0+28264] +0x104 | `lw` at 0xda24dd4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda24d50,
+  136 bytes, Inferred.
+  SHA-256 of both ranges: `b207d0b99dbb2b6ece1cac2a63e2aab348fc756d2aeb87e432214c63110fda11`.
+  Evidence: `review-facts/__glTextureFragment.target.txt`, `review-facts/__glTextureFragment.sibling.txt`,
+  `review-facts/__glTextureFragment.words.txt`, `review-facts/__glTextureFragment.bytes.txt`.
+
+- `__glMipMapFragment` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda24de0. Occupies 268 bytes.
+  Inferred.
+  Takes the first filter path when incoming f17 is less than or equal to the texture threshold (`bc1t` at 0xda24e18).
+  The alternate path includes one decoder-unknown word at 0xda24e20. Its effect on condition code 1 is not reconstructed, so the complete level-of-detail rule remains unknown.
+  The two filter sites and common apply callback use a temporary texel at entry sp -112, as shown in their call arguments (`jalr` at 0xda24ea0, `jalr` at 0xda24edc and `jalr` at 0xda24eb4).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+28264], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?, a5=sp-112 | `jalr` at 0xda24ea0 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-112, a3=? | `jalr` at 0xda24eb4 |
+  | (unknown callee) | a0=[a0+28264], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a5=sp-112 | `jalr` at 0xda24edc |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x6e68 | `lw` at 0xda24de8 |
+  | load | 4 bytes | [a0+28264] +0xf0 | `lwc1` at 0xda24dec |
+  | load | 4 bytes | [a0+28264] +0x10c | `lw` at 0xda24e94 |
+  | load | 4 bytes | [a0+28264] +0x104 | `lw` at 0xda24ea8 |
+  | load | 4 bytes | [a0+28264] +0x108 | `lw` at 0xda24ed0 |
+  | load | 4 bytes | [a0+28264] +0x104 | `lw` at 0xda24ee8 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda24de0,
+  268 bytes, Inferred.
+  SHA-256 of both ranges: `7c8fe43d0402bd1a9a14ef33a27e58fb25790212968ef19296c8a99d18a50859`.
+  Evidence: `review-facts/__glMipMapFragment.target.txt`, `review-facts/__glMipMapFragment.sibling.txt`,
+  `review-facts/__glMipMapFragment.words.txt`, `review-facts/__glMipMapFragment.bytes.txt`.
