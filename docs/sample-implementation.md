@@ -5040,6 +5040,69 @@ Target entries:
   Byte comparison: target 156 bytes, SHA-256 `7a5c3352a51d5c14d345811e067667067b26d549263122703d6ea00c40530fb8`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda05cd0, 144 bytes, SHA-256 `abc7307fcef7478ae1c994d0c48a6f11cdaa005fd2e06451119aa74f3464ac22`; 113 differing bytes in the common prefix.
 
 
+#### IP35 O32 routines identical to their documented IP27 siblings (batch 069)
+
+Each complete IP35 body below is byte-identical to the documented IP27 body at the listed range. These identity notes add no behavioral claims.
+
+- `__glValidateStencil` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda08c10; occupies 720 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda08c10 for 720 bytes (SHA-256 `96b90ff1f699db4c826daa6f87bb9d6e2e580e5b330d48eee7295e7c211eadae`). Documented sibling grade: Established.
+
+- `__glDoStore_ASD` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda08fe0; occupies 368 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda08fe0 for 368 bytes (SHA-256 `150e19cf1079d6e118a4f9fe8c9b4ca5eba2e3b89d27d1e868a427efa76f9c61`). Documented sibling grade: Inferred.
+
+- `__glDoStore_AS` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09150; occupies 304 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09150 for 304 bytes (SHA-256 `8087a01f39f08d6bf9b8d135122b22b275bf72fca752c87a5e7df267ecd4c1b6`). Documented sibling grade: Inferred.
+
+- `__glDoStore_AD` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09280; occupies 244 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09280 for 244 bytes (SHA-256 `cac5d68a0721b57f14c359e93036b12a995c9eb80a7a19947baaf30e5dde8d9e`). Documented sibling grade: Inferred.
+
+- `__glDoStore_SD` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09374; occupies 328 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09374 for 328 bytes (SHA-256 `41953af341ccff4cb4fc5d539c904454877479405ebea105adfb22ace826bc18`). Documented sibling grade: Inferred.
+
+- `__glDoStore_A` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda094bc; occupies 176 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda094bc for 176 bytes (SHA-256 `4f1b656ab0c0fd2ecade17176c295c1b41aaf0ce18f40cbe6667ea034231a0e6`). Documented sibling grade: Inferred.
+
+- `__glDoStore_S` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda0956c; occupies 260 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0956c for 260 bytes (SHA-256 `c92534d7925e9d026e69b18aeaac9ed2babe3f35887d84a8c98b27a4fc766cab`). Documented sibling grade: Inferred.
+
+- `__glDoStore_D` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09670; occupies 196 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09670 for 196 bytes (SHA-256 `1e134544dd4bdde95cbbde117f1a2a19703718f91583a8768e7df2e4e4f03f2d`). Documented sibling grade: Inferred.
+
+- `__glDoStore` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09734; occupies 132 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09734 for 132 bytes (SHA-256 `9a09ea13105ce92b8bc0b52674fe9b8a2cb9aad75af32c8144f6fc89baee8964`). Documented sibling grade: Inferred.
+
+- `__glDoNullStore` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda097b8; occupies 12 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda097b8 for 12 bytes (SHA-256 `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b`). Documented sibling grade: Established.
+
+- `__glDoDoubleStore` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda097c4; occupies 100 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda097c4 for 100 bytes (SHA-256 `3f3d09951ac4e362ae0e6a4a07ce225fdf696452680619e230dfa8039416bbb2`). Documented sibling grade: Inferred.
+
+- `__glGenericPickStoreProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda09828; occupies 284 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09828 for 284 bytes (SHA-256 `0cea7e473f12e8c8924fea10869265fd28969e898ed1e4be3c1b413428b86244`). Documented sibling grade: Inferred.
+
+- `__glim_TexCoord1d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17180; occupies 48 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17180 for 48 bytes (SHA-256 `28bbaa2c8696403be3abae1b73dd001ac63afac6c62d4f16c11c4655f78ed42a`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda171b0; occupies 44 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda171b0 for 44 bytes (SHA-256 `500e483e8cb7c55ce4bf9c6809f73989f4d6d3c37a1146ab5dbf5f52dc91151d`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda171dc; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda171dc for 52 bytes (SHA-256 `176507ca3fec71271e324db8cc62d0b90067d19f8dc0392eb2576847ef0205f4`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17210; occupies 64 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17210 for 64 bytes (SHA-256 `bf3bdda6740c70dbe18111e469671c11923675012dfa0d3c936621360da95723`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17250; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17250 for 52 bytes (SHA-256 `b51696add752a2ec7a1c9dfbe4031d22ff23af0f629687a2a2d81688fbc042ff`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17284; occupies 48 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17284 for 48 bytes (SHA-256 `27464ecb5949876889a3f81db16c0aaa7d4827871199d82434d6a9f114721dc9`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda172b4; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda172b4 for 56 bytes (SHA-256 `d1ea5d46695f07da487385e6e22092f17715e27790ca59b10c2c3ef28924faca`). Documented sibling grade: Established.
+
+- `__glim_TexCoord1sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda172ec; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda172ec for 56 bytes (SHA-256 `b2779e98f0a9106ed93edeefb43885e2a7fb64369b120920b0c4b75c097613c0`). Documented sibling grade: Established.
 ## Software renderer (soft)
 
 ### so_accumop.c
