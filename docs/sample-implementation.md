@@ -32724,3 +32724,451 @@ comparison was not rerun and supplies no new target equation.
   | Return instruction | Reported registers |
   |---|---|
   | `jr` at 0x2216bac | `v0 = ?` |
+
+- `__glSetUpMap1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2216be0, occupies 284 bytes.
+  Established. It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2216c1c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x101c` (`lw` at 0x2216c28).
+  It reads 8 bytes at `abs 0x22daa08` (`ld` at 0x2216c6c).
+  It reads 4 bytes at `table(0x8de8) +0x0` (`lw` at 0x2216c74).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x10` (`ld` at 0x2216c90).
+  A 4-byte write at `table(0x8df4) +0x0` has value `f16` (`swc1` at 0x2216c78).
+  A 4-byte write at `table(0x8df0) +0x0` has value unresolved (`swc1` at 0x2216c7c).
+  A 4-byte write at `table(0x8dec) +0x0` has value `a2` (`sw` at 0x2216c88).
+  Further 8-byte write sites have unresolved bases
+  (`sd` at 0x2216cc4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=(a1-3472 << 0x20), a6=0xc9bb8`
+  (`bgezall` at 0x2216c40).
+  The `__glMap1_size [0x2216950]` call has hostfacts arguments
+  `a0=entry(0x8de8), a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=(a1-3472 << 0x20), a6=0xc9bb8`
+  (`bgezall` at 0x2216c84).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=entry(0x90b8), a2=(ret(__glMap1_size) << 0x2), a3=?`
+  (`jalr` at 0x2216cb0).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=(a1-3472 << 0x20), a6=0xc9bb8`
+  (`bgezall` at 0x2216ce8).
+  Hostfacts reports return registers `v0 = 0x0; f0 = ret(__glSetError)`
+  (`jr` at 0x2216c54).
+  Hostfacts reports return registers `v0 = table(0x8de8); f0 = ret(?)`
+  (`jr` at 0x2216cd8).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `PreEvaluate` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2216e60, occupies 284 bytes.
+  Inferred. It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x2216e68).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x2216f3c).
+  A 4-byte write at `a2 (arg2 at entry) +0x4` has value `f13` (`swc1` at 0x2216e70).
+  A 4-byte write at `a2 (arg2 at entry) +0x0` has value unresolved (`swc1` at 0x2216e7c).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x2216ea8, 0x2216ed0, 0x2216ed4, 0x2216ed8).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x2216ec0, 0x2216f00, 0x2216f04, 0x2216f08).
+  The full body makes no calls.
+  COP3 renderings remain at 0x02216ee0.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `DoDomain1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217230, occupies 312 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0xc` (`lwc1` at 0x2217230).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x8` (`lwc1` at 0x2217234).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x438` (`lwc1` at 0x2217260).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x4` (`lw` at 0x2217264).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x6c0` (`lw` at 0x2217280).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c8` has value `0x2` (`sw` at 0x22172a0).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c0` has value `[a2+4]` (`sw` at 0x22172ac).
+  A 4-byte write at `a0 (arg0 at entry) +0x438` has value unresolved (`swc1` at 0x22172b0).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x22172f8, 0x22172fc, 0x2217320, 0x2217324).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x22172e0, 0x2217304, 0x221732c).
+  The `PreEvaluate [0x2216e60]` call has hostfacts arguments
+  `a0=[a2+4], a1=a1 at entry (arg1), a2=a0+1088, a3=a3 at entry (arg3)`
+  (`bgezall` at 0x2217294).
+  Unknown raw words remain at 0x0221726c.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glDoEvalCoord1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217760, occupies 256 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0x168` (`lwc1` at 0x2217768).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x16c` (`lwc1` at 0x2217770).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x170` (`lwc1` at 0x2217774).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x174` (`lwc1` at 0x2217778).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x178` (`lwc1` at 0x221777c).
+  A 4-byte write at `a0 (arg0 at entry) +0x168` has value `[a0+360]` (`swc1` at 0x22177f0).
+  A 4-byte write at `a0 (arg0 at entry) +0x194` has value unresolved (`swc1` at 0x2217824).
+  A 4-byte write at `a0 (arg0 at entry) +0x190` has value unresolved (`swc1` at 0x2217828).
+  A 4-byte write at `a0 (arg0 at entry) +0x18c` has value unresolved (`swc1` at 0x221782c).
+  A 4-byte write at `a0 (arg0 at entry) +0x188` has value unresolved (`swc1` at 0x2217830).
+  The `DoEvalCoord1 [0x2217370]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x22177e4).
+  Hostfacts reports return registers `v0 = ret(DoEvalCoord1); f0 = ret(DoEvalCoord1)`
+  (`jr` at 0x2217858).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `ComputeFirstPartials` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217860, occupies 156 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0xc` (`lwc1` at 0x2217860).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc` (`lwc1` at 0x2217864).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x0` (`lwc1` at 0x2217868).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x0` (`lwc1` at 0x221786c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x4` (`lwc1` at 0x2217878).
+  A 4-byte write at `a1 (arg1 at entry) +0x0` has value unresolved (`swc1` at 0x221787c).
+  A 4-byte write at `a1 (arg1 at entry) +0x4` has value unresolved (`swc1` at 0x2217894).
+  A 4-byte write at `a1 (arg1 at entry) +0x8` has value unresolved (`swc1` at 0x22178a8).
+  A 4-byte write at `a2 (arg2 at entry) +0x0` has value unresolved (`swc1` at 0x22178c8).
+  A 4-byte write at `a2 (arg2 at entry) +0x4` has value unresolved (`swc1` at 0x22178e0).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x22178f4).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `ComputeNormal2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217900, occupies 100 bytes.
+  Inferred. It reads 4 bytes at `a3 (arg3 at entry) +0x8` (`lwc1` at 0x2217900).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x8` (`lwc1` at 0x2217904).
+  It reads 4 bytes at `a3 (arg3 at entry) +0x4` (`lwc1` at 0x2217908).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x4` (`lwc1` at 0x221790c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x2217924).
+  A 4-byte write at `a1 (arg1 at entry) +0x0` has value unresolved (`swc1` at 0x2217918).
+  A 4-byte write at `a1 (arg1 at entry) +0x4` has value unresolved (`swc1` at 0x2217934).
+  A 4-byte write at `a1 (arg1 at entry) +0x8` has value unresolved (`swc1` at 0x2217954).
+  The `(unknown callee)` tail call has hostfacts arguments
+  `a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jr` at 0x221795c).
+  COP3 renderings remain at 0x02217914.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `DoDomain2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217970, occupies 620 bytes.
+  Inferred. It reads 4 bytes at `a3 (arg3 at entry) +0x10` (`lwc1` at 0x2217970).
+  It reads 4 bytes at `a3 (arg3 at entry) +0xc` (`lwc1` at 0x2217974).
+  It reads 4 bytes at `a3 (arg3 at entry) +0x14` (`lwc1` at 0x221799c).
+  It reads 4 bytes at `a3 (arg3 at entry) +0x18` (`lwc1` at 0x22179a0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x438` (`lwc1` at 0x22179c8).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c8` has value `0x2` (`sw` at 0x2217a10).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c0` has value `[a3+4]` (`sw` at 0x2217a1c).
+  A 4-byte write at `a0 (arg0 at entry) +0x438` has value unresolved (`swc1` at 0x2217a20).
+  A 4-byte write at `a0 (arg0 at entry) +0x6cc` has value `0x2` (`sw` at 0x2217a58).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c4` has value `[a3+8]` (`sw` at 0x2217a64).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x2217ad0, 0x2217ad4, 0x2217b00, 0x2217b08).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x2217aac, 0x2217b54).
+  The `PreEvaluate [0x2216e60]` call has hostfacts arguments
+  `a0=[a3+4], a1=a1 at entry (arg1), a2=a0+1088, a3=a3 at entry (arg3)`
+  (`bgezall` at 0x2217a04).
+  The `PreEvaluate [0x2216e60]` call has hostfacts arguments
+  `a0=[a3+8], a1=?, a2=a0+1248, a3=?`
+  (`bgezall` at 0x2217a4c).
+  Unknown raw words remain at 0x022179a4, 0x022179d4, 0x02217a2c.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `DoDomain2WithDerivs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2217be0, occupies 732 bytes.
+  Inferred. It reads 4 bytes at `a3 (arg3 at entry) +0x10` (`lwc1` at 0x2217be0).
+  It reads 4 bytes at `a3 (arg3 at entry) +0xc` (`lwc1` at 0x2217be4).
+  It reads 4 bytes at `a3 (arg3 at entry) +0x14` (`lwc1` at 0x2217c10).
+  It reads 4 bytes at `a3 (arg3 at entry) +0x18` (`lwc1` at 0x2217c14).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x438` (`lwc1` at 0x2217c3c).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c8` has value `0x1` (`sw` at 0x2217ca8).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c0` has value `[a3+4]` (`sw` at 0x2217cb4).
+  A 4-byte write at `a0 (arg0 at entry) +0x438` has value unresolved (`swc1` at 0x2217cb8).
+  A 4-byte write at `a0 (arg0 at entry) +0x6cc` has value `0x1` (`sw` at 0x2217d08).
+  A 4-byte write at `a0 (arg0 at entry) +0x6c4` has value `[a3+8]` (`sw` at 0x2217d14).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x2217da0, 0x2217da4, 0x2217da8, 0x2217db0).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x2217d64, 0x2217d68, 0x2217d6c, 0x2217de0).
+  The `PreEvaluateWithDeriv [0x2216f80]` call has hostfacts arguments
+  `a0=[a3+4], a1=a1 at entry (arg1), a2=a0+1088, a3=a0+1408`
+  (`bgezall` at 0x2217ca0).
+  The `PreEvaluateWithDeriv [0x2216f80]` call has hostfacts arguments
+  `a0=[a3+8], a1=?, a2=a0+1248, a3=a0+1568`
+  (`bgezall` at 0x2217d00).
+  Unknown raw words remain at 0x02217c18, 0x02217c48, 0x02217cc4.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glDoEvalCoord2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22186c0, occupies 260 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0x168` (`lwc1` at 0x22186c8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x16c` (`lwc1` at 0x22186d0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x170` (`lwc1` at 0x22186d4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x174` (`lwc1` at 0x22186d8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x178` (`lwc1` at 0x22186dc).
+  A 4-byte write at `a0 (arg0 at entry) +0x168` has value `[a0+360]` (`swc1` at 0x2218754).
+  A 4-byte write at `a0 (arg0 at entry) +0x194` has value unresolved (`swc1` at 0x2218788).
+  A 4-byte write at `a0 (arg0 at entry) +0x190` has value unresolved (`swc1` at 0x221878c).
+  A 4-byte write at `a0 (arg0 at entry) +0x18c` has value unresolved (`swc1` at 0x2218790).
+  A 4-byte write at `a0 (arg0 at entry) +0x188` has value unresolved (`swc1` at 0x2218794).
+  The `DoEvalCoord2 [0x2217ec0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0`
+  (`bgezall` at 0x2218748).
+  Hostfacts reports return registers `v0 = ret(DoEvalCoord2); f0 = ret(DoEvalCoord2)`
+  (`jr` at 0x22187bc).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glEvalMesh1Line` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22187d0, occupies 456 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0x8a0` (`lw` at 0x22187d8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x178` (`lwc1` at 0x2218804).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x17c` (`lwc1` at 0x2218808).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x180` (`lwc1` at 0x221880c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x184` (`lwc1` at 0x2218810).
+  A 4-byte write at `a0 (arg0 at entry) +0x194` has value unresolved (`swc1` at 0x2218948).
+  A 4-byte write at `a0 (arg0 at entry) +0x190` has value unresolved (`swc1` at 0x221894c).
+  A 4-byte write at `a0 (arg0 at entry) +0x18c` has value unresolved (`swc1` at 0x2218950).
+  A 4-byte write at `a0 (arg0 at entry) +0x188` has value unresolved (`swc1` at 0x2218954).
+  A 4-byte write at `a0 (arg0 at entry) +0x184` has value unresolved (`swc1` at 0x2218958).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=0x3, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a0+2208]`
+  (`jalr` at 0x2218888).
+  The `DoEvalCoord1 [0x2217370]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?`
+  (`bgezall` at 0x22188c4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x221890c).
+  Hostfacts reports return registers `v0 = ret(?)`
+  (`jr` at 0x2218980).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2218990).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glEvalMesh1Point` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22189a0, occupies 456 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0x8a0` (`lw` at 0x22189a8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x178` (`lwc1` at 0x22189d4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x17c` (`lwc1` at 0x22189d8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x180` (`lwc1` at 0x22189dc).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x184` (`lwc1` at 0x22189e0).
+  A 4-byte write at `a0 (arg0 at entry) +0x194` has value unresolved (`swc1` at 0x2218b18).
+  A 4-byte write at `a0 (arg0 at entry) +0x190` has value unresolved (`swc1` at 0x2218b1c).
+  A 4-byte write at `a0 (arg0 at entry) +0x18c` has value unresolved (`swc1` at 0x2218b20).
+  A 4-byte write at `a0 (arg0 at entry) +0x188` has value unresolved (`swc1` at 0x2218b24).
+  A 4-byte write at `a0 (arg0 at entry) +0x184` has value unresolved (`swc1` at 0x2218b28).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a0+2208]`
+  (`jalr` at 0x2218a58).
+  The `DoEvalCoord1 [0x2217370]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?`
+  (`bgezall` at 0x2218a94).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x2218adc).
+  Hostfacts reports return registers `v0 = ret(?)`
+  (`jr` at 0x2218b50).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2218b60).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `sendChange` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2218b70, occupies 416 bytes.
+  Established. It reads 8 bytes at `a0 (arg0 at entry) +0x260` (`ld` at 0x2218b70).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x268` (`ld` at 0x2218b78).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x0` (`lw` at 0x2218b80).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x808` (`lw` at 0x2218ba4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x4` (`lwc1` at 0x2218bac).
+  A 4-byte write at `a0 (arg0 at entry) +0x260` has value `[a1+4]` (`swc1` at 0x2218bb8).
+  A 4-byte write at `a0 (arg0 at entry) +0x264` has value `[a1+8]` (`swc1` at 0x2218bc0).
+  A 4-byte write at `a0 (arg0 at entry) +0x268` has value `[a1+12]` (`swc1` at 0x2218bcc).
+  A 4-byte write at `a0 (arg0 at entry) +0x26c` has value `[a1+16]` (`swc1` at 0x2218bdc).
+  A 4-byte write at `a0 (arg0 at entry) +0x168` has value `[a1+4]` (`swc1` at 0x2218be8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a1]`
+  (`jalr` at 0x2218bd8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a1+52, a1=?, a2=?, a3=[a1]`
+  (`jalr` at 0x2218c7c, 0x2218d00).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=[a1]`
+  (`jalr` at 0x2218ca8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?`
+  (`jalr` at 0x2218cd4).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2218ce8).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glEvalMesh2Point` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2219090, occupies 632 bytes.
+  Established. It reads 4 bytes at `a0 (arg0 at entry) +0x8b0` (`lw` at 0x221909c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x8c0` (`lw` at 0x22190c4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x178` (`lwc1` at 0x22190dc).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x17c` (`lwc1` at 0x22190e0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x180` (`lwc1` at 0x22190e4).
+  A 4-byte write at `a0 (arg0 at entry) +0x194` has value unresolved (`swc1` at 0x22192c0).
+  A 4-byte write at `a0 (arg0 at entry) +0x190` has value unresolved (`swc1` at 0x22192c4).
+  A 4-byte write at `a0 (arg0 at entry) +0x18c` has value unresolved (`swc1` at 0x22192c8).
+  A 4-byte write at `a0 (arg0 at entry) +0x188` has value unresolved (`swc1` at 0x22192cc).
+  A 4-byte write at `a0 (arg0 at entry) +0x184` has value unresolved (`swc1` at 0x22192d0).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=0x0, a1=a1 at entry (arg1), a2=[a0+2240], a3=a3 at entry (arg3), a6=[a0+2224]`
+  (`jalr` at 0x221917c).
+  The `DoEvalCoord2 [0x2217ec0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=0x0`
+  (`bgezall` at 0x221922c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x2219284).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2219300).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFeedbackTag` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221a470, occupies 80 bytes.
+  Established. It reads 1 byte at `a0 (arg0 at entry) +0x1468` (`lbu` at 0x221a470).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x1480` (`lw` at 0x221a47c).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x1470` (`ld` at 0x221a480).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x1478` (`ld` at 0x221a484).
+  A 1-byte write at `a0 (arg0 at entry) +0x1468` has value `0x1` (`sb` at 0x221a4a0).
+  A 4-byte write at `[a0+5240]:8 +0x0` has value `f13` (`swc1` at 0x221a4ac).
+  An 8-byte write at `a0 (arg0 at entry) +0x1478` has value `[a0+5240]:8+4` (`sd` at 0x221a4bc).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x221a49c, 0x221a4a4, 0x221a4b8).
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b050, occupies 196 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x9758` (`lw` at 0x221b058).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x9838` (`ld` at 0x221b060).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9754` (`lwc1` at 0x221b06c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x75c` (`lwc1` at 0x221b08c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9810` (`lwc1` at 0x221b098).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x221b0b0, 0x221b0e4, 0x221b0f8).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x221b094, 0x221b0dc, 0x221b0f0, 0x221b108).
+  The full body makes no calls.
+  Unknown raw words remain at 0x0221b0c4.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b120, occupies 584 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x9758` (`lw` at 0x221b128).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x9838` (`ld` at 0x221b12c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9754` (`lwc1` at 0x221b130).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x9848` (`ld` at 0x221b138).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x75c` (`lwc1` at 0x221b15c).
+  Further 4-byte read sites have unresolved bases
+  (`lw` at 0x221b1a4).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x221b1d0, 0x221b240, 0x221b288, 0x221b2b4).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x221b164, 0x221b208, 0x221b26c, 0x221b2ac).
+  The full body makes no calls.
+  Unknown raw words remain at 0x0221b1c8, 0x0221b1f0, 0x0221b238, 0x0221b280.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogSpanSlow` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b370, occupies 492 bytes.
+  Inferred. Target and counterpart text rendering fail with `KeyError: 84`.
+  Both JSON fact collections succeed and supply this entry.
+  It reads 4 bytes at `a0 +0x754` (`lwc1` at 0x221b378).
+  It reads 4 bytes at `a0 +0x74c` (`lwc1` at 0x221b380).
+  It reads 4 bytes at `a0 +0x9758` (`lw` at 0x221b398).
+  It reads 8 bytes at `a0 +0x9838` (`ld` at 0x221b3b4).
+  It reads 4 bytes at `a0 +0x9754` (`lwc1` at 0x221b3c0).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x221b474, 0x221b4a0, 0x221b4b4).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x221b428, 0x221b498, 0x221b4ac, 0x221b4c4).
+  The `powf` call has hostfacts arguments
+  `a0=[a0+1848]; fp f12=0x402df854`
+  (`jalr` at 0x221b4e0, 0x221b500).
+  Unknown raw words remain at 0x0221b43c, 0x0221b46c.
+  COP3 renderings remain at 0x0221b4bc.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogStippledSpanSlow` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b560, occupies 628 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x754` (`lwc1` at 0x221b568).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x74c` (`lwc1` at 0x221b570).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x9838` (`ld` at 0x221b590).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9754` (`lwc1` at 0x221b594).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9758` (`lw` at 0x221b598).
+  Further 4-byte read sites have unresolved bases
+  (`lw` at 0x221b644).
+  Further 4-byte read sites have unresolved bases
+  (`lwc1` at 0x221b6cc, 0x221b6f8, 0x221b70c).
+  Further 4-byte write sites have unresolved bases
+  (`swc1` at 0x221b674, 0x221b6f0, 0x221b704, 0x221b71c).
+  The `powf` call has hostfacts arguments
+  `a0=[a0+1848], a1=?, a2=0x2601, a3=?; fp f12=0x402df854`
+  (`jalr` at 0x221b738, 0x221b75c).
+  Unknown raw words remain at 0x0221b6c4, 0x0221b6d8.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogFragmentSlow` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b7e0, occupies 356 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x738` (`lw` at 0x221b81c).
+  It reads 1 byte at `a0 (arg0 at entry) +0xde5` (`lbu` at 0x221b840).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf2c` (`lwc1` at 0x221b854).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc` (`lwc1` at 0x221b868).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x75c` (`lwc1` at 0x221b874).
+  A 4-byte write at `a1 (arg1 at entry) +0xc` has value unresolved (`swc1` at 0x221b880).
+  A 4-byte write at `a1 (arg1 at entry) +0x10` has value unresolved (`swc1` at 0x221b8b0).
+  A 4-byte write at `a1 (arg1 at entry) +0x14` has value unresolved (`swc1` at 0x221b8d0).
+  The `powf` call has hostfacts arguments
+  `a0=[a0+1848], a1=0x2601, a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=0x402df854`
+  (`jalr` at 0x221b904, 0x221b930).
+  Unknown raw words remain at 0x0221b844, 0x0221b860.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
+
+- `__glFogVertex` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x221b950, occupies 260 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x70` (`lwc1` at 0x221b954).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x738` (`lw` at 0x221b988).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf2c` (`lwc1` at 0x221b9bc).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x754` (`lwc1` at 0x221b9f0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x758` (`lwc1` at 0x221b9f4).
+  The `powf` call has hostfacts arguments
+  `a0=[a0+1848], a1=0x2601, a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f12=0x402df854`
+  (`jalr` at 0x221ba14, 0x221ba40).
+  Unknown raw words remain at 0x0221b9ac, 0x0221b9c0.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported evaluator and fog equations, missing calculated values, dynamic
+  addresses and callback behavior remain unknown.
