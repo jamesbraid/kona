@@ -29493,3 +29493,726 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `facts/__glim_Materiali.target.txt`,
   `facts/__glim_Materiali.existing.txt`, `facts/__glim_Materiali.full.listing.txt`,
   `facts/__glim_Materiali.compare.txt`.
+
+- `__glim_PointSize` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22026b0, occupies 208 bytes.
+  Established. It reads 8 bytes at `abs 0x1020` (`ld` at 0x22026b0).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x22026b8).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x22026f0).
+  It reads 8 bytes at `abs 0x22d87f0` (`ld` at 0x2202710).
+  A 4-byte write at `[0x1020]:8 +0x278` has value `f12` (`swc1` at 0x220271c).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2202750).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x2202754).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x2202738, 0x2202768).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x2202748).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x22026f4).
+  The `RoundSize [0x2202630]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x2202718).
+  The `ClampSize [0x2202660]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?; fp f13=f12`
+  (`bgezall` at 0x2202734).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2202770).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202708).
+  Hostfacts reports return registers `v0 = ?; f0 = ret(ClampSize)`
+  (`jr` at 0x2202764).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PolygonMode` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202780, occupies 268 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2202788).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220278c).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x22027cc).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x22027e4).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x22027e0).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x2)` (`sw` at 0x22027ec).
+  A 4-byte write at `[0x1020]:8 +0x298` has value `a1` (`sw` at 0x2202820).
+  A 4-byte write at `[0x1020]:8 +0x294` has value `a1` (`sw` at 0x2202824).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=a1 at entry (arg1), a2=0x1b02, a3=[0x1020]:8, a4=0x1b00, a5=0x1b01, a7=0x2`
+  (`jalr` at 0x22027d0).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=a1 at entry (arg1), a2=0x1b02, a3=[0x1020]:8, a7=0x2`
+  (`jalr` at 0x2202810).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8, a7=0x2`
+  (`jalr` at 0x220287c).
+  Hostfacts reports return registers `v0 = 0x1`
+  (`jr` at 0x220283c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202848).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PolygonStipple` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202890, occupies 168 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2202898).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220289c).
+  It reads 8 bytes at `abs 0x22dacb8` (`ld` at 0x22028c4).
+  It reads 8 bytes at `[0x1020]:8 +0x4e08` (`ld` at 0x22028e0).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x22028f4).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x22028f0).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x4)` (`sw` at 0x2202904).
+  The `__glFillImage [0x2226480]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=0x20, a2=0x20, a3=0x1900, a4=0x1a00, a5=a0 at entry (arg0), a6=[0x1020]:8+688`
+  (`jalr` at 0x22028d8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?`
+  (`jalr` at 0x22028e4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=a0 at entry (arg0)`
+  (`jalr` at 0x2202928).
+  Hostfacts reports return registers `v0 = ret(?); f0 = ret(?)`
+  (`jr` at 0x220290c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202918).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_ShadeModel` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202940, occupies 152 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2202948).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220294c).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2202980).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x220298c).
+  A 4-byte write at `[0x1020]:8 +0x670` has value `a0` (`sw` at 0x2202984).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2202988).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x1)` (`sw` at 0x22029a0).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=[0x1020]:8, a3=?, a5=0x2`
+  (`jalr` at 0x22029b4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a5=0x2`
+  (`jalr` at 0x22029c8).
+  Hostfacts reports return registers `v0 = 0x1`
+  (`jr` at 0x220299c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x22029a8).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_StencilMask` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22029e0, occupies 136 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x22029e0).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x22029ec).
+  It reads 4 bytes at `[0x1020]:8 +0xe00` (`lw` at 0x2202a04).
+  It reads 4 bytes at `[0x1020]:8 +0x4710` (`lw` at 0x2202a24).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x2202a28).
+  A 2-byte write at `[0x1020]:8 +0x78a` has value unresolved (`sh` at 0x2202a18).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2202a20).
+  A 4-byte write at `[0x1020]:8 +0x4710` has value `([[0x1020]:8+18192] | 0x2)` (`sw` at 0x2202a34).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x1)` (`sw` at 0x2202a40).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=0x1`
+  (`jalr` at 0x2202a58).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+18196] | 0x1)`
+  (`jr` at 0x2202a3c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202a48).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_StencilFunc` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202a70, occupies 208 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2202a78).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x2202a7c).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2202ab0).
+  It reads 4 bytes at `[0x1020]:8 +0xe00` (`lw` at 0x2202ab4).
+  It reads 4 bytes at `[0x1020]:8 +0x4710` (`lw` at 0x2202ae8).
+  A 4-byte write at `[0x1020]:8 +0x780` has value `a0` (`sw` at 0x2202ac4).
+  A 2-byte write at `[0x1020]:8 +0x788` has value unresolved (`sh` at 0x2202ad4).
+  A 2-byte write at `[0x1020]:8 +0x786` has value unresolved (`sh` at 0x2202adc).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2202ae4).
+  A 4-byte write at `[0x1020]:8 +0x4710` has value `([[0x1020]:8+18192] | 0x2)` (`sw` at 0x2202afc).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=a2 at entry (arg2), a3=?, a4=[0x1020]:8, a6=0x1`
+  (`jalr` at 0x2202b1c).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8, a6=0x1`
+  (`jalr` at 0x2202b30).
+  Hostfacts reports return registers `v0 = 0xddd28`
+  (`jr` at 0x2202b04).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202b10).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_StencilOp` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202b40, occupies 340 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2202b48).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x2202b4c).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2202ba0).
+  It reads 4 bytes at `[0x1020]:8 +0x4710` (`lw` at 0x2202c50).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x2202c58).
+  A 4-byte write at `[0x1020]:8 +0x794` has value `a2` (`sw` at 0x2202c3c).
+  A 4-byte write at `[0x1020]:8 +0x790` has value `a1` (`sw` at 0x2202c40).
+  A 4-byte write at `[0x1020]:8 +0x78c` has value `a0` (`sw` at 0x2202c44).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2202c4c).
+  A 4-byte write at `[0x1020]:8 +0x4710` has value `([[0x1020]:8+18192] | 0x4)` (`sw` at 0x2202c64).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x150a, a4=[0x1020]:8, a5=0x1e00, a6=0x1e01, a7=0x1e02`
+  (`jalr` at 0x2202ba4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1e03, a4=[0x1020]:8`
+  (`jalr` at 0x2202be8, 0x2202c28).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[0x1020]:8`
+  (`jalr` at 0x2202c84).
+  Hostfacts reports return registers `v0 = one of 0x1, 0x1e01`
+  (`jr` at 0x2202c6c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2202c78).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glCopyContext` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2202ca0, occupies 3268 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x9a08` (`lwc1` at 0x2202cb8).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a0c` (`lwc1` at 0x2202cc8).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a10` (`lwc1` at 0x2202ce0).
+  It reads 8 bytes at `abs 0x22da7d8` (`ld` at 0x2202ce4).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a30` (`lwc1` at 0x2202cec).
+  A 4-byte write at `a0 (arg0 at entry) +0x9a08` has value `[a1+39432]` (`swc1` at 0x2202cc4).
+  A 4-byte write at `a0 (arg0 at entry) +0x9a0c` has value `[a1+39436]` (`swc1` at 0x2202cd8).
+  A 4-byte write at `a0 (arg0 at entry) +0x9a10` has value `[a1+39440]` (`swc1` at 0x2202ce8).
+  A 4-byte write at `a0 (arg0 at entry) +0x9a30` has value `[a1+39472]` (`swc1` at 0x2202d04).
+  A 4-byte write at `a0 (arg0 at entry) +0x770` has value `[a1+1904]` (`swc1` at 0x2202d18).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x2202d6c, 0x2202d80, 0x2202f4c, 0x2202f60).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2202e0c, 0x2202e28, 0x2202e3c, 0x2202e50).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x2202d78, 0x2202d8c, 0x2202f58, 0x2202f6c).
+  Further 8-byte write sites have unresolved moving bases
+  (`sd` at 0x2202e18, 0x2202e30, 0x2202e44, 0x2202e5c).
+  The `__glContextSetColorScales [0x22102d0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2202d00).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=[a1+2056]:8, a2=?, a3=?`
+  (`jalr` at 0x2202efc).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?`
+  (`jalr` at 0x2202f08).
+  The `memcpy` call has hostfacts arguments
+  `a0=[a0+1840]:8, a1=[a1+1840]:8, a2=?, a3=[a0+3944], a5=[a1+1792]:8, a6=[a1+1784]:8, a7=[a1+1776]:8`
+  (`jalr` at 0x2203154).
+  The `__glCopyColorTableScaleBias [0x220fde0]` call has hostfacts arguments
+  `a0=a1+6096, a1=a0+6096, a2=?, a3=[a1+1476], a4=a0+816, a5=a1+816`
+  (`jalr` at 0x22032c8).
+  The `__glCopyConvolutionPixelModeState [0x22135c0]` call has hostfacts arguments
+  `a0=a1+816, a1=a0+816, a2=?, a3=?`
+  (`jalr` at 0x22032d8).
+  The `memcpy` call has hostfacts arguments
+  `a0=[a0+2744]:8, a1=[a1+2744]:8, a2=?, a3=?`
+  (`jalr` at 0x22037bc).
+  The `memcpy` call has hostfacts arguments
+  `a0=[a0+2752]:8, a1=[a1+2752]:8, a2=((([a0+3964] << 0x3) + [a0+3964]) << 0x2), a3=[a0+3964]`
+  (`jalr` at 0x22037dc).
+  The `memcpy` call has hostfacts arguments
+  `a0=[a0+2008]:8, a1=[a1+2008]:8, a2=([a0+3956] << 0x4), a3=[a1+2000]`
+  (`jalr` at 0x2203830).
+  The `__glUpdateViewportTransform [0x227adc0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a7=[a1+1992]:8`
+  (`jalr` at 0x22038a4).
+  The `__glBindTexture [0x226bee0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=?`
+  (`jalr` at 0x2203928, 0x220393c).
+  The `__glBindTexture [0x226bee0]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=0x0, a2=[[a1+2744]:8+216], a3=[a1+2792]:1, a5=[[a0+2744]:8+216], a6=a1+2496; fp f12=[a1+2788], f13=[a1+2784], f14=[a1+2780], f15=[a1+2776], f16=[a1+2772], f17=[a1+2768], f18=[a1+2764], f19=[a1+2760]`
+  (`jalr` at 0x2203954).
+  Hostfacts reports return registers `v0 = 0x1`
+  (`jr` at 0x22038e8).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PushAttrib` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2203970, occupies 2432 bytes.
+  Inferred. It reads 8 bytes at `abs 0x1020` (`ld` at 0x2203978).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x2203980).
+  It reads 4 bytes at `[0x1020]:8 +0x1024` (`lw` at 0x22039ac).
+  It reads 8 bytes at `[0x1020]:8 +0x4e28` (`ld` at 0x22039b0).
+  It reads 8 bytes at `[0x1020]:8 +0x4e30` (`ld` at 0x22039b4).
+  An 8-byte write at `[0x1020]:8 +0x4e30` has value `[[0x1020]:8+20016]:8+8` (`sd` at 0x2203a08).
+  An 8-byte write at `[[0x1020]:8+20016]:8 +0x0` has value `ret(?)` (`sd` at 0x22042d8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x2203a5c, 0x2203a70, 0x2203b5c, 0x2203b70).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2203ab0, 0x2203acc, 0x2203ae0, 0x2203af4).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x22039d8, 0x22039fc, 0x2203a48, 0x2203a68).
+  Further 8-byte write sites have unresolved moving bases
+  (`sd` at 0x22039e0, 0x22039e8, 0x22039f0, 0x2203abc).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x2203a10, 0x2203a18, 0x2203a20, 0x2203a28).
+  Further 2-byte write sites have unresolved moving bases
+  (`sh` at 0x2203d5c, 0x2203d64).
+  Further 1-byte write sites have unresolved moving bases
+  (`sb` at 0x220417c, 0x2204184, 0x220418c, 0x2204194).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=[[0x1020]:8+1640], a3=[[0x1020]:8+1800]:8, a5=[[0x1020]:8+1792]:8, a6=[[0x1020]:8+1784]:8, a7=[[0x1020]:8+1776]:8`
+  (`jalr` at 0x2203d14).
+  The `memcpy` call has hostfacts arguments
+  `a0=ret(?), a1=[[0x1020]:8+1840]:8, a2=?, a3=?`
+  (`jalr` at 0x2203d2c).
+  The `__glCopyColorTableScaleBias [0x220fde0]` call has hostfacts arguments
+  `a0=[0x1020]:8+6096, a1=?, a2=?, a3=[[0x1020]:8+1476], a5=[0x1020]:8+816`
+  (`jalr` at 0x2203df8).
+  The `__glCopyConvolutionPixelModeState [0x22135c0]` call has hostfacts arguments
+  `a0=[0x1020]:8+816, a1=?, a2=?, a3=?`
+  (`jalr` at 0x2203e08).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=[[0x1020]:8+2795]:1, a4=[[0x1020]:8+2794]:1, a5=[[0x1020]:8+2793]:1, a6=[[0x1020]:8+2792]:1; fp f12=[[0x1020]:8+2772], f13=[[0x1020]:8+2768], f14=[[0x1020]:8+2764], f15=[[0x1020]:8+2760]`
+  (`jalr` at 0x22041a0).
+  The `memcpy` call has hostfacts arguments
+  `a0=ret(?), a1=[[0x1020]:8+2744]:8, a2=?, a3=?`
+  (`jalr` at 0x22041b8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?`
+  (`jalr` at 0x22041cc).
+  The `memcpy` call has hostfacts arguments
+  `a0=ret(?), a1=[[0x1020]:8+2752]:8, a2=?, a3=?`
+  (`jalr` at 0x22041e4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=([[0x1020]:8+3956] << 0x4), a2=[[0x1020]:8+2000], a3=?`
+  (`jalr` at 0x2204210).
+  The `memcpy` call has hostfacts arguments
+  `a0=ret(?), a1=[[0x1020]:8+2008]:8, a2=?, a3=?`
+  (`jalr` at 0x2204228).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x503, a1=([[0x1020]:8+4132] << 0x3), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x22042ac).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=0x1, a2=0xc78, a3=a3 at entry (arg3)`
+  (`jalr` at 0x22042c8).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x22042e0).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2204284, 0x22042a0).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PopAttrib` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22042f0, occupies 3704 bytes.
+  Inferred. It reads 8 bytes at `abs 0x1020` (`ld` at 0x22042f8).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x2204300).
+  It reads 8 bytes at `[0x1020]:8 +0x4e30` (`ld` at 0x2204324).
+  It reads 8 bytes at `[0x1020]:8 +0x4e28` (`ld` at 0x2204328).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2204334).
+  An 8-byte write at `[0x1020]:8 +0x4e30` has value `[[0x1020]:8+20016]:8-8` (`sd` at 0x2204354).
+  A 4-byte write at `[0x1020]:8 +0x770` has value `[[[[0x1020]:8+20016]:8-8]:8+1560]` (`swc1` at 0x220435c).
+  A 4-byte write at `[0x1020]:8 +0x774` has value `[[[[0x1020]:8+20016]:8-8]:8+1564]` (`swc1` at 0x2204364).
+  A 4-byte write at `[0x1020]:8 +0x778` has value `[[[[0x1020]:8+20016]:8-8]:8+1568]` (`swc1` at 0x220436c).
+  A 4-byte write at `[0x1020]:8 +0x77c` has value `[[[[0x1020]:8+20016]:8-8]:8+1572]` (`swc1` at 0x2204374).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x22043ac, 0x22043c0, 0x22045ec, 0x2204600).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2204448, 0x2204464, 0x2204478, 0x220448c).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x22043b8, 0x22043cc, 0x22045f8, 0x220460c).
+  Further 8-byte write sites have unresolved moving bases
+  (`sd` at 0x2204454, 0x220446c, 0x2204480, 0x2204498).
+  The `__glReadjustZCounts [0x227b000]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[0x1020]:8+2056], a2=?, a3=?`
+  (`jalr` at 0x220452c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=([[0x1020]:8+18196] | 0xbe), a2=[[[[0x1020]:8+20016]:8-8]:8+1736], a3=[[[[0x1020]:8+20016]:8-8]:8+1728]:8, a4=[[[[0x1020]:8+20016]:8-8]:8+1720]:8, a5=[[[[0x1020]:8+20016]:8-8]:8+1712]:8`
+  (`jalr` at 0x2204590).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?`
+  (`jalr` at 0x220459c, 0x22045a8, 0x22045b4, 0x2204c18).
+  The `memcpy` call has hostfacts arguments
+  `a0=[[0x1020]:8+1840]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+1496]:8, a2=?, a3=[[0x1020]:8+3944], a5=[[[[0x1020]:8+20016]:8-8]:8+1448]:8, a6=[[[[0x1020]:8+20016]:8-8]:8+1440]:8, a7=[[[[0x1020]:8+20016]:8-8]:8+1432]:8`
+  (`jalr` at 0x22047f8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+1496]:8, a2=?, a3=?`
+  (`jalr` at 0x2204808).
+  The `__glCopyColorTableScaleBias [0x220fde0]` call has hostfacts arguments
+  `a0=[[[0x1020]:8+20016]:8-8]:8+2472, a1=[0x1020]:8+6096, a2=?, a3=?, a4=[0x1020]:8+816, a5=[[[0x1020]:8+20016]:8-8]:8+472`
+  (`jalr` at 0x2204948).
+  The `__glCopyConvolutionPixelModeState [0x22135c0]` call has hostfacts arguments
+  `a0=[[[0x1020]:8+20016]:8-8]:8+472, a1=[0x1020]:8+816, a2=?, a3=?`
+  (`jalr` at 0x2204958).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?, a4=[0x1020]:8+688`
+  (`jalr` at 0x2204b14).
+  The `__glReadjustZCounts [0x227b000]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[0x1020]:8+2056], a2=?, a3=?, a4=([[[[0x1020]:8+20016]:8-8]:8] << 0x2c)`
+  (`jalr` at 0x2204b9c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=-0x4001, a4=[[[[0x1020]:8+20016]:8-8]:8+2468], a5=[[[[0x1020]:8+20016]:8-8]:8+2464], a6=[[[[0x1020]:8+20016]:8-8]:8+2460], a7=[[[[0x1020]:8+20016]:8-8]:8+2456]`
+  (`jalr` at 0x2204c0c).
+  The `memcpy` call has hostfacts arguments
+  `a0=[[0x1020]:8+2744]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+2400]:8, a2=?, a3=?`
+  (`jalr` at 0x2204f38).
+  The `memcpy` call has hostfacts arguments
+  `a0=[[0x1020]:8+2752]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+2408]:8, a2=((([[0x1020]:8+3964] << 0x3) + [[0x1020]:8+3964]) << 0x2), a3=[[0x1020]:8+3964]`
+  (`jalr` at 0x2204f5c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+2400]:8, a2=?, a3=?`
+  (`jalr` at 0x2204f6c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+2408]:8, a2=?, a3=?`
+  (`jalr` at 0x2204f80).
+  The `memcpy` call has hostfacts arguments
+  `a0=[[0x1020]:8+2008]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+1664]:8, a2=([[0x1020]:8+3956] << 0x4), a3=[[[[0x1020]:8+20016]:8-8]:8+1656]`
+  (`jalr` at 0x2204fd8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=[[[[0x1020]:8+20016]:8-8]:8+1664]:8, a2=?, a3=?`
+  (`jalr` at 0x2204fe8).
+  The `__glUpdateViewportTransform [0x227adc0]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?`
+  (`jalr` at 0x2205068).
+  The `__glBindTexture [0x226bee0]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=?, a3=?`
+  (`jalr` at 0x22050f4, 0x220510c).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x504, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2205128).
+  The `__glBindTexture [0x226bee0]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=0x0, a2=[[[[[0x1020]:8+20016]:8-8]:8+2400]:8+216], a3=[[[[0x1020]:8+20016]:8-8]:8+2448]:1, a5=[[[0x1020]:8+2744]:8+216], a6=[[[0x1020]:8+20016]:8-8]:8+2152; fp f12=[[[[0x1020]:8+20016]:8-8]:8+2428], f13=[[[[0x1020]:8+20016]:8-8]:8+2424], f14=[[[[0x1020]:8+20016]:8-8]:8+2420], f15=[[[[0x1020]:8+20016]:8-8]:8+2416]`
+  (`jalr` at 0x2205140).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2205158).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+18196] | 0x1)`
+  (`jr` at 0x22050a4).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x22050b8).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_Enable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2205170, occupies 3248 bytes.
+  Inferred. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2205170).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220517c).
+  It reads 4 bytes at `[0x1020]:8 +0x808` (`lw` at 0x22051c0).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x22051d8).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2205218).
+  A 4-byte write at `[0x1020]:8 +0x808` has value `([[0x1020]:8+2056] | 0x2000000)` (`sw` at 0x22051cc).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x22051d4).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x10)` (`sw` at 0x22051e4).
+  A 4-byte write at `[0x1020]:8 +0x81c` has value unresolved (`sw` at 0x2205234).
+  A 4-byte write at `[0x1020]:8 +0x80c` has value `([[0x1020]:8+2060] | 0x2)` (`sw` at 0x22053a8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x220523c).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x220569c, 0x22057a0, 0x2205dd0).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x2205250).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=[0x1020]:8, a3=?`
+  (`jalr` at 0x22054e0).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=[0x1020]:8, a3=?, a4=([[0x1020]:8+18196] | 0x20), a6=0x2, a7=([[0x1020]:8+2056] | 0x40)`
+  (`jalr` at 0x220568c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x22056a0, 0x22057a4, 0x2205dd4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a4=0x1`
+  (`jalr` at 0x22056b8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=[0x1020]:8, a3=?, a4=0x1`
+  (`jalr` at 0x2205790).
+  The `__glim_BlendEquationEXT [0x21ffcc0]` call has hostfacts arguments
+  `a0=0xbf1, a1=?, a2=[0x1020]:8, a3=?, a4=0x1`
+  (`bgezall` at 0x2205a20).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=([[0x1020]:8+2056] | 0x80), a2=[0x1020]:8, a3=?, a7=0xb60`
+  (`jalr` at 0x2205dc0).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220524c, 0x2205258, 0x2205648, 0x220587c, 0x22058e8, 0x2205930, 0x2205a74, 0x2205ae4, 0x2205b50, 0x2205ba4, 0x2205d5c, 0x2205e18).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+2056] | 0x100)`
+  (`jr` at 0x2205b10).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+6080] | 0x1)`
+  (`jr` at 0x2205e00).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_Disable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2205e20, occupies 3320 bytes.
+  Inferred. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2205e20).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x2205e2c).
+  It reads 4 bytes at `[0x1020]:8 +0x808` (`lw` at 0x2205e74).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x2205e8c).
+  It reads 4 bytes at `[0x1020]:8 +0x81c` (`lw` at 0x2205ed8).
+  A 4-byte write at `[0x1020]:8 +0x808` has value unresolved (`sw` at 0x2205e80).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2205e88).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x10)` (`sw` at 0x2205e98).
+  A 4-byte write at `[0x1020]:8 +0x81c` has value unresolved (`sw` at 0x2205ee8).
+  A 4-byte write at `[0x1020]:8 +0x80c` has value unresolved (`sw` at 0x2206068).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x2205ef0).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2206368, 0x2206aa0, 0x2206ab4).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x2205f04).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=[0x1020]:8, a3=?`
+  (`jalr` at 0x2206194).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=-0x41, a3=?`
+  (`jalr` at 0x2206358).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`jalr` at 0x220636c, 0x2206aa4, 0x2206ab8).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a4=0x1`
+  (`jalr` at 0x2206384).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=[0x1020]:8, a3=?`
+  (`jalr` at 0x2206a64).
+  The `__glReadjustZCounts [0x227b000]` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=?, a2=[0x1020]:8, a3=?, a4=0x1`
+  (`jalr` at 0x2206a90).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2205f00, 0x2205f0c, 0x2206308, 0x2206500, 0x2206574, 0x22067bc).
+  Hostfacts reports return registers `v0 = a0-3504`
+  (`jr` at 0x22065c8, 0x220670c, 0x2206804, 0x2206b10).
+  Hostfacts reports return registers `v0 = -0x3`
+  (`jr` at 0x220678c).
+  Hostfacts reports return registers `v0 = -0x100`
+  (`jr` at 0x2206868).
+  Hostfacts reports return registers `v0 = -0x5`
+  (`jr` at 0x2206a00).
+  Hostfacts reports return registers `v0 = -0xf01`
+  (`jr` at 0x2206af4).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PolygonOffset` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2207520, occupies 120 bytes.
+  Established. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2207520).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220752c).
+  It reads 4 bytes at `[0x1020]:8 +0x2ac` (`lwc1` at 0x2207544).
+  It reads 4 bytes at `[0x1020]:8 +0x4714` (`lw` at 0x220755c).
+  It reads 8 bytes at `abs 0x22da800` (`ld` at 0x2207580).
+  A 4-byte write at `[0x1020]:8 +0x2a4` has value `f12` (`swc1` at 0x2207548).
+  A 4-byte write at `[0x1020]:8 +0x2a8` has value unresolved (`swc1` at 0x2207550).
+  A 4-byte write at `abs 0x1030` has value `0x2` (`sw` at 0x2207558).
+  A 4-byte write at `[0x1020]:8 +0x4714` has value `([[0x1020]:8+18196] | 0x4)` (`sw` at 0x2207570).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2207588).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+18196] | 0x4)`
+  (`jr` at 0x220756c).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x2207578).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glFreeAttributeState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22075a0, occupies 356 bytes.
+  Inferred. It reads 8 bytes at `a0 (arg0 at entry) +0x4e30` (`ld` at 0x22075a0).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x4e28` (`ld` at 0x22075a8).
+  It reads 8 bytes at `abs 0x22da3e0` (`ld` at 0x22075d4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x1024` (`lw` at 0x22075f4).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x2207618).
+  An 8-byte write at `a0 (arg0 at entry) +0x4e28` has value `0x0` (`sd` at 0x2207664).
+  An 8-byte write at `a0 (arg0 at entry) +0x4e38` has value `0x0` (`sd` at 0x22076f4).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x220760c, 0x22076a0).
+  The `__glim_PopAttrib [0x22042f0]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=[a0+20008]:8`
+  (`bgezall` at 0x22075d8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=[a0+20008]:8`
+  (`jalr` at 0x220761c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=[a0+20008]:8, a2=?, a3=[a0+20008]:8`
+  (`jalr` at 0x220764c).
+  The `__glim_PopClientAttrib [0x2207e00]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=[a0+20024]:8`
+  (`bgezall` at 0x220766c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=?, a2=?, a3=[a0+20024]:8`
+  (`jalr` at 0x22076b0).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=[a0+20024]:8, a2=?, a3=[a0+20024]:8`
+  (`jalr` at 0x22076e4).
+  Hostfacts reports return registers `v0 = ret(?); f0 = ret(?)`
+  (`jr` at 0x22076fc).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_EnableClientState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2207710, occupies 536 bytes.
+  Inferred. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2207718).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220771c).
+  It reads 4 bytes at `[0x1020]:8 +0x8dc0` (`lw` at 0x220775c).
+  It reads 4 bytes at `[0x1020]:8 +0x17b8` (`lw` at 0x2207760).
+  It reads 4 bytes at `[0x1020]:8 +0x17c0` (`lw` at 0x2207778).
+  A 4-byte write at `[0x1020]:8 +0x17b8` has value unresolved (`sw` at 0x2207774).
+  A 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x4)` (`sw` at 0x2207788).
+  A 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0x7f00000)` (`sw` at 0x2207794).
+  A 4-byte write at `[0x1020]:8 +0x17bc` has value `([[0x1020]:8+6076] | 0x2)` (`sw` at 0x2207838).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=[0x1020]:8, a3=one of 0x8075, 0x8076, 0x8439, a6=-0x83c7`
+  (`jalr` at 0x22077ec).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a4=0x1, a6=-0x83c7`
+  (`jalr` at 0x2207918).
+  Hostfacts reports return registers `v0 = 0xd9088`
+  (`jr` at 0x22077e0, 0x2207870, 0x22078cc).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x22077fc, 0x22078a0).
+  Hostfacts reports return registers `v0 = ([[0x1020]:8+6068] | 0xff000)`
+  (`jr` at 0x22078fc).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_DisableClientState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2207930, occupies 592 bytes.
+  Inferred. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2207938).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220793c).
+  It reads 4 bytes at `[0x1020]:8 +0x8dc0` (`lw` at 0x2207988).
+  It reads 4 bytes at `[0x1020]:8 +0x17b8` (`lw` at 0x2207990).
+  It reads 4 bytes at `[0x1020]:8 +0x17c0` (`lw` at 0x22079a8).
+  A 4-byte write at `[0x1020]:8 +0x17b8` has value unresolved (`sw` at 0x22079a4).
+  A 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x22079c0).
+  A 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x22079cc).
+  A 4-byte write at `[0x1020]:8 +0x17bc` has value unresolved (`sw` at 0x2207a70).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x500, a1=?, a2=[0x1020]:8, a3=one of 0x8075, 0x8076, 0x8439, a6=one of 0xffffffffffff0000, -0x83c7, -0x21, a7=-0x3`
+  (`jalr` at 0x2207a28).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a4=0x1, a6=0xffffffffffff0000, a7=-0x3`
+  (`jalr` at 0x2207b70).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2207a1c, 0x2207a38).
+  Hostfacts reports return registers `v0 = 0xd8e68`
+  (`jr` at 0x2207ab4, 0x2207b18, 0x2207b50).
+  Hostfacts reports return registers `v0 = 0xfffffffff7ffffff`
+  (`jr` at 0x2207aec).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PushClientAttrib` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2207b80, occupies 636 bytes.
+  Established. It reads 8 bytes at `abs 0x1020` (`ld` at 0x2207b88).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x2207b90).
+  It reads 4 bytes at `[0x1020]:8 +0x1028` (`lw` at 0x2207bb8).
+  It reads 8 bytes at `[0x1020]:8 +0x4e38` (`ld` at 0x2207bbc).
+  It reads 8 bytes at `[0x1020]:8 +0x4e40` (`ld` at 0x2207bc0).
+  An 8-byte write at `[0x1020]:8 +0x4e40` has value `[[0x1020]:8+20032]:8+8` (`sd` at 0x2207bfc).
+  An 8-byte write at `[[0x1020]:8+20032]:8 +0x0` has value `ret(?)` (`sd` at 0x2207de4).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2207ce4, 0x2207d00, 0x2207d14, 0x2207d28).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x2207bf0, 0x2207c04, 0x2207c0c, 0x2207c14).
+  Further 8-byte write sites have unresolved moving bases
+  (`sd` at 0x2207cf0, 0x2207d08, 0x2207d1c, 0x2207d30).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x503, a1=([[0x1020]:8+4136] << 0x3), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2207db8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[0x1020]:8, a1=0x1, a2=0x238, a3=a3 at entry (arg3), a6=[[[0x1020]:8+20032]:8]:8`
+  (`jalr` at 0x2207dd4).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x2207dec).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2207db0).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glim_PopClientAttrib` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2207e00, occupies 572 bytes.
+  Inferred. It reads 4 bytes at `abs 0x1030` (`lw` at 0x2207e04).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x2207e08).
+  It reads 8 bytes at `[0x1020]:8 +0x4e40` (`ld` at 0x2207e2c).
+  It reads 8 bytes at `[0x1020]:8 +0x4e38` (`ld` at 0x2207e30).
+  It reads 8 bytes at `[[0x1020]:8+20032]:8 -0x8` (`ld` at 0x2207e40).
+  An 8-byte write at `[0x1020]:8 +0x4e40` has value `[[0x1020]:8+20032]:8-8` (`sd` at 0x2207e58).
+  A 4-byte write at `[0x1020]:8 +0x568` has value `[[[[0x1020]:8+20032]:8-8]:8+4]` (`sw` at 0x2207e64).
+  A 4-byte write at `[0x1020]:8 +0x56c` has value `[[[[0x1020]:8+20032]:8-8]:8+8]` (`sw` at 0x2207e6c).
+  A 4-byte write at `[0x1020]:8 +0x570` has value `[[[[0x1020]:8+20032]:8-8]:8+12]` (`sw` at 0x2207e74).
+  A 4-byte write at `[0x1020]:8 +0x574` has value `[[[[0x1020]:8+20032]:8-8]:8+16]` (`sw` at 0x2207e7c).
+  Further 8-byte read sites have unresolved moving bases
+  (`ld` at 0x2207f40, 0x2207f5c, 0x2207f70, 0x2207f84).
+  Further 8-byte write sites have unresolved moving bases
+  (`sd` at 0x2207f4c, 0x2207f64, 0x2207f78, 0x2207f8c).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x504, a1=[[0x1020]:8+20032]:8, a2=a2 at entry (arg2), a3=[[0x1020]:8+20032]:8-8, a5=[0x1020]:8, a6=0x3`
+  (`jalr` at 0x2208018).
+  The `__glSetError [0x22115d0]` call has hostfacts arguments
+  `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8, a6=0x3`
+  (`jalr` at 0x220802c).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x2208000).
+  Hostfacts reports return registers `v0 = ret(__glSetError); f0 = ret(__glSetError)`
+  (`jr` at 0x220800c).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glDrawBitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2208040, occupies 268 bytes.
+  Inferred. It reads 8 bytes at `abs 0x22daca0` (`ld` at 0x2208098).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ld` at 0x22080b0).
+  It reads 8 bytes at `abs 0x22dacb8` (`ld` at 0x22080cc).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x4ce8` (`ld` at 0x22080ec).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x2208100).
+  A nonpositive entry a1 selects the fallback callback with a zero third argument: `a1 <= 0 (signed)` (`blez` at 0x2208088).
+  The `__glImageSize [0x2225650]` call has hostfacts arguments
+  `a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=0x1900, a3=0x1a00`
+  (`jalr` at 0x22080a8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=ret(__glImageSize), a2=?, a3=?`
+  (`jalr` at 0x22080bc).
+  The `__glFillImage [0x2226480]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x1900, a4=0x1a00, a5=a7 at entry (arg7), a6=ret(?)`
+  (`jalr` at 0x22080e4).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-96, a2=ret(?), a3=?`
+  (`jalr` at 0x22080f8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=?`
+  (`jalr` at 0x2208108).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=a3 at entry (arg3)`
+  (`jalr` at 0x220813c).
+  Hostfacts reports return registers `v0 = ret(?); f0 = ret(?)`
+  (`jr` at 0x2208128).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
+
+- `__glRenderBitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22082a0, occupies 804 bytes.
+  Inferred. It reads 1 byte at `a0 (arg0 at entry) +0x274` (`lbu` at 0x22082c0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x1458` (`lw` at 0x22082c4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9814` (`lw` at 0x22082dc).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xdd4` (`lw` at 0x22082ec).
+  It reads 8 bytes at `abs 0x22daa98` (`ld` at 0x220830c).
+  A nonpositive descriptor word at entry a1 +4 skips the pixel loop: `t2(=[a1+4]) <= 0 (signed)` (`blez` at 0x22083d4).
+  The branch still reaches the stores at context +0x220 and +0x224 listed below.
+  A 4-byte write at `a0 (arg0 at entry) +0x220` has value unresolved (`swc1` at 0x2208510).
+  A 4-byte write at `a0 (arg0 at entry) +0x224` has value unresolved (`swc1` at 0x2208534).
+  Further 1-byte read sites have unresolved moving bases
+  (`lbu` at 0x2208458, 0x22084e8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-148, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a0+38932], a5=0x1c02, a6=0x1c01; fp f17=[a0+3884]`
+  (`jalr` at 0x2208368).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=sp-160, a2=?, a3=?; fp f14=[a0+520]`
+  (`jalr` at 0x220838c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[a0+18200]:8, a1=sp-160, a2=?, a3=?`
+  (`jalr` at 0x2208418).
+  The `__glFeedbackBitmap [0x221a910]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a0+408, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=[a0+38932], a5=0x1c02, a6=0x1c01`
+  (`jalr` at 0x2208590).
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220853c, 0x2208558).
+  Unreported state predicates, full copy extents, callback behavior and missing
+  calculated values remain unknown.
