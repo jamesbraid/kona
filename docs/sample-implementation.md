@@ -31580,3 +31580,435 @@ comparison was not rerun and supplies no new target equation.
   stored values, branch targets and return conditions remain unknown.
   Unreported conversion and interpolation equations, predicates and missing
   calculated values remain unknown.
+
+- `ClipCF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220cb20, routine size 248 bytes.
+  Writes software vertex floats at argument-zero +0x84 and +0x94
+  (`swc1` at 0x220cb44, 0x220cb48), then colour fields
+  +0x98, +0x9c, +0xa0 and +0xa4 (`swc1` at 0x220cb98,
+  0x220cbac, 0x220cbc0, 0x220cbd4).
+  An ambiguous COP1X word prevents a complete interpolation
+  equation. No callback appears in this body.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipCF` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2cb20,
+  248 bytes, labelled Inferred.
+  Comparison: target 248 bytes, existing 248 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6d4fe7cdf5da8aa5c2ba6140a700516fcc42d91a26e46bf278b268bedd1927b2`.
+  Existing SHA-256: `6d4fe7cdf5da8aa5c2ba6140a700516fcc42d91a26e46bf278b268bedd1927b2`.
+  Evidence: `review-facts/ClipCF.target.txt`,
+  `review-facts/ClipCF.sibling.txt`, `review-facts/ClipCF.words.txt`,
+  `review-facts/ClipCF.bytes.txt`.
+
+- `ClipBCF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220cc20, routine size 328 bytes.
+  Produces front and back software vertex colour data. Output
+  includes argument-zero +0xa8, +0xac, +0xb0 and +0xb4
+  (`swc1` at 0x220cce8, 0x220ccfc, 0x220cd10,
+  0x220cd24).
+  Position-related floats also reach +0x84 and +0x94
+  (`swc1` at 0x220cc44, 0x220cc48).
+  The ambiguous COP1X decode leaves one computed component
+  unresolved. The routine makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipBCF` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2cc20,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6de32eac25c2c5b3ce4467a94bc1a1d7311921e4b332a34dbc08275e67a7ea1f`.
+  Existing SHA-256: `6de32eac25c2c5b3ce4467a94bc1a1d7311921e4b332a34dbc08275e67a7ea1f`.
+  Evidence: `review-facts/ClipBCF.target.txt`,
+  `review-facts/ClipBCF.sibling.txt`, `review-facts/ClipBCF.words.txt`,
+  `review-facts/ClipBCF.bytes.txt`.
+
+- `ClipFT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220cd70, routine size 248 bytes.
+  Calculates software vertex attributes with a texture-coordinate
+  output group at argument-zero +0x38, +0x3c, +0x40 and
+  +0x44 (`swc1` at 0x220ce0c, 0x220ce20,
+  0x220ce34, 0x220ce4c).
+  Other output sites include +0xb8 and +0x70
+  (`swc1` at 0x220cdf8, 0x220ce64).
+  Their numerical values are not resolved by hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipFT` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2cd70,
+  248 bytes, labelled Inferred.
+  Comparison: target 248 bytes, existing 248 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b14fd10cfbb315815595aa66649eab98583e842fb19765df626da601e135fb70`.
+  Existing SHA-256: `b14fd10cfbb315815595aa66649eab98583e842fb19765df626da601e135fb70`.
+  Evidence: `review-facts/ClipFT.target.txt`,
+  `review-facts/ClipFT.sibling.txt`, `review-facts/ClipFT.words.txt`,
+  `review-facts/ClipFT.bytes.txt`.
+
+- `ClipIFT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220ce70, routine size 268 bytes.
+  Adds an index-like software vertex output at argument-zero
+  +0x98 (`swc1` at 0x220cee8), alongside texture floats
+  at +0x38, +0x3c, +0x40 and +0x44
+  (`swc1` at 0x220cf20, 0x220cf34, 0x220cf48,
+  0x220cf60).
+  Stores also reach +0x84 and +0x94
+  (`swc1` at 0x220ce94, 0x220ce98).
+  The arithmetic results remain unknown in hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipIFT` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2ce70,
+  268 bytes, labelled Inferred.
+  Comparison: target 268 bytes, existing 268 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b7dbf5bc49c95662707b2c72364b7b00cffa96befc83870a109f59d7e6fee294`.
+  Existing SHA-256: `b7dbf5bc49c95662707b2c72364b7b00cffa96befc83870a109f59d7e6fee294`.
+  Evidence: `review-facts/ClipIFT.target.txt`,
+  `review-facts/ClipIFT.sibling.txt`, `review-facts/ClipIFT.words.txt`,
+  `review-facts/ClipIFT.bytes.txt`.
+
+- `ClipBIFT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220cf80, routine size 288 bytes.
+  Emits two index-like software attributes at argument-zero
+  +0x98 and +0xa8 (`swc1` at 0x220cff8, 0x220d00c).
+  Its texture-coordinate fields occupy +0x38, +0x3c,
+  +0x40 and +0x44 (`swc1` at 0x220d044,
+  0x220d058, 0x220d06c, 0x220d084).
+  One ambiguous COP1X word prevents deriving the complete
+  vertex interpolation equation.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipBIFT` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2cf80,
+  288 bytes, labelled Inferred.
+  Comparison: target 288 bytes, existing 288 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c4284a67ce4b7dc5abf8707657faeef507d679f43f921f8f1f357147cddd98f2`.
+  Existing SHA-256: `c4284a67ce4b7dc5abf8707657faeef507d679f43f921f8f1f357147cddd98f2`.
+  Evidence: `review-facts/ClipBIFT.target.txt`,
+  `review-facts/ClipBIFT.sibling.txt`, `review-facts/ClipBIFT.words.txt`,
+  `review-facts/ClipBIFT.bytes.txt`.
+
+- `ClipCFT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220d0a0, routine size 328 bytes.
+  Fills software vertex colour and texture fields. Colour writes
+  cover argument-zero +0x98, +0x9c, +0xa0 and +0xa4
+  (`swc1` at 0x220d118, 0x220d12c, 0x220d140,
+  0x220d154).
+  Texture output includes +0x38 and +0x44
+  (`swc1` at 0x220d18c, 0x220d1cc).
+  An ambiguous COP1X decode leaves the affected calculation
+  unknown. This routine invokes no helpers.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipCFT` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2d0a0,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `69ea147f995b657fecb2de17a584c246e2b0e4360e2587eabdba664317da48bf`.
+  Existing SHA-256: `69ea147f995b657fecb2de17a584c246e2b0e4360e2587eabdba664317da48bf`.
+  Evidence: `review-facts/ClipCFT.target.txt`,
+  `review-facts/ClipCFT.sibling.txt`, `review-facts/ClipCFT.words.txt`,
+  `review-facts/ClipCFT.bytes.txt`.
+
+- `ClipBCFT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220d1f0, routine size 408 bytes.
+  Handles software vertex attributes with both colour groups and
+  texture coordinates. Back-colour floats reach argument-zero
+  +0xa8, +0xac, +0xb0 and +0xb4
+  (`swc1` at 0x220d2b8, 0x220d2cc, 0x220d2e0,
+  0x220d2f4).
+  Texture stores include +0x38 and +0x3c
+  (`swc1` at 0x220d32c, 0x220d340).
+  Two ambiguous COP1X words exclude complete equations for
+  the affected outputs.
+
+  Existing entry: `docs/sample-implementation.md`, `ClipBCFT` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2d1f0,
+  408 bytes, labelled Inferred.
+  Comparison: target 408 bytes, existing 408 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `3666e9907ee63d3b98c7b3f93fafcdb4967ad650e2eae76a0c5a11bba764f3da`.
+  Existing SHA-256: `3666e9907ee63d3b98c7b3f93fafcdb4967ad650e2eae76a0c5a11bba764f3da`.
+  Evidence: `review-facts/ClipBCFT.target.txt`,
+  `review-facts/ClipBCFT.sibling.txt`, `review-facts/ClipBCFT.words.txt`,
+  `review-facts/ClipBCFT.bytes.txt`.
+
+- `__glGenericPickParameterClipProcs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220d390, routine size 276 bytes.
+  Installs software parameter-clipping procedure pointers in context
+  +0x49b8 and +0x4cb8 (`sd` at 0x220d438,
+  0x220d440).
+  These are doubleword fields populated from a procedure
+  table, not calls. The body contains no invocation of
+  the selected procedures.
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickParameterClipProcs` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2d390,
+  276 bytes, labelled Inferred.
+  Comparison: target 276 bytes, existing 276 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `26d1a6f2c681e67e5f7ecdb4820144d2296cfb44c9914bd4d8f1f897ba94cc55`.
+  Existing SHA-256: `26d1a6f2c681e67e5f7ecdb4820144d2296cfb44c9914bd4d8f1f897ba94cc55`.
+  Evidence: `review-facts/__glGenericPickParameterClipProcs.target.txt`,
+  `review-facts/__glGenericPickParameterClipProcs.sibling.txt`, `review-facts/__glGenericPickParameterClipProcs.words.txt`,
+  `review-facts/__glGenericPickParameterClipProcs.bytes.txt`.
+
+- `__glCheckColorTableArgs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220d4b0, routine size 2068 bytes.
+  Checks software colour-table arguments through enumerant comparisons
+  and calls to `__glElementsPerGroup` (`jalr` at 0x220d5fc,
+  0x220d62c).
+  Those calls receive original argument two and original
+  argument four respectively as argument zero.
+  Return bodies include 0x500, 0x501 and 0x8031
+  (`jr` at 0x220d56c, 0x220d674, 0x220d684).
+  Its only stores are local stack saves.
+
+  Existing entry: `docs/sample-implementation.md`, `__glCheckColorTableArgs` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2d4b0,
+  2068 bytes, labelled Inferred.
+  Comparison: target 2068 bytes, existing 2068 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `cfc77a57d533a16c6e3933ab2fa7999782fddd11365cbff437451559da69ed62`.
+  Existing SHA-256: `cfc77a57d533a16c6e3933ab2fa7999782fddd11365cbff437451559da69ed62`.
+  Evidence: `review-facts/__glCheckColorTableArgs.target.txt`,
+  `review-facts/__glCheckColorTableArgs.sibling.txt`, `review-facts/__glCheckColorTableArgs.words.txt`,
+  `review-facts/__glCheckColorTableArgs.bytes.txt`.
+
+- `__glCheckColorSubTableArgs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220dcd0, routine size 816 bytes.
+  Validates a software colour sub-table update without writes
+  or calls. The table-length word is selected from context
+  +0x17e4, +0x1894, +0x1944 or +0x19f4
+  (`lw` at 0x220dd18).
+  Separate return bodies supply 0x500, 0x501, 0x502
+  and zero (`jr` at 0x220dcf4, 0x220dd7c,
+  0x220de48, 0x220dec4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glCheckColorSubTableArgs` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2dcd0,
+  816 bytes, labelled Inferred.
+  Comparison: target 816 bytes, existing 816 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `294977bba4a11539f8acdb32e1ae0ffb6817a49e840e19b9f7adbaace350c7f6`.
+  Existing SHA-256: `294977bba4a11539f8acdb32e1ae0ffb6817a49e840e19b9f7adbaace350c7f6`.
+  Evidence: `review-facts/__glCheckColorSubTableArgs.target.txt`,
+  `review-facts/__glCheckColorSubTableArgs.sibling.txt`, `review-facts/__glCheckColorSubTableArgs.words.txt`,
+  `review-facts/__glCheckColorSubTableArgs.bytes.txt`.
+
+- `__glim_CopyColorSubTable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220f970, routine size 760 bytes.
+  Copies software pixel data through `__glCheckColorSubTableArgs`
+  (`bgezall` at 0x220f9d4), `__glInitReadImageSrcInfo`
+  (`jalr` at 0x220fa44) and `__glClipReadPixels`
+  (`jalr` at 0x220fb78).
+  The latter two receive pointed-context and entry-stack -712.
+  Writes two to absolute 0x1030 and ORs 0x10 into
+  context +0x4714 (`sw` at 0x220fbc0, 0x220fbd4).
+  Six undecoded words leave their predicates and
+  dependent values unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_CopyColorSubTable` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2f970,
+  760 bytes, labelled Inferred.
+  Comparison: target 760 bytes, existing 760 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5991626a82aea4e7928b7cf6699b4d4bb8fc2a78194bc64b0c2f7c2b9239b124`.
+  Existing SHA-256: `5991626a82aea4e7928b7cf6699b4d4bb8fc2a78194bc64b0c2f7c2b9239b124`.
+  Evidence: `review-facts/__glim_CopyColorSubTable.target.txt`,
+  `review-facts/__glim_CopyColorSubTable.sibling.txt`, `review-facts/__glim_CopyColorSubTable.words.txt`,
+  `review-facts/__glim_CopyColorSubTable.bytes.txt`.
+
+- `__glEarlyInitContext` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2210130, routine size 404 bytes.
+  Initializes software context state and helper hooks. Sets float
+  bit patterns 0x3f800000 at context +0xf2c and 0x3f000000
+  at +0xf28 (`swc1` at 0x221018c, 0x2210190).
+  Calls `__glEarlyInitTextureState`, `__glEarlyInitTransformState`
+  and `__glInitDlistState` with the original context
+  (`jalr` at 0x2210270, 0x221027c, 0x22102a8).
+  Five other calls use unnamed procedures.
+
+  Existing entry: `docs/sample-implementation.md`, `__glEarlyInitContext` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e30130,
+  404 bytes, labelled Inferred.
+  Comparison: target 404 bytes, existing 404 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b3c327f6414c4492f701df28c47239f2a58b6d0862c27af7b52f189a288eb3f5`.
+  Existing SHA-256: `b3c327f6414c4492f701df28c47239f2a58b6d0862c27af7b52f189a288eb3f5`.
+  Evidence: `review-facts/__glEarlyInitContext.target.txt`,
+  `review-facts/__glEarlyInitContext.sibling.txt`, `review-facts/__glEarlyInitContext.words.txt`,
+  `review-facts/__glEarlyInitContext.bytes.txt`.
+
+- `__glContextSetColorScales` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x22102d0, routine size 940 bytes.
+  Recomputes software colour scales with four float outputs at
+  context +0x9a38, +0x9a3c, +0x9a40 and +0x9a44
+  (`swc1` at 0x2210398, 0x221039c, 0x22103a0,
+  0x22103a4).
+  `__glScaleColorf` receives context +560 as both colour
+  pointers (`jalr` at 0x2210530).
+  Pixel state is updated through `__glPixelSetColorScales`
+  (`jalr` at 0x2210630).
+  Three undecoded words leave the initial predicates unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glContextSetColorScales` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e302d0,
+  940 bytes, labelled Inferred.
+  Comparison: target 940 bytes, existing 940 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `7ba8a8b745537d1657f1f34153d68f42112417139b82fc9aa02f75d961691a3c`.
+  Existing SHA-256: `7ba8a8b745537d1657f1f34153d68f42112417139b82fc9aa02f75d961691a3c`.
+  Evidence: `review-facts/__glContextSetColorScales.target.txt`,
+  `review-facts/__glContextSetColorScales.sibling.txt`, `review-facts/__glContextSetColorScales.words.txt`,
+  `review-facts/__glContextSetColorScales.bytes.txt`.
+
+- `__glim_RenderMode` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2211690, routine size 424 bytes.
+  Changes software render-mode state at pointed-context +0xdd4
+  (`sw` at 0x2211714).
+  Marks absolute 0x1030 with two and ORs 0x1 into
+  context +0x4714 (`sw` at 0x221171c, 0x221172c).
+  Error calls carry 0x500 and 0x502
+  (`bgezall` at 0x22116dc, 0x22117cc).
+  Buffer-reset paths include byte clears at +0x1488 and
+  +0x14a0 (`sb` at 0x221174c, 0x2211750).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RenderMode` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e31690,
+  424 bytes, labelled Inferred.
+  Comparison: target 424 bytes, existing 424 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `3e2d1222fb2b5c1d9312c420bb08825b437610d4034ecf6a1d64dac7c0fb46e5`.
+  Existing SHA-256: `3e2d1222fb2b5c1d9312c420bb08825b437610d4034ecf6a1d64dac7c0fb46e5`.
+  Evidence: `review-facts/__glim_RenderMode.target.txt`,
+  `review-facts/__glim_RenderMode.sibling.txt`, `review-facts/__glim_RenderMode.words.txt`,
+  `review-facts/__glim_RenderMode.bytes.txt`.
+
+- `__glInitDepth32` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2214f80, routine size 228 bytes.
+  Initializes a software 32-bit depth buffer through `__glInitBuffer`
+  (`jalr` at 0x2214fa4).
+  Stores 32 at buffer +0x10 and four at +0x24
+  (`sw` at 0x2214ff8, 0x2215000).
+  Sets +0x7c to 0x7fffff80 (`sw` at 0x2215010).
+  Doubleword procedure fields include +0xb0, +0xc8 and
+  +0xc0 (`sd` at 0x2215018, 0x2215020, 0x2215028).
+  Installing these addresses does not call them.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitDepth32` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e34f80,
+  228 bytes, labelled Inferred.
+  Comparison: target 228 bytes, existing 228 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `763fe51975a88bed21e0cae894a12333947f14e743c93bcab4d024a5edde5254`.
+  Existing SHA-256: `763fe51975a88bed21e0cae894a12333947f14e743c93bcab4d024a5edde5254`.
+  Evidence: `review-facts/__glInitDepth32.target.txt`,
+  `review-facts/__glInitDepth32.sibling.txt`, `review-facts/__glInitDepth32.words.txt`,
+  `review-facts/__glInitDepth32.bytes.txt`.
+
+- `__glGenericFreeDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2215120, routine size 192 bytes.
+  Releases software display-list storage through three unnamed
+  callbacks (`jalr` at 0x221515c, 0x2215198,
+  0x22151c0).
+  The first receives original context and the list's +0x18
+  doubleword. The last receives original context and original
+  list pointer. Both use the hook loaded from context
+  +0x1580 (`ld` at 0x2215158, 0x22151b0).
+  The middle callback's second argument remains unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericFreeDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e35120,
+  192 bytes, labelled Inferred.
+  Comparison: target 192 bytes, existing 192 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `87af078d27fb243b3cca1585632aea1bc5b25957787778530f2c02d3bf48c418`.
+  Existing SHA-256: `87af078d27fb243b3cca1585632aea1bc5b25957787778530f2c02d3bf48c418`.
+  Evidence: `review-facts/__glGenericFreeDlist.target.txt`,
+  `review-facts/__glGenericFreeDlist.sibling.txt`, `review-facts/__glGenericFreeDlist.words.txt`,
+  `review-facts/__glGenericFreeDlist.bytes.txt`.
+
+- `__glGenericExecuteDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x22151e0, routine size 52 bytes.
+  Dispatches a software display list to `__glDoInterpret`
+  (`jalr` at 0x22151fc).
+  Argument zero is the doubleword loaded from original
+  argument-one +0x18 (`ld` at 0x2215200).
+  Original argument zero is not forwarded. No non-stack
+  store occurs in the complete wrapper.
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericExecuteDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e351e0,
+  52 bytes, labelled Established.
+  Comparison: target 52 bytes, existing 52 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `04c1df256cc6173e1894c4c9f10020b025964755521b83645d286769c9a05670`.
+  Existing SHA-256: `04c1df256cc6173e1894c4c9f10020b025964755521b83645d286769c9a05670`.
+  Evidence: `review-facts/__glGenericExecuteDlist.target.txt`,
+  `review-facts/__glGenericExecuteDlist.sibling.txt`, `review-facts/__glGenericExecuteDlist.words.txt`,
+  `review-facts/__glGenericExecuteDlist.bytes.txt`.
+
+- `__glGenericAllocDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2215220, routine size 212 bytes.
+  Allocates software display-list records using two unnamed calls
+  (`jalr` at 0x2215258, 0x2215294).
+  The allocator hook comes from context +0x1570
+  (`ld` at 0x221523c, 0x221528c), while requested sizes
+  remain unknown in hostfacts.
+  The first returned record receives word one at +0 and
+  procedure doublewords at +8 and +0x10
+  (`sw` at 0x2215274, `sd` at 0x221527c, 0x2215280).
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericAllocDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e35220,
+  212 bytes, labelled Inferred.
+  Comparison: target 212 bytes, existing 212 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a2e1803fea978ca367218e0badd11e42fa91180ba6d967c0328f19bf71d58730`.
+  Existing SHA-256: `a2e1803fea978ca367218e0badd11e42fa91180ba6d967c0328f19bf71d58730`.
+  Evidence: `review-facts/__glGenericAllocDlist.target.txt`,
+  `review-facts/__glGenericAllocDlist.sibling.txt`, `review-facts/__glGenericAllocDlist.words.txt`,
+  `review-facts/__glGenericAllocDlist.bytes.txt`.
+
+- `__glGenericDlistCompiler` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2215310, routine size 876 bytes.
+  Compiles software display-list records through `__glGenericAllocDlist`
+  (`bgezall` at 0x22153ac, 0x221561c).
+  The second allocation supplies zero for arguments one
+  and two. Word-copy output includes `sw` at 0x2215480,
+  0x2215484, 0x2215488 and 0x221548c, whose effective
+  bases remain unknown.
+  Failure cleanup clears original argument-one +0x18 and
+  +0x10 (`sd` at 0x221564c, 0x2215650) and reports
+  0x505 through `__glSetError` (`bgezall` at 0x2215658).
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericDlistCompiler` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e35310,
+  876 bytes, labelled Inferred.
+  Comparison: target 876 bytes, existing 876 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f5900bb1280a412a59694cc1713c88f119de0040c26720289b041068e254a297`.
+  Existing SHA-256: `f5900bb1280a412a59694cc1713c88f119de0040c26720289b041068e254a297`.
+  Evidence: `review-facts/__glGenericDlistCompiler.target.txt`,
+  `review-facts/__glGenericDlistCompiler.sibling.txt`, `review-facts/__glGenericDlistCompiler.words.txt`,
+  `review-facts/__glGenericDlistCompiler.bytes.txt`.
+
+- `__glNopFreeDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2215680, routine size 52 bytes.
+  Forwards original argument one to the resolved `free` routine
+  (`jalr` at 0x221569c).
+  Fetches the callee through absolute 0x22df668
+  (`ld` at 0x2215694).
+  The complete software wrapper contains stack saves and
+  restores but no store to a context or display-list record.
+
+  Existing entry: `docs/sample-implementation.md`, `__glNopFreeDlist` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e35680,
+  52 bytes, labelled Inferred.
+  Comparison: target 52 bytes, existing 52 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0c6e576dc32470d0b604c5a674a1ec24767b08bf3911ac7043c70f32d7997e1a`.
+  Existing SHA-256: `0c6e576dc32470d0b604c5a674a1ec24767b08bf3911ac7043c70f32d7997e1a`.
+  Evidence: `review-facts/__glNopFreeDlist.target.txt`,
+  `review-facts/__glNopFreeDlist.sibling.txt`, `review-facts/__glNopFreeDlist.words.txt`,
+  `review-facts/__glNopFreeDlist.bytes.txt`.
