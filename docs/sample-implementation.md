@@ -27130,3 +27130,459 @@ comparison was not rerun and supplies no new target equation.
   Hostfacts reports return register `v0 = [a1+36]` (`jr` at 0x21f2cd0).
   The complete unpacking equation, missing converted values and full source/output
   address progression remain unknown.
+
+- `__glSpanClampRed` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f2f20. Occupies 276 bytes.
+  Inferred. Includes a red-channel limit read at entry a0 +0x9a08 (`lwc1` at 0x21f2f3c).
+  The first resolved destination stores include the selected red and copied green/blue/alpha words below.
+  Four decoder-unknown words leave several lower/upper clamp predicates unresolved. The complete red clamp is not inferred from the N32 source role.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f2f3c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0x21f2f70 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4  value [a2+4] | `swc1` at 0x21f2f78 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8  value [a2+8] | `swc1` at 0x21f2f80 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a2+12] | `swc1` at 0x21f2f90 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3000 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3008 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3010 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3018 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 276 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af540 +260 bytes / 207 changed common-prefix byte positions
+  SHA-256 target `04cc843238aa203bc2ddf9b68a67757e9d5c956ce65236172e26aaf9b1e5bbdb` / documented sibling `63141edfb21941b7a6eeaca811dc44a3ab4b90b888f6f754de202c90647c6a2e`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampRed` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampRed.target.txt`, `review-facts/__glSpanClampRed.sibling.txt`, `review-facts/__glSpanClampRed.words.txt`, `review-facts/__glSpanClampRed.bytes.txt`
+
+- `__glSpanClampGreen` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3040. Occupies 276 bytes.
+  Inferred. Loads its channel limit from entry a0 +0x9a0c (`lwc1` at 0x21f305c).
+  The prefix copies the input red word and writes the selected green result (`swc1` at 0x21f3074 and `swc1` at 0x21f3098).
+  Four unknown words prevent a complete green clamp contract. Later cursor bases remain unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f305c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0  value [a2] | `swc1` at 0x21f3074 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0x21f3098 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8  value [a2+8] | `swc1` at 0x21f30a0 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a2+12] | `swc1` at 0x21f30b0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3120 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3128 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3130 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3138 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 276 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af650 +260 bytes / 210 changed common-prefix byte positions
+  SHA-256 target `9055a67ad0da825fea44373949bb4d53e526fb02cdf4a9aac6e494d857b2f573` / documented sibling `7426f15a33fb92bc71444fec48d077d7939fca7f1ea7d998faa7f625461ce19b`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampGreen` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampGreen.target.txt`, `review-facts/__glSpanClampGreen.sibling.txt`, `review-facts/__glSpanClampGreen.words.txt`, `review-facts/__glSpanClampGreen.bytes.txt`
+
+- `__glSpanClampBlue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3160. Occupies 276 bytes.
+  Inferred. Reads the blue limit from entry a0 +0x9a10 (`lwc1` at 0x21f317c).
+  Its prefix copies red and green before writing the selected blue result (`swc1` at 0x21f3194, `swc1` at 0x21f319c and `swc1` at 0x21f31c0).
+  Four decoder-unknown words leave clamp conditions incomplete, with the later pixel positions unknown to hostfacts.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f317c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0  value [a2] | `swc1` at 0x21f3194 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4  value [a2+4] | `swc1` at 0x21f319c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0x21f31c0 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a2+12] | `swc1` at 0x21f31d0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3240 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3248 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3250 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3258 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 276 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af760 +260 bytes / 209 changed common-prefix byte positions
+  SHA-256 target `64483ddb815f83a65cbbc9fe43aedcd9e4541de52df76243594973b18ebc54ea` / documented sibling `4d7b6eb77f5327ee6353d04c342bdd0ea5df8c57881c034c043dee469c373add`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampBlue` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampBlue.target.txt`, `review-facts/__glSpanClampBlue.sibling.txt`, `review-facts/__glSpanClampBlue.words.txt`, `review-facts/__glSpanClampBlue.bytes.txt`
+
+- `__glSpanClampAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3280. Occupies 272 bytes.
+  Inferred. Uses the alpha limit at entry a0 +0x9a30 (`lwc1` at 0x21f329c).
+  The first three prefix stores copy the input RGB values, while a fourth writes the selected alpha (`swc1` at 0x21f32b4, `swc1` at 0x21f32bc, `swc1` at 0x21f32c4 and `swc1` at 0x21f32ec).
+  Four unknown words prevent complete alpha-clamp equivalence.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f329c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0  value [a2] | `swc1` at 0x21f32b4 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4  value [a2+4] | `swc1` at 0x21f32bc |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8  value [a2+8] | `swc1` at 0x21f32c4 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc | `swc1` at 0x21f32ec |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f335c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3364 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f336c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3374 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 272 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9af870 +256 bytes / 196 changed common-prefix byte positions
+  SHA-256 target `3a7cb44560b7359140744c7231d929708239399268e3d55b2ae614de9af0a3aa` / documented sibling `690afaa9917259059be6798e2e0e59eff29b2e04f0c1b0599b36e2951ecc061c`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampAlpha` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampAlpha.target.txt`, `review-facts/__glSpanClampAlpha.sibling.txt`, `review-facts/__glSpanClampAlpha.words.txt`, `review-facts/__glSpanClampAlpha.bytes.txt`
+
+- `__glSpanClampRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3390. Occupies 444 bytes.
+  Inferred. Reads three limits from the independently resolved N64 context fields below.
+  The output includes an alpha-copy site at entry a3 +0xc (`swc1` at 0x21f33f8).
+  Thirteen decoder-unknown words affect the RGB selections. The target's complete three-channel clamp rule remains unestablished, and the O32 fallback supplies comparison provenance only.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f339c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f33a4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f33b0 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0x21f33e8 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a2+12] | `swc1` at 0x21f33f8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3418 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f342c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f34c4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f34e8 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0x21f350c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0x21f3530 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 444 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9b3120 +684 bytes / 372 changed common-prefix byte positions
+  SHA-256 target `3a4960f3cfa8ffd2eddb0d3ae9c53ba03b6dfd0a7a19969fbe7db8815468d3eb` / documented sibling `087102840777a396b7db096788b2b493e531333dba96248d273e9c4dc83347ef`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampRGB` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampRGB.target.txt`, `review-facts/__glSpanClampRGB.sibling.txt`, `review-facts/__glSpanClampRGB.sibling.json`, `review-facts/__glSpanClampRGB.words.txt`, `review-facts/__glSpanClampRGB.bytes.txt`
+
+- `__glSpanClampRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3550. Occupies 224 bytes.
+  Inferred. Selects four component values through channel-limit reads and float stores (the resolved fields and selected writes below).
+  Six words are unknown to the decoder, and every output cursor base is unknown to hostfacts.
+  The complete RGBA clamp is not reconstructed from the documented N32 description.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3558 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f3564 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f3570 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f357c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3598 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f35c4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f35e8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f360c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 224 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afb30 +208 bytes / 181 changed common-prefix byte positions
+  SHA-256 target `638338783dd27313bd3e5566e09f42ec43510e41f0e07705a977895c02ce33fd` / documented sibling `c0a8ffa1ddbeb21c38eef9597e092cb4bd248e527a74b4ba374945d082d33ed3`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanClampRGBA` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanClampRGBA.target.txt`, `review-facts/__glSpanClampRGBA.sibling.txt`, `review-facts/__glSpanClampRGBA.words.txt`, `review-facts/__glSpanClampRGBA.bytes.txt`
+
+- `__glSpanExpandRed` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f36f0. Occupies 96 bytes.
+  Inferred. Multiplies a scalar input by the red scale and places the product at its selected output store (`mul.s` at 0x21f3738 and `swc1` at 0x21f3744).
+  The alpha-fill store uses the context word at +0x9a30, while the output base remains unknown (`swc1` at 0x21f3734).
+  The other selected stores and scale reads appear below without inferring a complete cursor formula.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3700 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f370c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3728 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f372c |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f3734 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3744 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 96 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afcc0 +80 bytes / 66 changed common-prefix byte positions
+  SHA-256 target `03ca3f1d9e9df095c83cb9312b78d9f94457821a3b895f6555e298710bcc2319` / documented sibling `b048c1391e1522da2cf58faab794c1aba7761336f5659667f4adba7f9af2f7e3`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandRed` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandRed.target.txt`, `review-facts/__glSpanExpandRed.sibling.txt`, `review-facts/__glSpanExpandRed.words.txt`, `review-facts/__glSpanExpandRed.bytes.txt`
+
+- `__glSpanExpandGreen` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3750. Occupies 96 bytes.
+  Inferred. Scales a scalar component with the green factor (`mul.s` at 0x21f3798).
+  The product store and alpha-fill store are retained with unresolved bases (`swc1` at 0x21f37a4 and `swc1` at 0x21f3794).
+  The resolved input context reads distinguish the green and alpha values.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3760 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f376c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3780 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f378c |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f3794 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f37a4 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 96 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afd10 +80 bytes / 63 changed common-prefix byte positions
+  SHA-256 target `048a1d809ae49ac6945b662fac90d14f2f7820c22eafba189893867bb49259af` / documented sibling `ddec1b7e27911d35bc32df88d9545602c97a04f4a78de8c9bcad9ad11f32f08a`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandGreen` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandGreen.target.txt`, `review-facts/__glSpanExpandGreen.sibling.txt`, `review-facts/__glSpanExpandGreen.words.txt`, `review-facts/__glSpanExpandGreen.bytes.txt`
+
+- `__glSpanExpandBlue` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f37b0. Occupies 96 bytes.
+  Inferred. Forms the blue component product and writes it through the current output cursor (`mul.s` at 0x21f37f8 and `swc1` at 0x21f3804).
+  Its separate alpha fill comes from the context field shown below (`swc1` at 0x21f37f4).
+  Hostfacts leaves the loop's output locations unknown.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f37c0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f37cc |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f37e0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f37e4 |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f37f4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3804 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 96 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afd60 +80 bytes / 60 changed common-prefix byte positions
+  SHA-256 target `1a0b9a067d6e1b567b16ac755e8a95648d11fb4882f5f59cd4f359442943c216` / documented sibling `138887217fed88bfe42bf469e02c648b236de2467b44a19a07738f83f170211a`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandBlue` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandBlue.target.txt`, `review-facts/__glSpanExpandBlue.sibling.txt`, `review-facts/__glSpanExpandBlue.words.txt`, `review-facts/__glSpanExpandBlue.bytes.txt`
+
+- `__glSpanExpandAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3810. Occupies 96 bytes.
+  Inferred. Scales the input alpha component with the context alpha factor (`mul.s` at 0x21f3858).
+  The first three output sites use the floating register initialized by `mtc1` at 0x21f3830. Their exact bases and values are not resolved in the access table.
+  The selected alpha product store is `swc1` at 0x21f3864.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f382c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3840 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3844 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3848 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3864 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 96 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9afdb0 +80 bytes / 59 changed common-prefix byte positions
+  SHA-256 target `013fc02de879720f7e2f7a64dc9a524d0f0712b6f8e6651059e9ac8f455c072b` / documented sibling `46180430754381ddcf9e8938b738fcdbca834253656be784d63791b612826f2d`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandAlpha` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandAlpha.target.txt`, `review-facts/__glSpanExpandAlpha.sibling.txt`, `review-facts/__glSpanExpandAlpha.words.txt`, `review-facts/__glSpanExpandAlpha.bytes.txt`
+
+- `__glSpanExpandRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3870. Occupies 312 bytes.
+  Inferred. Scales RGB input components independently and supplies a context-derived alpha value (`mul.s` at 0x21f38bc, `mul.s` at 0x21f38c4, `mul.s` at 0x21f38d0 and `swc1` at 0x21f38b8).
+  The body contains a remainder pass followed by four-way component arithmetic.
+  All output bases are unknown to hostfacts, so the draft does not fill the cursor/address formula from O32.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f3878 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f3884 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3890 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f389c |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f38b8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f38c8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f38d4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f38e0 |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f3978 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3988 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3990 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f399c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 312 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9b3cf4 +308 bytes / 264 changed common-prefix byte positions
+  SHA-256 target `24789009a315bd748fc5abfe2eb70bd8d43da432a69f276d68637d31a2d2ab7f` / documented sibling `9346609d2d6d80c3c9b401b3ab7eef63b430a60ff578cf0cba06a2897eb31220`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandRGB` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandRGB.target.txt`, `review-facts/__glSpanExpandRGB.sibling.txt`, `review-facts/__glSpanExpandRGB.words.txt`, `review-facts/__glSpanExpandRGB.bytes.txt`
+
+- `__glSpanExpandBGR` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f39b0. Occupies 312 bytes.
+  Inferred. Loads the reversed three-component input order before multiplying by the corresponding RGB factors (`lwc1` at 0x21f39e8, `lwc1` at 0x21f39ec and `lwc1` at 0x21f39f4).
+  The first three products and alpha fill appear at the selected sites (`mul.s` at 0x21f39fc, `mul.s` at 0x21f3a04, `mul.s` at 0x21f3a10 and `swc1` at 0x21f39f8).
+  Unknown cursor bases prevent a complete address/overlap claim.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f39b8 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f39c4 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f39d0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f39dc |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f39f8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3a08 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3a14 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3a20 |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f3ab8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ac8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ad0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3adc |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 312 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9b3e28 +308 bytes / 267 changed common-prefix byte positions
+  SHA-256 target `75af194a0acb07e205ab3f94f8862a082b41ab3a22019dbcdf56c2564457339b` / documented sibling `0c094f394edfe61024368363b4ba40ae92930335fca6fa7bc46f9a70d583b5e3`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandBGR` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandBGR.target.txt`, `review-facts/__glSpanExpandBGR.sibling.txt`, `review-facts/__glSpanExpandBGR.words.txt`, `review-facts/__glSpanExpandBGR.bytes.txt`
+
+- `__glSpanExpandLuminance` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3af0. Occupies 104 bytes.
+  Inferred. Uses one scalar input for three distinct colour-scale products (`mul.s` at 0x21f3b2c, `mul.s` at 0x21f3b34 and `mul.s` at 0x21f3b3c).
+  The fourth output site copies the context alpha value (`swc1` at 0x21f3b28).
+  The selected access table preserves those scale fields and unknown output bases.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f3af8 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f3b00 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3b0c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3b18 |
+  | store | 4 bytes | ? (base unknown)  value [a0+39472] | `swc1` at 0x21f3b28 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3b38 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3b40 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3b4c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 104 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0080 +104 bytes / 40 changed common-prefix byte positions
+  SHA-256 target `ad24fc4e7a1364c2dcd0e2dd5b9922a1b1a8f58013c0363b80e8d9191f9ff8d5` / documented sibling `9b953cb03e2079a5c508f14e32ecbeeee41e77387506eeb21f026d6e6197a49e`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandLuminance` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandLuminance.target.txt`, `review-facts/__glSpanExpandLuminance.sibling.txt`, `review-facts/__glSpanExpandLuminance.words.txt`, `review-facts/__glSpanExpandLuminance.bytes.txt`
+
+- `__glSpanExpandLuminanceAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3b60. Occupies 312 bytes.
+  Inferred. Expands the first scalar into three colour products and separately scales the second scalar for alpha (`mul.s` at 0x21f3b9c, `mul.s` at 0x21f3ba4, `mul.s` at 0x21f3bac and `mul.s` at 0x21f3bc4).
+  A remainder path precedes a four-pixel arithmetic body.
+  The complete input/output cursor relationship remains unresolved rather than imported from the O32 expansion role.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f3b68 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f3b74 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3b80 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3b8c |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ba0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ba8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3bb0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3bd0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3c60 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3c68 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3c70 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3c8c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 312 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9b405c +296 bytes / 271 changed common-prefix byte positions
+  SHA-256 target `06ea9d0cea935a1952f6b3e3cd475471d1a2d02dfbfe7ea2ecc39726c729741b` / documented sibling `0f15b9d4647826991b847d95614c1dd077acc30d07b0fb5e50213601511d3a19`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandLuminanceAlpha` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandLuminanceAlpha.target.txt`, `review-facts/__glSpanExpandLuminanceAlpha.sibling.txt`, `review-facts/__glSpanExpandLuminanceAlpha.words.txt`, `review-facts/__glSpanExpandLuminanceAlpha.bytes.txt`
+
+- `__glSpanExpandRedAlpha` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3ca0. Occupies 104 bytes.
+  Inferred. Scales the two input components independently for red and alpha (`mul.s` at 0x21f3cdc and `mul.s` at 0x21f3cf0).
+  Two other stores use the floating register initialized by `mtc1` at 0x21f3cc0.
+  The selected stores keep their unknown bases. No additional channel scale or cursor offset is inferred.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3cb0 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3cbc |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3cd4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3cd8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ce0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3cfc |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 104 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0230 +88 bytes / 69 changed common-prefix byte positions
+  SHA-256 target `4ec4bd12ddbfff9625dc1abebc8f105e3839942955e68dd8aabf46e919701a76` / documented sibling `fc51b1b2b73cfcdd9d6ccafa12bfc25c1699c6418acee4fb46811e3c9d261ae2`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandRedAlpha` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandRedAlpha.target.txt`, `review-facts/__glSpanExpandRedAlpha.sibling.txt`, `review-facts/__glSpanExpandRedAlpha.words.txt`, `review-facts/__glSpanExpandRedAlpha.bytes.txt`
+
+- `__glSpanExpandIntensity` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3d10. Occupies 224 bytes.
+  Inferred. Multiplies one input intensity by four context factors, including alpha (`mul.s` at 0x21f3d50, `mul.s` at 0x21f3d58, `mul.s` at 0x21f3d60 and `mul.s` at 0x21f3d68).
+  The first four output locations resolve to entry a3 +0, +4, +8 and +0xc (the prefix stores below).
+  Later unrolled destinations remain unknown to hostfacts.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a10 | `lwc1` at 0x21f3d18 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a0c | `lwc1` at 0x21f3d24 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a08 | `lwc1` at 0x21f3d2c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x9a30 | `lwc1` at 0x21f3d3c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0x21f3d54 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0x21f3d5c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0x21f3d6c |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc | `swc1` at 0x21f3d78 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3dc0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3dcc |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3dd8 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3de4 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 224 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9b4298 +276 bytes / 198 changed common-prefix byte positions
+  SHA-256 target `4857722012d7a4c55425e404e2edc02eb104289d92cc2a5b7e5d8724e28f6394` / documented sibling `10afe868a3a3ab1622d0e910bbed454562329dcb932362088932cdb6e6b02071`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandIntensity` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandIntensity.target.txt`, `review-facts/__glSpanExpandIntensity.sibling.txt`, `review-facts/__glSpanExpandIntensity.words.txt`, `review-facts/__glSpanExpandIntensity.bytes.txt`
+
+- `__glSpanExpandRedNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3df0. Occupies 92 bytes.
+  Inferred. Copies the unscaled input component through the selected product-free output path (`lwc1` at 0x21f3e24 and `swc1` at 0x21f3e40).
+  The alpha-fill store has the resolved float bit pattern 0x3f800000 (`swc1` at 0x21f3e34).
+  The complete body contains no multiply, and its output bases remain unknown.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3e28 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3e2c |
+  | store | 4 bytes | ? (base unknown)  value 0x3f800000 | `swc1` at 0x21f3e34 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3e40 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 92 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0360 +92 bytes / 14 changed common-prefix byte positions
+  SHA-256 target `e24f36adf5223d83cdcb55bd3046f597ba7b9d51f482e9116489a7dc69b264ee` / documented sibling `e3b55923511a91ae4d62bc8d827d122284201bcd47ee9ceda51a0def8e56ef33`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandRedNS` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandRedNS.target.txt`, `review-facts/__glSpanExpandRedNS.sibling.txt`, `review-facts/__glSpanExpandRedNS.words.txt`, `review-facts/__glSpanExpandRedNS.bytes.txt`
+
+- `__glSpanExpandGreenNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3e50. Occupies 92 bytes.
+  Inferred. Writes the scalar input unchanged at its selected green store (`lwc1` at 0x21f3e88 and `swc1` at 0x21f3ea0).
+  A separate fill uses float bits 0x3f800000 (`swc1` at 0x21f3e94).
+  No multiply occurs in this bounded wrapper. Unknown loop bases are preserved below.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3e80 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3e8c |
+  | store | 4 bytes | ? (base unknown)  value 0x3f800000 | `swc1` at 0x21f3e94 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ea0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 92 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b03c0 +92 bytes / 14 changed common-prefix byte positions
+  SHA-256 target `da8ce9cf442db2d644026847950c6fc067d927ed278ff3ccccee5e6faf927b82` / documented sibling `d0e206fc696a533b3eae02b2d7ea628b38ce4aa4e193476983590bc918c931eb`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandGreenNS` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandGreenNS.target.txt`, `review-facts/__glSpanExpandGreenNS.sibling.txt`, `review-facts/__glSpanExpandGreenNS.words.txt`, `review-facts/__glSpanExpandGreenNS.bytes.txt`
+
+- `__glSpanExpandBlueNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3eb0. Occupies 92 bytes.
+  Inferred. Keeps the scalar input unscaled between its load and selected blue store (`lwc1` at 0x21f3ef0 and `swc1` at 0x21f3f00).
+  Its alpha-fill word resolves to float bits 0x3f800000 (`swc1` at 0x21f3ef4).
+  The table retains unresolved output locations instead of rebuilding them from the N32 source.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ee0 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3ee4 |
+  | store | 4 bytes | ? (base unknown)  value 0x3f800000 | `swc1` at 0x21f3ef4 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3f00 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 92 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0420 +92 bytes / 14 changed common-prefix byte positions
+  SHA-256 target `9b5e387a0eb40eb86601a50901b7950ab0a09900cb22c9b52bc6344a76c74446` / documented sibling `093df9be3e5a3952912c94634b2439473fe98cc9d33029e8cd7c5f24e0bdf3c1`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandBlueNS` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandBlueNS.target.txt`, `review-facts/__glSpanExpandBlueNS.sibling.txt`, `review-facts/__glSpanExpandBlueNS.words.txt`, `review-facts/__glSpanExpandBlueNS.bytes.txt`
+
+- `__glSpanExpandAlphaNS` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21f3f10. Occupies 76 bytes.
+  Inferred. Copies the scalar alpha input without multiplication (`lwc1` at 0x21f3f40 and `swc1` at 0x21f3f50).
+  Three preceding stores use the register initialized by `mtc1` at 0x21f3f20.
+  All four destination bases are unknown to hostfacts. The exact output-layout claim is limited to those observed store sites.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3f30 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3f34 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3f38 |
+  | store | 4 bytes | ? (base unknown) | `swc1` at 0x21f3f50 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 76 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9b0480 +76 bytes / 3 changed common-prefix byte positions
+  SHA-256 target `1ef1f94a863d11d1954ffa7e6f381ae8d0ae6f22f124e3e23ed5843706a5e89a` / documented sibling `8687e0fb2308627a41006fc46438f8c4c67ae336a21c2c5558df9d94bc0de8ea`
+  Existing entry: `docs/sample-implementation.md`, `__glSpanExpandAlphaNS` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glSpanExpandAlphaNS.target.txt`, `review-facts/__glSpanExpandAlphaNS.sibling.txt`, `review-facts/__glSpanExpandAlphaNS.words.txt`, `review-facts/__glSpanExpandAlphaNS.bytes.txt`
