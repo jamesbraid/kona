@@ -33772,3 +33772,884 @@ comparison was not rerun and supplies no new target equation.
   **Inferred.** Source grade: Inferred.
   Target address 0x22385e0. The routine occupies 1984 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e585e0, which occupies 1984 bytes. Both ranges have SHA-256 `96e10653553b964a9e069827c9ca5fd11cc1dfc9ecfd4c83223842e8a36d2713`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glGenericPickPointProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2238da0–0x2238eb8, occupies 280 bytes.
+
+  Point-procedure selection writes vertex and renderer pointers from context mode tests and global pointer slots.
+  Lighting, fog and antialiasing roles are inferred from the selected source entry.
+  The target has no reported calls.
+  Procedure addresses are retained as observed values rather than assigned names from the source alone.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f6560 | 296 | Inferred | 264 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8cfc` | `lw` at 0x2238da8 |
+  | load | 4 | `a0 (arg0 at entry) +0x9814` | `lw` at 0x2238db4 |
+  | load | 8 | `abs 0x22df128` | `ld` at 0x2238dc0 |
+  | store | 8 | `a0 (arg0 at entry) +0x4898  value 0x22bf410` | `sd` at 0x2238dc4 |
+  | load | 4 | `a0 (arg0 at entry) +0xdd4` | `lw` at 0x2238dcc |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x221a970` | `sd` at 0x2238e6c |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x223ba30` | `sd` at 0x2238e84 |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x22488c0` | `sd` at 0x2238e8c |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x223b300` | `sd` at 0x2238e94 |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x223b8b0` | `sd` at 0x2238ea8 |
+  | store | 8 | `a0 (arg0 at entry) +0x4cc8  value 0x223b7f0` | `sd` at 0x2238eb4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2238db8 | `v1(=[a0+36092]) == 0` | `v1(=[a0+36092]) != 0` |
+  | `beq` at 0x2238ddc | `a4(=[a0+3540]) == a7(=0x1c01)` | `a4(=[a0+3540]) != a7(=0x1c01)` |
+  | `beq` at 0x2238de4 | `a4(=[a0+3540]) == t0(=0x1c02)` | `a4(=[a0+3540]) != t0(=0x1c02)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2238e48 | `v0 = ?` |
+  | `jr` at 0x2238e5c | `v0 = ?` |
+
+- `__glGenericPickLineProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2238ec0–0x22393c8, occupies 1288 bytes.
+
+  The line picker builds parallel arrays of procedure pointers, records their counts and chooses final processing and renderer slots.
+  Its choices branch on context flags, width and mode values.
+  It also performs indexed pointer-table loads for a depth-related choice.
+  Hostfacts loses several moving table bases.
+  No calls are reported in this body.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f6688 | 1264 | Inferred | 1171 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8cfc` | `lw` at 0x2238ec8 |
+  | load | 4 | `a0 (arg0 at entry) +0x9814` | `lw` at 0x2238ed8 |
+  | load | 8 | `abs 0x22dadc0` | `ld` at 0x2238ee4 |
+  | store | 8 | `a0 (arg0 at entry) +0x48a0  value 0x222acb0` | `sd` at 0x2238ee8 |
+  | load | 4 | `a0 (arg0 at entry) +0xdd4` | `lw` at 0x2238eec |
+  | store | 8 | `a0 (arg0 at entry) +0x4c10  value 0x0` | `sd` at 0x2239378 |
+  | store | 8 | `(a0 + one of 0x4ad8, 0x4ae0) +0x0  value 0x22c0cc8` | `sd` at 0x2239384 |
+  | store | 8 | `(a0 + one of 0x4b58, 0x4b60) +0x0  value 0x222d120` | `sd` at 0x2239390 |
+  | store | 8 | `(a0 + one of 0x4ae0, 0x4ae8) +0x0  value 0x222db10` | `sd` at 0x22393b4 |
+  | store | 8 | `(a0 + one of 0x4b60, 0x4b68) +0x0  value 0x222dcc0` | `sd` at 0x22393bc |
+  | store | 8 | `a0 (arg0 at entry) +0x4be0  value 0x2246660` | `sd` at 0x22393c4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2238edc | `v1(=[a0+36092]) == 0` | `v1(=[a0+36092]) != 0` |
+  | `beq` at 0x2238efc | `a3(=[a0+3540]) == t8(=0x1c01)` | `a3(=[a0+3540]) != t8(=0x1c01)` |
+  | `beq` at 0x2238f08 | `a3(=[a0+3540]) == t9(=0x1c02)` | `a3(=[a0+3540]) != t9(=0x1c02)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22390f8 | `v0 = ?` |
+  | `jr` at 0x2239154 | `v0 = ?` |
+
+- `__glGenericPickTriangleProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x22393d0–0x22395d4, occupies 516 bytes.
+
+  Triangle selection writes face-state bytes and several renderer and vertex-handler pointers.
+  It masks two mode words before byte stores (`andi` at 0x223943c, `andi` at 0x2239448).
+  No calls are reported.
+  Observed return-register values differ by selection path and do not define an API return type.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f6b78 | 540 | Inferred | 479 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x9814` | `lw` at 0x22393d8 |
+  | load | 4 | `a0 (arg0 at entry) +0x29c` | `lw` at 0x22393f8 |
+  | load | 4 | `a0 (arg0 at entry) +0x2a0` | `lw` at 0x223941c |
+  | load | 8 | `abs 0x22df448` | `ld` at 0x2239428 |
+  | load | 4 | `a0 (arg0 at entry) +0x294` | `lw` at 0x2239438 |
+  | store | 1 | `a0 (arg0 at entry) +0x9880  value 0x0` | `sb` at 0x2239594 |
+  | store | 1 | `a0 (arg0 at entry) +0x9881  value 0x0` | `sb` at 0x2239598 |
+  | store | 1 | `a0 (arg0 at entry) +0x9880  value 0x1` | `sb` at 0x22395a0 |
+  | store | 8 | `a0 (arg0 at entry) +0x4988  value 0x22c1ed0` | `sd` at 0x22395ac |
+  | store | 8 | `a0 (arg0 at entry) +0x4988  value 0x22c2634` | `sd` at 0x22395bc |
+  | store | 8 | `a0 (arg0 at entry) +0x4988  value 0x22c215c` | `sd` at 0x22395d0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bgez` at 0x22393f0 | `v1(=([a0+38932] << 0x2f)) >= 0 (signed)` | `v1(=([a0+38932] << 0x2f)) < 0 (signed)` |
+  | `beq` at 0x2239400 | `a3(=[a0+668]) == a6(=0x404)` | `a3(=[a0+668]) != a6(=0x404)` |
+  | `beq` at 0x2239408 | `a3(=[a0+668]) == a7(=0x405)` | `a3(=[a0+668]) != a7(=0x405)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22394e8 | `v0 = 0x1c02` |
+  | `jr` at 0x2239540 | `v0 = 0x1c02` |
+  | `jr` at 0x223955c | `v0 = 0x1c02` |
+  | `jr` at 0x2239570 | `v0 = 0x2248730` |
+  | `jr` at 0x2239584 | `v0 = 0xa73c8` |
+
+- `__glGenericPickTextureProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2239680–0x223a0f4, occupies 2676 bytes.
+
+  Texture selection has three groups of consistency, parameter-lookup and texture-lookup calls.
+  The reported target values distinguish those groups.
+  It copies parameter words and chooses procedure pointers for filter and environment cases.
+  Six undecoded words interrupt the scale/bias comparison sequence, so the full selection conditions remain incomplete.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f6e2c | 2868 | Inferred | 2461 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x808` | `lw` at 0x2239684 |
+  | load | 8 | `abs 0x22dbc30` | `ld` at 0x22396c0 |
+  | store | 8 | `a0 (arg0 at entry) +0x48f0  value 0x226a100` | `sd` at 0x22396c4 |
+  | store | 8 | `a0 (arg0 at entry) +0x8db8  value 0x0` | `sd` at 0x22396d0 |
+  | load | 4 | `a0 (arg0 at entry) +0x808` | `lw` at 0x22396d4 |
+  | store | 8 | `ret(__glLookUpTexture) +0x120  value 0x2262330` | `sd` at 0x223a0c8 |
+  | store | 8 | `ret(__glLookUpTexture) +0x120  value 0x22620e0` | `sd` at 0x223a0d0 |
+  | store | 8 | `ret(__glLookUpTexture) +0x120  value 0x2261ec0` | `sd` at 0x223a0d8 |
+  | store | 8 | `a0 (arg0 at entry) +0x48f0  value 0x226a630` | `sd` at 0x223a0e0 |
+  | store | 8 | `ret(__glLookUpTexture) +0x120  value 0x2262160` | `sd` at 0x223a0e8 |
+  | store | 8 | `ret(__glLookUpTexture) +0x120  value 0x2262180` | `sd` at 0x223a0f0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x22396ec | `__glIsTextureConsistent [0x225c3b0]` (register-constant) | `a0=a0 at entry (arg0), a1=0x806f, a2=[a0+2056], a3=([a0+2056] << 0x2e)` |
+  | `jalr` at 0x2239704 | `__glLookUpTextureParams [0x2258a30]` (register-constant) | `a0=a0 at entry (arg0), a1=0x806f, a2=?, a3=?` |
+  | `jalr` at 0x2239718 | `__glLookUpTexture [0x2258ad0]` (register-constant) | `a0=a0 at entry (arg0), a1=0x806f, a2=?, a3=?` |
+  | `jalr` at 0x22399d0 | `__glIsTextureConsistent [0x225c3b0]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde1, a2=[a0+2056], a3=([a0+2056] << 0x2e)` |
+  | `jalr` at 0x22399e8 | `__glLookUpTextureParams [0x2258a30]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde1, a2=?, a3=?` |
+  | `jalr` at 0x22399fc | `__glLookUpTexture [0x2258ad0]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde1, a2=?, a3=?` |
+  | `jalr` at 0x2239aec | `__glIsTextureConsistent [0x225c3b0]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde0, a2=[a0+2056], a3=([a0+2056] << 0x2e), a4=([a0+2056] << 0x2f)` |
+  | `jalr` at 0x2239b04 | `__glLookUpTextureParams [0x2258a30]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde0, a2=?, a3=?` |
+  | `jalr` at 0x2239b18 | `__glLookUpTexture [0x2258ad0]` (register-constant) | `a0=a0 at entry (arg0), a1=0xde0, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x22396ac | `at(=0xc0000) == v0(?)` | `at(=0xc0000) != v0(?)` |
+  | `bgez` at 0x22396b8 | `a0(=([a0+2056] << 0x2d)) >= 0 (signed)` | `a0(=([a0+2056] << 0x2d)) < 0 (signed)` |
+  | `bgez` at 0x22396dc | `a3(=([a0+2056] << 0x21)) >= 0 (signed)` | `a3(=([a0+2056] << 0x21)) < 0 (signed)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22399bc | `v0 = ?` |
+  | `jr` at 0x2239aa0 | `v0 = ?` |
+
+  Undecoded words: `0x2239850`, `0x2239860`, `0x2239870`, `0x2239894`, `0x22398a4`, `0x22398b4`.
+
+- `__glGenericPickBufferProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223a180–0x223a218, occupies 152 bytes.
+
+  The buffer picker clears a byte, dispatches through a nine-entry jump table and writes a selected pointer into the context.
+  One dispatch path also sets the byte to one after testing a context capability byte.
+  The table and its destinations are resolved by hostfacts.
+  The source description of render, draw and read masks does not establish additional target writes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f79e0 | 136 | Inferred | 123 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | store | 1 | `a0 (arg0 at entry) +0x9960  value 0x0` | `sb` at 0x223a188 |
+  | load | 4 | `a0 (arg0 at entry) +0x868` | `lw` at 0x223a18c |
+  | load | 8 | `abs 0x22d88b8` | `ld` at 0x223a1a4 |
+  | load | 8 | `table(0x22c9cf0) +0x0` | `ld` at 0x223a1c4 |
+  | load | 8 | `a0 (arg0 at entry) +0x9970` | `ld` at 0x223a1d0 |
+  | store | 8 | `a0 (arg0 at entry) +0x4718  value [a0+39280]:8` | `sd` at 0x223a1d8 |
+  | load | 8 | `a0 (arg0 at entry) +0x9968` | `ld` at 0x223a1e4 |
+  | store | 8 | `a0 (arg0 at entry) +0x4718  value [a0+39272]:8` | `sd` at 0x223a1ec |
+  | load | 1 | `a0 (arg0 at entry) +0xde6` | `lbu` at 0x223a1f0 |
+  | load | 8 | `a0 (arg0 at entry) +0x9970` | `ld` at 0x223a1fc |
+  | store | 8 | `a0 (arg0 at entry) +0x4718  value [a0+39280]:8` | `sd` at 0x223a200 |
+  | store | 1 | `a0 (arg0 at entry) +0x9960  value 0x1` | `sb` at 0x223a208 |
+  | load | 8 | `a0 (arg0 at entry) +0x9968` | `ld` at 0x223a20c |
+  | store | 8 | `a0 (arg0 at entry) +0x4718  value [a0+39272]:8` | `sd` at 0x223a214 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223a1b8 | `a6(?) >= 0x9 (unsigned)` | `a6(?) < 0x9 (unsigned)` |
+  | `beqz` at 0x223a1f4 | `t0(=[a0+3558]:1) == 0` | `t0(=[a0+3558]:1) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223a1d4 | `v0 = ?` |
+  | `jr` at 0x223a1dc | `v0 = ?` |
+  | `jr` at 0x223a1e8 | `v0 = ?` |
+  | `jr` at 0x223a204 | `v0 = ?` |
+  | `jr` at 0x223a210 | `v0 = ?` |
+
+- `__glGenericPickPixelProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223a220–0x223a88c, occupies 1644 bytes.
+
+  Pixel selection writes conversion flags, derived colour values and procedure-pointer slots.
+  Nineteen undecoded words and four anomalous coprocessor branches limit the scale, bias, lookup and clamp reading.
+  The target reports no calls.
+  Pointer values and mode tests remain separate from the inferred pixel-transfer roles.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f7a68 | 1976 | Inferred | 1508 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x378` | `lwc1` at 0x223a224 |
+  | load | 8 | `abs 0x22e0950` | `ldc1` at 0x223a230 |
+  | load | 4 | `a0 (arg0 at entry) +0x808` | `lw` at 0x223a240 |
+  | load | 4 | `a0 (arg0 at entry) +0x37c` | `lwc1` at 0x223a244 |
+  | load | 4 | `a0 (arg0 at entry) +0x380` | `lwc1` at 0x223a258 |
+  | store | 8 | `a0 (arg0 at entry) +0x4d88  value 0x21f75a0` | `sd` at 0x223a870 |
+  | store | 8 | `a0 (arg0 at entry) +0x4d80  value 0x21f72d0` | `sd` at 0x223a874 |
+  | store | 8 | `a0 (arg0 at entry) +0x4d78  value 0x21f70d0` | `sd` at 0x223a878 |
+  | store | 8 | `a0 (arg0 at entry) +0x4d50  value 0x21e9f50` | `sd` at 0x223a87c |
+  | store | 8 | `a0 (arg0 at entry) +0x4d58  value 0x21e8180` | `sd` at 0x223a880 |
+  | store | 8 | `a0 (arg0 at entry) +0x4d48  value 0x21e7660` | `sd` at 0x223a888 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bc1f` at 0x223a23c | `not (f0 == f4(=0x3ff0000000000000) (c.eq.d at 0x223a238))` | `f0 == f4(=0x3ff0000000000000) (c.eq.d at 0x223a238)` |
+  | `bc1f` at 0x223a250 | `FP condition code 1 is false` | `FP condition code 1 is true` |
+  | `bc1f` at 0x223a264 | `FP condition code 2 is false` | `FP condition code 2 is true` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223a5a8 | `v0 = ?` |
+  | `jr` at 0x223a884 | `v0 = 0x1` |
+
+  Undecoded words: `0x223a24c`, `0x223a260`, `0x223a274`, `0x223a2a0`, `0x223a2b0`, `0x223a2c4`, `0x223a3b4`, `0x223a63c`, `0x223a64c`, `0x223a66c`, `0x223a680`, `0x223a690`, `0x223a6b0`, `0x223a760`, `0x223a774`, `0x223a790`, `0x223a798`, `0x223a7ac`, `0x223a824`.
+
+  Decoder anomalies remain uninterpreted: `bc3tl` at 0x223a414, `bc3t` at 0x223a43c, `bc3fl` at 0x223a474 and `bc3f` at 0x223a4ac.
+
+- `__glGenericPickDepthProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223a940–0x223aa8c, occupies 332 bytes.
+
+  Depth selection computes an index from the depth function and state, optionally calls a buffer callback, and loads three procedure pointers from indexed tables.
+  A fourth table supplies a line-stage pointer when its destination is present.
+  The return facts preserve the index expression on all reported return sites.
+  The source notes an omitted depth-count validation call, and no such call appears here.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f82d0 | 276 | Inferred | 250 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 1 | `a0 (arg0 at entry) +0x764` | `lbu` at 0x223a948 |
+  | load | 4 | `a0 (arg0 at entry) +0x9d78` | `lw` at 0x223a960 |
+  | load | 4 | `a0 (arg0 at entry) +0x760` | `lw` at 0x223a96c |
+  | store | 1 | `a0 (arg0 at entry) +0x9d90  value 0x0` | `sb` at 0x223a97c |
+  | load | 4 | `a0 (arg0 at entry) +0x9d8c` | `lw` at 0x223a988 |
+  | store | 1 | `a0 (arg0 at entry) +0x9d90  value 0x1` | `sb` at 0x223a9b8 |
+  | store | 8 | `a0 (arg0 at entry) +0x4928  value entry(0x22d27f8)` | `sd` at 0x223aa0c |
+  | store | 8 | `a0 (arg0 at entry) +0x4ac8  value entry(0x22d28f8)` | `sd` at 0x223aa18 |
+  | store | 8 | `a0 (arg0 at entry) +0x4c08  value entry(0x22d29f8)` | `sd` at 0x223aa24 |
+  | store | 8 | `[a0+19472]:8 +0x0  value entry(0x22d2af8)` | `sd` at 0x223aa40 |
+  | store | 8 | `[a0+19472]:8 +0x0  value 0x22c0cc8` | `sd` at 0x223aa88 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x223a9e0 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a0+40184, a2=([a0+1888] + one of -0x200, -0x1f8, -0x1f0, -0x1e8), a3=[a0+3561]:1` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223a990 | `v1(=[a0+40312]) >= a1(=0xffffffff80000000) (unsigned)` | `v1(=[a0+40312]) < a1(=0xffffffff80000000) (unsigned)` |
+  | `bne` at 0x223a99c | `a2(=[a0+40332]) != v1(=0x1000000)` | `a2(=[a0+40332]) == v1(=0x1000000)` |
+  | `bne` at 0x223a9b0 | `a2(=[a0+40332]) != a1(=0xffffffffff000000)` | `a2(=[a0+40332]) == a1(=0xffffffffff000000)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223aa4c | `v0 = ([a0+1888] + one of -0x200, -0x1f8, -0x1f0, -0x1e8)` |
+  | `jr` at 0x223aa64 | `v0 = ([a0+1888] + one of -0x200, -0x1f8, -0x1f0, -0x1e8)` |
+  | `jr` at 0x223aa84 | `v0 = ([a0+1888] + one of -0x200, -0x1f8, -0x1f0, -0x1e8)` |
+
+- `__glBuildAntiAliasIndex` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Range 0x223b170–0x223b1b0, occupies 64 bytes.
+
+  The complete 16-instruction leaf establishes the local arithmetic only.
+  It loads 15.0 and 0.5 from the file-backed literal pool and computes
+  `f1 = madd.s(0.5, 15.0, entry f13)` (`madd.s` at 0x223b184).
+  It converts entry f12 and f1 to signed words toward zero (`trunc.w.s` at 0x223b188, 0x223b18c).
+  It clears the low four bits of the first word and ORs in the second word,
+  without masking that second word (`and` at 0x223b19c, `or` at 0x223b1a0).
+  It converts the combined signed word to single precision in f0 in the return delay slot
+  (`cvt.s.w` at 0x223b1ac). No stores, calls or conditional branches occur.
+  Colour-index and coverage meanings remain inferred.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f8b90 | 80 | Inferred | 54 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x22e07f8` | `lwc1` at 0x223b17c |
+  | load | 4 | `abs 0x22e077c` | `lwc1` at 0x223b180 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223b1a8 | `v0 = ?` |
+
+- `__glRenderAntiAliasedRGBPoint` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223b300–0x223b5a0, occupies 672 bytes.
+
+  The RGB point renderer prepares a stack fragment, optionally invokes texture and fog callbacks, and calls Coverage within nested pixel loops.
+  A positive coverage result selects alpha multiplication (`mul.s` at 0x223b528) and the fragment callback.
+  The computed floating-point Coverage arguments remain unresolved in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f8ccc | 924 | Inferred | 610 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a1 (arg1 at entry) +0x8c` | `lwc1` at 0x223b300 |
+  | load | 4 | `a0 (arg0 at entry) +0xf28` | `lwc1` at 0x223b304 |
+  | load | 4 | `a1 (arg1 at entry) +0x90` | `lwc1` at 0x223b30c |
+  | load | 4 | `a1 (arg1 at entry) +0x88` | `lwc1` at 0x223b314 |
+  | load | 4 | `a0 (arg0 at entry) +0x27c` | `lwc1` at 0x223b320 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x223b3e4 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=sp-196, a2=a2 at entry (arg2), a3=a0+65536, a7=[a1+8]:8; fp f17=[a0+3884]` |
+  | `jalr` at 0x223b418 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=sp-208, a2=?, a3=?; fp f14=[a1+112]` |
+  | `bgezall` at 0x223b514 | `Coverage [0x223b1b0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223b538 | `(unknown callee)` (register) | `a0=[a0+18200]:8, a1=sp-208, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223b364 | `at(=[a0+39044]:1) == 0` | `at(=[a0+39044]:1) != 0` |
+  | `beqz` at 0x223b3b0 | `(s1(=[a0+38932]) & 0x8) == 0` | `(s1(=[a0+38932]) & 0x8) != 0` |
+  | `beqz` at 0x223b404 | `(s1(=[a0+38932]) & 0x1000) == 0` | `(s1(=[a0+38932]) & 0x1000) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223b58c | `v0 = ?` |
+
+- `__glRenderAntiAliasedCIPoint` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223b5a0–0x223b7e8, occupies 584 bytes.
+
+  Colour-index point rendering prepares a fragment and optionally fogs it before the pixel loops.
+  Each accepted coverage result goes through __glBuildAntiAliasIndex before the fragment callback.
+  The Coverage and index-builder calls are resolved, while their unresolved arguments stay explicit.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f9068 | 812 | Inferred | 537 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0xf28` | `lwc1` at 0x223b5ac |
+  | load | 4 | `a1 (arg1 at entry) +0x90` | `lwc1` at 0x223b5b0 |
+  | load | 4 | `a1 (arg1 at entry) +0x8c` | `lwc1` at 0x223b5b8 |
+  | load | 4 | `a1 (arg1 at entry) +0x88` | `lwc1` at 0x223b5c4 |
+  | load | 4 | `a0 (arg0 at entry) +0x27c` | `lwc1` at 0x223b5d0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x223b660 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=sp-208, a2=a2 at entry (arg2), a3=a0+65536, a4=a1 at entry (arg1); fp f14=[a1+112]` |
+  | `bgezall` at 0x223b754 | `Coverage [0x223b1b0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223b76c | `__glBuildAntiAliasIndex [0x223b170]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f13=ret(Coverage)` |
+  | `jalr` at 0x223b780 | `(unknown callee)` (register) | `a0=[a0+18200]:8, a1=sp-208, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223b608 | `at(=[a0+39044]:1) == 0` | `at(=[a0+39044]:1) != 0` |
+  | `beqz` at 0x223b64c | `(a7(=[a0+38932]) & 0x1000) == 0` | `(a7(=[a0+38932]) & 0x1000) != 0` |
+  | `bltz` at 0x223b6b4 | `s4(?) < 0 (signed)` | `s4(?) >= 0 (signed)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223b7d4 | `v0 = ?` |
+
+- `__glRenderAliasedPointN` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223ba30–0x223bbfc, occupies 460 bytes.
+
+  The wider aliased-point body snaps its origin differently for odd and even widths, prepares colour and depth data, and runs a nested fragment loop.
+  It has a texture callback and a fragment callback.
+  The selected O32 entry explicitly says it was not rechecked after an N32 correction.
+  No renewed public-source comparison is claimed for this target.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f97f0 | 732 | Inferred | 414 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a1 (arg1 at entry) +0x8c` | `lwc1` at 0x223ba30 |
+  | load | 4 | `a1 (arg1 at entry) +0x88` | `lwc1` at 0x223ba34 |
+  | load | 4 | `a0 (arg0 at entry) +0x280` | `lw` at 0x223ba60 |
+  | load | 4 | `a0 (arg0 at entry) +0x9814` | `lw` at 0x223ba90 |
+  | load | 8 | `a1 (arg1 at entry) +0x8` | `ld` at 0x223baac |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x223bb04 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=sp-132, a2=a2 at entry (arg2), a3=[a0+38932]; fp f17=[a0+3884]` |
+  | `jalr` at 0x223bb70 | `(unknown callee)` (register) | `a0=[a0+18200]:8, a1=sp-144, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223ba8c | `(s8(=[a0+640]) & 0x1) == 0` | `(s8(=[a0+640]) & 0x1) != 0` |
+  | `beqz` at 0x223bad0 | `(a3(=[a0+38932]) & 0x8) == 0` | `(a3(=[a0+38932]) & 0x8) != 0` |
+  | `beqz` at 0x223bb1c | `t8(=[a0+39044]:1) == 0` | `t8(=[a0+39044]:1) != 0` |
+  | `bnel` at 0x223bb7c | `s4(?) != s0(?)` | `s4(?) == s0(?)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223bbcc | `v0 = ?` |
+
+- `__glBeginPoints` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Range 0x223bc50–0x223bc80, occupies 48 bytes.
+
+  The complete 12-instruction leaf establishes four local pointer writes.
+  It stores entry a0 plus 0x4e70 at +0x4e48 and copies the eight-byte
+  value at +0x4898 to +0x4890. It stores the file-backed pointer 0x2246660
+  at +0x4920 and 0x223bc80 at +0x4980. The latter write is the return delay slot.
+  All seven memory accesses appear below. No calls or conditional branches occur.
+  The points-primitive interpretation and effects of the stored procedures remain inferred.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f9b20 | 48 | Inferred | 44 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | store | 8 | `a0 (arg0 at entry) +0x4e48  value a0+20080` | `sd` at 0x223bc54 |
+  | load | 8 | `a0 (arg0 at entry) +0x4898` | `ld` at 0x223bc5c |
+  | store | 8 | `a0 (arg0 at entry) +0x4890  value [a0+18584]:8` | `sd` at 0x223bc64 |
+  | load | 8 | `abs 0x22db1b0` | `ld` at 0x223bc6c |
+  | load | 8 | `abs 0x22db398` | `ld` at 0x223bc70 |
+  | store | 8 | `a0 (arg0 at entry) +0x4920  value 0x2246660` | `sd` at 0x223bc74 |
+  | store | 8 | `a0 (arg0 at entry) +0x4980  value 0x223bc80` | `sd` at 0x223bc7c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223bc78 | `v0 = 0x223bc80` |
+
+- `__glEndPoints` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Range 0x223bc80–0x223bca0, occupies 32 bytes.
+
+  The complete eight-instruction leaf establishes two local pointer writes.
+  It loads file-backed pointers 0x2246660 and 0x2246670, stores 0x2246670
+  at entry a0 plus 0x4980, and stores 0x2246660 at +0x4890 in the return delay slot.
+  All four memory accesses appear below. No calls or conditional branches occur.
+  The primitive-ending interpretation and effects of the stored procedures remain inferred.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f9b50 | 32 | Inferred | 24 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db398` | `ld` at 0x223bc8c |
+  | load | 8 | `abs 0x22db3a0` | `ld` at 0x223bc90 |
+  | store | 8 | `a0 (arg0 at entry) +0x4980  value 0x2246670` | `sd` at 0x223bc94 |
+  | store | 8 | `a0 (arg0 at entry) +0x4890  value 0x2246660` | `sd` at 0x223bc9c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223bc98 | `v0 = 0x2246660` |
+
+- `FindLineEquation` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223bca0–0x223bd64, occupies 196 bytes.
+
+  The edge-equation helper computes coordinate differences and three float coefficients (`sub.s` at 0x223bcd8, `sub.s` at 0x223bcdc, `msub.s` at 0x223bcf8).
+  It writes a byte on two return paths.
+  Three undecoded words leave the ordering tie-break and sign-test conditions incomplete.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f9b70 | 244 | Inferred | 171 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a1 (arg1 at entry) +0x4` | `lwc1` at 0x223bca0 |
+  | load | 4 | `a2 (arg2 at entry) +0x4` | `lwc1` at 0x223bca4 |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lwc1` at 0x223bcb8 |
+  | load | 4 | `a1 (arg1 at entry) +0x0` | `lwc1` at 0x223bcc8 |
+  | store | 4 | `a0 (arg0 at entry) +0x4` | `swc1` at 0x223bce0 |
+  | store | 4 | `a0 (arg0 at entry) +0x0` | `swc1` at 0x223bce8 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x223bcec |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x223bcf0 |
+  | store | 4 | `a0 (arg0 at entry) +0x8` | `swc1` at 0x223bcfc |
+  | load | 4 | `a3 (arg3 at entry) +0x0` | `lwc1` at 0x223bd00 |
+  | load | 4 | `a3 (arg3 at entry) +0x4` | `lwc1` at 0x223bd04 |
+  | store | 1 | `a0 (arg0 at entry) +0xc  value 0x1` | `sb` at 0x223bd24 |
+  | store | 1 | `a0 (arg0 at entry) +0xc  value 0x0` | `sb` at 0x223bd2c |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lwc1` at 0x223bd30 |
+  | load | 4 | `a1 (arg1 at entry) +0x0` | `lwc1` at 0x223bd34 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bc1f` at 0x223bcbc | `not (f9(=[a2+4]) < f8(=[a1+4]) (c.lt.s at 0x223bca8))` | `f9(=[a2+4]) < f8(=[a1+4]) (c.lt.s at 0x223bca8)` |
+  | `bc1f` at 0x223bd18 | `FP condition code 1 is false` | `FP condition code 1 is true` |
+  | `bc1f` at 0x223bd40 | `FP condition code 2 is false` | `FP condition code 2 is true` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223bd20 | `v0 = ?` |
+  | `jr` at 0x223bd28 | `v0 = ?` |
+
+  Undecoded words: `0x223bd14`, `0x223bd38`, `0x223bd48`.
+
+- `FindPlaneEquation` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223bd70–0x223bdec, occupies 124 bytes.
+
+  Plane-equation setup uses three coordinate pairs and incoming floating-point parameters.
+  Its multiply/subtract and division sequence writes four float words, with one coefficient explicitly loaded as 1.0 from the literal pool.
+  No calls or conditional branches occur in the bounded body.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9f7ab0 | 124 | Inferred | 8 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a1 (arg1 at entry) +0x8c` | `lwc1` at 0x223bd70 |
+  | load | 4 | `a1 (arg1 at entry) +0x88` | `lwc1` at 0x223bd74 |
+  | load | 4 | `a3 (arg3 at entry) +0x88` | `lwc1` at 0x223bd78 |
+  | load | 4 | `a2 (arg2 at entry) +0x88` | `lwc1` at 0x223bd80 |
+  | load | 4 | `a3 (arg3 at entry) +0x8c` | `lwc1` at 0x223bd88 |
+  | load | 4 | `a2 (arg2 at entry) +0x8c` | `lwc1` at 0x223bd8c |
+  | store | 4 | `a0 (arg0 at entry) +0x4` | `swc1` at 0x223bdd4 |
+  | load | 4 | `abs 0x22e0778` | `lwc1` at 0x223bdd8 |
+  | store | 4 | `a0 (arg0 at entry) +0x0` | `swc1` at 0x223bddc |
+  | store | 4 | `a0 (arg0 at entry) +0x8  value 0x3f800000` | `swc1` at 0x223bde0 |
+  | store | 4 | `a0 (arg0 at entry) +0xc` | `swc1` at 0x223bde8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223bde4 | `v0 = ?` |
+
+- `FindP` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Range 0x223bdf0–0x223be10, occupies 32 bytes.
+
+  The complete eight-instruction leaf establishes the local single-precision sequence.
+  It multiplies the word at entry a0 plus 4 by entry f14 (`mul.s` at 0x223bdf8).
+  It adds the product of the word at entry a0 plus 0 and entry f13 using
+  `madd.s` at 0x223bdfc, then adds the word at entry a0 plus 12 (`add.s` at 0x223be04).
+  It negates f0 in the return delay slot (`neg.s` at 0x223be0c).
+  All three loads appear below. No stores, calls or conditional branches occur.
+  The plane-equation interpretation and caller input meanings remain inferred.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9f9d44 | 44 | Inferred | 27 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x4` | `lwc1` at 0x223bdf0 |
+  | load | 4 | `a0 (arg0 at entry) +0x0` | `lwc1` at 0x223bdf4 |
+  | load | 4 | `a0 (arg0 at entry) +0xc` | `lwc1` at 0x223be00 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223be08 | `v0 = ?` |
+
+- `ComputeCoverageStuff` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223be10–0x223be6c, occupies 92 bytes.
+
+  Coverage-grid setup converts the input count to float and divides 1.0 by that count (`cvt.s.w` at 0x223be14, `div.s` at 0x223be1c).
+  Integer multiplication squares the count (`mult` at 0x223be20), and a second division produces its reciprocal (`div.s` at 0x223be34).
+  The literal pool also supplies 0.5 and -0.5 for the offset arithmetic.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9f7b50 | 92 | Inferred | 6 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x22e0778` | `lwc1` at 0x223be18 |
+  | load | 4 | `abs 0x22e077c` | `lwc1` at 0x223be30 |
+  | load | 4 | `abs 0x22e078c` | `lwc1` at 0x223be38 |
+  | store | 4 | `a0 (arg0 at entry) +0x8  value a1` | `sw` at 0x223be40 |
+  | store | 4 | `a0 (arg0 at entry) +0xc` | `sw` at 0x223be48 |
+  | store | 4 | `a0 (arg0 at entry) +0x4` | `swc1` at 0x223be4c |
+  | store | 4 | `a0 (arg0 at entry) +0x0` | `swc1` at 0x223be50 |
+  | store | 4 | `a0 (arg0 at entry) +0x24` | `swc1` at 0x223be54 |
+  | store | 4 | `a0 (arg0 at entry) +0x20` | `swc1` at 0x223be58 |
+  | store | 4 | `a0 (arg0 at entry) +0x1c` | `swc1` at 0x223be5c |
+  | store | 4 | `a0 (arg0 at entry) +0x18` | `swc1` at 0x223be60 |
+  | store | 4 | `a0 (arg0 at entry) +0x10` | `swc1` at 0x223be68 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223be64 | `v0 = ?` |
+
+- `FillAASubTriangle` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223c120–0x223d780, occupies 5728 bytes.
+
+  The sub-triangle filler repeatedly evaluates planes through FindP, calls the direct target
+  at 0x223be70, and calls __glFogFragmentSlow, __glBuildAntiAliasIndex and fragment callbacks.
+  Native debug metadata names 0x223be70 Coverage. Call rows retain the analyzer
+  label `(unnamed)` because hostfacts does not resolve that static name.
+  Coverage calculation and callback effects remain inferred.
+  Six undecoded words and an anomalous coprocessor branch leave several coverage decisions incomplete.
+  The reported call list has sixty-five sites.
+  Loop-dependent addresses and most call arguments remain unknown.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9fa3b8 | 7720 | Inferred | 5447 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a2 (arg2 at entry) +0x118` | `ld` at 0x223c164 |
+  | load | 4 | `[a2+280]:8 +0xf28` | `lwc1` at 0x223c16c |
+  | load | 4 | `[a2+280]:8 +0xfb4` | `lw` at 0x223c170 |
+  | load | 4 | `[a2+280]:8 +0xfdc` | `lw` at 0x223c174 |
+  | load | 1 | `[a2+280]:8 +0x1454` | `lbu` at 0x223c178 |
+  | store | 4 | `[a2+280]:8 +0x9724` | `sw` at 0x223d69c |
+  | store | 4 | `[a2+280]:8 +0x9728` | `sw` at 0x223d6a4 |
+  | store | 4 | `[a2+280]:8 +0x970c` | `sw` at 0x223d748 |
+  | store | 4 | `[a2+280]:8 +0x9708` | `sw` at 0x223d74c |
+  | store | 4 | `[a2+280]:8 +0x96f8` | `sw` at 0x223d750 |
+  | store | 4 | `[a2+280]:8 +0x96f4` | `sw` at 0x223d754 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x223c48c | `FindP [0x223bdf0]` (direct) | `a0=a2 at entry (arg2), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c4ac | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c4c4 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c4dc | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c4fc | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c514 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c52c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c544 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c55c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c584 | `(unknown callee)` (register) | `a0=[a2+280]:8, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c5a4 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c5b8 | `__glFogFragmentSlow [0x221b7e0]` (register-constant) | `a0=[a2+280]:8, a1=sp-66400, a2=?, a3=?; fp f14=ret(FindP)` |
+  | `bgezall` at 0x223c5f8 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c614 | `(unknown callee)` (register) | `a0=[[a2+280]:8+18200]:8, a1=sp-66400, a2=?, a3=?` |
+  | `bgezall` at 0x223c648 | `(unnamed) [0x223be70]` (direct) | `a0=a2+176, a1=sp-66340, a2=sp-66336, a3=a2+240` |
+  | `bgezall` at 0x223c710 | `(unnamed) [0x223be70]` (direct) | `a0=a2+176, a1=sp-66340, a2=sp-66336, a3=a2+240` |
+  | `bgezall` at 0x223c798 | `FindP [0x223bdf0]` (direct) | `a0=a2 at entry (arg2), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c7b8 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c7d0 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c7e8 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c80c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c824 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c83c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c854 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c86c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c894 | `(unknown callee)` (register) | `a0=[a2+280]:8, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223c8b4 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c8c8 | `__glFogFragmentSlow [0x221b7e0]` (register-constant) | `a0=[a2+280]:8, a1=sp-66400, a2=?, a3=?; fp f14=ret(FindP)` |
+  | `bgezall` at 0x223c908 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223c924 | `(unknown callee)` (register) | `a0=[[a2+280]:8+18200]:8, a1=sp-66400, a2=?, a3=?` |
+  | `bgezall` at 0x223ce9c | `FindP [0x223bdf0]` (direct) | `a0=a2 at entry (arg2), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cebc | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223ced4 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223ceec | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cf10 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cf28 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cf40 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cf58 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cf70 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223cf98 | `(unknown callee)` (register) | `a0=[a2+280]:8, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223cfb8 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223cfcc | `__glFogFragmentSlow [0x221b7e0]` (register-constant) | `a0=[a2+280]:8, a1=sp-66400, a2=?, a3=?; fp f14=ret(FindP)` |
+  | `bgezall` at 0x223d00c | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223d028 | `(unknown callee)` (register) | `a0=[[a2+280]:8+18200]:8, a1=sp-66400, a2=?, a3=?` |
+  | `bgezall` at 0x223d068 | `(unnamed) [0x223be70]` (direct) | `a0=a2+176, a1=sp-66340, a2=sp-66336, a3=a2+240` |
+  | `bgezall` at 0x223d12c | `(unnamed) [0x223be70]` (direct) | `a0=a2+176, a1=sp-66340, a2=sp-66336, a3=a2+240` |
+  | `bgezall` at 0x223d1b4 | `FindP [0x223bdf0]` (direct) | `a0=a2 at entry (arg2), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d1d4 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d1ec | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d204 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d228 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d240 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d258 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d270 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d288 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223d2b0 | `(unknown callee)` (register) | `a0=[a2+280]:8, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d2d0 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223d2e4 | `__glFogFragmentSlow [0x221b7e0]` (register-constant) | `a0=[a2+280]:8, a1=sp-66400, a2=?, a3=?; fp f14=ret(FindP)` |
+  | `bgezall` at 0x223d324 | `FindP [0x223bdf0]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223d340 | `(unknown callee)` (register) | `a0=[[a2+280]:8+18200]:8, a1=sp-66400, a2=?, a3=?` |
+  | `bgezall` at 0x223d358 | `__glBuildAntiAliasIndex [0x223b170]` (direct) | `a0=?, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d688 | `__glBuildAntiAliasIndex [0x223b170]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f13=ret(0x223be70)` |
+  | `jalr` at 0x223d6ac | `(unknown callee)` (register) | `a0=[a2+280]:8, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223d6c4 | `__glBuildAntiAliasIndex [0x223b170]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f13=ret(0x223be70)` |
+  | `bgezall` at 0x223d6ec | `__glBuildAntiAliasIndex [0x223b170]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f13=ret(0x223be70)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x223c204 | `(a3(=[[a2+280]:8+38932]) & 0x2) == 0` | `(a3(=[[a2+280]:8+38932]) & 0x2) != 0` |
+  | `beqz` at 0x223c240 | `(a3(=[[a2+280]:8+38932]) & 0x20) == 0` | `(a3(=[[a2+280]:8+38932]) & 0x20) != 0` |
+  | `beqz` at 0x223c284 | `(a3(=[[a2+280]:8+38932]) & 0x4) == 0` | `(a3(=[[a2+280]:8+38932]) & 0x4) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223d768 | `v0 = ?` |
+
+  Undecoded words: `0x223c71c`, `0x223c73c`, `0x223cae0`, `0x223d074`, `0x223d138`, `0x223d158`.
+
+  An anomalous `bc3tl` at 0x223ca24 remains uninterpreted.
+
+- `__glFillAntiAliasedTriangle` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223dd20–0x223e9a0, occupies 3200 bytes.
+
+  Antialiased-triangle setup quantises vertex coordinates, tests the area, builds edge and parameter equations and invokes sub-triangle filling.
+  The call facts identify FindLineEquation, FindPlaneEquation, ComputeCoverageStuff, snapping routines and SetInitialParameters.
+  The coverage setup count is one of four or eight.
+  Unknown split coordinates and callback arguments remain unresolved.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9fca10 | 4084 | Inferred | 3021 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x9720` | `lwc1` at 0x223dd40 |
+  | load | 4 | `a0 (arg0 at entry) +0x971c` | `lwc1` at 0x223dd44 |
+  | load | 4 | `a0 (arg0 at entry) +0x9718` | `lwc1` at 0x223dd48 |
+  | load | 4 | `a0 (arg0 at entry) +0x9714` | `lwc1` at 0x223dd4c |
+  | load | 4 | `a0 (arg0 at entry) +0xffc` | `lw` at 0x223dd54 |
+  | store | 4 | `a0 (arg0 at entry) +0x97b0` | `swc1` at 0x223e69c |
+  | store | 4 | `a0 (arg0 at entry) +0x97a4` | `swc1` at 0x223e6a4 |
+  | store | 4 | `a0 (arg0 at entry) +0x97a8` | `sw` at 0x223e6ac |
+  | store | 4 | `a0 (arg0 at entry) +0x977c` | `swc1` at 0x223e7f8 |
+  | store | 4 | `a0 (arg0 at entry) +0x978c` | `swc1` at 0x223e800 |
+  | store | 4 | `a0 (arg0 at entry) +0x9730  value [[[a0+36080]:8+8]:8]` | `swc1` at 0x223e914 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x223df00 | `FindLineEquation [0x223bca0]` (direct) | `a0=sp-456, a1=sp-352, a2=sp-336, a3=sp-320` |
+  | `bgezall` at 0x223df20 | `FindLineEquation [0x223bca0]` (direct) | `a0=sp-440, a1=sp-336, a2=sp-320, a3=sp-352` |
+  | `bgezall` at 0x223df40 | `FindLineEquation [0x223bca0]` (direct) | `a0=sp-424, a1=sp-320, a2=sp-352, a3=sp-336` |
+  | `bgezall` at 0x223df6c | `ComputeCoverageStuff [0x223be10]` (direct) | `a0=sp-400, a1=one of 0x4, 0x8, a2=?, a3=0x8` |
+  | `bgezall` at 0x223e084 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-640, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f15=[[a3+8]:8+12], f18=[[a3+8]:8]` |
+  | `bgezall` at 0x223e0b4 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-624, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e0e4 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-608, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e114 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-592, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x223e12c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a5=[a0+2176]` |
+  | `jalr` at 0x223e144 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?` |
+  | `jalr` at 0x223e15c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=?, a3=?` |
+  | `bgezall` at 0x223e1c0 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-480, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f16=[a1+112], f17=[a2+112], f18=[a3+112]` |
+  | `bgezall` at 0x223e254 | `__glSnapXLeft [0x223fa30]` (direct) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a7=a4 at entry (arg4)` |
+  | `bgezall` at 0x223e290 | `SetInitialParameters [0x223d780]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?; fp f18=[a1+136]` |
+  | `jalr` at 0x223e450 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a0+38632, a2=?, a3=?; fp f18=[a1+148]` |
+  | `jalr` at 0x223e49c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223e4e8 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223e56c | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-560, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e5a8 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-544, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e5e4 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-528, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e620 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-512, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x223e644 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-496, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f16=[a1+188], f17=[a2+188], f18=[a3+188]` |
+  | `bgezall` at 0x223e6cc | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-576, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f16=[a1+144], f17=[a2+144], f18=[a3+144]` |
+  | `bgezall` at 0x223e728 | `__glSnapXRight [0x223fb90]` (direct) | `a0=a0+38632, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223e744 | `FillAASubTriangle [0x223c120]` (direct) | `a0=?, a1=?, a2=sp-640, a3=0x223c120` |
+  | `bgezall` at 0x223e784 | `__glSnapXRight [0x223fb90]` (direct) | `a0=a0+38632, a1=?, a2=?, a3=?; fp f17=[a2+140], f18=[a0+3880]` |
+  | `bgezall` at 0x223e798 | `FillAASubTriangle [0x223c120]` (direct) | `a0=?, a1=?, a2=sp-640, a3=?` |
+  | `bgezall` at 0x223e820 | `FindPlaneEquation [0x223bd70]` (direct) | `a0=sp-640, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f18=[[a3+8]:8]` |
+  | `bgezall` at 0x223e844 | `__glSnapXRight [0x223fb90]` (direct) | `a0=a0+38632, a1=?, a2=?, a3=?, a7=a4 at entry (arg4)` |
+  | `bgezall` at 0x223e898 | `__glSnapXLeft [0x223fa30]` (direct) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223e8d8 | `SetInitialParameters [0x223d780]` (direct) | `a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?; fp f18=[a0+3880]` |
+  | `bgezall` at 0x223e8ec | `FillAASubTriangle [0x223c120]` (direct) | `a0=?, a1=?, a2=sp-640, a3=?` |
+  | `bgezall` at 0x223e934 | `__glSnapXLeft [0x223fa30]` (direct) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x223e974 | `SetInitialParameters [0x223d780]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?; fp f18=[a0+3880]` |
+  | `bgezall` at 0x223e990 | `FillAASubTriangle [0x223c120]` (direct) | `a0=?, a1=?, a2=sp-640, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bc1t` at 0x223deb8 | `f6 == f1 (c.eq.s at 0x223de94)` | `not (f6 == f1 (c.eq.s at 0x223de94))` |
+  | `beqz` at 0x223df7c | `(a0(?) & 0x1) == 0` | `(a0(?) & 0x1) != 0` |
+  | `beqz` at 0x223df84 | `a0(?) == 0` | `a0(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223e2e0 | `v0 = ?` |
+
+- `clipToPlane` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x223e9a0–0x223ec38, occupies 664 bytes.
+
+  The plane clipper evaluates a clip equation at consecutive vertices and has two interpolation callback sites.
+  It writes output pointers and generated-vertex data, with two reported return paths.
+  One undecoded word leaves part of the inside/outside decision unknown.
+  The output-count value is unresolved on one return, while the other reports zero.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9fda10 | 656 | Inferred | 568 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a0 (arg0 at entry) +0x49b8` | `ld` at 0x223e9a0 |
+  | load | 4 | `a4 (arg4 at entry) +0x4` | `lwc1` at 0x223e9c0 |
+  | load | 8 | `(a1 + (a2 << 0x3)) -0x8` | `ld` at 0x223e9d4 |
+  | load | 4 | `a4 (arg4 at entry) +0x0` | `lwc1` at 0x223e9d8 |
+  | load | 4 | `[(a1 + (a2 << 0x3))-8]:8 +0x78` | `lwc1` at 0x223e9dc |
+  | store | 8 | `? (base unknown)` | `sd` at 0x223eb24 |
+  | store | 1 | `? (base unknown)` | `sb` at 0x223eb70 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x223eb84 |
+  | store | 8 | `? (base unknown)` | `sd` at 0x223eb88 |
+  | store | 8 | `? (base unknown)` | `sd` at 0x223eb94 |
+  | store | 8 | `? (base unknown)` | `sd` at 0x223ebe4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x223eaf0 | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x223eb5c | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `blez` at 0x223ea1c | `a2 <= 0 (signed)` | `a2 > 0 (signed)` |
+  | `beqz` at 0x223ea50 | `v0(?) == 0` | `v0(?) != 0` |
+  | `beq` at 0x223ea70 | `s0(?) == s6(=(a1 + (a2 << 0x3)))` | `s0(?) != s6(=(a1 + (a2 << 0x3)))` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x223ebec | `v0 = ?` |
+  | `jr` at 0x223ec24 | `v0 = 0x0; f0 = ret(?)` |
+
+  Undecoded words: `0x223eaac`.
