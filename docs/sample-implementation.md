@@ -33332,3 +33332,103 @@ comparison was not rerun and supplies no new target equation.
 - `__glChangeOneMaterialColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
   Source grade: Established. Target address 0x22283a0. The routine occupies 164 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e483a0, which occupies 164 bytes. Both ranges have SHA-256 `a7c66a3dddd525f540b637f58ac0bcdf02845f4553d8dee8cf383a84a19deee6`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glScissorStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222c420. The routine occupies 1128 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4c420, which occupies 1128 bytes. Both ranges have SHA-256 `2db0c03a7a27111b81d8c65e5d8f3a261bb9c6288320cbe12d6c1fd55950cb76`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStippleLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222c890. The routine occupies 704 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4c890, which occupies 704 bytes. Both ranges have SHA-256 `8058905cff833a367a2ff015c2ce063e4c4024b3f4e5fd0bd07373a2a1518d63`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStencilTestLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222cb50. The routine occupies 708 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4cb50, which occupies 708 bytes. Both ranges have SHA-256 `c4a56e3288753b427a0b4d73a2bd519a7613c5d08d15c3d758548849038410c5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStencilTestStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ce20. The routine occupies 760 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ce20, which occupies 760 bytes. Both ranges have SHA-256 `bc2cd87f65d624995bb2352ba8fea119237ff0a09982ccd4344d0e73d15be905`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222d120. The routine occupies 716 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4d120, which occupies 716 bytes. Both ranges have SHA-256 `a2f4d548161a753e7bb1e2d9e46578c65b5209277570e5639317226525269a16`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStencilLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222d3f0. The routine occupies 888 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4d3f0, which occupies 888 bytes. Both ranges have SHA-256 `ce86b5ecd9ed7e05dc0327cc87b8f4b55609492168f6ef5d727d4bbf83e5deaf`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthTestStencilStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222d770. The routine occupies 928 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4d770, which occupies 928 bytes. Both ranges have SHA-256 `9d9a99c856a8d5e800af8ca1cbb07bae66fddd93d8f972d8978ff5de34ef63c5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthPassLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222db10. The routine occupies 432 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4db10, which occupies 432 bytes. Both ranges have SHA-256 `4d1ea75e242a8d5a70c56148c6f5aa732c51e88a366ed095cffd3e6130a3d6d1`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glDepthPassStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222dcc0. The routine occupies 456 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4dcc0, which occupies 456 bytes. Both ranges have SHA-256 `760de0e22f527207e8eaa22361db74cb469bd4e5dcad2f06b90f0703252e043d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStoreLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222de90. The routine occupies 348 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4de90, which occupies 348 bytes. Both ranges have SHA-256 `1a41075596c63df065c35c99a53abc35871ccd2c775010d0e943f83be8941237`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glStoreStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222dff0. The routine occupies 456 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4dff0, which occupies 456 bytes. Both ranges have SHA-256 `9c9774fc24cfd98022d0c4018b60d90021821407ec05abf4d6bdc79e6968b55d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glAntiAliasLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222e1c0. The routine occupies 1044 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4e1c0, which occupies 1044 bytes. Both ranges have SHA-256 `aeb5e593b6b529a3ffadf2ea395ab0abc94288b64ad2f72ae8e89e8ff98ee3e6`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glAntiAliasStippledLine` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222e5e0. The routine occupies 1064 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4e5e0, which occupies 1064 bytes. Both ranges have SHA-256 `3dd7a175458e57cb29383e579ba7f8bc8bf775feacb3b5507a33069ab0cc54a5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__gllc_Bitmap` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ea10. The routine occupies 324 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ea10, which occupies 324 bytes. Both ranges have SHA-256 `db6bb0bf8ed8fc3809bbef699738ebe8967dfa3c9b58b45629ee6c5e570c8419`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glle_Bitmap` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222eb60. The routine occupies 172 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4eb60, which occupies 172 bytes. Both ranges have SHA-256 `eba5206bb19473813635d9792db030029d1b16c06ef1c13105e4ae90527abb3f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__gllei_PolygonStipple` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ec10. The routine occupies 112 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ec10, which occupies 112 bytes. Both ranges have SHA-256 `69466bb31f6fdcc4b5a98c80383abacb2812f66d2f666c9185e659e18b8aa26b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__gllc_PolygonStipple` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ec80. The routine occupies 176 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ec80, which occupies 176 bytes. Both ranges have SHA-256 `e1f872b9b1d7a7766ff9755b340f5a351bd8d6111f58a355a2d3a40ec869fef5`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glle_PolygonStipple` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ed30. The routine occupies 96 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ed30, which occupies 96 bytes. Both ranges have SHA-256 `b8d6c4914ba581d59d9346567849c05f336070e6776429b70d6c9b8dacb3c88b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__gllc_Map1f` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222ed90. The routine occupies 340 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4ed90, which occupies 340 bytes. Both ranges have SHA-256 `158e9c3331a4bfb4a1411e5c52369f3b68bc7600f501300057d771ee5bbf2bea`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glle_Map1` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** The target grade follows the documented source through byte identity. Source grade: Inferred.
+  Target address 0x222eef0. The routine occupies 160 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e4eef0, which occupies 160 bytes. Both ranges have SHA-256 `180da82ee9cfdba300d446a637b31b9aa0fd7935a700cbd67f7a999fc0e8be20`.
+  Existing note: `docs/sample-implementation.md`.
