@@ -3080,6 +3080,69 @@ Target entries:
   Byte comparison: target SHA-256 `ebe9b3d1036f6d18dda7e2841727abe8586fdbf2f232a2a4efd2b7561788b91a`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9f35d0, 260 bytes, SHA-256 `53ff714ceda26351547cb9027d8f3a567a2d4682283bf9babc6e10832617166b`; 120 differing bytes in the common prefix.
 
 
+#### IP35 O32 routines identical to their documented IP27 siblings (batch 062)
+
+Each complete IP35 body below is byte-identical to the documented IP27 body at the listed range. These identity notes add no behavioral claims.
+
+- `__glNamesDeleteRange` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f54c0; occupies 1048 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f54c0 for 1048 bytes (SHA-256 `d83f47c3155f375099a4988cb9d594bbee6e212220d1d22d5a0c925c84feddd2`).
+
+- `__glNamesIsName` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f58d8; occupies 92 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f58d8 for 92 bytes (SHA-256 `c60a6ec5b6781003742ce5d20b340760c81931b13cc26bc449b908fb49b047c6`).
+
+- `__glNamesGenNames` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f5934; occupies 188 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5934 for 188 bytes (SHA-256 `5d4de713929f6a79ea997fdf8bf869653b09b56bf33f1589f5b52c700f3e3eab`).
+
+- `__glim_Normal3d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f5ad0; occupies 36 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5ad0 for 36 bytes (SHA-256 `3f1eef7121f54ad261f1b8a5beb4043271588d3512905c70b4302ada8f8397ac`).
+
+- `__glim_Normal3b` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f5b20; occupies 120 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5b20 for 120 bytes (SHA-256 `1fa7dabd3971f161997689d8647171e5356f07ec048c6b14d7366b6e1f173461`).
+
+- `__glim_Normal3s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f5c00; occupies 120 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5c00 for 120 bytes (SHA-256 `c00b5c58356758cb57346ea576fca4b7b8df3dbb94debaad35aa41be876e9f1f`).
+
+- `__glGenericPickSpanProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f5de0; occupies 1920 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5de0 for 1920 bytes (SHA-256 `feda8632e5306a4ac8bc7ec69ccf2660199c35f07a577f1b5576924674e8608c`).
+
+- `__glGenericPickPointProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f6560; occupies 296 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f6560 for 296 bytes (SHA-256 `054a2ce04c0cd843be00dcf0a4d308a38dc8df6943769a8e50f187850bbc13ab`).
+
+- `__glGenericPickLineProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f6688; occupies 1264 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f6688 for 1264 bytes (SHA-256 `25551fc9f279951c055d2f0b7d4b7dc5dafce486bf1bbc088bc76fd8cbe3ae51`).
+
+- `__glGenericPickTriangleProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f6b78; occupies 540 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f6b78 for 540 bytes (SHA-256 `e282d5d1c2ad4c70ded4e415e920596444b31a2f5846cc929e17383129283910`).
+
+- `__glGenericPickTextureProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f6e2c; occupies 2868 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f6e2c for 2868 bytes (SHA-256 `d0aeb6d2eb183bf7447834cbd319473d2b911b4dc924ae7073eefd1a92dfed10`).
+
+- `__glGenericPickBufferProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f79e0; occupies 136 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f79e0 for 136 bytes (SHA-256 `4cbf587c97c1f7a72c51bec2a904de30d6db821cd959ade4cf5e1738ded6a8e5`).
+
+- `__glGenericPickPixelProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f7a68; occupies 1976 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f7a68 for 1976 bytes (SHA-256 `cba1391995aa6ebbe44eaebcab6ee2c8fa519a54cddac81a375a5164bbf9cf06`).
+
+- `__glGenericPickDepthProcs` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f82d0; occupies 276 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f82d0 for 276 bytes (SHA-256 `0d1264cd670bd6b8df4978306e5d71df08bc05e091800310d7634003a272b46d`).
+
+- `__glBuildAntiAliasIndex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f8b90; occupies 80 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f8b90 for 80 bytes (SHA-256 `da5e927453352272bf76eb6ad2dff2836b3fb6195951e72f7d18135d96b577d4`).
+
+- `__glRenderAntiAliasedRGBPoint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f8ccc; occupies 924 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f8ccc for 924 bytes (SHA-256 `bdcdc2cef3f8e48807f3570d0a22fdc43776a364c6049af8ebf53b1134651ba1`).
+
+- `__glRenderAntiAliasedCIPoint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9068; occupies 812 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f9068 for 812 bytes (SHA-256 `b40e1c9386476a372a69f1c5fabc345a5134443e4601b829276a4a5be4411ca4`).
+
+- `__glRenderAliasedPointN` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f97f0; occupies 732 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f97f0 for 732 bytes (SHA-256 `81203f2ea547841f45092bc921f8c359ca7cb950ecf5867de99514d3f35f7215`).
+
+- `__glBeginPoints` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9b20; occupies 48 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f9b20 for 48 bytes (SHA-256 `6910c0277024eec2a0f181e924b2090cfb74467843b17110df4e92e59e8a8436`).
+
+- `__glEndPoints` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9b50; occupies 32 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f9b50 for 32 bytes (SHA-256 `b6fa651fb05017dae38f24d7e587ec170332a6cbe354fb9406200e8f1918d923`).
 ## Software renderer (soft)
 
 ### so_accumop.c
