@@ -37137,3 +37137,1744 @@ comparison was not rerun and supplies no new target equation.
   Target 0x22599b0, 568 bytes. Complete byte identity with
   `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e799b0, 568 bytes.
   Code SHA-256 `91548fab712d5a24602612b6334aa9a206ddb54c039f6c08d47613fa9ce7b250`.
+
+- `__glim_TexGeniv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2259c50–0x2259e9c, occupies 588 bytes.
+
+  Integer texture-generation input selects a coordinate record and a parameter case.
+  Plane values convert to float (`cvt.s.w` at 0x2259d00, `cvt.s.w` at 0x2259d10, `cvt.s.w` at 0x2259d20, `cvt.s.w` at 0x2259d30).
+  The eye-plane path has an optional validation callback and a transform callback.
+  Several mode errors call __glSetError.
+  The transformed destination and other unresolved arguments remain unknown.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda18ad0 | 672 | Inferred | 525 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2259c58 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x2259c5c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2259ca8 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2259ce0 |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lw` at 0x2259cf8 |
+  | store | 4 | `([0x1020]:8 + one of 0x8dc, 0x958, 0x9d4, 0xa50) +0x0` | `swc1` at 0x2259e14 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e0, 0x95c, 0x9d8, 0xa54) +0x0` | `swc1` at 0x2259e24 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e4, 0x960, 0x9dc, 0xa58) +0x0` | `swc1` at 0x2259e34 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e8, 0x964, 0x9e0, 0xa5c) +0x0` | `swc1` at 0x2259e48 |
+  | store | 4 | `([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c) +0x0  value [a2]` | `sw` at 0x2259e60 |
+  | store | 4 | `([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c) +0x0  value [a2]` | `sw` at 0x2259e68 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2259cb0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x2000, a4=[0x1020]:8+2620, a5=0x2002, a6=0x2003` |
+  | `jalr` at 0x2259ce8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x2000, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+  | `jalr` at 0x2259d58 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=[[0x1020]:8+38080]:8, a2=a2 at entry (arg2), a3=0x2000, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[[0x1020]:8+38080]:8, a6=[a2+12], a7=[a2+8]` |
+  | `jalr` at 0x2259d74 | `(unknown callee)` (register) | `a0=?, a1=sp-64, a2=?, a3=?` |
+  | `jalr` at 0x2259df0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=[a2], a2=0x2002, a3=0x2003, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+  | `jalr` at 0x2259e74 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2259e8c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=[a2], a2=0x2002, a3=0x2003, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2259c74 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beq` at 0x2259c80 | `a0 == a3(=0x2000)` | `a0 != a3(=0x2000)` |
+  | `beq` at 0x2259c8c | `a0 == a4(=0x2001)` | `a0 != a4(=0x2001)` |
+  | `beq` at 0x2259c94 | `a0 == a5(=0x2002)` | `a0 != a5(=0x2002)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2259d9c | `v0 = ?` |
+  | `jr` at 0x2259da8 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameterfv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2259fc0–0x225a4f0, occupies 1328 bytes.
+
+  The float-vector setter looks up texture parameters, the texture and its object before its parameter cases.
+  It stores corresponding values in both lookup results, calls __glClampColorf for the border-colour case and Clampf on another path.
+  Its successful update path marks process and context state dirty.
+  The case names remain inferred from the selected source role.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda18e74 | 1936 | Inferred | 1173 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x2259fcc |
+  | load | 4 | `abs 0x1030` | `lw` at 0x2259fd8 |
+  | load | 8 | `abs 0x22db758` | `ld` at 0x225a000 |
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225a010 |
+  | load | 8 | `abs 0x22db770` | `ld` at 0x225a030 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225a454 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225a460 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a498 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4a0 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4d4 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4dc |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a008 | `__glLookUpTextureParams [0x2258a30]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225a01c | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a038 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `jalr` at 0x225a200 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x225a290 | `__glLookUpTextureTexobjs [0x2258a80]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a2b0 | `Clampf [0x2258bf0]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f12=[a2], f14=[[0x1020]:8+3884]` |
+  | `jalr` at 0x225a2cc | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225a2e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225a430 | `__glClampColorf [0x2226ad0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a6=0x1004` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2259ff8 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beqz` at 0x225a028 | `a0(?) == 0` | `a0(?) != 0` |
+  | `beqz` at 0x225a048 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+  | `bnez` at 0x225a054 | `s1(=a1) < a0(=0x8072) (unsigned)` | `s1(=a1) >= a0(=0x8072) (unsigned)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a0cc | `v0 = ?` |
+  | `jr` at 0x225a0dc | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameterf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225a4f0–0x225a5f8, occupies 264 bytes.
+
+  The scalar float entry saves its incoming value in a stack word and forwards a pointer to __glim_TexParameterfv for selected parameter names.
+  Other names reach __glSetError with 0x500.
+  It has no independent texture lookup or vector conversion.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19604 | 188 | Inferred | 163 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a53c |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a544 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a54c |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a570 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a578 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a578 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a590 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a594 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5bc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5c4 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5dc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5e4 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5ec |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5f4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a57c | `__glim_TexParameterfv [0x2259fc0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=?` |
+  | `jalr` at 0x225a598 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225a510 | `a1 < a3(=0x8066) (unsigned)` | `a1 >= a3(=0x8066) (unsigned)` |
+  | `beqz` at 0x225a528 | `a3(=0x8066) >= a1 (unsigned)` | `a3(=0x8066) < a1 (unsigned)` |
+  | `bnez` at 0x225a530 | `v1(?) != 0` | `v1(?) == 0` |
+  | `beqz` at 0x225a538 | `a2(?) == 0` | `a2(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a5a8 | `v0 = ?` |
+
+- `__glim_TexParameteriv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225a600–0x225ab50, occupies 1360 bytes.
+
+  Integer-vector texture parameters use direct word values for enumeration cases and float conversion for numeric vectors (`cvt.s.w` at 0x225a784, `cvt.s.w` at 0x225a7a0, `cvt.s.w` at 0x225a7b4, `cvt.s.w` at 0x225a7c8).
+  The border-colour path calls __glClampColori.
+  A separate Clampf path has unresolved computed input in hostfacts, so its numeric formula is not asserted.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda196c0 | 1192 | Inferred | 1058 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x225a60c |
+  | load | 4 | `abs 0x1030` | `lw` at 0x225a618 |
+  | load | 8 | `abs 0x22db758` | `ld` at 0x225a640 |
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225a650 |
+  | load | 8 | `abs 0x22db770` | `ld` at 0x225a670 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225aac0 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225aacc |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225aaf8 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab00 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab34 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab3c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a648 | `__glLookUpTextureParams [0x2258a30]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225a65c | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a678 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `jalr` at 0x225a840 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x225a8f4 | `__glLookUpTextureTexobjs [0x2258a80]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a930 | `Clampf [0x2258bf0]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f14=[[0x1020]:8+3884], f17=0x40000000` |
+  | `jalr` at 0x225a94c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225a968 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225aa9c | `__glClampColori [0x2226da0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a5=0x1004` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225a638 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beqz` at 0x225a668 | `a0(?) == 0` | `a0(?) != 0` |
+  | `beqz` at 0x225a688 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+  | `bnez` at 0x225a694 | `s1(=a1) < a0(=0x8072) (unsigned)` | `s1(=a1) >= a0(=0x8072) (unsigned)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a700 | `v0 = ?` |
+  | `jr` at 0x225a710 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameteri` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225ab50–0x225ac58, occupies 264 bytes.
+
+  The scalar integer wrapper stores one incoming word and passes its stack address to __glim_TexParameteriv.
+  Its comparison chain filters parameter names before delegation.
+  The remaining error path reports 0x500 through __glSetError.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19b68 | 188 | Inferred | 159 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ab9c |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225aba4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abac |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225abd0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abd8 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225abdc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abf4 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac1c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac24 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac3c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac44 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac4c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac54 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225abe0 | `__glim_TexParameteriv [0x225a600]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=?` |
+  | `jalr` at 0x225abf8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225ab70 | `a1 < a4(=0x8066) (unsigned)` | `a1 >= a4(=0x8066) (unsigned)` |
+  | `beqz` at 0x225ab80 | `a4(=0x8066) >= a1 (unsigned)` | `a4(=0x8066) < a1 (unsigned)` |
+  | `bnez` at 0x225ab90 | `a1 < a3(=0x819a) (unsigned)` | `a1 >= a3(=0x819a) (unsigned)` |
+  | `beqz` at 0x225ab98 | `a2(?) == 0` | `a2(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225ac08 | `v0 = ?` |
+
+- `__glTexParameterfv_size` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225ac60–0x225ae40, occupies 480 bytes.
+
+  The parameter-size helper reports four distinct results: one, two, four and -1.
+  The source summary mentions only one and four.
+  The target two-value return is preserved rather than folded into that summary.
+  Its comparison chain has no memory accesses or calls.
+  Several intermediate branch values remain unknown in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19c24 | 332 | Inferred | 292 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | None selected | — | — | — |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225ac68 | `a0 < a2(=0x813a) (unsigned)` | `a0 >= a2(=0x813a) (unsigned)` |
+  | `beqz` at 0x225ac70 | `v0(?) == 0` | `v0(?) != 0` |
+  | `bnez` at 0x225ac7c | `a0 < a2(=0x8173) (unsigned)` | `a0 >= a2(=0x8173) (unsigned)` |
+  | `beqz` at 0x225ac84 | `a1(?) == 0` | `a1(?) != 0` |
+  | `bne` at 0x225adcc | `a0 != t1(=0x8171)` | `a0 == t1(=0x8171)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225ad0c | `v0 = 0x1` |
+  | `jr` at 0x225ada0 | `v0 = -0x1` |
+  | `jr` at 0x225add4 | `v0 = 0x2` |
+  | `jr` at 0x225adf8 | `v0 = 0x4` |
+
+- `__glim_TexEnvfv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225ae80–0x225afc4, occupies 324 bytes.
+
+  The float texture-environment setter selects an environment record, converts a mode value to an integer (`trunc.l.s` at 0x225af30), or calls __glClampAndScaleColorf for colour data.
+  Invalid target, parameter or mode cases report 0x500, while the process-state rejection reports 0x502.
+  The accepted update stores process state two and sets a context flag.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19da4 | 444 | Inferred | 294 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225ae88 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225ae8c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225aeb8 |
+  | load | 4 | `[0x1020]:8 +0xf7c` | `lw` at 0x225aec0 |
+  | load | 8 | `[0x1020]:8 +0xac0` | `ld` at 0x225aee0 |
+  | load | 8 | `abs 0x22dacc8` | `ld` at 0x225aef4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225af0c |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lwc1` at 0x225af2c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225af74 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225af78 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225af80 |
+  | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225af84 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225af90 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225afb0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225aefc | `__glClampAndScaleColorf [0x22269e0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a4=a0-8960, a7=0x2200` |
+  | `jalr` at 0x225af10 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225afa0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?` |
+  | `jalr` at 0x225afb4 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225aea8 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bnez` at 0x225aeb4 | `a0 < 0x2300 (unsigned)` | `a0 >= 0x2300 (unsigned)` |
+  | `beqz` at 0x225aed4 | `a4(=a0-8960) >= a5(=[[0x1020]:8+3964]) (unsigned)` | `a4(=a0-8960) < a5(=[[0x1020]:8+3964]) (unsigned)` |
+  | `beq` at 0x225aee8 | `a1 == a7(=0x2200)` | `a1 != a7(=0x2200)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225af24 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+  | `jr` at 0x225af98 | `v0 = ?` |
+
+- `__glim_TexEnviv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225b030–0x225b164, occupies 308 bytes.
+
+  The integer environment entry reads its mode directly as a word and delegates colour data to __glClampAndScaleColori.
+  It shares the target-record selection and dirty-state pattern inferred from the float form, with its own exact accesses and call arguments below.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19fc0 | 316 | Inferred | 274 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225b038 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225b03c |
+  | load | 4 | `[0x1020]:8 +0xf7c` | `lw` at 0x225b06c |
+  | load | 8 | `[0x1020]:8 +0xac0` | `ld` at 0x225b08c |
+  | load | 8 | `abs 0x22dace0` | `ld` at 0x225b0a0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b0b8 |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lw` at 0x225b0d8 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225b114 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225b11c |
+  | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225b120 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225b12c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b13c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b150 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225b0a8 | `__glClampAndScaleColori [0x2226c40]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a4=a0-8960, a7=0x2200` |
+  | `jalr` at 0x225b0bc | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?, a4=a0-8960` |
+  | `jalr` at 0x225b140 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?, a4=a0-8960` |
+  | `jalr` at 0x225b154 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225b058 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bnez` at 0x225b064 | `a0 < 0x2300 (unsigned)` | `a0 >= 0x2300 (unsigned)` |
+  | `beqz` at 0x225b080 | `a4(=a0-8960) >= a5(=[[0x1020]:8+3964]) (unsigned)` | `a4(=a0-8960) < a5(=[[0x1020]:8+3964]) (unsigned)` |
+  | `beq` at 0x225b094 | `a1 == a7(=0x2200)` | `a1 != a7(=0x2200)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b0d0 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+  | `jr` at 0x225b134 | `v0 = 0x2` |
+
+- `__glExtractTexelRGB8` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225b570–0x225b61c, occupies 172 bytes.
+
+  RGB extraction has an out-of-range fallback that copies three float values from the texture parameter record.
+  The sample path reads three unsigned bytes, converts them to float and multiplies by a scale loaded through the context pointer (`cvt.s.w` at 0x225b5d8, `mul.s` at 0x225b5e0).
+  The computed image-byte base remains unknown in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1a564 | 268 | Inferred | 151 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b574 |
+  | load | 4 | `a0 (arg0 at entry) +0x1c` | `lw` at 0x225b580 |
+  | load | 4 | `a0 (arg0 at entry) +0x18` | `lw` at 0x225b584 |
+  | load | 4 | `a1 (arg1 at entry) +0xa0` | `lwc1` at 0x225b59c |
+  | store | 4 | `a5 (arg5 at entry) +0x0  value [a1+160]` | `swc1` at 0x225b5a0 |
+  | load | 4 | `a1 (arg1 at entry) +0xa4` | `lwc1` at 0x225b5a4 |
+  | store | 4 | `a5 (arg5 at entry) +0x4  value [a1+164]` | `swc1` at 0x225b5a8 |
+  | load | 4 | `a1 (arg1 at entry) +0xa8` | `lwc1` at 0x225b5ac |
+  | store | 4 | `a5 (arg5 at entry) +0x8  value [a1+168]` | `swc1` at 0x225b5b4 |
+  | load | 4 | `a0 (arg0 at entry) +0x30` | `lw` at 0x225b5b8 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b5c0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b5d0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b5dc |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b5e4 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b5e8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b5f4 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b5fc |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b600 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b60c |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b618 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225b570 | `a3 < 0 (signed)` | `a3 >= 0 (signed)` |
+  | `bltz` at 0x225b578 | `a4 < 0 (signed)` | `a4 >= 0 (signed)` |
+  | `beqz` at 0x225b58c | `a3 >= at(=[a0+28]) (signed)` | `a3 < at(=[a0+28]) (signed)` |
+  | `bnez` at 0x225b594 | `v0(?) != 0` | `v0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b5b0 | `v0 = ?; f0 = [a1+168]` |
+  | `jr` at 0x225b614 | `v0 = ?` |
+
+- `__glExtractTexelRGBA8` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225b620–0x225b6ec, occupies 204 bytes.
+
+  RGBA extraction reads four unsigned bytes on its sample path and uses four stored floats on its fallback path.
+  Both paths write the fourth output at +0x10 (`swc1` at 0x225b66c, `swc1` at 0x225b6e8).
+  The earlier three outputs occupy +0, +4 and +8 as the facts table records.
+  No output store at +0xc occurs in this body.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1a670 | 320 | Inferred | 179 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b624 |
+  | load | 4 | `a0 (arg0 at entry) +0x1c` | `lw` at 0x225b630 |
+  | load | 4 | `a0 (arg0 at entry) +0x18` | `lw` at 0x225b634 |
+  | load | 4 | `a1 (arg1 at entry) +0xa0` | `lwc1` at 0x225b64c |
+  | store | 4 | `a5 (arg5 at entry) +0x0  value [a1+160]` | `swc1` at 0x225b650 |
+  | load | 4 | `a1 (arg1 at entry) +0xa4` | `lwc1` at 0x225b654 |
+  | store | 4 | `a5 (arg5 at entry) +0x4  value [a1+164]` | `swc1` at 0x225b658 |
+  | load | 4 | `a1 (arg1 at entry) +0xa8` | `lwc1` at 0x225b65c |
+  | store | 4 | `a5 (arg5 at entry) +0x8  value [a1+168]` | `swc1` at 0x225b660 |
+  | load | 4 | `a1 (arg1 at entry) +0xac` | `lwc1` at 0x225b664 |
+  | store | 4 | `a5 (arg5 at entry) +0x10  value [a1+172]` | `swc1` at 0x225b66c |
+  | load | 4 | `a0 (arg0 at entry) +0x30` | `lw` at 0x225b670 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b678 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b688 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b694 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b69c |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6a0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6ac |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b6b4 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6b8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6c4 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b6cc |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6d0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6dc |
+  | store | 4 | `a5 (arg5 at entry) +0x10` | `swc1` at 0x225b6e8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225b620 | `a3 < 0 (signed)` | `a3 >= 0 (signed)` |
+  | `bltz` at 0x225b628 | `a4 < 0 (signed)` | `a4 >= 0 (signed)` |
+  | `beqz` at 0x225b63c | `a3 >= at(=[a0+28]) (signed)` | `a3 < at(=[a0+28]) (signed)` |
+  | `bnez` at 0x225b644 | `v0(?) != 0` | `v0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b668 | `v0 = ?; f0 = [a1+172]` |
+  | `jr` at 0x225b6e4 | `v0 = ?` |
+
+- `__glExtractTexelRGB8_B` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225b860–0x225b8d0, occupies 112 bytes.
+
+  The bordered RGB helper adjusts its row argument and computes a byte address with integer multiplication (`addiu` at 0x225b864, `mult` at 0x225b868).
+  Three unsigned-byte loads feed float conversion and context scaling.
+  It has no bounds branch or fallback path.
+  The computed source address stays unknown in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da16960 | 112 | Inferred | 10 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x225b860 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b870 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b880 |
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b888 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b890 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b898 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b89c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b8a8 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b8b0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b8b4 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b8c0 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b8cc |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b8c8 | `v0 = ?` |
+
+- `__glExtractTexelRGBA8_B` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225b8d0–0x225b958, occupies 136 bytes.
+
+  Bordered RGBA extraction uses four unsigned-byte loads and four float stores.
+  The fourth result again goes to output +0x10 (`swc1` at 0x225b954).
+  The body has no calls or conditional branches, and hostfacts does not resolve the computed image base.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da169d0 | 136 | Inferred | 12 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x225b8d0 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b8e0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b8f0 |
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b8f8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b900 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b908 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b90c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b918 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b920 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b924 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b930 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b938 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b93c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b948 |
+  | store | 4 | `a5 (arg5 at entry) +0x10` | `swc1` at 0x225b954 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b950 | `v0 = ?` |
+
+- `CheckTexImageArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225c410–0x225cc24, occupies 2068 bytes.
+
+  The common image checker validates texture identity, type/format combinations, level, internal format and border through comparison chains.
+  Errors call __glSetError with 0x500, 0x501 or 0x502 and then return zero.
+  The success return is the __glLookUpTexture result.
+  The source phrase about returning an error to report does not describe that target return contract.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da17500 | 2076 | Inferred | 1823 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225c428 |
+  | load | 4 | `ret(__glLookUpTexture) +0xf0` | `lw` at 0x225c454 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c4b0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c4e4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c544 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225c444 | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225c4e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=one of 0x8032, 0x8362, 0x8367, a3=?` |
+  | `jalr` at 0x225c548 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225c57c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225c790 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=?, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225c44c | `v0(=ret(__glLookUpTexture)) == 0` | `v0(=ret(__glLookUpTexture)) != 0` |
+  | `bne` at 0x225c458 | `at(=[ret(__glLookUpTexture)+240]) != v1(=a7)` | `at(=[ret(__glLookUpTexture)+240]) == v1(=a7)` |
+  | `bnez` at 0x225c464 | `s0(=a6) < a2(=0x8034) (unsigned)` | `s0(=a6) >= a2(=0x8034) (unsigned)` |
+  | `beqz` at 0x225c46c | `a1(?) == 0` | `a1(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225c508 | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c568 | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c59c | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c754 | `v0 = ret(__glLookUpTexture); f0 = ret(__glLookUpTexture)` |
+  | `jr` at 0x225c7b0 | `v0 = 0x0; f0 = ret(__glSetError)` |
+
+- `__glInitTexImageGet` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225d890–0x225d9cc, occupies 316 bytes.
+
+  Texture readback setup loads a level record and fills a destination descriptor with storage, dimensions and format fields.
+  Format cases write an element-size word and type/format words.
+  The exact stores below distinguish those cases.
+  This body calls no helper and reports the observed v0 value separately from its descriptor effects.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c54c | 364 | Inferred | 248 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a2 (arg2 at entry) +0xe8` | `ld` at 0x225d894 |
+  | load | 8 | `? (base unknown)` | `ld` at 0x225d8a4 |
+  | store | 4 | `a1 (arg1 at entry) +0x38  value 0x0` | `sw` at 0x225d8a8 |
+  | store | 4 | `a1 (arg1 at entry) +0x3c  value 0x0` | `sw` at 0x225d8ac |
+  | store | 4 | `a1 (arg1 at entry) +0x40  value 0x0` | `sw` at 0x225d8b0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4c  value 0x4` | `sw` at 0x225d9a0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4  value 0x1406` | `sw` at 0x225d9a8 |
+  | store | 4 | `a1 (arg1 at entry) +0x0  value 0x1908` | `sw` at 0x225d9b0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4c  value 0x4` | `sw` at 0x225d9b8 |
+  | store | 4 | `a1 (arg1 at entry) +0x4  value 0x1406` | `sw` at 0x225d9c0 |
+  | store | 4 | `a1 (arg1 at entry) +0x0  value 0x1906` | `sw` at 0x225d9c8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225d8e0 | `at(=[a2+240]) == a5(=0x1)` | `at(=[a2+240]) != a5(=0x1)` |
+  | `beq` at 0x225d8fc | `a2(?) == a6(=0x1909)` | `a2(?) != a6(=0x1909)` |
+  | `beq` at 0x225d904 | `a2(?) == a7(=0x190a)` | `a2(?) != a7(=0x190a)` |
+  | `beq` at 0x225d90c | `a2(?) == a3(=0x1907)` | `a2(?) != a3(=0x1907)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225d934 | `v0 = 0x4` |
+  | `jr` at 0x225d958 | `v0 = 0x4` |
+  | `jr` at 0x225d970 | `v0 = 0x4` |
+  | `jr` at 0x225d984 | `v0 = 0x4` |
+  | `jr` at 0x225d998 | `v0 = 0x4` |
+  | `jr` at 0x225d9ac | `v0 = 0x4` |
+  | `jr` at 0x225d9c4 | `v0 = 0x4` |
+
+- `__glInitTexDestPack` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225da40–0x225daa4, occupies 100 bytes.
+
+  Destination packing records caller arguments and zero/default fields in a span descriptor, then calls __glLoadPackModes.
+  Its pointer store uses eight bytes, while the adjacent argument fields use four-byte stores.
+  The final return registers reflect the pack-mode loader result.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c744 | 120 | Inferred | 82 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | store | 4 | `a1 (arg1 at entry) +0xd4` | `swc1` at 0x225da4c |
+  | load | 4 | `a0 (arg0 at entry) +0xf2c` | `lwc1` at 0x225da50 |
+  | store | 8 | `a1 (arg1 at entry) +0x60  value a7` | `sd` at 0x225da54 |
+  | store | 4 | `a1 (arg1 at entry) +0x5c  value a6` | `sw` at 0x225da58 |
+  | store | 4 | `a1 (arg1 at entry) +0x58  value a5` | `sw` at 0x225da5c |
+  | store | 4 | `a1 (arg1 at entry) +0xc0  value a4` | `sw` at 0x225da60 |
+  | store | 4 | `a1 (arg1 at entry) +0xbc  value a3` | `sw` at 0x225da64 |
+  | store | 4 | `a1 (arg1 at entry) +0xc4  value a2` | `sw` at 0x225da6c |
+  | load | 8 | `abs 0x22d9b88` | `ld` at 0x225da7c |
+  | store | 4 | `a1 (arg1 at entry) +0xc8  value a2` | `sw` at 0x225da80 |
+  | store | 4 | `a1 (arg1 at entry) +0xb8  value a2` | `sw` at 0x225da84 |
+  | store | 4 | `a1 (arg1 at entry) +0xb0  value [a0+3884]` | `swc1` at 0x225da90 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225da8c | `__glLoadPackModes [0x21e7a60]` (register-constant) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225da9c | `v0 = ret(__glLoadPackModes); f0 = ret(__glLoadPackModes)` |
+
+- `IsLegalRange` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225dab0–0x225db0c, occupies 92 bytes.
+
+  The range helper forms an adjusted integer and tests its sign and bit pattern.
+  The bit operation is the adjusted value AND its predecessor (`and` at 0x225dae0).
+  Failure calls __glSetError with 0x501 and returns zero.
+  The other path returns one.
+  The analyzer leaves the adjusted value unknown, so no stronger input-range formula is assigned.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da18bb0 | 92 | Inferred | 6 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225dae8 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225dae8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225daec | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225dad8 | `a4(?) < 0 (signed)` | `a4(?) >= 0 (signed)` |
+  | `beqz` at 0x225dae4 | `(a4(?) & a5(?)) == 0` | `(a4(?) & a5(?)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dafc | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225db04 | `v0 = 0x1` |
+
+- `__glCheckTexImage1DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225db10–0x225dbd8, occupies 200 bytes.
+
+  One-dimensional validation calls CheckTexImageArgs with a dimension marker of one, then applies IsLegalRange to its remaining size check.
+  A zero common-check result returns zero immediately.
+  A descriptor-format test selects the additional range argument, which is unresolved at the joined call site.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c82c | 192 | Inferred | 162 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225db30 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225db70 |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225db74 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225db84 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225dbd4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225db5c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a5 at entry (arg5), a5=a6 at entry (arg6), a6=a7 at entry (arg7), a7=0x1` |
+  | `bgezall` at 0x225db94 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a5 at entry (arg5)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225db64 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225db78 | `a1(=[[a0+944]:8]) == a2(=0x8010)` | `a1(=[[a0+944]:8]) != a2(=0x8010)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dbb4 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225dbc8 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glCheckTexImage2DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225dbe0–0x225dd14, occupies 308 bytes.
+
+  The two-dimensional checker passes a dimension marker of two, then has two IsLegalRange call sites.
+  Its two descriptor cases load different extent fields before those checks.
+  The final joined result remains unknown in hostfacts, while the common-check failure returns zero.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c8ec | 272 | Inferred | 232 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dbfc |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dc3c |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dc40 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dc5c |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dc80 |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dc84 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dc98 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225dcdc |
+  | load | 4 | `[a0+944]:8 +0x44` | `lw` at 0x225dce4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225dc2c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a6 at entry (arg6), a5=a7 at entry (arg7), a7=0x2` |
+  | `bgezall` at 0x225dc70 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a6 at entry (arg6)` |
+  | `bgezall` at 0x225dcac | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=?, a3=a6 at entry (arg6), a4=0x225dab0` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225dc34 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225dc48 | `a2(=0x8011) == a0(=[[a0+944]:8])` | `a2(=0x8011) != a0(=[[a0+944]:8])` |
+  | `beq` at 0x225dc54 | `a0(=[[a0+944]:8]) == v0(=0x8012)` | `a0(=[[a0+944]:8]) != v0(=0x8012)` |
+  | `beqz` at 0x225dc78 | `v0(=ret(IsLegalRange)) == 0` | `v0(=ret(IsLegalRange)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dcd0 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225dcf8 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glCheckTexImage3DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225dd20–0x225de88, occupies 360 bytes.
+
+  Three-dimensional validation invokes the common checker with marker three and has three subsequent range-check calls.
+  The third range call explicitly passes zero as its third argument.
+  Early common-check failure returns zero.
+  Other joined return values are not reconstructed from the source summary.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c9fc | 316 | Inferred | 285 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dd44 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dd7c |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dd80 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dd98 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225ddbc |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225ddc0 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225ddd8 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225ddf8 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225de40 |
+  | load | 4 | `[a0+944]:8 +0x44` | `lw` at 0x225de48 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225dd6c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a7 at entry (arg7), a7=0x3` |
+  | `bgezall` at 0x225ddac | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a7 at entry (arg7)` |
+  | `bgezall` at 0x225ddec | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=?, a3=a7 at entry (arg7), a4=0x225dab0` |
+  | `bgezall` at 0x225de10 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a6 at entry (arg6), a2=0x0, a3=a7 at entry (arg7), a5=0x225dab0` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225dd74 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225dd84 | `a2(=0x8011) == a0(=[[a0+944]:8])` | `a2(=0x8011) != a0(=[[a0+944]:8])` |
+  | `beq` at 0x225dd90 | `a0(=[[a0+944]:8]) == at(=0x8012)` | `a0(=[[a0+944]:8]) != at(=0x8012)` |
+  | `beqz` at 0x225ddb4 | `v0(=ret(IsLegalRange)) == 0` | `v0(=ret(IsLegalRange)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225de34 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225de60 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glim_TexImage1D` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x225e090–0x225e2a8, occupies 536 bytes.
+
+  Texture-image definition checks process state, validates arguments and looks up the one-dimensional texture object.
+  Its callback sequence can allocate the level, initialise source unpacking and image storage, set up an unpacker and packer, and invoke a texture store callback.
+  Successful completion marks object and context state dirty.
+  Unknown callback arguments and joined lookup values remain explicit.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1cd0c | 616 | Inferred | 498 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225e0b4 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225e0bc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225e0e4 |
+  | load | 8 | `[0x1020]:8 +0x4748` | `ld` at 0x225e104 |
+  | store | 4 | `abs 0x1030  value 0x0` | `sw` at 0x225e114 |
+  | store | 1 | `? (base unknown)  value 0x1` | `sb` at 0x225e1e0 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225e1e8 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225e1f8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225e0e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225e108 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225e138 | `__glCheckTexImage1DArgs [0x225db10]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=a6 at entry (arg6)` |
+  | `bgezall` at 0x225e150 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=0xde0, a2=?, a3=?` |
+  | `jalr` at 0x225e1b8 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=?, a2=a1 at entry (arg1), a3=a2 at entry (arg2), a5=(a4 + a4)+1, a6=(a4 + a4)+1, a7=a4 at entry (arg4)` |
+  | `bgezall` at 0x225e224 | `__glInitTexSourceUnpack [0x225d9d0]` (direct) | `a0=[0x1020]:8, a1=sp-736, a2=a3 at entry (arg3), a3=0x1, a4=0x1` |
+  | `bgezall` at 0x225e23c | `__glInitTexImageStore [0x225d750]` (direct) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=a1 at entry (arg1)` |
+  | `jalr` at 0x225e24c | `__glInitUnpacker [0x21ee790]` (register-constant) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=?` |
+  | `jalr` at 0x225e25c | `__glInitPacker [0x21de160]` (register-constant) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=?` |
+  | `jalr` at 0x225e274 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=a1 at entry (arg1)` |
+  | `jalr` at 0x225e298 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=0x8010, a4=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225e0d4 | `v0(=[0x1030]) == 0` | `v0(=[0x1030]) != 0` |
+  | `beq` at 0x225e0dc | `v0(=[0x1030]) == v1(=0x2)` | `v0(=[0x1030]) != v1(=0x2)` |
+  | `beqz` at 0x225e140 | `v0(=ret(__glCheckTexImage1DArgs)) == 0` | `v0(=ret(__glCheckTexImage1DArgs)) != 0` |
+  | `beqz` at 0x225e168 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225e0fc | `v0 = ?` |
+  | `jr` at 0x225e200 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_TexGeniv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x2259c50–0x2259e9c, occupies 588 bytes.
+
+  Four signed input words are converted to float for a local vector (`lw` at 0x2259cf8, 0x2259d08, 0x2259d18, 0x2259d28, `cvt.s.w` at 0x2259d00, 0x2259d10, 0x2259d20, 0x2259d30).
+  One callback receives that stack-vector address, with its other arguments unresolved (`jalr` at 0x2259d74).
+  Another path converts four words directly into the selected context-vector destinations (`cvt.s.w` at 0x2259e10, 0x2259e20, 0x2259e30, 0x2259e40).
+  Successful update paths write two at 0x1030 and set a context flag bit (`sw` at 0x2259d80, 0x2259d94).
+  The separate error calls and selector conditions remain bounded by the facts below.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda18ad0 | 672 | Inferred | 525 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2259c58 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x2259c5c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2259ca8 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2259ce0 |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lw` at 0x2259cf8 |
+  | store | 4 | `([0x1020]:8 + one of 0x8dc, 0x958, 0x9d4, 0xa50) +0x0` | `swc1` at 0x2259e14 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e0, 0x95c, 0x9d8, 0xa54) +0x0` | `swc1` at 0x2259e24 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e4, 0x960, 0x9dc, 0xa58) +0x0` | `swc1` at 0x2259e34 |
+  | store | 4 | `([0x1020]:8 + one of 0x8e8, 0x964, 0x9e0, 0xa5c) +0x0` | `swc1` at 0x2259e48 |
+  | store | 4 | `([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c) +0x0  value [a2]` | `sw` at 0x2259e60 |
+  | store | 4 | `([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c) +0x0  value [a2]` | `sw` at 0x2259e68 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2259cb0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x2000, a4=[0x1020]:8+2620, a5=0x2002, a6=0x2003` |
+  | `jalr` at 0x2259ce8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x2000, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+  | `jalr` at 0x2259d58 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=[[0x1020]:8+38080]:8, a2=a2 at entry (arg2), a3=0x2000, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[[0x1020]:8+38080]:8, a6=[a2+12], a7=[a2+8]` |
+  | `jalr` at 0x2259d74 | `(unknown callee)` (register) | `a0=?, a1=sp-64, a2=?, a3=?` |
+  | `jalr` at 0x2259df0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=[a2], a2=0x2002, a3=0x2003, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+  | `jalr` at 0x2259e74 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2259e8c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=[a2], a2=0x2002, a3=0x2003, a4=([0x1020]:8 + one of 0x8c8, 0x944, 0x9c0, 0xa3c), a5=[0x1020]:8+38080, a7=0x2500` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2259c74 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beq` at 0x2259c80 | `a0 == a3(=0x2000)` | `a0 != a3(=0x2000)` |
+  | `beq` at 0x2259c8c | `a0 == a4(=0x2001)` | `a0 != a4(=0x2001)` |
+  | `beq` at 0x2259c94 | `a0 == a5(=0x2002)` | `a0 != a5(=0x2002)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2259d9c | `v0 = ?` |
+  | `jr` at 0x2259da8 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameterfv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x2259fc0–0x225a4f0, occupies 1328 bytes.
+
+  Three lookup calls resolve texture parameters, the texture and the texture object (`bgezall` at 0x225a008, 0x225a01c, 0x225a038).
+  Enum-valued inputs pass through float-to-integer truncation before paired word stores (`trunc.l.s` at 0x225a06c, `sw` at 0x225a0a0, 0x225a0a4).
+  Other paths copy four float components to paired records, call Clampf, or call __glClampColorf (`swc1` at 0x225a15c, 0x225a160, `bgezall` at 0x225a2b0, `jalr` at 0x225a430).
+  The shared completion path marks the process word and context flags (`sw` at 0x225a0b0, 0x225a0c4).
+  Unresolved destination bases and helper effects remain unknown.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda18e74 | 1936 | Inferred | 1173 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x2259fcc |
+  | load | 4 | `abs 0x1030` | `lw` at 0x2259fd8 |
+  | load | 8 | `abs 0x22db758` | `ld` at 0x225a000 |
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225a010 |
+  | load | 8 | `abs 0x22db770` | `ld` at 0x225a030 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225a454 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225a460 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a498 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4a0 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4d4 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225a4dc |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a008 | `__glLookUpTextureParams [0x2258a30]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225a01c | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a038 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `jalr` at 0x225a200 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x225a290 | `__glLookUpTextureTexobjs [0x2258a80]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a2b0 | `Clampf [0x2258bf0]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f12=[a2], f14=[[0x1020]:8+3884]` |
+  | `jalr` at 0x225a2cc | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225a2e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225a430 | `__glClampColorf [0x2226ad0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a6=0x1004` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2259ff8 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beqz` at 0x225a028 | `a0(?) == 0` | `a0(?) != 0` |
+  | `beqz` at 0x225a048 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+  | `bnez` at 0x225a054 | `s1(=a1) < a0(=0x8072) (unsigned)` | `s1(=a1) >= a0(=0x8072) (unsigned)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a0cc | `v0 = ?` |
+  | `jr` at 0x225a0dc | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameterf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225a4f0–0x225a5f8, occupies 264 bytes.
+
+  The scalar float is saved at entrySP minus 0x10 (`swc1` at 0x225a504).
+  Accepted selector paths pass its address to __glim_TexParameterfv (`bgezall` at 0x225a57c).
+  Other selector paths call __glSetError with 0x500 (`jalr` at 0x225a598).
+  The bounded wrapper stores one float, so the accepted selector set does not establish a multi-component argument here.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19604 | 188 | Inferred | 163 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a53c |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a544 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a54c |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a570 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a578 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a590 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a594 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5bc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5c4 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5dc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5e4 |
+  | load | 8 | `abs 0x22db7f0` | `ld` at 0x225a5ec |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225a5f4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a57c | `__glim_TexParameterfv [0x2259fc0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=?` |
+  | `jalr` at 0x225a598 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225a510 | `a1 < a3(=0x8066) (unsigned)` | `a1 >= a3(=0x8066) (unsigned)` |
+  | `beqz` at 0x225a528 | `a3(=0x8066) >= a1 (unsigned)` | `a3(=0x8066) < a1 (unsigned)` |
+  | `bnez` at 0x225a530 | `v1(?) != 0` | `v1(?) == 0` |
+  | `beqz` at 0x225a538 | `a2(?) == 0` | `a2(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a5a8 | `v0 = ?` |
+
+- `__glim_TexParameteriv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225a600–0x225ab50, occupies 1360 bytes.
+
+  Three lookup calls resolve the parameter records and object (`bgezall` at 0x225a648, 0x225a65c, 0x225a678).
+  Enum-valued paths read a word and write paired record fields (`lw` at 0x225a6a8, `sw` at 0x225a6d4, 0x225a6d8).
+  Vector-valued paths convert four signed words to float before paired float stores (`cvt.s.w` at 0x225a784, 0x225a7a0, 0x225a7b4, 0x225a7c8).
+  Separate paths call Clampf and __glClampColori (`bgezall` at 0x225a930, `jalr` at 0x225aa9c).
+  Computed numerical values and unresolved helper arguments remain unknown.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda196c0 | 1192 | Inferred | 1058 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x225a60c |
+  | load | 4 | `abs 0x1030` | `lw` at 0x225a618 |
+  | load | 8 | `abs 0x22db758` | `ld` at 0x225a640 |
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225a650 |
+  | load | 8 | `abs 0x22db770` | `ld` at 0x225a670 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225aac0 |
+  | store | 4 | `? (base unknown)` | `swc1` at 0x225aacc |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225aaf8 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab00 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab34 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225ab3c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225a648 | `__glLookUpTextureParams [0x2258a30]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225a65c | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a678 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `jalr` at 0x225a840 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `bgezall` at 0x225a8f4 | `__glLookUpTextureTexobjs [0x2258a80]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=?, a3=?` |
+  | `bgezall` at 0x225a930 | `Clampf [0x2258bf0]` (direct) | `a0=?, a1=?, a2=?, a3=?; fp f14=[[0x1020]:8+3884], f17=0x40000000` |
+  | `jalr` at 0x225a94c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225a968 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225aa9c | `__glClampColori [0x2226da0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a5=0x1004` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225a638 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beqz` at 0x225a668 | `a0(?) == 0` | `a0(?) != 0` |
+  | `beqz` at 0x225a688 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+  | `bnez` at 0x225a694 | `s1(=a1) < a0(=0x8072) (unsigned)` | `s1(=a1) >= a0(=0x8072) (unsigned)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225a700 | `v0 = ?` |
+  | `jr` at 0x225a710 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_TexParameteri` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225ab50–0x225ac58, occupies 264 bytes.
+
+  The scalar integer is saved as a word at entrySP minus 0xc (`sw` at 0x225ab64).
+  Accepted selector paths pass that address to __glim_TexParameteriv (`bgezall` at 0x225abe0).
+  The error path calls __glSetError with 0x500 (`jalr` at 0x225abf8).
+  The argument table preserves the original target and selector independently of the temporary parameter pointer.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19b68 | 188 | Inferred | 159 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ab9c |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225aba4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abac |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225abd0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abd8 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225abdc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225abf4 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac1c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac24 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac3c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac44 |
+  | load | 8 | `abs 0x22db800` | `ld` at 0x225ac4c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225ac54 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225abe0 | `__glim_TexParameteriv [0x225a600]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=?` |
+  | `jalr` at 0x225abf8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225ab70 | `a1 < a4(=0x8066) (unsigned)` | `a1 >= a4(=0x8066) (unsigned)` |
+  | `beqz` at 0x225ab80 | `a4(=0x8066) >= a1 (unsigned)` | `a4(=0x8066) < a1 (unsigned)` |
+  | `bnez` at 0x225ab90 | `a1 < a3(=0x819a) (unsigned)` | `a1 >= a3(=0x819a) (unsigned)` |
+  | `beqz` at 0x225ab98 | `a2(?) == 0` | `a2(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225ac08 | `v0 = ?` |
+
+- `__glTexParameterfv_size` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225ac60–0x225ae40, occupies 480 bytes.
+
+  The selector tree returns one, minus one, two or four through four constant-return sites (`jr` at 0x225ad0c, 0x225ada0, 0x225add4, 0x225adf8).
+  It performs no memory accesses or calls in the bounded body.
+  The selected conditions below document part of the selector tree without claiming a complete public parameter-size contract.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19c24 | 332 | Inferred | 292 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | None selected | — | — | — |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bnez` at 0x225ac68 | `a0 < a2(=0x813a) (unsigned)` | `a0 >= a2(=0x813a) (unsigned)` |
+  | `beqz` at 0x225ac70 | `v0(?) == 0` | `v0(?) != 0` |
+  | `bnez` at 0x225ac7c | `a0 < a2(=0x8173) (unsigned)` | `a0 >= a2(=0x8173) (unsigned)` |
+  | `beqz` at 0x225ac84 | `a1(?) == 0` | `a1(?) != 0` |
+  | `bne` at 0x225adcc | `a0 != t1(=0x8171)` | `a0 == t1(=0x8171)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225ad0c | `v0 = 0x1` |
+  | `jr` at 0x225ada0 | `v0 = -0x1` |
+  | `jr` at 0x225add4 | `v0 = 0x2` |
+  | `jr` at 0x225adf8 | `v0 = 0x4` |
+
+- `__glim_TexEnvfv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225ae80–0x225afc4, occupies 324 bytes.
+
+  The target index is checked against a context count before choosing an environment record (`lw` at 0x225aec0, `beqz` at 0x225aed4).
+  One parameter path truncates the input float to an integer enum and stores it (`trunc.l.s` at 0x225af30, `sw` at 0x225af78).
+  The colour path calls __glClampAndScaleColorf (`jalr` at 0x225aefc).
+  Completion writes two at 0x1030 and sets a context flag bit (`sw` at 0x225af80, 0x225af90).
+  The unresolved colour destination stays unknown.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19da4 | 444 | Inferred | 294 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225ae88 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225ae8c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225aeb8 |
+  | load | 4 | `[0x1020]:8 +0xf7c` | `lw` at 0x225aec0 |
+  | load | 8 | `[0x1020]:8 +0xac0` | `ld` at 0x225aee0 |
+  | load | 8 | `abs 0x22dacc8` | `ld` at 0x225aef4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225af0c |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lwc1` at 0x225af2c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225af74 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x225af78 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225af80 |
+  | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225af84 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225af90 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225afb0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225aefc | `__glClampAndScaleColorf [0x22269e0]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a4=a0-8960, a7=0x2200` |
+  | `jalr` at 0x225af10 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225afa0 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?` |
+  | `jalr` at 0x225afb4 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225aea8 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bnez` at 0x225aeb4 | `a0 < 0x2300 (unsigned)` | `a0 >= 0x2300 (unsigned)` |
+  | `beqz` at 0x225aed4 | `a4(=a0-8960) >= a5(=[[0x1020]:8+3964]) (unsigned)` | `a4(=a0-8960) < a5(=[[0x1020]:8+3964]) (unsigned)` |
+  | `beq` at 0x225aee8 | `a1 == a7(=0x2200)` | `a1 != a7(=0x2200)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225af24 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+  | `jr` at 0x225af98 | `v0 = ?` |
+
+- `__glim_TexEnviv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225b030–0x225b164, occupies 308 bytes.
+
+  The indexed environment record is bounded by a context count (`lw` at 0x225b06c, `beqz` at 0x225b080).
+  The enum path reads and stores the input word without float truncation (`lw` at 0x225b0d8, `sw` at 0x225b114).
+  The colour path calls __glClampAndScaleColori (`jalr` at 0x225b0a8).
+  Completion writes two at 0x1030 and sets a context flag bit (`sw` at 0x225b11c, 0x225b12c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda19fc0 | 316 | Inferred | 274 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225b038 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225b03c |
+  | load | 4 | `[0x1020]:8 +0xf7c` | `lw` at 0x225b06c |
+  | load | 8 | `[0x1020]:8 +0xac0` | `ld` at 0x225b08c |
+  | load | 8 | `abs 0x22dace0` | `ld` at 0x225b0a0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b0b8 |
+  | load | 4 | `a2 (arg2 at entry) +0x0` | `lw` at 0x225b0d8 |
+  | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225b114 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225b11c |
+  | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225b120 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225b12c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b13c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225b150 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225b0a8 | `__glClampAndScaleColori [0x2226c40]` (register-constant) | `a0=[0x1020]:8, a1=?, a2=a2 at entry (arg2), a3=?, a4=a0-8960, a7=0x2200` |
+  | `jalr` at 0x225b0bc | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?, a4=a0-8960` |
+  | `jalr` at 0x225b140 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?, a4=a0-8960` |
+  | `jalr` at 0x225b154 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225b058 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bnez` at 0x225b064 | `a0 < 0x2300 (unsigned)` | `a0 >= 0x2300 (unsigned)` |
+  | `beqz` at 0x225b080 | `a4(=a0-8960) >= a5(=[[0x1020]:8+3964]) (unsigned)` | `a4(=a0-8960) < a5(=[[0x1020]:8+3964]) (unsigned)` |
+  | `beq` at 0x225b094 | `a1 == a7(=0x2200)` | `a1 != a7(=0x2200)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b0d0 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+  | `jr` at 0x225b134 | `v0 = 0x2` |
+
+- `__glExtractTexelRGB8` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225b570–0x225b61c, occupies 172 bytes.
+
+  Negative coordinates and the recorded upper-bound tests select the fallback path (`bltz` at 0x225b570, 0x225b578, `beqz` at 0x225b58c, `bnez` at 0x225b594).
+  That path copies the three stored fallback components to output offsets 0, 4 and 8 (`swc1` at 0x225b5a0, 0x225b5a8, 0x225b5b4).
+  The other path reads three unsigned bytes, converts them to float and multiplies by the context scale (`lbu` at 0x225b5d0, 0x225b5e8, 0x225b600, `mul.s` at 0x225b5e0, 0x225b5f8, 0x225b610).
+  The calculated byte addresses remain unknown in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1a564 | 268 | Inferred | 151 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b574 |
+  | load | 4 | `a0 (arg0 at entry) +0x1c` | `lw` at 0x225b580 |
+  | load | 4 | `a0 (arg0 at entry) +0x18` | `lw` at 0x225b584 |
+  | load | 4 | `a1 (arg1 at entry) +0xa0` | `lwc1` at 0x225b59c |
+  | store | 4 | `a5 (arg5 at entry) +0x0  value [a1+160]` | `swc1` at 0x225b5a0 |
+  | load | 4 | `a1 (arg1 at entry) +0xa4` | `lwc1` at 0x225b5a4 |
+  | store | 4 | `a5 (arg5 at entry) +0x4  value [a1+164]` | `swc1` at 0x225b5a8 |
+  | load | 4 | `a1 (arg1 at entry) +0xa8` | `lwc1` at 0x225b5ac |
+  | store | 4 | `a5 (arg5 at entry) +0x8  value [a1+168]` | `swc1` at 0x225b5b4 |
+  | load | 4 | `a0 (arg0 at entry) +0x30` | `lw` at 0x225b5b8 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b5c0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b5d0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b5dc |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b5e4 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b5e8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b5f4 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b5fc |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b600 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b60c |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b618 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225b570 | `a3 < 0 (signed)` | `a3 >= 0 (signed)` |
+  | `bltz` at 0x225b578 | `a4 < 0 (signed)` | `a4 >= 0 (signed)` |
+  | `beqz` at 0x225b58c | `a3 >= at(=[a0+28]) (signed)` | `a3 < at(=[a0+28]) (signed)` |
+  | `bnez` at 0x225b594 | `v0(?) != 0` | `v0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b5b0 | `v0 = ?; f0 = [a1+168]` |
+  | `jr` at 0x225b614 | `v0 = ?` |
+
+- `__glExtractTexelRGBA8` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225b620–0x225b6ec, occupies 204 bytes.
+
+  The coordinate checks select fallback components or four byte conversions (`bltz` at 0x225b620, 0x225b628, `beqz` at 0x225b63c, `bnez` at 0x225b644).
+  The sampled bytes are converted to float and multiplied by a context scale (`cvt.s.w` at 0x225b690, 0x225b6a8, 0x225b6c0, 0x225b6d8).
+  Both paths store the fourth result at output offset 0x10 (`swc1` at 0x225b66c, 0x225b6e8).
+  The first three output offsets are 0, 4 and 8, as the exact access rows record.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1a670 | 320 | Inferred | 179 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b624 |
+  | load | 4 | `a0 (arg0 at entry) +0x1c` | `lw` at 0x225b630 |
+  | load | 4 | `a0 (arg0 at entry) +0x18` | `lw` at 0x225b634 |
+  | load | 4 | `a1 (arg1 at entry) +0xa0` | `lwc1` at 0x225b64c |
+  | store | 4 | `a5 (arg5 at entry) +0x0  value [a1+160]` | `swc1` at 0x225b650 |
+  | load | 4 | `a1 (arg1 at entry) +0xa4` | `lwc1` at 0x225b654 |
+  | store | 4 | `a5 (arg5 at entry) +0x4  value [a1+164]` | `swc1` at 0x225b658 |
+  | load | 4 | `a1 (arg1 at entry) +0xa8` | `lwc1` at 0x225b65c |
+  | store | 4 | `a5 (arg5 at entry) +0x8  value [a1+168]` | `swc1` at 0x225b660 |
+  | load | 4 | `a1 (arg1 at entry) +0xac` | `lwc1` at 0x225b664 |
+  | store | 4 | `a5 (arg5 at entry) +0x10  value [a1+172]` | `swc1` at 0x225b66c |
+  | load | 4 | `a0 (arg0 at entry) +0x30` | `lw` at 0x225b670 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b678 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b688 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b694 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b69c |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6a0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6ac |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b6b4 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6b8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6c4 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b6cc |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b6d0 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b6dc |
+  | store | 4 | `a5 (arg5 at entry) +0x10` | `swc1` at 0x225b6e8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225b620 | `a3 < 0 (signed)` | `a3 >= 0 (signed)` |
+  | `bltz` at 0x225b628 | `a4 < 0 (signed)` | `a4 >= 0 (signed)` |
+  | `beqz` at 0x225b63c | `a3 >= at(=[a0+28]) (signed)` | `a3 < at(=[a0+28]) (signed)` |
+  | `bnez` at 0x225b644 | `v0(?) != 0` | `v0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b668 | `v0 = ?; f0 = [a1+172]` |
+  | `jr` at 0x225b6e4 | `v0 = ?` |
+
+- `__glExtractTexelRGB8_B` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225b860–0x225b8d0, occupies 112 bytes.
+
+  The address calculation increments one coordinate and multiplies it by the stored row width (`addiu` at 0x225b864, `mult` at 0x225b868).
+  Three unsigned byte loads feed signed-word-to-float conversion and scale multiplication (`lbu` at 0x225b880, 0x225b89c, 0x225b8b4, `mul.s` at 0x225b894, 0x225b8ac, 0x225b8c4).
+  Output floats go to offsets 0, 4 and 8 (`swc1` at 0x225b898, 0x225b8b0, 0x225b8cc).
+  The bounded body has no coordinate-test branch or fallback copy.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da16960 | 112 | Inferred | 10 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x225b860 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b870 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b880 |
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b888 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b890 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b898 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b89c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b8a8 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b8b0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b8b4 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b8c0 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b8cc |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b8c8 | `v0 = ?` |
+
+- `__glExtractTexelRGBA8_B` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225b8d0–0x225b958, occupies 136 bytes.
+
+  The address calculation increments one coordinate and multiplies it by the stored row width (`addiu` at 0x225b8d4, `mult` at 0x225b8d8).
+  Four unsigned byte loads feed float conversion and context scaling (`lbu` at 0x225b8f0, 0x225b90c, 0x225b924, 0x225b93c).
+  The four outputs use offsets 0, 4, 8 and 0x10 (`swc1` at 0x225b908, 0x225b920, 0x225b938, 0x225b954).
+  The calculated input addresses remain unknown, and this bounded body contains no coordinate-test branch.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da169d0 | 136 | Inferred | 12 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x225b8d0 |
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ld` at 0x225b8e0 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b8f0 |
+  | load | 8 | `a1 (arg1 at entry) +0x0` | `ld` at 0x225b8f8 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b900 |
+  | store | 4 | `a5 (arg5 at entry) +0x0` | `swc1` at 0x225b908 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b90c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b918 |
+  | store | 4 | `a5 (arg5 at entry) +0x4` | `swc1` at 0x225b920 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b924 |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b930 |
+  | store | 4 | `a5 (arg5 at entry) +0x8` | `swc1` at 0x225b938 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x225b93c |
+  | load | 4 | `[a1]:8 +0xf34` | `lwc1` at 0x225b948 |
+  | store | 4 | `a5 (arg5 at entry) +0x10` | `swc1` at 0x225b954 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225b950 | `v0 = ?` |
+
+- `CheckTexImageArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225c410–0x225cc24, occupies 2068 bytes.
+
+  The texture lookup must produce a record whose dimension field matches the supplied dimension (`bgezall` at 0x225c444, `beqz` at 0x225c44c, `bne` at 0x225c458).
+  The remaining selector tree checks type, format, level, internal format and border combinations (`bnez` at 0x225c464, `beq` at 0x225c528, `bltz` at 0x225c63c, `beqz` at 0x225c650, `bnez` at 0x225c65c, `bltz` at 0x225c734).
+  Distinct error calls use 0x502, 0x500 and 0x501 (`jalr` at 0x225c4e8, 0x225c548, 0x225c57c, 0x225c790).
+  The successful return preserves the looked-up record. Error returns clear v0 (`jr` at 0x225c754, 0x225c508, 0x225c568, 0x225c59c, 0x225c7b0).
+  The selected condition rows do not claim a complete accepted-enum list.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da17500 | 2076 | Inferred | 1823 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22db768` | `ld` at 0x225c428 |
+  | load | 4 | `ret(__glLookUpTexture) +0xf0` | `lw` at 0x225c454 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c4b0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c4e4 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225c544 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225c444 | `__glLookUpTexture [0x2258ad0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225c4e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=one of 0x8032, 0x8362, 0x8367, a3=?` |
+  | `jalr` at 0x225c548 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225c57c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x225c790 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=?, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225c44c | `v0(=ret(__glLookUpTexture)) == 0` | `v0(=ret(__glLookUpTexture)) != 0` |
+  | `bne` at 0x225c458 | `at(=[ret(__glLookUpTexture)+240]) != v1(=a7)` | `at(=[ret(__glLookUpTexture)+240]) == v1(=a7)` |
+  | `bnez` at 0x225c464 | `s0(=a6) < a2(=0x8034) (unsigned)` | `s0(=a6) >= a2(=0x8034) (unsigned)` |
+  | `beqz` at 0x225c46c | `a1(?) == 0` | `a1(?) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225c508 | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c568 | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c59c | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225c754 | `v0 = ret(__glLookUpTexture); f0 = ret(__glLookUpTexture)` |
+  | `jr` at 0x225c7b0 | `v0 = 0x0; f0 = ret(__glSetError)` |
+
+- `__glInitTexImageGet` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225d890–0x225d9cc, occupies 316 bytes.
+
+  The selected image record supplies a data pointer and dimensions for the destination descriptor (`ld` at 0x225d8a4, `sd` at 0x225d8c0, `sw` at 0x225d8c8, 0x225d8d0).
+  Three descriptor words are initially cleared (`sw` at 0x225d8a8, 0x225d8ac, 0x225d8b0).
+  Format-specific paths install element width four, type 0x1406 and an output-format value (`sw` at 0x225d9a0, 0x225d9a8, 0x225d9b0).
+  The image-record address remains unresolved in hostfacts.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c54c | 364 | Inferred | 248 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a2 (arg2 at entry) +0xe8` | `ld` at 0x225d894 |
+  | load | 8 | `? (base unknown)` | `ld` at 0x225d8a4 |
+  | store | 4 | `a1 (arg1 at entry) +0x38  value 0x0` | `sw` at 0x225d8a8 |
+  | store | 4 | `a1 (arg1 at entry) +0x3c  value 0x0` | `sw` at 0x225d8ac |
+  | store | 4 | `a1 (arg1 at entry) +0x40  value 0x0` | `sw` at 0x225d8b0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4c  value 0x4` | `sw` at 0x225d9a0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4  value 0x1406` | `sw` at 0x225d9a8 |
+  | store | 4 | `a1 (arg1 at entry) +0x0  value 0x1908` | `sw` at 0x225d9b0 |
+  | store | 4 | `a1 (arg1 at entry) +0x4c  value 0x4` | `sw` at 0x225d9b8 |
+  | store | 4 | `a1 (arg1 at entry) +0x4  value 0x1406` | `sw` at 0x225d9c0 |
+  | store | 4 | `a1 (arg1 at entry) +0x0  value 0x1906` | `sw` at 0x225d9c8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x225d8e0 | `at(=[a2+240]) == a5(=0x1)` | `at(=[a2+240]) != a5(=0x1)` |
+  | `beq` at 0x225d8fc | `a2(?) == a6(=0x1909)` | `a2(?) != a6(=0x1909)` |
+  | `beq` at 0x225d904 | `a2(?) == a7(=0x190a)` | `a2(?) != a7(=0x190a)` |
+  | `beq` at 0x225d90c | `a2(?) == a3(=0x1907)` | `a2(?) != a3(=0x1907)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225d934 | `v0 = 0x4` |
+  | `jr` at 0x225d958 | `v0 = 0x4` |
+  | `jr` at 0x225d970 | `v0 = 0x4` |
+  | `jr` at 0x225d984 | `v0 = 0x4` |
+  | `jr` at 0x225d998 | `v0 = 0x4` |
+  | `jr` at 0x225d9ac | `v0 = 0x4` |
+  | `jr` at 0x225d9c4 | `v0 = 0x4` |
+
+- `__glInitTexDestPack` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225da40–0x225daa4, occupies 100 bytes.
+
+  The destination descriptor receives the supplied pointer and mixed-width fields (`sd` at 0x225da54, `sw` at 0x225da58, 0x225da5c, 0x225da60, 0x225da64, 0x225da6c).
+  One input word is repeated at three descriptor offsets (`sw` at 0x225da6c, 0x225da80, 0x225da84).
+  A context float is copied before __glLoadPackModes is called (`swc1` at 0x225da90, `jalr` at 0x225da8c).
+  That float store occupies the call's delay slot.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c744 | 120 | Inferred | 82 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | store | 4 | `a1 (arg1 at entry) +0xd4` | `swc1` at 0x225da4c |
+  | load | 4 | `a0 (arg0 at entry) +0xf2c` | `lwc1` at 0x225da50 |
+  | store | 8 | `a1 (arg1 at entry) +0x60  value a7` | `sd` at 0x225da54 |
+  | store | 4 | `a1 (arg1 at entry) +0x5c  value a6` | `sw` at 0x225da58 |
+  | store | 4 | `a1 (arg1 at entry) +0x58  value a5` | `sw` at 0x225da5c |
+  | store | 4 | `a1 (arg1 at entry) +0xc0  value a4` | `sw` at 0x225da60 |
+  | store | 4 | `a1 (arg1 at entry) +0xbc  value a3` | `sw` at 0x225da64 |
+  | store | 4 | `a1 (arg1 at entry) +0xc4  value a2` | `sw` at 0x225da6c |
+  | load | 8 | `abs 0x22d9b88` | `ld` at 0x225da7c |
+  | store | 4 | `a1 (arg1 at entry) +0xc8  value a2` | `sw` at 0x225da80 |
+  | store | 4 | `a1 (arg1 at entry) +0xb8  value a2` | `sw` at 0x225da84 |
+  | store | 4 | `a1 (arg1 at entry) +0xb0  value [a0+3884]` | `swc1` at 0x225da90 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225da8c | `__glLoadPackModes [0x21e7a60]` (register-constant) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225da9c | `v0 = ret(__glLoadPackModes); f0 = ret(__glLoadPackModes)` |
+
+- `IsLegalRange` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225dab0–0x225db0c, occupies 92 bytes.
+
+  Subtraction and a conditional move form the value checked by a signed-negative test and a bitwise test (`subu` at 0x225dab4, 0x225dab8, `movz` at 0x225dac8, `bltz` at 0x225dad8, `beqz` at 0x225dae4).
+  Hostfacts leaves those calculated test values unresolved.
+  The failing path calls __glSetError with 0x501 and returns zero (`jalr` at 0x225daec, `jr` at 0x225dafc).
+  The other path returns one (`jr` at 0x225db04).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da18bb0 | 92 | Inferred | 6 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225dae8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225daec | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x225dad8 | `a4(?) < 0 (signed)` | `a4(?) >= 0 (signed)` |
+  | `beqz` at 0x225dae4 | `(a4(?) & a5(?)) == 0` | `(a4(?) & a5(?)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dafc | `v0 = 0x0; f0 = ret(__glSetError)` |
+  | `jr` at 0x225db04 | `v0 = 0x1` |
+
+- `__glCheckTexImage1DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225db10–0x225dbd8, occupies 200 bytes.
+
+  The shared argument checker receives dimension one (`bgezall` at 0x225db5c).
+  A failed shared check returns zero. The other path calls IsLegalRange once (`beqz` at 0x225db64, `bgezall` at 0x225db94).
+  A format-dependent path loads an extra range argument from the pointed record (`beq` at 0x225db78, `lw` at 0x225dbd4).
+  The final conditional move clears the saved lookup result if the range check fails (`movz` at 0x225dba0).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c82c | 192 | Inferred | 162 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225db30 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225db70 |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225db74 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225db84 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225dbd4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225db5c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a5 at entry (arg5), a5=a6 at entry (arg6), a6=a7 at entry (arg7), a7=0x1` |
+  | `bgezall` at 0x225db94 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a5 at entry (arg5)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225db64 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225db78 | `a1(=[[a0+944]:8]) == a2(=0x8010)` | `a1(=[[a0+944]:8]) != a2(=0x8010)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dbb4 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225dbc8 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glCheckTexImage2DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225dbe0–0x225dd14, occupies 308 bytes.
+
+  The shared argument checker receives dimension two (`bgezall` at 0x225dc2c).
+  Its successful path calls IsLegalRange for two dimensions, stopping after a zero first result (`beqz` at 0x225dc34, `bgezall` at 0x225dc70, 0x225dcac, `beqz` at 0x225dc78).
+  Format-dependent loads supply the two additional range arguments (`lw` at 0x225dcdc, 0x225dce4).
+  The saved lookup result survives only when the final range call succeeds (`movz` at 0x225dcc4).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c8ec | 272 | Inferred | 232 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dbfc |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dc3c |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dc40 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dc5c |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dc80 |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dc84 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dc98 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225dcdc |
+  | load | 4 | `[a0+944]:8 +0x44` | `lw` at 0x225dce4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225dc2c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a6 at entry (arg6), a5=a7 at entry (arg7), a7=0x2` |
+  | `bgezall` at 0x225dc70 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a6 at entry (arg6)` |
+  | `bgezall` at 0x225dcac | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=?, a3=a6 at entry (arg6), a4=0x225dab0` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225dc34 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225dc48 | `a2(=0x8011) == a0(=[[a0+944]:8])` | `a2(=0x8011) != a0(=[[a0+944]:8])` |
+  | `beq` at 0x225dc54 | `a0(=[[a0+944]:8]) == v0(=0x8012)` | `a0(=[[a0+944]:8]) != v0(=0x8012)` |
+  | `beqz` at 0x225dc78 | `v0(=ret(IsLegalRange)) == 0` | `v0(=ret(IsLegalRange)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225dcd0 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225dcf8 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glCheckTexImage3DArgs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225dd20–0x225de88, occupies 360 bytes.
+
+  The shared argument checker receives dimension three (`bgezall` at 0x225dd6c).
+  Three IsLegalRange calls validate the dimensions in sequence, with zero results selecting early failure paths (`bgezall` at 0x225ddac, 0x225ddec, 0x225de10, `beqz` at 0x225ddb4, 0x225ddf4).
+  The third call receives a2 explicitly zero while the first two values may depend on format-specific record fields.
+  The final conditional move clears the saved lookup result after a failed third range call (`movz` at 0x225de24).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1c9fc | 316 | Inferred | 285 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dd44 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225dd7c |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225dd80 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225dd98 |
+  | load | 8 | `a0 (arg0 at entry) +0x3b0` | `ld` at 0x225ddbc |
+  | load | 4 | `[a0+944]:8 +0x0` | `lw` at 0x225ddc0 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225ddd8 |
+  | load | 8 | `abs 0x22d8820` | `ld` at 0x225ddf8 |
+  | load | 4 | `[a0+944]:8 +0x40` | `lw` at 0x225de40 |
+  | load | 4 | `[a0+944]:8 +0x44` | `lw` at 0x225de48 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x225dd6c | `CheckTexImageArgs [0x225c410]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a7 at entry (arg7), a7=0x3` |
+  | `bgezall` at 0x225ddac | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a4 at entry (arg4), a2=?, a3=a7 at entry (arg7)` |
+  | `bgezall` at 0x225ddec | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=?, a3=a7 at entry (arg7), a4=0x225dab0` |
+  | `bgezall` at 0x225de10 | `IsLegalRange [0x225dab0]` (direct) | `a0=a0 at entry (arg0), a1=a6 at entry (arg6), a2=0x0, a3=a7 at entry (arg7), a5=0x225dab0` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225dd74 | `v0(=ret(CheckTexImageArgs)) == 0` | `v0(=ret(CheckTexImageArgs)) != 0` |
+  | `beq` at 0x225dd84 | `a2(=0x8011) == a0(=[[a0+944]:8])` | `a2(=0x8011) != a0(=[[a0+944]:8])` |
+  | `beq` at 0x225dd90 | `a0(=[[a0+944]:8]) == at(=0x8012)` | `a0(=[[a0+944]:8]) != at(=0x8012)` |
+  | `beqz` at 0x225ddb4 | `v0(=ret(IsLegalRange)) == 0` | `v0(=ret(IsLegalRange)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225de34 | `v0 = ?; f0 = ret(IsLegalRange)` |
+  | `jr` at 0x225de60 | `v0 = 0x0; f0 = ret(CheckTexImageArgs)` |
+
+- `__glim_TexImage1D` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x225e090–0x225e2a8, occupies 536 bytes.
+
+  Process-state checks select an error, a validation callback or direct argument checking (`beqz` at 0x225e0d4, `beq` at 0x225e0dc, `jalr` at 0x225e0e8, 0x225e108).
+  __glCheckTexImage1DArgs and __glLookUpTextureObject precede the image callback (`bgezall` at 0x225e138, 0x225e150, `jalr` at 0x225e1b8).
+  A later path initializes unpacking, image storage, unpacker and packer state before another callback (`bgezall` at 0x225e224, 0x225e23c, `jalr` at 0x225e24c, 0x225e25c, 0x225e274).
+  Completion sets a byte through an unresolved base, writes two at 0x1030 and sets a context flag (`sb` at 0x225e1e0, `sw` at 0x225e1e8, 0x225e1f8).
+  Unknown image pointers and callback effects remain unassigned.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda1cd0c | 616 | Inferred | 498 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x225e0b4 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x225e0bc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x225e0e4 |
+  | load | 8 | `[0x1020]:8 +0x4748` | `ld` at 0x225e104 |
+  | store | 4 | `abs 0x1030  value 0x0` | `sw` at 0x225e114 |
+  | store | 1 | `? (base unknown)  value 0x1` | `sb` at 0x225e1e0 |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225e1e8 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225e1f8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x225e0e8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x225e108 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x225e138 | `__glCheckTexImage1DArgs [0x225db10]` (direct) | `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=a5 at entry (arg5), a7=a6 at entry (arg6)` |
+  | `bgezall` at 0x225e150 | `__glLookUpTextureObject [0x2258b90]` (direct) | `a0=[0x1020]:8, a1=0xde0, a2=?, a3=?` |
+  | `jalr` at 0x225e1b8 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=?, a2=a1 at entry (arg1), a3=a2 at entry (arg2), a5=(a4 + a4)+1, a6=(a4 + a4)+1, a7=a4 at entry (arg4)` |
+  | `bgezall` at 0x225e224 | `__glInitTexSourceUnpack [0x225d9d0]` (direct) | `a0=[0x1020]:8, a1=sp-736, a2=a3 at entry (arg3), a3=0x1, a4=0x1` |
+  | `bgezall` at 0x225e23c | `__glInitTexImageStore [0x225d750]` (direct) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=a1 at entry (arg1)` |
+  | `jalr` at 0x225e24c | `__glInitUnpacker [0x21ee790]` (register-constant) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=?` |
+  | `jalr` at 0x225e25c | `__glInitPacker [0x21de160]` (register-constant) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=?` |
+  | `jalr` at 0x225e274 | `(unknown callee)` (register) | `a0=[0x1020]:8, a1=sp-736, a2=?, a3=a1 at entry (arg1)` |
+  | `jalr` at 0x225e298 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=?, a2=?, a3=0x8010, a4=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x225e0d4 | `v0(=[0x1030]) == 0` | `v0(=[0x1030]) != 0` |
+  | `beq` at 0x225e0dc | `v0(=[0x1030]) == v1(=0x2)` | `v0(=[0x1030]) != v1(=0x2)` |
+  | `beqz` at 0x225e140 | `v0(=ret(__glCheckTexImage1DArgs)) == 0` | `v0(=ret(__glCheckTexImage1DArgs)) != 0` |
+  | `beqz` at 0x225e168 | `a1(=[ret(__glLookUpTextureObject)]) >= 0x3 (signed)` | `a1(=[ret(__glLookUpTextureObject)]) < 0x3 (signed)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x225e0fc | `v0 = ?` |
+  | `jr` at 0x225e200 | `v0 = ret(?); f0 = ret(?)` |
