@@ -27990,3 +27990,577 @@ comparison was not rerun and supplies no new target equation.
   conditional values and return conditions remain unknown.
   The complete pixel equation, missing calculated values and full source/output
   address progression remain unknown.
+
+- `__glSpanMinmaxSinkA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fbc90, occupies 256 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fbc90).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fbcac).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x634` (`lwc1` at 0x21fbcb4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x630` (`lwc1` at 0x21fbcbc).
+  It reads 4 bytes at `a2 (arg2 at entry) +0xc` (`lwc1` at 0x21fbcc0).
+  It reads 4 bytes at `(a2 + one of 0xc, 0x1c) +0x0` (`lwc1` at 0x21fbd00).
+  A nonpositive value selects an exit path: `a5(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fbca8).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbcd8).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbcf8).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbd20).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbd44).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbd64).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbd7c).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fbd2c, 0x21fbd48, 0x21fbd68, 0x21fbd80).
+  The full body makes no calls.
+  Unknown raw words remain at 0x021fbce8, 0x021fbd10, 0x021fbd34, 0x021fbd70.
+  These words receive no semantic assignment. Affected comparisons, predicates,
+  conditional values and return conditions remain unknown.
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanMinmaxSinkL` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fbd90, occupies 256 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fbd90).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fbdac).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x634` (`lwc1` at 0x21fbdb4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x630` (`lwc1` at 0x21fbdbc).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x21fbdc0).
+  A nonpositive value selects an exit path: `a5(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fbda8).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbdd8).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbdf8).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbe20).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbe44).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbe64).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbe7c).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fbe00, 0x21fbe2c, 0x21fbe48, 0x21fbe68).
+  The full body makes no calls.
+  Unknown raw words remain at 0x021fbde8, 0x021fbe10, 0x021fbe34, 0x021fbe70.
+  These words receive no semantic assignment. Affected comparisons, predicates,
+  conditional values and return conditions remain unknown.
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanMinmaxSinkLA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fbe90, occupies 200 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fbe94).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fbea0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fbeac).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x63c` (`lwc1` at 0x21fbeb0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x634` (`lwc1` at 0x21fbeb4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x638` (`lwc1` at 0x21fbeb8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x630` (`lwc1` at 0x21fbec0).
+  A nonpositive value selects an exit path: `a5(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fbea8).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbef0).
+  A 4-byte write at `a0 (arg0 at entry) +0x638` has value unresolved (`swc1` at 0x21fbf10).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fbf28).
+  A 4-byte write at `a0 (arg0 at entry) +0x63c` has value unresolved (`swc1` at 0x21fbf4c).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fbed8, 0x21fbef4, 0x21fbf14, 0x21fbf2c).
+  The full body makes no calls.
+  Unknown raw words remain at 0x021fbf00, 0x021fbf1c, 0x021fbf38.
+  These words receive no semantic assignment. Affected comparisons, predicates,
+  conditional values and return conditions remain unknown.
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanMinmaxSinkRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fbf60, occupies 256 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fbf68).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fbf6c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fbf70).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fbf7c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x644` (`lwc1` at 0x21fbf84).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x638` (`lwc1` at 0x21fbf88).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x640` (`lwc1` at 0x21fbf8c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x634` (`lwc1` at 0x21fbf90).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x63c` (`lwc1` at 0x21fbf94).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x630` (`lwc1` at 0x21fbf9c).
+  A nonpositive value selects an exit path: `a5(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fbf78).
+  A 4-byte write at `a0 (arg0 at entry) +0x644` has value unresolved (`swc1` at 0x21fbfb0).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fbfd0).
+  A 4-byte write at `a0 (arg0 at entry) +0x63c` has value unresolved (`swc1` at 0x21fbff0).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fc00c).
+  A 4-byte write at `a0 (arg0 at entry) +0x640` has value unresolved (`swc1` at 0x21fc02c).
+  A 4-byte write at `a0 (arg0 at entry) +0x638` has value unresolved (`swc1` at 0x21fc044).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fbfbc, 0x21fbfd4, 0x21fbff4, 0x21fc010).
+  The full body makes no calls.
+  Unknown raw words remain at 0x021fbfc4, 0x021fbfe0, 0x021fbffc, 0x021fc038.
+  These words receive no semantic assignment. Affected comparisons, predicates,
+  conditional values and return conditions remain unknown.
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanMinmaxSinkRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc060, occupies 324 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fc068).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc06c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fc070).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fc074).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fc080).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x64c` (`lwc1` at 0x21fc088).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x63c` (`lwc1` at 0x21fc08c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x648` (`lwc1` at 0x21fc090).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x638` (`lwc1` at 0x21fc094).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x644` (`lwc1` at 0x21fc098).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x634` (`lwc1` at 0x21fc09c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x640` (`lwc1` at 0x21fc0a0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x630` (`lwc1` at 0x21fc0a8).
+  A nonpositive value selects an exit path: `a5(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc07c).
+  A 4-byte write at `a0 (arg0 at entry) +0x640` has value unresolved (`swc1` at 0x21fc0c0).
+  A 4-byte write at `a0 (arg0 at entry) +0x634` has value unresolved (`swc1` at 0x21fc0d8).
+  A 4-byte write at `a0 (arg0 at entry) +0x644` has value unresolved (`swc1` at 0x21fc0f8).
+  A 4-byte write at `a0 (arg0 at entry) +0x638` has value unresolved (`swc1` at 0x21fc110).
+  A 4-byte write at `a0 (arg0 at entry) +0x648` has value unresolved (`swc1` at 0x21fc130).
+  A 4-byte write at `a0 (arg0 at entry) +0x63c` has value unresolved (`swc1` at 0x21fc148).
+  A 4-byte write at `a0 (arg0 at entry) +0x64c` has value unresolved (`swc1` at 0x21fc168).
+  A 4-byte write at `a0 (arg0 at entry) +0x630` has value unresolved (`swc1` at 0x21fc188).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc0c4, 0x21fc0dc, 0x21fc0fc, 0x21fc114).
+  The full body makes no calls.
+  Unknown raw words remain at 0x021fc0cc, 0x021fc0e8, 0x021fc104, 0x021fc13c, 0x021fc158, 0x021fc17c.
+  These words receive no semantic assignment. Affected comparisons, predicates,
+  conditional values and return conditions remain unknown.
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc1b0, occupies 508 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc1d4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fc1f0).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fc210).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x21fc214).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x4` (`lwc1` at 0x21fc21c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x8` (`lwc1` at 0x21fc224).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fc228).
+  It reads 4 bytes at `a2 (arg2 at entry) +0xc` (`lwc1` at 0x21fc230).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fc23c).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fc25c).
+  A nonpositive value selects an exit path: `s4(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc1f4).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value `[a2]` (`swc1` at 0x21fc218).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value `[a2+4]` (`swc1` at 0x21fc220).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value `[a2+8]` (`swc1` at 0x21fc22c).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value `[a2+12]` (`swc1` at 0x21fc284).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fc268, 0x21fc2f4, 0x21fc35c).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc2a0, 0x21fc2a8, 0x21fc2b0, 0x21fc2bc).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fc270, 0x21fc2fc, 0x21fc364).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21fc2a4, 0x21fc2ac, 0x21fc2b8, 0x21fc304).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=[a2+8], f14=[a2+4], f15=[a2]`
+  (`bgezall` at 0x21fc234).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fc2c0, 0x21fc328).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fc3a4).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramL` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc3b0, occupies 508 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc3d4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fc3f0).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fc410).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x21fc414).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fc418).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fc424).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fc444).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x4` (`lwc1` at 0x21fc464).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x8` (`lwc1` at 0x21fc46c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0xc` (`lwc1` at 0x21fc474).
+  A nonpositive value selects an exit path: `s4(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc3f4).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value `[a2]` (`swc1` at 0x21fc460).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value `[a2+4]` (`swc1` at 0x21fc468).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value `[a2+8]` (`swc1` at 0x21fc470).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value `[a2+12]` (`swc1` at 0x21fc484).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fc450, 0x21fc4dc, 0x21fc544).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc4a0, 0x21fc4e8, 0x21fc4f0, 0x21fc4f8).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fc458, 0x21fc4e4, 0x21fc54c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21fc4ec, 0x21fc4f4, 0x21fc4fc, 0x21fc508).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21fc41c).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fc4a8, 0x21fc510).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fc5a4).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramLA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc5b0, occupies 360 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc5d8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fc5f0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fc5f4).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fc610).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fc624).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fc630).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fc650).
+  A nonpositive value selects an exit path: `s4(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc5f8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc620, 0x21fc66c, 0x21fc674, 0x21fc67c).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fc660, 0x21fc6c4).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fc668, 0x21fc6cc).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21fc670, 0x21fc678, 0x21fc684, 0x21fc6e4).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fc628).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=[a0+1532], a3=?`
+  (`bgezall` at 0x21fc68c).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fc710).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc720, occupies 452 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc750).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fc75c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fc768).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fc76c).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fc788).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fc794).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fc7a0).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fc7c4).
+  A nonpositive value selects an exit path: `s4(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc770).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc790, 0x21fc7e0, 0x21fc7ec, 0x21fc838).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fc7d4, 0x21fc82c, 0x21fc884).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fc7dc, 0x21fc834, 0x21fc88c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21fc7e8, 0x21fc840, 0x21fc894, 0x21fc8ac).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fc798, 0x21fc848).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=[a0+1532]`
+  (`bgezall` at 0x21fc7f0).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fc8dc).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fc8f0, occupies 536 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fc91c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fc928).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fc934).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fc940).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fc944).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fc960).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fc974).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fc980).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fc9a0).
+  A nonpositive value selects an exit path: `s4(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fc948).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fc970, 0x21fc9bc, 0x21fc9c8, 0x21fca10).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fc9b0, 0x21fca04, 0x21fca58, 0x21fcaac).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fc9b8, 0x21fca0c, 0x21fca60, 0x21fcab4).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21fc9c4, 0x21fca18, 0x21fca6c, 0x21fcacc).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fc978, 0x21fca74).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=[a0+1532], a3=?`
+  (`bgezall` at 0x21fc9cc).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?, a6=[a0+1532]`
+  (`bgezall` at 0x21fca20).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fcb00).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramSinkA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fcb10, occupies 388 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fcb28).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fcb44).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fcb68).
+  It reads 4 bytes at `a2 (arg2 at entry) +0xc` (`lwc1` at 0x21fcb6c).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fcb70).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fcb7c).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fcb9c).
+  A nonpositive value selects an exit path: `s3(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fcb48).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fcba8, 0x21fcc0c, 0x21fcc58).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fcbd0, 0x21fcc1c).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fcbb8, 0x21fcc18, 0x21fcc68).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21fcb74).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fcbd8, 0x21fcc20).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fcc8c).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramSinkL` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fcca0, occupies 388 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fccb8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fccd4).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fccf8).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lwc1` at 0x21fccfc).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fcd00).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fcd0c).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fcd2c).
+  A nonpositive value selects an exit path: `s3(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fccd8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fcd38, 0x21fcd9c, 0x21fcde8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fcd60, 0x21fcdac).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fcd48, 0x21fcda8, 0x21fcdf8).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`bgezall` at 0x21fcd04).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fcd68, 0x21fcdb0).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fce1c).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramSinkLA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fce30, occupies 304 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fce50).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fce68).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fce6c).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fce88).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fce94).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fcea0).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fcec0).
+  A nonpositive value selects an exit path: `s3(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fce70).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fce90, 0x21fcee0).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fced0, 0x21fcf20).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fcedc, 0x21fcf30).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fce98).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=[a0+1532], a3=?`
+  (`bgezall` at 0x21fcee4).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fcf58).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramSinkRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fcf60, occupies 412 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fcf88).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fcf94).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fcfa0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fcfa4).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fcfc0).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fcfd4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fcfe0).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fd004).
+  A nonpositive value selects an exit path: `s3(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fcfa8).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fcfd0, 0x21fd024, 0x21fd074).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fd014, 0x21fd064, 0x21fd0b8).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fd020, 0x21fd070, 0x21fd0c8).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fcfd8, 0x21fd078).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=[a0+1532]`
+  (`bgezall` at 0x21fd028).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fd0f4).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glSpanHistogramSinkRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fd100, occupies 480 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x9a44` (`lwc1` at 0x21fd128).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc8` (`lw` at 0x21fd130).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a40` (`lwc1` at 0x21fd13c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a3c` (`lwc1` at 0x21fd148).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x9a38` (`lwc1` at 0x21fd14c).
+  It reads 8 bytes at `abs 0x22e0970` (`ldc1` at 0x21fd168).
+  It reads 8 bytes at `abs 0x22da160` (`ld` at 0x21fd174).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x5fc` (`lw` at 0x21fd180).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x5d0` (`ld` at 0x21fd1a0).
+  A nonpositive value selects an exit path: `s3(=[a1+200]) <= 0 (signed)` (`blez` at 0x21fd150).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fd170, 0x21fd1c0, 0x21fd20c, 0x21fd258).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21fd1b0, 0x21fd1fc, 0x21fd248, 0x21fd29c).
+  Further 4-byte write sites have unresolved moving bases
+  (`sw` at 0x21fd1bc, 0x21fd208, 0x21fd254, 0x21fd2a8).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?`
+  (`bgezall` at 0x21fd178, 0x21fd260).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=[a0+1532], a3=?`
+  (`bgezall` at 0x21fd1c4).
+  The `__glFClamp [0x21fb520]` call has hostfacts arguments
+  `a0=?, a1=?, a2=?, a3=?, a6=[a0+1532]`
+  (`bgezall` at 0x21fd210).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fd2d8).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `Load` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fdb00, occupies 1084 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x7c` (`lwc1` at 0x21fdb20).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x80` (`lwc1` at 0x21fdb28).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x84` (`lwc1` at 0x21fdb30).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ld` at 0x21fdb48).
+  It reads 4 bytes at `[a0]:8 +0xfb4` (`lw` at 0x21fdb54).
+  It reads 4 bytes at `[a0]:8 +0x9514` (`lw` at 0x21fdb5c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x28` (`lw` at 0x21fdb60).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x21fdb6c).
+  It reads 4 bytes at `[a0]:8 +0xfb0` (`lw` at 0x21fdb78).
+  It reads 4 bytes at `[a0]:8 +0x9518` (`lw` at 0x21fdb80).
+  It reads 4 bytes at `[a0]:8 +0x9510` (`lw` at 0x21fdb8c).
+  It reads 4 bytes at `[a0]:8 +0x951c` (`lw` at 0x21fdb98).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x78` (`lwc1` at 0x21fdba8).
+  It reads 8 bytes at `[a0]:8 +0x4720` (`ld` at 0x21fdbd0).
+  It reads 8 bytes at `[[a0]:8+18208]:8 +0xf8` (`ld` at 0x21fdec0).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fdc30, 0x21fdc44, 0x21fdc58, 0x21fdc6c).
+  Further 2-byte write sites have unresolved moving bases
+  (`sh` at 0x21fdc40, 0x21fdc54, 0x21fdc68, 0x21fdc7c).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[[a0]:8+18208]:8, a1=?, a2=?, a3=sp-65552`
+  (`jalr` at 0x21fded4).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fdf34).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `Accumulate` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fdf40, occupies 1304 bytes.
+  Inferred. It reads 4 bytes at `a0 (arg0 at entry) +0x7c` (`lwc1` at 0x21fdf60).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x80` (`lwc1` at 0x21fdf68).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x84` (`lwc1` at 0x21fdf70).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ld` at 0x21fdf88).
+  It reads 4 bytes at `[a0]:8 +0xfb4` (`lw` at 0x21fdf94).
+  It reads 4 bytes at `[a0]:8 +0x9514` (`lw` at 0x21fdf9c).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x28` (`lw` at 0x21fdfa0).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x21fdfac).
+  It reads 4 bytes at `[a0]:8 +0xfb0` (`lw` at 0x21fdfb8).
+  It reads 4 bytes at `[a0]:8 +0x9518` (`lw` at 0x21fdfc0).
+  It reads 4 bytes at `[a0]:8 +0x9510` (`lw` at 0x21fdfcc).
+  It reads 4 bytes at `[a0]:8 +0x951c` (`lw` at 0x21fdfd8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x78` (`lwc1` at 0x21fdfe8).
+  It reads 8 bytes at `[a0]:8 +0x4720` (`ld` at 0x21fe010).
+  It reads 8 bytes at `[[a0]:8+18208]:8 +0xf8` (`ld` at 0x21fe3e0).
+  Further 4-byte read sites have unresolved moving bases
+  (`lwc1` at 0x21fe070, 0x21fe08c, 0x21fe0a8, 0x21fe0c4).
+  Further 2-byte read sites have unresolved moving bases
+  (`lh` at 0x21fe080, 0x21fe09c, 0x21fe0b8, 0x21fe0d4).
+  Further 2-byte write sites have unresolved moving bases
+  (`sh` at 0x21fe088, 0x21fe0a4, 0x21fe0c0, 0x21fe0dc).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[[a0]:8+18208]:8, a1=?, a2=?, a3=sp-65552`
+  (`jalr` at 0x21fe3f4).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fe450).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `Mult` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fe460, occupies 1092 bytes.
+  Inferred. It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ld` at 0x21fe460).
+  It reads 4 bytes at `[a0]:8 +0xfb4` (`lw` at 0x21fe468).
+  It reads 4 bytes at `[a0]:8 +0x9514` (`lw` at 0x21fe470).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x28` (`lw` at 0x21fe474).
+  It reads 4 bytes at `[a0]:8 +0xfb0` (`lw` at 0x21fe480).
+  It reads 4 bytes at `[a0]:8 +0x951c` (`lw` at 0x21fe484).
+  It reads 4 bytes at `[a0]:8 +0x9518` (`lw` at 0x21fe48c).
+  It reads 4 bytes at `[a0]:8 +0x9510` (`lw` at 0x21fe490).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x21fe494).
+  A nonpositive value skips the current row's zero stores: `a4(?) <= 0 (signed)` (`blez` at 0x21fe4d4).
+  The row test can repeat the loop (`bne` at 0x21fe4fc).
+  Further 2-byte read sites have unresolved moving bases
+  (`lh` at 0x21fe540, 0x21fe544, 0x21fe548, 0x21fe550).
+  Further 2-byte write sites have unresolved moving bases
+  (`sh` at 0x21fe4e4, 0x21fe4e8, 0x21fe4f0, 0x21fe4f8).
+  The value `0x0` is stored by 2-byte writes with unresolved bases
+  (`sh` at 0x21fe4e4, 0x21fe4e8, 0x21fe4f0, 0x21fe4f8).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fe504).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `Return` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21feae0, occupies 432 bytes.
+  Inferred. It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ld` at 0x21feae8).
+  It reads 4 bytes at `[a0]:8 +0xfb4` (`lw` at 0x21feaf4).
+  It reads 4 bytes at `[a0]:8 +0x9514` (`lw` at 0x21feafc).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x28` (`lw` at 0x21feb00).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x18` (`ld` at 0x21feb14).
+  It reads 4 bytes at `[a0]:8 +0xfb0` (`lw` at 0x21feb1c).
+  It reads 4 bytes at `[a0]:8 +0x951c` (`lw` at 0x21feb28).
+  It reads 4 bytes at `[a0]:8 +0x9510` (`lw` at 0x21feb38).
+  It reads 1 byte at `[a0]:8 +0x9960` (`lbu` at 0x21feb40).
+  It reads 4 bytes at `[a0]:8 +0x9518` (`lw` at 0x21feb64).
+  It reads 8 bytes at `[a0]:8 +0x9a78` (`ld` at 0x21feba0).
+  It reads 8 bytes at `[a0]:8 +0x9bc8` (`ld` at 0x21febc0).
+  It reads 8 bytes at `[a0]:8 +0x4718` (`ld` at 0x21fec28).
+  It reads 8 bytes at `[[a0]:8+18200]:8 +0x100` (`ld` at 0x21fec50).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[a0]:8+39288, a1=[[a0]:8+38160], a2=?, a3=?; fp f16=f13`
+  (`jalr` at 0x21febb8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[a0]:8+39624, a1=[[a0]:8+38160], a2=?, a3=?; fp f16=f13`
+  (`jalr` at 0x21febd8).
+  The `(unknown callee)` call has hostfacts arguments
+  `a0=[[a0]:8+18200]:8, a1=[[a0]:8+38160], a2=?, a3=?; fp f16=f13`
+  (`jalr` at 0x21fec68).
+  Hostfacts reports return registers `v0 = ?` (`jr` at 0x21fec1c).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
+
+- `__glInitAccum64` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21fefe0, occupies 288 bytes.
+  Inferred. It reads 8 bytes at `abs 0x22da5e8` (`ld` at 0x21feff4).
+  It reads 8 bytes at `abs 0x22d87f0` (`ld` at 0x21ff01c).
+  It reads 1 byte at `a1 (arg1 at entry) +0xde4` (`lbu` at 0x21ff074).
+  It reads 4 bytes at `abs 0x22e0808` (`lwc1` at 0x21ff07c).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x21ff084).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a08` (`lwc1` at 0x21ff090).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a10` (`lwc1` at 0x21ff0a0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a0c` (`lwc1` at 0x21ff0b0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x9a30` (`lwc1` at 0x21ff0c0).
+  An 8-byte write at `a0 (arg0 at entry) +0xd0` has value `0x0` (`sd` at 0x21ff010).
+  A 4-byte write at `a0 (arg0 at entry) +0x24` has value `0x8` (`sw` at 0x21ff018).
+  An 8-byte write at `a0 (arg0 at entry) +0xc8` has value `0x21fe8b0` (`sd` at 0x21ff038).
+  An 8-byte write at `a0 (arg0 at entry) +0xc0` has value `0x21fe460` (`sd` at 0x21ff040).
+  An 8-byte write at `a0 (arg0 at entry) +0xb0` has value `0x21fdb00` (`sd` at 0x21ff048).
+  An 8-byte write at `a0 (arg0 at entry) +0xa8` has value `0x21fdf40` (`sd` at 0x21ff050).
+  An 8-byte write at `a0 (arg0 at entry) +0xa0` has value `0x21fec90` (`sd` at 0x21ff05c).
+  An 8-byte write at `a0 (arg0 at entry) +0xb8` has value `0x21feae0` (`sd` at 0x21ff064).
+  An 8-byte write at `a0 (arg0 at entry) +0x98` has value `0x21fefd0` (`sd` at 0x21ff070).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x21ff098).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x21ff0ac).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x21ff0bc).
+  A 4-byte write at `a0 (arg0 at entry) +0x90` has value unresolved (`swc1` at 0x21ff0d0).
+  A 4-byte write at `a0 (arg0 at entry) +0x88` has value unresolved (`swc1` at 0x21ff0d4).
+  A 4-byte write at `a0 (arg0 at entry) +0x8c` has value unresolved (`swc1` at 0x21ff0d8).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x21ff0dc).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x21ff0e0).
+  The `__glInitBuffer [0x220ab80]` call has hostfacts arguments
+  `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)`
+  (`jalr` at 0x21ff008).
+  Hostfacts reports return registers `v0 = [a1+3556]:1` (`jr` at 0x21ff0e8).
+  Hostfacts reports return registers `v0 = [a1+3556]:1; f0 = 0x3f800000` (`jr` at 0x21ff0f8).
+  Unreported pixel equations, missing calculated values and full source/output
+  address progression remain unknown.
