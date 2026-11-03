@@ -28564,3 +28564,499 @@ comparison was not rerun and supplies no new target equation.
   Hostfacts reports return registers `v0 = [a1+3556]:1; f0 = 0x3f800000` (`jr` at 0x21ff0f8).
   Unreported pixel equations, missing calculated values and full source/output
   address progression remain unknown.
+
+- `__glim_Accum` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ff100. Occupies 404 bytes.
+  Inferred. Dispatches accumulation operations after state checks. Its `glAccum` call path clears the absolute state word in the call delay slot (`jalr` at 0x21ff1a4 and `sw` at 0x21ff1a8).
+  The selected operation callback has an unusual table-derived first argument in hostfacts, retained below (`jalr` at 0x21ff234).
+  The error sites include 0x502 and 0x500 (`jalr` at 0x21ff144 and `jalr` at 0x21ff210). Complete operation selection and buffer effects remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0) | `jalr` at 0x21ff144 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0), a5=[0x1020]:8+65536 | `jalr` at 0x21ff17c |
+  | (unknown callee) | a0=table(0x9dc8), a1=0x9dc8, a2=?, a3=?, a4=a0 at entry (arg0), a6=0x100 | `jalr` at 0x21ff234 |
+  | (unknown callee) | a0=[0x1020]:8, a1=[0x1020]:8+40392, a2=0x9dc8, a3=[0x1020]:8, a4=a0 at entry (arg0), a5=[0x1020]:8+65536 | `jalr` at 0x21ff260 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | abs 0x1030  value 0x0 | `sw` at 0x21ff1a8 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 404 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c0520 +424 bytes / 366 changed common-prefix byte positions
+  SHA-256 target `fb5b786a6f912b6ad57afcd5f590b6a3547aeb1bb469f9150c5a2fcd805f0c9c` / documented sibling `b84a38cc915e53619f9c71daa1ed31e351c4e5c65e5f4f1293a9e064fb948f83`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Accum` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_Accum.target.txt`, `review-facts/__glim_Accum.sibling.txt`, `review-facts/__glim_Accum.words.txt`, `review-facts/__glim_Accum.bytes.txt`
+
+- `__glim_AlphaFunc` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ff990. Occupies 196 bytes.
+  Inferred. Writes the alpha-test function and selected float reference to the resolved N64 context fields below.
+  One decoder-unknown word at 0x21ff9d8 leaves the reference's lower-clamp predicate unresolved.
+  The two error sites pass 0x500 and 0x502 (`jalr` at 0x21ffa30 and `jalr` at 0x21ffa44). The Established O32 clamp equivalence is not transferred.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=?, a2=[0x1020]:8, a3=?, a6=0x2 | `jalr` at 0x21ffa30 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a6=0x2 | `jalr` at 0x21ffa44 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x824  value a0 | `sw` at 0x21ff9ec |
+  | store | 4 bytes | [0x1020]:8 +0x828 | `swc1` at 0x21ff9f4 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x21ff9f8 |
+  | store | 4 bytes | [0x1020]:8 +0x4710  value ([[0x1020]:8+18192] \| 0x1) | `sw` at 0x21ffa10 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x21ffa1c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 196 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c0dc0 +220 bytes / 181 changed common-prefix byte positions
+  SHA-256 target `490a7ed2c5617acef614eda4af93ad940d65977fe878e3b08dd17696604eb3f9` / documented sibling `3751d8104b5a1c2b8c44ddb55884d3cf506cb5db593d9438cfce6f902d4106a2`
+  Existing entry: `docs/sample-implementation.md`, `__glim_AlphaFunc` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_AlphaFunc.target.txt`, `review-facts/__glim_AlphaFunc.sibling.txt`, `review-facts/__glim_AlphaFunc.words.txt`, `review-facts/__glim_AlphaFunc.bytes.txt`
+
+- `__glim_BlendFunc` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ffa60. Occupies 600 bytes.
+  Inferred. Stores the accepted source and destination factor words (`sw` at 0x21ffb88 and `sw` at 0x21ffb84).
+  Two invalid-factor sites report 0x500, and the state error reports 0x502 (`jalr` at 0x21ffbd4, `jalr` at 0x21ffbf0 and `jalr` at 0x21ffca8).
+  The complete pair of accepted-factor sets is not imported from the Established O32 jump-table description.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=?, a3=[0x1020]:8 | `jalr` at 0x21ffbd4 |
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=?, a3=[0x1020]:8 | `jalr` at 0x21ffbf0 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8 | `jalr` at 0x21ffca8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x830  value a1 | `sw` at 0x21ffb84 |
+  | store | 4 bytes | [0x1020]:8 +0x82c  value a0 | `sw` at 0x21ffb88 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x21ffb90 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x21ffba8 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 600 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c0e9c +440 bytes / 389 changed common-prefix byte positions
+  SHA-256 target `5e4d86925da4afd32a310c80927d47e73d4cd2565e57ca57ae338161c7be9cfc` / documented sibling `45484b733de9fbf701911b5539f1992159441f6ff352f8a4f4f8a04805975c5f`
+  Existing entry: `docs/sample-implementation.md`, `__glim_BlendFunc` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_BlendFunc.target.txt`, `review-facts/__glim_BlendFunc.sibling.txt`, `review-facts/__glim_BlendFunc.words.txt`, `review-facts/__glim_BlendFunc.bytes.txt`
+
+- `__glim_ClearAccum` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ffdf0. Occupies 204 bytes.
+  Inferred. Writes four accumulation-clear float components and marks validation state (the stores below).
+  Six decoder-unknown words prevent a complete per-component clamp rule.
+  The sole call reports 0x502 (`jalr` at 0x21ffeac). The source's Established clamp contract remains separate provenance.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21ffeac |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x77c | `swc1` at 0x21ffe68 |
+  | store | 4 bytes | [0x1020]:8 +0x778 | `swc1` at 0x21ffe6c |
+  | store | 4 bytes | [0x1020]:8 +0x774 | `swc1` at 0x21ffe70 |
+  | store | 4 bytes | [0x1020]:8 +0x770 | `swc1` at 0x21ffe74 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x21ffe7c |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x21ffe94 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 204 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c114c +324 bytes / 185 changed common-prefix byte positions
+  SHA-256 target `71401f48bb616a3ec61358f50c6249123fc39ee0cc8b7ea45945d775bfcbc0e4` / documented sibling `c9ad5531dbe50331850e4347e826c80a2e3b2475c0ac5895e45c0effec634b38`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ClearAccum` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ClearAccum.target.txt`, `review-facts/__glim_ClearAccum.sibling.txt`, `review-facts/__glim_ClearAccum.words.txt`, `review-facts/__glim_ClearAccum.bytes.txt`
+
+- `__glim_ClearColor` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21ffec0. Occupies 184 bytes.
+  Inferred. Updates four clear-colour float fields at the selected N64 store sites below.
+  Six unknown words leave the zero/maximum selections incomplete.
+  Its only error call passes 0x502 (`jalr` at 0x21fff68). The byte-different Established N32 counterpart does not clear those target predicate limits.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21fff68 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x858 | `swc1` at 0x21fff3c |
+  | store | 4 bytes | [0x1020]:8 +0x854 | `swc1` at 0x21fff40 |
+  | store | 4 bytes | [0x1020]:8 +0x850 | `swc1` at 0x21fff44 |
+  | store | 4 bytes | [0x1020]:8 +0x84c | `swc1` at 0x21fff50 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 184 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc120 +184 bytes / 29 changed common-prefix byte positions
+  SHA-256 target `3dc41f94c04c37e6277d5c744252ae851e0daf0265303819430561d44a4798e6` / documented sibling `32c9e7cb5733aa5bf0d7d9580d735efa24fba6973c7bf1c773fa852780a5f22a`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ClearColor` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ClearColor.target.txt`, `review-facts/__glim_ClearColor.sibling.txt`, `review-facts/__glim_ClearColor.words.txt`, `review-facts/__glim_ClearColor.bytes.txt`
+
+- `__glim_ClearDepth` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21fff80. Occupies 132 bytes.
+  Inferred. Stores an eight-byte floating clear-depth value (`sdc1` at 0x21fffbc).
+  The undecoded word at 0x21fffa8 prevents a complete lower-clamp claim. Its selected state writes preserve the target's widths.
+  An invalid-operation path reports 0x502 (`jalr` at 0x21ffff4).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21ffff4 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 8 bytes | [0x1020]:8 +0x768 | `sdc1` at 0x21fffbc |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x21fffc4 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x21fffdc |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 132 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c13bc +172 bytes / 122 changed common-prefix byte positions
+  SHA-256 target `3811051e54b211dbb5ac1708ae85d2a70c8f24cf5198f5c3404417ba9ba29810` / documented sibling `5ac381c2d8e9b7edc23fbf41e57dc45ee6f1839400d99b5f30717f880f520bfa`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ClearDepth` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ClearDepth.target.txt`, `review-facts/__glim_ClearDepth.sibling.txt`, `review-facts/__glim_ClearDepth.words.txt`, `review-facts/__glim_ClearDepth.bytes.txt`
+
+- `__glim_ClearIndex` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200010. Occupies 144 bytes.
+  Inferred. Multiplies, truncates and masks the clear-index value before converting it back to float (`mul.s` at 0x220003c, `trunc.w.s` at 0x2200048, `and` at 0x2200058 and `cvt.s.w` at 0x2200060).
+  The final float product is stored at the N64 context field below (`swc1` at 0x2200078).
+  The scale constants and complete masking formula are not assigned the O32 values. The error call reports 0x502 (`jalr` at 0x2200090).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=[0x1020]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x2200090 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x85c | `swc1` at 0x2200078 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 144 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1468 +148 bytes / 129 changed common-prefix byte positions
+  SHA-256 target `2b0d3a22d9bab343754c87d81642c332159d638e0d82d565288629e81a05c7be` / documented sibling `26942df7f765c5aed8c776cf049b89f7ec9cad59e45a5a5f1601c1ad7a23693b`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ClearIndex` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ClearIndex.target.txt`, `review-facts/__glim_ClearIndex.sibling.txt`, `review-facts/__glim_ClearIndex.words.txt`, `review-facts/__glim_ClearIndex.bytes.txt`
+
+- `__glim_ClearStencil` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22000a0. Occupies 124 bytes.
+  Inferred. Masks the incoming stencil word and writes its low halfword (`and` at 0x22000d0 and `sh` at 0x22000d4).
+  The target then updates absolute state and the dirty word (the resolved writes below).
+  Its lone call reports 0x502 (`jalr` at 0x220010c). The exact dynamic mask value remains unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=0x1 | `jalr` at 0x220010c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 2 bytes | [0x1020]:8 +0x784 | `sh` at 0x22000d4 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x22000dc |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x22000f4 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 124 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c14fc +132 bytes / 115 changed common-prefix byte positions
+  SHA-256 target `269b6f5c28fdb43594de12058dcb96a485f407add9cb7590b3d39e2e56020831` / documented sibling `2805c152b3294807ecfdeb20c3b2bedc2a94727a06b0dadb2e1a7a255fe95193`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ClearStencil` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ClearStencil.target.txt`, `review-facts/__glim_ClearStencil.sibling.txt`, `review-facts/__glim_ClearStencil.words.txt`, `review-facts/__glim_ClearStencil.bytes.txt`
+
+- `__glim_ColorMask` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200120. Occupies 120 bytes.
+  Inferred. Writes the four incoming channel-enable arguments through byte stores (`sb` at 0x2200144, `sb` at 0x2200148, `sb` at 0x220014c and `sb` at 0x2200150).
+  The state and dirty-word writes follow those byte stores. No boolean normalization beyond the target's store width is claimed.
+  The error path calls `__glSetError` with 0x502 (`jalr` at 0x2200188).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8 | `jalr` at 0x2200188 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 1 byte | [0x1020]:8 +0x867  value a3 | `sb` at 0x2200144 |
+  | store | 1 byte | [0x1020]:8 +0x866  value a2 | `sb` at 0x2200148 |
+  | store | 1 byte | [0x1020]:8 +0x865  value a1 | `sb` at 0x220014c |
+  | store | 1 byte | [0x1020]:8 +0x864  value a0 | `sb` at 0x2200150 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200158 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x2200170 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 120 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1580 +152 bytes / 111 changed common-prefix byte positions
+  SHA-256 target `93a9d3d77cebd6cec530e7eed753d9021d17bcdf2371c383543a6a071b634b6a` / documented sibling `c5a1a5e65e6f377deffffdc52a16890d341632aec196260edd58a84781087630`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ColorMask` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ColorMask.target.txt`, `review-facts/__glim_ColorMask.sibling.txt`, `review-facts/__glim_ColorMask.words.txt`, `review-facts/__glim_ColorMask.bytes.txt`
+
+- `__glim_ColorMaterial` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22001a0. Occupies 260 bytes.
+  Inferred. Stores the accepted material parameter and face (`sw` at 0x2200258 and `sw` at 0x2200260).
+  Two selected procedure callbacks receive the N64 process context first (`jalr` at 0x2200268 and `jalr` at 0x2200274).
+  Their identities and effects remain unknown. The complete face/parameter acceptance map is not reconstructed from the Established O32 entry.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=0x404, a3=0x405, a4=0x408, a5=0x1200, a6=0x1201, a7=0x1202 | `jalr` at 0x2200204 |
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=0x404, a3=?, a4=0x408, a5=0x1200, a6=0x1201, a7=0x1202 | `jalr` at 0x2200240 |
+  | (unknown callee) | a0=[0x1020]:8, a1=a1 at entry (arg1), a2=0x404, a3=?, a4=0x408, a5=0x1200, a6=0x1201, a7=0x1202 | `jalr` at 0x2200268 |
+  | (unknown callee) | a0=[0x1020]:8, a1=?, a2=?, a3=? | `jalr` at 0x2200274 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x408, a6=0x1201, a7=0x1202 | `jalr` at 0x2200294 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x66c  value a1 | `sw` at 0x2200258 |
+  | store | 4 bytes | [0x1020]:8 +0x668  value a0 | `sw` at 0x2200260 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 260 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1618 +276 bytes / 229 changed common-prefix byte positions
+  SHA-256 target `fe05022f8eaa326e540410d435b132b44e6b1487a4fea9adc61b20c8e3bfc6fa` / documented sibling `9b497af11c250144581271941444fcac9019f156446c7d1b62f0cf841a9139c3`
+  Existing entry: `docs/sample-implementation.md`, `__glim_ColorMaterial` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_ColorMaterial.target.txt`, `review-facts/__glim_ColorMaterial.sibling.txt`, `review-facts/__glim_ColorMaterial.words.txt`, `review-facts/__glim_ColorMaterial.bytes.txt`
+
+- `__glim_CullFace` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22002b0. Occupies 156 bytes.
+  Inferred. Updates the cull-face word and polygon dirty state through the resolved stores below.
+  The two errors report 0x500 and 0x502 (`jalr` at 0x22002fc and `jalr` at 0x220033c).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0x404, a2=[0x1020]:8, a3=0x405, a4=0x408, a6=0x2 | `jalr` at 0x22002fc |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a4=0x408, a6=0x2 | `jalr` at 0x220033c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x29c  value a0 | `sw` at 0x2200314 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200318 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x4) | `sw` at 0x2200334 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 156 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c172c +164 bytes / 133 changed common-prefix byte positions
+  SHA-256 target `03a3417e201d0136a693a2104f6bdb0baa9f1f022ae3b946a0651f5f01344094` / documented sibling `bf9eeb2446df70d9e5f24209e2e315a4a38bddb905db0e2e0b4c1eccad3983f5`
+  Existing entry: `docs/sample-implementation.md`, `__glim_CullFace` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_CullFace.target.txt`, `review-facts/__glim_CullFace.sibling.txt`, `review-facts/__glim_CullFace.words.txt`, `review-facts/__glim_CullFace.bytes.txt`
+
+- `__glim_DepthFunc` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200350. Occupies 436 bytes.
+  Inferred. Writes the depth function and dirty state, with additional direction-related callback paths.
+  Both selected callbacks receive the process context and context +40184 first and second (`jalr` at 0x220047c and `jalr` at 0x22004c8).
+  The two direction-word writes have different resolution: one base is unknown, while the other is N64 context +0x9d8c (the stores below).
+  Complete direction-flip conditions and callback effects remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=?, a2=a2 at entry (arg2), a3=? | `jalr` at 0x220041c |
+  | (unknown callee) | a0=[0x1020]:8, a1=[0x1020]:8+40184, a2=?, a3=0xffffffffff000000, a5=0x203 | `jalr` at 0x220047c |
+  | (unknown callee) | a0=[0x1020]:8, a1=[0x1020]:8+40184, a2=[[0x1020]:8+40312], a3=0x1000000, a4=[0x1020]:8+65536, a6=[[0x1020]:8+3561]:1 | `jalr` at 0x22004c8 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x22004ec |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x760  value a0 | `sw` at 0x22003d8 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x22003e0 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x80) | `sw` at 0x22003f4 |
+  | store | 4 bytes | ? (base unknown)  value 0xffffffffff000000 | `sw` at 0x2200478 |
+  | store | 4 bytes | [0x1020]:8 +0x9d8c  value 0x1000000 | `sw` at 0x22004c4 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 436 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc5b0 +408 bytes / 321 changed common-prefix byte positions
+  SHA-256 target `3b7d264fca06fa806f3c7772e1a87b2f3871a2a8007242b45fdde36988e35deb` / documented sibling `0f3666ee6a1c546d800fbd419a197e9b3ca05617cfec296cd9734bc2c43dac66`
+  Existing entry: `docs/sample-implementation.md`, `__glim_DepthFunc` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_DepthFunc.target.txt`, `review-facts/__glim_DepthFunc.sibling.txt`, `review-facts/__glim_DepthFunc.words.txt`, `review-facts/__glim_DepthFunc.bytes.txt`
+
+- `__glim_DepthMask` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200510. Occupies 204 bytes.
+  Inferred. Stores the incoming depth-write argument as one byte and updates validation state (`sb` at 0x2200574).
+  A selected branch copies a saved depth word to the N64 context +0x9d7c (`sw` at 0x220056c).
+  The readjustment path calls `__glReadjustZCounts` with the process context (`jalr` at 0x22005cc). Its full precondition and resulting depth behavior remain unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x502, a1=0x10000, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x22005b8 |
+  | __glReadjustZCounts [0x227b000] | a0=[0x1020]:8, a1=0x10000, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x22005cc |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x9d7c  value [[0x1020]:8+40312] | `sw` at 0x220056c |
+  | store | 1 byte | [0x1020]:8 +0x764  value a0 | `sb` at 0x2200574 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x220057c |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x80) | `sw` at 0x220058c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 204 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d9bc750 +200 bytes / 172 changed common-prefix byte positions
+  SHA-256 target `d666d14fa6a393fda2df029060f43387be95f6ba0ca81055a3c69d6ef18acc36` / documented sibling `86c7871d64e376ce8f5829df42f5ad3585bb2e93c35522dbb41632e5c5683c73`
+  Existing entry: `docs/sample-implementation.md`, `__glim_DepthMask` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_DepthMask.target.txt`, `review-facts/__glim_DepthMask.sibling.txt`, `review-facts/__glim_DepthMask.words.txt`, `review-facts/__glim_DepthMask.bytes.txt`
+
+- `__glim_DrawBuffer` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22005e0. Occupies 476 bytes.
+  Inferred. Selects draw-buffer state through the target's enumerant branches and the writes below.
+  The error calls report 0x500 or 0x502 (`jalr` at 0x2200714, `jalr` at 0x220075c and `jalr` at 0x22007ac).
+  The selected O32 entry explicitly says it was not re-checked after an N32 correction. That caveat remains provenance, without a complete selector/configuration map for this target.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=?, a2=[0x1020]:8, a3=? | `jalr` at 0x2200714 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=?, a2=[0x1020]:8, a3=? | `jalr` at 0x220075c |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3) | `jalr` at 0x22007ac |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x868  value a0 | `sw` at 0x2200664 |
+  | store | 4 bytes | [0x1020]:8 +0x868  value 0x404 | `sw` at 0x2200694 |
+  | store | 4 bytes | [0x1020]:8 +0x868  value 0x408 | `sw` at 0x22006c0 |
+  | store | 4 bytes | [0x1020]:8 +0x86c  value a0 | `sw` at 0x22006c4 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x22006cc |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x22006e8 |
+  | store | 4 bytes | [0x1020]:8 +0x868  value 0x405 | `sw` at 0x220073c |
+  | store | 4 bytes | [0x1020]:8 +0x868  value 0x0 | `sw` at 0x220074c |
+  | store | 4 bytes | [0x1020]:8 +0x868  value 0x404 | `sw` at 0x2200784 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 476 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1a08 +324 bytes / 292 changed common-prefix byte positions
+  SHA-256 target `1a906b86b52ef972385d23752f6aff6574e0755394ed1d7f86f031c24e4877ca` / documented sibling `bd17e991b49eb06d741b8d97f8d4d137a82eeaf7e3416c95f8acaa4999fcab0b`
+  Existing entry: `docs/sample-implementation.md`, `__glim_DrawBuffer` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_DrawBuffer.target.txt`, `review-facts/__glim_DrawBuffer.sibling.txt`, `review-facts/__glim_DrawBuffer.words.txt`, `review-facts/__glim_DrawBuffer.bytes.txt`
+
+- `__glim_Fogfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22007c0. Occupies 492 bytes.
+  Inferred. Uses `__glClampAndScaleColorf` with the N64 process context, context +1852 and the original input vector (`jalr` at 0x2200970).
+  Other parameter paths include a vector float store and selected mode/derived-value updates below.
+  One undecoded word at 0x22008f4 leaves density validation incomplete. The O32 source's not-re-checked caveat is retained independently of these target facts.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0x801, a2=a1 at entry (arg1), a3=0xb64, a4=0x1, a5=0xb63, a6=0xb61, a7=0xb65 | `jalr` at 0x2200830 |
+  | __glSetError [0x22115d0] | a0=0x500, a1=0x2601, a2=a1 at entry (arg1), a3=0xb64, a4=0x1, a5=0xb63, a6=0xb61, a7=0xb65 | `jalr` at 0x2200868 |
+  | __glClampAndScaleColorf [0x22269e0] | a0=[0x1020]:8, a1=[0x1020]:8+1852, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200970 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a4=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200988 |
+  | __glSetError [0x22115d0] | a0=0x501, a1=0x2601, a2=a1 at entry (arg1), a3=0xb64, a4=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x220099c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x758 | `swc1` at 0x2200878 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200880 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x2200894 |
+  | store | 4 bytes | [0x1020]:8 +0x738 | `sw` at 0x22008b8 |
+  | store | 4 bytes | [0x1020]:8 +0x758 | `swc1` at 0x22008e8 |
+  | store | 4 bytes | [0x1020]:8 +0x74c  value [a1] | `swc1` at 0x2200908 |
+  | store | 4 bytes | [0x1020]:8 +0x754  value [a1] | `swc1` at 0x220091c |
+  | store | 4 bytes | [0x1020]:8 +0x750  value [a1] | `swc1` at 0x2200930 |
+  | store | 4 bytes | [0x1020]:8 +0x75c | `swc1` at 0x2200964 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 492 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1b4c +616 bytes / 453 changed common-prefix byte positions
+  SHA-256 target `432d40647722e2b40142d7f437313ba4c7fdb7fa140a518e024e061e9b7e4db9` / documented sibling `32ce4e87694940dd8eb384ef209ff40e786bd6417a22f4c7275e54e841355d9c`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Fogfv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_Fogfv.target.txt`, `review-facts/__glim_Fogfv.sibling.txt`, `review-facts/__glim_Fogfv.words.txt`, `review-facts/__glim_Fogfv.bytes.txt`
+
+- `__glim_Fogf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x22009b0. Occupies 120 bytes.
+  Inferred. Stores the scalar float in a temporary vector (`swc1` at 0x22009b4).
+  Its `__glim_Fogfv` call keeps the original selector and passes entry sp -8 second (`bgezall` at 0x2200a18).
+  The invalid-selector site reports 0x500 (`jalr` at 0x22009fc). This wrapper does not establish the vector routine's effects.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0xb63, a2=0xb64, a3=0xb65 | `jalr` at 0x22009fc |
+  | __glim_Fogfv [0x22007c0] | a0=a0 at entry (arg0), a1=sp-8, a2=?, a3=? | `bgezall` at 0x2200a18 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0x8  value f13 | `swc1` at 0x22009b4 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 120 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1db4 +128 bytes / 107 changed common-prefix byte positions
+  SHA-256 target `74d20b78748cf52e8c52d315b709e002b14e882b5c8909f5b48cf3d67cd2cadb` / documented sibling `35db42b93abcc893fbbca1ab89574529d97a72ae59c12a2deb71e18e087f9c25`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Fogf` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_Fogf.target.txt`, `review-facts/__glim_Fogf.sibling.txt`, `review-facts/__glim_Fogf.words.txt`, `review-facts/__glim_Fogf.bytes.txt`
+
+- `__glim_Fogiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200a30. Occupies 500 bytes.
+  Inferred. Calls `__glClampAndScaleColori` with the N64 context, context +1852 and the original integer vector (`jalr` at 0x2200be0).
+  Selected scalar paths convert integer vector words to float (`cvt.s.w` at 0x2200b60, `cvt.s.w` at 0x2200b80 and `cvt.s.w` at 0x2200b9c).
+  The old O32 entry was not re-checked after an N32 correction. Its summary does not establish the target's full selector or normalization rule.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0xb62, a2=a1 at entry (arg1), a3=0xb64, a4=0x2601, a5=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200aa8 |
+  | __glSetError [0x22115d0] | a0=0x500, a1=[a1], a2=a1 at entry (arg1), a3=0xb64, a4=0x2601, a5=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200ad8 |
+  | __glClampAndScaleColori [0x2226c40] | a0=[0x1020]:8, a1=[0x1020]:8+1852, a2=a1 at entry (arg1), a3=a3 at entry (arg3), a5=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200be0 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3), a5=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200bfc |
+  | __glSetError [0x22115d0] | a0=0x501, a1=[a1], a2=a1 at entry (arg1), a3=0xb64, a4=0x2601, a5=0x1, a6=0xb61, a7=0xb65 | `jalr` at 0x2200c14 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x738  value [a1] | `sw` at 0x2200aec |
+  | store | 4 bytes | [0x1020]:8 +0x758 | `swc1` at 0x2200b18 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200b20 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1) | `sw` at 0x2200b34 |
+  | store | 4 bytes | [0x1020]:8 +0x74c | `swc1` at 0x2200b6c |
+  | store | 4 bytes | [0x1020]:8 +0x758 | `swc1` at 0x2200b74 |
+  | store | 4 bytes | [0x1020]:8 +0x754 | `swc1` at 0x2200b90 |
+  | store | 4 bytes | [0x1020]:8 +0x750 | `swc1` at 0x2200bac |
+  | store | 4 bytes | [0x1020]:8 +0x75c | `swc1` at 0x2200bd8 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 500 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c1e34 +496 bytes / 442 changed common-prefix byte positions
+  SHA-256 target `cb416c41bab5b624c14eec0067fe619c905c772fc5bbe3fadb05cb9427093b8e` / documented sibling `a167790e2394801432a10468b6498c2edf05a4119a7677f9b36bcf5e6757e5d0`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Fogiv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_Fogiv.target.txt`, `review-facts/__glim_Fogiv.sibling.txt`, `review-facts/__glim_Fogiv.words.txt`, `review-facts/__glim_Fogiv.bytes.txt`
+
+- `__glim_Fogi` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200c30. Occupies 116 bytes.
+  Inferred. Copies the incoming integer to a stack word for scalar fog dispatch (`sw` at 0x2200c40).
+  The `__glim_Fogiv` call receives the selector unchanged and a vector at entry sp -4 (`bgezall` at 0x2200c94).
+  Error 0x500 is reported at the other call site (`jalr` at 0x2200c78). No integer-to-float conversion occurs in this scalar wrapper itself.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0xb63, a2=0xb64, a3=0xb65 | `jalr` at 0x2200c78 |
+  | __glim_Fogiv [0x2200a30] | a0=a0 at entry (arg0), a1=sp-4, a2=?, a3=? | `bgezall` at 0x2200c94 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0x4  value a1 | `sw` at 0x2200c40 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 116 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c2024 +128 bytes / 106 changed common-prefix byte positions
+  SHA-256 target `c4d29b90a9cd59008113048483729ad969cec203247b2905c99cbaa1ce5a74e0` / documented sibling `6e20509e74ca2b4fb56e9a9cf6f319b5d07434b4d9ef6bb9f0d7e55857ae26e0`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Fogi` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_Fogi.target.txt`, `review-facts/__glim_Fogi.sibling.txt`, `review-facts/__glim_Fogi.words.txt`, `review-facts/__glim_Fogi.bytes.txt`
+
+- `__glim_FrontFace` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200cb0. Occupies 148 bytes.
+  Inferred. Stores the accepted winding enumerant and updates polygon validation state through the writes below.
+  The two selected error paths pass 0x500 and 0x502 (`jalr` at 0x2200cf4 and `jalr` at 0x2200d34).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=0x900, a2=[0x1020]:8, a3=0x901, a5=0x2 | `jalr` at 0x2200cf4 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=0x901, a5=0x2 | `jalr` at 0x2200d34 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x2a0  value a0 | `sw` at 0x2200d0c |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200d10 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x4) | `sw` at 0x2200d2c |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 148 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c20a4 +156 bytes / 127 changed common-prefix byte positions
+  SHA-256 target `c9f855531e1195d7a4288490245688106f1048f888cd54c2394dd015c1f609a6` / documented sibling `ffa15e594665b181af3b02c745befab36a6ef7d4cfec57d4b24123f068e9bc96`
+  Existing entry: `docs/sample-implementation.md`, `__glim_FrontFace` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `review-facts/__glim_FrontFace.target.txt`, `review-facts/__glim_FrontFace.sibling.txt`, `review-facts/__glim_FrontFace.words.txt`, `review-facts/__glim_FrontFace.bytes.txt`
+
+- `__glim_Hint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x2200d50. Occupies 440 bytes.
+  Inferred. Writes hint values to several context fields, with distinct dirty-word masks on different paths (selected stores below).
+  Two error sites pass 0x500, while the state error passes 0x502 (`jalr` at 0x2200dac, `jalr` at 0x2200e74 and `jalr` at 0x2200ef8).
+  The source entry's explicit not-re-checked caveat remains. The complete hint-target mapping is not inferred from that older summary.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=0x1100, a3=[0x1020]:8, a4=0x1101, a5=0x1102 | `jalr` at 0x2200dac |
+  | __glSetError [0x22115d0] | a0=0x500, a1=a1 at entry (arg1), a2=0xc54, a3=[0x1020]:8, a4=0x8316 | `jalr` at 0x2200e74 |
+  | __glSetError [0x22115d0] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1020]:8 | `jalr` at 0x2200ef8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x88c  value a1 | `sw` at 0x2200df4 |
+  | store | 4 bytes | [0x1020]:8 +0x878  value a1 | `sw` at 0x2200e14 |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200e18 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x2) | `sw` at 0x2200e30 |
+  | store | 4 bytes | [0x1020]:8 +0x890  value a1 | `sw` at 0x2200ec8 |
+  | store | 4 bytes | [0x1020]:8 +0x874  value a1 | `sw` at 0x2200ecc |
+  | store | 4 bytes | abs 0x1030  value 0x2 | `sw` at 0x2200ed4 |
+  | store | 4 bytes | [0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x8) | `sw` at 0x2200ef0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 440 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9c2140 +404 bytes / 355 changed common-prefix byte positions
+  SHA-256 target `734a880bc50c8fae7c6dde4df7d79a27700768b442381a2153d8017ee0b5c332` / documented sibling `10abddb7d5f07d10284abd7aa913918541cc6b69556ae238c05865dd2d2ecbe6`
+  Existing entry: `docs/sample-implementation.md`, `__glim_Hint` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `review-facts/__glim_Hint.target.txt`, `review-facts/__glim_Hint.sibling.txt`, `review-facts/__glim_Hint.words.txt`, `review-facts/__glim_Hint.bytes.txt`
