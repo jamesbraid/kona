@@ -25911,3 +25911,447 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `4469a628e58008e4f0602cc4b7cf7a597937a335b4150e0d1f3fb4a66e6db0db` / documented sibling `1b03f148354aac1b557102254820aefda0865abc91e5bf77da51b72084a9a844`
   Existing entry: `docs/sample-implementation.md`, `__glSpanRenderBGRubyte2` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Inferred)
   Evidence: `facts/__glSpanRenderBGRubyte2.target.txt`, `facts/__glSpanRenderBGRubyte2.sibling.txt`, `facts/__glSpanRenderBGRubyte2.disasm.txt`, `facts/__glSpanRenderBGRubyte2.comparison.txt`
+
+- `__glSpanRenderRGBAubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ebea0, routine size 504 bytes.
+  Constructs a software RGBA fragment from unsigned bytes.
+  Input reads include `lbu` at 0x21ebf9c, 0x21ebfb8,
+  0x21ebfd0 and 0x21ebfe8.
+  Four mapped floats reach entry-stack -0xe4, -0xe0,
+  -0xdc and -0xd8 (`swc1` at 0x21ebfb4, 0x21ebfcc,
+  0x21ebfe4, 0x21ec008).
+  The unnamed callback receives the pointer at context
+  +0x4718 and entry-stack -240 (`jalr` at 0x21ec018).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBAubyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0bea0,
+  504 bytes, labelled Inferred.
+  Comparison: target 504 bytes, existing 504 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c9fe95ec4c39cce5f623dacbbb97d7a58b3b03a3ece06b0a46b9e6002d572e6a`.
+  Existing SHA-256: `c9fe95ec4c39cce5f623dacbbb97d7a58b3b03a3ece06b0a46b9e6002d572e6a`.
+  Evidence: `review-facts/__glSpanRenderRGBAubyte.target.txt`,
+  `review-facts/__glSpanRenderRGBAubyte.sibling.txt`, `review-facts/__glSpanRenderRGBAubyte.words.txt`,
+  `review-facts/__glSpanRenderRGBAubyte.bytes.txt`.
+
+- `__glSpanRenderRGBAubyte2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ec0a0, routine size 452 bytes.
+  Prepares four floating values for the software RGBA
+  endpoint path. The fragment occupies entry-stack
+  -0xc4, -0xc0, -0xbc and -0xb8 (`swc1` at
+  0x21ec1a0, 0x21ec1b4, 0x21ec1c8, 0x21ec1e8).
+  Calls an unnamed procedure with entry-stack -208
+  (`jalr` at 0x21ec1f0).
+  Span writeback reaches descriptor +0xe0 and +0xec
+  (`sw` at 0x21ec254, 0x21ec260).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBAubyte2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0c0a0,
+  452 bytes, labelled Inferred.
+  Comparison: target 452 bytes, existing 452 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `448ef0fb3419fb05d03369758fa958c14b1f2de3376a15b2339aab3dc1350f57`.
+  Existing SHA-256: `448ef0fb3419fb05d03369758fa958c14b1f2de3376a15b2339aab3dc1350f57`.
+  Evidence: `review-facts/__glSpanRenderRGBAubyte2.target.txt`,
+  `review-facts/__glSpanRenderRGBAubyte2.sibling.txt`, `review-facts/__glSpanRenderRGBAubyte2.words.txt`,
+  `review-facts/__glSpanRenderRGBAubyte2.bytes.txt`.
+
+- `__glSpanRenderDepthUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ec270, routine size 440 bytes.
+  Stages unsigned depth data for software fragment
+  dispatch. Copies context colour values to entry-stack
+  -0xc4, -0xc0, -0xbc and -0xb8 (`swc1` at
+  0x21ec2d0, 0x21ec2dc, 0x21ec2e8, 0x21ec2f8).
+  The unnamed procedure consumes entry-stack -208
+  (`jalr` at 0x21ec3a8).
+  Descriptor +0xe0 and +0xec are written on return
+  (`sw` at 0x21ec418, 0x21ec424).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderDepthUint` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0c270,
+  440 bytes, labelled Inferred.
+  Comparison: target 440 bytes, existing 440 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `1e8067c4056fafe152afd5bead3c00e627905c4923f128d436dcd10462b5c227`.
+  Existing SHA-256: `1e8067c4056fafe152afd5bead3c00e627905c4923f128d436dcd10462b5c227`.
+  Evidence: `review-facts/__glSpanRenderDepthUint.target.txt`,
+  `review-facts/__glSpanRenderDepthUint.sibling.txt`, `review-facts/__glSpanRenderDepthUint.words.txt`,
+  `review-facts/__glSpanRenderDepthUint.bytes.txt`.
+
+- `__glSpanRenderStencilUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ec5a0, routine size 404 bytes.
+  Feeds software stencil halfwords to a context procedure
+  loaded as a doubleword from +0x9cc0
+  (`ld` at 0x21ec628).
+  Reads an unsigned sample and signed span halfword
+  (`lhu` at 0x21ec684, `lh` at 0x21ec680), with
+  both effective addresses unresolved.
+  The call receives context +39968 as argument zero
+  (`jalr` at 0x21ec6ac). Other arguments remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencilUshort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0c5a0,
+  404 bytes, labelled Inferred.
+  Comparison: target 404 bytes, existing 404 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b529d0d1376c0f0afd8230505706bfc8e41983ffa7884cbea434a1774be277fc`.
+  Existing SHA-256: `b529d0d1376c0f0afd8230505706bfc8e41983ffa7884cbea434a1774be277fc`.
+  Evidence: `review-facts/__glSpanRenderStencilUshort.target.txt`,
+  `review-facts/__glSpanRenderStencilUshort.sibling.txt`, `review-facts/__glSpanRenderStencilUshort.words.txt`,
+  `review-facts/__glSpanRenderStencilUshort.bytes.txt`.
+
+- `__glSpanRenderStencilUshort2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ec740, routine size 304 bytes.
+  Uses the endpoint form of software ushort stencil
+  dispatch. Its sample read is `lhu` at 0x21ec80c,
+  with an unresolved buffer address.
+  Calls the unnamed procedure with context +39968
+  (`jalr` at 0x21ec810).
+  Saves descriptor words +0xec and +0xe0
+  (`sw` at 0x21ec858, 0x21ec860).
+  Callback graphics effects are not established here.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencilUshort2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0c740,
+  304 bytes, labelled Inferred.
+  Comparison: target 304 bytes, existing 304 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4dbd689b4ab8880cf7c0b7f55ede2dac84aeeddc605faa5ffceda8bee4f1a160`.
+  Existing SHA-256: `4dbd689b4ab8880cf7c0b7f55ede2dac84aeeddc605faa5ffceda8bee4f1a160`.
+  Evidence: `review-facts/__glSpanRenderStencilUshort2.target.txt`,
+  `review-facts/__glSpanRenderStencilUshort2.sibling.txt`, `review-facts/__glSpanRenderStencilUshort2.words.txt`,
+  `review-facts/__glSpanRenderStencilUshort2.bytes.txt`.
+
+- `__glSpanRenderStencilUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ec870, routine size 388 bytes.
+  Passes software stencil bytes through the doubleword
+  procedure pointer at context +0x9cc0
+  (`ld` at 0x21ec8f8).
+  Its inner sample reads are a signed halfword and
+  unsigned byte (`lh` at 0x21ec950,
+  `lbu` at 0x21ec954), both with unknown addresses.
+  The callback gets context +39968 (`jalr` at 0x21ec970).
+  Descriptor +0xe0 is updated (`sw` at 0x21ec9e4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencilUbyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0c870,
+  388 bytes, labelled Inferred.
+  Comparison: target 388 bytes, existing 388 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6df863a2767b013fd97a7cb0a9a218ddf23f59f4d99d7b5e5777bb37425e3874`.
+  Existing SHA-256: `6df863a2767b013fd97a7cb0a9a218ddf23f59f4d99d7b5e5777bb37425e3874`.
+  Evidence: `review-facts/__glSpanRenderStencilUbyte.target.txt`,
+  `review-facts/__glSpanRenderStencilUbyte.sibling.txt`, `review-facts/__glSpanRenderStencilUbyte.words.txt`,
+  `review-facts/__glSpanRenderStencilUbyte.bytes.txt`.
+
+- `__glSpanRenderStencilUbyte2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21eca00, routine size 288 bytes.
+  Runs an endpoint-controlled software byte stencil path.
+  Reads an unsigned byte at an unresolved effective
+  address (`lbu` at 0x21ecac0).
+  The unnamed call uses context +39968 as its first
+  argument (`jalr` at 0x21ecac4).
+  Word writeback reaches descriptor +0xec and +0xe0
+  (`sw` at 0x21ecb08, 0x21ecb10).
+  No callback identity is assigned from its pointer slot.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencilUbyte2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0ca00,
+  288 bytes, labelled Inferred.
+  Comparison: target 288 bytes, existing 288 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6cc0f661ccb51e599dd2b85301d147ffba66a5243cc5d81ad5a507deb62907d4`.
+  Existing SHA-256: `6cc0f661ccb51e599dd2b85301d147ffba66a5243cc5d81ad5a507deb62907d4`.
+  Evidence: `review-facts/__glSpanRenderStencilUbyte2.target.txt`,
+  `review-facts/__glSpanRenderStencilUbyte2.sibling.txt`, `review-facts/__glSpanRenderStencilUbyte2.words.txt`,
+  `review-facts/__glSpanRenderStencilUbyte2.bytes.txt`.
+
+- `__glSpanRenderCIushort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ecb20, routine size 424 bytes.
+  Converts software ushort colour indexes into a floating
+  stack fragment. The initial input halfword is at
+  argument-two +0 (`lhu` at 0x21ecc0c).
+  Writes the converted float at entry-stack -0xc4
+  (`swc1` at 0x21ecc30).
+  Invokes an unnamed fragment procedure with entry-stack
+  -208 (`jalr` at 0x21ecc48).
+  Indexed later samples remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIushort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0cb20,
+  424 bytes, labelled Inferred.
+  Comparison: target 424 bytes, existing 424 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fc36884f6bb54bb644726e8b871226f781df4e72f73da161ea52249bc833f91b`.
+  Existing SHA-256: `fc36884f6bb54bb644726e8b871226f781df4e72f73da161ea52249bc833f91b`.
+  Evidence: `review-facts/__glSpanRenderCIushort.target.txt`,
+  `review-facts/__glSpanRenderCIushort.sibling.txt`, `review-facts/__glSpanRenderCIushort.words.txt`,
+  `review-facts/__glSpanRenderCIushort.bytes.txt`.
+
+- `__glSpanRenderCIushort2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21eccd0, routine size 328 bytes.
+  Builds the second software ushort index-rendering path.
+  An unsigned-halfword load (`lhu` at 0x21ecd90)
+  supplies the conversion, with unknown effective base.
+  Its floating fragment value is stored at entry-stack
+  -0xb4 (`swc1` at 0x21ecda8).
+  The unnamed callback receives entry-stack -192
+  (`jalr` at 0x21ecdb0).
+  Descriptor +0xec is saved (`sw` at 0x21ece00).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIushort2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0ccd0,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `3071ca3830493617532c11bd12807edc66c8ca031fc14daa34834403ebf69571`.
+  Existing SHA-256: `3071ca3830493617532c11bd12807edc66c8ca031fc14daa34834403ebf69571`.
+  Evidence: `review-facts/__glSpanRenderCIushort2.target.txt`,
+  `review-facts/__glSpanRenderCIushort2.sibling.txt`, `review-facts/__glSpanRenderCIushort2.words.txt`,
+  `review-facts/__glSpanRenderCIushort2.bytes.txt`.
+
+- `__glSpanRenderCIubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ece20, routine size 424 bytes.
+  Maps a software unsigned-byte colour index to a float.
+  Starts with argument-two +0 (`lbu` at 0x21ecf0c),
+  then writes entry-stack -0xc4 (`swc1` at 0x21ecf30).
+  A signed-halfword span read accompanies it
+  (`lh` at 0x21ecf18), with unresolved address.
+  Passes entry-stack -208 to an unnamed procedure
+  (`jalr` at 0x21ecf48).
+  Final word +0xe0 reaches the descriptor
+  (`sw` at 0x21ecfb8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIubyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0ce20,
+  424 bytes, labelled Inferred.
+  Comparison: target 424 bytes, existing 424 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9317d06e48599f90a74ae8053ccfcc982c7418985790327e4c5cfbc263aa7e6a`.
+  Existing SHA-256: `9317d06e48599f90a74ae8053ccfcc982c7418985790327e4c5cfbc263aa7e6a`.
+  Evidence: `review-facts/__glSpanRenderCIubyte.target.txt`,
+  `review-facts/__glSpanRenderCIubyte.sibling.txt`, `review-facts/__glSpanRenderCIubyte.words.txt`,
+  `review-facts/__glSpanRenderCIubyte.bytes.txt`.
+
+- `__glSpanRenderCIubyte2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ecfd0, routine size 328 bytes.
+  Provides the endpoint software byte-index path. Reads
+  an unsigned byte (`lbu` at 0x21ed094) and places
+  its mapped float at entry-stack -0xb4
+  (`swc1` at 0x21ed0ac).
+  The buffer and table-entry addresses are unresolved.
+  Dispatch uses entry-stack -192 (`jalr` at 0x21ed0b4).
+  Word updates target descriptor +0xec and +0xe0
+  (`sw` at 0x21ed100, 0x21ed114).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIubyte2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0cfd0,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `dab10e390834abf386e0cdbb7364cb52ff9f8d6b9f8fc203377d4040cd50cf49`.
+  Existing SHA-256: `dab10e390834abf386e0cdbb7364cb52ff9f8d6b9f8fc203377d4040cd50cf49`.
+  Evidence: `review-facts/__glSpanRenderCIubyte2.target.txt`,
+  `review-facts/__glSpanRenderCIubyte2.sibling.txt`, `review-facts/__glSpanRenderCIubyte2.words.txt`,
+  `review-facts/__glSpanRenderCIubyte2.bytes.txt`.
+
+- `__glSpanRenderCIubyte3` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed120, routine size 488 bytes.
+  Expands one software byte index into four floating
+  fragment components. The initial byte is read at
+  argument-two +0 (`lbu` at 0x21ed21c).
+  Mapped values fill entry-stack -0xe4, -0xe0, -0xdc
+  and -0xd8 (`swc1` at 0x21ed240, 0x21ed250,
+  0x21ed25c, 0x21ed270).
+  An unnamed procedure consumes entry-stack -240
+  (`jalr` at 0x21ed288). Map-entry bases stay unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIubyte3` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d120,
+  488 bytes, labelled Inferred.
+  Comparison: target 488 bytes, existing 488 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d7dabce5cb491533ae7fb7492e23d983f803ab2d6a94136400a222d0f30088ff`.
+  Existing SHA-256: `d7dabce5cb491533ae7fb7492e23d983f803ab2d6a94136400a222d0f30088ff`.
+  Evidence: `review-facts/__glSpanRenderCIubyte3.target.txt`,
+  `review-facts/__glSpanRenderCIubyte3.sibling.txt`, `review-facts/__glSpanRenderCIubyte3.words.txt`,
+  `review-facts/__glSpanRenderCIubyte3.bytes.txt`.
+
+- `__glSpanRenderCIubyte4` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed310, routine size 428 bytes.
+  Supplies a four-component fragment in the endpoint
+  software byte-index path. Components occupy entry-stack
+  -0xc4, -0xc0, -0xbc and -0xb8 (`swc1` at
+  0x21ed41c, 0x21ed428, 0x21ed434, 0x21ed444).
+  Its byte sample address is unresolved
+  (`lbu` at 0x21ed404).
+  Calls an unnamed procedure with entry-stack -208
+  (`jalr` at 0x21ed44c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCIubyte4` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d310,
+  428 bytes, labelled Inferred.
+  Comparison: target 428 bytes, existing 428 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `2dbd9fbc6eb2800ecf4318087a35855013664122ac73e51ef6be65b0e760206c`.
+  Existing SHA-256: `2dbd9fbc6eb2800ecf4318087a35855013664122ac73e51ef6be65b0e760206c`.
+  Evidence: `review-facts/__glSpanRenderCIubyte4.target.txt`,
+  `review-facts/__glSpanRenderCIubyte4.sibling.txt`, `review-facts/__glSpanRenderCIubyte4.words.txt`,
+  `review-facts/__glSpanRenderCIubyte4.bytes.txt`.
+
+- `__glSpanRenderRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed4c0, routine size 392 bytes.
+  Copies software RGBA floats into a local fragment at
+  entry-stack -0xb4, -0xb0, -0xac and -0xa8
+  (`swc1` at 0x21ed594, 0x21ed59c, 0x21ed5a4,
+  0x21ed5b8).
+  Passes entry-stack -192 to an unnamed fragment callback
+  (`jalr` at 0x21ed5c8).
+  Its pointer comes from context +0x4d70
+  (`ld` at 0x21ed4fc). Indexed sample addresses are unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBA` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d4c0,
+  392 bytes, labelled Inferred.
+  Comparison: target 392 bytes, existing 392 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `25aaf7c87b5340dd3f657ef3e95cfa6b62cca759e889bf0ddc49dc8dcfe8e073`.
+  Existing SHA-256: `25aaf7c87b5340dd3f657ef3e95cfa6b62cca759e889bf0ddc49dc8dcfe8e073`.
+  Evidence: `review-facts/__glSpanRenderRGBA.target.txt`,
+  `review-facts/__glSpanRenderRGBA.sibling.txt`, `review-facts/__glSpanRenderRGBA.words.txt`,
+  `review-facts/__glSpanRenderRGBA.bytes.txt`.
+
+- `__glSpanRenderRGBA2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed650, routine size 328 bytes.
+  Stages the second software RGBA float path with a
+  fragment at entry-stack -0xa4, -0xa0, -0x9c and
+  -0x98 (`swc1` at 0x21ed704, 0x21ed70c,
+  0x21ed714, 0x21ed728).
+  The unnamed procedure receives entry-stack -176
+  (`jalr` at 0x21ed730).
+  Descriptor words +0xe0 and +0xec retain span state
+  (`sw` at 0x21ed784, 0x21ed788).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderRGBA2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d650,
+  328 bytes, labelled Inferred.
+  Comparison: target 328 bytes, existing 328 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `370fdf52caebd1d6ed3d652be9c71b6d5111e417a9b938a40c478db37134cb91`.
+  Existing SHA-256: `370fdf52caebd1d6ed3d652be9c71b6d5111e417a9b938a40c478db37134cb91`.
+  Evidence: `review-facts/__glSpanRenderRGBA2.target.txt`,
+  `review-facts/__glSpanRenderRGBA2.sibling.txt`, `review-facts/__glSpanRenderRGBA2.words.txt`,
+  `review-facts/__glSpanRenderRGBA2.bytes.txt`.
+
+- `__glSpanRenderDepth` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed7a0, routine size 456 bytes.
+  Prepares software float-depth fragments with context
+  colour values at entry-stack -0xc4, -0xc0, -0xbc
+  and -0xb8 (`swc1` at 0x21ed7f8, 0x21ed804,
+  0x21ed818, 0x21ed82c).
+  Reads a signed span halfword at an unresolved address
+  (`lh` at 0x21ed8c0).
+  The unnamed rendering call gets entry-stack -208
+  (`jalr` at 0x21ed8e8). Its device effect is unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderDepth` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d7a0,
+  456 bytes, labelled Inferred.
+  Comparison: target 456 bytes, existing 456 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fbe5d275503ec5adf844e02fdd14d50488ce4b1e8fd7009efea80527579f06f4`.
+  Existing SHA-256: `fbe5d275503ec5adf844e02fdd14d50488ce4b1e8fd7009efea80527579f06f4`.
+  Evidence: `review-facts/__glSpanRenderDepth.target.txt`,
+  `review-facts/__glSpanRenderDepth.sibling.txt`, `review-facts/__glSpanRenderDepth.words.txt`,
+  `review-facts/__glSpanRenderDepth.bytes.txt`.
+
+- `__glSpanRenderDepth2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ed970, routine size 392 bytes.
+  Uses the descriptor count at +0xc8 for software float-depth
+  output (`lw` at 0x21ed99c). Skips its sample loop when
+  that count is nonpositive (`blez` at 0x21eda38).
+  Saves context colour components at entry-stack -0xb4,
+  -0xb0, -0xac and -0xa8 (`swc1` at 0x21ed9b4,
+  0x21ed9c0, 0x21ed9d4, 0x21ed9f0).
+  Invokes an unnamed procedure with entry-stack -192
+  (`jalr` at 0x21eda88).
+  Final span words reach descriptor +0xe0 and +0xec
+  (`sw` at 0x21edae4, 0x21edae8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderDepth2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0d970,
+  392 bytes, labelled Inferred.
+  Comparison: target 392 bytes, existing 392 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `585e8562825f19b610c9aa4096c11ba778193512680e0bbea724d07b777a7c4a`.
+  Existing SHA-256: `585e8562825f19b610c9aa4096c11ba778193512680e0bbea724d07b777a7c4a`.
+  Evidence: `review-facts/__glSpanRenderDepth2.target.txt`,
+  `review-facts/__glSpanRenderDepth2.sibling.txt`, `review-facts/__glSpanRenderDepth2.words.txt`,
+  `review-facts/__glSpanRenderDepth2.bytes.txt`.
+
+- `__glSpanRenderCI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21edb00, routine size 408 bytes.
+  Builds a software colour-index fragment with its float
+  at entry-stack -0xc4 (`swc1` at 0x21edc08).
+  The accompanying signed-halfword read has an unknown
+  effective address (`lh` at 0x21edbf8).
+  Uses the context's +0x4d70 procedure pointer
+  (`ld` at 0x21edb40), calling it with entry-stack -208
+  (`jalr` at 0x21edc18).
+  Its descriptor +0xe0 store is `sw` at 0x21edc88.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCI` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0db00,
+  408 bytes, labelled Inferred.
+  Comparison: target 408 bytes, existing 408 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bb2392909bd4d59d8e29f814f232f4db5d778e489e329efb78213a5052dab8b0`.
+  Existing SHA-256: `bb2392909bd4d59d8e29f814f232f4db5d778e489e329efb78213a5052dab8b0`.
+  Evidence: `review-facts/__glSpanRenderCI.target.txt`,
+  `review-facts/__glSpanRenderCI.sibling.txt`, `review-facts/__glSpanRenderCI.words.txt`,
+  `review-facts/__glSpanRenderCI.bytes.txt`.
+
+- `__glSpanRenderCI2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21edca0, routine size 364 bytes.
+  Produces a local float for the second software
+  colour-index path at entry-stack -0xb4
+  (`swc1` at 0x21edd94).
+  Dispatches entry-stack -192 through an unnamed
+  procedure (`jalr` at 0x21edd9c).
+  Writes descriptor +0xe0 and +0xec
+  (`sw` at 0x21eddf8, 0x21eddfc).
+  The callback and indexed input addresses remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderCI2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0dca0,
+  364 bytes, labelled Inferred.
+  Comparison: target 364 bytes, existing 364 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `976a2e1f224411bb81355194f742f7bb0320142a71794245ae39bc6ab0c17ca8`.
+  Existing SHA-256: `976a2e1f224411bb81355194f742f7bb0320142a71794245ae39bc6ab0c17ca8`.
+  Evidence: `review-facts/__glSpanRenderCI2.target.txt`,
+  `review-facts/__glSpanRenderCI2.sibling.txt`, `review-facts/__glSpanRenderCI2.words.txt`,
+  `review-facts/__glSpanRenderCI2.bytes.txt`.
+
+- `__glSpanRenderStencil` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21ede10, routine size 416 bytes.
+  Handles software stencil fragments through a procedure
+  pointer loaded from context +0x9cc0
+  (`ld` at 0x21edf1c, 0x21edf3c).
+  The call receives context +39968
+  (`jalr` at 0x21edf2c).
+  A signed span-halfword load has an unresolved address
+  (`lh` at 0x21edefc).
+  Final stores update descriptor +0xe0 and +0xec
+  (`sw` at 0x21edfa0, 0x21edfac).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanRenderStencil` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e0de10,
+  416 bytes, labelled Inferred.
+  Comparison: target 416 bytes, existing 416 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bd21ae9d5773abf16bdb851a5d91a0734bcc5108b93e5ab9573465989fbd2ff6`.
+  Existing SHA-256: `bd21ae9d5773abf16bdb851a5d91a0734bcc5108b93e5ab9573465989fbd2ff6`.
+  Evidence: `review-facts/__glSpanRenderStencil.target.txt`,
+  `review-facts/__glSpanRenderStencil.sibling.txt`, `review-facts/__glSpanRenderStencil.words.txt`,
+  `review-facts/__glSpanRenderStencil.bytes.txt`.
