@@ -3143,6 +3143,452 @@ Each complete IP35 body below is byte-identical to the documented IP27 body at t
 
 - `__glEndPoints` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xd9f9b50; occupies 32 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f9b50 for 32 bytes (SHA-256 `b6fa651fb05017dae38f24d7e587ec170332a6cbe354fb9406200e8f1918d923`).
+
+#### IP35 O32 routines compared with their documented N32 siblings (batch 063)
+
+The target and documented N32 routine bodies differ. The table uses reviewer-confirmed native bounds; each entry reports target observations separately.
+
+| Routine | IP35 target range | N32 comparison range | Target SHA-256 | N32 SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `FindLineEquation` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9f9b70 / 244 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f79e0 / 196 | `f9b9257bcd38d4625ff2649aeb66fe2d0e898427e033c5c306ef48f15834cb30` | `088965b9889f5d5a6204a19752fd76456f31cc0261bbc663b717a949e913298a` | 171 |
+| `FindPlaneEquation` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9f9c64 / 224 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f7ab0 / 124 | `04ff8f50c049119f8b95ad1c3cbab1748cc72bd9a952c743c44a77b4fe02b516` | `7e5cf4c82295026b323c5ac06d0d97e5b993f730c38911f4e8f7e58db1cdfba8` | 107 |
+| `FindP` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9f9d44 / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f7b30 / 32 | `e023fb928479c349f9eb3c09c77d35b9529e29aeaa4cd1c1b18159ce54b47f1e` | `4909d0b5e0f30e3a893460d8baedbe25e08034b8eed20bed4e23bf0b2a39e29a` | 27 |
+| `ComputeCoverageStuff` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9f9d70 / 120 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f7b50 / 92 | `43dd7890a140b72b3f339ef1614a679e1df100d6d94b81c7e2bb34cd6ca84b64` | `1199412e5c3c3fc3e725c242de27844497d5f435119af90624aca42153da7fa8` | 83 |
+| `FillAASubTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fa3b8 / 7720 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f7e60 / 5628 | `0c8c65dc757dd2cd5943332c22257b5f3fbc16cfec24adcd99e561d6666589b0` | `d6ae605691f2f1b2e28ed7824dbbc2cf40fe51905a97e72a648f04b2898a2aef` | 5330 |
+| `__glFillAntiAliasedTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fca10 / 4084 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f9a00 / 3140 | `b9c4b05a17060baa545e474b22eb976ffa48859e9fff52e9bb84585ba2f19e64` | `b9d75fd16415b9caa1c7035a6efce58a2ac134b4b3c416f359a081b461d48f82` | 2948 |
+| `clipToPlane` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fda10 / 656 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fa650 / 660 | `dbb1af61364049e3efd0fb4f4a97cc38007348c7c387fd5964b43d4c0ecac86f` | `ed67415454b1add2f63bc2142538048737904c7335d1e3a56ebae5f4176ca4b0` | 574 |
+| `clipToPlaneEye` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fdca0 / 856 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fa8f0 / 856 | `065688a155a12866731f54770f7b7c276f6dbb3f7441eacfdf5c88f3e1009c1e` | `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d` | 747 |
+| `__glDoPolygonClip` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fdff8 / 1008 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fac50 / 920 | `12d3ece489346c1d9db2abc510d37fda442906bf23ed7d10bcfb0797e1aaaf41` | `f7e18168ea109ebc19b45e235248bcb5c638c6d4aa064de196dea738f425fa08` | 815 |
+| `__glClipPolygon` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fe3e8 / 136 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9faff0 / 264 | `f06ddaee882487d176e131d43f2375d6b99a00ecc2ab310bb55435e21dc96168` | `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50` | 126 |
+| `__glClipTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fe470 / 88 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fb100 / 72 | `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade` | `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505` | 60 |
+| `FillSubTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fe4d0 / 1312 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fb150 / 1388 | `cd6c8265350556206eb0eab0d0dc7695aee001bdadcb9c11d5bb178b7748db85` | `258d19f25eb2ab3ce38d6133f5c0f874ad84f1a50bfa79d93b2af7f19a8deebd` | 1194 |
+| `__glSnapXLeft` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fe9f0 / 392 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fb6c0 / 344 | `d8e640a535f34e75e24197779a9b0e1e3dc630bcc64c000b1b3fd912463e684e` | `bc54fa9102e7d81c3f96bee3428f75806faaca8fb77991b52eabdd3c608ac545` | 303 |
+| `__glSnapXRight` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9feb78 / 284 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fb820 / 208 | `20a775c1f086147e7df13ef92b74335cfc2506fba0d2dec13a100e513af6870d` | `cd6271688854d311d36614f09b9a7b4abfaf437faab1fa8c72ef972fcd3377fa` | 189 |
+| `__glPolygonOffsetZ` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9fedcc / 600 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fb9d0 / 344 | `770dac6c3c22ab75657c25560703216a8234aa71224fb067b01990dc5e5db5dc` | `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10` | 313 |
+| `__glFillTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xd9ff964 / 2640 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fc1d0 / 2020 | `d4903d6d29fa47e2f9f192dabddc864e947ce7c7f86d8298be77fb216449058c` | `ce30a74d83783a95b1d240f7e247951d8a6b807a28c5195a48b75c2031bbb2f0` | 1855 |
+| `__glFillFlatFogTriangle` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda003b4 / 296 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fc9c0 / 276 | `8ed6c6054c165cb40100ec10b1530fb24f1fb008317dadec2a57e2dc9b6d9f35` | `fb8e9e864010d4e97d07539a33db0903343a82021638628dca8fdcec9e6dd489` | 228 |
+| `__glMatValidateVbuf0N` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda004e0 / 148 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fcae0 / 184 | `478d556c9ec731403ddca320c47b63f1ef67f55330d6e4b209ecbd35b0face20` | `273ab6fdb9ce58a8676a66ac33e36c8f4219b12f1e0c72c52fe02209cfa6b6cc` | 115 |
+| `__glMatValidateVbuf0V1` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00574 / 140 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fcba0 / 136 | `f668b167af290c25cd18b82531b22ddfed7f6f3da877d0d3c24981116b1d3da9` | `0420fd517384aeacb9ae8a262ba5839f87dfd5a7a3442ff0a54de8ff3b6174e6` | 121 |
+| `__glMatValidateV1` | usr/gfx/arch/IP35KONA/libGLcore.so 0xda00600 / 84 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9fcc30 / 76 | `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246` | `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53` | 63 |
+
+Target entries:
+
+- `FindLineEquation` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9b70, examined routine size 244 bytes.
+  Builds a software line record from float inputs. The first two reads are
+  +4 from each of original arguments 2 and 1 (`lwc1` at 0xd9f9b7c, 0xd9f9b80).
+  Three float outputs occupy argument 0 +0, +4 and +8 (`swc1` at
+  0xd9f9c04, 0xd9f9c00, 0xd9f9c1c). A third-point test reads argument 3
+  +0 and +4 (`lwc1` at 0xd9f9c20, 0xd9f9c24). Two byte-store sites
+  write zero and one at argument 0 +0xc (`sb` at 0xd9f9c4c,
+  0xd9f9c54). Several reordered input values remain unknown in JSON facts.
+  The text renderer failed, and its successful JSON fallback supplies this evidence.
+  Existing entry: `docs/sample-implementation.md`, `FindLineEquation` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f79e0,
+  196 bytes, labelled Inferred.
+  Comparison: examined target 244 bytes, existing 196 bytes,
+  171 mismatching bytes over the shared prefix.
+  Target SHA-256: `f9b9257bcd38d4625ff2649aeb66fe2d0e898427e033c5c306ef48f15834cb30`.
+  Existing SHA-256: `088965b9889f5d5a6204a19752fd76456f31cc0261bbc663b717a949e913298a`.
+  Byte comparison: target 244 bytes, SHA-256 `f9b9257bcd38d4625ff2649aeb66fe2d0e898427e033c5c306ef48f15834cb30`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f79e0, 196 bytes, SHA-256 `088965b9889f5d5a6204a19752fd76456f31cc0261bbc663b717a949e913298a`; 171 differing bytes in the common prefix.
+
+- `FindPlaneEquation` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9c64, examined routine size 224 bytes.
+  Computes a four-float software plane record. Its input reads include +0x80
+  and +0x84 from original arguments 1, 2 and 3 (`lwc1` at 0xd9f9c70,
+  0xd9f9c78, 0xd9f9c74, 0xd9f9c7c, 0xd9f9c84, 0xd9f9c94).
+  Three further float inputs are read at entry-stack +0x10, +0x14 and +0x18
+  (`lwc1` at 0xd9f9c9c, 0xd9f9ca8, 0xd9f9ca0). Arithmetic includes
+  multiplication, subtraction and division (`mul.s` at 0xd9f9cc0, `sub.s`
+  at 0xd9f9cd0, `div.s` at 0xd9f9d10). Float stores target argument 0
+  +0, +4, +8 and +0xc (`swc1` at 0xd9f9d1c, 0xd9f9d38,
+  0xd9f9d30, 0xd9f9d40). Their numerical values remain unknown to hostfacts.
+  The last store is the return delay slot (`jr` at 0xd9f9d3c).
+  It makes no helper call, and hostfacts leaves v0 unknown.
+  Existing entry: `docs/sample-implementation.md`, `FindPlaneEquation` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7ab0,
+  124 bytes, labelled Inferred.
+  Comparison: examined target 224 bytes, existing 124 bytes,
+  107 mismatching bytes over the shared prefix.
+  Target SHA-256: `04ff8f50c049119f8b95ad1c3cbab1748cc72bd9a952c743c44a77b4fe02b516`.
+  Existing SHA-256: `7e5cf4c82295026b323c5ac06d0d97e5b993f730c38911f4e8f7e58db1cdfba8`.
+  Byte comparison: target 224 bytes, SHA-256 `04ff8f50c049119f8b95ad1c3cbab1748cc72bd9a952c743c44a77b4fe02b516`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7ab0, 124 bytes, SHA-256 `7e5cf4c82295026b323c5ac06d0d97e5b993f730c38911f4e8f7e58db1cdfba8`; 107 differing bytes in the common prefix.
+
+- `FindP` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9d44, examined routine size 44 bytes.
+  Evaluates local float arithmetic from a software plane record. The coefficient
+  reads are original argument 0 +0, +4 and +0xc (`lwc1` at 0xd9f9d48,
+  0xd9f9d50, 0xd9f9d58). Two multiplications and two additions feed f0
+  (`mul.s` at 0xd9f9d54, 0xd9f9d5c, `add.s` at 0xd9f9d60,
+  0xd9f9d64). The return delay slot negates f0 (`neg.s` at 0xd9f9d6c,
+  `jr` at 0xd9f9d68). The complete body has no stores, call or stack frame.
+  Hostfacts does not establish a symbolic floating return value.
+  Existing entry: `docs/sample-implementation.md`, `FindP` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7b30,
+  32 bytes, labelled Inferred.
+  Comparison: examined target 44 bytes, existing 32 bytes,
+  27 mismatching bytes over the shared prefix.
+  Target SHA-256: `e023fb928479c349f9eb3c09c77d35b9529e29aeaa4cd1c1b18159ce54b47f1e`.
+  Existing SHA-256: `4909d0b5e0f30e3a893460d8baedbe25e08034b8eed20bed4e23bf0b2a39e29a`.
+  Byte comparison: target 44 bytes, SHA-256 `e023fb928479c349f9eb3c09c77d35b9529e29aeaa4cd1c1b18159ce54b47f1e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7b30, 32 bytes, SHA-256 `4909d0b5e0f30e3a893460d8baedbe25e08034b8eed20bed4e23bf0b2a39e29a`; 27 differing bytes in the common prefix.
+
+- `ComputeCoverageStuff` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9f9d70, examined routine size 120 bytes.
+  Initializes a software coverage record. Argument 1 is written at original
+  argument 0 +8, followed by a word store at +0xc (`sw` at 0xd9f9da4,
+  0xd9f9db0). Seven float stores cover argument 0 +0, +4, +0x10,
+  +0x18, +0x1c, +0x20 and +0x24 (`swc1` at 0xd9f9dbc,
+  0xd9f9dc0, 0xd9f9dcc, 0xd9f9ddc, 0xd9f9dd4, 0xd9f9de4,
+  0xd9f9dd8). The converted values remain unknown to hostfacts. Its
+  examined body is 120 bytes, ending at `Coverage` 0xd9f9de8. The supplied
+  1608-byte range includes following functions. Native procedure/end records
+  confirm the shorter bound, and its text and JSON facts succeed.
+  Existing entry: `docs/sample-implementation.md`, `ComputeCoverageStuff` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7b50,
+  92 bytes, labelled Inferred.
+  Comparison: examined target 120 bytes, existing 92 bytes,
+  83 mismatching bytes over the shared prefix.
+  Target SHA-256: `43dd7890a140b72b3f339ef1614a679e1df100d6d94b81c7e2bb34cd6ca84b64`.
+  Existing SHA-256: `1199412e5c3c3fc3e725c242de27844497d5f435119af90624aca42153da7fa8`.
+  Byte comparison: target 120 bytes, SHA-256 `43dd7890a140b72b3f339ef1614a679e1df100d6d94b81c7e2bb34cd6ca84b64`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7b50, 92 bytes, SHA-256 `1199412e5c3c3fc3e725c242de27844497d5f435119af90624aca42153da7fa8`; 83 differing bytes in the common prefix.
+
+- `FillAASubTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fa3b8, examined routine size 7720 bytes.
+  Performs antialiased software raster loops using coverage and plane helpers.
+  Its working context is the pointer at original argument 2 +0x118 (`lw` at
+  0xd9fa420). It installs stack-work pointers at that context +0x7738,
+  +0x773c and +0x7740 (`sw` at 0xd9fa530, 0xd9fa534, 0xd9fa53c).
+  Calls include `Coverage`, `FindP`, `__glFogFragmentSlow` and
+  `__glBuildAntiAliasIndex` (`jalr` at 0xd9fa6a4, 0xd9fa774,
+  0xd9fa96c, 0xd9fa998). Context callbacks at +0x3124, +0x3178 and
+  +0x3000 remain unnamed (`lw` at 0xd9fa91c, 0xd9faa74, 0xd9fba54,
+  `jalr` at 0xd9fa920, 0xd9faa80, 0xd9fba58). Final state stores
+  write context +0x75fc, +0x7600, +0x7610 and +0x7614 (`sw` at
+  0xd9fc160, 0xd9fc174, 0xd9fc184, 0xd9fc194). The entire 7720-byte
+  body was read. Unknown indexed addresses and callback effects remain unresolved.
+  Existing entry: `docs/sample-implementation.md`, `FillAASubTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7e60,
+  5628 bytes, labelled Inferred.
+  Comparison: examined target 7720 bytes, existing 5628 bytes,
+  5330 mismatching bytes over the shared prefix.
+  Target SHA-256: `0c8c65dc757dd2cd5943332c22257b5f3fbc16cfec24adcd99e561d6666589b0`.
+  Existing SHA-256: `d6ae605691f2f1b2e28ed7824dbbc2cf40fe51905a97e72a648f04b2898a2aef`.
+  Byte comparison: target 7720 bytes, SHA-256 `0c8c65dc757dd2cd5943332c22257b5f3fbc16cfec24adcd99e561d6666589b0`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f7e60, 5628 bytes, SHA-256 `d6ae605691f2f1b2e28ed7824dbbc2cf40fe51905a97e72a648f04b2898a2aef`; 5330 differing bytes in the common prefix.
+
+- `__glFillAntiAliasedTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fca10, examined routine size 4084 bytes.
+  Prepares antialiased software triangle state and delegates subtriangle filling.
+  Vertex x reads use original arguments 1, 2 and 3 +0x80, while software
+  precision comes from argument 0 +0xe98 (`lwc1` at 0xd9fca7c,
+  0xd9fcab8, 0xd9fcaf4, `lw` at 0xd9fca78). Three calls resolve to
+  `FindLineEquation` (`jalr` at 0xd9fcc64, 0xd9fcc88, 0xd9fccac).
+  `ComputeCoverageStuff` receives a stack destination and either four or
+  eight as its second argument (`jalr` at 0xd9fccdc). Later paths call
+  `__glSnapXLeft`, `__glSnapXRight`, `SetInitialParameters` at 0xd9fc1e0,
+  and `FillAASubTriangle` (`jalr` at 0xd9fd6f8, 0xd9fd784,
+  0xd9fd744, 0xd9fd7a4). Callback identities and several computed
+  arguments remain unknown. The supplied body ends after its return,
+  12 bytes before the next function symbol.
+  Existing entry: `docs/sample-implementation.md`, `__glFillAntiAliasedTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f9a00,
+  3140 bytes, labelled Inferred.
+  Comparison: examined target 4084 bytes, existing 3140 bytes,
+  2948 mismatching bytes over the shared prefix.
+  Target SHA-256: `b9c4b05a17060baa545e474b22eb976ffa48859e9fff52e9bb84585ba2f19e64`.
+  Existing SHA-256: `b9d75fd16415b9caa1c7035a6efce58a2ac134b4b3c416f359a081b461d48f82`.
+  Byte comparison: target 4084 bytes, SHA-256 `b9c4b05a17060baa545e474b22eb976ffa48859e9fff52e9bb84585ba2f19e64`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f9a00, 3140 bytes, SHA-256 `b9d75fd16415b9caa1c7035a6efce58a2ac134b4b3c416f359a081b461d48f82`; 2948 differing bytes in the common prefix.
+
+- `clipToPlane` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fda10, examined routine size 656 bytes.
+  Clips a software vertex-pointer list against a plane through two unresolved
+  interpolation calls (`jalr` at 0xd9fdb68, 0xd9fdbf4). Original argument
+  0 supplies a callback pointer at +0x2f78 and a working-record pointer at
+  +0x7438 (`lw` at 0xd9fda60, 0xd9fda64). The initial last-vertex pointer
+  is loaded from argument 1 plus argument 2 shifted left two, minus four
+  (`lw` at 0xd9fda78). Four float reads from that vertex use +0x70,
+  +0x74, +0x78 and +0x7c (`lwc1` at 0xd9fda84, 0xd9fda8c,
+  0xd9fda94, 0xd9fdab8). Completion writes argument 0 +0x7438 (`sw`
+  at 0xd9fdc64). Loop output addresses, callback arguments and merged
+  results remain unknown in the successful JSON fallback.
+  Existing entry: `docs/sample-implementation.md`, `clipToPlane` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fa650,
+  660 bytes, labelled Inferred.
+  Comparison: examined target 656 bytes, existing 660 bytes,
+  574 mismatching bytes over the shared prefix.
+  Target SHA-256: `dbb1af61364049e3efd0fb4f4a97cc38007348c7c387fd5964b43d4c0ecac86f`.
+  Existing SHA-256: `ed67415454b1add2f63bc2142538048737904c7335d1e3a56ebae5f4176ca4b0`.
+  Byte comparison: target 656 bytes, SHA-256 `dbb1af61364049e3efd0fb4f4a97cc38007348c7c387fd5964b43d4c0ecac86f`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fa650, 660 bytes, SHA-256 `ed67415454b1add2f63bc2142538048737904c7335d1e3a56ebae5f4176ca4b0`; 574 differing bytes in the common prefix.
+
+- `clipToPlaneEye` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fdca0, examined routine size 856 bytes.
+  Uses eye-coordinate float fields while clipping a software pointer list.
+  The callback and working-record pointer come from original argument 0
+  +0x2f78 and +0x7438 (`lw` at 0xd9fdcf0, 0xd9fdcf4).
+  Initial last-vertex reads use +0x60, +0x64, +0x68 and +0x6c from
+  the pointer fetched through the input list (`lwc1` at 0xd9fdd14,
+  0xd9fdd1c, 0xd9fdd24, 0xd9fdd48). Two interpolation calls remain
+  unnamed (`jalr` at 0xd9fddfc, 0xd9fdee8), and completion updates
+  argument 0 +0x7438 (`sw` at 0xd9fdfb8). The examined body is
+  856 bytes to `__glDoPolygonClip` 0xd9fdff8. The supplied 2096-byte
+  range includes following functions. Native procedure/end records confirm
+  the shorter bound. Its text rendering fails with `KeyError: 132`.
+  Successful bounded JSON retains three unreached instructions and unknown
+  loop addresses. The supplied text rendering also fails.
+  Existing entry: `docs/sample-implementation.md`, `clipToPlaneEye` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fa8f0,
+  856 bytes, labelled Inferred.
+  Comparison: examined target 856 bytes, existing 856 bytes,
+  747 mismatching bytes over the shared prefix.
+  Target SHA-256: `065688a155a12866731f54770f7b7c276f6dbb3f7441eacfdf5c88f3e1009c1e`.
+  Existing SHA-256: `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d`.
+  Byte comparison: target 856 bytes, SHA-256 `065688a155a12866731f54770f7b7c276f6dbb3f7441eacfdf5c88f3e1009c1e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fa8f0, 856 bytes, SHA-256 `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d`; 747 differing bytes in the common prefix.
+
+- `__glDoPolygonClip` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fdff8, examined routine size 1008 bytes.
+  Orchestrates software polygon clipping and subsequent triangle dispatch.
+  It copies argument 0 +0x7434 into +0x7438 (`lw` at 0xd9fe04c,
+  `sw` at 0xd9fe064). Two calls resolve to `clipToPlaneEye` and
+  `clipToPlane` (`jalr` at 0xd9fe0f4, 0xd9fe150). Later dispatch
+  loads an unresolved callback from argument 0 +0x2f60 (`lw` at
+  0xd9fe2cc), with four call sites (`jalr` at 0xd9fe2dc,
+  0xd9fe318, 0xd9fe348, 0xd9fe374). Several per-vertex float and
+  byte stores have unknown effective addresses. Sampled float stores have
+  unknown values (`swc1` at 0xd9fe248, 0xd9fe258), while byte stores
+  include literal zero (`sb` at 0xd9fe308, 0xd9fe338). Callback arguments
+  remain unresolved in the successful JSON fallback.
+  Existing entry: `docs/sample-implementation.md`, `__glDoPolygonClip` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fac50,
+  920 bytes, labelled Inferred.
+  Comparison: examined target 1008 bytes, existing 920 bytes,
+  815 mismatching bytes over the shared prefix.
+  Target SHA-256: `12d3ece489346c1d9db2abc510d37fda442906bf23ed7d10bcfb0797e1aaaf41`.
+  Existing SHA-256: `f7e18168ea109ebc19b45e235248bcb5c638c6d4aa064de196dea738f425fa08`.
+  Byte comparison: target 1008 bytes, SHA-256 `12d3ece489346c1d9db2abc510d37fda442906bf23ed7d10bcfb0797e1aaaf41`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fac50, 920 bytes, SHA-256 `f7e18168ea109ebc19b45e235248bcb5c638c6d4aa064de196dea738f425fa08`; 815 differing bytes in the common prefix.
+
+- `__glClipPolygon` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fe3e8, examined routine size 136 bytes.
+  Builds a temporary pointer list for software polygon clipping. It records
+  original argument 1 at argument 0 +0x6de0 (`sw` at 0xd9fe408).
+  The full loop includes a word read and pointer store with unknown indexed
+  addresses (`lw` at 0xd9fe41c, `sw` at 0xd9fe424).
+  `__glDoPolygonClip` receives original argument 0, entry-stack -0x140
+  and the original count argument 2 (`jalr` at 0xd9fe450).
+  Hostfacts leaves the combined flags in argument 3 unresolved. The
+  routine performs no direct triangle-rendering callback.
+  Existing entry: `docs/sample-implementation.md`, `__glClipPolygon` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9faff0,
+  264 bytes, labelled Inferred.
+  Comparison: examined target 136 bytes, existing 264 bytes,
+  126 mismatching bytes over the shared prefix.
+  Target SHA-256: `f06ddaee882487d176e131d43f2375d6b99a00ecc2ab310bb55435e21dc96168`.
+  Existing SHA-256: `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50`.
+  Byte comparison: target 136 bytes, SHA-256 `f06ddaee882487d176e131d43f2375d6b99a00ecc2ab310bb55435e21dc96168`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9faff0, 264 bytes, SHA-256 `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50`; 126 differing bytes in the common prefix.
+
+- `__glClipTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fe470, examined routine size 88 bytes.
+  Packages three vertex pointers for `__glDoPolygonClip` (`jalr` at
+  0xd9fe4ac). The call passes original argument 0, entry-stack -0xc
+  and count three. The three pointers are saved at entry-stack -0xc,
+  -8 and -4 (`sw` at 0xd9fe494, 0xd9fe498, 0xd9fe49c).
+  The fourth call argument is unknown to hostfacts. Its supplied 88-byte
+  body ends after the return, eight bytes before `FillSubTriangle`.
+  All non-stack state changes belong to the delegated helper.
+  Existing entry: `docs/sample-implementation.md`, `__glClipTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb100,
+  72 bytes, labelled Inferred.
+  Comparison: examined target 88 bytes, existing 72 bytes,
+  60 mismatching bytes over the shared prefix.
+  Target SHA-256: `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade`.
+  Existing SHA-256: `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505`.
+  Byte comparison: target 88 bytes, SHA-256 `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb100, 72 bytes, SHA-256 `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505`; 60 differing bytes in the common prefix.
+
+- `FillSubTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fe4d0, examined routine size 1312 bytes.
+  Advances software scanline state and calls an unresolved filler. Initial
+  state reads include original argument 0 +0x75fc, +0x7600, +0x7610
+  and +0x7614 (`lw` at 0xd9fe500, 0xd9fe504, 0xd9fe508,
+  0xd9fe50c). A dispatch path stores argument 0 +0x762c, +0x7630
+  and +0x7660, then calls the pointer at +0x3000 (`sw` at
+  0xd9fe650, 0xd9fe654, 0xd9fe658, `lw` at 0xd9fe688,
+  `jalr` at 0xd9fe690). The final stores write the four initial
+  state fields (`sw` at 0xd9fe9c4, 0xd9fe9c8, 0xd9fe9cc,
+  0xd9fe9d0). Its examined 1312-byte body ends at `__glSnapXLeft`
+  0xd9fe9f0. The supplied 1988-byte range includes following functions.
+  Native procedure/end records confirm the shorter bound. Its text and JSON
+  facts succeed, with converted values still unknown.
+  Existing entry: `docs/sample-implementation.md`, `FillSubTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb150,
+  1388 bytes, labelled Inferred.
+  Comparison: examined target 1312 bytes, existing 1388 bytes,
+  1194 mismatching bytes over the shared prefix.
+  Target SHA-256: `cd6c8265350556206eb0eab0d0dc7695aee001bdadcb9c11d5bb178b7748db85`.
+  Existing SHA-256: `258d19f25eb2ab3ce38d6133f5c0f874ad84f1a50bfa79d93b2af7f19a8deebd`.
+  Byte comparison: target 1312 bytes, SHA-256 `cd6c8265350556206eb0eab0d0dc7695aee001bdadcb9c11d5bb178b7748db85`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb150, 1388 bytes, SHA-256 `258d19f25eb2ab3ce38d6133f5c0f874ad84f1a50bfa79d93b2af7f19a8deebd`; 1194 differing bytes in the common prefix.
+
+- `__glSnapXLeft` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fe9f0, examined routine size 392 bytes.
+  Converts software edge coordinates into integer and fractional state. Its
+  initial word stores target original argument 0 +0x75fc and +0x7600
+  (`sw` at 0xd9fea68, 0xd9fea70). Two sites write the same
+  +0x75f8 field through a word or float-register store (`sw` at
+  0xd9feaac, `swc1` at 0xd9fead8). Additional stores include +0x7734,
+  +0x7730, +0x7728 and +0x7724 (`sw` at 0xd9feb14, 0xd9feb24,
+  0xd9feb58, 0xd9feb68). The last two edge-step fields are +0x75f0
+  and +0x75f4 (`sw` at 0xd9feb6c, 0xd9feb74). There is no call,
+  and the converted values remain unknown to hostfacts. No hardware fixed-point
+  encoding is inferred from this software arithmetic.
+  Existing entry: `docs/sample-implementation.md`, `__glSnapXLeft` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb6c0,
+  344 bytes, labelled Inferred.
+  Comparison: examined target 392 bytes, existing 344 bytes,
+  303 mismatching bytes over the shared prefix.
+  Target SHA-256: `d8e640a535f34e75e24197779a9b0e1e3dc630bcc64c000b1b3fd912463e684e`.
+  Existing SHA-256: `bc54fa9102e7d81c3f96bee3428f75806faaca8fb77991b52eabdd3c608ac545`.
+  Byte comparison: target 392 bytes, SHA-256 `d8e640a535f34e75e24197779a9b0e1e3dc630bcc64c000b1b3fd912463e684e`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb6c0, 344 bytes, SHA-256 `bc54fa9102e7d81c3f96bee3428f75806faaca8fb77991b52eabdd3c608ac545`; 303 differing bytes in the common prefix.
+
+- `__glSnapXRight` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9feb78, examined routine size 284 bytes.
+  Writes a compact software right-edge record. The first stores use original
+  argument 0 +0x20 and +0x24 (`sw` at 0xd9febec, 0xd9febf4).
+  Two sites write +0x1c (`sw` at 0xd9fec3c, `swc1`
+  at 0xd9fec74). Final words occupy +0x14 and +0x18 (`sw` at
+  0xd9fec88, 0xd9fec90), the latter in the return delay slot (`jr`
+  at 0xd9fec8c). The complete body has no memory loads or helper call.
+  Its converted values are not reconstructed where hostfacts leaves them unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glSnapXRight` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb820,
+  208 bytes, labelled Inferred.
+  Comparison: examined target 284 bytes, existing 208 bytes,
+  189 mismatching bytes over the shared prefix.
+  Target SHA-256: `20a775c1f086147e7df13ef92b74335cfc2506fba0d2dec13a100e513af6870d`.
+  Existing SHA-256: `cd6271688854d311d36614f09b9a7b4abfaf437faab1fa8c72ef972fcd3377fa`.
+  Byte comparison: target 284 bytes, SHA-256 `20a775c1f086147e7df13ef92b74335cfc2506fba0d2dec13a100e513af6870d`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb820, 208 bytes, SHA-256 `cd6271688854d311d36614f09b9a7b4abfaf437faab1fa8c72ef972fcd3377fa`; 189 differing bytes in the common prefix.
+
+- `__glPolygonOffsetZ` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9fedcc, examined routine size 600 bytes.
+  Calls `__glComputePolygonOffset` before updating software depth state
+  (`jalr` at 0xd9fedf8). It reads original argument 1 +0x88 and
+  argument 0 +0x76b8 and +0x76b4 (`lwc1` at 0xd9fee18,
+  0xd9fee10, 0xd9fee20). Four word-store sites target argument 0
+  +0x7754 and +0x7758 (`sw` at 0xd9fee44, 0xd9fee4c,
+  0xd9fee50, 0xd9fee58). Later float stores include +0x774c,
+  +0x775c and +0x7760 (`swc1` at 0xd9fee6c, 0xd9feeac,
+  0xd9feedc). JSON facts retain unresolved computed values. The
+  text rendering failure is preserved alongside its successful fallback.
+  Existing entry: `docs/sample-implementation.md`, `__glPolygonOffsetZ` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb9d0,
+  344 bytes, labelled Inferred.
+  Comparison: examined target 600 bytes, existing 344 bytes,
+  313 mismatching bytes over the shared prefix.
+  Target SHA-256: `770dac6c3c22ab75657c25560703216a8234aa71224fb067b01990dc5e5db5dc`.
+  Existing SHA-256: `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10`.
+  Byte comparison: target 600 bytes, SHA-256 `770dac6c3c22ab75657c25560703216a8234aa71224fb067b01990dc5e5db5dc`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fb9d0, 344 bytes, SHA-256 `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10`; 313 differing bytes in the common prefix.
+
+- `__glFillTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xd9ff964, examined routine size 2640 bytes.
+  Prepares software triangle gradients and delegates scanline filling.
+  Initial reads use original argument 0 +0x7618 and +0xdd8 (`lwc1`
+  at 0xd9ff98c, 0xd9ff990). Gradient stores include +0x7684 and
+  +0x7694 (`swc1` at 0xd9ffa54, 0xd9ffa6c). Three sampled unnamed
+  callbacks receive original argument 0 (`jalr` at 0xd9ffd50,
+  0xd9ffdb4, 0xd9ffe18). Later calls resolve to `__glSnapXLeft`,
+  `__glSnapXRight` and `SetInitialParameters` at 0xd9ff024 (`jalr`
+  at 0xda000a8, 0xda00134, 0xda000f4). Four paths invoke
+  `FillSubTriangle` (`jalr` at 0xda00154, 0xda001cc, 0xda002c8,
+  0xda0038c). Converted call arguments and the merged return remain
+  unknown. All 2640 bytes were examined independently of the N32 sibling.
+  Existing entry: `docs/sample-implementation.md`, `__glFillTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fc1d0,
+  2020 bytes, labelled Inferred.
+  Comparison: examined target 2640 bytes, existing 2020 bytes,
+  1855 mismatching bytes over the shared prefix.
+  Target SHA-256: `d4903d6d29fa47e2f9f192dabddc864e947ce7c7f86d8298be77fb216449058c`.
+  Existing SHA-256: `ce30a74d83783a95b1d240f7e247951d8a6b807a28c5195a48b75c2031bbb2f0`.
+  Byte comparison: target 2640 bytes, SHA-256 `d4903d6d29fa47e2f9f192dabddc864e947ce7c7f86d8298be77fb216449058c`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fc1d0, 2020 bytes, SHA-256 `ce30a74d83783a95b1d240f7e247951d8a6b807a28c5195a48b75c2031bbb2f0`; 1855 differing bytes in the common prefix.
+
+- `__glFillFlatFogTriangle` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda003b4, examined routine size 296 bytes.
+  Replaces three software vertex colour pointers before a callback.
+  Three helper targets are loaded from original argument 0 +0x312c
+  (`lw` at 0xda003fc, 0xda0040c, 0xda0042c), then called with
+  stack destinations (`jalr` at 0xda00404, 0xda00424, 0xda00444).
+  Original arguments 1, 2 and 3 +8 receive entry-stack -0x10,
+  -0x20 and -0x30 (`sw` at 0xda0047c, 0xda00480, 0xda00484).
+  The next callback comes from argument 0 +0x2f6c and receives the
+  four original register arguments (`lw` at 0xda00498, `jalr` at
+  0xda0049c). Three later writes target those same +8 fields (`sw`
+  at 0xda004ac, 0xda004b4, 0xda004bc). Their values remain unknown
+  to hostfacts, so restoration is not established. Both callback identities
+  remain unknown. The supplied body ends four bytes before the next symbol.
+  Existing entry: `docs/sample-implementation.md`, `__glFillFlatFogTriangle` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fc9c0,
+  276 bytes, labelled Inferred.
+  Comparison: examined target 296 bytes, existing 276 bytes,
+  228 mismatching bytes over the shared prefix.
+  Target SHA-256: `8ed6c6054c165cb40100ec10b1530fb24f1fb008317dadec2a57e2dc9b6d9f35`.
+  Existing SHA-256: `fb8e9e864010d4e97d07539a33db0903343a82021638628dca8fdcec9e6dd489`.
+  Byte comparison: target 296 bytes, SHA-256 `8ed6c6054c165cb40100ec10b1530fb24f1fb008317dadec2a57e2dc9b6d9f35`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fc9c0, 276 bytes, SHA-256 `fb8e9e864010d4e97d07539a33db0903343a82021638628dca8fdcec9e6dd489`; 228 differing bytes in the common prefix.
+
+- `__glMatValidateVbuf0N` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda004e0, examined routine size 148 bytes.
+  Walks software vertex records and invokes an unresolved validation callback.
+  The end pointer is read from original argument 0 +0x31c8, the required
+  mask from +0x6df0 and the first record word from +0x31e0 (`lw`
+  at 0xda00504, 0xda00518, 0xda0051c). The callback-pointer load
+  has an unknown indexed effective address (`lw` at 0xda00530).
+  Its call receives original argument 0 and the mask as argument 2,
+  while argument 1 remains unresolved (`jalr` at 0xda0053c).
+  No non-stack stores occur in the complete body, and the helper result
+  is not assigned a fixed value.
+  Existing entry: `docs/sample-implementation.md`, `__glMatValidateVbuf0N` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcae0,
+  184 bytes, labelled Inferred.
+  Comparison: examined target 148 bytes, existing 184 bytes,
+  115 mismatching bytes over the shared prefix.
+  Target SHA-256: `478d556c9ec731403ddca320c47b63f1ef67f55330d6e4b209ecbd35b0face20`.
+  Existing SHA-256: `273ab6fdb9ce58a8676a66ac33e36c8f4219b12f1e0c72c52fe02209cfa6b6cc`.
+  Byte comparison: target 148 bytes, SHA-256 `478d556c9ec731403ddca320c47b63f1ef67f55330d6e4b209ecbd35b0face20`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcae0, 184 bytes, SHA-256 `273ab6fdb9ce58a8676a66ac33e36c8f4219b12f1e0c72c52fe02209cfa6b6cc`; 115 differing bytes in the common prefix.
+
+- `__glMatValidateVbuf0V1` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00574, examined routine size 140 bytes.
+  Checks two software vertex records before optional callback dispatch.
+  It reads the initial record at original argument 0 +0x31e0 and mask
+  at +0x6df0 (`lw` at 0xda0058c, 0xda00590). The first callback
+  pointer is argument 0 +0x31ec, and its call receives the record at
+  argument 0 +0x31e0 (`lw` at 0xda005b0, `jalr` at 0xda005b4).
+  The second record pointer comes from argument 0 +0x31cc, with its
+  callback at record +0xc (`lw` at 0xda005c8, 0xda005e0).
+  That call preserves original argument 0 and the record pointer, but
+  argument 2 is unresolved (`jalr` at 0xda005e4). Neither target
+  identity is established.
+  Existing entry: `docs/sample-implementation.md`, `__glMatValidateVbuf0V1` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcba0,
+  136 bytes, labelled Inferred.
+  Comparison: examined target 140 bytes, existing 136 bytes,
+  121 mismatching bytes over the shared prefix.
+  Target SHA-256: `f668b167af290c25cd18b82531b22ddfed7f6f3da877d0d3c24981116b1d3da9`.
+  Existing SHA-256: `0420fd517384aeacb9ae8a262ba5839f87dfd5a7a3442ff0a54de8ff3b6174e6`.
+  Byte comparison: target 140 bytes, SHA-256 `f668b167af290c25cd18b82531b22ddfed7f6f3da877d0d3c24981116b1d3da9`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcba0, 136 bytes, SHA-256 `0420fd517384aeacb9ae8a262ba5839f87dfd5a7a3442ff0a54de8ff3b6174e6`; 121 differing bytes in the common prefix.
+
+- `__glMatValidateV1` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda00600, examined routine size 84 bytes.
+  Validates the record referenced by original argument 0 +0x31cc using a
+  mask from +0x6df0 (`lw` at 0xda00618, 0xda0061c). It reads
+  the record word at +0 and callback pointer at +0xc (`lw` at
+  0xda00620, 0xda00634). The indirect call receives original
+  argument 0, the record pointer and the loaded mask (`jalr` at
+  0xda00638). The full body only stores stack bookkeeping. Its
+  callback identity and return value remain unknown.
+  Existing entry: `docs/sample-implementation.md`, `__glMatValidateV1` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcc30,
+  76 bytes, labelled Inferred.
+  Comparison: examined target 84 bytes, existing 76 bytes,
+  63 mismatching bytes over the shared prefix.
+  Target SHA-256: `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246`.
+  Existing SHA-256: `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53`.
+  Byte comparison: target 84 bytes, SHA-256 `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fcc30, 76 bytes, SHA-256 `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53`; 63 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
