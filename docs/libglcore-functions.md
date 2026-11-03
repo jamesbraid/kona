@@ -1369,3 +1369,155 @@ The twelve interleaved formats V3F, C4UB, N3S and T2F or T2S in their combinatio
   **Established.** Display-list form of the polygon-mode call. The face must be 1028, 1029 or 1032 and the mode 6912 to 6914; an argument outside that set sends the call to `__glsplc_InvalidEnum`, which raises the invalid-enumerant error (1280) through the hook in the context block and records nothing, whichever argument fails. A valid call is three words: the token 191 (HP_POLYGONMODE), the face and the mode. Read in full: the 256-byte body checks the face by comparisons and the mode by a range test, in that order.
 - `__glkonlc_StencilFunc` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da6ed20, 196 bytes, `kon_cdlfuncs.c`):
   **Established.** Display-list form of the stencil-test call. Only the first argument (the comparison, 512 to 519) is checked; an argument outside that set sends the call to `__glsplc_InvalidEnum`, which raises the invalid-enumerant error (1280) through the hook in the context block and records nothing. It records four words: the token 204 (HP_STENCILFUNC), the comparison, the reference value and the mask, all unchanged. Read in full: the 196-byte body checks one range and passes the other two arguments through without a test.
+
+- `__glkonlc_Color3usv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda67ab0, occupies 152 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda67ab0).
+  A signed value below 0x2 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda67ad0, `jalr` at 0xda67b34).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda67adc).
+  Input +0x0 is read as 2 bytes (`lhu` at 0xda67ad8).
+  The word written at list +0x0 has hostfacts value `(([a0]:2 << 0x10) | 0x68)` (`sw` at 0xda67aec).
+  Input +0x2 is read as 2 bytes (`lhu` at 0xda67af0).
+  Input +0x4 is read as 2 bytes (`lhu` at 0xda67af4).
+  The word written at list +0x4 has hostfacts value `([a0+4]:2 | ([a0+2]:2 << 0x10))` (`sw` at 0xda67b04).
+  The state word at 0x1030 becomes `[0x1030]+8` (`sw` at 0xda67b0c).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda67b18).
+  The state word at 0x1034 becomes `[0x1034]+2` (`sw` at 0xda67b28).
+  The return carries `[0x1034]+2` (`jr` at 0xda67b24).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4bv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda67c10, occupies 168 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda67c10).
+  A signed value below 0x2 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda67c30, `jalr` at 0xda67ca4).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda67c44).
+  Input +0x1 is read as 1 byte (`lbu` at 0xda67c38).
+  Input +0x0 is read as 1 byte (`lb` at 0xda67c3c).
+  The word written at list +0x0 has hostfacts value `((([a0]:1 << 0x18) | ([a0+1]:1 << 0x10)) | 0x69)` (`sw` at 0xda67c54).
+  Input +0x3 is read as 1 byte (`lbu` at 0xda67c58).
+  Input +0x2 is read as 1 byte (`lb` at 0xda67c5c).
+  The word written at list +0x4 has hostfacts value `(([a0+2]:1 << 0x18) | ([a0+3]:1 << 0x10))` (`sw` at 0xda67c74).
+  The state word at 0x1030 becomes `[0x1030]+8` (`sw` at 0xda67c7c).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda67c88).
+  The state word at 0x1034 becomes `[0x1034]+2` (`sw` at 0xda67c98).
+  The return carries `[0x1034]+2` (`jr` at 0xda67c94).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda681e0, occupies 164 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda681e0).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda68200, `jalr` at 0xda68270).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6820c).
+  Input +0x0 is read as 2 bytes (`lh` at 0xda68208).
+  The word written at list +0x0 has hostfacts value `(([a0]:2 << 0x10) | 0x6d)` (`sw` at 0xda68218).
+  Input +0x2 is read as 2 bytes (`lh` at 0xda6821c).
+  Input +0x4 is read as 2 bytes (`lhu` at 0xda68220).
+  The word written at list +0x4 has hostfacts value `([a0+4]:2 | ([a0+2]:2 << 0x10))` (`sw` at 0xda68230).
+  Input +0x6 is read as 2 bytes (`lh` at 0xda68234).
+  The word written at list +0x8 has hostfacts value `([a0+6]:2 << 0x10)` (`sw` at 0xda68240).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda68248).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda68254).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda68264).
+  The return carries `[0x1034]+3` (`jr` at 0xda68260).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4ubv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda68340, occupies 168 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda68340).
+  A signed value below 0x2 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda68360, `jalr` at 0xda683d4).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda68374).
+  Input +0x1 is read as 1 byte (`lbu` at 0xda68368).
+  Input +0x0 is read as 1 byte (`lbu` at 0xda6836c).
+  The word written at list +0x0 has hostfacts value `((([a0]:1 << 0x18) | ([a0+1]:1 << 0x10)) | 0x6e)` (`sw` at 0xda68384).
+  Input +0x3 is read as 1 byte (`lbu` at 0xda68388).
+  Input +0x2 is read as 1 byte (`lbu` at 0xda6838c).
+  The word written at list +0x4 has hostfacts value `(([a0+2]:1 << 0x18) | ([a0+3]:1 << 0x10))` (`sw` at 0xda683a4).
+  The state word at 0x1030 becomes `[0x1030]+8` (`sw` at 0xda683ac).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda683b8).
+  The state word at 0x1034 becomes `[0x1034]+2` (`sw` at 0xda683c8).
+  The return carries `[0x1034]+2` (`jr` at 0xda683c4).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4us` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda68540, occupies 172 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda68540).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda68560, `jalr` at 0xda685cc).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6856c).
+  The word written at list +0x0 has hostfacts value `((a0 << 0x10) | 0x70)` (`sw` at 0xda68580).
+  The word written at list +0x4 has hostfacts value `(a2 | (a1 << 0x10))` (`sw` at 0xda68588).
+  The word written at list +0x8 has hostfacts value `(a3 << 0x10)` (`sw` at 0xda68590).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda68598).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda685a4).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda685b4).
+  The return carries `[0x1034]+3` (`jr` at 0xda685b0).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4usv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda685f0, occupies 164 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda685f0).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda68610, `jalr` at 0xda68680).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6861c).
+  Input +0x0 is read as 2 bytes (`lhu` at 0xda68618).
+  The word written at list +0x0 has hostfacts value `(([a0]:2 << 0x10) | 0x70)` (`sw` at 0xda68628).
+  Input +0x2 is read as 2 bytes (`lhu` at 0xda6862c).
+  Input +0x4 is read as 2 bytes (`lhu` at 0xda68630).
+  The word written at list +0x4 has hostfacts value `([a0+4]:2 | ([a0+2]:2 << 0x10))` (`sw` at 0xda68640).
+  Input +0x6 is read as 2 bytes (`lhu` at 0xda68644).
+  The word written at list +0x8 has hostfacts value `([a0+6]:2 << 0x10)` (`sw` at 0xda68650).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda68658).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda68664).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda68674).
+  The return carries `[0x1034]+3` (`jr` at 0xda68670).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_TexCoord4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda6b8f0, occupies 164 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda6b8f0).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda6b910, `jalr` at 0xda6b980).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6b91c).
+  Input +0x0 is read as 2 bytes (`lh` at 0xda6b918).
+  The word written at list +0x0 has hostfacts value `(([a0]:2 << 0x10) | 0x8a)` (`sw` at 0xda6b928).
+  Input +0x2 is read as 2 bytes (`lh` at 0xda6b92c).
+  Input +0x4 is read as 2 bytes (`lhu` at 0xda6b930).
+  The word written at list +0x4 has hostfacts value `([a0+4]:2 | ([a0+2]:2 << 0x10))` (`sw` at 0xda6b940).
+  Input +0x6 is read as 2 bytes (`lh` at 0xda6b944).
+  The word written at list +0x8 has hostfacts value `([a0+6]:2 << 0x10)` (`sw` at 0xda6b950).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda6b958).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda6b964).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda6b974).
+  The return carries `[0x1034]+3` (`jr` at 0xda6b970).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Vertex4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda6c8e0, occupies 164 bytes.
+  Established. It reads the list-space word at absolute 0x1028 (`lw` at 0xda6c8e0).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda6c900, `jalr` at 0xda6c970).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6c90c).
+  Input +0x0 is read as 2 bytes (`lh` at 0xda6c908).
+  The word written at list +0x0 has hostfacts value `(([a0]:2 << 0x10) | 0x96)` (`sw` at 0xda6c918).
+  Input +0x2 is read as 2 bytes (`lh` at 0xda6c91c).
+  Input +0x4 is read as 2 bytes (`lhu` at 0xda6c920).
+  The word written at list +0x4 has hostfacts value `([a0+4]:2 | ([a0+2]:2 << 0x10))` (`sw` at 0xda6c930).
+  Input +0x6 is read as 2 bytes (`lh` at 0xda6c934).
+  The word written at list +0x8 has hostfacts value `([a0+6]:2 << 0x10)` (`sw` at 0xda6c940).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda6c948).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda6c954).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda6c964).
+  The return carries `[0x1034]+3` (`jr` at 0xda6c960).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.

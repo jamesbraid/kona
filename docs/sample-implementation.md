@@ -21431,3 +21431,117 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `98256ab1cf57427a1804cd00ec2b25b0134b8e1a2ac0e80c713a4adf6bb97a82` / documented O32 `5a74a21368ae34e739ea5eb2221e2a2ade5f3f7af32aaf2eed052b6300c9a7eb`
   Existing entry: `docs/libglcore-driver-builds.md`, `__glkonlc_Color3ubv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
   Evidence: `facts/__glkonlc_Color3ubv.target.txt`, `facts/__glkonlc_Color3ubv.sibling.txt`, `facts/__glkonlc_Color3ubv.disasm.txt`, `facts/__glkonlc_Color3ubv.comparison.txt`
+
+- `__glEvenTStripVertex` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda79a10, occupies 136 bytes.
+  Inferred. It reads context +0x31cc/+0x31d0 (`lw` at 0xda79a10, 0xda79a14),
+  clears context +0x74d0 and sets vertex +0xb8 to 1 (`sb` at 0xda79a1c, 0xda79a20).
+  The OR of vertex +4 and each prior vertex's +4 word selects the alternate
+  path when nonzero (`bne` at 0xda79a40).
+  It copies context +0x2ef8 into +0x2ee4 (`sw` at 0xda79a44).
+  The zero-OR path tail-calls an unresolved callback (`jr` at 0xda79a54).
+  The other path has an unresolved combined predicate and a callback site
+  (`bne` at 0xda79a6c, `jalr` at 0xda79a80).
+  Both dispatch sites retain original a0/a1. Their a2/a3 are the old
+  +0x31cc/+0x31d0 pointers respectively. Callback identities, missing
+  predicate terms and the overall return remain unknown.
+
+- `__glOddTStripVertex` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda79a98, occupies 136 bytes.
+  Inferred. It reads context +0x31cc/+0x31d0 (`lw` at 0xda79a98, 0xda79a9c),
+  clears context +0x74d0 and sets vertex +0xb8 to 1 (`sb` at 0xda79aa4, 0xda79aa8).
+  The OR of vertex +4 and each prior vertex's +4 word selects the alternate
+  path when nonzero (`bne` at 0xda79ac8).
+  It copies context +0x2efc into +0x2ee4 (`sw` at 0xda79acc).
+  The zero-OR path tail-calls an unresolved callback (`jr` at 0xda79adc).
+  The other path has an unresolved combined predicate and a callback site
+  (`bne` at 0xda79af4, `jalr` at 0xda79b08).
+  Both dispatch sites retain original a0/a1. Their a2/a3 are the old
+  +0x31d0/+0x31cc pointers respectively. Callback identities, missing
+  predicate terms and the overall return remain unknown.
+
+- `__glPoint` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda79e1c, occupies 76 bytes.
+  Inferred. It reads context +0x6de8 and a callback at vertex +0xc (`lw` at
+  0xda79e1c, 0xda79e20). An unresolved incoming v0 selects an early return
+  when nonzero (`bne` at 0xda79e24). The other path calls the callback with
+  original a0/a1 and a2=[context+0x6de8] OR 1 (`jalr` at 0xda79e38).
+  It then loads context +0x3108 and tail-calls that callback with original
+  a0/a1 (`lw` at 0xda79e4c, `jr` at 0xda79e58). Callback identities,
+  missing arguments and the early-return value remain unknown.
+
+- `__glPointFast` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda79e68, occupies 28 bytes.
+  Inferred. It loads a callback from context +0x3108 (`lw` at 0xda79e68).
+  An unresolved incoming v0 selects an early return when nonzero (`bne` at
+  0xda79e6c). Otherwise it tail-calls the callback with original a0 through
+  a3 (`jr` at 0xda79e74). Callback identity, effect and the early-return
+  value remain unknown.
+
+- `__glValidateVertex2` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7a940, occupies 444 bytes.
+  Inferred. It reads vertex +0 and context +0x7414 (`lw` at 0xda7a958, 0xda7a964).
+  It stores bit pattern 0x3f800000 at vertex +0x6c (`sw` at 0xda7a97c).
+  The calculated attribute mask remains unresolved. Nine callback sites
+  remain unidentified (`jalr` at 0xda7a9b4, 0xda7a9c4, 0xda7a9e0, 0xda7aa24, 0xda7aa48, 0xda7aa70, 0xda7aa8c, 0xda7aab0, 0xda7aacc).
+  The first takes (entry sp-56, vertex+32, [context+0x7414]+88) as a0/a1/a2.
+  The next takes (vertex+32, entry sp-56), and the third takes
+  (vertex+96, vertex+16, [context+0x7414]). The final two retain original
+  a0, take a1=0 then 1, and pass the original vertex in a2.
+  A float-store site updates vertex +0x2c with an unresolved value
+  (`swc1` at 0xda7aa18). The overall return remains unresolved (`jr` at 0xda7aaf4).
+  Hostfacts labels some in-range targets outside its block map, so complete
+  control flow, missing arguments and attribute equations remain unknown.
+
+- `__glValidateVertex3` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7aafc, occupies 452 bytes.
+  Inferred. It reads vertex +0 and context +0x7414 (`lw` at 0xda7ab14, 0xda7ab20).
+  It stores bit pattern 0x3f800000 at vertex +0x6c (`sw` at 0xda7ab38).
+  The calculated attribute mask remains unresolved. Nine callback sites
+  remain unidentified (`jalr` at 0xda7ab70, 0xda7ab80, 0xda7ab9c, 0xda7abec, 0xda7ac10, 0xda7ac34, 0xda7ac50, 0xda7ac74, 0xda7ac90).
+  The first takes (entry sp-56, vertex+32, [context+0x7414]+88) as a0/a1/a2.
+  The next takes (vertex+32, entry sp-56), and the third takes
+  (vertex+96, vertex+16, [context+0x7414]). The final two retain original
+  a0, take a1=0 then 1, and pass the original vertex in a2.
+  A float-store site updates vertex +0x2c with an unresolved value
+  (`swc1` at 0xda7abe0). The overall return remains unresolved (`jr` at 0xda7acb8).
+  Hostfacts labels some in-range targets outside its block map, so complete
+  control flow, missing arguments and attribute equations remain unknown.
+
+- `__glValidateVertex4` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7acc0, occupies 460 bytes.
+  Inferred. It reads vertex +0 and context +0x7414 (`lw` at 0xda7acd8, 0xda7ace4).
+  It stores bit pattern 0x3f800000 at vertex +0x6c (`sw` at 0xda7acfc).
+  The calculated attribute mask remains unresolved. Nine callback sites
+  remain unidentified (`jalr` at 0xda7ad38, 0xda7ad48, 0xda7ad64, 0xda7adbc, 0xda7ade0, 0xda7ae00, 0xda7ae1c, 0xda7ae40, 0xda7ae5c).
+  The first takes (entry sp-56, vertex+32, [context+0x7414]+88) as a0/a1/a2.
+  The next takes (vertex+32, entry sp-56), and the third takes
+  (vertex+96, vertex+16, [context+0x7414]). The final two retain original
+  a0, take a1=0 then 1, and pass the original vertex in a2.
+  A float-store site updates vertex +0x2c with an unresolved value
+  (`swc1` at 0xda7adb0). The overall return remains unresolved (`jr` at 0xda7ae84).
+  Hostfacts labels some in-range targets outside its block map, so complete
+  control flow, missing arguments and attribute equations remain unknown.
+
+- `__glSaveN` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7b180, occupies 24 bytes.
+  Established. An 8-byte value is read from context +0xd0 (`ldc1` at 0xda7b180). A 4-byte word is read from +0xd8 (`lw` at 0xda7b188). The values are copied to vertex +0x20 and +0x28 (`sdc1` at 0xda7b18c; `sw` at 0xda7b194).
+  It loads the context +0x2ee4 callback and tail-calls it with original
+  a0 through a3 (`lw` at 0xda7b184, `jr` at 0xda7b190).
+  The callback identity and effect remain unknown.
+
+- `__glSaveCI` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7b198, occupies 20 bytes.
+  Established. It reads context +0x1c0 and writes that word at vertex +0x90 (`lw` at
+  0xda7b19c, `sw` at 0xda7b1a8). It loads the context +0x2ee4 callback
+  and tail-calls it with original a0/a1, a2=the copied word and
+  a3=original a1+144 (`lw` at 0xda7b198, `jr` at 0xda7b1a4).
+  The callback identity and effect remain unknown.
+
+- `__glSaveC` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda7b1ac, occupies 24 bytes.
+  Established. It reads eight-byte values at context +0xc0 and +0xc8 (`ldc1` at
+  0xda7b1ac, 0xda7b1b4). Those values are copied to vertex +0x90/+0x98
+  (`sdc1` at 0xda7b1b8, 0xda7b1c0). It loads the context +0x2ee4 callback
+  and tail-calls it with original a0 through a3 (`lw` at 0xda7b1b0,
+  `jr` at 0xda7b1bc). The callback identity and effect remain unknown.

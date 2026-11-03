@@ -3031,3 +3031,34 @@ These are N64 target-body readings from usr/gfx/arch/IP27KONA64/libGLcore.so. Th
 - `__glkonlc_MultMatrixd` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2ed4ce0; occupies 508 bytes.
   **Inferred.** **Established.** The multiply-matrix recorder writes tag 0xd6 through the pointer at absolute 0x1058 (`sw` at 0x2ed4d10). Its doubleword matrix loads include entry a0 +0 and +8 (`ldc1` at 0x2ed4d14 and `ldc1` at 0x2ed4d2c), with word output at record +4/+8/+0xc/+0x10 (`sw` at 0x2ed4d28, `sw` at 0x2ed4d24, `sw` at 0x2ed4d40, and `sw` at 0x2ed4d3c). The final pointer update is old pointer +0x84 (`sd` at 0x2ed4ea0). Its only call requests list space from `__glSPDlistSpace` with a0 =0 (`jalr` at 0x2ed4ec8). Unequal exact ranges: target 508 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da6f810 +508 bytes / 18 changed common-prefix positions
+
+- `__glkonlc_Color4b` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda67b50, occupies 184 bytes.
+  Inferred. It reads the list-space word at absolute 0x1028 (`lw` at 0xda67b50).
+  A signed value below 0x2 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda67b70, `jalr` at 0xda67be8).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda67b8c).
+  The word written at list +0x4 has hostfacts value unresolved (`sw` at 0xda67ba0).
+  The word written at list +0x0 has hostfacts value unresolved (`sw` at 0xda67bac).
+  The state word at 0x1030 becomes `[0x1030]+8` (`sw` at 0xda67bb4).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda67bc0).
+  The state word at 0x1034 becomes `[0x1034]+2` (`sw` at 0xda67bd0).
+  The return carries `[0x1034]+2` (`jr` at 0xda67bcc).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
+
+- `__glkonlc_Color4s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda68130, occupies 176 bytes.
+  Inferred. It reads the list-space word at absolute 0x1028 (`lw` at 0xda68130).
+  A signed value below 0x3 selects `__glSPDlistSpace` with a0=0
+  (`bne` at 0xda68150, `jalr` at 0xda681c0).
+  The list pointer comes from absolute 0x1030 (`lw` at 0xda6815c).
+  The word written at list +0x0 has hostfacts value `((a0 << 0x10) | 0x6d)` (`sw` at 0xda6816c).
+  The word written at list +0x8 has hostfacts value `(a3 << 0x10)` (`sw` at 0xda6817c).
+  The word written at list +0x4 has hostfacts value unresolved (`sw` at 0xda68184).
+  The state word at 0x1030 becomes `[0x1030]+12` (`sw` at 0xda6818c).
+  The updated 0x1028 value remains unresolved (`sw` at 0xda68198).
+  The state word at 0x1034 becomes `[0x1034]+3` (`sw` at 0xda681a8).
+  The return carries `[0x1034]+3` (`jr` at 0xda681a4).
+  Missing packed values remain unknown. These list-memory accesses do not establish
+  hardware command-port transactions.
