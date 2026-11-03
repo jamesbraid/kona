@@ -16454,19 +16454,19 @@ These entries describe exact N64 bodies from usr/gfx/arch/IP27KONA64/libGLcore.s
 
 - `__glim_Color3f` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2edeed0; occupies 32 bytes.
-  **Inferred.** **Established.** Three incoming float registers are stored at C +0x260/+0x264/+0x268 (`swc1` at 0x2edeedc, `swc1` at 0x2edeee0, and `swc1` at 0x2edeee4). A word with bit pattern 0x3f800000 is placed at C +0x26c in the final jump's delay slot (`jr` at 0x2edeee8 and `sw` at 0x2edeeec). The jump target is loaded from C +0x48f8 (`ld` at 0x2edeed8). Its identity is unknown, while the tail-call argument a0 is C. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da798f0 +32 bytes / 13 changed common-prefix positions
+  **Established.** This grade covers the complete local attribute-copy and tail-dispatch interface. The broader role remains Inferred. Three incoming float registers are stored at C +0x260/+0x264/+0x268 (`swc1` at 0x2edeedc, `swc1` at 0x2edeee0, and `swc1` at 0x2edeee4). A word with bit pattern 0x3f800000 is placed at C +0x26c in the final jump's delay slot (`jr` at 0x2edeee8 and `sw` at 0x2edeeec). The jump target is loaded from C +0x48f8 (`ld` at 0x2edeed8). Its identity is unknown, while the tail-call argument a0 is C. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da798f0 +32 bytes / 13 changed common-prefix positions
 
 - `__glim_Color3fv` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2edeef0; occupies 48 bytes.
-  **Inferred.** **Established.** The vector form copies float words from entry a0 +0/+4/+8 to C +0x260/+0x264/+0x268 (`lwc1` at 0x2edeef4, `lwc1` at 0x2edeef8, `lwc1` at 0x2edeefc, `swc1` at 0x2edef08, `swc1` at 0x2edef0c, and `swc1` at 0x2edef10). C +0x26c receives word pattern 0x3f800000 (`sw` at 0x2edef14). It then tail-jumps through C +0x48f8, with C passed in a0 (`ld` at 0x2edef04 and `jr` at 0x2edef18), without resolving that callback's name. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79910 +48 bytes / 13 changed common-prefix positions
+  **Established.** This grade covers the complete local attribute-copy and tail-dispatch interface. The broader role remains Inferred. The vector form copies float words from entry a0 +0/+4/+8 to C +0x260/+0x264/+0x268 (`lwc1` at 0x2edeef4, `lwc1` at 0x2edeef8, `lwc1` at 0x2edeefc, `swc1` at 0x2edef08, `swc1` at 0x2edef0c, and `swc1` at 0x2edef10). C +0x26c receives word pattern 0x3f800000 (`sw` at 0x2edef14). It then tail-jumps through C +0x48f8, with C passed in a0 (`ld` at 0x2edef04 and `jr` at 0x2edef18), without resolving that callback's name. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79910 +48 bytes / 13 changed common-prefix positions
 
 - `__glim_Color4f` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2edef20; occupies 32 bytes.
-  **Inferred.** **Established.** Four-float colour assignment stores f12/f13/f14/f15 as words at C +0x260/+0x264/+0x268/+0x26c (`swc1` at 0x2edef2c, `swc1` at 0x2edef30, `swc1` at 0x2edef34, and `swc1` at 0x2edef3c). The target loaded from C +0x48f8 is reached by a tail jump (`ld` at 0x2edef28 and `jr` at 0x2edef38). No numeric conversion occurs in this complete body. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79940 +32 bytes / 13 changed common-prefix positions
+  **Established.** This grade covers the complete local attribute-copy and tail-dispatch interface. The broader role remains Inferred. Four-float colour assignment stores f12/f13/f14/f15 as words at C +0x260/+0x264/+0x268/+0x26c (`swc1` at 0x2edef2c, `swc1` at 0x2edef30, `swc1` at 0x2edef34, and `swc1` at 0x2edef3c). The target loaded from C +0x48f8 is reached by a tail jump (`ld` at 0x2edef28 and `jr` at 0x2edef38). No numeric conversion occurs in this complete body. Unequal exact ranges: target 32 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79940 +32 bytes / 13 changed common-prefix positions
 
 - `__glim_Color4fv` in `usr/gfx/arch/IP27KONA64/libGLcore.so`:
   Address 0x2edef40; occupies 48 bytes.
-  **Inferred.** **Established.** Four float words at the caller's +0/+4/+8/+0xc are copied to C +0x260/+0x264/+0x268/+0x26c (`lwc1` at 0x2edef44, `lwc1` at 0x2edef48, `lwc1` at 0x2edef4c, `lwc1` at 0x2edef50, `swc1` at 0x2edef58, `swc1` at 0x2edef5c, `swc1` at 0x2edef60, and `swc1` at 0x2edef64). The final indirect jump passes C in both a0 and a1 (`jr` at 0x2edef68). The callback's implementation is outside this entry. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79960 +48 bytes / 13 changed common-prefix positions
+  **Established.** This grade covers the complete local attribute-copy and tail-dispatch interface. The broader role remains Inferred. Four float words at the caller's +0/+4/+8/+0xc are copied to C +0x260/+0x264/+0x268/+0x26c (`lwc1` at 0x2edef44, `lwc1` at 0x2edef48, `lwc1` at 0x2edef4c, `lwc1` at 0x2edef50, `swc1` at 0x2edef58, `swc1` at 0x2edef5c, `swc1` at 0x2edef60, and `swc1` at 0x2edef64). The final indirect jump passes C in both a0 and a1 (`jr` at 0x2edef68). The callback's implementation is outside this entry. Unequal exact ranges: target 48 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da79960 +48 bytes / 13 changed common-prefix positions
 
 ### mips_lighting.c
 
@@ -42129,3 +42129,103 @@ comparison was not rerun and supplies no new target equation.
   Target 0x22789c0, 492 bytes. Complete byte identity with
   `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e989c0, 492 bytes.
   Code SHA-256 `e5bbdba8a41b0c9469a76fb3b53bcb77f5a9ebc4f8da651a8e4da2441c76a98f`.
+
+- `__glGenericPickMatrixProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x227c610. The routine occupies 212 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9c610, which occupies 212 bytes. Both ranges have SHA-256 `8a3af424b32cadfc18f4d1424209fe9e2bb58bc860ff2853077db9a914c4cb48`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glGenericPickInvTransposeProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x227c6f0. The routine occupies 132 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9c6f0, which occupies 132 bytes. Both ranges have SHA-256 `3ee3394600697957c998890d2fd0a797a46f8b1172f67d8cf397a96ff11bf321`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `Store_32A` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x227d700. The routine occupies 360 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9d700, which occupies 360 bytes. Both ranges have SHA-256 `0ae072e47429b13d84548c2b522d27fbc2b5ce7d08ded6414e9cac0ff8406f70`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `Fetch_32A` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x227db30. The routine occupies 208 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9db30, which occupies 208 bytes. Both ranges have SHA-256 `3449a361e9139b66ebda3e6c1873d133e019e567b6860cc35f0b3c3e90b4a4a4`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glkonlc_Color3bv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22ac660. The routine occupies 156 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecc660, which occupies 156 bytes. Both ranges have SHA-256 `9dc2dea4d9f1df6cd7283a05852aa1f49f22cd7b8624248434cfbad351fb1476`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color3sv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22acbc0. The routine occupies 152 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2eccbc0, which occupies 152 bytes. Both ranges have SHA-256 `97e9b1d78cb49ef042ba2bf730dede55a77665469c13bddfa433940a14cae53a`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color3ubv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22acd00. The routine occupies 156 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2eccd00, which occupies 156 bytes. Both ranges have SHA-256 `4b1fedfb991efbdda74d833e2e0ed44193ee252ace0a971a1b6b1bb158a28393`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color3usv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22acf80. The routine occupies 152 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2eccf80, which occupies 152 bytes. Both ranges have SHA-256 `6f3eeabe70a43efc9dfdbaea9b3422de21dc5f3ee7b355c09df6b9e883c318e3`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color4bv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22ad0e0. The routine occupies 168 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecd0e0, which occupies 168 bytes. Both ranges have SHA-256 `930ab4480bdd2a77aac5cf0b693d617adc6c021ea5117771d033600c1d7f8907`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color4sv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22ad6b0. The routine occupies 164 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecd6b0, which occupies 164 bytes. Both ranges have SHA-256 `1b1135184f1a9209c9b8369ce69411737e3bcf0bf96fc89883c18b046503ea40`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color4ubv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22ad810. The routine occupies 168 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecd810, which occupies 168 bytes. Both ranges have SHA-256 `ded1f11e528c37967dcac2c744679cb548fc8feaf56dc2757d63f77f3d424ee6`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_Color4usv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Source grade: Inferred.
+  Target address 0x22adac0. The routine occupies 164 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecdac0, which occupies 164 bytes. Both ranges have SHA-256 `b4fff780b4c33dc7917140f84a56a7ffbd9b058369856591fb81feac55e50783`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_LoadMatrixd` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local list-record interface. The broader role remains Inferred.
+  Target address 0x22b4920. The routine occupies 508 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ed4920, which occupies 508 bytes. Both ranges have SHA-256 `56ed3d0330d0863dfd287024baf5eaded9b0e664f0740c0496f147967e8f8ffe`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glkonlc_MultMatrixd` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local list-record interface. The broader role remains Inferred.
+  Target address 0x22b4ce0. The routine occupies 508 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ed4ce0, which occupies 508 bytes. Both ranges have SHA-256 `bae3a1c778dfa17c820e15fc20b316f782ac691cd328bdd85f97a209d726bdbf`.
+  Existing note: `docs/libglcore-driver-builds.md`.
+
+- `__glle_Sentinel` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established.
+  Target address 0x22bd074. The routine occupies 16 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edd074, which occupies 16 bytes. Both ranges have SHA-256 `efed4461ec56830199c2a9865d33f071cfb78f443b9a68e691d90ae9987cfaef`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Color3f` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local attribute-copy and tail-dispatch interface. The broader role remains Inferred.
+  Target address 0x22beed0. The routine occupies 32 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edeed0, which occupies 32 bytes. Both ranges have SHA-256 `1829cfec28b9b450ba163df8e4acfa7d8b66012e0f1aa759b426be3c77f98fdc`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Color3fv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local attribute-copy and tail-dispatch interface. The broader role remains Inferred.
+  Target address 0x22beef0. The routine occupies 48 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edeef0, which occupies 48 bytes. Both ranges have SHA-256 `9c6280600b24ab2fb93408327b7da547c6c8d049f2a34e58f9b9c91b37dd4d00`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Color4f` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local attribute-copy and tail-dispatch interface. The broader role remains Inferred.
+  Target address 0x22bef20. The routine occupies 32 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edef20, which occupies 32 bytes. Both ranges have SHA-256 `91b548c195460eef0ea192a57eeb5a02eebcf922e8adae08b2d60627f2b5211d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Color4fv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established for the local attribute-copy and tail-dispatch interface. The broader role remains Inferred.
+  Target address 0x22bef40. The routine occupies 48 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edef40, which occupies 48 bytes. Both ranges have SHA-256 `2c1d3d45278dd508e442e86c6b09b0977b890471a1ad95724937f1b389053ef4`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Normal3f` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Established.** Source grade: Established.
+  Target address 0x22bef70. The routine occupies 24 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2edef70, which occupies 24 bytes. Both ranges have SHA-256 `74631043b804dc316d5a8f1cda452e79792d5d47a06029676cad931e18111119`.
+  Existing note: `docs/sample-implementation.md`.
