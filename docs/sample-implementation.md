@@ -24598,3 +24598,447 @@ comparison was not rerun and supplies no new target equation.
   The overall return remains unresolved (`jr` at 0x21e1390).
   The complete packing equation, missing converted values and full source/output
   address progression remain unknown.
+
+- `__glSpanPackUintI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e13a0, routine size 168 bytes.
+  Packs software colour indexes as words after truncating
+  floating inputs to long integers (`trunc.l.s` at
+  0x21e13c4, 0x21e13f4).
+  Reads the descriptor count at argument-one +0xc8
+  (`lw` at 0x21e13a0).
+  Word-output sites include `sw` at 0x21e13e0,
+  0x21e13fc, 0x21e140c and 0x21e141c.
+  Indexed input and output addresses remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackUintI` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e013a0,
+  168 bytes, labelled Inferred.
+  Comparison: target 168 bytes, existing 168 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4c9e40132742a35f0f595611be772583e443347f23537742227a17fc471c74f1`.
+  Existing SHA-256: `4c9e40132742a35f0f595611be772583e443347f23537742227a17fc471c74f1`.
+  Evidence: `review-facts/__glSpanPackUintI.target.txt`,
+  `review-facts/__glSpanPackUintI.sibling.txt`, `review-facts/__glSpanPackUintI.words.txt`,
+  `review-facts/__glSpanPackUintI.bytes.txt`.
+
+- `__glSpanPackIntI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e1450, routine size 200 bytes.
+  Converts software colour-index floats into masked
+  integer-word output. Uses `trunc.w.s` at 0x21e147c
+  before the first word store (`sw` at 0x21e149c).
+  The unrolled conversion sites include `trunc.w.s` at
+  0x21e14b4, 0x21e14c8, 0x21e14dc and 0x21e14f0.
+  Hostfacts leaves all output effective addresses unknown.
+  This routine makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackIntI` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e01450,
+  200 bytes, labelled Inferred.
+  Comparison: target 200 bytes, existing 200 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4a7011129e58fcc7123b3c6c61ff44ed593f9966ad3e2970f827714afc5b1a2b`.
+  Existing SHA-256: `4a7011129e58fcc7123b3c6c61ff44ed593f9966ad3e2970f827714afc5b1a2b`.
+  Evidence: `review-facts/__glSpanPackIntI.target.txt`,
+  `review-facts/__glSpanPackIntI.sibling.txt`, `review-facts/__glSpanPackIntI.words.txt`,
+  `review-facts/__glSpanPackIntI.bytes.txt`.
+
+- `__glSpanPackNonCompUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e1520, routine size 184 bytes.
+  Writes software non-component samples as bytes. Reads
+  descriptor fields +0x7c and +0xc8
+  (`lw` at 0x21e1520, 0x21e1524).
+  Truncates a float at `trunc.w.s` at 0x21e1550.
+  Byte stores include `sb` at 0x21e156c, 0x21e158c,
+  0x21e159c, 0x21e15ac and 0x21e15cc.
+  Their effective destinations are unknown to hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompUbyte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e01520,
+  184 bytes, labelled Inferred.
+  Comparison: target 184 bytes, existing 184 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `76a7d86788c496a060d83cae075bf7c47235eb8ea92b35efad130a081e1c7c9b`.
+  Existing SHA-256: `76a7d86788c496a060d83cae075bf7c47235eb8ea92b35efad130a081e1c7c9b`.
+  Evidence: `review-facts/__glSpanPackNonCompUbyte.target.txt`,
+  `review-facts/__glSpanPackNonCompUbyte.sibling.txt`, `review-facts/__glSpanPackNonCompUbyte.words.txt`,
+  `review-facts/__glSpanPackNonCompUbyte.bytes.txt`.
+
+- `__glSpanPackNonCompByte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e15e0, routine size 184 bytes.
+  Implements the software byte-output non-component path.
+  The first floating-word conversion is `trunc.w.s` at
+  0x21e1610, followed by a byte store at `sb` at
+  0x21e162c.
+  Additional byte-output sites are `sb` at 0x21e164c,
+  0x21e165c, 0x21e166c and 0x21e168c.
+  The sample conversion truncates without scaling or saturation.
+  Indexed sample and destination locations stay unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompByte` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e015e0,
+  184 bytes, labelled Inferred.
+  Comparison: target 184 bytes, existing 184 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `76a7d86788c496a060d83cae075bf7c47235eb8ea92b35efad130a081e1c7c9b`.
+  Existing SHA-256: `76a7d86788c496a060d83cae075bf7c47235eb8ea92b35efad130a081e1c7c9b`.
+  Evidence: `review-facts/__glSpanPackNonCompByte.target.txt`,
+  `review-facts/__glSpanPackNonCompByte.sibling.txt`, `review-facts/__glSpanPackNonCompByte.words.txt`,
+  `review-facts/__glSpanPackNonCompByte.bytes.txt`.
+
+- `__glSpanPackNonCompUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e16a0, routine size 184 bytes.
+  Packs software non-component floats into halfwords.
+  Descriptor +0x7c and +0xc8 supply the input words
+  (`lw` at 0x21e16a0, 0x21e16a4).
+  Output uses two-byte stores (`sh` at 0x21e16ec,
+  0x21e170c, 0x21e171c, 0x21e172c, 0x21e174c),
+  after floating truncation (`trunc.w.s` at 0x21e16d0).
+  Hostfacts cannot resolve those output addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompUshort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e016a0,
+  184 bytes, labelled Inferred.
+  Comparison: target 184 bytes, existing 184 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bcda54fb3b5ce66ae005b368bc893efe4fc5206b53df0a013558593dd4e64cc8`.
+  Existing SHA-256: `bcda54fb3b5ce66ae005b368bc893efe4fc5206b53df0a013558593dd4e64cc8`.
+  Evidence: `review-facts/__glSpanPackNonCompUshort.target.txt`,
+  `review-facts/__glSpanPackNonCompUshort.sibling.txt`, `review-facts/__glSpanPackNonCompUshort.words.txt`,
+  `review-facts/__glSpanPackNonCompUshort.bytes.txt`.
+
+- `__glSpanPackNonCompShort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e1760, routine size 184 bytes.
+  Provides the software signed-short non-component
+  conversion using `trunc.w.s` at 0x21e1790.
+  Halfword output sites include `sh` at 0x21e17ac,
+  0x21e17cc, 0x21e17dc, 0x21e17ec and 0x21e180c.
+  Reads descriptor count +0xc8 (`lw` at 0x21e1764).
+  Its complete body performs no callbacks and leaves
+  indexed source and destination bases unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompShort` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e01760,
+  184 bytes, labelled Inferred.
+  Comparison: target 184 bytes, existing 184 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bcda54fb3b5ce66ae005b368bc893efe4fc5206b53df0a013558593dd4e64cc8`.
+  Existing SHA-256: `bcda54fb3b5ce66ae005b368bc893efe4fc5206b53df0a013558593dd4e64cc8`.
+  Evidence: `review-facts/__glSpanPackNonCompShort.target.txt`,
+  `review-facts/__glSpanPackNonCompShort.sibling.txt`, `review-facts/__glSpanPackNonCompShort.words.txt`,
+  `review-facts/__glSpanPackNonCompShort.bytes.txt`.
+
+- `__glSpanPackNonCompUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e1820, routine size 184 bytes.
+  Converts software non-component values using long
+  truncation (`trunc.l.s` at 0x21e1850,
+  0x21e1884, 0x21e1894, 0x21e18a4, 0x21e18b4).
+  Writes four-byte words at `sw` at 0x21e186c,
+  0x21e188c, 0x21e189c, 0x21e18ac and 0x21e18cc.
+  The descriptor input words are +0x7c and +0xc8
+  (`lw` at 0x21e1820, 0x21e1824).
+  Output effective addresses remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompUint` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e01820,
+  184 bytes, labelled Inferred.
+  Comparison: target 184 bytes, existing 184 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `53a05c01fbdba5c10c75e63e1313f46c9c53a32715daca7273468ca87e9c31b5`.
+  Existing SHA-256: `53a05c01fbdba5c10c75e63e1313f46c9c53a32715daca7273468ca87e9c31b5`.
+  Evidence: `review-facts/__glSpanPackNonCompUint.target.txt`,
+  `review-facts/__glSpanPackNonCompUint.sibling.txt`, `review-facts/__glSpanPackNonCompUint.words.txt`,
+  `review-facts/__glSpanPackNonCompUint.bytes.txt`.
+
+- `__glSpanPackNonCompInt` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e18e0, routine size 168 bytes.
+  Emits software signed-integer non-component output
+  directly from the floating register file.
+  Truncates at `trunc.w.s` at 0x21e191c, then stores
+  the resulting word with `swc1` at 0x21e1928.
+  The unrolled output includes `swc1` at 0x21e1948,
+  0x21e1954, 0x21e1960 and 0x21e197c.
+  These stores have unresolved effective addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackNonCompInt` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e018e0,
+  168 bytes, labelled Inferred.
+  Comparison: target 168 bytes, existing 168 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `838fb5a48d600863af00f310aab1543bdb10c507ba67fcfb4dba284dcd3dee19`.
+  Existing SHA-256: `838fb5a48d600863af00f310aab1543bdb10c507ba67fcfb4dba284dcd3dee19`.
+  Evidence: `review-facts/__glSpanPackNonCompInt.target.txt`,
+  `review-facts/__glSpanPackNonCompInt.sibling.txt`, `review-facts/__glSpanPackNonCompInt.words.txt`,
+  `review-facts/__glSpanPackNonCompInt.bytes.txt`.
+
+- `__glSpanCopy` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e1990, routine size 92 bytes.
+  Copies a software span with `memcpy`
+  (`jalr` at 0x21e19d4), passing original argument
+  three as destination and original argument two as
+  source. Hostfacts leaves the computed byte count unknown.
+  Size inputs come from descriptor +0xc4, +0x24 and
+  +0x2c (`lw` at 0x21e1990, 0x21e1994, 0x21e199c).
+  The integer return is the memcpy result
+  (`jr` at 0x21e19e4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanCopy` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e01990,
+  92 bytes, labelled Inferred.
+  Comparison: target 92 bytes, existing 92 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `46d78cd42065fa02a247fa35a7214ad59f08d8ec7223a727ac4127ae3ab0b443`.
+  Existing SHA-256: `46d78cd42065fa02a247fa35a7214ad59f08d8ec7223a727ac4127ae3ab0b443`.
+  Evidence: `review-facts/__glSpanCopy.target.txt`,
+  `review-facts/__glSpanCopy.sibling.txt`, `review-facts/__glSpanCopy.words.txt`,
+  `review-facts/__glSpanCopy.bytes.txt`.
+
+- `__glSpanPackBitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e19f0, routine size 1860 bytes.
+  Packs software float samples into bitmap bytes.
+  Reads bit-order, count and initial-bit fields at
+  argument-one +0x8c, +0xb8 and +0xac
+  (`lw` at 0x21e19f0, 0x21e1a00, 0x21e1a0c).
+  Both initial-byte paths read argument-three +0
+  (`lbu` at 0x21e19f8) and write there
+  (`sb` at 0x21e1b7c, 0x21e1f0c).
+  Later source and destination addresses are unresolved.
+  The complete body contains no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glSpanPackBitmap` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e019f0,
+  1860 bytes, labelled Inferred.
+  Comparison: target 1860 bytes, existing 1860 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c04c9589ddccefa7e75aa37a5d82dd22e8e8a6ead497a179d36a05b6d4c00297`.
+  Existing SHA-256: `c04c9589ddccefa7e75aa37a5d82dd22e8e8a6ead497a179d36a05b6d4c00297`.
+  Evidence: `review-facts/__glSpanPackBitmap.target.txt`,
+  `review-facts/__glSpanPackBitmap.sibling.txt`, `review-facts/__glSpanPackBitmap.words.txt`,
+  `review-facts/__glSpanPackBitmap.bytes.txt`.
+
+- `PickSpanModifiers` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e26a0, routine size 14836 bytes.
+  Selects software span procedures and descriptor fields.
+  One path installs procedure address 0x21db510 as a
+  doubleword at argument-one +0x1a0
+  (`sd` at 0x21e3974). Another writes 0x21dd020 at
+  +0x198 (`sd` at 0x21e49e8).
+  Calls `__glBuildRGBAModifyTables`,
+  `__glBuildItoRGBAModifyTables` and
+  `__glBuildItoIModifyTables` (`jalr` at 0x21e6020,
+  0x21e605c, 0x21e6084 respectively), each with original
+  context and context +39048. Nine undecoded
+  words leave the complete selection predicates unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `PickSpanModifiers` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e026a0,
+  14836 bytes, labelled Inferred.
+  Comparison: target 14836 bytes, existing 14836 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `942152b0554b76755547bf6cad8866456dc34daa30871954a476483fa47a76a0`.
+  Existing SHA-256: `942152b0554b76755547bf6cad8866456dc34daa30871954a476483fa47a76a0`.
+  Evidence: `review-facts/PickSpanModifiers.target.txt`,
+  `review-facts/PickSpanModifiers.sibling.txt`, `review-facts/PickSpanModifiers.words.txt`,
+  `review-facts/PickSpanModifiers.bytes.txt`.
+
+- `__glClipDrawPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e60a0, routine size 1256 bytes.
+  Clips a software pixel rectangle, updating descriptor
+  words +0x38 and +0x3c (`sw` at 0x21e626c,
+  0x21e6444).
+  Additional dimensions reach +0xbc and +0xb8
+  (`sw` at 0x21e6544, 0x21e6550).
+  Rejection includes a zero return (`jr` at 0x21e61c0),
+  while completion returns one (`jr` at 0x21e6580).
+  Ten undecoded words prevent recovery of the full
+  clipping predicates. There are no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glClipDrawPixels` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e060a0,
+  1256 bytes, labelled Inferred.
+  Comparison: target 1256 bytes, existing 1256 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `7744fd7384e2ec2474d741818271723b07a2a64b3504bcbedd76457f92467a8c`.
+  Existing SHA-256: `7744fd7384e2ec2474d741818271723b07a2a64b3504bcbedd76457f92467a8c`.
+  Evidence: `review-facts/__glClipDrawPixels.target.txt`,
+  `review-facts/__glClipDrawPixels.sibling.txt`, `review-facts/__glClipDrawPixels.words.txt`,
+  `review-facts/__glClipDrawPixels.bytes.txt`.
+
+- `__glComputeSpanPixelArray` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e6590, routine size 516 bytes.
+  Computes software span-position data. Reads descriptor
+  float +0xb0 (`lwc1` at 0x21e6598) and doubleword
+  array pointer +0x160 (`ld` at 0x21e65cc).
+  Halfword output includes `sh` at 0x21e6650,
+  0x21e6690, 0x21e66a0, 0x21e66ac and 0x21e66b8.
+  Indexed output addresses remain unresolved.
+  Three words are undecoded, so their
+  dependent zoom-path conditions stay unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glComputeSpanPixelArray` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e06590,
+  516 bytes, labelled Inferred.
+  Comparison: target 516 bytes, existing 516 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `02230c3dd7f585f775fbd80d2fb65a7daa32a1e16374075e847f283ea3c0dca5`.
+  Existing SHA-256: `02230c3dd7f585f775fbd80d2fb65a7daa32a1e16374075e847f283ea3c0dca5`.
+  Evidence: `review-facts/__glComputeSpanPixelArray.target.txt`,
+  `review-facts/__glComputeSpanPixelArray.sibling.txt`, `review-facts/__glComputeSpanPixelArray.words.txt`,
+  `review-facts/__glComputeSpanPixelArray.bytes.txt`.
+
+- `__glLoadUnpackModes` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e67a0, routine size 144 bytes.
+  Loads software unpack state into argument one's
+  descriptor. Copies context byte +0x595 to word +0x34
+  (`lbu` at 0x21e6800, `sw` at 0x21e6804).
+  Context byte +0x594 reaches word +0x30
+  (`lbu` at 0x21e6808, `sw` at 0x21e6810).
+  Other state copies include context +0x5a4 to
+  descriptor +0x4c (`sw` at 0x21e67e4).
+  No helper calls occur in the supplied body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glLoadUnpackModes` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e067a0,
+  144 bytes, labelled Inferred.
+  Comparison: target 144 bytes, existing 144 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `91b15e5ffcfed857f10c6ed00c348b69440cf052cfc491b595ca7294e722b99f`.
+  Existing SHA-256: `91b15e5ffcfed857f10c6ed00c348b69440cf052cfc491b595ca7294e722b99f`.
+  Evidence: `review-facts/__glLoadUnpackModes.target.txt`,
+  `review-facts/__glLoadUnpackModes.sibling.txt`, `review-facts/__glLoadUnpackModes.words.txt`,
+  `review-facts/__glLoadUnpackModes.bytes.txt`.
+
+- `__glInitDrawPixelsInfo` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e6830, routine size 332 bytes.
+  Initializes software draw-pixels information. Copies
+  context floats +0x224 and +0x220 to descriptor +0xd8
+  and +0xd4 (`swc1` at 0x21e6838, 0x21e683c).
+  Original argument six is stored as an eight-byte
+  pointer at descriptor +8 (`sd` at 0x21e6930,
+  0x21e6958).
+  Width and height occupy +0xb8 and +0xbc
+  (`sw` at 0x21e68f8, 0x21e6900).
+  Three undecoded words leave dependent conditions unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitDrawPixelsInfo` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e06830,
+  332 bytes, labelled Inferred.
+  Comparison: target 332 bytes, existing 332 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d931ea46eb69ffa4a41401e08df7174c65354bedb782dfac2d5c5443688300f1`.
+  Existing SHA-256: `d931ea46eb69ffa4a41401e08df7174c65354bedb782dfac2d5c5443688300f1`.
+  Evidence: `review-facts/__glInitDrawPixelsInfo.target.txt`,
+  `review-facts/__glInitDrawPixelsInfo.sibling.txt`, `review-facts/__glInitDrawPixelsInfo.words.txt`,
+  `review-facts/__glInitDrawPixelsInfo.bytes.txt`.
+
+- `__glDrawPixels2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e6c10, routine size 560 bytes.
+  Runs a software pixel path with three unnamed callback
+  sites (`jalr` at 0x21e6d24, 0x21e6d50, 0x21e6d68).
+  Each retains original context and descriptor arguments.
+  Calls `__glComputeSpanPixelArray`
+  (`bgezall` at 0x21e6cc8).
+  Advances descriptor pointer +0x10 by its word +0x18
+  (`sd` at 0x21e6d4c).
+  Generated callback buffer addresses remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDrawPixels2` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e06c10,
+  560 bytes, labelled Inferred.
+  Comparison: target 560 bytes, existing 560 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e4eccafc63264e8d86654b45a048e967d1f69fd0c5013594f5ad83403250f065`.
+  Existing SHA-256: `e4eccafc63264e8d86654b45a048e967d1f69fd0c5013594f5ad83403250f065`.
+  Evidence: `review-facts/__glDrawPixels2.target.txt`,
+  `review-facts/__glDrawPixels2.sibling.txt`, `review-facts/__glDrawPixels2.words.txt`,
+  `review-facts/__glDrawPixels2.bytes.txt`.
+
+- `__glDrawPixels1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e6e40, routine size 512 bytes.
+  Executes software pixel rows through two unnamed
+  procedures (`jalr` at 0x21e6f44, 0x21e6f68),
+  both receiving original arguments zero and one.
+  Prepares the span-position array through
+  `__glComputeSpanPixelArray` (`bgezall` at 0x21e6ee8).
+  Stores updated row data pointer at descriptor +0x10
+  (`sd` at 0x21e6f60) and floating position at +0xd8
+  (`swc1` at 0x21e6f88).
+  The merged integer return is unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDrawPixels1` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e06e40,
+  512 bytes, labelled Inferred.
+  Comparison: target 512 bytes, existing 512 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `df7ebdd99370c582de069af6c7f3febb1539cdfb1fee81b4d7a42d0eef5c12c3`.
+  Existing SHA-256: `df7ebdd99370c582de069af6c7f3febb1539cdfb1fee81b4d7a42d0eef5c12c3`.
+  Evidence: `review-facts/__glDrawPixels1.target.txt`,
+  `review-facts/__glDrawPixels1.sibling.txt`, `review-facts/__glDrawPixels1.words.txt`,
+  `review-facts/__glDrawPixels1.bytes.txt`.
+
+- `__glDrawPixels0` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e7040, routine size 424 bytes.
+  Draws software pixel rows with one unnamed procedure
+  (`jalr` at 0x21e7150), preserving context and
+  descriptor as arguments zero and one.
+  Uses `__glComputeSpanPixelArray` first
+  (`bgezall` at 0x21e70b8).
+  Row-pointer updates use eight-byte descriptor +0x10
+  stores (`sd` at 0x21e7110, 0x21e713c, 0x21e7174).
+  Callback sample-buffer arguments remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDrawPixels0` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e07040,
+  424 bytes, labelled Inferred.
+  Comparison: target 424 bytes, existing 424 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d2fd8e961b66a629eec873225b8322e76a9bac0bc76ea6018abdcf108bf067f9`.
+  Existing SHA-256: `d2fd8e961b66a629eec873225b8322e76a9bac0bc76ea6018abdcf108bf067f9`.
+  Evidence: `review-facts/__glDrawPixels0.target.txt`,
+  `review-facts/__glDrawPixels0.sibling.txt`, `review-facts/__glDrawPixels0.words.txt`,
+  `review-facts/__glDrawPixels0.bytes.txt`.
+
+- `__glSlowPickDrawPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e7660, routine size 228 bytes.
+  Prepares a software draw-pixels descriptor at
+  entry-stack -672 using `__glInitDrawPixelsInfo`
+  (`bgezall` at 0x21e76a8).
+  Calls `__glLoadUnpackModes` with original argument six
+  as its third argument (`bgezall` at 0x21e76bc).
+  Further paths include `__glClipDrawPixels`,
+  `__glInitUnpacker` and `__glGenericPickDrawPixels`
+  (`bgezall` at 0x21e772c, 0x21e76f8,
+  0x21e7708 respectively).
+
+  Existing entry: `docs/sample-implementation.md`, `__glSlowPickDrawPixels` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e07660,
+  228 bytes, labelled Inferred.
+  Comparison: target 228 bytes, existing 228 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f15b707a90e512d3c6d36898fdea4c6b644af625dfd18b132f7ce89bc7b99df9`.
+  Existing SHA-256: `f15b707a90e512d3c6d36898fdea4c6b644af625dfd18b132f7ce89bc7b99df9`.
+  Evidence: `review-facts/__glSlowPickDrawPixels.target.txt`,
+  `review-facts/__glSlowPickDrawPixels.sibling.txt`, `review-facts/__glSlowPickDrawPixels.words.txt`,
+  `review-facts/__glSlowPickDrawPixels.bytes.txt`.
+
+- `__glGenericPickDrawPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x21e7750, routine size 308 bytes.
+  Chooses software pixel rendering through
+  `PickSpanModifiers`, passing entry-stack -64 as
+  argument two (`bgezall` at 0x21e779c).
+  Saves that helper's integer result at descriptor
+  +0x18c (`sw` at 0x21e77fc), with result minus one
+  at +0x11c (`sw` at 0x21e77b0).
+  Installs an unresolved doubleword procedure value at
+  +0x200 (`sd` at 0x21e780c), then invokes an unnamed
+  procedure (`jalr` at 0x21e7810).
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickDrawPixels` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e07750,
+  308 bytes, labelled Inferred.
+  Comparison: target 308 bytes, existing 308 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e6be8d3bd2271a17453161d505e90daac9245483801bad4cabbd21c4222c9bcd`.
+  Existing SHA-256: `e6be8d3bd2271a17453161d505e90daac9245483801bad4cabbd21c4222c9bcd`.
+  Evidence: `review-facts/__glGenericPickDrawPixels.target.txt`,
+  `review-facts/__glGenericPickDrawPixels.sibling.txt`, `review-facts/__glGenericPickDrawPixels.words.txt`,
+  `review-facts/__glGenericPickDrawPixels.bytes.txt`.
