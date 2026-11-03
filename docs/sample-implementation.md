@@ -22701,3 +22701,346 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `review-facts/__glDlistNewArray.target.txt`,
   `review-facts/__glDlistNewArray.sibling.txt`, `review-facts/__glDlistNewArray.words.txt`,
   `review-facts/__glDlistNewArray.bytes.txt`.
+
+- `__glDlistFreeArray` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4070, occupies 108 bytes.
+  Inferred. The optional context +0x14e0 callback is skipped when null (`beqz` at 0x21d4098).
+  The call to an unresolved callback has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[a0+5344]:8` (`jalr` at 0x21d40a0).
+  The call to `__glDlistHeapFree` has resolved arguments `a0=a1+8, a1=?, a2=?, a3=?` (`bgezall` at 0x21d40ac).
+  The call to an unresolved callback has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?` (`jalr` at 0x21d40bc).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x14e0` (`ld` at 0x21d4078).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x1580` (`ld` at 0x21d40b4).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glim_IsList` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d40e0, occupies 108 bytes.
+  Inferred. A state word of 1 at absolute 0x1030 selects error 0x502 (`lw` at 0x21d40e4, `beq` at
+  0x21d4100). The error path returns 0 (`jr` at 0x21d4144). The normal result after masking
+  remains unresolved.
+  The call to `__glNamesIsName` has resolved arguments `a0=[0x1020]:8, a1=[[0x1020]:8+5328]:8, a2=a0 at entry (arg0), a3=a3 at entry (arg3)` (`jalr` at 0x21d4110).
+  The call to `__glSetError` has resolved arguments `a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a3 at entry (arg3)` (`jalr` at 0x21d4130).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x21d40e4).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x21d410c).
+  It reads 8 bytes at `[0x1020]:8 +0x14d0` (`ld` at 0x21d4114).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glim_GenLists` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4150, occupies 164 bytes.
+  Inferred. State 1 at absolute 0x1030 selects error 0x502 (`beq` at 0x21d4174). A negative original
+  a0 selects error 0x501 (`bltz` at 0x21d417c). Zero original a0 returns 0 (`bnez` at 0x21d4184, `jr` at 0x21d4190).
+  The call to `__glNamesGenRange` has resolved arguments `a0=[0x1020]:8, a1=[[0x1020]:8+5328]:8, a2=a0 at entry (arg0), a3=a3 at entry (arg3)` (`jalr` at 0x21d41a0).
+  The call to `__glSetError` has resolved arguments `a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a3 at entry (arg3)` (`jalr` at 0x21d41bc).
+  The call to `__glSetError` has resolved arguments `a0=0x501, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a3 at entry (arg3)` (`jalr` at 0x21d41d8).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x21d4158).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x21d419c).
+  It reads 8 bytes at `[0x1020]:8 +0x14d0` (`ld` at 0x21d41a4).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glim_ListBase` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4200, occupies 88 bytes.
+  Established. State 1 at absolute 0x1030 selects error 0x502 (`beq` at 0x21d4218). The other path stores
+  original a0 in the context field named below.
+  The call to `__glSetError` has resolved arguments `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d4248).
+  The 4-byte write at `[0x1020]:8 +0x8c4` has value `a0` (`sw` at 0x21d4230).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glim_DeleteLists` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4260, occupies 128 bytes.
+  Inferred. State 1 at absolute 0x1030 selects error 0x502 (`beq` at 0x21d4284). A negative original
+  a1 selects error 0x501 (`bltz` at 0x21d428c). Zero original a1 skips deletion (`beqz` at 0x21d4294).
+  The call to `__glNamesDeleteRange` has resolved arguments `a0=[0x1020]:8, a1=[[0x1020]:8+5328]:8, a2=a0 at entry (arg0), a3=a1 at entry (arg1)` (`jalr` at 0x21d42a4).
+  The call to `__glSetError` has resolved arguments `a0=0x502, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a1 at entry (arg1)` (`jalr` at 0x21d42c0).
+  The call to `__glSetError` has resolved arguments `a0=0x501, a1=a1 at entry (arg1), a2=a0 at entry (arg0), a3=a1 at entry (arg1)` (`jalr` at 0x21d42d0).
+  It reads 4 bytes at `abs 0x1030` (`lw` at 0x21d4268).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x21d42a0).
+  It reads 8 bytes at `[0x1020]:8 +0x14d0` (`ld` at 0x21d42a8).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_CallList` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4420, occupies 108 bytes.
+  Inferred. Original a0=0 selects `__glsplc_InvalidEnum` (`beqz` at 0x21d4438). A null allocation skips
+  the record write (`beqz` at 0x21d4450).
+  The call to `__glSPDlalloc` has resolved arguments `a0=0x8, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d4448).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`bgezall` at 0x21d447c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4468).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_CallLists` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4490, occupies 260 bytes.
+  Inferred. A negative original a0 selects `__glsplc_InvalidValue` (`bltz` at 0x21d44bc). The type is
+  tested against the unsigned interval 0x1400 through 0x1409 (`bnez` at 0x21d44cc, `beqz` at 0x21d44d4). The complete table-derived byte count remains unresolved.
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=0x22c4e90, a3=a3 at entry (arg3)` (`bgezall` at 0x21d4500).
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0x1, a2=-0x8, a3=a3 at entry (arg3)` (`jalr` at 0x21d4534).
+  The call to `memcpy` has resolved arguments `a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?` (`jalr` at 0x21d4570).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`bgezall` at 0x21d4584).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d4568).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4574).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Bitmap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d45a0, occupies 284 bytes.
+  Inferred. Negative original a0 or a1 selects `__glsplc_InvalidValue` (`bltz` at 0x21d45dc,
+  0x21d45f8). The allocation-size expression remains unresolved.
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0x4, a2=-0x8, a3=a3 at entry (arg3)` (`jalr` at 0x21d4628).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=0x1900, a4=0x1a00, a5=a6 at entry (arg6), a6=ret(__glSPDlalloc)+32` (`jalr` at 0x21d4698).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a6 at entry (arg6), a3=a3 at entry (arg3)` (`bgezall` at 0x21d46ac).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d4650).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4658).
+  The 4-byte write at `ret(__glSPDlalloc) +0x18` has value unresolved (`sw` at 0x21d4660).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value `f17` (`swc1` at 0x21d4674).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value `f16` (`swc1` at 0x21d4684).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `f15` (`swc1` at 0x21d4690).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `f14` (`swc1` at 0x21d469c).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_PolygonStipple` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d46c0, occupies 140 bytes.
+  Inferred. A null allocation skips image filling (`bnez` at 0x21d470c).
+  The call to `__glImageSize` has resolved arguments `a0=0x20, a1=0x20, a2=0x1900, a3=0x1a00` (`jalr` at 0x21d46f4).
+  The call to `__glSPDlalloc` has resolved arguments `a0=ret(__glImageSize), a1=0x65, a2=?, a3=?` (`jalr` at 0x21d4704).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=0x20, a2=0x20, a3=0x1900, a4=0x1a00, a5=a0 at entry (arg0), a6=ret(__glSPDlalloc)` (`jalr` at 0x21d473c).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x21d46c4).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Map1f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4750, occupies 300 bytes.
+  Inferred. A negative `__glEvalComputeK` result selects `__glsplc_InvalidEnum` (`bltz` at 0x21d47a0).
+  The complete dimension and domain validation remains unresolved.
+  The call to `__glEvalComputeK` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d4794).
+  The call to `__glMap1_size` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=?` (`jalr` at 0x21d47dc).
+  The call to `__glSPDlalloc` has resolved arguments `a0=(ret(__glMap1_size) << 0x2)+16, a1=0x8e, a2=?, a3=?` (`jalr` at 0x21d47f0).
+  The call to `__glFillMap1f` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=a3 at entry (arg3), a3=a5 at entry (arg5), a4=ret(__glSPDlalloc)+16, a5=a0 at entry (arg0)` (`jalr` at 0x21d4830).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4844).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d486c).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a4` (`sw` at 0x21d4800).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d480c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `f14` (`swc1` at 0x21d4828).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `f13` (`swc1` at 0x21d4834).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Map1d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4880, occupies 320 bytes.
+  Inferred. A negative `__glEvalComputeK` result selects `__glsplc_InvalidEnum` (`bltz` at 0x21d48d0).
+  The complete dimension and domain validation remains unresolved.
+  The call to `__glEvalComputeK` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d48c4).
+  The call to `__glMap1_size` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=?` (`jalr` at 0x21d4918).
+  The call to `__glSPDlalloc` has resolved arguments `a0=(ret(__glMap1_size) << 0x2)+16, a1=0x8d, a2=?, a3=?` (`jalr` at 0x21d492c).
+  The call to `__glFillMap1d` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=a3 at entry (arg3), a3=a5 at entry (arg5), a4=ret(__glSPDlalloc)+16` (`jalr` at 0x21d4974).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4988).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d49b0).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a4` (`sw` at 0x21d493c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4958).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value unresolved (`swc1` at 0x21d496c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value unresolved (`swc1` at 0x21d4978).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Map2f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d49c0, occupies 388 bytes.
+  Inferred. A negative `__glEvalComputeK` result selects `__glsplc_InvalidEnum` (`bltz` at 0x21d4a14).
+  One raw comparison word remains decoder-unknown. Its predicate and dependent control flow
+  remain unresolved.
+  The call to `__glEvalComputeK` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d4a08).
+  The call to `__glMap2_size` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=?` (`jalr` at 0x21d4a90).
+  The call to `__glSPDlalloc` has resolved arguments `a0=(ret(__glMap2_size) << 0x2)+32, a1=0x90, a2=?, a3=?` (`jalr` at 0x21d4aa4).
+  The call to `__glFillMap2f` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=a3 at entry (arg3), a4=a7 at entry (arg7), a6=ret(__glSPDlalloc)+32, a7=a0 at entry (arg0)` (`jalr` at 0x21d4afc).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4b10).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4b34).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a4` (`sw` at 0x21d4ab8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x18` has value unresolved (`sw` at 0x21d4ac8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4acc).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value `f18` (`swc1` at 0x21d4ae0).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value `f17` (`swc1` at 0x21d4ae8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `f14` (`swc1` at 0x21d4af4).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `f13` (`swc1` at 0x21d4b00).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Map2d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d4b50, occupies 416 bytes.
+  Inferred. A negative `__glEvalComputeK` result selects `__glsplc_InvalidEnum` (`bltz` at 0x21d4ba4).
+  One raw comparison word remains decoder-unknown. Its predicate and dependent control flow
+  remain unresolved.
+  The call to `__glEvalComputeK` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d4b98).
+  The call to `__glMap2_size` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=?` (`jalr` at 0x21d4c28).
+  The call to `__glSPDlalloc` has resolved arguments `a0=(ret(__glMap2_size) << 0x2)+32, a1=0x8f, a2=?, a3=?` (`jalr` at 0x21d4c3c).
+  The call to `__glFillMap2d` has resolved arguments `a0=ret(__glEvalComputeK), a1=a4 at entry (arg4), a2=?, a3=a3 at entry (arg3), a4=a7 at entry (arg7), a6=ret(__glSPDlalloc)+32` (`jalr` at 0x21d4ca8).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4cbc).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d4ce0).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a4` (`sw` at 0x21d4c54).
+  The 4-byte write at `ret(__glSPDlalloc) +0x18` has value unresolved (`sw` at 0x21d4c64).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d4c68).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value unresolved (`swc1` at 0x21d4c88).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value unresolved (`swc1` at 0x21d4c90).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value unresolved (`swc1` at 0x21d4ca0).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value unresolved (`swc1` at 0x21d4cac).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_DrawPixels` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d53b0, occupies 1164 bytes.
+  Inferred. Negative original a0 or a1 selects `__glsplc_InvalidValue` (`bltz` at 0x21d53e4,
+  0x21d53ec). The full format/type decision tree and aligned allocation size remain
+  unresolved.
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d54e0).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d557c).
+  The call to `__glImageSize` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d55a8).
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0xab, a2=-0x8, a3=?` (`jalr` at 0x21d55c4).
+  The call to `__glsplc_InvalidOperation` has resolved arguments `a0=?, a1=?, a2=?, a3=?, a5=0x1908, a6=0x8000, a7=0x80e1` (`bgezall` at 0x21d562c).
+  The call to `__glsplc_InvalidOperation` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d5678).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4), a6=ret(__glSPDlalloc)+16, a7=a0 at entry (arg0)` (`jalr` at 0x21d570c).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8` (`bgezall` at 0x21d5770).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`bgezall` at 0x21d57fc).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a3` (`sw` at 0x21d56dc).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `a2` (`sw` at 0x21d56e4).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d56e8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d5708).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_TexImage1D` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d5840, occupies 396 bytes.
+  Inferred. Original a0=0x8063 selects the indirect path (`beq` at 0x21d5880). The complete dimension
+  checks and aligned record size remain unresolved.
+  The call to `FormatAndType` has resolved arguments `a0=a5 at entry (arg5), a1=a6 at entry (arg6), a2=a2 at entry (arg2), a3=?` (`bgezall` at 0x21d58bc).
+  The call to `__glImageSize` has resolved arguments `a0=a3 at entry (arg3), a1=0x1, a2=a5 at entry (arg5), a3=a6 at entry (arg6)` (`jalr` at 0x21d58d8).
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0x6c, a2=-0x8, a3=?` (`jalr` at 0x21d58f8).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=a3 at entry (arg3), a2=0x1, a3=a5 at entry (arg5), a4=a6 at entry (arg6), a5=a7 at entry (arg7), a6=ret(__glSPDlalloc)+32` (`jalr` at 0x21d597c).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?` (`bgezall` at 0x21d5990).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?` (`bgezall` at 0x21d59a4).
+  The call to an unresolved callback has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d59bc).
+  The 4-byte write at `ret(__glSPDlalloc) +0x18` has value `a6` (`sw` at 0x21d590c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value `a5` (`sw` at 0x21d5910).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value `a4` (`sw` at 0x21d5914).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a3` (`sw` at 0x21d5918).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d591c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `a2` (`sw` at 0x21d5920).
+  The 4-byte write at `ret(__glSPDlalloc) +0x1c` has value unresolved (`sw` at 0x21d592c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d5934).
+  `FormatAndType` is an inventory-derived callee label on both exact builds.
+  Its call addresses are resolved, while its identity lacks independent native metadata and its behavior remains Unknown.
+  Other named helpers have native symbols. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_TexImage2D` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d59d0, occupies 412 bytes.
+  Inferred. Original a0=0x8064 selects the indirect path (`beq` at 0x21d5a18). The complete dimension
+  checks and aligned record size remain unresolved.
+  The call to `FormatAndType` has resolved arguments `a0=a6 at entry (arg6), a1=a7 at entry (arg7), a2=?, a3=a3 at entry (arg3)` (`bgezall` at 0x21d5a58).
+  The call to `__glImageSize` has resolved arguments `a0=a3 at entry (arg3), a1=a4 at entry (arg4), a2=a6 at entry (arg6), a3=a7 at entry (arg7)` (`jalr` at 0x21d5a74).
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0x6d, a2=-0x8, a3=?` (`jalr` at 0x21d5a94).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=a6 at entry (arg6), a4=a7 at entry (arg7), a6=ret(__glSPDlalloc)+40` (`jalr` at 0x21d5af8).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=a3 at entry (arg3)` (`bgezall` at 0x21d5b28).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=a3 at entry (arg3)` (`bgezall` at 0x21d5b3c).
+  The call to an unresolved callback has resolved arguments `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` (`jalr` at 0x21d5b5c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x1c` has value `a7` (`sw` at 0x21d5aa4).
+  The 4-byte write at `ret(__glSPDlalloc) +0x18` has value `a6` (`sw` at 0x21d5aa8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value `a5` (`sw` at 0x21d5aac).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value `a4` (`sw` at 0x21d5ab0).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a3` (`sw` at 0x21d5ab4).
+  The 4-byte write at `ret(__glSPDlalloc) +0x20` has value unresolved (`sw` at 0x21d5ab8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `a2` (`sw` at 0x21d5ac8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d5acc).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d5ad4).
+  `FormatAndType` is an inventory-derived callee label on both exact builds.
+  Its call addresses are resolved, while its identity lacks independent native metadata and its behavior remains Unknown.
+  Other named helpers have native symbols. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Disable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d65a0, occupies 624 bytes.
+  Inferred. The body has local-state paths and a record-allocation path. The complete
+  enumerant-to-state mapping remains unresolved.
+  The call to `__glSPDlalloc` has resolved arguments `a0=0x8, a1=0x89, a2=?, a3=?` (`jalr` at 0x21d6678).
+  The 4-byte write at `[0x1020]:8 +0x17b8` has value unresolved (`sw` at 0x21d6624).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d663c).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d664c).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d668c).
+  The 4-byte write at `[0x1020]:8 +0x17bc` has value unresolved (`sw` at 0x21d66e4).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d671c).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d6728).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d6748).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d6758).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d6774).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d6784).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d67b0).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d67c0).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value unresolved (`sw` at 0x21d67ec).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value unresolved (`sw` at 0x21d67f8).
+  The 4-byte write at `[0x1020]:8 +0x17bc` has value unresolved (`sw` at 0x21d680c).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_Enable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d6810, occupies 564 bytes.
+  Inferred. The body has local-state paths and a record-allocation path. The complete
+  enumerant-to-state mapping remains unresolved.
+  The call to `__glSPDlalloc` has resolved arguments `a0=0x8, a1=0x8a, a2=?, a3=?` (`jalr` at 0x21d68d0).
+  The 4-byte write at `[0x1020]:8 +0x17b8` has value unresolved (`sw` at 0x21d6888).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x4)` (`sw` at 0x21d6898).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0x7f00000)` (`sw` at 0x21d68a8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d68e8).
+  The 4-byte write at `[0x1020]:8 +0x17bc` has value `([[0x1020]:8+6076] | 0x2)` (`sw` at 0x21d693c).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x1)` (`sw` at 0x21d6974).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0xf00)` (`sw` at 0x21d6980).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x10)` (`sw` at 0x21d6998).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0x8000000)` (`sw` at 0x21d69a8).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x20)` (`sw` at 0x21d69c0).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0xff)` (`sw` at 0x21d69cc).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x2)` (`sw` at 0x21d69f4).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0xff000)` (`sw` at 0x21d6a00).
+  The 4-byte write at `[0x1020]:8 +0x17b4` has value `([[0x1020]:8+6068] | 0xfffffffff0000000)` (`sw` at 0x21d6a1c).
+  The 4-byte write at `[0x1020]:8 +0x17c0` has value `([[0x1020]:8+6080] | 0x8)` (`sw` at 0x21d6a24).
+  The 4-byte write at `[0x1020]:8 +0x17bc` has value `([[0x1020]:8+6076] | 0x1)` (`sw` at 0x21d6a40).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_ColorSubTable` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d6bc0, occupies 360 bytes.
+  Inferred. The argument-checker results 0x500/0x501/0x502 select error helpers (`beq` at 0x21d6c2c,
+  0x21d6c34, 0x21d6c3c). The checker rules and aligned record size remain unresolved.
+  The call to `__glCheckColorSubTableArgs` has resolved arguments `a0=[0x1020]:8, a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=a2 at entry (arg2), a4=a3 at entry (arg3), a5=a4 at entry (arg4)` (`jalr` at 0x21d6c1c).
+  The call to `__glImageSize` has resolved arguments `a0=a2 at entry (arg2), a1=0x1, a2=a3 at entry (arg3), a3=a4 at entry (arg4)` (`jalr` at 0x21d6c50).
+  The call to `__glSPDlalloc` has resolved arguments `a0=?, a1=0xfb, a2=-0x8, a3=?` (`jalr` at 0x21d6c74).
+  The call to `__glFillImage` has resolved arguments `a0=?, a1=a2 at entry (arg2), a2=0x1, a3=a3 at entry (arg3), a6=ret(__glSPDlalloc)+24, a7=a0 at entry (arg0)` (`jalr` at 0x21d6ce0).
+  The call to `__glsplc_InvalidOperation` has resolved arguments `a0=0x501, a1=0x502, a2=?, a3=?` (`bgezall` at 0x21d6cf4).
+  The call to `__glsplc_InvalidEnum` has resolved arguments `a0=0x501, a1=0x502, a2=?, a3=?` (`bgezall` at 0x21d6d08).
+  The call to `__glsplc_InvalidValue` has resolved arguments `a0=0x501, a1=0x502, a2=?, a3=?` (`bgezall` at 0x21d6d18).
+  The 4-byte write at `ret(__glSPDlalloc) +0x10` has value `a4` (`sw` at 0x21d6ca0).
+  The 4-byte write at `ret(__glSPDlalloc) +0xc` has value `a3` (`sw` at 0x21d6ca4).
+  The 4-byte write at `ret(__glSPDlalloc) +0x8` has value `a2` (`sw` at 0x21d6cac).
+  The 4-byte write at `ret(__glSPDlalloc) +0x14` has value unresolved (`sw` at 0x21d6ccc).
+  The 4-byte write at `ret(__glSPDlalloc) +0x4` has value `a1` (`sw` at 0x21d6cd8).
+  The 4-byte write at `ret(__glSPDlalloc) +0x0` has value `a0` (`sw` at 0x21d6ce4).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
+
+- `__glsplc_DrawElements` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21d6f20, occupies 400 bytes.
+  Inferred. A negative original a1 selects `__gllc_InvalidValue` (`bltz` at 0x21d6f48). Unsigned
+  original a0 at least 10 selects `__gllc_InvalidEnum` (`beqz` at 0x21d6f54). The three
+  element paths use word, byte and halfword loads, but their moving addresses and callback
+  arguments remain unresolved.
+  The call to `__gllc_InvalidEnum` has resolved arguments `a0=[0x1020]:8, a1=?, a2=0x1401, a3=a3 at entry (arg3), a5=[0x1020]:8` (`bgezall` at 0x21d6f78).
+  The call to `glBegin` has resolved arguments `a0=a0 at entry (arg0), a1=?, a2=0x1401, a3=a3 at entry (arg3), a5=[0x1020]:8` (`jalr` at 0x21d6f98).
+  The call to `glArrayElement` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`jalr` at 0x21d6ff0).
+  The call to `glEnd` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`jalr` at 0x21d700c).
+  The call to `glArrayElement` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`jalr` at 0x21d7040).
+  The call to `glArrayElement` has resolved arguments `a0=?, a1=?, a2=?, a3=?` (`jalr` at 0x21d7080).
+  The call to `__gllc_InvalidValue` has resolved arguments `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=0x1401, a3=a3 at entry (arg3), a5=[0x1020]:8` (`bgezall` at 0x21d70a0).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x21d6f24).
+  It reads 4 bytes at `? (base unknown)` (`lw` at 0x21d6ff4).
+  It reads 1 byte at `? (base unknown)` (`lbu` at 0x21d7044).
+  It reads 2 bytes at `? (base unknown)` (`lhu` at 0x21d7084).
+  Helper names establish call identities only. Unreported values, missing call
+  arguments, complete data-transfer effects and overall return semantics remain unknown.
