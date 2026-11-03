@@ -10296,6 +10296,176 @@ Target entries:
   Address 0xd9f07c0; occupies 188 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f07c0 for 188 bytes (SHA-256 `d426e62c13e2ac42b00fca45c46544f9169112bddec528caf7d1a5062e77e9d6`). Documented sibling grade: Inferred.
 
 
+#### IP35 N32 routines compared with documented sibling builds (batch 113)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies retain the documented sibling grade. Different bodies have separate target observations.
+
+| Routine | Target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glDeleteArena | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0880 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2128 / 140 | `a076e2a1487b89c69435c2f99a440d21c12690d4a729e6612c2fe0d682a22ef5` | `473ca49b731dcc460936fb4dd5669d7d172889d4df7581a152c3d8e30c4974ca` | 108 |
+| __glArenaAlloc | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0910 / 208 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f21b4 / 200 | `5f3fd263f1a477a5cae1c67a7aeb8f8457fd64dbc967457ac8d5a264bad23e3d` | `69eede87c3f9d976e926f7d688aa764c75d9a47ed1653dc8d26fb74e016b5e68` | 165 |
+| __glArenaFreeAll | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f09e0 / 116 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f227c / 128 | `a496cc849c76af03f1bcb9feb5eb6bf2045deb30c223229540c1dbeb4017035c` | `e2cb1eceb198f44be9af723edaac1f3b9a14b82a3d85c38f9d51bd9baa8d9096` | 94 |
+| freeLeafData | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0bc0 / 16 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9f0bc0 / 16 | `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263` | `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263` | 0 |
+| freeLeaf | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0bd0 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2488 / 112 | `2f0da0d4a0714e77e7d2c4537d9f4f25b3aa7574c59cd7cf54e815a595741e05` | `1cd4fe85cafe5b722ff82909c26b3e6c9dc3defe6df332e6b6e09b69fceae32b` | 62 |
+| freeBranch | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0c20 / 16 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9f0c20 / 16 | `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263` | `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263` | 0 |
+| __glNamesFreeTree | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0c30 / 356 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2530 / 376 | `fdff72ad8c42a7cd0fe18774048f55177476b46e751000b973f31c971eafe15c` | `c2521cfeefd28da759e10c9a0e6447fbfde94d189f8503cc91176af97d95b1fe` | 315 |
+| __glNamesFreeArray | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0da0 / 236 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f26a8 / 248 | `d12ffb07ca6557883825218cd557bcb4474579c2916e80ee2b93e5ae14551f21` | `0c3d71df66aa98560338bc2dada1bd346f5e06407f7dc25f9fe83a49301781bb` | 192 |
+| findLeaf | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0e90 / 128 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f27a0 / 140 | `5fb8c184f3206b5b636d35b881118fb0dc5b1edcde58fd766c3007c6e8ae7a12` | `d8ceeab8c78208443a2a2eb31a6c1ac5aa0dca682a21c875b42ed43a9ddc452c` | 98 |
+| copyLeafInfo | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0f10 / 252 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9f0f10 / 252 | `6b6dd3233f9a255b8c43ae4e533b58a84e2ff3df8d9b747d300ebe9c013999a7` | `6b6dd3233f9a255b8c43ae4e533b58a84e2ff3df8d9b747d300ebe9c013999a7` | 0 |
+| fixMemoryProblem | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1010 / 304 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2920 / 256 | `87dfabfab9565da27ee39054571488a206b34b3df1f659723f325fc6ec9beb08` | `c4a206278ddad499f599567aaa1eab1ebb174ab6f26219eece0213d9c340d503` | 207 |
+| computeMax | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1140 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2a20 / 88 | `9274598386e867e24fb60d99d600a8006af5b00115f52c759292d94063782d07` | `7b0ccc82ef66be8c90c470dfddf5c8aba8b61ebb73c0528cb3b11119bc872fad` | 51 |
+| pushMaxVal | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1190 / 84 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2a78 / 96 | `64e4c14997ac7dc5b10a7bab2d7ee87692ead6c12706ea2a3d451349e89fbd0b` | `d350bb49af2dd04ebfd2b15ee0e7d4b563597e1b46f48366257b74bf05680b46` | 66 |
+| allocLeafData | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f11f0 / 152 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9f11f0 / 152 | `2200cd3010aab806c6e9643ea024788bb696cb1853fdcb1cd86ec81eea9c2200` | `2200cd3010aab806c6e9643ea024788bb696cb1853fdcb1cd86ec81eea9c2200` | 0 |
+| reallocLeafData | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1290 / 96 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2be8 / 108 | `b1f98441b0a3d2f0a43550df46b6d037f8f44dc59c23cc7eb789eaf6abf86af5` | `f02f19687c86b2457771c5863ae20eaa078f0eebef2978a9381f2dfb3aaee5a1` | 78 |
+| allocLeaf | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f12f0 / 124 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2c54 / 124 | `2fc9b85d38fda242aea81f181779016b1b483af6202beda766ad2bd9efc3f12b` | `917bd877bbcd4993ed3bcc881201ee3177712e6d757a0994d5434c25116929f9` | 95 |
+| allocBranch | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1370 / 116 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2cd0 / 124 | `07d11d8de3f801d588b9113c615bb6b15d7c657272f2c4599c84ccb245cf3f7d` | `661d93ac4d6bbe607aa062a8cb69b577dec955e6d4116f4068adab114c969592` | 91 |
+| deleteChild | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f13f0 / 240 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2d4c / 252 | `1b6f2d3775e5c9c372cd3046c847b7ce7ff6c503260ace7237e8621fc5d0845f` | `7347131c63ee48b6a1f6466ef30c5486093d30db3d9ace216f3c13404bebcf29` | 200 |
+| addChild | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f14e0 / 228 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2e48 / 248 | `ee3ac512da7853a32e3ecbf26e1c6f93eda02e5ed514edbe859bc9961e9abc5e` | `e7d20746a2fef9c745b14db63e32cb912618a6750942f2638e75ec4bf8dbbb44` | 198 |
+| buildParent | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f1780 / 192 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f30bc / 200 | `2a241ea83b5c52284d816a9c241436974cb40c0cbb20389f347a5209af073bba` | `7cd2389d512c271e35b90e71ab6333b2bfeae68aded9867f8e138c8537a7b352` | 160 |
+
+Target entries:
+
+- `__glDeleteArena` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0880. Occupies 136 bytes.
+  Inferred. Releases arena blocks through `DeleteBlock` with the word at entry a0 +0 as its first argument (`bgezall` at 0xd9f08cc).
+  The final unknown callback receives that same first argument and the original arena pointer second (`jalr` at 0xd9f08e8).
+  Hostfacts leaves the block cursor and callback effects unknown.
+  Byte comparison: target SHA-256 `a076e2a1487b89c69435c2f99a440d21c12690d4a729e6612c2fe0d682a22ef5`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2128, 140 bytes, SHA-256 `473ca49b731dcc460936fb4dd5669d7d172889d4df7581a152c3d8e30c4974ca`; 108 differing bytes in the common prefix.
+
+- `__glArenaAlloc` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0910. Occupies 208 bytes.
+  Inferred. Allocates within an arena, using a fast return that combines the saved cursor and buffer words (`jr` at 0xd9f0968).
+  The slow path calls `NewBlock` with the word at entry a0 +0 first, while its next two arguments are unknown (`bgezall` at 0xd9f0994).
+  A nonzero allocation result takes the linking path (`bnez` at 0xd9f09a0). A zero result returns zero (`jr` at 0xd9f09b0).
+  The exact capacity predicate and one link-store base remain unresolved.
+  Byte comparison: target SHA-256 `5f3fd263f1a477a5cae1c67a7aeb8f8457fd64dbc967457ac8d5a264bad23e3d`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f21b4, 200 bytes, SHA-256 `69eede87c3f9d976e926f7d688aa764c75d9a47ed1653dc8d26fb74e016b5e68`; 165 differing bytes in the common prefix.
+
+- `__glArenaFreeAll` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f09e0. Occupies 116 bytes.
+  Inferred. Retains the first block and clears its cursor and next-link words, then makes it the arena's current block (the three writes below).
+  A zero saved next-link skips the release loop (`beqz` at 0xd9f0a10).
+  The loop calls `DeleteBlock` with the arena's context word first, but hostfacts leaves its block argument unknown (`bgezall` at 0xd9f0a2c).
+  This target releases later blocks rather than resetting every block in place.
+  Byte comparison: target SHA-256 `a496cc849c76af03f1bcb9feb5eb6bf2045deb30c223229540c1dbeb4017035c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f227c, 128 bytes, SHA-256 `e2cb1eceb198f44be9af723edaac1f3b9a14b82a3d85c38f9d51bd9baa8d9096`; 94 differing bytes in the common prefix.
+
+- `freeLeafData` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0bc0; occupies 16 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9f0bc0 for 16 bytes (SHA-256 `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263`). Documented sibling grade: Established.
+
+- `freeLeaf` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0bd0. Occupies 72 bytes.
+  Inferred. Releases leaf data only when the word at entry a1 +0xc is nonzero (`beqz` at 0xd9f0be0 and `bgezall` at 0xd9f0bf4).
+  That call receives entry a0 first and the loaded data pointer second (`bgezall` at 0xd9f0bf4).
+  It then tail-jumps to an unknown callback with the original context and leaf pointers (`jr` at 0xd9f0c10).
+  Byte comparison: target SHA-256 `2f0da0d4a0714e77e7d2c4537d9f4f25b3aa7574c59cd7cf54e815a595741e05`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2488, 112 bytes, SHA-256 `1cd4fe85cafe5b722ff82909c26b3e6c9dc3defe6df332e6b6e09b69fceae32b`; 62 differing bytes in the common prefix.
+
+- `freeBranch` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0c20; occupies 16 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9f0c20 for 16 bytes (SHA-256 `68688d3c36c3f441b1a217172904e054bcc8ffa26a2350fe22a4384d11cd5263`). Documented sibling grade: Established.
+
+- `__glNamesFreeTree` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0c30. Occupies 356 bytes.
+  Inferred. Includes an indirect element callback retaining entry a0 as its first argument (`jalr` at 0xd9f0ce8).
+  Its leaf-release call receives entry a0 and entry a2 (`bgezall` at 0xd9f0d14).
+  The recursive calls retain entry a0 and entry a1 and use children loaded from entry a2 +0x14, +0x10 and +0xc respectively (`bgezall` at 0xd9f0d40, `bgezall` at 0xd9f0d58 and `bgezall` at 0xd9f0d70).
+  The branch-release call receives entry a0 and entry a2 (`bgezall` at 0xd9f0d84).
+  The selected O32 source records counted-range wraparound and a missing callback assertion. Those source caveats remain provenance, without assuming target equivalence for malformed ranges or reconstructing unknown loop cursors.
+  Byte comparison: target SHA-256 `fdff72ad8c42a7cd0fe18774048f55177476b46e751000b973f31c971eafe15c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2530, 376 bytes, SHA-256 `c2521cfeefd28da759e10c9a0e6447fbfde94d189f8503cc91176af97d95b1fe`; 315 differing bytes in the common prefix.
+
+- `__glNamesFreeArray` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0da0. Occupies 236 bytes.
+  Inferred. Has two preliminary unknown callback sites preserving entry a0, with unknown second arguments (`jalr` at 0xd9f0de8 and `jalr` at 0xd9f0e28).
+  It calls `__glNamesFreeTree` with entry a0, entry a1, the root word loaded from entry a1 +0 and zero (`bgezall` at 0xd9f0e5c).
+  The final unknown callback receives entry a0 and entry a1 (`jalr` at 0xd9f0e6c).
+  The reserve-array cursors and callback effects remain unresolved.
+  Byte comparison: target SHA-256 `d12ffb07ca6557883825218cd557bcb4474579c2916e80ee2b93e5ae14551f21`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f26a8, 248 bytes, SHA-256 `0c3d71df66aa98560338bc2dada1bd346f5e06407f7dc25f9fe83a49301781bb`; 192 differing bytes in the common prefix.
+
+- `findLeaf` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0e90. Occupies 128 bytes.
+  Inferred. Searches from the root and depth words listed below, without calls.
+  A nonpositive signed depth takes the final candidate path (`blez` at 0xd9f0e98).
+  The null-root path returns zero (`beqz` at 0xd9f0ea0 and `jr` at 0xd9f0edc).
+  Hostfacts leaves the traversed node bases and final candidate return unknown (`jr` at 0xd9f0f08).
+  Byte comparison: target SHA-256 `5fb8c184f3206b5b636d35b881118fb0dc5b1edcde58fd766c3007c6e8ae7a12`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f27a0, 140 bytes, SHA-256 `d8ceeab8c78208443a2a2eb31a6c1ac5aa0dca682a21c875b42ed43a9ddc452c`; 98 differing bytes in the common prefix.
+
+- `copyLeafInfo` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0f10; occupies 252 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9f0f10 for 252 bytes (SHA-256 `6b6dd3233f9a255b8c43ae4e533b58a84e2ff3df8d9b747d300ebe9c013999a7`). Documented sibling grade: Established.
+
+- `fixMemoryProblem` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1010. Occupies 304 bytes.
+  Inferred. Replenishes reserve storage through two unknown allocation callbacks requesting 24 and 20 bytes respectively (`jalr` at 0xd9f1058 and `jalr` at 0xd9f10a8).
+  The resolved count writes include 16 at entry a1 +0x10 and 3 at entry a1 +0x14 (`sw` at 0xd9f1084 and `sw` at 0xd9f10cc).
+  Its completed path returns one, while the two allocation-failure exits return zero (`jr` at 0xd9f10e8, `jr` at 0xd9f1110 and `jr` at 0xd9f1138).
+  Pointer-table store bases remain unknown.
+  Byte comparison: target SHA-256 `87dfabfab9565da27ee39054571488a206b34b3df1f659723f325fc6ec9beb08`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2920, 256 bytes, SHA-256 `c4a206278ddad499f599567aaa1eab1ebb174ab6f26219eece0213d9c340d503`; 207 differing bytes in the common prefix.
+
+- `computeMax` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1140. Occupies 72 bytes.
+  Inferred. Walks a tree to select a maximum word, with no calls.
+  The initial signed comparison sends entry a1 greater than or equal to entry a2 to a return path (`beqz` at 0xd9f1144).
+  All node-memory bases and all three return values remain unknown to hostfacts (`jr` at 0xd9f1164, `jr` at 0xd9f1178 and `jr` at 0xd9f1180).
+  The load table preserves those unresolved bases rather than treating them as entry a0 offsets.
+  Byte comparison: target SHA-256 `9274598386e867e24fb60d99d600a8006af5b00115f52c759292d94063782d07`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2a20, 88 bytes, SHA-256 `7b0ccc82ef66be8c90c470dfddf5c8aba8b61ebb73c0528cb3b11119bc872fad`; 51 differing bytes in the common prefix.
+
+- `pushMaxVal` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1190. Occupies 84 bytes.
+  Inferred. Includes two word writes of entry a1 while following tree links (`sw` at 0xd9f11a8 and `sw` at 0xd9f11d8).
+  Both write bases are unknown to hostfacts. The body has no calls.
+  The complete ancestor-update conditions and return value remain unresolved.
+  Byte comparison: target SHA-256 `64e4c14997ac7dc5b10a7bab2d7ee87692ead6c12706ea2a3d451349e89fbd0b`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2a78, 96 bytes, SHA-256 `d350bb49af2dd04ebfd2b15ee0e7d4b563597e1b46f48366257b74bf05680b46`; 66 differing bytes in the common prefix.
+
+- `allocLeafData` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f11f0; occupies 152 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9f11f0 for 152 bytes (SHA-256 `2200cd3010aab806c6e9643ea024788bb696cb1853fdcb1cd86ec81eea9c2200`). Documented sibling grade: Established.
+
+- `reallocLeafData` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1290. Occupies 96 bytes.
+  Inferred. Calls an unknown reallocating callback with entry a0, the data pointer at entry a1 +0xc, an unknown size argument and the word at entry a1 +4 (`jalr` at 0xd9f12b8).
+  A zero result takes the failure path (`beqz` at 0xd9f12c4), which returns zero (`jr` at 0xd9f12e8).
+  Success returns one and stores the callback result at entry a1 +0xc in the return delay slot (`jr` at 0xd9f12dc and `sw` at 0xd9f12e0).
+  Byte comparison: target SHA-256 `b1f98441b0a3d2f0a43550df46b6d037f8f44dc59c23cc7eb789eaf6abf86af5`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2be8, 108 bytes, SHA-256 `f02f19687c86b2457771c5863ae20eaa078f0eebef2978a9381f2dfb3aaee5a1`; 78 differing bytes in the common prefix.
+
+- `allocLeaf` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f12f0. Occupies 124 bytes.
+  Inferred. Requests a 20-byte record through an unknown callback (`jalr` at 0xd9f1308).
+  A nonzero result takes direct initialization, while zero falls through to the reserve path (`bnez` at 0xd9f1314).
+  The reserve path decrements the count at entry a1 +0x14 and reads the pointer selected by that new count (`sw` at 0xd9f1328 and `lw` at 0xd9f1330).
+  Both paths clear the parent and data-pointer words and copy the data-info pointer, as listed below.
+  The complete target contains no check that the reserve count is nonzero. The selected O32 source separately records a public assertion omitted from its shipped body.
+  Byte comparison: target SHA-256 `2fc9b85d38fda242aea81f181779016b1b483af6202beda766ad2bd9efc3f12b`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2c54, 124 bytes, SHA-256 `917bd877bbcd4993ed3bcc881201ee3177712e6d757a0994d5434c25116929f9`; 95 differing bytes in the common prefix.
+
+- `allocBranch` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1370. Occupies 116 bytes.
+  Inferred. Requests a 24-byte record through an unknown callback (`jalr` at 0xd9f1384).
+  A nonzero result takes direct initialization, while zero selects the reserve path (`bnez` at 0xd9f1390).
+  The reserve count at entry a1 +0x10 is decremented before its pointer-table read (`sw` at 0xd9f13a8 and `lw` at 0xd9f13b0).
+  Both paths clear the parent and three child words, as listed below.
+  The complete target does not test for an empty reserve before decrementing it. The O32 source's omitted public assertion remains a separate source caveat.
+  Byte comparison: target SHA-256 `07d11d8de3f801d588b9113c615bb6b15d7c657272f2c4599c84ccb245cf3f7d`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2cd0, 124 bytes, SHA-256 `661d93ac4d6bbe607aa062a8cb69b577dec955e6d4116f4068adab114c969592`; 91 differing bytes in the common prefix.
+
+- `deleteChild` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f13f0. Occupies 240 bytes.
+  Inferred. Removes a child through the selected pointer and maximum-word writes below.
+  Two paths call `computeMax` with the child from entry a1 +0x14, entry a3 plus one and the depth word from entry a0 +4 (`bgezall` at 0xd9f1440 and `bgezall` at 0xd9f1488).
+  A later call to `pushMaxVal` receives entry a1 and the word from entry a1 +8 (`bgezall` at 0xd9f14d0).
+  These calls establish selected effects without importing the complete O32 rebalance description.
+  Byte comparison: target SHA-256 `1b6f2d3775e5c9c372cd3046c847b7ce7ff6c503260ace7237e8621fc5d0845f`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2d4c, 252 bytes, SHA-256 `7347131c63ee48b6a1f6466ef30c5486093d30db3d9ace216f3c13404bebcf29`; 200 differing bytes in the common prefix.
+
+- `addChild` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f14e0. Occupies 228 bytes.
+  Inferred. Calls `computeMax` with entry a1, entry a2 plus one and entry a3 (`bgezall` at 0xd9f1508).
+  It writes the parent pointer and rearranges child and maximum words as listed below.
+  Both `pushMaxVal` sites receive entry a0 and the `computeMax` result (`bgezall` at 0xd9f153c and `bgezall` at 0xd9f15b4).
+  Hostfacts leaves the remaining propagation arguments and some returns unresolved.
+  Byte comparison: target SHA-256 `ee3ac512da7853a32e3ecbf26e1c6f93eda02e5ed514edbe859bc9961e9abc5e`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2e48, 248 bytes, SHA-256 `e7d20746a2fef9c745b14db63e32cb912618a6750942f2638e75ec4bf8dbbb44`; 198 differing bytes in the common prefix.
+
+- `buildParent` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f1780. Occupies 192 bytes.
+  Inferred. Writes the parent pointer into the two input children (`sw` at 0xd9f1780 and `sw` at 0xd9f1784).
+  Its two `computeMax` calls receive the respective original child pointer, zero and entry a3 (`bgezall` at 0xd9f17bc and `bgezall` at 0xd9f17d8).
+  When the first maximum is unsigned greater than or equal to the second, the branch takes the alternate child order (`beqz` at 0xd9f17ec).
+  A smaller first maximum falls through to the other order (`beqz` at 0xd9f17ec).
+  The parent writes below list the fall-through sequence before the taken sequence.
+  Byte comparison: target SHA-256 `2a241ea83b5c52284d816a9c241436974cb40c0cbb20389f347a5209af073bba`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f30bc, 200 bytes, SHA-256 `7cd2389d512c271e35b90e71ab6333b2bfeae68aded9867f8e138c8537a7b352`; 160 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
