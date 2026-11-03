@@ -19748,3 +19748,468 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   +0x1484/+0x14a0/+0x14bc/+0x14d8 respectively. Other calls use unresolved
   indexed a0 pointers. Callback identities, index-address formulas, several
   branch predicates and overall return semantics remain unknown.
+
+- `__glim_DrawArraysEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda32ff0. Occupies 328 bytes.
+  Inferred. Includes a state check, signed first/count checks and several draw callbacks.
+  State 1 takes the invalid-operation path (`beq` at 0xda33028). Negative entry a1 or a2 takes the invalid-value path (`bltz` at 0xda33030 and `bltz` at 0xda33038).
+  The three error calls pass 0x500, 0x501 and 0x502 respectively (`jalr` at 0xda330d8, `jalr` at 0xda330ec and `jalr` at 0xda33128).
+  The selected fast callback preserves the original mode, first and count (`jalr` at 0xda33114), but hostfacts leaves the iterative callback's arguments unknown (`jalr` at 0xda33094).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=[[0x1010]+3612], a2=?, a3=a3 at entry (arg3), a4=0x1 | `jalr` at 0xda33068 |
+  | (unknown callee) | a0=?, a1=?, a2=?, a3=? | `jalr` at 0xda33094 |
+  | (unknown callee) | a0=?, a1=?, a2=?, a3=? | `jalr` at 0xda330b0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1010 | `lw` at 0xda32ff8 |
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda33008 |
+  | load | 4 bytes | [0x1010] +0xe1c | `lw` at 0xda33048 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda32ff0,
+  328 bytes, Inferred.
+  SHA-256 of both complete ranges: `82bd033beca5b9942b4657b9d2116a693436385eb25f5efa16b827e1162628de`.
+  Evidence: `review-facts/__glim_DrawArraysEXT.target.txt`, `review-facts/__glim_DrawArraysEXT.sibling.txt`,
+  `review-facts/__glim_DrawArraysEXT.words.txt`, `review-facts/__glim_DrawArraysEXT.bytes.txt`.
+
+- `__glim_VertexPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33540. Occupies 344 bytes.
+  Inferred. Checks and writes vertex-array state directly.
+  Negative entry a2 or a3 branches to error 0x501 (`bltz` at 0xda33558, `bltz` at 0xda33560 and `jalr` at 0xda33630).
+  The selected writes retain the input type, size, pointer and count words. Error paths install the resolved fallback procedure address.
+  The complete type/size lookup table and effective-stride calculation remain outside this draft.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1010] +0x13f8  value [((a0 << 0x2)-131072 + ([0xda8cf70] + (((a1 << 0x2) + a1) << 0x2)))+28672] | `sw` at 0xda335c0 |
+  | store | 4 bytes | [0x1010] +0x13e8  value a1 | `sw` at 0xda335c8 |
+  | store | 4 bytes | [0x1010] +0x13e4  value a0 | `sw` at 0xda335cc |
+  | store | 4 bytes | [0x1010] +0x13e0  value a4 | `sw` at 0xda335d4 |
+  | store | 4 bytes | [0x1010] +0x13f4  value a3 | `sw` at 0xda335dc |
+  | store | 4 bytes | [0x1010] +0x13f0  value a2 | `sw` at 0xda335e0 |
+  | store | 4 bytes | [0x1010] +0x13ec | `sw` at 0xda335f4 |
+  | store | 4 bytes | [0x1010] +0x1518 | `sw` at 0xda33614 |
+  | store | 4 bytes | [0x1010] +0x13f8  value 0xda021b0 | `sw` at 0xda33634 |
+  | store | 4 bytes | [0x1010] +0x13f8  value 0xda021b0 | `sw` at 0xda33650 |
+  | store | 4 bytes | [0x1010] +0x13f8  value 0xda021b0 | `sw` at 0xda3368c |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33540,
+  344 bytes, Inferred.
+  SHA-256 of both complete ranges: `c7fcb8cb497eb1ac44b1cafc6a5daf31f2582b16a960e89e54a486c9649307a0`.
+  Evidence: `review-facts/__glim_VertexPointerEXT.target.txt`, `review-facts/__glim_VertexPointerEXT.sibling.txt`,
+  `review-facts/__glim_VertexPointerEXT.words.txt`, `review-facts/__glim_VertexPointerEXT.bytes.txt`.
+
+- `__glim_NormalPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda336a0. Occupies 300 bytes.
+  Inferred. Updates the normal-array record with a table-selected procedure and input state.
+  Signed negative entry a1 or a2 reaches the 0x501 error call (`bltz` at 0xda336b8, `bltz` at 0xda336c0 and `jalr` at 0xda337a0).
+  Two additional error sites pass 0x500 (`jalr` at 0xda3376c and `jalr` at 0xda337bc).
+  Selected state stores appear below, with the effective-stride value unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1010] +0x1410  value [([0xda8cf74] + (((a0 << 0x2) + a0) << 0x2))-102388] | `sw` at 0xda336f8 |
+  | store | 4 bytes | [0x1010] +0x1400  value a0 | `sw` at 0xda33704 |
+  | store | 4 bytes | [0x1010] +0x13fc  value a3 | `sw` at 0xda3370c |
+  | store | 4 bytes | [0x1010] +0x140c  value a2 | `sw` at 0xda3371c |
+  | store | 4 bytes | [0x1010] +0x1408  value a1 | `sw` at 0xda33720 |
+  | store | 4 bytes | [0x1010] +0x1404 | `sw` at 0xda3373c |
+  | store | 4 bytes | [0x1010] +0x1518 | `sw` at 0xda33750 |
+  | store | 4 bytes | [0x1010] +0x1410  value 0xda021b0 | `sw` at 0xda33770 |
+  | store | 4 bytes | [0x1010] +0x1410  value 0xda021b0 | `sw` at 0xda337a4 |
+  | store | 4 bytes | [0x1010] +0x1410  value 0xda021b0 | `sw` at 0xda337c0 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda336a0,
+  300 bytes, Inferred.
+  SHA-256 of both complete ranges: `df679134afc90ed35abf5ec954019010c56dd429276b52f0395f9371c1491e6f`.
+  Evidence: `review-facts/__glim_NormalPointerEXT.target.txt`, `review-facts/__glim_NormalPointerEXT.sibling.txt`,
+  `review-facts/__glim_NormalPointerEXT.words.txt`, `review-facts/__glim_NormalPointerEXT.bytes.txt`.
+
+- `__glim_ColorPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda337d0. Occupies 368 bytes.
+  Inferred. Stores colour-array type, component count, pointer and count after validation.
+  Negative entry a2 or a3 takes the 0x501 path (`bltz` at 0xda337e8, `bltz` at 0xda337f0 and `jalr` at 0xda338d8).
+  The remaining error sites pass 0x500 (`jalr` at 0xda338f4 and `jalr` at 0xda33930).
+  The selected table-derived procedure value and format-word update are preserved without reconstructing the full type map.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1010] +0x142c  value [((a0 << 0x2)-131072 + ([0xda8cf78] + (((a1 << 0x2) + a1) << 0x2)))+28672] | `sw` at 0xda33860 |
+  | store | 4 bytes | [0x1010] +0x141c  value a1 | `sw` at 0xda33868 |
+  | store | 4 bytes | [0x1010] +0x1418  value a0 | `sw` at 0xda3386c |
+  | store | 4 bytes | [0x1010] +0x1414  value a4 | `sw` at 0xda33874 |
+  | store | 4 bytes | [0x1010] +0x1428  value a3 | `sw` at 0xda3387c |
+  | store | 4 bytes | [0x1010] +0x1424  value a2 | `sw` at 0xda33890 |
+  | store | 4 bytes | [0x1010] +0x1420 | `sw` at 0xda3389c |
+  | store | 4 bytes | [0x1010] +0x1518 | `sw` at 0xda338bc |
+  | store | 4 bytes | [0x1010] +0x142c  value 0xda021b0 | `sw` at 0xda338dc |
+  | store | 4 bytes | [0x1010] +0x142c  value 0xda021b0 | `sw` at 0xda338f8 |
+  | store | 4 bytes | [0x1010] +0x142c  value 0xda021b0 | `sw` at 0xda33934 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda337d0,
+  368 bytes, Inferred.
+  SHA-256 of both complete ranges: `74153715113a0feab7610ba5cbeb8c07947d0d1cc14377ad626baae905482bee`.
+  Evidence: `review-facts/__glim_ColorPointerEXT.target.txt`, `review-facts/__glim_ColorPointerEXT.sibling.txt`,
+  `review-facts/__glim_ColorPointerEXT.words.txt`, `review-facts/__glim_ColorPointerEXT.bytes.txt`.
+
+- `__glim_TexCoordPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33940. Occupies 500 bytes.
+  Inferred. Writes texture-coordinate array state, including an indexed record whose base remains unknown.
+  Entry a2 or a3 below zero reaches `__glSetError` with 0x501 (`bltz` at 0xda33958 and 0xda33960; `jalr` at 0xda33ac8).
+  A second set of resolved writes uses the context pointer loaded from absolute 0x1010. The selected table below keeps those bases distinct.
+  The indexed-record address formula, complete type map and effective stride remain unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown)  value a1 | `sw` at 0xda339e4 |
+  | store | 4 bytes | ? (base unknown)  value a0 | `sw` at 0xda339e8 |
+  | store | 4 bytes | ? (base unknown)  value a4 | `sw` at 0xda339f4 |
+  | store | 4 bytes | ? (base unknown)  value [((a0 << 0x2)-131072 + ([0xda8cf80] + (((a1 << 0x2) + a1) << 0x2)))+28672] | `sw` at 0xda339f8 |
+  | store | 4 bytes | ? (base unknown)  value a3 | `sw` at 0xda339fc |
+  | store | 4 bytes | ? (base unknown)  value a2 | `sw` at 0xda33a00 |
+  | store | 4 bytes | [0x1010] +0x1460  value [((a0 << 0x2)-131072 + ([0xda8cf7c] + (((a1 << 0x2) + a1) << 0x2)))+28672] | `sw` at 0xda33a90 |
+  | store | 4 bytes | [0x1010] +0x1518 | `sw` at 0xda33a9c |
+  | store | 4 bytes | [0x1010] +0x1460  value 0xda021b0 | `sw` at 0xda33ab0 |
+  | store | 4 bytes | [0x1010] +0x1460  value 0xda021b0 | `sw` at 0xda33acc |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33940,
+  500 bytes, Inferred.
+  SHA-256 of both complete ranges: `277665f86dedd1a35a4c91c0868e79417ef0ee7de9a82ffdef9d20a40edfb4de`.
+  Evidence: `review-facts/__glim_TexCoordPointerEXT.target.txt`, `review-facts/__glim_TexCoordPointerEXT.sibling.txt`,
+  `review-facts/__glim_TexCoordPointerEXT.words.txt`, `review-facts/__glim_TexCoordPointerEXT.bytes.txt`.
+
+- `__glim_EdgeFlagPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33b40. Occupies 144 bytes.
+  Inferred. Rejects negative stride or count through a 0x501 error call (`bltz` at 0xda33b58, `bltz` at 0xda33b60 and `jalr` at 0xda33bc0).
+  The accepted path stores the pointer and input stride/count, selects the edge-flag procedure and updates the packed format word (the stores below).
+  Hostfacts does not resolve the effective-stride value selected by the conditional move.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1010] +0x146c  value a0 | `sw` at 0xda33b68 |
+  | store | 4 bytes | [0x1010] +0x1464  value a2 | `sw` at 0xda33b6c |
+  | store | 4 bytes | [0x1010] +0x1470  value a1 | `sw` at 0xda33b78 |
+  | store | 4 bytes | [0x1010] +0x1468 | `sw` at 0xda33b84 |
+  | store | 4 bytes | [0x1010] +0x1474  value sym(glEdgeFlagv) | `sw` at 0xda33b98 |
+  | store | 4 bytes | [0x1010] +0x1518  value ([[0x1010]+5400] \| 0x8000000) | `sw` at 0xda33ba4 |
+  | store | 4 bytes | [0x1010] +0x1474  value 0xda021b0 | `sw` at 0xda33bc4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33b40,
+  144 bytes, Inferred.
+  SHA-256 of both complete ranges: `a9f7b183b283ce56879eb1dbef2d189a4d3fa570a0609d1e0f48e26cf91e9e74`.
+  Evidence: `review-facts/__glim_EdgeFlagPointerEXT.target.txt`, `review-facts/__glim_EdgeFlagPointerEXT.sibling.txt`,
+  `review-facts/__glim_EdgeFlagPointerEXT.words.txt`, `review-facts/__glim_EdgeFlagPointerEXT.bytes.txt`.
+
+- `__glim_IndexPointerEXT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33bd0. Occupies 312 bytes.
+  Inferred. Sets colour-index array state through the resolved context record below.
+  A negative entry a1 or a2 takes the invalid-value path (`bltz` at 0xda33be8, `bltz` at 0xda33bf0 and `jalr` at 0xda33cdc).
+  The two invalid-type paths pass 0x500 (`jalr` at 0xda33ca8 and `jalr` at 0xda33cf8).
+  The full lookup table and packed type encoding remain unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1010] +0x1444  value [([0xda8cf84] + (((a0 << 0x2) + a0) << 0x2))-102396] | `sw` at 0xda33c30 |
+  | store | 4 bytes | [0x1010] +0x1434  value a0 | `sw` at 0xda33c3c |
+  | store | 4 bytes | [0x1010] +0x1430  value a3 | `sw` at 0xda33c40 |
+  | store | 4 bytes | [0x1010] +0x1440  value a2 | `sw` at 0xda33c58 |
+  | store | 4 bytes | [0x1010] +0x143c  value a1 | `sw` at 0xda33c5c |
+  | store | 4 bytes | [0x1010] +0x1438 | `sw` at 0xda33c78 |
+  | store | 4 bytes | [0x1010] +0x1518 | `sw` at 0xda33c8c |
+  | store | 4 bytes | [0x1010] +0x1444  value 0xda021b0 | `sw` at 0xda33cac |
+  | store | 4 bytes | [0x1010] +0x1444  value 0xda021b0 | `sw` at 0xda33ce0 |
+  | store | 4 bytes | [0x1010] +0x1444  value 0xda021b0 | `sw` at 0xda33cfc |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33bd0,
+  312 bytes, Inferred.
+  SHA-256 of both complete ranges: `9f792224f8f41c19a8a877d4fac0c117f49d25f67356edc73ee20b53b7d69a79`.
+  Evidence: `review-facts/__glim_IndexPointerEXT.target.txt`, `review-facts/__glim_IndexPointerEXT.sibling.txt`,
+  `review-facts/__glim_IndexPointerEXT.words.txt`, `review-facts/__glim_IndexPointerEXT.bytes.txt`.
+
+- `__glim_ColorPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33d10. Occupies 88 bytes.
+  Inferred. Forwards colour-array setup to `__glim_ColorPointerEXT`, preserving size/type/stride, supplying a zero count and passing the pointer in a4 (`bgezall` at 0xda33d3c).
+  State 1 takes the error path (`beq` at 0xda33d30), whose `__glSetError` call passes 0x502 (`jalr` at 0xda33d58).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_ColorPointerEXT [0xda337d0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3) | `bgezall` at 0xda33d3c |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3) | `jalr` at 0xda33d58 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda33d14 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33d10,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `3b50cfc20831b7c800126d74ba881a0d4a614a62834edfe7b8d5d54330340960`.
+  Evidence: `review-facts/__glim_ColorPointer.target.txt`, `review-facts/__glim_ColorPointer.sibling.txt`,
+  `review-facts/__glim_ColorPointer.words.txt`, `review-facts/__glim_ColorPointer.bytes.txt`.
+
+- `__glim_DrawElements` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33d70. Occupies 416 bytes.
+  Inferred. Walks an index array through three callback sites with word, unsigned-byte and unsigned-halfword loads in their delay slots (`lw` at 0xda33e44, `lbu` at 0xda33e94 and `lhu` at 0xda33ed4).
+  Hostfacts leaves the index bases and the callback argument values unknown.
+  Three error sites pass 0x500, 0x502 and 0x501 (`jalr` at 0xda33dd4, `jalr` at 0xda33ef0 and `jalr` at 0xda33f00).
+  The complete mode/type validation and draw effects are not reconstructed from the source summary.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0xd9cd900] | a0=0x500, a1=0x1401, a2=?, a3=? | `jalr` at 0xda33dd4 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=0x1401, a2=?, a3=? | `jalr` at 0xda33df8 |
+  | (unknown callee) | a0=?, a1=?, a2=?, a3=? | `jalr` at 0xda33e40 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | ? (base unknown) | `lw` at 0xda33e44 |
+  | load | 1 byte | ? (base unknown) | `lbu` at 0xda33e94 |
+  | load | 2 bytes | ? (base unknown) | `lhu` at 0xda33ed4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33d70,
+  416 bytes, Inferred.
+  SHA-256 of both complete ranges: `97e3fa7871d5e45bbc5798314837b8284c4df0d439a57b2922d1e70298e91256`.
+  Evidence: `review-facts/__glim_DrawElements.target.txt`, `review-facts/__glim_DrawElements.sibling.txt`,
+  `review-facts/__glim_DrawElements.words.txt`, `review-facts/__glim_DrawElements.bytes.txt`.
+
+- `__glim_DrawRangeElements` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33f10. Occupies 92 bytes.
+  Inferred. Checks only the unsigned order of the supplied range before forwarding indexed drawing.
+  Entry a2 greater than or equal to entry a1 takes the draw path. A smaller end falls through to error 0x501 (`beqz` at 0xda33f2c and `jalr` at 0xda33f38).
+  The `__glim_DrawElements` call receives entry a0, entry a3, entry a4 and entry a5 (`bgezall` at 0xda33f54).
+  No index value is loaded or compared with the supplied range in this wrapper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSetError [0xd9cd900] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a3 at entry (arg3) | `jalr` at 0xda33f38 |
+  | __glim_DrawElements [0xda33d70] | a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=a5 at entry (arg5), a7=a3 at entry (arg3) | `bgezall` at 0xda33f54 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33f10,
+  92 bytes, Inferred.
+  SHA-256 of both complete ranges: `9ec7e72a0f273aa7c28f15a14f71539f207ef7e4199dfb6a3377959f36b1d858`.
+  Evidence: `review-facts/__glim_DrawRangeElements.target.txt`, `review-facts/__glim_DrawRangeElements.sibling.txt`,
+  `review-facts/__glim_DrawRangeElements.words.txt`, `review-facts/__glim_DrawRangeElements.bytes.txt`.
+
+- `__glim_EdgeFlagPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33f70. Occupies 88 bytes.
+  Inferred. Passes stride, zero count and the original pointer to `__glim_EdgeFlagPointerEXT` (`bgezall` at 0xda33f9c).
+  Its state-1 branch selects error 0x502 instead (`beq` at 0xda33f90 and `jalr` at 0xda33fb8). The extension body owns the array stores.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_EdgeFlagPointerEXT [0xda33b40] | a0=a0 at entry (arg0), a1=0x0, a2=a1 at entry (arg1), a3=a3 at entry (arg3) | `bgezall` at 0xda33f9c |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3) | `jalr` at 0xda33fb8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda33f74 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33f70,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `b36ed22c2504d15110af7184ff233900fa68d2f28c1923632f090883266ddaa6`.
+  Evidence: `review-facts/__glim_EdgeFlagPointer.target.txt`, `review-facts/__glim_EdgeFlagPointer.sibling.txt`,
+  `review-facts/__glim_EdgeFlagPointer.words.txt`, `review-facts/__glim_EdgeFlagPointer.bytes.txt`.
+
+- `__glim_IndexPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda33fd0. Occupies 88 bytes.
+  Inferred. Dispatches to `__glim_IndexPointerEXT` with the original type and stride, zero count and the original pointer (`bgezall` at 0xda33ffc).
+  When the global state equals 1, the branch takes the invalid-operation call (`beq` at 0xda33ff0 and `jalr` at 0xda34018). Its error argument is 0x502.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_IndexPointerEXT [0xda33bd0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=a2 at entry (arg2) | `bgezall` at 0xda33ffc |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a2 at entry (arg2) | `jalr` at 0xda34018 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda33fd4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda33fd0,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `f1958332cae42d394b14552a9119e92b42561a7f8b169ba2727c14e1f708e00c`.
+  Evidence: `review-facts/__glim_IndexPointer.target.txt`, `review-facts/__glim_IndexPointer.sibling.txt`,
+  `review-facts/__glim_IndexPointer.words.txt`, `review-facts/__glim_IndexPointer.bytes.txt`.
+
+- `__glim_InterleavedArrays` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda34030. Occupies 704 bytes.
+  Inferred. Configures arrays through indirect callbacks and a format-record lookup.
+  A negative stride takes the 0x501 error path (`bltz` at 0xda34078 and `jalr` at 0xda342e0).
+  Selected callbacks receive array selectors 0x8079, 0x8077, 0x8076, 0x8075 and 0x8074 (`jalr` at 0xda340c4, `jalr` at 0xda340d4, `jalr` at 0xda3419c, `jalr` at 0xda341d4 and `jalr` at 0xda34200).
+  The pointer-setting callbacks include unknown address/stride arguments. The full interleaved-format map remains unresolved.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x8079, a1=?, a2=?, a3=a3 at entry (arg3) | `jalr` at 0xda340c4 |
+  | (unknown callee) | a0=0x8077, a1=?, a2=?, a3=? | `jalr` at 0xda340d4 |
+  | (unknown callee) | a0=entry(0xda27c9c), a1=0x1406, a2=?, a3=? | `jalr` at 0xda3413c |
+  | (unknown callee) | a0=entry(0xda27ca0), a1=entry(0xda27ca8), a2=?, a3=? | `jalr` at 0xda341bc |
+  | (unknown callee) | a0=0x1406, a1=?, a2=?, a3=? | `jalr` at 0xda341f0 |
+  | (unknown callee) | a0=entry(0xda27ca4), a1=0x1406, a2=?, a3=? | `jalr` at 0xda34220 |
+  | __glSetError [0xd9cd900] | a0=0x500, a1=?, a2=?, a3=a3 at entry (arg3) | `jalr` at 0xda34254 |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0xda342d0 |
+  | __glSetError [0xd9cd900] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0xda342e0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1010 | `lw` at 0xda34038 |
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda34050 |
+  | load | 4 bytes | [0x1010] +0x17f4 | `lw` at 0xda340bc |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda34030,
+  704 bytes, Inferred.
+  SHA-256 of both complete ranges: `b2c3450500cddc511346b849f833377c372ac7728ad4839d5f48a04007fa69d6`.
+  Evidence: `review-facts/__glim_InterleavedArrays.target.txt`, `review-facts/__glim_InterleavedArrays.sibling.txt`,
+  `review-facts/__glim_InterleavedArrays.words.txt`, `review-facts/__glim_InterleavedArrays.bytes.txt`.
+
+- `__glim_NormalPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda342f0. Occupies 88 bytes.
+  Inferred. Uses `__glim_NormalPointerEXT` with the original type and stride, a zero count and the pointer moved to a3 (`bgezall` at 0xda3431c).
+  State 1 diverts to the 0x502 error call (`beq` at 0xda34310 and `jalr` at 0xda34338). This wrapper contains no array-record stores.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_NormalPointerEXT [0xda336a0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=a2 at entry (arg2) | `bgezall` at 0xda3431c |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a2 at entry (arg2) | `jalr` at 0xda34338 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda342f4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda342f0,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `e5718d1ace48427f5afc9c0ca02b24396c935d2b793ebfaba35b6398bce04f46`.
+  Evidence: `review-facts/__glim_NormalPointer.target.txt`, `review-facts/__glim_NormalPointer.sibling.txt`,
+  `review-facts/__glim_NormalPointer.words.txt`, `review-facts/__glim_NormalPointer.bytes.txt`.
+
+- `__glim_TexCoordPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda34350. Occupies 88 bytes.
+  Inferred. Delegates texture-coordinate setup to `__glim_TexCoordPointerEXT` with zero count and the original pointer in a4 (`bgezall` at 0xda3437c).
+  The state check takes its error path when the loaded state equals 1 (`beq` at 0xda34370). That path reports 0x502 (`jalr` at 0xda34398).
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_TexCoordPointerEXT [0xda33940] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3) | `bgezall` at 0xda3437c |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3) | `jalr` at 0xda34398 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda34354 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda34350,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `1d31e8f7fdd96ad2bc011d04c6420fe0ca841180c6e4e40505bc0dea8edb3271`.
+  Evidence: `review-facts/__glim_TexCoordPointer.target.txt`, `review-facts/__glim_TexCoordPointer.sibling.txt`,
+  `review-facts/__glim_TexCoordPointer.words.txt`, `review-facts/__glim_TexCoordPointer.bytes.txt`.
+
+- `__glim_VertexPointer` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda343b0. Occupies 88 bytes.
+  Inferred. Calls `__glim_VertexPointerEXT` with the original size, type and stride, zero count and the input pointer in a4 (`bgezall` at 0xda343dc).
+  The alternative selected by state 1 reports 0x502 (`beq` at 0xda343d0 and `jalr` at 0xda343f8).
+  Its direct array effects come from the extension helper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glim_VertexPointerEXT [0xda33540] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3) | `bgezall` at 0xda343dc |
+  | __glSetError [0xd9cd900] | a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3) | `jalr` at 0xda343f8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | abs 0x1018 | `lw` at 0xda343b4 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda343b0,
+  88 bytes, Inferred.
+  SHA-256 of both complete ranges: `c31c940202d702aebbb685b9e5cce15d11c1a949b167d25887a6b80edf5b1ee8`.
+  Evidence: `review-facts/__glim_VertexPointer.target.txt`, `review-facts/__glim_VertexPointer.sibling.txt`,
+  `review-facts/__glim_VertexPointer.words.txt`, `review-facts/__glim_VertexPointer.bytes.txt`.
+
+- `__glClipCheckAll` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda34530. Occupies 380 bytes.
+  Inferred. Starts with an unknown vertex callback retaining entry a0 and a1 and passing 0x10 third (`jalr` at 0xda34560).
+  It includes four float-word store sites, listed below. Their stored expressions remain unresolved.
+  Six decoder-unknown words leave several clip comparisons unresolved. User-plane load bases and the complete returned clip mask are also unknown to hostfacts.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x10, a3=a3 at entry (arg3) | `jalr` at 0xda34560 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0x8c | `swc1` at 0xda345bc |
+  | store | 4 bytes | a1 (arg1 at entry) +0x88 | `swc1` at 0xda34694 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x84 | `swc1` at 0xda34698 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x80 | `swc1` at 0xda3469c |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda34530,
+  380 bytes, Inferred.
+  SHA-256 of both complete ranges: `e39d4e15d872da5be646b8c415f5667336360cb6f20c60168f5697f5845bf143`.
+  Evidence: `review-facts/__glClipCheckAll.target.txt`, `review-facts/__glClipCheckAll.sibling.txt`,
+  `review-facts/__glClipCheckAll.words.txt`, `review-facts/__glClipCheckAll.bytes.txt`.
+
+- `__glGenericPickVertexProcs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda346b0. Occupies 572 bytes.
+  Inferred. Selects procedure slots from context state without making calls.
+  The selected stores below include clip-check and vertex-processing addresses and selected values for the final procedure slot.
+  One undecoded word at 0xda3481c prevents a complete matrix-dependent selection rule. Its predicate and dependent selection values remain unknown.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ed4  value 0xda34530 | `sw` at 0xda346d4 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ed0  value 0xda344f0 | `sw` at 0xda346dc |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ecc  value 0xda344a0 | `sw` at 0xda346e4 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ee0  value 0xda7d460 | `sw` at 0xda346ec |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2edc  value 0xda7d400 | `sw` at 0xda346f4 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ed8  value 0xda7d3a0 | `sw` at 0xda346fc |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ec8  value entry(0xda86b10) | `sw` at 0xda348cc |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ec8  value 0xda7b22c | `sw` at 0xda348d4 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2edc  value 0xda7d160 | `sw` at 0xda348d8 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x2ed8  value 0xda7d160 | `sw` at 0xda348e0 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda346b0,
+  572 bytes, Inferred.
+  SHA-256 of both complete ranges: `6e4ac42e02cfb1bc49ceb8bd73cfb460c94a7ba8b67f27e9cba89efca519ed2f`.
+  Evidence: `review-facts/__glGenericPickVertexProcs.target.txt`, `review-facts/__glGenericPickVertexProcs.sibling.txt`,
+  `review-facts/__glGenericPickVertexProcs.words.txt`, `review-facts/__glGenericPickVertexProcs.bytes.txt`.
+
+- `__glMultiplyMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda34a10. Occupies 100 bytes.
+  Established. Calls the matrix procedure with original entry a1 first, entry a2 second and entry a1 again third (`jalr` at 0xda34a44).
+  It then calls `__glPickMatrixType` with those same first three arguments (`bgezall` at 0xda34a58).
+  The procedure pointer comes from entry a0 +0x2ea4 (`lw` at 0xda34a24). The indirect multiplication effects are outside this wrapper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a1 at entry (arg1), a3=a3 at entry (arg3) | `jalr` at 0xda34a44 |
+  | __glPickMatrixType [0xda348f0] | a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a1 at entry (arg1), a3=? | `bgezall` at 0xda34a58 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x2ea4 | `lw` at 0xda34a24 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda34a10,
+  100 bytes, Established.
+  SHA-256 of both complete ranges: `1e1355764397930b54b949f3aec8b13e2c8d64b5c07fa97bc9b43e9eb9d7b307`.
+  Evidence: `review-facts/__glMultiplyMatrix.target.txt`, `review-facts/__glMultiplyMatrix.sibling.txt`,
+  `review-facts/__glMultiplyMatrix.words.txt`, `review-facts/__glMultiplyMatrix.bytes.txt`.
+
+- `SetDepthRange` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda34a80. Occupies 124 bytes.
+  Inferred. The body reads three context words and writes two doublewords and two
+  floating words, as listed below. It makes no calls. Three undecoded words
+  leave clamping predicates and dependent stored values unresolved.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd8 | `lwc1` at 0xda34a80 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7a80 | `lw` at 0xda34a88 |
+  | load | 4 bytes | a0 (arg0 at entry) +0xdd4 | `lwc1` at 0xda34ab8 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x6b0 | `sdc1` at 0xda34adc |
+  | store | 8 bytes | a0 (arg0 at entry) +0x6a8 | `sdc1` at 0xda34ae4 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x6cc | `swc1` at 0xda34af0 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x6c8 | `swc1` at 0xda34af8 |
+
+  Counterpart: `usr/gfx/arch/IP27KONA32/libGLcore.so`, 0xda34a80,
+  124 bytes, Inferred.
+  SHA-256 of both complete ranges: `a71c34ee2d00f87ab597d3191ad09579ebdfe6bfef99926275c13eaf633a1bca`.
+  Evidence: `review-facts/SetDepthRange.target.txt`, `review-facts/SetDepthRange.sibling.txt`,
+  `review-facts/SetDepthRange.words.txt`, `review-facts/SetDepthRange.bytes.txt`.
