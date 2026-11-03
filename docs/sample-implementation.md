@@ -20213,3 +20213,455 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   SHA-256 of both complete ranges: `a71c34ee2d00f87ab597d3191ad09579ebdfe6bfef99926275c13eaf633a1bca`.
   Evidence: `review-facts/SetDepthRange.target.txt`, `review-facts/SetDepthRange.sibling.txt`,
   `review-facts/SetDepthRange.words.txt`, `review-facts/SetDepthRange.bytes.txt`.
+
+- `__glUpdateDepthRange` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda34b00, routine size 60 bytes.
+  Dispatches the stored software depth interval to the
+  exact local `SetDepthRange` (`bgezall` at 0xda34b24).
+  Supplies the context's +0x6a8 and +0x6b0 doublewords
+  as floating registers f13 and f14
+  (`ldc1` at 0xda34b28, 0xda34b20 respectively).
+  The complete body contains that one call and no
+  non-stack stores.
+
+  Existing entry: `docs/sample-implementation.md`, `__glUpdateDepthRange` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda34b00,
+  60 bytes, labelled Established.
+  Comparison: target 60 bytes, existing 60 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fb2b9c7c4c32ac50a133d062c4d454c2d6697446afc42bdb9f88134a9161ee56`.
+  Existing SHA-256: `fb2b9c7c4c32ac50a133d062c4d454c2d6697446afc42bdb9f88134a9161ee56`.
+  Evidence: `facts/__glUpdateDepthRange.target.txt`,
+  `facts/__glUpdateDepthRange.existing.txt`, `facts/__glUpdateDepthRange.full.listing.txt`,
+  `facts/__glUpdateDepthRange.compare.txt`.
+
+- `__glEarlyInitTransformState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda34b40, routine size 76 bytes.
+  Requests initial software clip-plane storage through
+  an unnamed context procedure (`jalr` at 0xda34b6c).
+  Arguments one and two are the context +0xe10 count
+  and byte size 16. Saves the returned pointer at
+  context +0x6d4 (`sw` at 0xda34b7c).
+  The procedure pointer comes from context +4
+  (`lw` at 0xda34b54).
+
+  Existing entry: `docs/sample-implementation.md`, `__glEarlyInitTransformState` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda34b40,
+  76 bytes, labelled Established.
+  Comparison: target 76 bytes, existing 76 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b6e2f0dd9385c7752b1910739d2b482894056050aec0544ea3809f7febf41e9e`.
+  Existing SHA-256: `b6e2f0dd9385c7752b1910739d2b482894056050aec0544ea3809f7febf41e9e`.
+  Evidence: `facts/__glEarlyInitTransformState.target.txt`,
+  `facts/__glEarlyInitTransformState.existing.txt`, `facts/__glEarlyInitTransformState.full.listing.txt`,
+  `facts/__glEarlyInitTransformState.compare.txt`.
+
+- `__glInitTransformState` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda34b90, routine size 600 bytes.
+  Constructs software transform state. Four allocation
+  calls request 272-byte records (`jalr` at 0xda34bc4,
+  0xda34bdc, 0xda34bf4, 0xda34c10).
+  Writes matrix mode 0x1700 to context +0x6d0
+  (`sw` at 0xda34c4c), and calls `SetDepthRange`
+  (`bgezall` at 0xda34c58).
+  The context +0x7434 pointer receives the temporary
+  allocation result (`sw` at 0xda34c54).
+  Indexed temporary-vertex stores have unknown addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitTransformState` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda34b90,
+  600 bytes, labelled Inferred.
+  Comparison: target 600 bytes, existing 600 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5633bf41a62c7fd0e2512fec88fb880e38ff3f6f0018ecc2fa16977c85d47ea5`.
+  Existing SHA-256: `5633bf41a62c7fd0e2512fec88fb880e38ff3f6f0018ecc2fa16977c85d47ea5`.
+  Evidence: `facts/__glInitTransformState.target.txt`,
+  `facts/__glInitTransformState.existing.txt`, `facts/__glInitTransformState.full.listing.txt`,
+  `facts/__glInitTransformState.compare.txt`.
+
+- `__glInvalidateSequenceNumbers` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda34df0, routine size 416 bytes.
+  Invalidates software matrix sequence stamps. Reads stack
+  pointers from context +0x7410 and +0x7418
+  (`lw` at 0xda34dfc, 0xda34ea4).
+  Zero-store sites include `sw` at 0xda34e58,
+  0xda34e70, 0xda34e74, 0xda34e78. Their indexed
+  effective addresses remain unknown.
+  Final counter stores reach context +0x7420
+  (`sw` at 0xda34f84, 0xda34f8c).
+  The body makes no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInvalidateSequenceNumbers` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda34df0,
+  416 bytes, labelled Established.
+  Comparison: target 416 bytes, existing 416 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f99c20a9c664a2cc00751a0cae6a4133fd3e7f4508503f30a3692671e160c8de`.
+  Existing SHA-256: `f99c20a9c664a2cc00751a0cae6a4133fd3e7f4508503f30a3692671e160c8de`.
+  Evidence: `facts/__glInvalidateSequenceNumbers.target.txt`,
+  `facts/__glInvalidateSequenceNumbers.existing.txt`, `facts/__glInvalidateSequenceNumbers.full.listing.txt`,
+  `facts/__glInvalidateSequenceNumbers.compare.txt`.
+
+- `__glim_MatrixMode` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda34f90, routine size 164 bytes.
+  Selects the software matrix mode, storing original
+  argument zero at pointed-context +0x6d0
+  (`sw` at 0xda34ffc).
+  A value of one in the absolute dispatch word at 0x1018 takes
+  the invalid-operation path (`beq` at 0xda34fb8).
+  Otherwise 0x1700, 0x1701, 0x1702 and 0x1800 select the mode write
+  (`beq` at 0xda34fc4, 0xda34fcc, 0xda34fd4, 0xda34fdc).
+  Marks dispatch state by writing two to absolute 0x1018
+  (`sw` at 0xda35000) and OR-ing 0x1 into pointed-context
+  +0x2e24 (`sw` at 0xda3501c).
+  Error calls supply 0x500 and 0x502 to `__glSetError`
+  (`jalr` at 0xda34fe4, 0xda35024 respectively).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_MatrixMode` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda34f90,
+  164 bytes, labelled Inferred.
+  Comparison: target 164 bytes, existing 164 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `da0b3f1655c841818a8f057afd44416fdbd86c4c5f4cce7b282291596943cb25`.
+  Existing SHA-256: `da0b3f1655c841818a8f057afd44416fdbd86c4c5f4cce7b282291596943cb25`.
+  Evidence: `facts/__glim_MatrixMode.target.txt`,
+  `facts/__glim_MatrixMode.existing.txt`, `facts/__glim_MatrixMode.full.listing.txt`,
+  `facts/__glim_MatrixMode.compare.txt`.
+
+- `__glim_LoadMatrixf` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda350c0, routine size 228 bytes.
+  Copies a software matrix to stack storage for `__glDoLoadMatrix`,
+  passing pointed context and entry-stack -112
+  (`bgezall` at 0xda35178).
+  Input-copy endpoints read argument-zero +0 and +0x3c
+  (`lwc1` at 0xda350ec, 0xda35168) and write
+  entry-stack -0x70 and -0x34
+  (`swc1` at 0xda350f0, 0xda3517c).
+  Clears the stack matrix's type word at entry-stack
+  -0x30 (`sw` at 0xda35170).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LoadMatrixf` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda350c0,
+  228 bytes, labelled Established.
+  Comparison: target 228 bytes, existing 228 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `02737e6c49c16b1fbbba3790cd29d06145e226567455bddc2ca530ea277fc557`.
+  Existing SHA-256: `02737e6c49c16b1fbbba3790cd29d06145e226567455bddc2ca530ea277fc557`.
+  Evidence: `facts/__glim_LoadMatrixf.target.txt`,
+  `facts/__glim_LoadMatrixf.existing.txt`, `facts/__glim_LoadMatrixf.full.listing.txt`,
+  `facts/__glim_LoadMatrixf.compare.txt`.
+
+- `__glim_LoadMatrixd` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda351b0, routine size 292 bytes.
+  Converts a double software matrix into a floating stack
+  matrix. Narrowing starts with `cvt.s.d` at 0xda351e0
+  and ends with `cvt.s.d` at 0xda352a0.
+  Doubleword input endpoints are argument-zero +0 and
+  +0x78 (`ldc1` at 0xda351dc, 0xda35290).
+  Calls `__glDoLoadMatrix` with entry-stack -112
+  (`bgezall` at 0xda352a8).
+  The error site passes 0x502 (`jalr` at 0xda352c4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_LoadMatrixd` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda351b0,
+  292 bytes, labelled Established.
+  Comparison: target 292 bytes, existing 292 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `75dc15336850e917172bb0a4e1a056a6f6701eff9b63cce253ef520c32de45cf`.
+  Existing SHA-256: `75dc15336850e917172bb0a4e1a056a6f6701eff9b63cce253ef520c32de45cf`.
+  Evidence: `facts/__glim_LoadMatrixd.target.txt`,
+  `facts/__glim_LoadMatrixd.existing.txt`, `facts/__glim_LoadMatrixd.full.listing.txt`,
+  `facts/__glim_LoadMatrixd.compare.txt`.
+
+- `__glim_MultMatrixf` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda352e0, routine size 232 bytes.
+  Copies a software matrix to stack storage for
+  `__glDoMultMatrix`, supplying pointed context,
+  entry-stack -112 and procedure address 0xda34a10
+  (`bgezall` at 0xda3539c).
+  Copies the first input float to entry-stack -0x70
+  (`swc1` at 0xda35310), and the last to -0x34
+  (`swc1` at 0xda353a0).
+  Matrix type is zero at entry-stack -0x30
+  (`sw` at 0xda35394).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_MultMatrixf` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda352e0,
+  232 bytes, labelled Established.
+  Comparison: target 232 bytes, existing 232 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6221681d0ac51f2033681aa9867a8abe65bd9ba836a80cbedd8cf0ed1a7b2903`.
+  Existing SHA-256: `6221681d0ac51f2033681aa9867a8abe65bd9ba836a80cbedd8cf0ed1a7b2903`.
+  Evidence: `facts/__glim_MultMatrixf.target.txt`,
+  `facts/__glim_MultMatrixf.existing.txt`, `facts/__glim_MultMatrixf.full.listing.txt`,
+  `facts/__glim_MultMatrixf.compare.txt`.
+
+- `__glim_MultMatrixd` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda353d0, routine size 296 bytes.
+  Prepares a double-input software matrix multiplication.
+  The first and final narrowing instructions are
+  `cvt.s.d` at 0xda35400 and 0xda354c4.
+  Calls `__glDoMultMatrix` with the resulting entry-stack
+  -112 vector and procedure address 0xda34a10
+  (`bgezall` at 0xda354cc).
+  Its type word is cleared at entry-stack -0x30
+  (`sw` at 0xda354c0), and `__glSetError` receives
+  0x502 on the error path (`jalr` at 0xda354e8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_MultMatrixd` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda353d0,
+  296 bytes, labelled Established.
+  Comparison: target 296 bytes, existing 296 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `69afc8a1fde8a0598494ad90b13e144e76aca3328a992be714616a4a99058af0`.
+  Existing SHA-256: `69afc8a1fde8a0598494ad90b13e144e76aca3328a992be714616a4a99058af0`.
+  Evidence: `facts/__glim_MultMatrixd.target.txt`,
+  `facts/__glim_MultMatrixd.existing.txt`, `facts/__glim_MultMatrixd.full.listing.txt`,
+  `facts/__glim_MultMatrixd.compare.txt`.
+
+- `__glim_Rotatef` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35500, routine size 108 bytes.
+  Forwards single-precision rotation to `__glDoRotate`
+  (`bgezall` at 0xda35540).
+  Hostfacts records incoming f12, f13, f14 and f15 in
+  outgoing f13, f14, f15 and f16 at that call.
+  Context argument zero comes from absolute word 0x1010
+  (`lw` at 0xda35544).
+  The separate `__glSetError` call uses 0x502
+  (`jalr` at 0xda3555c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Rotatef` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35500,
+  108 bytes, labelled Established.
+  Comparison: target 108 bytes, existing 108 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4a7451f05062cd8128f9b725ad89a23861271c93e4eec965619618c79e3f2ce6`.
+  Existing SHA-256: `4a7451f05062cd8128f9b725ad89a23861271c93e4eec965619618c79e3f2ce6`.
+  Evidence: `facts/__glim_Rotatef.target.txt`,
+  `facts/__glim_Rotatef.existing.txt`, `facts/__glim_Rotatef.full.listing.txt`,
+  `facts/__glim_Rotatef.compare.txt`.
+
+- `__glim_Rotated` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35570, routine size 112 bytes.
+  Narrows double rotation values with four conversions
+  (`cvt.s.d` at 0xda355a0, 0xda355a8, 0xda355ac,
+  0xda355b0) before the software `__glDoRotate` call
+  (`bgezall` at 0xda355b4).
+  The context is loaded from absolute 0x1010
+  (`lw` at 0xda355b8).
+  Hostfacts does not recover the converted floating
+  call arguments. Error reporting uses 0x502
+  (`jalr` at 0xda355d0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Rotated` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35570,
+  112 bytes, labelled Established.
+  Comparison: target 112 bytes, existing 112 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `005ce86be9f4c36031a715ffbe0c9315da42e68b05dba2e1aaa40dfca88db548`.
+  Existing SHA-256: `005ce86be9f4c36031a715ffbe0c9315da42e68b05dba2e1aaa40dfca88db548`.
+  Evidence: `facts/__glim_Rotated.target.txt`,
+  `facts/__glim_Rotated.existing.txt`, `facts/__glim_Rotated.full.listing.txt`,
+  `facts/__glim_Rotated.compare.txt`.
+
+- `__glim_Scalef` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda355e0, routine size 100 bytes.
+  Passes three scalar software scale factors through
+  `__glDoScale` (`bgezall` at 0xda35618).
+  The tool tracks incoming f12, f13 and f14 into outgoing
+  f13, f14 and f15. Reads context from absolute 0x1010
+  in the call delay slot (`lw` at 0xda3561c).
+  The alternative call is `__glSetError` with argument
+  zero 0x502 (`jalr` at 0xda35634).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Scalef` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda355e0,
+  100 bytes, labelled Established.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `da23886204749f4d830327209d3c19338f5293b62f94c2c858bb503167dc2afc`.
+  Existing SHA-256: `da23886204749f4d830327209d3c19338f5293b62f94c2c858bb503167dc2afc`.
+  Evidence: `facts/__glim_Scalef.target.txt`,
+  `facts/__glim_Scalef.existing.txt`, `facts/__glim_Scalef.full.listing.txt`,
+  `facts/__glim_Scalef.compare.txt`.
+
+- `__glim_Scaled` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35650, routine size 104 bytes.
+  Adapts double scale inputs using `cvt.s.d` at
+  0xda35680, 0xda35684 and 0xda35688.
+  Dispatches to the shared software `__glDoScale`
+  (`bgezall` at 0xda3568c), with context loaded from
+  absolute word 0x1010 (`lw` at 0xda35690).
+  Converted floating call values remain unresolved by
+  hostfacts. The error callback receives 0x502
+  (`jalr` at 0xda356a8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Scaled` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35650,
+  104 bytes, labelled Established.
+  Comparison: target 104 bytes, existing 104 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5585c227c4a605694bf48fedbe307445f5f7196fd086ed08134ef87d43816fea`.
+  Existing SHA-256: `5585c227c4a605694bf48fedbe307445f5f7196fd086ed08134ef87d43816fea`.
+  Evidence: `facts/__glim_Scaled.target.txt`,
+  `facts/__glim_Scaled.existing.txt`, `facts/__glim_Scaled.full.listing.txt`,
+  `facts/__glim_Scaled.compare.txt`.
+
+- `__glim_Translatef` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda356c0, routine size 100 bytes.
+  Passes scalar floating translation inputs to the software
+  `__glDoTranslate` entry (`bgezall` at 0xda356f8).
+  Its floating registers f13, f14 and f15 carry original
+  f12, f13 and f14. Gets the context from absolute
+  0x1010 (`lw` at 0xda356fc).
+  Calls `__glSetError` with 0x502 on its error path
+  (`jalr` at 0xda35714).
+  No vector or context stores occur in this wrapper.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Translatef` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda356c0,
+  100 bytes, labelled Established.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `2d575eb017a0f5593fe968e8d38b0a13dc647f379f67bdf6a94193f48f1ff78b`.
+  Existing SHA-256: `2d575eb017a0f5593fe968e8d38b0a13dc647f379f67bdf6a94193f48f1ff78b`.
+  Evidence: `facts/__glim_Translatef.target.txt`,
+  `facts/__glim_Translatef.existing.txt`, `facts/__glim_Translatef.full.listing.txt`,
+  `facts/__glim_Translatef.compare.txt`.
+
+- `__glim_Translated` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35730, routine size 104 bytes.
+  Converts double translation inputs to single precision
+  (`cvt.s.d` at 0xda35760, 0xda35764, 0xda35768).
+  Invokes `__glDoTranslate` with the context pointer
+  read from absolute 0x1010 (`bgezall` at 0xda3576c,
+  `lw` at 0xda35770).
+  Hostfacts leaves the floating call values unknown.
+  A second call reports 0x502 through `__glSetError`
+  (`jalr` at 0xda35788).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Translated` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35730,
+  104 bytes, labelled Established.
+  Comparison: target 104 bytes, existing 104 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `67ca0c5d823b90d63f330f2e3ec53a2240578b1e6dd205cdb09282cfcc154529`.
+  Existing SHA-256: `67ca0c5d823b90d63f330f2e3ec53a2240578b1e6dd205cdb09282cfcc154529`.
+  Evidence: `facts/__glim_Translated.target.txt`,
+  `facts/__glim_Translated.existing.txt`, `facts/__glim_Translated.full.listing.txt`,
+  `facts/__glim_Translated.compare.txt`.
+
+- `__glim_Frustum` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda358a0, routine size 456 bytes.
+  Builds a software perspective matrix on entry-stack -192
+  and calls `__glDoMultMatrix` with that vector and
+  procedure address 0xda34a10 (`bgezall` at 0xda35a44).
+  Matrix stores include the minus-one float at
+  entry-stack -0x94 (`swc1` at 0xda35a10) and a zero
+  type word at -0x80 (`sw` at 0xda359f8).
+  `__glSetError` calls carry 0x501 and 0x502
+  (`jalr` at 0xda35960, 0xda35a58 respectively).
+  Four undecoded words leave dependent predicates unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Frustum` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda358a0,
+  456 bytes, labelled Established.
+  Comparison: target 456 bytes, existing 456 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c976d84342b22b3f682095e14d419c60d66c9f3ba2d1cdbe61aeee211432c2da`.
+  Existing SHA-256: `c976d84342b22b3f682095e14d419c60d66c9f3ba2d1cdbe61aeee211432c2da`.
+  Evidence: `facts/__glim_Frustum.target.txt`,
+  `facts/__glim_Frustum.existing.txt`, `facts/__glim_Frustum.full.listing.txt`,
+  `facts/__glim_Frustum.compare.txt`.
+
+- `__glim_Ortho` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda35a70, routine size 512 bytes.
+  Constructs a software orthographic matrix and sends
+  pointed context, entry-stack -192 and procedure address
+  0xda34a10 to `__glDoMultMatrix`
+  (`bgezall` at 0xda35c28).
+  A conditional path copies viewport width and height as
+  halfwords at entry-stack -0x7c and -0x7a
+  (`sh` at 0xda35c04, 0xda35c10).
+  Seven undecoded words prevent recovery of the complete
+  rejection and matrix-type predicates.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Ortho` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35a70,
+  512 bytes, labelled Established.
+  Comparison: target 512 bytes, existing 512 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `09f2484a08e4b527da77e7902bcc21a45140432d45192b782091673a77b9ccc1`.
+  Existing SHA-256: `09f2484a08e4b527da77e7902bcc21a45140432d45192b782091673a77b9ccc1`.
+  Evidence: `facts/__glim_Ortho.target.txt`,
+  `facts/__glim_Ortho.existing.txt`, `facts/__glim_Ortho.full.listing.txt`,
+  `facts/__glim_Ortho.compare.txt`.
+
+- `__glUpdateViewport` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Inferred.**
+  Address 0xda35c70, routine size 176 bytes.
+  Updates derived software viewport fields without calls.
+  Reads width and height at context +0x6a0 and +0x6a4
+  (`lw` at 0xda35c70, 0xda35c88).
+  Horizontal outputs occupy +0x6b8 and +0x6bc
+  (`swc1` at 0xda35ca8, 0xda35cb8).
+  Vertical stores include +0x6c0 and +0x6c4
+  (`swc1` at 0xda35d10, 0xda35d1c).
+  The coprocessor word at 0xda35cd4 is ambiguously decoded,
+  so its equation and dependent condition remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glUpdateViewport` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35c70,
+  176 bytes, labelled Inferred.
+  Comparison: target 176 bytes, existing 176 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `626df4fddde1e762fe5c6848f1c205eceb3d8d29e9b07ebac2fcbfef57a2b519`.
+  Existing SHA-256: `626df4fddde1e762fe5c6848f1c205eceb3d8d29e9b07ebac2fcbfef57a2b519`.
+  Evidence: `facts/__glUpdateViewport.target.txt`,
+  `facts/__glUpdateViewport.existing.txt`, `facts/__glUpdateViewport.full.listing.txt`,
+  `facts/__glUpdateViewport.compare.txt`.
+
+- `__glUpdateViewportTransform` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35d20, routine size 172 bytes.
+  Stores software viewport bounds as words and floats.
+  Word outputs reach context +0x744c, +0x7454, +0x7450
+  and +0x7458 (`sw` at 0xda35d5c, 0xda35d68,
+  0xda35d90, 0xda35d98).
+  Floating copies occupy +0x745c, +0x7464, +0x7460
+  and +0x7468 (`swc1` at 0xda35da0, 0xda35da8,
+  0xda35dac, 0xda35db8).
+  The final unnamed procedure receives context and its
+  +0x7414 pointer +176 (`jalr` at 0xda35db4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glUpdateViewportTransform` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35d20,
+  172 bytes, labelled Established.
+  Comparison: target 172 bytes, existing 172 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `fdba2ba04a7f4b3f4c8a7eaf72e6e51246e40d003f3cb0d640e262397ec000d1`.
+  Existing SHA-256: `fdba2ba04a7f4b3f4c8a7eaf72e6e51246e40d003f3cb0d640e262397ec000d1`.
+  Evidence: `facts/__glUpdateViewportTransform.target.txt`,
+  `facts/__glUpdateViewportTransform.existing.txt`, `facts/__glUpdateViewportTransform.full.listing.txt`,
+  `facts/__glUpdateViewportTransform.compare.txt`.
+
+- `__glim_Viewport` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). **Established.**
+  Address 0xda35dd0, routine size 240 bytes.
+  Updates local software viewport state after rejecting negative
+  width or height (`bltz` at 0xda35e00, 0xda35e08).
+  Stores x and y at pointed-context +0x698 and +0x69c
+  (`sw` at 0xda35e24, 0xda35e10).
+  Calls `__glUpdateViewport` then an unnamed context
+  procedure (`bgezall` at 0xda35e3c,
+  `jalr` at 0xda35e48), followed by
+  `__glUpdateViewportTransform` (`bgezall` at 0xda35e54).
+  ORs 0x1 into context +0x2e24 (`sw` at 0xda35e74).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Viewport` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda35dd0,
+  240 bytes, labelled Inferred.
+  Comparison: target 240 bytes, existing 240 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `607e7e22fb785c3928e7eecf20be6f04b7f5a332230c35dd804713497c784a75`.
+  Existing SHA-256: `607e7e22fb785c3928e7eecf20be6f04b7f5a332230c35dd804713497c784a75`.
+  Evidence: `facts/__glim_Viewport.target.txt`,
+  `facts/__glim_Viewport.existing.txt`, `facts/__glim_Viewport.full.listing.txt`,
+  `facts/__glim_Viewport.compare.txt`.
