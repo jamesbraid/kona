@@ -33252,3 +33252,83 @@ comparison was not rerun and supplies no new target equation.
 - `__glim_GetError` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
   Target 0x2223440, 92 bytes. Complete byte identity with
   `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e43440, 92 bytes.
+
+- `__glImageSize3D` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2225730. The routine occupies 84 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e45730, which occupies 84 bytes. Both ranges have SHA-256 `f920eeb238e169e89111f152ede53583f9a5103a52135f02881eea2921b88304`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glEmptyImage` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x22264d0. The routine occupies 1212 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e464d0, which occupies 1212 bytes. Both ranges have SHA-256 `5c0112936d0ca7862588322f0d50bec9a0ddff076587cbfee1331dedde6421d6`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glScaleColorf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2226990. The routine occupies 76 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46990, which occupies 76 bytes. Both ranges have SHA-256 `09b21bf22f4d9e1ea5991ff7304034ad0cc13dca53039f5961ff16c419d9933d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glClampAndScaleColorf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x22269e0. The routine occupies 240 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e469e0, which occupies 240 bytes. Both ranges have SHA-256 `76e0327ca052424e77260304b2aea4c1f91253a3ee2ff13a94349f3902f2f2cd`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glClampColorf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2226ad0. The routine occupies 192 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46ad0, which occupies 192 bytes. Both ranges have SHA-256 `f7e2fffdeefe9e3f997e526cb8f0f5b71c1d029138eeb3471c77d65da77ace6f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glScaleColori` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2226b90. The routine occupies 176 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46b90, which occupies 176 bytes. Both ranges have SHA-256 `d4f48ae80b8ae656431afe3301be7ced3ad7067e8b588fed2bfc609a5bee3a6c`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glClampAndScaleColori` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2226c40. The routine occupies 340 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46c40, which occupies 340 bytes. Both ranges have SHA-256 `f1b79b6a8e4d9df585575af7e5d2a2ca6ed901aacf7b59b963b869c0f14e7b9d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glClampColori` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2226da0. The routine occupies 280 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46da0, which occupies 280 bytes. Both ranges have SHA-256 `e4261891a75d6e2deff6891bc7f3538b3b21a412bde56cc9265fe7e81e1d221a`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glUnScaleColorf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2226ec0. The routine occupies 76 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46ec0, which occupies 76 bytes. Both ranges have SHA-256 `d5207e78fc4898a3de4dedcbcc91125763eb01c0489dd8d7662f9eca5a5721f8`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glUnScaleColori` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2226f10. The routine occupies 268 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e46f10, which occupies 268 bytes. Both ranges have SHA-256 `160e2e09e637c3a339f27f4a8645f911f70f8cfe381731f01130257cf8e2a77a`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glClampRGBColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2227020. The routine occupies 208 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e47020, which occupies 208 bytes. Both ranges have SHA-256 `1d152ba4afcf3fd521d8e2d3557d719257e367ea1b8a80dc3b87873ba4c7b346`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcRGBColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x22271c0. The routine occupies 1472 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e471c0, which occupies 1472 bytes. Both ranges have SHA-256 `45f8b844eed4b568d72338e245362243d1938402c893d8558e499a89f494ea70`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcCIColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2227880. The routine occupies 1184 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e47880, which occupies 1184 bytes. Both ranges have SHA-256 `5b919774fe3714c0759628da12630c0b3a272f3d864cd4fd7e7fa5ffdb45b40e`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glFastCalcCIColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2227d20. The routine occupies 440 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e47d20, which occupies 440 bytes. Both ranges have SHA-256 `0e519f5429fdc32ddf99d9d6d3e94a01de610b9c00f5ff5bc803bf7292209b58`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `ChangeMaterialEmission` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2227fe0. The routine occupies 124 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e47fe0, which occupies 124 bytes. Both ranges have SHA-256 `52731134d59a73bde2e6a60c5abb428fe0ddb8e95f1d9f1c2690497a4dab69cf`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `ChangeMaterialSpecular` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x2228060. The routine occupies 144 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e48060, which occupies 144 bytes. Both ranges have SHA-256 `cf6366a882d979bad44b8a41da1ab96dd8246397c410a737122afeb5fe17a40e`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `ChangeMaterialAmbient` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x22280f0. The routine occupies 192 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e480f0, which occupies 192 bytes. Both ranges have SHA-256 `d1ecb73d6c0f4f04b82777058f9dea9b52ad10e15ca9ec14a69c19ba9c5f7e63`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `ChangeMaterialDiffuse` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x22281b0. The routine occupies 192 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e481b0, which occupies 192 bytes. Both ranges have SHA-256 `d21d05bdd3f0eab1cfd7d4a362c4e72b25bd4e0cd7a48f8e1f9a6cc7cd3dc2b7`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `ChangeMaterialAmbientAndDiffuse` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Inferred. Target address 0x2228270. The routine occupies 292 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e48270, which occupies 292 bytes. Both ranges have SHA-256 `8d2545bf380c32f1ecda1e81f32288399bc0b2ae0bdb8d281d1b69414a3aa7c0`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glChangeOneMaterialColor` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Source grade: Established. Target address 0x22283a0. The routine occupies 164 bytes. Its range is byte-identical to `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e483a0, which occupies 164 bytes. Both ranges have SHA-256 `a7c66a3dddd525f540b637f58ac0bcdf02845f4553d8dee8cf383a84a19deee6`.
+  Existing note: `docs/sample-implementation.md`.
