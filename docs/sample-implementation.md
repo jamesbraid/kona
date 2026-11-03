@@ -40723,7 +40723,7 @@ comparison was not rerun and supplies no new target equation.
 - `__glDoScale` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
   **Established.** Range 0x227c250–0x227c294, occupies 68 bytes.
 
-  After the stack moves down by 0x20 (`daddiu` at 0x227c250), f15, f14 and f13 are stored at the new sp +8, +4 and +0 (`swc1` at 0x227c254, 0x227c25c, 0x227c270). The call passes a1=sp-32 and a2=0x227c1b0 (`bgezall` at 0x227c27c). The symbol table resolves 0x227c1b0 as `__glScaleMatrix`.
+  Stack adjustment is -0x20 (`daddiu` at 0x227c250). The stores place f15, f14 and f13 at new sp +8/+4/+0 (`swc1` at 0x227c254, 0x227c25c, 0x227c270). The call passes a1=sp-32 and a2=0x227c1b0 (`bgezall` at 0x227c27c). The symbol table resolves that address as `__glScaleMatrix`.
 
   | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
   |---|---|---:|---|---:|
@@ -40750,7 +40750,7 @@ comparison was not rerun and supplies no new target equation.
 - `__glDoTranslate` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
   **Established.** Range 0x227c360–0x227c3a4, occupies 68 bytes.
 
-  After the stack moves down by 0x20 (`daddiu` at 0x227c360), f15, f14 and f13 are stored at the new sp +8, +4 and +0 (`swc1` at 0x227c364, 0x227c36c, 0x227c380). The call passes a1=sp-32 and a2=0x227c2a0 (`bgezall` at 0x227c38c). The symbol table resolves 0x227c2a0 as `__glTranslateMatrix`.
+  Stack adjustment is -0x20 (`daddiu` at 0x227c360). The stores place f15, f14 and f13 at new sp +8/+4/+0 (`swc1` at 0x227c364, 0x227c36c, 0x227c380). The call passes a1=sp-32 and a2=0x227c2a0 (`bgezall` at 0x227c38c). The symbol table resolves that address as `__glTranslateMatrix`.
 
   | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
   |---|---|---:|---|---:|
@@ -40940,3 +40940,114 @@ comparison was not rerun and supplies no new target equation.
   Target 0x22c1ed0, 652 bytes. Complete byte identity with
   `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ee1ed0, 652 bytes.
   Code SHA-256 `73466a471643d471ee633a515bdcbfb5eeded468259559ab1f2a4baea760aa32`.
+
+
+- `__glRenderSmoothTriangle` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x22c23b4–0x22c2634, occupies 640 bytes.
+
+  Signed word comparisons reorder the three vertex arguments before the floating-point edge calculations.
+  The first ordering test compares the words loaded from each of the first two vertices, as the condition table records.
+  Coordinate differences feed two products and a subtraction (`mul.s` at 0x22c2478, `mul.s` at 0x22c248c, `sub.s` at 0x22c24c8).
+  Five derived float values are stored into the context.
+
+  The later tests select an early return or a path with up to three vertex-validation callbacks and one renderer callback.
+  Their names and the smooth-shading role are inferred from the selected source entry.
+  All four reported callees remain unresolved in target hostfacts.
+  Reordered vertex bases and callback arguments stay unknown.
+
+  This N64 ELF body uses four-byte saves for the return address and arguments (`sw` at 0x22c2464, `sw` at 0x22c246c).
+  The renderer pointer load also has width four (`lw` at 0x22c25f4).
+  The access widths below describe the observed instructions, without inferring a compatibility failure from the ABI label.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da7cb24 | 576 | Inferred | 393 |
+
+  The access table contains every target hostfacts memory access, including stack saves and restores.
+  The six vertex-pointer stores use unresolved bases.
+  Conditions quote the reported taken and fall-through tests, with analyzer block labels omitted.
+  Return registers are observations, not an API return-type claim.
+
+  | Access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a1 (arg1 at entry) +0x8c` | `lw` at 0x22c23b8 |
+  | load | 4 | `a2 (arg2 at entry) +0x8c` | `lw` at 0x22c23bc |
+  | load | 4 | `a3 (arg3 at entry) +0x8c` | `lw` at 0x22c23c0 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c2444 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c2448 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c244c |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c2450 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c2458 |
+  | load | 4 | `? (base unknown)` | `lwc1` at 0x22c245c |
+  | store | 4 | `sp (at entry) -0xc  value ra` | `sw` at 0x22c2464 |
+  | store | 4 | `sp (at entry) -0x20  value a0` | `sw` at 0x22c246c |
+  | store | 4 | `sp (at entry) -0x1c` | `sw` at 0x22c2470 |
+  | store | 4 | `sp (at entry) -0x18` | `sw` at 0x22c247c |
+  | store | 4 | `a0 (arg0 at entry) +0x9718` | `swc1` at 0x22c2488 |
+  | store | 4 | `sp (at entry) -0x14` | `sw` at 0x22c2490 |
+  | store | 4 | `a0 (arg0 at entry) +0x9714` | `swc1` at 0x22c249c |
+  | store | 4 | `a0 (arg0 at entry) +0x971c` | `swc1` at 0x22c24a8 |
+  | store | 4 | `a0 (arg0 at entry) +0x9720` | `swc1` at 0x22c24b4 |
+  | load | 1 | `a0 (arg0 at entry) +0x9885` | `lbu` at 0x22c24bc |
+  | load | 4 | `a0 (arg0 at entry) +0x9814` | `lw` at 0x22c24c4 |
+  | store | 4 | `a0 (arg0 at entry) +0x9710` | `swc1` at 0x22c24d8 |
+  | load | 4 | `a0 (arg0 at entry) +0x9710` | `lw` at 0x22c24e4 |
+  | load | 4 | `a0 (arg0 at entry) +0x8cf8` | `lw` at 0x22c24ec |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x22c2508 |
+  | store | 4 | `sp (at entry) -0x30` | `sw` at 0x22c2510 |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c252c |
+  | load | 4 | `a0 (arg0 at entry) +0x8cfc` | `lw` at 0x22c253c |
+  | store | 4 | `sp (at entry) -0x24` | `sw` at 0x22c254c |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2558 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2564 |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c2570 |
+  | load | 4 | `sp (at entry) -0x24` | `lw` at 0x22c2574 |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c2578 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2588 |
+  | load | 4 | `sp (at entry) -0x20` | `lw` at 0x22c2594 |
+  | load | 4 | `sp (at entry) -0x18` | `lw` at 0x22c2598 |
+  | load | 4 | `sp (at entry) -0x24` | `lw` at 0x22c259c |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c25a0 |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c25a4 |
+  | load | 4 | `sp (at entry) -0x20` | `lw` at 0x22c25c0 |
+  | load | 4 | `sp (at entry) -0x14` | `lw` at 0x22c25c4 |
+  | load | 4 | `sp (at entry) -0x24` | `lw` at 0x22c25c8 |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c25cc |
+  | load | 4 | `? (base unknown)` | `lw` at 0x22c25d0 |
+  | load | 4 | `sp (at entry) -0x20` | `lw` at 0x22c25ec |
+  | load | 4 | `sp (at entry) -0x1c` | `lw` at 0x22c25f0 |
+  | load | 4 | `a0 (arg0 at entry) +0x4998` | `lw` at 0x22c25f4 |
+  | load | 4 | `sp (at entry) -0x18` | `lw` at 0x22c25f8 |
+  | load | 4 | `sp (at entry) -0x14` | `lw` at 0x22c2600 |
+  | load | 4 | `sp (at entry) -0x1c` | `lw` at 0x22c2604 |
+  | load | 4 | `sp (at entry) -0x18` | `lw` at 0x22c2608 |
+  | load | 4 | `sp (at entry) -0x14` | `lw` at 0x22c260c |
+  | load | 4 | `sp (at entry) -0xc` | `lw` at 0x22c2610 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2618 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2620 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x22c2628 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x22c258c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `jalr` at 0x22c25b8 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `jalr` at 0x22c25e4 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+  | `jalr` at 0x22c25fc | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=?, a2=?, a3=?` |
+
+  | Conditional instruction | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x22c23cc | `t0(=[a1+140]) >= t1(=[a2+140]) (signed)` | `t0(=[a1+140]) < t1(=[a2+140]) (signed)` |
+  | `bnez` at 0x22c23d4 | `t9(?) != 0` | `t9(?) == 0` |
+  | `beqz` at 0x22c23dc | `v0(?) == 0` | `v0(?) != 0` |
+  | `beqz` at 0x22c240c | `t1(=[a2+140]) >= t2(=[a3+140]) (signed)` | `t1(=[a2+140]) < t2(=[a3+140]) (signed)` |
+  | `beqz` at 0x22c2418 | `t0(=[a1+140]) >= t2(=[a3+140]) (signed)` | `t0(=[a1+140]) < t2(=[a3+140]) (signed)` |
+  | `beqz` at 0x22c250c | `t9(=([a0+38672] << 0x1)) == 0` | `t9(=([a0+38672] << 0x1)) != 0` |
+  | `beq` at 0x22c2514 | `v1(?) == t0(=[a0+39045]:1)` | `v1(?) != t0(=[a0+39045]:1)` |
+  | `beqz` at 0x22c251c | `t1(?) == 0` | `t1(?) != 0` |
+  | `beqz` at 0x22c2584 | `(t0(?) & a2(?)) == 0` | `(t0(?) & a2(?)) != 0` |
+  | `beqz` at 0x22c25b0 | `(t1(?) & a2(?)) == 0` | `(t1(?) & a2(?)) != 0` |
+  | `beqz` at 0x22c25dc | `(t2(?) & a2(?)) == 0` | `(t2(?) & a2(?)) != 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22c262c | `v0 = ?` |
