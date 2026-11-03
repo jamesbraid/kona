@@ -2538,6 +2538,94 @@ Target entries use the exact IP35 O32 routine bounds. Identical bodies receive o
 - `__glkonim_TexCoord1dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xda6f848; occupies 16 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6f848 for 16 bytes (SHA-256 `c36a8c73653a233d6e5b6ca4e392751516b3f7f2936b38b49845d57d54818acc`). Documented sibling grade: Inferred.
 
+### IP35 O32 vertex, attribute and draw-helper identities (batch 081)
+
+Each complete target body below is byte-identical to its documented IP27 O32 sibling. These notes record the exact identity and keep each source grade; they add no behavior claim.
+
+| Routine | IP35 O32 address / size | IP27 O32 build / address / size | SHA-256 (both) | Documented grade |
+|---|---|---|---|---|
+| `__glkonim_TexCoord1fv` | 0xda6f858 / 16 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6f858 / 16 | `ada946be32f7c4e540e00e8ff3b768d878d2c8da3753903c1ad044bdf2b7e962` | Inferred |
+| `__glkonim_TexCoord2iv` | 0xda6f89c / 16 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6f89c / 16 | `c5f3d1294fa4e46f05c23f732982d053b6d3d78f0d6f10f56c506cc049debdf1` | Inferred |
+| `__glkonim_Vertex2dv` | 0xda6f93c / 20 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6f93c / 20 | `3e222b89f4b5c347fac0378a43298c14bd6c2218f8b8000c2c029bd25a2a4bb5` | Inferred |
+| `__glkonim_Vertex3dv` | 0xda6f970 / 24 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6f970 / 24 | `819e581e38623bb47f3d7754be652512fc776ec5fd3fbc7802bb78d3476b8f46` | Inferred |
+| `__glim_Color3f` | 0xda6fa30 / 32 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fa30 / 32 | `6c1ee1410d67abcb96fcb9c910e3682921c4795619943d0a79db47e247ba1862` | Inferred |
+| `__glim_Color3fv` | 0xda6fa50 / 48 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fa50 / 48 | `b58374ee7955631fe4b855d9228818a74b627c335e82fd05b2ffcd9e5ad3d2e5` | Inferred |
+| `__glim_Color4f` | 0xda6fa80 / 32 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fa80 / 32 | `a417c2cfba9a5749ef84bcca09f2bd736f4e04dae914aa02cc1f74ed96c28a7d` | Inferred |
+| `__glim_Color4fv` | 0xda6faa0 / 48 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6faa0 / 48 | `cd862117eb0d8749ea174ed90b6dfd947a2c634053261b26540cae80036b83f0` | Inferred |
+| `__glim_Normal3f` | 0xda6fad0 / 24 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fad0 / 24 | `866bb7da365218c08a12e8148e88328f822be8f0d82693e3d475fa0063f06bd7` | Established |
+| `__glim_Normal3fv` | 0xda6fae8 / 32 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fae8 / 32 | `2e99d7282c24d3deff80be05f7ba5920373957bade35d46be64fad22c5f5783c` | Established |
+| `__glim_TexCoord2f` | 0xda6fb08 / 28 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fb08 / 28 | `12008abf4ecea1b79fa9aaac8987cbb7eda840d57fd2d5211d244982e227acbd` | Established |
+| `__glim_TexCoord2fv` | 0xda6fb24 / 36 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fb24 / 36 | `bed1bf825bbccac51f289b8321d233fe151b1932e9d21a0a88926f806fdf0a5f` | Established |
+| `__glEvenTStripVertex` | 0xda6fb50 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fb50 / 136 | `5daa1ac57606027bd53a9820d913f6c3e3a6e8d7b5d9ba0b6d7685c7abdfb8ad` | Inferred |
+| `__glOddTStripVertex` | 0xda6fbd8 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6fbd8 / 136 | `e00ba1fff6bd7547ca7551c35727798f6ff561dea3077f2a7ecf0f93c8681710` | Inferred |
+| `__glPoint` | 0xda6ff34 / 76 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6ff34 / 76 | `35da28a1a3d39028d3647aa6abe98c9fd851317c20a02c39d87a6a2dec682a6d` | Established |
+| `__glPointFast` | 0xda6ff80 / 28 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda6ff80 / 28 | `74baf3d32ec74c6867d7f75f3fcc957ddde362e7e0193c791e436c0971dd4bcd` | Established |
+| `__glValidateVertex2` | 0xda70a50 / 444 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda70a50 / 444 | `10327a86cc126c6d209fab7c1419bd26551c28efb3f6fb669bc209896a590707` | Inferred |
+| `__glValidateVertex3` | 0xda70c0c / 452 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda70c0c / 452 | `c9d57dea931869b1427f87d08a8de90ff404b67ef05dc29ab0f797895897d687` | Inferred |
+| `__glValidateVertex4` | 0xda70dd0 / 460 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda70dd0 / 460 | `f7c171fbd8e6aeded540aeab9d233940333dd56e33be75e2809c21ecb8ce3011` | Inferred |
+| `__glSaveN` | 0xda71290 / 24 | usr/gfx/arch/IP27KONA/libGLcore.so / 0xda71290 / 24 | `d59ec2f7f17606fb683c91c16f134df7948b76317745d373c31032daf06dbc8a` | Established |
+
+Target entries:
+
+- `__glkonim_TexCoord1fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6f858; occupies 16 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6f858 for 16 bytes (SHA-256 `ada946be32f7c4e540e00e8ff3b768d878d2c8da3753903c1ad044bdf2b7e962`). Documented sibling grade: Inferred.
+
+- `__glkonim_TexCoord2iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6f89c; occupies 16 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6f89c for 16 bytes (SHA-256 `c5f3d1294fa4e46f05c23f732982d053b6d3d78f0d6f10f56c506cc049debdf1`). Documented sibling grade: Inferred.
+
+- `__glkonim_Vertex2dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6f93c; occupies 20 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6f93c for 20 bytes (SHA-256 `3e222b89f4b5c347fac0378a43298c14bd6c2218f8b8000c2c029bd25a2a4bb5`). Documented sibling grade: Inferred.
+
+- `__glkonim_Vertex3dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6f970; occupies 24 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6f970 for 24 bytes (SHA-256 `819e581e38623bb47f3d7754be652512fc776ec5fd3fbc7802bb78d3476b8f46`). Documented sibling grade: Inferred.
+
+- `__glim_Color3f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fa30; occupies 32 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fa30 for 32 bytes (SHA-256 `6c1ee1410d67abcb96fcb9c910e3682921c4795619943d0a79db47e247ba1862`). Documented sibling grade: Inferred.
+
+- `__glim_Color3fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fa50; occupies 48 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fa50 for 48 bytes (SHA-256 `b58374ee7955631fe4b855d9228818a74b627c335e82fd05b2ffcd9e5ad3d2e5`). Documented sibling grade: Inferred.
+
+- `__glim_Color4f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fa80; occupies 32 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fa80 for 32 bytes (SHA-256 `a417c2cfba9a5749ef84bcca09f2bd736f4e04dae914aa02cc1f74ed96c28a7d`). Documented sibling grade: Inferred.
+
+- `__glim_Color4fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6faa0; occupies 48 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6faa0 for 48 bytes (SHA-256 `cd862117eb0d8749ea174ed90b6dfd947a2c634053261b26540cae80036b83f0`). Documented sibling grade: Inferred.
+
+- `__glim_Normal3f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fad0; occupies 24 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fad0 for 24 bytes (SHA-256 `866bb7da365218c08a12e8148e88328f822be8f0d82693e3d475fa0063f06bd7`). Documented sibling grade: Established.
+
+- `__glim_Normal3fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fae8; occupies 32 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fae8 for 32 bytes (SHA-256 `2e99d7282c24d3deff80be05f7ba5920373957bade35d46be64fad22c5f5783c`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fb08; occupies 28 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fb08 for 28 bytes (SHA-256 `12008abf4ecea1b79fa9aaac8987cbb7eda840d57fd2d5211d244982e227acbd`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fb24; occupies 36 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fb24 for 36 bytes (SHA-256 `bed1bf825bbccac51f289b8321d233fe151b1932e9d21a0a88926f806fdf0a5f`). Documented sibling grade: Established.
+
+- `__glEvenTStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fb50; occupies 136 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fb50 for 136 bytes (SHA-256 `5daa1ac57606027bd53a9820d913f6c3e3a6e8d7b5d9ba0b6d7685c7abdfb8ad`). Documented sibling grade: Inferred.
+
+- `__glOddTStripVertex` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6fbd8; occupies 136 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6fbd8 for 136 bytes (SHA-256 `e00ba1fff6bd7547ca7551c35727798f6ff561dea3077f2a7ecf0f93c8681710`). Documented sibling grade: Inferred.
+
+- `__glPoint` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6ff34; occupies 76 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6ff34 for 76 bytes (SHA-256 `35da28a1a3d39028d3647aa6abe98c9fd851317c20a02c39d87a6a2dec682a6d`). Documented sibling grade: Established.
+
+- `__glPointFast` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda6ff80; occupies 28 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda6ff80 for 28 bytes (SHA-256 `74baf3d32ec74c6867d7f75f3fcc957ddde362e7e0193c791e436c0971dd4bcd`). Documented sibling grade: Established.
+
+- `__glValidateVertex2` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda70a50; occupies 444 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda70a50 for 444 bytes (SHA-256 `10327a86cc126c6d209fab7c1419bd26551c28efb3f6fb669bc209896a590707`). Documented sibling grade: Inferred.
+
+- `__glValidateVertex3` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda70c0c; occupies 452 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda70c0c for 452 bytes (SHA-256 `c9d57dea931869b1427f87d08a8de90ff404b67ef05dc29ab0f797895897d687`). Documented sibling grade: Inferred.
+
+- `__glValidateVertex4` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda70dd0; occupies 460 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda70dd0 for 460 bytes (SHA-256 `f7c171fbd8e6aeded540aeab9d233940333dd56e33be75e2809c21ecb8ce3011`). Documented sibling grade: Inferred.
+
+- `__glSaveN` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda71290; occupies 24 bytes. Its complete body is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda71290 for 24 bytes (SHA-256 `d59ec2f7f17606fb683c91c16f134df7948b76317745d373c31032daf06dbc8a`). Documented sibling grade: Established.
 ### 64-bit routines read in full
 
 - `__glkonResolveContext` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2dc3a00, 8636 bytes):
