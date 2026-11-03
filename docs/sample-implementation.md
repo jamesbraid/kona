@@ -10629,6 +10629,168 @@ Target entries:
   Address 0xd9fa650; occupies 660 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9fa650 for 660 bytes (SHA-256 `ed67415454b1add2f63bc2142538048737904c7335d1e3a56ebae5f4176ca4b0`). Documented sibling grade: Inferred.
 
 
+#### IP35 N32 routines compared with IP27 O32 and N32 siblings (batch 116)
+
+The table uses reviewer-confirmed native routine bounds. Identical bodies receive only an identity note. Different bodies have separate target observations with their target grades retained per entry.
+
+| Routine | IP35 target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `clipToPlaneEye` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fa8f0 / 856 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fa8f0 / 856 | `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d` | `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d` | 0 |
+| `__glDoPolygonClip` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fac50 / 920 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9fdff8 / 1008 | `f7e18168ea109ebc19b45e235248bcb5c638c6d4aa064de196dea738f425fa08` | `12d3ece489346c1d9db2abc510d37fda442906bf23ed7d10bcfb0797e1aaaf41` | 815 |
+| `__glClipPolygon` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9faff0 / 264 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9faff0 / 264 | `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50` | `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50` | 0 |
+| `__glClipTriangle` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fb100 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9fe470 / 88 | `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505` | `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade` | 60 |
+| `FillSubTriangle` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fb150 / 1388 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9fe4d0 / 1312 | `258d19f25eb2ab3ce38d6133f5c0f874ad84f1a50bfa79d93b2af7f19a8deebd` | `cd6c8265350556206eb0eab0d0dc7695aee001bdadcb9c11d5bb178b7748db85` | 1194 |
+| `__glSnapXLeft` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fb6c0 / 344 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9fe9f0 / 392 | `bc54fa9102e7d81c3f96bee3428f75806faaca8fb77991b52eabdd3c608ac545` | `d8e640a535f34e75e24197779a9b0e1e3dc630bcc64c000b1b3fd912463e684e` | 303 |
+| `__glSnapXRight` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fb820 / 208 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9feb78 / 284 | `cd6271688854d311d36614f09b9a7b4abfaf437faab1fa8c72ef972fcd3377fa` | `20a775c1f086147e7df13ef92b74335cfc2506fba0d2dec13a100e513af6870d` | 189 |
+| `__glPolygonOffsetZ` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fb9d0 / 344 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fb9d0 / 344 | `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10` | `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10` | 0 |
+| `__glFillTriangle` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fc1d0 / 2020 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ff964 / 2640 | `ce30a74d83783a95b1d240f7e247951d8a6b807a28c5195a48b75c2031bbb2f0` | `d4903d6d29fa47e2f9f192dabddc864e947ce7c7f86d8298be77fb216449058c` | 1855 |
+| `__glFillFlatFogTriangle` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fc9c0 / 276 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda003b4 / 296 | `fb8e9e864010d4e97d07539a33db0903343a82021638628dca8fdcec9e6dd489` | `8ed6c6054c165cb40100ec10b1530fb24f1fb008317dadec2a57e2dc9b6d9f35` | 228 |
+| `__glMatValidateVbuf0N` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcae0 / 184 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda004e0 / 148 | `273ab6fdb9ce58a8676a66ac33e36c8f4219b12f1e0c72c52fe02209cfa6b6cc` | `478d556c9ec731403ddca320c47b63f1ef67f55330d6e4b209ecbd35b0face20` | 115 |
+| `__glMatValidateVbuf0V1` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcba0 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00574 / 140 | `0420fd517384aeacb9ae8a262ba5839f87dfd5a7a3442ff0a54de8ff3b6174e6` | `f668b167af290c25cd18b82531b22ddfed7f6f3da877d0d3c24981116b1d3da9` | 121 |
+| `__glMatValidateV1` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcc30 / 76 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00600 / 84 | `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53` | `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246` | 63 |
+| `__glMatValidateV1V2` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcc80 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00654 / 140 | `eb956607fa90b8ba3c8eb3142c608115d40f1ff734ef485bccd1a0413b2bcc35` | `094ca32cd1c3b1f10c7a272df944b3a1023582eb169952c741fc66291e274ab1` | 119 |
+| `__glMatValidateV1V2V3` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcd10 / 176 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda006e0 / 196 | `ed81e1ad59a8130c753893f190b0243e57c7440cf586ba4159cea62998616ffa` | `9a2fb51802d81c99ce5f68528ed18e7f4310ab79ff04b97d30de7c67622c086a` | 153 |
+| `__glMatValidateV2V3` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcdc0 / 136 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda007a4 / 140 | `14d020016cdffee6d26200d72ff38727c0bff281e7a0ac4e0924eeff0d27b627` | `bbc92e28474f3685874aec904c3521161908cf0f64cc13b57731ca3fbbc5e484` | 119 |
+| `SecondTFanVertex` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcee0 / 56 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda008d4 / 56 | `42ae81e1f7e0b643be68f4a2de09125b7bc86026abd0dbc9f360f160a583d64e` | `3aa86e159863683e05318e33137667b12fbc1c8add49b317f4bf62c68c76889e` | 47 |
+| `FirstTFanVertex` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcf20 / 44 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d9fcf20 / 44 | `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7` | `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7` | 0 |
+| `__glBeginTFan` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcf50 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda00938 / 52 | `5fcaa6f45b88c915dede7ac5b5777a9e15c0e0d08ee14d1bc3947cfc29eb1c67` | `f34425ed4cb5d5652c12a9e5b71f8a930a097f08a2bda7ac61f933911e193ad3` | 42 |
+| `SecondTStripVertex` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9fcf90 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda0096c / 52 | `b9d968131e2a2a3c738fd0e7fef0037babfb69742609c31a8c9bc9240cc586c0` | `ca4dce8363f8451cc8904d847289a2afab2f517a54842074cb8310c62db6c7c6` | 40 |
+
+Target entries:
+
+- `clipToPlaneEye` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fa8f0; occupies 856 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fa8f0 for 856 bytes (SHA-256 `41afa0530881e7d2287cc1a2672f9d5b1e18e4207c0bb0d8bd3f463ce99d844d`). Documented sibling grade: Inferred.
+
+- `__glDoPolygonClip` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fac50. Occupies 920 bytes.
+  Inferred. Polygon clipping calls `clipToPlaneEye` and `clipToPlane`, retaining entry a0 first while the list, count and output arguments remain unknown (`bgezall` at 0xd9fad34 and `bgezall` at 0xd9fad9c).
+  Its preliminary unknown callback also preserves entry a0 (`jalr` at 0xd9facec).
+  Four later unknown draw callbacks preserve entry a0 with unresolved vertex arguments (`jalr` at 0xd9faf4c, `jalr` at 0xd9faf94, `jalr` at 0xd9fafb4 and `jalr` at 0xd9fafd8).
+  Four decoder-unknown words prevent a complete viewport-clamp interpretation. The full clipping and triangulation outcome remains unresolved.
+  Byte comparison: target 920 bytes, SHA-256 `f7e18168ea109ebc19b45e235248bcb5c638c6d4aa064de196dea738f425fa08`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9fdff8, 1008 bytes, SHA-256 `12d3ece489346c1d9db2abc510d37fda442906bf23ed7d10bcfb0797e1aaaf41`; 815 differing bytes in the common prefix.
+
+- `__glClipPolygon` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9faff0; occupies 264 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9faff0 for 264 bytes (SHA-256 `c1b9bb77180384522a65d8412c23020a50aaa1ee4efc36229f687d5edcf5bc50`). Documented sibling grade: Inferred.
+
+- `__glClipTriangle` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fb100. Occupies 72 bytes.
+  Inferred. Builds a three-pointer list on the stack and calls `__glDoPolygonClip` with entry a0, that list, count 3 and entry a4 (`bgezall` at 0xd9fb130).
+  The three word stores retain the original vertex arguments in list order (`sw` at 0xd9fb108, `sw` at 0xd9fb11c and `sw` at 0xd9fb128).
+  The clipper's own effects are outside this wrapper.
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 72 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9fe470 +88 bytes / 60 changed common-prefix byte positions
+  SHA-256 target `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505` / documented O32 `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade`
+  Existing entry: `docs/sample-implementation.md`, `__glClipTriangle` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target 72 bytes, SHA-256 `7fb9fec9934efeed8f25678fe7e6053e2ee690e7525cd26db9a00f59e42fa505`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9fe470, 88 bytes, SHA-256 `daa323d7fc3748eaf6e8608051bc81b0d031a32d8bb6db896afa980e3535cade`; 60 differing bytes in the common prefix.
+
+- `FillSubTriangle` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fb150. Occupies 1388 bytes.
+  Inferred. Steps scanline state and invokes one unknown span callback with entry a0 first (`jalr` at 0xd9fb634).
+  Selected stores below include span state and the final saved edge state. Loop cursors and most calculated values remain unknown to hostfacts.
+  The documented O32 size was 1988 bytes. Fresh symbol bounds select 1312 bytes for its comparison, without treating the old extent as a valid same-routine range.
+  Byte comparison: target 1388 bytes, SHA-256 `258d19f25eb2ab3ce38d6133f5c0f874ad84f1a50bfa79d93b2af7f19a8deebd`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9fe4d0, 1312 bytes, SHA-256 `cd6c8265350556206eb0eab0d0dc7695aee001bdadcb9c11d5bb178b7748db85`; 1194 differing bytes in the common prefix.
+
+- `__glSnapXLeft` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fb6c0. Occupies 344 bytes.
+  Inferred. Snaps the left edge and writes fixed-point edge state without calls.
+  The selected word stores include the fractional edge word, integer edge word and two alternative step words below.
+  Hostfacts does not resolve their numerical values or the full rounding rule.
+  Byte comparison: target 344 bytes, SHA-256 `bc54fa9102e7d81c3f96bee3428f75806faaca8fb77991b52eabdd3c608ac545`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9fe9f0, 392 bytes, SHA-256 `d8e640a535f34e75e24197779a9b0e1e3dc630bcc64c000b1b3fd912463e684e`; 303 differing bytes in the common prefix.
+
+- `__glSnapXRight` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fb820. Occupies 208 bytes.
+  Inferred. Computes right-edge state without calls, using the input edge record as its store base.
+  Its selected word stores below use resolved offsets from entry a0. They are not assumed to be full-context offsets.
+  The numerical rounding and signed-step formulas remain unresolved.
+  Byte comparison: target 208 bytes, SHA-256 `cd6271688854d311d36614f09b9a7b4abfaf437faab1fa8c72ef972fcd3377fa`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9feb78, 284 bytes, SHA-256 `20a775c1f086147e7df13ef92b74335cfc2506fba0d2dec13a100e513af6870d`; 189 differing bytes in the common prefix.
+
+- `__glPolygonOffsetZ` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fb9d0; occupies 344 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fb9d0 for 344 bytes (SHA-256 `88204292632c258229e81d9d8d30d3ec2992de2b2ea2d951740360a354ed7e10`). Documented sibling grade: Inferred.
+
+- `__glFillTriangle` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fc1d0. Occupies 2020 bytes.
+  Inferred. Sets up triangle interpolation and calls the left-edge and right-edge helpers (`bgezall` at 0xd9fc6cc and `bgezall` at 0xd9fc780).
+  Selected sub-triangle calls retain entry a0 first while their scanline arguments remain unknown (`bgezall` at 0xd9fc798 and `bgezall` at 0xd9fc7e8).
+  Three selected unknown callbacks receive entry a0 and the temporary record at entry a0 +30192 (`jalr` at 0xd9fc468, `jalr` at 0xd9fc4b4 and `jalr` at 0xd9fc500).
+  The listing also decodes an anomalous `bc3fl` at 0xd9fc2cc. Its meaning is not reinterpreted as floating arithmetic.
+  The complete interpolation, mode selection and callback effects remain unresolved.
+  Byte comparison: target 2020 bytes, SHA-256 `ce30a74d83783a95b1d240f7e247951d8a6b807a28c5195a48b75c2031bbb2f0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ff964, 2640 bytes, SHA-256 `d4903d6d29fa47e2f9f192dabddc864e947ce7c7f86d8298be77fb216449058c`; 1855 differing bytes in the common prefix.
+
+- `__glFillFlatFogTriangle` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fc9c0. Occupies 276 bytes.
+  Inferred. Calls a fog callback three times, retaining entry a0 and using destinations at entry sp -144, -128 and -112 (`jalr` at 0xd9fca14, `jalr` at 0xd9fca2c and `jalr` at 0xd9fca44).
+  Each call receives the same third argument, loaded through the pointer at entry a0 +28128. Their f15 arguments come from the respective input vertex's +0xb0 float (`jalr` at 0xd9fca14, `jalr` at 0xd9fca2c and `jalr` at 0xd9fca44).
+  It replaces the three vertex colour pointers before a draw callback preserving the original first four integer arguments (`jalr` at 0xd9fca90).
+  Later stores revisit those pointer slots, but hostfacts leaves their values unknown. Fog callback effects remain unknown.
+  Byte comparison: target 276 bytes, SHA-256 `fb8e9e864010d4e97d07539a33db0903343a82021638628dca8fdcec9e6dd489`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda003b4, 296 bytes, SHA-256 `8ed6c6054c165cb40100ec10b1530fb24f1fb008317dadec2a57e2dc9b6d9f35`; 228 differing bytes in the common prefix.
+
+- `__glMatValidateVbuf0N` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcae0. Occupies 184 bytes.
+  Inferred. Validates buffered vertices through one unknown callback site (`jalr` at 0xd9fcb3c).
+  The initial unsigned comparison enters the loop only when entry a0 +12768 is below the pointer at entry a0 +12744 (`bnez` at 0xd9fcb14).
+  The callback receives entry a0 first and the mask word at entry a0 +28144 third, while its vertex argument remains unknown (`jalr` at 0xd9fcb3c).
+  Its per-vertex predicate includes an unknown operand, so the complete validation condition is not reconstructed.
+  Byte comparison: target 184 bytes, SHA-256 `273ab6fdb9ce58a8676a66ac33e36c8f4219b12f1e0c72c52fe02209cfa6b6cc`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda004e0, 148 bytes, SHA-256 `478d556c9ec731403ddca320c47b63f1ef67f55330d6e4b209ecbd35b0face20`; 115 differing bytes in the common prefix.
+
+- `__glMatValidateVbuf0V1` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcba0. Occupies 136 bytes.
+  Inferred. Includes two material-validation callback sites.
+  The first receives entry a0, the buffered vertex at entry a0 +12768 and the mask word at entry a0 +28144 (`jalr` at 0xd9fcbe0).
+  The second receives entry a0, the pointer loaded from entry a0 +12748 and that same mask (`jalr` at 0xd9fcc08).
+  Each predicate includes an unknown operand. Callback identities and effects remain unresolved.
+  Byte comparison: target 136 bytes, SHA-256 `0420fd517384aeacb9ae8a262ba5839f87dfd5a7a3442ff0a54de8ff3b6174e6`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00574, 140 bytes, SHA-256 `f668b167af290c25cd18b82531b22ddfed7f6f3da877d0d3c24981116b1d3da9`; 121 differing bytes in the common prefix.
+
+- `__glMatValidateV1` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcc30. Occupies 76 bytes.
+  Inferred. Invokes an unknown material callback with entry a0, the previous-vertex pointer at entry a0 +12748 and the mask at entry a0 +28144 (`jalr` at 0xd9fcc64).
+  A zero masked predicate skips the call, while a nonzero predicate falls through to it (`beqz` at 0xd9fcc58).
+  Hostfacts leaves one predicate operand unknown, so this is not a complete material-update rule.
+  Byte comparison: target 76 bytes, SHA-256 `3165cc49043c3bde239d9484224c9dc0b8d84091c67298ba998b910351a1ff53`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00600, 84 bytes, SHA-256 `0f4db08d71b1156375f565040830d605f2d8ba386b06046b4ce232cd7bee7246`; 63 differing bytes in the common prefix.
+
+- `__glMatValidateV1V2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcc80. Occupies 136 bytes.
+  Inferred. Includes two callbacks for vertex pointers loaded from entry a0 +12748 and +12752 respectively (`jalr` at 0xd9fccc0 and `jalr` at 0xd9fcce8).
+  Both retain entry a0 first and use the mask at entry a0 +28144 third (`jalr` at 0xd9fccc0 and `jalr` at 0xd9fcce8).
+  The masked predicates and callback effects remain partly unknown.
+  Byte comparison: target 136 bytes, SHA-256 `eb956607fa90b8ba3c8eb3142c608115d40f1ff734ef485bccd1a0413b2bcc35`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00654, 140 bytes, SHA-256 `094ca32cd1c3b1f10c7a272df944b3a1023582eb169952c741fc66291e274ab1`; 119 differing bytes in the common prefix.
+
+- `__glMatValidateV1V2V3` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcd10. Occupies 176 bytes.
+  Inferred. Has three validation callback sites using vertex pointers loaded from entry a0 +12748, +12752 and +12756 in that order (`jalr` at 0xd9fcd50, `jalr` at 0xd9fcd78 and `jalr` at 0xd9fcda0).
+  Each retains entry a0 first and the mask at entry a0 +28144 third (`jalr` at 0xd9fcd50, `jalr` at 0xd9fcd78 and `jalr` at 0xd9fcda0).
+  Their predicates contain unknown operands, and the callback effects remain unresolved.
+  Byte comparison: target 176 bytes, SHA-256 `ed81e1ad59a8130c753893f190b0243e57c7440cf586ba4159cea62998616ffa`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda006e0, 196 bytes, SHA-256 `9a2fb51802d81c99ce5f68528ed18e7f4310ab79ff04b97d30de7c67622c086a`; 153 differing bytes in the common prefix.
+
+- `__glMatValidateV2V3` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcdc0. Occupies 136 bytes.
+  Inferred. Uses two validation callbacks with pointers loaded from entry a0 +12752 and +12756 respectively (`jalr` at 0xd9fce00 and `jalr` at 0xd9fce28).
+  Both receive entry a0 first and the mask at entry a0 +28144 third (`jalr` at 0xd9fce00 and `jalr` at 0xd9fce28).
+  Unknown predicate operands prevent a complete rule for which vertex requires an update.
+  Byte comparison: target 136 bytes, SHA-256 `14d020016cdffee6d26200d72ff38727c0bff281e7a0ac4e0924eeff0d27b627`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda007a4, 140 bytes, SHA-256 `bbc92e28474f3685874aec904c3521161908cf0f64cc13b57731ca3fbbc5e484`; 119 differing bytes in the common prefix.
+
+- `SecondTFanVertex` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcee0. Occupies 56 bytes.
+  Inferred. Marks the second fan vertex's edge byte, records the vertex and advances the next pointer by 192 bytes (the stores below).
+  It also installs two procedure addresses in context state. This body makes no calls.
+  Byte comparison: target 56 bytes, SHA-256 `42ae81e1f7e0b643be68f4a2de09125b7bc86026abd0dbc9f360f160a583d64e`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda008d4, 56 bytes, SHA-256 `3aa86e159863683e05318e33137667b12fbc1c8add49b317f4bf62c68c76889e`; 47 differing bytes in the common prefix.
+
+- `FirstTFanVertex` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcf20; occupies 44 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d9fcf20 for 44 bytes (SHA-256 `fcf566876d2add11827017b0e04925a0c811c8706f4760c5bda374d85ab718d7`). Documented sibling grade: Inferred.
+
+- `__glBeginTFan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcf50. Occupies 52 bytes.
+  Inferred. Begins triangle-fan state by setting a byte to one and selecting the initial vertex-buffer address (the first two writes below).
+  Its remaining stores install the material validator and first-vertex handler addresses. The bounded body has no calls.
+  Byte comparison: target 52 bytes, SHA-256 `5fcaa6f45b88c915dede7ac5b5777a9e15c0e0d08ee14d1bc3947cfc29eb1c67`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00938, 52 bytes, SHA-256 `f34425ed4cb5d5652c12a9e5b71f8a930a097f08a2bda7ac61f933911e193ad3`; 42 differing bytes in the common prefix.
+
+- `SecondTStripVertex` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9fcf90. Occupies 52 bytes.
+  Inferred. Marks the second strip vertex's edge byte and records its current and next vertex pointers (the first three stores below).
+  It copies the procedure pointer loaded from entry a0 +0x2ef8 to entry a0 +0x2ee4 (`lw` at 0xd9fcfa8 and `sw` at 0xd9fcfb0).
+  The final store selects the material-validator address. No callee executes in this body.
+  Byte comparison: target 52 bytes, SHA-256 `b9d968131e2a2a3c738fd0e7fef0037babfb69742609c31a8c9bc9240cc586c0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0096c, 52 bytes, SHA-256 `ca4dce8363f8451cc8904d847289a2afab2f517a54842074cb8310c62db6c7c6`; 40 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
