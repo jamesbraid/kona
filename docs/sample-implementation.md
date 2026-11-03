@@ -7123,6 +7123,242 @@ Target entries:
   Byte comparison: target 128 bytes, SHA-256 `49d13d2a73a226e6adec799ff2b3680e2bcf8b20164bfd268d1a50b9c0eeaccc`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994418, 160 bytes, SHA-256 `8830c8cdde404a9bd7906569cff2b44904ea36c20502098cd30ace318ffab4aa`; 104 differing bytes in the common prefix.
 
 
+#### IP35 N32 routines compared with documented sibling builds (batch 085)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies retain the documented sibling grade. Different bodies have separate target observations.
+
+| Routine | Target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glsplc_CallList | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990f20 / 108 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9945fc / 104 | `eb09373ad207dbccd9375770524c7a3e02e1c5198b6a8cd985792dc4240d11c6` | `5ec3db33caad02b79fad398e7ce3c48c1ca750e27328df706a0c97e507cb0492` | 86 |
+| __glsplc_CallLists | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd990f90 / 252 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994664 / 240 | `f8784a24a9526f2a6ab6734f73ae2d3af1af475c9efa043f632eb0ab9c469215` | `3efd42c1c5d31008dac79604bd82c46bc50505824bb31e2ef80021ccbc55637a` | 216 |
+| __glsplc_Bitmap | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd991090 / 284 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d991090 / 284 | `a17c11a3104d8e5a129685f10c08586e95464006413d93904ceabb02d861f3a0` | `a17c11a3104d8e5a129685f10c08586e95464006413d93904ceabb02d861f3a0` | 0 |
+| __glsplc_PolygonStipple | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9911b0 / 140 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd99485c / 156 | `06bf5fbc00835a8740e0f25b8ed41f6c81701d3ae201b81e8d9085054fb24dd6` | `46d1c79a7bd866217a8480f086529d20482ebf1fd67f76cf9adc0dae423cbfd3` | 107 |
+| __glsplc_Map1f | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd991240 / 300 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9948f8 / 304 | `ed05616840c7c386085e8c21e2235f1ab2d37651f24d69f526057e848960dc8c` | `66744a58d906e9e39c5a43500db010dcd7957a997274caf0873395266c7c6bb1` | 258 |
+| __glsplc_Map1d | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd991370 / 320 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994a28 / 308 | `4bc324c90bcfb88a8b415c1ea04341316ade29c222d4f167828522270b2cc758` | `00acaf2b8acbb3d8c65fdc86052b3a4a0e289ca52c430378a7ac82836943ebfa` | 258 |
+| __glsplc_Map2f | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9914b0 / 388 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994b5c / 392 | `30730a2463f246f48bfa7089d326ed3e7b8019a1ce5be531801b8107f34dc0d9` | `0d44d4cc5c98bd3893ee26e98c6b7fe6447aad06741f3cc4b2601dbb93558096` | 313 |
+| __glsplc_Map2d | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd991640 / 416 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd994ce4 / 404 | `7f807ba9cccbc790c29006203000af3438de63e268cac4556f082c2221ca07d0` | `db8de49462fe39bd60a18f82efdb644493f5e6c4598c2c7608ef4d3314dcc8f9` | 347 |
+| __glsplc_DrawPixels | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd991ea0 / 1164 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d991ea0 / 1164 | `cfa8f205430e9ca48f92926fab1ebcd8090d95d0b531448c5d971081fd066a0f` | `cfa8f205430e9ca48f92926fab1ebcd8090d95d0b531448c5d971081fd066a0f` | 0 |
+| __glsplc_TexImage1D | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd992330 / 396 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9956a4 / 416 | `461b6f76996b0ec686c1b20aa65532c227b2ae1fc990cfa657c75654fb75724b` | `da4dfc13af09955649e972d1e59eec01b4d8369b9bf83994e67d474da88dc79a` | 345 |
+| __glsplc_TexImage2D | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9924c0 / 412 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd995844 / 444 | `57cd96a718c3212cd73223ff4537ae521914dd3f441fb0308140ce8033bb48ea` | `805f9b6c8a4b124a0b51aa91c138fd041a26e6ddec0045007ef40afbac599661` | 361 |
+| __glsplc_Disable | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd993090 / 620 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd996480 / 532 | `e518c962d9c3071054dbdc91a4cec0d1e61677957482e9615657bfaf6d4fb137` | `17344bfd104927f8ed681d5a69bfa325e7bc2d25b2830a1be1db34acf0cb010f` | 494 |
+| __glsplc_Enable | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd993300 / 556 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd996694 / 468 | `1fd6243d6578dbf246b43d0d05f897c08ffe63f4255d1885a4d74df005548b87` | `adae0d7ea039c195640aa990f4de336355865c264df834e039a30108d4d5dab2` | 431 |
+| __glsplc_ColorSubTable | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9936a0 / 356 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9969ec / 364 | `8666e49c355302056d39a20dc2b50ea3e4c0ced827d73ab4dae6dfa04383f8db` | `158698bd08cd40fa560ba1003b416f14457d79cfde270db96605e434d2d48d4b` | 310 |
+| __glsplc_DrawElements | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd993a00 / 400 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd996d70 / 384 | `e526cad2edb5cabc5dfbd6c4301c21e287854bb2ac6273cd230530cc4176ae22` | `f9be5277f1f8655d626b6b4b31ca1c7c9ad8d5eaa5e9f8dc94b88c5cfee3238f` | 335 |
+| __glsplc_DrawRangeElements | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd993b90 / 92 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd996ef0 / 108 | `d6bfce4ae747d2995c409ffc74309fddaf1840d6dfb7054a84135e507c01f3c0` | `74ee9ae7bfcd9ec19bfddf589a12d521332c51ad1355060ae13147db07a52ebd` | 86 |
+| __glInitDefaultPixelMap | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd994850 / 276 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd997ba0 / 284 | `cc7fc0c4a3c89ea176052c348c192ba13a1470f9095ae84095783cf6cac4c474` | `d5051028f37ee95a5dbcedc38191e51ae53e6c06bfb7fd260dee062cb432d13d` | 231 |
+| __glPixelSetColorScales | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd994970 / 432 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0d994970 / 432 | `42c1148db785f5547c4229836cc178c839b59f85f21b08a77c4da859f809ae91` | `42c1148db785f5547c4229836cc178c839b59f85f21b08a77c4da859f809ae91` | 0 |
+| __glFreePixelState | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd994b20 / 804 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd997f74 / 592 | `0f5dca3db472ad9beeac0c5d883f6ce0d02a055dccc20205097a82906eb44aff` | `a13e518f3d6d2904fc33688777e579d694498296d8d9f7f2cb657d88047eacf4` | 501 |
+| __glInitPixelState | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd994e50 / 932 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9981c4 / 828 | `e56f6e64a45f5beddc675bd59de8b78194565530616aa24a96356ab5622a3e11` | `db547bb0f411fed667078072125f125bcca2f5b18cf73c8969c7e407fb2a78bb` | 748 |
+
+Target entries:
+
+- `__glsplc_CallList` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990f20. Occupies 108 bytes.
+  Inferred. A zero list name takes the error path (`beqz` at 0xd990f38), which calls `__glsplc_InvalidEnum` (`bgezall` at 0xd990f7c).
+  The other path calls `__glSPDlalloc` with 4 and command identifier 0 (`jalr` at 0xd990f48).
+  A null allocation result skips the record write (`beqz` at 0xd990f50).
+  The successful path returns with a word store in its delay slot (`jr` at 0xd990f64 and `sw` at 0xd990f68).
+  Unequal exact ranges: target 108 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9945fc +104 bytes / 86 changed common-prefix byte positions
+  SHA-256 target `eb09373ad207dbccd9375770524c7a3e02e1c5198b6a8cd985792dc4240d11c6` / documented sibling `5ec3db33caad02b79fad398e7ce3c48c1ca750e27328df706a0c97e507cb0492`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_CallList` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `eb09373ad207dbccd9375770524c7a3e02e1c5198b6a8cd985792dc4240d11c6`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9945fc, 104 bytes, SHA-256 `5ec3db33caad02b79fad398e7ce3c48c1ca750e27328df706a0c97e507cb0492`; 86 differing bytes in the common prefix.
+
+- `__glsplc_CallLists` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd990f90. Occupies 252 bytes.
+  Inferred. List-array compilation calls `__glSPDlalloc` with an unknown size and command identifier 1 (`jalr` at 0xd99102c).
+  The copy call is `memcpy`, with the returned allocation plus 8 as destination and entry a2 as source, while the count is unresolved (`jalr` at 0xd991068).
+  Error paths call `__glsplc_InvalidEnum` and `__glsplc_InvalidValue` (`bgezall` at 0xd990ff8 and `bgezall` at 0xd99107c).
+  The complete type-size mapping and copy length remain unknown to hostfacts.
+  Unequal exact ranges: target 252 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd994664 +240 bytes / 216 changed common-prefix byte positions
+  SHA-256 target `f8784a24a9526f2a6ab6734f73ae2d3af1af475c9efa043f632eb0ab9c469215` / documented sibling `3efd42c1c5d31008dac79604bd82c46bc50505824bb31e2ef80021ccbc55637a`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_CallLists` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `f8784a24a9526f2a6ab6734f73ae2d3af1af475c9efa043f632eb0ab9c469215`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994664, 240 bytes, SHA-256 `3efd42c1c5d31008dac79604bd82c46bc50505824bb31e2ef80021ccbc55637a`; 216 differing bytes in the common prefix.
+
+- `__glsplc_Bitmap` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd991090; occupies 284 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d991090 for 284 bytes (SHA-256 `a17c11a3104d8e5a129685f10c08586e95464006413d93904ceabb02d861f3a0`). Documented sibling grade: Inferred.
+
+- `__glsplc_PolygonStipple` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9911b0. Occupies 140 bytes.
+  Inferred. Stipple compilation asks `__glImageSize` for dimensions 32 by 32, format 0x1900 and type 0x1a00 (`jalr` at 0xd9911e4).
+  Its size result and command identifier 0x65 are passed to `__glSPDlalloc` (`jalr` at 0xd9911f4).
+  The `__glFillImage` call receives dimensions 32 by 32, the same format and type, entry a0 as its source and the returned allocation as its destination (`jalr` at 0xd99122c).
+  The fill call's context argument remains unresolved.
+  Unequal exact ranges: target 140 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd99485c +156 bytes / 107 changed common-prefix byte positions
+  SHA-256 target `06bf5fbc00835a8740e0f25b8ed41f6c81701d3ae201b81e8d9085054fb24dd6` / documented sibling `46d1c79a7bd866217a8480f086529d20482ebf1fd67f76cf9adc0dae423cbfd3`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_PolygonStipple` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `06bf5fbc00835a8740e0f25b8ed41f6c81701d3ae201b81e8d9085054fb24dd6`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd99485c, 156 bytes, SHA-256 `46d1c79a7bd866217a8480f086529d20482ebf1fd67f76cf9adc0dae423cbfd3`; 107 differing bytes in the common prefix.
+
+- `__glsplc_Map1f` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd991240. Occupies 300 bytes.
+  Inferred. The 1-dimensional map compiler calls `__glEvalComputeK` with the original first four integer argument registers (`jalr` at 0xd991284).
+  `__glMap1_size` receives that result and entry a4 as its first two arguments (`jalr` at 0xd9912cc).
+  The allocation size is its size result shifted left by 2 plus 16, with command identifier 0x8e (`jalr` at 0xd9912e0).
+  The fill helper is `__glFillMap1f`, using the allocation plus 16 as its record-data pointer (`jalr` at 0xd991320).
+  The complete validation and control-point copy effects remain outside the resolved call arguments.
+  Unequal exact ranges: target 300 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9948f8 +304 bytes / 258 changed common-prefix byte positions
+  SHA-256 target `ed05616840c7c386085e8c21e2235f1ab2d37651f24d69f526057e848960dc8c` / documented sibling `66744a58d906e9e39c5a43500db010dcd7957a997274caf0873395266c7c6bb1`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Map1f` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `ed05616840c7c386085e8c21e2235f1ab2d37651f24d69f526057e848960dc8c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9948f8, 304 bytes, SHA-256 `66744a58d906e9e39c5a43500db010dcd7957a997274caf0873395266c7c6bb1`; 258 differing bytes in the common prefix.
+
+- `__glsplc_Map1d` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd991370. Occupies 320 bytes.
+  Inferred. The 1-dimensional map compiler calls `__glEvalComputeK` with the original first four integer argument registers (`jalr` at 0xd9913b4).
+  `__glMap1_size` receives that result and entry a4 as its first two arguments (`jalr` at 0xd991408).
+  The allocation size is its size result shifted left by 2 plus 16, with command identifier 0x8d (`jalr` at 0xd99141c).
+  The fill helper is `__glFillMap1d`, using the allocation plus 16 as its record-data pointer (`jalr` at 0xd991464).
+  Endpoint narrowing includes `cvt.s.d` at 0xd99144c, `cvt.s.d` at 0xd991458.
+  The complete validation and control-point copy effects remain outside the resolved call arguments.
+  Unequal exact ranges: target 320 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd994a28 +308 bytes / 258 changed common-prefix byte positions
+  SHA-256 target `4bc324c90bcfb88a8b415c1ea04341316ade29c222d4f167828522270b2cc758` / documented sibling `00acaf2b8acbb3d8c65fdc86052b3a4a0e289ca52c430378a7ac82836943ebfa`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Map1d` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `4bc324c90bcfb88a8b415c1ea04341316ade29c222d4f167828522270b2cc758`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994a28, 308 bytes, SHA-256 `00acaf2b8acbb3d8c65fdc86052b3a4a0e289ca52c430378a7ac82836943ebfa`; 258 differing bytes in the common prefix.
+
+- `__glsplc_Map2f` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9914b0. Occupies 388 bytes.
+  Inferred. The 2-dimensional map compiler calls `__glEvalComputeK` with the original first four integer argument registers (`jalr` at 0xd9914f8).
+  `__glMap2_size` receives that result and entry a4 as its first two arguments (`jalr` at 0xd991580).
+  The allocation size is its size result shifted left by 2 plus 28, with command identifier 0x90 (`jalr` at 0xd991594).
+  The fill helper is `__glFillMap2f`, using the allocation plus 28 as its record-data pointer (`jalr` at 0xd9915ec).
+  The word 0x46031132 at 0xd991568 is decoder-unknown and preserved explicitly. No comparison condition is assigned to it.
+  Unequal exact ranges: target 388 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd994b5c +392 bytes / 313 changed common-prefix byte positions
+  SHA-256 target `30730a2463f246f48bfa7089d326ed3e7b8019a1ce5be531801b8107f34dc0d9` / documented sibling `0d44d4cc5c98bd3893ee26e98c6b7fe6447aad06741f3cc4b2601dbb93558096`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Map2f` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `30730a2463f246f48bfa7089d326ed3e7b8019a1ce5be531801b8107f34dc0d9`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994b5c, 392 bytes, SHA-256 `0d44d4cc5c98bd3893ee26e98c6b7fe6447aad06741f3cc4b2601dbb93558096`; 313 differing bytes in the common prefix.
+
+- `__glsplc_Map2d` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd991640. Occupies 416 bytes.
+  Inferred. The 2-dimensional map compiler calls `__glEvalComputeK` with the original first four integer argument registers (`jalr` at 0xd991688).
+  `__glMap2_size` receives that result and entry a4 as its first two arguments (`jalr` at 0xd991718).
+  The allocation size is its size result shifted left by 2 plus 28, with command identifier 0x8f (`jalr` at 0xd99172c).
+  The fill helper is `__glFillMap2d`, using the allocation plus 28 as its record-data pointer (`jalr` at 0xd991798).
+  Endpoint narrowing includes `cvt.s.d` at 0xd991770, `cvt.s.d` at 0xd991774, `cvt.s.d` at 0xd99177c, `cvt.s.d` at 0xd99178c.
+  The word 0x46231132 at 0xd991700 is decoder-unknown and preserved explicitly. No comparison condition is assigned to it.
+  Unequal exact ranges: target 416 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd994ce4 +404 bytes / 347 changed common-prefix byte positions
+  SHA-256 target `7f807ba9cccbc790c29006203000af3438de63e268cac4556f082c2221ca07d0` / documented sibling `db8de49462fe39bd60a18f82efdb644493f5e6c4598c2c7608ef4d3314dcc8f9`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Map2d` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `7f807ba9cccbc790c29006203000af3438de63e268cac4556f082c2221ca07d0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd994ce4, 404 bytes, SHA-256 `db8de49462fe39bd60a18f82efdb644493f5e6c4598c2c7608ef4d3314dcc8f9`; 347 differing bytes in the common prefix.
+
+- `__glsplc_DrawPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd991ea0; occupies 1164 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d991ea0 for 1164 bytes (SHA-256 `cfa8f205430e9ca48f92926fab1ebcd8090d95d0b531448c5d971081fd066a0f`). Documented sibling grade: Inferred.
+
+- `__glsplc_TexImage1D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd992330. Occupies 396 bytes.
+  Inferred. Texture-image recording calls `FormatAndType` (`bgezall` at 0xd9923ac) before `__glImageSize` (`jalr` at 0xd9923c8).
+  Its `__glSPDlalloc` call uses command identifier 0x6c, with the final size unresolved (`jalr` at 0xd9923e8).
+  `__glFillImage` receives the returned allocation plus 32 as destination (`jalr` at 0xd99246c).
+  A separate indirect callback retains the original first four argument registers (`jalr` at 0xd9924ac).
+  Image-format acceptance, callback effects and the full copy size are not reconstructed from the O32 description.
+  Unequal exact ranges: target 396 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9956a4 +416 bytes / 345 changed common-prefix byte positions
+  SHA-256 target `461b6f76996b0ec686c1b20aa65532c227b2ae1fc990cfa657c75654fb75724b` / documented sibling `da4dfc13af09955649e972d1e59eec01b4d8369b9bf83994e67d474da88dc79a`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_TexImage1D` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `461b6f76996b0ec686c1b20aa65532c227b2ae1fc990cfa657c75654fb75724b`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9956a4, 416 bytes, SHA-256 `da4dfc13af09955649e972d1e59eec01b4d8369b9bf83994e67d474da88dc79a`; 345 differing bytes in the common prefix.
+
+- `__glsplc_TexImage2D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9924c0. Occupies 412 bytes.
+  Inferred. Texture-image recording calls `FormatAndType` (`bgezall` at 0xd992548) before `__glImageSize` (`jalr` at 0xd992564).
+  Its `__glSPDlalloc` call uses command identifier 0x6d, with the final size unresolved (`jalr` at 0xd992584).
+  `__glFillImage` receives the returned allocation plus 36 as destination (`jalr` at 0xd9925e8).
+  A separate indirect callback retains the original first four argument registers (`jalr` at 0xd99264c).
+  Image-format acceptance, callback effects and the full copy size are not reconstructed from the O32 description.
+  Unequal exact ranges: target 412 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd995844 +444 bytes / 361 changed common-prefix byte positions
+  SHA-256 target `57cd96a718c3212cd73223ff4537ae521914dd3f441fb0308140ce8033bb48ea` / documented sibling `805f9b6c8a4b124a0b51aa91c138fd041a26e6ddec0045007ef40afbac599661`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_TexImage2D` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `57cd96a718c3212cd73223ff4537ae521914dd3f441fb0308140ce8033bb48ea`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd995844, 444 bytes, SHA-256 `805f9b6c8a4b124a0b51aa91c138fd041a26e6ddec0045007ef40afbac599661`; 361 differing bytes in the common prefix.
+
+- `__glsplc_Disable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd993090. Occupies 620 bytes.
+  Inferred. Capability-disable recording allocates four bytes with command identifier 0x89 (`jalr` at 0xd993168).
+  Separate client-array paths include word stores at context +0x1520/+0x1528/+0x151c, where context is the pointer at absolute 0x1010 (`sw` at 0xd993110, `sw` at 0xd993128, and `sw` at 0xd993138).
+  These are selected effects, not a complete capability-to-bit mapping. The allocator's effects remain outside this body.
+  Unequal exact ranges: target 620 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd996480 +532 bytes / 494 changed common-prefix byte positions
+  SHA-256 target `e518c962d9c3071054dbdc91a4cec0d1e61677957482e9615657bfaf6d4fb137` / documented sibling `17344bfd104927f8ed681d5a69bfa325e7bc2d25b2830a1be1db34acf0cb010f`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Disable` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `e518c962d9c3071054dbdc91a4cec0d1e61677957482e9615657bfaf6d4fb137`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd996480, 532 bytes, SHA-256 `17344bfd104927f8ed681d5a69bfa325e7bc2d25b2830a1be1db34acf0cb010f`; 494 differing bytes in the common prefix.
+
+- `__glsplc_Enable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd993300. Occupies 556 bytes.
+  Inferred. Capability-enable recording calls `__glSPDlalloc` with four bytes and command identifier 0x8a (`jalr` at 0xd9933c0).
+  Client-array handling includes a word write at context +0x1520 and OR updates at +0x1528/+0x151c, with masks 4 and 0x7f00000 respectively (`sw` at 0xd993378, `sw` at 0xd993388, and `sw` at 0xd993398).
+  Context is read through absolute 0x1010. The complete capability dispatch and merged shift result remain unresolved.
+  Unequal exact ranges: target 556 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd996694 +468 bytes / 431 changed common-prefix byte positions
+  SHA-256 target `1fd6243d6578dbf246b43d0d05f897c08ffe63f4255d1885a4d74df005548b87` / documented sibling `adae0d7ea039c195640aa990f4de336355865c264df834e039a30108d4d5dab2`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_Enable` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `1fd6243d6578dbf246b43d0d05f897c08ffe63f4255d1885a4d74df005548b87`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd996694, 468 bytes, SHA-256 `adae0d7ea039c195640aa990f4de336355865c264df834e039a30108d4d5dab2`; 431 differing bytes in the common prefix.
+
+- `__glsplc_ColorSubTable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9936a0. Occupies 356 bytes.
+  Inferred. Colour-table compilation first calls `__glCheckColorSubTableArgs`, passing the context from absolute 0x1010 followed by the original arguments (`jalr` at 0xd9936fc).
+  It calls `__glImageSize` with entry a2 as width and 1 as height (`jalr` at 0xd993730).
+  Allocation uses command identifier 0xfb, with its size unresolved (`jalr` at 0xd993750).
+  `__glFillImage` receives the allocation plus 24 as destination (`jalr` at 0xd9937bc).
+  The complete checked-format mapping and image-copy result remain unknown.
+  Unequal exact ranges: target 356 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9969ec +364 bytes / 310 changed common-prefix byte positions
+  SHA-256 target `8666e49c355302056d39a20dc2b50ea3e4c0ced827d73ab4dae6dfa04383f8db` / documented sibling `158698bd08cd40fa560ba1003b416f14457d79cfde270db96605e434d2d48d4b`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_ColorSubTable` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `8666e49c355302056d39a20dc2b50ea3e4c0ced827d73ab4dae6dfa04383f8db`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9969ec, 364 bytes, SHA-256 `158698bd08cd40fa560ba1003b416f14457d79cfde270db96605e434d2d48d4b`; 310 differing bytes in the common prefix.
+
+- `__glsplc_DrawElements` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd993a00. Occupies 400 bytes.
+  Inferred. Indexed-draw compilation calls `glBegin` with entry a0 (`jalr` at 0xd993a78).
+  Three `glArrayElement` call sites use word, unsigned-byte and unsigned-halfword load delay slots (`jalr` at 0xd993ad0, `lw` at 0xd993ad4, `jalr` at 0xd993b20, `lbu` at 0xd993b24, `jalr` at 0xd993b60, and `lhu` at 0xd993b64).
+  Hostfacts leaves the resulting index arguments and cursor bases unresolved.
+  The closing call is `glEnd` (`jalr` at 0xd993aec). No exact iteration count is inferred from the O32 entry.
+  Unequal exact ranges: target 400 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd996d70 +384 bytes / 335 changed common-prefix byte positions
+  SHA-256 target `e526cad2edb5cabc5dfbd6c4301c21e287854bb2ac6273cd230530cc4176ae22` / documented sibling `f9be5277f1f8655d626b6b4b31ca1c7c9ad8d5eaa5e9f8dc94b88c5cfee3238f`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_DrawElements` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `e526cad2edb5cabc5dfbd6c4301c21e287854bb2ac6273cd230530cc4176ae22`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd996d70, 384 bytes, SHA-256 `f9be5277f1f8655d626b6b4b31ca1c7c9ad8d5eaa5e9f8dc94b88c5cfee3238f`; 335 differing bytes in the common prefix.
+
+- `__glsplc_DrawRangeElements` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd993b90. Occupies 92 bytes.
+  Inferred. The wrapper takes its forwarding path when unsigned entry a2 is at least entry a1 (`beqz` at 0xd993bac).
+  Otherwise it calls `__gllc_InvalidValue` with the context pointer from absolute 0x1010 (`bgezall` at 0xd993bb8).
+  The forwarding call is `__glsplc_DrawElements`, receiving entry a0, entry a3, entry a4 and entry a5 (`bgezall` at 0xd993bd4).
+  There is no per-index bounds check in this complete wrapper.
+  Unequal exact ranges: target 92 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd996ef0 +108 bytes / 86 changed common-prefix byte positions
+  SHA-256 target `d6bfce4ae747d2995c409ffc74309fddaf1840d6dfb7054a84135e507c01f3c0` / documented sibling `74ee9ae7bfcd9ec19bfddf589a12d521332c51ad1355060ae13147db07a52ebd`
+  Existing entry: `docs/sample-implementation.md`, `__glsplc_DrawRangeElements` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `d6bfce4ae747d2995c409ffc74309fddaf1840d6dfb7054a84135e507c01f3c0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd996ef0, 108 bytes, SHA-256 `74ee9ae7bfcd9ec19bfddf589a12d521332c51ad1355060ae13147db07a52ebd`; 86 differing bytes in the common prefix.
+
+- `__glInitDefaultPixelMap` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd994850. Occupies 276 bytes.
+  Inferred. Default-map initialization dispatches through a ten-entry jump table at 0xda80684 after checking unsigned (entry a1 - 0xc70) against 10 (`beqz` at 0xd994888 and `jr` at 0xd994894).
+  Two allocation sites invoke an unknown callback with entry a0 and a size of 4 (`jalr` at 0xd9948a0 and `jalr` at 0xd9948f0).
+  An invalid selector calls `__glSetError` with 0x500 (`jalr` at 0xd994954).
+  Null allocation results instead branch directly to the return path (`beqz` at 0xd9948d4 and `beqz` at 0xd994928).
+  This target has no out-of-memory error call. The O32 entry's claim of error 1285 on allocation failure is not transferred.
+  Unequal exact ranges: target 276 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd997ba0 +284 bytes / 231 changed common-prefix byte positions
+  SHA-256 target `cc7fc0c4a3c89ea176052c348c192ba13a1470f9095ae84095783cf6cac4c474` / documented sibling `d5051028f37ee95a5dbcedc38191e51ae53e6c06bfb7fd260dee062cb432d13d`
+  Existing entry: `docs/sample-implementation.md`, `__glInitDefaultPixelMap` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `cc7fc0c4a3c89ea176052c348c192ba13a1470f9095ae84095783cf6cac4c474`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd997ba0, 284 bytes, SHA-256 `d5051028f37ee95a5dbcedc38191e51ae53e6c06bfb7fd260dee062cb432d13d`; 231 differing bytes in the common prefix.
+
+- `__glPixelSetColorScales` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd994970; occupies 432 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0d994970 for 432 bytes (SHA-256 `42c1148db785f5547c4229836cc178c839b59f85f21b08a77c4da859f809ae91`). Documented sibling grade: Inferred.
+
+- `__glFreePixelState` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd994b20. Occupies 804 bytes.
+  Inferred. Pixel-state teardown contains 29 indirect callback sites. Selected calls pass entry a0 first and pointers read from entry a0 +0x408, +0x414 and +0x420 second (`jalr` at 0xd994b70, `jalr` at 0xd994b98, and `jalr` at 0xd994bc0).
+  Later calls include the pointers at entry a0 +0x778c/+0x7790/+0x7794/+0x7798/+0x779c (`jalr` at 0xd994cec, `jalr` at 0xd994cfc, `jalr` at 0xd994d0c, `jalr` at 0xd994d1c, and `jalr` at 0xd994d2c).
+  The terminal group includes pointers at entry a0 +0x350/+0x3a4/+0x3f8/+0x3fc/+0x4dc (`jalr` at 0xd994de8, `jalr` at 0xd994df8, `jalr` at 0xd994e08, `jalr` at 0xd994e18, and `jalr` at 0xd994e28).
+  Their callees remain unknown, so deallocation success and external effects are not established.
+  Unequal exact ranges: target 804 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd997f74 +592 bytes / 501 changed common-prefix byte positions
+  SHA-256 target `0f5dca3db472ad9beeac0c5d883f6ce0d02a055dccc20205097a82906eb44aff` / documented sibling `a13e518f3d6d2904fc33688777e579d694498296d8d9f7f2cb657d88047eacf4`
+  Existing entry: `docs/sample-implementation.md`, `__glFreePixelState` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `0f5dca3db472ad9beeac0c5d883f6ce0d02a055dccc20205097a82906eb44aff`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd997f74, 592 bytes, SHA-256 `a13e518f3d6d2904fc33688777e579d694498296d8d9f7f2cb657d88047eacf4`; 501 differing bytes in the common prefix.
+
+- `__glInitPixelState` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd994e50. Occupies 932 bytes.
+  Inferred. Pixel initialization copies a float from entry a0 +0xdd8 into state including entry a0 +0x2ec (`lwc1` at 0xd994e64 and `swc1` at 0xd994e6c).
+  Ten calls to `__glInitDefaultPixelMap` pass entry a0 with selectors 0xc70 through 0xc79.
+  Their sites are `bgezall` at 0xd994ec4, `bgezall` at 0xd994ee0, `bgezall` at 0xd994efc, `bgezall` at 0xd994f18, `bgezall` at 0xd994f34, `bgezall` at 0xd994f50, `bgezall` at 0xd994f68, `bgezall` at 0xd994f80, `bgezall` at 0xd994f98, and `bgezall` at 0xd994fb0.
+  Further setup calls include an unknown allocator with size (the word at entry a0 +0xe28) shifted left by 4 (`jalr` at 0xd99505c).
+  `__glResetMinmax` receives entry a0 (`jalr` at 0xd9951ac), followed by `__glPixelSetColorScales` (`bgezall` at 0xd9951c8).
+  The complete default-state layout and allocation outcomes remain outside this limited reading.
+  Unequal exact ranges: target 932 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9981c4 +828 bytes / 748 changed common-prefix byte positions
+  SHA-256 target `e56f6e64a45f5beddc675bd59de8b78194565530616aa24a96356ab5622a3e11` / documented sibling `db547bb0f411fed667078072125f125bcca2f5b18cf73c8969c7e407fb2a78bb`
+  Existing entry: `docs/sample-implementation.md`, `__glInitPixelState` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `e56f6e64a45f5beddc675bd59de8b78194565530616aa24a96356ab5622a3e11`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9981c4, 828 bytes, SHA-256 `db547bb0f411fed667078072125f125bcca2f5b18cf73c8969c7e407fb2a78bb`; 748 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
