@@ -36604,3 +36604,436 @@ comparison was not rerun and supplies no new target equation.
   | Return instruction | Reported registers |
   |---|---|
   | `jr` at 0x224ad24 | `v0 = ?` |
+
+- `__glDoNullStore` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x224ad50, routine size 8 bytes.
+  Provides an empty software fragment-store procedure. Its
+  complete body is a return (`jr` at 0x224ad50)
+  with a no-operation delay slot (`nop` at 0x224ad54).
+  It performs no memory access or helper invocation.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDoNullStore` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e6ad50,
+  8 bytes, labelled Established.
+  Comparison: target 8 bytes, existing 8 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Existing SHA-256: `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378`.
+  Evidence: `facts/__glDoNullStore.target.txt`,
+  `facts/__glDoNullStore.existing.txt`, `facts/__glDoNullStore.full.listing.txt`,
+  `facts/__glDoNullStore.compare.txt`.
+
+- `__glDoDoubleStore` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x224ad60, routine size 100 bytes.
+  Sends a software fragment through two unnamed procedures
+  (`jalr` at 0x224ad94, 0x224ada8).
+  Both retain original fragment as argument one. The
+  first uses a buffer pointer reached through original
+  argument-zero +0, then pointed-context +0x9968
+  (`ld` at 0x224ad60, 0x224ad78).
+  Its callback is loaded at buffer +0xe0
+  (`ld` at 0x224ad88). The second buffer base remains
+  unknown in hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glDoDoubleStore` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e6ad60,
+  100 bytes, labelled Inferred.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f7baa2b2905a345059f4e7cdd285fe94de9b70a45577c3f2899dfbcf38a5ae0b`.
+  Existing SHA-256: `f7baa2b2905a345059f4e7cdd285fe94de9b70a45577c3f2899dfbcf38a5ae0b`.
+  Evidence: `facts/__glDoDoubleStore.target.txt`,
+  `facts/__glDoDoubleStore.existing.txt`, `facts/__glDoDoubleStore.full.listing.txt`,
+  `facts/__glDoDoubleStore.compare.txt`.
+
+- `__glGenericPickStoreProcs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x224add0, routine size 372 bytes.
+  Selects software store procedure pointers in context +0x4db0
+  and +0x4da8 (`sd` at 0x224ae98, 0x224aea8).
+  Selection inputs include context +0x9814 and +0x868
+  (`lw` at 0x224add8, 0x224adf4).
+  One +0x4db0 assignment installs 0x224ad60
+  (`sd` at 0x224ae98), while another installs 0x224ad50
+  (`sd` at 0x224af20).
+  These pointer stores make no calls.
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickStoreProcs` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e6add0,
+  372 bytes, labelled Inferred.
+  Comparison: target 372 bytes, existing 372 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `1eeb4475e9308c3ec6420f23e65e737d38071ee348b9eebed0d02b240d4dda04`.
+  Existing SHA-256: `1eeb4475e9308c3ec6420f23e65e737d38071ee348b9eebed0d02b240d4dda04`.
+  Evidence: `facts/__glGenericPickStoreProcs.target.txt`,
+  `facts/__glGenericPickStoreProcs.existing.txt`, `facts/__glGenericPickStoreProcs.full.listing.txt`,
+  `facts/__glGenericPickStoreProcs.compare.txt`.
+
+- `__glim_TexCoord1d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22583e0, routine size 36 bytes.
+  Narrows a scalar double texture coordinate to single precision
+  (`cvt.s.d` at 0x22583f0).
+  The software coordinate result reaches context +0x188
+  (`swc1` at 0x22583f8).
+  Copies context +0xf2c into +0x194
+  (`lwc1` at 0x22583f4, `swc1` at 0x2258400).
+  Other word outputs occupy +0x190 and +0x18c
+  (`swc1` at 0x22583e8, 0x22583ec).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1d` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e783e0,
+  36 bytes, labelled Established.
+  Comparison: target 36 bytes, existing 36 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f7f7b1072539ceb5a62b593ca51b868e408599afe387d3b8fad565903cdcc190`.
+  Existing SHA-256: `f7f7b1072539ceb5a62b593ca51b868e408599afe387d3b8fad565903cdcc190`.
+  Evidence: `facts/__glim_TexCoord1d.target.txt`,
+  `facts/__glim_TexCoord1d.existing.txt`, `facts/__glim_TexCoord1d.full.listing.txt`,
+  `facts/__glim_TexCoord1d.compare.txt`.
+
+- `__glim_TexCoord1f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258410, routine size 32 bytes.
+  Assigns the incoming scalar float directly to software
+  texture coordinate +0x188 (`swc1` at 0x2258424).
+  The context is loaded from absolute 0x1020
+  (`ld` at 0x2258414).
+  Its fourth component is copied from context +0xf2c
+  (`lwc1` at 0x2258420, `swc1` at 0x225842c),
+  with no numeric conversion or call in the body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1f` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78410,
+  32 bytes, labelled Established.
+  Comparison: target 32 bytes, existing 32 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `3b120aa66a5bb68545282bb9483467bb6255a1578384e033ad768ff9f93204e5`.
+  Existing SHA-256: `3b120aa66a5bb68545282bb9483467bb6255a1578384e033ad768ff9f93204e5`.
+  Evidence: `facts/__glim_TexCoord1f.target.txt`,
+  `facts/__glim_TexCoord1f.existing.txt`, `facts/__glim_TexCoord1f.full.listing.txt`,
+  `facts/__glim_TexCoord1f.compare.txt`.
+
+- `__glim_TexCoord1i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258430, routine size 40 bytes.
+  Converts an integer scalar into a software texture-coordinate
+  float (`cvt.s.w` at 0x2258444).
+  Stores that result at context +0x188
+  (`swc1` at 0x2258454).
+  The fourth word at +0x194 retains context +0xf2c
+  (`swc1` at 0x225844c).
+  Its other writes target +0x190 and +0x18c
+  (`swc1` at 0x225843c, 0x2258448).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1i` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78430,
+  40 bytes, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `342ef0bab05420d92b7beae3f76eb4b37c8522deff64048709ecd26e2a7b6f39`.
+  Existing SHA-256: `342ef0bab05420d92b7beae3f76eb4b37c8522deff64048709ecd26e2a7b6f39`.
+  Evidence: `facts/__glim_TexCoord1i.target.txt`,
+  `facts/__glim_TexCoord1i.existing.txt`, `facts/__glim_TexCoord1i.full.listing.txt`,
+  `facts/__glim_TexCoord1i.compare.txt`.
+
+- `__glim_TexCoord1s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258460, routine size 40 bytes.
+  Accepts a short-integer scalar through a full argument
+  register and converts it to float
+  (`cvt.s.w` at 0x2258474).
+  The current software coordinate uses context +0x188
+  (`swc1` at 0x2258484).
+  A separate output copies context +0xf2c to +0x194
+  (`swc1` at 0x225847c).
+  No halfword masking or helper call appears.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1s` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78460,
+  40 bytes, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `342ef0bab05420d92b7beae3f76eb4b37c8522deff64048709ecd26e2a7b6f39`.
+  Existing SHA-256: `342ef0bab05420d92b7beae3f76eb4b37c8522deff64048709ecd26e2a7b6f39`.
+  Evidence: `facts/__glim_TexCoord1s.target.txt`,
+  `facts/__glim_TexCoord1s.existing.txt`, `facts/__glim_TexCoord1s.full.listing.txt`,
+  `facts/__glim_TexCoord1s.compare.txt`.
+
+- `__glim_TexCoord1dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258490, routine size 40 bytes.
+  Reads a software texture-coordinate double from input +0
+  (`ldc1` at 0x2258498).
+  Narrows it before writing context +0x188
+  (`cvt.s.d` at 0x22584a8,
+  `swc1` at 0x22584b4).
+  Loads the fourth-component value at context +0xf2c
+  (`lwc1` at 0x22584a0), copying it to +0x194
+  (`swc1` at 0x22584ac).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1dv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78490,
+  40 bytes, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9fcaf1045391f55587a68900d1e104e2c62b58cb8c5db1b90e9507b5cea7cb7b`.
+  Existing SHA-256: `9fcaf1045391f55587a68900d1e104e2c62b58cb8c5db1b90e9507b5cea7cb7b`.
+  Evidence: `facts/__glim_TexCoord1dv.target.txt`,
+  `facts/__glim_TexCoord1dv.existing.txt`, `facts/__glim_TexCoord1dv.full.listing.txt`,
+  `facts/__glim_TexCoord1dv.compare.txt`.
+
+- `__glim_TexCoord1fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22584c0, routine size 36 bytes.
+  Copies an input float into the software current coordinate
+  at context +0x188 (`lwc1` at 0x22584c8,
+  `swc1` at 0x22584d8).
+  Another float transfer uses context +0xf2c and
+  +0x194 (`lwc1` at 0x22584d4,
+  `swc1` at 0x22584e0).
+  The complete vector wrapper contains no conversion.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1fv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e784c0,
+  36 bytes, labelled Established.
+  Comparison: target 36 bytes, existing 36 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `ab4e8d3529c77438bba25a9a4f9aab71acabc8198e17aae9b8e4e6497d0e8ebb`.
+  Existing SHA-256: `ab4e8d3529c77438bba25a9a4f9aab71acabc8198e17aae9b8e4e6497d0e8ebb`.
+  Evidence: `facts/__glim_TexCoord1fv.target.txt`,
+  `facts/__glim_TexCoord1fv.existing.txt`, `facts/__glim_TexCoord1fv.full.listing.txt`,
+  `facts/__glim_TexCoord1fv.compare.txt`.
+
+- `__glim_TexCoord1iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22584f0, routine size 44 bytes.
+  Loads a word-sized integer texture coordinate from input
+  +0 (`lw` at 0x22584f0).
+  Its conversion uses `cvt.s.w` at 0x2258508,
+  followed by the context +0x188 store
+  (`swc1` at 0x2258518).
+  Software coordinate fields +0x190, +0x18c and +0x194
+  are also written (`swc1` at 0x2258500,
+  0x225850c, 0x2258510).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1iv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e784f0,
+  44 bytes, labelled Established.
+  Comparison: target 44 bytes, existing 44 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b8e8b48d3d5fe0243b4ca0c7e64d9840f2de32833d2e5fe7cacb85e74a6db771`.
+  Existing SHA-256: `b8e8b48d3d5fe0243b4ca0c7e64d9840f2de32833d2e5fe7cacb85e74a6db771`.
+  Evidence: `facts/__glim_TexCoord1iv.target.txt`,
+  `facts/__glim_TexCoord1iv.existing.txt`, `facts/__glim_TexCoord1iv.full.listing.txt`,
+  `facts/__glim_TexCoord1iv.compare.txt`.
+
+- `__glim_TexCoord1sv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258520, routine size 44 bytes.
+  Fetches a signed halfword for a software texture coordinate
+  (`lh` at 0x2258520).
+  Converts it to single precision (`cvt.s.w` at
+  0x2258538) and saves it at context +0x188
+  (`swc1` at 0x2258548).
+  The remaining component transfer at +0x194 copies
+  context +0xf2c (`swc1` at 0x2258540).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord1sv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78520,
+  44 bytes, labelled Established.
+  Comparison: target 44 bytes, existing 44 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bd002c7f27ded6421fd502f4c79cb95ab3a75b8a458c9e756a457907dc06893b`.
+  Existing SHA-256: `bd002c7f27ded6421fd502f4c79cb95ab3a75b8a458c9e756a457907dc06893b`.
+  Evidence: `facts/__glim_TexCoord1sv.target.txt`,
+  `facts/__glim_TexCoord1sv.existing.txt`, `facts/__glim_TexCoord1sv.full.listing.txt`,
+  `facts/__glim_TexCoord1sv.compare.txt`.
+
+- `__glim_TexCoord2d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258550, routine size 40 bytes.
+  Handles two double-precision software texture coordinates with
+  separate narrowing instructions (`cvt.s.d` at 0x2258558,
+  0x2258564).
+  The second and first results occupy context +0x18c
+  and +0x188 (`swc1` at 0x2258560, 0x225856c).
+  Another float is copied from +0xf2c to +0x194
+  (`swc1` at 0x2258574).
+  The +0x190 field has its own store
+  (`swc1` at 0x225855c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2d` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78550,
+  40 bytes, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8e9f4da9f0f2456251267e8452774f97d2f90d4a04940ed9293a6d0e511d7b67`.
+  Existing SHA-256: `8e9f4da9f0f2456251267e8452774f97d2f90d4a04940ed9293a6d0e511d7b67`.
+  Evidence: `facts/__glim_TexCoord2d.target.txt`,
+  `facts/__glim_TexCoord2d.existing.txt`, `facts/__glim_TexCoord2d.full.listing.txt`,
+  `facts/__glim_TexCoord2d.compare.txt`.
+
+- `__glim_TexCoord2i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258580, routine size 48 bytes.
+  Sets a software two-component coordinate from integer arguments.
+  Both undergo word-to-float conversion
+  (`cvt.s.w` at 0x2258594, 0x225859c).
+  Outputs reach context +0x18c and +0x188
+  (`swc1` at 0x22585a4, 0x22585ac).
+  The additional float at +0x194 comes from context
+  +0xf2c (`swc1` at 0x22585a0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2i` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78580,
+  48 bytes, labelled Established.
+  Comparison: target 48 bytes, existing 48 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `edd2f1e6105720d342876ce2dd86e410c5d1801e01be3de296bcf346636c5d3b`.
+  Existing SHA-256: `edd2f1e6105720d342876ce2dd86e410c5d1801e01be3de296bcf346636c5d3b`.
+  Evidence: `facts/__glim_TexCoord2i.target.txt`,
+  `facts/__glim_TexCoord2i.existing.txt`, `facts/__glim_TexCoord2i.full.listing.txt`,
+  `facts/__glim_TexCoord2i.compare.txt`.
+
+- `__glim_TexCoord2s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22585b0, routine size 48 bytes.
+  Converts two scalar short arguments for software texture state
+  (`cvt.s.w` at 0x22585c4, 0x22585cc).
+  Records their results at context +0x18c and +0x188
+  (`swc1` at 0x22585d4, 0x22585dc).
+  Full argument registers are used without halfword loads.
+  A companion store writes context +0x190
+  (`swc1` at 0x22585c8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2s` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e785b0,
+  48 bytes, labelled Established.
+  Comparison: target 48 bytes, existing 48 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `edd2f1e6105720d342876ce2dd86e410c5d1801e01be3de296bcf346636c5d3b`.
+  Existing SHA-256: `edd2f1e6105720d342876ce2dd86e410c5d1801e01be3de296bcf346636c5d3b`.
+  Evidence: `facts/__glim_TexCoord2s.target.txt`,
+  `facts/__glim_TexCoord2s.existing.txt`, `facts/__glim_TexCoord2s.full.listing.txt`,
+  `facts/__glim_TexCoord2s.compare.txt`.
+
+- `__glim_TexCoord2dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22585e0, routine size 48 bytes.
+  Consumes a double vector at input +0 and +8
+  (`ldc1` at 0x22585e0, 0x22585f4).
+  The software x and y outputs use context +0x188
+  and +0x18c (`swc1` at 0x22585f0, 0x225860c).
+  Narrowing appears at `cvt.s.d` at 0x22585ec
+  and 0x2258604.
+  The fourth component retains context +0xf2c
+  (`swc1` at 0x22585fc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2dv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e785e0,
+  48 bytes, labelled Established.
+  Comparison: target 48 bytes, existing 48 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `0ffd7ea439fec16f6b50e371740b6c253463b59f4558247bf9fede6d3b42fb59`.
+  Existing SHA-256: `0ffd7ea439fec16f6b50e371740b6c253463b59f4558247bf9fede6d3b42fb59`.
+  Evidence: `facts/__glim_TexCoord2dv.target.txt`,
+  `facts/__glim_TexCoord2dv.existing.txt`, `facts/__glim_TexCoord2dv.full.listing.txt`,
+  `facts/__glim_TexCoord2dv.compare.txt`.
+
+- `__glim_TexCoord2iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258610, routine size 56 bytes.
+  Processes a two-word integer coordinate vector from input
+  +0 and +4 (`lw` at 0x2258610, 0x2258624).
+  Each value is converted (`cvt.s.w` at 0x2258618,
+  0x2258634) before its software coordinate store at
+  context +0x188 or +0x18c
+  (`swc1` at 0x2258620, 0x2258644).
+  Its additional output writes +0x190
+  (`swc1` at 0x225863c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2iv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78610,
+  56 bytes, labelled Established.
+  Comparison: target 56 bytes, existing 56 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `deeb934897dc0128c0092bd54315dd416c880b4d48ce574710e102da1d087a69`.
+  Existing SHA-256: `deeb934897dc0128c0092bd54315dd416c880b4d48ce574710e102da1d087a69`.
+  Evidence: `facts/__glim_TexCoord2iv.target.txt`,
+  `facts/__glim_TexCoord2iv.existing.txt`, `facts/__glim_TexCoord2iv.full.listing.txt`,
+  `facts/__glim_TexCoord2iv.compare.txt`.
+
+- `__glim_TexCoord2sv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258650, routine size 56 bytes.
+  Expands two signed halfwords from input +0 and +2
+  into software texture coordinates (`lh` at 0x2258650,
+  0x2258664).
+  Float conversions are `cvt.s.w` at 0x2258658
+  and 0x2258674.
+  Stores the results at context +0x188 and +0x18c
+  (`swc1` at 0x2258660, 0x2258684).
+  Also copies context +0xf2c to +0x194
+  (`swc1` at 0x2258678).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2sv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78650,
+  56 bytes, labelled Established.
+  Comparison: target 56 bytes, existing 56 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c2589d16c7b6e29acde72d35e91edcf201d571b76a17160759aae73163ca148c`.
+  Existing SHA-256: `c2589d16c7b6e29acde72d35e91edcf201d571b76a17160759aae73163ca148c`.
+  Evidence: `facts/__glim_TexCoord2sv.target.txt`,
+  `facts/__glim_TexCoord2sv.existing.txt`, `facts/__glim_TexCoord2sv.full.listing.txt`,
+  `facts/__glim_TexCoord2sv.compare.txt`.
+
+- `__glim_TexCoord3d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x2258690, routine size 40 bytes.
+  Narrows three scalar double coordinates for software texture
+  state (`cvt.s.d` at 0x2258694, 0x2258698,
+  0x22586a4).
+  Result words occupy context +0x190, +0x18c
+  and +0x188 (`swc1` at 0x225869c, 0x22586a0,
+  0x22586ac).
+  The final store copies context +0xf2c into +0x194
+  (`swc1` at 0x22586b4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord3d` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78690,
+  40 bytes, labelled Established.
+  Comparison: target 40 bytes, existing 40 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5f95773631ec6e60143ca43755c428db647dd6b92418f42b477d598a4e6ce3db`.
+  Existing SHA-256: `5f95773631ec6e60143ca43755c428db647dd6b92418f42b477d598a4e6ce3db`.
+  Evidence: `facts/__glim_TexCoord3d.target.txt`,
+  `facts/__glim_TexCoord3d.existing.txt`, `facts/__glim_TexCoord3d.full.listing.txt`,
+  `facts/__glim_TexCoord3d.compare.txt`.
+
+- `__glim_TexCoord3f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22586c0, routine size 28 bytes.
+  Writes three incoming float registers into software texture
+  coordinate fields +0x190, +0x18c and +0x188
+  (`swc1` at 0x22586c4, 0x22586c8, 0x22586d0).
+  Loads context +0xf2c for the fourth word
+  (`lwc1` at 0x22586cc), saving it at +0x194
+  (`swc1` at 0x22586d8).
+  No coordinate conversion is needed in this body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord3f` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e786c0,
+  28 bytes, labelled Established.
+  Comparison: target 28 bytes, existing 28 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `90bc457fc8fff531eb1d83cfbd503075ffb98548b4d741d544a49eca704bc610`.
+  Existing SHA-256: `90bc457fc8fff531eb1d83cfbd503075ffb98548b4d741d544a49eca704bc610`.
+  Evidence: `facts/__glim_TexCoord3f.target.txt`,
+  `facts/__glim_TexCoord3f.existing.txt`, `facts/__glim_TexCoord3f.full.listing.txt`,
+  `facts/__glim_TexCoord3f.compare.txt`.
+
+- `__glim_TexCoord3i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). **Inferred.**
+  Address 0x22586e0, routine size 52 bytes.
+  Updates software texture state from three integer components.
+  Each is converted by a word-to-float instruction
+  (`cvt.s.w` at 0x22586f4, 0x22586f8, 0x2258700).
+  The z, y and x outputs go to context +0x190,
+  +0x18c and +0x188 (`swc1` at 0x2258704,
+  0x2258708, 0x2258710).
+  A fourth-component copy from context +0xf2c precedes
+  them (`swc1` at 0x22586fc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord3i` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e786e0,
+  52 bytes, labelled Established.
+  Comparison: target 52 bytes, existing 52 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `603b1f3ee5e0a3602bbcb4d9d04e06ab9edcdba67e7124045f3f6c6502e9c5f9`.
+  Existing SHA-256: `603b1f3ee5e0a3602bbcb4d9d04e06ab9edcdba67e7124045f3f6c6502e9c5f9`.
+  Evidence: `facts/__glim_TexCoord3i.target.txt`,
+  `facts/__glim_TexCoord3i.existing.txt`, `facts/__glim_TexCoord3i.full.listing.txt`,
+  `facts/__glim_TexCoord3i.compare.txt`.
