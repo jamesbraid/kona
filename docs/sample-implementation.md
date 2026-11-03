@@ -31260,3 +31260,323 @@ comparison was not rerun and supplies no new target equation.
   | Return instruction | Reported registers |
   |---|---|
   | `jr` at 0x220bd8c | `v0 = ?` |
+
+- `__glim_Indexs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220bda0, occupies 20 bytes.
+  Established. Converts the incoming word in a0 to a single-precision float (`mtc1` at 0x220bda0 and `cvt.s.w` at 0x220bda4).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220bda8).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220bdb0).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220bdac).
+  This scope covers the complete local conversion or copy and single context-field store.
+  No public argument-narrowing rule is inferred.
+
+- `__glim_Indexdv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220bdc0, occupies 20 bytes.
+  Established. Loads a double-precision value from the incoming pointer and converts it to single precision (`ldc1` at 0x220bdc0 and `cvt.s.d` at 0x220bdc8).
+  It reads 8 bytes at `a0 (arg0 at entry) +0x0` (`ldc1` at 0x220bdc0).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220bdc4).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220bdd0).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220bdcc).
+  This scope covers the complete local conversion or copy and single context-field store.
+
+- `__glim_Indexfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220bde0, occupies 16 bytes.
+  Established. Copies the incoming four-byte float value into the context field (`lwc1` at 0x220bde4 and `swc1` at 0x220bdec).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220bde0).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x0` (`lwc1` at 0x220bde4).
+  A 4-byte write at `[0x1020]:8 +0x270` has value `[a0]` (`swc1` at 0x220bdec).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?; f0 = [a0]`
+  (`jr` at 0x220bde8).
+  This scope covers the complete local conversion or copy and single context-field store.
+
+- `__glim_Indexiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220bdf0, occupies 24 bytes.
+  Established. Loads a signed word and converts it to a single-precision float (`lw` at 0x220bdf0 and `cvt.s.w` at 0x220bdf8).
+  It reads 4 bytes at `a0 (arg0 at entry) +0x0` (`lw` at 0x220bdf0).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220bdfc).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220be04).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = [a0]`
+  (`jr` at 0x220be00).
+  This scope covers the complete local conversion or copy and single context-field store.
+
+- `__glim_Indexsv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220be10, occupies 24 bytes.
+  Established. Loads a signed halfword and converts it to a single-precision float (`lh` at 0x220be10 and `cvt.s.w` at 0x220be18).
+  It reads 2 bytes at `a0 (arg0 at entry) +0x0` (`lh` at 0x220be10).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220be1c).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220be24).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = [a0]:2`
+  (`jr` at 0x220be20).
+  This scope covers the complete local conversion or copy and single context-field store.
+
+- `__glim_Indexub` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220be30, occupies 20 bytes.
+  Established. Converts the incoming word in a0 to a single-precision float (`mtc1` at 0x220be30 and `cvt.s.w` at 0x220be34).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220be38).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220be40).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220be3c).
+  This scope covers the complete local conversion or copy and single context-field store.
+  No public argument-narrowing rule is inferred.
+
+- `__glim_Indexubv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220be50, occupies 24 bytes.
+  Established. Loads an unsigned byte and converts it to a single-precision float (`lbu` at 0x220be50 and `cvt.s.w` at 0x220be58).
+  It reads 1 byte at `a0 (arg0 at entry) +0x0` (`lbu` at 0x220be50).
+  It reads 8 bytes at `abs 0x1020` (`ld` at 0x220be5c).
+  A 4-byte write at `[0x1020]:8 +0x270` has value unresolved (`swc1` at 0x220be64).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = [a0]:1`
+  (`jr` at 0x220be60).
+  This scope covers the complete local conversion or copy and single context-field store.
+
+- `Clip` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c090, occupies 108 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c090).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c094).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c0ac).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c0bc).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c0c0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c0b4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c0b8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c0cc).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c0e0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c0f8).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = 0xd4708`
+  (`jr` at 0x220c0f4).
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipC` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c100, occupies 188 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c100).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c104).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c11c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c12c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c130).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c124).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c128).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c13c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c150).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c164).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c160.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c1c0, occupies 128 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c1c0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c1c4).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c1dc).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c1ec).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c1f0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c1e4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c1e8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c1fc).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c210).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c224).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = 0xd45d8`
+  (`jr` at 0x220c238).
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipBC` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c240, occupies 268 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c240).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c244).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c25c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c26c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c270).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c264).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c268).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c27c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c290).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c2a4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c2f0.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipBI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c350, occupies 148 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c350).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c354).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c36c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c37c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c380).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c374).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c378).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c38c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c3a0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c3b4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c388.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c3f0, occupies 188 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c3f0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c3f4).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c40c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c41c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c420).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c414).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c418).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c42c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c440).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c454).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c450.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipIT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c4b0, occupies 208 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c4b0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c4b4).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c4cc).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c4dc).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c4e0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c4d4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c4d8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c4ec).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c500).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c514).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c524.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipBIT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c580, occupies 228 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c580).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c584).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c59c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c5ac).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c5b0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c5a4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c5a8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c5bc).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c5d0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c5e4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c608.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipCT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c670, occupies 268 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c670).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c674).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c68c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c69c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c6a0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c694).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c698).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c6ac).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c6c0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c6d4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c720.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipBCT` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c780, occupies 348 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c780).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c784).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c79c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c7ac).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c7b0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c7a4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c7a8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c7bc).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c7d0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c7e4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220c790, 0x0220c880.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c8e0, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c8e0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c8e4).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c8fc).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c90c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c910).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c904).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c908).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c91c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c930).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c944).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220c968, 0x220c980).
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipIF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220c990, occupies 188 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220c990).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220c994).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220c9ac).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220c9bc).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220c9c0).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220c9b4).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220c9b8).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220c9cc).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220c9e0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220c9f4).
+  The full body makes no calls.
+  Hostfacts reports return registers `v0 = ?`
+  (`jr` at 0x220ca2c, 0x220ca44).
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
+
+- `ClipBIF` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x220ca50, occupies 208 bytes.
+  Inferred. It reads 4 bytes at `a2 (arg2 at entry) +0x84` (`lwc1` at 0x220ca50).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x84` (`lwc1` at 0x220ca54).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x220ca6c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x78` (`lwc1` at 0x220ca7c).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x78` (`lwc1` at 0x220ca80).
+  A 4-byte write at `a0 (arg0 at entry) +0x84` has value unresolved (`swc1` at 0x220ca74).
+  A 4-byte write at `a0 (arg0 at entry) +0x94` has value unresolved (`swc1` at 0x220ca78).
+  A 4-byte write at `a0 (arg0 at entry) +0x78` has value unresolved (`swc1` at 0x220ca8c).
+  A 4-byte write at `a0 (arg0 at entry) +0x7c` has value unresolved (`swc1` at 0x220caa0).
+  A 4-byte write at `a0 (arg0 at entry) +0x80` has value unresolved (`swc1` at 0x220cab4).
+  The full body makes no calls.
+  COP3 renderings remain at 0x0220ca88.
+  These words receive no semantic assignment. Affected arithmetic, predicates,
+  stored values, branch targets and return conditions remain unknown.
+  Unreported conversion and interpolation equations, predicates and missing
+  calculated values remain unknown.
