@@ -39358,3 +39358,798 @@ comparison was not rerun and supplies no new target equation.
   88 bytes. Both ranges have SHA-256
   `7fde1f47732f607c7eb62d941e5d740c1be389c1af720aa9a5a93dc1787716c2`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glim_LoadMatrixf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a160, occupies 228 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a160, which occupies
+  228 bytes. Both ranges have SHA-256
+  `ae95b8aecb232b2e91c8a1fe4d1dac1921024cc1fd04e42c7863162316d0fe3f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_LoadMatrixd` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a250, occupies 292 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a250, which occupies
+  292 bytes. Both ranges have SHA-256
+  `ef02fb72e0e7094da9f63b5ea23e19b0b887769fadb3723d5de1e160586d90af`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_MultMatrixf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a380, occupies 232 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a380, which occupies
+  232 bytes. Both ranges have SHA-256
+  `6efb7b95b21500a7226a4086fe33f9e95d36d02539921e4d08b37d2cac601027`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_MultMatrixd` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a470, occupies 296 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a470, which occupies
+  296 bytes. Both ranges have SHA-256
+  `4dbac77f8c3b5c78df4eaf12c28fdca5450e517632757c488a803a2275bc6678`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Rotatef` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a5a0, occupies 108 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a5a0, which occupies
+  108 bytes. Both ranges have SHA-256
+  `4eea7188d1c3f3fbe9cb283878580fdce025ff6a5f81910f72027ba1ba850fbd`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Rotated` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a610, occupies 112 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a610, which occupies
+  112 bytes. Both ranges have SHA-256
+  `4b7af181ccba2acf65f2e57e2d2d41f6aad83053b079cb24d87ffec881b90204`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Scalef` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a680, occupies 100 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a680, which occupies
+  100 bytes. Both ranges have SHA-256
+  `4ce3887c4f2181bbf75e6b135006282df729e9c63a6bb5b5382748f9befcfbe0`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Scaled` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a6f0, occupies 104 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a6f0, which occupies
+  104 bytes. Both ranges have SHA-256
+  `5dc22c416b66ee467902c35b57725dc91c297863f55c855ef5e6246420ec5ee8`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Translatef` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a760, occupies 100 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a760, which occupies
+  100 bytes. Both ranges have SHA-256
+  `897a13fd7d7bf9b9a2943d638212dd8534fdead486b698519d9146b534761ebf`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Translated` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a7d0, occupies 104 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a7d0, which occupies
+  104 bytes. Both ranges have SHA-256
+  `d50786d295878cbd2aef6798f39c627f0513095907a4e317dc6022efa7c30727`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Frustum` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227a940, occupies 452 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9a940, which occupies
+  452 bytes. Both ranges have SHA-256
+  `3bf7f88eaf7a50f60fefdcf36eb4628e96486e54ed3d9c9651ec4932884d21af`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Ortho` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227ab10, occupies 512 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9ab10, which occupies
+  512 bytes. Both ranges have SHA-256
+  `51a5211172d5957be18fb4f77e6c991e85dfabacd27d2b9ddb6ca72953f22972`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glUpdateViewport` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227ad10, occupies 176 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9ad10, which occupies
+  176 bytes. Both ranges have SHA-256
+  `74ec5d64a9999afbdd347e19c0394b6d451caeb751bf0485d56dda31b0912843`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glUpdateViewportTransform` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227adc0, occupies 184 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9adc0, which occupies
+  184 bytes. Both ranges have SHA-256
+  `79fa72c0585ec432c887dbcd6e131b4a7d17f987facbfa885bf370c6f7a24c3a`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Viewport` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227ae80, occupies 240 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9ae80, which occupies
+  240 bytes. Both ranges have SHA-256
+  `4cb9e2f4224ca18b6986e98bbb5f1165887d19eeec91754a981847320eb1e7ae`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_DepthRange` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227af70, occupies 136 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9af70, which occupies
+  136 bytes. Both ranges have SHA-256
+  `089ca3f3cc0a9d04a989d5b16947cafc8df4e8bad109d1a42b30734ff69ddf5e`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_Scissor` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227b0c0, occupies 276 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9b0c0, which occupies
+  276 bytes. Both ranges have SHA-256
+  `d5aba9705981b2907f16da48cbe767403e71db1b1ac902cfafdb4428b23238b1`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_ClipPlane` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227b1e0, occupies 328 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9b1e0, which occupies
+  328 bytes. Both ranges have SHA-256
+  `1c81aa0eafca313e4bf91cf05b9f97df4e8d95b8c2539f3d44b63f1690d47c04`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glPushModelViewMatrix` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227b330, occupies 316 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9b330, which occupies
+  316 bytes. Both ranges have SHA-256
+  `1dd069f70ee9be572a0b9879981542f69010f089c87106c1e7d6bdf797c18e54`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glPopModelViewMatrix` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x227b470, occupies 172 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e9b470, which occupies
+  172 bytes. Both ranges have SHA-256
+  `6fdee1599c0975d8800c86f8b182f6e37c1adac002e84f9cdcd5e453dcdc9b3f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glim_EdgeFlagPointerEXT` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278bb0–0x2278c40, occupies 144 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39458 | 140 | Inferred | 129 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x2278bb0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278bd4 |
+  | store | 4 | `[0x1020]:8 +0x16bc  value a0` | `sw` at 0x2278bd8 |
+  | store | 8 | `[0x1020]:8 +0x16b0  value a2` | `sd` at 0x2278bdc |
+  | load | 8 | `abs 0x22df8e0` | `ld` at 0x2278be0 |
+  | store | 4 | `[0x1020]:8 +0x16c0  value a1` | `sw` at 0x2278be8 |
+  | store | 4 | `[0x1020]:8 +0x16b8` | `sw` at 0x2278bf4 |
+  | load | 4 | `[0x1020]:8 +0x17b0` | `lw` at 0x2278bfc |
+  | store | 8 | `[0x1020]:8 +0x16c8  value sym(glEdgeFlagv)` | `sd` at 0x2278c08 |
+  | store | 4 | `[0x1020]:8 +0x17b0  value ([[0x1020]:8+6064] | 0x8000000)` | `sw` at 0x2278c14 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278c24 |
+  | load | 8 | `abs 0x22db398` | `ld` at 0x2278c28 |
+  | store | 8 | `[0x1020]:8 +0x16c8  value 0x2246660` | `sd` at 0x2278c34 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2278c30 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x2246660, a4=[0x1020]:8` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x2278bc8 | `a0 < 0 (signed)` | `a0 >= 0 (signed)` |
+  | `bltz` at 0x2278bd0 | `a1 < 0 (signed)` | `a1 >= 0 (signed)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2278c10 | `v0 = ?` |
+  | `jr` at 0x2278c1c | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_IndexPointerEXT` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278c40–0x2278d7c, occupies 316 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda394e4 | 332 | Inferred | 296 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x2278c40 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278c6c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278c78 |
+  | load | 8 | `abs 0x22e06d0` | `ld` at 0x2278c7c |
+  | load | 8 | `? (base unknown)` | `ld` at 0x2278c9c |
+  | store | 4 | `[0x1020]:8 +0x1678  value a1` | `sw` at 0x2278ccc |
+  | store | 4 | `[0x1020]:8 +0x1674` | `sw` at 0x2278cec |
+  | store | 4 | `[0x1020]:8 +0x17b0` | `sw` at 0x2278d00 |
+  | store | 8 | `[0x1020]:8 +0x1680  value 0x2246660` | `sd` at 0x2278d20 |
+  | store | 8 | `[0x1020]:8 +0x1680  value 0x2246660` | `sd` at 0x2278d54 |
+  | store | 8 | `[0x1020]:8 +0x1680  value 0x2246660` | `sd` at 0x2278d70 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2278d1c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8, a6=0x2246660` |
+  | `jalr` at 0x2278d50 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x2246660, a5=[0x1020]:8` |
+  | `jalr` at 0x2278d6c | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[0x1020]:8, a6=0x2246660` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `bltz` at 0x2278c58 | `a1 < 0 (signed)` | `a1 >= 0 (signed)` |
+  | `bltz` at 0x2278c60 | `a2 < 0 (signed)` | `a2 >= 0 (signed)` |
+  | `bnez` at 0x2278c68 | `v0(?) != 0` | `v0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2278cfc | `v0 = ?` |
+  | `jr` at 0x2278d08 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+
+- `__glim_ColorPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278d80–0x2278dd8, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39630 | 104 | Inferred | 79 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2278d84 |
+  | load | 8 | `abs 0x22dbe78` | `ld` at 0x2278da8 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278dc4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x2278dac | `__glim_ColorPointerEXT [0x2278850]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3)` |
+  | `jalr` at 0x2278dc8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2278da0 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2278dbc | `v0 = ?` |
+
+- `__glim_DrawElements` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278de0–0x2278f84, occupies 420 bytes.
+
+  The three index paths use unsigned-byte, unsigned-halfword and word loads (`lbu` at 0x2278f04, `lhu` at 0x2278f44, `lw` at 0x2278eb4).
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39698 | 424 | Inferred | 359 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2278dec |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278e3c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278e3c |
+  | load | 8 | `abs 0x10c8` | `ld` at 0x2278e60 |
+  | load | 8 | `abs 0x16c0` | `ld` at 0x2278eac |
+  | load | 4 | `? (base unknown)` | `lw` at 0x2278eb4 |
+  | load | 1 | `? (base unknown)` | `lbu` at 0x2278f04 |
+  | load | 2 | `? (base unknown)` | `lhu` at 0x2278f44 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2278e40 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=0x1401, a2=?, a3=?` |
+  | `jalr` at 0x2278e64 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=0x1401, a2=?, a3=?` |
+  | `jalr` at 0x2278eb0 | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2278ecc | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2278f00 | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2278f40 | `(unknown callee)` (register) | `a0=?, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2278f60 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2278f74 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2278e0c | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bltz` at 0x2278e14 | `a1 < 0 (signed)` | `a1 >= 0 (signed)` |
+  | `beqz` at 0x2278e1c | `a1(?) == 0` | `a1(?) != 0` |
+  | `bnel` at 0x2278ebc | `s0(?) != s1(=((a1 << 0x2) + a3))` | `s0(?) == s1(=((a1 << 0x2) + a3))` |
+  | `bnel` at 0x2278f0c | `s0(?) != s1(=(a1 + a3))` | `s0(?) == s1(=(a1 + a3))` |
+  | `bnel` at 0x2278f4c | `s0(?) != s1(=((a1 + a1) + a3))` | `s0(?) == s1(=((a1 + a1) + a3))` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2278e58 | `v0 = ?` |
+
+- `__glim_DrawRangeElements` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278f90–0x2278fec, occupies 92 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39840 | 100 | Inferred | 75 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2278fb4 |
+  | load | 8 | `abs 0x22dbea0` | `ld` at 0x2278fc8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2278fb8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a7=a3 at entry (arg3)` |
+  | `bgezall` at 0x2278fd4 | `__glim_DrawElements [0x2278de0]` (direct) | `a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=a4 at entry (arg4), a3=a5 at entry (arg5), a7=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2278fac | `a2 >= a1 (unsigned)` | `a2 < a1 (unsigned)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2278fe4 | `v0 = ?` |
+
+- `__glim_EdgeFlagPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2278ff0–0x2279048, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda398a4 | 100 | Inferred | 74 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2278ff4 |
+  | load | 8 | `abs 0x22dbe88` | `ld` at 0x2279018 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2279034 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x227901c | `__glim_EdgeFlagPointerEXT [0x2278bb0]` (direct) | `a0=a0 at entry (arg0), a1=0x0, a2=a1 at entry (arg1), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2279038 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2279010 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227902c | `v0 = ?` |
+
+- `__glim_IndexPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279050–0x22790a8, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39908 | 100 | Inferred | 74 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2279054 |
+  | load | 8 | `abs 0x22dbe90` | `ld` at 0x2279078 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2279094 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x227907c | `__glim_IndexPointerEXT [0x2278c40]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=a2 at entry (arg2)` |
+  | `jalr` at 0x2279098 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a2 at entry (arg2)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2279070 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227908c | `v0 = ?` |
+
+- `__glim_InterleavedArrays` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x22790b0–0x2279370, occupies 704 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3996c | 856 | Inferred | 643 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x22790b8 |
+  | load | 4 | `abs 0x1030` | `lw` at 0x22790d0 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x22790fc |
+  | load | 8 | `abs 0x22d88b8` | `ld` at 0x227911c |
+  | load | 8 | `[0x1020]:8 +0x1ad8` | `ld` at 0x2279138 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2279140 | `(unknown callee)` (register) | `a0=0x8079, a1=?, a2=?, a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2279150 | `(unknown callee)` (register) | `a0=0x8077, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279194 | `(unknown callee)` (register) | `a0=0x8078, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x22791bc | `(unknown callee)` (register) | `a0=entry(0x22d3c7c), a1=0x1406, a2=?, a3=?` |
+  | `jalr` at 0x22791e8 | `(unknown callee)` (register) | `a0=0x8078, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x227921c | `(unknown callee)` (register) | `a0=0x8076, a1=[[0x1020]:8+6872]:8, a2=?, a3=?` |
+  | `jalr` at 0x227923c | `(unknown callee)` (register) | `a0=entry(0x22d3c80), a1=entry(0x22d3c88), a2=?, a3=?` |
+  | `jalr` at 0x2279254 | `(unknown callee)` (register) | `a0=0x8075, a1=[[0x1020]:8+6872]:8, a2=?, a3=?` |
+  | `jalr` at 0x2279270 | `(unknown callee)` (register) | `a0=0x1406, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279280 | `(unknown callee)` (register) | `a0=0x8074, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x22792a0 | `(unknown callee)` (register) | `a0=entry(0x22d3c84), a1=0x1406, a2=?, a3=?` |
+  | `jalr` at 0x22792d4 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=?, a2=?, a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2279300 | `(unknown callee)` (register) | `a0=0x8078, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279328 | `(unknown callee)` (register) | `a0=0x8076, a1=[[0x1020]:8+6872]:8, a2=?, a3=?` |
+  | `jalr` at 0x227933c | `(unknown callee)` (register) | `a0=0x8075, a1=[[0x1020]:8+6872]:8, a2=?, a3=?` |
+  | `jalr` at 0x2279350 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2279360 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x22790f0 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `bltz` at 0x22790f8 | `a1 < 0 (signed)` | `a1 >= 0 (signed)` |
+  | `bnez` at 0x2279104 | `a0 < 0x2a20 (unsigned)` | `a0 >= 0x2a20 (unsigned)` |
+  | `bnel` at 0x22791c8 | `s5(=[[0x1020]:8+6084]) != s0(?)` | `s5(=[[0x1020]:8+6084]) == s0(?)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22792c8 | `v0 = ?` |
+
+- `__glim_NormalPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279370–0x22793c8, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39cc4 | 100 | Inferred | 74 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2279374 |
+  | load | 8 | `abs 0x22dbe70` | `ld` at 0x2279398 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x22793b4 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x227939c | `__glim_NormalPointerEXT [0x2278710]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x0, a3=a2 at entry (arg2)` |
+  | `jalr` at 0x22793b8 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a2 at entry (arg2)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2279390 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22793ac | `v0 = ?` |
+
+- `__glim_TexCoordPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x22793d0–0x2279428, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39d28 | 104 | Inferred | 79 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x22793d4 |
+  | load | 8 | `abs 0x22dbe80` | `ld` at 0x22793f8 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2279414 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x22793fc | `__glim_TexCoordPointerEXT [0x22789c0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3)` |
+  | `jalr` at 0x2279418 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x22793f0 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227940c | `v0 = ?` |
+
+- `__glim_VertexPointer` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279430–0x2279488, occupies 88 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39d90 | 104 | Inferred | 79 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x2279434 |
+  | load | 8 | `abs 0x22dbe68` | `ld` at 0x2279458 |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x2279474 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x227945c | `__glim_VertexPointerEXT [0x22785b0]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x0, a4=a3 at entry (arg3)` |
+  | `jalr` at 0x2279478 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x2279450 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227946c | `v0 = ?` |
+
+- `__glClipCheckAll` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x22795b0–0x227972c, occupies 380 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda39f18 | 464 | Inferred | 337 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a1 (arg1 at entry) +0x10` | `ld` at 0x22795c4 |
+  | load | 4 | `a1 (arg1 at entry) +0x84` | `lwc1` at 0x22795e8 |
+  | load | 4 | `a0 (arg0 at entry) +0xf2c` | `lwc1` at 0x22795ec |
+  | load | 4 | `a1 (arg1 at entry) +0x78` | `lwc1` at 0x22795f4 |
+  | load | 4 | `a1 (arg1 at entry) +0x7c` | `lwc1` at 0x2279600 |
+  | store | 4 | `a1 (arg1 at entry) +0x94` | `swc1` at 0x227963c |
+  | store | 4 | `a1 (arg1 at entry) +0x90` | `swc1` at 0x2279714 |
+  | store | 4 | `a1 (arg1 at entry) +0x8c` | `swc1` at 0x2279718 |
+  | store | 4 | `a1 (arg1 at entry) +0x88` | `swc1` at 0x227971c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x22795e0 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x10, a3=a3 at entry (arg3)` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2279670 | `a2(=[a0+2068]) == 0` | `a2(=[a0+2068]) != 0` |
+  | `beqz` at 0x2279688 | `(a2(?) & 0x1) == 0` | `(a2(?) & 0x1) != 0` |
+  | `bnez` at 0x22796bc | `a2(?) != 0` | `a2(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x22796d4 | `v0 = ?` |
+  | `jr` at 0x2279724 | `v0 = ?` |
+
+  Undecoded words: `0x22795fc`, `0x227961c`, `0x2279630`, `0x2279640`, `0x22796b0`.
+
+- `__glGenericPickVertexProcs` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279730–0x2279978, occupies 584 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3a0e8 | 624 | Inferred | 559 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x814` | `lw` at 0x2279734 |
+  | load | 8 | `a0 (arg0 at entry) +0x94c0` | `ld` at 0x2279740 |
+  | load | 4 | `a0 (arg0 at entry) +0x808` | `lw` at 0x2279744 |
+  | load | 4 | `[a0+38080]:8 +0x110` | `lw` at 0x2279758 |
+  | load | 8 | `abs 0x22dbef0` | `ld` at 0x227975c |
+  | store | 8 | `a0 (arg0 at entry) +0x48d0  value 0x2246660` | `sd` at 0x2279930 |
+  | store | 8 | `a0 (arg0 at entry) +0x48c8  value 0x2246660` | `sd` at 0x2279938 |
+  | store | 8 | `a0 (arg0 at entry) +0x4858  value entry(0x22d3e70)` | `sd` at 0x2279954 |
+  | store | 8 | `a0 (arg0 at entry) +0x4858  value 0x22c088c` | `sd` at 0x227995c |
+  | store | 8 | `a0 (arg0 at entry) +0x4880  value 0x22c2aa0` | `sd` at 0x2279964 |
+  | store | 8 | `a0 (arg0 at entry) +0x4878  value 0x22c2aa0` | `sd` at 0x227996c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2279754 | `v0(=[a0+2068]) == 0` | `v0(=[a0+2068]) != 0` |
+  | `beqz` at 0x2279790 | `a3(=[a0+36092]) == 0` | `a3(=[a0+36092]) != 0` |
+  | `beq` at 0x227979c | `a3(=[a0+36092]) == t8(=0x9)` | `a3(=[a0+36092]) != t8(=0x9)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279874 | `v0 = ?` |
+  | `jr` at 0x2279920 | `v0 = ?` |
+  | `jr` at 0x2279950 | `v0 = ?` |
+  | `jr` at 0x2279958 | `v0 = ?` |
+
+  Undecoded words: `0x22798a4`.
+
+- `__glMultiplyMatrix` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279aa0–0x2279b04, occupies 100 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3a474 | 112 | Established | 91 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a0 (arg0 at entry) +0x4810` | `ld` at 0x2279ab4 |
+  | load | 8 | `abs 0x22dbf00` | `ld` at 0x2279adc |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2279ad4 | `(unknown callee)` (register) | `a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a1 at entry (arg1), a3=a3 at entry (arg3)` |
+  | `bgezall` at 0x2279ae8 | `__glPickMatrixType [0x2279980]` (direct) | `a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a1 at entry (arg1), a3=?` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279afc | `v0 = ret(__glPickMatrixType); f0 = ret(__glPickMatrixType)` |
+
+- `SetDepthRange` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279b10–0x2279b98, occupies 136 bytes.
+
+  It zero-extends a loaded word before integer-to-float conversion (`dsll32` at 0x2279b58, `dsrl32` at 0x2279b5c, `cvt.s.l` at 0x2279b64).
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da34a80 | 124 | Inferred | 108 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0xf2c` | `lwc1` at 0x2279b14 |
+  | store | 8 | `a0 (arg0 at entry) +0x7b0` | `sdc1` at 0x2279b48 |
+  | store | 8 | `a0 (arg0 at entry) +0x7a8` | `sdc1` at 0x2279b50 |
+  | load | 4 | `a0 (arg0 at entry) +0x9d74` | `lw` at 0x2279b54 |
+  | load | 4 | `a0 (arg0 at entry) +0xf28` | `lwc1` at 0x2279b68 |
+  | store | 4 | `a0 (arg0 at entry) +0x7cc` | `swc1` at 0x2279b8c |
+  | store | 4 | `a0 (arg0 at entry) +0x7c8` | `swc1` at 0x2279b94 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279b90 | `v0 = ?` |
+
+  Undecoded words: `0x2279b1c`, `0x2279b20`, `0x2279b34`.
+
+- `__glUpdateDepthRange` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279ba0–0x2279bdc, occupies 60 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da34b00 | 60 | Established | 13 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x22d8830` | `ld` at 0x2279bb8 |
+  | load | 8 | `a0 (arg0 at entry) +0x7b0` | `ldc1` at 0x2279bc0 |
+  | load | 8 | `a0 (arg0 at entry) +0x7a8` | `ldc1` at 0x2279bc8 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `bgezall` at 0x2279bc4 | `SetDepthRange [0x2279b10]` (direct) | `a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=[a0+1960]:8, f14=[a0+1968]:8` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279bd4 | `v0 = ret(SetDepthRange); f0 = ret(SetDepthRange)` |
+
+- `__glEarlyInitTransformState` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279be0–0x2279c2c, occupies 76 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3a5fc | 76 | Established | 63 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a0 (arg0 at entry) +0x8` | `ld` at 0x2279bf4 |
+  | load | 4 | `a0 (arg0 at entry) +0xf74` | `lw` at 0x2279bf8 |
+  | store | 8 | `a0 (arg0 at entry) +0x7d8  value ret(?)` | `sd` at 0x2279c1c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2279c0c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+3956], a2=0x10, a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279c24 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glInitTransformState` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279c30–0x2279e9c, occupies 620 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3a648 | 684 | Inferred | 563 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x1030` | `lw` at 0x2279c30 |
+  | load | 4 | `a0 (arg0 at entry) +0xf74` | `lw` at 0x2279c3c |
+  | load | 8 | `a0 (arg0 at entry) +0x8` | `ld` at 0x2279c50 |
+  | store | 8 | `a0 (arg0 at entry) +0x94b8  value ret(?)` | `sd` at 0x2279c74 |
+  | load | 8 | `a0 (arg0 at entry) +0x8` | `ld` at 0x2279c78 |
+  | store | 8 | `? (base unknown)  value 0x22c0308` | `sd` at 0x2279e44 |
+  | store | 8 | `? (base unknown)` | `sd` at 0x2279e4c |
+  | store | 8 | `? (base unknown)  value 0x22c0308` | `sd` at 0x2279e50 |
+  | store | 8 | `? (base unknown)` | `sd` at 0x2279e5c |
+  | store | 8 | `? (base unknown)  value 0x22c0308` | `sd` at 0x2279e68 |
+  | store | 4 | `a0 (arg0 at entry) +0x180  value [a0+3884]` | `swc1` at 0x2279e8c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x2279c64 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+4144], a2=0x140, a3=a3 at entry (arg3)` |
+  | `jalr` at 0x2279c84 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+4148], a2=0x140, a3=?` |
+  | `jalr` at 0x2279c9c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+4152], a2=0x140, a3=?` |
+  | `jalr` at 0x2279cb4 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+4156], a2=0x140, a3=?` |
+  | `jalr` at 0x2279cd0 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=([a0+3956] + [a0+3956])+12, a2=0xc8, a3=?` |
+  | `bgezall` at 0x2279cfc | `SetDepthRange [0x2279b10]` (direct) | `a0=a0 at entry (arg0), a1=?, a2=0x1700, a3=?` |
+  | `jalr` at 0x2279d14 | `(unknown callee)` (register) | `a0=[a0+38072]:8, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279d24 | `(unknown callee)` (register) | `a0=[a0+38072]:8+104, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279d34 | `(unknown callee)` (register) | `a0=[a0+38072]:8+208, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279d48 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38072]:8, a2=?, a3=?` |
+  | `jalr` at 0x2279d58 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38072]:8+104, a2=?, a3=?` |
+  | `jalr` at 0x2279d6c | `(unknown callee)` (register) | `a0=[a0+38088]:8, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279d7c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38088]:8, a2=?, a3=?` |
+  | `jalr` at 0x2279d90 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38080]:8+208, a2=?, a3=?` |
+  | `jalr` at 0x2279da4 | `(unknown callee)` (register) | `a0=[a0+38112]:8, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279db4 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38112]:8, a2=?, a3=?` |
+  | `jalr` at 0x2279dc8 | `(unknown callee)` (register) | `a0=[a0+38128]:8, a1=?, a2=?, a3=?` |
+  | `jalr` at 0x2279dd8 | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=[a0+38128]:8, a2=?, a3=?` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `blez` at 0x2279de8 | `a5(=([a0+3956] + [a0+3956])+12) <= 0 (signed)` | `a5(=([a0+3956] + [a0+3956])+12) > 0 (signed)` |
+  | `beqz` at 0x2279e00 | `(a5(=([a0+3956] + [a0+3956])+12) & 0x3) == 0` | `(a5(=([a0+3956] + [a0+3956])+12) & 0x3) != 0` |
+  | `bnez` at 0x2279e1c | `a0(?) != 0` | `a0(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x2279e94 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glInvalidateSequenceNumbers` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x2279ea0–0x227a030, occupies 400 bytes.
+
+  Pointer stepping is 0x140 (`daddiu` at 0x2279f0c, `daddiu` at 0x2279fb0), matching the target allocation size rather than the N32 source size.
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0da34df0 | 416 | Established | 356 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x1030` | `lw` at 0x2279ea0 |
+  | load | 8 | `a0 (arg0 at entry) +0x94b8` | `ld` at 0x2279eb0 |
+  | load | 8 | `abs 0x22e09a0` | `ld` at 0x2279ed8 |
+  | store | 4 | `? (base unknown)  value 0x0` | `sw` at 0x2279f14 |
+  | store | 4 | `? (base unknown)  value 0x0` | `sw` at 0x2279f20 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x227a000 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x227a008 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x227a010 |
+  | store | 4 | `? (base unknown)` | `sw` at 0x227a01c |
+  | store | 4 | `a0 (arg0 at entry) +0x94d8` | `sw` at 0x227a024 |
+  | store | 4 | `a0 (arg0 at entry) +0x94d8  value 0x1` | `sw` at 0x227a02c |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | None | — | — |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beqz` at 0x2279ecc | `a3(=[a0+38072]:8) >= a5(=(((([a0+4144] << 0x2) + [a0+4144]) << 0x6) + [a0+38072]:8)) (unsigned)` | `a3(=[a0+38072]:8) < a5(=(((([a0+4144] << 0x2) + [a0+4144]) << 0x6) + [a0+38072]:8)) (unsigned)` |
+  | `beqz` at 0x2279f00 | `(a7(?) & 0x7) == 0` | `(a7(?) & 0x7) != 0` |
+  | `bnez` at 0x2279f10 | `a4(?) != 0` | `a4(?) == 0` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227a020 | `v0 = ((([a0+4148] << 0x2) + [a0+4148]) << 0x6)+319` |
+  | `jr` at 0x227a028 | `v0 = ((([a0+4148] << 0x2) + [a0+4148]) << 0x6)+319` |
+
+- `__glim_MatrixMode` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  **Inferred.** Range 0x227a030–0x227a0d4, occupies 164 bytes.
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xda3a960 | 172 | Inferred | 140 |
+
+  | Selected access | Width (bytes) | Reported address and value | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x1030` | `lw` at 0x227a038 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x227a03c |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x227a080 |
+  | store | 4 | `[0x1020]:8 +0x7d0  value a0` | `sw` at 0x227a09c |
+  | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x227a0a0 |
+  | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x227a0a8 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x227a0bc |
+  | load | 8 | `abs 0x22da800` | `ld` at 0x227a0c0 |
+
+  | Reported call | Callee | Arguments |
+  |---|---|---|
+  | `jalr` at 0x227a084 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x500, a1=0x1700, a2=[0x1020]:8, a3=0x1701, a4=0x1702, a5=0x1800, a7=0x2` |
+  | `jalr` at 0x227a0c4 | `__glSetError [0x22115d0]` (register-constant) | `a0=0x502, a1=a1 at entry (arg1), a2=[0x1020]:8, a3=a3 at entry (arg3), a5=0x1800, a7=0x2` |
+
+  | Selected condition | Taken | Fall-through |
+  |---|---|---|
+  | `beq` at 0x227a058 | `at(=[0x1030]) == v0(=0x1)` | `at(=[0x1030]) != v0(=0x1)` |
+  | `beq` at 0x227a064 | `a0 == a1(=0x1700)` | `a0 != a1(=0x1700)` |
+  | `beq` at 0x227a06c | `a0 == a3(=0x1701)` | `a0 != a3(=0x1701)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x227a094 | `v0 = ret(__glSetError); f0 = ret(__glSetError)` |
+  | `jr` at 0x227a0b8 | `v0 = 0x1` |
