@@ -10986,6 +10986,161 @@ Target entries:
   Address 0xda01430; occupies 468 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda01430 for 468 bytes (SHA-256 `85b9c30d9b17d6ce4cdd005a7a730b614c8c157000acfe045769a4eb7b8cfe7a`). Documented sibling grade: Inferred.
 
 
+#### IP35 N32 routines compared with documented sibling builds (batch 119)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies retain the documented sibling grade. Different bodies have separate target observations.
+
+| Routine | Target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glRoundCISpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01610 / 292 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da01610 / 292 | `e725daa6049ccd7e51cba498d566870c3c8865632cb186fe4012a51f2fed17dc` | `e725daa6049ccd7e51cba498d566870c3c8865632cb186fe4012a51f2fed17dc` | 0 |
+| __glRoundCIStippledSpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01740 / 320 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da01740 / 320 | `63512a18c94ab39c12f254ef227d41b875a091d19dad7c4435a64a8ce570f7fb` | `63512a18c94ab39c12f254ef227d41b875a091d19dad7c4435a64a8ce570f7fb` | 0 |
+| __glRoundRGBASpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01880 / 228 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda0483c / 260 | `0a193cdae43f5284facb94628309e8718e1b9e4466289ac6f41007dabf72b4dc` | `55823b21b5ad4ed984ff5b7acd7c6d38aa0181b1b46b60cf31a0afecaaa3efbb` | 197 |
+| __glRoundRGBAStippledSpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01970 / 320 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda04940 / 340 | `97182e7efc74bc306ab82357b1abea77147bece5b9710998deb7f13d6b9d71a3` | `b2e94097cb5be15597a32cc5227037b087329ce939c1c93401d7c7a471efd29a` | 293 |
+| __glLogicOpSpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01ab0 / 292 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda04a94 / 284 | `be12f85a9a78f3f45ad48762b9293b609f746d0faa4fd54b8eb34eaba99af8c0` | `beaee17bfa6da86ece549c290e4a1ac5f437bde9ec7189ad0ecc4dfb44d74a45` | 251 |
+| __glLogicOpStippledSpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01be0 / 392 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda04bb0 / 348 | `2656f6c84811fdaa887b2864c6ef99a1cd080d2d32a77bb07294381211348315` | `1e9a6d5fba6df6323f18d4fbb822a06e021a01d443bc60669574bef3a3a08c66` | 318 |
+| __glMaskRGBASpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01d70 / 336 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da01d70 / 336 | `8fecb1ed2ca6a12f2e50cf3e495f19055c566b247afba6508e4063e2260a2179` | `8fecb1ed2ca6a12f2e50cf3e495f19055c566b247afba6508e4063e2260a2179` | 0 |
+| __glMaskCISpan | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda01ec0 / 420 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda04db0 / 376 | `24a278a5aa7bd9af51d0e5763dbeeecdfabb08d9df24799ee630e481253ac0b9` | `da86208fd78d6f5fd5095704b164458da763b4c69f187c84dea65f016bc7b0f4` | 335 |
+| __glim_Begin | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02070 / 204 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda04f30 / 228 | `3dccb69d35950cf4eba6d5aedc784f6e13ef624e891e8c4aa89fb23b37b88eab` | `f9e086232c5e88d29bec013e5d9c3f967a4d8469fbbb49f671bb18e1aef310ce` | 184 |
+| __glim_End | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02140 / 112 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05014 / 116 | `625e72cd00156ab0ccfd7969d8986ffbdce69ce2ce08a7ce3f23b83acfe61c93` | `66ee952321385d4b08830db2b4263068fe270b89054b8cd2f7d8a314fdf98f8f` | 94 |
+| __glEndPrim | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda021c0 / 32 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05090 / 32 | `0e2620d62876fa29800a87a2f39b6626778ef695acea43e0f7418edf984fa3d4` | `640b19d50c291990142a0b7cb02cef623f9b4e714b2b52df282c50d216d70329` | 20 |
+| __glim_UnimplementedExtension | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda021e0 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda050b0 / 56 | `d1e418ce98ae20513efd74d2225f8912d7c246d742d70591746efc0488b40ca3` | `fbc0b202409af95c51e0493c21b53dd87ba35cf5f9f75aac132eda102c98a1af` | 34 |
+| __glim_RasterPos2i | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda024b0 / 176 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda053ac / 196 | `40ca8254c44007ec1e0c2fd1e28b051cfe53b68d828dbd104d0905126b7b62c4` | `d9c0e56d2c1f3cc3e6662b9a83da8be48ebfc40a260f6db69225f9b98d6ba644` | 153 |
+| __glim_RasterPos2iv | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02560 / 172 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05470 / 204 | `04d9f06c35c70397d14ef9c5ecc40a418d51759b019ed03ff2351247909ca390` | `719ea88c492e6abfd6794d151314325ff4b3a6687e164d331e681507b121ad72` | 150 |
+| __glim_RasterPos2s | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02610 / 176 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda0553c / 196 | `7cb7bbc713b2b21b1508a994751fab0656dce7956c6394ad66bb13bb23aafffd` | `af045d5aa7de462a8069e9f3ae93a0916d5207c6e2a6ac80bc5fbfebdb50cbd7` | 153 |
+| __glim_RasterPos2sv | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda026c0 / 172 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05600 / 204 | `efcfbf9e787e4dc7718baeefb766cf0f847e3e90068ad9be84e0b0f6a09dc9ea` | `098629b5df9e80dc4d36e913ed0809c804d1e34c1b1f7ec4c075f26218921d15` | 149 |
+| __glim_RasterPos3d | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda028b0 / 184 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05834 / 192 | `70ccd899504394d0a3563661a09900790a79c0aa8b59f6675746a1670c90df43` | `61b61373867746756475d47d8dc5bf64d93c495535b8d28aa95c8d9e6b1a7fdb` | 148 |
+| __glim_RasterPos3f | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02970 / 172 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda058f4 / 184 | `043414cf77019a167cb635854ca9624c91e2397020f50f950f81478e7332d57c` | `43e3262fda16b2c5b3476cc7f671e251c54e0383b27b0c1cbfe0ddd20c263643` | 130 |
+| __glim_RasterPos3i | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02a20 / 196 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda059ac / 216 | `e09aea0a9a3fa05eabdd784e360d8bd0e7ba2999fa7fcd042d867c2fc9880700` | `73b63d15f001d1cfb50c18d729eff5afceb2a69d82a10def3f412241c1a5a893` | 166 |
+| __glim_RasterPos3iv | usr/gfx/arch/IP35KONA32/libGLcore.so 0xda02af0 / 188 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda05a84 / 224 | `eebf1ecd05bd8ded0d0fc5f664479084543397309b7ae255d22f2be27afc9c2f` | `fa911a0edc4443c1c48babe3645740d47bc85a5c8fe4d909b28acb164bbe8843` | 166 |
+
+Target entries:
+
+- `__glRoundCISpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01610; occupies 292 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da01610 for 292 bytes (SHA-256 `e725daa6049ccd7e51cba498d566870c3c8865632cb186fe4012a51f2fed17dc`). Documented sibling grade: Inferred.
+
+- `__glRoundCIStippledSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01740; occupies 320 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da01740 for 320 bytes (SHA-256 `63512a18c94ab39c12f254ef227d41b875a091d19dad7c4435a64a8ce570f7fb`). Documented sibling grade: Inferred.
+
+- `__glRoundRGBASpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01880. Occupies 228 bytes.
+  Inferred. Rounds RGBA components through float addition, integer truncation and conversion back to float (`trunc.w.s` at 0xda018bc and `cvt.s.w` at 0xda018d0).
+  The body has no calls. Its four output store bases are unknown to hostfacts, as shown below.
+  The complete numerical limits and loop cursor are not imported from the O32 description.
+  Byte comparison: target SHA-256 `0a193cdae43f5284facb94628309e8718e1b9e4466289ac6f41007dabf72b4dc`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0483c, 260 bytes, SHA-256 `55823b21b5ad4ed984ff5b7acd7c6d38aa0181b1b46b60cf31a0afecaaa3efbb`; 197 differing bytes in the common prefix.
+
+- `__glRoundRGBAStippledSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01970. Occupies 320 bytes.
+  Inferred. Includes four component truncations in its stippled processing (`trunc.w.s` at 0xda019f8, `trunc.w.s` at 0xda01a20, `trunc.w.s` at 0xda01a48 and `trunc.w.s` at 0xda01a70).
+  The target reads its stipple pointer from entry a0 +0x7740 (`lw` at 0xda01990).
+  No calls occur. Unknown output cursors and mask predicates leave the complete stipple and clamp rule unresolved.
+  Byte comparison: target SHA-256 `97182e7efc74bc306ab82357b1abea77147bece5b9710998deb7f13d6b9d71a3`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda04940, 340 bytes, SHA-256 `b2e94097cb5be15597a32cc5227037b087329ce939c1c93401d7c7a471efd29a`; 293 differing bytes in the common prefix.
+
+- `__glLogicOpSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01ab0. Occupies 292 bytes.
+  Inferred. Uses the logic-operation selector at entry a0 +0x740 and a resolved jump table (`lw` at 0xda01b00 and `lw` at 0xda01b34).
+  It performs an indirect branch through that table, without calling another routine (`jr` at 0xda01b38).
+  The selected output store has an unknown base. This draft does not assign operation names to the individual table entries.
+  Byte comparison: target SHA-256 `be12f85a9a78f3f45ad48762b9293b609f746d0faa4fd54b8eb34eaba99af8c0`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda04a94, 284 bytes, SHA-256 `beaee17bfa6da86ece549c290e4a1ac5f437bde9ec7189ad0ecc4dfb44d74a45`; 251 differing bytes in the common prefix.
+
+- `__glLogicOpStippledSpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01be0. Occupies 392 bytes.
+  Inferred. Loads a stipple pointer from entry a0 +0x7740 and selects an operation through a resolved jump table (`lw` at 0xda01bfc and `lw` at 0xda01cc0).
+  The table transfer is an indirect branch (`jr` at 0xda01cc4), and the full body has no calls.
+  Unknown masks and pixel cursors prevent a complete per-pixel truth table.
+  Byte comparison: target SHA-256 `2656f6c84811fdaa887b2864c6ef99a1cd080d2d32a77bb07294381211348315`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda04bb0, 348 bytes, SHA-256 `1e9a6d5fba6df6323f18d4fbb822a06e021a01d443bc60669574bef3a3a08c66`; 318 differing bytes in the common prefix.
+
+- `__glMaskRGBASpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01d70; occupies 336 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da01d70 for 336 bytes (SHA-256 `8fecb1ed2ca6a12f2e50cf3e495f19055c566b247afba6508e4063e2260a2179`). Documented sibling grade: Inferred.
+
+- `__glMaskCISpan` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda01ec0. Occupies 420 bytes.
+  Inferred. Combines truncated integer colour values using AND and OR before converting the result back to float (`and` at 0xda01f10, `and` at 0xda01f14, `or` at 0xda01f18 and `cvt.s.l` at 0xda01f28).
+  The resolved framebuffer-word loads shown below all use the same location, including the four unrolled sites. This body does not advance that resolved source pointer.
+  Its output cursor remains unknown. The complete body has no calls, and the older general mask role is not taken as proof of per-pixel source advancement.
+  Byte comparison: target SHA-256 `24a278a5aa7bd9af51d0e5763dbeeecdfabb08d9df24799ee630e481253ac0b9`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda04db0, 376 bytes, SHA-256 `da86208fd78d6f5fd5095704b164458da763b4c69f187c84dea65f016bc7b0f4`; 335 differing bytes in the common prefix.
+
+- `__glim_Begin` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02070. Occupies 204 bytes.
+  Inferred. Starts primitive processing through state-dependent callbacks.
+  A zero state word takes the mode-selection path, while state 2 takes the validation path (`beqz` at 0xda02094 and `beq` at 0xda020a4).
+  The two error sites call `__glSetError` with 0x502 and 0x500 respectively (`jalr` at 0xda020b0 and `jalr` at 0xda020d4).
+  The validation callback receives the pointer at absolute 0x1010 (`jalr` at 0xda020f0). A later callback receives the original mode first (`jalr` at 0xda02108).
+  Hostfacts leaves the mode predicate and some procedure bases unknown. The selected state writes below record zero and one on different paths.
+  Byte comparison: target SHA-256 `3dccb69d35950cf4eba6d5aedc784f6e13ef624e891e8c4aa89fb23b37b88eab`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda04f30, 228 bytes, SHA-256 `f9e086232c5e88d29bec013e5d9c3f967a4d8469fbbb49f671bb18e1aef310ce`; 184 differing bytes in the common prefix.
+
+- `__glim_End` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02140. Occupies 112 bytes.
+  Inferred. Calls an unknown end handler with the pointer loaded from absolute 0x1010 (`jalr` at 0xda02174).
+  A zero state word branches toward the error path, as does state 2 (`beqz` at 0xda0215c and `beq` at 0xda02168).
+  The error call passes 0x502 to `__glSetError` (`jalr` at 0xda021a0).
+  The handler path clears the state word after the callback, as listed below.
+  Byte comparison: target SHA-256 `625e72cd00156ab0ccfd7969d8986ffbdce69ce2ce08a7ce3f23b83acfe61c93`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05014, 116 bytes, SHA-256 `66ee952321385d4b08830db2b4263068fe270b89054b8cd2f7d8a314fdf98f8f`; 94 differing bytes in the common prefix.
+
+- `__glEndPrim` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda021c0. Occupies 32 bytes.
+  **Established.** Replaces two procedure slots with the resolved addresses listed below.
+  One selects this same routine as the end handler. The bounded body has no calls.
+  Byte comparison: target SHA-256 `0e2620d62876fa29800a87a2f39b6626778ef695acea43e0f7418edf984fa3d4`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05090, 32 bytes, SHA-256 `640b19d50c291990142a0b7cb02cef623f9b4e714b2b52df282c50d216d70329`; 20 differing bytes in the common prefix.
+
+- `__glim_UnimplementedExtension` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda021e0. Occupies 52 bytes.
+  **Established.** Passes error code 0x502 to `__glSetError` (`jalr` at 0xda021fc).
+  The routine returns after restoring its saved registers (`jr` at 0xda0220c). No extension-specific work appears in this bounded stub.
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 52 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda050b0 +56 bytes / 34 changed common-prefix byte positions
+  SHA-256 target `d1e418ce98ae20513efd74d2225f8912d7c246d742d70591746efc0488b40ca3` / documented O32 `fbc0b202409af95c51e0493c21b53dd87ba35cf5f9f75aac132eda102c98a1af`
+  Existing entry: `docs/sample-implementation.md`, `__glim_UnimplementedExtension` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target SHA-256 `d1e418ce98ae20513efd74d2225f8912d7c246d742d70591746efc0488b40ca3`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda050b0, 56 bytes, SHA-256 `fbc0b202409af95c51e0493c21b53dd87ba35cf5f9f75aac132eda102c98a1af`; 34 differing bytes in the common prefix.
+
+- `__glim_RasterPos2i` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda024b0. Occupies 176 bytes.
+  Inferred. Converts the two incoming integer components to floats for a stack vector (`cvt.s.w` at 0xda02538 and `cvt.s.w` at 0xda0253c).
+  Its error, validation and raster callback arguments are preserved in the call table below. The final callback's first argument remains unknown.
+  Byte comparison: target SHA-256 `40ca8254c44007ec1e0c2fd1e28b051cfe53b68d828dbd104d0905126b7b62c4`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda053ac, 196 bytes, SHA-256 `d9c0e56d2c1f3cc3e6662b9a83da8be48ebfc40a260f6db69225f9b98d6ba644`; 153 differing bytes in the common prefix.
+
+- `__glim_RasterPos2iv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02560. Occupies 172 bytes.
+  Inferred. Loads two words from the original vector argument and converts them to floats (`lw` at 0xda025d4, `lw` at 0xda025e4, `cvt.s.w` at 0xda025dc and `cvt.s.w` at 0xda025ec).
+  The call sequence retains a validation callback and a raster callback with a temporary vector. Neither callback identity is resolved.
+  Byte comparison: target SHA-256 `04d9f06c35c70397d14ef9c5ecc40a418d51759b019ed03ff2351247909ca390`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05470, 204 bytes, SHA-256 `719ea88c492e6abfd6794d151314325ff4b3a6687e164d331e681507b121ad72`; 150 differing bytes in the common prefix.
+
+- `__glim_RasterPos2s` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02610. Occupies 176 bytes.
+  Inferred. Converts its two incoming integer register values to float (`cvt.s.w` at 0xda02698 and `cvt.s.w` at 0xda0269c).
+  The bounded scalar wrapper adds no explicit halfword load or narrowing step. Its final callback takes the stack vector shown in the call table, with an unresolved first argument.
+  Byte comparison: target SHA-256 `7cb7bbc713b2b21b1508a994751fab0656dce7956c6394ad66bb13bb23aafffd`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0553c, 196 bytes, SHA-256 `af045d5aa7de462a8069e9f3ae93a0916d5207c6e2a6ac80bc5fbfebdb50cbd7`; 153 differing bytes in the common prefix.
+
+- `__glim_RasterPos2sv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda026c0. Occupies 172 bytes.
+  Inferred. Reads signed halfwords at entry a0 +0 and +2, then converts them to floats (`lh` at 0xda02734, `lh` at 0xda02744, `cvt.s.w` at 0xda0273c and `cvt.s.w` at 0xda0274c).
+  Those two components form the temporary raster vector. The table below keeps unknown callback arguments unresolved.
+  Byte comparison: target SHA-256 `efcfbf9e787e4dc7718baeefb766cf0f847e3e90068ad9be84e0b0f6a09dc9ea`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05600, 204 bytes, SHA-256 `098629b5df9e80dc4d36e913ed0809c804d1e34c1b1f7ec4c075f26218921d15`; 149 differing bytes in the common prefix.
+
+- `__glim_RasterPos3d` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda028b0. Occupies 184 bytes.
+  Inferred. Narrows three double components to floats before dispatch (`cvt.s.d` at 0xda0293c, `cvt.s.d` at 0xda02940 and `cvt.s.d` at 0xda02948).
+  The final raster callback receives a vector at entry sp -64. Its context argument and procedure identity remain unknown to hostfacts.
+  Byte comparison: target SHA-256 `70ccd899504394d0a3563661a09900790a79c0aa8b59f6675746a1670c90df43`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05834, 192 bytes, SHA-256 `61b61373867746756475d47d8dc5bf64d93c495535b8d28aa95c8d9e6b1a7fdb`; 148 differing bytes in the common prefix.
+
+- `__glim_RasterPos3f` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02970. Occupies 172 bytes.
+  Inferred. Places the three supplied float components in the temporary raster vector (`swc1` at 0xda029fc, `swc1` at 0xda02a00 and `swc1` at 0xda02a04).
+  The validation call retains the pointer loaded from absolute 0x1010, while the final call's first argument is unknown. Their exact arguments appear below.
+  Byte comparison: target SHA-256 `043414cf77019a167cb635854ca9624c91e2397020f50f950f81478e7332d57c`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda058f4, 184 bytes, SHA-256 `43e3262fda16b2c5b3476cc7f671e251c54e0383b27b0c1cbfe0ddd20c263643`; 130 differing bytes in the common prefix.
+
+- `__glim_RasterPos3i` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02a20. Occupies 196 bytes.
+  Inferred. Converts three integer components to float and stores the resulting vector (`cvt.s.w` at 0xda02ab4, `cvt.s.w` at 0xda02ab8 and `cvt.s.w` at 0xda02abc).
+  The raster dispatch passes the temporary vector at entry sp -64. Fresh facts do not establish the final context argument or callback effects.
+  Byte comparison: target SHA-256 `e09aea0a9a3fa05eabdd784e360d8bd0e7ba2999fa7fcd042d867c2fc9880700`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda059ac, 216 bytes, SHA-256 `73b63d15f001d1cfb50c18d729eff5afceb2a69d82a10def3f412241c1a5a893`; 166 differing bytes in the common prefix.
+
+- `__glim_RasterPos3iv` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xda02af0. Occupies 188 bytes.
+  Inferred. Reads three words from entry a0 +0, +4 and +8 for conversion to float (`lw` at 0xda02b64, `lw` at 0xda02b74 and `lw` at 0xda02b84).
+  The completed vector is passed at entry sp -48. The selected clear of absolute state and all three call sites are retained below.
+  Byte comparison: target SHA-256 `eebf1ecd05bd8ded0d0fc5f664479084543397309b7ae255d22f2be27afc9c2f`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda05a84, 224 bytes, SHA-256 `fa911a0edc4443c1c48babe3645740d47bc85a5c8fe4d909b28acb164bbe8843`; 166 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
