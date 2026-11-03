@@ -33592,3 +33592,83 @@ comparison was not rerun and supplies no new target equation.
   92 bytes. Both ranges have SHA-256
   `b61ced09334747dd1268dbb4aafc95fd8a16f4ffb5069036a3f81faa25dcde1f`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glCopyMatrix` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22341c0, 140 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e541c0, 140 bytes.
+
+- `__glMakeIdentity` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2234250, 96 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54250, 96 bytes.
+
+- `__glMultMatrix` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22342b0, 240 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e542b0, 240 bytes.
+
+- `__glInvertTransposeMatrix` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22343a0, 992 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e543a0, 992 bytes.
+
+- `__glFloorLog2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2234780, 64 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54780, 64 bytes.
+
+- `NewBlock` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22347c0, 168 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e547c0, 168 bytes.
+
+- `DeleteBlock` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2234870, 60 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54870, 60 bytes.
+
+- `__glNewArena` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22348b0, 188 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e548b0, 188 bytes.
+
+- `__glDeleteArena` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2234970, 140 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54970, 140 bytes.
+
+- `__glArenaAlloc` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2234a00, 212 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54a00, 212 bytes.
+
+- `__glArenaFreeAll` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2234ae0, 120 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54ae0, 120 bytes.
+
+- `freeLeafData` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2234cc0, 16 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54cc0, 16 bytes.
+
+- `freeBranch` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2234d20, 16 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54d20, 16 bytes.
+
+- `findLeaf` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2234f90, 128 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e54f90, 128 bytes.
+
+- `copyLeafInfo` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2235010, 284 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e55010, 284 bytes.
+
+- `fixMemoryProblem` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2235130, 328 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e55130, 328 bytes.
+
+- `computeMax` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2235280, 72 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e55280, 72 bytes.
+
+- `pushMaxVal` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22352d0, 84 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e552d0, 84 bytes.
+
+- `allocLeafData` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2235330, 152 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e55330, 152 bytes.
+
+- `reallocLeafData` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22353d0, 100 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e553d0, 100 bytes.
