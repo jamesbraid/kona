@@ -16869,3 +16869,434 @@ These notes report binary observations from the exact O32 build. The N32 descrip
 
 - `__glXInitVertexArrayState` in usr/gfx/arch/IP27KONA32/libGL.so: sets the client vertex-array state of a context to defaults: no arrays enabled, sizes, types and strides zeroed, and the lock state cleared, and it occupies 268 bytes at address 0xd80f088; the public sample-implementation source glx/lib/vertarr.c holds the same routine, matched by name, 1 call in the disassembly against 1 in the public body, 268 bytes of code against 60 source lines, and it makes no access to the board. Inferred.
 - `__glXTypeSize` in usr/gfx/arch/IP27KONA32/libGL.so: returns the size in bytes of a GL data type, such as one for bytes, two for shorts and four for floats, and it occupies 132 bytes at address 0xd82ded8; the public sample-implementation source glx/lib/vertarr.c holds the same routine, matched by name, 0 calls in the disassembly against 1 in the public body, 132 bytes of code against 15 source lines, and it makes no access to the board. Inferred.
+
+- `__glim_RasterPos3s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda02bb0, routine size 196 bytes.
+  Converts three scalar short coordinates to a software
+  raster-position vector (`cvt.s.w` at 0xda02c44,
+  0xda02c48, 0xda02c4c). Floating stores reach entry-stack -0x38,
+  -0x3c and -0x40 (`swc1` at 0xda02c50, 0xda02c54, 0xda02c58).
+  Calls `__glSetError` with argument zero 0x502
+  (`jalr` at 0xda02bf8). The final unnamed procedure receives
+  the vector at entry-stack -64 (`jalr` at 0xda02c64).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos3s` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda02bb0,
+  196 bytes, labelled Established.
+  Comparison: target 196 bytes, existing 196 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `88bddf753baa45056ef172ceb4b7d2527eceb11569015cbfddbb090ff7deef64`.
+  Existing SHA-256: `88bddf753baa45056ef172ceb4b7d2527eceb11569015cbfddbb090ff7deef64`.
+  Evidence: `review-facts/__glim_RasterPos3s.target.txt`,
+  `review-facts/__glim_RasterPos3s.sibling.txt`, `review-facts/__glim_RasterPos3s.words.txt`,
+  `review-facts/__glim_RasterPos3s.bytes.txt`.
+
+- `__glim_RasterPos3sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda02c80, routine size 188 bytes.
+  Reads three signed halfwords from argument-zero offsets
+  +0, +2 and +4 (`lh` at 0xda02cf4, 0xda02d04, 0xda02d14)
+  for a software raster-position vector.
+  Passes entry-stack -48 to an unnamed procedure
+  (`jalr` at 0xda02d2c). A separate state path clears absolute
+  word 0x1018 (`sw` at 0xda02cf0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos3sv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda02c80,
+  188 bytes, labelled Established.
+  Comparison: target 188 bytes, existing 188 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `4eb89675fa727247f3e72c440300fe71c33b35aa1d2ab8149356107e3f4e6fb1`.
+  Existing SHA-256: `4eb89675fa727247f3e72c440300fe71c33b35aa1d2ab8149356107e3f4e6fb1`.
+  Evidence: `review-facts/__glim_RasterPos3sv.target.txt`,
+  `review-facts/__glim_RasterPos3sv.sibling.txt`, `review-facts/__glim_RasterPos3sv.words.txt`,
+  `review-facts/__glim_RasterPos3sv.bytes.txt`.
+
+- `__glim_RasterPos4d` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda02e90, routine size 204 bytes.
+  Narrows four double coordinates (`cvt.s.d` at 0xda02f28,
+  0xda02f2c, 0xda02f34, 0xda02f3c) into a floating vector
+  at entry-stack -0x44, -0x48, -0x4c and -0x50
+  (`swc1` at 0xda02f30, 0xda02f38, 0xda02f40, 0xda02f44).
+  Its vector callback has unknown identity and receives
+  entry-stack -80 as argument one (`jalr` at 0xda02f4c).
+  The error call supplies 0x502 (`jalr` at 0xda02ee4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4d` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda02e90,
+  204 bytes, labelled Established.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `527da5073894a91020c5f4ab620c947ce1a9d651952ab3183dbef291a2bdf5b9`.
+  Existing SHA-256: `527da5073894a91020c5f4ab620c947ce1a9d651952ab3183dbef291a2bdf5b9`.
+  Evidence: `review-facts/__glim_RasterPos4d.target.txt`,
+  `review-facts/__glim_RasterPos4d.sibling.txt`, `review-facts/__glim_RasterPos4d.words.txt`,
+  `review-facts/__glim_RasterPos4d.bytes.txt`.
+
+- `__glim_RasterPos4f` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda02f60, routine size 188 bytes.
+  Packages four scalar floating raster coordinates. The
+  incoming f15, f14, f13 and f12 values occupy entry-stack
+  -0x44, -0x48, -0x4c and -0x50 respectively
+  (`swc1` at 0xda02ff8, 0xda02ffc, 0xda03000, 0xda03004).
+  Invokes an unresolved procedure with argument one set to
+  entry-stack -80 (`jalr` at 0xda0300c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4f` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda02f60,
+  188 bytes, labelled Established.
+  Comparison: target 188 bytes, existing 188 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a2538746959cdb6eca6bd87de7b9fbfb27adeb072fc65c218fc7f66171f43f26`.
+  Existing SHA-256: `a2538746959cdb6eca6bd87de7b9fbfb27adeb072fc65c218fc7f66171f43f26`.
+  Evidence: `review-facts/__glim_RasterPos4f.target.txt`,
+  `review-facts/__glim_RasterPos4f.sibling.txt`, `review-facts/__glim_RasterPos4f.words.txt`,
+  `review-facts/__glim_RasterPos4f.bytes.txt`.
+
+- `__glim_RasterPos4i` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda03020, routine size 216 bytes.
+  Builds a four-component software raster-position vector
+  from scalar integers (`cvt.s.w` at 0xda030c0,
+  0xda030c4, 0xda030c8, 0xda030cc). The four floating-word stores use
+  entry-stack -0x44 through -0x50
+  (`swc1` at 0xda030d0, 0xda030d4, 0xda030d8, 0xda030dc).
+  State word 0x1018 equal to two takes the callback path
+  (`beq` at 0xda03060). The final vector call passes
+  entry-stack -80 (`jalr` at 0xda030e8).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4i` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda03020,
+  216 bytes, labelled Established.
+  Comparison: target 216 bytes, existing 216 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `52cbd4e99825a68d68e476543ba4488601f924a294d2577c572f6fd73f0826e5`.
+  Existing SHA-256: `52cbd4e99825a68d68e476543ba4488601f924a294d2577c572f6fd73f0826e5`.
+  Evidence: `review-facts/__glim_RasterPos4i.target.txt`,
+  `review-facts/__glim_RasterPos4i.sibling.txt`, `review-facts/__glim_RasterPos4i.words.txt`,
+  `review-facts/__glim_RasterPos4i.bytes.txt`.
+
+- `__glim_RasterPos4iv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda03100, routine size 204 bytes.
+  Loads a four-word integer raster vector from argument
+  zero +0, +4, +8 and +0xc (`lw` at 0xda03174,
+  0xda03184, 0xda03194, 0xda031a4).
+  Delivers the converted stack vector through an unnamed
+  procedure with argument one entry-stack -48
+  (`jalr` at 0xda031bc). The zero state bypasses preparation (`beqz` at 0xda03124).
+  State two selects the preparatory callback (`beq` at 0xda03130),
+  while other nonzero states reach the 0x502 error call
+  (`jalr` at 0xda0313c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4iv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda03100,
+  204 bytes, labelled Established.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5a373108168e8375ba68e06dfe022c1202144aca48bc08c756062c476714c02a`.
+  Existing SHA-256: `5a373108168e8375ba68e06dfe022c1202144aca48bc08c756062c476714c02a`.
+  Evidence: `review-facts/__glim_RasterPos4iv.target.txt`,
+  `review-facts/__glim_RasterPos4iv.sibling.txt`, `review-facts/__glim_RasterPos4iv.words.txt`,
+  `review-facts/__glim_RasterPos4iv.bytes.txt`.
+
+- `__glim_RasterPos4s` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda031d0, routine size 216 bytes.
+  Adapts four scalar short coordinates for software raster
+  dispatch. Stores the floating result at entry-stack -0x44,
+  -0x48, -0x4c and -0x50 (`swc1` at 0xda03280,
+  0xda03284, 0xda03288, 0xda0328c).
+  State two selects the preparatory callback branch
+  (`beq` at 0xda03210). The vector procedure itself remains
+  unnamed (`jalr` at 0xda03298).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4s` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda031d0,
+  216 bytes, labelled Established.
+  Comparison: target 216 bytes, existing 216 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `29c9c3f60dd2de8efd74135802c9f517a15ba0cdd367d7fa86e28cede3d135b1`.
+  Existing SHA-256: `29c9c3f60dd2de8efd74135802c9f517a15ba0cdd367d7fa86e28cede3d135b1`.
+  Evidence: `review-facts/__glim_RasterPos4s.target.txt`,
+  `review-facts/__glim_RasterPos4s.sibling.txt`, `review-facts/__glim_RasterPos4s.words.txt`,
+  `review-facts/__glim_RasterPos4s.bytes.txt`.
+
+- `__glim_RasterPos4sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda032b0, routine size 204 bytes.
+  Accepts a short raster-coordinate array, reading signed
+  halfwords at argument-zero +0, +2, +4 and +6
+  (`lh` at 0xda03324, 0xda03334, 0xda03344, 0xda03354).
+  Calls an unresolved vector procedure with entry-stack -48
+  (`jalr` at 0xda0336c), after the state-two path clears
+  absolute word 0x1018 (`sw` at 0xda03320).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_RasterPos4sv` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda032b0,
+  204 bytes, labelled Established.
+  Comparison: target 204 bytes, existing 204 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `96ff75db348f89a94f980c66d1def71f18f0d419ae9d59c4b1bdd40af87b5c8b`.
+  Existing SHA-256: `96ff75db348f89a94f980c66d1def71f18f0d419ae9d59c4b1bdd40af87b5c8b`.
+  Evidence: `review-facts/__glim_RasterPos4sv.target.txt`,
+  `review-facts/__glim_RasterPos4sv.sibling.txt`, `review-facts/__glim_RasterPos4sv.words.txt`,
+  `review-facts/__glim_RasterPos4sv.bytes.txt`.
+
+- `__glRasterPos2` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda03380, routine size 376 bytes.
+  Prepares a two-coordinate software raster position. Copies
+  the input floats to context +0x100 and +0x104
+  (`swc1` at 0xda03394, 0xda033b0).
+  A zero callback result selects the valid-state path
+  (`beqz` at 0xda033f8), which sets context byte +0x1c4
+  (`sb` at 0xda03428). The selection path calls
+  `__glSelectPoint` (`bgezall` at 0xda034dc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glRasterPos2` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda03380,
+  376 bytes, labelled Inferred.
+  Comparison: target 376 bytes, existing 376 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `cdd21cc6a50f333d185d7702ad78da66cf22a25cf61b4e47ccac3c28f671a129`.
+  Existing SHA-256: `cdd21cc6a50f333d185d7702ad78da66cf22a25cf61b4e47ccac3c28f671a129`.
+  Evidence: `review-facts/__glRasterPos2.target.txt`,
+  `review-facts/__glRasterPos2.sibling.txt`, `review-facts/__glRasterPos2.words.txt`,
+  `review-facts/__glRasterPos2.bytes.txt`.
+
+- `__glRasterPos3` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda03500, routine size 376 bytes.
+  Sets up three-dimensional software raster state by copying
+  argument-one +0, +4 and +8 to context +0x100, +0x104
+  and +0x108 (`swc1` at 0xda03510, 0xda0351c, 0xda03530).
+  Installs procedure address 0xda7aafc at context +0xfc
+  (`sw` at 0xda03574). Selection handling reaches
+  `__glSelectPoint` (`bgezall` at 0xda0365c).
+  The other three called procedures remain unidentified.
+
+  Existing entry: `docs/sample-implementation.md`, `__glRasterPos3` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda03500,
+  376 bytes, labelled Inferred.
+  Comparison: target 376 bytes, existing 376 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `09eb27c27d3cfd0b1996987f7f3c60f77001c676fb479b36ce3f95362d922608`.
+  Existing SHA-256: `09eb27c27d3cfd0b1996987f7f3c60f77001c676fb479b36ce3f95362d922608`.
+  Evidence: `review-facts/__glRasterPos3.target.txt`,
+  `review-facts/__glRasterPos3.sibling.txt`, `review-facts/__glRasterPos3.words.txt`,
+  `review-facts/__glRasterPos3.bytes.txt`.
+
+- `__glRasterPos4` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda03680, routine size 376 bytes.
+  Transfers four raster coordinates into context +0x100,
+  +0x104, +0x108 and +0x10c (`swc1` at 0xda03684,
+  0xda0368c, 0xda0369c, 0xda036b0).
+  Context byte +0x1c4 is cleared on the nonzero callback
+  result path (`beqz` at 0xda036f8 falls through,
+  `sb` at 0xda03708), and set on its zero
+  result path (`sb` at 0xda03728).
+  Includes a call to `__glSelectPoint`
+  (`bgezall` at 0xda037dc).
+
+  Existing entry: `docs/sample-implementation.md`, `__glRasterPos4` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda03680,
+  376 bytes, labelled Inferred.
+  Comparison: target 376 bytes, existing 376 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `5e597e0655ebb0aad4fca09c565e08db86b7ada20ed6f9b2c78121a75a34c5ef`.
+  Existing SHA-256: `5e597e0655ebb0aad4fca09c565e08db86b7ada20ed6f9b2c78121a75a34c5ef`.
+  Evidence: `review-facts/__glRasterPos4.target.txt`,
+  `review-facts/__glRasterPos4.sibling.txt`, `review-facts/__glRasterPos4.words.txt`,
+  `review-facts/__glRasterPos4.bytes.txt`.
+
+- `__glLightfv_size` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda04560, routine size 136 bytes.
+  Computes the software light-parameter element count through
+  a jump table at 0xda810f4 (`jr` at 0xda0458c).
+  An unsigned argument-zero minus 4608 value at least ten
+  takes the invalid-parameter path (`beqz` at 0xda04580).
+  Return bodies include counts one, three and four
+  (`jr` at 0xda045a0, 0xda045c0, 0xda045c8).
+  There are no stores or calls in the supplied body.
+
+  Existing entry: `docs/sample-implementation.md`, `__glLightfv_size` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda04560,
+  136 bytes, labelled Inferred.
+  Comparison: target 136 bytes, existing 136 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `7a5601373b29872c447e97d254be0290936889935d38d0c87a7a9d6c2a1db3e3`.
+  Existing SHA-256: `7a5601373b29872c447e97d254be0290936889935d38d0c87a7a9d6c2a1db3e3`.
+  Evidence: `review-facts/__glLightfv_size.target.txt`,
+  `review-facts/__glLightfv_size.sibling.txt`, `review-facts/__glLightfv_size.words.txt`,
+  `review-facts/__glLightfv_size.bytes.txt`.
+
+- `__glLightModelfv_size` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Established.
+  Address 0xda04630, routine size 80 bytes.
+  Selects a light-model parameter size without memory
+  accesses or calls. Argument zero 0xb53 takes the four-value
+  return (`beq` at 0xda04638, `jr` at 0xda04668).
+  Values 0xb51 and 0xb52 select one-value returns
+  (`beq` at 0xda04644, 0xda0464c).
+  Hostfacts leaves the final return as one of -1 and one
+  (`jr` at 0xda04660).
+
+  Existing entry: `docs/sample-implementation.md`, `__glLightModelfv_size` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda04630,
+  80 bytes, labelled Established.
+  Comparison: target 80 bytes, existing 80 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `d743de29d247771ef5ed017cb7fd3fac566937b67800942908fc127109732d75`.
+  Existing SHA-256: `d743de29d247771ef5ed017cb7fd3fac566937b67800942908fc127109732d75`.
+  Evidence: `review-facts/__glLightModelfv_size.target.txt`,
+  `review-facts/__glLightModelfv_size.sibling.txt`, `review-facts/__glLightModelfv_size.words.txt`,
+  `review-facts/__glLightModelfv_size.bytes.txt`.
+
+- `__glReadSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda04dc0, routine size 164 bytes.
+  Reads a software span through an unnamed procedure loaded
+  from argument-zero +0xac (`lw` at 0xda04e10).
+  An argument-four minus one value below zero skips the loop
+  (`bltz` at 0xda04df8). Each call retains original arguments
+  zero and two, while arguments one and three are unresolved
+  (`jalr` at 0xda04e20). Returns zero (`jr` at 0xda04e5c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glReadSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda04dc0,
+  164 bytes, labelled Inferred.
+  Comparison: target 164 bytes, existing 164 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `ac45fbbca66ad3f8102623da48aff86e50a06c88aec8b3927a067509017de51a`.
+  Existing SHA-256: `ac45fbbca66ad3f8102623da48aff86e50a06c88aec8b3927a067509017de51a`.
+  Evidence: `review-facts/__glReadSpan.target.txt`,
+  `review-facts/__glReadSpan.sibling.txt`, `review-facts/__glReadSpan.words.txt`,
+  `review-facts/__glReadSpan.bytes.txt`.
+
+- `__glReturnSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda04e70, routine size 488 bytes.
+  Converts span samples for software return handling and
+  calls `__glClampRGBColor` with the same entry-stack -196
+  vector as arguments one and two (`jalr` at 0xda04fbc).
+  Reads four scale fields at pointed-context +0x7b10,
+  +0x7b14, +0x7b18 and +0x7b1c
+  (`lwc1` at 0xda04f20, 0xda04f1c, 0xda04f14, 0xda04f18).
+  The output callback gets original argument zero and
+  entry-stack -208 (`jalr` at 0xda04fcc).
+  Sample effective addresses remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glReturnSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda04e70,
+  488 bytes, labelled Inferred.
+  Comparison: target 488 bytes, existing 488 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `6912d3d2f1f59947c6990b5c3f599bdc4e9b5a3eaa3e4b9586002b1d6e1dec25`.
+  Existing SHA-256: `6912d3d2f1f59947c6990b5c3f599bdc4e9b5a3eaa3e4b9586002b1d6e1dec25`.
+  Evidence: `review-facts/__glReturnSpan.target.txt`,
+  `review-facts/__glReturnSpan.sibling.txt`, `review-facts/__glReturnSpan.words.txt`,
+  `review-facts/__glReturnSpan.bytes.txt`.
+
+- `__glFetchSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda05060, routine size 76 bytes.
+  Dispatches a software span fetch using context fields
+  +0x7748, +0x762c, +0x7630, +0x773c and +0x7660 as
+  call arguments zero through four (`jalr` at 0xda05090).
+  The procedure comes from the pointed object's +0xb0
+  slot (`lw` at 0xda05084). Its identity is unresolved.
+  Discards its integer result and returns zero
+  (`jr` at 0xda050a4).
+
+  Existing entry: `docs/sample-implementation.md`, `__glFetchSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda05060,
+  76 bytes, labelled Inferred.
+  Comparison: target 76 bytes, existing 76 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c177bfa54c7c06835674158edbb65adf39962b22864bcbdce41641218c744339`.
+  Existing SHA-256: `c177bfa54c7c06835674158edbb65adf39962b22864bcbdce41641218c744339`.
+  Evidence: `review-facts/__glFetchSpan.target.txt`,
+  `review-facts/__glFetchSpan.sibling.txt`, `review-facts/__glFetchSpan.words.txt`,
+  `review-facts/__glFetchSpan.bytes.txt`.
+
+- `__glInitLUTCache` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda050b0, routine size 84 bytes.
+  Creates the initial software lookup-cache record through
+  an unnamed procedure, passing original argument zero and
+  byte count 16 (`jalr` at 0xda050d8).
+  Saves the returned pointer to context +0x6e58
+  (`sw` at 0xda050e0), then initializes returned-record
+  words +4 to one and +0 to zero
+  (`sw` at 0xda050e8, 0xda050f0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitLUTCache` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda050b0,
+  84 bytes, labelled Inferred.
+  Comparison: target 84 bytes, existing 84 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `9004ff785c040cfc45bfe4f9877df8336401d73c399b044e0b0403d6569ab5ca`.
+  Existing SHA-256: `9004ff785c040cfc45bfe4f9877df8336401d73c399b044e0b0403d6569ab5ca`.
+  Evidence: `review-facts/__glInitLUTCache.target.txt`,
+  `review-facts/__glInitLUTCache.sibling.txt`, `review-facts/__glInitLUTCache.words.txt`,
+  `review-facts/__glInitLUTCache.bytes.txt`.
+
+- `__glFreeLUTCache` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda05110, routine size 316 bytes.
+  Releases software lookup-cache references. Loads the cache
+  pointer at context +0x6e58 (`lw` at 0xda05118).
+  The first odd-entry path decrements the pointed record's
+  leading word (`sw` at 0xda0516c), and calls an unnamed
+  release procedure when that word is zero
+  (`beqz` at 0xda05178, `jalr` at 0xda0523c).
+  The final callback receives context and cache pointers
+  (`jalr` at 0xda051a0). Indexed record addresses remain unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glFreeLUTCache` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda05110,
+  316 bytes, labelled Inferred.
+  Comparison: target 316 bytes, existing 316 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `2d0713ca28ed3a952d40f42c52548198b4360e1ea516ffea7f2a97c45763b4ab`.
+  Existing SHA-256: `2d0713ca28ed3a952d40f42c52548198b4360e1ea516ffea7f2a97c45763b4ab`.
+  Evidence: `review-facts/__glFreeLUTCache.target.txt`,
+  `review-facts/__glFreeLUTCache.sibling.txt`, `review-facts/__glFreeLUTCache.words.txt`,
+  `review-facts/__glFreeLUTCache.bytes.txt`.
+
+- `findEntry` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda05250, routine size 140 bytes.
+  Searches a software lookup cache. Nonpositive leading
+  count skips searching (`blez` at 0xda0525c).
+  A decoded floating equality comparison selects the found
+  path (`bc1t` at 0xda05294), which writes an unresolved word to
+  argument-two +0 (`sw` at 0xda052d0).
+  The miss path returns zero (`jr` at 0xda052c0).
+  Word 0x4604693c at 0xda0529c is undecoded.
+  Its predicate and dependent search updates stay unknown,
+  as do indexed key and result effective addresses.
+
+  Existing entry: `docs/sample-implementation.md`, `findEntry` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda05250,
+  140 bytes, labelled Inferred.
+  Comparison: target 140 bytes, existing 140 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `a2426a14ab024d2c5f9bf817edfb7825248f9133a54073a68716094cba3b4161`.
+  Existing SHA-256: `a2426a14ab024d2c5f9bf817edfb7825248f9133a54073a68716094cba3b4161`.
+  Evidence: `review-facts/findEntry.target.txt`,
+  `review-facts/findEntry.sibling.txt`, `review-facts/findEntry.words.txt`,
+  `review-facts/findEntry.bytes.txt`.
+
+- `__glCreateSpecLUT` (`usr/gfx/arch/IP35KONA32/libGLcore.so`). Inferred.
+  Address 0xda052e0, routine size 744 bytes.
+  Builds or reuses software specular lookup data. Calls the
+  exact local helper at 0xda05250, named `findEntry`
+  (`bgezall` at 0xda05320, 0xda05558).
+  A nonzero search result falls through the miss branch
+  (`beqz` at 0xda05330) and increments its leading word
+  (`sw` at 0xda05368). Creation requests 1040 bytes from
+  an unnamed context procedure (`jalr` at 0xda05430).
+  Includes `memcpy` and `powf` calls (`jalr` at 0xda0540c,
+  0xda0549c respectively). The created record's leading
+  word becomes two (`sw` at 0xda054c0).
+  Indexed insertion addresses and several call arguments
+  remain unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glCreateSpecLUT` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda052e0,
+  744 bytes, labelled Inferred.
+  Comparison: target 744 bytes, existing 744 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f132baa76629ee8eacaef00649a182093db2bca962aa4159a66711705521a025`.
+  Existing SHA-256: `f132baa76629ee8eacaef00649a182093db2bca962aa4159a66711705521a025`.
+  Evidence: `review-facts/__glCreateSpecLUT.target.txt`,
+  `review-facts/__glCreateSpecLUT.sibling.txt`, `review-facts/__glCreateSpecLUT.words.txt`,
+  `review-facts/__glCreateSpecLUT.bytes.txt`.
