@@ -20960,3 +20960,474 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   no return value.
   Evidence: `review-facts/__glScaleMatrix.target.txt`, `review-facts/__glScaleMatrix.sibling.txt`,
   `review-facts/__glScaleMatrix.words.txt`, `review-facts/__glScaleMatrix.bytes.txt`.
+
+- `__glDoScale` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37220. Occupies 68 bytes.
+  **Established.** Packs the three incoming float factors into a stack record (`swc1` at 0xda37224, `swc1` at 0xda3722c and `swc1` at 0xda37240).
+  It calls `__glDoMultMatrix` with the original context, entry sp -32 and procedure address 0xda37180 (`bgezall` at 0xda3724c).
+  The selected call establishes the wrapper's argument order. Matrix mutation belongs to the called routines.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glDoMultMatrix [0xda36e00] | a0=a0 at entry (arg0), a1=sp-32, a2=0xda37180, a3=a3 at entry (arg3) | `bgezall` at 0xda3724c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | sp (at entry) -0x18  value f15 | `swc1` at 0xda37224 |
+  | store | 4 bytes | sp (at entry) -0x1c  value f14 | `swc1` at 0xda3722c |
+  | store | 4 bytes | sp (at entry) -0x20  value f13 | `swc1` at 0xda37240 |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3cbcc +88 bytes / 59 changed common-prefix byte positions
+  SHA-256 target `102e9324a410a6537cdfbf336baf71ca764d5a31f6bf7b8a0d911a225c449f68` / documented O32 `29ff67437ee23fe224baeea5a4505db94627d3c4a110f507869a2e24c9aba10a`
+  Existing entry: `docs/sample-implementation.md`, `__glDoScale` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDoScale.target.txt`, `facts/__glDoScale.sibling.txt`, `facts/__glDoScale.disasm.txt`, `facts/__glDoScale.comparison.txt`
+
+- `__glTranslateMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37270. Occupies 180 bytes.
+  **Inferred.** The complete translation role is Unknown in this target reading.
+  Three four-byte input floats come from entry a2 +0, +4 and +8 (`lwc1` at
+  0xda37284, 0xda37288, 0xda37298). The unsigned test skips the tag store when entry a1
+  +0x40 is below four
+  (`lw` at 0xda37270, `bnez` at 0xda37278). Otherwise that word becomes
+  three (`sw` at 0xda37280).
+  Selected fused arithmetic occurs at `madd.s` at 0xda372a4 and 0xda372ac.
+  Four-byte float stores update entry a1 +0x3c, +0x38, +0x34 and +0x30,
+  with numerical values unresolved in hostfacts (`swc1` at 0xda37304,
+  0xda3730c, 0xda37314, 0xda37320). The last store is the return delay slot
+  (`jr` at 0xda3731c, `swc1` at 0xda37320).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da37270 +180 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `a5bff024181698e04f8a558c52fab3e0e561f59f40b56e9a83da4c5c23efb0db`.
+  Existing entry: `docs/sample-implementation.md`, `__glTranslateMatrix` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da37270.
+  Fresh evidence: `review-facts/revision-2/__glTranslateMatrix.target.txt`,
+  `review-facts/revision-2/__glTranslateMatrix.existing.txt`,
+  `review-facts/revision-2/__glTranslateMatrix.full-listing.txt`.
+
+Existing source-comparison caveat, preserved only as provenance: the recorded N32
+comparison accumulates y, x, z, then the old value with fused operations. The recorded
+public expression uses x, y, z, then the old value. That Inferred public-source
+comparison was not rerun and supplies no new target equation.
+
+- `__glDoTranslate` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37330. Occupies 68 bytes.
+  **Established.** The bounded packing interface stores incoming f15, f14 and
+  f13 as four-byte words at entry sp -0x18, -0x1c and -0x20 (`swc1` at
+  0xda37334, 0xda3733c, 0xda37350). Its call to `__glDoMultMatrix` preserves
+  entry a0, passes entry sp -32 second and procedure address 0xda37270 third
+  (`bgezall` at 0xda3735c). Hostfacts carries that helper's result to the
+  return (`jr` at 0xda3736c). The helper's matrix effects remain Unknown
+  beyond this local call interface (`bgezall` at 0xda3735c).
+
+  Source provenance: Established. Separate target draft: Established.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da37330 +68 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `bf49a401e8fcc06a51e871ffa22aa1fc14647cbe4777ce339ff11ed34e2940fc`.
+  Existing entry: `docs/sample-implementation.md`, `__glDoTranslate` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da37330.
+  Fresh evidence: `review-facts/revision-2/__glDoTranslate.target.txt`,
+  `review-facts/revision-2/__glDoTranslate.existing.txt`,
+  `review-facts/revision-2/__glDoTranslate.full-listing.txt`.
+
+- `__glComputeClipBox` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37380. Occupies 248 bytes.
+  **Inferred.** Computes adjusted clip-box words through the stores below, without calls.
+  Its first branch takes the non-scissor path when the context enable word masked with 0x4000 is zero (`beqz` at 0xda37388).
+  The later y-orientation branch takes the unflipped path when the byte at entry a0 +0x12f0 is zero (`beqz` at 0xda37410).
+  The O32 source separately records an omitted drawable clip-rectangle callback. The target's empty call list is established by its own body, without a complete clamp-equivalence claim.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a0 (arg0 at entry) +0x7444 | `sw` at 0xda37408 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x743c | `sw` at 0xda37414 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x7448 | `sw` at 0xda37428 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x7440 | `sw` at 0xda37434 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x7448 | `sw` at 0xda37450 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x7440 | `sw` at 0xda3745c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 248 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3cd68 +284 bytes / 206 changed common-prefix byte positions
+  SHA-256 target `fe1e513630564a1bbf9b9870888c3b610b300738609d62329a20a206258fc64d` / documented O32 `34abc9a6cdedc53d16032b196c92967ff0c755eebbfdd2009c399e70ca977135`
+  Existing entry: `docs/sample-implementation.md`, `__glComputeClipBox` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glComputeClipBox.target.txt`, `facts/__glComputeClipBox.sibling.txt`, `facts/__glComputeClipBox.disasm.txt`, `facts/__glComputeClipBox.comparison.txt`
+
+- `__glGenericPickMvpMatrixProcs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37520. Occupies 128 bytes.
+  **Established.** Calls `__glPickMatrixType` with entry a1 first and the two matrix pointers loaded from entry a0 +0x7414 and +0x741c (`bgezall` at 0xda37554).
+  It then calls `__glReCompute2DMatrix` with the original context and entry a1 (`bgezall` at 0xda37564).
+  The two following unknown callbacks retain entry a0 first. Only the first also has a resolved entry a1 second argument (`jalr` at 0xda37574 and `jalr` at 0xda37584).
+  Their identities and effects are not supplied from the Established O32 comparison.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glPickMatrixType [0xda348f0] | a0=a1 at entry (arg1), a1=[a0+29716], a2=[a0+29724], a3=a3 at entry (arg3) | `bgezall` at 0xda37554 |
+  | __glReCompute2DMatrix [0xda37480] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=? | `bgezall` at 0xda37564 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=? | `jalr` at 0xda37574 |
+  | (unknown callee) | a0=a0 at entry (arg0), a1=?, a2=?, a3=? | `jalr` at 0xda37584 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x741c | `lw` at 0xda37520 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7414 | `lw` at 0xda3754c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x2e84 | `lw` at 0xda3756c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x2e80 | `lw` at 0xda3757c |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 128 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3cf2c +140 bytes / 113 changed common-prefix byte positions
+  SHA-256 target `dac209ee7f909527f56b12655740559aaae43c47fa196fb25ce2c6fbc65e88e0` / documented O32 `123a5ee7654efa47b8aa1324b8ff26e2b667c6cec76deeb597dc768a24f9d6f8`
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickMvpMatrixProcs` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glGenericPickMvpMatrixProcs.target.txt`, `facts/__glGenericPickMvpMatrixProcs.sibling.txt`, `facts/__glGenericPickMvpMatrixProcs.disasm.txt`, `facts/__glGenericPickMvpMatrixProcs.comparison.txt`
+
+- `__glGenericPickMatrixProcs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda375a0. Occupies 208 bytes.
+  **Inferred.** Selects transform procedures from the matrix-type word at entry a1 +0x40 (`lw` at 0xda375a0).
+  The selected writes below include four procedure slots, with a distinct fourth slot at entry a1 +0x54.
+  This bounded body has no calls. The O32 source records assembly-variant and extra-slot differences from the public C picker. Those caveats remain provenance rather than a new routine-identity comparison.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0x54  value 0xda7d694 | `sw` at 0xda375f8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x50  value 0xda7da50 | `sw` at 0xda375fc |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7d694 | `sw` at 0xda37600 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x48  value 0xda7d4c0 | `sw` at 0xda37608 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x54  value 0xda7d6f0 | `sw` at 0xda3765c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x50  value 0xda7dacc | `sw` at 0xda37660 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7d6f0 | `sw` at 0xda37664 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x48  value 0xda7d510 | `sw` at 0xda3766c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 208 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3cfb8 +200 bytes / 177 changed common-prefix byte positions
+  SHA-256 target `7fb562858a6598fd9fd22eb96c108ae975dfb018d8ca97faacf987d00cc3393f` / documented O32 `7010b6bb96d9b45594a98a4a9c7e3ca3bad82e06c75f291b4d1fe711ba0f09f7`
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickMatrixProcs` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glGenericPickMatrixProcs.target.txt`, `facts/__glGenericPickMatrixProcs.sibling.txt`, `facts/__glGenericPickMatrixProcs.disasm.txt`, `facts/__glGenericPickMatrixProcs.comparison.txt`
+
+- `__glGenericPickInvTransposeProcs` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda37670. Occupies 132 bytes.
+  **Inferred.** Writes inverse-transpose procedure slots using the matrix-type word at entry a1 +0x40 (`lw` at 0xda37674).
+  One slot is written before the type dispatch, with later stores selecting the other slot (the writes below).
+  Its complete body makes no calls. The existing source's assembly-versus-C routine-identity limitation remains separate from these target addresses.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a1 (arg1 at entry) +0x50  value 0xda7dc20 | `sw` at 0xda3768c |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7d694 | `sw` at 0xda376d8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7dc20 | `sw` at 0xda376e0 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7d768 | `sw` at 0xda376e8 |
+  | store | 4 bytes | a1 (arg1 at entry) +0x4c  value 0xda7d6f0 | `sw` at 0xda376f0 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 132 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3d080 +112 bytes / 90 changed common-prefix byte positions
+  SHA-256 target `ac70ae90c5a8c177e411d5f987034730b107d2811a95094f2bb78f8672bf05e1` / documented O32 `b1d4605df97b6ad5085ac523cde0d8dc7bc6016566740cbe10f72c4d3762e393`
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickInvTransposeProcs` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glGenericPickInvTransposeProcs.target.txt`, `facts/__glGenericPickInvTransposeProcs.sibling.txt`, `facts/__glGenericPickInvTransposeProcs.disasm.txt`, `facts/__glGenericPickInvTransposeProcs.comparison.txt`
+
+- `Store_8` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38430. Occupies 380 bytes.
+  **Inferred.** Its precise RGB-buffer role is Unknown beyond the observed
+  byte-store path. One unsigned byte is read at an unresolved address and a
+  byte is written at an unresolved address (`lbu` at 0xda3853c, `sb` at
+  0xda3858c). Three selected floating-to-integer conversions use
+  `trunc.l.s` at 0xda3851c, 0xda38528 and 0xda38530. The body includes an
+  unnamed callback receiving the context loaded through entry a0, original
+  a0, original a1 and entry sp -64 in its first four registers (`jalr` at
+  0xda384fc). Callback effects, the pixel base and the merged stored value
+  remain Unknown (`jalr` at 0xda384fc, `sb` at 0xda3858c).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da38430 +380 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `fe3e77ca12b6e539831419fead03f1e892eb2f1fbe338a6a029b315dbfe8a724`.
+  Existing entry: `docs/sample-implementation.md`, `Store_8` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da38430.
+  Fresh evidence: `review-facts/revision-2/Store_8.target.txt`,
+  `review-facts/revision-2/Store_8.existing.txt`,
+  `review-facts/revision-2/Store_8.full-listing.txt`.
+
+- `Store_16` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda385b0. Occupies 392 bytes.
+  **Inferred.** A full halfword-pixel interpretation remains Unknown.
+  The selected read is an unsigned two-byte load at an unresolved address
+  (`lhu` at 0xda386c8). The output path has a two-byte store at an
+  unresolved address (`sh` at 0xda38718).
+  Integer conversions appear at
+  `trunc.l.s` at 0xda386a8, 0xda386b4 and 0xda386bc. An unnamed callback
+  takes the context loaded through entry a0, original a0, original a1 and
+  entry sp -64 as its first four arguments (`jalr` at 0xda38688).
+  Its effects and the final halfword value remain Unknown (`jalr` at
+  0xda38688, `sh` at 0xda38718).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da385b0 +392 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `2e5eaf1d286a1b1e8b204d626041cc22151545cd0063e8514ec31a5cdbd8ecf4`.
+  Existing entry: `docs/sample-implementation.md`, `Store_16` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da385b0.
+  Fresh evidence: `review-facts/revision-2/Store_16.target.txt`,
+  `review-facts/revision-2/Store_16.existing.txt`,
+  `review-facts/revision-2/Store_16.full-listing.txt`.
+
+- `Store_32A` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38740. Occupies 360 bytes.
+  **Inferred.** The complete RGBA-store role is Unknown here. The output path
+  reads and writes four-byte words at unresolved pixel addresses (`lw` at
+  0xda3885c, `sw` at 0xda38890). Four selected conversions are
+  `trunc.l.s` at 0xda38804, 0xda3880c, 0xda3881c and 0xda38828.
+  Its unnamed callback receives the context loaded through entry a0,
+  original a0, original a1 and entry sp -64 (`jalr` at 0xda387dc).
+  Neither that callback's effects nor the merged word value is established
+  (`jalr` at 0xda387dc, `sw` at 0xda38890).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da38740 +360 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `70f15503b024b11bb817f52dc472626c3aaa632a51c2ae295c740dc85b14ef8c`.
+  Existing entry: `docs/sample-implementation.md`, `Store_32A` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da38740.
+  Fresh evidence: `review-facts/revision-2/Store_32A.target.txt`,
+  `review-facts/revision-2/Store_32A.existing.txt`,
+  `review-facts/revision-2/Store_32A.full-listing.txt`.
+
+- `Store_32` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda388b0. Occupies 328 bytes.
+  **Inferred.** This reading leaves the full RGB word-store role Unknown.
+  A four-byte pixel read and four-byte output store have unresolved
+  addresses (`lw` at 0xda38990, `sw` at 0xda389e0). The selected conversion
+  sites are `trunc.l.s` at 0xda38970, 0xda3897c and 0xda38984.
+  An unnamed callback receives the context loaded through entry a0,
+  original a0, original a1 and entry sp -64 (`jalr` at 0xda3894c).
+  Its behavior and the final packed word remain Unknown (`jalr` at
+  0xda3894c, `sw` at 0xda389e0).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da388b0 +328 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `6723d88bd0b4c969afcff24c5d7143f8df940cc9e84303b3ee79f60726ecc198`.
+  Existing entry: `docs/sample-implementation.md`, `Store_32` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da388b0.
+  Fresh evidence: `review-facts/revision-2/Store_32.target.txt`,
+  `review-facts/revision-2/Store_32.existing.txt`,
+  `review-facts/revision-2/Store_32.full-listing.txt`.
+
+- `Fetch_8` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38a00. Occupies 168 bytes.
+  **Inferred.** Loads one unsigned pixel byte at a computed address that hostfacts cannot resolve (`lbu` at 0xda38a30).
+  Masked and shifted components are converted to floats (`cvt.s.l` at 0xda38a4c, `cvt.s.l` at 0xda38a70 and `cvt.s.l` at 0xda38a94).
+  The fourth output copies the float at entry a0 +0x80 (`lwc1` at 0xda38a9c and `swc1` at 0xda38aa4).
+  No call occurs, and the unknown pixel base is not reconstructed from the O32 description.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 1 bytes | ? (base unknown) | `lbu` at 0xda38a30 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0xda38a50 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0xda38a74 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0xda38a98 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a0+128] | `swc1` at 0xda38aa4 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 168 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3e5e4 +216 bytes / 154 changed common-prefix byte positions
+  SHA-256 target `582b950e7df3b3239174579e145a3c9cc46cd3316d88139b0904dd0029328d5d` / documented O32 `a38a30062c2b0537bc812e0f4e15afeb35c9364f97ada2f5bd77333c571b7721`
+  Existing entry: `docs/sample-implementation.md`, `Fetch_8` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/Fetch_8.target.txt`, `facts/Fetch_8.sibling.txt`, `facts/Fetch_8.disasm.txt`, `facts/Fetch_8.comparison.txt`
+
+- `Fetch_16` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38ab0. Occupies 180 bytes.
+  **Inferred.** Reads an unsigned halfword from an unresolved pixel base (`lhu` at 0xda38aec).
+  It extracts three components and converts each unsigned integer result to float (`cvt.s.l` at 0xda38b08, `cvt.s.l` at 0xda38b2c and `cvt.s.l` at 0xda38b50).
+  Alpha is copied from the float at entry a0 +0x80 (`lwc1` at 0xda38b58 and `swc1` at 0xda38b60). Its bounded body is call-free.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 2 bytes | ? (base unknown) | `lhu` at 0xda38aec |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0xda38b0c |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0xda38b30 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0xda38b54 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc  value [a0+128] | `swc1` at 0xda38b60 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 180 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3e6bc +228 bytes / 165 changed common-prefix byte positions
+  SHA-256 target `8b23b8a3937beb0f0caa117c7d5180c9cd9345236e1fd8e893bbad2bd7468c8d` / documented O32 `922e373eb3932dd68aa42d88997aeb44f98d2d15370563c8e45eb6d288e865e2`
+  Existing entry: `docs/sample-implementation.md`, `Fetch_16` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/Fetch_16.target.txt`, `facts/Fetch_16.sibling.txt`, `facts/Fetch_16.disasm.txt`, `facts/Fetch_16.comparison.txt`
+
+- `Fetch_32A` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38b70. Occupies 208 bytes.
+  **Inferred.** Unpacks a word-loaded pixel into four float components (`lw` at 0xda38bac).
+  The alpha component is masked and shifted before conversion (`and` at 0xda38c20, `srlv` at 0xda38c24 and `cvt.s.l` at 0xda38c34).
+  All four output sites are listed below. This target has no calls, while the input pixel address remains unknown to hostfacts.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | ? (base unknown) | `lw` at 0xda38bac |
+  | store | 4 bytes | a3 (arg3 at entry) +0x0 | `swc1` at 0xda38bcc |
+  | store | 4 bytes | a3 (arg3 at entry) +0x4 | `swc1` at 0xda38bf0 |
+  | store | 4 bytes | a3 (arg3 at entry) +0x8 | `swc1` at 0xda38c14 |
+  | store | 4 bytes | a3 (arg3 at entry) +0xc | `swc1` at 0xda38c3c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 208 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3e7a0 +268 bytes / 184 changed common-prefix byte positions
+  SHA-256 target `e480de5effac572e6208ff82cad5f2e08c95774443d812514de57977f9046ef7` / documented O32 `9f832dbf179c445699ac0d644301227fbffdb5a3db80cf1096088110be85ec95`
+  Existing entry: `docs/sample-implementation.md`, `Fetch_32A` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/Fetch_32A.target.txt`, `facts/Fetch_32A.sibling.txt`, `facts/Fetch_32A.disasm.txt`, `facts/Fetch_32A.comparison.txt`
+
+- `Fetch_32` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38c40. Occupies 180 bytes.
+  **Inferred.** Full RGB channel mapping is Unknown. The pixel input is a
+  four-byte load at an unresolved address (`lw` at 0xda38c7c).
+  Selected extraction operations mask and shift a component (`and` at
+  0xda38c84, `srlv` at 0xda38c88). Conversions include `cvt.s.l` at
+  0xda38c98, 0xda38cbc and 0xda38ce0. Four-byte float outputs reach entry
+  a3 +0, +4 and +8, with numerical values unresolved (`swc1` at 0xda38c9c,
+  0xda38cc0, 0xda38ce4). The fourth output copies the float at entry a0
+  +0x80 into entry a3 +0xc (`lwc1` at 0xda38ce8, `swc1` at 0xda38cf0).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da38c40 +180 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `80ea464a1f479bc7e32affeba7e216dcf4b4f5d37054ffb3886bbd364d0863ad`.
+  Existing entry: `docs/sample-implementation.md`, `Fetch_32` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da38c40.
+  Fresh evidence: `review-facts/revision-2/Fetch_32.target.txt`,
+  `review-facts/revision-2/Fetch_32.existing.txt`,
+  `review-facts/revision-2/Fetch_32.full-listing.txt`.
+
+- `StoreSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38e40. Occupies 180 bytes.
+  **Inferred.** Builds a temporary fragment record and calls the buffer store procedure for span pixels.
+  The callback receives the word loaded from entry a0 +0x7748 first and the temporary record at entry sp -112 second (`jalr` at 0xda38ec0).
+  Four float stores place colour components into that record (`swc1` at 0xda38e98, `swc1` at 0xda38ea0, `swc1` at 0xda38ea8 and `swc1` at 0xda38eb0).
+  Hostfacts leaves the colour cursor and complete loop state unresolved. The store callback's pixel effects remain unknown.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+30536], a1=sp-112, a2=?, a3=? | `jalr` at 0xda38ec0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x7660 | `lw` at 0xda38e48 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7630 | `lw` at 0xda38e4c |
+  | load | 4 bytes | a0 (arg0 at entry) +0x762c | `lw` at 0xda38e58 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x7748 | `lw` at 0xda38e5c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 180 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda3eab8 +208 bytes / 155 changed common-prefix byte positions
+  SHA-256 target `b3a28432c4e67c27068a684ec21a46ebc33fc630b65c6bc28b7bc4067a143639` / documented O32 `520e65a243ead742053aab80e67a0947e474581011c8d0804d941b8c468bf8de`
+  Existing entry: `docs/sample-implementation.md`, `StoreSpan` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/StoreSpan.target.txt`, `facts/StoreSpan.sibling.txt`, `facts/StoreSpan.disasm.txt`, `facts/StoreSpan.comparison.txt`
+
+- `StoreStippledSpan` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda38f00. Occupies 320 bytes.
+  **Inferred.** The complete stippled RGB-store role remains Unknown.
+  Context words at entry a0 +0x7740, +0x7660 and +0x7748 are loaded first
+  (`lw` at 0xda38f0c, 0xda38f14, 0xda38f20). A zero tested register skips the callback,
+  while nonzero falls through
+  (`beqz` at 0xda38fa0). The underlying mask/bit expression remains unresolved.
+  Four-byte float stores fill entry-stack -0x94, -0x90, -0x8c and -0x88,
+  with source values unresolved (`swc1` at 0xda38fb0, 0xda38fb8, 0xda38fc0,
+  0xda38fc8). The unnamed callback gets the word from entry a0 +0x7748
+  first and entry sp -160 second, with a2/a3 unknown (`jalr` at 0xda38fd4).
+  The bounded return is zero (`jr` at 0xda39038). Callback pixel effects
+  and complete colour/mask traversal remain Unknown (`jalr` at 0xda38fd4).
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Exact N32 comparison: `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da38f00 +320 bytes.
+  Byte-identical.
+  SHA-256 of both exact ranges:
+  `8130750cdc1a94cd78adf3d8d2f4c3a0a1ab651b68a7af40cd3b038745a94b94`.
+  Existing entry: `docs/sample-implementation.md`, `StoreStippledSpan` in
+  `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da38f00.
+  Fresh evidence: `review-facts/revision-2/StoreStippledSpan.target.txt`,
+  `review-facts/revision-2/StoreStippledSpan.existing.txt`,
+  `review-facts/revision-2/StoreStippledSpan.full-listing.txt`.
+
+- `__glkonlc_Color3bv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda67190. Occupies 156 bytes.
+  **Inferred.** Appends two display-list words using byte-vector components and opcode 0x61 (`ori` at 0xda671d4).
+  The input reading uses signed byte loads at offsets 0 and 2 and an unsigned byte load at offset 1 (`lb` at 0xda671bc, `lb` at 0xda671dc and `lbu` at 0xda671b8).
+  Its slow path calls `__glSPDlistSpace` with zero first (`jalr` at 0xda67218).
+  The output cursor advances by eight bytes and the used-word counter by two (the resolved stores below). The available-word update remains unknown to hostfacts.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSPDlistSpace [0xd993f00] | a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1028] | `jalr` at 0xda67218 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 1 bytes | a0 (arg0 at entry) +0x1 | `lbu` at 0xda671b8 |
+  | load | 1 bytes | a0 (arg0 at entry) +0x0 | `lb` at 0xda671bc |
+  | load | 1 bytes | a0 (arg0 at entry) +0x2 | `lb` at 0xda671dc |
+  | store | 4 bytes | [0x1030] +0x0  value ((([a0]:1 << 0x18) \| ([a0+1]:1 << 0x10)) \| 0x61) | `sw` at 0xda671d8 |
+  | store | 4 bytes | [0x1030] +0x4  value ([a0+2]:1 << 0x18) | `sw` at 0xda671e8 |
+  | store | 4 bytes | abs 0x1030  value [0x1030]+8 | `sw` at 0xda671f0 |
+  | store | 4 bytes | abs 0x1028 | `sw` at 0xda671fc |
+  | store | 4 bytes | abs 0x1034  value [0x1034]+2 | `sw` at 0xda6720c |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 156 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda5d06c +172 bytes / 139 changed common-prefix byte positions
+  SHA-256 target `d94daf6d0058886346d6335e3d20ae54ec917a2fb99233b2880fa59693691ab0` / documented O32 `2bb0bd907d22da6eddc95b6a5659526381047bec15a0c30fb053ef7b12c16d7b`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonlc_Color3bv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glkonlc_Color3bv.target.txt`, `facts/__glkonlc_Color3bv.sibling.txt`, `facts/__glkonlc_Color3bv.disasm.txt`, `facts/__glkonlc_Color3bv.comparison.txt`
+
+- `__glkonlc_Color3sv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda676f0. Occupies 152 bytes.
+  **Inferred.** Packs a three-short vector into two list words with opcode 0x65 (`ori` at 0xda67728).
+  The component loads are signed halfwords at entry a0 +0 and +2 and an unsigned halfword at +4 (`lh` at 0xda67718, `lh` at 0xda67730 and `lhu` at 0xda67734).
+  It requests more list space through `__glSPDlistSpace` with zero first (`jalr` at 0xda67774).
+  The stores below retain both packed words, cursor advancement and used-word accounting without assigning an unknown available-word count.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSPDlistSpace [0xd993f00] | a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1028] | `jalr` at 0xda67774 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 2 bytes | a0 (arg0 at entry) +0x0 | `lh` at 0xda67718 |
+  | load | 2 bytes | a0 (arg0 at entry) +0x2 | `lh` at 0xda67730 |
+  | load | 2 bytes | a0 (arg0 at entry) +0x4 | `lhu` at 0xda67734 |
+  | store | 4 bytes | [0x1030] +0x0  value (([a0]:2 << 0x10) \| 0x65) | `sw` at 0xda6772c |
+  | store | 4 bytes | [0x1030] +0x4  value ([a0+4]:2 \| ([a0+2]:2 << 0x10)) | `sw` at 0xda67744 |
+  | store | 4 bytes | abs 0x1030  value [0x1030]+8 | `sw` at 0xda6774c |
+  | store | 4 bytes | abs 0x1028 | `sw` at 0xda67758 |
+  | store | 4 bytes | abs 0x1034  value [0x1034]+2 | `sw` at 0xda67768 |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 152 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda5d608 +168 bytes / 129 changed common-prefix byte positions
+  SHA-256 target `79e781c0b2fc5e6ce56815f2cd405ee79247d35b9da496fff5b6e9ecf15496df` / documented O32 `b74590c6fde6013e159c6357befbce7bb673bd3507d50be302141ec96bb230a1`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonlc_Color3sv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glkonlc_Color3sv.target.txt`, `facts/__glkonlc_Color3sv.sibling.txt`, `facts/__glkonlc_Color3sv.disasm.txt`, `facts/__glkonlc_Color3sv.comparison.txt`
+
+- `__glkonlc_Color3ubv` (`usr/gfx/arch/IP35KONA32/libGLcore.so`):
+  Address 0xda67830. Occupies 156 bytes.
+  **Inferred.** Uses three unsigned byte components for a two-word display-list record tagged with opcode 0x66 (`lbu` at 0xda6785c, `lbu` at 0xda67858, `lbu` at 0xda6787c and `ori` at 0xda67874).
+  The space callback receives zero (`jalr` at 0xda678b8).
+  Its resolved cursor and used-word increments match the two-word record size, while the available-word store has an unknown value.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glSPDlistSpace [0xd993f00] | a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1028] | `jalr` at 0xda678b8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 1 bytes | a0 (arg0 at entry) +0x1 | `lbu` at 0xda67858 |
+  | load | 1 bytes | a0 (arg0 at entry) +0x0 | `lbu` at 0xda6785c |
+  | load | 1 bytes | a0 (arg0 at entry) +0x2 | `lbu` at 0xda6787c |
+  | store | 4 bytes | [0x1030] +0x0  value ((([a0]:1 << 0x18) \| ([a0+1]:1 << 0x10)) \| 0x66) | `sw` at 0xda67878 |
+  | store | 4 bytes | [0x1030] +0x4  value ([a0+2]:1 << 0x18) | `sw` at 0xda67888 |
+  | store | 4 bytes | abs 0x1030  value [0x1030]+8 | `sw` at 0xda67890 |
+  | store | 4 bytes | abs 0x1028 | `sw` at 0xda6789c |
+  | store | 4 bytes | abs 0x1034  value [0x1034]+2 | `sw` at 0xda678ac |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 156 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xda5d75c +172 bytes / 139 changed common-prefix byte positions
+  SHA-256 target `98256ab1cf57427a1804cd00ec2b25b0134b8e1a2ac0e80c713a4adf6bb97a82` / documented O32 `5a74a21368ae34e739ea5eb2221e2a2ade5f3f7af32aaf2eed052b6300c9a7eb`
+  Existing entry: `docs/libglcore-driver-builds.md`, `__glkonlc_Color3ubv` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glkonlc_Color3ubv.target.txt`, `facts/__glkonlc_Color3ubv.sibling.txt`, `facts/__glkonlc_Color3ubv.disasm.txt`, `facts/__glkonlc_Color3ubv.comparison.txt`
