@@ -30643,3 +30643,620 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `review-facts/__glim_Color3s.target.txt`,
   `review-facts/__glim_Color3s.sibling.txt`, `review-facts/__glim_Color3s.words.txt`,
   `review-facts/__glim_Color3s.bytes.txt`.
+
+- `__glim_Color3sv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b390–0x220b428, occupies 152 bytes.
+
+  Three signed inputs are loaded as halfwords at a0 +0, +2 and +4 (`lh` at 0x220b390, 0x220b3b4, 0x220b3d0).
+  Each is doubled (`sll` at 0x220b394, 0x220b3b8, 0x220b3d4). One is added to each (`addiu` at 0x220b398, 0x220b3bc, 0x220b3d8). They convert to float (`cvt.s.w` at 0x220b3a4, 0x220b3c4, 0x220b3f0).
+  The context scale is loaded from +0xf3c (`lwc1` at 0x220b3a8). Each converted value is multiplied by it (`mul.s` at 0x220b3ac, 0x220b3c8, 0x220b408).
+  The fourth output copies context +0xf2c into context +0x26c (`lwc1` at 0x220b3fc, `swc1` at 0x220b404).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cbb50 | 160 | Inferred | 131 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 2 | `a0 (arg0 at entry) +0x0` | `lh` at 0x220b390 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b3a0 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220b3a8 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b3b0 |
+  | load | 2 | `a0 (arg0 at entry) +0x2` | `lh` at 0x220b3b4 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b3cc |
+  | load | 2 | `a0 (arg0 at entry) +0x4` | `lh` at 0x220b3d0 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b3f8 |
+  | load | 4 | `[0x1020]:8 +0xf2c` | `lwc1` at 0x220b3fc |
+  | store | 4 | `[0x1020]:8 +0x26c  value [[0x1020]:8+3884]` | `swc1` at 0x220b404 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b414 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b410, unknown callee | `a0=[0x1020]:8, a1=([a0+2]:2 << 0x1)+1, a2=([a0]:2 << 0x1)+1, a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b420 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color3us` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b430–0x220b4a4, occupies 116 bytes.
+
+  Three scalar register words are converted to float (`cvt.s.w` at 0x220b44c, 0x220b454, 0x220b460).
+  The context scale is loaded from +0xf3c (`lwc1` at 0x220b450). Each converted value is multiplied by it (`mul.s` at 0x220b474, 0x220b478, 0x220b480).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c77c0 | 116 | Inferred | 22 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b438 |
+  | load | 4 | `[0x1020]:8 +0xf2c` | `lwc1` at 0x220b448 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220b450 |
+  | store | 4 | `[0x1020]:8 +0x26c  value [[0x1020]:8+3884]` | `swc1` at 0x220b464 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b470 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b47c |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b484 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b490 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b48c, unknown callee | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b49c | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color3usv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b4b0–0x220b530, occupies 128 bytes.
+
+  Three vector elements are zero-extended from halfword loads at a0 +0, +2 and +4 (`lhu` at 0x220b4b0, 0x220b4cc, 0x220b4e0).
+  They convert to float (`cvt.s.w` at 0x220b4bc, 0x220b4d4, 0x220b4f8). The context scale is loaded from +0xf3c (`lwc1` at 0x220b4c0). Each result is multiplied by it (`mul.s` at 0x220b4c4, 0x220b4d8, 0x220b510).
+  A separate output copies the context +0xf2c float to +0x26c (`lwc1` at 0x220b504, `swc1` at 0x220b50c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cbcb8 | 192 | Inferred | 117 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 2 | `a0 (arg0 at entry) +0x0` | `lhu` at 0x220b4b0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b4b8 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220b4c0 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b4c8 |
+  | load | 2 | `a0 (arg0 at entry) +0x2` | `lhu` at 0x220b4cc |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b4dc |
+  | load | 2 | `a0 (arg0 at entry) +0x4` | `lhu` at 0x220b4e0 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b500 |
+  | load | 4 | `[0x1020]:8 +0xf2c` | `lwc1` at 0x220b504 |
+  | store | 4 | `[0x1020]:8 +0x26c  value [[0x1020]:8+3884]` | `swc1` at 0x220b50c |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b51c |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b518, unknown callee | `a0=[0x1020]:8, a1=[a0+2]:2, a2=[a0]:2, a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b528 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4ub` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b530–0x220b5a8, occupies 120 bytes.
+
+  Four scalar register values index context-relative float entries. Each is shifted left by two (`dsll` at 0x220b534, 0x220b540, 0x220b558, 0x220b570), then used in table loads (`lwc1` at 0x220b53c, 0x220b550, 0x220b56c, 0x220b584).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c78c0 | 120 | Established | 34 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b530 |
+  | load | 4 | `([0x1020]:8 + (a0 << 0x2)) +0x1054` | `lwc1` at 0x220b53c |
+  | store | 4 | `[0x1020]:8 +0x260  value [([0x1020]:8 + (a0 << 0x2))+4180]` | `swc1` at 0x220b548 |
+  | load | 4 | `([0x1020]:8 + (a1 << 0x2)) +0x1054` | `lwc1` at 0x220b550 |
+  | store | 4 | `[0x1020]:8 +0x264  value [([0x1020]:8 + (a1 << 0x2))+4180]` | `swc1` at 0x220b564 |
+  | load | 4 | `([0x1020]:8 + (a2 << 0x2)) +0x1054` | `lwc1` at 0x220b56c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b578 |
+  | store | 4 | `[0x1020]:8 +0x268  value [([0x1020]:8 + (a2 << 0x2))+4180]` | `swc1` at 0x220b580 |
+  | load | 4 | `([0x1020]:8 + (a3 << 0x2)) +0x1054` | `lwc1` at 0x220b584 |
+  | store | 4 | `[0x1020]:8 +0x26c  value [([0x1020]:8 + (a3 << 0x2))+4180]` | `swc1` at 0x220b594 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b590, unknown callee | `a0=[0x1020]:8, a1=([0x1020]:8 + (a1 << 0x2)), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=([0x1020]:8 + (a0 << 0x2))` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b5a0 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4ubv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b5b0–0x220b638, occupies 136 bytes.
+
+  Four vector bytes are loaded unsigned from a0 +0 through +3 (`lbu` at 0x220b5b0, 0x220b5c8, 0x220b5dc, 0x220b5f0).
+  Each table index shifts left by two (`dsll` at 0x220b5b8, 0x220b5cc, 0x220b5e0, 0x220b604) before a float table load (`lwc1` at 0x220b5c0, 0x220b5d4, 0x220b5e8, 0x220b614).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c7940 | 136 | Inferred | 34 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 1 | `a0 (arg0 at entry) +0x0` | `lbu` at 0x220b5b0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b5b4 |
+  | load | 4 | `([0x1020]:8 + ([a0]:1 << 0x2)) +0x1054` | `lwc1` at 0x220b5c0 |
+  | store | 4 | `[0x1020]:8 +0x260  value [([0x1020]:8 + ([a0]:1 << 0x2))+4180]` | `swc1` at 0x220b5c4 |
+  | load | 1 | `a0 (arg0 at entry) +0x1` | `lbu` at 0x220b5c8 |
+  | load | 4 | `([0x1020]:8 + ([a0+1]:1 << 0x2)) +0x1054` | `lwc1` at 0x220b5d4 |
+  | store | 4 | `[0x1020]:8 +0x264  value [([0x1020]:8 + ([a0+1]:1 << 0x2))+4180]` | `swc1` at 0x220b5d8 |
+  | load | 1 | `a0 (arg0 at entry) +0x2` | `lbu` at 0x220b5dc |
+  | load | 4 | `([0x1020]:8 + ([a0+2]:1 << 0x2)) +0x1054` | `lwc1` at 0x220b5e8 |
+  | store | 4 | `[0x1020]:8 +0x268  value [([0x1020]:8 + ([a0+2]:1 << 0x2))+4180]` | `swc1` at 0x220b5ec |
+  | load | 1 | `a0 (arg0 at entry) +0x3` | `lbu` at 0x220b5f0 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b60c |
+  | load | 4 | `([0x1020]:8 + ([a0+3]:1 << 0x2)) +0x1054` | `lwc1` at 0x220b614 |
+  | store | 4 | `[0x1020]:8 +0x26c  value [([0x1020]:8 + ([a0+3]:1 << 0x2))+4180]` | `swc1` at 0x220b624 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b620, unknown callee | `a0=[0x1020]:8, a1=([0x1020]:8 + ([a0+2]:1 << 0x2)), a2=([0x1020]:8 + ([a0+1]:1 << 0x2)), a3=([0x1020]:8 + ([a0]:1 << 0x2))` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b630 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4b` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b640–0x220b6dc, occupies 156 bytes.
+
+  Four incoming register values are shifted left by one (`sll` at 0x220b640, 0x220b644, 0x220b648, 0x220b64c). One is added to each (`addiu` at 0x220b650, 0x220b654, 0x220b65c, 0x220b668).
+  The values convert to float (`cvt.s.w` at 0x220b674, 0x220b680, 0x220b68c, 0x220b698). The context scale loads from +0xf34 (`lwc1` at 0x220b67c). Each result is multiplied by it (`mul.s` at 0x220b6a4, 0x220b6a8, 0x220b6b0, 0x220b6b8).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c79d0 | 156 | Inferred | 20 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b664 |
+  | load | 4 | `[0x1020]:8 +0xf34` | `lwc1` at 0x220b67c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b6a0 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b6ac |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b6b4 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b6bc |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b6c8 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b6c4, unknown callee | `a0=[0x1020]:8, a1=(a1 << 0x1)+1, a2=(a2 << 0x1)+1, a3=(a3 << 0x1)+1` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b6d4 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4bv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b6e0–0x220b78c, occupies 172 bytes.
+
+  Four input bytes are sign-extended (`lb` at 0x220b6e0, 0x220b704, 0x220b720, 0x220b73c).
+  Each value is doubled (`sll` at 0x220b6e4, 0x220b708, 0x220b724, 0x220b740).
+  One is added to each (`addiu` at 0x220b6e8, 0x220b70c, 0x220b728, 0x220b744).
+  The values convert to float (`cvt.s.w` at 0x220b6f4, 0x220b714, 0x220b730, 0x220b754).
+  The context scale loads from +0xf34 (`lwc1` at 0x220b6f8).
+  Each result is multiplied by it (`mul.s` at 0x220b6fc, 0x220b718, 0x220b734, 0x220b76c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c7a70 | 172 | Inferred | 20 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 1 | `a0 (arg0 at entry) +0x0` | `lb` at 0x220b6e0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b6f0 |
+  | load | 4 | `[0x1020]:8 +0xf34` | `lwc1` at 0x220b6f8 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b700 |
+  | load | 1 | `a0 (arg0 at entry) +0x1` | `lb` at 0x220b704 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b71c |
+  | load | 1 | `a0 (arg0 at entry) +0x2` | `lb` at 0x220b720 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b738 |
+  | load | 1 | `a0 (arg0 at entry) +0x3` | `lb` at 0x220b73c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b764 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b778 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b774, unknown callee | `a0=[0x1020]:8, a1=([a0+2]:1 << 0x1)+1, a2=([a0+1]:1 << 0x1)+1, a3=([a0]:1 << 0x1)+1` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b784 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4d` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b790–0x220b7e8, occupies 88 bytes.
+
+  Four double registers are narrowed to single precision (`cvt.s.d` at 0x220b798, 0x220b7b0, 0x220b7bc, 0x220b7c4).
+  Four float stores update context +0x26c, +0x268, +0x264 and +0x260 (`swc1` at 0x220b7a0, 0x220b7c0, 0x220b7c8, 0x220b7d4). The last store is the delay slot of the unknown indirect call (`jalr` at 0x220b7d0, `swc1` at 0x220b7d4).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc01c | 96 | Inferred | 79 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b794 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b7a0 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b7b8 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b7c0 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b7c8 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b7d4 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b7d0, unknown callee | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b7e0 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4dv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b7f0–0x220b858, occupies 104 bytes.
+
+  Four input doubles are loaded from a0 +0, +8, +0x10 and +0x18 (`ldc1` at 0x220b7f0, 0x220b800, 0x220b80c, 0x220b828) and narrowed to float (`cvt.s.d` at 0x220b7f8, 0x220b804, 0x220b818, 0x220b838).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc07c | 108 | Inferred | 87 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `a0 (arg0 at entry) +0x0` | `ldc1` at 0x220b7f0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b7f4 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b7fc |
+  | load | 8 | `a0 (arg0 at entry) +0x8` | `ldc1` at 0x220b800 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b808 |
+  | load | 8 | `a0 (arg0 at entry) +0x10` | `ldc1` at 0x220b80c |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b820 |
+  | load | 8 | `a0 (arg0 at entry) +0x18` | `ldc1` at 0x220b828 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b830 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b844 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b840, unknown callee | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b850 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4i` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b860–0x220b8f4, occupies 148 bytes.
+
+  Four scalar words convert to float (`cvt.s.w` at 0x220b884, 0x220b88c, 0x220b890, 0x220b898).
+  Literal loads provide 2.0 and 1.0 (`lwc1` at 0x220b888 and 0x220b894).
+  Each converted value uses a multiply-add (`madd.s` at 0x220b89c, 0x220b8a4, 0x220b8a8 and 0x220b8b0).
+  The context scale loads from +0xf44 (`lwc1` at 0x220b8ac).
+  Results are multiplied by it (`mul.s` at 0x220b8bc, 0x220b8c0, 0x220b8c8 and 0x220b8d0).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc0e8 | 184 | Inferred | 137 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `abs 0x22e07a8` | `lwc1` at 0x220b888 |
+  | load | 4 | `abs 0x22e0778` | `lwc1` at 0x220b894 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b8a0 |
+  | load | 4 | `[0x1020]:8 +0xf44` | `lwc1` at 0x220b8ac |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b8b8 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b8c4 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b8cc |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b8d4 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b8e0 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b8dc, unknown callee | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b8ec | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4iv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b900–0x220b9a4, occupies 164 bytes.
+
+  Four vector words at a0 +0, +4, +8 and +0xc convert to float (`cvt.s.w` at 0x220b91c, 0x220b944, 0x220b95c, 0x220b974).
+  Literal loads provide 2.0 and 1.0 (`lwc1` at 0x220b920 and 0x220b924).
+  Each converted value uses a multiply-add (`madd.s` at 0x220b928, 0x220b948, 0x220b960 and 0x220b978).
+  The context scale loads from +0xf44 (`lwc1` at 0x220b930).
+  Results are multiplied by it (`mul.s` at 0x220b934, 0x220b94c, 0x220b964 and 0x220b984).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc1a0 | 200 | Inferred | 146 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x0` | `lw` at 0x220b900 |
+  | load | 4 | `abs 0x22e07a8` | `lwc1` at 0x220b920 |
+  | load | 4 | `abs 0x22e0778` | `lwc1` at 0x220b924 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b92c |
+  | load | 4 | `[0x1020]:8 +0xf44` | `lwc1` at 0x220b930 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220b938 |
+  | load | 4 | `a0 (arg0 at entry) +0x4` | `lw` at 0x220b93c |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220b950 |
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x220b954 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220b968 |
+  | load | 4 | `a0 (arg0 at entry) +0xc` | `lw` at 0x220b96c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220b97c |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220b990 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220b98c, unknown callee | `a0=[0x1020]:8, a1=[a0+4], a2=0xd4e98, a3=[a0]` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220b99c | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4ui` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220b9b0–0x220ba4c, occupies 156 bytes.
+
+  Four scalar register values are zero-extended from their low 32 bits
+  through paired shifts. Left shifts use `dsll32` at 0x220b9b0,
+  0x220b9b4, 0x220b9b8 and 0x220b9bc. Right shifts use
+  `dsrl32` at 0x220b9c0, 0x220b9c4, 0x220b9c8 and 0x220b9cc.
+  The values move to floating registers (`dmtc1` at 0x220b9d0, 0x220b9d4, 0x220b9dc, 0x220b9e0).
+  They convert to single precision (`cvt.s.l` at 0x220b9e4, 0x220b9f0, 0x220b9fc, 0x220ba08).
+  The context scale loads from +0xf44 (`lwc1` at 0x220b9ec).
+  Results are multiplied by it (`mul.s` at 0x220ba14, 0x220ba18, 0x220ba20, 0x220ba28).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc268 | 212 | Inferred | 147 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220b9d8 |
+  | load | 4 | `[0x1020]:8 +0xf44` | `lwc1` at 0x220b9ec |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220ba10 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220ba1c |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220ba24 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220ba2c |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220ba38 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220ba34, unknown callee | `a0=[0x1020]:8, a1=?, a2=?, a3=?` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220ba44 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4uiv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220ba50–0x220bafc, occupies 172 bytes.
+
+  Four input words at a0 +0, +4, +8 and +0xc are zero-extended
+  from their low 32 bits through paired shifts. Left shifts use
+  `dsll32` at 0x220ba54, 0x220ba78, 0x220ba94 and 0x220bab0.
+  Right shifts use `dsrl32` at 0x220ba58, 0x220ba7c, 0x220ba98
+  and 0x220bab4.
+  The values move to floating registers (`dmtc1` at 0x220ba5c, 0x220ba80, 0x220ba9c, 0x220bab8).
+  They convert to single precision (`cvt.s.l` at 0x220ba64, 0x220ba84, 0x220baa0, 0x220bac4).
+  The context scale loads from +0xf44 (`lwc1` at 0x220ba68).
+  Results are multiplied by it (`mul.s` at 0x220ba6c, 0x220ba88, 0x220baa4, 0x220badc).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc33c | 224 | Inferred | 162 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 4 | `a0 (arg0 at entry) +0x0` | `lw` at 0x220ba50 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220ba60 |
+  | load | 4 | `[0x1020]:8 +0xf44` | `lwc1` at 0x220ba68 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220ba70 |
+  | load | 4 | `a0 (arg0 at entry) +0x4` | `lw` at 0x220ba74 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220ba8c |
+  | load | 4 | `a0 (arg0 at entry) +0x8` | `lw` at 0x220ba90 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220baa8 |
+  | load | 4 | `a0 (arg0 at entry) +0xc` | `lw` at 0x220baac |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220bad4 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220bae8 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220bae4, unknown callee | `a0=[0x1020]:8, a1=?, a2=?, a3=?` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220baf4 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4s` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bb00–0x220bb9c, occupies 156 bytes.
+
+  Four scalar register values are shifted left by one with `sll` at 0x220bb00, 0x220bb04, 0x220bb08 and 0x220bb0c. One is added at each `addiu` site: 0x220bb10, 0x220bb14, 0x220bb1c and 0x220bb28.
+  The values convert to float (`cvt.s.w` at 0x220bb34, 0x220bb40, 0x220bb4c, 0x220bb58). The scale loads at +0xf3c (`lwc1` at 0x220bb3c). Results multiply by it (`mul.s` at 0x220bb64, 0x220bb68, 0x220bb70, 0x220bb78).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc41c | 200 | Inferred | 146 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bb24 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220bb3c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220bb60 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220bb6c |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220bb74 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220bb7c |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220bb88 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220bb84, unknown callee | `a0=[0x1020]:8, a1=(a1 << 0x1)+1, a2=(a2 << 0x1)+1, a3=(a3 << 0x1)+1` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bb94 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4sv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bba0–0x220bc4c, occupies 172 bytes.
+
+  Four vector halfwords are loaded as signed values from a0 +0, +2, +4 and +6 (`lh` at 0x220bba0, 0x220bbc4, 0x220bbe0, 0x220bbfc).
+  Each value is doubled (`sll` at 0x220bba4, 0x220bbc8, 0x220bbe4 and 0x220bc00).
+  One is added to each (`addiu` at 0x220bba8, 0x220bbcc, 0x220bbe8 and 0x220bc04).
+  The values convert (`cvt.s.w` at 0x220bbb4, 0x220bbd4, 0x220bbf0 and 0x220bc14).
+  The context scale loads at +0xf3c (`lwc1` at 0x220bbb8).
+  Results multiply by it (`mul.s` at 0x220bbbc, 0x220bbd8, 0x220bbf4 and 0x220bc2c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc4e4 | 184 | Inferred | 150 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 2 | `a0 (arg0 at entry) +0x0` | `lh` at 0x220bba0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bbb0 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220bbb8 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220bbc0 |
+  | load | 2 | `a0 (arg0 at entry) +0x2` | `lh` at 0x220bbc4 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220bbdc |
+  | load | 2 | `a0 (arg0 at entry) +0x4` | `lh` at 0x220bbe0 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220bbf8 |
+  | load | 2 | `a0 (arg0 at entry) +0x6` | `lh` at 0x220bbfc |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220bc24 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220bc38 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220bc34, unknown callee | `a0=[0x1020]:8, a1=([a0+4]:2 << 0x1)+1, a2=([a0+2]:2 << 0x1)+1, a3=([a0]:2 << 0x1)+1` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bc44 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4us` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bc50–0x220bccc, occupies 124 bytes.
+
+  Four scalar register words convert to float (`cvt.s.w` at 0x220bc64, 0x220bc70, 0x220bc7c and 0x220bc88). The context scale loads at +0xf3c (`lwc1` at 0x220bc6c). Results multiply by it (`mul.s` at 0x220bc94, 0x220bc98, 0x220bca0 and 0x220bca8).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c7fe0 | 124 | Inferred | 20 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bc58 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220bc6c |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220bc90 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220bc9c |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220bca4 |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220bcac |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220bcb8 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220bcb4, unknown callee | `a0=[0x1020]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bcc4 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Color4usv` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bcd0–0x220bd5c, occupies 140 bytes.
+
+  Four vector halfwords at a0 +0, +2, +4 and +6 are loaded unsigned (`lhu` at 0x220bcd0, 0x220bcec, 0x220bd00, 0x220bd14).
+  They convert to float (`cvt.s.w` at 0x220bcdc, 0x220bcf4, 0x220bd08 and 0x220bd24). The context scale loads at +0xf3c (`lwc1` at 0x220bce0). Results multiply by it (`mul.s` at 0x220bce4, 0x220bcf8, 0x220bd0c and 0x220bd3c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA32/libGLcore.so` (N32) | 0x0d9c8060 | 140 | Inferred | 20 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 2 | `a0 (arg0 at entry) +0x0` | `lhu` at 0x220bcd0 |
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bcd8 |
+  | load | 4 | `[0x1020]:8 +0xf3c` | `lwc1` at 0x220bce0 |
+  | store | 4 | `[0x1020]:8 +0x260` | `swc1` at 0x220bce8 |
+  | load | 2 | `a0 (arg0 at entry) +0x2` | `lhu` at 0x220bcec |
+  | store | 4 | `[0x1020]:8 +0x264` | `swc1` at 0x220bcfc |
+  | load | 2 | `a0 (arg0 at entry) +0x4` | `lhu` at 0x220bd00 |
+  | store | 4 | `[0x1020]:8 +0x268` | `swc1` at 0x220bd10 |
+  | load | 2 | `a0 (arg0 at entry) +0x6` | `lhu` at 0x220bd14 |
+  | load | 8 | `[0x1020]:8 +0x48f8` | `ld` at 0x220bd34 |
+  | store | 4 | `[0x1020]:8 +0x26c` | `swc1` at 0x220bd48 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | `jalr` at 0x220bd44, unknown callee | `a0=[0x1020]:8, a1=[a0+4]:2, a2=[a0+2]:2, a3=[a0]:2` |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bd54 | `v0 = ret(?); f0 = ret(?)` |
+
+- `__glim_Indexd` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bd60–0x220bd70, occupies 16 bytes.
+
+  A double index is narrowed to float (`cvt.s.d` at 0x220bd64).
+  The context +0x270 store occupies the return delay slot (`swc1` at 0x220bd6c, with `jr` at 0x220bd68).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc768 | 16 | Established | 10 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bd60 |
+  | store | 4 | `[0x1020]:8 +0x270` | `swc1` at 0x220bd6c |
+
+  | Call | Reported arguments |
+  |---|---|
+  | None | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bd68 | `v0 = ?` |
+
+- `__glim_Indexf` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bd70–0x220bd7c, occupies 12 bytes.
+
+  The incoming f12 value is stored at context +0x270 (`swc1` at 0x220bd78).
+  That store is the `jr` delay slot (`jr` at 0x220bd74).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc778 | 12 | Established | 6 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bd70 |
+  | store | 4 | `[0x1020]:8 +0x270  value f12` | `swc1` at 0x220bd78 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | None | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bd74 | `v0 = ?` |
+
+- `__glim_Indexi` in `usr/gfx/arch/IP35KONA64/libGLcore.so`
+  Inferred. Range 0x220bd80–0x220bd94, occupies 20 bytes.
+
+  The integer register moves to a floating-point register and converts as a signed word (`mtc1` at 0x220bd80, `cvt.s.w` at 0x220bd84).
+  The context +0x270 store occupies the return delay slot (`swc1` at 0x220bd90, with `jr` at 0x220bd8c).
+
+  | Counterpart | Address | Bytes | Source grade | Changed prefix positions |
+  |---|---|---:|---|---:|
+  | `usr/gfx/arch/IP27KONA/libGLcore.so` (O32) | 0xd9cc784 | 20 | Inferred | 12 |
+
+  | Access | Width (bytes) | Resolved address | Instruction |
+  |---|---:|---|---|
+  | load | 8 | `abs 0x1020` | `ld` at 0x220bd88 |
+  | store | 4 | `[0x1020]:8 +0x270` | `swc1` at 0x220bd90 |
+
+  | Call | Reported arguments |
+  |---|---|
+  | None | — |
+
+  | Return instruction | Reported registers |
+  |---|---|
+  | `jr` at 0x220bd8c | `v0 = ?` |
