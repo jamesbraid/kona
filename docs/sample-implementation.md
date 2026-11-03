@@ -21832,3 +21832,446 @@ comparison was not rerun and supplies no new target equation.
   SHA-256 target `6d62f58064da7df8e6ce4c2210f8e407178f8902bfee144e93d802c02235155a` / documented O32 `fd15d476b713dfb6015a1805d017ae06d3b82b6f1124a999e859e3e15bbbf85d`
   Existing entry: `docs/sample-implementation.md`, `__glDlistIsBlock` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
   Evidence: `facts/__glDlistIsBlock.target.txt`, `facts/__glDlistIsBlock.sibling.txt`, `facts/__glDlistIsBlock.disasm.txt`, `facts/__glDlistIsBlock.comparison.txt`
+
+- `__glShareDlist` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d1920. Occupies 44 bytes.
+  **Established.** Copies the two eight-byte display-list state pointers from entry a1 to entry a0 and increments a word-sized reference count in each pointed record (the stores below).
+  The body has no calls. Its pointer widths and reference-count offsets come from the N64 target.
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 8 bytes | a0 (arg0 at entry) +0x14c8  value [a1+5320]:8 | `sd` at 0x21d1924 |
+  | store | 4 bytes | [a1+5320]:8 +0x0  value [[a1+5320]:8]+1 | `sw` at 0x21d1930 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x14d0  value [a1+5328]:8 | `sd` at 0x21d1938 |
+  | store | 4 bytes | [a1+5328]:8 +0xc  value [[a1+5328]:8+12]+1 | `sw` at 0x21d1948 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 44 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd991c70 +44 bytes / 30 changed common-prefix byte positions
+  SHA-256 target `1eb832806634b9097bf0f9d09c277d85de3d0c89b8d376b90f1906fe26ccc0de` / documented sibling `b9566c05ba4aaf1b3826eb861d74f46479398fb772ef0c2f30ffa5a12d8e2e2d`
+  Existing entry: `docs/sample-implementation.md`, `__glShareDlist` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glShareDlist.target.txt`, `facts/__glShareDlist.sibling.txt`, `facts/__glShareDlist.disasm.txt`, `facts/__glShareDlist.comparison.txt`
+
+- `__glInitDlistState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d1950. Occupies 160 bytes.
+  **Established.** Initializes word-sized list state and copies three context hooks into the list-state record (the writes below).
+  Missing arrays are requested through `__glDlistNewArray` and `__glNamesNewArray` (`bgezall` at 0x21d19b8 and `jalr` at 0x21d19d0).
+  Both returned pointers are stored as eight-byte values. Callee allocation and reference initialization are outside this wrapper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glDlistNewArray [0x21d3fc0] | a0=a0 at entry (arg0), a1=[a0+24]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21d19b8 |
+  | __glNamesNewArray [0x2234b60] | a0=a0 at entry (arg0), a1=0x0, a2=[a0+5328]:8, a3=? | `jalr` at 0x21d19d0 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | a0 (arg0 at entry) +0x1540  value 0x0 | `sw` at 0x21d1950 |
+  | store | 4 bytes | a0 (arg0 at entry) +0x1538  value 0x0 | `sw` at 0x21d1954 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x1580  value [a0+24]:8 | `sd` at 0x21d1960 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x1578  value [a0+16]:8 | `sd` at 0x21d197c |
+  | store | 8 bytes | a0 (arg0 at entry) +0x1570  value [a0]:8 | `sd` at 0x21d198c |
+  | store | 8 bytes | a0 (arg0 at entry) +0x14c8  value ret(__glDlistNewArray) | `sd` at 0x21d19c4 |
+  | store | 8 bytes | a0 (arg0 at entry) +0x14d0  value ret(__glNamesNewArray) | `sd` at 0x21d19e0 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 160 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd991c9c +156 bytes / 139 changed common-prefix byte positions
+  SHA-256 target `ebc437137d7a8535ca733da0c54081b568910e0b96b73949841b69939f306d55` / documented sibling `208f105392b791f83ab9029fc11e58d7d36638f48d16cd95253b9e5295d5fbf8`
+  Existing entry: `docs/sample-implementation.md`, `__glInitDlistState` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glInitDlistState.target.txt`, `facts/__glInitDlistState.sibling.txt`, `facts/__glInitDlistState.disasm.txt`, `facts/__glInitDlistState.comparison.txt`
+
+- `__glFreeDlistState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d19f0. Occupies 176 bytes.
+  **Established.** Decrements the name-array and list-array word-sized reference counts and clears both context pointers (the stores below).
+  It calls `__glNamesFreeArray` and `__glDlistFreeArray` on their selected last-reference paths (`jalr` at 0x21d1a80 and `bgezall` at 0x21d1a90).
+  A separate unknown callback receives the saved list-state allocation pointer (`jalr` at 0x21d1a60).
+  This draft does not transfer the O32 source's locking role to these target callbacks.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+5480]:8, a1=?, a2=?, a3=? | `jalr` at 0x21d1a60 |
+  | __glNamesFreeArray [0x2234ea0] | a0=a0 at entry (arg0), a1=[a0+5328]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d1a80 |
+  | __glDlistFreeArray [0x21d4070] | a0=a0 at entry (arg0), a1=[a0+5320]:8, a2=[a0+5320]:8, a3=? | `bgezall` at 0x21d1a90 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [a0+5328]:8 +0xc  value [[a0+5328]:8+12]-1 | `sw` at 0x21d19fc |
+  | store | 8 bytes | a0 (arg0 at entry) +0x14d0  value 0x0 | `sd` at 0x21d1a30 |
+  | store | 4 bytes | [a0+5320]:8 +0x0  value [[a0+5320]:8]-1 | `sw` at 0x21d1a3c |
+  | store | 8 bytes | a0 (arg0 at entry) +0x14c8  value 0x0 | `sd` at 0x21d1a58 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 176 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd991d38 +196 bytes / 162 changed common-prefix byte positions
+  SHA-256 target `c4fb5545e8f2ca898b07b5d7dcfff98b6518bc5808c0d1fcc224367c3eedd75a` / documented sibling `e307da7a1fca985578ceb78bb0189096ca52ed3b331f3620828cd1af221c13ee`
+  Existing entry: `docs/sample-implementation.md`, `__glFreeDlistState` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glFreeDlistState.target.txt`, `facts/__glFreeDlistState.sibling.txt`, `facts/__glFreeDlistState.disasm.txt`, `facts/__glFreeDlistState.comparison.txt`
+
+- `__glim_CallList` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2110. Occupies 108 bytes.
+  **Inferred.** Rejects a zero list number and otherwise calls `DoCallList` with the original first argument (`beqz` at 0x21d212c and `bgezall` at 0x21d213c).
+  The error path passes 0x501 to `__glSetError` (`jalr` at 0x21d216c).
+  A final word clear occurs on the successful return, but hostfacts leaves its base unknown (`sw` at 0x21d2158). The O32 nesting offset is not substituted.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | DoCallList [0x21d1dc0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21d213c |
+  | __glSetError [0x22115d0] | a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d216c |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown)  value 0x0 | `sw` at 0x21d2158 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 108 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd992588 +104 bytes / 93 changed common-prefix byte positions
+  SHA-256 target `936eef19362c07783b108d5f9dbc1fa01657f5983a10df3e69579258d23a2cb7` / documented sibling `e092f55544c7c9282051d2e3bb0ac5fa00616b547ebe1f41cf4bd571295330dd`
+  Existing entry: `docs/sample-implementation.md`, `__glim_CallList` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glim_CallList.target.txt`, `facts/__glim_CallList.sibling.txt`, `facts/__glim_CallList.disasm.txt`, `facts/__glim_CallList.comparison.txt`
+
+- `DoCallLists` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2180. Occupies 396 bytes.
+  **Inferred.** Calls `__glNamesLockDataList`, an unknown list executor and `__glNamesUnlockDataList` through the sites below (`jalr` at 0x21d223c, `jalr` at 0x21d2264 and `jalr` at 0x21d2284).
+  The name-array pointer comes from the N64 context +0x14d0, and the temporary batch begins at entry sp -2128 (`jalr` at 0x21d223c).
+  A signed nesting count of 64 or more takes the overflow path (`beqz` at 0x21d21ec), which writes 128 to the nesting word (`sw` at 0x21d22f0).
+  The batch count, list cursor and final normal-path return remain unknown to hostfacts. The selected source counterpart is Established N32, not O32.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glNamesLockDataList [0x2236d80] | a0=[0x1020]:8, a1=[[0x1020]:8+5328]:8, a2=?, a3=a1 at entry (arg1), a4=[[0x1020]:8+2244], a6=sp-2128 | `jalr` at 0x21d223c |
+  | (unknown callee) | a0=[0x1020]:8, a1=?, a2=?, a3=? | `jalr` at 0x21d2264 |
+  | __glNamesUnlockDataList [0x2237800] | a0=[0x1020]:8, a1=?, a2=sp-2128, a3=? | `jalr` at 0x21d2284 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | [0x1020]:8 +0x1538  value [[0x1020]:8+5432]+1 | `sw` at 0x21d21f4 |
+  | store | 4 bytes | [0x1020]:8 +0x1538 | `sw` at 0x21d22c0 |
+  | store | 4 bytes | [0x1020]:8 +0x1538  value 0x80 | `sw` at 0x21d22f0 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 396 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0d98ed70 +380 bytes / 300 changed common-prefix byte positions
+  SHA-256 target `5a3b53fea426c5706b4717411526d0cd565891038c6ec5fb10879580eb75832e` / documented sibling `cfa3636806ca35115f97ec6f97487343901403daa40753a7fe2c23c4bba2468f`
+  Existing entry: `docs/sample-implementation.md`, `DoCallLists` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Evidence: `facts/DoCallLists.target.txt`, `facts/DoCallLists.sibling.txt`, `facts/DoCallLists.disasm.txt`, `facts/DoCallLists.comparison.txt`
+
+- `__glle_CallLists` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2440. Occupies 224 bytes.
+  **Inferred.** Calls `DoCallLists` using the record count, type and payload beginning at entry a0 +8 (`bgezall` at 0x21d2470).
+  The decoded return arithmetic adds seven, masks with -8, adds the eight-byte header, zero-extends the low word and adds the record pointer (`addiu` at 0x21d24bc, `and` at 0x21d24c0, `addiu` at 0x21d24c4 and `daddu` at 0x21d24d0).
+  The alternate type path has the same eight-byte alignment sequence (`addiu` at 0x21d24f4, `and` at 0x21d24f8 and `addiu` at 0x21d24fc).
+  Hostfacts leaves the complete returned pointer unknown. The O32 four-byte alignment is not transferred.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | DoCallLists [0x21d2180] | a0=[a0], a1=[a0+4], a2=a0+8, a3=a3 at entry (arg3) | `bgezall` at 0x21d2470 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 4 bytes | a0 (arg0 at entry) +0x0 | `lw` at 0x21d2468 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x4 | `lw` at 0x21d2474 |
+  | load | 4 bytes | a0 (arg0 at entry) +0x4 | `lw` at 0x21d2478 |
+  | load | 1 bytes | table(0x22c4e90) +0x0 | `lbu` at 0x21d24a8 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 224 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9928a4 +152 bytes / 131 changed common-prefix byte positions
+  SHA-256 target `c1d9f7ea7db048018fb5a45cea92b3d514d43e935bb2d8b21717e5b7b0dadcc7` / documented sibling `57d20ae66df49825bcdb9cd798dab07c3c6945f76baaa68f8ef3aff3c7f96967`
+  Existing entry: `docs/sample-implementation.md`, `__glle_CallLists` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glle_CallLists.target.txt`, `facts/__glle_CallLists.sibling.txt`, `facts/__glle_CallLists.disasm.txt`, `facts/__glle_CallLists.comparison.txt`
+
+- `__glce_DrawRangeElements` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d27e0. Occupies 304 bytes.
+  **Inferred.** Calls `glDrawRangeElements` twice, preserving the original first four arguments at both sites (`jalr` at 0x21d285c and `jalr` at 0x21d2898).
+  Dispatch copies use the N64 global address 0x1090 and context-relative tables (`jalr` at 0x21d2838, `jalr` at 0x21d2870 and `jalr` at 0x21d28a8).
+  The resolved eight-byte dispatch-pointer stores appear below. Arguments beyond the first four are not supplied by the call facts, so no complete six-argument forwarding claim is made.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glMipsCopyDispatch [0x22bd140] | a0=[0x1020]:8+6880, a1=0x1090, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2838 |
+  | glDrawRangeElements | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d285c |
+  | __glMipsCopyDispatch [0x22bd140] | a0=[0x1020]:8+14424, a1=0x1090, a2=?, a3=? | `jalr` at 0x21d2870 |
+  | glDrawRangeElements | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2898 |
+  | __glMipsCopyDispatch [0x22bd140] | a0=0x1090, a1=[0x1020]:8+14424, a2=?, a3=? | `jalr` at 0x21d28a8 |
+  | __glMipsCopyDispatch [0x22bd140] | a0=[0x1088]:8, a1=0x1090, a2=?, a3=? | `jalr` at 0x21d28c4 |
+  | __glMipsCopyDispatch [0x22bd140] | a0=[[0x1020]:8+10648]:8, a1=0x1090, a2=?, a3=? | `jalr` at 0x21d2900 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 8 bytes | [0x1020]:8 +0x1ad8  value 0x1090 | `sd` at 0x21d289c |
+  | store | 8 bytes | [0x1020]:8 +0x1ad8  value [0x1020]:8+14424 | `sd` at 0x21d28b0 |
+
+  Source provenance: Established. Separate target draft: Inferred.
+  Unequal exact ranges: target 304 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0x0d992c0c +304 bytes / 292 changed common-prefix byte positions
+  SHA-256 target `c53f0d6495da26a8ea87f29543e8ee102fdc01eca87078fa4aef3e7c801bfe32` / documented sibling `bab0a274f475e41c737350c193bb2e31295178e20d69ae7aff389e887d9fbc9c`
+  Existing entry: `docs/sample-implementation.md`, `__glce_DrawRangeElements` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glce_DrawRangeElements.target.txt`, `facts/__glce_DrawRangeElements.sibling.txt`, `facts/__glce_DrawRangeElements.disasm.txt`, `facts/__glce_DrawRangeElements.comparison.txt`
+
+- `__glDlistAllocOp2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d29e0. Occupies 124 bytes.
+  **Established.** Requests an operation record through an unknown allocation callback, using the context allocation state and the payload size plus 24 with the target's word conversion (`jalr` at 0x21d2a0c).
+  A null result takes the error path (`beqz` at 0x21d2a14), which passes 0x505 to `__glSetError` and returns zero (`jalr` at 0x21d2a40 and `jr` at 0x21d2a54).
+  The accepted record receives two eight-byte zero pointers, a cleared byte flag and the original payload size (the stores below).
+  The N64 overhead is not inherited from the O32 source's 16-byte header.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=[a0+5480]:8, a1=(a1+24 << 0x0), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2a0c |
+  | __glSetError [0x22115d0] | a0=0x505, a1=?, a2=?, a3=? | `jalr` at 0x21d2a40 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 1 bytes | ret(?) +0x16  value 0x0 | `sb` at 0x21d2a1c |
+  | store | 8 bytes | ret(?) +0x8  value 0x0 | `sd` at 0x21d2a20 |
+  | store | 8 bytes | ret(?) +0x0  value 0x0 | `sd` at 0x21d2a24 |
+  | store | 4 bytes | ret(?) +0x10  value a1 | `sw` at 0x21d2a3c |
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 124 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd992e30 +140 bytes / 110 changed common-prefix byte positions
+  SHA-256 target `fde026b0d6ce94b6c3659461504078687b243894bd7530a39e0323f6baac51dd` / documented sibling `7daf9437e1aa95950627bc46a2f3e11c07ec2b77ae788527c7e7e991e5500db0`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistAllocOp2` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDlistAllocOp2.target.txt`, `facts/__glDlistAllocOp2.sibling.txt`, `facts/__glDlistAllocOp2.disasm.txt`, `facts/__glDlistAllocOp2.comparison.txt`
+
+- `__glDlistFreeOp` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2a60. Occupies 8 bytes.
+  **Established.** Returns directly with a nop delay slot (`jr` at 0x21d2a60 and `nop` at 0x21d2a64).
+  The complete eight-byte target contains no memory access or call. O32 argument-home stores do not appear in this body.
+
+  Source provenance: Established. Separate target draft: Established.
+  Unequal exact ranges: target 8 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0x0d992ebc +12 bytes / 6 changed common-prefix byte positions
+  SHA-256 target `78aa5094d5ec7291c79f799c009d04f06c2f20187988e3dcc8d35ee5efdbb378` / documented sibling `691e766163b1b8288cf1e76b4dc9eb7dde764cde7f749bf5aef916d919300f2b`
+  Existing entry: `docs/sample-implementation.md`, `__glDlistFreeOp` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Established)
+  Evidence: `facts/__glDlistFreeOp.target.txt`, `facts/__glDlistFreeOp.sibling.txt`, `facts/__glDlistFreeOp.disasm.txt`, `facts/__glDlistFreeOp.comparison.txt`
+
+- `__glGenericDlistOptimizer` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2b60. Occupies 52 bytes.
+  **Established.** Calls `__glDlistOptimizeMaterial` with the original first four integer arguments (`bgezall` at 0x21d2b7c).
+  The target restores its frame and returns after that call (`jr` at 0x21d2b8c).
+  Material-optimizer effects remain outside this wrapper.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glDlistOptimizeMaterial [0x21d36a0] | a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21d2b7c |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 52 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd992fe0 +52 bytes / 42 changed common-prefix byte positions
+  SHA-256 target `0ae1497d1150ed6e0fa260eb45b0c51fd432046beac661c5e35977382ca54b3a` / documented sibling `a97f891a4aef4a88717be1127406e19ee1258b1a7ec83bf1de5339e790355c7a`
+  Existing entry: `docs/sample-implementation.md`, `__glGenericDlistOptimizer` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glGenericDlistOptimizer.target.txt`, `facts/__glGenericDlistOptimizer.sibling.txt`, `facts/__glGenericDlistOptimizer.disasm.txt`, `facts/__glGenericDlistOptimizer.comparison.txt`
+
+- `__gllc_Begin` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2ba0. Occupies 296 bytes.
+  **Inferred.** Allocates a zero-payload operation using the N64 process context (`bgezall` at 0x21d2bcc).
+  Its two append sites receive the new operation pointer second (`bgezall` at 0x21d2c2c and `bgezall` at 0x21d2cb8).
+  A halfword opcode is written at the record's +0x14, with 0x3f3 on the fallback path (`sh` at 0x21d2c30 and `sh` at 0x21d2cbc).
+  The mode-to-executor table and unknown append arguments are not reconstructed from O32.
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | __glDlistAllocOp2 [0x21d29e0] | a0=[0x1020]:8, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `bgezall` at 0x21d2bcc |
+  | __glDlistAppendOp [0x21d2a70] | a0=?, a1=ret(__glDlistAllocOp2), a2=?, a3=entry(0x22c8a38) | `bgezall` at 0x21d2c2c |
+  | __glDlistAppendOp [0x21d2a70] | a0=?, a1=ret(__glDlistAllocOp2), a2=0x21d32d0, a3=?, a5=0x3f3 | `bgezall` at 0x21d2cb8 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | store | 4 bytes | ? (base unknown) | `sw` at 0x21d2c24 |
+  | store | 2 bytes | ret(__glDlistAllocOp2) +0x14 | `sh` at 0x21d2c30 |
+  | store | 2 bytes | ret(__glDlistAllocOp2) +0x14  value 0x3f3 | `sh` at 0x21d2cbc |
+
+  Source provenance: Inferred. Separate target draft: Inferred.
+  Unequal exact ranges: target 296 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993014 +308 bytes / 278 changed common-prefix byte positions
+  SHA-256 target `e6051c1dcb165f55364d5848bdf338fbded354fa885cff697fa741a68ced3db1` / documented sibling `af04376dc6da9202e2c63f35fc0edd5471a4a7ab1bc1cc76227c7ed68d3bfd07`
+  Existing entry: `docs/sample-implementation.md`, `__gllc_Begin` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__gllc_Begin.target.txt`, `facts/__gllc_Begin.sibling.txt`, `facts/__gllc_Begin.disasm.txt`, `facts/__gllc_Begin.comparison.txt`
+
+- `__glle_Begin_LineLoop` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2cd0. Occupies 68 bytes.
+  **Established.** Dispatches the recorded line-loop mode by passing 2 first to the unknown begin callback (`jalr` at 0x21d2cf4).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2d0c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x2, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2cf4 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2ce4 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993148 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `343cfc871eacc9bf5dc244406439e9ac49498f62b0ecd2ebbcd8c72f12d85828` / documented sibling `6d5b5844624104e0cc83a3391e1215b98df7bd9c386233cf4d8873188384fc2b`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_LineLoop` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_LineLoop.target.txt`, `facts/__glle_Begin_LineLoop.sibling.txt`, `facts/__glle_Begin_LineLoop.disasm.txt`, `facts/__glle_Begin_LineLoop.comparison.txt`
+
+- `__glle_Begin_LineStrip` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2d20. Occupies 68 bytes.
+  **Established.** Dispatches the recorded line-strip mode by passing 3 first to the unknown begin callback (`jalr` at 0x21d2d44).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2d5c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x3, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2d44 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2d34 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993184 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `999b4b58729f0ed05bf2701ebba6188b26ebd1be39e6ab9dea8378baafc58342` / documented sibling `8ee6e17032d1b3fdef15c0b20e6808ffa8100c7fdd22601b35725199482588bf`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_LineStrip` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_LineStrip.target.txt`, `facts/__glle_Begin_LineStrip.sibling.txt`, `facts/__glle_Begin_LineStrip.disasm.txt`, `facts/__glle_Begin_LineStrip.comparison.txt`
+
+- `__glle_Begin_Lines` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2d70. Occupies 68 bytes.
+  **Established.** Dispatches the recorded independent-lines mode by passing 1 first to the unknown begin callback (`jalr` at 0x21d2d94).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2dac |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x1, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2d94 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2d84 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9931c0 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `35124704a31467174401305d2cd96402ba564f1cac209591df6ff5f744695d60` / documented sibling `5b1fc9a05eb79cdebd79265fc1eeb0f5d33bdf7f6a42e89ff81342c9df4d96f6`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_Lines` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_Lines.target.txt`, `facts/__glle_Begin_Lines.sibling.txt`, `facts/__glle_Begin_Lines.disasm.txt`, `facts/__glle_Begin_Lines.comparison.txt`
+
+- `__glle_Begin_Points` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2dc0. Occupies 68 bytes.
+  **Established.** Dispatches the recorded point mode by passing 0 first to the unknown begin callback (`jalr` at 0x21d2de4).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2dfc |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2de4 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2dd4 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9931fc +60 bytes / 55 changed common-prefix byte positions
+  SHA-256 target `733174858bb4c0f1a0022c86979010d153e02c2bfb8e2420cfc31765231fd2de` / documented sibling `10faceb10d0ed553590240234f1e852d1aab1d63429ecc6bd733b0bb5819094b`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_Points` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_Points.target.txt`, `facts/__glle_Begin_Points.sibling.txt`, `facts/__glle_Begin_Points.disasm.txt`, `facts/__glle_Begin_Points.comparison.txt`
+
+- `__glle_Begin_Polygon` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2e10. Occupies 68 bytes.
+  **Established.** Dispatches the recorded polygon mode by passing 9 first to the unknown begin callback (`jalr` at 0x21d2e34).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2e4c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x9, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2e34 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2e24 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993238 +60 bytes / 53 changed common-prefix byte positions
+  SHA-256 target `fc638d9a61adf3c2a9899572ae68aaeb040aa52c3cdd446069f4c2708c93bf68` / documented sibling `ebbcc15b8fb22681be501f0838779da3b430754e918a13c1cbd93b209cb4109f`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_Polygon` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_Polygon.target.txt`, `facts/__glle_Begin_Polygon.sibling.txt`, `facts/__glle_Begin_Polygon.disasm.txt`, `facts/__glle_Begin_Polygon.comparison.txt`
+
+- `__glle_Begin_TriangleStrip` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2e60. Occupies 68 bytes.
+  **Established.** Issues the triangle-strip begin mode by passing 5 first to the unknown begin callback (`jalr` at 0x21d2e84).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2e9c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x5, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2e84 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2e74 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993274 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `0991674dbc2928f433ce079478efa1734dad9fe06946a4fec5379b0292cae49c` / documented sibling `dc01028fda2f20fe4f13a18e5e7127a6bed2b9ce00ad9d202c3be95d792498ad`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_TriangleStrip` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_TriangleStrip.target.txt`, `facts/__glle_Begin_TriangleStrip.sibling.txt`, `facts/__glle_Begin_TriangleStrip.disasm.txt`, `facts/__glle_Begin_TriangleStrip.comparison.txt`
+
+- `__glle_Begin_TriangleFan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2eb0. Occupies 68 bytes.
+  **Established.** Dispatches the recorded triangle-fan mode by passing 6 first to the unknown begin callback (`jalr` at 0x21d2ed4).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2eec |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x6, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2ed4 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2ec4 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9932b0 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `594a7655904f22c72d55d8828de5b592a860786fbd92a2b06ac3929cd8f7b110` / documented sibling `868bed7a375461e1f97d972651edcd6331b99d638f9f3c593d52a575102e8f01`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_TriangleFan` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_TriangleFan.target.txt`, `facts/__glle_Begin_TriangleFan.sibling.txt`, `facts/__glle_Begin_TriangleFan.disasm.txt`, `facts/__glle_Begin_TriangleFan.comparison.txt`
+
+- `__glle_Begin_Triangles` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2f00. Occupies 68 bytes.
+  **Established.** Dispatches the recorded independent-triangles mode by passing 4 first to the unknown begin callback (`jalr` at 0x21d2f24).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2f3c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x4, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2f24 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2f14 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9932ec +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `b3df421006a8a673f65d86f5b2ed4c437cf2f9fe55f213cc3ba93eb30b67b5f5` / documented sibling `e24d2ff074bcdb83fdb5892b25a7babf66f4c4aa109d015e3ff16e3b032f3ff0`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_Triangles` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_Triangles.target.txt`, `facts/__glle_Begin_Triangles.sibling.txt`, `facts/__glle_Begin_Triangles.disasm.txt`, `facts/__glle_Begin_Triangles.comparison.txt`
+
+- `__glle_Begin_QuadStrip` (`usr/gfx/arch/IP35KONA64/libGLcore.so`):
+  Address 0x21d2f50. Occupies 68 bytes.
+  **Established.** Dispatches the recorded quad-strip mode by passing 8 first to the unknown begin callback (`jalr` at 0x21d2f74).
+
+  | Return | Instruction |
+  |---|---|
+  | Original entry a0, according to hostfacts | `jr` at 0x21d2f8c |
+
+  | Call | Arguments from hostfacts | Instruction |
+  |---|---|---|
+  | (unknown callee) | a0=0x8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) | `jalr` at 0x21d2f74 |
+
+  | Access | Width | Resolved location and value | Instruction |
+  |---|---|---|---|
+  | load | 8 bytes | abs 0x10c8 | `ld` at 0x21d2f64 |
+
+  Source provenance: Inferred. Separate target draft: Established.
+  Unequal exact ranges: target 68 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd993328 +60 bytes / 54 changed common-prefix byte positions
+  SHA-256 target `5b39b26248125759ba4464d81a673483038fe84738d3e4893dbbe66bcef3ba97` / documented sibling `fc9e7a0ffc328de4fa288bda92de8b107a5f41c422d4edade2f54a4721408ba7`
+  Existing entry: `docs/sample-implementation.md`, `__glle_Begin_QuadStrip` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Evidence: `facts/__glle_Begin_QuadStrip.target.txt`, `facts/__glle_Begin_QuadStrip.sibling.txt`, `facts/__glle_Begin_QuadStrip.disasm.txt`, `facts/__glle_Begin_QuadStrip.comparison.txt`
