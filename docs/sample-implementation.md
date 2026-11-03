@@ -37037,3 +37037,103 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `facts/__glim_TexCoord3i.target.txt`,
   `facts/__glim_TexCoord3i.existing.txt`, `facts/__glim_TexCoord3i.full.listing.txt`,
   `facts/__glim_TexCoord3i.compare.txt`.
+
+- `__glim_TexCoord3s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258720, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78720, 52 bytes.
+  Code SHA-256 `603b1f3ee5e0a3602bbcb4d9d04e06ab9edcdba67e7124045f3f6c6502e9c5f9`.
+
+- `__glim_TexCoord3dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258760, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78760, 52 bytes.
+  Code SHA-256 `9033a39cf1aa4e950df810d528d136f9591e56263d58a35d296add22f0b79be0`.
+
+- `__glim_TexCoord3fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22587a0, 40 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e787a0, 40 bytes.
+  Code SHA-256 `e664220487cf18164ff485625b3dd5e2ca3b2683e43e88492bb5ea51b6a66fcd`.
+
+- `__glim_TexCoord3iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22587d0, 64 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e787d0, 64 bytes.
+  Code SHA-256 `c635413830575cf56f086b4fcee723ab85435056ddd246689806f1d98bb88aa5`.
+
+- `__glim_TexCoord3sv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258810, 64 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78810, 64 bytes.
+  Code SHA-256 `45e8dd504b93345ce0c10273dd990bf440301e32ff731ec7324a067a68c23bb8`.
+
+- `__glim_TexCoord4d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258850, 40 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78850, 40 bytes.
+  Code SHA-256 `93fa2bf168fb8a9c50d2ac0248b241e26f449f6affd3a040d59e63f264fdc285`.
+
+- `__glim_TexCoord4f` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258880, 24 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78880, 24 bytes.
+  Code SHA-256 `9c7e0a46d3212673d10cc259644f7bd7df89d0d826cb5620ec02ef3ccec2f32e`.
+
+- `__glim_TexCoord4i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22588a0, 56 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e788a0, 56 bytes.
+  Code SHA-256 `55fb33d0ba321154b1aadce46d26ba863661784124ea53fae86cdf8cbc816c79`.
+
+- `__glim_TexCoord4s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22588e0, 56 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e788e0, 56 bytes.
+  Code SHA-256 `55fb33d0ba321154b1aadce46d26ba863661784124ea53fae86cdf8cbc816c79`.
+
+- `__glim_TexCoord4dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258920, 56 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78920, 56 bytes.
+  Code SHA-256 `73031dca5bd150f63787a5177f09355f2e7613778cf0126422e67b550f7b456f`.
+
+- `__glim_TexCoord4fv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258960, 40 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78960, 40 bytes.
+  Code SHA-256 `b4d0f2017ba80e301c0561545997c71ec99bd52184eb15c41665c948960186e2`.
+
+- `__glim_TexCoord4iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258990, 72 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78990, 72 bytes.
+  Code SHA-256 `d30e694fded873a45f32a0858693d0f1baf78173fcb6c7190c17b94b9c4b177a`.
+
+- `__glim_TexCoord4sv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x22589e0, 72 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e789e0, 72 bytes.
+  Code SHA-256 `20756e6a5907c379121685d2c5a09f9af8172920063899cc507c0b41784267a8`.
+
+- `__glCopyTexImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258c20, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78c20, 52 bytes.
+  Code SHA-256 `1979323976c0e6581a8fa86788c33973c3b074a4d52c26f948cf96c2196f494d`.
+
+- `__glReadTexImage` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Target 0x2258c60, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78c60, 52 bytes.
+  Code SHA-256 `d1b021b4c3ab378543ff6953036c8c9874778f2e42fdafa9f8ab83f1608b0589`.
+
+- `__glEarlyInitTextureState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2258d10, 512 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e78d10, 512 bytes.
+  Code SHA-256 `c29b2be419de4ed3be8774ecbf0e3e5feaa492a570ff29c9e32049e9d05c41e4`.
+
+- `__glInitTextureState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2259110, 1116 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e79110, 1116 bytes.
+  Code SHA-256 `1d43591d3585d900b45d96c5f7786f516e6fa16b48e0b6f292907c6aaf81fd27`.
+
+- `__glFreeTextureState` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2259570, 440 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e79570, 440 bytes.
+  Code SHA-256 `881f5b7dfcae05e21c0993fdf310fb7bf5c223988ceae844bd3628945e72f17d`.
+
+- `__glim_TexGenfv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2259730, 536 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e79730, 536 bytes.
+  Code SHA-256 `6a8ac90f399beff0176ab06d587a0c6ae2169face2c47fd927073aab827b80c7`.
+
+- `__glim_TexGendv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22599b0, 568 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e799b0, 568 bytes.
+  Code SHA-256 `91548fab712d5a24602612b6334aa9a206ddb54c039f6c08d47613fa9ce7b250`.
