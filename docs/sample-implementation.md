@@ -26791,3 +26791,342 @@ comparison was not rerun and supplies no new target equation.
   Evidence: `facts/__glSpanUnpackUint.target.txt`,
   `facts/__glSpanUnpackUint.existing.txt`, `facts/__glSpanUnpackUint.full.listing.txt`,
   `facts/__glSpanUnpackUint.compare.txt`.
+
+- `__glSpanUnpackInt` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1170, occupies 264 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1170).
+  It reads 4 bytes at `a1 (arg1 at entry) +0x24` (`lw` at 0x21f1174).
+  It reads 4 bytes at `abs 0x22e07a8` (`lwc1` at 0x21f11a0).
+  It reads 4 bytes at `abs 0x22e0778` (`lwc1` at 0x21f11a4).
+  It reads 4 bytes at `a0 (arg0 at entry) +0xf44` (`lwc1` at 0x21f11c0).
+  The return path is selected when `a6(?) <= 0 (signed)` (`blez` at 0x21f1198).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f11b0, 0x21f11f0, 0x21f120c, 0x21f1228).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f11dc, 0x21f1208, 0x21f1224, 0x21f1240).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xef628` (`jr` at 0x21f1270).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack332Ubyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1280, occupies 392 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1284).
+  It reads 8 bytes at `abs 0x22e0ea8` (`ldc1` at 0x21f12a4).
+  It reads 8 bytes at `abs 0x22e0b58` (`ldc1` at 0x21f12ac).
+  It reads 1 byte at `a2 (arg2 at entry) +0x0` (`lbu` at 0x21f12b0).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1298).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f12fc).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f130c).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f1318).
+  Further 1-byte read sites have unresolved moving bases
+  (`lbu` at 0x21f1330, 0x21f1390).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f137c, 0x21f1388, 0x21f138c, 0x21f13e4).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xef518` (`jr` at 0x21f1400).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack233RevUbyte` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1410, occupies 392 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1414).
+  It reads 8 bytes at `abs 0x22e0ea8` (`ldc1` at 0x21f1434).
+  It reads 8 bytes at `abs 0x22e0b58` (`ldc1` at 0x21f143c).
+  It reads 1 byte at `a2 (arg2 at entry) +0x0` (`lbu` at 0x21f1440).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1428).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f148c).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f149c).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f14a8).
+  Further 1-byte read sites have unresolved moving bases
+  (`lbu` at 0x21f14c0, 0x21f1520).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f150c, 0x21f1514, 0x21f151c, 0x21f1574).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xef388` (`jr` at 0x21f1590).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack565Ushort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f15a0, occupies 392 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f15a4).
+  It reads 8 bytes at `abs 0x22e0ed8` (`ldc1` at 0x21f15c4).
+  It reads 8 bytes at `abs 0x22e0ed0` (`ldc1` at 0x21f15cc).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f15d0).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f15b8).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f161c).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f162c).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f1638).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f1650, 0x21f16b0).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f169c, 0x21f16a8, 0x21f16ac, 0x21f1704).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xef1f8` (`jr` at 0x21f1720).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack565RevUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1730, occupies 392 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1734).
+  It reads 8 bytes at `abs 0x22e0ed8` (`ldc1` at 0x21f1754).
+  It reads 8 bytes at `abs 0x22e0ed0` (`ldc1` at 0x21f175c).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f1760).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1748).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f17ac).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f17bc).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f17c8).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f17e0, 0x21f1840).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f182c, 0x21f1834, 0x21f183c, 0x21f1894).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xef068` (`jr` at 0x21f18b0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack4444Ushort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f18c0, occupies 488 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f18c4).
+  It reads 8 bytes at `abs 0x22e0d58` (`ldc1` at 0x21f18ec).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f18f0).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f18d8).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f1958).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f1964).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f196c).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f1978).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f1990, 0x21f1a10).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f19f4, 0x21f1a00, 0x21f1a08, 0x21f1a0c).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xeeed8` (`jr` at 0x21f1aa0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack4444RevUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1ab0, occupies 488 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1ab4).
+  It reads 8 bytes at `abs 0x22e0d58` (`ldc1` at 0x21f1adc).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f1ae0).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1ac8).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f1b48).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f1b54).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f1b5c).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f1b68).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f1b80, 0x21f1c00).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f1be4, 0x21f1bec, 0x21f1bf4, 0x21f1bfc).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xeece8` (`jr` at 0x21f1c90).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack5551Ushort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1ca0, occupies 448 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1ca4).
+  It reads 8 bytes at `abs 0x22e0ed0` (`ldc1` at 0x21f1ccc).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f1cd0).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1cb8).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f1d2c).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f1d38).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f1d40).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f1d4c).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f1d60, 0x21f1dd4).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f1db8, 0x21f1dc4, 0x21f1dcc, 0x21f1dd0).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xeeaf8` (`jr` at 0x21f1e58).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack1555RevUshort` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f1e60, occupies 448 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f1e64).
+  It reads 8 bytes at `abs 0x22e0ed0` (`ldc1` at 0x21f1e8c).
+  It reads 2 bytes at `a2 (arg2 at entry) +0x0` (`lhu` at 0x21f1e90).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f1e78).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f1eec).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f1ef4).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f1f00).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f1f0c).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f1f20, 0x21f1f94).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f1f78, 0x21f1f80, 0x21f1f8c, 0x21f1f90).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xee938` (`jr` at 0x21f2018).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack8888Uint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2020, occupies 480 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2024).
+  It reads 8 bytes at `abs 0x22e0ec8` (`ldc1` at 0x21f204c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lw` at 0x21f2050).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2038).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f20b8).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f20bc).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f20c8).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f20d4).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f20f0, 0x21f216c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2150, 0x21f2158, 0x21f2160, 0x21f2168).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xee778` (`jr` at 0x21f21f8).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack8888RevUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2200, occupies 480 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2204).
+  It reads 8 bytes at `abs 0x22e0ec8` (`ldc1` at 0x21f222c).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lw` at 0x21f2230).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2218).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f2298).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f229c).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f22a8).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f22b4).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f22d0, 0x21f234c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2330, 0x21f2338, 0x21f2340, 0x21f2348).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xee598` (`jr` at 0x21f23d8).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack_10_10_10_2_Uint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f23e0, occupies 480 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f23e4).
+  It reads 8 bytes at `abs 0x22e0ea8` (`ldc1` at 0x21f2408).
+  It reads 8 bytes at `abs 0x22e0ee0` (`ldc1` at 0x21f2410).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lw` at 0x21f2414).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f23f8).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f247c).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f2480).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f248c).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f2498).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f24b0, 0x21f252c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2510, 0x21f2518, 0x21f2520, 0x21f2528).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xee3b8` (`jr` at 0x21f25b8).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpack_2_10_10_10_RevUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f25c0, occupies 480 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f25c4).
+  It reads 8 bytes at `abs 0x22e0ea8` (`ldc1` at 0x21f25e8).
+  It reads 8 bytes at `abs 0x22e0ee0` (`ldc1` at 0x21f25f0).
+  It reads 4 bytes at `a2 (arg2 at entry) +0x0` (`lw` at 0x21f25f4).
+  The return path is selected when `a5(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f25d8).
+  A 4-byte write at `a3 (arg3 at entry) +0x0` has value unresolved (`swc1` at 0x21f265c).
+  A 4-byte write at `a3 (arg3 at entry) +0xc` has value unresolved (`swc1` at 0x21f2660).
+  A 4-byte write at `a3 (arg3 at entry) +0x4` has value unresolved (`swc1` at 0x21f266c).
+  A 4-byte write at `a3 (arg3 at entry) +0x8` has value unresolved (`swc1` at 0x21f2678).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f2690, 0x21f270c).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f26f0, 0x21f26f8, 0x21f2700, 0x21f2708).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = 0xee1d8` (`jr` at 0x21f2798).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackUbyteI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f27a0, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f27a0).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f27a8).
+  Further 1-byte read sites have unresolved moving bases
+  (`lbu` at 0x21f27c0, 0x21f27f0, 0x21f2800, 0x21f2810).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f27e0, 0x21f27fc, 0x21f280c, 0x21f281c).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f2840).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackByteI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2850, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2850).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2858).
+  Further 1-byte read sites have unresolved moving bases
+  (`lb` at 0x21f2870, 0x21f28a0, 0x21f28b0, 0x21f28c0).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2890, 0x21f28ac, 0x21f28bc, 0x21f28cc).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f28f0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackUshortI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2900, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2900).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2908).
+  Further 2-byte read sites have unresolved moving bases
+  (`lhu` at 0x21f2920, 0x21f2950, 0x21f2960, 0x21f2970).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2940, 0x21f295c, 0x21f296c, 0x21f297c).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f29a0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackShortI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f29b0, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f29b0).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f29b8).
+  Further 2-byte read sites have unresolved moving bases
+  (`lh` at 0x21f29d0, 0x21f2a00, 0x21f2a10, 0x21f2a20).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f29f0, 0x21f2a0c, 0x21f2a1c, 0x21f2a2c).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f2a50).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackUintI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2a60, occupies 216 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2a60).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2a68).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f2a80, 0x21f2ac0, 0x21f2ad8, 0x21f2af0).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2aa8, 0x21f2ad4, 0x21f2aec, 0x21f2b04).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f2b30).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackIntI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2b40, occupies 168 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2b40).
+  The return path is selected when `a4(=[a1+196]) <= 0 (signed)` (`blez` at 0x21f2b48).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f2b60, 0x21f2b90, 0x21f2ba0, 0x21f2bb0).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2b80, 0x21f2b9c, 0x21f2bac, 0x21f2bbc).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = ?` (`jr` at 0x21f2be0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
+
+- `__glSpanUnpackNonCompUint` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x21f2bf0, occupies 232 bytes.
+  Inferred. It reads 4 bytes at `a1 (arg1 at entry) +0x24` (`lw` at 0x21f2bf0).
+  It reads 4 bytes at `a1 (arg1 at entry) +0xc4` (`lw` at 0x21f2bf4).
+  The return path is selected when `a4(?) <= 0 (signed)` (`blez` at 0x21f2c08).
+  Further 4-byte read sites have unresolved moving bases
+  (`lw` at 0x21f2c1c, 0x21f2c60, 0x21f2c78, 0x21f2c90).
+  Further 4-byte write sites have unresolved moving bases
+  (`swc1` at 0x21f2c44, 0x21f2c74, 0x21f2c8c, 0x21f2ca4).
+  The full body makes no calls.
+  Hostfacts reports return register `v0 = [a1+36]` (`jr` at 0x21f2cd0).
+  The complete unpacking equation, missing converted values and full source/output
+  address progression remain unknown.
