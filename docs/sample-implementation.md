@@ -34653,3 +34653,83 @@ comparison was not rerun and supplies no new target equation.
   | `jr` at 0x223ec24 | `v0 = 0x0; f0 = ret(?)` |
 
   Undecoded words: `0x223eaac`.
+
+- `clipToPlaneEye` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223ec40, 872 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5ec40, 872 bytes.
+
+- `__glDoPolygonClip` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223efb0, 936 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5efb0, 936 bytes.
+
+- `__glClipPolygon` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223f360, 264 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5f360, 264 bytes.
+
+- `__glClipTriangle` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223f470, 72 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5f470, 72 bytes.
+
+- `FillSubTriangle` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223f4c0, 1388 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5f4c0, 1388 bytes.
+
+- `__glSnapXLeft` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223fa30, 352 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5fa30, 352 bytes.
+
+- `__glSnapXRight` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223fb90, 208 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5fb90, 208 bytes.
+
+- `__glPolygonOffsetZ` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x223fd50, 340 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e5fd50, 340 bytes.
+
+- `__glFillTriangle` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2240550, 2064 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e60550, 2064 bytes.
+
+- `__glFillFlatFogTriangle` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2240d60, 284 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e60d60, 284 bytes.
+
+- `__glMatValidateVbuf0N` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2240e80, 184 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e60e80, 184 bytes.
+
+- `__glMatValidateVbuf0V1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2240f40, 144 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e60f40, 144 bytes.
+
+- `__glMatValidateV1` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2240fd0, 84 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e60fd0, 84 bytes.
+
+- `__glMatValidateV1V2` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2241030, 144 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e61030, 144 bytes.
+
+- `__glMatValidateV1V2V3` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22410c0, 184 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e610c0, 184 bytes.
+
+- `__glMatValidateV2V3` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2241180, 144 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e61180, 144 bytes.
+
+- `SecondTFanVertex` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22412b0, 56 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e612b0, 56 bytes.
+
+- `FirstTFanVertex` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x22412f0, 44 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e612f0, 44 bytes.
+
+- `__glBeginTFan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2241320, 60 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e61320, 60 bytes.
+
+- `SecondTStripVertex` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Target 0x2241360, 52 bytes. Complete byte identity with
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e61360, 52 bytes.
