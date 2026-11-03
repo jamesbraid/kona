@@ -8055,6 +8055,189 @@ Target entries:
   Address 0xd9a4960; occupies 188 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9a4960 for 188 bytes (SHA-256 `ee61d7ed8978037c6ee19b2fb7c8a419224d58c0c11bb1339c9ac71814bb2531`). Documented sibling grade: Inferred.
 
 
+#### IP35 N32 routines compared with IP27 O32 siblings (batch 091)
+
+The table uses reviewer-confirmed native routine bounds. Identical bodies receive only an identity note. Different bodies have separate target observations. All target-specific behavior notes are Inferred.
+
+| Routine | IP35 target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Different shared-prefix bytes |
+|---|---|---|---|---|---:|
+| `__glSlowPickReadPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a4a20 / 156 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9a9194 / 196 | `873d436b84808ee86bfc613e17d7f91452341d0c19f80e575769094e497dd533` | `07a4e9a34eeefc437c9bbbe8a55f2635d7d13f3064433b3ad78cb32518a78856` | 140 |
+| `__glGenericPickReadPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a4ac0 / 300 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9a9258 / 312 | `5909df8ab9906d95aabfc883a4e21ada5d2f536277835edba8e2f045e6177493` | `7a1fdd2c10f93caa6220857f217e76aa564fc1ea8a6473e45352fd280de1621e` | 267 |
+| `__glClipCopyPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a4bf0 / 1492 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9a9390 / 2008 | `8144869e70f192242e3daaaba998d6bc62c2c8e43308647b7696ecf96f052e36` | `70283d58c951dff12111f8e8486b3b8b76aa401e8504586bb688aba69b5969a0` | 1356 |
+| `__glInitCopyPixelsInfo` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a51d0 / 492 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9a9b68 / 636 | `02ddbfb98511c053e05b37cffb52998ff3b62d9c5ca728829740a30978f41e95` | `36080f0c79a929e4c56bf6b55e22e1ab9985208ab5648c40f9f65630d40485d4` | 439 |
+| `__glCopyPixels2` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a5670 / 616 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9aa054 / 580 | `c1bcc5973549db6bd0b2fcb735afde6d9f60d6b0afd41f3db2494d004f4fba68` | `d46e785d0d9d1d8a819e6e5e87719e7632a2077eeaa537efc244b4a559ea0695` | 523 |
+| `__glCopyPixels1` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a58e0 / 576 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9aa298 / 544 | `672559370894a33ec05e417fd575ee4574e86892dbf59f57359ddc737d9d2a66` | `45e5a44cd2ae5b4d8af41a69426d5e8b9c5ec995a202150cc6450fa3a4838e0d` | 482 |
+| `__glCopyPixels0` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a5b20 / 516 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9aa4b8 / 476 | `106e19dcfc9507d761aaa23519e22c356bea0f309c1215336ae06d2dbabc13b1` | `e6af8b3646bbbbcd5cac3a1e6356aa117552b85fc0fbd8d8f9da54ed0c6956af` | 438 |
+| `__glCopyPixelsOverlapping` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a5d30 / 2572 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9aa694 / 2404 | `452a792a16ff1b3164f5a7199a07a41390762103f549f042cd2a447cf09ca15f` | `351638dbb2df625c7120075f9d3dba1e722bd2ddfa1647b7097949e558e30ee8` | 2276 |
+| `__glSlowPickCopyPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6740 / 132 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9aaff8 / 156 | `f559f3e180f563973731e0f53d31c6924d778723150ad9ca93ef94261ea6caa4` | `1bd2893cd4c0ce15a64b5d7943f533bc190e25552049cdfb1e817591d9463957` | 114 |
+| `__glGenericPickCopyPixels` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a67d0 / 292 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab094 / 296 | `7133336e1fdb45d1f9cc04510f695d26b268d88a6484922a0353e3cfb3240146` | `eea9bd61c17e1b327aaf0582b1904e989fb1dfb9e3bc428e60a5ad6dade70e9b` | 252 |
+| `__glCopyImage1` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6900 / 188 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab1bc / 184 | `9824e5d52cfc4642b5cdf9311674b34da1a771001a29dc4204f8c47c0aa34e10` | `e8cb35258b0a144d0fff97c5379089980f144a43c2470348385f099265c260ab` | 137 |
+| `__glCopyImage2` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a69c0 / 276 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab274 / 276 | `843e5045e3cd0ebf3b466277f97690c1ba5572cadf5d32914e28bfad4b1d1d9a` | `884716b05297da23a4bdfd3041d4034a708624149e2a0c4f35c5a31d88bca2ca` | 239 |
+| `__glCopyImage3D` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6d70 / 188 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab5e4 / 176 | `df090b32d5e96c20b2787f3cb610186d64c585a4a476d25c4e588a1008e4e2c6` | `62a81be3d3611decd25ec08442e9e25439ae2e5e104e0ab4fcdb3f5bc81d73f6` | 147 |
+| `__glGenericPickCopyImage` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6e30 / 248 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab694 / 292 | `0f8186605069f1fe6975b5506666face4111694a1fbfffcb6e066ae28c43ee48` | `22b8d01d716371fd11e412112e7cd68a3f3c771f2839b4734e2bcaba3758fec8` | 224 |
+| `__glInitReadImageSrcInfo` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6f30 / 192 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab7b8 / 232 | `aed4c4d5b6d0c8620f807c93d152316f976e215d3ac3841ab11f5bdf51fae859` | `1617a5ae970b9ea2002eeef99fab59ccf8a67c8a37a299134e4e01fb7315091c` | 174 |
+| `__glGenericPickReadImage` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a6ff0 / 304 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab8a0 / 312 | `cef697043f86b6a99f4e6607cad8e8d3cceceec38bd942a750cfc43a83076f52` | `ebecb4aef24e33cc22d6ba1c536b9178db994edb2bf1bdb1caad1e2b8223f3ba` | 260 |
+| `__glInitMemLoad` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a7120 / 316 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9ab9d8 / 348 | `34b8bd7db9fc6f5e87a9e72a3882d5e3154e756d44d89b2cf74492ef9b87b063` | `0863f1ca57211e3746ac5806e68eb426d14aa358e9c7cfe30a6921c4937e3258` | 249 |
+| `__glInitMemGet` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a7260 / 248 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9abb34 / 304 | `b261f3be525e92db6bb484d9f805b756de807fb183c5dca0095d9c29edd9ec84` | `bb19acd2c1a8da583f13ca5bd304c9d13b671441b1ec54f9f51cc0d1db5d16f9` | 178 |
+| `__glInitMemUnpack` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a7360 / 104 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9abc64 / 140 | `bba90c59f26198c86b55bfe1a6cd9b8a2efdb401fc3c1753cf912b8411d52153` | `7ba61d66c5d9532bd47ad47ede805cb1ea77e3af20347ce45162886598e3d32f` | 82 |
+| `__glInitMemPack` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9a73d0 / 100 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9abcf0 / 120 | `b1a31824352a920efc08dfe55796eb23153fdb541c8cc01f49597cdbeb60a2c5` | `cda3d747945a445a9cdcabc51b8f805c70b92c05c8478f4f9df7999d83328d2b` | 80 |
+
+Target entries:
+
+- `__glSlowPickReadPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a4a20. Occupies 156 bytes.
+  Inferred. The slow read path calls `__glInitReadPixelsInfo` with entry a0 and a record at entry sp -0x210, followed by the original input arguments (`bgezall` at 0xd9a4a6c).
+  `__glClipReadPixels`, `__glInitPacker` and `__glGenericPickReadPixels` each receive entry a0 and that same record (`bgezall` at 0xd9a4a7c, `jalr` at 0xd9a4a90, and `bgezall` at 0xd9a4aa0).
+  The full readback effects depend on those callees, which are not re-read here.
+  Unequal exact ranges: target 156 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9a9194 +196 bytes / 140 changed common-prefix byte positions
+  SHA-256 target `873d436b84808ee86bfc613e17d7f91452341d0c19f80e575769094e497dd533` / documented O32 `07a4e9a34eeefc437c9bbbe8a55f2635d7d13f3064433b3ad78cb32518a78856`
+  Existing entry: `docs/sample-implementation.md`, `__glSlowPickReadPixels` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target 156 bytes, SHA-256 `873d436b84808ee86bfc613e17d7f91452341d0c19f80e575769094e497dd533`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a9194, 196 bytes, SHA-256 `07a4e9a34eeefc437c9bbbe8a55f2635d7d13f3064433b3ad78cb32518a78856`; 140 differing bytes in the common prefix.
+
+- `__glGenericPickReadPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a4ac0. Occupies 300 bytes.
+  Inferred. Read-path selection calls `PickSpanModifiers` with entry a0, entry a1 and entry sp -0x40 (`bgezall` at 0xd9a4b04).
+  Its eventual unknown callback keeps entry a0 and entry a1 as its first two arguments (`jalr` at 0xd9a4b88).
+  The complete callback choice and downstream pixel format remain unresolved.
+  Byte comparison: target 300 bytes, SHA-256 `5909df8ab9906d95aabfc883a4e21ada5d2f536277835edba8e2f045e6177493`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a9258, 312 bytes, SHA-256 `7a1fdd2c10f93caa6220857f217e76aa564fc1ea8a6473e45352fd280de1621e`; 267 differing bytes in the common prefix.
+
+- `__glClipCopyPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a4bf0. Occupies 1492 bytes.
+  Inferred. Copy clipping calls `__glClipReadPixels` and `__glClipDrawPixels` with the original context and span pointers (`bgezall` at 0xd9a4c24 and `bgezall` at 0xd9a4c7c).
+  Later arithmetic calls include `ceilf` and two `floorf` sites, with primary arguments unresolved (`jalr` at 0xd9a5048, `jalr` at 0xd9a50e8, and `jalr` at 0xd9a5184).
+  Fourteen decoder-unknown words are retained in the complete listing. No missing floating-point condition is reconstructed.
+  A fused multiply-add occurs at 0xd9a4d68 (`madd.s` at 0xd9a4d68); its operands are not reconstructed.
+  The full clipping, zoom and overlap decision remains unknown beyond the resolved calls and accesses.
+  Byte comparison: target 1492 bytes, SHA-256 `8144869e70f192242e3daaaba998d6bc62c2c8e43308647b7696ecf96f052e36`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a9390, 2008 bytes, SHA-256 `70283d58c951dff12111f8e8486b3b8b76aa401e8504586bb688aba69b5969a0`; 1356 differing bytes in the common prefix.
+
+- `__glInitCopyPixelsInfo` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a51d0. Occupies 492 bytes.
+  Inferred. Copy-span initialization includes long-integer truncation of a context float (`trunc.l.s` at 0xd9a51dc).
+  Three undecodable words at 0xd9a5218, 0xd9a523c and 0xd9a5270 remain explicit, so the zoom and direction conditions are unresolved.
+  This routine contains no calls. The selected reads below do not establish the complete descriptor layout.
+  Byte comparison: target 492 bytes, SHA-256 `02ddbfb98511c053e05b37cffb52998ff3b62d9c5ca728829740a30978f41e95`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a9b68, 636 bytes, SHA-256 `36080f0c79a929e4c56bf6b55e22e1ab9985208ab5648c40f9f65630d40485d4`; 439 differing bytes in the common prefix.
+
+- `__glCopyPixels2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a5670. Occupies 616 bytes.
+  Inferred. The path named for two modifiers invokes `__glComputeSpanPixelArray` with entry a0 and entry a1 (`bgezall` at 0xd9a5714).
+  Its overlap call passes those same pointers and 2 as the third argument (`bgezall` at 0xd9a5730).
+  The remaining indirect-call sites are `jalr` at 0xd9a5834, `jalr` at 0xd9a584c, `jalr` at 0xd9a5864, `jalr` at 0xd9a5878.
+  Each retains entry a0 and entry a1 first. Hostfacts leaves the temporary pixel-buffer arguments unresolved.
+  The complete row-skipping and buffer-exchange behavior is not transferred from the O32 entry.
+  Byte comparison: target 616 bytes, SHA-256 `c1bcc5973549db6bd0b2fcb735afde6d9f60d6b0afd41f3db2494d004f4fba68`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9aa054, 580 bytes, SHA-256 `d46e785d0d9d1d8a819e6e5e87719e7632a2077eeaa537efc244b4a559ea0695`; 523 differing bytes in the common prefix.
+
+- `__glCopyPixels1` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a58e0. Occupies 576 bytes.
+  Inferred. The path named for one modifier invokes `__glComputeSpanPixelArray` with entry a0 and entry a1 (`bgezall` at 0xd9a5984).
+  Its overlap call passes those same pointers and 1 as the third argument (`bgezall` at 0xd9a59a0).
+  The remaining indirect-call sites are `jalr` at 0xd9a5a94, `jalr` at 0xd9a5aac, `jalr` at 0xd9a5ac0.
+  Each retains entry a0 and entry a1 first. Hostfacts leaves the temporary pixel-buffer arguments unresolved.
+  The complete row-skipping and buffer-exchange behavior is not transferred from the O32 entry.
+  Byte comparison: target 576 bytes, SHA-256 `672559370894a33ec05e417fd575ee4574e86892dbf59f57359ddc737d9d2a66`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9aa298, 544 bytes, SHA-256 `45e5a44cd2ae5b4d8af41a69426d5e8b9c5ec995a202150cc6450fa3a4838e0d`; 482 differing bytes in the common prefix.
+
+- `__glCopyPixels0` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a5b20. Occupies 516 bytes.
+  Inferred. The path named for zero modifiers invokes `__glComputeSpanPixelArray` with entry a0 and entry a1 (`bgezall` at 0xd9a5bb0).
+  Its overlap call passes those same pointers and 0 as the third argument (`bgezall` at 0xd9a5bcc).
+  The remaining indirect-call sites are `jalr` at 0xd9a5cb4, `jalr` at 0xd9a5cc8.
+  Each retains entry a0 and entry a1 first. Hostfacts leaves the temporary pixel-buffer arguments unresolved.
+  The complete row-skipping and buffer-exchange behavior is not transferred from the O32 entry.
+  Byte comparison: target 516 bytes, SHA-256 `106e19dcfc9507d761aaa23519e22c356bea0f309c1215336ae06d2dbabc13b1`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9aa4b8, 476 bytes, SHA-256 `e6af8b3646bbbbcd5cac3a1e6356aa117552b85fc0fbd8d8f9da54ed0c6956af`; 438 differing bytes in the common prefix.
+
+- `__glCopyPixelsOverlapping` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a5d30. Occupies 2572 bytes.
+  Inferred. The overlap routine has nineteen indirect-call sites, all with entry a0 first.
+  Selected calls use a local descriptor at entry sp -0x220 (`jalr` at 0xd9a60c8, `jalr` at 0xd9a61ec, and `jalr` at 0xd9a6228).
+  Other selected calls keep entry a1 as their descriptor (`jalr` at 0xd9a614c, `jalr` at 0xd9a6188, and `jalr` at 0xd9a61a4).
+  Pixel-buffer arguments and callees remain unknown. The full directional row schedule and buffering algorithm are not reconstructed from the O32 prose.
+  Byte comparison: target 2572 bytes, SHA-256 `452a792a16ff1b3164f5a7199a07a41390762103f549f042cd2a447cf09ca15f`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9aa694, 2404 bytes, SHA-256 `351638dbb2df625c7120075f9d3dba1e722bd2ddfa1647b7097949e558e30ee8`; 2276 differing bytes in the common prefix.
+
+- `__glSlowPickCopyPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6740. Occupies 132 bytes.
+  Inferred. The slow copy path builds a record at entry sp -0x210 through `__glInitCopyPixelsInfo`, with entry a0 first (`bgezall` at 0xd9a6780).
+  `__glClipCopyPixels` and `__glGenericPickCopyPixels` receive the same context and record pointers (`bgezall` at 0xd9a6790 and `bgezall` at 0xd9a67a8).
+  The selected routine's memory-copy effects remain outside this wrapper.
+  Unequal exact ranges: target 132 bytes / `usr/gfx/arch/IP27KONA/libGLcore.so` 0xd9aaff8 +156 bytes / 114 changed common-prefix byte positions
+  SHA-256 target `f559f3e180f563973731e0f53d31c6924d778723150ad9ca93ef94261ea6caa4` / documented O32 `1bd2893cd4c0ce15a64b5d7943f533bc190e25552049cdfb1e817591d9463957`
+  Existing entry: `docs/sample-implementation.md`, `__glSlowPickCopyPixels` in `usr/gfx/arch/IP27KONA/libGLcore.so` (Inferred)
+  Byte comparison: target 132 bytes, SHA-256 `f559f3e180f563973731e0f53d31c6924d778723150ad9ca93ef94261ea6caa4`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9aaff8, 156 bytes, SHA-256 `1bd2893cd4c0ce15a64b5d7943f533bc190e25552049cdfb1e817591d9463957`; 114 differing bytes in the common prefix.
+
+- `__glGenericPickCopyPixels` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a67d0. Occupies 292 bytes.
+  Inferred. Copy-path selection invokes `PickSpanModifiers` with entry a0, entry a1 and entry sp -0x40 (`bgezall` at 0xd9a6818).
+  Its unknown selected callback receives entry a0, entry a1 and the modifier-picker result minus one (`jalr` at 0xd9a6898).
+  The complete callback mapping and copy outcome remain unresolved.
+  Byte comparison: target 292 bytes, SHA-256 `7133336e1fdb45d1f9cc04510f695d26b268d88a6484922a0353e3cfb3240146`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab094, 296 bytes, SHA-256 `eea9bd61c17e1b327aaf0582b1904e989fb1dfb9e3bc428e60a5ad6dade70e9b`; 252 differing bytes in the common prefix.
+
+- `__glCopyImage1` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6900. Occupies 188 bytes.
+  Inferred. The one-modifier image path calls an unknown procedure with entry a0, entry a1 and the pointer words at entry a1 +0xc/+0x5c (`jalr` at 0xd9a6960).
+  That resolved call signature does not establish the procedure's pixel conversion or the complete row iteration count.
+  Byte comparison: target 188 bytes, SHA-256 `9824e5d52cfc4642b5cdf9311674b34da1a771001a29dc4204f8c47c0aa34e10`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab1bc, 184 bytes, SHA-256 `e8cb35258b0a144d0fff97c5379089980f144a43c2470348385f099265c260ab`; 137 differing bytes in the common prefix.
+
+- `__glCopyImage2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a69c0. Occupies 276 bytes.
+  Inferred. The first image callback receives entry a0, entry a1 and the pointer word at entry a1 +0xc, while its fourth argument is unknown (`jalr` at 0xd9a6a50).
+  The second keeps entry a0 and entry a1 first, leaves its third argument unknown and uses the word at entry a1 +0x5c fourth (`jalr` at 0xd9a6a78).
+  The intermediate buffer's address and both callback effects remain unestablished.
+  Byte comparison: target 276 bytes, SHA-256 `843e5045e3cd0ebf3b466277f97690c1ba5572cadf5d32914e28bfad4b1d1d9a`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab274, 276 bytes, SHA-256 `884716b05297da23a4bdfd3041d4034a708624149e2a0c4f35c5a31d88bca2ca`; 239 differing bytes in the common prefix.
+
+- `__glCopyImage3D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6d70. Occupies 188 bytes.
+  Inferred. The three-dimensional image wrapper repeatedly reaches one indirect-call site with entry a0 and entry a1 first (`jalr` at 0xd9a6dd8).
+  Remaining call arguments are unknown. The complete slice count and image-pointer progression are not reconstructed from the O32 implementation.
+  Byte comparison: target 188 bytes, SHA-256 `df090b32d5e96c20b2787f3cb610186d64c585a4a476d25c4e588a1008e4e2c6`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab5e4, 176 bytes, SHA-256 `62a81be3d3611decd25ec08442e9e25439ae2e5e104e0ab4fcdb3f5bc81d73f6`; 147 differing bytes in the common prefix.
+
+- `__glGenericPickCopyImage` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6e30. Occupies 248 bytes.
+  Inferred. Generic image-copy selection calls `__glGenericPickCopyImageSpan` with the original first four argument registers (`bgezall` at 0xd9a6e60).
+  It can call `__glCopyImage3D`, keeping entry a0 and entry a1 first but with an unresolved copy callback (`bgezall` at 0xd9a6ee4).
+  Its other indirect-call site also retains the context and descriptor pointers (`jalr` at 0xd9a6f18).
+  The full image-format dispatch remains unknown.
+  Byte comparison: target 248 bytes, SHA-256 `0f8186605069f1fe6975b5506666face4111694a1fbfffcb6e066ae28c43ee48`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab694, 292 bytes, SHA-256 `22b8d01d716371fd11e412112e7cd68a3f3c771f2839b4734e2bcaba3758fec8`; 224 differing bytes in the common prefix.
+
+- `__glInitReadImageSrcInfo` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6f30. Occupies 192 bytes.
+  Inferred. Frame-buffer image-source setup converts the adjusted x value to float (`cvt.s.w` at 0xd9a6f3c).
+  The x adjustment reads and adds the context word (`lw` at 0xd9a6f30 and `addu` at 0xd9a6f34).
+  The table records coordinate stores and a word set to 0x1406. No callbacks occur in this body.
+  The complete format and vertical-origin mapping is not inferred from the O32 description.
+  Byte comparison: target 192 bytes, SHA-256 `aed4c4d5b6d0c8620f807c93d152316f976e215d3ac3841ab11f5bdf51fae859`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab7b8, 232 bytes, SHA-256 `1617a5ae970b9ea2002eeef99fab59ccf8a67c8a37a299134e4e01fb7315091c`; 174 differing bytes in the common prefix.
+
+- `__glGenericPickReadImage` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a6ff0. Occupies 304 bytes.
+  Inferred. Read-image selection calls `PickSpanModifiers` with entry a0, entry a1 and entry sp -0x40 (`jalr` at 0xd9a7038).
+  Its selected unknown callback receives entry a0 and entry a1 first (`jalr` at 0xd9a70bc).
+  The full callback identity and frame-buffer read effects remain unresolved.
+  Byte comparison: target 304 bytes, SHA-256 `cef697043f86b6a99f4e6607cad8e8d3cceceec38bd942a750cfc43a83076f52`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab8a0, 312 bytes, SHA-256 `ebecb4aef24e33cc22d6ba1c536b9178db994edb2bf1bdb1caad1e2b8223f3ba`; 260 differing bytes in the common prefix.
+
+- `__glInitMemLoad` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7120. Occupies 316 bytes.
+  Inferred. Client-memory load setup starts with the selected descriptor writes below.
+  Format-dependent paths contain additional stores, but no complete format-to-field mapping is asserted. The body makes no calls.
+  Byte comparison: target 316 bytes, SHA-256 `34b8bd7db9fc6f5e87a9e72a3882d5e3154e756d44d89b2cf74492ef9b87b063`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9ab9d8, 348 bytes, SHA-256 `0863f1ca57211e3746ac5806e68eb426d14aa358e9c7cfe30a6921c4937e3258`; 249 differing bytes in the common prefix.
+
+- `__glInitMemGet` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7260. Occupies 248 bytes.
+  Inferred. Library-memory read setup records entry a3 and fixed state in the descriptor, as shown below.
+  No external procedure is invoked. The complete internal-format mapping remains a separate unknown.
+  Byte comparison: target 248 bytes, SHA-256 `b261f3be525e92db6bb484d9f805b756de807fb183c5dca0095d9c29edd9ec84`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9abb34, 304 bytes, SHA-256 `bb19acd2c1a8da583f13ca5bd304c9d13b671441b1ec54f9f51cc0d1db5d16f9`; 178 differing bytes in the common prefix.
+
+- `__glInitMemUnpack` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a7360. Occupies 104 bytes.
+  Inferred. Unpack initialization invokes `__glLoadUnpackModes` with entry a0 and entry a1, while its third argument is unresolved (`bgezall` at 0xd9a73b0).
+  The call delay slot stores the context +0xdd8 float at descriptor +0xa0 (`lwc1` at 0xd9a7370 and `swc1` at 0xd9a73b4).
+  The full unpack-mode effects are not established by this wrapper.
+  Byte comparison: target 104 bytes, SHA-256 `bba90c59f26198c86b55bfe1a6cd9b8a2efdb401fc3c1753cf912b8411d52153`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9abc64, 140 bytes, SHA-256 `7ba61d66c5d9532bd47ad47ede805cb1ea77e3af20347ce45162886598e3d32f`; 82 differing bytes in the common prefix.
+
+- `__glInitMemPack` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9a73d0. Occupies 100 bytes.
+  Inferred. Pack initialization invokes `__glLoadPackModes` with the original first four argument registers (`bgezall` at 0xd9a741c).
+  Its delay-slot float store updates entry a1 +0xa0 (`swc1` at 0xd9a7420).
+  Remaining packing-mode effects belong to that callee and are not inferred here.
+  Byte comparison: target 100 bytes, SHA-256 `b1a31824352a920efc08dfe55796eb23153fdb541c8cc01f49597cdbeb60a2c5`; `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9abcf0, 120 bytes, SHA-256 `cda3d747945a445a9cdcabc51b8f805c70b92c05c8478f4f9df7999d83328d2b`; 80 differing bytes in the common prefix.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
