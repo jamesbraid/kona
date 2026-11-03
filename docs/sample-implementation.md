@@ -5103,6 +5103,143 @@ Each complete IP35 body below is byte-identical to the documented IP27 body at t
 
 - `__glim_TexCoord1sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
   Address 0xda172ec; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda172ec for 56 bytes (SHA-256 `b2779e98f0a9106ed93edeefb43885e2a7fb64369b120920b0c4b75c097613c0`). Documented sibling grade: Established.
+#### IP35 O32 routines compared with their documented IP27 siblings (batch 070)
+
+The rows identify the complete target ranges and their documented comparison ranges. Identical bodies retain the documented sibling grade. Different bodies have separate target observations.
+
+| Routine | IP35 range | Documented sibling range | IP35 SHA-256 | Sibling SHA-256 | Changed prefix bytes |
+|---|---|---|---|---|---:|
+| __glim_TexCoord2d | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17324 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17324 / 52 | `65ff6387de99ca66e5bcc1499fed521cf2877ee7d258d9199033e6e4d4a64db4` | `65ff6387de99ca66e5bcc1499fed521cf2877ee7d258d9199033e6e4d4a64db4` | 0 |
+| __glim_TexCoord2i | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17358 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17358 / 60 | `5ef85269d9e39bf2faddf53ff0d1b2da5ced963d0773029dc22d0731d7a7087d` | `5ef85269d9e39bf2faddf53ff0d1b2da5ced963d0773029dc22d0731d7a7087d` | 0 |
+| __glim_TexCoord2s | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17394 / 84 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da13680 / 48 | `0592e246fabed6f671fda4500e9c894ab95b72a7a780356465cfcbdd47b284ad` | `900800e2749bda3108e55863745d4222b810213201db4d4ae9576e5314a88d6f` | 47 |
+| __glim_TexCoord2dv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda173e8 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda173e8 / 60 | `dbc3374a632662ff5e5b2c2998681b0a9b34ea7c5aaa941f34f8b6c2648cbe5d` | `dbc3374a632662ff5e5b2c2998681b0a9b34ea7c5aaa941f34f8b6c2648cbe5d` | 0 |
+| __glim_TexCoord2iv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17424 / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17424 / 72 | `8d099fcda63dff0d7cf7c74069c0298e9c514e941283692cbdd770782d4c4159` | `8d099fcda63dff0d7cf7c74069c0298e9c514e941283692cbdd770782d4c4159` | 0 |
+| __glim_TexCoord2sv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda1746c / 72 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda1746c / 72 | `909ce1ab931dc16f5aaee890eada62f90d8c5f33f5cc7e97f7dc0c28681fc3de` | `909ce1ab931dc16f5aaee890eada62f90d8c5f33f5cc7e97f7dc0c28681fc3de` | 0 |
+| __glim_TexCoord3d | usr/gfx/arch/IP35KONA/libGLcore.so 0xda174b4 / 44 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda174b4 / 44 | `4b6bbb6f660658bdcd6109a26fe67d72f1a0f7956d71322dac1d1f074d6e9724` | `4b6bbb6f660658bdcd6109a26fe67d72f1a0f7956d71322dac1d1f074d6e9724` | 0 |
+| __glim_TexCoord3f | usr/gfx/arch/IP35KONA/libGLcore.so 0xda174e0 / 36 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda174e0 / 36 | `e4f6ca7074556ea7881c15cbbf45ca31ed6965c71617b513c04a86f7ac62192d` | `e4f6ca7074556ea7881c15cbbf45ca31ed6965c71617b513c04a86f7ac62192d` | 0 |
+| __glim_TexCoord3i | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17504 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17504 / 52 | `7fadef351538a73394d9829b3867dee0c413cc9ff4ecad82de0b26ce6468232a` | `7fadef351538a73394d9829b3867dee0c413cc9ff4ecad82de0b26ce6468232a` | 0 |
+| __glim_TexCoord3s | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17538 / 88 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da137f0 / 52 | `d60e10dcc109fff29a7d3fe8b074043d10ca389e4ad46f1a998acc67939354c6` | `fa74a505eda491f25eca4a7d551aa699469a9949f9dd62f3f75bdd42730de03a` | 50 |
+| __glim_TexCoord3dv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17590 / 52 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17590 / 52 | `e40ac9833011b0fbd78bda9aea6ba434f0173a6f4efc00b8b4693907956b7523` | `e40ac9833011b0fbd78bda9aea6ba434f0173a6f4efc00b8b4693907956b7523` | 0 |
+| __glim_TexCoord3fv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda175c4 / 40 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda175c4 / 40 | `cf6b63b840ac2b3273c06194f2ab1a195737ce52f0b0460f157d023688fccf8c` | `cf6b63b840ac2b3273c06194f2ab1a195737ce52f0b0460f157d023688fccf8c` | 0 |
+| __glim_TexCoord3iv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda175ec / 76 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda175ec / 76 | `d500e0dc1b5c2194cc5137bc3ae78744579755141d4472308cb54fe8a895ada6` | `d500e0dc1b5c2194cc5137bc3ae78744579755141d4472308cb54fe8a895ada6` | 0 |
+| __glim_TexCoord3sv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17638 / 76 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17638 / 76 | `58befa812850392e3d2c2886ed0b68e99afe1ad8ec70efbde41932582b55ca80` | `58befa812850392e3d2c2886ed0b68e99afe1ad8ec70efbde41932582b55ca80` | 0 |
+| __glim_TexCoord4d | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17684 / 48 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda17684 / 48 | `3edaae1986d3d525121f44e06f9927f2fc24186af04ba1cf1b4e0ec57f0d08b9` | `3edaae1986d3d525121f44e06f9927f2fc24186af04ba1cf1b4e0ec57f0d08b9` | 0 |
+| __glim_TexCoord4f | usr/gfx/arch/IP35KONA/libGLcore.so 0xda176b4 / 40 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da13950 / 24 | `9fa6da093cf14d62826f35f0ae7a2b133fb5c9191774d0b5075acb4f9ab54723` | `e736c1aa7ae2baed862bbef9c314d82e44f87c3261003a47a3a081539c0832e5` | 15 |
+| __glim_TexCoord4i | usr/gfx/arch/IP35KONA/libGLcore.so 0xda176dc / 56 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda176dc / 56 | `679cec512744cb99d54d9780159847e93617bab701f252ee8cec216b6b79cfb3` | `679cec512744cb99d54d9780159847e93617bab701f252ee8cec216b6b79cfb3` | 0 |
+| __glim_TexCoord4s | usr/gfx/arch/IP35KONA/libGLcore.so 0xda17714 / 104 | usr/gfx/arch/IP27KONA32/libGLcore.so 0x0da139b0 / 56 | `9e9580c8a1c54425f757e4e3ecf59ca119ba131ba6aca576b285321466e2a82a` | `5f5a0e80d8c3e9eba0738b69fecc78a5d6f23cc09af2850bd93f342a415935a1` | 48 |
+| __glim_TexCoord4dv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda1777c / 56 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda1777c / 56 | `1c85bb86d2890350ecafd26987b8461fb84460fe3c7d21167c34367dee4e46b0` | `1c85bb86d2890350ecafd26987b8461fb84460fe3c7d21167c34367dee4e46b0` | 0 |
+| __glim_TexCoord4fv | usr/gfx/arch/IP35KONA/libGLcore.so 0xda177b4 / 40 | usr/gfx/arch/IP27KONA/libGLcore.so 0xda177b4 / 40 | `bcc9f6388d6a1be78bd1634496374124339b7d7f1cfb25884ec3557e346ec895` | `bcc9f6388d6a1be78bd1634496374124339b7d7f1cfb25884ec3557e346ec895` | 0 |
+
+Target entries:
+
+- `__glim_TexCoord2d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17324; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17324 for 52 bytes (SHA-256 `65ff6387de99ca66e5bcc1499fed521cf2877ee7d258d9199033e6e4d4a64db4`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17358; occupies 60 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17358 for 60 bytes (SHA-256 `5ef85269d9e39bf2faddf53ff0d1b2da5ced963d0773029dc22d0731d7a7087d`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17394. Occupies 84 bytes.
+  Inferred. Two-short texture-coordinate conversion saves entry a0 and a1 at entry sp +0x0/+0x4 (`sw` at 0xda173a0 and `sw` at 0xda173a4).
+  Left and arithmetic-right shifts retain the signed low halfwords (`sll` at 0xda173ac, `sra` at 0xda173b0, `sll` at 0xda173a8, and `sra` at 0xda173b4).
+  Both values are converted to float (`cvt.s.w` at 0xda173c4 and `cvt.s.w` at 0xda173d4).
+  C is the pointer loaded from absolute 0x1010 (`lw` at 0xda173c0).
+  Float stores reach C +0xe0/+0xe4/+0xe8/+0xec (`swc1` at 0xda173d8, `swc1` at 0xda173e4, `swc1` at 0xda173d0, and `swc1` at 0xda173dc).
+  The last receives the float loaded at C +0xdd8 (`lwc1` at 0xda173cc), while hostfacts leaves the C +0xe8 float value unresolved.
+  The N32 source remains Established.
+  This distinct target draft is Inferred.
+  Unequal exact ranges: target 84 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da13680 +48 bytes / 47 changed common-prefix byte positions
+  SHA-256 target `0592e246fabed6f671fda4500e9c894ab95b72a7a780356465cfcbdd47b284ad` / documented N32 `900800e2749bda3108e55863745d4222b810213201db4d4ae9576e5314a88d6f`
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord2s` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Byte comparison: target SHA-256 `0592e246fabed6f671fda4500e9c894ab95b72a7a780356465cfcbdd47b284ad`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da13680, 48 bytes, SHA-256 `900800e2749bda3108e55863745d4222b810213201db4d4ae9576e5314a88d6f`; 47 differing bytes in the common prefix.
+
+- `__glim_TexCoord2dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda173e8; occupies 60 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda173e8 for 60 bytes (SHA-256 `dbc3374a632662ff5e5b2c2998681b0a9b34ea7c5aaa941f34f8b6c2648cbe5d`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17424; occupies 72 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17424 for 72 bytes (SHA-256 `8d099fcda63dff0d7cf7c74069c0298e9c514e941283692cbdd770782d4c4159`). Documented sibling grade: Established.
+
+- `__glim_TexCoord2sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda1746c; occupies 72 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda1746c for 72 bytes (SHA-256 `909ce1ab931dc16f5aaee890eada62f90d8c5f33f5cc7e97f7dc0c28681fc3de`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda174b4; occupies 44 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda174b4 for 44 bytes (SHA-256 `4b6bbb6f660658bdcd6109a26fe67d72f1a0f7956d71322dac1d1f074d6e9724`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda174e0; occupies 36 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda174e0 for 36 bytes (SHA-256 `e4f6ca7074556ea7881c15cbbf45ca31ed6965c71617b513c04a86f7ac62192d`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17504; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17504 for 52 bytes (SHA-256 `7fadef351538a73394d9829b3867dee0c413cc9ff4ecad82de0b26ce6468232a`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17538. Occupies 88 bytes.
+  Inferred. Three-short texture-coordinate conversion saves its entry arguments at entry sp +0x0/+0x4/+0x8 (`sw` at 0xda17538, `sw` at 0xda1753c, and `sw` at 0xda17540).
+  The first signed halfword extraction uses a left shift and arithmetic right shift by 16 (`sll` at 0xda1754c and `sra` at 0xda17550).
+  The body converts three integer values to float (`cvt.s.w` at 0xda1756c, `cvt.s.w` at 0xda17574, and `cvt.s.w` at 0xda17580).
+  After loading C from absolute 0x1010 (`lw` at 0xda17568), it stores float words at C +0xe0/+0xe4/+0xe8 (`swc1` at 0xda17578, `swc1` at 0xda17584, and `swc1` at 0xda1758c).
+  The float at C +0xdd8 is copied to C +0xec (`lwc1` at 0xda17570 and `swc1` at 0xda1757c).
+  Its numeric value remains unknown to hostfacts.
+  The existing N32 Established grade is retained as provenance, while the new target entry is Inferred.
+  Unequal exact ranges: target 88 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da137f0 +52 bytes / 50 changed common-prefix byte positions
+  SHA-256 target `d60e10dcc109fff29a7d3fe8b074043d10ca389e4ad46f1a998acc67939354c6` / documented N32 `fa74a505eda491f25eca4a7d551aa699469a9949f9dd62f3f75bdd42730de03a`
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord3s` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Byte comparison: target SHA-256 `d60e10dcc109fff29a7d3fe8b074043d10ca389e4ad46f1a998acc67939354c6`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da137f0, 52 bytes, SHA-256 `fa74a505eda491f25eca4a7d551aa699469a9949f9dd62f3f75bdd42730de03a`; 50 differing bytes in the common prefix.
+
+- `__glim_TexCoord3dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17590; occupies 52 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17590 for 52 bytes (SHA-256 `e40ac9833011b0fbd78bda9aea6ba434f0173a6f4efc00b8b4693907956b7523`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda175c4; occupies 40 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda175c4 for 40 bytes (SHA-256 `cf6b63b840ac2b3273c06194f2ab1a195737ce52f0b0460f157d023688fccf8c`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3iv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda175ec; occupies 76 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda175ec for 76 bytes (SHA-256 `d500e0dc1b5c2194cc5137bc3ae78744579755141d4472308cb54fe8a895ada6`). Documented sibling grade: Established.
+
+- `__glim_TexCoord3sv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17638; occupies 76 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17638 for 76 bytes (SHA-256 `58befa812850392e3d2c2886ed0b68e99afe1ad8ec70efbde41932582b55ca80`). Documented sibling grade: Established.
+
+- `__glim_TexCoord4d` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17684; occupies 48 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda17684 for 48 bytes (SHA-256 `3edaae1986d3d525121f44e06f9927f2fc24186af04ba1cf1b4e0ec57f0d08b9`). Documented sibling grade: Established.
+
+- `__glim_TexCoord4f` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda176b4. Occupies 40 bytes.
+  Inferred. Four-float texture-coordinate storage obtains C from absolute 0x1010 (`lw` at 0xda176b4).
+  The entry a2 and a3 words are saved at entry sp +0x8/+0xc (`sw` at 0xda176b8 and `sw` at 0xda176bc), then loaded as float words (`lwc1` at 0xda176c8 and `lwc1` at 0xda176d0).
+  The first two float-store values are f12 and f14, at C +0xe0/+0xe4 (`swc1` at 0xda176c0 and `swc1` at 0xda176c4).
+  The reloaded argument words reach C +0xe8/+0xec (`swc1` at 0xda176cc and `swc1` at 0xda176d8).
+  The latter store runs in the return delay slot (`jr` at 0xda176d4).
+  Hostfacts reports no calls and v0 equal to C at return.
+  The N32 body remains Established for its own build.
+  The separate O32 draft is conservatively Inferred.
+  Unequal exact ranges: target 40 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da13950 +24 bytes / 15 changed common-prefix byte positions
+  SHA-256 target `9fa6da093cf14d62826f35f0ae7a2b133fb5c9191774d0b5075acb4f9ab54723` / documented N32 `e736c1aa7ae2baed862bbef9c314d82e44f87c3261003a47a3a081539c0832e5`
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord4f` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Byte comparison: target SHA-256 `9fa6da093cf14d62826f35f0ae7a2b133fb5c9191774d0b5075acb4f9ab54723`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da13950, 24 bytes, SHA-256 `e736c1aa7ae2baed862bbef9c314d82e44f87c3261003a47a3a081539c0832e5`; 15 differing bytes in the common prefix.
+
+- `__glim_TexCoord4i` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda176dc; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda176dc for 56 bytes (SHA-256 `679cec512744cb99d54d9780159847e93617bab701f252ee8cec216b6b79cfb3`). Documented sibling grade: Established.
+
+- `__glim_TexCoord4s` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda17714. Occupies 104 bytes.
+  Inferred. Four-short texture-coordinate conversion writes its four entry arguments to entry sp +0x0/+0x4/+0x8/+0xc (`sw` at 0xda17714, `sw` at 0xda17724, `sw` at 0xda17728, and `sw` at 0xda17730).
+  The first signed halfword is extracted with shifts by 16 and converted to float (`sll` at 0xda17718, `sra` at 0xda1771c, and `cvt.s.w` at 0xda1772c).
+  C comes from absolute 0x1010 (`lw` at 0xda17740).
+  Four float-store sites target C +0xe0/+0xe4/+0xe8/+0xec (`swc1` at 0xda1775c, `swc1` at 0xda17768, `swc1` at 0xda17770, and `swc1` at 0xda17778).
+  The last executes in the return delay slot (`jr` at 0xda17774).
+  The exact float results remain unresolved by hostfacts.
+  Source provenance retains the N32 Established grade.
+  This target-specific draft is Inferred.
+  Unequal exact ranges: target 104 bytes / `usr/gfx/arch/IP27KONA32/libGLcore.so` 0x0da139b0 +56 bytes / 48 changed common-prefix byte positions
+  SHA-256 target `9e9580c8a1c54425f757e4e3ecf59ca119ba131ba6aca576b285321466e2a82a` / documented N32 `5f5a0e80d8c3e9eba0738b69fecc78a5d6f23cc09af2850bd93f342a415935a1`
+  Existing entry: `docs/sample-implementation.md`, `__glim_TexCoord4s` in `usr/gfx/arch/IP27KONA32/libGLcore.so` (Established)
+  Byte comparison: target SHA-256 `9e9580c8a1c54425f757e4e3ecf59ca119ba131ba6aca576b285321466e2a82a`; `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0x0da139b0, 56 bytes, SHA-256 `5f5a0e80d8c3e9eba0738b69fecc78a5d6f23cc09af2850bd93f342a415935a1`; 48 differing bytes in the common prefix.
+
+- `__glim_TexCoord4dv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda1777c; occupies 56 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda1777c for 56 bytes (SHA-256 `1c85bb86d2890350ecafd26987b8461fb84460fe3c7d21167c34367dee4e46b0`). Documented sibling grade: Established.
+
+- `__glim_TexCoord4fv` in `usr/gfx/arch/IP35KONA/libGLcore.so`:
+  Address 0xda177b4; occupies 40 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda177b4 for 40 bytes (SHA-256 `bcc9f6388d6a1be78bd1634496374124339b7d7f1cfb25884ec3557e346ec895`). Documented sibling grade: Established.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
