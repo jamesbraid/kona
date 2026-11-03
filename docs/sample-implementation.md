@@ -39038,3 +39038,163 @@ comparison was not rerun and supplies no new target equation.
   108 bytes. Both ranges have SHA-256
   `d8a4f69eb3a4dbf3b50c81eb51715bb1a0cd4db882ac40b0fa01cf0d657bb64b`.
   Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureBlendL` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2261fc0, occupies 80 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e81fc0, which occupies
+  80 bytes. Both ranges have SHA-256
+  `356429b59d93a7f4ba6276ff4fae8401ee185b15c34f51e1ab39962675e92ee0`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureBlendLA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262010, occupies 96 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82010, which occupies
+  96 bytes. Both ranges have SHA-256
+  `abd442f4fb46f52931820cb6df2243b9f9941222660ec2106c7532ad94d77255`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureBlendRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262070, occupies 104 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82070, which occupies
+  104 bytes. Both ranges have SHA-256
+  `738028cb8b57e42fb216d86d87b44f6b12c1d814aad9949c3e0b21fd5939fa92`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureBlendRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22620e0, occupies 120 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e820e0, which occupies
+  120 bytes. Both ranges have SHA-256
+  `e6d9f4ab0f93bb2c912081515fbcc1348214837a0094eaa5fad49051d647ba9b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureBlendI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262180, occupies 100 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82180, which occupies
+  100 bytes. Both ranges have SHA-256
+  `8cc38b76cf3dd05616b020c81af94f94026198d5b784c9383238ff37b74f747d`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureReplaceL` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22621f0, occupies 60 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e821f0, which occupies
+  60 bytes. Both ranges have SHA-256
+  `dcaa39158433fcd9f61cb8a3b862aaf82f8d135a9ced12c70145108b3d1aeed1`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureReplaceLA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262230, occupies 76 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82230, which occupies
+  76 bytes. Both ranges have SHA-256
+  `8c397f55848a1485f35dd71803db2155b3f10ca12252f09b4af20dde27847333`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureReplaceRGB` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262280, occupies 60 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82280, which occupies
+  60 bytes. Both ranges have SHA-256
+  `5cb3042c9f2c1840bcafe3c5cb25aa3d283911deef26f64dd94b3461c874f86b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureReplaceRGBA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x22622c0, occupies 76 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e822c0, which occupies
+  76 bytes. Both ranges have SHA-256
+  `0d4314c0791e00ccb8363cd8cce205d3d7ba6885fdb57ac8b19f9d82d4df5121`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureReplaceI` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2262330, occupies 76 bytes.
+  Source grade: Established. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e82330, which occupies
+  76 bytes. Both ranges have SHA-256
+  `1697c927bfdfb84fb4d049faac6c5c1fa6a5485a3d628adb960e859a6b96b963`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glComputePolygonRho` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2269b20, occupies 332 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e89b20, which occupies
+  332 bytes. Both ranges have SHA-256
+  `ab61dd9c616771910d5886613cfd07a27e079874b6fff79bffb3691b7c4d6519`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glComputeLineRho` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2269c80, occupies 304 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e89c80, which occupies
+  304 bytes. Both ranges have SHA-256
+  `34b5ac6ade932289de0021725b66898e8439549247b71cd846d6564dbbccfd92`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glFastTextureFragment` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2269db0, occupies 116 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e89db0, which occupies
+  116 bytes. Both ranges have SHA-256
+  `1ff911fe3def835f9606513ec4619ddd293398571d3bcf3fcd9031583c0157b1`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glTextureFragment` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2269e30, occupies 144 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e89e30, which occupies
+  144 bytes. Both ranges have SHA-256
+  `a1ea3c7564886cc1790b0d6b00ed20755dc62a108f7d08bf1ef68bf4cc3255ba`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glMipMapFragment` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x2269ec0, occupies 272 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e89ec0, which occupies
+  272 bytes. Both ranges have SHA-256
+  `86a9b1cd3678a198229babb0ba387517a4e4a73b477f0eb103649e82832287c1`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `SphereGen` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a000, occupies 252 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a000, which occupies
+  252 bytes. Both ranges have SHA-256
+  `3c86832380c32b378aaedde4d7916f1d11a33c7f0ff8f5d32b6ae097d352e21b`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcMixedTexture` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a100, occupies 1004 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a100, which occupies
+  1004 bytes. Both ranges have SHA-256
+  `8a6aee52b919be9ea9e2ad066792e18a06f6027f9f3efa130fb22f4268553e42`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcSphereMap` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a4f0, occupies 124 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a4f0, which occupies
+  124 bytes. Both ranges have SHA-256
+  `5bfae490ddcb6891302fe4d57a16e0796e843077d56012404109f5f997a1ce25`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcEyeLinear` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a570, occupies 188 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a570, which occupies
+  188 bytes. Both ranges have SHA-256
+  `15d3d5aa463979407cd3c821eab737348044125cf1687c6abeb789104f9e023f`.
+  Existing note: `docs/sample-implementation.md`.
+
+- `__glCalcObjectLinear` (`usr/gfx/arch/IP35KONA64/libGLcore.so`).
+  Address 0x226a630, occupies 188 bytes.
+  Source grade: Inferred. This range is byte-identical to
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e8a630, which occupies
+  188 bytes. Both ranges have SHA-256
+  `4821bb17e8e602221f72b05420d8034b0f6fc15884ded4a44a9ca3f1593560c7`.
+  Existing note: `docs/sample-implementation.md`.
