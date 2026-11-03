@@ -10181,6 +10181,121 @@ Each row records exact target and sibling bytes. Notes distinguish native routin
 
 - `__glle_TexImage2D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
   Address 0xd9ebf60; occupies 132 bytes. Its complete code range is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ebf60 for 132 bytes (SHA-256 `b486dc8848d15268c05994080522b74ede58f709be8ac5e6aab86face520e671`). Documented sibling grade: Inferred.
+#### IP35 N32 list compilation, matrix and arena routines compared with documented siblings (batch 112)
+
+The table records exact target and source ranges. Inventory-derived target names and extents are marked where native symbol data does not confirm the entry. Identity notes make no role claim; differing target notes remain specific to the N32 body.
+
+| Routine | N32 target range | Documented sibling range | Target SHA-256 | Sibling SHA-256 | Identical | Target bound | Sibling bound | Target grade | Source grade |
+|---|---|---|---|---|---|---|---|---|---|
+| `__gllc_TexImage1D` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ebff0 / 1304 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ebff0 / 1304 | `89a77ba9384dcc56382131994889ef9cf94e9fd66917b4cc45f5e63ff4a70b9d` | `89a77ba9384dcc56382131994889ef9cf94e9fd66917b4cc45f5e63ff4a70b9d` | yes | native | native | Inferred | Inferred |
+| `__gllc_TexImage2D` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ec510 / 1292 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ec510 / 1292 | `4f7a45fafb6e89a9d1384e8c8a53a6535726b2b8c9ca0d019f987bdbcb1ae35e` | `4f7a45fafb6e89a9d1384e8c8a53a6535726b2b8c9ca0d019f987bdbcb1ae35e` | yes | native | native | Inferred | Inferred |
+| `__glle_Disable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef2f0 / 68 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef2f0 / 68 | `8f7593f2d6dc0728e790122fc5136687c1c5a7495d7efa04cd4a9bd1c5c6edf5` | `8f7593f2d6dc0728e790122fc5136687c1c5a7495d7efa04cd4a9bd1c5c6edf5` | yes | native | native | Established | Inferred |
+| `__gllc_Disable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef340 / 444 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef340 / 444 | `32536167fe9d7fe8031319a580dbb0438ba31439101d4ab7eb0c2ea6e516c358` | `32536167fe9d7fe8031319a580dbb0438ba31439101d4ab7eb0c2ea6e516c358` | yes | native | native | Inferred | Inferred |
+| `__glle_Enable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef500 / 68 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef500 / 68 | `6ec43cd003781905e558b78caaf4bb1748e7551a04f3c740fccecd2a0ed6f05b` | `6ec43cd003781905e558b78caaf4bb1748e7551a04f3c740fccecd2a0ed6f05b` | yes | native | native | Established | Inferred |
+| `__gllc_Enable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef550 / 396 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef550 / 396 | `52d68937ae477f5033507169dbfdfead5b5b1123a4eaf61aca009b21a4dde06b` | `52d68937ae477f5033507169dbfdfead5b5b1123a4eaf61aca009b21a4dde06b` | yes | native | native | Inferred | Inferred |
+| `__glle_DrawArrays` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef6f0 / 52 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef6f0 / 52 | `156c9744b8995f621a0f6b58c8ff3fa0c4f340fad618ac2af8c4188450e25905` | `156c9744b8995f621a0f6b58c8ff3fa0c4f340fad618ac2af8c4188450e25905` | yes | native | native | Established | Inferred |
+| `__glle_ColorSubTable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9ef9f0 / 116 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9ef9f0 / 116 | `d99b5d32ed76f8ab2c92fc4fd33afec5fa0517b8cc1e83577b14c7bd24d79dc4` | `d99b5d32ed76f8ab2c92fc4fd33afec5fa0517b8cc1e83577b14c7bd24d79dc4` | yes | native | native | Established | Inferred |
+| `__gllc_ColorSubTable` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9efa70 / 416 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9efa70 / 416 | `6d18cf0645588d17365b93cefe6046377f11ee69b9799a38d902166d27f351dd` | `6d18cf0645588d17365b93cefe6046377f11ee69b9799a38d902166d27f351dd` | yes | native | native | Inferred | Inferred |
+| `__gllc_DrawArraysEXT` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9efc10 / 736 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9efc10 / 736 | `f362a7b98342ac95e153adc7801426e486542daac3d0ccc528c99ee7049e802d` | `f362a7b98342ac95e153adc7801426e486542daac3d0ccc528c99ee7049e802d` | yes | native | native | Inferred | Inferred |
+| `__gllc_DrawElements` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9efef0 / 400 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9efef0 / 400 | `34c732fc78bf3d9230a878100ef196ea80a497a602499708782a7a359b56e59a` | `34c732fc78bf3d9230a878100ef196ea80a497a602499708782a7a359b56e59a` | yes | native | native | Inferred | Inferred |
+| `__gllc_DrawRangeElements` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0080 / 92 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f0080 / 92 | `34baec37ddf1c53c9427e22b648631cb20d7b9a37eb0be5908d3a5db56259e13` | `34baec37ddf1c53c9427e22b648631cb20d7b9a37eb0be5908d3a5db56259e13` | yes | native | native | Established | Inferred |
+| `__glCopyMatrix` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f00e0 / 140 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f00e0 / 140 | `ace0679d42237f50ed8d8cad3b3b97d48c1ac4a76ebb2e2b7b4931e81bba2f95` | `ace0679d42237f50ed8d8cad3b3b97d48c1ac4a76ebb2e2b7b4931e81bba2f95` | yes | native | native | Established | Established |
+| `__glMakeIdentity` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0170 / 96 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f0170 / 96 | `10ece369f8fac7f8035bfcd116b49aa360ffe19be38cca8f637a061b9a339b0c` | `10ece369f8fac7f8035bfcd116b49aa360ffe19be38cca8f637a061b9a339b0c` | yes | native | native | Established | Established |
+| `__glMultMatrix` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f01d0 / 240 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f16a0 / 608 | `bfc3db566172f8179bba5bb2a6368917e8516ba66b18a59ef2565ae9f4001e1f` | `aff277a6e637fc33e13383e892f8945c250c5cb606d7c5a5f5e345e11b8a46c1` | no | native | native | Inferred | Established |
+| `__glInvertTransposeMatrix` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f02c0 / 964 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f1900 / 1612 | `1c1b83ad37adfb04d6e9bbec01e1e89c88b5d4aa7cfce42f8817b7b72ee8a3af` | `23a04f9f5cde758aa9d9fa267612f5e72f6e47aee15a99730f301b450d2c5941` | no | native | native | Inferred | Inferred |
+| `__glFloorLog2` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0690 / 64 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f1f4c / 36 | `d5ec2525de99c9f5e2a752b87bc6d63fe2ead8dfac9670692286e86fe5536ff2` | `3fcbd2540f8e8dc773e3fdad1e2c5ca9696ba905addf7b22ceb29534e639dda2` | no | native | native | Inferred | Established |
+| `NewBlock` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f06d0 / 164 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f06d0 / 164 | `5b16702154b114a89484aeecbce2748db875b03962a4c3ad1b06f03bd09b1ed9` | `5b16702154b114a89484aeecbce2748db875b03962a4c3ad1b06f03bd09b1ed9` | yes | inventory-derived | inventory-derived | Inferred | Inferred |
+| `DeleteBlock` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f0780 / 60 | usr/gfx/arch/IP27KONA/libGLcore.so 0xd9f2020 / 92 | `f186f9ff0bc0e56cf6fc100ad2e524e3e174c60af9e14aebe211673eff941fb1` | `188dd1bed2adc8eed14e6b6e1a8921b03a0365db096a0cc60b1fd8f1669c7e7b` | no | inventory-derived | native | Established | Inferred |
+| `__glNewArena` | usr/gfx/arch/IP35KONA32/libGLcore.so 0xd9f07c0 / 188 | usr/gfx/arch/IP27KONA32/libGLcore.so 0xd9f07c0 / 188 | `d426e62c13e2ac42b00fca45c46544f9169112bddec528caf7d1a5062e77e9d6` | `d426e62c13e2ac42b00fca45c46544f9169112bddec528caf7d1a5062e77e9d6` | yes | native | native | Inferred | Inferred |
+
+Target entries:
+
+- `__gllc_TexImage1D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ebff0; occupies 1304 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ebff0 for 1304 bytes (SHA-256 `89a77ba9384dcc56382131994889ef9cf94e9fd66917b4cc45f5e63ff4a70b9d`). Documented sibling grade: Inferred.
+
+- `__gllc_TexImage2D` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ec510; occupies 1292 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ec510 for 1292 bytes (SHA-256 `4f7a45fafb6e89a9d1384e8c8a53a6535726b2b8c9ca0d019f987bdbcb1ae35e`). Documented sibling grade: Inferred.
+
+- `__glle_Disable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef2f0; occupies 68 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef2f0 for 68 bytes (SHA-256 `8f7593f2d6dc0728e790122fc5136687c1c5a7495d7efa04cd4a9bd1c5c6edf5`). Documented sibling grade: Inferred.
+
+- `__gllc_Disable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef340; occupies 444 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef340 for 444 bytes (SHA-256 `32536167fe9d7fe8031319a580dbb0438ba31439101d4ab7eb0c2ea6e516c358`). Documented sibling grade: Inferred.
+
+- `__glle_Enable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef500; occupies 68 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef500 for 68 bytes (SHA-256 `6ec43cd003781905e558b78caaf4bb1748e7551a04f3c740fccecd2a0ed6f05b`). Documented sibling grade: Inferred.
+
+- `__gllc_Enable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef550; occupies 396 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef550 for 396 bytes (SHA-256 `52d68937ae477f5033507169dbfdfead5b5b1123a4eaf61aca009b21a4dde06b`). Documented sibling grade: Inferred.
+
+- `__glle_DrawArrays` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef6f0; occupies 52 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef6f0 for 52 bytes (SHA-256 `156c9744b8995f621a0f6b58c8ff3fa0c4f340fad618ac2af8c4188450e25905`). Documented sibling grade: Inferred.
+
+- `__glle_ColorSubTable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9ef9f0; occupies 116 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9ef9f0 for 116 bytes (SHA-256 `d99b5d32ed76f8ab2c92fc4fd33afec5fa0517b8cc1e83577b14c7bd24d79dc4`). Documented sibling grade: Inferred.
+
+- `__gllc_ColorSubTable` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9efa70; occupies 416 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9efa70 for 416 bytes (SHA-256 `6d18cf0645588d17365b93cefe6046377f11ee69b9799a38d902166d27f351dd`). Documented sibling grade: Inferred.
+
+- `__gllc_DrawArraysEXT` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9efc10; occupies 736 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9efc10 for 736 bytes (SHA-256 `f362a7b98342ac95e153adc7801426e486542daac3d0ccc528c99ee7049e802d`). Documented sibling grade: Inferred.
+
+- `__gllc_DrawElements` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9efef0; occupies 400 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9efef0 for 400 bytes (SHA-256 `34c732fc78bf3d9230a878100ef196ea80a497a602499708782a7a359b56e59a`). Documented sibling grade: Inferred.
+
+- `__gllc_DrawRangeElements` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0080; occupies 92 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f0080 for 92 bytes (SHA-256 `34baec37ddf1c53c9427e22b648631cb20d7b9a37eb0be5908d3a5db56259e13`). Documented sibling grade: Inferred.
+
+- `__glCopyMatrix` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f00e0; occupies 140 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f00e0 for 140 bytes (SHA-256 `ace0679d42237f50ed8d8cad3b3b97d48c1ac4a76ebb2e2b7b4931e81bba2f95`). Documented sibling grade: Established.
+
+- `__glMakeIdentity` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0170; occupies 96 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f0170 for 96 bytes (SHA-256 `10ece369f8fac7f8035bfcd116b49aa360ffe19be38cca8f637a061b9a339b0c`). Documented sibling grade: Established.
+
+- `__glMultMatrix` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f01d0; occupies 240 bytes.
+  Inferred matrix multiplication. It reads original a2 +0x3c/+0x38/+0x34/+0x30 floats (`lwc1`
+  at 0xd9f01d0, 0xd9f01d4, 0xd9f01d8, 0xd9f01dc). Four float-store sites update unresolved
+  moving output bases (`swc1` at 0xd9f023c, 0xd9f0260, 0xd9f0284, 0xd9f02b4). The full leaf
+  calls no helper. Complete multiplication order, indexed output positions, calculated values
+  and aliasing guarantees remain unknown.
+  Byte comparison: `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f16a0, 608 bytes, SHA-256 `aff277a6e637fc33e13383e892f8945c250c5cb606d7c5a5f5e345e11b8a46c1`; 194 differing bytes in the common prefix. Source grade Established; target grade Inferred.
+
+- `__glInvertTransposeMatrix` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f02c0; occupies 964 bytes.
+  Inferred inverse-transpose matrix calculation. It copies original a1 +0x40 to a0 +0x40 (`sw`
+  at 0xd9f02c4). One store site sets a0 +0x3c to float one (`swc1` at 0xd9f03e4). Other stores
+  update a0 +0x20/+0x18/+0x14 with unresolved calculated values (`swc1` at 0xd9f0374,
+  0xd9f037c, 0xd9f0384). The full body has no resolved calls. One undecoded word and two COP3
+  renderings remain. Complete inversion formulas, singularity handling and affected control
+  flow are unassigned.
+  Byte comparison: `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f1900, 1612 bytes, SHA-256 `23a04f9f5cde758aa9d9fa267612f5e72f6e47aee15a99730f301b450d2c5941`; 857 differing bytes in the common prefix. Source grade Inferred; target grade Inferred.
+
+- `__glFloorLog2` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0690; occupies 64 bytes.
+  Inferred integer logarithm helper. The full leaf has no calls or memory accesses. Hostfacts
+  reports zero at one return (`jr` at 0xd9f06c8) and an unresolved result at the other (`jr`
+  at 0xd9f06c0). The complete input-to-result mapping and zero-input convention are not
+  inferred from the shift sequence.
+  Byte comparison: `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f1f4c, 36 bytes, SHA-256 `3fcbd2540f8e8dc773e3fdad1e2c5ca9696ba905addf7b22ceb29534e639dda2`; 27 differing bytes in the common prefix. Source grade Established; target grade Inferred.
+
+- `NewBlock` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f06d0; the inventory-derived range is 164 bytes. Target and `usr/gfx/arch/IP27KONA32/libGLcore.so` bytes match over this range at 0xd9f06d0 for 164 bytes (SHA-256 `5b16702154b114a89484aeecbce2748db875b03962a4c3ad1b06f03bd09b1ed9`). The target and sibling ranges are inventory-derived; native symbol data does not confirm their entry addresses or extents. Documented sibling grade: Inferred.
+
+- `DeleteBlock` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f0780; inventory-derived range is 60 bytes. Native symbol data does not confirm this target entry address or extent.
+  Established block-release callback interface. The first callback receives original context
+  as a0 and original a1 +8's word as a1 (`jalr` at 0xd9f0798). A tail-call site receives
+  original context and original a1 as a0/a1 (`jr` at 0xd9f07b4). The complete wrapper provides
+  no callback identity or numeric return. Ownership and actual deallocation effects remain
+  unknown.
+  The target range is inventory-derived.
+  Byte comparison: `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2020, 92 bytes, SHA-256 `188dd1bed2adc8eed14e6b6e1a8921b03a0365db096a0cc60b1fd8f1669c7e7b`; 49 differing bytes in the common prefix. Source grade Inferred; target grade Established.
+
+- `__glNewArena` in `usr/gfx/arch/IP35KONA32/libGLcore.so`:
+  Address 0xd9f07c0; occupies 188 bytes. The complete body is byte-identical to `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xd9f07c0 for 188 bytes (SHA-256 `d426e62c13e2ac42b00fca45c46544f9169112bddec528caf7d1a5062e77e9d6`). Documented sibling grade: Inferred.
+
+
 ## Software renderer (soft)
 
 ### so_accumop.c
