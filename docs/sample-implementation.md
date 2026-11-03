@@ -30216,3 +30216,430 @@ comparison was not rerun and supplies no new target equation.
   (`jr` at 0x220853c, 0x2208558).
   Unreported state predicates, full copy extents, callback behavior and missing
   calculated values remain unknown.
+
+- `__glGenericPickBlendProcs` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x2209e00, routine size 1416 bytes.
+  Selects software blend procedure slots. Doubleword writes include
+  context +0x4d20, +0x4d28, +0x4d30, +0x4d38 and +0x4d40
+  (`sd` at 0x2209e90, 0x2209f70, 0x2209f98, 0x2209fb8,
+  0x2209e9c). The installed addresses are data here. The body makes
+  no calls. Selection inputs include words at +0x848 and +0x834
+  (`lw` at 0x2209e00, 0x2209e08).
+
+  Existing entry: `docs/sample-implementation.md`, `__glGenericPickBlendProcs` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e29e00,
+  1416 bytes, labelled Inferred.
+  Comparison: target 1416 bytes, existing 1416 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c75ec4395359a666c92b79ca9afeee8de1dcf91a54dbb8e15b1bfdaaf411e199`.
+  Existing SHA-256: `c75ec4395359a666c92b79ca9afeee8de1dcf91a54dbb8e15b1bfdaaf411e199`.
+  Evidence: `review-facts/__glGenericPickBlendProcs.target.txt`,
+  `review-facts/__glGenericPickBlendProcs.sibling.txt`, `review-facts/__glGenericPickBlendProcs.words.txt`,
+  `review-facts/__glGenericPickBlendProcs.bytes.txt`.
+
+- `__glBlendSpan_SA_MSA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220a450, routine size 360 bytes.
+  Reads a software span count at context +0x9758
+  (`lw` at 0x220a458) and doubleword buffer pointers at +0x9840
+  and +0x9838 (`ld` at 0x220a468, 0x220a470).
+  Initial float outputs reach the second pointer's +0xc, +8, +4
+  and +0 (`swc1` at 0x220a4d0, 0x220a4d4, 0x220a4d8,
+  0x220a4e4). Three ambiguous COP1X decodes leave the blend
+  equation unresolved. Later loop bases are also unknown.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBlendSpan_SA_MSA` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2a450,
+  360 bytes, labelled Inferred.
+  Comparison: target 360 bytes, existing 360 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `efaaf67def9ab3dd657ae0e8cc473abbb5379c15694eb3ef95d46ce6749da720`.
+  Existing SHA-256: `efaaf67def9ab3dd657ae0e8cc473abbb5379c15694eb3ef95d46ce6749da720`.
+  Evidence: `review-facts/__glBlendSpan_SA_MSA.target.txt`,
+  `review-facts/__glBlendSpan_SA_MSA.sibling.txt`, `review-facts/__glBlendSpan_SA_MSA.words.txt`,
+  `review-facts/__glBlendSpan_SA_MSA.bytes.txt`.
+
+- `__glBlendSpan_MSA_SA` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220a5c0, routine size 368 bytes.
+  Combines software span floats using the two pointers fetched at
+  context +0x9840 and +0x9838 (`ld` at 0x220a5d4,
+  0x220a5dc). The initial output group occupies the latter
+  buffer's +0xc, +8, +4 and +0 (`swc1` at 0x220a640,
+  0x220a644, 0x220a648, 0x220a654).
+  Reads context +0xf2c (`lwc1` at 0x220a5fc).
+  Hostfacts does not resolve subsequent loop access bases.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBlendSpan_MSA_SA` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2a5c0,
+  368 bytes, labelled Inferred.
+  Comparison: target 368 bytes, existing 368 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `eba8a60224e0d983bf46a80ae6136c6c53364ee8e2ba290330b1745c38f93bf8`.
+  Existing SHA-256: `eba8a60224e0d983bf46a80ae6136c6c53364ee8e2ba290330b1745c38f93bf8`.
+  Evidence: `review-facts/__glBlendSpan_MSA_SA.target.txt`,
+  `review-facts/__glBlendSpan_MSA_SA.sibling.txt`, `review-facts/__glBlendSpan_MSA_SA.words.txt`,
+  `review-facts/__glBlendSpan_MSA_SA.bytes.txt`.
+
+- `__glBlendSpan_SA_ZERO` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220a730, routine size 356 bytes.
+  Processes a software float span whose count comes from
+  context +0x9758 (`lw` at 0x220a738).
+  Loads a doubleword buffer pointer at +0x9838
+  (`ld` at 0x220a744) and a float at +0x9a44
+  (`lwc1` at 0x220a740).
+  Float output instructions include `swc1` at 0x220a778,
+  0x220a784, 0x220a78c and 0x220a79c. Their effective
+  addresses remain unknown in hostfacts.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBlendSpan_SA_ZERO` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2a730,
+  356 bytes, labelled Inferred.
+  Comparison: target 356 bytes, existing 356 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `dabae274f77edd3e2888128ddfecba81ae1f6e6a47429f16e3a79f9717d2fa12`.
+  Existing SHA-256: `dabae274f77edd3e2888128ddfecba81ae1f6e6a47429f16e3a79f9717d2fa12`.
+  Evidence: `review-facts/__glBlendSpan_SA_ZERO.target.txt`,
+  `review-facts/__glBlendSpan_SA_ZERO.sibling.txt`, `review-facts/__glBlendSpan_SA_ZERO.words.txt`,
+  `review-facts/__glBlendSpan_SA_ZERO.bytes.txt`.
+
+- `__glBlendSpan_SA_ONE` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220a8a0, routine size 424 bytes.
+  Updates software span floats using buffers linked at context
+  +0x9840 and +0x9838 (`ld` at 0x220a8c0, 0x220a8c4).
+  Four initial results reach the second buffer's +0xc, +8,
+  +4 and +0 (`swc1` at 0x220a930, 0x220a938,
+  0x220a940, 0x220a94c).
+  Nine undecoded words prevent a claim about
+  clamping predicates or their dependent values. Later loop
+  addresses are unresolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBlendSpan_SA_ONE` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2a8a0,
+  424 bytes, labelled Inferred.
+  Comparison: target 424 bytes, existing 424 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `8b7736a0f14a36bf623ac8e50e99c4e592fd9a6969bd3b809119d6e765f7b038`.
+  Existing SHA-256: `8b7736a0f14a36bf623ac8e50e99c4e592fd9a6969bd3b809119d6e765f7b038`.
+  Evidence: `review-facts/__glBlendSpan_SA_ONE.target.txt`,
+  `review-facts/__glBlendSpan_SA_ONE.sibling.txt`, `review-facts/__glBlendSpan_SA_ONE.words.txt`,
+  `review-facts/__glBlendSpan_SA_ONE.bytes.txt`.
+
+- `__glBlendStippledSpan` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220aa50, routine size 292 bytes.
+  Invokes an unnamed software blend callback loaded from context
+  +0x4d28 (`ld` at 0x220aae8).
+  The call passes original context as argument zero and
+  entry-stack -112 as argument three. Arguments one and two
+  remain unknown (`jalr` at 0x220aaf8).
+  Four local floats are copied out (`swc1` at 0x220ab04,
+  0x220ab0c, 0x220ab14, 0x220ab1c), but their destination
+  bases cannot be resolved.
+
+  Existing entry: `docs/sample-implementation.md`, `__glBlendStippledSpan` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2aa50,
+  292 bytes, labelled Inferred.
+  Comparison: target 292 bytes, existing 292 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `14521ba72a2e2a0fc81eb9a98059faa0479f983710461630d248382156ad4cee`.
+  Existing SHA-256: `14521ba72a2e2a0fc81eb9a98059faa0479f983710461630d248382156ad4cee`.
+  Evidence: `review-facts/__glBlendStippledSpan.target.txt`,
+  `review-facts/__glBlendStippledSpan.sibling.txt`, `review-facts/__glBlendStippledSpan.words.txt`,
+  `review-facts/__glBlendStippledSpan.bytes.txt`.
+
+- `__glInitBuffer` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220ab80, routine size 52 bytes.
+  Initializes software buffer procedure fields without invoking them.
+  Stores doubleword addresses at argument-zero +0x60, +0x58,
+  +0x50, +0x48 and +0x40 (`sd` at 0x220ab9c,
+  0x220aba0, 0x220aba4, 0x220aba8, 0x220abb0).
+  The +0x58 and +0x50 fields both receive 0x220ac40.
+  +0x40 receives 0x220abc0.
+
+  Existing entry: `docs/sample-implementation.md`, `__glInitBuffer` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2ab80,
+  52 bytes, labelled Inferred.
+  Comparison: target 52 bytes, existing 52 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `81c449ec51cff05cc992595d58d71c606a18eecef052cedf2cb69f0ad2da7a8a`.
+  Existing SHA-256: `81c449ec51cff05cc992595d58d71c606a18eecef052cedf2cb69f0ad2da7a8a`.
+  Evidence: `review-facts/__glInitBuffer.target.txt`,
+  `review-facts/__glInitBuffer.sibling.txt`, `review-facts/__glInitBuffer.words.txt`,
+  `review-facts/__glInitBuffer.bytes.txt`.
+
+- `__glMakeCurrentBuffer` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x220abc0, routine size 60 bytes.
+  Links a software buffer to its supplied state. Copies argument-one
+  doublewords +0 and +0x10 to argument-zero +0x18 and
+  +0x38 (`sd` at 0x220abc4, 0x220abdc), plus words
+  +8 and +0xc to +0x20 and +0x28 (`sw` at
+  0x220abcc, 0x220abd4).
+  Retains argument one at +0x70 and argument two at +0
+  (`sd` at 0x220abec, 0x220abf0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glMakeCurrentBuffer` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2abc0,
+  60 bytes, labelled Established.
+  Comparison: target 60 bytes, existing 60 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `92c9db3e03dead366d4866f476fccbefe100bf9bc5631c11d4fc1bed3dae4b0c`.
+  Existing SHA-256: `92c9db3e03dead366d4866f476fccbefe100bf9bc5631c11d4fc1bed3dae4b0c`.
+  Evidence: `review-facts/__glMakeCurrentBuffer.target.txt`,
+  `review-facts/__glMakeCurrentBuffer.sibling.txt`, `review-facts/__glMakeCurrentBuffer.words.txt`,
+  `review-facts/__glMakeCurrentBuffer.bytes.txt`.
+
+- `__glLoseCurrentBuffer` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220ac00, routine size 60 bytes.
+  Writes software buffer state back through the pointer loaded at
+  argument-zero +0x70 (`ld` at 0x220ac08).
+  Output doublewords at pointed +0 and +0x10 retain buffer
+  +0x18 and +0x38 (`sd` at 0x220ac14, 0x220ac30).
+  Words +8 and +0xc retain buffer +0x20 and +0x28
+  (`sw` at 0x220ac1c, 0x220ac24).
+  A separate doubleword store clears buffer +0
+  (`sd` at 0x220ac0c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glLoseCurrentBuffer` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2ac00,
+  60 bytes, labelled Inferred.
+  Comparison: target 60 bytes, existing 60 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `137c9760c38314f85e351eed077dd47782a080fac6373005ab868df78bc53780`.
+  Existing SHA-256: `137c9760c38314f85e351eed077dd47782a080fac6373005ab868df78bc53780`.
+  Evidence: `review-facts/__glLoseCurrentBuffer.target.txt`,
+  `review-facts/__glLoseCurrentBuffer.sibling.txt`, `review-facts/__glLoseCurrentBuffer.words.txt`,
+  `review-facts/__glLoseCurrentBuffer.bytes.txt`.
+
+- `__glim_Color3ub` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x220adb0, routine size 112 bytes.
+  Looks up scalar software colour components using each input shifted
+  by two and context +0x1054 (`lwc1` at 0x220adc8,
+  0x220ade4, 0x220adfc).
+  Float results occupy context +0x260, +0x264 and +0x268
+  (`swc1` at 0x220addc, 0x220adf8, 0x220ae0c).
+  An unnamed callback receives the context from absolute
+  0x1020 as argument zero (`jalr` at 0x220ae08).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3ub` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2adb0,
+  112 bytes, labelled Established.
+  Comparison: target 112 bytes, existing 112 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `f7d6ae38c70a0871b4f2b0f3f516d1fdc7c4de47ea92b39e491a037f5d954724`.
+  Existing SHA-256: `f7d6ae38c70a0871b4f2b0f3f516d1fdc7c4de47ea92b39e491a037f5d954724`.
+  Evidence: `review-facts/__glim_Color3ub.target.txt`,
+  `review-facts/__glim_Color3ub.sibling.txt`, `review-facts/__glim_Color3ub.words.txt`,
+  `review-facts/__glim_Color3ub.bytes.txt`.
+
+- `__glim_Color3ubv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x220ae20, routine size 124 bytes.
+  Reads an unsigned-byte software colour vector at argument-zero
+  +0, +1 and +2 (`lbu` at 0x220ae20, 0x220ae38,
+  0x220ae54). Uses those bytes in context-relative float
+  lookups (`lwc1` at 0x220ae30, 0x220ae48, 0x220ae78).
+  Copies context +0xf2c to +0x26c (`swc1` at 0x220ae7c)
+  before an unnamed context callback (`jalr` at 0x220ae84).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3ubv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2ae20,
+  124 bytes, labelled Established.
+  Comparison: target 124 bytes, existing 124 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `b7a1ea9510f98f76513168a38cced9007d5162e894e174d4144dbb6bb3f641f6`.
+  Existing SHA-256: `b7a1ea9510f98f76513168a38cced9007d5162e894e174d4144dbb6bb3f641f6`.
+  Evidence: `review-facts/__glim_Color3ubv.target.txt`,
+  `review-facts/__glim_Color3ubv.sibling.txt`, `review-facts/__glim_Color3ubv.words.txt`,
+  `review-facts/__glim_Color3ubv.bytes.txt`.
+
+- `__glim_Color3b` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220aea0, routine size 140 bytes.
+  Converts scalar signed-byte colour inputs for software state.
+  Reads a scale at pointed-context +0xf34 (`lwc1` at
+  0x220aed8). Hostfacts leaves the resulting float values unknown.
+  Stores components at +0x268, +0x264 and +0x260
+  (`swc1` at 0x220af04, 0x220af0c, 0x220af18).
+  The indirect call receives that context as argument zero
+  (`jalr` at 0x220af14). Its callee is unnamed.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3b` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2aea0,
+  140 bytes, labelled Inferred.
+  Comparison: target 140 bytes, existing 140 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `426249a720e365f4345f7a578eb0e1b9bb014cdfb94cb82184960569e4a4af29`.
+  Existing SHA-256: `426249a720e365f4345f7a578eb0e1b9bb014cdfb94cb82184960569e4a4af29`.
+  Evidence: `review-facts/__glim_Color3b.target.txt`,
+  `review-facts/__glim_Color3b.sibling.txt`, `review-facts/__glim_Color3b.words.txt`,
+  `review-facts/__glim_Color3b.bytes.txt`.
+
+- `__glim_Color3bv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220af30, routine size 152 bytes.
+  Loads signed bytes from vector +0, +1 and +2
+  (`lb` at 0x220af30, 0x220af54, 0x220af70).
+  Its software colour outputs use pointed-context +0x260,
+  +0x264 and +0x268 (`swc1` at 0x220af50,
+  0x220af6c, 0x220afb4).
+  Alpha is copied from +0xf2c to +0x26c
+  (`swc1` at 0x220afa4). The callback remains unidentified
+  (`jalr` at 0x220afb0), as do the computed RGB values.
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3bv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2af30,
+  152 bytes, labelled Inferred.
+  Comparison: target 152 bytes, existing 152 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `de0c774c29fa869c3dfe57a60cdace2910ed6fc86d0966fdce0bc7deb51116e3`.
+  Existing SHA-256: `de0c774c29fa869c3dfe57a60cdace2910ed6fc86d0966fdce0bc7deb51116e3`.
+  Evidence: `review-facts/__glim_Color3bv.target.txt`,
+  `review-facts/__glim_Color3bv.sibling.txt`, `review-facts/__glim_Color3bv.words.txt`,
+  `review-facts/__glim_Color3bv.bytes.txt`.
+
+- `__glim_Color3d` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Established.
+  Address 0x220afd0, routine size 88 bytes.
+  Narrows three scalar double-precision colour inputs to single
+  precision (`cvt.s.d` at 0x220afd8, 0x220afe0,
+  0x220b000).
+  Saves software RGB at pointed-context +0x268, +0x264
+  and +0x260 (`swc1` at 0x220afe4, 0x220afe8,
+  0x220b008), then calls an unnamed procedure with that
+  context (`jalr` at 0x220b010).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3d` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2afd0,
+  88 bytes, labelled Established.
+  Comparison: target 88 bytes, existing 88 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `c237dae2d1d92260f2b68bf3f90715e7bcc89cb3c42b65c7a36db8ea68fb48d1`.
+  Existing SHA-256: `c237dae2d1d92260f2b68bf3f90715e7bcc89cb3c42b65c7a36db8ea68fb48d1`.
+  Evidence: `review-facts/__glim_Color3d.target.txt`,
+  `review-facts/__glim_Color3d.sibling.txt`, `review-facts/__glim_Color3d.words.txt`,
+  `review-facts/__glim_Color3d.bytes.txt`.
+
+- `__glim_Color3dv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b030, routine size 100 bytes.
+  Accepts a double-precision software colour vector, loading its
+  +0, +8 and +0x10 elements (`ldc1` at 0x220b030,
+  0x220b040, 0x220b060).
+  Single-precision outputs reach context +0x260, +0x264
+  and +0x268 (`swc1` at 0x220b03c, 0x220b058,
+  0x220b080). The final conversion precedes an unnamed
+  callback supplied the context (`jalr` at 0x220b07c).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3dv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b030,
+  100 bytes, labelled Inferred.
+  Comparison: target 100 bytes, existing 100 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `152c0e921a684e9dbb56f1186cbd3925bd236e715fe166cf82729cec1876fb9b`.
+  Existing SHA-256: `152c0e921a684e9dbb56f1186cbd3925bd236e715fe166cf82729cec1876fb9b`.
+  Evidence: `review-facts/__glim_Color3dv.target.txt`,
+  `review-facts/__glim_Color3dv.sibling.txt`, `review-facts/__glim_Color3dv.words.txt`,
+  `review-facts/__glim_Color3dv.bytes.txt`.
+
+- `__glim_Color3i` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b0a0, routine size 136 bytes.
+  Computes scalar integer software colours using floats read at
+  absolute 0x22e07a8 and 0x22e0778 (`lwc1` at
+  0x220b0c4, 0x220b0d0), plus context +0xf44
+  (`lwc1` at 0x220b0e8).
+  Component stores target context +0x268, +0x264 and
+  +0x260 (`swc1` at 0x220b100, 0x220b108,
+  0x220b114). Their values remain unknown in hostfacts.
+  Calls an unnamed context procedure (`jalr` at 0x220b110).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3i` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b0a0,
+  136 bytes, labelled Inferred.
+  Comparison: target 136 bytes, existing 136 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `465171e48ddbafcb482906588e204fe2da683b4763b7822661460ef6fb64aa5f`.
+  Existing SHA-256: `465171e48ddbafcb482906588e204fe2da683b4763b7822661460ef6fb64aa5f`.
+  Evidence: `review-facts/__glim_Color3i.target.txt`,
+  `review-facts/__glim_Color3i.sibling.txt`, `review-facts/__glim_Color3i.words.txt`,
+  `review-facts/__glim_Color3i.bytes.txt`.
+
+- `__glim_Color3iv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b130, routine size 148 bytes.
+  Consumes a software integer colour vector through word loads at
+  +0, +4 and +8 (`lw` at 0x220b130, 0x220b16c,
+  0x220b184).
+  Stores computed floats at pointed-context +0x260,
+  +0x264 and +0x268 (`swc1` at 0x220b168,
+  0x220b180, 0x220b1b0).
+  The output values and indirect callee remain unknown.
+  The call passes context as argument zero
+  (`jalr` at 0x220b1ac).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3iv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b130,
+  148 bytes, labelled Inferred.
+  Comparison: target 148 bytes, existing 148 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `12951d0f8d866c06d2a53b5125b43b74d379b7a76c06735c05fcec8eeb3f9420`.
+  Existing SHA-256: `12951d0f8d866c06d2a53b5125b43b74d379b7a76c06735c05fcec8eeb3f9420`.
+  Evidence: `review-facts/__glim_Color3iv.target.txt`,
+  `review-facts/__glim_Color3iv.sibling.txt`, `review-facts/__glim_Color3iv.words.txt`,
+  `review-facts/__glim_Color3iv.bytes.txt`.
+
+- `__glim_Color3ui` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b1d0, routine size 140 bytes.
+  Converts scalar unsigned-integer colours for software state using
+  long-integer-to-float instructions (`cvt.s.l` at
+  0x220b204, 0x220b20c, 0x220b218).
+  Reads context scale +0xf44 (`lwc1` at 0x220b208).
+  Its float outputs at +0x268, +0x264 and +0x260 have
+  unresolved values (`swc1` at 0x220b234, 0x220b23c,
+  0x220b248). An unnamed callback follows
+  (`jalr` at 0x220b244).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3ui` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b1d0,
+  140 bytes, labelled Inferred.
+  Comparison: target 140 bytes, existing 140 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `359a8c2a796e7fee4160d19c14fcb83a34a54e7fb8e558314a33044fa0c8d832`.
+  Existing SHA-256: `359a8c2a796e7fee4160d19c14fcb83a34a54e7fb8e558314a33044fa0c8d832`.
+  Evidence: `review-facts/__glim_Color3ui.target.txt`,
+  `review-facts/__glim_Color3ui.sibling.txt`, `review-facts/__glim_Color3ui.words.txt`,
+  `review-facts/__glim_Color3ui.bytes.txt`.
+
+- `__glim_Color3uiv` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b260, routine size 152 bytes.
+  Fetches three words from a software unsigned-integer colour
+  vector (`lw` at 0x220b260, 0x220b284, 0x220b2a0).
+  The computed RGB values are unknown, though their context
+  destinations are +0x260, +0x264 and +0x268
+  (`swc1` at 0x220b280, 0x220b29c, 0x220b2e4).
+  Copies context +0xf2c to +0x26c (`swc1` at 0x220b2d4)
+  and invokes an unidentified procedure (`jalr` at 0x220b2e0).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3uiv` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b260,
+  152 bytes, labelled Inferred.
+  Comparison: target 152 bytes, existing 152 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `e66e7f7034d93b9b295cb6d22c148eda7b899a5d16adb460d3f59c7985e2a4c8`.
+  Existing SHA-256: `e66e7f7034d93b9b295cb6d22c148eda7b899a5d16adb460d3f59c7985e2a4c8`.
+  Evidence: `review-facts/__glim_Color3uiv.target.txt`,
+  `review-facts/__glim_Color3uiv.sibling.txt`, `review-facts/__glim_Color3uiv.words.txt`,
+  `review-facts/__glim_Color3uiv.bytes.txt`.
+
+- `__glim_Color3s` (`usr/gfx/arch/IP35KONA64/libGLcore.so`). Inferred.
+  Address 0x220b300, routine size 140 bytes.
+  Uses pointed-context +0xf3c as a float scale for scalar
+  signed-short software colours (`lwc1` at 0x220b338).
+  Results go to +0x268, +0x264 and +0x260
+  (`swc1` at 0x220b364, 0x220b36c, 0x220b378), with
+  their numerical values unresolved by hostfacts.
+  Alpha comes from +0xf2c (`lwc1` at 0x220b330).
+  The indirect call retains context as argument zero
+  (`jalr` at 0x220b374).
+
+  Existing entry: `docs/sample-implementation.md`, `__glim_Color3s` in
+  `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e2b300,
+  140 bytes, labelled Inferred.
+  Comparison: target 140 bytes, existing 140 bytes,
+  byte-identical over both complete ranges.
+  Target SHA-256: `bbcd211d42ef0fd9fe2ce461bf847b4f052225ad8e3735be22b37dbb599de2fc`.
+  Existing SHA-256: `bbcd211d42ef0fd9fe2ce461bf847b4f052225ad8e3735be22b37dbb599de2fc`.
+  Evidence: `review-facts/__glim_Color3s.target.txt`,
+  `review-facts/__glim_Color3s.sibling.txt`, `review-facts/__glim_Color3s.words.txt`,
+  `review-facts/__glim_Color3s.bytes.txt`.
