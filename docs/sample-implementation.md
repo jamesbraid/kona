@@ -20665,3 +20665,298 @@ These notes report binary observations from the exact O32 build. The N32 descrip
   Evidence: `facts/__glim_Viewport.target.txt`,
   `facts/__glim_Viewport.existing.txt`, `facts/__glim_Viewport.full.listing.txt`,
   `facts/__glim_Viewport.compare.txt`.
+
+- `__glim_DepthRange` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda35ec0, occupies 140 bytes.
+  Inferred. It reads the context at absolute 0x1010 and state at 0x1018 (`lw` at
+  0xda35ec0, 0xda35ec8). State 1 selects an error path (`beq` at 0xda35ee8),
+  which calls `__glSetError` with a0=0x502 (`jalr` at 0xda35f3c).
+  The other path calls `SetDepthRange` with a0=the context, f13=original f12
+  and f14=original f13 (`bgezall` at 0xda35efc). It then writes 2 to 0x1018
+  (`sw` at 0xda35f08). The later +0x2e24 access has an unresolved base and
+  stored value (`lw` at 0xda35f14, `sw` at 0xda35f28).
+  The helper's depth calculation and overall return remain unknown.
+  Evidence: `review-facts/__glim_DepthRange.target.txt`, `review-facts/__glim_DepthRange.sibling.txt`,
+  `review-facts/__glim_DepthRange.words.txt`, `review-facts/__glim_DepthRange.bytes.txt`.
+
+- `__glim_Scissor` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36000, occupies 276 bytes.
+  Inferred. It reads context and state at 0x1010/0x1018 (`lw` at 0xda36008, 0xda3601c).
+  State 1 selects error 0x502 (`beq` at 0xda3603c, `jalr` at 0xda36104).
+  Negative original a2 or a3 select error 0x501 (`bltz` at 0xda36044,
+  0xda3604c, `jalr` at 0xda360f0). Context +0x9dc/+0x9e0/+0x9e4/+0x9e8
+  are compared with the four original arguments (`bne` at 0xda36060,
+  0xda36070, 0xda36078, `beq` at 0xda36080).
+  The update path calls
+  `__glReadjustZCounts` with a0=the context when context +0x700 bit 0x4000 is nonzero (`beqz` at 0xda36090,
+  `bgezall` at 0xda36098). It stores original a3/a2/a0/a1 at
+  context +0x9e8/+0x9e4/+0x9dc/+0x9e0 (`sw` at 0xda360a0,
+  0xda360a4, 0xda360ac, 0xda360bc).
+  Two callbacks retain a0=the context (`jalr` at 0xda360b8, 0xda360c4).
+  Their identities, missing arguments and overall return remain unknown.
+  Evidence: `review-facts/__glim_Scissor.target.txt`, `review-facts/__glim_Scissor.sibling.txt`,
+  `review-facts/__glim_Scissor.words.txt`, `review-facts/__glim_Scissor.bytes.txt`.
+
+- `__glim_ClipPlane` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36120, occupies 340 bytes.
+  Established. It reads context and state at absolute 0x1010/0x1018 (`lw` at
+  0xda36128, 0xda3612c). State 1 selects error 0x502 (`beq` at 0xda3614c,
+  `jalr` at 0xda36264). Unsigned original a0 below 0x3000 or
+  original a0-0x3000 at least context +0xe10 selects error 0x500
+  (`bnez` at 0xda36158, `beqz` at 0xda3616c, `jalr` at 0xda36248,
+  0xda36230). Four eight-byte values are read from original a1
+  +0/+8/+0x10/+0x18 (`ldc1` at 0xda36174, 0xda36180, 0xda3618c,
+  0xda36198). Four float stores fill a local buffer, with converted values
+  unresolved (`swc1` at 0xda3617c, 0xda36188, 0xda36194, 0xda361a0).
+  A nonzero byte at [context+0x7414]+0x10c selects the first callback
+  (`lbu` at 0xda361a8, `beqz` at 0xda361ac, `jalr` at 0xda361c0).
+  The second callback takes a1=entry sp-64 (`jalr` at 0xda361e8).
+  The completion path writes 2 to 0x1018 and sets context +0x2e24 bit 0
+  (`sw` at 0xda361f8, 0xda3620c). Callback identities, missing arguments
+  and the plane transformation remain unknown.
+  Evidence: `review-facts/__glim_ClipPlane.target.txt`, `review-facts/__glim_ClipPlane.sibling.txt`,
+  `review-facts/__glim_ClipPlane.words.txt`, `review-facts/__glim_ClipPlane.bytes.txt`.
+
+- `__glPushModelViewMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36280, occupies 428 bytes.
+  Established. It reads context +0xecc/+0x7410/+0x7414
+  (`lw` at 0xda36280, 0xda36288, 0xda36294). The error path is taken when the current pointer is at least the calculated
+  bound in an unsigned comparison (`beqz` at 0xda362b8).
+  That path calls `__glSetError` with a0=0x503 (`jalr` at 0xda3641c).
+  The success path has word-copy loops with unresolved moving source and
+  destination addresses (`lw` at 0xda36320, 0xda36358, `sw` at 0xda3632c, 0xda36360).
+  It advances context +0x7414 by 272 bytes (`sw` at 0xda363e0).
+  The full copy progression, copied-value expressions and success return
+  remain unresolved.
+  Evidence: `review-facts/__glPushModelViewMatrix.target.txt`, `review-facts/__glPushModelViewMatrix.sibling.txt`,
+  `review-facts/__glPushModelViewMatrix.words.txt`, `review-facts/__glPushModelViewMatrix.bytes.txt`.
+
+- `__glPopModelViewMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36430, occupies 164 bytes.
+  Inferred. It reads context +0x7414 and +0x7410 (`lw` at 0xda36430, 0xda36434).
+  An unsigned base-at-least-current comparison selects error 0x504 (`beqz` at
+  0xda36458, `jalr` at 0xda364c4). Otherwise it subtracts 272 from context
+  +0x7414 (`sw` at 0xda36464). It compares the previous current object's -8
+  word with [context+0x741c]+0x108 (`bne` at 0xda36478).
+  A mismatch copies the latter word into the former (`sw` at 0xda364a4)
+  and calls an unresolved callback with a0=[context+0x7414]-96
+  (`jalr` at 0xda364b0). The other callback retains original a0, with a1
+  unresolved (`jalr` at 0xda36488). Callback identities, missing arguments
+  and overall return remain unknown.
+  Evidence: `review-facts/__glPopModelViewMatrix.target.txt`, `review-facts/__glPopModelViewMatrix.sibling.txt`,
+  `review-facts/__glPopModelViewMatrix.words.txt`, `review-facts/__glPopModelViewMatrix.bytes.txt`.
+
+- `__glLoadIdentityModelViewMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda364e0, occupies 184 bytes.
+  Inferred. It reads the current object from context +0x7414 (`lw` at 0xda36500).
+  The first two callbacks receive a0=current and current+88 respectively
+  (`jalr` at 0xda36510, 0xda36520). It clears current +0x10c (`sb` at
+  0xda36530). Two more callbacks retain original a0, with a1=current and
+  current+88 (`jalr` at 0xda36534, 0xda36544).
+  It copies [context+0x741c]+0x108 to current +0x108 (`sw` at 0xda36554).
+  A callback takes (current+176, current, [context+0x741c]) as a0/a1/a2
+  (`jalr` at 0xda36564). The last callback takes original a0 and a1=current+176
+  (`jalr` at 0xda36578). Callback identities, missing arguments and matrix
+  contents remain unknown.
+  Evidence: `review-facts/__glLoadIdentityModelViewMatrix.target.txt`, `review-facts/__glLoadIdentityModelViewMatrix.sibling.txt`,
+  `review-facts/__glLoadIdentityModelViewMatrix.words.txt`, `review-facts/__glLoadIdentityModelViewMatrix.bytes.txt`.
+
+- `__glComputeInverseTranspose` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda365a0, occupies 96 bytes.
+  Inferred. It loads callbacks from original a0 +0x2e9c and +0x2e88 (`lw` at
+  0xda365b8, 0xda365d4). The first call receives a0=original a1+88 and
+  retains original a1 (`jalr` at 0xda365cc). The second retains original a0,
+  while a1 is unresolved (`jalr` at 0xda365dc). It clears original a1 +0x10c
+  in the return delay slot (`sb` at 0xda365fc). The return carries the last
+  callback result (`jr` at 0xda365f8). Callback identities, missing arguments
+  and inverse-transpose calculations remain unknown.
+  Evidence: `review-facts/__glComputeInverseTranspose.target.txt`, `review-facts/__glComputeInverseTranspose.sibling.txt`,
+  `review-facts/__glComputeInverseTranspose.words.txt`, `review-facts/__glComputeInverseTranspose.bytes.txt`.
+
+- `__glPushProjectionMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36600, occupies 280 bytes.
+  Established. It reads context +0xed0/+0x7418/+0x741c
+  (`lw` at 0xda36600, 0xda36608, 0xda36614). The error path is taken when the current pointer is at least the calculated
+  bound in an unsigned comparison (`beqz` at 0xda36638).
+  That path calls `__glSetError` with a0=0x503 (`jalr` at 0xda36708).
+  The success path has word-copy loops with unresolved moving source and
+  destination addresses (`lw` at 0xda36670, 0xda36698, `sw` at 0xda3667c, 0xda366a0).
+  It advances context +0x741c by 272 bytes (`sw` at 0xda366f0).
+  The full copy progression, copied-value expressions and success return
+  remain unresolved. It also copies the current object's
+  +0x108 word to +0x218 (`lw` at 0xda366dc, `sw` at 0xda366e4).
+  Evidence: `review-facts/__glPushProjectionMatrix.target.txt`, `review-facts/__glPushProjectionMatrix.sibling.txt`,
+  `review-facts/__glPushProjectionMatrix.words.txt`, `review-facts/__glPushProjectionMatrix.bytes.txt`.
+
+- `__glPopProjectionMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36720, occupies 160 bytes.
+  Established. It reads context +0x741c and +0x7418 (`lw` at 0xda36720, 0xda36724).
+  An unsigned base-at-least-current comparison selects error 0x504 (`beqz` at
+  0xda36748, `jalr` at 0xda367b0). Otherwise it subtracts 272 from context
+  +0x741c (`sw` at 0xda36754). It compares [context+0x7414]+0x108 with
+  the previous current object's -8 word (`bne` at 0xda36764).
+  A mismatch copies the latter into the former (`sw` at 0xda36790).
+  A callback takes a0=[context+0x7414]+176, a1=[context+0x7414] and
+  a2=[context+0x741c]-272 (`jalr` at 0xda3679c).
+  The other callback retains original a0 and leaves a1 unresolved (`jalr` at
+  0xda36774). Callback identities, missing arguments and overall return remain unknown.
+  Evidence: `review-facts/__glPopProjectionMatrix.target.txt`, `review-facts/__glPopProjectionMatrix.sibling.txt`,
+  `review-facts/__glPopProjectionMatrix.words.txt`, `review-facts/__glPopProjectionMatrix.bytes.txt`.
+
+- `__glLoadIdentityProjectionMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda367c0, occupies 192 bytes.
+  Established. The first callback takes a0=[context+0x741c] (`jalr` at 0xda367ec).
+  The next takes original a0 and a1=[context+0x741c] (`jalr` at 0xda367fc).
+  It increments context +0x7420 (`sw` at 0xda36810). A nonzero result is
+  stored at current +0x108 (`sw` at 0xda36814). A zero increment selects
+  `__glInvalidateSequenceNumbers` with original a0 (`beqz` at 0xda3680c,
+  `bgezall` at 0xda3686c). A later [context+0x7414]+0x108 write has an
+  unresolved value (`sw` at 0xda36820).
+  The remaining callbacks take ([context+0x7414]+176, [context+0x7414],
+  [context+0x741c]) and then (original a0, [context+0x7414]+176)
+  (`jalr` at 0xda36834, 0xda36848). Callback identities, missing arguments
+  and matrix contents remain unknown.
+  Evidence: `review-facts/__glLoadIdentityProjectionMatrix.target.txt`, `review-facts/__glLoadIdentityProjectionMatrix.sibling.txt`,
+  `review-facts/__glLoadIdentityProjectionMatrix.words.txt`, `review-facts/__glLoadIdentityProjectionMatrix.bytes.txt`.
+
+- `__glPushTextureMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36880, occupies 272 bytes.
+  Inferred. It reads context +0xed4/+0x7424/+0x7428
+  (`lw` at 0xda36880, 0xda36888, 0xda36894). The error path is taken when the current pointer is at least the calculated
+  bound in an unsigned comparison (`beqz` at 0xda368b8).
+  That path calls `__glSetError` with a0=0x503 (`jalr` at 0xda36980).
+  The success path has word-copy loops with unresolved moving source and
+  destination addresses (`lw` at 0xda368f0, 0xda36918, `sw` at 0xda368fc, 0xda36920).
+  It advances context +0x7428 by 272 bytes (`sw` at 0xda36960).
+  The full copy progression, copied-value expressions and success return
+  remain unresolved.
+  Evidence: `review-facts/__glPushTextureMatrix.target.txt`, `review-facts/__glPushTextureMatrix.sibling.txt`,
+  `review-facts/__glPushTextureMatrix.words.txt`, `review-facts/__glPushTextureMatrix.bytes.txt`.
+
+- `__glPopTextureMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36990, occupies 92 bytes.
+  Established. It reads context +0x7428 and +0x7424 (`lw` at 0xda36990, 0xda36994).
+  An unsigned base-at-least-current comparison selects error 0x504 (`beqz` at
+  0xda369ac, `jalr` at 0xda369dc). Otherwise it subtracts 272 from context
+  +0x7428 (`sw` at 0xda369b8). No matrix data is accessed on that success
+  path, and its return value remains unresolved.
+  Evidence: `review-facts/__glPopTextureMatrix.target.txt`, `review-facts/__glPopTextureMatrix.sibling.txt`,
+  `review-facts/__glPopTextureMatrix.words.txt`, `review-facts/__glPopTextureMatrix.bytes.txt`.
+
+- `__glLoadIdentityTextureMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda369f0, occupies 84 bytes.
+  Established. It reads context +0x7428 and loads callbacks from +0x2ea0 and +0x2e84
+  (`lw` at 0xda36a14, 0xda36a08, 0xda36a20).
+  The first call takes a0=[context+0x7428] (`jalr` at 0xda36a18).
+  The second retains original a0, with a1 unresolved (`jalr` at 0xda36a28).
+  The return carries the last callback result (`jr` at 0xda36a3c).
+  Callback identities, missing arguments and the resulting matrix remain unknown.
+  Evidence: `review-facts/__glLoadIdentityTextureMatrix.target.txt`, `review-facts/__glLoadIdentityTextureMatrix.sibling.txt`,
+  `review-facts/__glLoadIdentityTextureMatrix.words.txt`, `review-facts/__glLoadIdentityTextureMatrix.bytes.txt`.
+
+- `__glPushColorMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36a50, occupies 272 bytes.
+  Inferred. It reads context +0xed8/+0x742c/+0x7430
+  (`lw` at 0xda36a50, 0xda36a58, 0xda36a64). The error path is taken when the current pointer is at least the calculated
+  bound in an unsigned comparison (`beqz` at 0xda36a88).
+  That path calls `__glSetError` with a0=0x503 (`jalr` at 0xda36b50).
+  The success path has word-copy loops with unresolved moving source and
+  destination addresses (`lw` at 0xda36ac0, 0xda36ae8, `sw` at 0xda36acc, 0xda36af0).
+  It advances context +0x7430 by 272 bytes (`sw` at 0xda36b30).
+  The full copy progression, copied-value expressions and success return
+  remain unresolved.
+  Evidence: `review-facts/__glPushColorMatrix.target.txt`, `review-facts/__glPushColorMatrix.sibling.txt`,
+  `review-facts/__glPushColorMatrix.words.txt`, `review-facts/__glPushColorMatrix.bytes.txt`.
+
+- `__glPopColorMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36b60, occupies 92 bytes.
+  Established. It reads context +0x7430 and +0x742c (`lw` at 0xda36b60, 0xda36b64).
+  An unsigned base-at-least-current comparison selects error 0x504 (`beqz` at
+  0xda36b80, `jalr` at 0xda36ba4). Otherwise it subtracts 272 from context
+  +0x7430 (`sw` at 0xda36b94) and calls `__glGenMatrixSignature` with original
+  a0 and a1=previous current-272 (`jalr` at 0xda36b90).
+  The helper's signature calculation and overall return remain unknown.
+  Evidence: `review-facts/__glPopColorMatrix.target.txt`, `review-facts/__glPopColorMatrix.sibling.txt`,
+  `review-facts/__glPopColorMatrix.words.txt`, `review-facts/__glPopColorMatrix.bytes.txt`.
+
+- `__glLoadIdentityColorMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36bc0, occupies 108 bytes.
+  Established. It reads context +0x7430 (`lw` at 0xda36bdc).
+  The first callback takes a0=that current object (`jalr` at 0xda36bec).
+  It calls `__glGenMatrixSignature` with original a0 and a1=current (`jalr` at
+  0xda36bfc), then another callback with the same first two arguments (`jalr`
+  at 0xda36c0c). Callback identities, missing arguments, matrix contents and
+  the helper's signature calculation remain unknown.
+  Evidence: `review-facts/__glLoadIdentityColorMatrix.target.txt`, `review-facts/__glLoadIdentityColorMatrix.sibling.txt`,
+  `review-facts/__glLoadIdentityColorMatrix.words.txt`, `review-facts/__glLoadIdentityColorMatrix.bytes.txt`.
+
+- `__glDoLoadMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36c30, occupies 464 bytes.
+  Inferred. It reads context +0x6d0 and selects modes 0x1700/0x1701/0x1702/0x1800
+  (`lw` at 0xda36c38, `beq` at 0xda36c58, 0xda36c64, 0xda36c6c,
+  0xda36c74). The mode paths load current objects from
+  +0x7414/+0x741c/+0x7428/+0x7430 (`lw` at 0xda36d80, 0xda36c90,
+  0xda36d50, 0xda36d14). Four callbacks receive those objects as a0,
+  retaining original a1 (`jalr` at 0xda36d84, 0xda36c94, 0xda36d54,
+  0xda36d18). The projection path increments context +0x7420 (`sw` at
+  0xda36cc4). A zero increment selects `__glInvalidateSequenceNumbers` with
+  original a0 (`beqz` at 0xda36cc0, `bgezall` at 0xda36dec).
+  The color path calls `__glGenMatrixSignature` with original a0 (`jalr` at
+  0xda36d28). Eight additional indirect sites remain unidentified (`jalr` at
+  0xda36ca8, 0xda36ce8, 0xda36cfc, 0xda36d3c, 0xda36d68, 0xda36da0,
+  0xda36dc4, 0xda36dd8). Missing arguments, callback identities, unresolved
+  object bases and resulting matrix contents remain unknown.
+  Evidence: `review-facts/__glDoLoadMatrix.target.txt`, `review-facts/__glDoLoadMatrix.sibling.txt`,
+  `review-facts/__glDoLoadMatrix.words.txt`, `review-facts/__glDoLoadMatrix.bytes.txt`.
+
+- `__glDoMultMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36e00, occupies 484 bytes.
+  Inferred. It reads context +0x6d0 and selects modes 0x1700/0x1701/0x1702/0x1800
+  (`lw` at 0xda36e08, `beq` at 0xda36e28, 0xda36e34, 0xda36e40,
+  0xda36e48). The corresponding current pointers are read at
+  +0x7414/+0x741c/+0x7428/+0x7430 (`lw` at 0xda36f6c, 0xda36e64,
+  0xda36f2c, 0xda36eec). Four indirect calls take original a0, a1=the selected
+  current pointer and a2=original a1 (`jalr` at 0xda36f70, 0xda36e6c,
+  0xda36f34, 0xda36ef4). The projection path increments context +0x7420
+  (`sw` at 0xda36e9c). A zero increment selects
+  `__glInvalidateSequenceNumbers` with original a0 (`beqz` at 0xda36e98,
+  `bgezall` at 0xda36fd0). The color path calls `__glGenMatrixSignature`
+  with original a0 (`jalr` at 0xda36f04).
+  Eight additional indirect sites remain unidentified (`jalr` at 0xda36e80,
+  0xda36ec0, 0xda36ed4, 0xda36f18, 0xda36f48, 0xda36f8c, 0xda36fa8,
+  0xda36fbc). Missing arguments, matrix equations, object bases and overall
+  return remain unresolved.
+  Evidence: `review-facts/__glDoMultMatrix.target.txt`, `review-facts/__glDoMultMatrix.sibling.txt`,
+  `review-facts/__glDoMultMatrix.words.txt`, `review-facts/__glDoMultMatrix.bytes.txt`.
+
+- `__glDoRotate` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda36ff0, occupies 400 bytes.
+  Inferred. The first callback receives a0=entry sp-192 and a1=entry sp-208 (`jalr`
+  at 0xda37040). It calls `__rcis` with an unresolved floating argument
+  (`jalr` at 0xda37050). A second callback receives a0=entry sp-176
+  (`jalr` at 0xda37098). Float stores fill the local matrix buffer, but
+  hostfacts leaves the calculated coefficients unresolved (`swc1` at
+  0xda370f8, 0xda370fc, 0xda37108, 0xda37110, 0xda37114,
+  0xda3711c, 0xda37120, 0xda37124, 0xda37134).
+  It calls `__glDoMultMatrix` with original a0, a1=entry sp-176 and
+  a2=0xda34a10 (`bgezall` at 0xda37164). The return carries that helper's
+  result (`jr` at 0xda37178). One raw word remains decoder-unknown.
+  Its affected predicate and conditional matrix classification stay unresolved.
+  Callback identities, missing arguments and rotation equations remain unknown.
+  Evidence: `review-facts/__glDoRotate.target.txt`, `review-facts/__glDoRotate.sibling.txt`,
+  `review-facts/__glDoRotate.words.txt`, `review-facts/__glDoRotate.bytes.txt`.
+
+- `__glScaleMatrix` (`usr/gfx/arch/IP35KONA32/libGLcore.so`).
+  Address 0xda37180, occupies 160 bytes.
+  Inferred. It reads twelve floats from original a1 +0 through +0x2c (`lwc1` at
+  0xda37180, 0xda37184, 0xda37188, 0xda3718c, 0xda37190, 0xda37194,
+  0xda37198, 0xda3719c, 0xda371a0, 0xda371a4, 0xda371b0, 0xda371ac).
+  It also reads original a2 +8/+4/+0 (`lwc1` at 0xda371a8, 0xda371b4,
+  0xda371b8). It writes floats back to original a1 +0x2c through +0
+  (`swc1` at 0xda371c4, 0xda371cc, 0xda371d4, 0xda371dc, 0xda371e4,
+  0xda371ec, 0xda371f4, 0xda371fc, 0xda37204, 0xda3720c, 0xda37214,
+  0xda3721c). Hostfacts leaves the stored values unresolved, so the scale
+  formulas remain unknown. The full body makes no calls and establishes
+  no return value.
+  Evidence: `review-facts/__glScaleMatrix.target.txt`, `review-facts/__glScaleMatrix.sibling.txt`,
+  `review-facts/__glScaleMatrix.words.txt`, `review-facts/__glScaleMatrix.bytes.txt`.
