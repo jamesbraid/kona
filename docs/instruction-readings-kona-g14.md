@@ -50,7 +50,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x1007797c stores 4 bytes to ret(memalign) +0x4 via base v0 (ret(memalign)) (value 0x4).
   The `sw` at 0x10077988 stores 4 bytes to ret(memalign) +0x8 via base v0 (ret(memalign)) (value 0x200).
   The `lw` at 0x100779b0 loads 4 bytes from ? (base unknown) via base a1 (?).
-  The `sw` at 0x100779bc stores 4 bytes to ? (base unknown) via base a5 (?) (value ).
+  The `sw` at 0x100779bc stores 4 bytes to ? (base unknown) via base a5 (?) (value unknown).
   The `lw` at 0x100779d8 loads 4 bytes from abs 0x102bddf8 via base s4 (0x102c4340).
   The `lw` at 0x100779e4 loads 4 bytes from abs 0x102bd458 via base s2 (0x102c4340).
   The `lw` at 0x100779ec loads 4 bytes from abs 0x102be77c via base s8 (0x102c4340).
@@ -159,7 +159,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   It occupies 820 bytes.
   The `lw` at 0x100b0e90 loads 4 bytes from abs 0x102bd3c8 via base t9 (0x102c4340).
   The `lw` at 0x100b0ea4 loads 4 bytes from abs 0x102bd378 via base t9 (0x102c4340).
-  The `sw` at 0x100b0ed8 stores 4 bytes to ? (base unknown) via base a6 (?) (value ).
+  The `sw` at 0x100b0ed8 stores 4 bytes to ? (base unknown) via base a6 (?) (value unknown).
   The `lw` at 0x100b0f08 loads 4 bytes from abs 0x102bd45c via base t9 (0x102c4340).
   The `lw` at 0x100b0f0c loads 4 bytes from abs 0x102be77c via base a0 (0x102c4340).
   The `lw` at 0x100b0f24 loads 4 bytes from sym(pipeFD) +0x0 via base a0 (sym(pipeFD)).
@@ -213,7 +213,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
 - `vdFillVocFifo` in `usr/diags/IR/bin/irsaudit` at 0x10134ee8 (n32).
   It occupies 1336 bytes.
   The `lw` at 0x10134f04 loads 4 bytes from a1 (arg1 at entry) +0x14 via base a1 (a1).
-  The `sw` at 0x10134f50 stores 4 bytes to a1 (arg1 at entry) +0x10 via base s8 (a1) (value ).
+  The `sw` at 0x10134f50 stores 4 bytes to a1 (arg1 at entry) +0x10 via base s8 (a1) (value unknown).
   The `lw` at 0x10134f54 loads 4 bytes from a1 (arg1 at entry) +0x4 via base s8 (a1).
   The `lw` at 0x10134f8c loads 4 bytes from abs 0x102bdd4c via base t9 (0x102c4340).
   The `sw` at 0x10134f94 stores 4 bytes to a1 (arg1 at entry) +0x34 via base s8 (a1) (value 0x0).
@@ -242,7 +242,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10135370 loads 4 bytes from abs 0x102bdd1c via base t9 (0x102c4340).
   The `lw` at 0x101353b4 loads 4 bytes from a1 (arg1 at entry) +0x10 via base s8 (a1).
   The `sw` at 0x101353cc stores 4 bytes to a1 (arg1 at entry) +0x14 via base a1 (a1) (value 0x1).
-  The `sw` at 0x101353e8 stores 4 bytes to a1 (arg1 at entry) +0x4 via base s8 (a1) (value ).
+  The `sw` at 0x101353e8 stores 4 bytes to a1 (arg1 at entry) +0x4 via base s8 (a1) (value unknown).
   The `sw` at 0x101353f4 stores 4 bytes to a1 (arg1 at entry) +0x4 via base s8 (a1) (value 0x4).
   The `jal` at 0x10134fac calls `vdLoadManRequest` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(unknown), a3=(unknown), a4=0x1.
   The `jal` at 0x10134fc4 calls `vdBeginManRequest` with a0=a0 at entry (arg0), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -340,9 +340,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10137ea4 loads 4 bytes from abs 0x102bdea8 via base t9 (0x102c4340).
   The `sw` at 0x10137ec0 stores 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value ret(vcRead)).
   2 such `lw` accesses load 4 bytes from abs 0x102bd744 via base t9 (0x102c4340), including `lw` at 0x10137ed4, `lw` at 0x10137fbc.
-  3 such `sw` accesses store 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value ), including `sw` at 0x10137f0c, `sw` at 0x10137f18, `sw` at 0x10137fa8.
+  3 such `sw` accesses store 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value unknown), including `sw` at 0x10137f0c, `sw` at 0x10137f18, `sw` at 0x10137fa8.
   The `lw` at 0x10137f58 loads 4 bytes from abs 0x102bdea0 via base t9 (0x102c4340).
-  The `sw` at 0x10137f70 stores 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x4 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value ).
+  The `sw` at 0x10137f70 stores 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x4 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value unknown).
   The `sw` at 0x10137f84 stores 4 bytes to (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x4 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))) (value [(sym(vdVocShadowRegs) + (a0 << 0xa))+4]).
   The `lw` at 0x10137f8c loads 4 bytes from (sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110 via base s0 ((sym(vdVocShadowRegs) + (a0 << 0xa))).
   2 such `lw` accesses load 4 bytes from abs 0x102bd2b0 via base a1 (0x102c4340), including `lw` at 0x10137fc0, `lw` at 0x10137fe0.
@@ -371,14 +371,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x101242b8 loads 4 bytes from table(0x102d0c80) +0x0 via base a2 (table(0x102d0bb0)).
   The `lw` at 0x101242bc loads 4 bytes from table(0x102d0c40) +0x0 via base a2 (table(0x102d0bb0)).
   The `lw` at 0x101242c0 loads 4 bytes from table(0x102d0c00) +0x0 via base a2 (table(0x102d0bb0)).
-  The `sw` at 0x101242dc stores 4 bytes to a4 (arg4 at entry) +0x0 via base a6 (a4) (value ).
-  The `sw` at 0x101242e0 stores 4 bytes to a3 (arg3 at entry) +0x0 via base a5 (a3) (value ).
-  The `sw` at 0x101242e8 stores 4 bytes to a5 (arg5 at entry) +0x0 via base a4 (a5) (value ).
-  The `sw` at 0x101242f4 stores 4 bytes to a6 (arg6 at entry) +0x0 via base a3 (a6) (value ).
+  The `sw` at 0x101242dc stores 4 bytes to a4 (arg4 at entry) +0x0 via base a6 (a4) (value unknown).
+  The `sw` at 0x101242e0 stores 4 bytes to a3 (arg3 at entry) +0x0 via base a5 (a3) (value unknown).
+  The `sw` at 0x101242e8 stores 4 bytes to a5 (arg5 at entry) +0x0 via base a4 (a5) (value unknown).
+  The `sw` at 0x101242f4 stores 4 bytes to a6 (arg6 at entry) +0x0 via base a3 (a6) (value unknown).
   The `lw` at 0x10124304 loads 4 bytes from abs 0x102c5b34 via base gp (0x102cd5a0).
   The `sw` at 0x10124310 stores 4 bytes to abs 0x102cc0dc via base gp (0x102cd5a0) (value [sym(serverGeneration)]).
   2 such `lw` accesses load 4 bytes from abs 0x102c5814 via base gp (0x102cd5a0), including `lw` at 0x1012432c, `lw` at 0x101243ac.
-  The `sw` at 0x1012434c stores 4 bytes to abs 0x102d0bfc via base a3 (0x102d0bb0) (value ).
+  The `sw` at 0x1012434c stores 4 bytes to abs 0x102d0bfc via base a3 (0x102d0bb0) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102c58ac via base gp (0x102cd5a0), including `lw` at 0x10124358, `lw` at 0x101243d4.
   The `lw` at 0x10124378 loads 4 bytes from abs 0x102cc0d8 (RRMBOARDSIZE) via base gp (0x102cd5a0).
   4 such `lw` accesses load 4 bytes from abs 0x102c57f8 via base gp (0x102cd5a0), including `lw` at 0x10124380, `lw` at 0x101243e8, `lw` at 0x10124420.
@@ -388,9 +388,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1012444c loads 4 bytes from abs 0x102c5c44 via base gp (0x102cd5a0).
   The `lw` at 0x10124468 loads 4 bytes from sym(display) +0x0 via base a2 (sym(display)).
   The `sw` at 0x101244bc stores 4 bytes to table(0x102d0c00) +0x0 via base a4 (table(0x102d0bb0)) (value ret(shmiqLink)).
-  The `sw` at 0x101244c0 stores 4 bytes to table(0x102d0c40) +0x0 via base a4 (table(0x102d0bb0)) (value ).
-  The `sw` at 0x101244d0 stores 4 bytes to table(0x102d0c80) +0x0 via base a4 (table(0x102d0bb0)) (value ).
-  The `sw` at 0x101244d4 stores 4 bytes to table(0x102d0cc0) +0x0 via base a4 (table(0x102d0bb0)) (value ).
+  The `sw` at 0x101244c0 stores 4 bytes to table(0x102d0c40) +0x0 via base a4 (table(0x102d0bb0)) (value unknown).
+  The `sw` at 0x101244d0 stores 4 bytes to table(0x102d0c80) +0x0 via base a4 (table(0x102d0bb0)) (value unknown).
+  The `sw` at 0x101244d4 stores 4 bytes to table(0x102d0cc0) +0x0 via base a4 (table(0x102d0bb0)) (value unknown).
   The `lw` at 0x101244e0 loads 4 bytes from abs 0x102cc0d4 (RRMBOARDBASE) via base gp (0x102cd5a0).
   5 such `lw` accesses load 4 bytes from abs 0x102c5750 via base gp (0x102cd5a0), including `lw` at 0x101244f0, `lw` at 0x1012452c, `lw` at 0x10124564.
   5 such `lw` accesses load 4 bytes from sym(errno) +0x0 via base a0 (sym(errno)), including `lw` at 0x101244fc, `lw` at 0x10124538, `lw` at 0x10124570.
@@ -490,12 +490,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from abs 0xf1295c via base gp (0xf19844), including `lw` at 0xeb08b0, `lw` at 0xeb0990.
   The `lw` at 0xeb08d4 loads 4 bytes from ret(LookupIDByType) +0x0 via base a3 (ret(LookupIDByType)).
   The `lw` at 0xeb08e8 loads 4 bytes from abs 0xf1185c via base gp (0xf19844).
-  The `sw` at 0xeb0918 stores 4 bytes to ? (base unknown) via base v0 (?) (value ).
+  The `sw` at 0xeb0918 stores 4 bytes to ? (base unknown) via base v0 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from abs 0xf12834 via base gp (0xf19844), including `lw` at 0xeb091c, `lw` at 0xeb0960, `lw` at 0xeb0a5c.
   The `lw` at 0xeb0920 loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base ra (0xf130cc).
   The `lbu` at 0xeb0934 loads 1 bytes from ? (base unknown) via base v1 (?).
   The `lbu` at 0xeb0944 loads 1 bytes from ? (base unknown) via base a0 (?).
-  The `sw` at 0xeb095c stores 4 bytes to ? (base unknown) via base a3 (?) (value ).
+  The `sw` at 0xeb095c stores 4 bytes to ? (base unknown) via base a3 (?) (value unknown).
   The `lw` at 0xeb0964 loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base a1 (0xf130cc).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0xeb0978, `lw` at 0xeb097c.
   2 such `lw` accesses load 4 bytes from abs 0xf12824 via base gp (0xf19844), including `lw` at 0xeb0988, `lw` at 0xeb09d4.
@@ -639,7 +639,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x100172ac loads 4 bytes from abs 0x102be738 via base t8 (0x102c4340).
   2 such `lw` accesses load 4 bytes from abs 0x102bdea0 via base t9 (0x102c4340), including `lw` at 0x1001733c, `lw` at 0x10017938.
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s4 (?), including `lw` at 0x10017340, `lw` at 0x1001793c.
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s4 (?) (value ), including `sw` at 0x10017370, `sw` at 0x1001796c.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s4 (?) (value unknown), including `sw` at 0x10017370, `sw` at 0x1001796c.
   The `lw` at 0x100174c0 loads 4 bytes from abs 0x102be074 via base t9 (0x102c4340).
   13 such `lw` accesses load 4 bytes from ? (base unknown) via base a3 (?), including `lw` at 0x10017518, `lw` at 0x10017784, `lw` at 0x10017790.
   The `lw` at 0x10017568 loads 4 bytes from abs 0x102be398 via base a2 (0x102c4340).
@@ -1281,7 +1281,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `lw` accesses load 4 bytes from abs 0x102bc4ac via base a1 (0x102c4340), including `lw` at 0x1001d27c, `lw` at 0x1001d2e4, `lw` at 0x1001d340.
   The `lw` at 0x1001d28c loads 4 bytes from a1 (arg1 at entry) +0x48 via base s4 (a1).
   The `ld` at 0x1001d2a0 loads 8 bytes from ? (base unknown) via base a4 (?).
-  The `sd` at 0x1001d2b0 stores 8 bytes to ? (base unknown) via base a4 (?) (value ).
+  The `sd` at 0x1001d2b0 stores 8 bytes to ? (base unknown) via base a4 (?) (value unknown).
   2 such `lw` accesses load 4 bytes from ret(0x1001d38c) +0x0 via base s2 (ret(0x1001d38c)), including `lw` at 0x1001d2bc, `lw` at 0x1001d300.
   The `lw` at 0x1001d358 loads 4 bytes from ? (base unknown) via base a2 (?).
   The `lw` at 0x1001d374 loads 4 bytes from abs 0x102bd72c via base t9 (0x102c4340).
@@ -1983,7 +1983,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base a4 (?), including `lw` at 0x10031f54, `lw` at 0x10031f74.
   4 such `lbu` accesses load 1 bytes from ? (base unknown) via base s4 (?), including `lbu` at 0x10031f78, `lbu` at 0x10031fe0, `lbu` at 0x10032054.
   6 such `lw` accesses load 4 bytes from ? (base unknown) via base a5 (?), including `lw` at 0x10031f8c, `lw` at 0x10032048, `lw` at 0x1003205c.
-  5 such `sw` accesses store 4 bytes to ? (base unknown) via base a5 (?) (value ), including `sw` at 0x10031f94, `sw` at 0x10032050, `sw` at 0x1003206c.
+  5 such `sw` accesses store 4 bytes to ? (base unknown) via base a5 (?) (value unknown), including `sw` at 0x10031f94, `sw` at 0x10032050, `sw` at 0x1003206c.
   The `lw` at 0x10031fc0 loads 4 bytes from abs 0x102c200c via base s2 (0x102c2008).
   The `lbu` at 0x10031fd0 loads 1 bytes from ? (base unknown) via base a2 (?).
   2 such `lw` accesses load 4 bytes from abs 0x102bd7c0 via base t9 (0x102c4340), including `lw` at 0x10031ff8, `lw` at 0x10032238.
@@ -2327,7 +2327,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003521c loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2108)).
   The `lw` at 0x10035258 loads 4 bytes from abs 0x102be038 via base t9 (0x102c4340).
   The `lw` at 0x10035268 loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2110)).
-  The `sw` at 0x100352a8 stores 4 bytes to a3 (arg3 at entry) +0x0 via base s3 (a3) (value ).
+  The `sw` at 0x100352a8 stores 4 bytes to a3 (arg3 at entry) +0x0 via base s3 (a3) (value unknown).
   The `lw` at 0x10035338 loads 4 bytes from abs 0x102bc5ac via base t9 (0x102c4340).
   The `lw` at 0x10035354 loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   The `lw` at 0x10035358 loads 4 bytes from abs 0x102bc5a4 via base a0 (0x102c4340).
@@ -2367,7 +2367,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10035508 loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2108)).
   The `lw` at 0x10035544 loads 4 bytes from abs 0x102be038 via base t9 (0x102c4340).
   The `lw` at 0x10035554 loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2110)).
-  The `sd` at 0x100355c4 stores 8 bytes to a3 (arg3 at entry) +0x0 via base s3 (a3) (value ).
+  The `sd` at 0x100355c4 stores 8 bytes to a3 (arg3 at entry) +0x0 via base s3 (a3) (value unknown).
   The `lw` at 0x10035654 loads 4 bytes from abs 0x102bc5ac via base t9 (0x102c4340).
   The `lw` at 0x10035670 loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   The `lw` at 0x10035674 loads 4 bytes from abs 0x102bc5a4 via base a0 (0x102c4340).
@@ -2407,8 +2407,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10035840 loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2108)).
   The `lw` at 0x10035880 loads 4 bytes from abs 0x102be038 via base t9 (0x102c4340).
   The `lw` at 0x10035888 loads 4 bytes from table(0x102c2110) +0x0 via base s5 (table(0x102c2110)).
-  The `sd` at 0x100358fc stores 8 bytes to a3 (arg3 at entry) +0x0 via base s4 (a3) (value ).
-  The `sd` at 0x1003595c stores 8 bytes to a3 (arg3 at entry) +0x8 via base s4 (a3) (value ).
+  The `sd` at 0x100358fc stores 8 bytes to a3 (arg3 at entry) +0x0 via base s4 (a3) (value unknown).
+  The `sd` at 0x1003595c stores 8 bytes to a3 (arg3 at entry) +0x8 via base s4 (a3) (value unknown).
   The `lw` at 0x10035a0c loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   The `lw` at 0x10035a10 loads 4 bytes from abs 0x102bc5a4 via base a0 (0x102c4340).
   The `jal` at 0x10035720 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2600,7 +2600,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003671c loads 4 bytes from abs 0x102bdd14 via base t9 (0x102c4340).
   The `lw` at 0x100367c4 loads 4 bytes from abs 0x102bdea0 via base t9 (0x102c4340).
   The `lw` at 0x100367c8 loads 4 bytes from ? (base unknown) via base s2 (?).
-  The `sw` at 0x100367f8 stores 4 bytes to ? (base unknown) via base s2 (?) (value ).
+  The `sw` at 0x100367f8 stores 4 bytes to ? (base unknown) via base s2 (?) (value unknown).
   The `jal` at 0x100366b4 calls `kt_output_dbug` with a0=0x5, a1=0x10186038, a2=(unknown), a3=(unknown).
   The `jal` at 0x100366c0 calls `vdBaseVocInit` with a0=(unknown), a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x100366e4 calls `vdSetDacPixelMux` with a0=(unknown), a1=0x2, a2=(unknown), a3=(unknown).
@@ -2635,7 +2635,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x10036a34 stores 4 bytes to (sym(vdVocShadowRegs) + ((a1 << 0x8) << 0x2)) +0x1cc via base s1 ((sym(vdVocShadowRegs) + ((a1 << 0x8) << 0x2))) (value 0x448).
   The `sw` at 0x10036a60 stores 4 bytes to (sym(vdVocShadowRegs) + ((a1 << 0x8) << 0x2)) +0x1c0 via base s1 ((sym(vdVocShadowRegs) + ((a1 << 0x8) << 0x2))) (value 0x8).
   The `lw` at 0x10036aa4 loads 4 bytes from ? (base unknown) via base s3 (?).
-  The `sw` at 0x10036ad8 stores 4 bytes to ? (base unknown) via base s3 (?) (value ).
+  The `sw` at 0x10036ad8 stores 4 bytes to ? (base unknown) via base s3 (?) (value unknown).
   The `jal` at 0x100368d0 calls `kt_output_dbug` with a0=0x5, a1=0x10186038, a2=(unknown), a3=(unknown).
   The `jal` at 0x100368e4 calls `vdBaseVocInit` with a0=(unknown), a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x10036910 calls `vdSetDacPixelMux` with a0=(unknown), a1=0x2, a2=(unknown), a3=(unknown).
@@ -2860,11 +2860,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003cc14 loads 4 bytes from abs 0x102bd6dc via base s2 (0x102c4340).
   The `lw` at 0x1003cce8 loads 4 bytes from abs 0x102be47c via base a4 (0x102c4340).
   5 such `lw` accesses load 4 bytes from ? (base unknown) via base a5 (?), including `lw` at 0x1003ccec, `lw` at 0x1003cd38, `lw` at 0x1003d450.
-  The `sw` at 0x1003ccf4 stores 4 bytes to sym(writecrc_name) +0x0 via base a4 (sym(writecrc_name)) (value ).
+  The `sw` at 0x1003ccf4 stores 4 bytes to sym(writecrc_name) +0x0 via base a4 (sym(writecrc_name)) (value unknown).
   The `lw` at 0x1003cd48 loads 4 bytes from abs 0x102be44c via base a7 (0x102c4340).
   The `lw` at 0x1003cd4c loads 4 bytes from abs 0x102be478 via base a4 (0x102c4340).
   The `sw` at 0x1003cd54 stores 4 bytes to sym(gold_file_over_ride) +0x0 via base a7 (sym(gold_file_over_ride)) (value 0x1).
-  The `sw` at 0x1003cd5c stores 4 bytes to sym(goldfile_name) +0x0 via base a4 (sym(goldfile_name)) (value ).
+  The `sw` at 0x1003cd5c stores 4 bytes to sym(goldfile_name) +0x0 via base a4 (sym(goldfile_name)) (value unknown).
   The `lw` at 0x1003cdb4 loads 4 bytes from abs 0x102be47c via base a0 (0x102c4340).
   The `lw` at 0x1003cdb8 loads 4 bytes from sym(writecrc_name) +0x0 via base a0 (sym(writecrc_name)).
   The `lw` at 0x1003cdcc loads 4 bytes from abs 0x102be478 via base a1 (0x102c4340).
@@ -2874,11 +2874,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from abs 0x102bd7c0 via base s0 (0x102c4340), including `lw` at 0x1003ce1c, `lw` at 0x1003cecc.
   24 such `lw` accesses load 4 bytes from ? (base unknown) via base s2 (?), including `lw` at 0x1003ce30, `lw` at 0x1003ce64, `lw` at 0x1003ce68.
   4 such `lw` accesses load 4 bytes from abs 0x102bc5dc via base a0 (0x102c4340), including `lw` at 0x1003ce4c, `lw` at 0x1003cf18, `lw` at 0x1003cfd8.
-  8 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value ), including `sw` at 0x1003ce84, `sw` at 0x1003ceb0, `sw` at 0x1003cf50.
+  8 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value unknown), including `sw` at 0x1003ce84, `sw` at 0x1003ceb0, `sw` at 0x1003cf50.
   8 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value 0x1), including `sw` at 0x1003ce8c, `sw` at 0x1003cf58, `sw` at 0x1003d018.
   The `lw` at 0x1003d060 loads 4 bytes from sym(testList) +0xc via base s2 (sym(testList)).
   21 such `lw` accesses load 4 bytes from ? (base unknown) via base v0 (?), including `lw` at 0x1003d12c, `lw` at 0x1003d134, `lw` at 0x1003d144.
-  7 such `sw` accesses store 4 bytes to ? (base unknown) via base v0 (?) (value ), including `sw` at 0x1003d154, `sw` at 0x1003d1b4, `sw` at 0x1003d218.
+  7 such `sw` accesses store 4 bytes to ? (base unknown) via base v0 (?) (value unknown), including `sw` at 0x1003d154, `sw` at 0x1003d1b4, `sw` at 0x1003d218.
   7 such `sw` accesses store 4 bytes to ? (base unknown) via base v0 (?) (value 0x1), including `sw` at 0x1003d15c, `sw` at 0x1003d1bc, `sw` at 0x1003d224.
   2 such `lw` accesses load 4 bytes from sym(testList) +0xc via base v0 (sym(testList)), including `lw` at 0x1003d180, `lw` at 0x1003d248.
   The `lw` at 0x1003d448 loads 4 bytes from abs 0x102bd468 via base t9 (0x102c4340).
@@ -2941,7 +2941,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003de48 loads 4 bytes from abs 0x102be1dc via base a2 (0x102c4340).
   The `lw` at 0x1003de50 loads 4 bytes from sym(progname) +0x0 via base a2 (sym(progname)).
   The `lw` at 0x1003de64 loads 4 bytes from abs 0x102bd6dc via base t9 (0x102c4340).
-  The `sw` at 0x1003de8c stores 4 bytes to ? (base unknown) via base a5 (?) (value ).
+  The `sw` at 0x1003de8c stores 4 bytes to ? (base unknown) via base a5 (?) (value unknown).
   The `sw` at 0x1003dea0 stores 4 bytes to ? (base unknown) via base a5 (?) (value 0x1).
   The `lw` at 0x1003deb8 loads 4 bytes from abs 0x102bd438 via base t9 (0x102c4340).
   The `sw` at 0x1003ded8 stores 4 bytes to ? (base unknown) via base a5 (?) (value ret(atoi)).
@@ -3216,7 +3216,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003e2fc loads 4 bytes from [sym(TEST)] +0x1c via base a5 ([sym(TEST)]).
   The `lw` at 0x1003e308 loads 4 bytes from [sym(TEST)] +0x20 via base a5 ([sym(TEST)]).
   6 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x1003e324, `lw` at 0x1003e338, `lw` at 0x1003e340.
-  The `sw` at 0x1003e334 stores 4 bytes to sym(TEST) +0x0 via base s0 (sym(TEST)) (value ).
+  The `sw` at 0x1003e334 stores 4 bytes to sym(TEST) +0x0 via base s0 (sym(TEST)) (value unknown).
   The `jal` at 0x1003e268 calls `kt_output_meta` with a0=0x3, a1=0x10188160, a2=a0 at entry (arg0), a3=a3 at entry (arg3).
   The `jal` at 0x1003e2e8 calls `kt_output_meta` with a0=one of 0x0, 0x1, 0x2, a1=0x10188190, a2=(unknown), a3=(unknown).
   The `jal` at 0x1003e39c calls `kt_output_meta` with a0=0x3, a1=0x101881b0, a2=(unknown), a3=(unknown).
@@ -3277,7 +3277,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003e5fc loads 4 bytes from abs 0x102be480 via base ra (0x102c4340).
   The `lw` at 0x1003e604 loads 4 bytes from sym(maxTestNum) +0x0 via base ra (sym(maxTestNum)).
   3 such `lw` accesses load 4 bytes from ? (base unknown) via base a5 (?), including `lw` at 0x1003e61c, `lw` at 0x1003e670, `lw` at 0x1003e690.
-  The `sw` at 0x1003e628 stores 4 bytes to sym(TEST) +0x0 via base s0 (sym(TEST)) (value ).
+  The `sw` at 0x1003e628 stores 4 bytes to sym(TEST) +0x0 via base s0 (sym(TEST)) (value unknown).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s2 (?), including `lw` at 0x1003e63c, `lw` at 0x1003e660.
   3 such `lw` accesses load 4 bytes from abs 0x102bd730 via base t9 (0x102c4340), including `lw` at 0x1003e658, `lw` at 0x1003e828, `lw` at 0x1003e858.
   4 such `lw` accesses load 4 bytes from abs 0x102bc5dc via base a0 (0x102c4340), including `lw` at 0x1003e65c, `lw` at 0x1003e6c0, `lw` at 0x1003e82c.
@@ -3294,7 +3294,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1003e708 loads 4 bytes from abs 0x102bd720 via base t9 (0x102c4340).
   2 such `lw` accesses load 4 bytes from [sym(TEST)] +0x24 via base a5 ([sym(TEST)]), including `lw` at 0x1003e724, `lw` at 0x1003e7b0.
   3 such `lw` accesses load 4 bytes from [sym(TEST)] +0x14 via base a5 ([sym(TEST)]), including `lw` at 0x1003e748, `lw` at 0x1003e778, `lw` at 0x1003e844.
-  The `sw` at 0x1003e754 stores 4 bytes to [sym(TEST)] +0x14 via base a5 ([sym(TEST)]) (value ).
+  The `sw` at 0x1003e754 stores 4 bytes to [sym(TEST)] +0x14 via base a5 ([sym(TEST)]) (value unknown).
   The `lw` at 0x1003e75c loads 4 bytes from [sym(TEST)] +0x10 via base t9 ([sym(TEST)]).
   The `lw` at 0x1003e790 loads 4 bytes from sym(MAXERR) +0x0 via base s8 (sym(MAXERR)).
   The `lw` at 0x1003e7f8 loads 4 bytes from abs 0x102bd724 via base t9 (0x102c4340).
@@ -4386,17 +4386,17 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   6 such `lw` accesses load 4 bytes from sym(KONAINFO) +0x0 via base a0 (sym(KONAINFO)), including `lw` at 0x10047a60, `lw` at 0x10047c04, `lw` at 0x10047c6c.
   The `lw` at 0x10047a64 loads 4 bytes from [sym(KONAINFO)] +0x74 via base a0 ([sym(KONAINFO)]).
   The `lw` at 0x10047a84 loads 4 bytes from ? (base unknown) via base a2 (?).
-  The `sw` at 0x10047a90 stores 4 bytes to ? (base unknown) via base a2 (?) (value ).
+  The `sw` at 0x10047a90 stores 4 bytes to ? (base unknown) via base a2 (?) (value unknown).
   The `lw` at 0x10047acc loads 4 bytes from abs 0x102be1e0 via base a7 (0x102c4340).
   The `lw` at 0x10047adc loads 4 bytes from sym(KONAINFO) +0x0 via base a7 (sym(KONAINFO)).
   The `lw` at 0x10047b04 loads 4 bytes from ? (base unknown) via base a7 (?).
-  The `sw` at 0x10047b10 stores 4 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sw` at 0x10047b10 stores 4 bytes to ? (base unknown) via base a7 (?) (value unknown).
   The `lw` at 0x10047b58 loads 4 bytes from abs 0x102be1e0 via base ra (0x102c4340).
   The `lw` at 0x10047b64 loads 4 bytes from sym(KONAINFO) +0x0 via base ra (sym(KONAINFO)).
   The `lw` at 0x10047b84 loads 4 bytes from ? (base unknown) via base ra (?).
-  The `sw` at 0x10047b90 stores 4 bytes to ? (base unknown) via base ra (?) (value ).
+  The `sw` at 0x10047b90 stores 4 bytes to ? (base unknown) via base ra (?) (value unknown).
   The `lw` at 0x10047c24 loads 4 bytes from ? (base unknown) via base a0 (?).
-  The `sw` at 0x10047c30 stores 4 bytes to ? (base unknown) via base a0 (?) (value ).
+  The `sw` at 0x10047c30 stores 4 bytes to ? (base unknown) via base a0 (?) (value unknown).
   The `lw` at 0x10047c70 loads 4 bytes from [sym(KONAINFO)] +0xe2c via base a0 ([sym(KONAINFO)]).
   The `lw` at 0x10047c90 loads 4 bytes from ([sym(KONAINFO)] + (((a0 << 0x2) + a0) << 0x2)) +0x974 via base a2 (([sym(KONAINFO)] + (((a0 << 0x2) + a0) << 0x2))).
   The `sw` at 0x10047c9c stores 4 bytes to ([sym(KONAINFO)] + (((a0 << 0x2) + a0) << 0x2)) +0x974 via base a2 (([sym(KONAINFO)] + (((a0 << 0x2) + a0) << 0x2))) (value ([([sym(KONAINFO)] + (((a0 << 0x2) + a0) << 0x2))+2420] | a2)).
@@ -4414,11 +4414,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10047d54 loads 4 bytes from abs 0x102be1e0 via base t1 (0x102c4340).
   The `lw` at 0x10047d60 loads 4 bytes from sym(KONAINFO) +0x0 via base t1 (sym(KONAINFO)).
   The `lw` at 0x10047d70 loads 4 bytes from ? (base unknown) via base t1 (?).
-  The `sw` at 0x10047d7c stores 4 bytes to ? (base unknown) via base t1 (?) (value ).
+  The `sw` at 0x10047d7c stores 4 bytes to ? (base unknown) via base t1 (?) (value unknown).
   The `lw` at 0x10047da4 loads 4 bytes from abs 0x102be1e0 via base t9 (0x102c4340).
   The `lw` at 0x10047db0 loads 4 bytes from sym(KONAINFO) +0x0 via base t9 (sym(KONAINFO)).
   The `lw` at 0x10047dc0 loads 4 bytes from ? (base unknown) via base t9 (?).
-  The `sw` at 0x10047dcc stores 4 bytes to ? (base unknown) via base t9 (?) (value ).
+  The `sw` at 0x10047dcc stores 4 bytes to ? (base unknown) via base t9 (?) (value unknown).
   The `lw` at 0x10047dd8 loads 4 bytes from abs 0x102be1e0 via base v0 (0x102c4340).
   The `lw` at 0x10047ddc loads 4 bytes from sym(KONAINFO) +0x0 via base v0 (sym(KONAINFO)).
   The `lw` at 0x10047de0 loads 4 bytes from [sym(KONAINFO)] +0x13c via base v0 ([sym(KONAINFO)]).
@@ -4498,7 +4498,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1004819c loads 4 bytes from abs 0x102be1e0 via base a0 (0x102c4340).
   The `lw` at 0x100481a8 loads 4 bytes from sym(KONAINFO) +0x0 via base a0 (sym(KONAINFO)).
   3 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x100481c0, `lw` at 0x10048224, `lw` at 0x10048398.
-  3 such `sw` accesses store 4 bytes to ? (base unknown) via base a0 (?) (value ), including `sw` at 0x100481cc, `sw` at 0x10048230, `sw` at 0x100483a4.
+  3 such `sw` accesses store 4 bytes to ? (base unknown) via base a0 (?) (value unknown), including `sw` at 0x100481cc, `sw` at 0x10048230, `sw` at 0x100483a4.
   The `lw` at 0x100481f8 loads 4 bytes from abs 0x102be1e0 via base a1 (0x102c4340).
   The `lw` at 0x10048204 loads 4 bytes from sym(KONAINFO) +0x0 via base a1 (sym(KONAINFO)).
   The `lw` at 0x10048210 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a1 ([sym(KONAINFO)]).
@@ -4515,10 +4515,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10048280 loads 4 bytes from [sym(KONAINFO)] +0xdac via base t0 ([sym(KONAINFO)]).
   The `sw` at 0x1004828c stores 4 bytes to [sym(KONAINFO)] +0xdac via base t0 ([sym(KONAINFO)]) (value ([[sym(KONAINFO)]+3500] | a2)).
   The `lw` at 0x100482d0 loads 4 bytes from ? (base unknown) via base a7 (?).
-  The `sw` at 0x100482d8 stores 4 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sw` at 0x100482d8 stores 4 bytes to ? (base unknown) via base a7 (?) (value unknown).
   The `lw` at 0x100482e0 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a4 ([sym(KONAINFO)]).
   The `lw` at 0x100482f8 loads 4 bytes from ? (base unknown) via base a5 (?).
-  The `sw` at 0x10048304 stores 4 bytes to ? (base unknown) via base a5 (?) (value ).
+  The `sw` at 0x10048304 stores 4 bytes to ? (base unknown) via base a5 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from abs 0x102bd470 via base t9 (0x102c4340), including `lw` at 0x1004831c, `lw` at 0x1004834c, `lw` at 0x1004837c.
   The `jal` at 0x100480dc calls `kt_output_info` with a0=0x1018a9c0, a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=0x1.
   The `jal` at 0x10048144 calls `kt_output_info` with a0=0x1018aa28, a1=a0 at entry (arg0), a2=(unknown), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=0x1.
@@ -4573,7 +4573,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   22 such `sw` accesses store 4 bytes to ? (base unknown) via base s5 (?) (value 0x0), including `sw` at 0x100485f8, `sw` at 0x100489c8, `sw` at 0x10048ad8.
   34 such `lw` accesses load 4 bytes from ? (base unknown) via base s5 (?), including `lw` at 0x1004863c, `lw` at 0x10048640, `lw` at 0x10048690.
   6 such `lw` accesses load 4 bytes from abs 0x102bc63c via base a6 (0x102c4340), including `lw` at 0x10048650, `lw` at 0x10048a20, `lw` at 0x10048a58.
-  21 such `sw` accesses store 4 bytes to ? (base unknown) via base s5 (?) (value ), including `sw` at 0x10048668, `sw` at 0x100486a0, `sw` at 0x100486dc.
+  21 such `sw` accesses store 4 bytes to ? (base unknown) via base s5 (?) (value unknown), including `sw` at 0x10048668, `sw` at 0x100486a0, `sw` at 0x100486dc.
   6 such `lw` accesses load 4 bytes from abs 0x102bc63c via base a3 (0x102c4340), including `lw` at 0x1004868c, `lw` at 0x100490cc, `lw` at 0x100491ec.
   20 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x13c via base a4 ([sym(KONAINFO)]), including `lw` at 0x100486e0, `lw` at 0x10049de8, `lw` at 0x10049e90.
   20 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x148 via base a4 ([sym(KONAINFO)]), including `lw` at 0x100486f8, `lw` at 0x10049e00, `lw` at 0x10049ea8.
@@ -4586,9 +4586,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   55 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0x100487ec, `lw` at 0x1004886c, `lw` at 0x10048884.
   2 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a4 ([sym(KONAINFO)]), including `lw` at 0x100487f8, `lw` at 0x10048bc0.
   10 such `lw` accesses load 4 bytes from ? (base unknown) via base s3 (?), including `lw` at 0x1004880c, `lw` at 0x10048820, `lw` at 0x10048840.
-  3 such `sw` accesses store 4 bytes to ? (base unknown) via base s3 (?) (value ), including `sw` at 0x10048830, `sw` at 0x100488ac, `sw` at 0x10048d48.
+  3 such `sw` accesses store 4 bytes to ? (base unknown) via base s3 (?) (value unknown), including `sw` at 0x10048830, `sw` at 0x100488ac, `sw` at 0x10048d48.
   3 such `sw` accesses store 4 bytes to ? (base unknown) via base s3 (?) (value 0x0), including `sw` at 0x10048860, `sw` at 0x100488dc, `sw` at 0x10048d40.
-  33 such `sw` accesses store 4 bytes to ? (base unknown) via base a2 (?) (value ), including `sw` at 0x10048890, `sw` at 0x10048908, `sw` at 0x10048960.
+  33 such `sw` accesses store 4 bytes to ? (base unknown) via base a2 (?) (value unknown), including `sw` at 0x10048890, `sw` at 0x10048908, `sw` at 0x10048960.
   10 such `sw` accesses store 4 bytes to ? (base unknown) via base s4 (?) (value 0x0), including `sw` at 0x1004892c, `sw` at 0x10048da0, `sw` at 0x100493ec.
   3 such `sw` accesses store 4 bytes to ? (base unknown) via base s7 (?) (value 0x0), including `sw` at 0x10048998, `sw` at 0x10049de4, `sw` at 0x1004a408.
   6 such `lw` accesses load 4 bytes from abs 0x102bc63c via base a7 (0x102c4340), including `lw` at 0x10048b30, `lw` at 0x10048b68, `lw` at 0x10048c50.
@@ -4616,7 +4616,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0xf98 via base s4 ([sym(KONAINFO)]+3992), including `lw` at 0x10049398, `lw` at 0x10049964.
   The `sw` at 0x100493b0 stores 4 bytes to [sym(KONAINFO)] +0xfa4 via base s4 ([sym(KONAINFO)]+3992) (value 0x0).
   8 such `lw` accesses load 4 bytes from ? (base unknown) via base s4 (?), including `lw` at 0x1004942c, `lw` at 0x10049430, `lw` at 0x10049480.
-  6 such `sw` accesses store 4 bytes to ? (base unknown) via base s4 (?) (value ), including `sw` at 0x10049458, `sw` at 0x10049490, `sw` at 0x1004955c.
+  6 such `sw` accesses store 4 bytes to ? (base unknown) via base s4 (?) (value unknown), including `sw` at 0x10049458, `sw` at 0x10049490, `sw` at 0x1004955c.
   The `lw` at 0x100494dc loads 4 bytes from [sym(KONAINFO)] +0x1018 via base a4 ([sym(KONAINFO)]).
   The `lw` at 0x100494f8 loads 4 bytes from [sym(KONAINFO)] +0x1024 via base a4 ([sym(KONAINFO)]).
   The `sw` at 0x10049508 stores 4 bytes to [sym(KONAINFO)] +0x1024 via base a4 ([sym(KONAINFO)]) (value [[sym(KONAINFO)]+4132]+1).
@@ -5478,10 +5478,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x1004e3dc, `lw` at 0x1004e470.
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s4 (?), including `lw` at 0x1004e3e8, `lw` at 0x1004e47c.
   The `lw` at 0x1004e5a0 loads 4 bytes from abs 0x102bd734 via base t9 (0x102c4340).
-  The `sw` at 0x1004e624 stores 4 bytes to a0 (arg0 at entry) +0x48 via base s3 (a0) (value ).
-  The `sw` at 0x1004e6a4 stores 4 bytes to a0 (arg0 at entry) +0x60 via base s3 (a0) (value ).
-  The `sw` at 0x1004e728 stores 4 bytes to a0 (arg0 at entry) +0x14c via base s3 (a0) (value ).
-  The `sw` at 0x1004e800 stores 4 bytes to a0 (arg0 at entry) +0x68 via base s3 (a0) (value ).
+  The `sw` at 0x1004e624 stores 4 bytes to a0 (arg0 at entry) +0x48 via base s3 (a0) (value unknown).
+  The `sw` at 0x1004e6a4 stores 4 bytes to a0 (arg0 at entry) +0x60 via base s3 (a0) (value unknown).
+  The `sw` at 0x1004e728 stores 4 bytes to a0 (arg0 at entry) +0x14c via base s3 (a0) (value unknown).
+  The `sw` at 0x1004e800 stores 4 bytes to a0 (arg0 at entry) +0x68 via base s3 (a0) (value unknown).
   The `jal` at 0x1004de74 calls `fcPioRead32` with a0=0x370, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1004dea4 calls `kt_output_info` with a0=0x1018b148, a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x1004dee4 calls `jt_select_chain` with a0=0x1018b8f0, a1=(unknown), a2=(unknown), a3=(unknown).
@@ -5753,14 +5753,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   4 such `lw` accesses load 4 bytes from abs 0x102bd734 via base s5 (0x102c4340), including `lw` at 0x10050e90, `lw` at 0x10051fb8, `lw` at 0x100532b8.
   6 such `lw` accesses load 4 bytes from abs 0x102be018 via base s6 (0x102c4340), including `lw` at 0x10050e94, `lw` at 0x10051fbc, `lw` at 0x10052954.
   14 such `lw` accesses load 4 bytes from ? (base unknown) via base s7 (?), including `lw` at 0x10050e98, `lw` at 0x10050ee0, `lw` at 0x10050f0c.
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x2d8 via base s8 (sp) (value ), including `sd` at 0x10050eb0, `sd` at 0x10050ebc.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x2d8 via base s8 (sp) (value unknown), including `sd` at 0x10050eb0, `sd` at 0x10050ebc.
   The `sd` at 0x10050ec0 stores 8 bytes to sp (at entry) -0x2d0 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x2c8 via base s8 (sp) (value ), including `sd` at 0x10050ec4, `sd` at 0x10050efc.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x2c8 via base s8 (sp) (value unknown), including `sd` at 0x10050ec4, `sd` at 0x10050efc.
   The `sd` at 0x10050ecc stores 8 bytes to sp (at entry) -0x2e0 via base s8 (sp) (value 0x0).
   The `lw` at 0x10050ed0 loads 4 bytes from abs 0x102bc644 via base at (0x102c4340).
   2 such `sw` accesses store 4 bytes to ? (base unknown) via base a1 (?) (value 0x1018b4e0), including `sw` at 0x10050ed8, `sw` at 0x10051c64.
-  The `sd` at 0x10050ee8 stores 8 bytes to sp (at entry) -0x2e0 via base s8 (sp) (value ).
-  The `sd` at 0x10050ef0 stores 8 bytes to sp (at entry) -0x2d0 via base s8 (sp) (value ).
+  The `sd` at 0x10050ee8 stores 8 bytes to sp (at entry) -0x2e0 via base s8 (sp) (value unknown).
+  The `sd` at 0x10050ef0 stores 8 bytes to sp (at entry) -0x2d0 via base s8 (sp) (value unknown).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2d0 via base s8 (sp), including `ld` at 0x10050f04, `ld` at 0x10050f34.
   2 such `lw` accesses load 4 bytes from abs 0x102bd460 via base t9 (0x102c4340), including `lw` at 0x10050f1c, `lw` at 0x10051c28.
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x10050f24, `lw` at 0x10050f30, `lw` at 0x10051c30.
@@ -5776,7 +5776,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   6 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value ret(de_gray_code)), including `sw` at 0x10051084, `sw` at 0x100510bc, `sw` at 0x10051220.
   3 such `lw` accesses load 4 bytes from abs 0x102bd72c via base t9 (0x102c4340), including `lw` at 0x10051134, `lw` at 0x10052a84, `lw` at 0x10053794.
   The `lw` at 0x100512bc loads 4 bytes from abs 0x102bd72c via base s6 (0x102c4340).
-  8 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value ), including `sw` at 0x10051308, `sw` at 0x100529f4, `sw` at 0x10052df8.
+  8 such `sw` accesses store 4 bytes to ? (base unknown) via base s2 (?) (value unknown), including `sw` at 0x10051308, `sw` at 0x100529f4, `sw` at 0x10052df8.
   The `sd` at 0x100513b8 stores 8 bytes to sp (at entry) -0x2c0 via base s8 (sp) (value 0x0).
   The `lw` at 0x100513cc loads 4 bytes from abs 0x102be0bc via base t9 (0x102c4340).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2c0 via base s8 (sp), including `ld` at 0x1005148c, `ld` at 0x1005175c.
@@ -5793,17 +5793,17 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sd` at 0x10051838 stores 8 bytes to sp (at entry) -0x3c8 via base s8 (sp) (value ret(jt_new_data_vector)).
   2 such `sd` accesses store 8 bytes to sp (at entry) -0x290 via base s8 (sp) (value ret(jt_new_data_vector)), including `sd` at 0x10051840, `sd` at 0x1005273c.
   The `sd` at 0x10051888 stores 8 bytes to sp (at entry) -0x280 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x288 via base s8 (sp) (value ), including `sd` at 0x10051890, `sd` at 0x1005189c.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x288 via base s8 (sp) (value unknown), including `sd` at 0x10051890, `sd` at 0x1005189c.
   The `sd` at 0x100518a0 stores 8 bytes to sp (at entry) -0x278 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x270 via base s8 (sp) (value ), including `sd` at 0x100518a8, `sd` at 0x10051c08.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x270 via base s8 (sp) (value unknown), including `sd` at 0x100518a8, `sd` at 0x10051c08.
   The `lw` at 0x100519e4 loads 4 bytes from abs 0x102bd72c via base s0 (0x102c4340).
   2 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10051b20, `lw` at 0x10051d6c.
   The `sd` at 0x10051b2c stores 8 bytes to sp (at entry) -0x1e0 via base s8 (sp) (value ret(kt_read_chain)).
   The `ld` at 0x10051b48 loads 8 bytes from sp (at entry) -0x1e0 via base s8 (sp).
   The `sd` at 0x10051b84 stores 8 bytes to sp (at entry) -0x1d8 via base s8 (sp) (value ret(kt_read_chain)).
   The `ld` at 0x10051ba0 loads 8 bytes from sp (at entry) -0x1d8 via base s8 (sp).
-  The `sd` at 0x10051bf0 stores 8 bytes to sp (at entry) -0x280 via base s8 (sp) (value ).
-  The `sd` at 0x10051bfc stores 8 bytes to sp (at entry) -0x278 via base s8 (sp) (value ).
+  The `sd` at 0x10051bf0 stores 8 bytes to sp (at entry) -0x280 via base s8 (sp) (value unknown).
+  The `sd` at 0x10051bfc stores 8 bytes to sp (at entry) -0x278 via base s8 (sp) (value unknown).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x278 via base s8 (sp), including `ld` at 0x10051c10, `ld` at 0x10051c44.
   The `ld` at 0x10051c40 loads 8 bytes from sp (at entry) -0x270 via base s8 (sp).
   The `ld` at 0x10051c4c loads 8 bytes from sp (at entry) -0x280 via base s8 (sp).
@@ -5818,7 +5818,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10051e7c loads 4 bytes from sym(KONAINFO) +0x0 via base t8 (sym(KONAINFO)).
   The `lw` at 0x10051e80 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `sd` at 0x10051ea8 stores 8 bytes to sp (at entry) -0x358 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x350 via base s8 (sp) (value ), including `sd` at 0x10051eac, `sd` at 0x10052094.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x350 via base s8 (sp) (value unknown), including `sd` at 0x10051eac, `sd` at 0x10052094.
   The `sd` at 0x10051eb4 stores 8 bytes to sp (at entry) -0x328 via base s8 (sp) (value 0x0).
   The `sd` at 0x10051f78 stores 8 bytes to sp (at entry) -0x3c0 via base s8 (sp) (value ret(jt_new_data_vector)).
   6 such `ld` accesses load 8 bytes from sp (at entry) -0x3c0 via base s8 (sp), including `ld` at 0x10051fc8, `ld` at 0x10052d44, `ld` at 0x10053064.
@@ -5826,59 +5826,59 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x350 via base s8 (sp), including `ld` at 0x10052070, `ld` at 0x1005207c, `ld` at 0x10052138.
   The `sw` at 0x10052074 stores 4 bytes to ? (base unknown) via base a2 (?) (value 0x0).
   4 such `ld` accesses load 8 bytes from sp (at entry) -0x358 via base s8 (sp), including `ld` at 0x10052078, `ld` at 0x10052098, `ld` at 0x1005215c.
-  The `sd` at 0x10052084 stores 8 bytes to sp (at entry) -0x358 via base s8 (sp) (value ).
+  The `sd` at 0x10052084 stores 8 bytes to sp (at entry) -0x358 via base s8 (sp) (value unknown).
   The `lw` at 0x100520b8 loads 4 bytes from abs 0x102bc648 via base at (0x102c4340).
   8 such `lw` accesses load 4 bytes from abs 0x102bd484 via base t9 (0x102c4340), including `lw` at 0x100520c8, `lw` at 0x1005221c, `lw` at 0x1005238c.
   The `lbu` at 0x100520d4 loads 1 bytes from table(0x101fd9c0) +0x0 via base ra (table(0x101fd570)).
   The `sd` at 0x100520e0 stores 8 bytes to sp (at entry) -0x208 via base s8 (sp) (value table(0x101fd9c0)).
-  The `sd` at 0x100520ec stores 8 bytes to sp (at entry) -0x200 via base s8 (sp) (value ).
+  The `sd` at 0x100520ec stores 8 bytes to sp (at entry) -0x200 via base s8 (sp) (value unknown).
   11 such `lw` accesses load 4 bytes from abs 0x102be028 via base t9 (0x102c4340), including `lw` at 0x100520f8, `lw` at 0x1005223c, `lw` at 0x10052320.
   6 such `ld` accesses load 8 bytes from sp (at entry) -0x3c8 via base s8 (sp), including `ld` at 0x10052104, `ld` at 0x10052248, `ld` at 0x10052330.
   The `sd` at 0x10052114 stores 8 bytes to sp (at entry) -0x2a8 via base s8 (sp) (value ret(jt_extract_chip_register)).
   11 such `lw` accesses load 4 bytes from abs 0x102be01c via base t9 (0x102c4340), including `lw` at 0x10052120, `lw` at 0x10052264, `lw` at 0x100523d4.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2a8 via base s8 (sp), including `ld` at 0x1005212c, `ld` at 0x1005217c.
   28 such `lw` accesses load 4 bytes from sp (at entry) -0x130 via base s8 (sp), including `lw` at 0x10052130, `lw` at 0x10052168, `lw` at 0x10052274.
-  3 such `sw` accesses store 4 bytes to ? (base unknown) via base ra (?) (value ), including `sw` at 0x10052144, `sw` at 0x10052c00, `sw` at 0x100534a4.
+  3 such `sw` accesses store 4 bytes to ? (base unknown) via base ra (?) (value unknown), including `sw` at 0x10052144, `sw` at 0x10052c00, `sw` at 0x100534a4.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x328 via base s8 (sp), including `ld` at 0x10052188, `ld` at 0x100521a4, `ld` at 0x10052860.
   3 such `sd` accesses store 8 bytes to sp (at entry) -0x360 via base s8 (sp) (value 0x0), including `sd` at 0x100521b0, `sd` at 0x10052c70, `sd` at 0x10053510.
   The `sd` at 0x100521b8 stores 8 bytes to sp (at entry) -0x3b8 via base s8 (sp) (value 0x0).
   The `lw` at 0x100521c0 loads 4 bytes from abs 0x102bc648 via base a1 (0x102c4340).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x368 via base s8 (sp) (value ), including `sd` at 0x100521c4, `sd` at 0x10052204.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x368 via base s8 (sp) (value unknown), including `sd` at 0x100521c4, `sd` at 0x10052204.
   The `sd` at 0x100521d0 stores 8 bytes to sp (at entry) -0x3a8 via base s8 (sp) (value 0x101fd9c0).
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x368 via base s8 (sp), including `ld` at 0x100521d4, `ld` at 0x100521e0, `ld` at 0x1005227c.
   The `sw` at 0x100521d8 stores 4 bytes to ? (base unknown) via base a3 (?) (value 0x0).
   4 such `ld` accesses load 8 bytes from sp (at entry) -0x360 via base s8 (sp), including `ld` at 0x100521dc, `ld` at 0x100522b8, `ld` at 0x100522e0.
   4 such `ld` accesses load 8 bytes from sp (at entry) -0x3a8 via base s8 (sp), including `ld` at 0x100521e4, `ld` at 0x1005220c, `ld` at 0x10053518.
-  The `sd` at 0x100521ec stores 8 bytes to sp (at entry) -0x360 via base s8 (sp) (value ).
-  The `sd` at 0x100521f8 stores 8 bytes to sp (at entry) -0x3a8 via base s8 (sp) (value ).
+  The `sd` at 0x100521ec stores 8 bytes to sp (at entry) -0x360 via base s8 (sp) (value unknown).
+  The `sd` at 0x100521f8 stores 8 bytes to sp (at entry) -0x3a8 via base s8 (sp) (value unknown).
   6 such `lbu` accesses load 1 bytes from ? (base unknown) via base a2 (?), including `lbu` at 0x10052228, `lbu` at 0x10052854, `lbu` at 0x10052d04.
   The `sd` at 0x10052258 stores 8 bytes to sp (at entry) -0x2b8 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2b8 via base s8 (sp), including `ld` at 0x10052270, `ld` at 0x100522d8.
   4 such `lw` accesses load 4 bytes from abs 0x102be1e0 via base ra (0x102c4340), including `lw` at 0x10052284, `lw` at 0x100523f4, `lw` at 0x100529f0.
-  The `sw` at 0x10052288 stores 4 bytes to ? (base unknown) via base at (?) (value ).
+  The `sw` at 0x10052288 stores 4 bytes to ? (base unknown) via base at (?) (value unknown).
   4 such `lw` accesses load 4 bytes from sym(KONAINFO) +0x0 via base ra (sym(KONAINFO)), including `lw` at 0x1005228c, `lw` at 0x100523fc, `lw` at 0x100529f8.
   4 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base ra ([sym(KONAINFO)]), including `lw` at 0x10052290, `lw` at 0x10052400, `lw` at 0x100529fc.
   4 such `ld` accesses load 8 bytes from sp (at entry) -0x3b8 via base s8 (sp), including `ld` at 0x100522e4, `ld` at 0x10052304, `ld` at 0x10053538.
   The `sd` at 0x10052340 stores 8 bytes to sp (at entry) -0x250 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `sd` accesses store 8 bytes to sp (at entry) -0x3b0 via base s8 (sp) (value 0x0), including `sd` at 0x10052348, `sd` at 0x10052a48.
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x370 via base s8 (sp) (value ), including `sd` at 0x10052350, `sd` at 0x10052378.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x370 via base s8 (sp) (value unknown), including `sd` at 0x10052350, `sd` at 0x10052378.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x370 via base s8 (sp), including `ld` at 0x10052354, `ld` at 0x10052360, `ld` at 0x100523ec.
   The `sw` at 0x10052358 stores 4 bytes to ? (base unknown) via base a4 (?) (value 0x0).
   5 such `ld` accesses load 8 bytes from sp (at entry) -0x3b0 via base s8 (sp), including `ld` at 0x1005235c, `ld` at 0x10052398, `ld` at 0x10052430.
-  The `sd` at 0x10052368 stores 8 bytes to sp (at entry) -0x3b0 via base s8 (sp) (value ).
+  The `sd` at 0x10052368 stores 8 bytes to sp (at entry) -0x3b0 via base s8 (sp) (value unknown).
   The `sd` at 0x100523c8 stores 8 bytes to sp (at entry) -0x2b0 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2b0 via base s8 (sp), including `ld` at 0x100523e0, `ld` at 0x10052444.
-  The `sw` at 0x100523f8 stores 4 bytes to ? (base unknown) via base v0 (?) (value ).
+  The `sw` at 0x100523f8 stores 4 bytes to ? (base unknown) via base v0 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from ? (base unknown) via base v0 (?), including `lw` at 0x10052598, `lw` at 0x10052880, `lw` at 0x10053610.
-  The `sd` at 0x100525a0 stores 8 bytes to sp (at entry) -0x410 via base s8 (sp) (value ).
-  The `sd` at 0x100525a8 stores 8 bytes to sp (at entry) -0x210 via base s8 (sp) (value ).
+  The `sd` at 0x100525a0 stores 8 bytes to sp (at entry) -0x410 via base s8 (sp) (value unknown).
+  The `sd` at 0x100525a8 stores 8 bytes to sp (at entry) -0x210 via base s8 (sp) (value unknown).
   The `sw` at 0x10052630 stores 4 bytes to ? (base unknown) via base s2 (?) (value 0x5).
   The `sd` at 0x10052734 stores 8 bytes to sp (at entry) -0x1d0 via base s8 (sp) (value ret(jt_new_data_vector)).
   The `ld` at 0x10052838 loads 8 bytes from sp (at entry) -0x208 via base s8 (sp).
   The `ld` at 0x10052850 loads 8 bytes from sp (at entry) -0x200 via base s8 (sp).
-  The `sd` at 0x1005286c stores 8 bytes to sp (at entry) -0x328 via base s8 (sp) (value ).
-  The `sd` at 0x1005288c stores 8 bytes to sp (at entry) -0x408 via base s8 (sp) (value ).
-  The `sd` at 0x10052894 stores 8 bytes to sp (at entry) -0x218 via base s8 (sp) (value ).
+  The `sd` at 0x1005286c stores 8 bytes to sp (at entry) -0x328 via base s8 (sp) (value unknown).
+  The `sd` at 0x1005288c stores 8 bytes to sp (at entry) -0x408 via base s8 (sp) (value unknown).
+  The `sd` at 0x10052894 stores 8 bytes to sp (at entry) -0x218 via base s8 (sp) (value unknown).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x218 via base s8 (sp), including `ld` at 0x100528b0, `ld` at 0x100528bc.
   The `ld` at 0x100528c0 loads 8 bytes from sp (at entry) -0x408 via base s8 (sp).
   The `lw` at 0x100528e8 loads 4 bytes from abs 0x102be1e0 via base a4 (0x102c4340).
@@ -5892,21 +5892,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x210 via base s8 (sp), including `ld` at 0x10052b1c, `ld` at 0x10052b28.
   The `ld` at 0x10052b2c loads 8 bytes from sp (at entry) -0x410 via base s8 (sp).
   The `sd` at 0x10052b4c stores 8 bytes to sp (at entry) -0x3a0 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x348 via base s8 (sp) (value ), including `sd` at 0x10052b50, `sd` at 0x10052b80.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x348 via base s8 (sp) (value unknown), including `sd` at 0x10052b50, `sd` at 0x10052b80.
   The `sd` at 0x10052b58 stores 8 bytes to sp (at entry) -0x320 via base s8 (sp) (value 0x0).
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x348 via base s8 (sp), including `ld` at 0x10052b5c, `ld` at 0x10052b68, `ld` at 0x10052bf4.
   The `sw` at 0x10052b60 stores 4 bytes to ? (base unknown) via base a5 (?) (value 0x0).
   5 such `ld` accesses load 8 bytes from sp (at entry) -0x3a0 via base s8 (sp), including `ld` at 0x10052b64, `ld` at 0x10052ba0, `ld` at 0x10052c18.
-  The `sd` at 0x10052b70 stores 8 bytes to sp (at entry) -0x3a0 via base s8 (sp) (value ).
+  The `sd` at 0x10052b70 stores 8 bytes to sp (at entry) -0x3a0 via base s8 (sp) (value unknown).
   The `sd` at 0x10052bd0 stores 8 bytes to sp (at entry) -0x268 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x268 via base s8 (sp), including `ld` at 0x10052be8, `ld` at 0x10052c38.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x320 via base s8 (sp), including `ld` at 0x10052c44, `ld` at 0x10052c60, `ld` at 0x10053328.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x260 via base s8 (sp), including `ld` at 0x10052cb8, `ld` at 0x10052e00.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x340 via base s8 (sp), including `ld` at 0x10052cbc, `ld` at 0x10052db4, `ld` at 0x10052dd8.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x318 via base s8 (sp), including `ld` at 0x10052cc0, `ld` at 0x10052ce8.
-  The `sd` at 0x10052cc8 stores 8 bytes to sp (at entry) -0x260 via base s8 (sp) (value ).
-  The `sd` at 0x10052cd4 stores 8 bytes to sp (at entry) -0x318 via base s8 (sp) (value ).
-  The `sd` at 0x10052ce0 stores 8 bytes to sp (at entry) -0x340 via base s8 (sp) (value ).
+  The `sd` at 0x10052cc8 stores 8 bytes to sp (at entry) -0x260 via base s8 (sp) (value unknown).
+  The `sd` at 0x10052cd4 stores 8 bytes to sp (at entry) -0x318 via base s8 (sp) (value unknown).
+  The `sd` at 0x10052ce0 stores 8 bytes to sp (at entry) -0x340 via base s8 (sp) (value unknown).
   The `sd` at 0x10052d54 stores 8 bytes to sp (at entry) -0x2a0 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2a0 via base s8 (sp), including `ld` at 0x10052d6c, `ld` at 0x10052de8.
   4 such `lw` accesses load 4 bytes from abs 0x102bd470 via base t9 (0x102c4340), including `lw` at 0x10052d94, `lw` at 0x100530b4, `lw` at 0x10053984.
@@ -5916,15 +5916,15 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x310 via base s8 (sp), including `ld` at 0x10052fb8, `ld` at 0x10053000, `ld` at 0x10053120.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x338 via base s8 (sp), including `ld` at 0x10052fbc, `ld` at 0x100530d4, `ld` at 0x100530f8.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x300 via base s8 (sp), including `ld` at 0x10052fc0, `ld` at 0x10053128.
-  The `sd` at 0x10052fc8 stores 8 bytes to sp (at entry) -0x310 via base s8 (sp) (value ).
-  The `sd` at 0x10052fd4 stores 8 bytes to sp (at entry) -0x300 via base s8 (sp) (value ).
-  The `sd` at 0x10052fe0 stores 8 bytes to sp (at entry) -0x338 via base s8 (sp) (value ).
+  The `sd` at 0x10052fc8 stores 8 bytes to sp (at entry) -0x310 via base s8 (sp) (value unknown).
+  The `sd` at 0x10052fd4 stores 8 bytes to sp (at entry) -0x300 via base s8 (sp) (value unknown).
+  The `sd` at 0x10052fe0 stores 8 bytes to sp (at entry) -0x338 via base s8 (sp) (value unknown).
   The `lbu` at 0x1005304c loads 1 bytes from table(0x101fd99a) +0x0 via base a2 (table(0x101fd570)).
   The `sd` at 0x10053074 stores 8 bytes to sp (at entry) -0x298 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x298 via base s8 (sp), including `ld` at 0x1005308c, `ld` at 0x10053108.
-  The `sd` at 0x10053334 stores 8 bytes to sp (at entry) -0x320 via base s8 (sp) (value ).
+  The `sd` at 0x10053334 stores 8 bytes to sp (at entry) -0x320 via base s8 (sp) (value unknown).
   The `sd` at 0x10053338 stores 8 bytes to sp (at entry) -0x2f8 via base s8 (sp) (value 0x0).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x330 via base s8 (sp) (value ), including `sd` at 0x1005333c, `sd` at 0x10053444.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x330 via base s8 (sp) (value unknown), including `sd` at 0x1005333c, `sd` at 0x10053444.
   The `sd` at 0x10053348 stores 8 bytes to sp (at entry) -0x308 via base s8 (sp) (value sp-416).
   The `lw` at 0x10053374 loads 4 bytes from abs 0x102bc644 via base a5 (0x102c4340).
   The `lw` at 0x10053380 loads 4 bytes from abs 0x102bc644 via base a7 (0x102c4340).
@@ -5947,16 +5947,16 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x330 via base s8 (sp), including `ld` at 0x10053414, `ld` at 0x10053420, `ld` at 0x10053498.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x2f8 via base s8 (sp), including `ld` at 0x1005341c, `ld` at 0x100534e0, `ld` at 0x10053508.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x308 via base s8 (sp), including `ld` at 0x10053424, `ld` at 0x1005344c.
-  The `sd` at 0x1005342c stores 8 bytes to sp (at entry) -0x2f8 via base s8 (sp) (value ).
-  The `sd` at 0x10053438 stores 8 bytes to sp (at entry) -0x308 via base s8 (sp) (value ).
+  The `sd` at 0x1005342c stores 8 bytes to sp (at entry) -0x2f8 via base s8 (sp) (value unknown).
+  The `sd` at 0x10053438 stores 8 bytes to sp (at entry) -0x308 via base s8 (sp) (value unknown).
   The `lw` at 0x10053460 loads 4 bytes from ? (base unknown) via base a1 (?).
-  The `sd` at 0x1005346c stores 8 bytes to sp (at entry) -0x1e8 via base s8 (sp) (value ).
+  The `sd` at 0x1005346c stores 8 bytes to sp (at entry) -0x1e8 via base s8 (sp) (value unknown).
   The `sd` at 0x10053474 stores 8 bytes to sp (at entry) -0x258 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x258 via base s8 (sp), including `ld` at 0x1005348c, `ld` at 0x10053500.
   The `ld` at 0x100534c0 loads 8 bytes from sp (at entry) -0x1e8 via base s8 (sp).
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x3b8 via base s8 (sp) (value ), including `sd` at 0x10053548, `sd` at 0x100535a0.
-  The `sd` at 0x1005361c stores 8 bytes to sp (at entry) -0x400 via base s8 (sp) (value ).
-  The `sd` at 0x10053624 stores 8 bytes to sp (at entry) -0x220 via base s8 (sp) (value ).
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x3b8 via base s8 (sp) (value unknown), including `sd` at 0x10053548, `sd` at 0x100535a0.
+  The `sd` at 0x1005361c stores 8 bytes to sp (at entry) -0x400 via base s8 (sp) (value unknown).
+  The `sd` at 0x10053624 stores 8 bytes to sp (at entry) -0x220 via base s8 (sp) (value unknown).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x220 via base s8 (sp), including `ld` at 0x10053640, `ld` at 0x1005364c.
   The `ld` at 0x10053650 loads 8 bytes from sp (at entry) -0x400 via base s8 (sp).
   The `ld` at 0x1005368c loads 8 bytes from sp (at entry) -0x1d0 via base s8 (sp).
@@ -5981,10 +5981,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `ld` at 0x10053a4c loads 8 bytes from sp (at entry) -0x238 via base s8 (sp).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2f0 via base s8 (sp), including `ld` at 0x10053a50, `ld` at 0x10053a78.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x2e8 via base s8 (sp), including `ld` at 0x10053a54, `ld` at 0x10053a84.
-  The `sd` at 0x10053a5c stores 8 bytes to sp (at entry) -0x238 via base s8 (sp) (value ).
-  The `sd` at 0x10053a68 stores 8 bytes to sp (at entry) -0x2e8 via base s8 (sp) (value ).
-  The `sd` at 0x10053a74 stores 8 bytes to sp (at entry) -0x2f0 via base s8 (sp) (value ).
-  The `sd` at 0x10053a7c stores 8 bytes to sp (at entry) -0x248 via base s8 (sp) (value ).
+  The `sd` at 0x10053a5c stores 8 bytes to sp (at entry) -0x238 via base s8 (sp) (value unknown).
+  The `sd` at 0x10053a68 stores 8 bytes to sp (at entry) -0x2e8 via base s8 (sp) (value unknown).
+  The `sd` at 0x10053a74 stores 8 bytes to sp (at entry) -0x2f0 via base s8 (sp) (value unknown).
+  The `sd` at 0x10053a7c stores 8 bytes to sp (at entry) -0x248 via base s8 (sp) (value unknown).
   The `lw` at 0x10053aa0 loads 4 bytes from ? (base unknown) via base a2 (?).
   The `sd` at 0x10053ad0 stores 8 bytes to sp (at entry) -0x240 via base s8 (sp) (value ret(jt_extract_chip_register)).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x240 via base s8 (sp), including `ld` at 0x10053ae8, `ld` at 0x10053b68.
@@ -6495,12 +6495,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xfb8 via base s2 (a0), including `lw` at 0x10057204, `lw` at 0x10057248.
   The `sw` at 0x10057240 stores 4 bytes to ? (base unknown) via base s6 (?) (value 0x0).
   2 such `lw` accesses load 4 bytes from abs 0x102bd484 via base t9 (0x102c4340), including `lw` at 0x10057270, `lw` at 0x10057340.
-  The `sw` at 0x100572dc stores 4 bytes to ? (base unknown) via base s6 (?) (value ).
+  The `sw` at 0x100572dc stores 4 bytes to ? (base unknown) via base s6 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xfe4 via base s2 (a0), including `lw` at 0x10057300, `lw` at 0x1005731c, `lw` at 0x100573dc.
   The `sw` at 0x10057318 stores 4 bytes to ? (base unknown) via base s7 (?) (value 0x0).
   The `lw` at 0x10057380 loads 4 bytes from abs 0x102be01c via base t9 (0x102c4340).
-  The `sw` at 0x100573bc stores 4 bytes to ? (base unknown) via base s7 (?) (value ).
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0xffc via base s2 (a0) (value ), including `sw` at 0x10057474, `sw` at 0x10057544.
+  The `sw` at 0x100573bc stores 4 bytes to ? (base unknown) via base s7 (?) (value unknown).
+  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0xffc via base s2 (a0) (value unknown), including `sw` at 0x10057474, `sw` at 0x10057544.
   The `jal` at 0x10056808 calls `fcPioRead32` with a0=0x370, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10056830 calls `kt_output_info` with a0=0x1018b148, a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x10056888 calls `jt_select_chain` with a0=0x1018ed10, a1=(unknown), a2=(unknown), a3=(unknown).
@@ -6680,11 +6680,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10057df8 loads 4 bytes from abs 0x102bd740 via base t9 (0x102c4340).
   3 such `lw` accesses load 4 bytes from abs 0x102be028 via base t9 (0x102c4340), including `lw` at 0x10057ea8, `lw` at 0x10057f60, `lw` at 0x10058034.
   3 such `lw` accesses load 4 bytes from abs 0x102be01c via base t9 (0x102c4340), including `lw` at 0x10057ed8, `lw` at 0x10057f8c, `lw` at 0x1005805c.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0xffc via base s3 (a0) (value ), including `sw` at 0x10057f00, `sw` at 0x10057fc0.
+  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0xffc via base s3 (a0) (value unknown), including `sw` at 0x10057f00, `sw` at 0x10057fc0.
   The `lw` at 0x10057fa4 loads 4 bytes from a0 (arg0 at entry) +0xffc via base s3 (a0).
   The `sw` at 0x10057fec stores 4 bytes to ? (base unknown) via base s5 (?) (value 0x0).
   The `lw` at 0x1005800c loads 4 bytes from abs 0x102bd484 via base s3 (0x102c4340).
-  The `sw` at 0x10058090 stores 4 bytes to ? (base unknown) via base s5 (?) (value ).
+  The `sw` at 0x10058090 stores 4 bytes to ? (base unknown) via base s5 (?) (value unknown).
   The `jal` at 0x1005764c calls `fcPioRead32` with a0=0x370, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10057678 calls `kt_output_info` with a0=0x1018b148, a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x100576b8 calls `jt_select_chain` with a0=0x1018ed10, a1=(unknown), a2=(unknown), a3=(unknown).
@@ -6825,7 +6825,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6c via base s1 (a0), including `lw` at 0x10058494, `lw` at 0x100584a0.
   2 such `lw` accesses load 4 bytes from abs 0x102bd72c via base s6 (0x102c4340), including `lw` at 0x100584d8, `lw` at 0x10058538.
   9 such `lw` accesses load 4 bytes from abs 0x102be1e0 via base s7 (0x102c4340), including `lw` at 0x10058500, `lw` at 0x1005852c, `lw` at 0x1005986c.
-  The `sw` at 0x1005854c stores 4 bytes to a0 (arg0 at entry) +0x150 via base s1 (a0) (value ).
+  The `sw` at 0x1005854c stores 4 bytes to a0 (arg0 at entry) +0x150 via base s1 (a0) (value unknown).
   3 such `lw` accesses load 4 bytes from abs 0x102bd760 via base t9 (0x102c4340), including `lw` at 0x100585a0, `lw` at 0x100593a8, `lw` at 0x100596bc.
   4 such `lw` accesses load 4 bytes from abs 0x102bd740 via base s5 (0x102c4340), including `lw` at 0x100585c0, `lw` at 0x10059370, `lw` at 0x10059684.
   6 such `lw` accesses load 4 bytes from sym(KONAINFO) +0x0 via base s7 (sym(KONAINFO)), including `lw` at 0x100585c4, `lw` at 0x10059798, `lw` at 0x10059870.
@@ -6838,7 +6838,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10058670 loads 4 bytes from ? (base unknown) via base s7 (?).
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x16c via base s1 (a0), including `lw` at 0x10058694, `lw` at 0x100591f0.
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s5 (?), including `lw` at 0x10058720, `lw` at 0x1005878c.
-  The `sw` at 0x10058738 stores 4 bytes to ? (base unknown) via base s5 (?) (value ).
+  The `sw` at 0x10058738 stores 4 bytes to ? (base unknown) via base s5 (?) (value unknown).
   The `lw` at 0x10058884 loads 4 bytes from abs 0x102bd7c0 via base t9 (0x102c4340).
   The `sw` at 0x100588c8 stores 4 bytes to ? (base unknown) via base v0 (?) (value 0x1).
   7 such `lw` accesses load 4 bytes from ? (base unknown) via base v0 (?), including `lw` at 0x100588d8, `lw` at 0x10058958, `lw` at 0x10058970.
@@ -6858,14 +6858,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10058bd8 loads 4 bytes from abs 0x102be22c via base t3 (0x102c4340).
   8 such `lw` accesses load 4 bytes from sym(numTests) +0x0 via base t2 (sym(numTests)), including `lw` at 0x10058bdc, `lw` at 0x10058c20, `lw` at 0x10058c68.
   12 such `lw` accesses load 4 bytes from ? (base unknown) via base a1 (?), including `lw` at 0x10058bf0, `lw` at 0x10058bf8, `lw` at 0x10058c34.
-  6 such `sw` accesses store 4 bytes to ? (base unknown) via base a1 (?) (value ), including `sw` at 0x10058c0c, `sw` at 0x10058c50, `sw` at 0x10058ce4.
+  6 such `sw` accesses store 4 bytes to ? (base unknown) via base a1 (?) (value unknown), including `sw` at 0x10058c0c, `sw` at 0x10058c50, `sw` at 0x10058ce4.
   9 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xfb4 via base s1 (a0), including `lw` at 0x10058c18, `lw` at 0x10058c5c, `lw` at 0x10058ca4.
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0x10058c7c, `lw` at 0x10058c84, `lw` at 0x100592ec.
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a2 (?) (value ), including `sw` at 0x10058c98, `sw` at 0x10059308.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a2 (?) (value unknown), including `sw` at 0x10058c98, `sw` at 0x10059308.
   The `lw` at 0x10058d8c loads 4 bytes from abs 0x102bd69c via base t9 (0x102c4340).
   The `lw` at 0x10058da0 loads 4 bytes from abs 0x102bd624 via base t9 (0x102c4340).
   The `lw` at 0x10058db8 loads 4 bytes from abs 0x102be42c via base at (0x102c4340).
-  The `sw` at 0x10058dc4 stores 4 bytes to sym(DEBUG_LEVEL) +0x0 via base at (sym(DEBUG_LEVEL)) (value ).
+  The `sw` at 0x10058dc4 stores 4 bytes to sym(DEBUG_LEVEL) +0x0 via base at (sym(DEBUG_LEVEL)) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102bd728 via base t9 (0x102c4340), including `lw` at 0x10058dd8, `lw` at 0x10059334.
   The `lw` at 0x10058e58 loads 4 bytes from abs 0x102bd7ac via base t9 (0x102c4340).
   The `lw` at 0x10058e6c loads 4 bytes from a0 (arg0 at entry) +0xf7c via base s1 (a0).
@@ -6878,7 +6878,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10059284 loads 4 bytes from abs 0x102be230 via base v0 (0x102c4340).
   The `lw` at 0x10059288 loads 4 bytes from sym(numTests) +0x0 via base v0 (sym(numTests)).
   The `lw` at 0x100592a0 loads 4 bytes from abs 0x102be22c via base a1 (0x102c4340).
-  The `sw` at 0x100593d8 stores 4 bytes to a0 (arg0 at entry) +0x154 via base s1 (a0) (value ).
+  The `sw` at 0x100593d8 stores 4 bytes to a0 (arg0 at entry) +0x154 via base s1 (a0) (value unknown).
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xfb8 via base s1 (a0), including `lw` at 0x10059598, `lw` at 0x100595fc, `lw` at 0x1005962c.
   The `lw` at 0x100595b0 loads 4 bytes from a0 (arg0 at entry) +0xf94 via base s1 (a0).
   The `sw` at 0x100595f0 stores 4 bytes to a0 (arg0 at entry) +0x0 via base s1 (a0) (value 0x1).
@@ -7210,7 +7210,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x10059e7c stores 4 bytes to ret(0x10059d84) +0x4 via base v0 (ret(0x10059d84)) (value a1).
   The `lw` at 0x10059e90 loads 4 bytes from abs 0x102bd48c via base t9 (0x102c4340).
   The `sw` at 0x10059e9c stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) (value a0).
-  The `sw` at 0x10059ea8 stores 4 bytes to ret(malloc) +0x8 via base v0 (ret(malloc)) (value ).
+  The `sw` at 0x10059ea8 stores 4 bytes to ret(malloc) +0x8 via base v0 (ret(malloc)) (value unknown).
   The `sw` at 0x10059eb0 stores 4 bytes to ret(malloc) +0x4 via base v0 (ret(malloc)) (value a1).
   The `sw` at 0x10059eb4 stores 4 bytes to ? (base unknown) via base ra (?) (value ret(malloc)).
   The `jal` at 0x10059e28 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -7689,7 +7689,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1005ff48 loads 4 bytes from a0 (arg0 at entry) +0x0 via base a0 (a0).
   The `sd` at 0x1005ff50 stores 8 bytes to sp (at entry) -0x78 via base s8 (sp) (value s6).
   5 such `lw` accesses load 4 bytes from [a0] +0x158 via base s7 ([a0]), including `lw` at 0x1005ff58, `lw` at 0x100600a8, `lw` at 0x100600c8.
-  The `sd` at 0x1005ff64 stores 8 bytes to sp (at entry) -0xa0 via base s8 (sp) (value ).
+  The `sd` at 0x1005ff64 stores 8 bytes to sp (at entry) -0xa0 via base s8 (sp) (value unknown).
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a6 (?), including `lw` at 0x1005ff68, `lw` at 0x1005ff70, `lw` at 0x1005ffcc.
   The `lw` at 0x1005ff6c loads 4 bytes from [[a0]+344] +0x10 via base s6 ([[a0]+344]).
   The `sd` at 0x1005ff78 stores 8 bytes to sp (at entry) -0x68 via base s8 (sp) (value s3).
@@ -7701,7 +7701,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   4 such `ld` accesses load 8 bytes from sp (at entry) -0xa0 via base s8 (sp), including `ld` at 0x1005ffc8, `ld` at 0x10060028, `ld` at 0x1006008c.
   The `lw` at 0x1005ffec loads 4 bytes from abs 0x102be064 via base s2 (0x102c4340).
   The `sd` at 0x1005fff8 stores 8 bytes to sp (at entry) -0xb0 via base s8 (sp) (value s5).
-  The `sd` at 0x10060014 stores 8 bytes to sp (at entry) -0x48 via base s8 (sp) (value ).
+  The `sd` at 0x10060014 stores 8 bytes to sp (at entry) -0x48 via base s8 (sp) (value unknown).
   The `lw` at 0x10060024 loads 4 bytes from abs 0x102be048 via base s5 (0x102c4340).
   4 such `lw` accesses load 4 bytes from abs 0x102bc6e0 via base a1 (0x102c4340), including `lw` at 0x10060030, `lw` at 0x10060098, `lw` at 0x100600c4.
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x10060038, `lw` at 0x1006009c, `lw` at 0x10060128.
@@ -7710,7 +7710,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10060070 loads 4 bytes from abs 0x102be074 via base s3 (0x102c4340).
   2 such `lw` accesses load 4 bytes from [[a0]+344] +0x4 via base a0 ([[a0]+344]), including `lw` at 0x100600b4, `lw` at 0x1006018c.
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x40 via base s8 (sp), including `ld` at 0x100600d8, `ld` at 0x1006012c.
-  The `sd` at 0x100600ec stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value ).
+  The `sd` at 0x100600ec stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value unknown).
   The `ld` at 0x1006014c loads 8 bytes from sp (at entry) -0x48 via base s8 (sp).
   The `lw` at 0x1006016c loads 4 bytes from abs 0x102be008 via base t9 (0x102c4340).
   2 such `ld` accesses load 8 bytes from sp (at entry) -0x50 via base s8 (sp), including `ld` at 0x10060174, `ld` at 0x100601b0.
@@ -8600,7 +8600,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sd` at 0x100645c8 stores 8 bytes to sp (at entry) -0xa8 via base s8 (sp) (value s0).
   The `sd` at 0x100645d8 stores 8 bytes to sp (at entry) -0x88 via base s8 (sp) (value ([[[a0]+3964]+16] + a3)).
   The `lw` at 0x100645fc loads 4 bytes from [[a0]+3964] +0x4 via base a6 ([[a0]+3964]).
-  The `sd` at 0x10064604 stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value ).
+  The `sd` at 0x10064604 stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be064 via base s4 (0x102c4340), including `lw` at 0x10064610, `lw` at 0x10064738.
   4 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10064630, `lw` at 0x10064694, `lw` at 0x100646c8.
   4 such `lw` accesses load 4 bytes from abs 0x102bc700 via base a1 (0x102c4340), including `lw` at 0x10064634, `lw` at 0x10064698, `lw` at 0x100646cc.
@@ -8779,7 +8779,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sd` at 0x10064f90 stores 8 bytes to sp (at entry) -0xa8 via base s8 (sp) (value s0).
   The `sd` at 0x10064fa0 stores 8 bytes to sp (at entry) -0x88 via base s8 (sp) (value ([[[a0]+3964]+16] + a3)).
   The `lw` at 0x10064fc4 loads 4 bytes from [[a0]+3964] +0x4 via base a6 ([[a0]+3964]).
-  The `sd` at 0x10064fcc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value ).
+  The `sd` at 0x10064fcc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be064 via base s4 (0x102c4340), including `lw` at 0x10064fd8, `lw` at 0x10065100.
   4 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10064ff8, `lw` at 0x1006505c, `lw` at 0x10065090.
   4 such `lw` accesses load 4 bytes from abs 0x102bc704 via base a1 (0x102c4340), including `lw` at 0x10064ffc, `lw` at 0x10065060, `lw` at 0x10065094.
@@ -8981,7 +8981,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sd` at 0x10065fc0 stores 8 bytes to sp (at entry) -0xa8 via base s8 (sp) (value s0).
   The `sd` at 0x10065fd0 stores 8 bytes to sp (at entry) -0x88 via base s8 (sp) (value ([[[a0]+3964]+16] + a3)).
   The `lw` at 0x10065ff4 loads 4 bytes from [[a0]+3964] +0x4 via base a6 ([[a0]+3964]).
-  The `sd` at 0x10065ffc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value ).
+  The `sd` at 0x10065ffc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be064 via base s4 (0x102c4340), including `lw` at 0x10066008, `lw` at 0x10066120.
   3 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10066028, `lw` at 0x1006608c, `lw` at 0x100660c0.
   3 such `lw` accesses load 4 bytes from abs 0x102bc714 via base a1 (0x102c4340), including `lw` at 0x1006602c, `lw` at 0x10066090, `lw` at 0x100660c4.
@@ -9435,10 +9435,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10068ca0 loads 4 bytes from abs 0x102be0b8 via base s1 (0x102c4340).
   2 such `lw` accesses load 4 bytes from abs 0x102bc754 via base a2 (0x102c4340), including `lw` at 0x10068ca4, `lw` at 0x10068cd4.
   The `lw` at 0x10068cd0 loads 4 bytes from abs 0x102be4d0 via base s0 (0x102c4340).
-  The `sw` at 0x10068ce8 stores 4 bytes to sym(config0) +0x0 via base s0 (sym(config0)) (value ).
+  The `sw` at 0x10068ce8 stores 4 bytes to sym(config0) +0x0 via base s0 (sym(config0)) (value unknown).
   The `lw` at 0x10068d18 loads 4 bytes from abs 0x102be4d4 via base a4 (0x102c4340).
   The `lw` at 0x10068d1c loads 4 bytes from sym(config0) +0x0 via base s0 (sym(config0)).
-  The `sw` at 0x10068d28 stores 4 bytes to sym(config1) +0x0 via base a4 (sym(config1)) (value ).
+  The `sw` at 0x10068d28 stores 4 bytes to sym(config1) +0x0 via base a4 (sym(config1)) (value unknown).
   The `jal` at 0x10068c4c calls `kt_output_dbug` with a0=0x8, a1=0x10197450, a2=(unknown), a3=(unknown).
   The `jal` at 0x10068c5c calls `jt_select_chain` with a0=(unknown), a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x10068c78 calls `jt_set_global_instruction` with a0=(unknown), a1=0x10197470, a2=(unknown), a3=(unknown).
@@ -9482,14 +9482,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   4 such `lw` accesses load 4 bytes from sym(config1) +0x0 via base ra (sym(config1)), including `lw` at 0x10068e58, `lw` at 0x100691cc, `lw` at 0x10069224.
   2 such `sb` accesses store 1 bytes to ([sym(config1)] + a3) +0x0 via base ra (([sym(config1)] + a3)) (value 0x1), including `sb` at 0x10068e60, `sb` at 0x10069230.
   The `ld` at 0x10068e64 loads 8 bytes from sp (at entry) -0x50 via base s8 (sp).
-  The `sd` at 0x10068e84 stores 8 bytes to sp (at entry) -0x98 via base s8 (sp) (value ).
-  The `sd` at 0x10068e9c stores 8 bytes to sp (at entry) -0xa0 via base s8 (sp) (value ).
+  The `sd` at 0x10068e84 stores 8 bytes to sp (at entry) -0x98 via base s8 (sp) (value unknown).
+  The `sd` at 0x10068e9c stores 8 bytes to sp (at entry) -0xa0 via base s8 (sp) (value unknown).
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x10068ea4, `lw` at 0x10068f44, `lw` at 0x10069074.
   2 such `lw` accesses load 4 bytes from abs 0x102be064 via base s4 (0x102c4340), including `lw` at 0x10068eb0, `lw` at 0x10068fe0.
   4 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10068ed0, `lw` at 0x10068f3c, `lw` at 0x10068f70.
   7 such `lw` accesses load 4 bytes from abs 0x102bc754 via base a1 (0x102c4340), including `lw` at 0x10068ed4, `lw` at 0x10068f40, `lw` at 0x10068f74.
   2 such `lw` accesses load 4 bytes from abs 0x102be004 via base s2 (0x102c4340), including `lw` at 0x10068eec, `lw` at 0x10068ff8.
-  2 such `sd` accesses store 8 bytes to sp (at entry) -0x40 via base s8 (sp) (value ), including `sd` at 0x10068f04, `sd` at 0x10069010.
+  2 such `sd` accesses store 8 bytes to sp (at entry) -0x40 via base s8 (sp) (value unknown), including `sd` at 0x10068f04, `sd` at 0x10069010.
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base s5 (0x102c4340), including `lw` at 0x10068f10, `lw` at 0x1006901c.
   3 such `ld` accesses load 8 bytes from sp (at entry) -0x40 via base s8 (sp), including `ld` at 0x10068f2c, `ld` at 0x10068fd4, `ld` at 0x1006906c.
   3 such `lw` accesses load 4 bytes from [[a0]+3964] +0x4 via base a0 ([[a0]+3964]), including `lw` at 0x10068f5c, `lw` at 0x10069040, `lw` at 0x100690d4.
@@ -9877,7 +9877,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1006b6b4 loads 4 bytes from abs 0x102be064 via base s3 (0x102c4340).
   The `sd` at 0x1006b6c0 stores 8 bytes to sp (at entry) -0xa0 via base s8 (sp) (value s5).
   The `lw` at 0x1006b6d4 loads 4 bytes from [[a0]+352] +0x4 via base a6 ([[a0]+352]).
-  The `sd` at 0x1006b6dc stores 8 bytes to sp (at entry) -0x48 via base s8 (sp) (value ).
+  The `sd` at 0x1006b6dc stores 8 bytes to sp (at entry) -0x48 via base s8 (sp) (value unknown).
   The `lw` at 0x1006b6ec loads 4 bytes from abs 0x102be048 via base s5 (0x102c4340).
   4 such `lw` accesses load 4 bytes from abs 0x102bc780 via base a1 (0x102c4340), including `lw` at 0x1006b6f4, `lw` at 0x1006b758, `lw` at 0x1006b784.
   The `lw` at 0x1006b710 loads 4 bytes from abs 0x102be004 via base s4 (0x102c4340).
@@ -11404,7 +11404,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1007381c loads 4 bytes from abs 0x102bc7f0 via base t9 (0x102c4340).
   The `sw` at 0x10073828 stores 4 bytes to abs 0x102c7c18 via base s0 (0x102c69f8) (value 0x0).
   The `sw` at 0x10073830 stores 4 bytes to abs 0x102c7c10 via base s0 (0x102c69f8) (value 0x0).
-  The `sw` at 0x10073844 stores 4 bytes to abs 0x102c7c14 via base s0 (0x102c69f8) (value ).
+  The `sw` at 0x10073844 stores 4 bytes to abs 0x102c7c14 via base s0 (0x102c69f8) (value unknown).
   The `lw` at 0x10073850 loads 4 bytes from abs 0x102bc7f8 via base t9 (0x102c4340).
   The `sw` at 0x10073858 stores 4 bytes to abs 0x102c7c00 via base s0 (0x102c69f8) (value 0x0).
   The `sw` at 0x10073864 stores 4 bytes to abs 0x102c7c04 via base s0 (0x102c69f8) (value 0x0).
@@ -11429,7 +11429,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10073910 loads 4 bytes from abs 0x102bc7e8 via base s3 (0x102c4340).
   The `sw` at 0x10073924 stores 4 bytes to abs 0x102c7bf8 via base s3 (0x102c69f8) (value 0x20).
   The `sw` at 0x10073930 stores 4 bytes to abs 0x102c7bfc via base s3 (0x102c69f8) (value 0x20).
-  The `sw` at 0x10073968 stores 4 bytes to ? (base unknown) via base a3 (?) (value ).
+  The `sw` at 0x10073968 stores 4 bytes to ? (base unknown) via base a3 (?) (value unknown).
   The `lw` at 0x1007398c loads 4 bytes from abs 0x102bde7c via base s0 (0x102c4340).
   The `lw` at 0x100739d0 loads 4 bytes from abs 0x102c7bfc via base s3 (0x102c69f8).
   The `sw` at 0x100739e8 stores 4 bytes to abs 0x102c7c20 via base s3 (0x102c69f8) (value 0xff).
@@ -11438,7 +11438,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10073a10 loads 4 bytes from abs 0x102bc7f0 via base t9 (0x102c4340).
   The `sw` at 0x10073a1c stores 4 bytes to abs 0x102c7c18 via base s3 (0x102c69f8) (value 0x0).
   The `sw` at 0x10073a24 stores 4 bytes to abs 0x102c7c10 via base s3 (0x102c69f8) (value 0x0).
-  The `sw` at 0x10073a38 stores 4 bytes to abs 0x102c7c14 via base s3 (0x102c69f8) (value ).
+  The `sw` at 0x10073a38 stores 4 bytes to abs 0x102c7c14 via base s3 (0x102c69f8) (value unknown).
   The `lw` at 0x10073a44 loads 4 bytes from abs 0x102bc7f8 via base t9 (0x102c4340).
   The `sw` at 0x10073a4c stores 4 bytes to abs 0x102c7c00 via base s3 (0x102c69f8) (value 0x0).
   The `sw` at 0x10073a58 stores 4 bytes to abs 0x102c7c04 via base s3 (0x102c69f8) (value 0x0).
@@ -11751,7 +11751,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10074bd0 loads 4 bytes from abs 0x102bc7dc via base at (0x102c4340).
   The `lw` at 0x10074bf0 loads 4 bytes from abs 0x102bde7c via base s3 (0x102c4340).
   The `lw` at 0x10074c10 loads 4 bytes from abs 0x102bc7e8 via base s4 (0x102c4340).
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a3 (?) (value ), including `sw` at 0x10074c20, `sw` at 0x10074d5c.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a3 (?) (value unknown), including `sw` at 0x10074c20, `sw` at 0x10074d5c.
   The `lw` at 0x10074c3c loads 4 bytes from abs 0x102bddf8 via base s0 (0x102c4340).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s1 (?), including `lw` at 0x10074ca0, `lw` at 0x10074e68.
   The `lw` at 0x10074ee8 loads 4 bytes from abs 0x102bde88 via base s1 (0x102c4340).
@@ -11872,8 +11872,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x10075418 stores 4 bytes to abs 0x102c6a08 via base s4 (0x102c69f8) (value ret(Compact_GED_Ucode)).
   The `sw` at 0x1007541c stores 4 bytes to abs 0x102c6a04 via base s4 (0x102c69f8) (value ret(Compact_GED_Ucode)).
   The `sw` at 0x10075420 stores 4 bytes to abs 0x102c6a00 via base s4 (0x102c69f8) (value ret(Compact_GED_Ucode)).
-  The `sw` at 0x1007542c stores 4 bytes to abs 0x102c69fc via base s4 (0x102c69f8) (value ).
-  The `sw` at 0x10075438 stores 4 bytes to abs 0x102c69f8 via base s4 (0x102c69f8) (value ).
+  The `sw` at 0x1007542c stores 4 bytes to abs 0x102c69fc via base s4 (0x102c69f8) (value unknown).
+  The `sw` at 0x10075438 stores 4 bytes to abs 0x102c69f8 via base s4 (0x102c69f8) (value unknown).
   The `lw` at 0x100754a8 loads 4 bytes from abs 0x102bde9c via base t9 (0x102c4340).
   The `lw` at 0x1007561c loads 4 bytes from abs 0x102bde98 via base t9 (0x102c4340).
   The `lw` at 0x10075680 loads 4 bytes from abs 0x102bde80 via base s0 (0x102c4340).
@@ -12210,12 +12210,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   20 such `lw` accesses load 4 bytes from sym(rm) +0x0 via base s0 (sym(rm)), including `lw` at 0x100783d0, `lw` at 0x100783e8, `lw` at 0x10078418.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe048 via base a1 ([sym(rm)]+65536), including `ld` at 0x100783e4, `ld` at 0x10078494.
   The `ld` at 0x100783f8 loads 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10078414 stores 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x10078414 stores 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x1007842c loads 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536).
   The `lw` at 0x10078438 loads 4 bytes from abs 0x102bd974 via base t9 (0x102c4340).
   The `sd` at 0x1007847c stores 8 bytes to [sym(rm)] +0xe048 via base a6 ([sym(rm)]+65536) (value 0xffffffff).
   The `ld` at 0x100784a4 loads 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]).
-  The `sd` at 0x100784b0 stores 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100784b0 stores 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100784c4 loads 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]).
   The `lw` at 0x100784dc loads 4 bytes from abs 0x102bde20 via base s5 (0x102c4340).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0x4008 via base a3 ([sym(rm)]), including `ld` at 0x10078574, `ld` at 0x1007859c, `ld` at 0x100785c8.
@@ -13060,7 +13060,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1008331c loads 4 bytes from abs 0x102bd72c via base s7 (0x102c4340).
   The `lw` at 0x10083388 loads 4 bytes from abs 0x102bc93c via base a4 (0x102c4340).
   The `lw` at 0x100833c4 loads 4 bytes from abs 0x102bd730 via base s7 (0x102c4340).
-  The `sw` at 0x100833e8 stores 4 bytes to abs 0x102cc0a0 via base s0 (0x102cc0a0) (value ).
+  The `sw` at 0x100833e8 stores 4 bytes to abs 0x102cc0a0 via base s0 (0x102cc0a0) (value unknown).
   The `lw` at 0x10083414 loads 4 bytes from a0 (arg0 at entry) +0x16c via base a2 (a0).
   The `lw` at 0x10083444 loads 4 bytes from abs 0x102bd72c via base t9 (0x102c4340).
   3 such `lw` accesses load 4 bytes from abs 0x102bd728 via base t9 (0x102c4340), including `lw` at 0x10083464, `lw` at 0x10083554, `lw` at 0x100835ac.
@@ -13609,7 +13609,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x10088d5c stores 4 bytes to sym(HUB_WAR) +0x0 via base a1 (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x10088db0 loads 4 bytes from abs 0x102bc9c0 via base at (0x102c4340).
   The `ld` at 0x10088dbc loads 8 bytes from abs 0x10201240 via base at (0x10201238).
-  The `sd` at 0x10088dcc stores 8 bytes to abs 0x10201240 via base at (0x10201238) (value ).
+  The `sd` at 0x10088dcc stores 8 bytes to abs 0x10201240 via base at (0x10201238) (value unknown).
   The `lw` at 0x10088ddc loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x10088de0 loads 4 bytes from abs 0x102bc9c0 via base a0 (0x102c4340).
   The `lw` at 0x10088e60 loads 4 bytes from abs 0x102bc9c0 via base v0 (0x102c4340).
