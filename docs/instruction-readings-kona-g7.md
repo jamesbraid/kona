@@ -255,7 +255,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `lh` at 0x14f4 loads 2 bytes into a7 from a0 (arg0 at entry) +0x26.
   The `lbu` at 0x1614 loads 1 byte into a6 from a0 (arg0 at entry) +0x1a.
   The `sb` at 0x1624 stores 1 byte to a0 (arg0 at entry) +0x1a with value 0x0.
-  The `sb` at 0x1644 stores 1 byte to a0 (arg0 at entry) +0x1c with value t1.
+  The `sb` at 0x1644 stores 1 byte to a0 (arg0 at entry) +0x1c with value unknown.
   The `bltz` branch at 0x1504 has these conditions:
     taken when a3(?) < 0 (signed).
     falls through when a3(?) >= 0 (signed).
@@ -312,7 +312,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `lw` at 0x53beac loads 4 bytes into a1 from abs 0x58c9f8.
   The `lw` at 0x53beb0 loads 4 bytes into a1 from abs 0x599790.
   The `sw` at 0x53bf60 stores 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x2620 with value 0x269c.
-  The `sw` at 0x53bf6c stores 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x0 with value [([a0+436] + ([0x599790] << 0x2))]+8.
+  The `sw` at 0x53bf6c stores 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x0 with value unknown.
   The `sw` at 0x53bf9c stores 4 bytes to [([a0+436] + ([0x599790] << 0x2))] +0x70 with value -0x1.
   The `jalr` at 0x53bfd8 calls `(unknown callee)` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x57d58.
   The `bne` branch at 0x53bef0 has these conditions:
