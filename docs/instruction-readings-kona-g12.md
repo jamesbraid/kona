@@ -12822,7 +12822,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `lw` at 0x1026f00c loads 4 bytes from [a1+28] +0x0.
   The `lw` at 0x1026f058 loads 4 bytes from [a1+28] +0x4.
   The `sw` at 0x1026f05c stores 4 bytes to ? (base unknown) (value [[a1+28]+4]).
-  66 such `sb` accesses store 1 bytes to ? (base unknown) (value unknown), including `sb` at 0x1026f07c, 0x1026f080, 0x1026f088.
+  70 such `sb` accesses store 1 bytes to ? (base unknown) (value unknown), including `sb` at 0x1026f07c, 0x1026f080, 0x1026f088.
   The `lw` at 0x1026f0a4 loads 4 bytes from [a1+28] +0x8.
   The `sw` at 0x1026f0a8 stores 4 bytes to ? (base unknown) (value [[a1+28]+8]).
   The `lw` at 0x1026f0f0 loads 4 bytes from [a1+28] +0xf0.
