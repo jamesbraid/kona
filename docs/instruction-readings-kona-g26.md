@@ -193,7 +193,7 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `bc1f` branch at 0x1004ccb8 targets 0x1004ccd0, is taken when not (f6(=0x42c80000) < f7(=[[a0+340]+644]) (c.lt.s at 0x1004ccb0)), and falls through when f6(=0x42c80000) < f7(=[[a0+340]+644]) (c.lt.s at 0x1004ccb0).
   The `beq` branch at 0x1004cd74 targets 0x1004ce28, is taken when a2(=[sym(vkwindow)]) == 0, and falls through when a2(=[sym(vkwindow)]) != 0.
   The `beq` branch at 0x1004cd94 targets 0x1004ce28, is taken when v0(=ret(getTarget__18VkwindowMainWindowGv)) == 0, and falls through when v0(=ret(getTarget__18VkwindowMainWindowGv)) != 0.
-  The `beq` branch at 0x1004cda8 targets 0x1004cdd4; its condition is not analyzed.
+  The `beq` branch at 0x1004cda8 targets 0x1004cdd4 and is never taken: its operands are equal constants, so execution always falls through.
   The `beq` branch at 0x1004cdbc targets 0x1004cdd4, is taken when a3(=[[a0+340]+704]) == 0, and falls through when a3(=[[a0+340]+704]) != 0.
   The `beq` branch at 0x1004cdcc targets 0x1004cdd8 and is always taken.
   The `beq` branch at 0x1004ce28 targets 0x1004ce30 and is always taken.
@@ -1183,7 +1183,7 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `beq` branch at 0x10051e3c targets 0x10051e48 and is always taken.
   The `beq` branch at 0x100522ac targets 0x10052300, is taken when a2(=ret(__nw__GUi)) == 0, and falls through when a2(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x100522f8 targets 0x10052304 and is always taken.
-  The `beq` branch at 0x10053cf8 targets 0x10053d50; its condition is not analyzed.
+  The `beq` branch at 0x10053cf8 targets 0x10053d50 and is never taken: its operands are equal constants, so execution always falls through.
   The `bne` branch at 0x10053d48 targets 0x10053d00, is taken when a1(?) < 0x8 (signed), and falls through when a1(?) >= 0x8 (signed).
   The return at 0x10053ee8 has v0 = ret(XtAddCallback).
 - `className__9GvoFormUIGv` in `usr/gfx/ircombine` at 0x10053f10 (n32).
