@@ -253,7 +253,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   3 such accesses load 4 bytes from abs 0x10050b98 via base gp (0x100588fc), including `lw` at 0x10039064, `lw` at 0x1003917c, `lw` at 0x1003924c.
   3 such accesses store 4 bytes to a0 (arg0 at entry) +0xec via base s0 (a0), including `sw` at 0x1003908c, `sw` at 0x100391b0, `sw` at 0x10039274.
   3 such accesses store 4 bytes to a0 (arg0 at entry) +0x9c via base s0 (a0), including `sw` at 0x10039090, `sw` at 0x100391b4, `sw` at 0x10039278.
-  3 such accesses store 4 bytes to a0 (arg0 at entry) +0xd8 via base s0 (a0), including `sw` at 0x10039094, `sw` at 0x100391c0, `sw` at 0x1003927c.
+  4 such accesses store 4 bytes to a0 (arg0 at entry) +0xd8 via base s0 (a0), including `sw` at 0x10039094, `sw` at 0x100391c0, `sw` at 0x1003927c.
   2 such accesses load 4 bytes from a0 (arg0 at entry) +0xd8 via base s0 (a0), including `lw` at 0x10039188, `lw` at 0x10039308.
   The `lw` at 0x100392a4 loads 4 bytes from abs 0x10050ce0 via base gp (0x100588fc).
   4 such accesses load 4 bytes from a0 (arg0 at entry) +0x40 via base s0 (a0), including `lw` at 0x100392b8, `lw` at 0x100392c4, `lw` at 0x100392f8.
@@ -340,7 +340,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x100395cc loads 4 bytes from a0 (arg0 at entry) +0xbc via base s0 (a0).
   The `lw` at 0x100395dc loads 4 bytes from ? (base unknown) via base s1 (?).
   2 such accesses load 4 bytes from abs 0x1005131c via base gp (0x100588fc), including `lw` at 0x100395e0, `lw` at 0x10039600.
-  The `sw` at 0x100395e4 stores 4 bytes to a0 (arg0 at entry) +0xa0 via base s0 (a0) with value .
+  The `sw` at 0x100395e4 stores 4 bytes to a0 (arg0 at entry) +0xa0 via base s0 (a0) with value unknown.
   2 such accesses load 4 bytes from sym(xsetmonApp) +0x0 via base a0 (sym(xsetmonApp)), including `lw` at 0x100395e8, `lw` at 0x10039604.
   2 such accesses load 4 bytes from [sym(xsetmonApp)] +0x130 via base a0 ([sym(xsetmonApp)]), including `lw` at 0x100395ec, `lw` at 0x10039608.
   The `lw` at 0x100395f0 loads 4 bytes from abs 0x10051008 via base gp (0x100588fc).
@@ -392,10 +392,10 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
 - `vGammaToWindow__19GammaMapEditorClassCGiT1P6XPoint` in `usr/bin/X11/xsetmon` at 0x1003a020 (n32).
   It occupies 88 bytes.
   The `lwc1` at 0x1003a02c loads 4 bytes from a0 (arg0 at entry) +0xa0 via base a0 (a0).
-  The `sh` at 0x1003a044 stores 2 bytes to a3 (arg3 at entry) +0x0 via base a3 (a3) with value .
+  The `sh` at 0x1003a044 stores 2 bytes to a3 (arg3 at entry) +0x0 via base a3 (a3) with value unknown.
   The `lwc1` at 0x1003a048 loads 4 bytes from a0 (arg0 at entry) +0xa4 via base a0 (a0).
   The `lhu` at 0x1003a050 loads 2 bytes from a0 (arg0 at entry) +0x96 via base a0 (a0).
-  The `sh` at 0x1003a074 stores 2 bytes to a3 (arg3 at entry) +0x2 via base a3 (a3) with value .
+  The `sh` at 0x1003a074 stores 2 bytes to a3 (arg3 at entry) +0x2 via base a3 (a3) with value unknown.
   The return at 0x1003a070 has v0 = [a0+150]:2.
 - `create__21ServerInfoFormClassUIGP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x1003a080 (n32).
   It occupies 3532 bytes.
@@ -433,13 +433,13 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   2 such accesses load 4 bytes from a0 (arg0 at entry) +0x20 via base s0 (a0), including `lw` at 0x1003a724, `lw` at 0x1003a7c0.
   6 such accesses load 4 bytes from abs 0x10050c4c via base gp (0x100588fc), including `lw` at 0x1003a73c, `lw` at 0x1003a740, `lw` at 0x1003a764.
   The `lw` at 0x1003a750 loads 4 bytes from abs 0x100511b0 via base gp (0x100588fc).
-  The `sw` at 0x1003a754 stores 4 bytes to a0 (arg0 at entry) +0x64 via base s0 (a0) with value .
+  The `sw` at 0x1003a754 stores 4 bytes to a0 (arg0 at entry) +0x64 via base s0 (a0) with value unknown.
   The `lw` at 0x1003a760 loads 4 bytes from abs 0x10050f28 via base gp (0x100588fc).
   2 such accesses load 4 bytes from a0 (arg0 at entry) +0x64 via base s0 (a0), including `lw` at 0x1003a774, `lw` at 0x1003a824.
   The `sw` at 0x1003a778 stores 4 bytes to a0 (arg0 at entry) +0x74 via base s0 (a0) with value ret(addAction__6VkMenuGPCcPGP10_WidgetRecPvT2_vPvi).
   The `sw` at 0x1003a788 stores 4 bytes to a0 (arg0 at entry) +0x70 via base s0 (a0) with value ret(addAction__6VkMenuGPCcPGP10_WidgetRecPvT2_vPvi).
   The `lw` at 0x1003a7ec loads 4 bytes from abs 0x100511bc via base gp (0x100588fc).
-  The `sw` at 0x1003a7f0 stores 4 bytes to a0 (arg0 at entry) +0x60 via base s0 (a0) with value .
+  The `sw` at 0x1003a7f0 stores 4 bytes to a0 (arg0 at entry) +0x60 via base s0 (a0) with value unknown.
   The `lw` at 0x1003a7fc loads 4 bytes from abs 0x10051058 via base gp (0x100588fc).
   2 such accesses load 4 bytes from a0 (arg0 at entry) +0x60 via base s0 (a0), including `lw` at 0x1003a810, `lw` at 0x1003a8b0.
   The `sw` at 0x1003a814 stores 4 bytes to a0 (arg0 at entry) +0x6c via base s0 (a0) with value ret(addAction__6VkMenuGPCcPGP10_WidgetRecPvT2_vPvi).
@@ -582,9 +582,9 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   7 such accesses load 4 bytes from abs 0x10050b4c via base gp (0x100588fc), including `lw` at 0x1003b3a4, `lw` at 0x1003b3f8, `lw` at 0x1003b400.
   The `sw` at 0x1003b3a8 stores 4 bytes to a0 (arg0 at entry) +0x4c via base s0 (a0) with value ret(XtVaCreateManagedWidget).
   The `lw` at 0x1003b3cc loads 4 bytes from abs 0x10050c48 via base gp (0x100588fc).
-  The `sw` at 0x1003b404 stores 4 bytes to a0 (arg0 at entry) +0x64 via base s0 (a0) with value .
+  The `sw` at 0x1003b404 stores 4 bytes to a0 (arg0 at entry) +0x64 via base s0 (a0) with value unknown.
   4 such accesses load 4 bytes from abs 0x10051050 via base gp (0x100588fc), including `lw` at 0x1003b424, `lw` at 0x1003b55c, `lw` at 0x1003b5c0.
-  The `sw` at 0x1003b448 stores 4 bytes to a0 (arg0 at entry) +0x20 via base s0 (a0) with value .
+  The `sw` at 0x1003b448 stores 4 bytes to a0 (arg0 at entry) +0x20 via base s0 (a0) with value unknown.
   The `sw` at 0x1003b450 stores 4 bytes to a0 (arg0 at entry) +0x20 via base s0 (a0) with value 0x0.
   5 such accesses load 4 bytes from ? (base unknown) via base v0 (?), including `lw` at 0x1003b454, `lw` at 0x1003b58c, `lw` at 0x1003b5f0.
   10 such accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x1003b458, `lw` at 0x1003b45c, `lw` at 0x1003b590.
@@ -592,11 +592,11 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1003b470 loads 4 bytes from sym(sgSpringBoxWidgetClass) +0x0 via base a1 (sym(sgSpringBoxWidgetClass)).
   The `sw` at 0x1003b53c stores 4 bytes to a0 (arg0 at entry) +0x60 via base s0 (a0) with value ret(XtVaCreateManagedWidget).
   6 such accesses load 4 bytes from a0 (arg0 at entry) +0x60 via base s0 (a0), including `lw` at 0x1003b568, `lw` at 0x1003b5cc, `lw` at 0x1003b630.
-  The `sw` at 0x1003b580 stores 4 bytes to a0 (arg0 at entry) +0x24 via base s0 (a0) with value .
+  The `sw` at 0x1003b580 stores 4 bytes to a0 (arg0 at entry) +0x24 via base s0 (a0) with value unknown.
   The `sw` at 0x1003b588 stores 4 bytes to a0 (arg0 at entry) +0x24 via base s0 (a0) with value 0x0.
-  The `sw` at 0x1003b5e4 stores 4 bytes to a0 (arg0 at entry) +0x28 via base s0 (a0) with value .
+  The `sw` at 0x1003b5e4 stores 4 bytes to a0 (arg0 at entry) +0x28 via base s0 (a0) with value unknown.
   The `sw` at 0x1003b5ec stores 4 bytes to a0 (arg0 at entry) +0x28 via base s0 (a0) with value 0x0.
-  The `sw` at 0x1003b648 stores 4 bytes to a0 (arg0 at entry) +0x2c via base s0 (a0) with value .
+  The `sw` at 0x1003b648 stores 4 bytes to a0 (arg0 at entry) +0x2c via base s0 (a0) with value unknown.
   The `sw` at 0x1003b650 stores 4 bytes to a0 (arg0 at entry) +0x2c via base s0 (a0) with value 0x0.
   6 such accesses load 4 bytes from abs 0x10050bd8 via base gp (0x100588fc), including `lw` at 0x1003b668, `lw` at 0x1003b6d8, `lw` at 0x1003b748.
   The `lw` at 0x1003b670 loads 4 bytes from a0 (arg0 at entry) +0x24 via base s0 (a0).
@@ -604,7 +604,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1003b6e0 loads 4 bytes from a0 (arg0 at entry) +0x28 via base s0 (a0).
   The `lw` at 0x1003b750 loads 4 bytes from a0 (arg0 at entry) +0x2c via base s0 (a0).
   The `lw` at 0x1003b7d8 loads 4 bytes from abs 0x100511d0 via base gp (0x100588fc).
-  The `sw` at 0x1003b7fc stores 4 bytes to a0 (arg0 at entry) +0x30 via base s0 (a0) with value .
+  The `sw` at 0x1003b7fc stores 4 bytes to a0 (arg0 at entry) +0x30 via base s0 (a0) with value unknown.
   The `sw` at 0x1003b804 stores 4 bytes to a0 (arg0 at entry) +0x30 via base s0 (a0) with value 0x0.
   3 such accesses load 4 bytes from abs 0x10050c50 via base gp (0x100588fc), including `lw` at 0x1003b820, `lw` at 0x1003b82c, `lw` at 0x1003b874.
   3 such accesses load 4 bytes from a0 (arg0 at entry) +0x64 via base s0 (a0), including `lw` at 0x1003b828, `lw` at 0x1003b838, `lw` at 0x1003b880.
@@ -839,7 +839,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lwc1` at 0x1003cfdc loads 4 bytes from [sym(xsetmonApp)] +0x100 via base v0 ([sym(xsetmonApp)]).
   The `lw` at 0x1003cff0 loads 4 bytes from abs 0x10050fe8 via base gp (0x100588fc).
   The `sw` at 0x1003cff4 stores 4 bytes to [sym(xsetmonApp)] +0xf4 via base v0 ([sym(xsetmonApp)]) with value a1.
-  The `swc1` at 0x1003d008 stores 4 bytes to [sym(xsetmonApp)] +0x100 via base at ([sym(xsetmonApp)]) with value .
+  The `swc1` at 0x1003d008 stores 4 bytes to [sym(xsetmonApp)] +0x100 via base at ([sym(xsetmonApp)]) with value unknown.
   The `jal` at 0x1003d004 calls `updateMemoUsageOdsy__19StatisticsFormClassGv [0x1002bd50]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0x1b94c, a3=a3 at entry (arg3).
   The return at 0x1003d014 has v0 = ret(updateMemoUsageOdsy__19StatisticsFormClassGv).
 - `DisplayFormat__21SetmonMasterFormClassGPC21XSGIvcVideoFormatInfo` in `usr/bin/X11/xsetmon` at 0x1003d7c0 (n32).
@@ -887,7 +887,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1003d988 loads 4 bytes from abs 0x10050f70 via base gp (0x100588fc).
   The `lw` at 0x1003d98c loads 4 bytes from abs 0x1005091c via base gp (0x100588fc).
   2 such accesses load 4 bytes from abs 0x10050bd8 via base gp (0x100588fc), including `lw` at 0x1003d9ac, `lw` at 0x1003d9b0.
-  The `sw` at 0x1003d9b8 stores 4 bytes to a0 (arg0 at entry) +0x54 via base s0 (a0) with value .
+  The `sw` at 0x1003d9b8 stores 4 bytes to a0 (arg0 at entry) +0x54 via base s0 (a0) with value unknown.
   The `lw` at 0x1003d9c0 loads 4 bytes from abs 0x10050bdc via base gp (0x100588fc).
   The `lw` at 0x1003d9dc loads 4 bytes from a0 (arg0 at entry) +0x54 via base s0 (a0).
   The `lw` at 0x1003d9e0 loads 4 bytes from [a0+84] +0x8 via base a1 ([a0+84]).
@@ -948,11 +948,11 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lwc1` at 0x1003ddb8 loads 4 bytes from ret(0x1002d620) +0x0 via base v0 (ret(0x1002d620)).
   The `lwc1` at 0x1003ddbc loads 4 bytes from ret(0x1002d620) +0x0 via base s3 (ret(0x1002d620)).
   The `lwc1` at 0x1003ddc0 loads 4 bytes from ? (base unknown) via base s4 (?).
-  The `swc1` at 0x1003ddcc stores 4 bytes to ? (base unknown) via base s4 (?) with value .
+  The `swc1` at 0x1003ddcc stores 4 bytes to ? (base unknown) via base s4 (?) with value unknown.
   2 such accesses load 4 bytes from [a0] +0x4 via base a0 ([a0]), including `lw` at 0x1003ddec, `lw` at 0x1003de2c.
   The `lw` at 0x1003de00 loads 4 bytes from [a1] +0x0 via base a2 ([a1]).
   2 such accesses load 4 bytes from abs 0x100510e0 via base gp (0x100588fc), including `lw` at 0x1003de10, `lw` at 0x1003de50.
-  The `sw` at 0x1003de8c stores 4 bytes to a0 (arg0 at entry) +0x0 via base s6 (a0) with value .
+  The `sw` at 0x1003de8c stores 4 bytes to a0 (arg0 at entry) +0x0 via base s6 (a0) with value unknown.
   The `lw` at 0x1003de9c loads 4 bytes from abs 0x10050d10 via base gp (0x100588fc).
   The `jal` at 0x1003dc5c calls `bIsIdentity__7MMatrixCGv [0x1002ac70]` with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003dc88 calls `bIsIdentity__7MMatrixCGv [0x1002ac70]` with a0=a0 at entry (arg0), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -994,7 +994,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   It occupies 136 bytes.
   The `lw` at 0x1003df74 loads 4 bytes from abs 0x10051e20 via base gp (0x100588fc).
   The `lw` at 0x1003df7c loads 4 bytes from abs 0x10050b4c via base gp (0x100588fc).
-  The `sw` at 0x1003dfac stores 4 bytes to abs 0x10051e20 via base gp (0x100588fc) with value .
+  The `sw` at 0x1003dfac stores 4 bytes to abs 0x10051e20 via base gp (0x100588fc) with value unknown.
   The `lw` at 0x1003dfc4 loads 4 bytes from abs 0x10050914 via base gp (0x100588fc).
   The `lw` at 0x1003dfc8 loads 4 bytes from abs 0x10050920 via base gp (0x100588fc).
   The `jalr` at 0x1003df94 calls `__nw__GUi` with a0=0x60, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1079,7 +1079,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1003e73c loads 4 bytes from a0 (arg0 at entry) +0xc0 via base s0 (a0).
   The `lw` at 0x1003e768 loads 4 bytes from a0 (arg0 at entry) +0xc8 via base s0 (a0).
   2 such accesses load 4 bytes from abs 0x1005131c via base gp (0x100588fc), including `lw` at 0x1003e778, `lw` at 0x1003e798.
-  The `sw` at 0x1003e77c stores 4 bytes to a0 (arg0 at entry) +0x9c via base s0 (a0) with value .
+  The `sw` at 0x1003e77c stores 4 bytes to a0 (arg0 at entry) +0x9c via base s0 (a0) with value unknown.
   2 such accesses load 4 bytes from sym(xsetmonApp) +0x0 via base a0 (sym(xsetmonApp)), including `lw` at 0x1003e780, `lw` at 0x1003e79c.
   2 such accesses load 4 bytes from [sym(xsetmonApp)] +0x130 via base a0 ([sym(xsetmonApp)]), including `lw` at 0x1003e784, `lw` at 0x1003e7a0.
   The `lw` at 0x1003e788 loads 4 bytes from abs 0x100510cc via base gp (0x100588fc).
@@ -1182,9 +1182,9 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   4 such accesses load 4 bytes from [a0] +0x4 via base a6 ([a0]), including `lw` at 0x1003ea98, `lw` at 0x1003ead4, `lw` at 0x1003eb18.
   The `lw` at 0x1003eac0 loads 4 bytes from [a0] +0xc via base a6 ([a0]).
   The `lwc1` at 0x1003eac4 loads 4 bytes from abs 0x10051dc8 via base gp (0x100588fc).
-  2 such accesses store 4 bytes to ? (base unknown) via base a3 (?), including `swc1` at 0x1003eb10, `swc1` at 0x1003eb3c.
+  4 such accesses store 4 bytes to ? (base unknown) via base a3 (?), including `swc1` at 0x1003eb10, `swc1` at 0x1003eb3c.
   3 such accesses load 4 bytes from a0 (arg0 at entry) +0x0 via base s0 (a0), including `lw` at 0x1003eb14, `lw` at 0x1003eb40, `lw` at 0x1003eb98.
-  2 such accesses store 4 bytes to ? (base unknown) via base a3 (?), including `swc1` at 0x1003eb38, `swc1` at 0x1003eb64.
+  4 such accesses store 4 bytes to ? (base unknown) via base a3 (?), including `swc1` at 0x1003eb38, `swc1` at 0x1003eb64.
   2 such accesses load 4 bytes from abs 0x10050920 via base gp (0x100588fc), including `lw` at 0x1003eb78, `lw` at 0x1003eb80.
   The `lw` at 0x1003eb7c loads 4 bytes from abs 0x10050d10 via base gp (0x100588fc).
   The `jalr` at 0x1003eb90 calls `__assert` with a0=0x100494e8, a1=0x100494a0, a2=0x3a, a3=a3 at entry (arg3), a6=[a0].
@@ -1280,8 +1280,8 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1003ef74 loads 4 bytes from abs 0x10050b98 via base gp (0x100588fc).
   The `lw` at 0x1003ef80 loads 4 bytes from abs 0x10050cc8 via base gp (0x100588fc).
   The `lw` at 0x1003ef90 loads 4 bytes from [sym(xsetmonApp)] +0xf4 via base a2 ([sym(xsetmonApp)]).
-  The `sw` at 0x1003ef9c stores 4 bytes to a0 (arg0 at entry) +0xe4 via base s4 (a0) with value .
-  The `sw` at 0x1003efa4 stores 4 bytes to a0 (arg0 at entry) +0xa8 via base s4 (a0) with value .
+  The `sw` at 0x1003ef9c stores 4 bytes to a0 (arg0 at entry) +0xe4 via base s4 (a0) with value unknown.
+  The `sw` at 0x1003efa4 stores 4 bytes to a0 (arg0 at entry) +0xa8 via base s4 (a0) with value unknown.
   The `lw` at 0x1003efbc loads 4 bytes from abs 0x10050ce0 via base gp (0x100588fc).
   4 such accesses load 4 bytes from a0 (arg0 at entry) +0x48 via base s4 (a0), including `lw` at 0x1003efd0, `lw` at 0x1003efdc, `lw` at 0x1003f010.
   The `lw` at 0x1003efd4 loads 4 bytes from abs 0x10050ce4 via base gp (0x100588fc).
@@ -1678,7 +1678,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10041824 loads 4 bytes from ? (base unknown) via base s6 (?).
   2 such accesses load 4 bytes from ? (base unknown) via base s5 (?), including `lwc1` at 0x10041830, `lwc1` at 0x100418cc.
   The `lwc1` at 0x10041838 loads 4 bytes from ? (base unknown) via base t8 (?).
-  The `swc1` at 0x10041848 stores 4 bytes to ? (base unknown) via base t8 (?) with value .
+  The `swc1` at 0x10041848 stores 4 bytes to ? (base unknown) via base t8 (?) with value unknown.
   2 such accesses load 4 bytes from [a0] +0x0 via base t9 ([a0]), including `lw` at 0x100418c0, `lw` at 0x10041900.
   The `jal` at 0x100417dc calls (unnamed) [0x1002d620] with a0=a0 at entry (arg0), a1=(unknown), a2=(unknown), a3=(unknown).
   The `jal` at 0x10041890 calls (unnamed) [0x1002d620] with a0=a0 at entry (arg0), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -1718,7 +1718,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lwc1` at 0x10041ab8 loads 4 bytes from a0 (arg0 at entry) +0x90 via base s0 (a0).
   The `lwc1` at 0x10041abc loads 4 bytes from a0 (arg0 at entry) +0x88 via base s0 (a0).
   The `lw` at 0x10041ac0 loads 4 bytes from abs 0x10050d30 via base gp (0x100588fc).
-  2 such accesses store 4 bytes to a0 (arg0 at entry) +0x84 via base s0 (a0), including `swc1` at 0x10041ad4, `swc1` at 0x10041b04.
+  4 such accesses store 4 bytes to a0 (arg0 at entry) +0x84 via base s0 (a0), including `swc1` at 0x10041ad4, `swc1` at 0x10041b04.
   The `ldc1` at 0x10041ad8 loads 8 bytes from abs 0x10051d90 via base gp (0x100588fc).
   The `ldc1` at 0x10041ae0 loads 8 bytes from abs 0x10051d98 via base gp (0x100588fc).
   2 such accesses load 4 bytes from abs 0x10051dd8 via base gp (0x100588fc), including `lwc1` at 0x10041ae8, `lwc1` at 0x10041afc.
@@ -1743,7 +1743,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10041bc0 loads 4 bytes from abs 0x10050f44 via base gp (0x100588fc).
   The `lw` at 0x10041bc8 loads 4 bytes from abs 0x1005091c via base gp (0x100588fc).
   2 such accesses load 1 bytes from a0 (arg0 at entry) +0x84 via base s8 (a0), including `lbu` at 0x10041be8, `lbu` at 0x10041bf0.
-  The `sw` at 0x10041bf8 stores 4 bytes to a0 (arg0 at entry) +0x130 via base s8 (a0) with value .
+  The `sw` at 0x10041bf8 stores 4 bytes to a0 (arg0 at entry) +0x130 via base s8 (a0) with value unknown.
   The `lw` at 0x10041bfc loads 4 bytes from ? (base unknown) via base v0 (?).
   2 such accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0x10041c00, `lw` at 0x10041c04.
   The `jalr` at 0x10041ba8 calls `__nw__GUi` with a0=0x70, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2127,19 +2127,19 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x100f6930 loads 4 bytes from abs 0x102bd48c via base t9 (0x102c4340).
   The `sw` at 0x100f693c stores 4 bytes to ret(malloc) +0x54 via base v0 (ret(malloc)) with value 0x0.
   The `sw` at 0x100f6940 stores 4 bytes to ret(malloc) +0x58 via base v0 (ret(malloc)) with value 0x0.
-  The `swc1` at 0x100f6954 stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6958 stores 4 bytes to ret(malloc) +0x4 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f695c stores 4 bytes to ret(malloc) +0x8 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6960 stores 4 bytes to ret(malloc) +0x24 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6964 stores 4 bytes to ret(malloc) +0x28 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6968 stores 4 bytes to ret(malloc) +0x2c via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f696c stores 4 bytes to ret(malloc) +0x10 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6970 stores 4 bytes to ret(malloc) +0x14 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6974 stores 4 bytes to ret(malloc) +0x38 via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f6978 stores 4 bytes to ret(malloc) +0x3c via base v0 (ret(malloc)) with value .
-  The `swc1` at 0x100f697c stores 4 bytes to ret(malloc) +0x20 via base v0 (ret(malloc)) with value .
+  The `swc1` at 0x100f6954 stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6958 stores 4 bytes to ret(malloc) +0x4 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f695c stores 4 bytes to ret(malloc) +0x8 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6960 stores 4 bytes to ret(malloc) +0x24 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6964 stores 4 bytes to ret(malloc) +0x28 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6968 stores 4 bytes to ret(malloc) +0x2c via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f696c stores 4 bytes to ret(malloc) +0x10 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6970 stores 4 bytes to ret(malloc) +0x14 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6974 stores 4 bytes to ret(malloc) +0x38 via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f6978 stores 4 bytes to ret(malloc) +0x3c via base v0 (ret(malloc)) with value unknown.
+  The `swc1` at 0x100f697c stores 4 bytes to ret(malloc) +0x20 via base v0 (ret(malloc)) with value unknown.
   The `lw` at 0x100f6980 loads 4 bytes from abs 0x102bcec4 via base a0 (0x102c4340).
-  The `swc1` at 0x100f6984 stores 4 bytes to ret(malloc) +0x4c via base v0 (ret(malloc)) with value .
+  The `swc1` at 0x100f6984 stores 4 bytes to ret(malloc) +0x4c via base v0 (ret(malloc)) with value unknown.
   The `lwc1` at 0x100f6988 loads 4 bytes from abs 0x101b2114 via base a0 (0x101b2110).
   The `swc1` at 0x100f6990 stores 4 bytes to ret(malloc) +0xc via base v0 (ret(malloc)) with value 0x3f800000.
   The `swc1` at 0x100f6994 stores 4 bytes to ret(malloc) +0x34 via base v0 (ret(malloc)) with value 0x3f800000.
@@ -2329,8 +2329,8 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   2 such accesses load 4 bytes from abs 0x102bd39c via base t9 (0x102c4340), including `lw` at 0x100f77cc, `lw` at 0x100f77fc.
   The `ldc1` at 0x100f77d4 loads 8 bytes from abs 0x101b22d8 via base ra (0x101b2188).
   The `sw` at 0x100f77dc stores 4 bytes to ret(DLGetNameData) +0x30 via base s0 (ret(DLGetNameData)) with value ret(GetNextInteger).
-  The `swc1` at 0x100f7808 stores 4 bytes to ret(DLGetNameData) +0x24 via base s0 (ret(DLGetNameData)) with value .
-  The `swc1` at 0x100f781c stores 4 bytes to ret(DLGetNameData) +0x28 via base s0 (ret(DLGetNameData)) with value .
+  The `swc1` at 0x100f7808 stores 4 bytes to ret(DLGetNameData) +0x24 via base s0 (ret(DLGetNameData)) with value unknown.
+  The `swc1` at 0x100f781c stores 4 bytes to ret(DLGetNameData) +0x28 via base s0 (ret(DLGetNameData)) with value unknown.
   The `jal` at 0x100f7700 calls `GetNextString [0x100fee80]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f771c calls `DLGetNameData [0x100ff57c]` with a0=0x0, a1=ret(GetNextString), a2=(unknown), a3=(unknown).
   The `jalr` at 0x100f775c calls `fprintf` with a0=sym(__iob)+32, a1=0x101b2290, a2=(unknown), a3=(unknown).
@@ -2354,7 +2354,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `sw` at 0x100f7918 stores 4 bytes to ret(DLGetNameData) +0x38 via base s1 (ret(DLGetNameData)) with value ret(GetNextInteger).
   The `ldc1` at 0x100f7924 loads 8 bytes from abs 0x101b22d8 via base at (0x101b2188).
   The `lw` at 0x100f7938 loads 4 bytes from abs 0x102bd3f8 via base t9 (0x102c4340).
-  The `swc1` at 0x100f794c stores 4 bytes to ret(DLGetNameData) +0x34 via base s1 (ret(DLGetNameData)) with value .
+  The `swc1` at 0x100f794c stores 4 bytes to ret(DLGetNameData) +0x34 via base s1 (ret(DLGetNameData)) with value unknown.
   The `jal` at 0x100f7858 calls `GetNextString [0x100fee80]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f7878 calls `DLGetNameData [0x100ff57c]` with a0=0x0, a1=ret(GetNextString), a2=(unknown), a3=(unknown).
   The `jalr` at 0x100f78b8 calls `fprintf` with a0=sym(__iob)+32, a1=0x101b2290, a2=(unknown), a3=(unknown).
@@ -2377,9 +2377,9 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `ldc1` at 0x100f7a40 loads 8 bytes from abs 0x101b22d8 via base t8 (0x101b2188).
   The `sw` at 0x100f7a4c stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x70 via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value ret(GetNextInteger).
   The `lw` at 0x100f7a5c loads 4 bytes from (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x6c via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))).
-  The `swc1` at 0x100f7a70 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x74 via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value .
-  The `swc1` at 0x100f7a90 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x78 via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value .
-  The `swc1` at 0x100f7aa0 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x7c via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value .
+  The `swc1` at 0x100f7a70 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x74 via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value unknown.
+  The `swc1` at 0x100f7a90 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x78 via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value unknown.
+  The `swc1` at 0x100f7aa0 stores 4 bytes to (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x7c via base s1 ((ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3))) with value unknown.
   The `lw` at 0x100f7aa4 loads 4 bytes from ret(DLGetNameData) +0x0 via base s2 (ret(DLGetNameData)).
   The `sw` at 0x100f7abc stores 4 bytes to ret(DLGetNameData) +0x0 via base s2 (ret(DLGetNameData)) with value ret(GetNextInteger)+1.
   2 such accesses load 4 bytes from abs 0x102bcecc via base a1 (0x102c4340), including `lw` at 0x100f7ae8, `lw` at 0x100f7b20.
@@ -2521,7 +2521,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   2 such accesses load 4 bytes from abs 0x102bd3f8 via base t9 (0x102c4340), including `lw` at 0x100f8c68, `lw` at 0x100f8c90.
   The `lw` at 0x100f8c6c loads 4 bytes from abs 0x102bd414 via base a0 (0x102c4340).
   2 such accesses load 4 bytes from abs 0x102bdbbc via base t9 (0x102c4340), including `lw` at 0x100f8cb4, `lw` at 0x100f8cc8.
-  The `sw` at 0x100f8cec stores 4 bytes to ? (base unknown) via base at (?) with value .
+  The `sw` at 0x100f8cec stores 4 bytes to ? (base unknown) via base at (?) with value unknown.
   The `jal` at 0x100f8c24 calls `GetNextString [0x100fee80]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f8c3c calls `DLGetNameData [0x100ff57c]` with a0=0x0, a1=ret(GetNextString), a2=(unknown), a3=(unknown).
   The `jalr` at 0x100f8c78 calls `fprintf` with a0=sym(__iob)+32, a1=0x101b2738, a2=(unknown), a3=(unknown).
@@ -2555,9 +2555,9 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   It occupies 152 bytes.
   The `lw` at 0x100f8e48 loads 4 bytes from abs 0x102bdef0 via base t9 (0x102c4340).
   The `lw` at 0x100f8e58 loads 4 bytes from a1 (arg1 at entry) +0x0 via base s8 (a1).
-  The `sw` at 0x100f8e80 stores 4 bytes to a1 (arg1 at entry) +0x0 via base s8 (a1) with value .
+  The `sw` at 0x100f8e80 stores 4 bytes to a1 (arg1 at entry) +0x0 via base s8 (a1) with value unknown.
   The `lw` at 0x100f8e84 loads 4 bytes from a2 (arg2 at entry) +0x0 via base a1 (a2).
-  The `sw` at 0x100f8eac stores 4 bytes to a2 (arg2 at entry) +0x0 via base a1 (a2) with value .
+  The `sw` at 0x100f8eac stores 4 bytes to a2 (arg2 at entry) +0x0 via base a1 (a2) with value unknown.
   The `jal` at 0x100f8e50 calls `tbuGetTSize [0x101430cc]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `blez` at 0x100f8e70 goes to 0x100f8e84 when a4(?) <= 0 (signed) and falls through when a4(?) > 0 (signed).
   The `blez` at 0x100f8e94 goes to 0x100f8eb0 when a4(?) <= 0 (signed) and falls through when a4(?) > 0 (signed).
@@ -3089,7 +3089,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x100fb888 loads 4 bytes from abs 0x102bd40c via base t9 (0x102c4340).
   The `lw` at 0x100fb8c4 loads 4 bytes from abs 0x102bdb84 via base s0 (0x102c4340).
   The `lw` at 0x100fb8ec loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
-  The `sw` at 0x100fb90c stores 4 bytes to sym(fp) +0x0 via base s4 (sym(fp)) with value .
+  The `sw` at 0x100fb90c stores 4 bytes to sym(fp) +0x0 via base s4 (sym(fp)) with value unknown.
   The `sw` at 0x100fb924 stores 4 bytes to abs 0x10344a38 via base s5 (0x103439a0) with value [0x10344a38]-1.
   The `lw` at 0x100fb988 loads 4 bytes from abs 0x102bd414 via base s0 (0x102c4340).
   The `jalr` at 0x100fb67c calls `strlen` with a0=0x1020c780, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -3164,7 +3164,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x100fbd04 loads 4 bytes from abs 0x102bdaf8 via base t9 (0x102c4340).
   The `lw` at 0x100fbd24 loads 4 bytes from abs 0x102bdb84 via base t9 (0x102c4340).
   The `lw` at 0x100fbd38 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
-  The `sw` at 0x100fbd54 stores 4 bytes to sym(fp) +0x0 via base s2 (sym(fp)) with value .
+  The `sw` at 0x100fbd54 stores 4 bytes to sym(fp) +0x0 via base s2 (sym(fp)) with value unknown.
   The `sw` at 0x100fbd5c stores 4 bytes to abs 0x10344a38 via base s6 (0x103439a0) with value [0x10344a38]-1.
   The `lw` at 0x100fbdd0 loads 4 bytes from abs 0x102bd414 via base s0 (0x102c4340).
   The `jalr` at 0x100fbafc calls `strlen` with a0=0x1020c780, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -3747,7 +3747,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x100fdcc0 loads 4 bytes from abs 0x102be334 via base s3 (0x102c4340).
   2 such accesses load 4 bytes from sym(cBuffer) +0x0 via base s3 (sym(cBuffer)), including `lw` at 0x100fdcc8, `lw` at 0x100fdd74.
   The `lw` at 0x100fdd10 loads 4 bytes from abs 0x102be664 via base v0 (0x102c4340).
-  The `sw` at 0x100fdd18 stores 4 bytes to sym(cBuffer) +0x0 via base s3 (sym(cBuffer)) with value .
+  The `sw` at 0x100fdd18 stores 4 bytes to sym(cBuffer) +0x0 via base s3 (sym(cBuffer)) with value unknown.
   The `lw` at 0x100fdd28 loads 4 bytes from ? (base unknown) via base v0 (?).
   The `lw` at 0x100fdd44 loads 4 bytes from abs 0x102be664 via base s1 (0x102c4340).
   The `lw` at 0x100fdd4c loads 4 bytes from abs 0x102bd48c via base s0 (0x102c4340).
@@ -4000,7 +4000,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lbu` at 0x100febec loads 1 bytes from [sym(place)] +0x0 via base a3 ([sym(place)]).
   The `lw` at 0x100fec0c loads 4 bytes from abs 0x102bd4a4 via base a4 (0x102c4340).
   The `lw` at 0x100fec10 loads 4 bytes from sym(__libc_attr) +0x0 via base a4 (sym(__libc_attr)).
-  3 such accesses store 4 bytes to sym(place) +0x0 via base s0 (sym(place)), including `sw` at 0x100fec18, `sw` at 0x100fec3c, `sw` at 0x100fecdc.
+  4 such accesses store 4 bytes to sym(place) +0x0 via base s0 (sym(place)), including `sw` at 0x100fec18, `sw` at 0x100fec3c, `sw` at 0x100fecdc.
   4 such accesses load 1 bytes from ? (base unknown) via base a3 (?), including `lbu` at 0x100fec1c, `lbu` at 0x100fec40, `lbu` at 0x100fece0.
   The `lw` at 0x100fec28 loads 4 bytes from ? (base unknown) via base a5 (?).
   The `lw` at 0x100fec4c loads 4 bytes from ? (base unknown) via base a6 (?).
@@ -4145,7 +4145,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   It occupies 220 bytes.
   The `lw` at 0x100ff35c loads 4 bytes from abs 0x102bd48c via base s0 (0x102c4340).
   The `sw` at 0x100ff378 stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) with value 0x0.
-  The `sw` at 0x100ff394 stores 4 bytes to ret(malloc) +0x4 via base s1 (ret(malloc)) with value .
+  The `sw` at 0x100ff394 stores 4 bytes to ret(malloc) +0x4 via base s1 (ret(malloc)) with value unknown.
   The `sw` at 0x100ff3a8 stores 4 bytes to ret(malloc) +0x8 via base s1 (ret(malloc)) with value ret(malloc).
   The `sw` at 0x100ff3bc stores 4 bytes to ret(malloc) +0x1c via base s1 (ret(malloc)) with value 0x0.
   The `sw` at 0x100ff3c0 stores 4 bytes to ret(malloc) +0x20 via base s1 (ret(malloc)) with value 0x0.
@@ -4212,10 +4212,10 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `sw` at 0x100ff72c stores 4 bytes to ? (base unknown) via base a3 (?) with value a2.
   The `sw` at 0x100ff75c stores 4 bytes to ? (base unknown) via base a4 (?) with value ret(?).
   The `sw` at 0x100ff768 stores 4 bytes to ? (base unknown) via base a6 (?) with value a1.
-  2 such accesses store 4 bytes to ? (base unknown) via base s0 (?), including `sw` at 0x100ff778, `sw` at 0x100ff7a8.
+  4 such accesses store 4 bytes to ? (base unknown) via base s0 (?), including `sw` at 0x100ff778, `sw` at 0x100ff7a8.
   The `lw` at 0x100ff784 loads 4 bytes from abs 0x102bdbdc via base t9 (0x102c4340).
   The `lw` at 0x100ff79c loads 4 bytes from abs 0x102bd430 via base s3 (0x102c4340).
-  2 such accesses store 4 bytes to ? (base unknown) via base s0 (?), including `sw` at 0x100ff7b4, `sw` at 0x100ff7cc.
+  4 such accesses store 4 bytes to ? (base unknown) via base s0 (?), including `sw` at 0x100ff7b4, `sw` at 0x100ff7cc.
   The `jal` at 0x100ff664 calls `DLGetNameIndex [0x100ff480]` with a0=(unknown), a1=a1 at entry (arg1), a2=(unknown), a3=(unknown).
   The `jalr` at 0x100ff688 calls (unknown callee) with a0=(unknown), a1=(unknown), a2=(unknown), a3=(unknown).
   The `jalr` at 0x100ff6a0 calls (unknown callee) with a0=a2 at entry (arg2), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -4284,14 +4284,14 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base t8 ([sym(rm)]), including `ld` at 0x1010028c, `ld` at 0x101002a4.
   2 such accesses store 8 bytes to [sym(rm)] +0x4030 via base t8 ([sym(rm)]), including `sd` at 0x1010029c, `sd` at 0x101002b4.
   The `ld` at 0x101002bc loads 8 bytes from [sym(rm)] +0x4030 via base t1 ([sym(rm)]).
-  The `sd` at 0x101002cc stores 8 bytes to [sym(rm)] +0x4030 via base t1 ([sym(rm)]) with value .
+  The `sd` at 0x101002cc stores 8 bytes to [sym(rm)] +0x4030 via base t1 ([sym(rm)]) with value unknown.
   The `ld` at 0x101002d4 loads 8 bytes from [sym(rm)] +0x4030 via base a6 ([sym(rm)]).
-  The `sd` at 0x101002e4 stores 8 bytes to [sym(rm)] +0x4030 via base a6 ([sym(rm)]) with value .
+  The `sd` at 0x101002e4 stores 8 bytes to [sym(rm)] +0x4030 via base a6 ([sym(rm)]) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x101002ec, `ld` at 0x101003ac.
   2 such accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `sd` at 0x101002fc, `sd` at 0x101003bc.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x10100310, `ld` at 0x101003d0.
   4 such accesses load 8 bytes from [sym(rm)] +0xe018 via base a4 ([sym(rm)]+65536), including `ld` at 0x10100338, `ld` at 0x10100380, `ld` at 0x101013c4.
-  2 such accesses store 8 bytes to [sym(rm)] +0xe018 via base a4 ([sym(rm)]+65536), including `sd` at 0x10100340, `sd` at 0x1010038c.
+  4 such accesses store 8 bytes to [sym(rm)] +0xe018 via base a4 ([sym(rm)]+65536), including `sd` at 0x10100340, `sd` at 0x1010038c.
   The `lw` at 0x101003dc loads 4 bytes from abs 0x102be688 via base ra (0x102c4340).
   The `lw` at 0x101003e4 loads 4 bytes from sym(g_zbuffer) +0x0 via base ra (sym(g_zbuffer)).
   2 such accesses load 4 bytes from abs 0x102be1e0 via base s5 (0x102c4340), including `lw` at 0x101003f4, `lw` at 0x101011e4.
@@ -4303,7 +4303,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10100450 loads 4 bytes from abs 0x102be688 via base v1 (0x102c4340).
   The `lw` at 0x1010045c loads 4 bytes from sym(g_zbuffer) +0x0 via base v1 (sym(g_zbuffer)).
   3 such accesses load 8 bytes from [sym(rm)] +0xe040 via base t2 ([sym(rm)]+65536), including `ld` at 0x10100464, `ld` at 0x101004b0, `ld` at 0x101004fc.
-  5 such accesses store 8 bytes to [sym(rm)] +0xe040 via base t2 ([sym(rm)]+65536), including `sd` at 0x10100474, `sd` at 0x101004bc, `sd` at 0x1010151c.
+  6 such accesses store 8 bytes to [sym(rm)] +0xe040 via base t2 ([sym(rm)]+65536), including `sd` at 0x10100474, `sd` at 0x101004bc, `sd` at 0x1010151c.
   4 such accesses load 4 bytes from sym(KONAINFO) +0x0 via base s5 (sym(KONAINFO)), including `lw` at 0x10100494, `lw` at 0x101012f8, `lw` at 0x10101428.
   The `lw` at 0x1010049c loads 4 bytes from [sym(KONAINFO)] +0x0 via base a3 ([sym(KONAINFO)]).
   The `lw` at 0x101004e4 loads 4 bytes from abs 0x102be344 via base a4 (0x102c4340).
@@ -4313,20 +4313,20 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10100530 loads 4 bytes from sym(g_fog) +0x0 via base a4 (sym(g_fog)).
   The `sd` at 0x1010054c stores 8 bytes to [sym(rm)] +0xe040 via base a4 ([sym(rm)]+65536) with value ([[sym(rm)]+57408]:8 | 0xe000).
   The `lw` at 0x10100578 loads 4 bytes from abs 0x102bd980 via base t9 (0x102c4340).
-  2 such accesses store 8 bytes to [sym(rm)] +0xe040 via base a4 ([sym(rm)]+65536), including `sd` at 0x101005b4, `sd` at 0x101009c4.
+  5 such accesses store 8 bytes to [sym(rm)] +0xe040 via base a4 ([sym(rm)]+65536), including `sd` at 0x101005b4, `sd` at 0x101009c4.
   The `lw` at 0x101005d8 loads 4 bytes from abs 0x102bdf00 via base t9 (0x102c4340).
   2 such accesses load 8 bytes from [sym(rm)] +0xa020 via base a4 ([sym(rm)]+65536), including `ld` at 0x101005f8, `ld` at 0x10100634.
   2 such accesses store 8 bytes to [sym(rm)] +0xa020 via base a4 ([sym(rm)]+65536), including `sd` at 0x1010060c, `sd` at 0x10100644.
   2 such accesses load 8 bytes from [sym(rm)] +0xa020 via base a1 ([sym(rm)]+65536), including `ld` at 0x10100624, `ld` at 0x1010065c.
   The `ld` at 0x1010066c loads 8 bytes from [sym(rm)] +0xa0a0 via base a4 ([sym(rm)]+65536).
-  The `sd` at 0x10100678 stores 8 bytes to [sym(rm)] +0xa0a0 via base a4 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10100678 stores 8 bytes to [sym(rm)] +0xa0a0 via base a4 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10100690 loads 8 bytes from [sym(rm)] +0xa0a0 via base a1 ([sym(rm)]+65536).
   The `lw` at 0x1010069c loads 4 bytes from abs 0x102be6a0 via base a5 (0x102c4340).
   The `lw` at 0x101006a0 loads 4 bytes from sym(g_logicop) +0x0 via base a5 (sym(g_logicop)).
   9 such accesses load 8 bytes from [sym(rm)] +0xe068 via base a4 ([sym(rm)]+65536), including `ld` at 0x101006b4, `ld` at 0x101006e4, `ld` at 0x10100730.
   The `sd` at 0x101006bc stores 8 bytes to [sym(rm)] +0xe068 via base a4 ([sym(rm)]+65536) with value ([[sym(rm)]+57448]:8 | 0x1).
   9 such accesses load 8 bytes from [sym(rm)] +0xe068 via base a1 ([sym(rm)]+65536), including `ld` at 0x101006d4, `ld` at 0x1010070c, `ld` at 0x10100750.
-  7 such accesses store 8 bytes to [sym(rm)] +0xe068 via base a4 ([sym(rm)]+65536), including `sd` at 0x101006f4, `sd` at 0x1010076c, `sd` at 0x101007a0.
+  9 such accesses store 8 bytes to [sym(rm)] +0xe068 via base a4 ([sym(rm)]+65536), including `sd` at 0x101006f4, `sd` at 0x1010076c, `sd` at 0x101007a0.
   The `lw` at 0x10100718 loads 4 bytes from abs 0x102be694 via base a5 (0x102c4340).
   The `lw` at 0x1010071c loads 4 bytes from sym(g_blend) +0x0 via base a5 (sym(g_blend)).
   The `sd` at 0x10100738 stores 8 bytes to [sym(rm)] +0xe068 via base a4 ([sym(rm)]+65536) with value ([[sym(rm)]+57448]:8 | 0x20).
@@ -4337,7 +4337,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10100914 loads 4 bytes from abs 0x102bcee8 via base a6 (0x102c4340).
   The `lw` at 0x1010091c loads 4 bytes from abs 0x102bde24 via base s7 (0x102c4340).
   The `lwc1` at 0x10100928 loads 4 bytes from abs 0x101b34f8 via base a6 (0x101b3410).
-  The `sd` at 0x10100934 stores 8 bytes to [sym(rm)] +0xa040 via base t2 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10100934 stores 8 bytes to [sym(rm)] +0xa040 via base t2 ([sym(rm)]+65536) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0xa040 via base a1 ([sym(rm)]+65536), including `ld` at 0x1010094c, `ld` at 0x10100f04.
   The `lw` at 0x10100958 loads 4 bytes from abs 0x102be688 via base a3 (0x102c4340).
   The `lw` at 0x1010095c loads 4 bytes from sym(g_zbuffer) +0x0 via base a3 (sym(g_zbuffer)).
@@ -4362,11 +4362,11 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `ld` at 0x10100f44 loads 8 bytes from abs 0x10344a70 via base s5 (0x10344a48).
   3 such accesses load 4 bytes from abs 0x102bcee8 via base a1 (0x102c4340), including `lw` at 0x10100f94, `lw` at 0x10101200, `lw` at 0x10101258.
   The `lw` at 0x10100fa8 loads 4 bytes from abs 0x102bd744 via base s5 (0x102c4340).
-  The `sw` at 0x10100fcc stores 4 bytes to ? (base unknown) via base a3 (?) with value .
+  The `sw` at 0x10100fcc stores 4 bytes to ? (base unknown) via base a3 (?) with value unknown.
   The `lw` at 0x10100fe8 loads 4 bytes from abs 0x102bd740 via base t9 (0x102c4340).
   8 such accesses load 4 bytes from abs 0x102bcee8 via base a0 (0x102c4340), including `lw` at 0x10100fec, `lw` at 0x101012b0, `lw` at 0x10101328.
   The `lw` at 0x10101004 loads 4 bytes from abs 0x102bcefc via base a2 (0x102c4340).
-  The `sd` at 0x10101010 stores 8 bytes to abs 0x10344a70 via base a2 (0x10344a48) with value .
+  The `sd` at 0x10101010 stores 8 bytes to abs 0x10344a70 via base a2 (0x10344a48) with value unknown.
   The `lw` at 0x101010c8 loads 4 bytes from abs 0x102bcf00 via base t9 (0x102c4340).
   The `lw` at 0x101011c4 loads 4 bytes from abs 0x102bd5b8 via base t9 (0x102c4340).
   2 such accesses load 4 bytes from abs 0x102bd744 via base t9 (0x102c4340), including `lw` at 0x101011f8, `lw` at 0x10101260.
@@ -4556,7 +4556,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x101027b4 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x101027c4 loads 8 bytes from ret(mytbuInit) +0xe000 via base t9 (ret(mytbuInit)+65536).
   The `lw` at 0x101027d4 loads 4 bytes from abs 0x102bde1c via base s0 (0x102c4340).
-  The `sd` at 0x101027e4 stores 8 bytes to ret(mytbuInit) +0xe000 via base t9 (ret(mytbuInit)+65536) with value .
+  The `sd` at 0x101027e4 stores 8 bytes to ret(mytbuInit) +0xe000 via base t9 (ret(mytbuInit)+65536) with value unknown.
   52 such accesses load 4 bytes from sym(rm) +0x0 via base s3 (sym(rm)), including `lw` at 0x101027e8, `lw` at 0x10102804, `lw` at 0x10102818.
   2 such accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x10102800, `ld` at 0x10102880.
   The `ld` at 0x1010280c loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
@@ -4568,59 +4568,59 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `ld` at 0x10102848 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x10102850 stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) with value ([[sym(rm)]+57344]:8 | 0x200).
   The `ld` at 0x1010285c loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102868 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102868 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x1010288c, `ld` at 0x101028b8.
   2 such accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `sd` at 0x1010289c, `sd` at 0x101028c8.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x101028b0, `ld` at 0x101028dc.
   The `ld` at 0x101028ec loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x101028fc stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x101028fc stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10102914 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10102920 loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x1010292c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) with value .
+  The `sd` at 0x1010292c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x1010293c loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x10102950 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10102950 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10102968 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10102974 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x10102980 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10102980 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10102990 loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x101029a4 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x101029a4 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x101029bc loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x101029c4 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x101029d0 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) with value .
+  The `sd` at 0x101029d0 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) with value unknown.
   The `ld` at 0x101029e4 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x101029ec loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x101029f8 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) with value .
+  The `sd` at 0x101029f8 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) with value unknown.
   The `ld` at 0x10102a10 loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x10102a20 stores 8 bytes to [sym(rm)] +0x1ffb0 via base a2 ([sym(rm)]+131072) with value 0x1.
   The `ld` at 0x10102a38 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10102a44 loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x10102a4c stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) with value ([[sym(rm)]+57360]:8 | 0xf).
   The `ld` at 0x10102a58 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x10102a64 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102a64 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102a70 loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x10102a7c stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102a7c stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102a88 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x10102a94 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102a94 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102aa0 loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x10102aac stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102aac stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102ab8 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x10102ac0 stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) with value ([[sym(rm)]+57360]:8 | 0x800).
   The `ld` at 0x10102acc loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x10102ad8 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102ad8 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102ae4 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102af0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102af0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102b08 loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10102b14 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102b20 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102b20 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102b38 loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10102b44 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102b4c stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102b4c stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102b64 loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10102b70 loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102b78 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102b78 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102b90 loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10102b9c loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10102ba8 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10102ba8 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10102bc0 loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   2 such accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x10102bd0, `ld` at 0x10102c9c.
   2 such accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `sd` at 0x10102bdc, `sd` at 0x10102cb4.
@@ -4865,7 +4865,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1010ab8c loads 4 bytes from abs 0x102bcfc8 via base t9 (0x102c4340).
   The `sb` at 0x1010abd4 stores 1 bytes to ret(strrchr) +0x0 via base v0 (ret(strrchr)) with value 0x0.
   The `sb` at 0x1010ac48 stores 1 bytes to ret(strchr) +0x0 via base v0 (ret(strchr)) with value 0x0.
-  The `sw` at 0x1010ac4c stores 4 bytes to abs 0x1020c8f4 via base s3 (0x1020c8e0) with value .
+  The `sw` at 0x1010ac4c stores 4 bytes to abs 0x1020c8f4 via base s3 (0x1020c8e0) with value unknown.
   The `sw` at 0x1010ac54 stores 4 bytes to abs 0x1020c8fc via base s3 (0x1020c8e0) with value 0x10344be8.
   The `sw` at 0x1010ac58 stores 4 bytes to abs 0x10344ae0 via base s0 (0x10344ac0) with value 0x0.
   The `ld` at 0x1010ac60 loads 8 bytes from abs 0x1020c8e0 via base s3 (0x1020c8e0).
@@ -4956,29 +4956,29 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `sw` at 0x1010c9e4 stores 4 bytes to sym(rm) +0x0 via base s0 (sym(rm)) with value ret(mytbuInit).
   12 such accesses load 4 bytes from sym(rm) +0x0 via base s0 (sym(rm)), including `lw` at 0x1010c9e8, `lw` at 0x1010ca00, `lw` at 0x1010ca24.
   The `ld` at 0x1010c9ec loads 8 bytes from [sym(rm)] +0x4030 via base v0 ([sym(rm)]).
-  The `sd` at 0x1010c9fc stores 8 bytes to [sym(rm)] +0x4030 via base v0 ([sym(rm)]) with value .
+  The `sd` at 0x1010c9fc stores 8 bytes to [sym(rm)] +0x4030 via base v0 ([sym(rm)]) with value unknown.
   The `ld` at 0x1010ca10 loads 8 bytes from [sym(rm)] +0x4030 via base t9 ([sym(rm)]).
   The `lw` at 0x1010ca18 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x1010ca20 stores 8 bytes to [sym(rm)] +0x4030 via base t9 ([sym(rm)]) with value .
+  The `sd` at 0x1010ca20 stores 8 bytes to [sym(rm)] +0x4030 via base t9 ([sym(rm)]) with value unknown.
   The `ld` at 0x1010ca34 loads 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]).
   The `ld` at 0x1010ca50 loads 8 bytes from [sym(rm)] +0x4000 via base a3 ([sym(rm)]).
-  The `sd` at 0x1010ca60 stores 8 bytes to [sym(rm)] +0x4000 via base a3 ([sym(rm)]) with value .
+  The `sd` at 0x1010ca60 stores 8 bytes to [sym(rm)] +0x4000 via base a3 ([sym(rm)]) with value unknown.
   The `ld` at 0x1010ca78 loads 8 bytes from [sym(rm)] +0x4000 via base a1 ([sym(rm)]).
   The `lw` at 0x1010caa8 loads 4 bytes from abs 0x102bcfe4 via base s2 (0x102c4340).
   The `lw` at 0x1010cab4 loads 4 bytes from abs 0x102bcfe8 via base s3 (0x102c4340).
   The `ld` at 0x1010cb04 loads 8 bytes from [sym(rm)] +0xa018 via base a0 ([sym(rm)]+65536).
-  The `sd` at 0x1010cb10 stores 8 bytes to [sym(rm)] +0xa018 via base a0 ([sym(rm)]+65536) with value .
+  The `sd` at 0x1010cb10 stores 8 bytes to [sym(rm)] +0xa018 via base a0 ([sym(rm)]+65536) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0xa018 via base v0 ([sym(rm)]+65536), including `ld` at 0x1010cb1c, `ld` at 0x1010cbb8.
   2 such accesses store 8 bytes to [sym(rm)] +0xa018 via base v0 ([sym(rm)]+65536), including `sd` at 0x1010cb2c, `sd` at 0x1010cbc8.
   The `ld` at 0x1010cb3c loads 8 bytes from [sym(rm)] +0xa018 via base ra ([sym(rm)]+65536).
-  The `sd` at 0x1010cb48 stores 8 bytes to [sym(rm)] +0xa018 via base ra ([sym(rm)]+65536) with value .
+  The `sd` at 0x1010cb48 stores 8 bytes to [sym(rm)] +0xa018 via base ra ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x1010cb54 loads 8 bytes from [sym(rm)] +0xa018 via base t8 ([sym(rm)]+65536).
-  The `sd` at 0x1010cb5c stores 8 bytes to [sym(rm)] +0xa018 via base t8 ([sym(rm)]+65536) with value .
+  The `sd` at 0x1010cb5c stores 8 bytes to [sym(rm)] +0xa018 via base t8 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x1010cb6c loads 8 bytes from [sym(rm)] +0xa018 via base t2 ([sym(rm)]+65536).
-  The `sd` at 0x1010cb78 stores 8 bytes to [sym(rm)] +0xa018 via base t2 ([sym(rm)]+65536) with value .
+  The `sd` at 0x1010cb78 stores 8 bytes to [sym(rm)] +0xa018 via base t2 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x1010cb90 loads 8 bytes from [sym(rm)] +0xa018 via base t0 ([sym(rm)]+65536).
   The `lw` at 0x1010cb94 loads 4 bytes from abs 0x102bcfd8 via base a4 (0x102c4340).
-  The `sd` at 0x1010cba0 stores 8 bytes to [sym(rm)] +0xa018 via base t0 ([sym(rm)]+65536) with value .
+  The `sd` at 0x1010cba0 stores 8 bytes to [sym(rm)] +0xa018 via base t0 ([sym(rm)]+65536) with value unknown.
   The `lw` at 0x1010cbcc loads 4 bytes from abs 0x101b5a28 via base a4 (0x101b5a28).
   The `jal` at 0x1010c9bc calls `mytbuInit [0x100cb4c8]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1010c9e0 calls (unnamed) [0x1010c44c] with a0=(unknown), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -5026,16 +5026,16 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `sw` at 0x10114ee0 stores 4 bytes to sym(i2cbuf_out) +0xc via base s8 (sym(i2cbuf_out)) with value 0x0.
   3 such accesses store 4 bytes to sym(i2cbuf_out) +0x8 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114ee4, `sw` at 0x10114f34, `sw` at 0x10114f84.
   3 such accesses store 4 bytes to sym(i2cbuf_out) +0x4 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114eec, `sw` at 0x10114f3c, `sw` at 0x10114f8c.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x30 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f00, `sw` at 0x10114f50.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x2c via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f08, `sw` at 0x10114f58.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x28 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f0c, `sw` at 0x10114f5c.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x24 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f10, `sw` at 0x10114f60.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x20 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f14, `sw` at 0x10114f64.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x30 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f00, `sw` at 0x10114f50.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x2c via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f08, `sw` at 0x10114f58.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x28 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f0c, `sw` at 0x10114f5c.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x24 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f10, `sw` at 0x10114f60.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x20 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f14, `sw` at 0x10114f64.
   The `sw` at 0x10114f1c stores 4 bytes to sym(i2cbuf_out) +0x1c via base s8 (sym(i2cbuf_out)) with value 0xa.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x18 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f24, `sw` at 0x10114f74.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x14 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f28, `sw` at 0x10114f78.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0x10 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f2c, `sw` at 0x10114f7c.
-  2 such accesses store 4 bytes to sym(i2cbuf_out) +0xc via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f30, `sw` at 0x10114f80.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x18 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f24, `sw` at 0x10114f74.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0x14 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f28, `sw` at 0x10114f78.
+  4 such accesses store 4 bytes to sym(i2cbuf_out) +0x10 via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f2c, `sw` at 0x10114f7c.
+  3 such accesses store 4 bytes to sym(i2cbuf_out) +0xc via base s8 (sym(i2cbuf_out)), including `sw` at 0x10114f30, `sw` at 0x10114f80.
   The `sw` at 0x10114f6c stores 4 bytes to sym(i2cbuf_out) +0x1c via base s8 (sym(i2cbuf_out)) with value 0xc.
   The `lw` at 0x101150a8 loads 4 bytes from abs 0x102be6b8 via base s2 (0x102c4340).
   The `sw` at 0x10115144 stores 4 bytes to ? (base unknown) via base a2 (?) with value ret(vcRead).
@@ -5209,7 +5209,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10115990 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x101159a0 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x101159b0 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x101159c0 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) with value .
+  The `sd` at 0x101159c0 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x101159dc, `ld` at 0x10115a68.
   The `ld` at 0x101159e8 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x101159f0 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) with value ([[sym(rm)]+57344]:8 | 0x40).
@@ -5220,59 +5220,59 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `ld` at 0x10115a24 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x10115a2c stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) with value ([[sym(rm)]+57344]:8 | 0x200).
   The `ld` at 0x10115a38 loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115a50 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115a50 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) with value unknown.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x10115a74, `ld` at 0x10115aa0.
   2 such accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `sd` at 0x10115a84, `sd` at 0x10115ab0.
   2 such accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x10115a98, `ld` at 0x10115ac4.
   The `ld` at 0x10115ad4 loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x10115ae4 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10115ae4 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10115afc loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10115b08 loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x10115b14 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10115b14 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10115b24 loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x10115b38 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10115b38 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10115b50 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10115b5c loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x10115b68 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10115b68 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10115b78 loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x10115b8c stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) with value .
+  The `sd` at 0x10115b8c stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) with value unknown.
   The `ld` at 0x10115ba4 loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10115bac loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x10115bb8 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) with value .
+  The `sd` at 0x10115bb8 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) with value unknown.
   The `ld` at 0x10115bcc loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x10115bd4 loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x10115be0 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) with value .
+  The `sd` at 0x10115be0 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) with value unknown.
   The `ld` at 0x10115bf4 loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x10115c04 stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) with value 0x1.
   The `ld` at 0x10115c1c loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x10115c28 loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x10115c30 stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) with value ([[sym(rm)]+57360]:8 | 0xf).
   The `ld` at 0x10115c3c loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x10115c48 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115c48 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115c54 loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x10115c60 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115c60 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115c6c loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x10115c78 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115c78 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115c84 loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x10115c90 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115c90 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115c9c loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x10115ca4 stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) with value ([[sym(rm)]+57360]:8 | 0x800).
   The `ld` at 0x10115cb0 loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x10115cbc stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115cbc stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115cc8 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115cd4 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115cd4 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115cec loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10115cf8 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115d04 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115d04 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115d1c loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10115d28 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115d30 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115d30 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115d48 loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10115d54 loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115d5c stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115d5c stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115d74 loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x10115d80 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x10115d8c stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115d8c stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) with value unknown.
   The `ld` at 0x10115da8 loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   2 such accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x10115db8, `ld` at 0x10115ebc.
   2 such accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `sd` at 0x10115dc4, `sd` at 0x10115ed0.
@@ -5282,7 +5282,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10115e0c loads 4 bytes from abs 0x102bd974 via base s4 (0x102c4340).
   The `lw` at 0x10115e54 loads 4 bytes from abs 0x102be634 via base s5 (0x102c4340).
   2 such accesses load 4 bytes from sym(word_count) +0x0 via base s5 (sym(word_count)), including `lw` at 0x10115e58, `lw` at 0x10115f04.
-  The `sd` at 0x10115e98 stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) with value .
+  The `sd` at 0x10115e98 stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) with value unknown.
   The `lw` at 0x10115f28 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
   The `lw` at 0x10115f44 loads 4 bytes from abs 0x102bd5b8 via base t9 (0x102c4340).
   2 such accesses load 4 bytes from abs 0x102bd728 via base t9 (0x102c4340), including `lw` at 0x10115f90, `lw` at 0x10115fbc.
@@ -5499,7 +5499,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10117650 loads 4 bytes from abs 0x102bdea8 via base s0 (0x102c4340).
   The `lw` at 0x1011765c loads 4 bytes from abs 0x102bdc3c via base s3 (0x102c4340).
   The `sw` at 0x10117670 stores 4 bytes to ? (base unknown) via base s2 (?) with value ret(vcRead).
-  The `sb` at 0x10117688 stores 1 bytes to ? (base unknown) via base s1 (?) with value .
+  The `sb` at 0x10117688 stores 1 bytes to ? (base unknown) via base s1 (?) with value unknown.
   The `lw` at 0x101176b4 loads 4 bytes from abs 0x102bd4ac via base t9 (0x102c4340).
   The `lw` at 0x10117700 loads 4 bytes from abs 0x102bd3f8 via base t9 (0x102c4340).
   The `lw` at 0x10117708 loads 4 bytes from ? (base unknown) via base s0 (?).
@@ -5685,7 +5685,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x101180dc loads 4 bytes from abs 0x102bdc24 via base s7 (0x102c4340).
   2 such accesses load 4 bytes from abs 0x102bdc38 via base t9 (0x102c4340), including `lw` at 0x10118118, `lw` at 0x101182d4.
   The `lw` at 0x10118144 loads 4 bytes from abs 0x102bdc3c via base s2 (0x102c4340).
-  The `sb` at 0x10118160 stores 1 bytes to ? (base unknown) via base s0 (?) with value .
+  The `sb` at 0x10118160 stores 1 bytes to ? (base unknown) via base s0 (?) with value unknown.
   2 such accesses load 4 bytes from abs 0x102be204 via base a1 (0x102c4340), including `lw` at 0x10118188, `lw` at 0x1011850c.
   The `lw` at 0x1011819c loads 4 bytes from sym(MAX_ERRORS) +0x0 via base a1 (sym(MAX_ERRORS)).
   The `lbu` at 0x101181a0 loads 1 bytes from ? (base unknown) via base s3 (?).
@@ -5693,7 +5693,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10118248 loads 4 bytes from abs 0x102bdea0 via base t9 (0x102c4340).
   The `lw` at 0x10118268 loads 4 bytes from abs 0x102bdc50 via base t9 (0x102c4340).
   The `lw` at 0x101182a0 loads 4 bytes from abs 0x102bdc24 via base t9 (0x102c4340).
-  The `sb` at 0x10118308 stores 1 bytes to ? (base unknown) via base s3 (?) with value .
+  The `sb` at 0x10118308 stores 1 bytes to ? (base unknown) via base s3 (?) with value unknown.
   The `lw` at 0x10118324 loads 4 bytes from abs 0x102bdc34 via base s2 (0x102c4340).
   The `lw` at 0x1011834c loads 4 bytes from abs 0x102be204 via base s7 (0x102c4340).
   The `lw` at 0x101183b8 loads 4 bytes from sym(MAX_ERRORS) +0x0 via base s7 (sym(MAX_ERRORS)).
@@ -5784,7 +5784,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x101188d0 loads 4 bytes from abs 0x102bdea8 via base s0 (0x102c4340).
   The `lw` at 0x101188dc loads 4 bytes from abs 0x102bdc3c via base s3 (0x102c4340).
   The `sw` at 0x101188f0 stores 4 bytes to ? (base unknown) via base s2 (?) with value ret(vcRead).
-  The `sb` at 0x10118908 stores 1 bytes to ? (base unknown) via base s1 (?) with value .
+  The `sb` at 0x10118908 stores 1 bytes to ? (base unknown) via base s1 (?) with value unknown.
   The `lw` at 0x10118928 loads 4 bytes from abs 0x102be1e0 via base a6 (0x102c4340).
   The `lw` at 0x1011892c loads 4 bytes from sym(KONAINFO) +0x0 via base a6 (sym(KONAINFO)).
   The `lw` at 0x10118934 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a6 ([sym(KONAINFO)]).
@@ -5995,7 +5995,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x10119a88 loads 4 bytes from abs 0x102be6b4 via base s1 (0x102c4340).
   The `lw` at 0x10119a98 loads 4 bytes from abs 0x102bdea8 via base s4 (0x102c4340).
   34 such accesses load 4 bytes from abs 0x102bd0ac via base a0 (0x102c4340), including `lw` at 0x10119ab8, `lw` at 0x10119af4, `lw` at 0x10119b14.
-  The `sw` at 0x10119ac0 stores 4 bytes to ? (base unknown) via base s2 (?) with value .
+  The `sw` at 0x10119ac0 stores 4 bytes to ? (base unknown) via base s2 (?) with value unknown.
   The `lw` at 0x10119b0c loads 4 bytes from abs 0x102bd730 via base s0 (0x102c4340).
   The `lw` at 0x10119b24 loads 4 bytes from sym(dgo_genlock_buf_in) +0xe0 via base s1 (sym(dgo_genlock_buf_in)).
   2 such accesses load 4 bytes from sym(dgo_genlock_buf_in) +0xc4 via base s1 (sym(dgo_genlock_buf_in)), including `lw` at 0x10119b4c, `lw` at 0x10119fa8.
@@ -6241,9 +6241,9 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   It occupies 992 bytes.
   2 such accesses load 4 bytes from abs 0x102bd0ac via base a5 (0x102c4340), including `lw` at 0x1011a640, `lw` at 0x1011a684.
   The `ld` at 0x1011a660 loads 8 bytes from ? (base unknown) via base a7 (?).
-  The `sd` at 0x1011a670 stores 8 bytes to ? (base unknown) via base t0 (?) with value .
+  The `sd` at 0x1011a670 stores 8 bytes to ? (base unknown) via base t0 (?) with value unknown.
   The `ld` at 0x1011a6a0 loads 8 bytes from ? (base unknown) via base t0 (?).
-  The `sd` at 0x1011a6b0 stores 8 bytes to ? (base unknown) via base t1 (?) with value .
+  The `sd` at 0x1011a6b0 stores 8 bytes to ? (base unknown) via base t1 (?) with value unknown.
   2 such accesses load 4 bytes from abs 0x102bd0ac via base a2 (0x102c4340), including `lw` at 0x1011a6e8, `lw` at 0x1011a9f8.
   The `lw` at 0x1011a6fc loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   The `lw` at 0x1011a700 loads 4 bytes from abs 0x102bd0ac via base a0 (0x102c4340).
@@ -6319,11 +6319,11 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `lw` at 0x1011ad24 loads 4 bytes from abs 0x102bdc6c via base t9 (0x102c4340).
   The `lw` at 0x1011ad3c loads 4 bytes from abs 0x102bdc70 via base t9 (0x102c4340).
   The `lw` at 0x1011ad58 loads 4 bytes from abs 0x102be6b4 via base s3 (0x102c4340).
-  The `sw` at 0x1011ad84 stores 4 bytes to ? (base unknown) via base s1 (?) with value .
+  The `sw` at 0x1011ad84 stores 4 bytes to ? (base unknown) via base s1 (?) with value unknown.
   2 such accesses load 4 bytes from sym(dgo_genlock_buf_in) +0xe0 via base s3 (sym(dgo_genlock_buf_in)), including `lw` at 0x1011ad88, `lw` at 0x1011adfc.
   2 such accesses load 4 bytes from abs 0x102bd744 via base s5 (0x102c4340), including `lw` at 0x1011ada4, `lw` at 0x1011ae8c.
   3 such accesses load 4 bytes from abs 0x102bd0ac via base a1 (0x102c4340), including `lw` at 0x1011adac, `lw` at 0x1011ae18, `lw` at 0x1011ae98.
-  The `sw` at 0x1011adf8 stores 4 bytes to ? (base unknown) via base s2 (?) with value .
+  The `sw` at 0x1011adf8 stores 4 bytes to ? (base unknown) via base s2 (?) with value unknown.
   The `lw` at 0x1011ae6c loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   The `jal` at 0x1011acb0 calls `dgo_reset [0x101195bc]` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1011acc8 calls `vcRead [0x10140bac]` with a0=0xc006, a1=(unknown), a2=(unknown), a3=(unknown).
