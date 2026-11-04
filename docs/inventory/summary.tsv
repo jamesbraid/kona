@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	input
 binaries	599	0	472	1	378	125	127	0	0	0	78.8	100.0	100.0	78.8			100.0	20	2026-11-02		0			
-functions	54309	0	12633	1191	5556	3150	6218	35450	0	8	23.3	34.7	100.0	23.3			90.0	20	2026-11-02		0	126	2668	
-functions (distinct names)	19170	0	3463	374	3431	313	660	15044	0	3	18.1	21.5	100.0	18.1							0			
+functions	54309	0	12633	1191	5556	3150	6430	35238	0	8	23.3	35.1	100.0	23.3			90.0	20	2026-11-02		0	126	2668	
+functions (distinct names)	19170	0	3463	374	3431	313	864	14840	0	3	18.1	22.6	100.0	18.1							0			
 mmio	53	0	49	0	47	0	0	0	0	4	92.5	100.0	100.0	100.0	8						0			
 tokens	617	0	616	6	614	0	0	0	0	1	99.8	100.0	100.0	100.0			95.5	89	2026-11-01		0			
 ioctls	55	0	54	0	53	0	1	0	0	0	98.2	100.0	100.0	98.2			90.0	10	2026-10-29		0			
@@ -82,9 +82,9 @@ functions in usr/diags/IR/bin/hyper	11	0	11	0	11	0	0	0	0	0	100.0	100.0	100.0	100
 functions in usr/diags/IR/bin/irsaudit	1170	0	148	27	147	3	142	880	0	0	12.6	24.8	100.0	12.6							0	0	0	
 functions in usr/gfx/KONA/bin/ireeprom	15	0	15	0	15	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	
 functions in usr/gfx/KONA/bin/kpm	426	0	168	2	168	2	11	247	0	0	39.4	42.0	100.0	39.4							0	0	0	
-functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	3	0	3	0	125	2808	0	0	0.1	4.4	100.0	0.1							0	0	0	
-functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	1	0	1	0	3	3807	0	0	0.0	0.1	100.0	0.0							0	0	1124	
-functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	0	4	3807	0	0	0.0	0.1	100.0	0.0							0	0	1124	
+functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	3	0	3	0	322	2611	0	0	0.1	11.1	100.0	0.1							0	0	0	
+functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	1	0	1	0	10	3800	0	0	0.0	0.3	100.0	0.0							0	0	1124	
+functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	0	0	0	0	11	3800	0	0	0.0	0.3	100.0	0.0							0	0	1124	
 functions in usr/gfx/arch/IP27KONA/libGL.so	671	0	7	0	7	0	44	620	0	0	1.0	7.6	100.0	1.0							0	0	0	
 functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	1284	241	1267	581	966	2618	0	0	26.4	46.2	100.0	26.4							0	21	70	
 functions in usr/gfx/arch/IP27KONA32/libGL.so	673	0	20	0	20	0	31	622	0	0	3.0	7.6	100.0	3.0							0	0	0	
@@ -109,4 +109,4 @@ functions in usr/lib/X11/dyDDX/kona.so	809	0	808	0	808	0	0	0	0	1	99.9	100.0	100.
 functions in usr/lib/X11/dyDDX/konad.so	795	0	793	13	789	0	1	0	0	1	99.7	100.0	100.0	99.9							0	0	0	
 functions in usr/lib/X11/dyDDX/konal.so	795	0	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0							0	0	0	
 functions in usr/lib/X11/dyDDX/konas.so	795	0	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0							0	0	0	
-functions in usr/lib32/libfm.so	791	0	0	0	0	1	1	790	0	0	0.0	0.1	100.0	0.0							0	0	0	
+functions in usr/lib32/libfm.so	791	0	0	0	0	1	2	789	0	0	0.0	0.3	100.0	0.0							0	0	0	
