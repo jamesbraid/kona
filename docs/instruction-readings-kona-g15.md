@@ -36,7 +36,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x10077438 loads 4 bytes from abs 0x102bd744 via base s1 (0x102c4340).
   The `lw` at 0x10077444 loads 4 bytes from abs 0x102bc82c via base a3 (0x102c4340).
   The `ld` at 0x10077450 loads 8 bytes from ? (base unknown) via base t9 (?).
-  The `sd` at 0x10077460 stores 8 bytes to ? (base unknown) via base ra (?) (value ).
+  The `sd` at 0x10077460 stores 8 bytes to ? (base unknown) via base ra (?) (value unknown).
   10 such `lw` accesses load 4 bytes from abs 0x102bc82c via base a1 (0x102c4340), including `lw` at 0x10077470, `lw` at 0x100775b4, `lw` at 0x100775e4.
   The `lw` at 0x1007748c loads 4 bytes from abs 0x102bdddc via base s0 (0x102c4340).
   The `lw` at 0x100774f4 loads 4 bytes from abs 0x102bc830 via base s2 (0x102c4340).
@@ -330,12 +330,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   4 such `lw` accesses load 4 bytes from abs 0xf1295c via base gp (0xf19844), including `lw` at 0xeede40, `lw` at 0xeedf3c, `lw` at 0xeee004.
   2 such `lw` accesses load 4 bytes from ret(LookupIDByType) +0x0 via base a3 (ret(LookupIDByType)), including `lw` at 0xeede64, `lw` at 0xeee028.
   2 such `lw` accesses load 4 bytes from abs 0xf1185c via base gp (0xf19844), including `lw` at 0xeede78, `lw` at 0xeede98.
-  The `sw` at 0xeedec4 stores 4 bytes to ? (base unknown) via base v0 (?) (value ).
+  The `sw` at 0xeedec4 stores 4 bytes to ? (base unknown) via base v0 (?) (value unknown).
   5 such `lw` accesses load 4 bytes from abs 0xf12834 via base gp (0xf19844), including `lw` at 0xeedec8, `lw` at 0xeedf0c, `lw` at 0xeee044.
   The `lw` at 0xeedecc loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base ra (0xf130cc).
   The `lbu` at 0xeedee0 loads 1 bytes from ? (base unknown) via base v1 (?).
   The `lbu` at 0xeedef0 loads 1 bytes from ? (base unknown) via base a0 (?).
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a3 (?) (value ), including `sw` at 0xeedf08, `sw` at 0xeee234.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base a3 (?) (value unknown), including `sw` at 0xeedf08, `sw` at 0xeee234.
   The `lw` at 0xeedf10 loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base a1 (0xf130cc).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0xeedf24, `lw` at 0xeedf28.
   4 such `lw` accesses load 4 bytes from abs 0xf12824 via base gp (0xf19844), including `lw` at 0xeedf34, `lw` at 0xeedf80, `lw` at 0xeee0a0.
@@ -344,11 +344,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x0 via base a2 (ret(Xalloc)) (value 0x0), including `sw` at 0xeedf78, `sw` at 0xeee0e4.
   2 such `lw` accesses load 4 bytes from abs 0xf1296c via base gp (0xf19844), including `lw` at 0xeedf8c, `lw` at 0xeee0f8.
   2 such `lw` accesses load 4 bytes from abs 0xf12954 via base gp (0xf19844), including `lw` at 0xeedfa8, `lw` at 0xeee114.
-  The `sw` at 0xeee040 stores 4 bytes to ? (base unknown) via base a6 (?) (value ).
+  The `sw` at 0xeee040 stores 4 bytes to ? (base unknown) via base a6 (?) (value unknown).
   The `lw` at 0xeee048 loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base a4 (0xf130cc).
   The `lbu` at 0xeee05c loads 1 bytes from ? (base unknown) via base a7 (?).
   The `lbu` at 0xeee06c loads 1 bytes from ? (base unknown) via base t0 (?).
-  The `sw` at 0xeee084 stores 4 bytes to ? (base unknown) via base t3 (?) (value ).
+  The `sw` at 0xeee084 stores 4 bytes to ? (base unknown) via base t3 (?) (value unknown).
   The `lw` at 0xeee08c loads 4 bytes from abs 0xf130cc (__glXBadDrawable) via base t1 (0xf130cc).
   The `lw` at 0xeee134 loads 4 bytes from ? (base unknown) via base a4 (?).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base a0 (?), including `lw` at 0xeee150, `lw` at 0xeee1f8.
@@ -1262,16 +1262,16 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100709fc stores 4 bytes to sym(verif_len) +0x0 via base s2 (sym(verif_len)) (value [sym(verif_len)]+1).
   The `lw` at 0x10070a08 loads 4 bytes from abs 0x102bd430 via base t9 (0x102c4340).
   The `sw` at 0x10070a1c stores 4 bytes to sym(verifUcodeTable) +0x0 via base s1 (sym(verifUcodeTable)) (value ret(realloc)).
-  The `sw` at 0x10070a28 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x10 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value ).
-  The `sw` at 0x10070a30 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x4 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value ).
-  The `sw` at 0x10070a38 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x8 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value ).
-  The `sw` at 0x10070a40 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0xc via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value ).
+  The `sw` at 0x10070a28 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x10 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value unknown).
+  The `sw` at 0x10070a30 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x4 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value unknown).
+  The `sw` at 0x10070a38 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0x8 via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value unknown).
+  The `sw` at 0x10070a40 stores 4 bytes to (ret(realloc) + ([sym(verif_len)] << 0x4)) -0xc via base at ((ret(realloc) + ([sym(verif_len)] << 0x4))) (value unknown).
   The `lw` at 0x10070a64 loads 4 bytes from abs 0x102bd48c via base t9 (0x102c4340).
   The `sw` at 0x10070a70 stores 4 bytes to sym(verifUcodeTable) +0x0 via base s1 (sym(verifUcodeTable)) (value ret(malloc)).
-  The `sw` at 0x10070a78 stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) (value ).
-  The `sw` at 0x10070a84 stores 4 bytes to [sym(verifUcodeTable)] +0xc via base a1 ([sym(verifUcodeTable)]) (value ).
-  The `sw` at 0x10070a90 stores 4 bytes to [sym(verifUcodeTable)] +0x8 via base v1 ([sym(verifUcodeTable)]) (value ).
-  The `sw` at 0x10070aa0 stores 4 bytes to [sym(verifUcodeTable)] +0x4 via base at ([sym(verifUcodeTable)]) (value ).
+  The `sw` at 0x10070a78 stores 4 bytes to ret(malloc) +0x0 via base v0 (ret(malloc)) (value unknown).
+  The `sw` at 0x10070a84 stores 4 bytes to [sym(verifUcodeTable)] +0xc via base a1 ([sym(verifUcodeTable)]) (value unknown).
+  The `sw` at 0x10070a90 stores 4 bytes to [sym(verifUcodeTable)] +0x8 via base v1 ([sym(verifUcodeTable)]) (value unknown).
+  The `sw` at 0x10070aa0 stores 4 bytes to [sym(verifUcodeTable)] +0x4 via base at ([sym(verifUcodeTable)]) (value unknown).
   The `jal` at 0x100707a4 calls `kt_output_dbug` with a0=0x8, a1=0x10198958, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100707e0 calls `kt_output_dbug` with a0=0x8, a1=0x10198970, a2=(unknown), a3=(unknown).
   The `jal` at 0x10070808 calls `kt_ucode_file` with a0=0x10198990, a1=(unknown), a2=(unknown), a3=(unknown).
@@ -1833,7 +1833,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x1008cd4c loads 4 bytes from abs 0x102be4e4 via base v0 (0x102c4340).
   The `lw` at 0x1008cd58 loads 4 bytes from sym(total_errors) +0x0 via base v0 (sym(total_errors)).
   The `sw` at 0x1008cd68 stores 4 bytes to sym(total_errors) +0x0 via base v0 (sym(total_errors)) (value [sym(total_errors)]+1).
-  The `sw` at 0x1008cdc0 stores 4 bytes to a0 (arg0 at entry) +0x74 via base s1 (a0) (value ).
+  The `sw` at 0x1008cdc0 stores 4 bytes to a0 (arg0 at entry) +0x74 via base s1 (a0) (value unknown).
   The `lw` at 0x1008ce20 loads 4 bytes from abs 0x102be4e4 via base a2 (0x102c4340).
   The `lw` at 0x1008ce24 loads 4 bytes from sym(total_errors) +0x0 via base a2 (sym(total_errors)).
   The `sw` at 0x1008ce2c stores 4 bytes to sym(total_errors) +0x0 via base a2 (sym(total_errors)) (value [sym(total_errors)]+1).
@@ -1881,7 +1881,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x1008d058 loads 4 bytes from abs 0x102be4e4 via base t9 (0x102c4340).
   The `lw` at 0x1008d064 loads 4 bytes from sym(total_errors) +0x0 via base t9 (sym(total_errors)).
   The `sw` at 0x1008d070 stores 4 bytes to sym(total_errors) +0x0 via base t9 (sym(total_errors)) (value [sym(total_errors)]+1).
-  The `sw` at 0x1008d0cc stores 4 bytes to a0 (arg0 at entry) +0xe2c via base s1 (a0) (value ).
+  The `sw` at 0x1008d0cc stores 4 bytes to a0 (arg0 at entry) +0xe2c via base s1 (a0) (value unknown).
   The `sw` at 0x1008d23c stores 4 bytes to a0 (arg0 at entry) +0xe34 via base s1 (a0) (value 0x0).
   The `sw` at 0x1008d268 stores 4 bytes to a0 (arg0 at entry) +0xe34 via base s1 (a0) (value 0x1).
   The `jal` at 0x1008cf8c calls `kt_output_info` with a0=0x1019e920, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2027,7 +2027,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100900c0 loads 4 bytes from abs 0x102bd45c via base s1 (0x102c4340).
   The `ld` at 0x100900c4 loads 8 bytes from abs 0x102cd3b8 via base s0 (0x102cd3b8).
   The `lw` at 0x100900cc loads 4 bytes from abs 0x102be77c via base s2 (0x102c4340).
-  The `sd` at 0x100900dc stores 8 bytes to abs 0x102cd3c0 via base s0 (0x102cd3b8) (value ).
+  The `sd` at 0x100900dc stores 8 bytes to abs 0x102cd3c0 via base s0 (0x102cd3b8) (value unknown).
   2 such `lw` accesses load 4 bytes from sym(pipeFD) +0x0 via base s2 (sym(pipeFD)), including `lw` at 0x100900e8, `lw` at 0x10090494.
   The `lw` at 0x100900f8 loads 4 bytes from abs 0x102be488 via base t9 (0x102c4340).
   The `lw` at 0x100900fc loads 4 bytes from sym(Nocrc) +0x0 via base t9 (sym(Nocrc)).
@@ -2172,7 +2172,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100922ec loads 4 bytes from abs 0x102be440 via base a0 (0x102c4340).
   The `lw` at 0x100922f0 loads 4 bytes from sym(FORCE_TEX_MEM) +0x0 via base a0 (sym(FORCE_TEX_MEM)).
   6 such `ld` accesses load 8 bytes from abs 0x102ce6d8 via base s2 (0x102ce6c8), including `ld` at 0x10092398, `ld` at 0x100923d8, `ld` at 0x10092448.
-  The `sd` at 0x100923a0 stores 8 bytes to abs 0x102ce6e0 via base s2 (0x102ce6c8) (value ).
+  The `sd` at 0x100923a0 stores 8 bytes to abs 0x102ce6e0 via base s2 (0x102ce6c8) (value unknown).
   The `lw` at 0x100923b0 loads 4 bytes from abs 0x102bd45c via base s3 (0x102c4340).
   The `lw` at 0x100923b8 loads 4 bytes from abs 0x102be77c via base s1 (0x102c4340).
   The `sw` at 0x100923c0 stores 4 bytes to abs 0x102ce6f0 via base s2 (0x102ce6c8) (value 0x0).
@@ -2414,7 +2414,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sd` at 0x100949a0 stores 8 bytes to sp (at entry) -0xa8 via base s8 (sp) (value s0).
   The `sd` at 0x100949b0 stores 8 bytes to sp (at entry) -0x88 via base s8 (sp) (value ([[[a0]+3964]+16] + a3)).
   The `lw` at 0x100949d4 loads 4 bytes from [[a0]+3964] +0x4 via base a6 ([[a0]+3964]).
-  The `sd` at 0x100949dc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value ).
+  The `sd` at 0x100949dc stores 8 bytes to sp (at entry) -0x90 via base s8 (sp) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be064 via base s4 (0x102c4340), including `lw` at 0x100949e8, `lw` at 0x10094b10.
   4 such `lw` accesses load 4 bytes from abs 0x102be048 via base t9 (0x102c4340), including `lw` at 0x10094a08, `lw` at 0x10094a6c, `lw` at 0x10094aa0.
   4 such `lw` accesses load 4 bytes from abs 0x102bca80 via base a1 (0x102c4340), including `lw` at 0x10094a0c, `lw` at 0x10094a70, `lw` at 0x10094aa4.
@@ -2643,7 +2643,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x10096c30 loads 4 bytes from abs 0x102bd744 via base s3 (0x102c4340).
   The `lw` at 0x10096c38 loads 4 bytes from abs 0x102bdea0 via base s1 (0x102c4340).
   The `lw` at 0x10096c50 loads 4 bytes from abs 0x102bcaa0 via base a1 (0x102c4340).
-  The `sw` at 0x10096c7c stores 4 bytes to ((a0 << 0xa) + sym(vdVocShadowRegs)) +0x1c4 via base s2 (((a0 << 0xa) + sym(vdVocShadowRegs))) (value ).
+  The `sw` at 0x10096c7c stores 4 bytes to ((a0 << 0xa) + sym(vdVocShadowRegs)) +0x1c4 via base s2 (((a0 << 0xa) + sym(vdVocShadowRegs))) (value unknown).
   The `sw` at 0x10096c94 stores 4 bytes to ((a0 << 0xa) + sym(vdVocShadowRegs)) +0x1cc via base s2 (((a0 << 0xa) + sym(vdVocShadowRegs))) (value 0x0).
   The `sw` at 0x10096ce8 stores 4 bytes to ((a0 << 0xa) + sym(vdVocShadowRegs)) +0x1c0 via base s2 (((a0 << 0xa) + sym(vdVocShadowRegs))) (value 0x8).
   The `jal` at 0x10096bc0 calls `vdWaitForVocPllInterface` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2707,7 +2707,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lw` accesses load 4 bytes from abs 0x102cf9f4 via base s5 (0x102cf9f0), including `lw` at 0x10097c5c, `lw` at 0x10097cc8, `lw` at 0x10098218.
   2 such `lw` accesses load 4 bytes from abs 0x102be738 via base s5 (0x102c4340), including `lw` at 0x10097cf8, `lw` at 0x10098388.
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s5 (?), including `lw` at 0x10097d08, `lw` at 0x10097de0.
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s5 (?) (value ), including `sw` at 0x10097d30, `sw` at 0x10097dfc.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s5 (?) (value unknown), including `sw` at 0x10097d30, `sw` at 0x10097dfc.
   The `lw` at 0x10097d44 loads 4 bytes from abs 0x102bcab0 via base t9 (0x102c4340).
   The `sw` at 0x10097d54 stores 4 bytes to ? (base unknown) via base s5 (?) (value 0x1000011).
   The `lw` at 0x10097da4 loads 4 bytes from abs 0x102bcaa4 via base at (0x102c4340).
@@ -2920,8 +2920,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `lw` accesses load 4 bytes from (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x4 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))), including `lw` at 0x1009b728, `lw` at 0x1009b840.
   The `sw` at 0x1009b738 stores 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x8 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value 0x0).
   The `lw` at 0x1009b750 loads 4 bytes from (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x110 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))).
-  2 such `sw` accesses store 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x4 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value ), including `sw` at 0x1009b768, `sw` at 0x1009b858.
-  The `sw` at 0x1009b7a4 stores 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x110 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value ).
+  2 such `sw` accesses store 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x4 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value unknown), including `sw` at 0x1009b768, `sw` at 0x1009b858.
+  The `sw` at 0x1009b7a4 stores 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x110 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value unknown).
   The `sw` at 0x1009b7b4 stores 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x8 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value 0x1).
   The `lw` at 0x1009b7c8 loads 4 bytes from abs 0x102bdea8 via base s2 (0x102c4340).
   2 such `sw` accesses store 4 bytes to (sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2)) +0x8 via base s3 ((sym(vdVocShadowRegs) + ((a0 << 0x8) << 0x2))) (value ret(vcRead)), including `sw` at 0x1009b7d8, `sw` at 0x1009b834.
@@ -2988,7 +2988,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x1009bfd4 loads 4 bytes from abs 0x102bcadc via base a3 (0x102c4340).
   The `lw` at 0x1009bff8 loads 4 bytes from abs 0x102cf9fc via base a3 (0x102cf9fc).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s0 (?), including `lw` at 0x1009c00c, `lw` at 0x1009c298.
-  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s0 (?) (value ), including `sw` at 0x1009c038, `sw` at 0x1009c2c0.
+  2 such `sw` accesses store 4 bytes to ? (base unknown) via base s0 (?) (value unknown), including `sw` at 0x1009c038, `sw` at 0x1009c2c0.
   The `sw` at 0x1009c044 stores 4 bytes to ? (base unknown) via base s0 (?) (value 0x427).
   The `lw` at 0x1009c060 loads 4 bytes from abs 0x102bcae4 via base t9 (0x102c4340).
   The `sw` at 0x1009c06c stores 4 bytes to ? (base unknown) via base s0 (?) (value 0x1000011).
@@ -3206,7 +3206,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100a1004 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100a1014 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100a1024 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100a1034 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1034 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a104c, `ld` at 0x100a10cc.
   The `ld` at 0x100a1058 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100a1060 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -3217,69 +3217,69 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100a1094 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100a109c stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   The `ld` at 0x100a10a8 loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a10b4 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a10b4 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100a10d8, `ld` at 0x100a1104.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100a10e8, `sd` at 0x100a1114.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100a10e8, `sd` at 0x100a1114.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100a10fc, `ld` at 0x100a1128.
   The `ld` at 0x100a1138 loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a1148 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a1148 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a1160 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a116c loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a1178 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a1178 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a1188 loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a119c stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a119c stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a11b4 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a11c0 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a11cc stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a11cc stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a11dc loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a11f0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a11f0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a1208 loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a1210 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a121c stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a121c stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a1230 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100a1238 loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a1244 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a1244 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a1258 loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x100a1268 stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) (value 0x1).
   The `ld` at 0x100a1280 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a128c loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x100a1294 stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0xf)).
   The `ld` at 0x100a12a0 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100a12ac stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a12ac stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a12b8 loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x100a12c4 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a12c4 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a12d0 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x100a12dc stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a12dc stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a12e8 loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x100a12f4 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a12f4 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1300 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x100a1308 stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x800)).
   The `ld` at 0x100a1314 loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100a1320 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1320 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a132c loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1338 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1338 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1350 loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a135c loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1368 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1368 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1380 loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a138c loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1394 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1394 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a13ac loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a13b8 loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a13c0 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a13c0 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a13d8 loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a13e4 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a13f0 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a13f0 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a140c loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100a141c, `ld` at 0x100a1520.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100a1428, `sd` at 0x100a1534.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100a1428, `sd` at 0x100a1534.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a1440, `ld` at 0x100a154c.
   The `sd` at 0x100a144c stores 8 bytes to [sym(rm)] +0xe048 via base a2 ([sym(rm)]+65536) (value 0x0).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe048 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a1464, `ld` at 0x100a1514.
   The `lw` at 0x100a1470 loads 4 bytes from abs 0x102bd974 via base s4 (0x102c4340).
   The `lw` at 0x100a14b4 loads 4 bytes from abs 0x102be634 via base s5 (0x102c4340).
   2 such `lw` accesses load 4 bytes from sym(word_count) +0x0 via base s5 (sym(word_count)), including `lw` at 0x100a14b8, `lw` at 0x100a1568.
-  The `sd` at 0x100a14fc stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a14fc stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) (value unknown).
   The `lw` at 0x100a159c loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
   The `lw` at 0x100a15b8 loads 4 bytes from abs 0x102bd5b8 via base t9 (0x102c4340).
   The `lw` at 0x100a15f0 loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
@@ -3334,7 +3334,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100a16e0 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100a16f0 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100a1700 loads 4 bytes from abs 0x102bde1c via base s0 (0x102c4340).
-  The `sd` at 0x100a1710 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1710 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a172c, `ld` at 0x100a17ac.
   The `ld` at 0x100a1738 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100a1740 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -3345,69 +3345,69 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100a1774 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100a177c stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   The `ld` at 0x100a1788 loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1794 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1794 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100a17b8, `ld` at 0x100a17e4.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100a17c8, `sd` at 0x100a17f4.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100a17c8, `sd` at 0x100a17f4.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100a17dc, `ld` at 0x100a180c.
   The `ld` at 0x100a181c loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a182c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a182c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a1844 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a1850 loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a185c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a185c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a186c loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a1880 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a1880 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a1898 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a18a4 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a18b0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a18b0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a18c0 loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a18d4 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a18d4 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a18ec loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a18f4 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a1900 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a1900 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a1914 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100a191c loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a1928 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a1928 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a193c loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x100a194c stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) (value 0x1).
   The `ld` at 0x100a1964 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a1970 loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x100a1978 stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0xf)).
   The `ld` at 0x100a1984 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100a1990 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1990 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a199c loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x100a19a8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a19a8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a19b4 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x100a19c0 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a19c0 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a19cc loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x100a19d8 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a19d8 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a19e4 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x100a19ec stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x800)).
   The `ld` at 0x100a19f8 loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100a1a04 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1a04 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1a10 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1a1c stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1a1c stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1a34 loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a1a40 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1a4c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1a4c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1a64 loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a1a70 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1a7c stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1a7c stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1a94 loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a1aa0 loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1aac stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1aac stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1ac4 loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a1ad0 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1adc stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1adc stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1af4 loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a1b04 loads 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a1b10 stores 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a1b10 stores 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a1b28 loads 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536).
   The `sd` at 0x100a1b34 stores 8 bytes to [sym(rm)] +0xe048 via base a2 ([sym(rm)]+65536) (value 0x0).
   The `ld` at 0x100a1b4c loads 8 bytes from [sym(rm)] +0xe048 via base a1 ([sym(rm)]+65536).
   The `lw` at 0x100a1b58 loads 4 bytes from abs 0x102bd974 via base t9 (0x102c4340).
   The `lw` at 0x100a1b78 loads 4 bytes from abs 0x102bd8d8 via base t9 (0x102c4340).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe98 via base a3 ([sym(rm)]+131072), including `ld` at 0x100a1ba0, `ld` at 0x100a1c18.
-  The `sd` at 0x100a1bac stores 8 bytes to [sym(rm)] +0x1fe98 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a1bac stores 8 bytes to [sym(rm)] +0x1fe98 via base a3 ([sym(rm)]+131072) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe98 via base a1 ([sym(rm)]+131072), including `ld` at 0x100a1bc4, `ld` at 0x100a1c38.
   The `lw` at 0x100a1bdc loads 4 bytes from abs 0x102bde20 via base t9 (0x102c4340).
   The `lw` at 0x100a1c04 loads 4 bytes from abs 0x102bd8dc via base t9 (0x102c4340).
@@ -3544,7 +3544,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100a2324 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100a2334 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100a2344 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100a2354 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2354 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a2370, `ld` at 0x100a23f0.
   The `ld` at 0x100a237c loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100a2384 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -3555,63 +3555,63 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100a23b8 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100a23c0 stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   The `ld` at 0x100a23cc loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a23d8 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a23d8 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100a23fc, `ld` at 0x100a2428.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100a240c, `sd` at 0x100a2438.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100a240c, `sd` at 0x100a2438.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100a2420, `ld` at 0x100a244c.
   The `ld` at 0x100a245c loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a246c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a246c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a2484 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a2490 loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a249c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a249c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a24ac loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a24c0 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a24c0 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a24d8 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a24e4 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100a24f0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a24f0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a2500 loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100a2514 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100a2514 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100a252c loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a2534 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a2540 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a2540 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a2554 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100a255c loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100a2568 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100a2568 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100a257c loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x100a258c stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) (value 0x1).
   The `ld` at 0x100a25a4 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100a25b0 loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x100a25b8 stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0xf)).
   The `ld` at 0x100a25c4 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100a25d0 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a25d0 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a25dc loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x100a25e8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a25e8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a25f4 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x100a2600 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2600 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a260c loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x100a2618 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2618 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2624 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x100a262c stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x800)).
   The `ld` at 0x100a2638 loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100a2644 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2644 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value unknown).
   7 such `ld` accesses load 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536), including `ld` at 0x100a2650, `ld` at 0x100a2738, `ld` at 0x100a2768.
-  5 such `sd` accesses store 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100a265c, `sd` at 0x100a277c, `sd` at 0x100a27e8.
+  5 such `sd` accesses store 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100a265c, `sd` at 0x100a277c, `sd` at 0x100a27e8.
   7 such `ld` accesses load 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a2674, `ld` at 0x100a2758, `ld` at 0x100a2794.
   The `ld` at 0x100a2680 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a268c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a268c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a26a4 loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a26b0 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a26b8 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a26b8 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a26d0 loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a26dc loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a26e4 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a26e4 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a26fc loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a2708 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100a2714 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2714 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a272c loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x30)), including `sd` at 0x100a2740, `sd` at 0x100a2838.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100a27a4, `ld` at 0x100a289c.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100a27b4, `sd` at 0x100a28ac.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100a27b4, `sd` at 0x100a28ac.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100a27cc, `ld` at 0x100a28c4.
   The `lw` at 0x100a280c loads 4 bytes from abs 0x102bd8f4 via base s3 (0x102c4340).
   The `lw` at 0x100a2928 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
@@ -3654,21 +3654,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100a2990 loads 4 bytes from abs 0x102be628 via base s0 (0x102c4340).
   9 such `lw` accesses load 4 bytes from sym(rm) +0x0 via base s0 (sym(rm)), including `lw` at 0x100a2994, `lw` at 0x100a29cc, `lw` at 0x100a29fc.
   The `ld` at 0x100a29b0 loads 8 bytes from [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536).
-  The `sd` at 0x100a29c8 stores 8 bytes to [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a29c8 stores 8 bytes to [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a29e0 loads 8 bytes from [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100a29f8 stores 8 bytes to [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a29f8 stores 8 bytes to [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2a18 loads 8 bytes from [sym(rm)] +0xa068 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100a2a30 stores 8 bytes to [sym(rm)] +0xa068 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2a30 stores 8 bytes to [sym(rm)] +0xa068 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2a40 loads 8 bytes from [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100a2a50 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100a2a5c stores 8 bytes to [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2a5c stores 8 bytes to [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2a74 loads 8 bytes from [sym(rm)] +0xa068 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100a2a84 loads 8 bytes from [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536).
-  The `sd` at 0x100a2a90 stores 8 bytes to [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2a90 stores 8 bytes to [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2a9c loads 8 bytes from [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536).
-  The `sd` at 0x100a2aa8 stores 8 bytes to [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2aa8 stores 8 bytes to [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2ab4 loads 8 bytes from [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536).
-  The `sd` at 0x100a2ac4 stores 8 bytes to [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100a2ac4 stores 8 bytes to [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100a2adc loads 8 bytes from [sym(rm)] +0xa860 via base a1 ([sym(rm)]+65536).
   The `jal` at 0x100a2a70 calls `tbRegWrite` with a0=0x140d, a1=[[sym(rm)]+41064]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x10000, a5=[sym(rm)]+65536, a7=0xfff000.
   The `jal` at 0x100a2ad8 calls `tbRegWrite` with a0=0x150c, a1=[[sym(rm)]+43104]:8, a2=[sym(rm)], a3=(unknown), a4=[sym(rm)]+65536, a5=-0xd, a6=[sym(rm)]+65536, a7=-0x2.
@@ -4643,8 +4643,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100b060c loads 4 bytes from ? (base unknown) via base a1 (?).
   4 such `ld` accesses load 8 bytes from ? (base unknown) via base a2 (?), including `ld` at 0x100b0634, `ld` at 0x100b063c, `ld` at 0x100b06f8.
   14 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0x100b0638, `lw` at 0x100b06d8, `lw` at 0x100b06fc.
-  3 such `sd` accesses store 8 bytes to abs 0x102cfe80 via base s0 (0x102cfe70) (value ), including `sd` at 0x100b0640, `sd` at 0x100b068c, `sd` at 0x100b0710.
-  2 such `sd` accesses store 8 bytes to abs 0x102cfe88 via base s0 (0x102cfe70) (value ), including `sd` at 0x100b064c, `sd` at 0x100b0704.
+  3 such `sd` accesses store 8 bytes to abs 0x102cfe80 via base s0 (0x102cfe70) (value unknown), including `sd` at 0x100b0640, `sd` at 0x100b068c, `sd` at 0x100b0710.
+  2 such `sd` accesses store 8 bytes to abs 0x102cfe88 via base s0 (0x102cfe70) (value unknown), including `sd` at 0x100b064c, `sd` at 0x100b0704.
   The `ld` at 0x100b0680 loads 8 bytes from ? (base unknown) via base a1 (?).
   14 such `lw` accesses load 4 bytes from abs 0x102cfe80 via base s0 (0x102cfe70), including `lw` at 0x100b06a4, `lw` at 0x100b06b4, `lw` at 0x100b0754.
   14 such `lw` accesses load 4 bytes from abs 0x102cfe84 via base s0 (0x102cfe70), including `lw` at 0x100b06b0, `lw` at 0x100b06cc, `lw` at 0x100b0760.
@@ -4874,7 +4874,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100b1e18 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100b1e28 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100b1e38 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100b1e48 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b1e48 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100b1e60, `ld` at 0x100b1ee0.
   The `ld` at 0x100b1e6c loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100b1e74 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -4885,69 +4885,69 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100b1ea8 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100b1eb0 stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   The `ld` at 0x100b1ebc loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b1ec8 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b1ec8 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100b1eec, `ld` at 0x100b1f18.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100b1efc, `sd` at 0x100b1f28.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100b1efc, `sd` at 0x100b1f28.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100b1f10, `ld` at 0x100b1f3c.
   The `ld` at 0x100b1f4c loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100b1f5c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100b1f5c stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100b1f74 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100b1f80 loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100b1f8c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100b1f8c stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100b1f9c loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100b1fb0 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100b1fb0 stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100b1fc8 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100b1fd4 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100b1fe0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100b1fe0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100b1ff0 loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100b2004 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100b2004 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100b201c loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100b2024 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100b2030 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100b2030 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100b2044 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100b204c loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100b2058 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100b2058 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100b206c loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x100b207c stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) (value 0x1).
   The `ld` at 0x100b2094 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100b20a0 loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
   The `sd` at 0x100b20a8 stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0xf)).
   The `ld` at 0x100b20b4 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100b20c0 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b20c0 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b20cc loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x100b20d8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b20d8 stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b20e4 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x100b20f0 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b20f0 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b20fc loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x100b2108 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b2108 stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b2114 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x100b211c stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x800)).
   The `ld` at 0x100b2128 loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100b2134 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b2134 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b2140 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b214c stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b214c stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b2164 loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100b2170 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b217c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b217c stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b2194 loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100b21a0 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b21a8 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b21a8 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b21c0 loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100b21cc loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b21d4 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b21d4 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b21ec loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100b21f8 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100b2204 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b2204 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100b2220 loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100b2230, `ld` at 0x100b2334.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100b223c, `sd` at 0x100b2348.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100b223c, `sd` at 0x100b2348.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100b2254, `ld` at 0x100b2360.
   The `sd` at 0x100b2260 stores 8 bytes to [sym(rm)] +0xe048 via base a2 ([sym(rm)]+65536) (value 0x0).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe048 via base a1 ([sym(rm)]+65536), including `ld` at 0x100b2278, `ld` at 0x100b2328.
   The `lw` at 0x100b2284 loads 4 bytes from abs 0x102bd974 via base s4 (0x102c4340).
   The `lw` at 0x100b22c8 loads 4 bytes from abs 0x102be634 via base s5 (0x102c4340).
   2 such `lw` accesses load 4 bytes from sym(word_count) +0x0 via base s5 (sym(word_count)), including `lw` at 0x100b22cc, `lw` at 0x100b237c.
-  The `sd` at 0x100b2310 stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100b2310 stores 8 bytes to [sym(rm)] +0xe048 via base a3 ([sym(rm)]+65536) (value unknown).
   The `lw` at 0x100b23b0 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
   The `lw` at 0x100b23cc loads 4 bytes from abs 0x102bd5b8 via base t9 (0x102c4340).
   The `jal` at 0x100b1d20 calls `hash_value` with a0=0x101ab508, a1=-0x1, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -5000,7 +5000,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100b2e90 stores 4 bytes to abs 0x102cfe94 via base s0 (0x102cfe90) (value ret(hash_value)).
   The `lw` at 0x100b2ea0 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a3 ([sym(KONAINFO)]).
   2 such `sw` accesses store 4 bytes to abs 0x102cfe98 via base s0 (0x102cfe90) (value ret(hash_value)), including `sw` at 0x100b2edc, `sw` at 0x100b319c.
-  2 such `sw` accesses store 4 bytes to abs 0x102cfe9c via base s0 (0x102cfe90) (value ), including `sw` at 0x100b2f04, `sw` at 0x100b31c4.
+  2 such `sw` accesses store 4 bytes to abs 0x102cfe9c via base s0 (0x102cfe90) (value unknown), including `sw` at 0x100b2f04, `sw` at 0x100b31c4.
   2 such `sw` accesses store 4 bytes to abs 0x102cfea0 via base s0 (0x102cfe90) (value ret(hash_value)), including `sw` at 0x100b2f24, `sw` at 0x100b31e4.
   2 such `sw` accesses store 4 bytes to abs 0x102cfea4 via base s0 (0x102cfe90) (value ret(hash_value)), including `sw` at 0x100b2f38, `sw` at 0x100b31f8.
   The `lw` at 0x100b2f40 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a2 ([sym(KONAINFO)]).
@@ -5243,8 +5243,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100b65f8 loads 4 bytes from sym(tables_loaded) +0x0 via base at (sym(tables_loaded)).
   The `lw` at 0x100b667c loads 4 bytes from abs 0x102be4f8 via base a0 (0x102c4340).
   3 such `lh` accesses load 2 bytes from ? (base unknown) via base a0 (?), including `lh` at 0x100b668c, `lh` at 0x100b677c, `lh` at 0x100b67d4.
-  The `sw` at 0x100b66b0 stores 4 bytes to ? (base unknown) via base a3 (?) (value ).
-  The `sw` at 0x100b66d0 stores 4 bytes to ? (base unknown) via base a4 (?) (value ).
+  The `sw` at 0x100b66b0 stores 4 bytes to ? (base unknown) via base a3 (?) (value unknown).
+  The `sw` at 0x100b66d0 stores 4 bytes to ? (base unknown) via base a4 (?) (value unknown).
   The `lw` at 0x100b66f0 loads 4 bytes from abs 0x102bccdc via base a1 (0x102c4340).
   The `lw` at 0x100b66fc loads 4 bytes from abs 0x102bd3f8 via base t9 (0x102c4340).
   The `lw` at 0x100b6700 loads 4 bytes from abs 0x102bd414 via base a0 (0x102c4340).
@@ -5270,8 +5270,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100b6910 loads 4 bytes from abs 0x102be504 via base s7 (0x102c4340).
   The `lw` at 0x100b6954 loads 4 bytes from abs 0x102be4f0 via base t2 (0x102c4340).
   The `lw` at 0x100b6960 loads 4 bytes from abs 0x102bd988 via base s1 (0x102c4340).
-  3 such `sh` accesses store 2 bytes to ? (base unknown) via base v0 (?) (value ), including `sh` at 0x100b69dc, `sh` at 0x100b6ad4, `sh` at 0x100b6bcc.
-  3 such `sh` accesses store 2 bytes to ? (base unknown) via base s3 (?) (value ), including `sh` at 0x100b69fc, `sh` at 0x100b6af4, `sh` at 0x100b6bec.
+  3 such `sh` accesses store 2 bytes to ? (base unknown) via base v0 (?) (value unknown), including `sh` at 0x100b69dc, `sh` at 0x100b6ad4, `sh` at 0x100b6bcc.
+  3 such `sh` accesses store 2 bytes to ? (base unknown) via base s3 (?) (value unknown), including `sh` at 0x100b69fc, `sh` at 0x100b6af4, `sh` at 0x100b6bec.
   The `lw` at 0x100b6a30 loads 4 bytes from abs 0x102be4f4 via base s8 (0x102c4340).
   The `lw` at 0x100b6a38 loads 4 bytes from abs 0x102be2c4 via base s2 (0x102c4340).
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base ra (?), including `lw` at 0x100b6a94, `lw` at 0x100b6b8c.
@@ -5337,7 +5337,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100b7494 loads 4 bytes from abs 0x102be738 via base s1 (0x102c4340).
   The `lw` at 0x100b74b0 loads 4 bytes from (sym(vdVocShadowRegs) + (a2 << 0xa)) +0x110 via base s1 ((sym(vdVocShadowRegs) + (a2 << 0xa))).
   The `lw` at 0x100b74c4 loads 4 bytes from abs 0x102bdea0 via base t9 (0x102c4340).
-  The `sw` at 0x100b74ec stores 4 bytes to (sym(vdVocShadowRegs) + (a2 << 0xa)) +0x110 via base s1 ((sym(vdVocShadowRegs) + (a2 << 0xa))) (value ).
+  The `sw` at 0x100b74ec stores 4 bytes to (sym(vdVocShadowRegs) + (a2 << 0xa)) +0x110 via base s1 ((sym(vdVocShadowRegs) + (a2 << 0xa))) (value unknown).
   The `jal` at 0x100b6cf0 calls `kt_output_dbug` with a0=0x6, a1=0x101abdb8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100b6d2c calls `kt_output_dbug` with a0=0x2, a1=0x101abdd0, a2=(unknown), a3=(unknown).
   The `jal` at 0x100b6dc8 calls `vdBaseVocInit` with a0=a2 at entry (arg2), a1=(unknown), a2=(unknown), a3=(unknown).
@@ -5540,10 +5540,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100be44c loads 4 bytes from abs 0x102be550 via base a7 (0x102c4340).
   The `lw` at 0x100be45c loads 4 bytes from abs 0x102be554 via base t9 (0x102c4340).
   The `lw` at 0x100be460 loads 4 bytes from abs 0x102bccec via base t8 (0x102c4340).
-  The `sw` at 0x100be464 stores 4 bytes to sym(callig_enb) +0x0 via base t9 (sym(callig_enb)) (value ).
-  The `sw` at 0x100be474 stores 4 bytes to abs 0x1020a7f8 via base t8 (0x1020a1f8) (value ).
-  The `sw` at 0x100be47c stores 4 bytes to abs 0x1020a7f4 via base t8 (0x1020a1f8) (value ).
-  The `sw` at 0x100be480 stores 4 bytes to sym(rbase) +0x0 via base a7 (sym(rbase)) (value ).
+  The `sw` at 0x100be464 stores 4 bytes to sym(callig_enb) +0x0 via base t9 (sym(callig_enb)) (value unknown).
+  The `sw` at 0x100be474 stores 4 bytes to abs 0x1020a7f8 via base t8 (0x1020a1f8) (value unknown).
+  The `sw` at 0x100be47c stores 4 bytes to abs 0x1020a7f4 via base t8 (0x1020a1f8) (value unknown).
+  The `sw` at 0x100be480 stores 4 bytes to sym(rbase) +0x0 via base a7 (sym(rbase)) (value unknown).
   The `sw` at 0x100be488 stores 4 bytes to sym(addr_pkt) +0x0 via base at (sym(addr_pkt)) (value a1).
   The `sw` at 0x100be48c stores 4 bytes to abs 0x1020a7d4 via base t8 (0x1020a1f8) (value a1).
   The `sw` at 0x100be494 stores 4 bytes to sym(clear_repeat) +0x0 via base v0 (sym(clear_repeat)) (value a2).
@@ -5559,9 +5559,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100be4d0 stores 4 bytes to sym(clear_accum) +0x0 via base a3 (sym(clear_accum)) (value a7).
   The `sw` at 0x100be4d4 stores 4 bytes to abs 0x1020a7ec via base t8 (0x1020a1f8) (value a7).
   The `sw` at 0x100be4dc stores 4 bytes to abs 0x1020a7d0 via base t8 (0x1020a1f8) (value a0).
-  The `sw` at 0x100be4e0 stores 4 bytes to sym(readback_mode) +0x0 via base a5 (sym(readback_mode)) (value ).
+  The `sw` at 0x100be4e0 stores 4 bytes to sym(readback_mode) +0x0 via base a5 (sym(readback_mode)) (value unknown).
   The `lw` at 0x100be4e4 loads 4 bytes from abs 0x102be52c via base t9 (0x102c4340).
-  The `sw` at 0x100be4e8 stores 4 bytes to abs 0x1020a7f0 via base t8 (0x1020a1f8) (value ).
+  The `sw` at 0x100be4e8 stores 4 bytes to abs 0x1020a7f0 via base t8 (0x1020a1f8) (value unknown).
   The `sw` at 0x100be4ec stores 4 bytes to sym(draw_buffers) +0x0 via base t9 (sym(draw_buffers)) (value a0).
   7 such `lw` accesses load 4 bytes from abs 0x102bcd00 via base a0 (0x102c4340), including `lw` at 0x100be510, `lw` at 0x100be53c, `lw` at 0x100be55c.
   The `lw` at 0x100be528 loads 4 bytes from abs 0x102bd394 via base t9 (0x102c4340).
@@ -5850,10 +5850,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100bf59c stores 4 bytes to sym(blend_op_a) +0x0 via base a2 (sym(blend_op_a)) (value a4).
   The `sw` at 0x100bf5a0 stores 4 bytes to sym(blend_op_rgb) +0x0 via base t1 (sym(blend_op_rgb)) (value a3).
   The `sw` at 0x100bf5a4 stores 4 bytes to sym(blend_op_enb) +0x0 via base a3 (sym(blend_op_enb)) (value a2).
-  The `sw` at 0x100bf5a8 stores 4 bytes to sym(blend_d_a) +0x0 via base t2 (sym(blend_d_a)) (value ).
+  The `sw` at 0x100bf5a8 stores 4 bytes to sym(blend_d_a) +0x0 via base t2 (sym(blend_d_a)) (value unknown).
   The `sw` at 0x100bf5ac stores 4 bytes to sym(logic_op_func) +0x0 via base t3 (sym(logic_op_func)) (value a1).
   The `lw` at 0x100bf5bc loads 4 bytes from abs 0x102bccec via base t3 (0x102c4340).
-  The `sw` at 0x100bf5c4 stores 4 bytes to abs 0x1020a874 via base t3 (0x1020a1f8) (value ).
+  The `sw` at 0x100bf5c4 stores 4 bytes to abs 0x1020a874 via base t3 (0x1020a1f8) (value unknown).
   The `sw` at 0x100bf5c8 stores 4 bytes to abs 0x1020a858 via base t3 (0x1020a1f8) (value a1).
   The `sw` at 0x100bf5d0 stores 4 bytes to abs 0x1020a85c via base t3 (0x1020a1f8) (value a2).
   The `sw` at 0x100bf5d8 stores 4 bytes to abs 0x1020a860 via base t3 (0x1020a1f8) (value a3).
@@ -6537,21 +6537,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100cb360 loads 4 bytes from abs 0x102be628 via base s1 (0x102c4340).
   9 such `lw` accesses load 4 bytes from sym(rm) +0x0 via base s1 (sym(rm)), including `lw` at 0x100cb364, `lw` at 0x100cb39c, `lw` at 0x100cb3cc.
   The `ld` at 0x100cb380 loads 8 bytes from [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536).
-  The `sd` at 0x100cb398 stores 8 bytes to [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb398 stores 8 bytes to [sym(rm)] +0xa068 via base a7 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb3b0 loads 8 bytes from [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100cb3c8 stores 8 bytes to [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb3c8 stores 8 bytes to [sym(rm)] +0xa068 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb3e8 loads 8 bytes from [sym(rm)] +0xa068 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100cb400 stores 8 bytes to [sym(rm)] +0xa068 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb400 stores 8 bytes to [sym(rm)] +0xa068 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb414 loads 8 bytes from [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100cb424 loads 4 bytes from abs 0x102bde1c via base s0 (0x102c4340).
-  The `sd` at 0x100cb430 stores 8 bytes to [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb430 stores 8 bytes to [sym(rm)] +0xa068 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb448 loads 8 bytes from [sym(rm)] +0xa068 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cb458 loads 8 bytes from [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536).
-  The `sd` at 0x100cb464 stores 8 bytes to [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb464 stores 8 bytes to [sym(rm)] +0xa860 via base t0 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb470 loads 8 bytes from [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536).
-  The `sd` at 0x100cb47c stores 8 bytes to [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb47c stores 8 bytes to [sym(rm)] +0xa860 via base a6 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb488 loads 8 bytes from [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536).
-  The `sd` at 0x100cb494 stores 8 bytes to [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb494 stores 8 bytes to [sym(rm)] +0xa860 via base a4 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb4ac loads 8 bytes from [sym(rm)] +0xa860 via base a1 ([sym(rm)]+65536).
   The `jal` at 0x100cb444 calls `tbRegWrite` with a0=0x140d, a1=[[sym(rm)]+41064]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x10000, a5=[sym(rm)]+65536, a7=0xfff000.
   The `jal` at 0x100cb4a8 calls `tbRegWrite` with a0=0x150c, a1=[[sym(rm)]+43104]:8, a2=[sym(rm)], a3=(unknown), a4=[sym(rm)]+65536, a5=-0xd, a6=[sym(rm)]+65536, a7=-0x2.
@@ -6569,13 +6569,13 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100cb548 loads 4 bytes from abs 0x102bd97c via base t9 (0x102c4340).
   60 such `lw` accesses load 4 bytes from sym(rm) +0x0 via base s0 (sym(rm)), including `lw` at 0x100cb55c, `lw` at 0x100cb578, `lw` at 0x100cb5a4.
   The `ld` at 0x100cb568 loads 8 bytes from [sym(rm)] +0xa070 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100cb574 stores 8 bytes to [sym(rm)] +0xa070 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb574 stores 8 bytes to [sym(rm)] +0xa070 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb588 loads 8 bytes from [sym(rm)] +0xa070 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100cb594 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100cb5a0 stores 8 bytes to [sym(rm)] +0xa070 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cb5a0 stores 8 bytes to [sym(rm)] +0xa070 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cb5bc loads 8 bytes from [sym(rm)] +0xa070 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cb5cc loads 8 bytes from [sym(rm)] +0x1fe98 via base t1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb5d8 stores 8 bytes to [sym(rm)] +0x1fe98 via base t1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb5d8 stores 8 bytes to [sym(rm)] +0x1fe98 via base t1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb5e4 loads 8 bytes from [sym(rm)] +0x1fe98 via base a7 ([sym(rm)]+131072).
   The `sd` at 0x100cb5ec stores 8 bytes to [sym(rm)] +0x1fe98 via base a7 ([sym(rm)]+131072) (value ([[sym(rm)]+130712]:8 | 0x4)).
   The `ld` at 0x100cb5f8 loads 8 bytes from [sym(rm)] +0x1fe98 via base a5 ([sym(rm)]+131072).
@@ -6584,81 +6584,81 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sd` at 0x100cb614 stores 8 bytes to [sym(rm)] +0x1fe98 via base a3 ([sym(rm)]+131072) (value ([[sym(rm)]+130712]:8 | 0x8)).
   The `ld` at 0x100cb62c loads 8 bytes from [sym(rm)] +0x1fe98 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cb634 loads 8 bytes from [sym(rm)] +0x4000 via base a4 ([sym(rm)]).
-  The `sd` at 0x100cb640 stores 8 bytes to [sym(rm)] +0x4000 via base a4 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb640 stores 8 bytes to [sym(rm)] +0x4000 via base a4 ([sym(rm)]) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4000 via base a3 ([sym(rm)]), including `ld` at 0x100cb648, `ld` at 0x100cb6a0.
   The `sd` at 0x100cb650 stores 8 bytes to [sym(rm)] +0x4000 via base a3 ([sym(rm)]) (value ([[sym(rm)]+16384]:8 | 0x1)).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4000 via base a1 ([sym(rm)]), including `ld` at 0x100cb664, `ld` at 0x100cb6c0.
   The `ld` at 0x100cb670 loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100cb680 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb680 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb698 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb6ac stores 8 bytes to [sym(rm)] +0x4000 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb6ac stores 8 bytes to [sym(rm)] +0x4000 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cb6c8 loads 8 bytes from [sym(rm)] +0x4050 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cb6d4 stores 8 bytes to [sym(rm)] +0x4050 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb6d4 stores 8 bytes to [sym(rm)] +0x4050 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cb6e8 loads 8 bytes from [sym(rm)] +0x4050 via base a1 ([sym(rm)]).
   The `sd` at 0x100cb6f8 stores 8 bytes to [sym(rm)] +0x4048 via base a3 ([sym(rm)]) (value 0xffffffff).
   The `ld` at 0x100cb70c loads 8 bytes from [sym(rm)] +0x4048 via base a1 ([sym(rm)]).
   The `ld` at 0x100cb714 loads 8 bytes from [sym(rm)] +0x4020 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cb720 stores 8 bytes to [sym(rm)] +0x4020 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb720 stores 8 bytes to [sym(rm)] +0x4020 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cb734 loads 8 bytes from [sym(rm)] +0x4020 via base a1 ([sym(rm)]).
   The `sd` at 0x100cb73c stores 8 bytes to [sym(rm)] +0x4028 via base a2 ([sym(rm)]) (value 0x0).
   The `ld` at 0x100cb750 loads 8 bytes from [sym(rm)] +0x4028 via base a1 ([sym(rm)]).
   The `ld` at 0x100cb758 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cb764 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb764 stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cb778 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100cb780 loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cb78c stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cb78c stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cb7a0 loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fea0 via base a5 ([sym(rm)]+131072), including `ld` at 0x100cb7ac, `ld` at 0x100cb898.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a5 ([sym(rm)]+131072) (value ), including `sd` at 0x100cb7b8, `sd` at 0x100cb8a4.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a5 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100cb7b8, `sd` at 0x100cb8a4.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fea0 via base a3 ([sym(rm)]+131072), including `ld` at 0x100cb7c4, `ld` at 0x100cb8b4.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a3 ([sym(rm)]+131072) (value ), including `sd` at 0x100cb7d4, `sd` at 0x100cb8c0.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a3 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100cb7d4, `sd` at 0x100cb8c0.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fea0 via base a1 ([sym(rm)]+131072), including `ld` at 0x100cb7e0, `ld` at 0x100cb8d0.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a1 ([sym(rm)]+131072) (value ), including `sd` at 0x100cb7f0, `sd` at 0x100cb8dc.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fea0 via base a1 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100cb7f0, `sd` at 0x100cb8dc.
   The `ld` at 0x100cb7fc loads 8 bytes from [sym(rm)] +0x1fea0 via base v1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb808 stores 8 bytes to [sym(rm)] +0x1fea0 via base v1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb808 stores 8 bytes to [sym(rm)] +0x1fea0 via base v1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb814 loads 8 bytes from [sym(rm)] +0x1fea0 via base at ([sym(rm)]+131072).
-  The `sd` at 0x100cb820 stores 8 bytes to [sym(rm)] +0x1fea0 via base at ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb820 stores 8 bytes to [sym(rm)] +0x1fea0 via base at ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb82c loads 8 bytes from [sym(rm)] +0x1fea0 via base t9 ([sym(rm)]+131072).
-  The `sd` at 0x100cb838 stores 8 bytes to [sym(rm)] +0x1fea0 via base t9 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb838 stores 8 bytes to [sym(rm)] +0x1fea0 via base t9 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb844 loads 8 bytes from [sym(rm)] +0x1fea0 via base t3 ([sym(rm)]+131072).
-  The `sd` at 0x100cb850 stores 8 bytes to [sym(rm)] +0x1fea0 via base t3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb850 stores 8 bytes to [sym(rm)] +0x1fea0 via base t3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb860 loads 8 bytes from [sym(rm)] +0x1fea0 via base t1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb86c stores 8 bytes to [sym(rm)] +0x1fea0 via base t1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb86c stores 8 bytes to [sym(rm)] +0x1fea0 via base t1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb87c loads 8 bytes from [sym(rm)] +0x1fea0 via base a7 ([sym(rm)]+131072).
-  The `sd` at 0x100cb888 stores 8 bytes to [sym(rm)] +0x1fea0 via base a7 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb888 stores 8 bytes to [sym(rm)] +0x1fea0 via base a7 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb8e8 loads 8 bytes from [sym(rm)] +0x1df00 via base v1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb8f4 stores 8 bytes to [sym(rm)] +0x1df00 via base v1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb8f4 stores 8 bytes to [sym(rm)] +0x1df00 via base v1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb900 loads 8 bytes from [sym(rm)] +0x1df00 via base at ([sym(rm)]+131072).
-  The `sd` at 0x100cb90c stores 8 bytes to [sym(rm)] +0x1df00 via base at ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb90c stores 8 bytes to [sym(rm)] +0x1df00 via base at ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb918 loads 8 bytes from [sym(rm)] +0x1df00 via base t9 ([sym(rm)]+131072).
-  The `sd` at 0x100cb928 stores 8 bytes to [sym(rm)] +0x1df00 via base t9 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb928 stores 8 bytes to [sym(rm)] +0x1df00 via base t9 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb934 loads 8 bytes from [sym(rm)] +0x1df00 via base t3 ([sym(rm)]+131072).
-  The `sd` at 0x100cb944 stores 8 bytes to [sym(rm)] +0x1df00 via base t3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb944 stores 8 bytes to [sym(rm)] +0x1df00 via base t3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb950 loads 8 bytes from [sym(rm)] +0x1df00 via base t1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb960 stores 8 bytes to [sym(rm)] +0x1df00 via base t1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb960 stores 8 bytes to [sym(rm)] +0x1df00 via base t1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb970 loads 8 bytes from [sym(rm)] +0x1df00 via base a7 ([sym(rm)]+131072).
-  The `sd` at 0x100cb980 stores 8 bytes to [sym(rm)] +0x1df00 via base a7 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb980 stores 8 bytes to [sym(rm)] +0x1df00 via base a7 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb990 loads 8 bytes from [sym(rm)] +0x1df00 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100cb9a4 stores 8 bytes to [sym(rm)] +0x1df00 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb9a4 stores 8 bytes to [sym(rm)] +0x1df00 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb9b0 loads 8 bytes from [sym(rm)] +0x1df00 via base a3 ([sym(rm)]+131072).
   The `sd` at 0x100cb9bc stores 8 bytes to [sym(rm)] +0x1df00 via base a3 ([sym(rm)]+131072) (value ([[sym(rm)]+122624]:8 | 0xe00000)).
   The `ld` at 0x100cb9d4 loads 8 bytes from [sym(rm)] +0x1df00 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cb9e0 loads 8 bytes from [sym(rm)] +0x1df08 via base v1 ([sym(rm)]+131072).
-  The `sd` at 0x100cb9f0 stores 8 bytes to [sym(rm)] +0x1df08 via base v1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cb9f0 stores 8 bytes to [sym(rm)] +0x1df08 via base v1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cb9fc loads 8 bytes from [sym(rm)] +0x1df08 via base at ([sym(rm)]+131072).
-  The `sd` at 0x100cba0c stores 8 bytes to [sym(rm)] +0x1df08 via base at ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cba0c stores 8 bytes to [sym(rm)] +0x1df08 via base at ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cba18 loads 8 bytes from [sym(rm)] +0x1df08 via base t9 ([sym(rm)]+131072).
   The `sd` at 0x100cba20 stores 8 bytes to [sym(rm)] +0x1df08 via base t9 ([sym(rm)]+131072) (value ([[sym(rm)]+122632]:8 | 0x1c0)).
   The `ld` at 0x100cba2c loads 8 bytes from [sym(rm)] +0x1df08 via base t3 ([sym(rm)]+131072).
-  The `sd` at 0x100cba3c stores 8 bytes to [sym(rm)] +0x1df08 via base t3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cba3c stores 8 bytes to [sym(rm)] +0x1df08 via base t3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cba48 loads 8 bytes from [sym(rm)] +0x1df08 via base t1 ([sym(rm)]+131072).
-  The `sd` at 0x100cba58 stores 8 bytes to [sym(rm)] +0x1df08 via base t1 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cba58 stores 8 bytes to [sym(rm)] +0x1df08 via base t1 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cba68 loads 8 bytes from [sym(rm)] +0x1df08 via base a7 ([sym(rm)]+131072).
-  The `sd` at 0x100cba80 stores 8 bytes to [sym(rm)] +0x1df08 via base a7 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cba80 stores 8 bytes to [sym(rm)] +0x1df08 via base a7 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cba90 loads 8 bytes from [sym(rm)] +0x1df08 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100cbaa4 stores 8 bytes to [sym(rm)] +0x1df08 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbaa4 stores 8 bytes to [sym(rm)] +0x1df08 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbab4 loads 8 bytes from [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100cbac8 stores 8 bytes to [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbac8 stores 8 bytes to [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbae0 loads 8 bytes from [sym(rm)] +0x1df08 via base a1 ([sym(rm)]+131072).
   The `lw` at 0x100cbae8 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a0 ([sym(KONAINFO)]).
   The `sw` at 0x100cbb30 stores 4 bytes to sym(word_count) +0x0 via base a2 (sym(word_count)) (value 0x8).
@@ -6693,7 +6693,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100cbbac loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100cbbc0 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100cbbd0 loads 4 bytes from abs 0x102bde1c via base s0 (0x102c4340).
-  The `sd` at 0x100cbbe0 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbbe0 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100cbbf8, `ld` at 0x100cbc78.
   The `ld` at 0x100cbc04 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100cbc0c stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -6704,59 +6704,59 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100cbc40 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100cbc48 stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   The `ld` at 0x100cbc54 loads 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbc60 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbc60 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100cbc84, `ld` at 0x100cbcb0.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100cbc94, `sd` at 0x100cbcc0.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100cbc94, `sd` at 0x100cbcc0.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100cbca8, `ld` at 0x100cbcd8.
   The `ld` at 0x100cbce8 loads 8 bytes from [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100cbcf8 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbcf8 stores 8 bytes to [sym(rm)] +0x1fe88 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbd10 loads 8 bytes from [sym(rm)] +0x1fe88 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cbd1c loads 8 bytes from [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100cbd28 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbd28 stores 8 bytes to [sym(rm)] +0x1fe10 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbd38 loads 8 bytes from [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100cbd4c stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbd4c stores 8 bytes to [sym(rm)] +0x1fe10 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbd64 loads 8 bytes from [sym(rm)] +0x1fe10 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cbd70 loads 8 bytes from [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072).
-  The `sd` at 0x100cbd7c stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbd7c stores 8 bytes to [sym(rm)] +0x1fe18 via base a5 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbd8c loads 8 bytes from [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100cbda0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100cbda0 stores 8 bytes to [sym(rm)] +0x1fe18 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100cbdb8 loads 8 bytes from [sym(rm)] +0x1fe18 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cbdc0 loads 8 bytes from [sym(rm)] +0x4038 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cbdcc stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cbdcc stores 8 bytes to [sym(rm)] +0x4038 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cbde0 loads 8 bytes from [sym(rm)] +0x4038 via base a1 ([sym(rm)]).
   The `ld` at 0x100cbde8 loads 8 bytes from [sym(rm)] +0x4040 via base a3 ([sym(rm)]).
-  The `sd` at 0x100cbdf4 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100cbdf4 stores 8 bytes to [sym(rm)] +0x4040 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100cbe08 loads 8 bytes from [sym(rm)] +0x4040 via base a1 ([sym(rm)]).
   The `sd` at 0x100cbe18 stores 8 bytes to [sym(rm)] +0x1ffb0 via base a3 ([sym(rm)]+131072) (value 0x1).
   The `ld` at 0x100cbe30 loads 8 bytes from [sym(rm)] +0x1ffb0 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100cbe3c loads 8 bytes from [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536).
-  The `sd` at 0x100cbe4c stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbe4c stores 8 bytes to [sym(rm)] +0xe010 via base v1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbe58 loads 8 bytes from [sym(rm)] +0xe010 via base at ([sym(rm)]+65536).
-  The `sd` at 0x100cbe64 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbe64 stores 8 bytes to [sym(rm)] +0xe010 via base at ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbe70 loads 8 bytes from [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536).
-  The `sd` at 0x100cbe7c stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbe7c stores 8 bytes to [sym(rm)] +0xe010 via base t9 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbe88 loads 8 bytes from [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbe94 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbe94 stores 8 bytes to [sym(rm)] +0xe010 via base t3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbea0 loads 8 bytes from [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536).
-  The `sd` at 0x100cbeac stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbeac stores 8 bytes to [sym(rm)] +0xe010 via base t1 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbeb8 loads 8 bytes from [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536).
   The `sd` at 0x100cbec0 stores 8 bytes to [sym(rm)] +0xe010 via base a7 ([sym(rm)]+65536) (value ([[sym(rm)]+57360]:8 | 0x800)).
   The `ld` at 0x100cbecc loads 8 bytes from [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536).
-  The `sd` at 0x100cbed8 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbed8 stores 8 bytes to [sym(rm)] +0xe010 via base a5 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbee4 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbef0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbef0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbf0c loads 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cbf18 loads 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbf24 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbf24 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbf3c loads 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cbf48 loads 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbf54 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbf54 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbf6c loads 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cbf78 loads 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbf84 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbf84 stores 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbf9c loads 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536).
   The `ld` at 0x100cbfa8 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100cbfb4 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100cbfb4 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown).
   The `ld` at 0x100cbfcc loads 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536).
   The `jal` at 0x100cbbf4 calls `tbRegWrite` with a0=0x1c00, a1=[[sym(rm)]+57344]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100cbc74 calls `tbRegWrite` with a0=0x1c00, a1=[[sym(rm)]+57344]:8, a2=(unknown), a3=[sym(rm)]+65536, a4=-0x3d, a5=[sym(rm)]+65536, a6=([[sym(rm)]+57344]:8 | 0x100), a7=[sym(rm)]+65536.
@@ -7871,7 +7871,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `lw` accesses load 4 bytes from table(0x1020a9d8) +0x0 via base s3 (table(0x1020a9d8)), including `lw` at 0x100cedf0, `lw` at 0x100ceec0.
   The `lw` at 0x100cee1c loads 4 bytes from abs 0x102bd994 via base t9 (0x102c4340).
   The `lw` at 0x100cee3c loads 4 bytes from abs 0x102bd998 via base t9 (0x102c4340).
-  The `sw` at 0x100cee80 stores 4 bytes to a3 (arg3 at entry) +0x0 via base a0 (a3) (value ).
+  The `sw` at 0x100cee80 stores 4 bytes to a3 (arg3 at entry) +0x0 via base a0 (a3) (value unknown).
   The `sw` at 0x100cee84 stores 4 bytes to a4 (arg4 at entry) +0x0 via base at (a4) (value ret(pxid_to_tfnum)).
   The `sw` at 0x100cee88 stores 4 bytes to a5 (arg5 at entry) +0x0 via base s4 (a5) (value ret(pxid_to_impnum)).
   The `jal` at 0x100ced38 calls `screenx_to_rmx` with a0=a1 at entry (arg1), a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -8034,7 +8034,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100cfb68 loads 4 bytes from abs 0x102be448 via base a1 (0x102c4340).
   The `sw` at 0x100cfb78 stores 4 bytes to sym(HUB_WAR) +0x0 via base a1 (sym(HUB_WAR)) (value 0x0).
   The `ld` at 0x100cfc80 loads 8 bytes from abs 0x1020c298 via base s8 (0x1020aa40).
-  The `sd` at 0x100cfc94 stores 8 bytes to abs 0x1020c298 via base s8 (0x1020aa40) (value ).
+  The `sd` at 0x100cfc94 stores 8 bytes to abs 0x1020c298 via base s8 (0x1020aa40) (value unknown).
   The `lw` at 0x100cfcc8 loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `lw` at 0x100cfcd8 loads 4 bytes from abs 0x102bd744 via base t9 (0x102c4340).
   The `sd` at 0x100cfcf0 stores 8 bytes to abs 0x1020c2a0 via base at (0x1020aa40) (value 0x7ffffffffff).
@@ -8116,7 +8116,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100cff68 stores 4 bytes to sym(HUB_WAR) +0x0 via base ra (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100cffc0 loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `ld` at 0x100cffcc loads 8 bytes from abs 0x1020c298 via base at (0x1020aa40).
-  The `sd` at 0x100cffdc stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value ).
+  The `sd` at 0x100cffdc stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value unknown).
   The `lw` at 0x100cffec loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x100cfff0 loads 4 bytes from abs 0x102bce00 via base a0 (0x102c4340).
   The `lw` at 0x100d0070 loads 4 bytes from abs 0x102bce00 via base v0 (0x102c4340).
@@ -8191,7 +8191,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100d03f4 stores 4 bytes to sym(HUB_WAR) +0x0 via base a1 (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100d044c loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `ld` at 0x100d0458 loads 8 bytes from abs 0x1020c298 via base at (0x1020aa40).
-  The `sd` at 0x100d0468 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value ).
+  The `sd` at 0x100d0468 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value unknown).
   The `lw` at 0x100d047c loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x100d0480 loads 4 bytes from abs 0x102bce00 via base a0 (0x102c4340).
   The `lw` at 0x100d0500 loads 4 bytes from abs 0x102bce00 via base v0 (0x102c4340).
@@ -8273,7 +8273,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100d07d0 stores 4 bytes to sym(HUB_WAR) +0x0 via base ra (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100d0828 loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `ld` at 0x100d0834 loads 8 bytes from abs 0x1020c298 via base at (0x1020aa40).
-  The `sd` at 0x100d0844 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value ).
+  The `sd` at 0x100d0844 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value unknown).
   The `lw` at 0x100d0858 loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x100d085c loads 4 bytes from abs 0x102bce00 via base a0 (0x102c4340).
   The `lw` at 0x100d08e0 loads 4 bytes from abs 0x102bce00 via base v0 (0x102c4340).
@@ -8369,7 +8369,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100d0e28 stores 4 bytes to sym(HUB_WAR) +0x0 via base a2 (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100d0e50 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a4 ([sym(KONAINFO)]).
   The `ld` at 0x100d0f34 loads 8 bytes from abs 0x1020c298 via base a3 (0x1020aa40).
-  The `sd` at 0x100d0f44 stores 8 bytes to abs 0x1020c298 via base a3 (0x1020aa40) (value ).
+  The `sd` at 0x100d0f44 stores 8 bytes to abs 0x1020c298 via base a3 (0x1020aa40) (value unknown).
   The `lw` at 0x100d0f78 loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `sd` at 0x100d0fa0 stores 8 bytes to abs 0x1020c2a0 via base at (0x1020aa40) (value 0x7ffffffffff).
   The `sd` at 0x100d0fa4 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value 0xfffff7ffffffffff).
@@ -8464,7 +8464,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100d12c8 stores 4 bytes to sym(HUB_WAR) +0x0 via base a1 (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100d131c loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `ld` at 0x100d1328 loads 8 bytes from abs 0x1020c298 via base at (0x1020aa40).
-  The `sd` at 0x100d1338 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value ).
+  The `sd` at 0x100d1338 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value unknown).
   The `lw` at 0x100d1348 loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x100d134c loads 4 bytes from abs 0x102bce00 via base a0 (0x102c4340).
   The `lw` at 0x100d13d0 loads 4 bytes from abs 0x102bce00 via base v0 (0x102c4340).
@@ -8549,7 +8549,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sw` at 0x100d1728 stores 4 bytes to sym(HUB_WAR) +0x0 via base a1 (sym(HUB_WAR)) (value 0x0).
   The `lw` at 0x100d177c loads 4 bytes from abs 0x102bce00 via base at (0x102c4340).
   The `ld` at 0x100d1788 loads 8 bytes from abs 0x1020c298 via base at (0x1020aa40).
-  The `sd` at 0x100d1798 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value ).
+  The `sd` at 0x100d1798 stores 8 bytes to abs 0x1020c298 via base at (0x1020aa40) (value unknown).
   The `lw` at 0x100d17a8 loads 4 bytes from abs 0x102bd584 via base t9 (0x102c4340).
   The `lw` at 0x100d17ac loads 4 bytes from abs 0x102bce00 via base a0 (0x102c4340).
   The `lw` at 0x100d1830 loads 4 bytes from abs 0x102bce00 via base v0 (0x102c4340).
@@ -8776,7 +8776,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d3ff8 loads 4 bytes from [sym(KONAINFO)] +0x0 via base v0 ([sym(KONAINFO)]).
   The `ld` at 0x100d400c loads 8 bytes from [sym(rm)] +0xe000 via base at ([sym(rm)]+65536).
   12 such `lw` accesses load 4 bytes from abs 0x102bde1c via base t9 (0x102c4340), including `lw` at 0x100d4020, `lw` at 0x100d4180, `lw` at 0x100d41b4.
-  The `sd` at 0x100d4030 stores 8 bytes to [sym(rm)] +0xe000 via base at ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d4030 stores 8 bytes to [sym(rm)] +0xe000 via base at ([sym(rm)]+65536) (value unknown).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d404c, `ld` at 0x100d4094, `ld` at 0x100d419c.
   The `ld` at 0x100d405c loads 8 bytes from [sym(rm)] +0xe000 via base s7 ([sym(rm)]+65536).
   The `sd` at 0x100d406c stores 8 bytes to [sym(rm)] +0xe000 via base s7 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -8798,23 +8798,23 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d4144 loads 4 bytes from abs 0x102bce18 via base t9 (0x102c4340).
   The `lw` at 0x100d4158 loads 4 bytes from abs 0x102bce24 via base t9 (0x102c4340).
   The `ld` at 0x100d4178 loads 8 bytes from [sym(rm)] +0xe000 via base a4 ([sym(rm)]+65536).
-  The `sd` at 0x100d4188 stores 8 bytes to [sym(rm)] +0xe000 via base a4 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d4188 stores 8 bytes to [sym(rm)] +0xe000 via base a4 ([sym(rm)]+65536) (value unknown).
   5 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100d41ac, `ld` at 0x100d41d8, `ld` at 0x100d420c.
-  5 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d41bc, `sd` at 0x100d41f0, `sd` at 0x100d4224.
+  5 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d41bc, `sd` at 0x100d41f0, `sd` at 0x100d4224.
   5 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100d41cc, `ld` at 0x100d4200, `ld` at 0x100d4234.
   The `lw` at 0x100d42a4 loads 4 bytes from abs 0x102bdf98 via base t9 (0x102c4340).
   2 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a3 ([sym(KONAINFO)]), including `lw` at 0x100d42d4, `lw` at 0x100d462c.
   The `lw` at 0x100d4370 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a1 ([sym(KONAINFO)]).
   The `ld` at 0x100d43f4 loads 8 bytes from [sym(rm)] +0x1fe80 via base a5 ([sym(rm)]+131072).
   The `lw` at 0x100d43fc loads 4 bytes from abs 0x102bce1c via base a3 (0x102c4340).
-  The `sd` at 0x100d4418 stores 8 bytes to [sym(rm)] +0x1fe80 via base a5 ([sym(rm)]+131072) (value ).
-  The `swc1` at 0x100d4420 stores 4 bytes to abs 0x103438cc via base a3 (0x10343898) (value ).
+  The `sd` at 0x100d4418 stores 8 bytes to [sym(rm)] +0x1fe80 via base a5 ([sym(rm)]+131072) (value unknown).
+  The `swc1` at 0x100d4420 stores 4 bytes to abs 0x103438cc via base a3 (0x10343898) (value unknown).
   The `ld` at 0x100d4430 loads 8 bytes from [sym(rm)] +0x1fe80 via base a1 ([sym(rm)]+131072).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4078 via base a3 ([sym(rm)]), including `ld` at 0x100d4498, `ld` at 0x100d44e8.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4078 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d44b8, `sd` at 0x100d4514.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4078 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d44b8, `sd` at 0x100d4514.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4078 via base a1 ([sym(rm)]), including `ld` at 0x100d44cc, `ld` at 0x100d4524.
   The `ld` at 0x100d4540 loads 8 bytes from [sym(rm)] +0x1fe78 via base a5 ([sym(rm)]+131072).
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe78 via base a5 ([sym(rm)]+131072) (value ), including `sd` at 0x100d4568, `sd` at 0x100d4664.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe78 via base a5 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d4568, `sd` at 0x100d4664.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe78 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d4580, `ld` at 0x100d467c.
   The `lw` at 0x100d458c loads 4 bytes from [sym(KONAINFO)] +0x0 via base a4 ([sym(KONAINFO)]).
   The `lw` at 0x100d45a8 loads 4 bytes from [sym(KONAINFO)] +0x0 via base a5 ([sym(KONAINFO)]).
@@ -8907,7 +8907,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d4888 loads 4 bytes from [sym(KONAINFO)] +0x0 via base ra ([sym(KONAINFO)]).
   The `ld` at 0x100d489c loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100d48a8 loads 4 bytes from abs 0x102bde1c via base s2 (0x102c4340).
-  The `sd` at 0x100d48b8 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d48b8 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d48d0, `ld` at 0x100d4974, `ld` at 0x100d4a64.
   The `ld` at 0x100d48dc loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100d48e4 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -8918,7 +8918,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100d4924 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100d4930 stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d4944, `ld` at 0x100d4a40.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d4954, `sd` at 0x100d4a4c.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d4954, `sd` at 0x100d4a4c.
   The `lw` at 0x100d4994 loads 4 bytes from abs 0x102bcdf8 via base t8 (0x102c4340).
   The `lw` at 0x100d4998 loads 4 bytes from abs 0x102bd3a4 via base s0 (0x102c4340).
   The `ldc1` at 0x100d499c loads 8 bytes from abs 0x101aea58 via base t8 (0x101ae6d0).
@@ -8934,60 +8934,60 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `sd` at 0x100d4a78 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57368]:8 | 0x2)).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d4a90, `ld` at 0x100d4abc, `ld` at 0x100d4aec.
   The `sd` at 0x100d4aa4 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57368]:8 | 0x1)).
-  The `sd` at 0x100d4ad4 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d4ad4 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   The `lw` at 0x100d4af8 loads 4 bytes from abs 0x102be1e0 via base s1 (0x102c4340).
   3 such `lw` accesses load 4 bytes from sym(KONAINFO) +0x0 via base s1 (sym(KONAINFO)), including `lw` at 0x100d4afc, `lw` at 0x100d4b5c, `lw` at 0x100d4bac.
   3 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a4 ([sym(KONAINFO)]), including `lw` at 0x100d4b00, `lw` at 0x100d4b60, `lw` at 0x100d4bb0.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d4b28, `ld` at 0x100d4b7c, `ld` at 0x100d4bc8.
-  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d4b40, `sd` at 0x100d4b90, `sd` at 0x100d4be0.
+  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d4b40, `sd` at 0x100d4b90, `sd` at 0x100d4be0.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d4b58, `ld` at 0x100d4ba8, `ld` at 0x100d4bf8.
   6 such `lw` accesses load 4 bytes from abs 0x102bd9a0 via base t9 (0x102c4340), including `lw` at 0x100d4c0c, `lw` at 0x100d4dfc, `lw` at 0x100d51f4.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a4 ([sym(rm)]), including `ld` at 0x100d4e50, `ld` at 0x100d4ebc, `ld` at 0x100d5040.
-  10 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a4 ([sym(rm)]) (value ), including `sd` at 0x100d4e6c, `sd` at 0x100d4eec, `sd` at 0x100d505c.
+  10 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a4 ([sym(rm)]) (value unknown), including `sd` at 0x100d4e6c, `sd` at 0x100d4eec, `sd` at 0x100d505c.
   21 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100d4e80, `ld` at 0x100d4f00, `ld` at 0x100d4f2c.
   11 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100d4f08, `ld` at 0x100d4f34, `ld` at 0x100d507c.
-  11 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d4f18, `sd` at 0x100d4f40, `sd` at 0x100d5088.
+  11 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d4f18, `sd` at 0x100d4f40, `sd` at 0x100d5088.
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0x4080 via base a3 ([sym(rm)]), including `ld` at 0x100d4f5c, `ld` at 0x100d62d4, `ld` at 0x100d6394.
   2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4080 via base a3 ([sym(rm)]) (value ([[sym(rm)]+16512]:8 | 0x1)), including `sd` at 0x100d4f64, `sd` at 0x100d62dc.
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0x4080 via base a1 ([sym(rm)]), including `ld` at 0x100d4f78, `ld` at 0x100d62f0, `ld` at 0x100d63b4.
   The `ld` at 0x100d4fcc loads 8 bytes from [sym(rm)] +0x1fe80 via base t9 ([sym(rm)]+131072).
   The `lw` at 0x100d4fdc loads 4 bytes from abs 0x102bce1c via base s1 (0x102c4340).
-  The `sd` at 0x100d4fec stores 8 bytes to [sym(rm)] +0x1fe80 via base t9 ([sym(rm)]+131072) (value ).
-  The `swc1` at 0x100d4ff8 stores 4 bytes to abs 0x103438cc via base s1 (0x10343898) (value ).
+  The `sd` at 0x100d4fec stores 8 bytes to [sym(rm)] +0x1fe80 via base t9 ([sym(rm)]+131072) (value unknown).
+  The `swc1` at 0x100d4ff8 stores 4 bytes to abs 0x103438cc via base s1 (0x10343898) (value unknown).
   The `ld` at 0x100d5008 loads 8 bytes from [sym(rm)] +0x1fe80 via base a1 ([sym(rm)]+131072).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4078 via base a3 ([sym(rm)]), including `ld` at 0x100d50dc, `ld` at 0x100d5128.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4078 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d50fc, `sd` at 0x100d514c.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4078 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d50fc, `sd` at 0x100d514c.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4078 via base a1 ([sym(rm)]), including `ld` at 0x100d5114, `ld` at 0x100d5160.
   The `ld` at 0x100d5170 loads 8 bytes from [sym(rm)] +0x1fe78 via base a4 ([sym(rm)]+131072).
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe78 via base a4 ([sym(rm)]+131072) (value ), including `sd` at 0x100d518c, `sd` at 0x100d61cc.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe78 via base a4 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d518c, `sd` at 0x100d61cc.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe78 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d51a4, `ld` at 0x100d61e4.
   32 such `ld` accesses load 8 bytes from [sym(rm)] +0xe1d0 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d521c, `ld` at 0x100d5234, `ld` at 0x100d524c.
   32 such `ld` accesses load 8 bytes from [sym(rm)] +0x43f8 via base a1 ([sym(rm)]), including `ld` at 0x100d52d8, `ld` at 0x100d52ec, `ld` at 0x100d5300.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4020 via base a3 ([sym(rm)]), including `ld` at 0x100d5394, `ld` at 0x100d5f8c.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4020 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d53a0, `sd` at 0x100d5fa0.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4020 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d53a0, `sd` at 0x100d5fa0.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4020 via base a1 ([sym(rm)]), including `ld` at 0x100d53b4, `ld` at 0x100d5fb4.
   The `sd` at 0x100d5550 stores 8 bytes to [sym(rm)] +0x4028 via base a2 ([sym(rm)]) (value 0x0).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4028 via base a1 ([sym(rm)]), including `ld` at 0x100d5564, `ld` at 0x100d5f70.
   8 such `ld` accesses load 8 bytes from [sym(rm)] +0x1df00 via base a3 ([sym(rm)]+131072), including `ld` at 0x100d56f4, `ld` at 0x100d5754, `ld` at 0x100d57b4.
-  8 such `sd` accesses store 8 bytes to [sym(rm)] +0x1df00 via base a3 ([sym(rm)]+131072) (value ), including `sd` at 0x100d5710, `sd` at 0x100d5770, `sd` at 0x100d57d0.
+  8 such `sd` accesses store 8 bytes to [sym(rm)] +0x1df00 via base a3 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d5710, `sd` at 0x100d5770, `sd` at 0x100d57d0.
   8 such `ld` accesses load 8 bytes from [sym(rm)] +0x1df00 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d5728, `ld` at 0x100d5788, `ld` at 0x100d57e8.
   8 such `ld` accesses load 8 bytes from [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072), including `ld` at 0x100d5878, `ld` at 0x100d58dc, `ld` at 0x100d593c.
-  8 such `sd` accesses store 8 bytes to [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072) (value ), including `sd` at 0x100d5894, `sd` at 0x100d58f4, `sd` at 0x100d5954.
+  8 such `sd` accesses store 8 bytes to [sym(rm)] +0x1df08 via base a3 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d5894, `sd` at 0x100d58f4, `sd` at 0x100d5954.
   8 such `ld` accesses load 8 bytes from [sym(rm)] +0x1df08 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d58ac, `ld` at 0x100d590c, `ld` at 0x100d596c.
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0x4050 via base a3 ([sym(rm)]), including `ld` at 0x100d5e84, `ld` at 0x100d5eac, `ld` at 0x100d5fdc.
-  4 such `sd` accesses store 8 bytes to [sym(rm)] +0x4050 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d5e90, `sd` at 0x100d5eb8, `sd` at 0x100d5ff8.
+  4 such `sd` accesses store 8 bytes to [sym(rm)] +0x4050 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d5e90, `sd` at 0x100d5eb8, `sd` at 0x100d5ff8.
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0x4050 via base a1 ([sym(rm)]), including `ld` at 0x100d5ea4, `ld` at 0x100d5ecc, `ld` at 0x100d600c.
-  The `sd` at 0x100d5f5c stores 8 bytes to [sym(rm)] +0x4028 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100d5f5c stores 8 bytes to [sym(rm)] +0x4028 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100d6088 loads 8 bytes from [sym(rm)] +0x4058 via base a3 ([sym(rm)]).
-  The `sd` at 0x100d60a4 stores 8 bytes to [sym(rm)] +0x4058 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100d60a4 stores 8 bytes to [sym(rm)] +0x4058 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100d60b8 loads 8 bytes from [sym(rm)] +0x4058 via base a1 ([sym(rm)]).
   The `ld` at 0x100d60dc loads 8 bytes from [sym(rm)] +0x4060 via base a3 ([sym(rm)]).
-  The `sd` at 0x100d60f4 stores 8 bytes to [sym(rm)] +0x4060 via base a3 ([sym(rm)]) (value ).
+  The `sd` at 0x100d60f4 stores 8 bytes to [sym(rm)] +0x4060 via base a3 ([sym(rm)]) (value unknown).
   The `ld` at 0x100d6108 loads 8 bytes from [sym(rm)] +0x4060 via base a1 ([sym(rm)]).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4068 via base a3 ([sym(rm)]), including `ld` at 0x100d612c, `ld` at 0x100d6184.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4068 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d6148, `sd` at 0x100d61a0.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4068 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d6148, `sd` at 0x100d61a0.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4068 via base a1 ([sym(rm)]), including `ld` at 0x100d615c, `ld` at 0x100d61b4.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4080 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d63a0, `sd` at 0x100d648c.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4080 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d63a0, `sd` at 0x100d648c.
   The `lw` at 0x100d64b0 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
   The `lw` at 0x100d64c4 loads 4 bytes from abs 0x102bd458 via base t9 (0x102c4340).
   The `lw` at 0x100d64d8 loads 4 bytes from abs 0x102be640 via base ra (0x102c4340).
@@ -9256,7 +9256,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d66cc loads 4 bytes from [sym(KONAINFO)] +0x0 via base a2 ([sym(KONAINFO)]).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d66e0, `ld` at 0x100d6780, `ld` at 0x100d6890.
   19 such `lw` accesses load 4 bytes from abs 0x102bde1c via base t9 (0x102c4340), including `lw` at 0x100d66ec, `lw` at 0x100d6788, `lw` at 0x100d67cc.
-  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d66fc, `sd` at 0x100d6790, `sd` at 0x100d68a0.
+  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d66fc, `sd` at 0x100d6790, `sd` at 0x100d68a0.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d6710, `ld` at 0x100d67a4, `ld` at 0x100d68bc.
   The `ld` at 0x100d6728 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100d6730 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -9267,7 +9267,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100d6764 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100d676c stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100d67c0, `ld` at 0x100d6800.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d67d8, `sd` at 0x100d6818.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d67d8, `sd` at 0x100d6818.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100d67e8, `ld` at 0x100d6828.
   The `lw` at 0x100d683c loads 4 bytes from abs 0x102bd740 via base t9 (0x102c4340).
   The `lw` at 0x100d6840 loads 4 bytes from abs 0x102bcdf8 via base a0 (0x102c4340).
@@ -9281,46 +9281,46 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d6928, `ld` at 0x100d6968, `ld` at 0x100d69ac.
   5 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d6948, `ld` at 0x100d6988, `ld` at 0x100d72c8.
   2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57368]:8 | 0x1)), including `sd` at 0x100d6954, `sd` at 0x100d7318.
-  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d6998, `sd` at 0x100d72d8, `sd` at 0x100d7360.
+  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d6998, `sd` at 0x100d72d8, `sd` at 0x100d7360.
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d69c8, `ld` at 0x100d6a10, `ld` at 0x100d6a58.
-  6 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d69e0, `sd` at 0x100d6a28, `sd` at 0x100d6a74.
+  6 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d69e0, `sd` at 0x100d6a28, `sd` at 0x100d6a74.
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d69f4, `ld` at 0x100d6a3c, `ld` at 0x100d6a88.
   The `lw` at 0x100d6ac0 loads 4 bytes from abs 0x102bd3a4 via base s0 (0x102c4340).
-  The `sd` at 0x100d6b7c stores 8 bytes to ? (base unknown) via base s3 (?) (value ).
-  The `sd` at 0x100d6b8c stores 8 bytes to ? (base unknown) via base s2 (?) (value ).
+  The `sd` at 0x100d6b7c stores 8 bytes to ? (base unknown) via base s3 (?) (value unknown).
+  The `sd` at 0x100d6b8c stores 8 bytes to ? (base unknown) via base s2 (?) (value unknown).
   The `lw` at 0x100d6d24 loads 4 bytes from abs 0x102be628 via base s3 (0x102c4340).
   30 such `lw` accesses load 4 bytes from sym(rm) +0x0 via base s3 (sym(rm)), including `lw` at 0x100d6d34, `lw` at 0x100d6d54, `lw` at 0x100d6d8c.
-  The `sd` at 0x100d6d4c stores 8 bytes to [sym(rm)] +0x1fe20 via base a4 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6d4c stores 8 bytes to [sym(rm)] +0x1fe20 via base a4 ([sym(rm)]+131072) (value unknown).
   The `lw` at 0x100d6d5c loads 4 bytes from abs 0x102bde1c via base s4 (0x102c4340).
   The `ld` at 0x100d6d7c loads 8 bytes from [sym(rm)] +0x1fe20 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100d6d98 stores 8 bytes to [sym(rm)] +0x1fe28 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6d98 stores 8 bytes to [sym(rm)] +0x1fe28 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6db0 loads 8 bytes from [sym(rm)] +0x1fe28 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100d6dcc stores 8 bytes to [sym(rm)] +0x1fe30 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6dcc stores 8 bytes to [sym(rm)] +0x1fe30 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6de4 loads 8 bytes from [sym(rm)] +0x1fe30 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100d6e14 stores 8 bytes to [sym(rm)] +0x1fe38 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6e14 stores 8 bytes to [sym(rm)] +0x1fe38 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6e30 loads 8 bytes from [sym(rm)] +0x1fe38 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100d6e40 stores 8 bytes to [sym(rm)] +0x1fe40 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6e40 stores 8 bytes to [sym(rm)] +0x1fe40 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6e58 loads 8 bytes from [sym(rm)] +0x1fe40 via base a1 ([sym(rm)]+131072).
-  The `sd` at 0x100d6e84 stores 8 bytes to [sym(rm)] +0x1fe48 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6e84 stores 8 bytes to [sym(rm)] +0x1fe48 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6e9c loads 8 bytes from [sym(rm)] +0x1fe48 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100d6eb4 loads 8 bytes from [sym(rm)] +0x1fe50 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100d6ec8 stores 8 bytes to [sym(rm)] +0x1fe50 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6ec8 stores 8 bytes to [sym(rm)] +0x1fe50 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6ee0 loads 8 bytes from [sym(rm)] +0x1fe50 via base a1 ([sym(rm)]+131072).
   The `ld` at 0x100d6ef0 loads 8 bytes from [sym(rm)] +0x1fe58 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100d6f08 stores 8 bytes to [sym(rm)] +0x1fe58 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6f08 stores 8 bytes to [sym(rm)] +0x1fe58 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6f20 loads 8 bytes from [sym(rm)] +0x1fe58 via base a1 ([sym(rm)]+131072).
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe60 via base a3 ([sym(rm)]+131072), including `ld` at 0x100d6f2c, `ld` at 0x100d6f68, `ld` at 0x100d6fec.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe60 via base a3 ([sym(rm)]+131072) (value ), including `sd` at 0x100d6f40, `sd` at 0x100d6f8c.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe60 via base a3 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d6f40, `sd` at 0x100d6f8c.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe60 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d6f58, `ld` at 0x100d6fa4, `ld` at 0x100d7014.
   The `ld` at 0x100d6fb4 loads 8 bytes from [sym(rm)] +0x1fe68 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100d6fc8 stores 8 bytes to [sym(rm)] +0x1fe68 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d6fc8 stores 8 bytes to [sym(rm)] +0x1fe68 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d6fe0 loads 8 bytes from [sym(rm)] +0x1fe68 via base a1 ([sym(rm)]+131072).
   The `sd` at 0x100d6ff8 stores 8 bytes to [sym(rm)] +0x1fe60 via base a3 ([sym(rm)]+131072) (value (0x4000000 | [[sym(rm)]+130656]:8)).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe90 via base a3 ([sym(rm)]+131072), including `ld` at 0x100d7030, `ld` at 0x100d7088.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe90 via base a3 ([sym(rm)]+131072) (value ), including `sd` at 0x100d7048, `sd` at 0x100d70a4.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x1fe90 via base a3 ([sym(rm)]+131072) (value unknown), including `sd` at 0x100d7048, `sd` at 0x100d70a4.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x1fe90 via base a1 ([sym(rm)]+131072), including `ld` at 0x100d7060, `ld` at 0x100d70bc.
   The `ld` at 0x100d70c8 loads 8 bytes from [sym(rm)] +0x1ffc0 via base a3 ([sym(rm)]+131072).
-  The `sd` at 0x100d70d8 stores 8 bytes to [sym(rm)] +0x1ffc0 via base a3 ([sym(rm)]+131072) (value ).
+  The `sd` at 0x100d70d8 stores 8 bytes to [sym(rm)] +0x1ffc0 via base a3 ([sym(rm)]+131072) (value unknown).
   The `ld` at 0x100d70f4 loads 8 bytes from [sym(rm)] +0x1ffc0 via base a1 ([sym(rm)]+131072).
   The `lw` at 0x100d713c loads 4 bytes from abs 0x102bde30 via base s2 (0x102c4340).
   The `ld` at 0x100d716c loads 8 bytes from ? (base unknown) via base a0 (?).
@@ -9332,7 +9332,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d71f4 loads 4 bytes from abs 0x102be640 via base s0 (0x102c4340).
   The `lw` at 0x100d71f8 loads 4 bytes from sym(from_rmvis) +0x0 via base s0 (sym(from_rmvis)).
   The `ld` at 0x100d7234 loads 8 bytes from [sym(rm)] +0xe040 via base v0 ([sym(rm)]+65536).
-  The `sd` at 0x100d7254 stores 8 bytes to [sym(rm)] +0xe040 via base v0 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d7254 stores 8 bytes to [sym(rm)] +0xe040 via base v0 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d7268, `ld` at 0x100d72a8.
   The `ld` at 0x100d7288 loads 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536).
   The `sd` at 0x100d7294 stores 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57408]:8 | 0x1000)).
@@ -9428,7 +9428,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d8c60 loads 4 bytes from [sym(KONAINFO)] +0x0 via base t8 ([sym(KONAINFO)]).
   The `ld` at 0x100d8c74 loads 8 bytes from [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536).
   The `lw` at 0x100d8c80 loads 4 bytes from abs 0x102bde1c via base s1 (0x102c4340).
-  The `sd` at 0x100d8c90 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d8c90 stores 8 bytes to [sym(rm)] +0xe000 via base t9 ([sym(rm)]+65536) (value unknown).
   15 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d8cac, `ld` at 0x100d8d2c, `ld` at 0x100d9b88.
   The `ld` at 0x100d8cb8 loads 8 bytes from [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536).
   The `sd` at 0x100d8cc0 stores 8 bytes to [sym(rm)] +0xe000 via base t3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x40)).
@@ -9439,7 +9439,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100d8cf4 loads 8 bytes from [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536).
   The `sd` at 0x100d8cfc stores 8 bytes to [sym(rm)] +0xe000 via base a5 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x200)).
   14 such `ld` accesses load 8 bytes from [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d8d08, `ld` at 0x100d9b64, `ld` at 0x100da0f4.
-  13 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d8d14, `sd` at 0x100d9b70, `sd` at 0x100da100.
+  13 such `sd` accesses store 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d8d14, `sd` at 0x100d9b70, `sd` at 0x100da100.
   The `lw` at 0x100d8d68 loads 4 bytes from abs 0x102bd3a4 via base s2 (0x102c4340).
   2 such `lw` accesses load 4 bytes from abs 0x102be640 via base s4 (0x102c4340), including `lw` at 0x100d8d6c, `lw` at 0x100d9468.
   The `lw` at 0x100d8d70 loads 4 bytes from abs 0x102bd9a0 via base s5 (0x102c4340).
@@ -9449,69 +9449,69 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100d8da4 loads 4 bytes from sym(KONAINFO) +0x0 via base a1 (sym(KONAINFO)).
   2 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a1 ([sym(KONAINFO)]), including `lw` at 0x100d8da8, `lw` at 0x100d8eac.
   6 such `lw` accesses load 4 bytes from ? (base unknown) via base a2 (?), including `lw` at 0x100d8db8, `lw` at 0x100d8dbc, `lw` at 0x100d8dc0.
-  12 such `sw` accesses store 4 bytes to ? (base unknown) via base s7 (?) (value ), including `sw` at 0x100d8dd0, `sw` at 0x100d8dd4, `sw` at 0x100d8dd8.
+  12 such `sw` accesses store 4 bytes to ? (base unknown) via base s7 (?) (value unknown), including `sw` at 0x100d8dd0, `sw` at 0x100d8dd4, `sw` at 0x100d8dd8.
   2 such `lw` accesses load 4 bytes from ? (base unknown) via base s7 (?), including `lw` at 0x100d8de8, `lw` at 0x100d8ea0.
   6 such `lw` accesses load 4 bytes from sym(from_rmvis) +0x0 via base s4 (sym(from_rmvis)), including `lw` at 0x100d8df8, `lw` at 0x100d8ee0, `lw` at 0x100d9484.
   The `lw` at 0x100d8e44 loads 4 bytes from abs 0x102bd730 via base t9 (0x102c4340).
   2 such `lw` accesses load 4 bytes from abs 0x102bcdf8 via base a0 (0x102c4340), including `lw` at 0x100d8e48, `lw` at 0x100d8e68.
   The `lw` at 0x100d8e64 loads 4 bytes from abs 0x102bd470 via base s6 (0x102c4340).
   The `lw` at 0x100d8e9c loads 4 bytes from abs 0x102be63c via base a3 (0x102c4340).
-  The `sw` at 0x100d8ea8 stores 4 bytes to sym(g_name) +0x0 via base a3 (sym(g_name)) (value ).
+  The `sw` at 0x100d8ea8 stores 4 bytes to sym(g_name) +0x0 via base a3 (sym(g_name)) (value unknown).
   The `lw` at 0x100d8ed4 loads 4 bytes from abs 0x102bce18 via base t9 (0x102c4340).
   The `lw` at 0x100d8ef4 loads 4 bytes from abs 0x102bce2c via base t9 (0x102c4340).
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d8f78, `ld` at 0x100d8fa8, `ld` at 0x100da3ec.
-  The `sd` at 0x100d8f84 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d8f84 stores 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value unknown).
   8 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d8f9c, `ld` at 0x100d8fc8, `ld` at 0x100d9008.
   2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57368]:8 | 0x1)), including `sd` at 0x100d8fb0, `sd` at 0x100da420.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe018 via base a2 ([sym(rm)]+65536), including `ld` at 0x100d8fdc, `ld` at 0x100da44c.
-  4 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a2 ([sym(rm)]+65536) (value ), including `sd` at 0x100d8fec, `sd` at 0x100da45c, `sd` at 0x100da65c.
+  4 such `sd` accesses store 8 bytes to [sym(rm)] +0xe018 via base a2 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d8fec, `sd` at 0x100da45c, `sd` at 0x100da65c.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a3 ([sym(rm)]), including `ld` at 0x100d9014, `ld` at 0x100da484.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value ), including `sd` at 0x100d9020, `sd` at 0x100da494.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0x4030 via base a3 ([sym(rm)]) (value unknown), including `sd` at 0x100d9020, `sd` at 0x100da494.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0x4030 via base a1 ([sym(rm)]), including `ld` at 0x100d9034, `ld` at 0x100da4a8.
   10 such `ld` accesses load 8 bytes from [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d9070, `ld` at 0x100d90a0, `ld` at 0x100d90f8.
-  8 such `sd` accesses store 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d907c, `sd` at 0x100d9104, `sd` at 0x100d97c8.
+  8 such `sd` accesses store 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d907c, `sd` at 0x100d9104, `sd` at 0x100d97c8.
   14 such `ld` accesses load 8 bytes from [sym(rm)] +0xe040 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d9094, `ld` at 0x100d90c0, `ld` at 0x100d911c.
   2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe040 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57408]:8 | 0x1000)), including `sd` at 0x100d90a8, `sd` at 0x100da510.
   The `lw` at 0x100d9160 loads 4 bytes from abs 0x102be63c via base a2 (0x102c4340).
   The `lw` at 0x100d9174 loads 4 bytes from sym(g_name) +0x0 via base a2 (sym(g_name)).
   5 such `lw` accesses load 4 bytes from abs 0x102bd744 via base t9 (0x102c4340), including `lw` at 0x100d91b8, `lw` at 0x100d91fc, `lw` at 0x100d923c.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d92dc, `ld` at 0x100d9328, `ld` at 0x100d9374.
-  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d92f4, `sd` at 0x100d9344, `sd` at 0x100d9398.
+  3 such `sd` accesses store 8 bytes to [sym(rm)] +0xe058 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d92f4, `sd` at 0x100d9344, `sd` at 0x100d9398.
   3 such `ld` accesses load 8 bytes from [sym(rm)] +0xe058 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d930c, `ld` at 0x100d935c, `ld` at 0x100d93b4.
   6 such `lw` accesses load 4 bytes from ? (base unknown) via base t2 (?), including `lw` at 0x100d9400, `lw` at 0x100d9404, `lw` at 0x100d9408.
   The `lw` at 0x100d9450 loads 4 bytes from abs 0x102bd420 via base t9 (0x102c4340).
   The `lw` at 0x100d9474 loads 4 bytes from abs 0x102bd458 via base t9 (0x102c4340).
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d94b4, `ld` at 0x100d9568, `ld` at 0x100d95a8.
-  5 such `sd` accesses store 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d94c0, `sd` at 0x100d9580, `sd` at 0x100d95cc.
+  5 such `sd` accesses store 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d94c0, `sd` at 0x100d9580, `sd` at 0x100d95cc.
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe030 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d94d8, `ld` at 0x100d9598, `ld` at 0x100d95e4.
   The `ld` at 0x100d9698 loads 8 bytes from [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536).
-  The `sd` at 0x100d96b0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d96b0 stores 8 bytes to [sym(rm)] +0xe010 via base a3 ([sym(rm)]+65536) (value unknown).
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe010 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d96c8, `ld` at 0x100da17c.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe040 via base a2 ([sym(rm)]+65536), including `ld` at 0x100d9704, `ld` at 0x100d975c.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe040 via base a2 ([sym(rm)]+65536) (value ), including `sd` at 0x100d9710, `sd` at 0x100da270.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe040 via base a2 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d9710, `sd` at 0x100da270.
   The `sd` at 0x100d9764 stores 8 bytes to [sym(rm)] +0xe040 via base a2 ([sym(rm)]+65536) (value (0x10000 | [[sym(rm)]+57408]:8)).
   The `ld` at 0x100d9820 loads 8 bytes from [sym(rm)] +0xe038 via base a2 ([sym(rm)]+65536).
-  The `sd` at 0x100d982c stores 8 bytes to [sym(rm)] +0xe038 via base a2 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100d982c stores 8 bytes to [sym(rm)] +0xe038 via base a2 ([sym(rm)]+65536) (value unknown).
   6 such `ld` accesses load 8 bytes from [sym(rm)] +0xe038 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d9844, `ld` at 0x100d98a4, `ld` at 0x100d9904.
   4 such `ld` accesses load 8 bytes from [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d9874, `ld` at 0x100d98d4, `ld` at 0x100d992c.
-  4 such `sd` accesses store 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d988c, `sd` at 0x100d98ec, `sd` at 0x100d9958.
+  4 such `sd` accesses store 8 bytes to [sym(rm)] +0xe038 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d988c, `sd` at 0x100d98ec, `sd` at 0x100d9958.
   13 such `ld` accesses load 8 bytes from [sym(rm)] +0xe068 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d9b04, `ld` at 0x100d9b34, `ld` at 0x100d9bb8.
-  11 such `sd` accesses store 8 bytes to [sym(rm)] +0xe068 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d9b10, `sd` at 0x100d9b40, `sd` at 0x100d9bd0.
+  11 such `sd` accesses store 8 bytes to [sym(rm)] +0xe068 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d9b10, `sd` at 0x100d9b40, `sd` at 0x100d9bd0.
   15 such `ld` accesses load 8 bytes from [sym(rm)] +0xe068 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d9b28, `ld` at 0x100d9b58, `ld` at 0x100d9be8.
   The `lw` at 0x100d9cd8 loads 4 bytes from ? (base unknown) via base a4 (?).
   3 such `lw` accesses load 4 bytes from ? (base unknown) via base a5 (?), including `lw` at 0x100d9d4c, `lw` at 0x100d9db8, `lw` at 0x100d9e24.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe080 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d9e6c, `ld` at 0x100d9eb4.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe080 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d9e80, `sd` at 0x100d9ed8.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe080 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d9e80, `sd` at 0x100d9ed8.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe080 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d9e98, `ld` at 0x100d9ef0.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe088 via base a3 ([sym(rm)]+65536), including `ld` at 0x100d9f08, `ld` at 0x100d9f50.
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe088 via base a3 ([sym(rm)]+65536) (value ), including `sd` at 0x100d9f1c, `sd` at 0x100d9f74.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe088 via base a3 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100d9f1c, `sd` at 0x100d9f74.
   2 such `ld` accesses load 8 bytes from [sym(rm)] +0xe088 via base a1 ([sym(rm)]+65536), including `ld` at 0x100d9f34, `ld` at 0x100d9f8c.
   The `sd` at 0x100d9fd4 stores 8 bytes to [sym(rm)] +0xe030 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57392]:8 | 0x1)).
   The `ld` at 0x100da090 loads 8 bytes from [sym(rm)] +0xe068 via base a2 ([sym(rm)]+65536).
-  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe068 via base a2 ([sym(rm)]+65536) (value ), including `sd` at 0x100da0a4, `sd` at 0x100da2bc.
+  2 such `sd` accesses store 8 bytes to [sym(rm)] +0xe068 via base a2 ([sym(rm)]+65536) (value unknown), including `sd` at 0x100da0a4, `sd` at 0x100da2bc.
   The `sd` at 0x100da0d0 stores 8 bytes to [sym(rm)] +0xe068 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57448]:8 | 0x1)).
   The `ld` at 0x100da144 loads 8 bytes from [sym(rm)] +0xe010 via base a4 ([sym(rm)]+65536).
-  The `sd` at 0x100da160 stores 8 bytes to [sym(rm)] +0xe010 via base a4 ([sym(rm)]+65536) (value ).
+  The `sd` at 0x100da160 stores 8 bytes to [sym(rm)] +0xe010 via base a4 ([sym(rm)]+65536) (value unknown).
   The `sd` at 0x100da240 stores 8 bytes to [sym(rm)] +0xe040 via base a2 ([sym(rm)]+65536) (value ([[sym(rm)]+57408]:8 | 0x200)).
   The `sd` at 0x100da298 stores 8 bytes to [sym(rm)] +0xe038 via base a2 ([sym(rm)]+65536) (value ([[sym(rm)]+57400]:8 | 0x1)).
   The `sd` at 0x100da318 stores 8 bytes to [sym(rm)] +0xe000 via base a3 ([sym(rm)]+65536) (value ([[sym(rm)]+57344]:8 | 0x400)).
@@ -9795,7 +9795,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `ld` at 0x100e0230 loads 8 bytes from abs 0x101afc18 via base a1 (0x101afa68).
   The `sd` at 0x100e0234 stores 8 bytes to sp (at entry) -0x11730 via base a5 (sp-71480) (value 0x8c90a8b0ccd0e8ff).
   The `lw` at 0x100e0258 loads 4 bytes from abs 0x102bd3a4 via base s0 (0x102c4340).
-  The `sb` at 0x100e0280 stores 1 bytes to ? (base unknown) via base s3 (?) (value ).
+  The `sb` at 0x100e0280 stores 1 bytes to ? (base unknown) via base s3 (?) (value unknown).
   The `sb` at 0x100e02ac stores 1 bytes to ? (base unknown) via base a3 (?) (value 0x0).
   The `lw` at 0x100e02fc loads 4 bytes from abs 0x102be070 via base s5 (0x102c4340).
   The `lw` at 0x100e0308 loads 4 bytes from abs 0x102bd460 via base s6 (0x102c4340).
@@ -9822,7 +9822,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lbu` at 0x100e0694 loads 1 bytes from ? (base unknown) via base a7 (?).
   The `lbu` at 0x100e06a0 loads 1 bytes from ? (base unknown) via base t0 (?).
   2 such `lbu` accesses load 1 bytes from ? (base unknown) via base s7 (?), including `lbu` at 0x100e06ec, `lbu` at 0x100e1114.
-  2 such `sb` accesses store 1 bytes to ? (base unknown) via base a3 (?) (value ), including `sb` at 0x100e06f0, `sb` at 0x100e1118.
+  2 such `sb` accesses store 1 bytes to ? (base unknown) via base a3 (?) (value unknown), including `sb` at 0x100e06f0, `sb` at 0x100e1118.
   2 such `sb` accesses store 1 bytes to ? (base unknown) via base a3 (?) (value 0xff), including `sb` at 0x100e0710, `sb` at 0x100e1138.
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x100e0730, `lw` at 0x100e074c.
   The `lw` at 0x100e0794 loads 4 bytes from abs 0x102bd730 via base a4 (0x102c4340).
@@ -9832,8 +9832,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `sw` accesses store 4 bytes to ? (base unknown) via base ra (?) (value ret(strdup)), including `sw` at 0x100e0be4, `sw` at 0x100e0e54.
   2 such `sw` accesses store 4 bytes to ? (base unknown) via base at (?) (value ret(strdup)), including `sw` at 0x100e0c24, `sw` at 0x100e0ea4.
   The `sb` at 0x100e0c58 stores 1 bytes to ? (base unknown) via base a4 (?) (value 0x7c).
-  The `sw` at 0x100e0e90 stores 4 bytes to ? (base unknown) via base v1 (?) (value ).
-  The `sw` at 0x100e0e9c stores 4 bytes to ? (base unknown) via base a2 (?) (value ).
+  The `sw` at 0x100e0e90 stores 4 bytes to ? (base unknown) via base v1 (?) (value unknown).
+  The `sw` at 0x100e0e9c stores 4 bytes to ? (base unknown) via base a2 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from abs 0x102bd728 via base t9 (0x102c4340), including `lw` at 0x100e1ac8, `lw` at 0x100e1b7c, `lw` at 0x100e246c.
   The `lw` at 0x100e1b20 loads 4 bytes from ? (base unknown) via base s1 (?).
   The `lw` at 0x100e1b28 loads 4 bytes from ? (base unknown) via base s2 (?).
@@ -10320,7 +10320,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a0 ([sym(KONAINFO)]), including `lw` at 0x100e2d20, `lw` at 0x100e2d8c, `lw` at 0x100e3140.
   3 such `lbu` accesses load 1 bytes from abs 0x1020c5bf via base s0 (0x1020c570), including `lbu` at 0x100e2d2c, `lbu` at 0x100e30f0, `lbu` at 0x100e3c9c.
   The `lbu` at 0x100e2d70 loads 1 bytes from ? (base unknown) via base ra (?).
-  The `sb` at 0x100e2d78 stores 1 bytes to ? (base unknown) via base t0 (?) (value ).
+  The `sb` at 0x100e2d78 stores 1 bytes to ? (base unknown) via base t0 (?) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x100e2dbc, `lw` at 0x100e2dd8.
   4 such `lbu` accesses load 1 bytes from ? (base unknown) via base a7 (?), including `lbu` at 0x100e2e00, `lbu` at 0x100e2ea0, `lbu` at 0x100e3338.
   3 such `lbu` accesses load 1 bytes from table(0x1020c5c0) +0x0 via base t3 (table(0x1020c570)), including `lbu` at 0x100e2e20, `lbu` at 0x100e3358, `lbu` at 0x100e33e4.
@@ -10334,7 +10334,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lbu` at 0x100e2f60 loads 1 bytes from ? (base unknown) via base a4 (?).
   The `sb` at 0x100e30cc stores 1 bytes to ? (base unknown) via base a7 (?) (value [0x1020c5bf]:1).
   3 such `lbu` accesses load 1 bytes from ? (base unknown) via base at (?), including `lbu` at 0x100e313c, `lbu` at 0x100e3178, `lbu` at 0x100e3578.
-  The `sb` at 0x100e3180 stores 1 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sb` at 0x100e3180 stores 1 bytes to ? (base unknown) via base a7 (?) (value unknown).
   The `lw` at 0x100e31d8 loads 4 bytes from sym(jt_chainlen) +0xb94 via base a0 (sym(jt_chainlen)).
   The `lw` at 0x100e31dc loads 4 bytes from sym(jt_chainlen) +0xb58 via base a0 (sym(jt_chainlen)).
   The `lw` at 0x100e31e4 loads 4 bytes from sym(jt_chainlen) +0xc0c via base a0 (sym(jt_chainlen)).
@@ -13581,7 +13581,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base s7 ([sym(KONAINFO)]), including `lw` at 0x100f0d34, `lw` at 0x100f0d9c, `lw` at 0x100f1044.
   3 such `lbu` accesses load 1 bytes from abs 0x1020c677 via base s3 (0x1020c628), including `lbu` at 0x100f0d40, `lbu` at 0x100f0ff8, `lbu` at 0x100f19b0.
   The `lbu` at 0x100f0d80 loads 1 bytes from ? (base unknown) via base t1 (?).
-  The `sb` at 0x100f0d88 stores 1 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sb` at 0x100f0d88 stores 1 bytes to ? (base unknown) via base a7 (?) (value unknown).
   3 such `lw` accesses load 4 bytes from abs 0x102be070 via base t9 (0x102c4340), including `lw` at 0x100f0dac, `lw` at 0x100f0f90, `lw` at 0x100f1058.
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x100f0dc8, `lw` at 0x100f0de4.
   7 such `lw` accesses load 4 bytes from abs 0x102be178 via base a7 (0x102c4340), including `lw` at 0x100f0f10, `lw` at 0x100f10d4, `lw` at 0x100f11bc.
@@ -13591,7 +13591,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `lw` at 0x100f0f24 loads 4 bytes from sym(jt_chainlen) +0xbd0 via base a7 (sym(jt_chainlen)).
   The `lw` at 0x100f0f34 loads 4 bytes from sym(jt_chainlen) +0xc48 via base a7 (sym(jt_chainlen)).
   The `sb` at 0x100f0fd4 stores 1 bytes to ? (base unknown) via base a6 (?) (value [0x1020c677]:1).
-  The `sb` at 0x100f1088 stores 1 bytes to ? (base unknown) via base a6 (?) (value ).
+  The `sb` at 0x100f1088 stores 1 bytes to ? (base unknown) via base a6 (?) (value unknown).
   The `lw` at 0x100f10dc loads 4 bytes from sym(jt_chainlen) +0xba8 via base a7 (sym(jt_chainlen)).
   The `lw` at 0x100f10e0 loads 4 bytes from sym(jt_chainlen) +0xb6c via base a7 (sym(jt_chainlen)).
   The `lw` at 0x100f10e4 loads 4 bytes from sym(jt_chainlen) +0xc20 via base a7 (sym(jt_chainlen)).
@@ -13838,7 +13838,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base s7 ([sym(KONAINFO)]), including `lw` at 0x100f1fc0, `lw` at 0x100f2024, `lw` at 0x100f22d4.
   3 such `lbu` accesses load 1 bytes from abs 0x1020c6c7 via base s3 (0x1020c678), including `lbu` at 0x100f1fc8, `lbu` at 0x100f2288, `lbu` at 0x100f2a14.
   The `lbu` at 0x100f2008 loads 1 bytes from ? (base unknown) via base at (?).
-  The `sb` at 0x100f2010 stores 1 bytes to ? (base unknown) via base t0 (?) (value ).
+  The `sb` at 0x100f2010 stores 1 bytes to ? (base unknown) via base t0 (?) (value unknown).
   5 such `lw` accesses load 4 bytes from abs 0x102be070 via base t9 (0x102c4340), including `lw` at 0x100f2034, `lw` at 0x100f2138, `lw` at 0x100f22e8.
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x100f2050, `lw` at 0x100f206c.
   The `lw` at 0x100f208c loads 4 bytes from abs 0x102bd7c0 via base s1 (0x102c4340).
@@ -13849,7 +13849,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `lw` accesses load 4 bytes from abs 0x102bd7c0 via base t9 (0x102c4340), including `lw` at 0x100f230c, `lw` at 0x100f24c0.
   6 such `lw` accesses load 4 bytes from abs 0x102bd490 via base t9 (0x102c4340), including `lw` at 0x100f2354, `lw` at 0x100f2378, `lw` at 0x100f239c.
   The `lbu` at 0x100f2428 loads 1 bytes from ? (base unknown) via base a1 (?).
-  The `sb` at 0x100f2430 stores 1 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sb` at 0x100f2430 stores 1 bytes to ? (base unknown) via base a7 (?) (value unknown).
   The `lw` at 0x100f247c loads 4 bytes from sym(jt_chainlen) +0xc5c via base a2 (sym(jt_chainlen)).
   The `lw` at 0x100f2494 loads 4 bytes from abs 0x102bd498 via base t9 (0x102c4340).
   The `sw` at 0x100f24c8 stores 4 bytes to ? (base unknown) via base a1 (?) (value ret(strdup)).
@@ -14299,7 +14299,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lw` accesses load 4 bytes from [sym(KONAINFO)] +0x0 via base a2 ([sym(KONAINFO)]), including `lw` at 0x100f4194, `lw` at 0x100f4208, `lw` at 0x100f45c4.
   3 such `lbu` accesses load 1 bytes from abs 0x1020c737 via base s0 (0x1020c6e8), including `lbu` at 0x100f41a0, `lbu` at 0x100f4570, `lbu` at 0x100f5318.
   The `lbu` at 0x100f41ec loads 1 bytes from ? (base unknown) via base v1 (?).
-  The `sb` at 0x100f41f4 stores 1 bytes to ? (base unknown) via base t0 (?) (value ).
+  The `sb` at 0x100f41f4 stores 1 bytes to ? (base unknown) via base t0 (?) (value unknown).
   2 such `lw` accesses load 4 bytes from abs 0x102be074 via base t9 (0x102c4340), including `lw` at 0x100f4234, `lw` at 0x100f4250.
   The `lw` at 0x100f426c loads 4 bytes from abs 0x102be1e0 via base ra (0x102c4340).
   The `lw` at 0x100f4270 loads 4 bytes from sym(KONAINFO) +0x0 via base ra (sym(KONAINFO)).
@@ -14318,7 +14318,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   3 such `lbu` accesses load 1 bytes from ? (base unknown) via base a5 (?), including `lbu` at 0x100f45c0, `lbu` at 0x100f46f4, `lbu` at 0x100f4bd0.
   4 such `lw` accesses load 4 bytes from ? (base unknown) via base a1 (?), including `lw` at 0x100f461c, `lw` at 0x100f4688, `lw` at 0x100f4a30.
   4 such `lbu` accesses load 1 bytes from ? (base unknown) via base s2 (?), including `lbu` at 0x100f4640, `lbu` at 0x100f46ac, `lbu` at 0x100f4a54.
-  The `sb` at 0x100f46fc stores 1 bytes to ? (base unknown) via base a7 (?) (value ).
+  The `sb` at 0x100f46fc stores 1 bytes to ? (base unknown) via base a7 (?) (value unknown).
   The `lw` at 0x100f4744 loads 4 bytes from sym(jt_chainlen) +0xb94 via base a0 (sym(jt_chainlen)).
   The `lw` at 0x100f474c loads 4 bytes from sym(jt_chainlen) +0xb58 via base a0 (sym(jt_chainlen)).
   The `lw` at 0x100f4758 loads 4 bytes from sym(jt_chainlen) +0xc0c via base a0 (sym(jt_chainlen)).
