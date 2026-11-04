@@ -3293,7 +3293,7 @@ usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094860	352	AccessWarpPointer	
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x100949c0	92	SProcDCStubDispatch	dynsym	1b1740811b73		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094a20	600	AppendFakeRequest	dynsym	75f44a88eba5		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094c80	572	ProcSGIvcListVideoFormatCombinations	dynsym	a946cdfa0728		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
-usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094ec0	88	ErrorF	dynsym	30da713a7fc9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094f20	148	FatalError	dynsym	f363aae2c5ca		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10094fd0	68	SClobberNotifyEvent..IAF	dynsym	772cead3cb30		in	named-only	docs/xserver.md#the-x-server-xsgi-function-reference	The X server (`Xsgi`): function reference
 usr/gfx/arch/GENERIC/Xsgi	shared-x-server	n32		0x10095020	212	LbxWriteGetpropReply..PCG	dynsym	b261febd07f4		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -47368,8 +47368,8 @@ usr/gfx/ircombine	board-tool	n32		0x1001ff50	128	__process_needed_destructions__
 usr/gfx/ircombine	board-tool	n32		0x1001ffd0	40	__record_needed_destruction	dynsym	df23200ac5ab		in	named-only	docs/instruction-readings-kona-g13.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10020000	60	__std__needed_destruction_list	dynsym	095ae85b9d96		in	named-only	docs/instruction-readings-kona-g13.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10020040	940	main	dynsym	f21ea7964f99		in	located	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	12338278bfb0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x100203f0	292	ErrorF	dynsym	0b35be0475bb		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10020520	520	iGUIReadFormatFile__GPCcP11konFormat_t	dynsym	12338278bfb0		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10020b00	484	__ct__18ChannelWindowClassGPCcP3ArgUii	dynsym	602601180c81		in	located	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10020cf0	220	__dt__18ChannelWindowClassGv	dynsym	25ee42d16a81		in	located	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10020dd0	64	className__18ChannelWindowClassGv	dynsym	fc8daece0ae0		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -47382,244 +47382,244 @@ usr/gfx/ircombine	board-tool	n32		0x10021230	64	className__14DVPWindowClassGv	dy
 usr/gfx/ircombine	board-tool	n32		0x10021270	104	okToQuit__14DVPWindowClassGv	dynsym	c865d5f58f7f		in	located	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x100212e0	76	update__14DVPWindowClassGv	dynsym	61b34e27f327		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10021330	76	update_fast__14DVPWindowClassGv	dynsym	21d3026b4b59		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10021380	232	CreateDvpForm	dynsym	588309f519ae		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10021470	60	RegisterDvpFormInterface	dynsym	a8a34ee98dbf		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10021380	232	CreateDvpForm	dynsym	588309f519ae		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021470	60	RegisterDvpFormInterface	dynsym	a8a34ee98dbf		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10021570	168	__ct__7DvpFormGPCcP10_WidgetReci	dynsym	dce4bd3df35e		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10021620	108	__ct__7DvpFormGPCc	dynsym	64a11d0c14c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10021690	148	__dt__7DvpFormGv	dynsym	b5fd3ae3f381		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10021730	60	className__7DvpFormGv	dynsym	892651a16178		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10021620	108	__ct__7DvpFormGPCc	dynsym	64a11d0c14c5		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021690	148	__dt__7DvpFormGv	dynsym	b5fd3ae3f381		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021730	60	className__7DvpFormGv	dynsym	892651a16178		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10021770	52	setParent__7DvpFormGP14VkSimpleWindow	dynsym	c3b3b414eae7		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x100217b0	1472	update__7DvpFormGv	dynsym	dc2d29dd11c8		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10021d70	264	update_fast__7DvpFormGv	dynsym	7841d1453c21		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10021e80	112	alphaChannel__7DvpFormGP10_WidgetRecPv	dynsym	459f4e0d5822		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10021ef0	168	bGamma__7DvpFormGP10_WidgetRecPv	dynsym	53536b461fab		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10021fa0	464	channelBrowse__7DvpFormGP10_WidgetRecPv	dynsym	e93643aa8a30		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022170	268	channelEnable__7DvpFormGP10_WidgetRecPv	dynsym	4eefd26e6958		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022280	124	closeChannel__7DvpFormGP10_WidgetRecPv	dynsym	6e2b961fc348		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022300	108	compositeSync__7DvpFormGP10_WidgetRecPv	dynsym	ad0177535f53		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022370	144	cursorPriority__7DvpFormGP10_WidgetRecPv	dynsym	7e3f27b06322		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022400	112	dither__7DvpFormGP10_WidgetRecPv	dynsym	9cda588bb3e8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022470	236	format__7DvpFormGP10_WidgetRecPv	dynsym	57a1d7d907b9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022560	108	fs__7DvpFormGP10_WidgetRecPv	dynsym	bfbce03fcaa1		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100225d0	168	gGamma__7DvpFormGP10_WidgetRecPv	dynsym	eced79fe2d62		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022680	184	height__7DvpFormGP10_WidgetRecPv	dynsym	dea932df7ffc		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022740	108	horizontalSync__7DvpFormGP10_WidgetRecPv	dynsym	0a3d40c5b6a6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100227b0	108	interleaved__7DvpFormGP10_WidgetRecPv	dynsym	9e848a4dcdbe		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022820	104	progressive__7DvpFormGP10_WidgetRecPv	dynsym	d2cc713a0f6d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022890	168	rGamma__7DvpFormGP10_WidgetRecPv	dynsym	01011940b688		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022940	316	restoreSize__7DvpFormGP10_WidgetRecPv	dynsym	b3e844c01876		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022a80	104	rgb10__7DvpFormGP10_WidgetRecPv	dynsym	4eb808ce9212		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022af0	108	rgb12__7DvpFormGP10_WidgetRecPv	dynsym	ef3e24628a6c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022b60	108	rgba10__7DvpFormGP10_WidgetRecPv	dynsym	8670435e724d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022bd0	108	stacked__7DvpFormGP10_WidgetRecPv	dynsym	ba75f2d27dc3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022c40	112	useGamma__7DvpFormGP10_WidgetRecPv	dynsym	49a7389c66bf		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022cb0	184	width__7DvpFormGP10_WidgetRecPv	dynsym	1cc231127371		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022d70	108	xLocked__7DvpFormGP10_WidgetRecPv	dynsym	c04cde990189		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022de0	184	xOrigin__7DvpFormGP10_WidgetRecPv	dynsym	25d1c0f25e22		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022ea0	112	xPixel__7DvpFormGP10_WidgetRecPv	dynsym	84dfa5be4357		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022f10	112	xTile__7DvpFormGP10_WidgetRecPv	dynsym	2d3c262de1f9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022f80	108	yLocked__7DvpFormGP10_WidgetRecPv	dynsym	a3deaef10c45		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10022ff0	184	yOrigin__7DvpFormGP10_WidgetRecPv	dynsym	7bc936f94524		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100230b0	112	yPixel__7DvpFormGP10_WidgetRecPv	dynsym	d3b6de9a13d0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10023120	108	z__7DvpFormGP10_WidgetRecPv	dynsym	b1a4f235cc3b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10023580	132	__ct__9DvpFormUIGPCcP10_WidgetRec	dynsym	d2d9ec733976		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10023610	108	__ct__9DvpFormUIGPCc	dynsym	c3815af1dbf5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10023680	148	__dt__9DvpFormUIGv	dynsym	c8bae84c9fc2		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10023720	15904	create__9DvpFormUIGP10_WidgetRec	dynsym	dc5ec8a2647c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027540	64	className__9DvpFormUIGv	dynsym	20e0f8f3250a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027580	44	alphaChannel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100275b0	44	bGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100275e0	44	channelBrowse__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027610	44	channelEnable__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027640	44	closeChannel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027670	44	compositeSync__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100276a0	44	cursorPriority__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100276d0	44	dither__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027700	44	format__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027730	44	fs__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027760	44	gGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027790	44	height__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100277c0	44	horizontalSync__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100277f0	44	interleaved__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027820	44	progressive__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027850	44	rGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027880	44	restoreSize__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100278b0	44	rgb10__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100278e0	44	rgb12__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027910	44	rgba10__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027940	44	stacked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027970	44	useGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100279a0	44	width__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100279d0	44	xLocked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027a00	44	xOrigin__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027a30	44	xPixel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027a60	44	xTile__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027a90	44	yLocked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027ac0	44	yOrigin__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027af0	44	yPixel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027b20	44	z__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027b50	120	alphaChannelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9cc1053fd4ac		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027bd0	120	bGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	7b76fe5d6596		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027c50	120	channelBrowseCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1a9f774da32c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027cd0	120	channelEnableCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	73b38f005791		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027d50	120	closeChannelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	f28734e113fb		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027dd0	120	compositeSyncCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	2126059cde23		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027e50	120	cursorPriorityCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	b83264a88e9a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027ed0	120	ditherCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	85e641251607		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027f50	120	formatCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	47038f6e16ba		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10027fd0	120	fsCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	d5f6398b4e19		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028050	120	gGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	bd8a46a4ae3b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100280d0	120	heightCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	3966e695e741		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028150	120	horizontalSyncCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	3f95bd50fce9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100281d0	120	interleavedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	607632f68cf1		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028250	120	progressiveCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	0001b969628a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100282d0	120	rGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1ded158ce4a0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028350	120	restoreSizeCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9d1f2ef34fab		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100283d0	120	rgb10Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	caa08c8bb684		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028450	120	rgb12Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	b4880c844808		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100284d0	120	rgba10Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	6a9460ad6a3b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028550	120	stackedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	7860659ca8c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100285d0	120	useGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9b98e40b8ea7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028650	120	widthCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	81ac7719d74e		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100286d0	120	xLockedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	f096be1111c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028750	120	xOriginCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	61d3f49b0784		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100287d0	120	xPixelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	63ef5189dfb8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028850	120	xTileCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	5c55e94e6c18		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100288d0	120	yLockedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	72981cdbd5c0		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028950	120	yOriginCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	cde6834116c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100289d0	120	yPixelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	5b77d0265319		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028a50	120	zCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1e49c38b80c6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x100217b0	1472	update__7DvpFormGv	dynsym	dc2d29dd11c8		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021d70	264	update_fast__7DvpFormGv	dynsym	7841d1453c21		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021e80	112	alphaChannel__7DvpFormGP10_WidgetRecPv	dynsym	459f4e0d5822		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021ef0	168	bGamma__7DvpFormGP10_WidgetRecPv	dynsym	53536b461fab		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10021fa0	464	channelBrowse__7DvpFormGP10_WidgetRecPv	dynsym	e93643aa8a30		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022170	268	channelEnable__7DvpFormGP10_WidgetRecPv	dynsym	4eefd26e6958		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022280	124	closeChannel__7DvpFormGP10_WidgetRecPv	dynsym	6e2b961fc348		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022300	108	compositeSync__7DvpFormGP10_WidgetRecPv	dynsym	ad0177535f53		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022370	144	cursorPriority__7DvpFormGP10_WidgetRecPv	dynsym	7e3f27b06322		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022400	112	dither__7DvpFormGP10_WidgetRecPv	dynsym	9cda588bb3e8		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022470	236	format__7DvpFormGP10_WidgetRecPv	dynsym	57a1d7d907b9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022560	108	fs__7DvpFormGP10_WidgetRecPv	dynsym	bfbce03fcaa1		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100225d0	168	gGamma__7DvpFormGP10_WidgetRecPv	dynsym	eced79fe2d62		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022680	184	height__7DvpFormGP10_WidgetRecPv	dynsym	dea932df7ffc		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022740	108	horizontalSync__7DvpFormGP10_WidgetRecPv	dynsym	0a3d40c5b6a6		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100227b0	108	interleaved__7DvpFormGP10_WidgetRecPv	dynsym	9e848a4dcdbe		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022820	104	progressive__7DvpFormGP10_WidgetRecPv	dynsym	d2cc713a0f6d		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022890	168	rGamma__7DvpFormGP10_WidgetRecPv	dynsym	01011940b688		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022940	316	restoreSize__7DvpFormGP10_WidgetRecPv	dynsym	b3e844c01876		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022a80	104	rgb10__7DvpFormGP10_WidgetRecPv	dynsym	4eb808ce9212		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022af0	108	rgb12__7DvpFormGP10_WidgetRecPv	dynsym	ef3e24628a6c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022b60	108	rgba10__7DvpFormGP10_WidgetRecPv	dynsym	8670435e724d		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022bd0	108	stacked__7DvpFormGP10_WidgetRecPv	dynsym	ba75f2d27dc3		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022c40	112	useGamma__7DvpFormGP10_WidgetRecPv	dynsym	49a7389c66bf		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022cb0	184	width__7DvpFormGP10_WidgetRecPv	dynsym	1cc231127371		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022d70	108	xLocked__7DvpFormGP10_WidgetRecPv	dynsym	c04cde990189		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022de0	184	xOrigin__7DvpFormGP10_WidgetRecPv	dynsym	25d1c0f25e22		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022ea0	112	xPixel__7DvpFormGP10_WidgetRecPv	dynsym	84dfa5be4357		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022f10	112	xTile__7DvpFormGP10_WidgetRecPv	dynsym	2d3c262de1f9		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022f80	108	yLocked__7DvpFormGP10_WidgetRecPv	dynsym	a3deaef10c45		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10022ff0	184	yOrigin__7DvpFormGP10_WidgetRecPv	dynsym	7bc936f94524		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100230b0	112	yPixel__7DvpFormGP10_WidgetRecPv	dynsym	d3b6de9a13d0		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10023120	108	z__7DvpFormGP10_WidgetRecPv	dynsym	b1a4f235cc3b		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10023580	132	__ct__9DvpFormUIGPCcP10_WidgetRec	dynsym	d2d9ec733976		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10023610	108	__ct__9DvpFormUIGPCc	dynsym	c3815af1dbf5		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10023680	148	__dt__9DvpFormUIGv	dynsym	c8bae84c9fc2		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10023720	15904	create__9DvpFormUIGP10_WidgetRec	dynsym	dc5ec8a2647c		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027540	64	className__9DvpFormUIGv	dynsym	20e0f8f3250a		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027580	44	alphaChannel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100275b0	44	bGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100275e0	44	channelBrowse__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027610	44	channelEnable__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027640	44	closeChannel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027670	44	compositeSync__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100276a0	44	cursorPriority__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100276d0	44	dither__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027700	44	format__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027730	44	fs__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027760	44	gGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027790	44	height__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100277c0	44	horizontalSync__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100277f0	44	interleaved__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027820	44	progressive__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027850	44	rGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027880	44	restoreSize__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100278b0	44	rgb10__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100278e0	44	rgb12__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027910	44	rgba10__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027940	44	stacked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027970	44	useGamma__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100279a0	44	width__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100279d0	44	xLocked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027a00	44	xOrigin__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027a30	44	xPixel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027a60	44	xTile__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027a90	44	yLocked__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027ac0	44	yOrigin__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027af0	44	yPixel__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027b20	44	z__9DvpFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027b50	120	alphaChannelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9cc1053fd4ac		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027bd0	120	bGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	7b76fe5d6596		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027c50	120	channelBrowseCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1a9f774da32c		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027cd0	120	channelEnableCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	73b38f005791		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027d50	120	closeChannelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	f28734e113fb		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027dd0	120	compositeSyncCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	2126059cde23		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027e50	120	cursorPriorityCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	b83264a88e9a		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027ed0	120	ditherCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	85e641251607		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027f50	120	formatCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	47038f6e16ba		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10027fd0	120	fsCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	d5f6398b4e19		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028050	120	gGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	bd8a46a4ae3b		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100280d0	120	heightCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	3966e695e741		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028150	120	horizontalSyncCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	3f95bd50fce9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100281d0	120	interleavedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	607632f68cf1		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028250	120	progressiveCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	0001b969628a		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100282d0	120	rGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1ded158ce4a0		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028350	120	restoreSizeCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9d1f2ef34fab		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100283d0	120	rgb10Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	caa08c8bb684		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028450	120	rgb12Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	b4880c844808		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100284d0	120	rgba10Callback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	6a9460ad6a3b		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028550	120	stackedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	7860659ca8c5		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100285d0	120	useGammaCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	9b98e40b8ea7		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028650	120	widthCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	81ac7719d74e		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100286d0	120	xLockedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	f096be1111c5		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028750	120	xOriginCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	61d3f49b0784		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100287d0	120	xPixelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	63ef5189dfb8		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028850	120	xTileCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	5c55e94e6c18		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100288d0	120	yLockedCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	72981cdbd5c0		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028950	120	yOriginCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	cde6834116c5		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100289d0	120	yPixelCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	5b77d0265319		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028a50	120	zCallback__9DvpFormUISGP10_WidgetRecPvT2	dynsym	1e49c38b80c6		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10028b00	132	__ct__11EncoderFormGPCcP10_WidgetRec	dynsym	012e79401605		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10028b90	124	__ct__11EncoderFormGPCc	dynsym	eb74a9fcb933		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028c10	148	__dt__11EncoderFormGv	dynsym	ec4569fc5b73		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028cb0	64	className__11EncoderFormGv	dynsym	331c34ce0f7d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10028cf0	188	CreateEncoderForm__11EncoderFormSGPCcP10_WidgetRec	dynsym	c0a305a25f53		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10028b90	124	__ct__11EncoderFormGPCc	dynsym	eb74a9fcb933		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028c10	148	__dt__11EncoderFormGv	dynsym	ec4569fc5b73		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028cb0	64	className__11EncoderFormGv	dynsym	331c34ce0f7d		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10028cf0	188	CreateEncoderForm__11EncoderFormSGPCcP10_WidgetRec	dynsym	c0a305a25f53		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10028db0	52	setParent__11EncoderFormGP14VkSimpleWindow	dynsym	534cf057560c		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10028df0	2300	update__11EncoderFormGv	dynsym	a78ec4dc54eb		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x100296f0	264	update_fast__11EncoderFormGv	dynsym	82ff99375bac		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10029800	112	alphaChannel__11EncoderFormGP10_WidgetRecPv	dynsym	d697c59968c5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029870	164	bGamma__11EncoderFormGP10_WidgetRecPv	dynsym	241885c6b7d5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029920	264	channelEnable__11EncoderFormGP10_WidgetRecPv	dynsym	d4c4c22ce0a3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029a30	124	closeChannel__11EncoderFormGP10_WidgetRecPv	dynsym	99b8b2067a67		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029ab0	140	cursorPriority__11EncoderFormGP10_WidgetRecPv	dynsym	b8a8c1b30f53		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029b40	112	dither__11EncoderFormGP10_WidgetRecPv	dynsym	d4bf28745c8c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029bb0	180	encoderNTSC__11EncoderFormGP10_WidgetRecPv	dynsym	2873d9747159		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029c70	180	enocderPAL__11EncoderFormGP10_WidgetRecPv	dynsym	e50984c57c3e		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029d30	108	fs__11EncoderFormGP10_WidgetRecPv	dynsym	e542e0d7ab5c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029da0	164	gGamma__11EncoderFormGP10_WidgetRecPv	dynsym	12d9143c3bd6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029e50	160	gain__11EncoderFormGP10_WidgetRecPv	dynsym	de47710c6717		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029ef0	172	hPhase__11EncoderFormGP10_WidgetRecPv	dynsym	a2ace174c312		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10029fa0	176	height__11EncoderFormGP10_WidgetRecPv	dynsym	17d7d95c88a3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a050	108	interleaved__11EncoderFormGP10_WidgetRecPv	dynsym	49e6e33027eb		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a0c0	104	progressive__11EncoderFormGP10_WidgetRecPv	dynsym	74928c14f755		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a130	164	rGamma__11EncoderFormGP10_WidgetRecPv	dynsym	f29ac81934bb		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a1e0	312	restoreSize__11EncoderFormGP10_WidgetRecPv	dynsym	c66d1ec2ba0c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a320	104	rgb10__11EncoderFormGP10_WidgetRecPv	dynsym	fa249cb4b196		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a390	108	rgb12__11EncoderFormGP10_WidgetRecPv	dynsym	a90f16294bb1		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a400	108	rgba10__11EncoderFormGP10_WidgetRecPv	dynsym	5bbb34d27862		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a470	160	safeAreaPercent__11EncoderFormGP10_WidgetRecPv	dynsym	2f80fda82249		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a510	112	setFlickerFilter__11EncoderFormGP10_WidgetRecPv	dynsym	5b55b45dd890		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a580	112	setLetterBox__11EncoderFormGP10_WidgetRecPv	dynsym	d0bfedc356b8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a5f0	112	setup__11EncoderFormGP10_WidgetRecPv	dynsym	93472086a953		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002a660	1280	sourceChannel__11EncoderFormGP10_WidgetRecPv	dynsym	ba36f4ee2525		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002ab60	108	stacked__11EncoderFormGP10_WidgetRecPv	dynsym	8caed4e6d886		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002abd0	112	useGamma__11EncoderFormGP10_WidgetRecPv	dynsym	bc0e66d18ae8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002ac40	140	vPhase__11EncoderFormGP10_WidgetRecPv	dynsym	05622a652802		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002acd0	176	width__11EncoderFormGP10_WidgetRecPv	dynsym	7194891c6baa		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002ad80	128	xFilterSize__11EncoderFormGP10_WidgetRecPv	dynsym	e8e7b6911f5e		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002ae00	108	xLocked__11EncoderFormGP10_WidgetRecPv	dynsym	a005ead47ded		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002ae70	176	xOrigin__11EncoderFormGP10_WidgetRecPv	dynsym	0163ee8ba2c9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002af20	112	xPixel__11EncoderFormGP10_WidgetRecPv	dynsym	7982b36ee0bc		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002af90	112	xTile__11EncoderFormGP10_WidgetRecPv	dynsym	9c7402b26f7a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b000	128	yFilterSize__11EncoderFormGP10_WidgetRecPv	dynsym	5446b15e7d7c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b080	108	yLocked__11EncoderFormGP10_WidgetRecPv	dynsym	dce4723106a7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b0f0	176	yOrigin__11EncoderFormGP10_WidgetRecPv	dynsym	cfb4b952f357		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b1a0	112	yPixel__11EncoderFormGP10_WidgetRecPv	dynsym	d09951be7918		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b210	108	z__11EncoderFormGP10_WidgetRecPv	dynsym	aee624ada177		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b280	60	RegisterEncoderFormInterface__11EncoderFormSGv	dynsym	b7782ebb928a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b710	132	__ct__13EncoderFormUIGPCcP10_WidgetRec	dynsym	9153c583a0bb		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b7a0	108	__ct__13EncoderFormUIGPCc	dynsym	9455eb93faff		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b810	148	__dt__13EncoderFormUIGv	dynsym	db7f580b7d2d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x1002b8b0	21496	create__13EncoderFormUIGP10_WidgetRec	dynsym	9d4c9405924b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030cb0	64	className__13EncoderFormUIGv	dynsym	20919bf8340c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030cf0	44	alphaChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030d20	44	bGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030d50	44	channelEnable__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030d80	44	closeChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030db0	44	cursorPriority__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030de0	44	dither__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030e10	44	encoderNTSC__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030e40	44	enocderPAL__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030e70	44	fs__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030ea0	44	gGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030ed0	44	gain__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030f00	44	hPhase__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030f30	44	height__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030f60	44	interleaved__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030f90	44	progressive__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030fc0	44	rGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10030ff0	44	restoreSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031020	44	rgb10__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031050	44	rgb12__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031080	44	rgba10__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100310b0	44	safeAreaPercent__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100310e0	44	setFlickerFilter__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031110	44	setLetterBox__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031140	44	setup__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031170	44	sourceChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100311a0	44	stacked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100311d0	44	useGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031200	44	vPhase__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031230	44	width__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031260	44	xFilterSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031290	44	xLocked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100312c0	44	xOrigin__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100312f0	44	xPixel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031320	44	xTile__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031350	44	yFilterSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031380	44	yLocked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100313b0	44	yOrigin__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100313e0	44	yPixel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031410	44	z__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031440	120	alphaChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	ad30e6a698b6		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100314c0	120	bGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	01c9c8e79e44		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031540	120	channelEnableCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	bfb87129922f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100315c0	120	closeChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	f98ab8a0d247		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031640	120	cursorPriorityCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	533d501e2533		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100316c0	120	ditherCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	e6ab84e8fb20		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031740	120	encoderNTSCCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	c42dd5e73011		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100317c0	120	enocderPALCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	30b73abb5cb2		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031840	120	fsCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9fc23fae9b5c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100318c0	120	gGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9a8ab6282bfc		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031940	120	gainCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	1f7a1572b215		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100319c0	120	hPhaseCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	7157e940437d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031a40	120	heightCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	a91da36803a4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031ac0	120	interleavedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	67ae85081a1a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031b40	120	progressiveCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	10988c78a4e2		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031bc0	120	rGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9f721ae44c40		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031c40	120	restoreSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	591cc2fa2125		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031cc0	120	rgb10Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	42a5f07ad95d		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031d40	120	rgb12Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	55f57877a62a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031dc0	120	rgba10Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	b1e61147d318		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031e40	120	safeAreaPercentCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	8597c1e363b9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031ec0	120	setFlickerFilterCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	cde25262e771		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031f40	120	setLetterBoxCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	94ed968081e8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10031fc0	120	setupCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	3ff852c48a89		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032040	120	sourceChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	485d3c83ebe8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100320c0	120	stackedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	4ea257158cc5		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032140	120	useGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	c5e787925553		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100321c0	120	vPhaseCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	3433d9aa7fdf		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032240	120	widthCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	eecd33836be9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100322c0	120	xFilterSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	5e8c4d8d3d9c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032340	120	xLockedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	01f3151979c3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100323c0	120	xOriginCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	edc7fb54576b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032440	120	xPixelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	74f7eb646e0b		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100324c0	120	xTileCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	7ff41459e3d9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032540	120	yFilterSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	25f35cf0d561		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100325c0	120	yLockedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	1293467eb0b7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032640	120	yOriginCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	96485b57d764		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100326c0	120	yPixelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	bff4af99ac25		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032740	120	zCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	02b0df93fd63		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10028df0	2300	update__11EncoderFormGv	dynsym	a78ec4dc54eb		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100296f0	264	update_fast__11EncoderFormGv	dynsym	82ff99375bac		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029800	112	alphaChannel__11EncoderFormGP10_WidgetRecPv	dynsym	d697c59968c5		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029870	164	bGamma__11EncoderFormGP10_WidgetRecPv	dynsym	241885c6b7d5		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029920	264	channelEnable__11EncoderFormGP10_WidgetRecPv	dynsym	d4c4c22ce0a3		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029a30	124	closeChannel__11EncoderFormGP10_WidgetRecPv	dynsym	99b8b2067a67		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029ab0	140	cursorPriority__11EncoderFormGP10_WidgetRecPv	dynsym	b8a8c1b30f53		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029b40	112	dither__11EncoderFormGP10_WidgetRecPv	dynsym	d4bf28745c8c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029bb0	180	encoderNTSC__11EncoderFormGP10_WidgetRecPv	dynsym	2873d9747159		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029c70	180	enocderPAL__11EncoderFormGP10_WidgetRecPv	dynsym	e50984c57c3e		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029d30	108	fs__11EncoderFormGP10_WidgetRecPv	dynsym	e542e0d7ab5c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029da0	164	gGamma__11EncoderFormGP10_WidgetRecPv	dynsym	12d9143c3bd6		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029e50	160	gain__11EncoderFormGP10_WidgetRecPv	dynsym	de47710c6717		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029ef0	172	hPhase__11EncoderFormGP10_WidgetRecPv	dynsym	a2ace174c312		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10029fa0	176	height__11EncoderFormGP10_WidgetRecPv	dynsym	17d7d95c88a3		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a050	108	interleaved__11EncoderFormGP10_WidgetRecPv	dynsym	49e6e33027eb		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a0c0	104	progressive__11EncoderFormGP10_WidgetRecPv	dynsym	74928c14f755		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a130	164	rGamma__11EncoderFormGP10_WidgetRecPv	dynsym	f29ac81934bb		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a1e0	312	restoreSize__11EncoderFormGP10_WidgetRecPv	dynsym	c66d1ec2ba0c		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a320	104	rgb10__11EncoderFormGP10_WidgetRecPv	dynsym	fa249cb4b196		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a390	108	rgb12__11EncoderFormGP10_WidgetRecPv	dynsym	a90f16294bb1		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a400	108	rgba10__11EncoderFormGP10_WidgetRecPv	dynsym	5bbb34d27862		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a470	160	safeAreaPercent__11EncoderFormGP10_WidgetRecPv	dynsym	2f80fda82249		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a510	112	setFlickerFilter__11EncoderFormGP10_WidgetRecPv	dynsym	5b55b45dd890		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a580	112	setLetterBox__11EncoderFormGP10_WidgetRecPv	dynsym	d0bfedc356b8		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a5f0	112	setup__11EncoderFormGP10_WidgetRecPv	dynsym	93472086a953		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002a660	1280	sourceChannel__11EncoderFormGP10_WidgetRecPv	dynsym	ba36f4ee2525		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002ab60	108	stacked__11EncoderFormGP10_WidgetRecPv	dynsym	8caed4e6d886		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002abd0	112	useGamma__11EncoderFormGP10_WidgetRecPv	dynsym	bc0e66d18ae8		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002ac40	140	vPhase__11EncoderFormGP10_WidgetRecPv	dynsym	05622a652802		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002acd0	176	width__11EncoderFormGP10_WidgetRecPv	dynsym	7194891c6baa		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002ad80	128	xFilterSize__11EncoderFormGP10_WidgetRecPv	dynsym	e8e7b6911f5e		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002ae00	108	xLocked__11EncoderFormGP10_WidgetRecPv	dynsym	a005ead47ded		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002ae70	176	xOrigin__11EncoderFormGP10_WidgetRecPv	dynsym	0163ee8ba2c9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002af20	112	xPixel__11EncoderFormGP10_WidgetRecPv	dynsym	7982b36ee0bc		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002af90	112	xTile__11EncoderFormGP10_WidgetRecPv	dynsym	9c7402b26f7a		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b000	128	yFilterSize__11EncoderFormGP10_WidgetRecPv	dynsym	5446b15e7d7c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b080	108	yLocked__11EncoderFormGP10_WidgetRecPv	dynsym	dce4723106a7		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b0f0	176	yOrigin__11EncoderFormGP10_WidgetRecPv	dynsym	cfb4b952f357		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b1a0	112	yPixel__11EncoderFormGP10_WidgetRecPv	dynsym	d09951be7918		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b210	108	z__11EncoderFormGP10_WidgetRecPv	dynsym	aee624ada177		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b280	60	RegisterEncoderFormInterface__11EncoderFormSGv	dynsym	b7782ebb928a		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b710	132	__ct__13EncoderFormUIGPCcP10_WidgetRec	dynsym	9153c583a0bb		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b7a0	108	__ct__13EncoderFormUIGPCc	dynsym	9455eb93faff		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b810	148	__dt__13EncoderFormUIGv	dynsym	db7f580b7d2d		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x1002b8b0	21496	create__13EncoderFormUIGP10_WidgetRec	dynsym	9d4c9405924b		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030cb0	64	className__13EncoderFormUIGv	dynsym	20919bf8340c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030cf0	44	alphaChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030d20	44	bGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030d50	44	channelEnable__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030d80	44	closeChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030db0	44	cursorPriority__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030de0	44	dither__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030e10	44	encoderNTSC__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030e40	44	enocderPAL__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030e70	44	fs__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030ea0	44	gGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030ed0	44	gain__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030f00	44	hPhase__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030f30	44	height__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030f60	44	interleaved__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030f90	44	progressive__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030fc0	44	rGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10030ff0	44	restoreSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031020	44	rgb10__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031050	44	rgb12__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031080	44	rgba10__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100310b0	44	safeAreaPercent__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100310e0	44	setFlickerFilter__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031110	44	setLetterBox__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031140	44	setup__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031170	44	sourceChannel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100311a0	44	stacked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100311d0	44	useGamma__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031200	44	vPhase__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031230	44	width__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031260	44	xFilterSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031290	44	xLocked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100312c0	44	xOrigin__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100312f0	44	xPixel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031320	44	xTile__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031350	44	yFilterSize__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031380	44	yLocked__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100313b0	44	yOrigin__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100313e0	44	yPixel__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031410	44	z__13EncoderFormUIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031440	120	alphaChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	ad30e6a698b6		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100314c0	120	bGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	01c9c8e79e44		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031540	120	channelEnableCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	bfb87129922f		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100315c0	120	closeChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	f98ab8a0d247		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031640	120	cursorPriorityCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	533d501e2533		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100316c0	120	ditherCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	e6ab84e8fb20		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031740	120	encoderNTSCCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	c42dd5e73011		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100317c0	120	enocderPALCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	30b73abb5cb2		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031840	120	fsCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9fc23fae9b5c		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100318c0	120	gGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9a8ab6282bfc		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031940	120	gainCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	1f7a1572b215		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100319c0	120	hPhaseCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	7157e940437d		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031a40	120	heightCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	a91da36803a4		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031ac0	120	interleavedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	67ae85081a1a		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031b40	120	progressiveCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	10988c78a4e2		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031bc0	120	rGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	9f721ae44c40		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031c40	120	restoreSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	591cc2fa2125		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031cc0	120	rgb10Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	42a5f07ad95d		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031d40	120	rgb12Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	55f57877a62a		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031dc0	120	rgba10Callback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	b1e61147d318		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031e40	120	safeAreaPercentCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	8597c1e363b9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031ec0	120	setFlickerFilterCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	cde25262e771		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031f40	120	setLetterBoxCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	94ed968081e8		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10031fc0	120	setupCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	3ff852c48a89		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032040	120	sourceChannelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	485d3c83ebe8		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100320c0	120	stackedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	4ea257158cc5		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032140	120	useGammaCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	c5e787925553		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100321c0	120	vPhaseCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	3433d9aa7fdf		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032240	120	widthCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	eecd33836be9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100322c0	120	xFilterSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	5e8c4d8d3d9c		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032340	120	xLockedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	01f3151979c3		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100323c0	120	xOriginCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	edc7fb54576b		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032440	120	xPixelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	74f7eb646e0b		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100324c0	120	xTileCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	7ff41459e3d9		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032540	120	yFilterSizeCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	25f35cf0d561		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100325c0	120	yLockedCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	1293467eb0b7		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032640	120	yOriginCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	96485b57d764		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100326c0	120	yPixelCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	bff4af99ac25		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032740	120	zCallback__13EncoderFormUISGP10_WidgetRecPvT2	dynsym	02b0df93fd63		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x100327e0	480	__ct__18EncoderWindowClassGPCcP3ArgUi	dynsym	a7892fcfd66c		in	located	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x100329c0	220	__dt__18EncoderWindowClassGv	dynsym	553a7bc68695		in	located	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10032aa0	64	className__18EncoderWindowClassGv	dynsym	77bc07556a59		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
@@ -47627,12 +47627,12 @@ usr/gfx/ircombine	board-tool	n32		0x10032ae0	104	okToQuit__18EncoderWindowClassG
 usr/gfx/ircombine	board-tool	n32		0x10032b50	76	update__18EncoderWindowClassGv	dynsym	cbd99bdc9fa6		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10032ba0	76	update_fast__18EncoderWindowClassGv	dynsym	75dd6fbf54e3		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10032c10	168	__ct__5Form1GPCcP10_WidgetReci	dynsym	da28c60401f9		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10032cc0	108	__ct__5Form1GPCc	dynsym	058959b74a47		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032d30	148	__dt__5Form1Gv	dynsym	619c1052b086		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032dd0	60	className__5Form1Gv	dynsym	ddc66610bec3		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10032e10	192	CreateForm1__5Form1SGPCcP10_WidgetRec	dynsym	01448b5599ff		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x10032cc0	108	__ct__5Form1GPCc	dynsym	058959b74a47		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032d30	148	__dt__5Form1Gv	dynsym	619c1052b086		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032dd0	60	className__5Form1Gv	dynsym	ddc66610bec3		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032e10	192	CreateForm1__5Form1SGPCcP10_WidgetRec	dynsym	01448b5599ff		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10032ed0	52	setParent__5Form1GP14VkSimpleWindow	dynsym	1eebfe9c62e7		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/ircombine	board-tool	n32		0x10032f10	1936	update__5Form1Gv	dynsym	5e6cadea0184		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10032f10	1936	update__5Form1Gv	dynsym	5e6cadea0184		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x100336a0	264	update_fast__5Form1Gv	dynsym	cb1c29840984		in	named-only	docs/instruction-readings-kona-g16.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x100337b0	112	alphaChannel__5Form1GP10_WidgetRecPv	dynsym	3acb285ff53a		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10033820	168	bGamma__5Form1GP10_WidgetRecPv	dynsym	5862c2aefda9		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -47674,9 +47674,9 @@ usr/gfx/ircombine	board-tool	n32		0x10034d70	184	yOrigin__5Form1GP10_WidgetRecPv
 usr/gfx/ircombine	board-tool	n32		0x10034e30	112	yPixel__5Form1GP10_WidgetRecPv	dynsym	69bfe0547be7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10034ea0	108	z__5Form1GP10_WidgetRecPv	dynsym	99a7da219ba8		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x10034f10	60	RegisterForm1Interface__5Form1SGv	dynsym	6ac6b8b4ffa4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100353e0	132	__ct__7Form1UIGPCcP10_WidgetRec	dynsym	93151c1a81f7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x10035470	108	__ct__7Form1UIGPCc	dynsym	bf732180d5e2		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
-usr/gfx/ircombine	board-tool	n32		0x100354e0	148	__dt__7Form1UIGv	dynsym	0e079015b65c		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
+usr/gfx/ircombine	board-tool	n32		0x100353e0	132	__ct__7Form1UIGPCcP10_WidgetRec	dynsym	93151c1a81f7		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x10035470	108	__ct__7Form1UIGPCc	dynsym	bf732180d5e2		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/ircombine	board-tool	n32		0x100354e0	148	__dt__7Form1UIGv	dynsym	0e079015b65c		in	named-only	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/ircombine	board-tool	n32		0x10035580	20792	create__7Form1UIGP10_WidgetRec	dynsym	53b8dbdb5d7f		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1003a6c0	60	className__7Form1UIGv	dynsym	0aa065f285d7		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
 usr/gfx/ircombine	board-tool	n32		0x1003a700	44	alphaChannel__7Form1UIGP10_WidgetRecPv	dynsym	a2e0ef469ed4		in	named-only	docs/setup-tools.md#ircombine	`ircombine`
@@ -48605,7 +48605,7 @@ usr/gfx/setmon	shared-tool	n32		0x10008e8c	4216	main	dynsym	34b5ba5e4a50		in	und
 usr/gfx/setmon	shared-tool	n32		0x10009f04	308	getvofpath	dynsym	78b8d8b6975b		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a038	56	vTimeoutOpenDisplay	dynsym	0b854b7056ad		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a070	208	timeoutXOpenDisplay	dynsym	4fb9fe7741c6		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	named-only	docs/instruction-readings-kona-g11.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
+usr/gfx/setmon	shared-tool	n32		0x1000a140	184	ErrorF	dynsym	a15c8fdf6d64		in	located	docs/instruction-readings-kona-g23.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/setmon	shared-tool	n32		0x1000a278	280	fglrxDoFramelock	dynsym	3545cab228e9		in	named-only	docs/setup-tools.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a390	1588	fglrxsetmon	dynsym	fa71f07d84fd		in	named-only	docs/setup-tool-functions.md#setmon	`setmon`
 usr/gfx/setmon	shared-tool	n32		0x1000a9c4	1244	konasetmon	dynsym	0b8b74dabed0		in	named-only	docs/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
