@@ -3921,7 +3921,7 @@ Skipped routines: 7437 located, 12633 understood, and 8 no-software-dependency r
   The `sd` at 0x10143aa4 stores 8 bytes to a1 (arg1 at entry) +0x8108.
   2 such `lw` accesses load 4 bytes from abs 0x10473e90, including `lw` at 0x10143b0c, `lw` at 0x10143b54.
   3 such `lw` accesses load 4 bytes from abs 0x10473e8c, including `lw` at 0x10143b34, `lw` at 0x10143b60, `lw` at 0x10143bb0.
-  4 such `lw` accesses load 4 bytes from abs 0x10473e84, including `lw` at 0x10143bd0, `lw` at 0x10143bd0, `lw` at 0x10143c1c.
+  3 such `lw` accesses load 4 bytes from abs 0x10473e84, including `lw` at 0x10143bd0, `lw` at 0x10143c1c, `lw` at 0x10143cd4.
   The `sw` at 0x10143c38 stores 4 bytes to abs 0x10473e98.
   The `sw` at 0x10143c40 stores 4 bytes to abs 0x10473e84.
   The `sw` at 0x10143c5c stores 4 bytes to abs 0x10473e90.
@@ -7139,7 +7139,7 @@ Skipped routines: 7437 located, 12633 understood, and 8 no-software-dependency r
   The `lw` at 0x10162748 loads 4 bytes from abs 0x102be758.
   The `lw` at 0x10162750 loads 4 bytes from sym(TLRealHardware) +0x0.
   The `lw` at 0x10162778 loads 4 bytes from abs 0x102be750.
-  14 such `lw` accesses load 4 bytes from sym(test_debug) +0x0, including `lw` at 0x1016277c, `lw` at 0x101629b4, `lw` at 0x101629e0.
+  13 such `lw` accesses load 4 bytes from sym(test_debug) +0x0, including `lw` at 0x1016277c, `lw` at 0x101629b4, `lw` at 0x101629e0.
   2 such `lw` accesses load 4 bytes from abs 0x102bd490, including `lw` at 0x10162798, `lw` at 0x10162994.
   9 such `lw` accesses load 4 bytes from abs 0x102bd358, including `lw` at 0x101627a0, `lw` at 0x101629cc, `lw` at 0x10162ab8.
   3 such `lw` accesses load 4 bytes from abs 0x102be38c, including `lw` at 0x101627c0, `lw` at 0x101628fc, `lw` at 0x101629a8.

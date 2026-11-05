@@ -1368,7 +1368,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `beq` branch at 0x1017764c targets 0x101776a8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x10177694 targets 0x10177528, is taken when (a3(?) & a5(?)) != 0, and falls through when (a3(?) & a5(?)) == 0.
   The `bne` branch at 0x101776a0 targets 0x10177674, is taken when a2(?) != 0, and falls through when a2(?) == 0.
-  The return at 0x101776c4 has v0 = one of ?, [0x102cc090].
+  The return at 0x101776c4 has v0 = ?.
 
 - `SGetKeyboardMappingReply` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10179f30 (n32).
   Evidence grade: inferred.

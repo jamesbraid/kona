@@ -5816,7 +5816,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10172e5c loads 4 bytes from [(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72] +0x1b4.
   The `lw` at 0x10172e68 loads 4 bytes from ([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2)) +0x0.
   The `lw` at 0x10172e74 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x4.
-  2 such `ldc1` accesses load 8 bytes from abs 0x102bff40, including `ldc1` at 0x10172e84, `ldc1` at 0x10172e84.
+  The `ldc1` at 0x10172e84 loads 8 bytes from abs 0x102bff40.
   The `lbu` at 0x10172ec0 loads 1 byte from [a0+8] +0x1c.
   The `lw` at 0x10172ee8 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x8c.
   The `lw` at 0x10172f34 loads 4 bytes from a0 (arg0 at entry) +0x1c.
@@ -10377,10 +10377,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `bgez` branch at 0x10186fbc targets 0x10186ea8, is taken when a1(?) >= 0 (signed), and falls through when a1(?) < 0 (signed).
   The `beq` branch at 0x10186fc4 targets 0x10186ea8 and is always taken.
   The `beq` branch at 0x10186fcc targets 0x10186ebc and is always taken.
-  The return at 0x10186eb0 has v0 = one of ?, 0x0.
+  The return at 0x10186eb0 has v0 = ?.
   The return at 0x10186edc has v0 = one of a3, ?.
   The return at 0x10186f08 has v0 = 0x0.
-  The return at 0x10186f18 has v0 = one of ?, a1.
+  The return at 0x10186f18 has v0 = ?.
   The return at 0x10186f88 has v0 = one of ?, 0x0.
   The return at 0x10186fd4 has v0 = ?.
   The return at 0x10186fdc has v0 = ?.
@@ -11085,7 +11085,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x1018acc0 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1018ace0 loads 4 bytes from [0x102c60d0] +0x8.
   The `lw` at 0x1018ad48 loads 4 bytes from table(0x102c67a8) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66f0) +0x0, including `lw` at 0x1018ad54, `lw` at 0x1018ad54.
+  The `lw` at 0x1018ad54 loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x1018ad58 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x1018ad5c loads 4 bytes from table(0x102c66d0) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1018ad60, `lw` at 0x1018ae3c.
@@ -15001,7 +15001,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10199440 stores 4 bytes to ret(Xalloc) +0x8.
   The `sw` at 0x10199448 stores 4 bytes to ret(Xalloc) +0x0.
   The `lw` at 0x10199478 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66b0) +0x0, including `lw` at 0x1019948c, `lw` at 0x1019948c.
+  The `lw` at 0x1019948c loads 4 bytes from table(0x102c66b0) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10199490, `lw` at 0x10199500.
   The `lw` at 0x10199498 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x101994a0 loads 4 bytes from table(0x102c66f0) +0x0.
@@ -22747,7 +22747,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101b93b0 targets 0x101b9408, is taken when s1(=a0) == 0, and falls through when s1(=a0) != 0.
   The `beq` branch at 0x101b93e4 targets 0x101b9424, is taken when a0(=[ret(Xalloc)+8]) == 0, and falls through when a0(=[ret(Xalloc)+8]) != 0.
   The `beq` branch at 0x101b93ec targets 0x101b9424, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The return at 0x101b9400 has v0 = one of ?, ret(Xalloc).
+  The return at 0x101b9400 has v0 = ?.
   The return at 0x101b941c has v0 = ret(Xalloc).
   The return at 0x101b945c has v0 = 0x0.
 

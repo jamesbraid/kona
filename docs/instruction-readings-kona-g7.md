@@ -230,7 +230,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x10f4 targets 0x1104 and is always taken.
   The `beq` branch at 0x10fc targets 0x1124, is taken when a0(=[a0+3576]) == 0, and falls through when a0(=[a0+3576]) != 0.
   The `beq` branch at 0x1130 targets 0x1100 and is always taken.
-  The return at 0x111c has v0 = one of ret(cmn_err_tag), ?, ret(kona_untimeout).
+  The return at 0x111c has v0 = one of ret(cmn_err_tag), ?.
 
 - `kona_determine_cursor_channel` in `usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)` at 0x14d8 (n64).
   Evidence grade: inferred.

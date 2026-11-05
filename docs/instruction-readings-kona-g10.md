@@ -8404,7 +8404,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x101056d0 loads 4 bytes from abs 0x102bdea0.
   The `lw` at 0x101056d8 loads 4 bytes from abs 0x102be1e0.
   The `lw` at 0x101056e4 loads 4 bytes from abs 0x102bd458.
-  2 such `lw` accesses load 4 bytes from sym(KONAINFO) +0x0, including `lw` at 0x1010572c, `lw` at 0x1010572c.
+  The `lw` at 0x1010572c loads 4 bytes from sym(KONAINFO) +0x0.
   The `lw` at 0x10105730 loads 4 bytes from [sym(KONAINFO)] +0x0.
   The `lw` at 0x101057b4 loads 4 bytes from abs 0x102bd460.
   The `jal` at 0x10105570 calls reset_dacs [0x10061f50] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).

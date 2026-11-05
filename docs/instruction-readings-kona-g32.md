@@ -3761,7 +3761,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101853fc targets 0x1018524c and is always taken.
   The `beq` branch at 0x10185404 targets 0x101852c0 and is always taken.
   The `beq` branch at 0x1018540c targets 0x10185304 and is always taken.
-  The return at 0x10184b6c has v0 = one of ?, 0x1.
+  The return at 0x10184b6c has v0 = ?.
   The return at 0x10184e84 has v0 = 0x0.
   The return at 0x10184eb0 has v0 = one of ?, -0x1, 0x0.
   The return at 0x10185100 has v0 = 0x0.
@@ -7476,7 +7476,7 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x1024c4f0-0x1024ceb0 (2496 bytes).
   It occupies 2496 bytes.
-  5 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x1024c50c, `lw` at 0x1024c54c, `lw` at 0x1024c6e8.
+  4 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x1024c50c, `lw` at 0x1024c54c, `lw` at 0x1024c6e8.
   The `lw` at 0x1024c52c loads 4 bytes from [0x102c5fd8] +0x0.
   The `lw` at 0x1024c530 loads 4 bytes from [[0x102c5fd8]] +0x24.
   59 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1024c560, `lw` at 0x1024c56c, `lw` at 0x1024c5d4.
@@ -7613,7 +7613,7 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lw` accesses load 4 bytes from sym(inputInfo) +0xc, including `lw` at 0x1024de00, `lw` at 0x1024de40, `lw` at 0x1024dec8.
   82 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1024de10, `lw` at 0x1024de1c, `lw` at 0x1024de30.
   47 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1024de28, `sw` at 0x1024dee8, `sw` at 0x1024df64.
-  2 such `lw` accesses load 4 bytes from sym(inputInfo) +0x10, including `lw` at 0x1024de38, `lw` at 0x1024de38.
+  The `lw` at 0x1024de38 loads 4 bytes from sym(inputInfo) +0x10.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x18, including `lw` at 0x1024de7c, `lw` at 0x1024df28.
   The `lw` at 0x1024dea0 loads 4 bytes from sym(inputInfo) +0x8.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x78, including `lw` at 0x1024dfbc, `lw` at 0x1024e048, `lw` at 0x1024e3dc.

@@ -1764,7 +1764,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lwc1` at 0xda73364 loads 4 bytes from a0 (arg0 at entry) +0x6c4.
   The `lwc1` at 0xda73398 loads 4 bytes from a0 (arg0 at entry) +0x6cc.
   The `swc1` at 0xda733ac stores 4 bytes to a1 (arg1 at entry) +0x80.
-  2 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0x84, including `swc1` at 0xda733b4, `swc1` at 0xda733b4.
+  The `swc1` at 0xda733b4 stores 4 bytes to a1 (arg1 at entry) +0x84.
   The `sw` at 0xda733b8 stores 4 bytes to a1 (arg1 at entry) +0x8c.
   The `swc1` at 0xda733c0 stores 4 bytes to a1 (arg1 at entry) +0x88.
   The `bc1t` branch at 0xda7336c targets 0xda733cc, is taken when f2 < f6 (c.lt.s at 0xda73360), and falls through when not (f2 < f6 (c.lt.s at 0xda73360)).
@@ -4454,7 +4454,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lwc1` at 0xda7d274 loads 4 bytes from a0 (arg0 at entry) +0x6c4.
   The `lwc1` at 0xda7d2a8 loads 4 bytes from a0 (arg0 at entry) +0x6cc.
   The `swc1` at 0xda7d2bc stores 4 bytes to a1 (arg1 at entry) +0x80.
-  2 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0x84, including `swc1` at 0xda7d2c4, `swc1` at 0xda7d2c4.
+  The `swc1` at 0xda7d2c4 stores 4 bytes to a1 (arg1 at entry) +0x84.
   The `sw` at 0xda7d2c8 stores 4 bytes to a1 (arg1 at entry) +0x8c.
   The `swc1` at 0xda7d2d0 stores 4 bytes to a1 (arg1 at entry) +0x88.
   The `bc1t` branch at 0xda7d27c targets 0xda7d2dc, is taken when f18 < f0 (c.lt.s at 0xda7d270), and falls through when not (f18 < f0 (c.lt.s at 0xda7d270)).

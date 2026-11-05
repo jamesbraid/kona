@@ -4851,7 +4851,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   It occupies 368 bytes.
   The `lw` at 0x101647e4 loads 4 bytes from abs 0x102bd478.
   The `lbu` at 0x10164818 loads 1 byte from ?.
-  2 such `lw` accesses load 4 bytes from abs 0x102bd36c, including `lw` at 0x10164820, `lw` at 0x10164820.
+  The `lw` at 0x10164820 loads 4 bytes from abs 0x102bd36c.
   The `lw` at 0x1016482c loads 4 bytes from abs 0x102bc220.
   The `lw` at 0x10164844 loads 4 bytes from abs 0x102bd460.
   4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1016485c, `lw` at 0x101648bc, `lw` at 0x101648d4.
@@ -8478,7 +8478,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `sw` at 0x1009dc1c stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1009dc44 loads 4 bytes from table(0x102c61a0) +0x0.
   The `lw` at 0x1009dc88 loads 4 bytes from table(0x102c67a8) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66d0) +0x0, including `lw` at 0x1009dc94, `lw` at 0x1009dc94.
+  The `lw` at 0x1009dc94 loads 4 bytes from table(0x102c66d0) +0x0.
   The `lw` at 0x1009dc98 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x1009dc9c loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x1009dca0 loads 4 bytes from table(0x102c66b0) +0x0.
@@ -10660,7 +10660,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `lw` at 0x100d6744 loads 4 bytes from a1 (arg1 at entry) +0x8.
   The `lw` at 0x100d6838 loads 4 bytes from [a1+8] +0x10.
   4 such `sb` accesses store 1 byte to ?, including `sb` at 0x100d6844, `sb` at 0x100d6ad0, `sb` at 0x100d6c4c.
-  6 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x100d6860, `lw` at 0x100d68bc, `lw` at 0x100d68e0.
+  5 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x100d6860, `lw` at 0x100d68bc, `lw` at 0x100d68e0.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x100d686c, `lw` at 0x100d68ec, `lw` at 0x100d6b1c.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x100d6870, `lw` at 0x100d68f0, `lw` at 0x100d6b20.
   4 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x100d6878, `sw` at 0x100d68f8, `sw` at 0x100d6b28.
@@ -11251,7 +11251,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `lw` at 0x100e9d68 loads 4 bytes from table(0x1028cbd8) +0x0.
   The `lw` at 0x100e9dac loads 4 bytes from a3 (arg3 at entry) +0x4.
   The `sw` at 0x100e9dbc stores 4 bytes to a3 (arg3 at entry) +0x4.
-  16 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x100e9e14, `lw` at 0x100e9f70, `lw` at 0x100e9f7c.
+  15 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x100e9e14, `lw` at 0x100e9f70, `lw` at 0x100e9f7c.
   The `lw` at 0x100e9e40 loads 4 bytes from [a3+8] +0x18.
   12 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x100e9f48, `lw` at 0x100e9f9c, `lw` at 0x100ea3c4.
   12 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x100e9f54, `sw` at 0x100e9fa8, `sw` at 0x100ea3d0.
@@ -12970,7 +12970,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `sw` at 0x1010c004 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1010c04c loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x1010c064 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66f0) +0x0, including `lw` at 0x1010c078, `lw` at 0x1010c078.
+  The `lw` at 0x1010c078 loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x1010c07c loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1010c080, `lw` at 0x1010c0f8.
   The `lw` at 0x1010c090 loads 4 bytes from table(0x102c66b0) +0x0.

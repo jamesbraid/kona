@@ -4966,7 +4966,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10079d10 loads 4 bytes from abs 0x102c5cc4.
   The `lw` at 0x10079d20 loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x10079d38 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66b0) +0x0, including `lw` at 0x10079d4c, `lw` at 0x10079d4c.
+  The `lw` at 0x10079d4c loads 4 bytes from table(0x102c66b0) +0x0.
   The `lw` at 0x10079d50 loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10079d58, `lw` at 0x10079dac.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x10079d74, `sw` at 0x10079d9c, `sw` at 0x10079dc8.
@@ -9212,7 +9212,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10089c00 targets 0x10089bf0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `bne` branch at 0x10089c30 targets 0x10089bf0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `beq` branch at 0x10089c38 targets 0x10089c08 and is always taken.
-  The return at 0x10089c0c has v0 = one of ?, ret(sgiIterateDevices), ret(?).
+  The return at 0x10089c0c has v0 = one of ?, ret(?).
 
 - `ProcQueryBestSize` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10089c40 (n32).
   Evidence grade: inferred.
@@ -16619,7 +16619,7 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lbu` accesses load 1 byte from [a0+8] +0x8, including `lbu` at 0x100aae9c, `lbu` at 0x100ab0b8, `lbu` at 0x100ab10c.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100aaec0, `sw` at 0x100aaf2c, `sw` at 0x100ab010.
   35 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100aaf1c, `lw` at 0x100aaf5c, `lw` at 0x100aaf80.
-  4 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x100aaf74, `lw` at 0x100aaf74, `lw` at 0x100ab660.
+  3 such `lw` accesses load 4 bytes from sym(panoramiXDisabled) +0x0, including `lw` at 0x100aaf74, `lw` at 0x100ab660, `lw` at 0x100ab6a0.
   The `lw` at 0x100aaf78 loads 4 bytes from a0 (arg0 at entry) +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x100aaf94, `lw` at 0x100aaf98.
   2 such `lbu` accesses load 1 byte from [a0+8] +0x9, including `lbu` at 0x100aafe4, `lbu` at 0x100ab0b4.
@@ -18896,7 +18896,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100b424c stores 4 bytes to [0x102c609c] +0xc.
   The `sw` at 0x100b4250 stores 4 bytes to [0x102c609c] +0x10.
   The `lw` at 0x100b429c loads 4 bytes from a0 (arg0 at entry) +0x4.
-  2 such `lw` accesses load 4 bytes from sym(inputInfo) +0x4, including `lw` at 0x100b42d4, `lw` at 0x100b42d4.
+  The `lw` at 0x100b42d4 loads 4 bytes from sym(inputInfo) +0x4.
   The `sw` at 0x100b4380 stores 4 bytes to a0 (arg0 at entry) +0x24.
   The `lw` at 0x100b43c0 loads 4 bytes from [0x102cb558] +0x4.
   The `jalr` at 0x100b4038 calls (unknown callee) with a0=0x102c60dc, a1=sp-96, a2=?, a3=[0x102c60dc].
@@ -27418,7 +27418,7 @@ These entries record instruction facts rendered from the routines below. They de
   15 such `lh` accesses load 2 bytes from abs 0x102d7996 (sp_globals+22), including `lh` at 0x100d7efc, `lh` at 0x100d7f44, `lh` at 0x100d7fbc.
   15 such `lh` accesses load 2 bytes from abs 0x102d7998 (sp_globals+24), including `lh` at 0x100d7f1c, `lh` at 0x100d7f54, `lh` at 0x100d7fcc.
   3 such `lhu` accesses load 2 bytes from abs 0x102d8e48 (sp_globals+5320), including `lhu` at 0x100d7f24, `lhu` at 0x100d8978, `lhu` at 0x100d8b14.
-  21 such `lh` accesses load 2 bytes from abs 0x102d799a (sp_globals+26), including `lh` at 0x100d7f2c, `lh` at 0x100d7f34, `lh` at 0x100d7fb0.
+  20 such `lh` accesses load 2 bytes from abs 0x102d799a (sp_globals+26), including `lh` at 0x100d7f2c, `lh` at 0x100d7f34, `lh` at 0x100d7fb0.
   20 such `lh` accesses load 2 bytes from abs 0x102d799c (sp_globals+28), including `lh` at 0x100d7f3c, `lh` at 0x100d7fa0, `lh` at 0x100d7fa8.
   5 such `lh` accesses load 2 bytes from abs 0x102d8e2c (sp_globals+5292), including `lh` at 0x100d7f4c, `lh` at 0x100d8070, `lh` at 0x100d8190.
   5 such `lh` accesses load 2 bytes from abs 0x102d8e2e (sp_globals+5294), including `lh` at 0x100d7f5c, `lh` at 0x100d8080, `lh` at 0x100d81a0.

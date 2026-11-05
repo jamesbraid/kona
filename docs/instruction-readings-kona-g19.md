@@ -6309,7 +6309,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `lw` at 0x10064a58 loads 4 bytes from sym(checkForInput) +0x4.
   The `lw` at 0x10064a60 loads 4 bytes from [sym(checkForInput)] +0x0.
   The `lw` at 0x10064a6c loads 4 bytes from [sym(checkForInput)+4] +0x0.
-  2 such `ld` accesses load 8 bytes from sym(currentTime) +0x0, including `ld` at 0x10064a7c, `ld` at 0x10064a7c.
+  The `ld` at 0x10064a7c loads 8 bytes from sym(currentTime) +0x0.
   The `sw` at 0x10064acc stores 4 bytes to sym(currentTime) +0x4.
   The `sw` at 0x10064adc stores 4 bytes to sym(currentTime) +0x0.
   The `jalr` at 0x10064a2c calls times with a0=sp-56, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).

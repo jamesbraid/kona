@@ -6615,7 +6615,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   2 such `lw` accesses load 4 bytes from abs 0x102bd394, including `lw` at 0x100c0154, `lw` at 0x100c0314.
   The `lw` at 0x100c0160 loads 4 bytes from abs 0x102bccfc.
   2 such `lw` accesses load 4 bytes from abs 0x102bd730, including `lw` at 0x100c0168, `lw` at 0x100c02f8.
-  4 such `lw` accesses load 4 bytes from abs 0x102f7244, including `lw` at 0x100c016c, `lw` at 0x100c0198, `lw` at 0x100c0198.
+  3 such `lw` accesses load 4 bytes from abs 0x102f7244, including `lw` at 0x100c016c, `lw` at 0x100c0198, `lw` at 0x100c02c0.
   4 such `lw` accesses load 4 bytes from abs 0x102f7248, including `lw` at 0x100c0174, `lw` at 0x100c0268, `lw` at 0x100c02b8.
   2 such `lw` accesses load 4 bytes from abs 0x102bde1c, including `lw` at 0x100c01a8, `lw` at 0x100c02cc.
   The `sw` at 0x100c01b8 stores 4 bytes to abs 0x102f752c.

@@ -650,7 +650,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   It occupies 6440 bytes.
   The `lw` at 0x10016bbc loads 4 bytes from abs 0x102bc46c.
   The `lw` at 0x10016be0 loads 4 bytes from abs 0x102be470.
-  35 such `lw` accesses load 4 bytes from sym(bist_debug) +0x0, including `lw` at 0x10016be8, `lw` at 0x10016c68, `lw` at 0x10016d40.
+  34 such `lw` accesses load 4 bytes from sym(bist_debug) +0x0, including `lw` at 0x10016be8, `lw` at 0x10016c68, `lw` at 0x10016d40.
   68 such `lw` accesses load 4 bytes from abs 0x102bc45c, including `lw` at 0x10016c08, `lw` at 0x10016c80, `lw` at 0x10016ca0.
   2 such `lw` accesses load 4 bytes from abs 0x102bd744, including `lw` at 0x10016c10, `lw` at 0x10016c64.
   The `lw` at 0x10016c4c loads 4 bytes from abs 0x102bc470.

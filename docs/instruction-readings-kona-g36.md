@@ -1867,7 +1867,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100e6070 stores 4 bytes to ret(Xalloc) +0x0.
   The `lw` at 0x100e60c8 loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x100e60e4 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x100e60f8, `lw` at 0x100e60f8.
+  The `lw` at 0x100e60f8 loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x100e6100, `lw` at 0x100e6378.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x100e6110, `sw` at 0x100e636c, `sw` at 0x100e6388.
   The `sw` at 0x100e6118 stores 4 bytes to table(0x102c66d0) +0x0.
@@ -3342,7 +3342,7 @@ These entries record instruction facts rendered from the routines below. They de
   The return at 0x100eb55c has v0 = [0x102cb28c].
   The return at 0x100eb5d4 has v0 = 0x8.
   The return at 0x100eb5dc has v0 = 0xa.
-  The return at 0x100eb6bc has v0 = one of ret(SrvXkbLatchModifiers), ret(SrvXkbLatchGroup).
+  The return at 0x100eb6bc has v0 = one of ret(SrvXkbLatchModifiers), ?.
   The return at 0x100eba68 has v0 = [a0+40].
 - `SrvXkbAddGeomSection` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100ebc10 (n32).
   Evidence grade: inferred.
@@ -4206,7 +4206,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100eff08 targets 0x100eff28, is taken when a1(=[[[a0+4]+4]+16]) == 0, and falls through when a1(=[[[a0+4]+4]+16]) != 0.
   The `beq` branch at 0x100eff44 targets 0x100eff64, is taken when a1(=[a0+1064]) == 0, and falls through when a1(=[a0+1064]) != 0.
   The `beq` branch at 0x100eff7c targets 0x100eff48, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The return at 0x100eff5c has v0 = one of ret(LbxForceOutput), ret(Xalloc).
+  The return at 0x100eff5c has v0 = one of ret(LbxForceOutput), ?.
   The return at 0x100effbc has v0 = ret(Xalloc).
 - `doImageText` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100f00b0 (n32).
   Evidence grade: inferred.
@@ -8401,7 +8401,7 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `sb` accesses store 1 byte to abs 0x102d8d6c (sp_globals+5100), including `sb` at 0x101034d0, `sb` at 0x1010363c, `sb` at 0x10105780.
   6 such `sh` accesses store 2 bytes to abs 0x102d8d60 (sp_globals+5088), including `sh` at 0x101034d8, `sh` at 0x10103644, `sh` at 0x101049fc.
   122 such `sb` accesses store 1 byte to ?, including `sb` at 0x10103530, `sb` at 0x10103844, `sb` at 0x1010384c.
-  11 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x10103534, `lh` at 0x101035d4, `lh` at 0x101036a4.
+  9 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x10103534, `lh` at 0x101035d4, `lh` at 0x101036a4.
   3 such `lh` accesses load 2 bytes from abs 0x102d8d50 (sp_globals+5072), including `lh` at 0x1010353c, `lh` at 0x101037b8, `lh` at 0x101057f4.
   4 such `sh` accesses store 2 bytes to abs 0x102d79a4 (sp_globals+36), including `sh` at 0x10103540, `sh` at 0x101037bc, `sh` at 0x10105738.
   3 such `sh` accesses store 2 bytes to abs 0x102d8d6a (sp_globals+5098), including `sh` at 0x1010354c, `sh` at 0x101037c8, `sh` at 0x10105804.
@@ -8419,7 +8419,7 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lh` accesses load 2 bytes from abs 0x102d8dc4 (sp_globals+5188), including `lh` at 0x10103734, `lh` at 0x1010374c, `lh` at 0x10104960.
   2 such `sh` accesses store 2 bytes to abs 0x102d818c (sp_globals+2060), including `sh` at 0x101037a4, `sh` at 0x101057e0.
   13 such `lh` accesses load 2 bytes from table(0x102d818c) +0x0, including `lh` at 0x10103870, `lh` at 0x101039dc, `lh` at 0x101039f0.
-  36 such `lh` accesses load 2 bytes from table(0x102d79bc) +0x0, including `lh` at 0x101038a0, `lh` at 0x10103904, `lh` at 0x10103934.
+  35 such `lh` accesses load 2 bytes from table(0x102d79bc) +0x0, including `lh` at 0x101038a0, `lh` at 0x10103904, `lh` at 0x10103934.
   23 such `lbu` accesses load 1 byte from table(0x102d895c) +0x0, including `lbu` at 0x101038ac, `lbu` at 0x101038cc, `lbu` at 0x10103948.
   32 such `sh` accesses store 2 bytes to table(0x102d79bc) +0x0, including `sh` at 0x1010392c, `sh` at 0x10103940, `sh` at 0x10103978.
   8 such `lhu` accesses load 2 bytes from abs 0x102d8d46 (sp_globals+5062), including `lhu` at 0x10103958, `lhu` at 0x10103ae0, `lhu` at 0x10103c34.
@@ -13160,10 +13160,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `bgez` branch at 0x1011616c targets 0x10116058, is taken when a0(?) >= 0 (signed), and falls through when a0(?) < 0 (signed).
   The `beq` branch at 0x10116174 targets 0x10116058 and is always taken.
   The `beq` branch at 0x1011617c targets 0x1011606c and is always taken.
-  The return at 0x10116060 has v0 = one of ?, 0x0.
+  The return at 0x10116060 has v0 = ?.
   The return at 0x1011608c has v0 = one of a2, ?.
   The return at 0x101160b8 has v0 = 0x0.
-  The return at 0x101160c8 has v0 = one of ?, a0.
+  The return at 0x101160c8 has v0 = ?.
   The return at 0x10116138 has v0 = one of ?, 0x0.
   The return at 0x10116184 has v0 = ?.
   The return at 0x1011618c has v0 = ?.
@@ -16969,7 +16969,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10125660 targets 0x10125610, is taken when a4(=[0x102c737c]) == 0, and falls through when a4(=[0x102c737c]) != 0.
   The `beq` branch at 0x10125688 targets 0x10125614 and is always taken.
   The `beq` branch at 0x101256b4 targets 0x10125620 and is always taken.
-  The return at 0x10125618 has v0 = one of ?, ret(BufFilePushCompressed).
+  The return at 0x10125618 has v0 = ?.
   The return at 0x10125620 has v0 = 0x0.
   The return at 0x10125630 has v0 = 0x0.
 - `CopyActionMessageArgs..LMF` in `usr/gfx/arch/GENERIC/Xsgi` at 0x101256c0 (n32).
@@ -17534,7 +17534,8 @@ These entries record instruction facts rendered from the routines below. They de
   24 such `sb` accesses store 1 byte to [a3+4] +0x0, including `sb` at 0x10127388, `sb` at 0x10127638, `sb` at 0x10127834.
   26 such `sw` accesses store 4 bytes to a3 (arg3 at entry) +0x4, including `sw` at 0x1012739c, `sw` at 0x1012764c, `sw` at 0x10127830.
   14 such `lw` accesses load 4 bytes from table(0x102c4338) +0x0, including `lw` at 0x101273b0, `lw` at 0x10127660, `lw` at 0x101278b8.
-  3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10127970, `lhu` at 0x10127984, `lhu` at 0x10127a38.
+  The `lhu` at 0x10127970 loads 2 bytes from table(0x102d00ba) +0x0.
+  2 such `lhu` accesses load 2 bytes from table(0x102d00bc) +0x0, including `lhu` at 0x10127984, `lhu` at 0x10127a38.
   4 such `lbu` accesses load 1 byte from table(0x102d01d8) +0x0, including `lbu` at 0x10127a98, `lbu` at 0x10127ae8, `lbu` at 0x10127e48.
   3 such `lhu` accesses load 2 bytes from table(0x102cff82) +0x0, including `lhu` at 0x10127bc0, `lhu` at 0x10127f30, `lhu` at 0x101280e4.
   3 such `lhu` accesses load 2 bytes from table(0x102cff84) +0x0, including `lhu` at 0x10127bcc, `lhu` at 0x10127f3c, `lhu` at 0x101280f0.
@@ -17645,7 +17646,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10127940 targets 0x101276d0 and is always taken.
   The `bne` branch at 0x10127950 targets 0x10127b94, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0x10127958 targets 0x10127554 and is always taken.
-  The `beq` branch at 0x10127978 targets 0x10127a38, is taken when t3(?) >= a3(?) (unsigned), and falls through when t3(?) < a3(?) (unsigned).
+  The `beq` branch at 0x10127978 targets 0x10127a38, is taken when t3(?) >= a3(=entry(0x102d00ba)) (unsigned), and falls through when t3(?) < a3(=entry(0x102d00ba)) (unsigned).
   The `blez` branch at 0x10127994 targets 0x10128220, is taken when a5(?) <= 0 (signed), and falls through when a5(?) > 0 (signed).
   The `beq` branch at 0x101279c8 targets 0x10127990, is taken when a2(?) >= 0x9 (unsigned), and falls through when a2(?) < 0x9 (unsigned).
   The `beq` branch at 0x101279d0 targets 0x10127a40 and is always taken.
@@ -21700,7 +21701,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013af28 targets 0x1013ae20 and is always taken.
   The `beq` branch at 0x1013af30 targets 0x1013ad20 and is always taken.
   The `beq` branch at 0x1013af38 targets 0x1013ad40 and is always taken.
-  The return at 0x1013ace0 has v0 = one of ?, table(0x0).
+  The return at 0x1013ace0 has v0 = ?.
   The return at 0x1013ad14 has v0 = ?.
   The return at 0x1013ad6c has v0 = table(0x0).
   The return at 0x1013ad7c has v0 = ?.
@@ -22262,7 +22263,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 748 bytes.
   3 such `sb` accesses store 1 byte to (a2 + a1) -0x1, including `sb` at 0x1013e2c8, `sb` at 0x1013e440, `sb` at 0x1013e468.
   3 such `sb` accesses store 1 byte to ?, including `sb` at 0x1013e2d0, `sb` at 0x1013e474, `sb` at 0x1013e4a0.
-  4 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x1013e310, `lw` at 0x1013e310, `lw` at 0x1013e3ac.
+  2 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x1013e310, `lw` at 0x1013e3ac.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x1013e31c, `lw` at 0x1013e3b8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x1013e320, `lw` at 0x1013e3bc.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x1013e328, `sw` at 0x1013e3c4.
@@ -24589,7 +24590,7 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `sb` accesses store 1 byte to abs 0x102d8d6c (sp_globals+5100), including `sb` at 0x10146f70, `sb` at 0x101470e4, `sb` at 0x10148874.
   6 such `sh` accesses store 2 bytes to abs 0x102d8d60 (sp_globals+5088), including `sh` at 0x10146f78, `sh` at 0x101470ec, `sh` at 0x10147cc8.
   122 such `sb` accesses store 1 byte to ?, including `sb` at 0x10146fd0, `sb` at 0x10147334, `sb` at 0x1014733c.
-  9 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x10146fd4, `lh` at 0x1014707c, `lh` at 0x10147150.
+  7 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x10146fd4, `lh` at 0x1014707c, `lh` at 0x10147150.
   3 such `lh` accesses load 2 bytes from abs 0x102d8d50 (sp_globals+5072), including `lh` at 0x10146fdc, `lh` at 0x101472a4, `lh` at 0x101488e8.
   4 such `sh` accesses store 2 bytes to abs 0x102d79a4 (sp_globals+36), including `sh` at 0x10146fe0, `sh` at 0x101472a8, `sh` at 0x1014882c.
   3 such `sh` accesses store 2 bytes to abs 0x102d8d6a (sp_globals+5098), including `sh` at 0x10146fec, `sh` at 0x101472bc, `sh` at 0x10148900.
@@ -24615,7 +24616,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lh` accesses load 2 bytes from abs 0x102d8d58 (sp_globals+5080), including `lh` at 0x101474a0, `lh` at 0x10147fd8.
   6 such `lh` accesses load 2 bytes from table(0x102d79bc) +0x0, including `lh` at 0x101474a8, `lh` at 0x101474e0, `lh` at 0x10147668.
   2 such `lhu` accesses load 2 bytes from table(0x102d818c) +0x0, including `lhu` at 0x101474b0, `lhu` at 0x10148004.
-  5 such `lw` accesses load 4 bytes from abs 0x102c7370 (bit_order..125), including `lw` at 0x101476a0, `lw` at 0x101476a0, `lw` at 0x101479f0.
+  4 such `lw` accesses load 4 bytes from abs 0x102c7370 (bit_order..125), including `lw` at 0x101476a0, `lw` at 0x101479f0, `lw` at 0x1014823c.
   62 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x101476fc, `lbu` at 0x101477ec, `lbu` at 0x10147a70.
   10 such `sw` accesses store 4 bytes to abs 0x102da16c, including `sw` at 0x10147904, `sw` at 0x101479c0, `sw` at 0x10147b0c.
   3 such `sw` accesses store 4 bytes to abs 0x102da168, including `sw` at 0x10147954, `sw` at 0x1014847c, `sw` at 0x1014850c.
@@ -25096,7 +25097,7 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x101493f0-0x10149bb0 (1984 bytes).
   It occupies 1984 bytes.
   26 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10149468, `lw` at 0x101494e0, `lw` at 0x101494e4.
-  22 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x101494dc, `lw` at 0x1014950c, `lw` at 0x1014950c.
+  21 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x101494dc, `lw` at 0x1014950c, `lw` at 0x10149528.
   The `sw` at 0x1014958c stores 4 bytes to ret(__malloc..ML) +0x4.
   The `sw` at 0x1014959c stores 4 bytes to ret(__malloc..ML) +0xc.
   4 such `lw` accesses load 4 bytes from ret(__malloc..ML) +0x4, including `lw` at 0x101495a8, `lw` at 0x101495c0, `lw` at 0x10149988.
@@ -25432,7 +25433,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x1014a718 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1014a73c loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x1014a750 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x1014a768, `lw` at 0x1014a768.
+  The `lw` at 0x1014a768 loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1014a770, `lw` at 0x1014ad4c.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x1014a780, `sw` at 0x1014ad40, `sw` at 0x1014ad5c.
   The `sw` at 0x1014a788 stores 4 bytes to table(0x102c66d0) +0x0.

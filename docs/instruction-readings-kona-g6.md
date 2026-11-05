@@ -547,7 +547,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x1270 targets 0x1284, is taken when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) == 0, and falls through when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) != 0.
   The `beq` branch at 0x128c targets 0x1278, is taken when v0(=ret(gthread_create)) == 0, and falls through when v0(=ret(gthread_create)) != 0.
   The `beq` branch at 0x12a8 targets 0x1278 and is always taken.
-  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ret(gthread_find), ret(gthread_create), ret(setgfxsched_thread).
+  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ?, ret(gthread_create), ret(setgfxsched_thread).
 
 
 
@@ -885,7 +885,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x1270 targets 0x1284, is taken when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) == 0, and falls through when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) != 0.
   The `beq` branch at 0x128c targets 0x1278, is taken when v0(=ret(gthread_create)) == 0, and falls through when v0(=ret(gthread_create)) != 0.
   The `beq` branch at 0x12a8 targets 0x1278 and is always taken.
-  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ret(gthread_find), ret(gthread_create), ret(setgfxsched_thread).
+  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ?, ret(gthread_create), ret(setgfxsched_thread).
 
 
 
@@ -2569,7 +2569,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x10f4 targets 0x1104 and is always taken.
   The `beq` branch at 0x10fc targets 0x1124, is taken when a0(=[a0+3576]) == 0, and falls through when a0(=[a0+3576]) != 0.
   The `beq` branch at 0x1130 targets 0x1100 and is always taken.
-  The return at 0x111c has v0 = one of ret(cmn_err_tag), ?, ret(kona_untimeout).
+  The return at 0x111c has v0 = one of ret(cmn_err_tag), ?.
 
 
 
@@ -2929,7 +2929,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x1270 targets 0x1284, is taken when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) == 0, and falls through when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) != 0.
   The `beq` branch at 0x128c targets 0x1278, is taken when v0(=ret(gthread_create)) == 0, and falls through when v0(=ret(gthread_create)) != 0.
   The `beq` branch at 0x12a8 targets 0x1278 and is always taken.
-  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ret(gthread_find), ret(gthread_create), ret(setgfxsched_thread).
+  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ?, ret(gthread_create), ret(setgfxsched_thread).
 
 
 
@@ -3369,7 +3369,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x1270 targets 0x1284, is taken when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) == 0, and falls through when (at(=[[[ret(gthread_find)+16]:8+24]:8+4]) & 0x8) != 0.
   The `beq` branch at 0x128c targets 0x1278, is taken when v0(=ret(gthread_create)) == 0, and falls through when v0(=ret(gthread_create)) != 0.
   The `beq` branch at 0x12a8 targets 0x1278 and is always taken.
-  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ret(gthread_find), ret(gthread_create), ret(setgfxsched_thread).
+  The return at 0x127c has v0 = one of [ret(gthread_find)+16]:8, ?, ret(gthread_create), ret(setgfxsched_thread).
 
 
 

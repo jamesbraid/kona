@@ -6092,7 +6092,7 @@ These entries record instruction facts rendered from the routines below. They de
   6 such `sb` accesses store 1 byte to ?, including `sb` at 0x1022e0dc, `sb` at 0x1022e14c, `sb` at 0x1022e338.
   10 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x8c, including `sw` at 0x1022e110, `sw` at 0x1022e12c, `sw` at 0x1022e314.
   5 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x4, including `sw` at 0x1022e13c, `sw` at 0x1022e32c, `sw` at 0x1022e394.
-  8 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x1022e198, `lw` at 0x1022e210, `lw` at 0x1022e218.
+  7 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x1022e198, `lw` at 0x1022e210, `lw` at 0x1022e218.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x1022e1b4, `lw` at 0x1022e224, `lw` at 0x1022e264.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x1022e1b8, `lw` at 0x1022e228, `lw` at 0x1022e268.
   4 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x1022e1c0, `sw` at 0x1022e230, `sw` at 0x1022e270.
@@ -7409,7 +7409,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sb` at 0x102324c8 stores 1 byte to [([a1+72] + ([0x102cb574] << 0x2))] +0x1.
   The `lw` at 0x102324f4 loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x1023250c loads 4 bytes from table(0x102c66d0) +0x0.
-  3 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10232520, `lw` at 0x10232520, `lw` at 0x10232704.
+  2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10232520, `lw` at 0x10232704.
   The `lw` at 0x10232524 loads 4 bytes from table(0x102c66b0) +0x0.
   The `lw` at 0x1023252c loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x10232534 loads 4 bytes from table(0x102c66f0) +0x0.
@@ -8219,7 +8219,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x102366a4 targets 0x102365a4, is taken when s3(=a3) >= a5(=[[[a0]+88]]) (unsigned), and falls through when s3(=a3) < a5(=[[[a0]+88]]) (unsigned).
   The `beq` branch at 0x102366ac targets 0x102365dc and is always taken.
   The `beq` branch at 0x102366bc targets 0x102365e4 and is always taken.
-  The return at 0x10236604 has v0 = one of ?, 0x0.
+  The return at 0x10236604 has v0 = ?.
   The return at 0x10236628 has v0 = 0x0.
 
 - `simpleProximity..LGC` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10236c00 (n32).
@@ -8968,7 +8968,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10239668 targets 0x102395f4, is taken when v0(=[0x102ca934]) != 0, and falls through when v0(=[0x102ca934]) == 0.
   The `beq` branch at 0x10239678 targets 0x102395f4 and is always taken.
   The `beq` branch at 0x10239690 targets 0x102395f4 and is always taken.
-  The return at 0x102395f4 has v0 = one of ret(access), [0x102ca934], ret(GLXLoadExtension), ret(ErrorF).
+  The return at 0x102395f4 has v0 = one of ret(access), ?, [0x102ca934], ret(GLXLoadExtension), ret(ErrorF).
 
 - `recv_willing_msg..MK` in `usr/gfx/arch/GENERIC/Xsgi` at 0x102396a0 (n32).
   Evidence grade: inferred.
@@ -9013,7 +9013,7 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0x8, including `sw` at 0x10239878, `sw` at 0x10239de8, `sw` at 0x10239e68.
   3 such `lw` accesses load 4 bytes from sym(__libc_attr) +0x0, including `lw` at 0x102398e8, `lw` at 0x10239bd0, `lw` at 0x10239c30.
   The `sw` at 0x10239954 stores 4 bytes to a2 (arg2 at entry) +0x4.
-  11 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x10239980, `lw` at 0x10239980, `lw` at 0x10239ccc.
+  9 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x10239980, `lw` at 0x10239ccc, `lw` at 0x10239d1c.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x1023998c, `lw` at 0x10239e14, `lw` at 0x10239f4c.
   5 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x10239998, `sw` at 0x10239e20, `sw` at 0x10239f58.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x1023999c, `lw` at 0x10239e24, `lw` at 0x10239f5c.
@@ -15119,7 +15119,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10253880, `lbu` at 0x10253ac8.
   2 such `lw` accesses load 4 bytes from sym(GrabInProgress) +0x0, including `lw` at 0x10253980, `lw` at 0x10253bfc.
   2 such `lw` accesses load 4 bytes from table(0x102c66d0) +0x0, including `lw` at 0x1025399c, `lw` at 0x10253c18.
-  4 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x102539b0, `lw` at 0x102539b0, `lw` at 0x10253c2c.
+  2 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x102539b0, `lw` at 0x10253c2c.
   4 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x102539b8, `lw` at 0x10253c34, `lw` at 0x10253c88.
   8 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x102539c8, `sw` at 0x10253c44, `sw` at 0x10253c7c.
   2 such `sw` accesses store 4 bytes to table(0x102c66d0) +0x0, including `sw` at 0x102539d0, `sw` at 0x10253c4c.
@@ -15467,7 +15467,7 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x10254200-0x102546c8 (1224 bytes).
   It occupies 1224 bytes.
-  20 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x10254270, `lw` at 0x102542a0, `lw` at 0x102542b8.
+  19 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x10254270, `lw` at 0x102542a0, `lw` at 0x102542b8.
   7 such `lw` accesses load 4 bytes from table(0x102c71c0) +0x0, including `lw` at 0x10254298, `lw` at 0x10254314, `lw` at 0x102543bc.
   7 such `sw` accesses store 4 bytes to table(0x102c71c0) +0x0, including `sw` at 0x102542bc, `sw` at 0x10254338, `sw` at 0x102543e0.
   19 such `lw` accesses load 4 bytes from ?, including `lw` at 0x102542e8, `lw` at 0x10254370, `lw` at 0x10254374.
@@ -17109,7 +17109,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x10259dc4 loads 2 bytes from [ret(SecurityLookupIDByType)] +0x6.
   The `lw` at 0x10259e58 loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x10259e74 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x10259e88, `lw` at 0x10259e88.
+  The `lw` at 0x10259e88 loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10259e90, `lw` at 0x1025a75c.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x10259ea0, `sw` at 0x1025a750, `sw` at 0x1025a76c.
   The `sw` at 0x10259ea8 stores 4 bytes to table(0x102c66d0) +0x0.
@@ -17506,7 +17506,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x1025be48 loads 2 bytes from abs 0x102d8d4c (sp_globals+5068).
   The `sh` at 0x1025be58 stores 2 bytes to abs 0x102d8d4c (sp_globals+5068).
   The `lbu` at 0x1025be60 loads 1 byte from abs 0x102d8d56 (sp_globals+5078).
-  2 such `lh` accesses load 2 bytes from abs 0x102d79a0 (sp_globals+32), including `lh` at 0x1025be84, `lh` at 0x1025be84.
+  The `lh` at 0x1025be84 loads 2 bytes from abs 0x102d79a0 (sp_globals+32).
   The `lh` at 0x1025beb0 loads 2 bytes from abs 0x102d79a2 (sp_globals+34).
   12 such `lh` accesses load 2 bytes from table(0x102d818c) +0x0, including `lh` at 0x1025bf88, `lh` at 0x1025bfb4, `lh` at 0x1025c0e4.
   15 such `lh` accesses load 2 bytes from table(0x102d79bc) +0x0, including `lh` at 0x1025bfa0, `lh` at 0x1025bfcc, `lh` at 0x1025c0fc.
@@ -18432,7 +18432,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1025ecc8 loads 4 bytes from [a0+12] +0x0.
   The `sw` at 0x1025ecd4 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x1025ed08 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66b0) +0x0, including `lw` at 0x1025ed1c, `lw` at 0x1025ed1c.
+  The `lw` at 0x1025ed1c loads 4 bytes from table(0x102c66b0) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1025ed20, `lw` at 0x1025ee04.
   The `lw` at 0x1025ed28 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x1025ed30 loads 4 bytes from table(0x102c66f0) +0x0.
@@ -20467,7 +20467,7 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x10269020-0x1026946c (1100 bytes).
   It occupies 1100 bytes.
-  9 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x10269070, `lw` at 0x10269070, `lw` at 0x102690a8.
+  8 such `lw` accesses load 4 bytes from sym(__us_rsthread_stdio) +0x0, including `lw` at 0x10269070, `lw` at 0x102690a8, `lw` at 0x102691c4.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x1026907c, `lw` at 0x10269250, `lw` at 0x10269360.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x10269080, `lw` at 0x10269260, `lw` at 0x10269370.
   5 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x10269088, `sw` at 0x1026925c, `sw` at 0x1026936c.
@@ -21990,7 +21990,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1026ee3c loads 4 bytes from abs 0x102c5cc4.
   The `lw` at 0x1026ee4c loads 4 bytes from sym(GrabInProgress) +0x0.
   The `lw` at 0x1026ee64 loads 4 bytes from table(0x102c66d0) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66b0) +0x0, including `lw` at 0x1026ee78, `lw` at 0x1026ee78.
+  The `lw` at 0x1026ee78 loads 4 bytes from table(0x102c66b0) +0x0.
   The `lw` at 0x1026ee7c loads 4 bytes from table(0x102c6710) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x1026ee84, `lw` at 0x1026eed8.
   4 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x1026eea0, `sw` at 0x1026eec8, `sw` at 0x1026eef4.

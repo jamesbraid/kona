@@ -5518,7 +5518,7 @@ These entries record instruction facts rendered from the routines below. They de
   6 such `sh` accesses store 2 bytes to abs 0x102d79a8 (sp_globals+40), including `sh` at 0x101d3870, `sh` at 0x101d3880, `sh` at 0x101d3a10.
   3 such `sh` accesses store 2 bytes to abs 0x102d79a6 (sp_globals+38), including `sh` at 0x101d3878, `sh` at 0x101d3a18, `sh` at 0x101d5e78.
   178 such `sb` accesses store 1 byte to ?, including `sb` at 0x101d3920, `sb` at 0x101d3c04, `sb` at 0x101d3c0c.
-  13 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x101d3924, `lh` at 0x101d39c8, `lh` at 0x101d3b6c.
+  11 such `lh` accesses load 2 bytes from abs 0x102d79a2 (sp_globals+34), including `lh` at 0x101d3924, `lh` at 0x101d39c8, `lh` at 0x101d3b6c.
   3 such `lh` accesses load 2 bytes from abs 0x102d8d50 (sp_globals+5072), including `lh` at 0x101d392c, `lh` at 0x101d3b74, `lh` at 0x101d5f04.
   4 such `sh` accesses store 2 bytes to abs 0x102d79a4 (sp_globals+36), including `sh` at 0x101d3934, `sh` at 0x101d3b7c, `sh` at 0x101d5e48.
   3 such `sh` accesses store 2 bytes to abs 0x102d8d6a (sp_globals+5098), including `sh` at 0x101d3940, `sh` at 0x101d3b88, `sh` at 0x101d5f18.
@@ -15173,7 +15173,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to [a1+12] +0x0, including `sw` at 0x101fe300, `sw` at 0x101fe4d0.
   3 such `lw` accesses load 4 bytes from sym(GrabInProgress) +0x0, including `lw` at 0x101fe360, `lw` at 0x101fe4e8, `lw` at 0x101fe62c.
   3 such `lw` accesses load 4 bytes from table(0x102c66d0) +0x0, including `lw` at 0x101fe37c, `lw` at 0x101fe504, `lw` at 0x101fe648.
-  6 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x101fe390, `lw` at 0x101fe390, `lw` at 0x101fe518.
+  3 such `lw` accesses load 4 bytes from table(0x102c6710) +0x0, including `lw` at 0x101fe390, `lw` at 0x101fe518, `lw` at 0x101fe65c.
   6 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x101fe398, `lw` at 0x101fe520, `lw` at 0x101fe5e0.
   12 such `sw` accesses store 4 bytes to table(0x102c6788) +0x0, including `sw` at 0x101fe3a8, `sw` at 0x101fe530, `sw` at 0x101fe5d4.
   3 such `sw` accesses store 4 bytes to table(0x102c66d0) +0x0, including `sw` at 0x101fe3b0, `sw` at 0x101fe538, `sw` at 0x101fe67c.
@@ -16386,7 +16386,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10201bd0 loads 4 bytes from entry(0x102c61a0) +0x8.
   The `sw` at 0x10201bd8 stores 4 bytes to entry(0x102c61a0) +0xc.
   The `lw` at 0x10201c04 loads 4 bytes from table(0x102c67a8) +0x0.
-  2 such `lw` accesses load 4 bytes from table(0x102c66f0) +0x0, including `lw` at 0x10201c10, `lw` at 0x10201c10.
+  The `lw` at 0x10201c10 loads 4 bytes from table(0x102c66f0) +0x0.
   The `lw` at 0x10201c14 loads 4 bytes from table(0x102c6710) +0x0.
   The `lw` at 0x10201c18 loads 4 bytes from table(0x102c66d0) +0x0.
   2 such `lw` accesses load 4 bytes from table(0x102c6788) +0x0, including `lw` at 0x10201c1c, `lw` at 0x10201c80.
@@ -17737,7 +17737,7 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x10207040-0x10207f0c (3788 bytes).
   It occupies 3788 bytes.
   2 such `lw` accesses load 4 bytes from sym(screenIsSaved) +0x0, including `lw` at 0x10207080, `lw` at 0x10207128.
-  9 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x10207098, `lw` at 0x102070f4, `lw` at 0x102070f4.
+  8 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x10207098, `lw` at 0x102070f4, `lw` at 0x10207130.
   76 such `lw` accesses load 4 bytes from ?, including `lw` at 0x102070e0, `lw` at 0x10207114, `lw` at 0x10207118.
   44 such `sb` accesses store 1 byte to ?, including `sb` at 0x10207178, `sb` at 0x10207704, `sb` at 0x1020770c.
   2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10207190, `lbu` at 0x10207258.
