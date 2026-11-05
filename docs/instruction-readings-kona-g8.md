@@ -7080,7 +7080,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `beq` branch at 0x18 targets 0x58, is taken when a5(=[a0+12]) == v0(=[a0+8]), and falls through when a5(=[a0+12]) != v0(=[a0+8]).
   The `bne` branch at 0x40 targets 0x60, is taken when s0(?) != 0, and falls through when s0(?) == 0.
   The `beq` branch at 0x48 targets 0x90 and is always taken.
-  The `bne` branch at 0x50 targets 0x20 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x50 targets 0x20 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x58 targets 0x48, is taken when v0(=[a0+8]) == 0, and falls through when v0(=[a0+8]) != 0.
   The `bltz` branch at 0x60 targets 0x8c, is taken when s0(?) < 0 (signed), and falls through when s0(?) >= 0 (signed).
   The `bne` branch at 0x84 targets 0xa0, is taken when t9(?) < -0x1 (unsigned), and falls through when t9(?) >= -0x1 (unsigned).

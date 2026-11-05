@@ -5754,7 +5754,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x102820e0 targets 0x10282090, is taken when v1(?) >= 0x7 (unsigned), and falls through when v1(?) < 0x7 (unsigned).
   The `beq` branch at 0x10282104 targets 0x102820c4 and is always taken.
   The `beq` branch at 0x10282170 targets 0x102821a4 and is always taken.
-  The `beq` branch at 0x102821bc targets 0x10282190 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x102821bc targets 0x10282190 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10282280 targets 0x10282090 and is always taken.
   The `beq` branch at 0x1028228c targets 0x10282090 and is always taken.
   The `beq` branch at 0x10282298 targets 0x10282090 and is always taken.
@@ -5966,7 +5966,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10283520 targets 0x102833f8 and is always taken.
   The `beq` branch at 0x10283530 targets 0x10283644, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0x10283540 targets 0x1028359c, is taken when a6(=[0x102ca860]) == 0, and falls through when a6(=[0x102ca860]) != 0.
-  The `beq` branch at 0x10283560 targets 0x1028364c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10283560 targets 0x1028364c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10283590 targets 0x1028364c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0x102835a0 targets 0x102835d8, is taken when (a0(?) & 0x8) == 0, and falls through when (a0(?) & 0x8) != 0.
   The `beq` branch at 0x102835bc targets 0x102835ec, is taken when (a0(?) & a4(=-0x2)) == 0, and falls through when (a0(?) & a4(=-0x2)) != 0.

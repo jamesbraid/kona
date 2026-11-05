@@ -1762,7 +1762,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x1003cc10 calls set__12VkOptionMenuGi with a0=[a0+128], a1=[sym(combination)+272], a2=?, a3=?.
   The `beq` branch at 0x1003c570 targets 0x1003c5a4, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x1003c59c targets 0x1003c638, is taken when a3(?) != 0, and falls through when a3(?) == 0.
-  The `beq` branch at 0x1003c5b0 targets 0x1003c638 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1003c5b0 targets 0x1003c638 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1003c5d8 targets 0x1003c61c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x1003c600 targets 0x1003c61c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x1003c614 targets 0x1003c638 and is always taken.
@@ -2242,7 +2242,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `beq` branch at 0x1003ecd0 targets 0x1003ecdc and is always taken.
   The `beq` branch at 0x1003eda8 targets 0x1003edfc, is taken when a3(=ret(__nw__GUi)) == 0, and falls through when a3(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x1003edf4 targets 0x1003ee00 and is always taken.
-  The `beq` branch at 0x10040418 targets 0x10040470 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10040418 targets 0x10040470 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10040468 targets 0x10040420, is taken when a1(?) < 0xf (signed), and falls through when a1(?) >= 0xf (signed).
   The return at 0x1004047c has v0 = ret(addAction__6VkMenuGPCcPGP10_WidgetRecPvT2_vPvi).
   The instructions from 0x10040484 to 0x10040494 are not reached by any path from the entry, and their branches are not listed.
@@ -2610,7 +2610,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x100416e8 calls VkGetResource__GPCcT1 with a0=0x10097898, a1=0x100978a8, a2=a0+242, a3=?, a4=a0+241, a5=a0+240.
   The `jalr` at 0x10041704 calls sscanf with a0=ret(VkGetResource__GPCcT1), a1=0x100aa5c8, a2=sp-160, a3=?.
   The `bgtz` branch at 0x100411f0 targets 0x100411c0, is taken when a7(?) > 0 (signed), and falls through when a7(?) <= 0 (signed).
-  The `beq` branch at 0x1004121c targets 0x1004125c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1004121c targets 0x1004125c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10041254 targets 0x10041224, is taken when a2(?) < 0xf (signed), and falls through when a2(?) >= 0xf (signed).
   The `beq` branch at 0x10041280 targets 0x100412cc, is taken when a6(=ret(__nw__GUi)) == 0, and falls through when a6(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x100412c4 targets 0x100412d0 and is always taken.
@@ -2653,7 +2653,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x100419e0 calls __dt__7FrameUIGv [0x10049cf0] with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
   The `jalr` at 0x10041a00 calls __dl__GPv with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10041804 targets 0x10041a08, is taken when at(=a0) == 0, and falls through when at(=a0) != 0.
-  The `beq` branch at 0x10041824 targets 0x10041904 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10041824 targets 0x10041904 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10041848 targets 0x100418e8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1004186c targets 0x100418e8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0x100418fc targets 0x1004182c, is taken when a3(?) < 0xf (signed), and falls through when a3(?) >= 0xf (signed).
@@ -2731,7 +2731,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10041e30 calls getTheErrorDialog__Gv with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10041e6c calls (unknown callee) with a0=([[ret(getTheErrorDialog__Gv)+8]+264] + ret(getTheErrorDialog__Gv)), a1=0x100978b8, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `beq` branch at 0x10041d60 targets 0x10041e2c, is taken when at(=[a0+264]) == v0(=-0x1), and falls through when at(=[a0+264]) != v0(=-0x1).
-  The `beq` branch at 0x10041d8c targets 0x10041e08 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10041d8c targets 0x10041e08 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10041dbc targets 0x10041dec, is taken when a3(?) != a4(=[a0+264]), and falls through when a3(?) == a4(=[a0+264]).
   The `beq` branch at 0x10041dd0 targets 0x10041dec, is taken when a4(=[a0+264]) == a5(?), and falls through when a4(=[a0+264]) != a5(?).
   The `bne` branch at 0x10041e00 targets 0x10041d94, is taken when a5(?) < 0xf (signed), and falls through when a5(?) >= 0xf (signed).
@@ -3015,7 +3015,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x10043808 calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0x100432a0 targets 0x100432fc, is taken when at(=[a0+264]) != v0(=-0x1), and falls through when at(=[a0+264]) == v0(=-0x1).
   The `beq` branch at 0x100432f4 targets 0x10043818 and is always taken.
-  The `beq` branch at 0x10043338 targets 0x1004370c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10043338 targets 0x1004370c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10043348 targets 0x10043388, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x10043358 targets 0x100433b0, is taken when a5(?) == a6(=0x1), and falls through when a5(?) != a6(=0x1).
   The `beq` branch at 0x10043368 targets 0x100433ec, is taken when a7(?) == t0(=0x2), and falls through when a7(?) != t0(=0x2).
@@ -3025,10 +3025,10 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `beq` branch at 0x100433e4 targets 0x10043478 and is always taken.
   The `beq` branch at 0x10043420 targets 0x10043478 and is always taken.
   The `beq` branch at 0x10043470 targets 0x10043478 and is always taken.
-  The `beq` branch at 0x10043484 targets 0x100436f0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10043484 targets 0x100436f0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10043498 targets 0x100436d4, is taken when a2(=[a0+264]) == a3(?), and falls through when a2(=[a0+264]) != a3(?).
   The `beq` branch at 0x100434c0 targets 0x100436d4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x100434f4 targets 0x100436d4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100434f4 targets 0x100436d4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10043504 targets 0x10043544, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x10043514 targets 0x1004356c, is taken when a7(?) == t0(=0x1), and falls through when a7(?) != t0(=0x1).
   The `beq` branch at 0x10043524 targets 0x100435a8, is taken when t1(?) == t2(=0x2), and falls through when t1(?) != t2(=0x2).
@@ -3098,11 +3098,11 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x10043bd8 calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10043c10 calls update__18GlobalsWindowClassGv [0x1004c180] with a0=[a0+44704], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x10043c20 calls setTitle__5FrameGv [0x10049500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `beq` branch at 0x100439e8 targets 0x10043ae4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100439e8 targets 0x10043ae4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10043a0c targets 0x10043ac8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0x10043a30 targets 0x10043aac, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x10043adc targets 0x100439f0, is taken when a5(?) < 0xf (signed), and falls through when a5(?) >= 0xf (signed).
-  The `beq` branch at 0x10043af0 targets 0x10043bfc and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10043af0 targets 0x10043bfc and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10043b18 targets 0x10043b84, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x10043b7c targets 0x10043be0 and is always taken.
   The `bne` branch at 0x10043bf4 targets 0x10043af8, is taken when a1(?) < 0xf (signed), and falls through when a1(?) >= 0xf (signed).
@@ -3199,7 +3199,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10044e60 calls XtSetSensitive with a0=ret(?), a1=?, a2=?, a3=?.
   The `bne` branch at 0x100446fc targets 0x100447a0, is taken when at(=[a0+152]) != v0(=a0+156), and falls through when at(=[a0+152]) == v0(=a0+156).
   The `beq` branch at 0x10044798 targets 0x10044834 and is always taken.
-  The `beq` branch at 0x10044840 targets 0x10044a48 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10044840 targets 0x10044a48 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1004485c targets 0x1004493c, is taken when a2(?) >= a3(=[[a0+152]+16]) (signed), and falls through when a2(?) < a3(=[[a0+152]+16]) (signed).
   The `beq` branch at 0x100448a4 targets 0x10044934, is taken when a2(=entry(0xae64)) == 0, and falls through when a2(=entry(0xae64)) != 0.
   The `beq` branch at 0x10044934 targets 0x10044a2c and is always taken.
@@ -3246,13 +3246,13 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `bne` branch at 0x10045004 targets 0x10045090, is taken when a0(=[sym(combination)+22744]) != a1, and falls through when a0(=[sym(combination)+22744]) == a1.
   The `beq` branch at 0x10045064 targets 0x10045074, is taken when a1(?) >= a2(=([sym(combination)+22748] + [sym(combination)+22756])) (signed), and falls through when a1(?) < a2(=([sym(combination)+22748] + [sym(combination)+22756])) (signed).
   The `beq` branch at 0x10045080 targets 0x10045090, is taken when a7(?) >= t0(=([sym(combination)+22752] + [sym(combination)+22760])) (signed), and falls through when a7(?) < t0(=([sym(combination)+22752] + [sym(combination)+22760])) (signed).
-  The `beq` branch at 0x100450dc targets 0x100452d4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100450dc targets 0x100452d4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10045114 targets 0x100451c8, is taken when at(?) >= v0(?) (signed), and falls through when at(?) < v0(?) (signed).
   The `beq` branch at 0x10045130 targets 0x1004519c, is taken when (v1(=a3) & a0(?)) == 0, and falls through when (v1(=a3) & a0(?)) != 0.
   The `beq` branch at 0x100451fc targets 0x100452b8, is taken when a6(?) >= a7(?) (signed), and falls through when a6(?) < a7(?) (signed).
   The `beq` branch at 0x10045218 targets 0x10045288, is taken when (t1(=a3) & t2(?)) == 0, and falls through when (t1(=a3) & t2(?)) != 0.
   The `bne` branch at 0x100452cc targets 0x100450e4, is taken when v0(?) < 0x2 (signed), and falls through when v0(?) >= 0x2 (signed).
-  The `beq` branch at 0x10045320 targets 0x100454d4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10045320 targets 0x100454d4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bgez` branch at 0x10045340 targets 0x100453c0, is taken when a3(?) >= 0 (signed), and falls through when a3(?) < 0 (signed).
   The `beq` branch at 0x1004534c targets 0x100453a0, is taken when a5(=a2) == 0, and falls through when a5(=a2) != 0.
   The `beq` branch at 0x100453b8 targets 0x100454b8 and is always taken.
@@ -3274,7 +3274,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   11 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1004571c, `sw` at 0x10045734, `sw` at 0x100457e4.
   The `bne` branch at 0x100455a0 targets 0x10045628, is taken when v0(?) != v1(=a1), and falls through when v0(?) == v1(=a1).
   The `beq` branch at 0x10045620 targets 0x10045694 and is always taken.
-  The `beq` branch at 0x100456a0 targets 0x10045854 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100456a0 targets 0x10045854 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bgez` branch at 0x100456c0 targets 0x10045740, is taken when v1(?) >= 0 (signed), and falls through when v1(?) < 0 (signed).
   The `beq` branch at 0x100456cc targets 0x10045720, is taken when a1(=a2) == 0, and falls through when a1(=a2) != 0.
   The `beq` branch at 0x10045738 targets 0x10045838 and is always taken.
@@ -3282,7 +3282,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `beq` branch at 0x10045798 targets 0x100457f0, is taken when t0(=a2) == 0, and falls through when t0(=a2) != 0.
   The `beq` branch at 0x100457e8 targets 0x10045838 and is always taken.
   The `bne` branch at 0x1004584c targets 0x100456a8, is taken when t9(?) < 0x2 (signed), and falls through when t9(?) >= 0x2 (signed).
-  The `beq` branch at 0x10045860 targets 0x10045a4c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10045860 targets 0x10045a4c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10045898 targets 0x1004594c, is taken when v1(?) >= a0(?) (signed), and falls through when v1(?) < a0(?) (signed).
   The `beq` branch at 0x100458b4 targets 0x10045920, is taken when (a1(=a3) & a2(?)) == 0, and falls through when (a1(=a3) & a2(?)) != 0.
   The `beq` branch at 0x1004597c targets 0x10045a30, is taken when t0(?) >= t1(?) (signed), and falls through when t0(?) < t1(?) (signed).
@@ -3548,7 +3548,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10047108 calls XtGetMultiClickTime with a0=ret(XtDisplay), a1=?, a2=?, a3=?.
   The `jal` at 0x10047148 calls showChannelAttributes__5FrameGv [0x100487f0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[0x100aa10c].
   The `jal` at 0x10047170 calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `beq` branch at 0x10046e28 targets 0x10046e6c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10046e28 targets 0x10046e6c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10046e48 targets 0x10046e6c, is taken when a0(?) == a1, and falls through when a0(?) != a1.
   The `bne` branch at 0x10046e64 targets 0x10046e30, is taken when a2(?) < 0xf (signed), and falls through when a2(?) >= 0xf (signed).
   The `bne` branch at 0x10046e8c targets 0x100470e0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
@@ -3664,7 +3664,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x100477e0 calls draw_channel__5FrameGi [0x10047860] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10047828 calls draw_channel__5FrameGi [0x10047860] with a0=a0 at entry (arg0), a1=[a0+264], a2=[a0+264], a3=-0x1.
   The `jalr` at 0x10047838 calls glDisable with a0=0xb24, a1=?, a2=?, a3=?.
-  The `beq` branch at 0x100477b8 targets 0x10047804 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100477b8 targets 0x10047804 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100477cc targets 0x100477e8, is taken when v1(=[a0+264]) == a0(?), and falls through when v1(=[a0+264]) != a0(?).
   The `bne` branch at 0x100477fc targets 0x100477c0, is taken when a0(?) < 0xf (signed), and falls through when a0(?) >= 0xf (signed).
   The `beq` branch at 0x10047810 targets 0x10047830, is taken when a2(=[a0+264]) == a3(=-0x1), and falls through when a2(=[a0+264]) != a3(=-0x1).
@@ -4056,7 +4056,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x1004b090 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004b0b0 calls VkGetResource__GPCcT1 with a0=0x100980b8, a1=0x100980d0, a2=?, a3=?.
   The `jal` at 0x1004b0cc calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
-  The `beq` branch at 0x1004af90 targets 0x1004b0f0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1004af90 targets 0x1004b0f0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1004b0e8 targets 0x1004af98, is taken when a1(?) < 0xf (signed), and falls through when a1(?) >= 0xf (signed).
   The `beq` branch at 0x1004b0f0 targets 0x1004b0f8 and is always taken.
   The return at 0x1004b104 has v0 = ret(__as__7EZColorGPc).

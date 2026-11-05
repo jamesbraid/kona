@@ -5222,7 +5222,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jal` at 0x1010caf4 calls (unnamed) [0x1010cdb4] with a0=0x2, a1=?, a2=?, a3=?.
   Calls fog+676 [0x1010cc38] via register-constant with a0=0xfffffffffff7ffff, a1=0xfffffffffffeffff, a2=0x1010cc38, a3=0xfffffffffffbffff, a4=0x101b5a28, a5=-0xf1, a6=-0x10, a7=0x0 (`jr` at 0x1010cbd0).
   The `beq` branch at 0x1010cab0 targets 0x1010caf0 and is always taken.
-  The `beq` branch at 0x1010cbc4 targets 0x1010cad4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1010cbc4 targets 0x1010cad4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The instructions from 0x1010cab8 to 0x1010caec are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x1010cbd8 to 0x1010cdb0 are not reached by any path from the entry, and their branches are not listed.
 - `i2c_test` in `usr/diags/IR/bin/irsaudit` at 0x10114668 (n32).

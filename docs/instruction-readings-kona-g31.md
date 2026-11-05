@@ -2036,7 +2036,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda2db70 targets 0xda2dab0, is taken when s0(?) != a1(=0x10), and falls through when s0(?) == a1(=0x10).
   The `beq` branch at 0xda2db78 targets 0xda2decc and is always taken.
   The `bne` branch at 0xda2db80 targets 0xda2dde4, is taken when v0(?) != at(=0x2), and falls through when v0(?) == at(=0x2).
-  The `beq` branch at 0xda2dbac targets 0xda2dcd0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda2dbac targets 0xda2dcd0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xda2dcc8 targets 0xda2dbb4, is taken when s0(?) != t3(=0x3), and falls through when s0(?) == t3(=0x3).
   The `beq` branch at 0xda2dddc targets 0xda2decc and is always taken.
   The `bne` branch at 0xda2de38 targets 0xda2de58, is taken when (t6(?) & t1(?)) != 0, and falls through when (t6(?) & t1(?)) == 0.
@@ -2182,7 +2182,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda2ea64 targets 0xda2e9a4, is taken when s0(?) != a0(=0x10), and falls through when s0(?) == a0(=0x10).
   The `beq` branch at 0xda2ea6c targets 0xda2edc0 and is always taken.
   The `bne` branch at 0xda2ea74 targets 0xda2ecd8, is taken when v0(?) != at(=0x2), and falls through when v0(?) == at(=0x2).
-  The `beq` branch at 0xda2eaa0 targets 0xda2ebc4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda2eaa0 targets 0xda2ebc4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xda2ebbc targets 0xda2eaa8, is taken when s0(?) != t3(=0x3), and falls through when s0(?) == t3(=0x3).
   The `beq` branch at 0xda2ecd0 targets 0xda2edc0 and is always taken.
   The `bne` branch at 0xda2ed30 targets 0xda2ed4c, is taken when (t9(?) & t1(?)) != 0, and falls through when (t9(?) & t1(?)) == 0.
@@ -2347,7 +2347,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda2f8f4 targets 0xda2f834, is taken when s0(?) != a1(=0x10), and falls through when s0(?) == a1(=0x10).
   The `beq` branch at 0xda2f8fc targets 0xda30b44 and is always taken.
   The `bnel` branch at 0xda2f904 targets 0xda2fb70, is taken when v0(?) != at(=0x2), and falls through when v0(?) == at(=0x2); its branch-likely delay slot `mtc1 zero,$f2` at 0xda2f908 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xda2f930 targets 0xda2fa54 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda2f930 targets 0xda2fa54 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xda2fa4c targets 0xda2f938, is taken when s0(?) != t2(=0x3), and falls through when s0(?) == t2(=0x3).
   The `beq` branch at 0xda2fb64 targets 0xda30b44 and is always taken.
   The `bne` branch at 0xda2fbd0 targets 0xda2fbe8, is taken when (t8(?) & s5(?)) != 0, and falls through when (t8(?) & s5(?)) == 0.
@@ -2588,7 +2588,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda316e4 targets 0xda31624, is taken when s0(?) != a0(=0x10), and falls through when s0(?) == a0(=0x10).
   The `beq` branch at 0xda316ec targets 0xda32900 and is always taken.
   The `bnel` branch at 0xda316f4 targets 0xda31960, is taken when v0(?) != at(=0x2), and falls through when v0(?) == at(=0x2); its branch-likely delay slot `mtc1 zero,$f2` at 0xda316f8 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xda31720 targets 0xda31844 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xda31720 targets 0xda31844 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xda3183c targets 0xda31728, is taken when s0(?) != t2(=0x3), and falls through when s0(?) == t2(=0x3).
   The `beq` branch at 0xda31954 targets 0xda32900 and is always taken.
   The `bne` branch at 0xda319c0 targets 0xda319d8, is taken when (t7(?) & s5(?)) != 0, and falls through when (t7(?) & s5(?)) == 0.

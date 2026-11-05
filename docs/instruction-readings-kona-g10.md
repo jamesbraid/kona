@@ -3846,7 +3846,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x100217e8 calls fprintf with a0=a1 at entry (arg1), a1=0x10176d68, a2=a3 at entry (arg3), a3=sym(hw_conf).
   Calls writeGoldCRC+304 [0x10021834] via register-constant with a0=a0 at entry (arg0), a1=0x101764f8, a2=0x10021834, a3=?, a5=0x10176d70, a6=0x0, a7=0x1 (`jr` at 0x10021880).
   The `beq` branch at 0x1002182c targets 0x100219cc and is always taken.
-  The `beq` branch at 0x10021874 targets 0x1002190c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10021874 targets 0x1002190c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100219e0 targets 0x10021874 and is always taken.
   The instructions from 0x10021834 to 0x10021870 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10021888 to 0x100219c8 are not reached by any path from the entry, and their branches are not listed.
@@ -4923,11 +4923,11 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x1006230c calls DgVDacControlWrite [0x10061ed0] with a0=a0 at entry (arg0), a1=0xd, a2=0x0, a3=?.
   The `jal` at 0x10062320 calls DgVDacControlWrite [0x10061ed0] with a0=a0 at entry (arg0), a1=0x9, a2=0x0, a3=?.
   The `jal` at 0x10062334 calls DgVDacControlWrite [0x10061ed0] with a0=a0 at entry (arg0), a1=0x204, a2=0x0, a3=?.
-  The `beq` branch at 0x10062140 targets 0x10062164 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10062140 targets 0x10062164 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10062158 targets 0x10062148, is taken when ra(?) != 0, and falls through when ra(?) == 0.
-  The `beq` branch at 0x1006217c targets 0x100621a0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1006217c targets 0x100621a0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10062194 targets 0x10062184, is taken when a0(?) != 0, and falls through when a0(?) == 0.
-  The `beq` branch at 0x1006221c targets 0x10062284 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1006221c targets 0x10062284 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1006227c targets 0x10062224, is taken when t8(?) < 0x100 (unsigned), and falls through when t8(?) >= 0x100 (unsigned).
   The return at 0x1006234c has v0 = ret(DgVDacControlWrite).
 

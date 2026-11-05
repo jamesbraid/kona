@@ -14259,7 +14259,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec43f8 targets 0xec440c, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0xec4404 targets 0xec441c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0xec4414 targets 0xec4420 and is always taken.
-  The `beq` branch at 0xec4448 targets 0xec4484 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0xec4448 targets 0xec4484 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0xec447c targets 0xec4450, is taken when ra(?) < 0x2e (signed), and falls through when ra(?) >= 0x2e (signed).
   The `beq` branch at 0xec45a4 targets 0xec48e8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0xec4908 targets 0xec4d80, is taken when v0(=ret(0xf01f90)) == 0, and falls through when v0(=ret(0xf01f90)) != 0.

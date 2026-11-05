@@ -1495,7 +1495,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1001f004 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101767d8, a2=[a3+8]:8, a3=[a3]:8.
   Calls collectCRC+344 [0x1001f050] via register-constant with a0=?, a1=0x10176800, a2=0x101764f8, a3=0x1001f050, a4=0x1 (`jr` at 0x1001f098).
   The `beq` branch at 0x1001f048 targets 0x1001f1a0 and is always taken.
-  The `beq` branch at 0x1001f08c targets 0x1001f118 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1001f08c targets 0x1001f118 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1001f1b4 targets 0x1001f08c and is always taken.
   The instructions from 0x1001f050 to 0x1001f088 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x1001f0a0 to 0x1001f19c are not reached by any path from the entry, and their branches are not listed.
@@ -1536,7 +1536,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10022a10 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10176f80, a2=a2 at entry (arg2), a3=?.
   Calls compareCRC+748 [0x10022c50] via register-constant with a0=a4 at entry (arg4), a1=a1+288, a2=0x102be948, a3=0x1, a4=a2+51632, a5=a1+50672, a6=a2+624, a7=a1+720 (`jr` at 0x10022bd0).
   The `beq` branch at 0x10022b34 targets 0x10022ba4 and is always taken.
-  The `beq` branch at 0x10022bc4 targets 0x10022b3c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10022bc4 targets 0x10022b3c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The instructions from 0x10022b3c to 0x10022ba0 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10022bd8 to 0x100235cc are not reached by any path from the entry, and their branches are not listed.
 

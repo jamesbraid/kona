@@ -7694,7 +7694,7 @@ Skipped routines: 7437 located, 12633 understood, and 8 no-software-dependency r
   The `jal` at 0x1016d894 calls jt_error [0x101687a0] with a0=0x101dd658, a1=0x101dd6f8, a2=?, a3=?.
   The `bltz` branch at 0x1016d294 targets 0x1016d474, is taken when a3(=[a0+8]-1) < 0 (signed), and falls through when a3(=[a0+8]-1) >= 0 (signed).
   The `bne` branch at 0x1016d2c0 targets 0x1016d450, is taken when a5(?) != a6(=0x1), and falls through when a5(?) == a6(=0x1).
-  The `beq` branch at 0x1016d33c targets 0x1016d390 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1016d33c targets 0x1016d390 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1016d36c targets 0x1016d3a8, is taken when t1(?) != t2(?), and falls through when t1(?) == t2(?).
   The `bne` branch at 0x1016d388 targets 0x1016d344, is taken when t3(?) < 0x2 (signed), and falls through when t3(?) >= 0x2 (signed).
   The `beq` branch at 0x1016d3a0 targets 0x1016d45c and is always taken.
@@ -9222,7 +9222,7 @@ Skipped routines: 7437 located, 12633 understood, and 8 no-software-dependency r
   The `bne` branch at 0x1003d550 targets 0x1003d470, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x1003d5d0 targets 0x1003d600, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0x1003d5ec targets 0x1003d600, is taken when a7(?) != t0(=0x3f), and falls through when a7(?) == t0(=0x3f).
-  The `beq` branch at 0x1003d61c targets 0x1003d818 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1003d61c targets 0x1003d818 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bgez` branch at 0x1003d650 targets 0x1003d69c, is taken when ra(=ret(0x1003b610)) >= 0 (signed), and falls through when ra(=ret(0x1003b610)) < 0 (signed).
   The `beq` branch at 0x1003d694 targets 0x1003d818 and is always taken.
   The `beq` branch at 0x1003d6a0 targets 0x1003d6b4, is taken when at(=ret(0x1003b610)) == 0, and falls through when at(=ret(0x1003b610)) != 0.
@@ -9426,7 +9426,7 @@ Skipped routines: 7437 located, 12633 understood, and 8 no-software-dependency r
   The `jal` at 0x10040dc0 calls rl_read_key [0x10045470] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10040e68 calls rl_abort [0x10048750] with a0=ret(rl_read_key), a1=0x20, a2=?, a3=ret(rl_read_key), a4=0x6e, a5=ret(rl_read_key), a6=0x4e, a7=ret(rl_read_key).
   The `jal` at 0x10040e7c calls ding [0x100485f0] with a0=?, a1=?, a2=?, a3=?.
-  The `beq` branch at 0x10040dac targets 0x10040e90 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10040dac targets 0x10040e90 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10040dd4 targets 0x10040dfc, is taken when ra(=ret(rl_read_key)) == at(=0x79), and falls through when ra(=ret(rl_read_key)) != at(=0x79).
   The `beq` branch at 0x10040de4 targets 0x10040dfc, is taken when v0(=ret(rl_read_key)) == v1(=0x59), and falls through when v0(=ret(rl_read_key)) != v1(=0x59).
   The `bne` branch at 0x10040df4 targets 0x10040e0c, is taken when a0(=ret(rl_read_key)) != a1(=0x20), and falls through when a0(=ret(rl_read_key)) == a1(=0x20).

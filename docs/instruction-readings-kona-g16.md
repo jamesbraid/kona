@@ -2841,7 +2841,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x10042064 targets 0x100422f4 and is always taken.
   The `beq` branch at 0x100420e8 targets 0x1004211c, is taken when v0(=ret(XGetGeometry)) == 0, and falls through when v0(=ret(XGetGeometry)) != 0.
   The `beq` branch at 0x100420f8 targets 0x1004211c, is taken when t1(?) == t2(?), and falls through when t1(?) != t2(?).
-  The `beq` branch at 0x10042128 targets 0x100421e0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10042128 targets 0x100421e0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10042164 targets 0x10042184, is taken when t9(?) == ra(?), and falls through when t9(?) != ra(?).
   The `beq` branch at 0x10042170 targets 0x10042184, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0x1004217c targets 0x10042194, is taken when v0(=ret(XQueryTree)) != 0, and falls through when v0(=ret(XQueryTree)) == 0.

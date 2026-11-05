@@ -3738,7 +3738,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x100edaf8 targets 0x100eedbc, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `beq` branch at 0x100edb0c targets 0x100edbbc, is taken when (t8(?) & 0x1) == 0, and falls through when (t8(?) & 0x1) != 0.
   The `beq` branch at 0x100edb28 targets 0x100eeaf0, is taken when (t2(?) & 0x80) == 0, and falls through when (t2(?) & 0x80) != 0.
-  The `beq` branch at 0x100edb60 targets 0x100edb90 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100edb60 targets 0x100edb90 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bltz` branch at 0x100edb68 targets 0x100edb94, is taken when a4(?) < 0 (signed), and falls through when a4(?) >= 0 (signed).
   The `beq` branch at 0x100edb74 targets 0x100edb90, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0x100edbbc targets 0x100eeffc, is taken when t3(?) != 0, and falls through when t3(?) == 0.
@@ -10922,7 +10922,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1010d248 targets 0x1010d740, is taken when v0(=[([[a0+152]+296] + ([a2+1]:1 << 0x3))-8]:1) == t9(=0x4), and falls through when v0(=[([[a0+152]+296] + ([a2+1]:1 << 0x3))-8]:1) != t9(=0x4).
   The `bne` branch at 0x1010d250 targets 0x1010cd04, is taken when t0(=one of 0x0, 0x1) != 0, and falls through when t0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1010d258 targets 0x1010d268 and is always taken.
-  The `bne` branch at 0x1010d260 targets 0x1010cd04 and is never taken: its operands are equal constants, so execution always falls through.
+  The `bne` branch at 0x1010d260 targets 0x1010cd04 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1010d268 targets 0x1010cd04, is taken when t1(=one of 0x0, 0x1) != 0, and falls through when t1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1010d270 targets 0x1010cc84 and is always taken.
   The `beq` branch at 0x1010d280 targets 0x1010d574, is taken when ra(=0x1) == a0(?), and falls through when ra(=0x1) != a0(?).
@@ -11702,7 +11702,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010fcb8 targets 0x1010fcd4, is taken when v0(=ret(getuid)) != 0, and falls through when v0(=ret(getuid)) == 0.
   The `beq` branch at 0x1010fccc targets 0x1010fd18 and is always taken.
   The `beq` branch at 0x1010fd00 targets 0x1010fd18, is taken when a7(=[(ret(strlen) + sp-1104)-1]:1) == t0(=0x2f), and falls through when a7(=[(ret(strlen) + sp-1104)-1]:1) != t0(=0x2f).
-  The `beq` branch at 0x1010fd24 targets 0x1010fdb0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1010fd24 targets 0x1010fdb0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1010fd2c targets 0x1010fdb0, is taken when a2(?) == a1(=0x2f), and falls through when a2(?) != a1(=0x2f).
   The `bne` branch at 0x1010fd78 targets 0x1010fe04, is taken when v1(?) < 0x401 (unsigned), and falls through when v1(?) >= 0x401 (unsigned).
   The `beq` branch at 0x1010fd84 targets 0x1010fda8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
@@ -15314,35 +15314,35 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1011e518 targets 0x1011e540, is taken when a0(=[0x102ca438]) == 0, and falls through when a0(=[0x102ca438]) != 0.
   The `beq` branch at 0x1011e524 targets 0x1011e540, is taken when v0(=[0x102ca43c]) == 0, and falls through when v0(=[0x102ca43c]) != 0.
   The `beq` branch at 0x1011e530 targets 0x1011e540, is taken when t9(=[[0x102ca43c]]) == 0, and falls through when t9(=[[0x102ca43c]]) != 0.
-  The `beq` branch at 0x1011e544 targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e544 targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e550 targets 0x1011e578, is taken when a0(=[0x102ca444]) == 0, and falls through when a0(=[0x102ca444]) != 0.
   The `beq` branch at 0x1011e55c targets 0x1011e578, is taken when v0(=[0x102ca448]) == 0, and falls through when v0(=[0x102ca448]) != 0.
   The `beq` branch at 0x1011e568 targets 0x1011e578, is taken when t9(=[[0x102ca448]]) == 0, and falls through when t9(=[[0x102ca448]]) != 0.
-  The `beq` branch at 0x1011e57c targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e57c targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e588 targets 0x1011e5b0, is taken when a0(=[0x102ca450]) == 0, and falls through when a0(=[0x102ca450]) != 0.
   The `beq` branch at 0x1011e594 targets 0x1011e5b0, is taken when v0(=[0x102ca454]) == 0, and falls through when v0(=[0x102ca454]) != 0.
   The `beq` branch at 0x1011e5a0 targets 0x1011e5b0, is taken when t9(=[[0x102ca454]]) == 0, and falls through when t9(=[[0x102ca454]]) != 0.
-  The `beq` branch at 0x1011e5b4 targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e5b4 targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e5c0 targets 0x1011e5e8, is taken when a0(=[0x102ca45c]) == 0, and falls through when a0(=[0x102ca45c]) != 0.
   The `beq` branch at 0x1011e5cc targets 0x1011e5e8, is taken when v0(=[0x102ca460]) == 0, and falls through when v0(=[0x102ca460]) != 0.
   The `beq` branch at 0x1011e5d8 targets 0x1011e5e8, is taken when t9(=[[0x102ca460]]) == 0, and falls through when t9(=[[0x102ca460]]) != 0.
-  The `beq` branch at 0x1011e5ec targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e5ec targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e5f8 targets 0x1011e620, is taken when a0(=[0x102ca468]) == 0, and falls through when a0(=[0x102ca468]) != 0.
   The `beq` branch at 0x1011e604 targets 0x1011e620, is taken when v0(=[0x102ca46c]) == 0, and falls through when v0(=[0x102ca46c]) != 0.
   The `beq` branch at 0x1011e610 targets 0x1011e620, is taken when t9(=[[0x102ca46c]]) == 0, and falls through when t9(=[[0x102ca46c]]) != 0.
-  The `beq` branch at 0x1011e624 targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e624 targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e630 targets 0x1011e658, is taken when a0(=[0x102ca474]) == 0, and falls through when a0(=[0x102ca474]) != 0.
   The `beq` branch at 0x1011e63c targets 0x1011e658, is taken when v0(=[0x102ca478]) == 0, and falls through when v0(=[0x102ca478]) != 0.
   The `beq` branch at 0x1011e648 targets 0x1011e658, is taken when t9(=[[0x102ca478]]) == 0, and falls through when t9(=[[0x102ca478]]) != 0.
-  The `beq` branch at 0x1011e65c targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e65c targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e668 targets 0x1011e690, is taken when a0(=[0x102ca480]) == 0, and falls through when a0(=[0x102ca480]) != 0.
   The `beq` branch at 0x1011e674 targets 0x1011e690, is taken when v0(=[0x102ca484]) == 0, and falls through when v0(=[0x102ca484]) != 0.
   The `beq` branch at 0x1011e680 targets 0x1011e690, is taken when t9(=[[0x102ca484]]) == 0, and falls through when t9(=[[0x102ca484]]) != 0.
-  The `beq` branch at 0x1011e694 targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e694 targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e6a0 targets 0x1011e6c8, is taken when a0(=[0x102ca48c]) == 0, and falls through when a0(=[0x102ca48c]) != 0.
   The `beq` branch at 0x1011e6ac targets 0x1011e6c8, is taken when v0(=[0x102ca490]) == 0, and falls through when v0(=[0x102ca490]) != 0.
   The `beq` branch at 0x1011e6b8 targets 0x1011e6c8, is taken when t9(=[[0x102ca490]]) == 0, and falls through when t9(=[[0x102ca490]]) != 0.
-  The `beq` branch at 0x1011e6cc targets 0x1011e704 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1011e6cc targets 0x1011e704 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1011e6d8 targets 0x1011e700, is taken when a0(=[0x102ca498]) == 0, and falls through when a0(=[0x102ca498]) != 0.
   The `beq` branch at 0x1011e6e4 targets 0x1011e700, is taken when v0(=[0x102ca49c]) == 0, and falls through when v0(=[0x102ca49c]) != 0.
   The `beq` branch at 0x1011e6f0 targets 0x1011e700, is taken when t9(=[[0x102ca49c]]) == 0, and falls through when t9(=[[0x102ca49c]]) != 0.
@@ -19041,12 +19041,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1012ee9c targets 0x1012f0f4, is taken when v1(=[a0+84]) != a0(=0x2), and falls through when v1(=[a0+84]) == a0(=0x2).
   The `bne` branch at 0x1012eea8 targets 0x1012f0f4, is taken when a0(=0x1) != a1(?), and falls through when a0(=0x1) == a1(?).
   The `beq` branch at 0x1012eec4 targets 0x1012eefc, is taken when a2(=[a0+16]) == 0, and falls through when a2(=[a0+16]) != 0.
-  The `beq` branch at 0x1012ef1c targets 0x1012f0f4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1012ef1c targets 0x1012f0f4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1012ef28 targets 0x1012f0f4, is taken when a5(=[0x102c7268]) == 0, and falls through when a5(=[0x102c7268]) != 0.
   The `beq` branch at 0x1012ef50 targets 0x1012f0f4 and is always taken.
   The `beq` branch at 0x1012ef5c targets 0x1012f0d4, is taken when a2(=[0x102c7268]) == 0, and falls through when a2(=[0x102c7268]) != 0.
   The `beq` branch at 0x1012ef84 targets 0x1012f0e0, is taken when a7(=[a0+108]) == 0, and falls through when a7(=[a0+108]) != 0.
-  The `beq` branch at 0x1012efb8 targets 0x1012eff4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1012efb8 targets 0x1012eff4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1012efc4 targets 0x1012eff4, is taken when a5(=[0x102c7268]) == 0, and falls through when a5(=[0x102c7268]) != 0.
   The `beq` branch at 0x1012f03c targets 0x1012f088, is taken when t8(?) >= ra(?) (signed), and falls through when t8(?) < ra(?) (signed).
   The `beq` branch at 0x1012f054 targets 0x1012f0fc, is taken when ra(=[0x102c6750]:8) == 0, and falls through when ra(=[0x102c6750]:8) != 0.
@@ -19232,7 +19232,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10130390 loads 4 bytes from [0x102c60d0] +0x8.
   The `jalr` at 0x10130398 calls (unknown callee) with a0=0x102c60d0, a1=sp-32, a2=0x3, a3=0x102c60d0, a4=[0x102c60d0], a6=0x102d0000.
   The `beq` branch at 0x1013037c targets 0x101303a0, is taken when a4(=[0x102c60d0]) == 0, and falls through when a4(=[0x102c60d0]) != 0.
-  The `beq` branch at 0x10130388 targets 0x101303a0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10130388 targets 0x101303a0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The return at 0x101303a8 has v0 = one of table(0x102c5d40), ret(?).
 - `AccessChangeProperty` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10130c00 (n32).
   Evidence grade: inferred.
@@ -22096,13 +22096,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013c934 targets 0x1013cad4, is taken when (v1(?) & 0x1) == 0, and falls through when (v1(?) & 0x1) != 0.
   The `bne` branch at 0x1013c940 targets 0x1013c928, is taken when s0(?) != s1(=0x102cc0f8), and falls through when s0(?) == s1(=0x102cc0f8).
   The `beq` branch at 0x1013c960 targets 0x1013cb48, is taken when (v1(=[[0x102cc410]+4]) & 0x1) == 0, and falls through when (v1(=[[0x102cc410]+4]) & 0x1) != 0.
-  The `beq` branch at 0x1013c96c targets 0x1013c9ec and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1013c96c targets 0x1013c9ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1013c980 targets 0x1013cb60, is taken when (v1(=[[0x102cc418]+4]) & 0x1) == 0, and falls through when (v1(=[[0x102cc418]+4]) & 0x1) != 0.
-  The `beq` branch at 0x1013c98c targets 0x1013c9ec and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1013c98c targets 0x1013c9ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1013c9a0 targets 0x1013cb70, is taken when (v1(=[[0x102cc420]+4]) & 0x1) == 0, and falls through when (v1(=[[0x102cc420]+4]) & 0x1) != 0.
-  The `beq` branch at 0x1013c9ac targets 0x1013c9ec and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1013c9ac targets 0x1013c9ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1013c9c0 targets 0x1013cb80, is taken when (v1(=[[0x102cc428]+4]) & 0x1) == 0, and falls through when (v1(=[[0x102cc428]+4]) & 0x1) != 0.
-  The `beq` branch at 0x1013c9cc targets 0x1013c9ec and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1013c9cc targets 0x1013c9ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1013c9e0 targets 0x1013cb90, is taken when (v1(=[[0x102cc430]+4]) & 0x1) == 0, and falls through when (v1(=[[0x102cc430]+4]) & 0x1) != 0.
   The `blez` branch at 0x1013c9f4 targets 0x1013cb58, is taken when v1(=[0x102c6c30]) <= 0 (signed), and falls through when v1(=[0x102c6c30]) > 0 (signed).
   The `beq` branch at 0x1013ca04 targets 0x1013ca18, is taken when a2(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a2(=[sym(__us_rsthread_malloc)]) != 0.
@@ -28839,7 +28839,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10156dc0 targets 0x10156db0, is taken when v0(=0x20) == a6(?), and falls through when v0(=0x20) != a6(?).
   The `beq` branch at 0x10156dc8 targets 0x10156dd4 and is always taken.
   The `bltz` branch at 0x10156e14 targets 0x10157240, is taken when v0(=ret(open)) < 0 (signed), and falls through when v0(=ret(open)) >= 0 (signed).
-  The `beq` branch at 0x10156e40 targets 0x10157240 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10156e40 targets 0x10157240 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x10156e4c targets 0x10156e80, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `bne` branch at 0x10156e54 targets 0x10156e84, is taken when t8(=[0x102c89c8]:1) != 0, and falls through when t8(=[0x102c89c8]:1) == 0.
   The `beq` branch at 0x10156e78 targets 0x10156e94 and is always taken.
@@ -28911,22 +28911,22 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101574c0 targets 0x10158334, is taken when ra(=[0x102c89c8]:1) == 0, and falls through when ra(=[0x102c89c8]:1) != 0.
   The `beq` branch at 0x101574c8 targets 0x101574e0, is taken when v0(=[0x102c89b8]) == 0, and falls through when v0(=[0x102c89b8]) != 0.
   The `beq` branch at 0x101574d4 targets 0x10158360, is taken when (v0(=[0x102c89c8]:1) & 0x1) == 0, and falls through when (v0(=[0x102c89c8]:1) & 0x1) != 0.
-  The `beq` branch at 0x101574e8 targets 0x101575d0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x101574e8 targets 0x101575d0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x101574f0 targets 0x10157500, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
   The `beq` branch at 0x101574f8 targets 0x10158384, is taken when a2(=[0x102c89c8]:1) == 0, and falls through when a2(=[0x102c89c8]:1) != 0.
   The `beq` branch at 0x10157504 targets 0x1015751c, is taken when a3(=[0x102c89b8]) == 0, and falls through when a3(=[0x102c89b8]) != 0.
   The `beq` branch at 0x10157510 targets 0x10158398, is taken when (v0(=[0x102c89c8]:1) & 0x1) == 0, and falls through when (v0(=[0x102c89c8]:1) & 0x1) != 0.
-  The `beq` branch at 0x10157524 targets 0x101575d0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10157524 targets 0x101575d0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x1015752c targets 0x1015753c, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
   The `beq` branch at 0x10157534 targets 0x101583bc, is taken when a7(=[0x102c89c8]:1) == 0, and falls through when a7(=[0x102c89c8]:1) != 0.
   The `beq` branch at 0x10157540 targets 0x10157558, is taken when t0(=[0x102c89b8]) == 0, and falls through when t0(=[0x102c89b8]) != 0.
   The `beq` branch at 0x1015754c targets 0x101583d8, is taken when (v0(=[0x102c89c8]:1) & 0x1) == 0, and falls through when (v0(=[0x102c89c8]:1) & 0x1) != 0.
-  The `beq` branch at 0x10157560 targets 0x101575d0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10157560 targets 0x101575d0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x10157568 targets 0x10157578, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
   The `beq` branch at 0x10157570 targets 0x101583fc, is taken when t8(=[0x102c89c8]:1) == 0, and falls through when t8(=[0x102c89c8]:1) != 0.
   The `beq` branch at 0x1015757c targets 0x10157594, is taken when t9(=[0x102c89b8]) == 0, and falls through when t9(=[0x102c89b8]) != 0.
   The `beq` branch at 0x10157588 targets 0x1015841c, is taken when (v0(=[0x102c89c8]:1) & 0x1) == 0, and falls through when (v0(=[0x102c89c8]:1) & 0x1) != 0.
-  The `beq` branch at 0x1015759c targets 0x101575d0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1015759c targets 0x101575d0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x101575a4 targets 0x101575b4, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
   The `beq` branch at 0x101575ac targets 0x10158440, is taken when a1(=[0x102c89c8]:1) == 0, and falls through when a1(=[0x102c89c8]:1) != 0.
   The `beq` branch at 0x101575b8 targets 0x101575d0, is taken when a2(=[0x102c89b8]) == 0, and falls through when a2(=[0x102c89b8]) != 0.

@@ -2686,7 +2686,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `beq` branch at 0x1002eb18 targets 0x1002eb24 and is always taken.
   The `beq` branch at 0x1002ef84 targets 0x1002efd8, is taken when a2(=ret(__nw__GUi)) == 0, and falls through when a2(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x1002efd0 targets 0x1002efdc and is always taken.
-  The `beq` branch at 0x100309d8 targets 0x10030aa4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100309d8 targets 0x10030aa4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100309e8 targets 0x10030a88, is taken when a2(?) == a3(=0x1), and falls through when a2(?) != a3(=0x1).
   The `beq` branch at 0x100309f8 targets 0x10030a88, is taken when a4(?) == a5(=0x8), and falls through when a4(?) != a5(=0x8).
   The `beq` branch at 0x10030a08 targets 0x10030a88, is taken when a6(?) == a7(=0xb), and falls through when a6(?) != a7(=0xb).

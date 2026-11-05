@@ -100,7 +100,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `jalr` at 0x10047ee8 calls strcmp with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
   The `bne` branch at 0x10047e5c targets 0x10047e70, is taken when at(=[0x1024ac94]) != 0, and falls through when at(=[0x1024ac94]) == 0.
   The `beq` branch at 0x10047e68 targets 0x10047f4c and is always taken.
-  The `beq` branch at 0x10047e7c targets 0x10047f44 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10047e7c targets 0x10047f44 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10047eb0 targets 0x10047f28, is taken when a0(?) != a1(=[a0]:1), and falls through when a0(?) == a1(=[a0]:1).
   The `bne` branch at 0x10047ef0 targets 0x10047f28, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x10047f20 targets 0x10047f4c and is always taken.
@@ -642,7 +642,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `bne` branch at 0x10049cf0 targets 0x10049cc4, is taken when a3(?) < a4(=a0) (signed), and falls through when a3(?) >= a4(=a0) (signed).
   The `beq` branch at 0x10049d3c targets 0x1004a07c and is always taken.
   The `bne` branch at 0x10049d4c targets 0x10049e24, is taken when ra(=a0) < 0x401 (signed), and falls through when ra(=a0) >= 0x401 (signed).
-  The `beq` branch at 0x10049d60 targets 0x10049d98 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10049d60 targets 0x10049d98 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10049d90 targets 0x10049d68, is taken when v0(?) < 0x400 (signed), and falls through when v0(?) >= 0x400 (signed).
   The `beq` branch at 0x10049d9c targets 0x10049e18, is taken when a3(=a0) == 0, and falls through when a3(=a0) != 0.
   The `bne` branch at 0x10049dac targets 0x10049dc4, is taken when a4(?) < 0x401 (signed), and falls through when a4(?) >= 0x401 (signed).
@@ -1647,7 +1647,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `jalr` at 0x1004de04 calls read with a0=[a0+14]:2, a1=sp-64, a2=0x1, a3=?.
   The `jalr` at 0x1004de88 calls fcntl with a0=[a0+14]:2, a1=0x3, a2=0x0, a3=?, a4=ret(read), a6=[sym(errno)], a7=0xb.
   The `jalr` at 0x1004def0 calls fcntl with a0=[a0+14]:2, a1=0x4, a2=?, a3=?.
-  The `beq` branch at 0x1004dde0 targets 0x1004df44 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1004dde0 targets 0x1004df44 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1004de1c targets 0x1004de34, is taken when a1(=ret(read)) != a2(=0x1), and falls through when a1(=ret(read)) == a2(=0x1).
   The `beq` branch at 0x1004de2c targets 0x1004df44 and is always taken.
   The `bne` branch at 0x1004de38 targets 0x1004de50, is taken when a4(=ret(read)) != 0, and falls through when a4(=ret(read)) == 0.
@@ -3833,7 +3833,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `sw` at 0x1005a248 stores 4 bytes to sym(_rl_keymap) +0x0.
   The `jal` at 0x1005a0c4 calls rl_make_bare_keymap [0x10060ce0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0x1005a0b0 targets 0x1005a22c, is taken when at(=[0x1024ae54]) != 0, and falls through when at(=[0x1024ae54]) == 0.
-  The `beq` branch at 0x1005a0ec targets 0x1005a13c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1005a0ec targets 0x1005a13c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1005a134 targets 0x1005a0f4, is taken when a0(?) < 0x7f (signed), and falls through when a0(?) >= 0x7f (signed).
   The `bne` branch at 0x1005a1dc targets 0x1005a22c, is taken when a3(=[sym(vi_insertion_keymap)+64]:1) != 0, and falls through when a3(=[sym(vi_insertion_keymap)+64]:1) == 0.
   The `bne` branch at 0x1005a200 targets 0x1005a22c, is taken when t0(=[sym(vi_insertion_keymap)+68]) != t1(=sym(rl_rubout)), and falls through when t0(=[sym(vi_insertion_keymap)+68]) == t1(=sym(rl_rubout)).
@@ -4450,7 +4450,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `jalr` at 0x1005e374 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1005e3b8 calls xrealloc [0x100619d0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1005e43c calls free with a0=?, a1=?, a2=?, a3=?.
-  The `beq` branch at 0x1005dbbc targets 0x1005e468 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1005dbbc targets 0x1005e468 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1005dbdc targets 0x1005dc0c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0x1005dbec targets 0x1005dc0c, is taken when a1(?) == a2(=0x2), and falls through when a1(?) != a2(=0x2).
   The `beq` branch at 0x1005dbfc targets 0x1005df7c, is taken when a3(?) == a4(=0x1), and falls through when a3(?) != a4(=0x1).
@@ -4562,7 +4562,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `bne` branch at 0x1005e76c targets 0x1005e7b4, is taken when ra(=ret(rl_invoking_keyseqs_in_map)) != 0, and falls through when ra(=ret(rl_invoking_keyseqs_in_map)) == 0.
   The `beq` branch at 0x1005e7ac targets 0x1005e9d8 and is always taken.
   The `beq` branch at 0x1005e804 targets 0x1005e8f0, is taken when a1(=entry(0x0)) == 0, and falls through when a1(=entry(0x0)) != 0.
-  The `beq` branch at 0x1005e814 targets 0x1005e8f0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1005e814 targets 0x1005e8f0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1005e834 targets 0x1005e858, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x1005e850 targets 0x1005e86c and is always taken.
   The `beq` branch at 0x1005e8d8 targets 0x1005e8f0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
@@ -4705,9 +4705,9 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10060d4c, `sw` at 0x10060db4.
   The `lw` at 0x10060da0 loads 4 bytes from abs 0x1014c554.
   The `jal` at 0x10060d08 calls xmalloc [0x10061950] with a0=0x800, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `beq` branch at 0x10060d20 targets 0x10060d6c and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060d20 targets 0x10060d6c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10060d64 targets 0x10060d28, is taken when v0(?) < 0x100 (signed), and falls through when v0(?) >= 0x100 (signed).
-  The `beq` branch at 0x10060d7c targets 0x10060dd4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060d7c targets 0x10060dd4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10060dcc targets 0x10060d84, is taken when a6(?) < 0x5b (signed), and falls through when a6(?) >= 0x5b (signed).
   The return at 0x10060de4 has v0 = ret(xmalloc).
 - `rl_copy_keymap` in `usr/gfx/KONA/bin/kpm` at 0x10060df0 (n32).
@@ -4721,7 +4721,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `lw` at 0x10060e70 loads 4 bytes from ?.
   The `sw` at 0x10060e84 stores 4 bytes to ?.
   The `jal` at 0x10060e18 calls rl_make_bare_keymap [0x10060ce0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `beq` branch at 0x10060e30 targets 0x10060ea4 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060e30 targets 0x10060ea4 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10060e9c targets 0x10060e38, is taken when v0(?) < 0x100 (signed), and falls through when v0(?) >= 0x100 (signed).
   The return at 0x10060eb4 has v0 = ret(rl_make_bare_keymap).
 - `rl_make_keymap` in `usr/gfx/KONA/bin/kpm` at 0x10060ec0 (n32).
@@ -4737,11 +4737,11 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `sw` at 0x10060f70 stores 4 bytes to ret(rl_make_bare_keymap) +0x3fc.
   The `sw` at 0x10060f88 stores 4 bytes to ret(rl_make_bare_keymap) +0x44.
   The `jal` at 0x10060ee4 calls rl_make_bare_keymap [0x10060ce0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `beq` branch at 0x10060f00 targets 0x10060f44 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060f00 targets 0x10060f44 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10060f3c targets 0x10060f08, is taken when v1(?) < 0x7e (signed), and falls through when v1(?) >= 0x7e (signed).
-  The `beq` branch at 0x10060f9c targets 0x10060fe0 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060f9c targets 0x10060fe0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x10060fd8 targets 0x10060fa4, is taken when a7(?) < 0xa0 (signed), and falls through when a7(?) >= 0xa0 (signed).
-  The `beq` branch at 0x10060ff0 targets 0x10061034 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10060ff0 targets 0x10061034 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1006102c targets 0x10060ff8, is taken when t8(?) < 0x100 (signed), and falls through when t8(?) >= 0x100 (signed).
   The return at 0x10061044 has v0 = ret(rl_make_bare_keymap).
 - `rl_discard_keymap` in `usr/gfx/KONA/bin/kpm` at 0x10061050 (n32).
@@ -4757,7 +4757,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `jalr` at 0x10061134 calls free with a0=?, a1=?, a2=?, a3=0x1, a5=0x2.
   The `bne` branch at 0x10061070 targets 0x10061080, is taken when at(=a0) != 0, and falls through when at(=a0) == 0.
   The `beq` branch at 0x10061078 targets 0x10061160 and is always taken.
-  The `beq` branch at 0x1006108c targets 0x10061160 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x1006108c targets 0x10061160 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100610ac targets 0x100610dc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100610bc targets 0x100610e4, is taken when a2(?) == a3(=0x1), and falls through when a2(?) != a3(=0x1).
   The `beq` branch at 0x100610cc targets 0x10061114, is taken when a4(?) == a5(=0x2), and falls through when a4(?) != a5(=0x2).
@@ -4878,7 +4878,7 @@ Skipped routines: 7640 located, 12633 understood, and 8 no-software-dependency r
   The `jal` at 0x10062120 calls xrealloc [0x100619d0] with a0=?, a1=?, a2=?, a3=ret(strlen).
   The `jalr` at 0x1006214c calls strcpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10062174 calls free with a0=?, a1=?, a2=?, a3=?.
-  The `beq` branch at 0x10061ef0 targets 0x10062188 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x10061ef0 targets 0x10062188 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10061f34 targets 0x10061f78, is taken when ra(?) >= at(?) (signed), and falls through when ra(?) < at(?) (signed).
   The `bne` branch at 0x10061fe4 targets 0x10062008, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `bne` branch at 0x10061ff0 targets 0x10062008, is taken when a1(=ret(0x10061cf0)) != 0, and falls through when a1(=ret(0x10061cf0)) == 0.

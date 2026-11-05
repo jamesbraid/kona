@@ -7246,7 +7246,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `lw` at 0x100921c8 loads 4 bytes from [0x102c60dc] +0x4.
   The `jalr` at 0x100921d4 calls (unknown callee) with a0=0x102c60dc, a1=0x1015d580, a2=0x0, a3=a3 at entry (arg3), a4=[0x102c60dc].
   The `jal` at 0x100921f4 calls XagAppGroupFree..DJD [0x102341b0] with a0=[0x102ca8c0], a1=0x0, a2=?, a3=?.
-  The `beq` branch at 0x100921b8 targets 0x100921dc and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100921b8 targets 0x100921dc and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100921c0 targets 0x100921dc, is taken when a4(=[0x102c60dc]) == 0, and falls through when a4(=[0x102c60dc]) != 0.
   The `beq` branch at 0x100921e0 targets 0x10092208, is taken when a0(=[0x102ca8c0]) == 0, and falls through when a0(=[0x102ca8c0]) != 0.
   The `bne` branch at 0x10092200 targets 0x100921f0, is taken when a0(=[0x102ca8c0]) != 0, and falls through when a0(=[0x102ca8c0]) == 0.
@@ -9431,7 +9431,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `beq` branch at 0x100b3550 targets 0x100b3738, is taken when s1(=[0x102c727c]) == 0, and falls through when s1(=[0x102c727c]) != 0.
   The `beq` branch at 0x100b357c targets 0x100b35e0, is taken when t8(=[0x102c7268]) == 0, and falls through when t8(=[0x102c7268]) != 0.
   The `beq` branch at 0x100b3598 targets 0x100b36a8, is taken when v0(=[a0+108]) == 0, and falls through when v0(=[a0+108]) != 0.
-  The `beq` branch at 0x100b35b4 targets 0x100b35d8 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100b35b4 targets 0x100b35d8 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100b35c0 targets 0x100b35d8, is taken when v0(=[0x102c7268]) == 0, and falls through when v0(=[0x102c7268]) != 0.
   The `beq` branch at 0x100b35d8 targets 0x100b35e8 and is always taken.
   The `beq` branch at 0x100b3624 targets 0x100b36c0, is taken when a4(?) >= a6(?) (signed), and falls through when a4(?) < a6(?) (signed).
@@ -9447,7 +9447,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `beq` branch at 0x100b379c targets 0x100b3688 and is always taken.
   The `bne` branch at 0x100b37a8 targets 0x100b36b8, is taken when a1(=0x1) != ra(=[a2]:1), and falls through when a1(=0x1) == ra(=[a2]:1).
   The `beq` branch at 0x100b37b4 targets 0x100b37ec, is taken when at(=[a0+16]) == 0, and falls through when at(=[a0+16]) != 0.
-  The `beq` branch at 0x100b380c targets 0x100b36b8 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100b380c targets 0x100b36b8 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100b3818 targets 0x100b36b8, is taken when v0(=[0x102c7268]) == 0, and falls through when v0(=[0x102c7268]) != 0.
   The `beq` branch at 0x100b382c targets 0x100b36b8 and is always taken.
   The `beq` branch at 0x100b3838 targets 0x100b3660 and is always taken.
@@ -10067,9 +10067,9 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `beq` branch at 0x100c0370 targets 0x100c05cc, is taken when a0(=[sym(panoramiXDisabled)]) == 0, and falls through when a0(=[sym(panoramiXDisabled)]) != 0.
   The `beq` branch at 0x100c03e8 targets 0x100c05d4, is taken when a0(=[sym(panoramiXDisabled)]) == 0, and falls through when a0(=[sym(panoramiXDisabled)]) != 0.
   The `beq` branch at 0x100c03f8 targets 0x100c0420, is taken when a2(=[0x102c60dc]) == 0, and falls through when a2(=[0x102c60dc]) != 0.
-  The `beq` branch at 0x100c040c targets 0x100c0420 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100c040c targets 0x100c0420 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100c0424 targets 0x100c0450, is taken when a2(=[0x102c60e4]) == 0, and falls through when a2(=[0x102c60e4]) != 0.
-  The `beq` branch at 0x100c043c targets 0x100c0450 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100c043c targets 0x100c0450 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100c04a4 targets 0x100c0654, is taken when a4(=[a0+16]) == 0, and falls through when a4(=[a0+16]) != 0.
   The `beq` branch at 0x100c0528 targets 0x100c066c, is taken when v1(=[0x102c6098]) == 0, and falls through when v1(=[0x102c6098]) != 0.
   The `beq` branch at 0x100c05a8 targets 0x100c02d8 and is always taken.
@@ -11413,13 +11413,13 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `beq` branch at 0x100ea520 targets 0x100ea548 and is always taken.
   The `bltz` branch at 0x100ea538 targets 0x100eb030, is taken when at(=[a0]-1) < 0 (signed), and falls through when at(=[a0]-1) >= 0 (signed).
   The `beq` branch at 0x100ea548 targets 0x100ea558, is taken when a2(?) == s5(=-0x1), and falls through when a2(?) != s5(=-0x1).
-  The `beq` branch at 0x100ea55c targets 0x100ea630 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100ea55c targets 0x100ea630 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100ea564 targets 0x100ea5b0, is taken when v1(=[sym(__us_rsthread_stdio)]) == 0, and falls through when v1(=[sym(__us_rsthread_stdio)]) != 0.
   The `beq` branch at 0x100ea574 targets 0x100ea5d0 and is always taken.
   The `beq` branch at 0x100ea588 targets 0x100e9b24 and is always taken.
   The `bltz` branch at 0x100ea5c0 targets 0x100eb044, is taken when v1(=[a0]-1) < 0 (signed), and falls through when v1(=[a0]-1) >= 0 (signed).
   The `beq` branch at 0x100ea5d0 targets 0x100ea5e0, is taken when a2(?) == s5(=-0x1), and falls through when a2(?) != s5(=-0x1).
-  The `beq` branch at 0x100ea5e4 targets 0x100ea630 and is never taken: its operands are equal constants, so execution always falls through.
+  The `beq` branch at 0x100ea5e4 targets 0x100ea630 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100ea5ec targets 0x100ea604, is taken when a1(=[sym(__us_rsthread_stdio)]) == 0, and falls through when a1(=[sym(__us_rsthread_stdio)]) != 0.
   The `beq` branch at 0x100ea5fc targets 0x100ea624 and is always taken.
   The `bltz` branch at 0x100ea60c targets 0x100eb070, is taken when a2(=[a0]-1) < 0 (signed), and falls through when a2(=[a0]-1) >= 0 (signed).
