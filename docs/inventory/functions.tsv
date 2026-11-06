@@ -19750,7 +19750,7 @@ usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dynsym	6131c2d0f696		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dynsym	fb2b8ecd7057		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dynsym	25ad12748ee9		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.init	0xd8427a0	56	_init	dwarf	030d6e167d4d		in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
+usr/gfx/arch/IP27KONA32/libGL.so	board-library	n32	.init	0xd8427a0	56	_init	dwarf	030d6e167d4d		in	located	docs/instruction-readings-kona-g47.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.MIPS.stubs	0xd947be0	884	_stub	dwarf	31a4318902bf		in	located	docs/instruction-readings-kona-g37.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754		in	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
@@ -25330,7 +25330,7 @@ usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675df0	336	__glx_GetInstr
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2675f40	336	__glx_InstrumentsBufferSGIX	dynsym	e474f594f189		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x2676090	364	__glx_PollInstrumentsSGIX	dynsym	e8f35257b752		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64		0x26761fc	268	__glx_FlushRasterSGIX	dynsym	179558cdf5ee		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.init	0x2677350	60	_init	dwarf	e549df94587e		in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
+usr/gfx/arch/IP27KONA64/libGL.so	board-library	n64	.init	0x2677350	60	_init	dwarf	e549df94587e		in	located	docs/instruction-readings-kona-g47.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.MIPS.stubs	0x2da9cc0	708	_stub	dwarf	8833751f2b99		in	located	docs/instruction-readings-kona-g37.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2da9f90	712	GetBoardInfo	dwarf	d8ecaf2b0c93		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP27KONA64/libGLcore.so	board-library	n64	.text	0x2daa260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
@@ -36449,7 +36449,7 @@ usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841270	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd8413c0	336	__glx_InstrumentsBufferSGIX	dynsym	6131c2d0f696		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd841510	364	__glx_PollInstrumentsSGIX	dynsym	fb2b8ecd7057		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32		0xd84167c	268	__glx_FlushRasterSGIX	dynsym	25ad12748ee9		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.init	0xd8427a0	56	_init	dwarf	030d6e167d4d		in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
+usr/gfx/arch/IP35KONA32/libGL.so	board-library	n32	.init	0xd8427a0	56	_init	dwarf	030d6e167d4d		in	located	docs/instruction-readings-kona-g47.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.MIPS.stubs	0xd947be0	884	_stub	dwarf	31a4318902bf		in	located	docs/instruction-readings-kona-g37.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd947f60	692	GetBoardInfo	dwarf+funcnames	32099000c754		in	understood	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA32/libGLcore.so	board-library	n32	.text	0xd948220	88	ChangeWindowSize	dwarf+funcnames	1d6089bd1536		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
@@ -42029,7 +42029,7 @@ usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175df0	336	__glx_GetInstr
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2175f40	336	__glx_InstrumentsBufferSGIX	dynsym	e474f594f189		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x2176090	364	__glx_PollInstrumentsSGIX	dynsym	e8f35257b752		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64		0x21761fc	268	__glx_FlushRasterSGIX	dynsym	179558cdf5ee		in	located	docs/instruction-readings-kona-g29.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
-usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.init	0x2177350	60	_init	dwarf	e549df94587e		in	named-only	docs/libraries.md#the-libgl-builds	The libGL builds
+usr/gfx/arch/IP35KONA64/libGL.so	board-library	n64	.init	0x2177350	60	_init	dwarf	e549df94587e		in	located	docs/instruction-readings-kona-g47.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.MIPS.stubs	0x2189cc0	708	_stub	dwarf	8833751f2b99		in	located	docs/instruction-readings-kona-g37.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x2189f90	712	GetBoardInfo	dwarf	d8ecaf2b0c93		in	located	docs/opengl.md#getboardinfo	`GetBoardInfo`
 usr/gfx/arch/IP35KONA64/libGLcore.so	board-library	n64	.text	0x218a260	88	ChangeWindowSize	dwarf	e9123a7543f9		in	understood	docs/opengl.md#display-and-scanout	Display and scanout
