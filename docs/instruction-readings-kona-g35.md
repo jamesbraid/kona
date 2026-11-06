@@ -960,9 +960,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda6dcbc loads 4 bytes from t0 +0x1050.
   The `lw` at 0xda6dcc4 loads 4 bytes from ([0x1010] + t0) +0x17f8.
   3 such `sw` accesses store 4 bytes to t0 +0x1050, including `sw` at 0xda6dccc, `sw` at 0xda6dd74, `sw` at 0xda6dd94.
-  The `lw` at 0xda6dcd8 loads 4 bytes from (entry(0x19680) + t0) +0x0.
+  2 such `lw` accesses load 4 bytes from (entry(0x19680) + t0) +0x0, including `lw` at 0xda6dcd8, `lw` at 0xda6dd80.
   The `lw` at 0xda6dd6c loads 4 bytes from ([0x1010] + t0) +0x26c0.
-  The `lw` at 0xda6dd80 loads 4 bytes from ?.
   The `bal` at 0xda6dca0 calls __glce_common_listable+160 [0xda6dca8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda6dce0 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xda6dd88 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).

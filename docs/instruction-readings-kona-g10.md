@@ -991,13 +991,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x100bcb18 calls init_config [0x100bdeac] with a0=[sym(pix_size)], a1=[sym(color_mode)], a2=[sym(wmask_red)], a3=[sym(wmask_grn)], a4=[sym(wmask_blu)], a5=[sym(wmask_alp)], a6=[sym(wmask_bit)], a7=[sym(read_format)].
   The `jal` at 0x100bcc18 calls init_op [0x100be2c0] with a0=[sym(draw_buffers)], a1=[sym(addr_pkt)], a2=[sym(clear_repeat)], a3=[sym(clear_tag)], a4=[sym(clear_color)], a5=[sym(clear_depth)], a6=[sym(clear_stencil)], a7=[sym(clear_accum)].
   The `jal` at 0x100bcc7c calls init_ms [0x100be7c4] with a0=[sym(ms_enable)], a1=[sym(num_samples)], a2=[sym(maintain)], a3=[sym(optimize)].
-  The `jal` at 0x100bccd8 calls init_clip [0x100bea14] with a0=[sym(clip_enable)], a1=[sym(clip_ref)], a2=[sym(clip_mask)], a3=?, a5=[0x102f7508], a6=[0x102f7248].
+  The `jal` at 0x100bccd8 calls init_clip [0x100bea14] with a0=[sym(clip_enable)], a1=[sym(clip_ref)], a2=[sym(clip_mask)], a3=?, a4=one of 0x0, 0x1, a5=[0x102f7508], a6=[0x102f7248].
   The `jal` at 0x100bcd5c calls init_sz0 [0x100bebf8] with a0=[sym(stencil_enable)], a1=[sym(stencil_size)], a2=[sym(stencil_func)], a3=[sym(stencil_ref)], a4=[sym(stencil_mask)], a5=[sym(stencil_wmask)].
   The `jal` at 0x100bce08 calls init_sz1 [0x100bef24] with a0=[sym(stencil_sfail)], a1=[sym(stencil_zfail)], a2=[sym(stencil_zpass)], a3=[sym(depth_enable)], a4=[sym(depth_size)], a5=[sym(depth_compress)], a6=[sym(depth_func)], a7=[sym(depth_wmask)].
   The `jal` at 0x100bce40 calls init_depth_clear [0x100bf358] with a0=[sym(depth_clear_value)], a1=?, a2=?, a3=?.
   The `jal` at 0x100bcefc calls init_bl [0x100bf42c] with a0=[sym(logic_op_enb)], a1=[sym(logic_op_func)], a2=[sym(blend_op_enb)], a3=[sym(blend_op_rgb)], a4=[sym(blend_op_a)], a5=[sym(blend_s_rgb)], a6=[sym(blend_s_a)], a7=[sym(blend_d_rgb)].
   The `jal` at 0x100bcf84 calls init_addr [0x100bf944] with a0=[sym(bbase)], a1=[sym(mbase)], a2=[sym(mtag)], a3=[sym(sbase)], a4=[sym(zbase)], a5=[sym(abase)].
-  The `jal` at 0x100bcfe0 calls init_accum [0x100bfc58] with a0=[sym(accum_value)], a1=[sym(accum_op)], a2=[sym(accum_4x)], a3=?, a7=[0x102f7520].
+  The `jal` at 0x100bcfe0 calls init_accum [0x100bfc58] with a0=[sym(accum_value)], a1=[sym(accum_op)], a2=[sym(accum_4x)], a3=?, a6=one of 0x0, 0x1, a7=[0x102f7520].
   The `jal` at 0x100bd04c calls init_user_color [0x100bfe50] with a0=[sym(user_red)], a1=[sym(user_grn)], a2=[sym(user_blu)], a3=[sym(user_alp)], a4=sym(user_red), a5=[0x102f7524], a6=[0x102f7248].
   The `jal` at 0x100bd0b8 calls init_clear_color [0x100c00f4] with a0=[sym(clear_red)], a1=[sym(clear_grn)], a2=[sym(clear_blu)], a3=[sym(clear_alp)], a4=sym(clear_alp), a5=sym(clear_red), a6=[0x102f752c], a7=[0x102f7248].
   The `jal` at 0x100bd120 calls init_mask_color [0x100c0398] with a0=[sym(mask_red)], a1=[sym(mask_grn)], a2=[sym(mask_blu)], a3=[sym(mask_alp)], a4=sym(mask_grn), a5=sym(mask_blu), a6=sym(mask_alp), a7=sym(mask_red).
@@ -1043,7 +1043,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x100bcc20 targets 0x100bcc84, is taken when s8(=one of 0x0, 0x1) == 0, and falls through when s8(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bcc28 targets 0x100bcc34, is taken when a1(=[0x102f7504]) != 0, and falls through when a1(=[0x102f7504]) == 0.
   The `beq` branch at 0x100bcc30 targets 0x100bdaa8, is taken when a2(=[0x102f7248]) == 0, and falls through when a2(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bcc88 targets 0x100bcce0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x100bcc88 targets 0x100bcce0, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bcc90 targets 0x100bcca0, is taken when a5(=[0x102f7508]) != 0, and falls through when a5(=[0x102f7508]) == 0.
   The `beq` branch at 0x100bcc98 targets 0x100bdacc, is taken when a6(=[0x102f7248]) == 0, and falls through when a6(=[0x102f7248]) != 0.
   The `beq` branch at 0x100bcce0 targets 0x100bcd64, is taken when s6(=one of 0x0, 0x1) == 0, and falls through when s6(=one of 0x0, 0x1) != 0.
@@ -1052,7 +1052,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x100bcd64 targets 0x100bce14, is taken when s5(=one of 0x0, 0x1) == 0, and falls through when s5(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bcd70 targets 0x100bcd80, is taken when a6(=[0x102f7514]) != 0, and falls through when a6(=[0x102f7514]) == 0.
   The `beq` branch at 0x100bcd78 targets 0x100bdb10, is taken when a7(=[0x102f7248]) == 0, and falls through when a7(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bce14 targets 0x100bce48, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x100bce14 targets 0x100bce48, is taken when t0(=one of 0x0, 0x1) == 0, and falls through when t0(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bce1c targets 0x100bce28, is taken when t1(=[0x102f7518]) != 0, and falls through when t1(=[0x102f7518]) == 0.
   The `beq` branch at 0x100bce24 targets 0x100bdb30, is taken when t2(=[0x102f7248]) == 0, and falls through when t2(=[0x102f7248]) != 0.
   The `beq` branch at 0x100bce48 targets 0x100bcf04, is taken when s4(?) == 0, and falls through when s4(?) != 0.
@@ -1061,16 +1061,16 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x100bcf04 targets 0x100bcf8c, is taken when s7(=one of 0x0, 0x1) == 0, and falls through when s7(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bcf0c targets 0x100bcf1c, is taken when a1(=[0x102f751c]) != 0, and falls through when a1(=[0x102f751c]) == 0.
   The `beq` branch at 0x100bcf14 targets 0x100bdb54, is taken when a2(=[0x102f7248]) == 0, and falls through when a2(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bcf90 targets 0x100bcfec, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x100bcf90 targets 0x100bcfec, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bcf9c targets 0x100bcfa8, is taken when a7(=[0x102f7520]) != 0, and falls through when a7(=[0x102f7520]) == 0.
   The `beq` branch at 0x100bcfa4 targets 0x100bdb74, is taken when t0(=[0x102f7248]) == 0, and falls through when t0(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bcff4 targets 0x100bd054, is taken when ra(?) == 0, and falls through when ra(?) != 0.
+  The `beq` branch at 0x100bcff4 targets 0x100bd054, is taken when ra(=one of 0x0, 0x1) == 0, and falls through when ra(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bd000 targets 0x100bd010, is taken when a5(=[0x102f7524]) != 0, and falls through when a5(=[0x102f7524]) == 0.
   The `beq` branch at 0x100bd008 targets 0x100bdb98, is taken when a6(=[0x102f7248]) == 0, and falls through when a6(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bd06c targets 0x100bd0c0, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x100bd06c targets 0x100bd0c0, is taken when a6(=one of 0x0, 0x1) == 0, and falls through when a6(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bd078 targets 0x100bd088, is taken when a6(=[0x102f752c]) != 0, and falls through when a6(=[0x102f752c]) == 0.
   The `beq` branch at 0x100bd080 targets 0x100bdbb8, is taken when a7(=[0x102f7248]) == 0, and falls through when a7(=[0x102f7248]) != 0.
-  The `beq` branch at 0x100bd0f0 targets 0x100bd128, is taken when ra(?) == 0, and falls through when ra(?) != 0.
+  The `beq` branch at 0x100bd0f0 targets 0x100bd128, is taken when ra(=one of 0x0, 0x1) == 0, and falls through when ra(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x100bd0fc targets 0x100bd108, is taken when t0(=[0x102f7530]) != 0, and falls through when t0(=[0x102f7530]) == 0.
   The `beq` branch at 0x100bd104 targets 0x100bdbd8, is taken when t1(=[0x102f7248]) == 0, and falls through when t1(=[0x102f7248]) != 0.
   The `beq` branch at 0x100bd12c targets 0x100bda2c, is taken when ra(=[0x102f7510]) == 0, and falls through when ra(=[0x102f7510]) != 0.
@@ -1175,7 +1175,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10113c30 calls reg_test [0x101153a0] with a0=0xc001, a1=0xc001, a2=0x9, a3=0x0.
   The `jal` at 0x10113c50 calls kt_output_dbug [0x10046d74] with a0=0x2, a1=0x101b63a0, a2=?, a3=?.
   The `jal` at 0x10113c68 calls reg_test [0x101153a0] with a0=0xc003, a1=0xc003, a2=0x5, a3=0x0.
-  The `jal` at 0x10113cb0 calls kt_output_info [0x10046374] with a0=0x101b63c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x10113cb0 calls kt_output_info [0x10046374] with a0=0x101b63c0, a1=((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test))), a2=?, a3=?.
   The `jal` at 0x10113cc8 calls kt_output_trce [0x10046b88] with a0=0x101b6420, a1=?, a2=?, a3=?.
   The `jal` at 0x10113ce4 calls kt_output_dbug [0x10046d74] with a0=0x2, a1=0x101b6440, a2=?, a3=?.
   The `jal` at 0x10113d00 calls reg_test [0x101153a0] with a0=0xc200, a1=0xc200, a2=0x8, a3=0x3.
@@ -1226,7 +1226,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10114260 calls reg_test [0x101153a0] with a0=0xe832, a1=0xc932, a2=0x20, a3=0x0.
   The `jal` at 0x1011427c calls reg_test [0x101153a0] with a0=0xe831, a1=0xc831, a2=0x20, a3=0x0.
   The `jal` at 0x10114298 calls reg_test [0x101153a0] with a0=0xe832, a1=0xc832, a2=0x20, a3=0x0.
-  The `jal` at 0x101142f0 calls kt_output_info [0x10046374] with a0=0x101b66f8, a1=?, a2=?, a3=?.
+  The `jal` at 0x101142f0 calls kt_output_info [0x10046374] with a0=0x101b66f8, a1=((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test))))), a2=?, a3=?.
   The `jal` at 0x10114324 calls vcWrite [0x1014071c] with a0=0xe831, a1=0x12345678, a2=?, a3=?.
   The `jal` at 0x10114340 calls vcRead [0x10140bac] with a0=0xc931, a1=?, a2=?, a3=?.
   The `jal` at 0x10114368 calls kt_output_info [0x10046374] with a0=0x101b6760, a1=?, a2=?, a3=?.
@@ -1244,18 +1244,18 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x101144dc calls i2c_test [0x10114668] with a0=0x0, a1=0x0, a2=0x50, a3=0x14, a4=0xc.
   The `jal` at 0x101144fc calls i2c_test [0x10114668] with a0=0x1, a1=0x0, a2=0x50, a3=0x14, a4=0xc.
   The `jal` at 0x1011451c calls i2c_test [0x10114668] with a0=0x2, a1=0x0, a2=0x50, a3=0x14, a4=0xc.
-  The `jal` at 0x10114550 calls kt_output_info [0x10046374] with a0=0x101b67f0, a1=?, a2=?, a3=?.
-  The `jal` at 0x10114570 calls kt_output_trce [0x10046b88] with a0=0x101b6890, a1=?, a2=?, a3=?.
+  The `jal` at 0x10114550 calls kt_output_info [0x10046374] with a0=0x101b67f0, a1=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test))), a2=?, a3=?.
+  The `jal` at 0x10114570 calls kt_output_trce [0x10046b88] with a0=0x101b6890, a1=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test))), a2=?, a3=?.
   The `jal` at 0x1011458c calls i2c_test [0x10114668] with a0=0x0, a1=0x0, a2=0x50, a3=0x14, a4=0xd.
   The `jal` at 0x101145ac calls i2c_test [0x10114668] with a0=0x1, a1=0x0, a2=0x50, a3=0x14, a4=0xd.
   The `jal` at 0x101145cc calls i2c_test [0x10114668] with a0=0x2, a1=0x0, a2=0x50, a3=0x14, a4=0xd.
-  The `jal` at 0x101145fc calls kt_output_info [0x10046374] with a0=0x101b68d0, a1=?, a2=?, a3=?.
+  The `jal` at 0x101145fc calls kt_output_info [0x10046374] with a0=0x101b68d0, a1=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test))), a2=?, a3=?.
   The `jal` at 0x10114634 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101b6840, a2=?, a3=?.
   The `jal` at 0x10114658 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101b6920, a2=?, a3=?.
   The `beq` branch at 0x10113b34 targets 0x10113b54, is taken when v0(=ret(dgo_reset)) == 0, and falls through when v0(=ret(dgo_reset)) != 0.
-  The `beq` branch at 0x10113c88 targets 0x101143e0, is taken when s5(?) == 0, and falls through when s5(?) != 0.
+  The `beq` branch at 0x10113c88 targets 0x101143e0, is taken when s5(=((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test)))) == 0, and falls through when s5(=((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test)))) != 0.
   The `beq` branch at 0x10114130 targets 0x10114410, is taken when s2(?) == 0, and falls through when s2(?) != 0.
-  The `beq` branch at 0x101142d4 targets 0x10114430, is taken when s0(?) == 0, and falls through when s0(?) != 0.
+  The `beq` branch at 0x101142d4 targets 0x10114430, is taken when s0(=((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test)))))) == 0, and falls through when s0(=((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + ((ret(reg_test) + ret(reg_test)) + (ret(reg_test) + ret(reg_test)))))) != 0.
   The `beq` branch at 0x10114350 targets 0x10114378, is taken when t8(=0x12345678) == v0(=ret(vcRead)), and falls through when t8(=0x12345678) != v0(=ret(vcRead)).
   The `beq` branch at 0x10114388 targets 0x101143b0, is taken when a1(=0x12345678) == v0(=ret(vcRead)), and falls through when a1(=0x12345678) != v0(=ret(vcRead)).
   The `beq` branch at 0x101143c0 targets 0x10114454, is taken when v0(=ret(dgo_reset)) == 0, and falls through when v0(=ret(dgo_reset)) != 0.
@@ -1263,8 +1263,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x10114408 targets 0x10113cb8 and is always taken.
   The `beq` branch at 0x10114428 targets 0x10114158 and is always taken.
   The `beq` branch at 0x1011444c targets 0x10114300 and is always taken.
-  The `beq` branch at 0x10114534 targets 0x10114620, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x101145e0 targets 0x10114644, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x10114534 targets 0x10114620, is taken when t8(=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test)))) == 0, and falls through when t8(=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test)))) != 0.
+  The `beq` branch at 0x101145e0 targets 0x10114644, is taken when a1(=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test)))) == 0, and falls through when a1(=(ret(i2c_test) + (ret(i2c_test) + ret(i2c_test)))) != 0.
   The `beq` branch at 0x10114618 targets 0x10113b40 and is always taken.
   The `beq` branch at 0x1011463c targets 0x1011455c and is always taken.
   The `beq` branch at 0x10114660 targets 0x10114604 and is always taken.
@@ -1784,7 +1784,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x10027618 targets 0x10027628, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0x10027620 targets 0x100275a4 and is always taken.
   The `beq` branch at 0x10027628 targets 0x100275a4 and is always taken.
-  The return at 0x100275d8 has v0 = ?.
+  The return at 0x100275d8 has v0 = one of 0x0, 0x1, 0x2.
 
 - `doInputSyncSourceNotify__21ServerInfoFormClassUIGP10_WidgetRecP7_XEvent` in `usr/bin/X11/xsetmon` at 0x10027a50 (n32).
   Evidence grade: inferred.
@@ -2153,7 +2153,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x1002a454 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002a464 calls strlen with a0=[a0+164], a1=?, a2=?, a3=?.
   The `jalr` at 0x1002a474 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002a48c calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+164], a3=?.
+  The `jalr` at 0x1002a48c calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+164], a3=?.
   The `jalr` at 0x1002a4ac calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002a4e0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x1002a4f8 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
@@ -2164,7 +2164,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x1002a570 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
   The `jalr` at 0x1002a5a0 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002a5ac calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002a5bc calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002a5bc calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1002a40c targets 0x1002a5c4, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x1002a4a0 targets 0x1002a5a8, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x1002a4e8 targets 0x1002a5ac, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -2230,17 +2230,17 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x1002b994 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002b9a4 calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002b9b4 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002b9cc calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002b9cc calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x1002b9e8 calls getTheInfoDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002ba1c calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
-  The `jalr` at 0x1002ba34 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002ba34 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002ba58 calls VkGetResource__GPCcT1 with a0=0x10045ed8, a1=0x10045ed8, a2=?, a3=?.
   The `jalr` at 0x1002ba6c calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002ba7c calls strlen with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002ba7c calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002ba8c calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002ba9c calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002bab4 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002bad0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002ba9c calls strlen with a0=ret(strerror), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002bab4 calls __nwa__GUi with a0=(ret(strlen) + (ret(strlen) + ret(strlen)))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002bad0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=ret(strerror).
   The `jalr` at 0x1002baf0 calls getTheInfoDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
   The `jalr` at 0x1002bb24 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002bb30 calls __dl__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -2276,8 +2276,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   Range: 0x1002d7e0-0x1002da14 (564 bytes).
   It occupies 564 bytes.
   The `lw` at 0x1002d814 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1002d828, `lw` at 0x1002d91c, `lw` at 0x1002d9dc.
-  The `lw` at 0x1002d84c loads 4 bytes from table(0x10051b00) +0x0.
+  The `lw` at 0x1002d828 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from table(0x10051b00) +0x0, including `lw` at 0x1002d84c, `lw` at 0x1002d91c.
   The `sw` at 0x1002d858 stores 4 bytes to a0 (arg0 at entry) +0xa8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xa8, including `lw` at 0x1002d878, `lw` at 0x1002d8a4.
   4 such `lw` accesses load 4 bytes from sym(xsetmonApp) +0x0, including `lw` at 0x1002d8ac, `lw` at 0x1002d908, `lw` at 0x1002d928.
@@ -2289,23 +2289,26 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x1002d948 loads 4 bytes from [[sym(xsetmonApp)]+312] +0x84.
   The `lw` at 0x1002d968 loads 4 bytes from sym(requestErrCatched) +0x0.
   The `sw` at 0x1002d9a4 stores 4 bytes to sym(requestErrCatched) +0x0.
+  The `lw` at 0x1002d9dc loads 4 bytes from ret(getTheWarningDialog__Gv) +0x8.
+  The `lw` at 0x1002d9ec loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x110.
+  The `lw` at 0x1002d9f8 loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x108.
   The `jalr` at 0x1002d810 calls XmListGetSelectedPos with a0=[a0+72], a1=sp-96, a2=sp-92, a3=a3 at entry (arg3).
   The `jalr` at 0x1002d854 calls VkGetResource__GPCcT1 with a0=0x10044a70, a1=0x10044a70, a2=?, a3=?.
   The `jalr` at 0x1002d864 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d874 calls strlen with a0=[a0+168], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d888 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d8a0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+168], a3=?.
+  The `jalr` at 0x1002d888 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d8a0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+168], a3=?.
   The `jalr` at 0x1002d8c0 calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
-  The `jalr` at 0x1002d8f0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=?, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1002d8f0 calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x1002d904 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d918 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d918 calls atoi with a0=entry(0x10051b00), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d944 calls XSGIvcSetPlatformParameter with a0=[[sym(xsetmonApp)]+312], a1=[[[sym(xsetmonApp)]+312]+132], a2=0x0, a3=0x0, a4=sp-88, a5=0x20.
   The `jalr` at 0x1002d95c calls XSync with a0=[[sym(xsetmonApp)]+312], a1=0x0, a2=?, a3=?.
   The `jalr` at 0x1002d978 calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002d984 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002d984 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002d9b8 calls getTheWarningDialog__Gv with a0=?, a1=[sym(requestErrCatched)], a2=?, a3=?.
   The `jalr` at 0x1002d9d0 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
-  The `jalr` at 0x1002da04 calls (unknown callee) with a0=?, a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1002da04 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `beq` branch at 0x1002d81c targets 0x1002d9a8, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x1002d8b4 targets 0x1002d974, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x1002d8f8 targets 0x1002d974, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -2538,7 +2541,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   Range: 0x10036f50-0x10037178 (552 bytes).
   It occupies 552 bytes.
   The `lw` at 0x10036f84 loads 4 bytes from a0 (arg0 at entry) +0x4c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10036f94, `lw` at 0x10037140, `lw` at 0x10037150.
+  The `lw` at 0x10036f94 loads 4 bytes from ?.
   The `lw` at 0x10036fb8 loads 4 bytes from table(0x10051af8) +0x0.
   The `sw` at 0x10036fc4 stores 4 bytes to a0 (arg0 at entry) +0xac.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xac, including `lw` at 0x10036fe4, `lw` at 0x10037010.
@@ -2551,22 +2554,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100370a8 loads 4 bytes from [[sym(xsetmonApp)]+312] +0x84.
   The `lw` at 0x100370c8 loads 4 bytes from sym(requestErrCatched) +0x0.
   The `sw` at 0x10037104 stores 4 bytes to sym(requestErrCatched) +0x0.
+  The `lw` at 0x10037140 loads 4 bytes from ret(getTheWarningDialog__Gv) +0x8.
+  The `lw` at 0x10037150 loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x110.
+  The `lw` at 0x1003715c loads 4 bytes from [ret(getTheWarningDialog__Gv)+8] +0x108.
   The `jalr` at 0x10036f80 calls XmListGetSelectedPos with a0=[a0+76], a1=sp-96, a2=sp-92, a3=a3 at entry (arg3).
   The `jalr` at 0x10036fc0 calls VkGetResource__GPCcT1 with a0=0x10044a88, a1=0x10044a88, a2=?, a3=?.
   The `jalr` at 0x10036fd0 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x10036fe0 calls strlen with a0=[a0+172], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10036ff4 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003700c calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=[a0+172], a3=?.
+  The `jalr` at 0x10036ff4 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003700c calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=[a0+172], a3=?.
   The `jalr` at 0x1003702c calls getTheQuestionDialog__Gv with a0=?, a1=[[sym(xsetmonApp)]+132]:1, a2=?, a3=?.
-  The `jalr` at 0x1003705c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=?, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x1003705c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x10037070 calls checkPriv__7xsetmonGv [0x10041490] with a0=[sym(xsetmonApp)], a1=?, a2=?, a3=?.
   The `jalr` at 0x100370a4 calls XSGIvcSetPlatformParameter with a0=[[sym(xsetmonApp)]+312], a1=[[[sym(xsetmonApp)]+312]+132], a2=0x0, a3=0x1, a4=sp-88, a5=0x20.
   The `jalr` at 0x100370bc calls XSync with a0=[[sym(xsetmonApp)]+312], a1=0x0, a2=?, a3=?.
   The `jalr` at 0x100370d8 calls XtFree with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100370e4 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100370e4 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
   The `jalr` at 0x1003711c calls getTheWarningDialog__Gv with a0=?, a1=[sym(requestErrCatched)], a2=?, a3=?.
   The `jalr` at 0x10037134 calls VkGetResource__GPCcT1 with a0=0x100449f8, a1=0x100449f8, a2=?, a3=?.
-  The `jalr` at 0x10037168 calls (unknown callee) with a0=?, a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
+  The `jalr` at 0x10037168 calls (unknown callee) with a0=([[ret(getTheWarningDialog__Gv)+8]+264] + ret(getTheWarningDialog__Gv)), a1=ret(VkGetResource__GPCcT1), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `beq` branch at 0x10036f8c targets 0x10037108, is taken when (v0(=ret(XmListGetSelectedPos)) & 0xff) == 0, and falls through when (v0(=ret(XmListGetSelectedPos)) & 0xff) != 0.
   The `beq` branch at 0x10037020 targets 0x100370d4, is taken when a1(=[[sym(xsetmonApp)]+132]:1) == 0, and falls through when a1(=[[sym(xsetmonApp)]+132]:1) != 0.
   The `beq` branch at 0x10037064 targets 0x100370d4, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -2612,10 +2618,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   2 such `sb` accesses store 1 byte to ?, including `sb` at 0x10038524, `sb` at 0x1003863c.
   The `lbu` at 0x10038528 loads 1 byte from [sym(xsetmonApp)] +0xc8.
   The `lw` at 0x1003854c loads 4 bytes from abs 0x1004cf60.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1003856c, `lw` at 0x1003858c, `lw` at 0x100385ac.
+  The `lw` at 0x1003856c loads 4 bytes from abs 0x1004cf64.
+  The `lw` at 0x1003858c loads 4 bytes from abs 0x1004cf68.
+  The `lw` at 0x100385ac loads 4 bytes from abs 0x1004cf6c.
   The `lw` at 0x100385dc loads 4 bytes from [sym(xsetmonApp)] +0x98.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xb0, including `lw` at 0x1003864c, `lw` at 0x1003867c, `lw` at 0x100388a4.
   The `lw` at 0x10038660 loads 4 bytes from a0 (arg0 at entry) +0xb4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10038670, `lw` at 0x100386c0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xb8, including `lw` at 0x10038694, `lw` at 0x100386cc.
   The `lw` at 0x100386b0 loads 4 bytes from a0 (arg0 at entry) +0xbc.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc4, including `lw` at 0x10038710, `lw` at 0x1003873c, `lw` at 0x10038944.
@@ -2635,9 +2644,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x100384e8 calls fread with a0=sp-112, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038508 calls fread with a0=sp-104, a1=?, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038548 calls strcmp with a0=sp-104, a1=[0x1004cf60], a2=?, a3=?.
-  The `jalr` at 0x10038568 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10038588 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100385a8 calls strcmp with a0=sp-104, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10038568 calls strcmp with a0=sp-104, a1=[0x1004cf64], a2=?, a3=?.
+  The `jalr` at 0x10038588 calls strcmp with a0=sp-104, a1=[0x1004cf68], a2=?, a3=?.
+  The `jalr` at 0x100385a8 calls strcmp with a0=sp-104, a1=[0x1004cf6c], a2=?, a3=?.
   The `jalr` at 0x100385cc calls fread with a0=sp-64, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x100385fc calls fread with a0=sp-112, a1=0x4, a2=0x1, a3=a1 at entry (arg1).
   The `jalr` at 0x10038610 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
@@ -3150,7 +3159,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x10042f68 calls __nw__GUi with a0=0x3c, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10042f90 calls __ct__17SyncSelectorFrameGPCcP10_WidgetRec [0x100379d0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10042f74 targets 0x10042fac, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
-  The return at 0x10042fa4 has v0 = ?.
+  The return at 0x10042fa4 has v0 = ret(__nw__GUi).
   The return at 0x10042fb8 has v0 = 0x0.
 
 - `populateSyncPortWithChannel__16ChannelFormClassGiT1P17SyncSelectorFramePC17XSGIvcChannelInfo` in `usr/bin/X11/xsetmon` at 0x10043040 (n32).
@@ -3249,15 +3258,15 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x100159d4 calls strtok with a0=0x0, a1=0x101740b8, a2=?, a3=?.
   The `jalr` at 0x100159ec calls strlen with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10015a0c calls malloc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10015a2c calls jt_reverse_unpacked_vector [0x101649c0] with a0=?, a1=ret(atoi), a2=?, a3=?.
-  The `jal` at 0x10015a48 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=ret(atoi), a3=?.
+  The `jal` at 0x10015a2c calls jt_reverse_unpacked_vector [0x101649c0] with a0=ret(strtok), a1=ret(atoi), a2=?, a3=?.
+  The `jal` at 0x10015a48 calls jt_pack_vector [0x10164aa0] with a0=ret(strtok), a1=?, a2=ret(atoi), a3=?.
   The `jal` at 0x10015a74 calls jt_error [0x101687a0] with a0=0x10174078, a1=0x101740a8, a2=?, a3=?.
   The `jalr` at 0x10015aa0 calls strtok with a0=0x0, a1=0x101740b8, a2=0x2, a3=?.
   The `jalr` at 0x10015aac calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10015ae0 calls strtok with a0=0x0, a1=0x101740b8, a2=0x2, a3=?.
   The `jalr` at 0x10015aec calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
-  The `jal` at 0x10015b24 calls jt_error [0x101687a0] with a0=0x10174078, a1=0x101740c0, a2=?, a3=?.
-  The `jal` at 0x10015b58 calls jt_error [0x101687a0] with a0=0x10174078, a1=0x101741b8, a2=?, a3=ret(strtok).
+  The `jal` at 0x10015b24 calls jt_error [0x101687a0] with a0=0x10174078, a1=0x101740c0, a2=ret(jt_findfile), a3=?.
+  The `jal` at 0x10015b58 calls jt_error [0x101687a0] with a0=0x10174078, a1=0x101741b8, a2=ret(jt_findfile), a3=ret(strtok).
   The `jalr` at 0x10015b84 calls strtok with a0=0x0, a1=0x101740b8, a2=0x4, a3=?.
   The `jalr` at 0x10015ba4 calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10015bd4 calls strtok with a0=0x0, a1=0x101740b8, a2=?, a3=?.
@@ -3322,7 +3331,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `bne` branch at 0x10015da0 targets 0x10015d8c, is taken when (s8(=0xffffffff80000008) & a2(?)) != 0, and falls through when (s8(=0xffffffff80000008) & a2(?)) == 0.
   The `beq` branch at 0x10015dbc targets 0x10015698 and is always taken.
   The `beq` branch at 0x10015de8 targets 0x10015a00 and is always taken.
-  The return at 0x1001594c has v0 = one of ?, 0x0.
+  The return at 0x1001594c has v0 = one of ret(malloc), 0x0.
 
 - `jt_read_internal_bist_info` in `usr/diags/IR/bin/irsaudit` at 0x100160ec (n32).
   Evidence grade: inferred.
@@ -3447,28 +3456,28 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x100188b8 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `jal` at 0x100188ec calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174bd0, a2=ret(jt_findfile), a3=?.
   The `jal` at 0x10018918 calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174be8, a2=?, a3=?.
-  The `jal` at 0x10018950 calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174d00, a2=?, a3=ret(strtok).
+  The `jal` at 0x10018950 calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174d00, a2=ret(jt_findfile), a3=ret(strtok).
   The `jalr` at 0x10018980 calls strtok with a0=0x0, a1=0x10174c40, a2=0xb, a3=?.
   The `jalr` at 0x1001898c calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x100189ac calls strtok with a0=0x0, a1=0x10174bf8, a2=?, a3=?.
   The `jalr` at 0x100189c0 calls malloc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100189e0 calls jt_reverse_unpacked_vector [0x101649c0] with a0=?, a1=ret(atoi), a2=?, a3=?.
-  The `jal` at 0x100189fc calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=ret(atoi), a3=?.
+  The `jal` at 0x100189e0 calls jt_reverse_unpacked_vector [0x101649c0] with a0=ret(strtok), a1=ret(atoi), a2=?, a3=?.
+  The `jal` at 0x100189fc calls jt_pack_vector [0x10164aa0] with a0=ret(strtok), a1=?, a2=ret(atoi), a3=?.
   The `jalr` at 0x10018a28 calls strtok with a0=0x0, a1=0x10174c40, a2=0xa, a3=?.
   The `jalr` at 0x10018a34 calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10018a54 calls strtok with a0=0x0, a1=0x10174bf8, a2=?, a3=?.
   The `jalr` at 0x10018a6c calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10018aec calls __assert with a0=0x10174c60, a1=0x10174c70, a2=0x6a, a3=?.
-  The `jal` at 0x10018b30 calls jt_reverse_unpacked_vector [0x101649c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10018b4c calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10018b30 calls jt_reverse_unpacked_vector [0x101649c0] with a0=ret(strtok), a1=ret(atoi), a2=?, a3=?.
+  The `jal` at 0x10018b4c calls jt_pack_vector [0x10164aa0] with a0=ret(strtok), a1=?, a2=ret(atoi), a3=?.
   The `jalr` at 0x10018b78 calls strtok with a0=0x0, a1=0x10174c40, a2=0x1, a3=?.
   The `jalr` at 0x10018b84 calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10018ba4 calls strtok with a0=0x0, a1=0x10174bf8, a2=?, a3=?.
   The `jalr` at 0x10018bbc calls strlen with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10018bd4 calls malloc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10018bf4 calls jt_reverse_unpacked_vector [0x101649c0] with a0=?, a1=ret(atoi), a2=?, a3=?.
-  The `jal` at 0x10018c10 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=ret(atoi), a3=?.
-  The `jal` at 0x10018c48 calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174c00, a2=?, a3=?.
+  The `jal` at 0x10018bf4 calls jt_reverse_unpacked_vector [0x101649c0] with a0=ret(strtok), a1=ret(atoi), a2=?, a3=?.
+  The `jal` at 0x10018c10 calls jt_pack_vector [0x10164aa0] with a0=ret(strtok), a1=?, a2=ret(atoi), a3=?.
+  The `jal` at 0x10018c48 calls jt_error [0x101687a0] with a0=0x10174bb8, a1=0x10174c00, a2=ret(jt_findfile), a3=?.
   The `jalr` at 0x10018c78 calls strtok with a0=0x0, a1=0x10174bf8, a2=0x4, a3=?.
   The `jalr` at 0x10018c98 calls atoi with a0=ret(strtok), a1=?, a2=?, a3=?.
   The `jalr` at 0x10018cc8 calls strtok with a0=0x0, a1=0x10174bf8, a2=?, a3=?.
@@ -3511,9 +3520,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x10018920 targets 0x1001851c and is always taken.
   The `beq` branch at 0x1001895c targets 0x1001851c and is always taken.
   The `beq` branch at 0x10018a04 targets 0x10018664 and is always taken.
-  The `blez` branch at 0x10018a88 targets 0x10018b1c, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x10018a88 targets 0x10018b1c, is taken when a1(=ret(atoi)) <= 0 (signed), and falls through when a1(=ret(atoi)) > 0 (signed).
   The `beq` branch at 0x10018a90 targets 0x10018aa8 and is always taken.
-  The `beq` branch at 0x10018aa0 targets 0x10018b1c, is taken when a7(?) >= a2(?) (signed), and falls through when a7(?) < a2(?) (signed).
+  The `beq` branch at 0x10018aa0 targets 0x10018b1c, is taken when a7(?) >= a2(=ret(atoi)) (signed), and falls through when a7(?) < a2(=ret(atoi)) (signed).
   The `beq` branch at 0x10018aac targets 0x10018acc, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x10018ab8 targets 0x10018a98, is taken when t0(=0x78) != a6(?), and falls through when t0(=0x78) == a6(?).
   The `beq` branch at 0x10018ac4 targets 0x10018a98 and is always taken.
@@ -3539,7 +3548,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `beq` branch at 0x10018ea0 targets 0x10018660 and is always taken.
   The `beq` branch at 0x10018ecc targets 0x10018bd0 and is always taken.
   The `beq` branch at 0x10018ed8 targets 0x10018b14 and is always taken.
-  The return at 0x10018544 has v0 = one of 0x0, ?.
+  The return at 0x10018544 has v0 = one of 0x0, ret(malloc).
 
 - `jt_read_external_bist_info` in `usr/diags/IR/bin/irsaudit` at 0x100192bc (n32).
   Evidence grade: inferred.
@@ -3646,9 +3655,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x10020b14 loads 4 bytes from abs 0x102bd744.
   The `lw` at 0x10020b20 loads 4 bytes from abs 0x102bd43c.
   The `lbu` at 0x10020b60 loads 1 byte from abs 0x102c1e98.
-  The `lbu` at 0x10020b80 loads 1 byte from abs 0x102c1e99.
+  2 such `lbu` accesses load 1 byte from abs 0x102c1e99, including `lbu` at 0x10020b80, `lbu` at 0x10020dbc.
   13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10020d7c, `lw` at 0x10020eb8, `lw` at 0x10020f60.
-  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10020dbc, `lbu` at 0x10020dcc.
+  The `lbu` at 0x10020dcc loads 1 byte from ?.
   2 such `lw` accesses load 4 bytes from abs 0x102be410, including `lw` at 0x10020e04, `lw` at 0x10020e20.
   The `lw` at 0x10020e60 loads 4 bytes from abs 0x102bd590.
   The `lw` at 0x10020e80 loads 4 bytes from abs 0x102bd4a0.
@@ -3702,12 +3711,12 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jalr` at 0x10020d1c calls strlen with a0=sp-262, a1=?, a2=?, a3=?.
   The `jalr` at 0x10020d30 calls strncmp with a0=0x102c1e98, a1=sp-262, a2=ret(strlen), a3=?.
   The `jal` at 0x10020d50 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176cd8, a2=?, a3=?.
-  The `jalr` at 0x10020d5c calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020d5c calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x10020d88 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=table(0xc9b0), a2=0x2, a3=?.
   The `jalr` at 0x10020e00 calls strlen with a0=sym(hw_conf), a1=0xa, a2=0x23, a3=?, a6=0x101764f8.
   The `jalr` at 0x10020e1c calls strncmp with a0=?, a1=sym(hw_conf), a2=ret(strlen), a3=?.
   The `jal` at 0x10020e64 calls create_konacrc_t [0x1002058c] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020e94 calls strcpy with a0=ret(create_konacrc_t), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020e94 calls strcpy with a0=ret(create_konacrc_t), a1=0x102c1e99, a2=?, a3=?.
   The `jal` at 0x10020ebc calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10176ae8, a2=?, a3=?.
   The `jal` at 0x10020ef0 calls kt_output_trce [0x10046b88] with a0=0x10176cf8, a1=[0x102c1e94], a2=?, a3=?.
   The `jal` at 0x10020f44 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176b50, a2=?, a3=?.
@@ -3717,38 +3726,38 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10020fdc calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176b90, a2=?, a3=?.
   The `jal` at 0x10021004 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x15, a3=?.
   The `jal` at 0x10021028 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176bb0, a2=?, a3=?.
-  The `jalr` at 0x10021034 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021034 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x1002108c calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x6, a3=?.
   The `jal` at 0x100210b0 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176be8, a2=?, a3=?.
-  The `jalr` at 0x100210bc calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100210bc calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x10021114 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x8, a3=?.
   The `jal` at 0x10021138 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176c08, a2=?, a3=?.
-  The `jalr` at 0x10021144 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021144 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x100211d4 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0xd, a3=?.
   The `jal` at 0x10021204 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176c38, a2=?, a3=?.
-  The `jalr` at 0x10021210 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021210 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x10021290 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x10, a3=?.
   The `jalr` at 0x100212c0 calls sprintf with a0=sp-304, a1=0x10176a50, a2=[sym(GE11count)], a3=?.
   The `jalr` at 0x100212e4 calls sprintf with a0=sp-298, a1=0x10176a58, a2=[sym(RMcount)], a3=?.
   The `jal` at 0x10021308 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176c58, a2=?, a3=?.
-  The `jalr` at 0x10021314 calls atoi with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100213e8 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x10, a3=?, a5=[[sym(KONAINFO)]].
+  The `jalr` at 0x10021314 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
+  The `jal` at 0x100213e8 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x10, a3=?, a5=[[sym(KONAINFO)]], a6=one of 0xa, 0x14, a7=one of 0xa, 0x14.
   The `jal` at 0x10021414 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176c78, a2=?, a3=?.
-  The `jalr` at 0x10021420 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021420 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x10021464 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=table(0xc5f0), a2=0xb, a3=?.
   The `jal` at 0x10021488 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176c98, a2=?, a3=?.
-  The `jalr` at 0x10021494 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021494 calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x100214d4 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=table(0xc8b0), a2=0x2, a3=?, a4=(ret(atoi) << 0x5).
   The `jal` at 0x100214fc calls post_fatal_error [0x1003e3e4] with a0=0x10176b10, a1=?, a2=?, a3=?.
   The `jal` at 0x10021520 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x10176cb8, a2=?, a3=?.
-  The `jalr` at 0x1002152c calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002152c calls atoi with a0=0x102c1e9b, a1=?, a2=?, a3=?.
   The `jal` at 0x10021584 calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=table(0xc9d0), a2=0x2, a3=?, a4=(ret(atoi) << 0x5).
   The `jalr` at 0x100215f0 calls __assert with a0=0x10176c28, a1=0x10176560, a2=0x47f, a3=?, a5=[[sym(KONAINFO)]], a6=one of 0xa, 0x14, a7=one of 0xa, 0x14.
   The `jalr` at 0x1002163c calls __assert with a0=0x10176bd0, a1=0x10176560, a2=0x453, a3=?.
   The `jalr` at 0x1002166c calls __assert with a0=0x10176bd0, a1=0x10176560, a2=0x45d, a3=?.
   The `jalr` at 0x1002169c calls __assert with a0=0x10176c28, a1=0x10176560, a2=0x469, a3=?.
   The `jalr` at 0x100216d0 calls __assert with a0=0x10176c28, a1=0x10176560, a2=0x474, a3=?.
-  The `jal` at 0x100216ec calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x1e, a3=?, a5=[[sym(KONAINFO)]].
+  The `jal` at 0x100216ec calls (unnamed) [0x1002063c] with a0=0x102c1e98, a1=?, a2=0x1e, a3=?, a5=[[sym(KONAINFO)]], a6=one of 0xa, 0x14, a7=one of 0xa, 0x14.
   The `beq` branch at 0x100208a0 targets 0x100212a0, is taken when a0(=[[sym(KONAINFO)]]) == 0, and falls through when a0(=[[sym(KONAINFO)]]) != 0.
   The `beq` branch at 0x100208e8 targets 0x100212d0, is taken when a2(=[[sym(KONAINFO)]]) == v0(=0x2), and falls through when a2(=[[sym(KONAINFO)]]) != v0(=0x2).
   The `beq` branch at 0x10020abc targets 0x100211e4, is taken when v0(=ret(fgets)) == 0, and falls through when v0(=ret(fgets)) != 0.
@@ -4170,7 +4179,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x10036f70 loads 4 bytes from abs 0x102bdea0.
   The `jal` at 0x10036f98 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+2816, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10036fac calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+2816, a1=?, a2=?, a3=?.
-  The `jal` at 0x10036fc8 calls vcWrite [0x1014071c] with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jal` at 0x10036fc8 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+2818, a1=a2 at entry (arg2), a2=?, a3=?.
   The return at 0x10036fdc has v0 = ret(vcWrite).
 
 - `ge11_bypass_write` in `usr/diags/IR/bin/irsaudit` at 0x10037874 (n32).
@@ -4859,7 +4868,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   It occupies 128 bytes.
   2 such `lw` accesses load 4 bytes from abs 0x102bdea0, including `lw` at 0x10061f14, `lw` at 0x10061f34.
   The `jal` at 0x10061f24 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+2816, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=a0 at entry (arg0), a5=a1 at entry (arg1).
-  The `jal` at 0x10061f40 calls vcWrite [0x1014071c] with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jal` at 0x10061f40 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+2818, a1=a2 at entry (arg2), a2=?, a3=?.
   The `beq` branch at 0x10061ef8 targets 0x10061f0c, is taken when (at(?) & 0xff) == 0, and falls through when (at(?) & 0xff) != 0.
   The `beq` branch at 0x10061f48 targets 0x10061f00 and is always taken.
   The return at 0x10061f04 has v0 = one of 0x262470, ret(vcWrite).
@@ -5403,7 +5412,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10096c6c calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+625, a1=?, a2=?, a3=?.
   The `jal` at 0x10096c80 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+627, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10096ca4 calls vdWaitForVocPllInterface [0x10134228] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x10096cd8 calls vcWrite [0x1014071c] with a0=?, a1=0x8, a2=?, a3=?.
+  The `jal` at 0x10096cd8 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+624, a1=0x8, a2=?, a3=?.
   The `beq` branch at 0x10096bdc targets 0x10096c00, is taken when v0(=ret(vdWaitForVocPllInterface)) == 0, and falls through when v0(=ret(vdWaitForVocPllInterface)) != 0.
   The `bne` branch at 0x10096c90 targets 0x10096c40, is taken when s0(?) < 0x7 (signed), and falls through when s0(?) >= 0x7 (signed).
   The `beq` branch at 0x10096cb8 targets 0x10096ccc, is taken when v0(=ret(vdWaitForVocPllInterface)) == 0, and falls through when v0(=ret(vdWaitForVocPllInterface)) != 0.
@@ -5430,7 +5439,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10096e10 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+625, a1=?, a2=?, a3=?.
   The `jal` at 0x10096e24 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+627, a1=?, a2=?, a3=?.
   The `jal` at 0x10096e4c calls vdWaitForVocPllInterface [0x10134228] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x10096e88 calls vcWrite [0x1014071c] with a0=?, a1=0x8, a2=?, a3=?.
+  The `jal` at 0x10096e88 calls vcWrite [0x1014071c] with a0=(a0 << 0x8)+624, a1=0x8, a2=?, a3=?.
   The `beq` branch at 0x10096d74 targets 0x10096d98, is taken when v0(=ret(vdWaitForVocPllInterface)) == 0, and falls through when v0(=ret(vdWaitForVocPllInterface)) != 0.
   The `bne` branch at 0x10096e38 targets 0x10096de0, is taken when s0(?) < 0x7 (signed), and falls through when s0(?) >= 0x7 (signed).
   The `beq` branch at 0x10096e68 targets 0x10096e7c, is taken when v0(=ret(vdWaitForVocPllInterface)) == 0, and falls through when v0(=ret(vdWaitForVocPllInterface)) != 0.
@@ -5753,7 +5762,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x100a3854 calls tbRegWrite [0x1013eb3c] with a0=0x1c02, a1=[[sym(rm)]+57360]:8, a2=?, a3=[sym(rm)]+65536, a4=-0x2001, a5=[sym(rm)]+65536, a6=-0x1001, a7=[sym(rm)]+65536.
   The `jal` at 0x100a38cc calls tbRegWrite [0x1013eb3c] with a0=0x1c0b, a1=[[sym(rm)]+57432]:8, a2=?, a3=[sym(rm)]+65536.
   The `jal` at 0x100a38f0 calls tbRegWrite [0x1013eb3c] with a0=0x1c09, a1=[[sym(rm)]+57416]:8, a2=[sym(rm)]+65536, a3=?.
-  The `jal` at 0x100a3908 calls testClear [0x100cb340] with a0=0x0, a1=?, a2=0x0, a3=ret(hash_value)-1.
+  The `jal` at 0x100a3908 calls testClear [0x100cb340] with a0=0x0, a1=ret(hash_value)-1, a2=0x0, a3=ret(hash_value)-1.
   The `jal` at 0x100a3944 calls myFrameBufferInit [0x1009f9a4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100a3958 calls tbRegWrite [0x1013eb3c] with a0=0x1c0b, a1=0x4a212481, a2=?, a3=?.
   The `jal` at 0x100a3988 calls tbRegWrite [0x1013eb3c] with a0=0x3fd3, a1=[[sym(rm)]+130712]:8, a2=?, a3=[sym(rm)]+131072, a4=-0x3.
@@ -6135,7 +6144,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x100b5224 calls testClear [0x100cb340] with a0=0x0, a1=0x4ff, a2=0x0, a3=0x3ff.
   The `jal` at 0x100b5274 calls tbRegWrite [0x1013eb3c] with a0=0x1c09, a1=[[sym(rm)]+57416]:8, a2=?, a3=[sym(rm)]+65536, a4=0xffffffff.
   The `jal` at 0x100b52ac calls tbRegWrite [0x1013eb3c] with a0=0x1c0b, a1=[[sym(rm)]+57432]:8, a2=?, a3=[sym(rm)]+65536, a4=0x100000.
-  The `jal` at 0x100b52d4 calls testClear [0x100cb340] with a0=0x0, a1=?, a2=0x0, a3=?.
+  The `jal` at 0x100b52d4 calls testClear [0x100cb340] with a0=0x0, a1=ret(hash_value)-1, a2=0x0, a3=?, a4=ret(hash_value), a5=[a0+364].
   The `jal` at 0x100b52e8 calls myFrameBufferInit [0x1009f9a4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100b5314 calls tbRegWrite [0x1013eb3c] with a0=0x1c00, a1=[[sym(rm)]+57344]:8, a2=?, a3=[sym(rm)]+65536.
   The `jal` at 0x100b5344 calls tbRegWrite [0x1013eb3c] with a0=0x1c00, a1=[[sym(rm)]+57344]:8, a2=?, a3=[sym(rm)]+65536, a4=-0x3801.
@@ -6420,7 +6429,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x100c8150 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x101ae0c0, a2=?, a3=?.
   The `jal` at 0x100c8184 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x101ae0c8, a2=?, a3=?.
   The `jal` at 0x100c81c4 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x101ae0d0, a2=?, a3=?.
-  The `jal` at 0x100c81e0 calls (unnamed) [0x100c82cc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x100c81e0 calls (unnamed) [0x100c82cc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=ret(fopen).
   The `jal` at 0x100c8200 calls kt_output_info [0x10046374] with a0=0x101ae0e8, a1=[0x102f887c], a2=?, a3=?.
   The `jal` at 0x100c826c calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101ae080, a2=?, a3=?.
   The `jalr` at 0x100c8290 calls free with a0=[sym(rm)], a1=?, a2=?, a3=?.
@@ -7752,7 +7761,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f6e48 loads 4 bytes from abs 0x102bcecc.
   The `jal` at 0x100f6dec calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f6e04 calls tbuSetNextTexID [0x10140ff0] with a0=ret(GetNextInteger), a1=?, a2=?, a3=?.
-  The `jalr` at 0x100f6e4c calls fprintf with a0=sym(__iob)+32, a1=0x101b2188, a2=?, a3=?.
+  The `jalr` at 0x100f6e4c calls fprintf with a0=sym(__iob)+32, a1=0x101b2188, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f6e1c targets 0x100f6e58, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f6e5c has v0 = one of ret(tbuSetNextTexID), ret(fprintf).
 
@@ -7772,7 +7781,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f6f90 loads 4 bytes from abs 0x102bd414.
   The `jal` at 0x100f6f28 calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f6f50 calls tbuLoadWaitOnDrawID [0x1014665c] with a0=ret(GetNextInteger), a1=[sym(trm)], a2=?, a3=?.
-  The `jalr` at 0x100f6f9c calls fprintf with a0=sym(__iob)+32, a1=0x101b21b8, a2=?, a3=?.
+  The `jalr` at 0x100f6f9c calls fprintf with a0=sym(__iob)+32, a1=0x101b21b8, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f6f68 targets 0x100f6fa8, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f6fac has v0 = one of ret(tbuLoadWaitOnDrawID), ret(fprintf).
 
@@ -7792,7 +7801,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f7040 loads 4 bytes from abs 0x102bd414.
   The `jal` at 0x100f6fd8 calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f7000 calls tbuSendDrawID [0x10146714] with a0=ret(GetNextInteger), a1=[sym(trm)], a2=?, a3=?.
-  The `jalr` at 0x100f704c calls fprintf with a0=sym(__iob)+32, a1=0x101b21d8, a2=?, a3=?.
+  The `jalr` at 0x100f704c calls fprintf with a0=sym(__iob)+32, a1=0x101b21d8, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f7018 targets 0x100f7058, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f705c has v0 = one of ret(tbuSendDrawID), ret(fprintf).
 
@@ -7834,7 +7843,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f7474 loads 4 bytes from abs 0x102bd414.
   The `jal` at 0x100f7410 calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f7438 calls tbuInterlaceDownLoads [0x10141b8c] with a0=ret(GetNextInteger), a1=[sym(trm)], a2=?, a3=?.
-  The `jalr` at 0x100f7480 calls fprintf with a0=sym(__iob)+32, a1=0x101b2270, a2=?, a3=?.
+  The `jalr` at 0x100f7480 calls fprintf with a0=sym(__iob)+32, a1=0x101b2270, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f7450 targets 0x100f7488, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f7490 has v0 = one of ret(tbuInterlaceDownLoads), ret(fprintf).
 
@@ -7976,11 +7985,12 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   2 such `lw` accesses load 4 bytes from abs 0x102bd3f8, including `lw` at 0x100f87cc, `lw` at 0x100f87f4.
   The `lw` at 0x100f87d0 loads 4 bytes from abs 0x102bd414.
   2 such `lw` accesses load 4 bytes from abs 0x102bdbbc, including `lw` at 0x100f8818, `lw` at 0x100f882c.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100f8834, `sw` at 0x100f8854.
+  The `sw` at 0x100f8834 stores 4 bytes to ret(DLGetNameData) +0x12f0.
+  The `sw` at 0x100f8854 stores 4 bytes to ret(DLGetNameData) +0x12f4.
   The `jal` at 0x100f8788 calls GetNextString [0x100fee80] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f87a0 calls DLGetNameData [0x100ff57c] with a0=0x0, a1=ret(GetNextString), a2=?, a3=?.
   The `jalr` at 0x100f87dc calls fprintf with a0=sym(__iob)+32, a1=0x101b26c0, a2=?, a3=?.
-  The `jalr` at 0x100f8800 calls fprintf with a0=?, a1=0x101b26e8, a2=?, a3=?.
+  The `jalr` at 0x100f8800 calls fprintf with a0=sym(__iob)+32, a1=0x101b26e8, a2=?, a3=?.
   The `jal` at 0x100f881c calls GetNextInteger [0x100feebc] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100f8838 calls GetNextInteger [0x100feebc] with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0x100f87a8 targets 0x100f8810, is taken when v0(=ret(DLGetNameData)) != 0, and falls through when v0(=ret(DLGetNameData)) == 0.
@@ -8004,7 +8014,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f8b30 loads 4 bytes from abs 0x102bd414.
   The `jal` at 0x100f8acc calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f8af4 calls tbuDrawWaitOnLoadID [0x1014688c] with a0=ret(GetNextInteger), a1=[sym(trm)], a2=?, a3=?.
-  The `jalr` at 0x100f8b3c calls fprintf with a0=sym(__iob)+32, a1=0x101b2780, a2=?, a3=?.
+  The `jalr` at 0x100f8b3c calls fprintf with a0=sym(__iob)+32, a1=0x101b2780, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f8b0c targets 0x100f8b44, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f8b4c has v0 = one of ret(tbuDrawWaitOnLoadID), ret(fprintf).
 
@@ -8024,7 +8034,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `lw` at 0x100f8bdc loads 4 bytes from abs 0x102bd414.
   The `jal` at 0x100f8b78 calls GetNextInteger [0x100feebc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f8ba0 calls tbuSendLoadID [0x101467d0] with a0=ret(GetNextInteger), a1=[sym(trm)], a2=?, a3=?.
-  The `jalr` at 0x100f8be8 calls fprintf with a0=sym(__iob)+32, a1=0x101b27a0, a2=?, a3=?.
+  The `jalr` at 0x100f8be8 calls fprintf with a0=sym(__iob)+32, a1=0x101b27a0, a2=ret(GetNextInteger), a3=?.
   The `beq` branch at 0x100f8bb8 targets 0x100f8bf0, is taken when ra(=[sym(textureDebug)]) == 0, and falls through when ra(=[sym(textureDebug)]) != 0.
   The return at 0x100f8bf8 has v0 = one of ret(tbuSendLoadID), ret(fprintf).
 
@@ -8476,9 +8486,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/rrm.o:invalidate_pane_buffer — alrea
   The `jal` at 0x10116d04 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101b7a28, a2=?, a3=?, a5=ret(vcRead).
   The `jal` at 0x10116d20 calls vcRead [0x10140bac] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10116d5c calls kt_output_info [0x10046374] with a0=0x101b79f0, a1=?, a2=?, a3=?, a4=ret(vcRead).
-  The `jal` at 0x10116d74 calls vcWrite [0x1014071c] with a0=0xc006, a1=?, a2=?, a3=?.
+  The `jal` at 0x10116d74 calls vcWrite [0x1014071c] with a0=0xc006, a1=ret(vcRead), a2=?, a3=?.
   The `jal` at 0x10116d88 calls dgo_wait [0x1011935c] with a0=0x1, a1=?, a2=?, a3=?.
-  The `jal` at 0x10116d98 calls vcWrite [0x1014071c] with a0=0xc104, a1=?, a2=?, a3=?.
+  The `jal` at 0x10116d98 calls vcWrite [0x1014071c] with a0=0xc104, a1=ret(vcRead), a2=?, a3=?.
   The `jal` at 0x10116da4 calls dgo_wait [0x1011935c] with a0=0x1, a1=?, a2=?, a3=?.
   The `beq` branch at 0x10116b3c targets 0x10116b78, is taken when s0(=(ret(vcRead) | 0x580)) == t8(?), and falls through when s0(=(ret(vcRead) | 0x580)) != t8(?).
   The `beq` branch at 0x10116b70 targets 0x10116db0 and is always taken.

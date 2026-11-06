@@ -33,8 +33,8 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xec61bc4-0xec72604 (68160 bytes).
   It occupies 68160 bytes.
   The `lw` at 0xec61bdc loads 4 bytes from sym(gl_wstatep) +0x0.
-  The `lh` at 0xec61c88 loads 2 bytes from ?.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec61cb0, `lw` at 0xec61cdc.
+  The `lh` at 0xec61c88 loads 2 bytes from [sym(gl_wstatep)] +0x2db4.
+  2 such `lw` accesses load 4 bytes from [sym(gl_wstatep)] +0x2cec, including `lw` at 0xec61cb0, `lw` at 0xec61cdc.
   2 such `lw` accesses load 4 bytes from abs 0xecdfb9c (gl_sstatep), including `lw` at 0xec61fe8, `lw` at 0xec62010.
   The `lh` at 0xec61fec loads 2 bytes from [0xecdfb9c] +0x2.
   The `lh` at 0xec61ff4 loads 2 bytes from [0xecdfb9c] +0x6.
@@ -50,8 +50,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec61c68 calls gl_gconfig [0xec8d054] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61c78 calls __GLcloseobj with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61c9c calls __GLendpick with a0=0x0, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec61ccc calls __GLendselect with a0=0x0, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec61cf4 calls __GLendfeedback with a0=0x0, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec61ccc calls __GLendselect with a0=0x0, a1=[sym(gl_wstatep)]+11500, a2=?, a3=?.
+  The `jalr` at 0xec61cf4 calls __GLendfeedback with a0=0x0, a1=[sym(gl_wstatep)]+11500, a2=?, a3=?.
   The `jalr` at 0xec61d08 calls __GLdrawmode with a0=0x10, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61d20 calls __GLafunction with a0=0x0, a1=0x7, a2=?, a3=?.
   The `jalr` at 0xec61d34 calls __GLbackface with a0=0x0, a1=?, a2=?, a3=?.
@@ -70,8 +70,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec61e44 calls __GLlmcolor with a0=0x0, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61e58 calls __GLgetgdesc with a0=0x4, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61e70 calls __GLgetgdesc with a0=0x5, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec61e8c calls __GLlsetdepth with a0=?, a1=ret(__GLgetgdesc), a2=?, a3=?.
-  The `jalr` at 0xec61eac calls __GLlshaderange with a0=0x0, a1=0x7, a2=?, a3=?.
+  The `jalr` at 0xec61e8c calls __GLlsetdepth with a0=ret(__GLgetgdesc), a1=ret(__GLgetgdesc), a2=?, a3=?.
+  The `jalr` at 0xec61eac calls __GLlshaderange with a0=0x0, a1=0x7, a2=ret(__GLgetgdesc), a3=ret(__GLgetgdesc).
   The `jalr` at 0xec61ec0 calls __GLlsrepeat with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61ed4 calls __GLmmode with a0=0x0, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61eec calls __GLpicksize with a0=0xa, a1=0xa, a2=?, a3=?.
@@ -88,9 +88,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec61fcc calls __GLcurson with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec61ff0 calls __GLviewport with a0=0x0, a1=[[0xecdfb9c]+2]:2, a2=0x0, a3=[[0xecdfb9c]+6]:2.
   The `jalr` at 0xec62040 calls __GLortho2 with a0=?, a1=?, a2=?, a3=?.
-  The `beql` branch at 0xec61c8c targets 0xec61cac, is taken when t8(?) == 0, and falls through when t8(?) != 0; its branch-likely delay slot `lw a1,52(sp)` at 0xec61c90 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xec61cb8 targets 0xec61ce4, is taken when v1(?) != at(=0x2), and falls through when v1(?) == at(=0x2); its branch-likely delay slot `addiu at,zero,1` at 0xec61cbc runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xec61ce4 targets 0xec61d00, is taken when v1(?) != at(=0x1), and falls through when v1(?) == at(=0x1).
+  The `beql` branch at 0xec61c8c targets 0xec61cac, is taken when t8(=[[sym(gl_wstatep)]+11700]:2) == 0, and falls through when t8(=[[sym(gl_wstatep)]+11700]:2) != 0; its branch-likely delay slot `lw a1,52(sp)` at 0xec61c90 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec61cb8 targets 0xec61ce4, is taken when v1(=[[sym(gl_wstatep)]+11500]) != at(=0x2), and falls through when v1(=[[sym(gl_wstatep)]+11500]) == at(=0x2); its branch-likely delay slot `addiu at,zero,1` at 0xec61cbc runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xec61ce4 targets 0xec61d00, is taken when v1(=[[sym(gl_wstatep)]+11500]) != at(=0x1), and falls through when v1(=[[sym(gl_wstatep)]+11500]) == at(=0x1).
   The return at 0xec62054 has v0 = ret(__GLortho2).
   The instructions from 0xec6205c to 0xec72600 are not reached by any path from the entry, and their branches are not listed.
 
@@ -212,7 +212,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda54688 calls __glTexParameterfv_size [0xda19c24] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda546a0 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexParameterfv_size) << 0x2), a3=?.
   The `jalr` at 0xda546bc calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexParameterfv_size) << 0x2)+8, a1=0x69, a2=(ret(__glTexParameterfv_size) << 0x2), a3=?.
-  The `jalr` at 0xda546ec calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda546ec calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexParameterfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda54694 targets 0xda546b0, is taken when a2(=(ret(__glTexParameterfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexParameterfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda546a8 targets 0xda546f8 and is always taken.
   The `beq` branch at 0xda546c8 targets 0xda546f8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -240,7 +240,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda547a8 calls __glTexParameteriv_size [0xda19d70] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda547c0 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
   The `jalr` at 0xda547dc calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexParameteriv_size) << 0x2)+8, a1=0x6b, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
-  The `jalr` at 0xda5480c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda5480c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda547b4 targets 0xda547d0, is taken when a2(=(ret(__glTexParameteriv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexParameteriv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda547c8 targets 0xda54818 and is always taken.
   The `beq` branch at 0xda547e8 targets 0xda54818, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -268,7 +268,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda548c8 calls __glTexEnvfv_size [0xda1a15c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda548e0 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
   The `jalr` at 0xda548fc calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexEnvfv_size) << 0x2)+8, a1=0x6f, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
-  The `jalr` at 0xda5492c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda5492c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda548d4 targets 0xda548f0, is taken when a2(=(ret(__glTexEnvfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexEnvfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda548e8 targets 0xda54938 and is always taken.
   The `beq` branch at 0xda54908 targets 0xda54938, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -296,7 +296,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda549e8 calls __glTexEnviv_size [0xda1a190] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda54a00 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
   The `jalr` at 0xda54a1c calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexEnviv_size) << 0x2)+8, a1=0x71, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
-  The `jalr` at 0xda54a4c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda54a4c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda549f4 targets 0xda54a10, is taken when a2(=(ret(__glTexEnviv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexEnviv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda54a08 targets 0xda54a58 and is always taken.
   The `beq` branch at 0xda54a28 targets 0xda54a58, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -324,7 +324,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda54b0c calls __glTexGendv_size [0xda18dd0] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda54b24 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexGendv_size) << 0x3), a3=?.
   The `jalr` at 0xda54b40 calls __glSPDlalloc2 [0xd94ab64] with a0=(ret(__glTexGendv_size) << 0x3)+8, a1=0x73, a2=(ret(__glTexGendv_size) << 0x3), a3=?.
-  The `jalr` at 0xda54b70 calls memcpy with a0=ret(__glSPDlalloc2)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda54b70 calls memcpy with a0=ret(__glSPDlalloc2)+8, a1=a2 at entry (arg2), a2=(ret(__glTexGendv_size) << 0x3), a3=?.
   The `bgez` branch at 0xda54b18 targets 0xda54b34, is taken when a2(=(ret(__glTexGendv_size) << 0x3)) >= 0 (signed), and falls through when a2(=(ret(__glTexGendv_size) << 0x3)) < 0 (signed).
   The `beq` branch at 0xda54b2c targets 0xda54b7c and is always taken.
   The `beq` branch at 0xda54b4c targets 0xda54b7c, is taken when v0(=ret(__glSPDlalloc2)) == 0, and falls through when v0(=ret(__glSPDlalloc2)) != 0.
@@ -352,7 +352,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda54c2c calls __glTexGenfv_size [0xda18e0c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda54c44 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexGenfv_size) << 0x2), a3=?.
   The `jalr` at 0xda54c60 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexGenfv_size) << 0x2)+8, a1=0x75, a2=(ret(__glTexGenfv_size) << 0x2), a3=?.
-  The `jalr` at 0xda54c90 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda54c90 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexGenfv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda54c38 targets 0xda54c54, is taken when a2(=(ret(__glTexGenfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexGenfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda54c4c targets 0xda54c9c and is always taken.
   The `beq` branch at 0xda54c6c targets 0xda54c9c, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -380,7 +380,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda54d4c calls __glTexGeniv_size [0xda18e40] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda54d64 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glTexGeniv_size) << 0x2), a3=?.
   The `jalr` at 0xda54d80 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glTexGeniv_size) << 0x2)+8, a1=0x77, a2=(ret(__glTexGeniv_size) << 0x2), a3=?.
-  The `jalr` at 0xda54db0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda54db0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glTexGeniv_size) << 0x2), a3=?.
   The `bgez` branch at 0xda54d58 targets 0xda54d74, is taken when a2(=(ret(__glTexGeniv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexGeniv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda54d6c targets 0xda54dbc and is always taken.
   The `beq` branch at 0xda54d8c targets 0xda54dbc, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -879,7 +879,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda55d20 stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xda55cdc calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x2).
   The `jalr` at 0xda55cf8 calls __glSPDlalloc [0xd94a930] with a0=(a1 << 0x2)+8, a1=0xa6, a2=a2 at entry (arg2), a3=(a1 << 0x2).
-  The `jalr` at 0xda55d2c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda55d2c calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=(a1 << 0x2).
   The `bgez` branch at 0xda55cd0 targets 0xda55cec, is taken when a3(=(a1 << 0x2)) >= 0 (signed), and falls through when a3(=(a1 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda55ce4 targets 0xda55d38 and is always taken.
   The `beq` branch at 0xda55d04 targets 0xda55d38, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -894,7 +894,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda55dbc stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xda55d78 calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x2).
   The `jalr` at 0xda55d94 calls __glSPDlalloc [0xd94a930] with a0=(a1 << 0x2)+8, a1=0xa7, a2=a2 at entry (arg2), a3=(a1 << 0x2).
-  The `jalr` at 0xda55dc8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda55dc8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=(a1 << 0x2).
   The `bgez` branch at 0xda55d6c targets 0xda55d88, is taken when a3(=(a1 << 0x2)) >= 0 (signed), and falls through when a3(=(a1 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda55d80 targets 0xda55dd4 and is always taken.
   The `beq` branch at 0xda55da0 targets 0xda55dd4, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1177,7 +1177,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda56788 calls __glConvolutionParameterfvEXT_size [0xd9d38d4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda567a0 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
   The `jalr` at 0xda567bc calls __glSPDlalloc [0xd94a930] with a0=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a1=0xc6, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda567ec calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda567ec calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
   The `bgez` branch at 0xda56794 targets 0xda567b0, is taken when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda567a8 targets 0xda567f8 and is always taken.
   The `beq` branch at 0xda567c8 targets 0xda567f8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1205,7 +1205,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda56894 calls __glConvolutionParameterivEXT_size [0xd9d3918] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda568ac calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
   The `jalr` at 0xda568c8 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a1=0xc8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda568f8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda568f8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
   The `bgez` branch at 0xda568a0 targets 0xda568bc, is taken when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda568b4 targets 0xda56904 and is always taken.
   The `beq` branch at 0xda568d4 targets 0xda56904, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1309,8 +1309,8 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 168 bytes.
   The `sw` at 0xda56c58 stores 4 bytes to ret(__glSPDlalloc) +0x0.
   The `jalr` at 0xda56c38 calls __glSPDlalloc [0xd94a930] with a0=((a0 << 0x2) + (a0 << 0x2))+4, a1=0xd5, a2=a2 at entry (arg2), a3=(a0 << 0x2).
-  The `jalr` at 0xda56c68 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda56c88 calls memcpy with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda56c68 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=(a0 << 0x2).
+  The `jalr` at 0xda56c88 calls memcpy with a0=(ret(__glSPDlalloc) + (a0 << 0x2))+4, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=?.
   The `beq` branch at 0xda56c44 targets 0xda56c94, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
   The return at 0xda56c9c has v0 = one of ret(__glSPDlalloc), ret(memcpy).
 
@@ -1467,7 +1467,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda571ac stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xda57168 calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x3).
   The `jalr` at 0xda57184 calls __glSPDlalloc [0xd94a930] with a0=(a1 << 0x3)+8, a1=0xe1, a2=a2 at entry (arg2), a3=(a1 << 0x3).
-  The `jalr` at 0xda571b8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda571b8 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=(a1 << 0x3).
   The `bgez` branch at 0xda5715c targets 0xda57178, is taken when a3(=(a1 << 0x3)) >= 0 (signed), and falls through when a3(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda57170 targets 0xda571c4 and is always taken.
   The `beq` branch at 0xda57190 targets 0xda571c4, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1482,7 +1482,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda57248 stores 4 bytes to ret(__glSPDlalloc) +0x4.
   The `jalr` at 0xda57204 calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=(a1 << 0x3).
   The `jalr` at 0xda57220 calls __glSPDlalloc [0xd94a930] with a0=(a1 << 0x3)+8, a1=0xe2, a2=a2 at entry (arg2), a3=(a1 << 0x3).
-  The `jalr` at 0xda57254 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda57254 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=(a1 << 0x3).
   The `bgez` branch at 0xda571f8 targets 0xda57214, is taken when a3(=(a1 << 0x3)) >= 0 (signed), and falls through when a3(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda5720c targets 0xda57260 and is always taken.
   The `beq` branch at 0xda5722c targets 0xda57260, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1498,7 +1498,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57298 calls __glColorTableParameterfvSGI_size [0xda07a18] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda572b0 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
   The `jalr` at 0xda572cc calls __glSPDlalloc [0xd94a930] with a0=(ret(__glColorTableParameterfvSGI_size) << 0x2)+8, a1=0xe4, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda572fc calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda572fc calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
   The `bgez` branch at 0xda572a4 targets 0xda572c0, is taken when a2(=(ret(__glColorTableParameterfvSGI_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glColorTableParameterfvSGI_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda572b8 targets 0xda57308 and is always taken.
   The `beq` branch at 0xda572d8 targets 0xda57308, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1514,7 +1514,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57340 calls __glColorTableParameterivSGI_size [0xda07a3c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57358 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
   The `jalr` at 0xda57374 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glColorTableParameterivSGI_size) << 0x2)+8, a1=0xe5, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda573a4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda573a4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
   The `bgez` branch at 0xda5734c targets 0xda57368, is taken when a2(=(ret(__glColorTableParameterivSGI_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glColorTableParameterivSGI_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda57360 targets 0xda573b0 and is always taken.
   The `beq` branch at 0xda57380 targets 0xda573b0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1564,7 +1564,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda574fc calls __glSpriteParameterfvSGIX_size [0xda07a70] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57514 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda57530 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a1=0xeb, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda57558 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda57558 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda57508 targets 0xda57524, is taken when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda5751c targets 0xda57564 and is always taken.
   The `beq` branch at 0xda5753c targets 0xda57564, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1590,7 +1590,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda575ec calls __glSpriteParameterivSGIX_size [0xda07ab4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57604 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda57620 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a1=0xed, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda57648 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda57648 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda575f8 targets 0xda57614, is taken when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda5760c targets 0xda57654 and is always taken.
   The `beq` branch at 0xda5762c targets 0xda57654, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1606,7 +1606,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda576dc stores 4 bytes to ret(__glSPDlalloc) +0x8.
   The `jalr` at 0xda57698 calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda576b4 calls __glSPDlalloc [0xd94a930] with a0=(a2 << 0x2)+12, a1=0xee, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda576ec calls memcpy with a0=ret(__glSPDlalloc)+12, a1=a3 at entry (arg3), a2=?, a3=?.
+  The `jalr` at 0xda576ec calls memcpy with a0=ret(__glSPDlalloc)+12, a1=a3 at entry (arg3), a2=(a2 << 0x2), a3=?.
   The `bgez` branch at 0xda5768c targets 0xda576a8, is taken when v0(=(a2 << 0x2)) >= 0 (signed), and falls through when v0(=(a2 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda576a0 targets 0xda576f8 and is always taken.
   The `beq` branch at 0xda576bc targets 0xda576f8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1632,7 +1632,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57780 calls __glPointParameterfvSGIS_size [0xda07ae8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57798 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
   The `jalr` at 0xda577b4 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a1=0xf0, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xda577dc calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda577dc calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
   The `bgez` branch at 0xda5778c targets 0xda577a8, is taken when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda577a0 targets 0xda577e8 and is always taken.
   The `beq` branch at 0xda577c0 targets 0xda577e8, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1646,7 +1646,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xda5785c stores 4 bytes to ret(__glSPDlalloc) +0x0.
   The `jalr` at 0xda57824 calls __glsplc_InvalidValue [0xd9944c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=a0 at entry (arg0).
   The `jalr` at 0xda57844 calls __glSPDlalloc [0xd94a930] with a0=(a0 << 0x3)+4, a1=0xf1, a2=(a0 << 0x3), a3=a0 at entry (arg0).
-  The `jalr` at 0xda5786c calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=a0 at entry (arg0).
+  The `jalr` at 0xda5786c calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=a0 at entry (arg0).
   The `bgez` branch at 0xda57818 targets 0xda57834, is taken when a2(=(a0 << 0x3)) >= 0 (signed), and falls through when a2(=(a0 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda5782c targets 0xda57878 and is always taken.
   The `beq` branch at 0xda57854 targets 0xda57878, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1761,7 +1761,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57b9c calls __glPixelTexGenParameterivSGIS_size [0xda07c0c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57bb4 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2), a3=?.
   The `jalr` at 0xda57bd0 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2)+4, a1=0xff, a2=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xda57bf8 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda57bf8 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2), a3=?.
   The `bgez` branch at 0xda57ba8 targets 0xda57bc4, is taken when a2(=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPixelTexGenParameterivSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda57bbc targets 0xda57c04 and is always taken.
   The `beq` branch at 0xda57bdc targets 0xda57c04, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1787,7 +1787,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57c8c calls __glPixelTexGenParameterfvSGIS_size [0xda07c40] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57ca4 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2), a3=?.
   The `jalr` at 0xda57cc0 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2)+4, a1=0x101, a2=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xda57ce8 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda57ce8 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2), a3=?.
   The `bgez` branch at 0xda57c98 targets 0xda57cb4, is taken when a2(=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPixelTexGenParameterfvSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda57cac targets 0xda57cf4 and is always taken.
   The `beq` branch at 0xda57ccc targets 0xda57cf4, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1836,7 +1836,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57e34 calls __glFragmentLightfvSGIX_size [0xda07d1c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57e4c calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda57e68 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a1=0x105, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda57e98 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda57e98 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda57e40 targets 0xda57e5c, is taken when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda57e54 targets 0xda57ea4 and is always taken.
   The `beq` branch at 0xda57e74 targets 0xda57ea4, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1864,7 +1864,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda57f40 calls __glFragmentLightivSGIX_size [0xda07dd4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda57f58 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda57f74 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a1=0x107, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda57fa4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda57fa4 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda57f4c targets 0xda57f68, is taken when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda57f60 targets 0xda57fb0 and is always taken.
   The `beq` branch at 0xda57f80 targets 0xda57fb0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1890,7 +1890,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda58038 calls __glFragmentLightModelfvSGIX_size [0xda07e08] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda58050 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda5806c calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a1=0x109, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda58094 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda58094 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda58044 targets 0xda58060, is taken when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda58058 targets 0xda580a0 and is always taken.
   The `beq` branch at 0xda58078 targets 0xda580a0, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1916,7 +1916,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda58128 calls __glFragmentLightModelivSGIX_size [0xda07e5c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda58140 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda5815c calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a1=0x10b, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda58184 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0xda58184 calls memcpy with a0=ret(__glSPDlalloc)+4, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
   The `bgez` branch at 0xda58134 targets 0xda58150, is taken when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda58148 targets 0xda58190 and is always taken.
   The `beq` branch at 0xda58168 targets 0xda58190, is taken when v0(=ret(__glSPDlalloc)) == 0, and falls through when v0(=ret(__glSPDlalloc)) != 0.
@@ -1947,7 +1947,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda5825c calls __glFragmentMaterialfvSGIX_size [0xda07c74] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xda58274 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda58290 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)+8, a1=0x10d, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda582c0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda582c0 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `beq` branch at 0xda58238 targets 0xda58254, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xda5824c targets 0xda582cc and is always taken.
   The `bgez` branch at 0xda58268 targets 0xda58284, is taken when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) < 0 (signed).
@@ -1980,7 +1980,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda583ac calls __glFragmentMaterialivSGIX_size [0xda07ce8] with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0xda583c4 calls __glsplc_InvalidEnum [0xd994500] with a0=?, a1=?, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda583e0 calls __glSPDlalloc [0xd94a930] with a0=(ret(__glFragmentMaterialivSGIX_size) << 0x2)+8, a1=0x10f, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda58410 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xda58410 calls memcpy with a0=ret(__glSPDlalloc)+8, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `beq` branch at 0xda58388 targets 0xda583a4, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xda5839c targets 0xda5841c and is always taken.
   The `bgez` branch at 0xda583b8 targets 0xda583d4, is taken when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) < 0 (signed).

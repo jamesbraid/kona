@@ -173,8 +173,8 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jal` at 0x1004cd64 calls __as__9EZWrapperGi [0x1008f4f0] with a0=ret(EZ__GP10_WidgetRec), a1=[[a0+340]+636], a2=?, a3=?.
   The `jal` at 0x1004cd88 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jalr` at 0x1004cdf0 calls XtSetSensitive with a0=[a0+128], a1=one of 0x0, 0x1, a2=0x1, a3=[[a0+340]+704].
-  The `jalr` at 0x1004ce08 calls XtSetSensitive with a0=[a0+116], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1004ce20 calls XtSetSensitive with a0=[a0+92], a1=?, a2=?, a3=?.
+  The `jalr` at 0x1004ce08 calls XtSetSensitive with a0=[a0+116], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x1004ce20 calls XtSetSensitive with a0=[a0+92], a1=one of 0x0, 0x1, a2=?, a3=?.
   The `bne` branch at 0x1004c718 targets 0x1004c7e8, is taken when a1(=[[a0+340]+260]) != a2(=0xb), and falls through when a1(=[[a0+340]+260]) == a2(=0xb).
   The `beq` branch at 0x1004c7e0 targets 0x1004c8ac and is always taken.
   The `bne` branch at 0x1004c8f0 targets 0x1004c91c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -371,8 +371,8 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `sw` at 0x1004d620 stores 4 bytes to [a0+340] +0x104.
   The `jalr` at 0x1004d58c calls baseWidget__10VkMenuItemCGv with a0=[a0+272], a1=a2 at entry (arg2), a2=a2 at entry (arg2), a3=0x63b20.
   The `jalr` at 0x1004d5c4 calls baseWidget__10VkMenuItemCGv with a0=[a0+276], a1=?, a2=?, a3=?, a4=a1 at entry (arg1).
-  The `jal` at 0x1004d60c calls loadFormat__18VkwindowMainWindowGiPCc [0x1006f0a0] with a0=[sym(vkwindow)], a1=0xb, a2=?, a3=?.
-  The `jal` at 0x1004d630 calls update__18VkwindowMainWindowGv [0x1006ef10] with a0=[sym(vkwindow)], a1=?, a2=[a0+340], a3=?.
+  The `jal` at 0x1004d60c calls loadFormat__18VkwindowMainWindowGiPCc [0x1006f0a0] with a0=[sym(vkwindow)], a1=0xb, a2=one of 0x0, 0x10098348, 0x10098360, a3=?.
+  The `jal` at 0x1004d630 calls update__18VkwindowMainWindowGv [0x1006ef10] with a0=[sym(vkwindow)], a1=[[a0+340]+260], a2=[a0+340], a3=?.
   The `bne` branch at 0x1004d59c targets 0x1004d5b8, is taken when a4(=a1) != v0(=ret(baseWidget__10VkMenuItemCGv)), and falls through when a4(=a1) == v0(=ret(baseWidget__10VkMenuItemCGv)).
   The `beq` branch at 0x1004d5b0 targets 0x1004d5e8 and is always taken.
   The `bne` branch at 0x1004d5d4 targets 0x1004d5e8, is taken when a1 != v0(=ret(baseWidget__10VkMenuItemCGv)), and falls through when a1 == v0(=ret(baseWidget__10VkMenuItemCGv)).
@@ -558,9 +558,9 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   2 such `lw` accesses load 4 bytes from sym(vkwindow) +0x0, including `lw` at 0x1004e248, `lw` at 0x1004e268.
   The `jalr` at 0x1004ddac calls getItemPosition__6VkMenuGP10_WidgetRec with a0=[a0+244], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x63310.
   The `jalr` at 0x1004de98 calls sprintf with a0=sp-1096, a1=0x100983b0, a2=[[a0+340]+260], a3=?, a5=[a0+340].
-  The `jalr` at 0x1004deb4 calls getTheErrorDialog__Gv with a0=?, a1=?, a2=?, a3=[a0+340].
+  The `jalr` at 0x1004deb4 calls getTheErrorDialog__Gv with a0=?, a1=?, a2=[[a0+340]+260], a3=[a0+340].
   The `jalr` at 0x1004decc calls baseWidget__10VkMenuItemCGv with a0=[a0+244], a1=?, a2=?, a3=?.
-  The `jal` at 0x1004dee8 calls (unnamed) [0x1004ed20] with a0=?, a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
+  The `jal` at 0x1004dee8 calls (unnamed) [0x1004ed20] with a0=ret(getTheErrorDialog__Gv), a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
   The `jalr` at 0x1004df1c calls set__12VkOptionMenuGP10VkMenuItem with a0=[a0+244], a1=[a0+280], a2=?, a3=?.
   The `jalr` at 0x1004df44 calls set__12VkOptionMenuGi with a0=[a0+244], a1=[[a0+340]+260], a2=?, a3=?.
   The `jalr` at 0x1004e104 calls XtSetSensitive with a0=[a0+80], a1=0x0, a2=?, a3=[[a0+340]+260], a4=0xb.
@@ -583,13 +583,13 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `beq` branch at 0x1004de14 targets 0x1004de4c, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x1004de44 targets 0x1004df54, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x1004de5c targets 0x1004df54, is taken when t2(=[[a0+340]+260]) == t3(=0xb), and falls through when t2(=[[a0+340]+260]) != t3(=0xb).
-  The `beq` branch at 0x1004de74 targets 0x1004df54, is taken when t3(=[[a0+340]+260]) == t8(?), and falls through when t3(=[[a0+340]+260]) != t8(?).
+  The `beq` branch at 0x1004de74 targets 0x1004df54, is taken when t3(=[[a0+340]+260]) == t8(=[[a0+340]+260]), and falls through when t3(=[[a0+340]+260]) != t8(=[[a0+340]+260]).
   The `bne` branch at 0x1004df00 targets 0x1004df2c, is taken when ra(=[[a0+340]+260]) != at(=0xb), and falls through when ra(=[[a0+340]+260]) == at(=0xb).
   The `beq` branch at 0x1004df24 targets 0x1004df4c and is always taken.
   The `beq` branch at 0x1004df4c targets 0x1004e280 and is always taken.
-  The `beq` branch at 0x1004df5c targets 0x1004df7c, is taken when a1(?) == a2(=0xb), and falls through when a1(?) != a2(=0xb).
+  The `beq` branch at 0x1004df5c targets 0x1004df7c, is taken when a1(=[[a0+340]+260]) == a2(=0xb), and falls through when a1(=[[a0+340]+260]) != a2(=0xb).
   The `bne` branch at 0x1004df74 targets 0x1004e0dc, is taken when a3(=[[a0+340]+260]) != a4(=0xb), and falls through when a3(=[[a0+340]+260]) == a4(=0xb).
-  The `bne` branch at 0x1004df84 targets 0x1004dfbc, is taken when a4(?) != a5(=0xb), and falls through when a4(?) == a5(=0xb).
+  The `bne` branch at 0x1004df84 targets 0x1004dfbc, is taken when a4(=[[a0+340]+260]) != a5(=0xb), and falls through when a4(=[[a0+340]+260]) == a5(=0xb).
   The `beq` branch at 0x1004dfb4 targets 0x1004e024 and is always taken.
   The `bne` branch at 0x1004e034 targets 0x1004e06c, is taken when t3(=[[a0+340]+260]) != t8(=0xb), and falls through when t3(=[[a0+340]+260]) == t8(=0xb).
   The `beq` branch at 0x1004e064 targets 0x1004e0dc and is always taken.
@@ -1071,7 +1071,7 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jalr` at 0x100537d0 calls XtVaSetValues with a0=[a0+176], a1=sym(_XmStrings)+10305, a2=[a0+196], a3=0x0.
   The `jalr` at 0x100537e4 calls baseWidget__10VkMenuItemCGv with a0=[a0+252], a1=?, a2=?, a3=?.
   The `jalr` at 0x100537fc calls baseWidget__10VkMenuItemCGv with a0=[a0+248], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100538fc calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x100538fc calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10053910 calls baseWidget__10VkMenuItemCGv with a0=[a0+248], a1=?, a2=?, a3=?.
   The `jalr` at 0x10053a18 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10053a50 calls XtVaSetValues with a0=[a0+100], a1=sym(_XmStrings)+10305, a2=[a0+44], a3=sym(_XmStrings)+7562, a4=[a0+44], a5=0x0.
@@ -2208,12 +2208,12 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jalr` at 0x1005734c calls XtAddCallback with a0=[a0+32], a1=sym(_XmStrings)+4683, a2=sym(closeHardwareCallback__14HardwareFormUISGP10_WidgetRecPvT2), a3=a0 at entry (arg0).
   The `jalr` at 0x10057360 calls baseWidget__10VkMenuItemCGv with a0=[a0+40], a1=?, a2=?, a3=?.
   The `jalr` at 0x10057378 calls baseWidget__10VkMenuItemCGv with a0=[a0+48], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10057454 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x1, a3=sym(_XmStrings)+5017, a4=0x4, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x10057454 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x1, a3=sym(_XmStrings)+5017, a4=0x4, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10057468 calls baseWidget__10VkMenuItemCGv with a0=[a0+44], a1=?, a2=?, a3=?.
   The `jalr` at 0x10057530 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x1, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10057544 calls baseWidget__10VkMenuItemCGv with a0=[a0+52], a1=?, a2=?, a3=?.
   The `jalr` at 0x1005755c calls baseWidget__10VkMenuItemCGv with a0=[a0+48], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10057634 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x3, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x10057634 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x3, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10057648 calls baseWidget__10VkMenuItemCGv with a0=[a0+48], a1=?, a2=?, a3=?.
   The `jalr` at 0x10057700 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x1, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
   The `beq` branch at 0x10056cfc targets 0x10056d4c, is taken when a4(=ret(__nw__GUi)) == 0, and falls through when a4(=ret(__nw__GUi)) != 0.
@@ -2677,8 +2677,8 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jal` at 0x10059210 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x10059240 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x100592c4 calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x100592dc calls XtSetSensitive with a0=[a0+108], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100592f4 calls XtSetSensitive with a0=[a0+84], a1=?, a2=?, a3=?.
+  The `jalr` at 0x100592dc calls XtSetSensitive with a0=[a0+108], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x100592f4 calls XtSetSensitive with a0=[a0+84], a1=one of 0x0, 0x1, a2=?, a3=?.
   The `jal` at 0x10059308 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+84], a1=?, a2=?, a3=?.
   The `jal` at 0x10059328 calls __as__9EZWrapperGf [0x1008f850] with a0=ret(EZ__GP10_WidgetRec), a1=[a0+356], a2=?, a3=?; fp f13=[[a0+356]+624].
   The `jal` at 0x1005933c calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+108], a1=?, a2=?, a3=?.
@@ -3640,7 +3640,7 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jalr` at 0x1005f558 calls XtVaSetValues with a0=[a0+72], a1=sym(_XmStrings)+10305, a2=[a0+168], a3=0x0.
   The `jalr` at 0x1005f56c calls baseWidget__10VkMenuItemCGv with a0=[a0+216], a1=?, a2=?, a3=?.
   The `jalr` at 0x1005f584 calls baseWidget__10VkMenuItemCGv with a0=[a0+212], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1005f684 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x1005f684 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1005f698 calls baseWidget__10VkMenuItemCGv with a0=[a0+212], a1=?, a2=?, a3=?.
   The `jalr` at 0x1005f7a0 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1005f7d8 calls XtVaSetValues with a0=[a0+92], a1=sym(_XmStrings)+10305, a2=[a0+44], a3=sym(_XmStrings)+7562, a4=[a0+44], a5=0x0.

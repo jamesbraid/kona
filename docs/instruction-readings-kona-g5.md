@@ -81,7 +81,7 @@
   The `jal` at 0x9ac calls kona_flow_await_returned_credits with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x9b4 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x9c4 calls gfx_flow_attach_me_finish with a0=[a0+2272]:8, a1=[a0+72]:8, a2=?, a3=?.
-  The `jal` at 0x9cc calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x9cc calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x9e0 calls gfx_flow_attach_me with a0=[a0+2272]:8, a1=[a0+72]:8, a2=?, a3=?.
   The `jal` at 0x9f8 calls gfx_pio_write_32 with a0=[a0+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0xa00 calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
@@ -124,7 +124,7 @@
   The `sw` at 0x1140 stores 4 bytes to a1 (arg1 at entry) +0x20.
   The `sd` at 0x114c stores 8 bytes to a1 (arg1 at entry) +0x40.
   The `jal` at 0x10d4 calls mutex_spinlock with a0=a0+2576, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x10f4 calls mutex_spinunlock with a0=a0+2576, a1=?, a2=?, a3=?.
+  The `jal` at 0x10f4 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1128 calls cmn_err_tag with a0=0x84b, a1=0x4, a2=sym(.rodata), a3=sym(.rodata), a4=[a0+2184], a5=[a1+40]:8, a6=[a1+8].
   The `jal` at 0x1134 calls kona_die with a0=a0 at entry (arg0), a1=0x5, a2=?, a3=?.
   The `jal` at 0x1148 calls vsema with a0=a1+48, a1=?, a2=?, a3=-0x1.
@@ -299,7 +299,7 @@
   The `jal` at 0x9ac calls kona_flow_await_returned_credits with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x9b4 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x9c4 calls gfx_flow_attach_me_finish with a0=[a0+2272]:8, a1=[a0+72]:8, a2=?, a3=?.
-  The `jal` at 0x9cc calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x9cc calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x9e0 calls gfx_flow_attach_me with a0=[a0+2272]:8, a1=[a0+72]:8, a2=?, a3=?.
   The `jal` at 0x9f8 calls gfx_pio_write_32 with a0=[a0+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0xa00 calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
@@ -363,7 +363,7 @@
   The `sw` at 0x1140 stores 4 bytes to a1 (arg1 at entry) +0x20.
   The `sd` at 0x114c stores 8 bytes to a1 (arg1 at entry) +0x40.
   The `jal` at 0x10d4 calls mutex_spinlock with a0=a0+2576, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x10f4 calls mutex_spinunlock with a0=a0+2576, a1=?, a2=?, a3=?.
+  The `jal` at 0x10f4 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1128 calls cmn_err_tag with a0=0x84b, a1=0x4, a2=sym(.rodata), a3=sym(.rodata), a4=[a0+2184], a5=[a1+40]:8, a6=[a1+8].
   The `jal` at 0x1134 calls kona_die with a0=a0 at entry (arg0), a1=0x5, a2=?, a3=?.
   The `jal` at 0x1148 calls vsema with a0=a1+48, a1=?, a2=?, a3=-0x1.
@@ -747,10 +747,11 @@
   The `lw` at 0x10032c98 loads 4 bytes from abs 0x102be17c.
   The `lw` at 0x10032ca0 loads 4 bytes from abs 0x102bc57c.
   The `lw` at 0x10032cbc loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x0.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10032cc4, `lw` at 0x10032ccc.
+  The `lw` at 0x10032cc4 loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x14.
+  The `lw` at 0x10032ccc loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x10.
   The `lw` at 0x10032cdc loads 4 bytes from abs 0x102bd5ec.
   The `jal` at 0x10032cb8 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x10178f90, a2=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))], a3=a2 at entry (arg2), a4=sym(jt_regs), a5=(((a1 << 0x3) + a1) << 0x2), a6=0x102c4340.
-  The `jal` at 0x10032cf8 calls manual_set_jtag_reg_field [0x10032b18] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jal` at 0x10032cf8 calls manual_set_jtag_reg_field [0x10032b18] with a0=a0 at entry (arg0), a1=a2 at entry (arg2), a2=?, a3=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+16], a6=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+16].
   The return at 0x10032d0c has v0 = ret(manual_set_jtag_reg_field).
 
 - `auto_init_jtag_reg_field` in `usr/diags/IR/bin/irsaudit` at 0x10032d14 (n32).
@@ -762,11 +763,12 @@
   The `lw` at 0x10032d54 loads 4 bytes from abs 0x102be17c.
   The `lw` at 0x10032d5c loads 4 bytes from abs 0x102bd744.
   The `lw` at 0x10032d70 loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x0.
-  The `lw` at 0x10032d7c loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x20.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10032d84, `lw` at 0x10032d8c, `lw` at 0x10032db4.
+  2 such `lw` accesses load 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x20, including `lw` at 0x10032d7c, `lw` at 0x10032db4.
+  The `lw` at 0x10032d84 loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x10.
+  The `lw` at 0x10032d8c loads 4 bytes from (sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2)) +0x14.
   The `lw` at 0x10032d9c loads 4 bytes from abs 0x102bd5ec.
   The `jal` at 0x10032d78 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x10178fc0, a2=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))], a3=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+32], a4=(((a1 << 0x3) + a1) << 0x2), a5=0x0.
-  The `jal` at 0x10032db8 calls manual_set_jtag_reg_field [0x10032b18] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x10032db8 calls manual_set_jtag_reg_field [0x10032b18] with a0=a0 at entry (arg0), a1=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+32], a2=?, a3=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+16], a6=[(sym(jt_regs) + (((a1 << 0x3) + a1) << 0x2))+16].
   The return at 0x10032dcc has v0 = ret(manual_set_jtag_reg_field).
 
 - `auto_get_jtag_reg_field` in `usr/diags/IR/bin/irsaudit` at 0x10032dd4 (n32).
@@ -920,12 +922,12 @@
   The `jal` at 0x10079534 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1007954c calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x10079328 targets 0x10079518, is taken when v0(=ret(HipRevRead)) == ra(=0x30), and falls through when v0(=ret(HipRevRead)) != ra(=0x30).
-  The `blez` branch at 0x1007935c targets 0x1007955c, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
+  The `blez` branch at 0x1007935c targets 0x1007955c, is taken when at(=ret(hash_value)) <= 0 (signed), and falls through when at(=ret(hash_value)) > 0 (signed).
   The `beq` branch at 0x10079378 targets 0x10079418 and is always taken.
   The `beq` branch at 0x10079398 targets 0x100793b8, is taken when s3(=ret(basicSanityReg)) == 0, and falls through when s3(=ret(basicSanityReg)) != 0.
-  The `beq` branch at 0x100793bc targets 0x10079448, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x100793bc targets 0x10079448, is taken when a1(=one of 0x0, 0x1) == 0, and falls through when a1(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x100793dc targets 0x10079400, is taken when v0(=ret(basicSanityReg)) == 0, and falls through when v0(=ret(basicSanityReg)) != 0.
-  The `beq` branch at 0x10079410 targets 0x10079450, is taken when s5(?) >= t8(?) (signed), and falls through when s5(?) < t8(?) (signed).
+  The `beq` branch at 0x10079410 targets 0x10079450, is taken when s5(?) >= t8(=ret(hash_value)) (signed), and falls through when s5(?) < t8(=ret(hash_value)) (signed).
   The `bne` branch at 0x10079420 targets 0x10079380, is taken when t9(=[[sym(KONAINFO)]]) != 0, and falls through when t9(=[[sym(KONAINFO)]]) == 0.
   The `beq` branch at 0x10079440 targets 0x10079398 and is always taken.
   The `beq` branch at 0x10079448 targets 0x100793cc and is always taken.
@@ -1101,15 +1103,14 @@
   The `lw` at 0x10048064 loads 4 bytes from a1 (arg1 at entry) +0x8c.
   The `lw` at 0x1004807c loads 4 bytes from ([a1+140] + ((([a1+132] << 0x2) + [a1+132]) << 0x4)) +0x8.
   The `jalr` at 0x10048094 calls XCreateFontCursor with a0=a1 at entry (arg1), a1=0x22, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x100480cc calls XGrabPointer with a0=a1 at entry (arg1), a1=?, a2=0x0, a3=0xc, a4=0x0, a5=0x1, a7=ret(XCreateFontCursor).
+  The `jalr` at 0x100480cc calls XGrabPointer with a0=a1 at entry (arg1), a1=[([a1+140] + ((([a1+132] << 0x2) + [a1+132]) << 0x4))+8], a2=0x0, a3=0xc, a4=0x0, a5=0x1, a6=[([a1+140] + ((([a1+132] << 0x2) + [a1+132]) << 0x4))+8], a7=ret(XCreateFontCursor).
   The `jalr` at 0x100480fc calls fprintf with a0=sym(__iob)+32, a1=0x10097c48, a2=?, a3=?.
   The `jalr` at 0x1004810c calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004813c calls XAllowEvents with a0=a1 at entry (arg1), a1=0x1, a2=0x0, a3=?.
-  The `jalr` at 0x10048158 calls XWindowEvent with a0=a1 at entry (arg1), a1=?, a2=0xc, a3=sp-152.
-  The `jalr` at 0x1004820c calls XUngrabPointer with a0=a1 at entry (arg1), a1=0x0, a2=?, a3=?.
+  The `jalr` at 0x10048158 calls XWindowEvent with a0=a1 at entry (arg1), a1=[([a1+140] + ((([a1+132] << 0x2) + [a1+132]) << 0x4))+8], a2=0xc, a3=sp-152.
+  The `jalr` at 0x1004820c calls XUngrabPointer with a0=a1 at entry (arg1), a1=0x0, a2=?, a3=?, a4=0x4.
   The `beq` branch at 0x100480e0 targets 0x10048114, is taken when a0(=ret(XGrabPointer)) == 0, and falls through when a0(=ret(XGrabPointer)) != 0.
-  The `beq` branch at 0x10048118 targets 0x1004812c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10048124 targets 0x10048200, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10048118 targets 0x1004812c and is always taken.
   The `beq` branch at 0x1004816c targets 0x1004818c, is taken when a3(?) == a4(=0x4), and falls through when a3(?) != a4(=0x4).
   The `beq` branch at 0x1004817c targets 0x100481c8, is taken when a5(?) == a6(=0x5), and falls through when a5(?) != a6(=0x5).
   The `beq` branch at 0x10048184 targets 0x100481e8 and is always taken.
@@ -1122,6 +1123,7 @@
   The `bne` branch at 0x100481f8 targets 0x1004812c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x1004821c targets 0x10048224 and is always taken.
   The return at 0x10048234 has v0 = ?.
+  The instructions from 0x10048120 to 0x10048128 are not reached by any path from the entry, and their branches are not listed.
 
 - `gl_d_window` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec49aa8 (o32).
   Evidence grade: inferred.

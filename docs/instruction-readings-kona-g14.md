@@ -30,10 +30,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1005a754 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1005a770 calls kt_code_chip [0x1004797c] with a0=0x2, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1005a790 calls kt_output_diag [0x100461b0] with a0=0x10192d60, a1=?, a2=?, a3=?.
-  The `jal` at 0x1005a7b8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10192d98, a2=?, a3=?.
+  The `jal` at 0x1005a7b8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10192d98, a2=(ret(0x1005add8) + (ret(0x1005a810) + ret(0x1005aaf0))), a3=?.
   The `jal` at 0x1005a7e8 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1005a800 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
-  The `beq` branch at 0x1005a738 targets 0x1005a7d8, is taken when s0(?) == 0, and falls through when s0(?) != 0.
+  The `beq` branch at 0x1005a738 targets 0x1005a7d8, is taken when s0(=(ret(0x1005add8) + (ret(0x1005a810) + ret(0x1005aaf0)))) == 0, and falls through when s0(=(ret(0x1005add8) + (ret(0x1005a810) + ret(0x1005aaf0)))) != 0.
   The `beq` branch at 0x1005a808 targets 0x1005a7c4 and is always taken.
   The return at 0x1005a7d0 has v0 = ret(kt_output_rslt).
 
@@ -77,7 +77,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10077a1c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10199d40, a2=?, a3=?.
   The `jal` at 0x10077a3c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10199d60, a2=ret(fcPioRead32), a3=?.
   The `jal` at 0x10077a64 calls kt_output_info [0x10046374] with a0=0x10199da8, a1=?, a2=?, a3=?.
-  The `jal` at 0x10077a80 calls destroy_map_diag [0x10037218] with a0=?, a1=?, a2=0x203, a3=?.
+  The `jal` at 0x10077a80 calls destroy_map_diag [0x10037218] with a0=?, a1=ret(memalign), a2=0x203, a3=?.
   The `jal` at 0x10077ab8 calls kt_output_trce [0x10046b88] with a0=0x10199cd0, a1=?, a2=?, a3=?.
   The `jalr` at 0x10077af0 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-136, a3=?.
   The `jal` at 0x10077b0c calls fcGfxWrite32 [0x1013df2c] with a0=0x1, a1=?, a2=?, a3=?.
@@ -97,7 +97,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10077c84 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10199d20, a2=?, a3=?.
   The `jal` at 0x10077ca4 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x10077cc8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10199d00, a2=?, a3=?.
-  The `jalr` at 0x10077d0c calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10077d0c calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x10077d34 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10077d50 calls kt_code_chip [0x1004797c] with a0=0x2, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10077d74 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10199e20, a2=?, a3=?.
@@ -165,10 +165,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1008b4a4 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1008b4c0 calls kt_code_chip [0x1004797c] with a0=0x2, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1008b4e0 calls kt_output_diag [0x100461b0] with a0=0x1019e1d8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1008b508 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019e238, a2=?, a3=?.
+  The `jal` at 0x1008b508 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019e238, a2=(ret(0x1008bddc) + (ret(0x1008b560) + ret(0x1008b83c))), a3=?.
   The `jal` at 0x1008b538 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1008b550 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
-  The `beq` branch at 0x1008b488 targets 0x1008b528, is taken when s1(?) == 0, and falls through when s1(?) != 0.
+  The `beq` branch at 0x1008b488 targets 0x1008b528, is taken when s1(=(ret(0x1008bddc) + (ret(0x1008b560) + ret(0x1008b83c)))) == 0, and falls through when s1(=(ret(0x1008bddc) + (ret(0x1008b560) + ret(0x1008b83c)))) != 0.
   The `beq` branch at 0x1008b558 targets 0x1008b514 and is always taken.
   The return at 0x1008b520 has v0 = ret(kt_output_rslt).
 
@@ -282,7 +282,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x101351c4 calls vdIsManRequestDone [0x10137ff8] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x101351e4 calls sginap with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013523c calls sginap with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10135268 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x101bf8c8, a2=?, a3=?.
+  The `jal` at 0x10135268 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x101bf8c8, a2=ret(vdGetNumLinesComplete), a3=?.
   The `jal` at 0x101352a0 calls vdGetNumLinesComplete [0x10138130] with a0=a0 at entry (arg0), a1=?, a2=a1 at entry (arg1), a3=0x0.
   The `jal` at 0x101352c4 calls vdEndVCBusPoll [0x10133a3c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10135300 calls kt_output_info [0x10046374] with a0=0x101bf8f8, a1=?, a2=?, a3=?.
@@ -428,15 +428,15 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1012430c calls AllocateScreenPrivateIndex [0x10172080] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10124348 calls open with a0=0x1028e9e8, a1=0x802, a2=?, a3=0x102d0bb0.
   The `jalr` at 0x10124364 calls fcntl with a0=ret(open), a1=0x2, a2=0x5, a3=?.
-  The `jalr` at 0x1012439c calls ioctl with a0=?, a1=0x67, a2=sp-144, a3=?.
+  The `jalr` at 0x1012439c calls ioctl with a0=ret(open), a1=0x67, a2=sp-144, a3=?.
   The `jalr` at 0x101243c4 calls open with a0=0x1028ea70, a1=0x802, a2=?, a3=?.
   The `jalr` at 0x101243e0 calls fcntl with a0=ret(open), a1=0x2, a2=0x5, a3=?.
-  The `jalr` at 0x10124400 calls ioctl with a0=?, a1=0x3e8, a2=sp-136, a3=-0x1.
+  The `jalr` at 0x10124400 calls ioctl with a0=ret(open), a1=0x3e8, a2=sp-136, a3=-0x1.
   The `jalr` at 0x10124418 calls getpagesize with a0=?, a1=?, a2=?, a3=?, a4=-0x1.
-  The `jalr` at 0x10124434 calls ioctl with a0=?, a1=0x3ea, a2=sp-128, a3=?.
+  The `jalr` at 0x10124434 calls ioctl with a0=ret(open), a1=0x3ea, a2=sp-128, a3=?, a6=ret(ioctl).
   The `jalr` at 0x10124464 calls sprintf with a0=sp-120, a1=0x1028eaf0, a2=[sym(display)], a3=a0 at entry (arg0), a7=-0x1.
-  The `jalr` at 0x10124478 calls ioctl with a0=?, a1=0x6f, a2=sp-120, a3=?.
-  The `jal` at 0x10124498 calls shmiqLink [0x10094120] with a0=?, a1=a0 at entry (arg0), a2=0x101e9ff0, a3=0x0.
+  The `jalr` at 0x10124478 calls ioctl with a0=ret(open), a1=0x6f, a2=sp-120, a3=?.
+  The `jal` at 0x10124498 calls shmiqLink [0x10094120] with a0=ret(open), a1=a0 at entry (arg0), a2=0x101e9ff0, a3=0x0.
   The `jalr` at 0x101244f8 calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
   The `jal` at 0x10124514 calls ErrorF [0x10094ec0] with a0=0x1028e9f8, a1=0x1028e9e8, a2=ret(strerror), a3=?.
   The `jalr` at 0x10124534 calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
@@ -478,24 +478,30 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   It occupies 556 bytes.
   The `lw` at 0x10152680 loads 4 bytes from a0 (arg0 at entry) +0x7c.
   The `lw` at 0x10152684 loads 4 bytes from a1 (arg1 at entry) +0x0.
-  The `lw` at 0x101526a0 loads 4 bytes from [a1] +0x1b4.
+  2 such `lw` accesses load 4 bytes from [a1] +0x1b4, including `lw` at 0x101526a0, `lw` at 0x101527bc.
   The `lw` at 0x101526b4 loads 4 bytes from ([[a1]+436] + ([0x102cf2c4] << 0x2)) +0x0.
-  The `lw` at 0x101526e4 loads 4 bytes from [a1] +0x17c.
+  2 such `lw` accesses load 4 bytes from [a1] +0x17c, including `lw` at 0x101526e4, `lw` at 0x101527dc.
   The `lw` at 0x10152710 loads 4 bytes from sym(rrmWindowPrivateIndex) +0x0.
   The `lw` at 0x10152714 loads 4 bytes from a0 (arg0 at entry) +0x84.
   The `lw` at 0x10152720 loads 4 bytes from ([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2)) +0x0.
   The `lhu` at 0x1015272c loads 2 bytes from [([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))] +0x0.
   The `lbu` at 0x10152730 loads 1 byte from [([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))] +0x6.
-  The `lw` at 0x10152738 loads 4 bytes from [([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))] +0x10.
+  2 such `lw` accesses load 4 bytes from [([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))] +0x10, including `lw` at 0x10152738, `lw` at 0x10152844.
   The `lw` at 0x1015275c loads 4 bytes from [([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))] +0xc.
   The `lw` at 0x10152764 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1015277c, `lw` at 0x1015278c, `lw` at 0x101527bc.
+  The `lw` at 0x1015277c loads 4 bytes from [a1] +0x74.
+  The `lw` at 0x1015278c loads 4 bytes from [[a1]+116] +0x64.
   The `lw` at 0x101527a4 loads 4 bytes from sym(rrmScreenPrivateIndex) +0x0.
+  The `lw` at 0x101527c0 loads 4 bytes from [([[a1]+436] + ([0x102cf2c4] << 0x2))] +0x2c.
+  The `lw` at 0x101527d0 loads 4 bytes from ([[a1]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2)) +0x0.
+  The `lw` at 0x10152800 loads 4 bytes from [a1] +0x168.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10152804, `lw` at 0x10152818.
+  The `lw` at 0x10152828 loads 4 bytes from [([[a1]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x20.
   The `lw` at 0x1015287c loads 4 bytes from sym(errno) +0x0.
   The `jalr` at 0x101526f8 calls (unknown callee) with a0=a0+56, a1=a1+4, a2=([0x102cf2c4] << 0x2), a3=a3 at entry (arg3).
-  The `jalr` at 0x10152788 calls ioctl with a0=?, a1=0x3f2, a2=sp-96, a3=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+12], a5=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16].
-  The `jalr` at 0x101527e8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1015280c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10152788 calls ioctl with a0=[[[a1]+116]+100], a1=0x3f2, a2=sp-96, a3=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+12], a5=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16].
+  The `jalr` at 0x101527e8 calls (unknown callee) with a0=a0+56, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1015280c calls (unknown callee) with a0=?, a1=?, a2=a0+56, a3=?.
   The `jalr` at 0x10152834 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x8, a2=0x1, a3=?.
   The `jal` at 0x10152894 calls ErrorF [0x10094ec0] with a0=0x10299ff8, a1=?, a2=[sym(errno)], a3=0x16, a4=-0x1, a5=[sym(rrmScreenPrivateIndex)], a6=sym(rrmScreenPrivateIndex).
   The `bltz` branch at 0x101526bc targets 0x101526e0, is taken when at(=([a0+124] << 0x15)) < 0 (signed), and falls through when at(=([a0+124] << 0x15)) >= 0 (signed).
@@ -505,10 +511,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x10152744 targets 0x10152858, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x101527a0 targets 0x10152878, is taken when v0(=ret(ioctl)) == a4(=-0x1), and falls through when v0(=ret(ioctl)) != a4(=-0x1).
   The `beq` branch at 0x101527b0 targets 0x10152840, is taken when (a1(?) & 0x80) == 0, and falls through when (a1(?) & 0x80) != 0.
-  The `beq` branch at 0x101527cc targets 0x10152828, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `beq` branch at 0x101527cc targets 0x10152828, is taken when v1(=[[([[a1]+436] + ([0x102cf2c4] << 0x2))]+44]) == 0, and falls through when v1(=[[([[a1]+436] + ([0x102cf2c4] << 0x2))]+44]) != 0.
   The `beq` branch at 0x101527f0 targets 0x10152818, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `bne` branch at 0x1015281c targets 0x101527d8, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `beq` branch at 0x10152848 targets 0x101528a4, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10152848 targets 0x101528a4, is taken when a2(=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16]) == 0, and falls through when a2(=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16]) != 0.
   The `beq` branch at 0x10152850 targets 0x101526d8 and is always taken.
   The `beq` branch at 0x10152858 targets 0x10152870, is taken when a5(=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16]) == 0, and falls through when a5(=[[([a0+132] + ([sym(rrmWindowPrivateIndex)] << 0x2))]+16]) != 0.
   The `beq` branch at 0x10152860 targets 0x101526d8 and is always taken.
@@ -530,22 +536,23 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0xeb0874 loads 4 bytes from a1 (arg1 at entry) +0x10.
   The `lw` at 0xeb08ac loads 4 bytes from abs 0xf130c0 (__glXWindowRes).
   The `lw` at 0xeb08d4 loads 4 bytes from ret(LookupIDByType) +0x0.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0xeb0918, `sw` at 0xeb095c, `sw` at 0xeb0a78.
+  2 such `sw` accesses store 4 bytes to [a0+44] +0x18, including `sw` at 0xeb0918, `sw` at 0xeb095c.
   3 such `lw` accesses load 4 bytes from abs 0xf130cc (__glXBadDrawable), including `lw` at 0xeb0920, `lw` at 0xeb0964, `lw` at 0xeb0a60.
   2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xeb0934, `lbu` at 0xeb0944.
   5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xeb0978, `lw` at 0xeb097c, `lw` at 0xeb0a1c.
   2 such `lw` accesses load 4 bytes from abs 0xf130bc (__glXSwapGroupRes), including `lw` at 0xeb098c, `lw` at 0xeb09d8.
   The `sw` at 0xeb09cc stores 4 bytes to ret(Xalloc) +0x0.
+  The `sw` at 0xeb0a78 stores 4 bytes to ?.
   The `lw` at 0xeb0ae0 loads 4 bytes from sym(errno) +0x0.
   The `jalr` at 0xeb0888 calls LookupDrawable with a0=[a1+12], a1=[a0+44], a2=0x69014, a3=a3 at entry (arg3).
-  The `jalr` at 0xeb08b4 calls LookupIDByType with a0=?, a1=[0xf130c0], a2=?, a3=ret(LookupDrawable).
-  The `bgezall` at 0xeb08f0 calls (unnamed) [0xeaf2f0] with a0=?, a1=?, a2=ret(LookupIDByType), a3=?.
-  The `jalr` at 0xeb0994 calls LookupIDByType with a0=?, a1=[0xf130bc], a2=?, a3=?.
+  The `jalr` at 0xeb08b4 calls LookupIDByType with a0=[a1+12], a1=[0xf130c0], a2=?, a3=ret(LookupDrawable).
+  The `bgezall` at 0xeb08f0 calls (unnamed) [0xeaf2f0] with a0=[a1+12], a1=?, a2=ret(LookupIDByType), a3=?.
+  The `jalr` at 0xeb0994 calls LookupIDByType with a0=[a1+12], a1=[0xf130bc], a2=?, a3=?.
   The `jalr` at 0xeb09b8 calls Xalloc with a0=0x4, a1=?, a2=?, a3=ret(LookupIDByType).
-  The `jalr` at 0xeb09e4 calls AddResource with a0=?, a1=[0xf130bc], a2=ret(Xalloc), a3=?.
-  The `jalr` at 0xeb0a00 calls Xfree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xeb09e4 calls AddResource with a0=[a1+12], a1=[0xf130bc], a2=ret(Xalloc), a3=?.
+  The `jalr` at 0xeb0a00 calls Xfree with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0xeb0a48 calls ioctl with a0=?, a1=0x3f5, a2=sp-80, a3=?.
-  The `jalr` at 0xeb0ac8 calls ioctl with a0=?, a1=0x3fb, a2=sp-72, a3=?.
+  The `jalr` at 0xeb0ac8 calls ioctl with a0=?, a1=0x3fb, a2=sp-72, a3=?, a5=[a1+16], a6=[a1+12].
   The `bne` branch at 0xeb089c targets 0xeb0930, is taken when a3(=ret(LookupDrawable)) != 0, and falls through when a3(=ret(LookupDrawable)) == 0.
   The `beq` branch at 0xeb08c8 targets 0xeb08e4, is taken when a2(=ret(LookupIDByType)) == 0, and falls through when a2(=ret(LookupIDByType)) != 0.
   The `beq` branch at 0xeb08dc targets 0xeb0930 and is always taken.
@@ -561,7 +568,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `bne` branch at 0xeb0a20 targets 0xeb0a7c, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0xeb0a54 targets 0xeb0a70, is taken when v0(=ret(ioctl)) == 0, and falls through when v0(=ret(ioctl)) != 0.
   The `beq` branch at 0xeb0a68 targets 0xeb0b24 and is always taken.
-  The `beq` branch at 0xeb0a88 targets 0xeb0aac, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0xeb0a88 targets 0xeb0aac, is taken when a5(=[a1+16]) == 0, and falls through when a5(=[a1+16]) != 0.
   The `beq` branch at 0xeb0aa4 targets 0xeb0ab4 and is always taken.
   The `beq` branch at 0xeb0ad4 targets 0xeb0b1c, is taken when v0(=ret(ioctl)) == 0, and falls through when v0(=ret(ioctl)) != 0.
   The `beq` branch at 0xeb0aec targets 0xeb0b0c, is taken when a1(=[sym(errno)]) == a2(=0x10), and falls through when a1(=[sym(errno)]) != a2(=0x10).
@@ -1125,8 +1132,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1001a284 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10174fa8, a2=0x10175038, a3=?.
   The `jal` at 0x1001a2a4 calls jt_new_data_vector [0x10164db0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x1001a2c8 calls bzero with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
-  The `jal` at 0x1001a2dc calls jt_send_data [0x101686e0] with a0=[a0+24], a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x1001a32c calls free with a0=?, a1=?, a2=?, a3=?, a4=[a0+8].
+  The `jal` at 0x1001a2dc calls jt_send_data [0x101686e0] with a0=[a0+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
+  The `jalr` at 0x1001a32c calls free with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?, a4=[a0+8].
   The `jal` at 0x1001a35c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101752e8, a2=?, a3=?.
   The `jal` at 0x1001a37c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10174fa8, a2=0x10175318, a3=0x10174bb0, a4=[sym(bist_debug)], a5=entry(0x10174fd0), a7=[sym(bist_debug)].
   The `jal` at 0x1001a3b0 calls jt_isolate_chip [0x10167c80] with a0=a0 at entry (arg0), a1=[a0+28], a2=0x10175320, a3=?.
@@ -1141,18 +1148,18 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1001a4c0 calls jt_soft_reset [0x101685c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1001a4e4 calls __assert with a0=0x10174ef0, a1=0x10174c70, a2=0x246, a3=?.
   The `jalr` at 0x1001a57c calls strcmp with a0=?, a1=0x10175020, a2=?, a3=?, a4=[a0+8].
-  The `jal` at 0x1001a5e0 calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1001a604 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=?, a2=0x0, a3=?, a4=[a0+8].
+  The `jal` at 0x1001a5e0 calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=ret(jt_new_data_vector), a3=?.
+  The `jal` at 0x1001a604 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=ret(jt_new_data_vector), a2=0x0, a3=?, a4=[a0+8].
   The `jal` at 0x1001a630 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10174fa8, a2=0x101750c0, a3=?.
-  The `jalr` at 0x1001a644 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1001a644 calls free with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jalr` at 0x1001a668 calls strcmp with a0=[a0+28], a1=?, a2=?, a3=?, a4=[a0+8].
   The `jal` at 0x1001a6a0 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101750e8, a2=?, a3=[a0+28].
-  The `jal` at 0x1001a700 calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x1001a700 calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jalr` at 0x1001a794 calls strcmp with a0=?, a1=0x10175320, a2=?, a3=?, a4=[a0+8].
   The `jalr` at 0x1001a7fc calls __assert with a0=0x10175380, a1=0x10174c70, a2=0x2f8, a3=?.
-  The `jal` at 0x1001a840 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=?, a2=0x0, a3=?, a4=[a0+8].
+  The `jal` at 0x1001a840 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=ret(jt_new_data_vector), a2=0x0, a3=?, a4=[a0+8].
   The `jal` at 0x1001a86c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10174fa8, a2=0x101753b8, a3=?.
-  The `jalr` at 0x1001a880 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1001a880 calls free with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x1001a908 calls jt_isolate_chip [0x10167c80] with a0=a0 at entry (arg0), a1=?, a2=0x10175110, a3=?.
   The `jalr` at 0x1001a92c calls __assert with a0=0x10175030, a1=0x10174c70, a2=0x269, a3=?.
   The `jal` at 0x1001a958 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10175118, a2=?, a3=?.
@@ -1184,10 +1191,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x1001af28 calls __assert with a0=0x10175088, a1=0x10174c70, a2=0x240, a3=?.
   The `jal` at 0x1001af5c calls jt_new_data_vector [0x10164db0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x1001af80 calls bzero with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
-  The `jal` at 0x1001afdc calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1001aff8 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=?, a2=0x0, a3=?.
+  The `jal` at 0x1001afdc calls jt_copy_bits [0x10166370] with a0=?, a1=0x0, a2=ret(jt_new_data_vector), a3=?.
+  The `jal` at 0x1001aff8 calls jt_send_data [0x101686e0] with a0=[a0+24], a1=ret(jt_new_data_vector), a2=0x0, a3=?.
   The `jal` at 0x1001b020 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10174fa8, a2=0x10175178, a3=?.
-  The `jalr` at 0x1001b034 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1001b034 calls free with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jalr` at 0x1001b05c calls __assert with a0=0x10175140, a1=0x10174c70, a2=0x275, a3=?.
   The `beq` branch at 0x10019e80 targets 0x10019eb0, is taken when v0(=[sym(bist_debug)]) == 0, and falls through when v0(=[sym(bist_debug)]) != 0.
   The `beq` branch at 0x10019ee8 targets 0x10019f84 and is always taken.
@@ -1841,7 +1848,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1002d4b0 calls jt_find_chip [0x10165020] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1002d508 calls kt_output_info [0x10046374] with a0=0x10178008, a1=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))], a2=?, a3=?, a7=0x0.
   The `jal` at 0x1002d520 calls jt_int_to_vector [0x10164fa0] with a0=a4 at entry (arg4), a1=sp-80, a2=?, a3=?.
-  The `jal` at 0x1002d570 calls jt_copy_bits [0x10166370] with a0=sp-80, a1=0x0, a2=a3 at entry (arg3), a3=?, a5=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+16].
+  The `jal` at 0x1002d570 calls jt_copy_bits [0x10166370] with a0=sp-80, a1=0x0, a2=a3 at entry (arg3), a3=?, a5=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+16], a7=ret(jt_find_chip).
   The `jal` at 0x1002d5ac calls kt_output_info [0x10046374] with a0=0x10177fc8, a1=a1 at entry (arg1), a2=?, a3=?, a7=0x0.
   The `bltz` branch at 0x1002d4bc targets 0x1002d590, is taken when v0(=ret(jt_find_chip)) < 0 (signed), and falls through when v0(=ret(jt_find_chip)) >= 0 (signed).
   The `beq` branch at 0x1002d4e4 targets 0x1002d510, is taken when v1(=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+24]) == 0, and falls through when v1(=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+24]) != 0.
@@ -2324,16 +2331,18 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   It occupies 340 bytes.
   The `lw` at 0x100336cc loads 4 bytes from abs 0x102bc5a8.
   The `lw` at 0x10033710 loads 4 bytes from abs 0x102bc5a4.
-  The `lw` at 0x1003371c loads 4 bytes from ret(0x10032e64) +0xc.
+  2 such `lw` accesses load 4 bytes from ret(0x10032e64) +0xc, including `lw` at 0x1003371c, `lw` at 0x10033784.
   The `lw` at 0x1003372c loads 4 bytes from abs 0x102be17c.
   The `lw` at 0x10033734 loads 4 bytes from abs 0x102bd744.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1003374c, `lw` at 0x10033764, `lw` at 0x1003377c.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1003374c, `lw` at 0x10033764, `lw` at 0x100337a0.
   The `lw` at 0x10033758 loads 4 bytes from (sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2)) +0x0.
+  The `lw` at 0x1003377c loads 4 bytes from (sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2)) +0x14.
+  The `lw` at 0x1003378c loads 4 bytes from (sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2)) +0x10.
   The `lw` at 0x10033790 loads 4 bytes from abs 0x102be020.
   The `lw` at 0x100337c4 loads 4 bytes from abs 0x102be038.
   The `jal` at 0x100336e8 calls (unnamed) [0x10032e64] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10033760 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x10185768, a2=a0 at entry (arg0), a3=?, a4=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))], a5=a3 at entry (arg3), a7=a2 at entry (arg2).
-  The `jal` at 0x100337b4 calls jt_int_to_vector [0x10164fa0] with a0=a3 at entry (arg3), a1=sp-112, a2=?, a3=?.
+  The `jal` at 0x100337b4 calls jt_int_to_vector [0x10164fa0] with a0=a3 at entry (arg3), a1=sp-112, a2=?, a3=?, a4=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+16].
   The `jal` at 0x100337dc calls jt_copy_bits [0x10166370] with a0=sp-112, a1=0x0, a2=a4 at entry (arg4), a3=?.
   The return at 0x100337f0 has v0 = ret(jt_copy_bits).
 
@@ -2506,11 +2515,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10035130 loads 4 bytes from ret(0x10032e64) +0xc.
   The `lw` at 0x10035140 loads 4 bytes from abs 0x102bd744.
   8 such `lw` accesses load 4 bytes from abs 0x102bc5a4, including `lw` at 0x1003514c, `lw` at 0x1003518c, `lw` at 0x1003523c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10035158, `lw` at 0x10035170, `lw` at 0x100351d4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10035158, `lw` at 0x10035170.
   The `lw` at 0x10035184 loads 4 bytes from abs 0x102be1b8.
   The `lw` at 0x1003519c loads 4 bytes from (sym(kona_crc_info) + (a2 << 0x4)) +0x0.
-  The `lw` at 0x100351a4 loads 4 bytes from (sym(kona_crc_info) + (a2 << 0x4)) +0x8.
-  The `lw` at 0x100351b0 loads 4 bytes from (sym(kona_crc_info) + (a2 << 0x4)) +0xc.
+  2 such `lw` accesses load 4 bytes from (sym(kona_crc_info) + (a2 << 0x4)) +0x8, including `lw` at 0x100351a4, `lw` at 0x100351d8.
+  2 such `lw` accesses load 4 bytes from (sym(kona_crc_info) + (a2 << 0x4)) +0xc, including `lw` at 0x100351b0, `lw` at 0x100351d4.
   The `lw` at 0x100351d0 loads 4 bytes from abs 0x102bc5a0.
   The `lw` at 0x100351e0 loads 4 bytes from table(0x102c2150) +0x0.
   The `lw` at 0x100351f4 loads 4 bytes from (entry(0x102c2150) + (a1 << 0x2)) +0x0.
@@ -2523,8 +2532,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1003511c calls (unnamed) [0x10032e64] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1003516c calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x10185ce8, a2=?, a3=a2 at entry (arg2), a4=a3 at entry (arg3).
   The `jal` at 0x100351ac calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x10185d28, a2=[(sym(kona_crc_info) + (a2 << 0x4))], a3=[(sym(kona_crc_info) + (a2 << 0x4))+8], a4=[(sym(kona_crc_info) + (a2 << 0x4))+12], a5=(a2 << 0x4).
-  The `jal` at 0x10035248 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x10185d80, a2=?, a3=?.
-  The `jal` at 0x10035270 calls jt_copy_bits [0x10166370] with a0=entry(0x102c2110), a1=?, a2=sp-96, a3=0x0.
+  The `jal` at 0x10035248 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x10185d80, a2=([(entry(0x102c2150) + (a1 << 0x2))] + [(sym(kona_crc_info) + (a2 << 0x4))+8]), a3=?.
+  The `jal` at 0x10035270 calls jt_copy_bits [0x10166370] with a0=entry(0x102c2110), a1=([(entry(0x102c2150) + (a1 << 0x2))] + [(sym(kona_crc_info) + (a2 << 0x4))+8]), a2=sp-96, a3=0x0.
   The `jalr` at 0x100352f8 calls __assert with a0=0x10185d40, a1=0x10185520, a2=0x29d, a3=?.
   The `jalr` at 0x10035320 calls __assert with a0=0x10185d58, a1=0x10185520, a2=0x29f, a3=?.
   The `jal` at 0x1003533c calls (unnamed) [0x10032f64] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -2535,7 +2544,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x100351fc targets 0x100352d4, is taken when s1(?) >= 0x20 (signed), and falls through when s1(?) < 0x20 (signed).
   The `blez` branch at 0x10035210 targets 0x10035370, is taken when s1(?) <= 0 (signed), and falls through when s1(?) > 0 (signed).
   The `beq` branch at 0x10035220 targets 0x10035308, is taken when t8(=entry(0x102c2110)) == 0, and falls through when t8(=entry(0x102c2110)) != 0.
-  The `bltz` branch at 0x10035228 targets 0x10035398, is taken when s2(?) < 0 (signed), and falls through when s2(?) >= 0 (signed).
+  The `bltz` branch at 0x10035228 targets 0x10035398, is taken when s2(=([(entry(0x102c2150) + (a1 << 0x2))] + [(sym(kona_crc_info) + (a2 << 0x4))+8])) < 0 (signed), and falls through when s2(=([(entry(0x102c2150) + (a1 << 0x2))] + [(sym(kona_crc_info) + (a2 << 0x4))+8])) >= 0 (signed).
   The `beq` branch at 0x10035300 targets 0x10035210 and is always taken.
   The `beq` branch at 0x10035328 targets 0x10035228 and is always taken.
   The `beq` branch at 0x10035368 targets 0x100352ac and is always taken.
@@ -2768,7 +2777,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100362dc calls jt_find_chip [0x10165020] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10036338 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10185fd8, a2=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))], a3=?, a6=0x0.
   The `jal` at 0x10036350 calls jt_int_to_vector [0x10164fa0] with a0=a4 at entry (arg4), a1=sp-80, a2=?, a3=?.
-  The `jal` at 0x100363a0 calls jt_copy_bits [0x10166370] with a0=sp-80, a1=0x0, a2=a3 at entry (arg3), a3=?, a5=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+16].
+  The `jal` at 0x100363a0 calls jt_copy_bits [0x10166370] with a0=sp-80, a1=0x0, a2=a3 at entry (arg3), a3=?, a5=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+16], a7=ret(jt_find_chip).
   The `jal` at 0x100363e0 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10185fc0, a2=a1 at entry (arg1), a3=?, a6=0x0.
   The `bltz` branch at 0x100362e8 targets 0x100363c0, is taken when v0(=ret(jt_find_chip)) < 0 (signed), and falls through when v0(=ret(jt_find_chip)) >= 0 (signed).
   The `beq` branch at 0x10036310 targets 0x10036340, is taken when v1(=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+24]) == 0, and falls through when v1(=[(sym(jt_regs) + (((a2 << 0x3) + a2) << 0x2))+24]) != 0.
@@ -2804,7 +2813,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100364e4 calls jt_new_data_vector [0x10164db0] with a0=[[sym(KONAINFO)]+344], a1=?, a2=?, a3=?.
   The `jal` at 0x1003650c calls jt_send_data [0x101686e0] with a0=[[[sym(KONAINFO)]+344]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10036560 calls kt_output_info [0x10046374] with a0=0x10186028, a1=?, a2=?, a3=?.
-  The `jal` at 0x100365a8 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100365a8 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x100365d4 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10186000, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10036600 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10185f48, a2=?, a3=?.
   The `beq` branch at 0x10036424 targets 0x100365b8, is taken when s3(=[[sym(KONAINFO)]+344]) == 0, and falls through when s3(=[[sym(KONAINFO)]+344]) != 0.
@@ -3124,7 +3133,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   2 such `lw` accesses load 4 bytes from abs 0x102bd3f8, including `lw` at 0x1003cb44, `lw` at 0x1003cda8.
   2 such `lw` accesses load 4 bytes from abs 0x102bd414, including `lw` at 0x1003cb64, `lw` at 0x1003d5a8.
   The `lw` at 0x1003cb70 loads 4 bytes from abs 0x102bd7bc.
-  4 such `sb` accesses store 1 byte to ?, including `sb` at 0x1003cb84, `sb` at 0x1003cba4, `sb` at 0x1003de28.
+  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x1003cb84, `sb` at 0x1003cba4.
   98 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1003cb8c, `lw` at 0x1003cbc0, `lw` at 0x1003cc00.
   2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1003cbc4, `lbu` at 0x1003dd94.
   52 such `lw` accesses load 4 bytes from abs 0x102bc5dc, including `lw` at 0x1003cbf8, `lw` at 0x1003cc38, `lw` at 0x1003cc5c.
@@ -3173,7 +3182,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x1003dd34 stores 4 bytes to sym(norequired) +0x0.
   The `lw` at 0x1003dd60 loads 4 bytes from abs 0x102be490.
   The `sw` at 0x1003dd6c stores 4 bytes to sym(MPNIC) +0x0.
-  The `sb` at 0x1003dd8c stores 1 byte to ret(?) +0x0.
+  3 such `sb` accesses store 1 byte to ret(?) +0x0, including `sb` at 0x1003dd8c, `sb` at 0x1003de28, `sb` at 0x1003df14.
   The `lw` at 0x1003de48 loads 4 bytes from abs 0x102be1dc.
   The `lw` at 0x1003de50 loads 4 bytes from sym(progname) +0x0.
   The `lw` at 0x1003deb8 loads 4 bytes from abs 0x102bd438.
@@ -3240,9 +3249,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x1003dd4c calls (unknown callee) with a0=?, a1=0x10188028, a2=?, a3=?.
   The `jalr` at 0x1003dd7c calls (unknown callee) with a0=?, a1=0x3d, a2=?, a3=0x0.
   The `jalr` at 0x1003dde4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003de54 calls fprintf with a0=?, a1=0x10188058, a2=[sym(progname)], a3=?.
+  The `jalr` at 0x1003de54 calls fprintf with a0=?, a1=0x10188058, a2=[sym(progname)], a3=?, a4=ret(?).
   The `jal` at 0x1003de68 calls exit_with_brief_usage_message [0x1003c278] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003dec0 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003dec0 calls atoi with a0=ret(?)+1, a1=?, a2=?, a3=?.
   The `jal` at 0x1003defc calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x10188030, a2=?, a3=?.
   The `bne` branch at 0x1003cad8 targets 0x1003cd60, is taken when a0 < 0x2 (signed), and falls through when a0 >= 0x2 (signed).
   The `beq` branch at 0x1003cb78 targets 0x1003cbc0 and is always taken.
@@ -3264,8 +3273,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1003cdbc targets 0x1003d4d0, is taken when a0(=[sym(writecrc_name)]) == 0, and falls through when a0(=[sym(writecrc_name)]) != 0.
   The `bne` branch at 0x1003cddc targets 0x1003d598, is taken when a1(=[sym(goldfile_name)]) != 0, and falls through when a1(=[sym(goldfile_name)]) == 0.
   The `beq` branch at 0x1003cde4 targets 0x1003d4cc, is taken when a0(=[sym(writecrc_name)]) == 0, and falls through when a0(=[sym(writecrc_name)]) != 0.
-  The `beq` branch at 0x1003cdec targets 0x1003ce04, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x1003cdf8 targets 0x1003cec0, is taken when t9(?) == 0, and falls through when t9(?) != 0.
+  The `beq` branch at 0x1003cdec targets 0x1003ce04, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x1003cdf8 targets 0x1003cec0, is taken when t9(=one of 0x0, 0x1) == 0, and falls through when t9(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003ce04 targets 0x1003cebc, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003ce18 targets 0x1003ce30 and is always taken.
   The `beq` branch at 0x1003ce28 targets 0x1003cebc, is taken when a1(?) >= a0(=[sym(numTests)]) (signed), and falls through when a1(?) < a0(=[sym(numTests)]) (signed).
@@ -3276,7 +3285,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1003ce88 targets 0x1003ce20 and is always taken.
   The `beq` branch at 0x1003ceac targets 0x1003d4c4, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x1003ceb4 targets 0x1003ce30, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `beq` branch at 0x1003cec8 targets 0x1003cf84, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x1003cec8 targets 0x1003cf84, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003ced4 targets 0x1003cf84, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003cedc targets 0x1003cef4 and is always taken.
   The `beq` branch at 0x1003ceec targets 0x1003cf84, is taken when a1(?) >= a0(=[sym(numTests)]) (signed), and falls through when a1(?) < a0(=[sym(numTests)]) (signed).
@@ -3288,7 +3297,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1003cf54 targets 0x1003cee4 and is always taken.
   The `beq` branch at 0x1003cf6c targets 0x1003d548, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x1003cf7c targets 0x1003cef4, is taken when s3(?) < a0(=[sym(numTests)]) (signed), and falls through when s3(?) >= a0(=[sym(numTests)]) (signed).
-  The `beq` branch at 0x1003cf88 targets 0x1003d048, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003cf88 targets 0x1003d048, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003cf94 targets 0x1003d044, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003cf9c targets 0x1003cfb4 and is always taken.
   The `beq` branch at 0x1003cfac targets 0x1003d044, is taken when a1(?) >= a0(=[sym(numTests)]) (signed), and falls through when a1(?) < a0(=[sym(numTests)]) (signed).
@@ -3300,7 +3309,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1003d014 targets 0x1003cfa4 and is always taken.
   The `beq` branch at 0x1003d02c targets 0x1003d550, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x1003d03c targets 0x1003cfb4, is taken when s3(?) < a0(=[sym(numTests)]) (signed), and falls through when s3(?) >= a0(=[sym(numTests)]) (signed).
-  The `beq` branch at 0x1003d048 targets 0x1003d104, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d048 targets 0x1003d104, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d054 targets 0x1003d104, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d05c targets 0x1003d078 and is always taken.
   The `beq` branch at 0x1003d06c targets 0x1003d104, is taken when a1(?) >= a0(=[sym(numTests)]) (signed), and falls through when a1(?) < a0(=[sym(numTests)]) (signed).
@@ -3312,21 +3321,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1003d0d4 targets 0x1003d064 and is always taken.
   The `beq` branch at 0x1003d0ec targets 0x1003d558, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `bne` branch at 0x1003d0fc targets 0x1003d074, is taken when s3(?) < a0(=[sym(numTests)]) (signed), and falls through when s3(?) >= a0(=[sym(numTests)]) (signed).
-  The `beq` branch at 0x1003d108 targets 0x1003d164, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d108 targets 0x1003d164, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d114 targets 0x1003d160, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d11c targets 0x1003d12c and is always taken.
   The `beq` branch at 0x1003d124 targets 0x1003d160, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x1003d148 targets 0x1003d124, is taken when (a7(?) & 0x400) == 0, and falls through when (a7(?) & 0x400) != 0.
   The `bne` branch at 0x1003d150 targets 0x1003d124, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x1003d158 targets 0x1003d124 and is always taken.
-  The `beq` branch at 0x1003d168 targets 0x1003d1c0, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d168 targets 0x1003d1c0, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d174 targets 0x1003d1c4, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d17c targets 0x1003d190 and is always taken.
   The `beq` branch at 0x1003d184 targets 0x1003d1c0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x1003d1a8 targets 0x1003d184, is taken when (a7(?) & 0x200) == 0, and falls through when (a7(?) & 0x200) != 0.
   The `bne` branch at 0x1003d1b0 targets 0x1003d184, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x1003d1b8 targets 0x1003d184 and is always taken.
-  The `beq` branch at 0x1003d1c4 targets 0x1003d22c, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d1c4 targets 0x1003d22c, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d1d0 targets 0x1003d228, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d1d8 targets 0x1003d1e8 and is always taken.
   The `beq` branch at 0x1003d1e0 targets 0x1003d228, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -3334,7 +3343,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `bne` branch at 0x1003d200 targets 0x1003d1e0, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x1003d214 targets 0x1003d1e0, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x1003d220 targets 0x1003d1e0 and is always taken.
-  The `beq` branch at 0x1003d230 targets 0x1003d294, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d230 targets 0x1003d294, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d23c targets 0x1003d298, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d244 targets 0x1003d258 and is always taken.
   The `beq` branch at 0x1003d24c targets 0x1003d294, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -3350,7 +3359,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `bne` branch at 0x1003d2d4 targets 0x1003d2b4, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x1003d2e8 targets 0x1003d2b4, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x1003d2f4 targets 0x1003d2b4 and is always taken.
-  The `beq` branch at 0x1003d304 targets 0x1003d368, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x1003d304 targets 0x1003d368, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d310 targets 0x1003d36c, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d318 targets 0x1003d328 and is always taken.
   The `beq` branch at 0x1003d320 targets 0x1003d368, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -3358,7 +3367,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `bne` branch at 0x1003d340 targets 0x1003d320, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x1003d354 targets 0x1003d320, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x1003d360 targets 0x1003d320 and is always taken.
-  The `beq` branch at 0x1003d36c targets 0x1003d3d4, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x1003d36c targets 0x1003d3d4, is taken when t2(=one of 0x0, 0x1) == 0, and falls through when t2(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x1003d378 targets 0x1003d3d0, is taken when a0(=[sym(numTests)]) <= 0 (signed), and falls through when a0(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003d380 targets 0x1003d390 and is always taken.
   The `beq` branch at 0x1003d388 targets 0x1003d3d0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -3448,13 +3457,13 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `blez` branch at 0x1003ddac targets 0x1003de18, is taken when a2(=[sym(numTests)]) <= 0 (signed), and falls through when a2(=[sym(numTests)]) > 0 (signed).
   The `beq` branch at 0x1003ddec targets 0x1003de78, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `bne` branch at 0x1003de0c targets 0x1003ddd0, is taken when a2(?) < a3(=[sym(numTests)]) (signed), and falls through when a2(?) >= a3(=[sym(numTests)]) (signed).
-  The `beq` branch at 0x1003de18 targets 0x1003de30, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x1003de18 targets 0x1003de30, is taken when a4(=ret(?)) == 0, and falls through when a4(=ret(?)) != 0.
   The `beq` branch at 0x1003de70 targets 0x1003cbac and is always taken.
-  The `bne` branch at 0x1003de88 targets 0x1003deb0, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x1003de9c targets 0x1003dedc, is taken when v1(?) != a0(=0x4), and falls through when v1(?) == a0(=0x4).
+  The `bne` branch at 0x1003de88 targets 0x1003deb0, is taken when at(=ret(?)) != 0, and falls through when at(=ret(?)) == 0.
+  The `bne` branch at 0x1003de9c targets 0x1003dedc, is taken when v1(=one of 0x4, 0x8) != a0(=0x4), and falls through when v1(=one of 0x4, 0x8) == a0(=0x4).
   The `beq` branch at 0x1003dea8 targets 0x1003df04 and is always taken.
-  The `beq` branch at 0x1003ded4 targets 0x1003dea4, is taken when a1(?) == a2(=0x4), and falls through when a1(?) != a2(=0x4).
-  The `beq` branch at 0x1003df08 targets 0x1003cba8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x1003ded4 targets 0x1003dea4, is taken when a1(=one of 0x4, 0x8) == a2(=0x4), and falls through when a1(=one of 0x4, 0x8) != a2(=0x4).
+  The `beq` branch at 0x1003df08 targets 0x1003cba8, is taken when a1(=ret(?)) == 0, and falls through when a1(=ret(?)) != 0.
   The `beq` branch at 0x1003df10 targets 0x1003cba8 and is always taken.
   The `beq` branch at 0x1003df1c targets 0x1003dda8 and is always taken.
   The return at 0x1003d3fc has v0 = ?.
@@ -3486,7 +3495,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1003e0fc calls kt_data_file [0x1005a128] with a0=[sym(writecrc_name)], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003e124 calls fopen with a0=ret(kt_data_file), a1=0x10188128, a2=?, a3=?.
   The `jalr` at 0x1003e18c calls __assert with a0=0x10188108, a1=0x10188120, a2=0x260, a3=a3 at entry (arg3), a5=[sym(maxTestNum)], a6=0x0, a7=0x0.
-  The `jal` at 0x1003e1c4 calls kt_output_info [0x10046374] with a0=0x10188130, a1=?, a2=?, a3=?.
+  The `jal` at 0x1003e1c4 calls kt_output_info [0x10046374] with a0=0x10188130, a1=ret(kt_data_file), a2=?, a3=?.
   The `jalr` at 0x1003e1d8 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `bne` branch at 0x1003e07c targets 0x1003e070, is taken when a1(?) < 0xc8 (signed), and falls through when a1(?) >= 0xc8 (signed).
   The `bltz` branch at 0x1003e094 targets 0x1003e164, is taken when a5(=[sym(maxTestNum)]) < 0 (signed), and falls through when a5(=[sym(maxTestNum)]) >= 0 (signed).
@@ -3800,7 +3809,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10042fb8 calls hash_lookup [0x10059ecc] with a0=0x10189ed0, a1=?, a2=?, a3=?.
   The `jal` at 0x10042fe0 calls hash_lookup [0x10059ecc] with a0=0x10189e50, a1=?, a2=?, a3=?.
   The `jal` at 0x10043044 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x10189f18, a2=?, a3=?, a6=[sym(MPNIC)].
-  The `jal` at 0x10043078 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x4, a3=?.
+  The `jal` at 0x10043078 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x4, a3=one of 0x0, 0x1, 0x2, 0x3.
   The `jalr` at 0x100430f0 calls sprintf with a0=sp-288, a1=0x10189ee8, a2=?, a3=?.
   The `jal` at 0x10043118 calls (unnamed) [0x10041d8c] with a0=?, a1=sp-288, a2=0x10189ef0, a3=?, a4=sp-296.
   The `jalr` at 0x100431ac calls __assert with a0=0x101886b8, a1=0x101886c0, a2=0x4af, a3=?, a6=[a0+4096], a7=0x2.
@@ -3812,7 +3821,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10043280 calls hash_lookup [0x10059ecc] with a0=0x10189e50, a1=?, a2=?, a3=?.
   The `jal` at 0x10043298 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100432d8 calls kt_output_uniq [0x100469ac] with a0=0x10189e58, a1=0x10189ef8, a2=sp-288, a3=?.
-  The `jal` at 0x100432f0 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x1, a3=?.
+  The `jal` at 0x100432f0 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x1, a3=one of 0x0, 0x1, 0x2, 0x3.
   The `jal` at 0x10043330 calls (unnamed) [0x10041d8c] with a0=sp-908, a1=0x10188664, a2=0x10188664, a3=a0+3488, a4=sp-296, a5=[a0+3964].
   The `jal` at 0x1004335c calls hash_lookup [0x10059ecc] with a0=0x10189ed0, a1=?, a2=?, a3=?.
   The `jal` at 0x10043388 calls hash_lookup [0x10059ecc] with a0=0x10189e50, a1=?, a2=?, a3=?.
@@ -3827,7 +3836,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1004353c calls kt_output_uniq [0x100469ac] with a0=0x10189e58, a1=0x10189ef8, a2=?, a3=?.
   The `jal` at 0x10043578 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x100435bc calls kt_output_uniq [0x100469ac] with a0=0x10189e58, a1=0x10189f38, a2=?, a3=?.
-  The `jal` at 0x100435fc calls (unnamed) [0x10041d8c] with a0=?, a1=0x10188690, a2=0x10188690, a3=?, a4=sp-296.
+  The `jal` at 0x100435fc calls (unnamed) [0x10041d8c] with a0=sp-756, a1=0x10188690, a2=0x10188690, a3=a0+6984, a4=sp-296.
   The `jal` at 0x10043624 calls hash_lookup [0x10059ecc] with a0=0x10189ed0, a1=?, a2=?, a3=?.
   The `jal` at 0x1004364c calls hash_lookup [0x10059ecc] with a0=0x10189e50, a1=?, a2=?, a3=?.
   The `jal` at 0x100436a0 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
@@ -3865,10 +3874,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x10042994 targets 0x10042cf4, is taken when a0(?) >= 0x101 (unsigned), and falls through when a0(?) < 0x101 (unsigned).
   The `beq` branch at 0x100429a0 targets 0x10042e60, is taken when a3(=0xa) == a4(=ret(fcPioRead32)), and falls through when a3(=0xa) != a4(=ret(fcPioRead32)).
   The `beq` branch at 0x100429ac targets 0x100429c0, is taken when a5(=ret(fcPioRead32)) == 0, and falls through when a5(=ret(fcPioRead32)) != 0.
-  The `bne` branch at 0x100429e4 targets 0x10042934, is taken when a0(=0xff) != t0(?), and falls through when a0(=0xff) == t0(?).
+  The `bne` branch at 0x100429e4 targets 0x10042934, is taken when a0(=0xff) != t0(=ret(fcPioRead32)), and falls through when a0(=0xff) == t0(=ret(fcPioRead32)).
   The `bne` branch at 0x10042a20 targets 0x10042d84, is taken when s6(=0x7a11f) < s2(?) (signed), and falls through when s6(=0x7a11f) >= s2(?) (signed).
   The `beq` branch at 0x10042a28 targets 0x10042a00, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x10042a74 targets 0x10042a00, is taken when ra(?) < at(?) (unsigned), and falls through when ra(?) >= at(?) (unsigned).
+  The `bne` branch at 0x10042a74 targets 0x10042a00, is taken when ra(?) < at(=sp-376) (unsigned), and falls through when ra(?) >= at(=sp-376) (unsigned).
   The `beq` branch at 0x10042a98 targets 0x100434e8, is taken when ra(=[a0+344]) == 0, and falls through when ra(=[a0+344]) != 0.
   The `beq` branch at 0x10042aa8 targets 0x100434b4, is taken when t8(=[[sym(KONAINFO)]]) == 0, and falls through when t8(=[[sym(KONAINFO)]]) != 0.
   The `bne` branch at 0x10042ae0 targets 0x10042af0, is taken when s8(?) != 0, and falls through when s8(?) == 0.
@@ -3919,7 +3928,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1004302c targets 0x10043060, is taken when a6(=[sym(MPNIC)]) == 0, and falls through when a6(=[sym(MPNIC)]) != 0.
   The `beq` branch at 0x10043050 targets 0x10043064, is taken when a2(=[a0]) == 0, and falls through when a2(=[a0]) != 0.
   The `beq` branch at 0x10043058 targets 0x100435e0, is taken when s8(?) == 0, and falls through when s8(?) != 0.
-  The `beq` branch at 0x10043064 targets 0x100432e8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x10043064 targets 0x100432e8, is taken when a3(=one of 0x0, 0x1, 0x2, 0x3) == 0, and falls through when a3(=one of 0x0, 0x1, 0x2, 0x3) != 0.
   The `beq` branch at 0x100430ac targets 0x1004313c, is taken when s8(?) >= 0x4 (signed), and falls through when s8(?) < 0x4 (signed).
   The `beq` branch at 0x100430c8 targets 0x10043094, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x10043120 targets 0x10042fa8, is taken when v0(=ret(0x10041d8c)) != 0, and falls through when v0(=ret(0x10041d8c)) == 0.
@@ -4472,7 +4481,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100465e8 calls (unnamed) [0x10045fc8] with a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10046618 calls vsprintf with a0=0x102c4c98, a1=a0 at entry (arg0), a2=sp-56, a3=?.
   The `jalr` at 0x1004667c calls fprintf with a0=[0x102c4c88], a1=0x1018a5f8, a2=0x1b, a3=0x7, a4=0x1b, a5=0x4.
-  The `jal` at 0x100466b4 calls (unnamed) [0x10045f00] with a0=0x102c4c98, a1=sp-160, a2=?, a3=?.
+  The `jal` at 0x100466b4 calls (unnamed) [0x10045f00] with a0=0x102c4c98, a1=sp-160, a2=[sym(COMMENT_WIDTH)], a3=?.
   The `jalr` at 0x100466f8 calls fprintf with a0=[0x102c4c88], a1=0x1018a6c8, a2=one of 0x1018a678, 0x1018a6a0, a3=ret(0x10045f00).
   The `jalr` at 0x10046724 calls fprintf with a0=[0x102c4c8c], a1=0x1018a6c8, a2=one of 0x1018a678, 0x1018a6a0, a3=ret(0x10045f00).
   The `jal` at 0x10046740 calls (unnamed) [0x10045f00] with a0=?, a1=sp-160, a2=[sym(COMMENT_WIDTH)]-2, a3=?.
@@ -4506,7 +4515,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10046804 calls (unnamed) [0x10045fc8] with a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10046834 calls vsprintf with a0=0x102c4c98, a1=a1 at entry (arg1), a2=sp-48, a3=?.
   The `jal` at 0x10046878 calls (unnamed) [0x1004580c] with a0=[0x102c4c88], a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x100468a8 calls (unnamed) [0x10045f00] with a0=0x102c4c98, a1=sp-160, a2=?, a3=?.
+  The `jal` at 0x100468a8 calls (unnamed) [0x10045f00] with a0=0x102c4c98, a1=sp-160, a2=[sym(COMMENT_WIDTH)], a3=?.
   The `jalr` at 0x100468f8 calls fprintf with a0=[0x102c4c88], a1=0x1018a6e8, a2=one of 0x1018a678, 0x1018a6a0, a3=ret(0x10045f00).
   The `jalr` at 0x10046924 calls fprintf with a0=[0x102c4c8c], a1=0x1018a6e8, a2=one of 0x1018a678, 0x1018a6a0, a3=ret(0x10045f00).
   The `jal` at 0x10046940 calls (unnamed) [0x10045f00] with a0=?, a1=sp-160, a2=[sym(COMMENT_WIDTH)]-2, a3=?.
@@ -6412,7 +6421,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1004ecfc targets 0x1004ee9c, is taken when v0(=ret(jt_test_chain)) == 0, and falls through when v0(=ret(jt_test_chain)) != 0.
   The `beq` branch at 0x1004ed28 targets 0x1004e9ec and is always taken.
   The `beq` branch at 0x1004ed64 targets 0x1004edbc, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
-  The `bne` branch at 0x1004edc0 targets 0x1004e9ec, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x1004edc0 targets 0x1004e9ec, is taken when a3(=one of 0x0, 0x1) != 0, and falls through when a3(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1004edc8 targets 0x1004ec4c and is always taken.
   The `beq` branch at 0x1004edf8 targets 0x1004ebfc and is always taken.
   The `beq` branch at 0x1004ee1c targets 0x1004e9ec and is always taken.
@@ -6476,10 +6485,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `lw` accesses load 4 bytes from abs 0x102be00c, including `lw` at 0x10051820, `lw` at 0x10051f5c, `lw` at 0x1005271c.
   3 such `lw` accesses load 4 bytes from abs 0x102be074, including `lw` at 0x10051834, `lw` at 0x10051f70, `lw` at 0x10052730.
   5 such `lw` accesses load 4 bytes from abs 0x102bc648, including `lw` at 0x100520b8, `lw` at 0x100521c0, `lw` at 0x10052950.
-  The `lbu` at 0x100520d4 loads 1 byte from table(0x101fd9c0) +0x0.
+  2 such `lbu` accesses load 1 byte from table(0x101fd9c0) +0x0, including `lbu` at 0x100520d4, `lbu` at 0x10052854.
   11 such `lw` accesses load 4 bytes from abs 0x102be028, including `lw` at 0x100520f8, `lw` at 0x1005223c, `lw` at 0x10052320.
   11 such `lw` accesses load 4 bytes from abs 0x102be01c, including `lw` at 0x10052120, `lw` at 0x10052264, `lw` at 0x100523d4.
-  6 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10052228, `lbu` at 0x10052854, `lbu` at 0x10052d04.
+  5 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10052228, `lbu` at 0x10052d04, `lbu` at 0x10053144.
   4 such `lw` accesses load 4 bytes from abs 0x102bd470, including `lw` at 0x10052d94, `lw` at 0x100530b4, `lw` at 0x10053984.
   The `lbu` at 0x1005304c loads 1 byte from table(0x101fd99a) +0x0.
   The `jal` at 0x10050878 calls fcPioRead32 [0x1013dd88] with a0=0x370, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -6573,24 +6582,24 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10051ad0 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018d900, a2=0xd, a3=?.
   The `jal` at 0x10051b08 calls kt_read_chain [0x101647c4] with a0=0x1018d038, a1=0x6, a2=0x5, a3=?.
   The `jal` at 0x10051b30 calls jt_set_global_instruction [0x10166e60] with a0=ret(kt_read_chain), a1=0x1018b4e0, a2=?, a3=?.
-  The `jal` at 0x10051b44 calls jt_test_idcode [0x10166a70] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051b44 calls jt_test_idcode [0x10166a70] with a0=ret(kt_read_chain), a1=?, a2=?, a3=?.
   The `jal` at 0x10051b5c calls kt_read_chain [0x101647c4] with a0=0x1018d048, a1=?, a2=?, a3=?.
   The `jal` at 0x10051b88 calls jt_set_global_instruction [0x10166e60] with a0=ret(kt_read_chain), a1=0x1018b4e0, a2=?, a3=?.
-  The `jal` at 0x10051b9c calls jt_test_idcode [0x10166a70] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051b9c calls jt_test_idcode [0x10166a70] with a0=ret(kt_read_chain), a1=?, a2=?, a3=?.
   The `jal` at 0x10051bc4 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018c390, a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x10051c38 calls strcmp with a0=?, a1=0x1018aec0, a2=?, a3=one of -0x10, 0x1018ae98, 0x1018b4e0.
   The `jal` at 0x10051c78 calls jt_set_individual_instructions [0x101678f0] with a0=?, a1=?, a2=?, a3=one of -0x10, 0x1018ae98, 0x1018b4e0.
   The `jal` at 0x10051ca4 calls kt_output_info [0x10046374] with a0=0x1018d5a8, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x10051cb0 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051cb0 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10051cd8 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1018da38, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10051d0c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1018c8d8, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10051d2c calls kt_output_info [0x10046374] with a0=0x1018dac0, a1=a1 at entry (arg1), a2=?, a3=0xb, a4=0xe.
   The `jal` at 0x10051d54 calls kt_read_chain [0x101647c4] with a0=0x1018d058, a1=0x6, a2=0x5, a3=?.
   The `jal` at 0x10051d7c calls jt_set_global_instruction [0x10166e60] with a0=ret(kt_read_chain), a1=0x1018b4e0, a2=?, a3=?.
-  The `jal` at 0x10051d90 calls jt_test_idcode [0x10166a70] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051d90 calls jt_test_idcode [0x10166a70] with a0=ret(kt_read_chain), a1=?, a2=?, a3=?.
   The `jal` at 0x10051da8 calls kt_read_chain [0x101647c4] with a0=0x1018d068, a1=?, a2=?, a3=?.
   The `jal` at 0x10051dd4 calls jt_set_global_instruction [0x10166e60] with a0=ret(kt_read_chain), a1=0x1018b4e0, a2=?, a3=?.
-  The `jal` at 0x10051de8 calls jt_test_idcode [0x10166a70] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051de8 calls jt_test_idcode [0x10166a70] with a0=ret(kt_read_chain), a1=?, a2=?, a3=?.
   The `jal` at 0x10051e10 calls kt_output_trce [0x10046b88] with a0=0x1018dd48, a1=a1 at entry (arg1), a2=?, a3=0x2, a4=0x3, a5=0x4, a6=0x5, a7=0x6.
   The `jal` at 0x10051e30 calls kt_output_nshp [0x100465a0] with a0=0x1018dee8, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10051e5c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1018d9d8, a2=?, a3=?.
@@ -6600,28 +6609,28 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10051f60 calls jt_new_data_vector [0x10164db0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10051f80 calls jt_send_data [0x101686e0] with a0=?, a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10051fa0 calls kt_output_info [0x10046374] with a0=0x1018b640, a1=?, a2=?, a3=?.
-  The `jal` at 0x10051fc4 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10051fc4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10051fe8 calls kt_data_file [0x1005a128] with a0=0x1018cf58, a1=?, a2=?, a3=?.
   The `jal` at 0x1005203c calls kt_output_trce [0x10046b88] with a0=0x1018cf68, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10052060 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018dc58, a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x100520e8 calls sprintf with a0=sp-448, a1=0x1018c548, a2=entry(0x101fd9c0), a3=?.
-  The `jal` at 0x10052108 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=?, a3=sp-300.
+  The `jal` at 0x10052108 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10052128 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x1005216c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018c698, a2=?, a3=?, a4=0x4938057.
-  The `jal` at 0x10052178 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10052178 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x100521a8 calls kt_output_nshp [0x100465a0] with a0=0x1018c6c8, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x1005222c calls sprintf with a0=sp-448, a1=0x1018c6f8, a2=?, a3=?.
-  The `jal` at 0x1005224c calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=?, a3=sp-300.
+  The `jal` at 0x1005224c calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x1005226c calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x100522c8 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d430, a2=?, a3=?, a4=0x4631057.
-  The `jal` at 0x100522d4 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100522d4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10052308 calls kt_output_nshp [0x100465a0] with a0=0x1018c768, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x10052334 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018c798, a2=?, a3=sp-300.
+  The `jal` at 0x10052334 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018c798, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jalr` at 0x1005239c calls sprintf with a0=sp-448, a1=0x1018c800, a2=?, a3=?.
-  The `jal` at 0x100523bc calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=?, a3=sp-300.
+  The `jal` at 0x100523bc calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x100523dc calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10052434 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d510, a2=?, a3=?, a4=0x4d31057.
-  The `jal` at 0x10052440 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10052440 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10052498 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x1018db60, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x100524bc calls kt_output_info [0x10046374] with a0=0x1018db78, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x100524e4 calls kt_output_trce [0x10046b88] with a0=0x1018deb0, a1=a1 at entry (arg1), a2=?, a3=?.
@@ -6643,7 +6652,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100527b4 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018d6d8, a2=0x9, a3=?.
   The `jal` at 0x100527f0 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d458, a2=?, a3=?, a4=0x34631057.
   The `jal` at 0x10052824 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d540, a2=?, a3=?, a4=0x34d31057.
-  The `jal` at 0x10052858 calls kt_output_nshp [0x100465a0] with a0=0x1018c660, a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jal` at 0x10052858 calls kt_output_nshp [0x100465a0] with a0=0x1018c660, a1=a1 at entry (arg1), a2=entry(0x101fd9c0), a3=?.
   The `jal` at 0x100528b4 calls kt_output_nshp [0x100465a0] with a0=0x1018d570, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x1005292c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d170, a2=a1 at entry (arg1), a3=?, a5=0x3, a6=0x7.
   The `jal` at 0x1005297c calls kt_output_trce [0x10046b88] with a0=0x1018ce40, a1=a1 at entry (arg1), a2=?, a3=?.
@@ -6651,28 +6660,28 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100529bc calls kt_output_nshp [0x100465a0] with a0=0x1018d9b0, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x100529dc calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10052a30 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d488, a2=?, a3=0x5431057.
-  The `jal` at 0x10052a3c calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10052a6c calls kt_output_info [0x10046374] with a0=0x1018c1b8, a1=a1 at entry (arg1), a2=sp-296, a3=?.
+  The `jal` at 0x10052a3c calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
+  The `jal` at 0x10052a6c calls kt_output_info [0x10046374] with a0=0x1018c1b8, a1=a1 at entry (arg1), a2=sp-296, a3=ret(0x1004cf80).
   The `jal` at 0x10052a8c calls kt_output_diag [0x100461b0] with a0=0x1018b268, a1=?, a2=?, a3=?.
   The `jal` at 0x10052ab0 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018d988, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10052ad4 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018d960, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10052af4 calls kt_output_nshp [0x100465a0] with a0=0x1018dca8, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10052b20 calls kt_output_nshp [0x100465a0] with a0=0x1018d570, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x10052ba4 calls sprintf with a0=sp-448, a1=0x1018d3c0, a2=?, a3=?.
-  The `jal` at 0x10052bc4 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=?, a3=sp-300.
+  The `jal` at 0x10052bc4 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-448, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10052be4 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10052c28 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d400, a2=?, a3=?, a4=0x54938057.
-  The `jal` at 0x10052c34 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10052c34 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10052c64 calls kt_output_nshp [0x100465a0] with a0=0x1018c6c8, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10052c88 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018dc80, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10052cb0 calls kt_output_info [0x10046374] with a0=0x1018d1b8, a1=sp-376, a2=?, a3=?.
   The `jalr` at 0x10052d08 calls sprintf with a0=sp-376, a1=0x1018d198, a2=?, a3=?.
   The `jal` at 0x10052d28 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018d1a0, a2=sp-376, a3=?.
-  The `jal` at 0x10052d48 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=?, a3=sp-300.
+  The `jal` at 0x10052d48 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10052d68 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jalr` at 0x10052da0 calls __assert with a0=0x1018c558, a1=0x1018b420, a2=0x8c4, a3=?.
   The `jal` at 0x10052dd0 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018c570, a2=sp-376, a3=?.
-  The `jal` at 0x10052df4 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10052df4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10052e1c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d1e0, a2=?, a3=?.
   The `jal` at 0x10052e40 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x1018d1f8, a2=?, a3=?.
   The `jal` at 0x10052e68 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x1018d200, a2=?, a3=?.
@@ -6684,11 +6693,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10052f6c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d278, a2=a1 at entry (arg1), a3=0x6.
   The `jal` at 0x10052fb0 calls kt_output_info [0x10046374] with a0=0x1018d2a8, a1=sp-376, a2=?, a3=?.
   The `jalr` at 0x10053048 calls sprintf with a0=sp-376, a1=0x1018c548, a2=entry(0x101fd99a), a3=?, a7=0x7.
-  The `jal` at 0x10053068 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=?, a3=sp-300.
+  The `jal` at 0x10053068 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10053088 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jalr` at 0x100530c0 calls __assert with a0=0x1018c558, a1=0x1018b420, a2=0x8f1, a3=?.
   The `jal` at 0x100530f0 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018c570, a2=sp-376, a3=?.
-  The `jal` at 0x10053114 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10053114 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jalr` at 0x10053148 calls sprintf with a0=sp-376, a1=0x1018d2a0, a2=?, a3=?, a7=0x7.
   The `jal` at 0x10053170 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d2d0, a2=?, a3=?.
   The `jal` at 0x10053194 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x1018d1f8, a2=?, a3=?.
@@ -6701,18 +6710,18 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100532d0 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018dc58, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x100532f4 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018d7c8, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10053320 calls kt_output_nshp [0x100465a0] with a0=0x1018d3c8, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x10053468 calls jt_extract_chip_register [0x10165130] with a0=?, a1=?, a2=?, a3=sp-300.
+  The `jal` at 0x10053468 calls jt_extract_chip_register [0x10165130] with a0=?, a1=?, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10053488 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x100534c4 calls kt_output_nshp [0x100465a0] with a0=0x1018d388, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x100534f0 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018c698, a2=?, a3=?, a4=0x4938057.
-  The `jal` at 0x100534fc calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100534fc calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10053530 calls kt_output_nshp [0x100465a0] with a0=0x1018c700, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x1005355c calls kt_output_info [0x10046374] with a0=0x1018db48, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10053588 calls kt_output_nshp [0x100465a0] with a0=0x1018c700, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x100535b8 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1018d248, a2=?, a3=?, a5=0x3, a6=0x7.
   The `jal` at 0x100535e4 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1018d358, a2=0x2, a3=?.
   The `jal` at 0x10053644 calls kt_output_nshp [0x100465a0] with a0=0x1018d570, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x10053690 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018aec0, a2=?, a3=sp-300.
+  The `jal` at 0x10053690 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018aec0, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x100536bc calls kt_output_nshp [0x100465a0] with a0=0x1018d820, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x100536e0 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018d7f0, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10053718 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d4e8, a2=?, a3=0x35431057.
@@ -6721,26 +6730,26 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1005379c calls kt_output_diag [0x100461b0] with a0=0x1018c9f0, a1=?, a2=?, a3=?.
   The `jal` at 0x100537bc calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x1005380c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d5e0, a2=?, a3=0x5032057.
-  The `jal` at 0x10053824 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10053824 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10053898 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d118, a2=a1 at entry (arg1), a3=?, a4=0x1018d110, a5=0x1018d0e8, a6=0x1018d108, a7=0x1018d0e0.
-  The `jal` at 0x100538c8 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018aec0, a2=?, a3=sp-300.
+  The `jal` at 0x100538c8 calls jt_extract_chip_register [0x10165130] with a0=?, a1=0x1018aec0, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x100538e8 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10053920 calls kt_output_nshp [0x100465a0] with a0=0x1018c7a0, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10053944 calls kt_output_nshp [0x100465a0] with a0=0x1018d4b0, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x10053964 calls kt_output_info [0x10046374] with a0=0x1018d340, a1=a1 at entry (arg1), a2=0x7, a3=?, a5=0xd.
   The `jalr` at 0x10053990 calls __assert with a0=0x1018c4e8, a1=0x1018b420, a2=0x86a, a3=?.
   The `jal` at 0x100539b4 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018c500, a2=?, a3=?.
-  The `jal` at 0x100539dc calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100539dc calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10053a00 calls kt_output_info [0x10046374] with a0=0x1018d140, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10053a44 calls kt_output_info [0x10046374] with a0=0x1018c5a0, a1=sp-376, a2=?, a3=?.
   The `jalr` at 0x10053aa4 calls sprintf with a0=sp-376, a1=0x1018d168, a2=?, a3=?.
-  The `jal` at 0x10053ac4 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=?, a3=sp-300.
+  The `jal` at 0x10053ac4 calls jt_extract_chip_register [0x10165130] with a0=?, a1=sp-376, a2=ret(jt_new_data_vector), a3=sp-300.
   The `jal` at 0x10053ae4 calls jt_vector_to_int [0x10164f30] with a0=sp-304, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jalr` at 0x10053b20 calls __assert with a0=0x1018c558, a1=0x1018b420, a2=0x878, a3=?.
   The `jal` at 0x10053b50 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x1018c570, a2=sp-376, a3=?.
-  The `jal` at 0x10053b74 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10053b74 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10053b9c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b688, a2=?, a3=?.
-  The `jal` at 0x10053ba8 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10053ba8 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10053bd8 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x1018cb70, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10053c14 calls kt_output_info [0x10046374] with a0=0x1018cbb0, a1=a1 at entry (arg1), a2=?, a3=0x1, a4=0x2, a5=0x3.
   The `jal` at 0x10053c48 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018d608, a2=?, a3=0x5032057.
@@ -6841,7 +6850,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x10051684 targets 0x1005175c and is always taken.
   The `beq` branch at 0x100516e0 targets 0x100508c0 and is always taken.
   The `beq` branch at 0x10051760 targets 0x10051774, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x1005176c targets 0x10052a4c, is taken when t9(?) == ra(=0x128), and falls through when t9(?) != ra(=0x128).
+  The `beq` branch at 0x1005176c targets 0x10052a4c, is taken when t9(=ret(0x1004cf80)) == ra(=0x128), and falls through when t9(=ret(0x1004cf80)) != ra(=0x128).
   The `beq` branch at 0x1005177c targets 0x10050b8c and is always taken.
   The `bne` branch at 0x10051788 targets 0x10051690, is taken when v0(=ret(jt_find_chain_length)) != a2(=0x300), and falls through when v0(=ret(jt_find_chain_length)) == a2(=0x300).
   The `beq` branch at 0x1005180c targets 0x1005175c and is always taken.
@@ -7143,11 +7152,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10056f80 calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x10056fa0 calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10056fc8 calls kt_output_info [0x10046374] with a0=0x1018b640, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x10056ff8 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10056ff8 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10057010 calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x10057030 calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10057054 calls kt_output_info [0x10046374] with a0=0x1018b738, a1=?, a2=?, a3=?.
-  The `jal` at 0x10057060 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057060 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10057084 calls kt_data_file [0x1005a128] with a0=0x1018eec8, a1=0x6, a2=?, a3=?, a4=one of 0x0, 0x1018ee6c, a6=one of 0x0, 0x1018ee70.
   The `jal` at 0x100570ac calls de_gray_code [0x1004bf24] with a0=?, a1=[a0+4020], a2=0x4, a3=?.
   The `jal` at 0x100570d4 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x1018f1e8, a2=?, a3=?.
@@ -7158,30 +7167,30 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10057188 calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x100571a8 calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x100571c8 calls kt_output_info [0x10046374] with a0=0x1018b640, a1=?, a2=?, a3=?.
-  The `jal` at 0x100571d4 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100571d4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x100571f4 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x1018ede8, a2=-0x1, a3=?.
   The `jal` at 0x10057230 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018ef88, a2=?, a3=?.
   The `jalr` at 0x10057280 calls sprintf with a0=sp-192, a1=0x1018f1c8, a2=?, a3=?.
-  The `jal` at 0x10057298 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-192, a2=?, a3=sp-204.
+  The `jal` at 0x10057298 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-192, a2=ret(jt_new_data_vector), a3=sp-204.
   The `jal` at 0x100572b0 calls jt_vector_to_int [0x10164f30] with a0=sp-200, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x100572e4 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018e458, a2=?, a3=?, a4=0x5631057.
-  The `jal` at 0x100572f0 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100572f0 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jalr` at 0x10057350 calls sprintf with a0=sp-192, a1=0x1018f1d8, a2=?, a3=?.
-  The `jal` at 0x10057368 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-192, a2=?, a3=sp-204.
+  The `jal` at 0x10057368 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-192, a2=ret(jt_new_data_vector), a3=sp-204.
   The `jal` at 0x10057388 calls jt_vector_to_int [0x10164f30] with a0=sp-200, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x100573c4 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018e490, a2=?, a3=?, a4=0x127791cb, a5=0x127761cb.
-  The `jal` at 0x100573d0 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100573d0 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x100573fc calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018f0a8, a2=?, a3=?.
   The `jal` at 0x10057430 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f060, a2=ret(jt_new_data_vector), a3=sp-204.
   The `jal` at 0x10057454 calls jt_vector_to_int [0x10164f30] with a0=sp-200, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x1005747c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b688, a2=?, a3=?.
-  The `jal` at 0x10057494 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057494 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x100574b4 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x1018f240, a2=0x1, a3=?.
   The `jal` at 0x100574dc calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018f140, a2=?, a3=?.
-  The `jal` at 0x10057500 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f0f8, a2=?, a3=sp-204.
+  The `jal` at 0x10057500 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f0f8, a2=ret(jt_new_data_vector), a3=sp-204.
   The `jal` at 0x10057518 calls jt_vector_to_int [0x10164f30] with a0=sp-200, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x1005754c calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b688, a2=?, a3=?.
-  The `jal` at 0x10057558 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057558 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10057580 calls kt_output_info [0x10046374] with a0=0x1018f0d0, a1=?, a2=?, a3=?.
   The `jal` at 0x100575bc calls kt_output_info [0x10046374] with a0=0x1018f168, a1=?, a2=?, a3=?.
   The `jal` at 0x100575e4 calls kt_output_nshp [0x100465a0] with a0=0x1018f268, a1=?, a2=0x1, a3=?.
@@ -7326,7 +7335,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10057778 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018ed98, a2=?, a3=?.
   The `jal` at 0x1005778c calls (unnamed) [0x10053e18] with a0=0x48, a1=?, a2=?, a3=?.
   The `jal` at 0x100577d4 calls kt_output_info [0x10046374] with a0=0x1018ee28, a1=?, a2=?, a3=?, a4=0x2.
-  The `jal` at 0x10057830 calls kt_output_info [0x10046374] with a0=0x1018f338, a1=?, a2=?, a3=?, a4=0x2.
+  The `jal` at 0x10057830 calls kt_output_info [0x10046374] with a0=0x1018f338, a1=?, a2=ret(0x10053e18), a3=?, a4=0x2.
   The `jal` at 0x10057864 calls kt_data_file [0x1005a128] with a0=0x1018eeb8, a1=0x1, a2=?, a3=?, a4=0x2.
   The `jal` at 0x100578a4 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b430, a2=ret(kt_data_file), a3=?.
   The `jalr` at 0x100578b8 calls strdup with a0=ret(kt_data_file), a1=?, a2=?, a3=?.
@@ -7357,31 +7366,31 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10057ca4 calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x10057cc4 calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10057ce8 calls kt_output_info [0x10046374] with a0=0x1018b640, a1=?, a2=?, a3=?.
-  The `jal` at 0x10057d00 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057d00 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10057d1c calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x10057d3c calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10057d5c calls kt_output_info [0x10046374] with a0=0x1018b640, a1=?, a2=?, a3=?.
-  The `jal` at 0x10057d68 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057d68 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10057d80 calls jt_new_data_vector [0x10164db0] with a0=[a0+4096], a1=?, a2=?, a3=?.
   The `jal` at 0x10057da0 calls jt_send_data [0x101686e0] with a0=[[a0+4096]+24], a1=0x0, a2=ret(jt_new_data_vector), a3=?.
   The `jal` at 0x10057dc4 calls kt_output_info [0x10046374] with a0=0x1018b738, a1=?, a2=?, a3=?.
-  The `jal` at 0x10057dd8 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057dd8 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_new_data_vector), a1=?, a2=?, a3=?.
   The `jal` at 0x10057e00 calls kt_output_trce [0x10046b88] with a0=0x1018f2c8, a1=?, a2=?, a3=?.
   The `jal` at 0x10057e1c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x1018f2f0, a2=?, a3=?.
   The `jal` at 0x10057e44 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018ef88, a2=?, a3=?.
   The `jal` at 0x10057e68 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018f000, a2=?, a3=?.
   The `jal` at 0x10057e90 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018f368, a2=?, a3=?.
-  The `jal` at 0x10057ebc calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f060, a2=?, a3=sp-172.
+  The `jal` at 0x10057ebc calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f060, a2=ret(jt_new_data_vector), a3=sp-172.
   The `jal` at 0x10057ee0 calls jt_vector_to_int [0x10164f30] with a0=sp-168, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10057f08 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b688, a2=?, a3=?.
-  The `jal` at 0x10057f20 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057f20 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jal` at 0x10057f48 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018f368, a2=?, a3=?.
-  The `jal` at 0x10057f74 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f0f8, a2=?, a3=sp-172.
+  The `jal` at 0x10057f74 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=0x1018f0f8, a2=ret(jt_new_data_vector), a3=sp-172.
   The `jal` at 0x10057f94 calls jt_vector_to_int [0x10164f30] with a0=sp-168, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10057fc8 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018b688, a2=?, a3=?.
-  The `jal` at 0x10057fd4 calls jt_dispose_vector [0x10164ef0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10057fd4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
   The `jalr` at 0x10058024 calls sprintf with a0=sp-160, a1=0x1018f1c8, a2=?, a3=?.
-  The `jal` at 0x10058044 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-160, a2=?, a3=sp-172.
+  The `jal` at 0x10058044 calls jt_extract_chip_register [0x10165130] with a0=[a0+4096], a1=sp-160, a2=ret(jt_new_data_vector), a3=sp-172.
   The `jal` at 0x10058064 calls jt_vector_to_int [0x10164f30] with a0=sp-168, a1=ret(jt_extract_chip_register), a2=?, a3=?.
   The `jal` at 0x10058098 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1018e458, a2=?, a3=?, a4=0x5631057.
   The `jal` at 0x100580a4 calls jt_dispose_vector [0x10164ef0] with a0=ret(jt_extract_chip_register), a1=?, a2=?, a3=?.
@@ -7399,7 +7408,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x100577b8 targets 0x10057840, is taken when s1(=0x1) == a0(?), and falls through when s1(=0x1) != a0(?).
   The `beq` branch at 0x100577fc targets 0x10057b54, is taken when a4(=0x2) == a0(?), and falls through when a4(=0x2) != a0(?).
   The `beq` branch at 0x10057804 targets 0x10057b74, is taken when a1(=0x1) == a0(?), and falls through when a1(=0x1) != a0(?).
-  The `beq` branch at 0x10057810 targets 0x1005784c, is taken when t8(?) == t9(=0x40), and falls through when t8(?) != t9(=0x40).
+  The `beq` branch at 0x10057810 targets 0x1005784c, is taken when t8(=ret(0x10053e18)) == t9(=0x40), and falls through when t8(=ret(0x10053e18)) != t9(=0x40).
   The `beq` branch at 0x10057838 targets 0x10057684 and is always taken.
   The `beq` branch at 0x10057844 targets 0x100577f4 and is always taken.
   The `bne` branch at 0x10057878 targets 0x10057b94, is taken when at(=[a0+4096]) != 0, and falls through when at(=[a0+4096]) == 0.
@@ -7942,7 +7951,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `sw` at 0x10059e9c stores 4 bytes to ret(malloc) +0x0.
   The `sw` at 0x10059ea8 stores 4 bytes to ret(malloc) +0x8.
   The `sw` at 0x10059eb0 stores 4 bytes to ret(malloc) +0x4.
-  The `sw` at 0x10059eb4 stores 4 bytes to ?.
+  The `sw` at 0x10059eb4 stores 4 bytes to (sym(table) + (ret(0x10059d48) << 0x2)) +0x0.
   The `jal` at 0x10059e28 calls (unnamed) [0x10059d48] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10059e5c calls (unnamed) [0x10059d84] with a0=[(sym(table) + (ret(0x10059d48) << 0x2))], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x10059e94 calls malloc with a0=0xc, a1=?, a2=?, a3=?.
@@ -8496,7 +8505,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006019c calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+344]+16], a3=?.
   The `jal` at 0x100601c0 calls jt_send_data [0x101686e0] with a0=[[[a0]+344]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x100601dc calls jt_unpack_vector [0x10164c30] with a0=?, a1=?, a2=[[[a0]+344]+16], a3=?.
-  The `jal` at 0x10060208 calls bpln_reset [0x1005fbe0] with a0=[a0], a1=?, a2=?, a3=?.
+  The `jal` at 0x10060208 calls bpln_reset [0x1005fbe0] with a0=[a0], a1=[a0+4], a2=?, a3=?.
   The `beq` branch at 0x1005ff98 targets 0x1005ffd0, is taken when a1 == at(?), and falls through when a1 != at(?).
   The return at 0x1006022c has v0 = 0x0.
 
@@ -8812,7 +8821,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100615d0 calls dg_make_dac_fetal [0x10037158] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10061558 targets 0x10061598, is taken when at(=[[a0+3964]+16]) == a1, and falls through when at(=[[a0+3964]+16]) != a1.
   The return at 0x10061590 has v0 = 0x1.
-  The return at 0x100615e8 has v0 = ?.
+  The return at 0x100615e8 has v0 = ret(dg_clock_setup).
 
 - `all_extest_but_vocs` in `usr/diags/IR/bin/irsaudit` at 0x100615f0 (n32).
   Evidence grade: inferred.
@@ -8942,7 +8951,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10061cd4 calls kt_connectivity_test [0x10031970] with a0=sp-320, a1=sym(dg4_funcs), a2=a0 at entry (arg0), a3=0x1.
   The `jal` at 0x10061cf0 calls kt_output_trce [0x10046b88] with a0=0x10194768, a1=?, a2=?, a3=?.
   The `jal` at 0x10061d0c calls kt_connectivity_test [0x10031970] with a0=sp-264, a1=sym(dg4_funcs), a2=a0 at entry (arg0), a3=0x2.
-  The `jal` at 0x10061d48 calls kt_report_pin_status [0x10030ed8] with a0=[[a0+3964]+16], a1=0x1, a2=?, a3=?.
+  The `jal` at 0x10061d48 calls kt_report_pin_status [0x10030ed8] with a0=[[a0+3964]+16], a1=0x1, a2=a0+3964, a3=?.
   The `jal` at 0x10061d5c calls lazarus_nondg_boards [0x10061440] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10061d88 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x10194790, a2=?, a3=?.
   The `jal` at 0x10061da8 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
@@ -8955,7 +8964,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x10061e90 calls sprintf with a0=sp-152, a1=0x101946c8, a2=[a0+3628], a3=?.
   The `jal` at 0x10061eb0 calls vcWrite [0x1014071c] with a0=0x8900, a1=0x1, a2=?, a3=?.
   The `beq` branch at 0x10061a98 targets 0x10061ea0, is taken when v1(=[a0+4020]) == a0(=0x3), and falls through when v1(=[a0+4020]) != a0(=0x3).
-  The `beq` branch at 0x10061aa0 targets 0x10061b58, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x10061aa0 targets 0x10061b58, is taken when v0(=ret(ensure_jt_init)) == 0, and falls through when v0(=ret(ensure_jt_init)) != 0.
   The `beq` branch at 0x10061ae0 targets 0x10061d98, is taken when s1(?) == 0, and falls through when s1(?) != 0.
   The `beq` branch at 0x10061b5c targets 0x10061d6c, is taken when ra(=[a0+3964]) == 0, and falls through when ra(=[a0+3964]) != 0.
   The `beq` branch at 0x10061b7c targets 0x10061e10, is taken when a2(=[a0+3628]) == ra(=0x2), and falls through when a2(=[a0+3628]) != ra(=0x2).
@@ -9151,7 +9160,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10062e3c calls vcWrite [0x1014071c] with a0=0x8800, a1=?, a2=?, a3=?.
   The `jal` at 0x10062e48 calls vcRead [0x10140bac] with a0=0x8801, a1=?, a2=?, a3=?.
   The `jal` at 0x10062ea8 calls vcWrite [0x1014071c] with a0=0x8801, a1=0x45, a2=?, a3=?.
-  The `jal` at 0x10062ec0 calls vcWrite [0x1014071c] with a0=0x8800, a1=?, a2=?, a3=?.
+  The `jal` at 0x10062ec0 calls vcWrite [0x1014071c] with a0=0x8800, a1=((a0 << 0x1) | 0x1), a2=?, a3=?.
   The `jal` at 0x10062ecc calls vcRead [0x10140bac] with a0=0x8801, a1=?, a2=?, a3=?.
   The `jal` at 0x10062eec calls rtc_time [0x10063854] with a0=ret(vcRead), a1=?, a2=?, a3=?.
   The `jal` at 0x10062f30 calls rtc_time [0x10063854] with a0=ret(vcRead), a1=?, a2=?, a3=?.
@@ -9345,8 +9354,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10063ea4 calls vcWrite [0x1014071c] with a0=0x8400, a1=?, a2=?, a3=?.
   The `jal` at 0x10063eb0 calls vcRead [0x10140bac] with a0=0x8800, a1=?, a2=?, a3=?.
   The `jal` at 0x10063ed4 calls kt_output_trce [0x10046b88] with a0=0x101951e0, a1=?, a2=?, a3=?.
-  The `jal` at 0x10063f10 calls kt_output_info [0x10046374] with a0=0x10195240, a1=?, a2=?, a3=-0xa.
-  The `jal` at 0x10063f24 calls i2c_errmsg [0x10063078] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10063f10 calls kt_output_info [0x10046374] with a0=0x10195240, a1=?, a2=one of -0xa, 0x0, a3=-0xa.
+  The `jal` at 0x10063f24 calls i2c_errmsg [0x10063078] with a0=one of -0xa, 0x0, a1=?, a2=?, a3=?.
   The `jal` at 0x10063f40 calls kt_output_trce [0x10046b88] with a0=0x10195268, a1=ret(i2c_errmsg), a2=?, a3=?.
   The `jal` at 0x10063f58 calls kt_output_info [0x10046374] with a0=0x10195290, a1=?, a2=?, a3=?.
   The `jal` at 0x10063f78 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101952c0, a2=?, a3=?.
@@ -9357,8 +9366,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10064048 calls test_ddc_chan [0x10063a18] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1006406c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101953b0, a2=ret(test_ddc_chan), a3=?.
   The `jal` at 0x100640bc calls kt_output_info [0x10046374] with a0=0x101953e8, a1=?, a2=ret(hash_value), a3=?.
-  The `jal` at 0x100640e4 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10195220, a2=?, a3=-0xa.
-  The `jal` at 0x100640f8 calls i2c_errmsg [0x10063078] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100640e4 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x10195220, a2=one of -0xa, 0x0, a3=-0xa.
+  The `jal` at 0x100640f8 calls i2c_errmsg [0x10063078] with a0=one of -0xa, 0x0, a1=?, a2=?, a3=?.
   The `jal` at 0x10064114 calls kt_output_trce [0x10046b88] with a0=0x10195160, a1=ret(i2c_errmsg), a2=?, a3=?.
   The `jal` at 0x1006412c calls ResetKona [0x100388e0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10064150 calls kt_output_info [0x10046374] with a0=0x10195420, a1=?, a2=?, a3=?.
@@ -9378,7 +9387,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x10063ebc targets 0x10063e68, is taken when s1(?) == a2(?), and falls through when s1(?) != a2(?).
   The `beq` branch at 0x10063ee0 targets 0x10063e68 and is always taken.
   The `beq` branch at 0x10063eec targets 0x10063e88 and is always taken.
-  The `beq` branch at 0x10063efc targets 0x100640cc, is taken when a2(?) == a3(=-0xa), and falls through when a2(?) != a3(=-0xa).
+  The `beq` branch at 0x10063efc targets 0x100640cc, is taken when a2(=one of -0xa, 0x0) == a3(=-0xa), and falls through when a2(=one of -0xa, 0x0) != a3(=-0xa).
   The `beq` branch at 0x10063fa8 targets 0x10064290, is taken when v0(=ret(verify_match_num_vocs)) == 0, and falls through when v0(=ret(verify_match_num_vocs)) != 0.
   The `beq` branch at 0x10063fd8 targets 0x10064200, is taken when v0(=ret(hash_value)) == ra(=-0x1), and falls through when v0(=ret(hash_value)) != ra(=-0x1).
   The `bne` branch at 0x10063fe4 targets 0x10064010, is taken when v0(=ret(hash_value)) < -0x1 (signed), and falls through when v0(=ret(hash_value)) >= -0x1 (signed).
@@ -9477,21 +9486,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100646a0 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+3964], a1=0x10195aa8, a2=?, a3=?.
   The `jal` at 0x100646b0 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x100646d4 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+4096], a1=0x10195aa0, a2=?, a3=?.
-  The `jal` at 0x100646e8 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x100646e8 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x100646fc calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10064720 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+4096], a1=0x10195aa8, a2=?, a3=?.
   The `jal` at 0x10064740 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?, a6=[[a0]+3964].
   The `jal` at 0x10064760 calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x10064780 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10064790 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x100647a4 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x100647a4 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x100647b8 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x100647c8 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x100647dc calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x100647f0 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x10064810 calls jt_unpack_vector [0x10164c30] with a0=a4 at entry (arg4), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x10064820 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x10064834 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x10064834 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x10064848 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x10064860 calls jt_unpack_vector [0x10164c30] with a0=([[[a0]+3964]+16] + a4), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jalr` at 0x100648c0 calls __assert with a0=0x10195a70, a1=0x10195a90, a2=0x36, a3=a3 at entry (arg3), a6=[[a0]+3964].
@@ -9645,21 +9654,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10065068 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+3964], a1=0x10195dc8, a2=?, a3=?.
   The `jal` at 0x10065078 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x1006509c calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+4096], a1=0x10195dc0, a2=?, a3=?.
-  The `jal` at 0x100650b0 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x100650b0 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x100650c4 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x100650e8 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+4096], a1=0x10195dc8, a2=?, a3=?.
   The `jal` at 0x10065108 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?, a6=[[a0]+3964].
   The `jal` at 0x10065128 calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x10065148 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10065158 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006516c calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x1006516c calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x10065180 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10065190 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x100651a4 calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x100651b8 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x100651d8 calls jt_unpack_vector [0x10164c30] with a0=a4 at entry (arg4), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x100651e8 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x100651fc calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x100651fc calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x10065210 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x10065228 calls jt_unpack_vector [0x10164c30] with a0=([[[a0]+3964]+16] + a4), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jalr` at 0x10065288 calls __assert with a0=0x10195d90, a1=0x10195db0, a2=0x38, a3=a3 at entry (arg3), a6=[[a0]+3964].
@@ -9787,7 +9796,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10065978 loads 4 bytes from abs 0x102bc70c.
   The `jal` at 0x1006592c calls (unnamed) [0x100659c8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10065950 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10065974 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101960a8, a2=?, a3=?.
+  The `jal` at 0x10065974 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101960a8, a2=ret(0x100659c8), a3=?.
   The `jal` at 0x100659a0 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x100659b8 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x10065934 targets 0x1006598c, is taken when v0(=ret(0x100659c8)) == 0, and falls through when v0(=ret(0x100659c8)) != 0.
@@ -9837,21 +9846,21 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10066098 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+3964], a1=0x101961b8, a2=?, a3=?.
   The `jal` at 0x100660a8 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x100660cc calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+4096], a1=0x101961c0, a2=?, a3=?.
-  The `jal` at 0x100660e0 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x100660e0 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x100660f4 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10066108 calls (unnamed) [0x10065dc4] with a0=[a0], a1=?, a2=?, a3=?.
   The `jal` at 0x10066128 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?, a6=[[a0]+3964].
   The `jal` at 0x10066148 calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x10066168 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x10066178 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006618c calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x1006618c calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x100661a0 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=0x0, a3=?.
   The `jal` at 0x100661b0 calls jt_select_chain [0x10168570] with a0=[[[a0]+3964]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x100661c4 calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x100661d8 calls jt_send_data [0x101686e0] with a0=[[[a0]+3964]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x100661f8 calls jt_unpack_vector [0x10164c30] with a0=a4 at entry (arg4), a1=?, a2=[[[a0]+3964]+16], a3=?.
   The `jal` at 0x10066208 calls jt_select_chain [0x10168570] with a0=[[[a0]+4096]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006621c calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+4096]+16], a3=?.
+  The `jal` at 0x1006621c calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+3964]+16] + a3), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jal` at 0x10066230 calls jt_send_data [0x101686e0] with a0=[[[a0]+4096]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x10066248 calls jt_unpack_vector [0x10164c30] with a0=([[[a0]+3964]+16] + a4), a1=?, a2=[[[a0]+4096]+16], a3=?.
   The `jalr` at 0x100662ac calls __assert with a0=0x10196208, a1=0x10196228, a2=0x5c, a3=a3 at entry (arg3), a6=[[a0]+3964].
@@ -10124,7 +10133,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10067628 calls kt_output_diag [0x100461b0] with a0=0x10196c18, a1=?, a2=?, a3=?.
   The `jal` at 0x10067644 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10067660 calls kt_code_chip [0x1004797c] with a0=0x8, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10067688 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10196c50, a2=?, a3=?.
+  The `jal` at 0x10067688 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10196c50, a2=ret(0x10067758), a3=?.
   The `jal` at 0x100676b8 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x100676d0 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x100676f8 calls kt_output_info [0x10046374] with a0=0x10196b70, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10168,7 +10177,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10067b64 calls kt_output_diag [0x100461b0] with a0=0x10196e28, a1=?, a2=?, a3=?.
   The `jal` at 0x10067b80 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10067b9c calls kt_code_chip [0x1004797c] with a0=0x7, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10067bc4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10196e60, a2=?, a3=?.
+  The `jal` at 0x10067bc4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10196e60, a2=ret(0x10067c94), a3=?.
   The `jal` at 0x10067bf4 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10067c0c calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10067c34 calls kt_output_info [0x10046374] with a0=0x10196d70, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10202,7 +10211,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10067f7c calls kt_output_diag [0x100461b0] with a0=0x10196fd8, a1=?, a2=?, a3=?.
   The `jal` at 0x10067f98 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10067fb4 calls kt_code_chip [0x1004797c] with a0=0x7, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10067fdc calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10197010, a2=?, a3=?.
+  The `jal` at 0x10067fdc calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10197010, a2=ret(0x100680ac), a3=?.
   The `jal` at 0x1006800c calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10068024 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x1006804c calls kt_output_info [0x10046374] with a0=0x10196f20, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10232,7 +10241,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10068378 calls kt_output_diag [0x100461b0] with a0=0x10197198, a1=?, a2=?, a3=?.
   The `jal` at 0x10068394 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100683b0 calls kt_code_chip [0x1004797c] with a0=0x7, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x100683d8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101971d0, a2=?, a3=?.
+  The `jal` at 0x100683d8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101971d0, a2=ret(0x100684a8), a3=?.
   The `jal` at 0x10068408 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10068420 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10068448 calls kt_output_info [0x10046374] with a0=0x101970f0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10266,7 +10275,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10068778 calls kt_output_diag [0x100461b0] with a0=0x10197358, a1=?, a2=?, a3=?.
   The `jal` at 0x10068794 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100687b0 calls kt_code_chip [0x1004797c] with a0=0x7, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x100687d8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10197390, a2=?, a3=?.
+  The `jal` at 0x100687d8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10197390, a2=ret(0x100688a8), a3=?.
   The `jal` at 0x10068808 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10068820 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10068848 calls kt_output_info [0x10046374] with a0=0x101972a0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -10485,7 +10494,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1006948c targets 0x100698a0, is taken when s6(?) == 0, and falls through when s6(?) != 0.
   The `beq` branch at 0x1006952c targets 0x100694e8 and is always taken.
   The `beq` branch at 0x100695e4 targets 0x10069748 and is always taken.
-  The `beq` branch at 0x100696e8 targets 0x10069930, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x100696e8 targets 0x10069930, is taken when at(=(ret(kt_connectivity_test) + ret(kt_connectivity_test))) == 0, and falls through when at(=(ret(kt_connectivity_test) + ret(kt_connectivity_test))) != 0.
   The `beq` branch at 0x10069740 targets 0x1006981c, is taken when s3(?) >= 0x4 (signed), and falls through when s3(?) < 0x4 (signed).
   The `beq` branch at 0x1006974c targets 0x10069738, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x10069780 targets 0x10069a00, is taken when v0(=[a0+364]) == a4(=0x1), and falls through when v0(=[a0+364]) != a4(=0x1).
@@ -10668,7 +10677,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006b408 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+352], a1=0x10197c30, a2=?, a3=?.
   The `jal` at 0x1006b42c calls jt_pack_vector [0x10164aa0] with a0=a3 at entry (arg3), a1=?, a2=[[[a0]+352]+16]-1556, a3=?.
   The `jal` at 0x1006b44c calls jt_send_data [0x101686e0] with a0=[[[a0]+352]+16]-1556, a1=?, a2=0x0, a3=?.
-  The `jal` at 0x1006b474 calls (unnamed) [0x1006b0b4] with a0=[[a0]+352], a1=0x10197cc8, a2=?, a3=?.
+  The `jal` at 0x1006b474 calls (unnamed) [0x1006b0b4] with a0=[[a0]+352], a1=0x10197cc8, a2=[a0+4], a3=?.
   The `jal` at 0x1006b484 calls jt_select_chain [0x10168570] with a0=[[[a0]+344]+4], a1=?, a2=?, a3=?.
   The `jal` at 0x1006b4a8 calls jt_set_global_instruction [0x10166e60] with a0=[[a0]+344], a1=0x10197c30, a2=?, a3=?.
   The `jal` at 0x1006b4c4 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+352]+16]-1556 + a3), a1=?, a2=[[[a0]+344]+16], a3=?.
@@ -10679,7 +10688,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006b534 calls jt_send_data [0x101686e0] with a0=[[[a0]+352]+16]-1556, a1=?, a2=?, a3=?.
   The `jal` at 0x1006b550 calls jt_unpack_vector [0x10164c30] with a0=a4 at entry (arg4), a1=?, a2=[[[a0]+352]+16]-1556, a3=?.
   The `jal` at 0x1006b560 calls jt_select_chain [0x10168570] with a0=[[[a0]+344]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006b574 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+344]+16], a3=?.
+  The `jal` at 0x1006b574 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+352]+16]-1556 + a3), a1=?, a2=[[[a0]+344]+16], a3=?.
   The `jal` at 0x1006b598 calls jt_send_data [0x101686e0] with a0=[[[a0]+344]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x1006b5b4 calls jt_unpack_vector [0x10164c30] with a0=([[[a0]+352]+16]-1556 + a4), a1=?, a2=[[[a0]+344]+16], a3=?.
   The `jal` at 0x1006b5dc calls (unnamed) [0x1006ae38] with a0=[a0], a1=?, a2=?, a3=?.
@@ -10722,7 +10731,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006b818 calls jt_send_data [0x101686e0] with a0=[[[a0]+352]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x1006b834 calls jt_unpack_vector [0x10164c30] with a0=a4 at entry (arg4), a1=?, a2=[[[a0]+352]+16], a3=?.
   The `jal` at 0x1006b844 calls jt_select_chain [0x10168570] with a0=[[[a0]+344]+4], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006b858 calls jt_pack_vector [0x10164aa0] with a0=?, a1=?, a2=[[[a0]+344]+16], a3=?.
+  The `jal` at 0x1006b858 calls jt_pack_vector [0x10164aa0] with a0=([[[a0]+352]+16] + a3), a1=?, a2=[[[a0]+344]+16], a3=?.
   The `jal` at 0x1006b87c calls jt_send_data [0x101686e0] with a0=[[[a0]+344]+16], a1=?, a2=?, a3=?.
   The `jal` at 0x1006b898 calls jt_unpack_vector [0x10164c30] with a0=([[[a0]+352]+16] + a4), a1=?, a2=[[[a0]+344]+16], a3=?.
   The `jal` at 0x1006b8c0 calls (unnamed) [0x1006ae38] with a0=[a0], a1=?, a2=?, a3=?.
@@ -10982,7 +10991,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006c6fc calls (unnamed) [0x1006c830] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1006c710 calls (unnamed) [0x1006caf4] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1006c724 calls (unnamed) [0x1006ce4c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1006c764 calls kt_output_info [0x10046374] with a0=0x10198018, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006c764 calls kt_output_info [0x10046374] with a0=0x10198018, a1=(ret(0x1006ce4c) + (ret(0x1006c830) + ret(0x1006caf4))), a2=?, a3=?.
   The `jal` at 0x1006c794 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006c7b8 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198038, a2=?, a3=?.
   The `jal` at 0x1006c808 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
@@ -10991,7 +11000,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x1006c6ac targets 0x1006c6bc and is always taken.
   The `beq` branch at 0x1006c6b4 targets 0x1006c77c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1006c6c8 targets 0x1006c6b4, is taken when (a0(=[a0+120]) & t8(?)) == 0, and falls through when (a0(=[a0+120]) & t8(?)) != 0.
-  The `beq` branch at 0x1006c744 targets 0x1006c76c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x1006c744 targets 0x1006c76c, is taken when a1(=(ret(0x1006ce4c) + (ret(0x1006c830) + ret(0x1006caf4)))) == 0, and falls through when a1(=(ret(0x1006ce4c) + (ret(0x1006c830) + ret(0x1006caf4)))) != 0.
   The `bne` branch at 0x1006c774 targets 0x1006c6ac, is taken when s0(?) < s2(=[a0+116]) (signed), and falls through when s0(?) >= s2(=[a0+116]) (signed).
   The `beq` branch at 0x1006c77c targets 0x1006c7f4, is taken when s3(?) == 0, and falls through when s3(?) != 0.
   The `beq` branch at 0x1006c828 targets 0x1006c7c0 and is always taken.
@@ -11016,10 +11025,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006d198 calls Ge11ERamAddrPathParallel [0x1006d5d8] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1006d1b0 calls Ge11ERamCellParallel [0x1006d9d8] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1006d1e0 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x1006d204 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198218, a2=?, a3=?.
+  The `jal` at 0x1006d204 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198218, a2=(ret(Ge11ERamCellParallel) + (ret(Ge11ERamDataPathParallel) + ret(Ge11ERamAddrPathParallel))), a3=?.
   The `jal` at 0x1006d234 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1006d24c calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
-  The `beq` branch at 0x1006d1c4 targets 0x1006d224, is taken when s0(?) == 0, and falls through when s0(?) != 0.
+  The `beq` branch at 0x1006d1c4 targets 0x1006d224, is taken when s0(=(ret(Ge11ERamCellParallel) + (ret(Ge11ERamDataPathParallel) + ret(Ge11ERamAddrPathParallel)))) == 0, and falls through when s0(=(ret(Ge11ERamCellParallel) + (ret(Ge11ERamDataPathParallel) + ret(Ge11ERamAddrPathParallel)))) != 0.
   The `beq` branch at 0x1006d254 targets 0x1006d210 and is always taken.
   The return at 0x1006d21c has v0 = ret(kt_output_rslt).
 
@@ -11052,29 +11061,29 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x1006d2dc calls bzero with a0=ret(memalign), a1=0x400, a2=?, a3=?.
   The `jalr` at 0x1006d324 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-128, a3=?.
   The `jal` at 0x1006d368 calls ged_set_ge [0x10037370] with a0=-0x1, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d380 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d380 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006d3a0 calls PioWriteArm32 [0x10038444] with a0=0x200678, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d3b8 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d3c8 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x400, a2=?, a3=?.
   The `jal` at 0x1006d3d8 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x400, a2=?, a3=?.
   The `jal` at 0x1006d3ec calls PioWriteArm32 [0x10038444] with a0=0x200ac0, a1=0x75, a2=?, a3=?.
-  The `jal` at 0x1006d43c calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d43c calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006d448 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d494 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198288, a2=?, a3=?.
   The `jal` at 0x1006d4d8 calls kt_output_info [0x10046374] with a0=0x101982a8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d510 calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x100, a3=?.
-  The `jalr` at 0x1006d524 calls free with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d578 calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x100, a3=?.
-  The `jalr` at 0x1006d58c calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d510 calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x100, a3=?.
+  The `jalr` at 0x1006d524 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d578 calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x100, a3=?.
+  The `jalr` at 0x1006d58c calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006d5b4 calls kt_output_info [0x10046374] with a0=0x10198248, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006d5c8 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006d5c8 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x1006d34c targets 0x1006d59c, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1006d3f8 targets 0x1006d4fc, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x1006d3f8 targets 0x1006d4fc, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `bltz` branch at 0x1006d450 targets 0x1006d564, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006d468 targets 0x1006d4b4, is taken when s6(=0xffffffffbabebabe) == a2(?), and falls through when s6(=0xffffffffbabebabe) != a2(?).
   The `bne` branch at 0x1006d4ac targets 0x1006d464, is taken when s4(?) < 0x100 (signed), and falls through when s4(?) >= 0x100 (signed).
   The `beq` branch at 0x1006d4b4 targets 0x1006d4e0, is taken when s1(?) == 0, and falls through when s1(?) != 0.
-  The `bne` branch at 0x1006d4ec targets 0x1006d42c, is taken when s7(?) < a1(?) (signed), and falls through when s7(?) >= a1(?) (signed).
+  The `bne` branch at 0x1006d4ec targets 0x1006d42c, is taken when s7(?) < a1(=[a0+116]) (signed), and falls through when s7(?) >= a1(=[a0+116]) (signed).
   The `beq` branch at 0x1006d4f4 targets 0x1006d500 and is always taken.
   The `beq` branch at 0x1006d594 targets 0x1006d52c and is always taken.
   The `beq` branch at 0x1006d5d0 targets 0x1006d52c and is always taken.
@@ -11100,7 +11109,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x1006d79c loads 4 bytes from abs 0x102bd744.
   4 such `lw` accesses load 4 bytes from abs 0x102bd730, including `lw` at 0x1006d7bc, `lw` at 0x1006d7e0, `lw` at 0x1006d988.
   The `lw` at 0x1006d83c loads 4 bytes from abs 0x102bd66c.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1006d86c, `lw` at 0x1006d888, `lw` at 0x1006d88c.
+  The `lw` at 0x1006d86c loads 4 bytes from ret(memalign) +0x0.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1006d888, `lw` at 0x1006d88c, `lw` at 0x1006d8b0.
   2 such `lw` accesses load 4 bytes from abs 0x102bd64c, including `lw` at 0x1006d8dc, `lw` at 0x1006d940.
   3 such `lw` accesses load 4 bytes from abs 0x102bd420, including `lw` at 0x1006d8f8, `lw` at 0x1006d95c, `lw` at 0x1006d9c4.
   The `jal` at 0x1006d614 calls kt_output_trce [0x10046b88] with a0=0x101982d8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -11109,7 +11119,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x1006d678 calls bzero with a0=ret(memalign), a1=0x220, a2=?, a3=?.
   The `jalr` at 0x1006d6c0 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-128, a3=?.
   The `jal` at 0x1006d6e4 calls ged_set_ge [0x10037370] with a0=-0x1, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d700 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d700 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006d724 calls PioWriteArm32 [0x10038444] with a0=0x200678, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d73c calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d74c calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x220, a2=?, a3=?.
@@ -11117,24 +11127,24 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006d770 calls PioWriteArm32 [0x10038444] with a0=0x200ac0, a1=0x7e, a2=?, a3=?.
   The `jal` at 0x1006d7cc calls kt_output_info [0x10046374] with a0=0x10198328, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d7fc calls kt_output_info [0x10046374] with a0=0x10198360, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d82c calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d82c calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006d844 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d890 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198288, a2=?, a3=?.
-  The `jal` at 0x1006d8e8 calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x88, a3=?.
-  The `jalr` at 0x1006d904 calls free with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006d94c calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x88, a3=?.
-  The `jalr` at 0x1006d968 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d8e8 calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x88, a3=?.
+  The `jalr` at 0x1006d904 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006d94c calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x88, a3=?.
+  The `jalr` at 0x1006d968 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006d990 calls kt_output_info [0x10046374] with a0=0x10198300, a1=?, a2=?, a3=?.
   The `jal` at 0x1006d9b4 calls kt_output_info [0x10046374] with a0=0x10198248, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006d9c8 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006d9c8 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1006d660 targets 0x1006d978, is taken when v0(=ret(memalign)) == 0, and falls through when v0(=ret(memalign)) != 0.
   The `bltz` branch at 0x1006d6c8 targets 0x1006d9a0, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1006d77c targets 0x1006d8d0, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x1006d77c targets 0x1006d8d0, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1006d798 targets 0x1006d818 and is always taken.
   The `beq` branch at 0x1006d7a0 targets 0x1006d808, is taken when s2(?) == 0, and falls through when s2(?) != 0.
   The `beq` branch at 0x1006d7a8 targets 0x1006d7d4, is taken when s4(?) == 0, and falls through when s4(?) != 0.
   The `beq` branch at 0x1006d7dc targets 0x1006d804, is taken when s7(?) == 0, and falls through when s7(?) != 0.
-  The `beq` branch at 0x1006d810 targets 0x1006d8d8, is taken when s8(?) >= a1(?) (signed), and falls through when s8(?) < a1(?) (signed).
+  The `beq` branch at 0x1006d810 targets 0x1006d8d8, is taken when s8(?) >= a1(=[a0+116]) (signed), and falls through when s8(?) < a1(=[a0+116]) (signed).
   The `bltz` branch at 0x1006d84c targets 0x1006d93c, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006d868 targets 0x1006d8b4 and is always taken.
   The `beq` branch at 0x1006d8a8 targets 0x1006d7a0, is taken when s3(?) >= 0x88 (signed), and falls through when s3(?) < 0x88 (signed).
@@ -11175,29 +11185,29 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x1006da5c calls bzero with a0=ret(memalign), a1=0x200000, a2=?, a3=?.
   The `jalr` at 0x1006daa0 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-128, a3=?.
   The `jal` at 0x1006dae0 calls ged_set_ge [0x10037370] with a0=-0x1, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006daf8 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006daf8 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006db18 calls PioWriteArm32 [0x10038444] with a0=0x200678, a1=?, a2=?, a3=?.
   The `jal` at 0x1006db30 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x1006db40 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x200000, a2=?, a3=?.
   The `jal` at 0x1006db50 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x200000, a2=?, a3=?.
   The `jal` at 0x1006db64 calls PioWriteArm32 [0x10038444] with a0=0x200ac0, a1=0x87, a2=?, a3=?.
-  The `jal` at 0x1006dbac calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006dbac calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006dbc4 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006dc14 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198288, a2=?, a3=?.
   The `jal` at 0x1006dc58 calls kt_output_info [0x10046374] with a0=0x101983b8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006dc94 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x80000, a3=?.
-  The `jalr` at 0x1006dca8 calls free with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006dcf8 calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x80000, a3=?.
-  The `jalr` at 0x1006dd0c calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006dc94 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x80000, a3=?.
+  The `jalr` at 0x1006dca8 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006dcf8 calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x80000, a3=?.
+  The `jalr` at 0x1006dd0c calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006dd34 calls kt_output_info [0x10046374] with a0=0x10198248, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006dd48 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006dd48 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x1006dac4 targets 0x1006dd1c, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1006db70 targets 0x1006dc7c, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x1006db70 targets 0x1006dc7c, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `bltz` branch at 0x1006dbcc targets 0x1006dce8, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006dbe8 targets 0x1006dc34, is taken when s6(=0xffffffffbabebabe) == a2(?), and falls through when s6(=0xffffffffbabebabe) != a2(?).
   The `bne` branch at 0x1006dc2c targets 0x1006dbe4, is taken when s4(?) < s7(=0x80000) (signed), and falls through when s4(?) >= s7(=0x80000) (signed).
   The `beq` branch at 0x1006dc34 targets 0x1006dc60, is taken when s1(?) == 0, and falls through when s1(?) != 0.
-  The `bne` branch at 0x1006dc6c targets 0x1006db9c, is taken when s8(?) < a1(?) (signed), and falls through when s8(?) >= a1(?) (signed).
+  The `bne` branch at 0x1006dc6c targets 0x1006db9c, is taken when s8(?) < a1(=[a0+116]) (signed), and falls through when s8(?) >= a1(=[a0+116]) (signed).
   The `beq` branch at 0x1006dc74 targets 0x1006dc84 and is always taken.
   The `beq` branch at 0x1006dd14 targets 0x1006dcb0 and is always taken.
   The `beq` branch at 0x1006dd50 targets 0x1006dcb0 and is always taken.
@@ -11234,14 +11244,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `lw` accesses load 4 bytes from abs 0x102bd728, including `lw` at 0x1006e17c, `lw` at 0x1006e210, `lw` at 0x1006e260.
   The `jalr` at 0x1006dd7c calls getpagesize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x1006dd94 calls memalign with a0=ret(getpagesize), a1=0x780, a2=?, a3=?.
-  The `jal` at 0x1006de0c calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x1e0, a3=?.
+  The `jal` at 0x1006de0c calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x1e0, a3=?.
   The `jal` at 0x1006de24 calls ge_mul_test [0x1006e278] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1006de58 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006de78 calls kt_output_info [0x10046374] with a0=0x10198458, a1=?, a2=?, a3=?.
   The `jal` at 0x1006dee8 calls kt_output_trce [0x10046b88] with a0=0x101983e8, a1=?, a2=?, a3=?.
   The `jal` at 0x1006df00 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006df1c calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006df38 calls bzero with a0=?, a1=0x780, a2=?, a3=?.
+  The `jal` at 0x1006df1c calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
+  The `jalr` at 0x1006df38 calls bzero with a0=ret(memalign), a1=0x780, a2=?, a3=?.
   The `jalr` at 0x1006df80 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-160, a3=?.
   The `jal` at 0x1006dfa8 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=?, a2=?, a3=?.
   The `jal` at 0x1006dfc0 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
@@ -11252,19 +11262,19 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006e028 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e070 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198438, a2=?, a3=?.
   The `jal` at 0x1006e0a4 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198438, a2=?, a3=?.
-  The `jalr` at 0x1006e13c calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006e13c calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006e164 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006e188 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198478, a2=?, a3=?.
   The `jal` at 0x1006e1d8 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x1006e1f8 calls kt_output_info [0x10046374] with a0=0x101983f8, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e21c calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198418, a2=?, a3=?.
-  The `jalr` at 0x1006e230 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006e230 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006e250 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1006e268 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `blez` branch at 0x1006ddcc targets 0x1006e12c, is taken when ra(=[a0+116]) <= 0 (signed), and falls through when ra(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1006ddec targets 0x1006deac and is always taken.
   The `beq` branch at 0x1006de30 targets 0x1006de84, is taken when s1(?) == 0, and falls through when s1(?) != 0.
-  The `beq` branch at 0x1006dea4 targets 0x1006e130, is taken when a0(?) >= a2(?) (signed), and falls through when a0(?) < a2(?) (signed).
+  The `beq` branch at 0x1006dea4 targets 0x1006e130, is taken when a0(?) >= a2(=[a0+116]) (signed), and falls through when a0(?) < a2(=[a0+116]) (signed).
   The `beq` branch at 0x1006dec0 targets 0x1006de90, is taken when (a3(=[a0+120]) & a4(?)) == 0, and falls through when (a3(=[a0+120]) & a4(?)) != 0.
   The `bltz` branch at 0x1006df88 targets 0x1006e1c4, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
   The `bltz` branch at 0x1006e030 targets 0x1006e120, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
@@ -11319,14 +11329,14 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006e3c0 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e428 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101984d8, a2=?, a3=?.
   The `jal` at 0x1006e45c calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101984d8, a2=?, a3=?.
-  The `jal` at 0x1006e548 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x960, a3=?, a4=0x64.
-  The `jalr` at 0x1006e574 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006e548 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x960, a3=?, a4=0x64.
+  The `jalr` at 0x1006e574 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006e5b0 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x1006e5d4 calls kt_output_info [0x10046374] with a0=0x101983f8, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e5ec calls kt_output_info [0x10046374] with a0=0x10198498, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006e600 calls free with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006e624 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x960, a3=?.
-  The `jalr` at 0x1006e638 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006e600 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006e624 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x960, a3=?.
+  The `jalr` at 0x1006e638 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x1006e328 targets 0x1006e59c, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
   The `bltz` branch at 0x1006e3d4 targets 0x1006e610, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006e404 targets 0x1006e4dc and is always taken.
@@ -11386,8 +11396,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006e7e4 calls kt_output_info [0x10046374] with a0=0x101985b8, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e850 calls kt_output_trce [0x10046b88] with a0=0x10198580, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e868 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006e884 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006e8ac calls bzero with a0=?, a1=0x2000, a2=?, a3=?.
+  The `jal` at 0x1006e884 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
+  The `jalr` at 0x1006e8ac calls bzero with a0=ret(memalign), a1=0x2000, a2=?, a3=?.
   The `jal` at 0x1006e8c4 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e8d4 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x1006e8e4 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x2000, a2=?, a3=?.
@@ -11400,8 +11410,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006e9a4 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198590, a2=?, a3=?.
   The `jal` at 0x1006ea08 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006ea28 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x1006ea50 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x800, a3=?.
-  The `jalr` at 0x1006ea64 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006ea50 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x800, a3=?.
+  The `jalr` at 0x1006ea64 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006ea88 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006eab0 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101985e0, a2=?, a3=?.
   The `jal` at 0x1006eafc calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
@@ -11409,11 +11419,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006eb38 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x1006eb58 calls kt_output_info [0x10046374] with a0=0x10198540, a1=?, a2=?, a3=?.
   The `jal` at 0x1006eb7c calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198560, a2=?, a3=?.
-  The `jalr` at 0x1006eb90 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006eb90 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x1006e74c targets 0x1006eb24, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1006e764 targets 0x1006ea38, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x1006e764 targets 0x1006ea38, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1006e7a0 targets 0x1006e810 and is always taken.
-  The `beq` branch at 0x1006e808 targets 0x1006ea3c, is taken when a1(?) >= a2(?) (signed), and falls through when a1(?) < a2(?) (signed).
+  The `beq` branch at 0x1006e808 targets 0x1006ea3c, is taken when a1(?) >= a2(=[a0+116]) (signed), and falls through when a1(?) < a2(=[a0+116]) (signed).
   The `beq` branch at 0x1006e828 targets 0x1006e7f0, is taken when (a3(=[a0+120]) & a4(?)) == 0, and falls through when (a3(=[a0+120]) & a4(?)) != 0.
   The `bltz` branch at 0x1006e968 targets 0x1006e9f4, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006e978 targets 0x1006e9c4, is taken when s8(=0xffffffffbabebabe) == a2(?), and falls through when s8(=0xffffffffbabebabe) != a2(?).
@@ -11466,9 +11476,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006ed1c calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006ed3c calls kt_output_info [0x10046374] with a0=0x10198638, a1=?, a2=?, a3=?.
   The `jal` at 0x1006ed94 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006edb0 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006edb0 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1006edd8 calls kt_output_trce [0x10046b88] with a0=0x10198580, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006ee00 calls bzero with a0=?, a1=0x8000, a2=?, a3=?.
+  The `jalr` at 0x1006ee00 calls bzero with a0=ret(memalign), a1=0x8000, a2=?, a3=?.
   The `jal` at 0x1006ee18 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=?, a2=?, a3=?.
   The `jal` at 0x1006ee28 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x1006ee38 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x8000, a2=?, a3=?.
@@ -11481,8 +11491,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006eefc calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198590, a2=?, a3=?.
   The `jal` at 0x1006ef5c calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006ef7c calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x1006efa4 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x2000, a3=?.
-  The `jalr` at 0x1006efb8 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006efa4 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x2000, a3=?.
+  The `jalr` at 0x1006efb8 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006efd8 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006f000 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101985e0, a2=?, a3=?.
   The `jal` at 0x1006f050 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
@@ -11490,11 +11500,11 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006f08c calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x1006f0ac calls kt_output_info [0x10046374] with a0=0x10198540, a1=?, a2=?, a3=?.
   The `jal` at 0x1006f0d0 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198560, a2=?, a3=?.
-  The `jalr` at 0x1006f0e4 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006f0e4 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x1006eca4 targets 0x1006f078, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1006ecbc targets 0x1006ef8c, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x1006ecbc targets 0x1006ef8c, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1006ecf8 targets 0x1006ed68 and is always taken.
-  The `beq` branch at 0x1006ed60 targets 0x1006ef90, is taken when a1(?) >= a2(?) (signed), and falls through when a1(?) < a2(?) (signed).
+  The `beq` branch at 0x1006ed60 targets 0x1006ef90, is taken when a1(?) >= a2(=[a0+116]) (signed), and falls through when a1(?) < a2(=[a0+116]) (signed).
   The `beq` branch at 0x1006ed80 targets 0x1006ed44, is taken when (a3(=[a0+120]) & a4(?)) == 0, and falls through when (a3(=[a0+120]) & a4(?)) != 0.
   The `bltz` branch at 0x1006eebc targets 0x1006ef4c, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1006eed0 targets 0x1006ef1c, is taken when s8(=0xffffffffbabebabe) == a2(?), and falls through when s8(=0xffffffffbabebabe) != a2(?).
@@ -11551,27 +11561,27 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006f558 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x200, a2=?, a3=?.
   The `jal` at 0x1006f56c calls PioWriteArm32 [0x10038444] with a0=0x200ac0, a1=0x3cd1, a2=?, a3=?.
   The `jal` at 0x1006f580 calls fcPioRead32 [0x1013dd88] with a0=0x2a0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f62c calls hist_base_check [0x1006fc7c] with a0=0x8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f640 calls hist_ecd_check [0x1006fba0] with a0=0x8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f654 calls hist_ecdbase_check [0x1006fda0] with a0=0x8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f668 calls hist_base_check [0x1006fc7c] with a0=0x6, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f67c calls hist_ecd_check [0x1006fba0] with a0=0xa, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f690 calls hist_ecdbase_check [0x1006fda0] with a0=0x6, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f6a4 calls hist_base_check [0x1006fc7c] with a0=0x4, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f6b8 calls hist_ecd_check [0x1006fba0] with a0=0xc, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f6cc calls hist_ecdbase_check [0x1006fda0] with a0=0x4, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f6f0 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x10f4, a3=?.
+  The `jal` at 0x1006f62c calls hist_base_check [0x1006fc7c] with a0=0x8, a1=ret(memalign)+688, a2=?, a3=?.
+  The `jal` at 0x1006f640 calls hist_ecd_check [0x1006fba0] with a0=0x8, a1=ret(memalign)+720, a2=?, a3=?.
+  The `jal` at 0x1006f654 calls hist_ecdbase_check [0x1006fda0] with a0=0x8, a1=ret(memalign)+752, a2=?, a3=?.
+  The `jal` at 0x1006f668 calls hist_base_check [0x1006fc7c] with a0=0x6, a1=ret(memalign)+784, a2=?, a3=?.
+  The `jal` at 0x1006f67c calls hist_ecd_check [0x1006fba0] with a0=0xa, a1=ret(memalign)+816, a2=?, a3=?.
+  The `jal` at 0x1006f690 calls hist_ecdbase_check [0x1006fda0] with a0=0x6, a1=ret(memalign)+864, a2=?, a3=?.
+  The `jal` at 0x1006f6a4 calls hist_base_check [0x1006fc7c] with a0=0x4, a1=ret(memalign)+896, a2=?, a3=?.
+  The `jal` at 0x1006f6b8 calls hist_ecd_check [0x1006fba0] with a0=0xc, a1=ret(memalign)+912, a2=?, a3=?.
+  The `jal` at 0x1006f6cc calls hist_ecdbase_check [0x1006fda0] with a0=0x4, a1=ret(memalign)+960, a2=?, a3=?.
+  The `jal` at 0x1006f6f0 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x10f4, a3=?.
   The `jal` at 0x1006f708 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=0x3fcc0010, a2=?, a3=?.
   The `jal` at 0x1006f718 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x200, a2=?, a3=?.
   The `jal` at 0x1006f72c calls PioWriteArm32 [0x10038444] with a0=0x200ac0, a1=0x3cd1, a2=?, a3=?.
   The `jal` at 0x1006f740 calls fcPioRead32 [0x1013dd88] with a0=0x2a0, a1=?, a2=?, a3=?.
   The `jal` at 0x1006f758 calls ge_hist_stress_test [0x1006fed8] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f7f8 calls kt_output_info [0x10046374] with a0=0x101987d8, a1=?, a2=?, a3=?.
+  The `jal` at 0x1006f7f8 calls kt_output_info [0x10046374] with a0=0x101987d8, a1=?, a2=?, a3=?, a4=ret(hist_base_check).
   The `jal` at 0x1006f80c calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006f870 calls kt_output_trce [0x10046b88] with a0=0x10198760, a1=?, a2=?, a3=?.
   The `jal` at 0x1006f888 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1006f8a4 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1006f8bc calls bzero with a0=?, a1=0x43d0, a2=?, a3=?.
+  The `jal` at 0x1006f8a4 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
+  The `jalr` at 0x1006f8bc calls bzero with a0=ret(memalign), a1=0x43d0, a2=?, a3=?.
   The `jalr` at 0x1006f904 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-304, a3=?.
   The `jal` at 0x1006f920 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=?, a2=?, a3=?.
   The `jal` at 0x1006f930 calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
@@ -11581,7 +11591,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006f980 calls fcPioRead32 [0x1013dd88] with a0=0x2a0, a1=?, a2=?, a3=?.
   The `jal` at 0x1006f998 calls wait_for_odma [0x10037c68] with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1006fa20 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101987b0, a2=?, a3=?.
-  The `jalr` at 0x1006fa54 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1006fa54 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1006fa78 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1006fa9c calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101987f8, a2=?, a3=?.
   The `jal` at 0x1006faec calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x2, a3=?.
@@ -11591,10 +11601,10 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1006fb78 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1006fb90 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1006f518 targets 0x1006fb40, is taken when v0(=ret(memalign)) == 0, and falls through when v0(=ret(memalign)) != 0.
-  The `blez` branch at 0x1006f5b0 targets 0x1006fa44, is taken when ra(?) <= 0 (signed), and falls through when ra(?) > 0 (signed).
+  The `blez` branch at 0x1006f5b0 targets 0x1006fa44, is taken when ra(=[a0+116]) <= 0 (signed), and falls through when ra(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1006f60c targets 0x1006f830 and is always taken.
   The `beq` branch at 0x1006f7c4 targets 0x1006f814, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x1006f828 targets 0x1006fa48, is taken when s3(?) >= t8(?) (signed), and falls through when s3(?) < t8(?) (signed).
+  The `beq` branch at 0x1006f828 targets 0x1006fa48, is taken when s3(?) >= t8(=[a0+116]) (signed), and falls through when s3(?) < t8(=[a0+116]) (signed).
   The `beq` branch at 0x1006f844 targets 0x1006f818, is taken when (t9(=[a0+120]) & ra(?)) == 0, and falls through when (t9(=[a0+120]) & ra(?)) != 0.
   The `bltz` branch at 0x1006f90c targets 0x1006fad8, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
   The `bne` branch at 0x1006f9a4 targets 0x1006f614, is taken when v0(=ret(wait_for_odma)) != 0, and falls through when v0(=ret(wait_for_odma)) == 0.
@@ -11782,8 +11792,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100704c8 calls fcPioRead32 [0x1013dd88] with a0=0x278, a1=?, a2=?, a3=?.
   The `jalr` at 0x100704ec calls sleep with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x10070578 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x10198928, a2=?, a3=?.
-  The `jal` at 0x100705a4 calls destroy_map_diag [0x10037218] with a0=0x0, a1=?, a2=0x10000, a3=?.
-  The `jalr` at 0x100705bc calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100705a4 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x10000, a3=?.
+  The `jalr` at 0x100705bc calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x100705e4 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10070604 calls kt_code_chip [0x1004797c] with a0=0x2, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x10070618 calls kt_code_chip [0x1004797c] with a0=0x3, a1=0x0, a2=0x2, a3=?.
@@ -11860,7 +11870,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10070cd8 calls ged_host_reg_write [0x100372d4] with a0=0x234, a1=0x40000, a2=?, a3=?.
   The `jal` at 0x10070ce8 calls ged_host_reg_write [0x100372d4] with a0=0x232, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10070d40 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10070d58 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10070d58 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x10070d70 calls PioWriteArm32 [0x10038444] with a0=0x2000f4, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10070d80 calls fcPioWrite32 [0x1013dae8] with a0=0x2a0, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10070d90 calls fcPioWrite32 [0x1013dae8] with a0=0x2a8, a1=0x0, a2=?, a3=?.
@@ -11899,7 +11909,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100710f4 calls kt_output_info [0x10046374] with a0=0x10198b78, a1=?, a2=?, a3=?.
   The `jal` at 0x10071120 calls kt_output_rslt [0x10045978] with a0=0x2, a1=0x10198a88, a2=[sym(verifUcodeTable)], a3=?.
   The `jal` at 0x1007116c calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10071184 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x10071184 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x10071194 calls fcPioWrite32 [0x1013dae8] with a0=0x2a0, a1=0x0, a2=?, a3=?.
   The `jal` at 0x100711a4 calls fcPioWrite32 [0x1013dae8] with a0=0x2a8, a1=0x0, a2=?, a3=?.
   The `jal` at 0x100711b4 calls fcPioWrite32 [0x1013dae8] with a0=0x2b0, a1=0x0, a2=?, a3=?.
@@ -11918,7 +11928,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `bne` branch at 0x10070c48 targets 0x100710d0, is taken when a2(?) != t8(?), and falls through when a2(?) == t8(?).
   The `beq` branch at 0x10070c58 targets 0x10070c8c, is taken when s4(=0xffffffffa5a5a5a5) == v0(=ret(fcPioRead32)), and falls through when s4(=0xffffffffa5a5a5a5) != v0(=ret(fcPioRead32)).
   The `beq` branch at 0x10070c8c targets 0x10070cd4, is taken when s2(?) == 0, and falls through when s2(?) != 0.
-  The `beq` branch at 0x10070d0c targets 0x10071160, is taken when s6(?) >= a1(?) (signed), and falls through when s6(?) < a1(?) (signed).
+  The `beq` branch at 0x10070d0c targets 0x10071160, is taken when s6(?) >= a1(=[a0+116]) (signed), and falls through when s6(?) < a1(=[a0+116]) (signed).
   The `beq` branch at 0x10070d20 targets 0x10070cf4, is taken when (a3(=[a0+120]) & a4(?)) == 0, and falls through when (a3(=[a0+120]) & a4(?)) != 0.
   The `beq` branch at 0x10070dd4 targets 0x10070e08, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0x10070e00 targets 0x10070e18 and is always taken.
@@ -11954,7 +11964,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10072120 calls (unnamed) [0x100721dc] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10072144 calls kt_code_chip [0x1004797c] with a0=0x3, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10072160 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10072188 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198fb0, a2=?, a3=?.
+  The `jal` at 0x10072188 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x10198fb0, a2=ret(0x100721dc), a3=?.
   The `jal` at 0x100721b4 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x100721cc calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x10072128 targets 0x100721a0, is taken when v0(=ret(0x100721dc)) == 0, and falls through when v0(=ret(0x100721dc)) != 0.
@@ -13212,7 +13222,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x100782e0 targets 0x10078954 and is always taken.
   The `beq` branch at 0x100782f8 targets 0x10078864, is taken when a3(=[sym(Interactive)]) == 0, and falls through when a3(=[sym(Interactive)]) != 0.
   The `beq` branch at 0x10078368 targets 0x1007884c, is taken when a2(=[sym(__us_rsthread_stdio)]) == 0, and falls through when a2(=[sym(__us_rsthread_stdio)]) != 0.
-  The `beq` branch at 0x100783ac targets 0x100782a0, is taken when a1(?) >= a2(?) (signed), and falls through when a1(?) < a2(?) (signed).
+  The `beq` branch at 0x100783ac targets 0x100782a0, is taken when a1(?) >= a2(=one of 0x1, 0x2) (signed), and falls through when a1(?) < a2(=one of 0x1, 0x2) (signed).
   The `beq` branch at 0x100783c4 targets 0x10078944 and is always taken.
   The `beq` branch at 0x1007845c targets 0x100784a0, is taken when a0(?) >= 0x10 (signed), and falls through when a0(?) < 0x10 (signed).
   The `bne` branch at 0x1007846c targets 0x100783cc, is taken when a7(?) != 0, and falls through when a7(?) == 0.
@@ -13508,7 +13518,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1007f574 calls kt_output_dbug [0x10046d74] with a0=0x6, a1=0x1019ba10, a2=?, a3=?.
   The `jal` at 0x1007f584 calls (unnamed) [0x1007f06c] with a0=0x1007eee4, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x1007f598 calls vcWrite [0x1014071c] with a0=(entry(0x10201028) << 0x8)+519, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1007f5ac calls vcWrite [0x1014071c] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x1007f5ac calls vcWrite [0x1014071c] with a0=(entry(0x10201028) << 0x8)+513, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1007f44c targets 0x1007f45c and is always taken.
   The `bgtz` branch at 0x1007f454 targets 0x1007f544, is taken when s1(?) > 0 (signed), and falls through when s1(?) <= 0 (signed).
   The `beq` branch at 0x1007f470 targets 0x1007f454, is taken when (v0(=ret(vcRead)) & 0x1) == 0, and falls through when (v0(=ret(vcRead)) & 0x1) != 0.
@@ -13554,13 +13564,13 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x1007f848 calls reset_dacs [0x10061f50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1007f8bc calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019bc20, a2=?, a3=?.
   The `jal` at 0x1007f8d4 calls (unnamed) [0x1007f5c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007f904 calls kt_output_info [0x10046374] with a0=0x1019bc40, a1=?, a2=[0x102cbc58], a3=ret(0x1007f5c0).
+  The `jal` at 0x1007f904 calls kt_output_info [0x10046374] with a0=0x1019bc40, a1=one of 0x1019bb30, 0x1019bb38, 0x1019bb50, a2=[0x102cbc58], a3=ret(0x1007f5c0).
   The `jal` at 0x1007f924 calls kt_code_chip [0x1004797c] with a0=[0x102cbc58]+69, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007f97c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019bc00, a2=?, a3=?.
-  The `jal` at 0x1007f9f0 calls kt_output_diag [0x100461b0] with a0=0x1019bcc0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1007f9f0 calls kt_output_diag [0x100461b0] with a0=0x1019bcc0, a1=one of 0x1019bb30, 0x1019bb38, 0x1019bb50, a2=one of 0x1019bb30, 0x1019bb38, 0x1019bb50, a3=?.
   The `jal` at 0x1007fa0c calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007fa34 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019bdb0, a2=?, a3=?.
-  The `jal` at 0x1007fa88 calls kt_output_info [0x10046374] with a0=0x1019bc60, a1=?, a2=[a0+4024], a3=?.
+  The `jal` at 0x1007fa88 calls kt_output_info [0x10046374] with a0=0x1019bc60, a1=one of 0x1019bb30, 0x1019bb38, 0x1019bb50, a2=[a0+4024], a3=one of 0x1019bb30, 0x1019bb38, 0x1019bb50.
   The `jal` at 0x1007fab4 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1007facc calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x1007faf8 calls kt_output_info [0x10046374] with a0=0x1019bb58, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=[a0+3976].
@@ -13632,13 +13642,13 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   3 such `lw` accesses load 4 bytes from abs 0x102bd728, including `lw` at 0x10080c00, `lw` at 0x10080ca0, `lw` at 0x10080d3c.
   The `jal` at 0x10080aa0 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019c010, a2=?, a3=?.
   The `jal` at 0x10080ab8 calls (unnamed) [0x10080804] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10080ae8 calls kt_output_info [0x10046374] with a0=0x1019c030, a1=?, a2=[0x102cc078], a3=ret(0x10080804).
+  The `jal` at 0x10080ae8 calls kt_output_info [0x10046374] with a0=0x1019c030, a1=one of 0x1019bfc8, 0x1019bfd0, 0x1019bfe8, a2=[0x102cc078], a3=ret(0x10080804).
   The `jal` at 0x10080b08 calls kt_code_chip [0x1004797c] with a0=[0x102cc078]+69, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10080b5c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019bff0, a2=?, a3=?.
-  The `jal` at 0x10080bcc calls kt_output_diag [0x100461b0] with a0=0x1019c0b8, a1=?, a2=?, a3=?.
+  The `jal` at 0x10080bcc calls kt_output_diag [0x100461b0] with a0=0x1019c0b8, a1=one of 0x1019bfc8, 0x1019bfd0, 0x1019bfe8, a2=one of 0x1019bfc8, 0x1019bfd0, 0x1019bfe8, a3=?.
   The `jal` at 0x10080be8 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x10080c10 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019c1a8, a2=?, a3=?.
-  The `jal` at 0x10080c60 calls kt_output_info [0x10046374] with a0=0x1019c058, a1=?, a2=[a0+4024], a3=?.
+  The `jal` at 0x10080c60 calls kt_output_info [0x10046374] with a0=0x1019c058, a1=one of 0x1019bfc8, 0x1019bfd0, 0x1019bfe8, a2=[a0+4024], a3=?.
   The `jal` at 0x10080c90 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10080ca8 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10080cd4 calls kt_output_info [0x10046374] with a0=0x1019bf08, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -13693,13 +13703,13 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `lw` at 0x10081944 loads 4 bytes from a0 (arg0 at entry) +0xfcc.
   The `jal` at 0x100816a4 calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019c460, a2=?, a3=?.
   The `jal` at 0x100816b4 calls (unnamed) [0x1008143c] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100816e4 calls kt_output_info [0x10046374] with a0=0x1019c480, a1=?, a2=[0x102cc094], a3=ret(0x1008143c).
+  The `jal` at 0x100816e4 calls kt_output_info [0x10046374] with a0=0x1019c480, a1=one of 0x1019c370, 0x1019c378, 0x1019c390, a2=[0x102cc094], a3=ret(0x1008143c).
   The `jal` at 0x10081704 calls kt_code_chip [0x1004797c] with a0=[0x102cc094]+69, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1008174c calls kt_output_dbug [0x10046d74] with a0=0x4, a1=0x1019c440, a2=?, a3=?.
-  The `jal` at 0x1008179c calls kt_output_diag [0x100461b0] with a0=0x1019c500, a1=?, a2=?, a3=?.
+  The `jal` at 0x1008179c calls kt_output_diag [0x100461b0] with a0=0x1019c500, a1=one of 0x1019c370, 0x1019c378, 0x1019c390, a2=one of 0x1019c370, 0x1019c378, 0x1019c390, a3=?.
   The `jal` at 0x100817b8 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100817e0 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019c5f0, a2=?, a3=?.
-  The `jal` at 0x10081834 calls kt_output_info [0x10046374] with a0=0x1019c4a0, a1=?, a2=[a0+4024], a3=?.
+  The `jal` at 0x10081834 calls kt_output_info [0x10046374] with a0=0x1019c4a0, a1=one of 0x1019c370, 0x1019c378, 0x1019c390, a2=[a0+4024], a3=one of 0x1019c370, 0x1019c378, 0x1019c390.
   The `jal` at 0x10081868 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x10081880 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x100818a8 calls kt_output_info [0x10046374] with a0=0x1019c398, a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3), a4=0x0, a7=[a0+3516].
@@ -13933,7 +13943,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x100827f0 calls __assert with a0=0x1019ca00, a1=0x1019ca18, a2=0x192, a3=?.
   The `jal` at 0x100827fc calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10082824 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10082840 calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+3964], a1=sp-416, a2=?, a3=0x100823e4.
+  The `jal` at 0x10082840 calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+3964], a1=sp-416, a2=one of 0x1019c798, 0x1019c7a8, a3=0x100823e4.
   The `jal` at 0x10082874 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x1019ca20, a2=?, a3=?.
   The `jal` at 0x100828a4 calls kt_output_diag [0x100461b0] with a0=0x1019ca38, a1=?, a2=?, a3=?.
   The `jal` at 0x100828d4 calls kt_code_result [0x10048068] with a0=0x3, a1=0x0, a2=0x4, a3=?.
@@ -13947,7 +13957,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100829f4 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10082a28 calls kt_output_rslt [0x10045978] with a0=0x2, a1=0x1019c9a8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10082a44 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10082a70 calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+3964], a1=sp-416, a2=?, a3=0x100823e4, a4=0x0.
+  The `jal` at 0x10082a70 calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+3964], a1=sp-416, a2=one of 0x1019c798, 0x1019c7a8, a3=0x100823e4, a4=0x0.
   The `jal` at 0x10082a88 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10082aa4 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10082ab8 calls jt_select_chain [0x10168570] with a0=[[a0+3964]+4], a1=?, a2=?, a3=?.
@@ -13978,7 +13988,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `beq` branch at 0x100828b8 targets 0x10082978, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `blez` branch at 0x100828dc targets 0x10082994, is taken when s0(?) <= 0 (signed), and falls through when s0(?) > 0 (signed).
   The `beq` branch at 0x10082940 targets 0x10082730 and is always taken.
-  The `bne` branch at 0x10082970 targets 0x100828c0, is taken when s0(?) != 0, and falls through when s0(?) == 0.
+  The `bne` branch at 0x10082970 targets 0x100828c0, is taken when s0(=ret(dg_clock_setup)+1) != 0, and falls through when s0(=ret(dg_clock_setup)+1) == 0.
   The `beq` branch at 0x100829a8 targets 0x10082910 and is always taken.
   The `beq` branch at 0x10082a04 targets 0x10082814 and is always taken.
   The `beq` branch at 0x10082a30 targets 0x10082910 and is always taken.
@@ -14029,7 +14039,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x10082d08 calls strcpy with a0=sp-368, a1=ret(kt_data_file), a2=?, a3=?.
   The `jal` at 0x10082d20 calls hash_lookup [0x10059ecc] with a0=0x1019c788, a1=?, a2=?, a3=?.
   The `jal` at 0x10082da0 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10082dcc calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+4096], a1=sp-368, a2=?, a3=0x10082afc, a4=0x0.
+  The `jal` at 0x10082dcc calls jt_read_internal_bist_info [0x100160ec] with a0=[a0+4096], a1=sp-368, a2=one of 0x1019c798, 0x1019c7a8, a3=0x10082afc, a4=0x0.
   The `jal` at 0x10082de4 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10082e18 calls kt_output_diag [0x100461b0] with a0=0x1019cbf8, a1=?, a2=?, a3=?.
   The `jal` at 0x10082e40 calls kt_code_result [0x10048068] with a0=0x4, a1=0x0, a2=0x4, a3=?.
@@ -14116,12 +14126,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x10083294 calls kt_output_trce [0x10046b88] with a0=0x1019cc30, a1=?, a2=?, a3=?.
   The `jal` at 0x100832ac calls hash_lookup [0x10059ecc] with a0=0x1019c7b0, a1=?, a2=?, a3=?.
   The `jal` at 0x100832c0 calls reset_libjtag_error_count [0x1004bfe4] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x100832ec calls jt_read_internal_bist_info [0x100160ec] with a0=?, a1=sp-432, a2=?, a3=0x10083090, a4=0x0.
+  The `jal` at 0x100832ec calls jt_read_internal_bist_info [0x100160ec] with a0=?, a1=sp-432, a2=one of 0x1019c798, 0x1019c7a8, a3=0x10083090, a4=0x0.
   The `jal` at 0x100832f8 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10083330 calls kt_output_diag [0x100461b0] with a0=0x1019cc58, a1=?, a2=?, a3=?.
   The `jal` at 0x10083358 calls kt_output_trce [0x10046b88] with a0=0x1019cc90, a1=?, a2=?, a3=?.
   The `jal` at 0x10083364 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1008339c calls jt_read_internal_bist_info [0x100160ec] with a0=?, a1=sp-432, a2=?, a3=0x10083090, a4=0x1019cca0.
+  The `jal` at 0x1008339c calls jt_read_internal_bist_info [0x100160ec] with a0=?, a1=sp-432, a2=one of 0x1019c798, 0x1019c7a8, a3=0x10083090, a4=0x1019cca0.
   The `jal` at 0x100833a8 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100833d4 calls kt_output_info [0x10046374] with a0=0x1019cca8, a1=?, a2=?, a3=?.
   The `jal` at 0x10083400 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x1, a3=?.
@@ -14352,7 +14362,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jal` at 0x100840e4 calls hash_lookup [0x10059ecc] with a0=0x1019c7b0, a1=?, a2=?, a3=?.
   The `jal` at 0x1008410c calls kt_output_trce [0x10046b88] with a0=0x1019d098, a1=?, a2=?, a3=?.
   The `jal` at 0x10084118 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10084144 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a5=0x0.
+  The `jal` at 0x10084144 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a4=ret(hash_value), a5=0x0.
   The `jal` at 0x10084158 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=([0x102cc0a0] + ret(jt_read_external_bist_info)).
   The `jal` at 0x10084174 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?, a4=([0x102cc0a0] + ret(get_libjtag_error_count)).
   The `jal` at 0x10084194 calls jt_execute_external_bists [0x10019e28] with a0=?, a1=0x1008194c, a2=?, a3=?.
@@ -14362,7 +14372,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x10084248 calls sprintf with a0=sp-176, a1=0x1019d108, a2=entry(0x102010a8), a3=?.
   The `jal` at 0x10084254 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10084278 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x1019d0e0, a2=?, a3=sp-176.
-  The `jal` at 0x100842a4 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a5=sp-176.
+  The `jal` at 0x100842a4 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a4=ret(hash_value), a5=sp-176.
   The `jal` at 0x100842b8 calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=([0x102cc0a0] + ret(jt_read_external_bist_info)).
   The `jal` at 0x10084300 calls kt_output_diag [0x100461b0] with a0=0x1019d118, a1=?, a2=?, a3=?.
   The `jal` at 0x10084324 calls kt_code_result [0x10048068] with a0=0x2, a1=?, a2=0x4, a3=?.
@@ -14372,7 +14382,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so`, `usr/gfx/arch/I
   The `jalr` at 0x100843ac calls sprintf with a0=sp-208, a1=0x1019d0d8, a2=?, a3=?.
   The `jal` at 0x100843b8 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100843dc calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x1019d0e0, a2=?, a3=sp-208.
-  The `jal` at 0x10084408 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a5=sp-208.
+  The `jal` at 0x10084408 calls jt_read_external_bist_info [0x100192bc] with a0=?, a1=sp-512, a2=0x1019cf50, a3=sym(rm6_external_memory_config), a4=ret(hash_value), a5=sp-208.
   The `jal` at 0x1008441c calls get_libjtag_error_count [0x1004c04c] with a0=?, a1=?, a2=?, a3=([0x102cc0a0] + ret(jt_read_external_bist_info)).
   The `jal` at 0x10084450 calls reset_libjtag_error_count [0x1004bfe4] with a0=?, a1=?, a2=?, a3=([0x102cc0a0] + ret(get_libjtag_error_count)).
   The `jal` at 0x10084470 calls jt_execute_external_bists [0x10019e28] with a0=?, a1=0x1008194c, a2=?, a3=?.

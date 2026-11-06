@@ -65,7 +65,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83a6e4 targets 0xd83a744 and is always taken.
   The `beql` branch at 0xd83a708 targets 0xd83a728, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83a70c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83a72c targets 0xd83a744, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83a730 runs only when taken and is annulled on fall-through.
-  The return at 0xd83a750 has v0 = one of 0x0, ?.
+  The return at 0xd83a750 has v0 = one of 0x0, ret(malloc).
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd83a758 (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
@@ -221,7 +221,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83ae28 targets 0xd83ae88 and is always taken.
   The `beql` branch at 0xd83ae4c targets 0xd83ae6c, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83ae50 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83ae70 targets 0xd83ae88, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83ae74 runs only when taken and is annulled on fall-through.
-  The return at 0xd83ae94 has v0 = one of 0x0, ?.
+  The return at 0xd83ae94 has v0 = one of 0x0, ret(malloc).
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd83ae9c (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
@@ -233,7 +233,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `lw` at 0xd83aed0 loads 4 bytes from [[0x1014]+276] +0xc8.
   The `lw` at 0xd83aee0 loads 4 bytes from [[[0x1014]+276]+200] +0x98.
   The `lw` at 0xd83aee8 loads 4 bytes from [[0x1014]+276] +0x38.
-  The `sw` at 0xd83af3c stores 4 bytes to ?.
+  The `sw` at 0xd83af3c stores 4 bytes to [[0x1014]+276] +0x38.
   The `jalr` at 0xd83af1c calls (unknown callee) with a0=[[[0x1014]+276]+200], a1=a1 at entry (arg1), a2=-0x1, a3=a3 at entry (arg3).
   The `beq` branch at 0xd83aec0 targets 0xd83aed4, is taken when v1(=[[0x1014]+276]) == 0, and falls through when v1(=[[0x1014]+276]) != 0.
   The `bnel` branch at 0xd83aecc targets 0xd83aee0, is taken when t7(=[[[0x1014]+276]+196]) != 0, and falls through when t7(=[[[0x1014]+276]+196]) == 0; its branch-likely delay slot `lw a0,200(v1)` at 0xd83aed0 runs only when taken and is annulled on fall-through.
@@ -375,7 +375,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd83cd70, `lw` at 0xd83cdf8, `lw` at 0xd83ce40.
   The `jalr` at 0xd83cc84 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd83cca0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
-  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11.
+  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11, a7=ret(__glXSetupForCommand).
   The `jalr` at 0xd83cd50 calls _XEatData with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd83cd68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd83cd7c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -406,7 +406,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83ce84 targets 0xd83ce98, is taken when a2(=[a0+1232]) == 0, and falls through when a2(=[a0+1232]) != 0.
   The `beq` branch at 0xd83ce9c targets 0xd83ceac, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The return at 0xd83cd9c has v0 = 0x0.
-  The return at 0xd83ce68 has v0 = ?.
+  The return at 0xd83ce68 has v0 = ret(malloc).
   The return at 0xd83cec4 has v0 = 0x0.
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP27KONA32/libGL.so` at 0xd83cecc (n32).
   Evidence grade: inferred.
@@ -566,7 +566,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83d560 targets 0xd83d50c and is always taken.
   The return at 0xd83d438 has v0 = 0x0.
   The return at 0xd83d4bc has v0 = 0x0.
-  The return at 0xd83d518 has v0 = one of ?, 0x0.
+  The return at 0xd83d518 has v0 = one of ret(malloc), 0x0.
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP27KONA32/libGL.so` at 0xd83d568 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP27KONA32/libGL.so`.
@@ -737,7 +737,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0x2671aa8 targets 0x2671abc, is taken when a2(=[a0+2408]:8) == 0, and falls through when a2(=[a0+2408]:8) != 0.
   The `beq` branch at 0x2671ac0 targets 0x2671ad0, is taken when t9(=[a0+208]:8) == 0, and falls through when t9(=[a0+208]:8) != 0.
   The return at 0x26719bc has v0 = 0x0.
-  The return at 0x2671a8c has v0 = ?.
+  The return at 0x2671a8c has v0 = ret(malloc).
   The return at 0x2671ae8 has v0 = 0x0.
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP27KONA64/libGL.so` at 0x2671af0 (n64).
   Evidence grade: inferred.
@@ -897,7 +897,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0x2672188 targets 0x2672130 and is always taken.
   The return at 0x267205c has v0 = 0x0.
   The return at 0x26720e0 has v0 = 0x0.
-  The return at 0x267213c has v0 = one of ?, 0x0.
+  The return at 0x267213c has v0 = one of ret(malloc), 0x0.
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP27KONA64/libGL.so` at 0x2672190 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP27KONA64/libGL.so`.
@@ -1068,7 +1068,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83a6e4 targets 0xd83a744 and is always taken.
   The `beql` branch at 0xd83a708 targets 0xd83a728, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83a70c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83a72c targets 0xd83a744, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83a730 runs only when taken and is annulled on fall-through.
-  The return at 0xd83a750 has v0 = one of 0x0, ?.
+  The return at 0xd83a750 has v0 = one of 0x0, ret(malloc).
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP35KONA/libGL.so` at 0xd83a758 (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP35KONA/libGL.so`.
@@ -1224,7 +1224,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83ae28 targets 0xd83ae88 and is always taken.
   The `beql` branch at 0xd83ae4c targets 0xd83ae6c, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd83ae50 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd83ae70 targets 0xd83ae88, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,92(sp)` at 0xd83ae74 runs only when taken and is annulled on fall-through.
-  The return at 0xd83ae94 has v0 = one of 0x0, ?.
+  The return at 0xd83ae94 has v0 = one of 0x0, ret(malloc).
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP35KONA/libGL.so` at 0xd83ae9c (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP35KONA/libGL.so`.
@@ -1236,7 +1236,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `lw` at 0xd83aed0 loads 4 bytes from [[0x1014]+276] +0xc8.
   The `lw` at 0xd83aee0 loads 4 bytes from [[[0x1014]+276]+200] +0x98.
   The `lw` at 0xd83aee8 loads 4 bytes from [[0x1014]+276] +0x38.
-  The `sw` at 0xd83af3c stores 4 bytes to ?.
+  The `sw` at 0xd83af3c stores 4 bytes to [[0x1014]+276] +0x38.
   The `jalr` at 0xd83af1c calls (unknown callee) with a0=[[[0x1014]+276]+200], a1=a1 at entry (arg1), a2=-0x1, a3=a3 at entry (arg3).
   The `beq` branch at 0xd83aec0 targets 0xd83aed4, is taken when v1(=[[0x1014]+276]) == 0, and falls through when v1(=[[0x1014]+276]) != 0.
   The `bnel` branch at 0xd83aecc targets 0xd83aee0, is taken when t7(=[[[0x1014]+276]+196]) != 0, and falls through when t7(=[[[0x1014]+276]+196]) == 0; its branch-likely delay slot `lw a0,200(v1)` at 0xd83aed0 runs only when taken and is annulled on fall-through.
@@ -1378,7 +1378,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd83cd70, `lw` at 0xd83cdf8, `lw` at 0xd83ce40.
   The `jalr` at 0xd83cc84 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd83cca0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
-  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11.
+  The `jalr` at 0xd83cd20 calls _XReply with a0=a0 at entry (arg0), a1=sp-96, a2=0x0, a3=0x0, a4=[a0+132], a5=0x1000e, a6=0x11, a7=ret(__glXSetupForCommand).
   The `jalr` at 0xd83cd50 calls _XEatData with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd83cd68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=[a0+1232], a3=?.
   The `jalr` at 0xd83cd7c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -1409,7 +1409,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83ce84 targets 0xd83ce98, is taken when a2(=[a0+1232]) == 0, and falls through when a2(=[a0+1232]) != 0.
   The `beq` branch at 0xd83ce9c targets 0xd83ceac, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The return at 0xd83cd9c has v0 = 0x0.
-  The return at 0xd83ce68 has v0 = ?.
+  The return at 0xd83ce68 has v0 = ret(malloc).
   The return at 0xd83cec4 has v0 = 0x0.
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP35KONA32/libGL.so` at 0xd83cecc (n32).
   Evidence grade: inferred.
@@ -1569,7 +1569,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xd83d560 targets 0xd83d50c and is always taken.
   The return at 0xd83d438 has v0 = 0x0.
   The return at 0xd83d4bc has v0 = 0x0.
-  The return at 0xd83d518 has v0 = one of ?, 0x0.
+  The return at 0xd83d518 has v0 = one of ret(malloc), 0x0.
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP35KONA32/libGL.so` at 0xd83d568 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP35KONA32/libGL.so`.
@@ -1740,7 +1740,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0x2171aa8 targets 0x2171abc, is taken when a2(=[a0+2408]:8) == 0, and falls through when a2(=[a0+2408]:8) != 0.
   The `beq` branch at 0x2171ac0 targets 0x2171ad0, is taken when t9(=[a0+208]:8) == 0, and falls through when t9(=[a0+208]:8) != 0.
   The return at 0x21719bc has v0 = 0x0.
-  The return at 0x2171a8c has v0 = ?.
+  The return at 0x2171a8c has v0 = ret(malloc).
   The return at 0x2171ae8 has v0 = 0x0.
 - `glXHyperpipeConfigSGIX` in `usr/gfx/arch/IP35KONA64/libGL.so` at 0x2171af0 (n64).
   Evidence grade: inferred.
@@ -1900,7 +1900,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0x2172188 targets 0x2172130 and is always taken.
   The return at 0x217205c has v0 = 0x0.
   The return at 0x21720e0 has v0 = 0x0.
-  The return at 0x217213c has v0 = one of ?, 0x0.
+  The return at 0x217213c has v0 = one of ret(malloc), 0x0.
 - `glXBindHyperpipeSGIX` in `usr/gfx/arch/IP35KONA64/libGL.so` at 0x2172190 (n64).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IP35KONA64/libGL.so`.
@@ -2229,7 +2229,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `jalr` at 0xecc9728 calls _GLinitXWindowAttributes [0xecc9560] with a0=sp-60, a1=?, a2=?, a3=?.
   The `jalr` at 0xecc9760 calls __GLgetgdesc with a0=0xc, a1=?, a2=?, a3=?.
   The `jalr` at 0xecc9778 calls __GLgetgdesc with a0=0x10, a1=?, a2=?, a3=?.
-  The `jalr` at 0xecc9798 calls __iglooChooseVisual [0xecc86d0] with a0=?, a1=0xecdf9c0, a2=?, a3=?.
+  The `jalr` at 0xecc9798 calls __iglooChooseVisual [0xecc86d0] with a0=[a0+12]+28, a1=0xecdf9c0, a2=?, a3=?.
   The `jalr` at 0xecc97e8 calls _GLstrdup [0xecc8f04] with a0=0xecd8e1c, a1=?, a2=?, a3=?.
   The `jalr` at 0xecc98c0 calls XCreateWindow with a0=[ret(gl_malloc)+4], a1=[a0+8], a2=0x1f4, a3=0x1f4.
   The `jalr` at 0xecc990c calls XCreateWindow with a0=[ret(gl_malloc)+4], a1=[a0+8], a2=0x1f4, a3=0x1f4.
@@ -2276,10 +2276,10 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `lw` at 0xecc9b6c loads 4 bytes from a0 (arg0 at entry) +0x68.
   The `jalr` at 0xecc9a44 calls _GLdeletemakebgprop [0xecca1a0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xecc9af4 calls _GLdestroyOvWindows [0xec94680] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xecc9b0c calls __iglooDestroyContextInfo [0xec73718] with a0=?, a1=[a0+24], a2=?, a3=?.
-  The `jalr` at 0xecc9b34 calls XDestroyWindow with a0=?, a1=[a0+8], a2=?, a3=?.
-  The `jalr` at 0xecc9b4c calls XDestroyWindow with a0=?, a1=[a0+64], a2=?, a3=?.
-  The `jalr` at 0xecc9b64 calls XSync with a0=?, a1=0x0, a2=?, a3=?.
+  The `jalr` at 0xecc9b0c calls __iglooDestroyContextInfo [0xec73718] with a0=[a0+4], a1=[a0+24], a2=?, a3=?.
+  The `jalr` at 0xecc9b34 calls XDestroyWindow with a0=[a0+4], a1=[a0+8], a2=?, a3=?.
+  The `jalr` at 0xecc9b4c calls XDestroyWindow with a0=[a0+4], a1=[a0+64], a2=?, a3=?.
+  The `jalr` at 0xecc9b64 calls XSync with a0=[a0+4], a1=0x0, a2=?, a3=?.
   The `jalr` at 0xecc9b84 calls gl_free [0xec5fd74] with a0=[a0+104], a1=0xecd8e24, a2=?, a3=?.
   The `jalr` at 0xecc9b9c calls gl_free [0xec5fd74] with a0=a0 at entry (arg0), a1=0xecd8e34, a2=?, a3=?.
   The `bnel` branch at 0xecc9a10 targets 0xecc9a2c, is taken when t6(=[a0+44]:1) != at(=0x1), and falls through when t6(=[a0+44]:1) == at(=0x1); its branch-likely delay slot `lw t8,32(s0)` at 0xecc9a14 runs only when taken and is annulled on fall-through.
@@ -2361,14 +2361,18 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
   Range: 0xecca830-0xecca8d0 (160 bytes).
   It occupies 160 bytes.
-  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0xecca894, `sw` at 0xecca898, `sw` at 0xecca89c.
+  The `sw` at 0xecca894 stores 4 bytes to ret(gl_malloc) +0x40.
+  The `sw` at 0xecca898 stores 4 bytes to ret(gl_malloc) +0x8.
+  The `sw` at 0xecca89c stores 4 bytes to ret(gl_malloc) +0xc.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x0, including `lw` at 0xecca8a0, `lw` at 0xecca8ac, `lw` at 0xecca8b8.
   The `lw` at 0xecca8a4 loads 4 bytes from [a1] +0x14.
+  The `sw` at 0xecca8a8 stores 4 bytes to ret(gl_malloc) +0x0.
   The `lw` at 0xecca8b0 loads 4 bytes from [a1] +0x4.
+  The `sw` at 0xecca8b4 stores 4 bytes to ret(gl_malloc) +0x4.
   The `sw` at 0xecca8bc stores 4 bytes to [a1] +0x14.
   The `jalr` at 0xecca860 calls gl_malloc [0xec5fcf4] with a0=0xbc, a1=0xecd8f14, a2=a1 at entry (arg1), a3=a3 at entry (arg3).
   The `jalr` at 0xecca87c calls bzero with a0=ret(gl_malloc), a1=0xbc, a2=?, a3=?.
-  The return at 0xecca8c8 has v0 = ?.
+  The return at 0xecca8c8 has v0 = ret(gl_malloc).
 - `_GLfreezeWindows` in `usr/gfx/arch/IGLOO/libgl.so` at 0xeccc020 (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
@@ -2431,16 +2435,16 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `lw` at 0xeccfc58 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `jalr` at 0xeccfa10 calls extract [0xeccf998] with a0=a2 at entry (arg2), a1=a1 at entry (arg1), a2=a3 at entry (arg3), a3=0x9.
   The `jalr` at 0xeccfa44 calls gl_glx_findwindow [0xeccede8] with a0=[a0+4], a1=ret(extract), a2=?, a3=?.
-  The `jalr` at 0xeccfa70 calls XGetWindowAttributes with a0=?, a1=?, a2=sp-128, a3=?.
+  The `jalr` at 0xeccfa70 calls XGetWindowAttributes with a0=[a0+4], a1=ret(extract), a2=sp-128, a3=?.
   The `jalr` at 0xeccfa84 calls XScreenNumberOfScreen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xeccfabc calls extract [0xeccf998] with a0=a2 at entry (arg2), a1=a1 at entry (arg1), a2=a3 at entry (arg3), a3=0x4.
   The `jalr` at 0xeccfaf0 calls extract [0xeccf998] with a0=a2 at entry (arg2), a1=a1 at entry (arg1), a2=a3 at entry (arg3), a3=0x7.
-  The `jalr` at 0xeccfbb4 calls __iglooCreateContextInfo [0xec73540] with a0=?, a1=a0 at entry (arg0), a2=?, a3=0x1.
-  The `jalr` at 0xeccfc24 calls __iglooCreateContextInfo [0xec73540] with a0=?, a1=a0 at entry (arg0), a2=[[[a0+12]+24]], a3=0x1.
-  The `jalr` at 0xeccfc4c calls XUnmapWindow with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xeccfc6c calls XReparentWindow with a0=?, a1=?, a2=[a0+8], a3=0x0.
-  The `jalr` at 0xeccfc8c calls XResizeWindow with a0=?, a1=?, a2=0x7d0, a3=0x7d0.
-  The `jalr` at 0xeccfca4 calls XMapWindow with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xeccfbb4 calls __iglooCreateContextInfo [0xec73540] with a0=[a0+4], a1=a0 at entry (arg0), a2=?, a3=0x1.
+  The `jalr` at 0xeccfc24 calls __iglooCreateContextInfo [0xec73540] with a0=[a0+4], a1=a0 at entry (arg0), a2=[[[a0+12]+24]], a3=0x1.
+  The `jalr` at 0xeccfc4c calls XUnmapWindow with a0=[a0+4], a1=ret(extract), a2=?, a3=?.
+  The `jalr` at 0xeccfc6c calls XReparentWindow with a0=[a0+4], a1=ret(extract), a2=[a0+8], a3=0x0.
+  The `jalr` at 0xeccfc8c calls XResizeWindow with a0=[a0+4], a1=ret(extract), a2=0x7d0, a3=0x7d0.
+  The `jalr` at 0xeccfca4 calls XMapWindow with a0=[a0+4], a1=ret(extract), a2=?, a3=?.
   The `bne` branch at 0xeccfa28 targets 0xeccfa38, is taken when v0(=ret(extract)) != 0, and falls through when v0(=ret(extract)) == 0.
   The `beq` branch at 0xeccfa30 targets 0xeccfcb4 and is always taken.
   The `beq` branch at 0xeccfa4c targets 0xeccfa64, is taken when v0(=ret(gl_glx_findwindow)) == 0, and falls through when v0(=ret(gl_glx_findwindow)) != 0.
@@ -2454,7 +2458,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xeccfb04 targets 0xeccfcb4 and is always taken.
   The `bnel` branch at 0xeccfb14 targets 0xeccfbd0, is taken when t9(=a3) != at(=0x2000), and falls through when t9(=a3) == at(=0x2000); its branch-likely delay slot `lw t9,204(sp)` at 0xeccfb18 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xeccfb34 targets 0xeccfb88, is taken when v1(=[[a0+12]+60]) <= 0 (signed), and falls through when v1(=[[a0+12]+60]) > 0 (signed).
-  The `bne` branch at 0xeccfb60 targets 0xeccfb78, is taken when t1(?) != t4(?), and falls through when t1(?) == t4(?).
+  The `bne` branch at 0xeccfb60 targets 0xeccfb78, is taken when t1(=ret(extract)) != t4(?), and falls through when t1(=ret(extract)) == t4(?).
   The `bne` branch at 0xeccfb6c targets 0xeccfb78, is taken when v0(=ret(extract)) != t5(?), and falls through when v0(=ret(extract)) == t5(?).
   The `beq` branch at 0xeccfb78 targets 0xeccfb88, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `beql` branch at 0xeccfb80 targets 0xeccfb50, is taken when t0(?) == 0, and falls through when t0(?) != 0; its branch-likely delay slot `lw a0,0(a2)` at 0xeccfb84 runs only when taken and is annulled on fall-through.
@@ -2462,8 +2466,8 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xeccfbc4 targets 0xeccfc34 and is always taken.
   The `bnel` branch at 0xeccfbd4 targets 0xeccfc38, is taken when t9(=a3) != at(=0x3000), and falls through when t9(=a3) == at(=0x3000); its branch-likely delay slot `lw t8,180(sp)` at 0xeccfbd8 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xeccfbf0 targets 0xeccfc38, is taken when v0(=ret(extract)) != t4(=[[[[a0+12]+24]]+4]), and falls through when v0(=ret(extract)) == t4(=[[[[a0+12]+24]]+4]); its branch-likely delay slot `lw t8,180(sp)` at 0xeccfbf4 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xeccfc38 targets 0xeccfcb4, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw v0,180(sp)` at 0xeccfc3c runs only when taken and is annulled on fall-through.
-  The return at 0xeccfcc0 has v0 = one of 0x0, 0x1, ?.
+  The `bnel` branch at 0xeccfc38 targets 0xeccfcb4, is taken when t8(=one of 0x0, 0x1) != 0, and falls through when t8(=one of 0x0, 0x1) == 0; its branch-likely delay slot `lw v0,180(sp)` at 0xeccfc3c runs only when taken and is annulled on fall-through.
+  The return at 0xeccfcc0 has v0 = one of 0x0, 0x1.
   The instructions from 0xeccfbcc to 0xeccfbcc are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xeccfcc8 to 0xecd03ac are not reached by any path from the entry, and their branches are not listed.
 - `gl_dgl_foreground` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec4fbc0 (n32).
@@ -2569,16 +2573,17 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   2 such `lw` accesses load 4 bytes from [[0xece8bec]+28] +0x4, including `lw` at 0xec9783c, `lw` at 0xec97860.
   The `lw` at 0xec97898 loads 4 bytes from abs 0xece8090.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x8, including `lw` at 0xec978b4, `lw` at 0xec978f8, `lw` at 0xec9793c.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec978dc, `lw` at 0xec97920.
+  The `lw` at 0xec978dc loads 4 bytes from abs 0xece8094.
+  The `lw` at 0xec97920 loads 4 bytes from abs 0xece8098.
   The `jalr` at 0xec97838 calls XSync with a0=[[[0xece8bec]+28]+4], a1=0x0, a2=?, a3=?.
   The `jalr` at 0xec97848 calls _GLsetwmcolormaps [0xecc7f70] with a0=a1 at entry (arg1), a1=0x0, a2=?, a3=?.
   The `jalr` at 0xec9785c calls XFlush with a0=[[[0xece8bec]+28]+4], a1=?, a2=?, a3=?.
-  The `bgezall` at 0xec97894 calls (unnamed) [0xec96e50] with a0=a1 at entry (arg1), a1=[0xece8090], a2=sp-80, a3=0xece8090, a4=0xecf0000, a7=[a0+136].
-  The `bgezall` at 0xec978b0 calls (unnamed) [0xec96f70] with a0=a1 at entry (arg1), a1=ret(0xec96e50), a2=[a1+8], a3=?.
-  The `bgezall` at 0xec978d8 calls (unnamed) [0xec96e50] with a0=a1 at entry (arg1), a1=?, a2=sp-80, a3=?.
-  The `bgezall` at 0xec978f4 calls (unnamed) [0xec96f70] with a0=a1 at entry (arg1), a1=ret(0xec96e50), a2=[a1+8], a3=?.
-  The `bgezall` at 0xec9791c calls (unnamed) [0xec96e50] with a0=a1 at entry (arg1), a1=?, a2=sp-80, a3=?.
-  The `bgezall` at 0xec97938 calls (unnamed) [0xec96f70] with a0=a1 at entry (arg1), a1=ret(0xec96e50), a2=[a1+8], a3=?.
+  The `bgezall` at 0xec97894 calls _GLfindVis [0xec96e50] with a0=a1 at entry (arg1), a1=[0xece8090], a2=sp-80, a3=0xece8090, a4=0xecf0000, a7=[a0+136].
+  The `bgezall` at 0xec978b0 calls _GLcreateOvWin [0xec96f70] with a0=a1 at entry (arg1), a1=ret(_GLfindVis), a2=[a1+8], a3=?.
+  The `bgezall` at 0xec978d8 calls _GLfindVis [0xec96e50] with a0=a1 at entry (arg1), a1=[0xece8094], a2=sp-80, a3=?.
+  The `bgezall` at 0xec978f4 calls _GLcreateOvWin [0xec96f70] with a0=a1 at entry (arg1), a1=ret(_GLfindVis), a2=[a1+8], a3=?.
+  The `bgezall` at 0xec9791c calls _GLfindVis [0xec96e50] with a0=a1 at entry (arg1), a1=[0xece8098], a2=sp-80, a3=?.
+  The `bgezall` at 0xec97938 calls _GLcreateOvWin [0xec96f70] with a0=a1 at entry (arg1), a1=ret(_GLfindVis), a2=[a1+8], a3=?.
   The `beq` branch at 0xec9777c targets 0xec977a8, is taken when at(=[0xecdf080]) == 0, and falls through when at(=[0xecdf080]) != 0.
   The `beq` branch at 0xec977c4 targets 0xec977d8, is taken when a7(=[a0+136]) == 0, and falls through when a7(=[a0+136]) != 0.
   The `beq` branch at 0xec977d0 targets 0xec97884, is taken when t0(=[a1+136]) == 0, and falls through when t0(=[a1+136]) != 0.
@@ -2631,11 +2636,11 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `sw` at 0xec97b10 stores 4 bytes to a0 (arg0 at entry) +0xa8.
   The `sw` at 0xec97b30 stores 4 bytes to a0 (arg0 at entry) +0x90.
   The `jalr` at 0xec97a78 calls __iglooDestroyContextInfo [0xec777c0] with a0=[a0+4], a1=[a0+160], a2=[a0+4], a3=a3 at entry (arg3).
-  The `jalr` at 0xec97a98 calls XDestroyWindow with a0=?, a1=[a0+136], a2=?, a3=?.
+  The `jalr` at 0xec97a98 calls XDestroyWindow with a0=[a0+4], a1=[a0+136], a2=?, a3=?.
   The `jalr` at 0xec97ac0 calls __iglooDestroyContextInfo [0xec777c0] with a0=[a0+4], a1=[a0+164], a2=?, a3=?.
-  The `jalr` at 0xec97ae0 calls XDestroyWindow with a0=?, a1=[a0+140], a2=0x5, a3=[a0+44]:1.
+  The `jalr` at 0xec97ae0 calls XDestroyWindow with a0=[a0+4], a1=[a0+140], a2=0x5, a3=[a0+44]:1.
   The `jalr` at 0xec97b08 calls __iglooDestroyContextInfo [0xec777c0] with a0=[a0+4], a1=[a0+168], a2=?, a3=?, a4=[a0+144].
-  The `jalr` at 0xec97b28 calls XDestroyWindow with a0=?, a1=[a0+144], a2=?, a3=?, a5=0x5, a6=[a0+44]:1.
+  The `jalr` at 0xec97b28 calls XDestroyWindow with a0=[a0+4], a1=[a0+144], a2=?, a3=?, a5=0x5, a6=[a0+44]:1.
   The `beq` branch at 0xec97a68 targets 0xec97aa4, is taken when v0(=[a0+136]) == 0, and falls through when v0(=[a0+136]) != 0.
   The `beq` branch at 0xec97a8c targets 0xec97aa0, is taken when v1(=0x5) == a0(=[a0+44]:1), and falls through when v1(=0x5) != a0(=[a0+44]:1).
   The `beq` branch at 0xec97aa8 targets 0xec97b34, is taken when s0(=a0+4) == s2(=a0+12), and falls through when s0(=a0+4) != s2(=a0+12).
@@ -2820,7 +2825,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   2 such `lw` accesses load 4 bytes from [a0+12] +0x78, including `lw` at 0xecc8ca8, `lw` at 0xecc8ccc.
   2 such `lw` accesses load 4 bytes from [a0+12] +0x74, including `lw` at 0xecc8cb4, `lw` at 0xecc8cd8.
   The `lw` at 0xecc8cb8 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xecc8d34, `lw` at 0xecc8da8.
+  2 such `lw` accesses load 4 bytes from [a0+120] +0x20, including `lw` at 0xecc8d34, `lw` at 0xecc8da8.
   The `sw` at 0xecc8d90 stores 4 bytes to abs 0xece8998 (GLlasterror).
   The `jalr` at 0xecc8c8c calls XChangeWindowAttributes with a0=[a0+4], a1=[a0+64], a2=0x200, a3=sp-96.
   The `jalr` at 0xecc8cb0 calls XMoveResizeWindow with a0=[a0+4], a1=[a0+64], a2=0x0, a3=0x0, a4=[[a0+12]+116], a5=[[a0+12]+120].
@@ -2834,13 +2839,13 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `beq` branch at 0xecc8c6c targets 0xecc8ce4, is taken when (a0(=[a0+32]) & 0x18) == 0, and falls through when (a0(=[a0+32]) & 0x18) != 0.
   The `beq` branch at 0xecc8ce4 targets 0xecc8d00, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0xecc8d24 targets 0xecc8d74, is taken when (a6(=[a0+32]) & 0x2) != 0, and falls through when (a6(=[a0+32]) & 0x2) == 0.
-  The `beq` branch at 0xecc8d2c targets 0xecc8d58, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `bne` branch at 0xecc8d3c targets 0xecc8d78, is taken when (t0(?) & 0x2) != 0, and falls through when (t0(?) & 0x2) == 0.
+  The `beq` branch at 0xecc8d2c targets 0xecc8d58, is taken when a7(=[a0+120]) == 0, and falls through when a7(=[a0+120]) != 0.
+  The `bne` branch at 0xecc8d3c targets 0xecc8d78, is taken when (t0(=[[a0+120]+32]) & 0x2) != 0, and falls through when (t0(=[[a0+120]+32]) & 0x2) == 0.
   The `beq` branch at 0xecc8d44 targets 0xecc8d58 and is always taken.
-  The `bne` branch at 0xecc8d4c targets 0xecc8da8, is taken when t1(?) != 0, and falls through when t1(?) == 0.
+  The `bne` branch at 0xecc8d4c targets 0xecc8da8, is taken when t1(=[a0+120]) != 0, and falls through when t1(=[a0+120]) == 0.
   The `beq` branch at 0xecc8d6c targets 0xecc8d4c, is taken when (t2(=[a0+32]) & 0x2) == 0, and falls through when (t2(=[a0+32]) & 0x2) != 0.
   The `beq` branch at 0xecc8da0 targets 0xecc8c68 and is always taken.
-  The `beq` branch at 0xecc8db0 targets 0xecc8d58, is taken when (t8(?) & 0x2) == 0, and falls through when (t8(?) & 0x2) != 0.
+  The `beq` branch at 0xecc8db0 targets 0xecc8d58, is taken when (t8(=[[a0+120]+32]) & 0x2) == 0, and falls through when (t8(=[[a0+120]+32]) & 0x2) != 0.
   The `beq` branch at 0xecc8db8 targets 0xecc8d78 and is always taken.
   The return at 0xecc8d8c has v0 = 0x0.
 - `_GLmakeglwindow` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xecc9030 (n32).
@@ -2848,14 +2853,18 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   Exact binary: `usr/gfx/arch/IGLOO32/libgl.so`.
   Range: 0xecc9030-0xecc90c4 (148 bytes).
   It occupies 148 bytes.
-  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0xecc9084, `sw` at 0xecc9088, `sw` at 0xecc908c.
+  The `sw` at 0xecc9084 stores 4 bytes to ret(gl_malloc) +0xc.
+  The `sw` at 0xecc9088 stores 4 bytes to ret(gl_malloc) +0x40.
+  The `sw` at 0xecc908c stores 4 bytes to ret(gl_malloc) +0x8.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x0, including `lw` at 0xecc9090, `lw` at 0xecc90a0, `lw` at 0xecc90b0.
   The `lw` at 0xecc9098 loads 4 bytes from [a1] +0x14.
+  The `sw` at 0xecc909c stores 4 bytes to ret(gl_malloc) +0x0.
   The `lw` at 0xecc90a8 loads 4 bytes from [a1] +0x4.
+  The `sw` at 0xecc90ac stores 4 bytes to ret(gl_malloc) +0x4.
   The `sw` at 0xecc90c0 stores 4 bytes to [a1] +0x14.
   The `jalr` at 0xecc9060 calls gl_malloc [0xec5f4e0] with a0=0xbc, a1=0xecd2ac8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xecc9074 calls bzero with a0=ret(gl_malloc), a1=0xbc, a2=?, a3=?.
-  The return at 0xecc90bc has v0 = ?.
+  The return at 0xecc90bc has v0 = ret(gl_malloc).
 - `_GLfreezeWindows` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xecca7b0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IGLOO32/libgl.so`.
@@ -3056,7 +3065,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `lw` at 0xee4a2dc loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `jalr` at 0xee4a2c0 calls t1_BoxPath with a0=[sym(t1_Identity)], a1=?, a2=?, a3=[a0+20]:2, a4=[a0+22]:2, a5=0x22e24.
   The `jalr` at 0xee4a2f0 calls t1_PathSegment with a0=0x15, a1=([a0+4] + ([a0+20]:2 << 0x10)), a2=([a0+8] + ([a0+22]:2 << 0x10)), a3=([a0+22]:2 << 0x10), a4=([a0+20]:2 << 0x10).
-  The `jalr` at 0xee4a304 calls t1_Join with a0=ret(t1_PathSegment), a1=?, a2=?, a3=?.
+  The `jalr` at 0xee4a304 calls t1_Join with a0=ret(t1_PathSegment), a1=ret(t1_BoxPath), a2=?, a3=?.
   The return at 0xee4a314 has v0 = ret(t1_Join).
 - `RegisterDmconfMainFrameClassInterface__20DmconfMainFrameClassSGv` in `usr/gfx/dmconf` at 0x10009aa0 (n32).
   Evidence grade: inferred.
@@ -3095,7 +3104,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `jalr` at 0x1000bdc4 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultDmconfWindowClassResources__17DmconfWindowClass), a3=?.
   The `jalr` at 0x1000bdd8 calls __nw__GUi with a0=0xc0, a1=?, a2=?, a3=?.
   The `jalr` at 0x1000be1c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1000be38 calls __ct__20DmconfMainFrameClassGPCcP10_WidgetRec [0x10008a80] with a0=?, a1=0x10020c30, a2=ret(?), a3=?.
+  The `jal` at 0x1000be38 calls __ct__20DmconfMainFrameClassGPCcP10_WidgetRec [0x10008a80] with a0=ret(__nw__GUi), a1=0x10020c30, a2=ret(?), a3=?.
   The `jalr` at 0x1000be70 calls baseWidget__11VkComponentCGv with a0=[a0+68], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1000bea0 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x307, a3=sym(XtStrings)+234, a4=0x21e, a5=0x0.
   The `jalr` at 0x1000beb8 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+68], a2=?, a3=?.
@@ -3718,7 +3727,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `jalr` at 0x1001600c calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultStcombineWindowClassResources__20StcombineWindowClass), a3=?.
   The `jalr` at 0x1001601c calls __nw__GUi with a0=0x1f58, a1=?, a2=?, a3=?.
   The `jalr` at 0x10016048 calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=0x0, a3=?.
-  The `jal` at 0x10016060 calls __ct__23StcombineMainFrameClassGPCcP10_WidgetRec [0x10010ed0] with a0=?, a1=0x1002d078, a2=ret(?), a3=?.
+  The `jal` at 0x10016060 calls __ct__23StcombineMainFrameClassGPCcP10_WidgetRec [0x10010ed0] with a0=ret(__nw__GUi), a1=0x1002d078, a2=ret(?), a3=?.
   The `jalr` at 0x10016088 calls baseWidget__11VkComponentCGv with a0=[a0+68], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x100160ac calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x312, a3=sym(XtStrings)+234, a4=0x2a0, a5=0x0.
   The `jalr` at 0x100160bc calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+68], a2=?, a3=?.
@@ -4189,7 +4198,7 @@ Skipped routines: 24,771 are located, understood, or marked as having no softwar
   The `jalr` at 0x100179ac calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultTargetPropertiesWindowClassResources__27TargetPropertiesWindowClass), a3=?.
   The `jalr` at 0x100179bc calls __nw__GUi with a0=0x44, a1=?, a2=?, a3=?.
   The `jalr` at 0x100179e8 calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=0x0, a3=?.
-  The `jal` at 0x10017a00 calls __ct__25TargetPropertiesFormClassGPCcP10_WidgetRec [0x10016d50] with a0=?, a1=0x1002daf8, a2=ret(?), a3=?.
+  The `jal` at 0x10017a00 calls __ct__25TargetPropertiesFormClassGPCcP10_WidgetRec [0x10016d50] with a0=ret(__nw__GUi), a1=0x1002daf8, a2=ret(?), a3=?.
   The `jalr` at 0x10017a28 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x10017a4c calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x10d, a3=sym(XtStrings)+234, a4=0xb2, a5=0x0.
   The `jalr` at 0x10017a5c calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.

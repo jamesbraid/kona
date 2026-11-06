@@ -14,10 +14,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda46b64 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda46b6c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda46b08 calls __glTexParameteriv_size [0xda19d70] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46b24 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46b40 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glTexParameteriv_size) << 0x2)+8, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46b7c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda46b98 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4d8f0, a3=?.
+  The `jalr` at 0xda46b24 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46b40 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glTexParameteriv_size) << 0x2)+8, a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46b7c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexParameteriv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46b98 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4d8f0, a3=?.
   The `bgez` branch at 0xda46b14 targets 0xda46b34, is taken when a2(=(ret(__glTexParameteriv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexParameteriv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda46b2c targets 0xda46ba4 and is always taken.
   The `beq` branch at 0xda46b4c targets 0xda46ba4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -30,7 +30,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 132 bytes.
   The `lw` at 0xda46bc8 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda46be4 calls __glTexEnvfv_size [0xda1a15c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46c00 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda46c00 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xda46c1c calls __gllc_TexEnvfv [0xda46c38] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xda46bf0 targets 0xda46c10, is taken when v0(=ret(__glTexEnvfv_size)) == at(=0x1), and falls through when v0(=ret(__glTexEnvfv_size)) != at(=0x1).
   The `beq` branch at 0xda46c08 targets 0xda46c28 and is always taken.
@@ -46,10 +46,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda46cc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda46ccc stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda46c68 calls __glTexEnvfv_size [0xda1a15c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46c84 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46ca0 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glTexEnvfv_size) << 0x2)+8, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46cdc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda46cf8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4d95c, a3=?.
+  The `jalr` at 0xda46c84 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46ca0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glTexEnvfv_size) << 0x2)+8, a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46cdc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexEnvfv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46cf8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4d95c, a3=?.
   The `bgez` branch at 0xda46c74 targets 0xda46c94, is taken when a2(=(ret(__glTexEnvfv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexEnvfv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda46c8c targets 0xda46d04 and is always taken.
   The `beq` branch at 0xda46cac targets 0xda46d04, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -62,7 +62,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 132 bytes.
   The `lw` at 0xda46d28 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda46d44 calls __glTexEnviv_size [0xda1a190] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46d60 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda46d60 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xda46d7c calls __gllc_TexEnviv [0xda46d98] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xda46d50 targets 0xda46d70, is taken when v0(=ret(__glTexEnviv_size)) == at(=0x1), and falls through when v0(=ret(__glTexEnviv_size)) != at(=0x1).
   The `beq` branch at 0xda46d68 targets 0xda46d88 and is always taken.
@@ -78,10 +78,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda46e24 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda46e2c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda46dc8 calls __glTexEnviv_size [0xda1a190] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46de4 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46e00 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glTexEnviv_size) << 0x2)+8, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
-  The `jalr` at 0xda46e3c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda46e58 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4d9c8, a3=?.
+  The `jalr` at 0xda46de4 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46e00 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glTexEnviv_size) << 0x2)+8, a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46e3c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexEnviv_size) << 0x2), a3=?.
+  The `jalr` at 0xda46e58 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4d9c8, a3=?.
   The `bgez` branch at 0xda46dd4 targets 0xda46df4, is taken when a2(=(ret(__glTexEnviv_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glTexEnviv_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda46dec targets 0xda46e64 and is always taken.
   The `beq` branch at 0xda46e0c targets 0xda46e64, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -94,7 +94,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 136 bytes.
   The `lw` at 0xda46e88 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda46ea8 calls __glTexGendv_size [0xda18dd0] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda46ec4 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda46ec4 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xda46ee0 calls __gllc_TexGendv [0xda46efc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xda46eb4 targets 0xda46ed4, is taken when v0(=ret(__glTexGendv_size)) == at(=0x1), and falls through when v0(=ret(__glTexGendv_size)) != at(=0x1).
   The `beq` branch at 0xda46ecc targets 0xda46eec and is always taken.
@@ -107,7 +107,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 132 bytes.
   The `lw` at 0xda46ff4 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda47010 calls __glTexGenfv_size [0xda18e0c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4702c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda4702c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xda47048 calls __gllc_TexGenfv [0xda47064] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xda4701c targets 0xda4703c, is taken when v0(=ret(__glTexGenfv_size)) == at(=0x1), and falls through when v0(=ret(__glTexGenfv_size)) != at(=0x1).
   The `beq` branch at 0xda47034 targets 0xda47054 and is always taken.
@@ -120,7 +120,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 132 bytes.
   The `lw` at 0xda47154 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda47170 calls __glTexGeniv_size [0xda18e40] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4718c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda4718c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `jalr` at 0xda471a8 calls __gllc_TexGeniv [0xda471c4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp+8, a3=?.
   The `beq` branch at 0xda4717c targets 0xda4719c, is taken when v0(=ret(__glTexGeniv_size)) == at(=0x1), and falls through when v0(=ret(__glTexGeniv_size)) != at(=0x1).
   The `beq` branch at 0xda47194 targets 0xda471b4 and is always taken.
@@ -134,7 +134,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda472b0 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda472e0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda472c4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda472ec calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4db78, a3=?.
+  The `jalr` at 0xda472ec calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4db78, a3=?.
   The `beq` branch at 0xda472d4 targets 0xda472f8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47300 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -147,7 +147,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4734c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda47358 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47330 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47360 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dbb0, a3=?.
+  The `jalr` at 0xda47360 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dbb0, a3=?.
   The `beq` branch at 0xda47340 targets 0xda4736c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47374 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -160,7 +160,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda473c0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda473cc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda473a4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda473d4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dbf0, a3=?.
+  The `jalr` at 0xda473d4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dbf0, a3=?.
   The `beq` branch at 0xda473b4 targets 0xda473e0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda473e8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -172,7 +172,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda47400 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda47430 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda47414 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4743c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dc30, a3=?.
+  The `jalr` at 0xda4743c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dc30, a3=?.
   The `beq` branch at 0xda47424 targets 0xda47448, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47450 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -185,7 +185,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4749c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda474a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47480 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda474b0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dc68, a3=?.
+  The `jalr` at 0xda474b0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dc68, a3=?.
   The `beq` branch at 0xda47490 targets 0xda474bc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda474c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -198,7 +198,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47510 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4751c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda474f4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47524 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dca8, a3=?.
+  The `jalr` at 0xda47524 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dca8, a3=?.
   The `beq` branch at 0xda47504 targets 0xda47530, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47538 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -211,7 +211,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47584 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda47590 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47568 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47598 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dce8, a3=?.
+  The `jalr` at 0xda47598 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dce8, a3=?.
   The `beq` branch at 0xda47578 targets 0xda475a4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda475ac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -227,7 +227,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda47620 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda47628 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xda475e8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47630 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dd28, a3=?.
+  The `jalr` at 0xda47630 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dd28, a3=?.
   The `beq` branch at 0xda475f8 targets 0xda4763c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47644 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -240,7 +240,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47690 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda4769c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47674 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda476a4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dd74, a3=?.
+  The `jalr` at 0xda476a4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dd74, a3=?.
   The `beq` branch at 0xda47684 targets 0xda476b0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda476b8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -256,7 +256,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda4772c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda47734 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xda476f4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4773c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ddb4, a3=?.
+  The `jalr` at 0xda4773c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ddb4, a3=?.
   The `beq` branch at 0xda47704 targets 0xda47748, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47750 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -269,7 +269,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4779c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda477a8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47780 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda477b0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4de00, a3=?.
+  The `jalr` at 0xda477b0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4de00, a3=?.
   The `beq` branch at 0xda47790 targets 0xda477bc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda477c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -283,7 +283,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda47818 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xda47824 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda477f4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4782c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4de40, a3=?.
+  The `jalr` at 0xda4782c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4de40, a3=?.
   The `beq` branch at 0xda47804 targets 0xda47838, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47840 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -296,7 +296,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4788c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda47898 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47870 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda478a0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4de80, a3=?.
+  The `jalr` at 0xda478a0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4de80, a3=?.
   The `beq` branch at 0xda47880 targets 0xda478ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda478b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -312,7 +312,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda47928 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xda47930 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
   The `jalr` at 0xda478f0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47938 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dec0, a3=?.
+  The `jalr` at 0xda47938 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dec0, a3=?.
   The `beq` branch at 0xda47900 targets 0xda47944, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4794c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -325,7 +325,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47998 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xda479a4 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4797c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda479ac calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4df10, a3=?.
+  The `jalr` at 0xda479ac calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4df10, a3=?.
   The `beq` branch at 0xda4798c targets 0xda479b8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda479c0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -338,7 +338,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47a0c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda47a18 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda479f0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47a20 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4df50, a3=?.
+  The `jalr` at 0xda47a20 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4df50, a3=?.
   The `beq` branch at 0xda47a00 targets 0xda47a2c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47a34 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -352,7 +352,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda47a90 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda47a98 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda47a68 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47aa0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4df90, a3=?.
+  The `jalr` at 0xda47aa0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4df90, a3=?.
   The `beq` branch at 0xda47a78 targets 0xda47aac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47ab4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -364,7 +364,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda47acc loads 4 bytes from abs 0x1010.
   The `sh` at 0xda47afc stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda47ae0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47b08 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4dfd8, a3=?.
+  The `jalr` at 0xda47b08 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4dfd8, a3=?.
   The `beq` branch at 0xda47af0 targets 0xda47b14, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47b1c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -377,7 +377,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47b68 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda47b74 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47b4c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47b7c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e010, a3=?.
+  The `jalr` at 0xda47b7c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e010, a3=?.
   The `beq` branch at 0xda47b5c targets 0xda47b88, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47b90 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -393,7 +393,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda47c00 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xda47c08 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda47bc8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47c10 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e050, a3=?.
+  The `jalr` at 0xda47c10 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e050, a3=?.
   The `beq` branch at 0xda47bd8 targets 0xda47c1c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47c24 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -408,7 +408,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda47c8c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda47c94 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda47c5c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47c9c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e0a4, a3=?.
+  The `jalr` at 0xda47c9c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e0a4, a3=?.
   The `beq` branch at 0xda47c6c targets 0xda47ca8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47cb0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -427,7 +427,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda47d38 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xda47d40 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xda47ce8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x28, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47d48 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e0f0, a3=?.
+  The `jalr` at 0xda47d48 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e0f0, a3=?.
   The `beq` branch at 0xda47cf8 targets 0xda47d54, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47d5c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -445,7 +445,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda47de0 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `swc1` at 0xda47de8 stores 4 bytes to ret(__glDlistAllocOp2) +0x24.
   The `jalr` at 0xda47d98 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47df0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e15c, a3=?.
+  The `jalr` at 0xda47df0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e15c, a3=?.
   The `beq` branch at 0xda47da8 targets 0xda47dfc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47e04 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -459,7 +459,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda47e58 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `sdc1` at 0xda47e64 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47e34 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47e6c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e1bc, a3=?.
+  The `jalr` at 0xda47e6c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e1bc, a3=?.
   The `beq` branch at 0xda47e44 targets 0xda47e78, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47e80 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -474,7 +474,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `ldc1` at 0xda47ee0 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sdc1` at 0xda47ee4 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47eb0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47eec calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e1bc, a3=?.
+  The `jalr` at 0xda47eec calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e1bc, a3=?.
   The `beq` branch at 0xda47ec0 targets 0xda47ef8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47f00 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -487,7 +487,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda47f4c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda47f58 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47f30 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47f60 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e1f8, a3=?.
+  The `jalr` at 0xda47f60 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e1f8, a3=?.
   The `beq` branch at 0xda47f40 targets 0xda47f6c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47f74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -501,7 +501,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lwc1` at 0xda47fcc loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `swc1` at 0xda47fd0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda47fa4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda47fd8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e1f8, a3=?.
+  The `jalr` at 0xda47fd8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e1f8, a3=?.
   The `beq` branch at 0xda47fb4 targets 0xda47fe4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda47fec has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -516,7 +516,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda48050 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xda48058 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda48020 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48060 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e234, a3=?.
+  The `jalr` at 0xda48060 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e234, a3=?.
   The `beq` branch at 0xda48030 targets 0xda4806c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48074 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -533,7 +533,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `ldc1` at 0xda480dc loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `sdc1` at 0xda480e0 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda480a4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda480e8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e234, a3=?.
+  The `jalr` at 0xda480e8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e234, a3=?.
   The `beq` branch at 0xda480b8 targets 0xda480f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda480fc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -547,7 +547,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda48158 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda48160 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda48130 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48168 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e270, a3=?.
+  The `jalr` at 0xda48168 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e270, a3=?.
   The `beq` branch at 0xda48140 targets 0xda48174, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4817c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -563,7 +563,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lwc1` at 0xda481dc loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `swc1` at 0xda481e0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda481ac calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda481e8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e270, a3=?.
+  The `jalr` at 0xda481e8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e270, a3=?.
   The `beq` branch at 0xda481c0 targets 0xda481f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda481fc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -578,7 +578,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48264 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda4826c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda48234 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48274 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e2ac, a3=?.
+  The `jalr` at 0xda48274 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e2ac, a3=?.
   The `beq` branch at 0xda48244 targets 0xda48280, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48288 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -591,7 +591,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda482d4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda482e0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda482b8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda482e8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e2f8, a3=?.
+  The `jalr` at 0xda482e8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e2f8, a3=?.
   The `beq` branch at 0xda482c8 targets 0xda482f4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda482fc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -608,7 +608,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48378 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xda48380 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda48338 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48388 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e338, a3=?.
+  The `jalr` at 0xda48388 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e338, a3=?.
   The `beq` branch at 0xda48348 targets 0xda48394, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4839c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -622,7 +622,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda483f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda48400 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda483d0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48408 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e390, a3=?.
+  The `jalr` at 0xda48408 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e390, a3=?.
   The `beq` branch at 0xda483e0 targets 0xda48414, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4841c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -636,7 +636,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48478 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda48480 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda48450 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48488 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e3d8, a3=?.
+  The `jalr` at 0xda48488 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e3d8, a3=?.
   The `beq` branch at 0xda48460 targets 0xda48494, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4849c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -650,7 +650,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda484f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda48500 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda484d0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48508 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e420, a3=?.
+  The `jalr` at 0xda48508 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e420, a3=?.
   The `beq` branch at 0xda484e0 targets 0xda48514, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4851c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -663,7 +663,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda48568 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda48574 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4854c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4857c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e468, a3=?.
+  The `jalr` at 0xda4857c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e468, a3=?.
   The `beq` branch at 0xda4855c targets 0xda48588, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48590 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -678,7 +678,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda485f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda48600 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda485c8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48608 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e4a8, a3=?.
+  The `jalr` at 0xda48608 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e4a8, a3=?.
   The `beq` branch at 0xda485d8 targets 0xda48614, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4861c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -693,7 +693,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48684 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda4868c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda48654 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48694 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e4f4, a3=?.
+  The `jalr` at 0xda48694 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e4f4, a3=?.
   The `beq` branch at 0xda48664 targets 0xda486a0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda486a8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -706,7 +706,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda486f4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda48700 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda486d8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48708 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e540, a3=?.
+  The `jalr` at 0xda48708 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e540, a3=?.
   The `beq` branch at 0xda486e8 targets 0xda48714, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4871c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -720,7 +720,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda48778 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda48780 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda48750 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48788 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e580, a3=?.
+  The `jalr` at 0xda48788 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e580, a3=?.
   The `beq` branch at 0xda48760 targets 0xda48794, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4879c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -734,7 +734,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda487f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda48800 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda487d0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48808 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e5c4, a3=?.
+  The `jalr` at 0xda48808 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e5c4, a3=?.
   The `beq` branch at 0xda487e0 targets 0xda48814, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4881c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -748,7 +748,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48878 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda48880 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda48850 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48888 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e60c, a3=?.
+  The `jalr` at 0xda48888 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e60c, a3=?.
   The `beq` branch at 0xda48860 targets 0xda48894, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4889c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -763,8 +763,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48924 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda488dc calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda488fc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a1 << 0x2)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xda48934 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda48950 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e654, a3=?.
+  The `jalr` at 0xda48934 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=?.
+  The `jalr` at 0xda48950 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e654, a3=?.
   The `bgez` branch at 0xda488cc targets 0xda488ec, is taken when v0(=(a1 << 0x2)) >= 0 (signed), and falls through when v0(=(a1 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda488e4 targets 0xda4895c and is always taken.
   The `beq` branch at 0xda48904 targets 0xda4895c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -781,8 +781,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda489ec stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda489a4 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda489c4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a1 << 0x2)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xda489fc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda48a18 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e6ac, a3=?.
+  The `jalr` at 0xda489fc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=?.
+  The `jalr` at 0xda48a18 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e6ac, a3=?.
   The `bgez` branch at 0xda48994 targets 0xda489b4, is taken when v0(=(a1 << 0x2)) >= 0 (signed), and falls through when v0(=(a1 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda489ac targets 0xda48a24 and is always taken.
   The `beq` branch at 0xda489cc targets 0xda48a24, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -800,7 +800,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda48a78 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda48a98 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=?, a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda48ad0 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda48aec calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e704, a3=?.
+  The `jalr` at 0xda48aec calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e704, a3=?.
   The `bgez` branch at 0xda48a68 targets 0xda48a88, is taken when v0(?) >= 0 (signed), and falls through when v0(?) < 0 (signed).
   The `beq` branch at 0xda48a80 targets 0xda48af8 and is always taken.
   The `beq` branch at 0xda48aa0 targets 0xda48af8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -815,7 +815,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda48b4c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda48b58 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda48b30 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48b60 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e768, a3=?.
+  The `jalr` at 0xda48b60 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e768, a3=?.
   The `beq` branch at 0xda48b40 targets 0xda48b6c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48b74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -832,7 +832,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda48bf0 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xda48bf8 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda48bb0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48c00 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e7a8, a3=?.
+  The `jalr` at 0xda48c00 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e7a8, a3=?.
   The `beq` branch at 0xda48bc0 targets 0xda48c0c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48c14 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -847,7 +847,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda48c78 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sdc1` at 0xda48c80 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda48c48 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48c88 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e800, a3=?.
+  The `jalr` at 0xda48c88 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e800, a3=?.
   The `beq` branch at 0xda48c58 targets 0xda48c94, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48c9c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -866,7 +866,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda48d20 stores 8 bytes to ret(__glDlistAllocOp2) +0x30.
   The `sdc1` at 0xda48d28 stores 8 bytes to ret(__glDlistAllocOp2) +0x38.
   The `jalr` at 0xda48cd0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48d30 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e844, a3=?.
+  The `jalr` at 0xda48d30 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e844, a3=?.
   The `beq` branch at 0xda48ce0 targets 0xda48d3c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48d44 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -878,7 +878,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda48d5c loads 4 bytes from abs 0x1010.
   The `sh` at 0xda48d8c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda48d70 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48d98 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e8a8, a3=?.
+  The `jalr` at 0xda48d98 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e8a8, a3=?.
   The `beq` branch at 0xda48d80 targets 0xda48da4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48dac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -891,7 +891,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda48f10 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda48f1c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda48ef4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda48f24 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4e958, a3=?.
+  The `jalr` at 0xda48f24 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e958, a3=?.
   The `beq` branch at 0xda48f04 targets 0xda48f30, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48f38 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -904,7 +904,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda48f7c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda48f68 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda48f90 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=?.
-  The `jalr` at 0xda48fac calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e998, a3=?.
+  The `jalr` at 0xda48fac calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e998, a3=?.
   The `beq` branch at 0xda48f70 targets 0xda48fb8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48fc0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -918,7 +918,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda4900c stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `jalr` at 0xda48ff0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda49020 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=?.
-  The `jalr` at 0xda4903c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e9d4, a3=?.
+  The `jalr` at 0xda4903c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e9d4, a3=?.
   The `beq` branch at 0xda48ff8 targets 0xda49048, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49050 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -937,7 +937,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda490d4 stores 8 bytes to ret(__glDlistAllocOp2) +0x30.
   The `sdc1` at 0xda490dc stores 8 bytes to ret(__glDlistAllocOp2) +0x38.
   The `jalr` at 0xda49084 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda490e4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ea10, a3=?.
+  The `jalr` at 0xda490e4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ea10, a3=?.
   The `beq` branch at 0xda49094 targets 0xda490f0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda490f8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -949,7 +949,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda49110 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda49140 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda49124 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4914c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ea74, a3=?.
+  The `jalr` at 0xda4914c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ea74, a3=?.
   The `beq` branch at 0xda49134 targets 0xda49158, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49160 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -961,7 +961,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda49178 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda491a8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4918c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda491b4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4eaac, a3=?.
+  The `jalr` at 0xda491b4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eaac, a3=?.
   The `beq` branch at 0xda4919c targets 0xda491c0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda491c8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -978,7 +978,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda4923c stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sdc1` at 0xda49244 stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xda491fc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4924c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4eae4, a3=?.
+  The `jalr` at 0xda4924c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eae4, a3=?.
   The `beq` branch at 0xda4920c targets 0xda49258, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49260 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -994,7 +994,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda492d4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda492dc stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xda4929c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda492e4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4eb38, a3=?.
+  The `jalr` at 0xda492e4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eb38, a3=?.
   The `beq` branch at 0xda492ac targets 0xda492f0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda492f8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1010,7 +1010,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda49364 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda4936c stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda4932c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49374 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4eb84, a3=?.
+  The `jalr` at 0xda49374 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eb84, a3=?.
   The `beq` branch at 0xda4933c targets 0xda49380, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49388 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1025,7 +1025,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda493f0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda493f8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda493c0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49400 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ebd0, a3=?.
+  The `jalr` at 0xda49400 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ebd0, a3=?.
   The `beq` branch at 0xda493d0 targets 0xda4940c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49414 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1041,7 +1041,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda49480 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda49488 stores 8 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda49448 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49490 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ec18, a3=?.
+  The `jalr` at 0xda49490 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ec18, a3=?.
   The `beq` branch at 0xda49458 targets 0xda4949c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda494a4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1056,7 +1056,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda4950c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda49514 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda494dc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4951c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ec64, a3=?.
+  The `jalr` at 0xda4951c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ec64, a3=?.
   The `beq` branch at 0xda494ec targets 0xda49528, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49530 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1072,7 +1072,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda495a4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sw` at 0xda495ac stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xda4956c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda495b4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ecac, a3=?.
+  The `jalr` at 0xda495b4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ecac, a3=?.
   The `beq` branch at 0xda4957c targets 0xda495c0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda495c8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1088,7 +1088,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda4963c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda49644 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `jalr` at 0xda49604 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4964c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ecfc, a3=?.
+  The `jalr` at 0xda4964c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ecfc, a3=?.
   The `beq` branch at 0xda49614 targets 0xda49658, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49660 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1101,7 +1101,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda496ac stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda496b8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda49690 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda496c0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ed48, a3=?.
+  The `jalr` at 0xda496c0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ed48, a3=?.
   The `beq` branch at 0xda496a0 targets 0xda496cc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda496d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1115,7 +1115,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda49730 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda49738 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda49708 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49740 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ed88, a3=?.
+  The `jalr` at 0xda49740 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ed88, a3=?.
   The `beq` branch at 0xda49718 targets 0xda4974c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49754 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1130,7 +1130,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda497bc stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda497c4 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4978c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda497cc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4edcc, a3=?.
+  The `jalr` at 0xda497cc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4edcc, a3=?.
   The `beq` branch at 0xda4979c targets 0xda497d8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda497e0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1144,10 +1144,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49874 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4987c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda49818 calls __glConvolutionParameterfvEXT_size [0xd9d38d4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49834 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda49850 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda4988c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda498a8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4ee18, a3=?.
+  The `jalr` at 0xda49834 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda49850 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glConvolutionParameterfvEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda4988c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterfvEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda498a8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ee18, a3=?.
   The `bgez` branch at 0xda49824 targets 0xda49844, is taken when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterfvEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4983c targets 0xda498b4 and is always taken.
   The `beq` branch at 0xda4985c targets 0xda498b4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1164,7 +1164,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49924 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda4992c stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda498f4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49934 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ee84, a3=?.
+  The `jalr` at 0xda49934 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ee84, a3=?.
   The `beq` branch at 0xda49904 targets 0xda49940, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49948 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1178,10 +1178,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda499dc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda499e4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda49980 calls __glConvolutionParameterivEXT_size [0xd9d3918] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4999c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda499b8 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
-  The `jalr` at 0xda499f4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda49a10 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4eed0, a3=?.
+  The `jalr` at 0xda4999c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda499b8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glConvolutionParameterivEXT_size) << 0x2)+8, a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda499f4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glConvolutionParameterivEXT_size) << 0x2), a3=?.
+  The `jalr` at 0xda49a10 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eed0, a3=?.
   The `bgez` branch at 0xda4998c targets 0xda499ac, is taken when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glConvolutionParameterivEXT_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda499a4 targets 0xda49a1c and is always taken.
   The `beq` branch at 0xda499c4 targets 0xda49a1c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1200,7 +1200,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49aa0 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xda49aa8 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda49a60 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49ab0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ef3c, a3=?.
+  The `jalr` at 0xda49ab0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ef3c, a3=?.
   The `beq` branch at 0xda49a70 targets 0xda49abc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49ac4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1218,7 +1218,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49b48 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sw` at 0xda49b50 stores 4 bytes to ret(__glDlistAllocOp2) +0x24.
   The `jalr` at 0xda49b00 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49b58 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ef94, a3=?.
+  The `jalr` at 0xda49b58 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ef94, a3=?.
   The `beq` branch at 0xda49b10 targets 0xda49b64, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49b6c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1237,7 +1237,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49c10 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda49bb8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
   The `jalr` at 0xda49bd4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=?.
-  The `jalr` at 0xda49c1c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4eff4, a3=?.
+  The `jalr` at 0xda49c1c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4eff4, a3=?.
   The `bne` branch at 0xda49ba8 targets 0xda49bc8, is taken when a0 != at(=0x8025), and falls through when a0 == at(=0x8025).
   The `beq` branch at 0xda49bc0 targets 0xda49c28 and is always taken.
   The `beq` branch at 0xda49be4 targets 0xda49c28, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1254,7 +1254,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49c98 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sb` at 0xda49ca0 stores 1 byte to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda49c68 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49ca8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f044, a3=?.
+  The `jalr` at 0xda49ca8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f044, a3=?.
   The `beq` branch at 0xda49c78 targets 0xda49cb4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49cbc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1267,7 +1267,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda49d08 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda49d14 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda49cec calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49d1c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f090, a3=?.
+  The `jalr` at 0xda49d1c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f090, a3=?.
   The `beq` branch at 0xda49cfc targets 0xda49d28, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49d30 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1280,7 +1280,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda49d7c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda49d88 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda49d60 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49d90 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f0d0, a3=?.
+  The `jalr` at 0xda49d90 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f0d0, a3=?.
   The `beq` branch at 0xda49d70 targets 0xda49d9c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49da4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1294,7 +1294,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49e00 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda49e08 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda49dd8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49e10 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f110, a3=?.
+  The `jalr` at 0xda49e10 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f110, a3=?.
   The `beq` branch at 0xda49de8 targets 0xda49e1c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49e24 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1310,8 +1310,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda49e8c calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda49ea8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=((a0 << 0x2) + (a0 << 0x2))+4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda49edc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=?.
-  The `jalr` at 0xda49efc calls memcpy with a0=?, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=?.
-  The `jalr` at 0xda49f18 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=?, a2=0xda4f158, a3=?.
+  The `jalr` at 0xda49efc calls memcpy with a0=(ret(__glDlistAllocOp2) + (a0 << 0x2))+20, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=ret(__glDlistAllocOp2).
+  The `jalr` at 0xda49f18 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f158, a3=?.
   The `bgez` branch at 0xda49e5c targets 0xda49e7c, is taken when s0(=(a0 << 0x2)) >= 0 (signed), and falls through when s0(=(a0 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda49e74 targets 0xda49f24 and is always taken.
   The `bgez` branch at 0xda49e7c targets 0xda49e9c, is taken when s0(=(a0 << 0x2)) >= 0 (signed), and falls through when s0(=(a0 << 0x2)) < 0 (signed).
@@ -1334,7 +1334,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda49fbc stores 4 bytes to ret(__glDlistAllocOp2) +0x24.
   The `sw` at 0xda49fc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xda49f6c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x1c, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda49fcc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f1bc, a3=?.
+  The `jalr` at 0xda49fcc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f1bc, a3=?.
   The `beq` branch at 0xda49f7c targets 0xda49fd8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda49fe0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1354,7 +1354,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a074 stores 4 bytes to ret(__glDlistAllocOp2) +0x28.
   The `sw` at 0xda4a07c stores 4 bytes to ret(__glDlistAllocOp2) +0x2c.
   The `jalr` at 0xda4a01c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a084 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f224, a3=?.
+  The `jalr` at 0xda4a084 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f224, a3=?.
   The `beq` branch at 0xda4a02c targets 0xda4a090, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a098 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1372,7 +1372,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a11c stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `sw` at 0xda4a124 stores 4 bytes to ret(__glDlistAllocOp2) +0x24.
   The `jalr` at 0xda4a0d4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a12c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f298, a3=?.
+  The `jalr` at 0xda4a12c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f298, a3=?.
   The `beq` branch at 0xda4a0e4 targets 0xda4a138, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a140 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1392,7 +1392,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a1d4 stores 4 bytes to ret(__glDlistAllocOp2) +0x28.
   The `sw` at 0xda4a1dc stores 4 bytes to ret(__glDlistAllocOp2) +0x2c.
   The `jalr` at 0xda4a17c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a1e4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f2f8, a3=?.
+  The `jalr` at 0xda4a1e4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f2f8, a3=?.
   The `beq` branch at 0xda4a18c targets 0xda4a1f0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a1f8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1413,7 +1413,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a294 stores 4 bytes to ret(__glDlistAllocOp2) +0x2c.
   The `sw` at 0xda4a29c stores 4 bytes to ret(__glDlistAllocOp2) +0x30.
   The `jalr` at 0xda4a234 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x24, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a2a4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f36c, a3=?.
+  The `jalr` at 0xda4a2a4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f36c, a3=?.
   The `beq` branch at 0xda4a244 targets 0xda4a2b0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a2b8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1427,7 +1427,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda4a314 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda4a31c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a2ec calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a324 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f3e4, a3=?.
+  The `jalr` at 0xda4a324 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f3e4, a3=?.
   The `beq` branch at 0xda4a2fc targets 0xda4a330, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a338 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1439,10 +1439,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda4a358 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda4a384 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xda4a390 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xda4a394 loads 4 bytes from ?.
-  The `sw` at 0xda4a39c stores 4 bytes to ?.
+  The `lw` at 0xda4a394 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xda4a39c stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xda4a368 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a3a4 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f428, a3=?.
+  The `jalr` at 0xda4a3a4 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f428, a3=?.
   The `beq` branch at 0xda4a378 targets 0xda4a3b0, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a3b8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1455,10 +1455,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4a404 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `lbu` at 0xda4a410 loads 1 byte from a0 (arg0 at entry) +0x0.
   The `sb` at 0xda4a414 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
-  The `lw` at 0xda4a418 loads 4 bytes from ?.
-  The `sw` at 0xda4a420 stores 4 bytes to ?.
+  The `lw` at 0xda4a418 loads 4 bytes from [0x1010] +0x1384.
+  The `sw` at 0xda4a420 stores 4 bytes to [0x1010] +0x1384.
   The `jalr` at 0xda4a3e8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a428 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f428, a3=?.
+  The `jalr` at 0xda4a428 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f428, a3=?.
   The `beq` branch at 0xda4a3f8 targets 0xda4a434, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a43c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1472,7 +1472,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda4a498 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sb` at 0xda4a4a0 stores 1 byte to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a470 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a4a8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f464, a3=?.
+  The `jalr` at 0xda4a4a8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f464, a3=?.
   The `beq` branch at 0xda4a480 targets 0xda4a4b4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a4bc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1485,7 +1485,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4a508 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4a514 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4a4ec calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a51c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f4a8, a3=?.
+  The `jalr` at 0xda4a51c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f4a8, a3=?.
   The `beq` branch at 0xda4a4fc targets 0xda4a528, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a530 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1497,7 +1497,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda4a548 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda4a578 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4a55c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a584 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f4e8, a3=?.
+  The `jalr` at 0xda4a584 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f4e8, a3=?.
   The `beq` branch at 0xda4a56c targets 0xda4a590, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a598 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1512,8 +1512,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a620 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a5d8 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda4a5f8 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a1 << 0x3)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xda4a630 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4a64c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f520, a3=?.
+  The `jalr` at 0xda4a630 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=?.
+  The `jalr` at 0xda4a64c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f520, a3=?.
   The `bgez` branch at 0xda4a5c8 targets 0xda4a5e8, is taken when v0(=(a1 << 0x3)) >= 0 (signed), and falls through when v0(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda4a5e0 targets 0xda4a658 and is always taken.
   The `beq` branch at 0xda4a600 targets 0xda4a658, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1530,8 +1530,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a6e8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a6a0 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x1010].
   The `jalr` at 0xda4a6c0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a1 << 0x3)+8, a2=a2 at entry (arg2), a3=[0x1010].
-  The `jalr` at 0xda4a6f8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4a714 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f578, a3=?.
+  The `jalr` at 0xda4a6f8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x3), a3=?.
+  The `jalr` at 0xda4a714 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f578, a3=?.
   The `bgez` branch at 0xda4a690 targets 0xda4a6b0, is taken when v0(=(a1 << 0x3)) >= 0 (signed), and falls through when v0(=(a1 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda4a6a8 targets 0xda4a720 and is always taken.
   The `beq` branch at 0xda4a6c8 targets 0xda4a720, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1547,10 +1547,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a7bc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4a7c4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a760 calls __glColorTableParameterfvSGI_size [0xda07a18] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a77c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda4a798 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glColorTableParameterfvSGI_size) << 0x2)+8, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda4a7d4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4a7f0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f5d0, a3=?.
+  The `jalr` at 0xda4a77c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a798 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glColorTableParameterfvSGI_size) << 0x2)+8, a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a7d4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glColorTableParameterfvSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a7f0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f5d0, a3=?.
   The `bgez` branch at 0xda4a76c targets 0xda4a78c, is taken when a2(=(ret(__glColorTableParameterfvSGI_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glColorTableParameterfvSGI_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4a784 targets 0xda4a7fc and is always taken.
   The `beq` branch at 0xda4a7a4 targets 0xda4a7fc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1566,10 +1566,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a898 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4a8a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4a83c calls __glColorTableParameterivSGI_size [0xda07a3c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a858 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda4a874 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glColorTableParameterivSGI_size) << 0x2)+8, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
-  The `jalr` at 0xda4a8b0 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4a8cc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f63c, a3=?.
+  The `jalr` at 0xda4a858 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a874 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glColorTableParameterivSGI_size) << 0x2)+8, a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a8b0 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glColorTableParameterivSGI_size) << 0x2), a3=?.
+  The `jalr` at 0xda4a8cc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f63c, a3=?.
   The `bgez` branch at 0xda4a848 targets 0xda4a868, is taken when a2(=(ret(__glColorTableParameterivSGI_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glColorTableParameterivSGI_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4a860 targets 0xda4a8d8 and is always taken.
   The `beq` branch at 0xda4a880 targets 0xda4a8d8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1588,7 +1588,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4a95c stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xda4a964 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda4a91c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a96c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f6a8, a3=?.
+  The `jalr` at 0xda4a96c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f6a8, a3=?.
   The `beq` branch at 0xda4a92c targets 0xda4a978, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a980 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1601,7 +1601,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4a9cc stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4a9d8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4a9b0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4a9e0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f700, a3=?.
+  The `jalr` at 0xda4a9e0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f700, a3=?.
   The `beq` branch at 0xda4a9c0 targets 0xda4a9ec, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4a9f4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1615,7 +1615,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4aa50 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda4aa58 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4aa28 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4aa60 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f740, a3=?.
+  The `jalr` at 0xda4aa60 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f740, a3=?.
   The `beq` branch at 0xda4aa38 targets 0xda4aa6c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4aa74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1628,10 +1628,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4aaf4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4ab00 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4aaa4 calls __glSpriteParameterfvSGIX_size [0xda07a70] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4aac0 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4aadc calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ab10 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4ab2c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f788, a3=?.
+  The `jalr` at 0xda4aac0 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4aadc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glSpriteParameterfvSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ab10 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ab2c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f788, a3=?.
   The `bgez` branch at 0xda4aab0 targets 0xda4aad0, is taken when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4aac8 targets 0xda4ab38 and is always taken.
   The `beq` branch at 0xda4aae8 targets 0xda4ab38, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1647,7 +1647,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4ab9c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4aba4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4ab74 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4abac calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f7f0, a3=?.
+  The `jalr` at 0xda4abac calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f7f0, a3=?.
   The `beq` branch at 0xda4ab84 targets 0xda4abb8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4abc0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1660,10 +1660,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4ac40 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4ac4c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4abf0 calls __glSpriteParameterivSGIX_size [0xda07ab4] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4ac0c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ac28 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ac5c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4ac78 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f838, a3=?.
+  The `jalr` at 0xda4ac0c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ac28 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glSpriteParameterivSGIX_size) << 0x2)+4, a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ac5c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glSpriteParameterivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ac78 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f838, a3=?.
   The `bgez` branch at 0xda4abfc targets 0xda4ac1c, is taken when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glSpriteParameterivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4ac14 targets 0xda4ac84 and is always taken.
   The `beq` branch at 0xda4ac34 targets 0xda4ac84, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1681,8 +1681,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4ad20 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4acd4 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda4acf0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a2 << 0x2)+12, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4ad30 calls memcpy with a0=ret(__glDlistAllocOp2)+28, a1=a3 at entry (arg3), a2=?, a3=?.
-  The `jalr` at 0xda4ad4c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f8a0, a3=?.
+  The `jalr` at 0xda4ad30 calls memcpy with a0=ret(__glDlistAllocOp2)+28, a1=a3 at entry (arg3), a2=(a2 << 0x2), a3=?.
+  The `jalr` at 0xda4ad4c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f8a0, a3=?.
   The `bgez` branch at 0xda4acc4 targets 0xda4ace4, is taken when v0(=(a2 << 0x2)) >= 0 (signed), and falls through when v0(=(a2 << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4acdc targets 0xda4ad58 and is always taken.
   The `beq` branch at 0xda4acf8 targets 0xda4ad58, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1698,7 +1698,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4adbc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda4adc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4ad94 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4adcc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4f8fc, a3=?.
+  The `jalr` at 0xda4adcc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f8fc, a3=?.
   The `beq` branch at 0xda4ada4 targets 0xda4add8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4ade0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1711,10 +1711,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4ae60 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4ae6c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4ae10 calls __glPointParameterfvSGIS_size [0xda07ae8] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4ae2c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ae48 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ae7c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4ae98 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f944, a3=?.
+  The `jalr` at 0xda4ae2c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ae48 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glPointParameterfvSGIS_size) << 0x2)+4, a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ae7c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glPointParameterfvSGIS_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ae98 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f944, a3=?.
   The `bgez` branch at 0xda4ae1c targets 0xda4ae3c, is taken when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glPointParameterfvSGIS_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4ae34 targets 0xda4aea4 and is always taken.
   The `beq` branch at 0xda4ae54 targets 0xda4aea4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1730,8 +1730,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4af2c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4aee8 calls __gllc_InvalidValue [0xd9933a0] with a0=[0x1010], a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=[0x1010].
   The `jalr` at 0xda4af08 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(a0 << 0x3)+4, a2=(a0 << 0x3), a3=[0x1010].
-  The `jalr` at 0xda4af3c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4af58 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4f9ac, a3=?.
+  The `jalr` at 0xda4af3c calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(a0 << 0x3), a3=?.
+  The `jalr` at 0xda4af58 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4f9ac, a3=?.
   The `bgez` branch at 0xda4aed8 targets 0xda4aef8, is taken when a2(=(a0 << 0x3)) >= 0 (signed), and falls through when a2(=(a0 << 0x3)) < 0 (signed).
   The `beq` branch at 0xda4aef0 targets 0xda4af64 and is always taken.
   The `beq` branch at 0xda4af14 targets 0xda4af64, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1746,7 +1746,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4afb8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4afc4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4af9c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4afcc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fa00, a3=?.
+  The `jalr` at 0xda4afcc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fa00, a3=?.
   The `beq` branch at 0xda4afac targets 0xda4afd8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4afe0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1758,7 +1758,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda4aff8 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda4b028 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4b00c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b034 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fa40, a3=?.
+  The `jalr` at 0xda4b034 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fa40, a3=?.
   The `beq` branch at 0xda4b01c targets 0xda4b040, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b048 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1771,7 +1771,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4b094 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4b0a0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4b078 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b0a8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fa78, a3=?.
+  The `jalr` at 0xda4b0a8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fa78, a3=?.
   The `beq` branch at 0xda4b088 targets 0xda4b0b4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b0bc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1792,7 +1792,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `ldc1` at 0xda4b138 loads 8 bytes from a0 (arg0 at entry) +0x18.
   The `sdc1` at 0xda4b13c stores 8 bytes to ret(__glDlistAllocOp2) +0x28.
   The `jalr` at 0xda4b0f0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0xda4b144 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fab8, a3=a0 at entry (arg0).
+  The `jalr` at 0xda4b144 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fab8, a3=a0 at entry (arg0).
   The `beq` branch at 0xda4b104 targets 0xda4b150, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b158 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1805,7 +1805,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4b1a4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4b1b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4b188 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b1b8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4faf4, a3=?.
+  The `jalr` at 0xda4b1b8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4faf4, a3=?.
   The `beq` branch at 0xda4b198 targets 0xda4b1c4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b1cc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1818,7 +1818,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4b218 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4b224 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4b1fc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b22c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fb34, a3=?.
+  The `jalr` at 0xda4b22c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fb34, a3=?.
   The `beq` branch at 0xda4b20c targets 0xda4b238, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b240 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1831,7 +1831,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4b28c stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4b298 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4b270 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b2a0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fb74, a3=?.
+  The `jalr` at 0xda4b2a0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fb74, a3=?.
   The `beq` branch at 0xda4b280 targets 0xda4b2ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b2b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1848,7 +1848,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b330 stores 4 bytes to ret(__glDlistAllocOp2) +0x1c.
   The `sw` at 0xda4b338 stores 4 bytes to ret(__glDlistAllocOp2) +0x20.
   The `jalr` at 0xda4b2f0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b340 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fbb4, a3=?.
+  The `jalr` at 0xda4b340 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fbb4, a3=?.
   The `beq` branch at 0xda4b300 targets 0xda4b34c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b354 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1862,7 +1862,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b3b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4b3b8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b388 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b3c0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fc0c, a3=?.
+  The `jalr` at 0xda4b3c0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fc0c, a3=?.
   The `beq` branch at 0xda4b398 targets 0xda4b3cc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b3d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1876,7 +1876,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b4fc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda4b504 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b4d4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b50c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fcbc, a3=?.
+  The `jalr` at 0xda4b50c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fcbc, a3=?.
   The `beq` branch at 0xda4b4e4 targets 0xda4b518, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b520 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1889,7 +1889,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4b638 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4b644 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4b61c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b64c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fd6c, a3=?.
+  The `jalr` at 0xda4b64c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fd6c, a3=?.
   The `beq` branch at 0xda4b62c targets 0xda4b658, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b660 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1903,7 +1903,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b6bc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4b6c4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b694 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b6cc calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fdac, a3=?.
+  The `jalr` at 0xda4b6cc calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fdac, a3=?.
   The `beq` branch at 0xda4b6a4 targets 0xda4b6d8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b6e0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1919,7 +1919,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b748 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda4b750 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4b718 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b758 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4fdf4, a3=?.
+  The `jalr` at 0xda4b758 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fdf4, a3=?.
   The `beq` branch at 0xda4b728 targets 0xda4b764, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b76c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1933,10 +1933,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b800 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4b808 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b7a4 calls __glFragmentLightfvSGIX_size [0xda07d1c] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b7c0 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4b7dc calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4b818 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4b834 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4fe40, a3=?.
+  The `jalr` at 0xda4b7c0 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b7dc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentLightfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b818 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b834 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fe40, a3=?.
   The `bgez` branch at 0xda4b7b0 targets 0xda4b7d0, is taken when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4b7c8 targets 0xda4b840 and is always taken.
   The `beq` branch at 0xda4b7e8 targets 0xda4b840, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1953,7 +1953,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b8b0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda4b8b8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4b880 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b8c0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4feac, a3=?.
+  The `jalr` at 0xda4b8c0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4feac, a3=?.
   The `beq` branch at 0xda4b890 targets 0xda4b8cc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4b8d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1967,10 +1967,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4b968 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4b970 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b90c calls __glFragmentLightivSGIX_size [0xda07dd4] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4b928 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4b944 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4b980 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4b99c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4fef8, a3=?.
+  The `jalr` at 0xda4b928 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b944 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentLightivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b980 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentLightivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4b99c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4fef8, a3=?.
   The `bgez` branch at 0xda4b918 targets 0xda4b938, is taken when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4b930 targets 0xda4b9a8 and is always taken.
   The `beq` branch at 0xda4b950 targets 0xda4b9a8, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -1986,7 +1986,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4ba0c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda4ba14 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4b9e4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4ba1c calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda4ff64, a3=?.
+  The `jalr` at 0xda4ba1c calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ff64, a3=?.
   The `beq` branch at 0xda4b9f4 targets 0xda4ba28, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4ba30 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -1999,10 +1999,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4bab0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4babc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4ba60 calls __glFragmentLightModelfvSGIX_size [0xda07e08] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4ba7c calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4ba98 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4bacc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4bae8 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4ffac, a3=?.
+  The `jalr` at 0xda4ba7c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4ba98 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bacc calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bae8 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4ffac, a3=?.
   The `bgez` branch at 0xda4ba6c targets 0xda4ba8c, is taken when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelfvSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4ba84 targets 0xda4baf4 and is always taken.
   The `beq` branch at 0xda4baa4 targets 0xda4baf4, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -2018,7 +2018,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4bb58 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4bb60 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4bb30 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4bb68 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda50014, a3=?.
+  The `jalr` at 0xda4bb68 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda50014, a3=?.
   The `beq` branch at 0xda4bb40 targets 0xda4bb74, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4bb7c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2031,10 +2031,10 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda4bbfc stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda4bc08 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4bbac calls __glFragmentLightModelivSGIX_size [0xda07e5c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4bbc8 calls __gllc_InvalidEnum [0xd993404] with a0=?, a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4bbe4 calls __glDlistAllocOp2 [0xd992e30] with a0=?, a1=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4bc18 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0xda4bc34 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda5005c, a3=?.
+  The `jalr` at 0xda4bbc8 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bbe4 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentLightModelivSGIX_size) << 0x2)+4, a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bc18 calls memcpy with a0=ret(__glDlistAllocOp2)+20, a1=a1 at entry (arg1), a2=(ret(__glFragmentLightModelivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bc34 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda5005c, a3=?.
   The `bgez` branch at 0xda4bbb8 targets 0xda4bbd8, is taken when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentLightModelivSGIX_size) << 0x2)) < 0 (signed).
   The `beq` branch at 0xda4bbd0 targets 0xda4bc40 and is always taken.
   The `beq` branch at 0xda4bbf0 targets 0xda4bc40, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
@@ -2051,7 +2051,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4bcb0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda4bcb8 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4bc80 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4bcc0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda500c4, a3=?.
+  The `jalr` at 0xda4bcc0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda500c4, a3=?.
   The `beq` branch at 0xda4bc90 targets 0xda4bccc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4bcd4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2070,8 +2070,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda4bd40 calls __glFragmentMaterialfvSGIX_size [0xda07c74] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xda4bd5c calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda4bd78 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)+8, a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4bdb4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4bdd0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=?, a2=0xda50110, a3=?.
+  The `jalr` at 0xda4bdb4 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialfvSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bdd0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda50110, a3=?.
   The `beq` branch at 0xda4bd18 targets 0xda4bd38, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xda4bd30 targets 0xda4bddc and is always taken.
   The `bgez` branch at 0xda4bd4c targets 0xda4bd6c, is taken when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialfvSGIX_size) << 0x2)) < 0 (signed).
@@ -2090,7 +2090,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4be50 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda4be58 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4be20 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4be60 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda5017c, a3=?.
+  The `jalr` at 0xda4be60 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda5017c, a3=?.
   The `beq` branch at 0xda4be30 targets 0xda4be6c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4be74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2109,8 +2109,8 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda4bef4 calls __glFragmentMaterialivSGIX_size [0xda07ce8] with a0=a1 at entry (arg1), a1=ret(__glErrorCheckMaterial), a2=?, a3=?.
   The `jalr` at 0xda4bf10 calls __gllc_InvalidEnum [0xd993404] with a0=[0x1010], a1=?, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
   The `jalr` at 0xda4bf2c calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=(ret(__glFragmentMaterialivSGIX_size) << 0x2)+8, a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
-  The `jalr` at 0xda4bf68 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda4bf84 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=?, a2=0xda501c8, a3=?.
+  The `jalr` at 0xda4bf68 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glFragmentMaterialivSGIX_size) << 0x2), a3=?.
+  The `jalr` at 0xda4bf84 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda501c8, a3=?.
   The `beq` branch at 0xda4becc targets 0xda4beec, is taken when v0(=ret(__glErrorCheckMaterial)) == 0, and falls through when v0(=ret(__glErrorCheckMaterial)) != 0.
   The `beq` branch at 0xda4bee4 targets 0xda4bf90 and is always taken.
   The `bgez` branch at 0xda4bf00 targets 0xda4bf20, is taken when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) >= 0 (signed), and falls through when a2(=(ret(__glFragmentMaterialivSGIX_size) << 0x2)) < 0 (signed).
@@ -2128,7 +2128,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4bff8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `sw` at 0xda4c000 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4bfd0 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4c008 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda50234, a3=?.
+  The `jalr` at 0xda4c008 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda50234, a3=?.
   The `beq` branch at 0xda4bfe0 targets 0xda4c014, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4c01c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2144,7 +2144,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda4c090 stores 1 byte to ret(__glDlistAllocOp2) +0x12.
   The `sb` at 0xda4c098 stores 1 byte to ret(__glDlistAllocOp2) +0x13.
   The `jalr` at 0xda4c058 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4c0a0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda5027c, a3=?.
+  The `jalr` at 0xda4c0a0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda5027c, a3=?.
   The `beq` branch at 0xda4c068 targets 0xda4c0ac, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda4c0b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2817,7 +2817,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda411d4 calls __glTexParameteriv_size [0xda15f40] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda411f0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=(ret(__glTexParameteriv_size) << 0x2)+8, a2=?, a3=?.
   The `jalr` at 0xda41240 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexParameteriv_size) << 0x2), a3=0x6b, a4=ret(__glDlistAllocOp2), a5=a0 at entry (arg0), a6=a1 at entry (arg1).
-  The `jalr` at 0xda41254 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda48890, a3=?.
+  The `jalr` at 0xda41254 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48890, a3=?.
   The `jalr` at 0xda41264 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bltz` branch at 0xda411e0 targets 0xda41264, is taken when s1(=(ret(__glTexParameteriv_size) << 0x2)) < 0 (signed), and falls through when s1(=(ret(__glTexParameteriv_size) << 0x2)) >= 0 (signed).
   The `bne` branch at 0xda411f8 targets 0xda41218, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -2832,7 +2832,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 120 bytes.
   The `lw` at 0xda412a8 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda412b0 calls __glTexEnvfv_size [0xda162d0] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda412c4 calls __gllc_InvalidEnum [0xd98fc20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda412c4 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bgezall` at 0xda412e8 calls __gllc_TexEnvfv [0xda41300] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=?.
   The `beq` branch at 0xda412bc targets 0xda412dc, is taken when v0(=ret(__glTexEnvfv_size)) == a0(=0x1), and falls through when v0(=ret(__glTexEnvfv_size)) != a0(=0x1).
   The `beq` branch at 0xda412f0 targets 0xda412d0 and is always taken.
@@ -2850,7 +2850,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda41334 calls __glTexEnvfv_size [0xda162d0] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda4134c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=(ret(__glTexEnvfv_size) << 0x2)+8, a2=?, a3=?.
   The `jalr` at 0xda4139c calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexEnvfv_size) << 0x2), a3=0x6f, a4=ret(__glDlistAllocOp2), a5=a0 at entry (arg0), a6=a1 at entry (arg1).
-  The `jalr` at 0xda413b0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda488f0, a3=?.
+  The `jalr` at 0xda413b0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda488f0, a3=?.
   The `jalr` at 0xda413c4 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bltz` branch at 0xda41340 targets 0xda413c0, is taken when s1(=(ret(__glTexEnvfv_size) << 0x2)) < 0 (signed), and falls through when s1(=(ret(__glTexEnvfv_size) << 0x2)) >= 0 (signed).
   The `bne` branch at 0xda41354 targets 0xda41374, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -2865,7 +2865,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 120 bytes.
   The `lw` at 0xda41408 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda41410 calls __glTexEnviv_size [0xda16300] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41428 calls __gllc_InvalidEnum [0xd98fc20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda41428 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bgezall` at 0xda41448 calls __gllc_TexEnviv [0xda41460] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=?.
   The `beq` branch at 0xda4141c targets 0xda41440, is taken when v0(=ret(__glTexEnviv_size)) == a0(=0x1), and falls through when v0(=ret(__glTexEnviv_size)) != a0(=0x1).
   The `beq` branch at 0xda41450 targets 0xda41434 and is always taken.
@@ -2883,7 +2883,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `jalr` at 0xda41494 calls __glTexEnviv_size [0xda16300] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda414b0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=(ret(__glTexEnviv_size) << 0x2)+8, a2=?, a3=?.
   The `jalr` at 0xda41500 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(ret(__glTexEnviv_size) << 0x2), a3=0x71, a4=ret(__glDlistAllocOp2), a5=a0 at entry (arg0), a6=a1 at entry (arg1).
-  The `jalr` at 0xda41514 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda48950, a3=?.
+  The `jalr` at 0xda41514 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48950, a3=?.
   The `jalr` at 0xda41524 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bltz` branch at 0xda414a0 targets 0xda41524, is taken when s1(=(ret(__glTexEnviv_size) << 0x2)) < 0 (signed), and falls through when s1(=(ret(__glTexEnviv_size) << 0x2)) >= 0 (signed).
   The `bne` branch at 0xda414b8 targets 0xda414d8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -2898,7 +2898,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 120 bytes.
   The `lw` at 0xda41568 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda41570 calls __glTexGendv_size [0xda15000] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41584 calls __gllc_InvalidEnum [0xd98fc20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda41584 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bgezall` at 0xda415a8 calls __gllc_TexGendv [0xda415c0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=?.
   The `beq` branch at 0xda4157c targets 0xda4159c, is taken when v0(=ret(__glTexGendv_size)) == a0(=0x1), and falls through when v0(=ret(__glTexGendv_size)) != a0(=0x1).
   The `beq` branch at 0xda415b0 targets 0xda41590 and is always taken.
@@ -2911,7 +2911,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 120 bytes.
   The `lw` at 0xda416c8 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda416d0 calls __glTexGenfv_size [0xda15040] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda416e4 calls __gllc_InvalidEnum [0xd98fc20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda416e4 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bgezall` at 0xda41708 calls __gllc_TexGenfv [0xda41720] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-16, a3=?.
   The `beq` branch at 0xda416dc targets 0xda416fc, is taken when v0(=ret(__glTexGenfv_size)) == a0(=0x1), and falls through when v0(=ret(__glTexGenfv_size)) != a0(=0x1).
   The `beq` branch at 0xda41710 targets 0xda416f0 and is always taken.
@@ -2924,7 +2924,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   It occupies 120 bytes.
   The `lw` at 0xda41828 loads 4 bytes from abs 0x1010.
   The `jalr` at 0xda41830 calls __glTexGeniv_size [0xda15080] with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41844 calls __gllc_InvalidEnum [0xd98fc20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda41844 calls __gllc_InvalidEnum [0xd98fc20] with a0=[0x1010], a1=?, a2=?, a3=?.
   The `bgezall` at 0xda41868 calls __gllc_TexGeniv [0xda41880] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-12, a3=?.
   The `beq` branch at 0xda4183c targets 0xda4185c, is taken when v0(=ret(__glTexGeniv_size)) == a0(=0x1), and falls through when v0(=ret(__glTexGeniv_size)) != a0(=0x1).
   The `beq` branch at 0xda41870 targets 0xda41850 and is always taken.
@@ -2938,7 +2938,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda41978 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda419b8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda41984 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda419b4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48ad0, a3=?.
+  The `jalr` at 0xda419b4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48ad0, a3=?.
   The `bne` branch at 0xda4198c targets 0xda419a4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda419bc targets 0xda41998 and is always taken.
   The return at 0xda4199c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2952,7 +2952,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41a28 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41a38 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda419fc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41a34 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48b10, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41a34 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48b10, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41a04 targets 0xda41a18, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41a3c targets 0xda41a0c and is always taken.
   The return at 0xda41a10 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2966,7 +2966,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41aa8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda41ab4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41a78 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41ab0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48b60, a3=?.
+  The `jalr` at 0xda41ab0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48b60, a3=?.
   The `bne` branch at 0xda41a80 targets 0xda41a98, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41ab8 targets 0xda41a8c and is always taken.
   The return at 0xda41a90 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2979,7 +2979,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda41ad8 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda41b18 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda41ae4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41b14 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48bb0, a3=?.
+  The `jalr` at 0xda41b14 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48bb0, a3=?.
   The `bne` branch at 0xda41aec targets 0xda41b00, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41b1c targets 0xda41af4 and is always taken.
   The return at 0xda41af8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2993,7 +2993,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41b88 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41b98 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41b5c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41b94 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48bf0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41b94 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48bf0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41b64 targets 0xda41b7c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41b9c targets 0xda41b70 and is always taken.
   The return at 0xda41b74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3007,7 +3007,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41c08 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41c18 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41bdc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41c14 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48c40, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41c14 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48c40, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41be4 targets 0xda41bf8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41c1c targets 0xda41bec and is always taken.
   The return at 0xda41bf0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3021,7 +3021,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41c88 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41c98 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41c5c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41c94 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48c90, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41c94 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48c90, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41c64 targets 0xda41c7c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41c9c targets 0xda41c70 and is always taken.
   The return at 0xda41c74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3038,7 +3038,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda41d2c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda41d38 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41ce4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41d34 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48ce0, a3=?.
+  The `jalr` at 0xda41d34 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48ce0, a3=?.
   The `bne` branch at 0xda41cec targets 0xda41d00, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41d3c targets 0xda41cf4 and is always taken.
   The return at 0xda41cf8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3052,7 +3052,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41da8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda41db4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41d78 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41db0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48d30, a3=?.
+  The `jalr` at 0xda41db0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48d30, a3=?.
   The `bne` branch at 0xda41d80 targets 0xda41d98, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41db8 targets 0xda41d8c and is always taken.
   The return at 0xda41d90 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3069,7 +3069,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda41e3c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda41e48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41df4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41e44 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48d80, a3=?.
+  The `jalr` at 0xda41e44 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48d80, a3=?.
   The `bne` branch at 0xda41dfc targets 0xda41e10, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41e4c targets 0xda41e04 and is always taken.
   The return at 0xda41e08 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3083,7 +3083,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41eb8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41ec8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41e8c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41ec4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48dd0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41ec4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48dd0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41e94 targets 0xda41eac, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41ecc targets 0xda41ea0 and is always taken.
   The return at 0xda41ea4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3098,7 +3098,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41f40 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sdc1` at 0xda41f4c stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41f08 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41f48 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48e20, a3=0x1.
+  The `jalr` at 0xda41f48 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48e20, a3=0x1.
   The `bne` branch at 0xda41f10 targets 0xda41f24, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41f50 targets 0xda41f18 and is always taken.
   The return at 0xda41f1c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3112,7 +3112,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda41fb8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda41fc8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda41f8c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda41fc4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48e70, a3=a0 at entry (arg0).
+  The `jalr` at 0xda41fc4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48e70, a3=a0 at entry (arg0).
   The `bne` branch at 0xda41f94 targets 0xda41fac, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda41fcc targets 0xda41fa0 and is always taken.
   The return at 0xda41fa4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3129,7 +3129,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sb` at 0xda42060 stores 1 byte to ret(__glDlistAllocOp2) +0x11.
   The `sb` at 0xda4206c stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42018 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42068 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48ec0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3).
+  The `jalr` at 0xda42068 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48ec0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3).
   The `bne` branch at 0xda42020 targets 0xda42034, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42070 targets 0xda42028 and is always taken.
   The return at 0xda4202c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3143,7 +3143,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda420d8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sb` at 0xda420e8 stores 1 byte to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda420ac calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda420e4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48f10, a3=a0 at entry (arg0).
+  The `jalr` at 0xda420e4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48f10, a3=a0 at entry (arg0).
   The `bne` branch at 0xda420b4 targets 0xda420cc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda420ec targets 0xda420c0 and is always taken.
   The return at 0xda420c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3157,7 +3157,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda42158 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda42168 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4212c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42164 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48f60, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42164 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48f60, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42134 targets 0xda42148, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4216c targets 0xda4213c and is always taken.
   The return at 0xda42140 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3172,7 +3172,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda421e8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda421f4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda421b0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda421f0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda48fb0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda421f0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda48fb0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda421b8 targets 0xda421d0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda421f8 targets 0xda421c4 and is always taken.
   The return at 0xda421c8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3185,7 +3185,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda42218 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda42258 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda42224 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42254 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49000, a3=?.
+  The `jalr` at 0xda42254 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49000, a3=?.
   The `bne` branch at 0xda4222c targets 0xda42240, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4225c targets 0xda42234 and is always taken.
   The return at 0xda42238 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3199,7 +3199,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda422c8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda422d8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4229c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda422d4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49040, a3=a0 at entry (arg0).
+  The `jalr` at 0xda422d4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49040, a3=a0 at entry (arg0).
   The `bne` branch at 0xda422a4 targets 0xda422bc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda422dc targets 0xda422b0 and is always taken.
   The return at 0xda422b4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3216,7 +3216,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda4236c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda42378 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42324 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42374 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49090, a3=0x1, a4=a0 at entry (arg0).
+  The `jalr` at 0xda42374 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49090, a3=0x1, a4=a0 at entry (arg0).
   The `bne` branch at 0xda4232c targets 0xda42340, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4237c targets 0xda42334 and is always taken.
   The return at 0xda42338 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3232,7 +3232,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda42404 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda42410 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda423c4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4240c calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda490e0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda4240c calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda490e0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda423cc targets 0xda423e4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42414 targets 0xda423d8 and is always taken.
   The return at 0xda423dc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3252,7 +3252,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda424c0 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda424cc stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42460 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x28, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda424c8 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49130, a3=0x1, a4=a0 at entry (arg0), a5=a3 at entry (arg3).
+  The `jalr` at 0xda424c8 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49130, a3=0x1, a4=a0 at entry (arg0), a5=a3 at entry (arg3).
   The `bne` branch at 0xda42468 targets 0xda4247c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda424d0 targets 0xda42470 and is always taken.
   The return at 0xda42474 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3271,7 +3271,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda42578 stores 4 bytes to ret(__glDlistAllocOp2) +0x18.
   The `swc1` at 0xda42584 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda42520 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42580 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49190, a3=a0 at entry (arg0), a4=a3 at entry (arg3).
+  The `jalr` at 0xda42580 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49190, a3=a0 at entry (arg0), a4=a3 at entry (arg3).
   The `bne` branch at 0xda42528 targets 0xda42540, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42588 targets 0xda42534 and is always taken.
   The return at 0xda42538 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3286,7 +3286,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda425f0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sdc1` at 0xda425fc stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda425b8 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda425f8 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda491f0, a3=0x1.
+  The `jalr` at 0xda425f8 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda491f0, a3=0x1.
   The `bne` branch at 0xda425c0 targets 0xda425d4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42600 targets 0xda425c8 and is always taken.
   The return at 0xda425cc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3302,7 +3302,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `ldc1` at 0xda42674 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `sdc1` at 0xda42684 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4263c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42680 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda491f0, a3=?.
+  The `jalr` at 0xda42680 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda491f0, a3=?.
   The `bne` branch at 0xda42644 targets 0xda4265c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42688 targets 0xda42650 and is always taken.
   The return at 0xda42654 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3316,7 +3316,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda426e8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `swc1` at 0xda426f4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda426b8 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda426f0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49240, a3=?.
+  The `jalr` at 0xda426f0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49240, a3=?.
   The `bne` branch at 0xda426c0 targets 0xda426d4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda426f8 targets 0xda426c8 and is always taken.
   The return at 0xda426cc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3331,7 +3331,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lwc1` at 0xda4275c loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `swc1` at 0xda4276c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4272c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42768 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49240, a3=?.
+  The `jalr` at 0xda42768 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49240, a3=?.
   The `bne` branch at 0xda42734 targets 0xda4274c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42770 targets 0xda42740 and is always taken.
   The return at 0xda42744 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3347,7 +3347,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda427ec stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda427f8 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda427ac calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda427f4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49290, a3=0x1.
+  The `jalr` at 0xda427f4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49290, a3=0x1.
   The `bne` branch at 0xda427b4 targets 0xda427c8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda427fc targets 0xda427bc and is always taken.
   The return at 0xda427c0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3365,7 +3365,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `ldc1` at 0xda4287c loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `sdc1` at 0xda4288c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `jalr` at 0xda4283c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42888 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49290, a3=?.
+  The `jalr` at 0xda42888 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49290, a3=?.
   The `bne` branch at 0xda42844 targets 0xda4285c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42890 targets 0xda42850 and is always taken.
   The return at 0xda42854 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3380,7 +3380,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda42904 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda42910 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda428cc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda4290c calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda492e0, a3=?.
+  The `jalr` at 0xda4290c calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda492e0, a3=?.
   The `bne` branch at 0xda428d4 targets 0xda428e8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42914 targets 0xda428dc and is always taken.
   The return at 0xda428e0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3397,7 +3397,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lwc1` at 0xda42984 loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `swc1` at 0xda42994 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda4294c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42990 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda492e0, a3=?.
+  The `jalr` at 0xda42990 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda492e0, a3=?.
   The `bne` branch at 0xda42954 targets 0xda4296c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42998 targets 0xda42960 and is always taken.
   The return at 0xda42964 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3413,7 +3413,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42a14 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42a20 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda429d4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42a1c calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49330, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
+  The `jalr` at 0xda42a1c calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49330, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
   The `bne` branch at 0xda429dc targets 0xda429f0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42a24 targets 0xda429e4 and is always taken.
   The return at 0xda429e8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3427,7 +3427,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda42a88 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda42a98 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42a5c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42a94 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49380, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42a94 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49380, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42a64 targets 0xda42a7c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42a9c targets 0xda42a70 and is always taken.
   The return at 0xda42a74 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3445,7 +3445,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42b3c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42b48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42aec calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42b44 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda493d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3), a7=a4 at entry (arg4).
+  The `jalr` at 0xda42b44 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda493d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3), a7=a4 at entry (arg4).
   The `bne` branch at 0xda42af4 targets 0xda42b08, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42b4c targets 0xda42afc and is always taken.
   The return at 0xda42b00 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3460,7 +3460,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42bc8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42bd4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42b90 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42bd0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49430, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
+  The `jalr` at 0xda42bd0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49430, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
   The `bne` branch at 0xda42b98 targets 0xda42bb0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42bd8 targets 0xda42ba4 and is always taken.
   The return at 0xda42ba8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3475,7 +3475,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42c48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda42c54 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda42c10 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42c50 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49480, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42c50 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49480, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42c18 targets 0xda42c2c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42c58 targets 0xda42c20 and is always taken.
   The return at 0xda42c24 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3490,7 +3490,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42cc8 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42cd4 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42c90 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42cd0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda494d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
+  The `jalr` at 0xda42cd0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda494d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
   The `bne` branch at 0xda42c98 targets 0xda42cb0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42cd8 targets 0xda42ca4 and is always taken.
   The return at 0xda42ca8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3504,7 +3504,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda42d38 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda42d48 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42d0c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42d44 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49520, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42d44 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49520, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42d14 targets 0xda42d28, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42d4c targets 0xda42d1c and is always taken.
   The return at 0xda42d20 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3520,7 +3520,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42dd4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42de0 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42d94 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42ddc calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49570, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
+  The `jalr` at 0xda42ddc calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49570, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
   The `bne` branch at 0xda42d9c targets 0xda42db4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42de4 targets 0xda42da8 and is always taken.
   The return at 0xda42dac has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3536,7 +3536,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42e64 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda42e70 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42e24 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42e6c calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda495c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
+  The `jalr` at 0xda42e6c calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda495c0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2).
   The `bne` branch at 0xda42e2c targets 0xda42e40, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42e74 targets 0xda42e34 and is always taken.
   The return at 0xda42e38 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3550,7 +3550,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda42ed8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda42ee8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42eac calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42ee4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49610, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42ee4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49610, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42eb4 targets 0xda42ecc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42eec targets 0xda42ec0 and is always taken.
   The return at 0xda42ec4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3565,7 +3565,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda42f64 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda42f70 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda42f2c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42f6c calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49660, a3=?.
+  The `jalr` at 0xda42f6c calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49660, a3=?.
   The `bne` branch at 0xda42f34 targets 0xda42f48, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42f74 targets 0xda42f3c and is always taken.
   The return at 0xda42f40 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3580,7 +3580,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda42fe8 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `swc1` at 0xda42ff4 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0xda42fb0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda42ff0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda496b0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda42ff0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda496b0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda42fb8 targets 0xda42fd0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda42ff8 targets 0xda42fc4 and is always taken.
   The return at 0xda42fc8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3595,7 +3595,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda43068 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda43074 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43030 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43070 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49700, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
+  The `jalr` at 0xda43070 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49700, a3=a0 at entry (arg0), a4=a1 at entry (arg1).
   The `bne` branch at 0xda43038 targets 0xda4304c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43078 targets 0xda43040 and is always taken.
   The return at 0xda43044 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3611,7 +3611,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda43114 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda430c0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=(a1 << 0x2)+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda43110 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=0xa6, a4=ret(__glDlistAllocOp2), a5=a0 at entry (arg0), a6=a1 at entry (arg1).
-  The `jalr` at 0xda43124 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda49750, a3=?.
+  The `jalr` at 0xda43124 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49750, a3=?.
   The `jalr` at 0xda43138 calls __gllc_InvalidValue [0xd98fbc0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bltz` branch at 0xda430b0 targets 0xda43134, is taken when s1(=(a1 << 0x2)) < 0 (signed), and falls through when s1(=(a1 << 0x2)) >= 0 (signed).
   The `bne` branch at 0xda430c8 targets 0xda430e8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -3630,7 +3630,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda431e4 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda43190 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=(a1 << 0x2)+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda431e0 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=(a1 << 0x2), a3=0xa7, a4=ret(__glDlistAllocOp2), a5=a0 at entry (arg0), a6=a1 at entry (arg1).
-  The `jalr` at 0xda431f4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda497b0, a3=?.
+  The `jalr` at 0xda431f4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda497b0, a3=?.
   The `jalr` at 0xda43208 calls __gllc_InvalidValue [0xd98fbc0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bltz` branch at 0xda43180 targets 0xda43204, is taken when s1(=(a1 << 0x2)) < 0 (signed), and falls through when s1(=(a1 << 0x2)) >= 0 (signed).
   The `bne` branch at 0xda43198 targets 0xda431b8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -3649,7 +3649,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda432c0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4326c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda432bc calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a2 at entry (arg2), a2=?, a3=?.
-  The `jalr` at 0xda432d0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=?, a2=0xda49810, a3=?.
+  The `jalr` at 0xda432d0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49810, a3=?.
   The `jalr` at 0xda432e4 calls __gllc_InvalidValue [0xd98fbc0] with a0=[0x1010], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bltz` branch at 0xda4325c targets 0xda432e0, is taken when s1(?) < 0 (signed), and falls through when s1(?) >= 0 (signed).
   The `bne` branch at 0xda43274 targets 0xda43294, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
@@ -3666,7 +3666,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda43358 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda43368 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4332c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43364 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49880, a3=a0 at entry (arg0).
+  The `jalr` at 0xda43364 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49880, a3=a0 at entry (arg0).
   The `bne` branch at 0xda43334 targets 0xda4334c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4336c targets 0xda43340 and is always taken.
   The return at 0xda43344 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3684,7 +3684,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sw` at 0xda4340c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `sw` at 0xda43418 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda433bc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x14, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43414 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda498d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3), a7=a4 at entry (arg4).
+  The `jalr` at 0xda43414 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda498d0, a3=a0 at entry (arg0), a4=a1 at entry (arg1), a5=a2 at entry (arg2), a6=a3 at entry (arg3), a7=a4 at entry (arg4).
   The `bne` branch at 0xda433c4 targets 0xda433d8, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4341c targets 0xda433cc and is always taken.
   The return at 0xda433d0 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3700,7 +3700,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda4349c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda434a8 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4345c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda434a4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49930, a3=0x1.
+  The `jalr` at 0xda434a4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49930, a3=0x1.
   The `bne` branch at 0xda43464 targets 0xda4347c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda434ac targets 0xda43470 and is always taken.
   The return at 0xda43474 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3720,7 +3720,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda4355c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda43568 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda434fc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43564 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49980, a3=0x1.
+  The `jalr` at 0xda43564 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49980, a3=0x1.
   The `bne` branch at 0xda43504 targets 0xda43518, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4356c targets 0xda4350c and is always taken.
   The return at 0xda43510 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3733,7 +3733,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda43598 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda435d8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda435a4 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda435d4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda499e0, a3=?.
+  The `jalr` at 0xda435d4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda499e0, a3=?.
   The `bne` branch at 0xda435ac targets 0xda435c4, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda435dc targets 0xda435b8 and is always taken.
   The return at 0xda435bc has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3747,7 +3747,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda43768 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `sw` at 0xda43778 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda4373c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x4, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43774 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49ac0, a3=a0 at entry (arg0).
+  The `jalr` at 0xda43774 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49ac0, a3=a0 at entry (arg0).
   The `bne` branch at 0xda43744 targets 0xda43758, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4377c targets 0xda4374c and is always taken.
   The return at 0xda43750 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3761,7 +3761,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda437f8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda437bc calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda437f4 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=0xb2, a4=ret(__glDlistAllocOp2).
-  The `jalr` at 0xda43808 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49b10, a3=?.
+  The `jalr` at 0xda43808 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49b10, a3=?.
   The `bne` branch at 0xda437c4 targets 0xda437dc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43810 targets 0xda437d0 and is always taken.
   The return at 0xda437d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3776,7 +3776,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sh` at 0xda43890 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4384c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda4388c calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=0xb3, a4=ret(__glDlistAllocOp2), a5=0x1.
-  The `jalr` at 0xda438a0 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49b60, a3=?.
+  The `jalr` at 0xda438a0 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49b60, a3=?.
   The `bne` branch at 0xda43854 targets 0xda4386c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda438a8 targets 0xda43860 and is always taken.
   The return at 0xda43864 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3796,7 +3796,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda4394c stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda43958 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda438ec calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x30, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43954 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49bb0, a3=0x1.
+  The `jalr` at 0xda43954 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49bb0, a3=0x1.
   The `bne` branch at 0xda438f4 targets 0xda4390c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda4395c targets 0xda43900 and is always taken.
   The return at 0xda43904 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3809,7 +3809,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda43988 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda439c8 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda43994 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda439c4 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49c10, a3=?.
+  The `jalr` at 0xda439c4 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49c10, a3=?.
   The `bne` branch at 0xda4399c targets 0xda439b0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda439cc targets 0xda439a4 and is always taken.
   The return at 0xda439a8 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3822,7 +3822,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `lw` at 0xda439f8 loads 4 bytes from abs 0x1010.
   The `sh` at 0xda43a38 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda43a04 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43a34 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49c50, a3=?.
+  The `jalr` at 0xda43a34 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49c50, a3=?.
   The `bne` branch at 0xda43a0c targets 0xda43a24, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43a3c targets 0xda43a18 and is always taken.
   The return at 0xda43a1c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3840,7 +3840,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda43ad4 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda43ae0 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43a84 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x20, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43adc calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49c90, a3=0x1.
+  The `jalr` at 0xda43adc calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49c90, a3=0x1.
   The `bne` branch at 0xda43a8c targets 0xda43aa0, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43ae4 targets 0xda43a94 and is always taken.
   The return at 0xda43a98 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3857,7 +3857,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda43b6c stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda43b78 stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43b24 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x10, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43b74 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49ce0, a3=?.
+  The `jalr` at 0xda43b74 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49ce0, a3=?.
   The `bne` branch at 0xda43b2c targets 0xda43b44, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43b7c targets 0xda43b38 and is always taken.
   The return at 0xda43b3c has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3874,7 +3874,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda43c08 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda43c14 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43bc0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43c10 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49d30, a3=0x1.
+  The `jalr` at 0xda43c10 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49d30, a3=0x1.
   The `bne` branch at 0xda43bc8 targets 0xda43bdc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43c18 targets 0xda43bd0 and is always taken.
   The return at 0xda43bd4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3890,7 +3890,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda43c90 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda43c9c stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43c50 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43c98 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49d80, a3=?.
+  The `jalr` at 0xda43c98 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49d80, a3=?.
   The `bne` branch at 0xda43c58 targets 0xda43c70, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43ca0 targets 0xda43c64 and is always taken.
   The return at 0xda43c68 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3907,7 +3907,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `sdc1` at 0xda43d28 stores 8 bytes to ret(__glDlistAllocOp2) +0x18.
   The `sdc1` at 0xda43d34 stores 8 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43ce0 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x18, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43d30 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49dd0, a3=0x1.
+  The `jalr` at 0xda43d30 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49dd0, a3=0x1.
   The `bne` branch at 0xda43ce8 targets 0xda43cfc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43d38 targets 0xda43cf0 and is always taken.
   The return at 0xda43cf4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3923,7 +3923,7 @@ Skipped 9,081 located, 12,633 understood, and 8 no-software-dependency rows by s
   The `swc1` at 0xda43db0 stores 4 bytes to ret(__glDlistAllocOp2) +0x14.
   The `swc1` at 0xda43dbc stores 4 bytes to ret(__glDlistAllocOp2) +0x10.
   The `jalr` at 0xda43d70 calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0xc, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda43db8 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=ret(__glDlistAllocOp2), a2=0xda49e20, a3=?.
+  The `jalr` at 0xda43db8 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49e20, a3=?.
   The `bne` branch at 0xda43d78 targets 0xda43d90, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43dc0 targets 0xda43d84 and is always taken.
   The return at 0xda43d88 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).

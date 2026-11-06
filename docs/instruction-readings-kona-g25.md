@@ -880,7 +880,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10039fc4 calls XtVaSetValues with a0=[a0+136], a1=sym(_XmStrings)+10305, a2=[a0+164], a3=0x0.
   The `jalr` at 0x10039fd8 calls baseWidget__10VkMenuItemCGv with a0=[a0+260], a1=?, a2=?, a3=?.
   The `jalr` at 0x10039ff0 calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003a0f0 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x1003a0f0 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1003a104 calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003a20c calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1003a244 calls XtVaSetValues with a0=[a0+68], a1=sym(_XmStrings)+10305, a2=[a0+64], a3=sym(_XmStrings)+7562, a4=[a0+64], a5=0x0.
@@ -1674,7 +1674,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x1003c428 calls __ct__5Form2GPCcP10_WidgetRec [0x1003c1f0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x1003c408 targets 0x1003c444, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x1003c43c targets 0x1003c448 and is always taken.
-  The return at 0x1003c470 has v0 = one of ?, 0x0.
+  The return at 0x1003c470 has v0 = one of ret(__nw__GUi), 0x0.
   The instructions from 0x1003c478 to 0x1003c488 are not reached by any path from the entry, and their branches are not listed.
 - `update__5Form2Gv` in `usr/gfx/ircombine` at 0x1003c4d0 (n32).
   Evidence grade: inferred.
@@ -1990,7 +1990,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x1003d5f8 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+100], a1=0x1, a2=?, a3=?.
   The `jal` at 0x1003d614 calls (unnamed) [0x1003dcd0] with a0=[sym(sffb)], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003d628 calls basename with a0=ret(0x1003dcd0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1003d63c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=?, a1=ret(basename), a2=?, a3=?.
+  The `jal` at 0x1003d63c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=ret(basename), a2=?, a3=?.
   The `jalr` at 0x1003d66c calls (unknown callee) with a0=([[a0+8]+276] + a0), a1=a1 at entry (arg1), a2=0x0, a3=?.
   The `jal` at 0x1003d67c calls update__5Form2Gv [0x1003c4d0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1003d484 targets 0x1003d49c, is taken when a1(=ret(getenv)) == 0, and falls through when a1(=ret(getenv)) != 0.
@@ -2593,7 +2593,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x100412f8 calls clampManagedArea__18GlobalsWindowClassGv [0x1004c1d0] with a0=[a0+44704], a1=a0 at entry (arg0), a2=?, a3=a0+44704, a4=a0 at entry (arg0).
   The `jalr` at 0x1004130c calls __nw__GUi with a0=0x50, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004133c calls baseWidget__11VkComponentCGv with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=ret(__nw__GUi), a6=0x1.
-  The `jalr` at 0x1004135c calls __ct__11VkPopupMenuGP10_WidgetRecP10VkMenuDescPv with a0=?, a1=ret(baseWidget__11VkComponentCGv), a2=sym(gl_menu__5Frame), a3=a0 at entry (arg0).
+  The `jalr` at 0x1004135c calls __ct__11VkPopupMenuGP10_WidgetRecP10VkMenuDescPv with a0=ret(__nw__GUi), a1=ret(baseWidget__11VkComponentCGv), a2=sym(gl_menu__5Frame), a3=a0 at entry (arg0).
   The `jalr` at 0x10041398 calls getTheErrorDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100413b0 calls setTitle__15VkDialogManagerGPCc with a0=ret(getTheErrorDialog__Gv), a1=0x100aa5b8, a2=?, a3=?.
   The `jalr` at 0x100413c4 calls __nw__GUi with a0=0x44, a1=?, a2=?, a3=?.
@@ -2865,7 +2865,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10042920 calls (unknown callee) with a0=([[ret(getTheErrorDialog__Gv)+8]+264] + ret(getTheErrorDialog__Gv)), a1=0x10097928, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x10042aec calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=?, a1=?, a2=?, a3=?, a6=0xab0.
   The `jalr` at 0x10042b0c calls VkGetResource__GPCcT1 with a0=0x10097898, a1=0x100978a8, a2=?, a3=?.
-  The `jal` at 0x10042b24 calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x10042b24 calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10042b34 calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x10042b48 calls getTheErrorDialog__Gv with a0=[[a0+152]+16], a1=[a0+264], a2=?, a3=?.
   The `jalr` at 0x10042b88 calls (unknown callee) with a0=([[ret(getTheErrorDialog__Gv)+8]+264] + ret(getTheErrorDialog__Gv)), a1=0x10097940, a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
@@ -3087,15 +3087,15 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   Range: 0x100439c0-0x10043c44 (644 bytes).
   It occupies 644 bytes.
   12 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10043a08, `lw` at 0x10043a2c, `lw` at 0x10043a50.
-  The `sw` at 0x10043ac4 stores 4 bytes to table(0xae64) +0x0.
+  The `sw` at 0x10043ac4 stores 4 bytes to ?.
   The `lw` at 0x10043c08 loads 4 bytes from a0 (arg0 at entry) +0xaea0.
   The `jalr` at 0x10043aa4 calls (unknown callee) with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10043b38 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10043b58 calls VkGetResource__GPCcT1 with a0=0x10097898, a1=0x100978a8, a2=?, a3=?.
-  The `jal` at 0x10043b74 calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x10043b74 calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10043b9c calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10043bbc calls VkGetResource__GPCcT1 with a0=0x10097878, a1=0x10097888, a2=?, a3=?.
-  The `jal` at 0x10043bd8 calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x10043bd8 calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10043c10 calls update__18GlobalsWindowClassGv [0x1004c180] with a0=[a0+44704], a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x10043c20 calls setTitle__5FrameGv [0x10049500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x100439e8 targets 0x10043ae4 and is never taken: its condition can never hold for these operands, so execution always falls through.
@@ -3122,12 +3122,12 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   2 such `lw` accesses load 4 bytes from sym(vkwindow) +0x0, including `lw` at 0x10044784, `lw` at 0x10044820.
   2 such `lw` accesses load 4 bytes from [sym(vkwindow)] +0x44, including `lw` at 0x10044788, `lw` at 0x10044824.
   The `lw` at 0x10044850 loads 4 bytes from [a0+152] +0x10.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10044874, `lw` at 0x1004494c.
-  8 such `lw` accesses load 4 bytes from table(0xae64) +0x0, including `lw` at 0x100448a0, `lw` at 0x100448c4, `lw` at 0x100448e8.
-  4 such `lw` accesses load 4 bytes from entry(0xae64) +0x8, including `lw` at 0x100448c8, `lw` at 0x1004490c, `lw` at 0x100449c0.
-  2 such `lw` accesses load 4 bytes from [entry(0xae64)+8] +0xe4, including `lw` at 0x100448cc, `lw` at 0x100449c4.
-  2 such `lw` accesses load 4 bytes from [entry(0xae64)+8] +0xec, including `lw` at 0x10044910, `lw` at 0x10044a08.
+  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10044874, `lw` at 0x100448a0, `lw` at 0x100448c4.
   The `sw` at 0x1004497c stores 4 bytes to ?.
+  4 such `lw` accesses load 4 bytes from table(0xae64) +0x0, including `lw` at 0x10044998, `lw` at 0x100449bc, `lw` at 0x100449e0.
+  2 such `lw` accesses load 4 bytes from entry(0xae64) +0x8, including `lw` at 0x100449c0, `lw` at 0x10044a04.
+  The `lw` at 0x100449c4 loads 4 bytes from [entry(0xae64)+8] +0xe4.
+  The `lw` at 0x10044a08 loads 4 bytes from [entry(0xae64)+8] +0xec.
   5 such `lw` accesses load 4 bytes from [a0+152] +0x18, including `lw` at 0x10044a50, `lw` at 0x10044a68, `lw` at 0x10044a80.
   The `lw` at 0x10044ac4 loads 4 bytes from a0 (arg0 at entry) +0x80.
   The `lw` at 0x10044adc loads 4 bytes from a0 (arg0 at entry) +0x84.
@@ -3174,7 +3174,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10044814 calls XtSetSensitive with a0=[a0+48], a1=0x0, a2=?, a3=?.
   The `jalr` at 0x1004482c calls deactivate__10VkMenuItemGv with a0=[[sym(vkwindow)]+68], a1=?, a2=?, a3=?.
   The `jalr` at 0x10044880 calls XtSetSensitive with a0=?, a1=0x1, a2=?, a3=[[a0+152]+16].
-  The `jalr` at 0x10044914 calls (unknown callee) with a0=([[entry(0xae64)+8]+228] + entry(0xae64)), a1=entry(0xae64), a2=?, a3=?.
+  The `jalr` at 0x10044914 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004492c calls XtSetSensitive with a0=ret(?), a1=0x1, a2=?, a3=?.
   The `jalr` at 0x10044958 calls XtSetSensitive with a0=?, a1=0x0, a2=?, a3=[[a0+152]+16].
   The `jalr` at 0x10044a0c calls (unknown callee) with a0=([[entry(0xae64)+8]+228] + entry(0xae64)), a1=entry(0xae64), a2=?, a3=?, a7=0xab0.
@@ -3201,7 +3201,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `beq` branch at 0x10044798 targets 0x10044834 and is always taken.
   The `beq` branch at 0x10044840 targets 0x10044a48 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1004485c targets 0x1004493c, is taken when a2(?) >= a3(=[[a0+152]+16]) (signed), and falls through when a2(?) < a3(=[[a0+152]+16]) (signed).
-  The `beq` branch at 0x100448a4 targets 0x10044934, is taken when a2(=entry(0xae64)) == 0, and falls through when a2(=entry(0xae64)) != 0.
+  The `beq` branch at 0x100448a4 targets 0x10044934, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10044934 targets 0x10044a2c and is always taken.
   The `beq` branch at 0x1004499c targets 0x10044a2c, is taken when a2(=entry(0xae64)) == 0, and falls through when a2(=entry(0xae64)) != 0.
   The `bne` branch at 0x10044a40 targets 0x10044848, is taken when a3(?) < 0x8 (signed), and falls through when a3(?) >= 0x8 (signed).
@@ -3315,13 +3315,13 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x10045d38 calls clampManagedArea__18GlobalsWindowClassGv [0x1004c1d0] with a0=[a0+44704], a1=a0 at entry (arg0), a2=?, a3=sym(combination).
   The `jal` at 0x10045d64 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[(a0 + (a1 << 0x2))+92], a1=(a1 << 0x2), a2=a1 at entry (arg1), a3=a0 at entry (arg0).
   The `jalr` at 0x10045d84 calls VkGetResource__GPCcT1 with a0=0x10097898, a1=0x100978a8, a2=?, a3=?.
-  The `jal` at 0x10045d9c calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x10045d9c calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10045dac calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10045b94 targets 0x10045db4, is taken when v0(=ret(iGUIReadFormatFile__GPCcP11konFormat_t)) == 0, and falls through when v0(=ret(iGUIReadFormatFile__GPCcP11konFormat_t)) != 0.
   The `beq` branch at 0x10045cb8 targets 0x10045cf0, is taken when a5(=[sym(combination)+260]) >= a6(?) (signed), and falls through when a5(=[sym(combination)+260]) < a6(?) (signed).
   The `beq` branch at 0x10045d08 targets 0x10045d40, is taken when a3(=[sym(combination)+264]) >= a4(?) (signed), and falls through when a3(=[sym(combination)+264]) < a4(?) (signed).
   The `beq` branch at 0x10045dbc targets 0x10045dc4 and is always taken.
-  The return at 0x10045dd4 has v0 = ?.
+  The return at 0x10045dd4 has v0 = ret(iGUIReadFormatFile__GPCcP11konFormat_t).
 - `download__5FrameGP10_WidgetRecPv` in `usr/gfx/ircombine` at 0x10045de0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/ircombine`.
@@ -3405,7 +3405,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `lw` at 0x10046c64 loads 4 bytes from [a0+8] +0x120.
   The `lw` at 0x10046c80 loads 4 bytes from [a0+8] +0x128.
   The `jal` at 0x1004626c calls clamp_channel__5FrameGiN21 [0x10044e90] with a0=a0 at entry (arg0), a1=[a0+264], a2=0x0, a3=0x3.
-  The `jal` at 0x1004643c calls clamp_channel__5FrameGiN21 [0x10044e90] with a0=a0 at entry (arg0), a1=[a0+264], a2=0x1, a3=?.
+  The `jal` at 0x1004643c calls clamp_channel__5FrameGiN21 [0x10044e90] with a0=a0 at entry (arg0), a1=[a0+264], a2=0x1, a3=one of 0x0, 0x1, 0x2, 0x3.
   The `jalr` at 0x10046470 calls XmProcessTraversal with a0=a1 at entry (arg1), a1=0x0, a2=[[a2+4]+52], a3=0x1, a4=[[a2+4]], a5=0x4.
   The `jal` at 0x10046488 calls do_select__5FrameGP7_XEvent [0x100474d0] with a0=a0 at entry (arg0), a1=[a2+4], a2=?, a3=?.
   The `jalr` at 0x10046530 calls XtDisplay with a0=a1 at entry (arg1), a1=?, a2=[a0+264], a3=?.
@@ -3579,7 +3579,9 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   Range: 0x100471a0-0x100474d0 (816 bytes).
   It occupies 816 bytes.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4c, including `lw` at 0x100471cc, `lw` at 0x10047468, `lw` at 0x10047480.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1004724c, `lw` at 0x10047258, `lw` at 0x10047278.
+  The `lw` at 0x1004724c loads 4 bytes from ret(XLoadQueryFont) +0x14.
+  The `lw` at 0x10047258 loads 4 bytes from ret(XLoadQueryFont) +0x18.
+  The `lw` at 0x10047278 loads 4 bytes from ret(XLoadQueryFont) +0x4.
   The `lwc1` at 0x100472bc loads 4 bytes from a0 (arg0 at entry) +0xe4.
   The `lwc1` at 0x100472c4 loads 4 bytes from a0 (arg0 at entry) +0xe8.
   The `lwc1` at 0x100472cc loads 4 bytes from a0 (arg0 at entry) +0xec.
@@ -3591,8 +3593,8 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x100471f4 calls XLoadQueryFont with a0=ret(XtDisplay), a1=0x10097bf0, a2=?, a3=?.
   The `jalr` at 0x10047230 calls fprintf with a0=sym(__iob)+32, a1=0x10097c18, a2=0x10097bf0, a3=?.
   The `jalr` at 0x10047240 calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10047294 calls glXUseXFont with a0=?, a1=?, a2=?, a3=0x1000.
-  The `jalr` at 0x100472a8 calls XFreeFont with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10047294 calls glXUseXFont with a0=[ret(XLoadQueryFont)+4], a1=([ret(XLoadQueryFont)+20] << 0x8), a2=?, a3=0x1000, a4=[ret(XLoadQueryFont)+20].
+  The `jalr` at 0x100472a8 calls XFreeFont with a0=ret(XtDisplay), a1=ret(XLoadQueryFont), a2=?, a3=?.
   The `jalr` at 0x100472d8 calls glClearColor with a0=?, a1=?, a2=?, a3=?, a6=a0 at entry (arg0), a7=a0 at entry (arg0); fp f12=[a0+228], f13=[a0+232], f14=[a0+236], f15=0x3f800000.
   The `jalr` at 0x100472e8 calls glClear with a0=0x4000, a1=?, a2=?, a3=?.
   The `jalr` at 0x100472f8 calls glMatrixMode with a0=0x1701, a1=?, a2=?, a3=?.
@@ -3605,13 +3607,13 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x1004739c calls glBegin with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0x100473cc calls glVertex2i with a0=0x0, a1=?, a2=[sym(combination)+264], a3=[sym(combination)+592].
   The `jalr` at 0x100473f8 calls glVertex2i with a0=[sym(combination)+260]+1, a1=?, a2=[sym(combination)+264], a3=?.
-  The `jalr` at 0x10047414 calls glVertex2i with a0=[sym(combination)+260]+1, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10047414 calls glVertex2i with a0=[sym(combination)+260]+1, a1=[sym(combination)+592], a2=?, a3=?.
   The `jalr` at 0x10047440 calls glVertex2i with a0=[sym(combination)+260]+1, a1=?, a2=[sym(combination)+264], a3=?.
   The `jalr` at 0x1004744c calls glEnd with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1004745c calls draw_rects__5FrameGv [0x10047790] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x10047470 calls XtDisplay with a0=[a0+76], a1=?, a2=?, a3=?.
   The `jalr` at 0x10047488 calls XtWindow with a0=[a0+76], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100474a0 calls glXSwapBuffers with a0=?, a1=ret(XtWindow), a2=?, a3=?.
+  The `jalr` at 0x100474a0 calls glXSwapBuffers with a0=ret(XtDisplay), a1=ret(XtWindow), a2=?, a3=?.
   The `jalr` at 0x100474ac calls glFinish with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0x100471c0 targets 0x100472b8, is taken when at(=[0x100ab090]) != 0, and falls through when at(=[0x100ab090]) == 0.
   The `bne` branch at 0x1004720c targets 0x10047248, is taken when a2(=ret(XLoadQueryFont)) != 0, and falls through when a2(=ret(XLoadQueryFont)) == 0.
@@ -3701,7 +3703,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x10047b14 calls glVertex2i with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10047b3c calls glVertex2i with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10047b48 calls glEnd with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10047bc0 calls glRasterPos2i with a0=?, a1=?, a2=?, a3=?, a4=a0 at entry (arg0), a7=a0 at entry (arg0).
+  The `jalr` at 0x10047bc0 calls glRasterPos2i with a0=?, a1=?, a2=?, a3=?, a4=a0 at entry (arg0), a6=[sym(combination)+592], a7=a0 at entry (arg0).
   The `jalr` at 0x10047bd0 calls strlen with a0=sp-128, a1=?, a2=?, a3=?.
   The `jalr` at 0x10047be8 calls glCallLists with a0=ret(strlen), a1=0x1400, a2=sp-128, a3=?.
   The `jalr` at 0x10047c10 calls glPushName with a0=(a1 << 0x3), a1=?, a2=?, a3=?.
@@ -3797,7 +3799,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x10048694 calls vfcInitKonaCombinationChannel [0x1007e130] with a0=?, a1=a1 at entry (arg1), a2=a1 at entry (arg1), a3=0xab0.
   The `jal` at 0x100486b4 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[(a0 + (a1 << 0x2))+92], a1=(a1 << 0x2), a2=?, a3=?.
   The `jalr` at 0x100486d4 calls VkGetResource__GPCcT1 with a0=0x10097878, a1=0x10097888, a2=?, a3=?.
-  The `jal` at 0x100486ec calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x100486ec calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jalr` at 0x100487a8 calls (unknown callee) with a0=([[[(a0 + (a1 << 0x2))+44644]+8]+12] + [(a0 + (a1 << 0x2))+44644]), a1=0x3, a2=(a0 + (a1 << 0x2)), a3=(a1 << 0x2), a4=0xae64.
   The `beq` branch at 0x10048710 targets 0x100487cc, is taken when a1(=[(a0 + (a1 << 0x2))+44644]) == 0, and falls through when a1(=[(a0 + (a1 << 0x2))+44644]) != 0.
   The `beq` branch at 0x10048734 targets 0x100487b0, is taken when a3(=[(a0 + (a1 << 0x2))+44644]) == 0, and falls through when a3(=[(a0 + (a1 << 0x2))+44644]) != 0.
@@ -4055,7 +4057,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jalr` at 0x1004b070 calls XtAddCallback with a0=?, a1=sym(_XmStrings)+4683, a2=sym(doChannelButtonCallback__7FrameUISGP10_WidgetRecPvT2), a3=a0 at entry (arg0).
   The `jal` at 0x1004b090 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004b0b0 calls VkGetResource__GPCcT1 with a0=0x100980b8, a1=0x100980d0, a2=?, a3=?.
-  The `jal` at 0x1004b0cc calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x1004b0cc calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+100, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `beq` branch at 0x1004af90 targets 0x1004b0f0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `bne` branch at 0x1004b0e8 targets 0x1004af98, is taken when a1(?) < 0xf (signed), and falls through when a1(?) >= 0xf (signed).
   The `beq` branch at 0x1004b0f0 targets 0x1004b0f8 and is always taken.

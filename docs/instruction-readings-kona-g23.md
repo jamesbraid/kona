@@ -27,7 +27,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   Exact binary: `usr/gfx/ircombine`.
   Range: 0x100203f0-0x10020514 (292 bytes).
   It occupies 292 bytes.
-  4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10020454, `lbu` at 0x10020470, `lbu` at 0x10020484.
+  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10020470, `lbu` at 0x10020484, `lbu` at 0x1002049c.
   2 such `sb` accesses store 1 byte to ?, including `sb` at 0x100204b4, `sb` at 0x100204c4.
   The `jalr` at 0x10020448 calls vsprintf with a0=sp-1128, a1=a0 at entry (arg0), a2=sp-56, a3=a3 at entry (arg3).
   The `jalr` at 0x100204e0 calls fprintf with a0=sym(__iob)+32, a1=0x10094038, a2=sp-1128, a3=?.
@@ -212,9 +212,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10021c50 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x10021c80 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10021d04 calls XtSetSensitive with a0=[a0+104], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x10021d1c calls XtSetSensitive with a0=[a0+92], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10021d34 calls XtSetSensitive with a0=[a0+56], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10021d4c calls XtSetSensitive with a0=[a0+120], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021d1c calls XtSetSensitive with a0=[a0+92], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x10021d34 calls XtSetSensitive with a0=[a0+56], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x10021d4c calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?.
   The `beq` branch at 0x100218d8 targets 0x100218f8, is taken when a1(=[[a0+280]+652]) == a2(=0x1), and falls through when a1(=[[a0+280]+652]) != a2(=0x1).
   The `beq` branch at 0x100218e8 targets 0x10021918, is taken when a2(=[[a0+280]+652]) == a3(=0x3), and falls through when a2(=[[a0+280]+652]) != a3(=0x3).
   The `beq` branch at 0x100218f0 targets 0x10021938 and is always taken.
@@ -934,7 +934,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jalr` at 0x10026ee8 calls XtVaSetValues with a0=[a0+72], a1=sym(_XmStrings)+10305, a2=[a0+168], a3=0x0.
   The `jalr` at 0x10026efc calls baseWidget__10VkMenuItemCGv with a0=[a0+212], a1=?, a2=?, a3=?.
   The `jalr` at 0x10026f14 calls baseWidget__10VkMenuItemCGv with a0=[a0+208], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10027014 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x10027014 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10027028 calls baseWidget__10VkMenuItemCGv with a0=[a0+208], a1=?, a2=?, a3=?.
   The `jalr` at 0x10027130 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10027168 calls XtVaSetValues with a0=[a0+68], a1=sym(_XmStrings)+10305, a2=[a0+44], a3=sym(_XmStrings)+7562, a4=[a0+44], a5=0x0.
@@ -1583,7 +1583,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10028d48 calls __ct__11EncoderFormGPCcP10_WidgetRec [0x10028b00] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=?.
   The `beq` branch at 0x10028d28 targets 0x10028d64, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x10028d5c targets 0x10028d68 and is always taken.
-  The return at 0x10028d90 has v0 = one of ?, 0x0.
+  The return at 0x10028d90 has v0 = one of ret(__nw__GUi), 0x0.
   The instructions from 0x10028d98 to 0x10028da8 are not reached by any path from the entry, and their branches are not listed.
 - `update__11EncoderFormGv` in `usr/gfx/ircombine` at 0x10028df0 (n32).
   Evidence grade: inferred.
@@ -1720,9 +1720,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x100295cc calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x100295fc calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10029680 calls XtSetSensitive with a0=[a0+172], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x10029698 calls XtSetSensitive with a0=[a0+120], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100296b0 calls XtSetSensitive with a0=[a0+40], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100296c8 calls XtSetSensitive with a0=[a0+200], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10029698 calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x100296b0 calls XtSetSensitive with a0=[a0+40], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x100296c8 calls XtSetSensitive with a0=[a0+200], a1=one of 0x0, 0x1, a2=?, a3=?.
   The `bne` branch at 0x10028f78 targets 0x10029048, is taken when a1(=[[a0+464]+260]) != a2(=0x8), and falls through when a1(=[[a0+464]+260]) == a2(=0x8).
   The `beq` branch at 0x10029040 targets 0x1002911c and is always taken.
   The `bc1f` branch at 0x100294c4 targets 0x100294e4, is taken when not (f3(=[[a0+464]+644]) < f4(=0x42480000) (c.lt.s at 0x100294bc)), and falls through when f3(=[[a0+464]+644]) < f4(=0x42480000) (c.lt.s at 0x100294bc).
@@ -2111,9 +2111,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   2 such `lw` accesses load 4 bytes from sym(vkwindow) +0x0, including `lw` at 0x1002ab14, `lw` at 0x1002ab34.
   The `jalr` at 0x1002a6ac calls getItemPosition__6VkMenuGP10_WidgetRec with a0=[a0+256], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x86a10.
   The `jalr` at 0x1002a790 calls sprintf with a0=sp-1096, a1=0x10095068, a2=[(sym(konCHANNEL_NAME_strings) + ([[a0+464]+260] << 0x2))], a3=([[a0+464]+260] << 0x2), a6=[[a0+464]+260].
-  The `jalr` at 0x1002a7ac calls getTheErrorDialog__Gv with a0=?, a1=?, a2=?, a3=[a0+464].
+  The `jalr` at 0x1002a7ac calls getTheErrorDialog__Gv with a0=?, a1=?, a2=[[a0+464]+260], a3=[a0+464].
   The `jalr` at 0x1002a7c4 calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
-  The `jal` at 0x1002a7e0 calls (unnamed) [0x1002b690] with a0=?, a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
+  The `jal` at 0x1002a7e0 calls (unnamed) [0x1002b690] with a0=ret(getTheErrorDialog__Gv), a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
   The `jalr` at 0x1002a810 calls set__12VkOptionMenuGi with a0=[a0+256], a1=[(a0 + ([[a0+464]+260] << 0x2))+396], a2=([[a0+464]+260] << 0x2), a3=?.
   The `jalr` at 0x1002a9d0 calls XtSetSensitive with a0=[a0+68], a1=0x0, a2=?, a3=[[a0+464]+260], a4=0x8.
   The `jalr` at 0x1002a9e8 calls XtSetSensitive with a0=[a0+72], a1=0x0, a2=?, a3=?.
@@ -2134,11 +2134,11 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `beq` branch at 0x1002a6fc targets 0x1002a734, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `bne` branch at 0x1002a72c targets 0x1002a820, is taken when a7(?) != 0, and falls through when a7(?) == 0.
   The `beq` branch at 0x1002a744 targets 0x1002a820, is taken when t0(=[[a0+464]+260]) == t1(=0x8), and falls through when t0(=[[a0+464]+260]) != t1(=0x8).
-  The `beq` branch at 0x1002a75c targets 0x1002a820, is taken when t1(=[[a0+464]+260]) == t2(?), and falls through when t1(=[[a0+464]+260]) != t2(?).
+  The `beq` branch at 0x1002a75c targets 0x1002a820, is taken when t1(=[[a0+464]+260]) == t2(=[[a0+464]+260]), and falls through when t1(=[[a0+464]+260]) != t2(=[[a0+464]+260]).
   The `beq` branch at 0x1002a818 targets 0x1002ab4c and is always taken.
-  The `beq` branch at 0x1002a828 targets 0x1002a848, is taken when a1(?) == a2(=0x8), and falls through when a1(?) != a2(=0x8).
+  The `beq` branch at 0x1002a828 targets 0x1002a848, is taken when a1(=[[a0+464]+260]) == a2(=0x8), and falls through when a1(=[[a0+464]+260]) != a2(=0x8).
   The `bne` branch at 0x1002a840 targets 0x1002a9a8, is taken when a3(=[[a0+464]+260]) != a4(=0x8), and falls through when a3(=[[a0+464]+260]) == a4(=0x8).
-  The `bne` branch at 0x1002a850 targets 0x1002a888, is taken when a4(?) != a5(=0x8), and falls through when a4(?) == a5(=0x8).
+  The `bne` branch at 0x1002a850 targets 0x1002a888, is taken when a4(=[[a0+464]+260]) != a5(=0x8), and falls through when a4(=[[a0+464]+260]) == a5(=0x8).
   The `beq` branch at 0x1002a880 targets 0x1002a8f0 and is always taken.
   The `bne` branch at 0x1002a900 targets 0x1002a938, is taken when t3(=[[a0+464]+260]) != t8(=0x8), and falls through when t3(=[[a0+464]+260]) == t8(=0x8).
   The `beq` branch at 0x1002a930 targets 0x1002a9a8 and is always taken.
@@ -2628,7 +2628,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jalr` at 0x1002ffe0 calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
   The `jalr` at 0x1002fff8 calls baseWidget__10VkMenuItemCGv with a0=[a0+244], a1=?, a2=?, a3=?.
   The `jalr` at 0x10030010 calls baseWidget__10VkMenuItemCGv with a0=[a0+244], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10030108 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x10030108 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1003011c calls baseWidget__10VkMenuItemCGv with a0=[a0+244], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003020c calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x3, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x1, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x10030244 calls XtVaSetValues with a0=[a0+36], a1=sym(_XmStrings)+10305, a2=[a0+168], a3=sym(_XmStrings)+7562, a4=[a0+120], a5=0x0.
@@ -2647,7 +2647,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jalr` at 0x100304ac calls XtVaSetValues with a0=[a0+136], a1=sym(_XmStrings)+10305, a2=[a0+164], a3=0x0.
   The `jalr` at 0x100304c0 calls baseWidget__10VkMenuItemCGv with a0=[a0+264], a1=?, a2=?, a3=?.
   The `jalr` at 0x100304d8 calls baseWidget__10VkMenuItemCGv with a0=[a0+260], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100305d8 calls XtVaSetValues with a0=?, a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
+  The `jalr` at 0x100305d8 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x100305ec calls baseWidget__10VkMenuItemCGv with a0=[a0+260], a1=?, a2=?, a3=?.
   The `jalr` at 0x100306f4 calls XtVaSetValues with a0=ret(baseWidget__10VkMenuItemCGv), a1=sym(_XmStrings)+10165, a2=0x4, a3=sym(_XmStrings)+5017, a4=0x0, a5=sym(_XmStrings)+7523, a6=0x3, a7=sym(_XmStrings)+9077.
   The `jalr` at 0x1003072c calls XtVaSetValues with a0=[a0+60], a1=sym(_XmStrings)+10305, a2=[a0+56], a3=sym(_XmStrings)+7562, a4=[a0+56], a5=0x0.
@@ -3451,7 +3451,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10032e6c calls __ct__5Form1GPCcP10_WidgetReci [0x10032c10] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=a1 at entry (arg1), a3=0x0.
   The `beq` branch at 0x10032e48 targets 0x10032e88, is taken when v0(=ret(__nw__GUi)) == 0, and falls through when v0(=ret(__nw__GUi)) != 0.
   The `beq` branch at 0x10032e80 targets 0x10032e8c and is always taken.
-  The return at 0x10032eb4 has v0 = one of ?, 0x0.
+  The return at 0x10032eb4 has v0 = one of ret(__nw__GUi), 0x0.
   The instructions from 0x10032ebc to 0x10032ecc are not reached by any path from the entry, and their branches are not listed.
 - `update__5Form1Gv` in `usr/gfx/ircombine` at 0x10032f10 (n32).
   Evidence grade: inferred.
@@ -3572,9 +3572,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10033580 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x100335b0 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10033634 calls XtSetSensitive with a0=[a0+172], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x1003364c calls XtSetSensitive with a0=[a0+116], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10033664 calls XtSetSensitive with a0=[a0+40], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1003367c calls XtSetSensitive with a0=[a0+216], a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003364c calls XtSetSensitive with a0=[a0+116], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x10033664 calls XtSetSensitive with a0=[a0+40], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x1003367c calls XtSetSensitive with a0=[a0+216], a1=one of 0x0, 0x1, a2=?, a3=?.
   The `beq` branch at 0x100330b0 targets 0x100330d0, is taken when a1(=[[a0+328]+652]) == a2(=0x1), and falls through when a1(=[[a0+328]+652]) != a2(=0x1).
   The `beq` branch at 0x100330c0 targets 0x100330f0, is taken when a2(=[[a0+328]+652]) == a3(=0x3), and falls through when a2(=[[a0+328]+652]) != a3(=0x3).
   The `beq` branch at 0x100330c8 targets 0x10033110 and is always taken.

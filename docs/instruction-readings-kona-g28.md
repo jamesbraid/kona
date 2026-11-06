@@ -23,12 +23,17 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd80da18 stores 4 bytes to [a0+108] +0x4.
   11 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd80da38, `lw` at 0xd80da50, `lw` at 0xd80da8c.
   6 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd80da3c, `lw` at 0xd80da90, `lw` at 0xd80dadc.
-  32 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80dc34, `sw` at 0xd80dc48, `sw` at 0xd80dc74.
+  The `sw` at 0xd80dc34 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0xc.
+  The `sw` at 0xd80dc48 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x10.
+  30 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80dc74, `sw` at 0xd80dc78, `sw` at 0xd80dda0.
   8 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0xd80dc7c, `sdc1` at 0xd80dc80, `sdc1` at 0xd80dc84.
-  15 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80dcfc, `lw` at 0xd80dd00, `lw` at 0xd80deb0.
+  The `lw` at 0xd80dcfc loads 4 bytes from ret(malloc) +0x0.
+  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80dd00, `lw` at 0xd80deb0, `lw` at 0xd80deb4.
   The `lw` at 0xd80dd5c loads 4 bytes from (table(-0x800b) << 0x2) +0xd841b3c.
   The `lw` at 0xd80dd84 loads 4 bytes from table(0xd841bb4) +0x0.
   7 such `sb` accesses store 1 byte to ?, including `sb` at 0xd80ddb0, `sb` at 0xd80ddb8, `sb` at 0xd80dec8.
+  The `lw` at 0xd80df5c loads 4 bytes from ([a1+32] + (a2 << 0x5)) +0xc.
+  The `lw` at 0xd80df60 loads 4 bytes from [([a1+32] + (a2 << 0x5))+12] +0x20.
   The `lw` at 0xd80dfa4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x14.
   The `lw` at 0xd80dfac loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x18.
   The `lw` at 0xd80dfb4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x1c.
@@ -45,16 +50,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd80db4c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80db68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dba0 calls malloc with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd80dbc0 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd80dbc0 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dbe0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dbfc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dc20 calls memset with a0=ret(malloc), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0xd80dcb8 calls _XRead with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd80dcb8 calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=?, a3=ret(malloc).
   Calls (unknown callee) via register with a0=?, a1=?, a2=?, a3=? (`jr` at 0xd80dd64).
   The `jalr` at 0xd80df44 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80df90 calls __glXOverrideVisualGetVisualInfo with a0=a0 at entry (arg0), a1=0x3, a2=sp-120, a3=sp-124.
   The `jalr` at 0xd80dfc4 calls free with a0=ret(__glXOverrideVisualGetVisualInfo), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd80dfec calls XFree with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd80dfec calls XFree with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80e008 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beql` branch at 0xd80d984 targets 0xd80d9a0, is taken when v0(=[a0+1232]) == 0, and falls through when v0(=[a0+1232]) != 0; its branch-likely delay slot `lw v1,108(s2)` at 0xd80d988 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd80d9ac targets 0xd80d9d0, is taken when t5(=[a0+112]) >= t7(=[a0+108]+8) (unsigned), and falls through when t5(=[a0+112]) < t7(=[a0+108]+8) (unsigned); its branch-likely delay slot `sw v1,100(s2)` at 0xd80d9b0 runs only when taken and is annulled on fall-through.
@@ -129,9 +134,6 @@ These entries record instruction facts rendered from the routines below. They de
   The instructions from 0xd80de64 to 0xd80de88 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80de9c to 0xd80dea4 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
-  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
-  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
-  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
 
 - `GetVisualConfigs` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd80e030 (o32).
   Evidence grade: inferred.
@@ -154,7 +156,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd80e110 stores 4 bytes to [a0+108] +0x4.
   11 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd80e130, `lw` at 0xd80e148, `lw` at 0xd80e184.
   6 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd80e134, `lw` at 0xd80e188, `lw` at 0xd80e1d4.
-  33 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80e324, `sw` at 0xd80e334, `sw` at 0xd80e344.
+  The `sw` at 0xd80e324 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x4.
+  The `sw` at 0xd80e334 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x8.
+  31 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80e344, `sw` at 0xd80e348, `sw` at 0xd80e388.
   The `lw` at 0xd80e374 loads 4 bytes from ret(malloc) +0x0.
   The `lw` at 0xd80e38c loads 4 bytes from ret(malloc) +0x4.
   The `lw` at 0xd80e39c loads 4 bytes from ret(malloc) +0x8.
@@ -174,9 +178,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd80e418 loads 4 bytes from ret(malloc) +0x3c.
   The `lw` at 0xd80e420 loads 4 bytes from ret(malloc) +0x40.
   The `lw` at 0xd80e428 loads 4 bytes from ret(malloc) +0x44.
-  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80e434, `lw` at 0xd80e438, `lw` at 0xd80e500.
+  The `lw` at 0xd80e434 loads 4 bytes from ret(malloc) +0x48.
+  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80e438, `lw` at 0xd80e500, `lw` at 0xd80e514.
   The `lw` at 0xd80e498 loads 4 bytes from table(0xd841a04) +0x0.
   The `lbu` at 0xd80e504 loads 1 byte from ?.
+  The `lw` at 0xd80e58c loads 4 bytes from ([a1+32] + (a2 << 0x5)) +0x4.
   The `lw` at 0xd80e5c4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x14.
   The `lw` at 0xd80e5cc loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x18.
   The `lw` at 0xd80e5d4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x1c.
@@ -197,7 +203,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd80e2d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80e2ec calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80e310 calls memset with a0=ret(malloc), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0xd80e36c calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=?, a3=?.
+  The `jalr` at 0xd80e36c calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=?, a3=ret(malloc)+72.
   The `jalr` at 0xd80e578 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80e5b0 calls __glXOverrideVisualGetVisualInfo with a0=a0 at entry (arg0), a1=0x3, a2=sp-120, a3=sp-124.
   The `jalr` at 0xd80e5e4 calls free with a0=ret(__glXOverrideVisualGetVisualInfo), a1=?, a2=?, a3=?.
@@ -257,8 +263,6 @@ These entries record instruction facts rendered from the routines below. They de
   The instructions from 0xd80e464 to 0xd80e464 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80e4f0 to 0xd80e4f0 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80e650 to 0xd80f614 are not reached by any path from the entry, and their branches are not listed.
-  The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
-  The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
   The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
 
 - `__glXMalloc` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd80f0ec (o32).
@@ -322,11 +326,15 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xd80f618-0xd80ff2c (2324 bytes).
   It occupies 2324 bytes.
   The `sw` at 0xd80f69c stores 4 bytes to ret(calloc) +0x108.
-  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80f6a0, `lw` at 0xd80f6ac, `lw` at 0xd80f6b4.
+  The `lw` at 0xd80f6a0 loads 4 bytes from ret(__glXInitialize) +0x4.
   The `sw` at 0xd80f6a8 stores 4 bytes to ret(calloc) +0x110.
+  The `lw` at 0xd80f6ac loads 4 bytes from ret(__glXInitialize) +0x8.
   The `sw` at 0xd80f6b0 stores 4 bytes to ret(calloc) +0x114.
+  The `lw` at 0xd80f6b4 loads 4 bytes from ret(__glXInitialize) +0xc.
   The `sw` at 0xd80f6b8 stores 4 bytes to ret(calloc) +0x118.
+  The `lw` at 0xd80f6bc loads 4 bytes from ret(__glXInitialize) +0x10.
   The `sw` at 0xd80f6c0 stores 4 bytes to ret(calloc) +0x11c.
+  The `lw` at 0xd80f6c4 loads 4 bytes from ret(__glXInitialize) +0x14.
   The `sw` at 0xd80f6c8 stores 4 bytes to ret(calloc) +0x120.
   The `sw` at 0xd80f6e0 stores 4 bytes to ret(calloc) +0x38.
   The `lw` at 0xd80f6e4 loads 4 bytes from a2 (arg2 at entry) +0x48.
@@ -339,6 +347,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd80f714 loads 4 bytes from a1 (arg1 at entry) +0x8.
   The `lw` at 0xd80f72c loads 4 bytes from a0 (arg0 at entry) +0x88.
   The `sw` at 0xd80f738 stores 4 bytes to ret(calloc) +0x20.
+  2 such `lw` accesses load 4 bytes from ret(__glXInitialize) +0x20, including `lw` at 0xd80f75c, `lw` at 0xd80f770.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80f768, `lw` at 0xd80f830, `lw` at 0xd80f964.
   The `sw` at 0xd80f76c stores 4 bytes to ret(calloc) +0x24.
   The `lbu` at 0xd80f778 loads 1 byte from ?.
   The `sb` at 0xd80f77c stores 1 byte to ret(calloc) +0x1d.
@@ -389,22 +399,28 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `sb` accesses store 1 byte to [a0+108] +0x1, including `sb` at 0xd80fc40, `sb` at 0xd80fd54, `sb` at 0xd80fe70.
   3 such `sw` accesses store 4 bytes to [a0+108] +0x4, including `sw` at 0xd80fc44, `sw` at 0xd80fd60, `sw` at 0xd80fe7c.
   3 such `lw` accesses load 4 bytes from ret(calloc) +0x14, including `lw` at 0xd80fc4c, `lw` at 0xd80fd5c, `lw` at 0xd80fe78.
-  The `sw` at 0xd80fc50 stores 4 bytes to [a0+108] +0xc.
+  3 such `sw` accesses store 4 bytes to [a0+108] +0xc, including `sw` at 0xd80fc50, `sw` at 0xd80fd88, `sw` at 0xd80fea4.
   2 such `lw` accesses load 4 bytes from ret(calloc) +0x30, including `lw` at 0xd80fc58, `lw` at 0xd80fd68.
-  11 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80fc70, `sw` at 0xd80fc78, `sw` at 0xd80fc80.
+  3 such `sw` accesses store 4 bytes to [a0+108] +0x10, including `sw` at 0xd80fc70, `sw` at 0xd80fd90, `sw` at 0xd80feac.
+  2 such `sw` accesses store 4 bytes to [a0+108] +0x14, including `sw` at 0xd80fc78, `sw` at 0xd80fd98.
   2 such `lw` accesses load 4 bytes from ret(calloc) +0x34, including `lw` at 0xd80fc7c, `lw` at 0xd80fd8c.
+  The `sw` at 0xd80fc80 stores 4 bytes to [a0+108] +0x18.
   3 such `lw` accesses load 4 bytes from ret(calloc) +0x18, including `lw` at 0xd80fc84, `lw` at 0xd80fd94, `lw` at 0xd80fea8.
-  3 such `sb` accesses store 1 byte to ?, including `sb` at 0xd80fc90, `sb` at 0xd80fda0, `sb` at 0xd80feb4.
+  The `sw` at 0xd80fc88 stores 4 bytes to [a0+108] +0x1c.
+  The `sb` at 0xd80fc90 stores 1 byte to [a0+108] +0x20.
   6 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd80fc9c, `lw` at 0xd80fcb4, `lw` at 0xd80fdac.
   3 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd80fca0, `lw` at 0xd80fdb0, `lw` at 0xd80fec4.
+  2 such `sw` accesses store 4 bytes to [a0+108] +0x8, including `sw` at 0xd80fd80, `sw` at 0xd80fe9c.
+  The `sb` at 0xd80fda0 stores 1 byte to [a0+108] +0x18.
+  The `sb` at 0xd80feb4 stores 1 byte to [a0+108] +0x14.
   2 such `sb` accesses store 1 byte to ret(calloc) +0x1c, including `sb` at 0xd80fef8, `sb` at 0xd80ff00.
   The `lw` at 0xd80ff0c loads 4 bytes from sym(__glx_contextList) +0x0.
   The `sw` at 0xd80ff10 stores 4 bytes to ret(calloc) +0x128.
   The `sw` at 0xd80ff14 stores 4 bytes to sym(__glx_contextList) +0x0.
   The `jalr` at 0xd80f648 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd80f678 calls calloc with a0=0x1, a1=0x12c, a2=ret(__glXInitialize), a3=a3 at entry (arg3).
-  The `jalr` at 0xd80f744 calls free with a0=ret(calloc), a1=a2 at entry (arg2), a2=?, a3=a3 at entry (arg3).
-  The `jalr` at 0xd80f78c calls getenv with a0=0xd840d3c, a1=a2 at entry (arg2), a2=?, a3=a3 at entry (arg3).
+  The `jalr` at 0xd80f744 calls free with a0=ret(calloc), a1=a2 at entry (arg2), a2=ret(__glXInitialize), a3=a3 at entry (arg3).
+  The `jalr` at 0xd80f78c calls getenv with a0=0xd840d3c, a1=a2 at entry (arg2), a2=ret(__glXInitialize), a3=a3 at entry (arg3).
   The `jalr` at 0xd80f800 calls isLocal [0xd812668] with a0=ret(calloc), a1=?, a2=?, a3=a3 at entry (arg3).
   The `jalr` at 0xd80f8a8 calls free with a0=ret(calloc), a1=?, a2=?, a3=a3 at entry (arg3).
   The `jalr` at 0xd80f8d4 calls __glXFindFBConfigFromVid [0xd8344d0] with a0=a0 at entry (arg0), a1=[ret(calloc)+32], a2=[ret(calloc)+44], a3=a3 at entry (arg3).
@@ -645,7 +661,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beql` branch at 0xd810a64 targets 0xd810a88, is taken when v1(?) == 0, and falls through when v1(?) != 0; its branch-likely delay slot `lw v0,1232(s0)` at 0xd810a68 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd810a88 targets 0xd810aa8, is taken when v0(=[a0+1232]) == 0, and falls through when v0(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd810a8c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd810aac targets 0xd810ac4, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd810ab0 runs only when taken and is annulled on fall-through.
-  The return at 0xd810acc has v0 = ?.
+  The return at 0xd810acc has v0 = ret(malloc).
 
 - `AllocAndFetchScreenConfigs` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd810cc4 (o32).
   Evidence grade: inferred.
@@ -739,7 +755,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81146c loads 4 bytes from a0 (arg0 at entry) +0x8c.
   The `lw` at 0xd811480 loads 4 bytes from ([a0+140] + (((a2 << 0x2) + a2) << 0x4)) +0x8.
   The `lw` at 0xd8114e4 loads 4 bytes from ?.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8114e8, `sw` at 0xd81150c.
+  2 such `sw` accesses store 4 bytes to ([a1+32] + (a2 << 0x5)) +0x0, including `sw` at 0xd8114e8, `sw` at 0xd81150c.
   The `jalr` at 0xd811458 calls XInternAtom with a0=a0 at entry (arg0), a1=0xd841880, a2=0x0, a3=a3 at entry (arg3).
   The `jalr` at 0xd8114c4 calls XGetWindowProperty with a0=a0 at entry (arg0), a1=[([a0+140] + (((a2 << 0x2) + a2) << 0x4))+8], a2=ret(XInternAtom), a3=0x0.
   The `jalr` at 0xd8114f4 calls XFree with a0=?, a1=?, a2=?, a3=?.
@@ -892,36 +908,45 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd811cb0 stores 4 bytes to abs 0xd846770.
   The `lw` at 0xd811cf4 loads 4 bytes from a0 (arg0 at entry) +0x20.
   The `lw` at 0xd811cf8 loads 4 bytes from a0 (arg0 at entry) +0x0.
-  61 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811d14, `sw` at 0xd811df0, `sw` at 0xd811e18.
-  34 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811d94, `lw` at 0xd811d98, `lw` at 0xd811dbc.
+  The `sw` at 0xd811d14 stores 4 bytes to [a0+32] +0x14.
+  3 such `lw` accesses load 4 bytes from [a0+32] +0x8, including `lw` at 0xd811d94, `lw` at 0xd811df8, `lw` at 0xd811e1c.
+  3 such `lw` accesses load 4 bytes from [a0+32] +0x4, including `lw` at 0xd811d98, `lw` at 0xd811e34, `lw` at 0xd811e9c.
+  22 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811dbc, `lw` at 0xd811dcc, `lw` at 0xd811de4.
+  56 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811df0, `sw` at 0xd811e18, `sw` at 0xd811f20.
+  The `sw` at 0xd811e74 stores 4 bytes to [a0+32] +0x4.
+  The `sw` at 0xd811ea0 stores 4 bytes to [a0+32] +0x8.
+  3 such `lw` accesses load 4 bytes from [a0+32] +0x10, including `lw` at 0xd811ea8, `lw` at 0xd811f24, `lw` at 0xd811f50.
+  3 such `lw` accesses load 4 bytes from [a0+32] +0xc, including `lw` at 0xd811ec4, `lw` at 0xd811f68, `lw` at 0xd811fe0.
+  The `sw` at 0xd811f8c stores 4 bytes to [a0+32] +0x10.
+  The `sw` at 0xd811fb4 stores 4 bytes to [a0+32] +0xc.
   10 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8121bc, `sb` at 0xd8121c0, `sb` at 0xd812210.
   8 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0xd812298, `sdc1` at 0xd8122a4, `sdc1` at 0xd8122b0.
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd812338, `lbu` at 0xd812340, `lbu` at 0xd812478.
   The `jalr` at 0xd811c8c calls getenv with a0=0xd8418f4, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd811cb4 calls fopen with a0=ret(getenv), a1=0xd841904, a2=?, a3=?.
-  The `jalr` at 0xd811cd0 calls perror with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811cd0 calls perror with a0=ret(getenv), a1=?, a2=?, a3=?.
   The `jalr` at 0xd811ce4 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811d00 calls glXGetClientString with a0=[a0], a1=0x3, a2=?, a3=?.
-  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
+  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
   The `jalr` at 0xd811d40 calls sscanf with a0=sp-1040, a1=0xd841908, a2=sp-1052, a3=?.
-  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=?, a3=?.
+  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=ret(getenv), a3=?.
   The `jalr` at 0xd811d84 calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811e40 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811e40 calls free with a0=[[a0+32]+4], a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e60 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e88 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811f74 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811f74 calls free with a0=[[a0+32]+12], a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fa0 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fc8 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
+  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
   The `jalr` at 0xd8120f8 calls sscanf with a0=sp-1040, a1=0xd841940, a2=sp-5248, a3=sp-5244.
-  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=?, a3=?.
+  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=ret(getenv), a3=?.
   The `jalr` at 0xd81218c calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=?, a3=?.
+  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=ret(getenv), a3=?.
   The `jalr` at 0xd812588 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd811c98 targets 0xd812594, is taken when v0(=ret(getenv)) == 0, and falls through when v0(=ret(getenv)) != 0.
   The `bne` branch at 0xd811cc0 targets 0xd811cf0, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The `bgtz` branch at 0xd811d54 targets 0xd811d94, is taken when a3(?) > 0 (signed), and falls through when a3(?) <= 0 (signed).
-  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
+  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(=[[a0+32]+8]) <= 0 (signed), and falls through when v1(=[[a0+32]+8]) > 0 (signed).
   The `bnel` branch at 0xd811dc4 targets 0xd811e28, is taken when t6(?) != 0, and falls through when t6(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811dc8 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811dd4 targets 0xd811dfc, is taken when a0(=0x3) != v0(?), and falls through when a0(=0x3) == v0(?).
   The `beq` branch at 0xd811ddc targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
@@ -929,8 +954,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xd811dfc targets 0xd811e24, is taken when a1(=0x4) != v0(?), and falls through when a1(=0x4) == v0(?).
   The `beq` branch at 0xd811e04 targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd811e28 targets 0xd811dbc, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
+  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(=[[a0+32]+16]) == 0, and falls through when v1(=[[a0+32]+16]) != 0.
+  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(=[[a0+32]+16]) <= 0 (signed), and falls through when v1(=[[a0+32]+16]) > 0 (signed).
   The `bnel` branch at 0xd811ee0 targets 0xd811f5c, is taken when t2(?) != 0, and falls through when t2(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ee4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd811ef0 targets 0xd811f5c, is taken when (t3(?) & 0x1) == 0, and falls through when (t3(?) & 0x1) != 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ef4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811f00 targets 0xd811f30, is taken when a0(=0x8004) != v0(?), and falls through when a0(=0x8004) == v0(?).
@@ -1000,7 +1025,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd8126e4 calls getpeername with a0=[[a0+264]+8], a1=sp-24, a2=sp-556, a3=a3 at entry (arg3).
   The `jalr` at 0xd812720 calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd812748 calls fprintf with a0=sym(__iob)+32, a1=0xd840d14, a2=?, a3=?.
-  The `jalr` at 0xd812778 calls ioctl with a0=?, a1=0xffffffffc0086914, a2=sp-32, a3=?.
+  The `jalr` at 0xd812778 calls ioctl with a0=[[a0+264]+8], a1=0xffffffffc0086914, a2=sp-32, a3=?.
   The `jalr` at 0xd8127bc calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0xd8126b8 targets 0xd81269c, is taken when t8(?) != t1(=0xd8441f8), and falls through when t8(?) == t1(=0xd8441f8).
   The `beq` branch at 0xd8126f8 targets 0xd812714, is taken when a2(?) == at(=0x1), and falls through when a2(?) != at(=0x1).
@@ -1995,12 +2020,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd8147dc loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd8147e8 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd8147ec stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd814814, `sw` at 0xd81481c.
+  The `sw` at 0xd814814 stores 4 bytes to [[[0x1014]+276]+4] +0xc.
+  The `sw` at 0xd81481c stores 4 bytes to [[[0x1014]+276]+4] +0x10.
   The `lw` at 0xd814820 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd814824 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd8147fc calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp+8, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd814840 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beql` branch at 0xd81482c targets 0xd814850, is taken when t1(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t1(=[[[0x1014]+276]+8]) < a3(?) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd814830 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd814840 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beql` branch at 0xd81482c targets 0xd814850, is taken when t1(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t1(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd814830 runs only when taken and is annulled on fall-through.
   The return at 0xd814858 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexGendv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd814860 (o32).
@@ -2091,13 +2117,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd814b50 loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd814b5c stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd814b60 stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd814bbc loads 4 bytes from ?.
-  The `sw` at 0xd814bc0 stores 4 bytes to ?.
+  The `lw` at 0xd814bbc loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd814bc0 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd814b70 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd814b8c calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=?.
   The `jalr` at 0xd814ba8 calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=sp+16, a2=0x8, a3=?.
-  The `jalr` at 0xd814bdc calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd814bc8 targets 0xd814bec, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd814bcc runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd814bdc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd814bc8 targets 0xd814bec, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd814bcc runs only when taken and is annulled on fall-through.
   The return at 0xd814bf4 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord1d` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd814bfc (o32).
@@ -2113,8 +2139,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd814c58 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd814c6c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd814c4c calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd814c7c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd814c68 targets 0xd814c88, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd814c7c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+12, a2=?, a3=[[[0x1014]+276]+4]+12.
+  The `beq` branch at 0xd814c68 targets 0xd814c88, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+12) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+12) (unsigned).
   The return at 0xd814c94 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_Rectsv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd814c9c (o32).
@@ -2282,8 +2308,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd815188 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81519c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81517c calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd8151ac calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd815198 targets 0xd8151b8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd8151ac calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+12, a2=?, a3=[[[0x1014]+276]+4]+12.
+  The `beq` branch at 0xd815198 targets 0xd8151b8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+12) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+12) (unsigned).
   The return at 0xd8151c4 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord2dv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd8151cc (o32).
@@ -2299,9 +2325,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd815244 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd815258 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd815218 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd815238 calls memcpy with a0=?, a1=a0+8, a2=0x8, a3=?.
-  The `jalr` at 0xd815268 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd815254 targets 0xd815274, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd815238 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd815268 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd815254 targets 0xd815274, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd815280 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord2d` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd815288 (o32).
@@ -2317,9 +2343,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd815308 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81531c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd8152dc calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd8152fc calls memcpy with a0=?, a1=sp+8, a2=0x8, a3=?.
-  The `jalr` at 0xd81532c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd815318 targets 0xd815338, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd8152fc calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd81532c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd815318 targets 0xd815338, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd815344 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord1sv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81534c (o32).
@@ -2559,13 +2585,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd815a04 loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd815a10 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd815a14 stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd815a70 loads 4 bytes from ?.
-  The `sw` at 0xd815a74 stores 4 bytes to ?.
+  The `lw` at 0xd815a70 loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd815a74 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd815a24 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd815a40 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=?.
   The `jalr` at 0xd815a5c calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=sp+16, a2=0x8, a3=?.
-  The `jalr` at 0xd815a90 calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd815a7c targets 0xd815aa0, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd815a80 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd815a90 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd815a7c targets 0xd815aa0, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd815a80 runs only when taken and is annulled on fall-through.
   The return at 0xd815aa8 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_RasterPos3dv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd815ab0 (o32).
@@ -2578,13 +2604,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd815ae0 loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd815ae8 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd815aec stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd815b50 loads 4 bytes from ?.
-  The `sw` at 0xd815b54 stores 4 bytes to ?.
+  The `lw` at 0xd815b50 loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd815b54 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd815afc calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd815b1c calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=?.
   The `jalr` at 0xd815b3c calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=a0+16, a2=0x8, a3=?.
-  The `jalr` at 0xd815b70 calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd815b5c targets 0xd815b80, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd815b60 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd815b70 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd815b5c targets 0xd815b80, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd815b60 runs only when taken and is annulled on fall-through.
   The return at 0xd815b88 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_RasterPos3f` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd815b90 (o32).
@@ -2951,9 +2977,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd816648 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81665c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81661c calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81663c calls memcpy with a0=?, a1=sp+8, a2=0x8, a3=?.
-  The `jalr` at 0xd81666c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd816658 targets 0xd816678, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81663c calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd81666c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd816658 targets 0xd816678, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd816684 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_Vertex2dv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81668c (o32).
@@ -2969,9 +2995,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd816704 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd816718 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd8166d8 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd8166f8 calls memcpy with a0=?, a1=a0+8, a2=0x8, a3=?.
-  The `jalr` at 0xd816728 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd816714 targets 0xd816734, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd8166f8 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd816728 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd816714 targets 0xd816734, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd816740 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_Vertex2s` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd816748 (o32).
@@ -3104,13 +3130,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd816ad0 loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd816ad8 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd816adc stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd816b40 loads 4 bytes from ?.
-  The `sw` at 0xd816b44 stores 4 bytes to ?.
+  The `lw` at 0xd816b40 loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd816b44 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd816aec calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd816b0c calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=?.
   The `jalr` at 0xd816b2c calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=a0+16, a2=0x8, a3=?.
-  The `jalr` at 0xd816b60 calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd816b4c targets 0xd816b70, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816b50 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd816b60 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd816b4c targets 0xd816b70, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816b50 runs only when taken and is annulled on fall-through.
   The return at 0xd816b78 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_Vertex3f` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd816b80 (o32).
@@ -3207,13 +3233,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd816dc8 loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd816dd0 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd816dd4 stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd816e38 loads 4 bytes from ?.
-  The `sw` at 0xd816e3c stores 4 bytes to ?.
+  The `lw` at 0xd816e38 loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd816e3c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd816de4 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd816e04 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=?.
   The `jalr` at 0xd816e24 calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=a0+16, a2=0x8, a3=?.
-  The `jalr` at 0xd816e58 calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd816e44 targets 0xd816e68, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816e48 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd816e58 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd816e44 targets 0xd816e68, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816e48 runs only when taken and is annulled on fall-through.
   The return at 0xd816e70 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord3d` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd816e78 (o32).
@@ -3226,13 +3252,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd816eac loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd816eb8 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd816ebc stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `lw` at 0xd816f18 loads 4 bytes from ?.
-  The `sw` at 0xd816f1c stores 4 bytes to ?.
+  The `lw` at 0xd816f18 loads 4 bytes from [[0x1014]+276] +0x8.
+  The `sw` at 0xd816f1c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd816ecc calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[0x1014]+276].
   The `jalr` at 0xd816ee8 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=?.
   The `jalr` at 0xd816f04 calls memcpy with a0=[[[0x1014]+276]+4]+20, a1=sp+16, a2=0x8, a3=?.
-  The `jalr` at 0xd816f38 calls __glXFlushRenderBuffer with a0=?, a1=[[[0x1014]+276]+4]+28, a2=?, a3=?.
-  The `beql` branch at 0xd816f24 targets 0xd816f48, is taken when t9(?) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(?) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816f28 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd816f38 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+28, a2=?, a3=[[0x1014]+276].
+  The `beql` branch at 0xd816f24 targets 0xd816f48, is taken when t9(=[[[0x1014]+276]+8]) >= s0(=[[[0x1014]+276]+4]+28) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < s0(=[[[0x1014]+276]+4]+28) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd816f28 runs only when taken and is annulled on fall-through.
   The return at 0xd816f50 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_TexCoord2sv` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd816f58 (o32).
@@ -3906,17 +3932,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd8184c4 loads 4 bytes from [[[0x1014]+276]+216] +0x60.
   The `sw` at 0xd8184d8 stores 4 bytes to [[[0x1014]+276]+216] +0x6c.
   The `sw` at 0xd8184dc stores 4 bytes to [[[0x1014]+276]+216] +0x60.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd8184e0, `lw` at 0xd8184ec.
+  The `lw` at 0xd8184e0 loads 4 bytes from [[0x1014]+276] +0x110.
   The `sb` at 0xd8184e4 stores 1 byte to [[[[0x1014]+276]+216]+108] +0x1.
+  The `lw` at 0xd8184ec loads 4 bytes from [[0x1014]+276] +0x3c.
   The `sw` at 0xd8184f0 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0x4.
   The `sw` at 0xd8184f8 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0x8.
   The `sw` at 0xd818500 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0xc.
   2 such `lw` accesses load 4 bytes from [[[0x1014]+276]+216] +0x7c, including `lw` at 0xd81850c, `lw` at 0xd818524.
   The `lw` at 0xd818510 loads 4 bytes from [[[[0x1014]+276]+216]+1232] +0x4.
   The `jalr` at 0xd818444 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4], a2=[[0x1014]+276], a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81846c calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8184a0 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd818518 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd81846c calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd8184a0 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd818518 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
   The `jalr` at 0xd818534 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `beql` branch at 0xd818430 targets 0xd818544, is taken when s0(=[[[0x1014]+276]+216]) == 0, and falls through when s0(=[[[0x1014]+276]+216]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd818434 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd818458 targets 0xd818480, is taken when v1(=[[[[0x1014]+276]+216]+1232]) == 0, and falls through when v1(=[[[[0x1014]+276]+216]+1232]) != 0; its branch-likely delay slot `lw a0,108(s0)` at 0xd81845c runs only when taken and is annulled on fall-through.
@@ -3944,15 +3971,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd818614 loads 4 bytes from [[[0x1014]+276]+216] +0x60.
   The `sw` at 0xd818628 stores 4 bytes to [[[0x1014]+276]+216] +0x6c.
   The `sw` at 0xd81862c stores 4 bytes to [[[0x1014]+276]+216] +0x60.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd818630, `lw` at 0xd81863c.
+  The `lw` at 0xd818630 loads 4 bytes from [[0x1014]+276] +0x110.
   The `sb` at 0xd818634 stores 1 byte to [[[[0x1014]+276]+216]+108] +0x1.
+  The `lw` at 0xd81863c loads 4 bytes from [[0x1014]+276] +0x3c.
   The `sw` at 0xd818640 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0x4.
   2 such `lw` accesses load 4 bytes from [[[0x1014]+276]+216] +0x7c, including `lw` at 0xd81864c, `lw` at 0xd818664.
   The `lw` at 0xd818650 loads 4 bytes from [[[[0x1014]+276]+216]+1232] +0x4.
   The `jalr` at 0xd818594 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4], a2=[[0x1014]+276], a3=a3 at entry (arg3).
-  The `jalr` at 0xd8185bc calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8185f0 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd818658 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8185bc calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd8185f0 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd818658 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
   The `jalr` at 0xd818674 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `beql` branch at 0xd818580 targets 0xd818684, is taken when s0(=[[[0x1014]+276]+216]) == 0, and falls through when s0(=[[[0x1014]+276]+216]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd818584 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd8185a8 targets 0xd8185d0, is taken when v1(=[[[[0x1014]+276]+216]+1232]) == 0, and falls through when v1(=[[[[0x1014]+276]+216]+1232]) != 0; its branch-likely delay slot `lw a0,108(s0)` at 0xd8185ac runs only when taken and is annulled on fall-through.
@@ -3980,17 +4008,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81875c loads 4 bytes from [[[0x1014]+276]+216] +0x60.
   The `sw` at 0xd818770 stores 4 bytes to [[[0x1014]+276]+216] +0x6c.
   The `sw` at 0xd818774 stores 4 bytes to [[[0x1014]+276]+216] +0x60.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd818778, `lw` at 0xd818784.
+  The `lw` at 0xd818778 loads 4 bytes from [[0x1014]+276] +0x110.
   The `sb` at 0xd81877c stores 1 byte to [[[[0x1014]+276]+216]+108] +0x1.
+  The `lw` at 0xd818784 loads 4 bytes from [[0x1014]+276] +0x3c.
   The `sw` at 0xd818788 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0x4.
   The `sw` at 0xd818790 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0x8.
   The `sw` at 0xd818798 stores 4 bytes to [[[[0x1014]+276]+216]+108] +0xc.
   2 such `lw` accesses load 4 bytes from [[[0x1014]+276]+216] +0x7c, including `lw` at 0xd8187a4, `lw` at 0xd8187bc.
   The `lw` at 0xd8187a8 loads 4 bytes from [[[[0x1014]+276]+216]+1232] +0x4.
   The `jalr` at 0xd8186dc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4], a2=[[0x1014]+276], a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd818704 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd818738 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
-  The `jalr` at 0xd8187b0 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd818704 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd818738 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
+  The `jalr` at 0xd8187b0 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=[[0x1014]+276], a3=?.
   The `jalr` at 0xd8187cc calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `beql` branch at 0xd8186c8 targets 0xd8187dc, is taken when s0(=[[[0x1014]+276]+216]) == 0, and falls through when s0(=[[[0x1014]+276]+216]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd8186cc runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd8186f0 targets 0xd818718, is taken when v1(=[[[[0x1014]+276]+216]+1232]) == 0, and falls through when v1(=[[[[0x1014]+276]+216]+1232]) != 0; its branch-likely delay slot `lw a0,108(s0)` at 0xd8186f4 runs only when taken and is annulled on fall-through.
@@ -4190,7 +4219,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd818e60 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd818e74 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd818e2c calls memcpy with a0=[[[0x1014]+276]+4]+8, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd818e50 calls memcpy with a0=?, a1=a2 at entry (arg2), a2=?, a3=?.
+  The `jalr` at 0xd818e50 calls memcpy with a0=([[[0x1014]+276]+4] + (a0 << 0x2))+8, a1=a2 at entry (arg2), a2=(a0 << 0x2), a3=[[[0x1014]+276]+4].
   The `jalr` at 0xd818e84 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
   The `bltz` branch at 0xd818de4 targets 0xd818e90, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
   The `bltz` branch at 0xd818dec targets 0xd818e90, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
@@ -4911,7 +4940,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd81a7d8 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4], a2=[[[0x1014]+276]+4], a3=a3 at entry (arg3).
   The `jalr` at 0xd81a7f8 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd81a840 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=[[[[0x1014]+276]+216]+108].
-  The `jalr` at 0xd81a8c0 calls memcpy with a0=[[[[0x1014]+276]+216]+108]+16, a1=a1 at entry (arg1), a2=?, a3=[[[[0x1014]+276]+216]+108].
+  The `jalr` at 0xd81a8c0 calls memcpy with a0=[[[[0x1014]+276]+216]+108]+16, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=[[[[0x1014]+276]+216]+108].
   The `jalr` at 0xd81a8e0 calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd81a8fc calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `bltz` branch at 0xd81a7bc targets 0xd81a908, is taken when a0 < 0 (signed), and falls through when a0 >= 0 (signed).
@@ -4952,7 +4981,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd81a97c calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4], a2=a2 at entry (arg2), a3=[[[0x1014]+276]+4].
   The `jalr` at 0xd81a99c calls (unknown callee) with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
   The `jalr` at 0xd81a9e4 calls _XFlush with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=[[[[0x1014]+276]+216]+108].
-  The `jalr` at 0xd81aa68 calls memcpy with a0=[[[[0x1014]+276]+216]+108]+16, a1=a1 at entry (arg1), a2=?, a3=[[[[0x1014]+276]+216]+108].
+  The `jalr` at 0xd81aa68 calls memcpy with a0=[[[[0x1014]+276]+216]+108]+16, a1=a1 at entry (arg1), a2=(a0 << 0x2), a3=[[[[0x1014]+276]+216]+108].
   The `jalr` at 0xd81aa88 calls _XReply with a0=[[[0x1014]+276]+216], a1=sp-56, a2=0x0, a3=0x0.
   The `jalr` at 0xd81aaac calls _XRead with a0=[[[0x1014]+276]+216], a1=a2 at entry (arg2), a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xd81aad0 calls _XEatData with a0=[[[0x1014]+276]+216], a1=?, a2=?, a3=?.
@@ -5698,9 +5727,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81c620 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81c634 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81c5f4 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81c614 calls memcpy with a0=?, a1=sp+8, a2=0x8, a3=?.
-  The `jalr` at 0xd81c644 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81c630 targets 0xd81c650, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81c614 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd81c644 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd81c630 targets 0xd81c650, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd81c65c has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_EvalCoord1f` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81c664 (o32).
@@ -5733,8 +5762,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81c72c loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81c740 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81c720 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81c750 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81c73c targets 0xd81c75c, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81c750 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+12, a2=?, a3=[[[0x1014]+276]+4]+12.
+  The `beq` branch at 0xd81c73c targets 0xd81c75c, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+12) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+12) (unsigned).
   The return at 0xd81c768 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_EvalCoord1d` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81c770 (o32).
@@ -5750,8 +5779,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81c7cc loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81c7e0 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81c7c0 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81c7f0 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81c7dc targets 0xd81c7fc, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81c7f0 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+12, a2=?, a3=[[[0x1014]+276]+4]+12.
+  The `beq` branch at 0xd81c7dc targets 0xd81c7fc, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+12) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+12) (unsigned).
   The return at 0xd81c808 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_MapGrid2f` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81c810 (o32).
@@ -5830,9 +5859,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81cab0 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81cac4 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81ca84 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81caa4 calls memcpy with a0=?, a1=a0+8, a2=0x8, a3=?.
-  The `jalr` at 0xd81cad4 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81cac0 targets 0xd81cae0, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81caa4 calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=a0+8, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd81cad4 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+20, a2=?, a3=[[[0x1014]+276]+4]+20.
+  The `beq` branch at 0xd81cac0 targets 0xd81cae0, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+20) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+20) (unsigned).
   The return at 0xd81caec has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_AlphaFunc` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81caf4 (o32).
@@ -5976,13 +6005,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81ceac loads 4 bytes from [[0x1014]+276] +0x4.
   The `sh` at 0xd81ceb8 stores 2 bytes to [[[0x1014]+276]+4] +0x0.
   The `sh` at 0xd81cebc stores 2 bytes to [[[0x1014]+276]+4] +0x2.
-  The `sw` at 0xd81cf04 stores 4 bytes to ?.
+  The `sw` at 0xd81cf04 stores 4 bytes to [[[0x1014]+276]+4] +0x14.
   The `lw` at 0xd81cf08 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81cf0c stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81cecc calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp+8, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81ceec calls memcpy with a0=?, a1=sp+16, a2=0x8, a3=?.
-  The `jalr` at 0xd81cf28 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beql` branch at 0xd81cf14 targets 0xd81cf38, is taken when t0(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t0(=[[[0x1014]+276]+8]) < a3(?) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd81cf18 runs only when taken and is annulled on fall-through.
+  The `jalr` at 0xd81ceec calls memcpy with a0=[[[0x1014]+276]+4]+12, a1=sp+16, a2=0x8, a3=[[[0x1014]+276]+4].
+  The `jalr` at 0xd81cf28 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+24, a2=?, a3=[[[0x1014]+276]+4]+24.
+  The `beql` branch at 0xd81cf14 targets 0xd81cf38, is taken when t0(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+24) (unsigned), and falls through when t0(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+24) (unsigned); its branch-likely delay slot `lw ra,28(sp)` at 0xd81cf18 runs only when taken and is annulled on fall-through.
   The return at 0xd81cf40 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_ClearStencil` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81cf48 (o32).
@@ -6123,8 +6152,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81d2fc loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81d310 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81d2f0 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=sp, a2=0x8, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81d320 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81d30c targets 0xd81d32c, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81d320 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+12, a2=?, a3=[[[0x1014]+276]+4]+12.
+  The `beq` branch at 0xd81d30c targets 0xd81d32c, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+12) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+12) (unsigned).
   The return at 0xd81d338 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_PushAttrib` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81d340 (o32).

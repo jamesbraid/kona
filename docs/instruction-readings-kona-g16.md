@@ -361,7 +361,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x10105d80 targets 0x10105fb8 and is always taken.
   The `beq` branch at 0x10105d8c targets 0x10105fcc, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `beq` branch at 0x10105e04 targets 0x10105fb8 and is always taken.
-  The `beq` branch at 0x10105f5c targets 0x10106088, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10105f5c targets 0x10106088, is taken when a2(=(ret(0x10106654) + (ret(0x101060e8) + ret(0x10106374)))) == 0, and falls through when a2(=(ret(0x10106654) + (ret(0x101060e8) + ret(0x10106374)))) != 0.
   The `beq` branch at 0x10105fd0 targets 0x10106080, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x10105fdc targets 0x101060c4, is taken when a0(?) == ra(=0x30), and falls through when a0(?) != ra(=0x30).
   The `beq` branch at 0x10105fe8 targets 0x101060cc, is taken when a0(?) == at(=0x20), and falls through when a0(?) != at(=0x20).
@@ -662,7 +662,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x1010c260 calls reset_dacs [0x10061f50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1010c280 calls kt_data_file [0x1005a128] with a0=0x101b5a10, a1=?, a2=?, a3=?.
   The `jal` at 0x1010c2bc calls tst_multi_voc [0x100b6c58] with a0=0x8, a1=0x1, a2=0x1, a3=ret(kt_data_file), a4=0x1, a5=0x0, a6=0x0, a7=-0x1.
-  The `jal` at 0x1010c2e8 calls tst_multi_voc [0x100b6c58] with a0=0x8, a1=0x1, a2=0x0, a3=?, a4=0x1, a5=0x1, a6=0x0, a7=-0x1.
+  The `jal` at 0x1010c2e8 calls tst_multi_voc [0x100b6c58] with a0=0x8, a1=0x1, a2=0x0, a3=ret(kt_data_file), a4=0x1, a5=0x1, a6=0x0, a7=-0x1.
   The `jalr` at 0x1010c2fc calls sleep with a0=0x1, a1=?, a2=?, a3=?.
   The `jal` at 0x1010c328 calls fog [0x1010c994] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1010c344 calls kt_output_rslt [0x10045978] with a0=?, a1=0x0, a2=?, a3=?.
@@ -758,7 +758,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x101115dc targets 0x10111744, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `bltz` branch at 0x10111610 targets 0x1011176c, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
   The `bltz` branch at 0x101116a0 targets 0x10111798, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `beq` branch at 0x101116d8 targets 0x101117ec, is taken when ra(?) == 0, and falls through when ra(?) != 0.
+  The `beq` branch at 0x101116d8 targets 0x101117ec, is taken when ra(=(ret(0x10111808) + ret(0x101119e8))) == 0, and falls through when ra(=(ret(0x10111808) + ret(0x101119e8))) != 0.
   The `beq` branch at 0x1011173c targets 0x101114d4 and is always taken.
   The `beq` branch at 0x10111764 targets 0x101114d4 and is always taken.
   The `beq` branch at 0x10111790 targets 0x101114d4 and is always taken.
@@ -798,10 +798,10 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x1011b5b4 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x1011b5d4 calls vcRead [0x10140bac] with a0=0xc006, a1=?, a2=?, a3=?.
   The `jal` at 0x1011b5f4 calls vcWrite [0x1014071c] with a0=0xc006, a1=(ret(vcRead) | 0x180), a2=?, a3=?.
-  The `jal` at 0x1011b618 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x101b95b8, a2=?, a3=0xc006.
+  The `jal` at 0x1011b618 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x101b95b8, a2=(ret(vcRead) | 0x180), a3=0xc006.
   The `jal` at 0x1011b63c calls vcRead [0x10140bac] with a0=0xc006, a1=?, a2=?, a3=?.
   The `jal` at 0x1011b664 calls kt_output_dbug [0x10046d74] with a0=0x7, a1=0x101b95d8, a2=ret(vcRead), a3=0xc006.
-  The `jal` at 0x1011b68c calls vcRead [0x10140bac] with a0=0xc006, a1=?, a2=?, a3=?, a4=0x186a0.
+  The `jal` at 0x1011b68c calls vcRead [0x10140bac] with a0=0xc006, a1=?, a2=?, a3=(ret(vcRead) | 0x180), a4=0x186a0.
   The `jal` at 0x1011b6b4 calls vcWrite [0x1014071c] with a0=0xc006, a1=?, a2=?, a3=?.
   The `jal` at 0x1011b6d8 calls kt_output_dbug [0x10046d74] with a0=0x5, a1=0x101b95b8, a2=?, a3=0xc006.
   The `jal` at 0x1011b6ec calls dgo_gamma_lut_dbus_test [0x1011dcc0] with a0=?, a1=?, a2=?, a3=?.
@@ -812,7 +812,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x1011b78c calls kt_output_info [0x10046374] with a0=0x101b9720, a1=ret(dgo_gamma_lut_cell_test), a2=?, a3=?.
   The `jal` at 0x1011b7a0 calls dgo_gamma_lut_funky_cell_test [0x1011d094] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1011b7c4 calls kt_output_info [0x10046374] with a0=0x101b9798, a1=ret(dgo_gamma_lut_funky_cell_test), a2=?, a3=?.
-  The `jal` at 0x1011b80c calls kt_output_info [0x10046374] with a0=0x101b95f8, a1=?, a2=?, a3=?, a4=0x186a0.
+  The `jal` at 0x1011b80c calls kt_output_info [0x10046374] with a0=0x101b95f8, a1=ret(vcRead), a2=?, a3=(ret(vcRead) | 0x180), a4=0x186a0.
   The `jal` at 0x1011b830 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101b9668, a2=?, a3=?.
   The `jal` at 0x1011b85c calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101b96e0, a2=?, a3=?.
   The `jal` at 0x1011b880 calls kt_output_dbug [0x10046d74] with a0=0x1, a1=0x101b9760, a2=?, a3=?.
@@ -827,7 +827,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x1011b5bc targets 0x1011b4e8 and is always taken.
   The `beq` branch at 0x1011b620 targets 0x1011b638 and is always taken.
   The `beq` branch at 0x1011b630 targets 0x1011b684, is taken when v0(?) >= a4(=0x186a0) (signed), and falls through when v0(?) < a4(=0x186a0) (signed).
-  The `bne` branch at 0x1011b67c targets 0x1011b628, is taken when a2(?) != a3(?), and falls through when a2(?) == a3(?).
+  The `bne` branch at 0x1011b67c targets 0x1011b628, is taken when a2(=ret(vcRead)) != a3(=(ret(vcRead) | 0x180)), and falls through when a2(=ret(vcRead)) == a3(=(ret(vcRead) | 0x180)).
   The `beq` branch at 0x1011b684 targets 0x1011b7ec, is taken when v0(?) == a4(=0x186a0), and falls through when v0(?) != a4(=0x186a0).
   The `beq` branch at 0x1011b6f4 targets 0x1011b81c, is taken when v0(=ret(dgo_gamma_lut_dbus_test)) == 0, and falls through when v0(=ret(dgo_gamma_lut_dbus_test)) != 0.
   The `beq` branch at 0x1011b738 targets 0x1011b848, is taken when v0(=ret(dgo_gamma_lut_abus_test)) == 0, and falls through when v0(=ret(dgo_gamma_lut_abus_test)) != 0.
@@ -1174,41 +1174,58 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 748 bytes.
   The `lw` at 0xd810650 loads 4 bytes from a0 (arg0 at entry) +0x4c.
   2 such `lw` accesses load 4 bytes from abs 0x1014, including `lw` at 0xd810668, `lw` at 0xd8106d8.
-  51 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd810670, `lw` at 0xd810690, `lw` at 0xd8106d4.
+  5 such `lw` accesses load 4 bytes from [a0+76] +0xcc, including `lw` at 0xd810670, `lw` at 0xd8106d4, `lw` at 0xd810718.
   The `lw` at 0xd810674 loads 4 bytes from [0x1014] +0x0.
+  3 such `lw` accesses load 4 bytes from [a0+76] +0x24, including `lw` at 0xd810690, `lw` at 0xd81078c, `lw` at 0xd81087c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xd8106b8, `lw` at 0xd8107b0, `lw` at 0xd8108a4.
   The `sw` at 0xd8106dc stores 4 bytes to [0x1014] +0x0.
-  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
-  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8107e8, `sw` at 0xd8107f4, `sw` at 0xd8107fc.
+  4 such `sb` accesses store 1 byte to [a0+76] +0xf4, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
+  The `lw` at 0xd8106ec loads 4 bytes from [a0+76] +0xf0.
+  8 such `lw` accesses load 4 bytes from [a0+76] +0xe0, including `lw` at 0xd8106f0, `lw` at 0xd810710, `lw` at 0xd810758.
+  6 such `lw` accesses load 4 bytes from [a0+76] +0xdc, including `lw` at 0xd8106f8, `lw` at 0xd810700, `lw` at 0xd81070c.
+  The `lw` at 0xd8106fc loads 4 bytes from [a0+76] +0xec.
+  5 such `lw` accesses load 4 bytes from [a0+76] +0xe8, including `lw` at 0xd81071c, `lw` at 0xd810848, `lw` at 0xd810870.
+  The `lw` at 0xd810724 loads 4 bytes from [[a0+76]+232] +0x2c.
+  2 such `lw` accesses load 4 bytes from [a0+76] +0x11c, including `lw` at 0xd810738, `lw` at 0xd81080c.
+  8 such `lw` accesses load 4 bytes from [a0+76] +0xe4, including `lw` at 0xd810744, `lw` at 0xd810754, `lw` at 0xd810770.
+  2 such `lw` accesses load 4 bytes from [a0+76] +0x120, including `lw` at 0xd810748, `lw` at 0xd810818.
+  2 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x24, including `lw` at 0xd810768, `lw` at 0xd810840.
+  4 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x4, including `lw` at 0xd81077c, `lw` at 0xd8107d4, `lw` at 0xd810860.
+  2 such `sw` accesses store 4 bytes to [[a0+76]+228] +0x4, including `sw` at 0xd8107e8, `sw` at 0xd8108f0.
+  2 such `sw` accesses store 4 bytes to [a0+76] +0xf0, including `sw` at 0xd8107f4, `sw` at 0xd810908.
+  2 such `sw` accesses store 4 bytes to [a0+76] +0xec, including `sw` at 0xd8107fc, `sw` at 0xd81090c.
+  The `lw` at 0xd81084c loads 4 bytes from [[a0+76]+232] +0x24.
+  2 such `lw` accesses load 4 bytes from [[a0+76]+232] +0x4, including `lw` at 0xd810874, `lw` at 0xd8108dc.
+  The `sw` at 0xd8108fc stores 4 bytes to [[a0+76]+232] +0x4.
   The `jalr` at 0xd81065c calls __glXHWAttach with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=?, a1=0x3ea, a2=sp-12, a3=?.
+  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3ea, a2=sp-12, a3=[[a0+76]+204].
   The `jalr` at 0xd8106c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841624, a2=?, a3=?.
-  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=?, a1=0x3eb, a2=sp-24, a3=?.
+  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3eb, a2=sp-24, a3=?.
   The `jalr` at 0xd8107b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd84163c, a2=?, a3=?.
-  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=?, a1=0x400, a2=sp-44, a3=?.
+  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x400, a2=sp-44, a3=?.
   The `jalr` at 0xd8108ac calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841654, a2=?, a3=?.
-  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(?), and falls through when t7(=[[0x1014]]) != a3(?).
+  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(=[[a0+76]+204]), and falls through when t7(=[[0x1014]]) != a3(=[[a0+76]+204]).
   The `bgez` branch at 0xd8106a4 targets 0xd8106d4, is taken when v0(=ret(Ioctl)) >= 0 (signed), and falls through when v0(=ret(Ioctl)) < 0 (signed).
   The `beq` branch at 0xd8106cc targets 0xd8106e0 and is always taken.
   The `bne` branch at 0xd8106e4 targets 0xd81070c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(?) != t2(?), and falls through when t1(?) == t2(?); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(?) == t4(?), and falls through when t3(?) != t4(?); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(?) == t6(?), and falls through when t5(?) != t6(?); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(?) != at(=0x3), and falls through when t9(?) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(?) >= 0x2 (signed), and falls through when t0(?) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(?) >= 0x3 (signed), and falls through when t1(?) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(=[[a0+76]+240]) != t2(=[[a0+76]+224]), and falls through when t1(=[[a0+76]+240]) == t2(=[[a0+76]+224]); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(=[[a0+76]+236]) == t4(=[[a0+76]+220]), and falls through when t3(=[[a0+76]+236]) != t4(=[[a0+76]+220]); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(=[[a0+76]+220]) == t6(=[[a0+76]+224]), and falls through when t5(=[[a0+76]+220]) != t6(=[[a0+76]+224]); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(=[[[a0+76]+232]+44]) != at(=0x3), and falls through when t9(=[[[a0+76]+232]+44]) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(=[[a0+76]+284]) >= 0x2 (signed), and falls through when t0(=[[a0+76]+284]) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t1(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81075c targets 0xd810770 and is always taken.
   The `bne` branch at 0xd8107a0 targets 0xd8107c8, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8107c0 targets 0xd810910 and is always taken.
-  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(?), and falls through when t7(?) != t8(?); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(=[[[a0+76]+228]+4]), and falls through when t7(?) != t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8107f8 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(?) != at(=0x1), and falls through when t5(?) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(?) >= 0x3 (signed), and falls through when t6(?) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(=[[a0+76]+284]) != at(=0x1), and falls through when t5(=[[a0+76]+284]) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t6(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd810834 targets 0xd810854 and is always taken.
   The `bne` branch at 0xd810890 targets 0xd8108bc, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8108b4 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(?), and falls through when t0(?) != t2(?); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(=[[[a0+76]+228]+4]), and falls through when t7(?) == t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(=[[[a0+76]+232]+4]), and falls through when t0(?) != t2(=[[[a0+76]+232]+4]); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
   The return at 0xd810918 has v0 = ?.
   The instructions from 0xd810764 to 0xd810764 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd810800 to 0xd810800 are not reached by any path from the entry, and their branches are not listed.
@@ -1239,7 +1256,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0xd837b8c stores 4 bytes to [a0+108] +0x8.
   The `sw` at 0xd837b94 stores 4 bytes to [a0+108] +0xc.
   The `lw` at 0xd837b9c loads 4 bytes from a0 (arg0 at entry) +0x2c.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd837bb4, `sw` at 0xd837bb8.
+  The `sw` at 0xd837bb4 stores 4 bytes to [a0+108] +0x10.
+  The `sw` at 0xd837bb8 stores 4 bytes to [a0+108] +0x14.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd837bc4, `lw` at 0xd837bdc.
   The `lw` at 0xd837bc8 loads 4 bytes from [a0+1232] +0x4.
   The `jalr` at 0xd837aa4 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1258,7 +1276,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beql` branch at 0xd837b20 targets 0xd837b44, is taken when t7(=[a0+112]) >= t8(=[a0+108]+24) (unsigned), and falls through when t7(=[a0+112]) < t8(=[a0+108]+24) (unsigned); its branch-likely delay slot `lw a2,60(sp)` at 0xd837b24 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd837bc0 targets 0xd837be0, is taken when a1(=[a0+1232]) == 0, and falls through when a1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd837bc4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd837be4 targets 0xd837bfc, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,48(sp)` at 0xd837be8 runs only when taken and is annulled on fall-through.
-  The return at 0xd837c08 has v0 = one of 0x0, ?.
+  The return at 0xd837c08 has v0 = one of 0x0, ret(?).
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd837c10 (o32).
   Evidence grade: inferred.
@@ -1310,7 +1328,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd839ee8 targets 0xd839f20, is taken when (t5(?) & 0xff) == 0, and falls through when (t5(?) & 0xff) != 0.
   The `beql` branch at 0xd839f00 targets 0xd839f3c, is taken when v0(?) == 0, and falls through when v0(?) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xd839f04 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd839f28 targets 0xd839f38, is taken when t9(=a3) != 0, and falls through when t9(=a3) == 0; its branch-likely delay slot `sw t0,48(sp)` at 0xd839f2c runs only when taken and is annulled on fall-through.
-  The return at 0xd839f44 has v0 = ?.
+  The return at 0xd839f44 has v0 = one of 0x0, 0x1.
 
 - `__glChangeWindowSize` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9d1d7c (o32).
   Evidence grade: inferred.
@@ -1464,7 +1482,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0xd83b970 stores 4 bytes to [a0+108] +0xc.
   The `sw` at 0xd83b974 stores 4 bytes to [a0+108] +0x8.
   The `lw` at 0xd83b978 loads 4 bytes from a0 (arg0 at entry) +0x2c.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd83b98c, `sw` at 0xd83b990.
+  The `sw` at 0xd83b98c stores 4 bytes to [a0+108] +0x14.
+  The `sw` at 0xd83b990 stores 4 bytes to [a0+108] +0x10.
   The `lw` at 0xd83b9a0 loads 4 bytes from [a0+1232] +0x4.
   The `lw` at 0xd83b9ac loads 4 bytes from a0 (arg0 at entry) +0x7c.
   The `jalr` at 0xd83b8e0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1479,7 +1498,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd83b998 targets 0xd83b9ac, is taken when a5(=[a0+1232]) == 0, and falls through when a5(=[a0+1232]) != 0.
   The `beq` branch at 0xd83b9b0 targets 0xd83b9c4, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The `beq` branch at 0xd83b9e0 targets 0xd83b924 and is always taken.
-  The return at 0xd83b9d0 has v0 = ?.
+  The return at 0xd83b9d0 has v0 = ret(?).
   The return at 0xd83b9f4 has v0 = 0x0.
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP27KONA32/libGL.so` at 0xd83b9fc (n32).
@@ -1522,7 +1541,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lw` at 0xd83c548 loads 4 bytes from abs 0x1014.
   The `lw` at 0xd83c568 loads 4 bytes from [0x1014] +0x114.
   The `sb` at 0xd83c604 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x48.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd83c608, `lw` at 0xd83c60c.
+  The `lw` at 0xd83c608 loads 4 bytes from [[0x1014]+276] +0xc8.
+  The `lw` at 0xd83c60c loads 4 bytes from [[[0x1014]+276]+200] +0x88.
   The `lw` at 0xd83c620 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x44.
   The `sb` at 0xd83c688 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x49.
   The `jalr` at 0xd83c570 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1533,7 +1553,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd83c578 targets 0xd83c638, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
   The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(0xd83c38c)) == 0, and falls through when v0(=ret(0xd83c38c)) != 0.
   The `beq` branch at 0xd83c600 targets 0xd83c67c, is taken when a0(=a3) == 0, and falls through when a0(=a3) != 0.
-  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(?) == 0, and falls through when t9(?) != 0.
+  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(=[[[[0x1014]+276]+200]+136]) == 0, and falls through when t9(=[[[[0x1014]+276]+200]+136]) != 0.
   The `beq` branch at 0xd83c66c targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c674 targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c684 targets 0xd83c624 and is always taken.
@@ -1693,12 +1713,13 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0x2670618 stores 4 bytes to [a0+176]:8 +0xc.
   The `sw` at 0x267061c stores 4 bytes to [a0+176]:8 +0x8.
   The `ld` at 0x2670620 loads 8 bytes from a0 (arg0 at entry) +0x48.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2670634, `sw` at 0x2670638.
+  The `sw` at 0x2670634 stores 4 bytes to [a0+176]:8 +0x14.
+  The `sw` at 0x2670638 stores 4 bytes to [a0+176]:8 +0x10.
   The `ld` at 0x2670648 loads 8 bytes from [a0+2408]:8 +0x8.
   The `ld` at 0x2670654 loads 8 bytes from a0 (arg0 at entry) +0xd0.
   The `jalr` at 0x267058c calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x26705b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+2408]:8.
-  The `jalr` at 0x2670628 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=[a1+72], a4=[a1+36], a5=[a0+176]:8, a6=0x1f.
+  The `jalr` at 0x2670628 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=[a1+72], a4=[a1+36], a5=[a0+176]:8, a6=0x1f, a7=ret(__glXSetupForCommand).
   The `jalr` at 0x267064c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+2408]:8.
   The `jalr` at 0x2670660 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x2670684 calls _XFlush with a0=a0 at entry (arg0), a1=[a0+176]:8+24, a2=a2 at entry (arg2), a3=?, a5=[a0+176]:8.
@@ -1708,7 +1729,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x2670640 targets 0x2670654, is taken when a5(=[a0+2408]:8) == 0, and falls through when a5(=[a0+2408]:8) != 0.
   The `beq` branch at 0x2670658 targets 0x267066c, is taken when t9(=[a0+208]:8) == 0, and falls through when t9(=[a0+208]:8) != 0.
   The `beq` branch at 0x267068c targets 0x26705cc and is always taken.
-  The return at 0x2670678 has v0 = ?.
+  The return at 0x2670678 has v0 = ret(?).
   The return at 0x26706a0 has v0 = 0x0.
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP27KONA64/libGL.so` at 0x26706a8 (n64).
@@ -1732,7 +1753,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `ld` at 0x267076c loads 8 bytes from a0 (arg0 at entry) +0xd0.
   The `jalr` at 0x26706d0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x26706f4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+2408]:8.
-  The `jalr` at 0x2670764 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=a1 at entry (arg1), a4=[a0+2408]:8, a6=[a0+152]:8+1, a7=[a0+176]:8+8.
+  The `jalr` at 0x2670764 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=a1 at entry (arg1), a4=[a0+2408]:8, a5=ret(__glXSetupForCommand), a6=[a0+152]:8+1, a7=[a0+176]:8+8.
   The `jalr` at 0x2670778 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x2670794 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=[a0+176]:8+8, a3=?.
   The `beq` branch at 0x26706dc targets 0x2670784, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
@@ -1750,18 +1771,20 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 292 bytes.
   The `ld` at 0x26711d8 loads 8 bytes from abs 0x1028.
   The `ld` at 0x26711f0 loads 8 bytes from [0x1028]:8 +0x118.
-  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x2671284, `sb` at 0x26712e0.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2671288, `ld` at 0x267128c.
-  The `lw` at 0x26712a0 loads 4 bytes from ?.
+  The `sb` at 0x2671284 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5c.
+  The `ld` at 0x2671288 loads 8 bytes from [[0x1028]:8+280]:8 +0x120.
+  The `ld` at 0x267128c loads 8 bytes from [[[0x1028]:8+280]:8+288]:8 +0x110.
+  The `lw` at 0x26712a0 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x58.
+  The `sb` at 0x26712e0 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5d.
   The `jalr` at 0x26711f4 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bgezall` at 0x2671218 calls (unnamed) [0x2671024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0x2671244 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0x2671254 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x267129c calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?, a7=(((a2 << 0x2) + a2) << 0x3).
+  The `jalr` at 0x267129c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+88], a1=0x1, a2=?, a3=?, a6=(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)), a7=(((a2 << 0x2) + a2) << 0x3).
   The `beq` branch at 0x26711fc targets 0x26712b8, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
   The `beq` branch at 0x2671220 targets 0x26712cc, is taken when v0(=ret(0x2671024)) == 0, and falls through when v0(=ret(0x2671024)) != 0.
   The `beq` branch at 0x2671280 targets 0x26712dc, is taken when v1(=a3) == 0, and falls through when v1(=a3) != 0.
-  The `beq` branch at 0x2671290 targets 0x26712d4, is taken when t9(?) == 0, and falls through when t9(?) != 0.
+  The `beq` branch at 0x2671290 targets 0x26712d4, is taken when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) == 0, and falls through when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) != 0.
   The `beq` branch at 0x26712cc targets 0x26712bc and is always taken.
   The `beq` branch at 0x26712d4 targets 0x26712c0 and is always taken.
   The `beq` branch at 0x26712dc targets 0x26712a4 and is always taken.
@@ -1843,41 +1866,58 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 748 bytes.
   The `lw` at 0xd810650 loads 4 bytes from a0 (arg0 at entry) +0x4c.
   2 such `lw` accesses load 4 bytes from abs 0x1014, including `lw` at 0xd810668, `lw` at 0xd8106d8.
-  51 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd810670, `lw` at 0xd810690, `lw` at 0xd8106d4.
+  5 such `lw` accesses load 4 bytes from [a0+76] +0xcc, including `lw` at 0xd810670, `lw` at 0xd8106d4, `lw` at 0xd810718.
   The `lw` at 0xd810674 loads 4 bytes from [0x1014] +0x0.
+  3 such `lw` accesses load 4 bytes from [a0+76] +0x24, including `lw` at 0xd810690, `lw` at 0xd81078c, `lw` at 0xd81087c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xd8106b8, `lw` at 0xd8107b0, `lw` at 0xd8108a4.
   The `sw` at 0xd8106dc stores 4 bytes to [0x1014] +0x0.
-  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
-  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8107e8, `sw` at 0xd8107f4, `sw` at 0xd8107fc.
+  4 such `sb` accesses store 1 byte to [a0+76] +0xf4, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
+  The `lw` at 0xd8106ec loads 4 bytes from [a0+76] +0xf0.
+  8 such `lw` accesses load 4 bytes from [a0+76] +0xe0, including `lw` at 0xd8106f0, `lw` at 0xd810710, `lw` at 0xd810758.
+  6 such `lw` accesses load 4 bytes from [a0+76] +0xdc, including `lw` at 0xd8106f8, `lw` at 0xd810700, `lw` at 0xd81070c.
+  The `lw` at 0xd8106fc loads 4 bytes from [a0+76] +0xec.
+  5 such `lw` accesses load 4 bytes from [a0+76] +0xe8, including `lw` at 0xd81071c, `lw` at 0xd810848, `lw` at 0xd810870.
+  The `lw` at 0xd810724 loads 4 bytes from [[a0+76]+232] +0x2c.
+  2 such `lw` accesses load 4 bytes from [a0+76] +0x11c, including `lw` at 0xd810738, `lw` at 0xd81080c.
+  8 such `lw` accesses load 4 bytes from [a0+76] +0xe4, including `lw` at 0xd810744, `lw` at 0xd810754, `lw` at 0xd810770.
+  2 such `lw` accesses load 4 bytes from [a0+76] +0x120, including `lw` at 0xd810748, `lw` at 0xd810818.
+  2 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x24, including `lw` at 0xd810768, `lw` at 0xd810840.
+  4 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x4, including `lw` at 0xd81077c, `lw` at 0xd8107d4, `lw` at 0xd810860.
+  2 such `sw` accesses store 4 bytes to [[a0+76]+228] +0x4, including `sw` at 0xd8107e8, `sw` at 0xd8108f0.
+  2 such `sw` accesses store 4 bytes to [a0+76] +0xf0, including `sw` at 0xd8107f4, `sw` at 0xd810908.
+  2 such `sw` accesses store 4 bytes to [a0+76] +0xec, including `sw` at 0xd8107fc, `sw` at 0xd81090c.
+  The `lw` at 0xd81084c loads 4 bytes from [[a0+76]+232] +0x24.
+  2 such `lw` accesses load 4 bytes from [[a0+76]+232] +0x4, including `lw` at 0xd810874, `lw` at 0xd8108dc.
+  The `sw` at 0xd8108fc stores 4 bytes to [[a0+76]+232] +0x4.
   The `jalr` at 0xd81065c calls __glXHWAttach with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=?, a1=0x3ea, a2=sp-12, a3=?.
+  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3ea, a2=sp-12, a3=[[a0+76]+204].
   The `jalr` at 0xd8106c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841624, a2=?, a3=?.
-  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=?, a1=0x3eb, a2=sp-24, a3=?.
+  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3eb, a2=sp-24, a3=?.
   The `jalr` at 0xd8107b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd84163c, a2=?, a3=?.
-  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=?, a1=0x400, a2=sp-44, a3=?.
+  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x400, a2=sp-44, a3=?.
   The `jalr` at 0xd8108ac calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841654, a2=?, a3=?.
-  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(?), and falls through when t7(=[[0x1014]]) != a3(?).
+  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(=[[a0+76]+204]), and falls through when t7(=[[0x1014]]) != a3(=[[a0+76]+204]).
   The `bgez` branch at 0xd8106a4 targets 0xd8106d4, is taken when v0(=ret(Ioctl)) >= 0 (signed), and falls through when v0(=ret(Ioctl)) < 0 (signed).
   The `beq` branch at 0xd8106cc targets 0xd8106e0 and is always taken.
   The `bne` branch at 0xd8106e4 targets 0xd81070c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(?) != t2(?), and falls through when t1(?) == t2(?); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(?) == t4(?), and falls through when t3(?) != t4(?); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(?) == t6(?), and falls through when t5(?) != t6(?); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(?) != at(=0x3), and falls through when t9(?) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(?) >= 0x2 (signed), and falls through when t0(?) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(?) >= 0x3 (signed), and falls through when t1(?) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(=[[a0+76]+240]) != t2(=[[a0+76]+224]), and falls through when t1(=[[a0+76]+240]) == t2(=[[a0+76]+224]); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(=[[a0+76]+236]) == t4(=[[a0+76]+220]), and falls through when t3(=[[a0+76]+236]) != t4(=[[a0+76]+220]); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(=[[a0+76]+220]) == t6(=[[a0+76]+224]), and falls through when t5(=[[a0+76]+220]) != t6(=[[a0+76]+224]); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(=[[[a0+76]+232]+44]) != at(=0x3), and falls through when t9(=[[[a0+76]+232]+44]) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(=[[a0+76]+284]) >= 0x2 (signed), and falls through when t0(=[[a0+76]+284]) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t1(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81075c targets 0xd810770 and is always taken.
   The `bne` branch at 0xd8107a0 targets 0xd8107c8, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8107c0 targets 0xd810910 and is always taken.
-  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(?), and falls through when t7(?) != t8(?); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(=[[[a0+76]+228]+4]), and falls through when t7(?) != t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8107f8 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(?) != at(=0x1), and falls through when t5(?) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(?) >= 0x3 (signed), and falls through when t6(?) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(=[[a0+76]+284]) != at(=0x1), and falls through when t5(=[[a0+76]+284]) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t6(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd810834 targets 0xd810854 and is always taken.
   The `bne` branch at 0xd810890 targets 0xd8108bc, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8108b4 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(?), and falls through when t0(?) != t2(?); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(=[[[a0+76]+228]+4]), and falls through when t7(?) == t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(=[[[a0+76]+232]+4]), and falls through when t0(?) != t2(=[[[a0+76]+232]+4]); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
   The return at 0xd810918 has v0 = ?.
   The instructions from 0xd810764 to 0xd810764 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd810800 to 0xd810800 are not reached by any path from the entry, and their branches are not listed.
@@ -1908,7 +1948,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0xd837b8c stores 4 bytes to [a0+108] +0x8.
   The `sw` at 0xd837b94 stores 4 bytes to [a0+108] +0xc.
   The `lw` at 0xd837b9c loads 4 bytes from a0 (arg0 at entry) +0x2c.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd837bb4, `sw` at 0xd837bb8.
+  The `sw` at 0xd837bb4 stores 4 bytes to [a0+108] +0x10.
+  The `sw` at 0xd837bb8 stores 4 bytes to [a0+108] +0x14.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd837bc4, `lw` at 0xd837bdc.
   The `lw` at 0xd837bc8 loads 4 bytes from [a0+1232] +0x4.
   The `jalr` at 0xd837aa4 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -1927,7 +1968,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beql` branch at 0xd837b20 targets 0xd837b44, is taken when t7(=[a0+112]) >= t8(=[a0+108]+24) (unsigned), and falls through when t7(=[a0+112]) < t8(=[a0+108]+24) (unsigned); its branch-likely delay slot `lw a2,60(sp)` at 0xd837b24 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd837bc0 targets 0xd837be0, is taken when a1(=[a0+1232]) == 0, and falls through when a1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd837bc4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd837be4 targets 0xd837bfc, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw v0,48(sp)` at 0xd837be8 runs only when taken and is annulled on fall-through.
-  The return at 0xd837c08 has v0 = one of 0x0, ?.
+  The return at 0xd837c08 has v0 = one of 0x0, ret(?).
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP35KONA/libGL.so` at 0xd837c10 (o32).
   Evidence grade: inferred.
@@ -1979,7 +2020,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd839ee8 targets 0xd839f20, is taken when (t5(?) & 0xff) == 0, and falls through when (t5(?) & 0xff) != 0.
   The `beql` branch at 0xd839f00 targets 0xd839f3c, is taken when v0(?) == 0, and falls through when v0(?) != 0; its branch-likely delay slot `lw ra,36(sp)` at 0xd839f04 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xd839f28 targets 0xd839f38, is taken when t9(=a3) != 0, and falls through when t9(=a3) == 0; its branch-likely delay slot `sw t0,48(sp)` at 0xd839f2c runs only when taken and is annulled on fall-through.
-  The return at 0xd839f44 has v0 = ?.
+  The return at 0xd839f44 has v0 = one of 0x0, 0x1.
 
 - `__glChangeWindowSize` in `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xd9d1d7c (o32).
   Evidence grade: inferred.
@@ -2133,7 +2174,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0xd83b970 stores 4 bytes to [a0+108] +0xc.
   The `sw` at 0xd83b974 stores 4 bytes to [a0+108] +0x8.
   The `lw` at 0xd83b978 loads 4 bytes from a0 (arg0 at entry) +0x2c.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd83b98c, `sw` at 0xd83b990.
+  The `sw` at 0xd83b98c stores 4 bytes to [a0+108] +0x14.
+  The `sw` at 0xd83b990 stores 4 bytes to [a0+108] +0x10.
   The `lw` at 0xd83b9a0 loads 4 bytes from [a0+1232] +0x4.
   The `lw` at 0xd83b9ac loads 4 bytes from a0 (arg0 at entry) +0x7c.
   The `jalr` at 0xd83b8e0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2148,7 +2190,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd83b998 targets 0xd83b9ac, is taken when a5(=[a0+1232]) == 0, and falls through when a5(=[a0+1232]) != 0.
   The `beq` branch at 0xd83b9b0 targets 0xd83b9c4, is taken when t9(=[a0+124]) == 0, and falls through when t9(=[a0+124]) != 0.
   The `beq` branch at 0xd83b9e0 targets 0xd83b924 and is always taken.
-  The return at 0xd83b9d0 has v0 = ?.
+  The return at 0xd83b9d0 has v0 = ret(?).
   The return at 0xd83b9f4 has v0 = 0x0.
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP35KONA32/libGL.so` at 0xd83b9fc (n32).
@@ -2191,7 +2233,8 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lw` at 0xd83c548 loads 4 bytes from abs 0x1014.
   The `lw` at 0xd83c568 loads 4 bytes from [0x1014] +0x114.
   The `sb` at 0xd83c604 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x48.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd83c608, `lw` at 0xd83c60c.
+  The `lw` at 0xd83c608 loads 4 bytes from [[0x1014]+276] +0xc8.
+  The `lw` at 0xd83c60c loads 4 bytes from [[[0x1014]+276]+200] +0x88.
   The `lw` at 0xd83c620 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x44.
   The `sb` at 0xd83c688 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x49.
   The `jalr` at 0xd83c570 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -2202,7 +2245,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0xd83c578 targets 0xd83c638, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
   The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(0xd83c38c)) == 0, and falls through when v0(=ret(0xd83c38c)) != 0.
   The `beq` branch at 0xd83c600 targets 0xd83c67c, is taken when a0(=a3) == 0, and falls through when a0(=a3) != 0.
-  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(?) == 0, and falls through when t9(?) != 0.
+  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(=[[[[0x1014]+276]+200]+136]) == 0, and falls through when t9(=[[[[0x1014]+276]+200]+136]) != 0.
   The `beq` branch at 0xd83c66c targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c674 targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c684 targets 0xd83c624 and is always taken.
@@ -2362,12 +2405,13 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `sw` at 0x2170618 stores 4 bytes to [a0+176]:8 +0xc.
   The `sw` at 0x217061c stores 4 bytes to [a0+176]:8 +0x8.
   The `ld` at 0x2170620 loads 8 bytes from a0 (arg0 at entry) +0x48.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2170634, `sw` at 0x2170638.
+  The `sw` at 0x2170634 stores 4 bytes to [a0+176]:8 +0x14.
+  The `sw` at 0x2170638 stores 4 bytes to [a0+176]:8 +0x10.
   The `ld` at 0x2170648 loads 8 bytes from [a0+2408]:8 +0x8.
   The `ld` at 0x2170654 loads 8 bytes from a0 (arg0 at entry) +0xd0.
   The `jalr` at 0x217058c calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x21705b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+2408]:8.
-  The `jalr` at 0x2170628 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=[a1+72], a4=[a1+36], a5=[a0+176]:8, a6=0x1f.
+  The `jalr` at 0x2170628 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=[a1+72], a4=[a1+36], a5=[a0+176]:8, a6=0x1f, a7=ret(__glXSetupForCommand).
   The `jalr` at 0x217064c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=[a0+2408]:8.
   The `jalr` at 0x2170660 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x2170684 calls _XFlush with a0=a0 at entry (arg0), a1=[a0+176]:8+24, a2=a2 at entry (arg2), a3=?, a5=[a0+176]:8.
@@ -2377,7 +2421,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x2170640 targets 0x2170654, is taken when a5(=[a0+2408]:8) == 0, and falls through when a5(=[a0+2408]:8) != 0.
   The `beq` branch at 0x2170658 targets 0x217066c, is taken when t9(=[a0+208]:8) == 0, and falls through when t9(=[a0+208]:8) != 0.
   The `beq` branch at 0x217068c targets 0x21705cc and is always taken.
-  The return at 0x2170678 has v0 = ?.
+  The return at 0x2170678 has v0 = ret(?).
   The return at 0x21706a0 has v0 = 0x0.
 
 - `glXDestroyWindow` in `usr/gfx/arch/IP35KONA64/libGL.so` at 0x21706a8 (n64).
@@ -2401,7 +2445,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `ld` at 0x217076c loads 8 bytes from a0 (arg0 at entry) +0xd0.
   The `jalr` at 0x21706d0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x21706f4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+2408]:8.
-  The `jalr` at 0x2170764 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=a1 at entry (arg1), a4=[a0+2408]:8, a6=[a0+152]:8+1, a7=[a0+176]:8+8.
+  The `jalr` at 0x2170764 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=a1 at entry (arg1), a4=[a0+2408]:8, a5=ret(__glXSetupForCommand), a6=[a0+152]:8+1, a7=[a0+176]:8+8.
   The `jalr` at 0x2170778 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x2170794 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=[a0+176]:8+8, a3=?.
   The `beq` branch at 0x21706dc targets 0x2170784, is taken when (v0(=ret(__glXSetupForCommand)) & 0xff) == 0, and falls through when (v0(=ret(__glXSetupForCommand)) & 0xff) != 0.
@@ -2419,18 +2463,20 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 292 bytes.
   The `ld` at 0x21711d8 loads 8 bytes from abs 0x1028.
   The `ld` at 0x21711f0 loads 8 bytes from [0x1028]:8 +0x118.
-  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x2171284, `sb` at 0x21712e0.
-  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2171288, `ld` at 0x217128c.
-  The `lw` at 0x21712a0 loads 4 bytes from ?.
+  The `sb` at 0x2171284 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5c.
+  The `ld` at 0x2171288 loads 8 bytes from [[0x1028]:8+280]:8 +0x120.
+  The `ld` at 0x217128c loads 8 bytes from [[[0x1028]:8+280]:8+288]:8 +0x110.
+  The `lw` at 0x21712a0 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x58.
+  The `sb` at 0x21712e0 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5d.
   The `jalr` at 0x21711f4 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bgezall` at 0x2171218 calls (unnamed) [0x2171024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0x2171244 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0x2171254 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x217129c calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?, a7=(((a2 << 0x2) + a2) << 0x3).
+  The `jalr` at 0x217129c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+88], a1=0x1, a2=?, a3=?, a6=(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)), a7=(((a2 << 0x2) + a2) << 0x3).
   The `beq` branch at 0x21711fc targets 0x21712b8, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
   The `beq` branch at 0x2171220 targets 0x21712cc, is taken when v0(=ret(0x2171024)) == 0, and falls through when v0(=ret(0x2171024)) != 0.
   The `beq` branch at 0x2171280 targets 0x21712dc, is taken when v1(=a3) == 0, and falls through when v1(=a3) != 0.
-  The `beq` branch at 0x2171290 targets 0x21712d4, is taken when t9(?) == 0, and falls through when t9(?) != 0.
+  The `beq` branch at 0x2171290 targets 0x21712d4, is taken when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) == 0, and falls through when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) != 0.
   The `beq` branch at 0x21712cc targets 0x21712bc and is always taken.
   The `beq` branch at 0x21712d4 targets 0x21712c0 and is always taken.
   The `beq` branch at 0x21712dc targets 0x21712a4 and is always taken.
@@ -2521,7 +2567,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10020b78 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultChannelWindowClassResources__18ChannelWindowClass), a3=?.
   The `jalr` at 0x10020b8c calls __nw__GUi with a0=0x150, a1=?, a2=?, a3=?.
   The `jalr` at 0x10020bd0 calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x10020bec calls __ct__5Form1GPCcP10_WidgetReci [0x10032c10] with a0=?, a1=0x100aa400, a2=ret(?), a3=a4 at entry (arg4).
+  The `jal` at 0x10020bec calls __ct__5Form1GPCcP10_WidgetReci [0x10032c10] with a0=ret(__nw__GUi), a1=0x100aa400, a2=ret(?), a3=a4 at entry (arg4).
   The `jalr` at 0x10020c24 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x10020c54 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x19f, a3=sym(XtStrings)+234, a4=0x242, a5=0x0.
   The `jalr` at 0x10020c6c calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -2611,7 +2657,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10020fb8 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultDVPWindowClassResources__14DVPWindowClass), a3=?.
   The `jalr` at 0x10020fcc calls __nw__GUi with a0=0x120, a1=?, a2=?, a3=?.
   The `jalr` at 0x10021010 calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1002102c calls __ct__7DvpFormGPCcP10_WidgetReci [0x10021570] with a0=?, a1=0x100aa408, a2=ret(?), a3=a4 at entry (arg4).
+  The `jal` at 0x1002102c calls __ct__7DvpFormGPCcP10_WidgetReci [0x10021570] with a0=ret(__nw__GUi), a1=0x100aa408, a2=ret(?), a3=a4 at entry (arg4).
   The `jalr` at 0x10021064 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x10021094 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1f4, a3=sym(XtStrings)+234, a4=0x244, a5=0x0.
   The `jalr` at 0x100210ac calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -2716,7 +2762,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10032854 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultEncoderWindowClassResources__18EncoderWindowClass), a3=?.
   The `jalr` at 0x10032868 calls __nw__GUi with a0=0x1d4, a1=?, a2=?, a3=?.
   The `jalr` at 0x100328ac calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x100328c8 calls __ct__11EncoderFormGPCcP10_WidgetRec [0x10028b00] with a0=?, a1=0x10096058, a2=ret(?), a3=?.
+  The `jal` at 0x100328c8 calls __ct__11EncoderFormGPCcP10_WidgetRec [0x10028b00] with a0=ret(__nw__GUi), a1=0x10096058, a2=ret(?), a3=?.
   The `jalr` at 0x10032900 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x10032930 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1f4, a3=sym(XtStrings)+234, a4=0x258, a5=0x0.
   The `jalr` at 0x10032948 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -2829,18 +2875,18 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10042074 calls baseWidget__11VkComponentCGv with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10042088 calls XtDisplay with a0=ret(baseWidget__11VkComponentCGv), a1=?, a2=?, a3=?.
   The `jal` at 0x100420a0 calls select_window__5FrameGP9_XDisplay [0x10048030] with a0=a0 at entry (arg0), a1=ret(XtDisplay), a2=?, a3=?.
-  The `jalr` at 0x100420dc calls XGetGeometry with a0=?, a1=ret(select_window__5FrameGP9_XDisplay), a2=sp-200, a3=sp-196, a4=sp-196, a5=sp-192, a6=sp-192, a7=sp-192.
-  The `jalr` at 0x1004210c calls XmuClientWindow with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1004214c calls XQueryTree with a0=?, a1=?, a2=sp-184, a3=sp-180, a4=sp-176, a5=sp-172.
+  The `jalr` at 0x100420dc calls XGetGeometry with a0=ret(XtDisplay), a1=ret(select_window__5FrameGP9_XDisplay), a2=sp-200, a3=sp-196, a4=sp-196, a5=sp-192, a6=sp-192, a7=sp-192.
+  The `jalr` at 0x1004210c calls XmuClientWindow with a0=ret(XtDisplay), a1=ret(select_window__5FrameGP9_XDisplay), a2=?, a3=?.
+  The `jalr` at 0x1004214c calls XQueryTree with a0=ret(XtDisplay), a1=?, a2=sp-184, a3=sp-180, a4=sp-176, a5=sp-172.
   The `jalr` at 0x100421cc calls XFree with a0=?, a1=ret(XQueryTree), a2=?, a3=?.
-  The `jalr` at 0x100421f0 calls XGetWindowAttributes with a0=?, a1=?, a2=sp-160, a3=?.
-  The `jalr` at 0x10042204 calls XSync with a0=?, a1=0x0, a2=?, a3=?.
+  The `jalr` at 0x100421f0 calls XGetWindowAttributes with a0=ret(XtDisplay), a1=?, a2=sp-160, a3=?.
+  The `jalr` at 0x10042204 calls XSync with a0=ret(XtDisplay), a1=0x0, a2=?, a3=?.
   The `jal` at 0x100422d4 calls clamp_channel__5FrameGiN21 [0x10044e90] with a0=a0 at entry (arg0), a1=[a0+264], a2=0x1, a3=0x3, a5=[a0+264], a6=0xab0, a7=[a0+264].
   The `jal` at 0x100422e4 calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0x10042010 targets 0x1004206c, is taken when at(=[a0+264]) != v0(=-0x1), and falls through when at(=[a0+264]) == v0(=-0x1).
   The `beq` branch at 0x10042064 targets 0x100422f4 and is always taken.
   The `beq` branch at 0x100420e8 targets 0x1004211c, is taken when v0(=ret(XGetGeometry)) == 0, and falls through when v0(=ret(XGetGeometry)) != 0.
-  The `beq` branch at 0x100420f8 targets 0x1004211c, is taken when t1(?) == t2(?), and falls through when t1(?) != t2(?).
+  The `beq` branch at 0x100420f8 targets 0x1004211c, is taken when t1(=ret(select_window__5FrameGP9_XDisplay)) == t2(?), and falls through when t1(=ret(select_window__5FrameGP9_XDisplay)) != t2(?).
   The `beq` branch at 0x10042128 targets 0x100421e0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x10042164 targets 0x10042184, is taken when t9(?) == ra(?), and falls through when t9(?) != ra(?).
   The `beq` branch at 0x10042170 targets 0x10042184, is taken when at(?) == 0, and falls through when at(?) != 0.
@@ -2885,7 +2931,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x1004ba04 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultGVOWindowClassResources__14GVOWindowClass), a3=?.
   The `jalr` at 0x1004ba18 calls __nw__GUi with a0=0x158, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004ba5c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1004ba74 calls __ct__7GvoFormGPCcP10_WidgetRec [0x1004c370] with a0=?, a1=0x100aa728, a2=ret(?), a3=?.
+  The `jal` at 0x1004ba74 calls __ct__7GvoFormGPCcP10_WidgetRec [0x1004c370] with a0=ret(__nw__GUi), a1=0x100aa728, a2=ret(?), a3=?.
   The `jalr` at 0x1004baac calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1004badc calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1f4, a3=sym(XtStrings)+234, a4=0x258, a5=0x0.
   The `jalr` at 0x1004bb00 calls XtVaSetValues with a0=[a0+16], a1=sym(XtShellStrings)+280, a2=0x0, a3=0x0.
@@ -2973,7 +3019,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x1004be74 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultGlobalsWindowClassResources__18GlobalsWindowClass), a3=?.
   The `jalr` at 0x1004be88 calls __nw__GUi with a0=0xb0, a1=?, a2=?, a3=?.
   The `jalr` at 0x1004becc calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1004bee4 calls __ct__5Form2GPCcP10_WidgetRec [0x1003c1f0] with a0=?, a1=0x100aa730, a2=ret(?), a3=?.
+  The `jal` at 0x1004bee4 calls __ct__5Form2GPCcP10_WidgetRec [0x1003c1f0] with a0=ret(__nw__GUi), a1=0x100aa730, a2=ret(?), a3=?.
   The `jalr` at 0x1004bf1c calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1004bf4c calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1f7, a3=sym(XtStrings)+234, a4=0x149, a5=0x0.
   The `jalr` at 0x1004bf64 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -3080,7 +3126,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10058304 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultHardwareWindowClassResources__19HardwareWindowClass), a3=?.
   The `jalr` at 0x10058318 calls __nw__GUi with a0=0x7c, a1=?, a2=?, a3=?.
   The `jalr` at 0x1005835c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x10058378 calls __ct__12HardwareFormGPCcP10_WidgetRec [0x10055b70] with a0=?, a1=0x10099988, a2=ret(?), a3=?.
+  The `jal` at 0x10058378 calls __ct__12HardwareFormGPCcP10_WidgetRec [0x10055b70] with a0=ret(__nw__GUi), a1=0x10099988, a2=ret(?), a3=?.
   The `jalr` at 0x100583b0 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x100583e0 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1c6, a3=sym(XtStrings)+234, a4=0xe3, a5=0x0.
   The `jalr` at 0x10058404 calls XtVaSetValues with a0=[a0+16], a1=sym(XtShellStrings)+280, a2=0x0, a3=0x0.
@@ -3161,7 +3207,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10058724 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultHdgvoAttributesWindowClassResources__26HdgvoAttributesWindowClass), a3=?.
   The `jalr` at 0x10058738 calls __nw__GUi with a0=0x168, a1=?, a2=?, a3=?.
   The `jalr` at 0x1005877c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x10058798 calls __ct__9HdgvoFormGPCcP10_WidgetRec [0x10058c30] with a0=?, a1=0x100999d0, a2=ret(?), a3=?.
+  The `jal` at 0x10058798 calls __ct__9HdgvoFormGPCcP10_WidgetRec [0x10058c30] with a0=ret(__nw__GUi), a1=0x100999d0, a2=ret(?), a3=?.
   The `jalr` at 0x100587d0 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x10058800 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x20d, a3=sym(XtStrings)+234, a4=0x243, a5=0x0.
   The `jalr` at 0x10058818 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -3269,7 +3315,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10062e34 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultHdgvoFormatSelectWindowClassResources__28HdgvoFormatSelectWindowClass), a3=?.
   The `jalr` at 0x10062e48 calls __nw__GUi with a0=0x3c, a1=?, a2=?, a3=?.
   The `jalr` at 0x10062e8c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x10062ea8 calls __ct__15HdgvoFormatFormGPCcP10_WidgetRec [0x10061d30] with a0=?, a1=0x1009b1c0, a2=ret(?), a3=?.
+  The `jal` at 0x10062ea8 calls __ct__15HdgvoFormatFormGPCcP10_WidgetRec [0x10061d30] with a0=ret(__nw__GUi), a1=0x1009b1c0, a2=ret(?), a3=?.
   The `jalr` at 0x10062ee0 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x10062f10 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x195, a3=sym(XtStrings)+234, a4=0xab, a5=0x0.
   The `jalr` at 0x10062f28 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -3346,7 +3392,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x1006cdb4 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultSiriusWindowClassResources__17SiriusWindowClass), a3=?.
   The `jalr` at 0x1006cdc8 calls __nw__GUi with a0=0x15c, a1=?, a2=?, a3=?.
   The `jalr` at 0x1006ce0c calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1006ce28 calls __ct__10SiriusFormGPCcP10_WidgetRec [0x10063180] with a0=?, a1=0x1009c328, a2=ret(?), a3=?.
+  The `jal` at 0x1006ce28 calls __ct__10SiriusFormGPCcP10_WidgetRec [0x10063180] with a0=ret(__nw__GUi), a1=0x1009c328, a2=ret(?), a3=?.
   The `jalr` at 0x1006ce60 calls baseWidget__11VkComponentCGv with a0=[a0+64], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1006ce90 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x1f4, a3=sym(XtStrings)+234, a4=0x258, a5=0x0.
   The `jalr` at 0x1006cea8 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=?.
@@ -3428,15 +3474,15 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lw` at 0x1006dffc loads 4 bytes from a0 (arg0 at entry) +0x7c.
   The `jalr` at 0x1006df5c calls prepost__15VkDialogManagerGPCcPGP10_WidgetRecPvT2_vN22PvT1P14VkSimpleWindow with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1006df80 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+128], a1=0x100aa860, a2=?, a3=?.
-  The `jal` at 0x1006df98 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006df98 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=0x100aa860, a2=?, a3=?.
   The `jal` at 0x1006dfac calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+116], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006dfc4 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006dfc4 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=0x100aa860, a2=?, a3=?.
   The `jal` at 0x1006dfd8 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+120], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006dff0 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006dff0 calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=0x100aa860, a2=?, a3=?.
   The `jal` at 0x1006e004 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+124], a1=?, a2=?, a3=?.
-  The `jal` at 0x1006e01c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1006e01c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=0x100aa860, a2=?, a3=?.
   The `beq` branch at 0x1006e02c targets 0x1006e034 and is always taken.
-  The return at 0x1006e044 has v0 = ?.
+  The return at 0x1006e044 has v0 = ret(prepost__15VkDialogManagerGPCcPGP10_WidgetRecPvT2_vN22PvT1P14VkSimpleWindow).
 
 - `__ct__18VkwindowMainWindowGPCcP3ArgUi` in `usr/gfx/ircombine` at 0x1006e600 (n32).
   Evidence grade: inferred.
@@ -3491,7 +3537,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x1006e674 calls setDefaultResources__11VkComponentGP10_WidgetRecPCPc with a0=a0 at entry (arg0), a1=ret(baseWidget__11VkComponentCGv), a2=sym(_defaultVkwindowMainWindowResources__18VkwindowMainWindow), a3=?.
   The `jalr` at 0x1006e688 calls __nw__GUi with a0=0xaeac, a1=?, a2=?, a3=?.
   The `jalr` at 0x1006e6cc calls (unknown callee) with a0=([[a0+8]+228] + a0), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jal` at 0x1006e6e4 calls __ct__5FrameGPCcP10_WidgetRec [0x10041140] with a0=?, a1=0x100aa890, a2=ret(?), a3=?.
+  The `jal` at 0x1006e6e4 calls __ct__5FrameGPCcP10_WidgetRec [0x10041140] with a0=ret(__nw__GUi), a1=0x100aa890, a2=ret(?), a3=?.
   The `jalr` at 0x1006e71c calls baseWidget__11VkComponentCGv with a0=[a0+72], a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0x1006e74c calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=sym(XtStrings)+872, a2=0x357, a3=sym(XtStrings)+234, a4=0x2e5, a5=0x0.
   The `jalr` at 0x1006e764 calls addView__14VkSimpleWindowGP11VkComponent with a0=a0 at entry (arg0), a1=[a0+72], a2=?, a3=?.
@@ -4201,7 +4247,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lh` at 0x10030f50 loads 2 bytes from a1 (arg1 at entry) +0x2.
   The `lh` at 0x10030f60 loads 2 bytes from a1 (arg1 at entry) +0x0.
   The `jalr` at 0x10030f48 calls XtWindow with a0=[a0+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x10030f74 calls XFillRectangle with a0=?, a1=ret(XtWindow), a2=a2 at entry (arg2), a3=[a1]:2-2, a4=[a1+2]:2-2, a5=0x5, a6=0x5.
+  The `jalr` at 0x10030f74 calls XFillRectangle with a0=[[sym(xsetmonApp)]+108], a1=ret(XtWindow), a2=a2 at entry (arg2), a3=[a1]:2-2, a4=[a1+2]:2-2, a5=0x5, a6=0x5.
   The return at 0x10030f88 has v0 = ret(XFillRectangle).
 
 - `__ct__21SetmonMasterFormClassGPCcP10_WidgetRec` in `usr/bin/X11/xsetmon` at 0x10030fd0 (n32).
@@ -4253,7 +4299,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 96 bytes.
   The `jalr` at 0x10031174 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10031188 calls appendText__22ScrollingErrorMessagerGPc [0x10027c70] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10031198 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10031198 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x100311a8 has v0 = ret(__dl__GPv).
 
 - `__dt__12GammaClassUIGv` in `usr/bin/X11/xsetmon` at 0x100311b0 (n32).
@@ -4399,13 +4445,13 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x10031854 calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+52], a2=0x10045de8, a3=?.
   The `jal` at 0x1003186c calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+56], a2=0x10045e00, a3=?.
   The `jalr` at 0x10031898 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x1.
-  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=?, a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=ret(__nw__GUi), a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x100318d4 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=?, a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=ret(__nw__GUi), a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031910 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=?, a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=ret(__nw__GUi), a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1003194c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=?, a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=ret(__nw__GUi), a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031980 calls getenv with a0=0x10051708, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100319a0 calls VkGetResource__GPCcT1 with a0=0x10045f00, a1=0x10045f00, a2=?, a3=?.
   The `jalr` at 0x100319b4 calls sprintf with a0=sp-1104, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
@@ -4418,7 +4464,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x10031564 targets 0x1003197c, is taken when a1 == 0, and falls through when a1 != 0.
   The `beq` branch at 0x10031570 targets 0x10031980, is taken when v0(=[a1]:1) == 0, and falls through when v0(=[a1]:1) != 0.
   The `beq` branch at 0x10031598 targets 0x10031a10, is taken when v0(=ret(XOpenDisplay)) == 0, and falls through when v0(=ret(XOpenDisplay)) != 0.
-  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(=ret(XSGIvcQueryVersion)) == 0, and falls through when a1(=ret(XSGIvcQueryVersion)) != 0.
   The `beq` branch at 0x100315d8 targets 0x10031990, is taken when v0(=ret(XSGIvcQueryScreenGammaMaps)) == 0, and falls through when v0(=ret(XSGIvcQueryScreenGammaMaps)) != 0.
   The `beq` branch at 0x10031640 targets 0x10031660, is taken when v0(=[a0+44]) == 0, and falls through when v0(=[a0+44]) != 0.
   The `beq` branch at 0x10031664 targets 0x10031684, is taken when v0(=[a0+48]) == 0, and falls through when v0(=[a0+48]) != 0.
@@ -4564,7 +4610,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jalr` at 0x10032650 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x1, a7=-0x67.
   The `jalr` at 0x1003265c calls baseWidget__11VkComponentCGv with a0=[a0+36], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003266c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10032734 calls XtVaSetValues with a0=?, a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x3, a7=-0xa5.
+  The `jalr` at 0x10032734 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x42, a2=0x1, a3=-0x66, a4=0x1, a5=-0x46, a6=0x3, a7=-0xa5.
   The `jalr` at 0x10032774 calls (unknown callee) with a0=([[[a0+36]+8]+48] + [a0+36]), a1=[a0+36], a2=?, a3=?.
   The `jalr` at 0x10032780 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=?.
   The `jalr` at 0x10032798 calls XtVaSetValues with a0=ret(baseWidget__11VkComponentCGv), a1=-0x2e1, a2=0x32, a3=0x0.
@@ -4607,7 +4653,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x1003289c calls __ct__13GammaEditUndoGP19GammaMapEditorClass [0x1002e2e0] with a0=ret(__nw__GUi), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x100328bc calls getTheUndoManager__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100328d4 calls VkGetResource__GPCcT1 with a0=0x100459a0, a1=0x100459a0, a2=?, a3=?.
-  The `jalr` at 0x100328ec calls add__17VkMenuUndoManagerGPCcPGP10_WidgetRecPvT2_vPv with a0=?, a1=ret(VkGetResource__GPCcT1), a2=sym(vPerformUndo__13GammaEditUndoSGPvT1), a3=?.
+  The `jalr` at 0x100328ec calls add__17VkMenuUndoManagerGPCcPGP10_WidgetRecPvT2_vPv with a0=ret(getTheUndoManager__Gv), a1=ret(VkGetResource__GPCcT1), a2=sym(vPerformUndo__13GammaEditUndoSGPvT1), a3=?.
   The `jalr` at 0x10032908 calls (unknown callee) with a0=([[[sym(xsetmonApp)]+8]+312] + [sym(xsetmonApp)]), a1=[sym(xsetmonApp)], a2=?, a3=?.
   The `jal` at 0x10032918 calls redraw__19GammaMapEditorClassCGi [0x1002ad90] with a0=a0 at entry (arg0), a1=0x1, a2=?, a3=?.
   The `beq` branch at 0x10032804 targets 0x10032910, is taken when at(=[a0+104]) == 0, and falls through when at(=[a0+104]) != 0.
@@ -5092,7 +5138,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 96 bytes.
   The `jalr` at 0x10033f84 calls str__9strstreamGv with a0=a1 at entry (arg1), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10033f98 calls appendText__17TextErrorMessagerGPc [0x1002cbb0] with a0=a0 at entry (arg0), a1=ret(str__9strstreamGv), a2=?, a3=?.
-  The `jalr` at 0x10033fa8 calls __dl__GPv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10033fa8 calls __dl__GPv with a0=ret(str__9strstreamGv), a1=?, a2=?, a3=?.
   The return at 0x10033fb8 has v0 = ret(__dl__GPv).
 
 - `__as__7MMatrixGRC7MMatrix` in `usr/bin/X11/xsetmon` at 0x10033fc0 (n32).

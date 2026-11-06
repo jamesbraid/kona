@@ -137,13 +137,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1200 calls gfx_flow_flush_my_wg with a0=[[a0+40]:8+2272]:8, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1208 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1218 calls gfx_flow_am_i_attached with a0=[[a0+40]:8+2272]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x122c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x122c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1244 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+0xc00108, a1=[[a0+40]:8+2360], a2=[[a0+40]:8+2376]:8, a3=?.
   The `jal` at 0x1250 calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=0x1f6, a2=?, a3=?.
   The `jal` at 0x125c calls gfx_flow_flush_my_wg with a0=[[a0+40]:8+2272]:8, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1264 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1274 calls gfx_flow_am_i_attached with a0=[[a0+40]:8+2272]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1288 calls splx with a0=?, a1=?, a2=0x10000, a3=?.
+  The `jal` at 0x1288 calls splx with a0=ret(splhi), a1=?, a2=0x10000, a3=?.
   The `jal` at 0x12a0 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+0xc00108, a1=[[a0+40]:8+2360], a2=[[a0+40]:8+2376]:8, a3=?.
   The `jal` at 0x12ac calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=0x100, a2=?, a3=?.
   The `jal` at 0x12cc calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=?, a2=?, a3=0xb0.
@@ -160,27 +160,27 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x13ec calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
   The `jal` at 0x1404 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x140c calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1418 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1418 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1420 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x1428 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1438 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x1440 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1440 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x1454 calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=0x10000, a3=?.
   The `jal` at 0x146c calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x1474 calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1480 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1480 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1488 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x1490 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x14a0 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x14a8 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x14a8 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x14bc calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
   The `jal` at 0x14d4 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x14dc calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x14e8 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x14e8 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x14f0 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x14f8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1508 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x1510 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1510 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `bne` branch at 0x1180 targets 0x11a8, is taken when a1 != 0, and falls through when a1 == 0.
   The `beq` branch at 0x11b8 targets 0x11cc, is taken when t8(=[[a1+112]:8+104]:8) == v0(=ret(curproc)), and falls through when t8(=[[a1+112]:8+104]:8) != v0(=ret(curproc)).
   The `beq` branch at 0x11c4 targets 0x118c and is always taken.
@@ -286,13 +286,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1200 calls gfx_flow_flush_my_wg with a0=[[a0+40]:8+2272]:8, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1208 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1218 calls gfx_flow_am_i_attached with a0=[[a0+40]:8+2272]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x122c calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x122c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1244 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+0xc00108, a1=[[a0+40]:8+2360], a2=[[a0+40]:8+2376]:8, a3=?.
   The `jal` at 0x1250 calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=0x1f6, a2=?, a3=?.
   The `jal` at 0x125c calls gfx_flow_flush_my_wg with a0=[[a0+40]:8+2272]:8, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1264 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1274 calls gfx_flow_am_i_attached with a0=[[a0+40]:8+2272]:8, a1=?, a2=?, a3=?.
-  The `jal` at 0x1288 calls splx with a0=?, a1=?, a2=0x10000, a3=?.
+  The `jal` at 0x1288 calls splx with a0=ret(splhi), a1=?, a2=0x10000, a3=?.
   The `jal` at 0x12a0 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+0xc00108, a1=[[a0+40]:8+2360], a2=[[a0+40]:8+2376]:8, a3=?.
   The `jal` at 0x12ac calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=0x100, a2=?, a3=?.
   The `jal` at 0x12cc calls gfx_pio_write_32 with a0=[[a0+40]:8+2304]:8, a1=?, a2=?, a3=0xb0.
@@ -309,27 +309,27 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x13ec calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
   The `jal` at 0x1404 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x140c calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1418 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1418 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1420 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x1428 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1438 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x1440 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1440 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x1454 calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=0x10000, a3=?.
   The `jal` at 0x146c calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x1474 calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1480 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1480 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x1488 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x1490 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x14a0 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x14a8 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x14a8 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `jal` at 0x14bc calls gfx_flow_attach_me with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
   The `jal` at 0x14d4 calls gfx_pio_write_32 with a0=[[a0+40]:8+2376]:8+124, a1=?, a2=?, a3=?.
   The `jal` at 0x14dc calls rt_pin_thread with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x14e8 calls splx with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x14e8 calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
   The `jal` at 0x14f0 calls kona_flow_await_returned_credits with a0=[a0+40]:8, a1=?, a2=?, a3=?.
   The `jal` at 0x14f8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1508 calls gfx_flow_attach_me_finish with a0=[[a0+40]:8+2272]:8, a1=[[a0+40]:8+72]:8, a2=?, a3=?.
-  The `jal` at 0x1510 calls rt_unpin_thread with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1510 calls rt_unpin_thread with a0=ret(rt_pin_thread), a1=?, a2=?, a3=?.
   The `bne` branch at 0x1180 targets 0x11a8, is taken when a1 != 0, and falls through when a1 == 0.
   The `beq` branch at 0x11b8 targets 0x11cc, is taken when t8(=[[a1+112]:8+104]:8) == v0(=ret(curproc)), and falls through when t8(=[[a1+112]:8+104]:8) != v0(=ret(curproc)).
   The `beq` branch at 0x11c4 targets 0x118c and is always taken.
@@ -491,7 +491,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x1007c588 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-168, a3=?.
   The `jal` at 0x1007c644 calls kt_output_trce [0x10046b88] with a0=0x1019af38, a1=?, a2=?, a3=0x1.
   The `jal` at 0x1007c668 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1007c6a4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c6b8 calls ge11_bypass_write [0x10037874] with a0=0x0, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1007c6c4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
@@ -501,8 +501,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1007c780 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x1, a3=?.
   The `jalr` at 0x1007c794 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1007c7a8 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
+  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
+  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=[a0+116].
   The `jal` at 0x1007c82c calls kt_output_diag [0x100461b0] with a0=0x1019afa0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c880 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007c8a4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019afb8, a2=?, a3=?.
@@ -510,25 +510,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1007c920 calls kt_output_diag [0x100461b0] with a0=0x1019aee0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c944 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019af18, a2=?, a3=?.
   The `jal` at 0x1007c958 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
   The `jal` at 0x1007c990 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1007c9a8 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1007c544 targets 0x1007c8e0, is taken when t8(=[a0+116]) >= 0x5 (signed), and falls through when t8(=[a0+116]) < 0x5 (signed).
   The `bltz` branch at 0x1007c594 targets 0x1007c908, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
+  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(=[a0+116]) <= 0 (signed), and falls through when v1(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1007c5f0 targets 0x1007c9b8 and is always taken.
-  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(?) (signed), and falls through when s7(?) < t8(?) (signed).
+  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(=[a0+116]) (signed), and falls through when s7(?) < t8(=[a0+116]) (signed).
   The `beq` branch at 0x1007c61c targets 0x1007c600, is taken when (t9(=[a0+120]) & v0(?)) == 0, and falls through when (t9(=[a0+120]) & v0(?)) != 0.
   The `beq` branch at 0x1007c684 targets 0x1007c69c and is always taken.
   The `beq` branch at 0x1007c694 targets 0x1007c5f8, is taken when s8(?) >= 0x9 (signed), and falls through when s8(?) < 0x9 (signed).
   The `beq` branch at 0x1007c720 targets 0x1007c68c, is taken when a3(?) == a2(?), and falls through when a3(?) != a2(?).
   The `beq` branch at 0x1007c760 targets 0x1007c690 and is always taken.
   The `beq` branch at 0x1007c7c8 targets 0x1007c980, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(?) <= 0 (signed), and falls through when ra(?) > 0 (signed).
+  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(=[a0+116]) <= 0 (signed), and falls through when ra(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x1007c7fc targets 0x1007c848 and is always taken.
-  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(?) (signed), and falls through when s1(?) < a1(?) (signed).
+  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(=[a0+116]) (signed), and falls through when s1(?) < a1(=[a0+116]) (signed).
   The `bne` branch at 0x1007c854 targets 0x1007c804, is taken when (s0(?) & a2(?)) != 0, and falls through when (s0(?) & a2(?)) == 0.
-  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(?) (signed), and falls through when s1(?) >= a3(?) (signed).
+  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(=[a0+116]) (signed), and falls through when s1(?) >= a3(=[a0+116]) (signed).
   The `beq` branch at 0x1007c8f4 targets 0x1007c550 and is always taken.
   The `beq` branch at 0x1007c900 targets 0x1007c768 and is always taken.
   The `beq` branch at 0x1007c978 targets 0x1007c8b0 and is always taken.
@@ -646,9 +646,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sw` at 0x10145a50 stores 4 bytes to a0 (arg0 at entry) +0x54.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x54, including `lw` at 0x10145ac0, `lw` at 0x10145b28.
   2 such `lw` accesses load 4 bytes from abs 0x102bd314, including `lw` at 0x10145ad0, `lw` at 0x10146204.
-  6 such `ld` accesses load 8 bytes from table(0x3fe28) +0x0, including `ld` at 0x10145ad4, `ld` at 0x10145b3c, `ld` at 0x10145b98.
+  7 such `ld` accesses load 8 bytes from table(0x3fe28) +0x0, including `ld` at 0x10145ad4, `ld` at 0x10145b3c, `ld` at 0x10145b98.
   22 such `lw` accesses load 4 bytes from abs 0x1047313c, including `lw` at 0x10145ad8, `lw` at 0x10145b38, `lw` at 0x10145bd4.
-  6 such `sd` accesses store 8 bytes to table(0x3fe28) +0x0, including `sd` at 0x10145af4, `sd` at 0x10145b4c, `sd` at 0x10145bd0.
+  7 such `sd` accesses store 8 bytes to table(0x3fe28) +0x0, including `sd` at 0x10145af4, `sd` at 0x10145b4c, `sd` at 0x10145bd0.
   22 such `lw` accesses load 4 bytes from abs 0x102bd310, including `lw` at 0x10145b08, `lw` at 0x10145b7c, `lw` at 0x10145be8.
   3 such `lw` accesses load 4 bytes from abs 0x102bd3f8, including `lw` at 0x10145b14, `lw` at 0x10145b6c, `lw` at 0x10146210.
   5 such `lw` accesses load 4 bytes from abs 0x102bd414, including `lw` at 0x10145b1c, `lw` at 0x10145b60, `lw` at 0x10146234.
@@ -664,9 +664,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   3 such `sd` accesses store 8 bytes to table(0x3fe08) +0x0, including `sd` at 0x10145d38, `sd` at 0x10145d88, `sd` at 0x10145ddc.
   2 such `lw` accesses load 4 bytes from (a0 + (((a1 << 0x2) + a1) << 0x3)) +0x6c, including `lw` at 0x10145d6c, `lw` at 0x10145da8.
   2 such `lw` accesses load 4 bytes from (a0 + (((a1 << 0x2) + a1) << 0x3)) +0x70, including `lw` at 0x10145db8, `lw` at 0x10145e04.
-  10 such `ld` accesses load 8 bytes from ?, including `ld` at 0x10145e14, `ld` at 0x10145e80, `ld` at 0x1014627c.
+  2 such `ld` accesses load 8 bytes from table(0x28000) +0x0, including `ld` at 0x10145e14, `ld` at 0x10145e80.
   4 such `lw` accesses load 4 bytes from (a0 + (((a1 << 0x2) + a1) << 0x3)) +0x84, including `lw` at 0x10145e1c, `lw` at 0x10145e60, `lw` at 0x10145e74.
-  8 such `sd` accesses store 8 bytes to ?, including `sd` at 0x10145e34, `sd` at 0x10145ea0, `sd` at 0x101462d4.
+  2 such `sd` accesses store 8 bytes to table(0x28000) +0x0, including `sd` at 0x10145e34, `sd` at 0x10145ea0.
   4 such `lw` accesses load 4 bytes from (a0 + (((a1 << 0x2) + a1) << 0x3)) +0x88, including `lw` at 0x10145ed4, `lw` at 0x10145f28, `lw` at 0x101463c8.
   2 such `ld` accesses load 8 bytes from table(0x3fe20) +0x0, including `ld` at 0x10145f3c, `ld` at 0x10145f80.
   2 such `sd` accesses store 8 bytes to table(0x3fe20) +0x0, including `sd` at 0x10145f54, `sd` at 0x10145fb8.
@@ -676,8 +676,15 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x1014615c loads 4 bytes from ?.
   The `sw` at 0x10146168 stores 4 bytes to ?.
   The `lw` at 0x101461b0 loads 4 bytes from abs 0x102bdf88.
+  2 such `ld` accesses load 8 bytes from table(0x3fe10) +0x0, including `ld` at 0x1014627c, `ld` at 0x101464e8.
+  2 such `sd` accesses store 8 bytes to table(0x3fe10) +0x0, including `sd` at 0x101462d4, `sd` at 0x10146504.
+  2 such `ld` accesses load 8 bytes from table(0x3fe18) +0x0, including `ld` at 0x10146314, `ld` at 0x10146364.
+  2 such `sd` accesses store 8 bytes to table(0x3fe18) +0x0, including `sd` at 0x10146338, `sd` at 0x10146394.
+  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x10146428, `ld` at 0x10146444.
   The `lw` at 0x1014643c loads 4 bytes from abs 0x102bde34.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x5c, including `lw` at 0x1014655c, `lw` at 0x101465c0.
+  The `ld` at 0x10146568 loads 8 bytes from table(0x28018) +0x0.
+  The `sd` at 0x10146584 stores 8 bytes to table(0x28018) +0x0.
   The `lw` at 0x101465d4 loads 4 bytes from abs 0x102bd420.
   The `jal` at 0x10145a18 calls tbuGetNextTexID [0x10141010] with a0=[a0+96], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10145a30 calls tbuGetTexelSize [0x10143018] with a0=[a0+80], a1=?, a2=?, a3=?.
@@ -695,9 +702,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x10145dac calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1f20, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+108], a4=0x0.
   The `jal` at 0x10145dd8 calls tbRegWrite [0x1013eb3c] with a0=0x7fc1, a1=?, a2=?, a3=?.
   The `jalr` at 0x10145e08 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1f30, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+112], a4=0x1.
-  The `jal` at 0x10145e30 calls tbRegWrite [0x1013eb3c] with a0=0x5000, a1=?, a2=?, a3=?.
+  The `jal` at 0x10145e30 calls tbRegWrite [0x1013eb3c] with a0=0x5000, a1=?, a2=table(0x30000), a3=?, a4=entry(0x28000).
   The `jalr` at 0x10145e64 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1f88, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+132], a4=0x1, a5=[0x1047313c].
-  The `jal` at 0x10145e9c calls tbRegWrite [0x1013eb3c] with a0=0x5000, a1=?, a2=?, a3=([(a0 + (((a1 << 0x2) + a1) << 0x3))+132] << 0x18), a4=0xffffe00000ffffff.
+  The `jal` at 0x10145e9c calls tbRegWrite [0x1013eb3c] with a0=0x5000, a1=?, a2=table(0x30000), a3=([(a0 + (((a1 << 0x2) + a1) << 0x3))+132] << 0x18), a4=0xffffe00000ffffff.
   The `jalr` at 0x10145ecc calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1fa0, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+132], a4=0x1, a5=[0x1047313c].
   The `jal` at 0x10145ef8 calls tbRegWrite [0x1013eb3c] with a0=0x7fc5, a1=?, a2=?, a3=entry(0x3fe28).
   The `jalr` at 0x10145f2c calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1fb8, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+136], a4=0x1.
@@ -708,22 +715,22 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x10146040 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x10146054 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10146070 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jal` at 0x101461bc calls tbuFormatTexels [0x1015366c] with a0=?, a1=?, a2=[a0+80], a3=?.
-  The `jalr` at 0x10146270 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1ed0, a3=a2 at entry (arg2), a4=0x0.
+  The `jal` at 0x101461bc calls tbuFormatTexels [0x1015366c] with a0=ret(malloc), a1=ret(malloc), a2=[a0+80], a3=?.
+  The `jalr` at 0x10146270 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1ed0, a3=a2 at entry (arg2), a4=0x0, a7=entry(0x3fe10).
   The `jal` at 0x101462d0 calls tbRegWrite [0x1013eb3c] with a0=0x7fc2, a1=?, a2=?, a3=?.
   The `jalr` at 0x10146304 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1ee0, a3=?, a4=0x1.
   The `jalr` at 0x1014635c calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1f60, a3=?, a4=0x0.
   The `jal` at 0x10146390 calls tbRegWrite [0x1013eb3c] with a0=0x7fc3, a1=?, a2=?, a3=?.
   The `jalr` at 0x101463c0 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1f70, a3=?, a4=0x1.
-  The `jal` at 0x101463ec calls tbRegWrite [0x1013eb3c] with a0=0x7fc5, a1=?, a2=?, a3=?.
+  The `jal` at 0x101463ec calls tbRegWrite [0x1013eb3c] with a0=0x7fc5, a1=?, a2=?, a3=entry(0x3fe28).
   The `jalr` at 0x1014641c calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c1fb8, a3=[(a0 + (((a1 << 0x2) + a1) << 0x3))+136], a4=0x1.
   The `jal` at 0x10146448 calls tbTexel [0x1013ef94] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10146480 calls fprintf with a0=sym(__iob)+32, a1=0x101c1fd0, a2=?, a3=?.
   The `jalr` at 0x10146548 calls fprintf with a0=sym(__iob)+32, a1=0x101c1ff0, a2=?, a3=?.
-  The `jal` at 0x10146580 calls tbRegWrite [0x1013eb3c] with a0=0x5003, a1=?, a2=?, a3=?, a4=0xfffffffffff00000, a5=0xfffff.
+  The `jal` at 0x10146580 calls tbRegWrite [0x1013eb3c] with a0=0x5003, a1=?, a2=table(0x30000), a3=?, a4=0xfffffffffff00000, a5=0xfffff.
   The `jalr` at 0x101465c4 calls fprintf with a0=sym(__iob)+32, a1=0x101c17f0, a2=0x101c2018, a3=[a0+92], a4=0x1.
-  The `jalr` at 0x101465dc calls free with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101465e8 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x101465dc calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x101465e8 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jal` at 0x10146644 calls tbuGetNextTexID [0x10141010] with a0=[a0+96], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bltz` branch at 0x101459d8 targets 0x10146630, is taken when s8(?) < 0 (signed), and falls through when s8(?) >= 0 (signed).
   The `bne` branch at 0x101459e8 targets 0x10146628, is taken when v1(?) < s2(?) (signed), and falls through when v1(?) >= s2(?) (signed).
@@ -1083,34 +1090,34 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sb` at 0x10114598 stores 1 byte to a1 (arg1 at entry) +0x8.
   The `lbu` at 0x10114660 loads 1 byte from a1 (arg1 at entry) +0x0.
   The `lw` at 0x10114678 loads 4 bytes from a1 (arg1 at entry) +0x4.
-  The `jalr` at 0x101144d8 calls (unknown callee) with a0=?, a1=sp-168, a2=[0x102c7268], a3=?.
+  The `jalr` at 0x101144d8 calls (unknown callee) with a0=0x102c7268, a1=sp-168, a2=[0x102c7268], a3=?, a7=0x102c7268.
   The `jalr` at 0x10114560 calls (unknown callee) with a0=?, a1=?, a2=a1 at entry (arg1), a3=0x20.
   The `jalr` at 0x10114594 calls times with a0=sp-184, a1=?, a2=?, a3=?, a4=[0x102c5d70].
   The `jalr` at 0x101145e0 calls memmove with a0=?, a1=a1 at entry (arg1), a2=0x20, a3=0x1, a6=table(0x102c5d40), a7=entry(0x102c6750).
   The `jal` at 0x10114608 calls AllocateOutputBuffer [0x100c1f40] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101146ec calls (unknown callee) with a0=?, a1=sp-168, a2=[0x102c7268], a3=?.
+  The `jalr` at 0x101146ec calls (unknown callee) with a0=0x102c7268, a1=sp-168, a2=[0x102c7268], a3=?, a7=0x102c7268.
   The `jal` at 0x10114704 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10114728 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10114740 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10114748 calls _XSERVTransFreeConnInfo [0x100d3a20] with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0x101142dc targets 0x10114448, is taken when a4(=[0x102c5d70]) < 0x2 (signed), and falls through when a4(=[0x102c5d70]) >= 0x2 (signed).
   The `beq` branch at 0x10114304 targets 0x10114340 and is always taken.
-  The `beq` branch at 0x10114310 targets 0x10114468, is taken when s4(?) == 0, and falls through when s4(?) != 0.
+  The `beq` branch at 0x10114310 targets 0x10114468, is taken when s4(=one of 0x0, 0x1) == 0, and falls through when s4(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10114338 targets 0x10114438, is taken when s1(?) >= a4(=[0x102c5d70]) (signed), and falls through when s1(?) < a4(=[0x102c5d70]) (signed).
   The `beq` branch at 0x1011434c targets 0x10114330, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x10114358 targets 0x10114330, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x1011436c targets 0x10114330, is taken when a7(?) == s5(=0x102cc150), and falls through when a7(?) != s5(=0x102cc150).
   The `beq` branch at 0x10114378 targets 0x10114330, is taken when (a6(?) & 0x8000) == 0, and falls through when (a6(?) & 0x8000) != 0.
   The `beq` branch at 0x10114380 targets 0x10114330, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `beq` branch at 0x10114388 targets 0x10114570, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x10114388 targets 0x10114570, is taken when t2(=one of 0x0, 0x1) == 0, and falls through when t2(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x101143cc targets 0x10114404, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x1011440c targets 0x10114310, is taken when s8(?) != 0, and falls through when s8(?) == 0.
   The `beq` branch at 0x10114418 targets 0x10114600, is taken when s8(=[0x102c727c]) == 0, and falls through when s8(=[0x102c727c]) != 0.
-  The `bne` branch at 0x10114428 targets 0x10114310, is taken when t1(?) != 0, and falls through when t1(?) == 0.
+  The `bne` branch at 0x10114428 targets 0x10114310, is taken when t1(=one of 0x0, 0x1) != 0, and falls through when t1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10114430 targets 0x10114310 and is always taken.
   The `beq` branch at 0x10114478 targets 0x101144ec, is taken when ra(=[0x102c7268]) == 0, and falls through when ra(=[0x102c7268]) != 0.
   The `beq` branch at 0x1011449c targets 0x10114658, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x101144b0 targets 0x101144ec, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x101144b0 targets 0x101144ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x101144bc targets 0x101144ec, is taken when a2(=[0x102c7268]) == 0, and falls through when a2(=[0x102c7268]) != 0.
   The `beq` branch at 0x10114530 targets 0x101145bc, is taken when t3(?) >= t9(=table(0x20)) (signed), and falls through when t3(?) < t9(=table(0x20)) (signed).
   The `beq` branch at 0x1011454c targets 0x1011462c, is taken when t9(=[0x102c6750]:8) == 0, and falls through when t9(=[0x102c6750]:8) != 0.
@@ -1126,7 +1133,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `bne` branch at 0x10114658 targets 0x101144ec, is taken when a4(?) != t0(=0x2), and falls through when a4(?) == t0(=0x2).
   The `bne` branch at 0x10114668 targets 0x101144ec, is taken when t1(=0x1) != t3(=[a1]:1), and falls through when t1(=0x1) == t3(=[a1]:1).
   The `beq` branch at 0x10114674 targets 0x101146ac, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x101146c4 targets 0x101144ec, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x101146c4 targets 0x101144ec and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x101146d0 targets 0x101144ec, is taken when a2(=[0x102c7268]) == 0, and falls through when a2(=[0x102c7268]) != 0.
   The `beq` branch at 0x101146fc targets 0x101144ec and is always taken.
   The `beq` branch at 0x10114718 targets 0x10114760, is taken when a0(?) == 0, and falls through when a0(?) != 0.
@@ -1428,24 +1435,23 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x101a5468 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x101a5470 loads 4 bytes from [sym(inputInfo)+12] +0x90.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x101a5478, `lw` at 0x101a5520.
-  The `lbu` at 0x101a549c loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
-  The `lbu` at 0x101a54a0 loads 1 byte from [a0+8] +0x4.
-  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x101a54a4, `lbu` at 0x101a54ec.
+  2 such `lbu` accesses load 1 byte from [[sym(inputInfo)+12]+144] +0x28, including `lbu` at 0x101a549c, `lbu` at 0x101a556c.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x4, including `lbu` at 0x101a54a0, `lbu` at 0x101a5568.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x101a54a4, `lbu` at 0x101a54ec, `lbu` at 0x101a555c.
   The `lbu` at 0x101a54ac loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
   The `lw` at 0x101a54dc loads 4 bytes from a0 (arg0 at entry) +0x1c.
-  2 such `lw` accesses load 4 bytes from [[sym(inputInfo)+12]+144] +0x2c, including `lw` at 0x101a54e4, `lw` at 0x101a54f0.
+  3 such `lw` accesses load 4 bytes from [[sym(inputInfo)+12]+144] +0x2c, including `lw` at 0x101a54e4, `lw` at 0x101a54f0, `lw` at 0x101a5560.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x101a5504, `lw` at 0x101a5584.
   The `lbu` at 0x101a5524 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x101a5534 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `sw` at 0x101a5558 stores 4 bytes to a0 (arg0 at entry) +0x14.
-  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x101a555c, `lbu` at 0x101a5568, `lbu` at 0x101a556c.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101a5560, `lw` at 0x101a5588.
+  The `lw` at 0x101a5588 loads 4 bytes from [[sym(inputInfo)+12]+144] +0x24.
   The `lw` at 0x101a55b4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x101a55b8, `sw` at 0x101a55cc.
   The `jalr` at 0x101a553c calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=0x102d0000, a5=[[sym(inputInfo)+12]+144]+36, a7=[a0+16].
-  The `jalr` at 0x101a55a0 calls CopySwap32Write [0x10248e10] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16].
+  The `jalr` at 0x101a55a0 calls CopySwap32Write [0x10248e10] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16], a5=[[[sym(inputInfo)+12]+144]+44], a7=[[[sym(inputInfo)+12]+144]+40]:1.
   The `jal` at 0x101a55dc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=0x102d0000, a5=[[sym(inputInfo)+12]+144]+36, a7=[a0+16].
-  The `jal` at 0x101a55f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16].
+  The `jal` at 0x101a55f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16], a5=[[[sym(inputInfo)+12]+144]+44], a7=[[[sym(inputInfo)+12]+144]+40]:1.
   The `beq` branch at 0x101a547c targets 0x101a549c, is taken when at(=[a0+72]) == v1(=0x2), and falls through when at(=[a0+72]) != v1(=0x2).
   The `bne` branch at 0x101a54bc targets 0x101a55b8, is taken when t1(=[[a0+8]+4]:1) < a4(=[[[sym(inputInfo)+12]+144]+40]:1) (signed), and falls through when t1(=[[a0+8]+4]:1) >= a4(=[[[sym(inputInfo)+12]+144]+40]:1) (signed).
   The `bne` branch at 0x101a54c8 targets 0x101a55b8, is taken when a6(?) != 0, and falls through when a6(?) == 0.
@@ -1472,7 +1478,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x101eca24 calls strncpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101eca30 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101eca7c calls strcpy with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101ecafc calls sprintf with a0=sp-128, a1=?, a2=?, a3=?.
+  The `jalr` at 0x101ecafc calls sprintf with a0=sp-128, a1=0x10290320, a2=?, a3=?.
   The `jalr` at 0x101ecb0c calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101ecb98 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101ecbbc calls strlen with a0=?, a1=?, a2=?, a3=?.
@@ -1636,9 +1642,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x10255f10 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10255f3c loads 4 bytes from sym(serverClient) +0x0.
   The `lw` at 0x10255f64 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x10255f68 loads 1 byte from ?.
+  The `lbu` at 0x10255f68 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10255f6c loads 4 bytes from [a0+88] +0x0.
-  The `lw` at 0x10255f78 loads 4 bytes from ?.
+  The `lw` at 0x10255f78 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x10255f38 calls CheckClientDAC [0x102560c0] with a0=a0 at entry (arg0), a1=[sym(serverClient)], a2=0x1, a3=a3 at entry (arg3), a4=[a0+8], a5=0x102d0000.
   The `jalr` at 0x10255f7c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0x10255f40 targets 0x10255f58, is taken when v0(=ret(CheckClientDAC)) != 0, and falls through when v0(=ret(CheckClientDAC)) == 0.
@@ -1654,18 +1660,17 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x10258308 loads 4 bytes from sym(inputInfo) +0xc.
   The `lw` at 0x10258310 loads 4 bytes from [sym(inputInfo)+12] +0x90.
   The `lw` at 0x10258318 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lbu` at 0x10258324 loads 1 byte from [a0+8] +0x5.
-  The `lbu` at 0x10258328 loads 1 byte from [a0+8] +0x1.
-  The `lbu` at 0x10258338 loads 1 byte from [a0+8] +0x4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x10258324, `lbu` at 0x102583b8.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x1, including `lbu` at 0x10258328, `lbu` at 0x102583a4, `lbu` at 0x10258400.
+  4 such `lbu` accesses load 1 byte from [a0+8] +0x4, including `lbu` at 0x10258338, `lbu` at 0x10258398, `lbu` at 0x102583a0.
   The `lbu` at 0x1025833c loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
   The `lbu` at 0x1025834c loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
-  6 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10258398, `lbu` at 0x102583a0, `lbu` at 0x102583a4.
   The `lw` at 0x10258410 loads 4 bytes from a0 (arg0 at entry) +0x28.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10258424, `sw` at 0x10258448.
   The `jal` at 0x10258384 calls SecurityCheckDeviceAccess [0x1008b6c0] with a0=a0 at entry (arg0), a1=[sym(inputInfo)+12], a2=0x1, a3=[a0+8], a5=[[a0+8]+4]:1, a7=[[a0+8]+1]:1.
-  The `jal` at 0x102583c8 calls SetKeySymsMap [0x100a9020] with a0=?, a1=sp-64, a2=?, a3=?.
-  The `jal` at 0x102583e4 calls TagDeleteTag [0x101a10a0] with a0=[0x102cb554], a1=?, a2=?, a3=?.
-  The `jal` at 0x102583fc calls SendMappingNotify [0x1018ae80] with a0=0x1, a1=?, a2=?, a3=a0 at entry (arg0).
+  The `jal` at 0x102583c8 calls SetKeySymsMap [0x100a9020] with a0=[[sym(inputInfo)+12]+144]+36, a1=sp-64, a2=?, a3=?.
+  The `jal` at 0x102583e4 calls TagDeleteTag [0x101a10a0] with a0=[0x102cb554], a1=?, a2=[a0+8], a3=?.
+  The `jal` at 0x102583fc calls SendMappingNotify [0x1018ae80] with a0=0x1, a1=[[a0+8]+4]:1, a2=[[a0+8]+1]:1, a3=a0 at entry (arg0).
   The `bne` branch at 0x1025831c targets 0x10258414, is taken when v0(=[a0+72]) < 0x2 (unsigned), and falls through when v0(=[a0+72]) >= 0x2 (unsigned).
   The `bne` branch at 0x10258334 targets 0x10258434, is taken when a4(?) != v0(=[a0+72]-2), and falls through when a4(?) == v0(=[a0+72]-2).
   The `bne` branch at 0x10258350 targets 0x10258424, is taken when a5(=[[a0+8]+4]:1) < t2(=[[[sym(inputInfo)+12]+144]+40]:1) (signed), and falls through when a5(=[[a0+8]+4]:1) >= t2(=[[[sym(inputInfo)+12]+144]+40]:1) (signed).
@@ -1751,9 +1756,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xecb800c loads 4 bytes from [[0x1004]+156] +0x8.
   The `lw` at 0xecb8010 loads 4 bytes from [[0x1004]+156] +0x0.
   The `sw` at 0xecb8024 stores 4 bytes to ([[[0x1004]+156]] + ((([[[0x1004]+156]+8] << 0x3) + [[[0x1004]+156]+8]) << 0x3)) +0x40.
-  The `sw` at 0xecb8044 stores 4 bytes to ?.
+  The `sw` at 0xecb8044 stores 4 bytes to ([[[0x1004]+156]] + ((([[[0x1004]+156]+8] << 0x3) + [[[0x1004]+156]+8]) << 0x3)) +0x44.
   The `jalr` at 0xecb8030 calls __iglooGetId [0xec73f34] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=([[[0x1004]+156]] + ((([[[0x1004]+156]+8] << 0x3) + [[[0x1004]+156]+8]) << 0x3)).
-  The `jalr` at 0xecb8050 calls memcpy with a0=?, a1=a0 at entry (arg0), a2=0x40, a3=?.
+  The `jalr` at 0xecb8050 calls memcpy with a0=([[[0x1004]+156]] + ((([[[0x1004]+156]+8] << 0x3) + [[[0x1004]+156]+8]) << 0x3)), a1=a0 at entry (arg0), a2=0x40, a3=?.
   The `jalr` at 0xecb8064 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The return at 0xecb8078 has v0 = ret(glLoadMatrixf).
 
@@ -1765,8 +1770,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xecd0fbc loads 4 bytes from sym(gl_wstatep) +0x0.
   The `sb` at 0xecd0fc8 stores 1 byte to [sym(gl_wstatep)] +0x2e58.
   The `lh` at 0xecd0fd0 loads 2 bytes from [sym(gl_wstatep)] +0x108.
-  The `lw` at 0xecd1034 loads 4 bytes from ?.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xecd1074, `sw` at 0xecd1078.
+  The `lw` at 0xecd1034 loads 4 bytes from [sym(gl_wstatep)] +0xb58.
+  The `sw` at 0xecd1074 stores 4 bytes to [sym(gl_wstatep)] +0xb5c.
+  The `sw` at 0xecd1078 stores 4 bytes to [sym(gl_wstatep)] +0xd8.
   The `jalr` at 0xecd0fd8 calls __iglooGetPickingMatrix [0xec96e3c] with a0=a0 at entry (arg0), a1=[[sym(gl_wstatep)]+264]:2, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xecd100c calls __iglooLoadMatrix [0xecb7fe8] with a0=ret(__iglooGetPickingMatrix), a1=?, a2=?, a3=?.
   The `jalr` at 0xecd1020 calls __iglooMultMatrix [0xecb821c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -1776,7 +1782,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `beq` branch at 0xecd0ff8 targets 0xecd1030, is taken when a1(?) == at(=0x2), and falls through when a1(?) != at(=0x2).
   The `beql` branch at 0xecd1000 targets 0xecd1034, is taken when a1(?) == at(=0x3), and falls through when a1(?) != at(=0x3); its branch-likely delay slot `addiu v0,v1,2904` at 0xecd1004 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xecd1028 targets 0xecd1090 and is always taken.
-  The `bne` branch at 0xecd103c targets 0xecd107c, is taken when t6(?) != at(=0x1), and falls through when t6(?) == at(=0x1).
+  The `bne` branch at 0xecd103c targets 0xecd107c, is taken when t6(=[[sym(gl_wstatep)]+2904]) != at(=0x1), and falls through when t6(=[[sym(gl_wstatep)]+2904]) == at(=0x1).
   The `beq` branch at 0xecd1044 targets 0xecd107c, is taken when a1(?) == at(=0x3), and falls through when a1(?) != at(=0x3).
   The return at 0xecd1098 has v0 = one of ret(__iglooMultMatrix), ret(__iglooLoadMatrix).
 
@@ -1903,7 +1909,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lh` at 0xeccf1f4 loads 2 bytes from [sym(gl_wstatep)] +0x108.
   The `lw` at 0xeccf22c loads 4 bytes from [sym(gl_wstatep)] +0xb58.
   The `sw` at 0xeccf254 stores 4 bytes to [sym(gl_wstatep)] +0xb5c.
-  The `sw` at 0xeccf25c stores 4 bytes to ?.
+  The `sw` at 0xeccf25c stores 4 bytes to [sym(gl_wstatep)] +0xd8.
   The `jalr` at 0xeccf1f0 calls __iglooGetPickingMatrix [0xec99e70] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xeccf210 calls __iglooLoadMatrix [0xecb8940] with a0=ret(__iglooGetPickingMatrix), a1=?, a2=?, a3=?.
   The `jalr` at 0xeccf21c calls __iglooMultMatrix [0xecb8ba0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -2011,8 +2017,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xd81e5b8 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81e5cc stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81e5ac calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x80, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81e5dc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81e5c8 targets 0xd81e5e8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81e5dc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+132, a2=?, a3=[[[0x1014]+276]+4]+132.
+  The `beq` branch at 0xd81e5c8 targets 0xd81e5e8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+132) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+132) (unsigned).
   The return at 0xd81e5f4 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_LoadMatrixf` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd81e5fc (o32).
@@ -2028,8 +2034,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xd81e654 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81e668 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81e648 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x40, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81e678 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81e664 targets 0xd81e684, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81e678 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+68, a2=?, a3=[[[0x1014]+276]+4]+68.
+  The `beq` branch at 0xd81e664 targets 0xd81e684, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+68) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+68) (unsigned).
   The return at 0xd81e690 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glXSendMakeCurrentRead` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd824394 (o32).
@@ -2057,11 +2063,11 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   6 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd8244d0, `lw` at 0xd8244e8, `lw` at 0xd8245fc.
   3 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd8244d4, `lw` at 0xd824600, `lw` at 0xd824708.
   2 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x4, including `lw` at 0xd824534, `lw` at 0xd82465c.
-  The `lw` at 0xd8246a4 loads 4 bytes from ?.
+  The `lw` at 0xd8246a4 loads 4 bytes from ret(malloc) +0x0.
   4 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8246b8, `sw` at 0xd8246cc, `sw` at 0xd8246e0.
-  The `lw` at 0xd8246bc loads 4 bytes from table(0x4) +0x0.
-  The `lw` at 0xd8246d0 loads 4 bytes from table(0x8) +0x0.
-  The `lw` at 0xd8246e4 loads 4 bytes from table(0xc) +0x0.
+  The `lw` at 0xd8246bc loads 4 bytes from ret(malloc) +0x4.
+  The `lw` at 0xd8246d0 loads 4 bytes from ret(malloc) +0x8.
+  The `lw` at 0xd8246e4 loads 4 bytes from ret(malloc) +0xc.
   The `jalr` at 0xd8243c0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd8243e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd82441c calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -2076,7 +2082,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0xd824644 calls __glXPostHiddenError with a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=0x1a, a3=[a1+20].
   The `jalr` at 0xd824670 calls malloc with a0=0x10, a1=?, a2=?, a3=?.
   The `jalr` at 0xd824690 calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=0x10, a3=?.
-  The `jalr` at 0xd8246f0 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8246f0 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jalr` at 0xd824710 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd82472c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beql` branch at 0xd8243d4 targets 0xd8243f4, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw t6,88(sp)` at 0xd8243d8 runs only when taken and is annulled on fall-through.
@@ -2166,7 +2172,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda48df0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda48ddc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda48e04 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=?.
-  The `jalr` at 0xda48e20 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e8e0, a3=?.
+  The `jalr` at 0xda48e20 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e8e0, a3=?.
   The `beq` branch at 0xda48de4 targets 0xda48e2c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48e34 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2180,7 +2186,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sb` at 0xda48e80 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `jalr` at 0xda48e64 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda48e94 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=?.
-  The `jalr` at 0xda48eb0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e91c, a3=?.
+  The `jalr` at 0xda48eb0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e91c, a3=?.
   The `beq` branch at 0xda48e6c targets 0xda48ebc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48ec4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -2516,7 +2522,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda43658 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4361c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda43654 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=0xaf, a4=ret(__glDlistAllocOp2).
-  The `jalr` at 0xda43668 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49a20, a3=?.
+  The `jalr` at 0xda43668 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49a20, a3=?.
   The `bne` branch at 0xda43624 targets 0xda4363c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43670 targets 0xda43630 and is always taken.
   The return at 0xda43634 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2531,7 +2537,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda436f0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda436ac calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda436ec calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=0xb0, a4=ret(__glDlistAllocOp2), a5=0x1.
-  The `jalr` at 0xda43700 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49a70, a3=?.
+  The `jalr` at 0xda43700 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49a70, a3=?.
   The `bne` branch at 0xda436b4 targets 0xda436cc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43708 targets 0xda436c0 and is always taken.
   The return at 0xda436c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2585,9 +2591,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xda5d588 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda5d5a0 loads 4 bytes from [0x1010] +0x1a5c.
   3 such `sw` accesses store 4 bytes to abs 0x12b4, including `sw` at 0xda5d5ac, `sw` at 0xda5d5c4, `sw` at 0xda5d5e0.
-  The `lw` at 0xda5d5b8 loads 4 bytes from ?.
+  The `lw` at 0xda5d5b8 loads 4 bytes from [0x1010] +0x2924.
   The `jalr` at 0xda5d5a8 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda5d5c0 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda5d5c0 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=[[0x1010]+10532], a2=?, a3=?.
   The return at 0xda5d5dc has v0 = ret(glLoadMatrixf).
 
 - `__glce_LoadMatrixd` in `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda5d5f0 (n32).
@@ -2599,9 +2605,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xda5d608 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda5d620 loads 4 bytes from [0x1010] +0x1a60.
   3 such `sw` accesses store 4 bytes to abs 0x12b8, including `sw` at 0xda5d62c, `sw` at 0xda5d644, `sw` at 0xda5d660.
-  The `lw` at 0xda5d638 loads 4 bytes from ?.
+  The `lw` at 0xda5d638 loads 4 bytes from [0x1010] +0x2928.
   The `jalr` at 0xda5d628 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda5d640 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda5d640 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=[[0x1010]+10536], a2=?, a3=?.
   The return at 0xda5d65c has v0 = ret(glLoadMatrixd).
 
 - `glLoadMatrixf` in `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda78c10 (n32).
@@ -2800,7 +2806,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0x2ea8664 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0x2ea862c calls __glDlistAllocOp2 [0x2df29e0] with a0=[0x1020]:8, a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x2ea8660 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a0 at entry (arg0), a2=0x40, a3=0xaf.
-  The `jalr` at 0x2ea8674 calls __glDlistAppendOp [0x2df2a70] with a0=?, a1=?, a2=0x2eaec20, a3=?.
+  The `jalr` at 0x2ea8674 calls __glDlistAppendOp [0x2df2a70] with a0=[0x1020]:8, a1=ret(__glDlistAllocOp2), a2=0x2eaec20, a3=?.
   The `bne` branch at 0x2ea8634 targets 0x2ea864c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0x2ea867c targets 0x2ea8640 and is always taken.
   The return at 0x2ea8644 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2815,7 +2821,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0x2ea86fc stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0x2ea86bc calls __glDlistAllocOp2 [0x2df29e0] with a0=[0x1020]:8, a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x2ea86f8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a0 at entry (arg0), a2=0x80, a3=0xb0, a5=0x1.
-  The `jalr` at 0x2ea870c calls __glDlistAppendOp [0x2df2a70] with a0=?, a1=?, a2=0x2eaec70, a3=?.
+  The `jalr` at 0x2ea870c calls __glDlistAppendOp [0x2df2a70] with a0=[0x1020]:8, a1=ret(__glDlistAllocOp2), a2=0x2eaec70, a3=?.
   The `bne` branch at 0x2ea86c4 targets 0x2ea86dc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0x2ea8714 targets 0x2ea86d0 and is always taken.
   The return at 0x2ea86d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -2869,9 +2875,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `ld` at 0x2ec29e8 loads 8 bytes from abs 0x1020.
   The `ld` at 0x2ec2a00 loads 8 bytes from [0x1020]:8 +0x1fa8.
   3 such `sd` accesses store 8 bytes to abs 0x1558, including `sd` at 0x2ec2a0c, `sd` at 0x2ec2a24, `sd` at 0x2ec2a40.
-  The `ld` at 0x2ec2a18 loads 8 bytes from ?.
+  The `ld` at 0x2ec2a18 loads 8 bytes from [0x1020]:8 +0x3d20.
   The `jalr` at 0x2ec2a08 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x2ec2a20 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x2ec2a20 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=[[0x1020]:8+15648]:8, a2=?, a3=?.
   The return at 0x2ec2a3c has v0 = ret(glLoadMatrixf).
 
 - `__glce_LoadMatrixd` in `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ec2a50 (n64).
@@ -2883,9 +2889,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `ld` at 0x2ec2a68 loads 8 bytes from abs 0x1020.
   The `ld` at 0x2ec2a80 loads 8 bytes from [0x1020]:8 +0x1fb0.
   3 such `sd` accesses store 8 bytes to abs 0x1560, including `sd` at 0x2ec2a8c, `sd` at 0x2ec2aa4, `sd` at 0x2ec2ac0.
-  The `ld` at 0x2ec2a98 loads 8 bytes from ?.
+  The `ld` at 0x2ec2a98 loads 8 bytes from [0x1020]:8 +0x3d28.
   The `jalr` at 0x2ec2a88 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x2ec2aa0 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x2ec2aa0 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=[[0x1020]:8+15656]:8, a2=?, a3=?.
   The return at 0x2ec2abc has v0 = ret(glLoadMatrixd).
 
 - `__glkonim_LoadMatrixf` in `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2ecbed0 (n64).
@@ -3063,8 +3069,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xd81e5b8 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81e5cc stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81e5ac calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x80, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81e5dc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81e5c8 targets 0xd81e5e8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81e5dc calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+132, a2=?, a3=[[[0x1014]+276]+4]+132.
+  The `beq` branch at 0xd81e5c8 targets 0xd81e5e8, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+132) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+132) (unsigned).
   The return at 0xd81e5f4 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glx_LoadMatrixf` in `usr/gfx/arch/IP35KONA/libGL.so` at 0xd81e5fc (o32).
@@ -3080,8 +3086,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xd81e654 loads 4 bytes from [[0x1014]+276] +0x8.
   The `sw` at 0xd81e668 stores 4 bytes to [[0x1014]+276] +0x4.
   The `jalr` at 0xd81e648 calls memcpy with a0=[[[0x1014]+276]+4]+4, a1=a0 at entry (arg0), a2=0x40, a3=[[[0x1014]+276]+4].
-  The `jalr` at 0xd81e678 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=?, a2=?, a3=?.
-  The `beq` branch at 0xd81e664 targets 0xd81e684, is taken when t9(=[[[0x1014]+276]+8]) >= a3(?) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(?) (unsigned).
+  The `jalr` at 0xd81e678 calls __glXFlushRenderBuffer with a0=[[0x1014]+276], a1=[[[0x1014]+276]+4]+68, a2=?, a3=[[[0x1014]+276]+4]+68.
+  The `beq` branch at 0xd81e664 targets 0xd81e684, is taken when t9(=[[[0x1014]+276]+8]) >= a3(=[[[0x1014]+276]+4]+68) (unsigned), and falls through when t9(=[[[0x1014]+276]+8]) < a3(=[[[0x1014]+276]+4]+68) (unsigned).
   The return at 0xd81e690 has v0 = one of ret(memcpy), ret(__glXFlushRenderBuffer).
 
 - `__glXSendMakeCurrentRead` in `usr/gfx/arch/IP35KONA/libGL.so` at 0xd824394 (o32).
@@ -3109,11 +3115,11 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   6 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd8244d0, `lw` at 0xd8244e8, `lw` at 0xd8245fc.
   3 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd8244d4, `lw` at 0xd824600, `lw` at 0xd824708.
   2 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x4, including `lw` at 0xd824534, `lw` at 0xd82465c.
-  The `lw` at 0xd8246a4 loads 4 bytes from ?.
+  The `lw` at 0xd8246a4 loads 4 bytes from ret(malloc) +0x0.
   4 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8246b8, `sw` at 0xd8246cc, `sw` at 0xd8246e0.
-  The `lw` at 0xd8246bc loads 4 bytes from table(0x4) +0x0.
-  The `lw` at 0xd8246d0 loads 4 bytes from table(0x8) +0x0.
-  The `lw` at 0xd8246e4 loads 4 bytes from table(0xc) +0x0.
+  The `lw` at 0xd8246bc loads 4 bytes from ret(malloc) +0x4.
+  The `lw` at 0xd8246d0 loads 4 bytes from ret(malloc) +0x8.
+  The `lw` at 0xd8246e4 loads 4 bytes from ret(malloc) +0xc.
   The `jalr` at 0xd8243c0 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd8243e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd82441c calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -3128,7 +3134,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0xd824644 calls __glXPostHiddenError with a0=a0 at entry (arg0), a1=a3 at entry (arg3), a2=0x1a, a3=[a1+20].
   The `jalr` at 0xd824670 calls malloc with a0=0x10, a1=?, a2=?, a3=?.
   The `jalr` at 0xd824690 calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=0x10, a3=?.
-  The `jalr` at 0xd8246f0 calls free with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8246f0 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
   The `jalr` at 0xd824710 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd82472c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beql` branch at 0xd8243d4 targets 0xd8243f4, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw t6,88(sp)` at 0xd8243d8 runs only when taken and is annulled on fall-through.
@@ -3351,7 +3357,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda48df0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda48ddc calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda48e04 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=?.
-  The `jalr` at 0xda48e20 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e8e0, a3=?.
+  The `jalr` at 0xda48e20 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e8e0, a3=?.
   The `beq` branch at 0xda48de4 targets 0xda48e2c, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48e34 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -3365,7 +3371,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sb` at 0xda48e80 stores 1 byte to ret(__glDlistAllocOp2) +0xe.
   The `jalr` at 0xda48e64 calls __glDlistAllocOp2 [0xd992e30] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda48e94 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=?.
-  The `jalr` at 0xda48eb0 calls __glDlistAppendOp [0xd992ec8] with a0=?, a1=?, a2=0xda4e91c, a3=?.
+  The `jalr` at 0xda48eb0 calls __glDlistAppendOp [0xd992ec8] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda4e91c, a3=?.
   The `beq` branch at 0xda48e6c targets 0xda48ebc, is taken when v0(=ret(__glDlistAllocOp2)) == 0, and falls through when v0(=ret(__glDlistAllocOp2)) != 0.
   The return at 0xda48ec4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
 
@@ -3828,7 +3834,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda43658 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda4361c calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda43654 calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x40, a3=0xaf, a4=ret(__glDlistAllocOp2).
-  The `jalr` at 0xda43668 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49a20, a3=?.
+  The `jalr` at 0xda43668 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49a20, a3=?.
   The `bne` branch at 0xda43624 targets 0xda4363c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43670 targets 0xda43630 and is always taken.
   The return at 0xda43634 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3843,7 +3849,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0xda436f0 stores 2 bytes to ret(__glDlistAllocOp2) +0xc.
   The `jalr` at 0xda436ac calls __glDlistAllocOp2 [0xd98f5b0] with a0=[0x1010], a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda436ec calls memcpy with a0=ret(__glDlistAllocOp2)+16, a1=a0 at entry (arg0), a2=0x80, a3=0xb0, a4=ret(__glDlistAllocOp2), a5=0x1.
-  The `jalr` at 0xda43700 calls __glDlistAppendOp [0xd98f640] with a0=?, a1=?, a2=0xda49a70, a3=?.
+  The `jalr` at 0xda43700 calls __glDlistAppendOp [0xd98f640] with a0=[0x1010], a1=ret(__glDlistAllocOp2), a2=0xda49a70, a3=?.
   The `bne` branch at 0xda436b4 targets 0xda436cc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0xda43708 targets 0xda436c0 and is always taken.
   The return at 0xda436c4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -3897,9 +3903,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xda5d588 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda5d5a0 loads 4 bytes from [0x1010] +0x1a5c.
   3 such `sw` accesses store 4 bytes to abs 0x12b4, including `sw` at 0xda5d5ac, `sw` at 0xda5d5c4, `sw` at 0xda5d5e0.
-  The `lw` at 0xda5d5b8 loads 4 bytes from ?.
+  The `lw` at 0xda5d5b8 loads 4 bytes from [0x1010] +0x2924.
   The `jalr` at 0xda5d5a8 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda5d5c0 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda5d5c0 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=[[0x1010]+10532], a2=?, a3=?.
   The return at 0xda5d5dc has v0 = ret(glLoadMatrixf).
 
 - `__glce_LoadMatrixd` in `usr/gfx/arch/IP35KONA32/libGLcore.so` at 0xda5d5f0 (n32).
@@ -3911,9 +3917,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0xda5d608 loads 4 bytes from abs 0x1010.
   The `lw` at 0xda5d620 loads 4 bytes from [0x1010] +0x1a60.
   3 such `sw` accesses store 4 bytes to abs 0x12b8, including `sw` at 0xda5d62c, `sw` at 0xda5d644, `sw` at 0xda5d660.
-  The `lw` at 0xda5d638 loads 4 bytes from ?.
+  The `lw` at 0xda5d638 loads 4 bytes from [0x1010] +0x2928.
   The `jalr` at 0xda5d628 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xda5d640 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda5d640 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=[[0x1010]+10536], a2=?, a3=?.
   The return at 0xda5d65c has v0 = ret(glLoadMatrixd).
 
 - `__glkonim_LoadMatrixf` in `usr/gfx/arch/IP35KONA32/libGLcore.so` at 0xda66a00 (n32).
@@ -4337,7 +4343,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0x2288664 stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0x228862c calls __glDlistAllocOp2 [0x21d29e0] with a0=[0x1020]:8, a1=0x40, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x2288660 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a0 at entry (arg0), a2=0x40, a3=0xaf.
-  The `jalr` at 0x2288674 calls __glDlistAppendOp [0x21d2a70] with a0=?, a1=?, a2=0x228ec20, a3=?.
+  The `jalr` at 0x2288674 calls __glDlistAppendOp [0x21d2a70] with a0=[0x1020]:8, a1=ret(__glDlistAllocOp2), a2=0x228ec20, a3=?.
   The `bne` branch at 0x2288634 targets 0x228864c, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0x228867c targets 0x2288640 and is always taken.
   The return at 0x2288644 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -4352,7 +4358,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sh` at 0x22886fc stores 2 bytes to ret(__glDlistAllocOp2) +0x14.
   The `jalr` at 0x22886bc calls __glDlistAllocOp2 [0x21d29e0] with a0=[0x1020]:8, a1=0x80, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x22886f8 calls memcpy with a0=ret(__glDlistAllocOp2)+24, a1=a0 at entry (arg0), a2=0x80, a3=0xb0, a5=0x1.
-  The `jalr` at 0x228870c calls __glDlistAppendOp [0x21d2a70] with a0=?, a1=?, a2=0x228ec70, a3=?.
+  The `jalr` at 0x228870c calls __glDlistAppendOp [0x21d2a70] with a0=[0x1020]:8, a1=ret(__glDlistAllocOp2), a2=0x228ec70, a3=?.
   The `bne` branch at 0x22886c4 targets 0x22886dc, is taken when v0(=ret(__glDlistAllocOp2)) != 0, and falls through when v0(=ret(__glDlistAllocOp2)) == 0.
   The `beq` branch at 0x2288714 targets 0x22886d0 and is always taken.
   The return at 0x22886d4 has v0 = one of ret(__glDlistAllocOp2), ret(__glDlistAppendOp).
@@ -4406,9 +4412,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `ld` at 0x22a29e8 loads 8 bytes from abs 0x1020.
   The `ld` at 0x22a2a00 loads 8 bytes from [0x1020]:8 +0x1fa8.
   3 such `sd` accesses store 8 bytes to abs 0x1558, including `sd` at 0x22a2a0c, `sd` at 0x22a2a24, `sd` at 0x22a2a40.
-  The `ld` at 0x22a2a18 loads 8 bytes from ?.
+  The `ld` at 0x22a2a18 loads 8 bytes from [0x1020]:8 +0x3d20.
   The `jalr` at 0x22a2a08 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x22a2a20 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x22a2a20 calls glLoadMatrixf with a0=a0 at entry (arg0), a1=[[0x1020]:8+15648]:8, a2=?, a3=?.
   The return at 0x22a2a3c has v0 = ret(glLoadMatrixf).
 
 - `__glce_LoadMatrixd` in `usr/gfx/arch/IP35KONA64/libGLcore.so` at 0x22a2a50 (n64).
@@ -4420,9 +4426,9 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `ld` at 0x22a2a68 loads 8 bytes from abs 0x1020.
   The `ld` at 0x22a2a80 loads 8 bytes from [0x1020]:8 +0x1fb0.
   3 such `sd` accesses store 8 bytes to abs 0x1560, including `sd` at 0x22a2a8c, `sd` at 0x22a2aa4, `sd` at 0x22a2ac0.
-  The `ld` at 0x22a2a98 loads 8 bytes from ?.
+  The `ld` at 0x22a2a98 loads 8 bytes from [0x1020]:8 +0x3d28.
   The `jalr` at 0x22a2a88 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x22a2aa0 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x22a2aa0 calls glLoadMatrixd with a0=a0 at entry (arg0), a1=[[0x1020]:8+15656]:8, a2=?, a3=?.
   The return at 0x22a2abc has v0 = ret(glLoadMatrixd).
 
 - `__glkonim_LoadMatrixf` in `usr/gfx/arch/IP35KONA64/libGLcore.so` at 0x22abed0 (n64).
@@ -4614,22 +4620,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x478b94 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x478ba4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x478bb4 loads 4 bytes from ([a0+132] + ([0x59b808] << 0x2)) +0x0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x478bc0, `lw` at 0x478c08, `lw` at 0x478c64.
+  The `lw` at 0x478bc0 loads 4 bytes from ?.
   The `lw` at 0x478bc8 loads 4 bytes from [([a0+132] + ([0x59b808] << 0x2))] +0x4.
   The `lw` at 0x478bd8 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `sw` at 0x478c60 stores 4 bytes to ?.
+  The `lw` at 0x478c08 loads 4 bytes from [([a0+132] + ([0x59b808] << 0x2))] +0x20.
+  The `sw` at 0x478c60 stores 4 bytes to [([a0+132] + ([0x59b808] << 0x2))] +0x4.
+  The `lw` at 0x478c64 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
   The `lw` at 0x478c80 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x478c88 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
+  The `lw` at 0x478c8c loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x478bfc calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x59b808] << 0x2))]+4].
-  The `jalr` at 0x478c68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x478c68 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x59b808] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x59b808] << 0x2))].
   The `jalr` at 0x478c78 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x478c94 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x478c94 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x59b808] << 0x2))].
   The `beq` branch at 0x478b3c targets 0x478c4c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x478b48 targets 0x478c78, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x478b58 targets 0x478c30, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x478c18 targets 0x478c30, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
+  The `beq` branch at 0x478c18 targets 0x478c30, is taken when (a0(=[[([a0+132] + ([0x59b808] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x59b808] << 0x2))]+32]) & 0x2) != 0.
   The `beq` branch at 0x478c20 targets 0x478c8c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x478c28 targets 0x478c60, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
+  The `bne` branch at 0x478c28 targets 0x478c60, is taken when a4(?) != a1(=[[([a0+132] + ([0x59b808] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x59b808] << 0x2))]+4]).
   The `bne` branch at 0x478c50 targets 0x478c34, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x478c58 targets 0x478b60 and is always taken.
   The `beq` branch at 0x478c70 targets 0x478c34 and is always taken.
@@ -4679,22 +4688,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x47ffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x47ffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x47ffe4 loads 4 bytes from ([a0+132] + ([0x5a7860] << 0x2)) +0x0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x47fff0, `lw` at 0x480038, `lw` at 0x480094.
+  The `lw` at 0x47fff0 loads 4 bytes from ?.
   The `lw` at 0x47fff8 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
   The `lw` at 0x480008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `sw` at 0x480090 stores 4 bytes to ?.
+  The `lw` at 0x480038 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x20.
+  The `sw` at 0x480090 stores 4 bytes to [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
+  The `lw` at 0x480094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
   The `lw` at 0x4800b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x4800b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
+  The `lw` at 0x4800bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x48002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x5a7860] << 0x2))]+4].
-  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x5a7860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
   The `jalr` at 0x4800a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
   The `beq` branch at 0x47ff6c targets 0x48007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x47ff78 targets 0x4800a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x47ff88 targets 0x480060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
+  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) != 0.
   The `beq` branch at 0x480050 targets 0x4800bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
+  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]).
   The `bne` branch at 0x480080 targets 0x480064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x480088 targets 0x47ff90 and is always taken.
   The `beq` branch at 0x4800a0 targets 0x480064 and is always taken.
@@ -4744,22 +4756,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x13fffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x13fffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x13fffe4 loads 4 bytes from ([a0+132] + ([0x1527860] << 0x2)) +0x0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x13ffff0, `lw` at 0x1400038, `lw` at 0x1400094.
+  The `lw` at 0x13ffff0 loads 4 bytes from ?.
   The `lw` at 0x13ffff8 loads 4 bytes from [([a0+132] + ([0x1527860] << 0x2))] +0x4.
   The `lw` at 0x1400008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `sw` at 0x1400090 stores 4 bytes to ?.
+  The `lw` at 0x1400038 loads 4 bytes from [([a0+132] + ([0x1527860] << 0x2))] +0x20.
+  The `sw` at 0x1400090 stores 4 bytes to [([a0+132] + ([0x1527860] << 0x2))] +0x4.
+  The `lw` at 0x1400094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
   The `lw` at 0x14000b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x14000b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
+  The `lw` at 0x14000bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x140002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x1527860] << 0x2))]+4].
-  The `jalr` at 0x1400098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1400098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x1527860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x1527860] << 0x2))].
   The `jalr` at 0x14000a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x14000c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x14000c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x1527860] << 0x2))].
   The `beq` branch at 0x13fff6c targets 0x140007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x13fff78 targets 0x14000a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x13fff88 targets 0x1400060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x1400048 targets 0x1400060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
+  The `beq` branch at 0x1400048 targets 0x1400060, is taken when (a0(=[[([a0+132] + ([0x1527860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x1527860] << 0x2))]+32]) & 0x2) != 0.
   The `beq` branch at 0x1400050 targets 0x14000bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x1400058 targets 0x1400090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
+  The `bne` branch at 0x1400058 targets 0x1400090, is taken when a4(?) != a1(=[[([a0+132] + ([0x1527860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x1527860] << 0x2))]+4]).
   The `bne` branch at 0x1400080 targets 0x1400064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x1400088 targets 0x13fff90 and is always taken.
   The `beq` branch at 0x14000a0 targets 0x1400064 and is always taken.
@@ -4809,22 +4824,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x47ffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x47ffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x47ffe4 loads 4 bytes from ([a0+132] + ([0x5a7860] << 0x2)) +0x0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x47fff0, `lw` at 0x480038, `lw` at 0x480094.
+  The `lw` at 0x47fff0 loads 4 bytes from ?.
   The `lw` at 0x47fff8 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
   The `lw` at 0x480008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `sw` at 0x480090 stores 4 bytes to ?.
+  The `lw` at 0x480038 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x20.
+  The `sw` at 0x480090 stores 4 bytes to [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
+  The `lw` at 0x480094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
   The `lw` at 0x4800b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x4800b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
+  The `lw` at 0x4800bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x48002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x5a7860] << 0x2))]+4].
-  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x5a7860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
   The `jalr` at 0x4800a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
   The `beq` branch at 0x47ff6c targets 0x48007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x47ff78 targets 0x4800a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x47ff88 targets 0x480060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
+  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) != 0.
   The `beq` branch at 0x480050 targets 0x4800bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
+  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]).
   The `bne` branch at 0x480080 targets 0x480064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x480088 targets 0x47ff90 and is always taken.
   The `beq` branch at 0x4800a0 targets 0x480064 and is always taken.
@@ -4908,7 +4926,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   It occupies 104 bytes.
   The `jalr` at 0xee299f8 calls fopen with a0=a0 at entry (arg0), a1=0xee5bc70, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xee29a2c calls fread with a0=sp-32, a1=0x4, a2=0x1, a3=ret(fopen).
-  The `jalr` at 0xee29a38 calls fclose with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xee29a38 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `bne` branch at 0xee29a00 targets 0xee29a18, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The return at 0xee29a10 has v0 = 0x0.
   The return at 0xee29a48 has v0 = ?.
@@ -4948,7 +4966,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x928, including `sw` at 0x258, `sw` at 0x37c, `sw` at 0x418.
   7 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x948, including `ld` at 0x270, `ld` at 0x2d4, `ld` at 0x2f8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x91c, including `lw` at 0x27c, `lw` at 0x320.
-  The `lw` at 0x2b8 loads 4 bytes from ?.
+  The `lw` at 0x2b8 loads 4 bytes from ret(gthread_find) +0x8.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x6c, including `sw` at 0x2cc, `sw` at 0x378.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x78, including `sw` at 0x2e0, `sw` at 0x374.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x68, including `sw` at 0x2e8, `sw` at 0x380.
@@ -4976,11 +4994,11 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x318 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800208, a1=?, a2=?, a3=?.
   The `jal` at 0x34c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800230, a1=?, a2=[a0+2376]:8, a3=-0x3.
   The `jal` at 0x364 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800238, a1=0x3, a2=[a0+2376]:8, a3=?.
-  The `jal` at 0x388 calls mutex_spinunlock with a0=a0+2352, a1=?, a2=?, a3=?.
+  The `jal` at 0x388 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3a8 calls gfx_waitf_off with a0=?, a1=?, a2=[([sym(gfxinfo)]:8 + ([-0x3be0]:2 << 0x5))+28]+1, a3=([sym(gfxinfo)]:8 + ([-0x3be0]:2 << 0x5)), a4=([-0x3be0]:2 << 0x5).
   The `jal` at 0x3b0 calls kona_flow_await_returned_credits with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x3cc calls kona_timeout with a0=sym(kona_hiwater_timeout), a1=a0 at entry (arg0), a2=[sym(kona_fifo_timeout_value)], a3=sym(splhi).
-  The `jal` at 0x3e0 calls mutex_spinunlock with a0=a0+2352, a1=?, a2=?, a3=?.
+  The `jal` at 0x3e0 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x400 calls force_resched with a0=?, a1=?, a2=?, a3=?, a5=[([sym(gfxinfo)]:8 + ([-0x3be0]:2 << 0x5))+24]+1, a6=([sym(gfxinfo)]:8 + ([-0x3be0]:2 << 0x5)), a7=([-0x3be0]:2 << 0x5).
   The `jal` at 0x408 calls gfx_waitf_off with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x434 calls gfx_waitf_off with a0=?, a1=?, a2=?, a3=?.
@@ -4994,7 +5012,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `beq` branch at 0x260 targets 0x468, is taken when a2(=[a0+2328]) == 0, and falls through when a2(=[a0+2328]) != 0.
   The `beq` branch at 0x284 targets 0x418, is taken when a1(=[a0+2332]) >= v0(=ret(gfx_pio_read_32)) (unsigned), and falls through when a1(=[a0+2332]) < v0(=ret(gfx_pio_read_32)) (unsigned).
   The `bne` branch at 0x2a0 targets 0x270, is taken when s1(?) < a2(=[a0+2328]) (unsigned), and falls through when s1(?) >= a2(=[a0+2328]) (unsigned).
-  The `beq` branch at 0x2c4 targets 0x470, is taken when (a3(?) & 0x8) == 0, and falls through when (a3(?) & 0x8) != 0.
+  The `beq` branch at 0x2c4 targets 0x470, is taken when (a3(=[ret(gthread_find)+8]) & 0x8) == 0, and falls through when (a3(=[ret(gthread_find)+8]) & 0x8) != 0.
   The `bne` branch at 0x328 targets 0x3c0, is taken when a1(=[a0+2332]) < v0(=ret(gfx_pio_read_32)) (unsigned), and falls through when a1(=[a0+2332]) >= v0(=ret(gfx_pio_read_32)) (unsigned).
   The `beq` branch at 0x370 targets 0x480, is taken when a1(=[a0+108]) == 0, and falls through when a1(=[a0+108]) != 0.
   The `beq` branch at 0x3b8 targets 0x22c and is always taken.
@@ -5067,7 +5085,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x84 calls mutex_spinlock with a0=a0+2576, a1=0x103, a2=?, a3=?.
   The `jal` at 0x98 calls vsema with a0=a0+5296, a1=?, a2=?, a3=?.
   The `jal` at 0xa4 calls kona_untimeout with a0=a0 at entry (arg0), a1=[a0+5312]:8, a2=?, a3=?.
-  The `jal` at 0xb8 calls mutex_spinunlock with a0=a0+2576, a1=?, a2=?, a3=?.
+  The `jal` at 0xb8 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc8 calls vsema with a0=a0+5176, a1=0x103, a2=?, a3=?.
   The `jal` at 0xdc calls kona_untimeout with a0=a0 at entry (arg0), a1=[a0+5192]:8, a2=?, a3=?.
   The `jal` at 0xf0 calls kona_mem_swapin_complete with a0=a0 at entry (arg0), a1=0x0, a2=0x0, a3=?.
@@ -5121,7 +5139,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x30c calls mutex_spinlock with a0=a0+2576, a1=?, a2=sym(.rodata), a3=?, a4=[[a0+2584]:8+4].
   The `jal` at 0x324 calls vsema with a0=[table(sym(RRMrn))+112]:8+80, a1=?, a2=?, a3=?.
   The `jal` at 0x330 calls kona_untimeout with a0=a0 at entry (arg0), a1=[[table(sym(RRMrn))+112]:8+96]:8, a2=?, a3=?.
-  The `jal` at 0x344 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x344 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x360 calls kona_mopup_complete with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?, a5=[[a0+2584]:8].
   The `jal` at 0x390 calls mutex_spinlock with a0=a0+2576, a1=?, a2=?, a3=?, a7=[sym(rrm_maxrn)].
   The `jal` at 0x3a4 calls vsema with a0=a0+5272, a1=?, a2=?, a3=?.
@@ -5131,16 +5149,16 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x3f8 calls kona_mem_suspend_complete with a0=a0 at entry (arg0), a1=0x0, a2=[a0+2584]:8+4, a3=?, a5=[[a0+2584]:8].
   The `jal` at 0x420 calls kona_geprint with a0=[a0+2584]:8+4, a1=a0+2616, a2=0x200, a3=?.
   The `jal` at 0x440 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
-  The `jal` at 0x45c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
+  The `jal` at 0x45c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=a0+2616.
   The `jal` at 0x490 calls cmn_err_tag with a0=0x835, a1=0x4, a2=sym(.rodata), a3=sym(.rodata), a4=[a0+2184], a6=[[a0+2584]:8+4], a7=[[a0+2584]:8+8].
   The `jal` at 0x4a8 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002a0, a1=0x8002a0, a2=?, a3=?.
   The `jal` at 0x4c0 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002a8, a1=0x8002a8, a2=?, a3=?.
   The `jal` at 0x4d8 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002b8, a1=0x8002b8, a2=?, a3=?.
-  The `jal` at 0x4f0 calls cmn_err with a0=0x6, a1=sym(.rodata), a2=?, a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
+  The `jal` at 0x4f0 calls cmn_err with a0=0x6, a1=sym(.rodata), a2=ret(gfx_pio_read_32), a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
   The `jal` at 0x504 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800260, a1=0x800260, a2=?, a3=?.
   The `jal` at 0x51c calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800268, a1=0x800268, a2=?, a3=?.
   The `jal` at 0x534 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800278, a1=0x800278, a2=?, a3=?.
-  The `jal` at 0x54c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=?, a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
+  The `jal` at 0x54c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=ret(gfx_pio_read_32), a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
   The `jal` at 0x564 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=[[a0+2584]:8+4].
   The `jal` at 0x590 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=[[a0+2584]:8+4], a5=[[a0+2584]:8], a6=[[a0+2584]:8+8].
   The `beq` branch at 0x230 targets 0x258, is taken when a5(=[[a0+2584]:8]) == 0, and falls through when a5(=[[a0+2584]:8]) != 0.
@@ -5211,7 +5229,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x178 calls kona_voc_intr with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1ac calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800238, a1=?, a2=?, a3=?.
   The `jal` at 0x1cc calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800228, a1=0xffffffffbadc0ffe, a2=0x800228, a3=?.
-  The `jal` at 0x1d8 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1d8 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x200 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
   The `jal` at 0x220 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
   The `jal` at 0x22c calls kona_die with a0=a0 at entry (arg0), a1=0xa, a2=?, a3=?.
@@ -5308,13 +5326,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1a6c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2816, a2=?, a3=[(a0 + ([a0+3556]:1 << 0x4))+4467]:1, a5=[(a0 + ([a0+3556]:1 << 0x4))+4466]:1, a7=[a0+3556]:1.
   The `jal` at 0x1a7c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=0x0, a2=?, a3=?.
   The `jal` at 0x1a8c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=0x2, a2=?, a3=?.
-  The `jal` at 0x1aa4 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1aa4 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1ab8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1ac8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1ac8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1adc calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1aec calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1aec calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1b00 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1b10 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1b10 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1b24 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
   The `jal` at 0x1b44 calls mutex_spinunlock with a0=a0+3520, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1b84 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=0x100, a2=[a0+3554]:1, a3=?.
@@ -5373,7 +5391,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x928, including `sw` at 0x258, `sw` at 0x37c, `sw` at 0x418.
   7 such `ld` accesses load 8 bytes from a0 (arg0 at entry) +0x948, including `ld` at 0x270, `ld` at 0x2d4, `ld` at 0x2f8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x91c, including `lw` at 0x27c, `lw` at 0x320.
-  The `lw` at 0x2b8 loads 4 bytes from ?.
+  The `lw` at 0x2b8 loads 4 bytes from ret(gthread_find) +0x8.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x6c, including `sw` at 0x2cc, `sw` at 0x378.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x78, including `sw` at 0x2e0, `sw` at 0x374.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x68, including `sw` at 0x2e8, `sw` at 0x380.
@@ -5401,11 +5419,11 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x318 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800208, a1=?, a2=?, a3=?.
   The `jal` at 0x34c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800230, a1=?, a2=[a0+2376]:8, a3=-0x3.
   The `jal` at 0x364 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800238, a1=0x3, a2=[a0+2376]:8, a3=?.
-  The `jal` at 0x388 calls mutex_spinunlock with a0=a0+2352, a1=?, a2=?, a3=?.
+  The `jal` at 0x388 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3a8 calls gfx_waitf_off with a0=?, a1=?, a2=[([sym(gfxinfo)]:8 + ([-0x3bd8]:2 << 0x5))+28]+1, a3=([sym(gfxinfo)]:8 + ([-0x3bd8]:2 << 0x5)), a4=([-0x3bd8]:2 << 0x5).
   The `jal` at 0x3b0 calls kona_flow_await_returned_credits with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x3cc calls kona_timeout with a0=sym(kona_hiwater_timeout), a1=a0 at entry (arg0), a2=[sym(kona_fifo_timeout_value)], a3=sym(splhi).
-  The `jal` at 0x3e0 calls mutex_spinunlock with a0=a0+2352, a1=?, a2=?, a3=?.
+  The `jal` at 0x3e0 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x400 calls force_resched with a0=?, a1=?, a2=?, a3=?, a5=[([sym(gfxinfo)]:8 + ([-0x3bd8]:2 << 0x5))+24]+1, a6=([sym(gfxinfo)]:8 + ([-0x3bd8]:2 << 0x5)), a7=([-0x3bd8]:2 << 0x5).
   The `jal` at 0x408 calls gfx_waitf_off with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x434 calls gfx_waitf_off with a0=?, a1=?, a2=?, a3=?.
@@ -5419,7 +5437,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `beq` branch at 0x260 targets 0x468, is taken when a2(=[a0+2328]) == 0, and falls through when a2(=[a0+2328]) != 0.
   The `beq` branch at 0x284 targets 0x418, is taken when a1(=[a0+2332]) >= v0(=ret(gfx_pio_read_32)) (unsigned), and falls through when a1(=[a0+2332]) < v0(=ret(gfx_pio_read_32)) (unsigned).
   The `bne` branch at 0x2a0 targets 0x270, is taken when s1(?) < a2(=[a0+2328]) (unsigned), and falls through when s1(?) >= a2(=[a0+2328]) (unsigned).
-  The `beq` branch at 0x2c4 targets 0x470, is taken when (a3(?) & 0x8) == 0, and falls through when (a3(?) & 0x8) != 0.
+  The `beq` branch at 0x2c4 targets 0x470, is taken when (a3(=[ret(gthread_find)+8]) & 0x8) == 0, and falls through when (a3(=[ret(gthread_find)+8]) & 0x8) != 0.
   The `bne` branch at 0x328 targets 0x3c0, is taken when a1(=[a0+2332]) < v0(=ret(gfx_pio_read_32)) (unsigned), and falls through when a1(=[a0+2332]) >= v0(=ret(gfx_pio_read_32)) (unsigned).
   The `beq` branch at 0x370 targets 0x480, is taken when a1(=[a0+108]) == 0, and falls through when a1(=[a0+108]) != 0.
   The `beq` branch at 0x3b8 targets 0x22c and is always taken.
@@ -5459,7 +5477,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x84 calls mutex_spinlock with a0=a0+2576, a1=0x103, a2=?, a3=?.
   The `jal` at 0x98 calls vsema with a0=a0+5296, a1=?, a2=?, a3=?.
   The `jal` at 0xa4 calls kona_untimeout with a0=a0 at entry (arg0), a1=[a0+5312]:8, a2=?, a3=?.
-  The `jal` at 0xb8 calls mutex_spinunlock with a0=a0+2576, a1=?, a2=?, a3=?.
+  The `jal` at 0xb8 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc8 calls vsema with a0=a0+5176, a1=0x103, a2=?, a3=?.
   The `jal` at 0xdc calls kona_untimeout with a0=a0 at entry (arg0), a1=[a0+5192]:8, a2=?, a3=?.
   The `jal` at 0xf0 calls kona_mem_swapin_complete with a0=a0 at entry (arg0), a1=0x0, a2=0x0, a3=?.
@@ -5513,7 +5531,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x30c calls mutex_spinlock with a0=a0+2576, a1=?, a2=sym(.rodata), a3=?, a4=[[a0+2584]:8+4].
   The `jal` at 0x324 calls vsema with a0=[table(sym(RRMrn))+112]:8+80, a1=?, a2=?, a3=?.
   The `jal` at 0x330 calls kona_untimeout with a0=a0 at entry (arg0), a1=[[table(sym(RRMrn))+112]:8+96]:8, a2=?, a3=?.
-  The `jal` at 0x344 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x344 calls mutex_spinunlock with a0=a0+2576, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x360 calls kona_mopup_complete with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?, a5=[[a0+2584]:8].
   The `jal` at 0x390 calls mutex_spinlock with a0=a0+2576, a1=?, a2=?, a3=?, a7=[sym(rrm_maxrn)].
   The `jal` at 0x3a4 calls vsema with a0=a0+5272, a1=?, a2=?, a3=?.
@@ -5523,16 +5541,16 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x3f8 calls kona_mem_suspend_complete with a0=a0 at entry (arg0), a1=0x0, a2=[a0+2584]:8+4, a3=?, a5=[[a0+2584]:8].
   The `jal` at 0x420 calls kona_geprint with a0=[a0+2584]:8+4, a1=a0+2616, a2=0x200, a3=?.
   The `jal` at 0x440 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
-  The `jal` at 0x45c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
+  The `jal` at 0x45c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=a0+2616.
   The `jal` at 0x490 calls cmn_err_tag with a0=0x835, a1=0x4, a2=sym(.rodata), a3=sym(.rodata), a4=[a0+2184], a6=[[a0+2584]:8+4], a7=[[a0+2584]:8+8].
   The `jal` at 0x4a8 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002a0, a1=0x8002a0, a2=?, a3=?.
   The `jal` at 0x4c0 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002a8, a1=0x8002a8, a2=?, a3=?.
   The `jal` at 0x4d8 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x8002b8, a1=0x8002b8, a2=?, a3=?.
-  The `jal` at 0x4f0 calls cmn_err with a0=0x6, a1=sym(.rodata), a2=?, a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
+  The `jal` at 0x4f0 calls cmn_err with a0=0x6, a1=sym(.rodata), a2=ret(gfx_pio_read_32), a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
   The `jal` at 0x504 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800260, a1=0x800260, a2=?, a3=?.
   The `jal` at 0x51c calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800268, a1=0x800268, a2=?, a3=?.
   The `jal` at 0x534 calls gfx_pio_read_32 with a0=[a0+2376]:8+0x800278, a1=0x800278, a2=?, a3=?.
-  The `jal` at 0x54c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=?, a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
+  The `jal` at 0x54c calls cmn_err with a0=0x6, a1=sym(.rodata), a2=ret(gfx_pio_read_32), a3=ret(gfx_pio_read_32), a4=ret(gfx_pio_read_32).
   The `jal` at 0x564 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=[[a0+2584]:8+4].
   The `jal` at 0x590 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184], a4=[[a0+2584]:8+4], a5=[[a0+2584]:8], a6=[[a0+2584]:8+8].
   The `beq` branch at 0x230 targets 0x258, is taken when a5(=[[a0+2584]:8]) == 0, and falls through when a5(=[[a0+2584]:8]) != 0.
@@ -5603,7 +5621,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x178 calls kona_voc_intr with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x1ac calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800238, a1=?, a2=?, a3=?.
   The `jal` at 0x1cc calls gfx_pio_write_32 with a0=[a0+2376]:8+0x800228, a1=0xffffffffbadc0ffe, a2=0x800228, a3=?.
-  The `jal` at 0x1d8 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1d8 calls mutex_spinunlock with a0=a0+2352, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x200 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
   The `jal` at 0x220 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=sym(.rodata), a3=[a0+2184].
   The `jal` at 0x22c calls kona_die with a0=a0 at entry (arg0), a1=0xa, a2=?, a3=?.
@@ -5700,13 +5718,13 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1a6c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2816, a2=?, a3=[(a0 + ([a0+3556]:1 << 0x4))+4467]:1, a5=[(a0 + ([a0+3556]:1 << 0x4))+4466]:1, a7=[a0+3556]:1.
   The `jal` at 0x1a7c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=0x0, a2=?, a3=?.
   The `jal` at 0x1a8c calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=0x2, a2=?, a3=?.
-  The `jal` at 0x1aa4 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1aa4 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1ab8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1ac8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1ac8 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1adc calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1aec calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1aec calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1b00 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1b10 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1b10 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=([a0+3556]:1 << 0x8)+2818, a2=?, a3=?.
   The `jal` at 0x1b24 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003d0, a1=?, a2=?, a3=?.
   The `jal` at 0x1b44 calls mutex_spinunlock with a0=a0+3520, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x1b84 calls gfx_pio_write_32 with a0=[a0+2376]:8+0x8003c0, a1=0x100, a2=[a0+3554]:1, a3=?.
@@ -5824,7 +5842,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x10130df8 calls fcIntrGet [0x1013e8e8] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10130e0c calls fcPioRead32 [0x1013dd88] with a0=0x238, a1=?, a2=?, a3=?.
   The `jal` at 0x10130e3c calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x101bee88, a2=?, a3=?.
-  The `jal` at 0x10130e5c calls fcPioWrite32 [0x1013dae8] with a0=0x238, a1=?, a2=?, a3=?.
+  The `jal` at 0x10130e5c calls fcPioWrite32 [0x1013dae8] with a0=0x238, a1=ret(fcPioRead32), a2=?, a3=?.
   The `jal` at 0x10130e6c calls fcPioWrite32 [0x1013dae8] with a0=0x228, a1=0x0, a2=?, a3=?.
   The `jalr` at 0x10130ea0 calls sginap with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10130eec calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x101beea0, a2=?, a3=?.

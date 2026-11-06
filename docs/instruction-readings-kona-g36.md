@@ -9,18 +9,17 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 284 bytes.
   The `lw` at 0x100ddfd0 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100ddfd4 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x100de00c loads 4 bytes from [a0+8] +0x4.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100de00c, `lw` at 0x100de0b0.
   2 such `lw` accesses load 4 bytes from sym(XRC_DRAWABLE) +0x0, including `lw` at 0x100de018, `lw` at 0x100de0d8.
   The `lw` at 0x100de034 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `lw` at 0x100de044 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x100de08c loads 4 bytes from a0 (arg0 at entry) +0x28.
-  The `lw` at 0x100de0b0 loads 4 bytes from ?.
   The `lw` at 0x100de0c8 loads 4 bytes from ret(SecurityLookupIDByClass) +0x4.
   The `lw` at 0x100de0d4 loads 4 bytes from ret(SecurityLookupIDByClass) +0x10.
   The `lw` at 0x100de0e0 loads 4 bytes from [ret(SecurityLookupIDByClass)+16] +0x0.
   The `jal` at 0x100de014 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=[sym(XRC_DRAWABLE)], a3=0x1.
   The `jal` at 0x100de07c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=?, a5=0x1.
-  The `jal` at 0x100de0ac calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=?, a2=0x40000000, a3=0x1.
+  The `jal` at 0x100de0ac calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x1.
   The `jal` at 0x100de0dc calls PanoramiXFindIDByScrnum [0x100fd550] with a0=[sym(XRC_DRAWABLE)], a1=[ret(SecurityLookupIDByClass)+4], a2=[[ret(SecurityLookupIDByClass)+16]], a3=?.
   The `beq` branch at 0x100ddfe8 targets 0x100ddff8, is taken when at(=[a0+72]) == v0(=0x2), and falls through when at(=[a0+72]) != v0(=0x2).
   The `beq` branch at 0x100de01c targets 0x100de098, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
@@ -352,7 +351,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100dfa14 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `lw` at 0x100dfa38 loads 4 bytes from sym(screenInfo) +0x48.
   The `lh` at 0x100dfa3c loads 2 bytes from [sym(screenInfo)+72] +0x78.
-  60 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100dfa5c, `lw` at 0x100dfa74, `lw` at 0x100dfa94.
+  56 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100dfa5c, `lw` at 0x100dfa74, `lw` at 0x100dfa94.
   5 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100dfa60, `lh` at 0x100dfa78, `lh` at 0x100dfbb8.
   9 such `sb` accesses store 1 byte to ?, including `sb` at 0x100dfbe8, `sb` at 0x100dfc24, `sb` at 0x100dfc30.
   6 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100dfbec, `sw` at 0x100dfc1c, `sw` at 0x100dfec4.
@@ -366,19 +365,21 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100e019c stores 4 bytes to a4 (arg4 at entry) +0x0.
   The `sw` at 0x100e01a0 stores 4 bytes to a5 (arg5 at entry) +0x0.
   The `sw` at 0x100e01a4 stores 4 bytes to a3 (arg3 at entry) +0x0.
+  2 such `lw` accesses load 4 bytes from ([0x102c6194] + (ret(MakeAtom) << 0x2)) +0x0, including `lw` at 0x100e01ec, `lw` at 0x100e020c.
+  2 such `lw` accesses load 4 bytes from [([0x102c6194] + (ret(MakeAtom) << 0x2))] +0x10, including `lw` at 0x100e01fc, `lw` at 0x100e021c.
   The `jal` at 0x100dfa04 calls Xalloc [0x1020aeb0] with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100dfab8 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100dfadc calls MakeAtom [0x10238200] with a0=0x10299100, a1=0x11, a2=0x1, a3=?.
   The `jal` at 0x100dfaf8 calls MakeAtom [0x10238200] with a0=0x10299118, a1=0x10, a2=0x1, a3=?.
   The `jal` at 0x100dffb0 calls Xfree [0x101fc9c0] with a0=[a2], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e0018 calls getenv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100e0018 calls getenv with a0=0x1029a610, a1=?, a2=?, a3=?, a5=ret(MakeAtom).
   The `jalr` at 0x100e0040 calls strcmp with a0=?, a1=sym(nmbxMaxDisplayBuffersString), a2=?, a3=?.
-  The `jalr` at 0x100e00e8 calls getenv with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100e00e8 calls getenv with a0=0x1029a610, a1=?, a2=?, a3=?, a5=ret(MakeAtom).
   The `jalr` at 0x100e0110 calls strcmp with a0=?, a1=sym(nmbxMaxDisplayBuffersString), a2=?, a3=?.
-  The `jal` at 0x100e0238 calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e025c calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e027c calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e02a0 calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100e0238 calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=ret(MakeAtom), a3=?.
+  The `jal` at 0x100e025c calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=ret(MakeAtom), a3=?, a5=ret(MakeAtom).
+  The `jal` at 0x100e027c calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=ret(MakeAtom), a3=?.
+  The `jal` at 0x100e02a0 calls checkSiblingsCapability [0x101b6800] with a0=?, a1=?, a2=ret(MakeAtom), a3=?, a5=ret(MakeAtom).
   The `beq` branch at 0x100dfa10 targets 0x100dff7c, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
   The `blez` branch at 0x100dfa1c targets 0x100e0164, is taken when t3(=[sym(screenInfo)+68]) <= 0 (signed), and falls through when t3(=[sym(screenInfo)+68]) > 0 (signed).
   The `beq` branch at 0x100dfa30 targets 0x100dfa54, is taken when (t3(=[sym(screenInfo)+68]) & 0x1) == 0, and falls through when (t3(=[sym(screenInfo)+68]) & 0x1) != 0.
@@ -394,15 +395,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100dfbc0 targets 0x100dfd60, is taken when s0(?) >= t1(?) (signed), and falls through when s0(?) < t1(?) (signed).
   The `beq` branch at 0x100dfc40 targets 0x100dfff0, is taken when t2(=[sym(panoramiXDisabled)]) == 0, and falls through when t2(=[sym(panoramiXDisabled)]) != 0.
   The `blez` branch at 0x100dfc70 targets 0x100dfca8, is taken when t3(?) <= 0 (signed), and falls through when t3(?) > 0 (signed).
-  The `beq` branch at 0x100dfc94 targets 0x100dff4c, is taken when t3(?) == t8(?), and falls through when t3(?) != t8(?).
+  The `beq` branch at 0x100dfc94 targets 0x100dff4c, is taken when t3(?) == t8(=ret(MakeAtom)), and falls through when t3(?) != t8(=ret(MakeAtom)).
   The `bne` branch at 0x100dfca0 targets 0x100dfc90, is taken when t0(?) != t1(?), and falls through when t0(?) == t1(?).
   The `beq` branch at 0x100dfca8 targets 0x100e00c0, is taken when t2(=[sym(panoramiXDisabled)]) == 0, and falls through when t2(=[sym(panoramiXDisabled)]) != 0.
   The `blez` branch at 0x100dfcd8 targets 0x100dfd04, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
-  The `beq` branch at 0x100dfcf0 targets 0x100dff64, is taken when t2(?) == a5(?), and falls through when t2(?) != a5(?).
+  The `beq` branch at 0x100dfcf0 targets 0x100dff64, is taken when t2(?) == a5(=ret(MakeAtom)), and falls through when t2(?) != a5(=ret(MakeAtom)).
   The `bnel` branch at 0x100dfcfc targets 0x100dfcf0, is taken when t0(?) != t1(?), and falls through when t0(?) == t1(?); its branch-likely delay slot `lw t2,4(t0)` at 0x100dfd00 runs only when taken and is annulled on fall-through.
   The `blez` branch at 0x100dfd1c targets 0x100dfd44, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
   The `beq` branch at 0x100dfd3c targets 0x100dfdc8 and is always taken.
-  The `bne` branch at 0x100dfd6c targets 0x100dfb9c, is taken when at(?) != v0(?), and falls through when at(?) == v0(?).
+  The `bne` branch at 0x100dfd6c targets 0x100dfb9c, is taken when at(?) != v0(=((a1 << 0x2) + a0)), and falls through when at(?) == v0(=((a1 << 0x2) + a0)).
   The `bne` branch at 0x100dfd90 targets 0x100dfb74, is taken when t8(?) < t3(=[sym(screenInfo)+68]) (signed), and falls through when t8(?) >= t3(=[sym(screenInfo)+68]) (signed).
   The `beq` branch at 0x100dfd98 targets 0x100e0174 and is always taken.
   The `beq` branch at 0x100dfdc0 targets 0x100dfd44, is taken when t1(?) >= t0(?) (signed), and falls through when t1(?) < t0(?) (signed).
@@ -433,26 +434,26 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100dfff8 targets 0x100dfc4c, is taken when t3(=[sym(panoramiXMode)]) == 0, and falls through when t3(=[sym(panoramiXMode)]) != 0.
   The `bne` branch at 0x100e0000 targets 0x100dfc4c, is taken when s2(?) != 0, and falls through when s2(?) == 0.
   The `beq` branch at 0x100e0020 targets 0x100e0230, is taken when v0(=ret(getenv)) == 0, and falls through when v0(=ret(getenv)) != 0.
-  The `beq` branch at 0x100e0030 targets 0x100e01e4, is taken when t8(=[0x102c6188]) >= t9(?) (unsigned), and falls through when t8(=[0x102c6188]) < t9(?) (unsigned).
+  The `beq` branch at 0x100e0030 targets 0x100e01e4, is taken when t8(=[0x102c6188]) >= t9(=ret(MakeAtom)) (unsigned), and falls through when t8(=[0x102c6188]) < t9(=ret(MakeAtom)) (unsigned).
   The `beq` branch at 0x100e0050 targets 0x100e0254, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
   The `blez` branch at 0x100e0080 targets 0x100e00ac, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
-  The `beq` branch at 0x100e0098 targets 0x100dff4c, is taken when t2(?) == t3(?), and falls through when t2(?) != t3(?).
+  The `beq` branch at 0x100e0098 targets 0x100dff4c, is taken when t2(?) == t3(=ret(MakeAtom)), and falls through when t2(?) != t3(=ret(MakeAtom)).
   The `bne` branch at 0x100e00a4 targets 0x100e0094, is taken when t0(?) != t1(?), and falls through when t0(?) == t1(?).
   The `beq` branch at 0x100e00b8 targets 0x100dfca8 and is always taken.
   The `beq` branch at 0x100e00c8 targets 0x100dfcb4, is taken when t3(=[sym(panoramiXMode)]) == 0, and falls through when t3(=[sym(panoramiXMode)]) != 0.
   The `bne` branch at 0x100e00d0 targets 0x100dfcb4, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x100e00f0 targets 0x100e0278, is taken when v0(=ret(getenv)) == 0, and falls through when v0(=ret(getenv)) != 0.
-  The `beq` branch at 0x100e0104 targets 0x100e0200, is taken when t8(=[0x102c6188]) >= t9(?) (unsigned), and falls through when t8(=[0x102c6188]) < t9(?) (unsigned).
+  The `beq` branch at 0x100e0104 targets 0x100e0200, is taken when t8(=[0x102c6188]) >= t9(=ret(MakeAtom)) (unsigned), and falls through when t8(=[0x102c6188]) < t9(=ret(MakeAtom)) (unsigned).
   The `beq` branch at 0x100e0120 targets 0x100e0298, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
   The `blez` branch at 0x100e0150 targets 0x100dfd04, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
   The `beq` branch at 0x100e015c targets 0x100e01d0 and is always taken.
   The `beq` branch at 0x100e0164 targets 0x100dfa98 and is always taken.
   The `beq` branch at 0x100e01c8 targets 0x100dfd04, is taken when t0(?) == t1(?), and falls through when t0(?) != t1(?).
-  The `bnel` branch at 0x100e01d4 targets 0x100e01c8, is taken when t8(?) != a5(?), and falls through when t8(?) == a5(?); its branch-likely delay slot `addiu t0,t0,16` at 0x100e01d8 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0x100e01d4 targets 0x100e01c8, is taken when t8(?) != a5(=ret(MakeAtom)), and falls through when t8(?) == a5(=ret(MakeAtom)); its branch-likely delay slot `addiu t0,t0,16` at 0x100e01d8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x100e01dc targets 0x100dff64 and is always taken.
-  The `beq` branch at 0x100e01f0 targets 0x100e0220, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x100e01f0 targets 0x100e0220, is taken when t0(=[([0x102c6194] + (ret(MakeAtom) << 0x2))]) == 0, and falls through when t0(=[([0x102c6194] + (ret(MakeAtom) << 0x2))]) != 0.
   The `beq` branch at 0x100e01f8 targets 0x100e003c and is always taken.
-  The `beq` branch at 0x100e0210 targets 0x100e0228, is taken when t0(?) == 0, and falls through when t0(?) != 0.
+  The `beq` branch at 0x100e0210 targets 0x100e0228, is taken when t0(=[([0x102c6194] + (ret(MakeAtom) << 0x2))]) == 0, and falls through when t0(=[([0x102c6194] + (ret(MakeAtom) << 0x2))]) != 0.
   The `beq` branch at 0x100e0218 targets 0x100e010c and is always taken.
   The `beq` branch at 0x100e0220 targets 0x100e003c and is always taken.
   The `beq` branch at 0x100e0228 targets 0x100e010c and is always taken.
@@ -1095,11 +1096,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100e28a0 loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `lw` at 0x100e28b8 loads 4 bytes from [[sym(inputInfo)+16]+44] +0xc.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x58, including `lw` at 0x100e2908, `lw` at 0x100e2934, `lw` at 0x100e2960.
-  The `lbu` at 0x100e290c loads 1 byte from ?.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x0, including `lbu` at 0x100e290c, `lbu` at 0x100e2938, `lbu` at 0x100e2964.
   3 such `lw` accesses load 4 bytes from [a0+88] +0x0, including `lw` at 0x100e2910, `lw` at 0x100e293c, `lw` at 0x100e2968.
-  The `lw` at 0x100e291c loads 4 bytes from ?.
-  2 such `lbu` accesses load 1 byte from [a0+8] +0x0, including `lbu` at 0x100e2938, `lbu` at 0x100e2964.
-  2 such `lw` accesses load 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0, including `lw` at 0x100e2948, `lw` at 0x100e2974.
+  3 such `lw` accesses load 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0, including `lw` at 0x100e291c, `lw` at 0x100e2948, `lw` at 0x100e2974.
   The `jal` at 0x100e28dc calls CheckWindowAccess [0x1018ed00] with a0=0x3, a1=a0 at entry (arg0), a2=[[[sym(inputInfo)+16]+44]+12], a3=0x0, a5=0x1.
   The `jalr` at 0x100e2920 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x100e294c calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+8], a2=?, a3=0x3fc00000, a5=0x1.
@@ -1182,9 +1181,10 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x100e2cb0-0x100e2e2c (380 bytes).
   It occupies 380 bytes.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100e2d40, `sw` at 0x100e2e0c.
+  The `sw` at 0x100e2d40 stores 4 bytes to ?.
   The `lw` at 0x100e2d9c loads 4 bytes from ret(AddXineramaExtension) +0x10.
   The `sw` at 0x100e2dbc stores 4 bytes to (sym(EventSwapVector) + ([ret(AddXineramaExtension)+16] << 0x2)) +0x0.
+  The `sw` at 0x100e2e0c stores 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0.
   The `jal` at 0x100e2d08 calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=?, a2=?, a3=?, a5=sym(Xrealloc).
   The `jal` at 0x100e2d88 calls AddXineramaExtension [0x101f12e0] with a0=0x102989e8, a1=0x1, a2=0x0, a3=0x102660f0, a4=0x10084e80, a5=0x100c33a0, a6=0x1008d820, a7=0x102031b0.
   The `jal` at 0x100e2dcc calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=([0x102c6100] << 0x2)+8, a2=?, a3=a3 at entry (arg3), a4=[0x102c6100].
@@ -1392,14 +1392,13 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x100e3918, `lw` at 0x100e3b48.
   The `lw` at 0x100e3930 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100e3934 loads 4 bytes from sym(inputInfo) +0xc.
-  The `lw` at 0x100e3944 loads 4 bytes from [sym(inputInfo)+12] +0x90.
+  2 such `lw` accesses load 4 bytes from [sym(inputInfo)+12] +0x90, including `lw` at 0x100e3944, `lw` at 0x100e3a54.
   3 such `lbu` accesses load 1 byte from [a0+8] +0x1, including `lbu` at 0x100e3948, `lbu` at 0x100e3a5c, `lbu` at 0x100e3d24.
   14 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100e3988, `lbu` at 0x100e3abc, `lbu` at 0x100e3ac8.
   The `lbu` at 0x100e3994 loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
   The `lbu` at 0x100e3998 loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
   The `sw` at 0x100e39d0 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `lw` at 0x100e3a48 loads 4 bytes from a0 (arg0 at entry) +0x1c.
-  The `lw` at 0x100e3a54 loads 4 bytes from ?.
   2 such `lw` accesses load 4 bytes from [[sym(inputInfo)+12]+144] +0x20, including `lw` at 0x100e3a58, `lw` at 0x100e3cf0.
   2 such `lbu` accesses load 1 byte from [[sym(inputInfo)+12]+144] +0x150, including `lbu` at 0x100e3a64, `lbu` at 0x100e3dc4.
   The `lw` at 0x100e3b38 loads 4 bytes from a0 (arg0 at entry) +0x10.
@@ -1420,9 +1419,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100e3a28 calls TagDeleteTag [0x101a10a0] with a0=[0x102cb550], a1=?, a2=?, a3=?.
   The `jalr` at 0x100e3b64 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-160, a3=?, a6=[a0+16].
   The `jal` at 0x100e3c10 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-160, a3=?, a6=[a0+16].
-  The `jal` at 0x100e3ccc calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=[[a0+8]+1]:1, a3=?.
+  The `jal` at 0x100e3ccc calls Xalloc [0x1020aeb0] with a0=([[a0+8]+1]:1 << 0x3), a1=?, a2=[[a0+8]+1]:1, a3=?.
   The `jal` at 0x100e3d00 calls Xfree [0x101fc9c0] with a0=[[[sym(inputInfo)+12]+144]+32], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e3d1c calls memmove with a0=?, a1=[a0+8]+4, a2=?, a3=?.
+  The `jalr` at 0x100e3d1c calls memmove with a0=ret(Xalloc), a1=[a0+8]+4, a2=([[a0+8]+1]:1 << 0x3), a3=?.
   The `jal` at 0x100e3e10 calls SendMappingNotify [0x1018ae80] with a0=0x0, a1=0x0, a2=0x0, a3=a0 at entry (arg0), a6=a0 at entry (arg0).
   The `beq` branch at 0x100e3940 targets 0x100e3b8c, is taken when v0(=[a0+72]) == 0, and falls through when v0(=[a0+72]) != 0.
   The `bne` branch at 0x100e3954 targets 0x100e39ec, is taken when v0(=[a0+72]) != a4(=([[a0+8]+1]:1 << 0x1)+1), and falls through when v0(=[a0+72]) == a4(=([[a0+8]+1]:1 << 0x1)+1).
@@ -1464,14 +1463,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100e3c94 targets 0x100e3b34 and is always taken.
   The `bne` branch at 0x100e3cc0 targets 0x100e3be8, is taken when t0(?) != t1(=0x8), and falls through when t0(?) == t1(=0x8).
   The `bne` branch at 0x100e3cd4 targets 0x100e3cf0, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
-  The `beq` branch at 0x100e3ce0 targets 0x100e3cf0, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x100e3ce0 targets 0x100e3cf0, is taken when v0(=([[a0+8]+1]:1 << 0x3)) == 0, and falls through when v0(=([[a0+8]+1]:1 << 0x3)) != 0.
   The `beq` branch at 0x100e3ce8 targets 0x100e39d4 and is always taken.
   The `beq` branch at 0x100e3cf4 targets 0x100e3d08, is taken when a0(=[[[sym(inputInfo)+12]+144]+32]) == 0, and falls through when a0(=[[[sym(inputInfo)+12]+144]+32]) != 0.
   The `beq` branch at 0x100e3d54 targets 0x100e3d80 and is always taken.
   The `bne` branch at 0x100e3da0 targets 0x100e3d5c, is taken when v0(?) != v1(=[[sym(inputInfo)+12]+144]+248), and falls through when v0(?) == v1(=[[sym(inputInfo)+12]+144]+248).
-  The `blez` branch at 0x100e3dac targets 0x100e3df8, is taken when a2(?) <= 0 (signed), and falls through when a2(?) > 0 (signed).
+  The `blez` branch at 0x100e3dac targets 0x100e3df8, is taken when a2(=([[a0+8]+1]:1 << 0x3)) <= 0 (signed), and falls through when a2(=([[a0+8]+1]:1 << 0x3)) > 0 (signed).
   The `beq` branch at 0x100e3dbc targets 0x100e3dec, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `bne` branch at 0x100e3df0 targets 0x100e3db8, is taken when at(?) != a6(?), and falls through when at(?) == a6(?).
+  The `bne` branch at 0x100e3df0 targets 0x100e3db8, is taken when at(?) != a6(=([[a0+8]+1]:1 << 0x3)), and falls through when at(?) == a6(=([[a0+8]+1]:1 << 0x3)).
   The `bne` branch at 0x100e3dfc targets 0x100e3b38, is taken when a7(?) != 0, and falls through when a7(?) == 0.
   The `beq` branch at 0x100e3e18 targets 0x100e3b38 and is always taken.
   The return at 0x100e39cc has v0 = 0x2.
@@ -1567,31 +1566,36 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x100e42f0, `lw` at 0x100e4568.
   The `lw` at 0x100e42f8 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100e434c loads 4 bytes from [a0+8] +0x4.
-  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e4378, `lw` at 0x100e4430, `lw` at 0x100e443c.
+  The `lw` at 0x100e4378 loads 4 bytes from [a0+8] +0x8.
   3 such `lw` accesses load 4 bytes from sym(WindowTable) +0x0, including `lw` at 0x100e43a4, `lw` at 0x100e4438, `lw` at 0x100e4514.
   The `lw` at 0x100e43a8 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   2 such `lw` accesses load 4 bytes from [sym(WindowTable)] +0x0, including `lw` at 0x100e43b8, `lw` at 0x100e4530.
   The `lw` at 0x100e43bc loads 4 bytes from ret(SecurityLookupWindow) +0x24.
-  8 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100e43c0, `lh` at 0x100e43c8, `lh` at 0x100e43fc.
+  The `lh` at 0x100e43c0 loads 2 bytes from [a0+8] +0xe.
+  The `lh` at 0x100e43c8 loads 2 bytes from [a0+8] +0xc.
   2 such `lw` accesses load 4 bytes from sym(panoramiXdataPtr) +0x0, including `lw` at 0x100e43d0, `lw` at 0x100e453c.
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x14, including `lw` at 0x100e43d4, `lw` at 0x100e454c.
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x10, including `lw` at 0x100e43dc, `lw` at 0x100e4540.
+  2 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0xa, including `lh` at 0x100e43fc, `lh` at 0x100e4524.
+  2 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0x8, including `lh` at 0x100e4400, `lh` at 0x100e4518.
   The `lw` at 0x100e442c loads 4 bytes from [ret(SecurityLookupWindow)+36] +0x7c.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e4430, `lw` at 0x100e443c, `lw` at 0x100e44a4.
   3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x100e444c, `lhu` at 0x100e4454, `lhu` at 0x100e448c.
+  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100e4450, `lh` at 0x100e4478.
   The `lw` at 0x100e4558 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lbu` at 0x100e456c loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x100e457c loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `lw` at 0x100e4598 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x100e4348 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=a3 at entry (arg3).
-  The `jal` at 0x100e4374 calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=?, a4=0x3.
-  The `jalr` at 0x100e44e8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=sp-80.
+  The `jal` at 0x100e4374 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x1, a3=?, a4=0x3.
+  The `jalr` at 0x100e44e8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=sp-80, a5=ret(SecurityLookupWindow).
   The `jalr` at 0x100e4584 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-112, a3=?, a7=[a0+16].
   The `jal` at 0x100e45b0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-112, a3=?, a7=[a0+16].
   The `beq` branch at 0x100e4314 targets 0x100e4338, is taken when v1(=[a0+72]) == a1(=0x4), and falls through when v1(=[a0+72]) != a1(=0x4).
   The `bne` branch at 0x100e4358 targets 0x100e4368, is taken when v0(=ret(SecurityLookupWindow)) != 0, and falls through when v0(=ret(SecurityLookupWindow)) == 0.
   The `beq` branch at 0x100e4360 targets 0x100e432c and is always taken.
   The `beq` branch at 0x100e4384 targets 0x100e459c, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `bne` branch at 0x100e43c4 targets 0x100e43f8, is taken when t8(=[[sym(WindowTable)]]) != t9(?), and falls through when t8(=[[sym(WindowTable)]]) == t9(?).
+  The `bne` branch at 0x100e43c4 targets 0x100e43f8, is taken when t8(=[[sym(WindowTable)]]) != t9(=ret(SecurityLookupWindow)), and falls through when t8(=[[sym(WindowTable)]]) == t9(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x100e43f0 targets 0x100e4420 and is always taken.
   The `beq` branch at 0x100e4420 targets 0x100e4518, is taken when a4(=[ret(SecurityLookupWindow)+36]) == 0, and falls through when a4(=[ret(SecurityLookupWindow)+36]) != 0.
   The `beq` branch at 0x100e4428 targets 0x100e4440 and is always taken.
@@ -1604,7 +1608,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100e44a8 targets 0x100e450c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x100e44b4 targets 0x100e450c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100e4504 targets 0x100e4430, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
-  The `bne` branch at 0x100e4534 targets 0x100e4558, is taken when at(=[[sym(WindowTable)]]) != a5(?), and falls through when at(=[[sym(WindowTable)]]) == a5(?).
+  The `bne` branch at 0x100e4534 targets 0x100e4558, is taken when at(=[[sym(WindowTable)]]) != a5(=ret(SecurityLookupWindow)), and falls through when at(=[[sym(WindowTable)]]) == a5(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x100e455c targets 0x100e45a4, is taken when a7(=[a0+16]) == 0, and falls through when a7(=[a0+16]) != 0.
   The `beq` branch at 0x100e4594 targets 0x100e4328 and is always taken.
   The `beq` branch at 0x100e459c targets 0x100e4328 and is always taken.
@@ -1640,8 +1644,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x100e4970 loads 2 bytes from [a0+8] +0x4.
   The `lw` at 0x100e4980 loads 4 bytes from sym(inputInfo) +0xc.
   The `lbu` at 0x100e4984 loads 1 byte from [sym(inputInfo)+12] +0x4c.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e4998, `lw` at 0x100e49a8, `lw` at 0x100e4a4c.
-  The `lw` at 0x100e49b4 loads 4 bytes from [a0+8] +0x8.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e4998, `lw` at 0x100e49a8, `lw` at 0x100e4a4c.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x100e49b4, `lw` at 0x100e4ac8.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100e49d0, `sw` at 0x100e4a30.
   The `lw` at 0x100e49d4 loads 4 bytes from sym(inputInfo) +0x4.
   The `lw` at 0x100e49e0 loads 4 bytes from sym(inputInfo) +0x10.
@@ -1651,8 +1655,8 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100e4a58, `lbu` at 0x100e4aa8, `lbu` at 0x100e4b08.
   The `lw` at 0x100e4ab0 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `jal` at 0x100e4a88 calls XkbLookupNamedGeometry [0x10284080] with a0=?, a1=[[a0+8]+8], a2=sp-76, a3=?, a4=a0 at entry (arg0), a5=0x5, a7=[0x102c6188].
-  The `jal` at 0x100e4ac4 calls XkbComputeGetGeometryReplySize..FFF [0x102656f0] with a0=ret(XkbLookupNamedGeometry), a1=sp-72, a2=?, a3=[a0+28], a5=0x1.
-  The `jal` at 0x100e4b28 calls XkbSendGeometry..GFF [0x1016a920] with a0=a0 at entry (arg0), a1=?, a2=sp-72, a3=?, a5=ret(XkbComputeGetGeometryReplySize..FFF).
+  The `jal` at 0x100e4ac4 calls XkbComputeGetGeometryReplySize..FFF [0x102656f0] with a0=ret(XkbLookupNamedGeometry), a1=sp-72, a2=[[a0+8]+8], a3=[a0+28], a5=0x1.
+  The `jal` at 0x100e4b28 calls XkbSendGeometry..GFF [0x1016a920] with a0=a0 at entry (arg0), a1=ret(XkbLookupNamedGeometry), a2=sp-72, a3=?, a5=ret(XkbComputeGetGeometryReplySize..FFF).
   The `beq` branch at 0x100e4940 targets 0x100e4960, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `beq` branch at 0x100e4968 targets 0x100e4ae0, is taken when (v1(=[a0+92]:2) & 0x8000) == 0, and falls through when (v1(=[a0+92]:2) & 0x8000) != 0.
   The `beq` branch at 0x100e497c targets 0x100e4990, is taken when a1(=[[a0+8]+4]:2) == a0(=0x100), and falls through when a1(=[[a0+8]+4]:2) != a0(=0x100).
@@ -1830,7 +1834,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100e5070 loads 4 bytes from a0 (arg0 at entry) +0x24.
   2 such `lw` accesses load 4 bytes from [[a1+8]+44] +0x6c, including `lw` at 0x100e509c, `lw` at 0x100e5704.
   2 such `lw` accesses load 4 bytes from [[[a1+8]+44]+108] +0x8, including `lw` at 0x100e50a0, `lw` at 0x100e5708.
-  125 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e50b8, `lw` at 0x100e5104, `lw` at 0x100e5140.
+  107 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e50b8, `lw` at 0x100e5104, `lw` at 0x100e5140.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x34, including `lw` at 0x100e50c4, `lw` at 0x100e524c, `lw` at 0x100e5478.
   2 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x4, including `sw` at 0x100e50d0, `sw` at 0x100e5730.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x30, including `lw` at 0x100e50ec, `lw` at 0x100e5440.
@@ -1838,9 +1842,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100e5114 loads 4 bytes from sym(panoramiXDisabled) +0x0.
   The `lw` at 0x100e5120 loads 4 bytes from sym(panoramiXMode) +0x0.
   The `lw` at 0x100e512c loads 4 bytes from sym(panoramiXScreen0) +0x0.
-  10 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100e5138, `lbu` at 0x100e52a4, `lbu` at 0x100e53e8.
-  44 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100e51c4, `sw` at 0x100e53a8, `sw` at 0x100e53dc.
-  3 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100e51d0, `lh` at 0x100e5970, `lh` at 0x100e5c64.
+  9 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100e5138, `lbu` at 0x100e52a4, `lbu` at 0x100e53e8.
+  36 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100e51c4, `sw` at 0x100e53a8, `sw` at 0x100e53dc.
+  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100e51d0, `lh` at 0x100e5c64.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x4, including `lw` at 0x100e5258, `lw` at 0x100e5468.
   The `lw` at 0x100e526c loads 4 bytes from a1 (arg1 at entry) +0xc.
   The `lw` at 0x100e5270 loads 4 bytes from a1 (arg1 at entry) +0x10.
@@ -1849,13 +1853,31 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100e563c loads 4 bytes from a0 (arg0 at entry) +0x78.
   The `sw` at 0x100e56bc stores 4 bytes to a0 (arg0 at entry) +0x18.
   14 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x100e5740, `lw` at 0x100e5760, `lw` at 0x100e5804.
+  The `sw` at 0x100e57a8 stores 4 bytes to ret(__malloc..ML) +0x0.
+  3 such `lw` accesses load 4 bytes from ret(__malloc..ML) +0xc, including `lw` at 0x100e57e8, `lw` at 0x100e5950, `lw` at 0x100e6084.
+  The `lw` at 0x100e57ec loads 4 bytes from ret(__malloc..ML) +0x10.
+  The `sw` at 0x100e5854 stores 4 bytes to ret(__malloc..ML) +0x14.
   5 such `lw` accesses load 4 bytes from table(0x102c71c0) +0x0, including `lw` at 0x100e5890, `lw` at 0x100e5af4, `lw` at 0x100e5b7c.
   5 such `sw` accesses store 4 bytes to table(0x102c71c0) +0x0, including `sw` at 0x100e58c0, `sw` at 0x100e5b20, `sw` at 0x100e5bac.
+  3 such `lw` accesses load 4 bytes from ret(__malloc..ML) +0x30, including `lw` at 0x100e58e8, `lw` at 0x100e5bd4, `lw` at 0x100e5dc8.
+  3 such `lw` accesses load 4 bytes from ret(__malloc..ML) +0x14, including `lw` at 0x100e5958, `lw` at 0x100e5abc, `lw` at 0x100e5cb0.
+  The `sw` at 0x100e595c stores 4 bytes to ret(__malloc..ML) +0xc.
+  3 such `lw` accesses load 4 bytes from ret(__malloc..ML) +0x8, including `lw` at 0x100e5960, `lw` at 0x100e5c50, `lw` at 0x100e5fc8.
+  The `sw` at 0x100e5968 stores 4 bytes to ret(__malloc..ML) +0x10.
+  The `lw` at 0x100e596c loads 4 bytes from [ret(__malloc..ML)+8] +0x0.
+  The `lh` at 0x100e5970 loads 2 bytes from [[ret(__malloc..ML)+8]] +0x10.
+  The `lbu` at 0x100e5978 loads 1 byte from [ret(__malloc..ML)+8] +0x4.
+  The `lw` at 0x100e59b4 loads 4 bytes from [[ret(__malloc..ML)+8]] +0x30.
+  The `sw` at 0x100e59cc stores 4 bytes to [[ret(__malloc..ML)+8]] +0x30.
   5 such `sh` accesses store 2 bytes to ?, including `sh` at 0x100e5a08, `sh` at 0x100e5a14, `sh` at 0x100e5a20.
   The `sb` at 0x100e5a74 stores 1 byte to ?.
   The `lw` at 0x100e5c1c loads 4 bytes from ret(CreateScratchGC) +0x10.
   The `sw` at 0x100e5c2c stores 4 bytes to ret(CreateScratchGC) +0x10.
   2 such `lw` accesses load 4 bytes from sym(Must_have_memory) +0x0, including `lw` at 0x100e5e60, `lw` at 0x100e608c.
+  The `sw` at 0x100e5fcc stores 4 bytes to ret(__malloc..ML) +0x8.
+  The `lw` at 0x100e5fe0 loads 4 bytes from ret(__malloc..ML) +0x4.
+  The `lw` at 0x100e6004 loads 4 bytes from [ret(__malloc..ML)+4] +0x14.
+  The `sw` at 0x100e6018 stores 4 bytes to ret(__malloc..ML) +0x34.
   The `lw` at 0x100e6028 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0x100e6038 loads 4 bytes from table(0x102c61a0) +0x0.
   The `lw` at 0x100e603c loads 4 bytes from a0 (arg0 at entry) +0xc.
@@ -1876,6 +1898,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100e6128 loads 4 bytes from table(0x102c66b0) +0x0.
   The `sw` at 0x100e6130 stores 4 bytes to table(0x102c66f0) +0x0.
   The `sw` at 0x100e613c stores 4 bytes to table(0x102c66b0) +0x0.
+  The `lw` at 0x100e6184 loads 4 bytes from [0x102c6164] +0x640.
+  The `sw` at 0x100e618c stores 4 bytes to [0x102c6164] +0x640.
   2 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x100e61f0, `lw` at 0x100e6250.
   The `lw` at 0x100e6370 loads 4 bytes from table(0x102c6808) +0x0.
   The `sw` at 0x100e6390 stores 4 bytes to table(0x102c6808) +0x0.
@@ -1901,36 +1925,36 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x100e574c calls __libc_lockmalloc with a0=?, a1=?, a2=0x54, a3=?.
   The `jal` at 0x100e5754 calls __malloc..ML [0x101e7680] with a0=0x38, a1=?, a2=?, a3=?.
   The `jalr` at 0x100e5770 calls __libc_unlockmalloc with a0=[sym(__us_rsthread_malloc)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e5810 calls __libc_lockmalloc with a0=?, a1=?, a2=0x8, a3=?.
+  The `jalr` at 0x100e5810 calls __libc_lockmalloc with a0=?, a1=?, a2=0x8, a3=?, a4=ret(__malloc..ML)+4.
   The `jal` at 0x100e5818 calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100e5834 calls __libc_unlockmalloc with a0=?, a1=ret(__malloc..ML), a2=?, a3=?.
-  The `jalr` at 0x100e5878 calls __libc_lockmalloc with a0=?, a1=[sym(__us_rsthread_malloc)], a2=[0x102c7240], a3=?.
+  The `jalr` at 0x100e5878 calls __libc_lockmalloc with a0=ret(__malloc..ML), a1=[sym(__us_rsthread_malloc)], a2=[0x102c7240], a3=?.
   The `jal` at 0x100e589c calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=sym(__us_rsthread_malloc).
-  The `jalr` at 0x100e58dc calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x100e594c calls memmove with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100e58dc calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)], a6=ret(__malloc..ML).
+  The `jalr` at 0x100e594c calls memmove with a0=?, a1=[ret(__malloc..ML)+12], a2=?, a3=?.
   The `jalr` at 0x100e5a98 calls (unknown callee) with a0=?, a1=0x0, a2=0x0, a3=0x0.
   The `jalr` at 0x100e5adc calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?.
   The `jal` at 0x100e5b00 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=sym(__us_rsthread_malloc).
   The `jalr` at 0x100e5b3c calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x100e5b64 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?, a7=[sym(__us_rsthread_malloc)].
+  The `jalr` at 0x100e5b64 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?, a6=ret(__malloc..ML), a7=[sym(__us_rsthread_malloc)].
   The `jal` at 0x100e5b88 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=sym(__us_rsthread_malloc).
-  The `jalr` at 0x100e5bc8 calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)].
-  The `jal` at 0x100e5c0c calls CreateScratchGC [0x101adea0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e5c4c calls CopyGC [0x101d8460] with a0=?, a1=?, a2=0xefd0f, a3=?.
+  The `jalr` at 0x100e5bc8 calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)], a6=ret(__malloc..ML).
+  The `jal` at 0x100e5c0c calls CreateScratchGC [0x101adea0] with a0=[[ret(__malloc..ML)+8]], a1=[[ret(__malloc..ML)+8]+4]:1, a2=?, a3=?.
+  The `jal` at 0x100e5c4c calls CopyGC [0x101d8460] with a0=[ret(__malloc..ML)+8], a1=?, a2=0xefd0f, a3=?.
   The `jal` at 0x100e5ca4 calls FreeGC [0x1010a5b0] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x100e5cd0 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?.
+  The `jalr` at 0x100e5cd0 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?, a6=ret(__malloc..ML).
   The `jal` at 0x100e5cf4 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=sym(__us_rsthread_malloc).
   The `jalr` at 0x100e5d30 calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x100e5d58 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?, a7=[sym(__us_rsthread_malloc)].
+  The `jalr` at 0x100e5d58 calls __libc_lockmalloc with a0=?, a1=?, a2=[0x102c7240], a3=?, a6=ret(__malloc..ML), a7=[sym(__us_rsthread_malloc)].
   The `jal` at 0x100e5d7c calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=sym(__us_rsthread_malloc).
-  The `jalr` at 0x100e5dbc calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)].
-  The `jal` at 0x100e5e6c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?, a6=[sym(Must_have_memory)].
+  The `jalr` at 0x100e5dbc calls __libc_unlockmalloc with a0=?, a1=table(0x102c5d40), a2=[0x102c7240], a3=([0x102c7240] << 0x2), a5=[sym(__us_rsthread_malloc)], a6=ret(__malloc..ML).
+  The `jal` at 0x100e5e6c calls FatalError [0x10094f20] with a0=0x10291460, a1=ret(__malloc..ML), a2=?, a3=?, a6=[sym(Must_have_memory)].
   The `jal` at 0x100e5f10 calls dixChangeGC [0x101107f0] with a0=0x0, a1=?, a2=0x4000, a3=sp-272, a4=0x0.
   The `jalr` at 0x100e5f30 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e5fe8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100e5fe8 calls (unknown callee) with a0=?, a1=?, a2=[ret(__malloc..ML)+4], a3=?.
   The `jal` at 0x100e6014 calls Xalloc [0x1020aeb0] with a0=0x10, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e609c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e6190 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100e609c calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?.
+  The `jal` at 0x100e6190 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=[0x102c6164], a3=[[0x102c6164]+1600].
   The `jalr` at 0x100e6240 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100e62b8 calls TagDeleteTag [0x101a10a0] with a0=?, a1=?, a2=?, a3=?, a4=([0x102cb54c] << 0x2).
   The `jalr` at 0x100e62e4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
@@ -1939,7 +1963,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100e634c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x100e508c targets 0x100e524c, is taken when at(=[a0+36]) == 0, and falls through when at(=[a0+36]) != 0.
   The `beq` branch at 0x100e50c8 targets 0x100e5484, is taken when v0(=[a1+52]) == 0, and falls through when v0(=[a1+52]) != 0.
-  The `beq` branch at 0x100e50d8 targets 0x100e5250, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x100e50d8 targets 0x100e5250, is taken when a2(=one of 0x0, 0x1) == 0, and falls through when a2(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x100e50e4 targets 0x100e54ac, is taken when a3(?) == s2(=0x1), and falls through when a3(?) != s2(=0x1).
   The `beq` branch at 0x100e50f0 targets 0x100e5174, is taken when a2(=[a1+48]) == 0, and falls through when a2(=[a1+48]) != 0.
   The `beq` branch at 0x100e50fc targets 0x100e547c, is taken when s1(?) == 0, and falls through when s1(?) != 0.
@@ -2018,18 +2042,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x100e573c targets 0x100e5be8, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e5744 targets 0x100e5754, is taken when v0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v0(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5764 targets 0x100e577c, is taken when a0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a0(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100e577c targets 0x100e6088, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x100e577c targets 0x100e6088, is taken when t1(=ret(__malloc..ML)) == 0, and falls through when t1(=ret(__malloc..ML)) != 0.
   The `bgtz` branch at 0x100e57d4 targets 0x100e57b0, is taken when a0(?) > 0 (signed), and falls through when a0(?) <= 0 (signed).
   The `blez` branch at 0x100e57f8 targets 0x100e5edc, is taken when s1(?) <= 0 (signed), and falls through when s1(?) > 0 (signed).
   The `beq` branch at 0x100e5808 targets 0x100e5818, is taken when at(=[sym(__us_rsthread_malloc)]) == 0, and falls through when at(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e582c targets 0x100e5840, is taken when v0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v0(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100e5840 targets 0x100e5e60, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x100e5840 targets 0x100e5e60, is taken when a1(=ret(__malloc..ML)) == 0, and falls through when a1(=ret(__malloc..ML)) != 0.
   The `bne` branch at 0x100e5850 targets 0x100e593c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `beq` branch at 0x100e585c targets 0x100e58e4, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x100e585c targets 0x100e58e4, is taken when a0(=ret(__malloc..ML)) == 0, and falls through when a0(=ret(__malloc..ML)) != 0.
   The `beq` branch at 0x100e586c targets 0x100e5884, is taken when a1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a1(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5894 targets 0x100e58b8, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
   The `beq` branch at 0x100e58d0 targets 0x100e58e4, is taken when a5(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a5(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x100e58ec targets 0x100e50fc, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x100e58ec targets 0x100e50fc, is taken when a2(=[ret(__malloc..ML)+48]) != 0, and falls through when a2(=[ret(__malloc..ML)+48]) == 0.
   The `beq` branch at 0x100e58f4 targets 0x100e5100 and is always taken.
   The `beq` branch at 0x100e58fc targets 0x100e54b4, is taken when t2(?) == t1(=0x1), and falls through when t2(?) != t1(=0x1).
   The `bne` branch at 0x100e590c targets 0x100e50f8, is taken when a3(?) != 0, and falls through when a3(?) == 0.
@@ -2038,22 +2062,22 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100e5924 targets 0x100e54b0 and is always taken.
   The `beq` branch at 0x100e592c targets 0x100e5374 and is always taken.
   The `beq` branch at 0x100e5934 targets 0x100e5374 and is always taken.
-  The `bltz` branch at 0x100e5974 targets 0x100e5c08, is taken when t1(?) < 0 (signed), and falls through when t1(?) >= 0 (signed).
+  The `bltz` branch at 0x100e5974 targets 0x100e5c08, is taken when t1(=[[[ret(__malloc..ML)+8]]+16]:2) < 0 (signed), and falls through when t1(=[[[ret(__malloc..ML)+8]]+16]:2) >= 0 (signed).
   The `beq` branch at 0x100e598c targets 0x100e59a4 and is always taken.
-  The `bne` branch at 0x100e599c targets 0x100e5c08, is taken when t2(?) < a3(?) (unsigned), and falls through when t2(?) >= a3(?) (unsigned).
-  The `bne` branch at 0x100e59ac targets 0x100e5994, is taken when t8(?) != a1(?), and falls through when t8(?) == a1(?).
-  The `bnel` branch at 0x100e59bc targets 0x100e5998, is taken when (t1(?) & t3(?)) != 0, and falls through when (t1(?) & t3(?)) == 0; its branch-likely delay slot `addiu a3,a3,4` at 0x100e59c0 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0x100e599c targets 0x100e5c08, is taken when t2(=(([[[ret(__malloc..ML)+8]]+16]:2 << 0x2) + [[ret(__malloc..ML)+8]])) < a3(?) (unsigned), and falls through when t2(=(([[[ret(__malloc..ML)+8]]+16]:2 << 0x2) + [[ret(__malloc..ML)+8]])) >= a3(?) (unsigned).
+  The `bne` branch at 0x100e59ac targets 0x100e5994, is taken when t8(?) != a1(=[[ret(__malloc..ML)+8]+4]:1), and falls through when t8(?) == a1(=[[ret(__malloc..ML)+8]+4]:1).
+  The `bnel` branch at 0x100e59bc targets 0x100e5998, is taken when (t1(?) & t3(=[[[ret(__malloc..ML)+8]]+48])) != 0, and falls through when (t1(?) & t3(=[[[ret(__malloc..ML)+8]]+48])) == 0; its branch-likely delay slot `addiu a3,a3,4` at 0x100e59c0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x100e5a78 targets 0x100e5aa4, is taken when (at(?) & 0x3) == 0, and falls through when (at(?) & 0x3) != 0.
   The `bne` branch at 0x100e5ab0 targets 0x100e5c38, is taken when a7(?) != 0, and falls through when a7(?) == 0.
-  The `beq` branch at 0x100e5ac0 targets 0x100e5b44, is taken when s1(?) == 0, and falls through when s1(?) != 0.
+  The `beq` branch at 0x100e5ac0 targets 0x100e5b44, is taken when s1(=[ret(__malloc..ML)+20]) == 0, and falls through when s1(=[ret(__malloc..ML)+20]) != 0.
   The `beq` branch at 0x100e5ad0 targets 0x100e5ae8, is taken when t8(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t8(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5af8 targets 0x100e5b1c, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
   The `beq` branch at 0x100e5b30 targets 0x100e5b44, is taken when a5(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a5(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100e5b48 targets 0x100e5bd4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x100e5b48 targets 0x100e5bd4, is taken when a6(=ret(__malloc..ML)) == 0, and falls through when a6(=ret(__malloc..ML)) != 0.
   The `beq` branch at 0x100e5b58 targets 0x100e5b70, is taken when a7(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a7(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5b80 targets 0x100e5ba4, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
   The `beq` branch at 0x100e5bbc targets 0x100e5bd0, is taken when a5(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a5(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x100e5bd8 targets 0x100e50fc, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x100e5bd8 targets 0x100e50fc, is taken when a2(=[ret(__malloc..ML)+48]) != 0, and falls through when a2(=[ret(__malloc..ML)+48]) == 0.
   The `beq` branch at 0x100e5be0 targets 0x100e5100 and is always taken.
   The `beq` branch at 0x100e5c14 targets 0x100e5c30, is taken when v0(=ret(CreateScratchGC)) == 0, and falls through when v0(=ret(CreateScratchGC)) != 0.
   The `beq` branch at 0x100e5c30 targets 0x100e5ab8, is taken when v0(=ret(CreateScratchGC)) == 0, and falls through when v0(=ret(CreateScratchGC)) != 0.
@@ -2061,15 +2085,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `bltz` branch at 0x100e5c6c targets 0x100e5c9c, is taken when a4(?) < 0 (signed), and falls through when a4(?) >= 0 (signed).
   The `beq` branch at 0x100e5c8c targets 0x100e5ee4, is taken when t1(?) == t2(?), and falls through when t1(?) != t2(?).
   The `beq` branch at 0x100e5c94 targets 0x100e5c80, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x100e5cb4 targets 0x100e5d3c, is taken when s1(?) == 0, and falls through when s1(?) != 0.
+  The `beq` branch at 0x100e5cb4 targets 0x100e5d3c, is taken when s1(=[ret(__malloc..ML)+20]) == 0, and falls through when s1(=[ret(__malloc..ML)+20]) != 0.
   The `beq` branch at 0x100e5cc4 targets 0x100e5cdc, is taken when t8(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t8(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5cec targets 0x100e5d10, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
   The `beq` branch at 0x100e5d24 targets 0x100e5d38, is taken when a5(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a5(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100e5d3c targets 0x100e5dc8, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x100e5d3c targets 0x100e5dc8, is taken when a6(=ret(__malloc..ML)) == 0, and falls through when a6(=ret(__malloc..ML)) != 0.
   The `beq` branch at 0x100e5d4c targets 0x100e5d64, is taken when a7(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a7(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e5d74 targets 0x100e5d98, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
   The `beq` branch at 0x100e5db0 targets 0x100e5dc4, is taken when a5(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a5(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x100e5dcc targets 0x100e50fc, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x100e5dcc targets 0x100e50fc, is taken when a2(=[ret(__malloc..ML)+48]) != 0, and falls through when a2(=[ret(__malloc..ML)+48]) == 0.
   The `beq` branch at 0x100e5dd4 targets 0x100e5100 and is always taken.
   The `beq` branch at 0x100e5e00 targets 0x100e55e8 and is always taken.
   The `beq` branch at 0x100e5e2c targets 0x100e55e8 and is always taken.
@@ -2099,7 +2123,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100e6104 targets 0x100e6364, is taken when (a7(?) & ra(=entry(0x102c6710))) == 0, and falls through when (a7(?) & ra(=entry(0x102c6710))) != 0.
   The `beq` branch at 0x100e6138 targets 0x100e6054 and is always taken.
   The `beq` branch at 0x100e6144 targets 0x100e5694 and is always taken.
-  The `beq` branch at 0x100e61b4 targets 0x100e61ec, is taken when v0(?) == t3(?), and falls through when v0(?) != t3(?).
+  The `beq` branch at 0x100e61b4 targets 0x100e61ec, is taken when v0(?) == t3(=[0x102c6164]+1536), and falls through when v0(?) != t3(=[0x102c6164]+1536).
   The `bne` branch at 0x100e61c0 targets 0x100e61b0, is taken when a5(?) != a7(?), and falls through when a5(?) == a7(?).
   The `bne` branch at 0x100e61cc targets 0x100e614c, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x100e61e4 targets 0x100e616c and is always taken.
@@ -2180,16 +2204,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x100e68c8 calls close with a0=[ret(calloc)+16], a1=?, a2=?, a3=?.
   The `jal` at 0x100e68d4 calls free [0x1016b9e0] with a0=ret(calloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x100e6918 calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100e6924 calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100e6924 calls __malloc..ML [0x101e7680] with a0=[a0+32], a1=?, a2=?, a3=?.
   The `jalr` at 0x100e6940 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e6964 calls memcpy with a0=?, a1=[a0+28], a2=[a0+32], a3=?.
+  The `jalr` at 0x100e6964 calls memcpy with a0=ret(__malloc..ML), a1=[a0+28], a2=[a0+32], a3=?.
   The `jalr` at 0x100e6980 calls __libc_lockmalloc with a0=?, a1=[sym(__us_rsthread_malloc)], a2=?, a3=?.
-  The `jal` at 0x100e698c calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100e698c calls __malloc..ML [0x101e7680] with a0=[a0+32], a1=?, a2=?, a3=?.
   The `jalr` at 0x100e69a8 calls __libc_unlockmalloc with a0=?, a1=?, a2=[sym(__us_rsthread_malloc)], a3=?.
-  The `jalr` at 0x100e69c4 calls close with a0=[ret(calloc)+16], a1=?, a2=?, a3=?.
+  The `jalr` at 0x100e69c4 calls close with a0=[ret(calloc)+16], a1=?, a2=?, a3=ret(__malloc..ML).
   The `jal` at 0x100e69dc calls free [0x1016b9e0] with a0=[ret(calloc)+28], a1=?, a2=?, a3=?.
   The `jal` at 0x100e69e8 calls free [0x1016b9e0] with a0=ret(calloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0x100e6a14 calls memcpy with a0=?, a1=[a0+28], a2=[ret(calloc)+32], a3=?, a5=[a0+32].
+  The `jalr` at 0x100e6a14 calls memcpy with a0=ret(__malloc..ML), a1=[a0+28], a2=[ret(calloc)+32], a3=ret(__malloc..ML), a5=[a0+32].
   The `jalr` at 0x100e6a3c calls close with a0=[ret(calloc)+16], a1=?, a2=?, a3=?.
   The `jal` at 0x100e6a48 calls free [0x1016b9e0] with a0=ret(calloc), a1=?, a2=?, a3=?.
   The `jal` at 0x100e6a68 calls free [0x1016b9e0] with a0=ret(calloc), a1=?, a2=?, a3=?.
@@ -2198,10 +2222,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100e68bc targets 0x100e6904, is taken when v0(=ret(_XSERVTransSocketPRIVAccept..LG)) == 0, and falls through when v0(=ret(_XSERVTransSocketPRIVAccept..LG)) != 0.
   The `beq` branch at 0x100e690c targets 0x100e6924, is taken when v0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v0(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e6934 targets 0x100e6948, is taken when v1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v1(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100e694c targets 0x100e6a34, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x100e694c targets 0x100e6a34, is taken when a0(=ret(__malloc..ML)) == 0, and falls through when a0(=ret(__malloc..ML)) != 0.
   The `beq` branch at 0x100e6974 targets 0x100e698c, is taken when a1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a1(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100e699c targets 0x100e69b0, is taken when a2(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a2(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x100e69b4 targets 0x100e6a00, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x100e69b4 targets 0x100e6a00, is taken when a3(=ret(__malloc..ML)) != 0, and falls through when a3(=ret(__malloc..ML)) == 0.
   The `beq` branch at 0x100e69d0 targets 0x100e69e8, is taken when a0(=[ret(calloc)+28]) == 0, and falls through when a0(=[ret(calloc)+28]) != 0.
   The `beq` branch at 0x100e69f8 targets 0x100e687c and is always taken.
   The `beq` branch at 0x100e6a2c targets 0x100e687c and is always taken.
@@ -2301,7 +2325,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x44, including `sw` at 0x100e6e54, `sw` at 0x100e6e80.
   The `lw` at 0x100e6e58 loads 4 bytes from [[([a0+76] + ([0x102cf1a0] << 0x2))]+8] +0x14.
   The `lw` at 0x100e6e70 loads 4 bytes from a0 (arg0 at entry) +0x44.
-  The `sw` at 0x100e6e7c stores 4 bytes to ?.
+  The `sw` at 0x100e6e7c stores 4 bytes to [([a0+76] + ([0x102cf1a0] << 0x2))] +0x8.
   The `jalr` at 0x100e6e60 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0x100e6e88 has v0 = [a0+68].
 - `XineramaCopyClip..MPC` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100e6e90 (n32).
@@ -2315,7 +2339,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x44, including `sw` at 0x100e6ec4, `sw` at 0x100e6ef0.
   The `lw` at 0x100e6ec8 loads 4 bytes from [[([a0+76] + ([0x102cf1a0] << 0x2))]+8] +0x18.
   The `lw` at 0x100e6ee0 loads 4 bytes from a0 (arg0 at entry) +0x44.
-  The `sw` at 0x100e6eec stores 4 bytes to ?.
+  The `sw` at 0x100e6eec stores 4 bytes to [([a0+76] + ([0x102cf1a0] << 0x2))] +0x8.
   The `jalr` at 0x100e6ed0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0x100e6ef8 has v0 = [a0+68].
 - `RegionOperate..BNC` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100e6f00 (n32).
@@ -2385,11 +2409,12 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x100e7150-0x100e7408 (696 bytes).
   It occupies 696 bytes.
   The `lw` at 0x100e7188 loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
-  4 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100e7254, `sw` at 0x100e7374, `sw` at 0x100e73d0.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100e7254, `sw` at 0x100e73d0.
   The `lw` at 0x100e72a8 loads 4 bytes from ret(AddXineramaExtension) +0x18.
   The `lw` at 0x100e72b8 loads 4 bytes from ret(AddXineramaExtension) +0x10.
   The `sw` at 0x100e72e8 stores 4 bytes to (sym(EventSwapVector) + ([ret(AddXineramaExtension)+16] << 0x2)) +0x0.
   The `sw` at 0x100e72f4 stores 4 bytes to (sym(EventSwapVector) + ([ret(AddXineramaExtension)+16] << 0x2)) +0x4.
+  2 such `sw` accesses store 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0, including `sw` at 0x100e7374, `sw` at 0x100e7404.
   The `jal` at 0x100e7190 calls dbcInit [0x1010a0a0] with a0=?, a1=[sym(XRC_DRAWABLE)], a2=?, a3=?.
   The `jalr` at 0x100e719c calls strlen with a0=sym(nmbxMaxDisplayBuffersString), a1=?, a2=?, a3=?.
   The `jal` at 0x100e71b0 calls MakeAtom [0x10238200] with a0=sym(nmbxMaxDisplayBuffersString), a1=ret(strlen), a2=0x1, a3=?.
@@ -2449,7 +2474,7 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lw` accesses load 4 bytes from [[0x102ca884]+8] +0x18, including `lw` at 0x100e7680, `lw` at 0x100e76ac, `lw` at 0x100e7938.
   2 such `lw` accesses load 4 bytes from [[[0x102ca884]+8]+24] +0x4, including `lw` at 0x100e7694, `lw` at 0x100e794c.
   2 such `lw` accesses load 4 bytes from abs 0x4, including `lw` at 0x100e76d4, `lw` at 0x100e798c.
-  The `lw` at 0x100e7714 loads 4 bytes from ?.
+  The `lw` at 0x100e7714 loads 4 bytes from abs 0x102cc190 (filters..29+48).
   The `lw` at 0x100e7720 loads 4 bytes from [[[0x102ca884]+8]+16] +0x19c.
   The `lw` at 0x100e772c loads 4 bytes from ret(?) +0x8.
   The `lw` at 0x100e7748 loads 4 bytes from [ret(?)+8] +0x4.
@@ -2938,14 +2963,13 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 184 bytes.
   The `lw` at 0x100e9110 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100e9114 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x100e914c loads 4 bytes from [a0+8] +0x4.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100e914c, `lw` at 0x100e917c, `lw` at 0x100e91b8.
   The `lw` at 0x100e9158 loads 4 bytes from sym(RT_SGICapInterest) +0x0.
   The `lw` at 0x100e9168 loads 4 bytes from ret(SecurityLookupIDByType) +0xc.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100e917c, `lw` at 0x100e91b8.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100e9188, `sw` at 0x100e91c4.
   The `lw` at 0x100e91a0 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x100e9154 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=[sym(RT_SGICapInterest)], a3=0x0.
-  The `jal` at 0x100e9190 calls SGICapStopCapture [0x101e5b20] with a0=ret(SecurityLookupIDByType), a1=?, a2=[ret(SecurityLookupIDByType)+12], a3=?, a4=a0 at entry (arg0).
+  The `jal` at 0x100e9190 calls SGICapStopCapture [0x101e5b20] with a0=ret(SecurityLookupIDByType), a1=?, a2=[ret(SecurityLookupIDByType)+12], a3=[a0+8], a4=a0 at entry (arg0).
   The `beq` branch at 0x100e9128 targets 0x100e9138, is taken when at(=[a0+72]) == v0(=0x2), and falls through when at(=[a0+72]) != v0(=0x2).
   The `beq` branch at 0x100e915c targets 0x100e91ac, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The `bne` branch at 0x100e9170 targets 0x100e918c, is taken when a2(=[ret(SecurityLookupIDByType)+12]) != 0, and falls through when a2(=[ret(SecurityLookupIDByType)+12]) == 0.
@@ -3412,11 +3436,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100ec008 targets 0x100ebd2c and is always taken.
   The `beq` branch at 0x100ec018 targets 0x100ebe58 and is always taken.
   The `beq` branch at 0x100ec02c targets 0x100ec050, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `bne` branch at 0x100ec054 targets 0x100ebd74, is taken when v0(?) != 0, and falls through when v0(?) == 0.
+  The `bne` branch at 0x100ec054 targets 0x100ebd74, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
   The `beq` branch at 0x100ec060 targets 0x100ebfc8 and is always taken.
   The `beq` branch at 0x100ec070 targets 0x100ebdc4 and is always taken.
   The `beq` branch at 0x100ec084 targets 0x100ec0a0, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `bne` branch at 0x100ec0a4 targets 0x100ebe08, is taken when v0(?) != 0, and falls through when v0(?) == 0.
+  The `bne` branch at 0x100ec0a4 targets 0x100ebe08, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
   The `beq` branch at 0x100ec0b0 targets 0x100ebfc8 and is always taken.
   The `beq` branch at 0x100ec0c0 targets 0x100ebca4 and is always taken.
   The return at 0x100ebcf0 has v0 = 0x0.
@@ -3512,11 +3536,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100ecaa4 loads 4 bytes from abs 0x102d8ddc (sp_globals+5212).
   3 such `lh` accesses load 2 bytes from abs 0x102d8dd6 (sp_globals+5206), including `lh` at 0x100ecab0, `lh` at 0x100ed5fc, `lh` at 0x100ed8ac.
   The `lw` at 0x100ecab4 loads 4 bytes from abs 0x102d798c (sp_globals+12).
-  71 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100ecb5c, `lbu` at 0x100ecb8c, `lbu` at 0x100ecef0.
+  The `lbu` at 0x100ecb5c loads 1 byte from ret(sp_read_bbox) +0x0.
   7 such `sh` accesses store 2 bytes to abs 0x102d7996 (sp_globals+22), including `sh` at 0x100ecb74, `sh` at 0x100ee63c, `sh` at 0x100ee740.
   7 such `sh` accesses store 2 bytes to abs 0x102d7998 (sp_globals+24), including `sh` at 0x100ecb78, `sh` at 0x100ee6d0, `sh` at 0x100ee77c.
   3 such `sb` accesses store 1 byte to abs 0x102d799e (sp_globals+30), including `sb` at 0x100ecb80, `sb` at 0x100ee5f4, `sb` at 0x100ee888.
   2 such `sb` accesses store 1 byte to abs 0x102d799f (sp_globals+31), including `sb` at 0x100ecb88, `sb` at 0x100ee7a0.
+  70 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100ecb8c, `lbu` at 0x100ecef0, `lbu` at 0x100ecf90.
   The `lh` at 0x100ecbb8 loads 2 bytes from abs 0x102d799a (sp_globals+26).
   18 such `lhu` accesses load 2 bytes from abs 0x102d8d6e (sp_globals+5102), including `lhu` at 0x100ecbc4, `lhu` at 0x100ecfb8, `lhu` at 0x100ed000.
   12 such `lh` accesses load 2 bytes from abs 0x102d8dc6 (sp_globals+5190), including `lh` at 0x100ecbcc, `lh` at 0x100ed8c8, `lh` at 0x100edf04.
@@ -3533,14 +3558,28 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x100ecd50 loads 1 byte from abs 0x102d8dbe (sp_globals+5182).
   The `lw` at 0x100eceb8 loads 4 bytes from abs 0x102d8de0 (sp_globals+5216).
   The `lw` at 0x100ecee0 loads 4 bytes from abs 0x102d8df4 (sp_globals+5236).
-  9 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100ecf04, `lw` at 0x100ecf08, `lw` at 0x100ecf0c.
-  10 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100ecf28, `sw` at 0x100ecf2c, `sw` at 0x100ecf30.
+  The `lw` at 0x100ecf04 loads 4 bytes from abs 0x102d8d90 (sp_globals+5136).
+  The `lw` at 0x100ecf08 loads 4 bytes from abs 0x102d8d94 (sp_globals+5140).
+  The `lw` at 0x100ecf0c loads 4 bytes from abs 0x102d8d98 (sp_globals+5144).
+  The `lw` at 0x100ecf10 loads 4 bytes from abs 0x102d8d9c (sp_globals+5148).
+  The `lw` at 0x100ecf14 loads 4 bytes from abs 0x102d8da0 (sp_globals+5152).
+  The `lw` at 0x100ecf18 loads 4 bytes from abs 0x102d8da4 (sp_globals+5156).
+  The `lw` at 0x100ecf1c loads 4 bytes from abs 0x102d8da8 (sp_globals+5160).
+  The `lw` at 0x100ecf20 loads 4 bytes from abs 0x102d8dac (sp_globals+5164).
+  The `lw` at 0x100ecf24 loads 4 bytes from abs 0x102d8db0 (sp_globals+5168).
+  The `sw` at 0x100ecf28 stores 4 bytes to abs 0x102d8e4c (sp_globals+5324).
+  The `sw` at 0x100ecf2c stores 4 bytes to abs 0x102d8e48 (sp_globals+5320).
+  The `sw` at 0x100ecf30 stores 4 bytes to abs 0x102d8e44 (sp_globals+5316).
+  The `sw` at 0x100ecf34 stores 4 bytes to abs 0x102d8e40 (sp_globals+5312).
+  The `sw` at 0x100ecf38 stores 4 bytes to abs 0x102d8e3c (sp_globals+5308).
+  2 such `sw` accesses store 4 bytes to abs 0x102d8e38 (sp_globals+5304), including `sw` at 0x100ecf3c, `sw` at 0x100ed1b4.
+  The `sw` at 0x100ecf40 stores 4 bytes to abs 0x102d8e34 (sp_globals+5300).
+  2 such `sw` accesses store 4 bytes to abs 0x102d8e30 (sp_globals+5296), including `sw` at 0x100ecf44, `sw` at 0x100ed1a8.
+  The `sw` at 0x100ecf48 stores 4 bytes to abs 0x102d8e2c (sp_globals+5292).
   The `sh` at 0x100ed15c stores 2 bytes to abs 0x102d8e36 (sp_globals+5302).
   The `sh` at 0x100ed174 stores 2 bytes to abs 0x102d8e2c (sp_globals+5292).
   The `sh` at 0x100ed178 stores 2 bytes to abs 0x102d8e34 (sp_globals+5300).
   The `sh` at 0x100ed18c stores 2 bytes to abs 0x102d8e2e (sp_globals+5294).
-  The `sw` at 0x100ed1a8 stores 4 bytes to abs 0x102d8e30 (sp_globals+5296).
-  The `sw` at 0x100ed1b4 stores 4 bytes to abs 0x102d8e38 (sp_globals+5304).
   The `lw` at 0x100ed1c0 loads 4 bytes from abs 0x102d8dfc (sp_globals+5244).
   The `sh` at 0x100ed1c8 stores 2 bytes to abs 0x102d8e4c (sp_globals+5324).
   The `lw` at 0x100ed1cc loads 4 bytes from [0x102d8dfc] +0x1c.
@@ -3608,6 +3647,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x100ee094 loads 2 bytes from abs 0x102d8e42 (sp_globals+5314).
   The `sb` at 0x100ee0fc stores 1 byte to abs 0x102d8e51 (sp_globals+5329).
   2 such `lw` accesses load 4 bytes from abs 0x102d8dd0 (sp_globals+5200), including `lw` at 0x100ee204, `lw` at 0x100ee23c.
+  The `sw` at 0x100ee21c stores 4 bytes to ?.
   The `lw` at 0x100ee2a4 loads 4 bytes from table(0x1028e634) +0x0.
   3 such `lh` accesses load 2 bytes from table(0x102d9258) +0x0, including `lh` at 0x100ee650, `lh` at 0x100ee6e4, `lh` at 0x100eebd0.
   3 such `lw` accesses load 4 bytes from table(0x102d9458) +0x0, including `lw` at 0x100ee664, `lw` at 0x100ee6f8, `lw` at 0x100eebe4.
@@ -3627,7 +3667,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100ee7ec calls sp_load_char_data [0x10085650] with a0=?, a1=?, a2=[0x102d7990]:2, a3=?.
   The `jalr` at 0x100eed08 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x100ecb18 targets 0x100eed18, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
-  The `beq` branch at 0x100ecb64 targets 0x100eed00, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x100ecb64 targets 0x100eed00, is taken when a0(=[ret(sp_read_bbox)]:1) == 0, and falls through when a0(=[ret(sp_read_bbox)]:1) != 0.
   The `beq` branch at 0x100ecb6c targets 0x100ecf04 and is always taken.
   The `beq` branch at 0x100ecba0 targets 0x100eec18, is taken when (t3(?) & 0x3) == 0, and falls through when (t3(?) & 0x3) != 0.
   The `beq` branch at 0x100ecbac targets 0x100eeafc, is taken when a4(?) == v1(=0x1), and falls through when a4(?) != v1(=0x1).
@@ -3967,34 +4007,35 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100ef318 loads 4 bytes from sym(serverGeneration) +0x0.
   The `sw` at 0x100ef33c stores 4 bytes to sym(vcScreenPrivateIndex) +0x0.
   4 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x100ef37c, `lw` at 0x100ef3f0, `lw` at 0x100ef694.
-  9 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100ef3e0, `sw` at 0x100ef3e4, `sw` at 0x100ef428.
+  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100ef3e0, `sw` at 0x100ef3e4, `sw` at 0x100ef428.
   23 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100ef40c, `lw` at 0x100ef410, `lw` at 0x100ef418.
   The `lw` at 0x100ef414 loads 4 bytes from sym(vcScreenPrivateIndex) +0x0.
   The `lw` at 0x100ef524 loads 4 bytes from sym(display) +0x0.
   8 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100ef598, `lbu` at 0x100ef840, `lbu` at 0x100ef868.
   The `sb` at 0x100ef61c stores 1 byte to ?.
   The `lw` at 0x100ef770 loads 4 bytes from ret(AddXineramaExtension) +0x10.
+  The `sw` at 0x100ef8f8 stores 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0.
   The `lw` at 0x100ef9d8 loads 4 bytes from sym(XSGIvcScreens) +0x0.
   The `jal` at 0x100ef32c calls AllocateScreenPrivateIndex [0x10172080] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100ef350 calls fopen with a0=0x102bff88, a1=0x10291384, a2=?, a3=?.
   The `jal` at 0x100ef444 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100ef468 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100ef468 calls FatalError [0x10094f20] with a0=0x102bffa0, a1=?, a2=?, a3=?.
   The `jalr` at 0x100ef4c4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100ef4f0 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ef508 calls fclose with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100ef508 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `jalr` at 0x100ef520 calls atoi with a0=[sym(display)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ef530 calls rewind with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ef548 calls fgets with a0=sp-656, a1=0x200, a2=?, a3=?.
+  The `jalr` at 0x100ef530 calls rewind with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100ef548 calls fgets with a0=sp-656, a1=0x200, a2=ret(fopen), a3=?.
   The `jalr` at 0x100ef570 calls atoi with a0=sp-656, a1=?, a2=0xa, a3=?, a5=0x23.
-  The `jalr` at 0x100ef5e8 calls strncpy with a0=?, a1=?, a2=0x40, a3=?, a6=0x3f.
+  The `jalr` at 0x100ef5e8 calls strncpy with a0=?, a1=?, a2=0x40, a3=(((ret(atoi) << 0x3) + ret(atoi)) << 0x3), a6=0x3f, a7=(((ret(atoi) << 0x3) + ret(atoi)) << 0x3).
   The `jalr` at 0x100ef5f4 calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ef62c calls fgets with a0=sp-656, a1=0x200, a2=?, a3=?.
+  The `jalr` at 0x100ef62c calls fgets with a0=sp-656, a1=0x200, a2=ret(fopen), a3=?.
   The `jal` at 0x100ef688 calls vcReadMoninfo..KFG [0x1008f320] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100ef6e8 calls (unknown callee) with a0=?, a1=?, a2=(sym(XSGIvcScreens) + ([sym(screenInfo)+68] << 0x2)), a3=?, a5=sym(XSGIvcScreens).
   The `jal` at 0x100ef74c calls AddXineramaExtension [0x101f12e0] with a0=0x102bffd8, a1=0x1, a2=0x0, a3=0x1016ca40, a4=0x101c64f0, a5=0x1016ca40, a6=0x101c64f0, a7=0x10068310.
-  The `jalr` at 0x100ef7a4 calls atoi with a0=?, a1=?, a2=?, a3=0x2e.
-  The `jalr` at 0x100ef7e8 calls fclose with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ef7f8 calls atoi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100ef7a4 calls atoi with a0=sp-654, a1=?, a2=?, a3=0x2e.
+  The `jalr` at 0x100ef7e8 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100ef7f8 calls atoi with a0=sp-652, a1=?, a2=?, a3=?.
   The `jal` at 0x100ef8ac calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=([0x102c6100] << 0x2)+8, a2=[0x102c6100], a3=?.
   The `jal` at 0x100ef8cc calls ErrorF [0x10094ec0] with a0=0x102bff48, a1=?, a2=?, a3=?.
   The `jalr` at 0x100ef9b4 calls atoi with a0=?, a1=?, a2=0x20, a3=0x9, a6=0x20, a7=(((ret(atoi) << 0x3) + ret(atoi)) << 0x3).
@@ -4008,7 +4049,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100ef424 targets 0x100ef3ec, is taken when s2(?) == 0, and falls through when s2(?) != 0.
   The `beq` branch at 0x100ef430 targets 0x100ef3e0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x100ef450 targets 0x100ef4e8, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
-  The `bne` branch at 0x100ef45c targets 0x100ef500, is taken when t8(?) != 0, and falls through when t8(?) == 0.
+  The `bne` branch at 0x100ef45c targets 0x100ef500, is taken when t8(=ret(fopen)) != 0, and falls through when t8(=ret(fopen)) == 0.
   The `beq` branch at 0x100ef470 targets 0x100ef518, is taken when s3(=one of 0x0, 0x1) == 0, and falls through when s3(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x100ef47c targets 0x100ef3e8, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x100ef488 targets 0x100ef4a0 and is always taken.
@@ -4033,7 +4074,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x100ef60c targets 0x100ef618, is taken when v0(=ret(strlen)) < 0x41 (signed), and falls through when v0(=ret(strlen)) >= 0x41 (signed).
   The `bne` branch at 0x100ef634 targets 0x100ef55c, is taken when v0(=ret(fgets)) != 0, and falls through when v0(=ret(fgets)) == 0.
   The `beq` branch at 0x100ef63c targets 0x100ef47c and is always taken.
-  The `bne` branch at 0x100ef678 targets 0x100ef7cc, is taken when t1(?) != 0, and falls through when t1(?) == 0.
+  The `bne` branch at 0x100ef678 targets 0x100ef7cc, is taken when t1(=ret(fopen)) != 0, and falls through when t1(=ret(fopen)) == 0.
   The `beq` branch at 0x100ef680 targets 0x100ef694, is taken when s0(=one of 0x0, 0x1) == 0, and falls through when s0(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x100ef69c targets 0x100ef718, is taken when v0(=[sym(screenInfo)+68]) <= 0 (signed), and falls through when v0(=[sym(screenInfo)+68]) > 0 (signed).
   The `beq` branch at 0x100ef6b4 targets 0x100ef6d0 and is always taken.
@@ -4218,9 +4259,9 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lw` accesses load 4 bytes from [a1+8] +0x2c, including `lw` at 0x100f0100, `lw` at 0x100f025c, `lw` at 0x100f03a4.
   3 such `lw` accesses load 4 bytes from [[a1+8]+44] +0x6c, including `lw` at 0x100f0104, `lw` at 0x100f0260, `lw` at 0x100f03a8.
   3 such `lw` accesses load 4 bytes from [[[a1+8]+44]+108] +0x8, including `lw` at 0x100f0108, `lw` at 0x100f0264, `lw` at 0x100f03ac.
-  34 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f0120, `lw` at 0x100f013c, `lw` at 0x100f0148.
+  29 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f0120, `lw` at 0x100f013c, `lw` at 0x100f0148.
   The `lw` at 0x100f0138 loads 4 bytes from sym(serverClient) +0x0.
-  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100f0194, `sw` at 0x100f0304, `sw` at 0x100f047c.
+  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100f0194, `sw` at 0x100f0304, `sw` at 0x100f047c.
   The `lh` at 0x100f01a0 loads 2 bytes from ?.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x2c, including `lw` at 0x100f0238, `lw` at 0x100f03e0.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x4, including `lw` at 0x100f024c, `lw` at 0x100f0318, `lw` at 0x100f0394.
@@ -4233,8 +4274,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100f045c stores 4 bytes to ret(Xalloc) +0x0.
   2 such `lbu` accesses load 1 byte from ret(Xalloc) +0xc, including `lbu` at 0x100f04a8, `lbu` at 0x100f04e8.
   2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x24, including `lw` at 0x100f04ac, `lw` at 0x100f04ec.
-  The `lw` at 0x100f0504 loads 4 bytes from ret(Xalloc) +0x10.
-  The `lw` at 0x100f0510 loads 4 bytes from ret(Xalloc) +0x8.
+  3 such `lw` accesses load 4 bytes from ret(Xalloc) +0x10, including `lw` at 0x100f0504, `lw` at 0x100f053c, `lw` at 0x100f05d0.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x8, including `lw` at 0x100f0510, `lw` at 0x100f0574.
   The `sw` at 0x100f0518 stores 4 bytes to ret(Xalloc) +0x10.
   The `lw` at 0x100f051c loads 4 bytes from [ret(Xalloc)+8] +0x0.
   The `lbu` at 0x100f0524 loads 1 byte from [ret(Xalloc)+8] +0x4.
@@ -4242,11 +4283,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x100f0584 loads 2 bytes from [ret(GetScratchGC)] +0x10.
   The `lw` at 0x100f0644 loads 4 bytes from [ret(GetScratchGC)] +0x30.
   The `sw` at 0x100f0658 stores 4 bytes to [ret(GetScratchGC)] +0x30.
+  The `sw` at 0x100f06a0 stores 4 bytes to ret(Xalloc) +0x8.
   The `lw` at 0x100f06a4 loads 4 bytes from ret(GetScratchGC) +0x44.
   The `lw` at 0x100f06a8 loads 4 bytes from [ret(GetScratchGC)+68] +0x0.
   The `lw` at 0x100f06ac loads 4 bytes from ret(GetScratchGC) +0x3c.
+  The `lw` at 0x100f06b0 loads 4 bytes from ret(Xalloc) +0x4.
   The `sw` at 0x100f06c4 stores 4 bytes to ret(GetScratchGC) +0x3c.
+  The `lw` at 0x100f06c8 loads 4 bytes from [ret(Xalloc)+4] +0x14.
   The `sw` at 0x100f06cc stores 4 bytes to ret(GetScratchGC) +0x40.
+  The `sw` at 0x100f06e0 stores 4 bytes to ret(Xalloc) +0x2c.
   The `jalr` at 0x100f0124 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[[a1+8]+44]+108], a2=0x0, a3=a3 at entry (arg3), a4=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x100f0154 calls ClientWakeup [0x10099dd0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100f0170 calls dixChangeGC [0x101107f0] with a0=0x0, a1=?, a2=0x80000, a3=0x102c6168, a4=0x0.
@@ -4264,14 +4309,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100f04d0 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x100f0500 calls memmove with a0=ret(Xalloc), a1=[ret(Xalloc)+16], a2=?, a3=?.
   The `jal` at 0x100f0520 calls GetScratchGC [0x1026a500] with a0=[[ret(Xalloc)+8]+4]:1, a1=[[ret(Xalloc)+8]], a2=?, a3=?.
-  The `jal` at 0x100f0538 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100f0544 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100f0570 calls CopyGC [0x101d8460] with a0=?, a1=ret(GetScratchGC), a2=0xefd0f, a3=?.
+  The `jal` at 0x100f0538 calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)+16], a1=?, a2=?, a3=?.
+  The `jal` at 0x100f0544 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x100f0570 calls CopyGC [0x101d8460] with a0=[ret(Xalloc)+8], a1=ret(GetScratchGC), a2=0xefd0f, a3=?.
   The `jal` at 0x100f05bc calls FreeGC [0x1010a5b0] with a0=ret(GetScratchGC), a1=0x0, a2=?, a3=?, a7=[ret(GetScratchGC)].
-  The `jal` at 0x100f05cc calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100f05d8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100f06b8 calls (unknown callee) with a0=ret(GetScratchGC), a1=[ret(GetScratchGC)+60], a2=?, a3=?.
-  The `jal` at 0x100f06e4 calls ClientSleep [0x101993c0] with a0=a0 at entry (arg0), a1=0x100f00b0, a2=?, a3=?.
+  The `jal` at 0x100f05cc calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)+16], a1=?, a2=?, a3=?.
+  The `jal` at 0x100f05d8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100f06b8 calls (unknown callee) with a0=ret(GetScratchGC), a1=[ret(GetScratchGC)+60], a2=[ret(Xalloc)+4], a3=?.
+  The `jal` at 0x100f06e4 calls ClientSleep [0x101993c0] with a0=a0 at entry (arg0), a1=0x100f00b0, a2=ret(Xalloc), a3=?.
   The `beq` branch at 0x100f00f4 targets 0x100f0218, is taken when at(=[a0+36]) == 0, and falls through when at(=[a0+36]) != 0.
   The `beq` branch at 0x100f0130 targets 0x100f0148, is taken when s1(?) == 0, and falls through when s1(?) != 0.
   The `bne` branch at 0x100f0140 targets 0x100f0348, is taken when a2(=[sym(serverClient)]) != a0(?), and falls through when a2(=[sym(serverClient)]) == a0(?).
@@ -4291,7 +4336,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f02d0 targets 0x100f0424, is taken when v0(=ret(?)) == t0(=0x58), and falls through when v0(=ret(?)) != t0(=0x58).
   The `beq` branch at 0x100f02e0 targets 0x100f030c and is always taken.
   The `beq` branch at 0x100f0300 targets 0x100f01e4 and is always taken.
-  The `bne` branch at 0x100f0310 targets 0x100f0130, is taken when t9(?) != 0, and falls through when t9(?) == 0.
+  The `bne` branch at 0x100f0310 targets 0x100f0130, is taken when t9(=one of 0x0, 0x1) != 0, and falls through when t9(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x100f031c targets 0x100f0130, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100f0340 targets 0x100f0130 and is always taken.
   The `beq` branch at 0x100f0378 targets 0x100f014c and is always taken.
@@ -4299,8 +4344,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f03d0 targets 0x100f0130 and is always taken.
   The `beq` branch at 0x100f03d8 targets 0x100f02d8 and is always taken.
   The `beq` branch at 0x100f03e4 targets 0x100f0434, is taken when a2(=[a1+44]) == 0, and falls through when a2(=[a1+44]) != 0.
-  The `beq` branch at 0x100f03f8 targets 0x100f0130, is taken when v0(?) >= 0x1 (unsigned), and falls through when v0(?) < 0x1 (unsigned).
-  The `bne` branch at 0x100f0404 targets 0x100f0610, is taken when a0(?) < 0x1 (unsigned), and falls through when a0(?) >= 0x1 (unsigned).
+  The `beq` branch at 0x100f03f8 targets 0x100f0130, is taken when v0(=one of 0x0, 0x1) >= 0x1 (unsigned), and falls through when v0(=one of 0x0, 0x1) < 0x1 (unsigned).
+  The `bne` branch at 0x100f0404 targets 0x100f0610, is taken when a0(=one of 0x0, 0x1) < 0x1 (unsigned), and falls through when a0(=one of 0x0, 0x1) >= 0x1 (unsigned).
   The `beq` branch at 0x100f040c targets 0x100f0130, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x100f0414 targets 0x100f0130, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100f041c targets 0x100f031c and is always taken.
@@ -4317,13 +4362,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f05a4 targets 0x100f063c, is taken when a2(?) == s1(=ret(GetScratchGC)), and falls through when a2(?) != s1(=ret(GetScratchGC)).
   The `beq` branch at 0x100f05ac targets 0x100f059c, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x100f0608 targets 0x100f03f0 and is always taken.
-  The `bne` branch at 0x100f0614 targets 0x100f065c, is taken when a1(?) < 0x1 (unsigned), and falls through when a1(?) >= 0x1 (unsigned).
+  The `bne` branch at 0x100f0614 targets 0x100f065c, is taken when a1(=one of 0x0, 0x1) < 0x1 (unsigned), and falls through when a1(=one of 0x0, 0x1) >= 0x1 (unsigned).
   The `beq` branch at 0x100f061c targets 0x100f0130, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x100f0624 targets 0x100f0130, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100f062c targets 0x100f0130, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x100f0634 targets 0x100f031c and is always taken.
   The `beq` branch at 0x100f0654 targets 0x100f05c4 and is always taken.
-  The `bne` branch at 0x100f0660 targets 0x100f06f4, is taken when a2(?) < 0x1 (unsigned), and falls through when a2(?) >= 0x1 (unsigned).
+  The `bne` branch at 0x100f0660 targets 0x100f06f4, is taken when a2(=one of 0x0, 0x1) < 0x1 (unsigned), and falls through when a2(=one of 0x0, 0x1) >= 0x1 (unsigned).
   The `beq` branch at 0x100f0668 targets 0x100f0130, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x100f0670 targets 0x100f0130, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100f0678 targets 0x100f0130, is taken when a1(?) == 0, and falls through when a1(?) != 0.
@@ -4431,7 +4476,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x100f15a0 targets 0x100f15c0, is taken when s2(?) <= 0 (signed), and falls through when s2(?) > 0 (signed).
   The `beq` branch at 0x100f15b0 targets 0x100f16d8, is taken when t8(?) == a6(=[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]), and falls through when t8(?) != a6(=[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]).
   The `bnel` branch at 0x100f15b8 targets 0x100f15b0, is taken when v0(?) != s0(?), and falls through when v0(?) == s0(?); its branch-likely delay slot `lw t8,0(v0)` at 0x100f15bc runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0x100f15e8 targets 0x100f15f8, is taken when a3(?) >= t3(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24]) (unsigned), and falls through when a3(?) < t3(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24]) (unsigned).
+  The `beq` branch at 0x100f15e8 targets 0x100f15f8, is taken when a3(=([[a0+8]+4]:2 + [[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24])) >= t3(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24]) (unsigned), and falls through when a3(=([[a0+8]+4]:2 + [[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24])) < t3(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+24]) (unsigned).
   The `bne` branch at 0x100f1618 targets 0x100f1640, is taken when t2(?) < a6(?) (unsigned), and falls through when t2(?) >= a6(?) (unsigned).
   The `bne` branch at 0x100f1620 targets 0x100f1638, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `bne` branch at 0x100f1628 targets 0x100f1640, is taken when ra(?) != 0, and falls through when ra(?) == 0.
@@ -4490,11 +4535,11 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 564 bytes.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x100f1914, `lw` at 0x100f1ab0.
   The `lw` at 0x100f1924 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100f1980, `lw` at 0x100f1998.
+  4 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100f1980, `lw` at 0x100f1998, `lw` at 0x100f1b00.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100f1988, `sw` at 0x100f1b40.
   10 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100f19a8, `lh` at 0x100f19ac, `lh` at 0x100f19b4.
   4 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x100f19b0, `lhu` at 0x100f19b8, `lhu` at 0x100f19bc.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f1a34, `lw` at 0x100f1b00, `lw` at 0x100f1b34.
+  The `lw` at 0x100f1a34 loads 4 bytes from ?.
   The `sw` at 0x100f1a80 stores 4 bytes to ?.
   The `sb` at 0x100f1a88 stores 1 byte to ?.
   The `lw` at 0x100f1a8c loads 4 bytes from a0 (arg0 at entry) +0x1c.
@@ -4507,7 +4552,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100f1994 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x4, a3=0x1, a4=s8 at entry.
   The `jal` at 0x100f1a90 calls QueryFont [0x10069df0] with a0=?, a1=?, a2=?, a3=?, a6=[a0+28].
   The `jalr` at 0x100f1acc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x100f1afc calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=?, a2=0xffffffff80000003, a3=0x1.
+  The `jal` at 0x100f1afc calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0xffffffff80000003, a3=0x1.
   The `jal` at 0x100f1b1c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x100f1940 targets 0x100f1970, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `beq` branch at 0x100f19a0 targets 0x100f1ae4, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
@@ -4839,9 +4884,9 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x100f3370-0x100f33f0 (128 bytes).
   It occupies 128 bytes.
   The `lw` at 0x100f3374 loads 4 bytes from sym(inputInfo) +0x10.
-  The `lw` at 0x100f33d4 loads 4 bytes from ?.
+  The `lw` at 0x100f33d4 loads 4 bytes from [sym(inputInfo)+16] +0x4.
   The `jalr` at 0x100f33a8 calls times with a0=sp-48, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a0 at entry (arg0).
-  The `jalr` at 0x100f33dc calls (unknown callee) with a0=sp-80, a1=?, a2=0x1, a3=?.
+  The `jalr` at 0x100f33dc calls (unknown callee) with a0=sp-80, a1=[sym(inputInfo)+16], a2=0x1, a3=?.
   The `beq` branch at 0x100f3384 targets 0x100f33e4, is taken when at(=[sym(inputInfo)+16]) == 0, and falls through when at(=[sym(inputInfo)+16]) != 0.
   The return at 0x100f33e8 has v0 = one of ?, ret(?).
 - `ProcXineramaPolyPoint` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100f33f0 (n32).
@@ -4853,12 +4898,12 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x48, including `lw` at 0x100f3404, `lw` at 0x100f3bd4.
   2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100f345c, `lw` at 0x100f3bec.
   The `lw` at 0x100f3468 loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
-  The `lw` at 0x100f347c loads 4 bytes from ret(SecurityLookupIDByClass) +0x80.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByClass) +0x80, including `lw` at 0x100f347c, `lw` at 0x100f3bcc.
   The `lw` at 0x100f3480 loads 4 bytes from sym(XRT_PIXMAP) +0x0.
   The `lw` at 0x100f348c loads 4 bytes from ret(SecurityLookupIDByClass) +0x84.
   5 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x100f349c, `lw` at 0x100f356c, `lw` at 0x100f3694.
   5 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100f353c, `lbu` at 0x100f3540, `lbu` at 0x100f3574.
-  78 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f354c, `lw` at 0x100f3550, `lw` at 0x100f3560.
+  77 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f354c, `lw` at 0x100f3550, `lw` at 0x100f3560.
   The `sw` at 0x100f355c stores 4 bytes to a0 (arg0 at entry) +0x2c.
   The `sw` at 0x100f3564 stores 4 bytes to a0 (arg0 at entry) +0x30.
   The `sw` at 0x100f3568 stores 4 bytes to a0 (arg0 at entry) +0x34.
@@ -4907,13 +4952,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100f34a4 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=[0x102ca81c], a3=0x1, a4=[sym(XRT_PIXMAP)], a5=[ret(SecurityLookupIDByClass)+132].
   The `jalr` at 0x100f377c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=0x2, a6=0x3fffff, a7=sym(clientTable).
   The `jalr` at 0x100f37f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=0xffffffff80000003, a3=0x1, a6=0x3fffff, a7=sym(clientTable).
-  The `jalr` at 0x100f382c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a6=0x3fffff, a7=sym(clientTable).
+  The `jalr` at 0x100f382c calls (unknown callee) with a0=?, a1=?, a2=?, a3=ret(SecurityLookupIDByClass)-8, a6=0x3fffff, a7=sym(clientTable).
   The `jalr` at 0x100f38d0 calls (unknown callee) with a0=?, a1=0x8, a2=0x1, a3=?, a6=0x3fffff, a7=sym(clientTable).
   The `jal` at 0x100f3bb0 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=[0x102ca81c], a3=0x1, a4=[sym(XRT_PIXMAP)].
-  The `jalr` at 0x100f3d04 calls memcpy with a0=?, a1=[a0+8]+12, a2=?, a3=?, a4=-0x10, a6=[sym(XRT_WINDOW)].
+  The `jalr` at 0x100f3d04 calls memcpy with a0=?, a1=[a0+8]+12, a2=?, a3=?, a4=-0x10, a6=[sym(XRT_WINDOW)], a7=[ret(SecurityLookupIDByClass)+128].
   The `jalr` at 0x100f3e08 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x100f3e80 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x100f4038 calls memcpy with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x100f4038 calls memcpy with a0=[a0+8]+12, a1=?, a2=?, a3=?.
   The `beq` branch at 0x100f3424 targets 0x100f3454, is taken when at(=[a0+72]) >= 0x3 (unsigned), and falls through when at(=[a0+72]) < 0x3 (unsigned).
   The `beq` branch at 0x100f346c targets 0x100f3d58, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `bne` branch at 0x100f3484 targets 0x100f3ba0, is taken when a4(=[sym(XRT_PIXMAP)]) != a5(=[ret(SecurityLookupIDByClass)+128]), and falls through when a4(=[sym(XRT_PIXMAP)]) == a5(=[ret(SecurityLookupIDByClass)+128]).
@@ -4926,8 +4971,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x100f3554 targets 0x100f40a0, is taken when ra(?) != at(?), and falls through when ra(?) == at(?).
   The `beq` branch at 0x100f3578 targets 0x100f3860, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x100f3588 targets 0x100f381c, is taken when a2(?) != a1(?), and falls through when a2(?) == a1(?).
-  The `beq` branch at 0x100f3594 targets 0x100f3e00, is taken when s5(?) == a3(?), and falls through when s5(?) != a3(?).
-  The `beq` branch at 0x100f35ac targets 0x100f3e00, is taken when a4(?) == s5(?), and falls through when a4(?) != s5(?).
+  The `beq` branch at 0x100f3594 targets 0x100f3e00, is taken when s5(?) == a3(=ret(SecurityLookupIDByClass)-8), and falls through when s5(?) != a3(=ret(SecurityLookupIDByClass)-8).
+  The `beq` branch at 0x100f35ac targets 0x100f3e00, is taken when a4(=ret(SecurityLookupIDByClass)) == s5(?), and falls through when a4(=ret(SecurityLookupIDByClass)) != s5(?).
   The `beq` branch at 0x100f35b4 targets 0x100f35e4, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x100f35c0 targets 0x100f35e4, is taken when t8(=[a0+56]) != a0(?), and falls through when t8(=[a0+56]) == a0(?).
   The `bne` branch at 0x100f35d4 targets 0x100f3600, is taken when t9(=[a0+48]) != a1(?), and falls through when t9(=[a0+48]) == a1(?).
@@ -5003,7 +5048,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f3b78 targets 0x100f3670 and is always taken.
   The `beq` branch at 0x100f3b98 targets 0x100f3718 and is always taken.
   The `beq` branch at 0x100f3bc4 targets 0x100f42b8, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `bne` branch at 0x100f3bd8 targets 0x100f3cbc, is taken when a6(=[sym(XRT_WINDOW)]) != a7(?), and falls through when a6(=[sym(XRT_WINDOW)]) == a7(?).
+  The `bne` branch at 0x100f3bd8 targets 0x100f3cbc, is taken when a6(=[sym(XRT_WINDOW)]) != a7(=[ret(SecurityLookupIDByClass)+128]), and falls through when a6(=[sym(XRT_WINDOW)]) == a7(=[ret(SecurityLookupIDByClass)+128]).
   The `bne` branch at 0x100f3bf4 targets 0x100f3cbc, is taken when t0(=[[[sym(WindowTable)]]+4]) != t1(=[[a0+8]+4]), and falls through when t0(=[[[sym(WindowTable)]]+4]) == t1(=[[a0+8]+4]).
   The `beq` branch at 0x100f3bfc targets 0x100f3cc4 and is always taken.
   The `beq` branch at 0x100f3c14 targets 0x100f3670 and is always taken.
@@ -5030,7 +5075,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f3de0 targets 0x100f413c and is always taken.
   The `beq` branch at 0x100f3df8 targets 0x100f3718 and is always taken.
   The `bne` branch at 0x100f3e8c targets 0x100f4064, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
-  The `beq` branch at 0x100f3e9c targets 0x100f4064, is taken when s0(?) == s6(?), and falls through when s0(?) != s6(?).
+  The `beq` branch at 0x100f3e9c targets 0x100f4064, is taken when s0(?) == s6(=ret(SecurityLookupIDByClass)-8), and falls through when s0(?) != s6(=ret(SecurityLookupIDByClass)-8).
   The `bne` branch at 0x100f3eac targets 0x100f402c, is taken when s4(?) != v0(=[0x102c5f1c]-1), and falls through when s4(?) == v0(=[0x102c5f1c]-1).
   The `beq` branch at 0x100f3eb4 targets 0x100f3e68, is taken when s7(=one of 0x0, 0x1) == 0, and falls through when s7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x100f3ec8 targets 0x100f4048, is taken when ra(?) == 0, and falls through when ra(?) != 0.
@@ -5662,7 +5707,7 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x100f6ccc, `lw` at 0x100f6d14, `lw` at 0x100f6d58.
   The `lw` at 0x100f6cf0 loads 4 bytes from table(0x102c71c0) +0x0.
   The `sw` at 0x100f6d18 stores 4 bytes to table(0x102c71c0) +0x0.
-  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100f6d9c, `sw` at 0x100f702c, `sw` at 0x100f72bc.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100f6d9c, `sw` at 0x100f702c.
   The `lw` at 0x100f6df0 loads 4 bytes from sym(Must_have_memory) +0x0.
   The `sb` at 0x100f6e44 stores 1 byte to ([a1+28]:2 + ret(Xalloc)) +0x0.
   2 such `lhu` accesses load 2 bytes from a1 (arg1 at entry) +0x12, including `lhu` at 0x100f6e4c, `lhu` at 0x100f6f80.
@@ -5678,6 +5723,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100f722c stores 4 bytes to a0 (arg0 at entry) +0xc.
   The `sw` at 0x100f7254 stores 4 bytes to a0 (arg0 at entry) +0x10.
   2 such `lhu` accesses load 2 bytes from a1 (arg1 at entry) +0x14, including `lhu` at 0x100f7288, `lhu` at 0x100f72d4.
+  The `sw` at 0x100f72bc stores 4 bytes to ret(SrvXkbAddGeomDoodad) +0x10.
   The `sb` at 0x100f738c stores 1 byte to ret(SrvXkbAddGeomDoodad) +0x4.
   The `sb` at 0x100f7394 stores 1 byte to ret(SrvXkbAddGeomDoodad) +0x5.
   3 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100f7398, `lh` at 0x100f73a4, `lh` at 0x100f73b0.
@@ -5689,6 +5735,8 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `sh` accesses store 2 bytes to ret(SrvXkbAddGeomDoodad) +0xc, including `sh` at 0x100f7408, `sh` at 0x100f74a4, `sh` at 0x100f74fc.
   4 such `sh` accesses store 2 bytes to ret(SrvXkbAddGeomDoodad) +0xe, including `sh` at 0x100f7410, `sh` at 0x100f74ac, `sh` at 0x100f7504.
   2 such `sh` accesses store 2 bytes to ret(SrvXkbAddGeomDoodad) +0x10, including `sh` at 0x100f750c, `sh` at 0x100f7624.
+  The `sw` at 0x100f755c stores 4 bytes to ret(SrvXkbAddGeomDoodad) +0x14.
+  The `sw` at 0x100f75d0 stores 4 bytes to ret(SrvXkbAddGeomDoodad) +0x18.
   2 such `lhu` accesses load 2 bytes from a1 (arg1 at entry) +0x16, including `lhu` at 0x100f76a4, `lhu` at 0x100f7738.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x40, including `lw` at 0x100f76d8, `lw` at 0x100f778c.
   The `sdl` at 0x100f76f0 stores 8 bytes to ([a0+64] + ([a0+42]:2 << 0x3)) +0x0.
@@ -5700,7 +5748,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `swr` at 0x100f7834 stores 4 bytes to ?.
   The `jal` at 0x100f6a44 calls Xalloc [0x1020aeb0] with a0=[a1+28]:2+1, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100f6ad0 calls strcmp with a0=ret(Xalloc), a1=?, a2=?, a3=?.
-  The `jal` at 0x100f6b20 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x8.
+  The `jal` at 0x100f6b20 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=a0+44, a1=a0+32, a2=a0+20, a3=0x1, a4=0x8.
   The `jalr` at 0x100f6b44 calls strlen with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x100f6b50 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x100f6b64 calls strcpy with a0=ret(Xalloc), a1=ret(Xalloc), a2=?, a3=?.
@@ -5718,11 +5766,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x100f6d64 calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=[sym(__us_rsthread_malloc)].
   The `jal` at 0x100f6d70 calls __malloc..ML [0x101e7680] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x100f6d88 calls __libc_unlockmalloc with a0=?, a1=[sym(__us_rsthread_malloc)], a2=?, a3=?.
-  The `jal` at 0x100f6dfc calls FatalError [0x10094f20] with a0=?, a1=?, a2=[sym(Must_have_memory)], a3=?.
+  The `jal` at 0x100f6dfc calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=[sym(Must_have_memory)], a3=?.
   The `jalr` at 0x100f6e14 calls strcpy with a0=?, a1=ret(Xalloc), a2=?, a3=?.
   The `jalr` at 0x100f6e34 calls memcpy with a0=ret(Xalloc), a1=a1+30, a2=[a1+28]:2, a3=?.
   The `jalr` at 0x100f6ed0 calls strcmp with a0=?, a1=ret(Xalloc), a2=?, a3=?, a6=([a0+48] + ([a0+34]:2 << 0x3)), a7=[a0+34]:2.
-  The `jal` at 0x100f6f14 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x8, a7=[a0+34]:2.
+  The `jal` at 0x100f6f14 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=a0+48, a1=a0+34, a2=a0+22, a3=0x1, a4=0x8, a7=[a0+34]:2.
   The `jalr` at 0x100f6f3c calls strlen with a0=ret(Xalloc), a1=?, a2=?, a3=?, a7=[a0+34]:2.
   The `jal` at 0x100f6f48 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x100f6f60 calls strcpy with a0=ret(Xalloc), a1=ret(Xalloc), a2=?, a3=?.
@@ -5734,13 +5782,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100f7448 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?, a5=0x2, a6=[a0+36]:2.
   The `jalr` at 0x100f746c calls memcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x100f7544 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?, a5=0x2, a6=[a0+34]:2.
-  The `jal` at 0x100f75a4 calls Xalloc [0x1020aeb0] with a0=?, a1=[a2+16], a2=?, a3=?.
+  The `jal` at 0x100f75a4 calls Xalloc [0x1020aeb0] with a0=?, a1=[a2+16], a2=?, a3=?, a5=ret(SrvXkbAddGeomDoodad).
   The `jalr` at 0x100f7644 calls memcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x100f7674 calls memcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x100f76f8 calls strncpy with a0=([a0+64] + ([a0+42]:2 << 0x3))+4, a1=?, a2=0x4, a3=[a0+42]:2.
   The `jalr` at 0x100f770c calls strncpy with a0=([a0+64] + ([a0+42]:2 << 0x3)), a1=?, a2=0x4, a3=?.
   The `jalr` at 0x100f77b0 calls strncmp with a0=?, a1=?, a2=0x4, a3=[a0+42]:2.
-  The `jal` at 0x100f7800 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x8.
+  The `jal` at 0x100f7800 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=a0+64, a1=a0+42, a2=a0+30, a3=0x1, a4=0x8.
   The `jalr` at 0x100f7830 calls strncpy with a0=?, a1=?, a2=0x4, a3=?.
   The `beq` branch at 0x100f6a18 targets 0x100f6a30, is taken when at(=[a2+16]) == 0, and falls through when at(=[a2+16]) != 0.
   The `bne` branch at 0x100f6a50 targets 0x100f6e24, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
@@ -6042,7 +6090,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100f83f0 loads 4 bytes from a3 (arg3 at entry) +0x20.
   The `lw` at 0x100f8418 loads 4 bytes from [a0+164] +0x4.
   The `jalr` at 0x100f83c8 calls memcpy with a0=[[[[a0+144]+344]+36]+12]+52, a1=[a0+164]+28, a2=0x20, a3=a3 at entry (arg3), a4=[a0+164].
-  The `jal` at 0x100f83dc calls XkbUpdateDescActions [0x10097600] with a0=?, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jal` at 0x100f83dc calls XkbUpdateDescActions [0x10097600] with a0=[[[a0+144]+344]+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100f840c calls memcpy with a0=[a0+164]+28, a1=[[[[a0+144]+344]+36]+12]+52, a2=0x20, a3=?, a4=[a0+164].
   The `jalr` at 0x100f8420 calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+164]+8, a2=?, a3=?.
   The `beq` branch at 0x100f8388 targets 0x100f8394, is taken when a4 == 0, and falls through when a4 != 0.
@@ -6071,8 +6119,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100f8720 stores 4 bytes to [0x102c609c] +0x10.
   2 such `lw` accesses load 4 bytes from sym(inputInfo) +0x4, including `lw` at 0x100f8738, `lw` at 0x100f8798.
   The `lw` at 0x100f8870 loads 4 bytes from [0x102cb558] +0x4.
-  The `jalr` at 0x100f8540 calls (unknown callee) with a0=?, a1=sp-144, a2=0x2, a3=0x4.
-  The `jalr` at 0x100f8570 calls (unknown callee) with a0=?, a1=sp-128, a2=?, a3=?.
+  The `jalr` at 0x100f8540 calls (unknown callee) with a0=0x102c60dc, a1=sp-144, a2=0x2, a3=0x4, a4=0x102c60dc.
+  The `jalr` at 0x100f8570 calls (unknown callee) with a0=0x102c60e4, a1=sp-128, a2=?, a3=?, a6=0x102c60e4.
   The `jal` at 0x100f85f8 calls FreeClientResources [0x10256340] with a0=?, a1=[0x102c5f80], a2=?, a3=?, a7=[0x102c5f78].
   The `jal` at 0x100f8630 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100f8770 calls (unknown callee) with a0=?, a1=one of 0x0, 0x1, a2=?, a3=?.
@@ -6082,7 +6130,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100f89d0 calls ClientSignal [0x1014ffb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100f89e0 calls UngrabServer [0x1018ac20] with a0=?, a1=?, a2=?, a3=?, a6=[0x102c60a0].
   The `jal` at 0x100f8a20 calls FreeClientNeverRetainResources [0x10106700] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100f8a54 calls (unknown callee) with a0=?, a1=sp-160, a2=?, a3=?, a6=0x3.
+  The `jalr` at 0x100f8a54 calls (unknown callee) with a0=0x102c60dc, a1=sp-160, a2=?, a3=?, a6=0x3, a7=0x102c60dc.
   The `bne` branch at 0x100f8470 targets 0x100f89f0, is taken when v0(=[0x102c5d70]) < 0x2 (signed), and falls through when v0(=[0x102c5d70]) >= 0x2 (signed).
   The `beq` branch at 0x100f84ac targets 0x100f84d8 and is always taken.
   The `beq` branch at 0x100f84d0 targets 0x100f89f0, is taken when s7(?) >= v0(=[0x102c5d70]) (signed), and falls through when s7(?) < v0(=[0x102c5d70]) (signed).
@@ -6091,12 +6139,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f8504 targets 0x100f86a8, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `beq` branch at 0x100f8510 targets 0x100f89b0, is taken when v0(?) == a2(=0x2), and falls through when v0(?) != a2(=0x2).
   The `beq` branch at 0x100f8520 targets 0x100f8548, is taken when v0(=[0x102c60dc]) == 0, and falls through when v0(=[0x102c60dc]) != 0.
-  The `beq` branch at 0x100f8530 targets 0x100f8548, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x100f8530 targets 0x100f8548 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100f854c targets 0x100f8578, is taken when v0(=[0x102c60e4]) == 0, and falls through when v0(=[0x102c60e4]) != 0.
-  The `beq` branch at 0x100f8560 targets 0x100f8578, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x100f8560 targets 0x100f8578 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100f8584 targets 0x100f85f8, is taken when a7(=[0x102c5f78]) == 0, and falls through when a7(=[0x102c5f78]) != 0.
   The `bne` branch at 0x100f858c targets 0x100f85f8, is taken when a1(=[0x102c5f80]) != s2(?), and falls through when a1(=[0x102c5f80]) == s2(?).
-  The `bne` branch at 0x100f85c0 targets 0x100f85a0, is taken when at(?) != v0(?), and falls through when at(?) == v0(?).
+  The `bne` branch at 0x100f85c0 targets 0x100f85a0, is taken when at(?) != v0(=0x102d2b90), and falls through when at(?) == v0(=0x102d2b90).
   The `beq` branch at 0x100f860c targets 0x100f861c, is taken when v0(?) >= v1(=[0x102c60d4]) (signed), and falls through when v0(?) < v1(=[0x102c60d4]) (signed).
   The `bne` branch at 0x100f864c targets 0x100f84c0, is taken when a2(=[([sym(clients)] + ([0x102c5d70] << 0x2))-4]) != 0, and falls through when a2(=[([sym(clients)] + ([0x102c5d70] << 0x2))-4]) == 0.
   The `bne` branch at 0x100f8668 targets 0x100f8690, is taken when a3(?) != 0, and falls through when a3(?) == 0.
@@ -6154,7 +6202,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f89d8 targets 0x100f8858 and is always taken.
   The `beq` branch at 0x100f89e8 targets 0x100f86b8 and is always taken.
   The `beq` branch at 0x100f8a34 targets 0x100f882c, is taken when v0(=[0x102c60dc]) == 0, and falls through when v0(=[0x102c60dc]) != 0.
-  The `beq` branch at 0x100f8a44 targets 0x100f882c, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x100f8a44 targets 0x100f882c and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x100f8a5c targets 0x100f8830 and is always taken.
   The `beq` branch at 0x100f8a68 targets 0x100f8518 and is always taken.
   The return at 0x100f8a18 has v0 = [0x102c5d70].
@@ -6178,8 +6226,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x100f9c54 loads 1 byte from [((a2 << 0x2) + a1)+4] +0x0.
   4 such `lw` accesses load 4 bytes from sym(__libc_attr) +0x0, including `lw` at 0x100f9c58, `lw` at 0x100f9cc8, `lw` at 0x100f9e30.
   The `lw` at 0x100f9c64 loads 4 bytes from ([sym(__libc_attr)] + ([[((a2 << 0x2) + a1)+4]]:1 << 0x2)) +0x4.
-  9 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f9ca0, `lw` at 0x100f9cbc, `lw` at 0x100f9cd4.
-  4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100f9cc4, `lbu` at 0x100f9e38, `lbu` at 0x100f9e58.
+  The `lw` at 0x100f9ca0 loads 4 bytes from ((a2 << 0x2)+4 + a1) +0x0.
+  The `lw` at 0x100f9cbc loads 4 bytes from ((a2 << 0x2)+4 + a1) +0x4.
+  The `lbu` at 0x100f9cc4 loads 1 byte from [((a2 << 0x2)+4 + a1)+4] +0x0.
+  The `lw` at 0x100f9cd4 loads 4 bytes from ([sym(__libc_attr)] + ([[((a2 << 0x2)+4 + a1)+4]]:1 << 0x2)) +0x4.
+  The `lw` at 0x100f9d0c loads 4 bytes from ((a2 << 0x2)+8 + a1) +0x0.
+  2 such `lw` accesses load 4 bytes from (((a2 << 0x2) + one of 0x4, 0x8) + a1) +0x4, including `lw` at 0x100f9e34, `lw` at 0x100f9e54.
+  2 such `lbu` accesses load 1 byte from [(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4] +0x0, including `lbu` at 0x100f9e38, `lbu` at 0x100f9e58.
+  The `lw` at 0x100f9e44 loads 4 bytes from ([sym(__libc_attr)] + ([[(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4]]:1 << 0x2)) +0x4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f9e7c, `lw` at 0x100f9e90.
+  The `lbu` at 0x100f9e80 loads 1 byte from ?.
   The `jalr` at 0x100f9b00 calls strcmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b050, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100f9b18 calls strcmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b054, a2=?, a3=?.
   The `jalr` at 0x100f9b38 calls strncmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b058, a2=0x7, a3=?.
@@ -6187,13 +6243,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x100f9bd4 calls strncmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b068, a2=0x7, a3=?.
   The `jalr` at 0x100f9bf4 calls strncmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b078, a2=0x8, a3=?.
   The `jalr` at 0x100f9c10 calls strncmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b088, a2=0x8, a3=?.
-  The `jalr` at 0x100f9c9c calls atoi with a0=?, a1=?, a2=0x1, a3=?, a4=a2+1, a6=([[((a2 << 0x2) + a1)+4]]:1 << 0x2), a7=a2+2.
-  The `jalr` at 0x100f9d08 calls strtol with a0=?, a1=0x0, a2=0x10, a3=?.
+  The `jalr` at 0x100f9c9c calls atoi with a0=[((a2 << 0x2)+4 + a1)], a1=?, a2=0x1, a3=?, a4=a2+1, a6=([[((a2 << 0x2) + a1)+4]]:1 << 0x2), a7=a2+2.
+  The `jalr` at 0x100f9d08 calls strtol with a0=[((a2 << 0x2)+8 + a1)], a1=0x0, a2=0x10, a3=?, a5=a2+2, a6=a2+2.
   The `jalr` at 0x100f9d5c calls strcmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b098, a2=?, a3=?.
   The `jalr` at 0x100f9d80 calls atoi with a0=[((a2 << 0x2) + a1)+4], a1=?, a2=?, a3=?.
   The `jalr` at 0x100f9dc0 calls strcmp with a0=[((a2 << 0x2) + a1)], a1=0x1029b0a0, a2=?, a3=a0 at entry (arg0).
   The `jalr` at 0x100f9de8 calls atoi with a0=[((a2 << 0x2) + a1)+4], a1=?, a2=?, a3=?.
-  The `jalr` at 0x100f9ea8 calls strtol with a0=?, a1=0x0, a2=0x10, a3=?.
+  The `jalr` at 0x100f9ea8 calls strtol with a0=?, a1=0x0, a2=0x10, a3=?, a5=(a2 + one of 0x3, 0x4), a6=(((a2 << 0x2) + one of 0x4, 0x8) + a1).
   The `jal` at 0x100f9ed4 calls UseMsg [0x10262d80] with a0=?, a1=?, a2=?, a3=a0 at entry (arg0).
   The `jal` at 0x100f9ef0 calls UseMsg [0x10262d80] with a0=0x0, a1=?, a2=?, a3=a0 at entry (arg0).
   The `beq` branch at 0x100f9b08 targets 0x100f9ba8, is taken when v0(=ret(strcmp)) == 0, and falls through when v0(=ret(strcmp)) != 0.
@@ -6210,8 +6266,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f9c2c targets 0x100f9ec0, is taken when a2(=[[((a2 << 0x2) + a1)]]:1) == a3(=0x2d), and falls through when a2(=[[((a2 << 0x2) + a1)]]:1) != a3(=0x2d).
   The `beq` branch at 0x100f9c44 targets 0x100f9d94, is taken when a4(=a2+1) >= a3(=a0) (signed), and falls through when a4(=a2+1) < a3(=a0) (signed).
   The `beq` branch at 0x100f9c6c targets 0x100f9e04, is taken when (a5(=[([sym(__libc_attr)] + ([[((a2 << 0x2) + a1)+4]]:1 << 0x2))+4]) & 0x4) == 0, and falls through when (a5(=[([sym(__libc_attr)] + ([[((a2 << 0x2) + a1)+4]]:1 << 0x2))+4]) & 0x4) != 0.
-  The `beq` branch at 0x100f9cb4 targets 0x100f9e0c, is taken when a6(?) >= a4(=a0) (signed), and falls through when a6(?) < a4(=a0) (signed).
-  The `beq` branch at 0x100f9cdc targets 0x100f9ecc, is taken when (a7(?) & 0x4) == 0, and falls through when (a7(?) & 0x4) != 0.
+  The `beq` branch at 0x100f9cb4 targets 0x100f9e0c, is taken when a6(=a2+2) >= a4(=a0) (signed), and falls through when a6(=a2+2) < a4(=a0) (signed).
+  The `beq` branch at 0x100f9cdc targets 0x100f9ecc, is taken when (a7(=[([sym(__libc_attr)] + ([[((a2 << 0x2)+4 + a1)+4]]:1 << 0x2))+4]) & 0x4) == 0, and falls through when (a7(=[([sym(__libc_attr)] + ([[((a2 << 0x2)+4 + a1)+4]]:1 << 0x2))+4]) & 0x4) != 0.
   The `beq` branch at 0x100f9d20 targets 0x100f9e10 and is always taken.
   The `beq` branch at 0x100f9d4c targets 0x100f9bb0 and is always taken.
   The `bne` branch at 0x100f9d64 targets 0x100f9db4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -6224,8 +6280,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100f9dfc targets 0x100f9bb4 and is always taken.
   The `beq` branch at 0x100f9e04 targets 0x100f9d9c and is always taken.
   The `beq` branch at 0x100f9e28 targets 0x100f9d98, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x100f9e4c targets 0x100f9e74, is taken when (a3(?) & 0x4) == 0, and falls through when (a3(?) & 0x4) != 0.
-  The `beq` branch at 0x100f9e68 targets 0x100f9ee4, is taken when a7(?) == t0(=0x31), and falls through when a7(?) != t0(=0x31).
+  The `beq` branch at 0x100f9e4c targets 0x100f9e74, is taken when (a3(=[([sym(__libc_attr)] + ([[(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4]]:1 << 0x2))+4]) & 0x4) == 0, and falls through when (a3(=[([sym(__libc_attr)] + ([[(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4]]:1 << 0x2))+4]) & 0x4) != 0.
+  The `beq` branch at 0x100f9e68 targets 0x100f9ee4, is taken when a7(=[[(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4]]:1) == t0(=0x31), and falls through when a7(=[[(((a2 << 0x2) + one of 0x4, 0x8) + a1)+4]]:1) != t0(=0x31).
   The `beq` branch at 0x100f9e74 targets 0x100f9d98, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x100f9e98 targets 0x100f9d9c, is taken when (t0(?) & 0x4) == 0, and falls through when (t0(?) & 0x4) != 0.
   The `beq` branch at 0x100f9eb8 targets 0x100f9d98 and is always taken.
@@ -6307,7 +6363,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100fb508 targets 0x100fb51c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x100fb530 targets 0x100fb540, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x100fb544 targets 0x100fb558, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The return at 0x100fb524 has v0 = ?.
+  The return at 0x100fb524 has v0 = ret(?).
   The return at 0x100fb560 has v0 = -0x1.
   The return at 0x100fb570 has v0 = -0x1.
   The instructions from 0x100fb52c to 0x100fb52c are not reached by any path from the entry, and their branches are not listed.
@@ -6578,12 +6634,12 @@ These entries record instruction facts rendered from the routines below. They de
   8 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x10, including `lw` at 0x100fbf0c, `lw` at 0x100fc024, `lw` at 0x100fc3c4.
   88 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100fbf18, `lbu` at 0x100fbf1c, `lbu` at 0x100fbf28.
   47 such `sb` accesses store 1 byte to ?, including `sb` at 0x100fbf20, `sb` at 0x100fbf24, `sb` at 0x100fbf30.
-  15 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100fbf88, `lw` at 0x100fc1a4, `lw` at 0x100fc1d8.
+  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100fbf88, `lw` at 0x100fc1a4, `lw` at 0x100fc1d8.
   The `sb` at 0x100fbfcc stores 1 byte to ret(SrvXkbAddGeomSection) +0x4.
   9 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100fbfd0, `lh` at 0x100fbfd8, `lh` at 0x100fbff0.
   The `sh` at 0x100fbfd4 stores 2 bytes to ret(SrvXkbAddGeomSection) +0x6.
   The `sh` at 0x100fbfdc stores 2 bytes to ret(SrvXkbAddGeomSection) +0x8.
-  28 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x100fbfe0, `lhu` at 0x100fbfe8, `lhu` at 0x100fc198.
+  22 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x100fbfe0, `lhu` at 0x100fbfe8, `lhu` at 0x100fc198.
   The `sh` at 0x100fbfe4 stores 2 bytes to ret(SrvXkbAddGeomSection) +0xa.
   The `sh` at 0x100fbfec stores 2 bytes to ret(SrvXkbAddGeomSection) +0xc.
   The `sh` at 0x100fbff4 stores 2 bytes to ret(SrvXkbAddGeomSection) +0xe.
@@ -6592,7 +6648,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100fc078 loads 4 bytes from ret(SrvXkbAddGeomSection) +0x1c.
   12 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100fc084, `sw` at 0x100fc088, `sw` at 0x100fc08c.
   The `sh` at 0x100fc0cc stores 2 bytes to ret(SrvXkbAddGeomSection) +0x10.
-  13 such `sh` accesses store 2 bytes to ?, including `sh` at 0x100fc0d4, `sh` at 0x100fc0dc, `sh` at 0x100fc118.
+  12 such `sh` accesses store 2 bytes to ?, including `sh` at 0x100fc0d4, `sh` at 0x100fc0dc, `sh` at 0x100fc118.
   2 such `sdl` accesses store 8 bytes to ?, including `sdl` at 0x100fc120, `sdl` at 0x100fc1ec.
   2 such `sdr` accesses store 8 bytes to ?, including `sdr` at 0x100fc124, `sdr` at 0x100fc1f0.
   The `lwl` at 0x100fc130 loads 4 bytes from ?.
@@ -6615,10 +6671,17 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100fc5ec stores 4 bytes to ret(SrvXkbAddGeomDoodad) +0x14.
   The `sw` at 0x100fc63c stores 4 bytes to ret(SrvXkbAddGeomDoodad) +0x18.
   The `sw` at 0x100fc824 stores 4 bytes to a2 (arg2 at entry) +0x0.
+  2 such `lw` accesses load 4 bytes from ret(SrvXkbAddGeomOverlay) +0x4, including `lw` at 0x100fc95c, `lw` at 0x100fc9c8.
+  2 such `lhu` accesses load 2 bytes from [ret(SrvXkbAddGeomOverlay)+4] +0x10, including `lhu` at 0x100fc960, `lhu` at 0x100fc9d0.
+  The `lw` at 0x100fc9e4 loads 4 bytes from [ret(SrvXkbAddGeomOverlay)+4] +0x1c.
+  3 such `lhu` accesses load 2 bytes from ret(SrvXkbAddGeomOverlay) +0x8, including `lhu` at 0x100fcafc, `lhu` at 0x100fcccc, `lhu` at 0x100fce60.
+  4 such `lw` accesses load 4 bytes from ret(SrvXkbAddGeomOverlay) +0xc, including `lw` at 0x100fcb08, `lw` at 0x100fcb50, `lw` at 0x100fcc24.
+  The `lhu` at 0x100fcb3c loads 2 bytes from ret(SrvXkbAddGeomOverlay) +0xa.
+  The `sh` at 0x100fccd4 stores 2 bytes to ret(SrvXkbAddGeomOverlay) +0x8.
   The `jal` at 0x100fbfb8 calls SrvXkbAddGeomSection [0x100ebc10] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a6=a1 at entry (arg1).
   The `jal` at 0x100fc0b0 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=?, a4=0x8.
   The `jal` at 0x100fc1c4 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x8.
-  The `jal` at 0x100fc2a4 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x18.
+  The `jal` at 0x100fc2a4 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=ret(SrvXkbAddGeomSection)+28, a1=ret(SrvXkbAddGeomSection)+16, a2=ret(SrvXkbAddGeomSection)+22, a3=0x1, a4=0x18.
   The `jal` at 0x100fc43c calls SrvXkbAddGeomDoodad [0x101e3390] with a0=a0 at entry (arg0), a1=ret(SrvXkbAddGeomSection), a2=?, a3=?, a5=[a3+16].
   The `jal` at 0x100fc4fc calls Xalloc [0x1020aeb0] with a0=?, a1=0x8, a2=?, a3=?, a5=0x2, a6=0x3, a7=0xff0000.
   The `jalr` at 0x100fc518 calls memcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?.
@@ -6632,7 +6695,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100fc8fc calls SrvXkbAddGeomOverlay [0x100d6c90] with a0=ret(SrvXkbAddGeomSection), a1=?, a2=?, a3=?.
   The `jalr` at 0x100fca28 calls strncmp with a0=?, a1=?, a2=0x4, a3=?.
   The `jal` at 0x100fcb84 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=?, a4=0x8.
-  The `jal` at 0x100fccfc calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0xc.
+  The `jal` at 0x100fccfc calls _XkbGeomAlloc..BIF [0x1008db50] with a0=ret(SrvXkbAddGeomOverlay)+12, a1=ret(SrvXkbAddGeomOverlay)+8, a2=ret(SrvXkbAddGeomOverlay)+10, a3=0x1, a4=0xc.
   The `jal` at 0x100fcd3c calls Xrealloc [0x101b9470] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100fcd70 calls bzero with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100fcdf4 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
@@ -6709,16 +6772,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x100fc8f0 targets 0x100fcd94, is taken when a2(=[0x102c6188]) < a1(?) (unsigned), and falls through when a2(=[0x102c6188]) >= a1(?) (unsigned).
   The `blez` branch at 0x100fc910 targets 0x100fc7f0, is taken when a4(?) <= 0 (signed), and falls through when a4(?) > 0 (signed).
   The `bne` branch at 0x100fc940 targets 0x100fcda0, is taken when a3(=[ret(SrvXkbAddGeomSection)+16]:2) < s2(?) (signed), and falls through when a3(=[ret(SrvXkbAddGeomSection)+16]:2) >= s2(?) (signed).
-  The `beq` branch at 0x100fc94c targets 0x100fc978, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x100fc94c targets 0x100fc978, is taken when a0(=ret(SrvXkbAddGeomOverlay)) == 0, and falls through when a0(=ret(SrvXkbAddGeomOverlay)) != 0.
   The `bltz` branch at 0x100fc954 targets 0x100fc97c, is taken when s4(?) < 0 (signed), and falls through when s4(?) >= 0 (signed).
-  The `bne` branch at 0x100fc968 targets 0x100fcafc, is taken when s2(?) < t2(?) (signed), and falls through when s2(?) >= t2(?) (signed).
+  The `bne` branch at 0x100fc968 targets 0x100fcafc, is taken when s2(?) < t2(=[[ret(SrvXkbAddGeomOverlay)+4]+16]:2) (signed), and falls through when s2(?) >= t2(=[[ret(SrvXkbAddGeomOverlay)+4]+16]:2) (signed).
   The `beq` branch at 0x100fc970 targets 0x100fc97c and is always taken.
   The `blez` branch at 0x100fc97c targets 0x100fc7c8, is taken when a3(?) <= 0 (signed), and falls through when a3(?) > 0 (signed).
-  The `beq` branch at 0x100fc9a8 targets 0x100fca54, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x100fc9a8 targets 0x100fca54, is taken when a0(=ret(SrvXkbAddGeomOverlay)) == 0, and falls through when a0(=ret(SrvXkbAddGeomOverlay)) != 0.
   The `beq` branch at 0x100fc9b0 targets 0x100fca50, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x100fc9b8 targets 0x100fca50, is taken when ra(=-0x4) == a3(?), and falls through when ra(=-0x4) != a3(?).
   The `beq` branch at 0x100fc9c0 targets 0x100fca54, is taken when at(=-0x8) == a3(?), and falls through when at(=-0x8) != a3(?).
-  The `beq` branch at 0x100fc9d8 targets 0x100fca54, is taken when a6(?) >= v1(?) (signed), and falls through when a6(?) < v1(?) (signed).
+  The `beq` branch at 0x100fc9d8 targets 0x100fca54, is taken when a6(?) >= v1(=[[ret(SrvXkbAddGeomOverlay)+4]+16]:2) (signed), and falls through when a6(?) < v1(=[[ret(SrvXkbAddGeomOverlay)+4]+16]:2) (signed).
   The `blez` branch at 0x100fc9f8 targets 0x100fca50, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
   The `beq` branch at 0x100fca30 targets 0x100fc70c, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `bne` branch at 0x100fca48 targets 0x100fca1c, is taken when s3(?) < a2(?) (signed), and falls through when s3(?) >= a2(?) (signed).
@@ -6728,10 +6791,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100fcaac targets 0x100fc870 and is always taken.
   The `beq` branch at 0x100fcad0 targets 0x100fc870 and is always taken.
   The `beq` branch at 0x100fcaf4 targets 0x100fc870 and is always taken.
-  The `blez` branch at 0x100fcb00 targets 0x100fcb3c, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
+  The `blez` branch at 0x100fcb00 targets 0x100fcb3c, is taken when v0(=[ret(SrvXkbAddGeomOverlay)+8]:2) <= 0 (signed), and falls through when v0(=[ret(SrvXkbAddGeomOverlay)+8]:2) > 0 (signed).
   The `beq` branch at 0x100fcb24 targets 0x100fcbec, is taken when t2(?) == s2(?), and falls through when t2(?) != s2(?).
   The `bne` branch at 0x100fcb34 targets 0x100fcb20, is taken when a6(?) < a7(?) (unsigned), and falls through when a6(?) >= a7(?) (unsigned).
-  The `beq` branch at 0x100fcb44 targets 0x100fcce4, is taken when v0(?) >= t8(?) (signed), and falls through when v0(?) < t8(?) (signed).
+  The `beq` branch at 0x100fcb44 targets 0x100fcce4, is taken when v0(=[ret(SrvXkbAddGeomOverlay)+8]:2) >= t8(=[ret(SrvXkbAddGeomOverlay)+10]:2) (signed), and falls through when v0(=[ret(SrvXkbAddGeomOverlay)+8]:2) < t8(=[ret(SrvXkbAddGeomOverlay)+10]:2) (signed).
   The `blez` branch at 0x100fcb64 targets 0x100fccc8, is taken when s4(?) <= 0 (signed), and falls through when s4(?) > 0 (signed).
   The `beq` branch at 0x100fcb90 targets 0x100fccc8, is taken when v0(=ret(_XkbGeomAlloc..BIF)) == 0, and falls through when v0(=ret(_XkbGeomAlloc..BIF)) != 0.
   The `beq` branch at 0x100fcb9c targets 0x100fc97c and is always taken.
@@ -6757,7 +6820,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100fcdd4 targets 0x100fca7c and is always taken.
   The `beq` branch at 0x100fcde8 targets 0x100fcc14 and is always taken.
   The `beq` branch at 0x100fcdfc targets 0x100fce34, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `bne` branch at 0x100fce40 targets 0x100fcd58, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x100fce40 targets 0x100fcd58, is taken when a3(=ret(Xalloc)) != 0, and falls through when a3(=ret(Xalloc)) == 0.
   The `beq` branch at 0x100fce54 targets 0x100fc97c and is always taken.
   The `beq` branch at 0x100fce5c targets 0x100fcb48 and is always taken.
   The return at 0x100fc228 has v0 = 0xb.
@@ -6777,7 +6840,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x100fce9c, `lw` at 0x100fd1cc.
   The `sw` at 0x100fceb0 stores 4 bytes to a0 (arg0 at entry) +0x0.
   19 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100fcebc, `lw` at 0x100fcf08, `lw` at 0x100fcf2c.
-  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100fcf64, `sw` at 0x100fcf9c, `sw` at 0x100fcfbc.
+  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0x100fcf64, `sw` at 0x100fcf9c, `sw` at 0x100fcfbc.
   2 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x100fcfec, `lw` at 0x100fd018.
   The `lw` at 0x100fd040 loads 4 bytes from sym(clients) +0x0.
   The `lw` at 0x100fd07c loads 4 bytes from [sym(clients)] +0x4.
@@ -6785,8 +6848,9 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x0, including `sw` at 0x100fd0c0, `sw` at 0x100fd0c4.
   The `lw` at 0x100fd0e4 loads 4 bytes from sym(Must_have_memory) +0x0.
   The `lw` at 0x100fd1a8 loads 4 bytes from [[sym(clients)]+4] +0x4.
+  The `sw` at 0x100fd1b8 stores 4 bytes to ret(__malloc..ML) +0x0.
   The `jalr` at 0x100fd000 calls __libc_lockmalloc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x100fd00c calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100fd00c calls __malloc..ML [0x101e7680] with a0=([0x102c5d70] << 0x2)+4, a1=?, a2=?, a3=?.
   The `jalr` at 0x100fd028 calls __libc_unlockmalloc with a0=[sym(__us_rsthread_malloc)], a1=?, a2=?, a3=?.
   The `jal` at 0x100fd0fc calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?, a7=0x2.
   The `blez` branch at 0x100fce7c targets 0x100fcec0, is taken when a6(=[a1]) <= 0 (signed), and falls through when a6(=[a1]) > 0 (signed).
@@ -6813,7 +6877,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x100fcfe4 targets 0x100fd108, is taken when v0(=([0x102c5d70] << 0x2)+4) <= 0 (signed), and falls through when v0(=([0x102c5d70] << 0x2)+4) > 0 (signed).
   The `beq` branch at 0x100fcff4 targets 0x100fd00c, is taken when v1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v1(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100fd01c targets 0x100fd034, is taken when a0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a0(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x100fd038 targets 0x100fd0e0, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x100fd038 targets 0x100fd0e0, is taken when t2(=ret(__malloc..ML)) == 0, and falls through when t2(=ret(__malloc..ML)) != 0.
   The `bne` branch at 0x100fd054 targets 0x100fd0a0, is taken when a5(=[0x102c5d70]) < 0x2 (signed), and falls through when a5(=[0x102c5d70]) >= 0x2 (signed).
   The `beq` branch at 0x100fd074 targets 0x100fd094, is taken when (t3(=[0x102c5d70]-1) & 0x1) == 0, and falls through when (t3(=[0x102c5d70]-1) & 0x1) != 0.
   The `beq` branch at 0x100fd080 targets 0x100fd094, is taken when a5(=[[sym(clients)]+4]) == 0, and falls through when a5(=[[sym(clients)]+4]) != 0.
@@ -6834,7 +6898,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100fd1ac targets 0x100fd094, is taken when t0(=[[[sym(clients)]+4]+4]) == s2(=a2), and falls through when t0(=[[[sym(clients)]+4]+4]) != s2(=a2).
   The `beq` branch at 0x100fd1bc targets 0x100fd094 and is always taken.
   The `beq` branch at 0x100fd1c8 targets 0x100fcf0c and is always taken.
-  The return at 0x100fd0bc has v0 = ?.
+  The return at 0x100fd0bc has v0 = ret(__malloc..ML).
   The return at 0x100fd0d8 has v0 = a0.
   The return at 0x100fd118 has v0 = 0x0.
 - `RecordInstallHooks..AJG` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100fd1d0 (n32).
@@ -7241,12 +7305,12 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 828 bytes.
   The `lw` at 0x100fed50 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100fed54 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x100fedcc loads 4 bytes from [a0+8] +0x4.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x100fedcc, `lw` at 0x100ff05c, `lw` at 0x100ff074.
   2 such `lw` accesses load 4 bytes from [ret(SecurityLookupIDByType)] +0x1b4, including `lw` at 0x100fee30, `lw` at 0x100fee9c.
   2 such `lw` accesses load 4 bytes from ([[ret(SecurityLookupIDByType)]+436] + ([0x102cf2c4] << 0x2)) +0x0, including `lw` at 0x100fee38, `lw` at 0x100feea8.
   The `sw` at 0x100fee3c stores 4 bytes to [([[ret(SecurityLookupIDByType)]+436] + ([0x102cf2c4] << 0x2))] +0x34.
   The `sw` at 0x100fee40 stores 4 bytes to [([[ret(SecurityLookupIDByType)]+436] + ([0x102cf2c4] << 0x2))] +0x30.
-  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100fee58, `lw` at 0x100fee7c, `lw` at 0x100feee8.
+  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100fee58, `lw` at 0x100fee7c, `lw` at 0x100feee8.
   The `lw` at 0x100fee68 loads 4 bytes from sym(RT_SGICapInterest) +0x0.
   The `lw` at 0x100fee88 loads 4 bytes from ret(SecurityLookupIDByType) +0xc.
   The `lw` at 0x100fee98 loads 4 bytes from ret(SecurityLookupIDByType) +0x0.
@@ -7284,7 +7348,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x100ff068, `sw` at 0x100ff080.
   The `jal` at 0x100fedc8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=[0x102ca980], a3=0x0.
   The `jal` at 0x100fee6c calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=[sym(RT_SGICapInterest)], a3=0x0, a4=[0x102c5f1c].
-  The `jal` at 0x100fef10 calls ErrorF [0x10094ec0] with a0=?, a1=?, a2=?, a3=?, a5=[0x102cf2c4], a6=([0x102cf2c4] << 0x2), a7=[ret(SecurityLookupIDByType)+12].
+  The `jal` at 0x100fef10 calls ErrorF [0x10094ec0] with a0=0x1029a030, a1=?, a2=?, a3=?, a5=[0x102cf2c4], a6=([0x102cf2c4] << 0x2), a7=[ret(SecurityLookupIDByType)+12].
   The `beq` branch at 0x100fed64 targets 0x100feda8, is taken when at(=[a0+72]) == v0(=0x2), and falls through when at(=[a0+72]) != v0(=0x2).
   The `beq` branch at 0x100fedec targets 0x100ff084, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The `blez` branch at 0x100fedf8 targets 0x100ff06c, is taken when a4(=[0x102c5f1c]) <= 0 (signed), and falls through when a4(=[0x102c5f1c]) > 0 (signed).
@@ -7333,8 +7397,8 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 348 bytes.
   The `lw` at 0x100ff120 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x100ff124 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100ff170, `lw` at 0x100ff254.
-  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x100ff188, `lbu` at 0x100ff21c.
+  The `lw` at 0x100ff170 loads 4 bytes from [a0+8] +0x8.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x4, including `lbu` at 0x100ff188, `lbu` at 0x100ff21c.
   The `sw` at 0x100ff1a8 stores 4 bytes to a0 (arg0 at entry) +0x18.
   2 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x78, including `lw` at 0x100ff1ac, `lw` at 0x100ff1c4.
   The `lw` at 0x100ff1b8 loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x2c.
@@ -7344,16 +7408,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x100ff1f0 loads 4 bytes from sym(panoramiXScreen0) +0x0.
   The `lw` at 0x100ff1f8 loads 4 bytes from sym(panoramiXMode) +0x0.
   The `lw` at 0x100ff23c loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x178.
-  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x100ff244, `lh` at 0x100ff24c.
+  The `lh` at 0x100ff244 loads 2 bytes from [a0+8] +0xe.
+  The `lh` at 0x100ff24c loads 2 bytes from [a0+8] +0xc.
+  The `lw` at 0x100ff254 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x1f4.
   The `jal` at 0x100ff158 calls UpdateCurrentTime [0x10064a10] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x100ff16c calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=?.
-  The `jal` at 0x100ff218 calls SendShapeNotify..GNC [0x101b58a0] with a0=?, a1=?, a2=[sym(panoramiXDisabled)], a3=?, a4=sym(panoramiXScreen0).
-  The `jalr` at 0x100ff248 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a6=[ret(SecurityLookupWindow)+16].
-  The `jalr` at 0x100ff258 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100ff16c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x0, a3=?.
+  The `jal` at 0x100ff218 calls SendShapeNotify..GNC [0x101b58a0] with a0=ret(SecurityLookupWindow), a1=[[a0+8]+4]:1, a2=[sym(panoramiXDisabled)], a3=?, a4=sym(panoramiXScreen0).
+  The `jalr` at 0x100ff248 calls (unknown callee) with a0=?, a1=[[a0+8]+12]:2, a2=[[a0+8]+14]:2, a3=?, a4=[[a0+8]+4]:1, a6=[ret(SecurityLookupWindow)+16].
+  The `jalr` at 0x100ff258 calls (unknown callee) with a0=ret(SecurityLookupWindow), a1=?, a2=?, a3=?.
   The `beq` branch at 0x100ff138 targets 0x100ff154, is taken when at(=[a0+72]) == v0(=0x4), and falls through when at(=[a0+72]) != v0(=0x4).
   The `beq` branch at 0x100ff17c targets 0x100ff22c, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x100ff18c targets 0x100ff1c4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x100ff194 targets 0x100ff1ac, is taken when a4(?) == a5(=0x1), and falls through when a4(?) != a5(=0x1).
+  The `beq` branch at 0x100ff18c targets 0x100ff1c4, is taken when a4(=[[a0+8]+4]:1) == 0, and falls through when a4(=[[a0+8]+4]:1) != 0.
+  The `beq` branch at 0x100ff194 targets 0x100ff1ac, is taken when a4(=[[a0+8]+4]:1) == a5(=0x1), and falls through when a4(=[[a0+8]+4]:1) != a5(=0x1).
   The `beq` branch at 0x100ff1b0 targets 0x100ff26c, is taken when a1(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a1(=[ret(SecurityLookupWindow)+120]) != 0.
   The `beq` branch at 0x100ff1bc targets 0x100ff1d8 and is always taken.
   The `beq` branch at 0x100ff1c8 targets 0x100ff274, is taken when a1(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a1(=[ret(SecurityLookupWindow)+120]) != 0.
@@ -7393,7 +7459,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100ff3b0 targets 0x100ff2e8 and is always taken.
   The `beq` branch at 0x100ff3b8 targets 0x100ff2e8 and is always taken.
   The `beq` branch at 0x100ff3d8 targets 0x100ff2e8 and is always taken.
-  The return at 0x100ff2f0 has v0 = one of ret(_XSERVTransStandardSetOption), ret(fcntl), ?, 0x0.
+  The return at 0x100ff2f0 has v0 = one of ret(_XSERVTransStandardSetOption), ret(fcntl), 0x0.
   The return at 0x100ff344 has v0 = ret(fcntl).
   The return at 0x100ff360 has v0 = 0x0.
 - `XvDestroyPixmap` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100ff3e0 (n32).
@@ -7470,12 +7536,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x100ff9c4 stores 4 bytes to a3 (arg3 at entry) +0x0.
   The `lw` at 0x100ff9dc loads 4 bytes from a0 (arg0 at entry) +0x24.
   The `jalr` at 0x100ff980 calls __libc_lockmalloc with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x100ff98c calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x100ff98c calls __malloc..ML [0x101e7680] with a0=[a0+40], a1=?, a2=?, a3=?.
   The `jalr` at 0x100ff9a8 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100ff9e0 calls memcpy with a0=?, a1=[a0+36], a2=[a0+40], a3=?.
+  The `jalr` at 0x100ff9e0 calls memcpy with a0=ret(__malloc..ML), a1=[a0+36], a2=[a0+40], a3=?.
   The `beq` branch at 0x100ff974 targets 0x100ff98c, is taken when at(=[sym(__us_rsthread_malloc)]) == 0, and falls through when at(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x100ff99c targets 0x100ff9b0, is taken when v1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v1(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x100ff9c0 targets 0x100ff9d0, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x100ff9c0 targets 0x100ff9d0, is taken when a0(=ret(__malloc..ML)) != 0, and falls through when a0(=ret(__malloc..ML)) == 0.
   The return at 0x100ff9c8 has v0 = -0x1.
   The return at 0x100ff9f0 has v0 = 0x0.
 - `RecordASkippedRequest..LIG` in `usr/gfx/arch/GENERIC/Xsgi` at 0x100ffa00 (n32).
@@ -7515,7 +7581,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x101004a4 calls times with a0=sp-168, a1=?, a2=?, a3=?.
   The `blez` branch at 0x100ffa24 targets 0x10100658, is taken when v0(=[a2+8]) <= 0 (signed), and falls through when v0(=[a2+8]) > 0 (signed).
   The `beq` branch at 0x100ffa54 targets 0x100ffa80 and is always taken.
-  The `beq` branch at 0x100ffa78 targets 0x10100634, is taken when a0(?) == a1(?), and falls through when a0(?) != a1(?).
+  The `beq` branch at 0x100ffa78 targets 0x10100634, is taken when a0(?) == a1(=[a2+8]), and falls through when a0(?) != a1(=[a2+8]).
   The `beq` branch at 0x100ffa8c targets 0x10100380, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x100ffa94 targets 0x101003e8, is taken when a0(=[[a2+4]+16]) == 0, and falls through when a0(=[[a2+4]+16]) != 0.
   The `blez` branch at 0x100ffab0 targets 0x100ffa60, is taken when t2(=[0x102cc0c8]) <= 0 (signed), and falls through when t2(=[0x102cc0c8]) > 0 (signed).
@@ -7624,13 +7690,19 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 168 bytes.
   The `lw` at 0x10100784 loads 4 bytes from a1 (arg1 at entry) +0x24.
   The `lw` at 0x101007a8 loads 4 bytes from a2 (arg2 at entry) +0xc.
-  The `lw` at 0x101007c8 loads 4 bytes from ?.
-  6 such `sb` accesses store 1 byte to ?, including `sb` at 0x101007cc, `sb` at 0x101007d0, `sb` at 0x101007d4.
-  2 such `sh` accesses store 2 bytes to ?, including `sh` at 0x101007d8, `sh` at 0x101007e4.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x101007ec, `sw` at 0x101007f0.
+  The `lw` at 0x101007c8 loads 4 bytes from [a1+36] +0xc.
+  The `sb` at 0x101007cc stores 1 byte to [[a1+36]+12] +0x2.
+  The `sb` at 0x101007d0 stores 1 byte to [[a1+36]+12] +0x4.
+  The `sb` at 0x101007d4 stores 1 byte to [[a1+36]+12] +0x5.
+  The `sh` at 0x101007d8 stores 2 bytes to [[a1+36]+12] +0x6.
+  The `sb` at 0x101007dc stores 1 byte to [[a1+36]+12] +0x8.
+  The `sb` at 0x101007e0 stores 1 byte to [[a1+36]+12] +0x9.
+  The `sh` at 0x101007e4 stores 2 bytes to [[a1+36]+12] +0xa.
+  2 such `sw` accesses store 4 bytes to [[a1+36]+12] +0xc, including `sw` at 0x101007ec, `sw` at 0x101007f0.
+  The `sb` at 0x10100814 stores 1 byte to [[a1+36]+12] +0x1.
   The `jal` at 0x10100788 calls SrvXkbAllocControls [0x10073400] with a0=[a1+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1010079c calls FatalError [0x10094f20] with a0=0x1029ae98, a1=?, a2=?, a3=?.
-  The `jal` at 0x101007f4 calls AccessXInit [0x10219dc0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=0x1, a5=0x12a1, a6=0x12e1.
+  The `jal` at 0x101007f4 calls AccessXInit [0x10219dc0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=[[a1+36]+12], a4=0x1, a5=0x12a1, a6=0x12e1.
   The `beq` branch at 0x10100790 targets 0x101007a4, is taken when v0(=ret(SrvXkbAllocControls)) == 0, and falls through when v0(=ret(SrvXkbAllocControls)) != 0.
   The `beq` branch at 0x101007c4 targets 0x10100810, is taken when (a1(=[a2+12]) & 0x4) == 0, and falls through when (a1(=[a2+12]) & 0x4) != 0.
   The `beq` branch at 0x101007e8 targets 0x101007f4, is taken when a0(=[0x102cb1fc]) == 0, and falls through when a0(=[0x102cb1fc]) != 0.
@@ -7700,15 +7772,15 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 272 bytes.
   The `lw` at 0x10100a90 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10100a98 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10100ae8, `lw` at 0x10100af8.
+  4 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10100ae8, `lw` at 0x10100af8, `lw` at 0x10100b24.
   The `sw` at 0x10100af0 stores 4 bytes to a0 (arg0 at entry) +0x18.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10100b24, `lw` at 0x10100b4c, `lw` at 0x10100b88.
   The `lw` at 0x10100b74 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x10100b78 loads 1 byte from ?.
+  The `lbu` at 0x10100b78 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10100b7c loads 4 bytes from [a0+88] +0x0.
+  The `lw` at 0x10100b88 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x10100afc calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0x4, a3=0x0.
-  The `jal` at 0x10100b20 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=0xffffffff80000003, a3=0x0.
-  The `jal` at 0x10100b48 calls CheckAccess [0x100e6b00] with a0=0x3, a1=0x0, a2=a0 at entry (arg0), a3=?.
+  The `jal` at 0x10100b20 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0xffffffff80000003, a3=0x0.
+  The `jal` at 0x10100b48 calls CheckAccess [0x100e6b00] with a0=0x3, a1=0x0, a2=a0 at entry (arg0), a3=[[a0+8]+4].
   The `jalr` at 0x10100b8c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10100ab4 targets 0x10100ad8, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `bne` branch at 0x10100b04 targets 0x10100b38, is taken when v0(=ret(SecurityLookupIDByType)) != 0, and falls through when v0(=ret(SecurityLookupIDByType)) == 0.
@@ -7795,7 +7867,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10101454 calls T1Getc [0x10232f70] with a0=[[0x102c8970]+4], a1=?, a2=?, a3=?, a4=[[[0x102c8970]+4]+12], a5=[0x102c7bf4].
   The `jalr` at 0x10101484 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10101514 calls T1Read [0x1013cc80] with a0=[0x102c7bf4], a1=[0x102c8930], a2=[[0x102c8970]+4], a3=?, a5=[0x102c7bf4], a6=one of -0x2, 0x0.
-  The `jalr` at 0x1010157c calls strncmp with a0=[0x102c891c], a1=?, a2=0x3, a3=?.
+  The `jalr` at 0x1010157c calls strncmp with a0=[0x102c891c], a1=0x10294b9c, a2=0x3, a3=?.
   The `beq` branch at 0x101010dc targets 0x10101234, is taken when at(=[0x102c892c]) == s5(=0xb), and falls through when at(=[0x102c892c]) != s5(=0xb).
   The `beq` branch at 0x101010ec targets 0x101015c4, is taken when v0(=[0x102c895c]) == 0, and falls through when v0(=[0x102c895c]) != 0.
   The `beq` branch at 0x101010fc targets 0x10101160 and is always taken.
@@ -7819,7 +7891,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x101012f4 targets 0x1010160c, is taken when a0(=one of -0x3, -0x1, 0x0) != 0, and falls through when a0(=one of -0x3, -0x1, 0x0) == 0.
   The `bne` branch at 0x10101314 targets 0x101015b0, is taken when v0(=[0x102c7bec]) < a0(?) (signed), and falls through when v0(=[0x102c7bec]) >= a0(?) (signed).
   The `beq` branch at 0x1010132c targets 0x101015b0, is taken when a3(=[0x102c7bf4]) == 0, and falls through when a3(=[0x102c7bf4]) != 0.
-  The `beq` branch at 0x1010133c targets 0x10101620, is taken when s7(?) == a5(?), and falls through when s7(?) != a5(?).
+  The `beq` branch at 0x1010133c targets 0x10101620, is taken when s7(?) == a5(=[0x102c8930]), and falls through when s7(?) != a5(=[0x102c8930]).
   The `beq` branch at 0x1010135c targets 0x10101398, is taken when a0(=[[0x102c8970]+4]) == 0, and falls through when a0(=[[0x102c8970]+4]) != 0.
   The `bne` branch at 0x10101364 targets 0x10101370, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0x10101378 targets 0x1010141c, is taken when v0(?) >= 0x80 (signed), and falls through when v0(?) < 0x80 (signed).
@@ -7873,14 +7945,12 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 204 bytes.
   The `lw` at 0x101018d0 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x101018dc loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lhu` at 0x101018f4 loads 2 bytes from [a0+8] +0x8.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10101934, `lw` at 0x10101940.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x8, including `lhu` at 0x101018f4, `lhu` at 0x10101960.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10101934, `lw` at 0x10101940, `lw` at 0x10101954.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10101938, `sw` at 0x1010198c.
-  The `lw` at 0x10101954 loads 4 bytes from ?.
-  The `lhu` at 0x10101960 loads 2 bytes from ?.
   The `lw` at 0x10101998 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1010193c calls LegalNewID [0x101557b0] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=[[a0+8]+4], a3=a3 at entry (arg3), a4=[a0+72].
-  The `jal` at 0x10101964 calls OpenFont [0x100696e0] with a0=a0 at entry (arg0), a1=?, a2=0x0, a3=?.
+  The `jal` at 0x10101964 calls OpenFont [0x100696e0] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x0, a3=[[a0+8]+8]:2, a4=[a0+8]+12, a7=[a0+8].
   The `bne` branch at 0x101018ec targets 0x1010190c, is taken when a4(=[a0+72]) < 0x3 (unsigned), and falls through when a4(=[a0+72]) >= 0x3 (unsigned).
   The `beq` branch at 0x10101904 targets 0x10101928, is taken when a4(=[a0+72]) == a2(?), and falls through when a4(=[a0+72]) != a2(?).
   The `beq` branch at 0x10101950 targets 0x10101984, is taken when v0(=ret(LegalNewID)) == 0, and falls through when v0(=ret(LegalNewID)) != 0.
@@ -7903,17 +7973,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10101a0c loads 4 bytes from [a2+164] +0x14.
   The `lw` at 0x10101a18 loads 4 bytes from [a2+164] +0x10.
   The `lw` at 0x10101a24 loads 4 bytes from table(0x1028c62c) +0x0.
-  The `sw` at 0x10101a68 stores 4 bytes to [a2+164] +0x10.
-  The `sw` at 0x10101a6c stores 4 bytes to [a2+164] +0x14.
-  6 such `lbu` accesses load 1 byte from [[a2+144]+344] +0x65, including `lbu` at 0x10101a70, `lbu` at 0x10101b64, `lbu` at 0x10101bd0.
+  2 such `sw` accesses store 4 bytes to [a2+164] +0x10, including `sw` at 0x10101a68, `sw` at 0x10101ac8.
+  2 such `sw` accesses store 4 bytes to [a2+164] +0x14, including `sw` at 0x10101a6c, `sw` at 0x10101acc.
+  7 such `lbu` accesses load 1 byte from [[a2+144]+344] +0x65, including `lbu` at 0x10101a70, `lbu` at 0x10101ad0, `lbu` at 0x10101b64.
   The `lw` at 0x10101a7c loads 4 bytes from [[a2+144]+344] +0x24.
   The `lw` at 0x10101a80 loads 4 bytes from [[[a2+144]+344]+36] +0xc.
   The `lw` at 0x10101a84 loads 4 bytes from [[[[a2+144]+344]+36]+12] +0xc.
   The `lw` at 0x10101a98 loads 4 bytes from [a2+164] +0x0.
   The `lw` at 0x10101ab4 loads 4 bytes from [a2+164] +0xc.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10101ac8, `sw` at 0x10101acc.
-  The `lbu` at 0x10101ad0 loads 1 byte from ?.
-  The `sb` at 0x10101ad8 stores 1 byte to ?.
+  The `sb` at 0x10101ad8 stores 1 byte to [[a2+144]+344] +0x65.
   The `lbu` at 0x10101c8c loads 1 byte from [a2+164] +0xf.
   The `jalr` at 0x10101ab0 calls (unknown callee) with a0=[[a2+164]+12], a1=a2 at entry (arg2), a2=[a2+164]+8, a3=0x0, a4=one of 0x1, 0x32, 0x64.
   The `jal` at 0x10101afc calls ErrorF [0x10094ec0] with a0=0x1029b920, a1=[[[a2+144]+344]+100]:1, a2=[[a2+144]+344], a3=[[a2+144]+344], a4=[a2+164], a5=[a2+164], a6=table(0x1028c62c), a7=[[a2+164]+16].
@@ -7962,7 +8030,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10101ce0 targets 0x10101a64 and is always taken.
   The `beq` branch at 0x10101cf4 targets 0x10101a64 and is always taken.
   The return at 0x10101a48 has v0 = 0x0.
-  The return at 0x10101aec has v0 = one of ?, 0x0.
+  The return at 0x10101aec has v0 = one of 0x0, 0x3c.
   The indirect jump at 0x10101a30 uses the jump table at 0x1028c62c with targets 0x10101b04, 0x10101c58, 0x10101c3c, 0x10101b58, 0x10101c0c, 0x10101bec, 0x10101a50, 0x10101b38, 0x10101bf8, 0x10101bd0, 0x10101bbc, 0x10101ba8, 0x10101b94, 0x10101b80, 0x10101b50, 0x10101b30.
   The indirect jump at 0x10101a30 uses the jump table at 0x1028c62c with targets 0x10101b04, 0x10101c58, 0x10101c3c, 0x10101b58, 0x10101c0c, 0x10101bec, 0x10101a50, 0x10101b38, 0x10101bf8, 0x10101bd0, 0x10101bbc, 0x10101ba8, 0x10101b94, 0x10101b80, 0x10101b50, 0x10101b30.
 - `SpeedoCloseFont` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10101d00 (n32).
@@ -7999,13 +8067,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10101de0 loads 4 bytes from sym(inputInfo) +0x10.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10101e00, `lw` at 0x10101f4c.
   The `lw` at 0x10101e10 loads 4 bytes from [a0+8] +0x4.
-  33 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10101e1c, `lw` at 0x10101e20, `lw` at 0x10101e30.
+  The `lw` at 0x10101e1c loads 4 bytes from [sym(inputInfo)+16] +0x94.
+  The `lw` at 0x10101e20 loads 4 bytes from [[sym(inputInfo)+16]+148] +0x8.
+  The `lw` at 0x10101e30 loads 4 bytes from [sym(inputInfo)+16] +0x2c.
+  The `lw` at 0x10101e3c loads 4 bytes from [[sym(inputInfo)+16]+44] +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x10101e44, `lw` at 0x101020f8.
-  The `sw` at 0x10101e64 stores 4 bytes to ?.
+  The `lw` at 0x10101e54 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x30.
+  The `sw` at 0x10101e64 stores 4 bytes to [[sym(inputInfo)+16]+148] +0x8.
   The `lw` at 0x10101e88 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `lw` at 0x10101e94 loads 4 bytes from sym(inputInfo) +0xc.
+  The `lw` at 0x10101e98 loads 4 bytes from [sym(inputInfo)+16] +0x98.
   The `lw` at 0x10101e9c loads 4 bytes from [sym(inputInfo)+12] +0x90.
-  The `lhu` at 0x10101ea0 loads 2 bytes from ?.
+  The `lhu` at 0x10101ea0 loads 2 bytes from [[sym(inputInfo)+16]+152] +0x2.
   The `lhu` at 0x10101ea4 loads 2 bytes from [[sym(inputInfo)+12]+144] +0x152.
   The `lw` at 0x10101eb4 loads 4 bytes from [0x102c5fd8] +0x0.
   The `lw` at 0x10101eb8 loads 4 bytes from sym(panoramiXDisabled) +0x0.
@@ -8013,25 +8086,31 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x10, including `lw` at 0x10101ed4, `lw` at 0x10102088.
   2 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0x8, including `lh` at 0x10101ee8, `lh` at 0x1010209c.
   2 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0xa, including `lh` at 0x10101ef8, `lh` at 0x101020b4.
+  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10101f0c, `lw` at 0x10101f84, `lw` at 0x10101f90.
   The `lw` at 0x10101f38 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lbu` at 0x10101f50 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10101f60 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x4, including `lw` at 0x10101fb8, `lw` at 0x10102188.
   2 such `lw` accesses load 4 bytes from sym(clients) +0x0, including `lw` at 0x10101fc0, `lw` at 0x10102194.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x68, including `lw` at 0x10101fe4, `lw` at 0x101021b8.
   The `lw` at 0x1010203c loads 4 bytes from [0x102c6020] +0x0.
   The `lw` at 0x10102040 loads 4 bytes from sym(WindowTable) +0x0.
   The `lw` at 0x10102054 loads 4 bytes from ([sym(WindowTable)] + ([[0x102c6020]] << 0x2)) +0x0.
   The `lw` at 0x10102058 loads 4 bytes from sym(panoramiXdataPtr) +0x0.
   The `lw` at 0x10102064 loads 4 bytes from [([sym(WindowTable)] + ([[0x102c6020]] << 0x2))] +0x4.
   The `lw` at 0x101020d0 loads 4 bytes from [0x102c6004] +0x18.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x78, including `lw` at 0x101020d4, `lw` at 0x101021bc.
+  2 such `lw` accesses load 4 bytes from [[[[sym(inputInfo)+16]+148]+8]+120] +0x14, including `lw` at 0x101020e0, `lw` at 0x101021c8.
+  The `lw` at 0x10102178 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x10.
   The `jal` at 0x10101e0c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0x10101f68 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=[a0+16].
   The `jal` at 0x10102148 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=[a0+16].
   The `beq` branch at 0x10101de4 targets 0x10101dfc, is taken when at(=[a0+72]) == v0(=0x2), and falls through when at(=[a0+72]) != v0(=0x2).
   The `beq` branch at 0x10101e14 targets 0x10101fe8, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x10101e24 targets 0x10101e6c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x10101e34 targets 0x10101fb0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x10101e24 targets 0x10101e6c, is taken when a6(=[[[sym(inputInfo)+16]+148]+8]) == 0, and falls through when a6(=[[[sym(inputInfo)+16]+148]+8]) != 0.
+  The `beq` branch at 0x10101e34 targets 0x10101fb0, is taken when a4(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a4(=[[sym(inputInfo)+16]+44]) != 0.
   The `bne` branch at 0x10101e4c targets 0x10101fb0, is taken when t0(=[a0+4]) != a5(?), and falls through when t0(=[a0+4]) == a5(?).
-  The `beq` branch at 0x10101e5c targets 0x10102178, is taken when (t2(?) & 0x80) == 0, and falls through when (t2(?) & 0x80) != 0.
+  The `beq` branch at 0x10101e5c targets 0x10102178, is taken when (t2(=[[[sym(inputInfo)+16]+44]+48]) & 0x80) == 0, and falls through when (t2(=[[[sym(inputInfo)+16]+44]+48]) & 0x80) != 0.
   The `beq` branch at 0x10101ecc targets 0x10102008, is taken when t8(=[sym(panoramiXDisabled)]) == 0, and falls through when t8(=[sym(panoramiXDisabled)]) != 0.
   The `bne` branch at 0x10101edc targets 0x10101f28, is taken when at(=[ret(SecurityLookupWindow)+16]) != v1(=[0x102c6010]), and falls through when at(=[ret(SecurityLookupWindow)+16]) == v1(=[0x102c6010]).
   The `beq` branch at 0x10101f04 targets 0x10101f34, is taken when a0(=[0x102c6004]) == 0, and falls through when a0(=[0x102c6004]) != 0.
@@ -8042,7 +8121,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10101f88 targets 0x10101fb0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x10101f98 targets 0x10101f84, is taken when t0(=[a0+4]) != at(?), and falls through when t0(=[a0+4]) == at(?).
   The `bne` branch at 0x10101fa8 targets 0x10101e64, is taken when (t0(?) & 0x80) != 0, and falls through when (t0(?) & 0x80) == 0.
-  The `bne` branch at 0x10101fb0 targets 0x10101e68, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10101fb0 targets 0x10101e68, is taken when a4(=[[sym(inputInfo)+16]+44]) != 0, and falls through when a4(=[[sym(inputInfo)+16]+44]) == 0.
   The `bne` branch at 0x10101fd8 targets 0x101020d4, is taken when a0(?) != a1(=a0), and falls through when a0(?) == a1(=a0).
   The `beq` branch at 0x10101fe0 targets 0x1010211c and is always taken.
   The `beq` branch at 0x10102000 targets 0x10101f34 and is always taken.
@@ -8052,7 +8131,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010208c targets 0x10102130, is taken when t8(=[ret(SecurityLookupWindow)+16]) != a6(=[0x102c6020]), and falls through when t8(=[ret(SecurityLookupWindow)+16]) == a6(=[0x102c6020]).
   The `beq` branch at 0x101020c4 targets 0x10101f34, is taken when v1(=[0x102c6004]) == 0, and falls through when v1(=[0x102c6004]) != 0.
   The `beq` branch at 0x101020cc targets 0x10102164 and is always taken.
-  The `beq` branch at 0x101020d8 targets 0x101021dc, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x101020d8 targets 0x101021dc, is taken when t2(=[[[[sym(inputInfo)+16]+148]+8]+120]) == 0, and falls through when t2(=[[[[sym(inputInfo)+16]+148]+8]+120]) != 0.
   The `beq` branch at 0x101020e4 targets 0x10101e6c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x101020f4 targets 0x10102108 and is always taken.
   The `beq` branch at 0x10102100 targets 0x10101e68, is taken when a5(?) == 0, and falls through when a5(?) != 0.
@@ -8067,7 +8146,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10102180 targets 0x10101fb0, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `bne` branch at 0x101021ac targets 0x101021bc, is taken when ra(?) != at(=a0), and falls through when ra(?) == at(=a0).
   The `beq` branch at 0x101021b4 targets 0x10101fa4 and is always taken.
-  The `beq` branch at 0x101021c0 targets 0x101021ec, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x101021c0 targets 0x101021ec, is taken when t2(=[[[[sym(inputInfo)+16]+148]+8]+120]) == 0, and falls through when t2(=[[[[sym(inputInfo)+16]+148]+8]+120]) != 0.
   The `beq` branch at 0x101021cc targets 0x10101fb0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x101021d4 targets 0x10101f94 and is always taken.
   The `beq` branch at 0x101021dc targets 0x101020e4 and is always taken.
@@ -8112,12 +8191,11 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 172 bytes.
   The `lw` at 0x10102480 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10102488 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  The `lw` at 0x101024d8 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x101024ec loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x101024d8, `lw` at 0x101024ec.
   The `lw` at 0x10102508 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `sw` at 0x10102528 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x101024d4 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0xffffffffc0000002, a3=0x4.
-  The `jal` at 0x101024f4 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=0x4.
+  The `jal` at 0x101024f4 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=0x4.
   The `beq` branch at 0x101024a4 targets 0x101024b8, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `beq` branch at 0x101024e8 targets 0x10102514, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The return at 0x101024b0 has v0 = 0x10.
@@ -8136,18 +8214,20 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1010257c loads 4 bytes from [a0+8] +0x4.
   The `lw` at 0x10102588 loads 4 bytes from [entry(0x102c61a0)+8] +0x418.
   The `lw` at 0x10102590 loads 4 bytes from [entry(0x102c61a0)+8] +0x41c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101025b8, `lw` at 0x101025c8, `lw` at 0x10102684.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101025b8, `lw` at 0x101025c8.
   The `lw` at 0x10102654 loads 4 bytes from a0 (arg0 at entry) +0xc.
+  The `lw` at 0x10102684 loads 4 bytes from [a0+12] +0x0.
+  The `lw` at 0x1010268c loads 4 bytes from [a0+12] +0x28.
   The `sw` at 0x101026dc stores 4 bytes to ret(AllocNewConnection..IG) +0x44.
   The `jal` at 0x10102614 calls Xalloc [0x1020aeb0] with a0=([a0+72] << 0x2)-8, a1=?, a2=[a0+8], a3=[[entry(0x102c61a0)+8]+1048], a4=0x100, a6=[a0+72], a7=([entry(0x102c61a0)+8] + ([[entry(0x102c61a0)+8]+1052] << 0x2)).
-  The `jalr` at 0x10102644 calls memcpy with a0=ret(Xalloc), a1=?, a2=?, a3=?, a5=0xb.
+  The `jalr` at 0x10102644 calls memcpy with a0=ret(Xalloc), a1=[a0+8]+8, a2=([a0+72] << 0x2)-8, a3=?, a5=0xb.
   The `jalr` at 0x1010265c calls times with a0=sp-96, a1=?, a2=[a0+12], a3=?.
-  The `jal` at 0x10102690 calls AllocNewConnection..IG [0x101f69f0] with a0=0x0, a1=?, a2=?, a3=(((ret(times) << 0x2) + ret(times)) << 0x1), a4=0x101199e0, a5=0x1023fd10, a6=[entry(0x102c61a0)+8].
+  The `jal` at 0x10102690 calls AllocNewConnection..IG [0x101f69f0] with a0=0x0, a1=[[a0+12]], a2=[[a0+12]+40], a3=(((ret(times) << 0x2) + ret(times)) << 0x1), a4=0x101199e0, a5=0x1023fd10, a6=[entry(0x102c61a0)+8].
   The `jal` at 0x101026d8 calls LbxInitClient..KBG [0x1016a770] with a0=[entry(0x102c61a0)+8], a1=ret(AllocNewConnection..IG), a2=[[a0+8]+4], a3=?, a5=0xb, a7=0x102cfb00.
-  The `jal` at 0x101026f4 calls CloseDownClient [0x100b3fc0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1010270c calls AppendFakeRequest [0x10094a20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10102718 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10102720 calls LbxSetForBlock [0x100b3f40] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101026f4 calls CloseDownClient [0x100b3fc0] with a0=ret(AllocNewConnection..IG), a1=?, a2=?, a3=?.
+  The `jal` at 0x1010270c calls AppendFakeRequest [0x10094a20] with a0=ret(AllocNewConnection..IG), a1=ret(Xalloc), a2=([a0+72] << 0x2)-8, a3=?.
+  The `jal` at 0x10102718 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10102720 calls LbxSetForBlock [0x100b3f40] with a0=ret(LbxInitClient..KBG), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1010255c targets 0x101025e8, is taken when a1(=entry(0x102c61a0)) == 0, and falls through when a1(=entry(0x102c61a0)) != 0.
   The `bne` branch at 0x10102568 targets 0x101025f4, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x10102578 targets 0x101026b0, is taken when s1(=[entry(0x102c61a0)+8]) == 0, and falls through when s1(=[entry(0x102c61a0)+8]) != 0.
@@ -8242,7 +8322,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 152 bytes.
   The `jalr` at 0x10102968 calls cap_acquire with a0=0x1, a1=0x10290658, a2=?, a3=?.
   The `jalr` at 0x1010297c calls t6mls_socket with a0=a0 at entry (arg0), a1=0x1, a2=?, a3=?.
-  The `jalr` at 0x1010298c calls cap_surrender with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1010298c calls cap_surrender with a0=ret(cap_acquire), a1=?, a2=?, a3=?.
   The `jalr` at 0x101029b4 calls sysconf with a0=0x1e, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x102cc408].
   The `beq` branch at 0x10102940 targets 0x101029b0, is taken when a3(=[0x102cc408]) == at(=-0x1), and falls through when a3(=[0x102cc408]) != at(=-0x1).
   The `bne` branch at 0x10102948 targets 0x10102960, is taken when a3(?) != 0, and falls through when a3(?) == 0.
@@ -8267,8 +8347,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10102bc8 loads 4 bytes from [a0+68] +0x4.
   The `lh` at 0x10102c0c loads 2 bytes from a4 (arg4 at entry) +0x2.
   The `jal` at 0x10102b14 calls Xalloc [0x1020aeb0] with a0=(a3 << 0x3), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x10102b94 calls memmove with a0=ret(Xalloc), a1=a4 at entry (arg4), a2=?, a3=a0 at entry (arg0), a4=a3 at entry (arg3), a5=([a0+64] | 0xffffffff80000000), a6=0xffffffff80000000, a7=a1 at entry (arg1).
-  The `jalr` at 0x10102bb8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=a3 at entry (arg3).
+  The `jalr` at 0x10102b94 calls memmove with a0=ret(Xalloc), a1=a4 at entry (arg4), a2=(a3 << 0x3), a3=a0 at entry (arg0), a4=a3 at entry (arg3), a5=([a0+64] | 0xffffffff80000000), a6=0xffffffff80000000, a7=a1 at entry (arg1).
+  The `jalr` at 0x10102bb8 calls (unknown callee) with a0=a0 at entry (arg0), a1=one of 0x6, 0xa, 0xe, 0x12, a2=ret(Xalloc), a3=a3 at entry (arg3).
   The `jalr` at 0x10102bd4 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xe0000, a2=?, a3=?.
   The `beq` branch at 0x10102a3c targets 0x10102aec, is taken when a5 == 0, and falls through when a5 != 0.
   The `beq` branch at 0x10102a48 targets 0x10102bf0, is taken when a5 == v1(=0x1), and falls through when a5 != v1(=0x1).
@@ -8323,11 +8403,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10102f2c stores 4 bytes to a0 (arg0 at entry) +0x9c.
   2 such `lh` accesses load 2 bytes from a3 (arg3 at entry) +0x2, including `lh` at 0x10102f54, `lh` at 0x10102f70.
   2 such `lh` accesses load 2 bytes from a3 (arg3 at entry) +0x0, including `lh` at 0x10102f5c, `lh` at 0x10102f88.
-  24 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10102f68, `sh` at 0x10102f78, `sh` at 0x10102f9c.
+  The `sh` at 0x10102f68 stores 2 bytes to (ret(realloc) + ([a0+156] << 0x3)) +0x2.
+  The `sh` at 0x10102f78 stores 2 bytes to (ret(realloc) + ([a0+156] << 0x3)) +0x0.
   The `lh` at 0x10102f7c loads 2 bytes from a3 (arg3 at entry) +0x6.
   The `lh` at 0x10102f80 loads 2 bytes from a3 (arg3 at entry) +0x4.
   2 such `lh` accesses load 2 bytes from a3 (arg3 at entry) +0xa, including `lh` at 0x10102f84, `lh` at 0x10102fa8.
   2 such `lh` accesses load 2 bytes from a3 (arg3 at entry) +0x8, including `lh` at 0x10102f8c, `lh` at 0x10102fbc.
+  The `sh` at 0x10102f9c stores 2 bytes to (ret(realloc) + ([a0+156] << 0x3)) +0xa.
+  The `sh` at 0x10102fb4 stores 2 bytes to (ret(realloc) + ([a0+156] << 0x3)) +0x8.
+  20 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10102fd0, `sh` at 0x10102fdc, `sh` at 0x10102ffc.
   26 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10102fe4, `lh` at 0x10102fe8, `lh` at 0x10102fec.
   The `sw` at 0x10103170 stores 4 bytes to ret(malloc) +0x0.
   The `sw` at 0x10103174 stores 4 bytes to [0x102ca888] +0x0.
@@ -9170,13 +9254,12 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 196 bytes.
   The `lw` at 0x10106c90 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10106c98 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  The `lw` at 0x10106ce4 loads 4 bytes from [a0+8] +0x4.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10106ce4, `lw` at 0x10106d2c, `lw` at 0x10106d48.
   The `lh` at 0x10106cf0 loads 2 bytes from ret(SecurityLookupIDByType) +0x10.
   The `lw` at 0x10106d0c loads 4 bytes from a0 (arg0 at entry) +0x28.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10106d2c, `lw` at 0x10106d48.
   The `sw` at 0x10106d38 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x10106ce0 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x6, a3=0x4.
-  The `jal` at 0x10106d44 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x10106d44 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x10106cb4 targets 0x10106cc8, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `beq` branch at 0x10106ce8 targets 0x10106d18, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The `beq` branch at 0x10106cf8 targets 0x10106d3c, is taken when (a2(=[ret(SecurityLookupIDByType)+16]:2) & 0x1) == 0, and falls through when (a2(=[ret(SecurityLookupIDByType)+16]:2) & 0x1) != 0.
@@ -9191,93 +9274,126 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 3240 bytes.
   The `lw` at 0x10106d78 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10106d84 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lbu` at 0x10106dc4 loads 1 byte from [a0+8] +0x1.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1, including `lbu` at 0x10106dc4, `lbu` at 0x10106ec8.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10106df8, `sw` at 0x10106ea4, `sw` at 0x10106f5c.
   The `lw` at 0x10106e04 loads 4 bytes from [a0+8] +0x4.
-  51 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10106e24, `lw` at 0x10106e58, `lw` at 0x10106e84.
+  The `lw` at 0x10106e24 loads 4 bytes from [a0+8] +0x8.
   The `lw` at 0x10106e30 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
   The `lh` at 0x10106e34 loads 2 bytes from [ret(SecurityLookupWindow)+16] +0x78.
   The `lw` at 0x10106e40 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x7c.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x10106e58, `lw` at 0x10107168.
   The `lw` at 0x10106e6c loads 4 bytes from [[ret(SecurityLookupWindow)+16]+124] +0x0.
-  4 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10106eb0, `lh` at 0x101070a0, `lh` at 0x101070d4.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10106e84, `lw` at 0x1010716c, `lw` at 0x10107170.
+  The `lh` at 0x10106eb0 loads 2 bytes from ?.
   The `lw` at 0x10106ec0 loads 4 bytes from a0 (arg0 at entry) +0x0.
-  The `lbu` at 0x10106ec8 loads 1 byte from ?.
   The `lhu` at 0x10106ecc loads 2 bytes from ?.
   The `lw` at 0x10106f20 loads 4 bytes from a0 (arg0 at entry) +0x28.
-  2 such `sh` accesses store 2 bytes to ret(Xalloc) +0x10, including `sh` at 0x10106f70, `sh` at 0x10106fac.
+  5 such `sh` accesses store 2 bytes to ret(Xalloc) +0x10, including `sh` at 0x10106f70, `sh` at 0x10106fac, `sh` at 0x101070ac.
   The `sw` at 0x10106f7c stores 4 bytes to ret(Xalloc) +0x38.
   The `sw` at 0x10106f8c stores 4 bytes to ret(Xalloc) +0x2c.
   The `sw` at 0x10106f94 stores 4 bytes to ret(Xalloc) +0x20.
   The `sw` at 0x10106f9c stores 4 bytes to ret(Xalloc) +0x8.
+  The `lw` at 0x10106fa0 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x1c.
   The `sw` at 0x10106fb4 stores 4 bytes to ret(Xalloc) +0x0.
   The `sh` at 0x10106fc8 stores 2 bytes to ret(Xalloc) +0x4.
   The `sw` at 0x10106fd0 stores 4 bytes to ret(Xalloc) +0xc.
-  The `sw` at 0x10106fe8 stores 4 bytes to ret(Xalloc) +0x14.
-  122 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10107018, `sw` at 0x10107030, `sw` at 0x10107048.
-  13 such `sh` accesses store 2 bytes to ?, including `sh` at 0x101070ac, `sh` at 0x101070e8, `sh` at 0x10107194.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x14, including `sw` at 0x10106fe8, `sw` at 0x1010721c.
+  3 such `lw` accesses load 4 bytes from ret(Xalloc) +0x20, including `lw` at 0x10106ffc, `lw` at 0x10107358, `lw` at 0x1010739c.
+  9 such `lw` accesses load 4 bytes from ret(Xalloc) +0x2c, including `lw` at 0x10107004, `lw` at 0x1010701c, `lw` at 0x10107034.
+  The `sw` at 0x10107018 stores 4 bytes to [ret(Xalloc)+44] +0x3fc.
+  102 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10107030, `sw` at 0x10107048, `sw` at 0x1010705c.
+  3 such `lh` accesses load 2 bytes from ret(Xalloc) +0x10, including `lh` at 0x101070a0, `lh` at 0x101070d4, `lh` at 0x1010718c.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x48, including `sw` at 0x101070b8, `sw` at 0x10107100.
+  The `lw` at 0x101070c0 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x134.
+  4 such `lw` accesses load 4 bytes from ret(Xalloc) +0x38, including `lw` at 0x101071a0, `lw` at 0x101071c4, `lw` at 0x101071dc.
+  10 such `sh` accesses store 2 bytes to ?, including `sh` at 0x101071c0, `sh` at 0x101071d8, `sh` at 0x101071f0.
+  The `sw` at 0x10107244 stores 4 bytes to ([ret(Xalloc)+44] + ([a0] << 0x2)) +0x0.
+  The `sw` at 0x10107364 stores 4 bytes to ([ret(Xalloc)+32] + ([a0] << 0x2)) +0x0.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x18, including `sw` at 0x101073a4, `sw` at 0x10107574.
+  The `sw` at 0x101073ac stores 4 bytes to ret(Xalloc) +0x3c.
+  The `sw` at 0x101073b4 stores 4 bytes to ret(Xalloc) +0x30.
+  The `sw` at 0x101073bc stores 4 bytes to ret(Xalloc) +0x24.
+  The `sw` at 0x101073cc stores 4 bytes to ret(Xalloc) +0x40.
+  The `sw` at 0x101073d8 stores 4 bytes to ret(Xalloc) +0x34.
+  The `sw` at 0x101073e0 stores 4 bytes to ret(Xalloc) +0x28.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x1c, including `sw` at 0x101073f0, `sw` at 0x1010773c.
+  5 such `lw` accesses load 4 bytes from ret(Xalloc) +0x40, including `lw` at 0x10107404, `lw` at 0x101076b8, `lw` at 0x101076e4.
+  3 such `lw` accesses load 4 bytes from ret(Xalloc) +0x30, including `lw` at 0x1010741c, `lw` at 0x10107590, `lw` at 0x10107900.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x34, including `lw` at 0x10107434, `lw` at 0x10107750.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x24, including `lw` at 0x10107448, `lw` at 0x101076a4.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x28, including `lw` at 0x1010745c, `lw` at 0x10107870.
+  The `lw` at 0x101074e8 loads 4 bytes from ret(Xalloc) +0x18.
+  4 such `lw` accesses load 4 bytes from ret(Xalloc) +0x3c, including `lw` at 0x101074f0, `lw` at 0x1010751c, `lw` at 0x10107534.
+  The `sw` at 0x1010759c stores 4 bytes to ([ret(Xalloc)+48] + ([a0] << 0x2)) +0x0.
+  The `sw` at 0x101076ac stores 4 bytes to ([ret(Xalloc)+36] + ([a0] << 0x2)) +0x0.
+  The `lw` at 0x101076b0 loads 4 bytes from ret(Xalloc) +0x1c.
+  The `sw` at 0x1010775c stores 4 bytes to ([ret(Xalloc)+52] + ([a0] << 0x2)) +0x0.
+  The `sw` at 0x1010787c stores 4 bytes to ([ret(Xalloc)+40] + ([a0] << 0x2)) +0x0.
+  2 such `lw` accesses load 4 bytes from ([ret(Xalloc)+44] + ([a0] << 0x2)) +0x0, including `lw` at 0x101078d4, `lw` at 0x10107924.
+  The `lw` at 0x1010790c loads 4 bytes from ([ret(Xalloc)+48] + ([a0] << 0x2)) +0x0.
   The `jal` at 0x10106e08 calls LegalNewID [0x101557b0] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=[[a0+8]+1]:1.
-  The `jal` at 0x10106e20 calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=?.
-  The `jal` at 0x10106f08 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=[a0], a4=0x5.
-  The `jalr` at 0x10106fe4 calls bzero with a0=ret(Xalloc)+76, a1=?, a2=?, a3=?, a4=0x1, a7=0x5.
-  The `jalr` at 0x10106ff8 calls bzero with a0=?, a1=0x400, a2=?, a3=?.
-  The `jal` at 0x1010708c calls AddResource [0x1010ec30] with a0=?, a1=0x6, a2=?, a3=?.
-  The `jalr` at 0x101070c4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10106e20 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x1, a3=?.
+  The `jal` at 0x10106f08 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=[[a0+8]+1]:1, a3=[a0], a4=0x5.
+  The `jalr` at 0x10106fe4 calls bzero with a0=ret(Xalloc)+76, a1=?, a2=?, a3=[[a0+8]+4], a4=0x1, a5=[ret(SecurityLookupWindow)+16], a7=0x5.
+  The `jalr` at 0x10106ff8 calls bzero with a0=[ret(Xalloc)+32], a1=0x400, a2=?, a3=?.
+  The `jal` at 0x1010708c calls AddResource [0x1010ec30] with a0=[[a0+8]+4], a1=0x6, a2=ret(Xalloc), a3=?.
+  The `jalr` at 0x101070c4 calls (unknown callee) with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x101070f0 calls Xalloc [0x1020aeb0] with a0=([0x102c6110] << 0x2), a1=?, a2=?, a3=?.
-  The `jal` at 0x10107218 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=-0x1, a6=0x1.
-  The `jalr` at 0x101073ec calls bzero with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10107400 calls bzero with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10107418 calls memmove with a0=?, a1=?, a2=0x400, a3=?.
-  The `jalr` at 0x10107430 calls memmove with a0=?, a1=?, a2=0x400, a3=?.
-  The `jalr` at 0x10107444 calls bzero with a0=?, a1=0x400, a2=?, a3=?.
-  The `jalr` at 0x10107458 calls bzero with a0=?, a1=0x400, a2=?, a3=?.
-  The `jal` at 0x101074a0 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x101074c8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a7=ret(Xalloc).
-  The `jal` at 0x10107570 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10107738 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1010789c calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x101078d0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a7=ret(Xalloc).
-  The `jal` at 0x101078dc calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10107908 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a7=ret(Xalloc).
-  The `jal` at 0x10107920 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1010792c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10107218 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=-0x1, a5=ret(Xalloc), a6=0x1.
+  The `jalr` at 0x101073ec calls bzero with a0=[ret(Xalloc)+32]+1024, a1=?, a2=?, a3=ret(Xalloc).
+  The `jalr` at 0x10107400 calls bzero with a0=[ret(Xalloc)+64], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10107418 calls memmove with a0=[ret(Xalloc)+48], a1=[ret(Xalloc)+44], a2=0x400, a3=?.
+  The `jalr` at 0x10107430 calls memmove with a0=[ret(Xalloc)+52], a1=[ret(Xalloc)+44], a2=0x400, a3=?.
+  The `jalr` at 0x10107444 calls bzero with a0=[ret(Xalloc)+36], a1=0x400, a2=?, a3=?.
+  The `jalr` at 0x10107458 calls bzero with a0=[ret(Xalloc)+40], a1=0x400, a2=?, a3=?.
+  The `jal` at 0x101074a0 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=?.
+  The `jal` at 0x101074c8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?, a7=ret(Xalloc).
+  The `jal` at 0x10107570 calls Xalloc [0x1020aeb0] with a0=([ret(Xalloc)+24] << 0x2), a1=?, a2=?, a3=ret(Xalloc), a4=[ret(Xalloc)+24].
+  The `jal` at 0x10107738 calls Xalloc [0x1020aeb0] with a0=([ret(Xalloc)+28] << 0x2), a1=([ret(Xalloc)+36] + ([a0] << 0x2)), a2=?, a3=?, a6=ret(Xalloc).
+  The `jal` at 0x1010789c calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=?.
+  The `jal` at 0x101078d0 calls Xfree [0x101fc9c0] with a0=[([ret(Xalloc)+44] + ([a0] << 0x2))], a1=?, a2=?, a3=?, a7=ret(Xalloc).
+  The `jal` at 0x101078dc calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10107908 calls Xfree [0x101fc9c0] with a0=[([ret(Xalloc)+48] + ([a0] << 0x2))], a1=?, a2=?, a3=?, a7=ret(Xalloc).
+  The `jal` at 0x10107920 calls Xfree [0x101fc9c0] with a0=[([ret(Xalloc)+44] + ([a0] << 0x2))], a1=?, a2=?, a3=?.
+  The `jal` at 0x1010792c calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10106d94 targets 0x10106dac, is taken when a7(=[a0+72]) == t0(=0x4), and falls through when a7(=[a0+72]) != t0(=0x4).
   The `beq` branch at 0x10106dd0 targets 0x10106dfc, is taken when a7(=[[a0+8]+1]:1) == 0, and falls through when a7(=[[a0+8]+1]:1) != 0.
   The `beq` branch at 0x10106ddc targets 0x10106dfc, is taken when a7(=[[a0+8]+1]:1) == t1(=0x1), and falls through when a7(=[[a0+8]+1]:1) != t1(=0x1).
   The `beq` branch at 0x10106e10 targets 0x10106f40, is taken when v0(=ret(LegalNewID)) == 0, and falls through when v0(=ret(LegalNewID)) != 0.
   The `beq` branch at 0x10106e28 targets 0x10106f60, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
   The `blez` branch at 0x10106e3c targets 0x10107160, is taken when a3(=[[ret(SecurityLookupWindow)+16]+120]:2) <= 0 (signed), and falls through when a3(=[[ret(SecurityLookupWindow)+16]+120]:2) > 0 (signed).
-  The `beq` branch at 0x10106e70 targets 0x10106ea8, is taken when a0(?) == v1(?), and falls through when a0(?) != v1(?).
+  The `beq` branch at 0x10106e70 targets 0x10106ea8, is taken when a0(?) == v1(=[[a0+8]+12]), and falls through when a0(?) != v1(=[[a0+8]+12]).
   The `bnel` branch at 0x10106e80 targets 0x10106e70, is taken when s0(?) < v0(=([[ret(SecurityLookupWindow)+16]+124] + ((([[ret(SecurityLookupWindow)+16]+120]:2 << 0x3) + [[ret(SecurityLookupWindow)+16]+120]:2) << 0x2))) (signed), and falls through when s0(?) >= v0(=([[ret(SecurityLookupWindow)+16]+124] + ((([[ret(SecurityLookupWindow)+16]+120]:2 << 0x3) + [[ret(SecurityLookupWindow)+16]+120]:2) << 0x2))) (signed); its branch-likely delay slot `lw a0,0(s0)` at 0x10106e84 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x10106ec4 targets 0x10107118, is taken when (v0(?) & 0x1) == 0, and falls through when (v0(?) & 0x1) != 0.
   The `beq` branch at 0x10106ef0 targets 0x10107148, is taken when a0(?) == a4(=0x5), and falls through when a0(?) != a4(=0x5).
   The `bne` branch at 0x10106f10 targets 0x10106f70, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
   The `beq` branch at 0x10106f24 targets 0x10107130, is taken when v1(=[a0+40]) == 0, and falls through when v1(=[a0+40]) != 0.
-  The `bne` branch at 0x10106fa4 targets 0x10106fb0, is taken when a2(?) != a3(?), and falls through when a2(?) == a3(?).
+  The `bne` branch at 0x10106fa4 targets 0x10106fb0, is taken when a2(=[[ret(SecurityLookupWindow)+16]+28]) != a3(=[[a0+8]+4]), and falls through when a2(=[[ret(SecurityLookupWindow)+16]+28]) == a3(=[[a0+8]+4]).
   The `beq` branch at 0x10106fcc targets 0x1010716c, is taken when a6(?) == a7(=0x5), and falls through when a6(?) != a7(=0x5).
-  The `bne` branch at 0x10107010 targets 0x10107064, is taken when v1(?) < a1(?) (unsigned), and falls through when v1(?) >= a1(?) (unsigned).
-  The `bne` branch at 0x10107028 targets 0x10107060, is taken when v1(?) < a2(?) (unsigned), and falls through when v1(?) >= a2(?) (unsigned).
-  The `bne` branch at 0x10107040 targets 0x10107060, is taken when v1(?) < a3(?) (unsigned), and falls through when v1(?) >= a3(?) (unsigned).
-  The `beql` branch at 0x10107058 targets 0x1010701c, is taken when v1(?) >= a4(?) (unsigned), and falls through when v1(?) < a4(?) (unsigned); its branch-likely delay slot `sw zero,0(v1)` at 0x1010705c runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0x10107068 targets 0x10107184, is taken when a5(?) == a6(=0x1), and falls through when a5(?) != a6(=0x1).
+  The `bne` branch at 0x10107010 targets 0x10107064, is taken when v1(=[ret(Xalloc)+44]+1020) < a1(=[ret(Xalloc)+44]) (unsigned), and falls through when v1(=[ret(Xalloc)+44]+1020) >= a1(=[ret(Xalloc)+44]) (unsigned).
+  The `bne` branch at 0x10107028 targets 0x10107060, is taken when v1(?) < a2(=[ret(Xalloc)+44]) (unsigned), and falls through when v1(?) >= a2(=[ret(Xalloc)+44]) (unsigned).
+  The `bne` branch at 0x10107040 targets 0x10107060, is taken when v1(?) < a3(=[ret(Xalloc)+44]) (unsigned), and falls through when v1(?) >= a3(=[ret(Xalloc)+44]) (unsigned).
+  The `beql` branch at 0x10107058 targets 0x1010701c, is taken when v1(?) >= a4(=[ret(Xalloc)+44]) (unsigned), and falls through when v1(?) < a4(=[ret(Xalloc)+44]) (unsigned); its branch-likely delay slot `sw zero,0(v1)` at 0x1010705c runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0x10107068 targets 0x10107184, is taken when a5(=[[a0+8]+1]:1) == a6(=0x1), and falls through when a5(=[[a0+8]+1]:1) != a6(=0x1).
   The `beq` branch at 0x10107078 targets 0x10107388, is taken when a7(?) == t0(=0x5), and falls through when a7(?) != t0(=0x5).
   The `beq` branch at 0x10107094 targets 0x1010737c, is taken when v0(=ret(AddResource)) == 0, and falls through when v0(=ret(AddResource)) != 0.
   The `bne` branch at 0x101070a8 targets 0x101070ec, is taken when v1(=[0x102c6110]) != 0, and falls through when v1(=[0x102c6110]) == 0.
   The `beq` branch at 0x101070cc targets 0x10107894, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0x101070e4 targets 0x10106f1c and is always taken.
   The `beq` branch at 0x101070fc targets 0x10107498, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `bne` branch at 0x10107108 targets 0x10106f1c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x10107108 targets 0x10106f1c, is taken when a0(=one of 0x0, 0x1) != 0, and falls through when a0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10107110 targets 0x101070c0 and is always taken.
-  The `beq` branch at 0x10107118 targets 0x10106ecc, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10107118 targets 0x10106ecc, is taken when a2(=[[a0+8]+1]:1) == 0, and falls through when a2(=[[a0+8]+1]:1) != 0.
   The `beq` branch at 0x10107120 targets 0x10106ecc, is taken when a3(=[a0]) == 0, and falls through when a3(=[a0]) != 0.
   The `beq` branch at 0x10107128 targets 0x10106f1c and is always taken.
   The `beq` branch at 0x10107158 targets 0x10106ef8 and is always taken.
   The `beq` branch at 0x10107164 targets 0x10106e88 and is always taken.
   The `beq` branch at 0x1010717c targets 0x10106fd4 and is always taken.
   The `beq` branch at 0x10107184 targets 0x1010719c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x101071b8 targets 0x10107208, is taken when v1(?) < a5(?) (unsigned), and falls through when v1(?) >= a5(?) (unsigned).
-  The `bne` branch at 0x101071d0 targets 0x10107208, is taken when v1(?) < a1(?) (unsigned), and falls through when v1(?) >= a1(?) (unsigned).
-  The `bne` branch at 0x101071e8 targets 0x10107208, is taken when v1(?) < a2(?) (unsigned), and falls through when v1(?) >= a2(?) (unsigned).
-  The `beql` branch at 0x10107200 targets 0x101071c4, is taken when v1(?) >= a4(?) (unsigned), and falls through when v1(?) < a4(?) (unsigned); its branch-likely delay slot `sh a3,12(v1)` at 0x10107204 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0x101071b8 targets 0x10107208, is taken when v1(?) < a5(=[ret(Xalloc)+56]) (unsigned), and falls through when v1(?) >= a5(=[ret(Xalloc)+56]) (unsigned).
+  The `bne` branch at 0x101071d0 targets 0x10107208, is taken when v1(?) < a1(=[ret(Xalloc)+56]) (unsigned), and falls through when v1(?) >= a1(=[ret(Xalloc)+56]) (unsigned).
+  The `bne` branch at 0x101071e8 targets 0x10107208, is taken when v1(?) < a2(=[ret(Xalloc)+56]) (unsigned), and falls through when v1(?) >= a2(=[ret(Xalloc)+56]) (unsigned).
+  The `beql` branch at 0x10107200 targets 0x101071c4, is taken when v1(?) >= a4(=[ret(Xalloc)+56]) (unsigned), and falls through when v1(?) < a4(=[ret(Xalloc)+56]) (unsigned); its branch-likely delay slot `sh a3,12(v1)` at 0x10107204 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x10107220 targets 0x101074c4, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
   The `blez` branch at 0x10107240 targets 0x10107354, is taken when a2(?) <= 0 (signed), and falls through when a2(?) > 0 (signed).
   The `beq` branch at 0x10107254 targets 0x10107270, is taken when (v1(?) & 0x7) == 0, and falls through when (v1(?) & 0x7) != 0.
@@ -9286,41 +9402,41 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010727c targets 0x10107948, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x101072e8 targets 0x101074bc, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
   The `bne` branch at 0x10107330 targets 0x101072a8, is taken when a6(?) != at(?), and falls through when a6(?) == at(?).
-  The `bne` branch at 0x1010736c targets 0x10106f20, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x1010736c targets 0x10106f20, is taken when a0(=one of 0x0, 0x1) != 0, and falls through when a0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10107374 targets 0x10107074 and is always taken.
   The `beq` branch at 0x10107380 targets 0x10106f1c and is always taken.
-  The `beq` branch at 0x10107468 targets 0x101074e4, is taken when a1(?) == a2(=0x1), and falls through when a1(?) != a2(=0x1).
-  The `beq` branch at 0x10107474 targets 0x10106f1c, is taken when v1(?) >= 0x1 (unsigned), and falls through when v1(?) < 0x1 (unsigned).
+  The `beq` branch at 0x10107468 targets 0x101074e4, is taken when a1(=[[a0+8]+1]:1) == a2(=0x1), and falls through when a1(=[[a0+8]+1]:1) != a2(=0x1).
+  The `beq` branch at 0x10107474 targets 0x10106f1c, is taken when v1(=one of 0x0, 0x1) >= 0x1 (unsigned), and falls through when v1(=one of 0x0, 0x1) < 0x1 (unsigned).
   The `beq` branch at 0x1010747c targets 0x10106f20, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `bne` branch at 0x10107488 targets 0x10106f20, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x10107488 targets 0x10106f20, is taken when a0(=one of 0x0, 0x1) != 0, and falls through when a0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10107490 targets 0x10107084 and is always taken.
   The `beq` branch at 0x101074b4 targets 0x10107104 and is always taken.
   The `beq` branch at 0x101074bc targets 0x10107338 and is always taken.
   The `beq` branch at 0x101074dc targets 0x10107368 and is always taken.
-  The `bne` branch at 0x10107508 targets 0x10107564, is taken when v1(?) < a5(?) (unsigned), and falls through when v1(?) >= a5(?) (unsigned).
-  The `bne` branch at 0x10107528 targets 0x10107560, is taken when v1(?) < a0(?) (unsigned), and falls through when v1(?) >= a0(?) (unsigned).
-  The `bne` branch at 0x10107540 targets 0x10107560, is taken when v1(?) < a1(?) (unsigned), and falls through when v1(?) >= a1(?) (unsigned).
-  The `beq` branch at 0x10107558 targets 0x10107518, is taken when v1(?) >= a2(?) (unsigned), and falls through when v1(?) < a2(?) (unsigned).
+  The `bne` branch at 0x10107508 targets 0x10107564, is taken when v1(=([ret(Xalloc)+60] + ((([ret(Xalloc)+24] << 0x2) + [ret(Xalloc)+24]) << 0x2))-20) < a5(=[ret(Xalloc)+60]) (unsigned), and falls through when v1(=([ret(Xalloc)+60] + ((([ret(Xalloc)+24] << 0x2) + [ret(Xalloc)+24]) << 0x2))-20) >= a5(=[ret(Xalloc)+60]) (unsigned).
+  The `bne` branch at 0x10107528 targets 0x10107560, is taken when v1(?) < a0(=[ret(Xalloc)+60]) (unsigned), and falls through when v1(?) >= a0(=[ret(Xalloc)+60]) (unsigned).
+  The `bne` branch at 0x10107540 targets 0x10107560, is taken when v1(?) < a1(=[ret(Xalloc)+60]) (unsigned), and falls through when v1(?) >= a1(=[ret(Xalloc)+60]) (unsigned).
+  The `beq` branch at 0x10107558 targets 0x10107518, is taken when v1(?) >= a2(=[ret(Xalloc)+60]) (unsigned), and falls through when v1(?) < a2(=[ret(Xalloc)+60]) (unsigned).
   The `beq` branch at 0x10107584 targets 0x101078c0, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `blez` branch at 0x10107598 targets 0x101076a0, is taken when t8(?) <= 0 (signed), and falls through when t8(?) > 0 (signed).
-  The `beq` branch at 0x101075a4 targets 0x101075c0, is taken when (t8(?) & 0x7) == 0, and falls through when (t8(?) & 0x7) != 0.
+  The `blez` branch at 0x10107598 targets 0x101076a0, is taken when t8(=[ret(Xalloc)+24]) <= 0 (signed), and falls through when t8(=[ret(Xalloc)+24]) > 0 (signed).
+  The `beq` branch at 0x101075a4 targets 0x101075c0, is taken when (t8(=[ret(Xalloc)+24]) & 0x7) == 0, and falls through when (t8(=[ret(Xalloc)+24]) & 0x7) != 0.
   The `bne` branch at 0x101075b8 targets 0x101075ac, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x101075c4 targets 0x101076a0, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0x101075cc targets 0x10107988, is taken when ra(?) != 0, and falls through when ra(?) == 0.
-  The `beq` branch at 0x10107634 targets 0x101078b0, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
-  The `bne` branch at 0x1010767c targets 0x101075f4, is taken when a6(?) != at(?), and falls through when a6(?) == at(?).
-  The `bne` branch at 0x101076d0 targets 0x10107728, is taken when v1(?) < at(?) (unsigned), and falls through when v1(?) >= at(?) (unsigned).
-  The `bne` branch at 0x101076f0 targets 0x10107728, is taken when v1(?) < a2(?) (unsigned), and falls through when v1(?) >= a2(?) (unsigned).
-  The `bne` branch at 0x10107708 targets 0x10107728, is taken when v1(?) < a4(?) (unsigned), and falls through when v1(?) >= a4(?) (unsigned).
-  The `beq` branch at 0x10107720 targets 0x101076e0, is taken when v1(?) >= a5(?) (unsigned), and falls through when v1(?) < a5(?) (unsigned).
+  The `beq` branch at 0x10107634 targets 0x101078b0, is taken when a6(?) == at(=[ret(Xalloc)+24]-8), and falls through when a6(?) != at(=[ret(Xalloc)+24]-8).
+  The `bne` branch at 0x1010767c targets 0x101075f4, is taken when a6(?) != at(=[ret(Xalloc)+24]-8), and falls through when a6(?) == at(=[ret(Xalloc)+24]-8).
+  The `bne` branch at 0x101076d0 targets 0x10107728, is taken when v1(=([ret(Xalloc)+64] + ((([ret(Xalloc)+28] << 0x2) + [ret(Xalloc)+28]) << 0x2))-20) < at(=[ret(Xalloc)+64]) (unsigned), and falls through when v1(=([ret(Xalloc)+64] + ((([ret(Xalloc)+28] << 0x2) + [ret(Xalloc)+28]) << 0x2))-20) >= at(=[ret(Xalloc)+64]) (unsigned).
+  The `bne` branch at 0x101076f0 targets 0x10107728, is taken when v1(?) < a2(=[ret(Xalloc)+64]) (unsigned), and falls through when v1(?) >= a2(=[ret(Xalloc)+64]) (unsigned).
+  The `bne` branch at 0x10107708 targets 0x10107728, is taken when v1(?) < a4(=[ret(Xalloc)+64]) (unsigned), and falls through when v1(?) >= a4(=[ret(Xalloc)+64]) (unsigned).
+  The `beq` branch at 0x10107720 targets 0x101076e0, is taken when v1(?) >= a5(=[ret(Xalloc)+64]) (unsigned), and falls through when v1(?) < a5(=[ret(Xalloc)+64]) (unsigned).
   The `beq` branch at 0x10107740 targets 0x101078f8, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `blez` branch at 0x10107758 targets 0x1010786c, is taken when a2(?) <= 0 (signed), and falls through when a2(?) > 0 (signed).
-  The `beq` branch at 0x1010776c targets 0x10107788, is taken when (v1(?) & 0x7) == 0, and falls through when (v1(?) & 0x7) != 0.
+  The `blez` branch at 0x10107758 targets 0x1010786c, is taken when a2(=[ret(Xalloc)+28]) <= 0 (signed), and falls through when a2(=[ret(Xalloc)+28]) > 0 (signed).
+  The `beq` branch at 0x1010776c targets 0x10107788, is taken when (v1(=[ret(Xalloc)+28]) & 0x7) == 0, and falls through when (v1(=[ret(Xalloc)+28]) & 0x7) != 0.
   The `bne` branch at 0x10107780 targets 0x10107774, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x1010778c targets 0x1010786c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `bne` branch at 0x10107794 targets 0x101079c8, is taken when a0(?) != 0, and falls through when a0(?) == 0.
-  The `beq` branch at 0x10107800 targets 0x101078b8, is taken when a6(?) == at(?), and falls through when a6(?) != at(?).
-  The `bne` branch at 0x10107848 targets 0x101077c0, is taken when a6(?) != at(?), and falls through when a6(?) == at(?).
+  The `beq` branch at 0x10107800 targets 0x101078b8, is taken when a6(?) == at(=[ret(Xalloc)+28]-8), and falls through when a6(?) != at(=[ret(Xalloc)+28]-8).
+  The `bne` branch at 0x10107848 targets 0x101077c0, is taken when a6(?) != at(=[ret(Xalloc)+28]-8), and falls through when a6(?) == at(=[ret(Xalloc)+28]-8).
   The `beq` branch at 0x1010788c targets 0x1010746c and is always taken.
   The `beq` branch at 0x101078a8 targets 0x10106f1c and is always taken.
   The `beq` branch at 0x101078b0 targets 0x10107684 and is always taken.
@@ -9405,7 +9521,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x10107bcc loads 1 byte from ?.
   The `sb` at 0x10107bd0 stores 1 byte to ?.
   The `jalr` at 0x10107b80 calls strlen with a0=0x102939e0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x10107b98 calls strcpy with a0=sp-96, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10107b98 calls strcpy with a0=sp-96, a1=0x102939e0, a2=?, a3=?.
   The `jalr` at 0x10107bc4 calls toupper with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10107bec calls strcmp with a0=sp-96, a1=0x10293708, a2=?, a3=?.
   The `jalr` at 0x10107c00 calls strcmp with a0=sp-96, a1=0x10293710, a2=?, a3=?.
@@ -9546,7 +9662,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x101081b0 loads 4 bytes from a1 (arg1 at entry) +0x2c.
   The `lhu` at 0x101081b4 loads 2 bytes from [a1+44] +0xa.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x48, including `lw` at 0x10108200, `lw` at 0x10108248.
-  The `sw` at 0x10108204 stores 4 bytes to ?.
+  The `sw` at 0x10108204 stores 4 bytes to [([a1+76] + ([0x102ca990] << 0x2))] +0x4.
   The `sw` at 0x10108228 stores 4 bytes to [([[a0+16]+436] + ([0x102cf2c4] << 0x2))] +0x30.
   The `sw` at 0x10108244 stores 4 bytes to [([[a0+16]+436] + ([0x102cf2c4] << 0x2))] +0x34.
   The `lw` at 0x1010824c loads 4 bytes from ?.
@@ -9559,7 +9675,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101081b8 targets 0x101081c4, is taken when t9(=[[a1+44]+10]:2) == 0, and falls through when t9(=[[a1+44]+10]:2) != 0.
   The `beq` branch at 0x10108240 targets 0x101081a8 and is always taken.
   The `beq` branch at 0x10108264 targets 0x101081e4 and is always taken.
-  The return at 0x10108218 has v0 = ?.
+  The return at 0x10108218 has v0 = [a1+68].
 - `XineramaGetImageData` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10108270 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -9567,14 +9683,20 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 1948 bytes.
   The `lw` at 0x101082a8 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lw` at 0x101082b0 loads 4 bytes from [a0] +0x10.
-  The `lw` at 0x101082ec loads 4 bytes from [[a0]+16] +0x154.
-  20 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10108308, `lw` at 0x101083a8, `lw` at 0x101083c0.
-  17 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1010832c, `lbu` at 0x1010857c, `lbu` at 0x101086f0.
+  2 such `lw` accesses load 4 bytes from [[a0]+16] +0x154, including `lw` at 0x101082ec, `lw` at 0x10108308.
+  The `lbu` at 0x1010832c loads 1 byte from [a0] +0x2.
+  The `lw` at 0x101083a8 loads 4 bytes from [[a0]+16] +0x16c.
+  The `lw` at 0x101083c0 loads 4 bytes from [[a0]+16] +0x184.
+  The `lw` at 0x10108418 loads 4 bytes from [[a0]+16] +0x17c.
+  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10108420, `lw` at 0x10108468, `lw` at 0x10108504.
+  The `lw` at 0x10108448 loads 4 bytes from [[a0]+16] +0x164.
   2 such `lw` accesses load 4 bytes from sym(__us_rsthread_malloc) +0x0, including `lw` at 0x101084ac, `lw` at 0x10108660.
   12 such `lh` accesses load 2 bytes from ?, including `lh` at 0x101084e0, `lh` at 0x101084e4, `lh` at 0x101084fc.
   3 such `lw` accesses load 4 bytes from sym(panoramiXdataPtr) +0x0, including `lw` at 0x10108500, `lw` at 0x10108920, `lw` at 0x101089c4.
+  16 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1010857c, `lbu` at 0x101086f0, `lbu` at 0x10108720.
   The `lw` at 0x10108680 loads 4 bytes from sym(Must_have_memory) +0x0.
   10 such `sb` accesses store 1 byte to ?, including `sb` at 0x10108700, `sb` at 0x1010872c, `sb` at 0x1010873c.
+  2 such `lw` accesses load 4 bytes from [[a0]+16] +0x160, including `lw` at 0x1010896c, `lw` at 0x1010897c.
   The `lh` at 0x101089c8 loads 2 bytes from [a0] +0x8.
   The `lw` at 0x101089cc loads 4 bytes from [sym(panoramiXdataPtr)] +0x10.
   The `lw` at 0x101089dc loads 4 bytes from [sym(panoramiXdataPtr)] +0x14.
@@ -9591,7 +9713,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10108540 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101085cc calls memcpy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1010866c calls realloc [0x101a0420] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1010868c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1010868c calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?.
   The `jalr` at 0x1010888c calls memcpy with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x101088e4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1010894c calls (unknown callee) with a0=?, a1=?, a2=?, a3=a3 at entry (arg3).
@@ -9704,11 +9826,14 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 1096 bytes.
   The `lw` at 0x10108d48 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10108d58 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10108d88, `lw` at 0x10108e3c, `lw` at 0x10108e6c.
+  The `lw` at 0x10108d88 loads 4 bytes from [a0+8] +0xc.
   The `lw` at 0x10108d98 loads 4 bytes from sym(currentTime) +0x4.
   The `lw` at 0x10108da4 loads 4 bytes from sym(currentTime) +0x0.
   The `ld` at 0x10108dcc loads 8 bytes from sym(currentTime) +0x0.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10108e3c, `lw` at 0x10109058.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10108e6c, `lw` at 0x10109038.
   The `lw` at 0x10108e94 loads 4 bytes from [0x102c609c] +0x0.
+  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10108ecc, `lw` at 0x10108ee8, `lw` at 0x10108f20.
   6 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10109040, `sw` at 0x1010904c, `sw` at 0x10109054.
   The `lw` at 0x10109078 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `sw` at 0x10109098 stores 4 bytes to a0 (arg0 at entry) +0x18.
@@ -9718,32 +9843,32 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x101090bc loads 4 bytes from [0x102c609c] +0x4.
   The `lw` at 0x10109100 loads 4 bytes from [0x102c609c] +0x14.
   The `jal` at 0x10108d7c calls UpdateCurrentTime [0x10064a10] with a0=[a0+8], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x10108e4c calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=?, a6=0x0.
+  The `jal` at 0x10108e4c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=?, a6=0x0.
   The `jal` at 0x10108fc0 calls TryClientEvents [0x10136730] with a0=?, a1=sp-104, a2=0x1, a3=0x0, a4=0x0, a5=0x0.
   The `jal` at 0x10108ffc calls Xrealloc [0x101b9470] with a0=[0x102c609c], a1=?, a2=?, a3=?, a5=[0x102c60a0].
   The `jal` at 0x10109140 calls Xalloc [0x1020aeb0] with a0=0x18, a1=?, a2=?, a3=?, a5=[0x102c60a0].
   The `beq` branch at 0x10108d60 targets 0x10108d78, is taken when v0(=[a0+72]) == v1(=0x4), and falls through when v0(=[a0+72]) != v1(=0x4).
-  The `beq` branch at 0x10108d8c targets 0x101090a4, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `beq` branch at 0x10108da8 targets 0x10108ea8, is taken when a4(=[sym(currentTime)+4]) >= v0(?) (unsigned), and falls through when a4(=[sym(currentTime)+4]) < v0(?) (unsigned).
+  The `beq` branch at 0x10108d8c targets 0x101090a4, is taken when v0(=[[a0+8]+12]) == 0, and falls through when v0(=[[a0+8]+12]) != 0.
+  The `beq` branch at 0x10108da8 targets 0x10108ea8, is taken when a4(=[sym(currentTime)+4]) >= v0(=[[a0+8]+12]) (unsigned), and falls through when a4(=[sym(currentTime)+4]) < v0(=[[a0+8]+12]) (unsigned).
   The `beq` branch at 0x10108dbc targets 0x10108dc8, is taken when a0(=0xffffffff80000000) >= a1(?) (unsigned), and falls through when a0(=0xffffffff80000000) < a1(?) (unsigned).
   The `bne` branch at 0x10108e04 targets 0x10108e38, is taken when a5(?) < a4(?) (unsigned), and falls through when a5(?) >= a4(?) (unsigned).
   The `bne` branch at 0x10108e10 targets 0x1010909c, is taken when a4(?) < a5(?) (unsigned), and falls through when a4(?) >= a5(?) (unsigned).
   The `bne` branch at 0x10108e28 targets 0x10108e3c, is taken when a4(?) < v0(?) (unsigned), and falls through when a4(?) >= v0(?) (unsigned).
   The `bne` branch at 0x10108e34 targets 0x1010909c, is taken when v0(?) < a4(?) (unsigned), and falls through when v0(?) >= a4(?) (unsigned).
-  The `beq` branch at 0x10108e40 targets 0x10108e68, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x10108e40 targets 0x10108e68, is taken when a0(=[[a0+8]+4]) == 0, and falls through when a0(=[[a0+8]+4]) != 0.
   The `bne` branch at 0x10108e58 targets 0x10108e68, is taken when v0(=ret(SecurityLookupWindow)) != 0, and falls through when v0(=ret(SecurityLookupWindow)) == 0.
   The `beq` branch at 0x10108e60 targets 0x10108d6c and is always taken.
-  The `beq` branch at 0x10108e70 targets 0x10109088, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `bne` branch at 0x10108e80 targets 0x10109084, is taken when a5(=[0x102c6188]) < a4(?) (unsigned), and falls through when a5(=[0x102c6188]) >= a4(?) (unsigned).
+  The `beq` branch at 0x10108e70 targets 0x10109088, is taken when a4(=[[a0+8]+8]) == 0, and falls through when a4(=[[a0+8]+8]) != 0.
+  The `bne` branch at 0x10108e80 targets 0x10109084, is taken when a5(=[0x102c6188]) < a4(=[[a0+8]+8]) (unsigned), and falls through when a5(=[0x102c6188]) >= a4(=[[a0+8]+8]) (unsigned).
   The `blez` branch at 0x10108e88 targets 0x10109134, is taken when a5(=[0x102c60a0]) <= 0 (signed), and falls through when a5(=[0x102c60a0]) > 0 (signed).
-  The `beq` branch at 0x10108e98 targets 0x101090b4, is taken when a7(=[[0x102c609c]]) == a4(?), and falls through when a7(=[[0x102c609c]]) != a4(?).
+  The `beq` branch at 0x10108e98 targets 0x101090b4, is taken when a7(=[[0x102c609c]]) == a4(=[[a0+8]+8]), and falls through when a7(=[[0x102c609c]]) != a4(=[[a0+8]+8]).
   The `beq` branch at 0x10108ea0 targets 0x10108ed8 and is always taken.
-  The `beq` branch at 0x10108eac targets 0x10108dc8, is taken when v0(?) >= a4(=[sym(currentTime)+4]) (unsigned), and falls through when v0(?) < a4(=[sym(currentTime)+4]) (unsigned).
+  The `beq` branch at 0x10108eac targets 0x10108dc8, is taken when v0(=[[a0+8]+12]) >= a4(=[sym(currentTime)+4]) (unsigned), and falls through when v0(=[[a0+8]+12]) < a4(=[sym(currentTime)+4]) (unsigned).
   The `beq` branch at 0x10108ebc targets 0x10108dc8, is taken when t2(=0xffffffff80000000) >= t3(?) (unsigned), and falls through when t2(=0xffffffff80000000) < t3(?) (unsigned).
   The `beq` branch at 0x10108ec4 targets 0x10108dc8 and is always taken.
-  The `beq` branch at 0x10108ed0 targets 0x10108f04, is taken when t9(?) == a4(?), and falls through when t9(?) != a4(?).
+  The `beq` branch at 0x10108ed0 targets 0x10108f04, is taken when t9(?) == a4(=[[a0+8]+8]), and falls through when t9(?) != a4(=[[a0+8]+8]).
   The `beq` branch at 0x10108ee0 targets 0x10108f04, is taken when v0(?) >= a5(=[0x102c60a0]) (signed), and falls through when v0(?) < a5(=[0x102c60a0]) (signed).
-  The `beq` branch at 0x10108eec targets 0x10108f04, is taken when v1(?) == a4(?), and falls through when v1(?) != a4(?).
+  The `beq` branch at 0x10108eec targets 0x10108f04, is taken when v1(?) == a4(=[[a0+8]+8]), and falls through when v1(?) != a4(=[[a0+8]+8]).
   The `bne` branch at 0x10108efc targets 0x10108ecc, is taken when v0(?) < a5(=[0x102c60a0]) (signed), and falls through when v0(?) >= a5(=[0x102c60a0]) (signed).
   The `beq` branch at 0x10108f10 targets 0x10108fe0, is taken when v0(?) >= a5(=[0x102c60a0]) (signed), and falls through when v0(?) < a5(=[0x102c60a0]) (signed).
   The `bne` branch at 0x10108f3c targets 0x1010912c, is taken when v0(?) < a5(?) (unsigned), and falls through when v0(?) >= a5(?) (unsigned).
@@ -9862,7 +9987,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10109430 loads 4 bytes from a1 (arg1 at entry) +0x2c.
   The `lhu` at 0x10109434 loads 2 bytes from [a1+44] +0xa.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x48, including `lw` at 0x1010946c, `lw` at 0x101094c8, `lw` at 0x101094f0.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10109470, `sw` at 0x101094f4.
+  2 such `sw` accesses store 4 bytes to [([a1+76] + ([0x102ca990] << 0x2))] +0x4, including `sw` at 0x10109470, `sw` at 0x101094f4.
   The `sw` at 0x101094a0 stores 4 bytes to [([[a0+16]+436] + ([0x102cf2c4] << 0x2))] +0x30.
   The `sw` at 0x101094c4 stores 4 bytes to [([[a0+16]+436] + ([0x102cf2c4] << 0x2))] +0x34.
   The `lw` at 0x101094cc loads 4 bytes from ?.
@@ -9897,7 +10022,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x101095a0 loads 4 bytes from a2 (arg2 at entry) +0x1c.
   The `sw` at 0x101095a4 stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `sw` at 0x101095ac stores 4 bytes to a2 (arg2 at entry) +0x1c.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101095d4, `lw` at 0x101095e4, `lw` at 0x101095e8.
+  The `lw` at 0x101095d4 loads 4 bytes from [0x102c73b8] +0x38.
+  The `lw` at 0x101095e4 loads 4 bytes from [0x102c73b8] +0x30.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101095e8, `lw` at 0x101095f4, `lw` at 0x10109604.
   The `sw` at 0x1010963c stores 4 bytes to abs 0x102da17c.
   The `sw` at 0x10109644 stores 4 bytes to abs 0x102da178.
   The `lw` at 0x10109648 loads 4 bytes from a1 (arg1 at entry) +0x0.
@@ -9908,7 +10035,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10109694 stores 4 bytes to a1 (arg1 at entry) +0x0.
   The `jalr` at 0x101095c8 calls time with a0=0x0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[0x102c73b0], a4=([a2+20] | [0x102c73ac]), a5=[0x102c73ac], a6=([a2+16] | [0x102c73a8]), a7=[0x102c73a8].
   The `beq` branch at 0x101095b8 targets 0x10109678, is taken when at(=[0x102c73b8]) == 0, and falls through when at(=[0x102c73b8]) != 0.
-  The `beq` branch at 0x101095e0 targets 0x10109624, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x101095e0 targets 0x10109624, is taken when a3(=[[0x102c73b8]+56]) == 0, and falls through when a3(=[[0x102c73b8]+56]) != 0.
   The `beq` branch at 0x101095f0 targets 0x101095fc, is taken when a5(?) >= a4(?) (signed), and falls through when a5(?) < a4(?) (signed).
   The `beq` branch at 0x101095fc targets 0x10109624, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x1010960c targets 0x10109618, is taken when a5(?) >= a4(?) (signed), and falls through when a5(?) < a4(?) (signed).
@@ -10156,7 +10283,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 176 bytes.
   The `lw` at 0x1010a0b0 loads 4 bytes from sym(dbcWindowPrivateIndex) +0x0.
   The `sw` at 0x1010a0f4 stores 4 bytes to sym(dbcWindowPrivateIndex) +0x0.
-  The `sw` at 0x1010a14c stores 4 bytes to ?.
+  The `sw` at 0x1010a14c stores 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0.
   The `jal` at 0x1010a114 calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=([0x102c6100] << 0x2)+8, a2=0x0, a3=a3 at entry (arg3).
   The `beq` branch at 0x1010a0a4 targets 0x1010a0c8, is taken when at(=[0x102ca8c4]) == 0, and falls through when at(=[0x102ca8c4]) != 0.
   The `bltz` branch at 0x1010a0b8 targets 0x1010a0ec, is taken when v1(=[sym(dbcWindowPrivateIndex)]) < 0 (signed), and falls through when v1(=[sym(dbcWindowPrivateIndex)]) >= 0 (signed).
@@ -10265,27 +10392,28 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lhu` accesses load 2 bytes from a0 (arg0 at entry) +0x8, including `lhu` at 0x1010a738, `lhu` at 0x1010a7f4.
   The `lhu` at 0x1010a73c loads 2 bytes from a0 (arg0 at entry) +0xa.
   8 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1010a774, `lbu` at 0x1010a778, `lbu` at 0x1010a840.
-  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1010a7ac, `lw` at 0x1010a7c8, `lw` at 0x1010a85c.
+  5 such `lw` accesses load 4 bytes from [a0+120] +0xc, including `lw` at 0x1010a7ac, `lw` at 0x1010a85c, `lw` at 0x1010a914.
+  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1010a7c8, `lw` at 0x1010a868, `lw` at 0x1010a91c.
   10 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1010a7f0, `sw` at 0x1010a88c, `sw` at 0x1010a940.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc, including `lw` at 0x1010a808, `lw` at 0x1010a8b0.
-  The `jal` at 0x1010a9a0 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1010aa08 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1010aa68 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1010ac00 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1010ac4c calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x1010a9a0 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=[a0+8]:2, a2=?, a3=?, a5=0x102c73bc.
+  The `jal` at 0x1010aa08 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=0x102c73bc, a2=?, a3=?, a6=0x102c73bd.
+  The `jal` at 0x1010aa68 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=0x102c73bc, a6=0x102c73bd.
+  The `jal` at 0x1010ac00 calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=0x102c73bd.
+  The `jal` at 0x1010ac4c calls fs_load_all_glyphs [0x1021a050] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=0x102c73bd.
   The `beq` branch at 0x1010a6dc targets 0x1010a7f4, is taken when a3 == 0, and falls through when a3 != 0.
   The `beq` branch at 0x1010a6e8 targets 0x1010a7f4, is taken when a3 == at(=0x1), and falls through when a3 != at(=0x1).
   The `beq` branch at 0x1010a6f0 targets 0x1010a8b0, is taken when a3 == v1(=0x2), and falls through when a3 != v1(=0x2).
   The `beq` branch at 0x1010a6f8 targets 0x1010a734, is taken when a3 == v0(=0x3), and falls through when a3 != v0(=0x3).
   The `beq` branch at 0x1010a750 targets 0x1010a760 and is always taken.
-  The `bne` branch at 0x1010a758 targets 0x1010a96c, is taken when t2(?) != 0, and falls through when t2(?) == 0.
+  The `bne` branch at 0x1010a758 targets 0x1010a96c, is taken when t2(=[[a0+116]]) != 0, and falls through when t2(=[[a0+116]]) == 0.
   The `bne` branch at 0x1010a760 targets 0x1010a704, is taken when a3(?) != t3(=0x55), and falls through when a3(?) == t3(=0x55).
   The `beq` branch at 0x1010a76c targets 0x1010a704, is taken when ra(=-0x1) == s0(?), and falls through when ra(=-0x1) != s0(?).
   The `beq` branch at 0x1010a790 targets 0x1010a758, is taken when v1(?) >= a2(?) (unsigned), and falls through when v1(?) < a2(?) (unsigned).
   The `beq` branch at 0x1010a79c targets 0x1010a758, is taken when v0(?) >= t1(?) (unsigned), and falls through when v0(?) < t1(?) (unsigned).
-  The `beq` branch at 0x1010a7c4 targets 0x1010a7dc, is taken when at(?) == 0, and falls through when at(?) != 0.
-  The `beq` branch at 0x1010a7cc targets 0x1010a978, is taken when ra(?) == a5(?), and falls through when ra(?) != a5(?).
-  The `beq` branch at 0x1010a7d4 targets 0x1010a978, is taken when ra(?) == v0(?), and falls through when ra(?) != v0(?).
+  The `beq` branch at 0x1010a7c4 targets 0x1010a7dc, is taken when at(=[[a0+120]+12]) == 0, and falls through when at(=[[a0+120]+12]) != 0.
+  The `beq` branch at 0x1010a7cc targets 0x1010a978, is taken when ra(?) == a5(=0x102c73bc), and falls through when ra(?) != a5(=0x102c73bc).
+  The `beq` branch at 0x1010a7d4 targets 0x1010a978, is taken when ra(?) == v0(=0x102c73bd), and falls through when ra(?) != v0(=0x102c73bd).
   The `beq` branch at 0x1010a7dc targets 0x1010a758, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `beq` branch at 0x1010a7ec targets 0x1010a760 and is always taken.
   The `bgtz` branch at 0x1010a800 targets 0x1010a890, is taken when a2(=[a0+8]:2) > 0 (signed), and falls through when a2(=[a0+8]:2) <= 0 (signed).
@@ -10293,23 +10421,23 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010a82c targets 0x1010a704, is taken when a3(?) != t3(=0x55), and falls through when a3(?) == t3(=0x55).
   The `beq` branch at 0x1010a838 targets 0x1010a704, is taken when a6(=-0x1) == s0(?), and falls through when a6(=-0x1) != s0(?).
   The `beq` branch at 0x1010a854 targets 0x1010a958, is taken when v0(?) >= t1(?) (unsigned), and falls through when v0(?) < t1(?) (unsigned).
-  The `beq` branch at 0x1010a864 targets 0x1010a87c, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0x1010a86c targets 0x1010aa44, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
-  The `beq` branch at 0x1010a874 targets 0x1010aa44, is taken when a2(?) == a6(?), and falls through when a2(?) != a6(?).
+  The `beq` branch at 0x1010a864 targets 0x1010a87c, is taken when v1(=[[a0+120]+12]) == 0, and falls through when v1(=[[a0+120]+12]) != 0.
+  The `beq` branch at 0x1010a86c targets 0x1010aa44, is taken when a2(?) == a5(=0x102c73bc), and falls through when a2(?) != a5(=0x102c73bc).
+  The `beq` branch at 0x1010a874 targets 0x1010aa44, is taken when a2(?) == a6(=0x102c73bd), and falls through when a2(?) != a6(=0x102c73bd).
   The `beq` branch at 0x1010a87c targets 0x1010a958, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1010a888 targets 0x1010a82c and is always taken.
   The `bltz` branch at 0x1010a8bc targets 0x1010aaa4, is taken when a7(=([a0+12] << 0x16)) < 0 (signed), and falls through when a7(=([a0+12] << 0x16)) >= 0 (signed).
   The `bne` branch at 0x1010a8d4 targets 0x1010a704, is taken when a3(?) != t3(=0x55), and falls through when a3(?) == t3(=0x55).
   The `beq` branch at 0x1010a8e4 targets 0x1010a704, is taken when v0(=-0x1) == s0(?), and falls through when v0(=-0x1) != s0(?).
   The `beq` branch at 0x1010a90c targets 0x1010a944, is taken when v0(?) >= t1(?) (unsigned), and falls through when v0(?) < t1(?) (unsigned).
-  The `beq` branch at 0x1010a918 targets 0x1010a930, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1010a920 targets 0x1010a9e4, is taken when a2(?) == a1(?), and falls through when a2(?) != a1(?).
-  The `beq` branch at 0x1010a928 targets 0x1010a9e4, is taken when a2(?) == a6(?), and falls through when a2(?) != a6(?).
+  The `beq` branch at 0x1010a918 targets 0x1010a930, is taken when a2(=[[a0+120]+12]) == 0, and falls through when a2(=[[a0+120]+12]) != 0.
+  The `beq` branch at 0x1010a920 targets 0x1010a9e4, is taken when a2(?) == a1(=0x102c73bc), and falls through when a2(?) != a1(=0x102c73bc).
+  The `beq` branch at 0x1010a928 targets 0x1010a9e4, is taken when a2(?) == a6(=0x102c73bd), and falls through when a2(?) != a6(=0x102c73bd).
   The `beq` branch at 0x1010a930 targets 0x1010a944, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1010a93c targets 0x1010a8d4 and is always taken.
-  The `beq` branch at 0x1010a944 targets 0x1010a8d4, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x1010a944 targets 0x1010a8d4, is taken when t2(=[[a0+116]]) == 0, and falls through when t2(=[[a0+116]]) != 0.
   The `beq` branch at 0x1010a950 targets 0x1010a8d4 and is always taken.
-  The `beq` branch at 0x1010a958 targets 0x1010a82c, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x1010a958 targets 0x1010a82c, is taken when t2(=[[a0+116]]) == 0, and falls through when t2(=[[a0+116]]) != 0.
   The `beq` branch at 0x1010a964 targets 0x1010a82c and is always taken.
   The `beq` branch at 0x1010a970 targets 0x1010a760 and is always taken.
   The `beq` branch at 0x1010a9dc targets 0x1010a7dc and is always taken.
@@ -10319,17 +10447,17 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010aacc targets 0x1010a704, is taken when a3(?) != t3(=0x55), and falls through when a3(?) == t3(=0x55).
   The `beq` branch at 0x1010aad8 targets 0x1010a704, is taken when v1(=-0x1) == s0(?), and falls through when v1(=-0x1) != s0(?).
   The `beq` branch at 0x1010aaf8 targets 0x1010abcc, is taken when v0(?) >= t1(?) (unsigned), and falls through when v0(?) < t1(?) (unsigned).
-  The `beq` branch at 0x1010ab14 targets 0x1010ab34, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `beq` branch at 0x1010ab28 targets 0x1010abe4, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
-  The `beq` branch at 0x1010ab30 targets 0x1010abe4, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
+  The `beq` branch at 0x1010ab14 targets 0x1010ab34, is taken when a0(=[[a0+120]+12]) == 0, and falls through when a0(=[[a0+120]+12]) != 0.
+  The `beq` branch at 0x1010ab28 targets 0x1010abe4, is taken when a2(?) == a5(=0x102c73bc), and falls through when a2(?) != a5(=0x102c73bc).
+  The `beq` branch at 0x1010ab30 targets 0x1010abe4, is taken when a2(?) == a5(=0x102c73bd), and falls through when a2(?) != a5(=0x102c73bd).
   The `beq` branch at 0x1010ab38 targets 0x1010aacc and is always taken.
   The `beq` branch at 0x1010ab40 targets 0x1010a81c, is taken when t2(=[[a0+116]]) == 0, and falls through when t2(=[[a0+116]]) != 0.
   The `bne` branch at 0x1010ab64 targets 0x1010a704, is taken when a3(?) != t3(=0x55), and falls through when a3(?) == t3(=0x55).
   The `beq` branch at 0x1010ab70 targets 0x1010a704, is taken when v0(=-0x1) == s0(?), and falls through when v0(=-0x1) != s0(?).
   The `beq` branch at 0x1010ab84 targets 0x1010abd8, is taken when v0(?) >= t1(?) (unsigned), and falls through when v0(?) < t1(?) (unsigned).
-  The `beq` branch at 0x1010aba0 targets 0x1010abc0, is taken when v1(?) == 0, and falls through when v1(?) != 0.
-  The `beq` branch at 0x1010abb4 targets 0x1010ac30, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
-  The `beq` branch at 0x1010abbc targets 0x1010ac30, is taken when a2(?) == a5(?), and falls through when a2(?) != a5(?).
+  The `beq` branch at 0x1010aba0 targets 0x1010abc0, is taken when v1(=[[a0+120]+12]) == 0, and falls through when v1(=[[a0+120]+12]) != 0.
+  The `beq` branch at 0x1010abb4 targets 0x1010ac30, is taken when a2(?) == a5(=0x102c73bc), and falls through when a2(?) != a5(=0x102c73bc).
+  The `beq` branch at 0x1010abbc targets 0x1010ac30, is taken when a2(?) == a5(=0x102c73bd), and falls through when a2(?) != a5(=0x102c73bd).
   The `beq` branch at 0x1010abc4 targets 0x1010ab64 and is always taken.
   The `beq` branch at 0x1010abd0 targets 0x1010aacc and is always taken.
   The `beq` branch at 0x1010abdc targets 0x1010ab64 and is always taken.
@@ -11028,9 +11156,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1010d8fc loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x1010d92c loads 4 bytes from sym(serverClient) +0x0.
   The `lw` at 0x1010d954 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x1010d958 loads 1 byte from ?.
+  The `lbu` at 0x1010d958 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x1010d95c loads 4 bytes from [a0+88] +0x0.
-  The `lw` at 0x1010d968 loads 4 bytes from ?.
+  The `lw` at 0x1010d968 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x1010d928 calls CheckClientDAC [0x102560c0] with a0=a0 at entry (arg0), a1=[sym(serverClient)], a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0x1010d96c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1010d904 targets 0x1010d918, is taken when v1(=[a0+72]) >= 0x2 (unsigned), and falls through when v1(=[a0+72]) < 0x2 (unsigned).
@@ -11207,11 +11335,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x1010e098 loads 1 byte from a0 (arg0 at entry) +0x1.
   The `lw` at 0x1010e0a4 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   3 such `lw` accesses load 4 bytes from [a0+16] +0x18c, including `lw` at 0x1010e0c0, `lw` at 0x1010e0d4, `lw` at 0x1010e17c.
-  2 such `lh` accesses load 2 bytes from ret(?) +0x0, including `lh` at 0x1010e0e8, `lh` at 0x1010e188.
-  4 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1010e0ec, `lh` at 0x1010e0f0, `lh` at 0x1010e0f4.
-  2 such `lh` accesses load 2 bytes from ret(?) +0x4, including `lh` at 0x1010e104, `lh` at 0x1010e18c.
-  2 such `lh` accesses load 2 bytes from ret(?) +0x2, including `lh` at 0x1010e10c, `lh` at 0x1010e194.
-  2 such `lh` accesses load 2 bytes from ret(?) +0x6, including `lh` at 0x1010e114, `lh` at 0x1010e198.
+  3 such `lh` accesses load 2 bytes from ret(?) +0x0, including `lh` at 0x1010e0e8, `lh` at 0x1010e0ec, `lh` at 0x1010e188.
+  3 such `lh` accesses load 2 bytes from ret(?) +0x2, including `lh` at 0x1010e0f0, `lh` at 0x1010e10c, `lh` at 0x1010e194.
+  3 such `lh` accesses load 2 bytes from ret(?) +0x4, including `lh` at 0x1010e0f4, `lh` at 0x1010e104, `lh` at 0x1010e18c.
+  3 such `lh` accesses load 2 bytes from ret(?) +0x6, including `lh` at 0x1010e100, `lh` at 0x1010e114, `lh` at 0x1010e198.
   The `lw` at 0x1010e140 loads 4 bytes from [a0+16] +0x150.
   The `lw` at 0x1010e150 loads 4 bytes from [a0+16] +0x164.
   The `lw` at 0x1010e168 loads 4 bytes from [a0+16] +0x184.
@@ -11220,10 +11347,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x1010e1a8 loads 2 bytes from a0 (arg0 at entry) +0x8.
   The `jalr` at 0x1010e0cc calls (unknown callee) with a0=a1+72, a1=a1 at entry (arg1), a2=[a0+24], a3=a3 at entry (arg3), a4=0x2, a5=[a0+28], a6=[a0+32].
   The `jalr` at 0x1010e0dc calls (unknown callee) with a0=a0+72, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1010e148 calls (unknown callee) with a0=0x0, a1=0x1, a2=?, a3=?.
-  The `jalr` at 0x1010e160 calls (unknown callee) with a0=ret(?), a1=?, a2=a0+56, a3=?.
-  The `jalr` at 0x1010e16c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1010e180 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1010e148 calls (unknown callee) with a0=0x0, a1=0x1, a2=?, a3=[ret(?)]:2, a4=[ret(?)+4]:2, a5=[ret(?)+2]:2, a6=[ret(?)+6]:2.
+  The `jalr` at 0x1010e160 calls (unknown callee) with a0=ret(?), a1=a1+72, a2=a0+56, a3=?.
+  The `jalr` at 0x1010e16c calls (unknown callee) with a0=ret(?), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1010e180 calls (unknown callee) with a0=ret(?), a1=?, a2=?, a3=?.
   The `jalr` at 0x1010e1b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=0x1, a6=[a0+8]:2, a7=[a0+10]:2.
   The `bne` branch at 0x1010e078 targets 0x1010e090, is taken when v0(=[a1+24]) != 0, and falls through when v0(=[a1+24]) == 0.
   The `bne` branch at 0x1010e080 targets 0x1010e090, is taken when v1(=[a1+28]) != 0, and falls through when v1(=[a1+28]) == 0.
@@ -11232,10 +11359,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1010e0a8 targets 0x1010e0b8, is taken when a5(=[a0+28]) != 0, and falls through when a5(=[a0+28]) == 0.
   The `beq` branch at 0x1010e0b0 targets 0x1010e1fc, is taken when a6(=[a0+32]) == 0, and falls through when a6(=[a0+32]) != 0.
   The `beq` branch at 0x1010e0b8 targets 0x1010e1dc, is taken when a0(=[a0+1]:1) == a4(=0x2), and falls through when a0(=[a0+1]:1) != a4(=0x2).
-  The `bne` branch at 0x1010e0fc targets 0x1010e140, is taken when a3(?) != a6(=[ret(?)]:2), and falls through when a3(?) == a6(=[ret(?)]:2).
-  The `bne` branch at 0x1010e110 targets 0x1010e140, is taken when a4(?) != t0(=[ret(?)+4]:2), and falls through when a4(?) == t0(=[ret(?)+4]:2).
-  The `bne` branch at 0x1010e118 targets 0x1010e140, is taken when a5(?) != a7(=[ret(?)+2]:2), and falls through when a5(?) == a7(=[ret(?)+2]:2).
-  The `bne` branch at 0x1010e120 targets 0x1010e140, is taken when a6(?) != t0(=[ret(?)+6]:2), and falls through when a6(?) == t0(=[ret(?)+6]:2).
+  The `bne` branch at 0x1010e0fc targets 0x1010e140, is taken when a3(=[ret(?)]:2) != a6(=[ret(?)]:2), and falls through when a3(=[ret(?)]:2) == a6(=[ret(?)]:2).
+  The `bne` branch at 0x1010e110 targets 0x1010e140, is taken when a4(=[ret(?)+4]:2) != t0(=[ret(?)+4]:2), and falls through when a4(=[ret(?)+4]:2) == t0(=[ret(?)+4]:2).
+  The `bne` branch at 0x1010e118 targets 0x1010e140, is taken when a5(=[ret(?)+2]:2) != a7(=[ret(?)+2]:2), and falls through when a5(=[ret(?)+2]:2) == a7(=[ret(?)+2]:2).
+  The `bne` branch at 0x1010e120 targets 0x1010e140, is taken when a6(=[ret(?)+6]:2) != t0(=[ret(?)+6]:2), and falls through when a6(=[ret(?)+6]:2) == t0(=[ret(?)+6]:2).
   The `beq` branch at 0x1010e174 targets 0x1010e1c4, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0x1010e1f4 targets 0x1010e1c4 and is always taken.
   The `beq` branch at 0x1010e1fc targets 0x1010e1c4 and is always taken.
@@ -11435,12 +11562,11 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 168 bytes.
   The `lw` at 0x1010eb80 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x1010eb88 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  The `lw` at 0x1010ebd4 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x1010ebe8 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1010ebd4, `lw` at 0x1010ebe8.
   The `lw` at 0x1010ec04 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `sw` at 0x1010ec24 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x1010ebd0 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x5, a3=0x4.
-  The `jal` at 0x1010ebf0 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=0x6.
+  The `jal` at 0x1010ebf0 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=0x6.
   The `beq` branch at 0x1010eba4 targets 0x1010ebb8, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `beq` branch at 0x1010ebe4 targets 0x1010ec10, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The return at 0x1010ebb0 has v0 = 0x10.
@@ -11495,22 +11621,28 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x1010f390 loads 2 bytes from [a0+8] +0x2.
   The `lbu` at 0x1010f39c loads 1 byte from [a0+8] +0x9.
   The `lw` at 0x1010f3a4 loads 4 bytes from sym(inputInfo) +0x4.
-  The `lbu` at 0x1010f3a8 loads 1 byte from [a0+8] +0x8.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x8, including `lbu` at 0x1010f3a8, `lbu` at 0x1010f5ec.
   The `lw` at 0x1010f3b0 loads 4 bytes from sym(inputInfo) +0xc.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1010f3c4, `lw` at 0x1010f410, `lw` at 0x1010f440.
-  7 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1010f3d0, `lbu` at 0x1010f41c, `lbu` at 0x1010f5d4.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1010f3c4, `lw` at 0x1010f410, `lw` at 0x1010f440.
+  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1010f3d0, `lbu` at 0x1010f41c.
   The `lw` at 0x1010f3dc loads 4 bytes from sym(inputInfo) +0x10.
   The `lbu` at 0x1010f3e0 loads 1 byte from [sym(inputInfo)+16] +0x4c.
   The `lbu` at 0x1010f3ec loads 1 byte from [sym(inputInfo)+12] +0x4c.
   The `lbu` at 0x1010f40c loads 1 byte from [sym(inputInfo)+4] +0x4c.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x1c, including `lw` at 0x1010f48c, `lw` at 0x1010f4e8, `lw` at 0x1010f534.
-  The `lhu` at 0x1010f5d8 loads 2 bytes from ?.
+  The `lw` at 0x1010f5d0 loads 4 bytes from [a0+8] +0x4.
+  The `lbu` at 0x1010f5d4 loads 1 byte from [a0+8] +0x10.
+  The `lhu` at 0x1010f5d8 loads 2 bytes from [a0+8] +0xc.
+  The `lbu` at 0x1010f5dc loads 1 byte from [a0+8] +0xf.
+  The `lbu` at 0x1010f5e0 loads 1 byte from [a0+8] +0xe.
+  The `lbu` at 0x1010f5e4 loads 1 byte from [a0+8] +0x11.
+  The `lw` at 0x1010f604 loads 4 bytes from (sp-112 + ([[a0+8]+8]:1 << 0x3)) +0x0.
   The `jal` at 0x1010f468 calls CreateMaskFromList [0x10150930] with a0=a0 at entry (arg0), a1=[a0+8]+20, a2=[[a0+8]+10]:2, a3=sp-112, a5=0x11, a7=0xff.
   The `jal` at 0x1010f4b8 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-144, a3=[a0+28], a4=[0x102ca768], a5=[0x102cade0], a6=0x11, a7=0xff.
   The `jal` at 0x1010f514 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-144, a3=?, a7=[a0+28].
   The `jal` at 0x1010f560 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-144, a3=a3 at entry (arg3), a4=[[a0+8]+9]:1, a7=0xff.
   The `jal` at 0x1010f5a8 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-144, a3=?, a7=0xff.
-  The `jal` at 0x1010f60c calls GrabButton [0x100d24a0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x1010f60c calls GrabButton [0x100d24a0] with a0=a0 at entry (arg0), a1=?, a2=[[a0+8]+14]:1, a3=[[a0+8]+15]:1, a4=[[a0+8]+12]:2, a6=[[a0+8]+16]:1, a7=[[a0+8]+4].
   The `jal` at 0x1010f64c calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-144, a3=?.
   The `bne` branch at 0x1010f384 targets 0x1010f4d4, is taken when at(=[a0+72]) < 0x5 (unsigned), and falls through when at(=[a0+72]) >= 0x5 (unsigned).
   The `bne` branch at 0x1010f398 targets 0x1010f530, is taken when v0(=[[a0+8]+2]:2) != v1(=[[a0+8]+10]:2+5), and falls through when v0(=[[a0+8]+2]:2) == v1(=[[a0+8]+10]:2+5).
@@ -11588,17 +11720,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1010f754 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1010f75c loads 4 bytes from sym(inputInfo) +0xc.
   The `lw` at 0x1010f770 loads 4 bytes from [sym(inputInfo)+12] +0x90.
-  2 such `lbu` accesses load 1 byte from [[sym(inputInfo)+12]+144] +0x150, including `lbu` at 0x1010f788, `lbu` at 0x1010f798.
+  3 such `lbu` accesses load 1 byte from [[sym(inputInfo)+12]+144] +0x150, including `lbu` at 0x1010f788, `lbu` at 0x1010f798, `lbu` at 0x1010f7e4.
   The `lw` at 0x1010f790 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   The `lw` at 0x1010f7a4 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x1010f7b4 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lbu` at 0x1010f7b8 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x1010f7c8 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
-  The `lbu` at 0x1010f7e4 loads 1 byte from ?.
-  The `lw` at 0x1010f7ec loads 4 bytes from ?.
+  The `lw` at 0x1010f7ec loads 4 bytes from [[sym(inputInfo)+12]+144] +0x20.
   The `lw` at 0x1010f800 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jalr` at 0x1010f7d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=[[sym(inputInfo)+12]+144], a4=0x1, a5=[a0+16], a6=([[[sym(inputInfo)+12]+144]+336]:1 << 0x1), a7=[a0+28].
-  The `jal` at 0x1010f7f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=sym(WriteToClient).
+  The `jal` at 0x1010f7f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=([[[sym(inputInfo)+12]+144]+336]:1 << 0x3), a2=[[[sym(inputInfo)+12]+144]+32], a3=?, a5=sym(WriteToClient).
   The `jal` at 0x1010f818 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=[[sym(inputInfo)+12]+144], a4=0x1, a5=[a0+16], a6=([[[sym(inputInfo)+12]+144]+336]:1 << 0x1), a7=[a0+28].
   The `beq` branch at 0x1010f76c targets 0x1010f784, is taken when a4(=0x1) == a5(=[a0+72]), and falls through when a4(=0x1) != a5(=[a0+72]).
   The `beq` branch at 0x1010f7ac targets 0x1010f810, is taken when a5(=[a0+16]) == 0, and falls through when a5(=[a0+16]) != 0.
@@ -11695,7 +11826,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x1010fdb4 calls strlen with a0=sp-1104, a1=0x2f, a2=?, a3=?.
   The `jalr` at 0x1010fdc4 calls strlen with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x1010fdf4 calls sprintf with a0=sp-2128, a1=0x1029bda8, a2=sp-1104, a3=a0 at entry (arg0).
-  The `jalr` at 0x1010fe18 calls sprintf with a0=sp-2128, a1=0x1029bd98, a2=?, a3=sp-1104, a4=a0 at entry (arg0).
+  The `jalr` at 0x1010fe18 calls sprintf with a0=sp-2128, a1=0x1029bd98, a2=0x1029ac48, a3=sp-1104, a4=a0 at entry (arg0).
   The `bne` branch at 0x1010fc5c targets 0x1010fca4, is taken when a0 != 0, and falls through when a0 == 0.
   The `beq` branch at 0x1010fc68 targets 0x1010fc90, is taken when s0(=a1) == 0, and falls through when s0(=a1) != 0.
   The `blez` branch at 0x1010fc70 targets 0x1010fc90, is taken when s1(=a2) <= 0 (signed), and falls through when s1(=a2) > 0 (signed).
@@ -11704,11 +11835,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1010fd00 targets 0x1010fd18, is taken when a7(=[(ret(strlen) + sp-1104)-1]:1) == t0(=0x2f), and falls through when a7(=[(ret(strlen) + sp-1104)-1]:1) != t0(=0x2f).
   The `beq` branch at 0x1010fd24 targets 0x1010fdb0 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x1010fd2c targets 0x1010fdb0, is taken when a2(?) == a1(=0x2f), and falls through when a2(?) != a1(=0x2f).
-  The `bne` branch at 0x1010fd78 targets 0x1010fe04, is taken when v1(?) < 0x401 (unsigned), and falls through when v1(?) >= 0x401 (unsigned).
+  The `bne` branch at 0x1010fd78 targets 0x1010fe04, is taken when v1(=(ret(strlen) + (ret(strlen) + ret(strlen)))+6) < 0x401 (unsigned), and falls through when v1(=(ret(strlen) + (ret(strlen) + ret(strlen)))+6) >= 0x401 (unsigned).
   The `beq` branch at 0x1010fd84 targets 0x1010fda8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x1010fda0 targets 0x1010fc68 and is always taken.
   The `beq` branch at 0x1010fda8 targets 0x1010fc68 and is always taken.
-  The `beq` branch at 0x1010fddc targets 0x1010fd80, is taken when a3(?) >= 0x401 (unsigned), and falls through when a3(?) < 0x401 (unsigned).
+  The `beq` branch at 0x1010fddc targets 0x1010fd80, is taken when a3(=(ret(strlen) + ret(strlen))+5) >= 0x401 (unsigned), and falls through when a3(=(ret(strlen) + ret(strlen))+5) < 0x401 (unsigned).
   The `beq` branch at 0x1010fdfc targets 0x1010fd84 and is always taken.
   The `beq` branch at 0x1010fe20 targets 0x1010fd84 and is always taken.
   The return at 0x1010fc9c has v0 = ?.
@@ -11906,7 +12037,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x1011083c stores 4 bytes to a1 (arg1 at entry) +0x40.
   The `lw` at 0x10110860 loads 4 bytes from a1 (arg1 at entry) +0x3c.
   The `sw` at 0x10110874 stores 4 bytes to a1 (arg1 at entry) +0x3c.
-  113 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10110898, `lw` at 0x101108cc, `lw` at 0x101108ec.
+  103 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10110898, `lw` at 0x101108cc, `lw` at 0x101108ec.
   2 such `sh` accesses store 2 bytes to a1 (arg1 at entry) +0x30, including `sh` at 0x101108f4, `sh` at 0x10110ed0.
   2 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x18, including `sw` at 0x10110920, `sw` at 0x10110cac.
   13 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x10, including `lw` at 0x10110938, `lw` at 0x10110a30, `lw` at 0x10110cb0.
@@ -11917,7 +12048,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x44, including `lw` at 0x10110a4c, `lw` at 0x101117fc.
   The `lw` at 0x10110a50 loads 4 bytes from [a1+68] +0x4.
   2 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0x14, including `sw` at 0x10110b00, `sw` at 0x10110eec.
-  11 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10110bc8, `sw` at 0x10110fbc, `sw` at 0x10111458.
+  9 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10110bc8, `sw` at 0x10110fbc, `sw` at 0x10111458.
   The `lw` at 0x10110bcc loads 4 bytes from a1 (arg1 at entry) +0x24.
   2 such `lw` accesses load 4 bytes from [a1] +0xf0, including `lw` at 0x10110be4, `lw` at 0x1011147c.
   The `sw` at 0x10110c18 stores 4 bytes to a1 (arg1 at entry) +0x24.
@@ -11940,10 +12071,22 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to table(0x102c71c0) +0x0, including `sw` at 0x10111308, `sw` at 0x10111c50.
   2 such `sh` accesses store 2 bytes to a1 (arg1 at entry) +0xa, including `sh` at 0x10111348, `sh` at 0x10111ca4.
   2 such `sw` accesses store 4 bytes to a1 (arg1 at entry) +0xc, including `sw` at 0x10111354, `sw` at 0x10111c98.
-  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x10111358, `sb` at 0x10111360.
+  The `sb` at 0x10111358 stores 1 byte to ret(__malloc..ML) +0x1.
+  The `sb` at 0x10111360 stores 1 byte to ret(__malloc..ML) +0x0.
   The `lbu` at 0x10111434 loads 1 byte from a1 (arg1 at entry) +0x4.
   The `lw` at 0x10111804 loads 4 bytes from [a1+68] +0x10.
+  The `lw` at 0x101118d4 loads 4 bytes from [0x102c6164] +0x640.
+  The `sw` at 0x101118dc stores 4 bytes to [0x102c6164] +0x640.
   2 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x10111958, `lw` at 0x101119d4.
+  The `lw` at 0x10111a10 loads 4 bytes from [a1+44] +0x7c.
+  The `lw` at 0x10111a2c loads 4 bytes from [a1+44] +0x80.
+  The `lw` at 0x10111a3c loads 4 bytes from ([[a1+44]+128] + ([0x102cb54c] << 0x2)) +0x0.
+  The `lw` at 0x10111a58 loads 4 bytes from [([[a1+44]+128] + ([0x102cb54c] << 0x2))] +0x0.
+  The `lw` at 0x10111a60 loads 4 bytes from [a1+44] +0x6c.
+  2 such `lw` accesses load 4 bytes from [[a1+44]+108] +0x8, including `lw` at 0x10111a64, `lw` at 0x10111ac0.
+  The `lw` at 0x10111aa8 loads 4 bytes from [[a1+44]+108] +0xc.
+  The `sw` at 0x10111ab4 stores 4 bytes to [[a1+44]+108] +0xc.
+  The `lw` at 0x10111af0 loads 4 bytes from [[a1+44]+108] +0x4.
   The `lw` at 0x10111e28 loads 4 bytes from sym(Must_have_memory) +0x0.
   The `jalr` at 0x101109dc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=0xffffffffc0000002, a3=0x1, a7=a0 at entry (arg0).
   The `jalr` at 0x10110a60 calls (unknown callee) with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=?, a3=?.
@@ -11959,13 +12102,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x101113d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=0xffffffffc0000002, a3=0x1, a5=0xffffffffc0000002, a7=a0 at entry (arg0).
   The `jalr` at 0x10111488 calls (unknown callee) with a0=[a1+32], a1=0x1, a2=0x20000, a3=?, a7=a0 at entry (arg0).
   The `jalr` at 0x1011181c calls (unknown callee) with a0=a1 at entry (arg1), a1=?, a2=?, a3=0x0, a7=a0 at entry (arg0).
-  The `jal` at 0x101118e0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a7=a0 at entry (arg0).
-  The `jalr` at 0x101119bc calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a7=a0 at entry (arg0).
-  The `jal` at 0x10111a54 calls TagDeleteTag [0x101a10a0] with a0=?, a1=?, a2=?, a3=?, a7=a0 at entry (arg0).
-  The `jalr` at 0x10111a84 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10111adc calls (unknown callee) with a0=?, a1=0x1, a2=0x20000, a3=?, a7=a0 at entry (arg0).
-  The `jal` at 0x10111aec calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10111af8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101118e0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=[0x102c6164], a3=[[0x102c6164]+1600], a7=a0 at entry (arg0).
+  The `jalr` at 0x101119bc calls (unknown callee) with a0=?, a1=[a1+44], a2=?, a3=?, a7=a0 at entry (arg0).
+  The `jal` at 0x10111a54 calls TagDeleteTag [0x101a10a0] with a0=[[([[a1+44]+128] + ([0x102cb54c] << 0x2))]], a1=?, a2=?, a3=?, a7=a0 at entry (arg0).
+  The `jalr` at 0x10111a84 calls (unknown callee) with a0=[[a1+44]+108], a1=[a1+44], a2=?, a3=?.
+  The `jalr` at 0x10111adc calls (unknown callee) with a0=[[a1+44]+108], a1=0x1, a2=0x20000, a3=?, a7=a0 at entry (arg0).
+  The `jal` at 0x10111aec calls Xfree [0x101fc9c0] with a0=[[[a1+44]+108]+4], a1=?, a2=?, a3=?.
+  The `jal` at 0x10111af8 calls Xfree [0x101fc9c0] with a0=[[a1+44]+108], a1=?, a2=?, a3=?.
   The `jalr` at 0x10111bcc calls __libc_lockmalloc with a0=?, a1=0x1, a2=0x20000, a3=?, a6=0x200000, a7=a0 at entry (arg0).
   The `jal` at 0x10111c14 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=0x1, a2=0x20000, a3=?, a7=a0 at entry (arg0).
   The `jalr` at 0x10111c78 calls __libc_unlockmalloc with a0=?, a1=0x1, a2=0x20000, a3=?, a7=a0 at entry (arg0).
@@ -12132,8 +12275,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101111d8 targets 0x1011203c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x101111f8 targets 0x1011120c, is taken when t2(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t2(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x10111234 targets 0x10111260, is taken when t3(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t3(=[sym(__us_rsthread_malloc)]) != 0.
-  The `beq` branch at 0x10111264 targets 0x10111e28, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x10111270 targets 0x10111348, is taken when a0(=[a1+12]) == t0(?), and falls through when a0(=[a1+12]) != t0(?).
+  The `beq` branch at 0x10111264 targets 0x10111e28, is taken when t8(=ret(__malloc..ML)) == 0, and falls through when t8(=ret(__malloc..ML)) != 0.
+  The `beq` branch at 0x10111270 targets 0x10111348, is taken when a0(=[a1+12]) == t0(=0x102cc3c0), and falls through when a0(=[a1+12]) != t0(=0x102cc3c0).
   The `beq` branch at 0x10111278 targets 0x10111344, is taken when a0(=[a1+12]) == 0, and falls through when a0(=[a1+12]) != 0.
   The `beq` branch at 0x10111284 targets 0x101112b0, is taken when t9(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t9(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x101112c4 targets 0x10111300, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
@@ -12203,8 +12346,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10111860 targets 0x10111954, is taken when t1(=[0x102c6164]) == 0, and falls through when t1(=[0x102c6164]) != 0.
   The `beq` branch at 0x10111870 targets 0x10111918 and is always taken.
   The `beq` branch at 0x1011188c targets 0x10110ba0 and is always taken.
-  The `beq` branch at 0x10111910 targets 0x10111954, is taken when v0(?) == t3(?), and falls through when v0(?) != t3(?).
-  The `bne` branch at 0x10111920 targets 0x1011190c, is taken when a5(?) != t2(?), and falls through when a5(?) == t2(?).
+  The `beq` branch at 0x10111910 targets 0x10111954, is taken when v0(?) == t3(=[0x102c6164]+1536), and falls through when v0(?) != t3(=[0x102c6164]+1536).
+  The `bne` branch at 0x10111920 targets 0x1011190c, is taken when a5(?) != t2(=[a1+44]), and falls through when a5(?) == t2(=[a1+44]).
   The `bne` branch at 0x10111928 targets 0x10111894, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x1011194c targets 0x101118bc and is always taken.
   The `blez` branch at 0x1011195c targets 0x101119fc, is taken when t1(=[sym(screenInfo)+68]) <= 0 (signed), and falls through when t1(=[sym(screenInfo)+68]) > 0 (signed).
@@ -12212,10 +12355,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1011197c targets 0x101119fc, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `beq` branch at 0x10111994 targets 0x10111978, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `bne` branch at 0x101119f4 targets 0x10111968, is taken when ra(?) < t1(=[sym(screenInfo)+68]) (signed), and falls through when ra(?) >= t1(=[sym(screenInfo)+68]) (signed).
-  The `bne` branch at 0x10111a00 targets 0x10111a10, is taken when t3(=[0x102c5db0]) != t2(?), and falls through when t3(=[0x102c5db0]) == t2(?).
-  The `bne` branch at 0x10111a24 targets 0x10111a60, is taken when t8(?) < v0(=[0x102cb54c]) (signed), and falls through when t8(?) >= v0(=[0x102cb54c]) (signed).
-  The `beq` branch at 0x10111a48 targets 0x10111a60, is taken when t1(?) == 0, and falls through when t1(?) != 0.
-  The `bne` branch at 0x10111ab0 targets 0x10110fe0, is taken when v0(?) != 0, and falls through when v0(?) == 0.
+  The `bne` branch at 0x10111a00 targets 0x10111a10, is taken when t3(=[0x102c5db0]) != t2(=[a1+44]), and falls through when t3(=[0x102c5db0]) == t2(=[a1+44]).
+  The `bne` branch at 0x10111a24 targets 0x10111a60, is taken when t8(=[[a1+44]+124]) < v0(=[0x102cb54c]) (signed), and falls through when t8(=[[a1+44]+124]) >= v0(=[0x102cb54c]) (signed).
+  The `beq` branch at 0x10111a48 targets 0x10111a60, is taken when t1(=[([[a1+44]+128] + ([0x102cb54c] << 0x2))]) == 0, and falls through when t1(=[([[a1+44]+128] + ([0x102cb54c] << 0x2))]) != 0.
+  The `bne` branch at 0x10111ab0 targets 0x10110fe0, is taken when v0(=[[[a1+44]+108]+12]-1) != 0, and falls through when v0(=[[[a1+44]+108]+12]-1) == 0.
   The `beq` branch at 0x10111b14 targets 0x10110fe0 and is always taken.
   The `beq` branch at 0x10111b24 targets 0x10110960 and is always taken.
   The `beq` branch at 0x10111b30 targets 0x10110a30 and is always taken.
@@ -12225,7 +12368,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10111b70 targets 0x1011178c, is taken when s3(?) == 0, and falls through when s3(?) != 0.
   The `beq` branch at 0x10111b84 targets 0x101117fc and is always taken.
   The `bne` branch at 0x10111b94 targets 0x101111d8, is taken when t8(=0x4) != v0(?), and falls through when t8(=0x4) == v0(?).
-  The `beq` branch at 0x10111ba0 targets 0x10110960, is taken when v0(=[a1+12]) == t0(?), and falls through when v0(=[a1+12]) != t0(?).
+  The `beq` branch at 0x10111ba0 targets 0x10110960, is taken when v0(=[a1+12]) == t0(=0x102cc3c0), and falls through when v0(=[a1+12]) != t0(=0x102cc3c0).
   The `beq` branch at 0x10111ba8 targets 0x10111c98, is taken when v0(=[a1+12]) == 0, and falls through when v0(=[a1+12]) != 0.
   The `beq` branch at 0x10111bb4 targets 0x10111bec, is taken when t9(=[sym(__us_rsthread_malloc)]) == 0, and falls through when t9(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x10111c00 targets 0x10111c48, is taken when a0(=entry(0x102c71c0)) == 0, and falls through when a0(=entry(0x102c71c0)) != 0.
@@ -12375,7 +12518,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10112930 targets 0x10112918 and is always taken.
   The `beq` branch at 0x10112944 targets 0x10112904 and is always taken.
   The `beq` branch at 0x10112958 targets 0x10112968, is taken when v0(=ret(SetDefaultFontPath)) == 0, and falls through when v0(=ret(SetDefaultFontPath)) != 0.
-  The `bne` branch at 0x10112968 targets 0x101128fc, is taken when a1(?) != 0, and falls through when a1(?) == 0.
+  The `bne` branch at 0x10112968 targets 0x101128fc, is taken when a1(=one of 0x0, 0x1) != 0, and falls through when a1(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10112970 targets 0x101128f4 and is always taken.
   The return at 0x10112908 has v0 = one of ?, [a0+40].
   The return at 0x10112918 has v0 = 0x10.
@@ -12387,7 +12530,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 972 bytes.
   The `lw` at 0x10112b6c loads 4 bytes from a1 (arg1 at entry) +0x18.
   The `ldc1` at 0x10112b88 loads 8 bytes from abs 0x10291ba8.
-  The `lw` at 0x10112b94 loads 4 bytes from [a1+24] +0x68.
+  2 such `lw` accesses load 4 bytes from [a1+24] +0x68, including `lw` at 0x10112b94, `lw` at 0x10112c78.
   The `lw` at 0x10112ba0 loads 4 bytes from [a1+24] +0x70.
   The `ldc1` at 0x10112bbc loads 8 bytes from abs 0x10292438.
   2 such `ldc1` accesses load 8 bytes from abs 0x10292808, including `ldc1` at 0x10112be8, `ldc1` at 0x10112d94.
@@ -12395,7 +12538,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sdc1` accesses store 8 bytes to a6 (arg6 at entry) +0x0, including `sdc1` at 0x10112bf4, `sdc1` at 0x10112d00.
   The `lw` at 0x10112c00 loads 4 bytes from a2 (arg2 at entry) +0x58.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x0, including `lw` at 0x10112c34, `lw` at 0x10112ec0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10112c78, `lw` at 0x10112c8c, `lw` at 0x10112cf0.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10112c8c, `lw` at 0x10112cf0, `lw` at 0x10112e30.
   4 such `ldc1` accesses load 8 bytes from ?, including `ldc1` at 0x10112c9c, `ldc1` at 0x10112ca4, `ldc1` at 0x10112cc0.
   2 such `ldc1` accesses load 8 bytes from a2 (arg2 at entry) +0x8, including `ldc1` at 0x10112cac, `ldc1` at 0x10112ec4.
   2 such `ldc1` accesses load 8 bytes from a2 (arg2 at entry) +0x10, including `ldc1` at 0x10112cb8, `ldc1` at 0x10112ec8.
@@ -12427,7 +12570,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10112c48 targets 0x10112c54, is taken when t9(=0x2) == ra(?), and falls through when t9(=0x2) != ra(?).
   The `bne` branch at 0x10112c50 targets 0x10112eb0, is taken when a2(=0x8) != a1(?), and falls through when a2(=0x8) == a1(?).
   The `bc1f` branch at 0x10112c6c targets 0x10112ea4, is taken when not (f26 <= f0(=ret(fabs)) (c.le.d at 0x10112c64)), and falls through when f26 <= f0(=ret(fabs)) (c.le.d at 0x10112c64).
-  The `beq` branch at 0x10112c84 targets 0x10112d0c, is taken when s1(?) >= t3(?) (signed), and falls through when s1(?) < t3(?) (signed).
+  The `beq` branch at 0x10112c84 targets 0x10112d0c, is taken when s1(?) >= t3(=[[a1+24]+104]) (signed), and falls through when s1(?) < t3(=[[a1+24]+104]) (signed).
   The `beq` branch at 0x10112c90 targets 0x10112c7c, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `bc1t` branch at 0x10112cec targets 0x10112be0, is taken when f20 <= f24(=ret(hypot)) (c.le.d at 0x10112ce4), and falls through when not (f20 <= f24(=ret(hypot)) (c.le.d at 0x10112ce4)).
   The `beq` branch at 0x10112d04 targets 0x10112bf8 and is always taken.
@@ -12452,64 +12595,84 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10112f30 loads 4 bytes from [a0+12] +0x14c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x10112f3c, `lw` at 0x101132c8, `lw` at 0x10113ce8.
   3 such `lh` accesses load 2 bytes from a0 (arg0 at entry) +0x4, including `lh` at 0x10112f5c, `lh` at 0x10113ecc, `lh` at 0x10113f88.
-  17 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10112f60, `lhu` at 0x1011312c, `lhu` at 0x10113138.
+  The `lhu` at 0x10112f60 loads 2 bytes from [a0] +0x8.
   The `lhu` at 0x10112f70 loads 2 bytes from a1 (arg1 at entry) +0x0.
   The `lhu` at 0x10112f74 loads 2 bytes from a2 (arg2 at entry) +0x0.
   2 such `lh` accesses load 2 bytes from a0 (arg0 at entry) +0x10, including `lh` at 0x10112f78, `lh` at 0x10113000.
   The `lhu` at 0x10112f7c loads 2 bytes from a3 (arg3 at entry) +0x0.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x20, including `lw` at 0x10112fd4, `lw` at 0x10113240, `lw` at 0x10113298.
-  38 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10112fdc, `lw` at 0x101132a0, `lw` at 0x10113324.
+  5 such `lw` accesses load 4 bytes from ([a0+32] + (a5 << 0x2)) +0x0, including `lw` at 0x10112fdc, `lw` at 0x10113254, `lw` at 0x101132a0.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10112fe8, `lw` at 0x101132b8, `lw` at 0x10113cd8.
   8 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x38, including `lw` at 0x1011303c, `lw` at 0x101131d8, `lw` at 0x101131fc.
+  16 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1011312c, `lhu` at 0x10113138, `lhu` at 0x10113154.
   4 such `sw` accesses store 4 bytes to a4 (arg4 at entry) +0x0, including `sw` at 0x101131cc, `sw` at 0x101137b4, `sw` at 0x10114220.
   2 such `sh` accesses store 2 bytes to a1 (arg1 at entry) +0x0, including `sh` at 0x101131f0, `sh` at 0x101137d8.
   2 such `sh` accesses store 2 bytes to a2 (arg2 at entry) +0x0, including `sh` at 0x10113214, `sh` at 0x101137fc.
   2 such `sh` accesses store 2 bytes to a3 (arg3 at entry) +0x0, including `sh` at 0x1011323c, `sh` at 0x10113824.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2c, including `lw` at 0x1011324c, `lw` at 0x1011328c, `lw` at 0x10113834.
-  2 such `lw` accesses load 4 bytes from ([a0+32] + (a5 << 0x2)) +0x0, including `lw` at 0x10113254, `lw` at 0x1011383c.
   2 such `lw` accesses load 4 bytes from ([a0+44] + (a5 << 0x2)) +0x0, including `lw` at 0x10113260, `lw` at 0x10113848.
-  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10113288, `sw` at 0x10113294, `sw` at 0x101132b0.
+  2 such `sw` accesses store 4 bytes to (ret(Xrealloc) + ([([a0+32] + (a5 << 0x2))] << 0x2)) +0x0, including `sw` at 0x10113288, `sw` at 0x10113d90.
+  2 such `sw` accesses store 4 bytes to ([a0+44] + (a5 << 0x2)) +0x0, including `sw` at 0x10113294, `sw` at 0x10113d9c.
+  2 such `sw` accesses store 4 bytes to ([a0+32] + (a5 << 0x2)) +0x0, including `sw` at 0x101132b0, `sw` at 0x10113e68.
   2 such `lw` accesses load 4 bytes from [a0+12] +0x1c, including `lw` at 0x101132bc, `lw` at 0x10113cdc.
   2 such `lw` accesses load 4 bytes from [a0+12] +0x18, including `lw` at 0x101132cc, `lw` at 0x10113cec.
   2 such `lw` accesses load 4 bytes from [a0] +0x0, including `lw` at 0x101132d0, `lw` at 0x10113cf0.
+  5 such `lw` accesses load 4 bytes from [a0] +0x18, including `lw` at 0x10113324, `lw` at 0x10113788, `lw` at 0x10113d14.
+  4 such `lw` accesses load 4 bytes from [a0] +0xc, including `lw` at 0x1011332c, `lw` at 0x10113d10, `lw` at 0x10113d28.
   2 such `lhu` accesses load 2 bytes from [a0+56] +0x0, including `lhu` at 0x10113374, `lhu` at 0x10114254.
+  5 such `lw` accesses load 4 bytes from [a0] +0x1c, including `lw` at 0x101134b8, `lw` at 0x1011378c, `lw` at 0x10113fb4.
+  4 such `lw` accesses load 4 bytes from [a0] +0x10, including `lw` at 0x101134bc, `lw` at 0x10113fac, `lw` at 0x10113fc8.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x3c, including `lw` at 0x101134d0, `lw` at 0x101137e4, `lw` at 0x10113fe0.
   The `lhu` at 0x101134f0 loads 2 bytes from [a0+60] +0x2.
+  5 such `lw` accesses load 4 bytes from [a0] +0x20, including `lw` at 0x10113654, `lw` at 0x1011379c, `lw` at 0x101140a4.
+  4 such `lw` accesses load 4 bytes from [a0] +0x14, including `lw` at 0x10113658, `lw` at 0x1011409c, `lw` at 0x101140b8.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x40, including `lw` at 0x10113674, `lw` at 0x10113808, `lw` at 0x101140d0.
   The `lhu` at 0x10113694 loads 2 bytes from [a0+64] +0x4.
   7 such `lw` accesses load 4 bytes from a4 (arg4 at entry) +0x0, including `lw` at 0x10113d04, `lw` at 0x10113d08, `lw` at 0x10113f9c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x24, including `lw` at 0x10113da0, `lw` at 0x10113e6c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x30, including `lw` at 0x10113da8, `lw` at 0x10113dfc.
+  2 such `lw` accesses load 4 bytes from ([a0+36] + (a5 << 0x2)) +0x0, including `lw` at 0x10113db0, `lw` at 0x10113e74.
+  The `lw` at 0x10113db8 loads 4 bytes from ([a0+48] + (a5 << 0x2)) +0x0.
+  The `sw` at 0x10113df8 stores 4 bytes to (ret(Xrealloc) + ([([a0+36] + (a5 << 0x2))] << 0x2)) +0x0.
+  The `sw` at 0x10113e04 stores 4 bytes to ([a0+48] + (a5 << 0x2)) +0x0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x28, including `lw` at 0x10113e08, `lw` at 0x10113e80.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x34, including `lw` at 0x10113e10, `lw` at 0x10113e4c.
+  2 such `lw` accesses load 4 bytes from ([a0+40] + (a5 << 0x2)) +0x0, including `lw` at 0x10113e18, `lw` at 0x10113e88.
+  The `lw` at 0x10113e20 loads 4 bytes from ([a0+52] + (a5 << 0x2)) +0x0.
+  The `sw` at 0x10113e48 stores 4 bytes to (ret(Xrealloc) + ([([a0+40] + (a5 << 0x2))] << 0x2)) +0x0.
+  The `sw` at 0x10113e54 stores 4 bytes to ([a0+52] + (a5 << 0x2)) +0x0.
+  The `sw` at 0x10113e7c stores 4 bytes to ([a0+36] + (a5 << 0x2)) +0x0.
+  The `sw` at 0x10113e98 stores 4 bytes to ([a0+40] + (a5 << 0x2)) +0x0.
   2 such `lw` accesses load 4 bytes from sym(clients) +0x0, including `lw` at 0x10113eb0, `lw` at 0x10113f6c.
   2 such `lw` accesses load 4 bytes from ([sym(clients)] + (a5 << 0x2)) +0x0, including `lw` at 0x10113ec8, `lw` at 0x10113f84.
   2 such `lh` accesses load 2 bytes from ret(SecurityLookupIDByType) +0x4, including `lh` at 0x10113ed0, `lh` at 0x10113f8c.
   The `sw` at 0x10113f08 stores 4 bytes to ret(Xalloc) +0x4.
   The `sw` at 0x10113f10 stores 4 bytes to ret(Xalloc) +0x0.
   2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x38, including `lw` at 0x10114080, `lw` at 0x10114170.
+  The `lw` at 0x101141b8 loads 4 bytes from ret(SecurityLookupIDByType) +0x3c.
+  The `lw` at 0x10114200 loads 4 bytes from ret(SecurityLookupIDByType) +0x40.
   The `jalr` at 0x10112f50 calls (unknown callee) with a0=a1 at entry (arg1), a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=[a0].
   The `jal` at 0x1011326c calls Xrealloc [0x101b9470] with a0=[([a0+44] + (a5 << 0x2))], a1=([([a0+32] + (a5 << 0x2))] << 0x2)+4, a2=(a5 << 0x2), a3=?, a4=a3 at entry (arg3), a7=a2 at entry (arg2).
-  The `jal` at 0x101132fc calls FindColor [0x1022f420] with a0=a0 at entry (arg0), a1=[a0+56], a2=?, a3=sp-256, a5=0x3, a6=a5 at entry (arg5), a7=0x1012d430.
+  The `jal` at 0x101132fc calls FindColor [0x1022f420] with a0=a0 at entry (arg0), a1=[a0+56], a2=[[a0]+8]:2, a3=sp-256, a5=0x3, a6=a5 at entry (arg5), a7=0x1012d430.
   The `jal` at 0x10113854 calls Xrealloc [0x101b9470] with a0=[([a0+44] + (a5 << 0x2))], a1=([([a0+32] + (a5 << 0x2))] << 0x2)+4, a2=(a5 << 0x2), a3=?, a4=a3 at entry (arg3), a7=a2 at entry (arg2).
   The `jal` at 0x10113d50 calls FindColor [0x1022f420] with a0=a0 at entry (arg0), a1=[a0+56], a2=?, a3=sp-256, a4=sp-248, a5=0x0, a6=a5 at entry (arg5), a7=0x100b26b0.
-  The `jal` at 0x10113dc4 calls Xrealloc [0x101b9470] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10113e2c calls Xrealloc [0x101b9470] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10113dc4 calls Xrealloc [0x101b9470] with a0=[([a0+48] + (a5 << 0x2))], a1=([([a0+36] + (a5 << 0x2))] << 0x2)+4, a2=(a5 << 0x2), a3=([a0+44] + (a5 << 0x2)), a5=(ret(Xrealloc) + ([([a0+32] + (a5 << 0x2))] << 0x2)).
+  The `jal` at 0x10113e2c calls Xrealloc [0x101b9470] with a0=[([a0+52] + (a5 << 0x2))], a1=([([a0+40] + (a5 << 0x2))] << 0x2)+4, a2=(a5 << 0x2), a3=([a0+48] + (a5 << 0x2)), a5=(ret(Xrealloc) + ([([a0+36] + (a5 << 0x2))] << 0x2)).
   The `jal` at 0x10113ec4 calls SecurityLookupIDByType [0x100d6140] with a0=[([sym(clients)] + (a5 << 0x2))], a1=[[a0+12]+28], a2=0x6, a3=0x1, a4=(a5 << 0x2), a5=[[a0+12]+24], a6=[a3]:2, a7=0x1.
-  The `jal` at 0x10113ee8 calls Xalloc [0x1020aeb0] with a0=0x8, a1=?, a2=?, a3=?, a4=a5 at entry (arg5), a7=0x1.
+  The `jal` at 0x10113ee8 calls Xalloc [0x1020aeb0] with a0=0x8, a1=?, a2=(a5 << 0x2), a3=[([a0+32] + (a5 << 0x2))], a4=a5 at entry (arg5), a7=0x1.
   The `jal` at 0x10113f0c calls FakeClientID [0x10069920] with a0=a5 at entry (arg5), a1=?, a2=?, a3=?, a4=[a0+8], a5=ret(Xalloc).
-  The `jal` at 0x10113f24 calls AddResource [0x1010ec30] with a0=ret(FakeClientID), a1=0x7, a2=?, a3=?.
+  The `jal` at 0x10113f24 calls AddResource [0x1010ec30] with a0=ret(FakeClientID), a1=0x7, a2=ret(Xalloc), a3=?.
   The `jal` at 0x10113f80 calls SecurityLookupIDByType [0x100d6140] with a0=[([sym(clients)] + (a5 << 0x2))], a1=[[a0+12]+28], a2=0x6, a3=0x1, a4=(a5 << 0x2), a5=[[a0+12]+24], a6=[a3]:2, a7=0x1.
   The `jal` at 0x10113ff0 calls FindColor [0x1022f420] with a0=a0 at entry (arg0), a1=[a0+60], a2=?, a3=sp-256, a4=sp-244, a5=0x1, a6=a5 at entry (arg5), a7=0x1025d3b0.
   The `jal` at 0x10114010 calls FreeCo..AF [0x1007f3a0] with a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=0x0, a3=0x1, a4=sp-248, a5=0x0.
   The `jal` at 0x10114058 calls FreeColors [0x100a88d0] with a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=0x1, a3=a4 at entry (arg4), a4=0x0.
-  The `jal` at 0x10114084 calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+56], a2=?, a3=sp-256, a5=0x3, a6=0x1012d430.
+  The `jal` at 0x10114084 calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+56], a2=[[a0]+8]:2, a3=sp-256, a5=0x3, a6=0x1012d430.
   The `jal` at 0x101140e0 calls FindColor [0x1022f420] with a0=a0 at entry (arg0), a1=[a0+64], a2=?, a3=sp-256, a4=sp-240, a5=0x2, a6=a5 at entry (arg5), a7=0x100841c0.
   The `jal` at 0x10114104 calls FreeCo..AF [0x1007f3a0] with a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=0x1, a3=0x1, a4=sp-244, a5=0x0.
   The `jal` at 0x10114120 calls FreeCo..AF [0x1007f3a0] with a0=a0 at entry (arg0), a1=a5 at entry (arg5), a2=0x0, a3=0x1, a4=sp-248, a5=0x0.
-  The `jal` at 0x1011416c calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+56], a2=?, a3=sp-256, a4=sp-248, a5=0x0, a6=0x100b26b0.
-  The `jal` at 0x101141b4 calls FindColorInRootCmap..GE [0x100fa160] with a0=?, a1=?, a2=?, a3=sp-256, a4=sp-244, a5=0x1, a6=0x1025d3b0.
-  The `jal` at 0x101141fc calls FindColorInRootCmap..GE [0x100fa160] with a0=?, a1=?, a2=?, a3=sp-256, a4=sp-240, a5=0x2, a6=0x100841c0.
+  The `jal` at 0x1011416c calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+56], a2=[[a0]+8]:2, a3=sp-256, a4=sp-248, a5=0x0, a6=0x100b26b0.
+  The `jal` at 0x101141b4 calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+60], a2=[[a0]+8]:2, a3=sp-256, a4=sp-244, a5=0x1, a6=0x1025d3b0.
+  The `jal` at 0x101141fc calls FindColorInRootCmap..GE [0x100fa160] with a0=ret(SecurityLookupIDByType), a1=[ret(SecurityLookupIDByType)+64], a2=[[a0]+8]:2, a3=sp-256, a4=sp-240, a5=0x2, a6=0x100841c0.
   The `beq` branch at 0x10112f8c targets 0x10112f98, is taken when (ra(=[a0+16]:2) & 0x4) == 0, and falls through when (ra(=[a0+16]:2) & 0x4) != 0.
   The `beq` branch at 0x10112f98 targets 0x10113034, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x10112fa0 targets 0x10113038, is taken when v0(?) == a7(=0x2), and falls through when v0(?) != a7(=0x2).
@@ -12517,16 +12680,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10112fb4 targets 0x101132b4, is taken when v0(?) == a7(=0x1), and falls through when v0(?) != a7(=0x1).
   The `beq` branch at 0x10112fbc targets 0x101132b4, is taken when v0(?) == t1(=0x3), and falls through when v0(?) != t1(=0x3).
   The `beq` branch at 0x10112fc4 targets 0x10113cd4, is taken when v0(?) == t2(=0x5), and falls through when v0(?) != t2(=0x5).
-  The `bne` branch at 0x10112fe0 targets 0x10113010, is taken when a3(?) != a7(=0x1), and falls through when a3(?) == a7(=0x1).
+  The `bne` branch at 0x10112fe0 targets 0x10113010, is taken when a3(=[([a0+32] + (a5 << 0x2))]) != a7(=0x1), and falls through when a3(=[([a0+32] + (a5 << 0x2))]) == a7(=0x1).
   The `beq` branch at 0x10112ff8 targets 0x10113010, is taken when a4(=a5) == a5(?), and falls through when a4(=a5) != a5(?).
   The `beq` branch at 0x10113008 targets 0x10113ee4, is taken when (a6(=[a0+16]:2) & 0x4) == 0, and falls through when (a6(=[a0+16]:2) & 0x4) != 0.
-  The `beq` branch at 0x10113040 targets 0x10113e9c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10113040 targets 0x10113e9c, is taken when a2(=[[a0]+8]:2) == 0, and falls through when a2(=[[a0]+8]:2) != 0.
   The `beq` branch at 0x10113080 targets 0x1011424c and is always taken.
   The `bne` branch at 0x101130dc targets 0x10113188, is taken when s4(?) < v0(=0x1000000) (unsigned), and falls through when s4(?) >= v0(=0x1000000) (unsigned).
   The `bne` branch at 0x101130f4 targets 0x10113110, is taken when ra(?) < t2(?) (signed), and falls through when ra(?) >= t2(?) (signed).
   The `bne` branch at 0x101130fc targets 0x10113120, is taken when ra(?) != t2(?), and falls through when ra(?) == t2(?).
   The `beq` branch at 0x1011310c targets 0x1011311c, is taken when s5(?) >= t1(=0xffffff) (unsigned), and falls through when s5(?) < t1(=0xffffff) (unsigned).
-  The `beq` branch at 0x10113124 targets 0x101131a4, is taken when t9(?) == a2(?), and falls through when t9(?) != a2(?).
+  The `beq` branch at 0x10113124 targets 0x101131a4, is taken when t9(?) == a2(=[[a0]+8]:2), and falls through when t9(?) != a2(=[[a0]+8]:2).
   The `bne` branch at 0x10113178 targets 0x10113090, is taken when t2(?) < v0(=0x1000000) (unsigned), and falls through when t2(?) >= v0(=0x1000000) (unsigned).
   The `beq` branch at 0x10113180 targets 0x10113094 and is always taken.
   The `bne` branch at 0x1011318c targets 0x10113110, is taken when s7(?) != 0, and falls through when s7(?) == 0.
@@ -12711,13 +12874,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1011492c loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x1011496c loads 4 bytes from [a0+8] +0x8.
   2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x4, including `lw` at 0x10114994, `lw` at 0x101149ec.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101149c4, `lw` at 0x10114a28.
+  The `lw` at 0x101149c4 loads 4 bytes from [a0+8] +0xc.
   The `lw` at 0x10114a14 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x10114a18 loads 1 byte from ?.
+  The `lbu` at 0x10114a18 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10114a1c loads 4 bytes from [a0+88] +0x0.
+  The `lw` at 0x10114a28 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x10114968 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+8], a2=0xffffffffc0000002, a3=0x0, a4=0x10.
   The `jal` at 0x10114998 calls CheckAccess [0x100e6b00] with a0=0x8, a1=0x0, a2=a0 at entry (arg0), a3=[ret(SecurityLookupIDByType)+4], a4=0x4.
-  The `jal` at 0x101149c0 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=0xffffffffc0000002, a3=0x0.
+  The `jal` at 0x101149c0 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+12], a2=0xffffffffc0000002, a3=0x0.
   The `jal` at 0x101149f0 calls CheckAccess [0x100e6b00] with a0=0x8, a1=0x0, a2=a0 at entry (arg0), a3=[ret(SecurityLookupIDByType)+4], a4=0x4.
   The `jalr` at 0x10114a2c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10114934 targets 0x1011494c, is taken when v0(=[a0+72]) == v1(=0x8), and falls through when v0(=[a0+72]) != v1(=0x8).
@@ -12785,8 +12949,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10114d18 loads 2 bytes from [[[[a1+144]+344]+36]+12] +0x22.
   The `sb` at 0x10114d48 stores 1 byte to [[a1+144]+344] +0x64.
   The `sb` at 0x10114d4c stores 1 byte to [[a1+144]+344] +0x65.
-  The `lw` at 0x10114d7c loads 4 bytes from ?.
-  The `sw` at 0x10114d84 stores 4 bytes to ?.
+  The `lw` at 0x10114d7c loads 4 bytes from [[a1+144]+344] +0x74.
+  The `sw` at 0x10114d84 stores 4 bytes to [[a1+144]+344] +0x74.
   The `lbu` at 0x10114d88 loads 1 byte from [[a1+144]+344] +0x61.
   The `sb` at 0x10114d94 stores 1 byte to [[a1+144]+344] +0x61.
   The `lbu` at 0x10114d98 loads 1 byte from [[a1+144]+344] +0x62.
@@ -12807,7 +12971,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10114c88 calls TimerSet [0x10223200] with a0=[[[a1+144]+344]+128], a1=0x0, a2=[[[[[a1+144]+344]+36]+12]+22]:2, a3=0x101bf700, a4=a1 at entry (arg1).
   The `jal` at 0x10114d00 calls XkbSendAccessXNotify [0x100f8a70] with a0=a1 at entry (arg1), a1=sp-144, a2=?, a3=[[[[[a1+144]+344]+36]+12]+12].
   The `jal` at 0x10114d50 calls _XkbDDXBeepExpire..NIF [0x101019a0] with a0=0x0, a1=0x0, a2=a1 at entry (arg1), a3=?.
-  The `jal` at 0x10114d78 calls TimerSet [0x10223200] with a0=?, a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0, a4=a1 at entry (arg1).
+  The `jal` at 0x10114d78 calls TimerSet [0x10223200] with a0=[[[a1+144]+344]+116], a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0, a4=a1 at entry (arg1).
   The `jal` at 0x10114df4 calls TimerSet [0x10223200] with a0=[[[a1+144]+344]+136], a1=0x0, a2=?, a3=0x1014a280, a4=a1 at entry (arg1), a5=[[[[[a1+144]+344]+36]+12]+36]:2.
   The `jal` at 0x10114e28 calls TimerSet [0x10223200] with a0=[[[a1+144]+344]+136], a1=0x0, a2=0x0, a3=0x0, a4=0x0.
   The `jal` at 0x10114e94 calls XkbProcessKeyboardEvent [0x10267890] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=?.
@@ -12874,9 +13038,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10115114 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `lw` at 0x10115148 loads 4 bytes from ret(SecurityLookupIDByType) +0x4.
   The `lw` at 0x10115170 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x10115174 loads 1 byte from ?.
+  The `lbu` at 0x10115174 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10115178 loads 4 bytes from [a0+88] +0x0.
-  The `lw` at 0x10115184 loads 4 bytes from ?.
+  The `lw` at 0x10115184 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x1011511c calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0x6, a3=0x0, a4=[[a0+8]+4], a5=a0 at entry (arg0).
   The `jal` at 0x1011514c calls CheckAccess [0x100e6b00] with a0=0x6, a1=0x3, a2=a0 at entry (arg0), a3=[ret(SecurityLookupIDByType)+4], a4=0xc.
   The `jalr` at 0x10115188 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
@@ -13104,7 +13268,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10115ec8 calls FatalError [0x10094f20] with a0=0x10293d60, a1=?, a2=?, a3=?.
   The `jalr` at 0x10115ef0 calls printf with a0=0x10293d98, a1=?, a2=?, a3=?.
   The `jal` at 0x10115f10 calls FatalError [0x10094f20] with a0=0x10293d48, a1=?, a2=?, a3=?.
-  The `jal` at 0x10115f5c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10115f5c calls FatalError [0x10094f20] with a0=0x10293d08, a1=?, a2=?, a3=?.
   The `jal` at 0x10115f70 calls FatalError [0x10094f20] with a0=0x10293db8, a1=?, a2=?, a3=?.
   The `beq` branch at 0x10115de8 targets 0x10115e8c, is taken when t8(=[0x102cd3d8]) == t9(=[0x102c84c4]), and falls through when t8(=[0x102cd3d8]) != t9(=[0x102c84c4]).
   The `beq` branch at 0x10115df8 targets 0x10115e3c and is always taken.
@@ -13385,25 +13549,25 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x101175d4 targets 0x10117634, is taken when t0(=[[a0+8]+18]:2) <= 0 (signed), and falls through when t0(=[[a0+8]+18]:2) > 0 (signed).
   The `beq` branch at 0x10117604 targets 0x10117634, is taken when v0(?) >= t1(=[[a0+8]+18]:2) (signed), and falls through when v0(?) < t1(=[[a0+8]+18]:2) (signed).
   The `bne` branch at 0x1011762c targets 0x101175e4, is taken when v0(?) < t9(=[[a0+8]+18]:2) (signed), and falls through when v0(?) >= t9(=[[a0+8]+18]:2) (signed).
-  The `beq` branch at 0x10117670 targets 0x101176ac, is taken when (v0(?) & 0x4) == 0, and falls through when (v0(?) & 0x4) != 0.
+  The `beq` branch at 0x10117670 targets 0x101176ac, is taken when (v0(=[[a0+8]+4]) & 0x4) == 0, and falls through when (v0(=[[a0+8]+4]) & 0x4) != 0.
   The `beq` branch at 0x10117680 targets 0x10117b70, is taken when a3(=[[a0+8]+20]:2) == a0(=-0x1), and falls through when a3(=[[a0+8]+20]:2) != a0(=-0x1).
   The `bltz` branch at 0x10117688 targets 0x10117d38, is taken when a3(=[[a0+8]+20]:2) < 0 (signed), and falls through when a3(=[[a0+8]+20]:2) >= 0 (signed).
-  The `beq` branch at 0x1011769c targets 0x10116cf0, is taken when a4(?) >= 0x1 (unsigned), and falls through when a4(?) < 0x1 (unsigned).
+  The `beq` branch at 0x1011769c targets 0x10116cf0, is taken when a4(=one of 0x0, 0x1) >= 0x1 (unsigned), and falls through when a4(=one of 0x0, 0x1) < 0x1 (unsigned).
   The `beq` branch at 0x101176a4 targets 0x10116cec, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x101176b0 targets 0x101176f8, is taken when (v0(?) & 0x8) == 0, and falls through when (v0(?) & 0x8) != 0.
+  The `beq` branch at 0x101176b0 targets 0x101176f8, is taken when (v0(=[[a0+8]+4]) & 0x8) == 0, and falls through when (v0(=[[a0+8]+4]) & 0x8) != 0.
   The `beq` branch at 0x101176c0 targets 0x10117ce4, is taken when t0(=[[a0+8]+22]:2) == t1(=-0x1), and falls through when t0(=[[a0+8]+22]:2) != t1(=-0x1).
   The `bltz` branch at 0x101176cc targets 0x10117e6c, is taken when t2(=[[a0+8]+22]:2) < 0 (signed), and falls through when t2(=[[a0+8]+22]:2) >= 0 (signed).
-  The `beq` branch at 0x101176e0 targets 0x10116cf0, is taken when v0(?) >= 0x1 (unsigned), and falls through when v0(?) < 0x1 (unsigned).
+  The `beq` branch at 0x101176e0 targets 0x10116cf0, is taken when v0(=one of 0x0, 0x1) >= 0x1 (unsigned), and falls through when v0(=one of 0x0, 0x1) < 0x1 (unsigned).
   The `beq` branch at 0x101176ec targets 0x10116cec, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x10117730 targets 0x10116cf0 and is always taken.
-  The `beq` branch at 0x10117740 targets 0x10117774, is taken when (t0(?) & 0x2) == 0, and falls through when (t0(?) & 0x2) != 0.
+  The `beq` branch at 0x10117740 targets 0x10117774, is taken when (t0(=[[a0+8]+4]) & 0x2) == 0, and falls through when (t0(=[[a0+8]+4]) & 0x2) != 0.
   The `beq` branch at 0x10117750 targets 0x10117bac, is taken when v0(=[[a0+8]+20]:2) == t2(=-0x1), and falls through when v0(=[[a0+8]+20]:2) != t2(=-0x1).
   The `blez` branch at 0x10117758 targets 0x10117d9c, is taken when v0(=[[a0+8]+20]:2) <= 0 (signed), and falls through when v0(=[[a0+8]+20]:2) > 0 (signed).
-  The `bne` branch at 0x10117768 targets 0x10117304, is taken when t1(?) != 0, and falls through when t1(?) == 0.
-  The `beq` branch at 0x10117778 targets 0x101177b0, is taken when (t3(?) & 0x4) == 0, and falls through when (t3(?) & 0x4) != 0.
+  The `bne` branch at 0x10117768 targets 0x10117304, is taken when t1(=one of 0x0, 0x1) != 0, and falls through when t1(=one of 0x0, 0x1) == 0.
+  The `beq` branch at 0x10117778 targets 0x101177b0, is taken when (t3(=[[a0+8]+4]) & 0x4) == 0, and falls through when (t3(=[[a0+8]+4]) & 0x4) != 0.
   The `beq` branch at 0x10117788 targets 0x10117bdc, is taken when v0(=[[a0+8]+22]:2) == t9(=-0x1), and falls through when v0(=[[a0+8]+22]:2) != t9(=-0x1).
   The `bltz` branch at 0x10117790 targets 0x10117e08, is taken when v0(=[[a0+8]+22]:2) < 0 (signed), and falls through when v0(=[[a0+8]+22]:2) >= 0 (signed).
-  The `bne` branch at 0x101177a4 targets 0x10117300, is taken when t8(?) != 0, and falls through when t8(?) == 0.
+  The `bne` branch at 0x101177a4 targets 0x10117300, is taken when t8(=one of 0x0, 0x1) != 0, and falls through when t8(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x101177ec targets 0x10117304 and is always taken.
   The `beq` branch at 0x10117848 targets 0x10116cd0 and is always taken.
   The `bne` branch at 0x101178a4 targets 0x10117968, is taken when t9(=one of 0x0, 0x1) != 0, and falls through when t9(=one of 0x0, 0x1) == 0.
@@ -13468,7 +13632,7 @@ These entries record instruction facts rendered from the routines below. They de
   7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10117ff4, `lw` at 0x10118000, `lw` at 0x10118004.
   2 such `lw` accesses load 4 bytes from table(0x102cba68) +0x0, including `lw` at 0x1011801c, `lw` at 0x101182a0.
   7 such `lbu` accesses load 1 byte from [a0+8] +0x0, including `lbu` at 0x10118020, `lbu` at 0x101181d8, `lbu` at 0x10118218.
-  16 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1011803c, `lbu` at 0x10118168, `lbu` at 0x1011816c.
+  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1011803c, `lbu` at 0x101182b0.
   The `lw` at 0x10118054 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `sh` at 0x10118058 stores 2 bytes to ret(Xalloc) +0xe.
   The `lbu` at 0x1011805c loads 1 byte from entry(0x102cba68) +0x15.
@@ -13485,7 +13649,34 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x101180e8 stores 4 bytes to ret(Xalloc) +0x4.
   The `lhu` at 0x10118108 loads 2 bytes from entry(0x102cba68) +0x3c.
   The `lbu` at 0x1011810c loads 1 byte from ret(Xalloc) +0x8.
-  14 such `sb` accesses store 1 byte to ?, including `sb` at 0x101181a0, `sb` at 0x101181a4, `sb` at 0x101181a8.
+  The `lbu` at 0x10118168 loads 1 byte from ret(Xalloc) +0x3.
+  The `lbu` at 0x1011816c loads 1 byte from ret(Xalloc) +0x0.
+  The `lbu` at 0x10118170 loads 1 byte from ret(Xalloc) +0x2.
+  The `lbu` at 0x10118174 loads 1 byte from ret(Xalloc) +0x1.
+  The `lbu` at 0x10118178 loads 1 byte from ret(Xalloc) +0x7.
+  The `lbu` at 0x1011817c loads 1 byte from ret(Xalloc) +0x4.
+  The `lbu` at 0x10118180 loads 1 byte from ret(Xalloc) +0x6.
+  The `lbu` at 0x10118184 loads 1 byte from ret(Xalloc) +0x5.
+  The `lbu` at 0x10118188 loads 1 byte from ret(Xalloc) +0xb.
+  The `lbu` at 0x1011818c loads 1 byte from ret(Xalloc) +0xa.
+  The `lbu` at 0x10118190 loads 1 byte from ret(Xalloc) +0xd.
+  The `lbu` at 0x10118194 loads 1 byte from ret(Xalloc) +0xc.
+  The `lbu` at 0x10118198 loads 1 byte from ret(Xalloc) +0xf.
+  The `lbu` at 0x1011819c loads 1 byte from ret(Xalloc) +0xe.
+  The `sb` at 0x101181a0 stores 1 byte to ret(Xalloc) +0xf.
+  The `sb` at 0x101181a4 stores 1 byte to ret(Xalloc) +0xe.
+  The `sb` at 0x101181a8 stores 1 byte to ret(Xalloc) +0xd.
+  The `sb` at 0x101181ac stores 1 byte to ret(Xalloc) +0xc.
+  The `sb` at 0x101181b0 stores 1 byte to ret(Xalloc) +0xb.
+  The `sb` at 0x101181b4 stores 1 byte to ret(Xalloc) +0xa.
+  The `sb` at 0x101181b8 stores 1 byte to ret(Xalloc) +0x6.
+  The `sb` at 0x101181bc stores 1 byte to ret(Xalloc) +0x5.
+  The `sb` at 0x101181c0 stores 1 byte to ret(Xalloc) +0x7.
+  The `sb` at 0x101181c4 stores 1 byte to ret(Xalloc) +0x4.
+  The `sb` at 0x101181c8 stores 1 byte to ret(Xalloc) +0x2.
+  The `sb` at 0x101181cc stores 1 byte to ret(Xalloc) +0x1.
+  The `sb` at 0x101181d0 stores 1 byte to ret(Xalloc) +0x3.
+  The `sb` at 0x101181d4 stores 1 byte to ret(Xalloc) +0x0.
   The `lw` at 0x101181e8 loads 4 bytes from table(0x102d0728) +0x0.
   3 such `lw` accesses load 4 bytes from [entry(0x102cba68)] +0x1c, including `lw` at 0x10118228, `lw` at 0x101183c4, `lw` at 0x1011840c.
   The `lw` at 0x10118270 loads 4 bytes from abs 0x102cc098.
@@ -13498,11 +13689,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10117fe4 calls XETrapWriteXLib [0x10269470] with a0=entry(0x102cba68), a1=?, a2=?, a3=?.
   The `jal` at 0x10118074 calls SecurityLookupDrawable [0x101e03e0] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=?.
   The `jalr` at 0x101180d4 calls times with a0=sp-160, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101180fc calls memcpy with a0=?, a1=[a0+8], a2=([[a0+8]+2]:2 << 0x2), a3=?.
-  The `jal` at 0x1011812c calls Xalloc [0x1020aeb0] with a0=?, a1=[[entry(0x102cba68)]+16], a2=?, a3=?, a6=[ret(Xalloc)+8]:1.
+  The `jalr` at 0x101180fc calls memcpy with a0=ret(Xalloc)+16, a1=[a0+8], a2=([[a0+8]+2]:2 << 0x2), a3=?.
+  The `jal` at 0x1011812c calls Xalloc [0x1020aeb0] with a0=?, a1=[[entry(0x102cba68)]+16], a2=one of 0x0, 0x1, a3=?, a6=[ret(Xalloc)+8]:1.
   The `jalr` at 0x10118144 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1011815c calls memcpy with a0=?, a1=ret(Xalloc), a2=?, a3=?.
-  The `jalr` at 0x101181ec calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1011815c calls memcpy with a0=ret(Xalloc), a1=ret(Xalloc), a2=?, a3=?.
+  The `jalr` at 0x101181ec calls (unknown callee) with a0=ret(Xalloc)+16, a1=[ret(Xalloc)+13]:1, a2=[ret(Xalloc)+10]:1, a3=[ret(Xalloc)+11]:1, a4=[ret(Xalloc)+5]:1, a5=[ret(Xalloc)+6]:1, a6=[ret(Xalloc)+4]:1, a7=[ret(Xalloc)+7]:1.
   The `jal` at 0x1011824c calls WriteEventsToClient [0x10180840] with a0=[entry(0x102cba68)], a1=0x1, a2=sp-192, a3=[[entry(0x102cba68)]+28], a4=[[a0+8]]:1, a5=[0x102cba10], a6=[0x102cb9f0]+2.
   The `jal` at 0x101182f8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?, a7=[0x102cc098].
   The `jal` at 0x1011830c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
@@ -13516,11 +13707,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10117f94 targets 0x1011825c, is taken when t9(=[0x102cc090]) == 0, and falls through when t9(=[0x102cc090]) != 0.
   The `beq` branch at 0x10117fac targets 0x10118000 and is always taken.
   The `beq` branch at 0x10117fc8 targets 0x10118210, is taken when a1(=[[entry(0x102cba68)]+16]) == 0, and falls through when a1(=[[entry(0x102cba68)]+16]) != 0.
-  The `beq` branch at 0x10117fd0 targets 0x1011812c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10117fd0 targets 0x1011812c, is taken when a2(=one of 0x0, 0x1) == 0, and falls through when a2(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10117fd8 targets 0x10118210, is taken when a1(=[[entry(0x102cba68)]+16]) == 0, and falls through when a1(=[[entry(0x102cba68)]+16]) != 0.
   The `bne` branch at 0x10117fec targets 0x10118218, is taken when v0(=ret(XETrapWriteXLib)) != s5(?), and falls through when v0(=ret(XETrapWriteXLib)) == s5(?).
   The `beq` branch at 0x10117ff8 targets 0x10118268, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x10118018 targets 0x101183b4, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x10118018 targets 0x101183b4, is taken when t8(=one of 0x0, 0x1) == 0, and falls through when t8(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1011804c targets 0x10117ff4, is taken when (t8(?) & t9(?)) == 0, and falls through when (t8(?) & t9(?)) != 0.
   The `beq` branch at 0x10118064 targets 0x101180c0, is taken when (at(=[entry(0x102cba68)+21]:1) & 0x1) == 0, and falls through when (at(=[entry(0x102cba68)+21]:1) & 0x1) != 0.
   The `bne` branch at 0x1011807c targets 0x10118094, is taken when v0(=ret(SecurityLookupDrawable)) != 0, and falls through when v0(=ret(SecurityLookupDrawable)) == 0.
@@ -13592,7 +13783,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x10118a84 loads 1 byte from ret(strpbrk) +0x1.
   The `jalr` at 0x1011861c calls strlen with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10118634 calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011864c calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011864c calls __malloc..ML [0x101e7680] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x10118668 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1011867c calls strcpy with a0=ret(__malloc..ML), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x10118698 calls strpbrk with a0=ret(__malloc..ML), a1=0x10290720, a2=?, a3=?.
@@ -13607,7 +13798,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x101187a4 calls strcpy with a0=ret(__malloc..ML), a1=?, a2=?, a3=?.
   The `jalr` at 0x101187b4 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101187cc calls __libc_lockmalloc with a0=?, a1=[sym(__us_rsthread_malloc)], a2=?, a3=?.
-  The `jal` at 0x101187d8 calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101187d8 calls __malloc..ML [0x101e7680] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x101187f0 calls __libc_unlockmalloc with a0=?, a1=?, a2=[sym(__us_rsthread_malloc)], a3=?.
   The `jalr` at 0x1011880c calls strcpy with a0=ret(__malloc..ML), a1=?, a2=?, a3=a2 at entry (arg2).
   The `jalr` at 0x10118818 calls strlen with a0=(ret(strchr) + one of 0x1, 0x2), a1=?, a2=?, a3=?.
@@ -13676,8 +13867,11 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lhu` accesses load 2 bytes from [a0+8] +0x8, including `lhu` at 0x10118b40, `lhu` at 0x10118b7c.
   The `lhu` at 0x10118b44 loads 2 bytes from [a0+8] +0x2.
   2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10118b58, `lw` at 0x10118da0.
-  168 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10118be4, `lw` at 0x10118bf0, `lw` at 0x10118bf4.
+  163 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10118be4, `lw` at 0x10118bf0, `lw` at 0x10118bf4.
   The `lbu` at 0x10118c08 loads 1 byte from ?.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x78, including `lw` at 0x10118c10, `lw` at 0x10119300.
+  2 such `lw` accesses load 4 bytes from [ret(SecurityLookupWindow)+120] +0x30, including `lw` at 0x10118c1c, `lw` at 0x1011930c.
+  The `lw` at 0x10118c48 loads 4 bytes from [[ret(SecurityLookupWindow)+120]+48] +0x6c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x10118c54, `lw` at 0x10118ce0.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x1c, including `lw` at 0x10118c80, `lw` at 0x10118d54, `lw` at 0x10118dac.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10118da4, `sw` at 0x1011908c.
@@ -13700,38 +13894,38 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10118b5c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
   The `jal` at 0x10118b80 calls CreateMaskFromList [0x10150930] with a0=a0 at entry (arg0), a1=[a0+8]+12, a2=[[a0+8]+8]:2, a3=sp-288, a4=0x0, a5=0x6.
   The `jal` at 0x10118cac calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-320, a3=?.
-  The `jal` at 0x10118d0c calls AddExtensionClient [0x1024d9c0] with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
+  The `jal` at 0x10118d0c calls AddExtensionClient [0x1024d9c0] with a0=ret(SecurityLookupWindow), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x10118d80 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-320, a3=[a0+28], a4=[0x102cade0], a5=0x10, a6=0x6.
   The `jal` at 0x10118ddc calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-320, a3=?, a7=[a0+28].
   The `jalr` at 0x101195b8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101195dc calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=[0x102c7240].
   The `jal` at 0x10119608 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=?, a2=table(0x102c5d40), a3=[0x102c7240], a4=([0x102c7240] << 0x2), a6=sym(__us_rsthread_malloc).
   The `jalr` at 0x1011964c calls __libc_unlockmalloc with a0=?, a1=?, a2=table(0x102c5d40), a3=[0x102c7240], a4=([0x102c7240] << 0x2), a6=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x101196d0 calls (unknown callee) with a0=?, a1=sp-216, a2=?, a3=[0x102c60fc].
-  The `jal` at 0x101197bc calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x101196d0 calls (unknown callee) with a0=0x102c60fc, a1=sp-216, a2=?, a3=[0x102c60fc], a6=0x102c60fc.
+  The `jal` at 0x101197bc calls FatalError [0x10094f20] with a0=0x1028f428, a1=?, a2=?, a3=?.
   The `bne` branch at 0x10118b38 targets 0x10118ba4, is taken when at(=[a0+72]) < 0x3 (unsigned), and falls through when at(=[a0+72]) >= 0x3 (unsigned).
   The `bne` branch at 0x10118b4c targets 0x10118d50, is taken when v0(=[[a0+8]+2]:2) != v1(=[[a0+8]+8]:2+3), and falls through when v0(=[[a0+8]+2]:2) == v1(=[[a0+8]+8]:2+3).
   The `beq` branch at 0x10118b64 targets 0x10118da0, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
   The `beq` branch at 0x10118b88 targets 0x10118bb8, is taken when v0(=ret(CreateMaskFromList)) == 0, and falls through when v0(=ret(CreateMaskFromList)) != 0.
   The `beq` branch at 0x10118be8 targets 0x10118d20, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x10118c04 targets 0x10119080, is taken when (a5(?) & a6(?)) != 0, and falls through when (a5(?) & a6(?)) == 0.
-  The `beq` branch at 0x10118c14 targets 0x10118d00, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x10118c20 targets 0x10118d00, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x10118c14 targets 0x10118d00, is taken when a6(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a6(=[ret(SecurityLookupWindow)+120]) != 0.
+  The `beq` branch at 0x10118c20 targets 0x10118d00, is taken when a1(=[[ret(SecurityLookupWindow)+120]+48]) == 0, and falls through when a1(=[[ret(SecurityLookupWindow)+120]+48]) != 0.
   The `beq` branch at 0x10118c44 targets 0x10118cd8, is taken when (t0(?) & t1(?)) == 0, and falls through when (t0(?) & t1(?)) != 0.
-  The `beq` branch at 0x10118c4c targets 0x10118d00, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x10118c4c targets 0x10118d00, is taken when v0(=[[[ret(SecurityLookupWindow)+120]+48]+108]) == 0, and falls through when v0(=[[[ret(SecurityLookupWindow)+120]+48]+108]) != 0.
   The `beq` branch at 0x10118c60 targets 0x10118ccc, is taken when a6(=[a0+4]) == t2(?), and falls through when a6(=[a0+4]) != t2(?).
   The `beq` branch at 0x10118c70 targets 0x10118ccc, is taken when (t3(?) & t1(?)) == 0, and falls through when (t3(?) & t1(?)) != 0.
   The `bne` branch at 0x10118cd0 targets 0x10118c58, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `beq` branch at 0x10118cd8 targets 0x10118d00, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `beq` branch at 0x10118cd8 targets 0x10118d00, is taken when v0(=[[[ret(SecurityLookupWindow)+120]+48]+108]) == 0, and falls through when v0(=[[[ret(SecurityLookupWindow)+120]+48]+108]) != 0.
   The `beq` branch at 0x10118cec targets 0x10118dfc, is taken when a6(=[a0+4]) == v1(?), and falls through when a6(=[a0+4]) != v1(?).
   The `bne` branch at 0x10118cf8 targets 0x10118ce4, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x10118d14 targets 0x1011945c, is taken when v0(=ret(AddExtensionClient)) == 0, and falls through when v0(=ret(AddExtensionClient)) != 0.
   The `bne` branch at 0x10118d1c targets 0x10118c7c, is taken when v0(=ret(AddExtensionClient)) != 0, and falls through when v0(=ret(AddExtensionClient)) == 0.
-  The `bne` branch at 0x10118d30 targets 0x10118be4, is taken when t9(?) != a0(?), and falls through when t9(?) == a0(?).
+  The `bne` branch at 0x10118d30 targets 0x10118be4, is taken when t9(?) != a0(=sp-216), and falls through when t9(?) == a0(=sp-216).
   The `bne` branch at 0x10118e04 targets 0x10118e20, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0x10118e18 targets 0x101190a8 and is always taken.
   The `beq` branch at 0x10118e28 targets 0x10118e54, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x10118e34 targets 0x10118e54, is taken when a2(?) != a3(?), and falls through when a2(?) == a3(?).
+  The `bne` branch at 0x10118e34 targets 0x10118e54, is taken when a2(?) != a3(=ret(SecurityLookupWindow)), and falls through when a2(?) == a3(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x10118e44 targets 0x10118e54, is taken when (a4(?) & a3(=[0x102cac7c])) == 0, and falls through when (a4(?) & a3(=[0x102cac7c])) != 0.
   The `beq` branch at 0x10118e4c targets 0x10119488, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x10118e54 targets 0x10118e70 and is always taken.
@@ -13750,13 +13944,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10119010 targets 0x10118fd0, is taken when a7(?) != 0, and falls through when a7(?) == 0.
   The `beq` branch at 0x10119018 targets 0x10118fd4 and is always taken.
   The `beq` branch at 0x10119028 targets 0x10119040, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10119030 targets 0x10118d24, is taken when ra(?) == v1(?), and falls through when ra(?) != v1(?).
+  The `beq` branch at 0x10119030 targets 0x10118d24, is taken when ra(?) == v1(=ret(SecurityLookupWindow)), and falls through when ra(?) != v1(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x10119038 targets 0x10118e70 and is always taken.
-  The `beq` branch at 0x10119040 targets 0x10119030, is taken when a0(?) == ra(?), and falls through when a0(?) != ra(?).
+  The `beq` branch at 0x10119040 targets 0x10119030, is taken when a0(=ret(SecurityLookupWindow)) == ra(?), and falls through when a0(=ret(SecurityLookupWindow)) != ra(?).
   The `bne` branch at 0x10119050 targets 0x10119030, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `beq` branch at 0x10119058 targets 0x10119030, is taken when a2(?) == ra(?), and falls through when a2(?) != ra(?).
+  The `beq` branch at 0x10119058 targets 0x10119030, is taken when a2(=ret(SecurityLookupWindow)) == ra(?), and falls through when a2(=ret(SecurityLookupWindow)) != ra(?).
   The `bne` branch at 0x10119068 targets 0x10119030, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `bne` branch at 0x10119070 targets 0x10119048, is taken when a3(?) != ra(?), and falls through when a3(?) == ra(?).
+  The `bne` branch at 0x10119070 targets 0x10119048, is taken when a3(=ret(SecurityLookupWindow)) != ra(?), and falls through when a3(=ret(SecurityLookupWindow)) == ra(?).
   The `beq` branch at 0x10119078 targets 0x10119030 and is always taken.
   The `beq` branch at 0x10119088 targets 0x10118c7c and is always taken.
   The `beq` branch at 0x101190a0 targets 0x101190c8, is taken when a1(?) == a5(=0x9), and falls through when a1(?) != a5(=0x9).
@@ -13779,15 +13973,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10119290 targets 0x10119250, is taken when a7(?) != 0, and falls through when a7(?) == 0.
   The `beq` branch at 0x10119298 targets 0x10119254 and is always taken.
   The `beq` branch at 0x101192a8 targets 0x101192c0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x101192b0 targets 0x10119300, is taken when ra(?) == t0(?), and falls through when ra(?) != t0(?).
+  The `beq` branch at 0x101192b0 targets 0x10119300, is taken when ra(?) == t0(=ret(SecurityLookupWindow)), and falls through when ra(?) != t0(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x101192b8 targets 0x101190e0 and is always taken.
-  The `beq` branch at 0x101192c0 targets 0x101192b0, is taken when t1(?) == ra(?), and falls through when t1(?) != ra(?).
+  The `beq` branch at 0x101192c0 targets 0x101192b0, is taken when t1(=ret(SecurityLookupWindow)) == ra(?), and falls through when t1(=ret(SecurityLookupWindow)) != ra(?).
   The `bne` branch at 0x101192d0 targets 0x101192b0, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `beq` branch at 0x101192d8 targets 0x101192b0, is taken when t2(?) == ra(?), and falls through when t2(?) != ra(?).
+  The `beq` branch at 0x101192d8 targets 0x101192b0, is taken when t2(=ret(SecurityLookupWindow)) == ra(?), and falls through when t2(=ret(SecurityLookupWindow)) != ra(?).
   The `bne` branch at 0x101192e8 targets 0x101192b0, is taken when a1(?) != 0, and falls through when a1(?) == 0.
-  The `bne` branch at 0x101192f0 targets 0x101192c8, is taken when t3(?) != ra(?), and falls through when t3(?) == ra(?).
+  The `bne` branch at 0x101192f0 targets 0x101192c8, is taken when t3(=ret(SecurityLookupWindow)) != ra(?), and falls through when t3(=ret(SecurityLookupWindow)) == ra(?).
   The `beq` branch at 0x101192f8 targets 0x101192b0 and is always taken.
-  The `beq` branch at 0x10119304 targets 0x1011949c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x10119304 targets 0x1011949c, is taken when a6(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a6(=[ret(SecurityLookupWindow)+120]) != 0.
   The `bne` branch at 0x1011939c targets 0x10118d24, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0x101193b8 targets 0x101197b4, is taken when a3(?) >= 0x100 (signed), and falls through when a3(?) < 0x100 (signed).
   The `beq` branch at 0x101193dc targets 0x101197b4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
@@ -13800,7 +13994,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10119448 targets 0x101198d8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x10119454 targets 0x101194bc and is always taken.
   The `beq` branch at 0x10119464 targets 0x10118e54, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x10119470 targets 0x10118e54, is taken when a2(?) != a3(?), and falls through when a2(?) == a3(?).
+  The `bne` branch at 0x10119470 targets 0x10118e54, is taken when a2(?) != a3(=ret(SecurityLookupWindow)), and falls through when a2(?) == a3(=ret(SecurityLookupWindow)).
   The `beq` branch at 0x10119480 targets 0x10118e54, is taken when (a4(=[0x102cac7c]) & a5(?)) == 0, and falls through when (a4(=[0x102cac7c]) & a5(?)) != 0.
   The `bne` branch at 0x1011948c targets 0x10118e54, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x10119494 targets 0x10118e54 and is always taken.
@@ -13821,7 +14015,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10119664 targets 0x10119678, is taken when a7(?) == t0(?), and falls through when a7(?) != t0(?).
   The `beq` branch at 0x10119678 targets 0x101196dc, is taken when a3(=[0x102c60fc]) == 0, and falls through when a3(=[0x102c60fc]) != 0.
   The `beq` branch at 0x10119690 targets 0x101196dc, is taken when t1(?) >= a2(?) (unsigned), and falls through when t1(?) < a2(?) (unsigned).
-  The `beq` branch at 0x101196c0 targets 0x101196dc, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x101196c0 targets 0x101196dc and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `beq` branch at 0x101196dc targets 0x101194ac and is always taken.
   The `beq` branch at 0x101196f8 targets 0x10119588, is taken when a3(?) == a7(=([sym(clients)] + ([0x102c5d70] << 0x2))), and falls through when a3(?) != a7(=([sym(clients)] + ([0x102c5d70] << 0x2))).
   The `beq` branch at 0x10119704 targets 0x1011972c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
@@ -14675,17 +14869,22 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 812 bytes.
   The `lw` at 0x1011caf0 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1011cb04 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1011cb28, `lw` at 0x1011cb44.
+  7 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1011cb28, `lw` at 0x1011cb44, `lw` at 0x1011cd08.
   7 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x1011cb30, `sw` at 0x1011cc44, `sw` at 0x1011cc7c.
-  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1011cb58, `lw` at 0x1011cb9c, `lw` at 0x1011cbac.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x1011cb58, `lw` at 0x1011cc70.
   The `lw` at 0x1011cb5c loads 4 bytes from a0 (arg0 at entry) +0x30.
   The `lw` at 0x1011cb6c loads 4 bytes from a0 (arg0 at entry) +0x74.
   The `lw` at 0x1011cb7c loads 4 bytes from a0 (arg0 at entry) +0x2c.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x14, including `lw` at 0x1011cb9c, `lw` at 0x1011cca8.
+  The `lw` at 0x1011cbac loads 4 bytes from [a0+8] +0x18.
   The `lw` at 0x1011cbbc loads 4 bytes from ret(SecurityLookupIDByType) +0x14.
   The `lw` at 0x1011cbd4 loads 4 bytes from ret(SecurityLookupIDByType) +0x10.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1011cbe0, `lhu` at 0x1011cbec.
-  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1011cbe4, `lbu` at 0x1011cc20.
+  The `lhu` at 0x1011cbe0 loads 2 bytes from [a0+8] +0xc.
+  The `lbu` at 0x1011cbe4 loads 1 byte from [a0+8] +0x10.
+  The `lhu` at 0x1011cbec loads 2 bytes from [a0+8] +0xe.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1011cc00, `lw` at 0x1011cc10, `lw` at 0x1011ccc8.
   The `lh` at 0x1011cc04 loads 2 bytes from ?.
+  The `lbu` at 0x1011cc20 loads 1 byte from ?.
   The `lw` at 0x1011cd30 loads 4 bytes from table(0x102caa00) +0x0.
   The `lw` at 0x1011cd38 loads 4 bytes from entry(0x102caa00) +0x0.
   The `lw` at 0x1011cd3c loads 4 bytes from ret(SecurityLookupIDByType) +0xc.
@@ -14693,29 +14892,30 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sw` accesses store 4 bytes to sym(globalSerialNumber) +0x0, including `sw` at 0x1011cd74, `sw` at 0x1011cd78.
   The `sw` at 0x1011cd7c stores 4 bytes to ret(?) +0x14.
   The `sw` at 0x1011cd94 stores 4 bytes to ret(?) +0x4.
-  The `sw` at 0x1011cdc4 stores 4 bytes to ?.
+  The `lw` at 0x1011cdb8 loads 4 bytes from ret(SecurityLookupIDByType) +0x8.
+  The `sw` at 0x1011cdc4 stores 4 bytes to ret(SecurityLookupIDByType) +0x8.
   The `lw` at 0x1011cde0 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1011cb40 calls LegalNewID [0x101557b0] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=[0x102ca9b8], a3=a3 at entry (arg3).
-  The `jal` at 0x1011cb98 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=[0x102ca988], a3=0x0.
-  The `jal` at 0x1011cc54 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=?, a2=0x40000000, a3=0x0.
-  The `jalr` at 0x1011cd40 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011cd9c calls AddResource [0x1010ec30] with a0=?, a1=0xffffffffc0000002, a2=ret(?), a3=?, a6=sym(globalSerialNumber).
-  The `jal` at 0x1011cdc8 calls AddResource [0x1010ec30] with a0=?, a1=[0x102ca9b0], a2=?, a3=?.
-  The `jal` at 0x1011ce00 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x1011cb98 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+20], a2=[0x102ca988], a3=0x0.
+  The `jal` at 0x1011cc54 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=0x40000000, a3=0x0.
+  The `jalr` at 0x1011cd40 calls (unknown callee) with a0=?, a1=[[a0+8]+12]:2, a2=[[a0+8]+14]:2, a3=[[a0+8]+16]:1, a4=([ret(SecurityLookupIDByType)+12] + [[a0+8]+24]).
+  The `jal` at 0x1011cd9c calls AddResource [0x1010ec30] with a0=[[a0+8]+4], a1=0xffffffffc0000002, a2=ret(?), a3=?, a6=sym(globalSerialNumber).
+  The `jal` at 0x1011cdc8 calls AddResource [0x1010ec30] with a0=[[a0+8]+4], a1=[0x102ca9b0], a2=ret(SecurityLookupIDByType), a3=[ret(SecurityLookupIDByType)+8]+1.
+  The `jal` at 0x1011ce00 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1011cb00 targets 0x1011cb1c, is taken when at(=[a0+72]) == v1(=0x7), and falls through when at(=[a0+72]) != v1(=0x7).
   The `beq` branch at 0x1011cb2c targets 0x1011cc94, is taken when a2(=[0x102ca9b8]) == 0, and falls through when a2(=[0x102ca9b8]) != 0.
   The `beq` branch at 0x1011cb48 targets 0x1011cd00, is taken when v0(=ret(LegalNewID)) == 0, and falls through when v0(=ret(LegalNewID)) != 0.
-  The `bne` branch at 0x1011cb60 targets 0x1011cc4c, is taken when a2(=[a0+48]) != a1(?), and falls through when a2(=[a0+48]) == a1(?).
+  The `bne` branch at 0x1011cb60 targets 0x1011cc4c, is taken when a2(=[a0+48]) != a1(=[[a0+8]+8]), and falls through when a2(=[a0+48]) == a1(=[[a0+8]+8]).
   The `bne` branch at 0x1011cb70 targets 0x1011cc4c, is taken when a3(=[a0+116]) != 0, and falls through when a3(=[a0+116]) == 0.
   The `beq` branch at 0x1011cba0 targets 0x1011cc9c, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `bne` branch at 0x1011cbb4 targets 0x1011cc84, is taken when (t2(?) & 0x3) != 0, and falls through when (t2(?) & 0x3) == 0.
-  The `bne` branch at 0x1011cbcc targets 0x1011cc80, is taken when t3(=[ret(SecurityLookupIDByType)+20]) < t2(?) (unsigned), and falls through when t3(=[ret(SecurityLookupIDByType)+20]) >= t2(?) (unsigned).
+  The `bne` branch at 0x1011cbb4 targets 0x1011cc84, is taken when (t2(=[[a0+8]+24]) & 0x3) != 0, and falls through when (t2(=[[a0+8]+24]) & 0x3) == 0.
+  The `bne` branch at 0x1011cbcc targets 0x1011cc80, is taken when t3(=[ret(SecurityLookupIDByType)+20]) < t2(=[[a0+8]+24]) (unsigned), and falls through when t3(=[ret(SecurityLookupIDByType)+20]) >= t2(=[[a0+8]+24]) (unsigned).
   The `beq` branch at 0x1011cbd8 targets 0x1011ce14, is taken when t9(=[ret(SecurityLookupIDByType)+16]) == 0, and falls through when t9(=[ret(SecurityLookupIDByType)+16]) != 0.
-  The `beq` branch at 0x1011cbe8 targets 0x1011cde4, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x1011cbf0 targets 0x1011cde8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1011cbf8 targets 0x1011ccb8, is taken when a3(?) == a6(=0x1), and falls through when a3(?) != a6(=0x1).
+  The `beq` branch at 0x1011cbe8 targets 0x1011cde4, is taken when a1(=[[a0+8]+12]:2) == 0, and falls through when a1(=[[a0+8]+12]:2) != 0.
+  The `beq` branch at 0x1011cbf0 targets 0x1011cde8, is taken when a2(=[[a0+8]+14]:2) == 0, and falls through when a2(=[[a0+8]+14]:2) != 0.
+  The `beq` branch at 0x1011cbf8 targets 0x1011ccb8, is taken when a3(=[[a0+8]+16]:1) == a6(=0x1), and falls through when a3(=[[a0+8]+16]:1) != a6(=0x1).
   The `blez` branch at 0x1011cc0c targets 0x1011cc38, is taken when t1(?) <= 0 (signed), and falls through when t1(?) > 0 (signed).
-  The `beq` branch at 0x1011cc28 targets 0x1011ccb4, is taken when t0(?) == a3(?), and falls through when t0(?) != a3(?).
+  The `beq` branch at 0x1011cc28 targets 0x1011ccb4, is taken when t0(?) == a3(=[[a0+8]+16]:1), and falls through when t0(?) != a3(=[[a0+8]+16]:1).
   The `bne` branch at 0x1011cc30 targets 0x1011cc20, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x1011cc40 targets 0x1011cb14 and is always taken.
   The `bne` branch at 0x1011cc60 targets 0x1011cb84, is taken when v0(=ret(SecurityLookupIDByClass)) != 0, and falls through when v0(=ret(SecurityLookupIDByClass)) == 0.
@@ -14843,11 +15043,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x1011d720 loads 2 bytes from a1 (arg1 at entry) +0x2.
   The `sh` at 0x1011d72c stores 2 bytes to a1 (arg1 at entry) +0x2.
   The `jal` at 0x1011d12c calls xiMalloc [0x100a2610] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011d408 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011d688 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011d69c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011d6e0 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011d6f4 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011d408 calls FatalError [0x10094f20] with a0=0x10293670, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011d688 calls FatalError [0x10094f20] with a0=0x10293c80, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011d69c calls FatalError [0x10094f20] with a0=0x10293c40, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011d6e0 calls FatalError [0x10094f20] with a0=0x10293c70, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011d6f4 calls FatalError [0x10094f20] with a0=0x10293c58, a1=?, a2=?, a3=?.
   The `jal` at 0x1011d708 calls xiMalloc [0x100a2610] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1011d744 calls FatalError [0x10094f20] with a0=0x10293658, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `blez` branch at 0x1011d120 targets 0x1011d738, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
@@ -15415,7 +15615,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1011e990 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+32], a2=[0x102ca988], a3=0x0.
   The `jal` at 0x1011e9f8 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x2, a5=0x0, a6=0x0, a7=0x0.
   The `jal` at 0x1011ea88 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=0xffffffff80000003, a3=0x1, a6=[a0+56].
-  The `jal` at 0x1011eaf8 calls XineramaDeliverVisibilityNotify [0x10197300] with a0=?, a1=[0x102c5f1c], a2=?, a3=?.
+  The `jal` at 0x1011eaf8 calls XineramaDeliverVisibilityNotify [0x10197300] with a0=?, a1=[0x102c5f1c], a2=one of 0x0, 0x1, a3=?.
   The `jal` at 0x1011eb14 calls XineramaDeliverExpose [0x100e7410] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1011eb58 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1011ebb8 calls dbcSetDrawBuffer [0x1015c520] with a0=?, a1=[[a0+8]+4], a2=?, a3=?.
@@ -15433,7 +15633,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1011e878 targets 0x1011eaf8, is taken when s6(?) != a0(=[a0+40]), and falls through when s6(?) == a0(=[a0+40]).
   The `beq` branch at 0x1011e890 targets 0x1011eaf8, is taken when s5(?) >= a1(=[0x102c5f1c]) (signed), and falls through when s5(?) < a1(=[0x102c5f1c]) (signed).
   The `bne` branch at 0x1011e8b4 targets 0x1011e8c0, is taken when s8(=ret(SecurityLookupIDByClass)) != s0(?), and falls through when s8(=ret(SecurityLookupIDByClass)) == s0(?).
-  The `beq` branch at 0x1011e8cc targets 0x1011e8f8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x1011e8cc targets 0x1011e8f8, is taken when a2(=one of 0x0, 0x1) == 0, and falls through when a2(=one of 0x0, 0x1) != 0.
   The `bne` branch at 0x1011e904 targets 0x1011e870, is taken when t1(=0xa) != t9(=[a0+72]), and falls through when t1(=0xa) == t9(=[a0+72]).
   The `beq` branch at 0x1011e92c targets 0x1011e9bc, is taken when t9(=[[a0+8]+8]) == 0, and falls through when t9(=[[a0+8]+8]) != 0.
   The `bne` branch at 0x1011e940 targets 0x1011e9bc, is taken when ra(=[a0+56]) != t9(=[[a0+8]+8]), and falls through when ra(=[a0+56]) == t9(=[[a0+8]+8]).
@@ -15468,16 +15668,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1011ec4c targets 0x1011ec98, is taken when a3(=[[a0+8]+29]:1) == 0, and falls through when a3(=[[a0+8]+29]:1) != 0.
   The `beq` branch at 0x1011ec54 targets 0x1011ecc4, is taken when a5(=0x1) == a3(=[[a0+8]+29]:1), and falls through when a5(=0x1) != a3(=[[a0+8]+29]:1).
   The `beq` branch at 0x1011ec60 targets 0x1011ed40, is taken when a6(=0x2) == a3(=[[a0+8]+29]:1), and falls through when a6(=0x2) != a3(=[[a0+8]+29]:1).
-  The `beq` branch at 0x1011ec78 targets 0x1011eda0, is taken when t0(?) == 0, and falls through when t0(?) != 0.
-  The `bne` branch at 0x1011ec88 targets 0x1011ed1c, is taken when a3(?) < 0x1 (unsigned), and falls through when a3(?) >= 0x1 (unsigned).
+  The `beq` branch at 0x1011ec78 targets 0x1011eda0, is taken when t0(=one of 0x0, 0x1) == 0, and falls through when t0(=one of 0x0, 0x1) != 0.
+  The `bne` branch at 0x1011ec88 targets 0x1011ed1c, is taken when a3(=one of 0x0, 0x1) < 0x1 (unsigned), and falls through when a3(=one of 0x0, 0x1) >= 0x1 (unsigned).
   The `beq` branch at 0x1011ec90 targets 0x1011e874 and is always taken.
   The `beq` branch at 0x1011eca0 targets 0x1011edcc, is taken when a4(=0x1) == a5(=[[a0+8]+28]:1), and falls through when a4(=0x1) != a5(=[[a0+8]+28]:1).
-  The `beq` branch at 0x1011ecb4 targets 0x1011edb4, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x1011ecb4 targets 0x1011edb4, is taken when a7(=one of 0x0, 0x1) == 0, and falls through when a7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1011ecbc targets 0x1011e874 and is always taken.
   The `beq` branch at 0x1011eccc targets 0x1011ece0, is taken when t0(?) == a3(=[[a0+8]+28]:1), and falls through when t0(?) != a3(=[[a0+8]+28]:1).
   The `beq` branch at 0x1011ecd8 targets 0x1011ed10 and is always taken.
   The `beq` branch at 0x1011ed14 targets 0x1011ec80 and is always taken.
-  The `bne` branch at 0x1011ed20 targets 0x1011edac, is taken when a4(?) < 0x1 (unsigned), and falls through when a4(?) >= 0x1 (unsigned).
+  The `bne` branch at 0x1011ed20 targets 0x1011edac, is taken when a4(=one of 0x0, 0x1) < 0x1 (unsigned), and falls through when a4(=one of 0x0, 0x1) >= 0x1 (unsigned).
   The `beq` branch at 0x1011ed28 targets 0x1011ec90, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0x1011ed30 targets 0x1011edf4, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0x1011ed38 targets 0x1011e874 and is always taken.
@@ -15486,8 +15686,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1011ed98 targets 0x1011ec74 and is always taken.
   The `beq` branch at 0x1011eda4 targets 0x1011ec80 and is always taken.
   The `beq` branch at 0x1011edac targets 0x1011ec90, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x1011edb4 targets 0x1011ed38, is taken when ra(?) != 0, and falls through when ra(?) == 0.
-  The `beq` branch at 0x1011edbc targets 0x1011edf4, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `bne` branch at 0x1011edb4 targets 0x1011ed38, is taken when ra(=one of 0x0, 0x1) != 0, and falls through when ra(=one of 0x0, 0x1) == 0.
+  The `beq` branch at 0x1011edbc targets 0x1011edf4, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1011edc4 targets 0x1011e874 and is always taken.
   The `beq` branch at 0x1011edec targets 0x1011ecb0 and is always taken.
   The `beq` branch at 0x1011ee14 targets 0x1011ee28, is taken when a4(=[ret(SecurityLookupIDByType)+20]) >= a6(?) (unsigned), and falls through when a4(=[ret(SecurityLookupIDByType)+20]) < a6(?) (unsigned).
@@ -15613,7 +15813,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1011f5d8 targets 0x1011f6e0, is taken when ra(?) >= 0x9 (signed), and falls through when ra(?) < 0x9 (signed).
   The `bne` branch at 0x1011f5e0 targets 0x1011f644, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0x1011f63c targets 0x1011f650 and is always taken.
-  The `beq` branch at 0x1011f664 targets 0x1011f6c8, is taken when a1(?) >= a2(=([a0+5812] + one of -0xd, 0x3)) (signed), and falls through when a1(?) < a2(=([a0+5812] + one of -0xd, 0x3)) (signed).
+  The `beq` branch at 0x1011f664 targets 0x1011f6c8, is taken when a1(=0x9) >= a2(=([a0+5812] + one of -0xd, 0x3)) (signed), and falls through when a1(=0x9) < a2(=([a0+5812] + one of -0xd, 0x3)) (signed).
   The `beq` branch at 0x1011f6c0 targets 0x1011f6d4 and is always taken.
   The return at 0x1011f700 has v0 = ret(0x101d9010).
 - `SLookupColorReply` in `usr/gfx/arch/GENERIC/Xsgi` at 0x1011f710 (n32).
@@ -15718,8 +15918,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1011fbc4 calls splitedge..LKB [0x101ff590] with a0=?, a1=[a1+16]:2, a2=?, a3=?, a7=[a1+16]:2.
   The `jalr` at 0x1011fc28 calls (unknown callee) with a0=?, a1=a1 at entry (arg1), a2=?, a3=?, a5=[a1+16]:2, a7=[0x102c7ced]:1.
   The `jal` at 0x1011fc40 calls splitedge..LKB [0x101ff590] with a0=?, a1=[a1+18]:2, a2=?, a3=?, a7=[a1+16]:2.
-  The `jal` at 0x1011fc90 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1011fcb0 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011fc90 calls FatalError [0x10094f20] with a0=0x10293b40, a1=?, a2=?, a3=?.
+  The `jal` at 0x1011fcb0 calls FatalError [0x10094f20] with a0=0x10293b40, a1=?, a2=?, a3=?.
   The `beq` branch at 0x1011f9a8 targets 0x1011fc04, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x1011f9cc targets 0x1011fa3c, is taken when at(=[a1+16]:2) >= a1(=[a0+16]:2) (signed), and falls through when at(=[a1+16]:2) < a1(=[a0+16]:2) (signed).
   The `bne` branch at 0x1011f9dc targets 0x1011fb94, is taken when a1(=[a0+16]:2) < a0(=[a1+18]:2) (signed), and falls through when a1(=[a0+16]:2) >= a0(=[a1+18]:2) (signed).
@@ -15895,12 +16095,13 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x1c, including `lw` at 0x1012015c, `lw` at 0x10120218.
   The `lw` at 0x10120160 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x14.
   The `lh` at 0x1012017c loads 2 bytes from [[ret(SecurityLookupWindow)+16]+20] +0x2.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10120184, `lw` at 0x101201a0, `lw` at 0x10120274.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10120184, `lw` at 0x101201a0.
   The `lh` at 0x101201bc loads 2 bytes from ?.
   The `lw` at 0x101201e8 loads 4 bytes from ret(SecurityLookupIDByType) +0xc.
   The `lw` at 0x10120224 loads 4 bytes from ret(SecurityLookupIDByType) +0x0.
   The `lw` at 0x10120228 loads 4 bytes from [ret(SecurityLookupIDByType)] +0x0.
   The `lw` at 0x10120240 loads 4 bytes from a0 (arg0 at entry) +0x28.
+  The `lw` at 0x10120274 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x18.
   The `jal` at 0x1012011c calls SecurityLookupWindow [0x1006ce40] with a0=[a2+24], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
   The `jal` at 0x101201dc calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[a2+32], a2=0x6, a3=0x0, a6=[a2+28].
   The `bne` branch at 0x10120154 targets 0x10120254, is taken when at(=[[([sym(WindowTable)] + ([[ret(SecurityLookupWindow)+16]] << 0x2))]+4]) != v0(=[a2+24]), and falls through when at(=[[([sym(WindowTable)] + ([[ret(SecurityLookupWindow)+16]] << 0x2))]+4]) == v0(=[a2+24]).
@@ -15912,7 +16113,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bnel` branch at 0x101201b8 targets 0x10120180, is taken when a7(?) != t0(=(([[ret(SecurityLookupWindow)+16]+16]:2 << 0x3) + [[ret(SecurityLookupWindow)+16]+20])), and falls through when a7(?) == t0(=(([[ret(SecurityLookupWindow)+16]+16]:2 << 0x3) + [[ret(SecurityLookupWindow)+16]+20])); its branch-likely delay slot `lh a5,2(a7)` at 0x101201bc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x101201c0 targets 0x10120268, is taken when t1(=one of 0x0, 0x1) == 0, and falls through when t1(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x101201c8 targets 0x1012023c, is taken when a1(=[a2+32]) == 0, and falls through when a1(=[a2+32]) != 0.
-  The `beq` branch at 0x101201f0 targets 0x10120218, is taken when a0(=[ret(SecurityLookupIDByType)+12]) == a1(?), and falls through when a0(=[ret(SecurityLookupIDByType)+12]) != a1(?).
+  The `beq` branch at 0x101201f0 targets 0x10120218, is taken when a0(=[ret(SecurityLookupIDByType)+12]) == a1(=[ret(SecurityLookupWindow)+16]), and falls through when a0(=[ret(SecurityLookupIDByType)+12]) != a1(=[ret(SecurityLookupWindow)+16]).
   The `beq` branch at 0x10120210 targets 0x101201b8 and is always taken.
   The `beq` branch at 0x1012021c targets 0x10120270, is taken when a6(=[a2+28]) == 0, and falls through when a6(=[a2+28]) != 0.
   The `beq` branch at 0x1012022c targets 0x1012023c, is taken when a1(=[[ret(SecurityLookupIDByType)]]) == a6(?), and falls through when a1(=[[ret(SecurityLookupIDByType)]]) != a6(?).
@@ -15954,12 +16155,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10120334 loads 4 bytes from a1 (arg1 at entry) +0xc.
   The `lw` at 0x10120344 loads 4 bytes from a0 (arg0 at entry) +0x78.
   The `lw` at 0x10120354 loads 4 bytes from [a0+120] +0x8.
-  9 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10120364, `lw` at 0x10120368, `lw` at 0x10120374.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10120364, `lw` at 0x10120368, `lw` at 0x10120374.
   The `lw` at 0x1012038c loads 4 bytes from [a1+12] +0x1b4.
   The `lw` at 0x10120398 loads 4 bytes from ([[a1+12]+436] + ([0x102cf2c4] << 0x2)) +0x0.
   The `lw` at 0x1012039c loads 4 bytes from [([[a1+12]+436] + ([0x102cf2c4] << 0x2))] +0x2c.
-  The `jalr` at 0x101203f8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10120414 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `lw` at 0x101203f0 loads 4 bytes from [a1+12] +0x17c.
+  The `lw` at 0x10120408 loads 4 bytes from [a1+12] +0x168.
+  The `jalr` at 0x101203f8 calls (unknown callee) with a0=a0+56, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10120414 calls (unknown callee) with a0=?, a1=?, a2=a0+56, a3=?.
   The `bgez` branch at 0x10120318 targets 0x10120358, is taken when v1(=([a0+124] << 0x15)) >= 0 (signed), and falls through when v1(=([a0+124] << 0x15)) < 0 (signed).
   The `beq` branch at 0x1012033c targets 0x101203dc, is taken when a2(=[a0+1]:1) == a3(=0x2), and falls through when a2(=[a0+1]:1) != a3(=0x2).
   The `beq` branch at 0x10120348 targets 0x10120364, is taken when a5(=[a0+120]) == 0, and falls through when a5(=[a0+120]) != 0.
@@ -16063,9 +16266,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012099c loads 4 bytes from [0x102cb9ec] +0x8.
   The `lw` at 0x101209bc loads 4 bytes from [0x102cb9e8] +0x8.
   The `jalr` at 0x101208a4 calls times with a0=sp-88, a1=[a0+14]:2, a2=[a0+12]:2, a3=a3 at entry (arg3), a5=[(sym(screenInfo) + ([a0+10]:1 << 0x2))+72], a6=[sym(inputInfo)+16], a7=[sym(inputInfo)+12].
-  The `jalr` at 0x10120980 calls (unknown callee) with a0=?, a1=?, a2=?, a3=0x0.
-  The `jalr` at 0x101209a8 calls (unknown callee) with a0=sp-120, a1=?, a2=0x1, a3=?, a5=0x4, a6=0x5, a7=0x6.
-  The `jalr` at 0x101209c8 calls (unknown callee) with a0=sp-120, a1=?, a2=0x1, a3=?, a5=0x4, a6=0x5, a7=0x6.
+  The `jalr` at 0x10120980 calls (unknown callee) with a0=?, a1=[a0+12]:2, a2=[a0+14]:2, a3=0x0, a6=[a0+12]:2.
+  The `jalr` at 0x101209a8 calls (unknown callee) with a0=sp-120, a1=[sym(inputInfo)+16], a2=0x1, a3=?, a5=0x4, a6=0x5, a7=0x6.
+  The `jalr` at 0x101209c8 calls (unknown callee) with a0=sp-120, a1=[sym(inputInfo)+12], a2=0x1, a3=?, a5=0x4, a6=0x5, a7=0x6.
   The `beq` branch at 0x10120870 targets 0x10120938, is taken when t0(=[a0+10]:1) >= t2(=[sym(screenInfo)+68]) (signed), and falls through when t0(=[a0+10]:1) < t2(=[sym(screenInfo)+68]) (signed).
   The `beq` branch at 0x101208d4 targets 0x10120970, is taken when at(=[a0+8]:1) == v0(=0x6), and falls through when at(=[a0+8]:1) != v0(=0x6).
   The `bne` branch at 0x101208dc targets 0x10120954, is taken when s0(?) != 0, and falls through when s0(?) == 0.
@@ -16099,13 +16302,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10120a54 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x1c, including `lw` at 0x10120a78, `lw` at 0x10120ae4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x10120a88, `lw` at 0x10120b3c.
-  The `lw` at 0x10120af0 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x0.
-  The `lw` at 0x10120bb8 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x0, including `lw` at 0x10120af0, `lw` at 0x10120bb8.
   The `lw` at 0x10120bd4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x10120abc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=?, a4=[[a0+8]+8], a6=(sym(screenInfo) + ([[a0+8]+4] << 0x2)), a7=0x1.
   The `jalr` at 0x10120b04 calls strlen with a0=?, a1=((([[a0+8]+8] << 0x3) + [[a0+8]+8]) << 0x3), a2=0x1, a3=[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))], a4=[[a0+8]+8], a6=(sym(screenInfo) + ([[a0+8]+4] << 0x2)), a7=0x1.
   The `jal` at 0x10120ba0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=ret(strlen)+1, a5=ret(strlen)+4, a6=[a0+16], a7=0x1.
-  The `jal` at 0x10120bc4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x10120bc4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=((([[a0+8]+8] << 0x3) + [[a0+8]+8]) << 0x3).
   The `beq` branch at 0x101209f4 targets 0x10120a0c, is taken when at(=[a0+72]) == v1(=0x3), and falls through when at(=[a0+72]) != v1(=0x3).
   The `beq` branch at 0x10120a2c targets 0x10120a04, is taken when t0(=[[a0+8]+4]) >= t1(=[sym(screenInfo)+68]) (unsigned), and falls through when t0(=[[a0+8]+4]) < t1(=[sym(screenInfo)+68]) (unsigned).
   The `beq` branch at 0x10120a4c targets 0x10120a68, is taken when a3(=[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))]) == 0, and falls through when a3(=[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))]) != 0.
@@ -16188,24 +16390,24 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10120e4c loads 4 bytes from sym(inputInfo) +0xc.
   The `lbu` at 0x10120e50 loads 1 byte from [sym(inputInfo)+12] +0x4c.
   29 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10120e64, `lw` at 0x10120e70, `lw` at 0x10120f30.
-  3 such `lhu` accesses load 2 bytes from [a0+8] +0x6, including `lhu` at 0x10120e7c, `lhu` at 0x10121400, `lhu` at 0x10121a30.
+  11 such `lhu` accesses load 2 bytes from [a0+8] +0x6, including `lhu` at 0x10120e7c, `lhu` at 0x10121400, `lhu` at 0x10121a30.
   13 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10120ea4, `sw` at 0x10120eec, `sw` at 0x10120ff8.
   The `lw` at 0x10120eb8 loads 4 bytes from sym(inputInfo) +0x10.
   The `lbu` at 0x10120ebc loads 1 byte from [sym(inputInfo)+16] +0x4c.
   The `lw` at 0x10120ec4 loads 4 bytes from sym(inputInfo) +0x4.
   2 such `lw` accesses load 4 bytes from sym(inputInfo) +0x8, including `lw` at 0x10120f38, `lw` at 0x10121014.
-  125 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10120f3c, `lbu` at 0x10120f70, `lbu` at 0x10120f84.
+  113 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10120f3c, `lbu` at 0x10120f70, `lbu` at 0x10120f84.
   9 such `lbu` accesses load 1 byte from [a0+8] +0xa, including `lbu` at 0x10120f6c, `lbu` at 0x101216b0, `lbu` at 0x10121b88.
   10 such `lbu` accesses load 1 byte from [a0+8] +0xb, including `lbu` at 0x10120f88, `lbu` at 0x101215c8, `lbu` at 0x1012161c.
   The `lhu` at 0x10120f94 loads 2 bytes from a0 (arg0 at entry) +0x62.
   The `sb` at 0x10120fa4 stores 1 byte to [a0+8] +0xa.
   The `sb` at 0x10120fac stores 1 byte to [a0+8] +0xb.
   3 such `lbu` accesses load 1 byte from [a0+8] +0xc, including `lbu` at 0x10120fc4, `lbu` at 0x10121258, `lbu` at 0x101213c4.
-  The `lhu` at 0x1012105c loads 2 bytes from [a0+8] +0x8.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x8, including `lhu` at 0x1012105c, `lhu` at 0x10122c1c.
   2 such `lbu` accesses load 1 byte from [a0+8] +0xd, including `lbu` at 0x10121060, `lbu` at 0x101213e4.
   55 such `sb` accesses store 1 byte to ?, including `sb` at 0x101210f0, `sb` at 0x10121130, `sb` at 0x1012115c.
   4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x1012123c, `lw` at 0x101212d8, `lw` at 0x10121340.
-  21 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10121304, `lhu` at 0x1012130c, `lhu` at 0x10121374.
+  8 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10121304, `lhu` at 0x1012130c, `lhu` at 0x10121374.
   2 such `lbu` accesses load 1 byte from [a0+8] +0xf, including `lbu` at 0x101215c0, `lbu` at 0x10121908.
   6 such `lbu` accesses load 1 byte from [a0+8] +0xe, including `lbu` at 0x101215c4, `lbu` at 0x101218e0, `lbu` at 0x10121bb8.
   4 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10121824, `sh` at 0x10121900, `sh` at 0x10121a28.
@@ -16215,37 +16417,37 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x10121ce8 loads 1 byte from [a0+8] +0x16.
   The `sb` at 0x10121dbc stores 1 byte to [a0+8] +0x17.
   4 such `sh` accesses store 2 bytes to [a0+8] +0x6, including `sh` at 0x10121dc8, `sh` at 0x10122128, `sh` at 0x101222a8.
-  The `lhu` at 0x10121dd8 loads 2 bytes from [a0+8] +0x22.
-  The `lbu` at 0x10121f40 loads 1 byte from [a0+8] +0x1a.
-  The `lbu` at 0x10121f4c loads 1 byte from [a0+8] +0x19.
+  4 such `lhu` accesses load 2 bytes from [a0+8] +0x22, including `lhu` at 0x10121dd8, `lhu` at 0x10122690, `lhu` at 0x1012273c.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1a, including `lbu` at 0x10121f40, `lbu` at 0x101228a4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x19, including `lbu` at 0x10121f4c, `lbu` at 0x101228ac.
   The `lbu` at 0x10121f8c loads 1 byte from [a0+8] +0x18.
   The `sb` at 0x1012211c stores 1 byte to [a0+8] +0x1a.
-  The `lbu` at 0x10122138 loads 1 byte from [a0+8] +0x1d.
-  The `lbu` at 0x10122144 loads 1 byte from [a0+8] +0x1c.
-  The `lbu` at 0x101221dc loads 1 byte from [a0+8] +0x1b.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1d, including `lbu` at 0x10122138, `lbu` at 0x101229d4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1c, including `lbu` at 0x10122144, `lbu` at 0x101229dc.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x1b, including `lbu` at 0x101221dc, `lbu` at 0x101228f4, `lbu` at 0x10122928.
   The `sb` at 0x1012229c stores 1 byte to [a0+8] +0x1d.
-  The `lbu` at 0x101222b8 loads 1 byte from [a0+8] +0x20.
-  The `lbu` at 0x101222c4 loads 1 byte from [a0+8] +0x1f.
-  The `lbu` at 0x10122360 loads 1 byte from [a0+8] +0x1e.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x20, including `lbu` at 0x101222b8, `lbu` at 0x10122b04.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1f, including `lbu` at 0x101222c4, `lbu` at 0x10122b0c.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x1e, including `lbu` at 0x10122360, `lbu` at 0x10122a24, `lbu` at 0x10122a58.
   The `sb` at 0x10122474 stores 1 byte to [a0+8] +0x20.
-  The `lhu` at 0x10122490 loads 2 bytes from [a0+8] +0x2.
-  The `lbu` at 0x101226ec loads 1 byte from [a0+8] +0x21.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x2, including `lhu` at 0x10122490, `lhu` at 0x10122c08.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x21, including `lbu` at 0x101226ec, `lbu` at 0x10122b58, `lbu` at 0x10122b90.
   The `lw` at 0x10122d00 loads 4 bytes from a0 (arg0 at entry) +0x28.
-  The `jal` at 0x1012252c calls SetKeyTypes..FDF [0x101d0c60] with a0=?, a1=?, a2=?, a3=sp-632.
-  The `jal` at 0x10122598 calls SetKeySyms..GDF [0x10209800] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=sp-632.
-  The `jal` at 0x101225f8 calls SetKeyActions..HDF [0x102249e0] with a0=?, a1=?, a2=?, a3=sp-632.
-  The `jal` at 0x10122654 calls SetKeyBehaviors..IDF [0x1024eac0] with a0=?, a1=?, a2=?, a3=sp-632.
+  The `jal` at 0x1012252c calls SetKeyTypes..FDF [0x101d0c60] with a0=?, a1=[a0+8], a2=[a0+8]+36, a3=sp-632, a4=[a0+8]+36, a6=[a0+8]+36.
+  The `jal` at 0x10122598 calls SetKeySyms..GDF [0x10209800] with a0=a0 at entry (arg0), a1=?, a2=[a0+8], a3=?, a4=sp-632, a7=[[a0+8]+6]:2.
+  The `jal` at 0x101225f8 calls SetKeyActions..HDF [0x102249e0] with a0=?, a1=[a0+8], a2=?, a3=sp-632.
+  The `jal` at 0x10122654 calls SetKeyBehaviors..IDF [0x1024eac0] with a0=?, a1=[a0+8], a2=?, a3=sp-632.
   The `jal` at 0x10122844 calls SrvXkbChangeKeycodeRange [0x101b4350] with a0=?, a1=[[a0+8]+10]:1, a2=[[a0+8]+11]:1, a3=sp-632, a5=[[a0+8]+2]:2, a6=[a0+8]+36.
-  The `jalr` at 0x101228d8 calls bzero with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10122a08 calls bzero with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10122b3c calls bzero with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10122cb0 calls XkbUpdateActions [0x100f8370] with a0=?, a1=?, a2=?, a3=sp-632, a4=sp-520, a5=sp-1416.
+  The `jalr` at 0x101228d8 calls bzero with a0=?, a1=[[a0+8]+26]:1, a2=[[a0+8]+25]:1, a3=([[a0+8]+26]:1 + [[a0+8]+25]:1)-1, a6=[[a0+8]+6]:2.
+  The `jalr` at 0x10122a08 calls bzero with a0=?, a1=[[a0+8]+29]:1, a2=[[a0+8]+28]:1, a3=([[a0+8]+29]:1 + [[a0+8]+28]:1)-1, a6=[[a0+8]+6]:2.
+  The `jalr` at 0x10122b3c calls bzero with a0=?, a1=([[a0+8]+32]:1 + [[a0+8]+32]:1), a2=([[a0+8]+31]:1 + [[a0+8]+31]:1), a3=([[a0+8]+32]:1 + [[a0+8]+31]:1)-1.
+  The `jal` at 0x10122cb0 calls XkbUpdateActions [0x100f8370] with a0=?, a1=?, a2=?, a3=sp-632, a4=sp-520, a5=sp-1416, a6=[[a0+8]+2]:2.
   The `jal` at 0x10122cd0 calls XkbCheckSecondaryEffects [0x10194280] with a0=?, a1=?, a2=sp-632, a3=sp-1416.
   The `jal` at 0x10122cf0 calls XkbUpdateCoreDescription [0x100b0120] with a0=?, a1=0x0, a2=?, a3=?.
   The `jal` at 0x10122d10 calls ErrorF [0x10094ec0] with a0=0x1029b508, a1=?, a2=?, a3=?, a5=[[a0+8]+2]:2, a6=[a0+8]+36.
-  The `jal` at 0x10122d74 calls ErrorF [0x10094ec0] with a0=0x1029b540, a1=?, a2=?, a3=?.
+  The `jal` at 0x10122d74 calls ErrorF [0x10094ec0] with a0=0x1029b540, a1=?, a2=?, a3=?, a6=[[a0+8]+2]:2.
   The `jal` at 0x10122dc4 calls XkbSendNewKeyboardNotify [0x10234870] with a0=?, a1=sp-552, a2=?, a3=[0x102cb278], a4=0x9, a5=0x1.
-  The `jal` at 0x10122e04 calls XkbSendNotification [0x10225c60] with a0=?, a1=sp-632, a2=sp-1416, a3=?.
+  The `jal` at 0x10122e04 calls XkbSendNotification [0x10225c60] with a0=?, a1=sp-632, a2=sp-1416, a3=one of 0x0, 0x1.
   The `bne` branch at 0x10120e24 targets 0x10120f08, is taken when at(=[a0+72]) < 0x9 (unsigned), and falls through when at(=[a0+72]) >= 0x9 (unsigned).
   The `beq` branch at 0x10120e34 targets 0x10121008, is taken when (v0(=[a0+92]:2) & 0x8000) == 0, and falls through when (v0(=[a0+92]:2) & 0x8000) != 0.
   The `beq` branch at 0x10120e48 targets 0x10120e5c, is taken when v1(=[[a0+8]+4]:2) == a0(=0x100), and falls through when v1(=[[a0+8]+4]:2) != a0(=0x100).
@@ -16455,16 +16657,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1012249c targets 0x10122d04, is taken when a5(=[[a0+8]+2]:2) != a7(?), and falls through when a5(=[[a0+8]+2]:2) == a7(?).
   The `bne` branch at 0x101224d8 targets 0x101227fc, is taken when t0(?) != t1(=[[a0+8]+10]:1), and falls through when t0(?) == t1(=[[a0+8]+10]:1).
   The `bne` branch at 0x101224e8 targets 0x101227fc, is taken when t3(?) != at(=[[a0+8]+11]:1), and falls through when t3(?) == at(=[[a0+8]+11]:1).
-  The `beq` branch at 0x10122504 targets 0x1012255c, is taken when (v0(?) & 0x1) == 0, and falls through when (v0(?) & 0x1) != 0.
+  The `beq` branch at 0x10122504 targets 0x1012255c, is taken when (v0(=[[a0+8]+6]:2) & 0x1) == 0, and falls through when (v0(=[[a0+8]+6]:2) & 0x1) != 0.
   The `bne` branch at 0x1012254c targets 0x10122d30, is taken when v0(=ret(SetKeyTypes..FDF)) < 0x1 (unsigned), and falls through when v0(=ret(SetKeyTypes..FDF)) >= 0x1 (unsigned).
-  The `beq` branch at 0x10122564 targets 0x101225cc, is taken when (a1(?) & 0x2) == 0, and falls through when (a1(?) & 0x2) != 0.
+  The `beq` branch at 0x10122564 targets 0x101225cc, is taken when (a1(=[[a0+8]+6]:2) & 0x2) == 0, and falls through when (a1(=[[a0+8]+6]:2) & 0x2) != 0.
   The `bne` branch at 0x101225b8 targets 0x10122d30, is taken when v0(=ret(SetKeySyms..GDF)) < 0x1 (unsigned), and falls through when v0(=ret(SetKeySyms..GDF)) >= 0x1 (unsigned).
-  The `beq` branch at 0x101225d0 targets 0x10122624, is taken when (a7(?) & 0x10) == 0, and falls through when (a7(?) & 0x10) != 0.
+  The `beq` branch at 0x101225d0 targets 0x10122624, is taken when (a7(=[[a0+8]+6]:2) & 0x10) == 0, and falls through when (a7(=[[a0+8]+6]:2) & 0x10) != 0.
   The `bne` branch at 0x10122614 targets 0x10122d30, is taken when v0(=ret(SetKeyActions..HDF)) < 0x1 (unsigned), and falls through when v0(=ret(SetKeyActions..HDF)) >= 0x1 (unsigned).
-  The `beq` branch at 0x1012262c targets 0x10122684, is taken when (t2(?) & 0x20) == 0, and falls through when (t2(?) & 0x20) != 0.
+  The `beq` branch at 0x1012262c targets 0x10122684, is taken when (t2(=[[a0+8]+6]:2) & 0x20) == 0, and falls through when (t2(=[[a0+8]+6]:2) & 0x20) != 0.
   The `bne` branch at 0x10122670 targets 0x10122d30, is taken when v0(=ret(SetKeyBehaviors..IDF)) < 0x1 (unsigned), and falls through when v0(=ret(SetKeyBehaviors..IDF)) >= 0x1 (unsigned).
-  The `beq` branch at 0x10122688 targets 0x1012287c, is taken when (v0(?) & 0x40) == 0, and falls through when (v0(?) & 0x40) != 0.
-  The `beq` branch at 0x10122698 targets 0x10122df0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
+  The `beq` branch at 0x10122688 targets 0x1012287c, is taken when (v0(=[[a0+8]+6]:2) & 0x40) == 0, and falls through when (v0(=[[a0+8]+6]:2) & 0x40) != 0.
+  The `beq` branch at 0x10122698 targets 0x10122df0, is taken when a1(=[[a0+8]+34]:2) == 0, and falls through when a1(=[[a0+8]+34]:2) != 0.
   The `beq` branch at 0x101226b0 targets 0x10122794 and is always taken.
   The `beq` branch at 0x101226d8 targets 0x10121d20 and is always taken.
   The `beq` branch at 0x101226e4 targets 0x101219e4 and is always taken.
@@ -16473,38 +16675,38 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10122714 targets 0x101227d4, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `bne` branch at 0x10122720 targets 0x10122704, is taken when v0(?) < a1(?) (unsigned), and falls through when v0(?) >= a1(?) (unsigned).
   The `beq` branch at 0x1012272c targets 0x10122484 and is always taken.
-  The `beq` branch at 0x10122748 targets 0x10122784, is taken when (v1(?) & at(?)) == 0, and falls through when (v1(?) & at(?)) != 0.
+  The `beq` branch at 0x10122748 targets 0x10122784, is taken when (v1(?) & at(=[[a0+8]+34]:2)) == 0, and falls through when (v1(?) & at(=[[a0+8]+34]:2)) != 0.
   The `beq` branch at 0x10122758 targets 0x1012277c, is taken when a6(?) == a7(?), and falls through when a6(?) != a7(?).
   The `beq` branch at 0x1012278c targets 0x1012285c, is taken when a3(?) == a5(=0x10), and falls through when a3(?) != a5(=0x10).
-  The `beq` branch at 0x1012279c targets 0x1012273c, is taken when (v1(?) & t3(?)) == 0, and falls through when (v1(?) & t3(?)) != 0.
+  The `beq` branch at 0x1012279c targets 0x1012273c, is taken when (v1(?) & t3(=[[a0+8]+34]:2)) == 0, and falls through when (v1(?) & t3(=[[a0+8]+34]:2)) != 0.
   The `beq` branch at 0x101227ac targets 0x10122734, is taken when at(?) == a6(?), and falls through when at(?) != a6(?).
   The `beq` branch at 0x101227cc targets 0x10122734 and is always taken.
   The `beq` branch at 0x101227f4 targets 0x101222f8 and is always taken.
   The `beq` branch at 0x1012284c targets 0x10122d94, is taken when v0(=ret(SrvXkbChangeKeycodeRange)) == 0, and falls through when v0(=ret(SrvXkbChangeKeycodeRange)) != 0.
   The `beq` branch at 0x10122854 targets 0x10120f00 and is always taken.
-  The `beq` branch at 0x10122880 targets 0x101229ac, is taken when (a0(?) & 0x8) == 0, and falls through when (a0(?) & 0x8) != 0.
-  The `beq` branch at 0x10122904 targets 0x1012293c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `bne` branch at 0x10122934 targets 0x10122914, is taken when v0(?) < a7(?) (unsigned), and falls through when v0(?) >= a7(?) (unsigned).
-  The `beq` branch at 0x1012293c targets 0x1012298c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x10122880 targets 0x101229ac, is taken when (a0(=[[a0+8]+6]:2) & 0x8) == 0, and falls through when (a0(=[[a0+8]+6]:2) & 0x8) != 0.
+  The `beq` branch at 0x10122904 targets 0x1012293c, is taken when a6(=[[a0+8]+27]:1) == 0, and falls through when a6(=[[a0+8]+27]:1) != 0.
+  The `bne` branch at 0x10122934 targets 0x10122914, is taken when v0(?) < a7(=[[a0+8]+27]:1) (unsigned), and falls through when v0(?) >= a7(=[[a0+8]+27]:1) (unsigned).
+  The `beq` branch at 0x1012293c targets 0x1012298c, is taken when a3(=[[a0+8]+25]:1) == 0, and falls through when a3(=[[a0+8]+25]:1) != 0.
   The `beq` branch at 0x10122948 targets 0x1012297c, is taken when (t3(?) & 0x8) == 0, and falls through when (t3(?) & 0x8) != 0.
-  The `beq` branch at 0x10122954 targets 0x10122964, is taken when v1(?) >= a3(?) (unsigned), and falls through when v1(?) < a3(?) (unsigned).
-  The `beq` branch at 0x10122970 targets 0x1012297c, is taken when a1(?) >= a0(?) (unsigned), and falls through when a1(?) < a0(?) (unsigned).
-  The `beq` branch at 0x101229b0 targets 0x10122adc, is taken when (a6(?) & 0x4) == 0, and falls through when (a6(?) & 0x4) != 0.
-  The `beq` branch at 0x10122a34 targets 0x10122a6c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `bne` branch at 0x10122a64 targets 0x10122a44, is taken when v0(?) < a7(?) (unsigned), and falls through when v0(?) >= a7(?) (unsigned).
-  The `beq` branch at 0x10122a6c targets 0x10122abc, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x10122954 targets 0x10122964, is taken when v1(?) >= a3(=[[a0+8]+25]:1) (unsigned), and falls through when v1(?) < a3(=[[a0+8]+25]:1) (unsigned).
+  The `beq` branch at 0x10122970 targets 0x1012297c, is taken when a1(=([[a0+8]+26]:1 + [[a0+8]+25]:1)-1) >= a0(?) (unsigned), and falls through when a1(=([[a0+8]+26]:1 + [[a0+8]+25]:1)-1) < a0(?) (unsigned).
+  The `beq` branch at 0x101229b0 targets 0x10122adc, is taken when (a6(=[[a0+8]+6]:2) & 0x4) == 0, and falls through when (a6(=[[a0+8]+6]:2) & 0x4) != 0.
+  The `beq` branch at 0x10122a34 targets 0x10122a6c, is taken when a6(=[[a0+8]+30]:1) == 0, and falls through when a6(=[[a0+8]+30]:1) != 0.
+  The `bne` branch at 0x10122a64 targets 0x10122a44, is taken when v0(?) < a7(=[[a0+8]+30]:1) (unsigned), and falls through when v0(?) >= a7(=[[a0+8]+30]:1) (unsigned).
+  The `beq` branch at 0x10122a6c targets 0x10122abc, is taken when a3(=[[a0+8]+28]:1) == 0, and falls through when a3(=[[a0+8]+28]:1) != 0.
   The `beq` branch at 0x10122a78 targets 0x10122aac, is taken when (t3(?) & 0x4) == 0, and falls through when (t3(?) & 0x4) != 0.
-  The `beq` branch at 0x10122a84 targets 0x10122a94, is taken when v1(?) >= a3(?) (unsigned), and falls through when v1(?) < a3(?) (unsigned).
-  The `beq` branch at 0x10122aa0 targets 0x10122aac, is taken when a1(?) >= a0(?) (unsigned), and falls through when a1(?) < a0(?) (unsigned).
-  The `beq` branch at 0x10122ae0 targets 0x10122c00, is taken when (a6(?) & 0x80) == 0, and falls through when (a6(?) & 0x80) != 0.
-  The `beq` branch at 0x10122b68 targets 0x10122ba4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `bne` branch at 0x10122b9c targets 0x10122b78, is taken when v0(?) < a7(?) (unsigned), and falls through when v0(?) >= a7(?) (unsigned).
-  The `beq` branch at 0x10122ba4 targets 0x10122bf4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x10122a84 targets 0x10122a94, is taken when v1(?) >= a3(=[[a0+8]+28]:1) (unsigned), and falls through when v1(?) < a3(=[[a0+8]+28]:1) (unsigned).
+  The `beq` branch at 0x10122aa0 targets 0x10122aac, is taken when a1(=([[a0+8]+29]:1 + [[a0+8]+28]:1)-1) >= a0(?) (unsigned), and falls through when a1(=([[a0+8]+29]:1 + [[a0+8]+28]:1)-1) < a0(?) (unsigned).
+  The `beq` branch at 0x10122ae0 targets 0x10122c00, is taken when (a6(=[[a0+8]+6]:2) & 0x80) == 0, and falls through when (a6(=[[a0+8]+6]:2) & 0x80) != 0.
+  The `beq` branch at 0x10122b68 targets 0x10122ba4, is taken when a6(=[[a0+8]+33]:1) == 0, and falls through when a6(=[[a0+8]+33]:1) != 0.
+  The `bne` branch at 0x10122b9c targets 0x10122b78, is taken when v0(?) < a7(=[[a0+8]+33]:1) (unsigned), and falls through when v0(?) >= a7(=[[a0+8]+33]:1) (unsigned).
+  The `beq` branch at 0x10122ba4 targets 0x10122bf4, is taken when a3(=[[a0+8]+31]:1) == 0, and falls through when a3(=[[a0+8]+31]:1) != 0.
   The `beq` branch at 0x10122bb0 targets 0x10122be4, is taken when (t3(?) & 0x80) == 0, and falls through when (t3(?) & 0x80) != 0.
-  The `beq` branch at 0x10122bbc targets 0x10122bcc, is taken when v1(?) >= a3(?) (unsigned), and falls through when v1(?) < a3(?) (unsigned).
-  The `beq` branch at 0x10122bd8 targets 0x10122be4, is taken when a1(?) >= a0(?) (unsigned), and falls through when a1(?) < a0(?) (unsigned).
-  The `bne` branch at 0x10122c14 targets 0x10122d68, is taken when a6(?) != a7(?), and falls through when a6(?) == a7(?).
-  The `beq` branch at 0x10122c24 targets 0x10122ce4, is taken when (t0(?) & 0x2) == 0, and falls through when (t0(?) & 0x2) != 0.
+  The `beq` branch at 0x10122bbc targets 0x10122bcc, is taken when v1(?) >= a3(=[[a0+8]+31]:1) (unsigned), and falls through when v1(?) < a3(=[[a0+8]+31]:1) (unsigned).
+  The `beq` branch at 0x10122bd8 targets 0x10122be4, is taken when a1(=([[a0+8]+32]:1 + [[a0+8]+31]:1)-1) >= a0(?) (unsigned), and falls through when a1(=([[a0+8]+32]:1 + [[a0+8]+31]:1)-1) < a0(?) (unsigned).
+  The `bne` branch at 0x10122c14 targets 0x10122d68, is taken when a6(=[[a0+8]+2]:2) != a7(?), and falls through when a6(=[[a0+8]+2]:2) == a7(?).
+  The `beq` branch at 0x10122c24 targets 0x10122ce4, is taken when (t0(=[[a0+8]+8]:2) & 0x2) == 0, and falls through when (t0(=[[a0+8]+8]:2) & 0x2) != 0.
   The `blez` branch at 0x10122c30 targets 0x10122d38, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `blez` branch at 0x10122c44 targets 0x10122c84, is taken when a0(?) <= 0 (signed), and falls through when a0(?) > 0 (signed).
   The `blez` branch at 0x10122c58 targets 0x10122d54, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
@@ -16513,7 +16715,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10122c78 targets 0x10122c84, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `blez` branch at 0x10122c84 targets 0x10122ce0, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `beq` branch at 0x10122cc0 targets 0x10122ce0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10122ce4 targets 0x10122df8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x10122ce4 targets 0x10122df8, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10122cfc targets 0x10120efc and is always taken.
   The `beq` branch at 0x10122d28 targets 0x10120efc and is always taken.
   The `beq` branch at 0x10122d30 targets 0x10120efc and is always taken.
@@ -16558,8 +16760,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10122f3c loads 4 bytes from sym(inputInfo) +0xc.
   The `lbu` at 0x10122f40 loads 1 byte from [sym(inputInfo)+12] +0x4c.
   5 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x1c, including `lw` at 0x10122f68, `lw` at 0x10122f90, `lw` at 0x10122fcc.
-  The `lhu` at 0x10122f70 loads 2 bytes from [a0+8] +0x4.
-  12 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10123034, `lhu` at 0x10123064, `lhu` at 0x10123100.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x4, including `lhu` at 0x10122f70, `lhu` at 0x10123064.
+  11 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10123034, `lhu` at 0x10123100, `lhu` at 0x10123108.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x10123080, `lw` at 0x10123210.
   The `lbu` at 0x10123098 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x101230a8 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
@@ -16588,8 +16790,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10122ff8 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-112, a3=?, a6=0x2.
   The `jal` at 0x10123050 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=0x1, a4=0x22, a5=0x22, a6=0x2, a7=[[a0+8]+4]:2.
   The `jalr` at 0x101230b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?, a6=[a0+16].
-  The `jal` at 0x101230cc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=sym(WriteToClient).
-  The `jal` at 0x101230d8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101230cc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=ret(Xalloc), a3=?, a5=sym(WriteToClient).
+  The `jal` at 0x101230d8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x101232f0 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-112, a3=?, a4=[a0+28], a5=[0x102cade0], a6=0x8, a7=[[a0+8]+4]:2.
   The `jal` at 0x10123310 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?, a6=[a0+16].
   The `jal` at 0x1012335c calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-112, a3=?, a7=[a0+28].
@@ -16605,7 +16807,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10122fc0 targets 0x10122ef0 and is always taken.
   The `beq` branch at 0x10123018 targets 0x101232b4, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10123058 targets 0x10123324, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
-  The `beq` branch at 0x10123070 targets 0x101230f0, is taken when a2(=0x1) == a5(?), and falls through when a2(=0x1) != a5(?).
+  The `beq` branch at 0x10123070 targets 0x101230f0, is taken when a2(=0x1) == a5(=[[a0+8]+4]:2), and falls through when a2(=0x1) != a5(=[[a0+8]+4]:2).
   The `beq` branch at 0x10123084 targets 0x10123304, is taken when a6(=[a0+16]) == 0, and falls through when a6(=[a0+16]) != 0.
   The `blez` branch at 0x10123110 targets 0x10123160, is taken when a6(?) <= 0 (signed), and falls through when a6(?) > 0 (signed).
   The `beq` branch at 0x10123134 targets 0x1012315c, is taken when a7(?) >= a6(?) (signed), and falls through when a7(?) < a6(?) (signed).
@@ -16781,7 +16983,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10123d48 calls strchr with a0=ret(ctime), a1=0xa, a2=?, a3=?.
   The `jalr` at 0x10123d68 calls strrchr with a0=[[0x102c5d88]], a1=0x2f, a2=?, a3=?.
   The `jalr` at 0x10123d90 calls getpid with a0=?, a1=ret(strrchr)+1, a2=?, a3=?, a5=[0x102c5d88].
-  The `jal` at 0x10123dac calls ErrorF [0x10094ec0] with a0=0x10291470, a1=?, a2=ret(getpid), a3=?.
+  The `jal` at 0x10123dac calls ErrorF [0x10094ec0] with a0=0x10291470, a1=ret(ctime), a2=ret(getpid), a3=?.
   The `beq` branch at 0x10123d1c targets 0x10123db4, is taken when at(=[a0]:1) == v0(=0x20), and falls through when at(=[a0]:1) != v0(=0x20).
   The `beq` branch at 0x10123d50 targets 0x10123d60, is taken when v0(=ret(strchr)) == 0, and falls through when v0(=ret(strchr)) != 0.
   The `beq` branch at 0x10123d74 targets 0x10123d84, is taken when v0(=ret(strrchr)) == 0, and falls through when v0(=ret(strrchr)) != 0.
@@ -16843,17 +17045,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10124024 loads 4 bytes from a0 (arg0 at entry) +0x10.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x10, including `lw` at 0x1012403c, `lw` at 0x101240d0.
   2 such `lw` accesses load 4 bytes from [a2+16] +0x10, including `lw` at 0x10124040, `lw` at 0x101240d4.
-  The `lw` at 0x10124064 loads 4 bytes from [a0+16] +0x0.
+  2 such `lw` accesses load 4 bytes from [a0+16] +0x0, including `lw` at 0x10124064, `lw` at 0x101240bc.
   2 such `lw` accesses load 4 bytes from a2 (arg2 at entry) +0x14, including `lw` at 0x10124074, `lw` at 0x101240c4.
-  The `lw` at 0x101240bc loads 4 bytes from ?.
   The `jalr` at 0x10124060 calls strlen with a0=[[a0+16]], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=[a0+16].
   The `jalr` at 0x10124070 calls strlen with a0=[a2+20], a1=?, a2=?, a3=?.
-  The `jalr` at 0x101240b8 calls strcpy with a0=sp-2112, a1=?, a2=0x53, a3=?.
+  The `jalr` at 0x101240b8 calls strcpy with a0=sp-2112, a1=[[a0+16]], a2=0x53, a3=?.
   The `jalr` at 0x101240c8 calls strcat with a0=sp-2112, a1=[a2+20], a2=?, a3=?.
   The `jalr` at 0x101240e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=sp-2112.
   The `beq` branch at 0x10124034 targets 0x101240a0, is taken when a2 == at(=-0x10), and falls through when a2 != at(=-0x10).
   The `beq` branch at 0x1012404c targets 0x101240a0, is taken when v1(=[[a2+16]+16]) == 0, and falls through when v1(=[[a2+16]+16]) != 0.
-  The `bne` branch at 0x10124088 targets 0x101240ac, is taken when a1(?) < 0x801 (unsigned), and falls through when a1(?) >= 0x801 (unsigned).
+  The `bne` branch at 0x10124088 targets 0x101240ac, is taken when a1(=(ret(strlen) + ret(strlen))) < 0x801 (unsigned), and falls through when a1(=(ret(strlen) + ret(strlen))) >= 0x801 (unsigned).
   The return at 0x10124098 has v0 = 0x53.
   The return at 0x101240a4 has v0 = 0x53.
   The return at 0x101240f4 has v0 = ret(?).
@@ -16866,21 +17067,23 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012410c loads 4 bytes from a0 (arg0 at entry) +0x48.
   2 such `lw` accesses load 4 bytes from sym(inputInfo) +0xc, including `lw` at 0x10124128, `lw` at 0x10124220.
   The `lw` at 0x10124168 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x10124184 loads 4 bytes from ?.
-  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10124188, `lbu` at 0x1012418c, `lbu` at 0x10124190.
-  The `lhu` at 0x10124198 loads 2 bytes from ?.
+  The `lw` at 0x10124184 loads 4 bytes from [sym(inputInfo)+12] +0x90.
+  The `lbu` at 0x10124188 loads 1 byte from [a0+8] +0x1.
+  The `lbu` at 0x1012418c loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
+  The `lbu` at 0x10124190 loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
+  The `lhu` at 0x10124198 loads 2 bytes from [a0+8] +0x8.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x101241c0, `sw` at 0x101241e4.
   The `lw` at 0x1012421c loads 4 bytes from a0 (arg0 at entry) +0x4.
   The `jal` at 0x10124164 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=a3 at entry (arg3), a4=0x102d0000.
-  The `jal` at 0x1012422c calls DeletePassiveGrabFromList [0x1024f2d0] with a0=sp-96, a1=?, a2=?, a3=?, a4=0x2.
+  The `jal` at 0x1012422c calls DeletePassiveGrabFromList [0x1024f2d0] with a0=sp-96, a1=?, a2=?, a3=?, a4=0x2, a5=[[a0+8]+8]:2, a6=[[a0+8]+1]:1.
   The `beq` branch at 0x10124130 targets 0x10124154, is taken when at(=[a0+72]) == v1(=0x3), and falls through when at(=[a0+72]) != v1(=0x3).
   The `beq` branch at 0x10124178 targets 0x101241e8, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `bne` branch at 0x1012419c targets 0x101241ac, is taken when t0(?) < a6(?) (signed), and falls through when t0(?) >= a6(?) (signed).
+  The `bne` branch at 0x1012419c targets 0x101241ac, is taken when t0(=[[[sym(inputInfo)+12]+144]+41]:1) < a6(=[[a0+8]+1]:1) (signed), and falls through when t0(=[[[sym(inputInfo)+12]+144]+41]:1) >= a6(=[[a0+8]+1]:1) (signed).
   The `beq` branch at 0x101241a4 targets 0x101241c8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x101241ac targets 0x101241c8, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x101241ac targets 0x101241c8, is taken when a6(=[[a0+8]+1]:1) == 0, and falls through when a6(=[[a0+8]+1]:1) != 0.
   The `beq` branch at 0x101241bc targets 0x10124144 and is always taken.
-  The `beq` branch at 0x101241c8 targets 0x101241f0, is taken when a5(?) == a7(=0x8000), and falls through when a5(?) != a7(=0x8000).
-  The `beq` branch at 0x101241d8 targets 0x101241f0, is taken when (a5(?) & a7(=-0x100)) == 0, and falls through when (a5(?) & a7(=-0x100)) != 0.
+  The `beq` branch at 0x101241c8 targets 0x101241f0, is taken when a5(=[[a0+8]+8]:2) == a7(=0x8000), and falls through when a5(=[[a0+8]+8]:2) != a7(=0x8000).
+  The `beq` branch at 0x101241d8 targets 0x101241f0, is taken when (a5(=[[a0+8]+8]:2) & a7(=-0x100)) == 0, and falls through when (a5(=[[a0+8]+8]:2) & a7(=-0x100)) != 0.
   The `beq` branch at 0x101241e0 targets 0x10124144 and is always taken.
   The `beq` branch at 0x101241e8 targets 0x10124148 and is always taken.
   The `beq` branch at 0x10124234 targets 0x10124244, is taken when v0(=ret(DeletePassiveGrabFromList)) == 0, and falls through when v0(=ret(DeletePassiveGrabFromList)) != 0.
@@ -16926,12 +17129,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012477c loads 4 bytes from (sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2)) +0x0.
   The `lw` at 0x10124788 loads 4 bytes from [(sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2))] +0x44.
   The `lbu` at 0x101247a4 loads 1 byte from [[(sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2))]+68] +0xc.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101247c8, `lw` at 0x101247d0, `lw` at 0x101247d8.
+  The `lw` at 0x101247c8 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x4.
+  The `lw` at 0x101247d0 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0xc.
+  The `lw` at 0x101247d8 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x14.
+  The `lw` at 0x101247e0 loads 4 bytes from [([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))] +0x2c.
   The `lw` at 0x101247f0 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x101248b4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x101247a0 calls ddxGetBoardName [0x1012a250] with a0=[[[(sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2))]+68]+12]:1, a1=sp-64, a2=a2 at entry (arg2), a3=[(sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2))], a4=[[(sym(ddxActiveScreens) + ([[a0+8]+4] << 0x2))]+68], a5=sym(vcScreenPrivateIndex), a6=[sym(screenInfo)+68], a7=[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))].
   The `jalr` at 0x101247ac calls strlen with a0=sp-64, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012488c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-96, a3=?.
+  The `jal` at 0x1012488c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-96, a3=?, a5=[[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))]+4], a6=[[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))]+12].
   The `jal` at 0x101248a4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=sp-64, a3=?.
   The `jal` at 0x101248e0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-96, a3=[a0+8], a4=(sym(screenInfo) + ([[a0+8]+4] << 0x2)), a5=sym(vcScreenPrivateIndex), a6=[sym(screenInfo)+68], a7=[([[(sym(screenInfo) + ([[a0+8]+4] << 0x2))+72]+436] + ([sym(vcScreenPrivateIndex)] << 0x2))].
   The `beq` branch at 0x101246f0 targets 0x10124708, is taken when at(=[a0+72]) == v0(=0x2), and falls through when at(=[a0+72]) != v0(=0x2).
@@ -16950,16 +17156,16 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x101255a0-0x101256bc (284 bytes).
   It occupies 284 bytes.
-  The `lw` at 0x10125698 loads 4 bytes from ?.
+  The `lw` at 0x10125698 loads 4 bytes from ret(BufFileOpenRead) +0x2010.
   The `jalr` at 0x101255b0 calls open with a0=a0 at entry (arg0), a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x101255c0 calls BufFileOpenRead [0x10123b90] with a0=ret(open), a1=?, a2=?, a3=?.
   The `jalr` at 0x101255d8 calls strlen with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x10125604 calls strcmp with a0=(ret(strlen) + a0)-2, a1=0x10292d0c, a2=?, a3=?.
-  The `jalr` at 0x1012563c calls close with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10125650 calls BufFilePushCompressed [0x10095870] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1012563c calls close with a0=ret(open), a1=?, a2=?, a3=?.
+  The `jal` at 0x10125650 calls BufFilePushCompressed [0x10095870] with a0=ret(BufFileOpenRead), a1=?, a2=?, a3=?.
   The `jalr` at 0x10125680 calls fprintf with a0=sym(__iob)+32, a1=0x10292d10, a2=a0 at entry (arg0), a3=?, a4=[0x102c737c].
-  The `jalr` at 0x1012569c calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?, a4=[0x102c737c].
-  The `jal` at 0x101256a8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1012569c calls (unknown callee) with a0=ret(BufFileOpenRead), a1=0x1, a2=?, a3=?, a4=[0x102c737c].
+  The `jal` at 0x101256a8 calls Xfree [0x101fc9c0] with a0=ret(BufFileOpenRead), a1=?, a2=?, a3=?.
   The `bltz` branch at 0x101255b8 targets 0x10125628, is taken when v0(=ret(open)) < 0 (signed), and falls through when v0(=ret(open)) >= 0 (signed).
   The `beq` branch at 0x101255cc targets 0x10125638, is taken when v0(=ret(BufFileOpenRead)) == 0, and falls through when v0(=ret(BufFileOpenRead)) != 0.
   The `bne` branch at 0x101255e4 targets 0x10125614, is taken when v0(=ret(strlen)) < 0x3 (signed), and falls through when v0(=ret(strlen)) >= 0x3 (signed).
@@ -16969,7 +17175,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10125660 targets 0x10125610, is taken when a4(=[0x102c737c]) == 0, and falls through when a4(=[0x102c737c]) != 0.
   The `beq` branch at 0x10125688 targets 0x10125614 and is always taken.
   The `beq` branch at 0x101256b4 targets 0x10125620 and is always taken.
-  The return at 0x10125618 has v0 = ?.
+  The return at 0x10125618 has v0 = one of ret(BufFileOpenRead), ?, ret(BufFilePushCompressed).
   The return at 0x10125620 has v0 = 0x0.
   The return at 0x10125630 has v0 = 0x0.
 - `CopyActionMessageArgs..LMF` in `usr/gfx/arch/GENERIC/Xsgi` at 0x101256c0 (n32).
@@ -17002,7 +17208,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x1012598c calls strlen with a0=sp-224, a1=?, a2=[a4], a3=?.
   The `jalr` at 0x10125a1c calls strlen with a0=0x10292a10, a1=[a2+1]:1, a2=?, a3=-0x1.
   The `jalr` at 0x10125a58 calls strcat with a0=a3 at entry (arg3), a1=sp-224, a2=?, a3=?.
-  The `jalr` at 0x10125a80 calls strcat with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10125a80 calls strcat with a0=a3 at entry (arg3), a1=0x1029dbb0, a2=?, a3=?.
   The `jalr` at 0x10125aac calls strlen with a0=0x10292a18, a1=[a2+1]:1, a2=?, a3=-0x1.
   The `jalr` at 0x10125ae8 calls strcat with a0=a3 at entry (arg3), a1=sp-224, a2=?, a3=?.
   The `jalr` at 0x10125b10 calls strcat with a0=a3 at entry (arg3), a1=sp-224, a2=?, a3=?.
@@ -17010,10 +17216,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10125b60 calls strcat with a0=a3 at entry (arg3), a1=sp-224, a2=?, a3=?.
   The `jalr` at 0x10125b88 calls strcat with a0=a3 at entry (arg3), a1=sp-224, a2=?, a3=?.
   The `jalr` at 0x10125bbc calls strlen with a0=0x1029dbc8, a1=[a2+1]:1, a2=?, a3=-0x1.
-  The `jalr` at 0x10125bf8 calls strcat with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10125c20 calls strcat with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10125c48 calls strcat with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10125c70 calls strcat with a0=a3 at entry (arg3), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10125bf8 calls strcat with a0=a3 at entry (arg3), a1=0x1029dbb8, a2=?, a3=?.
+  The `jalr` at 0x10125c20 calls strcat with a0=a3 at entry (arg3), a1=0x10292a10, a2=?, a3=?.
+  The `jalr` at 0x10125c48 calls strcat with a0=a3 at entry (arg3), a1=0x10292a18, a2=?, a3=?.
+  The `jalr` at 0x10125c70 calls strcat with a0=a3 at entry (arg3), a1=0x1029dbc8, a2=?, a3=?.
   The `blez` branch at 0x10125720 targets 0x10125750, is taken when at(=[a4]) <= 0 (signed), and falls through when at(=[a4]) > 0 (signed).
   The `bne` branch at 0x10125748 targets 0x10125a78, is taken when v0(=ret(strlen)) < a1(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a1(=[a4]-3) (signed).
   The `beq` branch at 0x10125764 targets 0x10125a08, is taken when (a1(=[a2+1]:1) & 0x3) == 0, and falls through when (a1(=[a2+1]:1) & 0x3) != 0.
@@ -17021,35 +17227,35 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10125774 targets 0x10125ba8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `blez` branch at 0x1012577c targets 0x101259f8, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `bne` branch at 0x101257a0 targets 0x10125bf0, is taken when v0(=ret(strlen)) < a1(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a1(=[a4]-3) (signed).
-  The `beq` branch at 0x101257ac targets 0x101259fc, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x101257ac targets 0x101259fc, is taken when a2(=one of 0x0, 0x1) == 0, and falls through when a2(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x101257d8 targets 0x10125808, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x101257f4 targets 0x10125ae0, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `bne` branch at 0x10125800 targets 0x10125814, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10125800 targets 0x10125814, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `blez` branch at 0x1012582c targets 0x10125864, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x1012584c targets 0x10125b08, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `bne` branch at 0x10125858 targets 0x1012586c, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10125858 targets 0x1012586c, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `blez` branch at 0x10125884 targets 0x101258bc, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x101258a4 targets 0x10125b30, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `bne` branch at 0x101258b0 targets 0x101258c4, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x101258b0 targets 0x101258c4, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `blez` branch at 0x101258dc targets 0x10125908, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x101258f8 targets 0x10125b58, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `bne` branch at 0x10125904 targets 0x10125910, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10125904 targets 0x10125910, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `blez` branch at 0x1012592c targets 0x10125958, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x10125948 targets 0x10125b80, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `bne` branch at 0x10125954 targets 0x10125960, is taken when a4(?) != 0, and falls through when a4(?) == 0.
+  The `bne` branch at 0x10125954 targets 0x10125960, is taken when a4(=one of 0x0, 0x1) != 0, and falls through when a4(=one of 0x0, 0x1) == 0.
   The `blez` branch at 0x10125980 targets 0x101259d0, is taken when a2(=[a4]) <= 0 (signed), and falls through when a2(=[a4]) > 0 (signed).
   The `bne` branch at 0x101259a0 targets 0x10125a50, is taken when v0(=ret(strlen)) < a3(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a3(=[a4]-3) (signed).
-  The `beq` branch at 0x101259ac targets 0x101259d0, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x101259ac targets 0x101259d0, is taken when a4(=one of 0x0, 0x1) == 0, and falls through when a4(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10125a00 targets 0x101257b4 and is always taken.
   The `blez` branch at 0x10125a08 targets 0x10125a44, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `bne` branch at 0x10125a30 targets 0x10125c18, is taken when v0(=ret(strlen)) < a1(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a1(=[a4]-3) (signed).
-  The `bne` branch at 0x10125a3c targets 0x101257b4, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x10125a3c targets 0x101257b4, is taken when a2(=one of 0x0, 0x1) != 0, and falls through when a2(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10125a48 targets 0x101257b4 and is always taken.
   The `beq` branch at 0x10125a70 targets 0x101259a8 and is always taken.
   The `beq` branch at 0x10125a90 targets 0x1012575c and is always taken.
   The `blez` branch at 0x10125a98 targets 0x10125ad4, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `bne` branch at 0x10125ac0 targets 0x10125c40, is taken when v0(=ret(strlen)) < a1(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a1(=[a4]-3) (signed).
-  The `bne` branch at 0x10125acc targets 0x101257b4, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x10125acc targets 0x101257b4, is taken when a2(=one of 0x0, 0x1) != 0, and falls through when a2(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10125ad8 targets 0x101257b4 and is always taken.
   The `beq` branch at 0x10125b00 targets 0x101257fc and is always taken.
   The `beq` branch at 0x10125b28 targets 0x10125854 and is always taken.
@@ -17058,7 +17264,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10125ba0 targets 0x10125950 and is always taken.
   The `blez` branch at 0x10125ba8 targets 0x10125be4, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `bne` branch at 0x10125bd0 targets 0x10125c68, is taken when v0(=ret(strlen)) < a1(=[a4]-3) (signed), and falls through when v0(=ret(strlen)) >= a1(=[a4]-3) (signed).
-  The `bne` branch at 0x10125bdc targets 0x101257b4, is taken when a2(?) != 0, and falls through when a2(?) == 0.
+  The `bne` branch at 0x10125bdc targets 0x101257b4, is taken when a2(=one of 0x0, 0x1) != 0, and falls through when a2(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10125be8 targets 0x101257b4 and is always taken.
   The `beq` branch at 0x10125c10 targets 0x101257a8 and is always taken.
   The `beq` branch at 0x10125c38 targets 0x10125a38 and is always taken.
@@ -17090,8 +17296,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10125d18 targets 0x10125d30 and is always taken.
   The `beq` branch at 0x10125d5c targets 0x10125d6c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x10125d64 targets 0x10125e1c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x10125d74 targets 0x10125d10, is taken when t3(=0x76) == t1(?), and falls through when t3(=0x76) != t1(?).
-  The `bne` branch at 0x10125d7c targets 0x10125d94, is taken when t1(?) != a7(=0x68), and falls through when t1(?) == a7(=0x68).
+  The `beq` branch at 0x10125d74 targets 0x10125d10, is taken when t3(=0x76) == t1(=one of 0x68, 0x76), and falls through when t3(=0x76) != t1(=one of 0x68, 0x76).
+  The `bne` branch at 0x10125d7c targets 0x10125d94, is taken when t1(=one of 0x68, 0x76) != a7(=0x68), and falls through when t1(=one of 0x68, 0x76) == a7(=0x68).
   The `beq` branch at 0x10125da4 targets 0x10125d30 and is always taken.
   The `beq` branch at 0x10125de0 targets 0x10125d74 and is always taken.
   The `bltz` branch at 0x10125df8 targets 0x10125e14, is taken when a5(=[a0+32]) < 0 (signed), and falls through when a5(=[a0+32]) >= 0 (signed).
@@ -17175,20 +17381,20 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x101260dc loads 4 bytes from ([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2)) +0x0.
   The `lh` at 0x101260e0 loads 2 bytes from [([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))] +0x1c.
   The `sh` at 0x101260f4 stores 2 bytes to [([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))] +0x1c.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10126108, `lw` at 0x10126110.
-  The `lw` at 0x10126134 loads 4 bytes from [([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))] +0x4.
+  2 such `lw` accesses load 4 bytes from [([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))] +0x4, including `lw` at 0x10126108, `lw` at 0x10126134.
+  The `lw` at 0x10126110 loads 4 bytes from [([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))] +0x18.
   The `jal` at 0x10126144 calls glxRemoveDeepWindow [0x100effd0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))], a4=([sym(glxScreenPrivateIndex)] << 0x2).
-  The `jal` at 0x1012615c calls glxAddDeepWindow [0x101bff40] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x1012615c calls glxAddDeepWindow [0x101bff40] with a0=a0 at entry (arg0), a1=?, a2=?, a3=[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))].
   The `beq` branch at 0x101260d8 targets 0x1012611c, is taken when s0(=[([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))]) == 0, and falls through when s0(=[([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))]) != 0.
   The `beq` branch at 0x101260e4 targets 0x1012611c, is taken when t8(=[[([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))]+28]:2) == a1, and falls through when t8(=[[([a0+132] + ([sym(glxWindowPrivateIndex)] << 0x2))]+28]:2) != a1.
   The `bltz` branch at 0x101260ec targets 0x10126134, is taken when t9(=([a0+124] << 0x14)) < 0 (signed), and falls through when t9(=([a0+124] << 0x14)) >= 0 (signed).
   The `bgez` branch at 0x10126100 targets 0x1012611c, is taken when at(=([a0+124] << 0x14)) >= 0 (signed), and falls through when at(=([a0+124] << 0x14)) < 0 (signed).
-  The `beq` branch at 0x1012610c targets 0x1012611c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The `bne` branch at 0x10126114 targets 0x10126158, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `beq` branch at 0x1012610c targets 0x1012611c, is taken when v0(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+4]) == 0, and falls through when v0(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+4]) != 0.
+  The `bne` branch at 0x10126114 targets 0x10126158, is taken when a0(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+24]) != 0, and falls through when a0(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+24]) == 0.
   The `beq` branch at 0x10126138 targets 0x101260f4, is taken when v1(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+4]) == 0, and falls through when v1(=[[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+4]) != 0.
   The `beq` branch at 0x10126150 targets 0x101260f4 and is always taken.
   The `beq` branch at 0x10126164 targets 0x1012611c and is always taken.
-  The return at 0x1012612c has v0 = one of ?, ret(glxAddDeepWindow).
+  The return at 0x1012612c has v0 = one of ?, [[([[a0+16]+436] + ([sym(glxScreenPrivateIndex)] << 0x2))]+4], ret(glxAddDeepWindow).
 - `inflate_blocks_new` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10126170 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -17482,7 +17688,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10126e0c calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=?, a4=0xc.
   The `jal` at 0x10126e98 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=?, a4=0x4.
   The `jal` at 0x10126f88 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0xc.
-  The `jal` at 0x101270c4 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=?, a1=?, a2=?, a3=0x1, a4=0x1c.
+  The `jal` at 0x101270c4 calls _XkbGeomAlloc..BIF [0x1008db50] with a0=a0+52, a1=a0+36, a2=a0+24, a3=0x1, a4=0x1c.
   The `blez` branch at 0x10126d14 targets 0x101270dc, is taken when a6(=[a1+6]:1) <= 0 (signed), and falls through when a6(=[a1+6]:1) > 0 (signed).
   The `blez` branch at 0x10126d24 targets 0x1012707c, is taken when a6(=[a1+6]:1) <= 0 (signed), and falls through when a6(=[a1+6]:1) > 0 (signed).
   The `beq` branch at 0x10126d5c targets 0x10127004, is taken when a0 == 0, and falls through when a0 != 0.
@@ -17548,7 +17754,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10127da4 loads 2 bytes from table(0x102cfb78) +0x0.
   The `lhu` at 0x10127dac loads 2 bytes from table(0x102cfb7a) +0x0.
   2 such `sb` accesses store 1 byte to [a3+4] +0x1, including `sb` at 0x101286b4, `sb` at 0x101286d8.
-  The `jal` at 0x10127f90 calls putspan..IEG [0x1012de80] with a0=?, a1=?, a2=a3 at entry (arg3), a3=?.
+  The `jal` at 0x10127f90 calls putspan..IEG [0x1012de80] with a0=?, a1=0x102cfb78, a2=a3 at entry (arg3), a3=?.
   The `beq` branch at 0x10127140 targets 0x10127a70, is taken when t1(=0x1) == at(?), and falls through when t1(=0x1) != at(?).
   The `beq` branch at 0x10127160 targets 0x10127ac4, is taken when t1(=0x1) == v0(?), and falls through when t1(=0x1) != v0(?).
   The `beq` branch at 0x101271cc targets 0x101278f4, is taken when (ra(?) & 0x1) == 0, and falls through when (ra(?) & 0x1) != 0.
@@ -17800,7 +18006,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 680 bytes.
   The `lw` at 0x10129ab4 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10129abc loads 4 bytes from [a0+8] +0x8.
-  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10129b0c, `lw` at 0x10129c34, `lw` at 0x10129c38.
+  The `lw` at 0x10129b0c loads 4 bytes from [a0+8] +0x4.
   The `lw` at 0x10129b38 loads 4 bytes from sym(WindowTable) +0x0.
   The `lw` at 0x10129b3c loads 4 bytes from [sym(WindowTable)] +0x0.
   The `lh` at 0x10129b40 loads 2 bytes from ret(SecurityLookupWindow) +0xa.
@@ -17809,26 +18015,32 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x10, including `lw` at 0x10129b54, `lw` at 0x10129c4c.
   2 such `lw` accesses load 4 bytes from [sym(panoramiXdataPtr)] +0x14, including `lw` at 0x10129b58, `lw` at 0x10129c78.
   The `lw` at 0x10129b64 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
-  6 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10129b74, `lh` at 0x10129b90, `lh` at 0x10129c24.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10129b84, `lhu` at 0x10129b8c.
+  The `lh` at 0x10129b74 loads 2 bytes from [a0+8] +0xc.
+  The `lhu` at 0x10129b84 loads 2 bytes from [a0+8] +0x10.
+  The `lhu` at 0x10129b8c loads 2 bytes from [a0+8] +0x12.
+  The `lh` at 0x10129b90 loads 2 bytes from [a0+8] +0xe.
   The `lw` at 0x10129bd0 loads 4 bytes from ret(SecurityLookupWindow) +0x7c.
   The `lw` at 0x10129bec loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x180.
+  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10129c24, `lh` at 0x10129c2c.
+  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10129c34, `lw` at 0x10129c38, `lw` at 0x10129c54.
+  The `lh` at 0x10129c90 loads 2 bytes from [a0+8] +0x14.
+  The `lh` at 0x10129ca0 loads 2 bytes from [a0+8] +0x16.
   The `jal` at 0x10129ad4 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x1, a3=a3 at entry (arg3).
-  The `jal` at 0x10129b20 calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=[0x102c6014], a5=sym(panoramiXdataPtr).
-  The `jalr` at 0x10129bfc calls (unknown callee) with a0=ret(SecurityLookupWindow)+56, a1=?, a2=?, a3=sp-40, a4=[[sym(WindowTable)]].
+  The `jal` at 0x10129b20 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=[0x102c6014], a5=sym(panoramiXdataPtr).
+  The `jalr` at 0x10129bfc calls (unknown callee) with a0=ret(SecurityLookupWindow)+56, a1=?, a2=?, a3=sp-40, a4=[[sym(WindowTable)]], a5=[[a0+8]+14]:2.
   The `jal` at 0x10129d14 calls ConfineToShape..NB [0x10250ac0] with a0=[0x102c5ff8], a1=sp-48, a2=sp-44, a3=?.
   The `jal` at 0x10129d2c calls PanoramiXSetCursorPosition..EB [0x1017b4f0] with a0=?, a1=?, a2=0x1, a3=?.
   The `beq` branch at 0x10129ac4 targets 0x10129af4, is taken when v0(=[[a0+8]+8]) == 0, and falls through when v0(=[[a0+8]+8]) != 0.
   The `bne` branch at 0x10129adc targets 0x10129af8, is taken when v0(=ret(SecurityLookupWindow)) != 0, and falls through when v0(=ret(SecurityLookupWindow)) == 0.
-  The `beq` branch at 0x10129b10 targets 0x10129c14, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x10129b10 targets 0x10129c14, is taken when a0(=[[a0+8]+4]) == 0, and falls through when a0(=[[a0+8]+4]) != 0.
   The `beq` branch at 0x10129b2c targets 0x10129d44, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
   The `beq` branch at 0x10129b44 targets 0x10129b64, is taken when a4(=[[sym(WindowTable)]]) == v0(=ret(SecurityLookupWindow)), and falls through when a4(=[[sym(WindowTable)]]) != v0(=ret(SecurityLookupWindow)).
   The `bne` branch at 0x10129b6c targets 0x10129bdc, is taken when a6(=[0x102c601c]) != t0(=[ret(SecurityLookupWindow)+16]), and falls through when a6(=[0x102c601c]) == t0(=[ret(SecurityLookupWindow)+16]).
   The `bne` branch at 0x10129b94 targets 0x10129bdc, is taken when a7(?) < t3(?) (signed), and falls through when a7(?) >= t3(?) (signed).
   The `bne` branch at 0x10129ba8 targets 0x10129bdc, is taken when a6(?) < t8(?) (signed), and falls through when a6(?) >= t8(?) (signed).
-  The `beq` branch at 0x10129bb0 targets 0x10129bc0, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x10129bb0 targets 0x10129bc0, is taken when t1(=[[a0+8]+16]:2) == 0, and falls through when t1(=[[a0+8]+16]:2) != 0.
   The `bne` branch at 0x10129bb8 targets 0x10129bdc, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `beq` branch at 0x10129bc0 targets 0x10129bd0, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x10129bc0 targets 0x10129bd0, is taken when a2(=[[a0+8]+18]:2) == 0, and falls through when a2(=[[a0+8]+18]:2) != 0.
   The `bne` branch at 0x10129bc8 targets 0x10129be0, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `bltz` branch at 0x10129bd8 targets 0x10129bec, is taken when a0(=([ret(SecurityLookupWindow)+124] << 0x14)) < 0 (signed), and falls through when a0(=([ret(SecurityLookupWindow)+124] << 0x14)) >= 0 (signed).
   The `beq` branch at 0x10129c08 targets 0x10129bdc, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -17862,18 +18074,24 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10129d90 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10129da0 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10129dd4 loads 4 bytes from [a0+8] +0x4.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10129de8, `lw` at 0x10129e20, `lw` at 0x10129e24.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10129de8, `lw` at 0x10129e94.
   The `lw` at 0x10129e00 loads 4 bytes from ret(SecurityLookupWindow) +0x78.
   The `lw` at 0x10129e0c loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x0.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10129e20, `lw` at 0x10129e24, `lw` at 0x10129e30.
   The `lw` at 0x10129e48 loads 4 bytes from ret(lookupCapabilityByVisualID) +0xc.
+  The `lw` at 0x10129e70 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
   The `lw` at 0x10129e74 loads 4 bytes from sym(nmbxScreenPrivateIndex) +0x0.
+  The `lw` at 0x10129e78 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x1b4.
+  The `lw` at 0x10129e84 loads 4 bytes from ([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2)) +0x0.
+  The `lw` at 0x10129e88 loads 4 bytes from [([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2))] +0x0.
+  The `lw` at 0x10129e8c loads 4 bytes from [[([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2))]] +0x10.
   The `jal` at 0x10129dd0 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
-  The `jal` at 0x10129e34 calls lookupCapabilityByVisualID [0x1020c970] with a0=?, a1=?, a2=?, a3=?.
-  Calls (unknown callee) via register with a0=?, a1=?, a2=?, a3=[ret(lookupCapabilityByVisualID)+12] (`jr` at 0x10129e98).
+  The `jal` at 0x10129e34 calls lookupCapabilityByVisualID [0x1020c970] with a0=?, a1=[[a0+8]+8], a2=?, a3=?.
+  Calls (unknown callee) via register with a0=ret(SecurityLookupWindow), a1=[[a0+8]+8], a2=?, a3=[ret(lookupCapabilityByVisualID)+12] (`jr` at 0x10129e98).
   The `beq` branch at 0x10129da8 targets 0x10129dc4, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `beq` branch at 0x10129ddc targets 0x10129ea0, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x10129dec targets 0x10129e5c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x10129df8 targets 0x10129e5c, is taken when a2(=[0x102c6188]) < a1(?) (unsigned), and falls through when a2(=[0x102c6188]) >= a1(?) (unsigned).
+  The `beq` branch at 0x10129dec targets 0x10129e5c, is taken when a1(=[[a0+8]+8]) == 0, and falls through when a1(=[[a0+8]+8]) != 0.
+  The `bne` branch at 0x10129df8 targets 0x10129e5c, is taken when a2(=[0x102c6188]) < a1(=[[a0+8]+8]) (unsigned), and falls through when a2(=[0x102c6188]) >= a1(=[[a0+8]+8]) (unsigned).
   The `beq` branch at 0x10129e04 targets 0x10129e18, is taken when a4(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a4(=[ret(SecurityLookupWindow)+120]) != 0.
   The `beq` branch at 0x10129e10 targets 0x10129e34 and is always taken.
   The `beq` branch at 0x10129e28 targets 0x10129e20, is taken when a5(?) == 0, and falls through when a5(?) != 0.
@@ -17885,6 +18103,7 @@ These entries record instruction facts rendered from the routines below. They de
   The return at 0x10129db0 has v0 = 0x10.
   The return at 0x10129dbc has v0 = one of 0x3, 0x8.
   The return at 0x10129e60 has v0 = 0x5.
+  The indirect jump at 0x10129e98 uses a jump table whose successors are unresolved.
 - `SrvXkbFreeServerMap` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10129eb0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -18011,7 +18230,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012a624 loads 4 bytes from [sym(panoramiXdataPtr)] +0x10.
   The `lw` at 0x1012a648 loads 4 bytes from sym(currentTime) +0x4.
   The `jalr` at 0x1012a48c calls (unknown callee) with a0=?, a1=a0 at entry (arg0), a2=0x102c5fec, a3=0x102c5ffc, a5=[0x102c601c], a6=a0 at entry (arg0).
-  The `jalr` at 0x1012a4a4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a4=a2 at entry (arg2).
+  The `jalr` at 0x1012a4a4 calls (unknown callee) with a0=?, a1=0x102c5ffc, a2=?, a3=?, a4=a2 at entry (arg2).
   The `jal` at 0x1012a524 calls ConfineToShape..NB [0x10250ac0] with a0=[0x102c5ff8], a1=sp-96, a2=sp-92, a3=[0x102c5ffe]:2, a5=[0x102c6002]:2, a7=[0x102c601c].
   The `jalr` at 0x1012a574 calls (unknown callee) with a0=?, a1=?, a2=?, a3=a1 at entry (arg1), a5=[0x102c6018], a7=[0x102c601c].
   The `jalr` at 0x1012a5cc calls (unknown callee) with a0=sp-80, a1=[sym(inputInfo)+16], a2=0x1, a3=[0x102c5fd0].
@@ -18204,36 +18423,42 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 1240 bytes.
   The `lw` at 0x1012ae50 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1012ae54 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x1012ae9c loads 4 bytes from [a0+8] +0xc.
+  4 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x1012ae9c, `lw` at 0x1012af24, `lw` at 0x1012af4c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x38, including `lw` at 0x1012aea8, `lw` at 0x1012af28.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x1012aeb4, `lw` at 0x1012aed4.
+  8 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x1012aeb4, `lw` at 0x1012aed4, `lw` at 0x1012afb0.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x30, including `lw` at 0x1012aeb8, `lw` at 0x1012aed0, `lw` at 0x1012aff0.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2c, including `lw` at 0x1012aec4, `lw` at 0x1012aef0, `lw` at 0x1012b00c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x34, including `lw` at 0x1012aecc, `lw` at 0x1012af40.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x74, including `lw` at 0x1012aee0, `lw` at 0x1012af34, `lw` at 0x1012affc.
-  40 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012af24, `lw` at 0x1012af4c, `lw` at 0x1012af9c.
   5 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x1012af58, `sw` at 0x1012b084, `sw` at 0x1012b0d4.
   5 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1012af8c, `lbu` at 0x1012af90, `lbu` at 0x1012afc4.
+  27 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012af9c, `lw` at 0x1012afa0, `lw` at 0x1012afd0.
   The `sw` at 0x1012afac stores 4 bytes to a0 (arg0 at entry) +0x2c.
   The `sw` at 0x1012afb4 stores 4 bytes to a0 (arg0 at entry) +0x34.
   The `sw` at 0x1012afb8 stores 4 bytes to a0 (arg0 at entry) +0x30.
   The `sw` at 0x1012afc0 stores 4 bytes to a0 (arg0 at entry) +0x38.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1012afe4, `lw` at 0x1012b19c, `lw` at 0x1012b27c.
   The `lbu` at 0x1012b058 loads 1 byte from ret(SecurityLookupIDByClass) +0x0.
+  The `lw` at 0x1012b094 loads 4 bytes from [a0+8] +0x1c.
   2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1012b118, `sw` at 0x1012b124.
   2 such `lw` accesses load 4 bytes from sym(dbcWindowPrivateIndex) +0x0, including `lw` at 0x1012b13c, `lw` at 0x1012b1a0.
   4 such `lb` accesses load 1 byte from ?, including `lb` at 0x1012b14c, `lb` at 0x1012b1b4, `lb` at 0x1012b2a0.
   4 such `sb` accesses store 1 byte to ?, including `sb` at 0x1012b1bc, `sb` at 0x1012b2a8, `sb` at 0x1012b314.
-  4 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1012b1cc, `lh` at 0x1012b1d0, `lh` at 0x1012b1dc.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1012b1d4, `lhu` at 0x1012b1d8.
+  The `lh` at 0x1012b1cc loads 2 bytes from [a0+8] +0x10.
+  The `lh` at 0x1012b1d0 loads 2 bytes from [a0+8] +0x12.
+  The `lhu` at 0x1012b1d4 loads 2 bytes from [a0+8] +0x18.
+  The `lhu` at 0x1012b1d8 loads 2 bytes from [a0+8] +0x1a.
+  The `lh` at 0x1012b1dc loads 2 bytes from [a0+8] +0x14.
+  The `lh` at 0x1012b1e0 loads 2 bytes from [a0+8] +0x16.
   The `lw` at 0x1012b21c loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1012af0c calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=0x40000000, a3=0x2, a6=[[a0+8]+8].
-  The `jal` at 0x1012af74 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=?, a2=0xffffffff80000003, a3=0x1.
-  The `jal` at 0x1012b03c calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=?, a2=0x40000000, a3=0x1.
+  The `jal` at 0x1012af74 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+12], a2=0xffffffff80000003, a3=0x1.
+  The `jal` at 0x1012b03c calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x1.
   The `jalr` at 0x1012b104 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012b178 calls dbcSetDrawBuffer [0x1015c520] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1012b1f8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1012b2d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=0x3f, a4=0x0.
-  The `jalr` at 0x1012b2f4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1012b178 calls dbcSetDrawBuffer [0x1015c520] with a0=?, a1=[[a0+8]+8], a2=?, a3=?.
+  The `jalr` at 0x1012b1f8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=[[a0+8]+16]:2, a4=[[a0+8]+18]:2, a5=[[a0+8]+24]:2, a6=[[a0+8]+26]:2, a7=[[a0+8]+20]:2.
+  The `jalr` at 0x1012b2d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=[[a0+8]+8], a3=0x3f, a4=0x0.
+  The `jalr` at 0x1012b2f4 calls (unknown callee) with a0=ret(?), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1012ae70 targets 0x1012ae9c, is taken when v1(=[a0+72]) == a1(=0x8), and falls through when v1(=[a0+72]) != a1(=0x8).
   The `beq` branch at 0x1012aea0 targets 0x1012aed0, is taken when a1(=[[a0+8]+12]) == 0, and falls through when a1(=[[a0+8]+12]) != 0.
   The `bne` branch at 0x1012aeac targets 0x1012aed0, is taken when a2(=[a0+56]) != a1(=[[a0+8]+12]), and falls through when a2(=[a0+56]) == a1(=[[a0+8]+12]).
@@ -18243,7 +18468,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1012aee4 targets 0x1012aef4, is taken when a5(=[a0+116]) != 0, and falls through when a5(=[a0+116]) == 0.
   The `beq` branch at 0x1012aeec targets 0x1012af28 and is always taken.
   The `beq` branch at 0x1012af18 targets 0x1012b128, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
-  The `bne` branch at 0x1012af2c targets 0x1012af60, is taken when a3(=[a0+56]) != a1(?), and falls through when a3(=[a0+56]) == a1(?).
+  The `bne` branch at 0x1012af2c targets 0x1012af60, is taken when a3(=[a0+56]) != a1(=[[a0+8]+12]), and falls through when a3(=[a0+56]) == a1(=[[a0+8]+12]).
   The `bne` branch at 0x1012af38 targets 0x1012af60, is taken when a4(=[a0+116]) != 0, and falls through when a4(=[a0+116]) == 0.
   The `bne` branch at 0x1012af44 targets 0x1012af8c, is taken when a6(=[a0+52]) != 0, and falls through when a6(=[a0+52]) == 0.
   The `beq` branch at 0x1012af54 targets 0x1012ae8c and is always taken.
@@ -18252,8 +18477,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1012afa4 targets 0x1012b010, is taken when a5(?) != a7(?), and falls through when a5(?) == a7(?).
   The `beq` branch at 0x1012afc8 targets 0x1012b13c, is taken when t2(?) == 0, and falls through when t2(?) != 0.
   The `bne` branch at 0x1012afd8 targets 0x1012b0e4, is taken when t3(?) != t8(?), and falls through when t3(?) == t8(?).
-  The `beq` branch at 0x1012afe8 targets 0x1012b088, is taken when t9(?) == a1(?), and falls through when t9(?) != a1(?).
-  The `bne` branch at 0x1012aff4 targets 0x1012b028, is taken when a3(=[a0+48]) != a1(?), and falls through when a3(=[a0+48]) == a1(?).
+  The `beq` branch at 0x1012afe8 targets 0x1012b088, is taken when t9(=[[a0+8]+8]) == a1(=[[a0+8]+4]), and falls through when t9(=[[a0+8]+8]) != a1(=[[a0+8]+4]).
+  The `bne` branch at 0x1012aff4 targets 0x1012b028, is taken when a3(=[a0+48]) != a1(=[[a0+8]+4]), and falls through when a3(=[a0+48]) == a1(=[[a0+8]+4]).
   The `bne` branch at 0x1012b000 targets 0x1012b028, is taken when a4(=[a0+116]) != 0, and falls through when a4(=[a0+116]) == 0.
   The `beq` branch at 0x1012b008 targets 0x1012b068 and is always taken.
   The `beq` branch at 0x1012b050 targets 0x1012b278, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
@@ -18261,20 +18486,20 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1012b070 targets 0x1012b088, is taken when t0(?) == t1(?), and falls through when t0(?) != t1(?).
   The `beq` branch at 0x1012b080 targets 0x1012ae8c and is always taken.
   The `beq` branch at 0x1012b08c targets 0x1012b190, is taken when t3(?) == 0, and falls through when t3(?) != 0.
-  The `beq` branch at 0x1012b098 targets 0x1012b0cc, is taken when t2(?) == 0, and falls through when t2(?) != 0.
-  The `bne` branch at 0x1012b0a4 targets 0x1012b0cc, is taken when (t2(?) & t3(?)) != 0, and falls through when (t2(?) & t3(?)) == 0.
-  The `beq` branch at 0x1012b0c4 targets 0x1012b1c0, is taken when t8(?) >= t2(?) (unsigned), and falls through when t8(?) < t2(?) (unsigned).
+  The `beq` branch at 0x1012b098 targets 0x1012b0cc, is taken when t2(=[[a0+8]+28]) == 0, and falls through when t2(=[[a0+8]+28]) != 0.
+  The `bne` branch at 0x1012b0a4 targets 0x1012b0cc, is taken when (t2(=[[a0+8]+28]) & t3(=[[a0+8]+28]-1)) != 0, and falls through when (t2(=[[a0+8]+28]) & t3(=[[a0+8]+28]-1)) == 0.
+  The `beq` branch at 0x1012b0c4 targets 0x1012b1c0, is taken when t8(?) >= t2(=[[a0+8]+28]) (unsigned), and falls through when t8(?) < t2(=[[a0+8]+28]) (unsigned).
   The `beq` branch at 0x1012b120 targets 0x1012afdc and is always taken.
   The `beq` branch at 0x1012b134 targets 0x1012ae8c and is always taken.
   The `beq` branch at 0x1012b154 targets 0x1012afd0, is taken when a0(?) == a1(=-0x1), and falls through when a0(?) != a1(=-0x1).
   The `beq` branch at 0x1012b188 targets 0x1012afd0 and is always taken.
-  The `bne` branch at 0x1012b1ac targets 0x1012b220, is taken when v1(?) != a1(?), and falls through when v1(?) == a1(?).
+  The `bne` branch at 0x1012b1ac targets 0x1012b220, is taken when v1(?) != a1(=[[a0+8]+4]), and falls through when v1(?) == a1(=[[a0+8]+4]).
   The `beq` branch at 0x1012b1b8 targets 0x1012b090 and is always taken.
   The `bltz` branch at 0x1012b210 targets 0x1012b2b4, is taken when at(?) < 0 (signed), and falls through when at(?) >= 0 (signed).
   The `beq` branch at 0x1012b218 targets 0x1012ae8c and is always taken.
   The `beq` branch at 0x1012b230 targets 0x1012b304, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `blez` branch at 0x1012b23c targets 0x1012b090, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
-  The `beq` branch at 0x1012b25c targets 0x1012b28c, is taken when t3(?) == a1(?), and falls through when t3(?) != a1(?).
+  The `beq` branch at 0x1012b25c targets 0x1012b28c, is taken when t3(?) == a1(=[[a0+8]+4]), and falls through when t3(?) != a1(=[[a0+8]+4]).
   The `bnel` branch at 0x1012b268 targets 0x1012b25c, is taken when a5(?) != a7(?), and falls through when a5(?) == a7(?); its branch-likely delay slot `lw t3,20(a5)` at 0x1012b26c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x1012b270 targets 0x1012b094 and is always taken.
   The `beq` branch at 0x1012b284 targets 0x1012ae8c and is always taken.
@@ -18282,7 +18507,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1012b29c targets 0x1012b318, is taken when t9(?) != at(?), and falls through when t9(?) == at(?).
   The `beq` branch at 0x1012b2a4 targets 0x1012b090 and is always taken.
   The `beq` branch at 0x1012b2ac targets 0x1012ae8c and is always taken.
-  The `beq` branch at 0x1012b2e0 targets 0x1012b218, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x1012b2e0 targets 0x1012b218, is taken when at(=ret(?)) == 0, and falls through when at(=ret(?)) != 0.
   The `beq` branch at 0x1012b2fc targets 0x1012b218 and is always taken.
   The `beq` branch at 0x1012b310 targets 0x1012b090 and is always taken.
   The `beq` branch at 0x1012b320 targets 0x1012b090 and is always taken.
@@ -18299,23 +18524,24 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 252 bytes.
   The `lw` at 0x1012b3f0 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1012b3fc loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x1012b410 loads 4 bytes from [a0+8] +0x4.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1012b410, `lw` at 0x1012b478, `lw` at 0x1012b4b0.
   The `lw` at 0x1012b414 loads 4 bytes from a0 (arg0 at entry) +0x30.
   The `lw` at 0x1012b420 loads 4 bytes from a0 (arg0 at entry) +0x74.
   The `lw` at 0x1012b430 loads 4 bytes from a0 (arg0 at entry) +0x2c.
   The `lbu` at 0x1012b460 loads 1 byte from ?.
-  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012b478, `lw` at 0x1012b488, `lw` at 0x1012b4b0.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x1012b484, `sw` at 0x1012b49c, `sw` at 0x1012b4bc.
+  The `lw` at 0x1012b488 loads 4 bytes from [a0+8] +0x8.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012b4c4, `lw` at 0x1012b4c8, `lw` at 0x1012b4cc.
   The `lw` at 0x1012b4e8 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1012b448 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x0.
-  The `jalr` at 0x1012b4d4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1012b4d4 calls (unknown callee) with a0=?, a1=?, a2=[[a0+8]+8], a3=?, a4=[a0+8].
   The `beq` branch at 0x1012b400 targets 0x1012b410, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `bne` branch at 0x1012b418 targets 0x1012b434, is taken when v1(=[a0+48]) != a1(=[[a0+8]+4]), and falls through when v1(=[a0+48]) == a1(=[[a0+8]+4]).
   The `bne` branch at 0x1012b424 targets 0x1012b438, is taken when a2(=[a0+116]) != 0, and falls through when a2(=[a0+116]) == 0.
   The `beq` branch at 0x1012b42c targets 0x1012b460 and is always taken.
   The `beq` branch at 0x1012b458 targets 0x1012b4a8, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `beq` branch at 0x1012b46c targets 0x1012b488, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bltz` branch at 0x1012b48c targets 0x1012b49c, is taken when a2(?) < 0 (signed), and falls through when a2(?) >= 0 (signed).
+  The `bltz` branch at 0x1012b48c targets 0x1012b49c, is taken when a2(=[[a0+8]+8]) < 0 (signed), and falls through when a2(=[[a0+8]+8]) >= 0 (signed).
   The `bne` branch at 0x1012b494 targets 0x1012b4c0, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x1012b4e4 targets 0x1012b408 and is always taken.
   The return at 0x1012b408 has v0 = one of 0x10, [a0+40].
@@ -18437,7 +18663,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012bc14 loads 4 bytes from [a0+8] +0xc.
   The `lw` at 0x1012bc44 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1012bc20 calls LookupOpenDeviceIntRec [0x1012d310] with a0=[[a0+8]+4]:1, a1=[[a0+8]+6]:2, a2=[[a0+8]+8], a3=[[a0+8]+12], a6=[a0+8].
-  The `jal` at 0x1012bc34 calls xdevConstrainValuator [0x10125e30] with a0=ret(LookupOpenDeviceIntRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1012bc34 calls xdevConstrainValuator [0x10125e30] with a0=ret(LookupOpenDeviceIntRec), a1=[[a0+8]+6]:2, a2=[[a0+8]+8], a3=[[a0+8]+12].
   The `beq` branch at 0x1012bbf4 targets 0x1012bc04, is taken when at(=[a0+72]) == v0(=0x4), and falls through when at(=[a0+72]) != v0(=0x4).
   The return at 0x1012bbfc has v0 = 0x10.
   The return at 0x1012bc48 has v0 = [a0+40].
@@ -18463,19 +18689,18 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 228 bytes.
   The `lw` at 0x1012c180 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1012c184 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x1012c1d0 loads 4 bytes from [a0+8] +0x4.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012c1e4, `lw` at 0x1012c220.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1012c1d0, `lw` at 0x1012c1e4, `lw` at 0x1012c220.
   The `lw` at 0x1012c1e8 loads 4 bytes from ret(SecurityLookupIDByType) +0x0.
   The `lw` at 0x1012c1f4 loads 4 bytes from ret(SecurityLookupIDByType) +0x4.
   The `lw` at 0x1012c1f8 loads 4 bytes from [ret(SecurityLookupIDByType)+4] +0x28.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x1012c228, `sw` at 0x1012c260.
-  The `lbu` at 0x1012c240 loads 1 byte from ?.
+  The `lbu` at 0x1012c240 loads 1 byte from [a0+8] +0x8.
   The `jal` at 0x1012c1cc calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=[0x102caa90], a3=0x0.
-  The `jalr` at 0x1012c200 calls (unknown callee) with a0=?, a1=ret(SecurityLookupIDByType), a2=sp-32, a3=?.
-  The `jal` at 0x1012c23c calls XvdiSelectPortNotify [0x101b1870] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1012c200 calls (unknown callee) with a0=[[a0+8]+4], a1=ret(SecurityLookupIDByType), a2=sp-32, a3=?.
+  The `jal` at 0x1012c23c calls XvdiSelectPortNotify [0x101b1870] with a0=a0 at entry (arg0), a1=?, a2=[[a0+8]+8]:1, a3=?.
   The `beq` branch at 0x1012c198 targets 0x1012c1b4, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `beq` branch at 0x1012c1e0 targets 0x1012c250, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `beq` branch at 0x1012c1ec targets 0x1012c238, is taken when a2(=[ret(SecurityLookupIDByType)]) == a0(?), and falls through when a2(=[ret(SecurityLookupIDByType)]) != a0(?).
+  The `beq` branch at 0x1012c1ec targets 0x1012c238, is taken when a2(=[ret(SecurityLookupIDByType)]) == a0(=[[a0+8]+4]), and falls through when a2(=[ret(SecurityLookupIDByType)]) != a0(=[[a0+8]+4]).
   The `beq` branch at 0x1012c20c targets 0x1012c234, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
   The `beq` branch at 0x1012c248 targets 0x1012c1a8 and is always taken.
   The `beq` branch at 0x1012c25c targets 0x1012c1a8 and is always taken.
@@ -18491,9 +18716,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012c278 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1012c2a8 loads 4 bytes from sym(serverClient) +0x0.
   The `lw` at 0x1012c2cc loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x1012c2d0 loads 1 byte from ?.
+  The `lbu` at 0x1012c2d0 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x1012c2d4 loads 4 bytes from [a0+88] +0x0.
-  The `lw` at 0x1012c2e0 loads 4 bytes from ?.
+  The `lw` at 0x1012c2e0 loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x1012c2a4 calls CheckClientDAC [0x102560c0] with a0=a0 at entry (arg0), a1=[sym(serverClient)], a2=0x1, a3=a3 at entry (arg3).
   The `jalr` at 0x1012c2e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1012c290 targets 0x1012c300, is taken when v0(=[a0+72]) == 0, and falls through when v0(=[a0+72]) != 0.
@@ -18557,7 +18782,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x1012c480 loads 1 byte from ret(AddXineramaExtension) +0xf.
   The `lbu` at 0x1012c484 loads 1 byte from ret(AddXineramaExtension) +0x13.
   The `lbu` at 0x1012c488 loads 1 byte from ret(AddXineramaExtension) +0x1b.
-  The `sw` at 0x1012c510 stores 4 bytes to ?.
+  The `sw` at 0x1012c510 stores 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0.
   The `jal` at 0x1012c46c calls AddXineramaExtension [0x101f12e0] with a0=0x1029b7a8, a1=0x1, a2=0x1, a3=0x1027c020, a4=0x1010e2e0, a5=0x1027c020, a6=0x1010e2e0, a7=0x10130e30.
   The `jal` at 0x1012c4d8 calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=([0x102c6100] << 0x2)+8, a2=0x0, a3=?, a4=[0x102c6100], a5=[ret(AddXineramaExtension)+19]:1, a6=[ret(AddXineramaExtension)+27]:1.
   The `beq` branch at 0x1012c474 targets 0x1012c4c0, is taken when v0(=ret(AddXineramaExtension)) == 0, and falls through when v0(=ret(AddXineramaExtension)) != 0.
@@ -18579,8 +18804,9 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x1012cb60-0x1012d1ac (1612 bytes).
   It occupies 1612 bytes.
   19 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1012cc2c, `lbu` at 0x1012cc54, `lbu` at 0x1012cc60.
-  17 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012cc70, `lw` at 0x1012ccd8, `lw` at 0x1012cce4.
+  16 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012cc70, `lw` at 0x1012cce4, `lw` at 0x1012ccec.
   3 such `lw` accesses load 4 bytes from abs 0x102e75b0, including `lw` at 0x1012ccb8, `lw` at 0x1012cd04, `lw` at 0x1012cdd8.
+  The `lw` at 0x1012ccd8 loads 4 bytes from abs 0x102e75b8.
   The `sw` at 0x1012cd70 stores 4 bytes to ret(Xalloc) +0x0.
   The `sw` at 0x1012cd84 stores 4 bytes to ret(Xalloc) +0x4.
   5 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1012cd9c, `sw` at 0x1012cdb0, `sw` at 0x1012cdc4.
@@ -18596,18 +18822,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1012ce2c calls ddxMakeDynamicModulePath [0x10080080] with a0=sp-1168, a1=?, a2=?, a3=?.
   The `jalr` at 0x1012ce40 calls dlopen with a0=sp-1168, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x1012ce58 calls dlerror with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012ce68 calls ErrorF [0x10094ec0] with a0=?, a1=ret(dlerror), a2=?, a3=?.
+  The `jal` at 0x1012ce68 calls ErrorF [0x10094ec0] with a0=0x10296c90, a1=ret(dlerror), a2=?, a3=?.
   The `jalr` at 0x1012ce88 calls dlclose with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1012ce98 calls dlerror with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012cea8 calls ErrorF [0x10094ec0] with a0=?, a1=ret(dlerror), a2=?, a3=?.
+  The `jal` at 0x1012cea8 calls ErrorF [0x10094ec0] with a0=0x10296d00, a1=ret(dlerror), a2=?, a3=?.
   The `jal` at 0x1012cee0 calls ddxFindFirstTypedBoard [0x10289d20] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012cefc calls ErrorF [0x10094ec0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1012cf2c calls sprintf with a0=sp-1168, a1=?, a2=?, a3=?.
+  The `jal` at 0x1012cefc calls ErrorF [0x10094ec0] with a0=0x10296d18, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1012cf2c calls sprintf with a0=sp-1168, a1=0x10296cb8, a2=?, a3=?.
   The `jalr` at 0x1012cf40 calls dlsym with a0=ret(dlopen), a1=sp-1168, a2=?, a3=?.
   The `jal` at 0x1012d020 calls ddxGetBoardName [0x1012a250] with a0=?, a1=sp-1192, a2=?, a3=?.
   The `jalr` at 0x1012d030 calls strdup with a0=sp-1192, a1=?, a2=?, a3=?.
   The `jalr` at 0x1012d044 calls dlerror with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012d054 calls ErrorF [0x10094ec0] with a0=?, a1=ret(dlerror), a2=?, a3=?.
+  The `jal` at 0x1012d054 calls ErrorF [0x10094ec0] with a0=0x10296cc8, a1=ret(dlerror), a2=?, a3=?.
   The `jal` at 0x1012d0d0 calls ddxFindAvailableBoards..CGC [0x10082870] with a0=?, a1=0xff, a2=?, a3=[0x102ca720], a4=[0x102cf15c].
   The `jal` at 0x1012d16c calls ddxRequestBoards [0x101064d0] with a0=[0x102ca18c], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a6=[0x102ca2b4].
   The `beq` branch at 0x1012cb80 targets 0x1012d16c, is taken when a6(=[0x102ca2b4]) == 0, and falls through when a6(=[0x102ca2b4]) != 0.
@@ -18854,15 +19080,20 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012e310 loads 4 bytes from [[a0+36]+12] +0x4.
   The `lw` at 0x1012e328 loads 4 bytes from [[a0+36]+12] +0x14.
   The `lw` at 0x1012e32c loads 4 bytes from [[a0+36]+12] +0x10.
-  23 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012e350, `lw` at 0x1012e358, `lw` at 0x1012e38c.
-  17 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1012e35c, `sw` at 0x1012e364, `sw` at 0x1012e370.
+  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012e350, `lw` at 0x1012e358, `lw` at 0x1012e38c.
+  15 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1012e35c, `sw` at 0x1012e364, `sw` at 0x1012e370.
   The `lhu` at 0x1012e450 loads 2 bytes from a1 (arg1 at entry) +0x0.
   The `lw` at 0x1012e470 loads 4 bytes from a1 (arg1 at entry) +0x8.
-  4 such `lw` accesses load 4 bytes from [[a0+36]+12] +0xc, including `lw` at 0x1012e488, `lw` at 0x1012e694, `lw` at 0x1012e814.
+  8 such `lw` accesses load 4 bytes from [[a0+36]+12] +0xc, including `lw` at 0x1012e488, `lw` at 0x1012e4fc, `lw` at 0x1012e568.
   2 such `sw` accesses store 4 bytes to [[a0+36]+12] +0xc, including `sw` at 0x1012e4a0, `sw` at 0x1012e6ac.
   2 such `lw` accesses load 4 bytes from ret(XkbFindSrvLedInfo) +0x40, including `lw` at 0x1012e52c, `lw` at 0x1012e734.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1012e578, `lhu` at 0x1012e770.
-  4 such `sb` accesses store 1 byte to ?, including `sb` at 0x1012e5a4, `sb` at 0x1012e5b0, `sb` at 0x1012e7a4.
+  2 such `lhu` accesses load 2 bytes from [[a0+36]+12] +0x22, including `lhu` at 0x1012e578, `lhu` at 0x1012e770.
+  2 such `lw` accesses load 4 bytes from [a0+40] +0x90, including `lw` at 0x1012e588, `lw` at 0x1012e788.
+  2 such `lw` accesses load 4 bytes from [[a0+40]+144] +0x158, including `lw` at 0x1012e58c, `lw` at 0x1012e78c.
+  2 such `sb` accesses store 1 byte to [[[a0+40]+144]+344] +0x65, including `sb` at 0x1012e5a4, `sb` at 0x1012e7b0.
+  2 such `sb` accesses store 1 byte to [[[a0+40]+144]+344] +0x64, including `sb` at 0x1012e5b0, `sb` at 0x1012e7a4.
+  2 such `lw` accesses load 4 bytes from [[[a0+40]+144]+344] +0x74, including `lw` at 0x1012e5d8, `lw` at 0x1012e7d8.
+  2 such `sw` accesses store 4 bytes to [[[a0+40]+144]+344] +0x74, including `sw` at 0x1012e5e0, `sw` at 0x1012e7f0.
   2 such `sb` accesses store 1 byte to a1 (arg1 at entry) +0x3, including `sb` at 0x1012e5ec, `sb` at 0x1012e624.
   2 such `sh` accesses store 2 bytes to a1 (arg1 at entry) +0x0, including `sh` at 0x1012e5f4, `sh` at 0x1012e630.
   The `sb` at 0x1012e61c stores 1 byte to a1 (arg1 at entry) +0x4.
@@ -18878,23 +19109,23 @@ These entries record instruction facts rendered from the routines below. They de
   The `sdr` at 0x1012e678 stores 8 bytes to a1 (arg1 at entry) +0x13.
   The `lbu` at 0x1012e67c loads 1 byte from a3 (arg3 at entry) +0x0.
   The `jal` at 0x1012e49c calls XkbComputeControlsNotify [0x10087010] with a0=[a0+40], a1=sp-352, a2=[[a0+36]+12], a3=sp-224, a4=0x0, a6=[[a0+36]+12].
-  The `jal` at 0x1012e4c8 calls XkbSendControlsNotify [0x101ba680] with a0=?, a1=sp-224, a2=?, a3=0x3.
-  The `jal` at 0x1012e518 calls XkbFindSrvLedInfo [0x10242bc0] with a0=?, a1=0x300, a2=0x400, a3=0x0.
-  The `jal` at 0x1012e534 calls XkbFindSrvLedInfo [0x10242bc0] with a0=?, a1=0x300, a2=0x400, a3=0x0.
-  The `jal` at 0x1012e550 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=?, a1=ret(XkbFindSrvLedInfo), a2=?, a3=0x0, a4=0x0, a5=sp-232.
+  The `jal` at 0x1012e4c8 calls XkbSendControlsNotify [0x101ba680] with a0=[a0+40], a1=sp-224, a2=?, a3=0x3.
+  The `jal` at 0x1012e518 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
+  The `jal` at 0x1012e534 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
+  The `jal` at 0x1012e550 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=[a0+40], a1=ret(XkbFindSrvLedInfo), a2=[ret(XkbFindSrvLedInfo)+64], a3=0x0, a4=0x0, a5=sp-232.
   The `jal` at 0x1012e55c calls XkbUpdateAllDeviceIndicators [0x10183c30] with a0=0x0, a1=sp-232, a2=?, a3=?.
-  The `jal` at 0x1012e5ac calls _XkbDDXBeepExpire..NIF [0x101019a0] with a0=0x0, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1012e5d4 calls TimerSet [0x10223200] with a0=?, a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0.
+  The `jal` at 0x1012e5ac calls _XkbDDXBeepExpire..NIF [0x101019a0] with a0=0x0, a1=0x0, a2=[a0+40], a3=?.
+  The `jal` at 0x1012e5d4 calls TimerSet [0x10223200] with a0=[[[[a0+40]+144]+344]+116], a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0, a4=[a0+40].
   The `jal` at 0x1012e6b0 calls XkbComputeControlsNotify [0x10087010] with a0=[a0+40], a1=sp-352, a2=[[a0+36]+12], a3=sp-264, a4=0x0, a5=[[a0+36]+12], a7=0x1.
-  The `jal` at 0x1012e6d8 calls XkbSendControlsNotify [0x101ba680] with a0=?, a1=sp-264, a2=?, a3=?, a5=a2 at entry (arg2).
-  The `jal` at 0x1012e720 calls XkbFindSrvLedInfo [0x10242bc0] with a0=?, a1=0x300, a2=0x400, a3=0x0.
-  The `jal` at 0x1012e738 calls XkbFindSrvLedInfo [0x10242bc0] with a0=?, a1=0x300, a2=0x400, a3=0x0.
-  The `jal` at 0x1012e754 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=?, a1=ret(XkbFindSrvLedInfo), a2=[ret(XkbFindSrvLedInfo)+64], a3=0x0, a4=0x0, a5=sp-232.
+  The `jal` at 0x1012e6d8 calls XkbSendControlsNotify [0x101ba680] with a0=[a0+40], a1=sp-264, a2=?, a3=?, a5=a2 at entry (arg2).
+  The `jal` at 0x1012e720 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
+  The `jal` at 0x1012e738 calls XkbFindSrvLedInfo [0x10242bc0] with a0=[a0+40], a1=0x300, a2=0x400, a3=0x0.
+  The `jal` at 0x1012e754 calls XkbUpdateLedAutoState [0x1013e4b0] with a0=[a0+40], a1=ret(XkbFindSrvLedInfo), a2=[ret(XkbFindSrvLedInfo)+64], a3=0x0, a4=0x0, a5=sp-232.
   The `jal` at 0x1012e760 calls XkbUpdateAllDeviceIndicators [0x10183c30] with a0=0x0, a1=sp-232, a2=?, a3=?.
-  The `jal` at 0x1012e7ac calls _XkbDDXBeepExpire..NIF [0x101019a0] with a0=0x0, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1012e7d4 calls TimerSet [0x10223200] with a0=?, a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0.
-  The `jal` at 0x1012e804 calls XkbClearAllLatchesAndLocks [0x101b2460] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=sp-232.
-  The `jal` at 0x1012e83c calls XkbClearAllLatchesAndLocks [0x101b2460] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=sp-232, a6=a2 at entry (arg2).
+  The `jal` at 0x1012e7ac calls _XkbDDXBeepExpire..NIF [0x101019a0] with a0=0x0, a1=0x0, a2=[a0+40], a3=?.
+  The `jal` at 0x1012e7d4 calls TimerSet [0x10223200] with a0=[[[[a0+40]+144]+344]+116], a1=0x0, a2=ret(_XkbDDXBeepExpire..NIF), a3=0x101019a0, a4=[a0+40].
+  The `jal` at 0x1012e804 calls XkbClearAllLatchesAndLocks [0x101b2460] with a0=[a0+40], a1=a0 at entry (arg0), a2=0x0, a3=sp-232.
+  The `jal` at 0x1012e83c calls XkbClearAllLatchesAndLocks [0x101b2460] with a0=[a0+40], a1=a0 at entry (arg0), a2=0x0, a3=sp-232, a6=a2 at entry (arg2).
   The `beq` branch at 0x1012e348 targets 0x1012e398 and is always taken.
   The `bgtz` branch at 0x1012e3dc targets 0x1012e350, is taken when s1(?) > 0 (signed), and falls through when s1(?) <= 0 (signed).
   The `beq` branch at 0x1012e45c targets 0x1012e61c, is taken when v0(=[a1]:2) == 0, and falls through when v0(=[a1]:2) != 0.
@@ -18902,16 +19133,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1012e474 targets 0x1012e5e4, is taken when v0(=[a1+8]) == 0, and falls through when v0(=[a1+8]) != 0.
   The `beq` branch at 0x1012e4a4 targets 0x1012e4d4, is taken when v0(=ret(XkbComputeControlsNotify)) == 0, and falls through when v0(=ret(XkbComputeControlsNotify)) != 0.
   The `beq` branch at 0x1012e4f0 targets 0x1012e50c, is taken when (t3(?) & 0x8) == 0, and falls through when (t3(?) & 0x8) != 0.
-  The `beq` branch at 0x1012e504 targets 0x1012e7fc, is taken when (t8(?) & 0x8) == 0, and falls through when (t8(?) & 0x8) != 0.
-  The `beq` branch at 0x1012e570 targets 0x1012e5e4, is taken when (ra(?) & 0x100) == 0, and falls through when (ra(?) & 0x100) != 0.
-  The `beq` branch at 0x1012e580 targets 0x1012e5e4, is taken when (at(?) & 0x4) == 0, and falls through when (at(?) & 0x4) != 0.
+  The `beq` branch at 0x1012e504 targets 0x1012e7fc, is taken when (t8(=[[[a0+36]+12]+12]) & 0x8) == 0, and falls through when (t8(=[[[a0+36]+12]+12]) & 0x8) != 0.
+  The `beq` branch at 0x1012e570 targets 0x1012e5e4, is taken when (ra(=[[[a0+36]+12]+12]) & 0x100) == 0, and falls through when (ra(=[[[a0+36]+12]+12]) & 0x100) != 0.
+  The `beq` branch at 0x1012e580 targets 0x1012e5e4, is taken when (at(=[[[a0+36]+12]+34]:2) & 0x4) == 0, and falls through when (at(=[[[a0+36]+12]+34]:2) & 0x4) != 0.
   The `beq` branch at 0x1012e5b4 targets 0x1012e5e4, is taken when v0(=ret(_XkbDDXBeepExpire..NIF)) == 0, and falls through when v0(=ret(_XkbDDXBeepExpire..NIF)) != 0.
   The `beq` branch at 0x1012e684 targets 0x1012e814, is taken when a5(=[a3]:1) == a6(=0xf), and falls through when a5(=[a3]:1) != a6(=0xf).
   The `beq` branch at 0x1012e68c targets 0x1012e604, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x1012e6b8 targets 0x1012e6e0, is taken when v0(=ret(XkbComputeControlsNotify)) == 0, and falls through when v0(=ret(XkbComputeControlsNotify)) != 0.
   The `beq` branch at 0x1012e6fc targets 0x1012e714, is taken when (a7(?) & 0x8) == 0, and falls through when (a7(?) & 0x8) != 0.
-  The `beq` branch at 0x1012e710 targets 0x1012e830, is taken when (t0(?) & 0x8) == 0, and falls through when (t0(?) & 0x8) != 0.
-  The `beq` branch at 0x1012e778 targets 0x1012e604, is taken when (v1(?) & 0x100) == 0, and falls through when (v1(?) & 0x100) != 0.
+  The `beq` branch at 0x1012e710 targets 0x1012e830, is taken when (t0(=[[[a0+36]+12]+12]) & 0x8) == 0, and falls through when (t0(=[[[a0+36]+12]+12]) & 0x8) != 0.
+  The `beq` branch at 0x1012e778 targets 0x1012e604, is taken when (v1(=[[[a0+36]+12]+12]) & 0x100) == 0, and falls through when (v1(=[[[a0+36]+12]+12]) & 0x100) != 0.
   The `beq` branch at 0x1012e780 targets 0x1012e604, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x1012e7b4 targets 0x1012e604, is taken when v0(=ret(_XkbDDXBeepExpire..NIF)) == 0, and falls through when v0(=ret(_XkbDDXBeepExpire..NIF)) != 0.
   The `beq` branch at 0x1012e80c targets 0x1012e510 and is always taken.
@@ -18999,32 +19230,40 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1012ed24 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1012ed4c loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x1012ed58 loads 4 bytes from [a0+8] +0x4.
-  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012ed68, `lw` at 0x1012ed6c, `lw` at 0x1012ed7c.
+  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1012ed68, `lw` at 0x1012ed6c, `lw` at 0x1012ed7c.
   The `lw` at 0x1012edbc loads 4 bytes from a0 (arg0 at entry) +0x1c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x1012edcc, `lw` at 0x1012eec0.
   The `lw` at 0x1012ee24 loads 4 bytes from a0 (arg0 at entry) +0xc.
   The `lw` at 0x1012ee28 loads 4 bytes from [a0+12] +0x8.
   The `lw` at 0x1012ee3c loads 4 bytes from [0x102c727c] +0x0.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1012ee58, `sw` at 0x1012f0cc, `sw` at 0x1012f194.
+  The `sw` at 0x1012ee58 stores 4 bytes to [a0+12] +0x8.
   3 such `lw` accesses load 4 bytes from abs 0x10291a20 (padlength..10), including `lw` at 0x1012ee74, `lw` at 0x1012ef70, `lw` at 0x1012f0dc.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6c, including `lw` at 0x1012ee84, `lw` at 0x1012ef80, `lw` at 0x1012efb4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x54, including `lw` at 0x1012ee94, `lw` at 0x1012f0e4.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x6c, including `sw` at 0x1012ef18, `sw` at 0x1012efa8.
   2 such `lw` accesses load 4 bytes from [0x102c7268] +0x8, including `lw` at 0x1012ef30, `lw` at 0x1012efcc.
+  The `lw` at 0x1012eff4 loads 4 bytes from [a0+12] +0x28.
   The `lw` at 0x1012f038 loads 4 bytes from table(0x102c6750) +0x0.
   2 such `sw` accesses store 4 bytes to table(0x102c6750) +0x0, including `sw` at 0x1012f04c, `sw` at 0x1012f0a0.
+  The `lw` at 0x1012f05c loads 4 bytes from [a0+12] +0x24.
   The `lw` at 0x1012f07c loads 4 bytes from a0 (arg0 at entry) +0x28.
+  The `sw` at 0x1012f0cc stores 4 bytes to ?.
+  2 such `lw` accesses load 4 bytes from [a0+12] +0x14, including `lw` at 0x1012f150, `lw` at 0x1012f170.
+  2 such `lw` accesses load 4 bytes from [[a0+12]+20] +0x0, including `lw` at 0x1012f15c, `lw` at 0x1012f174.
+  The `lw` at 0x1012f160 loads 4 bytes from [[[a0+12]+20]] +0x34.
+  The `lw` at 0x1012f178 loads 4 bytes from [[[a0+12]+20]] +0x38.
+  The `sw` at 0x1012f194 stores 4 bytes to [a0+12] +0x14.
   The `sw` at 0x1012f1ac stores 4 bytes to a0 (arg0 at entry) +0x28.
   The `jal` at 0x1012ed54 calls LookupClient [0x10283ff0] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x1012ef40 calls (unknown callee) with a0=0x102c7268, a1=sp-96, a2=[a0+16], a3=?, a5=[0x102c7268].
-  The `jalr` at 0x1012efdc calls (unknown callee) with a0=0x102c7268, a1=sp-96, a2=?, a3=?, a5=[0x102c7268], a7=[a0+108].
-  The `jalr` at 0x1012f06c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=sp-128, a3=0x20, a5=table(0x102c5d40).
-  The `jalr` at 0x1012f0ac calls memmove with a0=?, a1=sp-128, a2=0x20, a3=0x1, a5=table(0x102c5d40).
+  The `jalr` at 0x1012ef40 calls (unknown callee) with a0=0x102c7268, a1=sp-96, a2=[a0+16], a3=?, a5=[0x102c7268], a6=[a0+12].
+  The `jalr` at 0x1012efdc calls (unknown callee) with a0=0x102c7268, a1=sp-96, a2=?, a3=?, a5=[0x102c7268], a6=[a0+12], a7=[a0+108].
+  The `jalr` at 0x1012f06c calls (unknown callee) with a0=a0 at entry (arg0), a1=[a0+12], a2=sp-128, a3=0x20, a5=table(0x102c5d40), a6=[a0+12].
+  The `jalr` at 0x1012f0ac calls memmove with a0=?, a1=sp-128, a2=0x20, a3=0x1, a5=table(0x102c5d40), a6=[a0+12].
   The `jal` at 0x1012f120 calls AllocateOutputBuffer [0x100c1f40] with a0=?, a1=[0x102ca8c0], a2=?, a3=?, a4=[0x102c727c], a5=0x1, a6=[a0+12].
-  The `jal` at 0x1012f144 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=?, a1=?, a2=?, a3=?, a4=ret(AllocateOutputBuffer).
-  The `jalr` at 0x1012f164 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1012f17c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1012f184 calls _XSERVTransFreeConnInfo [0x100d3a20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1012f144 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=[a0+12], a1=?, a2=?, a3=?, a4=ret(AllocateOutputBuffer), a6=[a0+12].
+  The `jalr` at 0x1012f164 calls (unknown callee) with a0=[[a0+12]+20], a1=?, a2=?, a3=?, a4=ret(AllocateOutputBuffer), a6=[a0+12].
+  The `jalr` at 0x1012f17c calls (unknown callee) with a0=[[a0+12]+20], a1=?, a2=?, a3=?.
+  The `jal` at 0x1012f184 calls _XSERVTransFreeConnInfo [0x100d3a20] with a0=[[a0+12]+20], a1=?, a2=?, a3=?.
   The `beq` branch at 0x1012ed34 targets 0x1012ed48, is taken when at(=0x2) == v0(=[a0+72]), and falls through when at(=0x2) != v0(=[a0+72]).
   The `beq` branch at 0x1012ed60 targets 0x1012ed9c, is taken when a1(=[0x102ca8c0]) == 0, and falls through when a1(=[0x102ca8c0]) != 0.
   The `blez` branch at 0x1012ed70 targets 0x1012ed94, is taken when a5(?) <= 0 (signed), and falls through when a5(?) > 0 (signed).
@@ -19034,7 +19273,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1012edd0 targets 0x1012ee20, is taken when t1(=[a0+16]) == 0, and falls through when t1(=[a0+16]) != 0.
   The `bne` branch at 0x1012ee2c targets 0x1012ef58, is taken when a4(=[[a0+12]+8]) != 0, and falls through when a4(=[[a0+12]+8]) == 0.
   The `beq` branch at 0x1012ee34 targets 0x1012f120, is taken when v0(=[0x102c727c]) == 0, and falls through when v0(=[0x102c727c]) != 0.
-  The `beq` branch at 0x1012ee4c targets 0x1012f078, is taken when v0(?) >= 0x1 (unsigned), and falls through when v0(?) < 0x1 (unsigned).
+  The `beq` branch at 0x1012ee4c targets 0x1012f078, is taken when v0(=one of 0x0, 0x1) >= 0x1 (unsigned), and falls through when v0(=one of 0x0, 0x1) < 0x1 (unsigned).
   The `beq` branch at 0x1012ee54 targets 0x1012f074, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x1012ee60 targets 0x1012f0d4, is taken when v1(=[0x102c7268]) == 0, and falls through when v1(=[0x102c7268]) != 0.
   The `bne` branch at 0x1012ee88 targets 0x1012ef8c, is taken when a7(=[a0+108]) != 0, and falls through when a7(=[a0+108]) == 0.
@@ -19060,7 +19299,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1012f118 targets 0x1012f05c and is always taken.
   The `beq` branch at 0x1012f12c targets 0x1012f140, is taken when v0(=ret(AllocateOutputBuffer)) == 0, and falls through when v0(=ret(AllocateOutputBuffer)) != 0.
   The `beq` branch at 0x1012f138 targets 0x1012ee44 and is always taken.
-  The `beq` branch at 0x1012f154 targets 0x1012f198, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x1012f154 targets 0x1012f198, is taken when a0(=[[a0+12]+20]) == 0, and falls through when a0(=[[a0+12]+20]) != 0.
   The `beq` branch at 0x1012f1a8 targets 0x1012f134 and is always taken.
   The return at 0x1012ed40 has v0 = 0x10.
   The return at 0x1012eda4 has v0 = 0x8.
@@ -19241,14 +19480,15 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 228 bytes.
   The `lw` at 0x10130c00 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10130c04 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x10130c50 loads 4 bytes from [a0+8] +0x4.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10130c70, `lw` at 0x10130c90, `lw` at 0x10130ccc.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10130c50, `lw` at 0x10130c70.
   The `sw` at 0x10130c7c stores 4 bytes to a0 (arg0 at entry) +0x18.
+  The `lw` at 0x10130c90 loads 4 bytes from [a0+8] +0x8.
   The `lw` at 0x10130cb8 loads 4 bytes from a0 (arg0 at entry) +0x58.
-  The `lbu` at 0x10130cbc loads 1 byte from ?.
+  The `lbu` at 0x10130cbc loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10130cc0 loads 4 bytes from [a0+88] +0x0.
+  The `lw` at 0x10130ccc loads 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x10130c4c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
-  The `jal` at 0x10130c8c calls CheckPropertyAccess [0x101d71d0] with a0=0x7, a1=a0 at entry (arg0), a2=ret(SecurityLookupWindow), a3=?.
+  The `jal` at 0x10130c8c calls CheckPropertyAccess [0x101d71d0] with a0=0x7, a1=a0 at entry (arg0), a2=ret(SecurityLookupWindow), a3=[[a0+8]+8].
   The `jalr` at 0x10130cd0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=ret(CheckPropertyAccess), a3=?.
   The `beq` branch at 0x10130c24 targets 0x10130c3c, is taken when v0(=[a0+72]) >= 0x6 (unsigned), and falls through when v0(=[a0+72]) < 0x6 (unsigned).
   The `bne` branch at 0x10130c54 targets 0x10130c80, is taken when v0(=ret(SecurityLookupWindow)) != 0, and falls through when v0(=ret(SecurityLookupWindow)) == 0.
@@ -19348,7 +19588,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10130f9c targets 0x10130fa8, is taken when a0(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a0(=[[sym(inputInfo)+16]+44]) != 0.
   The `beq` branch at 0x10130fa8 targets 0x10131098, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x10130fb8 targets 0x1013109c, is taken when v0(=ret(PanoramiXSetWindowPntrs..HB)) == 0, and falls through when v0(=ret(PanoramiXSetWindowPntrs..HB)) != 0.
-  The `blez` branch at 0x10131028 targets 0x10131118, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
+  The `blez` branch at 0x10131028 targets 0x10131118, is taken when a1(=[0x102c5f1c]-1) <= 0 (signed), and falls through when a1(=[0x102c5f1c]-1) > 0 (signed).
   The `beq` branch at 0x10131034 targets 0x101310ec and is always taken.
   The `bne` branch at 0x1013103c targets 0x10131048, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x10131048 targets 0x10131060, is taken when a1(=[0x102c6038]) == 0, and falls through when a1(=[0x102c6038]) != 0.
@@ -19388,7 +19628,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10131668 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x101311e0 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
   The `jal` at 0x10131628 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=?.
-  The `jal` at 0x1013163c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jal` at 0x1013163c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=([sym(PanoramiXNumGLXConfigs)] << 0x2), a2=?, a3=?.
   The `jal` at 0x10131650 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x101311e8 targets 0x10131678, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
   The `beq` branch at 0x10131200 targets 0x10131230, is taken when t0(=[a0+72]) == t1(=0x2), and falls through when t0(=[a0+72]) != t1(=0x2).
@@ -19505,24 +19745,24 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101317c8 targets 0x101317e0, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x101317d0 targets 0x10131930, is taken when s2(=a2) == v1(=0x1), and falls through when s2(=a2) != v1(=0x1).
   The `beq` branch at 0x101317d8 targets 0x10131934, is taken when s2(=a2) == a1(=0x3), and falls through when s2(=a2) != a1(=0x3).
-  The `beq` branch at 0x101317e4 targets 0x10131990, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x101317e4 targets 0x10131990, is taken when a2(=[[a0+4]+16]) == 0, and falls through when a2(=[[a0+4]+16]) != 0.
   The `bne` branch at 0x10131870 targets 0x10131910, is taken when t3(?) < t8(?) (signed), and falls through when t3(?) >= t8(?) (signed).
   The `beq` branch at 0x10131878 targets 0x101318a0, is taken when a0(=one of 0x0, 0x1, 0x2) == 0, and falls through when a0(=one of 0x0, 0x1, 0x2) != 0.
   The `beq` branch at 0x101318a0 targets 0x101318e8, is taken when s1(=a4) == 0, and falls through when s1(=a4) != 0.
   The `beq` branch at 0x10131908 targets 0x101318a0, is taken when a2(?) >= a4 (signed), and falls through when a2(?) < a4 (signed).
   The `beq` branch at 0x10131928 targets 0x101318e8 and is always taken.
-  The `beq` branch at 0x1013194c targets 0x10131978, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x10131980 targets 0x10131990, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x1013194c targets 0x10131978, is taken when a3(=[[a0+4]+16]) == 0, and falls through when a3(=[[a0+4]+16]) != 0.
+  The `beq` branch at 0x10131980 targets 0x10131990, is taken when t8(=[[a0+4]+16]) == 0, and falls through when t8(=[[a0+4]+16]) != 0.
   The `beq` branch at 0x10131988 targets 0x101317f0 and is always taken.
   The `beq` branch at 0x101319a4 targets 0x1013185c and is always taken.
   The `beq` branch at 0x101319ac targets 0x101317c8 and is always taken.
-  The `beq` branch at 0x101319e0 targets 0x10131a00, is taken when t1(?) == 0, and falls through when t1(?) != 0.
+  The `beq` branch at 0x101319e0 targets 0x10131a00, is taken when t1(=[[a0+4]+16]) == 0, and falls through when t1(=[[a0+4]+16]) != 0.
   The `beq` branch at 0x10131a00 targets 0x101317c4 and is always taken.
   The `beq` branch at 0x10131a48 targets 0x10131a7c, is taken when at(=a1) == 0, and falls through when at(=a1) != 0.
   The `beq` branch at 0x10131a74 targets 0x10131a98 and is always taken.
   The `beq` branch at 0x10131a7c targets 0x10131b7c, is taken when s2(=a2) == 0, and falls through when s2(=a2) != 0.
-  The `beq` branch at 0x10131a84 targets 0x10131b7c, is taken when t3(?) == 0, and falls through when t3(?) != 0.
-  The `beq` branch at 0x10131a9c targets 0x10131b34, is taken when t8(?) == 0, and falls through when t8(?) != 0.
+  The `beq` branch at 0x10131a84 targets 0x10131b7c, is taken when t3(=[[a0+4]+16]) == 0, and falls through when t3(=[[a0+4]+16]) != 0.
+  The `beq` branch at 0x10131a9c targets 0x10131b34, is taken when t8(=[[a0+4]+16]) == 0, and falls through when t8(=[[a0+4]+16]) != 0.
   The `beq` branch at 0x10131b44 targets 0x10131b54, is taken when (a2(=[a0+17]:1) & 0x2) == 0, and falls through when (a2(=[a0+17]:1) & 0x2) != 0.
   The `beq` branch at 0x10131b4c targets 0x10131b6c, is taken when s2(=a2) == t1(=0x1), and falls through when s2(=a2) != t1(=0x1).
   The `beq` branch at 0x10131b54 targets 0x10131b74, is taken when a0(?) == 0, and falls through when a0(?) != 0.
@@ -19558,7 +19798,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10132b3c targets 0x10132b78, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
   The `beq` branch at 0x10132be8 targets 0x10132bac and is always taken.
   The return at 0x10132b70 has v0 = 0x0.
-  The return at 0x10132bac has v0 = one of ?, 0x0.
+  The return at 0x10132bac has v0 = one of ret(?), 0x0.
   The return at 0x10132bb8 has v0 = 0x0.
 - `ProcXkbPerClientFlags` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10132bf0 (n32).
   Evidence grade: inferred.
@@ -19571,7 +19811,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10132c2c loads 2 bytes from [a0+8] +0x4.
   The `lw` at 0x10132c3c loads 4 bytes from sym(inputInfo) +0xc.
   The `lbu` at 0x10132c40 loads 1 byte from [sym(inputInfo)+12] +0x4c.
-  16 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10132c54, `lw` at 0x10132c60, `lw` at 0x10132d14.
+  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10132c54, `lw` at 0x10132c60, `lw` at 0x10132d14.
   3 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10132c6c, `lw` at 0x10132de8, `lw` at 0x10132e10.
   6 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10132ca0, `sw` at 0x10132cf8, `sw` at 0x10132d68.
   The `lw` at 0x10132ca8 loads 4 bytes from sym(inputInfo) +0x10.
@@ -19582,14 +19822,17 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x10132d3c, `lw` at 0x10132e04, `lw` at 0x10132e20.
   The `lw` at 0x10132de0 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   2 such `sh` accesses store 2 bytes to a0 (arg0 at entry) +0x5c, including `sh` at 0x10132e00, `sh` at 0x10132e0c.
+  The `lw` at 0x10132e44 loads 4 bytes from [a0+8] +0x10.
   6 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10132e80, `sw` at 0x10132e88, `sw` at 0x10132e98.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x14, including `lw` at 0x10132e8c, `lw` at 0x10133028.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x18, including `lw` at 0x10132e9c, `lw` at 0x10133068.
   The `lw` at 0x10132ee0 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x10132fac loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `lw` at 0x10132fdc loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `jal` at 0x10132f98 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-88, a3=?.
   The `jal` at 0x10132fd8 calls FakeClientID [0x10069920] with a0=[a0], a1=a0 at entry (arg0), a2=?, a3=?, a4=0xff0000, a5=[a0+8].
   The `jal` at 0x10132ff0 calls AddResource [0x1010ec30] with a0=ret(FakeClientID), a1=[0x102cb298], a2=?, a3=?.
-  The `jal` at 0x10133000 calls XkbAddClientResource [0x101adc10] with a0=?, a1=a0 at entry (arg0), a2=?, a3=?.
+  The `jal` at 0x10133000 calls XkbAddClientResource [0x101adc10] with a0=?, a1=a0 at entry (arg0), a2=ret(FakeClientID), a3=?.
   The `beq` branch at 0x10132c00 targets 0x10132c1c, is taken when at(=[a0+72]) == v0(=0x7), and falls through when at(=[a0+72]) != v0(=0x7).
   The `beq` branch at 0x10132c24 targets 0x10132d6c, is taken when (v1(=[a0+92]:2) & 0x8000) == 0, and falls through when (v1(=[a0+92]:2) & 0x8000) != 0.
   The `beq` branch at 0x10132c38 targets 0x10132c4c, is taken when a6(=[[a0+8]+4]:2) == a0(=0x100), and falls through when a6(=[[a0+8]+4]:2) != a0(=0x100).
@@ -19626,7 +19869,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10132e2c targets 0x1013305c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x10132e34 targets 0x10132eb0, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10132e3c targets 0x10132eb0, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `beq` branch at 0x10132e50 targets 0x10133028, is taken when (a0(?) & a3(=-0x2000)) == 0, and falls through when (a0(?) & a3(=-0x2000)) != 0.
+  The `beq` branch at 0x10132e50 targets 0x10133028, is taken when (a0(=[[a0+8]+16]) & a3(=-0x2000)) == 0, and falls through when (a0(=[[a0+8]+16]) & a3(=-0x2000)) != 0.
   The `beq` branch at 0x10132e6c targets 0x10132c14 and is always taken.
   The `beq` branch at 0x10132ebc targets 0x10132ed8, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10132ed0 targets 0x10132ee0 and is always taken.
@@ -19636,10 +19879,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10132fb8 targets 0x10132e34, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x10133018 targets 0x10132e34, is taken when v0(=ret(XkbAddClientResource)) != 0, and falls through when v0(=ret(XkbAddClientResource)) == 0.
   The `beq` branch at 0x10133020 targets 0x10132c14 and is always taken.
-  The `beq` branch at 0x10133034 targets 0x10133068, is taken when (v0(?) & a7(?)) == 0, and falls through when (v0(?) & a7(?)) != 0.
+  The `beq` branch at 0x10133034 targets 0x10133068, is taken when (v0(=[[a0+8]+20]) & a7(?)) == 0, and falls through when (v0(=[[a0+8]+20]) & a7(?)) != 0.
   The `beq` branch at 0x10133054 targets 0x10132c14 and is always taken.
   The `beq` branch at 0x10133060 targets 0x10132e34 and is always taken.
-  The `beq` branch at 0x10133074 targets 0x10132e74, is taken when (a6(?) & t0(?)) == 0, and falls through when (a6(?) & t0(?)) != 0.
+  The `beq` branch at 0x10133074 targets 0x10132e74, is taken when (a6(=[[a0+8]+24]) & t0(?)) == 0, and falls through when (a6(=[[a0+8]+24]) & t0(?)) != 0.
   The `beq` branch at 0x10133090 targets 0x10132c14 and is always taken.
   The return at 0x10132c0c has v0 = 0x10.
   The return at 0x10132c14 has v0 = one of 0x8, 0x2, [a0+40], 0xb.
@@ -19832,44 +20075,50 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 580 bytes.
   The `lw` at 0x10133a70 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10133a74 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10133ac0, `lw` at 0x10133b30, `lw` at 0x10133b34.
-  3 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x78, including `lw` at 0x10133acc, `lw` at 0x10133b84, `lw` at 0x10133ba4.
-  4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10133adc, `lbu` at 0x10133b50, `lbu` at 0x10133c4c.
+  The `lw` at 0x10133ac0 loads 4 bytes from [a0+8] +0x8.
+  5 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x78, including `lw` at 0x10133acc, `lw` at 0x10133b84, `lw` at 0x10133ba4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x10133adc, `lbu` at 0x10133c4c.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10133afc, `sw` at 0x10133b6c.
+  The `lw` at 0x10133b30 loads 4 bytes from [a0+8] +0x10.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x10, including `lw` at 0x10133b34, `lw` at 0x10133bc4.
+  The `lbu` at 0x10133b50 loads 1 byte from [a0+8] +0x6.
   The `lw` at 0x10133b90 loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x2c.
   The `lw` at 0x10133bb0 loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x28.
-  The `lw` at 0x10133bc4 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
-  2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10133c54, `lh` at 0x10133c58.
+  The `lw` at 0x10133be4 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x150.
+  The `lw` at 0x10133bf8 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x158.
+  The `lbu` at 0x10133c50 loads 1 byte from [a0+8] +0x4.
+  The `lh` at 0x10133c54 loads 2 bytes from [a0+8] +0xc.
+  The `lh` at 0x10133c58 loads 2 bytes from [a0+8] +0xe.
   The `jal` at 0x10133aa8 calls UpdateCurrentTime [0x10064a10] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x10133abc calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=?.
-  The `jal` at 0x10133b3c calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=0x1.
+  The `jal` at 0x10133abc calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x0, a3=?.
+  The `jal` at 0x10133b3c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+16], a1=a0 at entry (arg0), a2=0x0, a3=0x1, a4=[[a0+8]+5]:1.
   The `jal` at 0x10133b74 calls MakeWindowOptional [0x10135300] with a0=ret(SecurityLookupWindow), a1=[ret(SecurityLookupWindow)+120], a2=?, a3=?.
   The `jalr` at 0x10133bec calls (unknown callee) with a0=0x0, a1=0x0, a2=?, a3=?, a5=0x1.
   The `jalr` at 0x10133c04 calls (unknown callee) with a0=ret(?), a1=?, a2=?, a3=?.
   The `jalr` at 0x10133c14 calls (unknown callee) with a0=ret(SecurityLookupWindow), a1=?, a2=?, a3=?, a5=0x1.
-  The `jal` at 0x10133c5c calls RegionOperate..BNC [0x100e6f00] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x10133c9c calls MakeWindowOptional [0x10135300] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10133c5c calls RegionOperate..BNC [0x100e6f00] with a0=a0 at entry (arg0), a1=ret(SecurityLookupWindow), a2=[[a0+8]+5]:1, a3=([ret(SecurityLookupWindow)+120] + one of 0x28, 0x2c), a5=[[a0+8]+4]:1, a6=[[a0+8]+12]:2, a7=[[a0+8]+14]:2.
+  The `jal` at 0x10133c9c calls MakeWindowOptional [0x10135300] with a0=ret(SecurityLookupWindow), a1=?, a2=?, a3=?, a6=[ret(SecurityLookupWindow)+120].
   The `beq` branch at 0x10133a84 targets 0x10133aa4, is taken when at(=[a0+72]) == v0(=0x5), and falls through when at(=[a0+72]) != v0(=0x5).
   The `beq` branch at 0x10133ac4 targets 0x10133c78, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
   The `beq` branch at 0x10133ad0 targets 0x10133b70, is taken when a1(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a1(=[ret(SecurityLookupWindow)+120]) != 0.
-  The `beq` branch at 0x10133ae4 targets 0x10133b14, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10133aec targets 0x10133b00, is taken when a3(=0x1) == a4(?), and falls through when a3(=0x1) != a4(?).
+  The `beq` branch at 0x10133ae4 targets 0x10133b14, is taken when a4(=[[a0+8]+5]:1) == 0, and falls through when a4(=[[a0+8]+5]:1) != 0.
+  The `beq` branch at 0x10133aec targets 0x10133b00, is taken when a3(=0x1) == a4(=[[a0+8]+5]:1), and falls through when a3(=0x1) != a4(=[[a0+8]+5]:1).
   The `beq` branch at 0x10133af8 targets 0x10133a98 and is always taken.
   The `beq` branch at 0x10133b0c targets 0x10133b24 and is always taken.
   The `beq` branch at 0x10133b44 targets 0x10133c70, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x10133b54 targets 0x10133ba4, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10133b5c targets 0x10133b84, is taken when a5(=0x1) == a4(?), and falls through when a5(=0x1) != a4(?).
+  The `beq` branch at 0x10133b54 targets 0x10133ba4, is taken when a4(=[[a0+8]+6]:1) == 0, and falls through when a4(=[[a0+8]+6]:1) != 0.
+  The `beq` branch at 0x10133b5c targets 0x10133b84, is taken when a5(=0x1) == a4(=[[a0+8]+6]:1), and falls through when a5(=0x1) != a4(=[[a0+8]+6]:1).
   The `beq` branch at 0x10133b68 targets 0x10133a98 and is always taken.
   The `beq` branch at 0x10133b7c targets 0x10133ad8 and is always taken.
   The `beq` branch at 0x10133b88 targets 0x10133c80, is taken when a3(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a3(=[ret(SecurityLookupWindow)+120]) != 0.
   The `beq` branch at 0x10133b9c targets 0x10133bc0 and is always taken.
   The `beq` branch at 0x10133ba8 targets 0x10133c90, is taken when a3(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a3(=[ret(SecurityLookupWindow)+120]) != 0.
-  The `beq` branch at 0x10133bc8 targets 0x10133bd8, is taken when at(=[ret(SecurityLookupWindow)+16]) == v1(?), and falls through when at(=[ret(SecurityLookupWindow)+16]) != v1(?).
+  The `beq` branch at 0x10133bc8 targets 0x10133bd8, is taken when at(=[ret(SecurityLookupWindow)+16]) == v1(=[ret(SecurityLookupWindow)+16]), and falls through when at(=[ret(SecurityLookupWindow)+16]) != v1(=[ret(SecurityLookupWindow)+16]).
   The `beq` branch at 0x10133bd0 targets 0x10133a98 and is always taken.
   The `beq` branch at 0x10133bd8 targets 0x10133c14, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x10133c0c targets 0x10133c20 and is always taken.
-  The `beq` branch at 0x10133c28 targets 0x10133c98, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x10133c34 targets 0x10133c88, is taken when a7(?) == 0, and falls through when a7(?) != 0.
+  The `beq` branch at 0x10133c28 targets 0x10133c98, is taken when a6(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a6(=[ret(SecurityLookupWindow)+120]) != 0.
+  The `beq` branch at 0x10133c34 targets 0x10133c88, is taken when a7(=one of 0x0, 0x1) == 0, and falls through when a7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x10133c68 targets 0x10133a98 and is always taken.
   The `beq` branch at 0x10133c70 targets 0x10133a98 and is always taken.
   The `beq` branch at 0x10133c78 targets 0x10133a98 and is always taken.
@@ -19886,13 +20135,12 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 216 bytes.
   The `lw` at 0x10133cc0 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10133cc8 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10133d08, `lw` at 0x10133d20.
+  4 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10133d08, `lw` at 0x10133d20, `lw` at 0x10133d50.
   The `sw` at 0x10133d14 stores 4 bytes to a0 (arg0 at entry) +0x18.
-  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10133d50, `lw` at 0x10133d7c.
   The `lw` at 0x10133d8c loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x10133d1c calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0x4, a3=0x0, a4=[[a0+8]+4], a5=a0 at entry (arg0).
-  The `jal` at 0x10133d4c calls CheckAccess [0x100e6b00] with a0=0x3, a1=0x4, a2=a0 at entry (arg0), a3=?.
-  The `jal` at 0x10133d78 calls FreeResource [0x100bc480] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x10133d4c calls CheckAccess [0x100e6b00] with a0=0x3, a1=0x4, a2=a0 at entry (arg0), a3=[[a0+8]+4].
+  The `jal` at 0x10133d78 calls FreeResource [0x100bc480] with a0=[[a0+8]+4], a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x10133ce4 targets 0x10133cf8, is taken when v1(=[a0+72]) == a1(=0x2), and falls through when v1(=[a0+72]) != a1(=0x2).
   The `bne` branch at 0x10133d24 targets 0x10133d3c, is taken when v0(=ret(SecurityLookupIDByType)) != 0, and falls through when v0(=ret(SecurityLookupIDByType)) == 0.
   The `bne` branch at 0x10133d54 targets 0x10133d6c, is taken when v0(=ret(CheckAccess)) != 0, and falls through when v0(=ret(CheckAccess)) == 0.
@@ -19919,17 +20167,17 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10133e3c calls fscanf with a0=ret(fopen), a1=0x102981c0, a2=sp-128, a3=?.
   The `jalr` at 0x10133e60 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `jal` at 0x10133e98 calls ErrorF [0x10094ec0] with a0=0x10298188, a1=[0x102cecd0], a2=a0 at entry (arg0), a3=?, a6=[0x102cecd0].
-  The `jalr` at 0x10133ec8 calls fscanf with a0=ret(fopen), a1=?, a2=sp-128, a3=?.
+  The `jalr` at 0x10133ec8 calls fscanf with a0=ret(fopen), a1=0x102981c0, a2=sp-128, a3=?.
   The `jalr` at 0x10133ee4 calls strcasecmp with a0=sp-128, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x10133efc calls __semgetc with a0=ret(fopen), a1=?, a2=[sym(__us_rsthread_stdio)], a3=?.
   The `jalr` at 0x10133f4c calls __filbuf with a0=ret(fopen), a1=?, a2=[sym(__us_rsthread_stdio)], a3=[ret(fopen)]-1, a7=[ret(fopen)+4].
   The `jalr` at 0x10133f64 calls __semgetc with a0=ret(fopen), a1=?, a2=?, a3=?, a6=[sym(__us_rsthread_stdio)].
   The `jalr` at 0x10133f80 calls isspace with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10133fdc calls ErrorF [0x10094ec0] with a0=0x102981c8, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10133ff4 calls fscanf with a0=ret(fopen), a1=?, a2=sp-128, a3=?.
+  The `jalr` at 0x10133ff4 calls fscanf with a0=ret(fopen), a1=0x102981c0, a2=sp-128, a3=?.
   The `jalr` at 0x10134020 calls __filbuf with a0=ret(fopen), a1=?, a2=?, a3=?, a6=[ret(fopen)+4], a7=[ret(fopen)]-1.
   The `jalr` at 0x10134044 calls (unknown callee) with a0=a2 at entry (arg2), a1=sp-128, a2=sp-384, a3=?.
-  The `jalr` at 0x10134058 calls fscanf with a0=ret(fopen), a1=?, a2=sp-128, a3=?.
+  The `jalr` at 0x10134058 calls fscanf with a0=ret(fopen), a1=0x102981c0, a2=sp-128, a3=?.
   The `jal` at 0x10134084 calls ErrorF [0x10094ec0] with a0=0x10298240, a1=?, a2=?, a3=?.
   The `jalr` at 0x10134094 calls __semgetc with a0=ret(fopen), a1=?, a2=?, a3=[sym(__us_rsthread_stdio)].
   The `jalr` at 0x101340b0 calls isspace with a0=?, a1=?, a2=?, a3=?.
@@ -20243,7 +20491,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10134efc targets 0x10134f34, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x10134f08 targets 0x10134f34, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0x10134f1c targets 0x10134f2c, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
-  The `bne` branch at 0x10134f2c targets 0x10134f3c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x10134f2c targets 0x10134f3c, is taken when a0(=one of 0x0, 0x1) != 0, and falls through when a0(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x10134f3c targets 0x10134e64, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x10134f44 targets 0x10134e64, is taken when t0(=0x1) == v0(?), and falls through when t0(=0x1) != v0(?).
   The `beq` branch at 0x10134f84 targets 0x10134e9c and is always taken.
@@ -20441,28 +20689,33 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 1188 bytes.
   The `lw` at 0x10135d60 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10135d64 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x10135da4 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x10135dac loads 4 bytes from ret(SecurityLookupIDByType) +0x84.
-  The `lw` at 0x10135db8 loads 4 bytes from ([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2)) +0x0.
-  The `lw` at 0x10135dbc loads 4 bytes from [([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))] +0x4.
-  The `lw` at 0x10135dc8 loads 4 bytes from [([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))] +0x1c.
-  31 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10135ddc, `lw` at 0x10135df0, `lw` at 0x10135ed0.
-  2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10135e20, `lbu` at 0x10136088.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10135da4, `lw` at 0x10135ddc, `lw` at 0x10135f0c.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x84, including `lw` at 0x10135dac, `lw` at 0x10135ed0.
+  2 such `lw` accesses load 4 bytes from ([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2)) +0x0, including `lw` at 0x10135db8, `lw` at 0x10135ee0.
+  2 such `lw` accesses load 4 bytes from [([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))] +0x4, including `lw` at 0x10135dbc, `lw` at 0x10135ee8.
+  2 such `lw` accesses load 4 bytes from [([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))] +0x1c, including `lw` at 0x10135dc8, `lw` at 0x10135ef8.
+  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10135df0, `lw` at 0x10135f2c, `lw` at 0x10135f8c.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x13, including `lbu` at 0x10135e20, `lbu` at 0x10136088.
   The `sw` at 0x10135e4c stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `lw` at 0x10135e50 loads 4 bytes from ret(SecurityLookupIDByType) +0x10.
   The `lhu` at 0x10135e54 loads 2 bytes from ret(SecurityLookupIDByType) +0xe.
   The `lhu` at 0x10135e5c loads 2 bytes from ret(SecurityLookupIDByType) +0xc.
-  3 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10135e60, `lh` at 0x10135e68, `lh` at 0x10136044.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10135e70, `lhu` at 0x10135e84.
+  The `lh` at 0x10135e60 loads 2 bytes from [a0+8] +0x8.
+  The `lh` at 0x10135e68 loads 2 bytes from [a0+8] +0xa.
+  The `lhu` at 0x10135e70 loads 2 bytes from [a0+8] +0xc.
+  The `lhu` at 0x10135e84 loads 2 bytes from [a0+8] +0xe.
   The `lw` at 0x10135e94 loads 4 bytes from ret(SecurityLookupIDByType) +0x7c.
   The `lbu` at 0x10135eb4 loads 1 byte from ret(SecurityLookupIDByType) +0x2.
   The `lw` at 0x10135ee4 loads 4 bytes from sym(dbcWindowPrivateIndex) +0x0.
-  3 such `lb` accesses load 1 byte from ?, including `lb` at 0x10135f30, `lb` at 0x10135f34, `lb` at 0x10136138.
+  The `lw` at 0x10135f18 loads 4 bytes from [[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+28] +0x14.
+  2 such `lb` accesses load 1 byte from ([ret(SecurityLookupIDByType)+132] + ([sym(dbcWindowPrivateIndex)] << 0x2)) +0x2, including `lb` at 0x10135f30, `lb` at 0x10136138.
+  The `lb` at 0x10135f34 loads 1 byte from ([ret(SecurityLookupIDByType)+132] + ([sym(dbcWindowPrivateIndex)] << 0x2)) +0x1.
   The `lw` at 0x10135f40 loads 4 bytes from sym(globalSerialNumber) +0x0.
-  The `sb` at 0x10135f54 stores 1 byte to ?.
+  The `sb` at 0x10135f54 stores 1 byte to ([ret(SecurityLookupIDByType)+132] + ([sym(dbcWindowPrivateIndex)] << 0x2)) +0x1.
   2 such `sw` accesses store 4 bytes to sym(globalSerialNumber) +0x0, including `sw` at 0x10135f60, `sw` at 0x10135f64.
+  The `lw` at 0x10135f6c loads 4 bytes from ret(SecurityLookupIDByType) +0x4.
   The `lw` at 0x10135f78 loads 4 bytes from sym(clients) +0x0.
-  12 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10135f84, `sw` at 0x1013601c, `sw` at 0x10136028.
+  The `sw` at 0x10135f84 stores 4 bytes to ret(SecurityLookupIDByType) +0x14.
   The `lw` at 0x10135fb8 loads 4 bytes from sym(WindowTable) +0x0.
   The `lw` at 0x10135fbc loads 4 bytes from [sym(clients)] +0x0.
   The `lw` at 0x10135fc8 loads 4 bytes from [[sym(clients)]] +0x30.
@@ -20470,61 +20723,77 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lw` accesses load 4 bytes from [[sym(WindowTable)]] +0x4, including `lw` at 0x10135fd8, `lw` at 0x10136160, `lw` at 0x10136194.
   The `sw` at 0x10135fdc stores 4 bytes to [[sym(clients)]] +0x30.
   The `sw` at 0x10135fe4 stores 4 bytes to [[sym(clients)]] +0x2c.
+  The `lw` at 0x10135ffc loads 4 bytes from ret(GetScratchGC) +0x44.
+  The `lw` at 0x10136000 loads 4 bytes from [ret(GetScratchGC)+68] +0x0.
+  The `lw` at 0x10136010 loads 4 bytes from ret(GetScratchGC) +0x3c.
+  The `sw` at 0x1013601c stores 4 bytes to ret(GetScratchGC) +0x3c.
+  The `lw` at 0x10136020 loads 4 bytes from ret(SecurityLookupIDByType) +0x14.
+  The `lw` at 0x10136024 loads 4 bytes from ret(GetScratchGC) +0x48.
+  The `sw` at 0x10136028 stores 4 bytes to ret(GetScratchGC) +0x40.
+  The `lw` at 0x1013602c loads 4 bytes from [ret(GetScratchGC)+72] +0x2c.
+  The `lw` at 0x10136040 loads 4 bytes from ret(GetScratchGC) +0x0.
+  The `lh` at 0x10136044 loads 2 bytes from [ret(GetScratchGC)] +0x10.
+  The `lw` at 0x101360bc loads 4 bytes from [ret(SecurityLookupIDByType)+16] +0x154.
+  The `lw` at 0x101360e0 loads 4 bytes from [ret(SecurityLookupIDByType)+16] +0x160.
+  The `lw` at 0x10136108 loads 4 bytes from [ret(GetScratchGC)] +0x30.
+  The `sw` at 0x1013611c stores 4 bytes to [ret(GetScratchGC)] +0x30.
+  The `lw` at 0x10136128 loads 4 bytes from [([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))] +0x8.
+  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10136164, `sw` at 0x1013616c, `sw` at 0x10136198.
   The `lw` at 0x101361ec loads 4 bytes from [[sym(clients)]] +0x38.
   The `sw` at 0x101361f8 stores 4 bytes to [[sym(clients)]] +0x34.
   The `sw` at 0x10136200 stores 4 bytes to [[sym(clients)]] +0x38.
   The `jal` at 0x10135da0 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=[0x102ca7ec], a3=0x0.
-  The `jal` at 0x10135eb0 calls GetScratchGC [0x1026a500] with a0=[ret(SecurityLookupIDByType)+2]:1, a1=[ret(SecurityLookupIDByType)+16], a2=?, a3=?, a5=[ret(SecurityLookupIDByType)+12]:2, a6=[ret(SecurityLookupIDByType)+14]:2, a7=[ret(SecurityLookupIDByType)+16].
-  The `jal` at 0x10135ec0 calls SetupBackgroundPainter..PJC [0x101b40e0] with a0=?, a1=ret(GetScratchGC), a2=?, a3=?.
-  The `jalr` at 0x1013600c calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10136034 calls (unknown callee) with a0=?, a1=?, a2=0x1, a3=sp-96.
-  The `jal` at 0x1013607c calls FreeGC [0x1010a5b0] with a0=?, a1=0x0, a2=?, a3=?.
+  The `jal` at 0x10135eb0 calls GetScratchGC [0x1026a500] with a0=[ret(SecurityLookupIDByType)+2]:1, a1=[ret(SecurityLookupIDByType)+16], a2=?, a3=[[a0+8]+10]:2, a4=[[a0+8]+8]:2, a5=[ret(SecurityLookupIDByType)+12]:2, a6=[ret(SecurityLookupIDByType)+14]:2, a7=[ret(SecurityLookupIDByType)+16].
+  The `jal` at 0x10135ec0 calls SetupBackgroundPainter..PJC [0x101b40e0] with a0=ret(SecurityLookupIDByType), a1=ret(GetScratchGC), a2=?, a3=?.
+  The `jalr` at 0x1013600c calls (unknown callee) with a0=ret(GetScratchGC), a1=[ret(GetScratchGC)+60], a2=ret(SecurityLookupIDByType), a3=?.
+  The `jalr` at 0x10136034 calls (unknown callee) with a0=ret(SecurityLookupIDByType), a1=ret(GetScratchGC), a2=0x1, a3=sp-96.
+  The `jal` at 0x1013607c calls FreeGC [0x1010a5b0] with a0=ret(GetScratchGC), a1=0x0, a2=?, a3=?, a7=[ret(GetScratchGC)].
   The `jalr` at 0x101360c8 calls (unknown callee) with a0=sp-80, a1=sp-88, a2=0x1, a3=?.
   The `jal` at 0x101360d4 calls MultibufferExpose [0x1011d7a0] with a0=?, a1=sp-80, a2=?, a3=?.
   The `jalr` at 0x101360e4 calls (unknown callee) with a0=sp-80, a1=?, a2=?, a3=?.
   The `beq` branch at 0x10135d74 targets 0x10135d88, is taken when at(=[a0+72]) == v0(=0x5), and falls through when at(=[a0+72]) != v0(=0x5).
   The `blez` branch at 0x10135dc0 targets 0x10135e04, is taken when t0(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+4]) <= 0 (signed), and falls through when t0(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+4]) > 0 (signed).
-  The `beq` branch at 0x10135df4 targets 0x10135e18, is taken when t2(?) == a5(?), and falls through when t2(?) != a5(?).
+  The `beq` branch at 0x10135df4 targets 0x10135e18, is taken when t2(?) == a5(=[[a0+8]+4]), and falls through when t2(?) != a5(=[[a0+8]+4]).
   The `bne` branch at 0x10135e00 targets 0x10135df0, is taken when a1(?) != a6(?), and falls through when a1(?) == a6(?).
   The `beq` branch at 0x10135e18 targets 0x10135e04, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10135e28 targets 0x10135e50, is taken when a2(=0x1) == a1(?), and falls through when a2(=0x1) != a1(?).
-  The `beq` branch at 0x10135e30 targets 0x10135e50, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10135e74 targets 0x10136150, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x10135e88 targets 0x10136158, is taken when a0(?) == 0, and falls through when a0(?) != 0.
+  The `beq` branch at 0x10135e28 targets 0x10135e50, is taken when a2(=0x1) == a1(=[[a0+8]+19]:1), and falls through when a2(=0x1) != a1(=[[a0+8]+19]:1).
+  The `beq` branch at 0x10135e30 targets 0x10135e50, is taken when a1(=[[a0+8]+19]:1) == 0, and falls through when a1(=[[a0+8]+19]:1) != 0.
+  The `beq` branch at 0x10135e74 targets 0x10136150, is taken when a2(=[[a0+8]+12]:2) == 0, and falls through when a2(=[[a0+8]+12]:2) != 0.
+  The `beq` branch at 0x10135e88 targets 0x10136158, is taken when a0(=[[a0+8]+14]:2) == 0, and falls through when a0(=[[a0+8]+14]:2) != 0.
   The `beq` branch at 0x10135e9c targets 0x10136084, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `blez` branch at 0x10135ef0 targets 0x10135f30, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
-  The `beq` branch at 0x10135f1c targets 0x10136120, is taken when t8(?) == a5(?), and falls through when t8(?) != a5(?).
+  The `blez` branch at 0x10135ef0 targets 0x10135f30, is taken when t0(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+4]) <= 0 (signed), and falls through when t0(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+4]) > 0 (signed).
+  The `beq` branch at 0x10135f1c targets 0x10136120, is taken when t8(?) == a5(=[[a0+8]+4]), and falls through when t8(?) != a5(=[[a0+8]+4]).
   The `bnel` branch at 0x10135f28 targets 0x10135f1c, is taken when a6(?) != a7(?), and falls through when a6(?) == a7(?); its branch-likely delay slot `lw t8,20(a6)` at 0x10135f2c runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0x10135f38 targets 0x10135ff8, is taken when t9(?) == a5(?), and falls through when t9(?) != a5(?).
+  The `beq` branch at 0x10135f38 targets 0x10135ff8, is taken when t9(=[([ret(SecurityLookupIDByType)+132] + ([sym(dbcWindowPrivateIndex)] << 0x2))+1]:1) == a5(?), and falls through when t9(=[([ret(SecurityLookupIDByType)+132] + ([sym(dbcWindowPrivateIndex)] << 0x2))+1]:1) != a5(?).
   The `beq` branch at 0x10135f50 targets 0x10135f64, is taken when ra(=0x10000000) >= t0(=[sym(globalSerialNumber)]+1) (unsigned), and falls through when ra(=0x10000000) < t0(=[sym(globalSerialNumber)]+1) (unsigned).
   The `beq` branch at 0x10135f5c targets 0x10135f68 and is always taken.
   The `beq` branch at 0x10135f90 targets 0x10135ff8, is taken when t1(?) == 0, and falls through when t1(?) != 0.
   The `blez` branch at 0x10135f98 targets 0x10135ffc, is taken when a5(=[0x102c5d70]) <= 0 (signed), and falls through when a5(=[0x102c5d70]) > 0 (signed).
   The `beq` branch at 0x10135fb4 targets 0x10135fec, is taken when (a5(=[0x102c5d70]) & 0x1) == 0, and falls through when (a5(=[0x102c5d70]) & 0x1) != 0.
   The `beq` branch at 0x10135fc0 targets 0x10135fe8, is taken when a5(=[[sym(clients)]]) == 0, and falls through when a5(=[[sym(clients)]]) != 0.
-  The `bne` branch at 0x10135fcc targets 0x101361ec, is taken when t3(=[[[sym(clients)]]+48]) != a7(?), and falls through when t3(=[[[sym(clients)]]+48]) == a7(?).
+  The `bne` branch at 0x10135fcc targets 0x101361ec, is taken when t3(=[[[sym(clients)]]+48]) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when t3(=[[[sym(clients)]]+48]) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `bnel` branch at 0x10135ff0 targets 0x1013617c, is taken when ra(?) != 0, and falls through when ra(?) == 0; its branch-likely delay slot `lw a5,0(a6)` at 0x10135ff4 runs only when taken and is annulled on fall-through.
-  The `bltz` branch at 0x10136048 targets 0x10136074, is taken when a6(?) < 0 (signed), and falls through when a6(?) >= 0 (signed).
-  The `beq` branch at 0x10136064 targets 0x10136100, is taken when a1(?) == v0(?), and falls through when a1(?) != v0(?).
+  The `bltz` branch at 0x10136048 targets 0x10136074, is taken when a6(=[[ret(GetScratchGC)]+16]:2) < 0 (signed), and falls through when a6(=[[ret(GetScratchGC)]+16]:2) >= 0 (signed).
+  The `beq` branch at 0x10136064 targets 0x10136100, is taken when a1(?) == v0(=ret(GetScratchGC)), and falls through when a1(?) != v0(=ret(GetScratchGC)).
   The `beq` branch at 0x1013606c targets 0x1013605c, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x1013608c targets 0x101360ec, is taken when a2(?) == 0, and falls through when a2(?) != 0.
+  The `beq` branch at 0x1013608c targets 0x101360ec, is taken when a2(=[[a0+8]+19]:1) == 0, and falls through when a2(=[[a0+8]+19]:1) != 0.
   The `beq` branch at 0x10136118 targets 0x10136084 and is always taken.
   The `beq` branch at 0x10136120 targets 0x10135f30, is taken when a6(?) == 0, and falls through when a6(?) != 0.
-  The `beq` branch at 0x10136130 targets 0x10135f30, is taken when v1(?) == a0(?), and falls through when v1(?) != a0(?).
+  The `beq` branch at 0x10136130 targets 0x10135f30, is taken when v1(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+8]) == a0(?), and falls through when v1(=[[([ret(SecurityLookupIDByType)+132] + ([0x102cc3a8] << 0x2))]+8]) != a0(?).
   The `beq` branch at 0x10136148 targets 0x10135f34 and is always taken.
   The `beq` branch at 0x10136150 targets 0x10135e7c and is always taken.
   The `beq` branch at 0x10136158 targets 0x10135e90 and is always taken.
   The `beq` branch at 0x10136170 targets 0x10135ff8, is taken when a6(?) == t0(=(([0x102c5d70] << 0x2) + [sym(clients)])), and falls through when a6(?) != t0(=(([0x102c5d70] << 0x2) + [sym(clients)])).
   The `beq` branch at 0x1013617c targets 0x101361a4, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `bne` branch at 0x10136188 targets 0x101361c4, is taken when t9(?) != a7(?), and falls through when t9(?) == a7(?).
+  The `bne` branch at 0x10136188 targets 0x101361c4, is taken when t9(?) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when t9(?) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `beq` branch at 0x101361a8 targets 0x10136170, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `bne` branch at 0x101361b4 targets 0x101361d8, is taken when v0(?) != a7(?), and falls through when v0(?) == a7(?).
+  The `bne` branch at 0x101361b4 targets 0x101361d8, is taken when v0(?) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when v0(?) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `beq` branch at 0x101361bc targets 0x10136160 and is always taken.
-  The `bne` branch at 0x101361c4 targets 0x101361a4, is taken when t1(?) != a7(?), and falls through when t1(?) == a7(?).
+  The `bne` branch at 0x101361c4 targets 0x101361a4, is taken when t1(?) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when t1(?) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `beq` branch at 0x101361d0 targets 0x101361a4 and is always taken.
-  The `bne` branch at 0x101361d8 targets 0x10136170, is taken when t1(?) != a7(?), and falls through when t1(?) == a7(?).
+  The `bne` branch at 0x101361d8 targets 0x10136170, is taken when t1(?) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when t1(?) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `beq` branch at 0x101361e4 targets 0x10136170 and is always taken.
-  The `bne` branch at 0x101361f0 targets 0x10135fe8, is taken when v1(=[[[sym(clients)]]+56]) != a7(?), and falls through when v1(=[[[sym(clients)]]+56]) == a7(?).
+  The `bne` branch at 0x101361f0 targets 0x10135fe8, is taken when v1(=[[[sym(clients)]]+56]) != a7(=[ret(SecurityLookupIDByType)+4]), and falls through when v1(=[[[sym(clients)]]+56]) == a7(=[ret(SecurityLookupIDByType)+4]).
   The `beq` branch at 0x101361fc targets 0x10135fe8 and is always taken.
   The return at 0x10135d80 has v0 = 0x10.
   The return at 0x10135e10 has v0 = [0x102ca7e8].
@@ -20563,11 +20832,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10136464 calls strcpy with a0=sp-1160, a1=?, a2=?, a3=?.
   The `jalr` at 0x10136470 calls strlen with a0=sp-2192, a1=?, a2=?, a3=?.
   The `jalr` at 0x10136480 calls strlen with a0=sp-1160, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101364a8 calls strcpy with a0=?, a1=sp-1160, a2=?, a3=?.
-  The `jalr` at 0x101364dc calls (unknown callee) with a0=?, a1=?, a2=sp-2192, a3=?.
+  The `jalr` at 0x101364a8 calls strcpy with a0=(ret(strlen) + sp-2192)+2, a1=sp-1160, a2=?, a3=ret(strlen).
+  The `jalr` at 0x101364dc calls (unknown callee) with a0=ret(Xalloc), a1=?, a2=sp-2192, a3=?.
   The `jalr` at 0x101364f4 calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?.
   The `jal` at 0x10136500 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10136520 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10136520 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x10136598 calls strcpy with a0=sp-1160, a1=ret(strrchr)+1, a2=?, a3=?.
   The `jalr` at 0x101365a8 calls strchr with a0=sp-1160, a1=0x5f, a2=?, a3=?.
   The `jalr` at 0x10136664 calls fprintf with a0=sym(__iob)+32, a1=0x10291c08, a2=0x84, a3=?, a5=ret(Xalloc).
@@ -20590,8 +20859,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10136440 targets 0x10136470, is taken when t1(=[a3+4]:2) < 0x2 (signed), and falls through when t1(=[a3+4]:2) >= 0x2 (signed).
   The `blez` branch at 0x10136448 targets 0x10136470, is taken when t1(=[a3+4]:2) <= 0 (signed), and falls through when t1(=[a3+4]:2) > 0 (signed).
   The `beq` branch at 0x1013645c targets 0x10136558 and is always taken.
-  The `beq` branch at 0x10136498 targets 0x10136548, is taken when a4(?) >= 0x400 (unsigned), and falls through when a4(?) < 0x400 (unsigned).
-  The `beq` branch at 0x10136514 targets 0x10136530, is taken when at(?) == v1(=0x55), and falls through when at(?) != v1(=0x55).
+  The `beq` branch at 0x10136498 targets 0x10136548, is taken when a4(=(ret(strlen) + ret(strlen))+2) >= 0x400 (unsigned), and falls through when a4(=(ret(strlen) + ret(strlen))+2) < 0x400 (unsigned).
+  The `beq` branch at 0x10136514 targets 0x10136530, is taken when at(=ret(?)) == v1(=0x55), and falls through when at(=ret(?)) != v1(=0x55).
   The `beq` branch at 0x10136528 targets 0x10136538 and is always taken.
   The `beq` branch at 0x10136548 targets 0x10136274 and is always taken.
   The `beq` branch at 0x10136550 targets 0x1013646c, is taken when t8(=[a3]) == a1(?), and falls through when t8(=[a3]) != a1(?).
@@ -20619,7 +20888,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013668c targets 0x10136274 and is always taken.
   The return at 0x1013627c has v0 = one of 0x50, 0x53.
   The return at 0x101362b8 has v0 = 0x53.
-  The return at 0x10136540 has v0 = ?.
+  The return at 0x10136540 has v0 = ret(?).
 - `_AddCallback..BF` in `usr/gfx/arch/GENERIC/Xsgi` at 0x101366a0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -20855,11 +21124,12 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 456 bytes.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10137970, `lw` at 0x10137ac0.
   The `lw` at 0x10137978 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  The `lw` at 0x101379d0 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x10137a10 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x101379d0, `lw` at 0x10137a10.
   The `sw` at 0x10137a1c stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `lw` at 0x10137a3c loads 4 bytes from a0 (arg0 at entry) +0x1c.
-  3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10137a44, `lhu` at 0x10137a4c, `lhu` at 0x10137a54.
+  The `lhu` at 0x10137a44 loads 2 bytes from [a0+8] +0x8.
+  The `lhu` at 0x10137a4c loads 2 bytes from [a0+8] +0xa.
+  The `lhu` at 0x10137a54 loads 2 bytes from [a0+8] +0xc.
   The `lw` at 0x10137a74 loads 4 bytes from a0 (arg0 at entry) +0x0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x28, including `lw` at 0x10137a88, `lw` at 0x10137af0.
   The `lw` at 0x10137aa0 loads 4 bytes from sym(panoramiXDisabled) +0x0.
@@ -20869,8 +21139,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10137b00 loads 4 bytes from sym(panoramiXMode) +0x0.
   The `lw` at 0x10137b0c loads 4 bytes from sym(panoramiXScreen0) +0x0.
   The `jal` at 0x101379cc calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x6, a3=0x2.
-  The `jal` at 0x101379e8 calls LbxCheckColorRequest [0x102323c0] with a0=a0 at entry (arg0), a1=ret(SecurityLookupIDByType), a2=?, a3=?.
-  The `jal` at 0x10137a70 calls AllocColor [0x10112f00] with a0=?, a1=sp-72, a2=sp-70, a3=sp-68, a4=sp-64, a5=[a0].
+  The `jal` at 0x101379e8 calls LbxCheckColorRequest [0x102323c0] with a0=a0 at entry (arg0), a1=ret(SecurityLookupIDByType), a2=[a0+8], a3=?.
+  The `jal` at 0x10137a70 calls AllocColor [0x10112f00] with a0=ret(SecurityLookupIDByType), a1=sp-72, a2=sp-70, a3=sp-68, a4=sp-64, a5=[a0], a6=[[a0+8]+12]:2, a7=[[a0+8]+10]:2.
   The `jalr` at 0x10137adc calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?.
   The `jal` at 0x10137b28 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?.
   The `beq` branch at 0x10137994 targets 0x101379b4, is taken when v1(=[a0+72]) == a1(=0x4), and falls through when v1(=[a0+72]) != a1(=0x4).
@@ -21001,14 +21271,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x101383c0 loads 1 byte from a0 (arg0 at entry) +0x0.
   The `jalr` at 0x101383ec calls strlen with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=-0x1.
   The `jalr` at 0x10138408 calls strlen with a0=0x102906b8, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10138458 calls sprintf with a0=a2 at entry (arg2), a1=0x10290698, a2=?, a3=a0 at entry (arg0), a5=-0x1.
+  The `jalr` at 0x10138458 calls sprintf with a0=a2 at entry (arg2), a1=0x10290698, a2=0x102906b8, a3=a0 at entry (arg0), a5=-0x1.
   The `jalr` at 0x10138474 calls strlen with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3), a5=-0x1.
   The `jalr` at 0x101384a4 calls sprintf with a0=a2 at entry (arg2), a1=0x10290690, a2=a0 at entry (arg0), a3=?, a5=-0x1.
   The `beq` branch at 0x101383b8 targets 0x10138434, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x101383c4 targets 0x10138434, is taken when a0(=[a0]:1) == 0, and falls through when a0(=[a0]:1) != 0.
   The `beq` branch at 0x101383cc targets 0x10138434, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0x101383e0 targets 0x10138470, is taken when a0(=[a0]:1) == at(=0x2f), and falls through when a0(=[a0]:1) != at(=0x2f).
-  The `bne` branch at 0x10138420 targets 0x10138440, is taken when a1(?) < 0x6c (unsigned), and falls through when a1(?) >= 0x6c (unsigned).
+  The `bne` branch at 0x10138420 targets 0x10138440, is taken when a1(=(ret(strlen) + ret(strlen))) < 0x6c (unsigned), and falls through when a1(=(ret(strlen) + ret(strlen))) >= 0x6c (unsigned).
   The `bne` branch at 0x10138484 targets 0x10138494, is taken when v0(=ret(strlen)) < 0x6c (unsigned), and falls through when v0(=ret(strlen)) >= 0x6c (unsigned).
   The `beq` branch at 0x1013848c targets 0x10138438 and is always taken.
   The `beq` branch at 0x101384ac targets 0x10138460 and is always taken.
@@ -21322,27 +21592,28 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10139f08 loads 4 bytes from a0 (arg0 at entry) +0x48.
   2 such `lw` accesses load 4 bytes from [sym(inputInfo)+16] +0x2c, including `lw` at 0x10139f10, `lw` at 0x10139f7c.
   The `lw` at 0x10139f18 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  The `lw` at 0x10139f40 loads 4 bytes from [a0+8] +0x4.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10139f40, `lw` at 0x1013a080.
   The `lw` at 0x10139f90 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x4.
   The `lw` at 0x10139f94 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10139fac, `lw` at 0x10139ff4, `lw` at 0x1013a028.
+  The `lw` at 0x10139fac loads 4 bytes from [[sym(inputInfo)+16]+44] +0xc.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x58, including `lw` at 0x10139fe0, `lw` at 0x1013a014, `lw` at 0x1013a04c.
-  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10139fe4, `lbu` at 0x1013a018, `lbu` at 0x1013a050.
+  3 such `lbu` accesses load 1 byte from [a0+8] +0x0, including `lbu` at 0x10139fe4, `lbu` at 0x1013a018, `lbu` at 0x1013a050.
   3 such `lw` accesses load 4 bytes from [a0+88] +0x0, including `lw` at 0x10139fe8, `lw` at 0x1013a01c, `lw` at 0x1013a054.
+  3 such `lw` accesses load 4 bytes from ([[a0+88]] + ([[a0+8]]:1 << 0x2)) +0x0, including `lw` at 0x10139ff4, `lw` at 0x1013a028, `lw` at 0x1013a060.
   The `sw` at 0x1013a08c stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x10139f60 calls CheckAccess [0x100e6b00] with a0=0x9, a1=0x0, a2=a0 at entry (arg0), a3=[[a0+8]+4], a6=[[sym(inputInfo)+16]+44], a7=sym(inputInfo).
-  The `jal` at 0x10139fc4 calls CheckWindowAccess [0x1018ed00] with a0=0x3, a1=a0 at entry (arg0), a2=?, a3=0x0, a6=[[sym(inputInfo)+16]+44].
+  The `jal` at 0x10139fc4 calls CheckWindowAccess [0x1018ed00] with a0=0x3, a1=a0 at entry (arg0), a2=[[[sym(inputInfo)+16]+44]+12], a3=0x0, a6=[[sym(inputInfo)+16]+44].
   The `jalr` at 0x10139ff8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1013a02c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a6=[[sym(inputInfo)+16]+44].
-  The `jalr` at 0x1013a064 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a6=[[sym(inputInfo)+16]+44], a7=[a0+4].
+  The `jalr` at 0x1013a02c calls (unknown callee) with a0=a0 at entry (arg0), a1=[[sym(inputInfo)+16]+44], a2=?, a3=?, a6=[[sym(inputInfo)+16]+44].
+  The `jalr` at 0x1013a064 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[sym(inputInfo)+16]+44], a2=?, a3=?, a6=[[sym(inputInfo)+16]+44], a7=[a0+4].
   The `beq` branch at 0x10139f1c targets 0x10139f40, is taken when at(=[a0+72]) == v1(=0x4), and falls through when at(=[a0+72]) != v1(=0x4).
   The `beq` branch at 0x10139f4c targets 0x10139f80, is taken when a3(=[[a0+8]+4]) == 0, and falls through when a3(=[[a0+8]+4]) != 0.
   The `beq` branch at 0x10139f68 targets 0x1013a07c, is taken when v0(=ret(CheckAccess)) == 0, and falls through when v0(=ret(CheckAccess)) != 0.
   The `beq` branch at 0x10139f84 targets 0x10139fa4, is taken when a6(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a6(=[[sym(inputInfo)+16]+44]) != 0.
   The `beq` branch at 0x10139f9c targets 0x1013a044, is taken when a7(=[a0+4]) == t0(?), and falls through when a7(=[a0+4]) != t0(?).
-  The `beq` branch at 0x10139fa4 targets 0x1013a00c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x10139fb0 targets 0x1013a00c, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x10139fb8 targets 0x1013a008, is taken when a2(?) == v0(=0x1), and falls through when a2(?) != v0(=0x1).
+  The `beq` branch at 0x10139fa4 targets 0x1013a00c, is taken when a1(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a1(=[[sym(inputInfo)+16]+44]) != 0.
+  The `beq` branch at 0x10139fb0 targets 0x1013a00c, is taken when a2(=[[[sym(inputInfo)+16]+44]+12]) == 0, and falls through when a2(=[[[sym(inputInfo)+16]+44]+12]) != 0.
+  The `beq` branch at 0x10139fb8 targets 0x1013a008, is taken when a2(=[[[sym(inputInfo)+16]+44]+12]) == v0(=0x1), and falls through when a2(=[[[sym(inputInfo)+16]+44]+12]) != v0(=0x1).
   The `bne` branch at 0x10139fcc targets 0x10139f30, is taken when v0(=ret(CheckWindowAccess)) != 0, and falls through when v0(=ret(CheckWindowAccess)) == 0.
   The `beq` branch at 0x1013a000 targets 0x10139f2c and is always taken.
   The `beq` branch at 0x1013a088 targets 0x10139f2c and is always taken.
@@ -21373,35 +21644,42 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 788 bytes.
   The `lw` at 0x1013a110 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1013a114 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013a160, `lw` at 0x1013a2dc, `lw` at 0x1013a420.
-  4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1013a170, `lbu` at 0x1013a1b4, `lbu` at 0x1013a2fc.
+  The `lw` at 0x1013a160 loads 4 bytes from [a0+8] +0x8.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x1013a170, `lbu` at 0x1013a2fc.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x1013a190, `sw` at 0x1013a1e0.
-  4 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1013a1e8, `lhu` at 0x1013a26c, `lhu` at 0x1013a274.
-  13 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1013a264, `lh` at 0x1013a268, `lh` at 0x1013a270.
+  The `lbu` at 0x1013a1b4 loads 1 byte from [a0+8] +0x6.
+  The `lhu` at 0x1013a1e8 loads 2 bytes from [a0+8] +0x2.
+  10 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1013a264, `lh` at 0x1013a268, `lh` at 0x1013a270.
+  3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1013a26c, `lhu` at 0x1013a274, `lhu` at 0x1013a278.
   The `lw` at 0x1013a2c4 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
   The `lw` at 0x1013a2c8 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x19c.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupWindow) +0x78, including `lw` at 0x1013a2dc, `lw` at 0x1013a420.
+  The `lbu` at 0x1013a300 loads 1 byte from [a0+8] +0x4.
+  The `lh` at 0x1013a304 loads 2 bytes from [a0+8] +0xc.
+  The `lh` at 0x1013a30c loads 2 bytes from [a0+8] +0xe.
+  The `lh` at 0x1013a348 loads 2 bytes from [a0+8] +0x12.
   The `jal` at 0x1013a148 calls UpdateCurrentTime [0x10064a10] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x1013a15c calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x0, a3=?.
-  The `jalr` at 0x1013a2d0 calls (unknown callee) with a0=?, a1=?, a2=one of 0x6, 0xa, 0xe, 0x12, a3=?.
-  The `jal` at 0x1013a314 calls RegionOperate..BNC [0x100e6f00] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1013a40c calls MakeWindowOptional [0x10135300] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1013a15c calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+8], a1=a0 at entry (arg0), a2=0x0, a3=?.
+  The `jalr` at 0x1013a2d0 calls (unknown callee) with a0=?, a1=[a0+8]+16, a2=one of 0x6, 0xa, 0xe, 0x12, a3=?.
+  The `jal` at 0x1013a314 calls RegionOperate..BNC [0x100e6f00] with a0=a0 at entry (arg0), a1=ret(SecurityLookupWindow), a2=[[a0+8]+5]:1, a3=([ret(SecurityLookupWindow)+120] + one of 0x28, 0x2c), a4=ret(?), a5=[[a0+8]+4]:1, a6=[[a0+8]+12]:2, a7=[[a0+8]+14]:2.
+  The `jal` at 0x1013a40c calls MakeWindowOptional [0x10135300] with a0=ret(SecurityLookupWindow), a1=?, a2=[ret(SecurityLookupWindow)+120], a3=?.
   The `beq` branch at 0x1013a124 targets 0x1013a144, is taken when at(=[a0+72]) >= 0x4 (unsigned), and falls through when at(=[a0+72]) < 0x4 (unsigned).
   The `beq` branch at 0x1013a164 targets 0x1013a208, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x1013a174 targets 0x1013a1a4, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1013a17c targets 0x1013a194, is taken when a4(=0x1) == a2(?), and falls through when a4(=0x1) != a2(?).
+  The `beq` branch at 0x1013a174 targets 0x1013a1a4, is taken when a2(=[[a0+8]+5]:1) == 0, and falls through when a2(=[[a0+8]+5]:1) != 0.
+  The `beq` branch at 0x1013a17c targets 0x1013a194, is taken when a4(=0x1) == a2(=[[a0+8]+5]:1), and falls through when a4(=0x1) != a2(=[[a0+8]+5]:1).
   The `beq` branch at 0x1013a19c targets 0x1013a1b0 and is always taken.
-  The `beq` branch at 0x1013a1b8 targets 0x1013a1e8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x1013a1c0 targets 0x1013a1e4, is taken when a4(=0x1) == a3(?), and falls through when a4(=0x1) != a3(?).
-  The `beq` branch at 0x1013a1c8 targets 0x1013a1e4, is taken when a3(?) == a5(=0x2), and falls through when a3(?) != a5(=0x2).
-  The `beq` branch at 0x1013a1d0 targets 0x1013a1e4, is taken when a3(?) == a6(=0x3), and falls through when a3(?) != a6(=0x3).
+  The `beq` branch at 0x1013a1b8 targets 0x1013a1e8, is taken when a3(=[[a0+8]+6]:1) == 0, and falls through when a3(=[[a0+8]+6]:1) != 0.
+  The `beq` branch at 0x1013a1c0 targets 0x1013a1e4, is taken when a4(=0x1) == a3(=[[a0+8]+6]:1), and falls through when a4(=0x1) != a3(=[[a0+8]+6]:1).
+  The `beq` branch at 0x1013a1c8 targets 0x1013a1e4, is taken when a3(=[[a0+8]+6]:1) == a5(=0x2), and falls through when a3(=[[a0+8]+6]:1) != a5(=0x2).
+  The `beq` branch at 0x1013a1d0 targets 0x1013a1e4, is taken when a3(=[[a0+8]+6]:1) == a6(=0x3), and falls through when a3(=[[a0+8]+6]:1) != a6(=0x3).
   The `beq` branch at 0x1013a1dc targets 0x1013a138 and is always taken.
-  The `beq` branch at 0x1013a1f8 targets 0x1013a210, is taken when (a7(?) & 0x4) == 0, and falls through when (a7(?) & 0x4) != 0.
+  The `beq` branch at 0x1013a1f8 targets 0x1013a210, is taken when (a7(=([[a0+8]+2]:2 << 0x2)-16) & 0x4) == 0, and falls through when (a7(=([[a0+8]+2]:2 << 0x2)-16) & 0x4) != 0.
   The `beq` branch at 0x1013a200 targets 0x1013a138 and is always taken.
   The `beq` branch at 0x1013a208 targets 0x1013a138 and is always taken.
-  The `beq` branch at 0x1013a210 targets 0x1013a2ac, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x1013a218 targets 0x1013a328, is taken when a4(=0x1) == a3(?), and falls through when a4(=0x1) != a3(?).
-  The `beq` branch at 0x1013a220 targets 0x1013a378, is taken when a3(?) == t0(=0x2), and falls through when a3(?) != t0(=0x2).
-  The `bne` branch at 0x1013a22c targets 0x1013a2a4, is taken when a3(?) != t1(=0x3), and falls through when a3(?) == t1(=0x3).
+  The `beq` branch at 0x1013a210 targets 0x1013a2ac, is taken when a3(=[[a0+8]+6]:1) == 0, and falls through when a3(=[[a0+8]+6]:1) != 0.
+  The `beq` branch at 0x1013a218 targets 0x1013a328, is taken when a4(=0x1) == a3(=[[a0+8]+6]:1), and falls through when a4(=0x1) != a3(=[[a0+8]+6]:1).
+  The `beq` branch at 0x1013a220 targets 0x1013a378, is taken when a3(=[[a0+8]+6]:1) == t0(=0x2), and falls through when a3(=[[a0+8]+6]:1) != t0(=0x2).
+  The `bne` branch at 0x1013a22c targets 0x1013a2a4, is taken when a3(=[[a0+8]+6]:1) != t1(=0x3), and falls through when a3(=[[a0+8]+6]:1) == t1(=0x3).
   The `bne` branch at 0x1013a238 targets 0x1013a398, is taken when a0(?) < 0x2 (signed), and falls through when a0(?) >= 0x2 (signed).
   The `beq` branch at 0x1013a24c targets 0x1013a264 and is always taken.
   The `bne` branch at 0x1013a254 targets 0x1013a2a4, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -21410,8 +21688,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1013a290 targets 0x1013a2a4, is taken when a4(?) != a7(?), and falls through when a4(?) == a7(?).
   The `beq` branch at 0x1013a29c targets 0x1013a25c, is taken when t3(?) >= a1(?) (signed), and falls through when t3(?) < a1(?) (signed).
   The `beq` branch at 0x1013a2a4 targets 0x1013a138 and is always taken.
-  The `beq` branch at 0x1013a2e0 targets 0x1013a404, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1013a2e8 targets 0x1013a3e8, is taken when ra(?) == 0, and falls through when ra(?) != 0.
+  The `beq` branch at 0x1013a2e0 targets 0x1013a404, is taken when a2(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a2(=[ret(SecurityLookupWindow)+120]) != 0.
+  The `beq` branch at 0x1013a2e8 targets 0x1013a3e8, is taken when ra(=one of 0x0, 0x1) == 0, and falls through when ra(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1013a320 targets 0x1013a138 and is always taken.
   The `bne` branch at 0x1013a330 targets 0x1013a364, is taken when a0(?) < 0x2 (signed), and falls through when a0(?) >= 0x2 (signed).
   The `bne` branch at 0x1013a354 targets 0x1013a2a4, is taken when a5(?) < a6(?) (signed), and falls through when a5(?) >= a6(?) (signed).
@@ -21478,23 +21756,33 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 384 bytes.
   The `lw` at 0x1013a5f0 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x1013a5f8 loads 4 bytes from a0 (arg0 at entry) +0x48.
-  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1013a648, `lw` at 0x1013a660.
+  3 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1013a648, `lw` at 0x1013a660, `lw` at 0x1013a698.
   The `sw` at 0x1013a654 stores 4 bytes to a0 (arg0 at entry) +0x18.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013a698, `lw` at 0x1013a704, `lw` at 0x1013a744.
-  6 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1013a6b0, `lhu` at 0x1013a6b8, `lhu` at 0x1013a6c0.
-  6 such `sh` accesses store 2 bytes to ?, including `sh` at 0x1013a6b4, `sh` at 0x1013a6bc, `sh` at 0x1013a6c4.
+  The `lhu` at 0x1013a6b0 loads 2 bytes from [a0+8] +0x8.
+  The `sh` at 0x1013a6b4 stores 2 bytes to ret(SecurityLookupIDByType) +0x4.
+  The `lhu` at 0x1013a6b8 loads 2 bytes from [a0+8] +0xa.
+  The `sh` at 0x1013a6bc stores 2 bytes to ret(SecurityLookupIDByType) +0x6.
+  The `lhu` at 0x1013a6c0 loads 2 bytes from [a0+8] +0xc.
+  The `sh` at 0x1013a6c4 stores 2 bytes to ret(SecurityLookupIDByType) +0x8.
+  The `lhu` at 0x1013a6c8 loads 2 bytes from [a0+8] +0xe.
+  The `sh` at 0x1013a6cc stores 2 bytes to ret(SecurityLookupIDByType) +0xa.
+  The `lhu` at 0x1013a6d0 loads 2 bytes from [a0+8] +0x10.
+  The `sh` at 0x1013a6d4 stores 2 bytes to ret(SecurityLookupIDByType) +0xc.
+  The `lhu` at 0x1013a6d8 loads 2 bytes from [a0+8] +0x12.
+  The `sh` at 0x1013a6dc stores 2 bytes to ret(SecurityLookupIDByType) +0xe.
   2 such `lw` accesses load 4 bytes from sym(screenInfo) +0x44, including `lw` at 0x1013a6e0, `lw` at 0x1013a718.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013a704, `lw` at 0x1013a744.
   The `jal` at 0x1013a65c calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0x5, a3=0x0, a4=[[a0+8]+4], a5=a0 at entry (arg0), a6=[0x102c601c], a7=[0x102c5fe8].
-  The `jal` at 0x1013a694 calls CheckAccess [0x100e6b00] with a0=0x9, a1=0x3, a2=a0 at entry (arg0), a3=?, a5=0x6.
-  The `jalr` at 0x1013a708 calls (unknown callee) with a0=?, a1=?, a2=one of 0x0, 0x1, a3=?, a6=sym(screenInfo).
+  The `jal` at 0x1013a694 calls CheckAccess [0x100e6b00] with a0=0x9, a1=0x3, a2=a0 at entry (arg0), a3=[[a0+8]+4], a5=0x6.
+  The `jalr` at 0x1013a708 calls (unknown callee) with a0=?, a1=ret(SecurityLookupIDByType), a2=one of 0x0, 0x1, a3=?, a6=sym(screenInfo).
   The `beq` branch at 0x1013a614 targets 0x1013a628, is taken when v1(=[a0+72]) == a1(=0x5), and falls through when v1(=[a0+72]) != a1(=0x5).
   The `bne` branch at 0x1013a668 targets 0x1013a684, is taken when v0(=ret(SecurityLookupIDByType)) != 0, and falls through when v0(=ret(SecurityLookupIDByType)) == 0.
   The `beq` branch at 0x1013a69c targets 0x1013a768, is taken when v0(=ret(CheckAccess)) == 0, and falls through when v0(=ret(CheckAccess)) != 0.
   The `blez` branch at 0x1013a6e8 targets 0x1013a760, is taken when a4(=[sym(screenInfo)+68]) <= 0 (signed), and falls through when a4(=[sym(screenInfo)+68]) > 0 (signed).
   The `beq` branch at 0x1013a6f0 targets 0x1013a734 and is always taken.
   The `beq` branch at 0x1013a728 targets 0x1013a75c, is taken when a5(?) >= t9(=[sym(screenInfo)+68]) (signed), and falls through when a5(?) < t9(=[sym(screenInfo)+68]) (signed).
-  The `bne` branch at 0x1013a740 targets 0x1013a6f8, is taken when ra(?) != at(?), and falls through when ra(?) == at(?).
-  The `bne` branch at 0x1013a748 targets 0x1013a6f8, is taken when v1(?) != a0(?), and falls through when v1(?) == a0(?).
+  The `bne` branch at 0x1013a740 targets 0x1013a6f8, is taken when ra(=ret(SecurityLookupIDByType)) != at(=[0x102c5fe8]), and falls through when ra(=ret(SecurityLookupIDByType)) == at(=[0x102c5fe8]).
+  The `bne` branch at 0x1013a748 targets 0x1013a6f8, is taken when v1(=[0x102c601c]) != a0(?), and falls through when v1(=[0x102c601c]) == a0(?).
   The `beq` branch at 0x1013a754 targets 0x1013a704 and is always taken.
   The `beq` branch at 0x1013a760 targets 0x1013a61c and is always taken.
   The `beq` branch at 0x1013a768 targets 0x1013a61c and is always taken.
@@ -21777,7 +22065,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sb` at 0x1013b39c stores 1 byte to [a0+8] +0x17.
   The `lw` at 0x1013b3c4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `jal` at 0x1013b398 calls LookupAnyDeviceIntRec [0x10275c80] with a0=[[a0+8]+4]:1, a1=a1 at entry (arg1), a2=[a0+8], a3=a3 at entry (arg3).
-  The `jal` at 0x1013b3b4 calls xdevDeviceControl [0x101a8440] with a0=ret(LookupAnyDeviceIntRec), a1=?, a2=?, a3=?.
+  The `jal` at 0x1013b3b4 calls xdevDeviceControl [0x101a8440] with a0=ret(LookupAnyDeviceIntRec), a1=[a0+8]+8, a2=[a0+8]+24, a3=?.
   The `beq` branch at 0x1013b378 targets 0x1013b388, is taken when at(=[a0+72]) == v0(=0xc), and falls through when at(=[a0+72]) != v0(=0xc).
   The return at 0x1013b380 has v0 = 0x10.
   The return at 0x1013b3c8 has v0 = [a0+40].
@@ -21789,7 +22077,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1013b3d8 loads 4 bytes from a1 (arg1 at entry) +0x18.
   The `lw` at 0x1013b420 loads 4 bytes from a1 (arg1 at entry) +0x4.
   The `jal` at 0x1013b400 calls EnterNotifies..OC [0x1013b3d0] with a0=a0 at entry (arg0), a1=[a1+24], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  Calls EnterLeaveEvent..NC [0x100c1600] via direct with a0=0x7, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=?, a4=[a1+4] (`j` at 0x1013b424).
+  Calls EnterLeaveEvent..NC [0x100c1600] via direct with a0=0x7, a1=a2 at entry (arg2), a2=a3 at entry (arg3), a3=[a1+24], a4=[a1+4] (`j` at 0x1013b424).
   The `bne` branch at 0x1013b3e4 targets 0x1013b3f4, is taken when a0 != at(=[a1+24]), and falls through when a0 == at(=[a1+24]).
   The return at 0x1013b3ec has v0 = ?.
 - `_XSERVTransSocketUNIXClose..BI` in `usr/gfx/arch/GENERIC/Xsgi` at 0x1013b430 (n32).
@@ -21810,7 +22098,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013b46c targets 0x1013b4b8, is taken when s0(=[a0+28]) == 0, and falls through when s0(=[a0+28]) != 0.
   The `bne` branch at 0x1013b478 targets 0x1013b4b4, is taken when a0(=[[a0+28]]:2) != a1(=0x1), and falls through when a0(=[[a0+28]]:2) == a1(=0x1).
   The `beq` branch at 0x1013b480 targets 0x1013b4b8, is taken when a2(=[[a0+28]+2]:1) == 0, and falls through when a2(=[[a0+28]+2]:1) != 0.
-  The return at 0x1013b4c4 has v0 = one of ret(close), ?.
+  The return at 0x1013b4c4 has v0 = ret(close).
 - `simpleDeviceNotify..GGC` in `usr/gfx/arch/GENERIC/Xsgi` at 0x1013b4d0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -22041,16 +22329,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1013c7c8 loads 4 bytes from sym(errno) +0x0.
   The `sw` at 0x1013c804 stores 4 bytes to ret(_fs_open_server) +0xc.
   The `sw` at 0x1013c80c stores 4 bytes to a0 (arg0 at entry) +0x10.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013c830, `lw` at 0x1013c840, `lw` at 0x1013c894.
+  The `lw` at 0x1013c830 loads 4 bytes from ret(_fs_open_server) +0x8.
+  The `lw` at 0x1013c840 loads 4 bytes from ret(_fs_open_server) +0x1c.
+  The `lw` at 0x1013c894 loads 4 bytes from ret(_fs_open_server) +0x0.
   The `lw` at 0x1013c8c4 loads 4 bytes from table(0x102c7398) +0x0.
-  The `sw` at 0x1013c8c8 stores 4 bytes to ?.
+  The `sw` at 0x1013c8c8 stores 4 bytes to ret(_fs_open_server) +0x28.
   The `sw` at 0x1013c8d8 stores 4 bytes to table(0x102c7398) +0x0.
   The `jal` at 0x1013c7b0 calls _fs_open_server [0x101825b0] with a0=?, a1=sym(errno), a2=0x102d0000, a3=a3 at entry (arg3).
   The `jal` at 0x1013c808 calls fs_send_init_packets..HDB [0x100f9720] with a0=ret(_fs_open_server), a1=?, a2=?, a3=[sym(errno)], a5=a0 at entry (arg0), a6=[a0+4].
-  The `jal` at 0x1013c81c calls fs_close_conn..IDB [0x10259410] with a0=?, a1=?, a2=?, a3=?, a7=0x55.
-  The `jal` at 0x1013c82c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1013c83c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1013c848 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1013c81c calls fs_close_conn..IDB [0x10259410] with a0=ret(_fs_open_server), a1=?, a2=?, a3=?, a7=0x55.
+  The `jal` at 0x1013c82c calls Xfree [0x101fc9c0] with a0=[ret(_fs_open_server)+8], a1=?, a2=?, a3=?.
+  The `jal` at 0x1013c83c calls Xfree [0x101fc9c0] with a0=[ret(_fs_open_server)+28], a1=?, a2=?, a3=?.
+  The `jal` at 0x1013c848 calls Xfree [0x101fc9c0] with a0=ret(_fs_open_server), a1=?, a2=?, a3=?.
   The `jal` at 0x1013c874 calls init_fs_handlers [0x10129f90] with a0=a0 at entry (arg0), a1=0x10109520, a2=?, a3=?, a7=0x55.
   The `beq` branch at 0x1013c7a8 targets 0x1013c864, is taken when at(=[[a0+4]]:1) == v1(=0x3a), and falls through when at(=[[a0+4]]:1) != v1(=0x3a).
   The `bne` branch at 0x1013c7c4 targets 0x1013c7f8, is taken when v0(=ret(_fs_open_server)) != 0, and falls through when v0(=ret(_fs_open_server)) == 0.
@@ -22061,8 +22351,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013c888 targets 0x1013c7ec and is always taken.
   The `beq` branch at 0x1013c8d4 targets 0x1013c7ec and is always taken.
   The return at 0x1013c7e4 has v0 = one of 0x50, 0x56.
-  The return at 0x1013c7f0 has v0 = one of 0x50, ?.
-  The return at 0x1013c85c has v0 = ?.
+  The return at 0x1013c7f0 has v0 = one of 0x50, ret(fs_send_init_packets..HDB).
+  The return at 0x1013c85c has v0 = ret(fs_send_init_packets..HDB).
 - `_XSERVTransMakeAllCOTSServerListeners` in `usr/gfx/arch/GENERIC/Xsgi` at 0x1013c8e0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -22088,7 +22378,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x1013ca10 calls __libc_lockmalloc with a0=one of 0x0, 0x1, a1=?, a2=[sym(__us_rsthread_malloc)], a3=a0 at entry (arg0).
   The `jal` at 0x1013ca18 calls __malloc..ML [0x101e7680] with a0=([0x102c6c30] << 0x2), a1=?, a2=?, a3=?.
   The `jalr` at 0x1013ca30 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x1013caec calls sprintf with a0=sp-328, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1013caec calls sprintf with a0=sp-328, a1=0x10290730, a2=?, a3=?.
   The `jal` at 0x1013caf4 calls _XSERVTransOpen..FI [0x10132ae0] with a0=sp-328, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013cb14 calls (unknown callee) with a0=ret(_XSERVTransOpen..FI), a1=a0 at entry (arg0), a2=?, a3=?.
   The `jalr` at 0x1013cbe8 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
@@ -22215,7 +22505,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1013debc calls Xalloc [0x1020aeb0] with a0=0x14, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013def0 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013e018 calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1013e034 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1013e034 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jal` at 0x1013e048 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x1013e068 calls strncpy with a0=ret(Xalloc), a1=?, a2=ret(strlen), a3=?.
   The `jal` at 0x1013e094 calls Xrealloc [0x101b9470] with a0=[0x102c6194], a1=([0x102c6190] << 0x3), a2=[0x102c6190], a3=?.
@@ -22227,7 +22517,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x1013dea0 targets 0x1013e128, is taken when s4(=ret(strncmp)) <= 0 (signed), and falls through when s4(=ret(strncmp)) > 0 (signed).
   The `bne` branch at 0x1013deb4 targets 0x1013df8c, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `bne` branch at 0x1013dec4 targets 0x1013dfac, is taken when v0(=ret(Xalloc)) != 0, and falls through when v0(=ret(Xalloc)) == 0.
-  The `beq` branch at 0x1013ded8 targets 0x1013e0ec, is taken when s2(?) == t8(?), and falls through when s2(?) != t8(?).
+  The `beq` branch at 0x1013ded8 targets 0x1013e0ec, is taken when s2(?) == t8(=0x102cc148), and falls through when s2(?) != t8(=0x102cc148).
   The `beq` branch at 0x1013df20 targets 0x1013e11c, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `bne` branch at 0x1013df64 targets 0x1013df30, is taken when a5(?) != a7(?), and falls through when a5(?) == a7(?).
   The `beq` branch at 0x1013df6c targets 0x1013debc, is taken when a1(=[0x102c618c]) == 0, and falls through when a1(=[0x102c618c]) != 0.
@@ -22249,7 +22539,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1013e09c targets 0x1013e0cc, is taken when v0(=ret(Xrealloc)) != 0, and falls through when v0(=ret(Xrealloc)) == 0.
   The `bne` branch at 0x1013e0a8 targets 0x1013e134, is taken when a0(=[ret(Xalloc)+16]) != s3(?), and falls through when a0(=[ret(Xalloc)+16]) == s3(?).
   The `beq` branch at 0x1013e0c4 targets 0x1013e0d8 and is always taken.
-  The `bne` branch at 0x1013e0dc targets 0x1013ded4, is taken when a5(?) != 0, and falls through when a5(?) == 0.
+  The `bne` branch at 0x1013e0dc targets 0x1013ded4, is taken when a5(=one of 0x0, 0x1) != 0, and falls through when a5(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1013e0e4 targets 0x1013dfd4 and is always taken.
   The `beq` branch at 0x1013e120 targets 0x1013df6c and is always taken.
   The `beq` branch at 0x1013e12c targets 0x1013ded0 and is always taken.
@@ -22487,11 +22777,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x1013ed48 calls __libc_lockmalloc with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1013ed54 calls __malloc..ML [0x101e7680] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013ed70 calls __libc_unlockmalloc with a0=[sym(__us_rsthread_malloc)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1013edb4 calls memcpy with a0=?, a1=sp-56, a2=?, a3=a0 at entry (arg0).
+  The `jalr` at 0x1013edb4 calls memcpy with a0=ret(__malloc..ML), a1=sp-56, a2=?, a3=a0 at entry (arg0).
   The `bltz` branch at 0x1013ed2c targets 0x1013edcc, is taken when v0(=ret(getsockname)) < 0 (signed), and falls through when v0(=ret(getsockname)) >= 0 (signed).
   The `beq` branch at 0x1013ed3c targets 0x1013ed54, is taken when v1(=[sym(__us_rsthread_malloc)]) == 0, and falls through when v1(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x1013ed64 targets 0x1013ed78, is taken when a0(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a0(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x1013ed88 targets 0x1013ed98, is taken when a1(?) != 0, and falls through when a1(?) == 0.
+  The `bne` branch at 0x1013ed88 targets 0x1013ed98, is taken when a1(=ret(__malloc..ML)) != 0, and falls through when a1(=ret(__malloc..ML)) == 0.
   The return at 0x1013ed90 has v0 = -0x1.
   The return at 0x1013edc4 has v0 = 0x0.
   The return at 0x1013edd0 has v0 = -0x1.
@@ -22672,7 +22962,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1013f704 calls AddResource [0x1010ec30] with a0=ret(FakeClientID), a1=[0x102caa98], a2=?, a3=?.
   The `jal` at 0x1013f758 calls Xalloc [0x1020aeb0] with a0=0x10, a1=?, a2=?, a3=?.
   The `jal` at 0x1013f780 calls AddResource [0x1010ec30] with a0=[a1+4], a1=[0x102caa9c], a2=ret(Xalloc), a3=?.
-  The `jal` at 0x1013f79c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1013f79c calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x1013f7c8 calls Xalloc [0x1020aeb0] with a0=0x10, a1=?, a2=?, a3=?.
   The `beq` branch at 0x1013f658 targets 0x1013f728, is taken when (a2 & 0xff) == 0, and falls through when (a2 & 0xff) != 0.
   The `beq` branch at 0x1013f660 targets 0x1013f74c, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
@@ -22759,16 +23049,18 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x1013fa84, `lw` at 0x1013fb4c, `lw` at 0x1013fc0c.
   The `lw` at 0x1013fb18 loads 4 bytes from [a0+8] +0x8.
   The `lw` at 0x1013fb34 loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
-  19 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013fbd4, `lw` at 0x1013fc9c, `lw` at 0x1013fd6c.
+  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1013fbd4, `lw` at 0x1013fc9c, `lw` at 0x1013fd6c.
   3 such `lw` accesses load 4 bytes from sym(XRT_PIXMAP) +0x0, including `lw` at 0x1013fbfc, `lw` at 0x1013fcc0, `lw` at 0x1013fd90.
-  9 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1013fde8, `sw` at 0x1013fe00, `sw` at 0x1013ff4c.
+  The `sw` at 0x1013fde8 stores 4 bytes to ret(Xalloc) +0x80.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x0, including `sw` at 0x1013fe00, `sw` at 0x10140094.
   The `sw` at 0x1013ff34 stores 4 bytes to [a0+8] +0x4.
   The `sw` at 0x1013ff40 stores 4 bytes to [a0+8] +0x8.
+  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1013ff4c, `sw` at 0x1013ff60, `sw` at 0x1013ff74.
   2 such `lw` accesses load 4 bytes from sym(ProcVector) +0xdc, including `lw` at 0x1013ff7c, `lw` at 0x101402d8.
+  The `lw` at 0x1013ffc8 loads 4 bytes from ret(Xalloc) +0x0.
   The `sw` at 0x10140088 stores 4 bytes to ret(Xalloc) +0xc.
   The `sw` at 0x1014008c stores 4 bytes to ret(Xalloc) +0x4.
   The `sw` at 0x10140090 stores 4 bytes to ret(Xalloc) +0x8.
-  The `sw` at 0x10140094 stores 4 bytes to ret(Xalloc) +0x0.
   The `lw` at 0x101400cc loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `jal` at 0x1013fb30 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=[sym(XRC_DRAWABLE)], a3=0x1, a4=0x3f, a5=0x104104105.
   The `jal` at 0x1013fbf8 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=?, a2=[sym(XRT_PIXMAP)], a3=0x1, a6=0x3f, a7=0x104104105.
@@ -22777,14 +23069,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1013fdb4 calls Xalloc [0x1020aeb0] with a0=0xa8, a1=?, a2=?, a3=?.
   The `jalr` at 0x1013fdd4 calls bzero with a0=ret(Xalloc), a1=0xa8, a2=?, a3=?.
   The `jalr` at 0x1013ff80 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1013ffc4 calls AddResource [0x1010ec30] with a0=?, a1=[0x102ca81c], a2=?, a3=?.
-  The `jal` at 0x1013ffd8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1013ffc4 calls AddResource [0x1010ec30] with a0=[ret(Xalloc)], a1=[0x102ca81c], a2=ret(Xalloc), a3=?.
+  The `jal` at 0x1013ffd8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x10140074 calls Xalloc [0x1020aeb0] with a0=0x10, a1=?, a2=?, a3=?, a4=0xb.
   The `jal` at 0x101400c8 calls FakeClientID [0x10069920] with a0=[a0], a1=[0x102c5f1c], a2=?, a3=?.
   The `jal` at 0x10140120 calls RebuildTable..ID [0x101c6ee0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014014c calls (unknown callee) with a0=?, a1=ret(FakeClientID), a2=?, a3=?.
-  The `jal` at 0x10140268 calls ErrorF [0x10094ec0] with a0=?, a1=ret(FakeClientID), a2=[0x102ca82c], a3=?.
-  The `jal` at 0x10140274 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014014c calls (unknown callee) with a0=ret(Xalloc), a1=ret(FakeClientID), a2=?, a3=?.
+  The `jal` at 0x10140268 calls ErrorF [0x10094ec0] with a0=0x1028f3e8, a1=ret(FakeClientID), a2=[0x102ca82c], a3=ret(Xalloc).
+  The `jal` at 0x10140274 calls FatalError [0x10094f20] with a0=0x1028f410, a1=?, a2=?, a3=?.
   The `jalr` at 0x101402e0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=[0x102c5f68].
   The `beq` branch at 0x1013fa54 targets 0x1013fa74, is taken when v0(=[a0+72]) >= 0x4 (unsigned), and falls through when v0(=[a0+72]) < 0x4 (unsigned).
   The `beq` branch at 0x1013faf4 targets 0x1013fb18, is taken when a0(=[a0+72]-4) == a1(?), and falls through when a0(=[a0+72]-4) != a1(?).
@@ -22812,7 +23104,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1013ff50 targets 0x1013ff64, is taken when s8(?) == 0, and falls through when s8(?) != 0.
   The `beq` branch at 0x1013ff68 targets 0x1013ff7c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x1013ff90 targets 0x1013ffac, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
-  The `bne` branch at 0x1013ffa4 targets 0x1013ff30, is taken when s1(?) != ra(?), and falls through when s1(?) == ra(?).
+  The `bne` branch at 0x1013ffa4 targets 0x1013ff30, is taken when s1(?) != ra(=ret(Xalloc)-8), and falls through when s1(?) == ra(=ret(Xalloc)-8).
   The `bne` branch at 0x1013ffac targets 0x1013ffd4, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0x1013ffcc targets 0x1013ffe4 and is always taken.
   The `beq` branch at 0x1014001c targets 0x1013fc18 and is always taken.
@@ -22934,15 +23226,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1014071c calls set_sun_path..DH [0x101383b0] with a0=a1 at entry (arg1), a1=0x102906b8, a2=sp-190, a3=?.
   The `jalr` at 0x10140744 calls getpid with a0=?, a1=0x1, a2=?, a3=?.
   The `jalr` at 0x10140768 calls sprintf with a0=sp-190, a1=0x102906d0, a2=0x102906b8, a3=ret(getpid).
-  The `jalr` at 0x10140774 calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10140784 calls unlink with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10140798 calls _XSERVTransSocketCreateListener..EH [0x100bbea0] with a0=a0 at entry (arg0), a1=sp-192, a2=?, a3=?.
+  The `jalr` at 0x10140774 calls strlen with a0=sp-190, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10140784 calls unlink with a0=sp-190, a1=?, a2=?, a3=?.
+  The `jal` at 0x10140798 calls _XSERVTransSocketCreateListener..EH [0x100bbea0] with a0=a0 at entry (arg0), a1=sp-192, a2=ret(strlen)+2, a3=?.
   The `jalr` at 0x101407b4 calls __libc_lockmalloc with a0=?, a1=sym(__us_rsthread_malloc), a2=?, a3=[sym(__us_rsthread_malloc)].
   The `jal` at 0x101407bc calls __malloc..ML [0x101e7680] with a0=0x6e, a1=?, a2=?, a3=?.
   The `jalr` at 0x101407d8 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?, a4=[sym(__us_rsthread_malloc)].
-  The `jalr` at 0x10140820 calls memcpy with a0=?, a1=sp-192, a2=0x6e, a3=?, a6=a0 at entry (arg0).
-  The `jalr` at 0x1014082c calls umask with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x10140844 calls chmod with a0=?, a1=0x3ff, a2=?, a3=?.
+  The `jalr` at 0x10140820 calls memcpy with a0=ret(__malloc..ML), a1=sp-192, a2=0x6e, a3=?, a5=ret(__malloc..ML), a6=a0 at entry (arg0).
+  The `jalr` at 0x1014082c calls umask with a0=ret(umask), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10140844 calls chmod with a0=0x102906a8, a1=0x3ff, a2=?, a3=?.
   The `beq` branch at 0x101406ec targets 0x1014083c, is taken when v0(=ret(mkdir)) == 0, and falls through when v0(=ret(mkdir)) != 0.
   The `beq` branch at 0x101406f4 targets 0x10140740, is taken when s0(=a1) == 0, and falls through when s0(=a1) != 0.
   The `beq` branch at 0x10140700 targets 0x10140744, is taken when a2(=[a1]:1) == 0, and falls through when a2(=[a1]:1) != 0.
@@ -22950,7 +23242,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bltz` branch at 0x101407a0 targets 0x10140854, is taken when v0(=ret(_XSERVTransSocketCreateListener..EH)) < 0 (signed), and falls through when v0(=ret(_XSERVTransSocketCreateListener..EH)) >= 0 (signed).
   The `beq` branch at 0x101407ac targets 0x101407bc, is taken when a3(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a3(=[sym(__us_rsthread_malloc)]) != 0.
   The `beq` branch at 0x101407cc targets 0x101407e0, is taken when a4(=[sym(__us_rsthread_malloc)]) == 0, and falls through when a4(=[sym(__us_rsthread_malloc)]) != 0.
-  The `bne` branch at 0x101407f0 targets 0x10140804, is taken when a5(?) != 0, and falls through when a5(?) == 0.
+  The `bne` branch at 0x101407f0 targets 0x10140804, is taken when a5(=ret(__malloc..ML)) != 0, and falls through when a5(=ret(__malloc..ML)) == 0.
   The `beq` branch at 0x10140834 targets 0x10140730 and is always taken.
   The `beq` branch at 0x1014084c targets 0x101406f4 and is always taken.
   The `beq` branch at 0x10140854 targets 0x10140734 and is always taken.
@@ -23144,29 +23436,29 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1014127c calls Xfree [0x101fc9c0] with a0=[a0+28], a1=?, a2=?, a3=?.
   The `jal` at 0x101412a8 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101412c8 calls (unknown callee) with a0=[a0+60], a1=?, a2=?, a3=?.
-  The `jal` at 0x101412d4 calls _FontTransFreeConnInfo [0x101a7f10] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101412d4 calls _FontTransFreeConnInfo [0x101a7f10] with a0=[a0+60], a1=?, a2=?, a3=?.
   The `jal` at 0x101412f8 calls _fs_read [0x101c3930] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10141318 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1014132c calls (unknown callee) with a0=[a0+60], a1=?, a2=?, a3=?.
-  The `jal` at 0x10141334 calls _FontTransFreeConnInfo [0x101a7f10] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10141334 calls _FontTransFreeConnInfo [0x101a7f10] with a0=[a0+60], a1=?, a2=?, a3=?.
   The `jal` at 0x101413b8 calls _fs_read [0x101c3930] with a0=a0 at entry (arg0), a1=sp-192, a2=0xc, a3=?.
   The `jal` at 0x101413d4 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x101413ec calls _fs_read_pad [0x10162f00] with a0=a0 at entry (arg0), a1=ret(Xalloc), a2=?, a3=?.
   The `jal` at 0x10141404 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=-0x1, a3=?.
-  The `jal` at 0x10141410 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10141410 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x10141428 calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=a3 at entry (arg3), a4=a1 at entry (arg1).
   The `jal` at 0x10141434 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x10141450 calls strcpy with a0=ret(Xalloc), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x10141488 calls (unknown callee) with a0=[a0+60], a1=?, a2=?, a3=?.
-  The `jal` at 0x10141494 calls _FontTransFreeConnInfo [0x101a7f10] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10141494 calls _FontTransFreeConnInfo [0x101a7f10] with a0=[a0+60], a1=?, a2=?, a3=?.
   The `jal` at 0x101414c0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x101414d4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101414e8 calls (unknown callee) with a0=[a0+60], a1=?, a2=?, a3=?.
-  The `jal` at 0x101414f4 calls _FontTransFreeConnInfo [0x101a7f10] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101414f4 calls _FontTransFreeConnInfo [0x101a7f10] with a0=[a0+60], a1=?, a2=?, a3=?.
   The `jal` at 0x10141514 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10141528 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=-0x1, a3=?.
+  The `jal` at 0x10141528 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=-0x1, a3=?.
   The `jal` at 0x10141534 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10141554 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10141554 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `beq` branch at 0x101410e0 targets 0x1014135c, is taken when v0(=ret(_fs_connect..EGB)) == 0, and falls through when v0(=ret(_fs_connect..EGB)) != 0.
   The `beq` branch at 0x10141104 targets 0x101413a4 and is always taken.
   The `beq` branch at 0x10141134 targets 0x10141384, is taken when v0(=ret(_fs_write)) == a4(=-0x1), and falls through when v0(=ret(_fs_write)) != a4(=-0x1).
@@ -23211,7 +23503,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 136 bytes.
   The `jal` at 0x10141908 calls t1_Loc [0x100dbd80] with a0=[0x102c8d5c], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3); fp f13=f12, f14=f13.
   The `jal` at 0x1014193c calls FindStems..LBC [0x10070520] with a0=ret(t1_Loc), a1=?, a2=?, a3=?; fp f14=f12, f15=f13.
-  The `jal` at 0x10141948 calls t1_Join [0x10242e70] with a0=?, a1=ret(FindStems..LBC), a2=?, a3=?.
+  The `jal` at 0x10141948 calls t1_Join [0x10242e70] with a0=ret(t1_Loc), a1=ret(FindStems..LBC), a2=?, a3=?.
   The `jal` at 0x10141954 calls t1_Line [0x1019ff60] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10141960 calls t1_Join [0x10242e70] with a0=[0x102c8d50], a1=ret(t1_Line), a2=?, a3=?.
   The `beq` branch at 0x10141918 targets 0x10141954, is taken when at(=[0x102cd378]:1) == 0, and falls through when at(=[0x102cd378]:1) != 0.
@@ -23271,23 +23563,24 @@ These entries record instruction facts rendered from the routines below. They de
   3 such `lw` accesses load 4 bytes from a4 (arg4 at entry) +0x0, including `lw` at 0x10142650, `lw` at 0x10142b28, `lw` at 0x10142bd8.
   The `lw` at 0x10142674 loads 4 bytes from [ret(FontFileFindNameInScalableDir)+24] +0x68.
   The `lw` at 0x101426c0 loads 4 bytes from [ret(FontFileFindNameInScalableDir)+24] +0x70.
-  13 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10142700, `lw` at 0x10142714, `lw` at 0x10142724.
+  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10142700, `lw` at 0x10142714, `lw` at 0x10142724.
   8 such `ldc1` accesses load 8 bytes from ?, including `ldc1` at 0x1014275c, `ldc1` at 0x10142770, `ldc1` at 0x10142784.
   The `sb` at 0x10142938 stores 1 byte to ([a3] + sp-3248) +0x0.
+  2 such `lw` accesses load 4 bytes from [a1+16] +0x0, including `lw` at 0x10142950, `lw` at 0x10142af0.
   2 such `lw` accesses load 4 bytes from ret(FontFileFindNameInScalableDir) +0x14, including `lw` at 0x10142960, `lw` at 0x10142af8.
   The `lw` at 0x10142b08 loads 4 bytes from [ret(FontFileFindNameInScalableDir)+16] +0x14.
-  The `jal` at 0x10142114 calls FontFileFindNameInScalableDir [0x100b6150] with a0=?, a1=sp-3360, a2=0x0, a3=?.
+  The `jal` at 0x10142114 calls FontFileFindNameInScalableDir [0x100b6150] with a0=[a1+16]+28, a1=sp-3360, a2=0x0, a3=[a1+16].
   The `jal` at 0x10142340 calls FontParseXLFDName [0x10159250] with a0=sp-4384, a1=sp-3352, a2=0x2, a3=[a1+16].
-  The `jalr` at 0x10142358 calls strlen with a0=sp-4384, a1=?, a2=?, a3=?.
-  The `jal` at 0x10142370 calls FontFileFindNameInScalableDir [0x100b6150] with a0=?, a1=sp-3360, a2=sp-3352, a3=?.
+  The `jalr` at 0x10142358 calls strlen with a0=sp-4384, a1=?, a2=?, a3=[a1+16].
+  The `jal` at 0x10142370 calls FontFileFindNameInScalableDir [0x100b6150] with a0=[a1+16]+12, a1=sp-3360, a2=sp-3352, a3=?.
   The `jalr` at 0x101425c0 calls strlen with a0=[ret(FontFileFindNameInScalableDir)+16], a1=?, a2=?, a3=?, a6=a2 at entry (arg2), a7=a4 at entry (arg4).
   The `jal` at 0x1014264c calls FontFileGetInfoBitmap..KN [0x10124020] with a0=a1 at entry (arg1), a1=[a4], a2=ret(FontFileFindNameInScalableDir), a3=a4 at entry (arg4), a7=[ret(FontFileFindNameInScalableDir)+8].
-  The `jal` at 0x10142660 calls FontFileCompleteXLFD [0x10077e90] with a0=sp-3352, a1=[ret(FontFileFindNameInScalableDir)+24], a2=?, a3=?.
+  The `jal` at 0x10142660 calls FontFileCompleteXLFD [0x10077e90] with a0=sp-3352, a1=[ret(FontFileFindNameInScalableDir)+24], a2=?, a3=[a1+16].
   The `jal` at 0x10142934 calls FontParseRanges [0x1014c9d0] with a0=sp-3248, a1=sp-3256, a2=?, a3=?.
-  The `jalr` at 0x1014294c calls strlen with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014294c calls strlen with a0=[[a1+16]], a1=?, a2=?, a3=?.
   The `jalr` at 0x1014295c calls strlen with a0=[ret(FontFileFindNameInScalableDir)+20], a1=?, a2=?, a3=?.
   The `jal` at 0x10142ad4 calls Xfree [0x101fc9c0] with a0=ret(FontParseRanges), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10142aec calls strcpy with a0=sp-2224, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10142aec calls strcpy with a0=sp-2224, a1=[[a1+16]], a2=?, a3=?.
   The `jalr` at 0x10142afc calls strcat with a0=sp-2224, a1=[ret(FontFileFindNameInScalableDir)+20], a2=?, a3=?.
   The `jalr` at 0x10142b24 calls (unknown callee) with a0=a1 at entry (arg1), a1=[a4], a2=ret(FontFileFindNameInScalableDir), a3=sp-3360, a4=sp-2224, a5=sp-3352.
   The `jal` at 0x10142bd4 calls FontFileGetInfoBitmap..KN [0x10124020] with a0=a1 at entry (arg1), a1=[a4], a2=?, a3=?, a7=a4 at entry (arg4).
@@ -23504,13 +23797,13 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0x10142bf0-0x10142dcc (476 bytes).
   It occupies 476 bytes.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0xc, including `lw` at 0x10142bf0, `lw` at 0x10142c7c.
-  2 such `lw` accesses load 4 bytes from [a0+12] +0x78, including `lw` at 0x10142bf8, `lw` at 0x10142c94.
+  3 such `lw` accesses load 4 bytes from [a0+12] +0x78, including `lw` at 0x10142bf8, `lw` at 0x10142c94, `lw` at 0x10142da4.
   2 such `lw` accesses load 4 bytes from [[a0+12]+120] +0x18, including `lw` at 0x10142c1c, `lw` at 0x10142cc8.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10142c30, `lw` at 0x10142c4c, `lw` at 0x10142ca8.
-  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10142c50, `sw` at 0x10142dbc, `sw` at 0x10142dc8.
+  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10142c30, `lw` at 0x10142c4c, `lw` at 0x10142ca8.
+  The `sw` at 0x10142c50 stores 4 bytes to ?.
   The `sw` at 0x10142c78 stores 4 bytes to [[a0+12]+120] +0x18.
   The `lw` at 0x10142c80 loads 4 bytes from [a0+12] +0x18.
-  The `lw` at 0x10142c8c loads 4 bytes from [a0+12] +0x7c.
+  2 such `lw` accesses load 4 bytes from [a0+12] +0x7c, including `lw` at 0x10142c8c, `lw` at 0x10142da0.
   The `lw` at 0x10142ca0 loads 4 bytes from [[a0+12]+120] +0xc.
   The `lw` at 0x10142cb0 loads 4 bytes from [[a0+12]+120] +0x10.
   The `lw` at 0x10142cbc loads 4 bytes from [[a0+12]+120] +0x14.
@@ -23524,9 +23817,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10142d40 loads 4 bytes from [[a0+12]+120] +0x4.
   The `lw` at 0x10142d58 loads 4 bytes from [[a0+12]+24] +0x7c.
   The `lw` at 0x10142d6c loads 4 bytes from [[a0+12]+120] +0x8.
+  The `sw` at 0x10142dbc stores 4 bytes to [a0+12] +0x7c.
+  The `sw` at 0x10142dc8 stores 4 bytes to [a0+12] +0x78.
   The `jal` at 0x10142c54 calls FreeGrab..KD [0x1023f8c0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10142d94 calls FreeCursor [0x10205d70] with a0=[[[a0+12]+120]+4], a1=0x0, a2=[a0+12], a3=[[[a0+12]+120]+4], a4=[[a0+12]+24], a5=[[a0+12]+124].
-  The `jal` at 0x10142db8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10142db8 calls Xfree [0x101fc9c0] with a0=[[a0+12]+120], a1=([[a0+12]+124] | 0x10000000), a2=[a0+12], a3=?, a5=[[a0+12]+124].
   The `beq` branch at 0x10142c14 targets 0x10142c20, is taken when a3(=[[a0+12]+120]) == 0, and falls through when a3(=[[a0+12]+120]) != 0.
   The `beq` branch at 0x10142c20 targets 0x10142c54, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10142c28 targets 0x10142c48, is taken when s0(=a0) == a2(?), and falls through when s0(=a0) != a2(?).
@@ -23571,8 +23866,9 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x10142e20-0x101439c0 (2976 bytes).
   It occupies 2976 bytes.
-  10 such `sb` accesses store 1 byte to ?, including `sb` at 0x10142ee4, `sb` at 0x10142fb0, `sb` at 0x10142fd4.
-  4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10142fb4, `lbu` at 0x10142fd8, `lbu` at 0x10142ff0.
+  6 such `sb` accesses store 1 byte to ?, including `sb` at 0x10142ee4, `sb` at 0x10142fb0, `sb` at 0x10142fd4.
+  The `lbu` at 0x10142fb4 loads 1 byte from ret(strstr) +0x2.
+  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10142fd8, `lbu` at 0x10142ff0, `lbu` at 0x10143914.
   4 such `ldc1` accesses load 8 bytes from a5 (arg5 at entry) +0x10, including `ldc1` at 0x10143030, `ldc1` at 0x1014350c, `ldc1` at 0x10143544.
   4 such `ldc1` accesses load 8 bytes from a5 (arg5 at entry) +0x8, including `ldc1` at 0x10143038, `ldc1` at 0x1014351c, `ldc1` at 0x1014354c.
   2 such `ldc1` accesses load 8 bytes from abs 0x10292430, including `ldc1` at 0x10143040, `ldc1` at 0x10143068.
@@ -23596,19 +23892,48 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10143584 loads 2 bytes from [0x102c7bd4] +0x4.
   The `lhu` at 0x10143588 loads 2 bytes from [0x102c7bd4] +0x0.
   The `lhu` at 0x1014358c loads 2 bytes from [0x102c7bd4] +0x2.
-  8 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10143590, `sh` at 0x10143594, `sh` at 0x101435c0.
-  4 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10143598, `lhu` at 0x1014359c, `lhu` at 0x10143620.
-  13 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1014366c, `sw` at 0x10143698, `sw` at 0x101436a0.
-  4 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0x1014375c, `sdc1` at 0x10143768, `sdc1` at 0x10143774.
+  The `sh` at 0x10143590 stores 2 bytes to ret(Xalloc) +0x4.
+  The `sh` at 0x10143594 stores 2 bytes to ret(Xalloc) +0x8.
+  2 such `lhu` accesses load 2 bytes from ret(Xalloc) +0x4, including `lhu` at 0x10143598, `lhu` at 0x10143624.
+  The `lhu` at 0x1014359c loads 2 bytes from ret(Xalloc) +0x8.
+  The `sh` at 0x101435c0 stores 2 bytes to ret(Xalloc) +0x6.
+  The `sh` at 0x101435c4 stores 2 bytes to ret(Xalloc) +0xa.
+  The `lhu` at 0x10143620 loads 2 bytes from ret(Xalloc) +0x6.
+  The `sw` at 0x1014366c stores 4 bytes to ret(Xalloc) +0x34.
+  The `sw` at 0x10143698 stores 4 bytes to ret(Xalloc) +0x80.
+  The `sw` at 0x101436a0 stores 4 bytes to ret(Xalloc) +0x7c.
+  2 such `sw` accesses store 4 bytes to ret(Xalloc) +0x0, including `sw` at 0x101436a4, `sw` at 0x10143708.
+  The `sw` at 0x101436a8 stores 4 bytes to ret(Xalloc) +0x68.
+  The `sb` at 0x101436ac stores 1 byte to ret(Xalloc) +0x57.
+  The `sb` at 0x101436b0 stores 1 byte to ret(Xalloc) +0x56.
+  The `sb` at 0x101436b4 stores 1 byte to ret(Xalloc) +0x55.
+  The `sb` at 0x101436b8 stores 1 byte to ret(Xalloc) +0x54.
+  The `sw` at 0x101436bc stores 4 bytes to ret(Xalloc) +0x58.
+  The `sh` at 0x101436c0 stores 2 bytes to ret(Xalloc) +0xc.
+  The `sw` at 0x101436d8 stores 4 bytes to ret(Xalloc) +0x64.
+  The `sw` at 0x101436e4 stores 4 bytes to ret(Xalloc) +0x5c.
+  The `sw` at 0x101436f0 stores 4 bytes to ret(Xalloc) +0x60.
+  The `sw` at 0x1014373c stores 4 bytes to ret(Xalloc) +0x4.
+  The `sdc1` at 0x1014375c stores 8 bytes to ret(Xalloc) +0x10.
+  The `sdc1` at 0x10143768 stores 8 bytes to ret(Xalloc) +0x18.
+  The `sdc1` at 0x10143774 stores 8 bytes to ret(Xalloc) +0x20.
   The `lw` at 0x1014377c loads 4 bytes from [0x102c7bd0] +0x2c.
+  The `sdc1` at 0x10143780 stores 8 bytes to ret(Xalloc) +0x28.
+  The `sw` at 0x10143784 stores 4 bytes to ret(Xalloc) +0x74.
   3 such `lw` accesses load 4 bytes from [[0x102c7bd0]+44] +0xbc, including `lw` at 0x10143788, `lw` at 0x101437dc, `lw` at 0x10143874.
   2 such `lw` accesses load 4 bytes from [[[0x102c7bd0]+44]+188] +0x1c, including `lw` at 0x1014378c, `lw` at 0x10143880.
+  The `sh` at 0x101437d8 stores 2 bytes to ret(Xalloc) +0x44.
   2 such `lw` accesses load 4 bytes from [[[0x102c7bd0]+44]+188] +0xc, including `lw` at 0x101437e0, `lw` at 0x1014387c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10143844, `lw` at 0x1014393c, `lw` at 0x1014396c.
+  The `lw` at 0x10143844 loads 4 bytes from ret(Xalloc) +0xc.
+  The `sw` at 0x1014385c stores 4 bytes to ret(Xalloc) +0xc.
+  The `sh` at 0x10143870 stores 2 bytes to ret(Xalloc) +0x46.
   2 such `lw` accesses load 4 bytes from a3 (arg3 at entry) +0x0, including `lw` at 0x10143878, `lw` at 0x101438c0.
   The `sw` at 0x101438e0 stores 4 bytes to a1 (arg1 at entry) +0x0.
   The `lh` at 0x10143904 loads 2 bytes from ret(t1_Transform) +0x2.
   The `lh` at 0x10143918 loads 2 bytes from ?.
+  The `sh` at 0x1014392c stores 2 bytes to ?.
+  2 such `lw` accesses load 4 bytes from ret(Xalloc) +0x34, including `lw` at 0x1014393c, `lw` at 0x1014397c.
+  The `lw` at 0x1014396c loads 4 bytes from ret(Xalloc) +0x0.
   The `jalr` at 0x10142e54 calls strlen with a0=a4 at entry (arg4), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x10142e88 calls strrchr with a0=a4 at entry (arg4), a1=0x2f, a2=?, a3=?.
   The `jalr` at 0x10142ec4 calls strncpy with a0=sp-6224, a1=a4 at entry (arg4), a2=?, a3=a4 at entry (arg4).
@@ -23617,8 +23942,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10142f08 calls strcpy with a0=sp-4176, a1=sp-6224, a2=?, a3=?.
   The `jalr` at 0x10142f20 calls strcat with a0=sp-4176, a1=0x10293588, a2=?, a3=?.
   The `jalr` at 0x10142f38 calls strcat with a0=sp-6224, a1=0x10293590, a2=?, a3=?.
-  The `jalr` at 0x10142f5c calls strstr with a0=?, a1=0x10291bf0, a2=?, a3=?.
-  The `jalr` at 0x10142f94 calls strcpy with a0=sp-3152, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10142f5c calls strstr with a0=ret(strrchr)+1, a1=0x10291bf0, a2=?, a3=?.
+  The `jalr` at 0x10142f94 calls strcpy with a0=sp-3152, a1=ret(strrchr)+1, a2=ret(strrchr)+1, a3=?.
   The `jalr` at 0x10143018 calls strlen with a0=sp-2896, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143034 calls hypot with a0=?, a1=?, a2=?, a3=?, a4=a5 at entry (arg5); fp f12=[a5+8]:8, f13=[a5+16]:8.
   The `jalr` at 0x1014305c calls hypot with a0=?, a1=?, a2=?, a3=?, a5=0x10290000, a6=a5 at entry (arg5); fp f12=[a5+24]:8, f13=[a5+32]:8.
@@ -23627,7 +23952,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x101430d4 calls strlen with a0=0x102cd300, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143108 calls strcpy with a0=sp-2640, a1=sp-4176, a2=?, a3=?.
   The `jalr` at 0x10143118 calls strcat with a0=sp-2640, a1=sp-3152, a2=?, a3=?.
-  The `jalr` at 0x10143128 calls strcat with a0=sp-2640, a1=?, a2=?, a3=?.
+  The `jalr` at 0x10143128 calls strcat with a0=sp-2640, a1=0x10291bf0, a2=?, a3=?.
   The `jalr` at 0x10143138 calls strcat with a0=sp-2640, a1=sp-2896, a2=?, a3=?.
   The `jalr` at 0x10143150 calls strcat with a0=sp-2640, a1=0x102935a0, a2=?, a3=?.
   The `jalr` at 0x1014315c calls strlen with a0=sp-6224, a1=?, a2=?, a3=?.
@@ -23644,48 +23969,48 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10143388 calls bzero with a0=ret(Xalloc), a1=0x48, a2=?, a3=?.
   The `jalr` at 0x1014339c calls hypot with a0=?, a1=?, a2=?, a3=?; fp f12=[a5+24]:8, f13=[a5+32]:8.
   The `jal` at 0x101433e4 calls Xalloc [0x1020aeb0] with a0=table(0x30d40), a1=?, a2=?, a3=?.
-  The `jal` at 0x101433f8 calls addmemory [0x10190800] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x101433f8 calls addmemory [0x10190800] with a0=ret(Xalloc), a1=table(0x30d40), a2=?, a3=?.
   The `jal` at 0x10143408 calls CIDfontfcnA [0x1008bf80] with a0=sp-2384, a1=sp-1360, a2=sp-336, a3=?.
-  The `jal` at 0x10143464 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a4=0x102c84d0, a7=0x102c84c0.
-  The `jal` at 0x10143470 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1014347c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10143464 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?, a4=0x102c84d0, a7=0x102c84c0.
+  The `jal` at 0x10143470 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x1014347c calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x10143484 calls Type1ReturnCodeToXReturnCode [0x10264510] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101434a8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101434b4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101434c8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101434a8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x101434b4 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x101434c8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x101434fc calls t1_Transform [0x100b8ed0] with a0=0x102c2c80, a1=?, a2=0x10290000, a3=?, a4=0x102c84d0, a7=0x102c84c0; fp f13=0x3f50624dd2f1a9fc, f16=0x3f50624dd2f1a9fc.
   The `jal` at 0x10143520 calls t1_Transform [0x100b8ed0] with a0=ret(t1_Transform), a1=a5 at entry (arg5), a2=?, a3=?; fp f13=[a5+8]:8, f15=[a5+24]:8.
   The `jalr` at 0x10143548 calls hypot with a0=?, a1=?, a2=?, a3=a5 at entry (arg5); fp f12=[a5+8]:8, f13=[a5+16]:8.
-  The `jal` at 0x10143614 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a5=0x10290000.
-  The `jal` at 0x10143634 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143640 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10143614 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?, a4=0x102c84c0, a5=0x10290000, a7=0x102c84d0.
+  The `jal` at 0x10143634 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10143640 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x1014365c calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143678 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0x101436ec calls strlen with a0=sp-2384, a1=?, a2=0x101e3bc0, a3=?, a4=0x101bb570, a5=0x101fc650.
+  The `jalr` at 0x101436ec calls strlen with a0=sp-2384, a1=?, a2=0x101e3bc0, a3=ret(Xalloc), a4=0x101bb570, a5=0x101fc650.
   The `jal` at 0x101436f8 calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143714 calls strcpy with a0=ret(Xalloc), a1=sp-2384, a2=?, a3=?.
   The `jalr` at 0x10143720 calls strlen with a0=sp-1360, a1=?, a2=?, a3=?.
   The `jal` at 0x1014372c calls Xalloc [0x1020aeb0] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143748 calls strcpy with a0=ret(Xalloc), a1=sp-1360, a2=?, a3=?.
   The `jalr` at 0x10143894 calls strncmp with a0=[a3], a1=0x102935a8, a2=0x6, a3=-0x1001, a4=0x1028e9e8; fp f15=[a5+32]:8.
-  The `jal` at 0x101438c8 calls CIDFillFontInfo [0x1008dec0] with a0=?, a1=a5 at entry (arg5), a2=sp-2384, a3=[a3], a4=sp-1360, a5=sp-2640.
-  The `jal` at 0x101438e8 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101438f4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143938 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143944 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143950 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143968 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143978 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143984 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10143990 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101438c8 calls CIDFillFontInfo [0x1008dec0] with a0=ret(Xalloc), a1=a5 at entry (arg5), a2=sp-2384, a3=[a3], a4=sp-1360, a5=sp-2640, a6=[[[[0x102c7bd0]+44]+188]+28].
+  The `jal` at 0x101438e8 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=ret(Xalloc), a2=?, a3=?.
+  The `jal` at 0x101438f4 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10143938 calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)+52], a1=?, a2=?, a3=?.
+  The `jal` at 0x10143944 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10143950 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10143968 calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)], a1=?, a2=?, a3=?.
+  The `jal` at 0x10143978 calls Xfree [0x101fc9c0] with a0=[ret(Xalloc)+52], a1=?, a2=?, a3=?.
+  The `jal` at 0x10143984 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jal` at 0x10143990 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x101439b0 calls t1_Copy [0x10126a60] with a0=ret(t1_Transform), a1=?, a2=?, a3=a5 at entry (arg5).
   The `blez` branch at 0x10142e5c targets 0x10142e6c, is taken when v0(=ret(strlen)) <= 0 (signed), and falls through when v0(=ret(strlen)) > 0 (signed).
   The `bne` branch at 0x10142e64 targets 0x10142e84, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `bne` branch at 0x10142e90 targets 0x10142eac, is taken when v0(=ret(strrchr)) != 0, and falls through when v0(=ret(strrchr)) == 0.
   The `beq` branch at 0x10142f68 targets 0x1014308c, is taken when v0(=ret(strstr)) == 0, and falls through when v0(=ret(strstr)) != 0.
-  The `bne` branch at 0x10142f70 targets 0x10142f8c, is taken when v0(=ret(strstr)) != a2(?), and falls through when v0(=ret(strstr)) == a2(?).
-  The `beq` branch at 0x10142fb8 targets 0x1014300c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `beq` branch at 0x10142fc4 targets 0x10143010, is taken when t2(=0x2e) == a0(?), and falls through when t2(=0x2e) != a0(?).
+  The `bne` branch at 0x10142f70 targets 0x10142f8c, is taken when v0(=ret(strstr)) != a2(=ret(strrchr)+1), and falls through when v0(=ret(strstr)) == a2(=ret(strrchr)+1).
+  The `beq` branch at 0x10142fb8 targets 0x1014300c, is taken when a0(=[ret(strstr)+2]:1) == 0, and falls through when a0(=[ret(strstr)+2]:1) != 0.
+  The `beq` branch at 0x10142fc4 targets 0x10143010, is taken when t2(=0x2e) == a0(=[ret(strstr)+2]:1), and falls through when t2(=0x2e) != a0(=[ret(strstr)+2]:1).
   The `beq` branch at 0x10142fdc targets 0x1014300c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x10142fe4 targets 0x1014300c, is taken when t2(=0x2e) == a0(?), and falls through when t2(=0x2e) != a0(?).
   The `beq` branch at 0x10142ffc targets 0x1014300c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
@@ -23693,11 +24018,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0x10143020 targets 0x101430a0, is taken when v0(=ret(strlen)) <= 0 (signed), and falls through when v0(=ret(strlen)) > 0 (signed).
   The `bc1t` branch at 0x1014304c targets 0x10143078, is taken when f0(=ret(hypot)) < f1(=0x3ff0000000000000) (c.lt.d at 0x10143044), and falls through when not (f0(=ret(hypot)) < f1(=0x3ff0000000000000) (c.lt.d at 0x10143044)).
   The `bc1f` branch at 0x10143074 targets 0x101430b0, is taken when not (f0(=ret(hypot)) < f2(=0x3ff0000000000000) (c.lt.d at 0x1014306c)), and falls through when f0(=ret(hypot)) < f2(=0x3ff0000000000000) (c.lt.d at 0x1014306c).
-  The `bne` branch at 0x101430f4 targets 0x10143104, is taken when t0(?) < 0x100 (unsigned), and falls through when t0(?) >= 0x100 (unsigned).
+  The `bne` branch at 0x101430f4 targets 0x10143104, is taken when t0(=(ret(strlen) + (ret(strlen) + ret(strlen)))+7) < 0x100 (unsigned), and falls through when t0(=(ret(strlen) + (ret(strlen) + ret(strlen)))+7) >= 0x100 (unsigned).
   The `beq` branch at 0x101430fc targets 0x10142e70 and is always taken.
-  The `bne` branch at 0x10143184 targets 0x10143194, is taken when a2(?) < 0x401 (unsigned), and falls through when a2(?) >= 0x401 (unsigned).
+  The `bne` branch at 0x10143184 targets 0x10143194, is taken when a2(=(ret(strlen) + ret(strlen))+2) < 0x401 (unsigned), and falls through when a2(=(ret(strlen) + ret(strlen))+2) >= 0x401 (unsigned).
   The `beq` branch at 0x1014318c targets 0x10142e70 and is always taken.
-  The `bne` branch at 0x101431dc targets 0x101431ec, is taken when a3(?) < 0x401 (unsigned), and falls through when a3(?) >= 0x401 (unsigned).
+  The `bne` branch at 0x101431dc targets 0x101431ec, is taken when a3(=(ret(strlen) + ret(strlen))+2) < 0x401 (unsigned), and falls through when a3(=(ret(strlen) + ret(strlen))+2) >= 0x401 (unsigned).
   The `beq` branch at 0x101431e4 targets 0x10142e70 and is always taken.
   The `beq` branch at 0x10143218 targets 0x10143298, is taken when (v0(=a7) & 0x2) == 0, and falls through when (v0(=a7) & 0x2) != 0.
   The `beq` branch at 0x10143234 targets 0x101432a4, is taken when (v0(=a7) & 0x1) == 0, and falls through when (v0(=a7) & 0x1) != 0.
@@ -23723,7 +24048,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10143324 targets 0x10143344, is taken when (a0(=a6) & 0xc) == 0, and falls through when (a0(=a6) & 0xc) != 0.
   The `beq` branch at 0x1014332c targets 0x10143344, is taken when v0(?) == a7(=0x4), and falls through when v0(?) != a7(=0x4).
   The `beq` branch at 0x10143334 targets 0x10143344, is taken when v0(?) == t0(=0x8), and falls through when v0(?) != t0(=0x8).
-  The `bne` branch at 0x10143344 targets 0x1014327c, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x10143344 targets 0x1014327c, is taken when a3(=one of 0x0, 0x1) != 0, and falls through when a3(=one of 0x0, 0x1) == 0.
   The `beq` branch at 0x1014334c targets 0x1014327c and is always taken.
   The `beq` branch at 0x10143354 targets 0x10143314 and is always taken.
   The `beq` branch at 0x10143378 targets 0x101434c4, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
@@ -23738,7 +24063,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10143528 targets 0x1014353c, is taken when v0(=ret(t1_Transform)) == 0, and falls through when v0(=ret(t1_Transform)) != 0.
   The `beq` branch at 0x10143538 targets 0x10143904, is taken when (a2(=[ret(t1_Transform)+1]:1) & 0x1) == 0, and falls through when (a2(=[ret(t1_Transform)+1]:1) & 0x1) != 0.
   The `bc1f` branch at 0x10143564 targets 0x10143578, is taken when not (f17(=0x3bc79ca10c924223) < f0(=ret(hypot)) (c.lt.d at 0x10143558)), and falls through when f17(=0x3bc79ca10c924223) < f0(=ret(hypot)) (c.lt.d at 0x10143558).
-  The `beq` branch at 0x1014362c targets 0x10143650, is taken when ra(?) >= at(?) (signed), and falls through when ra(?) < at(?) (signed).
+  The `beq` branch at 0x1014362c targets 0x10143650, is taken when ra(=[ret(Xalloc)+6]:2) >= at(=[ret(Xalloc)+4]:2) (signed), and falls through when ra(=[ret(Xalloc)+6]:2) < at(=[ret(Xalloc)+4]:2) (signed).
   The `beq` branch at 0x10143648 targets 0x10142e70 and is always taken.
   The `beq` branch at 0x10143668 targets 0x101438e4, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
   The `beq` branch at 0x10143704 targets 0x10143930, is taken when v0(=ret(Xalloc)) == 0, and falls through when v0(=ret(Xalloc)) != 0.
@@ -23803,18 +24128,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10143d4c stores 4 bytes to a0 (arg0 at entry) +0x10.
   5 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10143e34, `sh` at 0x10143f4c, `sh` at 0x10143f54.
   The `jal` at 0x10143c38 calls Xalloc [0x1020aeb0] with a0=([a0+9]:1 + [a0+9]:1)+2, a1=a1 at entry (arg1), a2=?, a3=?, a5=[a0+9]:1.
-  The `jalr` at 0x10143c54 calls bzero with a0=ret(Xalloc), a1=?, a2=ret(Xalloc), a3=?.
+  The `jalr` at 0x10143c54 calls bzero with a0=ret(Xalloc), a1=([a0+9]:1 + [a0+9]:1)+2, a2=ret(Xalloc), a3=?.
   The `jal` at 0x10143cc8 calls Xalloc [0x1020aeb0] with a0=0x28, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10143d64 calls Xalloc [0x1020aeb0] with a0=[a0+9]:1+1, a1=a1 at entry (arg1), a2=?, a3=?, a5=[a0+9]:1.
-  The `jalr` at 0x10143d84 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?, a5=ret(Xalloc).
+  The `jalr` at 0x10143d84 calls bzero with a0=ret(Xalloc), a1=[a0+9]:1+1, a2=?, a3=?, a5=ret(Xalloc).
   The `jal` at 0x10143e00 calls Xrealloc [0x101b9470] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10143e38 calls bzero with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10143e80 calls Xalloc [0x1020aeb0] with a0=([a0+9]:1 + [a0+9]:1)+2, a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0x10143ea0 calls bzero with a0=ret(Xalloc), a1=?, a2=ret(Xalloc), a3=?.
+  The `jalr` at 0x10143ea0 calls bzero with a0=ret(Xalloc), a1=([a0+9]:1 + [a0+9]:1)+2, a2=ret(Xalloc), a3=?.
   The `jal` at 0x10143f0c calls Xalloc [0x1020aeb0] with a0=?, a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x10143f2c calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?, a5=ret(Xalloc).
   The `jal` at 0x10143f78 calls Xalloc [0x1020aeb0] with a0=([a0+9]:1 + [a0+9]:1)+2, a1=a1 at entry (arg1), a2=?, a3=?, a5=[a0+9]:1.
-  The `jalr` at 0x10143f98 calls bzero with a0=ret(Xalloc), a1=?, a2=ret(Xalloc), a3=?.
+  The `jalr` at 0x10143f98 calls bzero with a0=ret(Xalloc), a1=([a0+9]:1 + [a0+9]:1)+2, a2=ret(Xalloc), a3=?.
   The `jal` at 0x10143fc0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0x10143aa8 targets 0x10143c90, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x10143ab4 targets 0x10143cbc, is taken when v0(=[a0+16]) == 0, and falls through when v0(=[a0+16]) != 0.
@@ -23889,8 +24214,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10144054 loads 2 bytes from [a0+8] +0x4.
   The `lw` at 0x10144064 loads 4 bytes from sym(inputInfo) +0xc.
   The `lbu` at 0x10144068 loads 1 byte from [sym(inputInfo)+12] +0x4c.
-  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014407c, `lw` at 0x10144088, `lw` at 0x1014410c.
-  The `lw` at 0x1014409c loads 4 bytes from [a0+8] +0xc.
+  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014407c, `lw` at 0x10144088, `lw` at 0x10144110.
+  6 such `lw` accesses load 4 bytes from [a0+8] +0xc, including `lw` at 0x1014409c, `lw` at 0x1014410c, `lw` at 0x1014414c.
   The `lhu` at 0x101440c8 loads 2 bytes from [a0+8] +0x6.
   The `lhu` at 0x101440d4 loads 2 bytes from [a0+8] +0x8.
   The `lw` at 0x101440f0 loads 4 bytes from ret(XkbFindSrvLedInfo) +0x28.
@@ -23909,7 +24234,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10144380 loads 2 bytes from ?.
   The `lw` at 0x101443a4 loads 4 bytes from sym(inputInfo) +0x8.
   The `jal` at 0x101440d0 calls XkbFindSrvLedInfo [0x10242bc0] with a0=?, a1=[[a0+8]+6]:2, a2=[[a0+8]+8]:2, a3=0x0, a4=[[a0+8]+12].
-  The `jal` at 0x1014421c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-72, a3=?.
+  The `jal` at 0x1014421c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-72, a3=?, a4=[[a0+8]+12].
   The `beq` branch at 0x10144030 targets 0x10144044, is taken when at(=[a0+72]) == v0(=0x4), and falls through when at(=[a0+72]) != v0(=0x4).
   The `beq` branch at 0x1014404c targets 0x10144398, is taken when (v1(=[a0+92]:2) & 0x8000) == 0, and falls through when (v1(=[a0+92]:2) & 0x8000) != 0.
   The `beq` branch at 0x10144060 targets 0x10144074, is taken when a4(=[[a0+8]+4]:2) == a0(=0x100), and falls through when a4(=[[a0+8]+4]:2) != a0(=0x100).
@@ -23923,7 +24248,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101440e8 targets 0x101443d8, is taken when v0(=ret(XkbFindSrvLedInfo)) == 0, and falls through when v0(=ret(XkbFindSrvLedInfo)) != 0.
   The `beq` branch at 0x101440fc targets 0x101443e0, is taken when a3(=[ret(XkbFindSrvLedInfo)+40]) == 0, and falls through when a3(=[ret(XkbFindSrvLedInfo)+40]) != 0.
   The `beq` branch at 0x10144104 targets 0x10144410, is taken when t2(=[ret(XkbFindSrvLedInfo)+36]) == 0, and falls through when t2(=[ret(XkbFindSrvLedInfo)+36]) != 0.
-  The `beq` branch at 0x10144114 targets 0x101442e4, is taken when t8(?) == a7(?), and falls through when t8(?) != a7(?).
+  The `beq` branch at 0x10144114 targets 0x101442e4, is taken when t8(?) == a7(=[[a0+8]+12]), and falls through when t8(?) != a7(=[[a0+8]+12]).
   The `bne` branch at 0x10144124 targets 0x10144110, is taken when a3(?) != t1(=[ret(XkbFindSrvLedInfo)+40]+128), and falls through when a3(?) == t1(=[ret(XkbFindSrvLedInfo)+40]+128).
   The `beq` branch at 0x101441b0 targets 0x10144210, is taken when v1(=[a0+16]) == 0, and falls through when v1(=[a0+16]) != 0.
   The `beq` branch at 0x10144240 targets 0x10144254, is taken when a4(=[[a0+8]+4]:2) == v1(=0x200), and falls through when a4(=[[a0+8]+4]:2) != v1(=0x200).
@@ -23976,8 +24301,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10144c38 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `jal` at 0x10144618 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10144c44 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-96, a3=?.
-  The `jal` at 0x10144c68 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x10144c74 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10144c68 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=ret(Xalloc), a3=?.
+  The `jal` at 0x10144c74 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jal` at 0x10144cc4 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-128, a3=a3 at entry (arg3), a6=0x2.
   The `jal` at 0x10144da8 calls WriteEventsToClient [0x10180840] with a0=a0 at entry (arg0), a1=0x1, a2=sp-128, a3=[a0+28], a4=[0x102cade0], a5=0x8.
   The `jal` at 0x10144dd0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-96, a3=?.
@@ -24090,13 +24415,13 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
   Range: 0x10144fe0-0x1014507c (156 bytes).
   It occupies 156 bytes.
-  The `sw` at 0x10145068 stores 4 bytes to ?.
+  The `sw` at 0x10145068 stores 4 bytes to (ret(Xrealloc) + ([0x102c6100]+1 << 0x2)) +0x0.
   The `jal` at 0x1014502c calls Xrealloc [0x101b9470] with a0=[0x102c610c], a1=([0x102c6100] << 0x2)+8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `beq` branch at 0x10145004 targets 0x1014501c, is taken when (at(=[0x102c6104]) & v1(=[0x102c6100]+1)) == 0, and falls through when (at(=[0x102c6104]) & v1(=[0x102c6100]+1)) != 0.
   The `bne` branch at 0x10145040 targets 0x10145058, is taken when v0(=ret(Xrealloc)) != 0, and falls through when v0(=ret(Xrealloc)) == 0.
   The return at 0x10145014 has v0 = 0x0.
   The return at 0x10145050 has v0 = 0x0.
-  The return at 0x10145074 has v0 = ?.
+  The return at 0x10145074 has v0 = [0x102c6100]+1.
 - `InitValuatorClassDeviceStruct` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10145080 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -25124,9 +25449,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x101495a0 calls strncpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101495e0 calls (unknown callee) with a0=[ret(__malloc..ML)+4], a1=?, a2=?, a3=?.
   The `jalr` at 0x1014961c calls (unknown callee) with a0=ret(__malloc..ML), a1=?, a2=?, a3=?.
-  The `jal` at 0x1014969c calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1014969c calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?.
   The `jalr` at 0x101496d4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x101497a4 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x101497a4 calls Xfree [0x101fc9c0] with a0=ret(Xalloc), a1=?, a2=?, a3=?.
   The `jalr` at 0x10149820 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1014982c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10149838 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
@@ -25135,7 +25460,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1014987c calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10149894 calls FreeFontPath..LF [0x100859b0] with a0=[0x102c6144], a1=[0x102c6148], a2=0x0, a3=?.
   The `jal` at 0x101498ac calls EmptyFontPatternCache [0x10152cf0] with a0=[0x102c6164], a1=?, a2=?, a3=?.
-  The `jal` at 0x10149900 calls FatalError [0x10094f20] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10149900 calls FatalError [0x10094f20] with a0=0x10291460, a1=?, a2=?, a3=?.
   The `jalr` at 0x10149920 calls __libc_lockmalloc with a0=?, a1=[sym(__us_rsthread_malloc)], a2=?, a3=?, a5=[0x102c7240].
   The `jal` at 0x10149944 calls realfree..NL [0x1025db70] with a0=entry(0x102c71c0), a1=?, a2=?, a3=?, a4=table(0x102c5d40), a5=[0x102c7240], a7=[sym(__us_rsthread_malloc)].
   The `jalr` at 0x10149978 calls __libc_unlockmalloc with a0=?, a1=?, a2=?, a3=?, a4=table(0x102c5d40), a5=[0x102c7240], a7=[sym(__us_rsthread_malloc)].
@@ -25194,7 +25519,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014976c targets 0x10149b60, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `bnel` branch at 0x1014977c targets 0x101497f4, is taken when t9(?) != 0, and falls through when t9(?) == 0; its branch-likely delay slot `lw s1,-4(s0)` at 0x10149780 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x101497dc targets 0x10149848, is taken when ra(?) == 0, and falls through when ra(?) != 0.
-  The `beq` branch at 0x101497e8 targets 0x10149784, is taken when s2(?) == s0(?), and falls through when s2(?) != s0(?).
+  The `beq` branch at 0x101497e8 targets 0x10149784, is taken when s2(=ret(Xalloc)) == s0(?), and falls through when s2(=ret(Xalloc)) != s0(?).
   The `bne` branch at 0x101497fc targets 0x101497d0, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x10149840 targets 0x101497d4 and is always taken.
   The `beq` branch at 0x10149884 targets 0x101497e8 and is always taken.
@@ -25266,57 +25591,74 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10149d00, `lw` at 0x10149f5c.
   The `lw` at 0x10149d0c loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10149d28 loads 4 bytes from sym(inputInfo) +0x10.
-  6 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10149d54, `lbu` at 0x10149d84, `lbu` at 0x10149db0.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0xa, including `lbu` at 0x10149d54, `lbu` at 0x1014a1c4.
   5 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10149d7c, `sw` at 0x10149da8, `sw` at 0x10149dd4.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10149ddc, `lhu` at 0x1014a194.
-  17 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10149e0c, `lw` at 0x10149e1c, `lw` at 0x10149e4c.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0xb, including `lbu` at 0x10149d84, `lbu` at 0x1014a1a4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x1, including `lbu` at 0x10149db0, `lbu` at 0x1014a174.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x8, including `lhu` at 0x10149ddc, `lhu` at 0x1014a194.
+  The `lw` at 0x10149e0c loads 4 bytes from [a0+8] +0x4.
+  The `lw` at 0x10149e1c loads 4 bytes from [a0+8] +0xc.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x10, including `lw` at 0x10149e4c, `lw` at 0x1014a058.
+  The `lw` at 0x10149e84 loads 4 bytes from [a0+8] +0x14.
   The `lw` at 0x10149e94 loads 4 bytes from sym(currentTime) +0x4.
   The `lw` at 0x10149ea0 loads 4 bytes from sym(currentTime) +0x0.
   The `lw` at 0x10149edc loads 4 bytes from a0 (arg0 at entry) +0x1c.
+  The `lw` at 0x10149eec loads 4 bytes from [sym(inputInfo)+16] +0x2c.
+  The `lw` at 0x10149f0c loads 4 bytes from [[sym(inputInfo)+16]+44] +0x4.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x10149f14, `lw` at 0x1014a038, `lw` at 0x1014a168.
+  The `lw` at 0x10149f30 loads 4 bytes from ret(SecurityLookupWindow) +0x7c.
   The `lw` at 0x10149f4c loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lbu` at 0x10149f60 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10149f70 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `ldl` at 0x10149fc8 loads 8 bytes from sym(currentTime) +0x0.
   The `ldr` at 0x10149fd0 loads 8 bytes from sym(currentTime) +0x7.
+  The `lw` at 0x10149fe4 loads 4 bytes from ?.
+  The `lw` at 0x1014a018 loads 4 bytes from [sym(inputInfo)+16] +0x30.
+  The `lw` at 0x1014a024 loads 4 bytes from [sym(inputInfo)+16] +0x38.
+  The `lw` at 0x1014a030 loads 4 bytes from [[sym(inputInfo)+16]+56] +0x4.
   The `ld` at 0x1014a088 loads 8 bytes from sym(currentTime) +0x0.
+  The `lw` at 0x1014a0d8 loads 4 bytes from [sym(inputInfo)+16] +0x1c.
+  The `lw` at 0x1014a0dc loads 4 bytes from [sym(inputInfo)+16] +0x18.
+  The `lw` at 0x1014a130 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x28.
+  The `lw` at 0x1014a144 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x2c.
+  The `lw` at 0x1014a1ec loads 4 bytes from [sym(inputInfo)+16] +0x88.
   The `lw` at 0x1014a244 loads 4 bytes from [0x102c5fd8] +0x0.
   The `jal` at 0x10149d48 calls UpdateCurrentTime [0x10064a10] with a0=a0 at entry (arg0), a1=[a0+8], a2=0x102d0000, a3=a3 at entry (arg3).
-  The `jal` at 0x10149e08 calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=?.
-  The `jal` at 0x10149e34 calls SecurityLookupWindow [0x1006ce40] with a0=?, a1=a0 at entry (arg0), a2=0x1, a3=?.
-  The `jal` at 0x10149e6c calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=?, a2=0x5, a3=0x1.
+  The `jal` at 0x10149e08 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=?, a4=[[a0+8]+8]:2.
+  The `jal` at 0x10149e34 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+12], a1=a0 at entry (arg0), a2=0x1, a3=?.
+  The `jal` at 0x10149e6c calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+16], a2=0x5, a3=0x1.
   The `jalr` at 0x10149f78 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-200, a3=?.
-  The `jal` at 0x10149ff8 calls BorderSizeNotEmpty..KC [0x10140550] with a0=?, a1=?, a2=?, a3=?, a7=0x1.
+  The `jal` at 0x10149ff8 calls BorderSizeNotEmpty..KC [0x10140550] with a0=?, a1=?, a2=?, a3=?, a5=[[sym(inputInfo)+16]+44], a7=0x1.
   The `jal` at 0x1014a074 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-200, a3=?.
-  The `jalr` at 0x1014a1fc calls (unknown callee) with a0=?, a1=sp-136, a2=?, a3=0x0, a4=0xffffffffbfffffff.
+  The `jalr` at 0x1014a1fc calls (unknown callee) with a0=[sym(inputInfo)+16], a1=sp-136, a2=?, a3=0x0, a4=0xffffffffbfffffff, a5=ret(SecurityLookupWindow).
   The `jal` at 0x1014a218 calls FreeCursor [0x10205d70] with a0=?, a1=0x0, a2=?, a3=?.
-  The `jal` at 0x1014a240 calls ConfineCursorToWindow [0x101f8df0] with a0=[[0x102c5fd8]], a1=0x0, a2=0x0, a3=?, a7=0x0.
+  The `jal` at 0x1014a240 calls ConfineCursorToWindow [0x101f8df0] with a0=[[0x102c5fd8]], a1=0x0, a2=0x0, a3=?, a5=[[sym(inputInfo)+16]+44], a7=0x0.
   The `beq` branch at 0x10149d2c targets 0x10149d44, is taken when at(=[a0+72]) == v0(=0x6), and falls through when at(=[a0+72]) != v0(=0x6).
-  The `beq` branch at 0x10149d58 targets 0x10149d80, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10149d64 targets 0x10149d80, is taken when a4(?) == a5(=0x1), and falls through when a4(?) != a5(=0x1).
-  The `beq` branch at 0x10149d88 targets 0x10149dac, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10149d90 targets 0x10149dac, is taken when a4(?) == a5(=0x1), and falls through when a4(?) != a5(=0x1).
-  The `beq` branch at 0x10149db4 targets 0x10149dd8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10149dbc targets 0x10149dd8, is taken when a4(?) == a5(=0x1), and falls through when a4(?) != a5(=0x1).
-  The `beq` branch at 0x10149de8 targets 0x10149e00, is taken when (a4(?) & a7(=-0x7ffd)) == 0, and falls through when (a4(?) & a7(=-0x7ffd)) != 0.
+  The `beq` branch at 0x10149d58 targets 0x10149d80, is taken when a4(=[[a0+8]+10]:1) == 0, and falls through when a4(=[[a0+8]+10]:1) != 0.
+  The `beq` branch at 0x10149d64 targets 0x10149d80, is taken when a4(=[[a0+8]+10]:1) == a5(=0x1), and falls through when a4(=[[a0+8]+10]:1) != a5(=0x1).
+  The `beq` branch at 0x10149d88 targets 0x10149dac, is taken when a4(=[[a0+8]+11]:1) == 0, and falls through when a4(=[[a0+8]+11]:1) != 0.
+  The `beq` branch at 0x10149d90 targets 0x10149dac, is taken when a4(=[[a0+8]+11]:1) == a5(=0x1), and falls through when a4(=[[a0+8]+11]:1) != a5(=0x1).
+  The `beq` branch at 0x10149db4 targets 0x10149dd8, is taken when a4(=[[a0+8]+1]:1) == 0, and falls through when a4(=[[a0+8]+1]:1) != 0.
+  The `beq` branch at 0x10149dbc targets 0x10149dd8, is taken when a4(=[[a0+8]+1]:1) == a5(=0x1), and falls through when a4(=[[a0+8]+1]:1) != a5(=0x1).
+  The `beq` branch at 0x10149de8 targets 0x10149e00, is taken when (a4(=[[a0+8]+8]:2) & a7(=-0x7ffd)) == 0, and falls through when (a4(=[[a0+8]+8]:2) & a7(=-0x7ffd)) != 0.
   The `beq` branch at 0x10149df4 targets 0x10149fbc, is taken when a5(=[0x102c5dc0]) == 0, and falls through when a5(=[0x102c5dc0]) != 0.
   The `beq` branch at 0x10149e10 targets 0x10149fb4, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `bne` branch at 0x10149e20 targets 0x10149e30, is taken when a0(?) != 0, and falls through when a0(?) == 0.
+  The `bne` branch at 0x10149e20 targets 0x10149e30, is taken when a0(=[[a0+8]+12]) != 0, and falls through when a0(=[[a0+8]+12]) == 0.
   The `beq` branch at 0x10149e28 targets 0x10149e48 and is always taken.
   The `beq` branch at 0x10149e40 targets 0x10149fd4, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `bne` branch at 0x10149e50 targets 0x10149e60, is taken when a1(?) != 0, and falls through when a1(?) == 0.
+  The `bne` branch at 0x10149e50 targets 0x10149e60, is taken when a1(=[[a0+8]+16]) != 0, and falls through when a1(=[[a0+8]+16]) == 0.
   The `beq` branch at 0x10149e58 targets 0x10149e80 and is always taken.
   The `beq` branch at 0x10149e78 targets 0x1014a050, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `beq` branch at 0x10149e88 targets 0x10149fc8, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x10149ea4 targets 0x10149f8c, is taken when a5(=[sym(currentTime)+4]) >= a4(?) (unsigned), and falls through when a5(=[sym(currentTime)+4]) < a4(?) (unsigned).
+  The `beq` branch at 0x10149e88 targets 0x10149fc8, is taken when a4(=[[a0+8]+20]) == 0, and falls through when a4(=[[a0+8]+20]) != 0.
+  The `beq` branch at 0x10149ea4 targets 0x10149f8c, is taken when a5(=[sym(currentTime)+4]) >= a4(=[[a0+8]+20]) (unsigned), and falls through when a5(=[sym(currentTime)+4]) < a4(=[[a0+8]+20]) (unsigned).
   The `beq` branch at 0x10149eb8 targets 0x10149ecc, is taken when t1(=0xffffffff80000000) >= t3(?) (unsigned), and falls through when t1(=0xffffffff80000000) < t3(?) (unsigned).
-  The `beq` branch at 0x10149f00 targets 0x10149f2c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
+  The `beq` branch at 0x10149f00 targets 0x10149f2c, is taken when a5(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a5(=[[sym(inputInfo)+16]+44]) != 0.
   The `beq` branch at 0x10149f1c targets 0x10149f30, is taken when t1(=[a0+4]) == t3(?), and falls through when t1(=[a0+4]) != t3(?).
   The `beq` branch at 0x10149f24 targets 0x10149f48 and is always taken.
-  The `bltz` branch at 0x10149f38 targets 0x10149fdc, is taken when t3(?) < 0 (signed), and falls through when t3(?) >= 0 (signed).
+  The `bltz` branch at 0x10149f38 targets 0x10149fdc, is taken when t3(=([ret(SecurityLookupWindow)+124] << 0x14)) < 0 (signed), and falls through when t3(=([ret(SecurityLookupWindow)+124] << 0x14)) >= 0 (signed).
   The `beq` branch at 0x10149f50 targets 0x1014a068, is taken when t9(=[a0+16]) == 0, and falls through when t9(=[a0+16]) != 0.
   The `beq` branch at 0x10149f84 targets 0x10149d38 and is always taken.
-  The `beq` branch at 0x10149f90 targets 0x10149ec8, is taken when a4(?) >= a5(=[sym(currentTime)+4]) (unsigned), and falls through when a4(?) < a5(=[sym(currentTime)+4]) (unsigned).
+  The `beq` branch at 0x10149f90 targets 0x10149ec8, is taken when a4(=[[a0+8]+20]) >= a5(=[sym(currentTime)+4]) (unsigned), and falls through when a4(=[[a0+8]+20]) < a5(=[sym(currentTime)+4]) (unsigned).
   The `beq` branch at 0x10149fa0 targets 0x10149ecc, is taken when v0(=0xffffffff80000000) >= v1(?) (unsigned), and falls through when v0(=0xffffffff80000000) < v1(?) (unsigned).
   The `beq` branch at 0x10149fac targets 0x10149ec8 and is always taken.
   The `beq` branch at 0x10149fb4 targets 0x10149d38 and is always taken.
@@ -25326,8 +25668,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10149fdc targets 0x1014a014, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bgez` branch at 0x10149ff0 targets 0x10149f40, is taken when a3(?) >= 0 (signed), and falls through when a3(?) < 0 (signed).
   The `beq` branch at 0x1014a00c targets 0x10149f40, is taken when v0(=ret(BorderSizeNotEmpty..KC)) == 0, and falls through when v0(=ret(BorderSizeNotEmpty..KC)) != 0.
-  The `beq` branch at 0x1014a01c targets 0x1014a084, is taken when a4(?) == 0, and falls through when a4(?) != 0.
-  The `beq` branch at 0x1014a028 targets 0x1014a084, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x1014a01c targets 0x1014a084, is taken when a4(=[[sym(inputInfo)+16]+48]) == 0, and falls through when a4(=[[sym(inputInfo)+16]+48]) != 0.
+  The `beq` branch at 0x1014a028 targets 0x1014a084, is taken when a4(=[[sym(inputInfo)+16]+56]) == 0, and falls through when a4(=[[sym(inputInfo)+16]+56]) != 0.
   The `beq` branch at 0x1014a040 targets 0x1014a084, is taken when a7(=[a0+4]) == t0(?), and falls through when a7(=[a0+4]) != t0(?).
   The `beq` branch at 0x1014a048 targets 0x10149f48 and is always taken.
   The `beq` branch at 0x1014a060 targets 0x10149d38 and is always taken.
@@ -25336,12 +25678,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1014a0a8 targets 0x1014a11c, is taken when a7(?) < a4(?) (unsigned), and falls through when a7(?) >= a4(?) (unsigned).
   The `bne` branch at 0x1014a0c0 targets 0x1014a0d0, is taken when a4(?) < a7(?) (unsigned), and falls through when a4(?) >= a7(?) (unsigned).
   The `bne` branch at 0x1014a0c8 targets 0x1014a120, is taken when t0(?) != 0, and falls through when t0(?) == 0.
-  The `bne` branch at 0x1014a0f8 targets 0x1014a11c, is taken when a4(?) < a7(?) (unsigned), and falls through when a4(?) >= a7(?) (unsigned).
-  The `bne` branch at 0x1014a104 targets 0x1014a128, is taken when a7(?) < a4(?) (unsigned), and falls through when a7(?) >= a4(?) (unsigned).
-  The `beq` branch at 0x1014a118 targets 0x1014a128, is taken when at(?) >= v0(?) (unsigned), and falls through when at(?) < v0(?) (unsigned).
+  The `bne` branch at 0x1014a0f8 targets 0x1014a11c, is taken when a4(?) < a7(=[[sym(inputInfo)+16]+24]) (unsigned), and falls through when a4(?) >= a7(=[[sym(inputInfo)+16]+24]) (unsigned).
+  The `bne` branch at 0x1014a104 targets 0x1014a128, is taken when a7(=[[sym(inputInfo)+16]+24]) < a4(?) (unsigned), and falls through when a7(=[[sym(inputInfo)+16]+24]) >= a4(?) (unsigned).
+  The `beq` branch at 0x1014a118 targets 0x1014a128, is taken when at(?) >= v0(=[[sym(inputInfo)+16]+28]) (unsigned), and falls through when at(?) < v0(=[[sym(inputInfo)+16]+28]) (unsigned).
   The `beq` branch at 0x1014a120 targets 0x10149f48 and is always taken.
-  The `beq` branch at 0x1014a128 targets 0x1014a150, is taken when a5(?) == 0, and falls through when a5(?) != 0.
-  The `beq` branch at 0x1014a134 targets 0x1014a144, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `beq` branch at 0x1014a128 targets 0x1014a150, is taken when a5(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a5(=[[sym(inputInfo)+16]+44]) != 0.
+  The `beq` branch at 0x1014a134 targets 0x1014a144, is taken when v1(=[[[sym(inputInfo)+16]+44]+40]) == 0, and falls through when v1(=[[[sym(inputInfo)+16]+44]+40]) != 0.
   The `beq` branch at 0x1014a13c targets 0x1014a228, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x1014a148 targets 0x1014a154 and is always taken.
   The `beq` branch at 0x1014a208 targets 0x1014a220, is taken when v0(?) == 0, and falls through when v0(?) != 0.
@@ -25561,7 +25903,7 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `sb` accesses store 1 byte to [a0+8] +0x1c, including `sb` at 0x1014b3f4, `sb` at 0x1014b524.
   The `jal` at 0x1014a688 calls LbxQueueSendTag..NOF [0x1018dc40] with a0=a0 at entry (arg0), a1=[a1+28], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1014a6d4 calls ResetCurrentRequest [0x100b1d60] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1014aedc calls LbxSendSendTagData..MOF [0x100f0710] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1014aedc calls LbxSendSendTagData..MOF [0x100f0710] with a0=[a1+26]:2, a1=[a1+28], a2=?, a3=?.
   The `beq` branch at 0x1014a690 targets 0x1014aedc, is taken when v0(=ret(LbxQueueSendTag..NOF)) == 0, and falls through when v0(=ret(LbxQueueSendTag..NOF)) != 0.
   The `beq` branch at 0x1014a69c targets 0x1014a6d4, is taken when v1(=[a0+16]) == 0, and falls through when v1(=[a0+16]) != 0.
   The `beq` branch at 0x1014a6ac targets 0x1014a7c0, is taken when v0(=[[a0+8]]:1) == a0(=0x12), and falls through when v0(=[[a0+8]]:1) != a0(=0x12).
@@ -25643,12 +25985,12 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x48, including `lw` at 0x1014b6b4, `lw` at 0x1014be84.
   2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x1014b70c, `lw` at 0x1014be9c.
   The `lw` at 0x1014b718 loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
-  The `lw` at 0x1014b72c loads 4 bytes from ret(SecurityLookupIDByClass) +0x80.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByClass) +0x80, including `lw` at 0x1014b72c, `lw` at 0x1014be7c.
   The `lw` at 0x1014b730 loads 4 bytes from sym(XRT_PIXMAP) +0x0.
   The `lw` at 0x1014b73c loads 4 bytes from ret(SecurityLookupIDByClass) +0x84.
   5 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x1014b74c, `lw` at 0x1014b81c, `lw` at 0x1014b948.
   5 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1014b7ec, `lbu` at 0x1014b7f0, `lbu` at 0x1014b824.
-  78 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014b7fc, `lw` at 0x1014b800, `lw` at 0x1014b810.
+  77 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014b7fc, `lw` at 0x1014b800, `lw` at 0x1014b810.
   The `sw` at 0x1014b80c stores 4 bytes to a0 (arg0 at entry) +0x2c.
   The `sw` at 0x1014b814 stores 4 bytes to a0 (arg0 at entry) +0x30.
   The `sw` at 0x1014b818 stores 4 bytes to a0 (arg0 at entry) +0x34.
@@ -25697,13 +26039,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1014b754 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=[0x102ca81c], a3=0x1, a4=[sym(XRT_PIXMAP)], a5=[ret(SecurityLookupIDByClass)+132].
   The `jalr` at 0x1014ba34 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=0x2, a6=0x3fffff, a7=sym(clientTable).
   The `jalr` at 0x1014baa8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=0xffffffff80000003, a3=0x1, a6=0x3fffff, a7=sym(clientTable).
-  The `jalr` at 0x1014bae4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a6=0x3fffff, a7=sym(clientTable).
+  The `jalr` at 0x1014bae4 calls (unknown callee) with a0=?, a1=?, a2=?, a3=ret(SecurityLookupIDByClass)-8, a6=0x3fffff, a7=sym(clientTable).
   The `jalr` at 0x1014bb88 calls (unknown callee) with a0=?, a1=0x8, a2=0x1, a3=?, a6=0x3fffff, a7=sym(clientTable).
   The `jal` at 0x1014be60 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+8], a2=[0x102ca81c], a3=0x1, a4=[sym(XRT_PIXMAP)].
-  The `jalr` at 0x1014bfb4 calls memcpy with a0=?, a1=[a0+8]+12, a2=?, a3=?, a4=-0x10, a6=[sym(XRT_WINDOW)].
+  The `jalr` at 0x1014bfb4 calls memcpy with a0=?, a1=[a0+8]+12, a2=?, a3=?, a4=-0x10, a6=[sym(XRT_WINDOW)], a7=[ret(SecurityLookupIDByClass)+128].
   The `jalr` at 0x1014c0b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x1014c128 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014c2d4 calls memcpy with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014c2d4 calls memcpy with a0=[a0+8]+12, a1=?, a2=?, a3=?.
   The `beq` branch at 0x1014b6d4 targets 0x1014b704, is taken when at(=[a0+72]) >= 0x3 (unsigned), and falls through when at(=[a0+72]) < 0x3 (unsigned).
   The `beq` branch at 0x1014b71c targets 0x1014c008, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
   The `bne` branch at 0x1014b734 targets 0x1014be50, is taken when a4(=[sym(XRT_PIXMAP)]) != a5(=[ret(SecurityLookupIDByClass)+128]), and falls through when a4(=[sym(XRT_PIXMAP)]) == a5(=[ret(SecurityLookupIDByClass)+128]).
@@ -25716,8 +26058,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1014b804 targets 0x1014c33c, is taken when ra(?) != at(?), and falls through when ra(?) == at(?).
   The `beq` branch at 0x1014b828 targets 0x1014bb18, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x1014b838 targets 0x1014bad4, is taken when a2(?) != a1(?), and falls through when a2(?) == a1(?).
-  The `beq` branch at 0x1014b844 targets 0x1014c0a8, is taken when s5(?) == a3(?), and falls through when s5(?) != a3(?).
-  The `beq` branch at 0x1014b85c targets 0x1014c0a8, is taken when a4(?) == s5(?), and falls through when a4(?) != s5(?).
+  The `beq` branch at 0x1014b844 targets 0x1014c0a8, is taken when s5(?) == a3(=ret(SecurityLookupIDByClass)-8), and falls through when s5(?) != a3(=ret(SecurityLookupIDByClass)-8).
+  The `beq` branch at 0x1014b85c targets 0x1014c0a8, is taken when a4(=ret(SecurityLookupIDByClass)) == s5(?), and falls through when a4(=ret(SecurityLookupIDByClass)) != s5(?).
   The `beq` branch at 0x1014b864 targets 0x1014b894, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x1014b870 targets 0x1014b894, is taken when t8(=[a0+56]) != a0(?), and falls through when t8(=[a0+56]) == a0(?).
   The `bne` branch at 0x1014b884 targets 0x1014b8b0, is taken when t9(=[a0+48]) != a1(?), and falls through when t9(=[a0+48]) == a1(?).
@@ -25793,7 +26135,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014be28 targets 0x1014b920 and is always taken.
   The `beq` branch at 0x1014be48 targets 0x1014b9d0 and is always taken.
   The `beq` branch at 0x1014be74 targets 0x1014c554, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `bne` branch at 0x1014be88 targets 0x1014bf6c, is taken when a6(=[sym(XRT_WINDOW)]) != a7(?), and falls through when a6(=[sym(XRT_WINDOW)]) == a7(?).
+  The `bne` branch at 0x1014be88 targets 0x1014bf6c, is taken when a6(=[sym(XRT_WINDOW)]) != a7(=[ret(SecurityLookupIDByClass)+128]), and falls through when a6(=[sym(XRT_WINDOW)]) == a7(=[ret(SecurityLookupIDByClass)+128]).
   The `bne` branch at 0x1014bea4 targets 0x1014bf6c, is taken when t0(=[[[sym(WindowTable)]]+4]) != t1(=[[a0+8]+4]), and falls through when t0(=[[[sym(WindowTable)]]+4]) == t1(=[[a0+8]+4]).
   The `beq` branch at 0x1014beac targets 0x1014bf74 and is always taken.
   The `beq` branch at 0x1014bec4 targets 0x1014b920 and is always taken.
@@ -25820,7 +26162,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014c08c targets 0x1014c3d8 and is always taken.
   The `beq` branch at 0x1014c0a0 targets 0x1014b9d0 and is always taken.
   The `bne` branch at 0x1014c134 targets 0x1014c300, is taken when v0(=ret(?)) != 0, and falls through when v0(=ret(?)) == 0.
-  The `beq` branch at 0x1014c144 targets 0x1014c300, is taken when s0(?) == s6(?), and falls through when s0(?) != s6(?).
+  The `beq` branch at 0x1014c144 targets 0x1014c300, is taken when s0(?) == s6(=ret(SecurityLookupIDByClass)-8), and falls through when s0(?) != s6(=ret(SecurityLookupIDByClass)-8).
   The `bne` branch at 0x1014c154 targets 0x1014c2cc, is taken when s4(?) != v0(=[0x102c5f1c]-1), and falls through when s4(?) == v0(=[0x102c5f1c]-1).
   The `beq` branch at 0x1014c160 targets 0x1014c110, is taken when s7(=one of 0x0, 0x1) == 0, and falls through when s7(=one of 0x0, 0x1) != 0.
   The `beq` branch at 0x1014c174 targets 0x1014c2e4, is taken when ra(?) == 0, and falls through when ra(?) != 0.
@@ -25882,23 +26224,23 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 500 bytes.
   The `jalr` at 0x1014c740 calls t6alloc_blk with a0=0x5, a1=?, a2=?, a3=?.
   The `jalr` at 0x1014c76c calls t6last_attr with a0=a0 at entry (arg0), a1=ret(t6alloc_blk), a2=sp-64, a3=?.
-  The `jalr` at 0x1014c798 calls t6free_blk with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014c798 calls t6free_blk with a0=ret(t6alloc_blk), a1=?, a2=?, a3=?.
   The `jalr` at 0x1014c7c4 calls cap_acquire with a0=0x4, a1=0x10290660, a2=0x5, a3=?.
-  The `jalr` at 0x1014c7dc calls t6set_endpt_default with a0=a0 at entry (arg0), a1=0x5, a2=?, a3=?.
-  The `jalr` at 0x1014c7f4 calls cap_surrender with a0=?, a1=?, a2=-0x1, a3=?.
+  The `jalr` at 0x1014c7dc calls t6set_endpt_default with a0=a0 at entry (arg0), a1=0x5, a2=ret(t6alloc_blk), a3=?.
+  The `jalr` at 0x1014c7f4 calls cap_surrender with a0=ret(cap_acquire), a1=?, a2=-0x1, a3=?, a5=ret(cap_acquire).
   The `jalr` at 0x1014c80c calls cap_acquire with a0=0x1, a1=0x10290658, a2=?, a3=?.
   The `jalr` at 0x1014c820 calls t6get_endpt_mask with a0=a0 at entry (arg0), a1=sp-64, a2=?, a3=?.
   The `jalr` at 0x1014c840 calls t6set_endpt_mask with a0=a0 at entry (arg0), a1=?, a2=-0x1, a3=?.
-  The `jalr` at 0x1014c854 calls cap_surrender with a0=?, a1=?, a2=-0x1, a3=?.
-  The `jalr` at 0x1014c864 calls t6get_attr with a0=0x0, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014c878 calls t6get_attr with a0=0x2, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014c888 calls mac_from_msen_mint with a0=?, a1=ret(t6get_attr), a2=?, a3=?.
-  The `jalr` at 0x1014c898 calls t6free_blk with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014c854 calls cap_surrender with a0=ret(cap_acquire), a1=?, a2=-0x1, a3=?.
+  The `jalr` at 0x1014c864 calls t6get_attr with a0=0x0, a1=ret(t6alloc_blk), a2=?, a3=?.
+  The `jalr` at 0x1014c878 calls t6get_attr with a0=0x2, a1=ret(t6alloc_blk), a2=?, a3=?.
+  The `jalr` at 0x1014c888 calls mac_from_msen_mint with a0=ret(t6get_attr), a1=ret(t6get_attr), a2=?, a3=?.
+  The `jalr` at 0x1014c898 calls t6free_blk with a0=ret(t6alloc_blk), a1=?, a2=?, a3=?.
   The `jalr` at 0x1014c8c0 calls sysconf with a0=0x1e, a1=[0x102cc408], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x1014c8d8 calls cap_surrender with a0=?, a1=?, a2=-0x1, a3=?.
-  The `jalr` at 0x1014c8e4 calls t6free_blk with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014c8f8 calls cap_surrender with a0=?, a1=?, a2=-0x1, a3=?.
-  The `jalr` at 0x1014c904 calls t6free_blk with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014c8d8 calls cap_surrender with a0=ret(cap_acquire), a1=?, a2=-0x1, a3=?.
+  The `jalr` at 0x1014c8e4 calls t6free_blk with a0=ret(t6alloc_blk), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014c8f8 calls cap_surrender with a0=ret(cap_acquire), a1=?, a2=-0x1, a3=?, a5=ret(cap_acquire).
+  The `jalr` at 0x1014c904 calls t6free_blk with a0=ret(t6alloc_blk), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1014c730 targets 0x1014c8bc, is taken when a1(=[0x102cc408]) == at(=-0x1), and falls through when a1(=[0x102cc408]) != at(=-0x1).
   The `beq` branch at 0x1014c738 targets 0x1014c7b0, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x1014c748 targets 0x1014c760, is taken when v0(=ret(t6alloc_blk)) != 0, and falls through when v0(=ret(t6alloc_blk)) == 0.
@@ -25908,7 +26250,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014c7e8 targets 0x1014c8f4, is taken when v0(=ret(t6set_endpt_default)) == a2(=-0x1), and falls through when v0(=ret(t6set_endpt_default)) != a2(=-0x1).
   The `beq` branch at 0x1014c82c targets 0x1014c8d8, is taken when v0(=ret(t6get_endpt_mask)) == a2(=-0x1), and falls through when v0(=ret(t6get_endpt_mask)) != a2(=-0x1).
   The `beq` branch at 0x1014c84c targets 0x1014c8d4, is taken when v0(=ret(t6set_endpt_mask)) == a2(=-0x1), and falls through when v0(=ret(t6set_endpt_mask)) != a2(=-0x1).
-  The `bne` branch at 0x1014c8a4 targets 0x1014c8b4, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0x1014c8a4 targets 0x1014c8b4, is taken when a3(=ret(mac_from_msen_mint)) != 0, and falls through when a3(=ret(mac_from_msen_mint)) == 0.
   The `beq` branch at 0x1014c8ac targets 0x1014c758 and is always taken.
   The `beq` branch at 0x1014c8b4 targets 0x1014c754 and is always taken.
   The `beq` branch at 0x1014c8cc targets 0x1014c738 and is always taken.
@@ -26012,7 +26354,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014da84 targets 0x1014daa8, is taken when a7(=[a0+136]) == 0, and falls through when a7(=[a0+136]) != 0.
   The `beq` branch at 0x1014dac0 targets 0x1014da9c, is taken when v0(=ret(malloc)) == 0, and falls through when v0(=ret(malloc)) != 0.
   The `beq` branch at 0x1014dad4 targets 0x1014db54, is taken when a4(=[0x102ca890]) == 0, and falls through when a4(=[0x102ca890]) != 0.
-  The `beq` branch at 0x1014dae8 targets 0x1014db04, is taken when t2(?) == 0, and falls through when t2(?) != 0.
+  The `beq` branch at 0x1014dae8 targets 0x1014db04, is taken when t2(=[[a1+16]]) == 0, and falls through when t2(=[[a1+16]]) != 0.
   The `bne` branch at 0x1014daf4 targets 0x1014db28, is taken when t3(=[a1+24]) != 0, and falls through when t3(=[a1+24]) == 0.
   The `beq` branch at 0x1014db10 targets 0x1014da8c and is always taken.
   The `beq` branch at 0x1014db4c targets 0x1014db00 and is always taken.
@@ -26105,7 +26447,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x1014e00c loads 2 bytes from ((a1 << 0x3) + [[a0+20]+16]) +0x6.
   The `lw` at 0x1014e014 loads 4 bytes from [a0+20] +0xc.
   3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1014e088, `sw` at 0x1014e0b8, `sw` at 0x1014e204.
-  29 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1014e08c, `lbu` at 0x1014e0b0, `lbu` at 0x1014e104.
+  28 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1014e08c, `lbu` at 0x1014e104, `lbu` at 0x1014e138.
+  The `lbu` at 0x1014e0b0 loads 1 byte from ([[a0+20]+16] + (a1 << 0x3)) +0x5.
   9 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014e0bc, `lw` at 0x1014e134, `lw` at 0x1014e428.
   The `lhu` at 0x1014e0e0 loads 2 bytes from [a0+32] +0x14.
   2 such `lhu` accesses load 2 bytes from ([[a0+16]+12] + (a1 + a1)) +0x0, including `lhu` at 0x1014e224, `lhu` at 0x1014e890.
@@ -26142,7 +26485,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x1014e3a0 calls SrvXkbResizeKeyActions [0x10280660] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0x1014e610 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1014e6a0 calls Xalloc [0x1020aeb0] with a0=?, a1=[[a0+20]+20], a2=?, a3=?, a5=([[a0+20]+12] + ([((a1 << 0x3) + [[a0+20]+16])+6]:2 << 0x2)), a6=([((a1 << 0x3) + [[a0+20]+16])+6]:2 << 0x2).
-  The `jalr` at 0x1014e864 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1014e864 calls bzero with a0=ret(Xalloc), a1=?, a2=?, a3=?, a5=([[a0+20]+12] + ([((a1 << 0x3) + [[a0+20]+16])+6]:2 << 0x2)).
   The `beq` branch at 0x1014df20 targets 0x1014dfc0, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x1014df2c targets 0x1014dfc0, is taken when v0(=[a0+20]) == 0, and falls through when v0(=[a0+20]) != 0.
   The `beq` branch at 0x1014df38 targets 0x1014dfc4, is taken when at(=[[a0+20]+16]) == 0, and falls through when at(=[[a0+20]+16]) != 0.
@@ -26188,8 +26531,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014e200 targets 0x1014e09c and is always taken.
   The `bne` branch at 0x1014e208 targets 0x1014e388, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x1014e230 targets 0x1014e810, is taken when t1(=[([[a0+16]+12] + (a1 + a1))]:2) == 0, and falls through when t1(=[([[a0+16]+12] + (a1 + a1))]:2) != 0.
-  The `beq` branch at 0x1014e248 targets 0x1014e77c, is taken when (a1(?) & 0x20) == 0, and falls through when (a1(?) & 0x20) != 0.
-  The `beq` branch at 0x1014e254 targets 0x1014e7e4, is taken when (a2(?) & 0x40) == 0, and falls through when (a2(?) & 0x40) != 0.
+  The `beq` branch at 0x1014e248 targets 0x1014e77c, is taken when (a1(=[(a1 + [[a0+16]+16])]:1) & 0x20) == 0, and falls through when (a1(=[(a1 + [[a0+16]+16])]:1) & 0x20) != 0.
+  The `beq` branch at 0x1014e254 targets 0x1014e7e4, is taken when (a2(=[(a1 + [[a0+16]+16])]:1) & 0x40) == 0, and falls through when (a2(=[(a1 + [[a0+16]+16])]:1) & 0x40) != 0.
   The `beq` branch at 0x1014e25c targets 0x1014e32c, is taken when a3(=a2) == 0, and falls through when a3(=a2) != 0.
   The `beq` branch at 0x1014e270 targets 0x1014e710, is taken when (a0(?) & 0x10) == 0, and falls through when (a0(?) & 0x10) != 0.
   The `beq` branch at 0x1014e28c targets 0x1014e620, is taken when s1(=a1) >= a6(=[a2+12]:1) (signed), and falls through when s1(=a1) < a6(=[a2+12]:1) (signed).
@@ -26230,8 +26573,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014e5bc targets 0x1014e818, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `beq` branch at 0x1014e5c8 targets 0x1014e850, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x1014e5d8 targets 0x1014e5f0, is taken when (a6(?) & 0x2) == 0, and falls through when (a6(?) & 0x2) != 0.
-  The `beq` branch at 0x1014e5e8 targets 0x1014e91c, is taken when (a7(?) & 0x40) == 0, and falls through when (a7(?) & 0x40) != 0.
-  The `beq` branch at 0x1014e5f4 targets 0x1014e8a4, is taken when (t0(?) & 0x20) == 0, and falls through when (t0(?) & 0x20) != 0.
+  The `beq` branch at 0x1014e5e8 targets 0x1014e91c, is taken when (a7(=[(a1 + [[a0+16]+16])]:1) & 0x40) == 0, and falls through when (a7(=[(a1 + [[a0+16]+16])]:1) & 0x40) != 0.
+  The `beq` branch at 0x1014e5f4 targets 0x1014e8a4, is taken when (t0(=[(a1 + [[a0+16]+16])]:1) & 0x20) == 0, and falls through when (t0(=[(a1 + [[a0+16]+16])]:1) & 0x20) != 0.
   The `bne` branch at 0x1014e5fc targets 0x1014e25c, is taken when a0(?) != 0, and falls through when a0(?) == 0.
   The `beq` branch at 0x1014e604 targets 0x1014e244 and is always taken.
   The `beq` branch at 0x1014e618 targets 0x1014e334 and is always taken.
@@ -26441,50 +26784,69 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1014f278 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x1014f294 loads 4 bytes from sym(inputInfo) +0x10.
   The `lw` at 0x1014f2cc loads 4 bytes from [a0+8] +0x4.
-  31 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014f2d8, `lw` at 0x1014f2dc, `lw` at 0x1014f2e8.
+  2 such `lw` accesses load 4 bytes from [sym(inputInfo)+16] +0x94, including `lw` at 0x1014f2d8, `lw` at 0x1014f5a4.
+  The `lw` at 0x1014f2dc loads 4 bytes from [[sym(inputInfo)+16]+148] +0x8.
+  The `lw` at 0x1014f2e8 loads 4 bytes from [sym(inputInfo)+16] +0x2c.
+  The `lw` at 0x1014f2f4 loads 4 bytes from [[sym(inputInfo)+16]+44] +0x4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0x1014f2fc, `lw` at 0x1014f850.
+  The `lw` at 0x1014f30c loads 4 bytes from [[sym(inputInfo)+16]+44] +0x30.
+  The `lw` at 0x1014f31c loads 4 bytes from [[sym(inputInfo)+16]+44] +0x10.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x4, including `lw` at 0x1014f32c, `lw` at 0x1014f56c.
   2 such `lw` accesses load 4 bytes from sym(clients) +0x0, including `lw` at 0x1014f338, `lw` at 0x1014f578.
-  4 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1014f38c, `sw` at 0x1014f6c8, `sw` at 0x1014f784.
+  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1014f34c, `lw` at 0x1014f360, `lw` at 0x1014f36c.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x68, including `lw` at 0x1014f35c, `lw` at 0x1014f59c.
+  The `sw` at 0x1014f38c stores 4 bytes to [[sym(inputInfo)+16]+148] +0x8.
   The `lw` at 0x1014f3a0 loads 4 bytes from a0 (arg0 at entry) +0x1c.
+  The `lw` at 0x1014f3a8 loads 4 bytes from [a0+8] +0x8.
   3 such `lw` accesses load 4 bytes from sym(currentTime) +0x4, including `lw` at 0x1014f3b8, `lw` at 0x1014f414, `lw` at 0x1014f5fc.
   2 such `lw` accesses load 4 bytes from sym(currentTime) +0x0, including `lw` at 0x1014f3c4, `lw` at 0x1014f420.
+  The `lw` at 0x1014f3f8 loads 4 bytes from [a0+8] +0xc.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x1014f4b0, `lw` at 0x1014f4f4.
   The `lbu` at 0x1014f4c8 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x1014f4d8 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `sw` at 0x1014f508 stores 4 bytes to a0 (arg0 at entry) +0x14.
   2 such `ld` accesses load 8 bytes from sym(currentTime) +0x0, including `ld` at 0x1014f538, `ld` at 0x1014f5b4.
+  The `lw` at 0x1014f5a8 loads 4 bytes from [[sym(inputInfo)+16]+148] +0x4.
+  The `lw` at 0x1014f624 loads 4 bytes from [[sym(inputInfo)+16]+148] +0x0.
   The `lw` at 0x1014f634 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
-  21 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1014f63c, `lh` at 0x1014f644, `lh` at 0x1014f690.
-  3 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x1014f640, `lhu` at 0x1014f648, `lhu` at 0x1014f64c.
+  4 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0x8, including `lh` at 0x1014f63c, `lh` at 0x1014f6cc, `lh` at 0x1014f788.
+  The `lhu` at 0x1014f640 loads 2 bytes from ret(SecurityLookupWindow) +0x64.
+  4 such `lh` accesses load 2 bytes from ret(SecurityLookupWindow) +0xa, including `lh` at 0x1014f644, `lh` at 0x1014f6dc, `lh` at 0x1014f798.
+  The `lhu` at 0x1014f648 loads 2 bytes from ret(SecurityLookupWindow) +0xe.
+  The `lhu` at 0x1014f64c loads 2 bytes from ret(SecurityLookupWindow) +0xc.
+  13 such `lh` accesses load 2 bytes from ?, including `lh` at 0x1014f690, `lh` at 0x1014f6a8, `lh` at 0x1014f6c0.
+  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1014f6c8, `sw` at 0x1014f784, `sw` at 0x1014f7e8.
   6 such `sh` accesses store 2 bytes to ?, including `sh` at 0x1014f6d8, `sh` at 0x1014f6ec, `sh` at 0x1014f794.
+  2 such `lw` accesses load 4 bytes from [[[sym(inputInfo)+16]+148]+8] +0x78, including `lw` at 0x1014f830, `lw` at 0x1014f8fc.
+  2 such `lw` accesses load 4 bytes from [[[[sym(inputInfo)+16]+148]+8]+120] +0x14, including `lw` at 0x1014f83c, `lw` at 0x1014f908.
   2 such `ldl` accesses load 8 bytes from sym(currentTime) +0x0, including `ldl` at 0x1014f854, `ldl` at 0x1014f860.
   2 such `ldr` accesses load 8 bytes from sym(currentTime) +0x7, including `ldr` at 0x1014f85c, `ldr` at 0x1014f868.
   The `jal` at 0x1014f2c8 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x1, a3=s8 at entry.
   The `jalr` at 0x1014f4e0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=?, a6=[a0+16].
   The `jalr` at 0x1014f510 calls SwapTimeCoordWrite [0x101f6850] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1014f630 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?, a4=[ret(SecurityLookupWindow)+16].
+  The `jalr` at 0x1014f630 calls (unknown callee) with a0=[sym(inputInfo)+16], a1=?, a2=?, a3=?, a4=[ret(SecurityLookupWindow)+16], a6=[[[sym(inputInfo)+16]+148]+4], a7=[[sym(inputInfo)+16]+148].
   The `jal` at 0x1014f8a4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=?, a6=[a0+16].
   The `jal` at 0x1014f8e4 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1014f298 targets 0x1014f2b8, is taken when at(=[a0+72]) == v0(=0x4), and falls through when at(=[a0+72]) != v0(=0x4).
   The `beq` branch at 0x1014f2d0 targets 0x1014f814, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x1014f2e0 targets 0x1014f390, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1014f2ec targets 0x1014f56c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x1014f2e0 targets 0x1014f390, is taken when a2(=[[[sym(inputInfo)+16]+148]+8]) == 0, and falls through when a2(=[[[sym(inputInfo)+16]+148]+8]) != 0.
+  The `beq` branch at 0x1014f2ec targets 0x1014f56c, is taken when a3(=[[sym(inputInfo)+16]+44]) == 0, and falls through when a3(=[[sym(inputInfo)+16]+44]) != 0.
   The `bne` branch at 0x1014f304 targets 0x1014f394, is taken when a6(=[a0+4]) != a4(?), and falls through when a6(=[a0+4]) == a4(?).
-  The `bne` branch at 0x1014f314 targets 0x1014f38c, is taken when (t1(?) & 0x80) != 0, and falls through when (t1(?) & 0x80) == 0.
+  The `bne` branch at 0x1014f314 targets 0x1014f38c, is taken when (t1(=[[[sym(inputInfo)+16]+44]+48]) & 0x80) != 0, and falls through when (t1(=[[[sym(inputInfo)+16]+44]+48]) & 0x80) == 0.
   The `beq` branch at 0x1014f324 targets 0x1014f394, is taken when t2(?) == 0, and falls through when t2(?) != 0.
   The `bne` branch at 0x1014f350 targets 0x1014f8fc, is taken when t3(?) != t8(=a0), and falls through when t3(?) == t8(=a0).
   The `beq` branch at 0x1014f358 targets 0x1014f93c and is always taken.
   The `beq` branch at 0x1014f364 targets 0x1014f394, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `bne` branch at 0x1014f374 targets 0x1014f360, is taken when a6(=[a0+4]) != t9(?), and falls through when a6(=[a0+4]) == t9(?).
   The `beq` branch at 0x1014f384 targets 0x1014f394, is taken when (a3(?) & 0x80) == 0, and falls through when (a3(?) & 0x80) != 0.
-  The `beq` branch at 0x1014f3ac targets 0x1014f854, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `beq` branch at 0x1014f3c8 targets 0x1014f3dc, is taken when a6(=[sym(currentTime)+4]) >= a2(?) (unsigned), and falls through when a6(=[sym(currentTime)+4]) < a2(?) (unsigned).
+  The `beq` branch at 0x1014f3ac targets 0x1014f854, is taken when a2(=[[a0+8]+8]) == 0, and falls through when a2(=[[a0+8]+8]) != 0.
+  The `beq` branch at 0x1014f3c8 targets 0x1014f3dc, is taken when a6(=[sym(currentTime)+4]) >= a2(=[[a0+8]+8]) (unsigned), and falls through when a6(=[sym(currentTime)+4]) < a2(=[[a0+8]+8]) (unsigned).
   The `beq` branch at 0x1014f3d4 targets 0x1014f3ec and is always taken.
-  The `beq` branch at 0x1014f3e0 targets 0x1014f3ec, is taken when a2(?) >= a6(=[sym(currentTime)+4]) (unsigned), and falls through when a2(?) < a6(=[sym(currentTime)+4]) (unsigned).
-  The `beq` branch at 0x1014f40c targets 0x1014f860, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `beq` branch at 0x1014f424 targets 0x1014f438, is taken when a6(=[sym(currentTime)+4]) >= a7(?) (unsigned), and falls through when a6(=[sym(currentTime)+4]) < a7(?) (unsigned).
+  The `beq` branch at 0x1014f3e0 targets 0x1014f3ec, is taken when a2(=[[a0+8]+8]) >= a6(=[sym(currentTime)+4]) (unsigned), and falls through when a2(=[[a0+8]+8]) < a6(=[sym(currentTime)+4]) (unsigned).
+  The `beq` branch at 0x1014f40c targets 0x1014f860, is taken when a7(=[[a0+8]+12]) == 0, and falls through when a7(=[[a0+8]+12]) != 0.
+  The `beq` branch at 0x1014f424 targets 0x1014f438, is taken when a6(=[sym(currentTime)+4]) >= a7(=[[a0+8]+12]) (unsigned), and falls through when a6(=[sym(currentTime)+4]) < a7(=[[a0+8]+12]) (unsigned).
   The `beq` branch at 0x1014f430 targets 0x1014f448 and is always taken.
-  The `beq` branch at 0x1014f43c targets 0x1014f448, is taken when a7(?) >= a6(=[sym(currentTime)+4]) (unsigned), and falls through when a7(?) < a6(=[sym(currentTime)+4]) (unsigned).
+  The `beq` branch at 0x1014f43c targets 0x1014f448, is taken when a7(=[[a0+8]+12]) >= a6(=[sym(currentTime)+4]) (unsigned), and falls through when a7(=[[a0+8]+12]) < a6(=[sym(currentTime)+4]) (unsigned).
   The `bne` branch at 0x1014f484 targets 0x1014f534, is taken when a7(?) < t1(?) (unsigned), and falls through when a7(?) >= t1(?) (unsigned).
   The `beq` branch at 0x1014f490 targets 0x1014f708, is taken when t1(?) >= a7(?) (unsigned), and falls through when t1(?) < a7(?) (unsigned).
   The `beq` branch at 0x1014f4b4 targets 0x1014f898, is taken when a6(=[a0+16]) == 0, and falls through when a6(=[a0+16]) != 0.
@@ -26495,7 +26857,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014f564 targets 0x1014f4a0 and is always taken.
   The `bne` branch at 0x1014f590 targets 0x1014f830, is taken when a1(?) != a3(=a0), and falls through when a1(?) == a3(=a0).
   The `beq` branch at 0x1014f598 targets 0x1014f380 and is always taken.
-  The `beq` branch at 0x1014f5ac targets 0x1014f8b4, is taken when a6(?) == 0, and falls through when a6(?) != 0.
+  The `beq` branch at 0x1014f5ac targets 0x1014f8b4, is taken when a6(=[[[sym(inputInfo)+16]+148]+4]) == 0, and falls through when a6(=[[[sym(inputInfo)+16]+148]+4]) != 0.
   The `bne` branch at 0x1014f5c8 targets 0x1014f600, is taken when t1(?) < t2(?) (unsigned), and falls through when t1(?) >= t2(?) (unsigned).
   The `bne` branch at 0x1014f5d4 targets 0x1014f5fc, is taken when t2(?) < t1(?) (unsigned), and falls through when t2(?) >= t1(?) (unsigned).
   The `bne` branch at 0x1014f5ec targets 0x1014f600, is taken when t1(?) < t2(?) (unsigned), and falls through when t1(?) >= t2(?) (unsigned).
@@ -26522,7 +26884,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x1014f7d0 targets 0x1014f740, is taken when t0(?) < t2(?) (signed), and falls through when t0(?) >= t2(?) (signed).
   The `beq` branch at 0x1014f7d8 targets 0x1014f740, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x1014f80c targets 0x1014f740 and is always taken.
-  The `beq` branch at 0x1014f834 targets 0x1014f8f4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x1014f834 targets 0x1014f8f4, is taken when a3(=[[[[sym(inputInfo)+16]+148]+8]+120]) == 0, and falls through when a3(=[[[[sym(inputInfo)+16]+148]+8]+120]) != 0.
   The `beq` branch at 0x1014f840 targets 0x1014f390, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1014f84c targets 0x1014f36c and is always taken.
   The `beq` branch at 0x1014f858 targets 0x1014f3f0 and is always taken.
@@ -26534,7 +26896,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1014f8b8 targets 0x1014f4a0 and is always taken.
   The `beq` branch at 0x1014f8ec targets 0x1014f51c and is always taken.
   The `beq` branch at 0x1014f8f4 targets 0x1014f840 and is always taken.
-  The `beq` branch at 0x1014f900 targets 0x1014f958, is taken when a3(?) == 0, and falls through when a3(?) != 0.
+  The `beq` branch at 0x1014f900 targets 0x1014f958, is taken when a3(=[[[[sym(inputInfo)+16]+148]+8]+120]) == 0, and falls through when a3(=[[[[sym(inputInfo)+16]+148]+8]+120]) != 0.
   The `beq` branch at 0x1014f90c targets 0x1014f394, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x1014f914 targets 0x1014f92c and is always taken.
   The `beq` branch at 0x1014f920 targets 0x1014f394, is taken when a2(?) == 0, and falls through when a2(?) != 0.
@@ -26558,7 +26920,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x1014f99c loads 4 bytes from table(0x102ca43c) +0x0.
   The `lw` at 0x1014f9b4 loads 4 bytes from [0x102ca4a8] +0x10.
   The `lw` at 0x1014f9c0 loads 4 bytes from entry(0x102ca43c) +0x0.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x1014f9e8, `sw` at 0x1014f9f0.
+  The `sw` at 0x1014f9e8 stores 4 bytes to table(0x102ca43c) +0x0.
+  The `sw` at 0x1014f9f0 stores 4 bytes to table(0x102ca438) +0x0.
   The `jalr` at 0x1014f9d0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x65, a2=a2 at entry (arg2), a3=[0x102ca4a8], a4=table(0x102ca438), a5=table(0x102c5d40), a6=[[0x102ca4a8]+16].
   The `beq` branch at 0x1014f96c targets 0x1014fa10, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x1014f984 targets 0x1014fa10, is taken when v1(=[a0+76]:1) >= 0x9 (signed), and falls through when v1(=[a0+76]:1) < 0x9 (signed).
@@ -26934,18 +27297,24 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10150810 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10150820 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10150854 loads 4 bytes from [a0+8] +0x4.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10150868, `lw` at 0x101508a0, `lw` at 0x101508a4.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x10150868, `lw` at 0x10150914.
   The `lw` at 0x10150880 loads 4 bytes from ret(SecurityLookupWindow) +0x78.
   The `lw` at 0x1015088c loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x0.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101508a0, `lw` at 0x101508a4, `lw` at 0x101508b0.
   The `lw` at 0x101508c8 loads 4 bytes from ret(lookupCapabilityByVisualID) +0xc.
+  The `lw` at 0x101508f0 loads 4 bytes from ret(SecurityLookupWindow) +0x10.
   The `lw` at 0x101508f4 loads 4 bytes from sym(nmbxScreenPrivateIndex) +0x0.
+  The `lw` at 0x101508f8 loads 4 bytes from [ret(SecurityLookupWindow)+16] +0x1b4.
+  The `lw` at 0x10150904 loads 4 bytes from ([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2)) +0x0.
+  The `lw` at 0x10150908 loads 4 bytes from [([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2))] +0x0.
+  The `lw` at 0x1015090c loads 4 bytes from [[([[ret(SecurityLookupWindow)+16]+436] + ([sym(nmbxScreenPrivateIndex)] << 0x2))]] +0xc.
   The `jal` at 0x10150850 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
-  The `jal` at 0x101508b4 calls lookupCapabilityByVisualID [0x1020c970] with a0=?, a1=?, a2=?, a3=?.
-  Calls (unknown callee) via register with a0=?, a1=?, a2=?, a3=[ret(lookupCapabilityByVisualID)+12] (`jr` at 0x10150918).
+  The `jal` at 0x101508b4 calls lookupCapabilityByVisualID [0x1020c970] with a0=?, a1=[[a0+8]+8], a2=?, a3=?.
+  Calls (unknown callee) via register with a0=ret(SecurityLookupWindow), a1=[[a0+8]+8], a2=?, a3=[ret(lookupCapabilityByVisualID)+12] (`jr` at 0x10150918).
   The `beq` branch at 0x10150828 targets 0x10150844, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `beq` branch at 0x1015085c targets 0x10150920, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x1015086c targets 0x101508dc, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x10150878 targets 0x101508dc, is taken when a2(=[0x102c6188]) < a1(?) (unsigned), and falls through when a2(=[0x102c6188]) >= a1(?) (unsigned).
+  The `beq` branch at 0x1015086c targets 0x101508dc, is taken when a1(=[[a0+8]+8]) == 0, and falls through when a1(=[[a0+8]+8]) != 0.
+  The `bne` branch at 0x10150878 targets 0x101508dc, is taken when a2(=[0x102c6188]) < a1(=[[a0+8]+8]) (unsigned), and falls through when a2(=[0x102c6188]) >= a1(=[[a0+8]+8]) (unsigned).
   The `beq` branch at 0x10150884 targets 0x10150898, is taken when a4(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when a4(=[ret(SecurityLookupWindow)+120]) != 0.
   The `beq` branch at 0x10150890 targets 0x101508b4 and is always taken.
   The `beq` branch at 0x101508a8 targets 0x101508a0, is taken when a5(?) == 0, and falls through when a5(?) != 0.
@@ -26957,6 +27326,7 @@ These entries record instruction facts rendered from the routines below. They de
   The return at 0x10150830 has v0 = 0x10.
   The return at 0x1015083c has v0 = one of 0x3, 0x8.
   The return at 0x101508e0 has v0 = 0x5.
+  The indirect jump at 0x10150918 uses a jump table whose successors are unresolved.
 - `CreateMaskFromList` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10150930 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/GENERIC/Xsgi`.
@@ -27021,13 +27391,41 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x10150ba8 stores 4 bytes to ret(Xalloc) +0x48.
   The `sw` at 0x10150bb0 stores 4 bytes to ret(Xalloc) +0x44.
   The `lbu` at 0x10150bb8 loads 1 byte from ?.
-  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x10150bf8, `sb` at 0x10150c9c.
+  The `sb` at 0x10150bf8 stores 1 byte to ret(Xalloc) +0x4c.
   The `lw` at 0x10150c04 loads 4 bytes from sym(currentTime) +0x0.
   The `lw` at 0x10150c0c loads 4 bytes from sym(currentTime) +0x4.
   The `sw` at 0x10150c14 stores 4 bytes to sym(inputInfo) +0x0.
-  28 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10150c18, `sw` at 0x10150c1c, `sw` at 0x10150c20.
+  The `sw` at 0x10150c18 stores 4 bytes to ret(Xalloc) +0xb8.
+  The `sw` at 0x10150c1c stores 4 bytes to ret(Xalloc) +0xb4.
+  The `sw` at 0x10150c20 stores 4 bytes to ret(Xalloc) +0xb0.
+  The `sw` at 0x10150c24 stores 4 bytes to ret(Xalloc) +0xac.
+  The `sw` at 0x10150c28 stores 4 bytes to ret(Xalloc) +0xa8.
+  The `sw` at 0x10150c2c stores 4 bytes to ret(Xalloc) +0xa4.
+  The `sw` at 0x10150c30 stores 4 bytes to ret(Xalloc) +0xa0.
+  The `sw` at 0x10150c34 stores 4 bytes to ret(Xalloc) +0x9c.
+  The `sw` at 0x10150c38 stores 4 bytes to ret(Xalloc) +0x98.
+  The `sw` at 0x10150c3c stores 4 bytes to ret(Xalloc) +0x94.
+  The `sw` at 0x10150c40 stores 4 bytes to ret(Xalloc) +0x90.
+  The `sw` at 0x10150c44 stores 4 bytes to ret(Xalloc) +0x50.
+  The `sw` at 0x10150c48 stores 4 bytes to ret(Xalloc) +0x1c.
+  The `sw` at 0x10150c4c stores 4 bytes to ret(Xalloc) +0x18.
+  The `sw` at 0x10150c50 stores 4 bytes to ret(Xalloc) +0x2c.
+  The `sw` at 0x10150c54 stores 4 bytes to ret(Xalloc) +0x40.
+  The `sw` at 0x10150c58 stores 4 bytes to ret(Xalloc) +0x3c.
+  The `sw` at 0x10150c5c stores 4 bytes to ret(Xalloc) +0x34.
+  The `sw` at 0x10150c60 stores 4 bytes to ret(Xalloc) +0x38.
+  The `sw` at 0x10150c64 stores 4 bytes to ret(Xalloc) +0x30.
+  The `sw` at 0x10150c68 stores 4 bytes to ret(Xalloc) +0x20.
+  The `sw` at 0x10150c6c stores 4 bytes to ret(Xalloc) +0x24.
+  The `sw` at 0x10150c70 stores 4 bytes to ret(Xalloc) +0xc.
+  The `sw` at 0x10150c74 stores 4 bytes to ret(Xalloc) +0x8.
+  The `sw` at 0x10150c78 stores 4 bytes to ret(Xalloc) +0x4.
+  The `sw` at 0x10150c7c stores 4 bytes to ret(Xalloc) +0x10.
   The `lw` at 0x10150c80 loads 4 bytes from sym(inputInfo) +0x8.
+  The `sw` at 0x10150c84 stores 4 bytes to ret(Xalloc) +0xbc.
+  The `sw` at 0x10150c88 stores 4 bytes to ret(Xalloc) +0x14.
   The `sw` at 0x10150c94 stores 4 bytes to sym(inputInfo) +0x8.
+  The `sb` at 0x10150c9c stores 1 byte to ?.
   The `jal` at 0x10150b90 calls Xalloc [0x1020aeb0] with a0=0xc0, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x10150bd8 calls FatalError [0x10094f20] with a0=0x1028f4d8, a1=?, a2=?, a3=?, a6=0x102c5d49, a7=0x1.
   The `bne` branch at 0x10150b78 targets 0x10150b88, is taken when at(=[sym(inputInfo)]) < 0x9 (signed), and falls through when at(=[sym(inputInfo)]) >= 0x9 (signed).
@@ -27036,7 +27434,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0x10150bc8 targets 0x10150bb8, is taken when a4(?) != a6(=0x102c5d49), and falls through when a4(?) == a6(=0x102c5d49).
   The `beq` branch at 0x10150c98 targets 0x10150be0 and is always taken.
   The return at 0x10150b80 has v0 = 0x0.
-  The return at 0x10150c90 has v0 = one of ?, ret(Xalloc).
+  The return at 0x10150c90 has v0 = ret(Xalloc).
   The return at 0x10150ca8 has v0 = 0x0.
 - `sgiDbeGetVisualInfo..JJC` in `usr/gfx/arch/GENERIC/Xsgi` at 0x10150cb0 (n32).
   Evidence grade: inferred.
@@ -27049,14 +27447,14 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0x10150d04, `lw` at 0x10150f6c.
   85 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10150d1c, `lh` at 0x10150d40, `lh` at 0x10150d44.
   The `lw` at 0x10150fb8 loads 4 bytes from ret(nmbxLookupCapability) +0x8.
-  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10150fc8, `lw` at 0x10150fd0, `lw` at 0x1015101c.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10150fc8, `lw` at 0x10150fd0, `lw` at 0x1015101c.
   3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10150fd4, `sw` at 0x10150fe0, `sw` at 0x10150fe8.
   The `lbu` at 0x10150fdc loads 1 byte from ?.
   The `lw` at 0x10151000 loads 4 bytes from sym(screenInfo) +0x44.
+  2 such `lw` accesses load 4 bytes from (([a0] << 0x2) + sym(PanoramiXDepths)) +0x0, including `lw` at 0x10151088, `lw` at 0x10151138.
   The `sw` at 0x101510c4 stores 4 bytes to a1 (arg1 at entry) +0x4.
   The `sw` at 0x101510cc stores 4 bytes to a1 (arg1 at entry) +0x0.
   2 such `lw` accesses load 4 bytes from sym(PanoramiXNumDepths) +0x0, including `lw` at 0x10151120, `lw` at 0x101512dc.
-  The `lw` at 0x10151138 loads 4 bytes from (([a0] << 0x2) + sym(PanoramiXDepths)) +0x0.
   The `jal` at 0x10150eb8 calls Xalloc [0x1020aeb0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10150fa4 calls nmbxLookupCapability [0x101ffee0] with a0=?, a1=?, a2=[0x102ca7dc], a3=?.
   The `jalr` at 0x1015130c calls strlen with a0=sym(nmbxMaxDisplayBuffersString), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -27401,22 +27799,26 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10152240 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x10152244 loads 4 bytes from a0 (arg0 at entry) +0x8.
   The `lw` at 0x10152288 loads 4 bytes from [a0+8] +0x4.
-  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101522a0, `lw` at 0x101522f8, `lw` at 0x10152308.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x101522a0, `lw` at 0x101523ac.
   The `lw` at 0x101522f0 loads 4 bytes from a0 (arg0 at entry) +0x1c.
+  The `lw` at 0x101522f8 loads 4 bytes from ret(SecurityLookupWindow) +0x7c.
+  The `lw` at 0x10152308 loads 4 bytes from ret(SecurityLookupWindow) +0x78.
+  The `lw` at 0x10152320 loads 4 bytes from [ret(SecurityLookupWindow)+120] +0x4.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10152328, `lw` at 0x1015232c, `lw` at 0x10152338.
   The `lw` at 0x10152350 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lw` at 0x10152380 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `sw` at 0x101523b8 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x10152284 calls SecurityLookupWindow [0x1006ce40] with a0=[[a0+8]+4], a1=a0 at entry (arg0), a2=0x0, a3=a3 at entry (arg3).
-  The `jal` at 0x101522c8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=?, a2=0x5, a3=0x0, a4=0x1, a5=ret(SecurityLookupWindow).
+  The `jal` at 0x101522c8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+8], a2=0x5, a3=0x0, a4=0x1, a5=ret(SecurityLookupWindow).
   The `jal` at 0x10152370 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=[a0+28], a4=[a0+16].
   The `beq` branch at 0x10152258 targets 0x10152274, is taken when at(=[a0+72]) == v0(=0x3), and falls through when at(=[a0+72]) != v0(=0x3).
   The `beq` branch at 0x10152298 targets 0x1015238c, is taken when v0(=ret(SecurityLookupWindow)) == 0, and falls through when v0(=ret(SecurityLookupWindow)) != 0.
-  The `beq` branch at 0x101522a4 targets 0x10152394, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x101522ac targets 0x101522bc, is taken when a4(=0x1) != a1(?), and falls through when a4(=0x1) == a1(?).
+  The `beq` branch at 0x101522a4 targets 0x10152394, is taken when a1(=[[a0+8]+8]) == 0, and falls through when a1(=[[a0+8]+8]) != 0.
+  The `bne` branch at 0x101522ac targets 0x101522bc, is taken when a4(=0x1) != a1(=[[a0+8]+8]), and falls through when a4(=0x1) == a1(=[[a0+8]+8]).
   The `beq` branch at 0x101522b4 targets 0x101522e4 and is always taken.
   The `beq` branch at 0x101522dc targets 0x101523a4, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
-  The `bltz` branch at 0x1015230c targets 0x1015239c, is taken when a2(?) < 0 (signed), and falls through when a2(?) >= 0 (signed).
-  The `beq` branch at 0x10152314 targets 0x10152324, is taken when v0(?) == 0, and falls through when v0(?) != 0.
+  The `bltz` branch at 0x1015230c targets 0x1015239c, is taken when a2(=([ret(SecurityLookupWindow)+124] << 0x3)) < 0 (signed), and falls through when a2(=([ret(SecurityLookupWindow)+124] << 0x3)) >= 0 (signed).
+  The `beq` branch at 0x10152314 targets 0x10152324, is taken when v0(=[ret(SecurityLookupWindow)+120]) == 0, and falls through when v0(=[ret(SecurityLookupWindow)+120]) != 0.
   The `beq` branch at 0x1015231c targets 0x1015233c and is always taken.
   The `beq` branch at 0x10152330 targets 0x10152328, is taken when a4(?) == 0, and falls through when a4(?) != 0.
   The `beq` branch at 0x10152354 targets 0x10152368, is taken when a4(=[a0+16]) == 0, and falls through when a4(=[a0+16]) != 0.
@@ -27443,8 +27845,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10152440 calls strchr with a0=0x102d6128, a1=0xa, a2=([0x102d6528] + ret(vsnprintf)), a3=?.
   The `jalr` at 0x10152460 calls syslog with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x10152474 calls strchr with a0=ret(strchr)+1, a1=0xa, a2=?, a3=?.
-  The `jalr` at 0x101524c4 calls memmove with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101524e8 calls syslog with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0x101524c4 calls memmove with a0=0x102d6128, a1=?, a2=?, a3=?.
+  The `jalr` at 0x101524e8 calls syslog with a0=a0 at entry (arg0), a1=?, a2=0x102d6128, a3=?.
   The `jalr` at 0x10152500 calls syslog with a0=0x4, a1=0x10291498, a2=?, a3=?.
   The `jalr` at 0x10152554 calls openlog with a0=0x102cc440, a1=0x21, a2=0x18, a3=a2 at entry (arg2).
   The `beq` branch at 0x101523e4 targets 0x10152540, is taken when at(=[0x102d6124]) == 0, and falls through when at(=[0x102d6124]) != 0.
@@ -27452,7 +27854,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1015244c targets 0x10152484, is taken when v0(=ret(strchr)) == 0, and falls through when v0(=ret(strchr)) != 0.
   The `bne` branch at 0x1015247c targets 0x10152454, is taken when v0(=ret(strchr)) != 0, and falls through when v0(=ret(strchr)) == 0.
   The `beq` branch at 0x101524a0 targets 0x101524d4, is taken when a1(=[0x102d6528]) >= 0x3ff (signed), and falls through when a1(=[0x102d6528]) < 0x3ff (signed).
-  The `beq` branch at 0x101524a8 targets 0x10152528, is taken when s1(?) == a2(?), and falls through when s1(?) != a2(?).
+  The `beq` branch at 0x101524a8 targets 0x10152528, is taken when s1(?) == a2(=0x102d6128), and falls through when s1(?) != a2(=0x102d6128).
   The `blez` branch at 0x101524b0 targets 0x10152528, is taken when v0(?) <= 0 (signed), and falls through when v0(?) > 0 (signed).
   The `beq` branch at 0x101524cc targets 0x1015252c and is always taken.
   The `beq` branch at 0x101524d8 targets 0x101524f4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
@@ -27648,23 +28050,23 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0x1015304c stores 4 bytes to a0 (arg0 at entry) +0x50.
   The `jal` at 0x10152e94 calls SrvXkbAllocNames [0x100fe690] with a0=a1 at entry (arg1), a1=0x3f, a2=0x0, a3=0x0.
   The `jalr` at 0x10152ec8 calls strlen with a0=[a0+60], a1=?, a2=?, a3=?.
-  The `jal` at 0x10152edc calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10152ef0 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10152edc calls MakeAtom [0x10238200] with a0=[a0+60], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10152ef0 calls Xfree [0x101fc9c0] with a0=[a0+60], a1=?, a2=?, a3=?.
   The `jalr` at 0x10152f0c calls strlen with a0=[a0+64], a1=?, a2=?, a3=?.
-  The `jal` at 0x10152f20 calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10152f34 calls Xfree [0x101fc9c0] with a0=?, a1=[a1+28], a2=?, a3=?.
+  The `jal` at 0x10152f20 calls MakeAtom [0x10238200] with a0=[a0+64], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10152f34 calls Xfree [0x101fc9c0] with a0=[a0+64], a1=[a1+28], a2=?, a3=?.
   The `jalr` at 0x10152f50 calls strlen with a0=[a0+72], a1=?, a2=[a0+72], a3=?.
-  The `jal` at 0x10152f64 calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10152f78 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=[a1+28].
+  The `jal` at 0x10152f64 calls MakeAtom [0x10238200] with a0=[a0+72], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10152f78 calls Xfree [0x101fc9c0] with a0=[a0+72], a1=?, a2=?, a3=[a1+28].
   The `jalr` at 0x10152f94 calls strlen with a0=[a0+68], a1=?, a2=?, a3=?, a4=[a0+68].
-  The `jal` at 0x10152fa8 calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10152fbc calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a5=[a1+28].
+  The `jal` at 0x10152fa8 calls MakeAtom [0x10238200] with a0=[a0+68], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10152fbc calls Xfree [0x101fc9c0] with a0=[a0+68], a1=?, a2=?, a3=?, a5=[a1+28].
   The `jalr` at 0x10152fd8 calls strlen with a0=[a0+76], a1=?, a2=?, a3=?, a6=[a0+76].
-  The `jal` at 0x10152fec calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10153000 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?, a7=[a1+28].
+  The `jal` at 0x10152fec calls MakeAtom [0x10238200] with a0=[a0+76], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10153000 calls Xfree [0x101fc9c0] with a0=[a0+76], a1=?, a2=?, a3=?, a7=[a1+28].
   The `jalr` at 0x1015301c calls strlen with a0=[a0+80], a1=?, a2=?, a3=?.
-  The `jal` at 0x10153030 calls MakeAtom [0x10238200] with a0=?, a1=ret(strlen), a2=0x1, a3=?.
-  The `jal` at 0x10153044 calls Xfree [0x101fc9c0] with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x10153030 calls MakeAtom [0x10238200] with a0=[a0+80], a1=ret(strlen), a2=0x1, a3=?.
+  The `jal` at 0x10153044 calls Xfree [0x101fc9c0] with a0=[a0+80], a1=?, a2=?, a3=?.
   The `beq` branch at 0x10152e9c targets 0x10152eb8, is taken when v0(=ret(SrvXkbAllocNames)) == 0, and falls through when v0(=ret(SrvXkbAllocNames)) != 0.
   The `beq` branch at 0x10152ebc targets 0x10152efc, is taken when at(=[a0+60]) == 0, and falls through when at(=[a0+60]) != 0.
   The `beq` branch at 0x10152f00 targets 0x10152f40, is taken when a0(=[a0+64]) == 0, and falls through when a0(=[a0+64]) != 0.
@@ -28035,11 +28437,19 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0x1015475c loads 2 bytes from ret(SecurityLookupIDByType) +0x4.
   The `lw` at 0x1015476c loads 4 bytes from ret(SecurityLookupIDByType) +0x0.
   4 such `lhu` accesses load 2 bytes from [ret(SecurityLookupIDByType)] +0x8, including `lhu` at 0x101547ac, `lhu` at 0x101547d8, `lhu` at 0x10154818.
-  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101547b0, `lw` at 0x1015481c, `lw` at 0x10154844.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x8, including `lw` at 0x101547b0, `lw` at 0x10154aa8.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x28, including `lw` at 0x101547ec, `lw` at 0x10154a1c.
+  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0x1015481c, `lw` at 0x10154844, `lw` at 0x10154864.
   6 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x38, including `lw` at 0x10154854, `lw` at 0x10154894, `lw` at 0x10154934.
-  27 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10154870, `lhu` at 0x1015487c, `lhu` at 0x10154888.
+  21 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10154870, `lhu` at 0x1015487c, `lhu` at 0x10154888.
   27 such `sh` accesses store 2 bytes to ?, including `sh` at 0x10154874, `sh` at 0x10154880, `sh` at 0x10154890.
+  The `lw` at 0x10154944 loads 4 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x10.
+  The `lw` at 0x10154950 loads 4 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x0.
+  The `lhu` at 0x10154954 loads 2 bytes from [([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2))] +0x0.
+  The `lw` at 0x1015495c loads 4 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x4.
+  The `lhu` at 0x10154960 loads 2 bytes from [([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2))+4] +0x0.
+  The `lw` at 0x10154968 loads 4 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x8.
+  The `lhu` at 0x1015496c loads 2 bytes from [([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2))+8] +0x0.
   The `lw` at 0x10154990 loads 4 bytes from a0 (arg0 at entry) +0x1c.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x1015499c, `lw` at 0x101549e8.
   The `lbu` at 0x101549bc loads 1 byte from [a0+8] +0x0.
@@ -28053,6 +28463,9 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lw` accesses load 4 bytes from [ret(SecurityLookupIDByType)] +0x14, including `lw` at 0x10154a54, `lw` at 0x10154c28, `lw` at 0x10154c70.
   3 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x3c, including `lw` at 0x10154c10, `lw` at 0x10154c58, `lw` at 0x10154dac.
   3 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0x40, including `lw` at 0x10154ca4, `lw` at 0x10154cc0, `lw` at 0x10154df4.
+  The `lhu` at 0x10154ce8 loads 2 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x0.
+  The `lhu` at 0x10154cf0 loads 2 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x2.
+  The `lhu` at 0x10154cf8 loads 2 bytes from ([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2)) +0x4.
   The `jal` at 0x10154688 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[[a0+8]+4], a2=0x6, a3=0x0.
   The `jal` at 0x101546c8 calls SecurityLookupIDByType [0x100d6140] with a0=0x0, a1=[ret(SecurityLookupIDByType)+8], a2=0x7, a3=0x0.
   The `jal` at 0x101546f4 calls CheckAccess [0x100e6b00] with a0=0x6, a1=0x0, a2=a0 at entry (arg0), a3=[ret(SecurityLookupIDByType)+4], a5=[ret(SecurityLookupIDByType)+16]:2, a6=0x1.
@@ -28071,7 +28484,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10154770 targets 0x10154a2c, is taken when a3(=([ret(SecurityLookupIDByType)+4]:2 | 0x1)) == a4(=0x5), and falls through when a3(=([ret(SecurityLookupIDByType)+4]:2 | 0x1)) != a4(=0x5).
   The `bne` branch at 0x10154778 targets 0x1015497c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x101547a0 targets 0x101547d0, is taken when (a1(?) & 0x1) == 0, and falls through when (a1(?) & 0x1) != 0.
-  The `bne` branch at 0x101547b8 targets 0x10154934, is taken when a6(?) < v1(=[[ret(SecurityLookupIDByType)]+8]:2) (unsigned), and falls through when a6(?) >= v1(=[[ret(SecurityLookupIDByType)]+8]:2) (unsigned).
+  The `bne` branch at 0x101547b8 targets 0x10154934, is taken when a6(=[[a0+8]+8]) < v1(=[[ret(SecurityLookupIDByType)]+8]:2) (unsigned), and falls through when a6(=[[a0+8]+8]) >= v1(=[[ret(SecurityLookupIDByType)]+8]:2) (unsigned).
   The `bnel` branch at 0x101547d4 targets 0x10154844, is taken when t1(?) != 0, and falls through when t1(?) == 0; its branch-likely delay slot `lhu a4,8(t0)` at 0x101547d8 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0x101547e0 targets 0x10154978, is taken when v0(=one of 0x0, 0x2) == 0, and falls through when v0(=one of 0x0, 0x2) != 0.
   The `beq` branch at 0x101547f0 targets 0x10154c98, is taken when a1(=[a0+40]) == 0, and falls through when a1(=[a0+40]) != 0.
@@ -28086,14 +28499,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10154904 targets 0x10154838 and is always taken.
   The `bne` branch at 0x10154920 targets 0x101546d8, is taken when v0(=ret(CheckAccess)) != 0, and falls through when v0(=ret(CheckAccess)) == 0.
   The `beq` branch at 0x1015492c targets 0x1015464c and is always taken.
-  The `beq` branch at 0x10154948 targets 0x10154ce8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `beq` branch at 0x10154948 targets 0x10154ce8, is taken when v1(=[([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2))+16]) == 0, and falls through when v1(=[([ret(SecurityLookupIDByType)+56] + ((([[a0+8]+8] << 0x2) + [[a0+8]+8]) << 0x2))+16]) != 0.
   The `beq` branch at 0x10154970 targets 0x101547c8 and is always taken.
   The `beq` branch at 0x101549a8 targets 0x10154d04, is taken when a3(=[a0+16]) == 0, and falls through when a3(=[a0+16]) != 0.
   The `beq` branch at 0x101549e0 targets 0x10154a0c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0x101549f4 targets 0x10154d48, is taken when v0(=[a0+16]) == 0, and falls through when v0(=[a0+16]) != 0.
   The `bne` branch at 0x10154a78 targets 0x10154978, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x10154a9c targets 0x10154acc, is taken when at(?) == 0, and falls through when at(?) != 0.
-  The `beq` branch at 0x10154ab0 targets 0x10154d20, is taken when (t1(?) & a6(?)) == 0, and falls through when (t1(?) & a6(?)) != 0.
+  The `beq` branch at 0x10154ab0 targets 0x10154d20, is taken when (t1(?) & a6(=[[a0+8]+8])) == 0, and falls through when (t1(?) & a6(=[[a0+8]+8])) != 0.
   The `bne` branch at 0x10154ad0 targets 0x10154b08, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x10154ad8 targets 0x101547e0 and is always taken.
   The `beq` branch at 0x10154af0 targets 0x10154b44, is taken when (t1(?) & a6(?)) == 0, and falls through when (t1(?) & a6(?)) != 0.
@@ -28243,7 +28656,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10155b28 loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `jalr` at 0x10155b78 calls fcntl with a0=[a0+16], a1=0x2, a2=0x1, a3=a3 at entry (arg3), a5=[a0+16], a6=0x1.
   The `jalr` at 0x10155b9c calls fcntl with a0=[a0+16], a1=0x3, a2=0x0, a3=a3 at entry (arg3), a5=[a0+16], a6=0x1.
-  The `jalr` at 0x10155bc0 calls fcntl with a0=?, a1=0x4, a2=(ret(fcntl) | 0x80), a3=?.
+  The `jalr` at 0x10155bc0 calls fcntl with a0=[a0+16], a1=0x4, a2=(ret(fcntl) | 0x80), a3=?.
   The `beq` branch at 0x10155b2c targets 0x10155b4c, is taken when a1 == a6(=0x1), and falls through when a1 != a6(=0x1).
   The `beq` branch at 0x10155b34 targets 0x10155b68, is taken when a1 == v0(=0x2), and falls through when a1 != v0(=0x2).
   The `beq` branch at 0x10155b4c targets 0x10155bd4, is taken when a2 == 0, and falls through when a2 != 0.
@@ -28288,21 +28701,21 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 396 bytes.
   The `lw` at 0x10155c60 loads 4 bytes from a0 (arg0 at entry) +0x48.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10155c6c, `lw` at 0x10155d60.
-  The `lhu` at 0x10155c84 loads 2 bytes from [a0+8] +0x8.
-  The `lw` at 0x10155cb8 loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x10155cd8 loads 4 bytes from ret(SecurityLookupIDByType) +0xc.
-  The `lhu` at 0x10155ce4 loads 2 bytes from ?.
+  2 such `lhu` accesses load 2 bytes from [a0+8] +0x8, including `lhu` at 0x10155c84, `lhu` at 0x10155ce4.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10155cb8, `lw` at 0x10155db8.
+  2 such `lw` accesses load 4 bytes from ret(SecurityLookupIDByType) +0xc, including `lw` at 0x10155cd8, `lw` at 0x10155d2c.
   The `lw` at 0x10155cf0 loads 4 bytes from [ret(SecurityLookupIDByType)+12] +0x0.
   The `lw` at 0x10155d18 loads 4 bytes from a0 (arg0 at entry) +0x1c.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10155d2c, `lw` at 0x10155d30, `lw` at 0x10155d44.
+  The `lw` at 0x10155d30 loads 4 bytes from [ret(SecurityLookupIDByType)+12] +0x14c.
+  The `lw` at 0x10155d44 loads 4 bytes from ret(SecurityLookupIDByType) +0x0.
   The `lw` at 0x10155d4c loads 4 bytes from a0 (arg0 at entry) +0x10.
   The `lbu` at 0x10155d64 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10155d74 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `lw` at 0x10155d90 loads 4 bytes from a0 (arg0 at entry) +0x28.
   The `sw` at 0x10155dc4 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `jal` at 0x10155cb4 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x6, a3=0x1, a4=[a0+72].
-  The `jal` at 0x10155cec calls OsLookupColor [0x100bc070] with a0=[[ret(SecurityLookupIDByType)+12]], a1=?, a2=?, a3=sp-72, a4=sp-70, a5=sp-68.
-  The `jalr` at 0x10155d40 calls (unknown callee) with a0=sp-66, a1=sp-64, a2=sp-62, a3=?.
+  The `jal` at 0x10155cec calls OsLookupColor [0x100bc070] with a0=[[ret(SecurityLookupIDByType)+12]], a1=[a0+8]+12, a2=[[a0+8]+8]:2, a3=sp-72, a4=sp-70, a5=sp-68.
+  The `jalr` at 0x10155d40 calls (unknown callee) with a0=sp-66, a1=sp-64, a2=sp-62, a3=[ret(SecurityLookupIDByType)].
   The `jalr` at 0x10155d7c calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?.
   The `jal` at 0x10155ddc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=?.
   The `bne` branch at 0x10155c7c targets 0x10155d9c, is taken when a4(=[a0+72]) < 0x3 (unsigned), and falls through when a4(=[a0+72]) >= 0x3 (unsigned).
@@ -28349,10 +28762,9 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 560 bytes.
   The `lw` at 0x10155e54 loads 4 bytes from a0 (arg0 at entry) +0x48.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10155e58, `lw` at 0x10155f88.
-  The `lw` at 0x10155eb0 loads 4 bytes from [a0+8] +0x4.
+  5 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x10155eb0, `lw` at 0x10155ed0, `lw` at 0x10155f50.
   The `lw` at 0x10155ebc loads 4 bytes from sym(XRC_DRAWABLE) +0x0.
   The `lw` at 0x10155ecc loads 4 bytes from a0 (arg0 at entry) +0x30.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10155ed0, `lw` at 0x10155f50, `lw` at 0x10155fe8.
   The `lw` at 0x10155edc loads 4 bytes from a0 (arg0 at entry) +0x74.
   The `lw` at 0x10155eec loads 4 bytes from a0 (arg0 at entry) +0x2c.
   The `lw` at 0x10155f20 loads 4 bytes from a0 (arg0 at entry) +0x1c.
@@ -28367,26 +28779,27 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x10155f8c loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10155f9c loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `lw` at 0x10155fb8 loads 4 bytes from a0 (arg0 at entry) +0x28.
+  The `lw` at 0x10155fe8 loads 4 bytes from ?.
   2 such `lh` accesses load 2 bytes from ?, including `lh` at 0x10155ffc, `lh` at 0x1015600c.
   The `sw` at 0x10156034 stores 4 bytes to a0 (arg0 at entry) +0x18.
   The `lw` at 0x10156064 loads 4 bytes from sym(ProcVector) +0x38.
   The `jal` at 0x10155eb8 calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=[sym(XRC_DRAWABLE)], a3=0x1, a4=0x2.
-  The `jal` at 0x10155efc calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=?, a2=0x40000000, a3=0x0.
+  The `jal` at 0x10155efc calls SecurityLookupIDByClass [0x10236190] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x40000000, a3=0x0.
   The `jalr` at 0x10155fa8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=?, a7=[a0+16].
   The `jal` at 0x10156050 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-64, a3=?, a7=[a0+16].
   The `jalr` at 0x10156068 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10155e74 targets 0x10155e90, is taken when a4(=0x2) == v1(=[a0+72]), and falls through when a4(=0x2) != v1(=[a0+72]).
   The `beq` branch at 0x10155e94 targets 0x10155ec8, is taken when a0(=[0x102c5f68]) == 0, and falls through when a0(=[0x102c5f68]) != 0.
   The `beq` branch at 0x10155ec0 targets 0x10156060, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
-  The `bne` branch at 0x10155ed4 targets 0x10155ef0, is taken when a2(=[a0+48]) != a1(?), and falls through when a2(=[a0+48]) == a1(?).
+  The `bne` branch at 0x10155ed4 targets 0x10155ef0, is taken when a2(=[a0+48]) != a1(=[[a0+8]+4]), and falls through when a2(=[a0+48]) == a1(=[[a0+8]+4]).
   The `bne` branch at 0x10155ee0 targets 0x10155ef4, is taken when a2(=[a0+116]) != 0, and falls through when a2(=[a0+116]) == 0.
   The `beq` branch at 0x10155ee8 targets 0x10155f10 and is always taken.
   The `beq` branch at 0x10155f08 targets 0x10156024, is taken when v0(=ret(SecurityLookupIDByClass)) == 0, and falls through when v0(=ret(SecurityLookupIDByClass)) != 0.
-  The `bne` branch at 0x10155f60 targets 0x10155fc8, is taken when a3(?) != a4(=[[[sym(WindowTable)]]+4]), and falls through when a3(?) == a4(=[[[sym(WindowTable)]]+4]).
+  The `bne` branch at 0x10155f60 targets 0x10155fc8, is taken when a3(=[[a0+8]+4]) != a4(=[[[sym(WindowTable)]]+4]), and falls through when a3(=[[a0+8]+4]) == a4(=[[[sym(WindowTable)]]+4]).
   The `beq` branch at 0x10155f80 targets 0x10156044, is taken when a7(=[a0+16]) == 0, and falls through when a7(=[a0+16]) != 0.
   The `beq` branch at 0x10155fd8 targets 0x10155ff8, is taken when at(=0x2) == v0(?), and falls through when at(=0x2) != v0(?).
   The `bne` branch at 0x10155fe0 targets 0x10155f7c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `bne` branch at 0x10155ff0 targets 0x10155f7c, is taken when v1(?) != a1(?), and falls through when v1(?) == a1(?).
+  The `bne` branch at 0x10155ff0 targets 0x10155f7c, is taken when v1(=[[a0+8]+4]) != a1(?), and falls through when v1(=[[a0+8]+4]) == a1(?).
   The `beq` branch at 0x1015601c targets 0x10155f7c and is always taken.
   The `beq` branch at 0x10156058 targets 0x10155fb4 and is always taken.
   The `beq` branch at 0x10156078 targets 0x10155e80 and is always taken.
@@ -28416,11 +28829,11 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 920 bytes.
   The `lw` at 0x10156144 loads 4 bytes from a0 (arg0 at entry) +0x48.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x10156154, `lw` at 0x10156324.
-  The `lw` at 0x101561ac loads 4 bytes from [a0+8] +0x4.
-  The `lw` at 0x101561ec loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from [a0+8] +0x4, including `lw` at 0x101561ac, `lw` at 0x101561ec.
   3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x101561f4, `sw` at 0x10156238, `sw` at 0x101562d0.
-  2 such `lhu` accesses load 2 bytes from ?, including `lhu` at 0x10156208, `lhu` at 0x10156240.
-  17 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10156218, `lbu` at 0x1015638c, `lbu` at 0x10156390.
+  The `lhu` at 0x10156208 loads 2 bytes from [a0+8] +0x8.
+  The `lbu` at 0x10156218 loads 1 byte from [a0+8] +0x1.
+  The `lhu` at 0x10156240 loads 2 bytes from [a0+8] +0xa.
   The `lw` at 0x10156298 loads 4 bytes from a0 (arg0 at entry) +0x0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x28, including `lw` at 0x101562b4, `lw` at 0x10156430.
   The `lw` at 0x101562d8 loads 4 bytes from sym(panoramiXDisabled) +0x0.
@@ -28429,23 +28842,24 @@ These entries record instruction facts rendered from the routines below. They de
   The `lbu` at 0x10156328 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x10156338 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `sw` at 0x10156360 stores 4 bytes to a0 (arg0 at entry) +0x14.
+  16 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1015638c, `lbu` at 0x10156390, `lbu` at 0x10156394.
   16 such `sb` accesses store 1 byte to ?, including `sb` at 0x1015639c, `sb` at 0x101563a8, `sb` at 0x101563ac.
   The `lw` at 0x10156448 loads 4 bytes from sym(panoramiXMode) +0x0.
   The `lw` at 0x10156454 loads 4 bytes from sym(panoramiXScreen0) +0x0.
   The `jal` at 0x101561a8 calls SecurityLookupIDByType [0x100d6140] with a0=a0 at entry (arg0), a1=[[a0+8]+4], a2=0x6, a3=0x2.
-  The `jal` at 0x101561c0 calls LbxCheckColorRequest [0x102323c0] with a0=a0 at entry (arg0), a1=ret(SecurityLookupIDByType), a2=?, a3=?.
-  The `jal` at 0x1015629c calls AllocColorCells [0x100d2600] with a0=[a0], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10156340 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=?, a4=[a0+28], a6=0x1.
+  The `jal` at 0x101561c0 calls LbxCheckColorRequest [0x102323c0] with a0=a0 at entry (arg0), a1=ret(SecurityLookupIDByType), a2=[a0+8], a3=?.
+  The `jal` at 0x1015629c calls AllocColorCells [0x100d2600] with a0=[a0], a1=ret(SecurityLookupIDByType), a2=[[a0+8]+8]:2, a3=[[a0+8]+10]:2, a4=[[a0+8]+1]:1, a7=([[a0+8]+8]:2 << 0x2).
+  The `jalr` at 0x10156340 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=[[a0+8]+8]:2, a4=[a0+28], a6=0x1.
   The `jal` at 0x1015641c calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=sym(WriteToClient).
-  The `jal` at 0x10156474 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=?, a4=[a0+28], a6=0x1.
-  The `jal` at 0x10156490 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=sym(WriteToClient).
+  The `jal` at 0x10156474 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-56, a3=[[a0+8]+8]:2, a4=[a0+28], a6=0x1.
+  The `jal` at 0x10156490 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=(([[a0+8]+8]:2 + [[a0+8]+10]:2) << 0x2), a2=?, a3=?, a4=sym(WriteToClient).
   The `beq` branch at 0x1015615c targets 0x10156190, is taken when v0(=[a0+72]) == v1(=0x3), and falls through when v0(=[a0+72]) != v1(=0x3).
   The `beq` branch at 0x101561b0 targets 0x101561d8, is taken when v0(=ret(SecurityLookupIDByType)) == 0, and falls through when v0(=ret(SecurityLookupIDByType)) != 0.
   The `beq` branch at 0x101561c8 targets 0x10156204, is taken when v0(=ret(LbxCheckColorRequest)) == 0, and falls through when v0(=ret(LbxCheckColorRequest)) != 0.
   The `beq` branch at 0x101561d0 targets 0x1015617c and is always taken.
-  The `beq` branch at 0x1015620c targets 0x101562c8, is taken when t0(?) == 0, and falls through when t0(?) != 0.
-  The `beq` branch at 0x10156220 targets 0x10156240, is taken when a3(=0x1) == a4(?), and falls through when a3(=0x1) != a4(?).
-  The `beq` branch at 0x10156228 targets 0x1015623c, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x1015620c targets 0x101562c8, is taken when t0(=[[a0+8]+8]:2) == 0, and falls through when t0(=[[a0+8]+8]:2) != 0.
+  The `beq` branch at 0x10156220 targets 0x10156240, is taken when a3(=0x1) == a4(=[[a0+8]+1]:1), and falls through when a3(=0x1) != a4(=[[a0+8]+1]:1).
+  The `beq` branch at 0x10156228 targets 0x1015623c, is taken when a4(=[[a0+8]+1]:1) == 0, and falls through when a4(=[[a0+8]+1]:1) != 0.
   The `beq` branch at 0x10156234 targets 0x1015617c and is always taken.
   The `bne` branch at 0x10156268 targets 0x10156278, is taken when sp(?) != 0, and falls through when sp(?) == 0.
   The `beq` branch at 0x10156270 targets 0x1015617c and is always taken.
@@ -28522,7 +28936,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x101565b0 targets 0x101565f8, is taken when a0 == 0, and falls through when a0 != 0.
   The `beq` branch at 0x101565c4 targets 0x101565dc, is taken when (v1(=[a0+1]:1) & 0x2) == 0, and falls through when (v1(=[a0+1]:1) & 0x2) != 0.
   The `blez` branch at 0x101565e8 targets 0x10156604, is taken when a3(?) <= 0 (signed), and falls through when a3(?) > 0 (signed).
-  The `beq` branch at 0x10156624 targets 0x10156644, is taken when (a6(?) & 0x1) == 0, and falls through when (a6(?) & 0x1) != 0.
+  The `beq` branch at 0x10156624 targets 0x10156644, is taken when (a6(=[a0+1]:1) & 0x1) == 0, and falls through when (a6(=[a0+1]:1) & 0x1) != 0.
   The `beq` branch at 0x1015662c targets 0x10156644, is taken when v0(=ret(t1_Copy)) == 0, and falls through when v0(=ret(t1_Copy)) != 0.
   The `beq` branch at 0x1015663c targets 0x10156654, is taken when (a7(=[ret(t1_Copy)+1]:1) & 0x1) == 0, and falls through when (a7(=[ret(t1_Copy)+1]:1) & 0x1) != 0.
   The `beq` branch at 0x1015665c targets 0x1015667c, is taken when a3(=[ret(t1_Copy)+2]:2) >= 0x2 (signed), and falls through when a3(=[ret(t1_Copy)+2]:2) < 0x2 (signed).
@@ -28587,10 +29001,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10156d30 loads 2 bytes from a0 (arg0 at entry) +0x6.
   22 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10156d50, `lbu` at 0x10156d64, `lbu` at 0x10156d78.
   The `lbu` at 0x10156d94 loads 1 byte from ([a0+6]:2 + [a0+8]) -0x1.
-  10 such `sb` accesses store 1 byte to ?, including `sb` at 0x10156e0c, `sb` at 0x101575ec, `sb` at 0x10157d40.
-  The `sw` at 0x10156e6c stores 4 bytes to abs 0x102c89c0 (TheFile..101+8).
+  9 such `sb` accesses store 1 byte to ?, including `sb` at 0x10156e0c, `sb` at 0x10157d40, `sb` at 0x10157e24.
+  3 such `sw` accesses store 4 bytes to abs 0x102c89c0 (TheFile..101+8), including `sw` at 0x10156e6c, `sw` at 0x10157f5c, `sw` at 0x10157f8c.
   3 such `lbu` accesses load 1 byte from [0x102c89c0] -0x1, including `lbu` at 0x10156e7c, `lbu` at 0x10157f68, `lbu` at 0x10157f98.
-  The `sb` at 0x10156ef0 stores 1 byte to abs 0x102c89c8 (TheFile..101+16).
+  2 such `sb` accesses store 1 byte to abs 0x102c89c8 (TheFile..101+16), including `sb` at 0x10156ef0, `sb` at 0x101575ec.
   The `sw` at 0x10156f14 stores 4 bytes to [0x102c8970] +0x4.
   The `sh` at 0x10156f18 stores 2 bytes to [0x102c8970] +0x2.
   The `sb` at 0x10156f20 stores 1 byte to [0x102c8970] +0x0.
@@ -28713,7 +29127,6 @@ These entries record instruction facts rendered from the routines below. They de
   The `swc1` at 0x10157d0c stores 4 bytes to [0x102c7bf4] +0x10c.
   The `lbu` at 0x10157dc8 loads 1 byte from [[0x102c8970]+4] +0x11.
   2 such `sb` accesses store 1 byte to [[0x102c8970]+4] +0x10, including `sb` at 0x10157de0, `sb` at 0x10158328.
-  10 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10157f5c, `sw` at 0x10157f8c, `sw` at 0x10158738.
   The `sw` at 0x10158170 stores 4 bytes to a0 (arg0 at entry) +0x20.
   The `lbu` at 0x10158174 loads 1 byte from [a0+24] +0x18.
   3 such `sw` accesses store 4 bytes to [0x102c7bf4] +0x4, including `sw` at 0x10158184, `sw` at 0x10158540, `sw` at 0x10158670.
@@ -28764,6 +29177,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0x10158714 loads 4 bytes from [a0+24] +0xdc.
   The `lw` at 0x10158720 loads 4 bytes from [a0+24] +0xfc.
   The `lw` at 0x1015872c loads 4 bytes from [a0+24] +0xec.
+  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0x10158738, `sw` at 0x10158788, `sw` at 0x1015878c.
   The `lw` at 0x1015873c loads 4 bytes from [0x102c7bf4] +0x4.
   The `lw` at 0x10158754 loads 4 bytes from [a0+24] +0x1c.
   6 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0x10158770, `lwc1` at 0x101587c4, `lwc1` at 0x10158818.
@@ -28803,32 +29217,32 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10156f34 calls BuildFontInfo..EOB [0x1012a720] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=0x1.
   The `jal` at 0x10157128 calls T1Getc [0x10232f70] with a0=[[0x102c8970]+4], a1=?, a2=?, a3=?.
   The `jalr` at 0x10157154 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101571a8 calls strncmp with a0=[0x102c891c], a1=?, a2=0x5, a3=?.
-  The `jalr` at 0x10157204 calls strncmp with a0=[0x102c891c], a1=?, a2=0x5, a3=?.
-  The `jalr` at 0x1015721c calls strncmp with a0=[0x102c891c], a1=?, a2=0xb, a3=?.
+  The `jalr` at 0x101571a8 calls strncmp with a0=[0x102c891c], a1=0x10294f78, a2=0x5, a3=?.
+  The `jalr` at 0x10157204 calls strncmp with a0=[0x102c891c], a1=0x10294f88, a2=0x5, a3=?.
+  The `jalr` at 0x1015721c calls strncmp with a0=[0x102c891c], a1=0x10294f90, a2=0xb, a3=?.
   The `jal` at 0x1015722c calls FindDictValue..IOB [0x101b7db0] with a0=[a0+24], a1=?, a2=?, a3=?.
   The `jal` at 0x10157258 calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=?, a3=?.
-  The `jal` at 0x101572e4 calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=0x5, a3=[0x102c89c8]:1.
-  The `jalr` at 0x10157330 calls strncmp with a0=[0x102c891c], a1=?, a2=0x7, a3=?.
+  The `jal` at 0x101572e4 calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=0x1, a2=0x5, a3=[0x102c89c8]:1.
+  The `jalr` at 0x10157330 calls strncmp with a0=[0x102c891c], a1=0x10294f60, a2=0x7, a3=?.
   The `jal` at 0x10157348 calls FindDictValue..IOB [0x101b7db0] with a0=[a0+28], a1=?, a2=?, a3=?.
-  The `jal` at 0x101573ac calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=?, a3=?.
+  The `jal` at 0x101573ac calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=?, a3=?, a7=0x2.
   The `jal` at 0x101573f0 calls BuildCharStrings..BOB [0x101010a0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10157414 calls BuildSubrs..AOB [0x1022f9d0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x10157428 calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=[0x102c89c8]:1, a2=?, a3=?.
-  The `jal` at 0x1015746c calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=?, a3=?, a6=0x5, a7=[0x102c89c8]:1.
+  The `jal` at 0x1015746c calls T1Getc [0x10232f70] with a0=0x102c89b8, a1=?, a2=?, a3=?, a5=0x4, a6=0x5, a7=[0x102c89c8]:1.
   The `jal` at 0x10157648 calls T1Getc [0x10232f70] with a0=[[0x102c8970]+4], a1=?, a2=?, a3=?.
   The `jalr` at 0x10157678 calls close with a0=[[[0x102c8970]+4]+20], a1=[[[0x102c8970]+4]], a2=?, a3=?.
-  The `jal` at 0x10157694 calls T1Read [0x1013cc80] with a0=?, a1=0x3, a2=[[0x102c8970]+4], a3=?.
-  The `jal` at 0x101576d8 calls T1Read [0x1013cc80] with a0=?, a1=0x4, a2=[[0x102c8970]+4], a3=[0x102c89a4].
+  The `jal` at 0x10157694 calls T1Read [0x1013cc80] with a0=sp-335, a1=0x3, a2=[[0x102c8970]+4], a3=?.
+  The `jal` at 0x101576d8 calls T1Read [0x1013cc80] with a0=sp-332, a1=0x4, a2=[[0x102c8970]+4], a3=[0x102c89a4].
   The `jalr` at 0x10158474 calls close with a0=[[[0x102c8970]+4]+20], a1=?, a2=[0x102c7bec], a3=?.
   The `jal` at 0x10158484 calls T1Fill..MAC [0x10215310] with a0=[[0x102c8970]+4], a1=?, a2=[[[0x102c8970]+4]+16]:1, a3=?.
-  The `jal` at 0x1015864c calls T1Fill..MAC [0x10215310] with a0=?, a1=?, a2=[0x102c89c8]:1, a3=?.
+  The `jal` at 0x1015864c calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=?, a2=[0x102c89c8]:1, a3=?.
   The `jalr` at 0x101589c0 calls close with a0=[[0x102c8964]+20], a1=?, a2=?, a3=?.
-  The `jal` at 0x10158a38 calls T1Fill..MAC [0x10215310] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10158a4c calls T1Fill..MAC [0x10215310] with a0=?, a1=0x5, a2=[0x102c89c8]:1, a3=[0x102c89b8].
-  The `jal` at 0x10158a60 calls T1Fill..MAC [0x10215310] with a0=?, a1=?, a2=?, a3=?, a6=0x5, a7=[0x102c89c8]:1.
-  The `jal` at 0x10158a74 calls T1Fill..MAC [0x10215310] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10158a88 calls T1Fill..MAC [0x10215310] with a0=?, a1=[0x102c89c8]:1, a2=[0x102c89b8], a3=?.
+  The `jal` at 0x10158a38 calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=?, a2=?, a3=?.
+  The `jal` at 0x10158a4c calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=0x5, a2=[0x102c89c8]:1, a3=[0x102c89b8].
+  The `jal` at 0x10158a60 calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=?, a2=?, a3=?, a6=0x5, a7=[0x102c89c8]:1.
+  The `jal` at 0x10158a74 calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=?, a2=?, a3=?.
+  The `jal` at 0x10158a88 calls T1Fill..MAC [0x10215310] with a0=0x102c89b8, a1=[0x102c89c8]:1, a2=[0x102c89b8], a3=?.
   The `bne` branch at 0x10156d44 targets 0x10156ecc, is taken when v0(=0x20) != v1(=[[a0+8]]:1), and falls through when v0(=0x20) == v1(=[[a0+8]]:1).
   The `bne` branch at 0x10156d5c targets 0x10156d8c, is taken when v0(=0x20) != a0(?), and falls through when v0(=0x20) == a0(?).
   The `bne` branch at 0x10156d70 targets 0x10156d8c, is taken when v0(=0x20) != a2(?), and falls through when v0(=0x20) == a2(?).
@@ -28868,7 +29282,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10157190 targets 0x101571f0, is taken when at(=[0x102c892c]) == t9(=0xa), and falls through when at(=[0x102c892c]) != t9(=0xa).
   The `bne` branch at 0x10157198 targets 0x101570a8, is taken when at(=[0x102c892c]) != ra(=0x9), and falls through when at(=[0x102c892c]) == ra(=0x9).
   The `bne` branch at 0x101571b0 targets 0x101570a8, is taken when v0(=ret(strncmp)) != 0, and falls through when v0(=ret(strncmp)) == 0.
-  The `beq` branch at 0x101571bc targets 0x10157600, is taken when at(?) == 0, and falls through when at(?) != 0.
+  The `beq` branch at 0x101571bc targets 0x10157600, is taken when at(=one of 0x0, 0x1) == 0, and falls through when at(=one of 0x0, 0x1) != 0.
   The `blez` branch at 0x101571c4 targets 0x101571d4, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `beq` branch at 0x101571cc targets 0x10157f4c, is taken when v0(=[0x102c89c8]:1) == 0, and falls through when v0(=[0x102c89c8]:1) != 0.
   The `bne` branch at 0x101571d8 targets 0x10157490, is taken when v1(=[0x102c89b8]) != 0, and falls through when v1(=[0x102c89b8]) == 0.
@@ -28877,11 +29291,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1015720c targets 0x10157414, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `beq` branch at 0x10157224 targets 0x101573f0, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
   The `beq` branch at 0x10157238 targets 0x101570a8 and is always taken.
-  The `beq` branch at 0x1015726c targets 0x10157474, is taken when a1(?) == a2(=0x5), and falls through when a1(?) != a2(=0x5).
+  The `beq` branch at 0x1015726c targets 0x10157474 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x10157278 targets 0x101572e4, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `bne` branch at 0x10157280 targets 0x101572e4, is taken when a3(=[0x102c89c8]:1) != 0, and falls through when a3(=[0x102c89c8]:1) == 0.
   The `beq` branch at 0x10157294 targets 0x101572ec and is always taken.
-  The `beq` branch at 0x101572f8 targets 0x10157474, is taken when a7(?) == t0(=0x5), and falls through when a7(?) != t0(=0x5).
+  The `beq` branch at 0x101572f8 targets 0x10157474 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x10157304 targets 0x101573ac, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `bne` branch at 0x1015730c targets 0x101573ac, is taken when t1(=[0x102c89c8]:1) != 0, and falls through when t1(=[0x102c89c8]:1) == 0.
   The `beq` branch at 0x10157320 targets 0x101573b4 and is always taken.
@@ -28890,7 +29304,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10157354 targets 0x101570a8 and is always taken.
   The `bne` branch at 0x10157364 targets 0x10157674, is taken when a1(=[[[0x102c8970]+4]]) != 0, and falls through when a1(=[[[0x102c8970]+4]]) == 0.
   The `beq` branch at 0x10157370 targets 0x101578a8, is taken when v0(=[0x102c8928]) == 0, and falls through when v0(=[0x102c8928]) != 0.
-  The `beq` branch at 0x101573c0 targets 0x10157474, is taken when v1(?) == a0(=0x5), and falls through when v1(?) != a0(=0x5).
+  The `beq` branch at 0x101573c0 targets 0x10157474 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x101573cc targets 0x10157428, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `bne` branch at 0x101573d4 targets 0x10157428, is taken when a1(=[0x102c89c8]:1) != 0, and falls through when a1(=[0x102c89c8]:1) == 0.
   The `beq` branch at 0x101573e8 targets 0x10157430 and is always taken.
@@ -28898,7 +29312,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10157404 targets 0x1015812c, is taken when v0(=ret(BuildCharStrings..BOB)) == a4(=-0x7), and falls through when v0(=ret(BuildCharStrings..BOB)) != a4(=-0x7).
   The `beq` branch at 0x1015740c targets 0x101570a8 and is always taken.
   The `beq` branch at 0x10157420 targets 0x101570a8 and is always taken.
-  The `beq` branch at 0x1015743c targets 0x10157474, is taken when a5(?) == a6(=0x5), and falls through when a5(?) != a6(=0x5).
+  The `beq` branch at 0x1015743c targets 0x10157474 and is never taken: its condition can never hold for these operands, so execution always falls through.
   The `blez` branch at 0x10157448 targets 0x1015746c, is taken when at(=[0x102c89c4]) <= 0 (signed), and falls through when at(=[0x102c89c4]) > 0 (signed).
   The `bne` branch at 0x10157450 targets 0x1015746c, is taken when a7(=[0x102c89c8]:1) != 0, and falls through when a7(=[0x102c89c8]:1) == 0.
   The `beq` branch at 0x10157464 targets 0x10157474 and is always taken.
@@ -28940,7 +29354,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1015766c targets 0x10157dac and is always taken.
   The `beq` branch at 0x10157680 targets 0x10157370 and is always taken.
   The `beq` branch at 0x101576b8 targets 0x10157770, is taken when a0(=entry(0x102ce3c9)) >= 0xf1 (signed), and falls through when a0(=entry(0x102ce3c9)) < 0xf1 (signed).
-  The `bne` branch at 0x101576c0 targets 0x101576a4, is taken when at(?) != a2(?), and falls through when at(?) == a2(?).
+  The `bne` branch at 0x101576c0 targets 0x101576a4, is taken when at(?) != a2(=sp-332), and falls through when at(?) == a2(=sp-332).
   The `beq` branch at 0x101576cc targets 0x10157774, is taken when a3(=[0x102c89a4]) == 0, and falls through when a3(=[0x102c89a4]) != 0.
   The `beq` branch at 0x10157768 targets 0x10157778 and is always taken.
   The `blez` branch at 0x101577e4 targets 0x10158310, is taken when t8(=[[[0x102c8970]+4]+12]) <= 0 (signed), and falls through when t8(=[[[0x102c8970]+4]+12]) > 0 (signed).
@@ -28996,7 +29410,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10157d48 targets 0x10157ea8, is taken when a1(?) == t1(=([[[0x102c8970]+4]+12] + [[[0x102c8970]+4]+8])), and falls through when a1(?) != t1(=([[[0x102c8970]+4]+12] + [[[0x102c8970]+4]+8])).
   The `beq` branch at 0x10157d6c targets 0x10157d48, is taken when t2(?) == t3(=0xfd), and falls through when t2(?) != t3(=0xfd).
   The `beq` branch at 0x10157d74 targets 0x10157eec, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `bne` branch at 0x10157d7c targets 0x10157d1c, is taken when v0(?) != t8(?), and falls through when v0(?) == t8(?).
+  The `bne` branch at 0x10157d7c targets 0x10157d1c, is taken when v0(=one of 0x102ce3c9, 0x102ce4d1) != t8(=0x102ce3c9), and falls through when v0(=one of 0x102ce3c9, 0x102ce4d1) == t8(=0x102ce3c9).
   The `beq` branch at 0x10157d88 targets 0x10157d48 and is always taken.
   The `bne` branch at 0x10157da4 targets 0x10157688, is taken when ra(=0xfd) != v0(=entry(0x102ce3c9)), and falls through when ra(=0xfd) == v0(=entry(0x102ce3c9)).
   The `blez` branch at 0x10157dac targets 0x10157dc0, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
@@ -29008,22 +29422,22 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10157e2c targets 0x10157f0c, is taken when a1(?) == t3(?), and falls through when a1(?) != t3(?).
   The `beq` branch at 0x10157e50 targets 0x10157e2c, is taken when t1(?) == t2(=0xfd), and falls through when t1(?) != t2(=0xfd).
   The `beq` branch at 0x10157e58 targets 0x10157f24, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `bne` branch at 0x10157e60 targets 0x10157e00, is taken when t9(?) != v0(?), and falls through when t9(?) == v0(?).
+  The `bne` branch at 0x10157e60 targets 0x10157e00, is taken when t9(=0x102ce3c9) != v0(=one of 0x102ce3c9, 0x102ce4d1), and falls through when t9(=0x102ce3c9) == v0(=one of 0x102ce3c9, 0x102ce4d1).
   The `beq` branch at 0x10157e6c targets 0x10157e2c and is always taken.
   The `beq` branch at 0x10157e74 targets 0x10158484, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `blez` branch at 0x10157e7c targets 0x10158318, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
   The `beq` branch at 0x10157e98 targets 0x10157d94 and is always taken.
   The `beq` branch at 0x10157ea0 targets 0x10157d14 and is always taken.
-  The `bne` branch at 0x10157ea8 targets 0x10157ef8, is taken when v0(?) != v1(?), and falls through when v0(?) == v1(?).
+  The `bne` branch at 0x10157ea8 targets 0x10157ef8, is taken when v0(=one of 0x102ce3c9, 0x102ce4d1) != v1(=0x102ce3c9), and falls through when v0(=one of 0x102ce3c9, 0x102ce4d1) == v1(=0x102ce3c9).
   The `beq` branch at 0x10157ec4 targets 0x10157ed0, is taken when (a1(=[[[0x102c8970]+4]+16]:1) & 0x80) == 0, and falls through when (a1(=[[[0x102c8970]+4]+16]:1) & 0x80) != 0.
   The `beq` branch at 0x10157ecc targets 0x10157f44, is taken when t0(?) == 0, and falls through when t0(?) != 0.
   The `beq` branch at 0x10157ed4 targets 0x101584bc, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0x10157ee4 targets 0x101570a4 and is always taken.
-  The `beq` branch at 0x10157ef4 targets 0x10157eb0, is taken when v0(?) == a3(?), and falls through when v0(?) != a3(?).
+  The `beq` branch at 0x10157ef4 targets 0x10157eb0, is taken when v0(=one of 0x102ce3c9, 0x102ce4d1) == a3(=0x102ce3c9), and falls through when v0(=one of 0x102ce3c9, 0x102ce4d1) != a3(=0x102ce3c9).
   The `beq` branch at 0x10157f04 targets 0x10157eb4 and is always taken.
-  The `bne` branch at 0x10157f0c targets 0x10157f30, is taken when a6(?) != v0(?), and falls through when a6(?) == v0(?).
+  The `bne` branch at 0x10157f0c targets 0x10157f30, is taken when a6(=0x102ce3c9) != v0(=one of 0x102ce3c9, 0x102ce4d1), and falls through when a6(=0x102ce3c9) == v0(=one of 0x102ce3c9, 0x102ce4d1).
   The `beq` branch at 0x10157f1c targets 0x10157eb8 and is always taken.
-  The `beq` branch at 0x10157f2c targets 0x10157f14, is taken when a7(?) == v0(?), and falls through when a7(?) != v0(?).
+  The `beq` branch at 0x10157f2c targets 0x10157f14, is taken when a7(=0x102ce3c9) == v0(=one of 0x102ce3c9, 0x102ce4d1), and falls through when a7(=0x102ce3c9) != v0(=one of 0x102ce3c9, 0x102ce4d1).
   The `beq` branch at 0x10157f3c targets 0x10157f18 and is always taken.
   The `beq` branch at 0x10157f44 targets 0x10157ed4 and is always taken.
   The `beq` branch at 0x10157f64 targets 0x101574a4 and is always taken.

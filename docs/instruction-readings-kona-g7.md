@@ -47,10 +47,10 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `ld` at 0x3a4 loads 8 bytes from a0 (arg0 at entry) +0x1500.
   The `jal` at 0x374 calls mutex_spinlock_spl with a0=a0+5368, a1=[sym(pltimeout)]:8, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x380 calls kona_callout with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x38c calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x38c calls mutex_spinunlock with a0=a0+5368, a1=ret(mutex_spinlock_spl), a2=?, a3=?.
   The `jal` at 0x398 calls mutex_spinlock with a0=a0+5372, a1=?, a2=?, a3=?.
   The `jal` at 0x3b4 calls kona_sched_tick with a0=a0 at entry (arg0), a1=0x7a120, a2=?, a3=?.
-  The `jal` at 0x3c8 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x3c8 calls mutex_spinunlock with a0=a0+5372, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0x3e0 calls kona_die with a0=a0 at entry (arg0), a1=0x9, a2=?, a3=?.
   The `bne` branch at 0x364 targets 0x3d0, is taken when a1 < at(=[a0+5472]:8) (unsigned), and falls through when a1 >= at(=[a0+5472]:8) (unsigned).
   The `beq` branch at 0x3a8 targets 0x3c4, is taken when v0(=[a0+5376]:8) == 0, and falls through when v0(=[a0+5376]:8) != 0.
@@ -70,7 +70,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `jal` at 0xac calls kona_fc_attach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0xfc calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x12c calls kona_fc_detach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x140 calls mutex_spinunlock with a0=sym(ktport_lock), a1=?, a2=?, a3=?.
+  The `jal` at 0x140 calls mutex_spinunlock with a0=sym(ktport_lock), a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x1c targets 0x34, is taken when at(=[sym(ktport_mute)]) == 0, and falls through when at(=[sym(ktport_mute)]) != 0.
   The `bgtz` branch at 0x6c targets 0x84, is taken when t8(?) > 0 (signed), and falls through when t8(?) <= 0 (signed).
   The `beq` branch at 0x74 targets 0xac and is always taken.
@@ -94,7 +94,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `jal` at 0x670 calls kona_fc_attach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x6b8 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x6e8 calls kona_fc_detach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x6fc calls mutex_spinunlock with a0=sym(ktport_lock), a1=?, a2=?, a3=?.
+  The `jal` at 0x6fc calls mutex_spinunlock with a0=sym(ktport_lock), a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x5e0 targets 0x5f8, is taken when at(=[sym(ktport_mute)]) == 0, and falls through when at(=[sym(ktport_mute)]) != 0.
   The `bgtz` branch at 0x630 targets 0x648, is taken when t8(?) > 0 (signed), and falls through when t8(?) <= 0 (signed).
   The `beq` branch at 0x638 targets 0x670 and is always taken.
@@ -118,7 +118,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `jal` at 0x7c0 calls kona_fc_attach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jal` at 0x818 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x848 calls kona_fc_detach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jal` at 0x85c calls mutex_spinunlock with a0=sym(ktport_lock), a1=?, a2=?, a3=?.
+  The `jal` at 0x85c calls mutex_spinunlock with a0=sym(ktport_lock), a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x730 targets 0x748, is taken when at(=[sym(ktport_mute)]) == 0, and falls through when at(=[sym(ktport_mute)]) != 0.
   The `bgtz` branch at 0x780 targets 0x798, is taken when t8(?) > 0 (signed), and falls through when t8(?) <= 0 (signed).
   The `beq` branch at 0x788 targets 0x7c0 and is always taken.
@@ -145,14 +145,17 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   It occupies 116 bytes.
   The `ld` at 0xc loads 8 bytes from a0 (arg0 at entry) +0x28.
   The `lw` at 0x2c loads 4 bytes from a2 (arg2 at entry) +0x0.
-  3 such `sb` accesses store 1 byte to ?, including `sb` at 0x30, `sb` at 0x4c, `sb` at 0x50.
+  The `sb` at 0x30 stores 1 byte to [a0+40]:8 +0xde3.
   The `lw` at 0x34 loads 4 bytes from a2 (arg2 at entry) +0x4.
-  The `sw` at 0x38 stores 4 bytes to ?.
+  The `sw` at 0x38 stores 4 bytes to [a0+40]:8 +0xde8.
   The `lw` at 0x3c loads 4 bytes from a2 (arg2 at entry) +0x8.
-  2 such `sh` accesses store 2 bytes to ?, including `sh` at 0x40, `sh` at 0x5c.
+  The `sh` at 0x40 stores 2 bytes to [a0+40]:8 +0xdf0.
   The `lw` at 0x44 loads 4 bytes from a2 (arg2 at entry) +0xc.
+  The `sb` at 0x4c stores 1 byte to [a0+40]:8 +0xde1.
+  The `sb` at 0x50 stores 1 byte to [a0+40]:8 +0xde0.
+  The `sh` at 0x5c stores 2 bytes to [a0+40]:8 +0xdf2.
   The `jal` at 0x1c calls mutex_spinlock with a0=[a0+40]:8+3520, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x58 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=[a2+12], a3=?, a4=0x1, a5=[a2+8], a6=[a2+4], a7=[a2].
+  The `jal` at 0x58 calls mutex_spinunlock with a0=[a0+40]:8+3520, a1=ret(mutex_spinlock), a2=[a2+12], a3=[a0+40]:8, a4=0x1, a5=[a2+8], a6=[a2+4], a7=[a2].
   The return at 0x6c has v0 = 0x0.
 
 - `kona_video_cleanup` in `usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)` at 0x178 (n64).
@@ -162,7 +165,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   It occupies 84 bytes.
   The `jal` at 0x190 calls mutex_spinlock with a0=a0+3520, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1a0 calls kona_video_rundown with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jal` at 0x1b0 calls mutex_spinunlock with a0=?, a1=?, a2=?, a3=?.
+  The `jal` at 0x1b0 calls mutex_spinunlock with a0=a0+3520, a1=ret(mutex_spinlock), a2=?, a3=?.
   The return at 0x1c4 has v0 = ret(kona_video_rundown).
 
 - `kona_gsync_complete` in `usr/cpu/sysgen/IP35boot/kona.a(kona_video.o)` at 0x2b8 (n64).
@@ -282,19 +285,30 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   2 such `lbu` accesses load 1 byte from a1 (arg1 at entry) +0x0, including `lbu` at 0x1c4c, `lbu` at 0x1c8c.
   The `ld` at 0x1c50 loads 8 bytes from a0 (arg0 at entry) +0x28.
   The `lbu` at 0x1c9c loads 1 byte from a1 (arg1 at entry) +0x1.
-  7 such `sb` accesses store 1 byte to ?, including `sb` at 0x1ca4, `sb` at 0x1cac, `sb` at 0x1cd4.
+  The `sb` at 0x1ca4 stores 1 byte to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1168.
   The `lb` at 0x1ca8 loads 1 byte from a1 (arg1 at entry) +0x2.
+  The `sb` at 0x1cac stores 1 byte to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1169.
   The `lh` at 0x1cb0 loads 2 bytes from a1 (arg1 at entry) +0x4.
-  6 such `sh` accesses store 2 bytes to ?, including `sh` at 0x1cb4, `sh` at 0x1cbc, `sh` at 0x1cc4.
+  The `sh` at 0x1cb4 stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x116a.
   The `lh` at 0x1cb8 loads 2 bytes from a1 (arg1 at entry) +0x6.
+  The `sh` at 0x1cbc stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x116c.
   The `lh` at 0x1cc0 loads 2 bytes from a1 (arg1 at entry) +0x8.
+  The `sh` at 0x1cc4 stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x116e.
   The `lh` at 0x1cc8 loads 2 bytes from a1 (arg1 at entry) +0xa.
+  The `sh` at 0x1ccc stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1170.
   The `lb` at 0x1cd0 loads 1 byte from a1 (arg1 at entry) +0xc.
+  The `sb` at 0x1cd4 stores 1 byte to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1172.
   The `lb` at 0x1cd8 loads 1 byte from a1 (arg1 at entry) +0xd.
+  The `sb` at 0x1cdc stores 1 byte to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1173.
   The `lh` at 0x1ce0 loads 2 bytes from a1 (arg1 at entry) +0xe.
+  The `sh` at 0x1ce4 stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1174.
   The `lh` at 0x1ce8 loads 2 bytes from a1 (arg1 at entry) +0x10.
+  The `sh` at 0x1cec stores 2 bytes to ([a0+40]:8 + ([a1]:1 << 0x4)) +0x1176.
+  The `sb` at 0x1cf4 stores 1 byte to [a0+40]:8 +0xde4.
+  The `sb` at 0x1cfc stores 1 byte to [a0+40]:8 +0xde1.
+  The `sb` at 0x1d08 stores 1 byte to [a0+40]:8 +0xde0.
   The `jal` at 0x1c80 calls mutex_spinlock with a0=[a0+40]:8+3520, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jal` at 0x1d04 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=0x1, a3=?, a4=0x20, a5=[a1+16]:2, a7=[a1+14]:2.
+  The `jal` at 0x1d04 calls mutex_spinunlock with a0=[a0+40]:8+3520, a1=ret(mutex_spinlock), a2=0x1, a3=[a0+40]:8, a4=0x20, a5=[a1+16]:2, a6=([a0+40]:8 + ([a1]:1 << 0x4)), a7=[a1+14]:2.
   The `bne` branch at 0x1c68 targets 0x1c78, is taken when at(=[a1]:1) < 0x20 (signed), and falls through when at(=[a1]:1) >= 0x20 (signed).
   The `beq` branch at 0x1d10 targets 0x1c70 and is always taken.
   The return at 0x1c70 has v0 = one of 0x0, 0x16.
@@ -313,15 +327,20 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `lhu` at 0x53bf10 loads 2 bytes from a1 (arg1 at entry) +0x4.
   The `lhu` at 0x53bf24 loads 2 bytes from a1 (arg1 at entry) +0x8.
   The `lhu` at 0x53bf34 loads 2 bytes from a1 (arg1 at entry) +0x6.
-  The `sw` at 0x53bf60 stores 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x2620.
-  4 such `sw` accesses store 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x0, including `sw` at 0x53bf6c, `sw` at 0x53bf78, `sw` at 0x53bf84.
+  2 such `sw` accesses store 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x2620, including `sw` at 0x53bf60, `sw` at 0x53c024.
+  8 such `sw` accesses store 4 bytes to [[([a0+436] + ([0x599790] << 0x2))]+8] +0x0, including `sw` at 0x53bf6c, `sw` at 0x53bf78, `sw` at 0x53bf84.
   The `sw` at 0x53bf9c stores 4 bytes to [([a0+436] + ([0x599790] << 0x2))] +0x70.
-  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0x53bfe4, `lw` at 0x53bff4, `lw` at 0x53bff8.
-  5 such `sw` accesses store 4 bytes to ?, including `sw` at 0x53c024, `sw` at 0x53c038, `sw` at 0x53c04c.
+  2 such `lw` accesses load 4 bytes from [(a1 + ([a0] << 0x2))+20] +0x10, including `lw` at 0x53bfe4, `lw` at 0x53bff4.
+  The `lw` at 0x53bff8 loads 4 bytes from [[(a1 + ([a0] << 0x2))+20]+16] +0x0.
+  The `lw` at 0x53c004 loads 4 bytes from [(a1 + ([a0] << 0x2))+20] +0x8.
+  The `lw` at 0x53c030 loads 4 bytes from [[(a1 + ([a0] << 0x2))+20]+8] +0x400.
+  The `lw` at 0x53c044 loads 4 bytes from [[(a1 + ([a0] << 0x2))+20]+8] +0x404.
+  The `lw` at 0x53c058 loads 4 bytes from [[(a1 + ([a0] << 0x2))+20]+8] +0x408.
+  The `lw` at 0x53c06c loads 4 bytes from [[(a1 + ([a0] << 0x2))+20]+8] +0x40c.
   The `jalr` at 0x53bfd8 calls (unnamed) [0x531f50] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=0x57d58.
   The `bne` branch at 0x53bef0 targets 0x53bfa8, is taken when at(=[(a1 + ([a0] << 0x2))+20]) != v0(=0x1), and falls through when at(=[(a1 + ([a0] << 0x2))+20]) == v0(=0x1).
   The `bne` branch at 0x53befc targets 0x53bf0c, is taken when a4(=a2) != 0, and falls through when a4(=a2) == 0.
   The `beq` branch at 0x53bf04 targets 0x53c078 and is always taken.
   The `beq` branch at 0x53bfa0 targets 0x53c078 and is always taken.
-  The `beq` branch at 0x53bfe8 targets 0x53c078, is taken when v0(?) == 0, and falls through when v0(?) != 0.
-  The return at 0x53c084 has v0 = one of 0x1, [[([a0+436] + ([0x599790] << 0x2))]+8]+9760, ?.
+  The `beq` branch at 0x53bfe8 targets 0x53c078, is taken when v0(=[[(a1 + ([a0] << 0x2))+20]+16]) == 0, and falls through when v0(=[[(a1 + ([a0] << 0x2))+20]+16]) != 0.
+  The return at 0x53c084 has v0 = one of 0x1, [[([a0+436] + ([0x599790] << 0x2))]+8]+9760, [[(a1 + ([a0] << 0x2))+20]+16].

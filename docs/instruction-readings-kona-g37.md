@@ -1032,11 +1032,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda6fd88 loads 4 bytes from a0 (arg0 at entry) +0x3364.
   The `sw` at 0xda6fd8c stores 4 bytes to a0 (arg0 at entry) +0x2ee4.
   The `lbu` at 0xda6fda0 loads 1 byte from a0 (arg0 at entry) +0x3358.
-  The `sb` at 0xda6fda4 stores 1 byte to a0 (arg0 at entry) +0x3358.
+  2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x3358, including `sb` at 0xda6fda4, `sb` at 0xda6fde0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2f60, including `lw` at 0xda6fda8, `lw` at 0xda6fddc.
-  The `sb` at 0xda6fde0 stores 1 byte to ?.
   The `jalr` at 0xda6fdc0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12768, a3=a0+12960.
-  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=? (`jr` at 0xda6fdec).
+  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12960, a3=a0+13152 (`jr` at 0xda6fdec).
   The `jalr` at 0xda6fe24 calls __glDoPolygonClip [0xd9fdff8] with a0=a0 at entry (arg0), a1=sp-24, a2=0x4, a3=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156])).
   The `bne` branch at 0xda6fd9c targets 0xda6fdf4, is taken when t6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) != 0, and falls through when t6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) == 0.
   The `bne` branch at 0xda6fe00 targets 0xda6fe30, is taken when (t9(?) & v1(?)) != 0, and falls through when (t9(?) & v1(?)) == 0.
@@ -1647,8 +1646,8 @@ These entries record instruction facts rendered from the routines below. They de
   6 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda72f88, `lw` at 0xda72f90, `lw` at 0xda72fb8.
   The `lw` at 0xda7300c loads 4 bytes from a0 (arg0 at entry) +0x2f68.
   The `jalr` at 0xda72fa4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=[a0+28136].
-  The `jalr` at 0xda72fd0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda72ffc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda72fd0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
+  The `jalr` at 0xda72ffc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
   The `jalr` at 0xda73014 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0xda72e70 targets 0xda72eac, is taken when t0(=[a1+132]) >= t1(=[a2+132]) (signed), and falls through when t0(=[a1+132]) < t1(=[a2+132]) (signed).
   The `bne` branch at 0xda72e78 targets 0xda72ee8, is taken when t5(?) != 0, and falls through when t5(?) == 0.
@@ -1662,8 +1661,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xda72f74 targets 0xda73024, is taken when t2(=([a0+30232] << 0x1)) == 0, and falls through when t2(=([a0+30232] << 0x1)) != 0.
   The `beq` branch at 0xda72f7c targets 0xda73024, is taken when t5(?) == a2(=[a0+30577]:1), and falls through when t5(?) != a2(=[a0+30577]:1).
   The `beq` branch at 0xda72f9c targets 0xda72fb0, is taken when (t6(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t6(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
-  The `beq` branch at 0xda72fc8 targets 0xda72fdc, is taken when (t7(?) & a2(?)) == 0, and falls through when (t7(?) & a2(?)) != 0.
-  The `beq` branch at 0xda72ff4 targets 0xda73008, is taken when (t8(?) & a2(?)) == 0, and falls through when (t8(?) & a2(?)) != 0.
+  The `beq` branch at 0xda72fc8 targets 0xda72fdc, is taken when (t7(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t7(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
+  The `beq` branch at 0xda72ff4 targets 0xda73008, is taken when (t8(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t8(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
   The return at 0xda73024 has v0 = one of ?, ret(?).
 - `__glRenderSmoothOneFaceTmesh` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda7302c (o32).
   Evidence grade: inferred.
@@ -1693,8 +1692,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda73180 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=([a0+28132] | [a0+28136]), a3=[a0+28136].
   The `jalr` at 0xda73198 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xda731cc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=[a0+28136].
-  The `jalr` at 0xda731f8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda73224 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda731f8 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
+  The `jalr` at 0xda73224 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
   The `beq` branch at 0xda73048 targets 0xda73084, is taken when v1(=[a1+132]) >= t0(=[a2+132]) (signed), and falls through when v1(=[a1+132]) < t0(=[a2+132]) (signed).
   The `bne` branch at 0xda73050 targets 0xda730c0, is taken when t4(?) != 0, and falls through when t4(?) == 0.
   The `beq` branch at 0xda73058 targets 0xda73070, is taken when t5(?) == 0, and falls through when t5(?) != 0.
@@ -1709,8 +1708,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda73164 targets 0xda731b0, is taken when t6(=[a0+30578]:1) != 0, and falls through when t6(=[a0+30578]:1) == 0.
   The `beq` branch at 0xda73178 targets 0xda7318c, is taken when (t7(?) & t1(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t7(?) & t1(=([a0+28132] | [a0+28136]))) != 0.
   The `beq` branch at 0xda731c4 targets 0xda731d8, is taken when (t8(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t8(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
-  The `beq` branch at 0xda731f0 targets 0xda73204, is taken when (v0(?) & a2(?)) == 0, and falls through when (v0(?) & a2(?)) != 0.
-  The `beq` branch at 0xda7321c targets 0xda7318c, is taken when (v1(?) & a2(?)) == 0, and falls through when (v1(?) & a2(?)) != 0.
+  The `beq` branch at 0xda731f0 targets 0xda73204, is taken when (v0(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (v0(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
+  The `beq` branch at 0xda7321c targets 0xda7318c, is taken when (v1(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (v1(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
   The `beq` branch at 0xda7322c targets 0xda7318c and is always taken.
   The return at 0xda731a8 has v0 = ret(?).
   The return at 0xda7323c has v0 = a1.
@@ -3354,11 +3353,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda79c4c loads 4 bytes from a0 (arg0 at entry) +0x3364.
   The `sw` at 0xda79c50 stores 4 bytes to a0 (arg0 at entry) +0x2ee4.
   The `lbu` at 0xda79c64 loads 1 byte from a0 (arg0 at entry) +0x3358.
-  The `sb` at 0xda79c68 stores 1 byte to a0 (arg0 at entry) +0x3358.
+  2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x3358, including `sb` at 0xda79c68, `sb` at 0xda79ca4.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x2f60, including `lw` at 0xda79c6c, `lw` at 0xda79ca0.
-  The `sb` at 0xda79ca4 stores 1 byte to ?.
   The `jalr` at 0xda79c84 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12768, a3=a0+12960, a4=([a1+4] | [a0+12772]), a5=([a0+12964] | [a0+13156]), a6=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156])), a7=[a0+13144]:1.
-  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=? (`jr` at 0xda79cb4).
+  Calls (unknown callee) via register with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a0+12960, a3=a0+13152 (`jr` at 0xda79cb4).
   The `jalr` at 0xda79cec calls __glDoPolygonClip [0xd9fac50] with a0=a0 at entry (arg0), a1=sp-24, a2=0x4, a3=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156])), a4=([a1+4] | [a0+12772]), a5=([a0+12964] | [a0+13156]), a6=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156])), a7=[a0+13144]:1.
   The `bne` branch at 0xda79c60 targets 0xda79cbc, is taken when a6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) != 0, and falls through when a6(=(([a1+4] | [a0+12772]) | ([a0+12964] | [a0+13156]))) == 0.
   The `bne` branch at 0xda79cc8 targets 0xda79cf8, is taken when (t9(?) & v1(?)) != 0, and falls through when (t9(?) & v1(?)) == 0.
@@ -4337,8 +4335,8 @@ These entries record instruction facts rendered from the routines below. They de
   6 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda7ce94, `lw` at 0xda7ce9c, `lw` at 0xda7cec4.
   The `lw` at 0xda7cf18 loads 4 bytes from a0 (arg0 at entry) +0x2f68.
   The `jalr` at 0xda7ceb0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=[a0+28136].
-  The `jalr` at 0xda7cedc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda7cf08 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda7cedc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
+  The `jalr` at 0xda7cf08 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
   The `jalr` at 0xda7cf24 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0xda7cd7c targets 0xda7cdb8, is taken when v0(=[a1+132]) >= v1(=[a2+132]) (signed), and falls through when v0(=[a1+132]) < v1(=[a2+132]) (signed).
   The `bne` branch at 0xda7cd84 targets 0xda7cdf4, is taken when t3(?) != 0, and falls through when t3(?) == 0.
@@ -4352,8 +4350,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xda7ce80 targets 0xda7cf34, is taken when t3(=([a0+30232] << 0x1)) == 0, and falls through when t3(=([a0+30232] << 0x1)) != 0.
   The `beq` branch at 0xda7ce88 targets 0xda7cf34, is taken when a5(?) == a2(=[a0+30577]:1), and falls through when a5(?) != a2(=[a0+30577]:1).
   The `beq` branch at 0xda7cea8 targets 0xda7cebc, is taken when (a6(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (a6(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
-  The `beq` branch at 0xda7ced4 targets 0xda7cee8, is taken when (a7(?) & a2(?)) == 0, and falls through when (a7(?) & a2(?)) != 0.
-  The `beq` branch at 0xda7cf00 targets 0xda7cf14, is taken when (t8(?) & a2(?)) == 0, and falls through when (t8(?) & a2(?)) != 0.
+  The `beq` branch at 0xda7ced4 targets 0xda7cee8, is taken when (a7(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (a7(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
+  The `beq` branch at 0xda7cf00 targets 0xda7cf14, is taken when (t8(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t8(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
   The return at 0xda7cf34 has v0 = one of [a1+132], ret(?).
 - `__glRenderSmoothOneFaceTmesh` in `usr/gfx/arch/IP27KONA32/libGLcore.so` at 0xda7cf3c (n32).
   Evidence grade: inferred.
@@ -4383,8 +4381,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda7d090 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=([a0+28132] | [a0+28136]), a3=[a0+30578]:1, a4=[a0+30577]:1, a5=[a0+28136], a6=[a0+30232], a7=([a0+28132] | [a0+28136]).
   The `jalr` at 0xda7d0ac calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xda7d0e0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=[a0+30578]:1, a4=[a0+30577]:1, a5=[a0+28136], a6=[a0+30232], a7=([a0+28132] | [a0+28136]).
-  The `jalr` at 0xda7d10c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0xda7d138 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xda7d10c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
+  The `jalr` at 0xda7d138 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=([a0+28132] | [a0+28136]), a3=?.
   The `beq` branch at 0xda7cf58 targets 0xda7cf94, is taken when v1(=[a1+132]) >= t0(=[a2+132]) (signed), and falls through when v1(=[a1+132]) < t0(=[a2+132]) (signed).
   The `bne` branch at 0xda7cf60 targets 0xda7cfd0, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0xda7cf68 targets 0xda7cf80, is taken when a5(?) == 0, and falls through when a5(?) != 0.
@@ -4399,8 +4397,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xda7d074 targets 0xda7d0c4, is taken when a3(=[a0+30578]:1) != 0, and falls through when a3(=[a0+30578]:1) == 0.
   The `beq` branch at 0xda7d088 targets 0xda7d09c, is taken when (t0(?) & a7(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t0(?) & a7(=([a0+28132] | [a0+28136]))) != 0.
   The `beq` branch at 0xda7d0d8 targets 0xda7d0ec, is taken when (t1(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t1(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
-  The `beq` branch at 0xda7d104 targets 0xda7d118, is taken when (t2(?) & a2(?)) == 0, and falls through when (t2(?) & a2(?)) != 0.
-  The `beq` branch at 0xda7d130 targets 0xda7d09c, is taken when (t3(?) & a2(?)) == 0, and falls through when (t3(?) & a2(?)) != 0.
+  The `beq` branch at 0xda7d104 targets 0xda7d118, is taken when (t2(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t2(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
+  The `beq` branch at 0xda7d130 targets 0xda7d09c, is taken when (t3(?) & a2(=([a0+28132] | [a0+28136]))) == 0, and falls through when (t3(?) & a2(=([a0+28132] | [a0+28136]))) != 0.
   The `beq` branch at 0xda7d140 targets 0xda7d09c and is always taken.
   The return at 0xda7d0bc has v0 = ret(?).
   The return at 0xda7d150 has v0 = a1.
