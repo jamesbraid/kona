@@ -1,6 +1,6 @@
 number	hex	table	handler	evidence	senders	binaries	example	status	doc	section
-101	0x65	graphics init		sent	__glXOpenGraphicsDevice;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+11 more	18	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
-102	0x66	graphics init		sent	crm_setmon;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+22 more	17	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+101	0x65	graphics init		sent	__glXOpenGraphicsDevice;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+8 more	18	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
+102	0x66	graphics init		sent	crm_setmon;ddxFindAvailableBoards..CGC;getVeniceInfo;gversionIoctl;+19 more	17	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 103	0x67	graphics init		sent	crm_setmon;irixKernInit;routine@0x10001a20;routine@0x10006118;+5 more	4	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 104	0x68	graphics init		sent	ng1_setmon;routine@0x10001a20;routine@0x10006118;routine@0x10008560;+1 more	3	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	understood	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
 105	0x69	graphics init		sent	routine@0x10001a20	1	usr/gfx/KONA/bin/ireeprom:routine@0x10001a20	located	docs/kernel.md#generic-ioctls-gfxo	Generic ioctls (`gfx.o`)
