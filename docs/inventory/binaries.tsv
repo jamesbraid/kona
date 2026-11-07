@@ -357,8 +357,8 @@ usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b621
 usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
-usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+the Kona stack header 4.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+the Kona stack header 4.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs

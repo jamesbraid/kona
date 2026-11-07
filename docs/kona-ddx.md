@@ -35,7 +35,7 @@ One entry per function for the stereo wrappers, context hooks, caches, cursor an
   (`move` at 0x10260bb0) is overwritten by the call. It touches no hardware
   directly. (`Xsgi`, 6.5.30m, complete N32 body read at 0x10260b90-0x10260bd7.)
 
-**Inferred** from the names and [kernel.md](kernel.md#generic-and-manager-ioctls-who-sends-them): these functions are the X server's side of the kernel's rendering resource manager. They create and destroy the window's clip and buffer resources and send the manager ioctls (`RRM_BINDRNTOCLIP`, `RRM_UNBINDRNFROMCLIP`, `RRM_INVALIDATERN` and their OpenGL variants) when a window is mapped, unmapped, moved, double-buffered or destroyed.
+**Inferred** from the names and [kernel.md](kernel.md#generic-and-manager-ioctls-who-sends-them): these functions are the X server's side of the kernel's rendering resource manager. They create and destroy the window's clip and buffer resources and send the manager ioctls (the bind-render-node-to-clip resource-manager request, the unbind-render-node-from-clip resource-manager request, the invalidate-render-node resource-manager request and their OpenGL variants) when a window is mapped, unmapped, moved, double-buffered or destroyed.
 
 | Group | Role | Functions |
 |---|---|---|
@@ -155,13 +155,13 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konCopyWindow` (`kona.so` 0x4d3df0, 2112 bytes): **Inferred.**
   The copy-window hook. It works on the destination's clip rectangles and the window's marked list through the screen's region hooks (at +0x154, +0x174 and +0x178 of the screen record, among others), and moves the covered pixels by calling the local routine at 0x4817f0 at two sites, shifted by the difference between the old and new window origin. It sends no token itself.
 - `konDrawImage` (`kona.so` 0x552f40, 2276 bytes): **Established.**
-  Writes an image rectangle to the frame buffer. It loads state with `kon_loadPixmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, then streams the pixels as `HP_X_PIX_WRITE` followed by `HP_X_PIX_FINISH`; for large images it sends the `KONA_DMAWRITE` ioctl (10001) instead, and reports failure with `ErrorF` and `perror`. Bulk words use `KonSeqData32_ip19` and its shorter siblings.
+  Writes an image rectangle to the frame buffer. It loads state with `kon_loadPixmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, then streams the pixels as `HP_X_PIX_WRITE` followed by `HP_X_PIX_FINISH`; for large images it sends the DMA-write Kona driver request ioctl (10001) instead, and reports failure with `ErrorF` and `perror`. Bulk words use `KonSeqData32_ip19` and its shorter siblings.
 - `konDrawMonoImage` (`kona.so` 0x5566f0, 1724 bytes): **Established.**
   Draws a one-bit image by the pixel-write command: it loads a bitmap GC with `kon_loadNfbBitmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, sends the bitmap words as `HP_X_PIX_WRITE`, ends with `HP_X_PIX_FINISH`, and copies the rows with `bcopy` and `KonSeqData32_ip19`.
 - `konWriteFBSubBlock` (`kona.so` 0x4f9af0, 2216 bytes): **Established.**
-  Writes one band of an image to the frame buffer: it sets `HP_X_PIX_SETUP`, `HP_X_LOADPOS`, then `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, or for blocks over 4096 bytes issues `KONA_DMAWRITE` (10001) with the block, reporting failure with `ErrorF` and `perror`. Its words go through `kon_loadImpWordGC` (three sites) and `KonSeqData32_ip19` to `KonSeqData3_ip19`.
+  Writes one band of an image to the frame buffer: it sets `HP_X_PIX_SETUP`, `HP_X_LOADPOS`, then `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, or for blocks over 4096 bytes issues the DMA-write Kona driver request (10001) with the block, reporting failure with `ErrorF` and `perror`. Its words go through `kon_loadImpWordGC` (three sites) and `KonSeqData32_ip19` to `KonSeqData3_ip19`.
 - `konReadFBBlock` (`kona.so` 0x52e460, 1900 bytes): **Established.**
-  Reads a block of the frame buffer back to the host. It allocates the result with `Xalloc`, sets `HP_X_PIX_SETUP` and `HP_X_LOADPOS`, sends `HP_X_PIX_READ` with the block's x and y, and follows it with `HP_WG_FLUSH_1` carrying 0xdeadbeef. It waits with `sginap` for the pipe to answer, checks it with ioctl 10017 (`KONA_CHECK_PIPE`) after waiting 3000 rounds, uses `KONA_DMAREAD` (10000) for blocks over 8192 bytes and copies small ones from the read-back area with `bcopy`.
+  Reads a block of the frame buffer back to the host. It allocates the result with `Xalloc`, sets `HP_X_PIX_SETUP` and `HP_X_LOADPOS`, sends `HP_X_PIX_READ` with the block's x and y, and follows it with `HP_WG_FLUSH_1` carrying 0xdeadbeef. It waits with `sginap` for the pipe to answer, checks it with ioctl 10017 (the check pipe Kona driver request) after waiting 3000 rounds, uses the DMA-read Kona driver request (10000) for blocks over 8192 bytes and copies small ones from the read-back area with `bcopy`.
 - `konFreeFBBlock` (`kona.so` 0x4d2630, 76 bytes): **Established.**
   Frees a block returned by `konReadFBBlock`: it calls `Xfree` on the pointer at +0x8 of the block record and clears that field.
 - `konImageGlyphBlt` (`kona.so` 0x508720, 2804 bytes): **Established.**
@@ -245,9 +245,9 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konUnbindDestroyedWindow` (`kona.so` 0x556130, 696 bytes): **Inferred.**
   Cleans up a window that is destroyed while still bound to a display-generator window id. It complains through the routine at 0x4d39d0 when the window pointer is null ("null pWin handed to konUnbindDestroyedWindow") or when the binding disagrees ("DFR binding mismatch on xwid"), looks the id up through `vcScreenPrivateIndex` and `konWindowPrivateIndex`, and clears the binding with the routines at 0x5341a0 and 0x4fed90. Which display-generator register those two touch was not read.
 - `konHyperpipeConfig` (`kona.so` 0x56c2d0, 788 bytes): **Established.**
-  Applies a hyperpipe configuration. It checks the request with the routine at 0x4f0760 against the screen's record, copies three words of each 92-byte pipe record of the screen record (at +0x50, +0x54 and +0x58) into a 16-byte request entry, sends one generic graphics ioctl 102 (`GFX_GETBOARDINFO`) of 40 bytes per pipe to look up that board, and then sends `KONA_NCLOPS_CONFIGURE` (10020). A failed ioctl is reported with `perror` and the call returns -1 through its status argument.
+  Applies a hyperpipe configuration. It checks the request with the routine at 0x4f0760 against the screen's record, copies three words of each 92-byte pipe record of the screen record (at +0x50, +0x54 and +0x58) into a 16-byte request entry, sends one generic graphics ioctl 102 (the get-board-information graphics-driver request) of 40 bytes per pipe to look up that board, and then sends the channel-operation configure Kona driver request (10020). A failed ioctl is reported with `perror` and the call returns -1 through its status argument.
 - `konDestroyHyperpipeConfig` (`kona.so` 0x535310, 164 bytes): **Established.**
-  Tears down a hyperpipe configuration: it finds the screen in `screenInfo` from the screen number and sends `KONA_NCLOPS_DESTROY_CONFIG` (10024) with the configuration id through the driver connection at +0x64 of the screen's private record, returning 1 if the ioctl failed and 0 if it succeeded.
+  Tears down a hyperpipe configuration: it finds the screen in `screenInfo` from the screen number and sends the channel-operation destroy configuration Kona driver request (10024) with the configuration id through the driver connection at +0x64 of the screen's private record, returning 1 if the ioctl failed and 0 if it succeeded.
 - `rrmCreateDefColormap` (`kona.so` 0x4d4630, 976 bytes): **Inferred.**
   Creates the default colormap for a screen from the visual list (36 bytes per visual record, scanned for the visual whose id matches), by calling `CreateColormap`. It takes the addresses of `AllocColor` and `sgiOverrideColorCompare` and refers to the tables `init4sight`, `initGL`, `initPseudo` and `initEnvm` for the initial entries; `ErrorF` reports failure. The meaning of each table was not read.
 - `rrmBindRNToClip` (`kona.so` 0x579380, 572 bytes): **Inferred.**
@@ -908,7 +908,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   from the installed pipe. It takes (pipe, target), starts from `vfmtMinimalKonaTarget` and opens the
   graphics device. It asks the board count (ioctl 101, "GFX_GETNUM_BOARDS") and the board information (ioctl
   102, 1952 bytes), and refuses a board whose name is not `KONA`. It reads the configuration record at +40 of
-  that information, the `kona_config` of the 6.5.5 sys/kona_if.h header. Its `bdset` becomes the class: 0
+  that information, the `kona_config` of the 6.5.5 the Kona kernel driver header 2 header. Its `bdset` becomes the class: 0
   stays 0, 2 stays 2, 6 becomes 3, others 1. It copies `numrms`, which must be 1, 2 or 4 (any other value
   prints a message and becomes 1). It copies `pixeldepth` (0-3) and the display generator's channel count,
   revision, option type and option revision. It returns 1, or 0 after printing why the pipe could not be
@@ -1113,7 +1113,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
 - `mapTypeToXDRPROC` (konal.so, address 0x13b22c4): **established.** Translates a symbol data type number
   (0 to 20) into the matching XDR routine and element size: `xdr_int`, `xdr_u_short`, `xdr_float`,
   `xdr_double`, `xdr_wrapstring`, `xdr_enum` and others. Asserts through
-  `__assert` with messages from sdbcommon.c when the type is not defined or the routine would be null.
+  `__assert` with messages from the Kona stack source unit 5 when the type is not defined or the routine would be null.
   Relocation is the entire difference from kona.so, since 32 load offsets, 10 low address halves and 1 high
   address half change (earliest at +0x8) and every other bit of the 131-word routine stays the same, with the
   gp offset in the prologue at 0x16d97c here against 0x161094 there.
@@ -1230,7 +1230,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   bit-identical and the 9 others differ only in their 16-bit immediate (7 load offsets, 1 low address half
   and 1 high address half, beginning at +0xc) (gp offset 0x15eb90, kona.so 0x1525d8).
 - `konDisplayCursor` (konal.so, address 0x13c1430): **established.** Selects the cursor image: for the
-  crosshair it sets the current slot (screen +112) to -1 and sends `KONA_SELECT_CURSOR` (10005) with mode 1,
+  crosshair it sets the current slot (screen +112) to -1 and sends the select cursor Kona driver request (10005) with mode 1,
   address 9884 and hot spot 32, 32; for a glyph cursor it loads the image into a cache slot if needed
   (`X_LOADCURSOR`, `X_LOADCURSORCOLOR`) and sends mode 2 with address slot x 260. A failed ioctl is reported
   with `ErrorF` and `perror`. Checked against kona.so word by word, 174 of 195 words are bit-identical and
@@ -1263,8 +1263,8 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   instructions line up with kona.so after address normalisation, 83% once register numbers are ignored in a
   routine of 1432 bytes against 1216.
 - `konQueryHyperpipeNetwork` (konal.so, address 0x13cb3a0): **established.** Answers the hyperpipe network
-  query: sends ioctl 10019 (`KONA_GET_NCLOPS_TOPOLOGY`), then for each entry of the returned list sends the
-  generic ioctl 102 (`GFX_GETBOARDINFO`) with a 40-byte block and copies the returned name with `strcpy` into
+  query: sends ioctl 10019 (the get channel-operation topology Kona driver request), then for each entry of the returned list sends the
+  generic ioctl 102 (the get-board-information graphics-driver request) with a 40-byte block and copies the returned name with `strcpy` into
   a per-pipe table in the module's data. Failures are reported with `perror` and the count is set to zero.
   Checked against kona.so word by word, 124 of 143 words are bit-identical and the 19 others differ only in
   their 16-bit immediate (11 load offsets, 7 low address halves and 1 store offset, beginning at +0x10) (gp
@@ -1305,7 +1305,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   of the instructions unchanged from kona.so once addresses are normalised and the size 696 bytes against
   688.
 - `konCursorOn` (konal.so, address 0x13cfbc0): **established.** Turns the hardware cursor on or off with
-  the `KONA_SELECT_CURSOR` ioctl (10005): it sends the four cursor words kept in the screen record (mode,
+  the select cursor Kona driver request ioctl (10005): it sends the four cursor words kept in the screen record (mode,
   address, hot spot x and y), or mode 0 when switching off, through the driver connection (screen record
   +100), and reports `ioctl` failure with `ErrorF` and `perror`. Compared with kona.so only immediates move,
   9 of the 61 words (5 load offsets, 3 low address halves and 1 high address half, first seen at +0xc) since
@@ -1322,8 +1322,8 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   instructions line up with kona.so after address normalisation, 76% once register numbers are ignored in a
   routine of 920 bytes against 704.
 - `konQueryHyperpipeConfig` (konal.so, address 0x13d2070): **established.** Answers the hyperpipe
-  configuration query: sends ioctl 10021 (`KONA_NCLOPS_QUERY_CONFIG`) with a 524-byte block, then asks for
-  board information with ioctl 102 (`GFX_GETBOARDINFO`), copies names with `strcpy` into the module's table,
+  configuration query: sends ioctl 10021 (the channel-operation query configuration Kona driver request) with a 524-byte block, then asks for
+  board information with ioctl 102 (the get-board-information graphics-driver request), copies names with `strcpy` into the module's table,
   and reports a failed ioctl with `perror`. Checked against kona.so word by word, 140 of 152 words are
   bit-identical and the 12 others differ only in their 16-bit immediate (7 load offsets, 4 low address halves
   and 1 high address half, first seen at +0xc), and its prologue builds the global pointer from 0x14dbd0
@@ -1453,7 +1453,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   and 1 high address half, starting at +0xc), the prologue's gp constant reading 0x132a70 instead of
   0x1268e8.
 - `konValidateClip` (konal.so, address 0x13ed2d0): **established.** Descriptor hook +28: it sends the
-  window's clip to the kernel as `RRM_VALIDATECLIP` (1011) and then marks the clip resource valid with
+  window's clip to the kernel as the validate-clip resource-manager request (1011) and then marks the clip resource valid with
   `rrmSetResourceMask` and bit 0x2. The command set matches kona.so token for token (`HP_X_LOADCLIP`,
   `HP_X_BOX6`, `HP_X_DATA10` and 5 others), but every token travels as data at offset 0 of the pointer kept
   in a stack slot (first at +0x220, 8 token stores in all) rather than as part of a store address, and no
@@ -1717,8 +1717,8 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   halves, starting at +0x1c) (gp offset 0xe7630, kona.so 0xe3bd8).
 - `konReadImage` (konal.so, address 0x143a950): **established.** Reads pixels back from the pipe: loads
   state with `kon_loadPixmapGC`, sends `HP_X_LOADPOS` and `HP_X_PIX_READ` and flushes the pipe. Above a
-  byte-count threshold it uses DMA, sending ioctl 10000 (`KONA_DMAREAD`) and checking with 10017
-  (`KONA_CHECK_PIPE`) while waiting in `sginap`; below it, copies words from the return area with `bcopy`. A
+  byte-count threshold it uses DMA, sending ioctl 10000 (the DMA-read Kona driver request) and checking with 10017
+  (the check pipe Kona driver request) while waiting in `sginap`; below it, copies words from the return area with `bcopy`. A
   timeout prints "return area did not go valid". The command set matches kona.so token for token
   (`HP_X_LOADPOS` and `HP_X_PIX_READ`), but every token travels as data at offset 0 of the pointer kept in a
   stack slot (first at +0x1fc, 2 token stores in all) rather than as part of a store address, and the flush
@@ -1743,7 +1743,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   changing, with the gp offset in the prologue at 0xe3e10 here against 0xe06f8 there.
 - `konValidateSwapbuf` (konal.so, address 0x143f300): **established.** Window hook +36 that validates a
   window's swap buffer with the kernel: it sends the rendering-node id (rrm private +12), the window's XID
-  and the display id (+20) as `RRM_VALIDATESWAPBUF` (1012), sets word +20 of the module's window private to 1
+  and the display id (+20) as the validate-swap-buffer resource-manager request (1012), sets word +20 of the module's window private to 1
   and bumps its byte +24, for the window and its descendants that share the same buffer. It then marks the
   resource valid through `rrmSetResourceMask` with bit 0x8. Beyond 20 load offsets and 8 low address halves
   (beginning at +0x10), which make up 28 of its 206 words, nothing separates this build from kona.so, and its
@@ -2271,7 +2271,7 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   (3 load offsets and 2 low address halves, earliest at +0x14), so opcodes, registers and branch offsets are
   identical, with the gp offset in the prologue at 0xcdb50 here against 0xca6e8 there.
 - `rrmDisposeClip` (konal.so, address 0x1456900): **established.** Releases a window's clip in the kernel:
-  sends ioctl 1004 (`RRM_UNBINDRNFROMCLIP`) and, on failure (return -1), prints "Failed to unbind rn from
+  sends ioctl 1004 (the unbind-render-node-from-clip resource-manager request) and, on failure (return -1), prints "Failed to unbind rn from
   clip" with the node id and errno using `ErrorF`. Checked against kona.so word by word, 22 of 29 words are
   bit-identical and the 7 others differ only in their 16-bit immediate (4 load offsets, 2 low address halves
   and 1 high address half, first seen at +0x8), and its prologue builds the global pointer from 0xc9340 where
@@ -3302,7 +3302,7 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
 - `mapTypeToXDRPROC` (kona.so, address 0x432b44): **established.** Translates a symbol data type number (0 to
   20) into the matching XDR routine and element size: `xdr_int`, `xdr_u_short`, `xdr_float`,
   `xdr_double`, `xdr_wrapstring`, `xdr_enum` and others. Asserts through
-  `__assert` with messages from sdbcommon.c when the type is not defined or the routine would be null.
+  `__assert` with messages from the Kona stack source unit 5 when the type is not defined or the routine would be null.
 - `xdr_SDBelementIndex` (kona.so, address 0x432d84): **established.** XDR routine for an element index field:
   calls `xdr_u_long` on the 32-bit value. One of five small codecs that `xdr_SDBfileHeader` and
   `xdr_SDBsymbolTableEntry` compose.
@@ -3511,8 +3511,8 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   `KonSeqData32_ip19` for full 32-word bursts and shorter copies for tails, ending with `HP_X_PIX_FINISH`.
 - `konReadImage` (kona.so, address 0x4b20e0): **established.** Reads pixels back from the pipe: loads state
   with `kon_loadPixmapGC`, sends `HP_X_LOADPOS` and `HP_X_PIX_READ` and flushes with
-  `HP_WG_FLUSH_1`. Above a byte-count threshold it uses DMA, sending ioctl 10000 (`KONA_DMAREAD`) and checking
-  with 10017 (`KONA_CHECK_PIPE`) while waiting in `sginap`; below it, copies words from the return area with
+  `HP_WG_FLUSH_1`. Above a byte-count threshold it uses DMA, sending ioctl 10000 (the DMA-read Kona driver request) and checking
+  with 10017 (the check pipe Kona driver request) while waiting in `sginap`; below it, copies words from the return area with
   `bcopy`. A timeout prints "return area did not go valid".
 
 ### Windows, colormaps and hyperpipe
@@ -3536,12 +3536,12 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   entries into the hardware map: it traces the red, green and blue source and destination addresses through
   `ErrorF` and writes the changed entries with `HP_X_LOADGAMMA` and `HP_DATA_1`.
 - `konQueryHyperpipeNetwork` (kona.so, address 0x44b7f0): **established.** Answers the hyperpipe network
-  query: sends ioctl 10019 (`KONA_GET_NCLOPS_TOPOLOGY`), then for each entry of the returned list sends the
-  generic ioctl 102 (`GFX_GETBOARDINFO`) with a 40-byte block and copies the returned name with `strcpy` into
+  query: sends ioctl 10019 (the get channel-operation topology Kona driver request), then for each entry of the returned list sends the
+  generic ioctl 102 (the get-board-information graphics-driver request) with a 40-byte block and copies the returned name with `strcpy` into
   a per-pipe table in the module's data. Failures are reported with `perror` and the count is set to zero.
 - `konQueryHyperpipeConfig` (kona.so, address 0x4523c0): **established.** Answers the hyperpipe configuration
-  query: sends ioctl 10021 (`KONA_NCLOPS_QUERY_CONFIG`) with a 524-byte block, then asks for board information
-  with ioctl 102 (`GFX_GETBOARDINFO`), copies names with `strcpy` into the module's table, and reports a
+  query: sends ioctl 10021 (the channel-operation query configuration Kona driver request) with a 524-byte block, then asks for board information
+  with ioctl 102 (the get-board-information graphics-driver request), copies names with `strcpy` into the module's table, and reports a
   failed ioctl with `perror`.
 
 ### Frame-buffer layer: stereo wrappers
@@ -3722,7 +3722,7 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   the rendering-manager hook for taking a window out of double-buffer mode does nothing here. The whole
   routine is 2 instructions (8 bytes), a return and its delay slot.
 - `rrmDisposeClip` (kona.so, address 0x4cdd00): **established.** Releases a window's clip in the kernel: sends
-  ioctl 1004 (`RRM_UNBINDRNFROMCLIP`) and, on failure (return -1), prints "Failed to unbind rn from clip" with
+  ioctl 1004 (the unbind-render-node-from-clip resource-manager request) and, on failure (return -1), prints "Failed to unbind rn from clip" with
   the node id and errno using `ErrorF`.
 
 ### Monochrome frame-buffer routines
@@ -4812,7 +4812,7 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
 
 - `konWriteFBSubBlock` (`konal.so` 0x1482ed0, 3888 bytes): **Established.** Frame-buffer band write
   in the konal.so build: `HP_X_LOADPOS`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
-  `HP_X_PIX_FINISH`, with `KONA_DMAWRITE` (10001) for blocks over 4096 bytes and `perror` on
+  `HP_X_PIX_FINISH`, with the DMA-write Kona driver request (10001) for blocks over 4096 bytes and `perror` on
   failure, as in kona.so, but with the token words at offset 0 and the data words stored inline
   rather than through `KonSeqData32_ip19` to `KonSeqData3_ip19`: 3888 bytes against 2216.
   `kon_loadImpWordGC` is called at three sites.
@@ -5356,8 +5356,8 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
   `HP_WG_FLUSH_1`: where kona.so stores 0xdeadbeef at the flush token's address after the read
   request, this build loads a word through the pointer at +0x10 of the screen private to drain the
   write path. Its wait loop is laid out differently from kona.so's (both call `sginap` at two sites
-  and `_sysconf` once), it still checks the pipe with `KONA_CHECK_PIPE` (10017), and it takes the
-  read-back area from +0xc of the private record where kona.so uses +0x10. It uses `KONA_DMAREAD`
+  and `_sysconf` once), it still checks the pipe with the check pipe Kona driver request (10017), and it takes the
+  read-back area from +0xc of the private record where kona.so uses +0x10. It uses the DMA-read Kona driver request
   (10000) for large blocks. 1924 bytes against 1900.
 
 - `kon_loadImgBitmapGC` (`konal.so` 0x14b8d10, 340 bytes): **Established.** Image-bitmap GC loader
@@ -5438,7 +5438,7 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
 
 - `konDestroyHyperpipeConfig` (`konal.so` 0x14bf480, 164 bytes): **Established.** Tears down a
   hyperpipe configuration: it finds the screen in `screenInfo` from the screen number and sends
-  `KONA_NCLOPS_DESTROY_CONFIG` (10024) with the configuration id through the driver connection at
+  the channel-operation destroy configuration Kona driver request (10024) with the configuration id through the driver connection at
   +0x64 of the screen's private record, returning 1 if the ioctl failed and 0 if it succeeded; the
   code is instruction for instruction the same as the kona.so build once relocated addresses are
   ignored.
@@ -5764,7 +5764,7 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
 - `konDrawImage` (`konal.so` 0x14de6c0, 3932 bytes): **Established.** Image write in the konal.so
   build. It loads state with `kon_loadPixmapGC`, sends `HP_X_LOADCLIP`, `HP_X_LOADPOS`,
   `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH` with token numbers stored at offset 0, and sends
-  `KONA_DMAWRITE` (ioctl 10001) for large images with `perror` on failure, at six `ErrorF` sites.
+  the DMA-write Kona driver request (ioctl 10001) for large images with `perror` on failure, at six `ErrorF` sites.
   Pixel words are stored inline, so it is 3932 bytes against 2276.
 
 - `mfbBlackStippleFS` (`konal.so` 0x14df620, 1284 bytes): **Established.**
@@ -6074,8 +6074,8 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
 - `konHyperpipeConfig` (`konal.so` 0x14f8680, 788 bytes): **Established.** Applies a hyperpipe
   configuration. It checks the request with the routine at 0x14796e0 against the screen's record,
   copies three words of each 92-byte pipe record of the screen record (at +0x50, +0x54 and +0x58)
-  into a 16-byte request entry, sends one generic graphics ioctl 102 (`GFX_GETBOARDINFO`) of 40
-  bytes per pipe to look up that board, and then sends `KONA_NCLOPS_CONFIGURE` (10020). A failed
+  into a 16-byte request entry, sends one generic graphics ioctl 102 (the get-board-information graphics-driver request) of 40
+  bytes per pipe to look up that board, and then sends the channel-operation configure Kona driver request (10020). A failed
   ioctl is reported with `perror` and the call returns -1 through its status argument; the code is
   instruction for instruction the same as the kona.so build once relocated addresses are ignored.
 
@@ -6514,7 +6514,7 @@ The 137 functions below have different bytes in `usr/lib/X11/dyDDX/konad.so` and
   with a flags word, then 2, 2, 0, two halfwords from its arguments and 0. Bit 0x10 of the flags word is set at one site, when the
   whole image is larger than 0x12000 bytes (73728) and the screen's configuration word (+304 of the record at +20 of the private)
   selects the 0x1000 class or any bit of its top nibble. With the bit set, each pass of a loop whose count is a halfword argument
-  calls `kon_loadImpWordGC`, stores token 313 (`HP_X_PIX_WRITE`) and calls `ioctl` request 10001 (`KONA_DMAWRITE`), with `ErrorF`
+  calls `kon_loadImpWordGC`, stores token 313 (`HP_X_PIX_WRITE`) and calls `ioctl` request 10001 (the DMA-write Kona driver request), with `ErrorF`
   and `perror` after a failed call. Without it, a second path calls `kon_loadImpWordGC` at two more sites, with token 313 stored
   after each, and token 314 is stored once near the end. Call sites checked in full: `kon_loadImpWordGC` three, `ioctl`, `ErrorF`
   and `perror` one each. The word-copy loops of the second path were not traced, so its conditions stay inferred. Against `konal.so`
@@ -6971,7 +6971,7 @@ The 137 functions below have different bytes in `usr/lib/X11/dyDDX/konad.so` and
   (GC +72, entry 0, called with the sorted flag set). It is called from `miFillPolygon`. Against `konal.so`: 1 of 491;
   immediates only; low halves: 1; first at +0x4c.
 - `konDrawImage` (konad.so, address 0x55e6a0, 3944 bytes): **inferred.** Image write to the frame buffer, 986 instructions. By its
-  call sites it calls `kon_loadPixmapGC` once, `ioctl` request 10001 (`KONA_DMAWRITE`) once with `perror` after a failed call, and
+  call sites it calls `kon_loadPixmapGC` once, `ioctl` request 10001 (the DMA-write Kona driver request) once with `perror` after a failed call, and
   `ErrorF` at six sites. It reaches the Kona screen private through `konScreenPrivateIndex` and the window's private through
   `nfbWindowPrivateIndex` and `dbcWindowPrivateIndex`, and stores command tokens 299, 298 (`HP_X_LOADPOS`), 313 (`HP_X_PIX_WRITE`)
   and 314 at offset 0 of the command window with the payload words inline. Bit 0x10 of the flags word is set at one site, when the

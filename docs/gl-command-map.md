@@ -30,7 +30,7 @@ The fact sheet did not evaluate the masked byte words of three senders, so each 
 
 ## Limits
 
-- The list-compile senders in `g_lcompex.s` (`__glce_*`) write their own addresses into the global table, so the immediate map applies only while the immediate table is installed. Entries inside a display list do not follow it.
+- The list-compile senders in the GL front end extended list compile assembly unit (`__glce_*`) write their own addresses into the global table, so the immediate map applies only while the immediate table is installed. Entries inside a display list do not follow it.
 - Path-dependent rows list all their stores. For example, `__glkonim_TexEnvf` at 0xda663b0 sends 0xe4 (HP_SETERROR) with payload 0x500 when the target is not 0x2300 or the parameter name is not 0x2200, and 0x011 (HP_TEXENVF) otherwise.
 - Located senders include the texture, pixel and transform senders that send through helpers. The helpers were not followed.
 - Some located senders make an indirect call through a context pointer (the eval-coordinate and eval-point senders, for example). The row says indirect call; the target was not followed.

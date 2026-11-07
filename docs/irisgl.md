@@ -23,7 +23,7 @@ Sources: `usr/gfx/arch/IGLOO/libgl.so` and `IGLOO32/libgl.so` (6.5.30m). The lib
   **Established.** Builds the IrisGL version string for one graphics board by asking the kernel what the board is.
   `a0` is the destination string buffer and `a1` the board index; the frame is 3440 bytes and the routine returns nothing.
   It zeroes a 40-byte buffer at sp+3384 (`bzero`), opens "/dev/opengl" (0xecd5514) with flags 2048 and keeps the descriptor at sp+3380; a negative descriptor goes to the exit.
-  `ioctl` 101 (`GFX_GETNUM_BOARDS`) with a zero argument must return more than zero, and `ioctl` 102 (`GFX_GETBOARDINFO`) with a request at sp+3424 (the board index, the buffer address, the length 40) must not be negative, or it goes to the exit with the descriptor still to close.
+  `ioctl` 101 (`GFX_GETNUM_BOARDS`) with a zero argument must return more than zero, and `ioctl` 102 (the get-board-information graphics-driver request) with a request at sp+3424 (the board index, the buffer address, the length 40) must not be negative, or it goes to the exit with the descriptor still to close.
   It calls `uname` into a buffer at sp+36 and later uses that buffer's third field (sp+550, the release string).
   It compares the returned name with the table words "IMPACT", "IMPACTPC" and "IMPACTSR" (words at 0xecdd504, 0xecdd508 and 0xecdd50c) in that order with `strcmp`.
   When it matches the first or second, or fails to differ from the third, it takes the table entry for "IMPACT" from `match_gfx` (0xec747d0), then calls `__iglooMalloc` (0xec5fb60) for the number of bytes in the last word of the 40-byte buffer (sp+3420) and reads the full board record into it with a second `ioctl` 102 request (the index, the block, that size).

@@ -107,7 +107,7 @@ One entry per file the graphics packages install beside the InfiniteReality driv
 - `usr/gfx/gfxinfo` (installed a second time as `usr/gfx/gfxinit`): **inferred** for the pipe paths, from the routine boundaries and strings.
   A 177132-byte program that reports on and initialises every graphics board; `main` at 0x10005888 (2192 bytes) opens `/dev/opengl` with flags 0x802 at 0x10005a74, asks for the board count with ioctl 101 (0x10005ab4) and hands each record to the routine of its family.
   The pipe's routines are `kona_info` at 0x1000acbc (prints the configuration through `nic_report` at 0x1000cd5c, once per serial-number device), `kona_getconfig` at 0x1000ae90, `kona_init` at 0x1000b0e0 and `kona_diagnose` at 0x1000b1f8.
-  `kona_getconfig` maps a 16384-byte buffer with ioctl 10100, writes the command words 498 and 489 through the helper at 0x1000a108, sends `KONA_SETCONFIGINFO` (10006) at 0x1000afc0 and unmaps with 10100 again; its error strings name the two ioctls.
+  `kona_getconfig` maps a 16384-byte buffer with ioctl 10100, writes the command words 498 and 489 through the helper at 0x1000a108, sends the set-configuration-information Kona driver request (10006) at 0x1000afc0 and unmaps with 10100 again; its error strings name the two ioctls.
   `kona_init` calls `kona_loaducode` (0x1000ca5c, which reads microcode from `/usr/gfx/ucode/`) before it starts the pipe; `kona_diagnose` reads the health word (ioctl 10016) and, when the state is bad, prints "starting postmortem" and runs `/usr/gfx/KONA/bin/postmortem`.
   Most of the file's remaining code belongs to the older Venice and VS2 boards and to other families, and the pipe's own functions are a small fraction of its 227 symbols.
 - `usr/gfx/setmon`: **inferred** for the pipe path.

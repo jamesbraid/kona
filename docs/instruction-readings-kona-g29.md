@@ -11213,7 +11213,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd9d6400 calls __glSetError [0xd9d1af8] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xd9d63d0 targets 0xd9d63f0, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xd9d63e8 targets 0xd9d6428 and is always taken.
-  The `bgtzl` branch at 0xd9d63f0 targets 0xd9d6414, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xd9d63f4 runs only when taken and is annulled on fall-through.
+  The `bgtzl` branch at 0xd9d63f0 targets 0xd9d6414, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `the Kona stack assembly unit 7.d $f4,$f12` at 0xd9d63f4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d6408 targets 0xd9d6428 and is always taken.
   The return at 0xd9d6430 has v0 = one of ret(__glSetError), [0x1010].
   The instructions from 0xd9d6410 to 0xd9d6410 are not reached by any path from the entry, and their branches are not listed.

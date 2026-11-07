@@ -36,7 +36,7 @@ What is read, by register, is in [arm1_firmware.md](../ucode/arm1_firmware.md#co
 
 **Established** since (`deact_section` 0x0c021f7c and `store_data` 0x0c020cd4). The list DMA also runs the other way, from ARM memory into the engines' input stream: `deact_section` writes 0x200030 = address, 0x200034 = bytes, 0x200038 = 0, 0x200064 = 2, then the pass-through count 0x200058 = n \| 0xc000000, and waits for bit 2 of 0x200040. `store_data` sets the pipe-memory address with bit 26 set (0x4000000 \| address), 0x200048 = 1, and the same count and pass-through words. **Inferred:** bit 26 of 0x200030 selects the write direction (stream into ARM memory) and its absence the read direction (ARM memory into the stream); the mask 0x3fffff8 the diagnostic gives the register excludes it, so the bit may be a strobe not kept in the register.
 
-The data of the start writes (0x20001c: 0, 1 or 0xbeefface; 0x200038: 0, 0xdeadbeef or a return address; 0x20004c) vary between writers, so nothing depends on them. unknown: no shipped software or published source depends on the data of the three start writes, on 0x200020 values 0 and 3, on 0x200024 bits other than 0-2 and 14-18, on 0x200040 bits other than 2, or on the width of 0x200034. Routes tried: every firmware writer and reader of 0x200010-0x20004c (`arm1.u` 6.5.30m);
+The data of the start writes (0x20001c: 0, 1 or 0xbeefface; 0x200038: 0, 0xdeadbeef or a return address; 0x20004c) vary between writers, so nothing depends on them. unknown: no shipped software or published source depends on the data of the three start writes, on 0x200020 values 0 and 3, on 0x200024 bits other than 0-2 and 14-18, on 0x200040 bits other than 2, or on the width of 0x200034. Routes tried: every firmware writer and reader of 0x200010-0x20004c (`arm1.u` 6.5.30m); `irsaudit` `TEST_ha_reg`, `TEST_idma_cntrl`, `TEST_idmabug` and `TEST_idma` (which runs a 515-word buffer through the firmware's own DMA path by diagnostic map, ioctl 10100, and checks the ARM's 0xbabebabe mailbox reply; it touches no DMA register itself); every `irsaudit` use of an ARM address 0x2000xx (none of 0x200030-0x20004c outside the register table); the 6.5.5 headers the Kona stack header 6, the Kona kernel driver header 2 and the Kona kernel driver header 1.
 
 ## Engine events
 
@@ -124,7 +124,7 @@ How the host lays out a command whose length is not fixed, read from both ends: 
 
 ### Pixel images: `HP_DRAWPIXELS`, `HP_DRAWTEXELS`, `HP_BITMAP`
 
-**Established** (`arm_drawpixels` 0x0c02b9ec, `arm_drawtexels` 0x0c02b7a8, `arm_bitmap` 0x0c02b4c0; emitters `DoDrawPixelsOrTexels` and `__glkonim_Bitmap` in `kon_pixel.s`). A fixed header, then the image. The firmware stores the header into its pixel descriptor at ARM address 0x900:
+**Established** (`arm_drawpixels` 0x0c02b9ec, `arm_drawtexels` 0x0c02b7a8, `arm_bitmap` 0x0c02b4c0; emitters `DoDrawPixelsOrTexels` and `__glkonim_Bitmap` in the Kona GL driver pixel assembly unit). A fixed header, then the image. The firmware stores the header into its pixel descriptor at ARM address 0x900:
 
 | Word: pixels | texels | bitmap | Firmware slot | Meaning |
 |---|---|---|---|---|
@@ -152,9 +152,9 @@ The last header word is read through `r9 + 0x3c` when the DMA word is nonzero (t
 
 Row mode 0: the image is `ceil((S + T) / 4) - floor(S / 4)` words. Row mode 1: each row is counted on its own, as the words spanning bytes [S + i x s, S + i x s + width x p) for i = 0-3, and the total is (height / 4) x (the four counts summed) + the first (height mod 4) counts. The hardware moves that many words to the engines through the pass-through counter; the ARM does not read them.
 
-**Established: the DMA form** (`SendPixelsToPipe`; `arm_do_idma` 0x0c022df4, lines 0x0c023264-0x0c023290). With the DMA word set, the pixel handler starts no transfer; it stores its end routine (`BitmapEndStream`, or entry 4 of the draw-path record) in context word +0x73c and returns. The next `HP_DO_IDMA` fetches the image from host memory into the FIFO and, when it completes, calls the routine at +0x73c and clears it. libGLcore's `__glKonSendData` (0x0d950970) is the other side: when the descriptor's +180 word (header word 6 or 7) is 0 it stores the image through `__glkon_datavn`; otherwise it passes it to the kernel with ioctl 10001 (`KONA_DMAWRITE`), whose argument block names the DMA command.
+**Established: the DMA form** (`SendPixelsToPipe`; `arm_do_idma` 0x0c022df4, lines 0x0c023264-0x0c023290). With the DMA word set, the pixel handler starts no transfer; it stores its end routine (`BitmapEndStream`, or entry 4 of the draw-path record) in context word +0x73c and returns. The next `HP_DO_IDMA` fetches the image from host memory into the FIFO and, when it completes, calls the routine at +0x73c and clears it. libGLcore's `__glKonSendData` (0x0d950970) is the other side: when the descriptor's +180 word (header word 6 or 7) is 0 it stores the image through `__glkon_datavn`; otherwise it passes it to the kernel with ioctl 10001 (the DMA-write Kona driver request), whose argument block names the DMA command.
 
-The other image commands share this tail through `ParseHostImage` and `SendPixelsToPipe`, each with its own header: `HP_COLORTABLE` (9 header words, `arm_colortable` 0x0c03e128), `HP_CONVOLUTIONFILTER1D` (7, 0x0c036c44), `HP_CONVOLUTIONFILTER2D` (8, 0x0c036d78), `HP_SEPARABLEFILTER2D` (9, 0x0c037150) and `HP_POLYGONSTIPPLE` (3, 0x0c02c7bc; the 32 x 32 stipple then follows as an image). In each the last header word is read through `r9 + 0x3c` or `r9 + 0x40` according to a flag word, as for the pixel commands. Each emitter in `kon_colortable.s` and `kon_convolve.s` ends its header with a call to `__glKonSendData`. **Established** (the handlers' stores into the pixel descriptor at 0x900, whose slots are named in the table above, and into a per-command record in the block at r8 + 0xcf4; the colour-table emitter `__glkonim_ColorTableSGI` in `kon_colortable.s`, which stores token 0xe8 and then the words in this order):
+The other image commands share this tail through `ParseHostImage` and `SendPixelsToPipe`, each with its own header: `HP_COLORTABLE` (9 header words, `arm_colortable` 0x0c03e128), `HP_CONVOLUTIONFILTER1D` (7, 0x0c036c44), `HP_CONVOLUTIONFILTER2D` (8, 0x0c036d78), `HP_SEPARABLEFILTER2D` (9, 0x0c037150) and `HP_POLYGONSTIPPLE` (3, 0x0c02c7bc; the 32 x 32 stipple then follows as an image). In each the last header word is read through `r9 + 0x3c` or `r9 + 0x40` according to a flag word, as for the pixel commands. Each emitter in the Kona GL driver color-table assembly unit and the Kona GL driver convolution assembly unit ends its header with a call to `__glKonSendData`. **Established** (the handlers' stores into the pixel descriptor at 0x900, whose slots are named in the table above, and into a per-command record in the block at r8 + 0xcf4; the colour-table emitter `__glkonim_ColorTableSGI` in the Kona GL driver color-table assembly unit, which stores token 0xe8 and then the words in this order):
 
 | Word | `HP_COLORTABLE` | `HP_CONVOLUTIONFILTER1D` | `HP_CONVOLUTIONFILTER2D` | `HP_SEPARABLEFILTER2D` |
 |---|---|---|---|---|
@@ -172,15 +172,15 @@ Word 1 of the three filter commands is **inferred** to be the internal format: t
 
 ### Bitmaps in display lists: `HP_BITMAP_DLIST`
 
-**Established** (`arm_bitmap_dlist` 0x0c02b590; `__glkonim_Bitmap` compile path, `kon_pixel.s` 0x0d953fa8 onward). Words: 1 width rounded up to a multiple of 8, 2 height, 3 and 4 the x and y origin, 5 and 6 x origin plus x move and y origin plus y move, 7 the number of words that follow (image words + 1), 8 the image size in bytes, then the image packed with no padding (`__glFillImage`). The firmware reads word 7 through `r9 + 0x40` and hands exactly that many words to the engines with the pass-through counter.
+**Established** (`arm_bitmap_dlist` 0x0c02b590; `__glkonim_Bitmap` compile path, the Kona GL driver pixel assembly unit 0x0d953fa8 onward). Words: 1 width rounded up to a multiple of 8, 2 height, 3 and 4 the x and y origin, 5 and 6 x origin plus x move and y origin plus y move, 7 the number of words that follow (image words + 1), 8 the image size in bytes, then the image packed with no padding (`__glFillImage`). The firmware reads word 7 through `r9 + 0x40` and hands exactly that many words to the engines with the pass-through counter.
 
 ### Pixel maps: `HP_PIXELMAPFV`, `HP_PIXELMAPUIV`, `HP_PIXELMAPUSV`
 
-**Established** (`do_pixelmap` in `kon_colortable.s` and in `arm1.u` at 0x0c03e420, `snarf_pixelmap` 0x0c03e3f4). Four header words: the map enumerant, the size n, n - 1 as a float, and a fourth word from the caller's state; then n values, one per word: floats for FV, words for UIV, and for USV each 16-bit value zero-extended into a word. The firmware reads the n values one at a time and ends on the last.
+**Established** (`do_pixelmap` in the Kona GL driver color-table assembly unit and in `arm1.u` at 0x0c03e420, `snarf_pixelmap` 0x0c03e3f4). Four header words: the map enumerant, the size n, n - 1 as a float, and a fourth word from the caller's state; then n values, one per word: floats for FV, words for UIV, and for USV each 16-bit value zero-extended into a word. The firmware reads the n values one at a time and ends on the last.
 
 ### Evaluators: `HP_MAPDATA1D`, `HP_MAPDATA2D`, `HP_MAPSPEC1D`, `HP_MAPSPEC2D`, `HP_EVALSTRIP1D`, `HP_EVALSTRIP2D`
 
-**Established** (`__glKonSendMapData1D` 0x0d97dc10, `__glKonSendMapData2D` 0x0d97dcc0, `__glKonSendMapSpec*` in `kon_eval.s`; `arm_mapdata1d` 0x0c03dc68, `arm_mapdata2d` 0x0c03dca0, `arm_evalstrip1d` 0x0c03dd58, `arm_evalstrip2d` 0x0c03dcd4).
+**Established** (`__glKonSendMapData1D` 0x0d97dc10, `__glKonSendMapData2D` 0x0d97dcc0, `__glKonSendMapSpec*` in the Kona GL driver evaluator assembly unit; `arm_mapdata1d` 0x0c03dc68, `arm_mapdata2d` 0x0c03dca0, `arm_evalstrip1d` 0x0c03dd58, `arm_evalstrip2d` 0x0c03dcd4).
 
 - `HP_MAPDATA1D`: word 1 = n + 5, then the map number x 4, three floats (the map's domain and order fields at +20, +24, +28 of the map record), n, and n floats of control points. The firmware reads word 1, selects all engines, moves exactly word 1 words to them with the pass-through counter and sends one engine handler; it parses nothing itself.
 - `HP_MAPDATA2D`: the same with word 1 = n + 8 and six floats before n.
@@ -189,7 +189,7 @@ Word 1 of the three filter commands is **inferred** to be the internal format: t
 
 ### Display lists: the `*LIST*` commands
 
-**Established** (`arm1.u` 0x0c014dd8-0x0c0151fc; emitters in `kon_dlist.s`). Lists live in a list memory the firmware addresses from a base (ARM word 0xce8) or in the DMA pool set by `HP_DMAPOOL_SETUP` ([hip.md](hip.md)). All addresses below are offsets from those bases.
+**Established** (`arm1.u` 0x0c014dd8-0x0c0151fc; emitters in the Kona GL driver display-list assembly unit). Lists live in a list memory the firmware addresses from a base (ARM word 0xce8) or in the DMA pool set by `HP_DMAPOOL_SETUP` ([hip.md](hip.md)). All addresses below are offsets from those bases.
 
 | Token | Words | Layout | Data path |
 |---|---|---|---|
@@ -206,7 +206,7 @@ The executed list itself is ordinary command stream: tokens and payloads as ever
 
 ### Vertex arrays: `HP_VARRAY_SET_CMDS`, `HP_VARRAY_BGN_LOOP` and the 32 loop tokens
 
-**Established** (`arm_varray_set_cmds` 0x0c039950, `varray_build_command` 0x0c0395fc, `varray_set_cmd_table` 0x0c039884, `arm_varray_bgn_loop` 0x0c0399c4; emitter `update_cmpnd_cmd` in `kon_vertarray.s`).
+**Established** (`arm_varray_set_cmds` 0x0c039950, `varray_build_command` 0x0c0395fc, `varray_set_cmd_table` 0x0c039884, `arm_varray_bgn_loop` 0x0c0399c4; emitter `update_cmpnd_cmd` in the Kona GL driver vertex-array assembly unit).
 
 `HP_VARRAY_SET_CMDS` has one word, a key describing the enabled arrays (libGLcore sends the AND of two context words). `varray_build_command` decodes it:
 

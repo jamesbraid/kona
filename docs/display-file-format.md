@@ -71,7 +71,7 @@ A table entry is four items in this order: the name as `xdr_string` (a length wo
 | 16 | `xdr_float` | 4 | single-precision values in a `.cmb`: gains, gammas, safe area, filter size |
 | 17 | `xdr_double` | 8 | rates and times in a `.vfo` |
 
-Types 3, 4, 5, 6, 8, 9, 11, 18 and 19 map to the other `xdr_*` routines; no file uses them, and type 0 and types above 20 trip the assertions `DataType_Unused != type` and `typeMustBeDefined` of `sdbcommon.c`. A value with a nonzero element count starts with that count and then holds the elements through `xdr_array`, in `xdr_typedData` (address 0x13b256c).
+Types 3, 4, 5, 6, 8, 9, 11, 18 and 19 map to the other `xdr_*` routines; no file uses them, and type 0 and types above 20 trip the assertions `DataType_Unused != type` and `typeMustBeDefined` of the Kona stack source unit 5. A value with a nonzero element count starts with that count and then holds the elements through `xdr_array`, in `xdr_typedData` (address 0x13b256c).
 
 ## How a `.vfo` is read into the format block
 

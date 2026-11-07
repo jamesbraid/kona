@@ -1,4 +1,4 @@
-# libGLcore: the state-query functions of `kon_get.c`
+# libGLcore: the state-query functions of the Kona GL driver state query source unit
 
 Read from the N32 build of the 6.5.30m library, `usr/gfx/arch/IP27KONA32/libGLcore.so` (the `IP35KONA32` copy is the same file), through the annotated assembly in [libglcore/asm/KONA/kon_get.s](../libglcore/asm/KONA/kon_get.s) and the decompiler output in [libglcore/decomp/KONA/kon_get.c](../libglcore/decomp/KONA/kon_get.c). Where the two disagree the assembly rules: the decompiler scales every pointer offset by the element size of the pointer it guessed, and the assembly adds plain bytes. Addresses are virtual addresses in the library. `ctx` is the pointer held in the process word 0x1010 and the command port is process address 0x4000, as in the notation of [opengl.md](opengl.md). An entry says **Established** only for a function read whole.
 

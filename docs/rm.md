@@ -108,7 +108,7 @@ Sources: `arm1.u` (IRIX 6.5.30m, [ucode/arm1.s](../ucode/arm1.s)), the IR diagno
 
 ### Pixel and texel data words
 
-Sources: `arm1.u` 6.5.30m (the output-module records in read-write data, read with the image mapping of [ucode/arm1.md](../ucode/arm1.md)) and the `ge.u` 6.5.30m listings [mpixout.S](../ucode/ge_listing/mpixout.S.lst) and [upixout.s](../ucode/ge_listing/upixout.s.lst). An output module is the last engine stage of a pixel path; its seven-word record is described in [ucode/arm1_functions.md](../ucode/arm1_functions.md).
+Sources: `arm1.u` 6.5.30m (the output-module records in read-write data, read with the image mapping of [ucode/arm1.md](../ucode/arm1.md)) and the `ge.u` 6.5.30m listings [mpixout.S](../ucode/ge_listing/mpixout.S.lst) and [the geometry microcode assembly unit 13](the geometry microcode assembly unit 13.lst). An output module is the last engine stage of a pixel path; its seven-word record is described in [ucode/arm1_functions.md](../ucode/arm1_functions.md).
 
 **Established (what the ARM writes to engine control memory 0x166-0x169).** Every path that ends in an output module (`AddOutput`, `AddOutput1Cmpnt`, `AddOutputI`, `loadShortCircuitPath`, `loadBitmapPath`) writes four words to control memory 0x166 with `WriteCram`. They are the record's pixel tag table (record word 3) when bit 0x80 of the caller's flag word is clear and its texel tag table (word 4) when it is set (`AddOutput` 0x0c0301d8-0x0c0301e4, `AddOutput1Cmpnt` 0x0c030320-0x0c03032c, `loadShortCircuitPath` 0x0c02e428-0x0c02e434). That flag word is the operation word at pixel state +8 (r8 + 0x908; `SetupGE_ShortCircuit` loads it at 0x0c02d59c). The command handlers set it as follows:
 
@@ -133,7 +133,7 @@ So word 0x167 is 0x30000 on a pixel path whose record has flag 1, 0x30004 on a t
 
 **Established (where the engine program uses them).** `mmo_Pixout_8_16` (0xa4b5-0xa4c8) reads control memory 0x161-0x169 into staging words, copies 0x166-0x169 into registers 0-3 (0xa4c3, 0xa4c5, 0xa4c6, 0xa4c7) and 0x164 into register 0x12 (0xa4c2), and starts the packing loop `uPO_8_16C` (0x284a-0x2882). Each pass of that loop reads 26 input words through address register 0x10 (D = 4 to 0x1d) and stores a result per word. Every eighth store names B = 0, 1, 2 or 3 in turn (D = 0xb, 0x13, 0x1b, then 3 after the loop), and the others name B = 0x1e. The X server's `mmo_X_pixout_8_16` loads the same four words into registers 0xf, 0xe, 0xd and 0xc (0x9cde-0x9ced) and stores its pixel pairs through B = 0xf, 0xe, 0xd, 0xc in turn (0x9d02, 0x9d0e, 0x9d1a, 0x9d26, then again). In that module register 0x12 is loaded from staging word 2 (0x9ce6), which holds word 0x164; the G = 0x12 of the form-3 word at 0x9ce0 lies outside form 3's wired fields ([ge_isa.md](../ucode/ge_isa.md#fields)), so the module does not put word 0x167 in register 0x12.
 
-**Inferred (the tag words are output addresses that carry the bus mode).** In a store, B names the address register ([ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)), and what makes the IR diagnostic's stores leave the engine is an address beyond its 12-bit data memory. 0x30000-0x30006 lie beyond it too. Their low bits are the three mode codes `mgesi_TBUS_1` takes ([Bus modes 2 and 3](#bus-modes-2-and-3)): 0 for mode 1, 4 for mode 3, 6 for mode 2. A texel stream through a flag-1 record therefore alternates mode 2 and mode 3, the alternation of every non-register run in the vector files, and a pixel stream alternates mode 2 and mode 1. What bits 16-17 (the 3) select, which stores the B = 0x1e words make, and how the four tags of a flag-0 table fall on 64-bit bus words are **unknown: no shipped software or published source depends on them** beyond the shipped engine program, which runs as read. Routes tried: the four tables and their users in `arm1.u`, the `mpixout.S` and `upixout.s` listings, `mgesi_TBUS_1`, the two vector files (no record of which engine word produced which bus word) and the `irsaudit` texture and pixel tests (CRC comparison only).
+**Inferred (the tag words are output addresses that carry the bus mode).** In a store, B names the address register ([ge_ops.md](../ucode/ge_ops.md#input-and-output-fifo-operations)), and what makes the IR diagnostic's stores leave the engine is an address beyond its 12-bit data memory. 0x30000-0x30006 lie beyond it too. Their low bits are the three mode codes `mgesi_TBUS_1` takes ([Bus modes 2 and 3](#bus-modes-2-and-3)): 0 for mode 1, 4 for mode 3, 6 for mode 2. A texel stream through a flag-1 record therefore alternates mode 2 and mode 3, the alternation of every non-register run in the vector files, and a pixel stream alternates mode 2 and mode 1. What bits 16-17 (the 3) select, which stores the B = 0x1e words make, and how the four tags of a flag-0 table fall on 64-bit bus words are **unknown: no shipped software or published source depends on them** beyond the shipped engine program, which runs as read. Routes tried: the four tables and their users in `arm1.u`, the `mpixout.S` and the geometry microcode assembly unit 13 listings, `mgesi_TBUS_1`, the two vector files (no record of which engine word produced which bus word) and the `irsaudit` texture and pixel tests (CRC comparison only).
 
 **Inferred (the data layout, from the converter words).** The record's sixth word points at a converter group (`cvmg_*`): a count and a list of words that the set-up writes to control memory 0x1c4 with `WriteCram` (for example 0x0c0301f8-0x0c030204, 0x0c03033c-0x0c030348). `U_mPixout_8_16` puts 0x1c4 in word 0x164, so register 0x12 holds the list's address, and every packing store of `uPO_8_16C` names C = 0x12 with operation M = 0x47c, unit 2's multiply paired with unit 1's clamp at zero ([ge_ops.md](../ucode/ge_ops.md#operation-table)). Read as one field per input component, every list gives a consistent layout: bits 23-16 are the field width, bits 15-8 the field's lowest bit in a 64-bit word, bit 30 marks the field that completes a word, and a width of 0 drops the component. In the floating-point records bits 7-0 repeat the width; in the short-circuit, colour-index and bitmap records (integer input) bit 25 is set and bits 7-0 are 0, so bit 25 is **inferred** to mark integer input. `cvmg_8_16_RGBA8` shows the reading: eight fields of width 8 at bits 56, 48, ..., 0 with bit 30 on the eighth, two RGBA8 pixels per word, red highest.
 
@@ -387,6 +387,7 @@ above, since their second word starts with the command nibble again.
 No program on any release computes an edge equation or a slope for the pixel generator, so its set-up arithmetic can
 only be bounded from what the drivers and the diagnostic send and from what they say they expect. The facts below are
 that bound; each is labelled. Sources: `irsaudit` and `tport.bin` (IRIX 6.5.30m), `arm1.u` (6.5.30m) and the kernel
+textport routines of `kona_tport.o` (6.5.30m).
 
 **The command nibble and bit 28.** **Established:** `tbVertex` ORs its flag into bit 28, which is bit 0 of the 4-bit
 command field, so the flagged forms are the odd commands: 6 with the flag set is command 7. **Established** (the three
@@ -421,7 +422,7 @@ address. **Inferred** from the two together: the vertex's 1/256 fraction is redu
 pixel generator, since the report says primitives, not only samples, are computed at 8 x 8 accuracy; whether that step
 truncates or rounds is not stated anywhere read.
 
-**The fill rule for rectangles.** **Established** (`kona_box` in `kona_tport.c`): the PROM driver decrements
+**The fill rule for rectangles.** **Established** (`kona_box` in `kona_tport.o`, 6.5.30m, +0x438; [kernel-functions.md](kernel-functions.md)): the kernel
 decrements the left x and the bottom y of every filled rectangle, clamped at 0, before it sends the box to the textport.
 Why it does so is **inferred**: its callers pass both corners as inclusive, which fits drawing on the pipe that leaves out
 the left column and the bottom row. **Established** (`tport.bin` +0xeb70 and +0xf0dc): the textport only orders the two x and two y
@@ -492,14 +493,14 @@ not per-edge DDA increments, and edge inclusion is a sign test of the edge funct
 
 The per-edge and per-parameter coefficient widths, their rounding, the reference point and the depth and colour
 gradient formats remain **unknown: no shipped software or published source depends on them**.
-Routes tried: the engine output modules `udrawtri.s`, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`,
+Routes tried: the engine output modules the geometry microcode assembly unit 4, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`,
 `tbTextureCoord`, `draw_tri` and every `tbVertex` caller in `irsaudit`; the line and point helpers above; the six tests
 in `tbusdata.Z` and `aaspoke.tbus`; the gold files; the `pg` pins and `pg2.tcbist`; the `PG_` and `PGTG_` register
 comments of [RM.h](../RM.h); the firmware's `init_pg`, `init_tg`, `prim_init` and `x_initregs`; the 6.5.5 installed headers
 
-(`kona_init.c`, `kona_tport.c`, `kona_logo.c` and `ktport.h`, read in full; the driver sends textport commands and
+(the Kona stack header 6, the Kona kernel driver header 2 and the Kona kernel driver header 1), which carry no raster set-up; and a search of
 
-only the `sys/kona.h`, `sys/kona_if.h` and `sys/kona_diag.h` headers, which carry no raster set-up; and a search of
+
 the SGI manuals and web mirrors for InfiniteReality sub-pixel and multisample text; the full text of
 *OpenGL Performer Programmer's Guide* 007-1680-100 (its RealityEngine and InfiniteReality tuning notes and pfWindow
 set-up say only that "subpixel vertex positioning" is enabled), of *OpenGL on Silicon Graphics Systems* 007-2392-003

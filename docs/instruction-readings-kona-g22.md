@@ -662,7 +662,7 @@ Skipped 10,005 located, 12,633 understood and 8 no-software-dependency rows beca
   The `jalr` at 0xd9d5fb4 calls __glSetError [0xd9d1af8] with a0=0x501, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9d5fd8 calls __glSetError [0xd9d1af8] with a0=0x501, a1=?, a2=?, a3=?.
   The `jalr` at 0xd9d6014 calls __glFillMap2d [0xd9d6d08] with a0=[ret(__glSetUpMap2)], a1=?, a2=?, a3=?.
-  The `bnel` branch at 0xd9d5f28 targets 0xd9d5f4c, is taken when t7(=[0x1018]) != at(=0x1), and falls through when t7(=[0x1018]) == at(=0x1); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xd9d5f2c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd9d5f28 targets 0xd9d5f4c, is taken when t7(=[0x1018]) != at(=0x1), and falls through when t7(=[0x1018]) == at(=0x1); its branch-likely delay slot `the Kona stack assembly unit 7.d $f4,$f12` at 0xd9d5f2c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d5f40 targets 0xd9d6020 and is always taken.
   The `beq` branch at 0xd9d5f8c targets 0xd9d6020, is taken when v0(=ret(__glSetUpMap2)) == 0, and falls through when v0(=ret(__glSetUpMap2)) != 0.
   The `beql` branch at 0xd9d5fa4 targets 0xd9d5fc8, is taken when a3(?) >= v1(=[ret(__glSetUpMap2)]) (signed), and falls through when a3(?) < v1(=[ret(__glSetUpMap2)]) (signed); its branch-likely delay slot `slt at,t1,v1` at 0xd9d5fa8 runs only when taken and is annulled on fall-through.
@@ -711,7 +711,7 @@ Skipped 10,005 located, 12,633 understood and 8 no-software-dependency rows beca
   The `jalr` at 0xd9d6400 calls __glSetError [0xd9d1af8] with a0=0x501, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `bne` branch at 0xd9d63d0 targets 0xd9d63f0, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xd9d63e8 targets 0xd9d6428 and is always taken.
-  The `bgtzl` branch at 0xd9d63f0 targets 0xd9d6414, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xd9d63f4 runs only when taken and is annulled on fall-through.
+  The `bgtzl` branch at 0xd9d63f0 targets 0xd9d6414, is taken when a0 > 0 (signed), and falls through when a0 <= 0 (signed); its branch-likely delay slot `the Kona stack assembly unit 7.d $f4,$f12` at 0xd9d63f4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d6408 targets 0xd9d6428 and is always taken.
   The return at 0xd9d6430 has v0 = one of ret(__glSetError), [0x1010].
   The instructions from 0xd9d6410 to 0xd9d6410 are not reached by any path from the entry, and their branches are not listed.
@@ -753,7 +753,7 @@ Skipped 10,005 located, 12,633 understood and 8 no-software-dependency rows beca
   The `bne` branch at 0xd9d64ec targets 0xd9d650c, is taken when t6(=[0x1018]) != at(=0x1), and falls through when t6(=[0x1018]) == at(=0x1).
   The `beq` branch at 0xd9d6504 targets 0xd9d6568 and is always taken.
   The `blez` branch at 0xd9d650c targets 0xd9d651c, is taken when a0 <= 0 (signed), and falls through when a0 > 0 (signed).
-  The `bgtzl` branch at 0xd9d6514 targets 0xd9d6538, is taken when v1(?) > 0 (signed), and falls through when v1(?) <= 0 (signed); its branch-likely delay slot `cvt.s.d $f4,$f12` at 0xd9d6518 runs only when taken and is annulled on fall-through.
+  The `bgtzl` branch at 0xd9d6514 targets 0xd9d6538, is taken when v1(?) > 0 (signed), and falls through when v1(?) <= 0 (signed); its branch-likely delay slot `the Kona stack assembly unit 7.d $f4,$f12` at 0xd9d6518 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd9d652c targets 0xd9d6568 and is always taken.
   The return at 0xd9d6570 has v0 = one of ret(__glSetError), [0x1010].
   The instructions from 0xd9d6534 to 0xd9d6534 are not reached by any path from the entry, and their branches are not listed.

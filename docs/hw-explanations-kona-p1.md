@@ -46,7 +46,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   the first zero read or after five passes (the `bne` at 0x101048e4); if every pass reads nonzero
   it prints 'HH_GFIFO_LEVEL is > 0' (0x101b3df8, the `jal` at 0x101049c0) and returns.
   Then it issues ioctl 0x2775 on the descriptor in `pipeFD` with 1 as its third argument (the
-  `jalr` at 0x1010491c); a negative result prints 'KONA_DIAG_FLOW ioctl failed.' (0x101b3e10, the
+  `jalr` at 0x1010491c); a negative result prints 'the diagnostic flow Kona driver request ioctl failed.' (0x101b3e10, the
   `jal` at 0x10104af8) and returns (the `bltz` at 0x10104924).
   If the word at `Nocrc` is zero (the `beq` at 0x10104938), it calls `run_crc_testlist` (the `jal`
   at 0x101049e8) with `a0` set to 0x1020c810 plus 0x10; otherwise it calls `test_callig` (the `jal`
@@ -102,7 +102,7 @@ Each entry says what one routine does to the hardware and cites the instruction 
   the loop ends on a zero read or at the bound checked by the `bne` at 0x1010c1e8. Reaching the bound
   with every read nonzero prints 'HH_GFIFO_LEVEL is > 0' from the `jal` at 0x1010c398 before returning.
   The ioctl 0x2775 at 0x1010c21c takes 1 as its third argument; a negative result leaves through
-  the `bltz` at 0x1010c224 to print 'KONA_DIAG_FLOW ioctl failed.' (0x101b59e8, the `jal` at
+  the `bltz` at 0x1010c224 to print 'the diagnostic flow Kona driver request ioctl failed.' (0x101b59e8, the `jal` at
   0x1010c3ec) and return.
   On a nonnegative ioctl result it hashes 'VIDEO' (the `jal` at 0x1010c244) and, when the hash is
   nonzero (the `beq` at 0x1010c24c), calls `reset_dacs` (the `jal` at 0x1010c260), `kt_data_file` on

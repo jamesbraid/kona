@@ -8,7 +8,7 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so`, the module of the IP19 host. 
 - `konStereoPolySegment` (`kona.so` 0x441600, 888 bytes): **Established.** Stereo version of the X
   PolySegment operation (entry at +28 of the graphics-context operations table): it draws the request once for each eye. It swaps the context's operations table for the stereo-free one saved in its private record (+92), and when the screen record's stereo word (+220) is 1 it selects each eye's draw-buffer word of the private record (+96 for the first pass, +100 for the second), moves the drawable's y position and the private y offset by the eye offset (the halfword at +226 of the screen record) and revalidates the context with `konValidateWindowGC` (mask 8192) before calling the saved operation, then restores the position, the buffer word and the original table. It first copies the caller's request list with `Xalloc` and frees the copy afterwards. It writes no register itself; the drawing commands come from the operation it calls.
 - `konDisplayCursor` (`kona.so` 0x441980, 780 bytes): **Established.** Selects the cursor image: for the crosshair it sets the current slot (screen +112) to -1 and sends
-  `KONA_SELECT_CURSOR` (10005) with mode 1, address 9884 and hot spot 32, 32; for a glyph cursor it loads the image into a cache slot if needed
+  the select cursor Kona driver request (10005) with mode 1, address 9884 and hot spot 32, 32; for a glyph cursor it loads the image into a cache slot if needed
   (`X_LOADCURSOR`, `X_LOADCURSORCOLOR`) and sends mode 2 with address slot x 260. A failed ioctl is reported with `ErrorF` and
   `perror`.
 - `konStereoPolyText8` (`kona.so` 0x44c6e0, 768 bytes): **Established.** Stereo version of the X
@@ -17,7 +17,7 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so`, the module of the IP19 host. 
   `konValidateWindowGC` (mask 8192) before calling the saved operation, then restores the position, the buffer word and the original table. It writes no register itself; the drawing commands come from the operation it calls.
 - `konQueryMaxSwapBarrier` (`kona.so` 0x44f1b0, 24 bytes): **Established.** Returns the constant 1: the module reports a single swap barrier. It touches no register.
 - `konCursorOn` (`kona.so` 0x44fff0, 244 bytes): **Established.** Turns the hardware cursor on or off with the
-  `KONA_SELECT_CURSOR` ioctl (10005): it sends the four cursor words kept in the screen record (mode, address, hot spot x and y), or mode 0 when switching off, through the driver connection (screen record +100), and reports `ioctl` failure with `ErrorF` and
+  the select cursor Kona driver request ioctl (10005): it sends the four cursor words kept in the screen record (mode, address, hot spot x and y), or mode 0 when switching off, through the driver connection (screen record +100), and reports `ioctl` failure with `ErrorF` and
   `perror`.
 - `rrmUnqueueRequest` (`kona.so` 0x450370, 192 bytes): **Established.** Removes a window from the doubly linked request queue the resource-manager client keeps (links at window record +52 and +56, queue head and tail in the screen record at +140 and +144), clears the links and clears the queued flag (0x20) in the window record's first halfword. It sends no ioctl.
 - `konStippledCFS` (`kona.so` 0x457f30, 152 bytes): **Established.** Stippled fill-spans entry: it reports the call through

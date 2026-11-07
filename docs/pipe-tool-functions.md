@@ -279,8 +279,8 @@ These entries read the 6.5.30m N32 binary.
   **Established effects; role unknown.** It divides a loaded integer from a
   separate object by the integer at offset 0xf8 of the argument after
   converting both to single precision, and stores the result at offset
-  0x100 (`lw` at 0x10043c70, `cvt.s.w` at 0x10043c7c, `lw` at 0x10043c84,
-  `cvt.s.w` at 0x10043c90, `div.s` at 0x10043c94, `swc1` at 0x10043c9c).
+  0x100 (`lw` at 0x10043c70, `the Kona stack assembly unit 7.w` at 0x10043c7c, `lw` at 0x10043c84,
+  `the Kona stack assembly unit 7.w` at 0x10043c90, `div.s` at 0x10043c94, `swc1` at 0x10043c9c).
   A second division uses offset 0xfc and stores at offset 0x104 (`lw` at
   0x10043cb8, `div.s` at 0x10043cc8, `swc1` at 0x10043cd0). It calls
   `update_fast__5FrameGv` (`jal` at 0x10043cdc).

@@ -120,7 +120,7 @@ python3 ghidra/import/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3
 Results against IRIX 6.5.30m:
 
 - `arm1.u`: all 1189 function symbols of `ucode/arm1.s` are Ghidra functions with an `arm1.s` name. Analysis adds one function, 0x0c040168, the shared divide loop inside `__rt_divtest` that has no symbol of its own. All 512 tokens sit in the typed list with the entry of `icu_map.tsv`, and all 306 ARM-run handlers resolve to the address and name in `arm1_handlers.tsv`. Code references reach the host-interface registers (662), the payload ports (993) and the engine ports (5111).
-- `tport.bin`: all 225 call targets that `ucode/tport.s` labels as code are functions named as `tport.s` names them, or as `tport.md` labels a `fn_` target; the two labels `tport.md` marks as strings stay data. Analysis adds 13 functions no call reaches.
+- `tport.bin`: all 225 call targets that `ucode/tport.s` labels as code are functions named as the Kona stack text-port assembly unit names them, or as `tport.md` labels a `fn_` target; the two labels `tport.md` marks as strings stay data. Analysis adds 13 functions no call reaches.
 - `arm1_kpm.u`, `arm1_nic.u`, the diagnostic `arm1.u` and `diag_arm_init.u` import with their host-interface references resolved; they have no listing to compare names against.
 
 Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn_<address>`, and `tport.bin`'s own token map (built at +0x3b0 with 8-byte entries) is not typed.
