@@ -5,9 +5,9 @@
 ## The chain
 
 1. **Established.** An entry stub is `lw $t9,OFF($zero)`, `jr $t9` and a delay-slot nop; The stub at 0xda78494 is 12 bytes. It loads the absolute word at OFF. Some stubs are longer (the one at 0xda784a0 is 20 bytes) but load their slot the same way.
-2. **Established** for the base: in `MakeCurrentRead` (`kon_context.s`) the copy loop writes each saved word to the global table at `$a1 + offset`, with `$a1` set to 4176. The offsets of the 505 stubs give table indexes 0 to 469 under that base (470 distinct slots, since aliases share one). The sender name contains the entry name in 451 rows, and the rest are aliases, unimplemented stubs and list-mode routines.
+2. For the base: in `MakeCurrentRead` the copy loop writes each saved word to the global table at `$a1 + offset`, with `$a1` set to 4176. The offsets of the 505 stubs give table indexes 0 to 469 under that base (470 distinct slots, since aliases share one). The sender name contains the entry name in 451 rows, and the rest are aliases, unimplemented stubs and list-mode routines.
 3. **Established.** `__glkonim_dispatchState` is 1888 bytes at 0xda81298 in `.data`, 472 words. Each word holds the address of a sender, and the names agree with the entry names in the rows above.
-4. **Established**, from `MakeCurrentRead` in `kon_context.s`: the code copies `__glkonim_dispatchState` into the context at +8032, and on a second path copies the context's saved table (+8032) into the global table at 4176 and stores 4176 at context +6132. **Inferred:** the global table holds the immediate table while a context is in immediate mode. The rest of the function, which chooses between the two paths, was not read whole.
+4. From `MakeCurrentRead`: the code copies `__glkonim_dispatchState` into the context at +8032, and on a second path copies the context's saved table (+8032) into the global table at 4176 and stores 4176 at context +6132. By inference, the global table holds the immediate table while a context is in immediate mode. The rest of the function, which chooses between the two paths, was not read whole.
 5. **Established** for each row, from the sender's fact sheet: every store to 0x4000 in address order, with its value.
 
 ## Grades

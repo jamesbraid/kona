@@ -196,7 +196,8 @@ The senders below are read from the call sites of the 6.5.30m user-space binarie
 
 One entry per ioctl number that the inventory finds in a sender or in the private jump table. Handlers and
 argument sizes are read from the 6.5.30m objects `gfx.o`, `rrm.o` and `kona_ioctl.o`; the sender is the first
-binary and function the inventory finds loading the number into the ioctl call.
+binary and function the inventory finds loading the number into the ioctl call. The entries below are read from the
+disassembly of those objects; they carry no per-entry label because each describes a request, not one routine.
 
 ### Generic ioctls (`gfx.o`)
 
@@ -207,56 +208,55 @@ operation (+200 of its operation table), which for this board is `KONAprivate`. 
 text section.
 
 - 0x65 (ioctl 101), `GFX_GETNUM_BOARDS`.
-  Established at 0x2cf4: `gfxioctl` copies the global `GfxNumberOfBoards` into the caller's
+  At 0x2cf4: `gfxioctl` copies the global `GfxNumberOfBoards` into the caller's
   result word and returns 0, with no argument copied in, so a client knows how many boards to scan.
   The inventory scan finds it sent first by `main` in `ireeprom` and by the X server's board search.
-- 0x66 (ioctl 102), `GFX_GETBOARDINFO`.
-  Established at 0x2eb8: `gfxioctl` translates a 24-byte request with `copyin_xlate`
+- 0x66 (ioctl 102).
+  At 0x2eb8: `gfxioctl` translates a 24-byte request with `copyin_xlate`
   (EFAULT, 14, on a bad pointer), refuses a board number past the count or an empty slot with ENODEV (19),
   then at 0x323c calls slot 0 of the board's information operations with the user buffer address and
   length from the request, so the board driver fills the caller's buffer itself. Sent by `main` in `ireeprom` and by `crm_setmon`.
 - 0x67 (ioctl 103), `GFX_ATTACH_BOARD`.
-  Established from `gfxioctl` at 0x2f30 and 0x32dc: a 16-byte request through `copyin_xlate`, the same
+  From `gfxioctl` at 0x2f30 and 0x32dc: a 16-byte request through `copyin_xlate`, the same
   board-number checks, then EBUSY (16) if this connection already has an operation table. Otherwise it records
   the board, its operation table and its private state in the connection (+8, +32, +40) and calls the board's attach
   operation (+8) with the user address from the request; a failure clears those three fields again, and success makes
   the connection the board's owner when the board has none. Sent by `irixKernInit` in `Xsgi`.
 - 0x68 (ioctl 104), `GFX_DETACH_BOARD`.
-  Established at 0x2e80: the handler releases the board with a call to `GfxDetach`. An OpenGL-mode connection
+  At 0x2e80: the handler releases the board with a call to `GfxDetach`. An OpenGL-mode connection
   (flag 8) or one whose thread record has no group link (+24) is detached at once; an IrisGL-mode connection is
   detached only when `threadgroup_refcnt` reports one member, and a shared group gets EBUSY (16). Sent by `xgsetmon`.
 - 0x69 (ioctl 105), `GFX_IS_MANAGED`.
-  Established at 0x2ef0 and 0x3144: `gfxioctl` reads a 4-byte board number with `copyin`, rejects a bad board with 19,
-  and writes 1 to the result word when the board record's +8 field is set, 0 when it is not; inferred from the
-  name, that field is the board's managing connection.
+  At 0x2ef0 and 0x3144: `gfxioctl` reads a 4-byte board number with `copyin`, rejects a bad board with 19,
+  and writes 1 to the result word when the board record's +8 field is set, 0 when it is not; going by its name, that field is the board's managing connection.
   Setup tools ask this before touching a board an X server may hold; sent by `main` in `ireeprom`.
-- 0x6a (ioctl 106), `GFX_INITIALIZE`.
-  Established at 0x2ff8: only the board's owner gets past 0x2cdc (others receive 1). The handler takes the pipe
+- 0x6a (ioctl 106).
+  At 0x2ff8: only the board's owner gets past 0x2cdc (others receive 1). The handler takes the pipe
   semaphore unless it already holds it, spins with 2-microsecond delays until the pipe's pending count (+104) drains,
   calls the board's initialise operation (+24), then at raised priority zeroes the retrace counter at +128,
   calls the optional operation at +192, drops the semaphore and unmaps a mapped connection with `rrmUnMapGfx`.
   The inventory scan finds it sent by `setup_ucode` in `ireeprom`.
-- 0x6b (ioctl 107), `GFX_START`.
-  Established at 0x3078: an owner-only call that takes the pipe semaphore in the same way and returns what the
+- 0x6b (ioctl 107).
+  At 0x3078: an owner-only call that takes the pipe semaphore in the same way and returns what the
   board's start operation (+40) returns; that operation lets the pipe run once its microcode is loaded. Sent by `main` in `gfxinfo`.
-- 0x6c (ioctl 108), `GFX_DOWNLOAD`.
-  Established at 0x2fc0: an attached connection's 40-byte request is translated by `copyin_xlate` and passed with the
+- 0x6c (ioctl 108).
+  At 0x2fc0: an attached connection's 40-byte request is translated by `copyin_xlate` and passed with the
   connection to the board's download operation (+32). For this board that operation is `KONAdownload` in `kona_stubs.o`,
   which returns 0, so the request changes nothing on the pipe. The inventory finds it sent by `gr2_init`
   and `mgras_init` in `gfxinfo`, code for other board families.
 - 0x6e (ioctl 110), `GFX_MAPALL`.
-  Established at 0x2d78: the handler takes the pipe semaphore, locks the region with `ddv_lock`, calls the board's map
+  At 0x2d78: the handler takes the pipe semaphore, locks the region with `ddv_lock`, calls the board's map
   operation (+96) with offset 0 and length -1 to map the whole pipe, and sets connection flag 0x20 before `ddv_unlock`,
   whatever the map returned. Diagnostics use it to reach every register. Sent by `main` in `ireeprom` and by `ng1_setmon`.
 - 0x6f (ioctl 111), `GFX_LABEL`.
-  Established at 0x30d4: an owner-only call that copies 16 bytes from the caller into the board's information
+  At 0x30d4: an owner-only call that copies 16 bytes from the caller into the board's information
   record at +16 with `copyin` (14 on a fault). The X server labels the board it manages this way; sent by
   `irixKernInit` in `Xsgi`.
-- 0x70 (ioctl 112), `GFX_REATTACH_BOARD`.
-  Established at 0x2f68 and 0x3260: the same request size and board checks as the attach call, but it skips the
+- 0x70 (ioctl 112).
+  At 0x2f68 and 0x3260: the same request size and board checks as the attach call, but it skips the
   EBUSY test and binds the connection again, so a process holding a board can re-attach it. Sent by `ng1_setmon` in `setmon`.
-- 0x71 (ioctl 113), `GFX_SET_DIAG_FLAG`.
-  Established at 0x2fa0: `gfxioctl` calls `drv_priv` with the caller's credentials and, for the super-user only,
+- 0x71 (ioctl 113).
+  At 0x2fa0: `gfxioctl` calls `drv_priv` with the caller's credentials and, for the super-user only,
   sets connection flag 4. `KONAmapgfx` in kona_map.o tests that flag at +0x134 and then maps the register page at
   pipe offset 0x800000 instead of 0x810000, plus the I/O window at 0xc000. Sent by `main` in `ireeprom` and by `vs2setmon`.
 
@@ -265,50 +265,50 @@ text section.
 `gfxioctl` forwards every number from 1000 to 9999 to `RRM_Dispatch`, which looks the handler up in a 26-entry table
 in `rrm.o` (each entry is the handler, the argument size and a manager-only flag).
 
-- Ioctl 1000 (0x3e8), `RRM_OPENRN`, established from `rrm.o`.
+- Ioctl 1000 (0x3e8), read from `rrm.o`.
   `RRM_Dispatch` runs `RRM_OpenRN` with no node and an 8-byte argument; the handler claims a free rendering-node slot,
   stores the new id in the caller's result word and returns 12 when no slot is free.
   Sent by `irixKernInit` and `xgsetmon`.
-- Ioctl 1002 (0x3ea), `RRM_BINDPROCTORN`, established from `rrm.o`.
+- Ioctl 1002 (0x3ea), read from `rrm.o`.
   `RRM_BindProcToRN` makes the calling connection the user of the named node, or unbinds it for node 0
   (OpenGL connections only). Sent by `irixKernInit` and `xgsetmon`.
-- Ioctl 1003 (0x3eb), `RRM_BINDRNTOCLIP`, established.
+- Ioctl 1003 (0x3eb).
   `RRM_BindRNToClip` builds a read-and-clip bind request with the same clip id for both and calls
   `RRM_BindRNToReadAndClip`; the bind id is returned for OpenGL connections. Sent by `xgsetmon` in `setmon`.
-- Ioctl 1004 (0x3ec), `RRM_UNBINDRNFROMCLIP`, established.
+- Ioctl 1004 (0x3ec).
   A manager-only command: `RRM_UnbindRNFromClip` calls `pane_cleanup` for the window's clip id and always returns 0.
   Sent by `rrmDisposeClip` in `kona.so` when a window goes away.
-- Ioctl 1006 (0x3ee), `RRM_SETSWAPINTERVAL`, established.
+- Ioctl 1006 (0x3ee).
   `RRM_SetSwapInterval` rejects a negative interval with 22 and otherwise stores it in the node and its draw pane.
   Sent by `glXSwapIntervalSGI` in `libGL.so`.
-- Ioctl 1010 (0x3f2), `RRM_INVALIDATERN`, established from `rrm.o`.
+- Ioctl 1010 (0x3f2), read from `rrm.o`.
   A manager-only command: `RRM_InvalidateRN` accepts only the mask bits 0x2, 0x8, 0x40 and 0x80, invalidates the pane,
   and copies 20 bytes back. Sent by `rrmInvalidate` and by `SGICapGLCapture` in `Xsgi`.
-- Ioctl 1011 (0x3f3), `RRM_VALIDATECLIP`, established.
+- Ioctl 1011 (0x3f3).
   A manager-only command with a 64-byte argument, widened for 32-bit callers by `irix5_to_RRM_ValidateClip`;
   `RRM_ValidateClip` calls `validate_pane_clip`, which marks the pane's clip valid and wakes the sleeper.
   Sent by `konValidateClip` in `kona.so`.
-- Ioctl 1012 (0x3f4), `RRM_VALIDATESWAPBUF`, established.
+- Ioctl 1012 (0x3f4).
   A manager-only command: `RRM_ValidateSwapBuf` calls `validate_pane_swapbuf`, which records the swap-buffer id in the pane
   and wakes a waiter; nothing is sent to the pipe. Sent by `konValidateSwapbuf` in `kona.so`.
-- Ioctl 1013 (0x3f5), `RRM_SWAPGROUP`, established.
+- Ioctl 1013 (0x3f5).
   A manager-only command: `RRM_SwapGroup` makes a new swap group for the window when the second id is 0, otherwise
   joins the window to that member's group. Sent by `glxJoinSwapGroupSGIX` and `glxBindSwapBarrierSGIX` in `glx.so`.
-- Ioctl 1017 (0x3f9), `RRM_LOADDISPLAYMODE`, established.
+- Ioctl 1017 (0x3f9).
   A manager-only command: `RRM_LoadDisplayMode` rejects a display id past the board's count with 22,
   calls the driver's set-display-mode slot (+160) and records the mode in the pane and the per-display table.
   Sent by `konLoadDisplayMode` in `kona.so`.
-- Ioctl 1019 (0x3fb), `RRM_SWAPREADY`, established.
+- Ioctl 1019 (0x3fb).
   A manager-only command: `RRM_SwapReady` assigns or releases the window's swap group on a swap-ready line,
   with error 37 for a line past the count. Sent by `glxBindSwapBarrierSGIX` in `glx.so`.
-- Ioctl 1020 (0x3fc), `RRM_MGR_SWAPBUF`, established.
+- Ioctl 1020 (0x3fc).
   A manager-only command: `RRM_MGR_SwapBuf` stores the independent mode in the per-display table and calls the driver's
   scheduled-manager-swap slot (+168); a zero result also updates the pane's displayed bank. Sent by `rrmMGRSwapBuf`
   in `kona.so`.
-- Ioctl 1022 (0x3fe), `RRM_GETVSYNC`, established.
+- Ioctl 1022 (0x3fe).
   `RRM_GetVideoSync` copies the video-sync counter at pipe state +128 out in an 8-byte block.
   Sent by `glXGetVideoSyncSGI` in `libGL.so`.
-- Ioctl 1023 (0x3ff), `RRM_WAITVSYNC`, established.
+- Ioctl 1023 (0x3ff).
   `RRM_WaitVideoSync` sleeps in `rrmWaitVideoSync` until the counter matches the interval and remainder,
   then copies the wake counter out. Sent by `glXWaitVideoSyncSGI` in `libGL.so`.
 
@@ -317,81 +317,81 @@ in `rrm.o` (each entry is the handler, the argument size and a manager-only flag
 `KONAprivate` subtracts 10000 and indexes a 103-slot jump table; a slot the table does not serve logs a message with
 `cmn_err_tag` and returns 22. In the cases below "copies N" is the byte count of the `copyin` or `copyout`.
 
-- Ioctl 10000 (0x2710), `KONA_DMAREAD`, established.
+- Ioctl 10000 (0x2710).
   `KONAprivate` copies in 160 bytes through `copyin_xlate` and calls `kona_dmaread`, which moves pipe data into host memory.
   Sent by `konReadFBBlock` and `konReadImage` in `kona.so`.
-- Ioctl 10001 (0x2711), `KONA_DMAWRITE`, established.
+- Ioctl 10001 (0x2711).
   `KONAprivate` copies in 144 bytes, counts the operation in flight, copies the vector table and calls `kona_dmawrite`.
   Sent by `konDrawImage` and `konWriteFBSubBlock` in `kona.so`.
-- Ioctl 10002 (0x2712), `KONA_START_SELECTFEED`, established.
+- Ioctl 10002 (0x2712).
   `KONAprivate` copies in 32 bytes through `copyin_xlate` and calls `kona_start_selectfeed`, which starts
   select or feedback return. Sent by `__glKonlSendPackedVertex` in `libGLcore.so`.
-- Ioctl 10003 (0x2713), `KONA_FINISH_SELECTFEED`, established.
+- Ioctl 10003 (0x2713).
   `KONAprivate` calls `kona_finish_selectfeed` and copies 8 bytes out. Sent by `__glKonlSendPackedVertex` in `libGLcore.so`.
-- Ioctl 10005 (0x2715), `KONA_SELECT_CURSOR`, established.
+- Ioctl 10005 (0x2715).
   `KONAprivate` copies in 16 bytes and calls `kona_select_cursor`, which picks the cursor mode, glyph and hot spot. Sent by `konDisplayCursor` and `konCursorOn` in `kona.so`.
-- Ioctl 10006 (0x2716), `KONA_SETCONFIGINFO`, established.
+- Ioctl 10006 (0x2716).
   `KONAprivate` copies 1912 bytes of configuration record into the pipe state at +244, then calls `kona_mem_init`
   and `kona_nclops_init`. Sent by `kona_getconfig` in `gfxinfo`.
-- Ioctl 10008 (0x2718), `KONA_DEBUG_IOCTL`, established from `kona_ioctl.o`.
+- Ioctl 10008 (0x2718), read from `kona_ioctl.o`.
   The jump-table slot returns 22 at once, with no copy and no call; the number is reserved and does nothing.
-- Ioctl 10009 (0x2719), `KONA_SET_CHANNEL_RECT`, established.
+- Ioctl 10009 (0x2719).
   `KONAprivate` copies in 18 bytes and calls `kona_set_channel_rect`, which fills one entry of the cursor-rectangle table. Sent by `konaSetStereoMode` in `kona.so`.
-- Ioctl 10010 (0x271a), `KONA_MEM_ALLOC`, established.
+- Ioctl 10010 (0x271a).
   `KONAprivate` copies in 12 bytes and calls `kona_mem_alloc` with its grow flag clear, which reserves a block in one of the
   pipe memory pools. No sender in the inventory loads the number as a constant.
-- Ioctl 10011 (0x271b), `KONA_MEM_FREE`, established.
+- Ioctl 10011 (0x271b).
   `KONAprivate` copies in 12 bytes and calls `kona_mem_free` to release a block. No sender in the inventory loads the number.
-- Ioctl 10012 (0x271c), `KONA_GET_XY_CHANNEL`, established.
+- Ioctl 10012 (0x271c).
   `KONAprivate` copies in 14 bytes, calls `kona_get_xy_channel`, which finds the video channel at a screen position,
   and copies 14 bytes back. Sent by `saXSGIvcSetChannelGammaMap` in `setmon`.
-- Ioctl 10014 (0x271e), `KONA_MEM_REALLOC`, inferred.
+- Ioctl 10014 (0x271e), read with less certainty than the rest.
   `KONAprivate` copies in 12 bytes and calls `kona_mem_alloc` with its flag set; with the flag set the routine
   looks for an existing block of the same id and grows it, returning 2 when none exists (`kona_mem.o`).
   Sent by `venice_calcframebuffer` in `gfxinfo`, which addresses the older board family.
-- Ioctl 10015 (0x271f), `KONA_SHARE`, established.
+- Ioctl 10015 (0x271f).
   `KONAprivate` copies in 8 bytes and calls `kona_share` (`kona_share.o`), which finds the share group the word names on the
   pipe's list, or allocates a 112-byte group when it is 0 or absent, counts the node into it and copies the group handle back.
   No sender in the inventory loads the number.
-- Ioctl 10016 (0x2720), `KONA_HEALTH`, established from `kona_ioctl.o`.
+- Ioctl 10016 (0x2720), read from `kona_ioctl.o`.
   `KONAprivate` copies three words saved at pipe state +2172, +2176 and +2180 out: the reason the pipe was declared dead
   and the interrupt and bus status registers saved then. Sent by `kona_diagnose` in `gfxinfo`.
-- Ioctl 10018 (0x2722), `KONA_DMAPOOL`, established.
+- Ioctl 10018 (0x2722).
   `KONAprivate` copies in 24 bytes through `copyin_xlate` and calls `kona_dmapool`, which registers a user buffer
   the pipe may DMA from (a zero length releases it). No sender in the inventory loads the number.
-- Ioctl 10019 (0x2723), `KONA_GET_NCLOPS_TOPOLOGY`, established.
+- Ioctl 10019 (0x2723).
   `KONAprivate` calls `kona_nclops_discover` when the pipe state holds no topology record (+5480), then copies 260 bytes
   of it out. Sent by `konQueryHyperpipeNetwork` in `kona.so`.
-- Ioctl 10020 (0x2724), `KONA_NCLOPS_CONFIGURE`, established.
+- Ioctl 10020 (0x2724).
   `KONAprivate` copies in 524 bytes, calls `kona_nclops_configure` and copies the result back.
   Sent by `konHyperpipeConfig` in `kona.so`; `gfxinfo` also sends it from older-family code.
-- Ioctl 10021 (0x2725), `KONA_NCLOPS_QUERY_CONFIG`, established.
+- Ioctl 10021 (0x2725).
   `KONAprivate` copies in 524 bytes, calls `kona_nclops_query_config` and copies 524 bytes back.
   Sent by `konQueryHyperpipeConfig` in `kona.so`.
-- Ioctl 10022 (0x2726), `KONA_NCLOPS_BIND`, established.
+- Ioctl 10022 (0x2726).
   `KONAprivate` copies in 4 bytes and calls `kona_nclops_bind`, which writes the display-port registers of the pipe.
   Sent by `__glkon_BindHyperpipe` in `libGLcore.so`.
-- Ioctl 10023 (0x2727), `KONA_NCLOPS_UNBIND`, established.
+- Ioctl 10023 (0x2727).
   `KONAprivate` copies in 4 bytes and calls `kona_nclops_unbind`. Sent by `__glkon_UnbindHyperpipe` in `libGLcore.so`.
-- Ioctl 10024 (0x2728), `KONA_NCLOPS_DESTROY_CONFIG`, established.
+- Ioctl 10024 (0x2728).
   `KONAprivate` copies in 4 bytes and calls `kona_nclops_destroy` unless the pipe state's network field (+5500) is -1.
   Sent by `konDestroyHyperpipeConfig` in `kona.so`.
-- Ioctl 10025 (0x2729), established from `kona_ioctl.o`.
+- Ioctl 10025 (0x2729), read from `kona_ioctl.o`.
   The jump-table slot is the default one, which logs a message and returns 22.
   Only `read_encoder_reg` in `gfxinfo`, code for the older board family, sends it.
-- Ioctl 10026 (0x272a), established from `kona_ioctl.o`.
+- Ioctl 10026 (0x272a), read from `kona_ioctl.o`.
   The jump-table slot is the default one, which returns 22. Only `venice_get_dg2_eeprom` in `gfxinfo` sends it.
-- Ioctl 10030 (0x272e), established from `kona_ioctl.o`.
+- Ioctl 10030 (0x272e), read from `kona_ioctl.o`.
   The jump-table slot is the default one, which returns 22. Only `vs2SetShadow` and `venice_loadsection_vs2_top`
   in `gfxinfo` send it.
-- Ioctl 10031 (0x272f), established from `kona_ioctl.o`.
+- Ioctl 10031 (0x272f), read from `kona_ioctl.o`.
   The jump-table slot is the default one, which returns 22. Only `vs2GetShadow` and `vs2_set_MasterGenlock`
   in `gfxinfo` send it.
-- Ioctl 10100 (0x2774), `KONA_DIAG_MAP`, established.
+- Ioctl 10100 (0x2774).
   `KONAprivate` copies in 24 bytes through `copyin_xlate`, calls `kona_diag_map` to map a user buffer for DMA
   and copies 24 bytes back. Sent by `kona_getconfig` in `gfxinfo` and by `main` of `ireeprom`.
 - 0x2775 (ioctl 10101), the flow-control switch.
-  Established from `kona_ioctl.o`: jump-table slot 101 (at .rodata 0x340) leads to `KONAprivate`+0x10c, which
+  From `kona_ioctl.o`: jump-table slot 101 (at .rodata 0x340) leads to `KONAprivate`+0x10c, which
   calls `RRM_CheckValidFault` (EFAULT, 14, when it fails) and then `kona_diag_flow` with the ioctl argument itself as
   the value. In `kona_flow.o`, argument 0 clears bits 0-2 of the interrupt-enable shadow at pipe state +2368 and writes
   it to `HH_INTR_ENABLE` (0x800230), turning the FIFO water-mark interrupts off; argument 1 refuses a dead pipe with
@@ -650,8 +650,8 @@ Helpers in the same family, not in the assigned list: `gthread_find_gfxp(handle)
 
 #### Character entry points: `gfxopen`, `gfxclose`, `gfxioctl`, `gfxcleanup`, `gfxread`, `gfxwrite`, `gfxmap`, `gfxunmap`
 
-- `gfxopen(devp, ...)`: **established** (0x1fb8). The minor in `*devp` (low 18 bits) must be 0 or
-  1: 1 selects OpenGL mode (the connection gets flag 8), 0 is the legacy IrisGL mode (**inferred** from the header's `GFX_OPENGL` and the error texts). Steps:
+- `gfxopen` (`usr/cpu/sysgen/IP27boot/gfx.o` 0x1fb8): **established**. The minor in `*devp` (low 18 bits) must be 0 or
+  1: 1 selects OpenGL mode (the connection gets flag 8), 0 is the legacy IrisGL mode (**inferred** from the header's OpenGL-mode constant and the error texts). Steps:
   `curthreadhandle`; `psema(GfxDevSema, 25)`; if `is_gsn_bypass_thread` returns nonzero, releases and returns 1008. Minor >= 2: returns 6. Scans
   `GfxDev` for the first null slot below `GfxDevLimit`; none: releases, prints `.rodata` 0x220 "gfx: open device limit reached" (level 4), returns 19. Finds the caller's thread record; a record with flag 4 (exited) is detached and destroyed, and a fresh one is created
   (`gthread_create`; failure returns 12). Looks up the group (`gfx_group_find`). Every existing connection of the thread must have the same mode (flag 8 against the requested mode); a mismatch prints `.rodata` 0x240 "gfx: attempt to do both
@@ -674,28 +674,28 @@ Helpers in the same family, not in the assigned list: `gthread_find_gfxp(handle)
   0x2b80): each returns 54 (EBADRQC).
 - `gfxmap()`, `gfxunmap()`: **established** (0x335c,
   0x3364): each returns 54 (EBADRQC). Mapping is done through the ioctl path, not these.
-- `gfxioctl(dev, cmd, arg, mode, cred, rvalp)`: **established** (0x2b88). Bumps `gfxinfo[cpu].+12`. Slot = low 17 bits of
+- `gfxioctl` (`usr/cpu/sysgen/IP27boot/gfx.o` 0x2b88; arguments dev, cmd, arg, mode, cred, rvalp): **established**. Bumps `gfxinfo[cpu].+12`. Slot = low 17 bits of
   `dev`; at or above `GfxDevLimit` returns 6; empty slot 19; caller has no thread record 13. Serialization: an OpenGL connection used from a thread in a group is refused with 13 unless the caller is the connection's owner; a non-OpenGL
   (IrisGL) connection in a group takes the +80 semaphore around the call. Dispatch order and effects:
   - 101 `GFX_GETNUM_BOARDS`: stores `GfxNumberOfBoards` in `*rvalp`, returns 0.
-  - 102 `GFX_GETBOARDINFO`: `copyin_xlate` of 24 bytes (converter `irix5_to_gfx_getboardinfo_args`), 14 on failure; board number out of range or null entry gives 19; otherwise calls the board's info function (+0) with the board private data, the user buffer, the length and
+  - 102: `copyin_xlate` of 24 bytes (converter `irix5_to_gfx_getboardinfo_args`), 14 on failure; board number out of range or null entry gives 19; otherwise calls the board's info function (+0) with the board private data, the user buffer, the length and
     `rvalp`, and returns its result.
   - 105 `GFX_IS_MANAGED`: `copyin` of a 4-byte board number (14 on failure, 19 for a bad board); `*rvalp` = 1 if the board has a managing connection (+8), else 0; returns 0.
   - 103 `GFX_ATTACH_BOARD`: `copyin_xlate` of 16 bytes (`irix5_to_gfx_attach_board_args`); 14 on failure, 19 for a bad board; if the connection already has a function table (+32) returns 16. Otherwise copies the board, function table and private data into the connection (+8, +32, +40), calls the board's attach function (+8) with the user address; on error clears the three fields and returns the error; on success makes the connection the board's owner (+16) if the board has none. Returns 0.
-  - 112 `GFX_REATTACH_BOARD`: same 16-byte argument and the same steps as attach, but without the "already attached" check (16).
-  - 113 `GFX_SET_DIAG_FLAG`: `drv_priv(cred)`; if it returns 0 sets connection flag 4 and returns 0, else returns that error.
+  - 112: same 16-byte argument and the same steps as attach, but without the "already attached" check (16).
+  - 113: `drv_priv(cred)`; if it returns 0 sets connection flag 4 and returns 0, else returns that error.
   - Every other command first requires the connection to be attached (+32 non-null), else 13.
   - Commands 10000 and up: calls the board's private-ioctl function (+200) with the connection, the bound rendering node (+72), `cmd`, `arg`, `rvalp`, and returns its result. Commands 1000-9999:
     `RRM_Dispatch(conn, cmd, arg, rvalp)`.
   - 104 `GFX_DETACH_BOARD`: if the connection is IrisGL mode and in a group with more than one thread (`threadgroup_refcnt` != 1) returns 16; otherwise
     `GfxDetach(conn)`, returns 0.
-  - 108 `GFX_DOWNLOAD`: `copyin_xlate` of 40 bytes (`irix5_to_gfx_download_args`; 14 on failure), then the board's download function (+32) with the connection and the native argument; its result is returned.
+  - 108: `copyin_xlate` of 40 bytes (`irix5_to_gfx_download_args`; 14 on failure), then the board's download function (+32) with the connection and the native argument; its result is returned.
   - 110 `GFX_MAPALL`: acquires the board's pipe semaphore (the sequence:
     `psema(+56, 537)`, record the connection at +72, spin with
     `us_delay(2)` while the backed-up flag at +104 is set) if the connection does not already hold it, locks the region handle (`ddv_lock`), calls the board's map function (+96) with (connection, 0, -1), sets connection flag 0x20 whether or not that succeeded, unlocks, and returns the map function's result. The pipe semaphore is not released here.
   - Commands 106, 107, 109,
-    111 (and the unknown-command default) require the connection to be the board's owner (+16); otherwise return 1. Then: 106 `GFX_INITIALIZE`: takes the pipe semaphore as above, calls the initialize function (+24), zeroes the board data's +128 counter, with interrupts blocked calls the release hook (+192) if present, clears the owner (+72), `vsema`s the semaphore, and if the connection is mapped (flag 1) calls `rrmUnMapGfx`; returns the initialize result. 107
-    `GFX_START`: takes the pipe semaphore (no release here) and returns the start function's (+40) result. 109 `GFX_BLANKSCREEN`: does nothing, returns 0 (**established**: no code; **unknown** whether a board hook was meant). 111 `GFX_LABEL`:
+    111 (and the unknown-command default) require the connection to be the board's owner (+16); otherwise return 1. Then: 106: takes the pipe semaphore as above, calls the initialize function (+24), zeroes the board data's +128 counter, with interrupts blocked calls the release hook (+192) if present, clears the owner (+72), `vsema`s the semaphore, and if the connection is mapped (flag 1) calls `rrmUnMapGfx`; returns the initialize result. 107
+   : takes the pipe semaphore (no release here) and returns the start function's (+40) result. 109: does nothing, returns 0 (**established**: no code; **unknown** whether a board hook was meant). 111 `GFX_LABEL`:
     `copyin` of 16 bytes into the board's info record at +16 (the label field); 14 on failure, else 0.
   - Any other number below 1000 (for example 100 or 114) from an attached connection: if the connection is not the board's owner returns 1; if it is the owner, prints `.rodata` 0x398 "gfx: unknown ioctl (%d)"
     (`cmn_err_tag`, id 2128, level 4) and returns 22. From an unattached connection it returns 13.
@@ -753,7 +753,7 @@ The queue's private pointer (+40) is the connection.
 - `GfxWput(q, mp)`: **established** (0x1840). On message type 1 (M_PROTO) or 131 (M_PCPROTO) passes to
   `GfxProto`; type 134 (M_FLUSH) flushes the queue when bit 2 of the first byte is set (`flushq(q, 0)`) and frees the message; any other type prints
   `.rodata` 0xe8 "Gfx: throwing away unknown message (db_type=%d)" (level 4) and frees the message. Returns 0.
-- `GfxProto(q, mp)`: **established** (0x173c). Reads the first word of the message data. If it is 0x53484d51 ("SHMQ"), stores the shorts at +4 and +6 of the data into the board's +48 and +50 (shmiq minor and index), rewrites the first word to 0x514d4853 and replies (`qreply`). If it is 102 (`GFX_POSCURSOR`) or 0x53484951 ("SHIQ"), calls the board's position-cursor function (+48) with the board data and the two words at +4 and +8; a zero result frees the message, a nonzero result turns the message type into 138
+- `GfxProto` (`usr/cpu/sysgen/IP27boot/gfx.o` 0x173c; arguments q, mp): **established**. Reads the first word of the message data. If it is 0x53484d51 ("SHMQ"), stores the shorts at +4 and +6 of the data into the board's +48 and +50 (shmiq minor and index), rewrites the first word to 0x514d4853 and replies (`qreply`). If it is 102 or 0x53484951 ("SHIQ"), calls the board's position-cursor function (+48) with the board data and the two words at +4 and +8; a zero result frees the message, a nonzero result turns the message type into 138
   (M_ERROR) and replies. No function table: frees the message. Any other first word prints `.rodata` 0xb0 "Gfx: received a proto message of unknown type (%d)" (level 4) and frees it. Returns 0.
 - `GfxRqService(q)`: **established** (0x1c10). Loops `getq`; for each message, if the next queue accepts it
   (`canput`) calls its put routine; otherwise `putbq`s the message back and returns 1. Returns 0 when drained.
@@ -843,8 +843,8 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
 
 #### Dispatch and messages: `RRM_Dispatch`, `RRM_Message`, `RRM_ValidateMessage`
 
-- `RRM_Dispatch` (`0x4670`): arguments (connection, command, user argument address, user address for a returned value). **Established**:
-  - Command outside 1000..1099 gives 22. The handler, argument size, "manager-class" flag and a name string come from a 24-byte-per-entry table in `.data` indexed by command - 1000 (26 entries, `0x0`-`0x270`); a zero handler gives 22. The numbers, order and the 1100 limit match the 6.5.5 `RRM_BASE` set exactly.
+- `RRM_Dispatch` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x4670): arguments (connection, command, user argument address, user address for a returned value). **Established**:
+  - Command outside 1000..1099 gives 22. The handler, argument size, "manager-class" flag and a name string come from a 24-byte-per-entry table in `.data` indexed by command - 1000 (26 entries, `0x0`-`0x270`); a zero handler gives 22. The numbers, order and the 1100 limit match the 6.5.5 command set exactly.
   - Argument copy: `copyin` of the table size to a stack block (14 on failure); commands 1011 and 1016 use
     `copyin_xlate` with the converters `irix5_to_RRM_ValidateClip` and `irix5_to_RRM_GetDisplayModes` and the caller's
     `curproc_abi()`; the sixth and seventh arguments are the mask 4 (`ABI_IRIX5_64`, callers that need no conversion) and the count 1 handed to the converter ([the copy routine](#the-copy-routine-copyin_xlate)).
@@ -854,36 +854,11 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
     `rrm_maxrn`, free byte 1 or id word unequal gives 22; a manager caller with a flag-set command proceeds directly; any other caller of a flag-set command gets 13; a flag-clear command must belong to the caller (OpenGL connection: the creator exists, is OpenGL, shares the pipe state, and a bound node is not in use by another connection, else 13 (`0x4a54`-`0x4aa4`); other connections: node on the connection's open list, else 13).
   - Flag-clear commands with a node run under `RRMcall_sema[slot]` (`psema` 25, re-checking the node afterwards, 22 if it changed) and release it after the handler.
   - The handler gets (connection, node, stack argument, user address, 4th dispatch argument); its result is returned.
-  - Command map (6.5.5 name, our handler, table size, manager-class flag): 1000 `RRM_OPENRN` 8 0; 1001
-    `RRM_CLOSERN` 4 0; 1002
-    `RRM_BINDPROCTORN` 4 0; 1003
-    `RRM_BINDRNTOCLIP` 12 0; 1004
-    `RRM_UNBINDRNFROMCLIP` 8 1; 1005
-    `RRM_SWAPBUF` 12 0; 1006
-    `RRM_SETSWAPINTERVAL` 8 0; 1007
-    `RRM_WAITFORRETRACE` 4 0; 1008
-    `RRM_SETDISPLAYMODE` 12 0; 1009
-    `RRM_MESSAGE` 56 0; 1010
-    `RRM_INVALIDATERN` 20 1; 1011
-    `RRM_VALIDATECLIP` 64 1; 1012
-    `RRM_VALIDATESWAPBUF` 12 1; 1013
-    `RRM_SWAPGROUP` 8 1; 1014
-    `RRM_SWAPUNGROUP` 8 1; 1015
-    `RRM_VALIDATEMESSAGE` 4 1; 1016
-    `RRM_GETDISPLAYMODES` 24 0; 1017
-    `RRM_LOADDISPLAYMODE` 20 1; 1018
-    `RRM_CUSHIONBUFFER` 8 1; 1019
-    `RRM_SWAPREADY` 12 1; 1020
-    `RRM_MGR_SWAPBUF` 20 1; 1021
-    `RRM_SETVSYNC` 8 0; 1022
-    `RRM_GETVSYNC` 8 0; 1023
-    `RRM_WAITVSYNC` 16 0; 1024
-    `RRM_BINDRNTOREADANDCLIP` 20 0; 1025
-    `RRM_MAPCLIPTOSWPBUFID` 12 0. Table sizes equal the 6.5.5 argument structures (64-bit layout) except 1014, which the header has no structure for (8 bytes read).
+  - Command map (command, table size, manager-class flag): 1000 8 0; 1001 4 0; 1002 4 0; 1003 12 0; 1004 8 1; 1005 12 0; 1006 8 0; 1007 4 0; 1008 12 0; 1009 56 0; 1010 20 1; 1011 64 1; 1012 12 1; 1013 8 1; 1014 8 1; 1015 4 1; 1016 24 0; 1017 20 1; 1018 8 1; 1019 12 1; 1020 20 1; 1021 8 0; 1022 8 0; 1023 16 0; 1024 20 0; 1025 12 0. Table sizes equal the 6.5.5 argument structures (64-bit layout) except 1014, which the header has no structure for (8 bytes read).
   - **Inferred**: flag 1 marks commands only the board manager issues (the general path refuses others with 13), but for the commands run with node 0 the dispatcher itself does not test who the caller is; none of those handlers tests it either, so any enforcement is outside `rrm.o` (the ioctl layer was not read for this).
-- `RRM_Message` (`0x420c`): command 1009. **Established**: under the node lock takes valid = node valid mask | pane valid mask (`pane_validmask` of the draw pane); the argument's mask (+4) is replaced by mask & valid. If that is nonzero: `rrmInvalidateRN(connection, node, mask)`,
+- `RRM_Message` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x420c): command 1009. **Established**: under the node lock takes valid = node valid mask | pane valid mask (`pane_validmask` of the draw pane); the argument's mask (+4) is replaced by mask & valid. If that is nonzero: `rrmInvalidateRN(connection, node, mask)`,
   `invalidate_pane(mask, draw pane clip id, connection)`, `rrmUnMapGfx`. Then it forwards the message to the manager: no manager (board record +8 is 0) gives 14; otherwise builds a board message with the type byte (+8), a word count capped at 10 (from +12) and that many data words (from +16), calls `GfxMessage`, returns 0. **Inferred**: the client names resources it wants dropped and an upstream type from
-  `RRM_MSG_*`; the fullscreen, z-buffer and dont-freeze types are passed through unexamined.
+  the board message types; the fullscreen, z-buffer and dont-freeze types are passed through unexamined.
 - `RRM_ValidateMessage` (`0x2b10`): **Established**: reads the node's valid mask under its lock; if bit 0x20 (MESSAGE) is set returns 22; otherwise calls `rrmValidateBuffer(node)` and returns 0. `rrmValidateBuffer` (`0x2acc`, not in the requested list) sets the pane's next-swap time to its swap interval plus the pipe state's swap-wait clock (+164) when the swap-wait enable (+160) is set, then calls
   `validate_pane_buffer`. **Inferred**: acknowledges a message that `RRM_Message` invalidated, hence the 22 when nothing is outstanding. **Established negative**: nothing sets node bit 0x20 valid again. `RRM_OpenRN` starts the valid mask at 0x34
   (`MESSAGE`, `RETRACE`, `BUFFER`) masked by the request (`0x1ad0`, `0x1b30`); the only other halfword stores to node +6 in `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` are
@@ -921,12 +896,12 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
 
 #### Binding a node to a window: `RRM_BindRNToClip`, `RRM_BindRNToReadAndClip`, `RRM_UnbindRNFromClip`, `RRM_MapClipToSwapbufID`
 
-- `RRM_BindRNToReadAndClip` (`0x1554`): argument {id, clip id, read clip id, bind id out, read bind id out}; fifth argument is the user address to copy the block back to (may be 0). **Established**:
+- `RRM_BindRNToReadAndClip` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x1554): argument {id, clip id, read clip id, bind id out, read bind id out}; fifth argument is the user address to copy the block back to (may be 0). **Established**:
   - Clip id 0 gives 22.
   - If the node already has a pane: `validate_my_pane_buffer` then `unbind_pane` on it, and on the read pane when request bit 0x40 is set; request bit 0x8 (SWAPBUF) is cleared.
   - `bind_pane(connection, clip id)` becomes the draw pane (serial cache +136 = 0). If the read clip id differs, a second `bind_pane` is the read pane (serial cache +140 = 0, request bit 0x40 set); if equal, the read pane is the same pane and bit 0x40 is cleared.
   - If either pane lacks its CLIP (draw) or READ valid bit, `rrmUnMapGfx` is called and no message is sent. If both are valid and the node is the pipe's current node, `RRM_CheckValidFault` (negative gives 14), op +80 (validate clip) is called with (connection, node, current node, address of the draw pane's clip record at +96); result -1 gives 14; on success the serial caches +136/+140 are set from the panes' serials. If both are valid and it is not the current node, the caches stay 0 (**inferred**: the clip is sent when the node's context is next activated).
-  - Messages to the manager: the check for a manager comes first on every path and a missing manager returns 14 (even when both panes were valid). The unmapped (not valid) case sends up to two board messages of 3 words: type 4 (`RRM_MSG_BINDRNTOCLIP`), or 0x84 (`RRM_MSG_OGL_BINDRNTOCLIP`) for OpenGL connections, with words (clip id being bound, node id, previous clip id of that role), one for the read clip when it differs and one for the draw clip; the node's clip ids (+24, +20) are updated. In the both-valid case no message is sent and the clip ids are only updated.
+  - Messages to the manager: the check for a manager comes first on every path and a missing manager returns 14 (even when both panes were valid). The unmapped (not valid) case sends up to two board messages of 3 words: type 4, or 0x84 for OpenGL connections, with words (clip id being bound, node id, previous clip id of that role), one for the read clip when it differs and one for the draw clip; the node's clip ids (+24, +20) are updated. In the both-valid case no message is sent and the clip ids are only updated.
   - OpenGL connections get the bind id words (the pane id word) written to +12 and +16 and copied out (14 on `copyout` failure). Returns 0 otherwise.
 - `RRM_BindRNToClip` (`0x1854`): argument {id, clip id, bind id out}. **Established**: builds a five-word block with read clip id = clip id and calls `RRM_BindRNToReadAndClip` with no copy-out; for OpenGL connections and success, stores the bind id into +8 and copies 12 bytes out (14 on failure). Returns the callee's result.
 - `RRM_UnbindRNFromClip` (`0x18f0`): argument {id, clip id}. **Established**: `pane_cleanup(clip id, connection)`; returns 0 always. **Inferred**: used by the manager when a window goes away; the node id is not used.
@@ -957,12 +932,12 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
 - `validate_pane_buffer` (`0x878`): (pane). **Established**: under the pane lock valid mask |= 0x4 (BUFFER) and `sv_broadcast(+72)`.
 - `validate_my_pane_buffer` (`0x8c8`): (pane, unused, mask). **Established**: under the pane lock, if the caller's mask includes BUFFER and the pane's does not, `hold_nonfatalsig` then
   `sv_wait_sig(+72, 542)` (lock released by the wait); an interrupted wait returns -1; otherwise 0. Returns 0 without sleeping when BUFFER is already valid.
-- `validate_my_pane_resources` (`0x97c`): (pane, connection, mask). **Established**:
+- `validate_my_pane_resources` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x97c): (pane, connection, mask). **Established**:
   - If the mask has none of 0x8e (CLIP, BUFFER, SWAPBUF, REFERENCE) returns 0. Otherwise `validate_my_pane_buffer` (negative gives -1), then under the pane lock valid mask |= 0x80 and missing = mask & ~valid & 0xa.
   - Nothing missing returns 0. Pane owner already this connection returns -1. A pane with clip id 0 whose connection is not the manager and whose mask asks for CLIP: an OpenGL connection gets `pane_setnullclip` and 0; any other connection is sent SIGKILL (`psignal`, 9) with
     "validate_my_pane_resources #N: lost clipid - killing process %d" (levels 4, tags 2129, 2130,
     2131 for the three places) and gets -1.
-  - Otherwise takes the pane's semaphore (+40): `cpsema`, and if that fails `psema(…, 798)` with signals held (-1 if interrupted; after waking, 0 if somebody else validated the pane meanwhile, with the pane semaphore released). Holder sets the waiting mask (+14) = missing and owner = connection, then, with the pane lock dropped, sends the manager a board message of one word (the clip id): type 1 for CLIP, 2 for SWAPBUF, 3 for both (`RRM_MSG_VALIDATECLIP`,
+  - Otherwise takes the pane's semaphore (+40): `cpsema`, and if that fails `psema(…, 798)` with signals held (-1 if interrupted; after waking, 0 if somebody else validated the pane meanwhile, with the pane semaphore released). Holder sets the waiting mask (+14) = missing and owner = connection, then, with the pane lock dropped, sends the manager a board message of one word (the clip id): type 1 for CLIP, 2 for SWAPBUF, 3 for both (the validate-clip message types,
     `_VALIDATESWAPBUF`, `_SWAP_N_CLIP`), via `GfxMessage`. No manager returns -2. Then sleeps on the pane (+64,
     `sv_wait_sig`, 542) until the waiting mask clears or ownership changes (-1 if interrupted).
   - Pane lock held through each check, released across `GfxMessage` and the sleeps. **Inferred**: the manager (the X server) answers with a `RRM_ValidateClip` or `RRM_ValidateSwapBuf` command, which lands in
@@ -970,11 +945,11 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
 - `invalidate_pane` (`0x50c`): (mask, clip id, connection). **Established**: `clip2pane`; with mask bit 0x2 the mask also gets 0x40 (READ), and a missing pane returns 0; under the pane lock clears the mask bits from the valid mask; returns the valid mask as it was before.
 - `invalidate_pane_buffer` (`0x598`): (mask, clip id, connection). **Established**: as `invalidate_pane` but returns 0. **Unknown**: its callers are not in `rrm.o` (not referenced by any function read).
 - `rrmInvalidateRN` (`0x1168`): (connection, node, mask). **Established**: takes the big semaphore (not the nesting count), then under the node lock clears the mask bits from the node's valid mask; returns 0 if every bit asked for was valid before, else -2.
-- `RRM_InvalidateRN` (`0x1228`): command 1010, argument {id, clip id, mask, mode out, flags out}; user address in the fourth argument. **Established**:
+- `RRM_InvalidateRN` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x1228): command 1010, argument {id, clip id, mask, mode out, flags out}; user address in the fourth argument. **Established**:
   - Mask outside 0xff gives 22; mask with any bit other than 0x2, 0x8, 0x40,
     0x80 gives 22.
   - `invalidate_pane(mask, clip id, connection)`; the old pane valid mask is kept to return in +8. If mask bit 0x8 (SWAPBUF): the pane must exist (22) and the connection must have a bound node (14); if the pane's swap-buffer id (low byte) is not 0xff, op +144 (unschedule swap) is called with (connection, bound node, swap-buffer id). A negative result returns its negation; 0 does nothing more; 2 means a swap is in flight: `rrmInvalidateRN(connection, bound node, 0x10)` and, if that returned 0, op +152 (schedule retrace event) and `rrmUnMapGfx`; any other positive result runs
-    `validate_pane_buffer` and sets flags +16 to 1 (`RRM_INVAL_WRONGBUF`). The pane's mode (+32) is stored to +12.
+    `validate_pane_buffer` and sets flags +16 to 1. The pane's mode (+32) is stored to +12.
   - Copies 20 bytes out (14 on failure). Returns 0.
   - **Inferred**: result 2 of the unschedule operation means the swap cannot be cancelled and the retrace event wakes the bound node later.
 - `RRM_ValidFault` (`0x3378`): (connection, fault address). **Established**: runs when a pipe page is touched while the connection is unmapped. Steps:
@@ -1009,11 +984,11 @@ Errno values are quoted as numbers (**established**); names are SVR4 numbering (
 - `rrmGenlockNotify(connection, value)` (`rrm.o` offset 0x4130), established: defers a genlock change notice to the manager out of interrupt context.
   Like the swap-buffer path it returns at once without a connection or board record, else calls `streams_timeout` with -100, the connection, the value and 0 (0x4154-0x4170).
   The deferred `rrmGenlockNotifySTREAM` (offset 0x40e8) sends the board manager an interrupt-time message of type 12 with the value through `GfxIntrMessage`.
-- `rrmValidateMGRSwapBufSTREAM` (`0x4054`): (connection, value). **Established**: with a connection and board record present, builds a 3-word board message of type 9 (`RRM_MSG_MGR_SWAPDONE`) with the value as word 0 and words 1-2 zero, and sends it with `GfxIntrMessage`. Runs as the deferred callback of
+- `rrmValidateMGRSwapBufSTREAM` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x4054): (connection, value). **Established**: with a connection and board record present, builds a 3-word board message of type 9 with the value as word 0 and words 1-2 zero, and sends it with `GfxIntrMessage`. Runs as the deferred callback of
   `rrmValidateMGRSwapBuf`.
-- `rrmGenlockNotifySTREAM` (`0x40e8`): (connection, value). **Established**: 2-word board message of type 12 (`RRM_MSG_GENLOCK_NOTIFY`), words (0, value), `GfxIntrMessage`.
+- `rrmGenlockNotifySTREAM` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x40e8): (connection, value). **Established**: 2-word board message of type 12, words (0, value), `GfxIntrMessage`.
   `rrmGenlockNotify` (`0x4130`, not in the list) defers to it with the same `streams_timeout` pattern.
-- `RRM_SetDisplayMode` (`0x2b78`): argument {id, hardware mode, hardware-independent mode}. **Established**: `RRM_CheckValidFault` negative gives 14; no manager gives 14; sends a 3-word board message of type 11 (`RRM_MSG_SETDISPLAYMODE`), or 0x8b for
+- `RRM_SetDisplayMode` (`usr/cpu/sysgen/IP27boot/rrm.o` 0x2b78): argument {id, hardware mode, hardware-independent mode}. **Established**: `RRM_CheckValidFault` negative gives 14; no manager gives 14; sends a 3-word board message of type 11, or 0x8b for
   OpenGL, words (node clip id, hardware-independent mode, hardware mode); `invalidate_pane(0x8, pane clip id)`; `rrmUnMapGfx`; returns 0.
 - `RRM_GetDisplayModes` (`0x2d8c`): argument {id, user buffer, length}. **Established**: length below mode count x 4 gives 22; copies the mode table (pipe state +96) out, 14 on failure; 0.
 
@@ -1146,13 +1121,13 @@ Every sequence starts with the same word, 1, then a sub-command number, then its
   `XG_GFX_DET` (0x7c) = 1 (`DETACH`) and reads it back; writes `PI_GFX_CREDIT_CNTR_x` = 64;
   `sync`; `err_int_unblock_mask(8)`; `sync`. **Established** (0x17a0-0x1824). It does not touch `PI_GFX_BIAS_x` or the
   `IIO_IGFX_0` valid bit, so the node/widget registration written by attach stays valid after detach (contrast `gfx_flow_detach_me`, which clears it). The meaning of the credit counter value 64 is **unknown**; **inferred** a parked or default value.
-- `kona_tport_reset_adaptor` (`kona_tport.o` 0xf48): arguments node (a0), widget (a1). Returns 0 on success, -1 if the crossbar link does not come back. **Established** steps (0xf48-0x1080):
+- `kona_tport_reset_adaptor` (`IP27boot/kona.a(kona_tport.o)` 0xf48): arguments node (a0), widget (a1). Returns 0 on success, -1 if the crossbar link does not come back. **Established** steps (0xf48-0x1080):
   1. Crossbar base = 0x92000000e0000000 + (node << 32) (`.lit8` +0). Read its word at +4 (crossbar `WIDGET_ID` per [xg.md](xg.md)). Credit count N = 4 when bits 12-27 are nonzero; else 3 if bits 28-31 are below 3, else 4 (same rule as the kernel's own reset in [xg.md](xg.md)).
   2. Calibrate: read the 64-bit real-time counter (hub offset 0x30100, `.lit8` +8, `PI_RT_COUNT`) around `us_delay(1000)`; the difference is the timeout in counter ticks for step 3 (about 1 ms).
   3. Port block = crossbar base + 0x40 * (widget & 7). Save the word at +0x10c (link control), write 0 to +0x134 (link reset), poll bit 31 of +0x114 (link alive) with `us_delay(2)` until set or the tick budget runs out; on timeout return -1. On success write the saved word back to +0x10c.
   4. `hub_widget_flags_set(node, widget, 2)`.
   5. Write `XG_XT_CTRL` (window offset 0x24) = (widget & 0xf) | (N << 12) & 0xf000 | 0x02640200, except 0x02a40200 when bit 31 of the crossbar word at +0x154 is clear; read it back. The constant is the kernel's 0x00240200 plus the target-number field (bits 22-25): 9 when that crossbar link-status bit is set, 10 when clear. Why those two targets and why +0x154 is **unknown** (the +0x154 word is the status of the second 0x40-byte port block, port 9); **inferred** it chooses the hub-side destination port of the pipe's DMA and credit traffic.
-  6. Write `XG_ERR_STAT` (window offset 0x6c) = 0x800000 (clears the `GFX_DW_CRD_OVFLOW` bit, **inferred** write-one-to-clear as in [xg.md](xg.md)). Return 0. It sets no interrupt destination, vector register or bit 17 of `XG_XT_CTRL`; the textport polls instead. Differences from the full driver reset in [xg.md](xg.md) otherwise limited to the missing steps.
+  6. Write `XG_ERR_STAT` (window offset 0x6c) = 0x800000 (clears the data-write credit-overflow bit, **inferred** write-one-to-clear as in [xg.md](xg.md)). Return 0. It sets no interrupt destination, vector register or bit 17 of `XG_XT_CTRL`; the textport polls instead. Differences from the full driver reset in [xg.md](xg.md) otherwise limited to the missing steps.
 
 #### Pipe discovery: `find_gfxpipe`
 

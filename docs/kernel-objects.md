@@ -22,9 +22,9 @@ The Kona kernel driver is the archive `usr/cpu/sysgen/IP27boot/kona.a` (and the 
 - `usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)`: **inferred.**
   `kona_geprint` at +0x0 (2788 bytes) formats a print request that the geometry-engine microcode left in the event buffer into a line of text for the console, taking the request, an output buffer and its size.
   The IP35 archive holds a byte-identical copy of this member, which the inventory lists once.
-- `usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)`: **inferred.**
-  `KONAprivate` at +0x0 (2364 bytes) is the board's handler for private ioctls above 9999: it subtracts 10000, jumps through the table at `.rodata` +0x18 and returns an error for an empty slot.
-  The slots it serves (10006 `KONA_SETCONFIGINFO`, 10016 `KONA_HEALTH`, 10100 `KONA_DIAG_MAP` and the rest) are tabulated in [kernel.md](kernel.md#kona-private-ioctls).
+- `KONAprivate` (`usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)` +0x0, 2364 bytes): **inferred.**
+  It is the board's handler for private ioctls above 9999: it subtracts 10000, jumps through the table at `.rodata` +0x18 and returns an error for an empty slot.
+  The slots it serves (10006, 10016, 10100 and the rest) are tabulated in [kernel.md](kernel.md#kona-private-ioctls).
 - `usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o)`: **inferred.**
   Failure handling in three routines: `kona_die` at +0x0 (372 bytes) marks the pipe dead under the state lock at +2168 and quiesces it with the death reason in its second argument, reading `HH_TBUS_STATUS` and `HH_GFIFO_LEVEL` and writing `HH_ODMA_FLUSH` (0x800298); `kona_checkpipe_complete` at +0x174 (100 bytes) finishes a liveness check from GE event 0x105 or its timeout; `kona_checkpipe` at +0x1d8 (888 bytes) is the ioctl that loops a token through the geometry engine to see whether the pipe answers.
 - `usr/cpu/sysgen/IP27boot/kona.a(kona_sched.o)`: **established** for the structure, **inferred** for the flow-control details.

@@ -365,9 +365,9 @@ The multi-pipe ("hyperpipe") code drives the display port of each pipe through `
   0x8400 = 0x7000, 0xe300 = 1 and
   0xe500 = 1, clears its ring link and sets +5500 to -1.
 - `kona_nclops_cleanup` (`kona_nclops.o` +0x1d48, 188 bytes): **Established.** Unbinds a node that is being destroyed: when its bind marker (+248) is not negative it sets it to -1, decrements the pipe's bind count (+5516) and the network's bound count (+44) under their locks. No register is touched.
-- `kona_nclops_init` (`kona_nclops.o` +0x1e04, 48 bytes):
+- `kona_nclops_init` (`IP27boot/kona.a(kona_nclops.o)` +0x1e04, 48 bytes):
   **Established.** Does nothing unless the pipe state holds a topology record pointer (+5480 nonzero, 0x1e04-0x1e10); then clears the 64 bytes from +5480, the pointer included, so the next topology request runs discovery again.
-  Called without a condition by ioctl 10006 (`KONA_SETCONFIGINFO`) after `kona_mem_init`.
+  Called without a condition by ioctl 10006 after `kona_mem_init`.
 
 ## Kernel textport: `kona_tport.o`
 

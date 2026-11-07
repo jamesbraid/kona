@@ -62,15 +62,15 @@ One entry per file the graphics packages install beside the InfiniteReality driv
 
 ## Programs that reach the pipe
 
-- `usr/gfx/KONA/bin/ireeprom`: **established** for the paths named, **inferred** for what the sub-commands mean.
+- `usr/gfx/KONA/bin/ireeprom`: read from the code for the paths named, by inference for what the sub-commands mean.
   A 150304-byte program that reads, writes, erases and verifies the pipe's boot EEPROM; entry `__start` at 0x10001540, `main` at 0x1000165c.
   The option string at 0x100042b0 is `wrveiFp:f:hcd:s` (write, read, verify, erase, info, force, pipe, file, help, erase-combination), and the code at 0x100016c8 refuses a caller that is not the super-user.
   The helper at 0x10001a20 opens `/dev/opengl` with flags 0x802 and counts boards with ioctl 101; the per-pipe routine at 0x10001abc fetches the board record with ioctl 102 and compares its name field against `KONA`, `KONAT`, `KONAS`, `KONAL` and `KONAD` (strings at 0x10024080 to 0x100240a0), asks 105 whether a window system manages the board, then attaches with 103 followed by 1000 and 1002 when it does or sends 113 when it does not.
-  `setup_ucode` at 0x1000228c sends the private ioctl 10100 (`KONA_DIAG_MAP`, [kernel.md](kernel.md#diagnostic-map-kona_diag_map)) twice with a 65536-byte length: flags 10 (release, kind 8) and then, after generic ioctl 106, flags 9 (map through the map RAM), and keeps the two returned address words.
-  Everything after that goes through `KonWGWrite` at 0x10002a4c, which waits up to 1000 one-tick sleeps for the FIFO-fill field (word 0x4208 of the mapped window, mask 0xffe) to fall to 1500 or less and then stores one word at window offset 12 when the CPU board class is the first of four and at offset 0 otherwise; the routine at 0x10002960 reads that class from `getinvent` and maps inventory types 11, 15, 19 and 22 to the classes the warning string calls IP19, IP25, IP27 and IP35 (**inferred** for the pairing of number and name).
+  `setup_ucode` at 0x1000228c sends the private ioctl 10100 (the diagnostic map request, [kernel.md](kernel.md#diagnostic-map-kona_diag_map)) twice with a 65536-byte length: flags 10 (release, kind 8) and then, after generic ioctl 106, flags 9 (map through the map RAM), and keeps the two returned address words.
+  Everything after that goes through `KonWGWrite` at 0x10002a4c, which waits up to 1000 one-tick sleeps for the FIFO-fill field (word 0x4208 of the mapped window, mask 0xffe) to fall to 1500 or less and then stores one word at window offset 12 when the CPU board class is the first of four and at offset 0 otherwise; the routine at 0x10002960 reads that class from `getinvent` and maps inventory types 11, 15, 19 and 22 to the classes the warning string calls IP19, IP25, IP27 and IP35 (the pairing of number and name is by inference).
   Every operation starts with the token word 492 (0x1ec): `erase_eeprom` at 0x10003274 follows it with 1 and 4096 data words, `erase_combo` at 0x10003430 with 6, `write_eeprom` at 0x10002bdc with 1 and the image, and `setup_ucode` with 3 followed by the two address words just mapped and the length 16384 (at 0x100024b4 to 0x100024ec, and again at 0x1000255c to 0x10002594), and with 4 before each `get_rdata` handshake.
   Results come back through `get_rdata` at 0x100026cc, which polls the first word of the read-back area with `sginap(2)` and returns the second.
-  The sub-command words 1, 3, 4 and 6 are named only by the string each operation prints, so their meaning at the hardware is **inferred**.
+  The sub-command words 1, 3, 4 and 6 are named only by the string each operation prints, so their meaning at the hardware is by inference.
   Each function of the program has its own entry in [pipe-tool-functions.md](pipe-tool-functions.md#ireeprom-pipe-eeprom-tool).
 - `usr/gfx/hyperpipeinfo`: **established.**
   An 18328-byte program that prints the hyperpipe network of one display; `main` at 0x10000ff0.
