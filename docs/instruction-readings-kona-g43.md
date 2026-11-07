@@ -9874,7 +9874,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec5fba0 calls sprintf with a0=sp-260, a1=0xecd4d50, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec5fbbc calls gl_ErrorHandler [0xec5dbec] with a0=0x2, a1=0x2, a2=sp-260, a3=?.
   The `bne` branch at 0xec5fb88 targets 0xec5fbc8, is taken when v0(=ret(malloc)) != 0, and falls through when v0(=ret(malloc)) == 0.
-  The return at 0xec5fbd4 has v0 = ret(malloc).
+  The return at 0xec5fbd4 has v0 = one of ret(malloc), ?.
 - `__iglooCalloc` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec5fbdc (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
@@ -9893,7 +9893,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec5fc84 calls sprintf with a0=sp-260, a1=0xecd4d6c, a2=a1 at entry (arg1), a3=a0 at entry (arg0).
   The `jalr` at 0xec5fca0 calls gl_ErrorHandler [0xec5dbec] with a0=0x2, a1=0x2, a2=sp-260, a3=?.
   The `bne` branch at 0xec5fc68 targets 0xec5fcac, is taken when v0(=ret(realloc)) != 0, and falls through when v0(=ret(realloc)) == 0.
-  The return at 0xec5fcb8 has v0 = ret(realloc).
+  The return at 0xec5fcb8 has v0 = one of ret(realloc), ?.
 - `__iglooFree` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec5fcc0 (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
@@ -10126,8 +10126,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec605ac calls __iglooGetVisualInfo [0xecc7950] with a0=a0 at entry (arg0), a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec6068c calls __iglooCalcDepthExtrema [0xecc71bc] with a0=[ret(__iglooGetVisualInfo)+48], a1=sp-20, a2=sp-24, a3=ret(__iglooGetVisualInfo).
   The `jalr` at 0xec606ac calls __iglooCalcDepthExtrema [0xecc71bc] with a0=[ret(__iglooGetVisualInfo)+48], a1=sp-28, a2=sp-32, a3=ret(__iglooGetVisualInfo).
-  The `jalr` at 0xec60700 calls __GLgetgconfig with a0=0x7, a1=0x0, a2=?, a3=ret(__iglooGetVisualInfo).
-  The `jalr` at 0xec60728 calls __GLgetgconfig with a0=0x8, a1=0x0, a2=?, a3=ret(__iglooGetVisualInfo).
+  The `jalr` at 0xec60700 calls __GLgetgconfig with a0=0x7, a1=?, a2=?, a3=ret(__iglooGetVisualInfo).
+  The `jalr` at 0xec60728 calls __GLgetgconfig with a0=0x8, a1=?, a2=?, a3=ret(__iglooGetVisualInfo).
   The `bne` branch at 0xec60594 targets 0xec605a4, is taken when v0(=[sym(gl_wstatep)]) != 0, and falls through when v0(=[sym(gl_wstatep)]) == 0.
   The `beq` branch at 0xec6059c targets 0xec6074c and is always taken.
   The `beq` branch at 0xec605bc targets 0xec60748, is taken when v0(=ret(__iglooGetVisualInfo)) == 0, and falls through when v0(=ret(__iglooGetVisualInfo)) != 0.
@@ -10158,7 +10158,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blezl` branch at 0xec60718 targets 0xec6074c, is taken when t3(=[ret(__iglooGetVisualInfo)+76]) <= 0 (signed), and falls through when t3(=[ret(__iglooGetVisualInfo)+76]) > 0 (signed); its branch-likely delay slot `or v0,a1,zero` at 0xec6071c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec60734 targets 0xec60748 and is always taken.
   The `beq` branch at 0xec6073c targets 0xec60748 and is always taken.
-  The return at 0xec60754 has v0 = one of 0x0, [ret(__iglooGetVisualInfo)+8], ?.
+  The return at 0xec60754 has v0 = one of 0x0, ?, [ret(__iglooGetVisualInfo)+8].
   The indirect jump at 0xec605f0 uses the jump table at 0xecd4ee0 with targets 0xec605f8, 0xec60638, 0xec60648, 0xec60658, 0xec60668, 0xec60678, 0xec60680, 0xec606a0, 0xec606c0, 0xec606c8, 0xec606d0, 0xec606d8, 0xec60748, 0xec606ec, 0xec60714, 0xec6073c, 0xec60744.
 - `gdIsExtension` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec60760 (o32).
   Evidence grade: inferred.
@@ -10195,54 +10195,48 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec608a0 loads 4 bytes from table(0xecdd050) +0x0.
   2 such `lw` accesses load 4 bytes from table(0xecdd054) +0x0, including `lw` at 0xec608d0, `lw` at 0xec60984.
   2 such `lw` accesses load 4 bytes from abs 0xecdd35c, including `lw` at 0xec608d8, `lw` at 0xec60930.
-  The `lw` at 0xec608e0 loads 4 bytes from ([[0xecdfb9c]+28] + entry(0xecdd054)) +0xa4.
+  8 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec608e0, `lw` at 0xec609bc, `lw` at 0xec609dc.
   The `lw` at 0xec60900 loads 4 bytes from abs 0xecdd360.
   The `sw` at 0xec60918 stores 4 bytes to abs 0xecdd35c.
   The `sw` at 0xec60944 stores 4 bytes to abs 0xecdd358.
   2 such `lw` accesses load 4 bytes from abs 0xecdd358, including `lw` at 0xec60950, `lw` at 0xec6097c.
   The `lw` at 0xec609a0 loads 4 bytes from table(0xecd4f60) +0x0.
-  2 such `lw` accesses load 4 bytes from [[0xecdfb9c]+28] +0xdc, including `lw` at 0xec609bc, `lw` at 0xec609dc.
   The `lw` at 0xec60a1c loads 4 bytes from abs 0xecdfb94 (gl_nscrns).
   The `lw` at 0xec60a70 loads 4 bytes from abs 0xecdfb8c (gl_selected_scrn).
   The `lw` at 0xec60a74 loads 4 bytes from abs 0xecdfb90 (gl_scrntab).
   The `lw` at 0xec60a8c loads 4 bytes from ([0xecdfb90] + ((([0xecdfb8c] << 0x2) + [0xecdfb8c]) << 0x3)) +0x8.
-  The `lw` at 0xec60ac0 loads 4 bytes from [[0xecdfb9c]+28] +0xe0.
   The `lw` at 0xec60b00 loads 4 bytes from table(0xecd50cc) +0x0.
   3 such `lw` accesses load 4 bytes from ret(getRendererInfo) +0x8, including `lw` at 0xec60b1c, `lw` at 0xec60dd8, `lw` at 0xec60de0.
   2 such `lw` accesses load 4 bytes from ret(getRendererInfo) +0xc, including `lw` at 0xec60b24, `lw` at 0xec60b30.
-  The `lw` at 0xec60c88 loads 4 bytes from [[0xecdfb9c]+28] +0xe8.
   2 such `lw` accesses load 4 bytes from abs 0xecdd4f0 (__iglooMixedModel), including `lw` at 0xec60c8c, `lw` at 0xec60cb8.
   The `lw` at 0xec60c9c loads 4 bytes from abs 0xecdd4f8 (__iglooSoftPupShift).
-  The `lw` at 0xec60cb4 loads 4 bytes from [[0xecdfb9c]+28] +0xec.
   The `lw` at 0xec60cc8 loads 4 bytes from abs 0xecdd4f4 (__iglooSoftPupPlanes).
-  The `lw` at 0xec60d28 loads 4 bytes from [[0xecdfb9c]+28] +0xd4.
-  The `lw` at 0xec60d38 loads 4 bytes from [[0xecdfb9c]+28] +0xc0.
   The `lw` at 0xec60d4c loads 4 bytes from abs 0xecec5c0 (_GLnoDestAlpha).
   The `lw` at 0xec60d88 loads 4 bytes from table(0xecd50e8) +0x0.
   The `lw` at 0xec60e3c loads 4 bytes from ret(getRendererInfo) +0x0.
   2 such `lbu` accesses load 1 byte from ret(getRendererInfo) +0x4, including `lbu` at 0xec60e68, `lbu` at 0xec60eac.
   The `jalr` at 0xec60818 calls _GLinitgl [0xeccabec] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec60858 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec608fc calls getenv with a0=[0xecdd360], a1=[([[0xecdfb9c]+28] + entry(0xecdd054))+164], a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec6092c calls atoi with a0=[0xecdd35c], a1=[([[0xecdfb9c]+28] + entry(0xecdd054))+164], a2=a0 at entry (arg0), a3=?.
-  The `jalr` at 0xec609c4 calls __iglooCalcDepthExtrema [0xecc71bc] with a0=[[[0xecdfb9c]+28]+220], a1=sp-20, a2=sp-24, a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec609e4 calls __iglooCalcDepthExtrema [0xecc71bc] with a0=[[[0xecdfb9c]+28]+220], a1=sp-28, a2=sp-32, a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec609fc calls _GLExtDialsExist [0xec80bb0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
+  The `jalr` at 0xec608fc calls getenv with a0=[0xecdd360], a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec6092c calls atoi with a0=[0xecdd35c], a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec609c4 calls __iglooCalcDepthExtrema [0xecc71bc] with a0=?, a1=sp-20, a2=sp-24, a3=?.
+  The `jalr` at 0xec609e4 calls __iglooCalcDepthExtrema [0xecc71bc] with a0=?, a1=sp-28, a2=sp-32, a3=?.
+  The `jalr` at 0xec609fc calls _GLExtDialsExist [0xec80bb0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec60a34 calls __iglooIsGlxScreen [0xec8c11c] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec60a98 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60ad4 calls getRendererInfo [0xec607ac] with a0=sp-52, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60b48 calls glXGetCurrentContext with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
+  The `jalr` at 0xec60a98 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60ad4 calls getRendererInfo [0xec607ac] with a0=sp-52, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60b48 calls glXGetCurrentContext with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec60b6c calls __iglooGetIntegerv [0xecb7640] with a0=0xd32, a1=sp-56, a2=?, a3=?.
-  The `jalr` at 0xec60b8c calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60bbc calls gdIsExtension [0xec60760] with a0=0xc, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60bdc calls gdIsExtension [0xec60760] with a0=0x17, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60bfc calls gdIsExtension [0xec60760] with a0=0xe, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
+  The `jalr` at 0xec60b8c calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60bbc calls gdIsExtension [0xec60760] with a0=0xc, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60bdc calls gdIsExtension [0xec60760] with a0=0x17, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60bfc calls gdIsExtension [0xec60760] with a0=0xe, a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec60c0c calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec60c2c calls gdIsExtension [0xec60760] with a0=0x11, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60c44 calls glXGetCurrentContext with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
+  The `jalr` at 0xec60c2c calls gdIsExtension [0xec60760] with a0=0x11, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60c44 calls glXGetCurrentContext with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec60c68 calls __iglooGetIntegerv [0xecb7640] with a0=0xd30, a1=sp-60, a2=?, a3=?.
-  The `jalr` at 0xec60ce4 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
-  The `jalr` at 0xec60d04 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=?, a3=[[0xecdfb9c]+28].
+  The `jalr` at 0xec60ce4 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=a0 at entry (arg0), a3=?.
+  The `jalr` at 0xec60d04 calls __iglooGetGraphicsType [0xec74ad0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec60da4 calls getRendererInfo [0xec607ac] with a0=sp-68, a1=-0x1, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
   The `jalr` at 0xec60df8 calls getRendererInfo [0xec607ac] with a0=sp-76, a1=-0x1, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
   The `jalr` at 0xec60e4c calls getRendererInfo [0xec607ac] with a0=sp-84, a1=-0x1, a2=a0 at entry (arg0), a3=[[0xecdfb9c]+28].
@@ -10272,7 +10266,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec60a08 targets 0xec60f34 and is always taken.
   The `blezl` branch at 0xec60a20 targets 0xec60f38, is taken when v1(=[0xecdfb94]) <= 0 (signed), and falls through when v1(=[0xecdfb94]) > 0 (signed); its branch-likely delay slot `lw ra,28(sp)` at 0xec60a24 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec60a48 targets 0xec60a54, is taken when v0(=ret(__iglooIsGlxScreen)) == 0, and falls through when v0(=ret(__iglooIsGlxScreen)) != 0.
-  The `bne` branch at 0xec60a58 targets 0xec60a28, is taken when a0(?) != v1(=[0xecdfb94]), and falls through when a0(?) == v1(=[0xecdfb94]).
+  The `bne` branch at 0xec60a58 targets 0xec60a28, is taken when a0(?) != v1(?), and falls through when a0(?) == v1(?).
   The `beq` branch at 0xec60a60 targets 0xec60f38 and is always taken.
   The `beq` branch at 0xec60a88 targets 0xec60f34 and is always taken.
   The `beq` branch at 0xec60aa8 targets 0xec60abc, is taken when v0(=ret(__iglooGetGraphicsType)) == at(=0x2), and falls through when v0(=ret(__iglooGetGraphicsType)) != at(=0x2).
@@ -10310,8 +10304,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec60cf4 targets 0xec60d1c, is taken when v0(=ret(__iglooGetGraphicsType)) == at(=0x3), and falls through when v0(=ret(__iglooGetGraphicsType)) != at(=0x3).
   The `bne` branch at 0xec60d14 targets 0xec60d24, is taken when v0(=ret(__iglooGetGraphicsType)) != at(=0x4), and falls through when v0(=ret(__iglooGetGraphicsType)) == at(=0x4).
   The `beq` branch at 0xec60d1c targets 0xec60f34 and is always taken.
-  The `beq` branch at 0xec60d30 targets 0xec60d54, is taken when 0 >= v1(=[[[0xecdfb9c]+28]+212]) (unsigned), and falls through when 0 < v1(=[[[0xecdfb9c]+28]+212]) (unsigned).
-  The `beq` branch at 0xec60d40 targets 0xec60d54, is taken when 0 >= v1(=[[[0xecdfb9c]+28]+192]) (unsigned), and falls through when 0 < v1(=[[[0xecdfb9c]+28]+192]) (unsigned).
+  The `beq` branch at 0xec60d30 targets 0xec60d54, is taken when 0 >= v1(?) (unsigned), and falls through when 0 < v1(?) (unsigned).
+  The `beq` branch at 0xec60d40 targets 0xec60d54, is taken when 0 >= v1(?) (unsigned), and falls through when 0 < v1(?) (unsigned).
   The `beq` branch at 0xec60d54 targets 0xec60f34 and is always taken.
   The `beq` branch at 0xec60d5c targets 0xec60f34 and is always taken.
   The `beq` branch at 0xec60d64 targets 0xec60f34 and is always taken.
@@ -10345,7 +10339,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec60efc targets 0xec60f34, is taken when v0(=ret(__GLgetgdesc)) == at(=-0x1), and falls through when v0(=ret(__GLgetgdesc)) != at(=-0x1).
   The `beq` branch at 0xec60f04 targets 0xec60f34 and is always taken.
   The `beq` branch at 0xec60f0c targets 0xec60f34 and is always taken.
-  The return at 0xec60f40 has v0 = one of [([[0xecdfb9c]+28] + entry(0xecdd054))+164], 0x0, ?, [[[0xecdfb9c]+28]+232], [[[0xecdfb9c]+28]+236], -0x1.
+  The return at 0xec60f40 has v0 = one of ?, 0x0.
   The indirect jump at 0xec609a8 uses the jump table at 0xecd4f60 with targets 0xec609d8, 0xec609b8, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60c84, 0xec60d5c, 0xec60cb0, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec609b0, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60a10, 0xec60c40, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60c40, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60a68, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60c7c, 0xec609f8, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60a90, 0xec60d5c, 0xec60b44, 0xec60b80, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60cdc, 0xec60d5c, 0xec60d5c, 0xec60b88, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60bb0, 0xec60bd0, 0xec60c20, 0xec60bf0, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60d5c, 0xec60acc.
   The indirect jump at 0xec60b08 uses the jump table at 0xecd50cc with targets 0xec60b20, 0xec60b18, 0xec60b10, 0xec60b30, 0xec60b3c, 0xec60b3c, 0xec60b28.
   The indirect jump at 0xec60d90 uses the jump table at 0xecd50e8 with targets 0xec60f0c, 0xec60ee4, 0xec60f34, 0xec60e40, 0xec60dec, 0xec60de4, 0xec60d98, 0xec60f34, 0xec60f34, 0xec60f34, 0xec60f34.
@@ -10410,7 +10404,7 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xec61130-0xec6118c (92 bytes).
   It occupies 92 bytes.
   The `lw` at 0xec61148 loads 4 bytes from sym(gl_wstatep) +0x0.
-  The `lw` at 0xec61174 loads 4 bytes from [sym(gl_wstatep)] +0x2f50.
+  The `lw` at 0xec61174 loads 4 bytes from ?.
   The `jalr` at 0xec6115c calls __iglooGetFloatv [0xecb760c] with a0=0xb01, a1=sp-12, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The return at 0xec61184 has v0 = ?.
 - `gl_g_getcpos` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec6118c (o32).
@@ -16601,10 +16595,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7276c calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec72788 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec727a4 calls strlen with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec727dc calls __iglooMalloc [0xec5fb60] with a0=(((((ret(strlen)+1 + ret(strlen)+1) + ret(strlen)+1) + ret(strlen)+1) + ret(strlen)+1) + ret(strlen))+85, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec727dc calls __iglooMalloc [0xec5fb60] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec72858 calls sscanf with a0=?, a1=0xecd5358, a2=ret(__iglooMalloc)+8, a3=ret(__iglooMalloc)+12.
   The `jalr` at 0xec72888 calls strcpy with a0=ret(__iglooMalloc)+84, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec728b0 calls strcpy with a0=(ret(__iglooMalloc)+84 + ret(strlen)+1), a1=?, a2=?, a3=ret(__iglooMalloc)+84.
+  The `jalr` at 0xec728b0 calls strcpy with a0=?, a1=?, a2=?, a3=ret(__iglooMalloc)+84.
   The `jalr` at 0xec728d8 calls strcpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec72900 calls strcpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec72928 calls strcpy with a0=?, a1=?, a2=?, a3=?.
@@ -16613,15 +16607,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7297c calls strlen with a0=[0xecdd494], a1=?, a2=?, a3=?.
   The `jalr` at 0xec72994 calls strlen with a0=[0xecdd498], a1=?, a2=?, a3=?.
   The `jalr` at 0xec729ac calls strlen with a0=[0xecdd49c], a1=?, a2=?, a3=?.
-  The `jalr` at 0xec729cc calls strncmp with a0=[0xecdd490], a1=[ret(__iglooMalloc)+20], a2=ret(strlen), a3=?.
-  The `jalr` at 0xec72a0c calls sscanf with a0=([ret(__iglooMalloc)+20] + ret(strlen)), a1=0xecd5360, a2=ret(__iglooMalloc)+44, a3=ret(__iglooMalloc)+48.
-  The `jalr` at 0xec72a48 calls strncmp with a0=[0xecdd494], a1=[ret(__iglooMalloc)+20], a2=ret(strlen), a3=?.
+  The `jalr` at 0xec729cc calls strncmp with a0=[0xecdd490], a1=[ret(__iglooMalloc)+20], a2=?, a3=?.
+  The `jalr` at 0xec72a0c calls sscanf with a0=?, a1=0xecd5360, a2=ret(__iglooMalloc)+44, a3=ret(__iglooMalloc)+48.
+  The `jalr` at 0xec72a48 calls strncmp with a0=[0xecdd494], a1=[ret(__iglooMalloc)+20], a2=?, a3=?.
   The `jalr` at 0xec72a78 calls strchr with a0=[ret(__iglooMalloc)+20], a1=0x2f, a2=?, a3=?.
   The `jalr` at 0xec72aa4 calls sscanf with a0=ret(strchr), a1=0xecd536c, a2=ret(__iglooMalloc)+48, a3=ret(__iglooMalloc)+52.
-  The `jalr` at 0xec72ac4 calls strncmp with a0=[0xecdd498], a1=[ret(__iglooMalloc)+20], a2=ret(strlen), a3=?.
+  The `jalr` at 0xec72ac4 calls strncmp with a0=[0xecdd498], a1=[ret(__iglooMalloc)+20], a2=?, a3=?.
   The `jalr` at 0xec72af4 calls strchr with a0=[ret(__iglooMalloc)+20], a1=0x2f, a2=?, a3=?.
   The `jalr` at 0xec72b20 calls sscanf with a0=ret(strchr), a1=0xecd5378, a2=ret(__iglooMalloc)+48, a3=ret(__iglooMalloc)+52.
-  The `jalr` at 0xec72b40 calls strncmp with a0=[0xecdd49c], a1=[ret(__iglooMalloc)+20], a2=ret(strlen), a3=?.
+  The `jalr` at 0xec72b40 calls strncmp with a0=[0xecdd49c], a1=[ret(__iglooMalloc)+20], a2=?, a3=?.
   The `jalr` at 0xec72b64 calls parseExtensions [0xec72d84] with a0=ret(__iglooMalloc), a1=?, a2=?, a3=?.
   The `bne` branch at 0xec726b8 targets 0xec72710, is taken when v0(=ret(glXQueryVersion)) != at(=0x1), and falls through when v0(=ret(glXQueryVersion)) == at(=0x1).
   The `blez` branch at 0xec726c8 targets 0xec72710, is taken when t8(?) <= 0 (signed), and falls through when t8(?) > 0 (signed).
@@ -16656,17 +16650,17 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec72bdc calls glXCreateContext with a0=a0 at entry (arg0), a1=ret(glXChooseVisual), a2=0x0, a3=0x1.
   The `jalr` at 0xec72c1c calls XCreateColormap with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=[ret(glXChooseVisual)], a3=0x0.
   The `jalr` at 0xec72c90 calls XCreateWindow with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=0x0, a3=0x0.
-  The `jalr` at 0xec72cb0 calls glXMakeCurrent with a0=a0 at entry (arg0), a1=ret(XCreateWindow), a2=ret(glXCreateContext), a3=?.
+  The `jalr` at 0xec72cb0 calls glXMakeCurrent with a0=a0 at entry (arg0), a1=ret(XCreateWindow), a2=?, a3=?.
   The `jalr` at 0xec72cc8 calls GetOpenGLStrings [0xec72604] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec72ce8 calls glXMakeCurrent with a0=a0 at entry (arg0), a1=0x0, a2=0x0, a3=?.
-  The `jalr` at 0xec72d0c calls glXDestroyContext with a0=a0 at entry (arg0), a1=ret(glXCreateContext), a2=?, a3=?.
-  The `jalr` at 0xec72d2c calls XDestroyWindow with a0=a0 at entry (arg0), a1=ret(XCreateWindow), a2=?, a3=?.
-  The `jalr` at 0xec72d4c calls XFreeColormap with a0=a0 at entry (arg0), a1=ret(XCreateColormap), a2=?, a3=?.
+  The `jalr` at 0xec72d0c calls glXDestroyContext with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec72d2c calls XDestroyWindow with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec72d4c calls XFreeColormap with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec72d60 calls XFree with a0=ret(glXChooseVisual), a1=?, a2=?, a3=?.
   The `beq` branch at 0xec72bc4 targets 0xec72d6c, is taken when v0(=ret(glXChooseVisual)) == 0, and falls through when v0(=ret(glXChooseVisual)) != 0.
-  The `beql` branch at 0xec72cf8 targets 0xec72d1c, is taken when t7(=ret(glXCreateContext)) == 0, and falls through when t7(=ret(glXCreateContext)) != 0; its branch-likely delay slot `lw a1,144(sp)` at 0xec72cfc runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xec72d1c targets 0xec72d3c, is taken when a1(=ret(XCreateWindow)) == 0, and falls through when a1(=ret(XCreateWindow)) != 0; its branch-likely delay slot `lw a1,132(sp)` at 0xec72d20 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xec72d3c targets 0xec72d58, is taken when a1(=ret(XCreateColormap)) == 0, and falls through when a1(=ret(XCreateColormap)) != 0.
+  The `beql` branch at 0xec72cf8 targets 0xec72d1c, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `lw a1,144(sp)` at 0xec72cfc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec72d1c targets 0xec72d3c, is taken when a1(?) == 0, and falls through when a1(?) != 0; its branch-likely delay slot `lw a1,132(sp)` at 0xec72d20 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xec72d3c targets 0xec72d58, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The return at 0xec72d7c has v0 = one of 0x0, ret(GetOpenGLStrings).
 - `parseExtensions` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec72d84 (o32).
   Evidence grade: inferred.
@@ -16762,11 +16756,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec7321c loads 4 bytes from a3 (arg3 at entry) +0x2c.
   The `lw` at 0xec73228 loads 4 bytes from a2 (arg2 at entry) +0x7c.
   The `sw` at 0xec7322c stores 4 bytes to a3 (arg3 at entry) +0x2c.
-  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec73238, `lw` at 0xec73240, `lw` at 0xec732f4.
+  11 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec73238, `lw` at 0xec73240, `lw` at 0xec732b8.
   The `sw` at 0xec7328c stores 4 bytes to ?.
-  The `lw` at 0xec732b8 loads 4 bytes from [a2+28] +0x4.
-  2 such `lw` accesses load 4 bytes from [a2+28] +0x18, including `lw` at 0xec732cc, `lw` at 0xec73368.
-  The `lw` at 0xec732fc loads 4 bytes from [a2+28] +0x24.
   The `lw` at 0xec73314 loads 4 bytes from a2 (arg2 at entry) +0x8.
   2 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0xac, including `sw` at 0xec73350, `sw` at 0xec73398.
   2 such `sw` accesses store 4 bytes to a2 (arg2 at entry) +0xb0, including `sw` at 0xec73360, `sw` at 0xec733a4.
@@ -16775,9 +16766,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec731d4 calls __iglooGetCurrentContextInfo [0xec73828] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec731f0 calls __iglooFlush [0xec7308c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73278 calls __iglooCloneContextInfo [0xec73020] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec732dc calls __iglooSetCurrentContext [0xec7385c] with a0=a0 at entry (arg0), a1=[[a2+28]+24], a2=[a2+28], a3=?.
+  The `jalr` at 0xec732dc calls __iglooSetCurrentContext [0xec7385c] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec7333c calls __iglooCalculateBias [0xec72ec0] with a0=a0 at entry (arg0), a1=[a2+8], a2=a1 at entry (arg1), a3=sp-344.
-  The `jalr` at 0xec73370 calls __iglooCalculateBias [0xec72ec0] with a0=a0 at entry (arg0), a1=[a2+8], a2=[[a2+28]+24], a3=sp-344.
+  The `jalr` at 0xec73370 calls __iglooCalculateBias [0xec72ec0] with a0=a0 at entry (arg0), a1=[a2+8], a2=?, a3=sp-344.
   The `jalr` at 0xec733c4 calls __iglooGetCopyState [0xec40c60] with a0=sp-368, a1=?, a2=?, a3=?.
   The `jalr` at 0xec733e0 calls __iglooSetCurrentContext [0xec7385c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0xec73424 calls __iglooFirstTimeContextInfoInit [0xec73bf8] with a0=?, a1=?, a2=?, a3=?.
@@ -16785,7 +16776,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec73460 calls XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec73480 calls __iglooSetCopyState [0xec40d34] with a0=sp-368, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73490 calls __iglooEndCriticalSection [0xec40ec8] with a0=?, a1=?, a2=?, a3=?.
-  The `beq` branch at 0xec73204 targets 0xec7348c, is taken when s0(=a3) == t9(=ret(__iglooGetCurrentContextInfo)), and falls through when s0(=a3) != t9(=ret(__iglooGetCurrentContextInfo)).
+  The `beq` branch at 0xec73204 targets 0xec7348c, is taken when s0(=a3) == t9(?), and falls through when s0(=a3) != t9(?).
   The `bne` branch at 0xec73220 targets 0xec73230, is taken when t1(=[a3+44]) != 0, and falls through when t1(=[a3+44]) == 0.
   The `beq` branch at 0xec73230 targets 0xec73264, is taken when s0(=a3) == 0, and falls through when s0(=a3) != 0.
   The `bnel` branch at 0xec7323c targets 0xec73250, is taken when t4(?) != 0, and falls through when t4(?) == 0; its branch-likely delay slot `lw v1,0(v0)` at 0xec73240 runs only when taken and is annulled on fall-through.
@@ -16793,11 +16784,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec73250 targets 0xec7325c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `bne` branch at 0xec7325c targets 0xec73238, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `bnel` branch at 0xec73264 targets 0xec73294, is taken when v0(?) != 0, and falls through when v0(?) == 0; its branch-likely delay slot `lw t5,412(sp)` at 0xec73268 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xec7329c targets 0xec733d0, is taken when t5(=[a2+28]) == 0, and falls through when t5(=[a2+28]) != 0.
-  The `bne` branch at 0xec732a4 targets 0xec732b8, is taken when t6(=[a2+28]) != t7(=ret(__iglooGetCurrentContextInfo)), and falls through when t6(=[a2+28]) == t7(=ret(__iglooGetCurrentContextInfo)).
+  The `beq` branch at 0xec7329c targets 0xec733d0, is taken when t5(?) == 0, and falls through when t5(?) != 0.
+  The `bne` branch at 0xec732a4 targets 0xec732b8, is taken when t6(?) != t7(?), and falls through when t6(?) == t7(?).
   The `beq` branch at 0xec732b0 targets 0xec732f0 and is always taken.
-  The `bnel` branch at 0xec732bc targets 0xec732f4, is taken when t0(=[[a2+28]+4]) != 0, and falls through when t0(=[[a2+28]+4]) == 0; its branch-likely delay slot `lw t2,412(sp)` at 0xec732c0 runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xec732c4 targets 0xec732f0, is taken when t9(=[a2+28]) == s0(?), and falls through when t9(=[a2+28]) != s0(?).
+  The `bnel` branch at 0xec732bc targets 0xec732f4, is taken when t0(?) != 0, and falls through when t0(?) == 0; its branch-likely delay slot `lw t2,412(sp)` at 0xec732c0 runs only when taken and is annulled on fall-through.
+  The `beq` branch at 0xec732c4 targets 0xec732f0, is taken when t9(?) == s0(?), and falls through when t9(?) != s0(?).
   The `beql` branch at 0xec7330c targets 0xec733ac, is taken when t4(?) == t6(?), and falls through when t4(?) != t6(?); its branch-likely delay slot `sw zero,84(sp)` at 0xec73310 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec73320 targets 0xec73364, is taken when t0(=a1) == a1(=[a2+8]), and falls through when t0(=a1) != a1(=[a2+8]).
   The `beq` branch at 0xec7335c targets 0xec733b0 and is always taken.
@@ -16920,7 +16911,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec738e4 loads 4 bytes from abs 0xecdfb9c (gl_sstatep).
   The `lw` at 0xec738e8 loads 4 bytes from [0xecdfb9c] +0x1c.
   The `lw` at 0xec738f0 loads 4 bytes from [[0xecdfb9c]+28] +0x4.
-  The `sw` at 0xec73938 stores 4 bytes to ret(__iglooGetCurrentContextInfo) +0x4.
+  The `sw` at 0xec73938 stores 4 bytes to ?.
   The `sw` at 0xec73940 stores 4 bytes to abs 0x1004.
   The `lw` at 0xec73944 loads 4 bytes from abs 0x200e00.
   The `lw` at 0xec73948 loads 4 bytes from a2 (arg2 at entry) +0x1c.
@@ -16943,7 +16934,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec738b4 targets 0xec738c0 and is always taken.
   The `beq` branch at 0xec738f4 targets 0xec73910, is taken when s0(=a2) == 0, and falls through when s0(=a2) != 0.
   The `bne` branch at 0xec7391c targets 0xec739a8, is taken when v1(=0x1) != t8(?), and falls through when v1(=0x1) == t8(?).
-  The `beq` branch at 0xec73930 targets 0xec7393c, is taken when t9(=ret(__iglooGetCurrentContextInfo)) == 0, and falls through when t9(=ret(__iglooGetCurrentContextInfo)) != 0.
+  The `beq` branch at 0xec73930 targets 0xec7393c, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0xec7393c targets 0xec73990, is taken when s0(=a2) == 0, and falls through when s0(=a2) != 0.
   The `bne` branch at 0xec73958 targets 0xec73990, is taken when v0(=[a2+28]) != 0, and falls through when v0(=[a2+28]) == 0.
   The `beq` branch at 0xec73974 targets 0xec73990, is taken when v0(=[a2+360]) == 0, and falls through when v0(=[a2+360]) != 0.
@@ -16962,7 +16953,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec73a50 loads 4 bytes from [[0xecdfb9c]+28] +0x4.
   The `lw` at 0xec73a60 loads 4 bytes from [[0xecdfb9c]+28] +0x20.
   The `lw` at 0xec73a6c loads 4 bytes from [[[0xecdfb9c]+28]+32] +0x0.
-  The `sw` at 0xec73a8c stores 4 bytes to [[0xecdfb9c]+28] +0xfc.
+  The `sw` at 0xec73a8c stores 4 bytes to ?.
   2 such `lw` accesses load 4 bytes from [[[0xecdfb9c]+28]+4] +0x8c, including `lw` at 0xec73a94, `lw` at 0xec73aec.
   2 such `lw` accesses load 4 bytes from [[[[0xecdfb9c]+28]+32]] +0x0, including `lw` at 0xec73a98, `lw` at 0xec73b30.
   2 such `lw` accesses load 4 bytes from [[0xecdfb9c]+28] +0x8, including `lw` at 0xec73aac, `lw` at 0xec73ae8.
@@ -16974,14 +16965,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec73b70 calls glXMakeCurrent with a0=[[[0xecdfb9c]+28]+4], a1=ret(XCreateWindow), a2=ret(glXCreateContext), a3=?.
   The `jalr` at 0xec73b8c calls glXMakeCurrent with a0=[[[0xecdfb9c]+28]+4], a1=0x0, a2=0x0, a3=?.
   The `jalr` at 0xec73ba8 calls XDestroyWindow with a0=[[[0xecdfb9c]+28]+4], a1=ret(XCreateWindow), a2=?, a3=?.
-  The `jalr` at 0xec73bc8 calls XFreeColormap with a0=[[[0xecdfb9c]+28]+4], a1=ret(XCreateColormap), a2=?, a3=?.
+  The `jalr` at 0xec73bc8 calls XFreeColormap with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
   The `beql` branch at 0xec73a30 targets 0xec73be0, is taken when v0(=[[0xecdfb9c]+28]) == 0, and falls through when v0(=[[0xecdfb9c]+28]) != 0; its branch-likely delay slot `lw ra,68(sp)` at 0xec73a34 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xec73a40 targets 0xec73bdc, is taken when a0(=[[[0xecdfb9c]+28]+252]) != 0, and falls through when a0(=[[[0xecdfb9c]+28]+252]) == 0; its branch-likely delay slot `or s2,a0,zero` at 0xec73a44 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xec73a48 targets 0xec73be0, is taken when t0(=[[0xecdfb9c]+28]+28) == 0, and falls through when t0(=[[0xecdfb9c]+28]+28) != 0; its branch-likely delay slot `lw ra,68(sp)` at 0xec73a4c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec73a58 targets 0xec73bdc, is taken when s0(=[[[0xecdfb9c]+28]+4]) == 0, and falls through when s0(=[[[0xecdfb9c]+28]+4]) != 0.
   The `beq` branch at 0xec73a88 targets 0xec73bdc, is taken when v0(=ret(glXCreateContext)) == 0, and falls through when v0(=ret(glXCreateContext)) != 0.
   The `beq` branch at 0xec73b94 targets 0xec73bb4, is taken when s1(=ret(XCreateWindow)) == 0, and falls through when s1(=ret(XCreateWindow)) != 0.
-  The `beql` branch at 0xec73bb8 targets 0xec73be0, is taken when a1(=ret(XCreateColormap)) == 0, and falls through when a1(=ret(XCreateColormap)) != 0; its branch-likely delay slot `lw ra,68(sp)` at 0xec73bbc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec73bb8 targets 0xec73be0, is taken when a1(?) == 0, and falls through when a1(?) != 0; its branch-likely delay slot `lw ra,68(sp)` at 0xec73bbc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec73bd0 targets 0xec73bdc and is always taken.
   The return at 0xec73bf0 has v0 = one of 0x0, ret(glXCreateContext), ?.
   The instructions from 0xec73bd8 to 0xec73bd8 are not reached by any path from the entry, and their branches are not listed.
@@ -16991,8 +16982,7 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xec73bf8-0xec73f60 (872 bytes).
   It occupies 872 bytes.
   The `lw` at 0xec73c18 loads 4 bytes from a0 (arg0 at entry) +0x14.
-  The `lw` at 0xec73c34 loads 4 bytes from [a0+20] +0xc.
-  The `lw` at 0xec73c40 loads 4 bytes from [a0+20] +0x30.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec73c34, `lw` at 0xec73c40.
   The `lw` at 0xec73c70 loads 4 bytes from abs 0xecec8d0 (__iglooClientDPY).
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x18, including `lw` at 0xec73cb8, `lw` at 0xec73ce8.
   The `sw` at 0xec73cf8 stores 4 bytes to a0 (arg0 at entry) +0x28.
@@ -17000,18 +16990,18 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec73c54 calls __iglooDepthFunc [0xecb6ca8] with a0=0x203, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73c7c calls __iglooSetEnable [0xec5d31c] with a0=0xbd0, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xec73c90 calls __iglooShadeModel [0xecb6f10] with a0=0x1d00, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec73cb4 calls XGetWindowAttributes with a0=[0xecec8d0], a1=[a0+24], a2=sp-100, a3=?.
-  The `jalr` at 0xec73ce4 calls XChangeWindowAttributes with a0=[0xecec8d0], a1=[a0+24], a2=0x802, a3=sp-160.
-  The `jalr` at 0xec73d04 calls XFlush with a0=[0xecec8d0], a1=?, a2=?, a3=?.
+  The `jalr` at 0xec73cb4 calls XGetWindowAttributes with a0=?, a1=[a0+24], a2=sp-100, a3=?.
+  The `jalr` at 0xec73ce4 calls XChangeWindowAttributes with a0=?, a1=[a0+24], a2=0x802, a3=sp-160.
+  The `jalr` at 0xec73d04 calls XFlush with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73d18 calls getenv with a0=0xecd53c8, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73d34 calls __iglooGetNewInterface [0xeca1c74] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec73d4c calls (unknown callee) with a0=0x81a2, a1=sp-168, a2=?, a3=?.
   The `jalr` at 0xec73d60 calls (unknown callee) with a0=0x81a3, a1=sp-168, a2=?, a3=?.
   The `jalr` at 0xec73d74 calls (unknown callee) with a0=0x81a1, a1=sp-172, a2=?, a3=?.
-  The `bne` branch at 0xec73c38 targets 0xec73c64, is taken when t7(=[[a0+20]+12]) != 0, and falls through when t7(=[[a0+20]+12]) == 0.
-  The `beq` branch at 0xec73c44 targets 0xec73d10, is taken when t8(=[[a0+20]+48]) == 0, and falls through when t8(=[[a0+20]+48]) != 0.
+  The `bne` branch at 0xec73c38 targets 0xec73c64, is taken when t7(?) != 0, and falls through when t7(?) == 0.
+  The `beq` branch at 0xec73c44 targets 0xec73d10, is taken when t8(?) == 0, and falls through when t8(?) != 0.
   The `beq` branch at 0xec73c5c targets 0xec73d10 and is always taken.
-  The `beq` branch at 0xec73ca0 targets 0xec73d10, is taken when a0(=[0xecec8d0]) == 0, and falls through when a0(=[0xecec8d0]) != 0.
+  The `beq` branch at 0xec73ca0 targets 0xec73d10, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0xec73cc8 targets 0xec73d10, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `bne` branch at 0xec73d20 targets 0xec73d80, is taken when v0(=ret(getenv)) != 0, and falls through when v0(=ret(getenv)) == 0.
   The return at 0xec73d88 has v0 = one of ret(getenv), ret(?).
@@ -17462,7 +17452,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec75350 calls __iglooLoadMatrix [0xecb7fe8] with a0=sp-148, a1=?, a2=?, a3=?.
   The `jalr` at 0xec75364 calls __iglooMatrixMode [0xecb7c08] with a0=0x1700, a1=?, a2=?, a3=?.
   The `jalr` at 0xec75378 calls __iglooLoadMatrix [0xecb7fe8] with a0=sp-84, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec7538c calls __iglooMatrixMode [0xecb7c08] with a0=ret(__iglooGetMatrixMode), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec7538c calls __iglooMatrixMode [0xecb7c08] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec753ac calls __iglooViewport [0xecb86d4] with a0=?, a1=?, a2=?, a3=?.
   The return at 0xec753c0 has v0 = ret(__iglooViewport).
 - `gl_inet_addr` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec753d0 (o32).
@@ -17585,11 +17575,11 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7599c calls __GLpopmatrix with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec759b0 calls __GLmmode with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xec757c4 targets 0xec75808, is taken when v0(=ret(__GLgetmmode)) == 0, and falls through when v0(=ret(__GLgetmmode)) != 0.
-  The `bne` branch at 0xec7585c targets 0xec7587c, is taken when v0(=ret(__GLgetmmode)) != 0, and falls through when v0(=ret(__GLgetmmode)) == 0.
+  The `bne` branch at 0xec7585c targets 0xec7587c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xec75874 targets 0xec75908 and is always taken.
-  The `bne` branch at 0xec7587c targets 0xec7589c, is taken when v0(=ret(__GLgetmmode)) != at(=0x1), and falls through when v0(=ret(__GLgetmmode)) == at(=0x1).
+  The `bne` branch at 0xec7587c targets 0xec7589c, is taken when v0(?) != at(=0x1), and falls through when v0(?) == at(=0x1).
   The `beq` branch at 0xec75894 targets 0xec75908 and is always taken.
-  The `beq` branch at 0xec75954 targets 0xec75998, is taken when t7(=ret(__GLgetmmode)) == 0, and falls through when t7(=ret(__GLgetmmode)) != 0.
+  The `beq` branch at 0xec75954 targets 0xec75998, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The return at 0xec759c4 has v0 = ret(__GLmmode).
   The instructions from 0xec759cc to 0xec79484 are not reached by any path from the entry, and their branches are not listed.
 - `gl_g_mapw` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec759cc (o32).
@@ -18165,15 +18155,11 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from [sym(gl_wstatep)] +0xbd4, including `lw` at 0xec777e4, `lw` at 0xec778e4.
   2 such `sh` accesses store 2 bytes to [sym(gl_wstatep)] +0xbdc, including `sh` at 0xec777e8, `sh` at 0xec77814.
   The `sw` at 0xec77874 stores 4 bytes to [sym(gl_wstatep)] +0xbd0.
-  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec778a0, `lw` at 0xec778b8, `lw` at 0xec779cc.
+  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec778a0, `lw` at 0xec778b8, `lw` at 0xec77978.
   The `lh` at 0xec77914 loads 2 bytes from [sym(gl_wstatep)] +0x108.
-  The `lw` at 0xec77978 loads 4 bytes from ([sym(gl_wstatep)] + (a0-1100 << 0x2)) +0xbe0.
   2 such `lw` accesses load 4 bytes from [sym(gl_wstatep)] +0xc00, including `lw` at 0xec77994, `lw` at 0xec779b4.
   2 such `sw` accesses store 4 bytes to [sym(gl_wstatep)] +0xc00, including `sw` at 0xec779a0, `sw` at 0xec779bc.
-  2 such `sw` accesses store 4 bytes to [([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040] +0xc, including `sw` at 0xec77a4c, `sw` at 0xec77af0.
-  2 such `sw` accesses store 4 bytes to [([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040] +0x8, including `sw` at 0xec77a50, `sw` at 0xec77af4.
-  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xec77a7c, `sw` at 0xec77a84.
-  2 such `sw` accesses store 4 bytes to ([sym(gl_wstatep)] + (a0-1100 << 0x2)) +0xbe0, including `sw` at 0xec77a88, `sw` at 0xec77ae8.
+  8 such `sw` accesses store 4 bytes to ?, including `sw` at 0xec77a4c, `sw` at 0xec77a50, `sw` at 0xec77a7c.
   The `lw` at 0xec77ba4 loads 4 bytes from [sym(gl_wstatep)] +0xb58.
   The `lw` at 0xec77bc0 loads 4 bytes from abs 0x1004.
   The `lw` at 0xec77bc8 loads 4 bytes from [0x1004] +0x14.
@@ -18191,14 +18177,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec778c0 calls __iglooSetOglAttenuation [0xec77468] with a0=?, a1=[[sym(gl_wstatep)]+3024], a2=?, a3=?.
   The `jalr` at 0xec7792c calls gl_ErrorHandler [0xec5dbec] with a0=0x62, a1=0x2, a2=0xecd5610, a3=?.
   The `jalr` at 0xec77954 calls gl_find with a0=sym(gl_lighttab), a1=a1 at entry (arg1), a2=0x0, a3=?.
-  The `jalr` at 0xec779dc calls __iglooSetOglLightPosition [0xec772e0] with a0=a0+15284, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec779dc calls __iglooSetOglLightPosition [0xec772e0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec77a14 calls sprintf with a0=sp-128, a1=0xecd5630, a2=0xecdda80, a3=a1 at entry (arg1).
   The `jalr` at 0xec77a30 calls gl_ErrorHandler [0xec5dbec] with a0=0x5b, a1=0x2, a2=sp-128, a3=?.
-  The `jalr` at 0xec77a68 calls __iglooSetEnable [0xec5d31c] with a0=a0+15284, a1=0x1, a2=?, a3=a1 at entry (arg1).
-  The `jalr` at 0xec77a94 calls __iglooSetOglLightPosition [0xec772e0] with a0=a0+15284, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec77aac calls __iglooSetOglLight [0xec77348] with a0=a0+15284, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec77ad0 calls __iglooSetOglAttenuation [0xec77468] with a0=a0+15284, a1=[[sym(gl_wstatep)]+3024], a2=?, a3=?.
-  The `jalr` at 0xec77b04 calls __iglooSetEnable [0xec5d31c] with a0=a0+15284, a1=0x0, a2=?, a3=?.
+  The `jalr` at 0xec77a68 calls __iglooSetEnable [0xec5d31c] with a0=?, a1=0x1, a2=?, a3=a1 at entry (arg1).
+  The `jalr` at 0xec77a94 calls __iglooSetOglLightPosition [0xec772e0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec77aac calls __iglooSetOglLight [0xec77348] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec77ad0 calls __iglooSetOglAttenuation [0xec77468] with a0=?, a1=[[sym(gl_wstatep)]+3024], a2=?, a3=?.
+  The `jalr` at 0xec77b04 calls __iglooSetEnable [0xec5d31c] with a0=?, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xec77b28 calls gl_ErrorHandler [0xec5dbec] with a0=0x16, a1=0x2, a2=0xecdda80, a3=?.
   The `jalr` at 0xec77b64 calls sprintf with a0=sp-216, a1=0xecd564c, a2=0xecdda80, a3=a1 at entry (arg1).
   The `jalr` at 0xec77b80 calls gl_ErrorHandler [0xec5dbec] with a0=0x5b, a1=0x2, a2=sp-216, a3=?.
@@ -18230,7 +18216,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beql` branch at 0xec777e0 targets 0xec77814, is taken when t9(?) == 0, and falls through when t9(?) != 0; its branch-likely delay slot `lw a1,3028(s0)` at 0xec777e4 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec77808 targets 0xec77b34 and is always taken.
   The `beql` branch at 0xec77818 targets 0xec77b38, is taken when a1(=[[sym(gl_wstatep)]+3028]) == 0, and falls through when a1(=[[sym(gl_wstatep)]+3028]) != 0; its branch-likely delay slot `lw t4,284(sp)` at 0xec7781c runs only when taken and is annulled on fall-through.
-  The `beq` branch at 0xec77820 targets 0xec77b34, is taken when v1(=[[sym(gl_wstatep)]+3036]:2) == 0, and falls through when v1(=[[sym(gl_wstatep)]+3036]:2) != 0.
+  The `beq` branch at 0xec77820 targets 0xec77b34, is taken when v1(?) == 0, and falls through when v1(?) != 0.
   The `beq` branch at 0xec7783c targets 0xec77b34 and is always taken.
   The `beql` branch at 0xec77844 targets 0xec77870, is taken when t3(=a1) == 0, and falls through when t3(=a1) != 0; its branch-likely delay slot `sw zero,284(sp)` at 0xec77848 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec77864 targets 0xec77870 and is always taken.
@@ -18242,26 +18228,26 @@ These entries record instruction facts rendered from the routines below. They de
   The `bnel` branch at 0xec77918 targets 0xec7793c, is taken when t1(=[[sym(gl_wstatep)]+264]:2) != 0, and falls through when t1(=[[sym(gl_wstatep)]+264]:2) == 0; its branch-likely delay slot `lw t2,300(sp)` at 0xec7791c runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xec77940 targets 0xec7796c, is taken when t2(=a1) == 0, and falls through when t2(=a1) != 0; its branch-likely delay slot `sw zero,284(sp)` at 0xec77944 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec77960 targets 0xec7796c and is always taken.
-  The `beq` branch at 0xec7797c targets 0xec779c0, is taken when a2(?) == v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]), and falls through when a2(?) != v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]).
-  The `bne` branch at 0xec77984 targets 0xec779a4, is taken when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) != 0, and falls through when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) == 0.
+  The `beq` branch at 0xec7797c targets 0xec779c0, is taken when a2(?) == v0(?), and falls through when a2(?) != v0(?).
+  The `bne` branch at 0xec77984 targets 0xec779a4, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0xec7798c targets 0xec779a4, is taken when a2(?) == 0, and falls through when a2(?) != 0.
   The `beq` branch at 0xec7799c targets 0xec779c0 and is always taken.
   The `bne` branch at 0xec779a4 targets 0xec779c0, is taken when a2(?) != 0, and falls through when a2(?) == 0.
-  The `beq` branch at 0xec779ac targets 0xec779c0, is taken when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) == 0, and falls through when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) != 0.
+  The `beq` branch at 0xec779ac targets 0xec779c0, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0xec779c0 targets 0xec77ae0, is taken when a2(?) == 0, and falls through when a2(?) != 0.
-  The `bnel` branch at 0xec779c8 targets 0xec779f0, is taken when a2(?) != v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]), and falls through when a2(?) == v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]); its branch-likely delay slot `lw t8,8(a2)` at 0xec779cc runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec779c8 targets 0xec779f0, is taken when a2(?) != v0(?), and falls through when a2(?) == v0(?); its branch-likely delay slot `lw t8,8(a2)` at 0xec779cc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec779e4 targets 0xec77b10 and is always taken.
   The `bne` branch at 0xec779f4 targets 0xec77a40, is taken when s0(=[sym(gl_wstatep)]) != t8(?), and falls through when s0(=[sym(gl_wstatep)]) == t8(?).
   The `beq` branch at 0xec77a38 targets 0xec77c34 and is always taken.
-  The `beq` branch at 0xec77a40 targets 0xec77a5c, is taken when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) == 0, and falls through when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) != 0.
+  The `beq` branch at 0xec77a40 targets 0xec77a5c, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0xec77a54 targets 0xec77a78 and is always taken.
   The `beq` branch at 0xec77abc targets 0xec77b10, is taken when a1(=[[sym(gl_wstatep)]+3024]) == 0, and falls through when a1(=[[sym(gl_wstatep)]+3024]) != 0.
   The `beq` branch at 0xec77ad8 targets 0xec77b10 and is always taken.
-  The `beq` branch at 0xec77ae0 targets 0xec77b10, is taken when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) == 0, and falls through when v0(=[([sym(gl_wstatep)] + (a0-1100 << 0x2))+3040]) != 0.
+  The `beq` branch at 0xec77ae0 targets 0xec77b10, is taken when v0(?) == 0, and falls through when v0(?) != 0.
   The `beq` branch at 0xec77b10 targets 0xec77b38 and is always taken.
   The `bnel` branch at 0xec77b3c targets 0xec77b90, is taken when t4(?) != 0, and falls through when t4(?) == 0; its branch-likely delay slot `lw v0,3076(s0)` at 0xec77b40 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec77b44 targets 0xec77b8c, is taken when a3(=a1) == 0, and falls through when a3(=a1) != 0.
-  The `beql` branch at 0xec77b94 targets 0xec77c38, is taken when t6(=[[sym(gl_wstatep)]+3076]) == v0(=[[sym(gl_wstatep)]+3076]), and falls through when t6(=[[sym(gl_wstatep)]+3076]) != v0(=[[sym(gl_wstatep)]+3076]); its branch-likely delay slot `lw ra,36(sp)` at 0xec77b98 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec77b94 targets 0xec77c38, is taken when t6(?) == v0(=[[sym(gl_wstatep)]+3076]), and falls through when t6(?) != v0(=[[sym(gl_wstatep)]+3076]); its branch-likely delay slot `lw ra,36(sp)` at 0xec77b98 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec77b9c targets 0xec77c08, is taken when v0(=[[sym(gl_wstatep)]+3076]) == 0, and falls through when v0(=[[sym(gl_wstatep)]+3076]) != 0.
   The `bne` branch at 0xec77ba8 targets 0xec77c20, is taken when t7(=[[sym(gl_wstatep)]+2904]) != 0, and falls through when t7(=[[sym(gl_wstatep)]+2904]) == 0.
   The `bne` branch at 0xec77bd0 targets 0xec77c20, is taken when t8(=[[[0x1004]+20]+16]) != 0, and falls through when t8(=[[[0x1004]+20]+16]) == 0.
@@ -19485,7 +19471,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7c1dc calls XFlush with a0=[[a0]+4], a1=?, a2=?, a3=?.
   The `bne` branch at 0xec7c13c targets 0xec7c14c, is taken when v0(=ret(ArePopupsAvailable)) != 0, and falls through when v0(=ret(ArePopupsAvailable)) == 0.
   The `beq` branch at 0xec7c144 targets 0xec7c1ec and is always taken.
-  The return at 0xec7c1f4 has v0 = one of -0x1, ret(popup_aMenu).
+  The return at 0xec7c1f4 has v0 = one of -0x1, ?.
 - `gl_g_freepup` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec7c1fc (o32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
@@ -19623,14 +19609,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7c7fc calls XCreatePixmapFromBitmapData with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=0xecddb08, a3=0x10.
   The `jalr` at 0xec7c844 calls XCreatePixmapFromBitmapData with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=0xecddb28, a3=0x10.
   The `jalr` at 0xec7c864 calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x804, a3=sp-96.
-  The `jalr` at 0xec7c880 calls XFreePixmap with a0=a0 at entry (arg0), a1=ret(XCreatePixmapFromBitmapData), a2=?, a3=?.
+  The `jalr` at 0xec7c880 calls XFreePixmap with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec7c8c4 calls XCreatePixmapFromBitmapData with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=0xecddb08, a3=0x10.
   The `jalr` at 0xec7c8ec calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x4, a3=sp-96.
   The `jalr` at 0xec7c914 calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x90c, a3=sp-96.
   The `jalr` at 0xec7c93c calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x90c, a3=sp-96.
   The `jalr` at 0xec7c95c calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x4, a3=sp-96.
   The `jalr` at 0xec7c984 calls XCreateGC with a0=a0 at entry (arg0), a1=[ret(gl_malloc)+64], a2=0x90c, a3=sp-96.
-  The `jalr` at 0xec7c9b8 calls XFreePixmap with a0=a0 at entry (arg0), a1=ret(XCreatePixmapFromBitmapData), a2=?, a3=?.
+  The `jalr` at 0xec7c9b8 calls XFreePixmap with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xec7ca60 calls XCreatePixmapFromBitmapData with a0=a0 at entry (arg0), a1=[([a0+140] + (((a1 << 0x2) + a1) << 0x4))+8], a2=0xecddb08, a3=0x10.
   The `beq` branch at 0xec7c3e4 targets 0xec7c418, is taken when s0(=[0xece40e0]) == 0, and falls through when s0(=[0xece40e0]) != 0.
   The `bnel` branch at 0xec7c3f0 targets 0xec7c410, is taken when s1(=a0) != t0(?), and falls through when s1(=a0) == t0(?); its branch-likely delay slot `lw s0,0(s0)` at 0xec7c3f4 runs only when taken and is annulled on fall-through.
@@ -20045,10 +20031,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `lh` at 0xec7dd34 loads 2 bytes from [[0xece40dc]+40] +0x28.
   The `lh` at 0xec7dd38 loads 2 bytes from [[0xece40dc]+40] +0x26.
   The `lw` at 0xec7dd3c loads 4 bytes from ([[[[0xece40dc]]+4]+140] + ((([[[0xece40dc]]+8] << 0x2) + [[[0xece40dc]]+8]) << 0x4)) +0x8.
-  2 such `lw` accesses load 4 bytes from [0xece40dc] +0x2c, including `lw` at 0xec7dd80, `lw` at 0xec7dd9c.
-  The `sb` at 0xec7dd84 stores 1 byte to [[0xece40dc]+44] +0x11.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec7dd80, `lw` at 0xec7dd9c.
+  The `sb` at 0xec7dd84 stores 1 byte to ?.
   The `jalr` at 0xec7dd70 calls XTranslateCoordinates with a0=[[[0xece40dc]]+4], a1=[[0xece40dc]+24], a2=[([[[[0xece40dc]]+4]+140] + ((([[[0xece40dc]]+8] << 0x2) + [[[0xece40dc]]+8]) << 0x4))+8], a3=([[[0xece40dc]+40]+36]:2 + [[[0xece40dc]+40]+40]:2)-2.
-  The `jalr` at 0xec7dd98 calls realize_aMenu [0xec7cf78] with a0=[[0xece40dc]+44], a1=?, a2=?, a3=?.
+  The `jalr` at 0xec7dd98 calls realize_aMenu [0xec7cf78] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec7ddac calls XFlush with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec7ddc4 calls SetState [0xec7edb8] with a0=0x2, a1=?, a2=?, a3=?.
   The return at 0xec7ddd8 has v0 = ret(SetState).
@@ -20785,10 +20771,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec7fdc8 loads 4 bytes from sym(gl_wstatep) +0x0.
   The `lw` at 0xec7fde4 loads 4 bytes from [sym(gl_wstatep)] +0x114.
   The `lw` at 0xec7fdec loads 4 bytes from [[sym(gl_wstatep)]+276] +0x38.
-  The `lw` at 0xec7fe1c loads 4 bytes from [sym(gl_wstatep)] +0x2f50.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec7fe1c, `lw` at 0xec7fe40, `lw` at 0xec7fe44.
   2 such `lw` accesses load 4 bytes from ret(determineGLVisual) +0x0, including `lw` at 0xec7fe20, `lw` at 0xec7fe50.
   2 such `lw` accesses load 4 bytes from ret(determineGLVisual) +0x4, including `lw` at 0xec7fe3c, `lw` at 0xec7fe5c.
-  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec7fe40, `lw` at 0xec7fe44, `lw` at 0xec7fe70.
   The `lw` at 0xec7fe60 loads 4 bytes from abs 0xecdfb9c (gl_sstatep).
   The `lw` at 0xec7fe6c loads 4 bytes from [0xecdfb9c] +0x1c.
   The `lw` at 0xec7fe7c loads 4 bytes from [[0xecdfb9c]+28] +0x4.
@@ -20799,7 +20784,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec7fdf8 calls determineGLVisual [0xec7f974] with a0=[[[sym(gl_wstatep)]+276]+56], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec7fe78 calls XQueryColor with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=sp-28, a3=?.
   The `beq` branch at 0xec7fddc targets 0xec800d8, is taken when t1(=[sym(gl_wstatep)]) == 0, and falls through when t1(=[sym(gl_wstatep)]) != 0.
-  The `beq` branch at 0xec7fe14 targets 0xec800d8, is taken when a0(=[[[sym(gl_wstatep)]+276]+56]) == at(=0x100), and falls through when a0(=[[[sym(gl_wstatep)]+276]+56]) != at(=0x100).
+  The `beq` branch at 0xec7fe14 targets 0xec800d8, is taken when a0(?) == at(=0x100), and falls through when a0(?) != at(=0x100).
   The `blez` branch at 0xec7fe2c targets 0xec800d8, is taken when t8(=[ret(determineGLVisual)]) <= 0 (signed), and falls through when t8(=[ret(determineGLVisual)]) > 0 (signed).
   The `beql` branch at 0xec7fe4c targets 0xec800c4, is taken when a1(?) >= t3(?) (signed), and falls through when a1(?) < t3(?) (signed); its branch-likely delay slot `lw t9,0(t0)` at 0xec7fe50 runs only when taken and is annulled on fall-through.
   The `bgez` branch at 0xec7fea0 targets 0xec7feb8, is taken when t8(?) >= 0 (signed), and falls through when t8(?) < 0 (signed).
@@ -21313,7 +21298,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec813fc targets 0xec814b4, is taken when t9(=[0xecde250]) == 0, and falls through when t9(=[0xecde250]) != 0.
   The `beq` branch at 0xec81418 targets 0xec81428, is taken when v0(=ret(XChangePointerDevice)) == 0, and falls through when v0(=ret(XChangePointerDevice)) != 0.
   The `beq` branch at 0xec81420 targets 0xec8168c and is always taken.
-  The `bnel` branch at 0xec81434 targets 0xec8147c, is taken when t2(=ret(countPushPointers)) != at(=0x1), and falls through when t2(=ret(countPushPointers)) == at(=0x1); its branch-likely delay slot `lw t4,28(s0)` at 0xec81438 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec81434 targets 0xec8147c, is taken when t2(?) != at(=0x1), and falls through when t2(?) == at(=0x1); its branch-likely delay slot `lw t4,28(s0)` at 0xec81438 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xec81448 targets 0xec8147c, is taken when t4(?) != 0, and falls through when t4(?) == 0; its branch-likely delay slot `lw t4,28(s0)` at 0xec8144c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec814ac targets 0xec8168c and is always taken.
   The `bne` branch at 0xec814cc targets 0xec814e4, is taken when a2(?) != t9(=[ret(findListedDev)+20]:2), and falls through when a2(?) == t9(=[ret(findListedDev)+20]:2).
@@ -21321,7 +21306,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bnel` branch at 0xec81570 targets 0xec815d4, is taken when t6(=[ret(findListedDev)+9]:1) != 0, and falls through when t6(=[ret(findListedDev)+9]:1) == 0; its branch-likely delay slot `lw t2,76(sp)` at 0xec81574 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xec81580 targets 0xec815d4, is taken when t8(=[[ret(findListedDev)+28]+32]) != 0, and falls through when t8(=[[ret(findListedDev)+28]+32]) == 0; its branch-likely delay slot `lw t2,76(sp)` at 0xec81584 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xec8159c targets 0xec815d0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
-  The `bnel` branch at 0xec815dc targets 0xec81618, is taken when t2(=ret(countPushPointers)) != at(=0x1), and falls through when t2(=ret(countPushPointers)) == at(=0x1); its branch-likely delay slot `lw t5,12(s0)` at 0xec815e0 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec815dc targets 0xec81618, is taken when t2(?) != at(=0x1), and falls through when t2(?) == at(=0x1); its branch-likely delay slot `lw t5,12(s0)` at 0xec815e0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec815e4 targets 0xec81614, is taken when s0(=ret(findListedDev)) == t3(?), and falls through when s0(=ret(findListedDev)) != t3(?).
   The `beq` branch at 0xec81620 targets 0xec81674, is taken when t5(=[ret(findListedDev)+12]) == at(=0x2), and falls through when t5(=[ret(findListedDev)+12]) != at(=0x2).
   The return at 0xec81698 has v0 = one of 0x0, 0x1.
@@ -21981,14 +21966,14 @@ These entries record instruction facts rendered from the routines below. They de
   2 such `lw` accesses load 4 bytes from [[0xecdfb9c]+28] +0x4, including `lw` at 0xec83188, `lw` at 0xec831b4.
   The `lw` at 0xec83198 loads 4 bytes from ret(findListedDevFromType) +0x1c.
   The `lw` at 0xec831a8 loads 4 bytes from ret(findListedDevFromType) +0x4.
-  2 such `lw` accesses load 4 bytes from ret(XQueryDeviceState) +0x4, including `lw` at 0xec831d0, `lw` at 0xec8340c.
+  The `lw` at 0xec831d0 loads 4 bytes from ret(XQueryDeviceState) +0x4.
   The `lw` at 0xec831d4 loads 4 bytes from ret(XQueryDeviceState) +0x8.
   The `lbu` at 0xec831e8 loads 1 byte from [ret(XQueryDeviceState)+8] +0x0.
   The `lw` at 0xec83204 loads 4 bytes from [ret(findListedDevFromType)+28] +0x1c.
   3 such `lh` accesses load 2 bytes from ?, including `lh` at 0xec83208, `lh` at 0xec833b4, `lh` at 0xec833e4.
   4 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xec83240, `lbu` at 0xec83294, `lbu` at 0xec83404.
   2 such `lh` accesses load 2 bytes from [ret(findListedDevFromType)+28] +0x12, including `lh` at 0xec83298, `lh` at 0xec83380.
-  The `lw` at 0xec832c0 loads 4 bytes from ?.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec832c0, `lw` at 0xec8340c.
   The `lhu` at 0xec832d4 loads 2 bytes from [ret(findListedDevFromType)+28] +0x14.
   2 such `lw` accesses load 4 bytes from [ret(findListedDevFromType)+28] +0xc, including `lw` at 0xec832ec, `lw` at 0xec83328.
   2 such `lw` accesses load 4 bytes from [ret(findListedDevFromType)+28] +0x28, including `lw` at 0xec832f8, `lw` at 0xec83334.
@@ -22008,7 +21993,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec83338 calls set_vals_from_softvals [0xec82918] with a0=0x1, a1=[[ret(findListedDevFromType)+28]+12]+96, a2=sp-60, a3=[[ret(findListedDevFromType)+28]+40].
   The `jalr` at 0xec833b8 calls _GLinvertY [0xecc8b80] with a0=[[[0xecdfb9c]+28]+112], a1=?, a2=?, a3=?.
   The `jalr` at 0xec833e8 calls _GLpostEvent [0xec84204] with a0=?, a1=?, a2=0x3, a3=?.
-  The `jalr` at 0xec8342c calls XFreeDeviceState with a0=ret(XQueryDeviceState), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec8342c calls XFreeDeviceState with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xec83190 targets 0xec83438, is taken when v0(=ret(findListedDevFromType)) == 0, and falls through when v0(=ret(findListedDevFromType)) != 0.
   The `beql` branch at 0xec8319c targets 0xec8343c, is taken when s5(=[ret(findListedDevFromType)+28]) == 0, and falls through when s5(=[ret(findListedDevFromType)+28]) != 0; its branch-likely delay slot `lw ra,60(sp)` at 0xec831a0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec831c8 targets 0xec83438, is taken when v0(=ret(XQueryDeviceState)) == 0, and falls through when v0(=ret(XQueryDeviceState)) != 0.
@@ -22032,7 +22017,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec8338c targets 0xec83398, is taken when v0(?) < v1(=[[ret(findListedDevFromType)+28]+18]:2-1) (signed), and falls through when v0(?) >= v1(=[[ret(findListedDevFromType)+28]+18]:2-1) (signed).
   The `blez` branch at 0xec833c8 targets 0xec83400, is taken when s3(?) <= 0 (signed), and falls through when s3(?) > 0 (signed).
   The `bne` branch at 0xec833f8 targets 0xec833dc, is taken when s0(?) != s2(?), and falls through when s0(?) == s2(?).
-  The `bnel` branch at 0xec8341c targets 0xec831ec, is taken when s6(?) < t7(=[ret(XQueryDeviceState)+4]) (signed), and falls through when s6(?) >= t7(=[ret(XQueryDeviceState)+4]) (signed); its branch-likely delay slot `lbu v0,0(s4)` at 0xec83420 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec8341c targets 0xec831ec, is taken when s6(?) < t7(?) (signed), and falls through when s6(?) >= t7(?) (signed); its branch-likely delay slot `lbu v0,0(s4)` at 0xec83420 runs only when taken and is annulled on fall-through.
   The return at 0xec83460 has v0 = one of ret(findListedDevFromType), ?.
 - `gl_g_setdblights` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec83468 (o32).
   Evidence grade: inferred.
@@ -22042,15 +22027,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec83480 loads 4 bytes from abs 0xecdfb9c (gl_sstatep).
   The `lw` at 0xec83490 loads 4 bytes from [0xecdfb9c] +0x1c.
   The `lw` at 0xec8349c loads 4 bytes from [[0xecdfb9c]+28] +0x4.
-  The `lw` at 0xec834d8 loads 4 bytes from ret(findListedDevFromType) +0x1c.
-  The `lh` at 0xec834e4 loads 2 bytes from [ret(findListedDevFromType)+28] +0x1a.
-  The `lw` at 0xec834f8 loads 4 bytes from ret(findListedDevFromType) +0x4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec834d8, `lw` at 0xec834f8.
+  The `lh` at 0xec834e4 loads 2 bytes from ?.
   The `jalr` at 0xec834a4 calls findListedDevFromType [0xec80928] with a0=[[[0xecdfb9c]+28]+4], a1=0x1, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec834c4 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=[[[0xecdfb9c]+28]+4], a2=?, a3=?.
-  The `jalr` at 0xec83518 calls XChangeFeedbackControl with a0=[[[0xecdfb9c]+28]+4], a1=[ret(findListedDevFromType)+4], a2=0x10, a3=sp-32.
+  The `jalr` at 0xec83518 calls XChangeFeedbackControl with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=0x10, a3=sp-32.
   The `jalr` at 0xec8352c calls XFlush with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
   The `beq` branch at 0xec834d0 targets 0xec83538, is taken when v0(=ret(open_device)) == 0, and falls through when v0(=ret(open_device)) != 0.
-  The `beq` branch at 0xec834f0 targets 0xec83538, is taken when t9(=[[ret(findListedDevFromType)+28]+26]:2) == 0, and falls through when t9(=[[ret(findListedDevFromType)+28]+26]:2) != 0.
+  The `beq` branch at 0xec834f0 targets 0xec83538, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The return at 0xec83544 has v0 = one of ret(open_device), ret(XFlush).
 - `gl_g_dbtext` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec8354c (o32).
   Evidence grade: inferred.
@@ -22061,29 +22045,26 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec83594 loads 4 bytes from abs 0xecdfb9c (gl_sstatep).
   The `lw` at 0xec8359c loads 4 bytes from [0xecdfb9c] +0x1c.
   The `lw` at 0xec835a0 loads 4 bytes from [[0xecdfb9c]+28] +0x4.
-  2 such `lw` accesses load 4 bytes from ret(findListedDevFromType) +0x4, including `lw` at 0xec83628, `lw` at 0xec83840.
-  2 such `lw` accesses load 4 bytes from [ret(findListedDevFromType)+4] +0x0, including `lw` at 0xec8363c, `lw` at 0xec836bc.
+  6 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec83628, `lw` at 0xec8363c, `lw` at 0xec836bc.
   The `lbu` at 0xec8366c loads 1 byte from a0 (arg0 at entry) +0x1.
   2 such `sb` accesses store 1 byte to a0 (arg0 at entry) +0x0, including `sb` at 0xec83674, `sb` at 0xec836b0.
-  The `lw` at 0xec83724 loads 4 bytes from ret(findListedDevFromType) +0x1c.
-  The `lh` at 0xec83728 loads 2 bytes from [ret(findListedDevFromType)+28] +0x1a.
+  The `lh` at 0xec83728 loads 2 bytes from ?.
   5 such `sw` accesses store 4 bytes to ?, including `sw` at 0xec83780, `sw` at 0xec8378c, `sw` at 0xec837e0.
   The `lw` at 0xec8379c loads 4 bytes from sym(__libc_attr) +0x0.
-  The `lw` at 0xec837a4 loads 4 bytes from ?.
   The `lbu` at 0xec837f0 loads 1 byte from ?.
   The `jalr` at 0xec8357c calls _GLinitgl [0xeccabec] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec835a4 calls findListedDevFromType [0xec80928] with a0=[[[0xecdfb9c]+28]+4], a1=0x2, a2=?, a3=?.
-  The `jalr` at 0xec835e0 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=[[[0xecdfb9c]+28]+4], a2=?, a3=?.
-  The `jalr` at 0xec83608 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=[[[0xecdfb9c]+28]+4], a2=?, a3=?.
-  The `jalr` at 0xec83644 calls XSGIDeviceControl with a0=[[[0xecdfb9c]+28]+4], a1=[[ret(findListedDevFromType)+4]], a2=0xecd6290, a3=a0+2.
-  The `jalr` at 0xec83658 calls XFlush with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
+  The `jalr` at 0xec835e0 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec83608 calls open_device [0xec82008] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec83644 calls XSGIDeviceControl with a0=?, a1=?, a2=0xecd6290, a3=a0+2.
+  The `jalr` at 0xec83658 calls XFlush with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec8369c calls sleep with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec836c8 calls XSGIDeviceQuery with a0=[[[0xecdfb9c]+28]+4], a1=[[ret(findListedDevFromType)+4]], a2=0xecd629c, a3=a0+1.
-  The `jalr` at 0xec836e8 calls findListedDevFromType [0xec80928] with a0=[[[0xecdfb9c]+28]+4], a1=0x1, a2=?, a3=?.
-  The `jalr` at 0xec83708 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=[[[0xecdfb9c]+28]+4], a2=?, a3=?.
+  The `jalr` at 0xec836c8 calls XSGIDeviceQuery with a0=?, a1=?, a2=0xecd629c, a3=a0+1.
+  The `jalr` at 0xec836e8 calls findListedDevFromType [0xec80928] with a0=?, a1=0x1, a2=?, a3=?.
+  The `jalr` at 0xec83708 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=?, a2=?, a3=?.
   The `jalr` at 0xec837c0 calls toupper with a0=?, a1=?, a2=?, a3=0x20.
-  The `jalr` at 0xec8383c calls XChangeFeedbackControl with a0=[[[0xecdfb9c]+28]+4], a1=[ret(findListedDevFromType)+4], a2=0x1, a3=sp-48.
-  The `jalr` at 0xec83850 calls XFlush with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
+  The `jalr` at 0xec8383c calls XChangeFeedbackControl with a0=?, a1=?, a2=0x1, a3=sp-48.
+  The `jalr` at 0xec83850 calls XFlush with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xec83560 targets 0xec8385c, is taken when a0 == 0, and falls through when a0 != 0.
   The `beql` branch at 0xec8356c targets 0xec83860, is taken when t6(=[a0]:1) == 0, and falls through when t6(=[a0]:1) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xec83570 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec835c0 targets 0xec836d8, is taken when t1(=[a0]:1) >= 0x3 (signed), and falls through when t1(=[a0]:1) < 0x3 (signed).
@@ -22098,7 +22079,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec83688 targets 0xec83694 and is always taken.
   The `beq` branch at 0xec836d0 targets 0xec8385c and is always taken.
   The `beq` branch at 0xec83710 targets 0xec8385c, is taken when v0(=ret(open_device)) == 0, and falls through when v0(=ret(open_device)) != 0.
-  The `bnel` branch at 0xec8372c targets 0xec83860, is taken when t8(=[[ret(findListedDevFromType)+28]+26]:2) != at(=0x2), and falls through when t8(=[[ret(findListedDevFromType)+28]+26]:2) == at(=0x2); its branch-likely delay slot `lw ra,28(sp)` at 0xec83730 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec8372c targets 0xec83860, is taken when t8(?) != at(=0x2), and falls through when t8(?) == at(=0x2); its branch-likely delay slot `lw ra,28(sp)` at 0xec83730 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec83754 targets 0xec83810, is taken when t3(=[a0]:1) == 0, and falls through when t3(=[a0]:1) != 0.
   The `beql` branch at 0xec83774 targets 0xec83788, is taken when a0(?) >= 0x20 (signed), and falls through when a0(?) < 0x20 (signed); its branch-likely delay slot `slti at,a0,96` at 0xec83778 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec8377c targets 0xec837f0 and is always taken.
@@ -22116,18 +22097,16 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
   Range: 0xec8386c-0xec8398c (288 bytes).
   It occupies 288 bytes.
-  The `lw` at 0xec838dc loads 4 bytes from ret(findListedDevFromType) +0x1c.
-  The `lh` at 0xec838e4 loads 2 bytes from [ret(findListedDevFromType)+28] +0x1a.
-  The `lw` at 0xec838f4 loads 4 bytes from ret(findListedDevFromType) +0x4.
-  5 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec8391c, `lw` at 0xec83928, `lw` at 0xec8392c.
+  7 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec838dc, `lw` at 0xec838f4, `lw` at 0xec8391c.
+  The `lh` at 0xec838e4 loads 2 bytes from ?.
   The `sw` at 0xec83960 stores 4 bytes to a1 (arg1 at entry) +0x0.
   The `sw` at 0xec8396c stores 4 bytes to a2 (arg2 at entry) +0x0.
   The `sw` at 0xec83978 stores 4 bytes to a3 (arg3 at entry) +0x0.
   The `jalr` at 0xec838a8 calls findListedDevFromType [0xec80928] with a0=a0 at entry (arg0), a1=0x1, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec838c8 calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jalr` at 0xec838fc calls XGetFeedbackControl with a0=a0 at entry (arg0), a1=[ret(findListedDevFromType)+4], a2=sp-20, a3=?.
+  The `jalr` at 0xec838fc calls XGetFeedbackControl with a0=a0 at entry (arg0), a1=?, a2=sp-20, a3=?.
   The `beq` branch at 0xec838d4 targets 0xec83958, is taken when v0(=ret(open_device)) == 0, and falls through when v0(=ret(open_device)) != 0.
-  The `bnel` branch at 0xec838e8 targets 0xec8395c, is taken when t7(=[[ret(findListedDevFromType)+28]+26]:2) != at(=0x2), and falls through when t7(=[[ret(findListedDevFromType)+28]+26]:2) == at(=0x2); its branch-likely delay slot `lw t5,48(sp)` at 0xec838ec runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec838e8 targets 0xec8395c, is taken when t7(?) != at(=0x2), and falls through when t7(?) == at(=0x2); its branch-likely delay slot `lw t5,48(sp)` at 0xec838ec runs only when taken and is annulled on fall-through.
   The `blez` branch at 0xec83910 targets 0xec83958, is taken when t8(?) <= 0 (signed), and falls through when t8(?) > 0 (signed).
   The `bnel` branch at 0xec83924 targets 0xec8394c, is taken when v0(=0x1) != t9(?), and falls through when v0(=0x1) == t9(?); its branch-likely delay slot `lw t3,4(v1)` at 0xec83928 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec83940 targets 0xec83958 and is always taken.
@@ -22139,14 +22118,13 @@ These entries record instruction facts rendered from the routines below. They de
   Exact binary: `usr/gfx/arch/IGLOO/libgl.so`.
   Range: 0xec8398c-0xec83a58 (204 bytes).
   It occupies 204 bytes.
-  The `lw` at 0xec839f0 loads 4 bytes from ret(findListedDevFromType) +0x1c.
-  The `lh` at 0xec839fc loads 2 bytes from [ret(findListedDevFromType)+28] +0x1a.
-  The `lw` at 0xec83a0c loads 4 bytes from ret(findListedDevFromType) +0x4.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec839f0, `lw` at 0xec83a0c.
+  The `lh` at 0xec839fc loads 2 bytes from ?.
   The `jalr` at 0xec839bc calls findListedDevFromType [0xec80928] with a0=a0 at entry (arg0), a1=0x1, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec839dc calls open_device [0xec82008] with a0=ret(findListedDevFromType), a1=a0 at entry (arg0), a2=?, a3=?.
-  The `jalr` at 0xec83a3c calls XChangeFeedbackControl with a0=a0 at entry (arg0), a1=[ret(findListedDevFromType)+4], a2=0x7, a3=sp-32.
+  The `jalr` at 0xec83a3c calls XChangeFeedbackControl with a0=a0 at entry (arg0), a1=?, a2=0x7, a3=sp-32.
   The `beq` branch at 0xec839e8 targets 0xec83a48, is taken when v0(=ret(open_device)) == 0, and falls through when v0(=ret(open_device)) != 0.
-  The `beql` branch at 0xec83a04 targets 0xec83a4c, is taken when t7(=[[ret(findListedDevFromType)+28]+26]:2) == 0, and falls through when t7(=[[ret(findListedDevFromType)+28]+26]:2) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xec83a08 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec83a04 targets 0xec83a4c, is taken when t7(?) == 0, and falls through when t7(?) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xec83a08 runs only when taken and is annulled on fall-through.
   The return at 0xec83a50 has v0 = one of ret(open_device), ?.
 - `_GLExtConstrainMouse` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec83a58 (o32).
   Evidence grade: inferred.
@@ -22460,7 +22438,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bnel` branch at 0xec846cc targets 0xec846f8, is taken when t8(=[[0xece8844]]) != at(=0x5), and falls through when t8(=[[0xece8844]]) == at(=0x5); its branch-likely delay slot `lhu t6,4(v0)` at 0xec846d0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec846ec targets 0xec84710 and is always taken.
   The `beq` branch at 0xec8478c targets 0xec848d4, is taken when v0(=ret(_GLqueuedDevsExist)) == 0, and falls through when v0(=ret(_GLqueuedDevsExist)) != 0.
-  The `beq` branch at 0xec84798 targets 0xec848d4, is taken when t5(=ret(_GLisNoiseExceed)) == 0, and falls through when t5(=ret(_GLisNoiseExceed)) != 0.
+  The `beq` branch at 0xec84798 targets 0xec848d4, is taken when t5(?) == 0, and falls through when t5(?) != 0.
   The `bgez` branch at 0xec847b4 targets 0xec847c0, is taken when a2(?) >= 0 (signed), and falls through when a2(?) < 0 (signed).
   The `beq` branch at 0xec847cc targets 0xec847dc, is taken when v1(=[0xecde2b0]) == 0, and falls through when v1(=[0xecde2b0]) != 0.
   The `bne` branch at 0xec847ec targets 0xec847fc, is taken when t1(=[0xeceadc8]) != 0, and falls through when t1(=[0xeceadc8]) == 0.
@@ -22477,7 +22455,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beql` branch at 0xec8489c targets 0xec848b0, is taken when s0(=a3) == 0, and falls through when s0(=a3) != 0; its branch-likely delay slot `slti at,a2,591` at 0xec848a0 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xec848b0 targets 0xec848d4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `blez` branch at 0xec848d4 targets 0xec8494c, is taken when s1(?) <= 0 (signed), and falls through when s1(?) > 0 (signed).
-  The `bne` branch at 0xec848f0 targets 0xec8491c, is taken when t8(=ret(_GLisNoiseExceed)) != 0, and falls through when t8(=ret(_GLisNoiseExceed)) == 0.
+  The `bne` branch at 0xec848f0 targets 0xec8491c, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `bnel` branch at 0xec84914 targets 0xec84944, is taken when (t6(=entry(0xece884d)) & 0x1) != 0, and falls through when (t6(=entry(0xece884d)) & 0x1) == 0; its branch-likely delay slot `addiu s0,s0,2` at 0xec84918 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xec84944 targets 0xec848e4, is taken when s0(?) != v1(?), and falls through when s0(?) == v1(?).
   The return at 0xec8496c has v0 = ?.
@@ -22526,7 +22504,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec84cbc targets 0xec84d00, is taken when a1(?) != 0, and falls through when a1(?) == 0.
   The `beq` branch at 0xec84ce4 targets 0xec84cf0, is taken when t1(=0xeceadc4) >= t9(?) (unsigned), and falls through when t1(=0xeceadc4) < t9(?) (unsigned).
   The `beql` branch at 0xec84cf4 targets 0xec84d04, is taken when t1(=0xeceadc4) >= t0(?) (unsigned), and falls through when t1(=0xeceadc4) < t0(?) (unsigned); its branch-likely delay slot `lw t4,104(sp)` at 0xec84cf8 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xec84d04 targets 0xec84b48, is taken when t4(?) != t3(=table(0xecea468)), and falls through when t4(?) == t3(=table(0xecea468)); its branch-likely delay slot `lw t6,104(sp)` at 0xec84d08 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec84d04 targets 0xec84b48, is taken when t4(?) != t3(?), and falls through when t4(?) == t3(?); its branch-likely delay slot `lw t6,104(sp)` at 0xec84d08 runs only when taken and is annulled on fall-through.
   The return at 0xec84d28 has v0 = ?.
 - `keepSearchingForEvent` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec84d30 (o32).
   Evidence grade: inferred.
@@ -22745,7 +22723,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec85c20 calls _GLExtGetDevNumbers [0xec81b50] with a0=ret(_GLGetDevType), a1=sp-20, a2=sp-22, a3=sp-24.
   The `jalr` at 0xec85c4c calls _GLisInterested [0xec83cac] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec85ca8 calls _GLisInterested [0xec83cac] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xec85cec calls _GLExtCloseDev [0xec81c60] with a0=ret(_GLGetDevType), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec85cec calls _GLExtCloseDev [0xec81c60] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec85d08 calls _GLSelectInput [0xec852f4] with a0=0x0, a1=?, a2=?, a3=?.
   The `bne` branch at 0xec85ab4 targets 0xec85b34, is taken when t1(?) != at(=0x202), and falls through when t1(?) == at(=0x202).
   The `bne` branch at 0xec85adc targets 0xec85acc, is taken when v1(?) < a0(=0xece8c38) (unsigned), and falls through when v1(?) >= a0(=0xece8c38) (unsigned).
@@ -23027,9 +23005,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec86950 calls _GLGetDevType [0xec80a68] with a0=?, a1=sp-60, a2=sp-64, a3=sp-68.
   The `jalr` at 0xec869b4 calls add_extdev_to_query [0xec86050] with a0=ret(_GLGetDevType), a1=?, a2=?, a3=?.
   The `jalr` at 0xec86a04 calls gl_fast_qcheck [0xecceb60] with a0=?, a1=0x0, a2=0x0, a3=?.
-  The `jalr` at 0xec86a2c calls _GLqueryPointer [0xec8657c] with a0=?, a1=?, a2=0x0, a3=?.
-  The `jalr` at 0xec86a60 calls XQueryKeymap with a0=[[[0xecdfb9c]+28]+4], a1=sp-44, a2=0x0, a3=?.
-  The `jalr` at 0xec86a90 calls _GLqueryModState [0xec864ec] with a0=sp-48, a1=?, a2=0x0, a3=?.
+  The `jalr` at 0xec86a2c calls _GLqueryPointer [0xec8657c] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0xec86a60 calls XQueryKeymap with a0=[[[0xecdfb9c]+28]+4], a1=sp-44, a2=?, a3=?.
+  The `jalr` at 0xec86a90 calls _GLqueryModState [0xec864ec] with a0=sp-48, a1=?, a2=?, a3=?.
   The `jalr` at 0xec86adc calls _GLExtQueryDevice [0xec83128] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec86be0 calls _GLupdateLockKey [0xec863e4] with a0=?, a1=?, a2=0xc, a3=?.
   The `blez` branch at 0xec867a8 targets 0xec869f8, is taken when s4(=a0) <= 0 (signed), and falls through when s4(=a0) > 0 (signed).
@@ -23216,7 +23194,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xec874c4 loads 4 bytes from abs 0xecdfbcc (_GLpointerWindow).
   The `jalr` at 0xec8718c calls _GLupdateQueue [0xeccdd38] with a0=0x0, a1=0x0, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec871d4 calls check_screen_bounds [0xec8707c] with a0=sp+10, a1=sp+14, a2=[[[0xecdfb9c]+28]+118]:2, a3=?.
-  The `jalr` at 0xec87234 calls _GLExtConstrainMouse [0xec83a58] with a0=[[0xecdfb9c]+28], a1=0x100, a2=?, a3=?.
+  The `jalr` at 0xec87234 calls _GLExtConstrainMouse [0xec83a58] with a0=?, a1=0x100, a2=?, a3=?.
   The `jalr` at 0xec872d0 calls postAndWarp [0xec86ce8] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec87310 calls check_screen_bounds [0xec8707c] with a0=sp+10, a1=sp+14, a2=[[[0xecdfb9c]+28]+122]:2, a3=?.
   The `jalr` at 0xec87370 calls _GLExtConstrainMouse [0xec83a58] with a0=?, a1=0x101, a2=?, a3=?.
@@ -23370,33 +23348,33 @@ These entries record instruction facts rendered from the routines below. They de
   4 such `lh` accesses load 2 bytes from a2 (arg2 at entry) +0x0, including `lh` at 0xec87bc0, `lh` at 0xec87c3c, `lh` at 0xec87d38.
   6 such `lh` accesses load 2 bytes from a2 (arg2 at entry) +0x2, including `lh` at 0xec87bd8, `lh` at 0xec87c44, `lh` at 0xec87d48.
   The `jalr` at 0xec87ab0 calls _GLinitgl [0xeccabec] with a0=a0 at entry (arg0), a1=(a1 << 0x1), a2=a2 at entry (arg2), a3=(a3 << 0x1).
-  The `jalr` at 0xec87b2c calls XGetKeyboardControl with a0=[[[0xecdfb9c]+28]+4], a1=sp-72, a2=?, a3=?.
-  The `jalr` at 0xec87b60 calls XSGIMiscQueryExtension with a0=[[[0xecdfb9c]+28]+4], a1=sp-76, a2=sp-76, a3=?.
-  The `jalr` at 0xec87b88 calls XSGIMiscGetAutoRepeatRate with a0=[[[0xecdfb9c]+28]+4], a1=sp-80, a2=sp-84, a3=?.
-  The `jalr` at 0xec87bec calls XAutoRepeatOff with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
-  The `jalr` at 0xec87c04 calls XAutoRepeatOn with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
-  The `jalr` at 0xec87c20 calls XSGIMiscQueryExtension with a0=[[[0xecdfb9c]+28]+4], a1=sp-88, a2=sp-88, a3=?.
-  The `jalr` at 0xec87c40 calls XSGIMiscSetAutoRepeatRate with a0=[[[0xecdfb9c]+28]+4], a1=[a2]:2, a2=[a2+2]:2, a3=?.
-  The `jalr` at 0xec87c88 calls qcontrol with a0=0x20, a1=?, a2=a2 at entry (arg2), a3=?.
-  The `jalr` at 0xec87cbc calls XGetPointerControl with a0=[[[0xecdfb9c]+28]+4], a1=sp-4, a2=sp-8, a3=sp-12.
+  The `jalr` at 0xec87b2c calls XGetKeyboardControl with a0=[[[0xecdfb9c]+28]+4], a1=sp-72, a2=?, a3=(a3 << 0x1).
+  The `jalr` at 0xec87b60 calls XSGIMiscQueryExtension with a0=?, a1=sp-76, a2=sp-76, a3=?.
+  The `jalr` at 0xec87b88 calls XSGIMiscGetAutoRepeatRate with a0=?, a1=sp-80, a2=sp-84, a3=?.
+  The `jalr` at 0xec87bec calls XAutoRepeatOff with a0=[[[0xecdfb9c]+28]+4], a1=(a1 << 0x1), a2=?, a3=(a3 << 0x1).
+  The `jalr` at 0xec87c04 calls XAutoRepeatOn with a0=[[[0xecdfb9c]+28]+4], a1=(a1 << 0x1), a2=?, a3=(a3 << 0x1).
+  The `jalr` at 0xec87c20 calls XSGIMiscQueryExtension with a0=?, a1=sp-88, a2=sp-88, a3=?.
+  The `jalr` at 0xec87c40 calls XSGIMiscSetAutoRepeatRate with a0=?, a1=[a2]:2, a2=[a2+2]:2, a3=?.
+  The `jalr` at 0xec87c88 calls qcontrol with a0=0x20, a1=(a1 << 0x1), a2=a2 at entry (arg2), a3=(a3 << 0x1).
+  The `jalr` at 0xec87cbc calls XGetPointerControl with a0=?, a1=sp-4, a2=sp-8, a3=sp-12.
   The `jalr` at 0xec87d98 calls XChangePointerControl with a0=[[[0xecdfb9c]+28]+4], a1=0x1, a2=0x1, a3=?.
   The `jalr` at 0xec87dc8 calls _GLExtGetDialFeedback [0xec8386c] with a0=[[[0xecdfb9c]+28]+4], a1=sp-4, a2=sp-8, a3=sp-12.
   The `jalr` at 0xec87e98 calls _GLExtChangeDialFeedback [0xec8398c] with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=one of -0x1, 0x10, a3=?.
-  The `jalr` at 0xec87eac calls XFlush with a0=[[[0xecdfb9c]+28]+4], a1=?, a2=?, a3=?.
+  The `jalr` at 0xec87eac calls XFlush with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xec87a7c targets 0xec87a8c, is taken when a1(=(a1 << 0x1)) == 0, and falls through when a1(=(a1 << 0x1)) != 0.
   The `beq` branch at 0xec87a84 targets 0xec87a9c, is taken when a2 == 0, and falls through when a2 != 0.
   The `beq` branch at 0xec87a8c targets 0xec87aa4, is taken when a3(=(a3 << 0x1)) == 0, and falls through when a3(=(a3 << 0x1)) != 0.
   The `bne` branch at 0xec87a94 targets 0xec87aa4, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0xec87a9c targets 0xec87ebc and is always taken.
   The `beq` branch at 0xec87ae8 targets 0xec87ea4, is taken when t1(=a0-21) >= 0x1d (unsigned), and falls through when t1(=a0-21) < 0x1d (unsigned).
-  The `beq` branch at 0xec87b10 targets 0xec87b20, is taken when a3(?) >= 0x4 (signed), and falls through when a3(?) < 0x4 (signed).
+  The `beq` branch at 0xec87b10 targets 0xec87b20, is taken when a3(=(a3 << 0x1)) >= 0x4 (signed), and falls through when a3(=(a3 << 0x1)) < 0x4 (signed).
   The `beq` branch at 0xec87b18 targets 0xec87ebc and is always taken.
   The `bne` branch at 0xec87b40 targets 0xec87b54, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0xec87b4c targets 0xec87ea4 and is always taken.
   The `beq` branch at 0xec87b6c targets 0xec87bac, is taken when v0(=ret(XSGIMiscQueryExtension)) == 0, and falls through when v0(=ret(XSGIMiscQueryExtension)) != 0.
   The `beq` branch at 0xec87ba4 targets 0xec87ea4 and is always taken.
   The `beq` branch at 0xec87bb0 targets 0xec87ea4 and is always taken.
-  The `beql` branch at 0xec87bbc targets 0xec87bd0, is taken when a1(?) >= 0x4 (signed), and falls through when a1(?) < 0x4 (signed); its branch-likely delay slot `lh t5,0(v1)` at 0xec87bc0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec87bbc targets 0xec87bd0, is taken when a1(=(a1 << 0x1)) >= 0x4 (signed), and falls through when a1(=(a1 << 0x1)) < 0x4 (signed); its branch-likely delay slot `lh t5,0(v1)` at 0xec87bc0 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec87bc4 targets 0xec87ebc and is always taken.
   The `bne` branch at 0xec87bd0 targets 0xec87bfc, is taken when t5(=[a2]:2) != 0, and falls through when t5(=[a2]:2) == 0.
   The `bne` branch at 0xec87bdc targets 0xec87bfc, is taken when t6(=[a2+2]:2) != 0, and falls through when t6(=[a2+2]:2) == 0.
@@ -23405,7 +23383,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec87c48 targets 0xec87ea4 and is always taken.
   The `beq` branch at 0xec87c50 targets 0xec87ebc and is always taken.
   The `bnel` branch at 0xec87c5c targets 0xec87c9c, is taken when v0(=a0) != at(=0x1f), and falls through when v0(=a0) == at(=0x1f); its branch-likely delay slot `slti at,a3,4` at 0xec87c60 runs only when taken and is annulled on fall-through.
-  The `bne` branch at 0xec87c64 targets 0xec87c98, is taken when a3(?) != 0, and falls through when a3(?) == 0.
+  The `bne` branch at 0xec87c64 targets 0xec87c98, is taken when a3(=(a3 << 0x1)) != 0, and falls through when a3(=(a3 << 0x1)) == 0.
   The `bne` branch at 0xec87c6c targets 0xec87c98, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beql` branch at 0xec87c74 targets 0xec87c9c, is taken when a2 == 0, and falls through when a2 != 0; its branch-likely delay slot `slti at,a3,4` at 0xec87c78 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec87c90 targets 0xec87cac and is always taken.
@@ -23417,13 +23395,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec87d08 targets 0xec87d14, is taken when t1(?) != at(=0xffffffff80000000), and falls through when t1(?) == at(=0xffffffff80000000).
   The `beq` branch at 0xec87d14 targets 0xec87ea4 and is always taken.
   The `beq` branch at 0xec87d1c targets 0xec87ea4 and is always taken.
-  The `beq` branch at 0xec87d28 targets 0xec87d38, is taken when a1(?) >= 0x4 (signed), and falls through when a1(?) < 0x4 (signed).
+  The `beq` branch at 0xec87d28 targets 0xec87d38, is taken when a1(=(a1 << 0x1)) >= 0x4 (signed), and falls through when a1(=(a1 << 0x1)) < 0x4 (signed).
   The `beq` branch at 0xec87d30 targets 0xec87ebc and is always taken.
   The `bnel` branch at 0xec87d40 targets 0xec87d70, is taken when v0(=[a2]:2) != 0, and falls through when v0(=[a2]:2) == 0; its branch-likely delay slot `sw v0,124(sp)` at 0xec87d44 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xec87d54 targets 0xec87d6c, is taken when t3(=[a2+2]:2) != 0, and falls through when t3(=[a2+2]:2) == 0.
   The `beq` branch at 0xec87d64 targets 0xec87d80 and is always taken.
   The `beq` branch at 0xec87da0 targets 0xec87ea4 and is always taken.
-  The `beq` branch at 0xec87dac targets 0xec87dbc, is taken when a3(?) >= 0x4 (signed), and falls through when a3(?) < 0x4 (signed).
+  The `beq` branch at 0xec87dac targets 0xec87dbc, is taken when a3(=(a3 << 0x1)) >= 0x4 (signed), and falls through when a3(=(a3 << 0x1)) < 0x4 (signed).
   The `beq` branch at 0xec87db4 targets 0xec87ebc and is always taken.
   The `beq` branch at 0xec87de8 targets 0xec87e28, is taken when t3(?) == 0, and falls through when t3(?) != 0.
   The `bne` branch at 0xec87dfc targets 0xec87e08, is taken when t3(?) != 0, and falls through when t3(?) == 0.
@@ -23431,7 +23409,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xec87e14 targets 0xec87e20, is taken when t5(?) != at(=0xffffffff80000000), and falls through when t5(?) == at(=0xffffffff80000000).
   The `beq` branch at 0xec87e20 targets 0xec87ea4 and is always taken.
   The `beq` branch at 0xec87e28 targets 0xec87ea4 and is always taken.
-  The `beql` branch at 0xec87e34 targets 0xec87e48, is taken when a1(?) >= 0x4 (signed), and falls through when a1(?) < 0x4 (signed); its branch-likely delay slot `lh v0,0(v1)` at 0xec87e38 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xec87e34 targets 0xec87e48, is taken when a1(=(a1 << 0x1)) >= 0x4 (signed), and falls through when a1(=(a1 << 0x1)) < 0x4 (signed); its branch-likely delay slot `lh v0,0(v1)` at 0xec87e38 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec87e3c targets 0xec87ebc and is always taken.
   The `bnel` branch at 0xec87e48 targets 0xec87e78, is taken when v0(=[a2]:2) != 0, and falls through when v0(=[a2]:2) == 0; its branch-likely delay slot `sw v0,124(sp)` at 0xec87e4c runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xec87e5c targets 0xec87e74, is taken when t7(=[a2+2]:2) != 0, and falls through when t7(=[a2+2]:2) == 0.
@@ -28310,8 +28288,7 @@ These entries record instruction facts rendered from the routines below. They de
   It occupies 652 bytes.
   The `lw` at 0xec98508 loads 4 bytes from sym(gl_wstatep) +0x0.
   The `ldc1` at 0xec98638 loads 8 bytes from abs 0xecd76c0.
-  The `lwc1` at 0xec986d8 loads 4 bytes from [sym(gl_wstatep)] +0x2e10.
-  The `lwc1` at 0xec986e0 loads 4 bytes from [sym(gl_wstatep)] +0x2e14.
+  2 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xec986d8, `lwc1` at 0xec986e0.
   3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec986fc, `lw` at 0xec9870c, `lw` at 0xec98720.
   3 such `sb` accesses store 1 byte to ?, including `sb` at 0xec98708, `sb` at 0xec9871c, `sb` at 0xec98730.
   The `jalr` at 0xec9854c calls __iglooGetBooleanv [0xecb75d8] with a0=0xb08, a1=sp-9, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -28324,7 +28301,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec98678 calls glReadPixels with a0=?, a1=?, a2=?, a3=0x1.
   The `jalr` at 0xec98694 calls __iglooGetIntegerv [0xecb7640] with a0=0xb07, a1=sp-32, a2=?, a3=?.
   The `jalr` at 0xec986c4 calls glReadPixels with a0=?, a1=?, a2=?, a3=0x1.
-  The `jalr` at 0xec986dc calls __iglooPixelZoom [0xecb693c] with a0=?, a1=?, a2=?, a3=?; fp f12=[[sym(gl_wstatep)]+11792], f14=[[sym(gl_wstatep)]+11796].
+  The `jalr` at 0xec986dc calls __iglooPixelZoom [0xecb693c] with a0=?, a1=?, a2=?, a3=?.
   The `beq` branch at 0xec98560 targets 0xec98748, is taken when t7(?) == 0, and falls through when t7(?) != 0.
   The `beq` branch at 0xec98588 targets 0xec98598, is taken when v0(=ret(__iglooGetRenderMode)) == at(=0x1c00), and falls through when v0(=ret(__iglooGetRenderMode)) != at(=0x1c00).
   The `beq` branch at 0xec98590 targets 0xec9874c and is always taken.
@@ -28564,9 +28541,7 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xec997e4-0xec999c0 (476 bytes).
   It occupies 476 bytes.
   The `lw` at 0xec997fc loads 4 bytes from sym(gl_wstatep) +0x0.
-  The `lw` at 0xec99868 loads 4 bytes from [sym(gl_wstatep)] +0x114.
-  The `lw` at 0xec99870 loads 4 bytes from [[sym(gl_wstatep)]+276] +0x3c.
-  The `lw` at 0xec99874 loads 4 bytes from [[[sym(gl_wstatep)]+276]+60] +0x30.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0xec99868, `lw` at 0xec99870, `lw` at 0xec99874.
   The `ldc1` at 0xec9990c loads 8 bytes from abs 0xecd76c8.
   The `jalr` at 0xec99818 calls __iglooGetBooleanv [0xecb75d8] with a0=0xb08, a1=sp-13, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec99828 calls __iglooGetRenderMode [0xec97f50] with a0=?, a1=?, a2=?, a3=?.
@@ -28581,7 +28556,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `blez` branch at 0xec99844 targets 0xec99854, is taken when t7(?) <= 0 (signed), and falls through when t7(?) > 0 (signed).
   The `bnel` branch at 0xec9984c targets 0xec99860, is taken when t8(?) != 0, and falls through when t8(?) == 0; its branch-likely delay slot `lw t9,100(sp)` at 0xec99850 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec99854 targets 0xec999b0 and is always taken.
-  The `bnel` branch at 0xec99878 targets 0xec9988c, is taken when t2(=[[[[sym(gl_wstatep)]+276]+60]+48]) != at(=0x3), and falls through when t2(=[[[[sym(gl_wstatep)]+276]+60]+48]) == at(=0x3); its branch-likely delay slot `sw t4,96(sp)` at 0xec9987c runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xec99878 targets 0xec9988c, is taken when t2(?) != at(=0x3), and falls through when t2(?) == at(=0x3); its branch-likely delay slot `sw t4,96(sp)` at 0xec9987c runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xec99880 targets 0xec9988c and is always taken.
   The `bne` branch at 0xec998cc targets 0xec99960, is taken when v0(=ret(__iglooGetGraphicsType)) != at(=0x8), and falls through when v0(=ret(__iglooGetGraphicsType)) == at(=0x8).
   The `beq` branch at 0xec99958 targets 0xec999ac and is always taken.
@@ -28633,10 +28608,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xec99dc8 stores 4 bytes to [sym(gl_wstatep)] +0x2e20.
   The `sw` at 0xec99dd0 stores 4 bytes to [sym(gl_wstatep)] +0x2e24.
   The `sw` at 0xec99dd8 stores 4 bytes to [sym(gl_wstatep)] +0x2e28.
-  The `sw` at 0xec99f1c stores 4 bytes to [sym(gl_wstatep)] +0x2e3c.
-  The `sw` at 0xec99f68 stores 4 bytes to [sym(gl_wstatep)] +0x2e38.
-  The `sw` at 0xec99fb4 stores 4 bytes to [sym(gl_wstatep)] +0x2e4c.
-  The `sw` at 0xec9a000 stores 4 bytes to [sym(gl_wstatep)] +0x2e48.
+  4 such `sw` accesses store 4 bytes to ?, including `sw` at 0xec99f1c, `sw` at 0xec99f68, `sw` at 0xec99fb4.
   The `lw` at 0xec9a03c loads 4 bytes from table(0xecd7770) +0x0.
   The `sw` at 0xec9a050 stores 4 bytes to [sym(gl_wstatep)] +0x2e2c.
   The `sw` at 0xec9a0ac stores 4 bytes to [sym(gl_wstatep)] +0x2e30.

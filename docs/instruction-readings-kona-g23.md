@@ -212,9 +212,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10021c50 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x10021c80 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10021d04 calls XtSetSensitive with a0=[a0+104], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x10021d1c calls XtSetSensitive with a0=[a0+92], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x10021d34 calls XtSetSensitive with a0=[a0+56], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x10021d4c calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x10021d1c calls XtSetSensitive with a0=[a0+92], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021d34 calls XtSetSensitive with a0=[a0+56], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021d4c calls XtSetSensitive with a0=[a0+120], a1=?, a2=?, a3=?.
   The `beq` branch at 0x100218d8 targets 0x100218f8, is taken when a1(=[[a0+280]+652]) == a2(=0x1), and falls through when a1(=[[a0+280]+652]) != a2(=0x1).
   The `beq` branch at 0x100218e8 targets 0x10021918, is taken when a2(=[[a0+280]+652]) == a3(=0x3), and falls through when a2(=[[a0+280]+652]) != a3(=0x3).
   The `beq` branch at 0x100218f0 targets 0x10021938 and is always taken.
@@ -1720,9 +1720,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x100295cc calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x100295fc calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10029680 calls XtSetSensitive with a0=[a0+172], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x10029698 calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x100296b0 calls XtSetSensitive with a0=[a0+40], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x100296c8 calls XtSetSensitive with a0=[a0+200], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x10029698 calls XtSetSensitive with a0=[a0+120], a1=?, a2=?, a3=?.
+  The `jalr` at 0x100296b0 calls XtSetSensitive with a0=[a0+40], a1=?, a2=?, a3=?.
+  The `jalr` at 0x100296c8 calls XtSetSensitive with a0=[a0+200], a1=?, a2=?, a3=?.
   The `bne` branch at 0x10028f78 targets 0x10029048, is taken when a1(=[[a0+464]+260]) != a2(=0x8), and falls through when a1(=[[a0+464]+260]) == a2(=0x8).
   The `beq` branch at 0x10029040 targets 0x1002911c and is always taken.
   The `bc1f` branch at 0x100294c4 targets 0x100294e4, is taken when not (f3(=[[a0+464]+644]) < f4(=0x42480000) (c.lt.s at 0x100294bc)), and falls through when f3(=[[a0+464]+644]) < f4(=0x42480000) (c.lt.s at 0x100294bc).
@@ -2113,7 +2113,7 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jalr` at 0x1002a790 calls sprintf with a0=sp-1096, a1=0x10095068, a2=[(sym(konCHANNEL_NAME_strings) + ([[a0+464]+260] << 0x2))], a3=([[a0+464]+260] << 0x2), a6=[[a0+464]+260].
   The `jalr` at 0x1002a7ac calls getTheErrorDialog__Gv with a0=?, a1=?, a2=[[a0+464]+260], a3=[a0+464].
   The `jalr` at 0x1002a7c4 calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
-  The `jal` at 0x1002a7e0 calls (unnamed) [0x1002b690] with a0=ret(getTheErrorDialog__Gv), a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
+  The `jal` at 0x1002a7e0 calls (unnamed) [0x1002b690] with a0=?, a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
   The `jalr` at 0x1002a810 calls set__12VkOptionMenuGi with a0=[a0+256], a1=[(a0 + ([[a0+464]+260] << 0x2))+396], a2=([[a0+464]+260] << 0x2), a3=?.
   The `jalr` at 0x1002a9d0 calls XtSetSensitive with a0=[a0+68], a1=0x0, a2=?, a3=[[a0+464]+260], a4=0x8.
   The `jalr` at 0x1002a9e8 calls XtSetSensitive with a0=[a0+72], a1=0x0, a2=?, a3=?.
@@ -3572,9 +3572,9 @@ Skipped routines: 928 already have an exact binary, member and routine entry; 4 
   The `jal` at 0x10033580 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x100335b0 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x10033634 calls XtSetSensitive with a0=[a0+172], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x1003364c calls XtSetSensitive with a0=[a0+116], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x10033664 calls XtSetSensitive with a0=[a0+40], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x1003367c calls XtSetSensitive with a0=[a0+216], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x1003364c calls XtSetSensitive with a0=[a0+116], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10033664 calls XtSetSensitive with a0=[a0+40], a1=?, a2=?, a3=?.
+  The `jalr` at 0x1003367c calls XtSetSensitive with a0=[a0+216], a1=?, a2=?, a3=?.
   The `beq` branch at 0x100330b0 targets 0x100330d0, is taken when a1(=[[a0+328]+652]) == a2(=0x1), and falls through when a1(=[[a0+328]+652]) != a2(=0x1).
   The `beq` branch at 0x100330c0 targets 0x100330f0, is taken when a2(=[[a0+328]+652]) == a3(=0x3), and falls through when a2(=[[a0+328]+652]) != a3(=0x3).
   The `beq` branch at 0x100330c8 targets 0x10033110 and is always taken.

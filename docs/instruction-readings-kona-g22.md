@@ -2963,10 +2963,10 @@ Skipped 10,005 located, 12,633 understood and 8 no-software-dependency rows beca
   The `ldc1` at 0xda027e4 loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `ldc1` at 0xda027f0 loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `ldc1` at 0xda027fc loads 8 bytes from a0 (arg0 at entry) +0x10.
-  The `lw` at 0xda02808 loads 4 bytes from [0x1010] +0x3184.
+  The `lw` at 0xda02808 loads 4 bytes from ?.
   The `jalr` at 0xda027ac calls __glSetError [0xd9cd900] with a0=0x502, a1=a1 at entry (arg1), a2=[0x1018], a3=[0x1010], a4=a0 at entry (arg0).
   The `jalr` at 0xda027d0 calls (unknown callee) with a0=[0x1010], a1=a1 at entry (arg1), a2=[0x1018], a3=[0x1010], a4=a0 at entry (arg0).
-  The `jalr` at 0xda02810 calls (unknown callee) with a0=[0x1010], a1=sp-48, a2=?, a3=[0x1010], a4=a0 at entry (arg0).
+  The `jalr` at 0xda02810 calls (unknown callee) with a0=?, a1=sp-48, a2=?, a3=?, a4=a0 at entry (arg0).
   The `beq` branch at 0xda02794 targets 0xda027e4, is taken when a2(=[0x1018]) == 0, and falls through when a2(=[0x1018]) != 0.
   The `beq` branch at 0xda027a0 targets 0xda027c4, is taken when a2(=[0x1018]) == v0(=0x2), and falls through when a2(=[0x1018]) != v0(=0x2).
   The `beq` branch at 0xda02818 targets 0xda027b8 and is always taken.
@@ -4495,10 +4495,10 @@ Skipped 10,005 located, 12,633 understood and 8 no-software-dependency rows beca
   The `ldc1` at 0x2246c5c loads 8 bytes from a0 (arg0 at entry) +0x0.
   The `ldc1` at 0x2246c68 loads 8 bytes from a0 (arg0 at entry) +0x8.
   The `ldc1` at 0x2246c74 loads 8 bytes from a0 (arg0 at entry) +0x10.
-  The `ld` at 0x2246c80 loads 8 bytes from [0x1020]:8 +0x4dc0.
+  The `ld` at 0x2246c80 loads 8 bytes from ?.
   The `jalr` at 0x2246c2c calls __glSetError [0x22115d0] with a0=0x502, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0).
   The `jalr` at 0x2246c48 calls (unknown callee) with a0=[0x1020]:8, a1=a1 at entry (arg1), a2=[0x1030], a3=[0x1020]:8, a4=a0 at entry (arg0).
-  The `jalr` at 0x2246c88 calls (unknown callee) with a0=[0x1020]:8, a1=sp-48, a2=?, a3=[0x1020]:8, a4=a0 at entry (arg0).
+  The `jalr` at 0x2246c88 calls (unknown callee) with a0=?, a1=sp-48, a2=?, a3=?, a4=a0 at entry (arg0).
   The `beq` branch at 0x2246c14 targets 0x2246c5c, is taken when a2(=[0x1030]) == 0, and falls through when a2(=[0x1030]) != 0.
   The `beq` branch at 0x2246c20 targets 0x2246c44, is taken when a2(=[0x1030]) == v0(=0x2), and falls through when a2(=[0x1030]) != v0(=0x2).
   The `beq` branch at 0x2246c90 targets 0x2246c38 and is always taken.

@@ -1881,7 +1881,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jalr` at 0x1007c588 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-168, a3=?.
   The `jal` at 0x1007c644 calls kt_output_trce [0x10046b88] with a0=0x1019af38, a1=?, a2=?, a3=0x1.
   The `jal` at 0x1007c668 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
+  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c6a4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c6b8 calls ge11_bypass_write [0x10037874] with a0=0x0, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1007c6c4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
@@ -1891,8 +1891,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jal` at 0x1007c780 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x1, a3=?.
   The `jalr` at 0x1007c794 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1007c7a8 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
-  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=[a0+116].
+  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007c82c calls kt_output_diag [0x100461b0] with a0=0x1019afa0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c880 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007c8a4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019afb8, a2=?, a3=?.
@@ -1900,25 +1900,25 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jal` at 0x1007c920 calls kt_output_diag [0x100461b0] with a0=0x1019aee0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c944 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019af18, a2=?, a3=?.
   The `jal` at 0x1007c958 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
+  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c990 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1007c9a8 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1007c544 targets 0x1007c8e0, is taken when t8(=[a0+116]) >= 0x5 (signed), and falls through when t8(=[a0+116]) < 0x5 (signed).
   The `bltz` branch at 0x1007c594 targets 0x1007c908, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(=[a0+116]) <= 0 (signed), and falls through when v1(=[a0+116]) > 0 (signed).
+  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `beq` branch at 0x1007c5f0 targets 0x1007c9b8 and is always taken.
-  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(=[a0+116]) (signed), and falls through when s7(?) < t8(=[a0+116]) (signed).
+  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(?) (signed), and falls through when s7(?) < t8(?) (signed).
   The `beq` branch at 0x1007c61c targets 0x1007c600, is taken when (t9(=[a0+120]) & v0(?)) == 0, and falls through when (t9(=[a0+120]) & v0(?)) != 0.
   The `beq` branch at 0x1007c684 targets 0x1007c69c and is always taken.
   The `beq` branch at 0x1007c694 targets 0x1007c5f8, is taken when s8(?) >= 0x9 (signed), and falls through when s8(?) < 0x9 (signed).
   The `beq` branch at 0x1007c720 targets 0x1007c68c, is taken when a3(?) == a2(?), and falls through when a3(?) != a2(?).
   The `beq` branch at 0x1007c760 targets 0x1007c690 and is always taken.
   The `beq` branch at 0x1007c7c8 targets 0x1007c980, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(=[a0+116]) <= 0 (signed), and falls through when ra(=[a0+116]) > 0 (signed).
+  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(?) <= 0 (signed), and falls through when ra(?) > 0 (signed).
   The `beq` branch at 0x1007c7fc targets 0x1007c848 and is always taken.
-  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(=[a0+116]) (signed), and falls through when s1(?) < a1(=[a0+116]) (signed).
+  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(?) (signed), and falls through when s1(?) < a1(?) (signed).
   The `bne` branch at 0x1007c854 targets 0x1007c804, is taken when (s0(?) & a2(?)) != 0, and falls through when (s0(?) & a2(?)) == 0.
-  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(=[a0+116]) (signed), and falls through when s1(?) >= a3(=[a0+116]) (signed).
+  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(?) (signed), and falls through when s1(?) >= a3(?) (signed).
   The `beq` branch at 0x1007c8f4 targets 0x1007c550 and is always taken.
   The `beq` branch at 0x1007c900 targets 0x1007c768 and is always taken.
   The `beq` branch at 0x1007c978 targets 0x1007c8b0 and is always taken.
@@ -2782,8 +2782,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jal` at 0x100944d4 calls kt_output_info [0x10046374] with a0=0x101a01b0, a1=?, a2=?, a3=?.
   The `jal` at 0x10094530 calls kt_output_trce [0x10046b88] with a0=0x101a0178, a1=?, a2=?, a3=?.
   The `jal` at 0x10094548 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x10094564 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
-  The `jalr` at 0x1009457c calls bzero with a0=ret(memalign), a1=0x420, a2=?, a3=?.
+  The `jal` at 0x10094564 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1009457c calls bzero with a0=?, a1=0x420, a2=?, a3=?.
   The `jal` at 0x10094594 calls PioWriteArm32 [0x10038444] with a0=0x200670, a1=?, a2=?, a3=?.
   The `jal` at 0x100945ac calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=?, a2=?, a3=?.
   The `jal` at 0x100945bc calls PioWriteArm32 [0x10038444] with a0=0x200a40, a1=0x420, a2=?, a3=?.
@@ -2793,8 +2793,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jal` at 0x10094680 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101a0188, a2=0x0, a3=?.
   The `jal` at 0x10094718 calls kt_output_dbug [0x10046d74] with a0=0x8, a1=0x101a0188, a2=?, a3=0x0.
   The `jal` at 0x10094750 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
-  The `jal` at 0x10094774 calls destroy_map_diag [0x10037218] with a0=0x1, a1=ret(memalign), a2=0x108, a3=?.
-  The `jalr` at 0x10094788 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jal` at 0x10094774 calls destroy_map_diag [0x10037218] with a0=0x1, a1=?, a2=0x108, a3=?.
+  The `jalr` at 0x10094788 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100947ac calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100947c8 calls kt_code_chip [0x1004797c] with a0=0x2, a1=0x0, a2=0x2, a3=?.
   The `jal` at 0x100947e4 calls kt_code_chip [0x1004797c] with a0=0x3, a1=0x0, a2=0x2, a3=?.
@@ -2804,12 +2804,12 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jal` at 0x10094888 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jal` at 0x100948b4 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x100948d4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101a0158, a2=?, a3=?.
-  The `jalr` at 0x100948e8 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100948e8 calls free with a0=?, a1=?, a2=?, a3=?.
   The `bltz` branch at 0x10094450 targets 0x100948a0, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
   The `blez` branch at 0x10094468 targets 0x10094898, is taken when a1(=[a0+116]) <= 0 (signed), and falls through when a1(=[a0+116]) > 0 (signed).
   The `beq` branch at 0x10094480 targets 0x100948f8 and is always taken.
   The `beq` branch at 0x1009448c targets 0x100944dc, is taken when s4(?) == 0, and falls through when s4(?) != 0.
-  The `beq` branch at 0x100944f4 targets 0x10094760, is taken when s6(?) >= a1(=[a0+116]) (signed), and falls through when s6(?) < a1(=[a0+116]) (signed).
+  The `beq` branch at 0x100944f4 targets 0x10094760, is taken when s6(?) >= a1(?) (signed), and falls through when s6(?) < a1(?) (signed).
   The `beq` branch at 0x10094508 targets 0x100944e0, is taken when (a2(=[a0+120]) & a3(?)) == 0, and falls through when (a2(=[a0+120]) & a3(?)) != 0.
   The `bltz` branch at 0x10094604 targets 0x1009473c, is taken when v0(=ret(wait_for_odma)) < 0 (signed), and falls through when v0(=ret(wait_for_odma)) >= 0 (signed).
   The `beq` branch at 0x1009461c targets 0x1009463c and is always taken.
@@ -3564,8 +3564,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x1009c0cc targets 0x1009bf88, is taken when v0(?) < a6(=[a0+3628]) (signed), and falls through when v0(?) >= a6(=[a0+3628]) (signed).
   The `beq` branch at 0x1009c0e8 targets 0x1009c10c, is taken when v0(=ret(dgRestoreDefaultPllValues)) == 0, and falls through when v0(=ret(dgRestoreDefaultPllValues)) != 0.
   The `beq` branch at 0x1009c12c targets 0x1009c3a8, is taken when s7(=ret(hash_value)) == t8(=0x63), and falls through when s7(=ret(hash_value)) != t8(=0x63).
-  The `blez` branch at 0x1009c234 targets 0x1009c260, is taken when s6(=ret(hash_value)) <= 0 (signed), and falls through when s6(=ret(hash_value)) > 0 (signed).
-  The `bne` branch at 0x1009c258 targets 0x1009c240, is taken when s2(?) < s6(=ret(hash_value)) (signed), and falls through when s2(?) >= s6(=ret(hash_value)) (signed).
+  The `blez` branch at 0x1009c234 targets 0x1009c260, is taken when s6(?) <= 0 (signed), and falls through when s6(?) > 0 (signed).
+  The `bne` branch at 0x1009c258 targets 0x1009c240, is taken when s2(?) < s6(?) (signed), and falls through when s2(?) >= s6(?) (signed).
   The `beq` branch at 0x1009c260 targets 0x1009c3c4, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `beq` branch at 0x1009c290 targets 0x1009c3c4 and is always taken.
   The `bne` branch at 0x1009c2e8 targets 0x1009bf88, is taken when a3(?) < a6(=[a0+3628]) (signed), and falls through when a3(?) >= a6(=[a0+3628]) (signed).
@@ -5886,7 +5886,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100b6f28 targets 0x100b6d10 and is always taken.
   The `beq` branch at 0x100b6f6c targets 0x100b7100, is taken when v0(=ret(vdLoadFormat)) == 0, and falls through when v0(=ret(vdLoadFormat)) != 0.
   The `beq` branch at 0x100b6fa0 targets 0x100b6fc0, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x100b6fc8 targets 0x100b6eb8, is taken when at(=one of 0x0, 0x1) != 0, and falls through when at(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x100b6fc8 targets 0x100b6eb8, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `bne` branch at 0x100b7014 targets 0x100b6fec, is taken when s0(?) < 0x40 (signed), and falls through when s0(?) >= 0x40 (signed).
   The `bne` branch at 0x100b7050 targets 0x100b7030, is taken when s0(?) < 0x20 (signed), and falls through when s0(?) >= 0x20 (signed).
   The `beq` branch at 0x100b705c targets 0x100b70d8, is taken when t9(?) == 0, and falls through when t9(?) != 0.
@@ -9931,7 +9931,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jalr` at 0x100d6bf8 calls random with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100d6cd8 calls random with a0=?, a1=?, a2=?, a3=?, a5=0x1a, a6=0x1, a7=0xc.
   The `jalr` at 0x100d6d0c calls random with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x100d6d84 calls tbRegWrite [0x1013eb3c] with a0=0x3fc4, a1=[[sym(rm)]+130592]:8, a2=table(0xffffffffff800000), a3=?, a4=[sym(rm)]+131072.
+  The `jal` at 0x100d6d84 calls tbRegWrite [0x1013eb3c] with a0=0x3fc4, a1=[[sym(rm)]+130592]:8, a2=?, a3=?, a4=[sym(rm)]+131072.
   The `jal` at 0x100d6dac calls tbRegWrite [0x1013eb3c] with a0=0x3fc5, a1=[[sym(rm)]+130600]:8, a2=?, a3=[sym(rm)]+131072.
   The `jal` at 0x100d6de0 calls tbRegWrite [0x1013eb3c] with a0=0x3fc6, a1=[[sym(rm)]+130608]:8, a2=?, a3=[sym(rm)]+131072.
   The `jal` at 0x100d6e2c calls tbRegWrite [0x1013eb3c] with a0=0x3fc7, a1=[[sym(rm)]+130616]:8, a2=?, a3=[sym(rm)]+131072.
@@ -9962,8 +9962,8 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100d661c targets 0x100d7224, is taken when at(=[sym(from_rmvis)]) == 0, and falls through when at(=[sym(from_rmvis)]) != 0.
   The `beq` branch at 0x100d68ec targets 0x100d7230, is taken when v1(=[[sym(KONAINFO)]]) == a0(=0x2), and falls through when v1(=[[sym(KONAINFO)]]) != a0(=0x2).
   The `bne` branch at 0x100d6b88 targets 0x100d6ac4, is taken when s1(?) < a0(=0xffff) (signed), and falls through when s1(?) >= a0(=0xffff) (signed).
-  The `beq` branch at 0x100d6c5c targets 0x100d6b9c, is taken when a0(?) >= s6(=one of 0x3f4, 0xff4) (signed), and falls through when a0(?) < s6(=one of 0x3f4, 0xff4) (signed).
-  The `beq` branch at 0x100d6cc0 targets 0x100d6b9c, is taken when t0(?) >= s6(=one of 0x3f4, 0xff4) (signed), and falls through when t0(?) < s6(=one of 0x3f4, 0xff4) (signed).
+  The `beq` branch at 0x100d6c5c targets 0x100d6b9c, is taken when a0(?) >= s6(?) (signed), and falls through when a0(?) < s6(?) (signed).
+  The `beq` branch at 0x100d6cc0 targets 0x100d6b9c, is taken when t0(?) >= s6(?) (signed), and falls through when t0(?) < s6(?) (signed).
   The `blez` branch at 0x100d7114 targets 0x100d718c, is taken when s7(?) <= 0 (signed), and falls through when s7(?) > 0 (signed).
   The `bne` branch at 0x100d7180 targets 0x100d7148, is taken when s4(?) < s7(?) (signed), and falls through when s4(?) >= s7(?) (signed).
   The `bne` branch at 0x100d7198 targets 0x100d6b9c, is taken when a4(?) < 0x200 (signed), and falls through when a4(?) >= 0x200 (signed).
@@ -10441,7 +10441,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jalr` at 0x100e1a38 calls strcmp with a0=?, a1=0x101afc08, a2=?, a3=?.
   The `jalr` at 0x100e1a64 calls strcmp with a0=?, a1=0x101afb90, a2=?, a3=?.
   The `jalr` at 0x100e1a90 calls strcmp with a0=?, a1=0x101afb98, a2=?, a3=?.
-  The `jal` at 0x100e1ad4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101afcd0, a2=?, a3=one of 0x0, 0x1.
+  The `jal` at 0x100e1ad4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101afcd0, a2=?, a3=?.
   The `jal` at 0x100e1b48 calls kt_output_info [0x10046374] with a0=0x101afce0, a1=?, a2=?, a3=?.
   The `jal` at 0x100e1b88 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x101afd18, a2=?, a3=?.
   The `jalr` at 0x100e1bd8 calls strcmp with a0=?, a1=0x101afb98, a2=?, a3=?.
@@ -10498,7 +10498,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `jalr` at 0x100e23f4 calls strcmp with a0=?, a1=0x101afb80, a2=?, a3=?.
   The `jalr` at 0x100e2420 calls strcmp with a0=?, a1=0x101afbe8, a2=?, a3=?.
   The `jalr` at 0x100e244c calls strcmp with a0=?, a1=0x101afbe8, a2=?, a3=?.
-  The `jal` at 0x100e2474 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=one of 0x0, 0x1.
+  The `jal` at 0x100e2474 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `jalr` at 0x100e2494 calls strcmp with a0=?, a1=0x101afbe8, a2=?, a3=?.
   The `jalr` at 0x100e24c0 calls strcmp with a0=?, a1=0x101afb90, a2=?, a3=?.
   The `jalr` at 0x100e24ec calls strcmp with a0=?, a1=0x101afbf8, a2=?, a3=?.
@@ -10721,7 +10721,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e1a78 targets 0x100e0e14 and is always taken.
   The `bne` branch at 0x100e1a98 targets 0x100e1c20, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e1aa4 targets 0x100e0e14 and is always taken.
-  The `beq` branch at 0x100e1ab0 targets 0x100e1ae4, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x100e1ab0 targets 0x100e1ae4, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x100e1adc targets 0x100e1b94 and is always taken.
   The `beq` branch at 0x100e1ae4 targets 0x100e2468, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `blez` branch at 0x100e1aec targets 0x100e1b70, is taken when s0(?) <= 0 (signed), and falls through when s0(?) > 0 (signed).
@@ -11026,7 +11026,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e2d40 targets 0x100e2fbc, is taken when a6(?) == a2(=0x8), and falls through when a6(?) != a2(=0x8).
   The `beq` branch at 0x100e2d4c targets 0x100e2fac, is taken when a6(?) == a3(=0x9), and falls through when a6(?) != a3(=0x9).
   The `beq` branch at 0x100e2d54 targets 0x100e2d68, is taken when s4(?) == 0, and falls through when s4(?) != 0.
-  The `bne` branch at 0x100e2d60 targets 0x100e2cfc, is taken when (t9(=ret(hash_value)) & t8(?)) != 0, and falls through when (t9(=ret(hash_value)) & t8(?)) == 0.
+  The `bne` branch at 0x100e2d60 targets 0x100e2cfc, is taken when (t9(?) & t8(?)) != 0, and falls through when (t9(?) & t8(?)) == 0.
   The `bne` branch at 0x100e2d68 targets 0x100e2cfc, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x100e2d74 targets 0x100e2d00 and is always taken.
   The `bne` branch at 0x100e2d7c targets 0x100e2d38, is taken when a6(?) != at(=0x18), and falls through when a6(?) == at(=0x18).
@@ -11041,9 +11041,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e2f90 targets 0x100e2c28, is taken when s2(?) >= 0x7f80 (signed), and falls through when s2(?) < 0x7f80 (signed).
   The `blez` branch at 0x100e2f98 targets 0x100e2b08, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
   The `beq` branch at 0x100e2fa4 targets 0x100e3c84 and is always taken.
-  The `bne` branch at 0x100e2fac targets 0x100e2cfc, is taken when t8(=ret(hash_value)) != 0, and falls through when t8(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e2fac targets 0x100e2cfc, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0x100e2fb4 targets 0x100e2d54 and is always taken.
-  The `bne` branch at 0x100e2fbc targets 0x100e2cfc, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e2fbc targets 0x100e2cfc, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e2fc4 targets 0x100e2d4c and is always taken.
   The `bne` branch at 0x100e2ff8 targets 0x100e3194, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e303c targets 0x100e361c, is taken when t8(=[[sym(KONAINFO)]]) == s6(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != s6(=0x6).
@@ -11052,7 +11052,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e3078 targets 0x100e306c, is taken when a6(?) < 0x18 (signed), and falls through when a6(?) >= 0x18 (signed).
   The `beq` branch at 0x100e309c targets 0x100e2cb8 and is always taken.
   The `beq` branch at 0x100e30b4 targets 0x100e3c94 and is always taken.
-  The `beq` branch at 0x100e30c4 targets 0x100e3114, is taken when (a1(=ret(hash_value)) & at(?)) == 0, and falls through when (a1(=ret(hash_value)) & at(?)) != 0.
+  The `beq` branch at 0x100e30c4 targets 0x100e3114, is taken when (a1(?) & at(?)) == 0, and falls through when (a1(?) & at(?)) != 0.
   The `beq` branch at 0x100e30e8 targets 0x100e3140, is taken when a6(?) >= 0x22 (signed), and falls through when a6(?) < 0x22 (signed).
   The `beq` branch at 0x100e30f8 targets 0x100e3184, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x100e3108 targets 0x100e30bc, is taken when v1(?) != 0, and falls through when v1(?) == 0.
@@ -11065,7 +11065,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e3164 targets 0x100e2db8 and is always taken.
   The `beq` branch at 0x100e3170 targets 0x100e356c, is taken when a6(?) == ra(=0x21), and falls through when a6(?) != ra(=0x21).
   The `beq` branch at 0x100e317c targets 0x100e30d0 and is always taken.
-  The `bne` branch at 0x100e3184 targets 0x100e30cc, is taken when v0(=ret(hash_value)) != 0, and falls through when v0(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e3184 targets 0x100e30cc, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x100e318c targets 0x100e3104 and is always taken.
   The `bne` branch at 0x100e31cc targets 0x100e3230, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e3210 targets 0x100e36f4, is taken when t8(=[[sym(KONAINFO)]]) == s6(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != s6(=0x6).
@@ -11088,7 +11088,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e3548 targets 0x100e2bd8 and is always taken.
   The `beq` branch at 0x100e3550 targets 0x100e2bc0 and is always taken.
   The `beq` branch at 0x100e3564 targets 0x100e2bf4 and is always taken.
-  The `bne` branch at 0x100e356c targets 0x100e30cc, is taken when t8(=ret(hash_value)) != 0, and falls through when t8(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e356c targets 0x100e30cc, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0x100e3574 targets 0x100e317c and is always taken.
   The `bne` branch at 0x100e35b4 targets 0x100e3624, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e35fc targets 0x100e3874, is taken when t8(=[[sym(KONAINFO)]]) == s6(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != s6(=0x6).
@@ -11349,7 +11349,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e42a0 targets 0x100e4554, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e42ac targets 0x100e4544, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e42b4 targets 0x100e42cc, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e42c4 targets 0x100e4250, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e42c4 targets 0x100e4250, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e42cc targets 0x100e4250, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e42d4 targets 0x100e4254 and is always taken.
   The `bne` branch at 0x100e42dc targets 0x100e4294, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -11372,9 +11372,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e44e8 targets 0x100e4854, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e44f0 targets 0x100e4040, is taken when s0(?) != a2(=0x70), and falls through when s0(?) == a2(=0x70).
   The `beq` branch at 0x100e453c targets 0x100e4044 and is always taken.
-  The `bne` branch at 0x100e4544 targets 0x100e4250, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e4544 targets 0x100e4250, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e454c targets 0x100e42b4 and is always taken.
-  The `bne` branch at 0x100e4558 targets 0x100e4250, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e4558 targets 0x100e4250, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e4560 targets 0x100e42a8 and is always taken.
   The `beq` branch at 0x100e4590 targets 0x100e40b8 and is always taken.
   The `bne` branch at 0x100e45b0 targets 0x100e4618, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -11388,7 +11388,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e46ac targets 0x100e46a0, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e46d4 targets 0x100e414c and is always taken.
   The `beq` branch at 0x100e46ec targets 0x100e4ee4 and is always taken.
-  The `beq` branch at 0x100e4700 targets 0x100e4758, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e4700 targets 0x100e4758, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e4724 targets 0x100e4788, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e4738 targets 0x100e47c8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e474c targets 0x100e46f4, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -11401,7 +11401,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e47b0 targets 0x100e4314 and is always taken.
   The `beq` branch at 0x100e47b8 targets 0x100e492c, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e47c0 targets 0x100e470c and is always taken.
-  The `bne` branch at 0x100e47c8 targets 0x100e4708, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e47c8 targets 0x100e4708, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e47d0 targets 0x100e4744 and is always taken.
   The `bne` branch at 0x100e47f0 targets 0x100e4898, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e4830 targets 0x100e4a88, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -11416,7 +11416,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e490c targets 0x100e4494 and is always taken.
   The `beq` branch at 0x100e4914 targets 0x100e4480 and is always taken.
   The `beq` branch at 0x100e4924 targets 0x100e44c0 and is always taken.
-  The `bne` branch at 0x100e492c targets 0x100e4708, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e492c targets 0x100e4708, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e4934 targets 0x100e47c0 and is always taken.
   The `bne` branch at 0x100e4954 targets 0x100e49e0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e4994 targets 0x100e4b90, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -11638,7 +11638,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e5328 targets 0x100e55dc, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e5334 targets 0x100e55cc, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e533c targets 0x100e5354, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e534c targets 0x100e52d8, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e534c targets 0x100e52d8, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e5354 targets 0x100e52d8, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e535c targets 0x100e52dc and is always taken.
   The `bne` branch at 0x100e5364 targets 0x100e531c, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -11661,9 +11661,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e5570 targets 0x100e58dc, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e5578 targets 0x100e50c8, is taken when s0(?) != a2(=0x70), and falls through when s0(?) == a2(=0x70).
   The `beq` branch at 0x100e55c4 targets 0x100e50cc and is always taken.
-  The `bne` branch at 0x100e55cc targets 0x100e52d8, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e55cc targets 0x100e52d8, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e55d4 targets 0x100e533c and is always taken.
-  The `bne` branch at 0x100e55e0 targets 0x100e52d8, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e55e0 targets 0x100e52d8, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e55e8 targets 0x100e5330 and is always taken.
   The `beq` branch at 0x100e5618 targets 0x100e5140 and is always taken.
   The `bne` branch at 0x100e5638 targets 0x100e56a0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -11677,7 +11677,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e5734 targets 0x100e5728, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e575c targets 0x100e51d4 and is always taken.
   The `beq` branch at 0x100e5774 targets 0x100e5f6c and is always taken.
-  The `beq` branch at 0x100e5788 targets 0x100e57e0, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e5788 targets 0x100e57e0, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e57ac targets 0x100e5810, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e57c0 targets 0x100e5850, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e57d4 targets 0x100e577c, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -11690,7 +11690,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e5838 targets 0x100e539c and is always taken.
   The `beq` branch at 0x100e5840 targets 0x100e59b4, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e5848 targets 0x100e5794 and is always taken.
-  The `bne` branch at 0x100e5850 targets 0x100e5790, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e5850 targets 0x100e5790, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e5858 targets 0x100e57cc and is always taken.
   The `bne` branch at 0x100e5878 targets 0x100e5920, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e58b8 targets 0x100e5b10, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -11705,7 +11705,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e5994 targets 0x100e551c and is always taken.
   The `beq` branch at 0x100e599c targets 0x100e5508 and is always taken.
   The `beq` branch at 0x100e59ac targets 0x100e5548 and is always taken.
-  The `bne` branch at 0x100e59b4 targets 0x100e5790, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e59b4 targets 0x100e5790, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e59bc targets 0x100e5848 and is always taken.
   The `bne` branch at 0x100e59dc targets 0x100e5a68, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e5a1c targets 0x100e5c18, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -11927,7 +11927,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e63b4 targets 0x100e6668, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e63c0 targets 0x100e6658, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e63c8 targets 0x100e63e0, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e63d8 targets 0x100e6364, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e63d8 targets 0x100e6364, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e63e0 targets 0x100e6364, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e63e8 targets 0x100e6368 and is always taken.
   The `bne` branch at 0x100e63f0 targets 0x100e63a8, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -11950,9 +11950,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e65fc targets 0x100e6968, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e6604 targets 0x100e6154, is taken when s0(?) != a2(=0x3f80), and falls through when s0(?) == a2(=0x3f80).
   The `beq` branch at 0x100e6650 targets 0x100e6158 and is always taken.
-  The `bne` branch at 0x100e6658 targets 0x100e6364, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e6658 targets 0x100e6364, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e6660 targets 0x100e63c8 and is always taken.
-  The `bne` branch at 0x100e666c targets 0x100e6364, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e666c targets 0x100e6364, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e6674 targets 0x100e63bc and is always taken.
   The `beq` branch at 0x100e66a4 targets 0x100e61cc and is always taken.
   The `bne` branch at 0x100e66c4 targets 0x100e672c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -11966,7 +11966,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e67c0 targets 0x100e67b4, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e67e8 targets 0x100e6260 and is always taken.
   The `beq` branch at 0x100e6800 targets 0x100e6ff8 and is always taken.
-  The `beq` branch at 0x100e6814 targets 0x100e686c, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e6814 targets 0x100e686c, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e6838 targets 0x100e689c, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e684c targets 0x100e68dc, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e6860 targets 0x100e6808, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -11979,7 +11979,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e68c4 targets 0x100e6428 and is always taken.
   The `beq` branch at 0x100e68cc targets 0x100e6a40, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e68d4 targets 0x100e6820 and is always taken.
-  The `bne` branch at 0x100e68dc targets 0x100e681c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e68dc targets 0x100e681c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e68e4 targets 0x100e6858 and is always taken.
   The `bne` branch at 0x100e6904 targets 0x100e69ac, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e6944 targets 0x100e6b9c, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -11994,7 +11994,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e6a20 targets 0x100e65a8 and is always taken.
   The `beq` branch at 0x100e6a28 targets 0x100e6594 and is always taken.
   The `beq` branch at 0x100e6a38 targets 0x100e65d4 and is always taken.
-  The `bne` branch at 0x100e6a40 targets 0x100e681c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e6a40 targets 0x100e681c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e6a48 targets 0x100e68d4 and is always taken.
   The `bne` branch at 0x100e6a68 targets 0x100e6af4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e6aa8 targets 0x100e6ca4, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -12216,7 +12216,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e743c targets 0x100e76f0, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e7448 targets 0x100e76e0, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e7450 targets 0x100e7468, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e7460 targets 0x100e73ec, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e7460 targets 0x100e73ec, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e7468 targets 0x100e73ec, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e7470 targets 0x100e73f0 and is always taken.
   The `bne` branch at 0x100e7478 targets 0x100e7430, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -12239,9 +12239,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e7684 targets 0x100e79f0, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e768c targets 0x100e71dc, is taken when s0(?) != a2(=0x3f80), and falls through when s0(?) == a2(=0x3f80).
   The `beq` branch at 0x100e76d8 targets 0x100e71e0 and is always taken.
-  The `bne` branch at 0x100e76e0 targets 0x100e73ec, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e76e0 targets 0x100e73ec, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e76e8 targets 0x100e7450 and is always taken.
-  The `bne` branch at 0x100e76f4 targets 0x100e73ec, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e76f4 targets 0x100e73ec, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e76fc targets 0x100e7444 and is always taken.
   The `beq` branch at 0x100e772c targets 0x100e7254 and is always taken.
   The `bne` branch at 0x100e774c targets 0x100e77b4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -12255,7 +12255,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e7848 targets 0x100e783c, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e7870 targets 0x100e72e8 and is always taken.
   The `beq` branch at 0x100e7888 targets 0x100e8080 and is always taken.
-  The `beq` branch at 0x100e789c targets 0x100e78f4, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e789c targets 0x100e78f4, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e78c0 targets 0x100e7924, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e78d4 targets 0x100e7964, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e78e8 targets 0x100e7890, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -12268,7 +12268,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e794c targets 0x100e74b0 and is always taken.
   The `beq` branch at 0x100e7954 targets 0x100e7ac8, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e795c targets 0x100e78a8 and is always taken.
-  The `bne` branch at 0x100e7964 targets 0x100e78a4, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e7964 targets 0x100e78a4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e796c targets 0x100e78e0 and is always taken.
   The `bne` branch at 0x100e798c targets 0x100e7a34, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e79cc targets 0x100e7c24, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -12283,7 +12283,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e7aa8 targets 0x100e7630 and is always taken.
   The `beq` branch at 0x100e7ab0 targets 0x100e761c and is always taken.
   The `beq` branch at 0x100e7ac0 targets 0x100e765c and is always taken.
-  The `bne` branch at 0x100e7ac8 targets 0x100e78a4, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e7ac8 targets 0x100e78a4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e7ad0 targets 0x100e795c and is always taken.
   The `bne` branch at 0x100e7af0 targets 0x100e7b7c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e7b30 targets 0x100e7d2c, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -12505,7 +12505,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e84c4 targets 0x100e8778, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e84d0 targets 0x100e8768, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e84d8 targets 0x100e84f0, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e84e8 targets 0x100e8474, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e84e8 targets 0x100e8474, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e84f0 targets 0x100e8474, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e84f8 targets 0x100e8478 and is always taken.
   The `bne` branch at 0x100e8500 targets 0x100e84b8, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -12528,9 +12528,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e870c targets 0x100e8a78, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e8714 targets 0x100e8264, is taken when s0(?) != a2(=0x8e0), and falls through when s0(?) == a2(=0x8e0).
   The `beq` branch at 0x100e8760 targets 0x100e8268 and is always taken.
-  The `bne` branch at 0x100e8768 targets 0x100e8474, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e8768 targets 0x100e8474, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e8770 targets 0x100e84d8 and is always taken.
-  The `bne` branch at 0x100e877c targets 0x100e8474, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e877c targets 0x100e8474, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e8784 targets 0x100e84cc and is always taken.
   The `beq` branch at 0x100e87b4 targets 0x100e82dc and is always taken.
   The `bne` branch at 0x100e87d4 targets 0x100e883c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -12544,7 +12544,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e88d0 targets 0x100e88c4, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e88f8 targets 0x100e8370 and is always taken.
   The `beq` branch at 0x100e8910 targets 0x100e9108 and is always taken.
-  The `beq` branch at 0x100e8924 targets 0x100e897c, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e8924 targets 0x100e897c, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e8948 targets 0x100e89ac, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e895c targets 0x100e89ec, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e8970 targets 0x100e8918, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -12557,7 +12557,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e89d4 targets 0x100e8538 and is always taken.
   The `beq` branch at 0x100e89dc targets 0x100e8b50, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e89e4 targets 0x100e8930 and is always taken.
-  The `bne` branch at 0x100e89ec targets 0x100e892c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e89ec targets 0x100e892c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e89f4 targets 0x100e8968 and is always taken.
   The `bne` branch at 0x100e8a14 targets 0x100e8abc, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e8a54 targets 0x100e8cac, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -12572,7 +12572,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e8b30 targets 0x100e86b8 and is always taken.
   The `beq` branch at 0x100e8b38 targets 0x100e86a4 and is always taken.
   The `beq` branch at 0x100e8b48 targets 0x100e86e4 and is always taken.
-  The `bne` branch at 0x100e8b50 targets 0x100e892c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e8b50 targets 0x100e892c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e8b58 targets 0x100e89e4 and is always taken.
   The `bne` branch at 0x100e8b78 targets 0x100e8c04, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e8bb8 targets 0x100e8db4, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -12794,7 +12794,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e954c targets 0x100e9800, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100e9558 targets 0x100e97f0, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100e9560 targets 0x100e9578, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100e9570 targets 0x100e94fc, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100e9570 targets 0x100e94fc, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100e9578 targets 0x100e94fc, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100e9580 targets 0x100e9500 and is always taken.
   The `bne` branch at 0x100e9588 targets 0x100e9540, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -12817,9 +12817,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e9794 targets 0x100e9b00, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100e979c targets 0x100e92ec, is taken when s0(?) != a2(=0x110), and falls through when s0(?) == a2(=0x110).
   The `beq` branch at 0x100e97e8 targets 0x100e92f0 and is always taken.
-  The `bne` branch at 0x100e97f0 targets 0x100e94fc, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e97f0 targets 0x100e94fc, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e97f8 targets 0x100e9560 and is always taken.
-  The `bne` branch at 0x100e9804 targets 0x100e94fc, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e9804 targets 0x100e94fc, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e980c targets 0x100e9554 and is always taken.
   The `beq` branch at 0x100e983c targets 0x100e9364 and is always taken.
   The `bne` branch at 0x100e985c targets 0x100e98c4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -12833,7 +12833,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100e9958 targets 0x100e994c, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100e9980 targets 0x100e93f8 and is always taken.
   The `beq` branch at 0x100e9998 targets 0x100ea190 and is always taken.
-  The `beq` branch at 0x100e99ac targets 0x100e9a04, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100e99ac targets 0x100e9a04, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100e99d0 targets 0x100e9a34, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100e99e4 targets 0x100e9a74, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100e99f8 targets 0x100e99a0, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -12846,7 +12846,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e9a5c targets 0x100e95c0 and is always taken.
   The `beq` branch at 0x100e9a64 targets 0x100e9bd8, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100e9a6c targets 0x100e99b8 and is always taken.
-  The `bne` branch at 0x100e9a74 targets 0x100e99b4, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e9a74 targets 0x100e99b4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100e9a7c targets 0x100e99f0 and is always taken.
   The `bne` branch at 0x100e9a9c targets 0x100e9b44, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e9adc targets 0x100e9d34, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -12861,7 +12861,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100e9bb8 targets 0x100e9740 and is always taken.
   The `beq` branch at 0x100e9bc0 targets 0x100e972c and is always taken.
   The `beq` branch at 0x100e9bd0 targets 0x100e976c and is always taken.
-  The `bne` branch at 0x100e9bd8 targets 0x100e99b4, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100e9bd8 targets 0x100e99b4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100e9be0 targets 0x100e9a6c and is always taken.
   The `bne` branch at 0x100e9c00 targets 0x100e9c8c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100e9c40 targets 0x100e9e3c, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -13083,7 +13083,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ea5d4 targets 0x100ea888, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100ea5e0 targets 0x100ea878, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100ea5e8 targets 0x100ea600, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100ea5f8 targets 0x100ea584, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100ea5f8 targets 0x100ea584, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100ea600 targets 0x100ea584, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100ea608 targets 0x100ea588 and is always taken.
   The `bne` branch at 0x100ea610 targets 0x100ea5c8, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -13106,9 +13106,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100ea81c targets 0x100eab88, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100ea824 targets 0x100ea374, is taken when s0(?) != a2(=0x3f80), and falls through when s0(?) == a2(=0x3f80).
   The `beq` branch at 0x100ea870 targets 0x100ea378 and is always taken.
-  The `bne` branch at 0x100ea878 targets 0x100ea584, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ea878 targets 0x100ea584, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100ea880 targets 0x100ea5e8 and is always taken.
-  The `bne` branch at 0x100ea88c targets 0x100ea584, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ea88c targets 0x100ea584, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100ea894 targets 0x100ea5dc and is always taken.
   The `beq` branch at 0x100ea8c4 targets 0x100ea3ec and is always taken.
   The `bne` branch at 0x100ea8e4 targets 0x100ea94c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -13122,7 +13122,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100ea9e0 targets 0x100ea9d4, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100eaa08 targets 0x100ea480 and is always taken.
   The `beq` branch at 0x100eaa20 targets 0x100eb218 and is always taken.
-  The `beq` branch at 0x100eaa34 targets 0x100eaa8c, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100eaa34 targets 0x100eaa8c, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100eaa58 targets 0x100eaabc, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100eaa6c targets 0x100eaafc, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100eaa80 targets 0x100eaa28, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -13135,7 +13135,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eaae4 targets 0x100ea648 and is always taken.
   The `beq` branch at 0x100eaaec targets 0x100eac60, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100eaaf4 targets 0x100eaa40 and is always taken.
-  The `bne` branch at 0x100eaafc targets 0x100eaa3c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eaafc targets 0x100eaa3c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100eab04 targets 0x100eaa78 and is always taken.
   The `bne` branch at 0x100eab24 targets 0x100eabcc, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100eab64 targets 0x100eadbc, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -13150,7 +13150,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eac40 targets 0x100ea7c8 and is always taken.
   The `beq` branch at 0x100eac48 targets 0x100ea7b4 and is always taken.
   The `beq` branch at 0x100eac58 targets 0x100ea7f4 and is always taken.
-  The `bne` branch at 0x100eac60 targets 0x100eaa3c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eac60 targets 0x100eaa3c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100eac68 targets 0x100eaaf4 and is always taken.
   The `bne` branch at 0x100eac88 targets 0x100ead14, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100eacc8 targets 0x100eaec4, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -13372,7 +13372,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eb65c targets 0x100eb910, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100eb668 targets 0x100eb900, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100eb670 targets 0x100eb688, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100eb680 targets 0x100eb60c, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100eb680 targets 0x100eb60c, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100eb688 targets 0x100eb60c, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100eb690 targets 0x100eb610 and is always taken.
   The `bne` branch at 0x100eb698 targets 0x100eb650, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -13395,9 +13395,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100eb8a4 targets 0x100ebc10, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100eb8ac targets 0x100eb3fc, is taken when s0(?) != a2(=0x3f80), and falls through when s0(?) == a2(=0x3f80).
   The `beq` branch at 0x100eb8f8 targets 0x100eb400 and is always taken.
-  The `bne` branch at 0x100eb900 targets 0x100eb60c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eb900 targets 0x100eb60c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100eb908 targets 0x100eb670 and is always taken.
-  The `bne` branch at 0x100eb914 targets 0x100eb60c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eb914 targets 0x100eb60c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100eb91c targets 0x100eb664 and is always taken.
   The `beq` branch at 0x100eb94c targets 0x100eb474 and is always taken.
   The `bne` branch at 0x100eb96c targets 0x100eb9d4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -13411,7 +13411,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100eba68 targets 0x100eba5c, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100eba90 targets 0x100eb508 and is always taken.
   The `beq` branch at 0x100ebaa8 targets 0x100ec2a0 and is always taken.
-  The `beq` branch at 0x100ebabc targets 0x100ebb14, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100ebabc targets 0x100ebb14, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100ebae0 targets 0x100ebb44, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100ebaf4 targets 0x100ebb84, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100ebb08 targets 0x100ebab0, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -13424,7 +13424,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ebb6c targets 0x100eb6d0 and is always taken.
   The `beq` branch at 0x100ebb74 targets 0x100ebce8, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100ebb7c targets 0x100ebac8 and is always taken.
-  The `bne` branch at 0x100ebb84 targets 0x100ebac4, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ebb84 targets 0x100ebac4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100ebb8c targets 0x100ebb00 and is always taken.
   The `bne` branch at 0x100ebbac targets 0x100ebc54, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100ebbec targets 0x100ebe44, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -13439,7 +13439,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ebcc8 targets 0x100eb850 and is always taken.
   The `beq` branch at 0x100ebcd0 targets 0x100eb83c and is always taken.
   The `beq` branch at 0x100ebce0 targets 0x100eb87c and is always taken.
-  The `bne` branch at 0x100ebce8 targets 0x100ebac4, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ebce8 targets 0x100ebac4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100ebcf0 targets 0x100ebb7c and is always taken.
   The `bne` branch at 0x100ebd10 targets 0x100ebd9c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100ebd50 targets 0x100ebf4c, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -13661,7 +13661,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ec6e4 targets 0x100ec998, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100ec6f0 targets 0x100ec988, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100ec6f8 targets 0x100ec710, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100ec708 targets 0x100ec694, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100ec708 targets 0x100ec694, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100ec710 targets 0x100ec694, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100ec718 targets 0x100ec698 and is always taken.
   The `bne` branch at 0x100ec720 targets 0x100ec6d8, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -13684,9 +13684,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100ec92c targets 0x100ecc98, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100ec934 targets 0x100ec484, is taken when s0(?) != a2(=0x340), and falls through when s0(?) == a2(=0x340).
   The `beq` branch at 0x100ec980 targets 0x100ec488 and is always taken.
-  The `bne` branch at 0x100ec988 targets 0x100ec694, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ec988 targets 0x100ec694, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100ec990 targets 0x100ec6f8 and is always taken.
-  The `bne` branch at 0x100ec99c targets 0x100ec694, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ec99c targets 0x100ec694, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100ec9a4 targets 0x100ec6ec and is always taken.
   The `beq` branch at 0x100ec9d4 targets 0x100ec4fc and is always taken.
   The `bne` branch at 0x100ec9f4 targets 0x100eca5c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -13700,7 +13700,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100ecaf0 targets 0x100ecae4, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100ecb18 targets 0x100ec590 and is always taken.
   The `beq` branch at 0x100ecb30 targets 0x100ed328 and is always taken.
-  The `beq` branch at 0x100ecb44 targets 0x100ecb9c, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100ecb44 targets 0x100ecb9c, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100ecb68 targets 0x100ecbcc, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100ecb7c targets 0x100ecc0c, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100ecb90 targets 0x100ecb38, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -13713,7 +13713,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ecbf4 targets 0x100ec758 and is always taken.
   The `beq` branch at 0x100ecbfc targets 0x100ecd70, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100ecc04 targets 0x100ecb50 and is always taken.
-  The `bne` branch at 0x100ecc0c targets 0x100ecb4c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ecc0c targets 0x100ecb4c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100ecc14 targets 0x100ecb88 and is always taken.
   The `bne` branch at 0x100ecc34 targets 0x100eccdc, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100ecc74 targets 0x100ececc, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -13728,7 +13728,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ecd50 targets 0x100ec8d8 and is always taken.
   The `beq` branch at 0x100ecd58 targets 0x100ec8c4 and is always taken.
   The `beq` branch at 0x100ecd68 targets 0x100ec904 and is always taken.
-  The `bne` branch at 0x100ecd70 targets 0x100ecb4c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100ecd70 targets 0x100ecb4c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100ecd78 targets 0x100ecc04 and is always taken.
   The `bne` branch at 0x100ecd98 targets 0x100ece24, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100ecdd8 targets 0x100ecfd4, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -13950,7 +13950,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ed76c targets 0x100eda20, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100ed778 targets 0x100eda10, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100ed780 targets 0x100ed798, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100ed790 targets 0x100ed71c, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100ed790 targets 0x100ed71c, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100ed798 targets 0x100ed71c, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100ed7a0 targets 0x100ed720 and is always taken.
   The `bne` branch at 0x100ed7a8 targets 0x100ed760, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -13973,9 +13973,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100ed9b4 targets 0x100edd20, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100ed9bc targets 0x100ed50c, is taken when s0(?) != a2(=0x160), and falls through when s0(?) == a2(=0x160).
   The `beq` branch at 0x100eda08 targets 0x100ed510 and is always taken.
-  The `bne` branch at 0x100eda10 targets 0x100ed71c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eda10 targets 0x100ed71c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100eda18 targets 0x100ed780 and is always taken.
-  The `bne` branch at 0x100eda24 targets 0x100ed71c, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eda24 targets 0x100ed71c, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100eda2c targets 0x100ed774 and is always taken.
   The `beq` branch at 0x100eda5c targets 0x100ed584 and is always taken.
   The `bne` branch at 0x100eda7c targets 0x100edae4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -13989,7 +13989,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100edb78 targets 0x100edb6c, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100edba0 targets 0x100ed618 and is always taken.
   The `beq` branch at 0x100edbb8 targets 0x100ee3b0 and is always taken.
-  The `beq` branch at 0x100edbcc targets 0x100edc24, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100edbcc targets 0x100edc24, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100edbf0 targets 0x100edc54, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100edc04 targets 0x100edc94, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100edc18 targets 0x100edbc0, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -14002,7 +14002,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100edc7c targets 0x100ed7e0 and is always taken.
   The `beq` branch at 0x100edc84 targets 0x100eddf8, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100edc8c targets 0x100edbd8 and is always taken.
-  The `bne` branch at 0x100edc94 targets 0x100edbd4, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100edc94 targets 0x100edbd4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100edc9c targets 0x100edc10 and is always taken.
   The `bne` branch at 0x100edcbc targets 0x100edd64, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100edcfc targets 0x100edf54, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -14017,7 +14017,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eddd8 targets 0x100ed960 and is always taken.
   The `beq` branch at 0x100edde0 targets 0x100ed94c and is always taken.
   The `beq` branch at 0x100eddf0 targets 0x100ed98c and is always taken.
-  The `bne` branch at 0x100eddf8 targets 0x100edbd4, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eddf8 targets 0x100edbd4, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100ede00 targets 0x100edc8c and is always taken.
   The `bne` branch at 0x100ede20 targets 0x100edeac, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100ede60 targets 0x100ee05c, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -14250,7 +14250,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100ee840 targets 0x100eeaf4, is taken when a6(?) == a4(=0x8), and falls through when a6(?) != a4(=0x8).
   The `beq` branch at 0x100ee84c targets 0x100eeae4, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100ee854 targets 0x100ee86c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100ee864 targets 0x100ee7ec, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100ee864 targets 0x100ee7ec, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100ee86c targets 0x100ee7ec, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100ee874 targets 0x100ee7f0 and is always taken.
   The `bne` branch at 0x100ee87c targets 0x100ee834, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -14273,9 +14273,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100eea88 targets 0x100eee48, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100eea90 targets 0x100ee5dc, is taken when s0(?) != a2(=0x20), and falls through when s0(?) == a2(=0x20).
   The `beq` branch at 0x100eeadc targets 0x100ee5e0 and is always taken.
-  The `bne` branch at 0x100eeae4 targets 0x100ee7ec, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eeae4 targets 0x100ee7ec, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100eeaec targets 0x100ee854 and is always taken.
-  The `bne` branch at 0x100eeaf4 targets 0x100ee7ec, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eeaf4 targets 0x100ee7ec, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100eeafc targets 0x100ee848 and is always taken.
   The `beq` branch at 0x100eeb2c targets 0x100ee654 and is always taken.
   The `beq` branch at 0x100eeb4c targets 0x100eee84, is taken when v0(=ret(hash_lookup)) == 0, and falls through when v0(=ret(hash_lookup)) != 0.
@@ -14291,7 +14291,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100eeca0 targets 0x100eec94, is taken when a2(?) < 0x18 (signed), and falls through when a2(?) >= 0x18 (signed).
   The `beq` branch at 0x100eecc8 targets 0x100ee6e8 and is always taken.
   The `beq` branch at 0x100eece0 targets 0x100ef628 and is always taken.
-  The `beq` branch at 0x100eecf4 targets 0x100eed4c, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100eecf4 targets 0x100eed4c, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100eed18 targets 0x100eed7c, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100eed2c targets 0x100eedbc, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100eed40 targets 0x100eece8, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -14304,7 +14304,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eeda4 targets 0x100ee8b4 and is always taken.
   The `beq` branch at 0x100eedac targets 0x100eef74, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100eedb4 targets 0x100eed00 and is always taken.
-  The `bne` branch at 0x100eedbc targets 0x100eecfc, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eedbc targets 0x100eecfc, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100eedc4 targets 0x100eed38 and is always taken.
   The `bne` branch at 0x100eede4 targets 0x100eeee0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100eee24 targets 0x100ef120, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -14321,7 +14321,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eef54 targets 0x100eea34 and is always taken.
   The `beq` branch at 0x100eef5c targets 0x100eea20 and is always taken.
   The `beq` branch at 0x100eef6c targets 0x100eea60 and is always taken.
-  The `bne` branch at 0x100eef74 targets 0x100eecfc, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eef74 targets 0x100eecfc, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100eef7c targets 0x100eedb4 and is always taken.
   The `bne` branch at 0x100eef9c targets 0x100ef024, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100eefdc targets 0x100ef228, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -14548,7 +14548,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100efa70 targets 0x100efd24, is taken when a6(?) == v1(=0x8), and falls through when a6(?) != v1(=0x8).
   The `beq` branch at 0x100efa7c targets 0x100efd14, is taken when a6(?) == t8(=0x9), and falls through when a6(?) != t8(=0x9).
   The `beq` branch at 0x100efa84 targets 0x100efa9c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `bne` branch at 0x100efa94 targets 0x100efa20, is taken when (t9(=ret(hash_value)) & at(?)) != 0, and falls through when (t9(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100efa94 targets 0x100efa20, is taken when (t9(?) & at(?)) != 0, and falls through when (t9(?) & at(?)) == 0.
   The `bne` branch at 0x100efa9c targets 0x100efa20, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x100efaa4 targets 0x100efa24 and is always taken.
   The `bne` branch at 0x100efaac targets 0x100efa64, is taken when a6(?) != v1(=0x18), and falls through when a6(?) == v1(=0x18).
@@ -14571,9 +14571,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100efcb8 targets 0x100f0024, is taken when s0(?) != a1(?), and falls through when s0(?) == a1(?).
   The `bne` branch at 0x100efcc0 targets 0x100ef810, is taken when s0(?) != a2(=0x70), and falls through when s0(?) == a2(=0x70).
   The `beq` branch at 0x100efd0c targets 0x100ef814 and is always taken.
-  The `bne` branch at 0x100efd14 targets 0x100efa20, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100efd14 targets 0x100efa20, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100efd1c targets 0x100efa84 and is always taken.
-  The `bne` branch at 0x100efd28 targets 0x100efa20, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100efd28 targets 0x100efa20, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100efd30 targets 0x100efa78 and is always taken.
   The `beq` branch at 0x100efd60 targets 0x100ef888 and is always taken.
   The `bne` branch at 0x100efd80 targets 0x100efde8, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -14587,7 +14587,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100efe7c targets 0x100efe70, is taken when a1(?) < 0x18 (signed), and falls through when a1(?) >= 0x18 (signed).
   The `beq` branch at 0x100efea4 targets 0x100ef91c and is always taken.
   The `beq` branch at 0x100efebc targets 0x100f06b4 and is always taken.
-  The `beq` branch at 0x100efed0 targets 0x100eff28, is taken when (at(=ret(hash_value)) & v1(?)) == 0, and falls through when (at(=ret(hash_value)) & v1(?)) != 0.
+  The `beq` branch at 0x100efed0 targets 0x100eff28, is taken when (at(?) & v1(?)) == 0, and falls through when (at(?) & v1(?)) != 0.
   The `beq` branch at 0x100efef4 targets 0x100eff58, is taken when a1(?) >= 0x22 (signed), and falls through when a1(?) < 0x22 (signed).
   The `beq` branch at 0x100eff08 targets 0x100eff98, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `bne` branch at 0x100eff1c targets 0x100efec4, is taken when t0(?) != 0, and falls through when t0(?) == 0.
@@ -14600,7 +14600,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100eff80 targets 0x100efae4 and is always taken.
   The `beq` branch at 0x100eff88 targets 0x100f00fc, is taken when a1(?) == at(=0x21), and falls through when a1(?) != at(=0x21).
   The `beq` branch at 0x100eff90 targets 0x100efedc and is always taken.
-  The `bne` branch at 0x100eff98 targets 0x100efed8, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100eff98 targets 0x100efed8, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100effa0 targets 0x100eff14 and is always taken.
   The `bne` branch at 0x100effc0 targets 0x100f0068, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f0000 targets 0x100f0258, is taken when a5(=[[sym(KONAINFO)]]) == a3(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a3(=0x6).
@@ -14615,7 +14615,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f00dc targets 0x100efc64 and is always taken.
   The `beq` branch at 0x100f00e4 targets 0x100efc50 and is always taken.
   The `beq` branch at 0x100f00f4 targets 0x100efc90 and is always taken.
-  The `bne` branch at 0x100f00fc targets 0x100efed8, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f00fc targets 0x100efed8, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f0104 targets 0x100eff90 and is always taken.
   The `bne` branch at 0x100f0124 targets 0x100f01b0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f0164 targets 0x100f0360, is taken when a5(=[[sym(KONAINFO)]]) == a2(=0x6), and falls through when a5(=[[sym(KONAINFO)]]) != a2(=0x6).
@@ -14857,16 +14857,16 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f0d54 targets 0x100f0e24, is taken when a5(?) == a3(=0x8), and falls through when a5(?) != a3(=0x8).
   The `beq` branch at 0x100f0d5c targets 0x100f0e14, is taken when a5(?) == a1(=0x9), and falls through when a5(?) != a1(=0x9).
   The `beq` branch at 0x100f0d64 targets 0x100f0d78, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `bne` branch at 0x100f0d70 targets 0x100f0d0c, is taken when (t9(=ret(hash_value)) & a4(?)) != 0, and falls through when (t9(=ret(hash_value)) & a4(?)) == 0.
+  The `bne` branch at 0x100f0d70 targets 0x100f0d0c, is taken when (t9(?) & a4(?)) != 0, and falls through when (t9(?) & a4(?)) == 0.
   The `bne` branch at 0x100f0d78 targets 0x100f0d0c, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x100f0d84 targets 0x100f0d10 and is always taken.
   The `bne` branch at 0x100f0d8c targets 0x100f0d4c, is taken when a5(?) != at(=0x18), and falls through when a5(?) == at(=0x18).
   The `beq` branch at 0x100f0d94 targets 0x100f0da0 and is always taken.
   The `beq` branch at 0x100f0da0 targets 0x100f1050, is taken when t3(=[[sym(KONAINFO)]]) == s5(=0x6), and falls through when t3(=[[sym(KONAINFO)]]) != s5(=0x6).
   The `beq` branch at 0x100f0e0c targets 0x100f0cf0 and is always taken.
-  The `bne` branch at 0x100f0e14 targets 0x100f0d0c, is taken when ra(=ret(hash_value)) != 0, and falls through when ra(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f0e14 targets 0x100f0d0c, is taken when ra(?) != 0, and falls through when ra(?) == 0.
   The `beq` branch at 0x100f0e1c targets 0x100f0d64 and is always taken.
-  The `bne` branch at 0x100f0e28 targets 0x100f0d0c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f0e28 targets 0x100f0d0c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f0e30 targets 0x100f0d5c and is always taken.
   The `bne` branch at 0x100f0e5c targets 0x100f0ed8, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f0ea4 targets 0x100f133c, is taken when t3(=[[sym(KONAINFO)]]) == s5(=0x6), and falls through when t3(=[[sym(KONAINFO)]]) != s5(=0x6).
@@ -14879,7 +14879,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f0f80 targets 0x100f0f74, is taken when a6(?) < 0x18 (signed), and falls through when a6(?) >= 0x18 (signed).
   The `beq` branch at 0x100f0fa4 targets 0x100f0c34 and is always taken.
   The `beq` branch at 0x100f0fbc targets 0x100f19a8 and is always taken.
-  The `beq` branch at 0x100f0fcc targets 0x100f101c, is taken when (v0(=ret(hash_value)) & at(?)) == 0, and falls through when (v0(=ret(hash_value)) & at(?)) != 0.
+  The `beq` branch at 0x100f0fcc targets 0x100f101c, is taken when (v0(?) & at(?)) == 0, and falls through when (v0(?) & at(?)) != 0.
   The `beq` branch at 0x100f0ff0 targets 0x100f1044, is taken when a5(?) >= 0x22 (signed), and falls through when a5(?) < 0x22 (signed).
   The `beq` branch at 0x100f1000 targets 0x100f108c, is taken when a5(?) == 0, and falls through when a5(?) != 0.
   The `bne` branch at 0x100f1010 targets 0x100f0fc4, is taken when a0(?) != 0, and falls through when a0(?) == 0.
@@ -14892,7 +14892,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f106c targets 0x100f0dc4 and is always taken.
   The `beq` branch at 0x100f1078 targets 0x100f1290, is taken when a5(?) == ra(=0x21), and falls through when a5(?) != ra(=0x21).
   The `beq` branch at 0x100f1084 targets 0x100f0fd8 and is always taken.
-  The `bne` branch at 0x100f108c targets 0x100f0fd4, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f108c targets 0x100f0fd4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100f1094 targets 0x100f100c and is always taken.
   The `bne` branch at 0x100f10c0 targets 0x100f1184, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f1110 targets 0x100f1440, is taken when t3(=[[sym(KONAINFO)]]) == s5(=0x6), and falls through when t3(=[[sym(KONAINFO)]]) != s5(=0x6).
@@ -14908,7 +14908,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f1218 targets 0x100f0b40 and is always taken.
   The `beq` branch at 0x100f122c targets 0x100f0b80 and is always taken.
   The `beq` branch at 0x100f1288 targets 0x100f0bc4 and is always taken.
-  The `bne` branch at 0x100f1294 targets 0x100f0fd4, is taken when ra(=ret(hash_value)) != 0, and falls through when ra(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f1294 targets 0x100f0fd4, is taken when ra(?) != 0, and falls through when ra(?) == 0.
   The `beq` branch at 0x100f129c targets 0x100f1080 and is always taken.
   The `bne` branch at 0x100f12c8 targets 0x100f1344, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f131c targets 0x100f1574, is taken when t3(=[[sym(KONAINFO)]]) == s5(=0x6), and falls through when t3(=[[sym(KONAINFO)]]) != s5(=0x6).
@@ -15118,7 +15118,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f1fdc targets 0x100f20d8, is taken when a6(?) == a3(=0x8), and falls through when a6(?) != a3(=0x8).
   The `beq` branch at 0x100f1fe4 targets 0x100f20c8, is taken when a6(?) == a1(=0x9), and falls through when a6(?) != a1(=0x9).
   The `beq` branch at 0x100f1fec targets 0x100f2000, is taken when s1(?) == 0, and falls through when s1(?) != 0.
-  The `bne` branch at 0x100f1ff8 targets 0x100f1f98, is taken when (t9(=ret(hash_value)) & ra(?)) != 0, and falls through when (t9(=ret(hash_value)) & ra(?)) == 0.
+  The `bne` branch at 0x100f1ff8 targets 0x100f1f98, is taken when (t9(?) & ra(?)) != 0, and falls through when (t9(?) & ra(?)) == 0.
   The `bne` branch at 0x100f2000 targets 0x100f1f98, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x100f200c targets 0x100f1f9c and is always taken.
   The `bne` branch at 0x100f2014 targets 0x100f1fd4, is taken when a6(?) != s4(=0x1), and falls through when a6(?) == s4(=0x1).
@@ -15126,9 +15126,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f2028 targets 0x100f22e0, is taken when s5(=[[sym(KONAINFO)]]) == v0(=0x6), and falls through when s5(=[[sym(KONAINFO)]]) != v0(=0x6).
   The `bne` branch at 0x100f20b4 targets 0x100f2130, is taken when v0(=ret(hash_lookup)) != 0, and falls through when v0(=ret(hash_lookup)) == 0.
   The `beq` branch at 0x100f20c0 targets 0x100f1f7c and is always taken.
-  The `bne` branch at 0x100f20c8 targets 0x100f1f98, is taken when ra(=ret(hash_value)) != 0, and falls through when ra(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f20c8 targets 0x100f1f98, is taken when ra(?) != 0, and falls through when ra(?) == 0.
   The `beq` branch at 0x100f20d0 targets 0x100f1fec and is always taken.
-  The `bne` branch at 0x100f20dc targets 0x100f1f98, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f20dc targets 0x100f1f98, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f20e4 targets 0x100f1fe4 and is always taken.
   The `bne` branch at 0x100f2110 targets 0x100f21fc, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f2128 targets 0x100f1dec and is always taken.
@@ -15136,7 +15136,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f2220 targets 0x100f2444, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f2238 targets 0x100f1dec and is always taken.
   The `beq` branch at 0x100f224c targets 0x100f2a10 and is always taken.
-  The `beq` branch at 0x100f225c targets 0x100f22ac, is taken when (a0(=ret(hash_value)) & a4(?)) == 0, and falls through when (a0(=ret(hash_value)) & a4(?)) != 0.
+  The `beq` branch at 0x100f225c targets 0x100f22ac, is taken when (a0(?) & a4(?)) == 0, and falls through when (a0(?) & a4(?)) != 0.
   The `beq` branch at 0x100f2280 targets 0x100f22d4, is taken when a6(?) >= 0x22 (signed), and falls through when a6(?) < 0x22 (signed).
   The `beq` branch at 0x100f2290 targets 0x100f2434, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x100f22a0 targets 0x100f2254, is taken when s1(?) != 0, and falls through when s1(?) == 0.
@@ -15150,7 +15150,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f2418 targets 0x100f204c and is always taken.
   The `beq` branch at 0x100f2420 targets 0x100f2694, is taken when a6(?) == a3(=0x21), and falls through when a6(?) != a3(=0x21).
   The `beq` branch at 0x100f242c targets 0x100f2268 and is always taken.
-  The `bne` branch at 0x100f2434 targets 0x100f2264, is taken when a2(=ret(hash_value)) != 0, and falls through when a2(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f2434 targets 0x100f2264, is taken when a2(?) != 0, and falls through when a2(?) == 0.
   The `beq` branch at 0x100f243c targets 0x100f229c and is always taken.
   The `bne` branch at 0x100f2468 targets 0x100f25f4, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f2480 targets 0x100f1dec and is always taken.
@@ -15161,7 +15161,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f2618 targets 0x100f26a8, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f2630 targets 0x100f1dec and is always taken.
   The `beq` branch at 0x100f268c targets 0x100f1e30 and is always taken.
-  The `bne` branch at 0x100f2698 targets 0x100f2264, is taken when ra(=ret(hash_value)) != 0, and falls through when ra(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f2698 targets 0x100f2264, is taken when ra(?) != 0, and falls through when ra(?) == 0.
   The `beq` branch at 0x100f26a0 targets 0x100f2428 and is always taken.
   The `bne` branch at 0x100f26cc targets 0x100f26ec, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f26e4 targets 0x100f1dec and is always taken.
@@ -15338,7 +15338,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f2f0c targets 0x100f313c, is taken when a6(?) == a4(=0x8), and falls through when a6(?) != a4(=0x8).
   The `beq` branch at 0x100f2f18 targets 0x100f312c, is taken when a6(?) == a5(=0x9), and falls through when a6(?) != a5(=0x9).
   The `beq` branch at 0x100f2f20 targets 0x100f2f38, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `bne` branch at 0x100f2f30 targets 0x100f2eb8, is taken when (at(=ret(hash_value)) & v1(?)) != 0, and falls through when (at(=ret(hash_value)) & v1(?)) == 0.
+  The `bne` branch at 0x100f2f30 targets 0x100f2eb8, is taken when (at(?) & v1(?)) != 0, and falls through when (at(?) & v1(?)) == 0.
   The `bne` branch at 0x100f2f38 targets 0x100f2eb8, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x100f2f40 targets 0x100f2ebc and is always taken.
   The `bne` branch at 0x100f2f48 targets 0x100f2f04, is taken when a6(?) != s1(=0x1), and falls through when a6(?) == s1(=0x1).
@@ -15356,9 +15356,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f30d0 targets 0x100f333c, is taken when s1(?) != a1(?), and falls through when s1(?) == a1(?).
   The `bne` branch at 0x100f30d8 targets 0x100f2c68, is taken when s1(?) != a2(=0x5c0), and falls through when s1(?) == a2(=0x5c0).
   The `beq` branch at 0x100f3124 targets 0x100f2c6c and is always taken.
-  The `bne` branch at 0x100f312c targets 0x100f2eb8, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f312c targets 0x100f2eb8, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f3134 targets 0x100f2f20 and is always taken.
-  The `bne` branch at 0x100f313c targets 0x100f2eb8, is taken when v1(=ret(hash_value)) != 0, and falls through when v1(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f313c targets 0x100f2eb8, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x100f3144 targets 0x100f2f14 and is always taken.
   The `beq` branch at 0x100f3174 targets 0x100f2cf8 and is always taken.
   The `beq` branch at 0x100f3194 targets 0x100f34c4, is taken when v0(=ret(hash_lookup)) == 0, and falls through when v0(=ret(hash_lookup)) != 0.
@@ -15368,7 +15368,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f320c targets 0x100f3310, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f3218 targets 0x100f30a8 and is always taken.
   The `beq` branch at 0x100f3224 targets 0x100f3be0 and is always taken.
-  The `beq` branch at 0x100f3238 targets 0x100f3290, is taken when (a4(=ret(hash_value)) & a5(?)) == 0, and falls through when (a4(=ret(hash_value)) & a5(?)) != 0.
+  The `beq` branch at 0x100f3238 targets 0x100f3290, is taken when (a4(?) & a5(?)) == 0, and falls through when (a4(?) & a5(?)) != 0.
   The `beq` branch at 0x100f325c targets 0x100f32bc, is taken when a6(?) >= 0x22 (signed), and falls through when a6(?) < 0x22 (signed).
   The `beq` branch at 0x100f3270 targets 0x100f3300, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x100f3284 targets 0x100f322c, is taken when t3(?) != 0, and falls through when t3(?) == 0.
@@ -15381,7 +15381,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f32e8 targets 0x100f2f7c and is always taken.
   The `beq` branch at 0x100f32f0 targets 0x100f3538, is taken when a6(?) == at(=0x21), and falls through when a6(?) != at(=0x21).
   The `beq` branch at 0x100f32f8 targets 0x100f3244 and is always taken.
-  The `bne` branch at 0x100f3300 targets 0x100f3240, is taken when v0(=ret(hash_value)) != 0, and falls through when v0(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f3300 targets 0x100f3240, is taken when v0(?) != 0, and falls through when v0(?) == 0.
   The `beq` branch at 0x100f3308 targets 0x100f327c and is always taken.
   The `bne` branch at 0x100f3328 targets 0x100f350c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f3334 targets 0x100f30a8 and is always taken.
@@ -15393,7 +15393,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f3504 targets 0x100f2aac and is always taken.
   The `bne` branch at 0x100f3524 targets 0x100f3548, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f3530 targets 0x100f30a8 and is always taken.
-  The `bne` branch at 0x100f3538 targets 0x100f3240, is taken when a4(=ret(hash_value)) != 0, and falls through when a4(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f3538 targets 0x100f3240, is taken when a4(?) != 0, and falls through when a4(?) == 0.
   The `beq` branch at 0x100f3540 targets 0x100f32f8 and is always taken.
   The `bne` branch at 0x100f3560 targets 0x100f3590, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f356c targets 0x100f30a8 and is always taken.
@@ -15637,7 +15637,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f41bc targets 0x100f4434, is taken when a6(?) == t2(=0x8), and falls through when a6(?) != t2(=0x8).
   The `beq` branch at 0x100f41c4 targets 0x100f4424, is taken when a6(?) == t9(=0x9), and falls through when a6(?) != t9(=0x9).
   The `beq` branch at 0x100f41cc targets 0x100f41e4, is taken when s5(?) == 0, and falls through when s5(?) != 0.
-  The `bne` branch at 0x100f41dc targets 0x100f4170, is taken when (t8(=ret(hash_value)) & at(?)) != 0, and falls through when (t8(=ret(hash_value)) & at(?)) == 0.
+  The `bne` branch at 0x100f41dc targets 0x100f4170, is taken when (t8(?) & at(?)) != 0, and falls through when (t8(?) & at(?)) == 0.
   The `bne` branch at 0x100f41e4 targets 0x100f4170, is taken when t2(?) != 0, and falls through when t2(?) == 0.
   The `beq` branch at 0x100f41f0 targets 0x100f4174 and is always taken.
   The `bne` branch at 0x100f41f8 targets 0x100f41b0, is taken when a6(?) != a4(=0x18), and falls through when a6(?) == a4(=0x18).
@@ -15653,9 +15653,9 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f4408 targets 0x100f40a0, is taken when s2(?) >= 0x7f80 (signed), and falls through when s2(?) < 0x7f80 (signed).
   The `blez` branch at 0x100f4410 targets 0x100f3f74, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
   The `beq` branch at 0x100f441c targets 0x100f5300 and is always taken.
-  The `bne` branch at 0x100f4424 targets 0x100f4170, is taken when t8(=ret(hash_value)) != 0, and falls through when t8(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f4424 targets 0x100f4170, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0x100f442c targets 0x100f41cc and is always taken.
-  The `bne` branch at 0x100f4434 targets 0x100f4170, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f4434 targets 0x100f4170, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f443c targets 0x100f41c4 and is always taken.
   The `bne` branch at 0x100f4470 targets 0x100f4710, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f44b8 targets 0x100f4c78, is taken when t8(=[[sym(KONAINFO)]]) == a1(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != a1(=0x6).
@@ -15664,7 +15664,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `bne` branch at 0x100f44f8 targets 0x100f44ec, is taken when a6(?) < 0x18 (signed), and falls through when a6(?) >= 0x18 (signed).
   The `beq` branch at 0x100f451c targets 0x100f412c and is always taken.
   The `beq` branch at 0x100f4534 targets 0x100f5310 and is always taken.
-  The `beq` branch at 0x100f4544 targets 0x100f4598, is taken when (a1(=ret(hash_value)) & at(?)) == 0, and falls through when (a1(=ret(hash_value)) & at(?)) != 0.
+  The `beq` branch at 0x100f4544 targets 0x100f4598, is taken when (a1(?) & at(?)) == 0, and falls through when (a1(?) & at(?)) != 0.
   The `beq` branch at 0x100f4568 targets 0x100f45c4, is taken when a6(?) >= 0x22 (signed), and falls through when a6(?) < 0x22 (signed).
   The `beq` branch at 0x100f4578 targets 0x100f4700, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x100f458c targets 0x100f453c, is taken when a6(?) < 0x15 (signed), and falls through when a6(?) >= 0x15 (signed).
@@ -15679,7 +15679,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f46e0 targets 0x100f4230 and is always taken.
   The `beq` branch at 0x100f46ec targets 0x100f4bc4, is taken when a6(?) == a4(=0x21), and falls through when a6(?) != a4(=0x21).
   The `beq` branch at 0x100f46f8 targets 0x100f4550 and is always taken.
-  The `bne` branch at 0x100f4700 targets 0x100f454c, is taken when at(=ret(hash_value)) != 0, and falls through when at(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f4700 targets 0x100f454c, is taken when at(?) != 0, and falls through when at(?) == 0.
   The `beq` branch at 0x100f4708 targets 0x100f4584 and is always taken.
   The `bne` branch at 0x100f473c targets 0x100f47b0, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f478c targets 0x100f4d54, is taken when t8(=[[sym(KONAINFO)]]) == a1(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != a1(=0x6).
@@ -15705,7 +15705,7 @@ Skipped routines: `Ioctl` in `usr/gfx/arch/IP27KONA32/libGL.so` (no inventory ad
   The `beq` branch at 0x100f4ba0 targets 0x100f404c and is always taken.
   The `beq` branch at 0x100f4ba8 targets 0x100f4034 and is always taken.
   The `beq` branch at 0x100f4bbc targets 0x100f406c and is always taken.
-  The `bne` branch at 0x100f4bc4 targets 0x100f454c, is taken when t8(=ret(hash_value)) != 0, and falls through when t8(=ret(hash_value)) == 0.
+  The `bne` branch at 0x100f4bc4 targets 0x100f454c, is taken when t8(?) != 0, and falls through when t8(?) == 0.
   The `beq` branch at 0x100f4bcc targets 0x100f46f8 and is always taken.
   The `bne` branch at 0x100f4c0c targets 0x100f4c80, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
   The `beq` branch at 0x100f4c58 targets 0x100f4ed8, is taken when t8(=[[sym(KONAINFO)]]) == a1(=0x6), and falls through when t8(=[[sym(KONAINFO)]]) != a1(=0x6).

@@ -491,7 +491,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x1007c588 calls ioctl with a0=[sym(pipeFD)], a1=0x2774, a2=sp-168, a3=?.
   The `jal` at 0x1007c644 calls kt_output_trce [0x10046b88] with a0=0x1019af38, a1=?, a2=?, a3=0x1.
   The `jal` at 0x1007c668 calls ged_set_ge [0x10037370] with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=[a0+116], a2=?, a3=?.
+  The `jal` at 0x1007c678 calls bef_configuration [0x10035cd0] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c6a4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c6b8 calls ge11_bypass_write [0x10037874] with a0=0x0, a1=0x1, a2=?, a3=?.
   The `jal` at 0x1007c6c4 calls set_ge11_bypass_pointer [0x100377c4] with a0=0x40004, a1=?, a2=?, a3=?.
@@ -501,8 +501,8 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1007c780 calls destroy_map_diag [0x10037218] with a0=0x0, a1=ret(memalign), a2=0x1, a3=?.
   The `jalr` at 0x1007c794 calls free with a0=ret(memalign), a1=?, a2=?, a3=?.
   The `jal` at 0x1007c7a8 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
-  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=[a0+116].
+  The `jal` at 0x1007c7c0 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
+  The `jal` at 0x1007c810 calls kt_code_chip [0x1004797c] with a0=?, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007c82c calls kt_output_diag [0x100461b0] with a0=0x1019afa0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c880 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x4, a3=?.
   The `jal` at 0x1007c8a4 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019afb8, a2=?, a3=?.
@@ -510,25 +510,25 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jal` at 0x1007c920 calls kt_output_diag [0x100461b0] with a0=0x1019aee0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c944 calls kt_output_rslt [0x10045978] with a0=0x0, a1=0x1019af18, a2=?, a3=?.
   The `jal` at 0x1007c958 calls ged_set_ge [0x10037370] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=[a0+116], a2=?, a3=?.
+  The `jal` at 0x1007c970 calls bef_configuration [0x10035cd0] with a0=0x0, a1=?, a2=?, a3=?.
   The `jal` at 0x1007c990 calls kt_code_result [0x10048068] with a0=0x1, a1=0x0, a2=0x1, a3=?.
   The `jal` at 0x1007c9a8 calls kt_output_rslt [0x10045978] with a0=0x1, a1=0x0, a2=?, a3=?.
   The `beq` branch at 0x1007c544 targets 0x1007c8e0, is taken when t8(=[a0+116]) >= 0x5 (signed), and falls through when t8(=[a0+116]) < 0x5 (signed).
   The `bltz` branch at 0x1007c594 targets 0x1007c908, is taken when v0(=ret(ioctl)) < 0 (signed), and falls through when v0(=ret(ioctl)) >= 0 (signed).
-  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(=[a0+116]) <= 0 (signed), and falls through when v1(=[a0+116]) > 0 (signed).
+  The `blez` branch at 0x1007c5a4 targets 0x1007c8fc, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `beq` branch at 0x1007c5f0 targets 0x1007c9b8 and is always taken.
-  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(=[a0+116]) (signed), and falls through when s7(?) < t8(=[a0+116]) (signed).
+  The `beq` branch at 0x1007c608 targets 0x1007c768, is taken when s7(?) >= t8(?) (signed), and falls through when s7(?) < t8(?) (signed).
   The `beq` branch at 0x1007c61c targets 0x1007c600, is taken when (t9(=[a0+120]) & v0(?)) == 0, and falls through when (t9(=[a0+120]) & v0(?)) != 0.
   The `beq` branch at 0x1007c684 targets 0x1007c69c and is always taken.
   The `beq` branch at 0x1007c694 targets 0x1007c5f8, is taken when s8(?) >= 0x9 (signed), and falls through when s8(?) < 0x9 (signed).
   The `beq` branch at 0x1007c720 targets 0x1007c68c, is taken when a3(?) == a2(?), and falls through when a3(?) != a2(?).
   The `beq` branch at 0x1007c760 targets 0x1007c690 and is always taken.
   The `beq` branch at 0x1007c7c8 targets 0x1007c980, is taken when s0(?) == 0, and falls through when s0(?) != 0.
-  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(=[a0+116]) <= 0 (signed), and falls through when ra(=[a0+116]) > 0 (signed).
+  The `blez` branch at 0x1007c7d4 targets 0x1007c870, is taken when ra(?) <= 0 (signed), and falls through when ra(?) > 0 (signed).
   The `beq` branch at 0x1007c7fc targets 0x1007c848 and is always taken.
-  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(=[a0+116]) (signed), and falls through when s1(?) < a1(=[a0+116]) (signed).
+  The `beq` branch at 0x1007c840 targets 0x1007c86c, is taken when s1(?) >= a1(?) (signed), and falls through when s1(?) < a1(?) (signed).
   The `bne` branch at 0x1007c854 targets 0x1007c804, is taken when (s0(?) & a2(?)) != 0, and falls through when (s0(?) & a2(?)) == 0.
-  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(=[a0+116]) (signed), and falls through when s1(?) >= a3(=[a0+116]) (signed).
+  The `bne` branch at 0x1007c864 targets 0x1007c848, is taken when s1(?) < a3(?) (signed), and falls through when s1(?) >= a3(?) (signed).
   The `beq` branch at 0x1007c8f4 targets 0x1007c550 and is always taken.
   The `beq` branch at 0x1007c900 targets 0x1007c768 and is always taken.
   The `beq` branch at 0x1007c978 targets 0x1007c8b0 and is always taken.
@@ -1090,34 +1090,34 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `sb` at 0x10114598 stores 1 byte to a1 (arg1 at entry) +0x8.
   The `lbu` at 0x10114660 loads 1 byte from a1 (arg1 at entry) +0x0.
   The `lw` at 0x10114678 loads 4 bytes from a1 (arg1 at entry) +0x4.
-  The `jalr` at 0x101144d8 calls (unknown callee) with a0=0x102c7268, a1=sp-168, a2=[0x102c7268], a3=?, a7=0x102c7268.
+  The `jalr` at 0x101144d8 calls (unknown callee) with a0=?, a1=sp-168, a2=[0x102c7268], a3=?.
   The `jalr` at 0x10114560 calls (unknown callee) with a0=?, a1=?, a2=a1 at entry (arg1), a3=0x20.
   The `jalr` at 0x10114594 calls times with a0=sp-184, a1=?, a2=?, a3=?, a4=[0x102c5d70].
   The `jalr` at 0x101145e0 calls memmove with a0=?, a1=a1 at entry (arg1), a2=0x20, a3=0x1, a6=table(0x102c5d40), a7=entry(0x102c6750).
   The `jal` at 0x10114608 calls AllocateOutputBuffer [0x100c1f40] with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101146ec calls (unknown callee) with a0=0x102c7268, a1=sp-168, a2=[0x102c7268], a3=?, a7=0x102c7268.
+  The `jalr` at 0x101146ec calls (unknown callee) with a0=?, a1=sp-168, a2=[0x102c7268], a3=?.
   The `jal` at 0x10114704 calls sgiCheckCloneBuffer..NM [0x1011fef0] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10114728 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10114740 calls (unknown callee) with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10114748 calls _XSERVTransFreeConnInfo [0x100d3a20] with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0x101142dc targets 0x10114448, is taken when a4(=[0x102c5d70]) < 0x2 (signed), and falls through when a4(=[0x102c5d70]) >= 0x2 (signed).
   The `beq` branch at 0x10114304 targets 0x10114340 and is always taken.
-  The `beq` branch at 0x10114310 targets 0x10114468, is taken when s4(=one of 0x0, 0x1) == 0, and falls through when s4(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x10114310 targets 0x10114468, is taken when s4(?) == 0, and falls through when s4(?) != 0.
   The `beq` branch at 0x10114338 targets 0x10114438, is taken when s1(?) >= a4(=[0x102c5d70]) (signed), and falls through when s1(?) < a4(=[0x102c5d70]) (signed).
   The `beq` branch at 0x1011434c targets 0x10114330, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `bne` branch at 0x10114358 targets 0x10114330, is taken when a6(?) != 0, and falls through when a6(?) == 0.
   The `beq` branch at 0x1011436c targets 0x10114330, is taken when a7(?) == s5(=0x102cc150), and falls through when a7(?) != s5(=0x102cc150).
   The `beq` branch at 0x10114378 targets 0x10114330, is taken when (a6(?) & 0x8000) == 0, and falls through when (a6(?) & 0x8000) != 0.
   The `beq` branch at 0x10114380 targets 0x10114330, is taken when a7(?) == 0, and falls through when a7(?) != 0.
-  The `beq` branch at 0x10114388 targets 0x10114570, is taken when t2(=one of 0x0, 0x1) == 0, and falls through when t2(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x10114388 targets 0x10114570, is taken when t2(?) == 0, and falls through when t2(?) != 0.
   The `beq` branch at 0x101143cc targets 0x10114404, is taken when a6(?) == 0, and falls through when a6(?) != 0.
   The `bne` branch at 0x1011440c targets 0x10114310, is taken when s8(?) != 0, and falls through when s8(?) == 0.
   The `beq` branch at 0x10114418 targets 0x10114600, is taken when s8(=[0x102c727c]) == 0, and falls through when s8(=[0x102c727c]) != 0.
-  The `bne` branch at 0x10114428 targets 0x10114310, is taken when t1(=one of 0x0, 0x1) != 0, and falls through when t1(=one of 0x0, 0x1) == 0.
+  The `bne` branch at 0x10114428 targets 0x10114310, is taken when t1(?) != 0, and falls through when t1(?) == 0.
   The `beq` branch at 0x10114430 targets 0x10114310 and is always taken.
   The `beq` branch at 0x10114478 targets 0x101144ec, is taken when ra(=[0x102c7268]) == 0, and falls through when ra(=[0x102c7268]) != 0.
   The `beq` branch at 0x1011449c targets 0x10114658, is taken when a3(?) == 0, and falls through when a3(?) != 0.
-  The `beq` branch at 0x101144b0 targets 0x101144ec and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0x101144b0 targets 0x101144ec, is taken when a7(?) == 0, and falls through when a7(?) != 0.
   The `beq` branch at 0x101144bc targets 0x101144ec, is taken when a2(=[0x102c7268]) == 0, and falls through when a2(=[0x102c7268]) != 0.
   The `beq` branch at 0x10114530 targets 0x101145bc, is taken when t3(?) >= t9(=table(0x20)) (signed), and falls through when t3(?) < t9(=table(0x20)) (signed).
   The `beq` branch at 0x1011454c targets 0x1011462c, is taken when t9(=[0x102c6750]:8) == 0, and falls through when t9(=[0x102c6750]:8) != 0.
@@ -1133,7 +1133,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `bne` branch at 0x10114658 targets 0x101144ec, is taken when a4(?) != t0(=0x2), and falls through when a4(?) == t0(=0x2).
   The `bne` branch at 0x10114668 targets 0x101144ec, is taken when t1(=0x1) != t3(=[a1]:1), and falls through when t1(=0x1) == t3(=[a1]:1).
   The `beq` branch at 0x10114674 targets 0x101146ac, is taken when t8(?) == 0, and falls through when t8(?) != 0.
-  The `beq` branch at 0x101146c4 targets 0x101144ec and is never taken: its condition can never hold for these operands, so execution always falls through.
+  The `beq` branch at 0x101146c4 targets 0x101144ec, is taken when a0(?) == 0, and falls through when a0(?) != 0.
   The `beq` branch at 0x101146d0 targets 0x101144ec, is taken when a2(=[0x102c7268]) == 0, and falls through when a2(=[0x102c7268]) != 0.
   The `beq` branch at 0x101146fc targets 0x101144ec and is always taken.
   The `beq` branch at 0x10114718 targets 0x10114760, is taken when a0(?) == 0, and falls through when a0(?) != 0.
@@ -1435,23 +1435,24 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x101a5468 loads 4 bytes from a0 (arg0 at entry) +0x48.
   The `lw` at 0x101a5470 loads 4 bytes from [sym(inputInfo)+12] +0x90.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0x101a5478, `lw` at 0x101a5520.
-  2 such `lbu` accesses load 1 byte from [[sym(inputInfo)+12]+144] +0x28, including `lbu` at 0x101a549c, `lbu` at 0x101a556c.
-  2 such `lbu` accesses load 1 byte from [a0+8] +0x4, including `lbu` at 0x101a54a0, `lbu` at 0x101a5568.
-  3 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x101a54a4, `lbu` at 0x101a54ec, `lbu` at 0x101a555c.
+  The `lbu` at 0x101a549c loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
+  The `lbu` at 0x101a54a0 loads 1 byte from [a0+8] +0x4.
+  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x101a54a4, `lbu` at 0x101a54ec.
   The `lbu` at 0x101a54ac loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
   The `lw` at 0x101a54dc loads 4 bytes from a0 (arg0 at entry) +0x1c.
-  3 such `lw` accesses load 4 bytes from [[sym(inputInfo)+12]+144] +0x2c, including `lw` at 0x101a54e4, `lw` at 0x101a54f0, `lw` at 0x101a5560.
+  2 such `lw` accesses load 4 bytes from [[sym(inputInfo)+12]+144] +0x2c, including `lw` at 0x101a54e4, `lw` at 0x101a54f0.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x10, including `lw` at 0x101a5504, `lw` at 0x101a5584.
   The `lbu` at 0x101a5524 loads 1 byte from [a0+8] +0x0.
   The `lw` at 0x101a5534 loads 4 bytes from (sym(ReplySwapVector) + ([[a0+8]]:1 << 0x2)) +0x0.
   The `sw` at 0x101a5558 stores 4 bytes to a0 (arg0 at entry) +0x14.
-  The `lw` at 0x101a5588 loads 4 bytes from [[sym(inputInfo)+12]+144] +0x24.
+  3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x101a555c, `lbu` at 0x101a5568, `lbu` at 0x101a556c.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x101a5560, `lw` at 0x101a5588.
   The `lw` at 0x101a55b4 loads 4 bytes from a0 (arg0 at entry) +0x28.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x101a55b8, `sw` at 0x101a55cc.
   The `jalr` at 0x101a553c calls (unknown callee) with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=0x102d0000, a5=[[sym(inputInfo)+12]+144]+36, a7=[a0+16].
-  The `jalr` at 0x101a55a0 calls CopySwap32Write [0x10248e10] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16], a5=[[[sym(inputInfo)+12]+144]+44], a7=[[[sym(inputInfo)+12]+144]+40]:1.
+  The `jalr` at 0x101a55a0 calls CopySwap32Write [0x10248e10] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16].
   The `jal` at 0x101a55dc calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=0x20, a2=sp-80, a3=0x102d0000, a5=[[sym(inputInfo)+12]+144]+36, a7=[a0+16].
-  The `jal` at 0x101a55f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16], a5=[[[sym(inputInfo)+12]+144]+44], a7=[[[sym(inputInfo)+12]+144]+40]:1.
+  The `jal` at 0x101a55f0 calls WriteToClient [0x100b3500] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a4=[a0+16].
   The `beq` branch at 0x101a547c targets 0x101a549c, is taken when at(=[a0+72]) == v1(=0x2), and falls through when at(=[a0+72]) != v1(=0x2).
   The `bne` branch at 0x101a54bc targets 0x101a55b8, is taken when t1(=[[a0+8]+4]:1) < a4(=[[[sym(inputInfo)+12]+144]+40]:1) (signed), and falls through when t1(=[[a0+8]+4]:1) >= a4(=[[[sym(inputInfo)+12]+144]+40]:1) (signed).
   The `bne` branch at 0x101a54c8 targets 0x101a55b8, is taken when a6(?) != 0, and falls through when a6(?) == 0.
@@ -1478,7 +1479,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `jalr` at 0x101eca24 calls strncpy with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101eca30 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101eca7c calls strcpy with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0x101ecafc calls sprintf with a0=sp-128, a1=0x10290320, a2=?, a3=?.
+  The `jalr` at 0x101ecafc calls sprintf with a0=sp-128, a1=?, a2=?, a3=?.
   The `jalr` at 0x101ecb0c calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101ecb98 calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101ecbbc calls strlen with a0=?, a1=?, a2=?, a3=?.
@@ -1660,17 +1661,18 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x10258308 loads 4 bytes from sym(inputInfo) +0xc.
   The `lw` at 0x10258310 loads 4 bytes from [sym(inputInfo)+12] +0x90.
   The `lw` at 0x10258318 loads 4 bytes from a0 (arg0 at entry) +0x8.
-  2 such `lbu` accesses load 1 byte from [a0+8] +0x5, including `lbu` at 0x10258324, `lbu` at 0x102583b8.
-  3 such `lbu` accesses load 1 byte from [a0+8] +0x1, including `lbu` at 0x10258328, `lbu` at 0x102583a4, `lbu` at 0x10258400.
-  4 such `lbu` accesses load 1 byte from [a0+8] +0x4, including `lbu` at 0x10258338, `lbu` at 0x10258398, `lbu` at 0x102583a0.
+  The `lbu` at 0x10258324 loads 1 byte from [a0+8] +0x5.
+  The `lbu` at 0x10258328 loads 1 byte from [a0+8] +0x1.
+  The `lbu` at 0x10258338 loads 1 byte from [a0+8] +0x4.
   The `lbu` at 0x1025833c loads 1 byte from [[sym(inputInfo)+12]+144] +0x28.
   The `lbu` at 0x1025834c loads 1 byte from [[sym(inputInfo)+12]+144] +0x29.
+  6 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x10258398, `lbu` at 0x102583a0, `lbu` at 0x102583a4.
   The `lw` at 0x10258410 loads 4 bytes from a0 (arg0 at entry) +0x28.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x18, including `sw` at 0x10258424, `sw` at 0x10258448.
   The `jal` at 0x10258384 calls SecurityCheckDeviceAccess [0x1008b6c0] with a0=a0 at entry (arg0), a1=[sym(inputInfo)+12], a2=0x1, a3=[a0+8], a5=[[a0+8]+4]:1, a7=[[a0+8]+1]:1.
-  The `jal` at 0x102583c8 calls SetKeySymsMap [0x100a9020] with a0=[[sym(inputInfo)+12]+144]+36, a1=sp-64, a2=?, a3=?.
-  The `jal` at 0x102583e4 calls TagDeleteTag [0x101a10a0] with a0=[0x102cb554], a1=?, a2=[a0+8], a3=?.
-  The `jal` at 0x102583fc calls SendMappingNotify [0x1018ae80] with a0=0x1, a1=[[a0+8]+4]:1, a2=[[a0+8]+1]:1, a3=a0 at entry (arg0).
+  The `jal` at 0x102583c8 calls SetKeySymsMap [0x100a9020] with a0=?, a1=sp-64, a2=?, a3=?.
+  The `jal` at 0x102583e4 calls TagDeleteTag [0x101a10a0] with a0=[0x102cb554], a1=?, a2=?, a3=?.
+  The `jal` at 0x102583fc calls SendMappingNotify [0x1018ae80] with a0=0x1, a1=?, a2=?, a3=a0 at entry (arg0).
   The `bne` branch at 0x1025831c targets 0x10258414, is taken when v0(=[a0+72]) < 0x2 (unsigned), and falls through when v0(=[a0+72]) >= 0x2 (unsigned).
   The `bne` branch at 0x10258334 targets 0x10258434, is taken when a4(?) != v0(=[a0+72]-2), and falls through when a4(?) == v0(=[a0+72]-2).
   The `bne` branch at 0x10258350 targets 0x10258424, is taken when a5(=[[a0+8]+4]:1) < t2(=[[[sym(inputInfo)+12]+144]+40]:1) (signed), and falls through when a5(=[[a0+8]+4]:1) >= t2(=[[[sym(inputInfo)+12]+144]+40]:1) (signed).
@@ -4620,25 +4622,22 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x478b94 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x478ba4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x478bb4 loads 4 bytes from ([a0+132] + ([0x59b808] << 0x2)) +0x0.
-  The `lw` at 0x478bc0 loads 4 bytes from ?.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x478bc0, `lw` at 0x478c08, `lw` at 0x478c64.
   The `lw` at 0x478bc8 loads 4 bytes from [([a0+132] + ([0x59b808] << 0x2))] +0x4.
   The `lw` at 0x478bd8 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `lw` at 0x478c08 loads 4 bytes from [([a0+132] + ([0x59b808] << 0x2))] +0x20.
-  The `sw` at 0x478c60 stores 4 bytes to [([a0+132] + ([0x59b808] << 0x2))] +0x4.
-  The `lw` at 0x478c64 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
+  The `sw` at 0x478c60 stores 4 bytes to ?.
   The `lw` at 0x478c80 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x478c88 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
-  The `lw` at 0x478c8c loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x478bfc calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x59b808] << 0x2))]+4].
-  The `jalr` at 0x478c68 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x59b808] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x59b808] << 0x2))].
+  The `jalr` at 0x478c68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x478c78 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x478c94 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x59b808] << 0x2))].
+  The `jalr` at 0x478c94 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `beq` branch at 0x478b3c targets 0x478c4c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x478b48 targets 0x478c78, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x478b58 targets 0x478c30, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x478c18 targets 0x478c30, is taken when (a0(=[[([a0+132] + ([0x59b808] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x59b808] << 0x2))]+32]) & 0x2) != 0.
+  The `beq` branch at 0x478c18 targets 0x478c30, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
   The `beq` branch at 0x478c20 targets 0x478c8c, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x478c28 targets 0x478c60, is taken when a4(?) != a1(=[[([a0+132] + ([0x59b808] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x59b808] << 0x2))]+4]).
+  The `bne` branch at 0x478c28 targets 0x478c60, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
   The `bne` branch at 0x478c50 targets 0x478c34, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x478c58 targets 0x478b60 and is always taken.
   The `beq` branch at 0x478c70 targets 0x478c34 and is always taken.
@@ -4688,25 +4687,22 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x47ffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x47ffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x47ffe4 loads 4 bytes from ([a0+132] + ([0x5a7860] << 0x2)) +0x0.
-  The `lw` at 0x47fff0 loads 4 bytes from ?.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x47fff0, `lw` at 0x480038, `lw` at 0x480094.
   The `lw` at 0x47fff8 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
   The `lw` at 0x480008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `lw` at 0x480038 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x20.
-  The `sw` at 0x480090 stores 4 bytes to [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
-  The `lw` at 0x480094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
+  The `sw` at 0x480090 stores 4 bytes to ?.
   The `lw` at 0x4800b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x4800b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
-  The `lw` at 0x4800bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x48002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x5a7860] << 0x2))]+4].
-  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x5a7860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
+  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x4800a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
+  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `beq` branch at 0x47ff6c targets 0x48007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x47ff78 targets 0x4800a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x47ff88 targets 0x480060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) != 0.
+  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
   The `beq` branch at 0x480050 targets 0x4800bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]).
+  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
   The `bne` branch at 0x480080 targets 0x480064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x480088 targets 0x47ff90 and is always taken.
   The `beq` branch at 0x4800a0 targets 0x480064 and is always taken.
@@ -4756,25 +4752,22 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x13fffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x13fffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x13fffe4 loads 4 bytes from ([a0+132] + ([0x1527860] << 0x2)) +0x0.
-  The `lw` at 0x13ffff0 loads 4 bytes from ?.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x13ffff0, `lw` at 0x1400038, `lw` at 0x1400094.
   The `lw` at 0x13ffff8 loads 4 bytes from [([a0+132] + ([0x1527860] << 0x2))] +0x4.
   The `lw` at 0x1400008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `lw` at 0x1400038 loads 4 bytes from [([a0+132] + ([0x1527860] << 0x2))] +0x20.
-  The `sw` at 0x1400090 stores 4 bytes to [([a0+132] + ([0x1527860] << 0x2))] +0x4.
-  The `lw` at 0x1400094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
+  The `sw` at 0x1400090 stores 4 bytes to ?.
   The `lw` at 0x14000b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x14000b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
-  The `lw` at 0x14000bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x140002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x1527860] << 0x2))]+4].
-  The `jalr` at 0x1400098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x1527860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x1527860] << 0x2))].
+  The `jalr` at 0x1400098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x14000a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x14000c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x1527860] << 0x2))].
+  The `jalr` at 0x14000c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `beq` branch at 0x13fff6c targets 0x140007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x13fff78 targets 0x14000a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x13fff88 targets 0x1400060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x1400048 targets 0x1400060, is taken when (a0(=[[([a0+132] + ([0x1527860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x1527860] << 0x2))]+32]) & 0x2) != 0.
+  The `beq` branch at 0x1400048 targets 0x1400060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
   The `beq` branch at 0x1400050 targets 0x14000bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x1400058 targets 0x1400090, is taken when a4(?) != a1(=[[([a0+132] + ([0x1527860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x1527860] << 0x2))]+4]).
+  The `bne` branch at 0x1400058 targets 0x1400090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
   The `bne` branch at 0x1400080 targets 0x1400064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x1400088 targets 0x13fff90 and is always taken.
   The `beq` branch at 0x14000a0 targets 0x1400064 and is always taken.
@@ -4824,25 +4817,22 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   The `lw` at 0x47ffc4 loads 4 bytes from [a0+16] +0x74.
   The `lw` at 0x47ffd4 loads 4 bytes from [[a0+16]+116] +0x74.
   The `lw` at 0x47ffe4 loads 4 bytes from ([a0+132] + ([0x5a7860] << 0x2)) +0x0.
-  The `lw` at 0x47fff0 loads 4 bytes from ?.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x47fff0, `lw` at 0x480038, `lw` at 0x480094.
   The `lw` at 0x47fff8 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
   The `lw` at 0x480008 loads 4 bytes from a0 (arg0 at entry) +0x4.
-  The `lw` at 0x480038 loads 4 bytes from [([a0+132] + ([0x5a7860] << 0x2))] +0x20.
-  The `sw` at 0x480090 stores 4 bytes to [([a0+132] + ([0x5a7860] << 0x2))] +0x4.
-  The `lw` at 0x480094 loads 4 bytes from [([[a0+16]+436] + ([sym(rrmScreenPrivateIndex)] << 0x2))] +0x48.
+  The `sw` at 0x480090 stores 4 bytes to ?.
   The `lw` at 0x4800b0 loads 4 bytes from ret(FindWindowWithOptional) +0x78.
   The `lw` at 0x4800b8 loads 4 bytes from [ret(FindWindowWithOptional)+120] +0x8.
-  The `lw` at 0x4800bc loads 4 bytes from [[a0+16]+116] +0xc8.
   The `jalr` at 0x48002c calls DeliverEvents with a0=a0 at entry (arg0), a1=sp-112, a2=0x1, a3=0x0, a4=[a1+8], a5=[a0+4], a6=0x20, a7=[[([a0+132] + ([0x5a7860] << 0x2))]+4].
-  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=[[([a0+132] + ([0x5a7860] << 0x2))]+4], a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
+  The `jalr` at 0x480098 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x4800a8 calls FindWindowWithOptional with a0=a0 at entry (arg0), a1=[a0+120], a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[([a0+132] + ([0x5a7860] << 0x2))].
+  The `jalr` at 0x4800c4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `beq` branch at 0x47ff6c targets 0x48007c, is taken when at(=[a0+1]:1) == v0(=0x2), and falls through when at(=[a0+1]:1) != v0(=0x2).
   The `beq` branch at 0x47ff78 targets 0x4800a8, is taken when a1(=[a0+120]) == 0, and falls through when a1(=[a0+120]) != 0.
   The `bne` branch at 0x47ff88 targets 0x480060, is taken when a1(=[a1+8]) != a0(?), and falls through when a1(=[a1+8]) == a0(?).
-  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) == 0, and falls through when (a0(=[[([a0+132] + ([0x5a7860] << 0x2))]+32]) & 0x2) != 0.
+  The `beq` branch at 0x480048 targets 0x480060, is taken when (a0(?) & 0x2) == 0, and falls through when (a0(?) & 0x2) != 0.
   The `beq` branch at 0x480050 targets 0x4800bc, is taken when a0(?) == 0, and falls through when a0(?) != 0.
-  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]), and falls through when a4(?) == a1(=[[([a0+132] + ([0x5a7860] << 0x2))]+4]).
+  The `bne` branch at 0x480058 targets 0x480090, is taken when a4(?) != a1(?), and falls through when a4(?) == a1(?).
   The `bne` branch at 0x480080 targets 0x480064, is taken when a3(=[a1+8]) != 0, and falls through when a3(=[a1+8]) == 0.
   The `beq` branch at 0x480088 targets 0x47ff90 and is always taken.
   The `beq` branch at 0x4800a0 targets 0x480064 and is always taken.
@@ -4926,7 +4916,7 @@ Skipped routines: usr/cpu/sysgen/IP27boot/kona.a(kona_dma.o):kona_free_up_space 
   It occupies 104 bytes.
   The `jalr` at 0xee299f8 calls fopen with a0=a0 at entry (arg0), a1=0xee5bc70, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xee29a2c calls fread with a0=sp-32, a1=0x4, a2=0x1, a3=ret(fopen).
-  The `jalr` at 0xee29a38 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0xee29a38 calls fclose with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0xee29a00 targets 0xee29a18, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The return at 0xee29a10 has v0 = 0x0.
   The return at 0xee29a48 has v0 = ?.

@@ -173,8 +173,8 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jal` at 0x1004cd64 calls __as__9EZWrapperGi [0x1008f4f0] with a0=ret(EZ__GP10_WidgetRec), a1=[[a0+340]+636], a2=?, a3=?.
   The `jal` at 0x1004cd88 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jalr` at 0x1004cdf0 calls XtSetSensitive with a0=[a0+128], a1=one of 0x0, 0x1, a2=0x1, a3=[[a0+340]+704].
-  The `jalr` at 0x1004ce08 calls XtSetSensitive with a0=[a0+116], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x1004ce20 calls XtSetSensitive with a0=[a0+92], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x1004ce08 calls XtSetSensitive with a0=[a0+116], a1=?, a2=?, a3=?.
+  The `jalr` at 0x1004ce20 calls XtSetSensitive with a0=[a0+92], a1=?, a2=?, a3=?.
   The `bne` branch at 0x1004c718 targets 0x1004c7e8, is taken when a1(=[[a0+340]+260]) != a2(=0xb), and falls through when a1(=[[a0+340]+260]) == a2(=0xb).
   The `beq` branch at 0x1004c7e0 targets 0x1004c8ac and is always taken.
   The `bne` branch at 0x1004c8f0 targets 0x1004c91c, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -560,7 +560,7 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jalr` at 0x1004de98 calls sprintf with a0=sp-1096, a1=0x100983b0, a2=[[a0+340]+260], a3=?, a5=[a0+340].
   The `jalr` at 0x1004deb4 calls getTheErrorDialog__Gv with a0=?, a1=?, a2=[[a0+340]+260], a3=[a0+340].
   The `jalr` at 0x1004decc calls baseWidget__10VkMenuItemCGv with a0=[a0+244], a1=?, a2=?, a3=?.
-  The `jal` at 0x1004dee8 calls (unnamed) [0x1004ed20] with a0=ret(getTheErrorDialog__Gv), a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
+  The `jal` at 0x1004dee8 calls (unnamed) [0x1004ed20] with a0=?, a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
   The `jalr` at 0x1004df1c calls set__12VkOptionMenuGP10VkMenuItem with a0=[a0+244], a1=[a0+280], a2=?, a3=?.
   The `jalr` at 0x1004df44 calls set__12VkOptionMenuGi with a0=[a0+244], a1=[[a0+340]+260], a2=?, a3=?.
   The `jalr` at 0x1004e104 calls XtSetSensitive with a0=[a0+80], a1=0x0, a2=?, a3=[[a0+340]+260], a4=0xb.
@@ -2677,8 +2677,8 @@ Skipped routines: 24,591 are located, understood, or marked as having no softwar
   The `jal` at 0x10059210 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jal` at 0x10059240 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=[sym(combination)+568], a2=?, a3=?.
   The `jalr` at 0x100592c4 calls XtSetSensitive with a0=[a0+120], a1=one of 0x0, 0x1, a2=?, a3=?, a4=one of 0x0, 0x1, a5=one of 0x0, 0x1.
-  The `jalr` at 0x100592dc calls XtSetSensitive with a0=[a0+108], a1=one of 0x0, 0x1, a2=?, a3=?.
-  The `jalr` at 0x100592f4 calls XtSetSensitive with a0=[a0+84], a1=one of 0x0, 0x1, a2=?, a3=?.
+  The `jalr` at 0x100592dc calls XtSetSensitive with a0=[a0+108], a1=?, a2=?, a3=?.
+  The `jalr` at 0x100592f4 calls XtSetSensitive with a0=[a0+84], a1=?, a2=?, a3=?.
   The `jal` at 0x10059308 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+84], a1=?, a2=?, a3=?.
   The `jal` at 0x10059328 calls __as__9EZWrapperGf [0x1008f850] with a0=ret(EZ__GP10_WidgetRec), a1=[a0+356], a2=?, a3=?; fp f13=[[a0+356]+624].
   The `jal` at 0x1005933c calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+108], a1=?, a2=?, a3=?.

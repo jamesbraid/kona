@@ -4118,7 +4118,7 @@ Each entry summarises selected memory accesses, calls, conditional branches and 
   The `beq` branch at 0x6d4 targets 0xdd8, is taken when a3(=[a1]:1) == 0, and falls through when a3(=[a1]:1) != 0.
   The `beq` branch at 0x6f4 targets 0x738 and is always taken.
   The `beq` branch at 0x70c targets 0xe74, is taken when v0(=ret(strncmp)) == 0, and falls through when v0(=ret(strncmp)) != 0.
-  The `beq` branch at 0x71c targets 0x874, is taken when a3(=one of 0x0, 0x1) == 0, and falls through when a3(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x71c targets 0x874, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x724 targets 0xdd8, is taken when s0(?) == 0, and falls through when s0(?) != 0.
   The `beq` branch at 0x730 targets 0xdd8, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `beq` branch at 0x738 targets 0x724, is taken when a3(?) == 0, and falls through when a3(?) != 0.

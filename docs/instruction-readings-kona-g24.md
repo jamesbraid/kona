@@ -2164,7 +2164,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `jalr` at 0x2e17168 calls __glInitMemLoad [0x2e0a970] with a0=a0 at entry (arg0), a1=sp-696, a2=?, a3=?.
   The `jalr` at 0x2e17260 calls __glInitUnpacker [0x2e0e790] with a0=a0 at entry (arg0), a1=sp-696, a2=0x1, a3=?.
   The `jalr` at 0x2e17270 calls __glInitPacker [0x2dfe160] with a0=a0 at entry (arg0), a1=sp-696, a2=?, a3=?.
-  The `jalr` at 0x2e17298 calls __glGenericPickCopyImage [0x2e0a680] with a0=a0 at entry (arg0), a1=sp-696, a2=0x0, a3=one of 0x0, 0x1.
+  The `jalr` at 0x2e17298 calls __glGenericPickCopyImage [0x2e0a680] with a0=a0 at entry (arg0), a1=sp-696, a2=0x0, a3=?.
   The `beq` branch at 0x2e17108 targets 0x2e172b4, is taken when a6 == at(=0x8010), and falls through when a6 != at(=0x8010).
   The `bc1f` branch at 0x2e17198 targets 0x2e17214, is taken when not (f0 == f5(=0x3ff0000000000000) (c.eq.d at 0x2e17188)), and falls through when f0 == f5(=0x3ff0000000000000) (c.eq.d at 0x2e17188).
   The `bc1f` branch at 0x2e171a8 targets 0x2e17214, is taken when FP condition code 1 is false, and falls through when FP condition code 1 is true.
@@ -2329,14 +2329,12 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   7 such `ld` accesses load 8 bytes from a1 (arg1 at entry) +0x10, including `ld` at 0x2e17c70, `ld` at 0x2e17d04, `ld` at 0x2e17d58.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0xbc, including `lw` at 0x2e17c7c, `lw` at 0x2e1800c.
   The `ld` at 0x2e17c80 loads 8 bytes from a1 (arg1 at entry) +0x198.
-  2 such `ld` accesses load 8 bytes from [a1+552]:8 +0x50, including `ld` at 0x2e17c90, `ld` at 0x2e17cc0.
+  5 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e17c90, `ld` at 0x2e17cc0, `ld` at 0x2e17d88.
   The `sd` at 0x2e17c98 stores 8 bytes to a1 (arg1 at entry) +0x110.
-  The `lw` at 0x2e17cb0 loads 4 bytes from [a1+552]:8 +0x40.
-  3 such `lw` accesses load 4 bytes from [a1+552]:8 +0xc, including `lw` at 0x2e17cb4, `lw` at 0x2e17d44, `lw` at 0x2e17e04.
+  4 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2e17cb0, `lw` at 0x2e17cb4, `lw` at 0x2e17d44.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x18, including `lw` at 0x2e17d00, `lw` at 0x2e17dd4, `lw` at 0x2e18020.
   4 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x10, including `sd` at 0x2e17d20, `sd` at 0x2e17de0, `sd` at 0x2e17f24.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e17d38, `sw` at 0x2e17e5c.
-  3 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e17d88, `ld` at 0x2e17e94, `ld` at 0x2e17f80.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e17d38, `sw` at 0x2e17e5c.
   The `ld` at 0x2e17da4 loads 8 bytes from a1 (arg1 at entry) +0x210.
   The `lw` at 0x2e17de4 loads 4 bytes from a0 (arg0 at entry) +0x1458.
   2 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0xd8, including `swc1` at 0x2e17e00, `swc1` at 0x2e17f14.
@@ -2347,7 +2345,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `jalr` at 0x2e17c5c calls __glComputeSpanPixelArray [0x2e06590] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=0xe8bc8, a3=s8 at entry.
   The `jalr` at 0x2e17d98 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e17dc8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a4=sp-102416.
-  The `jalr` at 0x2e17e3c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a4=[a1+408]:8.
+  The `jalr` at 0x2e17e3c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e17eac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e17efc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=sp-102416.
   The `jalr` at 0x2e17f54 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-102416, a3=((one of 0x0, 0x1 << 0xf) + sp-69648), a6=[a1+280].
@@ -2355,7 +2353,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `jalr` at 0x2e17fc0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e17fe8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-102416, a3=?, a6=[a1+280].
   The `jalr` at 0x2e18048 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=sp-102416, a6=one of 0x0, 0x1.
-  The `bne` branch at 0x2e17ca4 targets 0x2e1809c, is taken when a5(=[a1+188]) < a7(=[[a1+552]:8+68]) (signed), and falls through when a5(=[a1+188]) >= a7(=[[a1+552]:8+68]) (signed).
+  The `bne` branch at 0x2e17ca4 targets 0x2e1809c, is taken when a5(=[a1+188]) < a7(?) (signed), and falls through when a5(=[a1+188]) >= a7(?) (signed).
   The `blez` branch at 0x2e17cd0 targets 0x2e1809c, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
   The `beq` branch at 0x2e17cf4 targets 0x2e17d3c and is always taken.
   The `beq` branch at 0x2e17d34 targets 0x2e1809c, is taken when a0(?) >= t9(?) (signed), and falls through when a0(?) < t9(?) (signed).
@@ -2382,7 +2380,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `beq` branch at 0x2e18078 targets 0x2e18058, is taken when a6(?) == a5(?), and falls through when a6(?) != a5(?).
   The `beq` branch at 0x2e18084 targets 0x2e17d0c and is always taken.
   The `beq` branch at 0x2e18094 targets 0x2e17d0c and is always taken.
-  The return at 0x2e180d4 has v0 = one of ret(__glComputeSpanPixelArray), a0+65536.
+  The return at 0x2e180d4 has v0 = one of ret(__glComputeSpanPixelArray), ?.
   The instructions from 0x2e17cfc to 0x2e17cfc are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x2e17d64 to 0x2e17d6c are not reached by any path from the entry, and their branches are not listed.
 - `__glConv2dDrawPixels` in `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e180e0 (n64).
@@ -2404,34 +2402,33 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `ld` at 0x2e181a8 loads 8 bytes from a1 (arg1 at entry) +0x198.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x18, including `lw` at 0x2e181f0, `lw` at 0x2e18288, `lw` at 0x2e184dc.
   4 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x10, including `sd` at 0x2e18210, `sd` at 0x2e18298, `sd` at 0x2e18400.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e18228, `sw` at 0x2e182e8.
-  The `ld` at 0x2e18234 loads 8 bytes from [a1+552]:8 +0x50.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e18228, `sw` at 0x2e182e8.
+  5 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e18234, `ld` at 0x2e1831c, `ld` at 0x2e18370.
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x110, including `sd` at 0x2e1823c, `sd` at 0x2e18290.
   The `ld` at 0x2e18284 loads 8 bytes from a1 (arg1 at entry) +0x110.
   The `lw` at 0x2e1829c loads 4 bytes from a0 (arg0 at entry) +0x1458.
   3 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0xd8, including `swc1` at 0x2e182bc, `swc1` at 0x2e183f0, `swc1` at 0x2e184f4.
   5 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x118, including `lw` at 0x2e182c0, `lw` at 0x2e182f8, `lw` at 0x2e1833c.
-  4 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e1831c, `ld` at 0x2e18370, `ld` at 0x2e18430.
   2 such `ld` accesses load 8 bytes from a1 (arg1 at entry) +0x208, including `ld` at 0x2e18398, `ld` at 0x2e183c0.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x11c, including `lw` at 0x2e183e8, `lw` at 0x2e1844c, `lw` at 0x2e18558.
   The `jalr` at 0x2e18164 calls __glComputeSpanPixelArray [0x2e06590] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a0+39260], a3=0xe86b8, a4=[[a1+552]:8+12], a5=[[a1+552]:8+64], a6=s8 at entry.
   The `jalr` at 0x2e18270 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=sp-36880.
-  The `jalr` at 0x2e182f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?, a4=[a0+39260], a5=a0+65536.
+  The `jalr` at 0x2e182f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?.
   The `jalr` at 0x2e18334 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e18388 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=sp-36880.
   The `jalr` at 0x2e183b0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=sp-36880.
-  The `jalr` at 0x2e183d8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=sp-36880, a4=[a0+39260].
+  The `jalr` at 0x2e183d8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=sp-36880.
   The `jalr` at 0x2e18444 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=(sp-102416 + (one of 0x0, 0x1 << 0xf)).
-  The `jalr` at 0x2e18484 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=[a1+512]:8, a5=[a1+280], a6=[a1+512]:8.
-  The `jalr` at 0x2e184a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=[a1+512]:8, a5=[a1+280].
+  The `jalr` at 0x2e18484 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=?, a5=[a1+280].
+  The `jalr` at 0x2e184a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=?, a5=[a1+280].
   The `jalr` at 0x2e1854c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=(sp-102416 + (one of 0x0, 0x1 << 0xf)).
   The `blez` branch at 0x2e181b4 targets 0x2e1856c, is taken when a7(?) <= 0 (signed), and falls through when a7(?) > 0 (signed).
   The `beq` branch at 0x2e181e8 targets 0x2e1822c and is always taken.
   The `beq` branch at 0x2e18224 targets 0x2e1856c, is taken when a0(?) >= t9(?) (signed), and falls through when a0(?) < t9(?) (signed).
-  The `blez` branch at 0x2e18238 targets 0x2e183e8, is taken when at(=[[a1+552]:8+68]) <= 0 (signed), and falls through when at(=[[a1+552]:8+68]) > 0 (signed).
+  The `blez` branch at 0x2e18238 targets 0x2e183e8, is taken when at(?) <= 0 (signed), and falls through when at(?) > 0 (signed).
   The `beq` branch at 0x2e18240 targets 0x2e182c0 and is always taken.
   The `beq` branch at 0x2e18250 targets 0x2e183c0, is taken when s7(?) == 0, and falls through when s7(?) != 0.
-  The `beq` branch at 0x2e182b8 targets 0x2e183e8, is taken when a4(=[[a1+552]:8+68]) == s7(?), and falls through when a4(=[[a1+552]:8+68]) != s7(?).
+  The `beq` branch at 0x2e182b8 targets 0x2e183e8, is taken when a4(?) == s7(?), and falls through when a4(?) != s7(?).
   The `beq` branch at 0x2e182c4 targets 0x2e18250, is taken when t2(=[a1+280]) == 0, and falls through when t2(=[a1+280]) != 0.
   The `bne` branch at 0x2e18304 targets 0x2e18358, is taken when a6(=[a1+280]) < 0x2 (signed), and falls through when a6(=[a1+280]) >= 0x2 (signed).
   The `bne` branch at 0x2e18348 targets 0x2e1830c, is taken when s3(?) < a4(=[a1+280]) (signed), and falls through when s3(?) >= a4(=[a1+280]) (signed).
@@ -2452,7 +2449,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `beq` branch at 0x2e1851c targets 0x2e181fc and is always taken.
   The `beq` branch at 0x2e18554 targets 0x2e18404 and is always taken.
   The `beq` branch at 0x2e18564 targets 0x2e181fc and is always taken.
-  The return at 0x2e185a4 has v0 = one of ret(__glComputeSpanPixelArray), a0+65536.
+  The return at 0x2e185a4 has v0 = one of ret(__glComputeSpanPixelArray), ?.
   The instructions from 0x2e18248 to 0x2e1824c are not reached by any path from the entry, and their branches are not listed.
 - `__glSep2dDrawPixels` in `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e185b0 (n64).
   Evidence grade: inferred.
@@ -2545,11 +2542,10 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `lw` at 0x2e18d88 loads 4 bytes from a1 (arg1 at entry) +0x70.
   The `sd` at 0x2e18da4 stores 8 bytes to a1 (arg1 at entry) +0x68.
   3 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0xd0, including `swc1` at 0x2e18db0, `swc1` at 0x2e18e30, `swc1` at 0x2e18ef0.
-  The `ld` at 0x2e18dbc loads 8 bytes from [a1+552]:8 +0x50.
+  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e18dbc, `ld` at 0x2e18dec, `ld` at 0x2e18e84.
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x110, including `sd` at 0x2e18dc4, `sd` at 0x2e18e24.
-  5 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e18dec, `ld` at 0x2e18e84, `ld` at 0x2e18f10.
   The `ld` at 0x2e18e0c loads 8 bytes from a1 (arg1 at entry) +0x110.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e18e54, `sw` at 0x2e19000.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e18e54, `sw` at 0x2e19000.
   The `ld` at 0x2e18ec0 loads 8 bytes from a1 (arg1 at entry) +0x208.
   The `jalr` at 0x2e18d7c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-98320 + (one of 0x0, 0x1 << 0xf)), a3=[a1+104]:8.
   The `jalr` at 0x2e18e00 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
@@ -2564,9 +2560,9 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `blez` branch at 0x2e18d3c targets 0x2e18fc0, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
   The `beq` branch at 0x2e18d68 targets 0x2e18db4 and is always taken.
   The `beq` branch at 0x2e18dac targets 0x2e18fc0, is taken when a3(?) == a4(?), and falls through when a3(?) != a4(?).
-  The `blez` branch at 0x2e18dc0 targets 0x2e18ee4, is taken when t0(=[[a1+552]:8+68]) <= 0 (signed), and falls through when t0(=[[a1+552]:8+68]) > 0 (signed).
+  The `blez` branch at 0x2e18dc0 targets 0x2e18ee4, is taken when t0(?) <= 0 (signed), and falls through when t0(?) > 0 (signed).
   The `beq` branch at 0x2e18dd0 targets 0x2e18e34 and is always taken.
-  The `beq` branch at 0x2e18e2c targets 0x2e18ee0, is taken when ra(=[[a1+552]:8+68]) == s0(?), and falls through when ra(=[[a1+552]:8+68]) != s0(?).
+  The `beq` branch at 0x2e18e2c targets 0x2e18ee0, is taken when ra(?) == s0(?), and falls through when ra(?) != s0(?).
   The `blez` branch at 0x2e18e60 targets 0x2e18eb4, is taken when a0(=[a1+280]) <= 0 (signed), and falls through when a0(=[a1+280]) > 0 (signed).
   The `bne` branch at 0x2e18eac targets 0x2e18e70, is taken when s3(?) < t8(=[a1+280]) (signed), and falls through when s3(?) >= t8(=[a1+280]) (signed).
   The `bne` branch at 0x2e18eb8 targets 0x2e18de0, is taken when t9(?) != 0, and falls through when t9(?) == 0.
@@ -2578,7 +2574,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `bne` branch at 0x2e18f5c targets 0x2e18d70, is taken when ra(=[a1+280]) != at(=[a1+284]-1), and falls through when ra(=[a1+280]) == at(=[a1+284]-1).
   The `beq` branch at 0x2e18f7c targets 0x2e18d88 and is always taken.
   The `beq` branch at 0x2e18fb8 targets 0x2e18ef4 and is always taken.
-  The return at 0x2e19004 has v0 = [a0+39260].
+  The return at 0x2e19004 has v0 = one of [a0+39260], ?.
   The instructions from 0x2e18dd8 to 0x2e18ddc are not reached by any path from the entry, and their branches are not listed.
 - `__glSep2dReadPixels` in `usr/gfx/arch/IP27KONA64/libGLcore.so` at 0x2e19010 (n64).
   Evidence grade: inferred.
@@ -2837,9 +2833,10 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x5a0, including `sw` at 0x2e19cbc, `sw` at 0x2e19d38.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x59c, including `sw` at 0x2e19cc0, `sw` at 0x2e19d34.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x594, including `sw` at 0x2e19cc8, `sw` at 0x2e19d2c.
-  2 such `lw` accesses load 4 bytes from [a1+552]:8 +0x44, including `lw` at 0x2e19ccc, `lw` at 0x2e19db4.
-  2 such `lw` accesses load 4 bytes from [a1+552]:8 +0x40, including `lw` at 0x2e19cd8, `lw` at 0x2e19d94.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0x2e19ccc, `lw` at 0x2e19cd8.
+  The `lw` at 0x2e19d94 loads 4 bytes from [a1+552]:8 +0x40.
   The `lw` at 0x2e19d98 loads 4 bytes from [a1+552]:8 +0xc.
+  The `lw` at 0x2e19db4 loads 4 bytes from [a1+552]:8 +0x44.
   The `sd` at 0x2e19dbc stores 8 bytes to a1 (arg1 at entry) +0x160.
   The `lwc1` at 0x2e19dd0 loads 4 bytes from a1 (arg1 at entry) +0xd8.
   The `lwc1` at 0x2e19dd4 loads 4 bytes from a1 (arg1 at entry) +0xb4.
@@ -2848,21 +2845,20 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `ld` at 0x2e19e08 loads 8 bytes from a1 (arg1 at entry) +0x190.
   2 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0xd8, including `swc1` at 0x2e19e88, `swc1` at 0x2e1a104.
   4 such `swc1` accesses store 4 bytes to a1 (arg1 at entry) +0xd0, including `swc1` at 0x2e19e94, `swc1` at 0x2e19f28, `swc1` at 0x2e19fe8.
-  The `ld` at 0x2e19ea0 loads 8 bytes from [a1+552]:8 +0x50.
+  5 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e19ea0, `ld` at 0x2e19ee0, `ld` at 0x2e19f74.
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x110, including `sd` at 0x2e19eac, `sd` at 0x2e19f1c.
-  4 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e19ee0, `ld` at 0x2e19f74, `ld` at 0x2e1a000.
   The `ld` at 0x2e19f04 loads 8 bytes from a1 (arg1 at entry) +0x110.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e19f4c, `sw` at 0x2e1a188.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e19f4c, `sw` at 0x2e1a188.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x118, including `lw` at 0x2e19f50, `lw` at 0x2e19f90, `lw` at 0x2e1a070.
   The `ld` at 0x2e19fb4 loads 8 bytes from a1 (arg1 at entry) +0x208.
   3 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x11c, including `lw` at 0x2e19fdc, `lw` at 0x2e1a01c, `lw` at 0x2e1a05c.
   The `jalr` at 0x2e19a68 calls __glElementsPerGroup [0x2e0e120] with a0=[a1+88], a1=[a1+552]:8, a2=s8 at entry, a3=a3 at entry (arg3).
   The `jalr` at 0x2e19a94 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x2e19b68 calls __glim_ReadPixels [0x2dfaac0] with a0=?, a1=?, a2=[a1+184], a3=[a1+188], a4=[a1+88], a5=0x1406, a6=ret(?), a7=[a0+1392]:8.
+  The `jalr` at 0x2e19b68 calls __glim_ReadPixels [0x2dfaac0] with a0=?, a1=?, a2=[a1+184], a3=[a1+188], a5=0x1406, a6=ret(?), a7=[a0+1392]:8.
   The `jalr` at 0x2e19bf0 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=?, a6=([a0+2056] << 0x23).
   The `bgezall` at 0x2e19c28 calls __glGetCurrentSetDefaultPixelXferState [0x2e19620] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a6=([a0+2056] << 0x23).
-  The `jalr` at 0x2e19cec calls __glim_DrawPixels [0x2dfa9a0] with a0=?, a1=?, a2=[a1+88], a3=0x1406, a4=ret(?), a5=[a0+1464], a6=a0+1428, a7=[a0+1468].
-  The `bgezall` at 0x2e19d60 calls __glRestoreCurrentPixelXferState [0x2e19890] with a0=a0 at entry (arg0), a1=ret(__glGetCurrentSetDefaultPixelXferState), a2=sp-102712, a3=?.
+  The `jalr` at 0x2e19cec calls __glim_DrawPixels [0x2dfa9a0] with a0=?, a1=?, a2=?, a3=0x1406, a4=ret(?), a5=[a0+1464], a6=a0+1428, a7=[a0+1468].
+  The `bgezall` at 0x2e19d60 calls __glRestoreCurrentPixelXferState [0x2e19890] with a0=a0 at entry (arg0), a1=?, a2=sp-102712, a3=?.
   The `jalr` at 0x2e19d70 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=?.
   The `jalr` at 0x2e19dc8 calls __glComputeSpanPixelArray [0x2e06590] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=s8 at entry, a3=a3 at entry (arg3).
   The `jalr` at 0x2e19ef8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=sp-36880.
@@ -2871,8 +2867,8 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `jalr` at 0x2e19fc8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=sp-36880.
   The `jalr` at 0x2e1a014 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=(sp-102416 + (one of 0x0, 0x1 << 0xf)).
   The `jalr` at 0x2e1a054 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=(sp-102416 + (one of 0x0, 0x1 << 0xf)).
-  The `jalr` at 0x2e1a094 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=[a1+512]:8, a5=[a1+280], a6=[a1+512]:8.
-  The `jalr` at 0x2e1a0b4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=[a1+512]:8, a5=[a1+280].
+  The `jalr` at 0x2e1a094 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-36880, a3=?, a5=[a1+280].
+  The `jalr` at 0x2e1a0b4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-102416 + (one of 0x0, 0x1 << 0xf)), a3=?, a5=[a1+280].
   The `jalr` at 0x2e1a198 calls __glSetError [0x2e315d0] with a0=0x505, a1=?, a2=?, a3=?.
   The `beq` branch at 0x2e19a50 targets 0x2e19d94, is taken when at(=[a1+240]:1) == 0, and falls through when at(=[a1+240]:1) != 0.
   The `beq` branch at 0x2e19a9c targets 0x2e1a194, is taken when v0(=ret(?)) == 0, and falls through when v0(=ret(?)) != 0.
@@ -2888,9 +2884,9 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `blez` branch at 0x2e19e14 targets 0x2e1a140, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
   The `beq` branch at 0x2e19e5c targets 0x2e19e98 and is always taken.
   The `beq` branch at 0x2e19e90 targets 0x2e1a140, is taken when v0(?) >= t8(?) (signed), and falls through when v0(?) < t8(?) (signed).
-  The `blez` branch at 0x2e19ea8 targets 0x2e19fdc, is taken when ra(=[[a1+552]:8+68]) <= 0 (signed), and falls through when ra(=[[a1+552]:8+68]) > 0 (signed).
+  The `blez` branch at 0x2e19ea8 targets 0x2e19fdc, is taken when ra(?) <= 0 (signed), and falls through when ra(?) > 0 (signed).
   The `beq` branch at 0x2e19eb8 targets 0x2e19f2c and is always taken.
-  The `beq` branch at 0x2e19f24 targets 0x2e19fd8, is taken when ra(=[[a1+552]:8+68]) == s0(?), and falls through when ra(=[[a1+552]:8+68]) != s0(?).
+  The `beq` branch at 0x2e19f24 targets 0x2e19fd8, is taken when ra(?) == s0(?), and falls through when ra(?) != s0(?).
   The `blez` branch at 0x2e19f58 targets 0x2e19fa4, is taken when a0(=[a1+280]) <= 0 (signed), and falls through when a0(=[a1+280]) > 0 (signed).
   The `bne` branch at 0x2e19f9c targets 0x2e19f60, is taken when s3(?) < t8(=[a1+280]) (signed), and falls through when s3(?) >= t8(=[a1+280]) (signed).
   The `bne` branch at 0x2e19fa8 targets 0x2e19ed0, is taken when t9(?) != 0, and falls through when t9(?) == 0.
@@ -2976,14 +2972,14 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x59c, including `sw` at 0x2e1a4a8, `sw` at 0x2e1a518.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x594, including `sw` at 0x2e1a4ac, `sw` at 0x2e1a510.
   2 such `lw` accesses load 4 bytes from [a1+552]:8 +0x40, including `lw` at 0x2e1a4b8, `lw` at 0x2e1a564.
-  2 such `lw` accesses load 4 bytes from [a1+552]:8 +0xc, including `lw` at 0x2e1a568, `lw` at 0x2e1a9a8.
+  The `lw` at 0x2e1a568 loads 4 bytes from [a1+552]:8 +0xc.
   The `ld` at 0x2e1a578 loads 8 bytes from a0 (arg0 at entry) +0x4c0.
   The `sd` at 0x2e1a580 stores 8 bytes to a1 (arg1 at entry) +0x160.
   2 such `ld` accesses load 8 bytes from [a1+552]:8 +0x50, including `ld` at 0x2e1a5a0, `ld` at 0x2e1a730.
   The `ld` at 0x2e1a5a4 loads 8 bytes from a1 (arg1 at entry) +0x190.
   The `ld` at 0x2e1a5a8 loads 8 bytes from a1 (arg1 at entry) +0x200.
   The `sd` at 0x2e1a5b8 stores 8 bytes to a1 (arg1 at entry) +0x110.
-  3 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e1a630, `sw` at 0x2e1a860, `sw` at 0x2e1aa74.
+  3 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e1a630, `sw` at 0x2e1a860, `sw` at 0x2e1aa74.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x118, including `lw` at 0x2e1a634, `lw` at 0x2e1a688, `lw` at 0x2e1a878.
   5 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e1a660, `ld` at 0x2e1a6d8, `ld` at 0x2e1a790.
   3 such `ld` accesses load 8 bytes from a1 (arg1 at entry) +0x208, including `ld` at 0x2e1a6a8, `ld` at 0x2e1a8e4, `ld` at 0x2e1a954.
@@ -2991,28 +2987,29 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x11c, including `lw` at 0x2e1a7b4, `lw` at 0x2e1aa18.
   The `lwc1` at 0x2e1a92c loads 4 bytes from a1 (arg1 at entry) +0xd8.
   The `swc1` at 0x2e1a948 stores 4 bytes to a1 (arg1 at entry) +0xd8.
+  The `lw` at 0x2e1a9a8 loads 4 bytes from ?.
   The `ld` at 0x2e1a9dc loads 8 bytes from a1 (arg1 at entry) +0x210.
   The `jalr` at 0x2e1a24c calls __glElementsPerGroup [0x2e0e120] with a0=[a1+88], a1=a1 at entry (arg1), a2=s8 at entry, a3=[a1+240]:1.
   The `jalr` at 0x2e1a274 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
-  The `jalr` at 0x2e1a34c calls __glim_ReadPixels [0x2dfaac0] with a0=?, a1=?, a2=[a1+184], a3=[a1+188], a4=[a1+88], a5=0x1406, a6=ret(?), a7=[a0+1392]:8.
-  The `jalr` at 0x2e1a3d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=?, a5=([a0+2056] << 0x23).
+  The `jalr` at 0x2e1a34c calls __glim_ReadPixels [0x2dfaac0] with a0=?, a1=?, a2=[a1+184], a3=[a1+188], a5=0x1406, a6=ret(?), a7=[a0+1392]:8.
+  The `jalr` at 0x2e1a3d4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=([a0+2056] << 0x23).
   The `bgezall` at 0x2e1a40c calls __glGetCurrentSetDefaultPixelXferState [0x2e19620] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?, a5=([a0+2056] << 0x23).
-  The `jalr` at 0x2e1a4d0 calls __glim_DrawPixels [0x2dfa9a0] with a0=?, a1=?, a2=[a1+88], a3=0x1406, a4=ret(?), a5=[a0+1464], a6=[a0+1468].
-  The `bgezall` at 0x2e1a544 calls __glRestoreCurrentPixelXferState [0x2e19890] with a0=a0 at entry (arg0), a1=ret(__glGetCurrentSetDefaultPixelXferState), a2=ret(__glGetCurrentSetDefaultPixelXferState), a3=sp-70000.
-  The `jalr` at 0x2e1a554 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(?), a2=?, a3=?.
+  The `jalr` at 0x2e1a4d0 calls __glim_DrawPixels [0x2dfa9a0] with a0=?, a1=?, a2=?, a3=0x1406, a5=[a0+1464], a6=[a0+1468].
+  The `bgezall` at 0x2e1a544 calls __glRestoreCurrentPixelXferState [0x2e19890] with a0=a0 at entry (arg0), a1=?, a2=?, a3=sp-70000.
+  The `jalr` at 0x2e1a554 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0x2e1a588 calls __glComputeSpanPixelArray [0x2e06590] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=[[a1+552]:8+12], a4=[[a1+552]:8+64].
   The `jalr` at 0x2e1a620 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0x2e1a67c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a4=one of 0x0, 0x1.
+  The `jalr` at 0x2e1a67c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1a6bc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1a6e8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0x2e1a7ac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-69648 + (one of 0x0, 0x1 << 0xf)), a3=(sp-69648 + (one of 0x0, 0x1 << 0xf)), a4=one of 0x0, 0x1.
-  The `jalr` at 0x2e1a7e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a6=[a1+512]:8.
-  The `jalr` at 0x2e1a870 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a7=[a1+400]:8.
-  The `jalr` at 0x2e1a8c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-69648 + (one of 0x0, 0x1 << 0xf)), a3=(sp-69648 + (one of 0x0, 0x1 << 0xf)).
+  The `jalr` at 0x2e1a7ac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x2e1a7e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x2e1a870 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
+  The `jalr` at 0x2e1a8c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1a900 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1a924 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1a96c calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0x2e1a9f4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?, a7=[[a1+552]:8+12].
+  The `jalr` at 0x2e1a9f4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1aab0 calls __glSetError [0x2e315d0] with a0=0x505, a1=?, a2=?, a3=?.
   The `bne` branch at 0x2e1a214 targets 0x2e1a3e0, is taken when s1(=[a1+188]) < s5(=[[a1+552]:8+68]) (signed), and falls through when s1(=[a1+188]) >= s5(=[[a1+552]:8+68]) (signed).
   The `bne` branch at 0x2e1a220 targets 0x2e1a240, is taken when a3(=[a1+240]:1) != 0, and falls through when a3(=[a1+240]:1) == 0.
@@ -3029,7 +3026,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `blez` branch at 0x2e1a5c4 targets 0x2e1aa94, is taken when s5(=[[a1+552]:8+68]) <= 0 (signed), and falls through when s5(=[[a1+552]:8+68]) > 0 (signed).
   The `blez` branch at 0x2e1a63c targets 0x2e1a6a8, is taken when v0(=[a1+280]) <= 0 (signed), and falls through when v0(=[a1+280]) > 0 (signed).
   The `bne` branch at 0x2e1a698 targets 0x2e1a650, is taken when a5(?) < a6(=[a1+280]) (signed), and falls through when a5(?) >= a6(=[a1+280]) (signed).
-  The `bne` branch at 0x2e1a708 targets 0x2e1a610, is taken when s1(?) != ra(=(([[a1+552]:8+68] << 0xf) + [a0+1216]:8)), and falls through when s1(?) == ra(=(([[a1+552]:8+68] << 0xf) + [a0+1216]:8)).
+  The `bne` branch at 0x2e1a708 targets 0x2e1a610, is taken when s1(=table(0x8000)) != ra(?), and falls through when s1(=table(0x8000)) == ra(?).
   The `blez` branch at 0x2e1a738 targets 0x2e1aa40, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
   The `beq` branch at 0x2e1a774 targets 0x2e1a954 and is always taken.
   The `beq` branch at 0x2e1a7c0 targets 0x2e1a780, is taken when a5(=[a1+284]) >= s0(?) (signed), and falls through when a5(=[a1+284]) < s0(?) (signed).
@@ -3063,23 +3060,22 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   5 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x118, including `lw` at 0x2e1ab2c, `lw` at 0x2e1aca4, `lw` at 0x2e1ace4.
   The `lw` at 0x2e1ab54 loads 4 bytes from a0 (arg0 at entry) +0x995c.
   3 such `ld` accesses load 8 bytes from a1 (arg1 at entry) +0x68, including `ld` at 0x2e1ab64, `ld` at 0x2e1ac00, `ld` at 0x2e1ae24.
-  6 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e1abd8, `ld` at 0x2e1ad0c, `ld` at 0x2e1ad54.
+  7 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2e1abd8, `ld` at 0x2e1ac3c, `ld` at 0x2e1ad0c.
   2 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x18, including `lw` at 0x2e1abfc, `lw` at 0x2e1ac74.
   The `lw` at 0x2e1ac08 loads 4 bytes from a1 (arg1 at entry) +0x70.
   The `sd` at 0x2e1ac18 stores 8 bytes to a1 (arg1 at entry) +0x68.
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x10, including `sd` at 0x2e1ac24, `sd` at 0x2e1ac98.
-  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x995c, including `sw` at 0x2e1ac28, `sw` at 0x2e1acd4.
-  The `ld` at 0x2e1ac3c loads 8 bytes from [a1+552]:8 +0x50.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0x2e1ac28, `sw` at 0x2e1acd4.
   2 such `sd` accesses store 8 bytes to a1 (arg1 at entry) +0x110, including `sd` at 0x2e1ac44, `sd` at 0x2e1aca0.
   The `ld` at 0x2e1ac7c loads 8 bytes from a1 (arg1 at entry) +0x110.
   2 such `ld` accesses load 8 bytes from a1 (arg1 at entry) +0x208, including `ld` at 0x2e1ad74, `ld` at 0x2e1ad94.
   The `jalr` at 0x2e1abe8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-98320 + (one of 0x0, 0x1 << 0xf)), a3=[a1+104]:8, a5=[a1+280], a6=[a1+284]-1.
-  The `jalr` at 0x2e1ac68 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?, a4=[a1+408]:8.
+  The `jalr` at 0x2e1ac68 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?.
   The `jalr` at 0x2e1acdc calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?.
   The `jalr` at 0x2e1ad20 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1ad64 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jalr` at 0x2e1ad84 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
-  The `jalr` at 0x2e1ada4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?, a4=[a1+408]:8.
+  The `jalr` at 0x2e1ada4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=[a1+16]:8, a3=?.
   The `jalr` at 0x2e1adf4 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=(sp-98320 + (one of 0x0, 0x1 << 0xf)), a3=(sp-98320 + (one of 0x0, 0x1 << 0xf)).
   The `jalr` at 0x2e1ae48 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-32784, a3=[a1+104]:8, a5=[a1+280], a6=[a1+284]-1.
   The `jalr` at 0x2e1ae80 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=sp-32784, a3=(sp-98320 + (one of 0x0, 0x1 << 0xf)).
@@ -3088,10 +3084,10 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `blez` branch at 0x2e1ab90 targets 0x2e1ae94, is taken when t2(?) <= 0 (signed), and falls through when t2(?) > 0 (signed).
   The `beq` branch at 0x2e1abc0 targets 0x2e1ac34 and is always taken.
   The `beq` branch at 0x2e1ac2c targets 0x2e1ae94, is taken when ra(?) == at(?), and falls through when ra(?) != at(?).
-  The `blez` branch at 0x2e1ac40 targets 0x2e1adb4, is taken when a1(=[[a1+552]:8+68]) <= 0 (signed), and falls through when a1(=[[a1+552]:8+68]) > 0 (signed).
+  The `blez` branch at 0x2e1ac40 targets 0x2e1adb4, is taken when a1(?) <= 0 (signed), and falls through when a1(?) > 0 (signed).
   The `beq` branch at 0x2e1ac48 targets 0x2e1aca4 and is always taken.
   The `beq` branch at 0x2e1ac50 targets 0x2e1ad94, is taken when a1(?) == 0, and falls through when a1(?) != 0.
-  The `beq` branch at 0x2e1ac9c targets 0x2e1adb4, is taken when a6(=[[a1+552]:8+68]) == a7(?), and falls through when a6(=[[a1+552]:8+68]) != a7(?).
+  The `beq` branch at 0x2e1ac9c targets 0x2e1adb4, is taken when a6(?) == a7(?), and falls through when a6(?) != a7(?).
   The `beq` branch at 0x2e1acac targets 0x2e1ac50, is taken when t2(=[a1+280]) == 0, and falls through when t2(=[a1+280]) != 0.
   The `bne` branch at 0x2e1acf0 targets 0x2e1ad3c, is taken when ra(=[a1+280]) < 0x2 (signed), and falls through when ra(=[a1+280]) >= 0x2 (signed).
   The `bne` branch at 0x2e1ad34 targets 0x2e1acf8, is taken when s3(?) < t8(=[a1+280]) (signed), and falls through when s3(?) >= t8(=[a1+280]) (signed).
@@ -4373,7 +4369,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `jalr` at 0x2e2e810 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x2e2e4e4 targets 0x2e2e4f8, is taken when at(?) >= 0x1a (unsigned), and falls through when at(?) < 0x1a (unsigned).
   The `beq` branch at 0x2e2e518 targets 0x2e2e5a0, is taken when s1(=a2) == 0, and falls through when s1(=a2) != 0.
-  The `beq` branch at 0x2e2e55c targets 0x2e2e5d4, is taken when ra(=one of 0x0, 0x1) == 0, and falls through when ra(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x2e2e55c targets 0x2e2e5d4, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `bne` branch at 0x2e2e598 targets 0x2e2e520, is taken when a2 != 0, and falls through when a2 == 0.
   The `bne` branch at 0x2e2e5f4 targets 0x2e2e7ec, is taken when at(?) < v0(?) (signed), and falls through when at(?) >= v0(?) (signed).
   The `beq` branch at 0x2e2e5fc targets 0x2e2e568, is taken when a2(=a3) == 0, and falls through when a2(=a3) != 0.
@@ -7133,7 +7129,7 @@ Skipped routines: 23,060 are already located, understood, or have no software de
   The `beq` branch at 0x2e3f954 targets 0x2e3fa2c, is taken when a0 >= 0xd34 (unsigned), and falls through when a0 < 0xd34 (unsigned).
   The `bne` branch at 0x2e3f988 targets 0x2e3fb48, is taken when a7(=(sp + one of -0x6e0, -0x6dc, -0x6d8, -0x6d0)) != t8(=sp-1760), and falls through when a7(=(sp + one of -0x6e0, -0x6dc, -0x6d8, -0x6d0)) == t8(=sp-1760).
   The `bne` branch at 0x2e3f990 targets 0x2e3fbf4, is taken when t0(?) != a2(=sp-456), and falls through when t0(?) == a2(=sp-456).
-  The `bne` branch at 0x2e3f998 targets 0x2e3fc54, is taken when t1(=(sp + one of -0x550, -0x54f, -0x54c)) != a0(=sp-1360), and falls through when t1(=(sp + one of -0x550, -0x54f, -0x54c)) == a0(=sp-1360).
+  The `bne` branch at 0x2e3f998 targets 0x2e3fc54, is taken when t1(?) != a0(=sp-1360), and falls through when t1(?) == a0(=sp-1360).
   The `bne` branch at 0x2e3f9a0 targets 0x2e3fcd0, is taken when t2(?) != a1(=sp-856), and falls through when t2(?) == a1(=sp-856).
   The `bne` branch at 0x2e3f9a8 targets 0x2e3faa0, is taken when t3(=(sp + one of -0x4e8, -0x4d8)) != a6(=sp-1256), and falls through when t3(=(sp + one of -0x4e8, -0x4d8)) == a6(=sp-1256).
   The `bne` branch at 0x2e3f9c0 targets 0x2e3fa68, is taken when a6(?) != 0, and falls through when a6(?) == 0.

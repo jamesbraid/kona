@@ -10,9 +10,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda21104 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lwc1` at 0xda21114 loads 4 bytes from a1 (arg1 at entry) +0x20.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xda21118, `lw` at 0xda212e8.
-  2 such `lwc1` accesses load 4 bytes from [a0] +0xdd4, including `lwc1` at 0xda21128, `lwc1` at 0xda21354.
+  The `lwc1` at 0xda21128 loads 4 bytes from [a0] +0xdd4.
   The `lw` at 0xda21158 loads 4 bytes from a1 (arg1 at entry) +0x14.
-  4 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda213a4, `lwc1` at 0xda213a8, `lwc1` at 0xda213ac.
+  5 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda21354, `lwc1` at 0xda213a4, `lwc1` at 0xda213a8.
   4 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda213cc, `lw` at 0xda213e8, `lw` at 0xda21414.
   The `lw` at 0xda2145c loads 4 bytes from a1 (arg1 at entry) +0x40.
   The `lw` at 0xda214ac loads 4 bytes from table(0xda7b2e8) +0x0.
@@ -1879,15 +1879,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda2b268 loads 4 bytes from a0 (arg0 at entry) +0xc80.
   The `lw` at 0xda2b284 loads 4 bytes from a0 (arg0 at entry) +0x2e40.
   The `sw` at 0xda2b298 stores 4 bytes to a0 (arg0 at entry) +0xc80.
-  The `lw` at 0xda2b398 loads 4 bytes from ret(__glCheckTexSubImage1DArgs) +0xf8.
+  The `lw` at 0xda2b398 loads 4 bytes from ?.
   The `jalr` at 0xda2b288 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b2a4 calls __glSetError [0xd9d1af8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b2dc calls __glCheckTexSubImage1DArgs [0xda2ac04] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b328 calls __glInitTexSourceUnpack [0xda1c6b8] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=0x1.
-  The `jalr` at 0xda2b354 calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage1DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2b354 calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `jalr` at 0xda2b36c calls __glInitUnpacker [0xd9af410] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
   The `jalr` at 0xda2b384 calls __glInitPacker [0xd99e2a0] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
-  The `jalr` at 0xda2b3a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage1DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2b3a4 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `beq` branch at 0xda2b274 targets 0xda2b2b4, is taken when v0(=[a0+3200]) == 0, and falls through when v0(=[a0+3200]) != 0.
   The `bne` branch at 0xda2b27c targets 0xda2b29c, is taken when v0(=[a0+3200]) != at(=0x2), and falls through when v0(=[a0+3200]) == at(=0x2).
   The `beq` branch at 0xda2b294 targets 0xda2b2b4 and is always taken.
@@ -1902,15 +1902,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda2b58c loads 4 bytes from a0 (arg0 at entry) +0xc80.
   The `lw` at 0xda2b5a8 loads 4 bytes from a0 (arg0 at entry) +0x2e40.
   The `sw` at 0xda2b5bc stores 4 bytes to a0 (arg0 at entry) +0xc80.
-  The `lw` at 0xda2b6d0 loads 4 bytes from ret(__glCheckTexSubImage2DArgs) +0xf8.
+  The `lw` at 0xda2b6d0 loads 4 bytes from ?.
   The `jalr` at 0xda2b5ac calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b5c8 calls __glSetError [0xd9d1af8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b610 calls __glCheckTexSubImage2DArgs [0xda2acf0] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b65c calls __glInitTexSourceUnpack [0xda1c6b8] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
-  The `jalr` at 0xda2b68c calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage2DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2b68c calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `jalr` at 0xda2b6a4 calls __glInitUnpacker [0xd9af410] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
   The `jalr` at 0xda2b6bc calls __glInitPacker [0xd99e2a0] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
-  The `jalr` at 0xda2b6dc calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage2DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2b6dc calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `beq` branch at 0xda2b598 targets 0xda2b5d8, is taken when v0(=[a0+3200]) == 0, and falls through when v0(=[a0+3200]) != 0.
   The `bne` branch at 0xda2b5a0 targets 0xda2b5c0, is taken when v0(=[a0+3200]) != at(=0x2), and falls through when v0(=[a0+3200]) == at(=0x2).
   The `beq` branch at 0xda2b5b8 targets 0xda2b5d8 and is always taken.
@@ -1925,15 +1925,15 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda2b8d8 loads 4 bytes from a0 (arg0 at entry) +0xc80.
   The `lw` at 0xda2b8f4 loads 4 bytes from a0 (arg0 at entry) +0x2e40.
   The `sw` at 0xda2b908 stores 4 bytes to a0 (arg0 at entry) +0xc80.
-  The `lw` at 0xda2ba30 loads 4 bytes from ret(__glCheckTexSubImage3DArgs) +0xf8.
+  The `lw` at 0xda2ba30 loads 4 bytes from ?.
   The `jalr` at 0xda2b8f8 calls (unknown callee) with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b914 calls __glSetError [0xd9d1af8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b96c calls __glCheckTexSubImage3DArgs [0xda2ae0c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda2b9b8 calls __glInitTexSourceUnpack [0xda1c6b8] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
-  The `jalr` at 0xda2b9ec calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage3DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2b9ec calls __glInitTexSubImageStore [0xda2aae0] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `jalr` at 0xda2ba04 calls __glInitUnpacker3D [0xd9af628] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
   The `jalr` at 0xda2ba1c calls __glInitPacker3D [0xd99e4b4] with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=?.
-  The `jalr` at 0xda2ba3c calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=ret(__glCheckTexSubImage3DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda2ba3c calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-504, a2=?, a3=a2 at entry (arg2).
   The `beq` branch at 0xda2b8e4 targets 0xda2b924, is taken when v0(=[a0+3200]) == 0, and falls through when v0(=[a0+3200]) != 0.
   The `bne` branch at 0xda2b8ec targets 0xda2b90c, is taken when v0(=[a0+3200]) != at(=0x2), and falls through when v0(=[a0+3200]) == at(=0x2).
   The `beq` branch at 0xda2b904 targets 0xda2b924 and is always taken.

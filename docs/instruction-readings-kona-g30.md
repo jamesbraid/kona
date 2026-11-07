@@ -1404,9 +1404,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10063d24 calls __as__9EZWrapperGi [0x1008f4f0] with a0=ret(EZ__GP10_WidgetRec), a1=[[a0+344]+636], a2=?, a3=?.
   The `jal` at 0x10063d48 calls getTarget__18VkwindowMainWindowGv [0x1006f100] with a0=[sym(vkwindow)], a1=?, a2=[sym(vkwindow)], a3=?.
   The `jalr` at 0x10063dac calls XtSetSensitive with a0=[a0+152], a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x10063dc4 calls XtSetSensitive with a0=[a0+100], a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x10063ddc calls XtSetSensitive with a0=[a0+40], a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x10063df4 calls XtSetSensitive with a0=[a0+200], a1=0x0, a2=?, a3=?.
+  The `jalr` at 0x10063dc4 calls XtSetSensitive with a0=[a0+100], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10063ddc calls XtSetSensitive with a0=[a0+40], a1=?, a2=?, a3=?.
+  The `jalr` at 0x10063df4 calls XtSetSensitive with a0=[a0+200], a1=?, a2=?, a3=?.
   The `bne` branch at 0x100635c8 targets 0x1006366c, is taken when a1(=[[a0+344]+260]) != a2(=0x9), and falls through when a1(=[[a0+344]+260]) == a2(=0x9).
   The `beq` branch at 0x10063664 targets 0x10063704 and is always taken.
   The `bne` branch at 0x10063748 targets 0x10063774, is taken when v0(=ret(strcmp)) != 0, and falls through when v0(=ret(strcmp)) == 0.
@@ -1809,7 +1809,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10064e28 calls sprintf with a0=sp-1096, a1=0x1009b2a0, a2=[[a0+344]+260], a3=?, a5=[a0+344].
   The `jalr` at 0x10064e44 calls getTheErrorDialog__Gv with a0=?, a1=?, a2=[[a0+344]+260], a3=[a0+344].
   The `jalr` at 0x10064e5c calls baseWidget__10VkMenuItemCGv with a0=[a0+256], a1=?, a2=?, a3=?.
-  The `jal` at 0x10064e78 calls (unnamed) [0x10065d00] with a0=ret(getTheErrorDialog__Gv), a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
+  The `jal` at 0x10064e78 calls (unnamed) [0x10065d00] with a0=?, a1=sp-1096, a2=ret(baseWidget__10VkMenuItemCGv), a3=?.
   The `jalr` at 0x10064eac calls set__12VkOptionMenuGP10VkMenuItem with a0=[a0+256], a1=[a0+276], a2=?, a3=?.
   The `jalr` at 0x10064ed4 calls set__12VkOptionMenuGi with a0=[a0+256], a1=[[a0+344]+260], a2=?, a3=?.
   The `jalr` at 0x10065094 calls XtSetSensitive with a0=[a0+164], a1=0x0, a2=?, a3=[[a0+344]+260], a4=0x9.
@@ -3540,7 +3540,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10078e04 calls fprintf with a0=sym(__iob)+32, a1=0x1009dd80, a2=[a0+44428], a3=a0 at entry (arg0).
   The `jalr` at 0x10078eb8 calls getenv with a0=0x100aaaf8, a1=?, a2=?, a3=[a0+44104], a4=a0 at entry (arg0), a5=a0 at entry (arg0).
   The `jalr` at 0x10078ee0 calls strlen with a0=ret(getenv), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10078ef8 calls XOpenDisplay with a0=ret(getenv), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10078ef8 calls XOpenDisplay with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10078f2c calls getenv with a0=0x100aaaf8, a1=?, a2=?, a3=?.
   The `jalr` at 0x10078f50 calls fprintf with a0=sym(__iob)+32, a1=0x1009dd10, a2=ret(getenv), a3=?.
   The `jalr` at 0x10079004 calls fprintf with a0=sym(__iob)+32, a1=0x1009dda8, a2=?, a3=?, a5=[a0+44688], a6=a0 at entry (arg0), a7=[a0+44104].
@@ -3832,7 +3832,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x1007c274 targets 0x1007c334 and is always taken.
   The `beq` branch at 0x1007c298 targets 0x1007c2cc, is taken when v1(=ret(vfmtReadKonaVideoFormat)) == 0, and falls through when v1(=ret(vfmtReadKonaVideoFormat)) != 0.
   The `beq` branch at 0x1007c2c4 targets 0x1007c334 and is always taken.
-  The return at 0x1007c344 has v0 = one of 0x0, ret(vfmtReadKonaVideoFormat).
+  The return at 0x1007c344 has v0 = one of 0x0, ?.
 
 - `vfcGetKonaCombination` in `usr/gfx/ircombine` at 0x1007c410 (n32).
   Evidence grade: inferred.
@@ -4097,7 +4097,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10081a74 calls (unnamed) [0x100800d0] with a0=sp-86352, a1=a0 at entry (arg0), a2=sp-44700, a3=sp-42244.
   The `jalr` at 0x10081a98 calls sprintf with a0=sym(szErrorStr), a1=0x1009eb10, a2=?, a3=?.
   The `jal` at 0x10081ac4 calls (unnamed) [0x100815f0] with a0=sp-44712, a1=?, a2=?, a3=?.
-  The `jal` at 0x10081af8 calls (unnamed) [0x100815f0] with a0=sp-44712, a1=[a1+44428], a2=0x3, a3=?.
+  The `jal` at 0x10081af8 calls (unnamed) [0x100815f0] with a0=sp-44712, a1=?, a2=0x3, a3=?.
   The `beq` branch at 0x1008181c targets 0x10081ad4, is taken when v0(=ret(0x1007fbb0)) == 0, and falls through when v0(=ret(0x1007fbb0)) != 0.
   The `beq` branch at 0x10081870 targets 0x10081888, is taken when v0(=ret(vfcModifyKonaCombination)) == 0, and falls through when v0(=ret(vfcModifyKonaCombination)) != 0.
   The `beq` branch at 0x10081880 targets 0x10081b08 and is always taken.
@@ -4110,7 +4110,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10081a80 targets 0x10081ab0, is taken when v0(=ret(0x100800d0)) == 0, and falls through when v0(=ret(0x100800d0)) != 0.
   The `beq` branch at 0x10081aa8 targets 0x10081b08 and is always taken.
   The `beq` branch at 0x10081acc targets 0x10081b00 and is always taken.
-  The `bne` branch at 0x10081adc targets 0x10081b00, is taken when a1(=[a1+44428]) != a2(=0x3), and falls through when a1(=[a1+44428]) == a2(=0x3).
+  The `bne` branch at 0x10081adc targets 0x10081b00, is taken when a1(?) != a2(=0x3), and falls through when a1(?) == a2(=0x3).
   The return at 0x10081b20 has v0 = one of 0x0, 0x2.
 
 - `vfcFormatBool` in `usr/gfx/ircombine` at 0x10081b30 (n32).
@@ -4977,8 +4977,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `lhu` at 0x10005330 loads 2 bytes from ret(SDBreadOpenDatabase) +0x12.
   The `lhu` at 0x10005344 loads 2 bytes from ret(SDBreadOpenDatabase) +0x10.
   The `lw` at 0x10005354 loads 4 bytes from ret(SDBreadOpenDatabase) +0xac.
-  2 such `lw` accesses load 4 bytes from ret(SDBreadOpenDatabase) +0x78, including `lw` at 0x10005360, `lw` at 0x100053d4.
-  17 such `lw` accesses load 4 bytes from ?, including `lw` at 0x10005404, `lw` at 0x1000540c, `lw` at 0x1000541c.
+  The `lw` at 0x10005360 loads 4 bytes from ret(SDBreadOpenDatabase) +0x78.
+  18 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100053d4, `lw` at 0x10005404, `lw` at 0x1000540c.
   2 such `lbu` accesses load 1 byte from ?, including `lbu` at 0x1000543c, `lbu` at 0x10005564.
   The `lw` at 0x100056ec loads 4 bytes from sym(errno) +0x0.
   The `jal` at 0x100052d8 calls SDBreadOpenDatabase [0x1000ac5c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
@@ -4987,12 +4987,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x10005328 calls keywordFromToken__Gi [0x10004908] with a0=0x11c, a1=?, a2=?, a3=?.
   The `jalr` at 0x1000534c calls fprintf with a0=sym(__iob)+16, a1=0x1000c1a0, a2=ret(keywordFromToken__Gi), a3=[ret(SDBreadOpenDatabase)+16]:2, a4=[ret(SDBreadOpenDatabase)+18]:2.
   The `jalr` at 0x100053b4 calls fprintf with a0=sym(__iob)+16, a1=0x1000f4e8, a2=?, a3=?.
-  The `jalr` at 0x100053c0 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
+  The `jalr` at 0x100053c0 calls __dla__GPv with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10005400 calls (unnamed) [0x1000526c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10005450 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10005468 calls bzero with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
-  The `jal` at 0x10005480 calls SDBgetSymbolValueArray [0x1000ab34] with a0=ret(SDBreadOpenDatabase), a1=?, a2=ret(__nwa__GUi), a3=?.
-  The `jalr` at 0x100054ac calls fprintf with a0=sym(__iob)+16, a1=0x1000c1e0, a2=0x1f, a3=?, a4=ret(0x1000526c), a6=sp-1188.
+  The `jal` at 0x10005480 calls SDBgetSymbolValueArray [0x1000ab34] with a0=?, a1=?, a2=ret(__nwa__GUi), a3=?.
+  The `jalr` at 0x100054ac calls fprintf with a0=sym(__iob)+16, a1=0x1000c1e0, a2=0x1f, a3=?, a6=sp-1188.
   The `jalr` at 0x100054dc calls __assert with a0=0x1000f4cc, a1=0x1000c1b8, a2=0x120, a3=?.
   The `jalr` at 0x10005510 calls (unknown callee) with a0=?, a1=sp-1184, a2=?, a3=?.
   The `jalr` at 0x1000551c calls strlen with a0=sp-1184, a1=?, a2=?, a3=?.
@@ -5001,7 +5001,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x100055c0 calls fprintf with a0=sym(__iob)+16, a1=0x1000f4d0, a2=?, a3=0x1000f4d8, a4=sp-1192.
   The `jalr` at 0x100055e4 calls bzero with a0=sp-3248, a1=0x400, a2=?, a3=?.
   The `jalr` at 0x1000561c calls __assert with a0=0x1000f4cc, a1=0x1000c1b8, a2=0xeb, a3=sp-3248.
-  The `jal` at 0x10005630 calls SDBgetSymbolValueScalar [0x1000ab6c] with a0=ret(SDBreadOpenDatabase), a1=?, a2=?, a3=?.
+  The `jal` at 0x10005630 calls SDBgetSymbolValueScalar [0x1000ab6c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10005664 calls (unknown callee) with a0=sp-3248, a1=sp-2216, a2=?, a3=?.
   The `jalr` at 0x10005688 calls fprintf with a0=sym(__iob)+16, a1=0x1000c1c8, a2=0x1f, a3=?, a4=ret(0x1000526c), a5=sp-2216.
   The `jalr` at 0x100056e8 calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
@@ -5010,7 +5010,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x100052e0 targets 0x100056dc, is taken when v0(=ret(SDBreadOpenDatabase)) == 0, and falls through when v0(=ret(SDBreadOpenDatabase)) != 0.
   The `beq` branch at 0x1000536c targets 0x10005698, is taken when a2(=[ret(SDBreadOpenDatabase)+120]) == 0, and falls through when a2(=[ret(SDBreadOpenDatabase)+120]) != 0.
   The `beq` branch at 0x1000539c targets 0x100053fc and is always taken.
-  The `beq` branch at 0x100053f4 targets 0x10005698, is taken when t8(?) >= t9(=[ret(SDBreadOpenDatabase)+120]) (unsigned), and falls through when t8(?) < t9(=[ret(SDBreadOpenDatabase)+120]) (unsigned).
+  The `beq` branch at 0x100053f4 targets 0x10005698, is taken when t8(?) >= t9(?) (unsigned), and falls through when t8(?) < t9(?) (unsigned).
   The `beq` branch at 0x10005420 targets 0x100055d8, is taken when t8(?) == t1(?), and falls through when t8(?) != t1(?).
   The `bne` branch at 0x10005428 targets 0x10005418, is taken when t0(?) != 0, and falls through when t0(?) == 0.
   The `beq` branch at 0x10005434 targets 0x100055e0, is taken when a2(?) == 0, and falls through when a2(?) != 0.
@@ -5401,75 +5401,75 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0x10006ee0 calls printf with a0=0x1000c2e8, a1=?, a2=?, a3=[sym(yychar)], a4=0x0, a7=[sym(yytoks)+4].
   The `jalr` at 0x10006ef0 calls printf with a0=0x1000f4f0, a1=?, a2=?, a3=[sym(yychar)], a4=0x0, a7=[sym(yytoks)+4].
   The `jalr` at 0x10006f28 calls slistConvertor__20TypeArray__pt__4_iUlGP15Slist__pt__3_UlUl with a0=sp-384, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10006f50 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0xa, a3=0x0, a4=0x0.
-  The `jal` at 0x10006f74 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0xa, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10006f50 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0xa, a3=?, a4=0x0.
+  The `jal` at 0x10006f74 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0xa, a3=?, a5=0x0.
   The `jal` at 0x10006f88 calls (unnamed) [0x10008058] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10006f9c calls (unnamed) [0x10007ed4] with a0=sp-384, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x10006ff0 calls slistConvertor__19TypeArray__pt__3_ddGP14Slist__pt__2_dUl with a0=sp-368, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007018 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x11, a3=0x0, a4=0x0.
-  The `jal` at 0x1000703c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x11, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007018 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x11, a3=?, a4=0x0.
+  The `jal` at 0x1000703c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x11, a3=?, a5=0x0.
   The `jal` at 0x10007050 calls (unnamed) [0x100084e0] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007064 calls (unnamed) [0x10008358] with a0=sp-368, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x10007090 calls __nw__GUi with a0=0x8, a1=entry(0x1000c3f8), a2=?, a3=?, a6=sym(yyval).
   The `jal` at 0x100070bc calls (unnamed) [0x100083c4] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100070e0 calls (unnamed) [0x1000842c] with a0=?, a1=?, a2=?, a3=?, a6=sym(yyval).
   The `jalr` at 0x10007150 calls slistConvertor__19TypeArray__pt__3_fdGP14Slist__pt__2_dUl with a0=sp-344, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007178 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x10, a3=0x0, a4=0x0.
-  The `jal` at 0x1000719c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x10, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007178 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x10, a3=?, a4=0x0.
+  The `jal` at 0x1000719c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x10, a3=?, a5=0x0.
   The `jal` at 0x100071b0 calls (unnamed) [0x100084e0] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x100071c4 calls (unnamed) [0x100087fc] with a0=sp-344, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x100071fc calls slistConvertor__19TypeArray__pt__3_clGP14Slist__pt__2_lUl with a0=sp-328, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007224 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x8, a3=0x0, a4=0x0.
-  The `jal` at 0x10007248 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x8, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007224 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x8, a3=?, a4=0x0.
+  The `jal` at 0x10007248 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x8, a3=?, a5=0x0.
   The `jal` at 0x1000725c calls (unnamed) [0x10008c70] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007270 calls (unnamed) [0x10008aec] with a0=sp-328, a1=0x2, a2=?, a3=?.
-  The `jalr` at 0x10007290 calls strncpy with a0=sym(headerValues)+4, a1=?, a2=0x64, a3=?, a6=sym(yyval).
-  The `jal` at 0x100072a8 calls SDBsetHeader [0x1000a7e8] with a0=[sym(writeSDB)], a1=sym(headerValues), a2=sym(headerValues)+4, a3=?.
-  The `jal` at 0x100072dc calls SDBsetHeader [0x1000a7e8] with a0=[sym(writeSDB)], a1=sym(headerValues), a2=sym(headerValues)+4, a3=?, a6=sym(yyval).
+  The `jalr` at 0x10007290 calls strncpy with a0=?, a1=?, a2=0x64, a3=?, a6=sym(yyval).
+  The `jal` at 0x100072a8 calls SDBsetHeader [0x1000a7e8] with a0=[sym(writeSDB)], a1=sym(headerValues), a2=?, a3=?.
+  The `jal` at 0x100072dc calls SDBsetHeader [0x1000a7e8] with a0=[sym(writeSDB)], a1=sym(headerValues), a2=?, a3=?, a6=sym(yyval).
   The `jalr` at 0x10007314 calls slistConvertor__19TypeArray__pt__3_ilGP14Slist__pt__2_lUl with a0=sp-312, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x1000733c calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x2, a3=0x0, a4=0x0.
-  The `jal` at 0x10007360 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x2, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x1000733c calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x2, a3=?, a4=0x0.
+  The `jal` at 0x10007360 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x2, a3=?, a5=0x0.
   The `jal` at 0x10007374 calls (unnamed) [0x10008c70] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007388 calls (unnamed) [0x10008e94] with a0=sp-312, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x100073c0 calls slistConvertor__19TypeArray__pt__3_llGP14Slist__pt__2_lUl with a0=sp-296, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x100073e8 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x4, a3=0x0, a4=0x0.
-  The `jal` at 0x1000740c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x4, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x100073e8 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x4, a3=?, a4=0x0.
+  The `jal` at 0x1000740c calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x4, a3=?, a5=0x0.
   The `jal` at 0x10007420 calls (unnamed) [0x10008c70] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007434 calls (unnamed) [0x10009098] with a0=sp-296, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x1000746c calls slistConvertor__19TypeArray__pt__3_slGP14Slist__pt__2_lUl with a0=sp-280, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007494 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x6, a3=0x0, a4=0x0.
-  The `jal` at 0x100074b8 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x6, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007494 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x6, a3=?, a4=0x0.
+  The `jal` at 0x100074b8 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x6, a3=?, a5=0x0.
   The `jal` at 0x100074cc calls (unnamed) [0x10008c70] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x100074e0 calls (unnamed) [0x10009398] with a0=sp-280, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x1000750c calls __nw__GUi with a0=0x8, a1=entry(0x1000c3f8), a2=?, a3=?, a6=sym(yyval).
   The `jal` at 0x10007538 calls (unnamed) [0x10008b54] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1000755c calls (unnamed) [0x10008bbc] with a0=?, a1=?, a2=?, a3=?, a6=sym(yyval).
   The `jalr` at 0x100075a4 calls slistConvertor__21TypeArray__pt__5_PcPcGP15Slist__pt__3_PcUl with a0=sp-256, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x100075cc calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0xf, a3=0x0, a4=0x0.
-  The `jal` at 0x100075f0 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0xf, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x100075cc calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0xf, a3=?, a4=0x0.
+  The `jal` at 0x100075f0 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0xf, a3=?, a5=0x0.
   The `jal` at 0x10007604 calls (unnamed) [0x10009724] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007618 calls (unnamed) [0x1000959c] with a0=sp-256, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x10007658 calls __nw__GUi with a0=0x8, a1=entry(0x1000c3f8), a2=?, a3=?, a6=sym(yyval).
   The `jal` at 0x10007684 calls (unnamed) [0x10009608] with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x100076a8 calls (unnamed) [0x10009670] with a0=?, a1=?, a2=?, a3=?, a6=sym(yyval).
   The `jalr` at 0x100076e4 calls slistConvertor__21TypeArray__pt__5_UcUlGP15Slist__pt__3_UlUl with a0=sp-232, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x1000770c calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x9, a3=0x0, a4=0x0.
-  The `jal` at 0x10007730 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x9, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x1000770c calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x9, a3=?, a4=0x0.
+  The `jal` at 0x10007730 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x9, a3=?, a5=0x0.
   The `jal` at 0x10007744 calls (unnamed) [0x10008058] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007758 calls (unnamed) [0x10009a38] with a0=sp-232, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x10007790 calls slistConvertor__21TypeArray__pt__5_UiUlGP15Slist__pt__3_UlUl with a0=sp-216, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x100077b8 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x3, a3=0x0, a4=0x0.
-  The `jal` at 0x100077dc calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x3, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x100077b8 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x3, a3=?, a4=0x0.
+  The `jal` at 0x100077dc calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x3, a3=?, a5=0x0.
   The `jal` at 0x100077f0 calls (unnamed) [0x10008058] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007804 calls (unnamed) [0x10009c40] with a0=sp-216, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x1000783c calls slistConvertor__21TypeArray__pt__5_UlUlGP15Slist__pt__3_UlUl with a0=sp-200, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007864 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x5, a3=0x0, a4=0x0.
-  The `jal` at 0x10007888 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x5, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007864 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x5, a3=?, a4=0x0.
+  The `jal` at 0x10007888 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x5, a3=?, a5=0x0.
   The `jal` at 0x1000789c calls (unnamed) [0x10008058] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x100078b0 calls (unnamed) [0x10009e44] with a0=sp-200, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x100078e8 calls slistConvertor__21TypeArray__pt__5_UsUlGP15Slist__pt__3_UlUl with a0=sp-184, a1=?, a2=?, a3=?, a6=sym(yyval).
-  The `jal` at 0x10007918 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x7, a3=0x0, a4=0x0.
-  The `jal` at 0x10007940 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x7, a3=?, a4=0x0, a5=0x0.
+  The `jal` at 0x10007918 calls SDBaddNewScalarSymbol [0x1000a4b0] with a0=[sym(writeSDB)], a1=?, a2=0x7, a3=?, a4=0x0.
+  The `jal` at 0x10007940 calls SDBaddNewArraySymbol [0x1000a478] with a0=[sym(writeSDB)], a1=?, a2=0x7, a3=?, a5=0x0.
   The `jal` at 0x10007954 calls (unnamed) [0x10008058] with a0=?, a1=0x3, a2=?, a3=?.
   The `jal` at 0x10007968 calls (unnamed) [0x1000a14c] with a0=sp-184, a1=0x2, a2=?, a3=?.
   The `jalr` at 0x100079a8 calls __nw__GUi with a0=0x8, a1=entry(0x1000c3f8), a2=?, a3=?, a6=sym(yyval).
@@ -5477,14 +5477,14 @@ These entries record instruction facts rendered from the routines below. They de
   The `jal` at 0x100079f4 calls (unnamed) [0x10007fa4] with a0=?, a1=?, a2=?, a3=?, a6=sym(yyval).
   The `jalr` at 0x10007a14 calls gettxt with a0=0x1000c2f8, a1=0x1000c308, a2=?, a3=?.
   The `jal` at 0x10007a20 calls yyerror__GPc [0x10004fbc] with a0=ret(gettxt), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10007a70 calls memcpy with a0=ret(malloc), a1=[sym(yys)], a2=(([0x1000f574] + [0x1000f574]) << 0x2), a3=ret(malloc).
-  The `jalr` at 0x10007a90 calls memcpy with a0=ret(malloc), a1=[sym(yyv)], a2=(([0x1000f574] + [0x1000f574]) << 0x3), a3=sym(yys).
+  The `jalr` at 0x10007a70 calls memcpy with a0=?, a1=[sym(yys)], a2=?, a3=?.
+  The `jalr` at 0x10007a90 calls memcpy with a0=?, a1=[sym(yyv)], a2=(([0x1000f574] + [0x1000f574]) << 0x3), a3=sym(yys).
   The `jalr` at 0x10007aac calls printf with a0=0x1000c3a8, a1=?, a2=?, a3=[sym(yychar)], a4=0x0.
   The `jalr` at 0x10007ac0 calls printf with a0=0x1000c3c0, a1=?, a2=?, a3=[sym(yychar)], a4=0x0.
   The `beq` branch at 0x100065d4 targets 0x10006670 and is always taken.
   The `beq` branch at 0x1000661c targets 0x10006650, is taken when s2(?) >= 0xfb (signed), and falls through when s2(?) < 0xfb (signed).
   The `beq` branch at 0x10006648 targets 0x10006664, is taken when at(?) == v1(?), and falls through when at(?) != v1(?).
-  The `beq` branch at 0x1000666c targets 0x10006c90, is taken when ra(=one of 0x0, 0x1) == 0, and falls through when ra(=one of 0x0, 0x1) != 0.
+  The `beq` branch at 0x1000666c targets 0x10006c90, is taken when ra(?) == 0, and falls through when ra(?) != 0.
   The `beq` branch at 0x10006678 targets 0x100066fc, is taken when at(=[sym(yydebug)]) == 0, and falls through when at(=[sym(yydebug)]) != 0.
   The `beq` branch at 0x100066a0 targets 0x10006eb0, is taken when a3(=[sym(yychar)]) == 0, and falls through when a3(=[sym(yychar)]) != 0.
   The `bltz` branch at 0x100066a8 targets 0x10006ec4, is taken when a3(=[sym(yychar)]) < 0 (signed), and falls through when a3(=[sym(yychar)]) >= 0 (signed).
@@ -5569,7 +5569,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0x10006e18 targets 0x100067bc and is always taken.
   The `beq` branch at 0x10006e30 targets 0x10006774 and is always taken.
   The `beq` branch at 0x10006e40 targets 0x10006774 and is always taken.
-  The `beq` branch at 0x10006e6c targets 0x10006e7c, is taken when a3(=ret(malloc)) == 0, and falls through when a3(=ret(malloc)) != 0.
+  The `beq` branch at 0x10006e6c targets 0x10006e7c, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0x10006e74 targets 0x10007a60, is taken when v0(=ret(malloc)) != 0, and falls through when v0(=ret(malloc)) == 0.
   The `beq` branch at 0x10006e7c targets 0x10006c04 and is always taken.
   The `bne` branch at 0x10006e84 targets 0x10006ad8, is taken when v0(=[sym(yyexca)+4]) != s2(?), and falls through when v0(=[sym(yyexca)+4]) == s2(?).
@@ -8866,8 +8866,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda1da84 loads 4 bytes from [a0+764] +0x40.
   The `lw` at 0xda1da90 loads 4 bytes from [a0+764] +0x0.
   The `lw` at 0xda1dab0 loads 4 bytes from [a0+764] +0x44.
-  The `lw` at 0xda1dae4 loads 4 bytes from ret(__glCheckTexImage3DArgs) +0xf4.
-  The `lw` at 0xda1dba4 loads 4 bytes from ret(__glCheckTexImage3DArgs) +0xf8.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xda1dae4, `lw` at 0xda1dba4.
   The `sb` at 0xda1dbc8 stores 1 byte to ret(__glLookUpTextureObject) +0xc.
   The `lw` at 0xda1dbd0 loads 4 bytes from a0 (arg0 at entry) +0x2e24.
   The `sw` at 0xda1dbd8 stores 4 bytes to a0 (arg0 at entry) +0x2e24.
@@ -8875,13 +8874,13 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xda1d9cc calls __glSetError [0xd9d1af8] with a0=0x502, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda1da1c calls __glCheckTexImage3DArgs [0xda1c9fc] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda1da3c calls __glLookUpTextureObject [0xda179c8] with a0=a0 at entry (arg0), a1=0x806f, a2=?, a3=?.
-  The `jalr` at 0xda1da68 calls __glSetError [0xd9d1af8] with a0=0x502, a1=ret(__glCheckTexImage3DArgs), a2=?, a3=?.
-  The `jalr` at 0xda1daf0 calls (unknown callee) with a0=a0 at entry (arg0), a1=ret(__glCheckTexImage3DArgs), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0xda1da68 calls __glSetError [0xd9d1af8] with a0=0x502, a1=?, a2=?, a3=?.
+  The `jalr` at 0xda1daf0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xda1db40 calls __glInitTexSourceUnpack [0xda1c6b8] with a0=a0 at entry (arg0), a1=sp-508, a2=?, a3=?.
-  The `jalr` at 0xda1db60 calls __glInitTexImageStore [0xda1c3e0] with a0=a0 at entry (arg0), a1=sp-508, a2=ret(__glCheckTexImage3DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda1db60 calls __glInitTexImageStore [0xda1c3e0] with a0=a0 at entry (arg0), a1=sp-508, a2=?, a3=a2 at entry (arg2).
   The `jalr` at 0xda1db78 calls __glInitUnpacker3D [0xd9af628] with a0=a0 at entry (arg0), a1=sp-508, a2=?, a3=?.
   The `jalr` at 0xda1db90 calls __glInitPacker3D [0xd99e4b4] with a0=a0 at entry (arg0), a1=sp-508, a2=?, a3=?.
-  The `jalr` at 0xda1dbb0 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-508, a2=ret(__glCheckTexImage3DArgs), a3=a2 at entry (arg2).
+  The `jalr` at 0xda1dbb0 calls (unknown callee) with a0=a0 at entry (arg0), a1=sp-508, a2=?, a3=a2 at entry (arg2).
   The `beq` branch at 0xda1d998 targets 0xda1d9dc, is taken when v0(=[0x1018]) == 0, and falls through when v0(=[0x1018]) != 0.
   The `bne` branch at 0xda1d9a4 targets 0xda1d9c4, is taken when v0(=[0x1018]) != at(=0x2), and falls through when v0(=[0x1018]) == at(=0x2).
   The `beq` branch at 0xda1d9bc targets 0xda1d9dc and is always taken.
@@ -9002,12 +9001,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xda20000 loads 4 bytes from a0 (arg0 at entry) +0x0.
   The `lwc1` at 0xda20010 loads 4 bytes from a1 (arg1 at entry) +0x20.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4, including `lw` at 0xda20014, `lw` at 0xda201dc.
-  3 such `lwc1` accesses load 4 bytes from [a0] +0xdd4, including `lwc1` at 0xda20024, `lwc1` at 0xda20444, `lwc1` at 0xda204d0.
+  The `lwc1` at 0xda20024 loads 4 bytes from [a0] +0xdd4.
   The `lw` at 0xda20054 loads 4 bytes from a1 (arg1 at entry) +0x14.
   3 such `lwc1` accesses load 4 bytes from a1 (arg1 at entry) +0x24, including `lwc1` at 0xda201e8, `lwc1` at 0xda20218, `lwc1` at 0xda20220.
   2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x8, including `lw` at 0xda20228, `lw` at 0xda203d8.
   The `lw` at 0xda20260 loads 4 bytes from a1 (arg1 at entry) +0x18.
-  8 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda2047c, `lwc1` at 0xda2048c, `lwc1` at 0xda20490.
+  10 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xda20444, `lwc1` at 0xda2047c, `lwc1` at 0xda2048c.
   16 such `lw` accesses load 4 bytes from a1 (arg1 at entry) +0x60, including `lw` at 0xda20544, `lw` at 0xda20560, `lw` at 0xda2058c.
   The `lw` at 0xda207e4 loads 4 bytes from a1 (arg1 at entry) +0x40.
   The `lw` at 0xda20838 loads 4 bytes from table(0xda7b2d4) +0x0.

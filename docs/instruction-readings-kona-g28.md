@@ -23,17 +23,12 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd80da18 stores 4 bytes to [a0+108] +0x4.
   11 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd80da38, `lw` at 0xd80da50, `lw` at 0xd80da8c.
   6 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd80da3c, `lw` at 0xd80da90, `lw` at 0xd80dadc.
-  The `sw` at 0xd80dc34 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0xc.
-  The `sw` at 0xd80dc48 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x10.
-  30 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80dc74, `sw` at 0xd80dc78, `sw` at 0xd80dda0.
+  32 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80dc34, `sw` at 0xd80dc48, `sw` at 0xd80dc74.
   8 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0xd80dc7c, `sdc1` at 0xd80dc80, `sdc1` at 0xd80dc84.
-  The `lw` at 0xd80dcfc loads 4 bytes from ret(malloc) +0x0.
-  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80dd00, `lw` at 0xd80deb0, `lw` at 0xd80deb4.
+  15 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80dcfc, `lw` at 0xd80dd00, `lw` at 0xd80deb0.
   The `lw` at 0xd80dd5c loads 4 bytes from (table(-0x800b) << 0x2) +0xd841b3c.
   The `lw` at 0xd80dd84 loads 4 bytes from table(0xd841bb4) +0x0.
   7 such `sb` accesses store 1 byte to ?, including `sb` at 0xd80ddb0, `sb` at 0xd80ddb8, `sb` at 0xd80dec8.
-  The `lw` at 0xd80df5c loads 4 bytes from ([a1+32] + (a2 << 0x5)) +0xc.
-  The `lw` at 0xd80df60 loads 4 bytes from [([a1+32] + (a2 << 0x5))+12] +0x20.
   The `lw` at 0xd80dfa4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x14.
   The `lw` at 0xd80dfac loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x18.
   The `lw` at 0xd80dfb4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x1c.
@@ -50,16 +45,16 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd80db4c calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80db68 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dba0 calls malloc with a0=?, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd80dbc0 calls free with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd80dbc0 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dbe0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dbfc calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80dc20 calls memset with a0=ret(malloc), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0xd80dcb8 calls _XRead with a0=a0 at entry (arg0), a1=ret(malloc), a2=?, a3=ret(malloc).
+  The `jalr` at 0xd80dcb8 calls _XRead with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   Calls (unknown callee) via register with a0=?, a1=?, a2=?, a3=? (`jr` at 0xd80dd64).
   The `jalr` at 0xd80df44 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd80df90 calls __glXOverrideVisualGetVisualInfo with a0=a0 at entry (arg0), a1=0x3, a2=sp-120, a3=sp-124.
   The `jalr` at 0xd80dfc4 calls free with a0=ret(__glXOverrideVisualGetVisualInfo), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd80dfec calls XFree with a0=ret(malloc), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd80dfec calls XFree with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd80e008 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beql` branch at 0xd80d984 targets 0xd80d9a0, is taken when v0(=[a0+1232]) == 0, and falls through when v0(=[a0+1232]) != 0; its branch-likely delay slot `lw v1,108(s2)` at 0xd80d988 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd80d9ac targets 0xd80d9d0, is taken when t5(=[a0+112]) >= t7(=[a0+108]+8) (unsigned), and falls through when t5(=[a0+112]) < t7(=[a0+108]+8) (unsigned); its branch-likely delay slot `sw v1,100(s2)` at 0xd80d9b0 runs only when taken and is annulled on fall-through.
@@ -134,6 +129,9 @@ These entries record instruction facts rendered from the routines below. They de
   The instructions from 0xd80de64 to 0xd80de88 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80de9c to 0xd80dea4 are not reached by any path from the entry, and their branches are not listed.
   The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
+  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
+  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
+  The indirect jump at 0xd80dd8c uses the jump table at 0xd841bb4 with targets 0xd80dd9c, 0xd80dda4, 0xd80dea8, 0xd80ddac, 0xd80ddb4, 0xd80ddbc, 0xd80ddc4, 0xd80ddcc, 0xd80ddd4, 0xd80dddc, 0xd80dde4, 0xd80ddec, 0xd80ddf4, 0xd80ddfc, 0xd80de04, 0xd80de0c, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80dea8, 0xd80de2c, 0xd80dea8, 0xd80de24, 0xd80de34, 0xd80de3c, 0xd80de44, 0xd80de4c, 0xd80de54, 0xd80de5c.
 
 - `GetVisualConfigs` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd80e030 (o32).
   Evidence grade: inferred.
@@ -156,9 +154,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd80e110 stores 4 bytes to [a0+108] +0x4.
   11 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd80e130, `lw` at 0xd80e148, `lw` at 0xd80e184.
   6 such `lw` accesses load 4 bytes from [a0+1232] +0x4, including `lw` at 0xd80e134, `lw` at 0xd80e188, `lw` at 0xd80e1d4.
-  The `sw` at 0xd80e324 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x4.
-  The `sw` at 0xd80e334 stores 4 bytes to ([a1+32] + (a2 << 0x5)) +0x8.
-  31 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80e344, `sw` at 0xd80e348, `sw` at 0xd80e388.
+  33 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd80e324, `sw` at 0xd80e334, `sw` at 0xd80e344.
   The `lw` at 0xd80e374 loads 4 bytes from ret(malloc) +0x0.
   The `lw` at 0xd80e38c loads 4 bytes from ret(malloc) +0x4.
   The `lw` at 0xd80e39c loads 4 bytes from ret(malloc) +0x8.
@@ -178,11 +174,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd80e418 loads 4 bytes from ret(malloc) +0x3c.
   The `lw` at 0xd80e420 loads 4 bytes from ret(malloc) +0x40.
   The `lw` at 0xd80e428 loads 4 bytes from ret(malloc) +0x44.
-  The `lw` at 0xd80e434 loads 4 bytes from ret(malloc) +0x48.
-  10 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80e438, `lw` at 0xd80e500, `lw` at 0xd80e514.
+  12 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd80e434, `lw` at 0xd80e438, `lw` at 0xd80e500.
   The `lw` at 0xd80e498 loads 4 bytes from table(0xd841a04) +0x0.
   The `lbu` at 0xd80e504 loads 1 byte from ?.
-  The `lw` at 0xd80e58c loads 4 bytes from ([a1+32] + (a2 << 0x5)) +0x4.
   The `lw` at 0xd80e5c4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x14.
   The `lw` at 0xd80e5cc loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x18.
   The `lw` at 0xd80e5d4 loads 4 bytes from ret(__glXOverrideVisualGetVisualInfo) +0x1c.
@@ -263,6 +257,8 @@ These entries record instruction facts rendered from the routines below. They de
   The instructions from 0xd80e464 to 0xd80e464 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80e4f0 to 0xd80e4f0 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd80e650 to 0xd80f614 are not reached by any path from the entry, and their branches are not listed.
+  The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
+  The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
   The indirect jump at 0xd80e4a0 uses the jump table at 0xd841a04 with targets 0xd80e4e8, 0xd80e4f4, 0xd80e4f4, 0xd80e4b8, 0xd80e4c0, 0xd80e4c8, 0xd80e4d0, 0xd80e4d8, 0xd80e4e0.
 
 - `__glXMalloc` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd80f0ec (o32).
@@ -755,7 +751,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `lw` at 0xd81146c loads 4 bytes from a0 (arg0 at entry) +0x8c.
   The `lw` at 0xd811480 loads 4 bytes from ([a0+140] + (((a2 << 0x2) + a2) << 0x4)) +0x8.
   The `lw` at 0xd8114e4 loads 4 bytes from ?.
-  2 such `sw` accesses store 4 bytes to ([a1+32] + (a2 << 0x5)) +0x0, including `sw` at 0xd8114e8, `sw` at 0xd81150c.
+  2 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8114e8, `sw` at 0xd81150c.
   The `jalr` at 0xd811458 calls XInternAtom with a0=a0 at entry (arg0), a1=0xd841880, a2=0x0, a3=a3 at entry (arg3).
   The `jalr` at 0xd8114c4 calls XGetWindowProperty with a0=a0 at entry (arg0), a1=[([a0+140] + (((a2 << 0x2) + a2) << 0x4))+8], a2=ret(XInternAtom), a3=0x0.
   The `jalr` at 0xd8114f4 calls XFree with a0=?, a1=?, a2=?, a3=?.
@@ -908,45 +904,36 @@ These entries record instruction facts rendered from the routines below. They de
   The `sw` at 0xd811cb0 stores 4 bytes to abs 0xd846770.
   The `lw` at 0xd811cf4 loads 4 bytes from a0 (arg0 at entry) +0x20.
   The `lw` at 0xd811cf8 loads 4 bytes from a0 (arg0 at entry) +0x0.
-  The `sw` at 0xd811d14 stores 4 bytes to [a0+32] +0x14.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x8, including `lw` at 0xd811d94, `lw` at 0xd811df8, `lw` at 0xd811e1c.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x4, including `lw` at 0xd811d98, `lw` at 0xd811e34, `lw` at 0xd811e9c.
-  22 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811dbc, `lw` at 0xd811dcc, `lw` at 0xd811de4.
-  56 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811df0, `sw` at 0xd811e18, `sw` at 0xd811f20.
-  The `sw` at 0xd811e74 stores 4 bytes to [a0+32] +0x4.
-  The `sw` at 0xd811ea0 stores 4 bytes to [a0+32] +0x8.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0x10, including `lw` at 0xd811ea8, `lw` at 0xd811f24, `lw` at 0xd811f50.
-  3 such `lw` accesses load 4 bytes from [a0+32] +0xc, including `lw` at 0xd811ec4, `lw` at 0xd811f68, `lw` at 0xd811fe0.
-  The `sw` at 0xd811f8c stores 4 bytes to [a0+32] +0x10.
-  The `sw` at 0xd811fb4 stores 4 bytes to [a0+32] +0xc.
+  61 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd811d14, `sw` at 0xd811df0, `sw` at 0xd811e18.
+  34 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd811d94, `lw` at 0xd811d98, `lw` at 0xd811dbc.
   10 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8121bc, `sb` at 0xd8121c0, `sb` at 0xd812210.
   8 such `sdc1` accesses store 8 bytes to ?, including `sdc1` at 0xd812298, `sdc1` at 0xd8122a4, `sdc1` at 0xd8122b0.
   3 such `lbu` accesses load 1 byte from ?, including `lbu` at 0xd812338, `lbu` at 0xd812340, `lbu` at 0xd812478.
   The `jalr` at 0xd811c8c calls getenv with a0=0xd8418f4, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xd811cb4 calls fopen with a0=ret(getenv), a1=0xd841904, a2=?, a3=?.
-  The `jalr` at 0xd811cd0 calls perror with a0=ret(getenv), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811cd0 calls perror with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811ce4 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811d00 calls glXGetClientString with a0=[a0], a1=0x3, a2=?, a3=?.
-  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
+  The `jalr` at 0xd811d24 calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
   The `jalr` at 0xd811d40 calls sscanf with a0=sp-1040, a1=0xd841908, a2=sp-1052, a3=?.
-  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd811d70 calls fprintf with a0=sym(__iob)+32, a1=0xd84190c, a2=?, a3=?.
   The `jalr` at 0xd811d84 calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811e40 calls free with a0=[[a0+32]+4], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811e40 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e60 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811e88 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd811f74 calls free with a0=[[a0+32]+12], a1=?, a2=?, a3=?.
+  The `jalr` at 0xd811f74 calls free with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fa0 calls malloc with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xd811fc8 calls bzero with a0=ret(malloc), a1=?, a2=?, a3=?.
-  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=ret(fopen), a3=?.
+  The `jalr` at 0xd81201c calls fgets with a0=sp-1040, a1=0x400, a2=?, a3=?.
   The `jalr` at 0xd8120f8 calls sscanf with a0=sp-1040, a1=0xd841940, a2=sp-5248, a3=sp-5244.
-  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd812178 calls fprintf with a0=sym(__iob)+32, a1=0xd841984, a2=?, a3=?.
   The `jalr` at 0xd81218c calls exit with a0=0x1, a1=?, a2=?, a3=?.
-  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=ret(getenv), a3=?.
+  The `jalr` at 0xd812574 calls fprintf with a0=sym(__iob)+32, a1=0xd8419bc, a2=?, a3=?.
   The `jalr` at 0xd812588 calls exit with a0=0x1, a1=?, a2=?, a3=?.
   The `beq` branch at 0xd811c98 targets 0xd812594, is taken when v0(=ret(getenv)) == 0, and falls through when v0(=ret(getenv)) != 0.
   The `bne` branch at 0xd811cc0 targets 0xd811cf0, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The `bgtz` branch at 0xd811d54 targets 0xd811d94, is taken when a3(?) > 0 (signed), and falls through when a3(?) <= 0 (signed).
-  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(=[[a0+32]+8]) <= 0 (signed), and falls through when v1(=[[a0+32]+8]) > 0 (signed).
+  The `blez` branch at 0xd811da8 targets 0xd811e38, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `bnel` branch at 0xd811dc4 targets 0xd811e28, is taken when t6(?) != 0, and falls through when t6(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811dc8 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811dd4 targets 0xd811dfc, is taken when a0(=0x3) != v0(?), and falls through when a0(=0x3) == v0(?).
   The `beq` branch at 0xd811ddc targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
@@ -954,8 +941,8 @@ These entries record instruction facts rendered from the routines below. They de
   The `bne` branch at 0xd811dfc targets 0xd811e24, is taken when a1(=0x4) != v0(?), and falls through when a1(=0x4) == v0(?).
   The `beq` branch at 0xd811e04 targets 0xd811e24, is taken when at(?) == 0, and falls through when at(?) != 0.
   The `bne` branch at 0xd811e28 targets 0xd811dbc, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(=[[a0+32]+16]) == 0, and falls through when v1(=[[a0+32]+16]) != 0.
-  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(=[[a0+32]+16]) <= 0 (signed), and falls through when v1(=[[a0+32]+16]) > 0 (signed).
+  The `beq` branch at 0xd811ebc targets 0xd811ff8, is taken when v1(?) == 0, and falls through when v1(?) != 0.
+  The `blez` branch at 0xd811ecc targets 0xd811f6c, is taken when v1(?) <= 0 (signed), and falls through when v1(?) > 0 (signed).
   The `bnel` branch at 0xd811ee0 targets 0xd811f5c, is taken when t2(?) != 0, and falls through when t2(?) == 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ee4 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd811ef0 targets 0xd811f5c, is taken when (t3(?) & 0x1) == 0, and falls through when (t3(?) & 0x1) != 0; its branch-likely delay slot `slt at,s3,v1` at 0xd811ef4 runs only when taken and is annulled on fall-through.
   The `bne` branch at 0xd811f00 targets 0xd811f30, is taken when a0(=0x8004) != v0(?), and falls through when a0(=0x8004) == v0(?).
@@ -1025,7 +1012,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xd8126e4 calls getpeername with a0=[[a0+264]+8], a1=sp-24, a2=sp-556, a3=a3 at entry (arg3).
   The `jalr` at 0xd812720 calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `jalr` at 0xd812748 calls fprintf with a0=sym(__iob)+32, a1=0xd840d14, a2=?, a3=?.
-  The `jalr` at 0xd812778 calls ioctl with a0=[[a0+264]+8], a1=0xffffffffc0086914, a2=sp-32, a3=?.
+  The `jalr` at 0xd812778 calls ioctl with a0=?, a1=0xffffffffc0086914, a2=sp-32, a3=?.
   The `jalr` at 0xd8127bc calls isNotProxy [0xd8342dc] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `bne` branch at 0xd8126b8 targets 0xd81269c, is taken when t8(?) != t1(=0xd8441f8), and falls through when t8(?) == t1(=0xd8441f8).
   The `beq` branch at 0xd8126f8 targets 0xd812714, is taken when a2(?) == at(=0x1), and falls through when a2(?) != at(=0x1).

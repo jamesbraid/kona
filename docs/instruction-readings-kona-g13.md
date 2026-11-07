@@ -683,9 +683,9 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `jal` at 0x100209c4 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
   The `jal` at 0x100209d8 calls getstring__9EZWrapperGv [0x10021c90] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
   The `jal` at 0x100209f4 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020a10 calls VkFormat__GPCce with a0=0x100519e0, a1=ret(getstring__9EZWrapperGv), a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x10020a10 calls VkFormat__GPCce with a0=0x100519e0, a1=?, a2=a1 at entry (arg1), a3=?.
   The `jal` at 0x10020a28 calls __as__9EZWrapperGPCc [0x100201d0] with a0=?, a1=ret(VkFormat__GPCce), a2=?, a3=?.
-  The `jalr` at 0x10020a38 calls XtFree with a0=ret(getstring__9EZWrapperGv), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020a38 calls XtFree with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10020a5c calls XtIsSubclass with a0=[a0], a1=[sym(xmScrollBarWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020a84 calls XtIsSubclass with a0=[a0], a1=[sym(xmScaleWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020ab4 calls XtIsSubclass with a0=[a0], a1=[sym(sgThumbWheelWidgetClass)], a2=?, a3=?.
@@ -755,9 +755,9 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `jal` at 0x10020ec0 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
   The `jal` at 0x10020ed4 calls getstring__9EZWrapperGv [0x10021c90] with a0=ret(EZ__GP10_WidgetRec), a1=?, a2=?, a3=?.
   The `jal` at 0x10020ef0 calls EZ__GP10_WidgetRec [0x1001e910] with a0=[a0], a1=?, a2=?, a3=?.
-  The `jalr` at 0x10020f14 calls VkFormat__GPCce with a0=0x100519e8, a1=ret(getstring__9EZWrapperGv), a2=?, a3=?.
+  The `jalr` at 0x10020f14 calls VkFormat__GPCce with a0=0x100519e8, a1=?, a2=?, a3=?.
   The `jal` at 0x10020f2c calls __as__9EZWrapperGPCc [0x100201d0] with a0=?, a1=ret(VkFormat__GPCce), a2=?, a3=?.
-  The `jalr` at 0x10020f3c calls XtFree with a0=ret(getstring__9EZWrapperGv), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10020f3c calls XtFree with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10020f60 calls XtIsSubclass with a0=[a0], a1=[sym(xmScrollBarWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020f88 calls XtIsSubclass with a0=[a0], a1=[sym(xmScaleWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10020fb8 calls XtIsSubclass with a0=[a0], a1=[sym(sgThumbWheelWidgetClass)], a2=?, a3=?.
@@ -925,7 +925,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `jalr` at 0x10021b6c calls XtIsSubclass with a0=[a0], a1=[sym(xmTextFieldWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10021b8c calls XmTextGetString with a0=[a0], a1=?, a2=?, a3=?.
   The `jalr` at 0x10021ba4 calls atoi with a0=ret(XmTextGetString), a1=?, a2=?, a3=?.
-  The `jalr` at 0x10021bbc calls XtFree with a0=ret(XmTextGetString), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10021bbc calls XtFree with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10021bf0 calls XtIsSubclass with a0=[a0], a1=[sym(xmListWidgetClass)], a2=?, a3=?.
   The `jalr` at 0x10021c18 calls XmListGetSelectedPos with a0=[a0], a1=sp-76, a2=sp-72, a3=?.
   The `bne` branch at 0x100218fc targets 0x1002192c, is taken when v0(=ret(XtIsSubclass)) != 0, and falls through when v0(=ret(XtIsSubclass)) == 0.
@@ -952,7 +952,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `beq` branch at 0x10021c44 targets 0x10021c6c and is always taken.
   The `beq` branch at 0x10021c54 targets 0x10021c6c and is always taken.
   The `beq` branch at 0x10021c64 targets 0x10021c6c and is always taken.
-  The return at 0x10021c7c has v0 = one of ?, 0x0, ret(atoi), -0x1.
+  The return at 0x10021c7c has v0 = one of ?, 0x0, -0x1.
   The instructions from 0x1002195c to 0x10021960 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10021a6c to 0x10021a70 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0x10021acc to 0x10021ad0 are not reached by any path from the entry, and their branches are not listed.
@@ -3514,11 +3514,11 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `jalr` at 0x1002c0f8 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c128 calls VkGetResource__GPCcT1 with a0=0x10045eb0, a1=0x10045eb0, a2=?, a3=?.
   The `jalr` at 0x1002c13c calls strerror with a0=[sym(errno)], a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c14c calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002c14c calls strlen with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c15c calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c16c calls strlen with a0=ret(strerror), a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c184 calls __nwa__GUi with a0=(ret(strlen) + (ret(strlen) + ret(strlen)))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c1a0 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=ret(strerror).
+  The `jalr` at 0x1002c184 calls __nwa__GUi with a0=?, a1=?, a2=?, a3=?.
+  The `jalr` at 0x1002c1a0 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=ret(strerror).
   The `jalr` at 0x1002c1ac calls getTheInfoDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c1e0 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002c1ec calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -3526,7 +3526,7 @@ Skipped routines: usr/diags/IR/bin/irsaudit:modify_bef_user_reg — already docu
   The `jalr` at 0x1002c218 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c228 calls strlen with a0=a1 at entry (arg1), a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c238 calls __nwa__GUi with a0=(ret(strlen) + ret(strlen))+10, a1=?, a2=?, a3=?.
-  The `jalr` at 0x1002c250 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0x1002c250 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=a1 at entry (arg1), a3=?.
   The `jalr` at 0x1002c25c calls getTheQuestionDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x1002c28c calls (unknown callee) with a0=([[ret(getTheQuestionDialog__Gv)+8]+264] + ret(getTheQuestionDialog__Gv)), a1=ret(__nwa__GUi), a2=-0x1, a3=-0x1, a4=-0x1, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x1002c2a0 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.

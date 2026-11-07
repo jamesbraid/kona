@@ -2324,9 +2324,9 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec33928 calls __iglooGetCurrentContextInfo [0xec73828] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec3393c calls __iglooGetRenderMode [0xec97f50] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec3395c calls glFeedbackBuffer with a0=0x14, a1=0x600, a2=sp-84, a3=?.
-  The `jalr` at 0xec33974 calls __iglooRenderMode [0xec9812c] with a0=0x1c01, a1=ret(__iglooGetCurrentContextInfo), a2=?, a3=?.
+  The `jalr` at 0xec33974 calls __iglooRenderMode [0xec9812c] with a0=0x1c01, a1=?, a2=?, a3=?.
   The `jalr` at 0xec33994 calls glRectf with a0=?, a1=?, a2=?, a3=?; fp f12=a2, f14=a3.
-  The `jalr` at 0xec339ac calls __iglooRenderMode [0xec9812c] with a0=ret(__iglooGetRenderMode), a1=ret(__iglooGetCurrentContextInfo), a2=?, a3=?.
+  The `jalr` at 0xec339ac calls __iglooRenderMode [0xec9812c] with a0=ret(__iglooGetRenderMode), a1=?, a2=?, a3=?.
   The `bne` branch at 0xec339b4 targets 0xec339c4, is taken when v0(=ret(__iglooRenderMode)) != 0, and falls through when v0(=ret(__iglooRenderMode)) == 0.
   The `beq` branch at 0xec339bc targets 0xec33a9c and is always taken.
   The `bc1fl` branch at 0xec339e8 targets 0xec339f8, is taken when not (f0 < f14 (c.lt.s at 0xec339e0)), and falls through when f0 < f14 (c.lt.s at 0xec339e0); its branch-likely delay slot `c.lt.s $f2,$f0` at 0xec339ec runs only when taken and is annulled on fall-through.
@@ -2598,19 +2598,18 @@ These entries record instruction facts rendered from the routines below. They de
   Range: 0xec345c0-0xec346e0 (288 bytes).
   It occupies 288 bytes.
   The `lw` at 0xec345d8 loads 4 bytes from sym(gl_wstatep) +0x0.
-  The `lbu` at 0xec34644 loads 1 byte from [sym(gl_wstatep)] +0x2e58.
-  The `lwc1` at 0xec34658 loads 4 bytes from [sym(gl_wstatep)] +0x2e5c.
-  The `lwc1` at 0xec3465c loads 4 bytes from [sym(gl_wstatep)] +0x2e60.
-  The `lw` at 0xec34664 loads 4 bytes from [sym(gl_wstatep)] +0x2e64.
+  The `lbu` at 0xec34644 loads 1 byte from ?.
+  2 such `lwc1` accesses load 4 bytes from ?, including `lwc1` at 0xec34658, `lwc1` at 0xec3465c.
+  The `lw` at 0xec34664 loads 4 bytes from ?.
   The `jalr` at 0xec345e4 calls __iglooCloseMoveDraw [0xec8fb80] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0xec345fc calls __iglooPixelStorei [0xecb66a8] with a0=0xcf5, a1=0x1, a2=?, a3=?.
   The `jalr` at 0xec34614 calls __iglooPixelStorei [0xecb66a8] with a0=0xcf2, a1=0x0, a2=?, a3=?.
   The `jalr` at 0xec34630 calls __iglooGetAndSetEnable [0xecb63d0] with a0=0x19, a1=0x0, a2=0xece2d90, a3=?.
-  The `jalr` at 0xec34660 calls glRasterPos3f with a0=?, a1=?, a2=[[sym(gl_wstatep)]+11876], a3=?; fp f12=[[sym(gl_wstatep)]+11868], f14=[[sym(gl_wstatep)]+11872].
+  The `jalr` at 0xec34660 calls glRasterPos3f with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0xec3467c calls __iglooGetBooleanv [0xecb75d8] with a0=0xb08, a1=sp-25, a2=?, a3=?.
   The `jalr` at 0xec346a4 calls __iglooGetFloatv [0xecb760c] with a0=0xb07, a1=sp-24, a2=?, a3=?.
   The `jalr` at 0xec346c4 calls glLoadRasterPosSGIXXX [0xec751a0] with a0=?, a1=?, a2=?, a3=?.
-  The `bne` branch at 0xec3464c targets 0xec34670, is taken when t7(=[[sym(gl_wstatep)]+11864]:1) != at(=0x1), and falls through when t7(=[[sym(gl_wstatep)]+11864]:1) == at(=0x1).
+  The `bne` branch at 0xec3464c targets 0xec34670, is taken when t7(?) != at(=0x1), and falls through when t7(?) == at(=0x1).
   The `beq` branch at 0xec34668 targets 0xec346d0 and is always taken.
   The `bnel` branch at 0xec34690 targets 0xec346d4, is taken when t8(?) != at(=0x1), and falls through when t8(?) == at(=0x1); its branch-likely delay slot `lw ra,28(sp)` at 0xec34694 runs only when taken and is annulled on fall-through.
   The return at 0xec346d8 has v0 = one of ret(__iglooGetBooleanv), ?.
@@ -4187,7 +4186,7 @@ These entries record instruction facts rendered from the routines below. They de
   The `beq` branch at 0xec38cd4 targets 0xec38ce0, is taken when (s2(?) & 0x1) == 0, and falls through when (s2(?) & 0x1) != 0.
   The `beql` branch at 0xec38ce0 targets 0xec38d78, is taken when s5(?) == 0, and falls through when s5(?) != 0; its branch-likely delay slot `lh t5,198(sp)` at 0xec38ce4 runs only when taken and is annulled on fall-through.
   The `bnel` branch at 0xec38d84 targets 0xec38c84, is taken when s3(?) < t5(?) (signed), and falls through when s3(?) >= t5(?) (signed); its branch-likely delay slot `lw t3,8(s6)` at 0xec38d88 runs only when taken and is annulled on fall-through.
-  The return at 0xec38db4 has v0 = one of 0x0, ret(fntrecnew).
+  The return at 0xec38db4 has v0 = one of 0x0, ?.
   The instructions from 0xec38be0 to 0xec38be0 are not reached by any path from the entry, and their branches are not listed.
 
 - `fntread` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec38dbc (o32).
@@ -4200,10 +4199,10 @@ These entries record instruction facts rendered from the routines below. They de
   The `jalr` at 0xec38e04 calls sprintf with a0=sp-88, a1=0xecd3788, a2=a0 at entry (arg0), a3=?.
   The `jalr` at 0xec38e20 calls gl_ErrorHandler [0xec5dbec] with a0=0x4b, a1=0x2, a2=sp-88, a3=?.
   The `jalr` at 0xec38e40 calls fntfromfile [0xec3896c] with a0=ret(fopen), a1=?, a2=?, a3=?.
-  The `jalr` at 0xec38e5c calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0xec38e5c calls fclose with a0=?, a1=?, a2=?, a3=?.
   The `bne` branch at 0xec38dec targets 0xec38e34, is taken when v0(=ret(fopen)) != 0, and falls through when v0(=ret(fopen)) == 0.
   The `beq` branch at 0xec38e2c targets 0xec38e6c and is always taken.
-  The return at 0xec38e74 has v0 = one of 0x0, ret(fntfromfile).
+  The return at 0xec38e74 has v0 = one of 0x0, ?.
 
 - `fntrecfree` in `usr/gfx/arch/IGLOO/libgl.so` at 0xec38e7c (o32).
   Evidence grade: inferred.

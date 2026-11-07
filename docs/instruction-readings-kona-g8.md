@@ -507,7 +507,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0x15d8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x15f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=[[a0+32]:8+192]:8.
   The `jal` at 0x1604 calls vsema with a0=[a0+40]:8+56, a1=[a0+40]:8, a2=?, a3=?.
-  The `jal` at 0x160c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
+  The `jal` at 0x160c calls splx with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1628 calls psema with a0=[a0+40]:8+56, a1=0x219, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1648 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x1670 calls cn_init with a0=0x0, a1=0x1, a2=?, a3=?.
@@ -807,7 +807,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   Range: 0x1fb8-0x2470 (1208 bytes).
   It occupies 1208 bytes.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x0, including `lw` at 0x204c, `lw` at 0x22e4, `lw` at 0x23c4.
-  17 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2078, `ld` at 0x2098, `ld` at 0x2164.
+  18 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2078, `ld` at 0x2098, `ld` at 0x2164.
   The `lw` at 0x20dc loads 4 bytes from ret(gthread_find) +0x8.
   The `ld` at 0x20ec loads 8 bytes from ret(gthread_find) +0x10.
   The `sd` at 0x20f8 stores 8 bytes to [ret(gthread_find)+16]:8 +0x18.
@@ -822,7 +822,6 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `sd` at 0x2214 stores 8 bytes to ret(kern_malloc) +0x68.
   The `lh` at 0x2218 loads 2 bytes from abs 0xffffffffffffc420.
   4 such `lw` accesses load 4 bytes from ret(kern_malloc) +0x4, including `lw` at 0x2248, `lw` at 0x2280, `lw` at 0x22b4.
-  The `ld` at 0x2290 loads 8 bytes from ret(gthread_find_gfxp) +0x18.
   The `lw` at 0x22d0 loads 4 bytes from ret(kern_malloc) +0x38.
   The `sw` at 0x22dc stores 4 bytes to ret(kern_malloc) +0x38.
   2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x0, including `sw` at 0x22f8, `sw` at 0x23d8.
@@ -859,7 +858,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0x2400 calls GfxListWriterUnlock with a0=?, a1=ret(GfxListWriterLock), a2=?, a3=?.
   The `jal` at 0x2420 calls curthreadgroup_scan with a0=sym(irisgl_sproc_setup_scan), a1=sp-144, a2=?, a3=?.
   The `jal` at 0x2430 calls GfxListWriterUnlock with a0=?, a1=?, a2=?, a3=?.
-  The `jal` at 0x2440 calls GfxListWriterLock with a0=?, a1=?, a2=?, a3=ret(gthread_find_gfxp), a5=ret(gthread_find_gfxp).
+  The `jal` at 0x2440 calls GfxListWriterLock with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x2450 calls vsema with a0=sym(GfxBoardInitSema), a1=?, a2=?, a3=?, a4=[sym(GfxDevLimit)].
   The `jal` at 0x2460 calls cmn_err with a0=0x4, a1=sym(.rodata), a2=?, a3=?.
   The `beq` branch at 0x2004 targets 0x2048, is taken when v0(=ret(is_gsn_bypass_thread)) == 0, and falls through when v0(=ret(is_gsn_bypass_thread)) != 0.
@@ -879,16 +878,16 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `bne` branch at 0x2168 targets 0x2148, is taken when s2(?) != 0, and falls through when s2(?) == 0.
   The `beq` branch at 0x2170 targets 0x23ac, is taken when s3(?) == 0, and falls through when s3(?) != 0.
   The `bne` branch at 0x2180 targets 0x2350, is taken when at(?) != 0, and falls through when at(?) == 0.
-  The `bne` branch at 0x218c targets 0x21a4, is taken when v1(=ret(gthread_find_gfxp)) != 0, and falls through when v1(=ret(gthread_find_gfxp)) == 0.
+  The `bne` branch at 0x218c targets 0x21a4, is taken when v1(?) != 0, and falls through when v1(?) == 0.
   The `beq` branch at 0x219c targets 0x21b0 and is always taken.
   The `bne` branch at 0x21f4 targets 0x23b4, is taken when s5(?) != 0, and falls through when s5(?) == 0.
-  The `bne` branch at 0x2238 targets 0x2278, is taken when a5(=ret(gthread_find_gfxp)) != 0, and falls through when a5(=ret(gthread_find_gfxp)) == 0.
+  The `bne` branch at 0x2238 targets 0x2278, is taken when a5(?) != 0, and falls through when a5(?) == 0.
   The `beq` branch at 0x2240 targets 0x2258, is taken when s7(=ret(gfx_group_find)) == 0, and falls through when s7(=ret(gfx_group_find)) != 0.
   The `beq` branch at 0x2250 targets 0x23dc, is taken when (a5(=[ret(kern_malloc)+4]) & 0x8) == 0, and falls through when (a5(=[ret(kern_malloc)+4]) & 0x8) != 0.
   The `beq` branch at 0x2270 targets 0x22c8 and is always taken.
   The `beq` branch at 0x2278 targets 0x2290, is taken when s7(=ret(gfx_group_find)) == 0, and falls through when s7(=ret(gfx_group_find)) != 0.
   The `beq` branch at 0x2288 targets 0x2440, is taken when (a7(=[ret(kern_malloc)+4]) & 0x8) == 0, and falls through when (a7(=[ret(kern_malloc)+4]) & 0x8) != 0.
-  The `beq` branch at 0x2294 targets 0x22ac, is taken when a3(=[ret(gthread_find_gfxp)+24]:8) == 0, and falls through when a3(=[ret(gthread_find_gfxp)+24]:8) != 0.
+  The `beq` branch at 0x2294 targets 0x22ac, is taken when a3(?) == 0, and falls through when a3(?) != 0.
   The `bne` branch at 0x22a4 targets 0x229c, is taken when a3(?) != 0, and falls through when a3(?) == 0.
   The `beq` branch at 0x22ac targets 0x22c4, is taken when s7(=ret(gfx_group_find)) == 0, and falls through when s7(=ret(gfx_group_find)) != 0.
   The `beq` branch at 0x22bc targets 0x2430, is taken when (a4(=[ret(kern_malloc)+4]) & 0x8) == 0, and falls through when (a4(=[ret(kern_malloc)+4]) & 0x8) != 0.
@@ -1648,10 +1647,10 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0xbac calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbcc calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbd4 calls hold_nonfatalsig with a0=sp-144, a1=?, a2=?, a3=?.
-  The `jal` at 0xbe0 calls psema with a0=a0+40, a1=0x31e, a2=?, a3=?.
+  The `jal` at 0xbe0 calls psema with a0=?, a1=0x31e, a2=?, a3=?.
   The `jal` at 0xbf0 calls release_nonfatalsig with a0=sp-144, a1=?, a2=?, a3=?.
   The `jal` at 0xbf8 calls mutex_spinlock with a0=a0+80, a1=?, a2=?, a3=?.
-  The `jal` at 0xc40 calls vsema with a0=a0+40, a1=?, a2=?, a3=?.
+  The `jal` at 0xc40 calls vsema with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xc58 calls pane_setnullclip with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0xc64 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc74 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
@@ -1676,7 +1675,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0xd80 calls curproc with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xd8c calls psignal with a0=ret(curproc), a1=0x9, a2=?, a3=?.
   The `jal` at 0xd98 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
-  The `jal` at 0xda8 calls vsema with a0=a0+40, a1=?, a2=?, a3=?.
+  The `jal` at 0xda8 calls vsema with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xdb4 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x9a8 targets 0xb34, is taken when (a2 & 0x8e) == 0, and falls through when (a2 & 0x8e) != 0.
   The `bltz` branch at 0x9b8 targets 0xbbc, is taken when v0(=ret(validate_my_pane_buffer)) < 0 (signed), and falls through when v0(=ret(validate_my_pane_buffer)) >= 0 (signed).
@@ -2926,9 +2925,9 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `sd` at 0x37d0 stores 8 bytes to ?.
   The `jal` at 0x3764 calls mutex_spinlock with a0=[a0+72]:8+48, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x37cc calls hold_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
-  The `jal` at 0x37e4 calls sv_wait_sig with a0=a0+48, a1=0x1e, a2=[a0+72]:8+48, a3=ret(mutex_spinlock).
+  The `jal` at 0x37e4 calls sv_wait_sig with a0=a0+48, a1=0x1e, a2=?, a3=?.
   The `jal` at 0x37f4 calls release_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
-  The `jal` at 0x3818 calls mutex_spinunlock with a0=[a0+72]:8+48, a1=ret(mutex_spinlock), a2=?, a3=?, a7=[a0+72]:8+168.
+  The `jal` at 0x3818 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a7=[a0+72]:8+168.
   The `jal` at 0x3828 calls release_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
   The `beq` branch at 0x3784 targets 0x3810, is taken when at(=[[a0+72]:8+164]+1) >= t0(=[[a0+120]:8+28]) (unsigned), and falls through when at(=[[a0+72]:8+164]+1) < t0(=[[a0+120]:8+28]) (unsigned).
   The `beq` branch at 0x3790 targets 0x37c4, is taken when a6(=[[a0+72]:8+168]:8) == 0, and falls through when a6(=[[a0+72]:8+168]:8) != 0.
@@ -3353,7 +3352,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   2 such `sd` accesses store 8 bytes to [a0+40]:8 +0x88, including `sd` at 0x4458, `sd` at 0x44a0.
   The `jal` at 0x4434 calls mutex_spinlock with a0=[a0+40]:8+48, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4464 calls hold_nonfatalsig with a0=sp-64, a1=[[a0+40]:8+136]:8, a2=?, a3=?.
-  The `jal` at 0x4478 calls sv_wait_sig with a0=a1+48, a1=0x1e, a2=[a0+40]:8+48, a3=ret(mutex_spinlock).
+  The `jal` at 0x4478 calls sv_wait_sig with a0=a1+48, a1=0x1e, a2=?, a3=ret(mutex_spinlock).
   The `jal` at 0x4488 calls release_nonfatalsig with a0=sp-64, a1=?, a2=?, a3=?.
   The `jal` at 0x44a4 calls release_nonfatalsig with a0=sp-64, a1=?, a2=?, a3=?.
   The `blez` branch at 0x4400 targets 0x4418, is taken when a2 <= 0 (signed), and falls through when a2 > 0 (signed).
@@ -3975,7 +3974,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0x15d8 calls splhi with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x15f0 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=[[a0+32]:8+192]:8.
   The `jal` at 0x1604 calls vsema with a0=[a0+40]:8+56, a1=[a0+40]:8, a2=?, a3=?.
-  The `jal` at 0x160c calls splx with a0=ret(splhi), a1=?, a2=?, a3=?.
+  The `jal` at 0x160c calls splx with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x1628 calls psema with a0=[a0+40]:8+56, a1=0x219, a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x1648 calls us_delay with a0=0x2, a1=?, a2=?, a3=?.
   The `jal` at 0x1670 calls cn_init with a0=0x0, a1=0x1, a2=?, a3=?.
@@ -5110,10 +5109,10 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0xbac calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbcc calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xbd4 calls hold_nonfatalsig with a0=sp-144, a1=?, a2=?, a3=?.
-  The `jal` at 0xbe0 calls psema with a0=a0+40, a1=0x31e, a2=?, a3=?.
+  The `jal` at 0xbe0 calls psema with a0=?, a1=0x31e, a2=?, a3=?.
   The `jal` at 0xbf0 calls release_nonfatalsig with a0=sp-144, a1=?, a2=?, a3=?.
   The `jal` at 0xbf8 calls mutex_spinlock with a0=a0+80, a1=?, a2=?, a3=?.
-  The `jal` at 0xc40 calls vsema with a0=a0+40, a1=?, a2=?, a3=?.
+  The `jal` at 0xc40 calls vsema with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xc58 calls pane_setnullclip with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=?, a3=?.
   The `jal` at 0xc64 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `jal` at 0xc74 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
@@ -5138,7 +5137,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `jal` at 0xd80 calls curproc with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xd8c calls psignal with a0=ret(curproc), a1=0x9, a2=?, a3=?.
   The `jal` at 0xd98 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
-  The `jal` at 0xda8 calls vsema with a0=a0+40, a1=?, a2=?, a3=?.
+  The `jal` at 0xda8 calls vsema with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0xdb4 calls mutex_spinunlock with a0=a0+80, a1=ret(mutex_spinlock), a2=?, a3=?.
   The `beq` branch at 0x9a8 targets 0xb34, is taken when (a2 & 0x8e) == 0, and falls through when (a2 & 0x8e) != 0.
   The `bltz` branch at 0x9b8 targets 0xbbc, is taken when v0(=ret(validate_my_pane_buffer)) < 0 (signed), and falls through when v0(=ret(validate_my_pane_buffer)) >= 0 (signed).
@@ -6388,9 +6387,9 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   The `sd` at 0x37d0 stores 8 bytes to ?.
   The `jal` at 0x3764 calls mutex_spinlock with a0=[a0+72]:8+48, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x37cc calls hold_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
-  The `jal` at 0x37e4 calls sv_wait_sig with a0=a0+48, a1=0x1e, a2=[a0+72]:8+48, a3=ret(mutex_spinlock).
+  The `jal` at 0x37e4 calls sv_wait_sig with a0=a0+48, a1=0x1e, a2=?, a3=?.
   The `jal` at 0x37f4 calls release_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
-  The `jal` at 0x3818 calls mutex_spinunlock with a0=[a0+72]:8+48, a1=ret(mutex_spinlock), a2=?, a3=?, a7=[a0+72]:8+168.
+  The `jal` at 0x3818 calls mutex_spinunlock with a0=?, a1=ret(mutex_spinlock), a2=?, a3=?, a7=[a0+72]:8+168.
   The `jal` at 0x3828 calls release_nonfatalsig with a0=sp-48, a1=?, a2=?, a3=?.
   The `beq` branch at 0x3784 targets 0x3810, is taken when at(=[[a0+72]:8+164]+1) >= t0(=[[a0+120]:8+28]) (unsigned), and falls through when at(=[[a0+72]:8+164]+1) < t0(=[[a0+120]:8+28]) (unsigned).
   The `beq` branch at 0x3790 targets 0x37c4, is taken when a6(=[[a0+72]:8+168]:8) == 0, and falls through when a6(=[[a0+72]:8+168]:8) != 0.
@@ -6815,7 +6814,7 @@ Each entry records selected memory accesses, calls, conditional branches and ret
   2 such `sd` accesses store 8 bytes to [a0+40]:8 +0x88, including `sd` at 0x4458, `sd` at 0x44a0.
   The `jal` at 0x4434 calls mutex_spinlock with a0=[a0+40]:8+48, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x4464 calls hold_nonfatalsig with a0=sp-64, a1=[[a0+40]:8+136]:8, a2=?, a3=?.
-  The `jal` at 0x4478 calls sv_wait_sig with a0=a1+48, a1=0x1e, a2=[a0+40]:8+48, a3=ret(mutex_spinlock).
+  The `jal` at 0x4478 calls sv_wait_sig with a0=a1+48, a1=0x1e, a2=?, a3=ret(mutex_spinlock).
   The `jal` at 0x4488 calls release_nonfatalsig with a0=sp-64, a1=?, a2=?, a3=?.
   The `jal` at 0x44a4 calls release_nonfatalsig with a0=sp-64, a1=?, a2=?, a3=?.
   The `blez` branch at 0x4400 targets 0x4418, is taken when a2 <= 0 (signed), and falls through when a2 > 0 (signed).

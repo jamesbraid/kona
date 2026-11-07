@@ -1990,7 +1990,7 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x1003d5f8 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[a0+100], a1=0x1, a2=?, a3=?.
   The `jal` at 0x1003d614 calls (unnamed) [0x1003dcd0] with a0=[sym(sffb)], a1=?, a2=?, a3=?.
   The `jalr` at 0x1003d628 calls basename with a0=ret(0x1003dcd0), a1=?, a2=?, a3=?.
-  The `jal` at 0x1003d63c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=ret(EZ__GP10_WidgetRec), a1=ret(basename), a2=?, a3=?.
+  The `jal` at 0x1003d63c calls __as__9EZWrapperGPCc [0x1008fb80] with a0=?, a1=ret(basename), a2=?, a3=?.
   The `jalr` at 0x1003d66c calls (unknown callee) with a0=([[a0+8]+276] + a0), a1=a1 at entry (arg1), a2=0x0, a3=?.
   The `jal` at 0x1003d67c calls update__5Form2Gv [0x1003c4d0] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x1003d484 targets 0x1003d49c, is taken when a1(=ret(getenv)) == 0, and falls through when a1(=ret(getenv)) != 0.
@@ -3315,13 +3315,13 @@ Skipped routines: 24,383 have status located, understood, or no-software-depende
   The `jal` at 0x10045d38 calls clampManagedArea__18GlobalsWindowClassGv [0x1004c1d0] with a0=[a0+44704], a1=a0 at entry (arg0), a2=?, a3=sym(combination).
   The `jal` at 0x10045d64 calls EZ__GP10_WidgetRec [0x1008e2c0] with a0=[(a0 + (a1 << 0x2))+92], a1=(a1 << 0x2), a2=a1 at entry (arg1), a3=a0 at entry (arg0).
   The `jalr` at 0x10045d84 calls VkGetResource__GPCcT1 with a0=0x10097898, a1=0x100978a8, a2=?, a3=?.
-  The `jal` at 0x10045d9c calls __as__7EZColorGPc [0x1008ed20] with a0=ret(EZ__GP10_WidgetRec)+84, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
+  The `jal` at 0x10045d9c calls __as__7EZColorGPc [0x1008ed20] with a0=?, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
   The `jal` at 0x10045dac calls update__5FrameGv [0x10043c50] with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
   The `beq` branch at 0x10045b94 targets 0x10045db4, is taken when v0(=ret(iGUIReadFormatFile__GPCcP11konFormat_t)) == 0, and falls through when v0(=ret(iGUIReadFormatFile__GPCcP11konFormat_t)) != 0.
   The `beq` branch at 0x10045cb8 targets 0x10045cf0, is taken when a5(=[sym(combination)+260]) >= a6(?) (signed), and falls through when a5(=[sym(combination)+260]) < a6(?) (signed).
   The `beq` branch at 0x10045d08 targets 0x10045d40, is taken when a3(=[sym(combination)+264]) >= a4(?) (signed), and falls through when a3(=[sym(combination)+264]) < a4(?) (signed).
   The `beq` branch at 0x10045dbc targets 0x10045dc4 and is always taken.
-  The return at 0x10045dd4 has v0 = ret(iGUIReadFormatFile__GPCcP11konFormat_t).
+  The return at 0x10045dd4 has v0 = ?.
 - `download__5FrameGP10_WidgetRecPv` in `usr/gfx/ircombine` at 0x10045de0 (n32).
   Evidence grade: inferred.
   Exact binary: `usr/gfx/ircombine`.

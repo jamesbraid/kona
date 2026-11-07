@@ -1174,58 +1174,41 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 748 bytes.
   The `lw` at 0xd810650 loads 4 bytes from a0 (arg0 at entry) +0x4c.
   2 such `lw` accesses load 4 bytes from abs 0x1014, including `lw` at 0xd810668, `lw` at 0xd8106d8.
-  5 such `lw` accesses load 4 bytes from [a0+76] +0xcc, including `lw` at 0xd810670, `lw` at 0xd8106d4, `lw` at 0xd810718.
+  51 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd810670, `lw` at 0xd810690, `lw` at 0xd8106d4.
   The `lw` at 0xd810674 loads 4 bytes from [0x1014] +0x0.
-  3 such `lw` accesses load 4 bytes from [a0+76] +0x24, including `lw` at 0xd810690, `lw` at 0xd81078c, `lw` at 0xd81087c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xd8106b8, `lw` at 0xd8107b0, `lw` at 0xd8108a4.
   The `sw` at 0xd8106dc stores 4 bytes to [0x1014] +0x0.
-  4 such `sb` accesses store 1 byte to [a0+76] +0xf4, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
-  The `lw` at 0xd8106ec loads 4 bytes from [a0+76] +0xf0.
-  8 such `lw` accesses load 4 bytes from [a0+76] +0xe0, including `lw` at 0xd8106f0, `lw` at 0xd810710, `lw` at 0xd810758.
-  6 such `lw` accesses load 4 bytes from [a0+76] +0xdc, including `lw` at 0xd8106f8, `lw` at 0xd810700, `lw` at 0xd81070c.
-  The `lw` at 0xd8106fc loads 4 bytes from [a0+76] +0xec.
-  5 such `lw` accesses load 4 bytes from [a0+76] +0xe8, including `lw` at 0xd81071c, `lw` at 0xd810848, `lw` at 0xd810870.
-  The `lw` at 0xd810724 loads 4 bytes from [[a0+76]+232] +0x2c.
-  2 such `lw` accesses load 4 bytes from [a0+76] +0x11c, including `lw` at 0xd810738, `lw` at 0xd81080c.
-  8 such `lw` accesses load 4 bytes from [a0+76] +0xe4, including `lw` at 0xd810744, `lw` at 0xd810754, `lw` at 0xd810770.
-  2 such `lw` accesses load 4 bytes from [a0+76] +0x120, including `lw` at 0xd810748, `lw` at 0xd810818.
-  2 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x24, including `lw` at 0xd810768, `lw` at 0xd810840.
-  4 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x4, including `lw` at 0xd81077c, `lw` at 0xd8107d4, `lw` at 0xd810860.
-  2 such `sw` accesses store 4 bytes to [[a0+76]+228] +0x4, including `sw` at 0xd8107e8, `sw` at 0xd8108f0.
-  2 such `sw` accesses store 4 bytes to [a0+76] +0xf0, including `sw` at 0xd8107f4, `sw` at 0xd810908.
-  2 such `sw` accesses store 4 bytes to [a0+76] +0xec, including `sw` at 0xd8107fc, `sw` at 0xd81090c.
-  The `lw` at 0xd81084c loads 4 bytes from [[a0+76]+232] +0x24.
-  2 such `lw` accesses load 4 bytes from [[a0+76]+232] +0x4, including `lw` at 0xd810874, `lw` at 0xd8108dc.
-  The `sw` at 0xd8108fc stores 4 bytes to [[a0+76]+232] +0x4.
+  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
+  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8107e8, `sw` at 0xd8107f4, `sw` at 0xd8107fc.
   The `jalr` at 0xd81065c calls __glXHWAttach with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3ea, a2=sp-12, a3=[[a0+76]+204].
+  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=?, a1=0x3ea, a2=sp-12, a3=?.
   The `jalr` at 0xd8106c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841624, a2=?, a3=?.
-  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3eb, a2=sp-24, a3=?.
+  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=?, a1=0x3eb, a2=sp-24, a3=?.
   The `jalr` at 0xd8107b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd84163c, a2=?, a3=?.
-  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x400, a2=sp-44, a3=?.
+  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=?, a1=0x400, a2=sp-44, a3=?.
   The `jalr` at 0xd8108ac calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841654, a2=?, a3=?.
-  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(=[[a0+76]+204]), and falls through when t7(=[[0x1014]]) != a3(=[[a0+76]+204]).
+  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(?), and falls through when t7(=[[0x1014]]) != a3(?).
   The `bgez` branch at 0xd8106a4 targets 0xd8106d4, is taken when v0(=ret(Ioctl)) >= 0 (signed), and falls through when v0(=ret(Ioctl)) < 0 (signed).
   The `beq` branch at 0xd8106cc targets 0xd8106e0 and is always taken.
   The `bne` branch at 0xd8106e4 targets 0xd81070c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(=[[a0+76]+240]) != t2(=[[a0+76]+224]), and falls through when t1(=[[a0+76]+240]) == t2(=[[a0+76]+224]); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(=[[a0+76]+236]) == t4(=[[a0+76]+220]), and falls through when t3(=[[a0+76]+236]) != t4(=[[a0+76]+220]); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(=[[a0+76]+220]) == t6(=[[a0+76]+224]), and falls through when t5(=[[a0+76]+220]) != t6(=[[a0+76]+224]); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(=[[[a0+76]+232]+44]) != at(=0x3), and falls through when t9(=[[[a0+76]+232]+44]) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(=[[a0+76]+284]) >= 0x2 (signed), and falls through when t0(=[[a0+76]+284]) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t1(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(?) != t2(?), and falls through when t1(?) == t2(?); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(?) == t4(?), and falls through when t3(?) != t4(?); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(?) == t6(?), and falls through when t5(?) != t6(?); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(?) != at(=0x3), and falls through when t9(?) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(?) >= 0x2 (signed), and falls through when t0(?) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(?) >= 0x3 (signed), and falls through when t1(?) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81075c targets 0xd810770 and is always taken.
   The `bne` branch at 0xd8107a0 targets 0xd8107c8, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8107c0 targets 0xd810910 and is always taken.
-  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(=[[[a0+76]+228]+4]), and falls through when t7(?) != t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(?), and falls through when t7(?) != t8(?); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8107f8 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(=[[a0+76]+284]) != at(=0x1), and falls through when t5(=[[a0+76]+284]) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t6(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(?) != at(=0x1), and falls through when t5(?) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(?) >= 0x3 (signed), and falls through when t6(?) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd810834 targets 0xd810854 and is always taken.
   The `bne` branch at 0xd810890 targets 0xd8108bc, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8108b4 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(=[[[a0+76]+228]+4]), and falls through when t7(?) == t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(=[[[a0+76]+232]+4]), and falls through when t0(?) != t2(=[[[a0+76]+232]+4]); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(?), and falls through when t0(?) != t2(?); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
   The return at 0xd810918 has v0 = ?.
   The instructions from 0xd810764 to 0xd810764 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd810800 to 0xd810800 are not reached by any path from the entry, and their branches are not listed.
@@ -1541,19 +1524,18 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lw` at 0xd83c548 loads 4 bytes from abs 0x1014.
   The `lw` at 0xd83c568 loads 4 bytes from [0x1014] +0x114.
   The `sb` at 0xd83c604 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x48.
-  The `lw` at 0xd83c608 loads 4 bytes from [[0x1014]+276] +0xc8.
-  The `lw` at 0xd83c60c loads 4 bytes from [[[0x1014]+276]+200] +0x88.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd83c608, `lw` at 0xd83c60c.
   The `lw` at 0xd83c620 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x44.
   The `sb` at 0xd83c688 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x49.
   The `jalr` at 0xd83c570 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `bgezall` at 0xd83c594 calls (unnamed) [0xd83c38c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
+  The `bgezall` at 0xd83c594 calls __glXInitChannelRectState [0xd83c38c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0xd83c5c0 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0xd83c5d4 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd83c61c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+68], a1=0x1, a2=?, a3=?.
   The `beq` branch at 0xd83c578 targets 0xd83c638, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
-  The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(0xd83c38c)) == 0, and falls through when v0(=ret(0xd83c38c)) != 0.
+  The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(__glXInitChannelRectState)) == 0, and falls through when v0(=ret(__glXInitChannelRectState)) != 0.
   The `beq` branch at 0xd83c600 targets 0xd83c67c, is taken when a0(=a3) == 0, and falls through when a0(=a3) != 0.
-  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(=[[[[0x1014]+276]+200]+136]) == 0, and falls through when t9(=[[[[0x1014]+276]+200]+136]) != 0.
+  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0xd83c66c targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c674 targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c684 targets 0xd83c624 and is always taken.
@@ -1771,20 +1753,18 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 292 bytes.
   The `ld` at 0x26711d8 loads 8 bytes from abs 0x1028.
   The `ld` at 0x26711f0 loads 8 bytes from [0x1028]:8 +0x118.
-  The `sb` at 0x2671284 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5c.
-  The `ld` at 0x2671288 loads 8 bytes from [[0x1028]:8+280]:8 +0x120.
-  The `ld` at 0x267128c loads 8 bytes from [[[0x1028]:8+280]:8+288]:8 +0x110.
-  The `lw` at 0x26712a0 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x58.
-  The `sb` at 0x26712e0 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5d.
+  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x2671284, `sb` at 0x26712e0.
+  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2671288, `ld` at 0x267128c.
+  The `lw` at 0x26712a0 loads 4 bytes from ?.
   The `jalr` at 0x26711f4 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `bgezall` at 0x2671218 calls (unnamed) [0x2671024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
+  The `bgezall` at 0x2671218 calls __glXInitChannelRectState [0x2671024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0x2671244 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0x2671254 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x267129c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+88], a1=0x1, a2=?, a3=?, a6=(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)), a7=(((a2 << 0x2) + a2) << 0x3).
+  The `jalr` at 0x267129c calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?, a7=(((a2 << 0x2) + a2) << 0x3).
   The `beq` branch at 0x26711fc targets 0x26712b8, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
-  The `beq` branch at 0x2671220 targets 0x26712cc, is taken when v0(=ret(0x2671024)) == 0, and falls through when v0(=ret(0x2671024)) != 0.
+  The `beq` branch at 0x2671220 targets 0x26712cc, is taken when v0(=ret(__glXInitChannelRectState)) == 0, and falls through when v0(=ret(__glXInitChannelRectState)) != 0.
   The `beq` branch at 0x2671280 targets 0x26712dc, is taken when v1(=a3) == 0, and falls through when v1(=a3) != 0.
-  The `beq` branch at 0x2671290 targets 0x26712d4, is taken when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) == 0, and falls through when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) != 0.
+  The `beq` branch at 0x2671290 targets 0x26712d4, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0x26712cc targets 0x26712bc and is always taken.
   The `beq` branch at 0x26712d4 targets 0x26712c0 and is always taken.
   The `beq` branch at 0x26712dc targets 0x26712a4 and is always taken.
@@ -1866,58 +1846,41 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 748 bytes.
   The `lw` at 0xd810650 loads 4 bytes from a0 (arg0 at entry) +0x4c.
   2 such `lw` accesses load 4 bytes from abs 0x1014, including `lw` at 0xd810668, `lw` at 0xd8106d8.
-  5 such `lw` accesses load 4 bytes from [a0+76] +0xcc, including `lw` at 0xd810670, `lw` at 0xd8106d4, `lw` at 0xd810718.
+  51 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd810670, `lw` at 0xd810690, `lw` at 0xd8106d4.
   The `lw` at 0xd810674 loads 4 bytes from [0x1014] +0x0.
-  3 such `lw` accesses load 4 bytes from [a0+76] +0x24, including `lw` at 0xd810690, `lw` at 0xd81078c, `lw` at 0xd81087c.
   3 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x14, including `lw` at 0xd8106b8, `lw` at 0xd8107b0, `lw` at 0xd8108a4.
   The `sw` at 0xd8106dc stores 4 bytes to [0x1014] +0x0.
-  4 such `sb` accesses store 1 byte to [a0+76] +0xf4, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
-  The `lw` at 0xd8106ec loads 4 bytes from [a0+76] +0xf0.
-  8 such `lw` accesses load 4 bytes from [a0+76] +0xe0, including `lw` at 0xd8106f0, `lw` at 0xd810710, `lw` at 0xd810758.
-  6 such `lw` accesses load 4 bytes from [a0+76] +0xdc, including `lw` at 0xd8106f8, `lw` at 0xd810700, `lw` at 0xd81070c.
-  The `lw` at 0xd8106fc loads 4 bytes from [a0+76] +0xec.
-  5 such `lw` accesses load 4 bytes from [a0+76] +0xe8, including `lw` at 0xd81071c, `lw` at 0xd810848, `lw` at 0xd810870.
-  The `lw` at 0xd810724 loads 4 bytes from [[a0+76]+232] +0x2c.
-  2 such `lw` accesses load 4 bytes from [a0+76] +0x11c, including `lw` at 0xd810738, `lw` at 0xd81080c.
-  8 such `lw` accesses load 4 bytes from [a0+76] +0xe4, including `lw` at 0xd810744, `lw` at 0xd810754, `lw` at 0xd810770.
-  2 such `lw` accesses load 4 bytes from [a0+76] +0x120, including `lw` at 0xd810748, `lw` at 0xd810818.
-  2 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x24, including `lw` at 0xd810768, `lw` at 0xd810840.
-  4 such `lw` accesses load 4 bytes from [[a0+76]+228] +0x4, including `lw` at 0xd81077c, `lw` at 0xd8107d4, `lw` at 0xd810860.
-  2 such `sw` accesses store 4 bytes to [[a0+76]+228] +0x4, including `sw` at 0xd8107e8, `sw` at 0xd8108f0.
-  2 such `sw` accesses store 4 bytes to [a0+76] +0xf0, including `sw` at 0xd8107f4, `sw` at 0xd810908.
-  2 such `sw` accesses store 4 bytes to [a0+76] +0xec, including `sw` at 0xd8107fc, `sw` at 0xd81090c.
-  The `lw` at 0xd81084c loads 4 bytes from [[a0+76]+232] +0x24.
-  2 such `lw` accesses load 4 bytes from [[a0+76]+232] +0x4, including `lw` at 0xd810874, `lw` at 0xd8108dc.
-  The `sw` at 0xd8108fc stores 4 bytes to [[a0+76]+232] +0x4.
+  4 such `sb` accesses store 1 byte to ?, including `sb` at 0xd8106e8, `sb` at 0xd8107e0, `sb` at 0xd8108d0.
+  7 such `sw` accesses store 4 bytes to ?, including `sw` at 0xd8107e8, `sw` at 0xd8107f4, `sw` at 0xd8107fc.
   The `jalr` at 0xd81065c calls __glXHWAttach with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3ea, a2=sp-12, a3=[[a0+76]+204].
+  The `jalr` at 0xd810698 calls Ioctl [0xd8113d4] with a0=?, a1=0x3ea, a2=sp-12, a3=?.
   The `jalr` at 0xd8106c0 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841624, a2=?, a3=?.
-  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x3eb, a2=sp-24, a3=?.
+  The `jalr` at 0xd810790 calls Ioctl [0xd8113d4] with a0=?, a1=0x3eb, a2=sp-24, a3=?.
   The `jalr` at 0xd8107b8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd84163c, a2=?, a3=?.
-  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=[[a0+76]+36], a1=0x400, a2=sp-44, a3=?.
+  The `jalr` at 0xd810880 calls Ioctl [0xd8113d4] with a0=?, a1=0x400, a2=sp-44, a3=?.
   The `jalr` at 0xd8108ac calls (unknown callee) with a0=a0 at entry (arg0), a1=0xd841654, a2=?, a3=?.
-  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(=[[a0+76]+204]), and falls through when t7(=[[0x1014]]) != a3(=[[a0+76]+204]).
+  The `beq` branch at 0xd810680 targets 0xd8106e4, is taken when t7(=[[0x1014]]) == a3(?), and falls through when t7(=[[0x1014]]) != a3(?).
   The `bgez` branch at 0xd8106a4 targets 0xd8106d4, is taken when v0(=ret(Ioctl)) >= 0 (signed), and falls through when v0(=ret(Ioctl)) < 0 (signed).
   The `beq` branch at 0xd8106cc targets 0xd8106e0 and is always taken.
   The `bne` branch at 0xd8106e4 targets 0xd81070c, is taken when v0(?) != 0, and falls through when v0(?) == 0.
-  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(=[[a0+76]+240]) != t2(=[[a0+76]+224]), and falls through when t1(=[[a0+76]+240]) == t2(=[[a0+76]+224]); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(=[[a0+76]+236]) == t4(=[[a0+76]+220]), and falls through when t3(=[[a0+76]+236]) != t4(=[[a0+76]+220]); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(=[[a0+76]+220]) == t6(=[[a0+76]+224]), and falls through when t5(=[[a0+76]+220]) != t6(=[[a0+76]+224]); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
-  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(=[[[a0+76]+232]+44]) != at(=0x3), and falls through when t9(=[[[a0+76]+232]+44]) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(=[[a0+76]+284]) >= 0x2 (signed), and falls through when t0(=[[a0+76]+284]) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t1(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8106f4 targets 0xd810710, is taken when t1(?) != t2(?), and falls through when t1(?) == t2(?); its branch-likely delay slot `lw t5,220(v1)` at 0xd8106f8 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810704 targets 0xd810914, is taken when t3(?) == t4(?), and falls through when t3(?) != t4(?); its branch-likely delay slot `lw ra,28(sp)` at 0xd810708 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810714 targets 0xd810734, is taken when t5(?) == t6(?), and falls through when t5(?) != t6(?); its branch-likely delay slot `lw t8,204(v1)` at 0xd810718 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810728 targets 0xd810804, is taken when t9(?) != at(=0x3), and falls through when t9(?) == at(=0x3); its branch-likely delay slot `lw t4,204(v1)` at 0xd81072c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810740 targets 0xd810768, is taken when t0(?) >= 0x2 (signed), and falls through when t0(?) < 0x2 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810744 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810750 targets 0xd810768, is taken when t1(?) >= 0x3 (signed), and falls through when t1(?) < 0x3 (signed); its branch-likely delay slot `lw t3,228(v1)` at 0xd810754 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd81075c targets 0xd810770 and is always taken.
   The `bne` branch at 0xd8107a0 targets 0xd8107c8, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8107c0 targets 0xd810910 and is always taken.
-  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(=[[[a0+76]+228]+4]), and falls through when t7(?) != t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8107d8 targets 0xd8107f0, is taken when t7(?) == t8(?), and falls through when t7(?) != t8(?); its branch-likely delay slot `lw t2,224(v1)` at 0xd8107dc runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd8107f8 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(=[[a0+76]+284]) != at(=0x1), and falls through when t5(=[[a0+76]+284]) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(=[[a0+76]+288]) >= 0x3 (signed), and falls through when t6(=[[a0+76]+288]) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd810810 targets 0xd810840, is taken when t5(?) != at(=0x1), and falls through when t5(?) == at(=0x1); its branch-likely delay slot `lw t8,228(v1)` at 0xd810814 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd810820 targets 0xd810840, is taken when t6(?) >= 0x3 (signed), and falls through when t6(?) < 0x3 (signed); its branch-likely delay slot `lw t8,228(v1)` at 0xd810824 runs only when taken and is annulled on fall-through.
   The `beq` branch at 0xd810834 targets 0xd810854 and is always taken.
   The `bne` branch at 0xd810890 targets 0xd8108bc, is taken when v0(=ret(Ioctl)) != at(=-0x1), and falls through when v0(=ret(Ioctl)) == at(=-0x1).
   The `beq` branch at 0xd8108b4 targets 0xd810910 and is always taken.
-  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(=[[[a0+76]+228]+4]), and falls through when t7(?) == t8(=[[[a0+76]+228]+4]); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
-  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(=[[[a0+76]+232]+4]), and falls through when t0(?) != t2(=[[[a0+76]+232]+4]); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
+  The `bnel` branch at 0xd8108cc targets 0xd8108ec, is taken when t7(?) != t8(?), and falls through when t7(?) == t8(?); its branch-likely delay slot `sb t3,244(v1)` at 0xd8108d0 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8108e0 targets 0xd810904, is taken when t0(?) == t2(?), and falls through when t0(?) != t2(?); its branch-likely delay slot `lw t9,224(v1)` at 0xd8108e4 runs only when taken and is annulled on fall-through.
   The return at 0xd810918 has v0 = ?.
   The instructions from 0xd810764 to 0xd810764 are not reached by any path from the entry, and their branches are not listed.
   The instructions from 0xd810800 to 0xd810800 are not reached by any path from the entry, and their branches are not listed.
@@ -2233,19 +2196,18 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `lw` at 0xd83c548 loads 4 bytes from abs 0x1014.
   The `lw` at 0xd83c568 loads 4 bytes from [0x1014] +0x114.
   The `sb` at 0xd83c604 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x48.
-  The `lw` at 0xd83c608 loads 4 bytes from [[0x1014]+276] +0xc8.
-  The `lw` at 0xd83c60c loads 4 bytes from [[[0x1014]+276]+200] +0x88.
+  2 such `lw` accesses load 4 bytes from ?, including `lw` at 0xd83c608, `lw` at 0xd83c60c.
   The `lw` at 0xd83c620 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x44.
   The `sb` at 0xd83c688 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x49.
   The `jalr` at 0xd83c570 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `bgezall` at 0xd83c594 calls (unnamed) [0xd83c38c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
+  The `bgezall` at 0xd83c594 calls __glXInitChannelRectState [0xd83c38c] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0xd83c5c0 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0xd83c5d4 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
   The `jalr` at 0xd83c61c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+68], a1=0x1, a2=?, a3=?.
   The `beq` branch at 0xd83c578 targets 0xd83c638, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
-  The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(0xd83c38c)) == 0, and falls through when v0(=ret(0xd83c38c)) != 0.
+  The `beq` branch at 0xd83c59c targets 0xd83c65c, is taken when v0(=ret(__glXInitChannelRectState)) == 0, and falls through when v0(=ret(__glXInitChannelRectState)) != 0.
   The `beq` branch at 0xd83c600 targets 0xd83c67c, is taken when a0(=a3) == 0, and falls through when a0(=a3) != 0.
-  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(=[[[[0x1014]+276]+200]+136]) == 0, and falls through when t9(=[[[[0x1014]+276]+200]+136]) != 0.
+  The `beq` branch at 0xd83c614 targets 0xd83c674, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0xd83c66c targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c674 targets 0xd83c628 and is always taken.
   The `beq` branch at 0xd83c684 targets 0xd83c624 and is always taken.
@@ -2463,20 +2425,18 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   It occupies 292 bytes.
   The `ld` at 0x21711d8 loads 8 bytes from abs 0x1028.
   The `ld` at 0x21711f0 loads 8 bytes from [0x1028]:8 +0x118.
-  The `sb` at 0x2171284 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5c.
-  The `ld` at 0x2171288 loads 8 bytes from [[0x1028]:8+280]:8 +0x120.
-  The `ld` at 0x217128c loads 8 bytes from [[[0x1028]:8+280]:8+288]:8 +0x110.
-  The `lw` at 0x21712a0 loads 4 bytes from (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x58.
-  The `sb` at 0x21712e0 stores 1 byte to (ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)) +0x5d.
+  2 such `sb` accesses store 1 byte to ?, including `sb` at 0x2171284, `sb` at 0x21712e0.
+  2 such `ld` accesses load 8 bytes from ?, including `ld` at 0x2171288, `ld` at 0x217128c.
+  The `lw` at 0x21712a0 loads 4 bytes from ?.
   The `jalr` at 0x21711f4 calls __glXInitialize with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
-  The `bgezall` at 0x2171218 calls (unnamed) [0x2171024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
+  The `bgezall` at 0x2171218 calls __glXInitChannelRectState [0x2171024] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=ret(__glXInitialize).
   The `jalr` at 0x2171244 calls XSGIvcSetPlatformParameter with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=-0x64, a4=sp-80, a5=0x4.
   The `jalr` at 0x2171254 calls XSync with a0=a0 at entry (arg0), a1=0x0, a2=?, a3=?.
-  The `jalr` at 0x217129c calls (unknown callee) with a0=[(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3))+88], a1=0x1, a2=?, a3=?, a6=(ret(__glXInitialize) + (((a2 << 0x2) + a2) << 0x3)), a7=(((a2 << 0x2) + a2) << 0x3).
+  The `jalr` at 0x217129c calls (unknown callee) with a0=?, a1=0x1, a2=?, a3=?, a7=(((a2 << 0x2) + a2) << 0x3).
   The `beq` branch at 0x21711fc targets 0x21712b8, is taken when v0(=ret(__glXInitialize)) == 0, and falls through when v0(=ret(__glXInitialize)) != 0.
-  The `beq` branch at 0x2171220 targets 0x21712cc, is taken when v0(=ret(0x2171024)) == 0, and falls through when v0(=ret(0x2171024)) != 0.
+  The `beq` branch at 0x2171220 targets 0x21712cc, is taken when v0(=ret(__glXInitChannelRectState)) == 0, and falls through when v0(=ret(__glXInitChannelRectState)) != 0.
   The `beq` branch at 0x2171280 targets 0x21712dc, is taken when v1(=a3) == 0, and falls through when v1(=a3) != 0.
-  The `beq` branch at 0x2171290 targets 0x21712d4, is taken when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) == 0, and falls through when t9(=[[[[0x1028]:8+280]:8+288]:8+272]:8) != 0.
+  The `beq` branch at 0x2171290 targets 0x21712d4, is taken when t9(?) == 0, and falls through when t9(?) != 0.
   The `beq` branch at 0x21712cc targets 0x21712bc and is always taken.
   The `beq` branch at 0x21712d4 targets 0x21712c0 and is always taken.
   The `beq` branch at 0x21712dc targets 0x21712a4 and is always taken.
@@ -4445,13 +4405,13 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `jal` at 0x10031854 calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+52], a2=0x10045de8, a3=?.
   The `jal` at 0x1003186c calls registerChild__12MyTabbedDeckGP11VkComponentPCc [0x10041ed0] with a0=a0 at entry (arg0), a1=[a0+56], a2=0x10045e00, a3=?.
   The `jalr` at 0x10031898 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=?, a3=0x1.
-  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=ret(__nw__GUi), a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318b0 calls __ct__21SetmonMasterFormClassGPCcP10_WidgetRec [0x10030fd0] with a0=?, a1=0x10045db8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x100318d4 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=ret(__nw__GUi), a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x100318ec calls __ct__19ServerInfoFormClassGPCcP10_WidgetRec [0x10042400] with a0=?, a1=0x10045dd0, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031910 calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=ret(__nw__GUi), a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031928 calls __ct__16ChannelFormClassGPCcP10_WidgetRec [0x10037ad0] with a0=?, a1=0x10045de8, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x1003194c calls baseWidget__11VkComponentCGv with a0=[a0+32], a1=?, a2=0x1, a3=?.
-  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=ret(__nw__GUi), a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
+  The `jal` at 0x10031964 calls __ct__10GammaClassGPCcP10_WidgetRec [0x10037630] with a0=?, a1=0x10045e00, a2=ret(baseWidget__11VkComponentCGv), a3=?.
   The `jalr` at 0x10031980 calls getenv with a0=0x10051708, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jalr` at 0x100319a0 calls VkGetResource__GPCcT1 with a0=0x10045f00, a1=0x10045f00, a2=?, a3=?.
   The `jalr` at 0x100319b4 calls sprintf with a0=sp-1104, a1=ret(VkGetResource__GPCcT1), a2=?, a3=?.
@@ -4464,7 +4424,7 @@ Skipped routines: 2,246 symbols in the selected binaries were left out, 1,654 be
   The `beq` branch at 0x10031564 targets 0x1003197c, is taken when a1 == 0, and falls through when a1 != 0.
   The `beq` branch at 0x10031570 targets 0x10031980, is taken when v0(=[a1]:1) == 0, and falls through when v0(=[a1]:1) != 0.
   The `beq` branch at 0x10031598 targets 0x10031a10, is taken when v0(=ret(XOpenDisplay)) == 0, and falls through when v0(=ret(XOpenDisplay)) != 0.
-  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(=ret(XSGIvcQueryVersion)) == 0, and falls through when a1(=ret(XSGIvcQueryVersion)) != 0.
+  The `beq` branch at 0x100315d0 targets 0x10031994, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x100315d8 targets 0x10031990, is taken when v0(=ret(XSGIvcQueryScreenGammaMaps)) == 0, and falls through when v0(=ret(XSGIvcQueryScreenGammaMaps)) != 0.
   The `beq` branch at 0x10031640 targets 0x10031660, is taken when v0(=[a0+44]) == 0, and falls through when v0(=[a0+44]) != 0.
   The `beq` branch at 0x10031664 targets 0x10031684, is taken when v0(=[a0+48]) == 0, and falls through when v0(=[a0+48]) != 0.

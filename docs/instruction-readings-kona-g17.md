@@ -1574,7 +1574,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jalr` at 0x100415c4 calls VkGetResource__GPCcT1 with a0=0x10043cc0, a1=0x10043cc0, a2=?, a3=?.
   The `jalr` at 0x100415d4 calls strlen with a0=ret(VkGetResource__GPCcT1), a1=?, a2=?, a3=?.
   The `jalr` at 0x100415e0 calls __nwa__GUi with a0=ret(strlen)+256, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100415f8 calls sprintf with a0=ret(__nwa__GUi), a1=ret(VkGetResource__GPCcT1), a2=sp-568, a3=?.
+  The `jalr` at 0x100415f8 calls sprintf with a0=ret(__nwa__GUi), a1=?, a2=sp-568, a3=?.
   The `jalr` at 0x10041604 calls getTheInfoDialog__Gv with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x10041638 calls (unknown callee) with a0=([[ret(getTheInfoDialog__Gv)+8]+228] + ret(getTheInfoDialog__Gv)), a1=ret(__nwa__GUi), a2=0x0, a3=0x0, a4=0x0, a5=0x0, a6=0x0, a7=0x0.
   The `jalr` at 0x10041644 calls __dla__GPv with a0=ret(__nwa__GUi), a1=?, a2=?, a3=?.
@@ -2680,16 +2680,14 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   2 such `lw` accesses load 4 bytes from abs 0x102bd3f8, including `lw` at 0x100f9ac0, `lw` at 0x100f9ae8.
   The `lw` at 0x100f9ac4 loads 4 bytes from abs 0x102bd414.
   The `lw` at 0x100f9b0c loads 4 bytes from abs 0x102bdbbc.
-  The `lw` at 0x100f9b2c loads 4 bytes from (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x78.
-  The `lw` at 0x100f9b30 loads 4 bytes from (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x74.
-  The `lw` at 0x100f9b38 loads 4 bytes from (ret(DLGetNameData) + (((ret(GetNextInteger) << 0x2) + ret(GetNextInteger)) << 0x3)) +0x7c.
+  3 such `lw` accesses load 4 bytes from ?, including `lw` at 0x100f9b2c, `lw` at 0x100f9b30, `lw` at 0x100f9b38.
   The `lw` at 0x100f9b5c loads 4 bytes from abs 0x102bd484.
   2 such `lw` accesses load 4 bytes from abs 0x102bdaf8, including `lw` at 0x100f9b7c, `lw` at 0x100f9bbc.
   The `lw` at 0x100f9ba4 loads 4 bytes from abs 0x102bdb48.
   The `jal` at 0x100f9a7c calls GetNextString [0x100fee80] with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
   The `jal` at 0x100f9a94 calls DLGetNameData [0x100ff57c] with a0=0x0, a1=ret(GetNextString), a2=?, a3=?.
   The `jalr` at 0x100f9ad0 calls fprintf with a0=sym(__iob)+32, a1=0x101b2978, a2=?, a3=?.
-  The `jalr` at 0x100f9af4 calls fprintf with a0=sym(__iob)+32, a1=0x101b29a0, a2=?, a3=?.
+  The `jalr` at 0x100f9af4 calls fprintf with a0=?, a1=0x101b29a0, a2=?, a3=?.
   The `jal` at 0x100f9b10 calls GetNextInteger [0x100feebc] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100f9b6c calls sprintf with a0=sp-96, a1=0x101b2970, a2=?, a3=?.
   The `jal` at 0x100f9b80 calls DoSub [0x100fb3bc] with a0=0x0, a1=?, a2=?, a3=?.
@@ -4200,7 +4198,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jal` at 0x100fea34 calls GetNextInteger [0x100feebc] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x100fea88 calls fprintf with a0=sym(__iob)+32, a1=0x101b3350, a2=ret(GetNextInteger), a3=?.
   The `jal` at 0x100fea94 calls UpdatePlaceHolder [0x100feb8c] with a0=0x0, a1=?, a2=?, a3=?.
-  The `jalr` at 0x100feab4 calls fprintf with a0=sym(__iob)+32, a1=0x101b3368, a2=ret(UpdatePlaceHolder), a3=?.
+  The `jalr` at 0x100feab4 calls fprintf with a0=?, a1=0x101b3368, a2=ret(UpdatePlaceHolder), a3=?.
   The `jalr` at 0x100feb00 calls sscanf with a0=ret(UpdatePlaceHolder), a1=0x101b3284, a2=ret(getNextBuffer), a3=?.
   The `jalr` at 0x100feb14 calls strlen with a0=ret(getNextBuffer), a1=?, a2=?, a3=?.
   The `jal` at 0x100feb20 calls UpdatePlaceHolder [0x100feb8c] with a0=ret(strlen)+1, a1=?, a2=?, a3=?.
@@ -5154,8 +5152,8 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jalr` at 0x1010abf0 calls strncmp with a0=0x10344ae8, a1=0x101b5618, a2=0x6, a3=?.
   The `jalr` at 0x1010ac08 calls strchr with a0=0x10344ae8, a1=0x20, a2=?, a3=?.
   The `jal` at 0x1010ac28 calls kt_output_info [0x10046374] with a0=0x101b5620, a1=ret(strchr)+1, a2=?, a3=?.
-  The `jalr` at 0x1010ac38 calls strchr with a0=ret(strchr)+1, a1=0x2e, a2=?, a3=?.
-  The `jal` at 0x1010ac78 calls (unnamed) [0x1010b9b4] with a0=ret(popen), a1=0x10344be8, a2=ret(strchr)+1, a3=?.
+  The `jalr` at 0x1010ac38 calls strchr with a0=?, a1=0x2e, a2=?, a3=?.
+  The `jal` at 0x1010ac78 calls (unnamed) [0x1010b9b4] with a0=ret(popen), a1=0x10344be8, a2=?, a3=?.
   The `jal` at 0x1010acb0 calls set_decode_fcn [0x1002b380] with a0=sym(wishy_washy_decode_func), a1=?, a2=-0x1, a3=?.
   The `jal` at 0x1010acc8 calls run_crc_testlist [0x1001d0dc] with a0=0x1020c8f0, a1=a0 at entry (arg0), a2=?, a3=?.
   The `jal` at 0x1010ace4 calls set_decode_fcn [0x1002b380] with a0=0x0, a1=?, a2=?, a3=?.
@@ -5786,13 +5784,13 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jal` at 0x10117674 calls vcRead [0x10140bac] with a0=0xc700, a1=?, a2=?, a3=?.
   The `jal` at 0x10117684 calls fb_step_clk [0x10117e4c] with a0=?, a1=?, a2=?, a3=?.
   The `jalr` at 0x101176bc calls fopen with a0=0x101b7df0, a1=0x101b7e08, a2=?, a3=?.
-  The `jalr` at 0x10117710 calls fprintf with a0=ret(fopen), a1=0x101b7e10, a2=?, a3=?.
-  The `jalr` at 0x10117738 calls fclose with a0=ret(fopen), a1=?, a2=?, a3=?.
+  The `jalr` at 0x10117710 calls fprintf with a0=?, a1=0x101b7e10, a2=?, a3=?.
+  The `jalr` at 0x10117738 calls fclose with a0=?, a1=?, a2=?, a3=?.
   The `jal` at 0x10117758 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x101b7b98, a2=?, a3=?.
   The `jal` at 0x10117778 calls kt_output_dbug [0x10046d74] with a0=0x3, a1=0x101b7bb0, a2=?, a3=?.
   The `jal` at 0x101177d0 calls kt_output_dbug [0x10046d74] with a0=0x9, a1=0x101b7ed0, a2=?, a3=?.
   The `jal` at 0x1011785c calls kt_output_info [0x10046374] with a0=0x101b7ea0, a1=?, a2=?, a3=?.
-  The `jal` at 0x101178b0 calls kt_output_info [0x10046374] with a0=0x101b7e50, a1=?, a2=?, a3=?, a4=ret(hash_value).
+  The `jal` at 0x101178b0 calls kt_output_info [0x10046374] with a0=0x101b7e50, a1=?, a2=?, a3=?.
   The `jal` at 0x101178f0 calls kt_output_diag [0x100461b0] with a0=0x101b7f00, a1=?, a2=?, a3=?.
   The `jal` at 0x10117908 calls kt_output_diag [0x100461b0] with a0=0x101b7f40, a1=?, a2=?, a3=?.
   The `jal` at 0x10117920 calls kt_output_diag [0x100461b0] with a0=0x101b7f78, a1=?, a2=?, a3=?.
@@ -5826,7 +5824,7 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `jalr` at 0x10117d48 calls __filbuf with a0=sym(__iob), a1=[sym(__us_rsthread_stdio)], a2=?, a3=?.
   The `beq` branch at 0x10117028 targets 0x10117064, is taken when v0(=ret(dgo_reset)) == 0, and falls through when v0(=ret(dgo_reset)) != 0.
   The `beq` branch at 0x101170dc targets 0x101172a0, is taken when a1(=[[sym(KONAINFO)]]) == a3(=0x2), and falls through when a1(=[[sym(KONAINFO)]]) != a3(=0x2).
-  The `beq` branch at 0x1011710c targets 0x101172c8, is taken when a1(=ret(hash_value)) == 0, and falls through when a1(=ret(hash_value)) != 0.
+  The `beq` branch at 0x1011710c targets 0x101172c8, is taken when a1(?) == 0, and falls through when a1(?) != 0.
   The `beq` branch at 0x10117198 targets 0x10117430, is taken when s1(=ret(hash_value)) == 0, and falls through when s1(=ret(hash_value)) != 0.
   The `bne` branch at 0x101171a4 targets 0x10117274, is taken when s1(=ret(hash_value)) != a2(=0x1), and falls through when s1(=ret(hash_value)) == a2(=0x1).
   The `beq` branch at 0x101171e4 targets 0x101174c4, is taken when v0(=ret(dgo_clearfb)) == 0, and falls through when v0(=ret(dgo_clearfb)) != 0.
@@ -5857,8 +5855,8 @@ Skipped routines: status excluded 7,243 located, 12,633 understood, and 8 no-sof
   The `bne` branch at 0x10117724 targets 0x101176ec, is taken when s4(?) < s5(=0x556e0) (signed), and falls through when s4(?) >= s5(=0x556e0) (signed).
   The `beq` branch at 0x101177a8 targets 0x101177f4 and is always taken.
   The `beq` branch at 0x101177ec targets 0x101178c0, is taken when s0(?) >= s5(=0x556e0) (signed), and falls through when s0(?) < s5(=0x556e0) (signed).
-  The `beq` branch at 0x10117808 targets 0x10117a9c, is taken when a4(=ret(hash_value)) == 0, and falls through when a4(=ret(hash_value)) != 0.
-  The `beq` branch at 0x10117810 targets 0x1011786c, is taken when v1(=ret(hash_value)) == a0(=0x1), and falls through when v1(=ret(hash_value)) != a0(=0x1).
+  The `beq` branch at 0x10117808 targets 0x10117a9c, is taken when a4(?) == 0, and falls through when a4(?) != 0.
+  The `beq` branch at 0x10117810 targets 0x1011786c, is taken when v1(?) == a0(=0x1), and falls through when v1(?) != a0(=0x1).
   The `beq` branch at 0x1011782c targets 0x101177b0, is taken when a1(?) == v0(?), and falls through when a1(?) != v0(?).
   The `beq` branch at 0x1011783c targets 0x101177d8, is taken when s1(?) >= a0(=[sym(MAX_ERRORS)]) (unsigned), and falls through when s1(?) < a0(=[sym(MAX_ERRORS)]) (unsigned).
   The `beq` branch at 0x10117864 targets 0x101177dc and is always taken.
