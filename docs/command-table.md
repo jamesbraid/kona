@@ -1,6 +1,6 @@
 # Back-end definitions table
 
-One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29). The GL pixel layouts of section 7.15 restate the shipped client's senders and the pipe processor's handlers (keys S31-S33); they carry no recorded traces.
+One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29). The GL pixel, query and select-feedback layouts of sections 7.15 and 7.16 restate the shipped client's senders and the pipe processor's handlers (keys S31-S35); they carry no recorded traces.
 
 The names are role names in plain words, written for someone who transcribes the table into a definitions module. They are not the vendor's symbol, routine or request names, and no vendor identifier appears below. Where a row needs a handle, use the number.
 
@@ -45,10 +45,12 @@ The names are role names in plain words, written for someone who transcribes the
 | S31 | the client's pixel senders: [pixel-store parameters](libglcore-driver-functions.md#pixel-store-parameters), [pixel packing and reading](libglcore-driver-functions.md#pixel-packing-and-reading), [pixel transfer set-up](libglcore-driver-functions.md#pixel-transfer-set-up), [pixel reads and draws](libglcore-driver-functions.md#pixel-reads-and-draws), [pixel zoom](libglcore-driver-functions.md#clear-values-blending-stencil-and-pixel-zoom) and the accumulation and clear-value senders of [the state setters](libglcore-functions.md#state-setters-and-small-senders) and [the display-list compilers](libglcore-functions.md#display-list-compilers) |
 | S32 | the pipe processor's GL pixel handlers and tables: [pixel path set-up and state](../ucode/arm1_functions.md#pixel-path-set-up-and-state), [parameter and format tables](../ucode/arm1_functions.md#pixel-path-parameter-and-format-tables), [finishing a transfer](../ucode/arm1_functions.md#pixel-path-finishing-a-transfer), [GL state handlers](../ucode/arm1_functions.md#gl-state-handlers) and [pixel images](ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap) |
 | S33 | the return-data buffer: [request, wait and reply](libglcore-get-functions.md#request-wait-and-reply), [queries and read-back](../ucode/arm1_functions.md#queries-and-read-back) and the node's return-data page in [kernel functions](kernel-functions.md) |
+| S34 | the client's query senders and readers: [request, wait and reply](libglcore-get-functions.md#request-wait-and-reply), [host-state reads](libglcore-get-functions.md#reads-that-answer-from-host-state), [lights, materials and texture environment](libglcore-get-functions.md#client-array-pointers-lights-materials-and-texture-environment), [the value-table readers](libglcore-get-functions.md#the-value-table-readers-glgetbooleanv-glgetdoublev-glgetfloatv-glgetintegerv-and-glisenabled), [texture generation](libglcore-get-functions.md#the-three-glgettexgen-readers), [evaluator map queries](libglcore-driver-functions.md#evaluator-map-queries), [histogram parameter queries](libglcore-driver-functions.md#histogram-parameter-queries), [pixel transform parameters](libglcore-driver-functions.md#pixel-transform-parameters) and [colour table, pixel map and histogram routines](libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines) |
+| S35 | select and feedback: [the client's selection and feedback routines](libglcore-driver-functions.md#selection-feedback-client-attributes-and-list-parameters) and [buffer set-up](libglcore-driver-functions.md#sprites-feedback-and-selection-buffers), [the select-feedback DMA](hip.md#pipe-to-host-select-feedback-kona_dmaread) and the processor's [selection, feedback and render-mode handlers](../ucode/arm1_functions.md#queries-and-read-back) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1209 graded entries: 515 established, 615 inferred and 79 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1256 graded entries: 539 established, 626 inferred and 91 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -1571,6 +1573,73 @@ Everything the OpenGL client sends for pixel state and for draw, read and copy r
 | accumulation storage format | the layout of accumulation values in frame-buffer memory (narrow and 32-bit forms) | unknown | S32 |
 
 
+### 7.16 Queries, select and feedback
+
+How the host asks the pipe a question, where the answer lands, and when the host stops waiting; then the select and feedback modes, whose output goes to host memory by DMA instead. Pixel reads and the copy-overlap queries are in section 7.15. All query tokens run on the pipe's processor. A query is a short token with its arguments, no pixels, and an answer written to host memory; the client then reads the answer in place.
+
+**The return-data buffer and the completion rule.** One buffer per rendering context, one 16 KB page, whose pipe address and length the host registers with the read-back set-up token (0x1f2, three words: address high, address low, length 0x4000).
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| buffer layout | word 0 a completion word, word 1 the count of data words that follow, data from byte 8. Every query answer is read at byte 8 | established for the client's reads; which side writes word 0 inferred | S33, S34 |
+| completion word | the client spins on word 0 until it is nonzero, then clears it. The pipe must therefore write word 0 nonzero after (or with) the rest of the reply; nothing else announces completion. The start routine writes a 0 and the finish routine a 1 through the reply port: whether those two writes are word 0 is not settled | rule established; mechanism unknown | S33 |
+| where the count word comes from | the processor writes the reply's word count first, then the words; the client reads the count at byte 4 for light, material and histogram-parameter replies and ignores it for fixed-size replies | established | S33, S34 |
+| host wait | up to 200000 spins on word 0, then up to 200000 zero-length naps, then naps of a tick count scaled from the system clock rate. After 3000 passes of that phase it asks the kernel for a diagnostic report, prints the first 64 words of the buffer and goes on waiting. A signal ends the wait early. Every exit clears word 0 | established | S33 |
+| reply for a query with no answer | the client has no other way out of the wait, so a handler that replies nothing hangs the client; a bad name replies zero or an empty reply with an invalid-enumerant error recorded | inferred (from the wait loop and the handlers) | S33 |
+| host-only answers | evaluator-map queries, texture-parameter and texture-level queries, evaluator grid queries, client-array pointers, and the enable bits of 29 capabilities are answered from the client's own state and send nothing | established | S34 |
+
+**Query tokens, their request words and replies.** Numbers of data words are after the count word. Floats are IEEE single precision in the pipe's order; the client does the conversions to integers, doubles and booleans (see the last row).
+
+| Token | Request words and reply | Grade | Evidence |
+|---|---|---|---|
+| 0x03b current values | one request word (0). Reply count 13 words (52 bytes). The client reads, at these byte offsets in the reply: colour (4 floats) at 0, colour index at 16, texture coordinates at 20, normal at 32 and edge flag at 48. The texture-coordinate span from 20 overlaps the normal at 32, so how the reply packs the texture coordinates is not settled | count and offsets established; packing inferred | S33, S34 |
+| 0x03c clip plane | one word, the plane name (0x3000 + n). Reply 4 floats: the plane equation | established | S33, S34 |
+| 0x03d raster position | one word (0). Reply count 15 words (60 bytes). The client reads, at byte offsets: position (4 floats) at 0, distance at 16, colour (4 floats) at 20, index at 36, texture coordinates at 52 and the valid flag at 56. The texture coordinates at 52 and the flag at 56 cannot both be whole, and 40-51 is unaccounted for, so the tail of the reply is not settled | count and the first four offsets established; the tail unknown | S33, S34 |
+| 0x03e error | one request word, a filler (0xdbdbdbdb); the processor reads it as the payload. Reply 1 word: the first recorded error (invalid enumerant 0x500, invalid value 0x501, invalid operation 0x502, stack overflow 0x503, underflow 0x504); the processor clears it when it is read, and later errors are kept only if none is pending. The engines' own pending error is returned when the processor's is clear | established | S33, S34 |
+| 0x041 light | two words: light number (0-based), parameter 0x1200-0x1209. Reply count 3 for the spot direction, 1 for single-value names, otherwise 4 floats | established | S33, S34 |
+| 0x046 material | two words: face (0x404 front, 0x405 back), name 0x1200-0x1209 or 0x1600-0x1603. Reply count 4 for ambient, diffuse, specular and emission, 1 for shininess, otherwise 3 floats | established | S33, S34 |
+| 0x048 pixel map | three words: map name (0xc70-0xc79), start entry, entry count. The client fetches in blocks of at most 512 entries. Reply: one 16-byte entry per map entry, four words, of which the client reads the component slot (0 for index and red, 1 green, 2 blue, 3 alpha) | client side established; entry layout inferred | S33, S34 |
+| 0x04b polygon stipple | one word (0). Reply count 0x20, 32 words: the 32 stipple rows. The processor rotates the stipple before and after the read and leaves it rotated by the second pair of offsets; why is not read | reply established; rotation reason unknown | S33, S34 |
+| 0x04c generic state | one word: the parameter name. Reply by the query table: the table gives each name a count of values and a kind (a value from the state block, a word from the context block, an engine-memory read, or a callback). 159 names are answered by the pipe; the others the client answers itself | mechanism established; the name-by-name counts unknown | S33, S34 |
+| 0x04d texture environment | one word: the parameter name (0x2200, 0x2201 or 0x80be). Reply 1 word (the mode, as an unsigned integer) for 0x2200, otherwise 4 floats | established | S33, S34 |
+| 0x050 texture generation | two words: coordinate (0x2000-0x2003), name (0x2500-0x2502, 0x81f4-0x81f7). Reply: the mode name as 1 word for 0x2500; 16 words (four rows of four floats, one column per coordinate) for the plane names and the first two distance names; 24 words (six rows) for 0x81f6 and 0x81f7. The client reads the plane rows at an address 0x8000 bytes below the mode word; why is not settled | reply shape inferred; the displacement unknown | S33, S34 |
+| 0x052 texture image | eighteen words: target, size, format, type and the selection words (section 7.14). Reply: the image in the host format and type, by the return-data buffer, or by DMA when the client uses the DMA-read request | request established; reply layout inferred | S33, S34 |
+| 0x0ea colour table | four words: target, format, start, count. The client reads 512 entries at a time. Reply length is the count rounded up to 32 entries times 4 bytes; the entry layout is the pipe's table format, which the client unpacks | request established; entry layout unknown | S33, S34 |
+| 0x0ec colour-table parameter | two words: target, name. Reply count 4 floats for scale (0x80d6) and bias (0x80d7); otherwise 1 word: 0x80d8 the format, 0x80d9 the width, and the size names the stored size | established | S33, S34 |
+| 0x0ee line-mode limits | one word (0). Reply count 0x20: eight rows of four words, the first two from the extended limit table and the last two from the standard one; the client splits each row between two arrays | established | S33, S34 |
+| 0x0f4, 0x0f7 convolution and separable filter | target and the format and type codes (the processor's reads seen are 2 and 3; the client's word count is not settled); the separable form is sent once for the row filter and once for the column filter. Reply: the kernel in the host format by the return-data buffer | request word count unknown; reply inferred | S33, S34 |
+| 0x0fa pixel-transform parameter | two words: target 0x81c6 and name 0x81c9 or 0x81ca. Reply count 1, the stored integer; any other target or name gets an empty reply. The client answers the filter-record names itself | established | S33, S34 |
+| 0x104 histogram | one word, inferred to be the reset flag. Reply: the counters, width x components words. Up to 4093 words come by the return-data buffer; a larger table by the DMA-read request. A reset sends token 0x103 with 0x8024 afterwards | request word inferred; the rest established | S33, S34 |
+| 0x105 histogram parameter | two words: target (0x8024, 0x8025 proxy), name. Reply count 1 then the value: 0x8026 width, 0x8027 format, 0x8028-0x802c a fixed 0x20, 0x802d sink flag (real target only); any other name replies zero and records an invalid-enumerant error | established | S33, S34 |
+| 0x109 min-max | one word, inferred to be the reset flag (the client's read never sets it). Reply: the base format, then eight words from engine memory (the minimum and maximum per component, with a partner word that the client carries along; why is not read) | reply inferred | S33, S34 |
+| 0x10a min-max parameter | one argument word. The client ignores the parameter name and returns reply word 0 for every name. Reply count 1: 0x802f gives the format and 0x8030 the sink flag | processor side established; client behaviour a quirk | S33, S34 |
+| 0x134 texture attributes | one word. Reply 121 words: the texture environment and generation planes. Sent by the context-copy path only | reply established; sender inferred | S33, S34 |
+| 0x1c6 deformation | one word (the query number). Reply: coefficients (three orders x 12 bytes of control points), domain (24 bytes, 6 values) or orders (3) as the query selects | inferred | S33, S34 |
+| 0x1cb transform attributes | one word. Reply 61 words, of which the client copies the 32-byte clip-plane records. Sent by the context-copy path only | reply established; sender inferred | S33, S34 |
+| 0x1e9 board configuration | one payload word, taken as the read-back argument (which value the tool sends is not recorded). Reply count 0x1de (478), then 478 words: the board-configuration block. Sent by the pipe-information tool, not by the OpenGL client | reply established; request word unknown | S33, S34 |
+| 0x0c6 finish | two words: token and 1. The processor drains the raster boards and replies one word; the client returns after word 0 is set. A zero flag word does not reply | established | S33, S34 |
+| float and integer query variants 0x03f, 0x040, 0x042, 0x043-0x045, 0x047, 0x049, 0x04a, 0x04e, 0x04f, 0x051, 0x053 | no sender: each is refused by the processor. The client answers these calls through the float forms above (light, material, texture environment and texture generation by 0x041, 0x046, 0x04d, 0x050; state by 0x04c), from host state (evaluator maps, texture parameters) or through the pixel-map float form | established | S34, S1 |
+| client conversions of float replies | integer reads of a colour-range value are (v x 4294967295 - 1) x 0.5, giving 0 for 0.0 and 2147483647 for 1.0. Records that use it: light-model ambient (0xb53), fog colour (0xb66), depth range (0xb70), depth clear (0xb73), accumulation clear (0xb80), alpha reference (0xbc2), colour clear (0xc22), blend colour (0x8005) and the current-value and raster-position replies. Light and material ambient, diffuse, specular and emission colours and the texture-environment colour scale by 2^31 the same way. All other integer reads truncate; double reads widen; boolean reads test the low byte | established | S34 |
+
+**Select and feedback.** Select and feedback do not use the return-data buffer. The pipe writes records straight to host memory by output DMA, and the host collects them when it leaves the mode or when a read or query needs the command path.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| render mode (token 0x019, one word) | 0x1c00 render, 0x1c01 feedback, 0x1c02 select. The client sends the new mode first, then finishes the mode it is leaving, then starts the new one. The processor ends the old mode in the engines and begins the new, re-derives the transfer mask, viewport and primitive set-up, and keeps the mode in the state block | established | S35 |
+| feedback type (token 0x017, one word) | 0x600 2D, 0x601 3D, 0x602 3D colour, 0x603 3D colour texture, 0x604 4D colour texture; the client refuses other values. The processor stores it and sends it to the engines when feedback starts | established | S35 |
+| selection names | token 0x10c initialises the name stack, 0x10d replaces the top name, 0x0c3 pushes, 0x0c2 pops; each is the token and one word (0 for init and pop). They act only in select mode; in other modes the words are dropped | established | S35 |
+| pass-through (token 0x0c1, one word) | a float marker; acts only in feedback mode, where it appears in the record stream as a pass-through record | established | S35 |
+| start (token 0x1f5, six words) | address high, address low, length in bytes, line length, stride, snapshot ([the select-feedback DMA](hip.md#pipe-to-host-select-feedback-kona_dmaread)). The processor programs output-DMA channel 0 and keeps the five values; snapshot 1 keeps a second copy | established | S35 |
+| finish (token 0x1f6, two words) | an event code (256, chosen by the kernel) and the context's slot index. The pipe answers with the engine event 0x100 carrying the slot index, the remaining byte count and a status word; the words delivered are (length - remaining) / 4 and the overflow flag is bit 11 (0x800) of the status | established | S35 |
+| completion rule | the client waits on the kernel's event. A timeout stops the pipe (the kernel's reason 5). A select or feedback in flight is suspended (finished) before any read or query so the command path is free, and resumed afterwards at the buffer plus the words already delivered | established | S35 |
+| restart (token 0x1bc) | one word. Reprograms channel 0 from the saved copy while a feed is active; nothing in the client or the kernel sends it | unknown (no sender) | S35 |
+| host buffers | the client allocates the select buffer as (size + 256) x 4 x k bytes, where k is a client count word whose meaning is not settled, and the feedback buffer as sent | allocation established; k unknown | S35 |
+| feedback record codes | each feedback record starts with a code 0x700 pass-through, 0x701 point, 0x702 line, 0x703 polygon, 0x704 bitmap, 0x705 draw-pixel, 0x706 copy-pixel or 0x707 line-reset token. The client walks the buffer word by word and drops any word that is not a record code by shifting the stream down one word. Which value words follow each code, and the extra word the client removes, are not decoded | codes established; value layout unknown | S35 |
+| select record | a marker word (the client skips a record whose marker is 0, or 0x2bad2d00 under a client capability bit; which board sets it is not settled), a name count, the minimum depth, the maximum depth, then the names. The client merges following records with the same marker, taking the smaller minimum and the larger maximum | established | S35 |
+| depth encoding in select records | the numeric format of the two depth words (the client copies them) | unknown | S35 |
+| result | the client returns the number of hits or feedback values; -1 when the status reported overflow | established | S35 |
+
+
 ## 8. Raster-bus register writes and index spaces
 
 | Item | Role | Layout / values | Grade | Evidence |
@@ -1770,12 +1839,12 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
 | 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 188 | 90 | 57 | 335 |
+| 7. Field layouts | 212 | 101 | 69 | 382 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **515** | **615** | **79** | **1209** |
+| **All** | **539** | **626** | **91** | **1256** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
@@ -1838,6 +1907,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - environment: the role of parameter 0x80be, which public mode selects the add and add-signed records, what each function code does on the raster board
 - shadow state (0x1c7): whether any shipped software sends it
 - GL pixel state, transfer and accumulation (section 7.15): the meaning of the pixel-mode word's bits; the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the format codes of the three extension formats (and codes 8-10); the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); which accumulation operations are two-pass; and the accumulation storage format
+- queries, select and feedback (section 7.16): which side writes the reply buffer's completion word; the packing of the current-value reply's texture coordinates and the tail of the raster-position reply (offsets 40-67); why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the value layout of each feedback record and the numeric format of select-record depths
 
 **8. Raster bus**
 
