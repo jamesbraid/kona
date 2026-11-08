@@ -1,6 +1,6 @@
 # Back-end definitions table
 
-One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29). The GL pixel, query and select-feedback layouts of sections 7.15 and 7.16 restate the shipped client's senders and the pipe processor's handlers (keys S31-S35); they carry no recorded traces.
+One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29). The GL pixel, query, select-feedback and multisample layouts of sections 7.15-7.17 restate the shipped client's senders and the pipe processor's handlers (keys S31-S37); they carry no recorded traces.
 
 The names are role names in plain words, written for someone who transcribes the table into a definitions module. They are not the vendor's symbol, routine or request names, and no vendor identifier appears below. Where a row needs a handle, use the number.
 
@@ -47,10 +47,12 @@ The names are role names in plain words, written for someone who transcribes the
 | S33 | the return-data buffer: [request, wait and reply](libglcore-get-functions.md#request-wait-and-reply), [queries and read-back](../ucode/arm1_functions.md#queries-and-read-back) and the node's return-data page in [kernel functions](kernel-functions.md) |
 | S34 | the client's query senders and readers: [request, wait and reply](libglcore-get-functions.md#request-wait-and-reply), [host-state reads](libglcore-get-functions.md#reads-that-answer-from-host-state), [lights, materials and texture environment](libglcore-get-functions.md#client-array-pointers-lights-materials-and-texture-environment), [the value-table readers](libglcore-get-functions.md#the-value-table-readers-glgetbooleanv-glgetdoublev-glgetfloatv-glgetintegerv-and-glisenabled), [texture generation](libglcore-get-functions.md#the-three-glgettexgen-readers), [evaluator map queries](libglcore-driver-functions.md#evaluator-map-queries), [histogram parameter queries](libglcore-driver-functions.md#histogram-parameter-queries), [pixel transform parameters](libglcore-driver-functions.md#pixel-transform-parameters) and [colour table, pixel map and histogram routines](libglcore-driver-functions.md#colour-table-pixel-map-histogram-and-pixel-transform-routines) |
 | S35 | select and feedback: [the client's selection and feedback routines](libglcore-driver-functions.md#selection-feedback-client-attributes-and-list-parameters) and [buffer set-up](libglcore-driver-functions.md#sprites-feedback-and-selection-buffers), [the select-feedback DMA](hip.md#pipe-to-host-select-feedback-kona_dmaread) and the processor's [selection, feedback and render-mode handlers](../ucode/arm1_functions.md#queries-and-read-back) |
+| S36 | the client's multisample senders and configuration: [buffer configuration](opengl.md#buffer-configuration-kona_writeconfig-kona_readconfig), the sample-mask, sample-pattern and sample-buffer tag entries of [the state setters](libglcore-functions.md#state-setters-and-small-senders) and [the display-list mode compilers](libglcore-driver-functions.md#display-list-compilers-for-state-calls) |
+| S37 | the pipe processor's multisample handlers and tables: [enable and disable](../ucode/arm1_functions.md#enable-and-disable), [lines, points, polygons and raster set-up](../ucode/arm1_functions.md#lines-points-polygons-and-raster-set-up), [the buffer-configuration handler](../ucode/arm1_functions.md#context-switch-saved-state-and-memory), [constant tables](../ucode/arm1_functions.md#linker-marks-and-other-data) with their contents in the firmware listing [arm1.s](../ucode/arm1.s) (the pattern table at 0x0c03c734 and the two coverage tables after it), and the [shadow word map](ge-shadow-words.md) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1256 graded entries: 539 established, 626 inferred and 91 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1297 graded entries: 546 established, 649 inferred and 102 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -1640,6 +1642,72 @@ How the host asks the pipe a question, where the answer lands, and when the host
 | result | the client returns the number of hits or feedback values; -1 when the status reported overflow | established | S35 |
 
 
+### 7.17 Multisample
+
+Multisampling is a buffer-configuration choice, three enables, a sample pattern and a sample mask. The client has senders for all of them. Sample locations are on an eighth-of-a-pixel grid: each location is a three-bit x and a three-bit y. The raster registers named below are the shadow words of section 8.2 (sample locations are words 21 and 22, the sample mask register word 81, the alpha-to-mask enables word 88, the primitive sampling selects word 27, the image-processor multisample word 38 and the image-processor bank addresses word 43).
+
+**Configuration and enables.**
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| sample count | the sixth payload word of the buffer-configuration token (0x001) and of the read-buffer configuration token (0x004), after level, the two size words and double-buffer and stereo and before depth: 0 = no multisample buffer. The processor keeps it as a byte. Values 4 and 8 are the two counts the tables below cover (a count shifted right by 3 chooses the 4- or the 8-sample set); what a count of 1, 2 or any other value does is not recorded | position established; 4 and 8 inferred; other values unknown | S36, S37 |
+| what a configuration does | on every buffer-configuration token the processor resets the sample mask to 1.0, writes all ones to the sample-mask register, zero to the alpha-to-mask enables, selects pattern 0x80a1 and writes its pair of location words, calls the enable or disable routine below by whether the count is above zero, records the enable byte as 1 whichever routine ran, and writes the multisample control word (enable bit, 4-or-8 bit and the buffer-width bits) | established (steps); control-word bit meanings inferred | S37 |
+| control-word layout | the image-processor multisample word: bit 0 enable, bit 1 sample count (0 = 4, 1 = 8), bit 2 mask operation (0 AND, 1 replace), bits 10:3 an 8-bit mask, bit 11 maintain-two, bits 13:12 optimisation (0 none, 2 disable, 3 enable); the optimisation field is written by the blend enable and disable routines and the colour-mask handler | established for the layout names; inferred for effects | S15, S37 |
+| frame-buffer bank | the multisample buffer's base is a six-bit field (bits 11:6) of the image-processor bank-address word, with a buffer tag at bit 12 | inferred | S12, S15 |
+| enables | three capabilities, public numbers 0x809d multisample, 0x809e alpha-to-mask and 0x809f alpha-to-one, plus 0x80a0 sample mask, go through the generic enable and disable tokens (0x024, 0x025). That all four lie in the handled range 0x8010-0x81c7 is established; which table slot is which capability is not recorded | numbers and range inferred | S36, S37 |
+| multisample enable | sets the enable byte; if the configuration has multisample it re-derives polygon, line and point drawing, writes the primitive sampling word, then writes the alpha-to-mask enables with bit 0 from the alpha-to-mask byte and bit 2 from the alpha-to-one byte. Disable clears the byte and, with multisample configured, re-derives drawing and writes zero to the primitive sampling word and the alpha-to-mask enables | established | S37 |
+| alpha-to-mask, alpha-to-one, sample-mask enables | each sets or clears its own byte and writes its one bit of the alpha-to-mask enable word: bit 0 alpha-to-mask, bit 1 sample mask, bit 2 alpha-to-one | established for the writes; bit names inferred | S37 |
+| default | after a configuration the enable byte is 1 even when the count is 0, so multisample reads enabled with no buffer | established | S37 |
+| values the primitive sampling word takes per primitive class | its two-bit selects per class (points, lines, triangles, one more) are 0 not multisampled, 1 multisampled, 2 alpha; which value the polygon, line and point set-up writes for each enable and smoothing combination is not recorded | selects inferred; written values unknown | S37, S12 |
+
+**Sample pattern (token 0x117, one word).** The client sends the enumerant unchecked, immediately and in display lists.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| word | pattern enumerant 0x80a1-0x80a7: one-pass (0x80a1), two-pass 0 and 1 (0x80a2, 0x80a3), four-pass 0-3 (0x80a4-0x80a7). The processor records invalid-enumerant for any other value | numbers established; pass names inferred | S36, S37 |
+| effect | stores the enumerant, picks a pair of 24-bit location words by pattern and by sample count and writes them to the two sample-location registers (0x3be0, 0x3be1), then sends the pattern number to the engines, which select their multisample point tables | established | S37 |
+| location word layout | sample n of four in bits 6n+2:6n (x) and 6n+5:6n+3 (y); the first register holds samples 0-3, the second samples 4-7 | established | S15, S37 |
+| first-power-on locations | the pixel-generator set-up writes 0x007f6280 to the first location register, samples 0-3 at (0,0) (2,1) (6,6) (7,3) (the diagnostic uses 0xc8b640: (0,0) (1,3) (3,1) (2,6)); the first configuration replaces them with pattern 0x80a1 | established | S12, S37 |
+| pattern 0x80a1, 4 samples | words 0xd94880 twice: (0,0) (2,4) (4,2) (6,6) | words established; positions inferred (layout above) | S37 |
+| pattern 0x80a2, 4 samples | words 0xf92940 twice: (0,0) (5,4) (2,2) (6,7) | words established; positions inferred | S37 |
+| pattern 0x80a3, 4 samples | words 0xb19f80 twice: (0,0) (6,7) (1,3) (4,5) | words established; positions inferred | S37 |
+| pattern 0x80a4, 4 samples | words 0x4eaf40 twice: (0,0) (5,7) (2,5) (3,2) | words established; positions inferred | S37 |
+| pattern 0x80a5, 4 samples | words 0x793a40 twice: (0,0) (1,5) (3,2) (6,3) | words established; positions inferred | S37 |
+| pattern 0x80a6, 4 samples | words 0xaddc80 twice: (0,0) (2,6) (5,3) (3,5) | words established; positions inferred | S37 |
+| pattern 0x80a7, 4 samples | words 0xdad6c0 twice: (0,0) (3,3) (5,5) (6,6) | words established; positions inferred | S37 |
+| pattern 0x80a1, 8 samples | words 0x655f80, 0xb0b9f2: (0,0) (6,7) (5,2) (1,3); (2,6) (7,4) (3,1) (4,5) | words established; positions inferred | S37 |
+| pattern 0x80a2, 8 samples | words 0xf77380, 0x913a99: (0,0) (6,1) (7,6) (5,7); (1,3) (2,5) (3,2) (4,4) | words established; positions inferred | S37 |
+| pattern 0x80a3, 8 samples | words 0xf32840, 0xad774e: (0,0) (1,4) (2,6) (4,7); (6,1) (5,3) (7,2) (3,5) | words established; positions inferred | S37 |
+| pattern 0x80a4, 8 samples | words 0x2d1fc0, 0x8b476e: (0,0) (7,7) (1,2) (3,1); (6,5) (5,3) (4,6) (2,4) | words established; positions inferred | S37 |
+| pattern 0x80a5, 8 samples | words 0x8ab240, 0x7fe535: (0,0) (1,1) (3,5) (2,4); (5,6) (4,2) (6,7) (7,3) | words established; positions inferred | S37 |
+| pattern 0x80a6, 8 samples | words 0x3b3e40, 0xb6251f: (0,0) (1,7) (3,6) (6,1); (7,3) (4,2) (2,4) (5,5) | words established; positions inferred | S37 |
+| pattern 0x80a7, 8 samples | words 0x5ede40, 0x2e27b4: (0,0) (1,7) (5,5) (7,2); (4,6) (6,3) (2,4) (3,1) | words established; positions inferred | S37 |
+| whether the sample locations are positions from a pixel corner or centre | the table gives eighths from an origin the readings do not fix | unknown | S15 |
+| multisample point tables | the engines hold packed per-pattern point-coverage data (0x15e00 bytes, two sets of seven tables) loaded at start-up in chunks of 256 words; a pattern change selects a table. The data layout is not decoded. A second routine that would compute tables from the pattern words is never called | selection established; layout unknown | S37 |
+
+**Sample mask (token 0x118, two words).** The client sends it in immediate mode and in display lists.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| words | word 0 the mask value as a float, clamped by the client to 0.0-1.0 (negative to 0.0, above 1.0 to 1.0); word 1 the invert flag in its low byte | established | S36, S37 |
+| effect | stores value and flag; converts the float to an index 0 to 32 from its exponent and mantissa; reads a 32-bit coverage word from the 4-sample table (count shifted right by 3 is 0) or the 8-sample table; complements it when the invert flag is set; writes it to the sample-mask register with an all-ones write mask. The exact rounding of the float-to-index step is not recorded | established except the rounding | S37 |
+| restore after an attribute pop | the restore routine rebuilds the word with a shift of 28 where the handler uses 26, so a restored 1.0 selects entry 8 rather than 32; whether that is a firmware fault or an intended difference is not settled | inferred | S37 |
+| 4-sample coverage words, index n | 0 for n = 0; for n = 1-2 0x11, 3-4 0x11000011, 5-6 0x11001111, 7-8 0x11111111, 9-10 0x11111133, 11-12 0x33111133, 13-14 0x33113333, 15-16 0x33333333, 17-18 0x33333377, 19-20 0x77333377, 21-22 0x77337777, 23-24 0x77777777, 25-26 0x777777ff, 27-28 0xff7777ff, 29-30 0xff77ffff, 31-32 0xffffffff (one nibble per pixel, eight pixels) | values established; layout inferred | S37 |
+| 8-sample coverage words, index n = 0-32 | 0x00000000, 0x00000001, 0x01000001, 0x01000101, 0x01010101, 0x01010111, 0x11010111, 0x11011111, 0x11111111, 0x11111113, 0x13111113, 0x13111313, 0x13131313, 0x13131333, 0x33131333, 0x33133333, 0x33333333, 0x33333337, 0x37333337, 0x37333737, 0x37373737, 0x37373777, 0x77373777, 0x77377777, 0x77777777, 0x7777777f, 0x7f77777f, 0x7f777f7f, 0x7f7f7f7f, 0x7f7f7fff, 0xff7f7fff, 0xff7fffff, 0xffffffff (one byte per pixel, four pixels) | values established; layout inferred | S37 |
+| what the sample-mask register is | the same register index (0x140b) is also described as the alpha-to-mask fade table of four 8-bit entries; how one register serves both, and how the raster board combines the coverage word with the primitive's own coverage and the multisample control word's mask bits, is not read | unknown | S12, S15 |
+| alpha-to-mask coverage | how the fade table is indexed and what coverage alpha-to-mask and alpha-to-one produce | unknown | S37 |
+
+**Items with no sender and open items.**
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| sample-buffer tag call | the client's immediate and list forms return at once; nothing reaches the pipe | unknown (no sender) | S36 |
+| multisample point-table builder | a firmware routine that would build the point tables from the pattern words exists and nothing in the image calls it | unknown (no sender) | S37 |
+| counts other than 4 and 8; the sample-buffer and sample-count queries; and visual selection by sample count | no reading establishes them | unknown | S36 |
+| reads, copies, clears and the accumulation buffer with a multisample buffer | whether a read resolves the samples, how the colour and depth samples are laid out in frame-buffer memory and how the multisample buffer's bank is sized | unknown | S37 |
+| multisample lines, points and polygons | the rasterisation rules (tie rules, multisampled line and polygon coverage) beyond the three sampling selects | unknown | S37 |
+
+
 ## 8. Raster-bus register writes and index spaces
 
 | Item | Role | Layout / values | Grade | Evidence |
@@ -1839,12 +1907,12 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
 | 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 212 | 101 | 69 | 382 |
+| 7. Field layouts | 219 | 124 | 80 | 423 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **539** | **626** | **91** | **1256** |
+| **All** | **546** | **649** | **102** | **1297** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
@@ -1908,6 +1976,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - shadow state (0x1c7): whether any shipped software sends it
 - GL pixel state, transfer and accumulation (section 7.15): the meaning of the pixel-mode word's bits; the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the format codes of the three extension formats (and codes 8-10); the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); which accumulation operations are two-pass; and the accumulation storage format
 - queries, select and feedback (section 7.16): which side writes the reply buffer's completion word; the packing of the current-value reply's texture coordinates and the tail of the raster-position reply (offsets 40-67); why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the value layout of each feedback record and the numeric format of select-record depths
+- multisample (section 7.17): the effect of sample counts other than 4 and 8; the values the primitive sampling word takes per class; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; how the sample-mask register doubles as the alpha-to-mask fade table and how the coverage word is combined with a primitive's own coverage; alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; reads, copies, clears and accumulation with a multisample buffer; multisample line, point and polygon rules
 
 **8. Raster bus**
 
