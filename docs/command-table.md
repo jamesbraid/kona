@@ -52,12 +52,12 @@ The names are role names in plain words, written for someone who transcribes the
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1297 graded entries: 546 established, 649 inferred and 102 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1297 graded entries: 549 established, 645 inferred and 103 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
 
-Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor. The entry gives no payload length: the routine reads its payload itself, one word per read, and the last word with a read at offset 0x3c of the register window ([the command stream](hip.md#the-command-stream-as-the-arm-firmware-reads-it)). The exact count is therefore the routine's, not a table field. "Payload reads seen" is the number of read sites a straight-line scan of the routine finds; it is a lower bound where the routine loops or reads through a helper, so the grade is inferred. A count of zero with no last-word read means the routine hands the payload to another routine, so its word count is unknown from the scan alone. The 54 refused tokens run the firmware's bad-command routine; a working driver never sends them (established). Token numbers are those of the map ([S1](#1-how-to-read-this-table)); the role names are inferred from the routines' readings in [S3](#1-how-to-read-this-table).
+Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor. The entry gives no payload length: the routine reads its payload itself, one word per read, and the last word with a read at offset 0x3c of the register window ([the command stream](hip.md#the-command-stream-as-the-arm-firmware-reads-it)). The exact count is therefore the routine's, not a table field. "Payload reads seen" is the number of read sites a straight-line scan of the routine finds; it is a lower bound where the routine loops or reads through a helper, so the grade is inferred. Where a later section decodes the client's sender, the column carries the sender's payload word count instead (tokens 0x005, 0x006, 0x03a and 0x111 in section 2.12: the straight-line scan had found 7, 7, 7 and 1, one short of the senders' 8, 9, 8 and 2). Counts never include the token word. A count of zero with no last-word read means the routine hands the payload to another routine, so its word count is unknown from the scan alone. The 54 refused tokens run the firmware's bad-command routine; a working driver never sends them (established). Token numbers are those of the map ([S1](#1-how-to-read-this-table)); the role names are inferred from the routines' readings in [S3](#1-how-to-read-this-table).
 
 
 ### 2.1 Refused tokens (bad-command routine; never sent by a working driver)
@@ -320,8 +320,8 @@ The word layouts behind these tokens are in sections 7.10-7.14: the load headers
 
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0x005 | draw a bitmap from a display list | 7 | n | inferred | S3 |
-| 0x006 | draw a bitmap | 7 | n | inferred | S3 |
+| 0x005 | draw a bitmap from a display list | 8, then word 6 - 1 image words (section 7.15) | n | inferred | S3, S31, recording |
+| 0x006 | draw a bitmap | 9, then the image as for a pixel draw (section 7.15) | n | established | S3, S31, S32 |
 | 0x00b | load the polygon stipple pattern | 2 | n | inferred | S3 |
 | 0x02f | set the pixel zoom factors | 2 | y | inferred | S3 |
 | 0x030 | set a pixel-transfer parameter (float form) | 1 | y | inferred | S3 |
@@ -331,7 +331,7 @@ The word layouts behind these tokens are in sections 7.10-7.14: the load headers
 | 0x036 | load a pixel map (unsigned 16-bit values) | 4 header words, then n values (section 7.15) | y | established | S3, S32 |
 | 0x038 | copy a pixel rectangle within the frame buffer | 7 | y | inferred | S3 |
 | 0x039 | read a pixel rectangle back to the host | 7 | y | inferred | S3 |
-| 0x03a | draw a pixel rectangle from host data | 7 | n | inferred | S3 |
+| 0x03a | draw a pixel rectangle from host data | 8, then the image words (section 7.15) | n | established | S3, S31, S32 |
 | 0x0e8 | load a colour table | 9 | y | inferred | S3 |
 | 0x0eb | set colour-table parameters | 6 | y | inferred | S3 |
 | 0x0ef | load a 1D convolution filter | 7 | y | inferred | S3 |
@@ -346,7 +346,7 @@ The word layouts behind these tokens are in sections 7.10-7.14: the load headers
 | 0x107 | set up min/max tracking | 2 | y | inferred | S3 |
 | 0x108 | reset min/max tracking | 1 | y | inferred | S3 |
 | 0x110 | ask whether a copy source overlaps its destination | 4 | y | inferred | S3 |
-| 0x111 | suspend pixel-mode state around a transfer | 1 | y | inferred | S3 |
+| 0x111 | suspend pixel-mode state around a transfer | 2 | y | established | S3, S31, S32 |
 | 0x115 | ask whether a convolution copy overlaps | 4 | y | inferred | S3 |
 | 0x116 | resolve whether a pixel format is single-component | 4 | y | inferred | S3 |
 | 0x135 | set the pixel-transform mode | 1 | y | inferred | S3 |
@@ -1558,8 +1558,8 @@ Everything the OpenGL client sends for pixel state and for draw, read and copy r
 
 | Item | Layout | Grade | Evidence |
 |---|---|---|---|
-| empty bitmap (token 0x006) | five zero words and four floats (x origin, y origin, x move, y move): only the raster position moves | established | S31, S32 |
-| small bitmap (up to 0xc40 pixels) | token 0x005 with width rounded up to 8, height, x and y origin, origin plus move for x and y, a word count and a byte count, then the image packed with no row padding | established | S31, S32 |
+| empty bitmap (token 0x006) | five zero words and four floats (x origin, y origin, x move, y move): nine payload words, and only the raster position moves. Here the origin and the move are sent separately, unlike the small bitmap's origin-plus-move words | established | S31, S32 |
+| small bitmap (up to 0xc40 pixels) | token 0x005 with eight payload words, numbered from 0 after the token: 0 width rounded up to 8, 1 height, 2 x origin, 3 y origin, 4 x origin plus x move, 5 y origin plus y move, 6 word count, 7 byte count. The image follows, packed with no row padding. The word count includes the byte-count word, so the image is word 6 - 1 words (the recorded bitmaps frame as 8 words plus word 6 - 1 image words). The recorded glyph advance equals word 4 - word 2 (the x move) | the eight-word header and the field order established; that word 6 counts the byte-count word and that word 4 - word 2 is the advance inferred (recording, one set of glyph draws) | S31, S32, recording |
 | large bitmap | token 0x006 with the header words of the pixel table (width, height, byte offset, DMA flag, row mode) and the four floats, then the image as for a pixel draw | established | S31, S32 |
 
 **Accumulation buffer (token 0x0c5, two words; clear value token 0x01b).** The client sends these in immediate mode and in display lists.
@@ -1594,7 +1594,7 @@ How the host asks the pipe a question, where the answer lands, and when the host
 
 | Token | Request words and reply | Grade | Evidence |
 |---|---|---|---|
-| 0x03b current values | one request word (0). Reply count 13 words (52 bytes). The client reads, at these byte offsets in the reply: colour (4 floats) at 0, colour index at 16, texture coordinates at 20, normal at 32 and edge flag at 48. The texture-coordinate span from 20 overlaps the normal at 32, so how the reply packs the texture coordinates is not settled | count and offsets established; packing inferred | S33, S34 |
+| 0x03b current values | one request word (0). Reply count 13 words (52 bytes). The client reads, at these byte offsets in the reply: colour (4 floats) at 0-15, colour index at 16, texture coordinates from 20, normal from 32 and edge flag at 48. The offsets as read do not fit together: four texture-coordinate floats from 20 end at 36 and run into the normal at 32, while three would end at 32; and a three-float normal from 32 ends at 44, leaving 44-47 unaccounted for. The table does not say whether the texture coordinates are three floats, the normal starts later than 32, or the client reads the texture coordinates with a different width, and no cited evidence settles it. Do not decode the texture coordinates and the normal from this reply until it is settled | count, colour, colour index and edge-flag offsets established; the texture-coordinate width and the normal offset unknown (what would settle it: the processor's reply writer for this query, or a recorded reply with distinct texture-coordinate and normal values) | S33, S34 |
 | 0x03c clip plane | one word, the plane name (0x3000 + n). Reply 4 floats: the plane equation | established | S33, S34 |
 | 0x03d raster position | one word (0). Reply count 15 words (60 bytes). The client reads, at byte offsets: position (4 floats) at 0, distance at 16, colour (4 floats) at 20, index at 36, texture coordinates at 52 and the valid flag at 56. The texture coordinates at 52 and the flag at 56 cannot both be whole, and 40-51 is unaccounted for, so the tail of the reply is not settled | count and the first four offsets established; the tail unknown | S33, S34 |
 | 0x03e error | one request word, a filler (0xdbdbdbdb); the processor reads it as the payload. Reply 1 word: the first recorded error (invalid enumerant 0x500, invalid value 0x501, invalid operation 0x502, stack overflow 0x503, underflow 0x504); the processor clears it when it is read, and later errors are kept only if none is pending. The engines' own pending error is returned when the processor's is clear | established | S33, S34 |
@@ -1903,16 +1903,16 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 
 | Section | Established | Inferred | Unknown | Total |
 |---|---|---|---|---|
-| 2. Processor-run tokens | 57 | 242 | 7 | 306 |
+| 2. Processor-run tokens | 60 | 239 | 7 | 306 |
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
 | 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 219 | 124 | 80 | 423 |
+| 7. Field layouts | 219 | 123 | 81 | 423 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **546** | **649** | **102** | **1297** |
+| **All** | **549** | **645** | **103** | **1297** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
@@ -1975,7 +1975,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - environment: the role of parameter 0x80be, which public mode selects the add and add-signed records, what each function code does on the raster board
 - shadow state (0x1c7): whether any shipped software sends it
 - GL pixel state, transfer and accumulation (section 7.15): the meaning of the pixel-mode word's bits; the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the format codes of the three extension formats (and codes 8-10); the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); which accumulation operations are two-pass; and the accumulation storage format
-- queries, select and feedback (section 7.16): which side writes the reply buffer's completion word; the packing of the current-value reply's texture coordinates and the tail of the raster-position reply (offsets 40-67); why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the value layout of each feedback record and the numeric format of select-record depths
+- queries, select and feedback (section 7.16): which side writes the reply buffer's completion word; the texture-coordinate width and the normal offset of the current-value reply and the tail of the raster-position reply (offsets 40-67); why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the value layout of each feedback record and the numeric format of select-record depths
 - multisample (section 7.17): the effect of sample counts other than 4 and 8; the values the primitive sampling word takes per class; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; how the sample-mask register doubles as the alpha-to-mask fade table and how the coverage word is combined with a primitive's own coverage; alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; reads, copies, clears and accumulation with a multisample buffer; multisample line, point and polygon rules
 
 **8. Raster bus**
