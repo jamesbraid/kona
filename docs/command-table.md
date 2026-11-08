@@ -1172,7 +1172,7 @@ X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then
 | Word | Role | Values | Grade | Evidence |
 |---|---|---|---|---|
 | 0, bits 3:0 | transfer kind | 0 = frame buffer only; nonzero also sets up the texture-filter chip; 2 also loads the host-interface packer from word 2 | established | S23 |
-| 0, bit 4 | bitmap mode (direct write) flag, kept until the finish | 0 or 1 | established | S23 |
+| 0, bit 4 | direct-write flag, kept until the finish; not a bitmap-mode flag (the bitmap loaders send word 0 = 0). Clear: the write handler counts the data words through the command stream. Set: it counts none, so the rows are not in the command stream. The recorded 4Dwm set-ups with word 0 = 0x10 are each followed by a DMA packet of exactly rows x row-words x 4 bytes | 0 = rows in the command stream; 1 = rows by DMA | flag and its effect on the write handler established; that set means DMA inferred (recording plus the driver's DMA-write route for large bands); what the engine does with the DMA data unknown | S23, S20, recording |
 | 1 | engine pixel-output module | 4 = bitmap and glyph output with a one-bit-to-pixel conversion; 5 = opaque bitmap draw with a 16- or 32-bit conversion chosen by word 2 | established | S23, S20 |
 | 2 | conversion or packer code | 1 or 2 select the two conversions of module 5; for kind 2 it is the packer value | established | S23, S20 |
 | 3 | value passed to the engine set-up | the X module sends 0 | established | S23 |
@@ -1189,7 +1189,7 @@ X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then
 | Item | Layout | Grade | Evidence |
 |---|---|---|---|
 | write, first word | a header word, read with the last data word; it is kept beside the set-up width and height and passed to the raster set-up | established | S23 |
-| write, bitmap mode | the following words are one-bit-per-pixel bitmap words, counted through with the pass-through counter | inferred | S23, S20 |
+| write, direct-write flag clear | the following words are in the command stream and are counted through with the pass-through counter; the bitmap loaders (set-up word 0 = 0) use this with one-bit-per-pixel words | inferred | S23, S20 |
 | write, colour image | the following words are pixels packed in the pixel size and format of the destination | inferred | S21 |
 | write, large band | bands over 4096 bytes go by the driver's DMA-write request instead of the command FIFO | established | S21 |
 | read, payload | two words: x and y of the block; y is measured from the bottom, so the handler subtracts it from the screen height | established | S23, S20 |
@@ -1198,7 +1198,7 @@ X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then
 | read, pack mode of the returned words | which host-interface pack-mode value (section 8.2, shadow word 0) an X read uses | unknown | S23 |
 | copy, payload | four words: source x, source y, destination x, destination y | established | S23, S20 |
 | copy, size | width and height come from the size the set-up kept (the module also sends position and clip loads first) | inferred | S23, S20 |
-| finish, payload | one word, zero and unused; it clears the bitmap-mode flag and the set-up cache | established | S23 |
+| finish, payload | one word, zero and unused; it clears the direct-write flag and the set-up cache | established | S23 |
 
 **Host-side packing tables that fill the format words.** The loader for a pixmap read or write looks up, by pixel format, one source and one destination word from a table per pixel size, and a shift word from a table per layout. The existence and role are read from the code; the table contents are not.
 

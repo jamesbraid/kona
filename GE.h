@@ -4865,12 +4865,12 @@ enum kona_hp_token {
      * CompGedReg 0x0c034bf0. */
 
     /* `HP_X_PIX_SETUP` (0x136). Established: Remembers words 4 and 5 (width
-     * and height) and the bitmap flag in ARM RAM, programs the engines
+     * and height) and the direct-write flag in ARM RAM, programs the engines
      * through X_PixSetupGE, sets the distributor registers with CompGedReg,
      * sets up the texture-filter chip when the kind is nonzero (and the
      * packer when it is 2), then writes a register-path descriptor and 0.
-     * Payload 7: word 0 transfer kind (bits 0-3) and bitmap-mode flag (bit
-     * 4); word 1 engine output module; word 2 conversion/packer code; word 3
+     * Payload 7: word 0 transfer kind (bits 0-3) and direct-write flag (bit
+     * 4; set means the rows do not come through the command stream); word 1 engine output module; word 2 conversion/packer code; word 3
      * and 6 values passed to the distributor and engine setup; words 4 and 5
      * transfer width and height. Established: the token map runs
      * `arm_x_pix_setup` at arm1.u 0x0c034ac4. Sent by kona.so (X module)
@@ -4921,7 +4921,7 @@ enum kona_hp_token {
 
     /* `HP_X_PIX_WRITE` (0x139). Inferred: Stores the header and the next
      * word, sends the saved size plus those words to the engines through
-     * mgesi_XPixRmSetup and mgebi_PixCurGEIDSetup, and in bitmap mode counts
+     * mgesi_XPixRmSetup and mgebi_PixCurGEIDSetup, and, when the direct-write flag is clear, counts
      * the data through with the pass-through counter and waits for it to
      * finish. Payload 1 + data (header word, then the bitmap words): a header
      * word, then pixel or bitmap data. Established: the token map runs
@@ -4936,7 +4936,7 @@ enum kona_hp_token {
      * 0x0c034bb4. */
 
     /* `HP_X_PIX_FINISH` (0x13a). Established: Ends an X pixel operation:
-     * clears the bitmap-mode flag, invalidates the cached setup word, stores
+     * clears the direct-write flag, invalidates the cached setup word, stores
      * the pixel-end handler address (mgeb_PixEndRGBStream) to engine port
      * 0x4f8 and writes the register-path descriptor and a data byte that
      * return the pixel path to normal. Payload 1 (one word, not used): a zero
