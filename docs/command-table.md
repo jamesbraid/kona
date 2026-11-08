@@ -1,6 +1,6 @@
 # Back-end definitions table
 
-One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29).
+One canonical table of the numbers an emulator back end for the InfiniteReality2 pipe on an Onyx2 consumes: host token numbers with their word counts, display-request numbers, register and indirect-register indices, and the bit layout of every multi-field word. First configuration only: one IP27 Onyx2, one InfiniteReality2 pipe. The table consolidates what the other documents in this repository already establish; it adds no new reading except the two window-id answers in section 10, which come from the display microcode's own window-set-up code and the diagnostic's field table, and the texture field layouts of sections 7.10-7.14, which also carry observations from recorded guest command traces (key S29). The GL pixel layouts of section 7.15 restate the shipped client's senders and the pipe processor's handlers (keys S31-S33); they carry no recorded traces.
 
 The names are role names in plain words, written for someone who transcribes the table into a definitions module. They are not the vendor's symbol, routine or request names, and no vendor identifier appears below. Where a row needs a handle, use the number.
 
@@ -42,10 +42,13 @@ The names are role names in plain words, written for someone who transcribes the
 | S28 | [pixel and texel data words](rm.md#pixel-and-texel-data-words): the output-module records and their bus formats |
 | S29 | recorded guest command traces of texture loads, binds, frees and draws (a 6.5.30 guest running several OpenGL and IRIS GL demonstration programs); observations only, restated in the rows. Not a document in this repository: it comes from the companion emulator project's command-grammar datasheet |
 | S30 | the same datasheet's reading of the shipped client's texture senders: how upload and bind words are built, the internal-format index table, volume, detail-image and filter encodings. Client expectations, not hardware measurements; also not a document in this repository |
+| S31 | the client's pixel senders: [pixel-store parameters](libglcore-driver-functions.md#pixel-store-parameters), [pixel packing and reading](libglcore-driver-functions.md#pixel-packing-and-reading), [pixel transfer set-up](libglcore-driver-functions.md#pixel-transfer-set-up), [pixel reads and draws](libglcore-driver-functions.md#pixel-reads-and-draws), [pixel zoom](libglcore-driver-functions.md#clear-values-blending-stencil-and-pixel-zoom) and the accumulation and clear-value senders of [the state setters](libglcore-functions.md#state-setters-and-small-senders) and [the display-list compilers](libglcore-functions.md#display-list-compilers) |
+| S32 | the pipe processor's GL pixel handlers and tables: [pixel path set-up and state](../ucode/arm1_functions.md#pixel-path-set-up-and-state), [parameter and format tables](../ucode/arm1_functions.md#pixel-path-parameter-and-format-tables), [finishing a transfer](../ucode/arm1_functions.md#pixel-path-finishing-a-transfer), [GL state handlers](../ucode/arm1_functions.md#gl-state-handlers) and [pixel images](ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap) |
+| S33 | the return-data buffer: [request, wait and reply](libglcore-get-functions.md#request-wait-and-reply), [queries and read-back](../ucode/arm1_functions.md#queries-and-read-back) and the node's return-data page in [kernel functions](kernel-functions.md) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1134 graded entries: 460 established, 607 inferred and 67 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1209 graded entries: 515 established, 615 inferred and 79 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -319,9 +322,9 @@ The word layouts behind these tokens are in sections 7.10-7.14: the load headers
 | 0x02f | set the pixel zoom factors | 2 | y | inferred | S3 |
 | 0x030 | set a pixel-transfer parameter (float form) | 1 | y | inferred | S3 |
 | 0x033 | set a pixel-store parameter (integer form) | 2 | y | inferred | S3 |
-| 0x034 | load a pixel map (float values) | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x035 | load a pixel map (unsigned 32-bit values) | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x036 | load a pixel map (unsigned 16-bit values) | none seen; the routine hands off elsewhere | n | unknown | S3 |
+| 0x034 | load a pixel map (float values) | 4 header words, then n values (section 7.15) | y | established | S3, S32 |
+| 0x035 | load a pixel map (unsigned 32-bit values) | 4 header words, then n values (section 7.15) | y | established | S3, S32 |
+| 0x036 | load a pixel map (unsigned 16-bit values) | 4 header words, then n values (section 7.15) | y | established | S3, S32 |
 | 0x038 | copy a pixel rectangle within the frame buffer | 7 | y | inferred | S3 |
 | 0x039 | read a pixel rectangle back to the host | 7 | y | inferred | S3 |
 | 0x03a | draw a pixel rectangle from host data | 7 | n | inferred | S3 |
@@ -1438,6 +1441,136 @@ State words that a draw reads besides the bind: the function that combines the t
 | texel read-back and copy-to-texture (0x0fd, 0x052) | 17 and 18 | header words list target, size, format, type, storage code, first and last texel, then five words copied from the texture's load record (the geometry word and the two bank addresses); not decoded further here | inferred | S27, S29 |
 
 
+### 7.15 GL pixel operations: state, transfers and accumulation
+
+Everything the OpenGL client sends for pixel state and for draw, read and copy runs, and what the pipe's processor does with it. X pixel work is section 7.9 and texel downloads are sections 7.10-7.12; the two share the pixel descriptor and the host-image reader but have their own headers. The client turns every public pixel call into one of the tokens below; where a token has no sender the client converts to a sibling form first (stated per row). All the tokens run on the pipe's processor.
+
+**Pixel-store state (token 0x033, two words).** Word 0 is a parameter name, word 1 the integer value. The processor stores the value in its pixel-state copy and writes no hardware; a name outside the two groups below is ignored.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| unpack names | 0xcf0 swap bytes, 0xcf1 least-significant-bit first (both booleans sent as 0 or 1), 0xcf2 row length, 0xcf3 skip rows, 0xcf4 skip pixels, 0xcf5 alignment, 0x806d skip images, 0x806e image height, 0x8132 skip volumes, 0x8133 image depth | established | S31, S32 |
+| pack names | 0xd00 swap bytes, 0xd01 least-significant-bit first, 0xd02 row length, 0xd03 skip rows, 0xd04 skip pixels, 0xd05 alignment, 0x806b skip images, 0x806c image height, 0x8130 skip volumes, 0x8131 image depth | established | S31, S32 |
+| values | the client refuses a negative count (error 0x501, nothing sent) for every name except the four booleans; alignments accept only 1, 2, 4 and 8 | established | S31 |
+| invalid alignment | the client raises error 0x501 but does not stop: it still sends the invalid value under the alignment name. The pipe's alignment-to-mask table holds a mask only at 1, 2, 4 and 8 and zero elsewhere, so the effect of an invalid alignment on the pipe is a zero mask (inferred from the table) | client behaviour established; pipe effect inferred | S31, S32 |
+| start-up and default values | pack and unpack records both default to alignment 4 and zero in every other word; the record used for display-list images has alignment 1, so list images are read unpadded | established | S32 |
+| float form (token 0x032) | no sender: the client converts the value to an integer and sends the integer form (booleans become 0 or 1, other values are rounded half away from zero). Token 0x032 is refused by the firmware | established | S31, S1 |
+| texture copy of the state | a second pixel-store record used by texel transfers is set with token 0x1bb (section 7.14); the two are separate | established | S31, S27 |
+
+**Pixel-transfer state (token 0x030, two words) and zoom (token 0x02f, two words).** Word 0 is the parameter name, word 1 the value. The processor keeps the value, updates a transfer-flag word (bit 0 set when any scale is not 1.0, bit 1 when any bias is not 0, further bits for the map flags and the two index terms) and writes four summary words from the post-colour-matrix terms. It writes no raster register for the transfer terms themselves here.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| names, scales and biases | 0xd14 and 0xd15 red scale and bias, 0xd18 and 0xd19 green, 0xd1a and 0xd1b blue, 0xd1c and 0xd1d alpha, 0xd1e and 0xd1f depth; value a float | established | S31, S32 |
+| names, post-convolution | 0x801c-0x801f red, green, blue, alpha scale; 0x8020-0x8023 the four biases; value a float | established | S31, S32 |
+| names, post-colour-matrix | 0x80b4-0x80b7 scales; 0x80b8-0x80bb biases; value a float | established | S31, S32 |
+| names, index and maps | 0xd12 index shift and 0xd13 index offset: an integer, the client rounds half away from zero; 0xd10 map-colour and 0xd11 map-stencil: the integer 0 for a zero value and 1 otherwise | established | S31 |
+| any other name | the client raises error 0x500 and sends nothing | established | S31 |
+| integer form (token 0x031) | no sender: the client converts the integer to a float and sends token 0x030. Token 0x031 is refused by the firmware | established | S31, S1 |
+| meaning of the four summary words | which stage the processor enables from them | inferred (the 1.0 and 0 tests that set them) | S32 |
+| zoom (token 0x02f) | two floats, x then y. The client clamps a factor above 127.0 to 127.0 and raises error 0x501; a negative factor is not checked. The processor copies both to engine memory so the engines see the new factors | established | S31, S32 |
+
+**Pixel-mode suspend (token 0x111, two words).** The client brackets transfers that must not run the fixed-function pixel stages (convolution copies, overlapped copies, colour-table copies, texture-image reads) with this token.
+
+| Word | Layout | Grade | Evidence |
+|---|---|---|---|
+| 0, selector | 2 = use the texel-transfer pixel-store copies; 4 = use the fixed default records; 0x20 = use the fixed display-list unpack record; any other value (the client sends 8 for a colour-table copy) = use the context's own records. Bit 29 of word 1 enables the record switch; with it clear the context's own records are used whatever the selector | established | S31, S32 |
+| 1, mode | zero = restore the saved transfer flags and pixel-mode word. Bit 30 set = save them, clear the transfer flags and set the pixel-mode word to 0x8421. Bit 29 = switch the record pointers as selected. Values the client sends: 0x60000000, 0x20000000, 0x40000000 and 0 | established | S31, S32 |
+| what the pixel-mode word's bits mean | - | unknown | S32 |
+
+**Pixel maps (tokens 0x034 float, 0x035 unsigned 32-bit, 0x036 unsigned 16-bit).** A fixed header of four words, then n value words. The processor reads the n values one at a time.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| header | word 0 the map name, word 1 the entry count n, word 2 n - 1 as a float, word 3 a word taken from the client's pixel state | layout established; word 3 meaning unknown | S32, S31 |
+| map names | 0xc70 index-to-index (record 0); 0xc71 stencil-to-stencil (record 1); 0xc72-0xc75 index to red, green, blue, alpha (record 2, components 0-3); 0xc76-0xc79 red, green, blue, alpha to themselves (record 3, components 0-3). An unrecognised name discards the payload | established | S32 |
+| values | float form: n floats. 32-bit form: n words. 16-bit form: each value zero-extended into its own word. One value per word in every form | established | S32 |
+| limit on n | the client's and the pipe's table sizes | unknown | S32 |
+
+**Pixel image header (token 0x03a, draw).** Eight words; the firmware's slots, the bitmap and texel variants and the colour-table and filter headers are in the pixel-image tables of [the geometry-engine document](ge.md#pixel-images-hp_drawpixels-hp_drawtexels-hp_bitmap). The words as the client sends them for a pixel draw, numbered from 0 after the token:
+
+| Word | Layout | Grade | Evidence |
+|---|---|---|---|
+| 0 | width of this strip in pixels | established | S31, S32 |
+| 1 | the strip's height (the firmware keeps it as height; the client's source reading names it a start row, so which of the two the client means is not settled) | firmware side established; client naming inferred | S31, S32 |
+| 2 | format code (table below) | established | S31, S32 |
+| 3 | type code (table below) | established | S31, S32 |
+| 4 | low two bits of the host data address (byte offset of the image within its first word) | established | S31, S32 |
+| 5 | data-by-DMA flag: 0 = the image follows inline in this command; nonzero = it arrives by a later input DMA | established | S31, S32 |
+| 6 | row mode: 0 = the image is one byte stream; 1 = every row starts on a word boundary | established | S31, S32 |
+| 7 | the strip's first column within the image (the client splits wide images; zero for a whole image) | established | S31, S32 |
+| image length, inline | not sent: the pipe computes it from the unpack state. With p bytes per pixel (components x element size, or the packed type's own size; one bit for a bitmap), row bytes r = row length x p (bitmap: (row length + 7) / 8), stride s = r rounded up to the alignment, total T = s x height - (s - r), start S = byte offset + skip rows x s + skip pixels x p. Row mode 0 moves `ceil((S + T) / 4) - floor(S / 4)` words; row mode 1 counts each row's words on its own | established | S32 |
+| row-mode choice | the client sets row mode 0 when the strip width equals the row length it used, the skip-pixels count is 0 and the pad is below 4; row mode 1 otherwise | established | S31 |
+| DMA choice | the client sets the DMA flag when the total exceeds a size threshold and, for row mode 1, when the row width times the element size also exceeds a second threshold. The two threshold values are constants of the client library and are not recorded here. | rule established; threshold values unknown | S31 |
+| DMA delivery | with the flag clear the image goes through the command port: row mode 0 as one run from the word-aligned start, row mode 1 row by row at the stride. With it set the client sends the host buffer through the DMA-write request and the pipe fetches it when the next input-DMA token arrives. A third row mode (tiled rows) exists in the client's switch and ends the process with a message; it is never sent | established | S31, S32 |
+| splitting wide images | when a convolution or pixel-texture stage is active, or a per-type width limit applies, the client cuts the image into strips of the limit's width less the filter border, sets skip pixels and row length (token 0x033) before each strip and restores them afterwards. A pixel-texture target (0x81c6) needs a power-of-two width up to 256, otherwise error 0x501 | rule established; the limit tables' values unknown | S31 |
+
+**Format and type codes (words 2 and 3 of the draw header, and the read header).** The client turns the public enumerants into the pipe's codes before sending; the pipe indexes its component-count and element-size tables by them. Any other format or type enumerant raises error 0x500 in the client and is never sent.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| format codes 0-7 | 0 red, 1 green, 2 blue, 3 alpha, 4 RGB, 5 RGBA, 6 luminance, 7 luminance-alpha | established | S31 |
+| format codes 11-13 | 11 colour index, 12 stencil, 13 depth | established | S31 |
+| components per pixel | 1 for red, green, blue, alpha, luminance, colour index, stencil and depth; 2 for luminance-alpha; 3 for RGB; 4 for RGBA. The pipe's table has 15 entries with values 1 to 5; the values given follow the public format definitions | inferred (table existence and range established) | S32 |
+| format codes 8-10, and the codes for the extension formats 0x8000, 0x800c and 0x800d | the reading of the client's table gives codes 8 and 9 as "the next two" while also stating that the three extension enumerants take 11, 12 and 13 directly, which collides with colour index, stencil and depth; which code each extension format gets is not settled | unknown | S31 |
+| type codes 0-6 | 0 signed byte (0x1400), 1 unsigned byte, 2 short, 3 unsigned short, 4 int, 5 unsigned int, 6 float (0x1406) | established | S31 |
+| type code 7 | one-bit bitmap (0x1a00) | established | S31, S32 |
+| type codes 8-12 | packed types 0x8032 (3-3-2 bytes), 0x8033 (4-4-4-4 shorts), 0x8034 (5-5-5-1 shorts), 0x8035 (8-8-8-8 words), 0x8036 (10-10-10-2 words). The client requires RGB with 0x8032 and RGBA with the other four, and refuses a type whose component count differs from the format's (error 0x502) | established | S31 |
+| type codes 14-20 | seven further packed types, enumerants 0x81bd-0x81c3; their bit layouts are not recorded here | code mapping established; layouts unknown | S31 |
+| element size per type | bytes per element from a 21-entry table, values 1 to 8 with 0 at code 13. Codes 0-6 follow the public type sizes (1, 1, 2, 2, 4, 4, 4); packed codes take the packed word's size; the numeric contents of the table are not recorded | inferred (range established) | S32 |
+| bit and byte order on the wire | swap-bytes and least-significant-bit-first apply to the data as the pixel-store state says; on a big-endian host the image words arrive in host order. How the pipe's unpacker (21 per-type mode numbers) maps each packed type onto components is not recorded | unknown | S32 |
+| bytes per pixel and alignment mask | components x element size (the packed type's own size for packed types); alignment mask 1, 3 or 7 for alignments 2, 4 or 8, zero otherwise | established | S32 |
+
+**Pixel read (token 0x039, seven words).** The pipe reads the rectangle back to the host, applying the pack state.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| header | x, y, width, height, format code, type code, low two bits of the host destination address. The processor also reads pack words from its pixel-state copy (token 0x033 pack side) | established | S31, S32 |
+| clipping | a rectangle that reaches past 4095 is shortened by the processor and the shortened sizes are written to the output-DMA registers | established | S32 |
+| reply by return-data buffer | when the strip is small (height x row bytes not above 0x3ff0 bytes, and a context bit clear) the client sends the token, waits, and copies the reply from offset 8 of the return-data buffer; the buffer is one 16 KB page | established | S31, S33 |
+| reply by DMA | otherwise the client sends the token inside a DMA-read request and the pipe writes the image straight to the host buffer | established | S31 |
+| what the context bit that forces the buffer reply means | - | unknown | S31 |
+| bitmap reads | the client widens the span to whole bytes and merges unaligned starts into the destination itself | established | S31 |
+| split | convolution borders or a per-type width limit make the client read in strips, setting skip pixels and row length for each | rule established; limit values unknown | S31 |
+| layout of the reply words (which pack mode the pipe uses) | the host-interface pack-mode value an OpenGL read selects | unknown | S32 |
+| validity | the client refuses a negative size (error 0x501), reading colour from a colour-index context, depth with no depth buffer or stencil with no stencil buffer (error 0x502), and a packed type with the wrong component count (error 0x502) | established | S31 |
+
+**Pixel copy (token 0x038, seven words).** A copy inside the frame buffer. The destination is the current raster position; the destination is not sent.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| header | source x, source y, width, height, destination offset, copy type (0x1800 colour, 0x1801 depth, 0x1802 stencil), overlap word | established | S31, S32 |
+| destination offset | zero for a whole copy; the strip offset when the client splits a wide copy | established | S31 |
+| overlap word | the client sends 0; the processor keeps it as the copy-overlap flag | established | S31, S32 |
+| destination | the current raster position (the standard rule); no sender sends a destination word | inferred | S31 |
+| overlap query (token 0x110, four words: x, y, width, height) | the pipe answers through the return-data buffer; bit 2 of the word at offset 8 set means the copy overlaps and the client does it through the host instead (reads the rectangle back and draws it again) | established | S31, S32 |
+| convolution overlap query (token 0x115, four words) | the reply block's first word has bit 2 for overlap; another reply word (the tenth) less x tells the client whether the strip crosses the filter border, and bit 0 of a reply flag picks the strip order; the full reply layout is not decoded | partly established; layout inferred | S31, S32 |
+| single-component query (token 0x116, four words) | the reply is one word, the mode word of the resolved result record, read from offset 8; it is not a yes or no answer | established | S31, S32 |
+| copy of depth or stencil | needs both draw and read depth (or stencil) buffers, otherwise error 0x502 | established | S31 |
+| strip rules | with a convolution target active or the wide mode on, a copy wider than the limit goes out as limit-wide strips, one token 0x038 each with the offset advancing, in an order picked by the reply flag, with the partial strip first or last in the same order | rule established; limit values unknown | S31 |
+| video source | the processor has a copy form whose source is the video input, chosen by a processor-held flag; no OpenGL sender sets it in the shipped client | unknown (no sender: nothing in the shipped client sets the flag; the firmware's behaviour is established) | S32 |
+
+**Bitmaps.** A bitmap is a pixel run of one bit per pixel.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| empty bitmap (token 0x006) | five zero words and four floats (x origin, y origin, x move, y move): only the raster position moves | established | S31, S32 |
+| small bitmap (up to 0xc40 pixels) | token 0x005 with width rounded up to 8, height, x and y origin, origin plus move for x and y, a word count and a byte count, then the image packed with no row padding | established | S31, S32 |
+| large bitmap | token 0x006 with the header words of the pixel table (width, height, byte offset, DMA flag, row mode) and the four floats, then the image as for a pixel draw | established | S31, S32 |
+
+**Accumulation buffer (token 0x0c5, two words; clear value token 0x01b).** The client sends these in immediate mode and in display lists.
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| operation word | 0x100 accumulate, 0x101 load, 0x102 return, 0x103 multiply, 0x104 add; the client sends the operation unchecked. The processor raises invalid-enumerant for any other value | established | S31, S32 |
+| value word | the value as a float | established | S31 |
+| when it acts | a buffer with no accumulation bits raises invalid-operation; outside render mode (0x1c00) the processor does nothing. In render mode it programs raster registers, sends the operation through the engine port, covers the rectangle with the rectangle generator and repeats once for the two-pass operations | established | S32 |
+| which operations are two-pass | - | unknown | S32 |
+| clear value (token 0x01b, four floats) | red, green, blue, alpha. The display-list form clamps each component to minus one to one; the immediate-mode form is a short sender that was not read for a clamp (section 2.7) | list form established; immediate form inferred | S31 |
+| accumulation clear on the board | narrow storage sends one value (when red equals blue and green and alpha need not differ) through a one-value path, otherwise per channel; 32-bit storage uses its own path with the write masks zeroed | established | S32 |
+| accumulation storage format | the layout of accumulation values in frame-buffer memory (narrow and 32-bit forms) | unknown | S32 |
+
+
 ## 8. Raster-bus register writes and index spaces
 
 | Item | Role | Layout / values | Grade | Evidence |
@@ -1633,16 +1766,16 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 
 | Section | Established | Inferred | Unknown | Total |
 |---|---|---|---|---|
-| 2. Processor-run tokens | 54 | 242 | 10 | 306 |
+| 2. Processor-run tokens | 57 | 242 | 7 | 306 |
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
 | 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 136 | 82 | 42 | 260 |
+| 7. Field layouts | 188 | 90 | 57 | 335 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **460** | **607** | **67** | **1134** |
+| **All** | **515** | **615** | **79** | **1209** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
@@ -1654,9 +1787,6 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - 0x013: texture-coordinate generation, double form
 - 0x015: texture-coordinate generation, integer form
 - 0x016: bind a texture by old-style binding
-- 0x034: load a pixel map (float values)
-- 0x035: load a pixel map (unsigned 32-bit values)
-- 0x036: load a pixel map (unsigned 16-bit values)
 - 0x175: texture-load set-up, second form
 - 0x1fe: kernel-private command (ignored)
 
@@ -1707,6 +1837,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - bind contract: what the pipe keeps for a cache entry and what it does with an all-ones bind; texture sharing between contexts
 - environment: the role of parameter 0x80be, which public mode selects the add and add-signed records, what each function code does on the raster board
 - shadow state (0x1c7): whether any shipped software sends it
+- GL pixel state, transfer and accumulation (section 7.15): the meaning of the pixel-mode word's bits; the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the format codes of the three extension formats (and codes 8-10); the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); which accumulation operations are two-pass; and the accumulation storage format
 
 **8. Raster bus**
 
