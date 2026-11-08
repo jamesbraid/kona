@@ -38,7 +38,9 @@ Facts are labelled **established** (read from the words at the addresses given) 
   of the fixed-function path. It takes object positions (record words 0-3, two vertices per pass) and multiplies each by the
   composite matrix at engine words 0x4f-0x5e, four multiplies per input component, summed in two partial chains that the four
   plain adds at 0x123b-0x123e combine. The results are the clip-space x, y, z and w, stored back into the record at offsets
-  0x17-0x1a. It then computes the six frustum distances w + x, w - x, w + y, w - y, w + z and w - z with unit-1 float adds and
+  0x17-0x1a. It then computes the six frustum distances w + x, w - x, w + y, w - y, w + z' and -z', where z' is the stored clip z, the (z - w) / 2 row of the
+  rewritten matrix (register 0x14 = w + z', register 0x15 = register 0x1e (zero) - z'; so the near cut is w + z' >= 0 and the far cut
+  is -z' >= 0, i.e. z_c <= w for the unrewritten clip z), with unit-1 float adds and
   subtracts and writes them to special registers 0x10-0x15 (B = 0x1c, E = 0x10-0x15, words 0x123f-0x124a), where the clip
   hardware turns their signs into the clip codes the clippers read back from register 0x0d. The first word, at 0x1218,
   is a conditional call on `cc` 0x72 that recomputes the composite matrix when the modelview or projection changed.
@@ -630,7 +632,6 @@ triangle command: 6 with bit 28 clear for the strip rule, 7 with it set. No engi
 or the host interface must supply it as the record is written. Routes tried: the drawing modules, the decomposers' flag
 words, `mgesi_TfanPolyRestoreEdge`, every store with offset 0x26 and every write of 0xc9-0xd9 (none outside the drawing
 modules' output stores), the distributor program (no control word in `ged1b.u` sets the 6-bit r field, so none names a
-
 record offset), the distributor's engine ports and its register 0x290 (below), and the strip handler the distributor
 releases. `mgesi_TriangleStrip` (0xb699-0xb6b3) takes three input words (C = 0x1d at 0xb699-0xb69b: registers 0x1a
 and 0x19, the count `uDTList` reads, and staging word 0x10) and stores only to special registers 0x0c-0x0e, 0x23 and
@@ -641,11 +642,9 @@ word 0x26 (0x28a6, and 0x28a7 for the second vertex) sits inside the loop 0x289d
 all-ones store to 0x1f5 (0x28c4, E = 3, and 0x28c5 for the second thread) and the staging-word store to 0x1f4 (0x28c9,
 E = 2) sit after the loop, in the eight-word shadow of the group-5 R88 return at 0x28c1 ([ge_isa.md](ge_isa.md#calls-returns-and-the-end-of-a-command)):
 0x28c9 is its eighth word. They run once per batch, after every vertex has gone, so they close the batch and cannot give
-
-
-
 each later strip vertex its command. Where the packing is done is **unknown**: KONA's engine has a 64-bit output port `re_d[64]` with
 `re_dest` and `re_dtype` ([ge_isa.md](ge_isa.md#the-engines-microcode-port)), so the slot addresses 0xc9-0xd9 may name
+fields of a block inside the engine, but no binary read says so. A read of the engine netlists would settle it, and until then
 how 0xd5 and the all-ones slots form the command nibble is unknown. No engine word writes control
 memory 0xc9-0xd9 or 0x1f4 (every store with `r211` and `r95` = 4-0xb whose address is an immediate, or an address
 register loaded with one, was resolved; `ctx_load.S` 0x6686 writes 0x1f5 and the evaluators write 0x1f1-0x1f3). Next
@@ -858,7 +857,7 @@ group-31 transfer to the successor. In every form the output record gets x, y an
 - `mPerTriClipFlagsFrustum` (`clip.S` lines 922-990): **inferred**, recomputes the frustum clip codes of a polygon's
   vertices after clipping. For each vertex (pointer list through register 7) it takes w (record word 0x1a) as input,
   multiplies it by the four guard-band factors at engine words 0x71-0x74, and computes the six side distances as results: x and y
-  subtracted from the scaled w for special registers 0x10-0x13, z added to and subtracted from w for 0x14 and 0x15
+  subtracted from the scaled w for special registers 0x10-0x13, w plus the stored clip z' for 0x14 and register 0x1e (zero) minus z' for 0x15, z' = (z - w) / 2
   (0xef8f-0xef98). It ORs the resulting code from register 0x0d into the vertex's flag word 4 (0xefa1) and loops on `cc` 0x14
   through the transfer at 0xefab.
 - `mClipTriFlush` (`clip.S` lines 1700-1771): **inferred**, saves and resets the clipper's state between triangles. It
@@ -2420,7 +2419,6 @@ entry handler set up, tests `cc` 0x10 or 0x15 with a branch to `mmo_AbortGeometr
 ## Memory copies (umemove.s)
 
 The engine has three data memories, named in the copy routines ([ge_isa.md](ge_isa.md#engine-facts-read-from-konas-own-binaries)):
-:
 working memory (WRAM), which also takes the command words, control memory (CRAM), shared by the cores, and
 external memory (ERAM). **Inferred** from the callers: register 0 holds the source address, register 1 the destination
 and register 2 the word count. `mmo_V0ToSave_SaveExtra` loads 0x102c into register 0 (0xe52a) and register 0x16 + 0x3d
