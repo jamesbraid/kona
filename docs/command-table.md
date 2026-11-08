@@ -31,10 +31,15 @@ The names are role names in plain words, written for someone who transcribes the
 | S17 | [buffer swap and retrace wait](dg.md#buffer-swap-and-retrace-wait) |
 | S18 | [bus modes 2 and 3](rm.md#bus-modes-2-and-3), [pixel and texel data words](rm.md#pixel-and-texel-data-words) and [host-interface registers on the raster bus](rm.md#host-interface-registers-on-the-raster-bus) |
 | S19 | [kernel functions](kernel-functions.md): the window-clip token the kernel sends |
+| S20 | [the X server module's drawing commands](opengl.md#x-server-module-drawing-commands) |
+| S21 | [the X module reference](kona-ddx.md), graphics-context loading and caches, and its hook, copy and image routines |
+| S22 | the engine handler readings for the graphics-context load ([ge_compute.md](../ucode/ge_compute.md), [ge_handlers.md](../ucode/ge_handlers.md)) and [shadow word map](ge-shadow-words.md) |
+| S23 | the pixel set-up, write, read, copy and finish handlers ([ARM function readings](../ucode/arm1_functions.md) and the X pixel entries of [GE.h](../GE.h)) |
+| S24 | the X module's disassembly listing, pixel-format branches of the pixmap loader ([listing directory](../ddx/asm/kona/kon/)) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 937 graded entries: 368 established, 535 inferred and 34 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1005 graded entries: 409 established, 553 inferred and 43 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -1103,6 +1108,112 @@ Words 0-9 are read from the payload port in order and word 10 from the last-word
 | derived: scissor registers 0x3fc2, 0x3fc3 | x0 << 3 / x1 << 18 and the same for y | - | established | S14 |
 
 
+### 7.8 X graphics-context load (token 0x129, thirteen words) and its companion loads
+
+The X server sends its drawing state to the pipe as one thirteen-word load before it draws. The token is routed in hardware (no processor code runs for it); the engine program takes all thirteen words, keeps the first four in its own memory and writes words 4-12, one each, to nine raster registers. The pairing of word to register below follows the order in which the engine program stages its register selects and agrees with the names the X module gives the words, but no listing states it outright, so it is inferred. The raster registers keep their own bit layouts, which section 8.2 lists; this table gives only what the load adds.
+
+| Word | Role | Destination in the pipe | Grade | Evidence |
+|---|---|---|---|---|
+| 0 | foreground colour, high half | engine memory word 0 | inferred | S20, S22 |
+| 1 | foreground colour, low half | engine memory word 1 | inferred | S20, S22 |
+| 2 | background colour, high half | engine memory word 2; a zero here makes the engine skip the whole raster-register part of the load | inferred | S20, S22 |
+| 3 | background colour, low half | engine memory word 3 | inferred | S20, S22 |
+| 4 | colour write mask, first word (red and green bits) | raster register 0x1c14 (shadow word 45) and an engine special register (0x23) | inferred | S20, S22 |
+| 5 | colour write mask, second word (blue and alpha bits) | raster register 0x1c15 (shadow word 46) | inferred | S20, S22 |
+| 6 | framebuffer configuration (pixel size, colour format, channel write enables) | raster register 0x1c00 (shadow word 36) | inferred | S20, S22 |
+| 7 | operation (draw buffer, raster operation) | raster register 0x1c02 (shadow word 37) | inferred | S20, S22 |
+| 8 | framebuffer base addresses, six 6-bit fields | raster register 0x1c0b (shadow word 43) | inferred | S20, S22 |
+| 9 | blend and logic-operation selector | raster register 0x1c0d (shadow word 44) | inferred | S20, S22 |
+| 10 | pixel pack code on the bus (five bits) | raster register 0x3ff8 (shadow word 47) | inferred | S20, S22 |
+| 11 | colour-format flag for the texture filter (luminance-alpha) | raster register 0x140f (shadow word 87) | inferred | S20, S22 |
+| 12 | pixel-format flag for the texture filter (luminance-alpha) | raster register 0x1410 (shadow word 86) | inferred | S20, S22 |
+| the six masks the engine program applies to words 4-12 | which mask goes with which word | - | unknown | S22 |
+| what the engine does with word 4 in the special register | role of that second destination | - | unknown | S22 |
+| load ordering | the generic drawing path sends a position load (four words) just before this load; the clear path sends a clip load, then a position load, then this load | - | established | S20, S21 |
+
+Values the X module is seen to put in the words. These are what a guest sends; the meaning of each bit pattern is the raster register's.
+
+| Item | Value | Grade | Evidence |
+|---|---|---|---|
+| word 6, low five bits, bitmap and glyph-image loads | cleared | established | S21 |
+| word 6, low bits, display-id painting | 0x8 | established | S20 |
+| word 7, low nibble, display-id painting | 1 | established | S20 |
+| word 8, low six bits, display-id painting | 0 | established | S20 |
+| word 9, bits 4:1, display-id painting | 3 | established | S20 |
+| words 10, 11, 12, display-id painting | 0, 1, 1 | established | S20 |
+| words 0-5, display-id painting | the id and plane mask are placed by the larger-pixel or smaller-pixel layout of section 7.6 (larger: word 0 and mask word 4; smaller: word 1 and mask word 5) | established | S20, S8 |
+| clear load | operation argument 3 (copy) and a plane mask of all ones go to the generic loader | established | S21 |
+| image-rectangle load, colour words | masked to 24 bits | established | S21 |
+| image-rectangle load, mode field | bits 1-4 cleared and the value 6 set | established | S21 |
+| which word holds that mode field | - | unknown | S21 |
+| glyph-image load | plane-mask word masked to 24 bits | established | S21 |
+| opaque-bitmap load | the background colour travels in the foreground slot, so zero bits of the bitmap draw the background | established | S21 |
+| word-image load | clearing masks 0xff03ffff and 0xfffc3fff, set bits 0x13000a and 0x28000, colour mask 0xffffff | established | S21 |
+| window-copy load | mode constant chosen by branch among 0x110001, 0x40001, 0x40005 and others | established | S21 |
+| which words those constants modify | - | unknown | S21 |
+| operation-word code that means copy | the clear load passes 3 and display-id painting sends low nibble 1; how the loader turns one into the other is not read | unknown | S21 |
+
+Companion state loads, sent with or just before the graphics-context load.
+
+| Token | Words | Layout | Grade | Evidence |
+|---|---|---|---|---|
+| 0x12a position load | 4 | drawable x, y, width, height; screen-wide work sends 0, 0, screen width, screen height | established | S20 |
+| 0x12b clip load | 5 | rectangle count n, then x1, y1, x2, y2 of the first rectangle, one per word; rectangles 2 to n follow as 0x145 data tokens of four words each; whole-screen clip is 1, 0, 0, width, height | established | S20 |
+| 0x12d scissor load | 4 | x, y of the glyph box, then width and height | established | S20 |
+| 0x13c, 0x13d, 0x13e stipple load, store, rotate | 1, 3, 3 | cache slot; store adds the pattern size then the pattern words; rotate adds the x and y origin | established | S20 |
+
+
+### 7.9 X pixel packings: set-up, write, read, copy and finish
+
+X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then (for writes and copies) a finish. All five tokens run on the pipe's processor. Which packing of pixel data a transfer uses is chosen by the set-up words and by the state the graphics-context load left in the format words (section 7.8, words 10-12); the host-side tables that choose the format words are named below, but their contents are not recorded in this repository.
+
+**Pixel set-up (token 0x136, seven words).**
+
+| Word | Role | Values | Grade | Evidence |
+|---|---|---|---|---|
+| 0, bits 3:0 | transfer kind | 0 = frame buffer only; nonzero also sets up the texture-filter chip; 2 also loads the host-interface packer from word 2 | established | S23 |
+| 0, bit 4 | bitmap mode (direct write) flag, kept until the finish | 0 or 1 | established | S23 |
+| 1 | engine pixel-output module | 4 = bitmap and glyph output with a one-bit-to-pixel conversion; 5 = opaque bitmap draw with a 16- or 32-bit conversion chosen by word 2 | established | S23, S20 |
+| 2 | conversion or packer code | 1 or 2 select the two conversions of module 5; for kind 2 it is the packer value | established | S23, S20 |
+| 3 | value passed to the engine set-up | the X module sends 0 | established | S23 |
+| 4 | transfer width in pixels, kept for the following read or write | value | established | S23 |
+| 5 | transfer height in pixels, kept for the following read or write | value | established | S23 |
+| 6 | value passed to the distributor set-up | the X module sends 0 | established | S23 |
+| what words 3 and 6 mean to the engine and distributor | - | - | unknown | S23 |
+| what the bitmap loaders send | 0, 4, a word from the context record, 0, width, height, 0 | - | established | S20 |
+| set-up cache | words 0, 1, 2, 4 and 5 are cached; a finish, copy or read, and the pixel initialisation, invalidate the cache | - | established | S23 |
+| transfer kinds other than 0 and 2, and output modules other than 4 and 5 | behaviour | - | unknown | S23 |
+
+**Pixel write (token 0x139), read (0x138), copy (0x137) and finish (0x13a).**
+
+| Item | Layout | Grade | Evidence |
+|---|---|---|---|
+| write, first word | a header word, read with the last data word; it is kept beside the set-up width and height and passed to the raster set-up | established | S23 |
+| write, bitmap mode | the following words are one-bit-per-pixel bitmap words, counted through with the pass-through counter | inferred | S23, S20 |
+| write, colour image | the following words are pixels packed in the pixel size and format of the destination | inferred | S21 |
+| write, large band | bands over 4096 bytes go by the driver's DMA-write request instead of the command FIFO | established | S21 |
+| read, payload | two words: x and y of the block; y is measured from the bottom, so the handler subtracts it from the screen height | established | S23, S20 |
+| read, size | width and height come from words 4 and 5 of the preceding set-up | established | S23, S20 |
+| read, reply | small blocks come back through the read-back area; blocks over 8192 bytes go by the driver's DMA-read request; a flush token with 0xdeadbeef follows the read | established | S20, S21 |
+| read, pack mode of the returned words | which host-interface pack-mode value (section 8.2, shadow word 0) an X read uses | unknown | S23 |
+| copy, payload | four words: source x, source y, destination x, destination y | established | S23, S20 |
+| copy, size | width and height come from the size the set-up kept (the module also sends position and clip loads first) | inferred | S23, S20 |
+| finish, payload | one word, zero and unused; it clears the bitmap-mode flag and the set-up cache | established | S23 |
+
+**Host-side packing tables that fill the format words.** The loader for a pixmap read or write looks up, by pixel format, one source and one destination word from a table per pixel size, and a shift word from a table per layout. The existence and role are read from the code; the table contents are not.
+
+| Table | Role | Grade | Evidence |
+|---|---|---|---|
+| 32-bit pixel, source and destination | packing word for 32-bit pixels, one table each for the source and the destination, indexed by pixel format | established | S21 |
+| 16-bit pixel, source and destination | the same for 16-bit pixels | established | S21 |
+| 8-bit pixel, source and destination | the same for 8-bit pixels | established | S21 |
+| main-plane shift, 8-bit, 12-bit and 16-bit luminance | shift words for the three luminance layouts | established | S21 |
+| main-plane shift, 10-bit and 12-bit colour | shift words for the two colour layouts, chosen with the 32-bit tables | inferred | S24 |
+| overlay shift, colour, and two colour-index variants | shift words for overlay pixels, chosen with the 16-bit and 8-bit tables | inferred | S24 |
+| which pixel format selects which table, and the numeric contents of every table | - | unknown | S21, S24 |
+| unrecognised pixel format | reported as an error by the loader | established | S21 |
+
+
 ## 8. Raster-bus register writes and index spaces
 
 | Item | Role | Layout / values | Grade | Evidence |
@@ -1302,12 +1413,12 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
 | 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 44 | 10 | 9 | 63 |
+| 7. Field layouts | 85 | 28 | 18 | 131 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **368** | **535** | **34** | **937** |
+| **All** | **409** | **553** | **43** | **1005** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
@@ -1353,6 +1464,15 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - overlay window to main window pairing: how an overlay's id pairs with the main window beneath
 - 15-bit RGB overlay transparency rule: transparent pixel test
 - 16-plane luminance with overlay or id planes: composition
+- the six masks the engine program applies to graphics-context load words 4-12: which mask goes with which word
+- what the engine does with graphics-context load word 4 in its special register: role of that second destination
+- which graphics-context word holds the image-rectangle mode field
+- which graphics-context words the word-image and window-copy mode constants modify
+- operation-word code that means copy: how the loader turns the clear path's 3 and the display-id path's 1 into one another
+- what pixel set-up words 3 and 6 mean to the engine and distributor
+- pixel set-up transfer kinds other than 0 and 2, and output modules other than 4 and 5: behaviour
+- pack mode of the returned words of an X pixel read: which host-interface value
+- which pixel format selects which packing table, and the numeric contents of every table
 
 **8. Raster bus**
 
