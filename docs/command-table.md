@@ -58,6 +58,12 @@ The names are role names in plain words, written for someone who transcribes the
 | S44 | the X server module's display-id painter and DAC cursor builder, read from the binary: `usr/lib/X11/dyDDX/kona.so` 0x53e7a8 (id to painted value and mask), 0x4715c0 (`kon_drawDid`), 0x53b6c0 (DAC cursor builder, caller 0x4b78ac) and the display-request sender 0x5341a0; the firmware side is `arm1.u` 0x0c007aa8 |
 | S45 | the IR diagnostic irsaudit's display-chip tables and routines, read from the shipped binary's exported data symbols and disassembly (`usr/diags/IR/bin/irsaudit`, 6.5.30m): the video-output chip field tables `voc1a_RegInfo` (0x10201a70), `voc1a_dblbuf_RegInfo`, `voc1b_RegInfo` (0x10205ce0) and `voc1b_dblbuf_RegInfo`; the frame-manager, XMAP, encoder and DAC register tables `fm_regs` (0x101ffd40), `xmap_regs` (0x101ffdc0), `enc_regs` (0x101ffe58) and `vdac_regs` (0x101fffc0); and the routines `dgrm_config` (0x1004bca0), `fmFrameBufferRead` (0x10130f70), `fmDidLoadShifting` (0x10130f10), `vcWriteIncr` (0x10140988), `vcReadIncr` (0x10140d14), `arm_xmap_crc` and `verify_xmap_crc_done` |
 | S46 | the pin lists of the display-board netlist `dg4_2voc.netmap`: per-chip address-pin widths (XMAP, VOC, encoder, DAC) and the frame-manager chip's select outputs |
+| S47 | the pipe firmware's raster register-write sites and initialisers in arm1.u ([arm1.s listing](../ucode/arm1.s)): every four-store write read with its descriptor, bit mask, address word and value (for example `arm_colormask`, `arm_buffer_config`, `arm_accum`, `arm_stencilfunc`, `arm_stencilop`, `arm_blendfunc`, `arm_blendequation`, `arm_logicop`, `arm_samplepattern`, `resolve_scissor`, `arm_x_loadstipple`, `init_pg`, `init_tg`, `init_tf`, `init_imp`, `depth_init`, `color_init`, `CommonPixEnd`), with the diagnostic's raster-bus vector file `tbusdata.Z` (`usr/diags/IR/data`) as the replay of the same initialiser writes |
+| S48 | the geometry engine's listings of the X graphics-context load and of the alpha, blend-constant and accumulation modules: [xload.S listing](../ucode/ge_listing/xload.S.lst) (`ge.u` 0x4cf4-0x4d3f, lines 119-176) and [raster.S listing](../ucode/ge_listing/raster.S.lst) (`ge.u` 0x38c0, 0x38e5, 0x39b8, 0x39c8) |
+| S49 | the pipe firmware's pixel-path data tables in arm1.u: `numCompInPixTable` (0x04049950), `numByteInTypeTable` (0x0404998c) and `mod1248Table`, read from the file (file offset = address - 0x04000000 + 0x68) |
+| S50 | the client's format-code table in the N32 libGLcore (`usr/gfx/arch/IP27KONA32/libGLcore.so`, data at file offset 0x1829f8, fourteen words) |
+| S51 | the X server module's pixel packing data tables, read from the big-endian `.data` of `usr/lib/X11/dyDDX/kona.so` (0x586fa8-0x587078) and the selector in the pixmap loader `kon_loadPixmapGC` (0x501690, listing [kon.s](../ddx/asm/kona/kon/kon.s)) |
+| S52 | the published InfiniteReality2 technical report, figure 8 (128-bit pixel row, "1 x LA16 + LA32 Accumulation Buffer") |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -1153,7 +1159,7 @@ Words 0-9 are read from the payload port in order and word 10 from the last-word
 
 ### 7.8 X graphics-context load (token 0x129, thirteen words) and its companion loads
 
-The X server sends its drawing state to the pipe as one thirteen-word load before it draws. The token is routed in hardware (no processor code runs for it); the engine program takes all thirteen words, keeps the first four in its own memory and writes words 4-12, one each, to nine raster registers. The pairing of word to register below follows the order in which the engine program stages its register selects and agrees with the names the X module gives the words, but no listing states it outright, so it is inferred. The raster registers keep their own bit layouts, which section 8.2 lists; this table gives only what the load adds.
+The X server sends its drawing state to the pipe as one thirteen-word load before it draws. The token is routed in hardware (no processor code runs for it); the engine program takes all thirteen words, keeps the first four in its own memory and writes words 4-12, one each, to nine raster registers. The pairing of word to register below is read from the instruction operands of the engine program's nine register writes (each write names its select and its input-FIFO word 4 + k directly), not from the order in which it stages the selects, and agrees with the names the X module gives the words. The raster registers keep their own bit layouts, which section 8.2 lists; this table gives only what the load adds.
 
 | Word | Role | Destination in the pipe | Grade | Evidence |
 |---|---|---|---|---|
@@ -1161,17 +1167,17 @@ The X server sends its drawing state to the pipe as one thirteen-word load befor
 | 1 | foreground colour, low half | engine memory word 1 | inferred | S20, S22 |
 | 2 | background colour, high half | engine memory word 2; a zero here makes the engine skip the whole raster-register part of the load | inferred | S20, S22 |
 | 3 | background colour, low half | engine memory word 3 | inferred | S20, S22 |
-| 4 | colour write mask, first word (red and green bits) | raster register 0x1c14 (shadow word 45) and an engine special register (0x23) | inferred | S20, S22 |
-| 5 | colour write mask, second word (blue and alpha bits) | raster register 0x1c15 (shadow word 46) | inferred | S20, S22 |
-| 6 | framebuffer configuration (pixel size, colour format, channel write enables) | raster register 0x1c00 (shadow word 36) | inferred | S20, S22 |
-| 7 | operation (draw buffer, raster operation) | raster register 0x1c02 (shadow word 37) | inferred | S20, S22 |
-| 8 | framebuffer base addresses, six 6-bit fields | raster register 0x1c0b (shadow word 43) | inferred | S20, S22 |
-| 9 | blend and logic-operation selector | raster register 0x1c0d (shadow word 44) | inferred | S20, S22 |
-| 10 | pixel pack code on the bus (five bits) | raster register 0x3ff8 (shadow word 47) | inferred | S20, S22 |
-| 11 | colour-format flag for the texture filter (luminance-alpha) | raster register 0x140f (shadow word 87) | inferred | S20, S22 |
-| 12 | pixel-format flag for the texture filter (luminance-alpha) | raster register 0x1410 (shadow word 86) | inferred | S20, S22 |
-| the six masks the engine program applies to words 4-12 | which mask goes with which word | - | unknown | S22 |
-| what the engine does with word 4 in the special register | role of that second destination | - | unknown | S22 |
+| 4 | plane write mask, red and green 12-bit fields | raster register 0x1c14 (shadow word 45) and engine special register 0x23; mask 0xffffff | established | S20, S22, S48 |
+| 5 | plane write mask, blue and alpha fields | raster register 0x1c15 (shadow word 46); mask 0xffffff | established | S20, S22, S48 |
+| 6 | colour format (bits 5:2) and read format (bits 13:11) of the frame-buffer configuration; pixel size and the four write enables are not written | raster register 0x1c00 (shadow word 36); mask 0x383c | established | S20, S22, S48 |
+| 7 | draw buffer (3:0), read-back format (17:14) and read base (23:18) of the operation register | raster register 0x1c02 (shadow word 37); mask 0xffc00f | established | S20, S22, S48 |
+| 8 | colour base address only (the first of the six 6-bit fields) | raster register 0x1c0b (shadow word 43); mask 0x3f | established | S20, S22, S48 |
+| 9 | logic-operation code (bits 4:1) only; no blend field, no enable bit | raster register 0x1c0d (shadow word 44); mask 0x1e | established | S20, S22, S48 |
+| 10 | bus pixel-format code (5 bits) | raster register 0x3ff8 (shadow word 47); mask 0x1f | established | S20, S22, S48 |
+| 11 | luminance-alpha colour flag for the texture filter | raster register 0x140f (shadow word 87); mask 0x1 | established | S20, S22, S48 |
+| 12 | luminance-alpha pixel flag for the texture filter | raster register 0x1410 (shadow word 86); mask 0x1 | established | S20, S22, S48 |
+| the six masks the engine program applies to words 4-12 | 0xffffff (words 4 and 5), 0x383c (6), 0xffc00f (7), 0x3f (8), 0x1e (9), 0x1f (10), 0x1 (11 and 12); read from the instruction operands | - | established | S22, S48 |
+| what the engine does with word 4 in the special register | role of that second destination (special register 0x23). Tried: the diagnostic's special-register table (24 names, 0x23 not among them), the engine instruction-set document's register map (names only up to 0x4c) and every listing that writes offset 0x23: every primitive entry handler and several lighting routines store small constants there, and no read was found in the shipped program | - | unknown | S22, S48 |
 | load ordering | the generic drawing path sends a position load (four words) just before this load; the clear path sends a clip load, then a position load, then this load | - | established | S20, S21 |
 
 Values the X module is seen to put in the words. These are what a guest sends; the meaning of each bit pattern is the raster register's.
@@ -1179,11 +1185,11 @@ Values the X module is seen to put in the words. These are what a guest sends; t
 | Item | Value | Grade | Evidence |
 |---|---|---|---|
 | word 6, low five bits, bitmap and glyph-image loads | cleared | established | S21 |
-| word 6, low bits, display-id painting | 0x8 | established | S20 |
-| word 7, low nibble, display-id painting | 1 | established | S20 |
-| word 8, low six bits, display-id painting | 0 | established | S20 |
+| word 6, low bits, display-id painting | 0x8 (colour format 2, bits 5:2 = LA16) | established | S20, S48 |
+| word 7, low nibble, display-id painting | 1 (draw buffer 1) | established | S20, S48 |
+| word 8, low six bits, display-id painting | 0 (colour base 0) | established | S20, S48 |
 | word 9, bits 4:1, display-id painting | 3 | established | S20 |
-| words 10, 11, 12, display-id painting | 0, 1, 1 | established | S20 |
+| words 10, 11, 12, display-id painting | 0, 1, 1 (bus code 0, both luminance-alpha flags on) | established | S20, S48 |
 | words 0-5, display-id painting | the id and plane mask are placed by the larger-pixel or smaller-pixel layout of section 7.6 (larger: word 0 and mask word 4; smaller: word 1 and mask word 5) | established | S20, S8 |
 | clear load | operation argument 3 (copy) and a plane mask of all ones go to the generic loader | established | S21 |
 | image-rectangle load, colour words | masked to 24 bits | established | S21 |
@@ -1194,7 +1200,7 @@ Values the X module is seen to put in the words. These are what a guest sends; t
 | word-image load | clearing masks 0xff03ffff and 0xfffc3fff, set bits 0x13000a and 0x28000, colour mask 0xffffff | established | S21 |
 | window-copy load | mode constant chosen by branch among 0x110001, 0x40001, 0x40005 and others | established | S21 |
 | which words those constants modify | - | unknown | S21 |
-| operation-word code that means copy | the clear load passes 3 and display-id painting sends low nibble 1; how the loader turns one into the other is not read | unknown | S21 |
+| operation-word code that means copy | the clear load's 3 is the logic-operation code (bits 4:1 of word 9, code 3 = copy), the same field as the word 9 row above. Display-id painting's low nibble 1 is word 7's draw-buffer field (buffer 1), a different register; the two numbers were never the same quantity | established | S21, S48 |
 
 Companion state loads, sent with or just before the graphics-context load.
 
@@ -1208,7 +1214,7 @@ Companion state loads, sent with or just before the graphics-context load.
 
 ### 7.9 X pixel packings: set-up, write, read, copy and finish
 
-X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then (for writes and copies) a finish. All five tokens run on the pipe's processor. Which packing of pixel data a transfer uses is chosen by the set-up words and by the state the graphics-context load left in the format words (section 7.8, words 10-12); the host-side tables that choose the format words are named below, but their contents are not recorded in this repository.
+X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then (for writes and copies) a finish. All five tokens run on the pipe's processor. Which packing of pixel data a transfer uses is chosen by the set-up words and by the state the graphics-context load left in the format words (section 7.8, words 10-12); the host-side tables that choose the format words, and their numbers, are listed below.
 
 **Pixel set-up (token 0x136, seven words).**
 
@@ -1243,17 +1249,18 @@ X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then
 | copy, size | width and height come from the size the set-up kept (the module also sends position and clip loads first) | inferred | S23, S20 |
 | finish, payload | one word, zero and unused; it clears the direct-write flag and the set-up cache | established | S23 |
 
-**Host-side packing tables that fill the format words.** The loader for a pixmap read or write looks up, by pixel format, one source and one destination word from a table per pixel size, and a shift word from a table per layout. The existence and role are read from the code; the table contents are not.
+**Host-side packing tables that fill the format words.** The loader for a pixmap read or write looks up, by pixel format, one source and one destination word from a table per pixel size, and a shift word from a table per layout. The existence, role and numbers are read from the module's data (each table is three words stored 16 bytes apart, indexed by the low nibble of the pixel-format argument, 0 to 2).
 
 | Table | Role | Grade | Evidence |
 |---|---|---|---|
-| 32-bit pixel, source and destination | packing word for 32-bit pixels, one table each for the source and the destination, indexed by pixel format | established | S21 |
-| 16-bit pixel, source and destination | the same for 16-bit pixels | established | S21 |
-| 8-bit pixel, source and destination | the same for 8-bit pixels | established | S21 |
-| main-plane shift, 8-bit, 12-bit and 16-bit luminance | shift words for the three luminance layouts | established | S21 |
-| main-plane shift, 10-bit and 12-bit colour | shift words for the two colour layouts, chosen with the 32-bit tables | inferred | S24 |
-| overlay shift, colour, and two colour-index variants | shift words for overlay pixels, chosen with the 16-bit and 8-bit tables | inferred | S24 |
-| which pixel format selects which table, and the numeric contents of every table | - | unknown | S21, S24 |
+| 32-bit pixel, source and destination | packing word for 32-bit pixels, one table each for the source and the destination, indexed by pixel format: source 2, 2, 2 (0x587048), destination 2, 2, 2 (0x587078) | established | S21, S51 |
+| 16-bit pixel, source and destination | the same for 16-bit pixels: source 1, 1, 1 (0x587038), destination 1, 1, 1 (0x587068) | established | S21, S51 |
+| 8-bit pixel, source and destination | the same for 8-bit pixels: source 0, 1, 1 (0x587028), destination 1, 1, 0 (0x587058) | established | S21, S51 |
+| main-plane shift, 8-bit, 12-bit and 16-bit luminance | shift words for the three luminance layouts: 8-bit 8, 0, 8 (0x586fe8); 12-bit 4, 0, 12 (0x586ff8); the 16-bit table is zero-initialised in the file and filled at run time (values not in the file) | established (8-bit and 12-bit values); 16-bit values unknown | S21, S51 |
+| main-plane shift, 10-bit and 12-bit colour | shift words for the two colour layouts, chosen with the 32-bit tables: RGB10 2, 0, -2 (0x587008); RGB12 8, 0, -8 (0x587018) | established | S24, S51 |
+| overlay shift, colour, and two colour-index variants | shift words for overlay pixels, chosen with the 16-bit and 8-bit tables: RGB overlay 1, 0, 15 (0x586fd8); colour index A 0, 8, 8 (0x586fc8); popup colour index 0, 0, 2 (0x586fb8; an older variant at 0x586fa8 is 14, 0, -14). The main-plane colour-index shift and the second overlay colour-index shift are zero-initialised in the file and filled at run time | established (listed values); run-time tables unknown | S24, S51 |
+| which table the loader uses | the pixmap loader switches on the low nibble of its fourth argument (1, 2, 4, 8): case 1 uses the 32-bit tables with the RGB10 shift (flag 0x4000) or RGB12 shift, and the 8-bit and 16-bit tables with the L8, L16 and L12 shifts; cases 2 and 4 use the 16-bit tables with the RGB overlay shift and the 8-bit tables with the two overlay colour-index shifts; case 8 uses the 8-bit tables with the popup colour-index shift | - | established | S24, S51 |
+| which pixel format selects which table, and the numeric contents of every table | the numeric contents of the file-resident tables and the selector are recorded above. Not settled: the mapping of the three index values (0-2) to named pixel formats, the meaning of the words as shifts in the loader-built format word (whose bit layout the engine consumes, section 7.8 words 10-12 and the pixel set-up words), and the values of the three run-time tables, which start-up code builds | unknown (contents newly recorded) | S21, S24, S51 |
 | unrecognised pixel format | reported as an error by the loader | established | S21 |
 
 
@@ -1507,8 +1514,8 @@ Everything the OpenGL client sends for pixel state and for draw, read and copy r
 | Word | Layout | Grade | Evidence |
 |---|---|---|---|
 | 0, selector | 2 = use the texel-transfer pixel-store copies; 4 = use the fixed default records; 0x20 = use the fixed display-list unpack record; any other value (the client sends 8 for a colour-table copy) = use the context's own records. Bit 29 of word 1 enables the record switch; with it clear the context's own records are used whatever the selector | established | S31, S32 |
-| 1, mode | zero = restore the saved transfer flags and pixel-mode word. Bit 30 set = save them, clear the transfer flags and set the pixel-mode word to 0x8421. Bit 29 = switch the record pointers as selected. Values the client sends: 0x60000000, 0x20000000, 0x40000000 and 0 | established | S31, S32 |
-| what the pixel-mode word's bits mean | - | unknown | S32 |
+| 1, mode | zero = restore the saved transfer flags and colour-matrix word. Bit 30 set = save them, clear the transfer flags and set the colour-matrix word to 0x8421. Bit 29 = switch the record pointers as selected. Values the client sends: 0x60000000, 0x20000000, 0x40000000 and 0 | established | S31, S32 |
+| the colour-matrix word (the "pixel-mode word" of the suspend token) | the cached classification of the current colour matrix: a 16-bit map with bit (4 x row + column) set when that element is exactly 1.0 and every other element is exactly 0 (identity = 0x8421, the value the suspend token sets); 0xffff when the matrix is anything else. Read from the matrix loaders, push and pop, the context initialiser (0x8421) and the pixel-path classifier, which tests single-bit values (one input channel into the first output) and the row-3 patterns 0x8000 (mask 0xf000), 0x8400, 0x8800, 0x4400, 0x2200, 0x1100 to decide which colour channels pass unchanged. The identity and single-ones tests are symmetric, so the row and column orientation rests on the column-major array order (inferred) | established; orientation inferred | S32, S47 |
 
 **Pixel maps (tokens 0x034 float, 0x035 unsigned 32-bit, 0x036 unsigned 16-bit).** A fixed header of four words, then n value words. The processor reads the n values one at a time.
 
@@ -1543,13 +1550,13 @@ Everything the OpenGL client sends for pixel state and for draw, read and copy r
 |---|---|---|---|
 | format codes 0-7 | 0 red, 1 green, 2 blue, 3 alpha, 4 RGB, 5 RGBA, 6 luminance, 7 luminance-alpha | established | S31 |
 | format codes 11-13 | 11 colour index, 12 stencil, 13 depth | established | S31 |
-| components per pixel | 1 for red, green, blue, alpha, luminance, colour index, stencil and depth; 2 for luminance-alpha; 3 for RGB; 4 for RGBA. The pipe's table has 15 entries with values 1 to 5; the values given follow the public format definitions | inferred (table existence and range established) | S32 |
-| format codes 8-10, and the codes for the extension formats 0x8000, 0x800c and 0x800d | the reading of the client's table gives codes 8 and 9 as "the next two" while also stating that the three extension enumerants take 11, 12 and 13 directly, which collides with colour index, stencil and depth; which code each extension format gets is not settled | unknown | S31 |
+| components per pixel | the pipe's 15-word table by format code: 0-3 one each (red, green, blue, alpha), 4 three (RGB), 5 four (RGBA), 6 one (luminance), 7 two (luminance-alpha), 8 four, 9 four, 10 five, 11 one (colour index), 12 one (stencil), 13 one (depth), 14 zero | established | S32, S49 |
+| format codes 8-10 | 8 = 0x8000 (ABGR extension, four components), 9 = 0x800c (CMYK extension, four components), 10 = 0x800d (CMYKA extension, five components). The client's format table is indexed by the public format minus 0x1900 for 0x1900-0x190a and the three extension enumerants index its slots 11, 12 and 13, whose entries are 8, 9 and 10 (the "11, 12 and 13" is a table index, not the code); the pipe's component table gives 4, 4, 5 at codes 8, 9, 10. Code 14 has component count 0 (unused) | established (codes and counts); the enumerant names are the public extension names | S31, S49, S50 |
 | type codes 0-6 | 0 signed byte (0x1400), 1 unsigned byte, 2 short, 3 unsigned short, 4 int, 5 unsigned int, 6 float (0x1406) | established | S31 |
 | type code 7 | one-bit bitmap (0x1a00) | established | S31, S32 |
 | type codes 8-12 | packed types 0x8032 (3-3-2 bytes), 0x8033 (4-4-4-4 shorts), 0x8034 (5-5-5-1 shorts), 0x8035 (8-8-8-8 words), 0x8036 (10-10-10-2 words). The client requires RGB with 0x8032 and RGBA with the other four, and refuses a type whose component count differs from the format's (error 0x502) | established | S31 |
-| type codes 14-20 | seven further packed types, enumerants 0x81bd-0x81c3; their bit layouts are not recorded here | code mapping established; layouts unknown | S31 |
-| element size per type | bytes per element from a 21-entry table, values 1 to 8 with 0 at code 13. Codes 0-6 follow the public type sizes (1, 1, 2, 2, 4, 4, 4); packed codes take the packed word's size; the numeric contents of the table are not recorded | inferred (range established) | S32 |
+| type codes 14-20 | seven further packed types, enumerants 0x81bd-0x81c3; element sizes are two 16-bit, two 32-bit and three 64-bit (see above); the bit layouts inside them are not recorded. The client's packed-type validation checks only the component count, and the pipe's per-type converter lists name only codes 8-12 | code mapping and sizes established; layouts unknown | S31, S49 |
+| element size per type | the pipe's 21-word table by type code: 0-6 are 1, 1, 2, 2, 4, 4, 4; 7 (bitmap) 1; 8 (3-3-2) 1; 9 (4-4-4-4) 2; 10 (5-5-5-1) 2; 11 (8-8-8-8) 4; 12 (10-10-10-2) 4; 13 unused 0; 14 and 15 are 2 each; 16 and 17 are 4 each; 18, 19 and 20 are 8 each | established | S32, S49 |
 | bit and byte order on the wire | swap-bytes and least-significant-bit-first apply to the data as the pixel-store state says; on a big-endian host the image words arrive in host order. How the pipe's unpacker (21 per-type mode numbers) maps each packed type onto components is not recorded | unknown | S32 |
 | bytes per pixel and alignment mask | components x element size (the packed type's own size for packed types); alignment mask 1, 3 or 7 for alignments 2, 4 or 8, zero otherwise | established | S32 |
 
@@ -1600,7 +1607,7 @@ Everything the OpenGL client sends for pixel state and for draw, read and copy r
 | which operations are two-pass | only when the value is exactly 1.0: accumulate and add run twice with value 0.5; load runs as load 0.5 then accumulate 0.5; multiply by 1.0 does nothing; return is always one pass. Every other value is one pass for every operation (16-bit and 32-bit forms share this) | established (pass rule); inferred (reason: 1.0 does not fit the 13-bit value field) | S32 |
 | clear value (token 0x01b, four floats) | red, green, blue, alpha. The display-list form clamps each component to minus one to one; the immediate-mode form is a short sender that was not read for a clamp (section 2.7) | list form established; immediate form inferred | S31 |
 | accumulation clear on the board | narrow storage sends one value (when red equals blue and green and alpha need not differ) through a one-value path, otherwise per channel; 32-bit storage uses its own path with the write masks zeroed | established | S32 |
-| accumulation storage format | the layout of accumulation values in frame-buffer memory is unknown. Known: per-component width from the state byte 0x1d4 (32-bit when 0x20, otherwise narrow); the bank count is 3, 2 or 4 by colour width and board density, not by accumulation width; the narrow clear is a 24-bit scaled value cut into 12/4/4/4-bit fields of the two clear-colour words (from the listing, inferred) | unknown (partial facts established) | S32 |
+| accumulation storage format | the layout of accumulation values in frame-buffer memory is unknown. Known: per-component width from the state byte 0x1d4 (32-bit when 0x20, otherwise narrow); the bank count is 3, 2 or 4 by colour width and board density, not by accumulation width; the narrow clear is a 24-bit scaled value cut into 12/4/4/4-bit fields of the two clear-colour words (from the listing, inferred); the engine's accumulation operation register 0x1c0e (no shadow slot) has, in the diagnostic's table, value bits 12:0, operation code 15:13 (accumulate 0, load 1, return 2, multiply 3, add 4; the GL enumerant minus 0x100), return-by-four flag bit 16, precision bit 17, speed-up bit 18 and a 3-bit low-order extension of the value in bits 21:19; the engine accumulation routines scale the float value by 1024.0 or 4096.0 (constants 0x44800000 and 0x45800000); the published technical report shows an accumulation buffer in luminance-alpha formats with 32-bit components, which agrees with the firmware's 16-bit versus 32-bit storage switch; the layout inside the frame-buffer memory is produced by the image-processor chips, which no netlist or program describes | unknown (partial facts established) | S32, S48, S52 |
 
 
 ### 7.16 Queries, select and feedback
@@ -1689,7 +1696,7 @@ Multisampling is a buffer-configuration choice, three enables, a sample pattern 
 | multisample enable | sets the enable byte; if the configuration has multisample it re-derives polygon, line and point drawing, writes the primitive sampling word, then writes the alpha-to-mask enables with bit 0 from the alpha-to-mask byte and bit 2 from the alpha-to-one byte. Disable clears the byte and, with multisample configured, re-derives drawing and writes zero to the primitive sampling word and the alpha-to-mask enables | established | S37 |
 | alpha-to-mask, alpha-to-one, sample-mask enables | each sets or clears its own byte and writes its one bit of the alpha-to-mask enable word: bit 0 alpha-to-mask, bit 1 sample mask, bit 2 alpha-to-one | established for the writes; bit names inferred | S37 |
 | default | after a configuration the enable byte is 1 even when the count is 0, so multisample reads enabled with no buffer | established | S37 |
-| values the primitive sampling word takes per primitive class | multisample enable writes bits 17:16 = 1 (disable 0). Polygons: bits 3:2 always 1; bits 15:14 = 1 with multisample enabled and a buffer, else 2 with polygon smoothing, else 0. Lines: with smoothing bits 1:0 = 1, 9:8 = 0, 13:12 = 2; without smoothing but with multisample bits 1:0 = 2, 9:8 = 1, 13:12 = 0; otherwise nothing is written. Points write no field (they pick a handler). Which field is which class is inferred | values established; class names inferred | S37 (`arm1.u` 0x0c015e8c, 0x0c016024, 0x0c016240, 0x0c015674), S12 |
+| values the primitive sampling word takes per primitive class | multisample enable writes bits 17:16 = 1 (disable 0). Polygons: bits 3:2 always 1; bits 15:14 = 1 with multisample enabled and a buffer, else 2 with polygon smoothing, else 0. Lines: with smoothing bits 1:0 = 1, 9:8 = 0, 13:12 = 2; without smoothing but with multisample bits 1:0 = 2, 9:8 = 1, 13:12 = 0; otherwise nothing is written. Points write no field (they pick a handler). The diagnostic's field names settle the classes: bits 3:2 TMASK and 15:14 TSAMPLE (polygons), 1:0 LMASK, 9:8 SLMASK and 13:12 LSAMPLE (lines), 17:16 XSAMPLE (multisample enable); PSAMPLE (11:10) is never written | values and class names established | S37 (`arm1.u` 0x0c015e8c, 0x0c016024, 0x0c016240, 0x0c015674), S12, S47 |
 
 **Sample pattern (token 0x117, one word).** The client sends the enumerant unchecked, immediately and in display lists.
 
@@ -1726,7 +1733,7 @@ Multisampling is a buffer-configuration choice, three enables, a sample pattern 
 | 4-sample coverage words, index n | 0 for n = 0; for n = 1-2 0x11, 3-4 0x11000011, 5-6 0x11001111, 7-8 0x11111111, 9-10 0x11111133, 11-12 0x33111133, 13-14 0x33113333, 15-16 0x33333333, 17-18 0x33333377, 19-20 0x77333377, 21-22 0x77337777, 23-24 0x77777777, 25-26 0x777777ff, 27-28 0xff7777ff, 29-30 0xff77ffff, 31-32 0xffffffff (one nibble per pixel, eight pixels) | values established; layout inferred | S37 |
 | 8-sample coverage words, index n = 0-32 | 0x00000000, 0x00000001, 0x01000001, 0x01000101, 0x01010101, 0x01010111, 0x11010111, 0x11011111, 0x11111111, 0x11111113, 0x13111113, 0x13111313, 0x13131313, 0x13131333, 0x33131333, 0x33133333, 0x33333333, 0x33333337, 0x37333337, 0x37333737, 0x37373737, 0x37373777, 0x77373777, 0x77377777, 0x77777777, 0x7777777f, 0x7f77777f, 0x7f777f7f, 0x7f7f7f7f, 0x7f7f7fff, 0xff7f7fff, 0xff7fffff, 0xffffffff (one byte per pixel, four pixels) | values established; layout inferred | S37 |
 | how coverage words combine | the word written to 0x140b is applied per sample with the sample-mask enable (0x1408 bit 1); the vendor diagnostic exercises seven coverage words and each one's complement, matching the 4-sample table entry for entry, so the invert flag is a plain complement (established). That the pixel generator ANDs the word with the primitive's own sample coverage is inferred from the table shape, the test pairing and the public definition; the image-processor mask in 10:3 is always sent all ones with the AND operation. The sharing of index 0x140b with the alpha-to-mask fade table and the alpha-to-mask coverage remain unknown | complement and values established; AND inferred; rest unknown | S12, S15, S37, S41 |
-| alpha-to-mask coverage | how the fade table is indexed and what coverage alpha-to-mask and alpha-to-one produce | unknown | S37 |
+| alpha-to-mask coverage | how the fade table is indexed and what coverage alpha-to-mask and alpha-to-one produce. The diagnostic names registers 0x1409 and 0x140a TFP_A2M_LUT0 and TFP_A2M_LUT1; no firmware or engine routine writes them, only the diagnostic does (its vector file's multisample-alpha block carries 0x13110100 and 0x00ff7f773733, read as nine 8-bit entries 0x00, 0x01, 0x11, 0x13, 0x33, 0x37, 0x77, 0x7f, 0xff with 0 to 8 bits set: coverage by alpha level). The pipe in normal operation therefore relies on the hardware's reset contents, which are not in software | unknown (newly explained) | S37, S41, S47 |
 
 **Items with no sender and open items.**
 
@@ -1745,7 +1752,8 @@ Multisampling is a buffer-configuration choice, three enables, a sample pattern 
 |---|---|---|---|---|
 | one register write | four stores: descriptor, then bit-mask word, address word, value | descriptor in 4.2 | established | S12 |
 | address word | high half = 0x110 + i (i = shadow word of the register), low half = register index | (0x110 + i) << 16 / register | established | S12 |
-| first word (mask) | bit mask applied to the shadow slot, sent to raster-bus index 7 | 0xffffffff for a whole register | inferred | S12 |
+| first word (mask) | bit mask of the write: the bits of the value that change. Bits outside the mask keep their previous contents in the register's shadow slot and in the value the raster chips see. Sent to raster-bus index 7 (BEF_REGSHADOW_BMASK in the diagnostic's table) | 0xffffffff for a whole register; field-sized masks for partial writes (about a hundred firmware sites rely on this, for example the blend enable under mask 0x21 leaving the blend factors written earlier under 0x0ffff000, and the stencil and depth handlers writing disjoint masks of one register) | established (merge behaviour); inferred (the chip that performs the merge) | S12, S47 |
+| first word 0, value 0 | a write that changes no bits. The pixel-transfer tail (`CommonPixEnd`, `arm1.u` 0x0c026654-0x0c026770) sends ten of them, to 0x3fcc, 0x3fcd, 0x3fce, 0x3fd3, 0x101f, 0x3fd4, 0x3fd5, 0x1500, 0x0c04 and 0x1000, after a transfer whose set-up programmed the same registers by direct raster-bus writes that bypass the shadow. Read as a restore that re-sends the shadow's current value to the chip; not stated anywhere, but the alternative (a no-op) would make the code pointless | descriptor 0x58404800 | inferred | S47 |
 | bus word, host-diagnostic form | register index in bits 62:48, value in bits 47:0 | 64 bits | established | S12 |
 | bus word, vector-file form | top 16 bits register index, next 16 bits the index repeated (or a second register), low 32 bits value | 64 bits | established | S12 |
 | bus mode codes | mode 1 travels as 0, mode 3 as 4, mode 2 as 6 | carried in the low bits of a store address | established | S18 |
@@ -1754,8 +1762,8 @@ Multisampling is a buffer-configuration choice, three enables, a sample pattern 
 | 0x1400-0x1414, 0x1500 | texture-filter registers | index block | established | S15 |
 | 0x1c00-0x1c15 | image-processor registers | index block | established | S15 |
 | 0x3be0-0x3be1, 0x3fc2-0x3fd8, 0x3ff8 | shared generator registers | index block | established | S15 |
-| 0x0400-0x0477 | board-side host-interface registers on the raster bus (not in the register index space) | 0x440 output channel, 0x441 pack mode, 0x450-0x456 output DMA, 0x460-0x464 second output DMA | inferred | S18 |
-| 0x0476, 0x0477 | reply-word port and its clear register | values only | unknown | S18 |
+| 0x0400-0x0477 | board-side host-interface registers on the raster bus (not in the register index space) | 0x440 output channel, 0x441 pack mode, 0x450-0x456 output DMA, 0x460-0x464 second output DMA | inferred | S18, S47 |
+| 0x0476, 0x0477 | reply-word port and its clear register. The read-data start routine writes 0x477 = 0, then 0x476 = 0; the finish routine writes 0x477 = 0, then 0x476 = 1 then 0, then clears 0x477; the configuration and read-word routines write a count to 0x476 and then one register write per reply word. The diagnostic's vector file writes 0x477 with a value whose bits 47:32 are a raster register number (0x1408 or 0x3fc3). Read from call order only; nothing names either register | values only | unknown | S18, S47 |
 | 0x0420 | sequence-number register reflected in the host sequence register | - | inferred | S17 |
 | texel / pixel bus format codes 0x0-0xf, 0x12-0x17 | bus format of a 64-bit data word (twelve pixel forms, six texel-only forms) | table in the pixel-data section | established | S18 |
 | format codes 0xd, 0x10, 0x11, 0x18, 0x19 | no output module | - | established | S18 |
@@ -1774,15 +1782,17 @@ Multisampling is a buffer-configuration choice, three enables, a sample pattern 
 
 ### 8.2 The 89-word register shadow
 
-The back-end chip keeps a shadow of 89 raster registers. A register write names its shadow word in the high half of the address word. The start-up value is what the firmware writes at boot. Roles are inferred from the diagnostic's field table unless noted; the pairing of shadow word and register index is established.
+The back-end chip keeps a shadow of 89 raster registers. A register write names its shadow word in the high half of the address word. The start-up value is the value in the firmware's initial shadow table, before the raster initialisers run; those initialisers then write the values listed below, and the diagnostic's vector file replays the same writes after its own reset. Roles come from the diagnostic's field table. A row is established where a firmware or engine write whose bit mask equals the union of the diagnostic's fields (or a value the firmware computes from a GL state parameter, or a default that decodes to the GL default through the diagnostic's field and value names) agrees with the diagnostic's field boundaries, and inferred where only the diagnostic's names support the role. The pairing of shadow word and register index is established.
+
+Values after the raster initialisers (whole-register writes from the point, texture-generator, texture-filter and image-processor initialisers, also seen in the vector file's second initialisation sequence; established): 0x0800 = 1; 0x080f = 0x8008 (point width and height 8 each, against 0x100 each at start-up); 0x0806 = 0x01380156; 0x3be0 = 0x007f6280; 0x3be1 = 0x008fc569; 0x3fd3 = 0x0e (texture generator off, against 0x0f); 0x140e = 0x4000 (against 0x8000); 0x1c00 = 0x3c6 (against 0x3c2); 0x1c03 = 0x7f8 (against 0x17f8); 0x1c07 = 6 (rewritten to the GL default by the depth initialiser, row 40); 0x1c08 = 0x12c00; 0x1c0b = 0x0c20a281 (against 0x32212301). The X server's own initialiser writes another set (0x3fd3 = 0xa, 0x1c02 = 0x11, 0x1c0d = 7). Registers written by an engine routine without a shadow slot also exist (clear colour 0x1c12 and 0x1c13 in the clear routines; the accumulation operation 0x1c0e), which is why 0x1c0e and 0x1c10-0x1c13 are absent from the 89 words. Evidence S47 unless a row names the engine listing (S48).
 
 | Shadow word | Register index | Start-up value | Role | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0 | 0x0441 | 0x0 | pack mode for host read-back (7 bits) | inferred | S12, S15 |
+| 0 | 0x0441 | 0x0 | pack mode for host read-back (7 bits, built from four fields: bits 1:0, bit 2, bits 5:3, bit 6; written under mask 0x7f by the packer set-up and the pixel-transfer end routines) | established | S12, S15, S47 |
 | 1 | 0x0455 | 0x0 | output DMA line length | inferred | S12, S15 |
 | 2 | 0x0456 | 0x0 | output DMA stride | inferred | S12, S15 |
-| 3 | 0x3fc2 | 0x3fff8000 | scissor x range (min 14:0, max 29:15) | inferred | S12, S15 |
-| 4 | 0x3fc3 | 0x3fff8000 | scissor y range (min 14:0, max 29:15) | inferred | S12, S15 |
+| 3 | 0x3fc2 | 0x3fff8000 | scissor x range, in eighth-pixel units (min 14:0, max 29:15; the load places x0 << 3 at bit 0 and x1 << 18 at bit 15) | established | S12, S15, S47, S48 |
+| 4 | 0x3fc3 | 0x3fff8000 | scissor y range, in eighth-pixel units (min 14:0, max 29:15) | established | S12, S15, S47, S48 |
 | 5 | 0x3fc4 | 0x0 | rectangle set-up word 0 (start x) | inferred | S12, S15 |
 | 6 | 0x3fc5 | 0x0 | rectangle set-up word 1 (current x) | inferred | S12, S15 |
 | 7 | 0x3fc6 | 0x0 | rectangle set-up word 2 (y) | inferred | S12, S15 |
@@ -1791,7 +1801,7 @@ The back-end chip keeps a shadow of 89 raster registers. A register write names 
 | 10 | 0x3fc9 | 0x0 | rectangle set-up word 5 (y step) | inferred | S12, S15 |
 | 11 | 0x3fca | 0x100000 | rectangle set-up word 6 (depth slope in x) | inferred | S12, S15 |
 | 12 | 0x3fcb | 0x100000 | rectangle set-up word 7 (depth slope in y) | inferred | S12, S15 |
-| 13 | 0x3fcc | 0xc010010 | draw-rectangle word 0 (J 11:0, I 23:12, scan direction) | inferred | S12, S15 |
+| 13 | 0x3fcc | 0xc010010 | draw-rectangle word 0 (J 11:0, I 23:12, scan direction 25:24; the diagnostic also lists zoom enable bit 26, pixel-cache enable bit 27 and pixel interlace bit 28, and the convolution-filter handlers write bit 27 alone) | inferred | S12, S15 |
 | 14 | 0x3fcd | 0x10 | draw-rectangle word 1 (width 11:0, start x 23:12) | inferred | S12, S15 |
 | 15 | 0x3fce | 0x0 | draw-rectangle word 2 (current y 11:0, x 23:12) | inferred | S12, S15 |
 | 16 | 0x3fcf | 0x10 | generator buffer size: points | inferred | S12, S15 |
@@ -1799,46 +1809,46 @@ The back-end chip keeps a shadow of 89 raster registers. A register write names 
 | 18 | 0x3fd1 | 0xf | generator buffer size: triangles | inferred | S12, S15 |
 | 19 | 0x3fd2 | 0xf00f | image buffer size (width 11:0, height 23:12) | inferred | S12, S15 |
 | 20 | 0x3fd3 | 0xf | generator enables (texture, scan conversion, depth unit, draw pixels) | inferred | S12, S15 |
-| 21 | 0x3be0 | 0xc8b640 | multisample sample locations 0-3 | inferred | S12, S15 |
-| 22 | 0x3be1 | 0x916f6f | multisample sample locations 4-7 | inferred | S12, S15 |
+| 21 | 0x3be0 | 0xc8b640 | multisample sample locations 0-3 (six 3-bit fields: X0 2:0, Y0 5:3, X1 8:6 ... Y3 23:21) | established | S12, S15, S47 |
+| 22 | 0x3be1 | 0x916f6f | multisample sample locations 4-7 (the same six-field layout for samples 4-7; the 4-sample pattern words are identical in both registers) | established | S12, S15, S47 |
 | 23 | 0x0800 | 0x0 | pixel-generator mode (flat shading, direction mask source) | inferred | S12, S15 |
 | 24 | 0x080f | 0x100100 | point size (width 11:0, height 23:12) | inferred | S12, S15 |
 | 25 | 0x0804 | 0x0 | primitive bloat | inferred | S12, S15 |
 | 26 | 0x0805 | 0x0 | primitive depth offset | inferred | S12, S15 |
-| 27 | 0x0806 | 0x55 | primitive draw selectors (five 2-bit fields) | inferred | S12, S15 |
-| 28 | 0x0807 | 0x0 | window offset x | inferred | S12, S15 |
-| 29 | 0x0808 | 0x0 | window offset y | inferred | S12, S15 |
+| 27 | 0x0806 | 0x55 | primitive draw selectors (ten fields: LMASK 1:0, TMASK 3:2, SPMASK 5:4, SXMASK 7:6, SLMASK 9:8, PSAMPLE 11:10, LSAMPLE 13:12, TSAMPLE 15:14, XSAMPLE 17:16, LRULES 25:18; the firmware never writes PSAMPLE) | established | S12, S15, S47 |
+| 28 | 0x0807 | 0x0 | window offset x (written under mask 0x7ff) | established | S12, S15, S14 |
+| 29 | 0x0808 | 0x0 | window offset y (written under mask 0x7ff) | established | S12, S15, S14 |
 | 30 | 0x0809 | 0xffffffff | multisample coverage mask | inferred | S12, S15 |
-| 31 | 0x080a | 0x0 | polygon stipple control (enable, offset) | inferred | S12, S15 |
+| 31 | 0x080a | 0x0 | polygon stipple control (enable field bits 1:0, written under mask 3 by the stipple load; offset) | established | S12, S15, S47 |
 | 32 | 0x080b | 0x55 | polygon stipple pattern byte 0 | inferred | S12, S15 |
 | 33 | 0x080c | 0x55 | polygon stipple pattern byte 1 | inferred | S12, S15 |
-| 34 | 0x080d | 0xff | polygon stipple repeat lengths (x 3:0, y 7:4) | inferred | S12, S15 |
-| 35 | 0x0810 | 0x0 | primitive rule unit mode (none or line) | inferred | S12, S15 |
-| 36 | 0x1c00 | 0x3c2 | frame-buffer configuration (pixel size, colour format) | inferred | S12, S15 |
-| 37 | 0x1c02 | 0x1 | image-processor operation (draw buffer, packet kind) | inferred | S12, S15 |
-| 38 | 0x1c03 | 0x17f8 | multisample control | inferred | S12, S15 |
+| 34 | 0x080d | 0xff | polygon stipple repeat lengths (x 3:0, y 7:4; written under masks 0xf and 0xf0, and the stipple load writes mask 0xff) | established | S12, S15, S47 |
+| 35 | 0x0810 | 0x0 | primitive rule unit mode (none or line; the line resolver writes mask 1, value 1) | established | S12, S15, S47 |
+| 36 | 0x1c00 | 0x3c2 | frame-buffer configuration: pixel size 1:0, colour format 5:2, write enables 9:6 (bit 6 red, 7 green, 8 blue, 9 alpha), per-bit-mask flag 10, read format 13:11. Written under 0x3c0 (colour mask), 0x7fc (buffer configuration) and 0x3800 (accumulation read format). Colour format names are the diagnostic's (RGB10 0, RGBA12 1, LA16 2, CI16 3, ...); the image-processor initialiser picks 1, and the X load writes code 2 | established | S12, S15, S47 |
+| 37 | 0x1c02 | 0x1 | image-processor operation: draw buffer 3:0, packet kind 5:4 (2 = accumulate), clear repeat 8:6, clear flags 13:9 (bit 13 accumulate clear, bit 11 depth word clear, bit 9 overlay clear), read-back format 17:14, read base 23:18, calligraphic enable bit 24. Bits 25-31 (double depth, depth B, activate-only, image-unit FIFO, wafer probe, byte mask) carry manufacturing names, are never written by any firmware or engine routine and stay unknown | established | S12, S15, S47 |
+| 38 | 0x1c03 | 0x17f8 | multisample control: enable 0, samples 1, mask operation 2, mask 10:3, maintain-two 11, optimise 13:12 (written under 0x3000 by the blend and colour logic-op enables and the colour mask, under 0x3fff by the multisample initialiser; the initial optimise value 1 has no name in the diagnostic's table) | established | S12, S15, S47 |
 | 39 | 0x1c06 | 0x0 | window-id clip test (enable, reference, mask) | inferred | S12, S15 |
-| 40 | 0x1c07 | 0x0 | stencil set-up (enable, size, compare, reference, mask) | inferred | S12, S15 |
-| 41 | 0x1c08 | 0x0 | stencil actions and depth test | inferred | S12, S15 |
+| 40 | 0x1c07 | 0x0 | stencil set-up: enable 0, size 1, function 4:2 (the low three bits of the GL comparison: 0 never, 1 less, 2 equal, 3 less-or-equal, 4 greater, 5 not-equal, 6 greater-or-equal, 7 always), reference 12:5, compare mask 20:13, write mask 28:21. The depth initialiser's 0x1fffe01c decodes to the GL defaults | established | S12, S15, S47 |
+| 41 | 0x1c08 | 0x0 | stencil operations 2:0 (fail), 5:3 (depth fail), 8:6 (depth pass), codes 0 keep, 1 replace, 2 increment, 3 decrement, 4 zero, 5 invert; depth test enable 9; depth size 11:10; depth compress 12; depth function 15:13 (the comparison's low three bits); depth write mask 16. The depth initialiser's 0x12c00 is the GL default (function less, write mask on, size code 3) | established | S12, S15, S47 |
 | 42 | 0x1c09 | 0x0 | depth clear value (compressed depth format) | established | S12, S15 |
-| 43 | 0x1c0b | 0x32212301 | frame-buffer base addresses (six 6-bit fields) | inferred | S12, S15 |
-| 44 | 0x1c0d | 0x11012 | blend and logic operation | inferred | S12, S15 |
-| 45 | 0x1c14 | 0x0 | per-bit colour write mask, red 11:0 and green 23:12 | inferred | S12, S15 |
-| 46 | 0x1c15 | 0x0 | per-bit colour write mask, blue 11:0 and alpha 23:12 | inferred | S12, S15 |
-| 47 | 0x3ff8 | 0x0 | bus pixel-format code (5 bits) | inferred | S12, S15 |
-| 48 | 0x7fc5 | 0x0 | texture-load mode | inferred | S12, S15 |
-| 49 | 0x7fc3 | 0x0 | texture-load s and r start | inferred | S12, S15 |
-| 50 | 0x7fc2 | 0x0 | texture-load s and t start | inferred | S12, S15 |
+| 43 | 0x1c0b | 0x32212301 | frame-buffer base addresses (six 6-bit fields; the draw-buffer and colour-pop handlers write only the colour base under mask 0x3f, the clip validation and buffer configuration write the whole word) | established | S12, S15, S47 |
+| 44 | 0x1c0d | 0x11012 | blend and logic operation: bit 0 logic-op enable; bits 4:1 logic-op code (the low nibble of the GL logic-op enumerant, 3 = copy); bit 5 blend enable (when the stored equation is the logic-op value the enable goes to bit 0 instead); bits 8:6 colour equation and 11:9 alpha equation (0 add, 1 subtract, 2 reverse subtract, 3 minimum, 7 maximum; minimum and maximum force every factor to 1); factor codes source colour 15:12, source alpha 19:16, destination colour 23:20, destination alpha 27:24 (0 zero, 1 one, 2 destination colour, 3 one minus destination colour, 4 source colour, 5 one minus source colour, 6 constant colour, 7 one minus constant colour, 8 destination alpha, 9 one minus destination alpha, 0xa source alpha, 0xb one minus source alpha, 0xc constant alpha, 0xd one minus constant alpha, 0xe source-alpha-saturate; the alpha-source field uses 1 instead of 0xe); bit 28 precision and bit 29 speed-up (set by the image-processor initialiser, no other writer). The colour initialiser's 0x11006 decodes to the GL defaults | established | S12, S15, S47 |
+| 45 | 0x1c14 | 0x0 | per-bit colour write mask, red 11:0 and green 23:12; open discrepancy: the firmware and the X load write this slot as the plane write mask, but the engine's blend-constant routine addresses the same two slots with four 12-bit components scaled by 4096 while the diagnostic names 0x1c10 and 0x1c11 as the user colour and nothing writes those. Either they truly share, or the routine's extra format words retarget the data; not resolved | inferred | S12, S15, S47, S48 |
+| 46 | 0x1c15 | 0x0 | per-bit colour write mask, blue 11:0 and alpha 23:12; open discrepancy: the firmware and the X load write this slot as the plane write mask, but the engine's blend-constant routine addresses the same two slots with four 12-bit components scaled by 4096 while the diagnostic names 0x1c10 and 0x1c11 as the user colour and nothing writes those. Either they truly share, or the routine's extra format words retarget the data; not resolved | inferred | S12, S15, S47, S48 |
+| 47 | 0x3ff8 | 0x0 | bus pixel-format code (5 bits, mask 0x1f; named by the diagnostic: RGBA4 or bitmap 0, RGB5A1 1, R5G6B5 2, LA8 3, L16 4, I16 5, S16 6, ZC16 7, RGBA8 8, RGB10A2 9, LA16 0xa, Z32 0xb, RGBA16 0x10, RGBA12 0x11; the firmware writes 0x11 for read-back and texture read-back) | established | S12, S15, S47 |
+| 48 | 0x7fc5 | 0x0 | texture-load mode | established | S12, S15, S47 |
+| 49 | 0x7fc3 | 0x0 | texture-load s and r start | established | S12, S15, S47 |
+| 50 | 0x7fc2 | 0x0 | texture-load s and t start | established | S12, S15, S47 |
 | 51 | 0x7fc1 | 0x0 | texture-load size (s, t, r) | inferred | S12, S15 |
 | 52 | 0x7fc4 | 0x0 | texture-load s and t end | inferred | S12, S15 |
-| 53 | 0x5001 | 0x0 | texture-load global offset (21 bits + 3 high bits) | inferred | S12, S15 |
-| 54 | 0x101a | 0x0 | texture draw global offset | inferred | S12, S15 |
-| 55 | 0x1000 | 0x0 | texture memory geometry (s and t address bits) | inferred | S12, S15 |
+| 53 | 0x5001 | 0x0 | texture-load global offset (21 bits + 3 high bits) | established | S12, S15, S47 |
+| 54 | 0x101a | 0x0 | texture draw global offset | established | S12, S15, S47 |
+| 55 | 0x1000 | 0x0 | texture memory geometry (s and t address bits) | established | S12, S15, S47 |
 | 56 | 0x3fd5 | 0x0 | bound texture size and address control | inferred | S12, S15 |
-| 57 | 0x3fd4 | 0x30 | texture mode (dimension, filters, shadow compare) | inferred | S12, S15 |
-| 58 | 0x0c04 | 0x0 | mip-map level range (10 bits each) | inferred | S12, S15 |
-| 59 | 0x0c05 | 0x0 | level-of-detail scale s and t | inferred | S12, S15 |
-| 60 | 0x0c06 | 0x0 | level-of-detail scale r | inferred | S12, S15 |
+| 57 | 0x3fd4 | 0x30 | texture mode (dimension, filters, shadow compare) | established | S12, S15, S47 |
+| 58 | 0x0c04 | 0x0 | mip-map level range (10 bits each) | established | S12, S15, S47 |
+| 59 | 0x0c05 | 0x0 | level-of-detail scale s and t | established | S12, S15, S47 |
+| 60 | 0x0c06 | 0x0 | level-of-detail scale r | established | S12, S15, S47 |
 | 61 | 0x3fd6 | 0x0 | detail-texture and clip-map sizes | inferred | S12, S15 |
 | 62 | 0x1019 | 0x0 | detail-map location in texture memory | inferred | S12, S15 |
 | 63 | 0x13d5 | 0x0 | texture-memory copy of texture size | inferred | S12, S15 |
@@ -1853,20 +1863,20 @@ The back-end chip keeps a shadow of 89 raster registers. A register write names 
 | 72 | 0x101e | 0x0 | shadow-texture ambient level | inferred | S12, S15 |
 | 73 | 0x101f | 0x0 | texture-memory redundancy bit | inferred | S12, S15 |
 | 74 | 0x0c02 | 0x0 | texture-generator misc bits | inferred | S12, S15 |
-| 75 | 0x1407 | 0x7000 | alpha test (reference, compare, enable) | inferred | S12, S15 |
+| 75 | 0x1407 | 0x7000 | alpha test: reference 11:0, comparison 14:12, enable bit 15 (the alpha-function routine writes 0x7fff, the alpha-test routine bit 15; the start-up 0x7000 is compare always with the test off) | established | S12, S15, S48 |
 | 76 | 0x1500 | 0x0 | texturing enable | inferred | S12, S15 |
 | 77 | 0x1401 | 0x22 | texture environment functions | inferred | S12, S15 |
 | 78 | 0x1402 | 0x0 | texture environment colour green and red | inferred | S12, S15 |
 | 79 | 0x1413 | 0x0 | texture environment colour alpha and blue | inferred | S12, S15 |
 | 80 | 0x140e | 0x8000 | texture-filter two-field word (12-bit and 5-bit fields) | inferred | S12, S15 |
-| 81 | 0x140b | 0x0 | fade-mask table (four 8-bit entries) | inferred | S12, S15 |
+| 81 | 0x140b | 0x0 | sample-mask coverage word (named FADE_MASK_LUT in the diagnostic; written whole by the sample-mask handler, all ones from the multisample initialiser) | established | S12, S15, S47 |
 | 82 | 0x1403 | 0x80000 | fog control (modes, table address) | inferred | S12, S15 |
 | 83 | 0x1404 | 0x0 | fog colour green and red | inferred | S12, S15 |
 | 84 | 0x1414 | 0x0 | fog colour blue | inferred | S12, S15 |
 | 85 | 0x1406 | 0x0 | fog depth offset | inferred | S12, S15 |
 | 86 | 0x1410 | 0x0 | output luminance-alpha flag | inferred | S12, S15 |
 | 87 | 0x140f | 0x0 | input luminance-alpha flag | inferred | S12, S15 |
-| 88 | 0x1408 | 0x0 | alpha-to-mask enables (coverage, fade, alpha-to-one) | inferred | S12, S15 |
+| 88 | 0x1408 | 0x0 | alpha-to-mask enables (bit 0 alpha-to-mask, bit 1 sample mask, bit 2 alpha-to-one; the diagnostic's names A2M_EN, FADE_MASK_EN, A2ONE_EN) | established | S12, S15, S47 |
 
 
 ## 9. Host register window
@@ -1990,11 +2000,10 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - what the engine does with graphics-context load word 4 in its special register: role of that second destination
 - which graphics-context word holds the image-rectangle mode field
 - which graphics-context words the word-image and window-copy mode constants modify
-- operation-word code that means copy: how the loader turns the clear path's 3 and the display-id path's 1 into one another
 - what pixel set-up words 3 and 6 mean to the engine and distributor
 - pixel set-up transfer kinds other than 0 and 2, and output modules other than 4 and 5: behaviour
 - pack mode of the returned words of an X pixel read: which host-interface value
-- which pixel format selects which packing table, and the numeric contents of every table
+- which named pixel format each index value of the X packing tables selects, what the table words mean in the loader-built format word, and the values of the three tables filled at run time (the file-resident numbers are recorded)
 - texel-draw header: hardware use of word 8 (nonzero) and of words 8 and 11-15 beyond storing them
 - texture-load set-up (token 0x173): the roles of words 2, 4 and 6-8
 - level origin rule: where the border texels of a small bordered level sit (small-level origins are resolved as client-side replication)
@@ -2005,7 +2014,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - bind contract: what the pipe keeps for a cache entry and what it does with an all-ones bind; texture sharing between contexts
 - environment: the role of parameter 0x80be, which public mode selects the add and add-signed records, what each function code does on the raster board
 - shadow state (0x1c7): whether any shipped software sends it
-- GL pixel state, transfer and accumulation (section 7.15): the meaning of the pixel-mode word's bits; the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the format codes of the three extension formats (and codes 8-10); the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); and the accumulation storage format
+- GL pixel state, transfer and accumulation (section 7.15): the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); and the accumulation storage format
 - queries, select and feedback (section 7.16): why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the extra word the feedback client removes; and the depth multiplier in select records
 - multisample (section 7.17): the effect of sample counts other than 4 and 8; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; the hardware resolve rule and what depth and stencil reads return; which sample banks a clear reaches; the AND combination of the coverage word, how the sample-mask register doubles as the alpha-to-mask fade table and alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; multisample line, point and polygon rules
 
