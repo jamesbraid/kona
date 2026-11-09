@@ -56,6 +56,8 @@ The names are role names in plain words, written for someone who transcribes the
 | S42 | the published InfiniteReality references on frame-buffer pixel format and multisample resolve: the Hot Chips 8 slides ("Framebuffer Pixel Format Examples") and the technical report section 7.7 |
 | S43 | the geometry engine's start-up and drawing-module listings: [ge.S listing](../ucode/ge_listing/ge.S.lst) (`mGL_CM_Initialize`, store at 0xb21e) and [udrawtri.s listing](../ucode/ge_listing/udrawtri.s.lst) (0x2893, 0x28ac, 0x28b0), with the store-data rule of [ge_isa.md](../ucode/ge_isa.md#the-store-data-register) |
 | S44 | the X server module's display-id painter and DAC cursor builder, read from the binary: `usr/lib/X11/dyDDX/kona.so` 0x53e7a8 (id to painted value and mask), 0x4715c0 (`kon_drawDid`), 0x53b6c0 (DAC cursor builder, caller 0x4b78ac) and the display-request sender 0x5341a0; the firmware side is `arm1.u` 0x0c007aa8 |
+| S45 | the IR diagnostic irsaudit's display-chip tables and routines, read from the shipped binary's exported data symbols and disassembly (`usr/diags/IR/bin/irsaudit`, 6.5.30m): the video-output chip field tables `voc1a_RegInfo` (0x10201a70), `voc1a_dblbuf_RegInfo`, `voc1b_RegInfo` (0x10205ce0) and `voc1b_dblbuf_RegInfo`; the frame-manager, XMAP, encoder and DAC register tables `fm_regs` (0x101ffd40), `xmap_regs` (0x101ffdc0), `enc_regs` (0x101ffe58) and `vdac_regs` (0x101fffc0); and the routines `dgrm_config` (0x1004bca0), `fmFrameBufferRead` (0x10130f70), `fmDidLoadShifting` (0x10130f10), `vcWriteIncr` (0x10140988), `vcReadIncr` (0x10140d14), `arm_xmap_crc` and `verify_xmap_crc_done` |
+| S46 | the pin lists of the display-board netlist `dg4_2voc.netmap`: per-chip address-pin widths (XMAP, VOC, encoder, DAC) and the frame-manager chip's select outputs |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -784,7 +786,7 @@ The firmware, and the diagnostic through the same ports, send a routed command b
 
 ## 5. Display-generator requests (93)
 
-A display request travels in the carrier token 0x1a6: the host sends the request number, then that many payload words, then a checksum word equal to the sum of the request number and the payload words ([S5](#1-how-to-read-this-table)). The firmware dispatches through a 93-entry table of {payload word count, handler}. "Reply" is the reply type number and length in bytes the handler sends back, or "none". Role names are inferred from the handlers' readings; the word counts and reply types are established.
+A display request travels in the carrier token 0x1a6: the host sends the request number, then that many payload words, then a checksum word equal to the sum of the request number and the payload words ([S5](#1-how-to-read-this-table)). The firmware dispatches through a 93-entry table of {payload word count, handler}. "Reply" is the reply type number and length in bytes the handler sends back, or "none". Role names are plain-word paraphrases of the firmware's own handler names (the 93 `DoDGRqst*` symbols in arm1.u's symbol table, listed in [ucode/dg_requests.md](../ucode/dg_requests.md)); the word counts, reply types and role names are all read from the firmware.
 
 | Request | Role | Payload words | Reply | Grade | Evidence |
 |---|---|---|---|---|---|
@@ -891,12 +893,13 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 |---|---|---|---|
 | window offset 0x3c0 (host address 0x8003c0) | video-controller address port: selects a display-bus register | established | S13, S16 |
 | window offset 0x3d0 (host address 0x8003d0) | video-controller data port: moves the value of the selected register | established | S13, S16 |
-| window offsets 0x3c8, 0x3d8 | video-controller ready and auto-increment data ports (never used by the driver) | unknown | S16 |
-| bit 16 of the address written to the address port (0x10000) | selects the in-band "fast list" path for indirect memories | inferred | S6 |
+| window offset 0x3c8 | video-controller ready port (HH_VC_FREADY): a 1-bit register that exists; the host-interface table lists it and a dump routine reads it, but no shipped software polls it, so when it is set is unknown | unknown | S16, S45, S46 |
+| window offset 0x3d8 | video-controller data port with auto-increment (HH_VC_DATA_INCR): data only, no address write first; the diagnostic's `vcWriteIncr` and `vcReadIncr` store and load it, but neither has a direct caller (both are reached only through a function-pointer table), so no call pattern shows the increment. Auto-increment is inferred by analogy with the ARM-side increment port | inferred (access established) | S16, S45 |
+| bit 16 of the address written to the address port (0x10000) | selects the in-band "fast list" path for indirect memories | inferred | S6, S45 |
 | ARM address 0x00600000 + 4 x A | display-bus address A as the firmware sees it (one 32-bit word per address) | established | S10 |
 | raster-bus word, bits 63:52 = 0x041, bits 47:32 = address, bits 31:0 = data | alternative path to the same registers | established | S6 |
 | address 0x118..0x11f via engine write | the firmware reaches indirect memories through an engine bus-write handler (address to ARM offset 0x474, value to 0x840) | established | S10 |
-| which address bits pick the chip behind the port | chip-select decode | unknown | S10 |
+| which address bits pick the chip behind the port | the frame-manager chip decodes the 16-bit local address into select outputs: XMAP select (bus 0x100-0x11f, XMAP register address 5 bits), VOC select x 9 (0x200 + 0x100 x id, VOC register address 8 bits), video DAC select x 8 (0xb00 + 0x100 x n, DAC register 2 bits), gain DAC select x 5 (0x1300 + 0x100 x pair) and encoder select (0x1800-0x1803, 2 address bits); addresses below 0x100 are the frame-manager chip's own registers. The decode table itself is inside that chip, a bridge ASIC with no program, and is not recorded | structure established (netlist widths agree with the observed address blocks); exact decode table unknown | S10, S46 |
 
 
 ### 6.2 Address map by family
@@ -904,12 +907,14 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 | Display-bus addresses | Role | Grade | Evidence |
 |---|---|---|---|
 | i for display id i (0x00-0x7f) | per-display-id mode table: one mode byte per id; the last slot 0x7f doubles as the sequence-number push slot | established | S10, S17 |
-| 0x080 | frame-manager swap strobe (the kernel and firmware write 2 after a swap) | established | S13 |
-| 0x081-0x08a | ten swap-group display-id slots | established | S10 |
-| 0x08b | frame-manager control: bits 21:20 input sync source, bit 22 reset ratio | established | S5 |
-| 0x08e | master clock select: bit 23 | established | S5 |
-| 0x08f | interrupt state | inferred | S10 |
-| 0x090 | raster-board count | inferred | S10 |
+| 0x080 | frame-manager swap strobe (`FM_SWAP_CNTRL_REG`, 2 bits, mask 0x3; the kernel and firmware write 2 after a swap; which bit means what stays with that note, and the firmware's bit 0 triggers the XMAP clock write) | established | S13, S45 |
+| 0x081-0x08a | display id of VOC n (n = 0-7 at 0x81-0x88, 6 bits each, `FM_VOC_DID_0_REG` to `FM_VOC_DID_7_REG`); 0x89 and 0x8a are the two option-board slots (ten swap slots) | established for 0x81-0x88; 0x89-0x8a inferred from the firmware's ten-slot loop | S10, S45 |
+| 0x08b | frame-manager control (`FM_XWINDOW_REG`, 23 bits, mask 0x7fffff): bits 21:20 input sync source, bit 22 reset ratio; bits 9:0 and 19:10 two 10-bit coordinates stored as 1023 minus the value (the diagnostic's read-back window x0 and x1), written together with 0x8e | established | S5, S45 |
+| 0x08c | written four times by the diagnostic's video test; role unknown (only constant writes seen, no read, no name) | unknown | S45 |
+| 0x08d | read by the diagnostic's display-id-shift check, which tests bit 3 and treats it as set while the display-id table is still loading (shifting); written by the normal and overlay/underlay display-id table tests | status bit established by name and use; remaining bits unknown | S45 |
+| 0x08e | master clock select: bit 23; bits 9:0 and 19:10 two 10-bit coordinates stored as 1023 minus the value (y0 and y1, the other half of the window written with 0x8b); bits 22:20 a 3-bit field the diagnostic passes, meaning not recoverable. The internal-clock routine also read-modify-writes this register | established arithmetic; bits 22:20 meaning unknown | S5, S45 |
+| 0x08f | interrupt state: the firmware's get-interrupt-state request writes 0 here to acknowledge; the diagnostic never touches it and no diagnostic register table lists it | inferred | S10, S45, S46 |
+| 0x090 | raster-board configuration (`FM_DG4_STATUS`, the diagnostic's name). Write bits 7:5 = 0 for four boards, 1 for two, 3 for one (the diagnostic writes 0x00, 0x20, 0x60 together with XMAP register 0xb = 2, 1, 0); read bits 10:8 = board-stuffing code (firmware). The pin-to-bit binding of the chip's `rmpres` and `config` groups is inferred | established | S10, S45, S46 |
 | 0x100-0x11f | XMAP: direct registers 0x100 + n, indirect memories 0x118-0x11f | established | S6 |
 | 0x200 + 0x100 x id + r | video-output chip (VOC) register r of channel id (ids 0-7 on the base board) | established | S10, S11 |
 | 0x300 | register 0 of VOC id 1, read as the master VOC status | established | S10 |
@@ -931,21 +936,21 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 | 0x01 | cursor image base (address of the 260-word block) | 17 bits | established | S13, S7 |
 | 0x02 | cursor position | 26 bits; layout in 7.5 | established | S13, S7 |
 | 0x03 | cursor mode | 9-bit register; written values 0 off, 1 crosshair, 2 glyph | established | S13, S7 |
-| 0x04 | copy-buffer strobe: written 1 after every group of writes; bit 2 forces the cursor position | bit 0 established, bit 2 inferred | established | S6 |
-| 0x05 | diagnostic substitute-colour enable | 0 off | inferred | S6, S13 |
-| 0x06 | substitute colour, low word | 32 bits | inferred | S13 |
-| 0x07 | substitute colour, high bits plus a 2-bit mode shifted left 10 | 13 bits | inferred | S13 |
-| 0x08 | read chip select | XMAP number 0-3 before a read | inferred | S6 |
+| 0x04 | copy-buffer strobe (diagnostic name `xmap_copybuffer`): written 1 after every group of writes; bit 2 forces the cursor position (observe pin `xmap_force_curs_pos`; the diagnostic writes 4 after a position change) | bit 0 established, bit 2 inferred (name match only) | established | S6, S45 |
+| 0x05 | diagnostic substitute-colour enable (observe pin `xmap_substitute_en`) | 0 off | inferred | S6, S13, S45 |
+| 0x06 | substitute colour, low word (`XMAP_SUBSTITUTE_LOW`) | 32 bits | established | S13, S45 |
+| 0x07 | substitute colour, high bits plus a 2-bit mode shifted left 10 (`XMAP_SUBSTITUTE_HIGH`) | 13 bits | established | S13, S45 |
+| 0x08 | read chip select (the diagnostic's observe pins `xmap_diag_rd` and `xmap_rd_id_match` fit a chip-id compare) | XMAP number 0-3 before a read | inferred | S6, S45 |
 | 0x09 | role not read: 0 at start-up, 2 after the diagnostic, and the window-created / destroyed notice (1 / 0) | value only | unknown | S6 |
-| 0x0a | untouched by any code read | none | unknown | S6 |
+| 0x0a | read by the diagnostic's XMAP CRC routines (the `xmap_crc_done` poll): a CRC done status; bit layout unknown | none | established use; layout unknown | S45 |
 | 0x0b | raster-board count code | 2 bits: 0, 1, 2 for one, two, four boards | established | S13 |
-| 0x0c | display-id compare address | 6 bits; start-up value 2 | inferred | S13 |
-| 0x0d | image-processor pixel-stream delay | 9 bits; 0xa5 on board type 2, else 0x64 | inferred | S13 |
-| 0x0e | pipeline delay | 3 bits; 6 on board type 2, else 3 | inferred | S13 |
-| 0x0f | fast-list configuration: low five bits chunk size, upper bits fixed 0x320 | 10 bits; start-up 0x339 (chunk 25) | inferred | S13 |
+| 0x0c | display-id compare address (`XMAP_DI_COMPARE_ADDR`, observe pin `xmap_di_addr`) | 6 bits; start-up value 2 | inferred; name established | S13, S45 |
+| 0x0d | image-processor pixel-stream delay (`XMAP_IMP_DELAY`) | 9 bits; 0xa5 on board type 2, else 0x64 | inferred; name and width established | S13, S45 |
+| 0x0e | pipeline delay (`XMAP_PIPE_DELAY`) | 3 bits; 6 on board type 2, else 3 | inferred; name and width established | S13, S45 |
+| 0x0f | fast-list configuration (`XMAP_FASTLIST_CONFIG`): low five bits chunk size, upper bits fixed 0x320; the layout is read from the firmware's chunk-size request | 10 bits; start-up 0x339 (chunk 25) | inferred; name and width established | S13, S45 |
 | 0x10 | written 0 at start-up and nothing else | value only | unknown | S6 |
-| 0x11 | read-back address | 19 bits | inferred | S13 |
-| 0x12 | read-back data | 32 bits | inferred | S6 |
+| 0x11 | read-back address (`XMAP_RD_ADDR`; 19 bits fits the 17-bit cursor address plus select bits) | 19 bits | inferred | S13, S45 |
+| 0x12 | read-back data | 32 bits | inferred | S6, S45 |
 
 
 ### 6.4 XMAP indirect memories (bus address 0x118-0x11f)
@@ -967,35 +972,44 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 
 ### 6.5 Video-output chip (VOC) registers (address 0x200 + 0x100 x id + r)
 
+Two chip layouts exist, called 1a (earlier) and 1b (later). The diagnostic selects between them by the chip's boundary-scan revision (identification code x5631057, revision nibbles 2, 3, 5, 6, 8, 9, b, c, e, f). Layout 1b adds: bits 29:26 of register 0x30 (line count high), register 0x34 (frame duration, 20 bits), bit 18 of register 0x43 (frame-reference select), bit 23 of register 0x44 (interlaced cursor) and register 0x4b, and widens the back-porch clamp width (register 0x84) to 8 bits at 21:14. Everything else below is identical in both. Field names and positions come from the diagnostic's own tables (key S45); the vendor's earlier header guessed several bit positions from the order of the output-format file's register list, and the rows below correct those.
+
 | r | Role | Fields / values | Grade | Evidence |
 |---|---|---|---|---|
-| 0x00 | status (read only; the master copy at 0x300) | bit 7 pulses once per frame | inferred | S11, S13 |
-| 0x01 | control | bits 1:0 channel enable (1 on, 2, 3 during genlock shutdown, 0 off); bits 5:4 set and bit 6 cleared by genlock set-up; bits 11:9 pixels-per-clock code | established | S11, S13 |
-| 0x03 | video-requester input window: screen width in groupxels minus 1 | groupxel = 4 pixels | established | S11 |
-| 0x04 | video-requester window origin: x / 4 and y | two fields | established | S11 |
-| 0x05 | video-requester window size in groupxels and lines | two fields | established | S11 |
-| 0x06 | sequencer control | bit 3 clears the state pointer; bits 8:4 select a line type (0-31) or a signal (0-13) | established | S11 |
-| 0x07 | sequencer initial signal levels | bit n = initial level of signal n; bits 18:17 added on an old revision | established | S11 |
-| 0x08 | genlock vertical phase | bits 12:0, 25:13 used; 28:26 and 29 sent as zero | inferred | S11 |
-| 0x09 | sequencer state-table port (auto-increments from the cleared pointer) | two states per word | established | S11 |
-| 0x0a | selected line type, word A: edge mask for edges 0-31 | 32 bits | established | S11 |
-| 0x0b | selected line type, word B: length minus 3 in 30:18, edge mask for edges 32-49 in 17:0 | 32 bits | established | S11 |
-| 0x0c-0x13 | edge slots of the selected signal (slot s at 0x0c + s) | edge position in 12:0, 0x1fff = unused | established | S11 |
-| 0x14 | blanking | bit 16, 7:0, 15:8 from three format words | inferred | S11 |
-| 0x30-0x32 | frame-detect control and sequence words (genlock) | from format words 7-11 of the genlock request | inferred | S11 |
-| 0x44 | video-requester control | bits 10:8 pixel format code, bit 7 dither flag; other bits unread | inferred | S11 |
-| 0x45 | tiles per frame-buffer row | value | established | S11 |
+| 0x00 | status (read only; the master copy at 0x300): bits 15:0 are the live level of the sequencer signals in the output-format order (bit 0 HSYNC, 1 VSYNC, 2 CSYNC, 3 CBLANK, 4 TRISYNC, 5 FIELD_START, 6 FIELD, 7 FRAME_START, 8 VIDEO_ACTIVE, 9 LINE_START, 10 STEREO_OUT, 11 IMPREG_LD, 12 XMAPREG_LD, 13 VOF_VDRC_EN, 14-15 spares); bits 17:16 field-sequential colour field; bits 18-24 interrupt flags: FIFO over, FIFO under, external sync loss, external sync detect, external frame, VDRC, host | bit 7 is FRAME_START, the signal the firmware waits on (pulses once per frame) | established | S11, S13, S45 |
+| 0x01 | control: bits 1:0 double-buffer control mode (0 immediate, 1 copy on IMPREG_LD, 2 copy on SWAP, 3 copy on FRAME); bits 2-8 interrupt enables (2 FIFO over, 3 FIFO under, 4 external sync loss, 5 external sync detect, 6 external frame, 7 VDRC, 8 host); bits 11:9 output pixel mux (0 4:4, 1 4:2, 2 4:1, 3 4:8, 4 FS_4, 5 FS_2, 6 FS_1, 7 FS_8) | the firmware's values 1, 2, 3 in bits 1:0 are copy modes, not a channel enable; genlock set-up enables the sync-loss and sync-detect interrupts and disables the external-frame interrupt | established | S11, S13, S45 |
+| 0x02 | `DBL_BUF_EN`, bit 0: the firmware writes 0 then 1 around enabling a channel; the diagnostic polls it ("DBL_BUF_EN timeout") in its double-buffer tests | 1 bit | established (name and polling); that it is a request that self-clears is inferred | S45 |
+| 0x03 | video-requester input window: bits 4:0 channel id, bits 14:5 screen width in groupxels minus 1 | groupxel = 4 pixels | established | S11, S45 |
+| 0x04 | video-requester window origin: x / 4 and y | two fields | established | S11, S45 |
+| 0x05 | video-requester window size in groupxels and lines | two fields | established | S11, S45 |
+| 0x06 | sequencer control: bit 0 enable; bits 2:1 reset source (0 none, 1 output-format-A reset, 3 phase-detector reset); bit 3 clears the state pointer; bits 8:4 line-edge select (a line type 0-31 or a signal 0-13); bits 12:9 reset rate | fields | established | S11, S45 |
+| 0x07 | sequencer initial signal levels: bits 13:0 initial level of the 14 signals (bit n = signal n); bits 15:14 spares; bits 16, 17, 18 tri-state CSYNC, HSYNC, VSYNC (the firmware's 0x60000 on an old revision, with its "disabled sync outputs" message); bits 31:19 vertical-phase count | fields | established | S11, S45 |
+| 0x08 | genlock vertical phase and hysteresis: bits 12:0 internal vertical phase; 25:13 external vertical phase; 28:26 hysteresis width; 29 hysteresis enable | the load-format request's words 299 and 300 (always 0 from the host) are the width and enable, so hysteresis stays off | established | S11, S45 |
+| 0x09 | sequencer state-table port (auto-increments from the cleared pointer) | two states per word | established | S11, S45 |
+| 0x0a | selected line type, word A: edge mask for edges 0-31 | 32 bits | established | S11, S45 |
+| 0x0b | selected line type, word B: length minus 3 in 30:18, edge mask for edges 32-49 in 17:0 | 32 bits | established | S11, S45 |
+| 0x0c-0x13 | edge slots of the selected signal (slot s at 0x0c + s) | edge position in 12:0, 0x1fff = unused | established | S11, S45 |
+| 0x14 | pixel blank: bits 7:0 first, bits 15:8 last, bit 16 enable | three format words | established | S11, S45 |
+| 0x30 | phase-frequency detector control: bit 0 enable, bit 1 flip, bits 3:2 clock select (0 host, 1 host/2, 2 host/4, 3 a fourth setting the table prints as 75), bit 4 frame select (internal frame reset or detector), bits 15:5 comparator precision, bits 23:16 line count, bits 25:24 composite-sync source (0 internal, 1 external, 2 output format), bits 29:26 line count high (layout 1b only) | fields | established | S11, S45 |
+| 0x31, 0x32, 0x33, 0x34 | 0x31 and 0x32: sequence low and high (32 bits each; from format words 7-11 of the genlock request); 0x33: diagnostic (bits 11:0 duration count, bits 23:12 previous count); 0x34: frame duration (20 bits, layout 1b only) | words | established | S11, S45 |
+| 0x43 | `PSD_CONTROL`: bit 0 enable, bits 11:1 line count, bits 14:12 frames off, bits 17:15 frames on, bit 18 frame-reference select (layout 1b). The firmware's clear, sleep and set of bit 0 is this enable. PSD is the diagnostic's name for the external sync-detect block (inferred from the paired external-sync-detect interrupt) | fields | established layout; purpose inferred | S11, S45 |
+| 0x44 | video-requester control: bit 0 enable, bit 1 read enable, bit 2 external-request enable, bit 3 external request, bit 4 request done, bits 6:5 pixel size (0 small, 1 medium, 2 large, 3 xlarge), bit 7 dither, bit 8 transfer size (0 = 32-bit and 10-bit components, 1 = 42-bit and 12-bit), bit 9 transfer alpha, bit 10 transfer Z, bits 21:11 FIFO balance, bit 22 arbiter status, bit 23 interlaced cursor (layout 1b). Firmware pixel-format word 26: 0 (RGB10) sets nothing, 1 (alpha) sets bits 8 and 9, 2 (RGB12) sets bit 8, 3 sets bit 10 | bits 10:8 are not a single format code | established; the 32-bit and 42-bit reading of bit 8 is inferred (read from the table's enum order and the diagnostic's check of a 12-bit transfer on non-RGB) | S11, S45 |
+| 0x45 | tiles per frame-buffer row | 5 bits (mask 0x1f) | established | S11, S45 |
 | 0x47 | start line request word | tiles-1 in 2:0, groupxels-1 in 13:3, valid bit 14 | established | S11, S13 |
 | 0x48 | middle line request word | same fields plus repeat count in 22:15 | established | S11, S13 |
 | 0x49 | end line request word | same fields, valid never set | established | S11, S13 |
-| 0x4a | pan | bits 5:0 = (x mod 160) / 4; bits 7:6 = x mod 4 (the latter inferred) | established | S11 |
-| 0x50 + f, 0x58 + f | first tile address of field f (two banks) | tile address in bits 19:7 | established | S11 |
-| 0x60 + f | field request pattern of field f | value | established | S11 |
-| 0x70, 0x71, 0x73 | clock control and the two clock parameter sets | set layout: eight words each | inferred | S11 |
-| 0x81, 0x82 | genlock line ratio | bits 11:2 and bits 21:14 respectively | inferred | S11 |
-| 0x8a | FIFO control (written on option-board VOCs 0x1f, 0x2f, 0x30, 0x5f, 0xc7, 0xca) | bits 13:12 from the eye mask | inferred | S11, S13 |
-| 0x8f | field dominance | bit 9 | inferred | S5 |
-| 0x90 | size register | not read beyond its use | unknown | S13 |
+| 0x4a | pan: bits 5:0 groupxel offset = (x mod 160) / 4; bits 7:6 pixel offset = x mod 4 | fields | established (the diagnostic names bits 7:6 PIXEL_OFFSET) | S11, S45 |
+| 0x4b | `ZREQ` (layout 1b): bits 3:0 field count, bit 4 enable; unused by the firmware | fields | established | S45 |
+| 0x50 + f, 0x58 + f | per-field start: bits 6:0 start line, bits 19:7 first tile address, bits 23:20 skip count (the field-layout code is the skip); two banks | fields | established | S11, S45 |
+| 0x60 + f | field request pattern of field f: bit 0 stereo eye (0 left, 1 right); bits 2:1 colour (0 RGB, 1 R, 2 G, 3 B), repeated for four slots at bit offsets 0, 3, 6, 9 (eye) and 1, 4, 7, 10 (colour); bits 23:12 active lines; bits 27:24 next-cursor offset | fields | established | S11, S45 |
+| 0x70, 0x71, 0x72, 0x73 | PLL access: 0x70 control (bit 0 ready, bit 1 auto-update, bit 2 exec read, bit 3 exec write internal, bit 4 exec write external); 0x71 address (4 bits); 0x72 read-back (11 bits); 0x73 data (11 bits). The two clock parameter sets are not two registers: each is eight words written through address 0x71 and data 0x73, set 0 with exec-write-internal, set 1 with exec-write-external (as the firmware's clock routine sets bits 3 and 4) | fields | established layout; internal and external set mapping inferred | S11, S45 |
+| 0x81 | genlock horizontal clock: bit 0 clock source (0 external, 1 internal), bit 1 auto clock, bits 11:2 horizontal-rate divider | fields | established | S11, S45 |
+| 0x82 | genlock line ratio: bit 0 edge (0 falling, 1 rising), bits 13:1 line length, bits 21:14 divider | fields | established | S11, S45 |
+| 0x83, 0x84 | 0x83 horizontal mask 2: start 12:0, width 25:13; 0x84 back-porch clamp: edge bit 0, delay 13:1, width 21:14 (8 bits in layout 1b) | fields | established | S45 |
+| 0x8a | FIFO control (written on option-board VOCs 0x1f, 0x2f, 0x30, 0x5f, 0xc7, 0xca): bits 11:0 high water, bit 12 frame-reset enable, bit 13 field-reset enable, bit 14 external control enable, bit 15 interrupt source select (even or odd) | the firmware's eye-mask bits 13:12 are the two reset enables | established | S11, S13, S45 |
+| 0x8b, 0x8d | 0x8b FIFO pointer (write pointer 10:0, read pointer 21:11); 0x8d SAC control (bit 0 input enable, bit 1 output enable) | fields | established | S45 |
+| 0x8f | scaler control: bits 1:0 X filter (0 none, 1 minify, 2 magnify), bits 3:2 Y filter (adds 3 pass-through), bit 4 X magnify start pixel pair, bits 6:5 segment-switch preload, bit 7 interlace, bit 8 field-out select (output format or encoder), bit 9 encoder field dominance (0 even, 1 odd), bit 10 encoder frame-buffer write clock enable, bit 11 FIFO read clock (output-format clock or XMAP clock), bits 13:12 encoder frame mode (0 no drop, 1 field drop, 2 frame drop, 3 low latency), bit 14 encoder stereo mode, bits 18:15 vertical-minify kick, bits 20:19 first-field inhibit | field dominance is bit 9 | established | S5, S45 |
+| 0x90 | scaler coefficient registers 0x90-0x9d: 0x90 X coefficient max (20 bits), 0x91 X filter slope (21), 0x92 X delta (24), 0x93-0x96 X segment starts 0-3 (24), 0x97 Y coefficient max, 0x98 Y filter slope, 0x99 Y delta, 0x9a-0x9d Y segment starts (segments 0 and 1 of fields 0 and 1); the firmware's resize routine computes them | names and widths; value semantics inferred from the names | established | S13, S45 |
 
 
 ### 6.6 Video DAC, encoder and gain registers
@@ -1006,12 +1020,12 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 | DAC block register 1 | colour-map data: three consecutive writes red, green, blue per entry, index advancing | 10-bit components | inferred | S13 |
 | DAC block register 2 | indexed-register data | value | established | S13 |
 | DAC block register 3 | mode: start-up writes 6, waits, writes 7 | bit 0 a strobe (inferred) | inferred | S13 |
-| indexed 0x004 | pixel mask | 10 bits; start-up 0xff | established | S13 |
+| indexed 0x004 | pixel mask | 10 bits; start-up 0xff | established | S13, S45 |
 | indexed 0x005, 0x006 | written 0x88 and 0xe4 at start-up | values only | unknown | S13 |
 | indexed 0x200-0x203 | DAC cursor position: x low byte, x high byte, y low byte, y high byte | scaled to the channel output size | established | S7 |
-| indexed 0x204 | DAC cursor control | 4 bits; the kernel writes 5 (bits 0 and 2) for the owning channel and 0 for the rest; start-up 0 | established | S7, S13 |
+| indexed 0x204 | DAC cursor control | 4 bits; the kernel writes 5 (bits 0 and 2) for the owning channel and 0 for the rest; start-up 0 | established | S7, S13, S45 |
 | what each bit of the value 5 does | DAC cursor control bit meaning | bits 0 and 2 | unknown | S7 |
-| indexed 0x303, 0x304 ... | DAC cursor colours: six values streamed after index 0x303 | 10-bit components | inferred | S13 |
+| indexed 0x303, 0x304 ... | DAC cursor colours: six values streamed after index 0x303. The diagnostic names 0x304 `CURSOR_CLR_2`, so the six values are not all one colour group: 0x304 belongs to colour 2 | 10-bit components | inferred; the name for 0x304 is established, the assignment of 0x303-0x308 to colours is inferred | S13, S45 |
 | indexed 0x400 | DAC cursor image RAM select (256 image words streamed low byte first) | index | established | S7 |
 | cursor-load request word 0 | channel, 0-7 or 0xde | - | established | S5, S44 |
 | cursor-load request words 1-6 | foreground red, green, blue then background red, green, blue, each a 16-bit X colour >> 6 (10 bits); the firmware streams them to indexed DAC registers 0x303-0x308 | 6 words | established | S5, S44 |
@@ -1019,8 +1033,8 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 | resulting DAC image RAM byte, 64-wide image | byte 16y + 4(3 - floor(x/16)) + floor((x mod 16)/4), pixel at bits 7-2(x mod 4) downward; groups of 16 pixels run right to left across the row. A narrower image is right-aligned to a byte boundary (column x lands where x + 64 - 8 x ((w+7)/8) would); the builder does not compensate in the hot spot, which it stores unchanged | - | established as derived from the builder and the stream; that the DAC fills ascending RAM addresses from index 0x400 is inferred | S44 |
 | which colour a 2-bit DAC cursor value selects | by X semantics value 3 (mask and source) is foreground, 2 (mask only) background, 0 transparent; value 1 (source without mask) is not defined by any sender | - | inferred; value 1 and the register-to-colour assignment unknown | S44 |
 | cursor "channel block" setup | write 4 then 2 to DAC register 0 before the cursor control index (consecutive writes to one address) | values | established | S7 |
-| encoder 0x1800 / 0x1802 | encoder control address and data | index and value | inferred | S13 |
-| encoder 0x1801 / 0x1803 | encoder colour-map address and data | index and value | inferred | S13 |
+| encoder 0x1800 / 0x1802 | encoder control address port and data port (address pins Za1:Za0 = 0 and 2; the encoder has 2 address pins). Control index space, from the diagnostic's table: 0x00 global control (5 bits), 0x01 format control (7), 0x02 interface control, 0x04 key control, 0x05-0x07 D, E, F key, 0x10 horizontal sync tip, 0x11 breezeway, 0x12 burst length, 0x13 colour back porch, 0x14 extended colour back porch, 0x15 active, 0x16 active start, 0x17 active end, 0x19 front porch, 0x1a and 0x1b equalize low and high, 0x1c and 0x1d vertical sync low and high, 0x1e colour-bar length, 0x20-0x23 sub-carrier frequency bytes 4 to 1, 0x24 and 0x25 video phase LSB and MSB, 0x26 and 0x27 burst phase LSB and MSB; all 8 bits except as noted | index and value | established (index list, names, widths); a value's effect is inferred from its name | S13, S45, S46 |
+| encoder 0x1801 / 0x1803 | encoder colour-map address and data | index and value | inferred | S13, S45 |
 
 
 ## 7. Field layouts of multi-field words
