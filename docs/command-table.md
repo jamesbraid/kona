@@ -70,6 +70,10 @@ The names are role names in plain words, written for someone who transcribes the
 | S56 | the IR diagnostic's clip-register writer `init_clip` (irsaudit 0x100bea14) and its callers `standard_init` (0x100bdbfc, called with 0, 0, 0) and `update_registers` (0x100bc9f4) |
 | S57 | the IR diagnostic's raster-bus vector file `usr/diags/IR/data/tbusdata.Z`: the 23 writes of raster register 0x1c06 across the blocks tex2d_detail, samplemask, msalpha, linesRus, projtex and fog1 |
 | S58 | the IR diagnostic's display-id table tests and entry writers: `TEST_fmdid` (0x10067ad4), `TEST_fmovdid` (0x10067eec), `TEST_xmapdid` (0x100ad210), `TEST_xmapovdid` (0x100ad714), `define_imp_did` (0x1013d5d4) and `define_imp_ov_did` (0x1013d6f0) |
+| S59 | the N32 libGLcore's texture senders and format tables (`usr/gfx/arch/IP27KONA32/libGLcore.so`, 6.5.30m), named by the binary's own symbols: `subloadSimple`, `subgetSimple`, `tileinfo`, `bind2DMipmapTexture`, `bind3DMipmapTexture`, `bind3DTexture`, `bindBicubicTexture`, `bindDetailTexture`, `bind2DClipmapTexture`, `setClipmapRegisters`, `bindTexTable`, `bindARMTexCache`, `freeARMTexCache`, `updateTexBindID`, `computeActiveTarget`, `changeClamp`, `setShadowRegs`, `setDetailFilter`, `setSharpenFilter`, `lodBias2Scale`, `loadPostTextureScaleBias`, `__glKonTexParameter`, `DoDrawPixelsOrTexels` and the `__glkonim_Tex*` entry points; a scan of every compilation unit for a token constant stored to the command port gives each texture token's sender. Data objects `intern_format_arr3` (67 rows of four words), `st_bits_per_page` (12 word pairs) and `index_2_target_map` (four words), byte-identical in six KONA builds (o32, N32 and 64-bit builds of 6.5.30m and of the 6.5 base release, plus the base release's IP19 and IP25 N32 builds) |
+| S60 | the pipe firmware's texture handlers in arm1.u (6.5.30m): `SetupSubtexload` (0x0c034288), `SetupSubtexloadPos` (0x0c0343a0), `PixRM_TextureLoadSetup` (0x0c036570), `arm_texsetup` (0x0c0364e0), `ResolveTextureInternalFormat` (0x0c036424), `GetTexManageBindParam` (0x0c036a10), `arm_texbind` (0x0c036ae4), `tbus_write_word` (0x0c036408), `arm_drawtexels` (0x0c02b7a8), `arm_texenvf` (0x0c024ff4), `arm_texenvi` (0x0c025030), `arm_texgend`/`arm_texgenf` (0x0c024d50), `sendTexTable` (0x0c02539c), `arm_gettexenvfv` (0x0c025098) and `arm_gettexgenfv` (0x0c03864c). The same register-descriptor words, texture-environment records and format tables are byte-for-byte present in the 6.5 base release's `arm1.u` |
+| S61 | the IR diagnostic's raster-bus vector blocks `tex2d_detail.tbus` (3,396 words) and `projtex.tbus` (252,000 words) in `usr/diags/IR/data/tbusdata.Z`: texture mode and size (0x3fd4, 0x3fd5), the load registers 0x7fc1-0x7fc5, 0x3ff8, the filter table 0x1810-0x181f and 0x1850-0x1852, and 0x1019/0x101a/0x5000-0x5003 |
+| S62 | the geometry engine's texture-environment listing [texenv.S listing](../ucode/ge_listing/texenv.S.lst) (`mgebi_TexEnv`, `mValidateTexenvMode`) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -308,34 +312,36 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0x011 | set a texture-environment parameter (float form) | 5 | y | inferred | S3 |
-| 0x012 | set a texture-environment parameter (integer form) | 5 | y | inferred | S3 |
-| 0x013 | texture-coordinate generation, double form | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x014 | texture-coordinate generation, float form | 9 | y | inferred | S3 |
-| 0x015 | texture-coordinate generation, integer form | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x016 | bind a texture by old-style binding | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x0fd | copy a 2D texture image from the frame buffer | 17 | y | inferred | S3 |
-| 0x106 | bind a linear texture | 7 | y | inferred | S3 |
-| 0x173 | texture-load set-up (image size and format) | 11 | y | inferred | S3 |
-| 0x174 | draw texels into texture memory | 19 | n | inferred | S3 |
-| 0x176 | texture-load by identifier | 1 | y | inferred | S3 |
-| 0x177 | select the active texture unit | 1 | y | inferred | S3 |
-| 0x178 | bind a texture by identifier | 1 | y | inferred | S3 |
-| 0x17a | bind a bicubic texture | 3 | n | inferred | S3 |
-| 0x17b | bind a 3D mip-mapped texture | 4 | n | inferred | S3 |
-| 0x17c | bind a 3D texture | 2 | n | inferred | S3 |
-| 0x17d | bind a detail texture | 6 | y | inferred | S3 |
-| 0x17e | load one entry of the ARM texture table (33 words) | 3 | y | inferred | S3 |
-| 0x1aa | bind a 2D clip-map texture | 7 | y | inferred | S3 |
-| 0x1bb | set a texel-store parameter | 2 | y | inferred | S3 |
-| 0x1c4 | bind an ARM texture-cache entry | 1 | y | inferred | S3 |
-| 0x1c7 | set shadow-texture state | 3 | y | inferred | S3 |
-| 0x1d5 | bind a texture, current form | 7 | y | inferred | S3 |
-| 0x1d6 | pop texture-generation state | 1 | n | inferred | S3 |
-| 0x1d7 | change the post-texture scale and bias | 4 | y | inferred | S3 |
-| 0x1e0 | invalidate an ARM texture-cache index | 2 | y | inferred | S3 |
+| 0x011 | set a texture-environment parameter (float form): name word, then four float values | 5 | y | established | S3, S59, S60 |
+| 0x012 | set a texture-environment parameter (integer form): name word, four values | 5 | y | established | S3, S59, S60 |
+| 0x013 | texture-coordinate generation, double form: never sent; the handler is a not-implemented stub that prints a message and reads no payload | 0 | n | established | S3, S59, S60 |
+| 0x014 | texture-coordinate generation, float form (nine words) | 9 | y | established | S3, S59, S60 |
+| 0x015 | texture-coordinate generation, integer form: never sent; not-implemented stub | 0 | n | established | S3, S59, S60 |
+| 0x016 | old-style texture bind: 36 payload words; the handler is never sent by shipped client software | 36 | y | established | S3, S59, S60 |
+| 0x0fd | copy a 2D texture image from the frame buffer: 17 words | 17 | y | established | S3, S59, S60 |
+| 0x106 | bind a linear texture; sent in place of 0x1d5 when bits 27:24 of the bind control word equal 3 | 7 | y | established | S3, S59 |
+| 0x173 | texture-load set-up (image size and format): eleven words; the handler runs, no shipped sender | 11 | y | established | S3, S59, S60 |
+| 0x174 | draw texels into texture memory: header of 20 words (word 19 is the last-word read) | 19 | n | established | S3, S59, S60 |
+| 0x176 | texture-load finish: one word, the cache entry number | 1 | y | established | S3, S59 |
+| 0x177 | select the active texture target: one word | 1 | y | established | S3, S59 |
+| 0x178 | bind a texture by cache entry number: one word | 1 | y | established | S3, S59 |
+| 0x17a | bind a bicubic texture: five words (three read plainly, two through the address reader) | 5 | n | established | S3, S59, S60 |
+| 0x17b | bind a 3D mip-mapped texture: 14 words | 14 | n | established | S3, S59 |
+| 0x17c | bind a 3D texture: 4 words | 4 | n | established | S3, S59 |
+| 0x17d | bind a detail texture: 6 words | 6 | y | established | S3, S59 |
+| 0x17e | load one filter-table slot: slot number then 33 words | 34 | y | established | S3, S59, S60 |
+| 0x1aa | bind a 2D clip-map texture: 8 words | 8 | y | established | S3, S59 |
+| 0x1bb | set a texel-store parameter: two words | 2 | y | established | S3, S59 |
+| 0x1c4 | bind (reset) an ARM texture-cache entry: one word | 1 | y | established | S3, S59 |
+| 0x1c7 | set shadow-texture state: three words; the handler runs, no libGLcore sender | 3 | y | established | S3, S59, S60 |
+| 0x1d5 | bind a texture, current form: five words | 5 | y | established | S3, S59 |
+| 0x1d6 | pop texture-generation state: one selector word, then a long run of host words to engine memory | 1 | n | established for the role; inferred for the 0x70-word run length | S3, S59, S27 |
+| 0x1d7 | change the post-texture scale and bias: four words (unit, enables, packed scale, packed bias) | 4 | y | established | S3, S59 |
+| 0x1e0 | invalidate an ARM texture-cache index: two words | 2 | y | established | S3, S59 |
 
 The word layouts behind these tokens are in sections 7.10-7.14: the load headers (0x173, 0x174, 0x176) in 7.10, level addresses and the filter-coefficient table in 7.11, texel formats in 7.12, the binds in 7.13 and the environment and filter state in 7.14. Two corrections to the role names above: token 0x174 carries twenty words (nineteen plain reads and a final read, which decides whether the image follows inline), and token 0x17e carries thirty-four (a slot number and thirty-three filter-coefficient words), because the firmware reads them through a block helper that the scan does not count.
+
+The payload counts in this table are now the firmware handlers' own word counts, each checked against what the client sender stores (S59, S60), so the scan caveat in section 2 no longer applies to these rows. Roles come from the handler and the sender's own routine names. Tokens 0x013 and 0x015 are never sent: the client converts the double and integer forms and sends 0x014. No client compilation unit stores tokens 0x016, 0x173, 0x175 or 0x1c7; the IRIS GL library and the X server module were not scanned for them. The scan matches a token load followed by a command-port store within fourteen instructions and does not see tokens built in registers earlier.
 
 ### 2.12 Pixels, bitmaps and filters
 
@@ -385,9 +391,9 @@ The word layouts behind these tokens are in sections 7.10-7.14: the load headers
 | 0x048 | query a pixel map (float) | 3 | y | inferred | S3 |
 | 0x04b | query the polygon stipple | 1 | y | inferred | S3 |
 | 0x04c | query state (generic) | 1 | y | inferred | S3 |
-| 0x04d | query texture environment (float) | 1 | y | inferred | S3 |
-| 0x050 | query texture generation (float) | 2 | y | inferred | S3 |
-| 0x052 | query a texture image | 18 | y | inferred | S3 |
+| 0x04d | query texture environment (float): one word | 1 | y | established | S3, S59, S60 |
+| 0x050 | query texture generation (float): two words | 2 | y | established | S3, S59, S60 |
+| 0x052 | query a texture image: 18 words | 18 | y | established | S3, S59, S60 |
 | 0x0ea | query a colour table | 4 | y | inferred | S3 |
 | 0x0ec | query colour-table parameters | 2 | y | inferred | S3 |
 | 0x0ee | query the line-mode limit table | 1 | y | inferred | S3 |
@@ -542,22 +548,24 @@ Tokens whose map entry has bit 0 set never reach a processor routine: the host i
 
 | Token | Role | Form | Legal between begin and end | Chain | Command no. | Words that follow | Grade | Evidence |
 |---|---|---|---|---|---|---|---|---|
-| 0x07b | set current texture coordinate, 1 components, double | geometry | yes | no | 146 | 2 | inferred | S1, S4 |
-| 0x07c | set current texture coordinate, 1 components, single float | geometry | yes | no | 146 | 1 | inferred | S1, S4 |
-| 0x07d | set current texture coordinate, 1 components, signed 32-bit integer | geometry | yes | no | 18 | 1 | inferred | S1, S4 |
-| 0x07e | set current texture coordinate, 1 components, signed short | geometry | yes | no | 18 | 1 | inferred | S1, S4 |
-| 0x07f | set current texture coordinate, 2 components, double | geometry | yes | no | 146 | 4 | inferred | S1, S4 |
-| 0x080 | set current texture coordinate, 2 components, single float | geometry | yes | no | 146 | 2 | inferred | S1, S4 |
-| 0x081 | set current texture coordinate, 2 components, signed 32-bit integer | geometry | yes | no | 18 | 2 | inferred | S1, S4 |
-| 0x082 | set current texture coordinate, 2 components, signed short | geometry | yes | no | 18 | 2 | inferred | S1, S4 |
-| 0x083 | set current texture coordinate, 3 components, double | geometry | yes | no | 146 | 6 | inferred | S1, S4 |
-| 0x084 | set current texture coordinate, 3 components, single float | geometry | yes | no | 146 | 3 | inferred | S1, S4 |
-| 0x085 | set current texture coordinate, 3 components, signed 32-bit integer | geometry | yes | no | 18 | 3 | inferred | S1, S4 |
-| 0x086 | set current texture coordinate, 3 components, signed short | geometry | yes | no | 18 | 3 | inferred | S1, S4 |
-| 0x087 | set current texture coordinate, 4 components, double | geometry | yes | no | 146 | 8 | inferred | S1, S4 |
-| 0x088 | set current texture coordinate, 4 components, single float | geometry | yes | no | 146 | 4 | inferred | S1, S4 |
-| 0x089 | set current texture coordinate, 4 components, signed 32-bit integer | geometry | yes | no | 18 | 4 | inferred | S1, S4 |
-| 0x08a | set current texture coordinate, 4 components, signed short | geometry | yes | no | 18 | 4 | inferred | S1, S4 |
+| 0x07b | set current texture coordinate, 1 components, double | geometry | yes | no | 146 | 2 | established | S1, S4, S59 |
+| 0x07c | set current texture coordinate, 1 components, single float | geometry | yes | no | 146 | 1 | established | S1, S4, S59 |
+| 0x07d | set current texture coordinate, 1 components, signed 32-bit integer | geometry | yes | no | 18 | 1 | established | S1, S4, S59 |
+| 0x07e | set current texture coordinate, 1 components, signed short | geometry | yes | no | 18 | 1 | established | S1, S4, S59 |
+| 0x07f | set current texture coordinate, 2 components, double | geometry | yes | no | 146 | 4 | established | S1, S4, S59 |
+| 0x080 | set current texture coordinate, 2 components, single float | geometry | yes | no | 146 | 2 | established | S1, S4, S59 |
+| 0x081 | set current texture coordinate, 2 components, signed 32-bit integer | geometry | yes | no | 18 | 2 | established | S1, S4, S59 |
+| 0x082 | set current texture coordinate, 2 components, signed short | geometry | yes | no | 18 | 2 | established | S1, S4, S59 |
+| 0x083 | set current texture coordinate, 3 components, double | geometry | yes | no | 146 | 6 | established | S1, S4, S59 |
+| 0x084 | set current texture coordinate, 3 components, single float | geometry | yes | no | 146 | 3 | established | S1, S4, S59 |
+| 0x085 | set current texture coordinate, 3 components, signed 32-bit integer | geometry | yes | no | 18 | 3 | established | S1, S4, S59 |
+| 0x086 | set current texture coordinate, 3 components, signed short | geometry | yes | no | 18 | 3 | established | S1, S4, S59 |
+| 0x087 | set current texture coordinate, 4 components, double | geometry | yes | no | 146 | 8 | established | S1, S4, S59 |
+| 0x088 | set current texture coordinate, 4 components, single float | geometry | yes | no | 146 | 4 | established | S1, S4, S59 |
+| 0x089 | set current texture coordinate, 4 components, signed 32-bit integer | geometry | yes | no | 18 | 4 | established | S1, S4, S59 |
+| 0x08a | set current texture coordinate, 4 components, signed short | geometry | yes | no | 18 | 4 | established | S1, S4, S59 |
+
+Each token's word count equals what the client stores: the single-float forms store the token then one to four floats; the double forms two, four, six or eight words (a four-component double stores four double registers, which independently confirms that the geometry count field 0 reads as 8 for this token); the integer forms one word per component; the short forms pack the first short into the token word's high half and the rest into following words, so the count equals the number of shorts (S59).
 
 ### 3.5 Vertex submission
 
@@ -1288,25 +1296,25 @@ A texture level reaches texture memory as one or more texel-draw commands (token
 | 5 | byte offset of the image inside its first word (the low two bits of the host source address, taken before the unpack skips) | 0-3 | established | S25, S30 |
 | 6 | DMA flag | 0 = image words follow in the command; 1 = image arrives by a later DMA packet | established | S25, S30 |
 | 7 | row mode | 0 = the image is one byte stream (contiguous rows); 1 = every row starts on a word boundary (strided rows) | established | S25, S30 |
-| 8 | caller-supplied split field | every texel sender found sends 0; what hardware does with a nonzero value is not read | established for the value 0; unknown for any other | S26, S30 |
+| 8 | caller-supplied split field | every texel sender found sends 0 (the fourth argument of the client's draw routine is the zero register on the texel path). The firmware stores it at descriptor +0x78, shared with the pixel-draw final word; the readers found are host-format pixel paths, and neither `ParseHostImage` nor the two texture-load set-up routines read it. That is no reader found, not proof that none exists. What hardware does with a nonzero value is not read | established for the value 0; unknown for any other | S26, S30, S59, S60 |
 | 9 | destination storage-format code (the texel format id) | a row number into the firmware's format tables and equal to the texture-mode register's texel-format field; codes in section 7.12 | established | S25, S26, S30 |
-| 10 | texture-cache entry number (the load id) | the same number words 0 of the bind commands, 0x176, 0x178, 0x1c4 and 0x1c5 carry (section 7.13). Observed identical to the entry number in every recorded load | established | S25, S29, S30 |
-| 11 | first texel x (s start) | 16-bit coordinate | inferred | S26, S30 |
-| 12 | first texel y (t start) | 16-bit coordinate | inferred | S26, S30 |
-| 13 | last texel x, inclusive | 16-bit coordinate | inferred | S26, S30 |
-| 14 | last texel y, inclusive | 16-bit coordinate | inferred | S26, S30 |
-| 15 | destination slice (r start) | 11-bit; a volume sends one command per slice with this word counting up from 0 | inferred | S26, S30, S29 |
-| 16 | physical size exponents, the image of the texture-load size register (0x7fc1) | 3:0 s, 7:4 t, 11:8 r; each exponent is raised to at least the layout mode's tile minimum (layout mode 0: s 3, t 2; mode 1: s 3, t 2, r 1; mode 2: s 3, t 1, r 1). Observed 0x23 (an 8 by 4 tile), 0x677 (128 by 128 by 64) | established for the image layout; inferred that the exponents are log2 sizes | S26, S29, S30 |
-| 17 | layout and bank, the image of the texture-load miscellaneous register (0x7fc5) | 1:0 texel size code; 2 DMA flag (equals word 6; also the register's load-scissor enable); 3 bank bit; 6:5 layout mode; 10:7 s address bits; 14:11 t address bits; 15 interlaced download | established | S25, S26, S30 |
-| 18 | even-side address word of the level | see section 7.11 | inferred | S26, S29, S30 |
-| 19 | odd-side address word of the level | see section 7.11 | inferred | S26, S29, S30 |
+| 10 | texture-cache entry number (the load id) | the same number words 0 of the bind commands, 0x176, 0x178, 0x1c4 and 0x1c5 carry (section 7.13). Observed identical to the entry number in every recorded load. Loading into an entry that is currently bound makes the pipe write the bind id to raster register 0x5002 and the bind counter to 0x1003 and invalidate the bind | established | S25, S29, S30, S60 |
+| 11 | first texel x (s start) | low half of load registers 0x7fc2 and 0x7fc3: the origin of this piece; 16-bit coordinate. The client stores its x argument here | established | S26, S30, S59, S60 |
+| 12 | first texel y (t start) | high half of load register 0x7fc2 (the set-up routine adds the row offset dy, zero for a texel draw); 16-bit coordinate | established | S26, S30, S59, S60 |
+| 13 | last texel x, inclusive | low half of load register 0x7fc4; the client stores x + width - 1. The diagnostic's vectors write 0x7fc4 = 0x000f000f for a 16-texel image, 0x00070007 for 8 by 8 and 0x003f003f for the 64 by 64 projective texture, so the bound is inclusive | established | S26, S30, S59, S60, S61 |
+| 14 | last texel y, inclusive | high half of load register 0x7fc4 | established | S26, S30, S59, S60, S61 |
+| 15 | destination slice (r start) | high half of load register 0x7fc3, plus the slice counter the position routine increments after each call; 11-bit. The register is established; that a volume sends one command per slice with this word counting up from 0 stays an observation | established for the register; the per-slice count from recordings | S26, S30, S29, S60 |
+| 16 | physical size exponents, the image of the texture-load size register (0x7fc1) | 3:0 s, 7:4 t, 11:8 r; each is a log2 size, built as the base exponent minus the level number, floored at zero, then raised to the layout mode's tile minimum (exponents s, t, r: mode 0 (3, 2, 0); mode 1 (3, 2, 1); mode 2 (3, 1, 1); mode 3 (5, 3, 0); mode 4 (3, 2, 0)). Observed 0x23 (an 8 by 4 tile), 0x677 (128 by 128 by 64); the diagnostic's vectors write 0x7fc1 = 0x33, 0x44, 0x66 beside last-texel bounds of 7, 15, 63, i.e. 8, 16, 64 texels | established | S26, S29, S30, S59, S61 |
+| 17 | layout and bank, the image of the texture-load miscellaneous register (0x7fc5) | 1:0 texel size code; 2 DMA flag (equals word 6; also the register's load-scissor enable); 3 bank bit (set when the texture object's first-level bank field equals the level number's parity); 6:5 layout mode; 10:7 s address bits and 14:11 t address bits, both from the client's table of address bits per page indexed by layout mode and size code (pairs s, t: mode 0 (4,4) (3,4) (2,4); mode 1 (3,2) (3,1) (3,1); mode 2 (3,2) (2,2) (2,1); mode 3 (5,3) (4,3) (3,3); rows indexed by size code 0, 1, 2); 15 interlaced download. The diagnostic itself writes 0x2181, 0x2189, 0x2200 and 0x2208 in its detail vector and 0x2181 in the projective vector, independently of the client, and these are exactly the client table's values | established | S25, S26, S30, S59, S61 |
+| 18 | even-side address word of the level | for an ordinary 2D level the address goes here when bit 3 of word 17 is 0 and in word 19 when it is 1, the other word zero. The pipe turns the pair into one raster-bus word whose high half is 0x50000000 plus word 19 shifted right 8 and whose low half is word 18 plus the low byte of word 19 shifted to bits 31:24. The 3D mip-map bind uses the same packing, so the pair is one object. Address units stay inferred (section 7.11) | established for the placement and the pipe's use; units inferred | S26, S29, S30, S59, S60 |
+| 19 | odd-side address word of the level | see word 18 | established for the placement | S26, S29, S30, S59, S60 |
 | after word 19: image length | not sent in any word; computed from the current unpack state | with bytes per pixel p, row length L (0 means the width), alignment A, skip rows and skip pixels: stride s = ceil(L x p / A) x A; total T = s x height - (s - width x p); start S = word 5 + skip rows x s + skip pixels x p. Row mode 0: ceil((S + T) / 4) - floor(S / 4) words. Row mode 1: each row counted on its own as the words spanning its useful bytes | established | S25 |
 | after word 19: inline image words | whole words per row including the byte prefix and suffix | byte order is the client's (big-endian); byte swapping is separate unpack state sent as a pixel-store parameter (token 0x1bb, section 7.14) | established | S30, S27 |
 | DMA image | the DMA packet carries the source address, total bytes, line size and gap | the address is the exact byte address (no word rounding); contiguous: line size is the total and gap 0; strided: line size width x p and gap s - width x p | established | S30 |
 | client's choice of DMA | above two size limits (their values not read) the client sends the command through its DMA-write request | - | established | S29 |
-| hardware use of words 8 and 11-15 | no register write traced | - | unknown | S26 |
+| hardware use of words 8 and 11-15 | words 11-15 reach the load registers 0x7fc2, 0x7fc3 and 0x7fc4 as in the rows above; the texel-format register 0x3ff8 and registers 0x7fc1 and 0x7fc5 come from words 16, 17 and 9. Word 8 stays unknown | established for words 11-15; unknown for word 8 | S60 |
 
-Word 17 values the client builds, before the DMA and bank bits: layout family zero (every storage code except the 8-bit RGB and RGBA ones) is 0x2200 in mode 0, 0x11a0 in mode 1 and 0x11c0 in mode 2; family one (8-bit RGB and RGBA, texel size 1) is 0x2181 in mode 0, 0x09a1 in mode 1 and 0x1141 in mode 2. Add 4 for DMA and 8 for bank one. Established as the client's encoding (S30); the recordings carry 0x2204, 0x220c, 0x2185, 0x218d and 0x09ad (S29).
+Word 17 values the client builds, before the DMA and bank bits, follow the texel size code (bits 1:0) and not an RGB family: size code 0 (the 16-bit formats) is 0x2200 in mode 0, 0x11a0 in mode 1 and 0x11c0 in mode 2; size code 1 (every 32-bit format, storage codes 0x28, 0x30 and 0x38) is 0x2181 in mode 0, 0x09a1 in mode 1 and 0x1141 in mode 2; size code 2 (the 64-bit slot, 0x50) is 0x2102 in mode 0. Add 4 for DMA and 8 for bank one. Layout mode 4 (the detail image) is sent twice per piece with the bank bit flipped. Established as the client's encoding (S30, S59) and by the diagnostic's own writes (S61); the recordings carry 0x2204, 0x220c, 0x2185, 0x218d and 0x09ad (S29).
 
 **Load finish (token 0x176, one word).** The word is the cache entry number. The firmware advances a 20-bit load counter and stores it in the entry's load-id slot, and writes the counter to the raster bus. Sent once per level, after all of that level's texel draws (a volume's slices, and the replicated copies of a border-less small level included) (established, S27, S30). A second load header naming the same entry as the next command also starts a new image in a back end's model; that is a model rule, not a hardware fact (inferred, S29).
 
@@ -1316,12 +1324,11 @@ Word 17 values the client builds, before the DMA and bank bits: layout family ze
 |---|---|---|---|---|
 | 0 | image width | kept in the state block; its base-two logarithm goes to the load size register (0x7fc1) bits 3:0 | established | S27 |
 | 1 | image height | kept; logarithm goes to bits 7:4 | established | S27 |
-| 2 | not used by the handler's own register writes | kept on the stack | unknown | S27 |
+| 2, 4 | not used by the handler's own register writes | read and stored to two stack slots that nothing in the handler or its two callees reads back; the callee that writes the registers reads other slots of the caller's frame, which the handler never writes | dead stores in a handler with no sender | unknown (newly explained) | S60 |
 | 3 | internal-format code (public enumerant) | classified: 0x8047-0x8048 and 0x8058-0x8059 give class 1, 0x805a-0x805b give class 2, every other code from 0x803b to 0x805b gives class 0, other codes leave the class unchanged. The class goes to bits 1:0 of the load miscellaneous register (0x7fc5) | established | S27 |
-| 4 | not used by the handler's own register writes | kept on the stack | unknown | S27 |
-| 5 | bank selector | zero sets the target-bank bit (bit 3) of the miscellaneous register, nonzero clears it | inferred | S27 |
-| 6, 7, 8 | saved into the texture-state block | no use in the handler's own writes | unknown | S27 |
-| 9 | layout mode | goes to bits 6:5 of the miscellaneous register; bits 10:7 get 4 minus the class | inferred | S27 |
+| 5 | bank selector | zero sets the target-bank bit (bit 3) of the miscellaneous register image, nonzero clears it | established | S27, S60 |
+| 6, 7, 8 | one register write and an address-pair image | word 6 is written verbatim to raster register 0x5001 (the global-offset register). Words 7 and 8 form an address-pair image like words 18 and 19 of the texel draw (low 21 bits of word 7 plus the low byte of word 8 in bits 31:24; high half 0x50000000 plus word 8 shifted right 8), with the two halves handed to the bus writer in the opposite order | firmware behaviour; never exercised, since no sender exists | established | S27, S60 |
+| 9 | layout mode | goes to bits 6:5 of the miscellaneous register image; bits 10:7 get 4 minus the class | established | S27, S60 |
 | 10 | final word | discarded | established | S27 |
 | target | forced to 0x0de1 (2D) whatever the payload says; the r logarithm is therefore never written | - | established | S27 |
 | who sends it | no sender found in the shipped driver, library, server or kernel | - | established | S27 |
@@ -1334,15 +1341,16 @@ A load does not name its level. The level is implied by the address words in its
 |---|---|---|---|
 | level origin in the tile (header words 11, 12) | a level at or above the tile loads once at the origin of its rectangle. A level smaller than the tile (border-less) is sent as 2^(tile exponent - level exponent) copies per axis, the copy index times the level's own size giving each origin, so whole copies cover the tile. The recordings' (4,0), (6,2), (7,3) origins (and the 512 by 64 cases) are the last of these copies | established | S40, S29 |
 | what sets the origin | resolved: replication by the client, not a hardware corner rule. Where the border texels of a small bordered level sit is unknown (the separate bordered-level routine was not read) | established | S40 |
-| level size on the wire | header word 16 holds the physical size exponents of this level: base physical exponent minus the level number, floored at the tile minimum (s 3, t 2 in layout mode 0). Logical size of level 0 is the low nibbles of bind word 3; each level halves every axis down to 1 | inferred | S30 |
-| level address, word 18 or 19 | one address word per level. The same word sits in header word 19 when the bank bit (word 17 bit 3) is set and in word 18 otherwise. Observed for all 26 levels of three recorded textures; that the word is an address is inferred from the match with the bind's table | inferred | S29 |
-| level banks | consecutive levels alternate banks, the first level's bank given by bit 28 of bind word 2. Observed for the recorded textures | inferred | S29, S30 |
-| level address table in the bind (section 7.13) | sixteen words, level 0 first, one word per level, ended by 0xffffffff | inferred | S29, S30 |
-| address units and the position of a level inside the address | one unit = 256 bits (16 sixteen-bit lanes; 16, 8 or 4 texels for 16/32/64-bit texels), counted per bank. The diagnostic's allocator advances a bank's next-level address by texels x lanes / 16, aligns up to the texel width in lanes, and writes the same value to both the even and odd fields of the load-base register; the bank bit selects the bank. The units of the global-offset registers 0x101a/0x5001 are not reconciled | established for the allocator, inferred for the hardware unit; global-offset unit unknown | S38, S26 |
+| level size on the wire | header word 16 holds the exponents of this level: the base exponent minus the level number, floored at zero, then raised to the layout mode's tile minimum from the client's tile routine (exponents s, t, r: mode 0 (3, 2, 0); mode 1 (3, 2, 1); mode 2 (3, 1, 1); mode 3 (5, 3, 0); mode 4 (3, 2, 0)). Logical size of level 0 is the low nibbles of bind word 3; each level halves every axis down to 1 | established | S30, S40, S59 |
+| level address, word 18 or 19 | as texel-draw words 18 and 19 (section 7.10): the level address goes in slot [bank bit] of a two-word pair and zero in the other. Observed for all 26 levels of three recorded textures; that the word is an address matches the bind's table | established for the slot rule; units inferred | S29, S40, S60 |
+| level banks | bit 3 of header word 17 is (the object's first-level bank field equals the level number's parity), and the pair slot follows the same bit; for a first-level field of 1, level 0 gets bit 3 = 0. Consecutive levels therefore alternate. Which physical bank each polarity selects is not read | established for the formula; physical meaning inferred | S29, S30, S40 |
+| level address table in the bind (section 7.13) | sixteen words, level 0 first, one word per level (the sender copies sixteen words from the table pointer in the texture object); the 0xffffffff terminator is inferred | established for the sixteen words; terminator inferred | S29, S30, S59 |
+| address units and the position of a level inside the address | one unit = 256 bits (16 sixteen-bit lanes; 16, 8 or 4 texels for 16/32/64-bit texels), counted per bank. The diagnostic's allocator advances a bank's next-level address by texels x lanes / 16, aligns up to the texel width in lanes, and writes the same value to both the even and odd fields of the load-base register; the bank bit selects the bank. The units of the global-offset registers 0x101a/0x5001 are not reconciled: the diagnostic writes 0x101a and 0x5001 only as 0 in both texture vector blocks, and the firmware writes 0x5001 only from the texture-load set-up path that has no sender, so no non-zero value exists in any shipped software and the unit cannot be derived from software | established for the allocator, inferred for the hardware unit; global-offset unit unknown | S38, S26, S60, S61 |
 | address space | one program's levels sit in a region of the pipe's texture memory chosen at allocation; table words are relative to that region (a swap-in moved the region and left the table words unchanged) | inferred | S29 |
 | layout mode 2 (mip-mapped volume) | one pair of descriptor words per two levels: levels 2k and 2k + 1 share the pair, header words 18 and 19 both carry it, and bit 3 of word 17 is the level's parity, not an allocation bank | established | S30 |
 | layout mode 1 (single-level volume) | a two-word table; its pair goes in words 18 and 19 for every slice; bit 3 is the bank state, not level parity | established | S30 |
-| where mode-1 texels sit inside the pair, and how the pipe addresses them | not read | unknown | S29 |
+| layout modes 3 and 4 | mode 3 is the bicubic bind (the pair is the table's first two words, as for the single-level volume); mode 4 is the detail image (the pair at the texture object's detail-address fields, loaded twice per piece with the bank bit flipped); tile minimum and address bits as in the word 17 row of section 7.10 | established | S59, S40 |
+| where mode-1 texels sit inside the pair, and how the pipe addresses them | the client and firmware only pass the pair through; the layout inside the pair is hardware texture-memory addressing. Tried: the address-bits-per-page table (address bits per axis, no placement), the diagnostic's vectors (zero offsets only), the board netlists (pin-to-pin wiring, not logic) | unknown | S29, S59, S61 |
 | border texels | positive border at x = W or y = H, negative border at the physical extent minus one; border fill is sent as constant-colour rectangles | inferred | S30 |
 | where a far-corner level's border texels sit | not read | unknown | S29 |
 
@@ -1354,7 +1362,7 @@ A load does not name its level. The level is implied by the address words in its
 | words 1-33, type-0 (four-tap cubic) table | 129 samples, each a signed byte in 1.7 fixed point (range -1 to 127/128, rounding toward zero), four bytes to a word, first sample in the top byte. Observed: every word's four bytes sum to 127-129, from 0x00007f00 to 0xf84848f8 | established for the encoding; inferred that each word is four taps over 128 | S26, S29, S30 |
 | words 1-33, spline form (sharpen and detail) | 64 coefficients as ten-bit codes: bits 7:0 hold the signed mantissa shifted left two, bits 1:0 hold an exponent 0-3, so value = mantissa x 2^exponent / 128. Four codes fill two words (c0 in 9:0, c1 in 19:10, c2 in 29:20, c3 low two bits in 31:30 of the first word and c3 >> 2 in bits 7:0 of the second). Word 33 is padding | established as the client's encoding | S26, S30 |
 | which type a given table is | the command carries no type, so the pipe cannot tell the two forms apart; a back end must infer it from the bind that names the slot | inferred | S30 |
-| the table's hardware write | kind 0 writes the 33 words to bus addresses 0x1820-0x1840 (one word each); other kinds write sixteen word pairs from 0x1800 or 0x1810, the second word of each pair merged into the address | inferred | S27 |
+| the table's hardware write | kind 0 writes the 33 words to bus addresses 0x1820-0x1840 (one word each); other kinds write sixteen word pairs from 0x1800 or 0x1810, the second word of each pair merged into the address. The diagnostic's detail test writes 0x1810-0x181f 31 times (sixteen registers each, 48-bit values) and 0x1850-0x1852 91 times (0, 0xffffffff, 0) | established | S27, S60, S61 |
 | which sign sharpening takes | the client's types double (type 1) or negate (type 2) the samples; which type it uses for sharpen and which for detail is not read | unknown | S30 |
 | what the tables control in the sampler beyond the bind's reference to them | not read | unknown | S26 |
 
@@ -1362,24 +1370,29 @@ A load does not name its level. The level is implied by the address words in its
 
 The destination storage code (texel-draw word 9) selects a row of the firmware's two format tables and equals the texture-mode register's texel-format field (section 7.13, word 2 bits 20:14). Each row gives a destination component signature (a mask with one nibble per component, low nibble = red or luminance, high nibble = alpha), a bus format code for the packed data words and a no-alpha flag. A format's texel size code (header word 17 bits 1:0) is the log2 of its width in 16-bit units: 0 for rows 0x08-0x10, 0x14, 0x18 (16 bits); 1 for rows 0x20, 0x28, 0x30, 0x38 (32 bits); 2 for rows 0x40 and 0x50 (a 64-bit slot, 48 bits used). Two shipped programs agree: the diagnostic's texel-size routine and the firmware's texture read-back set-up, which writes the same 0/1/2 to the read-back format register (16/32/48-bit words) (established, S38, S39). Codes 0x00-0x07 are not exercised by the diagnostic; the firmware treats 0x00-0x06 as 16-bit and 0x07 and 0x11-0x13 as 64-bit, while the diagnostic rejects 0x11-0x13 (unknown).
 
-The packing below is how the pipe's output stage arranges texels in the 64-bit words it moves to texture memory. It is the bus data layout of the converter records, graded inferred; the bit order of a texel inside texture memory is not read for any format (a row at the end of the table says so).
+The packing below is how the pipe's output stage arranges texels in the 64-bit words it moves to texture memory. It is the bus data layout of the converter records, now read a second time from the diagnostic's host formatter, which builds the 64-bit bus words it writes to texture memory and is independent of the converter records (S38); each row below is graded established where the two agree. The formatter has cases only for storage codes 0x08-0x10, 0x14, 0x18, 0x20, 0x28, 0x30, 0x38, 0x40 and 0x50, and rejects every other code. Its source components are 32-bit words holding a 16-bit value in the low half, it takes the top N bits of that half, and its pixels are 16 bytes apart. The bit order of a texel inside texture memory is not read for any format (a row at the end of the table says so).
 
 | Storage code | Formats sent (public internal formats) | Texel | Bus word layout (one 64-bit word, high bits first) | In recordings | Grade | Evidence |
 |---|---|---|---|---|---|---|
-| 0x30 (48) | RGB8, RGBA8 and the unsized RGB and RGBA, three- and four-component | 8-bit R, G, B, A, 32-bit texel | bus code 1: two pixels of R, G, B, A, red in the highest byte | yes (RGBA and volume textures) | inferred | S25, S28, S29 |
-| 0x14 (20) | RGB5, RGB5A1 | R 5, G 5, B 5, A 1; 16-bit texel | bus code 6: four 16-bit lanes, R 15:11, G 10:6, B 5:1, A 0 | yes (a 128 by 128 byte-RGB texture stored this way) | inferred | S25, S28, S29 |
-| 0x10 (16) | RGB2, RGBA2, R3-G3-B2, RGB4, RGBA4; also every quad-group format | 4-bit R, G, B, A; 16-bit texel | bus code 5: four pixels of 4-bit R, G, B, A | yes (a 512 by 64 byte-RGBA texture stored this way) | inferred | S25, S28, S29 |
-| 0x28 (40) | LUMINANCE12_ALPHA12, LUMINANCE16_ALPHA16 | 16-bit L, 16-bit A | bus code 3: two pixels, 16-bit L then 16-bit A | 0x28 only, in a texture read-back copy | inferred | S25, S28, S29 |
-| 0x08 | LUMINANCE_ALPHA 8/8 and 6/2 and every dual-group format | 8-bit L, 8-bit A | bus code 8: four 16-bit lanes, L in the high byte, A in the low byte | no (client table only) | inferred | S25, S28, S30 |
-| 0x0d (13) | LUMINANCE and its sized forms; DEPTH_COMPONENT and its 16, 24, 32 forms | one 16-bit component | bus code 9: four 16-bit values | no (client table only) | inferred | S25, S28, S30 |
-| 0x0e (14) | ALPHA and its sized forms | one component | bus code 0x17: four lanes, alpha in the high field | no | inferred | S25, S28, S30 |
-| 0x0f (15) | INTENSITY | one 16-bit component | bus code 9, as luminance | no | inferred | S25, S28 |
-| 0x0c (12) | LUMINANCE12_ALPHA4 | 12-bit L, 4-bit A | bus code 0x16 | no | inferred | S25, S28 |
-| 0x38 (56) | RGB10, RGB10_A2 | R 10, G 10, B 10, A 2; 32-bit texel | bus code 2: two pixels, R 63:54, G 53:44, B 43:34, A 33:32, then the same in 31:0 | no | inferred | S25, S28 |
-| 0x50 (80) | RGB12, RGB16, RGBA12, RGBA16 | 12-bit components | bus code 0: one pixel, R 63:52, G 51:40, B 39:28, A 27:16, bits 15:0 unused | no | inferred | S25, S28 |
-| 0x00-0x06, 0x18, 0x20, 0x40 | 4-bit, 8-bit single- and dual-component rows; R5G6B5; 12-bit luminance-alpha; 12-bit RGB | - | rows exist in the firmware tables (the 4-bit ones with texel-only bus codes 0x12-0x14) but the traced client never sends these codes in word 9 | no | unknown | S25, S26 |
-| shared codes | luminance and depth both load as one component with bus code 9, so the code cannot tell them apart; the bind's internal-format index does | - | - | - | inferred | S25, S30 |
-| order and width of a texel inside texture memory, every format | the software-visible order is the bus-word layout the diagnostic's host formatter builds, first texel in the high lane (all rows, incl. 0x18, 0x20, 0x40, 0x0b), read back identically for row 0x10; the order inside the memory chips is not reachable from software | - | - | - | inferred for the bus layout; chip order unknown | S38, S28 |
+| 0x30 (48) | RGB8, RGBA8 and the unsized RGB and RGBA, three- and four-component | 8-bit R, G, B, A, 32-bit texel | bus code 1: two pixels of R, G, B, A, red in the highest byte; the formatter gives the same bytes (63:56 R, 55:48 G, 47:40 B, 39:32 A, then 31:0 likewise), each the top byte of a 16-bit source component | yes (RGBA and volume textures) | established | S25, S28, S29, S38 |
+| 0x14 (20) | RGB5, RGB5A1 | R 5, G 5, B 5, A 1; 16-bit texel | bus code 6: four 16-bit lanes, R 15:11, G 10:6, B 5:1, A 0, pixel 0 in the top lane (the formatter builds the same lanes) | yes (a 128 by 128 byte-RGB texture stored this way) | established | S25, S28, S29, S38 |
+| 0x10 (16) | RGB2, RGBA2, R3-G3-B2, RGB4, RGBA4; also every quad-group format | 4-bit R, G, B, A; 16-bit texel | bus code 5: four pixels of 4-bit R, G, B, A, pixel 0 in the top 16 bits | yes (a 512 by 64 byte-RGBA texture stored this way) | established | S25, S28, S29, S38 |
+| 0x28 (40) | LUMINANCE12_ALPHA12, LUMINANCE16_ALPHA16 | 16-bit L, 16-bit A | bus code 3: two pixels, 16-bit L then 16-bit A (L0 63:48, A0 47:32, L1 31:16, A1 15:0; the formatter takes source words 0 and 3 of each pixel) | 0x28 only, in a texture read-back copy | established | S25, S28, S29, S38 |
+| 0x08 | LUMINANCE_ALPHA 8/8 and 6/2 and every dual-group format | 8-bit L, 8-bit A | bus code 8: four 16-bit lanes, L in the high byte (from component 0), A in the low byte (from component 3) | no (client table only) | established | S25, S28, S30, S38 |
+| 0x0d (13) | LUMINANCE and its sized forms; DEPTH_COMPONENT and its 16, 24, 32 forms | one 16-bit component | bus code 9: four 16-bit lanes from component 0, pixel 0 in 63:48; the formatter treats 0x0d and 0x0f as one body | no (client table only) | established | S25, S28, S30, S38 |
+| 0x0e (14) | ALPHA and its sized forms | one component | bus code 0x17: four lanes, alpha in the high field (the formatter: four 16-bit lanes from component 3, pixel 0 in 63:48) | no | established | S25, S28, S30, S38 |
+| 0x0f (15) | INTENSITY | one 16-bit component | bus code 9, as luminance (the same body as 0x0d) | no | established | S25, S28, S38 |
+| 0x0c (12) | LUMINANCE12_ALPHA4 | 12-bit L, 4-bit A | bus code 0x16: four 16-bit lanes, a 12-bit component 0 at bits 15:4 of each lane and a 4-bit component 3 at bits 3:0 | no | established | S25, S28, S38 |
+| 0x38 (56) | RGB10, RGB10_A2 | R 10, G 10, B 10, A 2; 32-bit texel | bus code 2: two pixels, R 63:54, G 53:44, B 43:34, A 33:32, then the same in 31:0 (31:22, 21:12, 11:2, 1:0) | no | established | S25, S28, S38 |
+| 0x50 (80) | RGB12, RGB16, RGBA12, RGBA16 | 12-bit components | bus code 0: one pixel, R 63:52, G 51:40, B 39:28, A 27:16, bits 15:0 unused (the formatter: one pixel, four 12-bit components at 63:52, 51:40, 39:28, 27:16) | no | established | S25, S28, S38 |
+| 0x40 (64) | 12-bit RGB | three 12-bit components | one pixel, 12-bit components at 63:52, 51:40, 39:28; bits 27:0 unused | no | established | S38, S28 |
+| 0x20 (32) | 12-bit luminance-alpha (not R5G6B5) | 12-bit L, 12-bit A | two pixels: L at 63:52 and A at 47:36, then L at 31:20 and A at 15:4 | no | established | S38, S28 |
+| 0x18 (24) | R5G6B5 | R 5, G 6, B 5; 16-bit texel | four pixels, pixel 0 in 63:48 (R 15:11, G 10:5, B 4:0) | no | established | S38, S28 |
+| 0x09, 0x0b | the formatter's cases; no client format selects them | four 12-bit components from component 0 | 63:52, 47:36, 31:20, 15:4; bits 51:48, 35:32, 19:16, 3:0 unused | no | established | S38 |
+| 0x0a | the formatter's case; no client format selects it | the same lanes from component 3 | as 0x09 | no | established | S38 |
+| 0x00-0x07, 0x11-0x13 | 4-bit and 8-bit single- and dual-component rows | - | the diagnostic's formatter has no case for these codes and rejects them. The firmware has rows for 0x00-0x06 with texel-only bus codes 0x12-0x14, but nothing in the shipped client or the diagnostic uses them | no | unknown | S25, S26, S38 |
+| shared codes | luminance and depth both load as one component with bus code 9, so the code cannot tell them apart; the bind's internal-format index does | - | - | - | established | S25, S30, S38, S59 |
+| order and width of a texel inside texture memory, every format | the software-visible order is the bus-word layout the diagnostic's host formatter builds, first texel in the high lane (all rows, incl. 0x18, 0x20, 0x40, 0x0b), read back identically for row 0x10; the order inside the memory chips is not reachable from software (tried: the diagnostic's un-formatter, the board netlists, which are wiring only, and the built-in self-test files, which are scan programs) | - | - | - | established for the bus layout; chip order unknown | S38, S28 |
 
 RGB and RGBA internal formats share storage code 0x30; the bind's internal-format index (next section) distinguishes them. Missing alpha is one and missing colour zero when the source format lacks a component (public pixel-transfer rule, applied by the client's format choice, not by a pipe field). Scale, bias and the clamp of texture images happen before the texel reaches the packing above (inferred from the client sending component bytes with no scale or bias arithmetic).
 
@@ -1398,8 +1411,10 @@ RGB and RGBA internal formats share storage code 0x30; the bind's internal-forma
 | 30, 31 | RGB5, RGB5_A1 | 0x14 | established | S30 |
 | 33, 34, 37, 38 | RGB8, RGBA8, legacy three-component, RGB | 0x30 | established | S30 |
 | 63 | DEPTH_COMPONENT | 0x0d | established | S30 |
-| table rows beyond these (storage codes 0x28, 0x38, 0x50, 0x0c, 0x0f and others) | not read | - | unknown | S30 |
-| layout family of a row | family 0 for alpha, luminance, luminance-alpha and indices 25-31, family 1 for the 8-bit RGB and RGBA rows; it sets the low byte of the bind record: 0x44 or 0x43 in the ordinary form (family zero or one), 0x23 or 0x22 in the volume forms (0x13 for a mode-1 volume in family one) | n/a | inferred | S30 |
+| table rows beyond these (storage codes 0x28, 0x38, 0x50, 0x0c, 0x0f and others) | the whole table is read: 67 rows, listed below the table | - | established | S59 |
+| layout of a row | the low byte of the 2D bind record's word 0 is (t address bits << 4) | s address bits, taken from the address-bits-per-page table of section 7.10 word 17: 0x44 = (4,4), 0x43 = (3,4), 0x23 = (3,2), 0x22 = (2,2), 0x13 = (3,1). It follows the texel size code and the layout mode, not an RGB-specific family (every 32-bit format gives 0x43 in the ordinary form). The values match the table; the store of the byte into the record was not read | n/a | inferred | S30, S59 |
+
+The client's table has 67 rows of four words: the public internal format, the storage code (word 1), the texel size code (word 2: 0 for 16-bit, 1 for the 32-bit formats, 2 for the 64-bit slot) and a group (word 3: 1 ordinary; 2, 3 and 4 the dual and quad group formats), identical in six builds across two releases (S59). Rows, index: format / storage code: 0 LUMINANCE 0x0d; 1 LUMINANCE_ALPHA 0x08; 2 RGBA 0x30; 3 LUMINANCE16 0x0d; 4 LUMINANCE16_ALPHA16 0x28; 5 RGBA12 0x50; 6 LUMINANCE4 0x0d; 7 ALPHA4 0x0e; 8 INTENSITY4 0x0f; 9 LUMINANCE4_ALPHA4 0x08; 10 LUMINANCE8 0x0d; 11 ALPHA8 0x0e; 12 INTENSITY8 0x0f; 13 LUMINANCE6_ALPHA2 0x08; 14 LUMINANCE8_ALPHA8 0x08; 15 legacy one-component 0x0d; 16 LUMINANCE12 0x0d; 17 ALPHA 0x0e; 18 ALPHA12 0x0e; 19 INTENSITY 0x0f; 20 INTENSITY12 0x0f; 21 legacy two-component 0x08; 22 LUMINANCE12_ALPHA4 0x0c; 23 ALPHA16 0x0e; 24 INTENSITY16 0x0f; 25 RGB2 (0x804e) 0x10; 26 RGBA2 0x10; 27 R3_G3_B2 (0x2a10) 0x10; 28 RGB4 0x10; 29 RGBA4 0x10; 30 RGB5 0x14; 31 RGB5_A1 0x14; 32 LUMINANCE12_ALPHA12 0x28; 33 RGB8 0x30; 34 RGBA8 0x30; 35 RGB10 0x38; 36 RGB10_A2 0x38; 37 legacy three-component 0x30; 38 RGB 0x30; 39 RGB12 0x50; 40 RGB16 0x50; 41 legacy four-component 0x30; 42 RGBA16 0x50; 43-46 DUAL_ALPHA4/8/12/16 (storage id 5, group 2); 47-50 DUAL_LUMINANCE4/8/12/16 (id 4, group 2); 51-54 DUAL_INTENSITY4/8/12/16 (id 6, group 2); 55-56 DUAL_LUMINANCE_ALPHA4/8 (id 3, group 3); 57-58 QUAD_ALPHA4/8 (id 1, group 4); 59-60 QUAD_LUMINANCE4/8 (id 0, group 4); 61-62 QUAD_INTENSITY4/8 (id 2, group 4); 63 DEPTH_COMPONENT 0x0d; 64-66 the depth-component sized enumerants 0x81a5-0x81a7 (DEPTH_COMPONENT16, 24 and 32) 0x0d. The enumerant values 0x804e, 0x2a10 and 0x81a5-0x81a7 were checked against the public GL registry. For the dual and quad groups the client sends storage id 8 (dual) or 16 (everything else) in the load header, not the table's id.
 
 ### 7.13 The bind contract: how a bind and the level table select an image
 
@@ -1410,33 +1425,33 @@ A bind makes a stored image current for drawing. It does so in two commands: a s
 | Word | Role | Layout / values | Grade | Evidence |
 |---|---|---|---|---|
 | 0 | cache entry number, or 0xffffffff | the firmware releases the entry's old load id when the number is valid | established | S27, S29, S30 |
-| 1 | bind control | 11:0 filter-table slot (sharpen and detail); 23:12 internal-format index (section 7.12); 27:24 mode (3 = linear form, 1 = a form that sends the filter table through a special raster register); 31:28 target index (0 none or unused, 1 = 1D, 2 = 2D, 3 = 3D) | established for 31:12 and 27:24; inferred for 11:0 | S26, S27, S30 |
-| 2 | texture-mode word, the image of the texture-mode register (0x3fd4) | 1:0 sampling mode (0 2D, 1 3D, 2 3D mip-mapped, 3 bicubic); 4:2 minification filter (0 nearest, 1 linear, 2 bicubic, 3-6 the four mip-map pairs: nearest or linear within a level, nearest or linear between levels); 7:5 magnification filter (0 nearest, 1 linear, 2 bicubic, 3 detail-add, 4 detail-modulate, 5 sharpen); 8 and 9 flags; 11:10 shadow comparison (0 off, 1 reference at least the texel, 2 reference at most the texel); 12 clamp style (0 older style, 1 current style); 13 environment-on; 20:14 texel format (section 7.12); 23:21 detail level (0-4, negated public value); 25:24 channel-select field; 27:26 magnification channels (0 all, 1 colour, 2 alpha, 3 level 0); 28 first-level bank (1 when the first level is in bank one) | established for 20:14, 11:10, 7:0, 28; inferred for the rest | S26, S29, S30 |
-| 3 | texture-size word, the image of the texture-size register (0x3fd5) | 3:0 s size exponent, 7:4 t, 11:8 r (log2 of the level-0 logical size); 12 s clamp, 13 t clamp, 14 r clamp (set for every non-repeat mode, so one bit cannot tell the three public non-repeat modes apart). Observed 0x3077 (128 by 128, s and t clamp) and 0x677 (128 by 128 by 64) | established for the sizes; inferred for the clamp bits | S26, S29, S30 |
-| 4 | depth-comparison and ambient word | normally 1; 0 when the depth comparison is on (with the r exponent nibble forced to 0xf and word 2 bits 11:10 holding the comparison); observed 0 in a volume bind with no comparison | inferred | S29, S30 |
+| 1 | bind control | 11:0 filter-table slot (sharpen and detail); 23:12 internal-format index (section 7.12); 27:24 mode (3 = linear form, 1 = a form that sends the filter table through a special raster register); 31:28 target index (0 = the detail texture target 0x8095, GL_DETAIL_TEXTURE_2D_SGIS; 1 = 1D, 0x0de0; 2 = 2D, 0x0de1; 3 = 3D, 0x806f; from the client's four-word index-to-target table) | established for 31:12 and 27:24; inferred for 11:0 | S26, S27, S30, S59 |
+| 2 | texture-mode word, the image of the texture-mode register (0x3fd4) | 1:0 sampling mode (0 2D, 1 3D, 2 3D mip-mapped, 3 bicubic); 4:2 minification filter (0 nearest, 1 linear, 2 bicubic, 3-6 the four mip-map pairs: nearest or linear within a level, nearest or linear between levels); 7:5 magnification filter (0 nearest, 1 linear, 2 bicubic, 3 detail-add (detail mode 0x0104, GL_ADD), 4 detail-modulate (detail mode 0x2100, GL_MODULATE), 5 sharpen; a failed filter-table allocation falls back to 1, linear. The diagnostic's detail test uses both 3 and 4); 8 and 9 flags; 11:10 shadow comparison (0 off, 1 reference at least the texel, 2 reference at most the texel; 1 when the compare operator is 0x819d, GL_TEXTURE_GEQUAL_R_SGIX, otherwise 2); 12 clamp style (0 older style, 1 current style); 13 environment-on; 20:14 texel format (section 7.12); 23:21 detail level (0-4 from the diagnostic's test vectors; negated public value inferred); 25:24 channel-select field; 27:26 magnification channels (0 all, 1 colour, 2 alpha, 3 level 0; the detail filter names 0x8097, 0x8098, 0x8099 and the sharpen filter names 0x80ad, 0x80ae, 0x80af set 0, 2, 1 respectively: GL_LINEAR_DETAIL_SGIS, _ALPHA_SGIS, _COLOR_SGIS and GL_LINEAR_SHARPEN_SGIS, _ALPHA_SGIS, _COLOR_SGIS); 28 first-level bank (1 when the first level is in bank one) | established for 20:14, 11:10, 7:5, 27:26 and 28; inferred for the rest (minification order 3, 4, 5 and the flag bits 8, 9, 12, 13, 25:24 are not fully traced; only 25:24 = 3 appears in the vectors) | S26, S29, S30, S59, S61 |
+| 3 | texture-size word, the image of the texture-size register (0x3fd5) | 3:0 s size exponent, 7:4 t, 11:8 r (log2 of the level-0 logical size); 12 s clamp (wrap parameter 0x2802, GL_TEXTURE_WRAP_S), 13 t clamp (0x2803, GL_TEXTURE_WRAP_T), 14 r clamp (0x8072, GL_TEXTURE_WRAP_R): each bit is set when the client's wrap code is 1, 2 or 3 and clear for 0, so one bit cannot tell the three public non-repeat modes apart (the client keeps the exact mode in a separate byte). Observed 0x3077 (128 by 128, s and t clamp) and 0x677 (128 by 128 by 64) | established | S26, S29, S30, S59 |
+| 4 | depth-comparison and ambient word | 1 normally; 0 when the shadow comparison is on and the format is a depth format (the same routine forces the size word's r nibble to 0xf and sets word 2 bits 11:10); observed 0 in a volume bind with no comparison | established | S29, S30, S59 |
 
 **2D and 1D record (token 0x179, 22 words).** The first six are state words, then sixteen level-address words.
 
 | Word | Role | Layout / values | Grade | Evidence |
 |---|---|---|---|---|
 | 0 | layout byte | the low byte is the format-and-layout pair 0x44 or 0x43; the upper bits are preserved from earlier state and unread | inferred | S29, S30 |
-| 1 | LOD scales | 7:0 s, 15:8 t, 23:16 r. Each byte is 16 x 2^b for a public bias b, truncated, interpolated linearly between integer powers and clamped to 1-255 (byte / 16 gives the factor) | established | S30 |
+| 1 | LOD scales | 7:0 s, 15:8 t, 23:16 r. Each byte is 16 x 2^b for a public bias b, truncated, interpolated linearly between integer powers and clamped to 1-255 (byte / 16 gives the factor) | established | S30, S59 |
 | 2 | LOD bounds | 9:0 minimum, 19:10 maximum, each 64 x (level + 1) for non-negative levels; zero is the finite floor. Does not carry base or last level, and a bound is a sampling clamp, not a completeness rule | established for the packing | S30 |
 | 3 | physical size exponents | 3:0 s, 7:4 t (3:0, 7:4, 11:8 for r in volume forms), the tile-minimum-enlarged exponents the loads used | established | S29, S30 |
 | 4 | comparison operand | cleared by the client before a comparison is set; the decoded model requires 0 | inferred | S30 |
 | 5 | shadow ambient value | 0-63 = trunc(clamp(ambient, 0, 1) x 63) | inferred | S30 |
-| 6-21 | level-address table | level 0 first, one address word per level, end marker 0xffffffff (section 7.11) | inferred | S29, S30 |
+| 6-21 | level-address table | level 0 first, one address word per level, end marker 0xffffffff (section 7.11) | established for the sixteen words; terminator inferred | S29, S30, S59 |
 
 **Volume records and other binds.**
 
 | Token and words | Layout | Grade | Evidence |
 |---|---|---|---|
-| 0x17b, mip-mapped volume, 14 words | 0, 1, 2, 3: the same four state words as the 2D record (layout pair, LOD scales with r in 23:16, bounds, physical sizes with r in 11:8), then ten descriptor words (five pairs: levels 2k and 2k + 1 share pair k) | established as framing; inferred for pair order | S27, S30 |
-| 0x17c, non-mip-mapped volume, 4 words | word 0 layout pair, word 1 physical sizes, words 2-3 the one descriptor pair. Omits LOD scales and bounds, so mixed minification and magnification filters need state the record does not carry | established as framing | S27, S30 |
-| 0x17d, detail image, 6 words | 0 entry number or 0xffffffff, 1 s exponent, 2 t exponent, 3 internal-format index, 4 and 5 descriptor pair. Detail level, add or modulate mode (word 2 of the base bind's bits 7:5 and 23:21), channel select and coefficient slot come from the base bind, not from this command | established | S27, S30 |
-| 0x17a, bicubic, 3 words | read by the firmware with a branch on the current target; no sender found | unknown | S27 |
-| 0x1aa, 2D clip-map, 8 words | words 2 and 3 are the s and t centres (15 bits each), word 4 bit 22 selects a five-register or two-register write; no recording or sender used it | unknown | S26, S27 |
-| 0x016, old-style bind (36 words) | firmware reads two words (width and height) plus a block of state words; no sender found | unknown | S27 |
+| 0x17b, mip-mapped volume, 14 words | 0, 1, 2, 3: the same four state words as the 2D record (layout pair, LOD scales with r in 23:16, bounds, physical sizes with r in 11:8), then ten descriptor words (five pairs: levels 2k and 2k + 1 share pair k) | established (framing and pair order: pair k is table words 2k and 2k + 1) | S27, S30, S59 |
+| 0x17c, non-mip-mapped volume, 4 words | word 0 layout pair, word 1 physical sizes, words 2-3 the one descriptor pair. Omits LOD scales and bounds, so mixed minification and magnification filters need state the record does not carry | established as framing | S27, S30, S59 |
+| 0x17d, detail image, 6 words | 0 entry number or 0xffffffff, 1 s exponent, 2 t exponent, 3 internal-format index, 4 and 5 descriptor pair. Detail level, add or modulate mode (word 2 of the base bind's bits 7:5 and 23:21), channel select and coefficient slot come from the base bind, not from this command | established | S27, S30, S59 |
+| 0x17a, bicubic, 5 words | three state words (target, then two words from the texture object) read plainly, then the two-word address pair through the address reader. The handler branches on the current target. Sent by the bicubic bind routine | established | S27, S59, S60 |
+| 0x1aa, 2D clip-map, 8 words | eight words from the clip-map register routine: four texture-object words, one argument, three more object words. From the firmware: words 2 and 3 are the s and t centres (15 bits each), word 4 bit 22 selects a five-register or two-register write; no recording used it | established for the framing and sender; field meanings from the firmware only | S26, S27, S59 |
+| 0x016, old-style bind (36 words) | the firmware reads two words (width and height) into the load block, 18 into the texture-state block, a 15-iteration loop and a final word. No libGLcore compilation unit stores token 22 (the 22 constants in the rectangle code are word counts); the IRIS GL library was not scanned | established for the framing; no sender found | S27, S59, S60 |
 
 **Image identity: how the pipe finds the image.** The firmware keeps a table of 513 entries, each a load id (set by 0x176) and a bind id (set by 0x178), both 20-bit counters that wrap by flushing every entry; 0x1c4 resets both ids of one entry to invalid and sends nothing to hardware, 0x1c5 writes the entry's ids and counters out to the raster registers and leaves the entry unchanged, and 0x1e0 (kind 0-2, index) clears the remembered texture of that kind if it equals the index (established, S27). What follows is the contract a back end needs; the firmware cannot be read for what the hardware does with the ids, so each line says how it is known.
 
@@ -1460,9 +1475,9 @@ State words that a draw reads besides the bind: the function that combines the t
 
 | Item | Layout | Grade | Evidence |
 |---|---|---|---|
-| parameter 0x2200 (mode) | the scalar forms accept only this name. Float form: the value as a float of the mode number (start-up value 0x46040000 = 8448.0 = modulate). Integer form: the mode number. Mode numbers: 0x2100 modulate, 0x2101 decal, 0x0be2 blend, 0x1e01 replace (0x8062 also selects the replace table) | established as the table that selects a record; inferred as the meaning | S27 |
-| parameter 0x2201 | environment colour: four values (red, green, blue, alpha); start-up zero | inferred | S27, S26 |
-| parameter 0x80be | four values, start-up zero; role not read | unknown | S27 |
+| parameter 0x2200 (mode) | the scalar forms accept only this name. Float form: the value as a float of the mode number (start-up value 0x46040000 = 8448.0 = modulate). Integer form: the mode number. The engine program recognises exactly six mode values: 0x2100 modulate (GL_MODULATE), 0x2101 decal (GL_DECAL), 0x0be2 blend (GL_BLEND), 0x8062 (GL_REPLACE_EXT, which selects the replace table), 0x1e01 replace (GL_REPLACE) and 0x0104 add (GL_ADD); the validating routine compares the first five and the texture-environment routine the sixth | established as the accepted set; inferred as the meaning | S27, S62 |
+| parameter 0x2201 | environment colour: four values (red, green, blue, alpha); the engine writes it to raster registers 0x1402 and 0x1413 (register images 0x015e1402 and 0x015f1413 are loaded in the texture-environment routine). Start-up zero stays inferred; the diagnostic's restore value for both registers is 0 | established for the destinations; start-up value inferred | S27, S26, S62, S61 |
+| parameter 0x80be | accepted by the texture-environment routine next to 0x2201; four values converted as floats, start-up zero. The value is the public GL_TEXTURE_ENV_BIAS_SGIX enumerant; what the pipe does with the bias is not read | inferred (public value only) | S27, S62 |
 | selected raster state | the mode picks one of six five-word records; the engine adds the format class to read one byte: bits 3:0 alpha function, bits 7:4 colour function. Function codes 0 fragment, 1 texture, 2 modulate, 3 blend, 4 decal, 5 add, 6 add minus one half (written to the texture-environment register 0x1401 of section 8.2). The environment colour is written to registers 0x1402 and 0x1413 | inferred | S27, S26 |
 | format class | 0 no texture, 1 alpha, 2 luminance or RGB, 3 luminance-alpha or RGBA, 4 intensity | inferred | S27 |
 | record, class 0-4, modulate | 0x00, 0x02, 0x20, 0x22, 0x22 | established as values | S27 |
@@ -1471,8 +1486,8 @@ State words that a draw reads besides the bind: the function that combines the t
 | record, class 0-4, replace | 0x00, 0x01, 0x10, 0x11, 0x11 | established as values | S27 |
 | record, class 0-4, add | 0x00, 0x02, 0x50, 0x52, 0x55 | established as values | S27 |
 | record, class 0-4, add-signed | 0x00, 0x02, 0x60, 0x62, 0x66 | established as values | S27 |
-| which public mode number selects the add and add-signed records | - | unknown | S27 |
-| what each function code does on the raster board | - | unknown | S27 |
+| which public mode number selects the add and add-signed records | add: 0x0104 (GL_ADD) is accepted by the engine as the sixth mode value, inferred to select the add record. Add-signed: no public mode constant is accepted by either routine; the add-signed record address is loaded under a condition in the validating routine whose input was not decoded | inferred for add; unknown for add-signed | S27, S62 |
+| what each function code does on the raster board | the behaviour is in the texture-filter chips, which have no program; the built-in self-test files are scan programs and the board netlists are wiring. The diagnostic only writes 0x1401 values 0x22, 0x20 and 0x60 | unknown | S27, S61 |
 
 **Coordinate generation (token 0x014, nine words).** One word coordinate 0x2000-0x2003 (s, t, r, q), one word parameter name (mode, object-plane or eye-plane), seven value words; any other coordinate or name raises an invalid-enumerant error and ends the command. The mode name is also kept per coordinate (start-up 0x2400). Enable and disable of each coordinate use the generic enable and disable tokens with 0xc60-0xc63. The double and integer forms (0x013, 0x015) print a not-implemented message and read nothing (established); the pop token (0x1d6) reads one word and then routes the next 0x70 host words to engine memory (inferred) (S27).
 
@@ -1481,11 +1496,11 @@ State words that a draw reads besides the bind: the function that combines the t
 | Token | Words | Layout | Grade | Evidence |
 |---|---|---|---|---|
 | 0x177 select the active texture | 1 | a selector 0-3: 0 is the default, nonzero values are the other units the library resets in order 1, 2, 3, then 0 at start-up. The firmware stores it in the same state word the binds use as the current target, so unit and target are one variable in the firmware; whether a back end may treat them as separate is not read | inferred | S27, S29 |
-| 0x1d7 post-filter scale and bias | 4 | unit (must equal the selector or the command is ignored), channel-enable (bit 3 red to bit 0 alpha; a bit is clear only when scale is 1 and bias 0), packed scale (red 31:24 to alpha 7:0, each byte x / 255), packed bias (same). Both packed words zero with zero enables mean identity. Applied after spatial and level filtering, with a clamp before the environment | established for the packing and defaults; inferred for the order | S27, S30 |
-| 0x1c7 shadow state | 3 | words written to three raster registers (the first as is, the second doubled, the last as is); whether any shipped software sends it is not read, and the 0x179 record's ambient word (section 7.13) carries the same ambient value in the recorded sequence | unknown | S27 |
-| 0x1bb texture pixel-store parameter | 2 | parameter name and value. Parameters in the 0xcf0 and 0xd00 groups and 0x806b-0x806e are kept; alignment-style values only when a power of two up to 8; nothing is written to hardware | established | S27, S25 |
+| 0x1d7 post-filter scale and bias | 4 | unit (must equal the selector or the command is ignored), channel-enable (bit 3 red to bit 0 alpha; a bit is clear only when scale is 1 and bias 0), packed scale (red 31:24 to alpha 7:0, each byte trunc(clamped value x 255 + 0.5)), packed bias (same); the enable word has a bit clear for a channel exactly when its value equals 1.0 (scale) or 0 (bias); the load token 0x0ed sends the same three words. Both packed words zero with zero enables mean identity. Applied after spatial and level filtering, with a clamp before the environment | established for the packing and defaults; inferred for the order of application | S27, S30, S59 |
+| 0x1c7 shadow state | 3 | words written to three raster registers (the first as is, the second doubled, the last as is). No libGLcore compilation unit stores token 455 (the client sends the shadow compare through the bind words instead); the IRIS GL library and the X server module were not scanned. The 0x179 record's ambient word (section 7.13) carries the same ambient value in the recorded sequence | unknown (no sender found in a bounded scan) | S27, S59 |
+| 0x1bb texture pixel-store parameter | 2 | parameter name and value. Parameters in the 0xcf0 and 0xd00 groups and 0x806b-0x806e are kept; alignment-style values only when a power of two up to 8; nothing is written to hardware | established | S27, S25, S59 |
 | texture enables | - | 1D, 2D and 3D texturing each set a flag byte in the state block and all-ones to engine port 0x47c; written through the enable and disable tokens 0x24 and 0x25 with 0x0de0, 0x0de1 and 0x806f | inferred | S27 |
-| texel read-back and copy-to-texture (0x0fd, 0x052) | 17 and 18 | header words list target, size, format, type, storage code, first and last texel, then five words copied from the texture's load record (the geometry word and the two bank addresses); not decoded further here | inferred | S27, S29 |
+| texel read-back and copy-to-texture (0x0fd, 0x052) | 17 and 18 | header words list target, size, format, type, storage code, first and last texel, then five words copied from the texture's load record (the geometry word and the two bank addresses); the 0x0fd header words 0-16 map to the same load registers as the texel-draw words (its handler calls the same set-up routine); not decoded further here | inferred | S27, S29 |
 
 
 ### 7.15 GL pixel operations: state, transfers and accumulation
@@ -1973,9 +1988,6 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 
 - 0x1fb: context FIFO synchronise
 - 0x0e7: set the blend equation
-- 0x013: texture-coordinate generation, double form
-- 0x015: texture-coordinate generation, integer form
-- 0x016: bind a texture by old-style binding
 - 0x175: texture-load set-up, second form
 - 0x1fe: kernel-private command (ignored)
 
@@ -2014,16 +2026,15 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - pixel set-up transfer kinds other than 0 and 2, and output modules other than 4 and 5: behaviour
 - pack mode of the returned words of an X pixel read: which host-interface value
 - which named pixel format each index value of the X packing tables selects, what the table words mean in the loader-built format word, and the values of the three tables filled at run time (the file-resident numbers are recorded)
-- texel-draw header: hardware use of word 8 (nonzero) and of words 8 and 11-15 beyond storing them
-- texture-load set-up (token 0x173): the roles of words 2, 4 and 6-8
+- texel-draw header: what hardware does with word 8 when it is nonzero (no reader found on the texel path; every sender sends 0)
+- texture-load set-up (token 0x173): words 2 and 4 (dead stores in a handler with no sender)
 - level origin rule: where the border texels of a small bordered level sit (small-level origins are resolved as client-side replication)
-- level addresses: the units of the global-offset registers 0x101a/0x5001; where mode-1 volume texels sit
+- level addresses: the units of the global-offset registers 0x101a/0x5001 (only ever written as 0 in shipped software); where mode-1 volume texels sit inside the address pair
 - filter tables: which table type sharpening and detail use, and what the sampler does with them beyond the bind's reference
-- texel formats: the physical order of a texel inside the memory chips (not reachable from software); the firmware rows the traced client never sends (codes 0x00-0x06)
-- bind forms with no sender: bicubic (0x17a), 2D clip-map (0x1aa), old-style (0x016)
+- texel formats: the physical order of a texel inside the memory chips (not reachable from software); codes 0x00-0x07 and 0x11-0x13 (the diagnostic rejects them; the firmware has rows for 0x00-0x06 that no shipped software sends)
 - bind contract: what the pipe keeps for a cache entry and what it does with an all-ones bind; texture sharing between contexts
-- environment: the role of parameter 0x80be, which public mode selects the add and add-signed records, what each function code does on the raster board
-- shadow state (0x1c7): whether any shipped software sends it
+- environment: which public mode selects the add-signed record, and what each function code does on the raster board
+- shadow state (0x1c7): whether any shipped software sends it (none found in the client library; the IRIS GL library and the X server module were not scanned)
 - GL pixel state, transfer and accumulation (section 7.15): the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); and the accumulation storage format
 - queries, select and feedback (section 7.16): why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the extra word the feedback client removes; and the depth multiplier in select records
 - multisample (section 7.17): the effect of sample counts other than 4 and 8; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; the hardware resolve rule and what depth and stencil reads return; which sample banks a clear reaches; the AND combination of the coverage word, how the sample-mask register doubles as the alpha-to-mask fade table and alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; multisample line, point and polygon rules
