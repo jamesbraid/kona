@@ -54,6 +54,8 @@ The names are role names in plain words, written for someone who transcribes the
 | S40 | the N32 libGLcore's texture-level loader subloadLevel (usr/gfx/arch/IP27KONA32/libGLcore.so) |
 | S41 | the IR diagnostic's multisample test inputs: the raster-bus vector file tbusdata.Z (usr/diags/IR/data), blocks samplemask.tbus and msalpha.tbus, and the diagnostic's init_ms strings |
 | S42 | the published InfiniteReality references on frame-buffer pixel format and multisample resolve: the Hot Chips 8 slides ("Framebuffer Pixel Format Examples") and the technical report section 7.7 |
+| S43 | the geometry engine's start-up and drawing-module listings: [ge.S listing](../ucode/ge_listing/ge.S.lst) (`mGL_CM_Initialize`, store at 0xb21e) and [udrawtri.s listing](../ucode/ge_listing/udrawtri.s.lst) (0x2893, 0x28ac, 0x28b0), with the store-data rule of [ge_isa.md](../ucode/ge_isa.md#the-store-data-register) |
+| S44 | the X server module's display-id painter and DAC cursor builder, read from the binary: `usr/lib/X11/dyDDX/kona.so` 0x53e7a8 (id to painted value and mask), 0x4715c0 (`kon_drawDid`), 0x53b6c0 (DAC cursor builder, caller 0x4b78ac) and the display-request sender 0x5341a0; the firmware side is `arm1.u` 0x0c007aa8 |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -1011,7 +1013,11 @@ A display request travels in the carrier token 0x1a6: the host sends the request
 | what each bit of the value 5 does | DAC cursor control bit meaning | bits 0 and 2 | unknown | S7 |
 | indexed 0x303, 0x304 ... | DAC cursor colours: six values streamed after index 0x303 | 10-bit components | inferred | S13 |
 | indexed 0x400 | DAC cursor image RAM select (256 image words streamed low byte first) | index | established | S7 |
-| layout of the 263 words of the cursor-load request | packing of colours and image into the six colour words and 256 image words | 263 words | unknown | S7 |
+| cursor-load request word 0 | channel, 0-7 or 0xde | - | established | S5, S44 |
+| cursor-load request words 1-6 | foreground red, green, blue then background red, green, blue, each a 16-bit X colour >> 6 (10 bits); the firmware streams them to indexed DAC registers 0x303-0x308 | 6 words | established | S5, S44 |
+| cursor-load request words 7-262 | 64 rows of four words, two bits per pixel, pixel = (mask << 1) \| source (the opposite plane order to the XMAP cursor). Width and height are clamped to 64 and the rest is zero. Bytes j of a row's X bitmap (MSB-first; a partial last byte keeps its high bits) are interleaved (source bit n to bit 2n, mask bit n to bit 2n+1), byte-swapped, and stored as halfword (w+7)/8 - 1 - j of the row; halfword 2k is the high half of word k. The firmware sends each word low byte first to index 0x400 | 256 image words, 1024 bytes = 64 x 64 x 2 bits | established | S5, S44 |
+| resulting DAC image RAM byte, 64-wide image | byte 16y + 4(3 - floor(x/16)) + floor((x mod 16)/4), pixel at bits 7-2(x mod 4) downward; groups of 16 pixels run right to left across the row. A narrower image is right-aligned to a byte boundary (column x lands where x + 64 - 8 x ((w+7)/8) would); the builder does not compensate in the hot spot, which it stores unchanged | - | established as derived from the builder and the stream; that the DAC fills ascending RAM addresses from index 0x400 is inferred | S44 |
+| which colour a 2-bit DAC cursor value selects | by X semantics value 3 (mask and source) is foreground, 2 (mask only) background, 0 transparent; value 1 (source without mask) is not defined by any sender | - | inferred; value 1 and the register-to-colour assignment unknown | S44 |
 | cursor "channel block" setup | write 4 then 2 to DAC register 0 before the cursor control index (consecutive writes to one address) | values | established | S7 |
 | encoder 0x1800 / 0x1802 | encoder control address and data | index and value | inferred | S13 |
 | encoder 0x1801 / 0x1803 | encoder colour-map address and data | index and value | inferred | S13 |
@@ -1084,8 +1090,8 @@ Sent as the third payload word of the display-mode token (0x1e6; the other two w
 | slot size and count | 260 words per slot, 39 slots; slot k at address k x 260 | 10140 words used | established | S7 |
 | colour words offset | colour words at block address + 0x100 | - | established | S7 |
 | crosshair | cursor mode 1, hot spot (32, 32), colour block at address 9884 + 0x100 (words 10140-10143), same colour in all four words | - | established | S7 |
-| crosshair shape | arm lengths, thickness, extent | 64 x 64 suggested weakly | unknown | S7 |
-| DAC cursor colour block | which word 0-3 order the DAC uses | - | unknown | S7 |
+| crosshair shape | arm lengths, thickness, extent. The X module's crosshair cursor (`konInitCrosshairCursor`) is a zeroed cursor record with no source or mask bits and no image is ever loaded, so the XMAP generates the shape; 64 x 64 stays a weak inference from the hot spot and the +32 bias | - | unknown (no shipped software or published source depends on it) | S7, S44 |
+| XMAP cursor colour block: which word of 256-259 the crosshair draws with | the module writes the same colour into all four words. (The DAC has six colour values and no four-word block; see section 6.) | - | unknown | S7 |
 | cursor owner | smallest priority value wins; the previous owner is kept on a tie; channels 0-7 can be DAC-capable (valid = 2); valid = 1 is the XMAP cursor; 32 means none | - | established | S7 |
 | XMAP vs DAC cursor | alternatives: DAC cursor on means XMAP cursor mode 0 | - | established | S7 |
 | colour map then gamma, cursor last | colour path order: colour map then 12-bit gamma; DAC cursor after gamma; XMAP cursor before gamma | bypass of gamma for the XMAP cursor not read | inferred | S9 |
@@ -1099,11 +1105,11 @@ Sent as the third payload word of the display-mode token (0x1e6; the other two w
 | popup id | fixed popup window id | 63 | established | S8 |
 | overlay window ids | overlay and underlay window ids | 64-95 (7 bits in all) | established | S8 |
 | overlay fixed ids | 2/4/8-plane colour-index overlays, transparent and opaque | 64, 65; 15-bit RGB overlay 66 and 67 | established | S8 |
-| larger pixel layout | id nibble goes to bits 6:3 of the high word, the remaining 12 bits to bits 19:8 of the high word; plane mask likewise | 64-bit foreground | established | S8 |
-| smaller pixel layout | id nibble to bits 12:9 and the remaining 12 bits to bits 25:14 of the low word | 64-bit foreground | established | S8 |
+| larger pixel layout | the 16-bit painted value v: low nibble to bits 6:3 and bits 15:4 to bits 19:8 of the high word (foreground); the plane mask m goes through a different packing: high word ((m >> 4) & 0xfff) \| ((m & 0xf) << 20), low word 0 | 64-bit foreground and write mask | established | S8, S44 |
+| smaller pixel layout | v: low nibble to bits 12:9 and bits 15:4 to bits 25:14 of the low word (foreground); mask: low word ((m >> 12) & 0xf) \| ((m & 0xfff) << 12), high word 0 | 64-bit foreground and write mask | established | S8, S44 |
 | which layout a board uses | follows the board's pixel depth (the visual set chosen at start) | - | established | S8 |
 | colour-index index inside the colour data | the pipe treats the index as a 12-bit component value left-justified: write mask (2^w - 1) << (12 - w) on the main level or << 4 on overlay and popup levels, written as `m \| m<<12` to image-processor register 0x1c14; clear index scaled by 1 << (12 - w); so CI8 is value << 4 (bits 11:4), CI12 bits 11:0, overlay planes bits [3+w:4]. The draw-pixels path puts the index at bits 15:8 of each 16-bit lane for index size 8 or less on board mode other than 2 (record CI16ToFBNorOvr8) and at lane bits 15:4 (or 11:4 for an 8-bit index) on board mode 2 or index size above 8 (CI16ToFBNorOvr12) | the mask, clear scale and record choice | established; lane offsets inferred (shift model); which component lane holds the index and its offset in the stored bank word unknown | S37, S8 (`arm1.u` 0x0c012e1c, 0x0c0134b8, 0x0c03bd40, 0x0c02dbe8; [arm1_pixel_tables.md](../ucode/arm1_pixel_tables.md)) |
-| overlay window to main window pairing | no pairing operation exists in the command stream: the overlay level's colour data and the display-id planes share bank 0 (overlay base 0, main base above 0), and the ownership test reads disjoint fields of the 12-bit plane value, main ids from bits 5:0 (mask 0x3f) and the overlay group (id & 0x1f) from bits 10:6 (mask 0x7c0), so a pixel holds both ids at once; how the display generator uses the pair, and the bit positions of the two fields in the bank-0 word, are not read | structure | inferred; positions and display use unknown | S37, S14, S8, S42 (`arm1.u` 0x0c0131a0) |
+| overlay window to main window pairing | no pairing is stored. The painter writes main id n (0-62) as v = n << 2 under mask 0xfc, and overlay or popup group g (id - 0x40; the popup's 0x3f gives 31) as v = g << 8 under mask 0x1f00, so a pixel holds a main field (v bits 7:2) and an overlay group field (v bits 12:8) independently. The ownership test's compared value is v >> 2 (main id 5:0, mask 0x3f; group 10:6, mask 0x7c0; section 10.2). How the display generator uses the pair is unread | structure | inferred | S37, S14, S8, S42, S44 (`arm1.u` 0x0c0131a0) |
 | 15-bit RGB overlay transparency rule | transparent pixel test | - | unknown | S8 |
 | 16-plane luminance with overlay or id planes | composition | - | unknown | S8 |
 | layer order | popup over overlay over main; value 0 lets the lower layer through; opaque overlays replace | - | inferred | S8 |
@@ -1126,6 +1132,9 @@ Words 0-9 are read from the payload port in order and word 10 from the last-word
 | 10 | window-id test enable flag (nonzero sets bit 0 of the encoded register value) | last-word read | established | S14 |
 | derived: origin registers 0x0807, 0x0808 | negated, halved origin sums, rounded by adding 15 / 3 to 0x800 and clearing the low 5 / 3 bits | - | established | S14 |
 | derived: scissor registers 0x3fc2, 0x3fc3 | x0 << 3 / x1 << 18 and the same for y | - | established | S14 |
+| engine control word 0xc4 | offset subtracted from window x and y before the vertex leaves the engine: the float 0x47400000 = 49152.0 (1.5 x 2^15), stored once at context start-up (`ge.S` 0xb21e) and read into register 1 by every drawing module | float | inferred (store-data rule; the same rule reproduces words 0xbe, 0xbf, 0xc0, 0xc5 and 0x1d) | S43 |
+| window x, y at the vertex bus | float(x - 49152.0) (the subtract at `udrawtri.s` 0x28ac and 0x28b0; operand order inferred from the routing form). While x stays within +-16384, the result is in the binade [2^15, 2^16), where one float step is exactly 1/256, so the engine's own subtract places x and y on the 12.8 grid; the converter chip needs only extract fixed-point bits | - | inferred; converter chip itself unknown | S43 |
+| rounding of that subtract | single-precision unit-1 subtract. The one diagnostic tie test (0x44800347 + 0x45000347, expected 0x454004ea) is not rounded up, so nearest-even and truncation both fit; nearest-even assumed | - | inferred | S43, [ge_ops.md](../ucode/ge_ops.md) line 3729 |
 
 
 ### 7.8 X graphics-context load (token 0x129, thirteen words) and its companion loads
@@ -1894,10 +1903,11 @@ The register value is `(word 10 != 0) | ((id << 1) & 0x1ffe) | ((mask << 13) & 0
 | Do the recorded ids 0xe, 0xf, 0x44 select between the readings? | No: they are word-9 inputs; the register ids for 0xe and 0xf decode as 0xe and 0xf only under 12:1 | established | S14 |
 | Is a set mask bit an id bit the test ignores? | Probably the opposite: a set bit is compared; pass when ((plane ^ id) & mask) == 0 | inferred | S14 |
 | Hardware text for the comparison | none read | unknown | S14, S15 |
-| Painted pixel id to compared plane value | mapping unread | unknown | S8 |
+| Painted pixel id to compared plane value | the compared 12-bit value is the painted value v >> 2. The X server paints main id n as v = n << 2 (mask 0xfc) and overlay or popup group g as v = g << 8 (mask 0x1f00); the encoder's id and mask pairs are those values shifted right by 2 for both fields | inferred | S14, S44 |
+| Popup compare against the painted pattern | word 9 = 0x3f compares bit 11 only (id 0x800, mask 0x800 = v bit 13), but the painter writes the popup as group field 31 (v = 0x1f00) and never sets v bit 13; whether hardware derives bit 11 from the group field is unread | unknown | S14, S44 |
 | Is the special 0x3f the same as the all-ones word? | No: 0x3f gives id 0x800 / mask 0x800; all ones gives id 0x3f / mask 0x3f | established | S14 |
-| Does id 0x3f / mask 0x3f own no pixel? | Plausibly, under the compare polarity: no main-plane id is 63 | inferred | S14, S8 |
-| Command-grammar rule that all ones owns no pixel | not found in this repository | unknown | S14 |
+| Does id 0x3f / mask 0x3f own no pixel? | Yes, plausibly: the painter never writes 0x3f into the main field (main ids are at most 0x3e; overlay and popup paint only the group field) and refuses negative and 0x60-and-up ids | inferred | S14, S8, S44 |
+| Command-grammar rule that all ones owns no pixel | not found in this repository; the painter's behaviour above stands in for it | unknown | S14, S44 |
 
 **Answer 1, bit numbering: established, and the reading "counted from one" is wrong.** The trace's wording, id in bits 1-12 and mask in bits 13-24, is already a zero-based range: the enable flag occupies bit 0, the 12-bit reference id occupies 12:1 and the 12-bit mask 24:13. Two independent sources agree. The microcode shifts the id left by one under the mask 0x1ffe, shifts the mask left by 13 under 0x1ffe000 and ORs the enable flag into bit 0. The diagnostic's own field table for the register lists the enable at low bit 0 width 1, the reference at low bit 1 width 12 and the mask at low bit 13 (0xd) width 12. Reading the id as 11:0 and the mask as 23:12 would put the enable flag inside the id. The recorded ids do not discriminate between the readings, because 0xe, 0xf and 0x44 are word-9 inputs seen before the encoder: 0x0e and 0x0f encode to register values 0x7e01d and 0x7e01f, and decoding those as 12:1 returns 0xe and 0xf, while decoding them as 11:0 returns 0x1d and 0x1f; the overlay input 0x44 is in the masked-group range and encodes to reference 0x100 with mask 0x7c0, so a trace that shows 0x44 is showing the input word, not the register field.
 
@@ -1950,17 +1960,16 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - 0x90: size register
 - indexed 0x005, 0x006: written 0x88 and 0xe4 at start-up
 - what each bit of the value 5 does: DAC cursor control bit meaning
-- layout of the 263 words of the cursor-load request: packing of colours and image into the six colour words and 256 image words
 
 **7. Field layouts**
 
 - what the XMAP does with bits 2:1: luminance and grey handling in hardware
 - 18: flag; set for one kind of map (address (map << 14) + 0x40000)
 - what the XMAP does with bits 4:2: hardware use of the mode byte
-- crosshair shape: arm lengths, thickness, extent
-- DAC cursor colour block: which word 0-3 order the DAC uses
+- crosshair shape: arm lengths, thickness, extent (the XMAP generates it; no image exists in software)
+- XMAP cursor colour block: which of words 256-259 the crosshair draws with
 - colour-index index placement: which component lane holds the index and its bit offset in the stored bank word; what board mode 2 is
-- overlay window to main window pairing: the bit positions of the main and overlay id fields in the bank-0 word and how the display generator uses the pair
+- overlay window to main window pairing: how the display generator uses the pair of id fields
 - 15-bit RGB overlay transparency rule: transparent pixel test
 - 16-plane luminance with overlay or id planes: composition
 - the six masks the engine program applies to graphics-context load words 4-12: which mask goes with which word
@@ -1993,5 +2002,5 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 **10. Window id**
 
 - Hardware text for the comparison: none read
-- Painted pixel id to compared plane value: mapping unread
+- Popup compare: whether hardware derives compared bit 11 from the painted group field (the painter never sets v bit 13)
 - Command-grammar rule that all ones owns no pixel: not found in this repository
