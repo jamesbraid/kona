@@ -74,6 +74,9 @@ The names are role names in plain words, written for someone who transcribes the
 | S60 | the pipe firmware's texture handlers in arm1.u (6.5.30m): `SetupSubtexload` (0x0c034288), `SetupSubtexloadPos` (0x0c0343a0), `PixRM_TextureLoadSetup` (0x0c036570), `arm_texsetup` (0x0c0364e0), `ResolveTextureInternalFormat` (0x0c036424), `GetTexManageBindParam` (0x0c036a10), `arm_texbind` (0x0c036ae4), `tbus_write_word` (0x0c036408), `arm_drawtexels` (0x0c02b7a8), `arm_texenvf` (0x0c024ff4), `arm_texenvi` (0x0c025030), `arm_texgend`/`arm_texgenf` (0x0c024d50), `sendTexTable` (0x0c02539c), `arm_gettexenvfv` (0x0c025098) and `arm_gettexgenfv` (0x0c03864c). The same register-descriptor words, texture-environment records and format tables are byte-for-byte present in the 6.5 base release's `arm1.u` |
 | S61 | the IR diagnostic's raster-bus vector blocks `tex2d_detail.tbus` (3,396 words) and `projtex.tbus` (252,000 words) in `usr/diags/IR/data/tbusdata.Z`: texture mode and size (0x3fd4, 0x3fd5), the load registers 0x7fc1-0x7fc5, 0x3ff8, the filter table 0x1810-0x181f and 0x1850-0x1852, and 0x1019/0x101a/0x5000-0x5003 |
 | S62 | the geometry engine's texture-environment listing [texenv.S listing](../ucode/ge_listing/texenv.S.lst) (`mgebi_TexEnv`, `mValidateTexenvMode`) |
+| S63 | the pipe firmware's query handlers and descriptor table in arm1.u (6.5.30m): the generic-state descriptor table `get_table` (read-write data address 0x0404ebe4, 1161 two-word rows) with its name-to-row mapping `arm_getv` (0x0c038058-0x0c0380cc) and row dispatch (0x0c0380d4-0x0c0382a8), `special_get` (0x0c0382c4), `do_getcolortable` (0x0c03f00c), `arm_getpixelmapfv`, `arm_gethistogram` (0x0c03f9a4), `arm_getminmax` (0x0c03fcfc), `arm_getpolygonstipple` with `PolygonStippleGLRotate` (0x0c026b24), `arm_gettexgenfv` (0x0c03864c), `arm_getconvolutionfilter` (0x0c0372d4), `arm_getseparablefilter` (0x0c037410), `arm_get_deformation`, `arm_getconfig` (0x0c022474) and `start_rdata`; the engine listings `mgesi_GetCurrent`, `mgesi_StartRdata`, `mgesi_FinishRdata`, `mgesi_GetDeformation`, `mgesi_PushAttrLights`, `mSelectFlush` and `mFeedbackVertex` |
+| S64 | the client's query senders and value table, read in assembly: the N32 libGLcore's `kon_get`, `kon_histogram`, `kon_convolve`, `kon_colortable`, `kon_deform`, `kon_attrib`, `kon_pipeline_instruments`, `kon_select` and `kon_context` units, its value table (read-only data at 0xda82b10, 1227 eight-byte records, indexed by `kona_get_offset` 0xd9586c0) cross-read against the firmware's table record by record, and the pixel-format source routine `__glInitMemGet` (0xd9a7260); the 64-bit build for cross-checks |
+| S65 | the pipe-information tool's configuration query `kona_getconfig` (`usr/gfx/gfxinfo` 0x1000ae90), disassembled to the word it sends |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -152,7 +155,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | 0x0e5 | end-of-simulation report (simulation only) | 1 | y | inferred | S3 |
 | 0x169 | diagnostic sub-command dispatch | 1 | n | inferred | S3 |
 | 0x17f | multi-purpose diagnostic entry | 2 | y | inferred | S3 |
-| 0x1bc | restart select or feedback | 1 | y | inferred | S3 |
+| 0x1bc | restart select or feedback | 1 | y | established | S3, S64 |
 | 0x1dc | set the input-DMA wait-mode flag | 1 | y | inferred | S3 |
 | 0x1dd | raise a host interrupt with an event code (privileged) | 1 | y | inferred | S3 |
 | 0x1de | pipe-memory resume (privileged) | 5 | y | inferred | S3 |
@@ -382,32 +385,34 @@ The payload counts in this table are now the firmware handlers' own word counts,
 
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0x03b | query current vertex attributes | 1 | y | inferred | S3 |
-| 0x03c | query a clip plane | 1 | y | inferred | S3 |
-| 0x03d | query the raster position state | 1 | y | inferred | S3 |
-| 0x03e | query the pending error | 1 | y | inferred | S3 |
-| 0x041 | query a light (float) | 2 | y | inferred | S3 |
-| 0x046 | query a material (float) | 2 | y | inferred | S3 |
-| 0x048 | query a pixel map (float) | 3 | y | inferred | S3 |
-| 0x04b | query the polygon stipple | 1 | y | inferred | S3 |
-| 0x04c | query state (generic) | 1 | y | inferred | S3 |
+| 0x03b | query current vertex attributes | 1 | y | established | S3, S64 |
+| 0x03c | query a clip plane | 1 | y | established | S3, S64 |
+| 0x03d | query the raster position state | 1 | y | established | S3, S64 |
+| 0x03e | query the pending error | 1 | y | established | S3, S64 |
+| 0x041 | query a light (float) | 2 | y | established | S3, S64 |
+| 0x046 | query a material (float) | 2 | y | established | S3, S64 |
+| 0x048 | query a pixel map (float) | 3 | y | established | S3, S64 |
+| 0x04b | query the polygon stipple | 1 | y | established | S3, S64 |
+| 0x04c | query state (generic) | 1 | y | established | S3, S64 |
 | 0x04d | query texture environment (float): one word | 1 | y | established | S3, S59, S60 |
 | 0x050 | query texture generation (float): two words | 2 | y | established | S3, S59, S60 |
 | 0x052 | query a texture image: 18 words | 18 | y | established | S3, S59, S60 |
-| 0x0ea | query a colour table | 4 | y | inferred | S3 |
-| 0x0ec | query colour-table parameters | 2 | y | inferred | S3 |
-| 0x0ee | query the line-mode limit table | 1 | y | inferred | S3 |
-| 0x0f4 | query a convolution filter | 2 | y | inferred | S3 |
-| 0x0f7 | query a separable filter | 3 | y | inferred | S3 |
-| 0x0fa | query pixel-transform parameters (integer) | 2 | y | inferred | S3 |
-| 0x104 | query a histogram | 1 | y | inferred | S3 |
-| 0x105 | query histogram parameters | 2 | y | inferred | S3 |
-| 0x109 | query min/max results | 1 | y | inferred | S3 |
-| 0x10a | query min/max parameters | 1 | y | inferred | S3 |
-| 0x134 | query engine-side texture attributes | 1 | y | inferred | S3 |
-| 0x1c6 | query the deformation state | 1 | y | inferred | S3 |
-| 0x1cb | query engine transform attributes | 1 | y | inferred | S3 |
-| 0x1e9 | query the board configuration block (478 words) | 1 | y | inferred | S3 |
+| 0x0ea | query a colour table | 4 | y | established | S3, S64 |
+| 0x0ec | query colour-table parameters | 2 | y | established | S3, S64 |
+| 0x0ee | query the line-mode limit table | 1 | y | established | S3, S63, S64 |
+| 0x0f4 | query a convolution filter | 3 | y | established | S3, S64 |
+| 0x0f7 | query a separable filter | 3 | y | established | S3, S64 |
+| 0x0fa | query pixel-transform parameters (integer) | 2 | y | established | S3, S64 |
+| 0x104 | query a histogram | 1 | y | established | S3, S64 |
+| 0x105 | query histogram parameters | 2 | y | established | S3, S64 |
+| 0x109 | query min/max results | 1 | y | established | S3, S64 |
+| 0x10a | query min/max parameters | 1 | y | established | S3, S64 |
+| 0x134 | query engine-side texture attributes | 1 | y | established | S3, S64 |
+| 0x1c6 | query the deformation state | 1 | y | established | S3, S64 |
+| 0x1cb | query engine transform attributes | 1 | y | established | S3, S64 |
+| 0x1e9 | query the board configuration block (478 words) | 1 | y | established | S3, S64, S65 |
+
+The payload counts are the words after the token as the client's senders store them (the token plus one argument for the single-argument helper, two, three or four for its siblings; the long requests 0x052, 0x0f4 and 0x0f7 are written inline), and each equals the firmware handler's reads except 0x0f4, where the straight-line scan undercounted (2; the handler reads three). The reply to 0x0ee is 32 words, the count word the pipe writes before the data: eight rows of four words (S63, S64).
 
 ### 2.14 Selection, feedback and attributes
 
@@ -743,7 +748,7 @@ Each token's word count equals what the client stores: the single-float forms st
 | 0x0e1 | pass one command word through (null handler) | pass | no | no | 142 | 1 | inferred | S1, S4 |
 | 0x0e2 | write one raster-bus word (mode code, low half, high half) | pass | no | no | 143 | 3 | established | S1, S2, S4 |
 | 0x0ed | load the post-texture scale and bias | pass | no | no | 161 | 4 | established | S1, S2, S4 |
-| 0x10b | save light attributes on the engine attribute stack (ARM-injected) | pass | no | no | 162 | 1 | inferred | S1, S4 |
+| 0x10b | save light attributes on the engine attribute stack (ARM-injected; also sent by the client's context-copy path as a read-back query, one word, whose reply the client copies into its lighting state) | pass | no | no | 162 | 1 | inferred | S1, S4, S64 |
 | 0x16a | reserved diagnostic token 0 | pass | no | no | 64 | 1 | inferred | S1, S4 |
 | 0x16b | reserved diagnostic token 1 | pass | no | no | 64 | 1 | inferred | S1, S4 |
 | 0x172 | distributor no-op padding word | pass | no | no | 96 | 1 (the token word itself; data-invalid) | inferred | S1, S4 |
@@ -752,6 +757,8 @@ Each token's word count equals what the client stores: the single-float forms st
 | 0x1d8 | skip 2 words (not data) | pass | yes | no | 192 | 1 (the token word itself; data-invalid) | inferred | S1, S4 |
 | 0x1d9 | skip 4 words (not data) | pass | yes | no | 192 | 3 (the token word itself; data-invalid) | inferred | S1, S4 |
 | 0x1da | skip 5 words (not data) | pass | yes | no | 192 | 4 (the token word itself; data-invalid) | inferred | S1, S4 |
+
+Token 0x10b has two senders: the firmware injects it with a fixed descriptor in the push-attributes handler, and the client's context-copy routine sends it as a query with one word (0), waits on the return-data buffer and copies the lighting words (about 46 floats from buffer +4 with gaps) into its host copy (established, S64). The engine handler is a routed token with no processor routine, and no read-back start is visible for it on the firmware side, so either the engine raises the completion word itself or the client's wait hangs on this path; which is not decoded (unknown). A captured context-copy exchange would settle it.
 
 ## 4. Token-map entry fields and command descriptors
 
@@ -1642,44 +1649,220 @@ How the host asks the pipe a question, where the answer lands, and when the host
 | Item | Layout | Grade | Evidence |
 |---|---|---|---|
 | buffer layout | word 0 a completion word, word 1 the count of data words that follow, data from byte 8. Every query answer is read at byte 8 | established | S33, S34 |
-| completion word | the client spins on word 0 until it is nonzero, then clears it. The pipe writes word 0, and writes it last: the start routine points the output DMA at the buffer base and sends a 0 (word 0), the reply's count follows as word 1 and the data from byte 8, and the finish routine moves the DMA address back to the buffer base, sets a 4-byte length and sends a 1 (nonzero word 0). The engines' own start and finish handlers (used by the current-value, raster-position, error, clip-plane and generic-state queries) take the same address words and stage the same registers; their literal completion value is not decoded | established for the ARM start and finish routines; the engine routines' literal value inferred | S33 |
+| completion word | the client spins on word 0 until it is nonzero, then clears it. The pipe writes word 0, and writes it last: the start routine points the output DMA at the buffer base and sends a 0 (word 0), the reply's count follows as word 1 and the data from byte 8, and the finish routine moves the DMA address back to the buffer base, sets a 4-byte length and sends a 1 (nonzero word 0). The engines' own start and finish handlers (used by the current-value, raster-position, error, clip-plane and generic-state queries) take the same address words and stage the same registers; their literal completion value is not decoded: they program the same registers as the firmware routines, but the finish handler sends its last word from an operand the caller supplies, not a literal, and the operand the callers send was not traced. A captured query exchange on the raster bus, which the diagnostic's vectors do not hold, would settle it | established for the ARM start and finish routines; the engine routines' literal value inferred | S33 |
 | where the count word comes from | the processor writes the reply's word count first, then the words; the client reads the count at byte 4 for light, material and histogram-parameter replies and ignores it for fixed-size replies | established | S33, S34 |
 | host wait | up to 200000 spins on word 0, then up to 200000 zero-length naps, then naps of a tick count scaled from the system clock rate. After 3000 passes of that phase it asks the kernel for a diagnostic report, prints the first 64 words of the buffer and goes on waiting. A signal ends the wait early. Every exit clears word 0 | established | S33 |
-| reply for a query with no answer | the client has no other way out of the wait, so a handler that replies nothing hangs the client; a bad name replies zero or an empty reply with an invalid-enumerant error recorded | inferred (from the wait loop and the handlers) | S33 |
+| reply for a query with no answer | the client has no timeout path: a handler that never finishes the read-back leaves the client waiting (it spins, naps, prints a diagnostic and waits on). Every handler reachable from a valid request finishes the read-back, with count 0 and an invalid-enumerant error for a bad name (generic state, histogram and min-max parameter, colour-table parameter) or an empty reply (pixel-transform). The one exception is the colour-table and pixel-map reader, which returns without opening the read-back for a table record of -1 or a start plus count beyond twice the table width; the client's own checks keep a valid call from asking | established (handler behaviour and the wait loop) | S33, S63, S64 |
 | host-only answers | evaluator-map queries, texture-parameter and texture-level queries, evaluator grid queries, client-array pointers, and the enable bits of 29 capabilities are answered from the client's own state and send nothing | established | S34 |
 
 **Query tokens, their request words and replies.** Numbers of data words are after the count word. Floats are IEEE single precision in the pipe's order; the client does the conversions to integers, doubles and booleans (see the last row).
 
 | Token | Request words and reply | Grade | Evidence |
 |---|---|---|---|
-| 0x03b current values | one request word (0). Reply count 13 words (52 bytes), as the pipe's current-attribute handler pushes them in vertex-record order: colour (4 floats) at 0-15, colour index at 16, normal (3 floats) at 20-31, texture coordinates (4 floats) at 32-47, edge flag (one word) at 48. The client's offsets, by GL name: 0xb00 current colour +0, 0xb01 index +16, 0xb02 current normal +20, 0xb03 current texture coordinates +32, 0xb43 edge flag +48. (An earlier reading swapped the names of 0xb02 and 0xb03, which produced an apparent overlap.) | established; edge-flag value encoding inferred (the handler's two complementary conditional stores; format not decoded) | S33, S34 |
+| 0x03b current values | one request word (0). Reply count 13 words (52 bytes), as the pipe's current-attribute handler pushes them in vertex-record order: colour (4 floats) at 0-15, colour index at 16, normal (3 floats) at 20-31, texture coordinates (4 floats) at 32-47, edge flag (one word) at 48. The client reads the edge-flag word as a single-precision float (its value-table record for 0xb43 has element type float, count 1) and truncates it to an integer for integer and boolean reads, so true must be a float of magnitude at least 1.0 and false 0.0. The client's offsets, by GL name: 0xb00 current colour +0, 0xb01 index +16, 0xb02 current normal +20, 0xb03 current texture coordinates +32, 0xb43 edge flag +48. (An earlier reading swapped the names of 0xb02 and 0xb03, which produced an apparent overlap.) | established; the edge-flag word's exact bit pattern is inferred: the engine handler's two complementary conditional stores were not decoded, which needs the engine constant bank | S33, S34, S63, S64 |
 | 0x03c clip plane | one word, the plane name (0x3000 + n). Reply 4 floats: the plane equation | established | S33, S34 |
 | 0x03d raster position | one word (0). Reply count 15 words (60 bytes), no gaps: colour (4 floats) at 0, colour index at 16, texture coordinates (4 floats) at 20-35, position (4 floats) at 36-51, valid flag at 52, distance at 56. Client offsets by GL name: 0xb04 raster colour +0, 0xb05 index +16, 0xb06 texture coordinates +20, 0xb07 position +36, 0xb08 position-valid +52, 0xb09 distance +56. (An earlier reading gave the names in the wrong order, which made the tail look unsettled.) | established (client offsets, enum names, and exact tiling of the 15-word count); the engine handler's push order is not separately decoded | S33, S34 |
 | 0x03e error | one request word, a filler (0xdbdbdbdb); the processor reads it as the payload. Reply 1 word: the first recorded error (invalid enumerant 0x500, invalid value 0x501, invalid operation 0x502, stack overflow 0x503, underflow 0x504); the processor clears it when it is read, and later errors are kept only if none is pending. The engines' own pending error is returned when the processor's is clear | established | S33, S34 |
 | 0x041 light | two words: light number (0-based), parameter 0x1200-0x1209. Reply count 3 for the spot direction, 1 for single-value names, otherwise 4 floats | established | S33, S34 |
 | 0x046 material | two words: face (0x404 front, 0x405 back), name 0x1200-0x1209 or 0x1600-0x1603. Reply count 4 for ambient, diffuse, specular and emission, 1 for shininess, otherwise 3 floats | established | S33, S34 |
-| 0x048 pixel map | three words: map name (0xc70-0xc79), start entry, entry count. The client fetches in blocks of at most 512 entries. Reply: one 16-byte entry per map entry, four words, of which the client reads the component slot (0 for index and red, 1 green, 2 blue, 3 alpha) | client side established; entry layout inferred | S33, S34 |
-| 0x04b polygon stipple | one word (0). Reply count 0x20, 32 words: the 32 stipple rows. The processor rotates the stipple before and after the read and leaves it rotated by the second pair of offsets; why is not read | reply established; rotation reason unknown | S33, S34 |
-| 0x04c generic state | one word: the parameter name. Reply by the query table: the table gives each name a count of values and a kind (a value from the state block, a word from the context block, an engine-memory read, or a callback). 159 names are answered by the pipe; the others the client answers itself | mechanism established; the name-by-name counts unknown | S33, S34 |
+| 0x048 pixel map | three words: map name (0xc70-0xc79), start entry, entry count. The client fetches in blocks of at most 512 entries. Reply: one four-word entry per map entry, each word a single-precision float, so 16 bytes per entry; the client reads the component slot (0 for index and red, 1 green, 2 blue, 3 alpha). The two index maps (0xc70, 0xc71) have one component in slot 0 and the float holds the integer index (scale 1.0); the four index-to-colour and four colour-to-colour maps share one record each and fill all four slots; the colour values are 16-bit table words times 1/65535 (the constant 0x37800080), so the client's unsigned-integer reads multiply by 2^32 and its unsigned-short reads by 65535.98. A map that was never loaded replies with count 4 and four zero words | established | S33, S34, S64, S63 |
+| 0x04b polygon stipple | one word (0; `__glkonim_GetPolygonStipple` sends 0). Reply count 0x20: the 32 stipple rows (external memory 0x26b). The pipe keeps the stored pattern pre-rotated by the window-anchored offsets it tracks at pixel-block +0x10c0 (x) and +0x10c4 (y); the read first rotates the stored copy back by (32 minus x, plus y), reads it, then sends a second rotation (32 minus x, 32 minus y) | reply established; reason for the first rotation inferred (undoing the stored pre-rotation); the second pair does not restore the stored state in x (inferred from the arithmetic, see evidence) | S33, S34, S63 |
+| 0x04c generic state | one word: the parameter name. The firmware folds the name into a dense row number (0xb00-0xde1 give name-0xb00, 0x2a00-0x2a02 give 738-740, 0x3000-0x3005 give 741-746, 0x4000-0x4007 give 747-754, 0x8005-0x8039 give name-0x7d12, 0x8068-0x81c8 give name-0x7d40; one table of 1161 rows, 8 bytes each). Word 0 of a row: bits 4:0 reply word count, bits 7:5 kind, bits 31:12 element size; word 1: an offset or address. Kinds: 0 no row, reply count 0 and an invalid-enumerant error; 1 values from the state block at offset 0x1cc plus word 1, one reply word per element, element size 1 = 32-bit word, 2 = halfword, 3 = byte (zero-extended); 2 words from engine control memory at address word 1 (the control-memory-to-host handler, the one the min-max read uses); 3 words from engine external memory at address word 1 (the external-memory-to-host handler); 4 a callback (`special_get`) that writes its own count; 5 words from the context pixel block, offset word 1 from the record pointer at state-block offset 0xcf4. 171 rows are populated: 137 state-block rows, 4 control-memory rows (the four 16-word matrices: 0xba6, 0xba7, 0xba8, 0x80b1), 9 external-memory rows (0xb61-0xb66 fog, 0xd70 name-stack depth, 0x812b, 0x8199), 10 context rows (the ten pixel-map sizes 0xcb0-0xcb9), 11 callback rows. Reply counts: 1 word for every name except 0xb40 polygon mode 2, 0xb53 light-model ambient 4, 0xb66 fog colour 4, 0xb70 depth range 4 (two doubles), 0xb73 depth clear 2 (one double), 0xb80 accumulation clear 4, 0xba2 viewport 4, 0xba6/0xba7/0xba8 and 0x80b1 matrices 16, 0xc10 scissor box 4, 0xc22 colour clear 4, 0xc23 colour write mask 4 (bytes), 0x8005 blend colour 4, 0x8129 point distance attenuation 3, 0x814a sprite axis 3, 0x814b sprite translation 3, 0x817e reference-plane equation 4, 0x8199 fog offset value 4. The client asks the pipe for 159 names of its own table; the firmware has a row for 158 of them, plus 0x812a which the client asks through its fog-function reader. The one name the client asks and the firmware has no row for is 0xb14 (client expects 6 integers; the pipe answers with an empty reply and an invalid-enumerant error). 13 names have a firmware row that the client never sends (it answers them itself): 0xd80, 0xde0, 0xde1, 0x801c-0x8023 and 0x806f. Full list in the table below | established | S33, S34, S63, S64 |
 | 0x04d texture environment | one word: the parameter name (0x2200, 0x2201 or 0x80be). Reply 1 word (the mode, as an unsigned integer) for 0x2200, otherwise 4 floats | established | S33, S34 |
-| 0x050 texture generation | two words: coordinate (0x2000-0x2003), name (0x2500-0x2502, 0x81f4-0x81f7). Reply: the mode name as 1 word for 0x2500; 16 words (four rows of four floats, one column per coordinate) for the plane names and the first two distance names; 24 words (six rows) for 0x81f6 and 0x81f7. The client reads the plane rows at an address 0x8000 bytes below the mode word; why is not settled | reply shape inferred; the displacement unknown | S33, S34 |
-| 0x052 texture image | eighteen words: target, size, format, type and the selection words (section 7.14). Reply: the image in the host format and type, by the return-data buffer, or by DMA when the client uses the DMA-read request | request established; reply layout inferred | S33, S34 |
-| 0x0ea colour table | four words: target, format, start, count. The client reads 512 entries at a time. Reply length is the count rounded up to 32 entries times 4 bytes; the entry layout is the pipe's table format, which the client unpacks | request established; entry layout unknown | S33, S34 |
+| 0x050 texture generation | two words: coordinate (0x2000-0x2003) and name (0x2500-0x2502, 0x81f4-0x81f7). Reply: the mode name (0x2500) is count 1 and one word from the state block; planes 0x2501 and 0x2502 and the distance names 0x81f4 and 0x81f5 are count 16: four rows of four floats, row n word k holding coordinate k (S, T, R, Q), the whole 4x4 block returned whatever the coordinate; 0x81f6 and 0x81f7 are count 24, six rows. The client takes column k of each row at reply + 16 n + 4 k, with no displacement | established | S33, S34, S63, S64 |
+| 0x052 texture image | eighteen words: target, size, format, type and the selection words (section 7.14). Reply: the image packed in the requested host format and type by the pixel packer, with no header; by the return-data buffer the client copies it from offset 8 with a plain byte copy, or by DMA when the client uses the DMA-read request. The same packer state and send-to-host routine serve the pixel read-back (section 7.15) | established (request and reply layout; the packer's per-format byte layout belongs to section 7.15) | S33, S34, S63, S64 |
+| 0x0ea colour table | four words: target, format, start, count. The client reads 512 entries at a time. Reply: the count word is (count rounded up to 32) x 4, a count of words, not bytes; each entry is four single-precision floats in the order red, green, blue, alpha (16 bytes per entry), converted by the engine from the stored 16-bit field times 1/65535 (1/4095 and a 12-bit mask for the texture colour table, 0x80bc); the client always unpacks the reply as RGBA float, whatever the table's own format, and packs it to the caller's format and type | established (layout, count unit and scale); how the engine fills red, green and blue for a luminance or intensity table is not decoded | S33, S34, S63, S64 |
 | 0x0ec colour-table parameter | two words: target, name. Reply count 4 floats for scale (0x80d6) and bias (0x80d7); otherwise 1 word: 0x80d8 the format, 0x80d9 the width, and the size names the stored size | established | S33, S34 |
 | 0x0ee line-mode limits | one word (0). Reply count 0x20: eight rows of four words, the first two from the extended limit table and the last two from the standard one; the client splits each row between two arrays | established | S33, S34 |
-| 0x0f4, 0x0f7 convolution and separable filter | target and the format and type codes (the processor's reads seen are 2 and 3; the client's word count is not settled); the separable form is sent once for the row filter and once for the column filter. Reply: the kernel in the host format by the return-data buffer | request word count unknown; reply inferred | S33, S34 |
+| 0x0f4, 0x0f7 convolution and separable filter | three words each: the target (0x8010 or 0x8011 for 0x0f4, 0x8012 for 0x0f7), the format mask (1 shifted left by the client's internal pixel-format code) and the type mask (1 shifted left by the type code), the last two being the words the client's pixel-parse step leaves at +152 and +156 of its request record. The separable filter is read with one 0x0f7 request, not two: the reply holds the row filter and then the column filter, and the client copies the first to the caller's row buffer and the second from after it. The kernel comes back packed in the host format and type by the return-data buffer (the client copies it with a plain byte copy, no conversion); the whole exchange is bracketed by token 0x111 with selector 0x10 and 0x40000000 before and 0x10 and 0 after | established | S33, S34, S64, S63 |
 | 0x0fa pixel-transform parameter | two words: target 0x81c6 and name 0x81c9 or 0x81ca. Reply count 1, the stored integer; any other target or name gets an empty reply. The client answers the filter-record names itself | established | S33, S34 |
-| 0x104 histogram | one word, inferred to be the reset flag. Reply: the counters, width x components words. Up to 4093 words come by the return-data buffer; a larger table by the DMA-read request. A reset sends token 0x103 with 0x8024 afterwards | request word inferred; the rest established | S33, S34 |
+| 0x104 histogram | one word: the histogram width in entries (the client's host copy at context +1248), forwarded unchanged to the engines as an operand; it is not a reset flag. Reply: one block per geometry engine, each width x components words (the engine count is the digit the client keeps at context +31568); the client adds the engines' counters together. Up to 4093 words come by the return-data buffer; a larger table by the DMA-read request. A reset is a separate token 0x103 with 0x8024 sent afterwards | established (request word corrected: width, not reset) | S33, S34, S64, S63 |
 | 0x105 histogram parameter | two words: target (0x8024, 0x8025 proxy), name. Reply count 1 then the value: 0x8026 width, 0x8027 format, 0x8028-0x802c a fixed 0x20, 0x802d sink flag (real target only); any other name replies zero and records an invalid-enumerant error | established | S33, S34 |
-| 0x109 min-max | one word, inferred to be the reset flag (the client's read never sets it). Reply: the base format, then eight words from engine memory (the minimum and maximum per component, with a partner word that the client carries along; why is not read) | reply inferred | S33, S34 |
-| 0x10a min-max parameter | one argument word. The client ignores the parameter name and returns reply word 0 for every name. Reply count 1: 0x802f gives the format and 0x8030 the sink flag | processor side established; client behaviour a quirk | S33, S34 |
-| 0x134 texture attributes | one word. Reply 121 words: the texture environment and generation planes. Sent by the context-copy path only | reply established; sender inferred | S33, S34 |
-| 0x1c6 deformation | one word (the query number). Reply: coefficients (three orders x 12 bytes of control points), domain (24 bytes, 6 values) or orders (3) as the query selects | inferred | S33, S34 |
-| 0x1cb transform attributes | one word. Reply 61 words, of which the client copies the 32-byte clip-plane records. Sent by the context-copy path only | reply established; sender inferred | S33, S34 |
-| 0x1e9 board configuration | one payload word, taken as the read-back argument (which value the tool sends is not recorded). Reply count 0x1de (478), then 478 words: the board-configuration block. Sent by the pipe-information tool, not by the OpenGL client | reply established; request word unknown | S33, S34 |
+| 0x109 min-max | one word: the caller's reset argument, forwarded unchanged (the client does not touch the register). Reply: the word the pipe writes where other replies put their count is the base format (the client reads it at buffer+4 as the stored format: 0x8000, 0x8049 or a base format), then eight words per geometry engine from engine control memory 0x183: red, green, blue, alpha minima (words 0-3) then red, green, blue, alpha maxima (words 4-7), single-precision floats; the client reduces across engines (minimum over words 0-3, maximum over words 4-7 of every engine's block, blocks 8 words apart, engine count at context +31568). A nonzero word makes the firmware reset the min-max accumulator after the reply | established | S33, S34, S64, S63 |
+| 0x10a min-max parameter | one word: the parameter name, as the client's second argument. Reply count 1: 0x802f gives the format and 0x8030 the sink flag; any other name replies zero and records an invalid-enumerant error. The client returns reply word 0 for every name | established | S33, S34, S64, S63 |
+| 0x134 texture attributes | one word (0). Reply 121 words: the texture environment and generation planes. Sent by the Kona side of the context copy when the texture attribute group is copied; the client copies a flag word at buffer +4 and four floats | established (sender and request word); reply size from the firmware | S33, S34, S63, S64 |
+| 0x1c6 deformation | one word: the client's first argument, forwarded unchanged (the deformation-map selector). The reply is one fixed block whatever the query: three orders as floats at buffer words 1, 2, 3 (the first lands in the count slot), the six domain floats at buffer +16, then the control points from buffer +40, three floats each, order0 x order1 x order2 points; the client returns one of the three parts for the name 0xa00 (coefficients), 0xa01 (orders, converted to floats) or 0xa02 (domain, 24 bytes) | established (client reader); the engine program that fills it not decoded | S33, S34, S64, S63 |
+| 0x1cb transform attributes | one word (0). Reply 61 words, of which the client copies the clip-plane records (32 bytes per plane times the plane count, from buffer +4). Sent by the context copy when the transform group is copied | established (sender and request word); reply size from the firmware | S33, S34, S63, S64 |
+| 0x1e9 board configuration | one payload word, ignored by the firmware; gfxinfo sends 0. Reply count 0x1de (478), then 478 words: the board-configuration block at the start of zero-initialised data. Sent by gfxinfo (`kona_getconfig`), not by the OpenGL client, between the read-back set-up (token 0x1f2 with three words) and the wait | established | S33, S34, S65, S63 |
 | 0x0c6 finish | two words: token and 1. The processor drains the raster boards and replies one word; the client returns after word 0 is set. A zero flag word does not reply | established | S33, S34 |
 | float and integer query variants 0x03f, 0x040, 0x042, 0x043-0x045, 0x047, 0x049, 0x04a, 0x04e, 0x04f, 0x051, 0x053 | no sender: each is refused by the processor. The client answers these calls through the float forms above (light, material, texture environment and texture generation by 0x041, 0x046, 0x04d, 0x050; state by 0x04c), from host state (evaluator maps, texture parameters) or through the pixel-map float form | established | S34, S1 |
 | client conversions of float replies | integer reads of a colour-range value are (v x 4294967295 - 1) x 0.5, giving 0 for 0.0 and 2147483647 for 1.0. Records that use it: light-model ambient (0xb53), fog colour (0xb66), depth range (0xb70), depth clear (0xb73), accumulation clear (0xb80), alpha reference (0xbc2), colour clear (0xc22), blend colour (0x8005) and the current-value and raster-position replies. Light and material ambient, diffuse, specular and emission colours and the texture-environment colour scale by 2^31 the same way. All other integer reads truncate; double reads widen; boolean reads test the low byte | established | S34 |
+
+**Generic state query rows (token 0x04c).** The firmware answers 171 of its 1161 rows (137 state-block rows, 4 control-memory rows, 9 external-memory rows, 10 context rows, 11 callback rows); the table below lists them with the reply word count, the row kind and word 1. The eleven callback rows (`special_get`) are 0xba3, 0xba4, 0xba5 (stack depths), 0xbb0 (attribute stack depth), 0x2a00, 0x8038, 0x8039 (polygon offset units, factor and bias), 0x80b2 (colour matrix stack depth), 0x812a (fog function; the reply count comes from the word before the reply), 0x817e (reference-plane equation, 4 words) and 0x8196 (deformation mask). The stack depths and polygon offset values send the name to the engine and read one word back; the attribute stack depth reads a record word. "Asked by client" means the client sends the query to the pipe; "answered by client" rows have a firmware row the client never sends (it answers them from host state). The client asks the pipe for 159 names of its own table; the firmware has a row for 158 of them plus 0x812a. The one name the client asks and the firmware has no row for is 0xb14 (the client expects 6 integers; the pipe answers an empty reply and an invalid-enumerant error). The client's own count agrees with the firmware's for every row except 0xb70 (firmware 4 words, client 2 doubles) and 0xb73 (firmware 2 words, client 1 double), which agree once the client's double element type is applied (S63, S64).
+
+| Name | Words | Kind | Row word 1 | Client |
+|---|---|---|---|---|
+| 0x0b10 GL_POINT_SMOOTH | 1 | state (byte) | 0x59a | asked by client |
+| 0x0b11 GL_POINT_SIZE | 1 | state (word) | 0x54 | asked by client |
+| 0x0b20 GL_LINE_SMOOTH | 1 | state (byte) | 0x595 | asked by client |
+| 0x0b21 GL_LINE_WIDTH | 1 | state (word) | 0x74 | asked by client |
+| 0x0b24 GL_LINE_STIPPLE | 1 | state (byte) | 0x596 | asked by client |
+| 0x0b25 GL_LINE_STIPPLE_PATTERN | 1 | state (halfword) | 0x7c | asked by client |
+| 0x0b26 GL_LINE_STIPPLE_REPEAT | 1 | state (word) | 0x80 | asked by client |
+| 0x0b40 GL_POLYGON_MODE | 2 | state (word) | 0x84 | asked by client |
+| 0x0b41 GL_POLYGON_SMOOTH | 1 | state (byte) | 0x59b | asked by client |
+| 0x0b42 GL_POLYGON_STIPPLE | 1 | state (byte) | 0x59c | asked by client |
+| 0x0b44 GL_CULL_FACE | 1 | state (byte) | 0x590 | asked by client |
+| 0x0b45 GL_CULL_FACE_MODE | 1 | state (word) | 0x8c | asked by client |
+| 0x0b46 GL_FRONT_FACE | 1 | state (word) | 0x90 | asked by client |
+| 0x0b50 GL_LIGHTING | 1 | state (byte) | 0x594 | asked by client |
+| 0x0b51 GL_LIGHT_MODEL_LOCAL_VIEWER | 1 | state (word) | 0x1c0 | asked by client |
+| 0x0b52 GL_LIGHT_MODEL_TWO_SIDE | 1 | state (word) | 0x1c1 | asked by client |
+| 0x0b53 GL_LIGHT_MODEL_AMBIENT | 4 | state (word) | 0x1b0 | asked by client |
+| 0x0b54 GL_SHADE_MODEL | 1 | state (word) | 0x1ac | asked by client |
+| 0x0b55 GL_COLOR_MATERIAL_FACE | 1 | state (word) | 0x1a4 | asked by client |
+| 0x0b56 GL_COLOR_MATERIAL_PARAMETER | 1 | state (word) | 0x1a8 | asked by client |
+| 0x0b57 GL_COLOR_MATERIAL | 1 | state (byte) | 0x58f | asked by client |
+| 0x0b60 GL_FOG | 1 | state (byte) | 0x593 | asked by client |
+| 0x0b61 GL_FOG_INDEX | 1 | external memory | 0x9e6 | asked by client |
+| 0x0b62 GL_FOG_DENSITY | 1 | external memory | 0x9df | asked by client |
+| 0x0b63 GL_FOG_START | 1 | external memory | 0x9e0 | asked by client |
+| 0x0b64 GL_FOG_END | 1 | external memory | 0x9e1 | asked by client |
+| 0x0b65 GL_FOG_MODE | 1 | external memory | 0x9de | asked by client |
+| 0x0b66 GL_FOG_COLOR | 4 | external memory | 0x9e2 | asked by client |
+| 0x0b70 GL_DEPTH_RANGE | 4 | state (word) | 0x560 | asked by client |
+| 0x0b71 GL_DEPTH_TEST | 1 | state (byte) | 0x591 | asked by client |
+| 0x0b72 GL_DEPTH_WRITEMASK | 1 | state (byte) | 0x514 | asked by client |
+| 0x0b73 GL_DEPTH_CLEAR_VALUE | 2 | state (word) | 0x518 | asked by client |
+| 0x0b74 GL_DEPTH_FUNC | 1 | state (word) | 0x510 | asked by client |
+| 0x0b80 GL_ACCUM_CLEAR_VALUE | 4 | state (word) | 0x520 | asked by client |
+| 0x0b90 GL_STENCIL_TEST | 1 | state (byte) | 0x5a1 | asked by client |
+| 0x0b91 GL_STENCIL_CLEAR_VALUE | 1 | state (word) | 0x540 | asked by client |
+| 0x0b92 GL_STENCIL_FUNC | 1 | state (word) | 0x530 | asked by client |
+| 0x0b93 GL_STENCIL_VALUE_MASK | 1 | state (word) | 0x548 | asked by client |
+| 0x0b94 GL_STENCIL_FAIL | 1 | state (word) | 0x534 | asked by client |
+| 0x0b95 GL_STENCIL_PASS_DEPTH_FAIL | 1 | state (word) | 0x538 | asked by client |
+| 0x0b96 GL_STENCIL_PASS_DEPTH_PASS | 1 | state (word) | 0x53c | asked by client |
+| 0x0b97 GL_STENCIL_REF | 1 | state (word) | 0x544 | asked by client |
+| 0x0b98 GL_STENCIL_WRITEMASK | 1 | state (word) | 0x54c | asked by client |
+| 0x0ba0 GL_MATRIX_MODE | 1 | state (word) | 0x570 | asked by client |
+| 0x0ba1 GL_NORMALIZE | 1 | state (byte) | 0x599 | asked by client |
+| 0x0ba2 GL_VIEWPORT | 4 | state (word) | 0x550 | asked by client |
+| 0x0ba3 GL_MODELVIEW_STACK_DEPTH | - | callback | special_get | asked by client |
+| 0x0ba4 GL_PROJECTION_STACK_DEPTH | - | callback | special_get | asked by client |
+| 0x0ba5 GL_TEXTURE_STACK_DEPTH | - | callback | special_get | asked by client |
+| 0x0ba6 GL_MODELVIEW_MATRIX | 16 | control memory | 0x2f | asked by client |
+| 0x0ba7 GL_PROJECTION_MATRIX | 16 | control memory | 0x3f | asked by client |
+| 0x0ba8 GL_TEXTURE_MATRIX | 16 | control memory | 0x5f | asked by client |
+| 0x0bb0 GL_ATTRIB_STACK_DEPTH | - | callback | special_get | asked by client |
+| 0x0bc0 GL_ALPHA_TEST | 1 | state (byte) | 0x58c | asked by client |
+| 0x0bc1 GL_ALPHA_TEST_FUNC | 1 | state (word) | 0x5cc | asked by client |
+| 0x0bc2 GL_ALPHA_TEST_REF | 1 | state (word) | 0x5d0 | asked by client |
+| 0x0bd0 GL_DITHER | 1 | state (byte) | 0x592 | asked by client |
+| 0x0be0 GL_BLEND_DST | 1 | state (word) | 0x5e8 | asked by client |
+| 0x0be1 GL_BLEND_SRC | 1 | state (word) | 0x5e4 | asked by client |
+| 0x0be2 GL_BLEND | 1 | state (byte) | 0x58e | asked by client |
+| 0x0bf0 GL_LOGIC_OP_MODE | 1 | state (word) | 0x5f4 | asked by client |
+| 0x0bf1 GL_INDEX_LOGIC_OP | 1 | state (byte) | 0x597 | asked by client |
+| 0x0bf2 GL_COLOR_LOGIC_OP | 1 | state (byte) | 0x598 | asked by client |
+| 0x0c01 GL_DRAW_BUFFER | 1 | state (word) | 0x618 | asked by client |
+| 0x0c02 GL_READ_BUFFER | 1 | state (word) | 0x61c | asked by client |
+| 0x0c10 GL_SCISSOR_BOX | 4 | state (word) | 0x678 | asked by client |
+| 0x0c11 GL_SCISSOR_TEST | 1 | state (byte) | 0x5a0 | asked by client |
+| 0x0c20 GL_INDEX_CLEAR_VALUE | 1 | state (word) | 0x608 | asked by client |
+| 0x0c21 GL_INDEX_WRITEMASK | 1 | state (word) | 0x60c | asked by client |
+| 0x0c22 GL_COLOR_CLEAR_VALUE | 4 | state (word) | 0x5f8 | asked by client |
+| 0x0c23 GL_COLOR_WRITEMASK | 4 | state (byte) | 0x612 | asked by client |
+| 0x0c50 GL_PERSPECTIVE_CORRECTION_HINT | 1 | state (word) | 0x620 | asked by client |
+| 0x0c51 GL_POINT_SMOOTH_HINT | 1 | state (word) | 0x624 | asked by client |
+| 0x0c52 GL_LINE_SMOOTH_HINT | 1 | state (word) | 0x628 | asked by client |
+| 0x0c53 GL_POLYGON_SMOOTH_HINT | 1 | state (word) | 0x62c | asked by client |
+| 0x0c54 GL_FOG_HINT | 1 | state (word) | 0x630 | asked by client |
+| 0x0c60 GL_TEXTURE_GEN_S | 1 | state (byte) | 0x5a5 | asked by client |
+| 0x0c61 GL_TEXTURE_GEN_T | 1 | state (byte) | 0x5a6 | asked by client |
+| 0x0c62 GL_TEXTURE_GEN_R | 1 | state (byte) | 0x5a7 | asked by client |
+| 0x0c63 GL_TEXTURE_GEN_Q | 1 | state (byte) | 0x5a8 | asked by client |
+| 0x0cb0 GL_PIXEL_MAP_I_TO_I_SIZE | 1 | context block | 0x34 | asked by client |
+| 0x0cb1 GL_PIXEL_MAP_S_TO_S_SIZE | 1 | context block | 0xa0 | asked by client |
+| 0x0cb2 GL_PIXEL_MAP_I_TO_R_SIZE | 1 | context block | 0x10c | asked by client |
+| 0x0cb3 GL_PIXEL_MAP_I_TO_G_SIZE | 1 | context block | 0x110 | asked by client |
+| 0x0cb4 GL_PIXEL_MAP_I_TO_B_SIZE | 1 | context block | 0x114 | asked by client |
+| 0x0cb5 GL_PIXEL_MAP_I_TO_A_SIZE | 1 | context block | 0x118 | asked by client |
+| 0x0cb6 GL_PIXEL_MAP_R_TO_R_SIZE | 1 | context block | 0x178 | asked by client |
+| 0x0cb7 GL_PIXEL_MAP_G_TO_G_SIZE | 1 | context block | 0x17c | asked by client |
+| 0x0cb8 GL_PIXEL_MAP_B_TO_B_SIZE | 1 | context block | 0x180 | asked by client |
+| 0x0cb9 GL_PIXEL_MAP_A_TO_A_SIZE | 1 | context block | 0x184 | asked by client |
+| 0x0d70 GL_NAME_STACK_DEPTH | 1 | external memory | 0xa87 | asked by client |
+| 0x0d80 GL_AUTO_NORMAL | 1 | state (byte) | 0x58d | answered by client |
+| 0x0de0 GL_TEXTURE_1D | 1 | state (byte) | 0x5a2 | answered by client |
+| 0x0de1 GL_TEXTURE_2D | 1 | state (byte) | 0x5a3 | answered by client |
+| 0x2a00 GL_POLYGON_OFFSET_UNITS | - | callback | special_get | asked by client |
+| 0x2a01 GL_POLYGON_OFFSET_POINT | 1 | state (byte) | 0x59d | asked by client |
+| 0x2a02 GL_POLYGON_OFFSET_LINE | 1 | state (byte) | 0x59e | asked by client |
+| 0x3000 GL_CLIP_PLANE0 | 1 | state (byte) | 0x5b1 | asked by client |
+| 0x3001 GL_CLIP_PLANE1 | 1 | state (byte) | 0x5b2 | asked by client |
+| 0x3002 GL_CLIP_PLANE2 | 1 | state (byte) | 0x5b3 | asked by client |
+| 0x3003 GL_CLIP_PLANE3 | 1 | state (byte) | 0x5b4 | asked by client |
+| 0x3004 GL_CLIP_PLANE4 | 1 | state (byte) | 0x5b5 | asked by client |
+| 0x3005 GL_CLIP_PLANE5 | 1 | state (byte) | 0x5b6 | asked by client |
+| 0x4000 GL_LIGHT0 | 1 | state (byte) | 0x5a9 | asked by client |
+| 0x4001 GL_LIGHT1 | 1 | state (byte) | 0x5aa | asked by client |
+| 0x4002 GL_LIGHT2 | 1 | state (byte) | 0x5ab | asked by client |
+| 0x4003 GL_LIGHT3 | 1 | state (byte) | 0x5ac | asked by client |
+| 0x4004 GL_LIGHT4 | 1 | state (byte) | 0x5ad | asked by client |
+| 0x4005 GL_LIGHT5 | 1 | state (byte) | 0x5ae | asked by client |
+| 0x4006 GL_LIGHT6 | 1 | state (byte) | 0x5af | asked by client |
+| 0x4007 GL_LIGHT7 | 1 | state (byte) | 0x5b0 | asked by client |
+| 0x8005 GL_BLEND_COLOR | 4 | state (word) | 0x5d4 | asked by client |
+| 0x8009 GL_BLEND_EQUATION | 1 | state (word) | 0x5f0 | asked by client |
+| 0x8010 GL_CONVOLUTION_1D | 1 | state (byte) | 0x5b8 | asked by client |
+| 0x8011 GL_CONVOLUTION_2D | 1 | state (byte) | 0x5b9 | asked by client |
+| 0x8012 GL_SEPARABLE_2D | 1 | state (byte) | 0x5ba | asked by client |
+| 0x801c GL_POST_CONVOLUTION_RED_SCALE | 1 | state (word) | 0xf0 | answered by client |
+| 0x801d GL_POST_CONVOLUTION_GREEN_SCALE | 1 | state (word) | 0xf4 | answered by client |
+| 0x801e GL_POST_CONVOLUTION_BLUE_SCALE | 1 | state (word) | 0xf8 | answered by client |
+| 0x801f GL_POST_CONVOLUTION_ALPHA_SCALE | 1 | state (word) | 0xfc | answered by client |
+| 0x8020 GL_POST_CONVOLUTION_RED_BIAS | 1 | state (word) | 0x100 | answered by client |
+| 0x8021 GL_POST_CONVOLUTION_GREEN_BIAS | 1 | state (word) | 0x104 | answered by client |
+| 0x8022 GL_POST_CONVOLUTION_BLUE_BIAS | 1 | state (word) | 0x108 | answered by client |
+| 0x8023 GL_POST_CONVOLUTION_ALPHA_BIAS | 1 | state (word) | 0x10c | answered by client |
+| 0x8024 GL_HISTOGRAM | 1 | state (byte) | 0x5c8 | asked by client |
+| 0x802e GL_MINMAX | 1 | state (byte) | 0x5c9 | asked by client |
+| 0x8037 GL_POLYGON_OFFSET_FILL | 1 | state (byte) | 0x59f | asked by client |
+| 0x8038 GL_POLYGON_OFFSET_FACTOR | - | callback | special_get | asked by client |
+| 0x8039 GL_POLYGON_OFFSET_BIAS_EXT | - | callback | special_get | asked by client |
+| 0x806f GL_TEXTURE_3D | 1 | state (byte) | 0x5a4 | answered by client |
+| 0x8094 GL_INTERLACE_SGIX | 1 | state (byte) | 0x5c3 | asked by client |
+| 0x809d GL_MULTISAMPLE | 1 | state (byte) | 0x5b7 | asked by client |
+| 0x809e GL_SAMPLE_ALPHA_TO_COVERAGE | 1 | state (byte) | 0x5bd | asked by client |
+| 0x809f GL_SAMPLE_ALPHA_TO_ONE | 1 | state (byte) | 0x5bc | asked by client |
+| 0x80a0 GL_SAMPLE_COVERAGE | 1 | state (byte) | 0x5bb | asked by client |
+| 0x80aa GL_SAMPLE_COVERAGE_VALUE | 1 | state (word) | 0x650 | asked by client |
+| 0x80ab GL_SAMPLE_COVERAGE_INVERT | 1 | state (byte) | 0x648 | asked by client |
+| 0x80ac GL_SAMPLE_PATTERN_EXT | 1 | state (word) | 0x64c | asked by client |
+| 0x80b1 GL_COLOR_MATRIX | 16 | control memory | 0x190 | asked by client |
+| 0x80b2 GL_COLOR_MATRIX_STACK_DEPTH | - | callback | special_get | asked by client |
+| 0x80b4 GL_POST_COLOR_MATRIX_RED_SCALE | 1 | state (word) | 0xbc | asked by client |
+| 0x80b5 GL_POST_COLOR_MATRIX_GREEN_SCALE | 1 | state (word) | 0xc0 | asked by client |
+| 0x80b6 GL_POST_COLOR_MATRIX_BLUE_SCALE | 1 | state (word) | 0xc4 | asked by client |
+| 0x80b7 GL_POST_COLOR_MATRIX_ALPHA_SCALE | 1 | state (word) | 0xc8 | asked by client |
+| 0x80b8 GL_POST_COLOR_MATRIX_RED_BIAS | 1 | state (word) | 0xcc | asked by client |
+| 0x80b9 GL_POST_COLOR_MATRIX_GREEN_BIAS | 1 | state (word) | 0xd0 | asked by client |
+| 0x80ba GL_POST_COLOR_MATRIX_BLUE_BIAS | 1 | state (word) | 0xd4 | asked by client |
+| 0x80bb GL_POST_COLOR_MATRIX_ALPHA_BIAS | 1 | state (word) | 0xd8 | asked by client |
+| 0x80bc GL_TEXTURE_COLOR_TABLE_SGI | 1 | state (byte) | 0x5c4 | asked by client |
+| 0x80d0 GL_COLOR_TABLE | 1 | state (byte) | 0x5c5 | asked by client |
+| 0x80d1 GL_POST_CONVOLUTION_COLOR_TABLE | 1 | state (byte) | 0x5c6 | asked by client |
+| 0x80d2 GL_POST_COLOR_MATRIX_COLOR_TABLE | 1 | state (byte) | 0x5c7 | asked by client |
+| 0x8126 GL_POINT_SIZE_MIN | 1 | state (word) | 0x68 | asked by client |
+| 0x8127 GL_POINT_SIZE_MAX | 1 | state (word) | 0x6c | asked by client |
+| 0x8128 GL_POINT_FADE_THRESHOLD_SIZE | 1 | state (word) | 0x70 | asked by client |
+| 0x8129 GL_POINT_DISTANCE_ATTENUATION | 3 | state (word) | 0x5c | asked by client |
+| 0x812a GL_FOG_FUNC_SGIS | - | callback | special_get | answered by client |
+| 0x812b GL_FOG_FUNC_POINTS_SGIS | 1 | external memory | 0x9eb | asked by client |
+| 0x8148 GL_SPRITE_SGIX | 1 | state (byte) | 0x5be | asked by client |
+| 0x8149 GL_SPRITE_MODE_SGIX | 1 | state (word) | 0x654 | asked by client |
+| 0x814a GL_SPRITE_AXIS_SGIX | 3 | state (word) | 0x658 | asked by client |
+| 0x814b GL_SPRITE_TRANSLATION_SGIX | 3 | state (word) | 0x668 | asked by client |
+| 0x817d GL_REFERENCE_PLANE_SGIX | 1 | state (byte) | 0x5c1 | asked by client |
+| 0x817e GL_REFERENCE_PLANE_EQUATION_SGIX | - | callback | special_get | asked by client |
+| 0x8181 GL_INSTRUMENT_MEASUREMENTS_SGIX | 1 | state (word) | 0x690 | asked by client |
+| 0x8183 GL_CALLIGRAPHIC_FRAGMENT_SGIX | 1 | state (byte) | 0x5c2 | asked by client |
+| 0x8196 GL_DEFORMATIONS_MASK_SGIX | - | callback | special_get | asked by client |
+| 0x8198 GL_FOG_OFFSET_SGIX | 1 | state (byte) | 0x5bf | asked by client |
+| 0x8199 GL_FOG_OFFSET_VALUE_SGIX | 4 | external memory | 0x9e7 | asked by client |
+| 0x81c4 (no public name) | 1 | state (word) | 0x1a0 | asked by client |
+| 0x81c7 (no public name) | 1 | state (byte) | 0x5ca | asked by client |
 
 **Select and feedback.** Select and feedback do not use the return-data buffer. The pipe writes records straight to host memory by output DMA, and the host collects them when it leaves the mode or when a read or query needs the command path.
 
@@ -1692,11 +1875,11 @@ How the host asks the pipe a question, where the answer lands, and when the host
 | start (token 0x1f5, six words) | address high, address low, length in bytes, line length, stride, snapshot ([the select-feedback DMA](hip.md#pipe-to-host-select-feedback-kona_dmaread)). The processor programs output-DMA channel 0 and keeps the five values; snapshot 1 keeps a second copy | established | S35 |
 | finish (token 0x1f6, two words) | an event code (256, chosen by the kernel) and the context's slot index. The pipe answers with the engine event 0x100 carrying the slot index, the remaining byte count and a status word; the words delivered are (length - remaining) / 4 and the overflow flag is bit 11 (0x800) of the status | established | S35 |
 | completion rule | the client waits on the kernel's event. A timeout stops the pipe (the kernel's reason 5). A select or feedback in flight is suspended (finished) before any read or query so the command path is free, and resumed afterwards at the buffer plus the words already delivered | established | S35 |
-| restart (token 0x1bc) | one word. Reprograms channel 0 from the saved copy while a feed is active; nothing in the client or the kernel sends it | unknown (no sender) | S35 |
-| host buffers | the client allocates the select buffer as (size + 256) x 4 x k bytes, where k is a client count word whose meaning is not settled, and the feedback buffer as sent | allocation established; k unknown | S35 |
-| feedback record codes and layout | each record starts with a code word, a single-precision float of 0x700 (pass-through), 0x701 (point), 0x702 (line), 0x703 (polygon), 0x704 (bitmap), 0x705 (draw pixel), 0x706 (copy pixel) or 0x707 (line reset); the client truncates the float to an integer. The words after the code: pass-through 1 (the marker); point, bitmap, draw-pixel and copy-pixel one vertex; line and line-reset two vertices; polygon a count word n (float) then n vertices. A vertex is the feedback type's value count: 2D 2 words, 3D 3, 3D colour 3+c, 3D colour texture 7+c, 4D colour texture 8+c, where c is 4 (RGBA; selected by a context byte, taken to be the RGBA flag) or 1 (colour index). A word at a record boundary whose integer value minus 0x700 is 8 or more is not a record: the client deletes it by shifting the rest of the buffer down one word. Which words the pipe emits that the client drops is not decoded. On the pipe side the vertex formatter scales window x and y by 0.0625 after subtracting the window origin and z, after the depth offset, by 2^-20 (constants 0x3d800000, 0x35800000); the order of the values inside a vertex is not decoded and follows the GL feedback value order only by count | record sizes established (client); vertex value order and scaling inferred; dropped-word source unknown | S35 |
-| select record | a marker word (the client skips a record whose marker is 0, or 0x2bad2d00 under a client capability bit; which board sets it is not settled), a name count, the minimum depth, the maximum depth, then the names. The client merges following records with the same marker, taking the smaller minimum and the larger maximum | established | S35 |
-| depth encoding in select records | each depth word is an unsigned 32-bit integer; the client copies them unchanged. The pipe builds them from its floating-point depth bounds, scaled to the 32-bit range and clamped at the float 4294967040.0 (0x4f7fffff), with a 20-bit window-depth range constant 0x497fffff also loaded. Which constant multiplies and which clamps, and whether 0 is the near plane, is read from constants and operation kinds only | inferred (what would settle it: a recorded hit with a known depth) | S35 |
+| restart (token 0x1bc) | one word (0). Reprograms output-DMA channel 0 from the saved copy of the start words while a feed is active (flag at state-block 0xca4 equal to 1), otherwise nothing is written. Sent by the client's instruments-buffer call when the same buffer is registered again, immediately before token 0x1b8 (instruments buffer) with a zero word; no other client or server binary, and no kernel archive, loads 0x1bc (the kernel writes 501 and 502 for start and finish). The instruments path shares the select-feedback channel, which is why the restart works for it | established (sender and word) | S35, S64 |
+| host buffers | the client allocates the select buffer as (size + 256) x 4 x e bytes, where e is the number of geometry engines in the pipe (client word at context +31568, filled from the board-information reply: the digit at reply +124, the engine count the firmware keeps in its configuration block), and the feedback buffer as sent. Every engine writes its own hit records into the one buffer, which is why the client merges records with equal markers and why the select restart size uses the same multiplier | established | S35, S64 |
+| feedback record codes and layout | each record starts with a code word, a single-precision float of 0x700 (pass-through), 0x701 (point), 0x702 (line), 0x703 (polygon), 0x704 (bitmap), 0x705 (draw pixel), 0x706 (copy pixel) or 0x707 (line reset); the client truncates the float to an integer. The words after the code: pass-through 1 (the marker); point, bitmap, draw-pixel and copy-pixel one vertex; line and line-reset two vertices; polygon a count word n (float) then n vertices. A vertex is the feedback type's value count: 2D 2 words, 3D 3, 3D colour 3+c, 3D colour texture 7+c, 4D colour texture 8+c, where c is 4 (RGBA; selected by a context byte, taken to be the RGBA flag) or 1 (colour index). A word at a record boundary whose integer value minus 0x700 is 8 or more is not a record: the client deletes it by shifting the rest of the buffer down one word. Which words the pipe emits that the client drops is not decoded: the only place the pipe could create such a word is the engine's point, line, triangle and pixel feedback routines, which write each record through the raster-bus register protocol, and the firmware start handler programs the channel with no framing word; whether the reply-header write puts a leading word in the DMA stream, and before or after the record code, is raster-bus behaviour that is not in any shipped document. On the pipe side the vertex formatter scales window x and y by 0.0625 after subtracting the window origin and z, after the depth offset, by 2^-20 (constants 0x3d800000, 0x35800000); the order of the values inside a vertex depends on predicated stores in the engine's vertex routine and on a later loop that reads them back in another order, and mapping the engine registers to x, y, z, colour and texture needs operation semantics the engine notes grade inferred; it is not decoded and follows the GL feedback value order only by count | record sizes established (client); vertex value order and scaling inferred; dropped-word source unknown | S35 |
+| select record | a marker word, a name count, the minimum depth, the maximum depth, then the names. The client skips a record whose marker is 0 or 0x2bad2d00 only when bit 0x8 of its context capability word (at +31580) is clear; the context set-up sets that bit unconditionally and nothing clears it (the only clear is of bit 0), so on this driver the skip never applies and every marker is treated as a normal record. The client merges following records with the same marker, taking the smaller minimum and the larger maximum. A build where the bit is conditional would break this reading; none was found in the N32 build | established | S35, S64 |
+| depth encoding in select records | each depth word is an unsigned 32-bit integer; the client copies them unchanged. The pipe builds them from its floating-point depth bounds, scaled to the 32-bit range and clamped at the float 4294967040.0 (0x4f7fffff), with a 20-bit window-depth range constant 0x497fffff also loaded. Which constant multiplies and which clamps, and whether 0 is the near plane, is read from constants and operation kinds only; the diagnostic's vector blocks hold no select or feedback case and its reference files are CRCs of pixel results, so no recorded hit exists to compare | inferred (what would settle it: a recorded hit with a known depth) | S35 |
 | result | the client returns the number of hits or feedback values; -1 when the status reported overflow | established | S35 |
 
 
@@ -2036,7 +2219,7 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 - environment: which public mode selects the add-signed record, and what each function code does on the raster board
 - shadow state (0x1c7): whether any shipped software sends it (none found in the client library; the IRIS GL library and the X server module were not scanned)
 - GL pixel state, transfer and accumulation (section 7.15): the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); and the accumulation storage format
-- queries, select and feedback (section 7.16): why the polygon stipple is rotated around its read; the name-by-name counts of the generic state query; why the texture-generation plane rows sit 0x8000 bytes below the mode word; the colour-table entry layout; the convolution and separable filter query's request length; the request word of the board-configuration query; the select-feedback restart token (no sender); the select buffer's multiplier word; the extra word the feedback client removes; and the depth multiplier in select records
+- queries, select and feedback (section 7.16): the extra word the feedback client removes (the pipe's framing of its record stream); how the routed light-attribute query (0x10b) raises its completion word and what its reply layout is. Still inferred rather than unknown: the engine's literal completion value, why the polygon stipple read rotates twice, the edge-flag bit pattern, the feedback vertex value order and scaling, and the select depth encoding
 - multisample (section 7.17): the effect of sample counts other than 4 and 8; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; the hardware resolve rule and what depth and stencil reads return; which sample banks a clear reaches; the AND combination of the coverage word, how the sample-mask register doubles as the alpha-to-mask fade table and alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; multisample line, point and polygon rules
 
 **8. Raster bus**
