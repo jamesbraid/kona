@@ -59,7 +59,7 @@ The names are role names in plain words, written for someone who transcribes the
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1297 graded entries: 549 established, 645 inferred and 103 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1304 graded entries: 553 established, 655 inferred and 96 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -1924,13 +1924,13 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 2. Processor-run tokens | 60 | 239 | 7 | 306 |
 | 3. Routed tokens | 59 | 147 | 0 | 206 |
 | 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
-| 6. Display-bus registers | 56 | 32 | 10 | 98 |
-| 7. Field layouts | 219 | 123 | 81 | 423 |
+| 6. Display-bus registers | 58 | 33 | 10 | 101 |
+| 7. Field layouts | 221 | 131 | 74 | 426 |
 | 8. Raster bus | 17 | 92 | 1 | 110 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
-| 10. Window id | 9 | 2 | 3 | 14 |
-| **All** | **549** | **645** | **103** | **1297** |
+| 10. Window id | 9 | 3 | 3 | 15 |
+| **All** | **553** | **655** | **96** | **1304** |
 
 The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
 
