@@ -407,7 +407,7 @@ in `rrm.o` (each entry is the handler, the argument size and a manager-only flag
 
 ## Registers the driver touches
 
-**Established** (`scripts/kernel_registers.py`, output in [kona_kernel/registers.tsv](../kona_kernel/registers.tsv): one row per function, offset and direction, with the number of call sites). The driver reaches the pipe with two helpers only, `gfx_pio_read_32` and `gfx_pio_write_32`; there is no 64-bit access in the driver. The address is the per-pipe register base (pipe state +0x948) plus a constant, or the command-port pointer at pipe state +0x900. The script follows register values through each function in text order, keeping the saved registers (`$s0`-`$s8`) across calls and branches because this compiler loads a function's fixed addresses into them once. Of the 494 call sites in the 6.5.30m `kona.a`, it resolves 307 to a register offset and 167 to the command port (`cmd` rows). The other 20 (`?` rows) take an address set on a branch the text-order walk does not follow; each was read by hand:
+**Established** (`retools/tools/kona/kernel_registers.py`, output in [kona_kernel/registers.tsv](../kona_kernel/registers.tsv): one row per function, offset and direction, with the number of call sites). The driver reaches the pipe with two helpers only, `gfx_pio_read_32` and `gfx_pio_write_32`; there is no 64-bit access in the driver. The address is the per-pipe register base (pipe state +0x948) plus a constant, or the command-port pointer at pipe state +0x900. The script follows register values through each function in text order, keeping the saved registers (`$s0`-`$s8`) across calls and branches because this compiler loads a function's fixed addresses into them once. Of the 494 call sites in the 6.5.30m `kona.a`, it resolves 307 to a register offset and 167 to the command port (`cmd` rows). The other 20 (`?` rows) take an address set on a branch the text-order walk does not follow; each was read by hand:
 
 | Function (`kona.a` member) | Sites | Address, read by hand |
 |---|---|---|
@@ -498,7 +498,7 @@ The other three addresses belong to the display board's option slot, not to the 
 
 ## Commands the driver sends
 
-**Established** (`scripts/kernel_commands.py`, output in [kona_kernel/commands.tsv](../kona_kernel/commands.tsv)). The driver writes one token word and then payload words to its command port, between kicks of `HH_GINTR_INFO` ([kona_kern.h](../kona_kernel/include/kona_kern.h) for the kick values and the payload layouts it has settled). Each row of `commands.tsv` is a constant token written by a named function; tokens built from a variable, and the user-supplied groups of the DMA ioctls, are not listed. The 25 distinct tokens (by name, `GED_NOP` included) and their senders, by token name in [GE.h](../GE.h):
+**Established** (`retools/tools/kona/kernel_commands.py`, output in [kona_kernel/commands.tsv](../kona_kernel/commands.tsv)). The driver writes one token word and then payload words to its command port, between kicks of `HH_GINTR_INFO` ([kona_kern.h](../kona_kernel/include/kona_kern.h) for the kick values and the payload layouts it has settled). Each row of `commands.tsv` is a constant token written by a named function; tokens built from a variable, and the user-supplied groups of the DMA ioctls, are not listed. The 25 distinct tokens (by name, `GED_NOP` included) and their senders, by token name in [GE.h](../GE.h):
 
 | Sender | Tokens |
 |---|---|
@@ -526,7 +526,7 @@ The memory tokens manage four pools of pipe memory. `kona_mem_init` (0x0-0x3c) p
 | `HP_MEM_SWAPOUT` 0x1e3 | `kona_mem_swapout_func`, called by `kona_mem_swapout` (0x1150-0x12dc) | 8 words: pool, offset, size, unit size, copy count, the address pair of a buffer `kvpalloc` just allocated and `alloc_gfx_io_space` mapped, and 0x102 |
 | `HP_MEM_RESERVE` 0x1e4 | `kona_mem_reserve_func`, called by `kona_mem_update_driver` (0x1bec, 0x1c40) and `kona_mem_free` (0x2830) | 4 words: pool, id byte, offset, size. `kona_act_pcx` calls `kona_mem_update` first, which re-reserves every block the incoming node holds in each of the four pools (lists at private record +144 + 16 x pool) and the shared list; `kona_mem_free` releases a block with offset and size 0 |
 | `HP_PIPE_SETUP` 0x1f1 | `KONAstart` | 3 words: pipe state +2592, pipe state +2596, the constant 0x4000. **Established** (`arm_pipe_setup` 0x0c023298, `start_kcomm` 0x0c022800): the firmware keeps them as `gecomm_pnum`, `gecomm_poff` and `gecomm_len` (0x04046fd8-0x04046fe0), sends all three to every engine, and `start_kcomm` loads them into the second output-DMA channel (raster-bus 0x460 and 0x461 the address pair, 0x462 and 0x463 the length). So 0x4000 is the byte length of the engine-event area the pipe writes back |
-| `HP_TBUS_1` 0x0e2 | `KONAschedswapbuf` (`kona_video.o` 0xc80-0xca0), only when the swap mode argument is 2 and the pane is the last member of its swap group to arrive | 2 words: 0x478478 twice, then the function calls `rrmValidateBuffer` and kicks `HH_GINTR_INFO` without a third word. The token map entry (0x5847c8c1), `mgesi_TBUS_1` (reads command words 0-2) and the diagnostic senders (`fcTbusWrite`, the firmware's `diag_tbus_1`) all take three, so on this path the pipe takes the next command-port word as the third (**inferred** from the count). `scripts/kernel_commands.py` misses this site, so `commands.tsv` does not list it |
+| `HP_TBUS_1` 0x0e2 | `KONAschedswapbuf` (`kona_video.o` 0xc80-0xca0), only when the swap mode argument is 2 and the pane is the last member of its swap group to arrive | 2 words: 0x478478 twice, then the function calls `rrmValidateBuffer` and kicks `HH_GINTR_INFO` without a third word. The token map entry (0x5847c8c1), `mgesi_TBUS_1` (reads command words 0-2) and the diagnostic senders (`fcTbusWrite`, the firmware's `diag_tbus_1`) all take three, so on this path the pipe takes the next command-port word as the third (**inferred** from the count). `retools/tools/kona/kernel_commands.py` misses this site, so `commands.tsv` does not list it |
 
 **Established:** the trailing 0x102 and the 0x104 of `MEM_SUSPEND` are the event codes the pipe returns when it finishes: [hip.md](hip.md) maps GE event 0x102 to `kona_mem_swapin_complete` and `kona_mem_swapout_complete`, and 0x104 to `kona_mem_suspend_complete`. So the host names the completion event it expects in the command; they share their numbers with the `HISTOGRAM` and `GETHISTOGRAM` tokens only by coincidence of range (**inferred**). The address pair has the same form as the DMA and context packets (0x9000 in bits 15-12 of the low word; [open-questions.md](open-questions.md#host-interface-hip)).
 
@@ -555,7 +555,7 @@ The identity words are 32-bit values, one per chip, whose test macros in the hea
 
 One entry per `kona.a` function, with its role, hardware effect and where it was read, is in [kernel-functions.md](kernel-functions.md). The sections below are the longer treatment.
 
-Every function of `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` in the 6.5.30m `IP27boot` kernel objects, grouped by object and family. Read from annotated disassembly: `scripts/kernel_annotate.py OBJECT` prints `objdump -dr` with call targets and the string literals each instruction addresses. `gfxs.a` holds a byte-identical copy of `gfx.o` plus `gfx_flow.o`, `gfx_debug.o` and `klconfig.o`. Functions documented in the sections above are not repeated.
+Every function of `kona.a`, `gfx.o`, `rrm.o` and `gfxs.a` in the 6.5.30m `IP27boot` kernel objects, grouped by object and family. Read from annotated disassembly: `retools/tools/kona/kernel_annotate.py OBJECT` prints `objdump -dr` with call targets and the string literals each instruction addresses. `gfxs.a` holds a byte-identical copy of `gfx.o` plus `gfx_flow.o`, `gfx_debug.o` and `klconfig.o`. Functions documented in the sections above are not repeated.
 
 ### Generic graphics layer (`gfx.o`)
 
@@ -1156,7 +1156,7 @@ Every sequence starts with the same word, 1, then a sub-command number, then its
 
 #### Generic textport driver (IP27 `tport.a`)
 
-**Established** (IRIX 6.5.30m IP27 `tport.a(tport.o)`, read with `scripts/kernel_annotate.py`). The STREAMS driver behind the console text port of a graphics head; `kona_tport.o` above supplies the KONA board's side. Its state is one record in `.bss`: +0 a state word (0 untouched, -1 lock ready, 1 board found), +4 the lock, +8 and +16 the read and write queues, +24 open, stopped and transmitting bits, +32 and +36 the transmit and receive timeout ids, +40 a 48-byte terminal settings block, +112 a 64-byte receive ring with pointers at +176 and +184, +192 the upstream buffer, +200 and +202 the window size. Board calls go through a `.data` table of 56-byte rows indexed by `.bss` +88: +16 write, +24 unblank, +32 window size, +48 graphics ioctl. The linked kernel's `tpcons_write` uses row +16 of the same table.
+**Established** (IRIX 6.5.30m IP27 `tport.a(tport.o)`, read with `retools/tools/kona/kernel_annotate.py`). The STREAMS driver behind the console text port of a graphics head; `kona_tport.o` above supplies the KONA board's side. Its state is one record in `.bss`: +0 a state word (0 untouched, -1 lock ready, 1 board found), +4 the lock, +8 and +16 the read and write queues, +24 open, stopped and transmitting bits, +32 and +36 the transmit and receive timeout ids, +40 a 48-byte terminal settings block, +112 a 64-byte receive ring with pointers at +176 and +184, +192 the upstream buffer, +200 and +202 the window size. Board calls go through a `.data` table of 56-byte rows indexed by `.bss` +88: +16 write, +24 unblank, +32 window size, +48 graphics ioctl. The linked kernel's `tpcons_write` uses row +16 of the same table.
 
 - `tp_open()` (`tport.o` offset 0x0), established: STREAMS open routine that claims the single textport and pushes the line discipline onto the stream.
   It returns 6 if the open-mode argument (a3) is nonzero (0x14-0x20) or the low 18 bits of the device number are nonzero (0x3c-0x54).
@@ -1334,7 +1334,7 @@ Globals in `gfx_flow.o` `.sdata`: +0 `hub_use_transaction_credits`, +8 `gfx_flow
 
 ### The rest of `kona.a`
 
-**Established** from the 6.5.30m `kona.a` members named in each heading (annotated disassembly from `scripts/kernel_annotate.py`); offsets are `.text` offsets of that member, `P` is the pipe state, as above.
+**Established** from the 6.5.30m `kona.a` members named in each heading (annotated disassembly from `retools/tools/kona/kernel_annotate.py`); offsets are `.text` offsets of that member, `P` is the pipe state, as above.
 
 #### I/O-space allocator: `init_gfx_io_space`, `init_chunks`, `grow_chunk_pool`, `get_chunk`, `free_chunk` (`gfx_io_space.o`)
 

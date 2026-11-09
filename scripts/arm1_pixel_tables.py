@@ -1,1 +1,0 @@
-../retools/scripts/kona/arm1_pixel_tables.py

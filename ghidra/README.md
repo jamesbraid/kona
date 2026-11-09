@@ -12,7 +12,7 @@ ghidra/
   processors/<name>/   one Ghidra processor extension per directory
   import/<name>/       loader and import scripts for firmware images
   types/<name>/        data-type scripts
-  scripts/             the shared IRIX scripts, linked from the retools submodule
+  (the shared IRIX scripts are in retools/ghidra/scripts/, not here)
 ```
 
 ## Build and run
@@ -21,11 +21,11 @@ Run a component's `tests/run-ghidra.sh` in the Ghidra image, then its
 `tests/check.py` on the dump directory it writes:
 
 ```sh
-tools/re-run --ghidra ghidra/processors/kona-ge/tests/run-ghidra.sh .cache/kona-ge
-tools/re-run python3 ghidra/processors/kona-ge/tests/check.py .cache/kona-ge
+retools/tools/re-run --ghidra ghidra/processors/kona-ge/tests/run-ghidra.sh .cache/kona-ge
+retools/tools/re-run python3 ghidra/processors/kona-ge/tests/check.py .cache/kona-ge
 ```
 
-(`tools/re-run` mounts the workspace at `/work`, the Ghidra image with `--ghidra` and
+(`retools/tools/re-run` mounts the workspace at `/work`, the Ghidra image with `--ghidra` and
 the toolchain image without.) `run-ghidra.sh` installs a processor as a user
 extension in a throwaway settings directory, so nothing is added to a Ghidra
 installation. The Sleigh compiler output (`*.sla`) is not committed.
@@ -38,29 +38,29 @@ installation. The Sleigh compiler output (`*.sla`) is not committed.
 | [processors/kona-ged/](processors/kona-ged/) | the distributor program processor (`KONA-GED`) and its import script |
 | [import/kona-arm/](import/kona-arm/) | importer for the host-interface ARM firmware images: memory blocks, symbols, handler tables (`tables.tsv`) |
 | [types/kona-types/](types/kona-types/) | `KonaTypes.java`: the ARM state block and vertex record structures, applied where their address is fixed |
-| [scripts/](scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); each states its use in its opening comment |
+| [retools/ghidra/scripts/](../retools/ghidra/scripts/) | the IRIX MIPS scripts: `IrixGp`, `IrixJumpTables`, `FindWindowStores`, `DumpCallEdges`, `DecompileFunctions`, `ApplyStruct`, `MarkVolatileWindows` (every store to a fixed-address command window in the decompile); each states its use in its opening comment |
 
 ## Decompiled C as JSON, typed structures and function similarity
 
-`tools/re-run --ghidra-export OBJECT` runs Ghidra over one ELF object under `root/` (a linked
+`retools/tools/re-run --ghidra-export OBJECT` runs Ghidra over one ELF object under `root/` (a linked
 library or kernel, or a relocatable driver object) and prints the path of the JSON it wrote under
 `.cache/ghidra-export/`, which git ignores, so there is nothing to commit by accident. It builds the
 Ghidra image on first use. A relocatable object has no load address: name its functions, do not give
-addresses (Ghidra places such an object itself, so the addresses in its JSON are Ghidra's, not section offsets). The options are listed at the top of [tools/ghidra-export.py](../tools/ghidra-export.py);
+addresses (Ghidra places such an object itself, so the addresses in its JSON are Ghidra's, not section offsets). The options are listed at the top of [retools/tools/ghidra-export.py](../retools/tools/ghidra-export.py);
 function-similarity databases live in `.cache/ghidra-bsim/`.
 
 ```sh
 # decompiled C per function, as JSON with the decompiler's warnings
-tools/re-run --ghidra-export root/usr/gfx/arch/IP27KONA32/libGLcore.so \
+retools/tools/re-run --ghidra-export root/usr/gfx/arch/IP27KONA32/libGLcore.so \
     --decompile-symbol NAME --decompile-symbol 'prefix_*' --decompile-symbol @0xADDRESS
 # the same, with named structure fields
-tools/re-run --ghidra-export root/usr/gfx/arch/IP27KONA32/libGLcore.so \
+retools/tools/re-run --ghidra-export root/usr/gfx/arch/IP27KONA32/libGLcore.so \
     --decompile-symbol NAME --types ghidra/types/context.types.json
 # every function, or a list file (one name, glob or @address per line)
-tools/re-run --ghidra-export OBJECT --decompile-all
-tools/re-run --ghidra-export OBJECT --decompile-list names.txt
+retools/tools/re-run --ghidra-export OBJECT --decompile-all
+retools/tools/re-run --ghidra-export OBJECT --decompile-list names.txt
 # function similarity: one object per run, each matched against those before it
-tools/re-run --ghidra-export OBJECT --bsim-db libglcore --bsim-label family-host-abi
+retools/tools/re-run --ghidra-export OBJECT --bsim-db libglcore --bsim-label family-host-abi
 ```
 
 `--types` takes a JSON file kept in the repository, with `structs`
@@ -80,7 +80,7 @@ is the machine address and `ghidra_address` where Ghidra holds it (the C text us
 
 ```sh
 # every routine of a PROM image, given its container header size and load address
-tools/re-run --ghidra-export root/firmware/PROM.img --flat --header HEADER_BYTES --load 0xLOAD_ADDRESS \
+retools/tools/re-run --ghidra-export root/firmware/PROM.img --flat --header HEADER_BYTES --load 0xLOAD_ADDRESS \
     --decompile-all
 ```
 

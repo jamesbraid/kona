@@ -1,1 +1,0 @@
-../retools/scripts/kona/ge_token_comments.py

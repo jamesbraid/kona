@@ -1,1 +1,0 @@
-../retools/scripts/kona/build_equivalence.py

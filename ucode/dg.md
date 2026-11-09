@@ -1,12 +1,12 @@
 # Display tables: video formats, combinations, VOF sources and the option-board image
 
-What the files under `ucode/KONA/dg4/`, `ucode/KONA/vof/` and `ucode/KONA/dgo1/` hold (IRIX 6.5.30m install). Facts are labelled **established** (read from the files, with the check that shows it), **inferred** (a reading, with the reasoning) or **unknown**. The container and name table of all 74 `.vfo` and 26 `.cmb` files parse with `scripts/sdb_dump.py` and `scripts/display_formats.py`, and `scripts/sdb_dump.py --check` tests the relations below on the 74 `.vfo` files and passes. The stored values of every file are in [display-formats.md](../docs/display-formats.md), one row per file. First configuration only: the table values are for IR with the DG4 display generator.
+What the files under `ucode/KONA/dg4/`, `ucode/KONA/vof/` and `ucode/KONA/dgo1/` hold (IRIX 6.5.30m install). Facts are labelled **established** (read from the files, with the check that shows it), **inferred** (a reading, with the reasoning) or **unknown**. The container and name table of all 74 `.vfo` and 26 `.cmb` files parse with `retools/tools/kona/sdb_dump.py` and `retools/tools/kona/display_formats.py`, and `retools/tools/kona/sdb_dump.py --check` tests the relations below on the 74 `.vfo` files and passes. The stored values of every file are in [display-formats.md](../docs/display-formats.md), one row per file. First configuration only: the table values are for IR with the DG4 display generator.
 
 No file here is read by the pipe's kernel driver. The X server module reads them: its `vfmt*` functions open a `.cmb` and the `.vfo` files it names, and pack each format into the 383-word `LoadFormat` display request, whose word layout, field by field, is in [docs/dg.md](../docs/dg.md#the-loadformat-request-383-words) together with the registers the firmware loads from it. `ircombine`, `setmon` and `sdbutil` (`usr/gfx/`, `usr/gfx/ucode/vfc/`) are the user tools around the same files.
 
 ## The container (`.vfo` and `.cmb`)
 
-Both kinds use one big-endian container, specified with its reader functions in [display-file-format.md](../docs/display-file-format.md). It holds a header, the field values and a name table sorted by name, so a reader asks for fields by name. Every file here parses with `scripts/display_formats.py`, which decodes each file into the rows of [display-formats.md](../docs/display-formats.md).
+Both kinds use one big-endian container, specified with its reader functions in [display-file-format.md](../docs/display-file-format.md). It holds a header, the field values and a name table sorted by name, so a reader asks for fields by name. Every file here parses with `retools/tools/kona/display_formats.py`, which decodes each file into the rows of [display-formats.md](../docs/display-formats.md).
 
 ## Combination files (`.cmb`)
 

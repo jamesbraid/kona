@@ -1,1 +1,0 @@
-../retools/scripts/kona/extract_kpm_tables.py

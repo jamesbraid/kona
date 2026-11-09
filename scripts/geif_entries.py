@@ -1,1 +1,0 @@
-../retools/scripts/kona/geif_entries.py

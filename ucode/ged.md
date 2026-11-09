@@ -5,7 +5,7 @@ The distributor (`ged`) sits between the host interface and the geometry engines
 Sources:
 
 - `usr/diags/IR/bin/irsaudit`, the IR diagnostic: an N32 executable, stripped, with 1280 exported function names. Among them are the routines that build distributor words and control words: `Compact_GED_Ucode` (0x1013fc60), `Get_GED_Nop_Inst`, `Get_GED_Fetch_Inst`, `Get_GED_Release_Inst`, `Compact_GED_Geom_Control`, `Compact_GED_Pass_Control`, `Compact_GED_Reg_Pixel_Control`, the matching `Compact_HIP_*` routines, `GEDencodeOneHotRegisterAddress`, `Load_GED_Reg`, `Activate_GED_Ucode`, `Load_GED_Ucode_Flush`, `load_ged_seq_ucode`, `load_ged_pcl_table` and `gedSequencer`. They were disassembled with the MIPS binutils. The flat dump is not committed.
-- `ged1b.u` itself, its line table and its two tables. [scripts/ged_disasm.py](../scripts/ged_disasm.py) writes [ged_listing.txt](ged_listing.txt), every word decoded with the layout below.
+- `ged1b.u` itself, its line table and its two tables. [retools/tools/kona/ged_disasm.py](../retools/tools/kona/ged_disasm.py) writes [ged_listing.txt](ged_listing.txt), every word decoded with the layout below.
 - `arm1.u`'s token map ([icu_map.tsv](icu_map.tsv)) and descriptor writes ([arm1_firmware.md](arm1_firmware.md)).
 
 ## Word format

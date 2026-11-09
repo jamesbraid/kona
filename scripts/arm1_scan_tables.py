@@ -1,1 +1,0 @@
-../retools/scripts/kona/arm1_scan_tables.py

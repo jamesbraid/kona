@@ -2,7 +2,7 @@
 
 What `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m, linked as `ucode/KONA/arm1.u`) is, and what it says about how a host command token reaches the geometry engine. Facts are labelled **established** (read from the file or its code at the stated address), **inferred** (with the reasoning) or **unknown**.
 
-[scripts/arm1_disasm.py](../scripts/arm1_disasm.py) writes the outputs this page cites: [arm1_symbols.tsv](arm1_symbols.tsv) (every symbol), [arm1.s](arm1.s) (the whole read-only image disassembled and labelled) and [icu_map.tsv](icu_map.tsv) (the 512-entry token map). [scripts/ged_relocs.py](../scripts/ged_relocs.py) writes [ged_relocs.tsv](ged_relocs.tsv).
+[retools/tools/kona/arm1_disasm.py](../retools/tools/kona/arm1_disasm.py) writes the outputs this page cites: [arm1_symbols.tsv](arm1_symbols.tsv) (every symbol), [arm1.s](arm1.s) (the whole read-only image disassembled and labelled) and [icu_map.tsv](icu_map.tsv) (the 512-entry token map). [retools/tools/kona/ged_relocs.py](../retools/tools/kona/ged_relocs.py) writes [ged_relocs.tsv](ged_relocs.tsv).
 
 ## Container
 
@@ -104,7 +104,7 @@ So the ARM sends a hardware-routed command by writing an entry-shaped word and t
 
 ## The 512-entry table as eight banks: the 152 vertex, primitive and begin/end tokens
 
-Source data: [ged_banks.tsv](ged_banks.tsv) (all 512 table entries) and [ged_route.tsv](ged_route.tsv) (every routed token), written by [scripts/ged_route.py](../scripts/ged_route.py). Labels as above.
+Source data: [ged_banks.tsv](ged_banks.tsv) (all 512 table entries) and [ged_route.tsv](ged_route.tsv) (every routed token), written by [retools/tools/kona/ged_route.py](../retools/tools/kona/ged_route.py). Labels as above.
 
 **Established.** `ged1b.u` carries an assembler line table (the section after the code): for each of the 931 program words the source file and line it came from. The thirteen source files are `dist.s` (the common stubs and the first words), `flush.s`, `material.s`, `trigger.s` and one file per primitive: `points.s`, `lineloop.s`, `linestrip.s`, `lines.s`, `tri.s`, `tstrip.s`, `tfanpoly.s`, `quad.s`, `qstrip.s` (build string "uasm 6.0 ... Thu Jul 20 17:33:26 2006"). The source text is not in the file. Looking each table entry up in the line table gives the module a command number starts in.
 

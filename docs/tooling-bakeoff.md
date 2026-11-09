@@ -1,6 +1,6 @@
 # Ghidra against the pipeline: bake-off on 20 documented functions
 
-Two tools read the shipped IRIX binaries: the assembly-to-C pipeline in `scripts/` (`spimdisasm` objects and `m2c`) and Ghidra's headless analyzer. This record compares them on 20 functions whose behaviour the repository already documents. What to use each for, the tools' failure modes and the scripts are in [ghidra/scripts/README.md](../ghidra/scripts/README.md), which is shared with the other graphics workspaces. The results below were measured with the scripts as first written; the last section records two gaps found then and their fixes.
+Two tools read the shipped IRIX binaries: the assembly-to-C pipeline in `retools/tools/` (`spimdisasm` objects and `m2c`) and Ghidra's headless analyzer. This record compares them on 20 functions whose behaviour the repository already documents. What to use each for, the tools' failure modes and the scripts are in [retools/ghidra/scripts/README.md](../retools/ghidra/scripts/README.md), which is shared with the other graphics workspaces. The results below were measured with the scripts as first written; the last section records two gaps found then and their fixes.
 
 ## Method
 
@@ -20,7 +20,7 @@ Readability rubric (1 to 5).
 
 ## Results
 
-Cells are: result, claims missing (including wrong operations) out of claims checked, readability, time. "fail" is no output. The pipeline rows for B1 to B4 are as shipped; the figure in brackets is after slicing the function out by hand, because the shipped extraction cannot produce them (see the pipeline limits in ../ghidra/scripts/README.md).
+Cells are: result, claims missing (including wrong operations) out of claims checked, readability, time. "fail" is no output. The pipeline rows for B1 to B4 are as shipped; the figure in brackets is after slicing the function out by hand, because the shipped extraction cannot produce them (see the pipeline limits in ../retools/ghidra/scripts/README.md).
 
 | ID | Function (object, instructions) | Pipeline | Ghidra | Ghidra + scripts |
 |---|---|---|---|---|
@@ -74,7 +74,7 @@ Switch tables, loops and names.
 
 ## Measured with the scripts
 
-Register-window stores. `FindWindowStores.java` listed each call of the store helper with the decompiler's folded offset, across all 27 kernel objects in one headless run (25 s). It found 187 stores into the host-interface window (offset 0x800000 and up) at 13 distinct offsets in 63 function/offset pairs, plus 177 calls whose address is not base plus a constant (command-FIFO writes). The text-pattern script (`scripts/kernel_registers.py`) finds 173 stores in 64 pairs. Ghidra misses one store the pattern finds (a base held across a loop joins two values, so the offset does not fold); the pattern script undercounts by 14 where the offset register is set earlier than the call, for example 12 writes of one register in the video interrupt handler against 5. The union is 188 stores.
+Register-window stores. `FindWindowStores.java` listed each call of the store helper with the decompiler's folded offset, across all 27 kernel objects in one headless run (25 s). It found 187 stores into the host-interface window (offset 0x800000 and up) at 13 distinct offsets in 63 function/offset pairs, plus 177 calls whose address is not base plus a constant (command-FIFO writes). The text-pattern script (`retools/tools/kona/kernel_registers.py`) finds 173 stores in 64 pairs. Ghidra misses one store the pattern finds (a base held across a loop joins two values, so the offset does not fold); the pattern script undercounts by 14 where the offset register is set earlier than the call, for example 12 writes of one register in the video interrupt handler against 5. The union is 188 stores.
 
 Call graph. The entry point of the private-ioctl dispatcher has 34 direct callees in both Ghidra and a `grep` of `jal` over the committed assembly, the same 34 names; the closures differ only because the Ghidra project lacked the kernel core object that the grep covered.
 

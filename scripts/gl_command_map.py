@@ -1,1 +1,0 @@
-../retools/scripts/kona/gl_command_map.py

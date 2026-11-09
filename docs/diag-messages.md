@@ -20,7 +20,7 @@ The hand readings that the table carries are in [diag-messages-reads.tsv](diag-m
 1. Each routine is read in instruction order. A branch and its delay slot are applied together,
    because the delay slot runs before the branch takes effect.
 2. A string is reached through a `$gp`-relative pointer slot in `.srdata`, which the
-   relocation names. `scripts/kernel_annotate.py` reads those slots and the strings.
+   relocation names. `retools/tools/kona/kernel_annotate.py` reads those slots and the strings.
 3. At each print call the level (cmn_err: a0), the tag (cmn_err_tag: a0, level in a1) and the
    format argument (cmn_err: a1, cmn_err_tag: a2, sprintf: a1) are taken from the register
    state at the call.

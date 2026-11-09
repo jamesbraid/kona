@@ -34,13 +34,13 @@
   "prepare": [
     [
       "python3",
-      "scripts/extract_kpm_tables.py",
+      "retools/tools/kona/extract_kpm_tables.py",
       "root/usr/gfx/KONA/bin/kpm",
       "{tmp}"
     ],
     [
       "python3",
-      "scripts/arm1_disasm.py",
+      "retools/tools/kona/arm1_disasm.py",
       "root/usr/gfx/ucode/KONA/arm1.u",
       "{tmp}"
     ]

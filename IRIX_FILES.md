@@ -13,7 +13,7 @@ Two releases are listed:
 - **IRIX 6.5.30** is the primary release. Every path in section 1 was checked
   against an installed 6.5.30m Onyx2 with one InfiniteReality2 pipe. Its kernel
   objects, the N32 and 64-bit `libGLcore.so` and the IrisGL libraries carry
-  DWARF (checked with `scripts/map_binaries.py`); the X modules and the o32
+  DWARF (checked with `retools/tools/kona/map_binaries.py`); the X modules and the o32
   `libGLcore.so` are stripped.
 - **IRIX 6.5.0** ships unstripped binaries, but for this board they carry the
   same names-and-lines DWARF as 6.5.30. Section 5 has the survey.
@@ -83,7 +83,7 @@ from that install with `cp -rp`.
 ```
 (The block above is the machine-readable list; the tables below describe it.)
 
-`scripts/inventory.py` walks every path above except these, which are too broad
+`retools/tools/inventory.py` walks every path above except these, which are too broad
 to inventory (each line is a path and the reason):
 
 ```exclude
@@ -128,8 +128,8 @@ normal: layouts differ by release and graphics option.
 
 On the IRIX host, tar the paths in the block above (`tar -cvf /tmp/kona_root.tar
 <paths>`) and unpack on your workstation with `mkdir -p root && cd root && tar
--xvf /path/to/kona_root.tar`. `scripts/populate-root` then creates the symlinks
-in the binary directories from the second block below.
+-xvf /path/to/kona_root.tar`. The symlinks in the binary directories (second block below) are committed and
+resolve once `root/` is filled.
 
 Reference image used for the 6.5.30 listing, for reproducibility:
 `kona-installed-20261023.qcow2`, SHA-256
@@ -143,7 +143,7 @@ debug level. It has no VPro.
 
 ## 4. Symlinks
 
-`scripts/populate-root` reads these blocks. `archives` lines are `ARCHIVE LINKDIR`: the
+These blocks list the committed symlinks. `archives` lines are `ARCHIVE LINKDIR`: the
 archive's members are unpacked inside `root/` and linked into `LINKDIR`. `links`
 lines are `LINK TARGET`, relative to the repository root. `libGLcore.so` exists once per ABI: `IP27KONA` is o32,
 `IP27KONA32` N32 and `IP27KONA64` 64-bit.

@@ -1,1 +1,0 @@
-../retools/scripts/kona/ged_null_table.py

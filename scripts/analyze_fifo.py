@@ -1,1 +1,0 @@
-../retools/scripts/kona/analyze_fifo.py

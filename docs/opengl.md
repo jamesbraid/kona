@@ -138,7 +138,7 @@ The 383-word format request (`LoadFormat`) is built and sent by the X server mod
 
 ## X server module: display emission
 
-What `kona.so` (the X server module, `usr/lib/X11/dyDDX/`, IRIX 6.5.30m, stripped, dynamic symbols only) sends to the kernel and to the pipe for the cursor, display modes, clips and buffer swaps. The module was disassembled from `ddx/asm/kona/` with its GOT calls resolved by `scripts/resolve_got.py`; static helpers that have no symbol are named by address. Labels as above. Structure names come from the 6.5.5 installed headers the Kona stack header 6 and the Kona stack header 8; [ddx/include/kona_ddx.h](../ddx/include/kona_ddx.h) has the layouts.
+What `kona.so` (the X server module, `usr/lib/X11/dyDDX/`, IRIX 6.5.30m, stripped, dynamic symbols only) sends to the kernel and to the pipe for the cursor, display modes, clips and buffer swaps. The module was disassembled from `ddx/asm/kona/` with its GOT calls resolved by `retools/tools/kona/resolve_got.py`; static helpers that have no symbol are named by address. Labels as above. Structure names come from the 6.5.5 installed headers the Kona stack header 6 and the Kona stack header 8; [ddx/include/kona_ddx.h](../ddx/include/kona_ddx.h) has the layouts.
 
 ### How the module writes commands
 

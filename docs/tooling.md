@@ -1,10 +1,10 @@
 # Ghidra in this workspace
 
-The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md) or Ghidra with the scripts in [ghidra/scripts/](../ghidra/scripts/README.md), which are shared with the other graphics workspaces: what each tool is for, the gp and jump-table recovery, and the limits of both. [tooling-bakeoff.md](tooling-bakeoff.md) holds the 20-function comparison that backs those rules. The rest of this page is specific to this family.
+The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md) or Ghidra with the scripts in [retools/ghidra/scripts/](../retools/ghidra/scripts/README.md), which are shared with the other graphics workspaces: what each tool is for, the gp and jump-table recovery, and the limits of both. [tooling-bakeoff.md](tooling-bakeoff.md) holds the 20-function comparison that backs those rules. The rest of this page is specific to this family.
 
 ## Ghidra processor module for the geometry-engine microcode
 
-The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the instruction set ([ucode/ge_isa.md](../ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
+The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the kernel ([ucode/ge_isa.md](../ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -16,7 +16,7 @@ The sections above cover the MIPS binaries. The geometry-engine microcode is not
 
 ### How the decode works
 
-The chip stores a 72-bit word W, but the decode from W to its control fields is not known as logic: `ge.u` holds each word's 256-bit decoded record, 205 of whose bits vary and most of which are not slices of W ([ucode/ge_isa.md](../ucode/ge_isa.md#two-encodings-one-program)). So the module decodes the record, which `scripts/ge_disasm.py` also reads:
+The chip stores a 72-bit word W, but the decode from W to its control fields is not known as logic: `ge.u` holds each word's 256-bit decoded record, 205 of whose bits vary and most of which are not slices of W ([ucode/ge_isa.md](../ucode/ge_isa.md#two-encodings-one-program)). So the module decodes the record, which `retools/tools/kona/ge_disasm.py` also reads:
 
 - code space `code` has an 8-byte address unit, one microcode word each, holding W[63:0]; Ghidra addresses are word addresses, as in the listings;
 - the import script writes every record group, W[71:64] and the form into the context register at each word;
@@ -72,7 +72,7 @@ Ghidra's analysis finds the call targets.
 
 From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/ucode/`:
 
-- **(a) passes.** All 47211 listed words of `ge.u` match `scripts/ge_disasm.py` field for field. Each instruction prints a mnemonic, then the transfer and every record group that differs from the no-op record, as that script does. r62 is printed as `high:low`.
+- **(a) passes.** All 47211 listed words of `ge.u` match `retools/tools/kona/ge_disasm.py` field for field. Each instruction prints a mnemonic, then the transfer and every record group that differs from the no-op record, as that script does. r62 is printed as `high:low`.
 - **(b) passes.** All 172 output words of `irsaudit`'s instruction test decode as the output store. The 41 rows of the operation table each decode to the documented operation, found by walking back from the output word to the word that wrote its register.
 - **(c) passes.** All 508 routine entries among the `ge_compute.md` subjects are function entries; 738 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 257 loop heads and branch targets among the subjects are left out.
 - **(d) passes.** The decompiler output is readable C with typed memory references.
@@ -105,7 +105,7 @@ The processor is `ARM:BE:32:v4`: the images use the ARMv4 halfword transfers and
 
 - Memory. The read-only part goes at the image base (0x0c000000, or 0 for `diag_arm_init.u`), the read-write part at the data base and the zero-initialised part after it, all read from the AIF header; `tport.bin`'s 20-byte EEPROM file header is skipped. Around them it adds the ARM address map kpm names ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)): SRAM at 0 (the state block, r8 + offset; mapped to 0x1000, the stack top), the host-interface registers at 0x200000, the payload ports and next-handler fetch at 0x200200, the engine descriptor and data ports at 0x200600, the token map at 0x400000, the display bus at 0x600000, the EEPROM at 0x800000 and the cache tags at 0xa00000. The register and port blocks are volatile. The display-bus, EEPROM and SDRAM sizes are the distance to the next region, not a documented size.
 - Base registers. r8 = 0 and r9 = 0x200200 are set over the code after the start-up sequence that loads them, so every r9-relative store resolves to a named register or port.
-- Names. `arm1.u` takes its 1682 debug-table symbols; a symbol with flags 2 or 3 in the read-only part starts a function unless it is a linker mark, the area name `ucode` or one of the documented tables. An image without symbols gets names for its call targets by matching their words against `arm1.u` with branch and pc-relative offsets masked (the rule of `scripts/arm1_disasm.py --tport`), `DoDGRqst<name>` for its display-request handlers, and, for `tport.bin`, the labels of [ucode/tport.md](../ucode/tport.md#unnamed-functions).
+- Names. `arm1.u` takes its 1682 debug-table symbols; a symbol with flags 2 or 3 in the read-only part starts a function unless it is a linker mark, the area name `ucode` or one of the documented tables. An image without symbols gets names for its call targets by matching their words against `arm1.u` with branch and pc-relative offsets masked (the rule of `retools/tools/kona/arm1_disasm.py --tport`), `DoDGRqst<name>` for its display-request handlers, and, for `tport.bin`, the labels of [ucode/tport.md](../ucode/tport.md#unnamed-functions).
 - Registers. Every ARM-side register of [ucode/arm1_registers.tsv](../ucode/arm1_registers.tsv) is labelled and typed as a 32-bit structure of its kpm fields; the layouts (`HA_ICU_MAP_A`, `_G`, `_N`, `HA_GED_CTRL_ADDR`) become types only. The descriptor and data ports are labelled by their decoded select and tag (`HA_GED_CTRL_T1_S12` is 0x200670).
 - Token table. In `arm1.u` the static list at `vector_end` is typed entry by entry: an ARM entry as {flags, handler pointer}, a routed entry as `HA_ICU_MAP_G` (geometry form) or `HA_ICU_MAP_N`. Each entry, its slot in `icu_map` and its slot in the hardware map at 0x400000 are labelled with the token number and kpm name, and each handler gets a plate comment listing its tokens and group.
 - Data tables. `hipwc`, `vector_start`, the `x$constdata` tables, `DGDispatchTable`, the three vertex-array tables, `gepc`, `icu_map` and `tport.bin`'s request table, as listed in `tables.tsv`.
@@ -135,9 +135,9 @@ Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn
 | `data/languages/kona_ged.{ldefs,pspec,cspec}` | Language `KONA-GED:BE:32:default` |
 | `ghidra_scripts/KonaGEDImport.java` | The import recipe, run as a pre-script on a raw import |
 | `tests/run-ghidra.sh`, `tests/DumpListing.java` | Compiles the spec, imports `ged1b.u` and dumps the listing and functions |
-| `tests/check.py` | Compares the listing with `scripts/ged_disasm.py` |
+| `tests/check.py` | Compares the listing with `retools/tools/kona/ged_disasm.py` |
 
-Mnemonics and operands follow `scripts/ged_disasm.py`: `ctl` with each nonzero field (`x`, `y`, `r`, `a`, `b`, `c`, `z`, `n`, `release`, `sub`), `nop` for the zero word, `xfer0`-`xfer7` with `p`, `q`, the register (one-hot for ops 5 and 7, shown as r53-r60), `v` for ops 1-3 and the target, `load0`-`load7` with `x`, `y`, register and immediate, `move` for load op 2, and `+fetch` on any word with bit 26 set. They are labels for the word types, not hardware names. Ghidra prints the numbers in hex and the target as a byte address.
+Mnemonics and operands follow `retools/tools/kona/ged_disasm.py`: `ctl` with each nonzero field (`x`, `y`, `r`, `a`, `b`, `c`, `z`, `n`, `release`, `sub`), `nop` for the zero word, `xfer0`-`xfer7` with `p`, `q`, the register (one-hot for ops 5 and 7, shown as r53-r60), `v` for ops 1-3 and the target, `load0`-`load7` with `x`, `y`, register and immediate, `move` for load op 2, and `+fetch` on any word with bit 26 set. They are labels for the word types, not hardware names. Ghidra prints the numbers in hex and the target as a byte address.
 
 Addresses are bytes: program word i is at 4 x i, and the table block is at 0x1000 (word 0x400), where the ARM's loader puts it. Registers `r0`-`r255` are the distributor registers by number.
 
@@ -166,7 +166,7 @@ ghidra/processors/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghi
 python3 ghidra/processors/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
 ```
 
-Result against IRIX 6.5.30m: all 931 words match `scripts/ged_disasm.py` in mnemonic and operands (210 control, 248 transfer, 473 load), and all 206 words a table B entry starts are function entries.
+Result against IRIX 6.5.30m: all 931 words match `retools/tools/kona/ged_disasm.py` in mnemonic and operands (210 control, 248 transfer, 473 load), and all 206 words a table B entry starts are function entries.
 
 The 24-bit control word that a routed token-map entry or an ARM descriptor carries (geometry, pass and register/pixel forms, [ucode/ged.md](../ucode/ged.md#the-token-map-entry-is-the-distributors-control-word)) is not a program word, so the module does not decode it. The `kona_entry_*` types of [Data types](#data-types-for-the-documented-structures) describe it where it occurs.
 

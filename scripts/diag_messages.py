@@ -4,7 +4,7 @@
 Usage: scripts/diag_messages.py [--out docs/diag-messages.tsv] [--doc docs/diag-messages.md]
 
 Run it from the repository root inside the toolchain environment (MIPS objdump and
-pyelftools, as for scripts/inventory.py). It walks every routine of the kernel objects
+pyelftools, as for retools/tools/inventory.py). It walks every routine of the kernel objects
 in the scope list below and finds each call to a print routine (cmn_err, cmn_err_tag,
 printf, qprintf, sprintf). A string literal reaches the call through a $gp-relative
 pointer slot in .srdata, and kernel_annotate.py already knows how to resolve those;

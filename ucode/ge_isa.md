@@ -2,7 +2,7 @@
 
 How the 72-bit geometry-engine instruction word is laid out, read from the two encodings of the same program in `usr/gfx/ucode/KONA/` (IRIX 6.5.30m): `ge.hex` (the 72-bit words W) and `ge.u` (a 256-bit record R per word). Facts are labelled **established** (read from the files at the stated place), **inferred** (with the reasoning) or **unknown**.
 
-[scripts/ge_disasm.py](../scripts/ge_disasm.py) writes [ge_wiring.tsv](ge_wiring.tsv) (where every record bit comes from, per form) and the listings in [ge_listing/](ge_listing/), one per source file named by the line table, with labels, decoded fields and source lines. [ge.md](ge.md) covers the containers, the line and file tables and the slot table.
+[retools/tools/kona/ge_disasm.py](../retools/tools/kona/ge_disasm.py) writes [ge_wiring.tsv](ge_wiring.tsv) (where every record bit comes from, per form) and the listings in [ge_listing/](ge_listing/), one per source file named by the line table, with labels, decoded fields and source lines. [ge.md](ge.md) covers the containers, the line and file tables and the slot table.
 
 ## The engine's microcode port
 
@@ -40,33 +40,7 @@ Each file below has its own entry; [ge.md](ge.md) has the container layouts in f
 
 Everything in this section was read from KONA's binaries, all IRIX 6.5.30m: the pipe monitor `kpm` (`usr/gfx/KONA/bin/kpm`), the ARM firmware `arm1.u`, the diagnostic program `usr/diags/IR/ucode/ge.u` with `ge.hex`, `irsaudit`, which drives it, and the kernel `unix`. A fact is **established for KONA** only where KONA code shows it. KONA's own software calls its engine GE11: the build tree in `ge.u`'s file table is `gfx/KM/ucode/ge11/`, the ARM's engine control register is `HA_GE11_CTRL` ([arm1_firmware.md](arm1_firmware.md)), and the diagnostic program has a source named `ge11table.s`.
 
-
-
-
-
-
-
 - **The three engine memories: sizes unknown.** KONA's copy routines are named for a working memory, a control memory and an external memory (`mWramToEram`, `mEramToCram` and the rest of `umemove.s`), the ARM's `WriteCram` writes control-memory addresses below 0x200 ([Control-memory addresses in immediates](ge_ops.md#control-memory-addresses-in-immediates)), and its `WriteEram` writes engine addresses such as 0xbfc ([Immediates](#immediates)). Every control-memory address the production program reaches with an immediate stays below 0x200 (the highest are the bus-output addresses 0x1f4-0x1f8), and `WriteCram` writes only below 0x1c5, which fits a 512-word space (**inferred**). The highest data-memory address `ge.u` uses cannot bound the working memory: the memory a word reaches is chosen by the `r95` code, not by the address, and production loads data addresses well above 2560, such as 0x73d5 and 0x73ed (`fft.S`), into address registers ([Special registers](#how-code-reaches-the-special-registers)), and an address above 2560 does not by itself show a larger working memory. The sizes of the working and external memories are **unknown**; a read of the engine netlists for the memory port widths would settle them.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - **Microcode load order: established for KONA.** `kpm`'s `ge11LoadUcode` (0x1001bbf0) reads `ge_kpm.hex` with the format "%x%2x%8x%8x" (address, bits 71-64, bits 63-32, bits 31-0). For each word whose address does not follow the last one it writes 0x200000 + 4 x address to distributor register 564 (0x1001bdd4), then sends three words to register 562 in the order bits 31-0, bits 63-32, bits 71-64 (0x1001bd7c-0x1001bd9c). The ARM's dormant loader in `init_ge` (`arm1.u` 0x0c00347c-0x0c0034d8) sends 0x200000 plus the file's load address and then each 12-byte `ge11.u` record as its three words in file order, which is the same low-first order ([ge.md](ge.md)). So the microcode window, word n at 0x200000 + 4n, and the low-first three-part write are what both KONA loaders use. `init_ge` also rewrites the program's first word once the load is done, sending the first file's start address and its first three words again (0x0c0034f4-0x0c003558). The size of the microcode store is **unknown**: the netlist's `u_a[18]` port gives an 18-bit address, and no KONA program goes above 0xffff.
 - **Starting the engine: GO established for KONA, the latency bit unknown.** Both KONA writers store `DIAG_SEL` 0x100 and then 1 to the execution-control register ([GE.h](../GE.h), execution-control comment). `kpm`'s field table names bit 4 `GE11_EXEC_UCLAT`, but no binary read says which value means which latency.
 - **Two threads and three output FIFOs: established for KONA.** `kpm`'s special-register table names per-thread pairs: `FPU_COND_A` and `FPU_COND_B` (0x41, 0x4c), `FLAG_THRD_A` and `FLAG_THRD_B` (0x42, 0x43), `SORT_THRD_A` and `SORT_THRD_B` (0x44, 0x45) ([diags/kpm/ge_special_registers.tsv](../diags/kpm/ge_special_registers.tsv)). Its register table names `OFIFO0` to `OFIFO2`, each with an A and a B status register. That W71 selects thread B stays **inferred**.
@@ -239,7 +213,7 @@ The record group R88-72 (`seq` in the listings) and R209-199 (`cc`) control the 
 - R86-84 is a 3-bit code. It is 6 in the no-op record and in 45089 of the 47211 instructions, 4 in 1076, 5 in 908, 3 in 120, and 0 or 1 in 18. Codes 3-5 occur in forms 14 (1858 words), 3 (138), 1 (59) and 2 (49).
 - When the code is 3, 4 or 5 and R87 is clear (1463 words), the immediate is the address of a real instruction in every word. When R87 is set (641 words), the immediate is a small signed number, and address + immediate lands on a real instruction in 630. Examples in `ctx_load.S`: 0x6647 has immediate -2 and 0x665b immediate -7, each pointing back to the start of the loop around it.
 - With code 4 and R87 clear, 405 words carry the immediate 0, which the listings print as a transfer to `HereWeGo` (the reset entry). The others go to subroutine-like labels (`mWramToEram`, `mMatrixMultCCW`, ...).
-- R88 is set in 844 transfer words and in no other word. 783 of them carry the immediate 0; in the other 61 the immediate is used by another field of the same word (a constant loaded into a register, or an engine address stored to). Every transfer whose immediate is 0 and whose R87 is clear has R88 set, and no transfer with R88 clear has a zero absolute target. Counted over the production listings (`ge.u`, 6.5.30m) by [scripts/ge_disasm.py](../scripts/ge_disasm.py)'s `seq` field.
+- R88 is set in 844 transfer words and in no other word. 783 of them carry the immediate 0; in the other 61 the immediate is used by another field of the same word (a constant loaded into a register, or an engine address stored to). Every transfer whose immediate is 0 and whose R87 is clear has R88 set, and no transfer with R88 clear has a zero absolute target. Counted over the production listings (`ge.u`, 6.5.30m) by [retools/tools/kona/ge_disasm.py](../retools/tools/kona/ge_disasm.py)'s `seq` field.
 - `mDispatchCentral` (0xe750-0xe755) is a run of code-5 words with immediates 0xe4d0, 0xe4d0, 0xe4b6, 0xe471, 0xe462 that differ in `cc` (0x60, 0x62, 0x64, 0x66, 0x68), ending with a code-4 word to 0xe450.
 - `mgeb_Fogi` (0x6fa5) contains a code-4 word (0x6fa9) to `mgeb_Fogf` (0x6fb2).
 

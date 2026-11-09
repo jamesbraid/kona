@@ -89,7 +89,7 @@ Board composition, **established** (`dg4_2voc`): `fm0`, two VOC chips (`voc00`, 
 
 ## The firmware's display-bus window
 
-How the ARM firmware (`arm1.u`, IRIX 6.5.30m) reaches the display-generator board, from its own code. [DG.h](../DG.h) has the addresses and fields; [ucode/dg_access.tsv](../ucode/dg_access.tsv) lists every access whose address the code builds from constants (435 of them, written by [scripts/dg_access.py](../scripts/dg_access.py)).
+How the ARM firmware (`arm1.u`, IRIX 6.5.30m) reaches the display-generator board, from its own code. [DG.h](../DG.h) has the addresses and fields; [ucode/dg_access.tsv](../ucode/dg_access.tsv) lists every access whose address the code builds from constants (435 of them, written by [retools/tools/kona/dg_access.py](../retools/tools/kona/dg_access.py)).
 
 **Established** (`DoDGRqstVCWrite` 0x0c012200, `DoDGRqstVCRead` 0x0c012250). Display-bus address A is ARM address 0x00600000 + 4 x A, one 32-bit word per address. The two requests let the host read or write any address. Every firmware access sits between two short delay loops (three iterations of a stack counter).
 
@@ -297,7 +297,7 @@ The firmware handler keeps the words and `dgLoadChannelGenlockParams` writes VOC
 
 ### Helper functions
 
-**Established** by `scripts/dg_access.py --functions ucode/arm1.s ucode/dg_access.tsv`: every display-side helper of `arm1.u` with the bus addresses it reads (r) and writes (w) at constant addresses (+0x100*n is a per-channel block, +i an index register), the functions it calls and its first message. A dash means the function reaches the bus only through its callees or through an address held in a variable.
+**Established** by `retools/tools/kona/dg_access.py --functions ucode/arm1.s ucode/dg_access.tsv`: every display-side helper of `arm1.u` with the bus addresses it reads (r) and writes (w) at constant addresses (+0x100*n is a per-channel block, +i an index register), the functions it calls and its first message. A dash means the function reaches the bus only through its callees or through an address held in a variable.
 
 | Function | Address | Bus accesses | Calls | First message |
 |---|---|---|---|---|

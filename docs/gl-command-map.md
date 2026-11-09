@@ -1,6 +1,6 @@
 # GL entry point to command word map
 
-[gl-command-map.tsv](gl-command-map.tsv) gives one row per public GL entry stub in the N32 `libGLcore.so` of IRIX 6.5.30m (`usr/gfx/arch/IP27KONA32/libGLcore.so`). Each row names the sender that the immediate-mode dispatch table holds for that entry, and the words the sender stores to the command port (absolute 0x4000), with the token where one is established. [scripts/gl_command_map.py](../scripts/gl_command_map.py) produces the table from the binary. The o32 and 64-bit builds and the IP35 builds were not read.
+[gl-command-map.tsv](gl-command-map.tsv) gives one row per public GL entry stub in the N32 `libGLcore.so` of IRIX 6.5.30m (`usr/gfx/arch/IP27KONA32/libGLcore.so`). Each row names the sender that the immediate-mode dispatch table holds for that entry, and the words the sender stores to the command port (absolute 0x4000), with the token where one is established. [retools/tools/kona/gl_command_map.py](../retools/tools/kona/gl_command_map.py) produces the table from the binary. The o32 and 64-bit builds and the IP35 builds were not read.
 
 ## The chain
 

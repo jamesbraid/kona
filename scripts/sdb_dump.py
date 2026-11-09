@@ -1,1 +1,0 @@
-../retools/scripts/kona/sdb_dump.py

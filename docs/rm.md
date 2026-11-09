@@ -2,7 +2,7 @@
 
 What the IR diagnostics say about the raster manager (RM) and texture memory (TM): which chips a board carries, how they connect and what bus widths bound the per-pixel arithmetic. Facts are labelled **established** (read from the file named), **inferred** (with the reasoning) or **unknown**. Register-level facts are in [RM.h](../RM.h).
 
-The source is the diagnostic netlists in `usr/diags/IR/data/*.netmap.Z` (IRIX 6.5.30m). [scripts/netmap_summary.py](../scripts/netmap_summary.py) reduces them to [diags/netmap_chips.tsv](../diags/netmap_chips.tsv): per netlist, each chip type, its instance count and every pin group with its width. Pin names are SGI's; what each bus carries is inferred from the names and the connections.
+The source is the diagnostic netlists in `usr/diags/IR/data/*.netmap.Z` (IRIX 6.5.30m). [retools/tools/kona/netmap_summary.py](../retools/tools/kona/netmap_summary.py) reduces them to [diags/netmap_chips.tsv](../diags/netmap_chips.tsv): per netlist, each chip type, its instance count and every pin group with its width. Pin names are SGI's; what each bus carries is inferred from the names and the connections.
 
 ## No raster microcode
 
@@ -200,7 +200,7 @@ The string pool is not referenced through absolute pointers in the file, so the 
 
 ## The 89-word register shadow
 
-Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [scripts/befshadow.py](../scripts/befshadow.py)), **inferred** (with the reasoning) or **unknown**. The full table is [ucode/befshadow.tsv](../ucode/befshadow.tsv).
+Facts are labelled **established** (read from `arm1.u`, IRIX 6.5.30m, by [retools/tools/kona/befshadow.py](../retools/tools/kona/befshadow.py)), **inferred** (with the reasoning) or **unknown**. The full table is [ucode/befshadow.tsv](../ucode/befshadow.tsv).
 
 **Established.** The ARM image holds two 89-word tables in its data, `befsh_addrs` (0x04067c0c) and `befsh_init` (0x04067d70). `init_geBefAddrs` (0x0c01fc38) sends `befsh_addrs` to the engines' data port (r9 + 0x840) one word at a time; `init_befshadow` (0x0c01fc80) does the same with `befsh_init`; both loop to count 0x59. **Inferred** from that pairing: shadow word i is shadow register `BEF_REGSHADOW` + i (0x100 + i), `befsh_addrs[i]` names the raster register it mirrors and `befsh_init[i]` is the value it holds after start-up.
 

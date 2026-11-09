@@ -1,1 +1,0 @@
-../retools/scripts/kona/extract_gl_tokens.py

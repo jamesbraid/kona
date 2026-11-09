@@ -1,1 +1,0 @@
-../retools/scripts/kona/display_formats.py

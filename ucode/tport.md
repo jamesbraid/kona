@@ -2,7 +2,7 @@
 
 What `usr/gfx/ucode/KONA/tport.bin` (IRIX 6.5.30m, 127889 bytes) is, from its container, its disassembly ([tport.s](tport.s)) and a comparison with `arm1.u` ([arm1.md](arm1.md)). Facts are labelled **established** (read from the file or its code at the stated address), **inferred** (with the reasoning) or **unknown**.
 
-`scripts/arm1_disasm.py --tport` ([script](../scripts/arm1_disasm.py)) writes [tport.s](tport.s): the read-only image disassembled, call targets labelled, and the display-request table printed at its head.
+`retools/tools/kona/arm1_disasm.py --tport` ([script](../retools/tools/kona/arm1_disasm.py)) writes [tport.s](tport.s): the read-only image disassembled, call targets labelled, and the display-request table printed at its head.
 
 ## Container
 
@@ -35,7 +35,7 @@ What `usr/gfx/ucode/KONA/tport.bin` (IRIX 6.5.30m, 127889 bytes) is, from its co
 - The PAB option-board loader (`DoDGRqstLoadPabXilinx`, `pgmclr`, `databit`, `chkdone`, `DoDGRqstLoadPabSizeRegs`, `DoDGRqstLoadPabCtrlRegs`).
 - Five board names, "InfiniteReality Graphics", "InfiniteReality2 Graphics", "InfiniteReality2E Graphics", "InfiniteReality3 Graphics" and "InfiniteReality4 Graphics" (0x0c01691c, 0x0c01678c, 0x0c0167dc, 0x0c016808, 0x0c016760), next to engine and raster-board counts ("%d GEs, %d RMs"). `arm1.u` has no board-name string of this form.
 
-**Established** by the display-bus scan ([scripts/dg_access.py](../scripts/dg_access.py) on [tport.s](tport.s), compared with [dg_access.tsv](dg_access.tsv)): every display-bus address `tport.bin` touches is one `arm1.u` touches, except 0x81, the first slot of the FM swap table ([docs/dg.md](../docs/dg.md#the-firmwares-display-bus-window)). The option-board addresses 0xc000-0xe806 that `arm1.u`'s `DoDGRqstDataFormat`, `DoDGRqstXServerVideoInit` and genlock code use are absent, which matches the stubs above.
+**Established** by the display-bus scan ([retools/tools/kona/dg_access.py](../retools/tools/kona/dg_access.py) on [tport.s](tport.s), compared with [dg_access.tsv](dg_access.tsv)): every display-bus address `tport.bin` touches is one `arm1.u` touches, except 0x81, the first slot of the FM swap table ([docs/dg.md](../docs/dg.md#the-firmwares-display-bus-window)). The option-board addresses 0xc000-0xe806 that `arm1.u`'s `DoDGRqstDataFormat`, `DoDGRqstXServerVideoInit` and genlock code use are absent, which matches the stubs above.
 
 **Established** (absence): none of `arm1.u`'s OpenGL token handlers (`arm_*`), nor `init_hip`, `init_ge` or the distributor loader, matched a function here, and the image has no `find_ucode`.
 

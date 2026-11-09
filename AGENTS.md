@@ -32,7 +32,7 @@ Every role above is a name from the software, not a finding. Replace each with a
 
 For licensing reasons proprietary SGI binaries are **not checked into source control** (the local `root/` tree is gitignored). Copy them from an authentic IRIX distribution into `root/` following [IRIX_FILES.md](IRIX_FILES.md). Disassembly, decompiled C, headers and notes derived from them are committed.
 
-The subdirectories below contain relative symbolic links resolving into `root/` (`scripts/populate-root` creates them from the `links` block in IRIX_FILES.md):
+The subdirectories below contain relative symbolic links resolving into `root/` (they are committed; the `links` block in IRIX_FILES.md lists them):
 
 | Directory | Symlinked files | Target in `root/` | DWARF status (6.5.30m) |
 |---|---|---|---|
@@ -43,9 +43,9 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 | `ucode/` | `KONA/` microcode, tables and listings (`ge.u`, `ge11.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/`, `vof/`) | `usr/gfx/ucode/KONA/` | Data |
 | `diags/` | `IR/` diagnostics (`irsaudit`, microcode, test vectors), `KONA_bin/` (`ireeprom`, `kpm`, `postmortem`) | `usr/diags/IR/`, `usr/gfx/KONA/bin/` | Stripped |
 
-The scope is wider than the six directories: IRIX_FILES.md also lists the Origin 350 (IP35) twins of the kernel objects, the textport driver `tport.a`, the `gfxinfo`, `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx` and `stopgfx` tools, the o32 IrisGL library, the `xsetmon` client and its resource files, the video-format compiler `sdbutil` with the `dg4`, `dg4_ddo_gvo`, `dplex` and `voc1` rule files, and the driver's tuning files. They have no symlink directory; `scripts/inventory.py` reads them from `root/`. Files on the 6.5.30 media that name no InfiniteReality symbol (`usr/stand/ide`, `stand/ideloader`, `videod`, `libvl.so.1`) are out of scope, and no PROM image is on that media.
+The scope is wider than the six directories: IRIX_FILES.md also lists the Origin 350 (IP35) twins of the kernel objects, the textport driver `tport.a`, the `gfxinfo`, `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx` and `stopgfx` tools, the o32 IrisGL library, the `xsetmon` client and its resource files, the video-format compiler `sdbutil` with the `dg4`, `dg4_ddo_gvo`, `dplex` and `voc1` rule files, and the driver's tuning files. They have no symlink directory; `retools/tools/inventory.py` reads them from `root/`. Files on the 6.5.30 media that name no InfiniteReality symbol (`usr/stand/ide`, `stand/ideloader`, `videod`, `libvl.so.1`) are out of scope, and no PROM image is on that media.
 
-DWARF status is what `scripts/map_binaries.py` reported on the primary release (IRIX 6.5.30). The 6.5.30 DWARF is thin: `dwarfdump -i` finds only compilation units, subprograms with address ranges, global variables and line tables. It has no types, structure members or parameters, in the kernel objects, both libGLcore ABIs, `libGL.so`, `libgl.so` or `libfm.so`. It gives function names, source file names and source line numbers (the `# Line` comments in the assembly), so driver structures must be recovered from the code. Types need a release built with full debug info; fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
+DWARF status is what `retools/tools/kona/map_binaries.py` reported on the primary release (IRIX 6.5.30). The 6.5.30 DWARF is thin: `dwarfdump -i` finds only compilation units, subprograms with address ranges, global variables and line tables. It has no types, structure members or parameters, in the kernel objects, both libGLcore ABIs, `libGL.so`, `libgl.so` or `libfm.so`. It gives function names, source file names and source line numbers (the `# Line` comments in the assembly), so driver structures must be recovered from the code. Types need a release built with full debug info; fill in the 6.5.0 column when you have a 6.5.0 install, since 6.5.0 binaries carry debug info.
 
 
 Other public sources in this repository:
@@ -96,9 +96,8 @@ Install these on your workstation:
 
 Initialise only the submodules you need: `git submodule update --init m2c spimdisasm libdwarf-code`.
 
-Scripts (`scripts/`, run from the repository root):
+Tools (from the `retools` submodule: `retools/tools/` shared, `retools/tools/kona/` for this device; run from the repository root, where they find this workspace by the current directory). The files left in `scripts/` are this repository's own data and config:
 
-- `populate-root`: create the symlinks listed in IRIX_FILES.md once `root/` is filled.
 - `map_binaries.py`: catalogue every linked binary (sections, functions, DWARF compilation units) into `binaries_manifest.json`.
 - `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `kona_kernel/disasm/`. Unpack archives (`.a`) with `ar x` first.
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
@@ -106,9 +105,9 @@ Scripts (`scripts/`, run from the repository root):
 - `extract_kona_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
 - `inventory.py`: measure coverage from the binaries. It lists every binary, function, MMIO offset, command token, ioctl, microcode routine and listed register in scope into [docs/inventory/](docs/inventory/README.md), gives each a status (documented, no-software-dependency, named-only or undocumented, with the doc and section that explains it) and rewrites the totals at the top of `docs/coverage.md`. Run it inside the build image with this workspace mounted; it needs the MIPS binutils and `pyelftools`.
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
-- `ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [ghidra/scripts/README.md](ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
+- `retools/ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [retools/ghidra/scripts/README.md](retools/ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
 
-The scripts descend from gr4's and carry its BSD-3 notice ([scripts/LICENSE-gr4](scripts/LICENSE-gr4)).
+The scripts descend from gr4's and carry its BSD-3 notice ([retools/tools/LICENSE-gr4](retools/tools/LICENSE-gr4)).
 
 ---
 
@@ -195,14 +194,14 @@ the definition above, or when the session ends. In that case, say in
 
 ## 8. Working on this repository
 
-Workflow: populate `root/` (IRIX_FILES.md), run `scripts/populate-root`, run the scripts above, then read, write headers and docs, and update `docs/coverage.md`.
+Workflow: populate `root/` (IRIX_FILES.md), run the tools above, then read, write headers and docs, and update `docs/coverage.md`.
 
 Roles:
 
 - **Readers** pick work from the rows below `understood` in the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and take each row to `understood`: a role and hardware effect, a label, and a derivation in the same entry. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented`, then `named-only` and `located` rows by block.
 - The areas table in `docs/coverage.md` stays as the by-hand view of each block. Keep its rows true when you change them.
 
-Regenerate the inventory in the same commit as any doc or header change that explains an item (`scripts/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member or source path, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `scripts/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
+Regenerate the inventory in the same commit as any doc or header change that explains an item (`retools/tools/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member or source path, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 

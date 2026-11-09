@@ -1,1 +1,0 @@
-../retools/scripts/kona/ge_inst_results.py

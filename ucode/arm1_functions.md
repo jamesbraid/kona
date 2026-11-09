@@ -154,7 +154,7 @@ Loading the distributor program and tables, the geometry-engine microcode and th
 
 The scan chain, board and chip identification, the board-configuration block and the serial-number (NIC) readers.
 
-The chip-type descriptions, element lists and chain records have one generated row each in [arm1_scan_tables.md](arm1_scan_tables.md), read from the image by `scripts/arm1_scan_tables.py`.
+The chip-type descriptions, element lists and chain records have one generated row each in [arm1_scan_tables.md](arm1_scan_tables.md), read from the image by `retools/tools/kona/arm1_scan_tables.py`.
 
 | Symbol | Address | What it is and does |
 |---|---|---|
@@ -1384,7 +1384,7 @@ The X server's pixel read, write and copy commands and the X pixel planners.
 
 Fixed records that describe an output module: command words, module routine, tag tables and converter groups.
 
-The converter lists, converter groups and single output-module records have one generated row each in [arm1_pixel_tables.md](arm1_pixel_tables.md), read from the image by `scripts/arm1_pixel_tables.py`. The rows below are the routines that choose and size them and the record tables that index them.
+The converter lists, converter groups and single output-module records have one generated row each in [arm1_pixel_tables.md](arm1_pixel_tables.md), read from the image by `retools/tools/kona/arm1_pixel_tables.py`. The rows below are the routines that choose and size them and the record tables that index them.
 
 | Symbol | Address | What it is and does |
 |---|---|---|

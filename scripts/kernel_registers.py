@@ -1,1 +1,0 @@
-../retools/scripts/kona/kernel_registers.py

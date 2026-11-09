@@ -1,1 +1,0 @@
-../retools/scripts/kona/resolve_got.py
