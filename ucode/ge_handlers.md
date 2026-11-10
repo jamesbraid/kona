@@ -1928,7 +1928,7 @@ Light and material queries, and the push and pop of light attributes. **Inferred
   It waits on its own address under another condition group.
   Constants loaded: 0x1200, 0x1201, 0x8, 0x408, 0x1202, 0x1600, 0x1601, 0x1602 and 4 more.
 - `mgesi_PushAttrLights`: address 0xc255, `getlight.S` line 470 (34 words). Reached: geif slot 180 (entry 361); the ARM functions that send it are in the table below; distributor table 34.
-  **Inferred** role: pushes the lighting attributes: copies state words out through two raster bus words.
+  **Inferred** role: the engine side of host token 0x10b (`HP_GET_LIGHT_ATTRIBS`). It streams the lighting attribute blocks to the host reply port: it writes the reply header 0x476 to bus output 0x1f7, forwards the light-block words from external memory to the output window (address register 0x1e), and closes with a zero to bus output 0x1f4. It never programs the output-DMA registers (0x440, 0x460 to 0x464, 0x477) and writes no count word, so a reply completes only inside the firmware's push-attributes bracket, which supplies those (the 0x10b entry in `command-table.md`). A bare 0x10b from the client's context-copy path gets no completion word from this handler (inferred).
   **Inferred** from the `ge.u` listing (6.5.30m, readings of ge_ops.md): operations move (15); writes 2 words to the raster-bus output addresses; loads 3 constants; takes 1 conditional transfer.
   It jumps within its own code.
   Constants loaded: 0x2c7, 0x476, 0x8.
@@ -1944,7 +1944,7 @@ ARM functions and host tokens that send these handlers:
 |---|---|---|---|
 | `mgesi_LiGetLight` | 198 | `arm_getlightfv` | `HP_GETLIGHTFV` |
 | `mgesi_LiGetMaterial` | 199 | `arm_getmaterialfv`, `material_push` | `HP_GETMATERIALFV` |
-| `mgesi_PushAttrLights` | 180 | `init_ged` |  |
+| `mgesi_PushAttrLights` | 180 | `arm_pushattrib` (injects 0x10b inside its bracket), `init_ged` (installs the table entry) | `HP_GET_LIGHT_ATTRIBS` (sent bare by the client's context copy) |
 | `mgeb_PopAttrLights` | 166 | `arm_poplights` | `HP_POPLIGHTS` |
 
 ### glExt.S
