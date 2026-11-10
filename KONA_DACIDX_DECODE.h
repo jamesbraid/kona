@@ -21,7 +21,7 @@
 
 /* DAC indexed registers (16-bit index). */
 
-#define DACIDX_PIXEL_MASK 0x004 /* established: 10 bits */
+#define DACIDX_PIXEL_MASK 0x004 /* inferred: 8 bits per the published description (the diagnostic's table mask is 0x3ff but its read-back compares 8 bits); start-up 0xff */
 #define DACIDX_START_UP_A 0x005 /* unknown: written 0x88 at start-up; role unknown */
 #define DACIDX_START_UP_B 0x006 /* unknown: written 0xe4 at start-up; role unknown */
 #define DACIDX_CURSOR_X_LOW 0x200 /* established: cursor x, low byte; scaled to the channel output size */

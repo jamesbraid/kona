@@ -200,27 +200,25 @@
 #define KONA_DG_CHAN_CURSOR_ENABLE    5
 
 /*
- * DAC cursor position, ESTABLISHED (kona_video_intr .L000019ec): the
- * driver writes address 0x22, then data, four times, for the bytes
- * x low, x high, y low, y high. x and y are scaled from screen space to
+ * DAC cursor position, ESTABLISHED (kona_video_intr .L000019ec, kona_video.o at
+ * 0x19ec). The driver never addresses display-bus address 0x22. For the channel
+ * n that owns the cursor it writes block address 0xb00 + 0x100 n with data 0
+ * then 2, which selects indexed DAC register 0x200, then block address
+ * 0xb02 + 0x100 n followed by one data byte, four times (x low, x high, y low,
+ * y high), re-sending the address before each byte. 0xb02 + 0x100 n is the
+ * indexed-register data port of the channel's DAC block (KONA_DAC_DECODE.h);
+ * indexed registers 0x200 to 0x203 hold the position, reached by the DAC's
+ * index advancing after each access (the published ADV716x description says
+ * so for that range; the part identity is INFERRED). x and y are scaled from screen space to
  * the channel's output resolution:
  *   x_out = dac_xout * (x - x1) / (x2 - x1) - dac_hotx
  *   y_out = dac_yout * (y - y1) / (y2 - y1) - dac_hoty
- * with x1..y2 the channel rectangle and dac_* from KONA_SET_CHANNEL_RECT.
- * The role of address 0x22 as the DAC's cursor position port is INFERRED
- * from the data it carries.
+ * with x1..y2 the channel rectangle and dac_* from KONA_SET_CHANNEL_RECT. The
+ * result is a signed 16-bit top-left position in output pixels with no bias.
+ * `DoDGRqstLoadDacCursor` in arm1.u (at 0x0c007b84) sends ten data writes to
+ * the same data port. There is no constant for the position port because it is
+ * not an address of its own; see docs/findings/dac-cursor.md.
  */
-/*
- * KONA_DG_DAC_CURSOR_POS: DAC cursor position, written by `kona_video_intr`
- * (kona_video.o at 0x19ec). Established: the driver does not address 0x22 as
- * an earlier comment said. It writes block address 0xb00 + 0x100 n with data
- * 0 then 2, which selects indexed register 0x200, then block address 0xb02 +
- * 0x100 n followed by four data writes (x low byte, x high byte, y low byte,
- * y high byte), re-sending the address before each. Inferred: indexed
- * registers 0x200 to 0x203 hold the cursor position in the DAC's output
- * pixels; `DoDGRqstLoadDacCursor` in arm1.u (at 0x0c007b84) sends ten data
- * writes to the same data port. */
-#define KONA_DG_DAC_CURSOR_POS        0x22
 
 /*
  * Video-generator interrupts in HH_INTR_STATUS, ESTABLISHED (irsaudit
@@ -719,10 +717,11 @@ enum kona_vfo_signal {
  * KONA_VDAC_PIXEL_MASK: Video DAC indexed register 0x004, pixel mask
  * (irsaudit table entry at 0x101fffc0, mask 0x3ff). Established:
  * `dgMakeVDacFetal` (arm1.u at 0x0c00a390) sets it to 0xff through
- * `dgVDacControlWrite` with index 4. Inferred: the mask is ANDed with each
- * pixel value before the colour-map lookup, so 0xff passes the low eight
- * bits of the 10-bit field and nothing in the shipped software narrows it
- * further. */
+ * `dgVDacControlWrite` with index 4. Inferred: the register is 8 bits wide.
+ * The published ADV716x description gives an 8-bit pixel mask ANDed with the
+ * red, green and blue pixel inputs, and the diagnostic's register walk
+ * compares only the low 8 bits on read-back although its table mask is
+ * 0x3ff; the part identity is inferred. */
 #define KONA_VDAC_PIXEL_MASK          0x004
 /*
  * KONA_VDAC_CURSOR_CTRL: Video DAC indexed register 0x204, cursor control
