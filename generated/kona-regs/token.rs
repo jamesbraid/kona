@@ -1,4 +1,4 @@
-// generated from kona e447f989c1f4 KONA_TOKEN_DECODE.h - do not edit, regenerate in kona
+// generated from kona 997defdf0387 KONA_TOKEN_DECODE.h - do not edit, regenerate in kona
 //!
 //! Host command tokens of the InfiniteReality2 pipe other than the
 //! queries: processor-run and hardware-routed tokens.
@@ -174,7 +174,7 @@ pub const CONTEXT_CLEAN_UP_EVENT_CODE: u32 = 0x1f8;
 pub const CONTEXT_IMAGE_LOAD: u32 = 0x1f9;
 /// inferred.
 pub const CONTEXT_ACTIVATE: u32 = 0x1fa;
-/// unknown.
+/// inferred.
 pub const CONTEXT_FIFO_SYNCHRONISE: u32 = 0x1fb;
 /// inferred.
 pub const CONTEXT_DEACTIVATE: u32 = 0x1fc;
@@ -284,7 +284,7 @@ pub const SET_STENCIL_OPERATIONS: u32 = 205;
 pub const SET_DEPTH_TEST: u32 = 206;
 /// inferred.
 pub const SET_CONSTANT_BLEND_COLOUR: u32 = 230;
-/// unknown.
+/// inferred.
 pub const SET_BLEND_EQUATION: u32 = 231;
 /// inferred.
 pub const SET_FOG_FUNCTION_TABLE: u32 = 0x10f;
@@ -398,7 +398,7 @@ pub const BIND_2D_CLIP_MAP_TEXTURE: u32 = 0x1aa;
 pub const SET_TEXEL_STORE_PARAMETER: u32 = 0x1bb;
 /// established.
 pub const BIND: u32 = 0x1c4;
-/// established.
+/// inferred.
 pub const SET_SHADOW_TEXTURE_STATE: u32 = 0x1c7;
 /// established.
 pub const BIND_TEXTURE: u32 = 0x1d5;
@@ -566,9 +566,9 @@ pub const START_INSTRUMENTATION: u32 = 0x1b9;
 pub const STOP_INSTRUMENTATION: u32 = 0x1ba;
 /// inferred.
 pub const READ_INSTRUMENTATION_COUNTERS: u32 = 0x1cd;
-/// unknown.
+/// inferred.
 pub const TEXTURE_LOAD_SET_UP_175: u32 = 0x175;
-/// unknown.
+/// inferred.
 pub const KERNEL_PRIVATE_COMMAND: u32 = 0x1fe;
 /// established.
 pub const BEGIN_PRIMITIVE: u32 = 3;
@@ -846,11 +846,11 @@ pub const DRAW_ABSOLUTE_POINTS: u32 = 0x14c;
 pub const DRAW_ABSOLUTE_POINTS_14D: u32 = 0x14d;
 /// established.
 pub const DRAW_ABSOLUTE_POINTS_14E: u32 = 0x14e;
-/// established.
+/// inferred.
 pub const DRAW_RELATIVE_POINTS: u32 = 0x14f;
-/// established.
+/// inferred.
 pub const DRAW_RELATIVE_POINTS_150: u32 = 0x150;
-/// established.
+/// inferred.
 pub const DRAW_RELATIVE_POINTS_151: u32 = 0x151;
 /// established.
 pub const FILL_RECTANGLES: u32 = 0x152;
@@ -866,23 +866,23 @@ pub const FILL_SPANS: u32 = 0x156;
 pub const FILL_SPANS_157: u32 = 0x157;
 /// established.
 pub const FILL_SPANS_158: u32 = 0x158;
-/// established.
+/// unknown.
 pub const DRAW_LINE_SEGMENTS: u32 = 0x159;
 /// inferred.
 pub const DRAW_LINE_SEGMENTS_15A: u32 = 0x15a;
-/// established.
+/// inferred.
 pub const DRAW_CONNECTED_POLYLINE: u32 = 0x15b;
-/// established.
+/// inferred.
 pub const DRAW_CONNECTED_POLYLINE_15C: u32 = 0x15c;
-/// established.
+/// inferred.
 pub const DRAW_CONNECTED_POLYLINE_15D: u32 = 0x15d;
-/// established.
+/// inferred.
 pub const DRAW_CONNECTED_POLYLINE_15E: u32 = 0x15e;
-/// established.
+/// inferred.
 pub const DRAW_POINTS_BACKGROUND_COLOUR: u32 = 0x15f;
-/// established.
+/// inferred.
 pub const DRAW_POINTS_BACKGROUND_COLOUR_160: u32 = 0x160;
-/// established.
+/// inferred.
 pub const DRAW_POINTS_BACKGROUND_COLOUR_161: u32 = 0x161;
 /// inferred.
 pub const VERTEX_ARRAY_LOOP_ENTRY_0: u32 = 0x183;
