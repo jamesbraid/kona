@@ -1,4 +1,4 @@
-// generated from kona 997defdf0387 KONA_TOKEN_DECODE.h - do not edit, regenerate in kona
+// generated from kona af9af6299188 KONA_TOKEN_DECODE.h - do not edit, regenerate in kona
 //!
 //! Host command tokens of the InfiniteReality2 pipe other than the
 //! queries: processor-run and hardware-routed tokens.
@@ -268,7 +268,7 @@ pub const SET_LINE_STIPPLE: u32 = 188;
 pub const SET_LINE_WIDTH: u32 = 189;
 /// inferred.
 pub const SET_POINT_SIZE: u32 = 190;
-/// inferred.
+/// established.
 pub const SET_POLYGON_FILL_MODE: u32 = 191;
 /// inferred.
 pub const SET_FLAT_SMOOTH_SHADING: u32 = 192;
@@ -286,7 +286,7 @@ pub const SET_DEPTH_TEST: u32 = 206;
 pub const SET_CONSTANT_BLEND_COLOUR: u32 = 230;
 /// inferred.
 pub const SET_BLEND_EQUATION: u32 = 231;
-/// inferred.
+/// established.
 pub const SET_FOG_FUNCTION_TABLE: u32 = 0x10f;
 /// inferred.
 pub const SWITCH_LEGACY_API_COMPATIBILITY_MODE: u32 = 0x112;
@@ -362,7 +362,7 @@ pub const SET_TEXTURE_ENVIRONMENT_PARAMETER: u32 = 17;
 pub const SET_TEXTURE_ENVIRONMENT_PARAMETER_012: u32 = 18;
 /// established.
 pub const TEXTURE_COORDINATE_GENERATION: u32 = 19;
-/// established.
+/// inferred.
 pub const TEXTURE_COORDINATE_GENERATION_014: u32 = 20;
 /// established.
 pub const TEXTURE_COORDINATE_GENERATION_015: u32 = 21;
@@ -950,9 +950,9 @@ pub const VERTEX_ARRAY_LOOP_ENTRY_30: u32 = 0x1a1;
 pub const VERTEX_ARRAY_LOOP_ENTRY_31: u32 = 0x1a2;
 /// established.
 pub const SET_FOG_PARAMETER: u32 = 183;
-/// inferred.
+/// unknown.
 pub const SET_FOG_PARAMETER_0B8: u32 = 184;
-/// inferred.
+/// established.
 pub const CONTINUATION_ENTRY_INTEGER_FOG_PARAMETER: u32 = 185;
 /// inferred.
 pub const FLUSH_VERTEX_PIPELINE: u32 = 199;
