@@ -1,0 +1,28 @@
+[project]
+name = "kona"
+plugin = "scripts/kona_checks.py"
+regenerate = "retools/tools/defs/gen_decode_rust.py --config defs.toml"
+
+[rust]
+out_dir = "generated/kona-regs"
+
+[banned]
+allow_includes = ["stdint.h"]
+
+[[headers]]
+file = "KONA_QUERY_DECODE.h"
+form = "regs"
+group = "kona-tokens"
+module = "query"
+rust_prefix = "KONA_QUERY_"
+register_doc = "Query token"
+description = ["Host query tokens of the InfiniteReality2 pipe: the tokens a client", "writes to read state back from the pipe."]
+
+[[headers]]
+file = "KONA_TOKEN_DECODE.h"
+form = "regs"
+group = "kona-tokens"
+module = "token"
+rust_prefix = "KONA_TOKEN_"
+register_doc = "Host token"
+description = ["Host command tokens of the InfiniteReality2 pipe other than the", "queries: processor-run and hardware-routed tokens."]
