@@ -92,7 +92,7 @@ The names are role names in plain words, written for someone who transcribes the
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1304 graded entries: 553 established, 655 inferred and 96 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1357 graded entries: 749 established, 541 inferred and 67 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -2210,75 +2210,100 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 
 | Section | Established | Inferred | Unknown | Total |
 |---|---|---|---|---|
-| 2. Processor-run tokens | 60 | 239 | 7 | 306 |
-| 3. Routed tokens | 59 | 147 | 0 | 206 |
-| 4. Map entry and descriptors | 25 | 7 | 1 | 33 |
-| 6. Display-bus registers | 58 | 33 | 10 | 101 |
-| 7. Field layouts | 221 | 131 | 74 | 426 |
-| 8. Raster bus | 17 | 92 | 1 | 110 |
-| 9. Host window | 11 | 3 | 0 | 14 |
+| 2. Processor-run tokens | 111 | 195 | 0 | 306 |
+| 3. Routed tokens | 64 | 141 | 1 | 206 |
+| 4. Map entry and descriptors | 26 | 7 | 1 | 34 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
-| 10. Window id | 9 | 3 | 3 | 15 |
-| **All** | **553** | **655** | **96** | **1304** |
+| 6. Display-bus registers | 72 | 31 | 9 | 112 |
+| 7. Field layouts | 312 | 101 | 53 | 466 |
+| 8. Raster bus | 50 | 60 | 1 | 111 |
+| 9. Host window | 11 | 3 | 0 | 14 |
+| 10. Window id | 10 | 3 | 2 | 15 |
+| **All** | **749** | **541** | **67** | **1357** |
 
-The unknown rows, by section. Each says what a back end should do: model the access as observable and unimplemented rather than inventing behaviour.
+The unknown rows, by section: every row whose weakest grade is unknown, each with the start of its description; the row itself says what would settle it. A back end should model the access as observable and unimplemented rather than invent behaviour. Rows graded with a mix, for example "established; the sign unknown", count as unknown.
 
+**3. Routed tokens**
 
-**2. Processor-run tokens**
-
+- 0x159: draw line segments (each segment two independent end points
 
 **4. Map entry and descriptors**
 
-- pass-form entry flags (token-entry bits 21, 22, 23): what each of the three flags means
+- pass-form descriptor and token entries, bits 21, 22 and 23 (command-number bits 6, 7 and 8): three flag bits the diagnostic packs from separate fields (its pass-control packers use control bits 13, 14 and 15)
 
 **6. Display-bus registers**
 
-- window offsets 0x3c8, 0x3d8: video-controller ready and auto-increment data ports (never used by the driver)
-- which address bits pick the chip behind the port: chip-select decode
-- 0x09: role not read: 0 at start-up, 2 after the diagnostic, and the window-created / destroyed notice (1 / 0)
-- 0x0a: untouched by any code read
-- 0x10: written 0 at start-up and nothing else
-- 0x11a: not used by any code read
-- 0x90: size register
-- indexed 0x005, 0x006: written 0x88 and 0xe4 at start-up
-- what each bit of the value 5 does: DAC cursor control bit meaning
+- window offset 0x3c8: video-controller ready port (HH_VC_FREADY): a 1-bit register that exists
+- which address bits pick the chip behind the port: the frame-manager chip decodes the 16-bit local address into select outputs: XMAP select (bus 0x100-0x11f, XMAP register...
+- 0x08c: image-processor display-id range word, by the diagnostic's one packed writer: bits 6:0 = argument 1 (7 bits), bits 12:7 =...
+- 0x08d: read by the diagnostic's display-id-shift check, which tests bit 3 and treats it as set while the display-id table is still...
+- 0x08e: master clock select: bit 23
+- 0x09: role not read: 0 at start-up, 2 after the diagnostic's `base_xmap_init`, and the X module's window-created / destroyed notice...
+- 0x0a: read by the diagnostic's XMAP CRC routines (the `xmap_crc_done` poll): a CRC done status
+- 0x11a: never addressed by any shipped code (no diagnostic or firmware write, no host read)
+- which colour a 2-bit DAC cursor value selects: by X semantics value 3 (mask and source) is foreground, 2 (mask only) background, 0 transparent
 
 **7. Field layouts**
 
 - what the XMAP does with bits 2:1: luminance and grey handling in hardware
-- 18: flag; set for one kind of map (address (map << 14) + 0x40000)
-- what the XMAP does with bits 4:2: hardware use of the mode byte
-- crosshair shape: arm lengths, thickness, extent (the XMAP generates it; no image exists in software)
-- XMAP cursor colour block: which of words 256-259 the crosshair draws with
-- colour-index index placement: which component lane holds the index and its bit offset in the stored bank word; what board mode 2 is
-- overlay window to main window pairing: how the display generator uses the pair of id fields
-- 15-bit RGB overlay: hardware transparent test (the advertised rule is established)
+- 18: extended gamma addressing flag
+- what the frame manager does with bits 4:2: inside a chip with no program
+- crosshair shape: arm lengths, thickness, extent
+- XMAP cursor colour block: which word of 256-259 the crosshair draws with: the module writes the same colour into all four words
+- compared field across the split: in the smaller layout pixel bit 13 is a gap, so the 12-bit compared field (painted bits 13:2) spans the split: painted bits...
+- colour-index index inside the colour data: the pipe treats the index as a 12-bit component value left-justified: write mask (2^w - 1) << (12 - w) on the main level or <<...
+- 15-bit RGB overlay: reserved mode bytes: the server reserves the overlay ids with different mode-byte codes: ids 64 and 65 (colour index, display-mode word 0x3c00)...
+- 15-bit RGB overlay: hardware transparent test: the client-visible contract is a colour compare against one transparent value (pixel 0 for colour-index overlays
 - 16-plane luminance with overlay or id planes: composition
-- the six masks the engine program applies to graphics-context load words 4-12: which mask goes with which word
-- what the engine does with graphics-context load word 4 in its special register: role of that second destination
-- which graphics-context word holds the image-rectangle mode field
-- which graphics-context words the word-image and window-copy mode constants modify
-- pixel set-up transfer kinds other than 0 and 2, and output modules other than 4 and 5: behaviour
-- pack mode of the returned words of an X pixel read: which host-interface value
-- which named pixel format each index value of the X packing tables selects, what the table words mean in the loader-built format word, and the values of the three tables filled at run time (the file-resident numbers are recorded)
-- texel-draw header: what hardware does with word 8 when it is nonzero (no reader found on the texel path; every sender sends 0)
-- texture-load set-up (token 0x173): words 2 and 4 (dead stores in a handler with no sender)
-- level origin rule: where the border texels of a small bordered level sit (small-level origins are resolved as client-side replication)
-- level addresses: the units of the global-offset registers 0x101a/0x5001 and whether the draw side adds the offset to a level address (non-zero only from the kernel memory path, never from a shipped client load, so no recording carries one); where mode-1 volume texels sit inside the address pair
-- filter tables: what the sampler does with them beyond the bind's reference; the detail combine arithmetic (widths and rounding) and how the detail (s, t) derive from the base (s, t) and level
-- texel formats: the physical order of a texel inside the memory chips (not reachable from software); codes 0x00-0x07 and 0x11-0x13 (the diagnostic rejects them; the firmware has rows for 0x00-0x06 that no shipped software sends)
-- bind contract: what the pipe keeps for a cache entry and what the raster boards do with an all-ones bind (the kernel's texture sharing between contexts is settled: a share group owns blocks in the one pool)
-- environment: which public mode selects the add-signed record, and what each function code does on the raster board
-- shadow state (0x1c7): whether any shipped software sends it (none found in the client library; the IRIS GL library and the X server module were not scanned)
-- GL pixel state, transfer and accumulation (section 7.15): the fourth word of a pixel-map header and the largest map size; the client's two size thresholds for choosing DMA and its width limits for strips of draws, reads and copies; the bit layouts of the seven extra packed types; how the pipe's unpacker places each packed type; the pack mode of the reply words of a pixel read and what forces the return-data-buffer reply; the video-source copy (no sender); and the accumulation storage format
-- queries, select and feedback (section 7.16): the extra word the feedback client removes (the pipe's framing of its record stream); how the routed light-attribute query (0x10b) raises its completion word and what its reply layout is. Still inferred rather than unknown: the engine's literal completion value, why the polygon stipple read rotates twice, the edge-flag bit pattern, the feedback vertex value order and scaling, and the select depth encoding
-- multisample (section 7.17): the effect of sample counts other than 4 and 8; whether sample locations are measured from a pixel corner or centre; the layout of the engines' multisample point tables; the hardware resolve rule and what depth and stencil reads return; which sample banks a clear reaches; the AND combination of the coverage word, how the sample-mask register doubles as the alpha-to-mask fade table and alpha-to-mask and alpha-to-one coverage; the sample-buffer tag call and the point-table builder (no sender); the sample-count queries and visual selection; multisample line, point and polygon rules
+- window x, y at the vertex bus: float(x - 49152.0) (the subtract at `udrawtri.s` 0x28ac and 0x28b0
+- what the engine does with word 4 in the special register: the second destination is engine special register 0x23 (window address 0xfffe0000 + 4 x 0x23 = 0xfffe008c, reached through...
+- which word holds that mode field: -
+- which words those constants modify: -
+- 0, bit 4: direct-write flag, kept until the finish
+- what the pixel layout does for kinds 3-15 and modules 3, 6, 7, 8: no shipped client sends them: the firmware accepts them but the engine-side pixel layout is not exercised
+- read, pack mode of the returned words: register 0x441 (section 8.2, shadow word 0) is written by the set-up, not by the read: kind 2 runs the packer routine, which...
+- main-plane shift, 8-bit, 12-bit and 16-bit luminance: shift words for the three luminance layouts: 8-bit 8, 0, 8 (0x586fe8)
+- overlay shift, colour, and two colour-index variants: shift words for overlay pixels, chosen with the 16-bit and 8-bit tables: RGB overlay 1, 0, 15 (0x586fd8)
+- which pixel format selects which table, and the numeric contents of every table: the numeric contents of the file-resident tables and the selector are recorded above, and the three index values are the...
+- 8: caller-supplied split field
+- hardware use of words 8 and 11-15: words 11-15 reach the load registers 0x7fc2, 0x7fc3 and 0x7fc4 as in the rows above
+- a context switch and a half-loaded level: a switch saves the load's *control* state and restores it on switch-in, not texels: the 89-word raster shadow (words 48-54...
+- 2, 4: not used by the handler's own register writes
+- address units and the position of a level inside the address: one unit = 256 bits (16 sixteen-bit lanes
+- where mode-1 texels sit inside the pair, and how the pipe addresses them: the client and firmware only pass the pair through
+- bordered volumes: the border writer passes z origin 0 and no depth argument, so how a volume's other slices get border texels is not read
+- what the tables control in the sampler beyond the bind's reference to them: not read
+- 0x00-0x07, 0x11-0x13: 4-bit and 8-bit single- and dual-component rows
+- order and width of a texel inside texture memory, every format: the software-visible order is the bus-word layout the diagnostic's host formatter builds, first texel in the high lane (all...
+- texel formats 0x00-0x07 and 0x11-0x13: the diagnostic's formatter rejects them (its case table covers 0x08-0x50 only), no shipped client or diagnostic sends them,...
+- what the pipe keeps for an entry: the firmware keeps, per cache entry (513 of them), an 8-byte record of two 20-bit ids, a load id (set by 0x176) and a bind id...
+- what each function code does on the raster board: the arithmetic is in the texture-filter chips, which have no program
+- DMA choice: the client sets the DMA flag when the total exceeds a size threshold and, for row mode 1, when the row width times the element...
+- splitting wide images: when a convolution or pixel-texture stage is active, or a per-type width limit applies, the client cuts the image into strips...
+- split: convolution borders or a per-type width limit make the client read in strips, setting skip pixels and row length for each
+- layout of the reply words (which pack mode the pipe uses): no fixed value: the processor writes one word to raster register 0x441 per read
+- strip rules: with a convolution target active or the wide mode on, a copy wider than the limit goes out as limit-wide strips, one token...
+- video source: the processor has a copy form whose source is the video input, chosen by a processor-held flag
+- accumulation storage format: the layout of accumulation values in frame-buffer memory is unknown
+- 0x052 texture image: eighteen words: target, width, height, format code, type code, storage code, a spare, first texel (x, y, z), last texel (x, y,...
+- feedback record codes and layout: each record starts with a code word, a single-precision float of 0x700 (pass-through), 0x701 (point), 0x702 (line), 0x703...
+- sample count: the sixth payload word of the buffer-configuration token (0x001) and of the read-buffer configuration token (0x004), after...
+- clear with a multisample buffer: `arm_clear` has no multisample branch: the same operation word (0x400 colour, 0x800 depth, 0x1000 stencil, 0x2000...
+- multisample point tables: the engines hold packed per-pattern point-coverage data (0x15e00 bytes, two sets of seven tables) loaded at start-up in chunks...
+- restore after an attribute pop: the restore routine rebuilds the word with a shift of 28 where the handler uses 26, so a restored 1.0 selects entry 8 rather...
+- how coverage words combine: the word written to 0x140b is applied per sample with the sample-mask enable (0x1408 bit 1)
+- alpha-to-mask coverage: how the fade table is indexed and what coverage alpha-to-mask and alpha-to-one produce
+- sample-buffer tag call: the client's immediate and list forms return at once
+- multisample point-table builder: the engine has the builder: `mgeb_ComputeMSPointTables` (point.S 0x5bab) is an engine command taking the pattern index times...
+- counts other than 4 and 8; the sample-buffer and sample-count queries; and visual selection by sample count: published sources give only 1, 4 or 8 samples per pixel (each primitive sampled at one, four or eight of 64 sub-pixel...
+- reads and copies with a multisample buffer: the pipe has no resolve step: read, copy and draw-buffer selection use only colour and auxiliary banks and their paths never...
+- multisample lines, points and polygons: published rules (007-2392-003, the multisample section): lines are rasterised as rectangles centred on the segment, line width...
 
 **8. Raster bus**
 
-- 0x0476, 0x0477: reply-word port and its clear register
+- 0x0476, 0x0477: board-side host-interface registers on the raster bus
 
 **10. Window id**
 
-- Hardware text for the comparison: none exists in software or papers (avenues in 10.2)
-- Popup compare: whether hardware derives compared bit 11 from the overlay group field (leading reading, inferred: group 31 means popup)
+- Hardware text for the comparison: none exists in the shipped software or the published papers
+- Popup compare against the painted pattern: word 9 = 0x3f compares bit 11 only (reference 0x800, mask 0x800 = painted bit 13), but the painter gives the popup (id 0x3f)...
