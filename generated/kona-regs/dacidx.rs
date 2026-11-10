@@ -1,4 +1,4 @@
-// generated from kona bf4e58d999c7 KONA_DACIDX_DECODE.h - do not edit, regenerate in kona
+// generated from kona a8a33f80f3d0 KONA_DACIDX_DECODE.h - do not edit, regenerate in kona
 //!
 //! Indexed registers behind the video DAC and encoder ports, and the
 //! DAC cursor control word.

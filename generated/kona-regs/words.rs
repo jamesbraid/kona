@@ -1,4 +1,4 @@
-// generated from kona bf4e58d999c7 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
+// generated from kona a8a33f80f3d0 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
 //!
 //! Bit layouts of the multi-field words of the host command stream.
 //!
