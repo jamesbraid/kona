@@ -383,7 +383,10 @@ a pixmap has zero. Zero comes only from the screen-wide senders, which send
 0, 0, screen width, screen height. In the 4Dwm recording 386 of the 1192
 position loads in the parsed chains are nonzero; all 610 point commands (0x14c
 to 0x14e) happen to follow a zero origin, and 209 rectangle and box commands
-(0x152 to 0x155) follow a nonzero one. No line command occurs there, so
+(0x152 to 0x155) follow a nonzero one (201 of 0x152, 4 of 0x153, 3 of 0x154,
+1 of 0x155: 4 boxes). Box senders mostly zero the position first; the
+per-routine breakdown is in the drawable-origin row of `command-table.md`
+section 7.18. No line command occurs there, so
 nothing shows a line after a nonzero origin; by the sender code it is the normal
 case.
 
