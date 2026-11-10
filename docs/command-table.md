@@ -81,6 +81,7 @@ The names are role names in plain words, written for someone who transcribes the
 | S67 | the published ADV716x video-DAC register description (the vgadoc RAMDAC reference), read for the cursor-control bits; the DAC's part identity is inferred from the scan-chain name `adv7160_chip_type` and the matching register map |
 | S68 | the public SGIS_detail_texture and SGIS_sharpen_texture extension specifications (`OpenGL-Registry`), read for the add and modulate combine |
 | S69 | the pipe firmware's context save, restore and memory handlers in arm1.u (6.5.30m), named from the binary's own symbol table: `arm_context_deactivate` (0x0c022188), `deactivate_arm` (0x0c02209c), `deactivate_hip` (0x0c021df8), `arm_context_activate` (0x0c0209dc), `activate_hip` (0x0c020978), `activate_texture` (0x0c026288), `flush_texload_ids` (0x0c025138), `flush_texbind_ids` (0x0c02522c), `arm_texload_id` (0x0c0251fc), `update_texload_id` (0x0c025168), `drawtexels` (0x0c02b8cc), `SetupSubtexload` (0x0c034288), `sendTexTable` (0x0c02539c), and the memory handlers `arm_mem_reserve` (0x0c024378), `mem_reserve_tex` (0x0c0241e0), `mem_swapin_tex` (0x0c0242fc), `mem_swapout_tex` (0x0c024284) and `mem_init` (0x0c0249ec); the kernel driver objects `kona_mem.o` (`kona_mem_reserve`, `kona_mem_validate`, `kona_mem_update`) and `kona_share.o` (`kona_share`, `kona_unshare`, driver request 10015) with the context-swap path (`KONApcxswap`, `kona_act_pcx`), read through the memory-pool and share-group sections of [kernel.md](kernel.md); cross-referenced with [Context save and restore](rm.md#context-save-and-restore) and the [shadow word map](ge-shadow-words.md) words 48-54 |
+| S70 | a scan for the shadow-texture token 0x1c7 (455) in the IRIS GL libraries (`usr/gfx/arch/IGLOO/libgl.so` 0xeca9f08 and `usr/gfx/arch/IGLOO32/libgl.so` 0xecab84c, both inside the sine-and-cosine remote-GL encoder, which stores 455 as a remote-protocol opcode into the remote-GL buffer rather than to the pipe command port), the X server modules (`kona.so`, `konad.so`, `konal.so`, `konas.so`, `glx.so`), the base X server and the frame-manager library: every executable section decoded for any load of 455 and every data section searched for a word equal to 0x1c7 |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
@@ -183,7 +184,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | 0x1f8 | context clean-up with an event code | 1 | y | inferred | S3 |
 | 0x1f9 | context image load | 4 | y | inferred | S3 |
 | 0x1fa | context activate | 3 | y | inferred | S3 |
-| 0x1fb | context FIFO synchronise | none seen; the routine hands off elsewhere | n | unknown | S3 |
+| 0x1fb | context FIFO synchronise (by its name; the routine does nothing for a privileged sender and no sender was found) | 0 (a privileged sender returns at once; otherwise the routine prints the privilege-violation message and the bad-command message, then enters the bad-command routine, which reads 100 payload words and spins) | n | inferred | S3 |
 | 0x1fc | context deactivate | 1 | y | inferred | S3 |
 | 0x1fd | context initialise | 3 | y | inferred | S3 |
 
@@ -258,7 +259,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | 0x0cd | set the stencil operations | 3 | y | inferred | S3 |
 | 0x0ce | set the depth test | 1 | y | inferred | S3 |
 | 0x0e6 | set the constant blend colour | 4 | y | inferred | S3 |
-| 0x0e7 | set the blend equation | none seen; the routine hands off elsewhere | n | unknown | S3 |
+| 0x0e7 | set the blend equation (accepts 0x8006, 0x8007, 0x8008, 0x800a, 0x800b and 0xbf1; any other value reports an invalid enum after the word is read) | 1 | y | inferred | S3 |
 | 0x10f | set the fog function table | 1 | n | inferred | S3 |
 | 0x112 | switch the legacy-API compatibility mode | 1 | y | inferred | S3 |
 | 0x117 | set the multisample pattern | 1 | y | inferred | S3 |
@@ -340,7 +341,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | 0x1aa | bind a 2D clip-map texture: 8 words | 8 | y | established | S3, S59 |
 | 0x1bb | set a texel-store parameter: two words | 2 | y | established | S3, S59 |
 | 0x1c4 | bind (reset) an ARM texture-cache entry: one word | 1 | y | established | S3, S59 |
-| 0x1c7 | set shadow-texture state: three words; the handler runs, no libGLcore sender | 3 | y | established | S3, S59, S60 |
+| 0x1c7 | set shadow-texture state: three words; the handler runs, no shipped sender (S70) | 3 | y | inferred | S3, S59, S60, S70 |
 | 0x1d5 | bind a texture, current form: five words | 5 | y | established | S3, S59 |
 | 0x1d6 | pop texture-generation state: one selector word, then a long run of host words to engine memory | 1 | n | established for the role; inferred for the 0x70-word run length | S3, S59, S27 |
 | 0x1d7 | change the post-texture scale and bias: four words (unit, enables, packed scale, packed bias) | 4 | y | established | S3, S59 |
@@ -348,7 +349,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 
 The word layouts behind these tokens are in sections 7.10-7.14: the load headers (0x173, 0x174, 0x176) in 7.10, level addresses and the filter-coefficient table in 7.11, texel formats in 7.12, the binds in 7.13 and the environment and filter state in 7.14. Two corrections to the role names above: token 0x174 carries twenty words (nineteen plain reads and a final read, which decides whether the image follows inline), and token 0x17e carries thirty-four (a slot number and thirty-three filter-coefficient words), because the firmware reads them through a block helper that the scan does not count.
 
-The payload counts in this table are now the firmware handlers' own word counts, each checked against what the client sender stores (S59, S60), so the scan caveat in section 2 no longer applies to these rows. Roles come from the handler and the sender's own routine names. Tokens 0x013 and 0x015 are never sent: the client converts the double and integer forms and sends 0x014. No client compilation unit stores tokens 0x016, 0x173, 0x175 or 0x1c7; the IRIS GL library and the X server module were not scanned for them. The scan matches a token load followed by a command-port store within fourteen instructions and does not see tokens built in registers earlier.
+The payload counts in this table are now the firmware handlers' own word counts, each checked against what the client sender stores (S59, S60), so the scan caveat in section 2 no longer applies to these rows. Roles come from the handler and the sender's own routine names. Tokens 0x013 and 0x015 are never sent: the client converts the double and integer forms and sends 0x014. No client compilation unit stores tokens 0x016, 0x173, 0x175 or 0x1c7. For 0x1c7 the IRIS GL libraries, the X server modules, the base X server and the frame-manager library were scanned as well (S70): nothing in them loads 455 for the command port. The scan matches a token load followed by a command-port store within fourteen instructions and does not see tokens built in registers earlier.
 
 ### 2.12 Pixels, bitmaps and filters
 
@@ -491,8 +492,8 @@ The payload counts are the words after the token as the client's senders store t
 
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0x175 | texture-load set-up, second form | none seen; the routine hands off elsewhere | n | unknown | S3 |
-| 0x1fe | kernel-private command (ignored) | none seen; the routine hands off elsewhere | n | unknown | S3 |
+| 0x175 | texture-load set-up, second form (the whole routine is a return; no payload is read and nothing is written, so a sender that appended words would have them read as tokens) | 0 | n | inferred | S3 |
+| 0x1fe | kernel-private command (ignored; the whole routine is a return, no payload read) | 0 | n | inferred | S3 |
 
 ## 3. Routed host tokens (206)
 
@@ -1534,7 +1535,7 @@ State words that a draw reads besides the bind: the function that combines the t
 |---|---|---|---|---|
 | 0x177 select the active texture | 1 | a selector 0-3: 0 is the default, nonzero values are the other units the library resets in order 1, 2, 3, then 0 at start-up. The firmware stores it in the same state word the binds use as the current target, so unit and target are one variable in the firmware; whether a back end may treat them as separate is not read | inferred | S27, S29 |
 | 0x1d7 post-filter scale and bias | 4 | unit (must equal the selector or the command is ignored), channel-enable (bit 3 red to bit 0 alpha; a bit is clear only when scale is 1 and bias 0), packed scale (red 31:24 to alpha 7:0, each byte trunc(clamped value x 255 + 0.5)), packed bias (same); the enable word has a bit clear for a channel exactly when its value equals 1.0 (scale) or 0 (bias); the load token 0x0ed sends the same three words. Both packed words zero with zero enables mean identity. Applied after spatial and level filtering, with a clamp before the environment | established for the packing and defaults; inferred for the order of application | S27, S30, S59 |
-| 0x1c7 shadow state | 3 | words written to three raster registers (the first as is, the second doubled, the last as is). No libGLcore compilation unit stores token 455 (the client sends the shadow compare through the bind words instead); the IRIS GL library and the X server module were not scanned. The 0x179 record's ambient word (section 7.13) carries the same ambient value in the recorded sequence | unknown (no sender found in a bounded scan) | S27, S59 |
+| 0x1c7 shadow state | 3 | words written to three raster registers (the first as is, the second doubled, the last as is). No libGLcore compilation unit stores token 455 (the client sends the shadow compare through the bind words instead), and a scan of the IRIS GL libraries (both ABIs), the X server modules, the base X server and the frame-manager library found no load of 455 for the command port either: the one 455 constant in the IRIS GL libraries is that library's remote-protocol opcode for its sine-and-cosine call, stored into the remote-GL buffer. The word count of three therefore rests on the firmware handler alone, with no client cross-check. Not covered: tokens built at run time, the diagnostics, third-party software. The 0x179 record's ambient word (section 7.13) carries the same ambient value in the recorded sequence | inferred (negative scan of the shipped graphics client binaries) | S27, S59, S70 |
 | 0x1bb texture pixel-store parameter | 2 | parameter name and value. Parameters in the 0xcf0 and 0xd00 groups and 0x806b-0x806e are kept; alignment-style values only when a power of two up to 8; nothing is written to hardware | established | S27, S25, S59 |
 | texture enables | - | 1D, 2D and 3D texturing each set a flag byte in the state block and all-ones to engine port 0x47c; written through the enable and disable tokens 0x24 and 0x25 with 0x0de0, 0x0de1 and 0x806f | inferred | S27 |
 | texel read-back and copy-to-texture (0x0fd, 0x052) | 17 and 18 | header words list target, size, format, type, storage code, first and last texel, then words 12-17: 12 zero in every recording; 13 the texture-mode register image (bind word 2 layout, bit 28 = the level's bank; firmware clears bits 11:10, writes 0x3fd4); 14 the texture-size register image (physical size exponents, to 0x3fd5); 15 the page-layout byte (t bits<<4 | s bits, to register 0x1000); 16 and 17 the level address pair (address in word 16 for ordinary 2D, word 17 zero; one raster-bus word); the 0x0fd header words 0-16 map to the same load registers as the texel-draw words (its handler calls the same set-up routine); not decoded further here Observed round trip for a freshly defined 2D level (quake.gl, three levels: 128x128, 512x256, 64x64): texel draw (0x174, format 5 type 1), load finish (0x176), suspend (0x111), read-back (0x052, format 6 type 3 storage 0xd), restore (0x111), free the cache entry (0x178, 0x1c5), reset it (0x1c4), reload of the read-back bytes (0x174, format 6 type 3), bind (0x106). The reload sends exactly the bytes the read-back returned, so the pipe must return the level it holds. Which GL call triggers the round trip is not determined | established for words 12-17 (arm1.u `arm_getteximage` 0x0c02c298, 2 of 2 recorded reads); inferred for the purpose of the round trip (the 0x052 layout is in section 7.16; the sequence is as observed) | S27, S29, S60, S66 |
