@@ -232,10 +232,15 @@
 /* FIELD: BIND_CONTROL.mode 27:24 established */
 #define WORD_BIND_CONTROL_MODE_SHIFT 24
 #define WORD_BIND_CONTROL_MODE_MASK 0xfu
-/* ENUM: BIND_CONTROL.mode 1 filter_via_special_register established */
-#define WORD_BIND_CONTROL_MODE_FILTER_VIA_SPECIAL_REGISTER 1
-/* ENUM: BIND_CONTROL.mode 3 linear_form established */
-#define WORD_BIND_CONTROL_MODE_LINEAR_FORM 3
+/* The mode names the filter table the bind sends: bicubic, detail, sharpen or none. */
+/* ENUM: BIND_CONTROL.mode 0 bicubic_table established */
+#define WORD_BIND_CONTROL_MODE_BICUBIC_TABLE 0
+/* ENUM: BIND_CONTROL.mode 1 detail_table established */
+#define WORD_BIND_CONTROL_MODE_DETAIL_TABLE 1
+/* ENUM: BIND_CONTROL.mode 2 sharpen_table established */
+#define WORD_BIND_CONTROL_MODE_SHARPEN_TABLE 2
+/* ENUM: BIND_CONTROL.mode 3 no_table established */
+#define WORD_BIND_CONTROL_MODE_NO_TABLE 3
 /* FIELD: BIND_CONTROL.target 31:28 established */
 #define WORD_BIND_CONTROL_TARGET_SHIFT 28
 #define WORD_BIND_CONTROL_TARGET_MASK 0xfu
@@ -250,9 +255,9 @@
 
 /* Short-bind word 2: the texture-mode word, the image of the texture-mode */
 /* register. The minification order for settings 3 to 6 and the flag bits 8 and 9, */
-/* 12, 13 and 25:24 are not fully traced. The detail level is stored negated (the */
-/* negation is inferred). Bit 28 is the bank bit of level 0: level k lives in bank */
-/* bit 28 XOR (k and 1). */
+/* 12, 13 and 25:24 are not fully traced. The detail level is stored negated: the */
+/* public value is -4 to 0 and the code 0 to 4. Bit 28 is the bank bit of level 0: */
+/* level k lives in bank bit 28 XOR (k and 1). */
 /* FIELD: BIND_MODE.sampling 1:0 established */
 #define WORD_BIND_MODE_SAMPLING_SHIFT 0
 #define WORD_BIND_MODE_SAMPLING_MASK 0x3u
@@ -309,7 +314,7 @@
 /* FIELD: BIND_MODE.texel_format 20:14 established */
 #define WORD_BIND_MODE_TEXEL_FORMAT_SHIFT 14
 #define WORD_BIND_MODE_TEXEL_FORMAT_MASK 0x7fu
-/* FIELD: BIND_MODE.detail_level 23:21 inferred */
+/* FIELD: BIND_MODE.detail_level 23:21 established */
 #define WORD_BIND_MODE_DETAIL_LEVEL_SHIFT 21
 #define WORD_BIND_MODE_DETAIL_LEVEL_MASK 0x7u
 /* FIELD: BIND_MODE.channel_select 25:24 inferred */

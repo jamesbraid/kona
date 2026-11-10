@@ -114,9 +114,13 @@ impl TexloadLayoutSizeCode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BindControlMode {
     /// established.
-    FilterViaSpecialRegister,
+    BicubicTable,
     /// established.
-    LinearForm,
+    DetailTable,
+    /// established.
+    SharpenTable,
+    /// established.
+    NoTable,
     /// A value the notes do not name.
     Other(u8),
 }
@@ -124,16 +128,20 @@ pub enum BindControlMode {
 impl BindControlMode {
     pub const fn from_bits(v: u32) -> Self {
         match v {
-            0x1 => Self::FilterViaSpecialRegister,
-            0x3 => Self::LinearForm,
+            0x0 => Self::BicubicTable,
+            0x1 => Self::DetailTable,
+            0x2 => Self::SharpenTable,
+            0x3 => Self::NoTable,
             _ => Self::Other(v as u8),
         }
     }
 
     pub const fn bits(self) -> u32 {
         match self {
-            Self::FilterViaSpecialRegister => 0x1,
-            Self::LinearForm => 0x3,
+            Self::BicubicTable => 0x0,
+            Self::DetailTable => 0x1,
+            Self::SharpenTable => 0x2,
+            Self::NoTable => 0x3,
             Self::Other(v) => v as u32,
         }
     }
@@ -848,7 +856,7 @@ impl BindMode {
         (self.0 >> 14) & 0x7f
     }
 
-    /// Bits 23:21, inferred.
+    /// Bits 23:21, established.
     pub const fn detail_level(self) -> u32 {
         (self.0 >> 21) & 0x7
     }
