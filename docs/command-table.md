@@ -94,7 +94,7 @@ The names are role names in plain words, written for someone who transcribes the
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1357 graded entries: 749 established, 541 inferred and 67 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1360 graded entries: 754 established, 537 inferred and 69 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -2215,22 +2215,23 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 
 | Section | Established | Inferred | Unknown | Total |
 |---|---|---|---|---|
-| 2. Processor-run tokens | 111 | 195 | 0 | 306 |
-| 3. Routed tokens | 64 | 141 | 1 | 206 |
+| 2. Processor-run tokens | 112 | 194 | 0 | 306 |
+| 3. Routed tokens | 65 | 139 | 2 | 206 |
 | 4. Map entry and descriptors | 26 | 7 | 1 | 34 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 6. Display-bus registers | 72 | 31 | 9 | 112 |
-| 7. Field layouts | 312 | 101 | 53 | 466 |
-| 8. Raster bus | 50 | 60 | 1 | 111 |
+| 7. Field layouts | 314 | 101 | 54 | 469 |
+| 8. Raster bus | 51 | 59 | 1 | 111 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 10. Window id | 10 | 3 | 2 | 15 |
-| **All** | **749** | **541** | **67** | **1357** |
+| **All** | **754** | **537** | **69** | **1360** |
 
 The unknown rows, by section: every row whose weakest grade is unknown, each with the start of its description; the row itself says what would settle it. A back end should model the access as observable and unimplemented rather than invent behaviour. Rows graded with a mix, for example "established; the sign unknown", count as unknown.
 
 **3. Routed tokens**
 
 - 0x159: draw line segments (each segment two independent end points
+- 0x0b8: set a fog parameter, integer form: the same names
 
 **4. Map entry and descriptors**
 
@@ -2272,7 +2273,7 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - which pixel format selects which table, and the numeric contents of every table: the numeric contents of the file-resident tables and the selector are recorded above, and the three index values are the...
 - 8: caller-supplied split field
 - hardware use of words 8 and 11-15: words 11-15 reach the load registers 0x7fc2, 0x7fc3 and 0x7fc4 as in the rows above
-- a context switch and a half-loaded level: a switch saves the load's *control* state and restores it on switch-in, not texels: the 89-word raster shadow (words 48-54...
+- a context switch and a half-loaded level: a switch saves the load's *control* state and restores it on switch-in, not texels: the 89-word register shadow is saved and...
 - 2, 4: not used by the handler's own register writes
 - address units and the position of a level inside the address: one unit = 256 bits (16 sixteen-bit lanes
 - where mode-1 texels sit inside the pair, and how the pipe addresses them: the client and firmware only pass the pair through
@@ -2297,12 +2298,13 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - multisample point tables: the engines hold packed per-pattern point-coverage data (0x15e00 bytes, two sets of seven tables) loaded at start-up in chunks...
 - restore after an attribute pop: the restore routine rebuilds the word with a shift of 28 where the handler uses 26, so a restored 1.0 selects entry 8 rather...
 - how coverage words combine: the word written to 0x140b is applied per sample with the sample-mask enable (0x1408 bit 1)
-- alpha-to-mask coverage: how the fade table is indexed and what coverage alpha-to-mask and alpha-to-one produce
+- alpha-to-mask coverage: the firmware writes the fade table at start-up (`init_tf`, arm1.u 0x0c0038b0-0x0c0038d0): register 0x1409 = 0x13110100 and...
 - sample-buffer tag call: the client's immediate and list forms return at once
 - multisample point-table builder: the engine has the builder: `mgeb_ComputeMSPointTables` (point.S 0x5bab) is an engine command taking the pattern index times...
 - counts other than 4 and 8; the sample-buffer and sample-count queries; and visual selection by sample count: published sources give only 1, 4 or 8 samples per pixel (each primitive sampled at one, four or eight of 64 sub-pixel...
 - reads and copies with a multisample buffer: the pipe has no resolve step: read, copy and draw-buffer selection use only colour and auxiliary banks and their paths never...
 - multisample lines, points and polygons: published rules (007-2392-003, the multisample section): lines are rasterised as rectangles centred on the segment, line width...
+- smoothing coverage form: smoothed lines and points deliver their coverage as alpha through four 32-entry ramps (the engine writes them as 8-bit values...
 
 **8. Raster bus**
 

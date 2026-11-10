@@ -135,7 +135,7 @@ binds = [["F", "XMAP.ind_addr.entry", 1, 2], ["F", "XMAP.ind_addr.colour", 3, 4]
 group = "kona-xmap"
 label = "gamma address flag"
 doc = "docs/command-table.md"
-regex = '\| (\d+) \| flag; set for one kind of map'
+regex = '\| (\d+) \| extended gamma addressing flag'
 binds = [["F", "XMAP.ind_addr.flag", 1]]
 [[claims]]
 group = "kona-xmap"
