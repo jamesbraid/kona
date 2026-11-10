@@ -1,6 +1,6 @@
 # The server-side GLX module (`glx.so`): function reference
 
-Sources: `usr/lib/X11/dyDDX/glx.so` (6.5.30m). `glx.so` implements the GLX extension inside the X server, for clients that render indirectly (the X server decodes their GL calls) and for the bookkeeping of direct clients (contexts, drawables, swap groups and the Kona hyperpipe configuration). Roles are **inferred** from the names and from the neighbouring documents ([libgl.md](libgl.md) for the client side, [kernel.md](kernel.md#generic-and-manager-ioctls-who-sends-them) for the ioctls the module sends: `glxBindSwapBarrierSGIX` and `glxJoinSwapGroupSGIX` send 1013 and 1019). The 498 decoder functions repeat the whole GL API twice, once for each byte order, which is why the lists below are long.
+Sources: `usr/lib/X11/dyDDX/glx.so` (6.5.30m). `glx.so` implements the GLX extension inside the X server, for clients that render indirectly (the X server decodes their GL calls) and for the bookkeeping of direct clients (contexts, drawables, swap groups and the Kona hyperpipe configuration). Roles are **inferred** from the names and from the neighbouring documents ([libgl.md](libgl.md) for the client side, [kernel.md](kernel.md#who-sends-them) for the ioctls the module sends: `glxBindSwapBarrierSGIX` and `glxJoinSwapGroupSGIX` send 1013 and 1019). The 498 decoder functions repeat the whole GL API twice, once for each byte order, which is why the lists below are long.
 
 | Group | Role | Functions |
 |---|---|---|
