@@ -683,9 +683,9 @@ Each token's word count equals what the client stores: the single-float forms st
 | 0x14c | draw absolute points | pass | no | no | 170 | 1 | established | S1, S2, S4 |
 | 0x14d | draw absolute points (burst of 6) | pass | no | no | 170 | 6 | established | S1, S2, S4 |
 | 0x14e | draw absolute points (burst of 24) | pass | no | no | 170 | 24 | established | S1, S2, S4 |
-| 0x14f | draw relative points | pass | no | no | 171 | 1 | established | S1, S2, S4 |
-| 0x150 | draw relative points (burst of 6) | pass | no | no | 171 | 6 | established | S1, S2, S4 |
-| 0x151 | draw relative points (burst of 24) | pass | no | no | 171 | 24 | established | S1, S2, S4 |
+| 0x14f | draw relative points: each point relative to the previous one, the command's first point relative to the drawable origin | pass | no | no | 171 | 1 | inferred | S1, S2, S4, S20 |
+| 0x150 | draw relative points (burst of 6); the previous-point anchor chains through all six | pass | no | no | 171 | 6 | inferred | S1, S2, S4, S20 |
+| 0x151 | draw relative points (burst of 24); the anchor chains through all twenty-four and returns to the drawable origin at the next token | pass | no | no | 171 | 24 | inferred | S1, S2, S4, S20 |
 | 0x152 | fill rectangles (origin, width, height) | pass | no | no | 172 | 2 | established | S1, S2, S4 |
 | 0x153 | fill rectangles (origin, width, height) (burst of 6) | pass | no | no | 172 | 12 | established | S1, S2, S4 |
 | 0x154 | fill boxes (two corners) | pass | no | no | 173 | 2 | established | S1, S2, S4 |
@@ -693,15 +693,23 @@ Each token's word count equals what the client stores: the single-float forms st
 | 0x156 | fill spans | pass | no | no | 174 | 3 | established | S1, S2, S4 |
 | 0x157 | fill spans (burst of 2) | pass | no | no | 174 | 5 | established | S1, S2, S4 |
 | 0x158 | fill spans (burst of 6) | pass | no | no | 174 | 13 | established | S1, S2, S4 |
-| 0x159 | draw line segments | pass | no | no | 175 | 2 | established | S1, S2, S4 |
+| 0x159 | draw line segments (each segment two independent end points; the engine line drawer's pixel rule, end-point and zero-length behaviour are not decoded) | pass | no | no | 175 | 2 | unknown | S1, S2, S4, S20, S21 |
 | 0x15a | draw line segments (burst of 6) | pass | no | no | 175 | 12 | inferred | S1, S4 |
-| 0x15b | draw connected polyline | pass | no | no | 176 | 2 | established | S1, S2, S4 |
-| 0x15c | draw connected polyline (burst of 6) | pass | no | no | 176 | 12 | established | S1, S2, S4 |
-| 0x15d | draw connected polyline, relative points | pass | no | no | 177 | 2 | established | S1, S2, S4 |
-| 0x15e | draw connected polyline, relative points (burst of 6) | pass | no | no | 177 | 12 | established | S1, S2, S4 |
-| 0x15f | draw points in the background colour | pass | no | no | 178 | 1 | established | S1, S2, S4 |
-| 0x160 | draw points in the background colour (burst of 6) | pass | no | no | 178 | 6 | established | S1, S2, S4 |
-| 0x161 | draw points in the background colour (burst of 24) | pass | no | no | 178 | 24 | established | S1, S2, S4 |
+| 0x15b | draw connected polyline (two points, one segment); n points make n - 1 connected segments, no implicit close | pass | no | no | 176 | 2 | inferred | S1, S2, S4, S20 |
+| 0x15c | draw connected polyline (burst of 6 = seven points, six segments); consecutive bursts share their end point | pass | no | no | 176 | 7 | inferred | S1, S2, S4, S20 |
+| 0x15d | draw connected polyline, relative points (two points, one segment) | pass | no | no | 177 | 2 | inferred | S1, S2, S4, S20 |
+| 0x15e | draw connected polyline, relative points (burst of 6 = seven points, six segments) | pass | no | no | 177 | 7 | inferred | S1, S2, S4, S20 |
+| 0x15f | draw one point in the background colour (colour word taken from the background slot, not the foreground); not stippled | pass | no | no | 178 | 1 | inferred | S1, S2, S4, S20, S21 |
+| 0x160 | draw points in the background colour (burst of 6); not stippled | pass | no | no | 178 | 6 | inferred | S1, S2, S4, S20, S21 |
+| 0x161 | draw points in the background colour (burst of 24); not stippled | pass | no | no | 178 | 24 | inferred | S1, S2, S4, S20, S21 |
+
+**Notes on the drawing tokens above.**
+
+- *Polyline framing.* The words-that-follow count for 0x15c and 0x15e is the wire framing of the shipped X server module's sender (`konLineSS`, S20): seven words, the first point at the token address and six more after it, and the next word is a new command. It is not the twelve held in the token-map count field. For these two entries that field counts the end points the distributor hands on (six segments, two each), not the words the host interface takes in; for every other token in this section the field equals the wire framing. A burst of 12 would swallow five words of the following command, and the shipped server works on real pipes, so the framing is established as a software contract; the host interface's own use of the field for these two entries stays unknown beyond that (the sender-side reading in [the drawing-command table](opengl.md#x-server-module-drawing-commands) records the routes tried). The single forms 0x15b and 0x15d carry two points because the engine handler takes the segment count as the operand count minus one, so one operand word would draw nothing. Evidence: S1, S2, S4, S20.
+- *Relative anchor.* Inferred. Each relative point is an offset from the previous point (the CoordModePrevious reading). The first point of a command is an offset from the drawable origin: the engine's relative-coordinate converter loads the origin words 7 and 8 (deposited by the position load, 0x12a) into its running sum before the loop and then adds each offset to the sum. The sum chains through every point of one burst of 6 or 24 and restarts from the origin at the next token, so continuity across separate tokens is the X server's job. Because the engine-handler readings are themselves graded inferred ([ge_compute.md](../ucode/ge_compute.md)), nothing resting only on them grades higher.
+- *Pixel rule.* Unknown at the device level. Segments and polylines both reach the same engine line drawer (`mmo_XclipDrawLines`), which is decoded only to operation counts: the tie and rounding rule for which pixels light, whether the last end point is lit, whether a zero-length segment lights one pixel and whether a polyline's shared interior vertex is lit once are all unread. A constant 0.5 in the drawer hints at pixel-centre sampling, nothing more. The client-side evidence offered for a one-pixel zero-length segment (`konSolidZeroSeg`) is a zero-width line (line width 0) offset by half its extent, not a zero-length segment, so it does not bear on the question. What would settle it: a drawn segment read back from a real pipe, or a decode of the drawer's edge-test arithmetic in the engine listing (`xclipdraw.S`). A back end that wants the X rules can take them from the host side: the fallback path (`konSlowSegmentSS`, `konBresS`) rasterises on the host and sends points.
+- *No solid-line gate.* Inferred. The routed polyline token runs no processor code, and the engine handlers only convert coordinates and enter the clip-and-draw loop, which draws under whatever raster operation, draw buffer, format and plane mask the graphics-context load (0x129) set. No handler reads a line-style or fill-style field. The "solid, copy-mode, default-format lines only" behaviour belongs to the X server module's choice of function: `konLineSS` emits these tokens only for single-width solid lines the pipe can take and otherwise falls back to `konSlowLineSS`, and dashed lines go to `konBresD`, which sends foreground points and, for double-dashed lines, background points (0x15f-0x161). So a real stream never carries a non-solid polyline, but a model that drops one on a graphics-context mismatch is modelling a sender habit as a device rule.
+- *Background points and stipple.* Inferred. The background-point handler differs from the foreground-point handler only in taking the colour word from the background slot; it draws a plain point and consults no stipple pattern. They are what the module sends for the gap pixels of a double-dashed line. Opaque versus transparent stippling is chosen by the module through its fill-style operation vectors and by which primitives and colours it sends (transparent: only the set pixels; opaque: the clear pixels in the background colour), not by a pipe register bit. See the graphics-context note in section 7.8.
 
 ### 3.10 Vertex-array loop entries
 
@@ -1237,6 +1245,8 @@ Companion state loads, sent with or just before the graphics-context load.
 | 0x12d scissor load | 4 | x, y of the glyph box, then width and height | established | S20 |
 | 0x13c, 0x13d, 0x13e stipple load, store, rotate | 1, 3, 3 | cache slot; store adds the pattern size then the pattern words; rotate adds the x and y origin | established | S20 |
 
+
+Opaque versus transparent stippling is not a pipe-visible bit in this load. The module picks the operation by fill style (solid, transparent stipple or opaque stipple vectors) and, for the opaque bitmap and stipple paths, puts the background colour into the foreground slot (words 0 and 1) so that clear bits draw the background; background points (tokens 0x15f-0x161) are plain points in the background colour and consult no stipple. Word 4 is masked to 24 bits by the engine program, so its bit 31 reaches no raster register and cannot be an opaque-stipple selector (established by the mask in the table above; the host-side choice is inferred from the senders, S21). An emulator that keys opaque behaviour off bit 31 of word 4 is reading a host-private bit the real pipe discards.
 
 ### 7.9 X pixel packings: set-up, write, read, copy and finish
 
