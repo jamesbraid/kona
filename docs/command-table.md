@@ -300,8 +300,8 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
-| 0x024 | enable a capability | 1 | y | inferred | S3 |
-| 0x025 | disable a capability | 1 | y | inferred | S3 |
+| 0x024 | enable a capability; the one word is a GL capability number. User clip planes are 0x3000-0x3005 (planes 0 to 5) and nothing else in 0x3000-0x3fff (the dispatch compares the name minus 0x3000 with 5); any other unlisted number is an invalid-enumerant error. The other capability ranges are inferred | 1 | y | inferred | S3, S79 |
+| 0x025 | disable a capability; the same ranges as 0x024, through the matching disable routines | 1 | y | inferred | S3, S79 |
 
 ### 2.9 Lighting and material
 
@@ -320,7 +320,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
 | 0x00c | set the scissor box | 4 | y | inferred | S3 |
-| 0x0b4 | set a user clip plane | 8 | y | inferred | S3 |
+| 0x0b4 | set a user clip plane: the plane name (0x3000 + n, n below 6), then the four plane coefficients as doubles (eight words, the high word of each double first), nine words in all (the earlier count of 8 missed the name word: the handler makes nine reads); the engine multiplies the coefficients at the call by the 16-word block at engine words 0x1f-0x2e and stores the eye-space plane at 0x90a + 4n and the unmultiplied operands at 0x922 + 4n; the client and the processor do no arithmetic. That the block is the inverse model-view is inferred; the singular model-view case is unknown | 9 | y | inferred | S3, S79 |
 | 0x0cf | set the depth range | 4 | y | inferred | S3 |
 | 0x0d0 | select the current matrix stack | 1 | y | inferred | S3 |
 | 0x0e3 | set the viewport | 4 | y | inferred | S3 |
@@ -332,7 +332,7 @@ Tokens whose map entry has bit 0 clear run a routine on the pipe's own processor
 | 0x011 | set a texture-environment parameter (float form): name word, then four float values | 5 | y | established | S3, S59, S60 |
 | 0x012 | set a texture-environment parameter (integer form): name word, four values | 5 | y | established | S3, S59, S60 |
 | 0x013 | texture-coordinate generation, double form: never sent; the handler is a not-implemented stub that prints a message and reads no payload | 0 | n | established | S3, S59, S60 |
-| 0x014 | texture-coordinate generation, float form (nine words) | 9 | y | established | S3, S59, S60 |
+| 0x014 | texture-coordinate generation, float form (nine words): coordinate 0x2000-0x2003 (s, t, r, q); name 0x2500 (mode), 0x2501 (object plane), 0x2502 (eye plane), 0x81f4-0x81f7 (point and line reference forms); seven value words. A mode value is accepted when it is 0x2400, 0x2401, 0x2402 or 0x81f0-0x81f3, checked without reference to the coordinate, so sphere map on r or q is not an error; any other coordinate, name or mode value is an invalid-enumerant error. An eye plane is multiplied at the call by the 16-word block that a clip plane uses; an object plane is stored unchanged | 9 | y | inferred | S3, S59, S60, S79 |
 | 0x015 | texture-coordinate generation, integer form: never sent; not-implemented stub | 0 | n | established | S3, S59, S60 |
 | 0x016 | old-style texture bind: 36 payload words; the handler is never sent by shipped client software | 36 | y | established | S3, S59, S60 |
 | 0x0fd | copy a 2D texture image from the frame buffer: 17 words | 17 | y | established | S3, S59, S60 |
@@ -400,7 +400,7 @@ The payload counts in this table are now the firmware handlers' own word counts,
 | Token | Role | Payload reads seen | Last-word read | Grade | Evidence |
 |---|---|---|---|---|---|
 | 0x03b | query current vertex attributes | 1 | y | established | S3, S64 |
-| 0x03c | query a clip plane | 1 | y | established | S3, S64 |
+| 0x03c | query a clip plane; the processor does not range-check the name, the client does | 1 | y | established | S3, S64, S79 |
 | 0x03d | query the raster position state | 1 | y | established | S3, S64 |
 | 0x03e | query the pending error | 1 | y | established | S3, S64 |
 | 0x041 | query a light (float) | 2 | y | established | S3, S64 |
@@ -533,7 +533,7 @@ Tokens whose map entry has bit 0 set never reach a processor routine: the host i
 | Token | Role | Form | Legal between begin and end | Chain | Command no. | Words that follow | Grade | Evidence |
 |---|---|---|---|---|---|---|---|---|
 | 0x061 | set current colour, 3 components, signed byte | geometry | yes | no | 16 | 3 | inferred | S1, S4 |
-| 0x062 | set current colour, 3 components, double | geometry | yes | no | 144 | 6 | inferred | S1, S4 |
+| 0x062 | set current colour, 3 components, double: three doubles narrowed to single precision by the distributor (inferred) and then handled as the float form (command 144); no scale or clamp at entry, alpha filled by the hardware; the 0 to 1 limit comes from the later colour pass (inferred); the narrowing's rounding and its treatment of NaN and out-of-range values are unknown | geometry | yes | no | 144 | 6 | inferred | S1, S4, S79 |
 | 0x063 | set current colour, 3 components, single float | geometry | yes | no | 144 | 3 | inferred | S1, S4 |
 | 0x064 | set current colour, 3 components, signed 32-bit integer | geometry | yes | no | 16 | 3 | inferred | S1, S4 |
 | 0x065 | set current colour, 3 components, signed short | geometry | yes | no | 16 | 3 | inferred | S1, S4 |
@@ -541,7 +541,7 @@ Tokens whose map entry has bit 0 set never reach a processor routine: the host i
 | 0x067 | set current colour, 3 components, unsigned 32-bit integer | geometry | yes | no | 272 | 3 | inferred | S1, S4 |
 | 0x068 | set current colour, 3 components, unsigned short | geometry | yes | no | 272 | 3 | inferred | S1, S4 |
 | 0x069 | set current colour, 4 components, signed byte | geometry | yes | no | 16 | 4 | inferred | S1, S4 |
-| 0x06a | set current colour, 4 components, double | geometry | yes | no | 144 | 8 | inferred | S1, S4 |
+| 0x06a | set current colour, 4 components, double: four doubles narrowed to single precision by the distributor (inferred) and then handled as the float form (command 144); no scale or clamp at entry; the 0 to 1 limit comes from the later colour pass (inferred) | geometry | yes | no | 144 | 8 | inferred | S1, S4, S79 |
 | 0x06b | set current colour, 4 components, single float | geometry | yes | no | 144 | 4 | inferred | S1, S4 |
 | 0x06c | set current colour, 4 components, signed 32-bit integer | geometry | yes | no | 16 | 4 | inferred | S1, S4 |
 | 0x06d | set current colour, 4 components, signed short | geometry | yes | no | 16 | 4 | inferred | S1, S4 |
@@ -1552,7 +1552,7 @@ State words that a draw reads besides the bind: the function that combines the t
 | what each function code does on the raster board | the arithmetic is in the texture-filter chips, which have no program. Matching all 25 record cells cell by cell against the standard texture-environment table gives, per code: 0 keep the fragment value; 1 take the texel; 2 fragment times texel; 3 fragment x (1 - texel) + environment colour x texel; 4 fragment x (1 - texel alpha) + texel x texel alpha (RGBA only); 5 fragment plus texel; 6 as 5 with a fixed offset of one half (name ADD_05). All 25 cells agree with the standard table, and the mode-to-record mapping is established by the engine's compare of the five base modes. Whether code 5 multiplies the texel by the environment colour (as the published add mode does), the sign of code 6, and the width, rounding and clamping are in the chips and unread. The diagnostic writes 0x1401 values 0x22, 0x20 and 0x60 only, and its reference files hold chip CRCs, which cannot be inverted to arithmetic. What would settle it: write 0x1401 to 0x60 and then 0x50 with the environment colour zero and nonzero, and read the pixel at 8- and 12-bit precision on a pipe the user does not currently have | inferred (operation per code); unknown (sign of code 6, width, rounding, whether code 5 scales by the environment colour) | S27, S61, S62 |
 | detail combine with the base | add: base + K(lambda) x (detail - 1/2); modulate: that product times the base texel; K is the stored doubled curve (0x17e), indexed by 64 x 2^lambda. Widths and rounding are unknown; how the detail (s, t) derive from the base (s, t) and level is unknown | inferred | S30, S59, S68 |
 
-**Coordinate generation (token 0x014, nine words).** One word coordinate 0x2000-0x2003 (s, t, r, q), one word parameter name (mode, object-plane or eye-plane), seven value words; any other coordinate or name raises an invalid-enumerant error and ends the command. The mode name is also kept per coordinate (start-up 0x2400). Enable and disable of each coordinate use the generic enable and disable tokens with 0xc60-0xc63. The double and integer forms (0x013, 0x015) print a not-implemented message and read nothing (established); the pop token (0x1d6) reads one word and then routes the next 0x70 host words to engine memory (inferred) (S27).
+**Coordinate generation (token 0x014, nine words).** One word coordinate 0x2000-0x2003 (s, t, r, q), one word parameter name (mode, object-plane or eye-plane), seven value words; any other coordinate or name raises an invalid-enumerant error and ends the command. The mode name is also kept per coordinate (start-up 0x2400). The accepted mode values are 0x2400, 0x2401, 0x2402 and 0x81f0-0x81f3, tested without looking at the coordinate. The engine keeps, per coordinate n, a mode word at engine word 0x3df + n, an object plane at 0x3e3 + n + 4k and an eye plane at 0x3f3 + n + 4k (k = 0 to 3). Object and eye linear generation are four-term dot products of the plane with the object or eye position; the eye plane is multiplied at specification time by the 16-word block at engine words 0x1f-0x2e. Sphere map is implemented for s and t only: for r and q the engine does not change the mode word (inferred) although the processor accepts and records the mode, and the result when the reflection denominator is zero is unknown. At start-up the processor's modes are all 0x2400 (established) and the planes are s = (1, 0, 0, 0), t = (0, 1, 0, 0), r = q = (0, 0, 0, 0) (inferred) (S79). Enable and disable of each coordinate use the generic enable and disable tokens with 0xc60-0xc63. The double and integer forms (0x013, 0x015) print a not-implemented message and read nothing (established); the pop token (0x1d6) reads one word and then routes the next 0x70 host words to engine memory (inferred) (S27).
 
 **Other texture state.**
 
