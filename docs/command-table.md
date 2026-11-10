@@ -103,7 +103,7 @@ The names are role names in plain words, written for someone who transcribes the
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1387 graded entries: 774 established, 539 inferred and 74 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1399 graded entries: 775 established, 543 inferred and 81 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -2249,12 +2249,12 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 4. Map entry and descriptors | 26 | 7 | 1 | 34 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 6. Display-bus registers | 72 | 31 | 9 | 112 |
-| 7. Field layouts | 314 | 101 | 54 | 469 |
+| 7. Field layouts | 315 | 105 | 61 | 481 |
 | 8. Raster bus | 51 | 59 | 1 | 111 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 10. Window id | 10 | 3 | 2 | 15 |
 | 12. Product and board identity | 20 | 2 | 5 | 27 |
-| **All** | **774** | **539** | **74** | **1387** |
+| **All** | **775** | **543** | **81** | **1399** |
 
 The unknown rows, by section: every row whose weakest grade is unknown, each with the start of its description; the row itself says what would settle it. A back end should model the access as observable and unimplemented rather than invent behaviour. Rows graded with a mix, for example "established; the sign unknown", count as unknown.
 
@@ -2293,6 +2293,7 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - 16-plane luminance with overlay or id planes: composition
 - window x, y at the vertex bus: float(x - 49152.0) (the subtract at `udrawtri.s` 0x28ac and 0x28b0
 - what the engine does with word 4 in the special register: the second destination is engine special register 0x23 (window address 0xfffe0000 + 4 x 0x23 = 0xfffe008c, reached through...
+- what the pipe does with word 4 bit 31: the engine forwards word 4 whole behind the mask word 0x00ffffff (`ge.u` 0x4d02, 0x4d0f-0x4d12), so the bit is probably dropped...
 - which word holds that mode field: -
 - which words those constants modify: -
 - 0, bit 4: direct-write flag, kept until the finish
@@ -2306,14 +2307,19 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - a context switch and a half-loaded level: a switch saves the load's *control* state and restores it on switch-in, not texels: the 89-word register shadow is saved and...
 - 2, 4: not used by the handler's own register writes
 - address units and the position of a level inside the address: one unit = 256 bits (16 sixteen-bit lanes
+- layout mode 1 (single-level volume): a two-word table {bank-0 base, bank-1 base}
 - where mode-1 texels sit inside the pair, and how the pipe addresses them: the client and firmware only pass the pair through
 - bordered volumes: the border writer passes z origin 0 and no depth argument, so how a volume's other slices get border texels is not read
 - what the tables control in the sampler beyond the bind's reference to them: not read
 - 0x00-0x07, 0x11-0x13: 4-bit and 8-bit single- and dual-component rows
 - order and width of a texel inside texture memory, every format: the software-visible order is the bus-word layout the diagnostic's host formatter builds, first texel in the high lane (all...
 - texel formats 0x00-0x07 and 0x11-0x13: the diagnostic's formatter rejects them (its case table covers 0x08-0x50 only), no shipped client or diagnostic sends them,...
+- magnification channel code 3 (texture-mode word bits 27:26): the register tool names the value LOD0 (field values 0 all, 1 colour, 2 alpha)
 - what the pipe keeps for an entry: the firmware keeps, per cache entry (513 of them), an 8-byte record of two 20-bit ids, a load id (set by 0x176) and a bind id...
 - what each function code does on the raster board: the arithmetic is in the texture-filter chips, which have no program
+- detail combine with the base: detail sample position in detail texels: u = s x 2^(n - L), v = t x 2^(m - L), with n and m the level-0 base size exponents...
+- sharpen combine: out = A + K x (B - A), with A the base-level linear sample, B the next coarser level's linear sample and K = -F(lambda) from...
+- 3D filtering and level of detail: a non-mip volume is filtered trilinearly (8 texels, full rate), a mip-mapped volume quadlinear (16 texels in two groups of...
 - DMA choice: the client sets the DMA flag when the total exceeds a size threshold and, for row mode 1, when the row width times the element...
 - splitting wide images: when a convolution or pixel-texture stage is active, or a per-type width limit applies, the client cuts the image into strips...
 - split: convolution borders or a per-type width limit make the client read in strips, setting skip pixels and row length for each
@@ -2335,6 +2341,7 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - reads and copies with a multisample buffer: the pipe has no resolve step: read, copy and draw-buffer selection use only colour and auxiliary banks and their paths never...
 - multisample lines, points and polygons: published rules (007-2392-003, the multisample section): lines are rasterised as rectangles centred on the segment, line width...
 - smoothing coverage form: smoothed lines and points deliver their coverage as alpha through four 32-entry ramps (the engine writes them as 8-bit values...
+- last vertex and closing vertex: pipe: whether a 0x15b/0x15c draws its last vertex, and so whether a shared chunk vertex or a closing vertex is lit twice,...
 
 **8. Raster bus**
 
