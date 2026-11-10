@@ -505,7 +505,6 @@
  * nothing sends one. Routes tried: irsaudit (no constant of this index reaches `tbRegWrite`),
  * arm1.u (no address word 0x01xx44a8 and no immediate of this value in a `tbus_regwrite` call),
  * ge.u (no listing loads it), the vector files (no mode-1 word), libGLcore (no use). */
- 
 #define KONA_RM_HTL_LOAD_STALL                           0x44a8
 
 /*
@@ -1091,8 +1090,8 @@
 
 /*
  * TFP_TEV (index 0x1401): texture environment function, a four-bit alpha function and a four-bit
- * colour function (replace fragment, replace texture, modulate, blend, decal, add, add minus
- * half). Established: irsaudit `tbuTexEnv` writes the saved copy at 0x10154b00, `tbuRegReset`
+ * colour function (replace fragment, replace texture, modulate, blend, decal, add, add with a
+ * half, sign not established). Established: irsaudit `tbuTexEnv` writes the saved copy at 0x10154b00, `tbuRegReset`
  * restores 0x22, which is modulate for both, and the shadow start-up value in befsh_init is the
  * same 0x22. No arm1.u routine carries this index as an address word. */
 #define KONA_RM_TFP_TEV                                  0x1401
@@ -1461,7 +1460,6 @@
  * kpm's raster table names it. Routes tried: irsaudit (no constant of this index reaches
  * `tbRegWrite`), arm1.u (no address word 0x01xx1856), ge.u (no listing loads 0x1856 as a select or
  * bus high word), the vector files (no mode-1 word), libGLcore (no use). */
- 
 #define KONA_RM_TFT_NOP                                  0x1856
 
 /*
@@ -1471,7 +1469,6 @@
  * vector-file word, arm1.u routine or ge.u select addresses it. Unknown: no shipped software or
  * published source depends on what a non-zero identifier changes here, because the restore
  * routine's zero is the only value sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm and libGLcore, and the published papers
-
  * and patents (no mention). */
 #define KONA_RM_TFT_FAKE                                 0x1857
 #define KONA_RM_TFT_FAKE_TEST_ID                          0, 12  /* shift, width */
@@ -1482,7 +1479,6 @@
  * to this slot marks, because nothing sends one. Routes tried: irsaudit (no constant of this index
  * reaches `tbRegWrite`), arm1.u (no address word 0x01xx1858), ge.u (no listing loads it), the
  * vector files (no mode-1 word), libGLcore (no use). */
- * match). */
 #define KONA_RM_TFT_EOR                                  0x1858
 
 /*
@@ -1672,7 +1668,6 @@
  * 7178 passed to `tbRegWrite` at 0x10156f48-0x10156f4c); arm1.u, ge.u and the vector files never
  * address it. Unknown: no shipped software or published source depends on what tag value a non-
  * zero write would load, because no program sends one. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm, libGLcore, and the published
-
  * papers and patents (no tag memory register). */
 #define KONA_RM_IMP_TAG_CLEAR                            0x1c0a
 
@@ -1787,7 +1782,6 @@
  * writes it with a literal. Inferred: the two writes are a barrier between two completion flags,
  * since nothing else in the shipped vectors separates them. Unknown: no shipped software or
  * published source depends on what RAM state the write synchronises. Routes tried: irsaudit, arm1.u (no address word 0x01xx1c3f), ge.u (no select),
-
  * the other 260,000 vector lines (no other use), kpm and libGLcore. */
 #define KONA_RM_IMP_RAMSYNC                              0x1c3f
 
@@ -2100,7 +2094,6 @@
  * 16368 passed to `tbRegWrite` at 0x10157e38-0x10157e3c); arm1.u, ge.u and the vector files never
  * address it. Unknown: no shipped software or published source depends on what a non-zero value
  * prints or traces, because only zero is sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm, libGLcore, and the published papers and
-
  * patents. */
 #define KONA_RM_COMMON_VERBOSE                           0x3ff0
 
@@ -2148,7 +2141,6 @@
  * (0x1006a4f8); the vector files carry six words and all have the value 1. Unknown: no shipped
  * software or published source depends on what the chips do with this identifier, because every
  * writer sends the one value 1 (the diagnostic restores what it saved). Routes tried: arm1.u, ge.u (no select), the vector files, kpm's raster
-
  * table (a bare record), libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_PRIMID                            0x3ff6
 
@@ -2158,7 +2150,6 @@
  * (index 16375 passed to `tbRegWrite` at 0x10158078-0x1015807c), and no other irsaudit, arm1.u,
  * ge.u or vector-file word carries the index. Unknown: no shipped software or published source
  * depends on what a non-zero COUNT_P holds back, because only zero is sent. Routes tried: irsaudit, arm1.u, ge.u, the vector files, kpm,
-
  * libGLcore, and the published papers and patents. */
 #define KONA_RM_COMMON_STALL                             0x3ff7
 #define KONA_RM_COMMON_STALL_COUNT_P                      0,  4  /* shift, width */
@@ -2307,7 +2298,6 @@
  * carry 0, as does the shadow slot's start-up value. Unknown: no shipped software or published
  * source depends on what a non-zero growth value does to a primitive, because every program that
  * writes this register sends zero. Routes tried: the geometry engine listings (no select word 0x01290804; the immediate 0x804 in
-
  * `xsetup.S` is not a select), the published papers, technical reports and patents (none describes
  * a growth amount), kpm's raster table (a bare record) and libGLcore (no use). */
 #define KONA_RM_PG_BLOAT                                 0x0804
@@ -2323,7 +2313,6 @@
  * for its vertex arithmetic, so the engine applies the offset to vertex depth. Unknown: no shipped
  * software or published source depends on what a non-zero value of this register adds to depth,
  * because only zero is ever written. Routes tried: the geometry engine listings (the bare 0x805 in `drawtri.S` and `polymode.S` is a command
-
  * word sent to bus address 0x1f7, not the select form 0x012a0805), irsaudit (zero only), the
  * vector files (0 in all 13 words), the published papers and patents (none gives a depth-offset
  * register) and libGLcore (no use). */
@@ -2414,7 +2403,6 @@
  * it builds a table word from the mask and sends it to index 0x140b (`TFP_FADE_MASK_LUT`, address
  * word 0x0161140b). Unknown: no shipped software or published source depends on which samples a
  * bit of this mask selects, because the only value ever written is all ones. Routes tried: the geometry engine listings (no select
-
  * 0x012e0809), irsaudit (writes back the saved copy only), the vector files (all ones in 13 of
  * 13), the published papers (they give a coverage mask per fragment but no register) and libGLcore
  * (no use). */
