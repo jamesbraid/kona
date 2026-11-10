@@ -817,8 +817,9 @@ The firmware, and the diagnostic through the same ports, send a routed command b
 | 0x42200020 | descriptor: load the 16-word primitive-class table | established | S2 |
 | 0x42600020 | descriptor: load the 512-word entry table | established | S2 |
 | 0x44200020 | descriptor: distributor step register on (pipe set-up) | inferred | S3 |
-| command 0, 64, 128, 192, 256, 320, 384, 448 | raster-register write commands that differ only in command-number bits 8:6 (a qualifier handed to the handler) | established | S2 |
-| bits 8:6 of those commands: which register space each selects | register-space qualifier | unknown | S2 |
+| descriptor with bit 5 set (register form): register number in bits 30:21 | a 10-bit distributor register number; the write goes to that distributor register with its value at the data port. The word bits 23:21, which the command-number view calls bits 8:6, are only the low three bits of that register number, so the command numbers 0, 64, 128, ..., 448 in this form are eight different registers (0x220 is number 0, 0x231 and 0x241 are number 64, 0x2c0-0x2c6 span numbers 0-384), not a register-space qualifier, and nothing is chosen by them. Every one of the 58 distinct register-form descriptor words in the firmware has bits 8:6 equal to register bits 2:0. The host-visible tokens of this form agree (the evaluator coordinate and point tokens, the colour-and-normal setter, the deformation token and the no-op: register 0x28f with number 448, 0x293 with 192, 0x292 with 128, register 1). The diagnostic builds the same word: its register-form packers put a 10-bit register number at control bits 13-22 | established | S2; irsaudit `Compact_GED_Reg_Pixel_Control` 0x1013f6fc and `Compact_HIP_Reg_Pixel_Control` 0x1013f51c |
+| descriptor with bit 5 clear, command number 128 | the only pass-form value that runs the raster-register write handler (handler index 0): 0x58404800 (three payload words: bit mask, address word, value), 0x58400000 (no payload word) and 0x58400800 (the filler). 159 is the separate image-processor write. The descriptor 0x78601000 has number 192 but ends its payload in an engine handler address, so it does not run the register-write handler | established | S2, S12 |
+| pass-form descriptor and token entries, bits 21, 22 and 23 (command-number bits 6, 7 and 8) | three flag bits the diagnostic packs from separate fields (its pass-control packers use control bits 13, 14 and 15). Across the 71 hardware-routed pass-form token entries: bit 21 is set on 14 (the matrix and deformation tokens), bit 22 on every entry except the pop and push matrix tokens and the fog continuation, and bit 23 on none. What each flag means is not derived | unknown (the values are established, what they mean is not) | S2 |
 | 64-entry engine handler table, 43 entries bound at start-up | index = command number & 63; indexes 0-12, 14-16, 25-34 and 42-54 and 60-63 are bound; 13, 17-24, 35-41 and 55-59 are not | established | S2, S4 |
 | index 3-12 rebinding | matrix operations rebind when the matrix mode changes (model-view variants at start-up) | established | S2 |
 | 0x00400000 + 4 x token | hardware copy of the token map; unlisted tokens read as the bad-command routine | established | S2 |
@@ -2202,14 +2203,10 @@ The unknown rows, by section. Each says what a back end should do: model the acc
 
 **2. Processor-run tokens**
 
-- 0x1fb: context FIFO synchronise
-- 0x0e7: set the blend equation
-- 0x175: texture-load set-up, second form
-- 0x1fe: kernel-private command (ignored)
 
 **4. Map entry and descriptors**
 
-- bits 8:6 of those commands: which register space each selects: register-space qualifier
+- pass-form entry flags (token-entry bits 21, 22, 23): what each of the three flags means
 
 **6. Display-bus registers**
 
