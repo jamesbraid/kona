@@ -4234,15 +4234,14 @@ enum kona_hp_token {
     /* `HP_GET_LIGHT_ATTRIBS` (0x10b). Inferred: Map entry 0x58514841: pass
      * form, command 162, count 1, 32-bit words. Command 162 is handler-table
      * index 34, mgesi_PushAttrLights; the ARM itself injects the same command
-     * (descriptor 0x58514800) in arm_pushattrib, so the engine handler saves
-     * the current light attributes onto the engine-side attribute stack.
+     * (descriptor 0x58514800) in arm_pushattrib, inside its read-back bracket;
+     * the engine handler streams the light blocks to the host reply port.
      * Payload 1: one word (value not shown by any emitter). Established:
      * routed by the host interface with no ARM code, arm1.u token-map entry
      * 0x58514841: command 162, count field 1 (bits 6-10, 0 read as 32),
-     * single floats. No sender found: no store of token 267 to the command
-     * FIFO in libGLcore (267 appears there only as a display-list opcode and
-     * a glGet pname), the kernel, kona.so or irsaudit; the ARM uses the same
-     * command number from arm_pushattrib. */
+     * single floats. Sender: libGLcore's context-copy routine sends it bare
+     * with one word (0) through its special-query helper and waits on the
+     * return-data buffer; the ARM injects it from arm_pushattrib. */
     KONA_HP_GET_LIGHT_ATTRIBS            = 0x10b,
 
     /* Engine handlers whose slots the code of `arm_initnames` loads, in
