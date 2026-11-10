@@ -17,16 +17,6 @@
  *            per compilation unit under libglcore/asm/.
  *   kernel   kona.a members under kona_kernel/disasm/.
  *
-
-
-
-
-
-
-
-
-
-
  * The GE11 revision program is gevers_ucode in the 6.5.30m kernel unix.
  */
 #ifndef KONA_GE_H
@@ -5554,8 +5544,9 @@ enum kona_hp_token {
      * 176, count 2, 32-bit words. Command 176 selects index 48, mgesi_XLine.
      * Operands are the points of a polyline; mgesi_XLine branches to mAbsX,
      * whose line path draws the connected segments clipped. Consecutive
-     * commands share their end point. Payload 2: a two-point polyline: first
-     * point at the token address, one more point word. Established: routed by
+     * commands share their end point. Payload 1 sent (map count 2): the last
+     * point of a remainder, at the token address, after a data preload of the
+     * earlier points. Established: routed by
      * the host interface with no ARM code, arm1.u token-map entry 0x58584881:
      * command 176, count field 2 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XLine` (index 48 of the handler table). Sent by
@@ -5588,7 +5579,8 @@ enum kona_hp_token {
      * command 177, count 2, 32-bit words. Command 177 selects index 49,
      * mgesi_XLineRel. Like X_LINE but each point is relative to the previous
      * one, so the handler branches to mRelX and draws via the lines routine.
-     * Payload 2: a two-point relative polyline. Established: routed by the
+     * Payload 2 sent (map count 2): the relative remainder's two words,
+     * after a data preload. Established: routed by the
      * host interface with no ARM code, arm1.u token-map entry 0x5858c881:
      * command 177, count field 2 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XLineRel` (index 49 of the handler table). Sent
@@ -9245,11 +9237,8 @@ enum kona_kpm_shadow_row {
  * BPSTALL, UCLAT, INVAL, kpm table) are set by no program on either chip, so how the engine responds to
  * SSTEP, BPSET, BPSTALL and INVAL is unknown: no shipped software or published source depends on it. kpm reads the register
  * twice, at 0x1001e7f8 and 0x1001e804, as the first words of its register dump. What UCLAT selects is
-
-
-
-
-
+ * unknown; both KONA writers store 1, so it is clear in every value either writes. A read of
+ * the GE11 microcode-latency control in the engine netlists would settle it. */
 #define KONA_GE11_REG_EXECUTION_CONTROL              0x40000  /* "Execution Control Register" */
 #define KONA_GE11_EXEC_GO                       0x00000001  /* bits from 0 */
 #define KONA_GE11_EXEC_SSTEP                    0x00000002  /* bits from 1 */
@@ -9264,9 +9253,8 @@ enum kona_kpm_shadow_row {
  * `ge11ReadDiagRegisters` takes it at 0x1001e814 for the register dump, and the scan helper inside
  * `analyze_ge` reads it at 0x1001e638 as the first word of every RAM-scan transfer. No program
  * writes it, so no shipped tool sets a breakpoint. Width: inferred to be 18 bits, the
-
  * width of a microcode address, which matches the 18-bit microcode address port of KONA's
-
+ * engine netlist. */
 #define KONA_GE11_REG_BREAKPOINT_ADDRESS             0x40004  /* "Breakpoint Address Register" */
 
 /*
@@ -9283,9 +9271,6 @@ enum kona_kpm_shadow_row {
  * reads the diagnostic registers of a stopped engine, and `ge11ReadDiagRegisters` reads it back
  * at 0x1001e834. Inferred from where the writers use it: bit 0 turns the write-sync FIFO off so a
  * drain or scan is not held up by it, and bits 1-5 are the FIFO's water mark. The ARM firmware leaves it at its reset value. */
-
-
-
 #define KONA_GE11_REG_WRITE_SYNC_FIFO                0x4000c  /* "Write/Sync FIFO Register" */
 #define KONA_GE11_SYNCFIFO_DISABLE              0x00000001  /* bits from 0 */
 #define KONA_GE11_SYNCFIFO_WM                   0x0000003e  /* bits from 1 */
@@ -9294,12 +9279,8 @@ enum kona_kpm_shadow_row {
  * Diag Sel Register (0x40010), established: `init_ge` in arm1.u writes the address at 0x0c003568
  * and 0x100 at 0x0c003584 just before setting GO, and kpm's `ge11LoadUcode` repeats the same
  * 0x100 at 0x1001be4c. 0x100 is the register's only named field, OUTPUT (bit 8). Inferred: the register picks which internal signals the engine drives
-
  * on its diagnostic pins and bit 8 turns that output on. kpm dumps it at 0x1001e844. Whether the bit
-
-
-
-
+ * is an input or an output select, and what bit 5 does, are unknown; no program sets bit 5. */
 #define KONA_GE11_REG_DIAG_SEL                       0x40010  /* "Diag Sel Register" */
 #define KONA_GE11_DIAGSEL_OUTPUT                0x00000100  /* bits from 8 */
 
@@ -9310,8 +9291,6 @@ enum kona_kpm_shadow_row {
  * software or published source depends on it. Routes tried: every engine-register address the
  * arm1.u firmware stores (only 0x40000, 0x40010, 0x40018 and 0x40038), every `ge_register_write`
  * call in kpm, irsaudit's strings and the IR netlists. */
-
-
 #define KONA_GE11_REG_ENABLE_MASK                    0x40014  /* "Enable Mask Register" */
 #define KONA_GE11_ENABMSK_A                     0x00000007  /* bits from 0 */
 #define KONA_GE11_ENABMSK_B                     0x00000070  /* bits from 4 */
@@ -9324,8 +9303,6 @@ enum kona_kpm_shadow_row {
  * (bit 16): decoded, CFG and PULSE_EN are 0 and the trims are (3, 2, 2, 2) for 0x4930 and
  * (6, 6, 6, 4) for 0x9b60, so newer boards get shorter strobes. Inferred: the trims set width and
  * delay of the write and clock strobes of the command-memory and output-FIFO tag RAM. */
-
-
 #define KONA_GE11_REG_CM_OFIFO_TAG                   0x40018  /* "CM/Ofifo TAG Register" */
 #define KONA_GE11_CMTAG_CFG                     0x00000001  /* bits from 0 */
 #define KONA_GE11_CMTAG_WTRIM_WD                0x00000070  /* bits from 4 */
@@ -9378,9 +9355,8 @@ enum kona_kpm_shadow_row {
  * address to `ged_register_write` as index 564 and writes 0x80000001 to index 566, the data comes
  * back in a 64-byte transfer, and `memcpy` at 0x1001e9a4 copies those 64 bytes to a kpm buffer with
  * no field split, so no kpm code decodes the pointers. Inferred: comparing it with
-
-
  * half A shows whether one thread's output stalled. Whether B is the engine's second thread is
+ * unknown. */
 #define KONA_GE11_REG_OFIFO0_B_STATUS                0x40024  /* "OFIFO0 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
@@ -9401,8 +9377,7 @@ enum kona_kpm_shadow_row {
  * shipped software touches it (established); it is the thirteenth of the sixteen reads of
  * `ge11ReadDiagRegisters`, whose `memcpy` at 0x1001e9a4 moves the 64-byte result on with no field
  * split. Inferred, it is a read-only view of FIFO occupancy for
-
- 
+ * the second half. */
 #define KONA_GE11_REG_OFIFO1_B_STATUS                0x4002c  /* "OFIFO1 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
@@ -9420,8 +9395,6 @@ enum kona_kpm_shadow_row {
  * OFIFO2 B Status Register (0x40034), the last of the six pointer words: half B of output FIFO 2.
  * Established: dumped by kpm at 0x1001e8d4, never written. Inferred: equal pointers mean that half
  * is empty, and a dump taken after a hang shows from the six words which queue backed up. */
-
-
 #define KONA_GE11_REG_OFIFO2_B_STATUS                0x40034  /* "OFIFO2 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
@@ -9433,11 +9406,7 @@ enum kona_kpm_shadow_row {
  * pair (0xce0 at 0x1001bd08, 0x8e0 at 0x1001bfd0), and `ge11BypassEnable` writes 0x801 or 0xc01
  * to all eight engines at 0x1001b8bc. Inferred: bits 10-11 follow the board configuration and bit
  * 0 alone puts the output FIFOs in bypass for a diagnostic. The meaning of bits 1-9 is unknown: both
-
-
-
-
-
+ * KONA values, 0xce0 and 0x8e0, carry the same bits 5-7 (0xe0). */
 #define KONA_GE11_REG_OFIFO_CONTROL                  0x40038  /* "OFIFO Control Register (trashed)" */
 
 /*
@@ -9693,16 +9662,13 @@ enum kona_kpm_shadow_row {
  * cc bits 2-1 choose the condition (0..3 = bit 3..0), cc bit 0 inverts.
  * Production branches test only the low nibble, after unit-1 integer and
  * float results alike (161 of 161 transfers with a nearby flag setter).
-
-
-
  * Which cc selects which condition (le/gt, eq/ne, lt/ge and the fourth
-
-
-
+ * test) is UNKNOWN from the binaries read so far; the layout above is
+ * inferred from the flag values alone. Tracing each production branch
+ * back to the unit-1 or unit-2 word that set the flag would settle it.
  * Address unit (r222 words): cc 0x10, 0x11, 0x14 and 0x15 are the
-
-
+ * address-unit conditions (condition group 4); their meaning is
+ * UNKNOWN and so is bit 8 of the condition word. In production
  * cc 0x14/0x15 continue and leave the pixel-path loops, 0x10 is the
  * abort or error test, and 0x11 is the end-of-command wait (condition
  * group 31) or the loop count not yet zero (group 7). ucode/ge_ops.md.

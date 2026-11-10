@@ -33,11 +33,22 @@ adopt are under "Proposed command-table rows".
    for the host-side fallback (drawn once).
 6. Relative polylines anchor at the drawable origin set by the position load,
    exactly like relative points: same converter and same origin words
-   (established); that the converter seeds a running sum from them is inferred.
+   (the reads of control words 7 and 8 are established; that they are added,
+   and that the relative converter seeds a running sum from them, is
+   inferred). The absolute converter adds them inside its loop to every
+   point; the relative converter reads them once before its loop.
 7. A pending data run joins the next drawing command, and a polyline's
    remainder relies on it. Inferred for lines (sender design); established for
    points and rectangles in the recording; no polyline command occurs in the
    recording.
+8. The sender's word counts after the token for 0x15b, 0x15c, 0x15d and 0x15e
+   are 1, 7, 2 and 7 (established, all four X server builds). An earlier
+   statement of 2, 7, 2, 7 was wrong for 0x15b: it took the map's count of 2,
+   or the two points a remainder draws once its preload is counted, for the
+   words sent. The map counts are 2, 12, 2, 12 and are not the sender's
+   framing for any of the four. See the next section.
+9. The position words are not zeroed before point and line commands: window
+   drawing sends the window's own screen position.
 
 ## 1. What sets word 4 bit 31, and when
 
@@ -192,6 +203,78 @@ from this recording** (all established from the module, none seen in the stream)
 may be present: 68 scissor loads and 90 mode-4 glyph set-ups occur, but not told
 apart from plain text here.
 
+## Word counts of tokens 0x15b-0x15e
+
+**Established (sender).** `konLineSS` in `kona.so` splits a polyline of n
+points into full chunks (0x465dcc-0x465e0c, 0x4659b0-0x465b18 for the
+relative form) and a remainder of fewer than six points. The framing in
+`kona.so` is a store of the first word at the token's address (the FIFO
+pointer plus 32 times the token number) and further words at the pointer
+itself. What each token carries:
+
+| Token | Words after the token number | Where in `kona.so` | Map count |
+|---|---|---|---|
+| 0x15b (absolute remainder, last point) | 1 | 0x466024-0x46604c (offset 0x2b60); the only store is to the token address, none at the pointer | 2 |
+| 0x15c (absolute full chunk) | 7: first point at the token address, six through the six-word copy helper at 0x4275c0 | 0x465dcc-0x465e08 (offset 0x2b80) | 12 |
+| 0x15d (relative remainder) | 2: one at the token address, one at the pointer | 0x465d48-0x465d88 (offset 0x2ba0) | 2 |
+| 0x15e (relative full chunk) | 7: same pattern | 0x465a10-0x465a48 (offset 0x2bc0) | 12 |
+
+The other three X server builds (`konad.so`, `konal.so`, `konas.so`) have the
+same four sequences at the same file offsets, with the token number stored as a
+word at the pointer instead of the address form: 0x65f14 (0x15b: token plus one
+payload word), 0x65b14 (0x15d: token plus two), 0x65b84 (0x15c: token plus
+seven), 0x656a0 (0x15e: token plus seven). Read in `konal.so`; `konad.so` and
+`konas.so` show the identical store pattern for 0x15b and 0x15d (the 0x15c and
+0x15e sequences were not read there). A literal search of every binary under
+`root/` (the X modules, the three `libGLcore.so` ABIs, `libgl.so`,
+`irsaudit`, the kernel objects, `setmon`, `ircombine`, `dmconf`, `Xsgi`) for the
+four token offsets found no sender but these; the other hits are unrelated
+immediates (the GL libraries and tools do not emit X drawing tokens).
+
+*Preload.* A remainder of r points (r from 2 to 5 after the full chunks, 1
+when n leaves one point) is sent as a data preload of r - 1 points (tokens
+0x141-0x147, chosen at 0x465e68-0x465fd0, copy helpers at 0x427608 and
+neighbours) immediately before the line token. So an absolute remainder is r
+points on the wire (r - 1 preloaded plus the one-word 0x15b) and draws r - 1
+segments; the "two points, one segment" in the old row counted the preload's
+point, not words after the token.
+
+**Engine side.** `mgesi_XLine` (0x5196) and `mgesi_XLineRel` (0x5187) read no
+fixed number of operand words. Each takes the operand count from register 0x19,
+subtracts one (F = 0x20 at 0x51a2, 0x5192) and passes it as the loop count
+to `mAbsX` or `mRelX`, which read the operands through register 0x11 or 0x13
+(`ge_compute.md`, X server drawing entries). The same handler serves 0x15b and
+0x15c (command 176) and 0x15d and 0x15e (command 177), so nothing in engine
+code separates the single from the burst form. There is no firmware (`arm1.s`)
+handler: all four entries are routed by the host interface (bit 0 set; entries
+0x58584881, 0x58584b01, 0x5858c881, 0x5858cb01 at `arm1.u` +0x698 plus four
+bytes per token). The count in register 0x19 is set by the distributor, which
+no software read here shows; if it were the map count, a seven-point chunk
+would be twelve and the engine would draw eleven segments from seven points,
+which the sender's explicit seven-word framing and the six-segment chunking
+contradict. So the engine-side evidence is consistent with the sender's counts
+and cannot confirm them independently.
+
+**Grades.** Sender word counts 1, 7, 2, 7: established. That the pipe's host
+interface takes in exactly those words (rather than the map's 2, 12, 2, 12):
+inferred, because the shipped server uses these framings and no recording holds
+a polyline token. The absolute single form is the best-supported case against
+the map count being the framing: a two-word read would consume the next
+token's number as a point after every remainder of two to six points.
+
+*Test that would settle it:* a hand-built command stream on the pipe or a
+register-level model: a one-point preload, an absolute 0x15b with one payload
+word, then a graphics-context-independent state token whose effect is visible,
+and the same with a second payload word. A pipe that takes the map's count
+would swallow the state token in the first stream.
+
+**Wrong earlier claims.** "0x15b is two words": wrong for the sender (one).
+"0x15d is two words": right as a wire count, but its source pointer is odd
+(see section 6). The command table's single-form note said the single forms
+carry two points because the segment count is the operand count minus one; that
+is right, but those points are the preload plus the token, not two words after
+it. The old opengl.md row's "2, 7, 2, 7" is corrected to 1, 7, 2, 7.
+
 ## 4-5. Polyline last vertex and closing vertex
 
 **Established (sender, `konLineSS` 0x465810, 2172 bytes).** A polyline of n
@@ -269,9 +352,40 @@ point is the seventh, so that point's own delta looks counted twice; no relative
 polyline of more than seven points occurs in the recording, so this is only a
 reading of the code. The relative remainder also advances by 8(n-1) bytes and
 sends two words (0x465d48-0x465d88), where the absolute remainder advances by
-4(n-1) and sends one (0x466024-0x46604c); whether either is intended is
+4(n-1) and sends one (0x466024-0x46604c). Points are four bytes, so the
+remainder occupies 4n bytes from the cursor and the two relative words lie at
+8(n-1) and 8(n-1)+4: past the last point for every n of two or more. The absolute
+form reads the last point. I found no reading of the relative arithmetic under
+which the two words are the final point. Treat the relative single form as
+suspect; whether it is a sender fault or an addressing I have not understood is
 unknown. Test: send a nine-point relative polyline and read the resulting
 vertices.
+
+**What the converters add (control words 7 and 8).** `mAbsX` (0x52c4) reads
+control words 7 and 8 inside its loop (0x52cd-0x52dc), in four operations per
+pass at 0x52d4-0x52d7 (two vertices, x and y each), so every point gets the
+origin added. `mRelX` (0x52a3) reads the same two words once, before its loop
+(0x52aa-0x52ab; the loop is 0x52ac-0x52b9), into its running-sum accumulators,
+so the origin enters each output through the sum, not by a per-point add. The
+immediates 7 and 8 and their positions are read from the instruction words
+(established); that the operations are integer adds, and that words 7 and 8 hold the
+position load's x and y, rest on the ISA decode and the store reading of
+`mgebi_XLoadPosition` in `ge_compute.md`, which is graded inferred, so the claim
+that both converters add the position to every point is inferred, not
+established.
+
+**Senders do not zero the position.** The position load is sent by
+`kon_loadGC` (0x4a6270; stores 0x4a62e8-0x4a631c, token offset 0x2540) with the
+drawable record's halfwords +8 and +10 (x, y) and +12 and +14 (width, height),
+and `konLineSS` calls it (0x465940) before every line token. For a window
+those are the window's screen position, nonzero unless it sits at the origin;
+a pixmap has zero. Zero comes only from the screen-wide senders, which send
+0, 0, screen width, screen height. In the 4Dwm recording 386 of the 1192
+position loads in the parsed chains are nonzero; all 610 point commands (0x14c
+to 0x14e) happen to follow a zero origin, and 209 rectangle and box commands
+(0x152 to 0x155) follow a nonzero one. No line command occurs there, so
+nothing shows a line after a nonzero origin; by the sender code it is the normal
+case.
 
 ## 7. Does a pending data run join a line
 
@@ -326,9 +440,9 @@ Section 7.8, add to "values the X module is seen to put":
 
 Polyline rows (near tokens 0x15b-0x15e):
 
-| polyline chunking | seven points per `X_LINE6`/`X_LINE6_R`, next chunk starts at the previous chunk's last point; remainder is a data run of r-1 points plus one-point `X_LINE`, or for relative two words | established | `kona.so` 0x465dcc-0x466048 |
+| polyline chunking | seven points per `X_LINE6`/`X_LINE6_R`, next chunk starts at the previous chunk's last point; remainder is a data run of r-1 points plus a one-word `X_LINE` (0x15b), or for relative a two-word `X_LINE_R` (0x15d). Words after the token: 1, 7, 2, 7 for 0x15b to 0x15e | sender counts established; pipe intake inferred | `kona.so` 0x465dcc-0x466048 |
 | polyline last vertex, closing vertex | pipe: unknown (rasteriser end rule). Host fallback: last vertex sent once as a point unless CapNotLast or closed onto the first point | pipe unknown; fallback established | `kona.so` 0x56ebd0-0x56ed38 |
-| relative polyline anchor | origin from the position load (control words 7, 8), restarted at every command, same converter as relative points | established | `ge.u` 0x52a3-0x52b9, 0x4d7c |
+| relative polyline anchor | origin from the position load (control words 7, 8), restarted at every command, same converter as relative points; the relative converter reads the words once to seed its sum, the absolute one adds them per point | origin-word reads established; adds and seeding inferred | `ge.u` 0x52a3-0x52b9, 0x52c4-0x52dc, 0x4d7c |
 | data run before a line | joins the line command (one polyline); run followed by points and rectangles joins them in the recording | inferred (lines); established (points, rectangles) | `kona.so` 0x465e68, recording |
 
 ## What was not done
