@@ -91,10 +91,16 @@ The names are role names in plain words, written for someone who transcribes the
 | S77 | the geometry engine's multisample point module: [point.S listing](../ucode/ge_listing/point.S.lst) (`mgeb_SetMSPointTables` 0x5b96, `mgeb_ComputeMSPointTables` 0x5bab and its initialiser, sort and packer routines 0x5d94-0x5fb5), the line module [drawlin.S listing](../ucode/ge_listing/drawlin.S.lst) (`mmo_DrawMSLinPrim`), and the engine entries 844-845 of [geif_entries.md](../ucode/geif_entries.md) |
 | S78 | [the fog, polygon-mode, edge-flag and smoothing findings](findings/fog-polymode-smoothing.md): the pipe firmware's fog setters and function-table handler, the polygon-mode and edge-flag handlers, the line and point handler selection and the buffer-configuration writes to the fog control register, with the engine fog listing (`ge_listing/fog.S.lst`) and polygon-mode listing |
 | S79 | [the clip-plane, coordinate-generation and double-colour findings](findings/clip-texgen-doubles.md): the client's clip-plane, texgen and colour senders, the pipe firmware's handlers and the engine listings for the clip-plane and texgen modules |
+| S80 | the kernel attach decode: `kona_attach` (`usr/cpu/sysgen/IP27boot/kona.a`, member `kona_edtinit_hip2.o`, 6.5.30 offset 0xed4, the 0x8800 read at 0x1100-0x111c and the 0x0b00 read at 0x1188-0x11a4, stores at 0x122c, 0x1344, 0x1354, 0x1368, 0x1394; 6.5.0 build for the earlier two-way decode) and `kona_extract_nic_info` (offset 0x69c) |
+| S81 | the pipe firmware's board-set classifier and identity readers in arm1.u (6.5.30): `init_kona_jtag_chain` (0x0c01ac3c), `ge_board_id`, `rm_board_id`, `init_config` (0x0c01d8a0), `dg_board_id` (0x0c01d2d0), `dgGetBoardConfig` (0x0c00d200), `DoDGRqstQueryMonitorName` (0x0c00d5cc); the 6.5.0 classifier (0x0c018c18) |
+| S82 | the product-name tables: `tport.bin` start screen (0x0c0163a4 area) and `sbin/hinv` (6.5.30; inventory type to text jump table at 0x1000e400, strings 0x1000e4e8-0x1000e5f0) |
+| S83 | the IR diagnostic's board-record checks: `usr/diags/IR/bin/irsaudit` `probe_rm7_rm8_chain` (0x10050834; board-type compares at 0x100511a8-0x100511cc), NIC part and name checks (strings 0x188c38-0x1897a0) and the RM/TM combination messages (0x1018da68-0x1018ddf0) |
+| S84 | published captures: an IR3 rack `gfxinfo -v` and `hinv -m` with configmon output, an IR2 two-RM dump with a DG5-8, two IR4 captures, and Usenet `<40C20497.1D26A44A@machtnix.net>` (IR2E `hinv -m`), `<98rhjd$1g8a$1@fido.engr.sgi.com>` (SGI product table), `<38f35a0a.0402270839.392df64b@posting.google.com>` (irsaudit part numbers on an IR3 pipe) |
+| S85 | the client side: `libGLcore` N32 `GetBoardInfo` (0xd947f60, board-set compares for "E" and "P"); `vfmtActualHWToKonaTarget` in `kona.so` and `konal.so` (class mapping) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1360 graded entries: 754 established, 537 inferred and 69 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1387 graded entries: 774 established, 539 inferred and 74 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -2224,7 +2230,8 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 8. Raster bus | 51 | 59 | 1 | 111 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 10. Window id | 10 | 3 | 2 | 15 |
-| **All** | **754** | **537** | **69** | **1360** |
+| 12. Product and board identity | 20 | 2 | 5 | 27 |
+| **All** | **774** | **539** | **74** | **1387** |
 
 The unknown rows, by section: every row whose weakest grade is unknown, each with the start of its description; the row itself says what would settle it. A back end should model the access as observable and unimplemented rather than invent behaviour. Rows graded with a mix, for example "established; the sign unknown", count as unknown.
 
@@ -2314,3 +2321,79 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 
 - Hardware text for the comparison: none exists in the shipped software or the published papers
 - Popup compare against the painted pattern: word 9 = 0x3f compares bit 11 only (reference 0x800, mask 0x800 = painted bit 13), but the painter gives the popup (id 0x3f)...
+
+**12. Product and board identity**
+
+- 3: treated like 1 by every reader but stored by no shipped code
+- 0x8800: 32-bit read
+- 0x0b00: 32-bit read
+- raster slot word: bits 8-0: low bits vary by board (0x002, 0x006 seen on IR2
+- InfiniteReality2E: 4
+
+## 12. Product and board identity
+
+Which numbers a pipe presents to make `hinv`, `gfxinfo`, the GL renderer string and the video-format checks name
+one product rather than another. The board-set number is the first word of the 1912-byte configuration record
+(section 9 references the record's transport). Values are decimal unless marked.
+
+### 12.1 Board-set number (configuration word 0)
+
+| Value | Role | Grade | Evidence |
+|---|---|---|---|
+| 0 | first-generation InfiniteReality (Onyx); also what the firmware keeps when no rule matches | established | S81 |
+| 1 | InfiniteReality2 (the Onyx2 pipe marketed as InfiniteReality): firmware stores it for geometry-board type 5; kernel default | established | S80, S81 |
+| 2 | Reality (Onyx2): firmware stores it for any raster-slot type 9; kernel stores it when bit 10 of the 0x0b00 read is set | established | S80, S81 |
+| 3 | treated like 1 by every reader but stored by no shipped code; no implementation should emit it | established (no producer); who stored it in the field unknown | S80, S81 |
+| 4 | InfiniteReality2E: firmware stores it for geometry-board type 0xc when no raster slot is type 0xb, 0xe or 9; kernel stores it when the one-wire text contains "GE16-" | established | S80, S81 |
+| 5 | InfiniteReality3: any raster-slot type 0xb with no type 6; kernel when bits 1:0 of the 0x8800 read are 1 | established | S80, S81 |
+| 6 | InfiniteReality4: any raster-slot type 0xe; kernel when bits 1:0 of the 0x8800 read are 2 | established | S80, S81 |
+| kernel inventory type | 18 InfiniteReality2, 19 Reality, 20 InfiniteReality2E, 22 InfiniteReality3, 23 InfiniteReality4 (16 InfiniteReality, set by a host this table does not model); 21 is never stored | established (kernel store); type to hinv text established from the jump table | S80, S82 |
+| mixing | an error is printed for Reality with InfiniteReality raster slots (type 9 with 6, 0xb or 0xe) and for IR4 slots with older slots (type 0xe with 0xb or 6) | established | S81 |
+
+### 12.2 Attach probe reads (kernel, once, through the display-bus port)
+
+| Selector written to the address port | Role | Grade | Evidence |
+|---|---|---|---|
+| 0x8800 | 32-bit read; the kernel uses bits 1:0 only: 1 selects set 5, 2 selects set 6, 0 and 3 fall through to the one-wire text test. Required values: IR2 and IR2E 0 or 3, IR3 1, IR4 2. What register answers (also the DG5 I2C controller's data word) and why the value differs between IR3 and IR4 is unknown | established (consumption); unknown (source) | S80, S81 |
+| 0x0b00 | 32-bit read; bit 10 set selects Reality. Required clear for every InfiniteReality product. Source of bit 10 unknown (video DAC 0 index register is 8 bits wide) | established (consumption); unknown (source) | S80 |
+| order | 0x8800 is written and read first, the adaptor reset and error report follow, then 0x0b00 is written and read; the test order is 0x0b00 bit 10, 0x8800 bits 1:0, GE16 text | established | S80 |
+
+### 12.3 Board-identity words (scan-chain ids, printed on the `brd:` line)
+
+| Word | Role | Grade | Evidence |
+|---|---|---|---|
+| geometry board (config +256): bits 15-9 | type: 0 first generation; 5 GE14 (IR2, Reality); 0xc GE16 (IR2E, IR3, IR4) | established | S81, S84 |
+| geometry board bits 17-16, 19-18 | engine count index (1, 2, 4, 8) and back-end RAM code | established | S81 |
+| raster slot word: bits 15-9 | board type of the slot's texture board: 6 TM7 (IR, IR2, IR2E), 9 Reality's RM8, 0xb TM8 (IR3), 0xe TM9 (IR4); drives the board-set rule above | established | S81, S83 |
+| raster slot word: bits 18-16 | texture code: 1 16 MB, 2 64 MB, 3 128 MB, 4 256 MB, 6 1024 MB (5 is accepted by `gfxinfo` but no board or diagnostic path uses it) | established | S81, S83, S84 |
+| raster slot word: bits 8-0 | low bits vary by board (0x002, 0x006 seen on IR2; 0x006 on IR3; 0x004 on IR4); meaning unknown | unknown | S84 |
+| display board (config +836 = 0x344): the `brd:` line's last word | channel count - 1 (18-16), option 21-19 (3 TVO, 4 DPLEX, 5 DVP, 6 GVO, 7 none), colour-map size bit 22, external gamma bit 23; low half-word 0x1002 on DG5, 0x040c on DG4 | established (fields); inferred (family marker) | S81, S84 |
+| slot present | word neither 0 nor all ones | established | S81 |
+
+### 12.4 Product rows
+
+| Product (hinv text) | Board set | GE board | RM board (name, part) | TM board (name, part) | DG board | Texture per RM | Grade | Evidence |
+|---|---|---|---|---|---|---|---|---|
+| InfiniteReality2 | 1 | GE14-4, 030-1129-001 or -002 (rev F seen); identity words 0x5c160a04, 0x80160a04, 0x80150a04 | RM7, 030-1054-001; slot id type 6, code 2 (0x03020c02 single RM, 0x03020c06 two RMs); 20 image processors (rev 4, some 5) | TM7-64, 030-1053-001 | DG5-2 030-1055-001 (word 0xf9391002) or DG5-8 030-1087-001 (0x51bf1002); options GVO 030-1184, DPLEX 030-1409, DVP 030-1123 | 64 MB (code 2) | established (captures) | S80-S84 |
+| InfiniteReality2E | 4 | GE16-4, 030-1398-001 (rev E seen); identity word 0x80f61806 (inferred) | RM9, 030-1402-001 (revision unknown); slot id type 6, code 2 (not 0x03041606), 20 image processors | TM7-64, 030-1053-001 (inferred: the 64 MB part); revision unknown | DG5-2 030-1055-001 expected; not constrained by software | 64 MB (code 2) | established for set, GE part and hinv name; inferred for RM/TM identity words; unknown for revisions and chip words (no published IR2E `brd:` or `gfxinfo -v`) | S80-S84 |
+| InfiniteReality3 | 5 | GE16-4, 030-1398-001 rev E; identity word 0x80f61806 | RM9 board, 030-1402-001 rev E (NIC name RM9; `gfxinfo` and `irsaudit` print RM10 for the RM9+TM8 pair); slot id 0x03041606 (type 0xb, code 4); `rm0:` chip words 15032057 15431057, TF rev 2, TM rev 2, 20 image processors rev 5 | TM8-256, 030-1588-001 (revision unknown) | DG5-2 030-1242-001 rev D with GVO 030-1184-002 rev B (word 0xf9311002); 030-1067-001 rev F also listed on the same rack | 256 MB (code 4) per RM, not summed | established (one IR3 rack pipe, plus irsaudit); texture-board name TM8 established, literal NIC name inferred | S80-S85 |
+
+### 12.5 Per-product software differences
+
+| Constant | Role | Grade | Evidence |
+|---|---|---|---|
+| renderer text | 1 and 5: no letter after "IRL"; 4: "P" after "IRL"; 2: "E" in place of "L" | established | S85 |
+| X video class | 1, 3, 4, 5: class 1 (budget RM count x 5 x 2^22); 2: class 2; 6: class 3; 0: class 0 | established | S85 |
+| monitor query | DDC/EDID read only when the word is 1; sets 4 and 5 return no monitor name | established | S81 |
+| display-option reply mask | TVO 0x40, DPLEX 0x20, GVO 0x10, DVP 0x08, none 0 (sets 1-6) | established | S81 |
+| IR3 and IR4 against IR2 | register contract: no difference found in 6.5.30; extension string identical in all builds of 6.5.0 and 6.5.30 | established (negative, 6.5.30 only) | S85 |
+
+### 12.6 Open product questions not tied to a row above
+
+- what stored board set 3 in the field (no shipped producer)
+- the source of bits 1:0 of the 0x8800 read and of bit 10 of the 0x0b00 read
+- low bits 8:0 of a raster-slot identity word
+- RM9 and TM revisions on an IR2E pipe; revision of 030-1588-001; the IR2E `rm0:` chip words
+- how a texture download reaches several RMs and which RM owns which pixels
+- whether a DG5-8 can carry a GVO in the field
+
