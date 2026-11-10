@@ -100,10 +100,11 @@ The names are role names in plain words, written for someone who transcribes the
 | S86 | the recorded Onyx2 desktop session under the 4Dwm window manager (`onyx2-deskside-irix-4dwm` command-stream recording, SHA-256 `8c86364169ee8ec55119fb9aa7c330dea4d0243f9501de6f021cbe05d2d8cba0`): the thirteen-word graphics-context loads and the tokens that follow them, parsed as token plus payload with the word counts of the token map; no polyline token occurs in it |
 | S87 | the published patents and report on the texture filters: US 5,471,572 (adding detail), US 5,438,654 (sharpening) and US 5,490,240 (3D textures), with the InfiniteReality Technical Report section 7.8 (printed pages 23-26); [published-sources.md](published-sources.md) sources 14, 13, 8 and 2. Published designers' statements for an earlier or related design, so a reading from them is inferred |
 | S88 | the IR diagnostic irsaudit's 3D texture loaders, read from the shipped binary (`usr/diags/IR/bin/irsaudit`, 6.5.30m): `tbuLoad3D` (0x101496d4; the load-register writes, the per-slice loop 0x10149d88-0x10149f40, the bank-bit clear at 0x10149c90-0x10149ca0), `tbuLoadMipmap3D` (0x10148bec; the level-parity bit, 0x101494f4 and 0x10149228-0x10149234) and `tbuBindTexture` (0x1014c6a8) |
+| S89 | [the display-chain rounding findings](findings/display-chain-rounding.md): the diagnostic's gamma address legaliser `make_gamma_addr_legal` (`usr/diags/IR/bin/irsaudit` 0x1013c214-0x1013c2e0, 6.5.30m), the display-board netlists `dg4_2voc.netmap` and its `dg4_2voc_dplex_dacsamp.netmap` variant (`usr/diags/IR/data`; XMAP colour outputs to the video-output chips, option connector and DAC pixel ports), the gamma and colour-map loaders in `kona.so`, and the published statements on cursor injection (Montrym et al., SIGGRAPH 97) and field-sequential video (InfiniteReality technical report) |
 
 **Notation.** Bit ranges are `high:low`, counted from zero at the least significant bit. A "word" is 32 bits unless stated. The token map has 512 entries numbered 0x000-0x1ff; the host sends a token number and the payload words its entry describes.
 
-**Totals.** The table has 1399 graded entries: 775 established, 543 inferred and 81 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
+**Totals.** The table has 1405 graded entries: 777 established, 546 inferred and 82 unknown. Section 11 breaks these down and lists the unknown entries that matter to a back end.
 
 
 ## 2. Processor-run host tokens (306)
@@ -1127,11 +1128,14 @@ Two chip layouts exist, called 1a (earlier) and 1b (later). The diagnostic selec
 | Bits | Role | Values | Grade | Evidence |
 |---|---|---|---|---|
 | 11:0 | entry index | 4096 entries per colour and page; each colour index fills two consecutive entries | established | S9 |
-| 13:12 | colour | 0 red, 1 green, 2 blue; 3 is turned into 2 | established | S9 |
+| 13:12 | colour | 0 red, 1 green, 2 blue; the diagnostic's address legaliser (`make_gamma_addr_legal`) turns 3 into 1 (green) by clearing bit 13, leaving 0x1000 (`irsaudit` 0x1013c228-0x1013c2c4); the X module's own handling of 3 was not read | established (the legaliser's code); not tested on hardware | S9, S72, S89 |
 | 17:14 | page | 0-15 | established | S9 |
 | 18 | extended gamma addressing flag. The X module sets it on every load into a multi-page map (16 maps at address (map << 14) + 0x40000, kind 1) and never for the single map (address 0, kind 0) or the external-RAM form (0xf000, kind 2). Kind 1 is used for all 16 maps exactly when the board-configuration reply's fifth word is nonzero; the same word is the firmware's channel set-up bit 4. A 17th map of kind 2 is added when the option-board mask (word 3) is 0x10 | 1 = page bits 17:14 and the 12-bit index are used exactly (pages 0-15); 0 = legacy addressing, in which the diagnostic's address legaliser clears bit 17 (pages 0-7) and replaces index bits 1:0 with pixel-index bits (9:8 or 11:10) | inferred (set exactly when the board word is nonzero: established; legacy versus exact addressing: inferred from the diagnostic's legaliser; the silicon structure behind it, a second RAM bank or a 16-page index mode: unknown). What would settle it: an XMAP datasheet or pin description of the gamma RAM address and select inputs, or a readback with the same page and index written under flag 0 and flag 1 on a board whose word is nonzero | S9, S72 |
 | entry value | 12-bit gamma output; colour-map entries are 10:10:10 with red 29:20, green 19:10, blue 9:0 | top 12 bits of the 16-bit client colour | established | S9 |
-| padding rule widening a 10-bit colour-map output to the 12-bit gamma index | low-bit fill | replication of the top bits suggested | inferred | S9 |
+| padding rule widening a 10-bit colour-map output to the 12-bit gamma index | the colour-map output occupies index bits 11:2 and the low two bits repeat its top two bits. The diagnostic's address legaliser forces index bits 1:0 to equal bits 11:10 whenever those are non-zero and never forces them to zero; no loader pre-compensates a widening rule, and no shipped test reads the widened entry back. Zero fill and an 8-bit-based widening (v << 4 \| v >> 4) conflict with the legaliser. Applies to legacy addressing (flag bit 18 clear). What would settle it: a marker-table probe (colour-map value 0x3ff selecting gamma entry 0xfff against 0xffc; finding question 1) | replication: index = c << 2 \| c >> 8 | inferred | S9, S72, S89 |
+| reduction of the 12-bit gamma output to the 8-bit video-output-chip inputs | the video-output chips receive gamma output bits 11:4 only: bits 3:0 of the XMAP's per-colour output are unconnected on the base board and reach only the 12-bit option connector, and no register in the XMAP map controls rounding or dither on this link (netlist `dg4_2voc.netmap`, `dg4_2voc_dplex_dacsamp.netmap`) | truncation: value >> 4 | established | S46, S89 |
+| reduction of the gamma output to the DAC pixel inputs, end to end at unity size | the video-output chips are 8 bits wide and feed the DAC's 8-bit pixel ports (four pixels per clock); at unity size with no resize the chip is taken to pass the value through, so the DAC input is gamma output >> 4. Nothing read shows that the chip adds no rounding or dither; what would settle it: gamma outputs 0x0f7, 0x0f8, 0x0ff and 0x100 on a unity-size channel read at the DAC (truncation gives 0x0f, 0x0f, 0x0f, 0x10; round-to-nearest gives 0x0f, 0x10, 0x10, 0x10) | value >> 4 | inferred | S46, S89 |
+| the DAC's widening of an 8-bit bypass input to its 10-bit converter | zero fill: in the 24-bit palette bypass mode (command register 1 bits 7:6 = 2, the start-up value) each 8-bit channel maps onto the 8 most significant bits of the 10-bit DAC input and the two least significant bits are zero (published ADV7160/ADV7162 data sheet REV. 0, the "24-bit Palette Bypass Mode" paragraph). Holds only if this board's DAC is that part, which is inferred. | zero fill | inferred | S67, S89 |
 | external gamma form | first word 0xdeadfeed, count 1024, then 1024 words red << 20 / green << 10 / blue (each 12-bit value >> 2) to 0xf000 + i | sequence | established | S9 |
 
 
@@ -1169,7 +1173,10 @@ Sent as the third payload word of the display-mode token (0x1e6; the other two w
 | XMAP cursor colour block: which word of 256-259 the crosshair draws with | the module writes the same colour into all four words. (The DAC has six colour values and no four-word block; see section 6.) The diagnostic's `easy_xmap_cursor` (0x1013b68c) takes the mode and base as arguments, and no shipped caller or recording draws a crosshair; the XMAP pin list has no crosshair pins. What would settle it: a live cursor in mode 1 with four distinct colour words and a video capture | - | unknown | S7, S71 |
 | cursor owner | smallest priority value wins; the previous owner is kept on a tie; channels 0-7 can be DAC-capable (valid = 2); valid = 1 is the XMAP cursor; 32 means none | - | established | S7 |
 | XMAP vs DAC cursor | alternatives: DAC cursor on means XMAP cursor mode 0 | - | established | S7 |
-| colour map then gamma, cursor last | colour path order: colour map then 12-bit gamma; DAC cursor after gamma; XMAP cursor before gamma | bypass of gamma for the XMAP cursor not read | inferred | S9 |
+| colour map then gamma, cursor last | colour path order: colour map then 12-bit gamma; the DAC cursor is generated after both inside the DAC; the XMAP cursor is injected before them | order | inferred | S9, S89 |
+| DAC cursor and gamma | the DAC cursor bypasses gamma: it is generated inside the DAC after the pixel port, downstream of the XMAP gamma stage, and its colours are written as the client colour >> 6 straight to the DAC's registers with no correction | bypass | established (topology and software) | S7, S44, S89 |
+| XMAP cursor and gamma | the XMAP cursor passes the gamma stage: it is injected ahead of the colour map and gamma (the published pixel de-serialise stage), its colours are 10:10:10 colour-map words, and the server applies no gamma pre-correction. The published remark that cursors appear in their true colours is about field-sequential video only. What would settle it: a marker gamma table mapping every index to 0x800 and a glyph cursor of 0x3ff:3ff:3ff read at the DAC (0x80 means gamma applied, 0xff bypassed), then again with the channel's no-gamma bit (0x11d bit 5) set | gamma applies | inferred | S9, S89 |
+| a separate XMAP cursor gamma-bypass bit | the channel's no-gamma bit (0x11d bit 5) is channel-wide; nothing read shows a per-cursor bypass | - | unknown (capture only) | S9, S89 |
 
 
 ### 7.6 Pixel-id placement and window kinds
@@ -2249,12 +2256,12 @@ Counts are of graded rows in the tables above, by the grade rule in section 1. T
 | 4. Map entry and descriptors | 26 | 7 | 1 | 34 |
 | 5. Display requests | 93 | 0 | 0 | 93 |
 | 6. Display-bus registers | 72 | 31 | 9 | 112 |
-| 7. Field layouts | 315 | 105 | 61 | 481 |
+| 7. Field layouts | 317 | 108 | 62 | 487 |
 | 8. Raster bus | 51 | 59 | 1 | 111 |
 | 9. Host window | 11 | 3 | 0 | 14 |
 | 10. Window id | 10 | 3 | 2 | 15 |
 | 12. Product and board identity | 20 | 2 | 5 | 27 |
-| **All** | **775** | **543** | **81** | **1399** |
+| **All** | **777** | **546** | **82** | **1405** |
 
 The unknown rows, by section: every row whose weakest grade is unknown, each with the start of its description; the row itself says what would settle it. A back end should model the access as observable and unimplemented rather than invent behaviour. Rows graded with a mix, for example "established; the sign unknown", count as unknown.
 
@@ -2286,6 +2293,7 @@ The unknown rows, by section: every row whose weakest grade is unknown, each wit
 - what the frame manager does with bits 4:2: inside a chip with no program
 - crosshair shape: arm lengths, thickness, extent
 - XMAP cursor colour block: which word of 256-259 the crosshair draws with: the module writes the same colour into all four words
+- a separate XMAP cursor gamma-bypass bit: the channel's no-gamma bit (0x11d bit 5) is channel-wide
 - compared field across the split: in the smaller layout pixel bit 13 is a gap, so the 12-bit compared field (painted bits 13:2) spans the split: painted bits...
 - colour-index index inside the colour data: the pipe treats the index as a 12-bit component value left-justified: write mask (2^w - 1) << (12 - w) on the main level or <<...
 - 15-bit RGB overlay: reserved mode bytes: the server reserves the overlay ids with different mode-byte codes: ids 64 and 65 (colour index, display-mode word 0x3c00)...
