@@ -159,8 +159,8 @@ reword or reformat an entry to change its grade. Independent audits sample
 entries against the binaries, and their measured rates are published beside
 the coverage figures.
 
-An entry that was written quickly and not yet checked against the binary or
-its document ends with "Unverified." in place of "Inferred." or "Established.".
+An entry that was written quickly and not yet checked against the binary, its
+document or public open-source code (cited by project, revision and file) ends with "Unverified." in place of "Inferred." or "Established.".
 It grades at most `located`, whatever else it says, so the understood figure
 counts only what has been read. When you re-read it, correct it and change the
 label to established or inferred.
@@ -213,7 +213,7 @@ Output rules:
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
 - Update `docs/coverage.md` and regenerate `docs/inventory/` in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
-- Commit what you cite: findings may rest on IRIX binaries, published documents or captures only.
+- Commit what you cite: findings may rest on IRIX binaries, published documents, captures or public open-source code (cited by project, revision and file) only.
 
 Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
 
