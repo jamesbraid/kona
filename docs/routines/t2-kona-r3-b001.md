@@ -45,7 +45,7 @@ These entries come from rendered facts for 25 routines in the IGLOO32 `libgl.so`
   **Inferred.** Reads the flag at 0xece8bf0 and, when it is nonzero, calls __iglooNCloseMoveDraw at 0xec92d80 first. It then calls gl_logicop at 0xec369f0 with the arguments passed through and returns its result.
 
 - `gl_c_logicop` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36430
-  **Inferred.** Tests the word at 0xecdd934. On the nonzero path it calls gl_compile at 0xecb5010 with the constant 0x4 and then gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6950. It returns the gl_compile result. The facts do not show what the constant 0x4 selects.
+  **Inferred.** Tests the word at 0xecdd934. When that word is zero, it calls gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6950 and then stores 1 to the word. Both paths then call gl_compile at 0xecb5010 with the constant 0x4 and return its result. The facts do not show what the constant 0x4 selects.
 
 - `gl_n_logicop` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec364b0
   **Inferred.** Reads the flag at 0xece8bf0 and closes the move-draw batch with __iglooNCloseMoveDraw at 0xec92d80 when it is nonzero. It loads the word at a0+0 and passes it to gl_logicop at 0xec369f0. It returns a0+4, the address just past the 4-byte argument.
