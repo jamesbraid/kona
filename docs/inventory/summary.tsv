@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	address_unknown	input
 binaries	599	0	468	1	374	125	127	2	2	0	78.1	99.3	99.7	78.1			100.0	20	2026-11-02		0				
-functions	54309	0	13053	1299	6191	25457	26656	14592	0	8	24.0	73.1	100.0	24.0			90.0	20	2026-11-02		0	126	2668	0	
-functions (distinct names)	19170	0	3614	409	3582	15490	15548	5	0	3	18.9	100.0	100.0	18.9							0				
+functions	54309	0	13144	1299	6276	25449	26643	14514	0	8	24.2	73.3	100.0	24.2			90.0	20	2026-11-02		0	126	2668	0	
+functions (distinct names)	19170	0	3684	409	3650	15425	15478	5	0	3	19.2	100.0	100.0	19.2							0				
 mmio	53	0	49	1	47	0	0	0	0	4	92.5	100.0	100.0	100.0	8						0				
 tokens	617	0	616	6	614	0	0	0	0	1	99.8	100.0	100.0	100.0			95.5	89	2026-11-01		0				
 ioctls	55	0	43	0	42	0	0	12	0	0	78.2	78.2	100.0	78.2			90.0	10	2026-10-29		0				
@@ -10,7 +10,7 @@ spec-registers	242	0	204	5	196	0	3	1	0	34	84.3	99.6	100.0	98.3			100.0	8	2026-11
 input root manifest	545																								6d50c95c1a1e6021329d9f053d60b24f024214336d25b07f1250a1343beb8571
 input sibling crime																									2fb03185a2a82057aef012d0f931bbdc90a65537
 input sibling odsy																									d26e4eb50277be0cf3bb1ee4f8585f466fdff647
-functions in usr/bin/X11/xsetmon	501	0	4	0	4	495	495	2	0	0	0.8	99.6	100.0	0.8							0	0	0	0	
+functions in usr/bin/X11/xsetmon	501	0	5	0	5	495	496	0	0	0	1.0	100.0	100.0	1.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/gfx.o	62	0	62	0	62	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	19	0	19	0	19	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/gfxs.a(klconfig.o)	1	0	1	0	1	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
@@ -45,7 +45,7 @@ functions in usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o)	9	0	9	0	9	0	0	0
 functions in usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o)	3	0	3	0	3	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o)	5	0	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/rrm.o	72	0	70	0	70	0	0	0	0	2	97.2	100.0	100.0	100.0							0	0	0	0	
-functions in usr/cpu/sysgen/IP27boot/tport.a(tport.o)	22	0	20	0	20	0	0	2	0	0	90.9	90.9	100.0	90.9							0	0	0	0	
+functions in usr/cpu/sysgen/IP27boot/tport.a(tport.o)	22	0	22	0	22	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/gfx.o	62	0	62	0	62	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/gfxs.a(gfx_flow.o)	16	0	16	0	16	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/gfxs.a(klconfig.o)	5	0	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
@@ -79,20 +79,20 @@ functions in usr/cpu/sysgen/IP35boot/kona.a(kona_intr_hip2.o)	3	0	3	0	3	0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/kona.a(kona_mapram_hip2.o)	5	0	5	0	5	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP35boot/rrm.o	72	0	70	0	70	0	0	0	0	2	97.2	100.0	100.0	100.0							0	0	0	0	
 functions in usr/diags/IR/bin/hyper	11	0	11	0	11	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
-functions in usr/diags/IR/bin/irsaudit	1170	0	203	39	201	941	962	5	0	0	17.4	99.6	100.0	17.4							0	0	0	0	
+functions in usr/diags/IR/bin/irsaudit	1170	0	220	39	218	939	950	0	0	0	18.8	100.0	100.0	18.8							0	0	0	0	
 functions in usr/gfx/KONA/bin/ireeprom	15	0	15	0	15	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
-functions in usr/gfx/KONA/bin/kpm	426	0	168	2	168	253	254	4	0	0	39.4	99.1	100.0	39.4							0	0	0	0	
-functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	27	7	24	2900	2900	9	0	0	0.9	99.7	100.0	0.9							0	0	0	0	
+functions in usr/gfx/KONA/bin/kpm	426	0	171	2	171	253	255	0	0	0	40.1	100.0	100.0	40.1							0	0	0	0	
+functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	34	7	31	2900	2902	0	0	0	1.2	100.0	100.0	1.2							0	0	0	0	
 functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	8	1	8	3803	3803	0	0	0	0.2	100.0	100.0	0.2							0	0	1124	0	
-functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	1	0	1	1787	1787	2023	0	0	0.0	46.9	100.0	0.0							0	0	1124	0	
+functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	55	0	52	1787	1788	1968	0	0	1.4	48.4	100.0	1.4							0	0	1124	0	
 functions in usr/gfx/arch/IP27KONA/libGL.so	671	0	7	0	7	624	660	4	0	0	1.0	99.4	100.0	1.0							0	0	0	0	
-functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	1295	242	1277	2971	3026	547	0	0	26.6	88.8	100.0	26.6							0	21	70	0	
+functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	1298	242	1280	2968	3023	547	0	0	26.7	88.8	100.0	26.7							0	21	70	0	
 functions in usr/gfx/arch/IP27KONA32/libGL.so	673	0	20	0	20	19	45	608	0	0	3.0	9.7	100.0	3.0							0	0	0	0	
 functions in usr/gfx/arch/IP27KONA32/libGLcore.so	4907	0	1607	178	1584	1280	1433	1867	0	0	32.7	62.0	100.0	32.7							0	21	70	0	
 functions in usr/gfx/arch/IP27KONA64/libGL.so	673	0	4	1	4	20	58	611	0	0	0.6	9.2	100.0	0.6							0	0	0	0	
 functions in usr/gfx/arch/IP27KONA64/libGLcore.so	4907	0	1257	176	1240	873	1102	2548	0	0	25.6	48.1	100.0	25.6							0	21	70	0	
 functions in usr/gfx/arch/IP35KONA/libGL.so	671	0	7	0	7	624	660	4	0	0	1.0	99.4	100.0	1.0							0	0	0	0	
-functions in usr/gfx/arch/IP35KONA/libGLcore.so	4868	0	1295	242	1277	2971	3026	547	0	0	26.6	88.8	100.0	26.6							0	21	70	0	
+functions in usr/gfx/arch/IP35KONA/libGLcore.so	4868	0	1298	242	1280	2968	3023	547	0	0	26.7	88.8	100.0	26.7							0	21	70	0	
 functions in usr/gfx/arch/IP35KONA32/libGL.so	673	0	20	0	20	19	45	608	0	0	3.0	9.7	100.0	3.0							0	0	0	0	
 functions in usr/gfx/arch/IP35KONA32/libGLcore.so	4907	0	1607	178	1584	1280	1433	1867	0	0	32.7	62.0	100.0	32.7							0	21	70	0	
 functions in usr/gfx/arch/IP35KONA64/libGL.so	673	0	4	1	4	20	58	611	0	0	0.6	9.2	100.0	0.6							0	0	0	0	
@@ -105,7 +105,7 @@ functions in usr/gfx/setmon	249	0	90	23	85	139	155	4	0	0	36.1	98.4	100.0	36.1			
 functions in usr/gfx/sgcombine	402	0	3	0	3	316	348	51	0	0	0.7	87.3	100.0	0.7							0	0	0	0	
 functions in usr/gfx/ucode/vfc/sdbutil	93	0	11	0	11	53	77	5	0	0	11.8	94.6	100.0	11.8							0	0	0	0	
 functions in usr/lib/X11/dyDDX/glx.so	981	0	4	3	4	977	977	0	0	0	0.4	100.0	100.0	0.4							0	0	0	0	
-functions in usr/lib/X11/dyDDX/kona.so	809	0	807	1	807	0	0	1	0	1	99.8	99.9	100.0	99.9							0	0	0	0	
+functions in usr/lib/X11/dyDDX/kona.so	809	0	808	1	808	0	0	0	0	1	99.9	100.0	100.0	100.0							0	0	0	0	
 functions in usr/lib/X11/dyDDX/konad.so	795	0	793	13	789	0	1	0	0	1	99.7	100.0	100.0	99.9							0	0	0	0	
 functions in usr/lib/X11/dyDDX/konal.so	795	0	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0							0	0	0	0	
 functions in usr/lib/X11/dyDDX/konas.so	795	0	794	0	790	0	0	0	0	1	99.9	100.0	100.0	100.0							0	0	0	0	
