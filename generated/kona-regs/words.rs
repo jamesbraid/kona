@@ -1,4 +1,4 @@
-// generated from kona 0cc7c1448427 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
+// generated from kona 656a1d3d0681 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
 //!
 //! Bit layouts of the multi-field words of the host command stream,
 //! and the engine command descriptor values.
@@ -108,6 +108,190 @@ pub const LIGHT_BLOCK_COUNT: u32 = 8;
 pub const TEXENV_COLOUR_IMAGE: u32 = 0x15e1402;
 /// established.
 pub const TEXENV_COLOUR1_IMAGE: u32 = 0x15f1413;
+/// established.
+pub const POLYGON_FACE_FRONT: u32 = 0x404;
+/// established.
+pub const POLYGON_FACE_BACK: u32 = 0x405;
+/// established.
+pub const POLYGON_FACE_BOTH: u32 = 0x408;
+/// established.
+pub const POLYGON_MODE_POINT: u32 = 0x1b00;
+/// established.
+pub const POLYGON_MODE_LINE: u32 = 0x1b01;
+/// established.
+pub const POLYGON_MODE_FILL: u32 = 0x1b02;
+/// established.
+pub const PIXEL_UNPACK_SWAP_BYTES: u32 = 0xcf0;
+/// established.
+pub const PIXEL_UNPACK_LSB_FIRST: u32 = 0xcf1;
+/// established.
+pub const PIXEL_UNPACK_ROW_LENGTH: u32 = 0xcf2;
+/// established.
+pub const PIXEL_UNPACK_SKIP_ROWS: u32 = 0xcf3;
+/// established.
+pub const PIXEL_UNPACK_SKIP_PIXELS: u32 = 0xcf4;
+/// established.
+pub const PIXEL_UNPACK_ALIGNMENT: u32 = 0xcf5;
+/// established.
+pub const PIXEL_UNPACK_SKIP_IMAGES: u32 = 0x806d;
+/// established.
+pub const PIXEL_UNPACK_IMAGE_HEIGHT: u32 = 0x806e;
+/// established.
+pub const PIXEL_UNPACK_SKIP_VOLUMES: u32 = 0x8132;
+/// established.
+pub const PIXEL_UNPACK_IMAGE_DEPTH: u32 = 0x8133;
+/// established.
+pub const PIXEL_PACK_SWAP_BYTES: u32 = 0xd00;
+/// established.
+pub const PIXEL_PACK_LSB_FIRST: u32 = 0xd01;
+/// established.
+pub const PIXEL_PACK_ROW_LENGTH: u32 = 0xd02;
+/// established.
+pub const PIXEL_PACK_SKIP_ROWS: u32 = 0xd03;
+/// established.
+pub const PIXEL_PACK_SKIP_PIXELS: u32 = 0xd04;
+/// established.
+pub const PIXEL_PACK_ALIGNMENT: u32 = 0xd05;
+/// established.
+pub const PIXEL_PACK_SKIP_IMAGES: u32 = 0x806b;
+/// established.
+pub const PIXEL_PACK_IMAGE_HEIGHT: u32 = 0x806c;
+/// established.
+pub const PIXEL_PACK_SKIP_VOLUMES: u32 = 0x8130;
+/// established.
+pub const PIXEL_PACK_IMAGE_DEPTH: u32 = 0x8131;
+/// established.
+pub const PIXEL_TRANSFER_RED_SCALE: u32 = 0xd14;
+/// established.
+pub const PIXEL_TRANSFER_RED_BIAS: u32 = 0xd15;
+/// established.
+pub const PIXEL_TRANSFER_GREEN_SCALE: u32 = 0xd18;
+/// established.
+pub const PIXEL_TRANSFER_GREEN_BIAS: u32 = 0xd19;
+/// established.
+pub const PIXEL_TRANSFER_BLUE_SCALE: u32 = 0xd1a;
+/// established.
+pub const PIXEL_TRANSFER_BLUE_BIAS: u32 = 0xd1b;
+/// established.
+pub const PIXEL_TRANSFER_ALPHA_SCALE: u32 = 0xd1c;
+/// established.
+pub const PIXEL_TRANSFER_ALPHA_BIAS: u32 = 0xd1d;
+/// established.
+pub const PIXEL_TRANSFER_DEPTH_SCALE: u32 = 0xd1e;
+/// established.
+pub const PIXEL_TRANSFER_DEPTH_BIAS: u32 = 0xd1f;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_RED_SCALE: u32 = 0x801c;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_SCALE: u32 = 0x801d;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_SCALE: u32 = 0x801e;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_SCALE: u32 = 0x801f;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_RED_BIAS: u32 = 0x8020;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_BIAS: u32 = 0x8021;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_BIAS: u32 = 0x8022;
+/// established.
+pub const PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_BIAS: u32 = 0x8023;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_RED_SCALE: u32 = 0x80b4;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_GREEN_SCALE: u32 = 0x80b5;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_BLUE_SCALE: u32 = 0x80b6;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_ALPHA_SCALE: u32 = 0x80b7;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_RED_BIAS: u32 = 0x80b8;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_GREEN_BIAS: u32 = 0x80b9;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_BLUE_BIAS: u32 = 0x80ba;
+/// established.
+pub const PIXEL_TRANSFER_POST_MATRIX_ALPHA_BIAS: u32 = 0x80bb;
+/// established.
+pub const PIXEL_TRANSFER_INDEX_OFFSET: u32 = 0xd13;
+/// established.
+pub const PIXEL_TRANSFER_MAP_COLOUR: u32 = 0xd10;
+/// established.
+pub const PIXEL_TRANSFER_MAP_STENCIL: u32 = 0xd11;
+/// established: record 0.
+pub const PIXEL_MAP_INDEX_TO_INDEX: u32 = 0xc70;
+/// established: record 1.
+pub const PIXEL_MAP_STENCIL_TO_STENCIL: u32 = 0xc71;
+/// established: record 2, component 0.
+pub const PIXEL_MAP_INDEX_TO_RED: u32 = 0xc72;
+/// established: record 2, component 1.
+pub const PIXEL_MAP_INDEX_TO_GREEN: u32 = 0xc73;
+/// established: record 2, component 2.
+pub const PIXEL_MAP_INDEX_TO_BLUE: u32 = 0xc74;
+/// established: record 2, component 3.
+pub const PIXEL_MAP_INDEX_TO_ALPHA: u32 = 0xc75;
+/// established: record 3, component 0.
+pub const PIXEL_MAP_RED_TO_RED: u32 = 0xc76;
+/// established: record 3, component 1.
+pub const PIXEL_MAP_GREEN_TO_GREEN: u32 = 0xc77;
+/// established: record 3, component 2.
+pub const PIXEL_MAP_BLUE_TO_BLUE: u32 = 0xc78;
+/// established: record 3, component 3.
+pub const PIXEL_MAP_ALPHA_TO_ALPHA: u32 = 0xc79;
+/// established.
+pub const PIXEL_FORMAT_RED: u32 = 0;
+/// established.
+pub const PIXEL_FORMAT_GREEN: u32 = 1;
+/// established.
+pub const PIXEL_FORMAT_BLUE: u32 = 2;
+/// established.
+pub const PIXEL_FORMAT_ALPHA: u32 = 3;
+/// established.
+pub const PIXEL_FORMAT_RGB: u32 = 4;
+/// established.
+pub const PIXEL_FORMAT_RGBA: u32 = 5;
+/// established.
+pub const PIXEL_FORMAT_LUMINANCE: u32 = 6;
+/// established.
+pub const PIXEL_FORMAT_LUMINANCE_ALPHA: u32 = 7;
+/// established.
+pub const PIXEL_FORMAT_EXT_ABGR: u32 = 8;
+/// established.
+pub const PIXEL_FORMAT_EXT_CMYK: u32 = 9;
+/// established.
+pub const PIXEL_FORMAT_EXT_CMYKA: u32 = 10;
+/// established.
+pub const PIXEL_FORMAT_COLOUR_INDEX: u32 = 11;
+/// established.
+pub const PIXEL_FORMAT_STENCIL: u32 = 12;
+/// established.
+pub const PIXEL_FORMAT_DEPTH: u32 = 13;
+/// established.
+pub const PIXEL_TYPE_BYTE: u32 = 0;
+/// established.
+pub const PIXEL_TYPE_UNSIGNED_BYTE: u32 = 1;
+/// established.
+pub const PIXEL_TYPE_SHORT: u32 = 2;
+/// established.
+pub const PIXEL_TYPE_UNSIGNED_SHORT: u32 = 3;
+/// established.
+pub const PIXEL_TYPE_INT: u32 = 4;
+/// established.
+pub const PIXEL_TYPE_UNSIGNED_INT: u32 = 5;
+/// established.
+pub const PIXEL_TYPE_FLOAT: u32 = 6;
+/// established.
+pub const PIXEL_TYPE_BITMAP: u32 = 7;
+/// established.
+pub const PIXEL_TYPE_PACKED_332: u32 = 8;
+/// established.
+pub const PIXEL_TYPE_PACKED_4444: u32 = 9;
+/// established.
+pub const PIXEL_TYPE_PACKED_5551: u32 = 10;
+/// established.
+pub const PIXEL_TYPE_PACKED_8888: u32 = 11;
+/// established.
+pub const PIXEL_TYPE_PACKED_10_10_10_2: u32 = 12;
 
 /// Values of `code` in `ModeByteOverlay` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

@@ -39,6 +39,16 @@ register_doc = "Display-bus register"
 description = ["XMAP direct registers, indirect-memory ports and the words", "written through them."]
 
 [[headers]]
+file = "KONA_FM_DECODE.h"
+block = "FM"
+form = "regs"
+group = "kona-fm"
+module = "fm"
+rust_prefix = "FM_"
+register_doc = "Display-bus register"
+description = ["Frame-manager registers on the display bus: the swap strobe,", "the per-channel display ids and the board-level control words."]
+
+[[headers]]
 file = "KONA_HIP_DECODE.h"
 block = "HIP"
 form = "regs"
@@ -473,3 +483,27 @@ label = "overlay id words"
 doc = "docs/command-table.md"
 regex = 'colour index, display-mode word (0x[0-9a-f]+)\).*?\(15-bit RGB, word (0x[0-9a-f]+)\)'
 binds = [["DEFN", "WORD_OVERLAY_ID_WORD_COLOUR_INDEX", 1], ["DEFN", "WORD_OVERLAY_ID_WORD_RGB15", 2]]
+[[claims]]
+group = "kona-words"
+label = "polygon face and mode values"
+doc = "docs/command-table.md"
+regex = '\((0x404) front, (0x405) back, (0x408) both\) and the last word the mode \((0x1b00) point, (0x1b01) line, (0x1b02) fill'
+binds = [["DEFN", "WORD_POLYGON_FACE_FRONT", 1], ["DEFN", "WORD_POLYGON_FACE_BACK", 2], ["DEFN", "WORD_POLYGON_FACE_BOTH", 3], ["DEFN", "WORD_POLYGON_MODE_POINT", 4], ["DEFN", "WORD_POLYGON_MODE_LINE", 5], ["DEFN", "WORD_POLYGON_MODE_FILL", 6]]
+[[claims]]
+group = "kona-words"
+label = "pixel-store unpack names"
+doc = "docs/command-table.md"
+regex = '\| unpack names \| (0xcf0) swap bytes, (0xcf1) least-significant-bit first .*?(0xcf2) row length, (0xcf3) skip rows, (0xcf4) skip pixels, (0xcf5) alignment, (0x806d) skip images, (0x806e) image height, (0x8132) skip volumes, (0x8133) image depth'
+binds = [["DEFN", "WORD_PIXEL_UNPACK_SWAP_BYTES", 1], ["DEFN", "WORD_PIXEL_UNPACK_LSB_FIRST", 2], ["DEFN", "WORD_PIXEL_UNPACK_ROW_LENGTH", 3], ["DEFN", "WORD_PIXEL_UNPACK_SKIP_ROWS", 4], ["DEFN", "WORD_PIXEL_UNPACK_SKIP_PIXELS", 5], ["DEFN", "WORD_PIXEL_UNPACK_ALIGNMENT", 6], ["DEFN", "WORD_PIXEL_UNPACK_SKIP_IMAGES", 7], ["DEFN", "WORD_PIXEL_UNPACK_IMAGE_HEIGHT", 8], ["DEFN", "WORD_PIXEL_UNPACK_SKIP_VOLUMES", 9], ["DEFN", "WORD_PIXEL_UNPACK_IMAGE_DEPTH", 10]]
+[[claims]]
+group = "kona-words"
+label = "pixel-store pack names"
+doc = "docs/command-table.md"
+regex = '\| pack names \| (0xd00) swap bytes, (0xd01) least-significant-bit first, (0xd02) row length, (0xd03) skip rows, (0xd04) skip pixels, (0xd05) alignment, (0x806b) skip images, (0x806c) image height, (0x8130) skip volumes, (0x8131) image depth'
+binds = [["DEFN", "WORD_PIXEL_PACK_SWAP_BYTES", 1], ["DEFN", "WORD_PIXEL_PACK_LSB_FIRST", 2], ["DEFN", "WORD_PIXEL_PACK_ROW_LENGTH", 3], ["DEFN", "WORD_PIXEL_PACK_SKIP_ROWS", 4], ["DEFN", "WORD_PIXEL_PACK_SKIP_PIXELS", 5], ["DEFN", "WORD_PIXEL_PACK_ALIGNMENT", 6], ["DEFN", "WORD_PIXEL_PACK_SKIP_IMAGES", 7], ["DEFN", "WORD_PIXEL_PACK_IMAGE_HEIGHT", 8], ["DEFN", "WORD_PIXEL_PACK_SKIP_VOLUMES", 9], ["DEFN", "WORD_PIXEL_PACK_IMAGE_DEPTH", 10]]
+[[claims]]
+group = "kona-hip"
+label = "bridge error bits for a failed host DMA"
+doc = "docs/hip.md"
+regex = '\| (\d+), mask 0x100 \| `XTALK_READ_REQ_TIMEOUT`.*?\| (\d+), 0x200 \| `XTALK_RESPONSE`'
+binds = [["F", "HIP.xg_err_status.read_req_timeout", 1], ["F", "HIP.xg_err_status.response", 2]]

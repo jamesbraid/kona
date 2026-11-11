@@ -22,8 +22,8 @@
 /* DAC indexed registers (16-bit index). */
 
 #define DACIDX_PIXEL_MASK 0x004 /* inferred: 8 bits per the published description (the diagnostic's table mask is 0x3ff but its read-back compares 8 bits); start-up 0xff */
-#define DACIDX_START_UP_A 0x005 /* unknown: written 0x88 at start-up; role unknown */
-#define DACIDX_START_UP_B 0x006 /* unknown: written 0xe4 at start-up; role unknown */
+#define DACIDX_START_UP_A 0x005 /* inferred: command register 1 of the part the DAC matches; start-up value 0x88, layout below */
+#define DACIDX_START_UP_B 0x006 /* inferred: command register 2 of the part the DAC matches; start-up value 0xe4, layout below */
 #define DACIDX_CURSOR_X_LOW 0x200 /* established: cursor x, low byte; scaled to the channel output size */
 #define DACIDX_CURSOR_X_HIGH 0x201 /* established: cursor x, high byte */
 #define DACIDX_CURSOR_Y_LOW 0x202 /* established: cursor y, low byte */
@@ -53,6 +53,52 @@
 #define DACIDX_CURSOR_CONTROL_INTERLACE_MASK 0x1u
 /*
  * TESTVEC: 0x00000005 as CURSOR_CONTROL => mode=1, enable=1, interlace=0
+ */
+
+/*
+ * Command register 1 (index 0x005 above), 8 bits. Start-up value 0x88: bits 7:6 = 2
+ * (24-bit bypass colour), bit 3 = 1 (exposes the address register's high byte,
+ * which the 0x200, 0x300 and 0x400 index spaces need), bits 5:4 = 0 (palette
+ * select function), bit 0 = 0 (no per-sync calibration). The decode of the value
+ * against the published description is established; the grade here is inferred
+ * because the part's identity is: no shipped code reads the part's ID register
+ * to confirm it.
+ */
+/* FIELD: COMMAND_1.calibrate 0:0 inferred */
+#define DACIDX_COMMAND_1_CALIBRATE_SHIFT 0
+#define DACIDX_COMMAND_1_CALIBRATE_MASK 0x1u
+/* FIELD: COMMAND_1.addr_high 3:3 inferred */
+#define DACIDX_COMMAND_1_ADDR_HIGH_SHIFT 3
+#define DACIDX_COMMAND_1_ADDR_HIGH_MASK 0x1u
+/* FIELD: COMMAND_1.palette_select 5:4 inferred */
+#define DACIDX_COMMAND_1_PALETTE_SELECT_SHIFT 4
+#define DACIDX_COMMAND_1_PALETTE_SELECT_MASK 0x3u
+/* FIELD: COMMAND_1.bypass_colour 7:6 inferred */
+#define DACIDX_COMMAND_1_BYPASS_COLOUR_SHIFT 6
+#define DACIDX_COMMAND_1_BYPASS_COLOUR_MASK 0x3u
+/*
+ * TESTVEC: 0x00000088 as COMMAND_1 => calibrate=0, addr_high=1, palette_select=0, bypass_colour=2
+ */
+
+/*
+ * Command register 2 (index 0x006 above), 8 bits. Start-up value 0xe4: bits 7:4 =
+ * 14 (24-bit true colour), bit 3 = 0 (no pedestal), bit 2 = 1 (sync on green).
+ * The same start-up routine zeroes indexes 0x007, 0x008, 0x009 and 0x00d, which
+ * leaves pixel multiplexing at 1:1 and the PLL off. Graded inferred for the same
+ * reason as command register 1; only a read of the ID register on a real board
+ * settles the part.
+ */
+/* FIELD: COMMAND_2.sync_on_green 2:2 inferred */
+#define DACIDX_COMMAND_2_SYNC_ON_GREEN_SHIFT 2
+#define DACIDX_COMMAND_2_SYNC_ON_GREEN_MASK 0x1u
+/* FIELD: COMMAND_2.pedestal 3:3 inferred */
+#define DACIDX_COMMAND_2_PEDESTAL_SHIFT 3
+#define DACIDX_COMMAND_2_PEDESTAL_MASK 0x1u
+/* FIELD: COMMAND_2.colour_mode 7:4 inferred */
+#define DACIDX_COMMAND_2_COLOUR_MODE_SHIFT 4
+#define DACIDX_COMMAND_2_COLOUR_MODE_MASK 0xfu
+/*
+ * TESTVEC: 0x000000e4 as COMMAND_2 => sync_on_green=1, pedestal=0, colour_mode=14
  */
 
 /* Encoder control indexes (8-bit values unless noted). */

@@ -643,4 +643,127 @@
 #define WORD_TEXENV_COLOUR_IMAGE 0x015e1402 /* established */
 #define WORD_TEXENV_COLOUR1_IMAGE 0x015f1413 /* established */
 
+/* ---- polygon mode values ---- */
+
+/* Payload of the set-polygon-mode token: word 0 is the face and the last word the */
+/* mode, both public enumerants. The pipe validates neither (the client does); an */
+/* unmatched face is ignored. */
+#define WORD_POLYGON_FACE_FRONT 0x404 /* established */
+#define WORD_POLYGON_FACE_BACK 0x405 /* established */
+#define WORD_POLYGON_FACE_BOTH 0x408 /* established */
+#define WORD_POLYGON_MODE_POINT 0x1b00 /* established */
+#define WORD_POLYGON_MODE_LINE 0x1b01 /* established */
+#define WORD_POLYGON_MODE_FILL 0x1b02 /* established */
+
+/* ---- pixel-store parameter names ---- */
+
+/* Word 0 of the pixel-store token (word 1 is the integer value). The processor */
+/* keeps the value and writes no hardware; a name outside the two groups is */
+/* ignored. The two booleans take 0 or 1; alignment accepts 1, 2, 4 and 8. */
+#define WORD_PIXEL_UNPACK_SWAP_BYTES 0xcf0 /* established */
+#define WORD_PIXEL_UNPACK_LSB_FIRST 0xcf1 /* established */
+#define WORD_PIXEL_UNPACK_ROW_LENGTH 0xcf2 /* established */
+#define WORD_PIXEL_UNPACK_SKIP_ROWS 0xcf3 /* established */
+#define WORD_PIXEL_UNPACK_SKIP_PIXELS 0xcf4 /* established */
+#define WORD_PIXEL_UNPACK_ALIGNMENT 0xcf5 /* established */
+#define WORD_PIXEL_UNPACK_SKIP_IMAGES 0x806d /* established */
+#define WORD_PIXEL_UNPACK_IMAGE_HEIGHT 0x806e /* established */
+#define WORD_PIXEL_UNPACK_SKIP_VOLUMES 0x8132 /* established */
+#define WORD_PIXEL_UNPACK_IMAGE_DEPTH 0x8133 /* established */
+#define WORD_PIXEL_PACK_SWAP_BYTES 0xd00 /* established */
+#define WORD_PIXEL_PACK_LSB_FIRST 0xd01 /* established */
+#define WORD_PIXEL_PACK_ROW_LENGTH 0xd02 /* established */
+#define WORD_PIXEL_PACK_SKIP_ROWS 0xd03 /* established */
+#define WORD_PIXEL_PACK_SKIP_PIXELS 0xd04 /* established */
+#define WORD_PIXEL_PACK_ALIGNMENT 0xd05 /* established */
+#define WORD_PIXEL_PACK_SKIP_IMAGES 0x806b /* established */
+#define WORD_PIXEL_PACK_IMAGE_HEIGHT 0x806c /* established */
+#define WORD_PIXEL_PACK_SKIP_VOLUMES 0x8130 /* established */
+#define WORD_PIXEL_PACK_IMAGE_DEPTH 0x8131 /* established */
+
+/* ---- pixel-transfer parameter names ---- */
+
+/* Word 0 of the pixel-transfer token (word 1 is the value). Scales and biases */
+/* are floats. The index shift and offset are integers; the two map flags are */
+/* 0 for a zero value and 1 otherwise. Any other name is refused by the client. */
+#define WORD_PIXEL_TRANSFER_RED_SCALE 0xd14 /* established */
+#define WORD_PIXEL_TRANSFER_RED_BIAS 0xd15 /* established */
+#define WORD_PIXEL_TRANSFER_GREEN_SCALE 0xd18 /* established */
+#define WORD_PIXEL_TRANSFER_GREEN_BIAS 0xd19 /* established */
+#define WORD_PIXEL_TRANSFER_BLUE_SCALE 0xd1a /* established */
+#define WORD_PIXEL_TRANSFER_BLUE_BIAS 0xd1b /* established */
+#define WORD_PIXEL_TRANSFER_ALPHA_SCALE 0xd1c /* established */
+#define WORD_PIXEL_TRANSFER_ALPHA_BIAS 0xd1d /* established */
+#define WORD_PIXEL_TRANSFER_DEPTH_SCALE 0xd1e /* established */
+#define WORD_PIXEL_TRANSFER_DEPTH_BIAS 0xd1f /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_RED_SCALE 0x801c /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_SCALE 0x801d /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_SCALE 0x801e /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_SCALE 0x801f /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_RED_BIAS 0x8020 /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_BIAS 0x8021 /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_BIAS 0x8022 /* established */
+#define WORD_PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_BIAS 0x8023 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_RED_SCALE 0x80b4 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_GREEN_SCALE 0x80b5 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_BLUE_SCALE 0x80b6 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_ALPHA_SCALE 0x80b7 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_RED_BIAS 0x80b8 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_GREEN_BIAS 0x80b9 /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_BLUE_BIAS 0x80ba /* established */
+#define WORD_PIXEL_TRANSFER_POST_MATRIX_ALPHA_BIAS 0x80bb /* established */
+#define WORD_PIXEL_TRANSFER_INDEX_SHIFT 0xd12 /* established */
+#define WORD_PIXEL_TRANSFER_INDEX_OFFSET 0xd13 /* established */
+#define WORD_PIXEL_TRANSFER_MAP_COLOUR 0xd10 /* established */
+#define WORD_PIXEL_TRANSFER_MAP_STENCIL 0xd11 /* established */
+
+/* ---- pixel-map names ---- */
+
+/* Word 0 of a pixel-map token. The record number is the pipe's slot for the */
+/* map; an unrecognised name discards the payload. */
+#define WORD_PIXEL_MAP_INDEX_TO_INDEX 0xc70 /* established: record 0 */
+#define WORD_PIXEL_MAP_STENCIL_TO_STENCIL 0xc71 /* established: record 1 */
+#define WORD_PIXEL_MAP_INDEX_TO_RED 0xc72 /* established: record 2, component 0 */
+#define WORD_PIXEL_MAP_INDEX_TO_GREEN 0xc73 /* established: record 2, component 1 */
+#define WORD_PIXEL_MAP_INDEX_TO_BLUE 0xc74 /* established: record 2, component 2 */
+#define WORD_PIXEL_MAP_INDEX_TO_ALPHA 0xc75 /* established: record 2, component 3 */
+#define WORD_PIXEL_MAP_RED_TO_RED 0xc76 /* established: record 3, component 0 */
+#define WORD_PIXEL_MAP_GREEN_TO_GREEN 0xc77 /* established: record 3, component 1 */
+#define WORD_PIXEL_MAP_BLUE_TO_BLUE 0xc78 /* established: record 3, component 2 */
+#define WORD_PIXEL_MAP_ALPHA_TO_ALPHA 0xc79 /* established: record 3, component 3 */
+
+/* ---- pixel format and type codes ---- */
+
+/* Words 2 and 3 of the pixel draw header and the read header. The client turns */
+/* the public enumerants into these codes; the pipe indexes its component-count */
+/* and element-size tables by them. Codes 8 to 10 stand for extension formats of */
+/* four, four and five components; code 14 has a component count of zero. */
+#define WORD_PIXEL_FORMAT_RED 0 /* established */
+#define WORD_PIXEL_FORMAT_GREEN 1 /* established */
+#define WORD_PIXEL_FORMAT_BLUE 2 /* established */
+#define WORD_PIXEL_FORMAT_ALPHA 3 /* established */
+#define WORD_PIXEL_FORMAT_RGB 4 /* established */
+#define WORD_PIXEL_FORMAT_RGBA 5 /* established */
+#define WORD_PIXEL_FORMAT_LUMINANCE 6 /* established */
+#define WORD_PIXEL_FORMAT_LUMINANCE_ALPHA 7 /* established */
+#define WORD_PIXEL_FORMAT_EXT_ABGR 8 /* established */
+#define WORD_PIXEL_FORMAT_EXT_CMYK 9 /* established */
+#define WORD_PIXEL_FORMAT_EXT_CMYKA 10 /* established */
+#define WORD_PIXEL_FORMAT_COLOUR_INDEX 11 /* established */
+#define WORD_PIXEL_FORMAT_STENCIL 12 /* established */
+#define WORD_PIXEL_FORMAT_DEPTH 13 /* established */
+#define WORD_PIXEL_TYPE_BYTE 0 /* established */
+#define WORD_PIXEL_TYPE_UNSIGNED_BYTE 1 /* established */
+#define WORD_PIXEL_TYPE_SHORT 2 /* established */
+#define WORD_PIXEL_TYPE_UNSIGNED_SHORT 3 /* established */
+#define WORD_PIXEL_TYPE_INT 4 /* established */
+#define WORD_PIXEL_TYPE_UNSIGNED_INT 5 /* established */
+#define WORD_PIXEL_TYPE_FLOAT 6 /* established */
+#define WORD_PIXEL_TYPE_BITMAP 7 /* established */
+#define WORD_PIXEL_TYPE_PACKED_332 8 /* established */
+#define WORD_PIXEL_TYPE_PACKED_4444 9 /* established */
+#define WORD_PIXEL_TYPE_PACKED_5551 10 /* established */
+#define WORD_PIXEL_TYPE_PACKED_8888 11 /* established */
+#define WORD_PIXEL_TYPE_PACKED_10_10_10_2 12 /* established */
+
 #endif

@@ -1,4 +1,4 @@
-// generated from kona ced256aa8371 KONA_DACIDX_DECODE.h - do not edit, regenerate in kona
+// generated from kona 656a1d3d0681 KONA_DACIDX_DECODE.h - do not edit, regenerate in kona
 //!
 //! Indexed registers behind the video DAC and encoder ports, and the
 //! DAC cursor control word.
@@ -10,9 +10,9 @@
 
 #![allow(dead_code)]
 
-/// unknown: written 0x88 at start-up; role unknown.
+/// inferred: command register 1 of the part the DAC matches; start-up value 0x88, layout below.
 pub const START_UP_A: u32 = 5;
-/// unknown: written 0xe4 at start-up; role unknown.
+/// inferred: command register 2 of the part the DAC matches; start-up value 0xe4, layout below.
 pub const START_UP_B: u32 = 6;
 /// established: cursor x, low byte; scaled to the channel output size.
 pub const CURSOR_X_LOW: u32 = 0x200;
@@ -147,6 +147,69 @@ impl CursorControl {
     }
 }
 
+/// The `COMMAND_1` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Command1(u32);
+
+impl Command1 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bit 0, inferred.
+    pub const fn calibrate(self) -> bool {
+        self.0 & 1 != 0
+    }
+
+    /// Bit 3, inferred.
+    pub const fn addr_high(self) -> bool {
+        (self.0 >> 3) & 1 != 0
+    }
+
+    /// Bits 5:4, inferred.
+    pub const fn palette_select(self) -> u32 {
+        (self.0 >> 4) & 0x3
+    }
+
+    /// Bits 7:6, inferred.
+    pub const fn bypass_colour(self) -> u32 {
+        (self.0 >> 6) & 0x3
+    }
+}
+
+/// The `COMMAND_2` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Command2(u32);
+
+impl Command2 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bit 2, inferred.
+    pub const fn sync_on_green(self) -> bool {
+        (self.0 >> 2) & 1 != 0
+    }
+
+    /// Bit 3, inferred.
+    pub const fn pedestal(self) -> bool {
+        (self.0 >> 3) & 1 != 0
+    }
+
+    /// Bits 7:4, inferred.
+    pub const fn colour_mode(self) -> u32 {
+        (self.0 >> 4) & 0xf
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -157,5 +220,22 @@ mod tests {
         assert_eq!(w.mode().bits(), 1, "mode");
         assert_eq!(w.enable() as u32, 1, "enable");
         assert_eq!(w.interlace() as u32, 0, "interlace");
+    }
+
+    #[test]
+    fn testvec_command_1_88() {
+        let w = Command1::new(0x88);
+        assert_eq!(w.calibrate() as u32, 0, "calibrate");
+        assert_eq!(w.addr_high() as u32, 1, "addr_high");
+        assert_eq!(w.palette_select(), 0, "palette_select");
+        assert_eq!(w.bypass_colour(), 2, "bypass_colour");
+    }
+
+    #[test]
+    fn testvec_command_2_e4() {
+        let w = Command2::new(0xe4);
+        assert_eq!(w.sync_on_green() as u32, 1, "sync_on_green");
+        assert_eq!(w.pedestal() as u32, 0, "pedestal");
+        assert_eq!(w.colour_mode(), 14, "colour_mode");
     }
 }
