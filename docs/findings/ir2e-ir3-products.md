@@ -39,44 +39,44 @@ IR4's RM board, which is named RM10 on its NIC. See question 2 and the proposed 
 
 Two independent deciders write "board set" numbers, and they feed different readers.
 
-**The pipe firmware** (`arm1.u` `init_kona_jtag_chain`, 6.5.30 0x0c01ac3c-0x0c01ae9c) writes the first word of
+**The pipe firmware** (`arm1.u` `init_kona_jtag_chain`, 6.5.30 0x0c01ac3c-0x0c01ae9c; **established**: each test and store re-read in the `arm1.s` listing, where the type counts are kept in r4 (type 6), r7 (type 9), r6 (type 0xb) and r5 (type 0xe) and the stores are at 0x0c01ad24-0x0c01ad78) writes the first word of
 its configuration block (data base 0x04067edc, the block `gfxinit` reads and `gfxinfo` prints from). Rules in
 order, where "GE type" and "RM type" are bits 15-9 of the geometry-board and each raster-slot identity word:
 
-| Test | Stored |
-|---|---|
-| GE read fails or GE type 0 | 0 |
-| any RM type 9 | 2 (message if types 0xb, 6 or 0xe also seen) |
-| any RM type 0xe | 6 (message if 0xb or 6 also seen) |
-| any RM type 0xb and no RM type 6 | 5 |
-| else GE type 5 | 1 |
-| else GE type 0xc | 4 |
-| else | left as it was (0) |
+| Test | Stored | Grade |
+|---|---|---|
+| GE read fails or GE type 0 | 0 | established |
+| any RM type 9 | 2 (message if types 0xb, 6 or 0xe also seen) | established |
+| any RM type 0xe | 6 (message if 0xb or 6 also seen) | established |
+| any RM type 0xb and no RM type 6 | 5 | established |
+| else GE type 5 | 1 | established |
+| else GE type 0xc | 4 | established |
+| else | left as it was (0) | established |
 
 **The kernel** (`kona_attach` 0xed4) writes the same word at pipe state +244 (the record is overwritten later by
 the 1912-byte record `gfxinit` sends with ioctl 10006) and the inventory type at +2188 that `hinv` prints.
 Tests in order, using the two reads it makes through the display-bus port, at 0x8800 and at 0x0b00 (addresses at
 0x1100 and 0x1188; both reads are 32-bit loads):
 
-| Test | Board set | Inventory type |
-|---|---|---|
-| bit 10 of the 0x0b00 read set | 2 | 19 |
-| else bits 1:0 of the 0x8800 read == 1 | 5 | 22 |
-| else bits 1:0 == 2 | 6 | 23 |
-| else the one-wire text of the pipe contains `GE16-` (scan for 'G', `strncmp` 5 against .rodata 0x678 = "GE16-") | 4 | 20 |
-| else | 1 | 18 |
+| Test | Board set | Inventory type | Grade |
+|---|---|---|---|
+| bit 10 of the 0x0b00 read set | 2 | 19 | established |
+| else bits 1:0 of the 0x8800 read == 1 | 5 | 22 | established |
+| else bits 1:0 == 2 | 6 | 23 | established |
+| else the one-wire text of the pipe contains `GE16-` (scan for 'G', `strncmp` 5 against .rodata 0x678 = "GE16-") | 4 | 20 | established |
+| else | 1 | 18 | established |
 
 Meaning of each value (E for every row; verified at the instruction level: stores at 0x1344/0x1354/0x1368/0x1394 and the default at 0x122c-0x1234):
 
-| Value | Product (hinv text, `sbin/hinv` jump table 0x1000e400, index = type - 4) | Producer |
-|---|---|---|
-| 0 | InfiniteReality (Onyx, type 16) | firmware only |
-| 1 | InfiniteReality2 (type 18) | firmware GE type 5; kernel default (GE14) |
-| 2 | Reality (type 19) | firmware RM type 9; kernel 0x0b00 bit 10 |
-| 3 | no producer found | none in 6.5.30 `kona.a`, `arm1.u`, `hinv`; none in 6.5.0 either |
-| 4 | InfiniteReality2E (type 20) | firmware GE type 0xc without RM type 0xb/0xe/9; kernel GE16 text |
-| 5 | InfiniteReality3 (type 22) | firmware any RM type 0xb; kernel 0x8800 bits = 1 |
-| 6 | InfiniteReality4 (type 23) | firmware RM type 0xe; kernel 0x8800 bits = 2 |
+| Value | Product (hinv text, `sbin/hinv` jump table 0x1000e400, index = type - 4) | Producer | Grade |
+|---|---|---|---|
+| 0 | InfiniteReality (Onyx, type 16) | firmware only | established |
+| 1 | InfiniteReality2 (type 18) | firmware GE type 5; kernel default (GE14) | established |
+| 2 | Reality (type 19) | firmware RM type 9; kernel 0x0b00 bit 10 | established |
+| 3 | no producer found | none in 6.5.30 `kona.a`, `arm1.u`, `hinv`; none in 6.5.0 either | established (absence in the files read) |
+| 4 | InfiniteReality2E (type 20) | firmware GE type 0xc without RM type 0xb/0xe/9; kernel GE16 text | established |
+| 5 | InfiniteReality3 (type 22) | firmware any RM type 0xb; kernel 0x8800 bits = 1 | established |
+| 6 | InfiniteReality4 (type 23) | firmware RM type 0xe; kernel 0x8800 bits = 2 | established |
 
 Answer to the question: **4 is IR2E**, so the attach decode and the "GE16 in the geometry record" reading are
 right. The "1, 3 and 4 under IR2" note in `architecture.md` and `setup-tools.md` is a naming-table artifact:
@@ -126,7 +126,7 @@ IR3 values that an IR2E description would otherwise reuse, graded for IR2E:
 |---|---|
 | GE16-4 030-1398-001 rev E | yes (E, hinv -m on a stated 2E; same part on the IR3 pipe) |
 | RM 030-1402-001 rev E | part yes; rev E is the IR3 capture's. IR2E rev U. |
-| GE word 0x80f61806 | plausible (I) |
+| GE word 0x80f61806 | plausible (inferred) |
 | **RM slot word 0x03041606** | **no.** Type bits 15-9 = 0xb. The firmware maps any RM type 0xb (with no type 6) to board set 5, so the pipe becomes IR3: gfxinfo prints "RM10", GL says 256MB (bits 18-16 = 4). `irsaudit` `probe_rm7_rm8_chain` (compares at 0x100511a8-0x100511cc) reads this word's type as the TM board type: 6 = TM7, 0xb = TM8, 0xe = TM9, message "expected 0x6 or 0xb or 0xe". IR2E has a TM7, so type 6, texture code 2 (64 MB): `0x03020c02` or `0x03020c06` as on IR2 (low nibble varies: 0x2 on 17 single-RM dumps, 0x6 on the two-RM dump; meaning of the low bits U). I. |
 | TM7 030-1053-001 | yes (E for the part being TM7-64; I for IR2E) |
 

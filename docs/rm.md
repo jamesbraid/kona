@@ -112,13 +112,15 @@ Sources: `arm1.u` 6.5.30m (the output-module records in read-write data, read wi
 
 **Established (what the ARM writes to engine control memory 0x166-0x169).** Every path that ends in an output module (`AddOutput`, `AddOutput1Cmpnt`, `AddOutputI`, `loadShortCircuitPath`, `loadBitmapPath`) writes four words to control memory 0x166 with `WriteCram`. They are the record's pixel tag table (record word 3) when bit 0x80 of the caller's flag word is clear and its texel tag table (word 4) when it is set (`AddOutput` 0x0c0301d8-0x0c0301e4, `AddOutput1Cmpnt` 0x0c030320-0x0c03032c, `loadShortCircuitPath` 0x0c02e428-0x0c02e434). That flag word is the operation word at pixel state +8 (r8 + 0x908; `SetupGE_ShortCircuit` loads it at 0x0c02d59c). The command handlers set it as follows:
 
-| Command | Store | Operation word | Tag table |
-|---|---|---|---|
-| draw pixels | `arm_drawpixels` 0x0c02ba74 | 0x41 | pixel |
-| copy pixels | `arm_copypixels` 0x0c02bbf8 (video source: 0x50) | 0x42 | pixel |
-| read pixels | `arm_readpixels` 0x0c02c454 (video source: 0x30) | 0x22 | pixel |
-| draw texels | `drawtexels` 0x0c02b900 | 0x81 | texel |
-| copy pixels to a texture | `arm_copyteximage` 0x0c02c028 (video source: 0x90) | 0x82 | texel |
+| Command | Store | Operation word | Tag table | Grade |
+|---|---|---|---|---|
+| draw pixels | `arm_drawpixels` 0x0c02ba74 | 0x41 | pixel | established |
+| copy pixels | `arm_copypixels` 0x0c02bbf8 (video source: 0x50, 0x0c02bd88) | 0x42 | pixel | established |
+| read pixels | `arm_readpixels` 0x0c02c454 (video source: 0x30) | 0x22 | pixel | established |
+| draw texels | `drawtexels` 0x0c02b900 | 0x81 | texel | established |
+| copy pixels to a texture | `arm_copyteximage` 0x0c02c028 (video source: 0x90) | 0x82 | texel | established |
+
+The operation word is a firmware state value, not a host token number: 0x41 and 0x42 here are unrelated to the query and token tables ([KONA_QUERY_DECODE.h](../KONA_QUERY_DECODE.h) uses 0x041 for a different token). Each value is a `mov` immediate stored to pixel state +8 at the address in the second column, read in the `arm1.u` listing ([ucode/arm1.s](../ucode/arm1.s)).
 
 **Inferred** from those values: bit 0x80 means the destination is texture memory, 0x40 the framebuffer and 0x20 the host; the low bits name the source (1 host, 2 framebuffer, 0x10 video). The four tables, read from the image:
 

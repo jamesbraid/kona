@@ -154,15 +154,15 @@ The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
 
 **Established** (the driver's handlers above, `XG.h`, `HIP.h`; labels for what the driver treats as a failure, not for what the chip raises). There is no single "DMA failed" cause. A failure of a transfer between the pipe and host memory can surface in three places, with different numbers:
 
-| Where | Bit | Name | Driver action |
-|---|---|---|---|
-| Xtalk error register XG+0x6c, own interrupt vector (`kona_xg_intr_handler`) | 8, mask 0x100 | `XTALK_READ_REQ_TIMEOUT` | prints the line, `kona_die` reason 12 |
-| the same register | 9, 0x200 | `XTALK_RESPONSE` | same |
-| the same register | 27, 0x08000000; 28, 0x10000000 | `IDMA_RESPONSE_SIZE`, `IDMA_RESPONSE_BAD_TNUM` | same |
-| the same register | 26, 0x04000000 | `ODMA_FIFO_OVERFLOW` | same |
-| the same register | 12, 0x1000; 13, 0x2000 | `MAPRAM_PARITY`, `MAPRAM_INVALID` (the address-translation RAM of [xg.md](xg.md)) | same |
-| `HH_INTR_STATUS` | 11, 0x800 | `IDMA_OV` | "IDMA overflow", `kona_die` reason 14 |
-| `HH_INTR_STATUS` | 6, 0x40 | `ODMA` | prints "odma overflow" only |
+| Where | Bit | Name | Driver action | Grade |
+|---|---|---|---|---|
+| Xtalk error register XG+0x6c, own interrupt vector (`kona_xg_intr_handler`) | 8, mask 0x100 | `XTALK_READ_REQ_TIMEOUT` | prints the line, `kona_die` reason 12 | established |
+| the same register | 9, 0x200 | `XTALK_RESPONSE` | same | established |
+| the same register | 27, 0x08000000; 28, 0x10000000 | `IDMA_RESPONSE_SIZE`, `IDMA_RESPONSE_BAD_TNUM` | same | established |
+| the same register | 26, 0x04000000 | `ODMA_FIFO_OVERFLOW` | same | established |
+| the same register | 12, 0x1000; 13, 0x2000 | `MAPRAM_PARITY`, `MAPRAM_INVALID` (the address-translation RAM of [xg.md](xg.md)) | same | established |
+| `HH_INTR_STATUS` | 11, 0x800 | `IDMA_OV` | "IDMA overflow", `kona_die` reason 14 | established |
+| `HH_INTR_STATUS` | 6, 0x40 | `ODMA` | prints "odma overflow" only | established |
 
 Software timers cover the rest: an input DMA that never completes is `kona_idma_timeout` (`kona_die` reason 4, [kernel.md](kernel.md)); a select-feedback that never completes is reason 5.
 
@@ -186,26 +186,26 @@ RM and kernel timeout interrupts are not separate sources: timeouts are software
 
 ### ARM-side register names
 
-`TEST_ha_reg` (0x10079244) checks a table of ARM-side registers with a name and a read/write mask each. It names the registers the firmware uses ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)):
+`TEST_ha_reg` (0x10079244) checks a table of ARM-side registers with a name and a read/write mask each. It names the registers the firmware uses ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)). **Established** (address, name and mask of every row read from the table's 12-byte records in the `irsaudit` image, one record per register, entries at 0x10200c64-0x10200d48; the masks are the diagnostic's own, so a mask can differ from the one `kpm` carries for the same register, as with `HA_ICU_ERROR_PC` and `HA_ICU_DIVERT_PC`, 0xffffffc here and 0xfffffff in [ucode/arm1_registers.tsv](../ucode/arm1_registers.tsv)). The firmware-role column is the reading of [ucode/arm1_firmware.md](../ucode/arm1_firmware.md):
 
-| ARM address | Name | Read/write mask | Firmware role |
-|---|---|---|---|
-| 0x000000 | `HA_SRAM` | 0xffffffff | ARM memory |
-| 0x200000 | `HA_ARM_CTRL` | 0x3 | the firmware reads bit 31 as "in a simulator" (outside the writable mask) |
-| 0x200010 | `HA_IDMA_PNUM` | 0x1fffffff | input-DMA page number |
-| 0x200014 | `HA_IDMA_POFF` | 0xffc | input-DMA page offset |
-| 0x200020 | `HA_IDMA_CTRL` | 0x3 | input-DMA mode (the firmware writes 2, the diagnostic 1) |
-| 0x200030 | `HA_LDMA_ADDR` | 0x3fffff8 | list-DMA pipe address |
-| 0x20003c | `HA_LDMA_CTRL` | 0x1 | list-DMA control; the firmware never writes it |
-| 0x200048 | `HA_LDMA_SRC` | 0x1 | list-DMA source: the firmware's "steer the input stream into the list-DMA writer" |
-| 0x200050 | `HA_ICU_CTRL` | 0x3 | token-map control; bit 0 is `ARMACC` |
-| 0x200054 | `HA_ICU_DIVERT_PC` | 0xffffffc | the divert vector |
-| 0x20005c | `HA_ICU_WC` ("ICU DH word count") | 0x13f | the per-context word the firmware saves at +0xc |
-| 0x200068 | `HA_ICU_STATE` | 0x3 | the in-begin flag |
-| 0x20006c | `HA_ICU_ERROR_PC` | 0xffffffc | the begin/end refusal vector (`arm_bgnend`) |
-| 0x200070 | `HA_ICU_LOOP_ADDR` ("arrayed command start address") | 0x1ff | the vertex-array loop token |
-| 0x200074 | `HA_ICU_ARRCNT` ("arrayed command count") | 0xffff | the loop's repeat count |
-| 0x200090 | `HA_HOST_MBOX` | 0xffffffff | the mailbox word to the host |
+| ARM address | Name | Read/write mask | Firmware role | Grade (address, name, mask) |
+|---|---|---|---|---|
+| 0x000000 | `HA_SRAM` | 0xffffffff | ARM memory | established |
+| 0x200000 | `HA_ARM_CTRL` | 0x3 | the firmware reads bit 31 as "in a simulator" (outside the writable mask) | established |
+| 0x200010 | `HA_IDMA_PNUM` | 0x1fffffff | input-DMA page number | established |
+| 0x200014 | `HA_IDMA_POFF` | 0xffc | input-DMA page offset | established |
+| 0x200020 | `HA_IDMA_CTRL` | 0x3 | input-DMA mode (the firmware writes 2, the diagnostic 1) | established |
+| 0x200030 | `HA_LDMA_ADDR` | 0x3fffff8 | list-DMA pipe address | established |
+| 0x20003c | `HA_LDMA_CTRL` | 0x1 | list-DMA control; the firmware never writes it | established |
+| 0x200048 | `HA_LDMA_SRC` | 0x1 | list-DMA source: the firmware's "steer the input stream into the list-DMA writer" | established |
+| 0x200050 | `HA_ICU_CTRL` | 0x3 | token-map control; bit 0 is `ARMACC` | established |
+| 0x200054 | `HA_ICU_DIVERT_PC` | 0xffffffc | the divert vector | established |
+| 0x20005c | `HA_ICU_WC` ("ICU DH word count") | 0x13f | the per-context word the firmware saves at +0xc | established |
+| 0x200068 | `HA_ICU_STATE` | 0x3 | the in-begin flag | established |
+| 0x20006c | `HA_ICU_ERROR_PC` | 0xffffffc | the begin/end refusal vector (`arm_bgnend`) | established |
+| 0x200070 | `HA_ICU_LOOP_ADDR` ("arrayed command start address") | 0x1ff | the vertex-array loop token | established |
+| 0x200074 | `HA_ICU_ARRCNT` ("arrayed command count") | 0xffff | the loop's repeat count | established |
+| 0x200090 | `HA_HOST_MBOX` | 0xffffffff | the mailbox word to the host | established |
 
 **Established:** the ARM address 0xc00000 in the same table is the ARM cache-tag RAM on revision-A host-interface chips (0x8000000 on revision B, chosen by `HipRevRead` = 0x30). It is an ARM-side address and has nothing to do with the host's 0xc00000 window.
 
