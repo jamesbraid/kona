@@ -14,6 +14,27 @@ Three kinds of difference account for the O32 and N32 pairs:
 
 In the N32 libGLcore the debug records carry the compile line `-D__GL_USEASMCODE -DKONA -DIP27 -DR10000` and `-DIP35` respectively (630 bytes of `.debug_info`, 44 of `.debug_line`), so the two builds are one source compiled with a different platform macro; no routine in the compiled code uses it differently.
 
+## Which IRIX subsystems install the IP35 Kona files
+
+**Established** (the `.idb` manifests of the IRIX 6.5.22 overlay discs, product `eoe_6522m` and `x_eoe_6522m`, read as install records: destination, subsystem and the `mach()` condition `inst` tests; the 6.5.30 discs were not read for this, and IRIX_FILES.md records that the 6.5.30m reference install selected `eoe.sw.gfx`, `eoe.sw64.gfx` and `x_eoe.sw.Server`). A file lands only when the machine `inst` runs on has the named attributes.
+
+| Files | Subsystem | `mach()` condition |
+|---|---|---|
+| `usr/gfx/arch/IP35KONA/` and `IP35KONA32/` (`libGL.so`, `libGLcore.so`) | `eoe.sw.gfx` | `GFXBOARD=KONA SUBGR=IP35` |
+| `usr/gfx/arch/IP35KONA64/` (`libGL.so`, `libGLcore.so`) | `eoe.sw64.gfx` | `GFXBOARD=KONA SUBGR=IP35` |
+| `usr/cpu/sysgen/IP35boot/kona.a`, `gfx.o`, `gfxs.a`, `rrm.o`, `tport.a`, `tportpckbd.a` | `eoe.sw.gfx` | `IP35 MODE=64bit` (no board attribute); `gfxstubs.a` is `eoe.sw.base` with the same condition |
+| `usr/gfx/ucode/KONA/` (the microcode and video-format tables, 88 install records), `usr/gfx/KONA/bin/kpm` and `ireeprom`, `usr/diags/IR/` (84 records, one of them a `bin` entry with no condition) | `eoe.sw.gfx` | `GFXBOARD=KONA` (no platform attribute: one set for every platform) |
+| `usr/gfx/gfxinit`, `gfxinfo` (a link) | `eoe.sw.gfx` | `GFXBOARD!=SERVER` |
+| `usr/gfx/gfxtopology` | `eoe.sw.gfx` | `GFXBOARD=KONA`, `ODYSSEY` or `VOYAGER` |
+| `usr/gfx/hyperpipeinfo` | `eoe.sw.gfx` | none |
+| `usr/lib/X11/dyDDX/konad.so` (IP35), `konal.so` (IP27), `konas.so` (IP25), `kona.so` (IP19); `konavis.so` for all | `x_eoe.sw.Server` | `GFXBOARD=KONA SUBGR=IP35`, `IP27`, `IP25`, `IP19`; `konavis.so` `GFXBOARD=KONA` only |
+
+So the pipe microcode is `eoe.sw.gfx` (not a separate product), `gfxinit` is generic to every board, and the IP35 libGLcore comes in the two graphics-environment subsystems `eoe.sw.gfx` (O32, N32) and `eoe.sw64.gfx` (64-bit) with the X server module `konad.so` in `x_eoe.sw.Server`. The kernel objects install on every IP35 machine; only the libraries, microcode and tools wait for `GFXBOARD=KONA` in the installing machine's hardware inventory.
+
+**Established** (listing of the IRIX 6.5.22 IP35 install disk the Origami project keeps, read with its disk reader): that disk holds `IP35boot/kona.a`, `gfx.o`, `gfxs.a`, `rrm.o` and `tport.a` and `usr/gfx/gfxinit` and `gfxtopology`, but no `usr/gfx/arch/IP35KONA*`, no `usr/gfx/ucode/KONA`, no `usr/gfx/KONA`, no `dyDDX/kona*.so` and nothing under `usr/diags/IR/` but `bin`. It was installed on a Tezro with a V12 fitted, so `inst` saw `GFXBOARD=ODYSSEY` and installed the `IP35ODSY*` libraries instead. Origami's disk recipes carry no step that selects `GFXBOARD=KONA` for IP35, and its `disk prepare --head` knows only the `IP27KONA` and `IP27GR5` library names, so that disk cannot be switched to a Kona head. The IP27 recipe does it by passing `--mach GFXBOARD=KONA` (with `eoe.sw.gfx`, `eoe.sw64.gfx` and `x_eoe.sw.Server` selected) to a second `inst` pass.
+
+**Unknown:** whether an IP35 install with `--mach GFXBOARD=KONA CPUBOARD=IP35 SUBGR=IP35` lays down a working set (nobody here has run it), whether Onyx 3000 InfiniteReality3 reports `GFXBOARD=KONA` to `inst` (the `gfxtopology` condition lists KONA, ODYSSEY and VOYAGER only), and whether the 6.5.30 manifests differ from 6.5.22 for these paths. Next routes: read the 6.5.30 overlay `.idb` for the same paths; read the IP35 kernel's graphics-board inventory routine to see what attribute an IR3 pipe sets; an install pass on a modelled IP35 machine with a Kona pipe fitted.
+
 ## The libGL builds
 
 - `usr/gfx/arch/IP27KONA/libGL.so`: **established** for the structure, **inferred** for the roles.
