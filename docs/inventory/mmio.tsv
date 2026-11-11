@@ -7,20 +7,20 @@ hip	0x800228	HH_INTR_ACK	w4	4	4	KONAstart;kona_intr_handler	accessor gfx_pio_wri
 hip	0x800230	HIP1_HH_INTR_ENABLE;HIP2_HH_INTR_ENABLE	w4	14	4	KONAinitialize;KONAstart;kona_diag_flow;kona_hiwater_intr;kona_lowater_intr	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_diag_flow	understood	HIP.h:404	
 hip	0x800238	HIP1_HH_INTR_STATUS;HIP2_HH_INTR_STATUS	r4,w4	26	10	KONAstart;kona_arm_intr;kona_delay_monitor_gfifo;kona_ge_intr_handler;kona_hiwater_intr;kona_intr_handler;+2 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	HIP.h:415	
 hip	0x800240	HH_ARM_MBOX	r4	4	2	kona_arm_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_arm_intr	understood	HIP.h:451	
-hip	0x800248	HH_SEQID	r4	2	2	kona_video_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_video_intr	understood	HIP.h:459	
-hip	0x800260	HH_ODMA_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:480	
-hip	0x800268	HIP1_HH_ODMA_POFF;HIP2_HH_ODMA_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:487	
-hip	0x800278	HH_ODMA_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:506	
-hip	0x800298	HH_ODMA_FLUSH	w4	2	2	kona_die	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:536	
-hip	0x8002a0	HH_ODMA2_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:543	
-hip	0x8002a8	HIP1_HH_ODMA2_POFF;HIP2_HH_ODMA2_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:550	
-hip	0x8002b8	HH_ODMA2_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:566	
-hip	0x800300	HH_RESET	r4,w4	16	4	KONAinitialize;kona_flow_await_returned_credits	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_await_returned_credits	no-software-dependency	HIP.h:587	
-hip	0x800390	HIP1_HH_FCI_ERR_STAT1;HIP2_HH_GV_ERR_STAT1	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	HIP.h:734	
-hip	0x800398	HIP1_HH_FCI_ERR_STAT2;HIP2_HH_GV_ERR_STAT2	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	HIP.h:744	
-hip	0x8003a8	HH_TBUS_STATUS	r4,w4	10	6	kona_callout;kona_die;kona_video_intr	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:781	
-hip	0x8003c0	HH_VC_ADDRESS	w4	94	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:805	
-hip	0x8003d0	HH_VC_DATA	r4,w4	98	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:825	
+hip	0x800248	HH_SEQID	r4	2	2	kona_video_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_video_intr	understood	HIP.h:461	
+hip	0x800260	HH_ODMA_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:482	
+hip	0x800268	HIP1_HH_ODMA_POFF;HIP2_HH_ODMA_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:489	
+hip	0x800278	HH_ODMA_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:508	
+hip	0x800298	HH_ODMA_FLUSH	w4	2	2	kona_die	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:538	
+hip	0x8002a0	HH_ODMA2_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:545	
+hip	0x8002a8	HIP1_HH_ODMA2_POFF;HIP2_HH_ODMA2_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:552	
+hip	0x8002b8	HH_ODMA2_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	HIP.h:568	
+hip	0x800300	HH_RESET	r4,w4	16	4	KONAinitialize;kona_flow_await_returned_credits	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_await_returned_credits	no-software-dependency	HIP.h:589	
+hip	0x800390	HIP1_HH_FCI_ERR_STAT1;HIP2_HH_GV_ERR_STAT1	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	HIP.h:736	
+hip	0x800398	HIP1_HH_FCI_ERR_STAT2;HIP2_HH_GV_ERR_STAT2	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	HIP.h:746	
+hip	0x8003a8	HH_TBUS_STATUS	r4,w4	10	6	kona_callout;kona_die;kona_video_intr	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	HIP.h:783	
+hip	0x8003c0	HH_VC_ADDRESS	w4	94	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:807	
+hip	0x8003d0	HH_VC_DATA	r4,w4	98	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	HIP.h:827	
 hip-alias	0xc00108		w4	138	18	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;+15 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	HIP.h:78	
 user-fifo	0x0		w4,w8	17348	6	ChannelRect;ChannelRectSync;CopyConvIsOverlapped;CopyIsOverlapped;DoDrawPixelsOrTexels;Error;+414 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:ChannelRect	understood	GE.h:179	
 user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	HIP.h:122	
