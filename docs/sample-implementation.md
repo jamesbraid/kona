@@ -35917,17 +35917,17 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `[a0]:8 +0x808` | `sw` at 0x2249350 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x2249358 |
   | load | 8 | `[a0]:8 +0x4748` | `ld` at 0x224935c |
-  | store | 4 | `[a0]:8 +0x4714  value ([[a0]:8+18196] | 0x1)` | `sw` at 0x2249374 |
+  | store | 4 | `[a0]:8 +0x4714  value ([[a0]:8+18196] \| 0x1)` | `sw` at 0x2249374 |
   | store | 4 | `[a0]:8 +0x808  value [[a0]:8+2056]` | `sw` at 0x2249464 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x224946c |
-  | store | 4 | `[a0]:8 +0x4714  value ([[a0]:8+18196] | 0x1)` | `sw` at 0x2249484 |
+  | store | 4 | `[a0]:8 +0x4714  value ([[a0]:8+18196] \| 0x1)` | `sw` at 0x2249484 |
 
   | Reported call | Callee | Arguments |
   |---|---|---|
   | `jalr` at 0x2249370 | `(unknown callee)` (register) | `a0=[a0]:8, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3)` |
   | `jalr` at 0x224942c | `__glClampRGBColor [0x2227020]` (register-constant) | `a0=[a0]:8, a1=sp-196, a2=sp-196, a3=?` |
   | `jalr` at 0x224943c | `(unknown callee)` (register) | `a0=a0 at entry (arg0), a1=sp-208, a2=?, a3=?` |
-  | `jalr` at 0x2249480 | `(unknown callee)` (register) | `a0=[a0]:8, a1=([[a0]:8+18196] | 0x1), a2=0x2, a3=?` |
+  | `jalr` at 0x2249480 | `(unknown callee)` (register) | `a0=[a0]:8, a1=([[a0]:8+18196] \| 0x1), a2=0x2, a3=?` |
 
   | Selected condition | Taken | Fall-through |
   |---|---|---|
@@ -37434,7 +37434,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `? (base unknown)` | `sw` at 0x225af78 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225af80 |
   | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225af84 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225af90 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225af90 |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225afb0 |
 
   | Reported call | Callee | Arguments |
@@ -37478,7 +37478,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225b114 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225b11c |
   | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225b120 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225b12c |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225b12c |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225b13c |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225b150 |
 
@@ -37975,7 +37975,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `abs 0x1030  value 0x0` | `sw` at 0x225e114 |
   | store | 1 | `? (base unknown)  value 0x1` | `sb` at 0x225e1e0 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225e1e8 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225e1f8 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225e1f8 |
 
   | Reported call | Callee | Arguments |
   |---|---|---|
@@ -38303,7 +38303,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `? (base unknown)` | `sw` at 0x225af78 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225af80 |
   | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225af84 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225af90 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225af90 |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225afb0 |
 
   | Reported call | Callee | Arguments |
@@ -38349,7 +38349,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `? (base unknown)  value [a2]` | `sw` at 0x225b114 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225b11c |
   | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x225b120 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225b12c |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225b12c |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225b13c |
   | load | 8 | `abs 0x22da800` | `ld` at 0x225b150 |
 
@@ -38851,7 +38851,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `abs 0x1030  value 0x0` | `sw` at 0x225e114 |
   | store | 1 | `? (base unknown)  value 0x1` | `sb` at 0x225e1e0 |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x225e1e8 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x225e1f8 |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x225e1f8 |
 
   | Reported call | Callee | Arguments |
   |---|---|---|
@@ -39537,7 +39537,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `[0x1020]:8 +0x16b8` | `sw` at 0x2278bf4 |
   | load | 4 | `[0x1020]:8 +0x17b0` | `lw` at 0x2278bfc |
   | store | 8 | `[0x1020]:8 +0x16c8  value sym(glEdgeFlagv)` | `sd` at 0x2278c08 |
-  | store | 4 | `[0x1020]:8 +0x17b0  value ([[0x1020]:8+6064] | 0x8000000)` | `sw` at 0x2278c14 |
+  | store | 4 | `[0x1020]:8 +0x17b0  value ([[0x1020]:8+6064] \| 0x8000000)` | `sw` at 0x2278c14 |
   | load | 8 | `abs 0x22da800` | `ld` at 0x2278c24 |
   | load | 8 | `abs 0x22db398` | `ld` at 0x2278c28 |
   | store | 8 | `[0x1020]:8 +0x16c8  value 0x2246660` | `sd` at 0x2278c34 |
@@ -40135,7 +40135,7 @@ comparison was not rerun and supplies no new target equation.
   | store | 4 | `[0x1020]:8 +0x7d0  value a0` | `sw` at 0x227a09c |
   | store | 4 | `abs 0x1030  value 0x2` | `sw` at 0x227a0a0 |
   | load | 4 | `[0x1020]:8 +0x4714` | `lw` at 0x227a0a8 |
-  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] | 0x1)` | `sw` at 0x227a0bc |
+  | store | 4 | `[0x1020]:8 +0x4714  value ([[0x1020]:8+18196] \| 0x1)` | `sw` at 0x227a0bc |
   | load | 8 | `abs 0x22da800` | `ld` at 0x227a0c0 |
 
   | Reported call | Callee | Arguments |
