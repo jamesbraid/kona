@@ -20,7 +20,7 @@ usr/cpu/sysgen/IP27boot/kona.a(kona_genlock.o)	kernel	board-kernel	object	n64	45
 usr/cpu/sysgen/IP27boot/kona.a(kona_geprint.o)	kernel	board-kernel	object	n64	9156	7afaa08bdce4644c	usr/cpu/sysgen/IP35boot/kona.a(kona_geprint.o)	1	symtab	0	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
 usr/cpu/sysgen/IP27boot/kona.a(kona_info.o)	kernel	board-kernel	object	n64	4596	3e106b8c81a9151e		1	symtab	0	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
 usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o)	kernel	board-kernel	object	n64	9268	fee9fb4ddac8a8ab		2	symtab	10	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
-usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	symtab	0	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
+usr/cpu/sysgen/IP27boot/kona.a(kona_ioctl.o)	kernel	board-kernel	object	n64	14452	2376f1621c9b3847		1	symtab	0	0	named-only	docs/instruction-readings-kona-g9.md#instruction-readings-from-hostfacts	Instruction readings from hostfacts
 usr/cpu/sysgen/IP27boot/kona.a(kona_map.o)	kernel	board-kernel	object	n64	9044	b100da141877221b		3	symtab	4	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
 usr/cpu/sysgen/IP27boot/kona.a(kona_mem.o)	kernel	board-kernel	object	n64	32148	5993b8175eccfe31		23	symtab	70	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
 usr/cpu/sysgen/IP27boot/kona.a(kona_nclops.o)	kernel	board-kernel	object	n64	24468	9128bbfda564e180		13	symtab	58	0	understood	docs/kernel-objects.md#konaa-members-ip27-build	`kona.a` members, IP27 build
@@ -357,8 +357,8 @@ usr/diags/IR/data/hip1b.qtcbist	diagnostics	board-diagnostic	data	-	1657	a25b621
 usr/diags/IR/data/hip1b.tcbist	diagnostics	board-diagnostic	data	-	5142	1c0eed5d940408ae		0		0	0	understood	docs/data-files.md#built-in-self-test-lists	Built-in self-test lists
 usr/diags/IR/data/imp8_256Kx16.sdbist	diagnostics	board-diagnostic	data	-	8231	626ec0be955dc3ec		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
 usr/diags/IR/data/imp8d_16Mx16.sdbist	diagnostics	board-diagnostic	data	-	17544	64ea8714e66c0d47		0		0	0	understood	docs/data-files.md#sdram-bit-lists	SDRAM bit lists
-the Kona stack header 4.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
-the Kona stack header 4.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
+usr/diags/IR/data/irsaudit.h.gold	diagnostics	board-diagnostic	data	-	10824969	a0d1678e2e216bbf		0		0	0	undocumented		
+usr/diags/IR/data/irsaudit.h.gold.Z	diagnostics	board-diagnostic	data	-	2898069	1080d9abfeb1fa16		0		0	0	undocumented		
 usr/diags/IR/data/irsaudit.hl.gold	diagnostics	board-diagnostic	data	-	1854839	10714f33d55aefce		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/irsaudit.hl.gold.Z	diagnostics	board-diagnostic	data	-	459771	156ef8effceb9a43		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
 usr/diags/IR/data/irsaudit.k.gold.Z	diagnostics	board-diagnostic	data	-	1094439	0f47e9e3e8fe9835		0		0	0	understood	docs/data-files.md#gold-crc-logs	Gold CRC logs
@@ -434,8 +434,8 @@ usr/diags/IR/ucode/ge.u	diagnostics	board-diagnostic	data	-	571281	c3676bf1ca0f3
 usr/diags/IR/ucode/ge_diag_init.hex	diagnostics	board-diagnostic	data	-	7075	66ef30c611850ef6		0		0	0	understood	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/ge_diag_init.u	diagnostics	board-diagnostic	data	-	12082	7e407147118cf628		0		0	0	located	ucode/ge_isa.md#the-program-files	The program files
 usr/diags/IR/ucode/geif.u	diagnostics	board-diagnostic	data	-	2048	67596e208eb62491		0		0	0	understood	docs/data-files.md#microcode-and-arm-images	Microcode and ARM images
-usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
-usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	understood	docs/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
+usr/gfx/KONA/bin/ireeprom	board-tools	board-tool	executable	n32	150304	e0fb1bee4b726f5f		15	dynsym	0	0	named-only	docs/architecture.md#4-display	4. Display
+usr/gfx/KONA/bin/kpm	board-tools	board-tool	executable	n32	1388788	24cc137c5ae25c92		426	dynsym	14	0	understood	docs/data-files.md#installed-tools-scripts-and-configuration	Installed tools, scripts and configuration
 usr/gfx/KONA/bin/postmortem	board-tools	board-tool	data	-	1545	54fadf46ee62a100		0		0	0	understood	docs/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/arch/GENERIC/Xsgi	x-shared	shared-x-server	executable	n32	3120928	45a61c37ce61cf80		2936	dynsym	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
 usr/gfx/arch/IGLOO/libgl.so	shared-libraries	shared-library	shared-object	o32	1747724	f3beaf381b734f1d		3811	dynsym+mdebug	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
