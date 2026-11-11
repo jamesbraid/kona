@@ -57,6 +57,15 @@ from the board offset 0x800238 through `gfx_pio_read_32`, then with `~0x20`. The
 | 0x400 | PIO overflow, resetting pipe | 13 | established (0x180-0x184, 0x268-0x288) |
 | 0x800 | IDMA overflow, resetting pipe | 14 | established (0x188-0x18c, 0x294-0x2b0) |
 
+## Board error report (kona_report_errs)
+
+In `kona_edtinit_hip2.o`, `kona_report_errs` reads one status word at board base + 0x6c and
+tests its bits in order. Bit k is tested by a `sll` by 31-k and a `bltz` on the result (bit 0 by
+`andi`). Each set bit logs one level 4 message, so bits 0 to 30 (except bit 24) have a message.
+The bit-to-message map is in the reads file. Bit 24 has no shift and no test in the routine. Its
+message, "Graphics Double Word Credit Underflow", sits behind a second test of bit 22 that cannot
+succeed, so the message cannot be printed as the code stands.
+
 ## Hi-water and low-water routines (kona_flow.o)
 
 `kona_hiwater_timeout` prints tag 2102 while the FIFO level is still above the threshold at
@@ -74,7 +83,7 @@ taken from). The text names `kona_lowater_intr` while the code is in `kona_hiwat
 | Sites whose format string was traced | 141 |
 | Sites with no traced format string | 0 |
 | Board-facing sites (sorted first) | 88 |
-| Sites read by hand (grade read) | 12 |
+| Sites read by hand (grade read) | 49 |
 | Calls to cmn_err | 89 |
 | Calls to cmn_err_tag | 27 |
 | Calls to printf | 1 |
