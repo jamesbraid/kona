@@ -207,6 +207,8 @@ Two corrections to existing rows fall out of this work and are included below: t
 
 **Grade.** Filter shape: inferred (report and patent). Weights, rounding, bank mapping inside the 2-bank pipe: unknown.
 
+**Test.** Weights and rounding: make a two-slice non-mip volume with every texel 0 in slice 0 and 255 in slice 1 (one channel), and draw a quad whose r coordinate ramps across the slice gap over at least 2048 pixels. Count the plateaus on the red line: N distinct output codes between 0 and 255 means a weight of about log2(N) fraction bits, and the codes at the plateau edges show truncation against rounding. Repeat along s and t to compare the in-slice weights. Bank mapping: fill only the even slices (or levels) with a marked value and read back at integer coordinates of both parities; a swapped or merged pair shows as the marker in the wrong bank's lanes. The level blend of a mip volume is the same ramp across two levels.
+
 ### 7c. The r-aware LOD rule and the LOD scales for the single-level 0x17c record
 
 **Answer for the scales.** The 0x17c handler (FW 0x0c025e6c) reads two words (layout pair and physical sizes) and writes only two raster registers: 0x1000 (TM_MEMCONF) and 0x13d5 (TGTM_TEX_SIZE), plus the address pair. It writes none of TG_MAP_LEVEL (0x0c04), TG_LOD_SCALEST (0x0c05) or TG_LOD_SCALER (0x0c06), which the mip-mapped bind 0x17b does write (FW 0x0c025d40-0x0c025d78: word 1 to 0x0c05, word 1 >> 16 to 0x0c06, word 2 to 0x0c04). So a single-level volume is sampled with whatever the three registers held: the values of the previous bind that wrote them, or the reset value. The diagnostic restores 0 for all three (`tbuRegReset`, RM); the diagnostic's detail test writes 0x101010 to 0x0c05 (all three scales 16/16 = 1.0) and 0x10000 to 0x0c04 (minimum 0, maximum field 64, i.e. level 0) before each draw (TV tex2d_detail.tbus, 87 writes each). What the pipe does when the scale registers are zero is not shown. **Established** (the handler's writes); the effect of stale scales: inferred.
@@ -214,6 +216,8 @@ Two corrections to existing rows fall out of this work and are included below: t
 **Answer for the r-aware rule.** The existence of a separate r scale register (0x0c06, 8 bits, same 16 x 2^bias encoding as s and t, written only by the 3D mip bind) says the level of detail of a volume fetch includes the r derivative scaled by it. P-3 gives the form: the level of detail is the maximum of the six absolute differences over a pixel step in x and in y of S, T and U (after the per-axis scales). Which of the six or how they are combined, and the arithmetic widths, are **unknown**; this patent predates the shipped pipe.
 
 **Grade.** Register set and handler writes: established. LOD form: inferred (patent). Everything numeric: unknown.
+
+**Test (LOD combination).** Bind a mip-mapped volume whose levels hold distinct constants and draw a minified quad three times with the same scale registers: once with only the s derivative nonzero, once with only t, once with only r (a view along the volume's third axis). Which level constant shows up for each, and then for two derivatives nonzero at once, tells whether the rule is a maximum or a sum and which of the six pixel-step differences count. Repeat with the r scale (0x0c06) at 16 and 32 for the r-only view: if the selected level moves by one, the r scale enters the rule as the s and t scales do.
 
 **Proposed rows** (replace the 0x17c row of 7.13 and the 3D filter text; new row for 7.14):
 

@@ -16,7 +16,7 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 6. Reads XG window+0x04 and stores its bits 28-31 at `P+2196`; reads XG window+0x64, takes bits 3-5 (default 8 when zero) and stores them shifted left by 15 at `P+2312`.
 7. Writes 0x0b00 to `HH_VC_ADDRESS` again, reads `HH_VC_DATA`, and uses bits 0-1 of the first value read to pick one of several board-name comparisons (`strncmp` against a name string, then `kona_extract_nic_info`, `kona_init_board_mapping`, `kona_inventory_board`).
 
-**Unknown:** what the video-controller indirect register (`HH_VC_ADDRESS` 0x8800 and 0x0b00) holds, and what the values chosen by bits 0-1 mean.
+**Unknown:** what the video-controller indirect register (`HH_VC_ADDRESS` 0x8800 and 0x0b00) holds, and what the values chosen by bits 0-1 mean. *Test that would settle it:* a trace of the two attach-time reads on a live pipe of each product (IR2, IR3, IR4), or the frame-manager chip's decode table; the required values per product are in [findings/ir2e-ir3-products.md](findings/ir2e-ir3-products.md) (Q5). The shipped binaries do not answer it: the kernel only consumes the bits.
 
 ## Reset, `kona_reset_adaptor`
 
@@ -76,7 +76,7 @@ Each register is the low 32-bit half of a 64-bit slot at 8n (offset 8n + 4); the
 
 **Inferred:** the path through `kona_flow_await_returned_credits` is a recovery used when a pipe stops returning credits while an extra flag (`P+2172`, cleared by `KONAinitialize`) is set. What `P+2172` and bit 2 of the word at `P+72`+4 mean is **unknown**.
 
-**What the pulse clears, from the driver.** *Established* (kernel): every kernel pulse is 1 then 0, so it never sets the start bit (bit 1, `ARM_START` in kpm's table) and leaves the register at 0. What the kernel then rewrites tells which state it does not assume survives: the interrupt enable (`HH_INTR_ENABLE` = 0x100, `KONAinitialize`), the global interrupt enable (`HH_INTR_INFO` bit 15), the map RAM (`kona_mapram_init`), the flow-control state (`gfx_flow_reset`, then `kona_flow_init`, which writes `HH_GFIFO_HI` = 0x700), the window register at 0x7c. The recovery path in `kona_flow_await_returned_credits` does the same re-attachment. It does not rewrite the DMA registers, `HH_GFIFO_LO` or any ARM register.
+**What the pulse clears, from the driver.** *Inferred:* the pulse returns the host-interface registers the driver rewrites to their reset state (interrupt enable, global enable, credit threshold) and empties the map RAM's valid state, from the rewriting. A reset with the start bit (bit 1, `ARM_START` in kpm's table) and leaves the ARM: **inferred** from `init_graphics` in `kona_tport.o` (kernel-functions.md), which writes 3 then 2 to start a pipe that does not answer.
 
 *Inferred:* the pulse returns the host-interface registers the driver rewrites to their reset state (interrupt enable, global enable, credit threshold) and empties the map RAM's valid state, from the rewriting. A reset with the start bit set restarts the ARM: **inferred** from `init_graphics` in `kona_tport.o` (kernel-functions.md), which writes 3 then 2 to start a pipe that does not answer.
 

@@ -196,7 +196,7 @@ The bus numbering is not the host offset divided by 8 (`HH_ODMA_PNUM` is at host
 | 0x80b-0x80d | `PG_STIPPLE_1`-`_3` (start-up values 0x55, 0x55, 0xff) |
 | 0x1c11, 0x1c13, 0x1c15 | `IMP_USER_COLOR_1`, `IMP_CLEAR_COLOR_1`, `IMP_WMASK_BIT_1` |
 
-The string pool is not referenced through absolute pointers in the file, so the index binding rests on order and gap counts, not on a table entry. The field layouts of the suffixed registers are **unknown**.
+The string pool is not referenced through absolute pointers in the file, so the index binding rests on order and gap counts, not on a table entry. The field layouts of the suffixed registers are **unknown**. *Test that would settle it:* the stored diagnostic vector files pair register writes with masked read-compares; the bits a compare keeps for each suffixed register give its live width, and a write of a marked pattern followed by a read-compare gives the field boundaries. The index binding is settled by any register that a vector write addresses by number and a diagnostic message names in the same routine; one such pair confirms the order and gap counts at that point in the pool, and a pair on each side of every gap confirms the gap.
 
 ## The 89-word register shadow
 
