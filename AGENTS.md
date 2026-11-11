@@ -137,16 +137,20 @@ shows as the driver's expectation, not as proof of hardware behaviour.
 Write findings in your own words. Never paste vendor source, HDL or
 proprietary binaries into the repository.
 
-Findings taken from the linked IRIX source tree are committed like any
-other finding: restated in your own words and cited by path, as in
-`<source path>` or `<source path>`, with the release
-(a release). Each chip header lists the source paths it drew on in its
-opening comment. Never copy code, comments, macro bodies or file layout. Where
-a 6.5.30 binary confirms the same fact, cite both.
+Source trees are hints only. The linked IRIX source tree may suggest where to
+look in a binary or a published document, but a hint is never evidence. Do not
+cite it by path, release or file name, and do not compare a routine with it in
+committed text. Every fact must be confirmed at an address in a shipped 6.5.30
+binary or in a published document or capture; otherwise it is graded inferred
+or unknown. No source text, comments, macro bodies, file layout, source paths or
+internal identifiers from the source tree go into the repository. Symbol names
+in a shipped binary's own symbol table or debug information, and names in
+published headers and manuals, are fine.
 
-Before you call a fact unknown, search the linked IRIX source tree for the
-device, its diagnostics and its PROM code, and list that search among the
-routes tried. A question is not exhausted until the source has been read.
+Before you call a fact unknown, search the shipped binaries and the published
+documents and captures for the device, its diagnostics and its PROM code, and
+list those routes among the routes tried. Searches of the source tree may
+suggest where to look; they are not among the routes tried.
 
 Label honestly. Use "established" only for what you read in full: the whole
 function body, table or source passage. A reading built from call lists,
