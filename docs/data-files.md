@@ -21,6 +21,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 
 | Chip or memory | Files |
 |---|---|
+
 | Group | Role | Files |
 |---|---|---|
 | gold CRC files | the CRC logs `irsaudit` compares against with `-goldfile`; each is named for the hardware generation it was taken for |  |

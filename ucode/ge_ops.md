@@ -67,7 +67,7 @@ Each row is one operation word in `ge_inst.s`, its operands and the word `irsaud
 
 | Line | Unit, code (M) | Operands | Expected | Reading |
 |---|---|---|---|---|
-| 1096, 1122, 1143 | 1, 0x40 (0x6c0) | 2 and 2, then +2, +2 | 4, 6, 8 (index 48-50) | integer add, **established** (2 | 2 and 2 ^ 2 would give 2 and 0) |
+| 1096, 1122, 1143 | 1, 0x40 (0x6c0) | 2 and 2, then +2, +2 | 4, 6, 8 (index 48-50) | integer add, **established** (2 \| 2 and 2 ^ 2 would give 2 and 0) |
 | 3601 | 1, 0x40 (0x6c0) | A = 0xaaaaaaaa, B = 0x55555555 | 0xffffffff (136) | consistent with add; whether the add saturates at the signed limit is **unknown**, since no operand in the test overflows it |
 | 3617 | 1, 0x50 (0x6d0) | same | 0x00000000 (137) | AND or NOR; AND **inferred** ([below](#settling-the-ties)) |
 | 3632 | 1, 0x58 (0x6d8), one operand | A = 0xaaaaaaaa | 0x55555555 (138) | bitwise NOT, **established** for one operand |

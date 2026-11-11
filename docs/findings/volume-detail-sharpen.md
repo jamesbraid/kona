@@ -22,7 +22,7 @@ Sources used (names as the command table uses them where it has one):
 
 | # | Question | Answer | Grade |
 |---|---|---|---|
-| 1 | Detail (s, t) from base (s, t) and level; widths and rounding | Detail texel coordinate = base level-0 texel coordinate times 2^|L|, wrapped to the detail size, sampled bilinearly. Widths and rounding unknown | derivation inferred (specification, patent, register inputs); widths and rounding unknown |
+| 1 | Detail (s, t) from base (s, t) and level; widths and rounding | Detail texel coordinate = base level-0 texel coordinate times 2^\|L\|, wrapped to the detail size, sampled bilinearly. Widths and rounding unknown | derivation inferred (specification, patent, register inputs); widths and rounding unknown |
 | 2 | Mode-1 volume placement; single-level bank bit; mip parity bit | Slice r goes to pair member r & 1 (no per-slice bank register exists); the single-level bank bit is an allocation flag the diagnostic writes as 0; the mip parity bit is the absolute level parity, and equals the XOR form because the client always clears bind bit 28 for volumes | member rule inferred; bank-bit meaning inferred; mip parity established; address inside a member unknown |
 | 3 | Two decodes of the curve table | They are one format. The table holds 64 ten-bit codes; mantissa is bits 9:2, exponent bits 1:0, value = m x 2^e / 128. The quantiser row is how the codes are made | established |
 | 4 | Sharpen arithmetic | `out = A + K (B - A)`, K = -F, A the base-level linear sample, B the next coarser. No hardware-side evidence of widths or rounding; no sharpen vector exists | formula inferred; widths unknown |
