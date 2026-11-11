@@ -2,9 +2,111 @@
 
 Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help and its message strings. `irsaudit` is the InfiniteReality diagnostic: it runs one named test or a board's whole set against a pipe, reports PASS or FAIL with the lines "CODE", "INFO", "TRCE", "TIME", "META" and "RSLT", and can write and compare CRC logs. This page groups its functions by role. **Inferred** throughout, from the names, the option help text and the neighbouring documents; a name is listed under the group its prefix and its callers point to, and only the functions the other documents cite ([hip.md](hip.md), [ge.md](ge.md), [rm.md](rm.md), [dg.md](dg.md), [ucode/ge_ops.md](../ucode/ge_ops.md)) were read in detail. Where a test's expected values were read, they are in those documents.
 
+- `TEST_gvo_vocspreg` (`usr/diags/IR/bin/irsaudit` 0x100a9a08): **Established.** The 1112-byte test requires the GVO board and option state at +0xdbc and +0xfb4, builds a special-register record through the chain helper at 0x100a9a94, and seeds its expected values at offsets 0 and 8 (stores at 0x100a9b00 and 0x100a9b1c). It invokes the checker at 0x100a9b24, replaces the expected value at 0x100a9bd4 on the alternate result, and reports the comparison and disabled-board paths through the callbacks at 0x100a9c00 and 0x100a9c34.
+
+- `TEST_dvp_vocreg` (`usr/diags/IR/bin/irsaudit` 0x100a6a74): **Established.** This 1064-byte DVP register test checks +0xdbc and +0xfb4, initializes the expected record with the observed words at offsets 0x10, 0x14 and 0x18 (stores at 0x100a6b88, 0x100a6b6c and 0x100a6b84), and runs the register checker at 0x100a6b90. It increments the local failure count after a mismatch and emits the missing-board and mismatch messages before returning the accumulated status.
+
+- `enable_voc_crc` (`usr/diags/IR/bin/irsaudit` 0x101359e0): **Established.** The 1060-byte routine stores the caller's enable value in the VOC state at offset 0xa0 (`sw` at 0x10135a74), selects the board's VOC register record through the indirect call at 0x10135ac4, and saves the returned state pointer back at +0xa0 (`sw` at 0x10135ae8). It then programs the CRC control sequence through the helpers at 0x10135afc, 0x10135b7c, 0x10135bc0 and 0x10135c2c, reporting the final status through the diagnostic callback.
+
+- `TEST_tvo_vocreg` (`usr/diags/IR/bin/irsaudit` 0x100a7298): **Established.** The 1020-byte TVO register test checks the board, enable count and option state, initializes a three-word expected record at offsets 0x10, 0x14 and 0x18 (stores at 0x100a737c, 0x100a7374 and 0x100a7388), and invokes the checker at 0x100a7390. It records the returned status at the record base (`sw` at 0x100a7408), compares the observed count at +0xfb8, and routes absent, disabled and mismatch cases through their distinct diagnostic callbacks.
+
+- `TEST_dvp_vocspreg` (`usr/diags/IR/bin/irsaudit` 0x100a9e60): **Established.** The 1000-byte DVP special-register test requires the same board and option words, initializes a two-word expectation at offsets 0 and 8 (stores at 0x100a9f18 and 0x100a9f50), and calls the special-register checker at 0x100a9f58. It records the checker result at the record base (`sw` at 0x100a9fd8), reports the observed value through the diagnostic callback at 0x100aa048, and returns the recorded failure count.
+
+- `TEST_vocreg` (`usr/diags/IR/bin/irsaudit` 0x100a61f8): **Established.** The 988-byte base VOC register test initializes the result word to zero at 0x100a62ec, fills expected values at offsets 0x10, 0x14 and 0x18 (stores at 0x100a6338, 0x100a6330 and 0x100a6344), and invokes the common checker at 0x100a634c. It records the observed status at the result base (`sw` at 0x100a63c4), compares the board's value at +0xe48, and sends the mismatch and disabled paths to the diagnostic callbacks.
+
+- `vdGetVocCrcs` (`usr/diags/IR/bin/irsaudit` 0x10136618): **Established.** The 988-byte routine saves the current VOC state pointer in the scratch record at +0xa0 (`sw` at 0x10136680 and 0x101366f4), selects the board record through the indirect call at 0x101366d0, and reads the requested CRC words through the helper calls at 0x10136788, 0x101367a8 and 0x10136800. It returns the generated values through the caller's output record after restoring the saved registers.
+
+- `TEST_pab2vocreg` (`usr/diags/IR/bin/irsaudit` 0x10080998): **Established.** This 980-byte PAB2 VOC test selects one of the two board workspaces at +0xf84 or +0xf88, clears its result word at 0x10080a88, fills expected values at offsets 0x10, 0x14 and 0x18 (stores at 0x10080ab0, 0x10080aac and 0x10080aa8), and runs the checker at 0x10080ab8. It records the returned value at the workspace base (`sw` at 0x10080b28), checks the board count at +0xfb8, and reports the selected workspace's failure state.
+
+- `TEST_tvo_vocspreg` (`usr/diags/IR/bin/irsaudit` 0x100aa5fc): **Established.** The 948-byte TVO special-register test initializes the result record at offsets 0 and 8 (stores at 0x100aa698 and 0x100aa6d0), calls the special-register checker at 0x100aa6d8, and stores its result back at the record base (0x100aa748). It compares the option count at +0xfb8 and reports absent, disabled and mismatching states through the diagnostic callbacks before returning.
+
+- `vdInitVocCrcs` (`usr/diags/IR/bin/irsaudit` 0x10136264): **Established.** The 948-byte initializer stores the selected VOC state in the scratch record at +0xa0 (`sw` at 0x101362c4 and 0x10136338), selects the board's CRC record through the indirect call at 0x10136314, and initializes it with the helpers at 0x1013634c, 0x101363cc and 0x101363ec. It then clears and seeds the CRC fields through the callbacks at 0x1013641c, 0x10136448 and 0x10136460.
+
+- `TEST_pab2vocspreg` (`usr/diags/IR/bin/irsaudit` 0x100815ac): **Established.** The 924-byte PAB2 special-register test selects the board workspace, clears its result word at 0x1008168c, initializes the expectation at offsets 0 and 8 (stores at 0x100816a4 and 0x100816ac), and calls the checker at 0x100816b4. It records the returned result at the workspace base (`sw` at 0x10081724), checks the board count at +0xfb8, and reports comparison failures through the final diagnostic path.
+
+- `TEST_vocspreg` (`usr/diags/IR/bin/irsaudit` 0x100a9680): **Established.** The 904-byte base VOC special-register test initializes its result record at offsets 0 and 8 (stores at 0x100a9770 and 0x100a97b0), invokes the checker at 0x100a97b8, and records the returned status at the record base (`sw` at 0x100a9828). It compares the expected board value at +0xe48 and reports the mismatch and disabled paths before returning.
+
+- `unscramble_ge_boardId` (`usr/diags/IR/bin/irsaudit` 0x1008cbd8): **Established.** The 856-byte routine reads the encoded GE board word at record offset +0x68 (`lw` at 0x1008cbdc), passes successive bit fields through the decode helper at 0x1008cc68 and 0x1008ccac, and writes the decoded result to +0x74 (`sw` at 0x1008cdc0). It preserves the shared diagnostic word at the pointer loaded by 0x1008cd4c, reports the decoded fields, and returns through the saved-register epilogue.
+
+- `vdLoadVocIwsc` (`usr/diags/IR/bin/irsaudit` 0x10136bc4): **Established.** The 840-byte loader reads the requested format fields at offsets 0x10, 0x14, 0x18, 0x20, 0x24 and 0x28, writes them into the VOC state record at offsets 0xc, 0x10 and 0x14 (stores at 0x10136d38, 0x10136d8c, 0x10136dc8 and 0x10136e50), and applies each derived timing value through `vdWaitForVocPllInterface` at 0x10136d2c, 0x10136dbc and 0x10136e48. A missing or invalid format follows the diagnostic error path before returning.
+
+- `unscramble_dg_boardId` (`usr/diags/IR/bin/irsaudit` 0x1008cf30): **Established.** The 828-byte routine reads the encoded DG board word at +0xf78 (`lw` at 0x1008cf38), decodes its fields through the helpers at 0x1008cfcc and 0x1008d008, and stores the decoded board value at +0xe2c (`sw` at 0x1008d0cc). It preserves the shared diagnostic word through the load/store at 0x1008d058 and 0x1008d070, reports the decoded fields, and returns after restoring the saved registers.
+
+- `aaspoke` (`usr/diags/IR/bin/irsaudit` 0x1010274c): **Established.** The 2956-byte body initializes the diagnostic state through the call at 0x10102784, sends raster-bus words through the register writer at 0x101027fc, 0x1010287c, 0x101028ac, 0x101028d8, 0x10102910, 0x10102964, 0x101029b8, 0x101029e0, 0x10102a0c, 0x10102a34 and 0x10102b04, and updates the 64-bit shadow fields at offsets 0x4030, 0x4038, 0x4040, -0x178, -0x1f0, -0x1e8 and -0x1ff0 (stores at 0x1010289c, 0x101028c8, 0x101028fc, 0x1010292c, 0x10102950, 0x10102980, 0x101029a4, 0x101029c8, 0x101029f8, 0x10102a20 and 0x10102a64). It then emits the remaining command sequence and returns through the saved-register epilogue.
+
+- `TEST_rmcrctex_comp` (`usr/diags/IR/bin/irsaudit` 0x100d0948): **Established.** The 1692-byte test gates on the selected raster state, clears the diagnostic work record, waits for host FIFO offset 0x208 through the reads at 0x100d0ab0 and 0x100d0ae0, and submits ioctl 0x2775 with count one at 0x100d0b28. It runs the texture CRC comparison chain through the calls at 0x100d0c00 and 0x100d0c34, advances the per-test records by four bytes at 0x100d0c9c-0x100d0ca8, and reports each failure before restoring the ioctl state at 0x100d0c7c.
+
+- `gedStressTd` (`usr/diags/IR/bin/irsaudit` 0x10074ba4): **Established.** The 1644-byte stress test fills a table beginning at the record selected by the load at 0x10074c3c with incrementing words (stores at 0x10074c20 and 0x10074d5c), emits command words 1, 9, 0x282 and 0x283 through calls at 0x10074c00-0x10074c74, and checks the returned values with the helper at 0x1013f830. It writes the six-word test result at offsets 0, 4, 8, 0xc, 0x10 and 0x14 (stores at 0x10074f1c, 0x10074f30, 0x10074f40, 0x10074f4c, 0x10074f60 and 0x10074f68), then submits the result with tokens 1, 9, 0x240, 0x241 and 6 at 0x10074f6c-0x10074fbc.
+
+- `TEST_texobjdetail` (`usr/diags/IR/bin/irsaudit` 0x1012d828): **Established.** This 1612-byte test accepts texture-detail modes one, two and four, waits for FIFO offset 0x208 at 0x1012d97c and 0x1012d9a8, and submits ioctl 0x2775 at 0x1012db0c. The normal path calls the detail checker at 0x1012db54, records a zero in the texture state at offset 0x269c (`sw` at 0x1012dadc), and reports a failed checker through the diagnostic result path at 0x1012db80; unsupported modes use the error path at 0x1012d898.
+
+- `TEST_rmcrctri_comp` (`usr/diags/IR/bin/irsaudit` 0x100cf718): **Established.** The 1564-byte test gates on raster state, waits for host FIFO offset 0x208 at 0x100cf878 and 0x100cf8a4, and submits ioctl 0x2775 at 0x100cf8f0. It builds the triangle CRC descriptors through calls at 0x100cf95c, 0x100cf9a8, 0x100cfa70, 0x100cfab4 and 0x100cfb58, stores the active descriptor pointer at workspace offset 0x18bc (`sw` at 0x100cfa78), and reports a nonzero comparison before restoring the pipe state.
+
+- `vdLoadVocClockParams` (`usr/diags/IR/bin/irsaudit` 0x10134320): **Established.** The 1512-byte routine converts the requested clock values, loads the resulting records into the option-video state at offsets 0xd8, 0x138, 0x168, 0x198 and 0x1c8 (calls at 0x10134404, 0x101344f0, 0x1013457c, 0x10134604 and 0x101346b8), and iterates the selected parameter list through `vdWaitForVocPllInterface` at 0x101347dc and 0x10134830. A zero parameter count skips the loop; the final path reports the request status through the diagnostic callback at 0x101348ec.
+
+- `TEST_texdetail` (`usr/diags/IR/bin/irsaudit` 0x10125d54): **Established.** The 1508-byte test gates on texture mode, waits for FIFO offset 0x208 at 0x10125e94 and 0x10125ec0, then submits ioctl 0x2775 through the indirect call at 0x10125fd0. It clears the texture state word at offset 0x2608 (`sw` at 0x10125fa0), runs the detail check at 0x10126018, and reports the returned failure count through the result callback at 0x10126044; the cleanup branch restores the pipe state and returns the recorded status.
+
+- `TEST_rm_intbist` (`usr/diags/IR/bin/irsaudit` 0x100830b0): **Established.** The 1304-byte raster-manager test creates and initializes the chain descriptor through calls at 0x100830ec, 0x10083154 and 0x1008316c, records the selected chip result through the helper at 0x10083234, and runs the internal BIST twice through `jt_execute_internal_bists` calls at 0x100834d4 and 0x1008351c when the first result is nonzero. It accumulates failures in the word loaded from the test record, reports them at 0x10083330 and 0x10083584, and returns through the final diagnostic-result call.
+
+- `gedSequencer` (`usr/diags/IR/bin/irsaudit` 0x10075210): **Established.** The 1280-byte routine initializes a GE diagnostic descriptor, emits the setup sequence 1, 9, 0x282, 0x283 and zero through calls at 0x100752b0-0x100752e0, and writes the generated six-word record at offsets 0, 4, 8, 0xc and 0x10 (stores at 0x10075420-0x10075438). It then emits 1, 9, 0x240, 0x241, zero and 5 at 0x10075434-0x10075478, loads the GE test selections 0x284-0x28b and 0x29d/0x2a5 at 0x100754c4-0x10075564, and finishes through the result callback.
+
+- `TEST_texfmt` (`usr/diags/IR/bin/irsaudit` 0x10124060): **Established.** The 1276-byte test accepts texture modes one, two and four, waits for FIFO offset 0x208 at 0x101241b4 and 0x101241e0, and submits ioctl 0x2775 at 0x10124228. It runs the four format checks at 0x1012427c, 0x101242cc, 0x1012431c and 0x1012436c, increments the failure count after each nonzero result, and restores the ioctl state through the indirect call at 0x101243d8 before returning the accumulated status.
+
+- `TEST_dgopt_intbist` (`usr/diags/IR/bin/irsaudit` 0x10082be8): **Established.** The 1192-byte option-display-generator test selects a chain workspace from the board state at +0xfb4, marks the shared status word at offset zero (`sw` at 0x10082d90), and initializes the selected chain through calls at 0x10082ca4, 0x10082cd0 and 0x10082cf0. It allocates the BIST result buffer with the helper at 0x10082e40, runs the test through the call at 0x10082dcc, accumulates its return value at 0x10082dec, and reports a nonzero final status through the diagnostic callback before restoring the saved registers.
+
+- `TEST_gvo_vocreg` (`usr/diags/IR/bin/irsaudit` 0x100a65d4): **Established.** The 1184-byte graphics-video-option register test requires the option state at +0xdbc and +0xfb4, selects the VOC chain through the call at 0x100a665c, and initializes an expected record whose status starts at 0xc6 (`sw` at 0x100a66cc). It checks the record with 0x100a6704, increments the status at 0x100a6778 for a mismatch, reloads the special-register expectation through 0x100a67a4, and reports missing board, disabled channel or failed comparison through the separate callbacks at 0x100a6928, 0x100a6998 and 0x100a6a00.
+
+- `TEST_rmcrctri1` (`usr/diags/IR/bin/irsaudit` 0x100d00d8): **Established.** The 1172-byte triangle CRC test waits for host FIFO offset 0x208 at 0x100d021c and 0x100d024c, submits ioctl 0x2775 at 0x100d0294, and runs the component tests through `crc_pgtest` at 0x100d02c0, `crc_pgtest1` at 0x100d0314, the triangle helper at 0x100d0348 and the comparison helper at 0x100d0380. Each nonzero result increments the local failure count, which is reported before the pipe state is restored; unsupported mode and ioctl failure return through their diagnostic paths.
+
 **Established** (option help). The test groups on the command line are `-ge`, `-rm`, `-dg`, `-pab` (second pixel-assembly board), `-gvo` (graphics video option), `-dvp`, `-ddo` and `-ddo2` (digital display options), `-dplex` and `-ddo3` (the multi-pipe display option), `-tvo` (TV output option) and `-conn` (connectivity); `PIPE=n` selects the pipe and `-gemask` the geometry engines. The settings `FORCE_TEX_MEM`, `TEX_MEM_STEP_SIZE`, `DDC_CHANNEL`, `XMAP_CLK`, `XG_REQ`, `SET_HUB_WAR`, `CLRCOLOR`, `DGOFBMODE`, `FORCE_DPLEX` and `OPTVIDEO_MODE` tune individual tests.
 
 ## Function readings from the shipped diagnostic
+
+- `tbuGenPattern` (`usr/diags/IR/bin/irsaudit` 0x1014ffe8): **Established.**
+  The 8536-byte routine initializes the caller's pattern record, allocates a
+  16-byte-per-element buffer with the product of its two dimensions at
+  0x10150054, and records the allocation and derived power-of-two dimensions
+  at offsets 0x68, 0x6c, 0x70, 0x74, 0x78, 0x7c, 0x80 and 0x8c (`sw` at 0x1015005c, 0x10150060, 0x10150064, 0x101500b0, 0x101500c4, 0x101500d8, 0x101500e0, 0x101500f8, 0x10150104 and 0x10150110). A pattern selector below 0x23 dispatches through the table
+  loaded at 0x1015011c; the fallback calls the pattern helper at 0x10150154.
+  Selected handlers fill records with four-word samples (the stores at
+  0x1015020c, 0x10150218, 0x10150220 and 0x10150228), then return through
+  the common epilogue at 0x101501a4. (`usr/diags/IR/bin/irsaudit`, 6.5.30m.)
+
+- `probe_rm7_rm8_chain` (`usr/diags/IR/bin/irsaudit` 0x10050834): **Established.**
+  Its 13796-byte body allocates a 0x370-byte chain record at 0x10050878 and
+  returns 1 after allocation or initial chain validation fails (the exits at
+  0x100508bc and 0x10050968). It builds the scan descriptor on the stack
+  through the indirect call at 0x10050920, checks it at 0x10050934, reads the
+  board identifier through 0x10050a18, and dispatches identifiers 0x69, 0x109,
+  0x99, 0xb9 and 0x49 at 0x10050a3c-0x10050a68. For a recognized raster-board
+  chain it records state at offsets 0x444 and 0x18c and increments the board
+  count at +0x16c (`sw` at 0x10050b7c, 0x10050b88 and 0x10050b94), then walks
+  chip/register descriptors through the repeated helpers at 0x10046d74,
+  0x10059ecc, 0x1004bf24, 0x101647c4, 0x10166e60 and 0x10166a70.
+  (`usr/diags/IR/bin/irsaudit`, 6.5.30m.)
+
+- `tbuGenPattern3D` (`usr/diags/IR/bin/irsaudit` 0x10152140): **Established.**
+  The 5208-byte routine marks the caller's record as three-dimensional with
+  `sw` at 0x101521b4 writes 2, computes the element count from three dimensions,
+  allocates a 16-byte-per-element buffer at 0x101521c0, and saves it at +0x8c
+  (`sw` at 0x101521c8). It derives log2 dimensions and masks into +0x68,
+  +0x6c, +0x70, +0x74, +0x78 and +0x7c (`sw` at 0x10152214, 0x1015223c, 0x10152264, 0x10152284, 0x10152290, 0x1015229c). Selectors below 0x1c
+  use the table indexed at 0x101522a8; other selectors use the fallback
+  helper called at 0x101522e0. The normal path returns at 0x10152330.
+  (`usr/diags/IR/bin/irsaudit`, 6.5.30m.)
+
+- `vdLoadManRequest` (`usr/diags/IR/bin/irsaudit` 0x10136f0c): **Established.**
+  Its 3860-byte body validates the current video request, initializes request
+  state, and loads the selected format data through `vdLoadVocIwsc` at
+  0x10137088. It packs fields from the request record at +0x34, +0x3c, +0x40,
+  +0x44, +0x48, +0x4c and +0x6c into a display-request word, masking and
+  shifting them at 0x101379cc-0x10137a68, writes the companion word at +4 of
+  the request buffer (`sw` at 0x10137a70), and submits the assembled value
+  through the request helper at 0x10137b38. It stores the result at +0x110 of
+  the state record (`sw` at 0x10137b54) and returns it at 0x10137b5c. Special
+  request codes checked at 0x10137a7c-0x10137a9c may set bit 0x400 in display
+  state and save it at +0x23c (`sw` at 0x10137b98).
+  (`usr/diags/IR/bin/irsaudit`, 6.5.30m.)
 
 - `crc_pgtest` (`usr/diags/IR/bin/irsaudit`): **Established.** The complete body starts at 0x100d47d4 and occupies 7684 bytes. It initializes the selected raster-manager test context, then sends the test's control words through the register writer: token 0x1c00 is written at 0x100d48cc and 0x100d4970, token 0x1c03 at 0x100d4a8c, 0x100d4ab8 and 0x100d4ae8, and token 0x1c0b at 0x100d4b54. The setup masks and sets bits in the selected context before each write, and the later branches call the pixel/texture test helpers and return their recorded diagnostic result; an unsupported or failed setup follows the existing error-reporting path.
 
@@ -618,6 +720,274 @@ symbol ranges in the same binary:
   1101, stores the first result through the caller's pointer, and reports the
   two values before returning the final scan status. (`irsaudit`, extraction at
   0x1001c834 and field reads at 0x1001c854 and 0x1001c89c.)
+
+- `TEST_rm_chains` (`usr/diags/IR/bin/irsaudit` 0x100dffb8): **Established.**
+  This 10180-byte test constructs the raster-manager scan-test context, walks
+  the selected chain descriptors, and routes each result through the diagnostic
+  reporting record. The initial context setup calls the chain setup helper at
+  0x100e0238 and the first chain operation at 0x100e0374; later iterations
+  repeat the operation through calls at 0x100e04fc, 0x100e0518 and
+  0x100e0544. A failed descriptor or scan operation takes the test's failure
+  path, while the completed walk returns the accumulated diagnostic status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100e0238, 0x100e0374, 0x100e04fc.)
+
+- `crc_imptest1` (`usr/diags/IR/bin/irsaudit` 0x100d8b78): **Established.**
+  The 7700-byte body initializes an IMP CRC test record, emits the raster-bus
+  setup and drawing sequence, and compares the collected result before leaving
+  through the diagnostic result path. Its setup begins with the helper calls at
+  0x100d8bcc and 0x100d8be0; the test starts its first programmed sequence with
+  the call at 0x100d8e4c and performs the later comparison work through calls at
+  0x100d921c and 0x100d9250. Error branches preserve the reported mismatch and
+  return the test status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100d8bcc, 0x100d8e4c, 0x100d921c.)
+
+- `crc_pgtest` (`usr/diags/IR/bin/irsaudit` 0x100d47d4): **Established.**
+  This 7684-byte routine prepares the pixel-generator CRC context and sends its
+  register sequence through the local FIFO writer. It issues the first control
+  operation at 0x100d48cc, repeats the setup at 0x100d4970, and sends the
+  0x1c03 and 0x1c0b test operations at 0x100d4a8c and 0x100d4b54. The later
+  branches invoke the drawing and CRC comparison helpers, then return the
+  recorded diagnostic result; setup failure reports an error before that return.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100d48cc, 0x100d4970, 0x100d4a8c,
+  0x100d4b54.)
+
+- `jt_execute_internal_bists` (`usr/diags/IR/bin/irsaudit` 0x10016b9c): **Established.**
+  Its 6440-byte body selects each requested internal scan self-test, loads the
+  test data, starts execution, and collects the result and error count. The
+  common setup calls occur at 0x10016bcc and 0x10016c1c; the per-chip execution
+  path calls the scan operation at 0x10016de8 and the result reader at
+  0x10016e60. It returns the accumulated scan status after reporting failures
+  for a rejected selection or unsuccessful BIST.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x10016bcc, 0x10016de8, 0x10016e60.)
+
+- `test_prims` (`usr/diags/IR/bin/irsaudit` 0x101000d4): **Established.**
+  The 5824-byte drawing test initializes its raster-bus state, builds primitive
+  data from the test parameters, submits the primitive sequence, and waits for
+  the resulting status. Initialization and test setup call the local helpers at
+  0x10100128, 0x10100148 and 0x1010016c; the first primitive submission is
+  reached through 0x1010027c and the later completion path through 0x10100354.
+  Invalid setup and timeout branches report the diagnostic failure and return
+  the test result.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x10100128, 0x1010016c, 0x1010027c,
+  0x10100354.)
+
+- `TEST_rm_chainlen` (`usr/diags/IR/bin/irsaudit` 0x100e277c): **Established.**
+  This 5412-byte test builds a scan descriptor for the raster-manager chain,
+  resets and measures it, then checks the measured length against the selected
+  test record. Descriptor setup uses calls at 0x100e27d0 and 0x100e27f4; the
+  chain operation and result path are reached at 0x100e291c, 0x100e2968 and
+  0x100e29e4. It reports a mismatch or scan error and returns the resulting
+  diagnostic status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100e27d0, 0x100e291c, 0x100e2968.)
+
+- `TEST_rm_chainlen_no_sysprobe` (`usr/diags/IR/bin/irsaudit` 0x100f06c4): **Established.**
+  The 4848-byte variant creates the raster-manager chain-length descriptor and
+  performs the reset, shift and length comparison without the system-probe
+  precheck. Its setup calls are at 0x100f0700 and 0x100f0724; the scan and
+  result stages use 0x100f0824, 0x100f08b0 and 0x100f090c. A failed chain
+  access or unexpected count is sent to the diagnostic failure path, and the
+  routine returns that path's status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100f0700, 0x100f0824, 0x100f090c.)
+
+- `TEST_rm_chainlen_1bit` (`usr/diags/IR/bin/irsaudit` 0x100ee3c0): **Established.**
+  Its 4728-byte body runs the raster-manager chain-length check with the
+  one-bit test configuration, then records the observed count and pass/fail
+  result. It prepares the chain through 0x100ee3f8 and 0x100ee474, enters the
+  scan sequence at 0x100ee614, and uses the result path at 0x100ee738 and
+  0x100ee77c. The final return carries the diagnostic status after mismatch
+  reporting.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100ee3f8, 0x100ee614, 0x100ee738.)
+
+- `TEST_rm_chainlen_imp8d_instr` (`usr/diags/IR/bin/irsaudit` 0x100f2a18): **Established.**
+  This 4564-byte test selects the IMP8D instruction scan register, executes its
+  chain-length transaction, and compares the returned count with the test
+  record. It sets up the selected chain at 0x100f2a64 and 0x100f2acc, performs
+  the scan at 0x100f2be4 and 0x100f2c60, and reaches the comparison/reporting
+  path at 0x100f2d14. Bad scan state and a count mismatch both return through
+  the diagnostic error handling.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100f2a64, 0x100f2be4, 0x100f2d14.)
+
+- `TEST_rm_chainlen_sample` (`usr/diags/IR/bin/irsaudit` 0x100e7008): **Established.**
+  The 4232-byte sample-register test initializes the raster-manager scan chain,
+  shifts the sample configuration, and validates the measured chain length.
+  The descriptor and reset sequence uses 0x100e7044 and 0x100e7064; the scan
+  operation begins at 0x100e71d4 and the result handling continues at
+  0x100e7214 and 0x100e724c. It returns the recorded pass or failure status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100e7044, 0x100e71d4, 0x100e7214.)
+
+- `TEST_rm_chainlen_crcdata` (`usr/diags/IR/bin/irsaudit` 0x100ea1a0): **Established.**
+  Its 4232-byte body tests the CRC-data scan register by setting up the chain,
+  shifting the register request, and checking the resulting length and status.
+  It enters setup at 0x100ea1dc and 0x100ea1fc, performs the scan at
+  0x100ea36c and 0x100ea3ac, and sends the result through 0x100ea40c. The
+  mismatch branch reports the failed CRC-data check before returning.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100ea1dc, 0x100ea36c, 0x100ea40c.)
+
+- `TEST_rm_chainlen_tcbistdata` (`usr/diags/IR/bin/irsaudit` 0x100eb228): **Established.**
+  This 4232-byte routine selects the TCBIST-data scan register, performs the
+  same reset-and-shift measurement sequence, and checks the returned chain
+  result. The setup calls are at 0x100eb264 and 0x100eb284, the scan begins at
+  0x100eb3f4, and the result path uses 0x100eb434 and 0x100eb494. It returns
+  the diagnostic status after reporting an access or count failure.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100eb264, 0x100eb3f4, 0x100eb434.)
+
+- `TEST_rm_chainlen_bistctrl` (`usr/diags/IR/bin/irsaudit` 0x100ed338): **Established.**
+  The 4232-byte BIST-control variant prepares its scan descriptor, shifts the
+  selected register and compares the observed chain length. It uses setup calls
+  at 0x100ed374 and 0x100ed394, starts the scan at 0x100ed504, and handles the
+  result through 0x100ed544 and 0x100ed5a4. Failure reporting precedes the
+  routine's final diagnostic return.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100ed374, 0x100ed504, 0x100ed544.)
+
+- `TEST_rm_chainlen_intmode` (`usr/diags/IR/bin/irsaudit` 0x100ef63c): **Established.**
+  This 4232-byte test selects the interrupt-mode scan register, carries out the
+  reset and chain-length transaction, and records the comparison result. Its
+  setup is reached through 0x100ef678 and 0x100ef698; the scan starts at
+  0x100ef808 and the result/reporting path uses 0x100ef848 and 0x100ef8a8.
+  An access error or unexpected count returns the diagnostic failure status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100ef678, 0x100ef808, 0x100ef848.)
+
+- `TEST_rm_chainlen_imp8d` (`usr/diags/IR/bin/irsaudit` 0x100f19b4): **Established.**
+  The 4196-byte IMP8D scan-register test builds its descriptor, performs the
+  reset-and-shift operation, and validates the chain result against the test
+  record. It prepares the transaction at 0x100f1a04 and 0x100f1a28, invokes the
+  scan path at 0x100f1b28 and 0x100f1b98, and reports the comparison through
+  0x100f1be8. The return value is the accumulated diagnostic status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100f1a04, 0x100f1b28, 0x100f1be8.)
+
+- `gedStressVtu` (`usr/diags/IR/bin/irsaudit` 0x10073b4c): **Established.**
+  The 4184-byte stress routine initializes a distributor VTU test, fills its
+  instruction and data inputs, activates the distributor, and checks the
+  resulting status. The setup sequence starts at 0x10073b88 and 0x10073bac,
+  while the repeated input operations use 0x10073bec, 0x10073bf8 and
+  0x10073c04. It reports a failed stress iteration and returns the accumulated
+  test result after the completion checks.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x10073b88, 0x10073bec, 0x10073c04.)
+
+- `crc_pgtest1` (`usr/diags/IR/bin/irsaudit` 0x100d65d8): **Established.**
+  This 3740-byte pixel-generator CRC test creates its test state, emits the
+  register and drawing sequence, and compares the collected CRC. It initializes
+  through 0x100d6634 and 0x100d6658, sends the first test operation at
+  0x100d669c, and uses the later collection path at 0x100d67a0 and
+  0x100d67e4. Mismatch reporting is followed by the routine's diagnostic
+  status return.
+  (`usr/diags/IR/bin/irsaudit`, `jalr` at 0x100d6634, `jal` at 0x100d669c,
+  0x100d67e4.)
+
+- `init_kona_hw_access` (`usr/diags/IR/bin/irsaudit` 0x10163938): **Established.**
+  Its 3304-byte body selects the pipe access mode, initializes the hardware
+  access record, and installs the read, write and reporting paths used by later
+  diagnostic tests. The mode setup calls occur at 0x10163974, 0x101639c0 and
+  0x10163a10; the record-building path continues through 0x10163aa0 and
+  0x10163acc. It returns the initialized access status, with invalid setup
+  routed to the diagnostic error path.
+  (`usr/diags/IR/bin/irsaudit`, `jalr` at 0x10163974, 0x101639c0, 0x10163aa0.)
+
+- `smallwrite` (`usr/diags/IR/bin/irsaudit` 0x100a2ff8): **Established.**
+  The 3252-byte helper formats a short raster-bus write from the caller's
+  address and data, emits the selected words, and waits for the write result.
+  It enters the write setup at 0x100a3064 and 0x100a307c, sends the transfer
+  through 0x100a30b4 and 0x100a30e0, and handles completion at 0x100a314c and
+  0x100a31d0. The returned value is the transfer or diagnostic status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100a3064, 0x100a30b4, 0x100a314c.)
+
+- `dgo_pixel_readback` (`usr/diags/IR/bin/irsaudit` 0x1011e958): **Established.**
+  This 2908-byte display-option test configures a frame-buffer readback,
+  requests the pixel data, and compares the returned words with the test
+  record. Display setup begins at 0x1011e994 and 0x1011e9ac, the readback
+  sequence uses 0x1011ea20, 0x1011ea48 and 0x1011ea68, and the comparison path
+  continues at 0x1011ead4 and 0x1011eaec. It reports a mismatch before returning
+  the test status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x1011e994, 0x1011ea20, 0x1011ead4.)
+
+- `myFrameBufferWriteWords` (`usr/diags/IR/bin/irsaudit` 0x100b4bf4): **Established.**
+  Its 2760-byte body converts the caller's word range into raster-bus writes,
+  submits the frame-buffer transaction, and waits for completion. It prepares
+  the transfer at 0x100b4c78, 0x100b4c98 and 0x100b4cb8, writes the first data
+  group through 0x100b4ce0 and 0x100b4cf4, and reaches the completion checks at
+  0x100b4d24 and 0x100b4d50. A short write or hardware error returns the
+  recorded failure status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100b4c78, 0x100b4ce0, 0x100b4d24.)
+
+- `myFrameBufferWriteTest2` (`usr/diags/IR/bin/irsaudit` 0x100b23f4): **Established.**
+  The 2440-byte test initializes a two-dimensional frame-buffer write pattern,
+  sends its rows through the raster-bus helper, and verifies completion. The
+  setup calls at 0x100b2460 and 0x100b2478 prepare the test, row emission starts
+  at 0x100b24b4 and 0x100b24e4, and the verification path uses 0x100b2550 and
+  0x100b25d0. It returns the diagnostic result after reporting a failed row.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100b2460, 0x100b24b4, 0x100b2550.)
+
+- `impvid` (`usr/diags/IR/bin/irsaudit` 0x100781b0): **Established.**
+  This 1980-byte IMP video test selects the video path, programs its raster-bus
+  state, waits for the transfer, and records the returned status. It performs
+  initial selection at 0x100781d8 and 0x100781fc, submits the video operation
+  at 0x10078340 and 0x10078384, and reaches the wait and report path through
+  0x10078428 and 0x10078448. Failure leaves the diagnostic result set before
+  the final return.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100781d8, 0x10078340, 0x10078428.)
+
+- `dgo_clearfb` (`usr/diags/IR/bin/irsaudit` 0x1011582c): **Established.**
+  The 1964-byte display-generator helper selects the frame-buffer mode, clears
+  the target through raster-bus writes, and waits for drawing completion. It
+  initializes the option state at 0x10115870 and 0x1011589c, emits the clear
+  sequence through 0x101158ec and 0x10115904, and checks the result at
+  0x10115944 and 0x10115970. The routine reports failed setup or completion and
+  returns the resulting status.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x10115870, `jalr` at 0x101158ec,
+  `jal` at 0x10115944.)
+
+- `clearfb_vid` (`usr/diags/IR/bin/irsaudit` 0x100a0ea4): **Established.**
+  Its 1896-byte body prepares a video frame-buffer clear, writes the required
+  raster-bus registers, and waits until the draw operation finishes. The setup
+  path uses 0x100a0ef8, 0x100a0f24 and 0x100a0f54; the clear and completion
+  helpers are called at 0x100a0f78, 0x100a0fb0 and 0x100a0fe4. It returns the
+  recorded diagnostic status on both the normal and error paths.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100a0ef8, 0x100a0f78, 0x100a0fb0.)
+
+- `kt_exit_crashlog` (`usr/diags/IR/bin/irsaudit` 0x10044df4): **Established.**
+  This 1868-byte reporting routine closes the current diagnostic crash log,
+  writes the pending test and status records, and releases the associated file
+  state. It enters the log-finalization path at 0x10044ea0 and 0x10044f4c,
+  performs the record writes through 0x10044f74 and 0x10044fa0, and completes
+  cleanup at 0x10045030 and 0x100450c8. The final return preserves the exit
+  status after a failed log write.
+  (`usr/diags/IR/bin/irsaudit`, `jalr` at 0x10044ea0, 0x10044f74,
+  `jal` at 0x10045030.)
+
+- `TEST_tbusfile` (`usr/diags/IR/bin/irsaudit` 0x1010a75c): **Established.**
+  The 1840-byte test opens and parses a TBUS data file, programs the selected
+  words, and verifies the resulting bus status. File and record setup begins at
+  0x1010a7b4, 0x1010a7cc and 0x1010a7f0; the programmed transfer uses
+  0x1010a840 and 0x1010a890, and the diagnostic check uses 0x1010a8b4 and
+  0x1010a8c0. Parse, I/O and bus errors take the reported failure return.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x1010a7b4, 0x1010a840,
+  `jalr` at 0x1010a8b4.)
+
+- `clearfb` (`usr/diags/IR/bin/irsaudit` 0x100b1cd0): **Established.**
+  Its 1828-byte routine sets the frame-buffer clear colour and mode, emits the
+  clear through the raster-bus path, then waits for the draw completion. It
+  builds the clear state at 0x100b1d20 and 0x100b1d38, starts the transfer at
+  0x100b1d68 and 0x100b1d8c, and handles completion at 0x100b1dc4 and
+  0x100b1df8. The status returned is the recorded clear result.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x100b1d20, 0x100b1d68, 0x100b1dc4.)
+
+- `TEST_texrndm` (`usr/diags/IR/bin/irsaudit` 0x10128954): **Established.**
+  This 1728-byte texture-random-data test initializes the texture path, emits
+  its random data pattern, reads back the selected result and compares it with
+  the expected record. Setup uses 0x101289c8 and 0x101289ec, the pattern path
+  calls 0x10128a94 and 0x10128abc, and the readback/check path continues at
+  0x10128b70 and 0x10128ba0. A mismatch is reported before the test status is
+  returned.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x101289c8, 0x10128a94, 0x10128b70.)
+
+- `TEST_readback_comp` (`usr/diags/IR/bin/irsaudit` 0x10085904): **Established.**
+  The 1712-byte comparison test configures a readback transfer, obtains the
+  returned component values, and compares them with the expected frame-buffer
+  record. It prepares the transaction at 0x10085968 and 0x10085980, starts the
+  readback at 0x100859a4 and 0x10085a18, and checks the values through
+  0x10085a40 and 0x10085a60. It reports the first mismatch and returns the
+  accumulated diagnostic result.
+  (`usr/diags/IR/bin/irsaudit`, `jal` at 0x10085968, 0x100859a4, 0x10085a40.)
 
 ## Tests
 
