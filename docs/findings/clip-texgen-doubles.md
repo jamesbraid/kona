@@ -21,7 +21,7 @@ label for these readings yet.
 | 2 | Which enable names for clip planes? | 0x3000-0x3005 only (six planes), on both 0x024 and 0x025. Anything else in 0x3006-0x3fff is an invalid-enumerant error. |
 | 3 | Texgen equations, planes, modes, start-up | Object and eye linear are four-term dot products; the eye plane is pre-multiplied at the call by the same 16-word block as a clip plane; modes accepted 0x2400-0x2402 and 0x81f0-0x81f3; sphere map is not refused on r or q by the client or the processor, and the engine appears to ignore it there; start-up planes follow the OpenGL defaults. |
 | 4 | Colour doubles 0x062 and 0x06a | Narrowed to single precision on the way in and then identical to the float forms (same command, no scale, no clamp at entry); the [0,1] limit comes from the later colour pass. |
-| 5 | Sphere map with a zero denominator | Unknown. The engine has no visible zero test in the words read and the reciprocal-square-root seed of zero is untested. |
+| 5 | Sphere map with a zero denominator | Unknown. The engine has no visible zero test in the words read and the reciprocal-square-root seed of zero is untested. What would settle it: the seed table's entry for input 0 in the engine netlist, or the texture coordinates read back for a sphere-map vertex with a zero normal (hardware proposal first); the open items below carry the same question. |
 
 ## 1. Token 0x0b4, the user clip plane
 

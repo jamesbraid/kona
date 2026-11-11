@@ -394,7 +394,7 @@ and every store below sits exactly there. Read in full from the [lightsource.S l
   computes control word 0x86 ORed with 1 (0xc715) and stages the module addresses 0xf50d `mmo_DirtyLightModule` and
   0xf547 `mmo_DirtyCullAndLightModule` (0xc713, 0xc716), whose moves feed three predicated control-memory stores in the
   end-of-command shadow: 0x86 (0xc71e), successor word 0xc (0xc71f) and successor word 0xb (0xc720). So the next vertex
-  batch runs the dirty-light module, which re-selects the lighting code. The predicate of those stores is **unknown**;
+  batch runs the dirty-light module, which re-selects the lighting code. The predicate of those stores is **unknown** (what would settle it: the `r198` predicate field of the three store words, and whether the flag delay of [ge_ops.md](ge_ops.md) puts the result of 0xc70d ahead of 0xc71e-0xc720; if both hold, the predicate is bit 0 of control word 0x84);
   the only flags the routine sets come from 0xc70d, control word 0x84 ANDed with 1.
 - `mgeb_LightAmb` (`lightsource.S` lines 126-143, at 0xc704): **inferred**, the ambient-colour entry. It takes operand
   0, the light address, into register 3 (0xc705) and derives register 4 from the external-memory base with address
@@ -577,7 +577,7 @@ depth part, holds command, x, y and depth high in mode 3, and the second, closed
 mode 2. That is the 3, 2 alternation of the vector files' vertex runs, whose mode-3 words carry the command nibble. Bit 0
 of E (7 against 6 at 0xc9, 3 at 0x1f5) is set on the last vertex of a triangle, a line, a single point and each strip
 vertex, or on a separate 0x1f5 store after the multisample points, fan points and stipple segments. It is set on neither
-in the reference-plane and clear-vertex paths, so its meaning is **unknown**.
+in the reference-plane and clear-vertex paths, so its meaning is **unknown**. What would settle it: a listing search for the words that read bit 0 of the E field or the 0x1f5 store downstream, or the engine netlist's use of that bit.
 
 **Inferred** (where the command nibble comes from). The command field of the vertex packet gets its value from the 0xd5
 store and from all-ones stores (M = 0x6d8, NOT of register 0x1e, which reads as zero) to the slots 0xd6-0xd9. Matched
@@ -627,7 +627,7 @@ the vertex that starts the run again, because a batch that continues a strip res
 it brings back. Bit 28 is the swap: the decomposers test it to choose the swapped triangle order, and the diagnostic
 adds it to command 6 to make the fan rule 7 ([docs/rm.md](../docs/rm.md#primitive-set-up-happens-in-the-pixel-generator)).
 
-Which value bits 31-29 hold on the later vertices of a strip is **unknown**. For the run to be drawn they must name the
+Which value bits 31-29 hold on the later vertices of a strip is **unknown**. What would settle it: the raw record words of a drawn four-vertex strip read from the raster side of a live pipe, or the engine netlist's record-write stage. For the run to be drawn they must name the
 triangle command: 6 with bit 28 clear for the strip rule, 7 with it set. No engine word puts it there, so the distributor
 or the host interface must supply it as the record is written. Routes tried: the drawing modules, the decomposers' flag
 words, `mgesi_TfanPolyRestoreEdge`, every store with offset 0x26 and every write of 0xc9-0xd9 (none outside the drawing
@@ -660,7 +660,7 @@ record offset `hq_offset` and a 3-bit `hq_op`. Group k reaches engine k and engi
 with a record offset wide enough for word 0x26 and a 3-bit operation, and the engine answers with a 2-bit status. What
 the `hq_op` codes mean is **unknown**: `irsaudit` names the scan cells (`ged_hq_op0`-`3`, `ged_hq_status0`-`7`,
 `ged_hqStall0_a` and the rest) but only compares their CRCs with the gold files, and no shipped program writes or reads a
-value of them. That the op is three bits, like bits 31-29, is a coincidence the software does not tie.
+value of them. That the op is three bits, like bits 31-29, is a coincidence the software does not tie. What would settle it: the distributor netlist's decode of the three op lines, or a scan capture of the `hq_op` cells while one handler runs (hardware proposal first).
 
 **Inferred** (register 0x290 is not the source). The edge-flag command loads distributor register 0x290 (descriptor
 0x52000020) with all ones for a true flag and zero for false (`arm_edgeflag`, `arm1.u` 0x0c015c7c), and
