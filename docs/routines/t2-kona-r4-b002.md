@@ -1,0 +1,54 @@
+# Tier-2 routine roles, kona round 4 batch 2
+
+Roles for targets 50 to 74 of the ranked tier-2 list, all in the IGLOO32 libgl.so build. Each one comes from the rendered instruction facts at the cited addresses. Entries marked inferred say where the facts stop short of a settled purpose. The four lock and error wrappers are settled by their single calls.
+
+- `gl_comm_default_init` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fa40
+  **Inferred.** Startup for the comm layer. It reads an environment variable with getenv (0xec3fa80), converts the value with gl_util_nametoi (0xec3fb4c) when it is set, and calls gl_parse_hostname (0xec40f00), gl_dgl_default_display (0xec5c6d0) and __GLdglopen (0xec3fae0). A negative open result goes to gl_dgl_error (0xec3fb10) and exit (0xec3fb1c). It returns the current gfile pointer read from comm_curgfile (0xecdf610).
+- `gl_comm_get_bufsize` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fba0
+  **Inferred.** Sizes and allocates the comm buffer. It reads comm_stdsize (0xecd6c40), compares it with 0x1000 (0xec3fbf8), and mallocs the block at 0xec3fc04, storing the result in comm_buffer (0xecd6c44) and comm_endbuffer (0xecd6c48). A failed malloc goes to gl_dgl_error (0xec3fc28) and exit with code 12 (0xec3fc34). It also reads a size suffix from getenv (0xec3fcd4), testing the character against 0x6b and 0x4b (k and K) and 0x6d and 0x4d (m and M) at 0xec3fd58 to 0xec3fd70.
+- `gl_comm_io` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fdb0
+  **Inferred.** A retry loop around one indirect call through a function pointer (0xec3fe1c), which runs while the count in a3 stays positive (branch at 0xec3fde8). A result below zero returns -1 (0xec3fe5c). When errno is 4 (0xec3fe34), the loop tries again, so this looks like a read or write wrapper that retries after interruption. The callee itself is not named in the facts.
+- `gl_comm_new_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fea0
+  **Inferred.** Adds a gfile record to the comm_gfiles table. It scans the table up to sym(comm_gfiles)+1028 (0xec3fee0) and calls malloc for a 0x19c-byte record (0xec3ff10). It then writes the record fields at offsets 0x0 to 0x20, 0x74, 0xc8 and 0x194. It returns the record (0xec3ff7c) or 0 on the path at 0xec3ff08.
+- `gl_comm_local_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3ff90
+  **Inferred.** Looks up a local gfile record in the comm_gfiles table, with the same end bound at sym(comm_gfiles)+1028 (0xec3ffc0 and 0xec3ffe0). It calls gl_comm_new_gfile (0xec3fea0) through the branch-and-link at 0xec4001c when a new record is needed. It then writes a word at offset +0x4 of that record (0xec4002c) and returns the record (0xec40034).
+- `gl_comm_free_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40040
+  **Inferred.** Releases one gfile record. It reads the index word at the start of the record it was passed (0xec40044), writes to that index's slot in comm_gfiles (0xec40070), and frees the record with free (0xec4006c). The write at 0xec40070 is the clearing step, but the value stored there is not stated in the facts, so the clear is inferred from the pattern.
+- `gl_comm_close` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40090
+  **Inferred.** Closes the comm connection and frees its buffer. It reads the error count dgl_errors (0xec40128) and, on the reporting path, prints a block of counters through gl_dgl_info (0xec4012c, 0xec40140, 0xec40150), gl_util_timer (0xec40160), __GLgl_dgl_printf and sprintf. It then frees comm_buffer (0xec40458), resets comm_curbufpos (0xec4047c) and comm_buffer (0xec4048c), and sets comm_endbuffer (0xec404ac) from comm_stdsize (0xec40490).
+- `gl_comm_close_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec404b0
+  **Inferred.** Tears down one gfile record. It reads the index at the start of the record (0xec404b8), clears that index's comm_gfiles slot (0xec404f8), and resets comm_curgfile (0xecdf610) on several paths (0xec40510 to 0xec40524). It calls gl_d_dglexit (0xec40520) and then three indirect teardown calls with the record's words at +0xc, +0x10 and +0xc4 (0xec4053c, 0xec40548, 0xec40560).
+- `gl_comm_makeroom` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec405a0
+  **Inferred.** Works on the comm buffer window. It reads comm_buffer (0xec405bc, 0xec40628), updates comm_endbuffer (0xec405e8, 0xec40640) and resets comm_curbufpos (0xec40648). It makes no calls, so the room check is inferred from these pointer updates alone, and it returns its second argument on one path (0xec405f8).
+- `comm_check_bufsize` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40660
+  **Inferred.** Grows the comm buffer when it is too small. It reads comm_stdsize (0xec40674) and comm_buffer (0xec406a4, 0xec406e4), mallocs a new block (0xec406b8), and copies the 0x1000-byte comm_staticbuff into it with bcopy (0xec406d8). A realloc (0xec40724) covers the other path, and a failure reports through gl_dgl_error (0xec40700) and exits with code 12 (0xec40718). It returns 0 (0xec40740).
+- `gl_comm_callback` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40990
+  **Inferred.** Dispatches a callback record at the current position of the comm buffer. It reads comm_buffer (0xec40a00) and comm_curbufpos (0xec40a0c), then calls indirect handlers with words from the record at offsets 0x0 to 0xc (0xec409cc, 0xec40a38, 0xec40a4c). On one path it calls gl_d_dglreturncallback (0xec409e0). It returns the first word of the buffer (0xec40a78).
+- `comm_fillbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40a80
+  **Inferred.** Fills the comm buffer for the current gfile. It reads comm_curgfile (0xec40ab0) and the record fields at +0xc and +0x18 (0xec40ac0, 0xec40ad4). A failure reports through gl_dgl_info (0xec40b70) and exits with code 5 (0xec40b88). The fill step itself is inferred from these checks, since the facts show no copy into the buffer on this path.
+- `gl_comm_read_data` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40b90
+  **Inferred.** Reads a reply into the comm buffer. It calls gl_d_dglreturndata (0xec40bd0) to get the data, reads comm_curgfile (0xec40ba8) and the buffer head (0xec40c34 to 0xec40c54), and writes the head at 0xec40ca0. It resets comm_curbufpos (0xec40cdc) and comm_endbuffer (0xec40cec) from comm_stdsize (0xec40cc8) and returns 0 (0xec40ce8).
+- `gl_comm_pushbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40d10
+  **Inferred.** Saves the current comm buffer state and starts a new buffer. It copies comm_buffer, comm_endbuffer, comm_curbufpos and comm_stdsize into the comm_save_* globals (0xec40d68 to 0xec40da0), sets comm_save_flag (0xec40d70), and mallocs a new buffer (0xec40d9c). A repeated push reports through gl_dgl_internal_error (0xec40d3c). It returns the malloc result (0xec40dd8).
+- `gl_comm_popbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40de0
+  **Inferred.** Restores the comm buffer state saved by gl_comm_pushbuffer. It reads and clears comm_save_flag (0xec40df8, 0xec40e08), frees the current comm_buffer (0xec40e24), and copies the comm_save_* values back into comm_buffer, comm_endbuffer and comm_curbufpos (0xec40e54 to 0xec40e74). A pop with no matching push reports through gl_dgl_internal_error (0xec40e14).
+- `comm_bad_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40e80
+  **Established.** Reports a bad gfile through gl_dgl_error (0xec40ea4) with a fixed message at 0xecdee61, then returns 0 (0xec40eb8). The single call and the return settle the role.
+- `gl_comm_fatal_error` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40ec0
+  **Established.** Prints its arguments with gl_dgl_perror (0xec40ee0) and exits with the current errno, read from sym(errno) at 0xec40ee4 and passed to exit at 0xec40ef8.
+- `gl_parse_hostname` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40f00
+  **Inferred.** Splits a string at its first colon (strchr with 0x3a at 0xec40f3c), then splits the part after it at the first dot (strchr with 0x2e at 0xec40f5c). It converts each piece with atoi (0xec40f94, 0xec40fa8) and stores the two results through a1 and a2 (0xec40f28, 0xec40f34, 0xec40fa4, 0xec40fb8). The shape matches a host:display.screen name, which is an inference from the delimiters.
+- `gl_g_compactify` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40fd0
+  **Inferred.** Rebuilds the GL object table around its live entries. It checks objects with __GLisobj (0xec40fec), looks up hash entries with gl_findhash (0xec41004), and allocates new chunks sized by gl_objchunksize (0xec4102c, 0xec41280) through gl_malloc (0xec41028, 0xec41044, 0xec412a4). Old chunks go to gl_free (0xec41118 to 0xec413d0). It brackets the rebuild with gl_SetImmediateMode (0xec41254) and replaces hash entries with gl_replacehash (0xec4130c).
+- `__iglooGetCopyState` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec413e0
+  **Inferred.** Saves the context's copyable state into the caller's record. It gets the current context through __iglooGetCurrentContextInfo (0xec41400), copies five 8-byte words with ld and sd (0xec41444 to 0xec41480), and writes a word at +0x4 (0xec414bc). It then calls __iglooAllocMatrixStacks (0xec414b0), __iglooGetScissor (0xec414d0), __iglooGetViewport (0xec414e8) and __iglooGetMatrixStacks (0xec41508) to fill the viewport, scissor and matrix fields.
+- `__iglooSetCopyState` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41520
+  **Inferred.** Restores a state record saved by __iglooGetCopyState (0xec413e0). It reapplies the viewport through __iglooExtViewport (0xec41558), the depth range through __iglooDepthRange (0xec41568), the scissor through __iglooScissor (0xec41590) and the pixel zoom through __iglooPixelZoom (0xec415e0). It sets GL enables 0xc11 (scissor test) and 0xb44 (cull face) through __iglooSetEnable (0xec415a0, 0xec415d0). It restores the matrix stacks through __iglooSetMatrixStacks (0xec415b4) or __iglooFreeMatrixStacks (0xec415c0), chosen by the pointer at +0x4 (branch at 0xec415ac).
+- `__iglooInitCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41600
+  **Established.** Calls init_lock (0xec4161c) on the shared lock at 0xecdda10 with its own arguments and returns the result (0xec4162c).
+- `__iglooBeginCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41640
+  **Established.** Takes the shared lock at 0xecdda10 with spin_lock (0xec4165c) and returns its result (0xec4166c).
+- `__iglooEndCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41680
+  **Established.** Releases the shared lock at 0xecdda10 with release_lock (0xec4169c) and returns its result (0xec416ac).
+- `gl_g_crv` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec416c0
+  **Inferred.** Copies a 12-word block from its first argument (single-precision loads at offsets 0x0 to 0x2c, 0xec416c4 to 0xec41744) into a stack buffer. It calls rcrv (0xec41750) with that buffer and the first word in f12, and returns rcrv's result (0xec41760). The 12-word argument shape suggests a curve or rendering helper, which is inferred from the operands.
