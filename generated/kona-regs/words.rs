@@ -1,4 +1,4 @@
-// generated from kona da8d0d3ec795 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
+// generated from kona da8d0d3ec795-dirty KONA_WORDS_DECODE.h - do not edit, regenerate in kona
 //!
 //! Bit layouts of the multi-field words of the host command stream,
 //! and the engine command descriptor values.
@@ -84,6 +84,30 @@ pub const DESC_DISTRIBUTOR_STEP: u32 = 0x44200020;
 pub const DESC_RASTER_BUS_WRITE: u32 = 0x58404800;
 /// established: image-processor register write, same three words.
 pub const DESC_IMAGE_PROCESSOR_WRITE: u32 = 0x584fc800;
+/// established.
+pub const FOG_PARAMETER_INDEX: u32 = 0xb61;
+/// established.
+pub const FOG_PARAMETER_DENSITY: u32 = 0xb62;
+/// established.
+pub const FOG_PARAMETER_START: u32 = 0xb63;
+/// established.
+pub const FOG_PARAMETER_END: u32 = 0xb64;
+/// established.
+pub const FOG_PARAMETER_MODE: u32 = 0xb65;
+/// established.
+pub const FOG_PARAMETER_COLOUR: u32 = 0xb66;
+/// established.
+pub const FOG_PARAMETER_OFFSET: u32 = 0x8199;
+/// established.
+pub const LIGHT_BLOCK_FIRST_ADDRESS: u32 = 0x2c7;
+/// established.
+pub const LIGHT_BLOCK_WORDS: u32 = 35;
+/// established.
+pub const LIGHT_BLOCK_COUNT: u32 = 8;
+/// established.
+pub const TEXENV_COLOUR_IMAGE: u32 = 0x15e1402;
+/// established.
+pub const TEXENV_COLOUR1_IMAGE: u32 = 0x15f1413;
 
 /// Values of `code` in `ModeByteOverlay` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -1256,6 +1280,40 @@ impl GcLoadW7 {
     }
 }
 
+/// The `DISPLAY_ID_RANGE` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct DisplayIdRange(u32);
+
+impl DisplayIdRange {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 6:0, established.
+    pub const fn arg1(self) -> u32 {
+        self.0 & 0x7f
+    }
+
+    /// Bits 12:7, established.
+    pub const fn arg3(self) -> u32 {
+        (self.0 >> 7) & 0x3f
+    }
+
+    /// Bits 18:13, established.
+    pub const fn arg0(self) -> u32 {
+        (self.0 >> 13) & 0x3f
+    }
+
+    /// Bits 23:19, established.
+    pub const fn arg2(self) -> u32 {
+        (self.0 >> 19) & 0x1f
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1407,5 +1465,28 @@ mod tests {
         assert_eq!(w.s2_y(), 2, "s2_y");
         assert_eq!(w.s3_x(), 6, "s3_x");
         assert_eq!(w.s3_y(), 6, "s3_y");
+    }
+
+    #[test]
+    fn testvec_display_id_range_1040() {
+        let w = DisplayIdRange::new(0x1040);
+        assert_eq!(w.arg1(), 64, "arg1");
+        assert_eq!(w.arg3(), 32, "arg3");
+        assert_eq!(w.arg0(), 0, "arg0");
+        assert_eq!(w.arg2(), 0, "arg2");
+    }
+
+    #[test]
+    fn testvec_gc_load_w6_2804() {
+        let w = GcLoadW6::new(0x2804);
+        assert_eq!(w.colour_format(), 1, "colour_format");
+        assert_eq!(w.read_format(), 5, "read_format");
+    }
+
+    #[test]
+    fn testvec_gc_load_w6_3804() {
+        let w = GcLoadW6::new(0x3804);
+        assert_eq!(w.colour_format(), 1, "colour_format");
+        assert_eq!(w.read_format(), 7, "read_format");
     }
 }

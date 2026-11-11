@@ -577,4 +577,70 @@
 #define WORD_DESC_RASTER_BUS_WRITE 0x58404800 /* established: raster-bus register write, three payload words: bit mask, address word, value */
 #define WORD_DESC_IMAGE_PROCESSOR_WRITE 0x584fc800 /* established: image-processor register write, same three words */
 
+/* ---- fog parameter names ---- */
+
+/* First payload word of the fog-parameter tokens (float and integer forms): the */
+/* parameter being set. The values are the public enumerants of the fog */
+/* parameters; the pipe accepts exactly these seven and raises invalid-enum for */
+/* any other. */
+#define WORD_FOG_PARAMETER_INDEX 0xb61 /* established */
+#define WORD_FOG_PARAMETER_DENSITY 0xb62 /* established */
+#define WORD_FOG_PARAMETER_START 0xb63 /* established */
+#define WORD_FOG_PARAMETER_END 0xb64 /* established */
+#define WORD_FOG_PARAMETER_MODE 0xb65 /* established */
+#define WORD_FOG_PARAMETER_COLOUR 0xb66 /* established */
+#define WORD_FOG_PARAMETER_OFFSET 0x8199 /* established */
+
+/* ---- engine memory: light parameter blocks ---- */
+
+/* The firmware keeps one engine-memory address per light: the first block is at */
+/* 0x2c7 and each later block follows 0x23 words further on, eight lights in all */
+/* (the last block at 0x3bc). The per-light handlers send the chosen entry to */
+/* the engine's operand port as the address of the block. */
+#define WORD_LIGHT_BLOCK_FIRST_ADDRESS 0x2c7 /* established */
+#define WORD_LIGHT_BLOCK_WORDS 0x23 /* established */
+#define WORD_LIGHT_BLOCK_COUNT 8 /* established */
+
+/* ---- display-id range word ---- */
+
+/* The diagnostic's single packed writer for the frame manager's display-id */
+/* range register packs four arguments into one word. The fields are named by */
+/* argument position because what each one counts is not settled: the only */
+/* caller passes 64 in argument 1 and 32 in argument 3, the sizes of the normal */
+/* and the overlay/underlay display-id tables (inferred from those two values); */
+/* the other two fields are unread. */
+/* FIELD: DISPLAY_ID_RANGE.arg1 6:0 established */
+#define WORD_DISPLAY_ID_RANGE_ARG1_SHIFT 0
+#define WORD_DISPLAY_ID_RANGE_ARG1_MASK 0x7fu
+/* FIELD: DISPLAY_ID_RANGE.arg3 12:7 established */
+#define WORD_DISPLAY_ID_RANGE_ARG3_SHIFT 7
+#define WORD_DISPLAY_ID_RANGE_ARG3_MASK 0x3fu
+/* FIELD: DISPLAY_ID_RANGE.arg0 18:13 established */
+#define WORD_DISPLAY_ID_RANGE_ARG0_SHIFT 13
+#define WORD_DISPLAY_ID_RANGE_ARG0_MASK 0x3fu
+/* FIELD: DISPLAY_ID_RANGE.arg2 23:19 established */
+#define WORD_DISPLAY_ID_RANGE_ARG2_SHIFT 19
+#define WORD_DISPLAY_ID_RANGE_ARG2_MASK 0x1fu
+/*
+ * TESTVEC: 0x1040 as DISPLAY_ID_RANGE => arg1=64, arg3=32, arg0=0, arg2=0
+ */
+
+/* ---- window-copy load: word 6 values ---- */
+
+/* Word 6 of the window-copy load takes one of two values, chosen by a flag in */
+/* the loader's second argument: colour format 1 with read format 5 or 7. */
+/*
+ * TESTVEC: 0x2804 as GC_LOAD_W6 => colour_format=1, read_format=5
+ * TESTVEC: 0x3804 as GC_LOAD_W6 => colour_format=1, read_format=7
+ */
+
+/* ---- texture-environment colour register images ---- */
+
+/* The words the texture-environment routine loads for the environment colour: */
+/* the shadow slot of the register in the high half (0x15e, 0x15f) and the */
+/* register index in the low half (the two halves of the texture-environment */
+/* constant colour). */
+#define WORD_TEXENV_COLOUR_IMAGE 0x015e1402 /* established */
+#define WORD_TEXENV_COLOUR1_IMAGE 0x015f1413 /* established */
+
 #endif

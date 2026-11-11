@@ -1,4 +1,4 @@
-// generated from kona 9dfd289c23b6 KONA_HIP_DECODE.h - do not edit, regenerate in kona
+// generated from kona 9dfd289c23b6-dirty KONA_HIP_DECODE.h - do not edit, regenerate in kona
 //!
 //! Host-interface chip registers: the interrupt status register and
 //! its cause bits.
@@ -13,6 +13,12 @@
 /// Host-interface register `hh_intr_status`: read/write, 32-bit; reset unknown; established.
 pub const REG_HH_INTR_STATUS: u32 = 0x0238;
 pub const REG_HH_INTR_STATUS_WIDTH: u32 = 32;
+/// Host-interface register `rbus_odma2_data`: write, 32-bit; reset unknown; established.
+pub const REG_RBUS_ODMA2_DATA: u32 = 0x0476;
+pub const REG_RBUS_ODMA2_DATA_WIDTH: u32 = 32;
+/// Host-interface register `rbus_odma2_flush`: write, 32-bit; reset unknown; inferred.
+pub const REG_RBUS_ODMA2_FLUSH: u32 = 0x0477;
+pub const REG_RBUS_ODMA2_FLUSH_WIDTH: u32 = 32;
 
 /// The `hh_intr_status` register word.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

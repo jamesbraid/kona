@@ -81,4 +81,25 @@
 #define HIP_HH_INTR_STATUS_IDMA_OV_SHIFT 11
 #define HIP_HH_INTR_STATUS_IDMA_OV_MASK 0x1u
 
+/* ---- board-side registers on the raster bus ---- */
+
+/* The host-interface chip's output-DMA registers are also written through the */
+/* raster bus, in a register space of its own, separate from the host register */
+/* window above (hence the space attribute). Each write is one */
+/* 32-bit value. Only the two registers that carry a query's reply are listed so */
+/* far. */
+
+/* Data port of the second output-DMA channel: a query's reply words are written */
+/* here and land in the return-data buffer. The read-start routine writes 0 to it */
+/* as a placeholder for word 0 of the buffer and the finish routine writes 1 once */
+/* the reply has landed, which is what the client's wait spins on. */
+/* REG: HIP.rbus_odma2_data 0x476 w32 space=rbus reset=unknown established */
+
+/* Ends or flushes the second channel's output path. The firmware writes only 0 */
+/* (at the start and at the finish of a reply, before the channel is */
+/* reprogrammed); the diagnostics write only 1, after queueing data and before */
+/* waiting for the channel's total. The role is inferred from those uses; what a */
+/* write of 0 does is unknown. */
+/* REG: HIP.rbus_odma2_flush 0x477 w32 space=rbus reset=unknown inferred */
+
 #endif
