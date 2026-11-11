@@ -1,6 +1,7 @@
-// generated from kona 2c670e7a0283 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
+// generated from kona 24161ef37717 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
 //!
-//! Bit layouts of the multi-field words of the host command stream.
+//! Bit layouts of the multi-field words of the host command stream,
+//! and the engine command descriptor values.
 //!
 //! Grades on each item say what is known about it: `established` is what the
 //! shipped driver software does, read in full; `inferred` is a reasoned
@@ -9,6 +10,24 @@
 
 #![allow(dead_code)]
 
+/// established.
+pub const MODE_BYTE_RESERVED_CI_TRANSPARENT: u32 = 5;
+/// established.
+pub const MODE_BYTE_RESERVED_CI_OPAQUE: u32 = 21;
+/// established.
+pub const MODE_BYTE_RESERVED_RGB_TRANSPARENT: u32 = 2;
+/// established.
+pub const MODE_BYTE_RESERVED_RGB_OPAQUE: u32 = 18;
+/// established.
+pub const OVERLAY_ID_WORD_COLOUR_INDEX: u32 = 0x3c00;
+/// established.
+pub const OVERLAY_ID_WORD_RGB15: u32 = 0x3c01;
+/// established: the advertised red mask, unshifted.
+pub const OVERLAY_RGB15_RED_BITS: u32 = 0x7c00;
+/// established: the advertised green mask.
+pub const OVERLAY_RGB15_GREEN_BITS: u32 = 0x3e0;
+/// established: the advertised blue mask.
+pub const OVERLAY_RGB15_BLUE_BITS: u32 = 31;
 /// established: main-plane window ids run 0 to 62.
 pub const WINDOW_ID_MAIN_FIRST: u32 = 0;
 /// established.
@@ -39,6 +58,30 @@ pub const LAYER_POPUP: u32 = 2;
 pub const ID_TABLE_NORMAL_ENTRIES: u32 = 64;
 /// established: and a 32-entry overlay and underlay table.
 pub const ID_TABLE_OVERLAY_ENTRIES: u32 = 32;
+/// established: the bus mask the load applies, exactly the two fields above.
+pub const GC_LOAD_W6_BUS_ENABLE: u32 = 0x383c;
+/// established: the bus mask the load applies, exactly the three fields above.
+pub const GC_LOAD_W7_BUS_ENABLE: u32 = 0xffc00f;
+/// established: engine register address port (distributor register number 565).
+pub const DESC_ENGINE_REG_ADDRESS: u32 = 0x46a00020;
+/// established: engine register data port (distributor register number 563).
+pub const DESC_ENGINE_REG_DATA: u32 = 0x46600020;
+/// established: set the engine handler table index.
+pub const DESC_ENGINE_TABLE_INDEX: u32 = 0x46000020;
+/// established: write one handler table entry and advance the index.
+pub const DESC_ENGINE_TABLE_ENTRY: u32 = 0x46200020;
+/// established: write one word of the 1024-word distributor program.
+pub const DESC_DISTRIBUTOR_PROGRAM: u32 = 0x48200020;
+/// established: load the 16-word primitive-class table.
+pub const DESC_PRIMITIVE_CLASS_TABLE: u32 = 0x42200020;
+/// established: load the 512-word entry table.
+pub const DESC_ENTRY_TABLE: u32 = 0x42600020;
+/// inferred: distributor step register on, at pipe set-up.
+pub const DESC_DISTRIBUTOR_STEP: u32 = 0x44200020;
+/// established: raster-bus register write, three payload words: bit mask, address word, value.
+pub const DESC_RASTER_BUS_WRITE: u32 = 0x58404800;
+/// established: image-processor register write, same three words.
+pub const DESC_IMAGE_PROCESSOR_WRITE: u32 = 0x584fc800;
 
 /// Values of `code` in `ModeByteOverlay` that the header names.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -51,6 +94,8 @@ pub enum ModeByteOverlayCode {
     Underlay,
     /// established.
     UnderlayBackStart,
+    /// established.
+    ReservedRgb15,
     /// A value the notes do not name.
     Other(u8),
 }
@@ -62,6 +107,7 @@ impl ModeByteOverlayCode {
             0x3 => Self::OverlayBackStart,
             0x6 => Self::Underlay,
             0x7 => Self::UnderlayBackStart,
+            0x1 => Self::ReservedRgb15,
             _ => Self::Other(v as u8),
         }
     }
@@ -72,6 +118,7 @@ impl ModeByteOverlayCode {
             Self::OverlayBackStart => 0x3,
             Self::Underlay => 0x6,
             Self::UnderlayBackStart => 0x7,
+            Self::ReservedRgb15 => 0x1,
             Self::Other(v) => v as u32,
         }
     }
@@ -520,6 +567,35 @@ impl ModeByteOverlay {
     /// Bits 3:1, established.
     pub const fn code(self) -> ModeByteOverlayCode {
         ModeByteOverlayCode::from_bits((self.0 >> 1) & 0x7)
+    }
+}
+
+/// The `OVERLAY_RGB15` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct OverlayRgb15(u32);
+
+impl OverlayRgb15 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 14:10, established.
+    pub const fn red(self) -> u32 {
+        (self.0 >> 10) & 0x1f
+    }
+
+    /// Bits 9:5, established.
+    pub const fn green(self) -> u32 {
+        (self.0 >> 5) & 0x1f
+    }
+
+    /// Bits 4:0, established.
+    pub const fn blue(self) -> u32 {
+        self.0 & 0x1f
     }
 }
 
@@ -1101,9 +1177,90 @@ impl MsLocations {
     }
 }
 
+/// The `GC_LOAD_W6` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct GcLoadW6(u32);
+
+impl GcLoadW6 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 5:2, established.
+    pub const fn colour_format(self) -> u32 {
+        (self.0 >> 2) & 0xf
+    }
+
+    /// Bits 13:11, established.
+    pub const fn read_format(self) -> u32 {
+        (self.0 >> 11) & 0x7
+    }
+}
+
+/// The `GC_LOAD_W7` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct GcLoadW7(u32);
+
+impl GcLoadW7 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 3:0, established.
+    pub const fn draw_buffer(self) -> u32 {
+        self.0 & 0xf
+    }
+
+    /// Bits 17:14, established.
+    pub const fn readback_format(self) -> u32 {
+        (self.0 >> 14) & 0xf
+    }
+
+    /// Bits 23:18, established.
+    pub const fn read_base(self) -> u32 {
+        (self.0 >> 18) & 0x3f
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn testvec_mode_byte_overlay_5() {
+        let w = ModeByteOverlay::new(0x5);
+        assert_eq!(w.back_shown() as u32, 1, "back_shown");
+        assert_eq!(w.code().bits(), 2, "code");
+    }
+
+    #[test]
+    fn testvec_mode_byte_overlay_15() {
+        let w = ModeByteOverlay::new(0x15);
+        assert_eq!(w.back_shown() as u32, 1, "back_shown");
+        assert_eq!(w.code().bits(), 2, "code");
+    }
+
+    #[test]
+    fn testvec_mode_byte_overlay_2() {
+        let w = ModeByteOverlay::new(0x2);
+        assert_eq!(w.back_shown() as u32, 0, "back_shown");
+        assert_eq!(w.code().bits(), 1, "code");
+    }
+
+    #[test]
+    fn testvec_mode_byte_overlay_12() {
+        let w = ModeByteOverlay::new(0x12);
+        assert_eq!(w.back_shown() as u32, 0, "back_shown");
+        assert_eq!(w.code().bits(), 1, "code");
+    }
 
     #[test]
     fn testvec_texload_size_23() {

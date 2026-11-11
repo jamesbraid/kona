@@ -4,7 +4,9 @@
  * Bit layouts of the 32-bit words that the host packs several fields into: the
  * per-display-id mode byte, the pixel-id placement words, the window and clip
  * set-up words, the texture-load header words and bind words, and the multisample
- * control and sample-location words. Registers on the display bus (the XMAP's
+ * control and sample-location words, words 6 and 7 of the X graphics-context load,
+ * the 15-bit RGB overlay pixel and its reserved mode bytes, and the engine command
+ * descriptor values. Registers on the display bus (the XMAP's
  * display-id, channel and gamma words, and the cursor position) have their fields
  * on their own register in KONA_XMAP_DECODE.h and are not repeated.
  *
@@ -14,7 +16,7 @@
  * the word's layout is the register's layout.
  *
  * Derivation: the layouts and grades are those of the back-end definitions table
- * (docs/command-table.md, sections 7.4, 7.6, 7.7, 7.10, 7.13 and 7.17), which
+ * (docs/command-table.md, sections 4.2, 7.4, 7.6, 7.7, 7.8, 7.10, 7.13 and 7.17), which
  * reads them from the shipped client library's senders, the shipped pipe firmware
  * and the shipped diagnostic's test vectors, and from recorded guest command
  * traces. Test vectors are values the table records. The grade on a field says how
@@ -65,6 +67,49 @@
 #define WORD_MODE_BYTE_OVERLAY_CODE_UNDERLAY 6
 /* ENUM: MODE_BYTE_OVERLAY.code 7 underlay_back_start established */
 #define WORD_MODE_BYTE_OVERLAY_CODE_UNDERLAY_BACK_START 7
+/* The server sends code 1 for its reserved 15-bit RGB overlay ids; the dynamic */
+/* per-window path never produces it. What the chip does with it is unknown. */
+/* ENUM: MODE_BYTE_OVERLAY.code 1 reserved_rgb15 established */
+#define WORD_MODE_BYTE_OVERLAY_CODE_RESERVED_RGB15 1
+/* The four bytes the server sends for its reserved overlay ids: the two colour-index */
+/* ids (transparent, opaque) and the two 15-bit RGB ids. Bit 4 is the opaque bit. */
+#define WORD_MODE_BYTE_RESERVED_CI_TRANSPARENT 0x05 /* established */
+#define WORD_MODE_BYTE_RESERVED_CI_OPAQUE 0x15 /* established */
+#define WORD_MODE_BYTE_RESERVED_RGB_TRANSPARENT 0x02 /* established */
+#define WORD_MODE_BYTE_RESERVED_RGB_OPAQUE 0x12 /* established */
+/*
+ * TESTVEC: 0x05 as MODE_BYTE_OVERLAY => back_shown=1, code=2
+ */
+/*
+ * TESTVEC: 0x15 as MODE_BYTE_OVERLAY => back_shown=1, code=2
+ */
+/*
+ * TESTVEC: 0x02 as MODE_BYTE_OVERLAY => back_shown=0, code=1
+ */
+/*
+ * TESTVEC: 0x12 as MODE_BYTE_OVERLAY => back_shown=0, code=1
+ */
+/* The word the server passes with those ids' display-mode request: one value for */
+/* the colour-index pair, one for the 15-bit RGB pair. Its layout is unknown; the */
+/* values are what is established. */
+#define WORD_OVERLAY_ID_WORD_COLOUR_INDEX 0x3c00 /* established */
+#define WORD_OVERLAY_ID_WORD_RGB15 0x3c01 /* established */
+
+/* 15-bit RGB overlay pixel, as advertised to clients in the visual's own format: */
+/* red, green and blue in 5 bits each; one more bit is an alpha bit whose position */
+/* the advertised masks do not give. Transparent value 0 for the transparent form. */
+/* FIELD: OVERLAY_RGB15.red 14:10 established */
+#define WORD_OVERLAY_RGB15_RED_SHIFT 10
+#define WORD_OVERLAY_RGB15_RED_MASK 0x1fu
+/* FIELD: OVERLAY_RGB15.green 9:5 established */
+#define WORD_OVERLAY_RGB15_GREEN_SHIFT 5
+#define WORD_OVERLAY_RGB15_GREEN_MASK 0x1fu
+/* FIELD: OVERLAY_RGB15.blue 4:0 established */
+#define WORD_OVERLAY_RGB15_BLUE_SHIFT 0
+#define WORD_OVERLAY_RGB15_BLUE_MASK 0x1fu
+#define WORD_OVERLAY_RGB15_RED_BITS 0x7c00 /* established: the advertised red mask, unshifted */
+#define WORD_OVERLAY_RGB15_GREEN_BITS 0x3e0 /* established: the advertised green mask */
+#define WORD_OVERLAY_RGB15_BLUE_BITS 0x1f /* established: the advertised blue mask */
 
 /* ---- pixel-id placement (display id painted into pixels) ---- */
 
@@ -474,5 +519,47 @@
 /*
  * TESTVEC: 0x00d94880 as MS_LOCATIONS => s0_x=0, s0_y=0, s1_x=2, s1_y=4, s2_x=4, s2_y=2, s3_x=6, s3_y=6
  */
+
+/* ---- X graphics-context load (words 6 and 7) ---- */
+
+/* Word 6: the frame-buffer configuration the load programs into the raster bus. */
+/* Only the colour format and the read format are written; the pixel size and the */
+/* four write enables of the same register are not. */
+/* FIELD: GC_LOAD_W6.colour_format 5:2 established */
+#define WORD_GC_LOAD_W6_COLOUR_FORMAT_SHIFT 2
+#define WORD_GC_LOAD_W6_COLOUR_FORMAT_MASK 0xfu
+/* FIELD: GC_LOAD_W6.read_format 13:11 established */
+#define WORD_GC_LOAD_W6_READ_FORMAT_SHIFT 11
+#define WORD_GC_LOAD_W6_READ_FORMAT_MASK 0x7u
+#define WORD_GC_LOAD_W6_BUS_ENABLE 0x383c /* established: the bus mask the load applies, exactly the two fields above */
+
+/* Word 7: the operation word. Only the draw buffer, the read-back format and the */
+/* read base are written. */
+/* FIELD: GC_LOAD_W7.draw_buffer 3:0 established */
+#define WORD_GC_LOAD_W7_DRAW_BUFFER_SHIFT 0
+#define WORD_GC_LOAD_W7_DRAW_BUFFER_MASK 0xfu
+/* FIELD: GC_LOAD_W7.readback_format 17:14 established */
+#define WORD_GC_LOAD_W7_READBACK_FORMAT_SHIFT 14
+#define WORD_GC_LOAD_W7_READBACK_FORMAT_MASK 0xfu
+/* FIELD: GC_LOAD_W7.read_base 23:18 established */
+#define WORD_GC_LOAD_W7_READ_BASE_SHIFT 18
+#define WORD_GC_LOAD_W7_READ_BASE_MASK 0x3fu
+#define WORD_GC_LOAD_W7_BUS_ENABLE 0xffc00f /* established: the bus mask the load applies, exactly the three fields above */
+
+/* ---- engine command descriptors ---- */
+
+/* Entry-shaped descriptor words the pipe firmware, and the diagnostic through the */
+/* same ports, write to the descriptor port before a payload. Each is one value; */
+/* the notes' table says what each does. */
+#define WORD_DESC_ENGINE_REG_ADDRESS 0x46a00020 /* established: engine register address port (distributor register number 565) */
+#define WORD_DESC_ENGINE_REG_DATA 0x46600020 /* established: engine register data port (distributor register number 563) */
+#define WORD_DESC_ENGINE_TABLE_INDEX 0x46000020 /* established: set the engine handler table index */
+#define WORD_DESC_ENGINE_TABLE_ENTRY 0x46200020 /* established: write one handler table entry and advance the index */
+#define WORD_DESC_DISTRIBUTOR_PROGRAM 0x48200020 /* established: write one word of the 1024-word distributor program */
+#define WORD_DESC_PRIMITIVE_CLASS_TABLE 0x42200020 /* established: load the 16-word primitive-class table */
+#define WORD_DESC_ENTRY_TABLE 0x42600020 /* established: load the 512-word entry table */
+#define WORD_DESC_DISTRIBUTOR_STEP 0x44200020 /* inferred: distributor step register on, at pipe set-up */
+#define WORD_DESC_RASTER_BUS_WRITE 0x58404800 /* established: raster-bus register write, three payload words: bit mask, address word, value */
+#define WORD_DESC_IMAGE_PROCESSOR_WRITE 0x584fc800 /* established: image-processor register write, same three words */
 
 #endif

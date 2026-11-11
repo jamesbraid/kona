@@ -39,6 +39,16 @@ register_doc = "Display-bus register"
 description = ["XMAP direct registers, indirect-memory ports and the words", "written through them."]
 
 [[headers]]
+file = "KONA_HIP_DECODE.h"
+block = "HIP"
+form = "regs"
+group = "kona-hip"
+module = "hip"
+rust_prefix = "HIP_"
+register_doc = "Host-interface register"
+description = ["Host-interface chip registers: the interrupt status register and", "its cause bits."]
+
+[[headers]]
 file = "KONA_VOC_DECODE.h"
 block = "VOC"
 form = "regs"
@@ -87,7 +97,7 @@ notes_corpus = ["docs/command-table.md"]
 module = "words"
 rust_prefix = "WORD_"
 register_doc = "Word"
-description = ["Bit layouts of the multi-field words of the host command stream."]
+description = ["Bit layouts of the multi-field words of the host command stream,", "and the engine command descriptor values."]
 
 [[claims]]
 group = "kona-xmap"
@@ -328,7 +338,7 @@ binds = [["F", "TEXLOAD_LAYOUT.size_code", 1, 2], ["F", "TEXLOAD_LAYOUT.dma", 3]
 group = "kona-words"
 label = "bind control"
 doc = "docs/command-table.md"
-regex = '\| (\d+):(\d+) filter-table slot \(sharpen and detail\); (\d+):(\d+) internal-format index.*?; (\d+):(\d+) mode \(3 = linear form.*?; (\d+):(\d+) target index'
+regex = '\| (\d+):(\d+) filter-table slot \(sharpen and detail\); (\d+):(\d+) internal-format index.*?; (\d+):(\d+) mode \(four values.*?; (\d+):(\d+) target index'
 binds = [["F", "BIND_CONTROL.filter_slot", 1, 2], ["F", "BIND_CONTROL.format_index", 3, 4], ["F", "BIND_CONTROL.mode", 5, 6], ["F", "BIND_CONTROL.target", 7, 8]]
 [[claims]]
 group = "kona-words"
@@ -366,3 +376,100 @@ label = "pixel set-up word 0"
 doc = "docs/command-table.md"
 regex = '\| 0, bits (\d+):(\d+) \| transfer kind'
 binds = [["F", "PIXEL_SETUP_W0.kind", 1, 2]]
+
+[[claims]]
+group = "kona-hip"
+label = "video and voc interrupt bits"
+doc = "docs/hip.md"
+regex = '\| (\d+) \| VIDEO \|.*?\| (\d+) \| ARM \|.*?\| (\d+) \| PARITY \|.*?\| (\d+) \| VOC \|'
+binds = [["F", "HIP.hh_intr_status.video", 1], ["F", "HIP.hh_intr_status.arm", 2], ["F", "HIP.hh_intr_status.parity", 3], ["F", "HIP.hh_intr_status.voc", 4]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: engine register address port"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: engine register address port'
+binds = [["DEFN", "WORD_DESC_ENGINE_REG_ADDRESS", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: engine register data port"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: engine register data port'
+binds = [["DEFN", "WORD_DESC_ENGINE_REG_DATA", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: engine handler table index"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: set the engine handler table index'
+binds = [["DEFN", "WORD_DESC_ENGINE_TABLE_INDEX", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: engine handler table entry"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: write one engine handler table entry'
+binds = [["DEFN", "WORD_DESC_ENGINE_TABLE_ENTRY", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: distributor program word"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: write one word of the distributor program'
+binds = [["DEFN", "WORD_DESC_DISTRIBUTOR_PROGRAM", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: primitive-class table"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: load the 16-word primitive-class table'
+binds = [["DEFN", "WORD_DESC_PRIMITIVE_CLASS_TABLE", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: entry table"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: load the 512-word entry table'
+binds = [["DEFN", "WORD_DESC_ENTRY_TABLE", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: distributor step register"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: distributor step register on'
+binds = [["DEFN", "WORD_DESC_DISTRIBUTOR_STEP", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: raster-bus register write"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: routed command 128, raster-bus register write'
+binds = [["DEFN", "WORD_DESC_RASTER_BUS_WRITE", 1]]
+[[claims]]
+group = "kona-words"
+label = "descriptor: image-processor register write"
+doc = "docs/command-table.md"
+regex = '\| (0x[0-9a-f]{8}) \| descriptor: routed command 159, image-processor register write'
+binds = [["DEFN", "WORD_DESC_IMAGE_PROCESSOR_WRITE", 1]]
+[[claims]]
+group = "kona-words"
+label = "context load word 6"
+doc = "docs/command-table.md"
+regex = 'colour format \(bits (\d+):(\d+)\) and read format \(bits (\d+):(\d+)\) of the frame-buffer configuration.*?mask (0x[0-9a-f]+) \|'
+binds = [["F", "GC_LOAD_W6.colour_format", 1, 2], ["F", "GC_LOAD_W6.read_format", 3, 4], ["DEFN", "WORD_GC_LOAD_W6_BUS_ENABLE", 5]]
+[[claims]]
+group = "kona-words"
+label = "context load word 7"
+doc = "docs/command-table.md"
+regex = 'draw buffer \((\d+):(\d+)\), read-back format \((\d+):(\d+)\) and read base \((\d+):(\d+)\) of the operation register.*?mask (0x[0-9a-f]+) \|'
+binds = [["F", "GC_LOAD_W7.draw_buffer", 1, 2], ["F", "GC_LOAD_W7.readback_format", 3, 4], ["F", "GC_LOAD_W7.read_base", 5, 6], ["DEFN", "WORD_GC_LOAD_W7_BUS_ENABLE", 7]]
+[[claims]]
+group = "kona-words"
+label = "overlay 15-bit RGB masks"
+doc = "docs/command-table.md"
+regex = '\(15 planes, red (0x[0-9a-f]+), green (0x[0-9a-f]+), blue (0x[0-9a-f]+), one alpha bit\)'
+binds = [["DEFN", "WORD_OVERLAY_RGB15_RED_BITS", 1], ["DEFN", "WORD_OVERLAY_RGB15_GREEN_BITS", 2], ["DEFN", "WORD_OVERLAY_RGB15_BLUE_BITS", 3]]
+[[claims]]
+group = "kona-words"
+label = "reserved overlay mode bytes"
+doc = "docs/command-table.md"
+regex = 'carry (0x[0-9a-f]+) transparent and (0x[0-9a-f]+) opaque.*?carry (0x[0-9a-f]+) and (0x[0-9a-f]+) \(bits 3:1 = 1'
+binds = [["DEFN", "WORD_MODE_BYTE_RESERVED_CI_TRANSPARENT", 1], ["DEFN", "WORD_MODE_BYTE_RESERVED_CI_OPAQUE", 2], ["DEFN", "WORD_MODE_BYTE_RESERVED_RGB_TRANSPARENT", 3], ["DEFN", "WORD_MODE_BYTE_RESERVED_RGB_OPAQUE", 4]]
+[[claims]]
+group = "kona-words"
+label = "overlay id words"
+doc = "docs/command-table.md"
+regex = 'colour index, display-mode word (0x[0-9a-f]+)\).*?\(15-bit RGB, word (0x[0-9a-f]+)\)'
+binds = [["DEFN", "WORD_OVERLAY_ID_WORD_COLOUR_INDEX", 1], ["DEFN", "WORD_OVERLAY_ID_WORD_RGB15", 2]]
