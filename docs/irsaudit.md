@@ -312,6 +312,20 @@ Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help
 
 - `jt_dump_internal_bist` (`usr/diags/IR/bin/irsaudit` 0x10015df0): **Established.** Loads a word at `a0 (arg0 at entry) +0x0` (`lw` at 0x10015e08). Loads a doubleword at `sp (at entry) -0x10` (`ld` at 0x10015e8c). The `beq` at 0x10015e28 is taken when a2(=[a0]) == s4(=0x6) -> B8 and falls through when a2(=[a0]) != s4(=0x6) -> B1 (`beq` at 0x10015e28). Calls `printf` with a0=0x101742a0, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015e4c). Calls `printf` with a0=0x10174208, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015eb8). Calls `printf` with a0=0x10174218, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015ed4). Calls `printf` with a0=0x10174230, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015eec). Calls `printf` with a0=0x10174248, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015f04). Calls `printf` with a0=0x10174260, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015f18). Calls `printf` with a0=0x10174270, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0x10015f4c). Calls `printf` with a0=0x101741a0, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0x10015f78). Calls `printf` with a0=0x10174278, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jalr` at 0x10015f8c). Calls `printf` with a0=0x10174288, a1=unknown, a2=sp-8064, a3=unknown (`jalr` at 0x10015fd8). Calls `jt_unpack_vector` with a0=sp-8064, a1=unknown, a2=unknown, a3=unknown, a4=0x10174060, a5=entry(0x101741e0) (`jal` at 0x10015fac). Loads a word at `s0+0x8 (resolved address unknown)` (`lw` at 0x10015f20). Loads a word at `a1+0x0 (resolved address unknown)` (`lw` at 0x10015f48).
 
+- `jt_dump_internal_bist` (`usr/diags/IR/bin/irsaudit`, 524 bytes): **Established.**
+  It walks 16-byte records whose type word is at +0 (`lw` at 0x10015e08 and
+  0x10015e54) and stops at type 6 (`beq` at 0x10015e28 and 0x10015e64). A
+  type of 9 or more is skipped (`sltiu` at 0x10015e70, `beqz` at
+  0x10015e78); lower types index a table of words (`sll` at 0x10015e74,
+  `jr` at 0x10015e84). One arm prints the count at +8 and then each 4-byte
+  word of the array at +0xc (`lw` at 0x10015f20, 0x10015f34 and 0x10015f48;
+  loop `bnez` at 0x10015f60). Another expands a vector with
+  `jt_unpack_vector` (`jal` at 0x10015fac) into a stack buffer, writes a
+  zero byte at the index held at +4 (`sb` at 0x10015fd0) and prints the
+  text. The other arms print the word at +4, the word at +8 or both
+  (`jalr` at 0x10015eb8, 0x10015ed4, 0x10015eec, 0x10015f04 and
+  0x10015f18); the meaning of each type is unknown.
+
 - `ensure_jt_init` (`usr/diags/IR/bin/irsaudit` 0x1004c1bc): **Established.** Calls `kt_output_dbug` with a0=0x9, a1=0x1018ace8, a2=0x278184, a3=a3 at entry (arg3) (`jal` at 0x1004c1f8). Loads a word at `absolute address 0x102c5cd8` (`lw` at 0x1004c20c). Loads a word at `sym(fakejtag) +0x0` (`lw` at 0x1004c224). Calls `jt_init` with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1004c258). Calls `kt_output_info` with a0=0x1018ad10, a1=0x0, a2=unknown, a3=unknown (`jal` at 0x1004c284). Calls `jt_set_error_handler` with a0=sym(libjtag_error_handler), a1=unknown, a2=unknown, a3=[0x102c5cd8] (`jal` at 0x1004c2f4). Calls `jt_set_debug_handler` with a0=sym(libjtag_debug_handler), a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1004c310). Calls `kona_jt_set_custom_error_report` with a0=sym(libjtag_error_handler), a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1004c32c). Stores a word at `absolute address 0x102c5cd8` (`sw` at 0x1004c348).
 
 - `ogLibOrderRand` (`usr/diags/IR/bin/irsaudit` 0x101300d0): **Established.** Stores a word at `s0+0x0 (resolved address unknown)` (`sw` at 0x10130160). Calls `ogLibIntRand` with a0=0x0, a1=a1-1, a2=unknown, a3=unknown (`jal` at 0x101301a8). Calls `(unnamed)` with a0=unknown, a1=(a0 + (ret(ogLibIntRand) << 0x2)), a2=unknown, a3=unknown (`jal` at 0x101301bc). Calls `kt_output_dbug` with a0=0x2, a1=0x101be788, a2=unknown, a3=unknown (`jal` at 0x10130128). Calls `kt_output_dbug` with a0=0x2, a1=0x101be798, a2=unknown, a3=unknown (`jal` at 0x10130164). Calls `kt_output_dbug` with a0=0x2, a1=0x101be740, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jal` at 0x1013021c).
@@ -323,6 +337,21 @@ Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help
 - `shell_write_ram` (`usr/diags/IR/bin/irsaudit` 0x1005f608): **Established.** Calls `getpagesize` with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jalr` at 0x1005f648). Calls `memalign` with a0=ret(getpagesize), a1=0x400, a2=unknown, a3=unknown (`jalr` at 0x1005f664). Calls `setup_dma` with a0=ret(memalign), a1=(a0 << 0x2), a2=0x0, a3=unknown (`jal` at 0x1005f688). Calls `kt_output_info` with a0=0x10193d18, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1005f6ac). Calls `free` with a0=ret(memalign), a1=unknown, a2=unknown, a3=unknown (`jalr` at 0x1005f6c0). Calls `tbRegWrite` with a0=unknown, a1=0x476, a2=unknown, a3=unknown (`jal` at 0x1005f728). Calls `tbRegWrite` with a0=0x477, a1=0x1, a2=unknown, a3=unknown (`jal` at 0x1005f768). Stores a word at `s4-0x4 (resolved address unknown)` (`sw` at 0x1005f744). Calls `wait_for_dma_completion` with a0=0x0, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1005f77c). Calls `printf` with a0=0x10193f68, a1=unknown, a2=unknown, a3=unknown (`jalr` at 0x1005f820).
 
 - `unscramble_rm_boardId` (`usr/diags/IR/bin/irsaudit` 0x1008d26c): **Established.** Loads a word at `s1+0x438 (resolved address unknown)` (`lw` at 0x1008d294). Calls `de_gray_code` with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1008d324). Calls `de_gray_code` with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x1008d360). Calls `kt_output_info` with a0=0x1019e920, a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jal` at 0x1008d2e4). Calls `kt_output_info` with a0=0x1019e950, a1=0x1, a2=unknown, a3=unknown (`jal` at 0x1008d304). Calls `kt_output_info` with a0=0x1019e980, a1=ret(de_gray_code), a2=unknown, a3=unknown (`jal` at 0x1008d34c). Calls `kt_output_info` with a0=0x1019e9a0, a1=ret(de_gray_code), a2=unknown, a3=unknown (`jal` at 0x1008d388). Stores a word at `sym(total_errors) +0x0` (`sw` at 0x1008d410).
+
+- `unscramble_rm_boardId` (`usr/diags/IR/bin/irsaudit`): **Established.**
+  The 644-byte body at 0x1008d26c indexes the caller's array in steps of
+  0x254 bytes (`sll`/`subu`/`addu` chain at 0x1008d274-0x1008d290) and reads
+  the word at +0x438 of the record (`lw` at 0x1008d294). Bits 14:9 (`srl` at
+  0x1008d2a4, `andi` at 0x1008d2b0) are compared with 1 (`beq` at
+  0x1008d2c0): equal prints one message (`jal` at 0x1008d44c), otherwise it
+  prints two (`jal` at 0x1008d2e4 and 0x1008d304). Bits 4:1 (`srl` at
+  0x1008d320, `andi` at 0x1008d328) and bits 8:6 (`srl` at 0x1008d35c,
+  `andi` at 0x1008d364) each go through `de_gray_code` and are printed with
+  the raw field. Bits 18:16 (`srl` at 0x1008d394, `andi` at 0x1008d39c)
+  select among five messages for the values 0 to 4 (`beqz` at 0x1008d3a8,
+  `beq` at 0x1008d3b0, 0x1008d3b8, 0x1008d3c0 and 0x1008d3c8); any other
+  value prints two messages (`jal` at 0x1008d3dc and 0x1008d3f4) and adds
+  one to `total_errors` (`sw` at 0x1008d410).
 
 The following entries are **Established** from complete `irsaudit` 6.5.30m fact sheets. Addresses and sizes are the symbol ranges in that binary; register offsets are the arguments passed to the diagnostic's 32-bit PIO helpers.
 
@@ -493,7 +522,39 @@ The following entries are **Established** from complete `irsaudit` 6.5.30m fact 
 
 - `TEST_voccpbuf` (`usr/diags/IR/bin/irsaudit` 0x100ab1d0): **Established.** Loads a word at `a0 (arg0 at entry) +0xdbc` (`lw` at 0x100ab1ec). Calls `reset_dacs` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown (`jal` at 0x100ab234). Loads a word at `a0 (arg0 at entry) +0xe2c` (`lw` at 0x100ab23c). Loads a word at `a0 (arg0 at entry) +0xe2c` (`lw` at 0x100ab330). Calls `(unnamed)` with a0=unknown, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x100ab2d0). Calls `kt_output_info` with a0=0x101a4578, a1=[0x102cfe64], a2=ret(0x100ac1d8), a3=unknown (`jal` at 0x100ab2fc). Calls `kt_output_rslt` with a0=0x0, a1=0x101a46e0, a2=unknown, a3=unknown (`jal` at 0x100ab398).
 
+- `TEST_voccpbuf` (`usr/diags/IR/bin/irsaudit`, 740 bytes): **Established.**
+  A zero board word at +0xdbc takes the `beqz` at 0x100ab208 to a message
+  path at 0x100ab438. Otherwise, after `reset_dacs`, the word at +0xe2c
+  selects the pass count: 8 runs eight passes (`beq` at 0x100ab248), 2 runs
+  two (`beq` at 0x100ab250), and any other value first makes two message
+  calls (`jal` at 0x100ab264 and 0x100ab280) and then runs two. Each pass
+  calls 0x100ac1d8 (`jal` at 0x100ab2d0) and adds the result to a failure
+  total (`addu` at 0x100ab2d8). A nonzero result is printed (`jal` at
+  0x100ab2fc) and passed to a second call at 0x100ab314. After the loop the
+  count of passes run is compared with the word at +0xe2c (`bne` at
+  0x100ab334); a difference prints a message (`jal` at 0x100ab3e4) and adds
+  one to the total (`addiu` at 0x100ab3ec). A zero total makes the closing
+  calls with 1 as the first argument to the result call (`jal` at
+  0x100ab42c); a nonzero total goes through the call at 0x100ab354 and
+  reports the total with 0 (`jal` at 0x100ab398).
+
 - `TEST_rmcrcreg` (`usr/diags/IR/bin/irsaudit` 0x100cf3ac): **Established.** Loads a word at `a0 (arg0 at entry) +0x16c` (`lw` at 0x100cf3b8). Calls `fcPioRead32` with a0=0x208, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x100cf4ac). Calls `ioctl` with a0=[sym(pipeFD)], a1=0x2775, a2=0x1, a3=unknown (`jalr` at 0x100cf528). Loads a word at `sym(Nocrc) +0x0` (`lw` at 0x100cf540). Calls `(unnamed)` with a0=a0 at entry (arg0), a1=unknown, a2=unknown, a3=unknown (`jal` at 0x100cf558).
+
+- `TEST_rmcrcreg` (`usr/diags/IR/bin/irsaudit`, 876 bytes): **Established.**
+  The word at +0x16c must be 1, 2 or 4 (`beq` at 0x100cf3d8, 0x100cf3e4 and
+  0x100cf3f0). Any other value is printed (`jal` at 0x100cf40c), reported
+  through the result call with 2 as its first argument (`jal` at
+  0x100cf430) and returned from (`b` at 0x100cf438). Reads of host offset
+  0x208 repeat while the value is nonzero: each repeat calls an indirect
+  helper with 5 (`jalr` at 0x100cf4d0; `addiu` at 0x100cf4d4) and reads
+  again, up to five times (`sltiu` at 0x100cf4ec); running out of tries takes
+  the exit at 0x100cf5d0. The `ioctl` 0x2775 with 1 at 0x100cf528 fails on a
+  negative result (`bltz` at 0x100cf530); a zero shared enable word skips
+  the CRC operation (`beqz` at 0x100cf544). The CRC operation at 0x100cf558
+  returning zero takes the `beqz` at 0x100cf560 to a result call with 1
+  (`jal` at 0x100cf650); a nonzero result prints a diagnostic (`jal` at
+  0x100cf580) and reports 0 (`jal` at 0x100cf598). Both paths then issue
+  `ioctl` 0x2775 with 0 (`jalr` at 0x100cf5ac) before returning.
 
 - `vdManRequest` (`usr/diags/IR/bin/irsaudit` 0x10137e20): **Established.** Calls `vcRead` with a0=(a0 << 0x8)+580, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x10137eac). Stores a word at `(sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110` (`sw` at 0x10137ec0). Calls `vcWrite` with a0=(a0 << 0x8)+580, a1=unknown, a2=unknown, a3=unknown (`jal` at 0x10137eec). Calls `vcWrite` with a0=(a0 << 0x8)+580, a1=(ret(vcRead) | 0x18), a2=unknown, a3=unknown (`jal` at 0x10137f08). Stores a word at `(sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110` (`sw` at 0x10137f0c). Stores a word at `(sym(vdVocShadowRegs) + (a0 << 0xa)) +0x110` (`sw` at 0x10137f18). Loads a word at `(sym(vdVocShadowRegs) + (a0 << 0xa)) +0x4` (`lw` at 0x10137f1c). Calls `vcWrite` with a0=(a0 << 0x8)+513, a1=unknown, a2=a2 at entry (arg2), a3=a3 at entry (arg3) (`jal` at 0x10137f60).
 
