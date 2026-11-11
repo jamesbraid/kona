@@ -106,11 +106,11 @@ Slots 10004 and 10013 are empty in both the header and the driver, and slots 100
 
 **Established** (`KONAprivate`, `kona_ioctl.o` 0xf4-0x124 and their targets; 6.5.30m):
 
-| Number | Copied | Handler | What it does |
-|---|---|---|---|
-| 10100 | 24 in (translated for a 32-bit caller), 24 out | `kona_diag_map` | maps a user buffer for the pipe to reach by DMA and returns its pipe address ([below](#diagnostic-map-kona_diag_map)) |
-| 10101 | none: the argument itself is the value | `kona_diag_flow` (`kona_flow.o` 0x5a0-) after `RRM_CheckValidFault` | argument 0: clear bits 0-2 of the driver's `HH_INTR_ENABLE` shadow (pipe state +2368) and write it; argument 1: unless the pipe is dead (EACCES, 13), set bit 2 of the shadow and write it, flush the write-gather buffer, attach the caller to the write-gather group (offset 0x7c) as a packet sender does when it is not attached yet, then kick `HH_GINTR_INFO` with 0 (0x614-0x6f0); anything else EINVAL |
-| 10102 | 16 out | `kona_diag_credits` after `RRM_CheckValidFault` | four words: the flow-control credit total, bias and current count (`gfx_flow_credit_total_get`, `_bias_get`, `_count_get`) and the constant 100000 |
+| Number | Copied | Handler | What it does | Grade |
+|---|---|---|---|---|
+| 10100 | 24 in (translated for a 32-bit caller), 24 out | `kona_diag_map` | maps a user buffer for the pipe to reach by DMA and returns its pipe address ([below](#diagnostic-map-kona_diag_map)) | established |
+| 10101 | none: the argument itself is the value | `kona_diag_flow` (`kona_flow.o` 0x5a0-) after `RRM_CheckValidFault` | argument 0: clear bits 0-2 of the driver's `HH_INTR_ENABLE` shadow (pipe state +2368) and write it; argument 1: unless the pipe is dead (EACCES, 13), set bit 2 of the shadow and write it, flush the write-gather buffer, attach the caller to the write-gather group (offset 0x7c) as a packet sender does when it is not attached yet, then kick `HH_GINTR_INFO` with 0 (0x614-0x6f0); anything else EINVAL | established |
+| 10102 | 16 out | `kona_diag_credits` after `RRM_CheckValidFault` | four words: the flow-control credit total, bias and current count (`gfx_flow_credit_total_get`, `_bias_get`, `_count_get`) and the constant 100000 | established |
 
 `RRM_CheckValidFault` returning a negative value makes 10101 and 10102 fail with EFAULT. **Inferred:** 10101 turns FIFO flow control (`HH_INTR_ENABLE` bits 0-2, the high- and low-water sources of [hip.md](hip.md)) off and on so a diagnostic can fill the FIFO, and 10102 reads the credit state it then checks; the constant 100000 is a limit the diagnostic is told, whose use is in the user program.
 

@@ -44,20 +44,20 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 
 **Established** (kpm's XG table; the 6.5.30m driver for what it uses). Beside the registers above, the XG window holds:
 
-| Offset | kpm name | Who uses it |
-|---|---|---|
-| 0x0c | `XG_XT_STAT`: pending count, link size and retry flags, transmit and receive counts | kpm only |
-| 0x64 | `XG_CONFIG`: `SUBSYSTEM` (bits 0-2), `MAPRAM_SIZE` (3-5), `MAPRAM_TYPE` (6-7) | `kona_attach` reads `MAPRAM_SIZE` |
-| 0x6c | `XG_ERR_STAT`, 31 error bits (XG.h gives each kpm name next to the driver's message) | `kona_report_errs`, `kona_reset_adaptor` |
-| 0x7c | `XG_GFX_DET`: `DETACH` (bit 0), `RES_TNUM` (bits 1-5) | every packet sender, the map and suspend paths: attach writes 34 (`RES_TNUM` 17, the constant `gfx_flow_credit_tnum_get` returns, kept at `P+2248`), detach writes 1 ([kernel.md](kernel.md#flow-control-layer)) |
-| 0x84, 0x8c | `XG_GFX_AVCC` (available cache-line credits), `XG_GFX_AVDWC` (available doubleword credits), 12 bits each | kpm only |
-| 0x94 | `XG_MAP_ADDR`, an 18-bit map RAM address | kpm only |
-| 0x9c | `XG_NIC`: the serial-number one-wire port (`RD_DATA`, `DONE`, `SAMPLE`, `PULSE`) | kpm; the kernel reads the board serial numbers through its NIC code |
-| 0xa4 | `XG_XT_LLP_LOG`: link sequence-number and check-bit error counts | kpm only |
-| 0x100000-0x1fffff | `XG_MAP_RAM`, 32-bit entries: `PPN` bits 0-27, `INVALID` bit 28, `PAGESIZE` bits 29-30, `ODD_PARITY` bit 31 | `kona_mapram_init` writes 0x10000000 \| index (invalid), `kona_mapram_map` writes 0x20000000 \| frame (page-size code 1, the driver's 16 KB page) |
-| 0x800000 | `XG_CLIENT_REGS`: the host-interface registers | the kernel's register accesses (HIP.h) |
-| 0xc00000 | `XG_FC_CLIENT_REGS`: the host-interface registers again | the kernel's `HH_GINTR_INFO` kick at 0xc00108 |
-| 0xc10000 | `XG_FC_GFX`: the graphics FIFO | the user command FIFO page (`KONAmapgfx`, [kernel.md](kernel.md#what-a-process-maps)) |
+| Offset | kpm name | Who uses it | Grade |
+|---|---|---|---|
+| 0x0c | `XG_XT_STAT`: pending count, link size and retry flags, transmit and receive counts | kpm only | established |
+| 0x64 | `XG_CONFIG`: `SUBSYSTEM` (bits 0-2), `MAPRAM_SIZE` (3-5), `MAPRAM_TYPE` (6-7) | `kona_attach` reads `MAPRAM_SIZE` | established |
+| 0x6c | `XG_ERR_STAT`, 31 error bits (XG.h gives each kpm name next to the driver's message) | `kona_report_errs`, `kona_reset_adaptor` | established |
+| 0x7c | `XG_GFX_DET`: `DETACH` (bit 0), `RES_TNUM` (bits 1-5) | every packet sender, the map and suspend paths: attach writes 34 (`RES_TNUM` 17, the constant `gfx_flow_credit_tnum_get` returns, kept at `P+2248`), detach writes 1 ([kernel.md](kernel.md#flow-control-layer)) | established |
+| 0x84, 0x8c | `XG_GFX_AVCC` (available cache-line credits), `XG_GFX_AVDWC` (available doubleword credits), 12 bits each | kpm only | established |
+| 0x94 | `XG_MAP_ADDR`, an 18-bit map RAM address | kpm only | established |
+| 0x9c | `XG_NIC`: the serial-number one-wire port (`RD_DATA`, `DONE`, `SAMPLE`, `PULSE`) | kpm; the kernel reads the board serial numbers through its NIC code | established |
+| 0xa4 | `XG_XT_LLP_LOG`: link sequence-number and check-bit error counts | kpm only | established |
+| 0x100000-0x1fffff | `XG_MAP_RAM`, 32-bit entries: `PPN` bits 0-27, `INVALID` bit 28, `PAGESIZE` bits 29-30, `ODD_PARITY` bit 31 | `kona_mapram_init` writes 0x10000000 \| index (invalid), `kona_mapram_map` writes 0x20000000 \| frame (page-size code 1, the driver's 16 KB page) | established |
+| 0x800000 | `XG_CLIENT_REGS`: the host-interface registers | the kernel's register accesses (HIP.h) | established |
+| 0xc00000 | `XG_FC_CLIENT_REGS`: the host-interface registers again | the kernel's `HH_GINTR_INFO` kick at 0xc00108 | established |
+| 0xc10000 | `XG_FC_GFX`: the graphics FIFO | the user command FIFO page (`KONAmapgfx`, [kernel.md](kernel.md#what-a-process-maps)) | established |
 
 Each register is the low 32-bit half of a 64-bit slot at 8n (offset 8n + 4); the generic Xtalk widget registers sit at 0x04, 0x24, 0x2c, 0x34 and 0x3c the same way. **Inferred:** "FC" is flow control: the kernel sends its kick through 0xc00000 and maps the user's FIFO from 0xc10000, both paths that must stay ordered behind the flow-controlled user stream, and uses 0x800000 for every other register access. Offsets the table and the driver do not name are **unknown: no shipped software or published source depends on them** (routes tried: the 6.5.30m kernel objects, kpm's table, the 6.5.5 headers, Linux `xwidget.h`).
 
@@ -76,7 +76,7 @@ Each register is the low 32-bit half of a 64-bit slot at 8n (offset 8n + 4); the
 
 **Inferred:** the path through `kona_flow_await_returned_credits` is a recovery used when a pipe stops returning credits while an extra flag (`P+2172`, cleared by `KONAinitialize`) is set. What `P+2172` and bit 2 of the word at `P+72`+4 mean is **unknown**.
 
-**What the pulse clears, from the driver.** *Inferred:* the pulse returns the host-interface registers the driver rewrites to their reset state (interrupt enable, global enable, credit threshold) and empties the map RAM's valid state, from the rewriting. A reset with the start bit (bit 1, `ARM_START` in kpm's table) and leaves the ARM: **inferred** from `init_graphics` in `kona_tport.o` (kernel-functions.md), which writes 3 then 2 to start a pipe that does not answer.
+**What the pulse clears, from the driver.** *Established* (kernel): every kernel pulse is 1 then 0, so it never sets the start bit (bit 1, `ARM_START` in kpm's table) and leaves the register at 0. What the kernel then rewrites tells which state it does not assume survives: the interrupt enable (`HH_INTR_ENABLE` = 0x100, `KONAinitialize`), the global interrupt enable (`HH_INTR_INFO` bit 15), the map RAM (`kona_mapram_init`), the flow-control state (`gfx_flow_reset`, then `kona_flow_init`, which writes `HH_GFIFO_HI` = 0x700), the window register at 0x7c. The recovery path in `kona_flow_await_returned_credits` does the same re-attachment. It does not rewrite the DMA registers, `HH_GFIFO_LO` or any ARM register.
 
 *Inferred:* the pulse returns the host-interface registers the driver rewrites to their reset state (interrupt enable, global enable, credit threshold) and empties the map RAM's valid state, from the rewriting. A reset with the start bit set restarts the ARM: **inferred** from `init_graphics` in `kona_tport.o` (kernel-functions.md), which writes 3 then 2 to start a pipe that does not answer.
 

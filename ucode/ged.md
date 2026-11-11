@@ -12,12 +12,12 @@ Sources:
 
 **Established** (`Compact_GED_Ucode`). The diagnostic fills a 13-word structure and packs it into one 32-bit distributor word. Bits 31-30 select one of four types, and each type places the structure's fields differently:
 
-| Type (31-30) | Bits | Field |
-|---|---|---|
-| 0, control | 29-27, 26, 25-24, 23, 22-17, 16, 15, 13, 12, 11-10, 9-0 | sub-op (always 0 in `ged1b.u`), **fetch**, x, y, a 6-bit r, a, b, c, **release**, z, a 10-bit n. Bit 14 is never set |
-| 1, transfer | 29-27, 26, 25, 24, 23-16, 15-10, 9-0 | op, fetch, p, q, an 8-bit register (for ops 5 and 7 the packer turns a register number into a one-hot byte, below), a 6-bit value (written only for ops 1-3), a 10-bit target |
-| 2, load | 29-27, 26, 25-24, 23, 22-16, 15-0 | op, fetch, x, y, a 7-bit register, a 16-bit immediate (written only for ops 0 and 2) |
-| 3 | 31-30 only | the packer writes nothing else; `ged1b.u` has no type-3 words |
+| Type (31-30) | Bits | Field | Grade |
+|---|---|---|---|
+| 0, control | 29-27, 26, 25-24, 23, 22-17, 16, 15, 13, 12, 11-10, 9-0 | sub-op (always 0 in `ged1b.u`), **fetch**, x, y, a 6-bit r, a, b, c, **release**, z, a 10-bit n. Bit 14 is never set | established |
+| 1, transfer | 29-27, 26, 25, 24, 23-16, 15-10, 9-0 | op, fetch, p, q, an 8-bit register (for ops 5 and 7 the packer turns a register number into a one-hot byte, below), a 6-bit value (written only for ops 1-3), a 10-bit target | established |
+| 2, load | 29-27, 26, 25-24, 23, 22-16, 15-0 | op, fetch, x, y, a 7-bit register, a 16-bit immediate (written only for ops 0 and 2) | established |
+| 3 | 31-30 only | the packer writes nothing else; `ged1b.u` has no type-3 words | established |
 
 **Established** (the named words). `Get_GED_Nop_Inst` returns 0. `Get_GED_Fetch_Inst` returns a control word with only bit 26 set (0x04000000). `Get_GED_Release_Inst` returns a control word with only bit 12 set (0x00001000). `Load_GED_Ucode_Flush` writes the two-word program [fetch, release] to a given address, points table B entry 63 at it and sets distributor register 0x200 to 63.
 

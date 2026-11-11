@@ -88,13 +88,13 @@ The save side is `arm_context_deactivate` (token 0x1fc, [arm1.md](../ucode/arm1.
 
 **Established** (`deactivate_arm` 0x0c02209c, `deact_section` 0x0c021f7c, `load_arm` 0x0c020dd4, `arm1.u` 6.5.30m). The save and load sides use the same five tags, and each tag's load branch prints its own region name when the length disagrees:
 
-| Tag | Region (load-side message) | Data words | ARM source and destination |
-|---|---|---|---|
-| 0x200 | `KONA_CTX_HIP_REGS` | 10 | the host-interface register block `deactivate_hip` fills (the save area that `saved_regs_mem` + 0x98 points to): token-map, loop and pass-through state. On load the block is put back and `arm_context_activate` is re-installed in the token map at the entry the block names (word 6) |
-| 0x400 | `KONA_CTX_ARM_FAST` | 0x2ca | the ARM's state block at r8 + 0x1cc |
-| 0x401 | `KONA_CTX_ARM_SDRAM` | 0x44a | the block the pointer at r8 + 0xcf4 names (the texture records, [arm1_functions.md](../ucode/arm1_functions.md)) |
-| 0x403 | `KONA_CTX_ARM_REGS` | 0x11 | the saved processor registers (`saved_regs_mem` + 0x94); written only when bit 0 of the saved host-interface block's first word is set |
-| 0x402 | `KONA_CTX_ARM_STACK` | 0x400 - i | the live part of a 0x400-word stack, from word i = (saved register word 13 & 0xfe0) / 4 to the top; same condition as 0x403 |
+| Tag | Region (load-side message) | Data words | ARM source and destination | Grade |
+|---|---|---|---|---|
+| 0x200 | `KONA_CTX_HIP_REGS` | 10 | the host-interface register block `deactivate_hip` fills (the save area that `saved_regs_mem` + 0x98 points to): token-map, loop and pass-through state. On load the block is put back and `arm_context_activate` is re-installed in the token map at the entry the block names (word 6) | established |
+| 0x400 | `KONA_CTX_ARM_FAST` | 0x2ca | the ARM's state block at r8 + 0x1cc | established |
+| 0x401 | `KONA_CTX_ARM_SDRAM` | 0x44a | the block the pointer at r8 + 0xcf4 names (the texture records, [arm1_functions.md](../ucode/arm1_functions.md)) | established |
+| 0x403 | `KONA_CTX_ARM_REGS` | 0x11 | the saved processor registers (`saved_regs_mem` + 0x94); written only when bit 0 of the saved host-interface block's first word is set | established |
+| 0x402 | `KONA_CTX_ARM_STACK` | 0x400 - i | the live part of a 0x400-word stack, from word i = (saved register word 13 & 0xfe0) / 4 to the top; same condition as 0x403 | established |
 
 The save order is 0x200, 0x400, 0x401, then 0x403 and 0x402. Each section goes to the engines as a stream: the tag, a flag word (3 on the last chunk, 0 before it), four marker words of tag \| tag << 16 on the first chunk, the data in chunks of at most 0x1f8 words, four marker words again on the last chunk, then the engine slot 184 (`mges_ContextDeactSection`), which writes it out. Data above ARM address 0x1000 travel by list DMA (0x200030 address, 0x200034 bytes, 0x200038 start, 0x200064 = 2, pass-through count 0x200058 = n \| 0xc000000, then a wait for bit 2 of 0x200040); lower addresses are copied word by word. `load_arm` checks four leading and four trailing marker words and expects the record length to be the data length plus 8, so in the saved image a section record's length counts its eight marker words.
 

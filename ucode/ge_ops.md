@@ -18,13 +18,13 @@
 
 **Established** ([ge_opdeps.tsv](ge_opdeps.tsv), forward selection of W bits that determine `M` over every word of a form):
 
-| Form | W bits that determine M |
-|---|---|
-| 5 | W22-16 (bit 20 not needed) |
-| 12 | W16-13, W30, W51 |
-| 13 | W22-16, W29, W8 |
-| 15 | W61 only |
-| 14 | none: M is constant |
+| Form | W bits that determine M | Grade |
+|---|---|---|
+| 5 | W22-16 (bit 20 not needed) | established |
+| 12 | W16-13, W30, W51 | established |
+| 13 | W22-16, W29, W8 | established |
+| 15 | W61 only | established |
+| 14 | none: M is constant | established |
 
 In form 13, **established** over all 10996 words: with W29 set (7934 words) M = 0x680 | W[22:16], so W[22:16] = 0x4a gives 0x6ca, 0x60 gives 0x6e0, 0x62 gives 0x6e2, 0x42 gives 0x6c2 and 0x50 gives 0x6d0; with W29 clear (3062 words) M = (W[22:16] << 4) | 0x7f, which gives 0x47f, 0x57f, 0x6ff and so on. **Inferred:** W29 chooses between reading W[22:16] as an operation and reading it as another field that lands in M[10:4]; the low bits 0x7f are the "no operation" pattern. In form 5 the same M values come from different W[22:16] codes (0x6ca from 0x44, 0x6c2 from 0x46, 0x6e2 from 0x4e). So M is a canonical operation id that the assembler produced from a form-specific code; **inferred:** M[6:0] is the operation, 64 codes at most (0x40-0x7f).
 

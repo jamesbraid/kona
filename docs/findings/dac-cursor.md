@@ -177,12 +177,12 @@ interlaced format uses the DAC cursor is a separate observation.
 **Published part (established for the part).** Table II of the data sheet (the
 vgadoc text has the same table), for cursor mode 1 (X11):
 
-| Pixel value (bit 1, bit 0) | Colour |
-|---|---|
-| 0 | transparent |
-| 1 | transparent |
-| 2 | Cursor Color 1 |
-| 3 | Cursor Color 2 |
+| Pixel value (bit 1, bit 0) | Colour | Grade |
+|---|---|---|
+| 0 | transparent | established for the part |
+| 1 | transparent | established for the part |
+| 2 | Cursor Color 1 | established for the part |
+| 3 | Cursor Color 2 | established for the part |
 
 Cursor Color 2 is at index 0x303 and Cursor Color 1 at 0x304 (note the reverse
 numbering against address). Each is three 10-bit components accessed red, green,

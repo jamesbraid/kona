@@ -16,11 +16,11 @@ Notation: `P` is the driver's per-pipe state. Offsets are the ones the code uses
 
 **Established.** Three ioctls feed the cursor, all of which only record state under the lock at `P+3520` and set a "pending" flag:
 
-| Entry | Stores | Flag set |
-|---|---|---|
-| `kona_select_cursor` (the select cursor Kona driver request) | mode byte at `P+3555`, glyph address word at `P+3560`, hot spot halfwords at `P+3568` and `P+3570` | `P+3552` and `P+3553` |
-| `KONApositioncursor` | x halfword at `P+3564`, y halfword at `P+3566` | `P+3553` |
-| `kona_set_channel_rect` (the set channel rectangle Kona driver request) | one entry of the cursor-rectangle table (below) | `P+3552` and `P+3553`; also sets the current cursor channel `P+3556` to 32 (none) |
+| Entry | Stores | Flag set | Grade |
+|---|---|---|---|
+| `kona_select_cursor` (the select cursor Kona driver request) | mode byte at `P+3555`, glyph address word at `P+3560`, hot spot halfwords at `P+3568` and `P+3570` | `P+3552` and `P+3553` | established |
+| `KONApositioncursor` | x halfword at `P+3564`, y halfword at `P+3566` | `P+3553` | established |
+| `kona_set_channel_rect` (the set channel rectangle Kona driver request) | one entry of the cursor-rectangle table (below) | `P+3552` and `P+3553`; also sets the current cursor channel `P+3556` to 32 (none) | established |
 
 The mode values in the 6.5.5 header are 0 off, 1 crosshair, 2 glyph.
 

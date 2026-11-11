@@ -62,14 +62,14 @@ A table entry is four items in this order: the name as `xdr_string` (a length wo
 
 **Established**, from `mapTypeToXDRPROC` (konal.so, address 0x13b22c4), whose jump table of 21 entries at 0x1511e48 gives each type its XDR routine and in-memory size, and checked against the types the files use:
 
-| Type | XDR routine | Memory size | Used for |
-|---:|---|---:|---|
-| 2 | `xdr_int` | 4 | integers: lines, pixels, counts, indexes, array entries |
-| 7 | `xdr_u_short` (the default case) | 2 | the two version fields of a `.cmb`; a file stores it in a full word |
-| 10 | `xdr_bool` | 4 | booleans: interlace, stereo, valid flags, per-line-type edge masks |
-| 15 | `xdr_wrapstring` | 4 | strings |
-| 16 | `xdr_float` | 4 | single-precision values in a `.cmb`: gains, gammas, safe area, filter size |
-| 17 | `xdr_double` | 8 | rates and times in a `.vfo` |
+| Type | XDR routine | Memory size | Used for | Grade |
+|---:|---|---:|---|---|
+| 2 | `xdr_int` | 4 | integers: lines, pixels, counts, indexes, array entries | established |
+| 7 | `xdr_u_short` (the default case) | 2 | the two version fields of a `.cmb`; a file stores it in a full word | established |
+| 10 | `xdr_bool` | 4 | booleans: interlace, stereo, valid flags, per-line-type edge masks | established |
+| 15 | `xdr_wrapstring` | 4 | strings | established |
+| 16 | `xdr_float` | 4 | single-precision values in a `.cmb`: gains, gammas, safe area, filter size | established |
+| 17 | `xdr_double` | 8 | rates and times in a `.vfo` | established |
 
 Types 3, 4, 5, 6, 8, 9, 11, 18 and 19 map to the other `xdr_*` routines; no file uses them, and type 0 and types above 20 trip the assertions `DataType_Unused != type` and `typeMustBeDefined` of the Kona stack source unit 5. A value with a nonzero element count starts with that count and then holds the elements through `xdr_array`, in `xdr_typedData` (address 0x13b256c).
 

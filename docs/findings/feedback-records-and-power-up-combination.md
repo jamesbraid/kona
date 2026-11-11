@@ -39,16 +39,16 @@ words. The record layout in section 1.2 is the pipe's layout.
 0xd95d010-0xd95d0a0 and the eight handlers). Each record is a code word, all
 words single-precision floats:
 
-| Code | Record | Words after the code |
-|---|---|---|
-| 0x700 | pass-through | 1 (the marker) |
-| 0x701 | point | 1 vertex |
-| 0x702 | line | 2 vertices |
-| 0x703 | polygon | count word n (float), then n vertices |
-| 0x704 | bitmap | 1 vertex |
-| 0x705 | draw pixels | 1 vertex |
-| 0x706 | copy pixels | 1 vertex |
-| 0x707 | line reset | 2 vertices |
+| Code | Record | Words after the code | Grade |
+|---|---|---|---|
+| 0x700 | pass-through | 1 (the marker) | established |
+| 0x701 | point | 1 vertex | established |
+| 0x702 | line | 2 vertices | established |
+| 0x703 | polygon | count word n (float), then n vertices | established |
+| 0x704 | bitmap | 1 vertex | established |
+| 0x705 | draw pixels | 1 vertex | established |
+| 0x706 | copy pixels | 1 vertex | established |
+| 0x707 | line reset | 2 vertices | established |
 
 Values per vertex, V, from the type the application passed to
 `glFeedbackBuffer` (the client refuses anything outside 0x600-0x604 and

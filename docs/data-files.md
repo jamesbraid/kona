@@ -43,22 +43,22 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 
 **Established** (file type and the first lines of each file). The graphics packages install these beside the drivers; the function-level descriptions are in [kpm.md](kpm.md), [irsaudit.md](irsaudit.md), [setup-tools.md](setup-tools.md) and [xserver.md](xserver.md).
 
-| File | What it is |
-|---|---|
-| `kpm`, `ireeprom`, `postmortem` | `usr/gfx/KONA/bin/`: the pipe post-mortem and viewer ([kpm.md](kpm.md)), the display EEPROM utility ([setup-tools.md](setup-tools.md#ireeprom)), and a shell script that collects a post-mortem dump into the crash directory and passes it to the availability monitor |
-| `availmon` | `usr/diags/IR/bin/`: a shell wrapper that runs `irsaudit` and manages its summary and result files in the crash directory (usage: name, summary file, result file) |
-| `irsaudit`, `hyper` | the IR diagnostic and the hyperpipe test program ([irsaudit.md](irsaudit.md)) |
-| `irsaudit_disasm.txt`, `irsaudit_dynsym_disasm.txt` | disassembly listings of the diagnostic and of its dynamic-symbol stubs; generated from the binary, not shipped |
-| `usr/diags/IR/ucode/arm1_nic.u` | **Established** (file layout): a 13400-byte big-endian ARM image in AIF layout. Its word at +0x08 is a branch with link to +0x40, the entry, and the word at +0x10 is the AIF exit call (SWI 0x11). Its routines and the registers they touch were not disassembled here, so its role is **unknown**; the name suggests the firmware variant for the network-interface (serial-number) boards, which the page beside it, [ucode/arm1.md](../ucode/arm1.md), describes for the full image |
-| `usr/diags/IR/ucode/diag_arm_init.u` | **Established** (file bytes, all 130 words read): a 520-byte big-endian ARM image, described in the list below this table. The import recipe loads it at image base 0 ([tooling.md](tooling.md#arm-firmware-import)). |
-| `usr/diags/IR/ucode/ge_diag_init.u`, `usr/diags/IR/ucode/ge_diag_init.hex` | the diagnostic's geometry-engine initialisation program (the `.hex` form is the same program as hexadecimal words); it sits beside the full firmware images of [ucode/arm1.md](../ucode/arm1.md) |
-| `gfxinfo`, `gfxtopology`, `setmon`, `dmconf`, `ircombine`, `sgcombine`, `sdbutil`, `hyperpipeinfo`, `xsetmon` | the setup and video-configuration tools ([setup-tools.md](setup-tools.md)); `gfxtopology` is a Perl script and `hyperpipeinfo` prints the hyperpipe configuration of a display (usage `-d <displayname>`) |
-| `startgfx`, `stopgfx` | shell scripts that start and stop the window system |
-| `Xsgi` | the X server ([xserver.md](xserver.md)) |
-| `konavis.so` | the X module that holds the visual tables of the Kona screen: sets of small, medium and large visuals per image-processor revision (`konSmVisuals_imp8`, `konMedVisuals_imp8`, `konLgVisuals_imp8` and the `_imp8c` forms) with their private records |
-| `tport.o` | the kernel textport STREAMS driver, a member of `tport.a` ([setup-tools.md](setup-tools.md#kernel-textport-tporta)) |
-| `Dmconf`, `Ircombine`, `XSetmon` | the X resource files of the three graphical tools; each starts with the RapidApp generator banner and turns on the SGI look and feel schemes |
-| `gfx.sm`, `gfxs` and the tuning file `gfx` | the kernel configuration: `gfx.sm` is the system file that lists the graphics drivers autoconfig links (the Kona driver among them, "KONA graphics w/ HIP2 via Xtalk bus"), `gfxs` is the master file of the graphics streams device and sets the board limit (128 heads on IP27 and IP35, 8 elsewhere), and `gfx` holds the tunable parameters |
+| File | What it is | Grade |
+|---|---|---|
+| `kpm`, `ireeprom`, `postmortem` | `usr/gfx/KONA/bin/`: the pipe post-mortem and viewer ([kpm.md](kpm.md)), the display EEPROM utility ([setup-tools.md](setup-tools.md#ireeprom)), and a shell script that collects a post-mortem dump into the crash directory and passes it to the availability monitor | established |
+| `availmon` | `usr/diags/IR/bin/`: a shell wrapper that runs `irsaudit` and manages its summary and result files in the crash directory (usage: name, summary file, result file) | established |
+| `irsaudit`, `hyper` | the IR diagnostic and the hyperpipe test program ([irsaudit.md](irsaudit.md)) | established |
+| `irsaudit_disasm.txt`, `irsaudit_dynsym_disasm.txt` | disassembly listings of the diagnostic and of its dynamic-symbol stubs; generated from the binary, not shipped | established |
+| `usr/diags/IR/ucode/arm1_nic.u` | **Established** (file layout): a 13400-byte big-endian ARM image in AIF layout. Its word at +0x08 is a branch with link to +0x40, the entry, and the word at +0x10 is the AIF exit call (SWI 0x11). Its routines and the registers they touch were not disassembled here, so its role is **unknown**; the name suggests the firmware variant for the network-interface (serial-number) boards, which the page beside it, [ucode/arm1.md](../ucode/arm1.md), describes for the full image | established |
+| `usr/diags/IR/ucode/diag_arm_init.u` | **Established** (file bytes, all 130 words read): a 520-byte big-endian ARM image, described in the list below this table. The import recipe loads it at image base 0 ([tooling.md](tooling.md#arm-firmware-import)). | established |
+| `usr/diags/IR/ucode/ge_diag_init.u`, `usr/diags/IR/ucode/ge_diag_init.hex` | the diagnostic's geometry-engine initialisation program (the `.hex` form is the same program as hexadecimal words); it sits beside the full firmware images of [ucode/arm1.md](../ucode/arm1.md) | established |
+| `gfxinfo`, `gfxtopology`, `setmon`, `dmconf`, `ircombine`, `sgcombine`, `sdbutil`, `hyperpipeinfo`, `xsetmon` | the setup and video-configuration tools ([setup-tools.md](setup-tools.md)); `gfxtopology` is a Perl script and `hyperpipeinfo` prints the hyperpipe configuration of a display (usage `-d <displayname>`) | established |
+| `startgfx`, `stopgfx` | shell scripts that start and stop the window system | established |
+| `Xsgi` | the X server ([xserver.md](xserver.md)) | established |
+| `konavis.so` | the X module that holds the visual tables of the Kona screen: sets of small, medium and large visuals per image-processor revision (`konSmVisuals_imp8`, `konMedVisuals_imp8`, `konLgVisuals_imp8` and the `_imp8c` forms) with their private records | established |
+| `tport.o` | the kernel textport STREAMS driver, a member of `tport.a` ([setup-tools.md](setup-tools.md#kernel-textport-tporta)) | established |
+| `Dmconf`, `Ircombine`, `XSetmon` | the X resource files of the three graphical tools; each starts with the RapidApp generator banner and turns on the SGI look and feel schemes | established |
+| `gfx.sm`, `gfxs` and the tuning file `gfx` | the kernel configuration: `gfx.sm` is the system file that lists the graphics drivers autoconfig links (the Kona driver among them, "KONA graphics w/ HIP2 via Xtalk bus"), `gfxs` is the master file of the graphics streams device and sets the board limit (128 heads on IP27 and IP35, 8 elsewhere), and `gfx` holds the tunable parameters | established |
 
 Read word by word from the file bytes (the big-endian words of `od`):
 

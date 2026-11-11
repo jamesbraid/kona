@@ -30,15 +30,15 @@ What `usr/gfx/ucode/KONA/arm1.u` (IRIX 6.5.30m, linked as `ucode/KONA/arm1.u`) i
 
 **Established** from the code that reads or builds entries:
 
-| Bits | Meaning | Where |
-|---|---|---|
-| 0 | `ICU_MAP_DH` (kpm): 1 = routed by the hardware, no ARM handler. 0 = ARM handler | `init_hip` keeps odd words whole and builds even ones from a handler address |
-| 1-2 | Kind: 0 for 392 tokens, 1 for the twelve begin tokens, 2 for `END`, 3 for 107 tokens (vertex data, list calls, context switches). Read as "legal between begin and end"; the begin/end error path is in [arm1_firmware.md](arm1_firmware.md) | `init_hip`, `arm_bgnend` 0x0c0018e4 |
-| 3 | Chain: more entries follow in the same list | `varray_build_command` sets it on every entry it builds and `varray_set_cmd_table` clears it on the last |
-| 4-31 (ARM entries) | Handler address bits 0-27 (the entry is the address shifted left by 4) | `init_hip` |
-| 6-8 | Payload word count for a vertex attribute (from `wordCountTable`) | `varray_build_command` |
-| 27-28 | From `lastWrdTable` | `varray_build_command` |
-| 29-30 | From `byteCmpTable` | `varray_build_command` |
+| Bits | Meaning | Where | Grade |
+|---|---|---|---|
+| 0 | `ICU_MAP_DH` (kpm): 1 = routed by the hardware, no ARM handler. 0 = ARM handler | `init_hip` keeps odd words whole and builds even ones from a handler address | established |
+| 1-2 | Kind: 0 for 392 tokens, 1 for the twelve begin tokens, 2 for `END`, 3 for 107 tokens (vertex data, list calls, context switches). Read as "legal between begin and end"; the begin/end error path is in [arm1_firmware.md](arm1_firmware.md) | `init_hip`, `arm_bgnend` 0x0c0018e4 | established |
+| 3 | Chain: more entries follow in the same list | `varray_build_command` sets it on every entry it builds and `varray_set_cmd_table` clears it on the last | established |
+| 4-31 (ARM entries) | Handler address bits 0-27 (the entry is the address shifted left by 4) | `init_hip` | established |
+| 6-8 | Payload word count for a vertex attribute (from `wordCountTable`) | `varray_build_command` | established |
+| 27-28 | From `lastWrdTable` | `varray_build_command` | established |
+| 29-30 | From `byteCmpTable` | `varray_build_command` | established |
 
 `varray_build_command` (0x0c0395fc) makes vertex-array entries by taking the attribute token's own entry, clearing bits 5-8 and 27-30, and putting in the count and the two table values above.
 
@@ -111,16 +111,16 @@ Source data: [ged_banks.tsv](ged_banks.tsv) (all 512 table entries) and [ged_rou
 
 **Established.** Split by bits 6-8 of the command number n (the "qualifier"; k = n & 63), the 512-entry table is eight banks of 64 entries, and nearly every bank is one module:
 
-| Bank | Entries start in | Handlers reachable from a bank's entries (relocated slot words, [ged_relocs.tsv](ged_relocs.tsv)) |
-|---|---|---|
-| 0 | `trigger.s`, `material.s`, `dist.s` stubs and the first line of every primitive file | `mgeb_Material`, `mges_NullCommand`, `mgebi_NullCommand`, `mgeb_RasterPos` and one entry per primitive start (below) |
-| 1 | `lineloop.s` (36), `dist.s` | `mgesi_LineStrip` and its Copy/Save/Restore forms, `mges_EvalCoord` |
-| 2 | `qstrip.s` (56) | `mgesi_QuadStrip`, `Save`, `Restore`, `RestoreSave` |
-| 3 | `tstrip.s` (60) | `mgesi_TriangleStrip` and its `WithSwapOdd`, `Save`, `Restore` and `RestoreSave` forms (nine) |
-| 4 | `tfanpoly.s` (44) | `mgesi_TfanPoly`, `Save`, `Restore`, `RestoreEdge`, `RestoreEnd`, `RestoreSave`, `End` |
-| 5 | `linestrip.s` (20), `quad.s` (20) | `mgesi_LineStrip`, `mgesi_Quads` |
-| 6 | `tri.s` (16), `lines.s` (12), `points.s` (8), `lineloop.s` (4) | `mgesi_Triangles`, `mgesi_Points`, `mgesi_LineStrip` and `SaveV0`/`SaveAndIgnoreV0`/`RestoreV0` |
-| 7 | `quad.s` (20) | `mgesi_Quads` |
+| Bank | Entries start in | Handlers reachable from a bank's entries (relocated slot words, [ged_relocs.tsv](ged_relocs.tsv)) | Grade |
+|---|---|---|---|
+| 0 | `trigger.s`, `material.s`, `dist.s` stubs and the first line of every primitive file | `mgeb_Material`, `mges_NullCommand`, `mgebi_NullCommand`, `mgeb_RasterPos` and one entry per primitive start (below) | established |
+| 1 | `lineloop.s` (36), `dist.s` | `mgesi_LineStrip` and its Copy/Save/Restore forms, `mges_EvalCoord` | established |
+| 2 | `qstrip.s` (56) | `mgesi_QuadStrip`, `Save`, `Restore`, `RestoreSave` | established |
+| 3 | `tstrip.s` (60) | `mgesi_TriangleStrip` and its `WithSwapOdd`, `Save`, `Restore` and `RestoreSave` forms (nine) | established |
+| 4 | `tfanpoly.s` (44) | `mgesi_TfanPoly`, `Save`, `Restore`, `RestoreEdge`, `RestoreEnd`, `RestoreSave`, `End` | established |
+| 5 | `linestrip.s` (20), `quad.s` (20) | `mgesi_LineStrip`, `mgesi_Quads` | established |
+| 6 | `tri.s` (16), `lines.s` (12), `points.s` (8), `lineloop.s` (4) | `mgesi_Triangles`, `mgesi_Points`, `mgesi_LineStrip` and `SaveV0`/`SaveAndIgnoreV0`/`RestoreV0` | established |
+| 7 | `quad.s` (20) | `mgesi_Quads` | established |
 
 Within a bank each module defines the same set of attribute entry points at the same k, so each attribute (colour, normal, texture coordinate, vertex, material, evaluator) exists once per bank with that primitive's code. For k = 16 (colour) the entry is in `lineloop.s` line 53 (bank 1), `qstrip.s` 68 (2), `tstrip.s` 46 (3), `tfanpoly.s` 94 (4), `linestrip.s` 68 (5), `lines.s` 27 (6) and `quad.s` 42 (7); bank 0's is the common stub that ends in `mgebi_NullCommand`.
 

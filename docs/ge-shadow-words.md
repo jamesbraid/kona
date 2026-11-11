@@ -100,40 +100,40 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 
 The inverse of the last-but-one column, for tokens whose handler loads the address constant of a shadow word (**established**: the handler function is the one arm1.u names for the token in `ucode/arm1_handlers.tsv`).
 
-| Host token | Shadow words written |
-|---|---|
-| `HP_ACCUM` | `IMP_CONFIG`, `IMP_OP` |
-| `HP_BIND_2D_CLIPMAP_TEXTURE` | `TGTM_DCTEX_SIZE`, `TM_DRAW_CLIP_OFFSET`, `TM_DRAW_CLIP_BKPT`, `TGTM_TEX_SCENTER`, `TGTM_TEX_TCENTER` |
-| `HP_BIND_3D_MIPMAP_TEXTURE` | `TM_MEMCONF`, `TG_MAP_LEVEL`, `TG_LOD_SCALEST`, `TG_LOD_SCALER`, `TM_TEX_SIZE` |
-| `HP_BIND_3D_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` |
-| `HP_BIND_BICUBIC_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` |
-| `HP_BIND_DETAIL_TEXTURE` | `TGTMTFT`, `TGTM_DCTEX_SIZE`, `TM_DRAW_DETAILMAP` |
-| `HP_BIND_TEXTURE` | `TM_DRAW_DETAILMAP` |
-| `HP_BLENDCOLOR` | `TFP_AMASK` |
-| `HP_BLENDEQUATION` | `IMP_BL` |
-| `HP_BLENDFUNC` | `IMP_BL` |
-| `HP_BUFFER_CONFIG` | `IMP_CONFIG`, `IMP_SZ0`, `IMP_SZ1`, `IMP_ADDR`, `IMP_WMASK_BIT`, `TFP_FOG`, `TFP_PIX_FMT`, `TFP_COLOR_FMT`, `TFP_AMASK` |
-| `HP_CLEAR` | `IMP_OP`, `IMP_SZ0`, `IMP_WMASK_BIT`, `IMP_WMASK_BIT_1`, `TFP_AMASK` |
-| `HP_CLEARDEPTH` | `IMP_DEPTH_CLEAR` |
-| `HP_CLEARSTENCIL` | `IMP_DEPTH_CLEAR` |
-| `HP_COLORMASK` | `IMP_CONFIG`, `IMP_MS`, `IMP_BL`, `TFP_AMASK` |
-| `HP_COLORTABLE` | `TFT_TLUT` |
-| `HP_COPYCONVOLUTIONFILTER1D` | `PGTG_DRECT` |
-| `HP_COPYCONVOLUTIONFILTER2D` | `PGTG_DRECT` |
-| `HP_DEPTHFUNC` | `IMP_SZ1` |
-| `HP_DEPTHMASK` | `IMP_SZ1` |
-| `HP_DRAWBUFFER` | `IMP_ADDR` |
-| `HP_GETCONVOLUTIONFILTER` | `PGTG_DRECT` |
-| `HP_GETSEPARABLEFILTER` | `PGTG_DRECT` |
-| `HP_INDEXMASK` | `IMP_WMASK_BIT` |
-| `HP_LOGICOP` | `IMP_BL` |
-| `HP_READPIXELS` | `PGTG_DRECT`, `COMMON_IFMT` |
-| `HP_SAMPLEMASK` | `TFP_FADE_MASK_LUT` |
-| `HP_SAMPLEPATTERN` | `PGTFPIMP_MSLOC`, `PGTFPIMP_MSLOC_1` |
-| `HP_SHADOW_TEXTURE` | `TM_DRAW_SHA_AMBIENT`, `TM_DRAW_REDUNDANCY`, `TG_MISC` |
-| `HP_SLOP` | `IMP_OP` |
-| `HP_STENCILFUNC` | `IMP_SZ0` |
-| `HP_STENCILMASK` | `IMP_SZ0` |
-| `HP_STENCILOP` | `IMP_SZ1` |
-| `HP_VALIDATE_CLIP` | `PG_WIN_OFFSET_X`, `PG_WIN_OFFSET_Y`, `IMP_CLIP`, `IMP_ADDR` |
-| `HP_X_LOADSTIPPLE` | `PG_STIPPLE`, `PG_STIPPLE_3` |
+| Host token | Shadow words written | Grade |
+|---|---|---|
+| `HP_ACCUM` | `IMP_CONFIG`, `IMP_OP` | established |
+| `HP_BIND_2D_CLIPMAP_TEXTURE` | `TGTM_DCTEX_SIZE`, `TM_DRAW_CLIP_OFFSET`, `TM_DRAW_CLIP_BKPT`, `TGTM_TEX_SCENTER`, `TGTM_TEX_TCENTER` | established |
+| `HP_BIND_3D_MIPMAP_TEXTURE` | `TM_MEMCONF`, `TG_MAP_LEVEL`, `TG_LOD_SCALEST`, `TG_LOD_SCALER`, `TM_TEX_SIZE` | established |
+| `HP_BIND_3D_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` | established |
+| `HP_BIND_BICUBIC_TEXTURE` | `TM_MEMCONF`, `TM_TEX_SIZE` | established |
+| `HP_BIND_DETAIL_TEXTURE` | `TGTMTFT`, `TGTM_DCTEX_SIZE`, `TM_DRAW_DETAILMAP` | established |
+| `HP_BIND_TEXTURE` | `TM_DRAW_DETAILMAP` | established |
+| `HP_BLENDCOLOR` | `TFP_AMASK` | established |
+| `HP_BLENDEQUATION` | `IMP_BL` | established |
+| `HP_BLENDFUNC` | `IMP_BL` | established |
+| `HP_BUFFER_CONFIG` | `IMP_CONFIG`, `IMP_SZ0`, `IMP_SZ1`, `IMP_ADDR`, `IMP_WMASK_BIT`, `TFP_FOG`, `TFP_PIX_FMT`, `TFP_COLOR_FMT`, `TFP_AMASK` | established |
+| `HP_CLEAR` | `IMP_OP`, `IMP_SZ0`, `IMP_WMASK_BIT`, `IMP_WMASK_BIT_1`, `TFP_AMASK` | established |
+| `HP_CLEARDEPTH` | `IMP_DEPTH_CLEAR` | established |
+| `HP_CLEARSTENCIL` | `IMP_DEPTH_CLEAR` | established |
+| `HP_COLORMASK` | `IMP_CONFIG`, `IMP_MS`, `IMP_BL`, `TFP_AMASK` | established |
+| `HP_COLORTABLE` | `TFT_TLUT` | established |
+| `HP_COPYCONVOLUTIONFILTER1D` | `PGTG_DRECT` | established |
+| `HP_COPYCONVOLUTIONFILTER2D` | `PGTG_DRECT` | established |
+| `HP_DEPTHFUNC` | `IMP_SZ1` | established |
+| `HP_DEPTHMASK` | `IMP_SZ1` | established |
+| `HP_DRAWBUFFER` | `IMP_ADDR` | established |
+| `HP_GETCONVOLUTIONFILTER` | `PGTG_DRECT` | established |
+| `HP_GETSEPARABLEFILTER` | `PGTG_DRECT` | established |
+| `HP_INDEXMASK` | `IMP_WMASK_BIT` | established |
+| `HP_LOGICOP` | `IMP_BL` | established |
+| `HP_READPIXELS` | `PGTG_DRECT`, `COMMON_IFMT` | established |
+| `HP_SAMPLEMASK` | `TFP_FADE_MASK_LUT` | established |
+| `HP_SAMPLEPATTERN` | `PGTFPIMP_MSLOC`, `PGTFPIMP_MSLOC_1` | established |
+| `HP_SHADOW_TEXTURE` | `TM_DRAW_SHA_AMBIENT`, `TM_DRAW_REDUNDANCY`, `TG_MISC` | established |
+| `HP_SLOP` | `IMP_OP` | established |
+| `HP_STENCILFUNC` | `IMP_SZ0` | established |
+| `HP_STENCILMASK` | `IMP_SZ0` | established |
+| `HP_STENCILOP` | `IMP_SZ1` | established |
+| `HP_VALIDATE_CLIP` | `PG_WIN_OFFSET_X`, `PG_WIN_OFFSET_Y`, `IMP_CLIP`, `IMP_ADDR` | established |
+| `HP_X_LOADSTIPPLE` | `PG_STIPPLE`, `PG_STIPPLE_3` | established |

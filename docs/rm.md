@@ -12,16 +12,16 @@ The source is the diagnostic netlists in `usr/diags/IR/data/*.netmap.Z` (IRIX 6.
 
 **Established** (chip type and instance count per netlist):
 
-| Netlist | Chips |
-|---|---|
-| `rm6`, `rmtm7` | `imp` x20, `pg`, `tg`, `tfp`, `tfq`, `tfr`, `tfs`, `tm` x8 |
-| `rm7` | `imp` x20 only |
-| `rm8` | `imp9` x10, `pg`, `tg`, `tfp`-`tfs`, `tm1c` x8 |
-| `rm10` | `imp8dc` x10 only |
-| `rm11` | `imp8dc` x10, `pg`, `tg`, `tfp`-`tfs`, `tm1cc` x8 |
-| `tm7` | `pg`, `tg`, `tfp`-`tfs`, `tm` x8 |
-| `tm9` | `pg`, `tg`, `tfp`-`tfs`, `tm1cc` x8 |
-| `ge12_*`, `ge14_*` | `hip`, `ged`, `bef`, `ge` (up to 8) |
+| Netlist | Chips | Grade |
+|---|---|---|
+| `rm6`, `rmtm7` | `imp` x20, `pg`, `tg`, `tfp`, `tfq`, `tfr`, `tfs`, `tm` x8 | established |
+| `rm7` | `imp` x20 only | established |
+| `rm8` | `imp9` x10, `pg`, `tg`, `tfp`-`tfs`, `tm1c` x8 | established |
+| `rm10` | `imp8dc` x10 only | established |
+| `rm11` | `imp8dc` x10, `pg`, `tg`, `tfp`-`tfs`, `tm1cc` x8 | established |
+| `tm7` | `pg`, `tg`, `tfp`-`tfs`, `tm` x8 | established |
+| `tm9` | `pg`, `tg`, `tfp`-`tfs`, `tm1cc` x8 | established |
+| `ge12_*`, `ge14_*` | `hip`, `ged`, `bef`, `ge` (up to 8) | established |
 
 **Inferred:** each RM revision has one `pg`, one `tg`, four `tf` chips (suffixes p, q, r, s) and eight texture-memory chips, plus image processors (`imp*`) that own the framebuffer. The `tm` netlists are the texture section alone and `rm7` and `rm10` the framebuffer section alone. The chip-name expansions (pixel generator, texture generator, texture filter) are not written anywhere in the files and stay **unknown**.
 

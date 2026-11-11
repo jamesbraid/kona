@@ -83,14 +83,14 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 **Established** (form-15 immediates, [ge_isa.md](ge_isa.md)): the geometry program loads these power-of-two constants, among others, as single-precision floats:
 
-| Constant | Where |
-|---|---|
-| 2^20 and 2^19 | `mgeb_DepthRange` (0xf3f1-0xf3f2), `mGL_CM_Initialize` (0xb204-0xb217) |
-| 2^20 | `mmo_DrawTriPrimOffset` (0x8dde), `mmo_DrawTriPolymodePrim` (0xdb05, 0xdb7b) |
-| 2^24 - 1 | `mgesi_ClearAccum`, `mgesi_ClearAccum32`, `mgesi_ClearAccumWord` |
-| 4096 | `mgesi_ClearLA16`, `mgesi_Accum`, `mgesi_Accum32`, fog table setup |
-| 255 | the antialiased-line table loaders (`mDownLoadAALineTable*`) |
-| 65535 | `mgeb_PixMapOutputRGBA` |
+| Constant | Where | Grade |
+|---|---|---|
+| 2^20 and 2^19 | `mgeb_DepthRange` (0xf3f1-0xf3f2), `mGL_CM_Initialize` (0xb204-0xb217) | established |
+| 2^20 | `mmo_DrawTriPrimOffset` (0x8dde), `mmo_DrawTriPolymodePrim` (0xdb05, 0xdb7b) | established |
+| 2^24 - 1 | `mgesi_ClearAccum`, `mgesi_ClearAccum32`, `mgesi_ClearAccumWord` | established |
+| 4096 | `mgesi_ClearLA16`, `mgesi_Accum`, `mgesi_Accum32`, fog table setup | established |
+| 255 | the antialiased-line table loaders (`mDownLoadAALineTable*`) | established |
+| 65535 | `mgeb_PixMapOutputRGBA` | established |
 
 **Inferred:** depth-range mapping and polygon offset both work against a 2^20 scale, which points to a 20-bit integer part in the window-z value the engine sends; the accumulation-buffer clear scales to 24 bits. Both readings rest on the constants and the handler names, not on the arithmetic, which is not decoded yet.
 

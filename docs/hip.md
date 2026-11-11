@@ -111,13 +111,13 @@ After the table the handler writes the served bits back to `HH_INTR_STATUS` and 
 
 **Established.** The handler reads `HH_ARM_MBOX` (0x240), sets `P+5464` to 1, and acts on the value V:
 
-| V | Action |
-|---|---|
-| 0 | text print: loop (up to 5000 rounds) writes 0x10 to `HH_INTR_STATUS`, waits up to 5000 x 20 us for bit 4 to rise, reads the mailbox and keeps its low byte; stops at a zero byte or 511 characters; prints the string as "ARM: ..." (level 6). "ARM is spewing garbage" if it never ends |
-| 0x100 | input DMA done: wake the waiter at `P+5176`, cancel the timeout at `P+5192` |
-| 0x102 | `kona_mem_swapin_complete(P, 0, 0)` |
-| 0x103 | context-activate done: wake `P+5296`, cancel the timeout at `P+5312` |
-| other | message "unknown reason for ARM interrupt" (tag 2100) |
+| V | Action | Grade |
+|---|---|---|
+| 0 | text print: loop (up to 5000 rounds) writes 0x10 to `HH_INTR_STATUS`, waits up to 5000 x 20 us for bit 4 to rise, reads the mailbox and keeps its low byte; stops at a zero byte or 511 characters; prints the string as "ARM: ..." (level 6). "ARM is spewing garbage" if it never ends | established |
+| 0x100 | input DMA done: wake the waiter at `P+5176`, cancel the timeout at `P+5192` | established |
+| 0x102 | `kona_mem_swapin_complete(P, 0, 0)` | established |
+| 0x103 | context-activate done: wake `P+5296`, cancel the timeout at `P+5312` | established |
+| other | message "unknown reason for ARM interrupt" (tag 2100) | established |
 
 The values are the 6.5.5 `KONA_ARM_*` events (HIP.h). The mailbox is read as a plain 32-bit register; the driver never writes it.
 
