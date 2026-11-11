@@ -299,9 +299,6 @@ The row format below matches section 6 (Constant | Role | Grade | Evidence). The
 
 ### 12. Product and board identity
 
-```
-## 12. Product and board identity
-
 Which numbers a pipe presents to make `hinv`, `gfxinfo`, the GL renderer string and the video-format checks name
 one product rather than another. The board-set number is the first word of the 1912-byte configuration record
 (section 9 references the record's transport). Values are decimal unless marked.
@@ -357,7 +354,6 @@ one product rather than another. The board-set number is the first word of the 1
 | monitor query | DDC/EDID read only when the word is 1; sets 4 and 5 return no monitor name | established | S71 |
 | display-option reply mask | TVO 0x40, DPLEX 0x20, GVO 0x10, DVP 0x08, none 0 (sets 1-6) | established | S71 |
 | IR3 and IR4 against IR2 | register contract: no difference found in 6.5.30; extension string identical in all builds of 6.5.0 and 6.5.30 | established (negative, 6.5.30 only) | S75 |
-```
 
 ### Entries for section 11's unknown list (append)
 
