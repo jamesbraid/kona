@@ -1,4 +1,4 @@
-// generated from kona 9dfd289c23b6-dirty KONA_HIP_DECODE.h - do not edit, regenerate in kona
+// generated from kona 0cc7c1448427 KONA_HIP_DECODE.h - do not edit, regenerate in kona
 //!
 //! Host-interface chip registers: the interrupt status register and
 //! its cause bits.
