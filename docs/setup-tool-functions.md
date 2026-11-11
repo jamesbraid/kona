@@ -228,6 +228,34 @@ These entries read the 6.5.30m N32 binary.
   0x1000bf08 past an indirect call (`lw` at 0x1000bf04, `jalr` at
   0x1000bf14). If that call runs and returns nonzero, the `beqz` at
   0x1000bf1c falls through to a path returning 10 (`addiu` at 0x1000bf40).
+  The body is 704 bytes and it saves its third argument at sp+0x108 (`sd`
+  at 0x1000beec). A second loaded flag of zero takes the `beqz` at
+  0x1000bfc0 to a zero return (`move` at 0x1000bfc4). Otherwise it calls
+  0x1000a070 with a zero first argument (`jal` at 0x1000bfd0) and stores
+  the result through a loaded pointer (`sw` at 0x1000bfe4). A zero result
+  takes the `beqz` at 0x1000bfe0 to a path that makes two indirect calls,
+  the second with 1 as its first argument (`jalr` at 0x1000c0ec and
+  0x1000c0f8; `addiu` at 0x1000c0fc), and rejoins at 0x1000bfe8 (`b` at
+  0x1000c100). It stores the word at +0x84 of that result through a second
+  loaded pointer (`sw` at 0x1000bff4), multiplies the word by 80 (`sll`,
+  `addu`, `sll` at 0x1000bff8, 0x1000c000 and 0x1000c004), adds it to the
+  pointer at +0x8c of the result (`addu` at 0x1000c010) and stores the word
+  at +8 of that record through a third loaded pointer (`lw` at 0x1000c014,
+  `sw` at 0x1000c020). It calls 0x1000c53c with the result of the first
+  call (`jal` at 0x1000c01c), then makes an indirect call with its first
+  argument and a constant address (`jalr` at 0x1000c030, `addiu` at
+  0x1000c034). A zero result there compares the saved third argument with
+  0x1b and 0x1c (`beq` at 0x1000c044, `bne` at 0x1000c04c). A third
+  argument of 0x1c makes an indirect call with the result of the 0x1000a070
+  call, the record word, 0x1ec, 0x214 and 2 (`jalr` at 0x1000c068; `addiu`
+  at 0x1000c058, 0x1000c05c and 0x1000c064); 0x1b does the same with 1 as
+  the last argument (`jalr` at 0x1000c170; `addiu` at 0x1000c160, 0x1000c164
+  and 0x1000c16c). A nonzero result instead calls with the first two of
+  those values (`jalr` at 0x1000c080) and, if that returns nonzero, calls
+  again with the same two and three zeros (`jalr` at 0x1000c0a4). Every
+  path then calls with the result of the 0x1000a070 call and 1 (`jalr` at
+  0x1000c0b4) and returns zero (`move` at 0x1000c0c0). What the callees do
+  is unknown.
 
 - `npsetmon` (`usr/gfx/setmon`, 0x1000e130):
   **Established effects; role unknown.** A loaded flag of zero takes the
