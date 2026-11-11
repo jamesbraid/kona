@@ -109,7 +109,7 @@ reach the engine as single floats.
   operations and reads only command words 1-4 for eight data words. The same
   descriptor is used by the double matrix, rotate, scale, translate and
   depth-range paths. How the narrowing rounds, and where it happens
-  (distributor or host interface), is **unknown**.
+  (distributor or host interface), is **unknown**. What would settle it: a capture of the single-precision words that reach the engine for a double matrix whose elements are not exactly representable (for example 1 + 2^-30), compared with the host words; or the narrowing routine in whichever firmware path handles the double descriptor, found by following that descriptor's token entry in the ARM token list.
 
 ### Singular model-view - unknown
 
@@ -336,7 +336,7 @@ the limit to 0..1 happens later, in the vertex colour pass, for both.
   engine handler for command 144 is shared with the float form, so it must see
   floats.
   **Unknown:** the narrowing's rounding and its treatment of NaN and values out
-  of float range.
+  of float range. What would settle it: the same capture as above with a NaN and a value beyond the float range among the double elements, read at the engine's input; no shipped software or diagnostic sends one.
 - **Inferred (the clamp):** a colour component leaves the engine clamped to
   [0, 1] by the unit-1 clamp 0x7c in `mmo_LiColorClamp` (`ulight.s` 0x0d73-
   0x0d7a) for unlit vertices, and by the final lighting clamps for lit ones

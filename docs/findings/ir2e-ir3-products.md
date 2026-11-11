@@ -336,7 +336,7 @@ one product rather than another. The board-set number is the first word of the 1
 | geometry board bits 17-16, 19-18 | engine count index (1, 2, 4, 8) and back-end RAM code | established | S71 |
 | raster slot word: bits 15-9 | board type of the slot's texture board: 6 TM7 (IR, IR2, IR2E), 9 Reality's RM8, 0xb TM8 (IR3), 0xe TM9 (IR4); drives the board-set rule above | established | S71, S73 |
 | raster slot word: bits 18-16 | texture code: 1 16 MB, 2 64 MB, 3 128 MB, 4 256 MB, 6 1024 MB (5 is accepted by `gfxinfo` but no board or diagnostic path uses it) | established | S71, S73, S74 |
-| raster slot word: bits 8-0 | low bits vary by board (0x002, 0x006 seen on IR2; 0x006 on IR3; 0x004 on IR4); meaning unknown | unknown | S74 |
+| raster slot word: bits 8-0 | low bits vary by board (0x002, 0x006 seen on IR2; 0x006 on IR3; 0x004 on IR4); meaning unknown; would be settled by tabulating the low nine bits against each raster board's printed part number and revision over the published dumps (S74): a bit that follows the revision would be a revision code | unknown | S74 |
 | display board (config +836 = 0x344): the `brd:` line's last word | channel count - 1 (18-16), option 21-19 (3 TVO, 4 DPLEX, 5 DVP, 6 GVO, 7 none), colour-map size bit 22, external gamma bit 23; low half-word 0x1002 on DG5, 0x040c on DG4 | established (fields); inferred (family marker) | S71, S74 |
 | slot present | word neither 0 nor all ones | established | S71 |
 

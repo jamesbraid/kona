@@ -306,7 +306,7 @@ and it is the server's own statement of the rule.
 
 **Unknown for the pipe.** Whether an `X_LINE`/`X_LINE6` command draws its last
 vertex, and so whether a shared chunk vertex and a closing vertex are drawn
-twice, is decided by the raster line rule, which no software read here states.
+twice, is decided by the raster line rule, which no software read here states. What would settle it: a published description of the raster line rule, or a capture of the pixels a two-vertex `X_LINE` leaves at its last vertex on a pipe, compared with the same line sent as an `X_LINE6` chunk whose last vertex is shared with the next chunk.
 What the engine does: `mgesi_XLine` (0x5196) sets the type words, takes the
 segment count as operand count minus one (0x51a2) and goes through `mAbsX` (0x52c4)
 to `mmo_XclipDrawLines` (0x4ead). The emit code (0x5020-0x5058) scales each

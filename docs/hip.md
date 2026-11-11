@@ -408,11 +408,18 @@ The self-test (`jt_test_thyself`'s host procedure, messages "JTAG controller tes
   **Unknown: no shipped software or published source depends on it.**
   Routes tried: the kpm table (name and mask only), `irsaudit`, the 6.5.30m kernel
   (no store to the offset), the firmware and the 6.5.5 headers.
+  What would settle it: a published description of the first-generation host-interface chip's
+  crosstalk interface, or a capture of host stores to the register page in which offset 0x388
+  is written (the shipped kernel and diagnostic never write it, so only another host program
+  could).
 - `HIP2_HH_PIO_HI`, host offset 0x2c8, 5 bits wide.
   **Inferred** from the name: the high address bits of programmed I/O on the second generation.
   **Unknown: no shipped software or published source depends on it.**
   Routes tried: the kpm table (name and mask only), `irsaudit`, `kona_edtinit_hip2.o`
   and `kona_mapram_hip2.o` of the 6.5.30m kernel (no store to the offset), the firmware and the 6.5.5 headers.
+  What would settle it: a published description of the second-generation host-interface chip's
+  programmed-I/O address path, or a capture of host stores to the register page in which offset
+  0x2c8 is written (no shipped software writes it) alongside the Xtalk addresses of the PIO that follows.
 
 ## The command stream as the ARM firmware reads it
 

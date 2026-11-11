@@ -179,7 +179,7 @@ Rows 0xd, 0x10, 0x11 and 0x18-0x19 have no module (both slots `mges_TBUS_1`, oth
 | 0x441 | `HH_PACK_MODE` (7 bits) | the packer setup routine writes a 7-bit value; the host register mask is 0x7f |
 | 0x450-0x456 | `HH_ODMA_PNUM`, `_POFF`, `_LEN`, `_TOTAL`, `_OVER`, `_LLEN`, `_STRIDE` | the select-feedback payload lands in the order the host registers have the same fields; `OVER` is cleared |
 | 0x460-0x464 | `HH_ODMA2_PNUM`, `_POFF`, `_LEN`, `_TOTAL`, `_OVER` | the read-back setup loads address, length and total, and the second channel has exactly these five registers |
-| 0x476, 0x477 | **unknown** (0x476 is the port the reply words are written to, 0x477 is cleared first) | `start_rdata`, `arm_getconfig` |
+| 0x476, 0x477 | 0x476: the data port of the second output-DMA channel, where a query's reply words are written (**established**, firmware routines and the client's wait; [command-table.md](command-table.md)); 0x477: ends or flushes that output path (**inferred**); what a 0x477 write of 0 does, and its relation to the host flush register at host offset 0x298, is **unknown**. What would settle it: a published register description of the host interface, or a capture that reads the second channel's total and the return buffer after no 0x477 write, after 0x477 = 1 and after 0x477 = 0 | `start_rdata`, `arm_getconfig` |
 
 The bus numbering is not the host offset divided by 8 (`HH_ODMA_PNUM` is at host offset 0x260). The order within each group follows the host order. So the first three shadow words are pack mode, output line length and output stride, which a context switch must keep for a pixel read in progress. **Established** since: kpm names shadow words 0-2 `HT_PACK_MODE`, `HT_ODMA_LLEN` and `HT_ODMA_STRIDE` ([Shadow word names](#shadow-word-names)).
 
@@ -434,7 +434,7 @@ sample point lies exactly on a left or bottom edge is not drawn and one on a rig
 at the pixel's integer coordinate; an equivalent reading puts the sample half a pixel lower and to the left with no
 point ever on an edge, and the integer boxes the kernel draws cannot tell the two apart. The rounding of a start point
 with nonzero fraction bits, and the rule for sloped edges, are **unknown: no shipped software or published source
-depends on them**.
+depends on them**. What would settle them: a published description of the pixel generator's edge handling, or a capture of pixel output for a triangle whose corners carry nonzero fraction bits, read against the integer-corner result above. The published InfiniteReality papers and technical reports in [sources](sources/README.md) state 8 x 8 subpixel accuracy and direct plane-equation evaluation; a keyword search of their text (fraction, rounding, edge, gradient) found no rounding rule, so a settling source has to be new.
 
 **What the diagnostic expects of lines.** Three `irsaudit` routines compute line set-up on the host. None has a call
 site in this build: their addresses appear only in the symbol tables, not in the global offset table, the data or any
@@ -494,7 +494,7 @@ generator does per triangle is three plane equations per parameter (value and x 
 not per-edge DDA increments, and edge inclusion is a sign test of the edge functions at each sample point.
 
 The per-edge and per-parameter coefficient widths, their rounding, the reference point and the depth and colour
-gradient formats remain **unknown: no shipped software or published source depends on them**.
+gradient formats remain **unknown: no shipped software or published source depends on them**. What would settle them: a published description of the set-up arithmetic (coefficient widths, rounding and gradient formats), or a capture that pairs the raster-bus words of a triangle with the pixels the pipe produces; neither is in hand.
 Routes tried: the engine output modules the geometry microcode assembly unit 4, `drawtri.S`, `drawlin.S` and `drawpnt.S` in `ge.u`; `tbVertex`,
 `tbTextureCoord`, `draw_tri` and every `tbVertex` caller in `irsaudit`; the line and point helpers above; the six tests
 in `tbusdata.Z` and `aaspoke.tbus`; the gold files; the `pg` pins and `pg2.tcbist`; the `PG_` and `PGTG_` register
