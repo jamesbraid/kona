@@ -51,7 +51,7 @@ DWARF status is what `retools/tools/kona/map_binaries.py` reported on the primar
 Other public sources in this repository:
 
 - `linux/`: the IP27 platform code for the crossbar and widget side only, with no KONA driver. `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets and the widget identity table, which names part 0xc102 as KONA and has IP35 chip entries), `arch/mips/include/asm/sn/klconfig.h` (`KLTYPE_GFX_KONA`, `KLSTRUCT_GFX`, `lboard_t` and `klinfo_t` layouts), `arch/mips/include/asm/sn/addrs.h` and `arch/mips/include/asm/mach-ip27/spaces.h` (node and widget window addresses, 16 MB per widget), `arch/mips/sgi-ip27/ip27-xtalk.c` and `ip27-klconfig.c` (widget probe and configuration walk), and `arch/mips/pci/pci-xtalk-bridge.c`. Linux has no Origin 350 (IP35) platform; its IP35 names are widget identity entries only. Fetch it shallow: `git submodule update --init --depth 1 linux`.
-- No open KONA driver exists that we know of: the Linux, OpenBSD and GXemul trees checked here have no code that drives InfiniteReality beyond widget identity and board-type constants, so every register and command finding rests on the IRIX binaries and the published IRIX source.
+- No open KONA driver exists that we know of: the Linux, OpenBSD and GXemul trees checked here have no code that drives InfiniteReality beyond widget identity and board-type constants, so every register and command finding rests on the shipped IRIX binaries, published documents and captures.
 - `docs/sources/`: full copies of the published patents, papers, technical reports, manuals, datasheets and web pages that [docs/published-sources.md](docs/published-sources.md) cites for InfiniteReality and InfiniteReality2, one entry each with its SHA-256 in [docs/sources/README.md](docs/sources/README.md). These are published designers' statements (labelled "established (published)" or "inferred" as that file says), not vendor source. The `sgi-docs/` submodule holds only IRIS GL manuals and no InfiniteReality hardware document, so nothing is skipped on its account.
 
 ---
@@ -122,7 +122,7 @@ Readers may open anything:
 
 - every shipped binary on every IRIX release, and any disassembly or
   decompilation of it;
-- the IRIX source tree linked from this repository;
+- the IRIX source tree linked from this repository (hint only, never evidence);
 - vendor specifications, including any embedded source code or HDL pages;
 - public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
 - manuals, release notes and man pages;
@@ -153,14 +153,14 @@ list those routes among the routes tried. Searches of the source tree may
 suggest where to look; they are not among the routes tried.
 
 Label honestly. Use "established" only for what you read in full: the whole
-function body, table or source passage. A reading built from call lists,
+function body or table in a shipped binary, or the passage in a published document or capture. A reading built from call lists,
 register-store summaries, a sibling build or a name is "inferred". Never
 reword or reformat an entry to change its grade. Independent audits sample
 entries against the binaries, and their measured rates are published beside
 the coverage figures.
 
 An entry that was written quickly and not yet checked against the binary or
-the source ends with "Unverified." in place of "Inferred." or "Established.".
+its document ends with "Unverified." in place of "Inferred." or "Established.".
 It grades at most `located`, whatever else it says, so the understood figure
 counts only what has been read. When you re-read it, correct it and change the
 label to established or inferred.
@@ -181,8 +181,8 @@ the owning chip header or chapter and delete the entry.
 A coverage row is done when every inventory entry in its area
 (`docs/inventory/`) is `understood` or `no-software-dependency`. `understood`
 means the entry for that item carries a label (established or inferred), a role
-and hardware effect, and a derivation citation (release, binary or path,
-offset, callee or source path) in the same entry. Naming an item, or listing it
+and hardware effect, and a derivation citation (release, binary and its install path under `root/`,
+offset, callee) in the same entry. Naming an item, or listing it
 with others, is not enough. `no-software-dependency` is the section 6 label
 "unknown: no shipped software or published source depends on it", with the
 routes tried. `located` (identity, address or size, and callers or sites cited,
@@ -205,15 +205,15 @@ Roles:
 - **Readers** pick work from the rows below `understood` in the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and take each row to `understood`: a role and hardware effect, a label, and a derivation in the same entry. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented`, then `named-only` and `located` rows by block.
 - The areas table in `docs/coverage.md` stays as the by-hand view of each block. Keep its rows true when you change them.
 
-Regenerate the inventory in the same commit as any doc or header change that explains an item (`retools/tools/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member or source path, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
+Regenerate the inventory in the same commit as any doc or header change that explains an item (`retools/tools/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
 
 Output rules:
 
 - Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
-- Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the public source path.
+- Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
 - Update `docs/coverage.md` and regenerate `docs/inventory/` in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
-- Commit what you cite: findings may rest on IRIX binaries or public sources only.
+- Commit what you cite: findings may rest on IRIX binaries, published documents or captures only.
 
 Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
 
