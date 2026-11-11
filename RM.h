@@ -44,6 +44,14 @@
  * fed by tg); the per-chip decode of combined indexes beyond their letters
  * is UNKNOWN, no shipped software depends on it (docs/rm.md).
  *
+ * ESTABLISHED (the diagnostic's pixel-id helper, irsaudit 0x100cf0ac, read
+ * instruction by instruction): it maps a pixel id to a filter number 0-3 as
+ * (id / 2) mod 4 for ids of zero or more, so ids 0-1 go to filter 0, 2-3 to
+ * filter 1, and the pattern repeats every eight ids. Negative ids give the
+ * negated result (the division and remainder truncate toward zero). INFERRED:
+ * that the number names one of the four tf chips above. UNKNOWN: how a pixel id
+ * derives from a screen position (docs/architecture.md).
+ *
  * INFERRED: registers are up to 48 bits wide. Fields reach bit 47
  * (TM_TEXMAP_1_HIGH at bits 45-47, TFP_FOG_DATA_N3 at 36-47,
  * TFT_TLUT_DATA_R at 36-47).
