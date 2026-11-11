@@ -92,6 +92,18 @@ Sources: the N32 `libGLcore.so` of IRIX 6.5.30m for the Kona (InfiniteReality) p
 
 ## Software renderer and its assembly kernels
 
+These four software-subdivision routines were read from the complete function
+bodies in the two IP27 KONA builds. They manipulate renderer state and scratch
+arrays; the bodies contain no direct pipe-window access.
+
+- `InitSubdivision` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda0be50): **Established.** The 10796-byte initializer loads subdivision dimensions, flags and callback data from the renderer context through the `lw` instructions at 0xda0be7c, 0xda0be80, 0xda0be84 and 0xda0bea0, then saves the derived values in its stack workspace (`sd` at 0xda0bea4-0xda0bec8). A zero enable word branches to the empty cleanup path at 0xda0bed0; otherwise it walks the subdivision dimensions and builds the per-level tables at context-relative offsets 0x240, 0x460 and 0x758, advancing their pointers in the loops at 0xda0bf40-0xda0c014. The selector cases at 0xda0bfb8-0xda0bfd0 choose the corresponding subdivision kernels, and the cleanup paths restore the saved state before the next function at 0xda0e880.
+
+- `DoRow` (`usr/gfx/arch/IP27KONA32/libGLcore.so` 0xda0e880): **Established.** The 8556-byte row worker increments the caller's per-mode row counter with `lw` at 0xda0e8c8 and `sw` at 0xda0e8d4, reads the renderer dimensions and mode flags with `lw` at 0xda0e8ac-0xda0e8b8 and `lbu` at 0xda0e8cc, then dispatches modes 0 through 4 at 0xda0e904-0xda0e928. For an active row it computes source and destination addresses from the selected stride and row index, calls the mode-specific software kernel through the indirect branch stubs at 0xda0ea00, 0xda0eb6c and 0xda0eba0, and advances the row pointers in the loop at 0xda0eb74-0xda0ebd8. Unsupported modes take the cleanup path at 0xda0e92c; the worker returns after restoring its saved registers at 0xda0ec04.
+
+- `InitSubdivision` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2e70c00): **Established.** The 10936-byte initializer reads the context dimensions, callback pointer and feature flags with `lw` at 0x2e70c2c-0x2e70c50, masks the feature word at 0x2e70c7c, and records the derived values in its stack workspace (`sd` at 0x2e70c54-0x2e70c78). A clear enable word takes the branch at 0x2e70c80; the enabled path constructs the subdivision tables and advances their level pointers through the repeated loops beginning at 0x2e70cd0. The mode tests select the software subdivision kernels, and the complete body restores the saved context and returns through its final epilogue.
+
+- `DoRow` (`usr/gfx/arch/IP27KONA64/libGLcore.so` 0x2e736c0): **Established.** The 8676-byte worker increments the selected row counter with `lw` at 0x2e73708 and `sw` at 0x2e73714, loads dimensions and renderer flags with `lw` at 0x2e736ec-0x2e736f8 and `lbu` at 0x2e7370c, and dispatches row modes 0 through 4 through the comparisons at 0x2e73744-0x2e73768. The active paths calculate row-buffer addresses from the current stride and index, invoke the corresponding software kernel through the indirect branch stubs at 0x2e73840 and later mode blocks, and advance the row pointers in the loop ending at 0x2e73a2c. The function writes final renderer bookkeeping with `sw` at 0x2e7498c, 0x2e749a0 and 0x2e749b4, then returns through 0x2e749cc.
+
 | Source file | Role | Functions |
 |---|---|---|
 | `mips_fastapi` | the fast hand-written immediate-mode colour, normal and texture-coordinate entries for the single-precision calls | `__glim_Color3f`, `__glim_Color3fv`, `__glim_Color4f`, `__glim_Color4fv`, `__glim_Normal3f`, `__glim_Normal3fv`, `__glim_TexCoord2f`, `__glim_TexCoord2fv` |
