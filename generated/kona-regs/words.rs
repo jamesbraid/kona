@@ -1,4 +1,4 @@
-// generated from kona 24161ef37717 KONA_WORDS_DECODE.h - do not edit, regenerate in kona
+// generated from kona 6ad7a97ee70e KONA_WORDS_DECODE.h - do not edit, regenerate in kona
 //!
 //! Bit layouts of the multi-field words of the host command stream,
 //! and the engine command descriptor values.
@@ -58,6 +58,8 @@ pub const LAYER_POPUP: u32 = 2;
 pub const ID_TABLE_NORMAL_ENTRIES: u32 = 64;
 /// established: and a 32-entry overlay and underlay table.
 pub const ID_TABLE_OVERLAY_ENTRIES: u32 = 32;
+/// established: the bus mask the load applies; bit 31 is outside it.
+pub const GC_LOAD_W4_BUS_ENABLE: u32 = 0xffffff;
 /// established: the bus mask the load applies, exactly the two fields above.
 pub const GC_LOAD_W6_BUS_ENABLE: u32 = 0x383c;
 /// established: the bus mask the load applies, exactly the three fields above.
@@ -1174,6 +1176,30 @@ impl MsLocations {
     /// Bits 23:21, established.
     pub const fn s3_y(self) -> u32 {
         (self.0 >> 21) & 0x7
+    }
+}
+
+/// The `GC_LOAD_W4` word.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct GcLoadW4(u32);
+
+impl GcLoadW4 {
+    pub const fn new(word: u32) -> Self {
+        Self(word)
+    }
+
+    pub const fn raw(self) -> u32 {
+        self.0
+    }
+
+    /// Bits 23:0, established.
+    pub const fn plane_mask_rg(self) -> u32 {
+        self.0 & 0xffffff
+    }
+
+    /// Bit 31, established.
+    pub const fn opaque_fill(self) -> bool {
+        (self.0 >> 31) & 1 != 0
     }
 }
 

@@ -4,7 +4,7 @@
  * Bit layouts of the 32-bit words that the host packs several fields into: the
  * per-display-id mode byte, the pixel-id placement words, the window and clip
  * set-up words, the texture-load header words and bind words, and the multisample
- * control and sample-location words, words 6 and 7 of the X graphics-context load,
+ * control and sample-location words, words 4, 6 and 7 of the X graphics-context load,
  * the 15-bit RGB overlay pixel and its reserved mode bytes, and the engine command
  * descriptor values. Registers on the display bus (the XMAP's
  * display-id, channel and gamma words, and the cursor position) have their fields
@@ -520,7 +520,22 @@
  * TESTVEC: 0x00d94880 as MS_LOCATIONS => s0_x=0, s0_y=0, s1_x=2, s1_y=4, s2_x=4, s2_y=2, s3_x=6, s3_y=6
  */
 
-/* ---- X graphics-context load (words 6 and 7) ---- */
+/* ---- X graphics-context load (words 4, 6 and 7) ---- */
+
+/* Word 4: the plane write mask, red and green 12-bit fields, in bits 23:0. The */
+/* engine program passes it on under the bus mask 0xffffff, so bit 31 is not part */
+/* of the mask. The X module sets bit 31 when the fill is an opaque stipple, or a */
+/* tile held in the pipe, and clears it in the loads that mask the word to 24 bits. */
+/* Established: the position, and the sender setting it for those two fills. */
+/* Inferred: that it means "clear stipple bits paint the background colour". */
+/* Unknown: whether the engine or the raster side reads it at all. */
+/* FIELD: GC_LOAD_W4.plane_mask_rg 23:0 established */
+#define WORD_GC_LOAD_W4_PLANE_MASK_RG_SHIFT 0
+#define WORD_GC_LOAD_W4_PLANE_MASK_RG_MASK 0xffffffu
+/* FIELD: GC_LOAD_W4.opaque_fill 31:31 established */
+#define WORD_GC_LOAD_W4_OPAQUE_FILL_SHIFT 31
+#define WORD_GC_LOAD_W4_OPAQUE_FILL_MASK 0x1u
+#define WORD_GC_LOAD_W4_BUS_ENABLE 0xffffff /* established: the bus mask the load applies; bit 31 is outside it */
 
 /* Word 6: the frame-buffer configuration the load programs into the raster bus. */
 /* Only the colour format and the read format are written; the pixel size and the */
