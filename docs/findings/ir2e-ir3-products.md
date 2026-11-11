@@ -221,7 +221,7 @@ Established:
 Unknown: which RM owns which pixels at 2 and 4 RMs; how a texture download reaches several RMs (a broadcast on the
 bus or one write per RM); the address map inside a TM8. Both need the raster-board address decode, which is chip
 hardware with no program; no TM8 or RM9 netlist is held (the repository's netlist data has tm7, tm9, rm10, rm11 only).
-Do not infer an interleave. A texture allocation should fail at one slot's 256 MB, not at the sum (E consequence of the
+Do not infer an interleave. The one route left in the held data is the 2-RM and 4-RM raster-board netmaps (`fpln_2voc_2rm_*` and `fpln_2voc_4rm_*`): they differ between slots in which display-link pixel lanes each RM drives (the `impdg_data` nets joined to different connector pins), which bears on which RM supplies which lanes of the display output. Tabulate the lane assignment per slot from those netmaps; it does not say which RM owns which raster pixels, so the raster-side question stays unknown. A texture allocation should fail at one slot's 256 MB, not at the sum (E consequence of the
 statements above; no failing-allocation capture).
 
 ## Q7. Register or rendering differences between IR2, IR2E and IR3

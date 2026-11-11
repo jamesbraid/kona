@@ -141,8 +141,14 @@ Each entry says what one routine does to the hardware and cites the instruction 
   nonzero return prints the error string and takes the shared tail, which calls `kt_code_result` with
   a0=4 and a2=4 (`jal` at 0x1011c244) and `kt_output_rslt` with a0=0 (`jal` at 0x1011c25c), and the
   routine returns what `kt_output_rslt` returned (`jr` at 0x1011c270).
-  Unknown: what `dgo_reset` at 0x1011c1bc and `dgo_loadXilinx_reset` at 0x1011c284 change on the board;
-  neither has a committed entry, and writing their entries settles it.
+  Established (read from the routines in `irsaudit` 6.5.30m): `dgo_reset` (0x101195bc) pulses display-bus
+  word 0xc000, the word its own failure text calls the GVO soft reset register: it writes 1, waits,
+  reads the word back, waits 10000 units, writes 0, waits and reads it back again, and prints a warning
+  if either write could not be made. `dgo_loadXilinx_reset` (0x10119708) calls the loader
+  `diagLoadDGOXilinxes` (0x1011c44c) up to 30 times, printing a retry message each time, sets the global
+  flag `xilinx_loaded` to 1 on success and otherwise prints that it could not load the programmable
+  logic. So the change on the board is a reset pulse on one option-board word and a load of its
+  programmable logic. Unknown: what the board does in response to the pulse beyond its name.
   Evidence grade: inferred.
 - `TEST_gvo_fb` in `usr/diags/IR/bin/irsaudit` at 0x1011b1b8 (n32).
   The routine's own accesses stay off the device: it reads the `xilinx_loaded` word (the `lw` at
@@ -194,8 +200,12 @@ Each entry says what one routine does to the hardware and cites the instruction 
   0x1011aff0); reading that word settles which buffer it is.
   Unknown: what message the `kt_output_dbug` call at 0x1011b04c prints on the nonzero-word path, since
   the address its second argument points at has no recorded text; the binary's text there would settle it.
-  Unknown: what `dgo_loadXilinx_reset` (0x10119708) and `dgo_regs` (0x10113b04) change on the board;
-  neither has a committed entry, so writing their entries settles it.
+  Established (read from the routines in `irsaudit` 6.5.30m): `dgo_loadXilinx_reset` (0x10119708) retries
+  the programmable-logic loader up to 30 times and sets the flag `xilinx_loaded`; `dgo_regs`
+  (0x10113b04) first calls `dgo_reset` (a pulse on display-bus word 0xc000), then calls the register
+  test helper `reg_test` on the display-bus words 0xc001, 0xc003, 0xc006 and 0xc007 and on 0xc200-0xc216,
+  with a size argument per word, and prints the results. The test helper's access pattern is not
+  read here, so which values are written to those words is not recorded.
   Evidence grade: inferred.
 - `TEST_idma_cntrl` in `usr/diags/IR/bin/irsaudit` at 0x10077408 (n32).
   Inferred: this is the IDMA command FIFO control test, since the strings at 0x10199af0 ('Testing the
@@ -222,12 +232,19 @@ Each entry says what one routine does to the hardware and cites the instruction 
   `kt_code_chip` with a0=2 (`jal` at 0x10077738) and `kt_output_rslt` with the 'IDMA Command FIFO
   control test FAILED' string (`jal` at 0x1007775c) run; when it is clear, `kt_code_result` with a2=1
   (`jal` at 0x100777a8) and `kt_output_rslt` with a0=1 (`jal` at 0x100777c0) run.
-  Unknown: what the words at [s2], [s5] and [s4] hold (s2 starts at 0x10200b28 and s4 at 0x10200a68 in
-  .data), what the word at `[sym(KONAINFO)]` holds, and what the store `sd` at 0x10077460 writes, since
-  its base register is not resolved; reading those words and tracing that base settles them.
-  Unknown: which bits the masks 0x2, 0x1 and 0x7c000 and the values 0x200020, 0x200024 and 0x200028 select
-  in the adapter words at 0x308, 0x320, 0x3e8 and 0x3f0; no register row is linked, so a linked register
-  row or field table for those words would settle it.
+  Established (the two tables read from the image): the words at [s2] and [s4] are the first words of
+  rows of 12 bytes (an ARM-side register address, a pointer to its name and a writable-bits mask),
+  s2 in the table at 0x10200b28 and s4 in the table at 0x10200a68. The three addresses 0x200010,
+  0x200014 and 0x200018 recur in both (masks 0x1fffffff, then 0x7ffffff for 0x200018); the mask of 0x200014
+  is 0x1ffff in the first table and 0xfff in the second, which the host-interface notes read as the second
+  and first host-interface generation. The words that complete the access sequence, the loop-control word
+  at `KONAINFO` and the base of the store at 0x10077460 are still not read; reading the instructions
+  that set `s5` and that store base settles them.
+  Settled from the host-interface notes ([hip.md](hip.md#input-dma-command-queue)): 0x3e8 and 0x3f0 are
+  the ARM address and data ports, 0x200020 is the input-DMA control register, 0x200024 its status
+  (bit 0 command queue empty, bit 1 queue full, bits 18-14 the queue size field, the 0x7c000 mask) and
+  0x200028 the queue read port; offsets 0x308 and 0x320 are written with 1 and 0 as in the other
+  host-interface tests, and their meaning is unknown.
   Evidence grade: inferred.
 - `TEST_tvo_vocdblbuf` in `usr/diags/IR/bin/irsaudit` at 0x100a9280 (n32).
   Inferred: this is the TVO check of the VOC register blocks, since the strings 'Replace TVO board'
@@ -587,9 +604,11 @@ Each entry says what one routine does to the hardware and cites the instruction 
   so the buffer at sp-8064 holds a bit string that the 'tcbist_ctrl' line prints.
   Unknown: which field of the record each %d and %s operand comes from, since the loads from s0 at
   0x10015ebc through 0x10015f98 use a base register the tool does not trace back to the argument.
-  Unknown: the device-side result of the 'tcbist_' commands, since no committed callee note or linked
-  row covers them, and the target of the zero byte stored at 0x10015fd0, whose base a1 the tool does
-  not follow.
+  Established: the device-side result is none. The routine's only calls are `printf` and
+  `jt_unpack_vector`; it performs no device access and only prints each command of the sequence.
+  What the commands do on the device belongs to the routine that runs a sequence, not to this dump.
+  Unknown: the target of the zero byte stored at 0x10015fd0, whose base a1 the tool does not follow;
+  reading the instructions that set a1 settles it.
   Unknown: the text the printf at 0x10015f78 prints from the string at 0x101741a0, which the bundle
   does not list, and whether the return at 0x10015ea8 gives a value, since v0 is not traced.
   Evidence grade: inferred.
@@ -659,8 +678,11 @@ Each entry says what one routine does to the hardware and cites the instruction 
   Between those writes, `venice_loadsection_vs2_top` (`jal` at 0x1001b6e0) receives arguments a0
   to a3 unchanged, and `venice_loadsection_vs2_body` (`jal` at 0x1001b700) receives the same four
   plus the sixth argument in a5.
-  Unknown: which register `vs2WriteXilinxReg` writes when its third argument is 0x20 and its fourth
-  is 1 or 0; no committed entry covers it, so a reading of that routine would settle it.
+  Established (`vs2WriteXilinxReg`, `gfxinfo` 0x100188c8, six instructions): it stores the low byte of
+  its fourth argument at the address formed by the word at +4 of its first argument (the board's mapped
+  window) plus its second argument plus its third. With 0x20 as the third argument the write is the byte
+  at offset 0x20 of the register block that the caller's second argument selects, and the load here
+  sets it to 1 before and 0 after. What that byte controls is unknown.
   Unknown: which words `venice_loadsection_vs2_body` writes through the pointer in its sixth
   argument, because the committed note for it is cut off before its write list ends; a complete note
   would settle this.
@@ -678,8 +700,9 @@ Each entry says what one routine does to the hardware and cites the instruction 
   branch tests the earlier results. Inferred: per the body routine's note, a zero fourth argument
   leaves the word at +0xd40 of its sixth-argument pointer untouched and a nonzero one sets bit 0x40
   in it, so the fourth argument this routine receives controls that bit. Unknown: the Xilinx
-  register that `vs2WriteXilinxReg` selects with 0x20 and 1 or 0 as the fourth argument; no note for
-  that routine exists yet. Unknown: what the word at +0xd40 belongs to and whose pointer it is; the
+  register that `vs2WriteXilinxReg` selects with 0x20 and 1 or 0 as the fourth argument is the byte
+  at offset 0x20 of the register block the second argument selects (the six-instruction routine is the
+  same in `setmon`, 0x1001316c); its meaning is unknown. Unknown: what the word at +0xd40 belongs to and whose pointer it is; the
   callers of this routine pass that pointer in, and the bundle has none of their notes.
   Evidence grade: inferred.
 - `venice_dg2initEncoder` in `usr/gfx/gfxinfo` at 0x10017570 (n32).
@@ -704,8 +727,11 @@ Each entry says what one routine does to the hardware and cites the instruction 
   an error and exits, so this routine never resumes after such a failure.
   Unknown: whether `init_luts` changes any state that the later encoder accesses read, since its
   four arguments are passed through and no committed entry says what it writes.
-  Unknown: what `venice_set_vcreg` stores for each first and second argument pair from 0xb400 to
-  0xb406; no committed entry describes it.
+  Established (`venice_set_vcreg`, `gfxinfo` 0x1000fce8, which only forwards to `fcg_venice_set_vcreg`
+  at 0x1000f760): it stores its second argument as one 32-bit word at the mapped window base
+  (`ven_gfxvaddr`) plus 0xfc000 plus 8 times its first argument. So the pairs from 0xb400 to 0xb406 are
+  stores to the words at window offsets 0x156000, 0x156008 and on in steps of 8 up to 0x156030, each
+  with the second argument as the value. What those words are on the board is unknown.
   Evidence grade: inferred.
 - `venice_dg2initVof` in `usr/gfx/gfxinfo` at 0x100179c0 (n32).
   Inferred: the callee notes say `venice_loadsection_dg2_top` loads the video-output part of a
@@ -724,9 +750,10 @@ Each entry says what one routine does to the hardware and cites the instruction 
   the string at 0x10026cd0 being printed (0x10017b4c). Every path ends by calling `venice_set_vcreg`
   with 0xaf00 as the first argument, the word at `vof_clock_value` as the second and 0 as the third
   (0x10017a94, 0x10017b00 or 0x10017b70), then calls `sginap` with 2 and returns at 0x10017ab8.
-  Unknown: the register that `venice_set_vcreg` selects from 0xaf00, and the value in the word at
-  `vof_clock_value`; the `venice_set_vcreg` entry and the writers of `vof_clock_value` are the way
-  to pin them.
+  Established: `venice_set_vcreg` with 0xaf00 stores the word at `vof_clock_value` at the mapped window
+  base plus 0xfc000 plus 8 x 0xaf00, which is offset 0x153800 (the routine is the forwarding wrapper read in
+  full under `venice_dg2initEncoder` above). Unknown: the value in the word at `vof_clock_value`; the writers
+  of `vof_clock_value` (the video-output loader that stores the record's first word through it) pin it.
   Evidence grade: inferred.
 - `vs2GetHphaseShadow` in `usr/gfx/gfxinfo` at 0x1001990c (n32).
   Inferred: the only callee is `vs2GetShadow`, whose note (the copy in `usr/gfx/setmon`) says it
