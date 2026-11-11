@@ -17,9 +17,9 @@ pub const TEXTURE_PARAMETER: u32 = 13;
 /// established.
 pub const TEXTURE_PARAMETER_00E: u32 = 14;
 /// established.
-pub const 1D_TEXTURE_IMAGE_LOAD: u32 = 15;
+pub const V1D_TEXTURE_IMAGE_LOAD: u32 = 15;
 /// established.
-pub const 2D_TEXTURE_IMAGE_LOAD: u32 = 16;
+pub const V2D_TEXTURE_IMAGE_LOAD: u32 = 16;
 /// established.
 pub const SELECT_BUFFER_REGISTRATION: u32 = 24;
 /// established.
@@ -61,9 +61,9 @@ pub const TEXTURE_LEVEL_PARAMETER_056: u32 = 86;
 /// established.
 pub const COPY_COLOUR_TABLE_FRAME_BUFFER: u32 = 233;
 /// established.
-pub const 3D_CONVOLUTION_FILTER: u32 = 241;
+pub const V3D_CONVOLUTION_FILTER: u32 = 241;
 /// established.
-pub const 3D_SEPARABLE_FILTER: u32 = 246;
+pub const V3D_SEPARABLE_FILTER: u32 = 246;
 /// established.
 pub const PIXEL_TRANSFORM_PARAMETERS: u32 = 251;
 /// established.
@@ -87,9 +87,9 @@ pub const LOAD_3D_TEXTURE_SUB_IMAGE: u32 = 0x11e;
 /// established.
 pub const LOAD_3D_TEXTURE_IMAGE: u32 = 0x11f;
 /// established.
-pub const 4D_TEXTURE_IMAGE: u32 = 0x120;
+pub const V4D_TEXTURE_IMAGE: u32 = 0x120;
 /// established.
-pub const 4D_TEXTURE_SUB_IMAGE: u32 = 0x121;
+pub const V4D_TEXTURE_SUB_IMAGE: u32 = 0x121;
 /// established.
 pub const ALLOCATE_1D_TEXTURE_NAMES: u32 = 0x122;
 /// established.

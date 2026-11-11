@@ -73,10 +73,18 @@ def check_final(ctx):
             rc[m.group(1)] = int(m.group(2).replace("_", ""), 0)
         prefix = "KONA_QUERY_" if key == "query" else "KONA_TOKEN_"
         for name, val in names.items():
-            if rc.get(name[len(prefix):]) != val:
+            rname = rust_name(name, prefix)
+            if rc.get(rname) != val:
                 ctx.rep.fail("generated/kona-regs/%s.rs" % key,
                              "constant %s is %s, header says 0x%03x"
-                             % (name[len(prefix):], rc.get(name[len(prefix):]), val))
+                             % (rname, rc.get(rname), val))
+
+
+def rust_name(name, prefix):
+    # The generator's rule (retools gen_decode_rust.py digit_safe): a stripped
+    # name that starts with a digit gets a V in front.
+    n = name[len(prefix):]
+    return "V" + n if n[:1].isdigit() else n
 
 
 # --- display requests (section 5) ------------------------------------------
