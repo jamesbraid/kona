@@ -1553,9 +1553,10 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   of 44 words are bit-identical, and its prologue builds the global pointer from 0x1194d0 where kona.so uses
   0x114c28.
 - `kon_loadCopyWindowGC` (konal.so, address 0x1406f90): **established.** Loads the context for a window
-  copy through `HP_X_LOADGC`, tracing with `ErrorF`. The mode word is picked among several constants
-  (0x110001, 0x40001, 0x40005 and others) and combined with masks such as
-  0xff03ffff, 0xfffc3fff and 0xf00fff. Every command
+  copy through `HP_X_LOADGC`, tracing with `ErrorF`. It builds all thirteen
+  words from immediates and masks such as 0xff03ffff, 0xfffc3fff and 0xf00fff, chosen by the low nibble of its
+  first argument (the earlier "mode constants 0x110001, 0x40001, 0x40005" do not occur in the code; see
+  command-table.md, section 7.8). Every command
   (`HP_X_LOADGC`) begins here with a word holding the token number, stored at offset 0 of the saved FIFO
   pointer from +0x3b8, in place of kona.so's store at the pointer plus 32 times the token, and its payload
   words follow at offset 0, and 95% of its instructions line up with kona.so after address normalisation, 99%
@@ -1665,8 +1666,8 @@ The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/k
   addresses the command at the pointer plus 32 times the token, with 95% of the instructions unchanged from
   kona.so once addresses are normalised and the size 656 bytes against 640.
 - `kon_loadImgRectGC` (konal.so, address 0x1431750): **established.** Builds and sends a `HP_X_LOADGC` for
-  image rectangles: it forces the mode field (clears bits 1 to 4, sets the value 6) and masks the colour word
-  with 0xffffff before storing the context words, so a rectangle fill ignores the high byte. No callee. The
+  image rectangles: it forces word 9, the logic-operation word (clears bits 1 to 4, sets the value 6) and masks word 4, the plane-mask word,
+  with 0xffffff before storing the context words, so a rectangle fill drops bit 31 of the plane mask. No callee. The
   command set matches kona.so token for token (`HP_X_LOADGC`), but every token travels as data at offset 0 of
   the pointer kept in a stack slot (first at +0x74, single token store in all) rather than as part of a store
   address, with 72% of the instructions unchanged from kona.so once addresses are normalised, 97% once
@@ -3360,8 +3361,8 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   halfword fields at +8 to +14 of the screen record and the GC words from the context's private record (fields
   at +4 to +80). It makes no call.
 - `kon_loadImgRectGC` (kona.so, address 0x4a9480): **established.** Builds and sends a `HP_X_LOADGC` for image
-  rectangles: it forces the mode field (clears bits 1 to 4, sets the value 6) and masks the colour word with
-  0xffffff before storing the context words, so a rectangle fill ignores the high byte. No callee.
+  rectangles: it forces word 9, the logic-operation word (clears bits 1 to 4, sets the value 6) and masks word 4, the plane-mask word, with
+  0xffffff before storing the context words, so a rectangle fill drops bit 31 of the plane mask. No callee.
 - `kon_loadImpWordGC` (kona.so, address 0x462a10): **established.** Loads graphics state for the word-sized
   image path through `HP_X_LOADGC`, after printing its own name with `ErrorF`. The context words are combined
   with the constant masks 0xff03ffff and 0xfffc3fff and the colour mask 0xffffff, and the constants 0x13000a
@@ -3378,9 +3379,10 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
   record's halfwords at +8 and +10, then calls the loader at 0x52f810 through the global offset table with the
   drawable's byte at +2 as the last argument.
 - `kon_loadCopyWindowGC` (kona.so, address 0x47f7d0): **established.** Loads the context for a window copy
-  through `HP_X_LOADGC`, tracing with `ErrorF`. The mode word is picked among several constants (0x110001,
-  0x40001, 0x40005 and others) and combined with masks such as 0xff03ffff,
-  0xfffc3fff and 0xf00fff; the selection follows branches on context fields that this entry does not decode.
+  through `HP_X_LOADGC`, tracing with `ErrorF`. It builds all thirteen words from immediates and
+  masks such as 0xff03ffff, 0xfffc3fff and 0xf00fff, chosen by the low nibble of its first argument and by two
+  flag bits (the earlier "mode constants 0x110001, 0x40001, 0x40005" do not occur in the code; see
+  command-table.md, section 7.8).
 - `kon_loadGC` (kona.so, address 0x4a6270): **established.** The general loader: sends `HP_X_LOADPOS` (four
   words from the screen record's halfword fields at +8 to +14) and `HP_X_LOADGC` with the foreground and
   background colours, write masks, configuration, operation and format words taken from the context's private
