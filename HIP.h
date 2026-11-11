@@ -455,7 +455,9 @@
  * it at +0x17ec on every video interrupt and passes it to `kona_nclops_swapped`, and docs/dg.md
  * reads the following loop as finishing every queued retrace record whose sequence number is not
  * greater than it; kpm dumps it at 0x10012bd8. Inferred: the pipe copies there the number its
- * RETRACE_SEQID token (DG.h) carried, once the drawing queued before that token is done. */
+ * RETRACE_SEQID token (DG.h) carried, once the drawing queued before that token is done.
+ * No kernel path writes it. Inferred: 0 once the firmware has run init_dg_board (DG.h); the
+ * reset value before that is UNKNOWN (docs/dg.md, first tag and hardware tag). */
 #define KONA_HH_SEQID                       0x248  /* register mask 0xffffffff */
 
 /*
