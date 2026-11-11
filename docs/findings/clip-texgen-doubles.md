@@ -208,6 +208,8 @@ straight at them).
   port 0x840 and starts the engine handler `mgeb_TexGen` (high half of
   state-block word 0xec) through port 0x8c0.
 
+Established for the accepted set: the listing of `arm_texgenf` at 0x0c024dfc-0x0c024e68 was re-read, and it accepts exactly the names 0x2500-0x2502 and 0x81f4-0x81f7 and the mode values 0x2400-0x2402 and 0x81f0-0x81f3. Inferred for the roles: the next sentence reads them as public enumerants and the assignment of the four distance names to 0x81f0-0x81f3 was not re-checked against the public registry in this pass.
+
 The accepted modes, read as the public values: 0x2400 eye linear, 0x2401 object
 linear, 0x2402 sphere map, and the four distance modes 0x81f0-0x81f3 of
 SGIS_point_line_texgen (eye and object distance to point, eye and object

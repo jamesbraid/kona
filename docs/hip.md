@@ -29,7 +29,7 @@ The kernel never programs a DMA engine by register. It sends a command in the pr
 
 Then the caller commands are written to the command port, then for each vector `kona_idma` sends, in the privileged stream:
 
-`DO_IDMA` (token 0x1eb) with six payload words: `A_hi`, `A_lo`, `len`, `llen`, `stride`, `flags`. `flags` is 256 when the caller waits for completion (`kona_idma` arms a software timeout and the ioctl sleeps on the semaphore at `P+5176`) and 0 otherwise. The units of `len`, `llen` and `stride` are bytes. The vector is then unlocked and its pipe-space range freed.
+`DO_IDMA` (token 0x1eb) with six payload words: `A_hi`, `A_lo`, `len`, `llen`, `stride`, `flags`. `flags` is 256 when the caller waits for completion (`kona_idma` arms a software timeout and the ioctl sleeps on the semaphore at `P+5176`) and 0 otherwise. The units of `len`, `llen` and `stride` are bytes. Established: `kona_idma` was re-read in full. After the token it sends the six words in this order: the address shifted right by 12, the low 12 bits of the address or-ed with 0x9000, the length, the line length, the stride and the flags. The flags word is 256 when the caller asked to wait (any nonzero argument is replaced by 256, and the timeout is armed first) and 0 otherwise; the units were not derived from this routine. The vector is then unlocked and its pipe-space range freed.
 
 The caller commands are a list of groups, each one a token word, a count word n and n payload words; only the token and the n payload words are written, the count is not. The same format is used by the DMA-read Kona driver request. **Established** (`kona_dmaread` loop, `kona_dmawrite` loop).
 

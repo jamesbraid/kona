@@ -119,7 +119,7 @@ indexed-register data port. That matches the data sheet's register select
 3 mode) and the firmware's use of 0x602c08 + (channel << 10), which is
 display-bus 0xb02 + 0x100n (ARM address = 0x600000 + 4 x bus address).
 
-Grade: established (instructions read). The 0x22 value survives only in two
+Grade: established (instructions read) for the destination being register 2 of the channel's block, from the driver's and firmware's use of bus word 0xb02 + 0x100n. Inferred for the data sheet's register-select encoding quoted above: its text was not re-read in this pass, and the encoding agrees with the 0xb00-0xb03 port order in `KONA_DAC_DECODE.h` (address, palette data, register data, mode), which grades the palette-data and mode ports inferred. The 0x22 value survives only in two
 places: the constant `KONA_DG_DAC_CURSOR_POS` in `DG.h` (whose own comment already
 says the driver does not address 0x22) and the sentence "four address-0x22
 writes" in `docs/dg.md`. Both should be corrected by their owners; this note
