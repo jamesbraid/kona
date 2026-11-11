@@ -1,7 +1,7 @@
 table	rows	out_of_scope	understood	understood_with_open	understood_distinct	templated	located	named_only	undocumented	no_software_dependency	pct_understood	pct_located_or_better	pct_mentioned	pct_done	unresolved_sites	truncated	audited_real_pct	audited_sample	audited_date	computes	reused	multi_unit	shared_address	address_unknown	input
 binaries	599	0	468	1	374	125	127	2	2	0	78.1	99.3	99.7	78.1			100.0	20	2026-11-02		0				
-functions	54309	0	13144	1299	6276	25449	26643	14514	0	8	24.2	73.3	100.0	24.2			90.0	20	2026-11-02		0	126	2668	0	
-functions (distinct names)	19170	0	3684	409	3650	15425	15478	5	0	3	19.2	100.0	100.0	19.2							0				
+functions	54309	0	13219	1305	6348	25455	26668	14414	0	8	24.3	73.5	100.0	24.4			90.0	20	2026-11-02		0	126	2668	0	
+functions (distinct names)	19170	0	3757	414	3720	15352	15405	5	0	3	19.6	100.0	100.0	19.6							0				
 mmio	53	0	49	1	47	0	0	0	0	4	92.5	100.0	100.0	100.0	8						0				
 tokens	617	0	616	6	614	0	0	0	0	1	99.8	100.0	100.0	100.0			95.5	89	2026-11-01		0				
 ioctls	55	0	43	0	42	0	0	12	0	0	78.2	78.2	100.0	78.2			90.0	10	2026-10-29		0				
@@ -84,7 +84,7 @@ functions in usr/gfx/KONA/bin/ireeprom	15	0	15	0	15	0	0	0	0	0	100.0	100.0	100.0	
 functions in usr/gfx/KONA/bin/kpm	426	0	171	2	171	253	255	0	0	0	40.1	100.0	100.0	40.1							0	0	0	0	
 functions in usr/gfx/arch/GENERIC/Xsgi	2936	0	34	7	31	2900	2902	0	0	0	1.2	100.0	100.0	1.2							0	0	0	0	
 functions in usr/gfx/arch/IGLOO/libgl.so	3811	0	8	1	8	3803	3803	0	0	0	0.2	100.0	100.0	0.2							0	0	1124	0	
-functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	55	0	52	1787	1788	1968	0	0	1.4	48.4	100.0	1.4							0	0	1124	0	
+functions in usr/gfx/arch/IGLOO32/libgl.so	3811	0	130	6	124	1793	1813	1868	0	0	3.4	51.0	100.0	3.4							0	0	1124	0	
 functions in usr/gfx/arch/IP27KONA/libGL.so	671	0	7	0	7	624	660	4	0	0	1.0	99.4	100.0	1.0							0	0	0	0	
 functions in usr/gfx/arch/IP27KONA/libGLcore.so	4868	0	1298	242	1280	2968	3023	547	0	0	26.7	88.8	100.0	26.7							0	21	70	0	
 functions in usr/gfx/arch/IP27KONA32/libGL.so	673	0	20	0	20	19	45	608	0	0	3.0	9.7	100.0	3.0							0	0	0	0	
