@@ -1,6 +1,7 @@
 {
   "family": "InfiniteReality (KONA)",
   "siblings": {"odsy": "../odsy", "crime": "../crime"},
+  "review_required": ["docs/routines/t1-*.md", "docs/routines/t2-*.md"],
   "docs": {
     "prose": [
       "docs/*.md",
