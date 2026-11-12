@@ -120,8 +120,8 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - queued next steps (paragraph lists them)
 - queued next steps (paragraph lists them)
 - token senders missing from the tokens table
-- senders not found: ireeprom EEPROM_OP, irsaudit DIAG_DISPATCH
-- kona.so routines at 0x53e7b0 and 0x4817f0 not read
+- sender not found: irsaudit DIAG_DISPATCH (the `ireeprom` EEPROM_OP sender is answered in GE.h)
+- kona.so routine at 0x4817f0 not read (0x53e7b0 is read: konDrawDID, kona-ddx.md)
 - kona.so inferred mfb/cfb/mi routines: inner loops not traced
 - 20 same-length konal.so functions: instruction-level diff
 - konad.so and konas.so below-split twins not read
@@ -550,7 +550,7 @@ Settled, see [ucode/ge_isa.md](../ucode/ge_isa.md#operand-ports-and-result-forwa
 
 ## kona.so functions from 0x4cdd80
 
-[route a] Every function of `usr/lib/X11/dyDDX/kona.so` at 0x4cdd80 and above has an entry in [kona-ddx.md](kona-ddx.md#konaso-functions-from-0x4cdd80) except `nfbInitVisDIDs`, which another entry already settles. Entries marked inferred were read from the call structure and not instruction by instruction: `konValidateVisual` (the routine at 0x53e7b0 it calls 28 times was not read), `konUnbindDestroyedWindow` (the routines at 0x5341a0 and 0x4fed90 it uses to clear the binding), `rrmBindRNToClip`, `rrmOGLBindRNToClip`, `rrmCreateDefColormap` (the meaning of the `init4sight`, `initGL`, `initPseudo` and `initEnvm` tables), `rrmValidateTree` and `rrmWorkProc`. The `cfb*`, `mfb*` and `mi*` entries describe the sample-server routines from their call patterns and table use; their inner pixel loops were not traced. Next: read the routines at 0x53e7b0 and 0x4817f0 (called from `konValidateVisual` and `konCopyWindow`), then compare the `konal.so` builds of the same names.
+[route a] Every function of `usr/lib/X11/dyDDX/kona.so` at 0x4cdd80 and above has an entry in [kona-ddx.md](kona-ddx.md#konaso-functions-from-0x4cdd80) except `nfbInitVisDIDs`, which another entry already settles. Entries marked inferred were read from the call structure and not instruction by instruction: `konValidateVisual` (the routine at 0x53e7b0 it calls 28 times is now read, as `konDrawDID`; the entry stays inferred until its own body is read in full), `konUnbindDestroyedWindow` (the routines at 0x5341a0 and 0x4fed90 it uses to clear the binding), `rrmBindRNToClip`, `rrmOGLBindRNToClip`, `rrmCreateDefColormap` (the meaning of the `init4sight`, `initGL`, `initPseudo` and `initEnvm` tables), `rrmValidateTree` and `rrmWorkProc`. The `cfb*`, `mfb*` and `mi*` entries describe the sample-server routines from their call patterns and table use; their inner pixel loops were not traced. Next: read the routines at 0x53e7b0 and 0x4817f0 (called from `konValidateVisual` and `konCopyWindow`), then compare the `konal.so` builds of the same names.
 
 ## kona.so functions below 0x4cdd80
 
