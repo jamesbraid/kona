@@ -1,22 +1,26 @@
-"""kona-specific checks for the decode headers.
+"""kona-specific checks for the hardware definitions in defs/.
 
 docs/command-table.md owns the token numbers. The query tokens (section 2.13)
 and every other processor-run or routed token (sections 2 and 3) must appear
-in KONA_QUERY_DECODE.h and KONA_TOKEN_DECODE.h with the table's value and
-grade, and the generated Rust must carry the same constants.
+in defs/query.toml and defs/token.toml with the table's value and grade, and
+the generated Rust must carry the same constants.
 
 The same table owns the display-request numbers (section 5), which
-KONA_DISPREQ_DECODE.h must carry with their payload counts and reply types, and
+defs/dispreq.toml must carry with their payload counts and reply types, and
 the XMAP and video-output-chip register indices (sections 6.3 to 6.5), whose
-registers KONA_XMAP_DECODE.h and KONA_VOC_DECODE.h must list.
+registers defs/xmap.toml and defs/voc.toml must list.
+
+The checks read the loaded model (the unit's constants and the hdr.regs
+dictionary), not header text. The file names in failure messages are the
+forwarding headers at the old *_DECODE.h paths.
 """
 import re
 
 TABLE = "docs/command-table.md"
 ROW = re.compile(r"^\| (0x[0-9a-f]{3}) \|")
-HDR_DEF = re.compile(r"^#define\s+(\w+)\s+(0x[0-9a-f]+)\s+/\*\s*(\w+)\s*\*/")
 RUST_CONST = re.compile(r"pub const (\w+): \w+ = (0x[0-9a-fA-F_]+|\d+);")
 FILES = {"query": "KONA_QUERY_DECODE.h", "token": "KONA_TOKEN_DECODE.h"}
+RUST_MODULE = "gen/rust/src/%s.rs"
 
 
 def table_tokens(text):
@@ -38,13 +42,12 @@ def table_tokens(text):
     return query, rest
 
 
-def header_tokens(text):
+def header_tokens(hdr):
+    """Token value -> grade, and constant name -> value, from the unit's constants."""
     out, names = {}, {}
-    for line in text.splitlines():
-        m = HDR_DEF.match(line)
-        if m:
-            out[int(m.group(2), 16)] = m.group(3)
-            names[m.group(1)] = int(m.group(2), 16)
+    for name, c in hdr.unit.model["constants"].items():
+        out[c["value"]] = c["grade"]
+        names[name] = c["value"]
     return out, names
 
 
@@ -54,7 +57,7 @@ def check_final(ctx):
     query, rest = table_tokens(ctx.read_doc(TABLE))
     for key, want in (("query", query), ("token", rest)):
         fn = FILES[key]
-        got, names = header_tokens(ctx.read(fn))
+        got, names = header_tokens(ctx.hdrs[fn])
         for tok in sorted(want.keys() - got.keys()):
             ctx.rep.fail(fn, "table token 0x%03x missing from the header" % tok)
         for tok in sorted(got.keys() - want.keys()):
@@ -65,32 +68,30 @@ def check_final(ctx):
                              % (tok, want[tok], got[tok]))
         # generated Rust carries the same values
         try:
-            rust = ctx.read("generated/kona-regs/%s.rs" % key)
+            rust = ctx.read(RUST_MODULE % key)
         except FileNotFoundError:
             continue  # the framework reports a missing module itself
         rc = {}
         for m in RUST_CONST.finditer(rust):
             rc[m.group(1)] = int(m.group(2).replace("_", ""), 0)
-        prefix = "KONA_QUERY_" if key == "query" else "KONA_TOKEN_"
         for name, val in names.items():
-            rname = rust_name(name, prefix)
+            rname = rust_name(name)
             if rc.get(rname) != val:
-                ctx.rep.fail("generated/kona-regs/%s.rs" % key,
+                ctx.rep.fail(RUST_MODULE % key,
                              "constant %s is %s, header says 0x%03x"
                              % (rname, rc.get(rname), val))
 
 
-def rust_name(name, prefix):
-    # The generator's rule (retools gen_decode_rust.py digit_safe): a stripped
-    # name that starts with a digit gets a V in front.
-    n = name[len(prefix):]
-    return "V" + n if n[:1].isdigit() else n
+def rust_name(name):
+    # The generator's rule for a top-level constant: a name that starts with a
+    # digit gets an N in front.
+    return "N" + name if name[:1].isdigit() else name
 
 
 # --- display requests (section 5) ------------------------------------------
 REQ_ROW = re.compile(
     r"^\| (\d+) \| .*? \| (\d+) \| (none|type 0x([0-9a-f]+), (\d+) bytes) \| (\w+) \|")
-REQ_DEF = re.compile(r"^#define\s+DISPREQ_(\w+?)(_WORDS|_REPLY_TYPE|_REPLY_BYTES)?\s+(0x[0-9a-f]+|\d+)\s+/\*\s*(\w+)\s*\*/")
+REQ_NAME = re.compile(r"(\w+?)(_WORDS|_REPLY_TYPE|_REPLY_BYTES)?")
 
 
 def table_requests(text):
@@ -104,16 +105,16 @@ def table_requests(text):
     return out
 
 
-def header_requests(text):
+def header_requests(hdr):
     """name -> {number, words, reply type, reply bytes, grade}."""
     by = {}
-    for line in text.splitlines():
-        m = REQ_DEF.match(line)
-        if not m or m.group(1) == "COUNT":
+    for const, c in hdr.unit.model["constants"].items():
+        m = REQ_NAME.fullmatch(const)
+        if m.group(1) == "COUNT":
             continue
         d = by.setdefault(m.group(1), {})
-        d[(m.group(2) or "")] = int(m.group(3), 0)
-        d["grade" + (m.group(2) or "")] = m.group(4)
+        d[(m.group(2) or "")] = c["value"]
+        d["grade" + (m.group(2) or "")] = c["grade"]
     return by
 
 
@@ -121,7 +122,7 @@ def check_requests(ctx):
     fn = "KONA_DISPREQ_DECODE.h"
     want = table_requests(ctx.read_doc(TABLE))
     got = {}
-    for name, d in header_requests(ctx.read(fn)).items():
+    for name, d in header_requests(ctx.hdrs[fn]).items():
         if "" not in d:
             ctx.rep.fail(fn, "request %s has no number define" % name)
             continue
@@ -172,16 +173,10 @@ def table_indices(text, start, end):
     return idx
 
 
-REG_LINE = re.compile(r"/\*\s*REG:\s*(\w+)\.(\w+)\s+0x([0-9a-f]+)\s+\w+?(\d+)(?:\s+count=(\d+))?")
-
-
-def header_regs(text, block):
-    out = []
-    for line in text.splitlines():
-        m = REG_LINE.search(line)
-        if m and m.group(1) == block:
-            out.append((m.group(2), int(m.group(3), 16), int(m.group(5) or 1)))
-    return out
+def header_regs(hdr, block):
+    """(name, offset, count) of every register of the block."""
+    return [(key.split(".", 1)[1], r["off"], r["count"])
+            for key, r in hdr.regs.items() if key.split(".", 1)[0] == block]
 
 
 def covered(regs, off):
@@ -191,7 +186,7 @@ def covered(regs, off):
 def check_xmap_voc(ctx):
     text = ctx.read_doc(TABLE)
     fn = "KONA_XMAP_DECODE.h"
-    regs = header_regs(ctx.read(fn), "XMAP")
+    regs = header_regs(ctx.hdrs[fn], "XMAP")
     direct = table_indices(text, "### 6.3 XMAP direct", "### 6.4")
     for n in sorted(direct):
         if not covered(regs, 0x100 + n):
@@ -212,7 +207,7 @@ def check_xmap_voc(ctx):
         if 0x118 <= off and off not in ind:
             ctx.rep.fail(fn, "header XMAP port at 0x%03x is not in the table" % off)
     fn = "KONA_VOC_DECODE.h"
-    vregs = header_regs(ctx.read(fn), "VOC")
+    vregs = header_regs(ctx.hdrs[fn], "VOC")
     vidx = table_indices(text, "### 6.5 Video-output chip", "### 6.6")
     vidx.update(range(0x90, 0x9e))  # the coefficient row names 0x90 and lists 0x90-0x9d
     for n in sorted(vidx):
