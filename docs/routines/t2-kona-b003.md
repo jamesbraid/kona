@@ -3,13 +3,13 @@
 Roles for the 25 targets at ranks 76 to 100 of the ranked tier-2 list. Each one comes from the rendered instruction facts at the cited addresses, not from a read of the raw disassembly, so every entry is graded inferred. The renderer and grader accepted all 25 entries, and none was rejected.
 
 - `gl_c_backface` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34650
-  **Inferred.** A flag at 0xecdd904 chooses between two paths. One calls gl_compile (0xecb5010) at 0xec3468c with a0 = 0x4, and the other skips that call. Either way gl_intrptab_insert (0xec5f9f0) is called at 0xec346b0 with the block at 0xecd6828, and the return value is the gl_compile result. The facts do not show what the registered record does later, so that stays open.
+  **Inferred.** The beq at 0xec34670 tests the flag at 0xecdd904. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec346b0 with the block at 0xecd6828 before the path joins the gl_compile (0xecb5010) call at 0xec3468c with a0 = 0x4. When the flag is nonzero, only the gl_compile call runs. The return value is the gl_compile result. The facts do not show what the registered record does later.
 - `gl_n_backface` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec346d0
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). When the flag is set it calls __iglooNCloseMoveDraw (0xec92d80) with its arguments passed through. It then loads the word at a0 and calls __gl_backface (0xec34520) with that value under the conditional call at 0xec3470c, and it returns a0 + 4.
 - `gl_i_frontface` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34730
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). The beq at 0xec3474c skips the __iglooNCloseMoveDraw call (0xec92d80) when the flag is zero. It then calls __gl_frontface (0xec34590) with a0 under the conditional call at 0xec34768, and returns that callee's result.
 - `gl_c_frontface` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34780
-  **Inferred.** A flag at 0xecdd908 chooses between a gl_compile (0xecb5010) call at 0xec347bc with a0 = 0x4 and no such call. gl_intrptab_insert (0xec5f9f0) is then called at 0xec347e0 with the block at 0xecd6838. The shape matches gl_c_backface, but the facts do not say what replay of the record does.
+  **Inferred.** The beq at 0xec347a0 tests the flag at 0xecdd908. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec347e0 with the block at 0xecd6838 before the path joins the gl_compile (0xecb5010) call at 0xec347bc with a0 = 0x4. When the flag is nonzero, only the gl_compile call runs. The shape matches gl_c_backface, but the facts do not say what replay of the record does.
 - `gl_n_frontface` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34800
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw) and, when it is set, calls __iglooNCloseMoveDraw (0xec92d80). It loads the word at a0 and calls __gl_frontface (0xec34590) with that value under the conditional call at 0xec3483c. It returns a0 + 4.
 - `gl_writemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34860
@@ -17,7 +17,7 @@ Roles for the 25 targets at ranks 76 to 100 of the ranked tier-2 list. Each one 
 - `gl_i_writemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec348b0
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). The beq at 0xec348cc skips the __iglooNCloseMoveDraw call (0xec92d80) when the flag is zero. It then calls gl_writemask (0xec34860) with a0 under the conditional call at 0xec348e8, and returns that callee's result.
 - `gl_c_writemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34900
-  **Inferred.** A flag at 0xecdd90c chooses between a gl_compile (0xecb5010) call at 0xec34940 with a0 = 0x4 and no such call. gl_intrptab_insert (0xec5f9f0) is called at 0xec34964 with the block at 0xecd6848. The facts do not show what the registered record does at replay.
+  **Inferred.** The beq at 0xec34920 tests the flag at 0xecdd90c. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec34964 with the block at 0xecd6848 before the path joins the gl_compile (0xecb5010) call at 0xec34940 with a0 = 0x4. When the flag is nonzero, only the gl_compile call runs. The facts do not show what the registered record does at replay.
 - `gl_n_writemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34980
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw) and, when it is set, calls __iglooNCloseMoveDraw (0xec92d80). It loads the 16-bit value at a0 and calls gl_writemask (0xec34860) with it under the conditional call at 0xec349bc, and it returns a0 + 4.
 - `__gl_RGBwritemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec349e0
@@ -25,7 +25,7 @@ Roles for the 25 targets at ranks 76 to 100 of the ranked tier-2 list. Each one 
 - `gl_i_RGBwritemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34a20
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). The beq at 0xec34a3c skips the __iglooNCloseMoveDraw call (0xec92d80) when the flag is zero. It then calls __gl_RGBwritemask (0xec349e0) with arguments zero to two passed through, under the conditional call at 0xec34a68.
 - `gl_c_RGBwritemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34a80
-  **Inferred.** A flag at 0xecdd910 chooses between a gl_compile (0xecb5010) call at 0xec34acc with a0 = 0x6 and no such call. The call passes arguments one and two and a fourth argument from entry register a1. gl_intrptab_insert (0xec5f9f0) is then called at 0xec34af8 with the block at 0xecd6858. The facts do not show what replay does with the record.
+  **Inferred.** The beq at 0xec34aa4 tests the flag at 0xecdd910. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec34af8 with the block at 0xecd6858 before the path joins the gl_compile (0xecb5010) call at 0xec34acc with a0 = 0x6, a1 = a stack buffer at sp-64, a2 from entry register a2 and a4 from entry register a1. When the flag is nonzero, only the gl_compile call runs. The facts do not show what replay does with the record.
 - `gl_n_RGBwritemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34b20
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw) and, when it is set, calls __iglooNCloseMoveDraw (0xec92d80). It loads three 16-bit values from a0, +2 and +4, and passes them to __gl_RGBwritemask (0xec349e0) under the conditional call at 0xec34b64. It returns a0 + 8.
 - `gl_g_gRGBmask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34b90
@@ -35,15 +35,15 @@ Roles for the 25 targets at ranks 76 to 100 of the ranked tier-2 list. Each one 
 - `gl_i_wmpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34c90
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). The beq at 0xec34cac skips the __iglooNCloseMoveDraw call (0xec92d80) when the flag is zero. It then calls __gl_wmpack (0xec34c30) with a0 under the conditional call at 0xec34cc8, and returns that callee's result.
 - `gl_c_wmpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34ce0
-  **Inferred.** A flag at 0xecdd914 chooses between a gl_compile (0xecb5010) call at 0xec34d1c with a0 = 0x6 and no such call. gl_intrptab_insert (0xec5f9f0) is called at 0xec34d40 with the block at 0xecd6868. The facts do not show what the registered record does later.
+  **Inferred.** The beq at 0xec34d00 tests the flag at 0xecdd914. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec34d40 with the block at 0xecd6868 before the path joins the gl_compile (0xecb5010) call at 0xec34d1c with a0 = 0x6. When the flag is nonzero, only the gl_compile call runs. The facts do not show what the registered record does later.
 - `gl_n_wmpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34d60
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw) and, when it is set, calls __iglooNCloseMoveDraw (0xec92d80). It loads the word at a0 and calls __gl_wmpack (0xec34c30) with it under the conditional call at 0xec34d9c. It returns a0 + 8.
 - `gl_shademodel` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34dc0
-  **Inferred.** Reads state through gl_wstatep and the globals at 0xece8bf8 (gl_iglooGouraudCIDepthCue) and 0x1004, then calls __iglooShadeModel (0xecb7a10) up to three times. The first call passes 0x1d01 and the later calls pass 0x1d00. The public OpenGL registry names these GL_SMOOTH and GL_FLAT. Each call is guarded by a test of the state, so the exact conditions stay partly open.
+  **Inferred.** Reads state through gl_wstatep and the globals at 0xece8bf8 (gl_iglooGouraudCIDepthCue) and 0x1004, then calls __iglooShadeModel (0xecb7a10) from three call sites, and each path reaches at most one of them. The call at 0xec34df4 passes 0x1d01, and the calls at 0xec34e34 and 0xec34e60 pass 0x1d00. The public OpenGL registry names these GL_SMOOTH and GL_FLAT. Each call is guarded by a test of the state, so the exact conditions stay partly open.
 - `gl_i_shademodel` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34e70
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw). The beq at 0xec34e8c skips the __iglooNCloseMoveDraw call (0xec92d80) when the flag is zero. It then calls gl_shademodel (0xec34dc0) with a0 under the conditional call at 0xec34ea8, and returns that callee's result.
 - `gl_c_shademodel` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34ec0
-  **Inferred.** A flag at 0xecdd918 chooses between a gl_compile (0xecb5010) call at 0xec34efc with a0 = 0x4 and no such call. gl_intrptab_insert (0xec5f9f0) is called at 0xec34f20 with the block at 0xecd6878. The facts do not show what replay does with the record.
+  **Inferred.** The beq at 0xec34ee0 tests the flag at 0xecdd918. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec34f20 with the block at 0xecd6878 before the path joins the gl_compile (0xecb5010) call at 0xec34efc with a0 = 0x4. When the flag is nonzero, only the gl_compile call runs. The facts do not show what replay does with the record.
 - `gl_n_shademodel` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34f40
   **Inferred.** Reads the flag at 0xece8bf0 (gl_inMoveDraw) and, when it is set, calls __iglooNCloseMoveDraw (0xec92d80). It loads the word at a0 and calls gl_shademodel (0xec34dc0) with it under the conditional call at 0xec34f7c, and it returns a0 + 4.
 - `gl_find` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec34fa0

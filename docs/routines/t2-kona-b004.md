@@ -47,7 +47,7 @@ Roles for targets 100 to 124 of the ranked tier-2 list, all in the IGLOO32 libgl
 - `fntfree` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a5d0
   **Inferred.** Releases the sub-blocks of a font record, the mirror of the allocations in fntrecnew at 0xec3a310. It calls gl_free at 0xec3a5f4, 0xec3a608, 0xec3a644, 0xec3a658 and 0xec3a698, each on a pointer read from the record. The return at 0xec3a6b4 gives an unknown value.
 - `freecharstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a6d0
-  **Inferred.** Frees a converted character buffer. It passes arg1 to gl_free at 0xec3a6f4 with the pool at 0xecd16e8 and returns the value of gl_free. It is the release callback that gl_ecallfunc receives from gl_c_lchstr at 0xec398d0 and gl_c_lcharstr at 0xec399b0.
+  **Inferred.** Passes arg1 to gl_free at 0xec3a6f4 with the constant 0xecd16e8 as the second argument and returns the value of gl_free. gl_c_lchstr at 0xec398d0 and gl_c_lcharstr at 0xec399b0 pass its address to gl_ecallfunc after converting a string with mbmkstr, so it is probably the release callback for that converted buffer. The facts do not show how gl_ecallfunc uses it.
 - `set_def_font` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a710
   **Inferred.** Loads the default font through fntread at 0xec3a1f0 (call at 0xec3a74c), passing the pointer at 0xecd16f8, the global state word and the default-font slot at 0xecdd960. The facts do not show that the pointer names a file. It returns the result of fntread at 0xec3a76c, and returns an unknown value on the path at 0xec3a730.
 - `fntheight` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a780

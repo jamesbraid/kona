@@ -33,7 +33,7 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Loads the global gl_wstatep and its word at +0xa8, then calls the function pointer found there with the state pointer as a0 and the caller's a0, a2 and a3 passed through. It is an immediate-mode forwarder into the current state's table. The callee is unknown from the facts.
 
 - `gl_c_cpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3eff0
-  **Inferred.** Tests the word at 0xecdd9c8 at 0xec3f010. When it is zero, it calls gl_intrptab_insert at 0xec3f050 with the table entry at 0xecd6bf0 and the entry's arguments passed through, then calls gl_compile at 0xec3f02c with opcode size 0x6. When it is nonzero, it calls gl_compile with opcode size 0x6 alone. This looks like the display-list-compile variant of the packed colour call; the name is the only evidence for that.
+  **Inferred.** Tests the word at 0xecdd9c8 at 0xec3f010. When it is zero, it calls gl_intrptab_insert at 0xec3f050 with the block at 0xecd6bf0 and entry arguments a1 to a3 passed through, then calls gl_compile at 0xec3f02c with a0 = 0x6. When it is nonzero, it calls gl_compile with a0 = 0x6 alone. This looks like the display-list-compile variant of the packed colour call; the name is the only evidence for that.
 
 - `gl_n_cpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f070
   **Inferred.** Loads gl_wstatep and its word at +0xa8, then calls the pointer found there with a0 set to the state pointer and a1 set to the word at the caller's a0+0. It forwards the first word of its argument block into the same dispatch slot that gl_i_cpack uses. The returned value is a0+8.

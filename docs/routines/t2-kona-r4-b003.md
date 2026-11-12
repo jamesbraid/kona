@@ -19,7 +19,7 @@ Roles for 25 routines of the kona `libgl.so` build, from the rendered instructio
 - `gl_i_curveit` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec420e0
   **Inferred.** Immediate-mode entry for a curve. When the move-draw flag at 0xece8bf0 is set (beq at 0xec420fc), it calls __iglooNCloseMoveDraw (0xec92d80) at 0xec42108, then forwards its arguments to gl_curveit (0xec41dc0) at 0xec42118.
 - `gl_c_curveit` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec42130
-  **Inferred.** Compile-time variant of the curve entry. A flag at 0xecdda14 gates a call to gl_compile with opcode 0x4 at 0xec42170, and gl_intrptab_insert (0xec5f9f0) is called at 0xec42194 with the block at 0xecd7138. The facts do not show what replay does with the inserted record.
+  **Inferred.** The name suggests a compile-time variant of the curve entry. The beq at 0xec42150 tests the flag at 0xecdda14. When it is zero, gl_intrptab_insert (0xec5f9f0) is called at 0xec42194 with the block at 0xecd7138 before the path joins the gl_compile call at 0xec42170 with a0 = 0x4. When the flag is nonzero, only the gl_compile call runs. The facts do not show what replay does with the inserted record.
 - `gl_n_curveit` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec421b0
   **Inferred.** Next-variant of the curve entry. It closes move-draw through __iglooNCloseMoveDraw (0xec92d80) at 0xec421e0 when the flag at 0xece8bf0 is set, reads the 16-bit value at a0 at 0xec421f0, and calls gl_curveit (0xec41dc0) with that value at 0xec421ec. It returns a0+4.
 - `gl_i_rcrv` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec42210
