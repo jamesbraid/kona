@@ -1,0 +1,310 @@
+# Imported from KONA_HIP_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "hip"
+prefix = "HIP"
+title = "host-interface registers"
+doc = "Host-interface chip registers: the interrupt status register and its cause bits."
+from = "docs/hip.md interrupt table"
+
+[c]
+legacy_header = "KONA_HIP_DECODE.h"
+legacy_guard = "KONA_HIP_DECODE_H"
+
+[spaces.arm]
+
+[spaces.rbus]
+unit = "reg"
+
+[spaces.xg]
+
+[spaces.hip_regs]
+
+[registers.ha_arm_ctrl]
+offset = 0x0
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_arm_ctrl.fields]
+value = { bits = [1, 0], grade = "established" }
+
+[registers.ha_idma_pnum]
+offset = 0x10
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_idma_pnum.fields]
+page = { bits = [28, 0], grade = "established" }
+
+[registers.ha_idma_poff]
+offset = 0x14
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_idma_poff.fields]
+offset = { bits = [11, 2], grade = "established" }
+
+[registers.ha_idma_ctrl]
+offset = 0x20
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_idma_ctrl.fields]
+mode = { bits = [1, 0], grade = "established" }
+
+[registers.ha_ldma_addr]
+offset = 0x30
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_ldma_addr.fields]
+addr = { bits = [25, 3], grade = "established" }
+
+[registers.ha_ldma_ctrl]
+offset = 0x3c
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_ldma_ctrl.fields]
+value = { bits = [0, 0], grade = "established" }
+
+[registers.ha_ldma_src]
+offset = 0x48
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_ldma_src.fields]
+value = { bits = [0, 0], grade = "established" }
+
+[registers.ha_icu_ctrl]
+offset = 0x50
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_ctrl.fields]
+value = { bits = [1, 0], grade = "established" }
+
+[registers.ha_icu_divert_pc]
+offset = 0x54
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_divert_pc.fields]
+vector = { bits = [27, 2], grade = "established" }
+
+[registers.ha_icu_wc]
+offset = 0x5c
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_state]
+offset = 0x68
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_state.fields]
+value = { bits = [1, 0], grade = "established" }
+
+[registers.ha_icu_error_pc]
+offset = 0x6c
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_error_pc.fields]
+vector = { bits = [27, 2], grade = "established" }
+
+[registers.ha_icu_loop_addr]
+offset = 0x70
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_loop_addr.fields]
+value = { bits = [8, 0], grade = "established" }
+
+[registers.ha_icu_arrcnt]
+offset = 0x74
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.ha_icu_arrcnt.fields]
+count = { bits = [15, 0], grade = "established" }
+
+[registers.ha_host_mbox]
+offset = 0x90
+access = "rw"
+width = 32
+grade = "established"
+space = "arm"
+
+[registers.hh_intr_status]
+offset = 0x238
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_intr_status.fields]
+idma_ov = { bits = [11, 11], grade = "established" }
+pio_ov = { bits = [10, 10], grade = "established" }
+voc = { bits = [9, 9], grade = "established" }
+parity = { bits = [8, 8], grade = "established" }
+unused = { bits = [7, 7], grade = "established" }
+odma = { bits = [6, 6], grade = "established" }
+ge = { bits = [5, 5], grade = "established" }
+arm = { bits = [4, 4], grade = "established" }
+video = { bits = [3, 3], grade = "established" }
+fifo_ov = { bits = [2, 2], grade = "established" }
+fifo_lo = { bits = [1, 1], grade = "established" }
+fifo_hi = { bits = [0, 0], grade = "established" }
+
+[registers.hh_arm_mbox]
+offset = 0x240
+access = "r"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_arm_ctrl]
+offset = 0x308
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_arm_ctrl.fields]
+host_access = { bits = [0, 0], grade = "established" }
+
+[registers.hh_vc_address]
+offset = 0x3c0
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_vc_address.fields]
+value = { bits = [15, 0], grade = "established" }
+
+[registers.hh_vc_ready]
+offset = 0x3c8
+access = "r"
+width = 32
+grade = "inferred"
+space = "hip_regs"
+
+[registers.hh_vc_ready.fields]
+ready = { bits = [0, 0], grade = "inferred" }
+
+[registers.hh_vc_data]
+offset = 0x3d0
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_vc_data_incr]
+offset = 0x3d8
+access = "rw"
+width = 32
+grade = "inferred"
+space = "hip_regs"
+
+[registers.hh_arm_address]
+offset = 0x3e8
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_arm_address.fields]
+word_address = { bits = [27, 2], grade = "established" }
+
+[registers.hh_arm_data]
+offset = 0x3f0
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_arm_data_incr]
+offset = 0x3f8
+access = "rw"
+width = 32
+grade = "inferred"
+space = "hip_regs"
+
+[registers.cmd_descriptor]
+offset = 0x400
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.cmd_operand]
+offset = 0x840
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.cmd_data]
+offset = 0x8c0
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.rbus_odma2_data]
+offset = 0x476
+access = "w"
+width = 32
+grade = "established"
+space = "rbus"
+
+[registers.rbus_odma2_flush]
+offset = 0x477
+access = "w"
+width = 32
+grade = "inferred"
+space = "rbus"
+
+[registers.xg_err_status]
+offset = 0x6c
+access = "rw"
+width = 32
+grade = "established"
+space = "xg"
+
+[registers.xg_err_status.fields]
+idma_response_bad_tnum = { bits = [28, 28], grade = "established" }
+idma_response_size = { bits = [27, 27], grade = "established" }
+odma_fifo_overflow = { bits = [26, 26], grade = "established" }
+mapram_invalid = { bits = [13, 13], grade = "established" }
+mapram_parity = { bits = [12, 12], grade = "established" }
+response = { bits = [9, 9], grade = "established" }
+read_req_timeout = { bits = [8, 8], grade = "established" }

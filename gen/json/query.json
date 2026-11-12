@@ -1,0 +1,215 @@
+{
+ "schema": "defs-flat/1",
+ "source": "defs/query.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "BOARD_CONFIGURATION_BLOCK",
+   "value": 489,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "CLIP_PLANE",
+   "value": 60,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "COLOUR_TABLE",
+   "value": 234,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "COLOUR_TABLE_PARAMETERS",
+   "value": 236,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "CONVOLUTION_FILTER",
+   "value": 244,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "CURRENT_VERTEX_ATTRIBUTES",
+   "value": 59,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "DEFORMATION_STATE",
+   "value": 454,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "ENGINE_SIDE_TEXTURE_ATTRIBUTES",
+   "value": 308,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "ENGINE_TRANSFORM_ATTRIBUTES",
+   "value": 459,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "HISTOGRAM",
+   "value": 260,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "HISTOGRAM_PARAMETERS",
+   "value": 261,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "LIGHT",
+   "value": 65,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "LINE_MODE_LIMIT_TABLE",
+   "value": 238,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "MATERIAL",
+   "value": 70,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "MIN_MAX_PARAMETERS",
+   "value": 266,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "MIN_MAX_RESULTS",
+   "value": 265,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "PENDING_ERROR",
+   "value": 62,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "PIXEL_MAP",
+   "value": 72,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "PIXEL_TRANSFORM_PARAMETERS",
+   "value": 250,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "POLYGON_STIPPLE",
+   "value": 75,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "RASTER_POSITION_STATE",
+   "value": 61,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "SEPARABLE_FILTER",
+   "value": 247,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "STATE",
+   "value": 76,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "TEXTURE_ENVIRONMENT",
+   "value": 77,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "TEXTURE_GENERATION",
+   "value": 80,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "query",
+   "kind": "constant",
+   "name": "TEXTURE_IMAGE",
+   "value": 82,
+   "count": 1,
+   "grade": "established"
+  }
+ ]
+}

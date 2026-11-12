@@ -1,0 +1,721 @@
+# Imported from KONA_VOC_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "voc"
+prefix = "VOC"
+title = "video-output chip (VOC) registers"
+doc = "Video-output chip registers of channel id 0 on the display bus."
+from = "back-end definitions table, docs/command-table.md section 6.5"
+
+[c]
+legacy_header = "KONA_VOC_DECODE.h"
+legacy_guard = "KONA_VOC_DECODE_H"
+
+[spaces.voc_regs]
+unit = "reg"
+
+[registers.status]
+offset = 0x200
+access = "r"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.status.fields]
+int_host = { bits = [24, 24], grade = "established" }
+int_vdrc = { bits = [23, 23], grade = "established" }
+int_ext_frame = { bits = [22, 22], grade = "established" }
+int_ext_sync_detect = { bits = [21, 21], grade = "established" }
+int_ext_sync_loss = { bits = [20, 20], grade = "established" }
+int_fifo_under = { bits = [19, 19], grade = "established" }
+int_fifo_over = { bits = [18, 18], grade = "established" }
+fs_colour_field = { bits = [17, 16], grade = "established" }
+vdrc_enable = { bits = [13, 13], grade = "established" }
+xmapreg_load = { bits = [12, 12], grade = "established" }
+impreg_load = { bits = [11, 11], grade = "established" }
+stereo_out = { bits = [10, 10], grade = "established" }
+line_start = { bits = [9, 9], grade = "established" }
+video_active = { bits = [8, 8], grade = "established" }
+frame_start = { bits = [7, 7], grade = "established" }
+field = { bits = [6, 6], grade = "established" }
+field_start = { bits = [5, 5], grade = "established" }
+trisync = { bits = [4, 4], grade = "established" }
+cblank = { bits = [3, 3], grade = "established" }
+csync = { bits = [2, 2], grade = "established" }
+vsync = { bits = [1, 1], grade = "established" }
+hsync = { bits = [0, 0], grade = "established" }
+
+[registers.control]
+offset = 0x201
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.control.fields]
+ie_host = { bits = [8, 8], grade = "established" }
+ie_vdrc = { bits = [7, 7], grade = "established" }
+ie_ext_frame = { bits = [6, 6], grade = "established" }
+ie_ext_sync_detect = { bits = [5, 5], grade = "established" }
+ie_ext_sync_loss = { bits = [4, 4], grade = "established" }
+ie_fifo_under = { bits = [3, 3], grade = "established" }
+ie_fifo_over = { bits = [2, 2], grade = "established" }
+
+[registers.control.fields.pixel_mux]
+bits = [11, 9]
+grade = "established"
+
+[registers.control.fields.pixel_mux.enums]
+p4_4 = { value = 0, grade = "established" }
+p4_2 = { value = 1, grade = "established" }
+p4_1 = { value = 2, grade = "established" }
+p4_8 = { value = 3, grade = "established" }
+fs_4 = { value = 4, grade = "established" }
+fs_2 = { value = 5, grade = "established" }
+fs_1 = { value = 6, grade = "established" }
+fs_8 = { value = 7, grade = "established" }
+
+[registers.control.fields.dbuf_mode]
+bits = [1, 0]
+grade = "established"
+
+[registers.control.fields.dbuf_mode.enums]
+immediate = { value = 0, grade = "established" }
+copy_impreg_load = { value = 1, grade = "established" }
+copy_swap = { value = 2, grade = "established" }
+copy_frame = { value = 3, grade = "established" }
+
+[registers.dbuf_request]
+offset = 0x202
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.dbuf_request.fields]
+enable = { bits = [0, 0], grade = "established" }
+
+[registers.req_window]
+offset = 0x203
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.req_window.fields]
+width_groupxels_m1 = { bits = [14, 5], grade = "established" }
+channel = { bits = [4, 0], grade = "established" }
+
+[registers.req_origin]
+offset = 0x204
+access = "rw"
+width = 32
+grade = "unknown"
+space = "voc_regs"
+
+[registers.req_size]
+offset = 0x205
+access = "rw"
+width = 32
+grade = "unknown"
+space = "voc_regs"
+
+[registers.seq_control]
+offset = 0x206
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.seq_control.fields]
+reset_rate = { bits = [12, 9], grade = "established" }
+line_edge_select = { bits = [8, 4], grade = "established" }
+clear_state_pointer = { bits = [3, 3], grade = "established" }
+enable = { bits = [0, 0], grade = "established" }
+
+[registers.seq_control.fields.reset_source]
+bits = [2, 1]
+grade = "established"
+
+[registers.seq_control.fields.reset_source.enums]
+none = { value = 0, grade = "established" }
+output_format_a = { value = 1, grade = "established" }
+phase_detector = { value = 3, grade = "established" }
+
+[registers.seq_initial]
+offset = 0x207
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.seq_initial.fields]
+vphase_count = { bits = [31, 19], grade = "established" }
+tristate_vsync = { bits = [18, 18], grade = "established" }
+tristate_hsync = { bits = [17, 17], grade = "established" }
+tristate_csync = { bits = [16, 16], grade = "established" }
+initial_levels = { bits = [13, 0], grade = "established" }
+
+[registers.genlock_vphase]
+offset = 0x208
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.genlock_vphase.fields]
+hysteresis_enable = { bits = [29, 29], grade = "established" }
+hysteresis_width = { bits = [28, 26], grade = "established" }
+external_vphase = { bits = [25, 13], grade = "established" }
+internal_vphase = { bits = [12, 0], grade = "established" }
+
+[registers.state_table]
+offset = 0x209
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_type_a]
+offset = 0x20a
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_type_b]
+offset = 0x20b
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_type_b.fields]
+length_m3 = { bits = [30, 18], grade = "established" }
+edge_mask_hi = { bits = [17, 0], grade = "established" }
+
+[registers.edge_slot]
+offset = 0x20c
+access = "rw"
+width = 32
+grade = "established"
+count = 8
+space = "voc_regs"
+
+[registers.edge_slot.fields]
+position = { bits = [12, 0], grade = "established" }
+
+[registers.pixel_blank]
+offset = 0x214
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pixel_blank.fields]
+enable = { bits = [16, 16], grade = "established" }
+last = { bits = [15, 8], grade = "established" }
+first = { bits = [7, 0], grade = "established" }
+
+[registers.pfd_control]
+offset = 0x230
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pfd_control.fields]
+line_count_hi = { bits = [29, 26], grade = "established" }
+line_count = { bits = [23, 16], grade = "established" }
+precision = { bits = [15, 5], grade = "established" }
+frame_select = { bits = [4, 4], grade = "established" }
+flip = { bits = [1, 1], grade = "established" }
+enable = { bits = [0, 0], grade = "established" }
+
+[registers.pfd_control.fields.csync_source]
+bits = [25, 24]
+grade = "established"
+
+[registers.pfd_control.fields.csync_source.enums]
+internal = { value = 0, grade = "established" }
+external = { value = 1, grade = "established" }
+output_format = { value = 2, grade = "established" }
+
+[registers.pfd_control.fields.clock_select]
+bits = [3, 2]
+grade = "established"
+
+[registers.pfd_control.fields.clock_select.enums]
+host = { value = 0, grade = "established" }
+host_div2 = { value = 1, grade = "established" }
+host_div4 = { value = 2, grade = "established" }
+fourth = { value = 3, grade = "inferred" }
+
+[registers.seq_low]
+offset = 0x231
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.seq_high]
+offset = 0x232
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pfd_diag]
+offset = 0x233
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pfd_diag.fields]
+previous = { bits = [23, 12], grade = "established" }
+duration = { bits = [11, 0], grade = "established" }
+
+[registers.frame_duration]
+offset = 0x234
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.frame_duration.fields]
+duration = { bits = [19, 0], grade = "established" }
+
+[registers.sync_detect_control]
+offset = 0x243
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.sync_detect_control.fields]
+frame_ref_select = { bits = [18, 18], grade = "established" }
+frames_on = { bits = [17, 15], grade = "established" }
+frames_off = { bits = [14, 12], grade = "established" }
+line_count = { bits = [11, 1], grade = "established" }
+enable = { bits = [0, 0], grade = "established" }
+
+[registers.req_control]
+offset = 0x244
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.req_control.fields]
+interlaced_cursor = { bits = [23, 23], grade = "established" }
+arbiter_status = { bits = [22, 22], grade = "established" }
+fifo_balance = { bits = [21, 11], grade = "established" }
+transfer_z = { bits = [10, 10], grade = "established" }
+transfer_alpha = { bits = [9, 9], grade = "established" }
+transfer_size = { bits = [8, 8], grade = "inferred" }
+dither = { bits = [7, 7], grade = "established" }
+request_done = { bits = [4, 4], grade = "established" }
+ext_request = { bits = [3, 3], grade = "established" }
+ext_request_enable = { bits = [2, 2], grade = "established" }
+read_enable = { bits = [1, 1], grade = "established" }
+enable = { bits = [0, 0], grade = "established" }
+
+[registers.req_control.fields.pixel_size]
+bits = [6, 5]
+grade = "established"
+
+[registers.req_control.fields.pixel_size.enums]
+small = { value = 0, grade = "established" }
+medium = { value = 1, grade = "established" }
+large = { value = 2, grade = "established" }
+xlarge = { value = 3, grade = "established" }
+
+[registers.tiles_per_row]
+offset = 0x245
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.tiles_per_row.fields]
+tiles = { bits = [4, 0], grade = "established" }
+
+[registers.line_start]
+offset = 0x247
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_start.fields]
+valid = { bits = [14, 14], grade = "established" }
+groupxels_m1 = { bits = [13, 3], grade = "established" }
+tiles_m1 = { bits = [2, 0], grade = "established" }
+
+[registers.line_middle]
+offset = 0x248
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_middle.fields]
+repeat_count = { bits = [22, 15], grade = "established" }
+valid = { bits = [14, 14], grade = "established" }
+groupxels_m1 = { bits = [13, 3], grade = "established" }
+tiles_m1 = { bits = [2, 0], grade = "established" }
+
+[registers.line_end]
+offset = 0x249
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.line_end.fields]
+valid = { bits = [14, 14], grade = "established" }
+groupxels_m1 = { bits = [13, 3], grade = "established" }
+tiles_m1 = { bits = [2, 0], grade = "established" }
+
+[registers.pan]
+offset = 0x24a
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pan.fields]
+pixel_offset = { bits = [7, 6], grade = "established" }
+groupxel_offset = { bits = [5, 0], grade = "established" }
+
+[[registers.pan.tests]]
+value = 0xc3
+kind = "example"
+expect = { groupxel_offset = 3, pixel_offset = 3 }
+
+[registers.z_request]
+offset = 0x24b
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.z_request.fields]
+enable = { bits = [4, 4], grade = "established" }
+field_count = { bits = [3, 0], grade = "established" }
+
+[registers.field_start0]
+offset = 0x250
+access = "rw"
+width = 32
+grade = "inferred"
+count = 8
+space = "voc_regs"
+
+[registers.field_start0.fields]
+skip = { bits = [23, 20], grade = "established" }
+first_tile = { bits = [19, 7], grade = "established" }
+start_line = { bits = [6, 0], grade = "established" }
+
+[registers.field_start1]
+offset = 0x258
+access = "rw"
+width = 32
+grade = "inferred"
+count = 8
+space = "voc_regs"
+
+[registers.field_start1.fields]
+skip = { bits = [23, 20], grade = "established" }
+first_tile = { bits = [19, 7], grade = "established" }
+start_line = { bits = [6, 0], grade = "established" }
+
+[registers.field_pattern]
+offset = 0x260
+access = "rw"
+width = 32
+grade = "inferred"
+count = 8
+space = "voc_regs"
+
+[registers.field_pattern.fields]
+next_cursor_offset = { bits = [27, 24], grade = "established" }
+active_lines = { bits = [23, 12], grade = "established" }
+colour3 = { bits = [11, 10], grade = "established" }
+eye3 = { bits = [9, 9], grade = "established" }
+colour2 = { bits = [8, 7], grade = "established" }
+eye2 = { bits = [6, 6], grade = "established" }
+colour1 = { bits = [5, 4], grade = "established" }
+eye1 = { bits = [3, 3], grade = "established" }
+colour0 = { bits = [2, 1], grade = "established" }
+eye0 = { bits = [0, 0], grade = "established" }
+
+[registers.pll_control]
+offset = 0x270
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pll_control.fields]
+exec_write_external = { bits = [4, 4], grade = "established" }
+exec_write_internal = { bits = [3, 3], grade = "established" }
+exec_read = { bits = [2, 2], grade = "established" }
+auto_update = { bits = [1, 1], grade = "established" }
+ready = { bits = [0, 0], grade = "established" }
+
+[registers.pll_address]
+offset = 0x271
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pll_address.fields]
+address = { bits = [3, 0], grade = "established" }
+
+[registers.pll_readback]
+offset = 0x272
+access = "r"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pll_readback.fields]
+value = { bits = [10, 0], grade = "established" }
+
+[registers.pll_data]
+offset = 0x273
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.pll_data.fields]
+value = { bits = [10, 0], grade = "established" }
+
+[registers.genlock_hclock]
+offset = 0x281
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.genlock_hclock.fields]
+h_divider = { bits = [11, 2], grade = "established" }
+auto_clock = { bits = [1, 1], grade = "established" }
+
+[registers.genlock_hclock.fields.source]
+bits = [0, 0]
+grade = "established"
+
+[registers.genlock_hclock.fields.source.enums]
+external = { value = 0, grade = "established" }
+internal = { value = 1, grade = "established" }
+
+[registers.genlock_line_ratio]
+offset = 0x282
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.genlock_line_ratio.fields]
+divider = { bits = [21, 14], grade = "established" }
+line_length = { bits = [13, 1], grade = "established" }
+
+[registers.genlock_line_ratio.fields.edge]
+bits = [0, 0]
+grade = "established"
+
+[registers.genlock_line_ratio.fields.edge.enums]
+falling = { value = 0, grade = "established" }
+rising = { value = 1, grade = "established" }
+
+[registers.hmask2]
+offset = 0x283
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.hmask2.fields]
+width = { bits = [25, 13], grade = "established" }
+start = { bits = [12, 0], grade = "established" }
+
+[registers.backporch_clamp]
+offset = 0x284
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.backporch_clamp.fields]
+width = { bits = [21, 14], grade = "established" }
+delay = { bits = [13, 1], grade = "established" }
+edge = { bits = [0, 0], grade = "established" }
+
+[registers.fifo_control]
+offset = 0x28a
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.fifo_control.fields]
+int_source_odd = { bits = [15, 15], grade = "established" }
+ext_control_enable = { bits = [14, 14], grade = "established" }
+field_reset_enable = { bits = [13, 13], grade = "established" }
+frame_reset_enable = { bits = [12, 12], grade = "established" }
+high_water = { bits = [11, 0], grade = "established" }
+
+[registers.fifo_pointer]
+offset = 0x28b
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.fifo_pointer.fields]
+read_ptr = { bits = [21, 11], grade = "established" }
+write_ptr = { bits = [10, 0], grade = "established" }
+
+[registers.sac_control]
+offset = 0x28d
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.sac_control.fields]
+output_enable = { bits = [1, 1], grade = "established" }
+input_enable = { bits = [0, 0], grade = "established" }
+
+[registers.scaler_control]
+offset = 0x28f
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.scaler_control.fields]
+first_field_inhibit = { bits = [20, 19], grade = "established" }
+vminify_kick = { bits = [18, 15], grade = "established" }
+enc_stereo_mode = { bits = [14, 14], grade = "established" }
+fifo_read_clock = { bits = [11, 11], grade = "established" }
+enc_fb_write_clock_enable = { bits = [10, 10], grade = "established" }
+enc_field_dominance = { bits = [9, 9], grade = "established" }
+field_out_select = { bits = [8, 8], grade = "established" }
+interlace = { bits = [7, 7], grade = "established" }
+seg_preload = { bits = [6, 5], grade = "established" }
+x_magnify_start_pair = { bits = [4, 4], grade = "established" }
+y_filter = { bits = [3, 2], grade = "established" }
+
+[registers.scaler_control.fields.enc_frame_mode]
+bits = [13, 12]
+grade = "established"
+
+[registers.scaler_control.fields.enc_frame_mode.enums]
+no_drop = { value = 0, grade = "established" }
+field_drop = { value = 1, grade = "established" }
+frame_drop = { value = 2, grade = "established" }
+low_latency = { value = 3, grade = "established" }
+
+[registers.scaler_control.fields.x_filter]
+bits = [1, 0]
+grade = "established"
+
+[registers.scaler_control.fields.x_filter.enums]
+none = { value = 0, grade = "established" }
+minify = { value = 1, grade = "established" }
+magnify = { value = 2, grade = "established" }
+
+[registers.x_coeff_max]
+offset = 0x290
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.x_coeff_max.fields]
+value = { bits = [19, 0], grade = "established" }
+
+[registers.x_slope]
+offset = 0x291
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.x_slope.fields]
+value = { bits = [20, 0], grade = "established" }
+
+[registers.x_delta]
+offset = 0x292
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.x_delta.fields]
+value = { bits = [23, 0], grade = "established" }
+
+[registers.x_seg_start]
+offset = 0x293
+access = "rw"
+width = 32
+grade = "established"
+count = 4
+space = "voc_regs"
+
+[registers.x_seg_start.fields]
+value = { bits = [23, 0], grade = "established" }
+
+[registers.y_coeff_max]
+offset = 0x297
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.y_coeff_max.fields]
+value = { bits = [19, 0], grade = "established" }
+
+[registers.y_slope]
+offset = 0x298
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.y_slope.fields]
+value = { bits = [20, 0], grade = "established" }
+
+[registers.y_delta]
+offset = 0x299
+access = "rw"
+width = 32
+grade = "established"
+space = "voc_regs"
+
+[registers.y_delta.fields]
+value = { bits = [23, 0], grade = "established" }
+
+[registers.y_seg_start]
+offset = 0x29a
+access = "rw"
+width = 32
+grade = "established"
+count = 4
+space = "voc_regs"
+
+[registers.y_seg_start.fields]
+value = { bits = [23, 0], grade = "established" }
+
+[constants]
+BASE_ADDRESS = { value = 0x200, grade = "established", doc = "bus address of register 0 of channel id 0" }
+BASE_IDS = { value = 0x8, grade = "established", doc = "channel ids on the base board" }
+EDGE_SLOTS = { value = 0x8, grade = "established", doc = "edge slots of the selected signal" }
+EDGE_SLOT_UNUSED = { value = 0x1fff, grade = "established", doc = "edge position meaning the slot is unused" }
+GROUPXEL_PIXELS = { value = 0x4, grade = "established", doc = "pixels in a groupxel" }
+ID_STRIDE = { value = 0x100, grade = "established", doc = "bus-address step per channel id" }
+PAN_GROUPXELS = { value = 0xa0, grade = "established", doc = "pan wraps every 160 pixels" }

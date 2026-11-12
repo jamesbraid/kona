@@ -1,0 +1,67 @@
+# Imported from KONA_DAC_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "dac"
+prefix = "DAC"
+title = "video DAC and encoder ports on the display bus"
+doc = "Video DAC and encoder ports of the display bus."
+from = "back-end definitions table, docs/command-table.md sections 6.2 and 6.6"
+
+[c]
+legacy_header = "KONA_DAC_DECODE.h"
+legacy_guard = "KONA_DAC_DECODE_H"
+
+[registers.index]
+offset = 0xb00
+access = "w"
+width = 8
+grade = "established"
+
+[registers.cmap_data]
+offset = 0xb01
+access = "w"
+width = 8
+grade = "inferred"
+
+[registers.reg_data]
+offset = 0xb02
+access = "rw"
+width = 8
+grade = "established"
+
+[registers.mode]
+offset = 0xb03
+access = "w"
+width = 8
+grade = "inferred"
+
+[registers.mode.fields]
+strobe = { bits = [0, 0], grade = "inferred" }
+
+[registers.enc_gain]
+offset = 0x1708
+access = "w"
+width = 8
+grade = "established"
+
+[registers.enc_ctrl_addr]
+offset = 0x1800
+access = "w"
+width = 8
+grade = "established"
+
+[registers.enc_cmap_addr]
+offset = 0x1801
+access = "w"
+width = 8
+grade = "inferred"
+
+[registers.enc_ctrl_data]
+offset = 0x1802
+access = "rw"
+width = 8
+grade = "established"
+
+[registers.enc_cmap_data]
+offset = 0x1803
+access = "rw"
+width = 8
+grade = "inferred"

@@ -1,0 +1,469 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/words.toml by defs-gen - do not edit, change the source -->
+<genxml unit="words" prefix="WORD" title="multi-field words of the host command stream">
+  <doc>Bit layouts of the multi-field words of the host command stream, and the engine command descriptor values.</doc>
+  <enum name="bind_control_target">
+    <value name="detail" value="0" grade="established"/>
+    <value name="tex1d" value="1" grade="established"/>
+    <value name="tex2d" value="2" grade="established"/>
+    <value name="tex3d" value="3" grade="established"/>
+  </enum>
+  <enum name="bind_control_mode">
+    <value name="bicubic_table" value="0" grade="established"/>
+    <value name="detail_table" value="1" grade="established"/>
+    <value name="sharpen_table" value="2" grade="established"/>
+    <value name="no_table" value="3" grade="established"/>
+  </enum>
+  <enum name="bind_mode_mag_channels">
+    <value name="all" value="0" grade="established"/>
+    <value name="colour" value="1" grade="established"/>
+    <value name="alpha" value="2" grade="established"/>
+    <value name="level0" value="3" grade="established"/>
+  </enum>
+  <enum name="bind_mode_shadow_compare">
+    <value name="off" value="0" grade="established"/>
+    <value name="ref_at_least_texel" value="1" grade="established"/>
+    <value name="ref_at_most_texel" value="2" grade="established"/>
+  </enum>
+  <enum name="bind_mode_mag_filter">
+    <value name="nearest" value="0" grade="established"/>
+    <value name="linear" value="1" grade="established"/>
+    <value name="bicubic" value="2" grade="established"/>
+    <value name="detail_add" value="3" grade="established"/>
+    <value name="detail_modulate" value="4" grade="established"/>
+    <value name="sharpen" value="5" grade="established"/>
+  </enum>
+  <enum name="bind_mode_min_filter">
+    <value name="nearest" value="0" grade="established"/>
+    <value name="linear" value="1" grade="established"/>
+    <value name="bicubic" value="2" grade="established"/>
+  </enum>
+  <enum name="bind_mode_sampling">
+    <value name="mode2d" value="0" grade="established"/>
+    <value name="mode3d" value="1" grade="established"/>
+    <value name="mode3d_mip" value="2" grade="established"/>
+    <value name="bicubic" value="3" grade="established"/>
+  </enum>
+  <enum name="mode_byte_overlay_code">
+    <value name="reserved_rgb15" value="1" grade="established"/>
+    <value name="overlay" value="2" grade="established"/>
+    <value name="overlay_back_start" value="3" grade="established"/>
+    <value name="underlay" value="6" grade="established"/>
+    <value name="underlay_back_start" value="7" grade="established"/>
+  </enum>
+  <enum name="ms_control_optimisation">
+    <value name="none" value="0" grade="established"/>
+    <value name="disable" value="2" grade="established"/>
+    <value name="enable" value="3" grade="established"/>
+  </enum>
+  <enum name="ms_control_mask_op">
+    <value name="and_op" value="0" grade="established"/>
+    <value name="replace" value="1" grade="established"/>
+  </enum>
+  <enum name="ms_control_sample_count">
+    <value name="four" value="0" grade="established"/>
+    <value name="eight" value="1" grade="established"/>
+  </enum>
+  <enum name="texload_layout_size_code">
+    <value name="bits16" value="0" grade="established"/>
+    <value name="bits32" value="1" grade="established"/>
+    <value name="slot64" value="2" grade="established"/>
+  </enum>
+  <struct name="BIND_CONTROL" size="4" grade="established">
+    <field name="target" start="28" size="4" type="bind_control_target" grade="established"/>
+    <field name="mode" start="24" size="4" type="bind_control_mode" grade="established"/>
+    <field name="format_index" start="12" size="12" type="uint" grade="established"/>
+    <field name="filter_slot" start="0" size="12" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="BIND_LOD_BOUNDS" size="4" grade="established">
+    <field name="max" start="10" size="10" type="uint" grade="established"/>
+    <field name="min" start="0" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="BIND_LOD_SCALE" size="4" grade="established">
+    <field name="r_scale" start="16" size="8" type="uint" grade="established"/>
+    <field name="t_scale" start="8" size="8" type="uint" grade="established"/>
+    <field name="s_scale" start="0" size="8" type="uint" grade="established"/>
+  </struct>
+  <struct name="BIND_MODE" size="4" grade="established">
+    <field name="first_bank" start="28" size="1" type="uint" grade="established"/>
+    <field name="mag_channels" start="26" size="2" type="bind_mode_mag_channels" grade="established"/>
+    <field name="channel_select" start="24" size="2" type="uint" grade="inferred"/>
+    <field name="detail_level" start="21" size="3" type="uint" grade="established"/>
+    <field name="texel_format" start="14" size="7" type="uint" grade="established"/>
+    <field name="env_on" start="13" size="1" type="uint" grade="inferred"/>
+    <field name="clamp_style" start="12" size="1" type="uint" grade="inferred"/>
+    <field name="shadow_compare" start="10" size="2" type="bind_mode_shadow_compare" grade="established"/>
+    <field name="flags" start="8" size="2" type="uint" grade="inferred"/>
+    <field name="mag_filter" start="5" size="3" type="bind_mode_mag_filter" grade="established"/>
+    <field name="min_filter" start="2" size="3" type="bind_mode_min_filter" grade="inferred"/>
+    <field name="sampling" start="0" size="2" type="bind_mode_sampling" grade="established"/>
+  </struct>
+  <struct name="BIND_PHYS_SIZE" size="4" grade="established">
+    <field name="r_exp" start="8" size="4" type="uint" grade="established"/>
+    <field name="t_exp" start="4" size="4" type="uint" grade="established"/>
+    <field name="s_exp" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="BIND_SIZE" size="4" grade="established">
+    <field name="r_clamp" start="14" size="1" type="uint" grade="established"/>
+    <field name="t_clamp" start="13" size="1" type="uint" grade="established"/>
+    <field name="s_clamp" start="12" size="1" type="uint" grade="established"/>
+    <field name="r_exp" start="8" size="4" type="uint" grade="established"/>
+    <field name="t_exp" start="4" size="4" type="uint" grade="established"/>
+    <field name="s_exp" start="0" size="4" type="uint" grade="established"/>
+    <test value="0x677" kind="vector">
+      <expect field="s_exp" value="7"/>
+      <expect field="t_exp" value="7"/>
+      <expect field="r_exp" value="6"/>
+      <expect field="s_clamp" value="0"/>
+      <expect field="t_clamp" value="0"/>
+      <expect field="r_clamp" value="0"/>
+    </test>
+    <test value="0x3077" kind="vector">
+      <expect field="s_exp" value="7"/>
+      <expect field="t_exp" value="7"/>
+      <expect field="r_exp" value="0"/>
+      <expect field="s_clamp" value="1"/>
+      <expect field="t_clamp" value="1"/>
+      <expect field="r_clamp" value="0"/>
+    </test>
+  </struct>
+  <struct name="DISPLAY_ID_RANGE" size="4" grade="established">
+    <field name="arg2" start="19" size="5" type="uint" grade="established"/>
+    <field name="arg0" start="13" size="6" type="uint" grade="established"/>
+    <field name="arg3" start="7" size="6" type="uint" grade="established"/>
+    <field name="arg1" start="0" size="7" type="uint" grade="established"/>
+    <test value="0x1040" kind="vector">
+      <expect field="arg1" value="64"/>
+      <expect field="arg3" value="32"/>
+      <expect field="arg0" value="0"/>
+      <expect field="arg2" value="0"/>
+    </test>
+  </struct>
+  <struct name="GC_LOAD_W4" size="4" grade="established">
+    <field name="opaque_fill" start="31" size="1" type="uint" grade="established"/>
+    <field name="plane_mask_rg" start="0" size="24" type="uint" grade="established"/>
+  </struct>
+  <struct name="GC_LOAD_W6" size="4" grade="established">
+    <field name="read_format" start="11" size="3" type="uint" grade="established"/>
+    <field name="colour_format" start="2" size="4" type="uint" grade="established"/>
+    <test value="0x2804" kind="vector">
+      <expect field="colour_format" value="1"/>
+      <expect field="read_format" value="5"/>
+    </test>
+    <test value="0x3804" kind="vector">
+      <expect field="colour_format" value="1"/>
+      <expect field="read_format" value="7"/>
+    </test>
+  </struct>
+  <struct name="GC_LOAD_W7" size="4" grade="established">
+    <field name="read_base" start="18" size="6" type="uint" grade="established"/>
+    <field name="readback_format" start="14" size="4" type="uint" grade="established"/>
+    <field name="draw_buffer" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="ID_FG_LARGE_HI" size="4" grade="established">
+    <field name="value_high12" start="8" size="12" type="uint" grade="established"/>
+    <field name="value_low_nibble" start="3" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="ID_FG_SMALL_LO" size="4" grade="established">
+    <field name="value_high12" start="14" size="12" type="uint" grade="established"/>
+    <field name="value_low_nibble" start="9" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="ID_MASK_LARGE_HI" size="4" grade="established">
+    <field name="mask_low_nibble" start="20" size="4" type="uint" grade="established"/>
+    <field name="mask_high12" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="ID_MASK_SMALL_LO" size="4" grade="established">
+    <field name="mask_low12" start="12" size="12" type="uint" grade="established"/>
+    <field name="mask_high_nibble" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="MODE_BYTE" size="4" grade="established">
+    <field name="direct_or_opaque" start="4" size="1" type="uint" grade="established"/>
+    <field name="ci_or_luminance" start="3" size="1" type="uint" grade="established"/>
+    <field name="rgb_below_24" start="2" size="1" type="uint" grade="established"/>
+    <field name="stereo" start="1" size="1" type="uint" grade="established"/>
+    <field name="back_shown" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="MODE_BYTE_OVERLAY" size="4" grade="established">
+    <field name="code" start="1" size="3" type="mode_byte_overlay_code" grade="established"/>
+    <field name="back_shown" start="0" size="1" type="uint" grade="established"/>
+    <test value="0x2" kind="vector">
+      <expect field="back_shown" value="0"/>
+      <expect field="code" value="1"/>
+    </test>
+    <test value="0x5" kind="vector">
+      <expect field="back_shown" value="1"/>
+      <expect field="code" value="2"/>
+    </test>
+    <test value="0x12" kind="vector">
+      <expect field="back_shown" value="0"/>
+      <expect field="code" value="1"/>
+    </test>
+    <test value="0x15" kind="vector">
+      <expect field="back_shown" value="1"/>
+      <expect field="code" value="2"/>
+    </test>
+  </struct>
+  <struct name="MS_CONTROL" size="4" grade="established">
+    <field name="optimisation" start="12" size="2" type="ms_control_optimisation" grade="established"/>
+    <field name="maintain_two" start="11" size="1" type="uint" grade="established"/>
+    <field name="mask" start="3" size="8" type="uint" grade="established"/>
+    <field name="mask_op" start="2" size="1" type="ms_control_mask_op" grade="established"/>
+    <field name="sample_count" start="1" size="1" type="ms_control_sample_count" grade="established"/>
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="MS_LOCATIONS" size="4" grade="established">
+    <field name="s3_y" start="21" size="3" type="uint" grade="established"/>
+    <field name="s3_x" start="18" size="3" type="uint" grade="established"/>
+    <field name="s2_y" start="15" size="3" type="uint" grade="established"/>
+    <field name="s2_x" start="12" size="3" type="uint" grade="established"/>
+    <field name="s1_y" start="9" size="3" type="uint" grade="established"/>
+    <field name="s1_x" start="6" size="3" type="uint" grade="established"/>
+    <field name="s0_y" start="3" size="3" type="uint" grade="established"/>
+    <field name="s0_x" start="0" size="3" type="uint" grade="established"/>
+    <test value="0x7f6280" kind="vector">
+      <expect field="s0_x" value="0"/>
+      <expect field="s0_y" value="0"/>
+      <expect field="s1_x" value="2"/>
+      <expect field="s1_y" value="1"/>
+      <expect field="s2_x" value="6"/>
+      <expect field="s2_y" value="6"/>
+      <expect field="s3_x" value="7"/>
+      <expect field="s3_y" value="3"/>
+    </test>
+    <test value="0xc8b640" kind="vector">
+      <expect field="s0_x" value="0"/>
+      <expect field="s0_y" value="0"/>
+      <expect field="s1_x" value="1"/>
+      <expect field="s1_y" value="3"/>
+      <expect field="s2_x" value="3"/>
+      <expect field="s2_y" value="1"/>
+      <expect field="s3_x" value="2"/>
+      <expect field="s3_y" value="6"/>
+    </test>
+    <test value="0xd94880" kind="vector">
+      <expect field="s0_x" value="0"/>
+      <expect field="s0_y" value="0"/>
+      <expect field="s1_x" value="2"/>
+      <expect field="s1_y" value="4"/>
+      <expect field="s2_x" value="4"/>
+      <expect field="s2_y" value="2"/>
+      <expect field="s3_x" value="6"/>
+      <expect field="s3_y" value="6"/>
+    </test>
+  </struct>
+  <struct name="OVERLAY_RGB15" size="4" grade="established">
+    <field name="red" start="10" size="5" type="uint" grade="established"/>
+    <field name="green" start="5" size="5" type="uint" grade="established"/>
+    <field name="blue" start="0" size="5" type="uint" grade="established"/>
+  </struct>
+  <struct name="PIXEL_SETUP_W0" size="4" grade="established">
+    <field name="direct_write" start="4" size="1" type="uint" grade="established"/>
+    <field name="kind" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="TEXLOAD_LAYOUT" size="4" grade="established">
+    <field name="interlaced_download" start="15" size="1" type="uint" grade="established"/>
+    <field name="t_addr_bits" start="11" size="4" type="uint" grade="established"/>
+    <field name="s_addr_bits" start="7" size="4" type="uint" grade="established"/>
+    <field name="layout_mode" start="5" size="2" type="uint" grade="established"/>
+    <field name="bank" start="3" size="1" type="uint" grade="established"/>
+    <field name="dma" start="2" size="1" type="uint" grade="established"/>
+    <field name="size_code" start="0" size="2" type="texload_layout_size_code" grade="established"/>
+    <test value="0x9ad" kind="vector">
+      <expect field="size_code" value="1"/>
+      <expect field="dma" value="1"/>
+      <expect field="bank" value="1"/>
+      <expect field="layout_mode" value="1"/>
+      <expect field="s_addr_bits" value="3"/>
+      <expect field="t_addr_bits" value="1"/>
+    </test>
+    <test value="0x2181" kind="vector">
+      <expect field="size_code" value="1"/>
+      <expect field="dma" value="0"/>
+      <expect field="bank" value="0"/>
+      <expect field="layout_mode" value="0"/>
+      <expect field="s_addr_bits" value="3"/>
+      <expect field="t_addr_bits" value="4"/>
+    </test>
+    <test value="0x218d" kind="vector">
+      <expect field="size_code" value="1"/>
+      <expect field="dma" value="1"/>
+      <expect field="bank" value="1"/>
+      <expect field="layout_mode" value="0"/>
+      <expect field="s_addr_bits" value="3"/>
+      <expect field="t_addr_bits" value="4"/>
+    </test>
+    <test value="0x2204" kind="vector">
+      <expect field="size_code" value="0"/>
+      <expect field="dma" value="1"/>
+      <expect field="bank" value="0"/>
+      <expect field="layout_mode" value="0"/>
+      <expect field="s_addr_bits" value="4"/>
+      <expect field="t_addr_bits" value="4"/>
+    </test>
+  </struct>
+  <struct name="TEXLOAD_SIZE" size="4" grade="established">
+    <field name="r_exp" start="8" size="4" type="uint" grade="established"/>
+    <field name="t_exp" start="4" size="4" type="uint" grade="established"/>
+    <field name="s_exp" start="0" size="4" type="uint" grade="established"/>
+    <test value="0x23" kind="vector">
+      <expect field="s_exp" value="3"/>
+      <expect field="t_exp" value="2"/>
+      <expect field="r_exp" value="0"/>
+    </test>
+    <test value="0x677" kind="vector">
+      <expect field="s_exp" value="7"/>
+      <expect field="t_exp" value="7"/>
+      <expect field="r_exp" value="6"/>
+    </test>
+  </struct>
+  <struct name="WINDOW_W2" size="4" grade="inferred">
+    <field name="x_bias" start="16" size="16" type="uint" grade="inferred"/>
+    <field name="width" start="0" size="16" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="WINDOW_W3" size="4" grade="inferred">
+    <field name="y_bias" start="16" size="16" type="uint" grade="inferred"/>
+    <field name="height" start="0" size="16" type="uint" grade="inferred"/>
+  </struct>
+  <constant name="DESC_DISTRIBUTOR_PROGRAM" value="0x48200020" grade="established"/>
+  <constant name="DESC_DISTRIBUTOR_STEP" value="0x44200020" grade="inferred"/>
+  <constant name="DESC_ENGINE_REG_ADDRESS" value="0x46a00020" grade="established"/>
+  <constant name="DESC_ENGINE_REG_DATA" value="0x46600020" grade="established"/>
+  <constant name="DESC_ENGINE_TABLE_ENTRY" value="0x46200020" grade="established"/>
+  <constant name="DESC_ENGINE_TABLE_INDEX" value="0x46000020" grade="established"/>
+  <constant name="DESC_ENTRY_TABLE" value="0x42600020" grade="established"/>
+  <constant name="DESC_IMAGE_PROCESSOR_WRITE" value="0x584fc800" grade="established"/>
+  <constant name="DESC_PRIMITIVE_CLASS_TABLE" value="0x42200020" grade="established"/>
+  <constant name="DESC_RASTER_BUS_WRITE" value="0x58404800" grade="established"/>
+  <constant name="FOG_PARAMETER_COLOUR" value="0xb66" grade="established"/>
+  <constant name="FOG_PARAMETER_DENSITY" value="0xb62" grade="established"/>
+  <constant name="FOG_PARAMETER_END" value="0xb64" grade="established"/>
+  <constant name="FOG_PARAMETER_INDEX" value="0xb61" grade="established"/>
+  <constant name="FOG_PARAMETER_MODE" value="0xb65" grade="established"/>
+  <constant name="FOG_PARAMETER_OFFSET" value="0x8199" grade="established"/>
+  <constant name="FOG_PARAMETER_START" value="0xb63" grade="established"/>
+  <constant name="GC_LOAD_W4_BUS_ENABLE" value="0xffffff" grade="established"/>
+  <constant name="GC_LOAD_W6_BUS_ENABLE" value="0x383c" grade="established"/>
+  <constant name="GC_LOAD_W7_BUS_ENABLE" value="0xffc00f" grade="established"/>
+  <constant name="ID_TABLE_NORMAL_ENTRIES" value="0x40" grade="established"/>
+  <constant name="ID_TABLE_OVERLAY_ENTRIES" value="0x20" grade="established"/>
+  <constant name="LAYER_MAIN" value="0x0" grade="established"/>
+  <constant name="LAYER_OVERLAY" value="0x1" grade="established"/>
+  <constant name="LAYER_POPUP" value="0x2" grade="established"/>
+  <constant name="LIGHT_BLOCK_COUNT" value="0x8" grade="established"/>
+  <constant name="LIGHT_BLOCK_FIRST_ADDRESS" value="0x2c7" grade="established"/>
+  <constant name="LIGHT_BLOCK_WORDS" value="0x23" grade="established"/>
+  <constant name="MODE_BYTE_RESERVED_CI_OPAQUE" value="0x15" grade="established"/>
+  <constant name="MODE_BYTE_RESERVED_CI_TRANSPARENT" value="0x5" grade="established"/>
+  <constant name="MODE_BYTE_RESERVED_RGB_OPAQUE" value="0x12" grade="established"/>
+  <constant name="MODE_BYTE_RESERVED_RGB_TRANSPARENT" value="0x2" grade="established"/>
+  <constant name="OVERLAY_ID_WORD_COLOUR_INDEX" value="0x3c00" grade="established"/>
+  <constant name="OVERLAY_ID_WORD_RGB15" value="0x3c01" grade="established"/>
+  <constant name="OVERLAY_RGB15_BLUE_BITS" value="0x1f" grade="established"/>
+  <constant name="OVERLAY_RGB15_GREEN_BITS" value="0x3e0" grade="established"/>
+  <constant name="OVERLAY_RGB15_RED_BITS" value="0x7c00" grade="established"/>
+  <constant name="PIXEL_FORMAT_ALPHA" value="0x3" grade="established"/>
+  <constant name="PIXEL_FORMAT_BLUE" value="0x2" grade="established"/>
+  <constant name="PIXEL_FORMAT_COLOUR_INDEX" value="0xb" grade="established"/>
+  <constant name="PIXEL_FORMAT_DEPTH" value="0xd" grade="established"/>
+  <constant name="PIXEL_FORMAT_EXT_ABGR" value="0x8" grade="established"/>
+  <constant name="PIXEL_FORMAT_EXT_CMYK" value="0x9" grade="established"/>
+  <constant name="PIXEL_FORMAT_EXT_CMYKA" value="0xa" grade="established"/>
+  <constant name="PIXEL_FORMAT_GREEN" value="0x1" grade="established"/>
+  <constant name="PIXEL_FORMAT_LUMINANCE" value="0x6" grade="established"/>
+  <constant name="PIXEL_FORMAT_LUMINANCE_ALPHA" value="0x7" grade="established"/>
+  <constant name="PIXEL_FORMAT_RED" value="0x0" grade="established"/>
+  <constant name="PIXEL_FORMAT_RGB" value="0x4" grade="established"/>
+  <constant name="PIXEL_FORMAT_RGBA" value="0x5" grade="established"/>
+  <constant name="PIXEL_FORMAT_STENCIL" value="0xc" grade="established"/>
+  <constant name="PIXEL_MAP_ALPHA_TO_ALPHA" value="0xc79" grade="established"/>
+  <constant name="PIXEL_MAP_BLUE_TO_BLUE" value="0xc78" grade="established"/>
+  <constant name="PIXEL_MAP_GREEN_TO_GREEN" value="0xc77" grade="established"/>
+  <constant name="PIXEL_MAP_INDEX_TO_ALPHA" value="0xc75" grade="established"/>
+  <constant name="PIXEL_MAP_INDEX_TO_BLUE" value="0xc74" grade="established"/>
+  <constant name="PIXEL_MAP_INDEX_TO_GREEN" value="0xc73" grade="established"/>
+  <constant name="PIXEL_MAP_INDEX_TO_INDEX" value="0xc70" grade="established"/>
+  <constant name="PIXEL_MAP_INDEX_TO_RED" value="0xc72" grade="established"/>
+  <constant name="PIXEL_MAP_RED_TO_RED" value="0xc76" grade="established"/>
+  <constant name="PIXEL_MAP_STENCIL_TO_STENCIL" value="0xc71" grade="established"/>
+  <constant name="PIXEL_PACK_ALIGNMENT" value="0xd05" grade="established"/>
+  <constant name="PIXEL_PACK_IMAGE_DEPTH" value="0x8131" grade="established"/>
+  <constant name="PIXEL_PACK_IMAGE_HEIGHT" value="0x806c" grade="established"/>
+  <constant name="PIXEL_PACK_LSB_FIRST" value="0xd01" grade="established"/>
+  <constant name="PIXEL_PACK_ROW_LENGTH" value="0xd02" grade="established"/>
+  <constant name="PIXEL_PACK_SKIP_IMAGES" value="0x806b" grade="established"/>
+  <constant name="PIXEL_PACK_SKIP_PIXELS" value="0xd04" grade="established"/>
+  <constant name="PIXEL_PACK_SKIP_ROWS" value="0xd03" grade="established"/>
+  <constant name="PIXEL_PACK_SKIP_VOLUMES" value="0x8130" grade="established"/>
+  <constant name="PIXEL_PACK_SWAP_BYTES" value="0xd00" grade="established"/>
+  <constant name="PIXEL_TRANSFER_ALPHA_BIAS" value="0xd1d" grade="established"/>
+  <constant name="PIXEL_TRANSFER_ALPHA_SCALE" value="0xd1c" grade="established"/>
+  <constant name="PIXEL_TRANSFER_BLUE_BIAS" value="0xd1b" grade="established"/>
+  <constant name="PIXEL_TRANSFER_BLUE_SCALE" value="0xd1a" grade="established"/>
+  <constant name="PIXEL_TRANSFER_DEPTH_BIAS" value="0xd1f" grade="established"/>
+  <constant name="PIXEL_TRANSFER_DEPTH_SCALE" value="0xd1e" grade="established"/>
+  <constant name="PIXEL_TRANSFER_GREEN_BIAS" value="0xd19" grade="established"/>
+  <constant name="PIXEL_TRANSFER_GREEN_SCALE" value="0xd18" grade="established"/>
+  <constant name="PIXEL_TRANSFER_INDEX_OFFSET" value="0xd13" grade="established"/>
+  <constant name="PIXEL_TRANSFER_INDEX_SHIFT" value="0xd12" grade="established"/>
+  <constant name="PIXEL_TRANSFER_MAP_COLOUR" value="0xd10" grade="established"/>
+  <constant name="PIXEL_TRANSFER_MAP_STENCIL" value="0xd11" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_BIAS" value="0x8023" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_SCALE" value="0x801f" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_BIAS" value="0x8022" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_SCALE" value="0x801e" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_BIAS" value="0x8021" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_SCALE" value="0x801d" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_RED_BIAS" value="0x8020" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_CONVOLUTION_RED_SCALE" value="0x801c" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_ALPHA_BIAS" value="0x80bb" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_ALPHA_SCALE" value="0x80b7" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_BLUE_BIAS" value="0x80ba" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_BLUE_SCALE" value="0x80b6" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_GREEN_BIAS" value="0x80b9" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_GREEN_SCALE" value="0x80b5" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_RED_BIAS" value="0x80b8" grade="established"/>
+  <constant name="PIXEL_TRANSFER_POST_MATRIX_RED_SCALE" value="0x80b4" grade="established"/>
+  <constant name="PIXEL_TRANSFER_RED_BIAS" value="0xd15" grade="established"/>
+  <constant name="PIXEL_TRANSFER_RED_SCALE" value="0xd14" grade="established"/>
+  <constant name="PIXEL_TYPE_BITMAP" value="0x7" grade="established"/>
+  <constant name="PIXEL_TYPE_BYTE" value="0x0" grade="established"/>
+  <constant name="PIXEL_TYPE_FLOAT" value="0x6" grade="established"/>
+  <constant name="PIXEL_TYPE_INT" value="0x4" grade="established"/>
+  <constant name="PIXEL_TYPE_PACKED_10_10_10_2" value="0xc" grade="established"/>
+  <constant name="PIXEL_TYPE_PACKED_332" value="0x8" grade="established"/>
+  <constant name="PIXEL_TYPE_PACKED_4444" value="0x9" grade="established"/>
+  <constant name="PIXEL_TYPE_PACKED_5551" value="0xa" grade="established"/>
+  <constant name="PIXEL_TYPE_PACKED_8888" value="0xb" grade="established"/>
+  <constant name="PIXEL_TYPE_SHORT" value="0x2" grade="established"/>
+  <constant name="PIXEL_TYPE_UNSIGNED_BYTE" value="0x1" grade="established"/>
+  <constant name="PIXEL_TYPE_UNSIGNED_INT" value="0x5" grade="established"/>
+  <constant name="PIXEL_TYPE_UNSIGNED_SHORT" value="0x3" grade="established"/>
+  <constant name="PIXEL_UNPACK_ALIGNMENT" value="0xcf5" grade="established"/>
+  <constant name="PIXEL_UNPACK_IMAGE_DEPTH" value="0x8133" grade="established"/>
+  <constant name="PIXEL_UNPACK_IMAGE_HEIGHT" value="0x806e" grade="established"/>
+  <constant name="PIXEL_UNPACK_LSB_FIRST" value="0xcf1" grade="established"/>
+  <constant name="PIXEL_UNPACK_ROW_LENGTH" value="0xcf2" grade="established"/>
+  <constant name="PIXEL_UNPACK_SKIP_IMAGES" value="0x806d" grade="established"/>
+  <constant name="PIXEL_UNPACK_SKIP_PIXELS" value="0xcf4" grade="established"/>
+  <constant name="PIXEL_UNPACK_SKIP_ROWS" value="0xcf3" grade="established"/>
+  <constant name="PIXEL_UNPACK_SKIP_VOLUMES" value="0x8132" grade="established"/>
+  <constant name="PIXEL_UNPACK_SWAP_BYTES" value="0xcf0" grade="established"/>
+  <constant name="POLYGON_FACE_BACK" value="0x405" grade="established"/>
+  <constant name="POLYGON_FACE_BOTH" value="0x408" grade="established"/>
+  <constant name="POLYGON_FACE_FRONT" value="0x404" grade="established"/>
+  <constant name="POLYGON_MODE_FILL" value="0x1b02" grade="established"/>
+  <constant name="POLYGON_MODE_LINE" value="0x1b01" grade="established"/>
+  <constant name="POLYGON_MODE_POINT" value="0x1b00" grade="established"/>
+  <constant name="TEXENV_COLOUR1_IMAGE" value="0x15f1413" grade="established"/>
+  <constant name="TEXENV_COLOUR_IMAGE" value="0x15e1402" grade="established"/>
+  <constant name="WINDOW_ID_CI_OVERLAY_OPAQUE" value="0x41" grade="established"/>
+  <constant name="WINDOW_ID_CI_OVERLAY_TRANSPARENT" value="0x40" grade="established"/>
+  <constant name="WINDOW_ID_DYNAMIC_FIRST" value="0x44" grade="inferred"/>
+  <constant name="WINDOW_ID_MAIN_FIRST" value="0x0" grade="established"/>
+  <constant name="WINDOW_ID_MAIN_LAST" value="0x3e" grade="established"/>
+  <constant name="WINDOW_ID_OVERLAY_FIRST" value="0x40" grade="established"/>
+  <constant name="WINDOW_ID_OVERLAY_LAST" value="0x5f" grade="established"/>
+  <constant name="WINDOW_ID_POPUP" value="0x3f" grade="established"/>
+  <constant name="WINDOW_ID_RGB15_OVERLAY_OPAQUE" value="0x43" grade="established"/>
+  <constant name="WINDOW_ID_RGB15_OVERLAY_TRANSPARENT" value="0x42" grade="established"/>
+</genxml>

@@ -1,0 +1,442 @@
+{
+ "schema": "defs-flat/1",
+ "source": "defs/dacidx.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "dacidx",
+   "kind": "word",
+   "name": "COMMAND_1",
+   "width": 32,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_1.bypass_colour",
+   "hi": 7,
+   "lo": 6,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_1.palette_select",
+   "hi": 5,
+   "lo": 4,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_1.addr_high",
+   "hi": 3,
+   "lo": 3,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_1.calibrate",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "word",
+   "name": "COMMAND_2",
+   "width": 32,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_2.colour_mode",
+   "hi": 7,
+   "lo": 4,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_2.pedestal",
+   "hi": 3,
+   "lo": 3,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "COMMAND_2.sync_on_green",
+   "hi": 2,
+   "lo": 2,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "word",
+   "name": "CURSOR_CONTROL",
+   "width": 32,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "CURSOR_CONTROL.interlace",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "CURSOR_CONTROL.enable",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "field",
+   "name": "CURSOR_CONTROL.mode",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "enum_value",
+   "name": "CURSOR_CONTROL.mode.x11",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "enum_value",
+   "name": "CURSOR_CONTROL.mode.xga",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_COLOUR_2",
+   "value": 772,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_COLOUR_BASE",
+   "value": 771,
+   "count": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_CONTROL",
+   "value": 516,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_IMAGE_RAM",
+   "value": 1024,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_X_HIGH",
+   "value": 513,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_X_LOW",
+   "value": 512,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_Y_HIGH",
+   "value": 515,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "CURSOR_Y_LOW",
+   "value": 514,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_ACTIVE",
+   "value": 21,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_ACTIVE_END",
+   "value": 23,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_ACTIVE_START",
+   "value": 22,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_BREEZEWAY",
+   "value": 17,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_BURST_LENGTH",
+   "value": 18,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_BURST_PHASE_LSB",
+   "value": 38,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_BURST_PHASE_MSB",
+   "value": 39,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_COLOUR_BACK_PORCH",
+   "value": 19,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_COLOUR_BAR_LENGTH",
+   "value": 30,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_EQUALIZE_HIGH",
+   "value": 27,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_EQUALIZE_LOW",
+   "value": 26,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_EXT_COLOUR_BACK_PORCH",
+   "value": 20,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_FORMAT_CONTROL",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_FRONT_PORCH",
+   "value": 25,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_GLOBAL_CONTROL",
+   "value": 0,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_HSYNC_TIP",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_INTERFACE_CONTROL",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_KEY_CONTROL",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_KEY_D",
+   "value": 5,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_KEY_E",
+   "value": 6,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_KEY_F",
+   "value": 7,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_SUBCARRIER_FREQ_BYTE1",
+   "value": 35,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_SUBCARRIER_FREQ_BYTE2",
+   "value": 34,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_SUBCARRIER_FREQ_BYTE3",
+   "value": 33,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_SUBCARRIER_FREQ_BYTE4",
+   "value": 32,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_VIDEO_PHASE_LSB",
+   "value": 36,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_VIDEO_PHASE_MSB",
+   "value": 37,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_VSYNC_HIGH",
+   "value": 29,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "ENCIDX_VSYNC_LOW",
+   "value": 28,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "PIXEL_MASK",
+   "value": 4,
+   "count": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "START_UP_A",
+   "value": 5,
+   "count": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "dacidx",
+   "kind": "constant",
+   "name": "START_UP_B",
+   "value": 6,
+   "count": 1,
+   "grade": "inferred"
+  }
+ ]
+}

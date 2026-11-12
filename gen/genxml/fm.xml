@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/fm.toml by defs-gen - do not edit, change the source -->
+<genxml unit="fm" prefix="FM" title="frame-manager registers on the display bus">
+  <doc>Frame-manager registers on the display bus: the swap strobe, the per-channel display ids and the board-level control words.</doc>
+  <space name="fm_regs" unit="reg"/>
+  <struct name="SWAP_STROBE" size="4" grade="established" register="yes" offset="0x80" access="w" space="fm_regs" reset="unknown">
+    <field name="strobe" start="0" size="2" type="uint" grade="established"/>
+  </struct>
+  <struct name="VOC_DID" size="4" grade="established" register="yes" offset="0x81" access="w" count="8" stride="1" space="fm_regs" reset="unknown">
+    <field name="did" start="0" size="6" type="uint" grade="established"/>
+  </struct>
+  <struct name="XWINDOW" size="4" grade="established" register="yes" offset="0x8b" access="w" space="fm_regs" reset="unknown">
+    <field name="reset_ratio" start="22" size="1" type="uint" grade="established"/>
+    <field name="sync_source" start="20" size="2" type="uint" grade="established"/>
+    <field name="x1_inv" start="10" size="10" type="uint" grade="established"/>
+    <field name="x0_inv" start="0" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="DID_RANGE" size="4" grade="inferred" register="yes" offset="0x8c" access="w" space="fm_regs" reset="unknown">
+    <field name="arg_d" start="19" size="5" type="uint" grade="unknown"/>
+    <field name="arg_c" start="13" size="6" type="uint" grade="unknown"/>
+    <field name="size_b" start="7" size="6" type="uint" grade="inferred"/>
+    <field name="size_a" start="0" size="7" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="DID_STATUS" size="4" grade="established" register="yes" offset="0x8d" access="r" space="fm_regs" reset="unknown">
+    <field name="shifting" start="3" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="CLOCK_SELECT" size="4" grade="established" register="yes" offset="0x8e" access="w" space="fm_regs" reset="unknown">
+    <field name="internal" start="23" size="1" type="uint" grade="established"/>
+    <field name="arg_22_20" start="20" size="3" type="uint" grade="unknown"/>
+    <field name="y1_inv" start="10" size="10" type="uint" grade="established"/>
+    <field name="y0_inv" start="0" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="INTR_STATE" size="4" grade="inferred" register="yes" offset="0x8f" access="w" space="fm_regs" reset="unknown">
+  </struct>
+  <struct name="RASTER_CONFIG" size="4" grade="established" register="yes" offset="0x90" access="rw" space="fm_regs" reset="unknown">
+    <field name="stuffing" start="8" size="3" type="uint" grade="established"/>
+    <field name="boards" start="5" size="3" type="uint" grade="established"/>
+  </struct>
+</genxml>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/dac.toml by defs-gen - do not edit, change the source -->
+<genxml unit="dac" prefix="DAC" title="video DAC and encoder ports on the display bus">
+  <doc>Video DAC and encoder ports of the display bus.</doc>
+  <struct name="INDEX" size="1" grade="established" register="yes" offset="0xb00" access="w" reset="unknown">
+  </struct>
+  <struct name="CMAP_DATA" size="1" grade="inferred" register="yes" offset="0xb01" access="w" reset="unknown">
+  </struct>
+  <struct name="REG_DATA" size="1" grade="established" register="yes" offset="0xb02" access="rw" reset="unknown">
+  </struct>
+  <struct name="MODE" size="1" grade="inferred" register="yes" offset="0xb03" access="w" reset="unknown">
+    <field name="strobe" start="0" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="ENC_GAIN" size="1" grade="established" register="yes" offset="0x1708" access="w" reset="unknown">
+  </struct>
+  <struct name="ENC_CTRL_ADDR" size="1" grade="established" register="yes" offset="0x1800" access="w" reset="unknown">
+  </struct>
+  <struct name="ENC_CMAP_ADDR" size="1" grade="inferred" register="yes" offset="0x1801" access="w" reset="unknown">
+  </struct>
+  <struct name="ENC_CTRL_DATA" size="1" grade="established" register="yes" offset="0x1802" access="rw" reset="unknown">
+  </struct>
+  <struct name="ENC_CMAP_DATA" size="1" grade="inferred" register="yes" offset="0x1803" access="rw" reset="unknown">
+  </struct>
+</genxml>

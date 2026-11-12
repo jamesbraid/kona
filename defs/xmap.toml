@@ -1,0 +1,330 @@
+# Imported from KONA_XMAP_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "xmap"
+prefix = "XMAP"
+title = "XMAP registers and the words written through them"
+doc = "XMAP direct registers, indirect-memory ports and the words written through them."
+from = "back-end definitions table, docs/command-table.md sections 6.3, 6.4 and 7.1 to 7.5"
+
+[c]
+legacy_header = "KONA_XMAP_DECODE.h"
+legacy_guard = "KONA_XMAP_DECODE_H"
+
+[spaces.xmap_regs]
+unit = "reg"
+
+[registers.cursor_channel]
+offset = 0x100
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.cursor_channel.fields]
+channel = { bits = [4, 0], grade = "established" }
+
+[registers.cursor_base]
+offset = 0x101
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.cursor_base.fields]
+base = { bits = [16, 0], grade = "established" }
+
+[registers.cursor_pos]
+offset = 0x102
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.cursor_pos.fields]
+y = { bits = [25, 13], grade = "established" }
+x = { bits = [12, 0], grade = "established" }
+
+[[registers.cursor_pos.tests]]
+value = 0x2001
+kind = "example"
+expect = { x = 1, y = 1 }
+
+[registers.cursor_mode]
+offset = 0x103
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.cursor_mode.fields.mode]
+bits = [8, 0]
+grade = "established"
+
+[registers.cursor_mode.fields.mode.enums]
+off = { value = 0, grade = "established" }
+crosshair = { value = 1, grade = "established" }
+glyph = { value = 2, grade = "established" }
+
+[registers.copy_strobe]
+offset = 0x104
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.copy_strobe.fields]
+force_cursor_pos = { bits = [2, 2], grade = "inferred" }
+copy = { bits = [0, 0], grade = "established" }
+
+[registers.subst_enable]
+offset = 0x105
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.subst_enable.fields]
+enable = { bits = [0, 0], grade = "inferred" }
+
+[registers.subst_low]
+offset = 0x106
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.subst_high]
+offset = 0x107
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.subst_high.fields]
+mode = { bits = [11, 10], grade = "established" }
+colour_high = { bits = [9, 0], grade = "inferred" }
+
+[registers.read_select]
+offset = 0x108
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.read_select.fields]
+chip = { bits = [1, 0], grade = "inferred" }
+
+[registers.unread_09]
+offset = 0x109
+access = "w"
+width = 32
+grade = "unknown"
+space = "xmap_regs"
+
+[registers.crc_status]
+offset = 0x10a
+access = "r"
+width = 32
+grade = "unknown"
+space = "xmap_regs"
+
+[registers.board_count]
+offset = 0x10b
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.board_count.fields.code]
+bits = [1, 0]
+grade = "established"
+
+[registers.board_count.fields.code.enums]
+one_board = { value = 0, grade = "established" }
+two_boards = { value = 1, grade = "established" }
+four_boards = { value = 2, grade = "established" }
+
+[registers.di_compare_addr]
+offset = 0x10c
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.di_compare_addr.fields]
+addr = { bits = [5, 0], grade = "inferred" }
+
+[registers.imp_delay]
+offset = 0x10d
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.imp_delay.fields]
+delay = { bits = [8, 0], grade = "inferred" }
+
+[registers.pipe_delay]
+offset = 0x10e
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.pipe_delay.fields]
+delay = { bits = [2, 0], grade = "inferred" }
+
+[registers.fastlist_config]
+offset = 0x10f
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.fastlist_config.fields]
+fixed = { bits = [9, 5], grade = "inferred" }
+chunk_size = { bits = [4, 0], grade = "inferred" }
+
+[[registers.fastlist_config.tests]]
+value = 0x339
+expect = { chunk_size = 25, fixed = 25 }
+
+[registers.unread_10]
+offset = 0x110
+access = "w"
+width = 32
+grade = "unknown"
+space = "xmap_regs"
+
+[registers.readback_addr]
+offset = 0x111
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.readback_addr.fields]
+addr = { bits = [18, 0], grade = "inferred" }
+
+[registers.readback_data]
+offset = 0x112
+access = "r"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.ind_addr]
+offset = 0x118
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.ind_addr.fields]
+flag = { bits = [18, 18], grade = "unknown" }
+page = { bits = [17, 14], grade = "established" }
+entry = { bits = [11, 0], grade = "established" }
+
+[registers.ind_addr.fields.colour]
+bits = [13, 12]
+grade = "established"
+
+[registers.ind_addr.fields.colour.enums]
+red = { value = 0, grade = "established" }
+green = { value = 1, grade = "established" }
+blue = { value = 2, grade = "established" }
+
+[[registers.ind_addr.tests]]
+value = 0x40000
+kind = "example"
+expect = { entry = 0, colour = 0, page = 0, flag = 1 }
+
+[registers.cmap_data]
+offset = 0x119
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.cmap_data.fields]
+red = { bits = [29, 20], grade = "established" }
+green = { bits = [19, 10], grade = "established" }
+blue = { bits = [9, 0], grade = "established" }
+
+[registers.unused_1a]
+offset = 0x11a
+access = "w"
+width = 32
+grade = "unknown"
+space = "xmap_regs"
+
+[registers.gamma_data]
+offset = 0x11b
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.gamma_data.fields]
+entry = { bits = [11, 0], grade = "established" }
+
+[registers.did_data]
+offset = 0x11c
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.did_data.fields]
+cmap_base = { bits = [23, 7], grade = "established" }
+planes_minus_1 = { bits = [6, 3], grade = "established" }
+luminance = { bits = [2, 2], grade = "established" }
+grey = { bits = [1, 1], grade = "established" }
+
+[[registers.did_data.tests]]
+value = 0x80050
+expect = { grey = 0, luminance = 0, planes_minus_1 = 10, cmap_base = 4096 }
+
+[registers.chan_setup]
+offset = 0x11d
+access = "w"
+width = 32
+grade = "established"
+space = "xmap_regs"
+
+[registers.chan_setup.fields]
+alpha_to_blue = { bits = [6, 6], grade = "established" }
+no_gamma = { bits = [5, 5], grade = "established" }
+ext_gamma = { bits = [4, 4], grade = "established" }
+gamma_page = { bits = [3, 0], grade = "established" }
+
+[registers.table_close]
+offset = 0x11e
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[registers.flush]
+offset = 0x11f
+access = "w"
+width = 32
+grade = "inferred"
+space = "xmap_regs"
+
+[constants]
+CMAP_LOAD_PIECE_WORDS = { value = 0x200, grade = "established", doc = "colour-map and cursor loads are sent in pieces of this many words" }
+COUNT = { value = 0x4, grade = "established", doc = "XMAP chips selected by the read chip select" }
+CURSOR_COLOUR_WORD = { value = 0x100, grade = "established", doc = "first colour word of a slot; four words, pixel values 3, 2, 1, 0" }
+CURSOR_CROSSHAIR_BLOCK = { value = 0x269c, grade = "established", doc = "address of the crosshair slot; its colour block follows at +256" }
+CURSOR_HOT_SPOT_CROSSHAIR = { value = 0x20, grade = "established", doc = "crosshair mode hot spot, both axes" }
+CURSOR_IMAGE_WORDS = { value = 0x100, grade = "established", doc = "64 rows of four words" }
+CURSOR_POS_BIAS = { value = 0x20, grade = "inferred", doc = "added to each coordinate so the cursor can sit partly off the top-left corner" }
+CURSOR_PRIORITY_NONE = { value = 0x20, grade = "established", doc = "cursor owner value meaning no owner; the smallest priority wins" }
+CURSOR_SLOTS = { value = 0x27, grade = "established", doc = "slot k is at address k x 260; 10140 words used" }
+CURSOR_SLOT_WORDS = { value = 0x104, grade = "established", doc = "words per cursor slot: 256 image words, 4 colour words" }
+DID_ENTRIES = { value = 0x80, grade = "established", doc = "per-display-id mode table entries; the last doubles as the sequence-number push slot" }
+EXT_GAMMA_ENTRIES = { value = 0x400, grade = "established" }
+EXT_GAMMA_MARKER = { value = 0xdeadfeed, grade = "established", doc = "first word of an external gamma load, then the count 1024" }
+GAMMA_ENTRIES_PER_PAGE = { value = 0x1000, grade = "established", doc = "per colour; each colour-map index fills two consecutive entries" }
+GAMMA_PAGES = { value = 0x10, grade = "established" }
+TRAILING_FLUSH_WRITES = { value = 0x3, grade = "established", doc = "flush writes before the table-close write and again after it" }

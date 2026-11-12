@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<!-- generated from defs/hip.toml by defs-gen - do not edit, change the source -->
+<genxml unit="hip" prefix="HIP" title="host-interface registers">
+  <doc>Host-interface chip registers: the interrupt status register and its cause bits.</doc>
+  <space name="arm" unit="byte"/>
+  <space name="rbus" unit="reg"/>
+  <space name="xg" unit="byte"/>
+  <space name="hip_regs" unit="byte"/>
+  <struct name="HA_ARM_CTRL" size="4" grade="established" register="yes" offset="0x0" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="2" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_IDMA_PNUM" size="4" grade="established" register="yes" offset="0x10" access="rw" space="arm" reset="unknown">
+    <field name="page" start="0" size="29" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_IDMA_POFF" size="4" grade="established" register="yes" offset="0x14" access="rw" space="arm" reset="unknown">
+    <field name="offset" start="2" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_IDMA_CTRL" size="4" grade="established" register="yes" offset="0x20" access="rw" space="arm" reset="unknown">
+    <field name="mode" start="0" size="2" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_LDMA_ADDR" size="4" grade="established" register="yes" offset="0x30" access="rw" space="arm" reset="unknown">
+    <field name="addr" start="3" size="23" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_LDMA_CTRL" size="4" grade="established" register="yes" offset="0x3c" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_LDMA_SRC" size="4" grade="established" register="yes" offset="0x48" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_CTRL" size="4" grade="established" register="yes" offset="0x50" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="2" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_DIVERT_PC" size="4" grade="established" register="yes" offset="0x54" access="rw" space="arm" reset="unknown">
+    <field name="vector" start="2" size="26" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_WC" size="4" grade="established" register="yes" offset="0x5c" access="rw" space="arm" reset="unknown">
+  </struct>
+  <struct name="HA_ICU_STATE" size="4" grade="established" register="yes" offset="0x68" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="2" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_ERROR_PC" size="4" grade="established" register="yes" offset="0x6c" access="rw" space="arm" reset="unknown">
+    <field name="vector" start="2" size="26" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_LOOP_ADDR" size="4" grade="established" register="yes" offset="0x70" access="rw" space="arm" reset="unknown">
+    <field name="value" start="0" size="9" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_ICU_ARRCNT" size="4" grade="established" register="yes" offset="0x74" access="rw" space="arm" reset="unknown">
+    <field name="count" start="0" size="16" type="uint" grade="established"/>
+  </struct>
+  <struct name="HA_HOST_MBOX" size="4" grade="established" register="yes" offset="0x90" access="rw" space="arm" reset="unknown">
+  </struct>
+  <struct name="HH_INTR_STATUS" size="4" grade="established" register="yes" offset="0x238" access="rw" space="hip_regs" reset="unknown">
+    <field name="idma_ov" start="11" size="1" type="uint" grade="established"/>
+    <field name="pio_ov" start="10" size="1" type="uint" grade="established"/>
+    <field name="voc" start="9" size="1" type="uint" grade="established"/>
+    <field name="parity" start="8" size="1" type="uint" grade="established"/>
+    <field name="unused" start="7" size="1" type="uint" grade="established"/>
+    <field name="odma" start="6" size="1" type="uint" grade="established"/>
+    <field name="ge" start="5" size="1" type="uint" grade="established"/>
+    <field name="arm" start="4" size="1" type="uint" grade="established"/>
+    <field name="video" start="3" size="1" type="uint" grade="established"/>
+    <field name="fifo_ov" start="2" size="1" type="uint" grade="established"/>
+    <field name="fifo_lo" start="1" size="1" type="uint" grade="established"/>
+    <field name="fifo_hi" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="HH_ARM_MBOX" size="4" grade="established" register="yes" offset="0x240" access="r" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="HH_ARM_CTRL" size="4" grade="established" register="yes" offset="0x308" access="rw" space="hip_regs" reset="unknown">
+    <field name="host_access" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="HH_VC_ADDRESS" size="4" grade="established" register="yes" offset="0x3c0" access="rw" space="hip_regs" reset="unknown">
+    <field name="value" start="0" size="16" type="uint" grade="established"/>
+  </struct>
+  <struct name="HH_VC_READY" size="4" grade="inferred" register="yes" offset="0x3c8" access="r" space="hip_regs" reset="unknown">
+    <field name="ready" start="0" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="HH_VC_DATA" size="4" grade="established" register="yes" offset="0x3d0" access="rw" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="HH_VC_DATA_INCR" size="4" grade="inferred" register="yes" offset="0x3d8" access="rw" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="HH_ARM_ADDRESS" size="4" grade="established" register="yes" offset="0x3e8" access="rw" space="hip_regs" reset="unknown">
+    <field name="word_address" start="2" size="26" type="uint" grade="established"/>
+  </struct>
+  <struct name="HH_ARM_DATA" size="4" grade="established" register="yes" offset="0x3f0" access="rw" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="HH_ARM_DATA_INCR" size="4" grade="inferred" register="yes" offset="0x3f8" access="rw" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="CMD_DESCRIPTOR" size="4" grade="established" register="yes" offset="0x400" access="w" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="CMD_OPERAND" size="4" grade="established" register="yes" offset="0x840" access="w" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="CMD_DATA" size="4" grade="established" register="yes" offset="0x8c0" access="w" space="hip_regs" reset="unknown">
+  </struct>
+  <struct name="RBUS_ODMA2_DATA" size="4" grade="established" register="yes" offset="0x476" access="w" space="rbus" reset="unknown">
+  </struct>
+  <struct name="RBUS_ODMA2_FLUSH" size="4" grade="inferred" register="yes" offset="0x477" access="w" space="rbus" reset="unknown">
+  </struct>
+  <struct name="XG_ERR_STATUS" size="4" grade="established" register="yes" offset="0x6c" access="rw" space="xg" reset="unknown">
+    <field name="idma_response_bad_tnum" start="28" size="1" type="uint" grade="established"/>
+    <field name="idma_response_size" start="27" size="1" type="uint" grade="established"/>
+    <field name="odma_fifo_overflow" start="26" size="1" type="uint" grade="established"/>
+    <field name="mapram_invalid" start="13" size="1" type="uint" grade="established"/>
+    <field name="mapram_parity" start="12" size="1" type="uint" grade="established"/>
+    <field name="response" start="9" size="1" type="uint" grade="established"/>
+    <field name="read_req_timeout" start="8" size="1" type="uint" grade="established"/>
+  </struct>
+</genxml>

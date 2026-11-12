@@ -1,0 +1,562 @@
+# Imported from KONA_WORDS_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "words"
+prefix = "WORD"
+title = "multi-field words of the host command stream"
+doc = "Bit layouts of the multi-field words of the host command stream, and the engine command descriptor values."
+from = "back-end definitions table, docs/command-table.md sections 4.2, 7.4, 7.6, 7.7, 7.8, 7.10, 7.13 and 7.17"
+
+[c]
+legacy_header = "KONA_WORDS_DECODE.h"
+legacy_guard = "KONA_WORDS_DECODE_H"
+
+[words.BIND_CONTROL]
+width = 32
+grade = "established"
+
+[words.BIND_CONTROL.fields]
+format_index = { bits = [23, 12], grade = "established" }
+filter_slot = { bits = [11, 0], grade = "inferred" }
+
+[words.BIND_CONTROL.fields.target]
+bits = [31, 28]
+grade = "established"
+
+[words.BIND_CONTROL.fields.target.enums]
+detail = { value = 0, grade = "established" }
+tex1d = { value = 1, grade = "established" }
+tex2d = { value = 2, grade = "established" }
+tex3d = { value = 3, grade = "established" }
+
+[words.BIND_CONTROL.fields.mode]
+bits = [27, 24]
+grade = "established"
+
+[words.BIND_CONTROL.fields.mode.enums]
+bicubic_table = { value = 0, grade = "established" }
+detail_table = { value = 1, grade = "established" }
+sharpen_table = { value = 2, grade = "established" }
+no_table = { value = 3, grade = "established" }
+
+[words.BIND_LOD_BOUNDS]
+width = 32
+grade = "established"
+
+[words.BIND_LOD_BOUNDS.fields]
+max = { bits = [19, 10], grade = "established" }
+min = { bits = [9, 0], grade = "established" }
+
+[words.BIND_LOD_SCALE]
+width = 32
+grade = "established"
+
+[words.BIND_LOD_SCALE.fields]
+r_scale = { bits = [23, 16], grade = "established" }
+t_scale = { bits = [15, 8], grade = "established" }
+s_scale = { bits = [7, 0], grade = "established" }
+
+[words.BIND_MODE]
+width = 32
+grade = "established"
+
+[words.BIND_MODE.fields]
+first_bank = { bits = [28, 28], grade = "established" }
+channel_select = { bits = [25, 24], grade = "inferred" }
+detail_level = { bits = [23, 21], grade = "established" }
+texel_format = { bits = [20, 14], grade = "established" }
+env_on = { bits = [13, 13], grade = "inferred" }
+clamp_style = { bits = [12, 12], grade = "inferred" }
+flags = { bits = [9, 8], grade = "inferred" }
+
+[words.BIND_MODE.fields.mag_channels]
+bits = [27, 26]
+grade = "established"
+
+[words.BIND_MODE.fields.mag_channels.enums]
+all = { value = 0, grade = "established" }
+colour = { value = 1, grade = "established" }
+alpha = { value = 2, grade = "established" }
+level0 = { value = 3, grade = "established" }
+
+[words.BIND_MODE.fields.shadow_compare]
+bits = [11, 10]
+grade = "established"
+
+[words.BIND_MODE.fields.shadow_compare.enums]
+off = { value = 0, grade = "established" }
+ref_at_least_texel = { value = 1, grade = "established" }
+ref_at_most_texel = { value = 2, grade = "established" }
+
+[words.BIND_MODE.fields.mag_filter]
+bits = [7, 5]
+grade = "established"
+
+[words.BIND_MODE.fields.mag_filter.enums]
+nearest = { value = 0, grade = "established" }
+linear = { value = 1, grade = "established" }
+bicubic = { value = 2, grade = "established" }
+detail_add = { value = 3, grade = "established" }
+detail_modulate = { value = 4, grade = "established" }
+sharpen = { value = 5, grade = "established" }
+
+[words.BIND_MODE.fields.min_filter]
+bits = [4, 2]
+grade = "inferred"
+
+[words.BIND_MODE.fields.min_filter.enums]
+nearest = { value = 0, grade = "established" }
+linear = { value = 1, grade = "established" }
+bicubic = { value = 2, grade = "established" }
+
+[words.BIND_MODE.fields.sampling]
+bits = [1, 0]
+grade = "established"
+
+[words.BIND_MODE.fields.sampling.enums]
+mode2d = { value = 0, grade = "established" }
+mode3d = { value = 1, grade = "established" }
+mode3d_mip = { value = 2, grade = "established" }
+bicubic = { value = 3, grade = "established" }
+
+[words.BIND_PHYS_SIZE]
+width = 32
+grade = "established"
+
+[words.BIND_PHYS_SIZE.fields]
+r_exp = { bits = [11, 8], grade = "established" }
+t_exp = { bits = [7, 4], grade = "established" }
+s_exp = { bits = [3, 0], grade = "established" }
+
+[words.BIND_SIZE]
+width = 32
+grade = "established"
+
+[words.BIND_SIZE.fields]
+r_clamp = { bits = [14, 14], grade = "established" }
+t_clamp = { bits = [13, 13], grade = "established" }
+s_clamp = { bits = [12, 12], grade = "established" }
+r_exp = { bits = [11, 8], grade = "established" }
+t_exp = { bits = [7, 4], grade = "established" }
+s_exp = { bits = [3, 0], grade = "established" }
+
+[[words.BIND_SIZE.tests]]
+value = 0x677
+expect = { s_exp = 7, t_exp = 7, r_exp = 6, s_clamp = 0, t_clamp = 0, r_clamp = 0 }
+
+[[words.BIND_SIZE.tests]]
+value = 0x3077
+expect = { s_exp = 7, t_exp = 7, r_exp = 0, s_clamp = 1, t_clamp = 1, r_clamp = 0 }
+
+[words.DISPLAY_ID_RANGE]
+width = 32
+grade = "established"
+
+[words.DISPLAY_ID_RANGE.fields]
+arg2 = { bits = [23, 19], grade = "established" }
+arg0 = { bits = [18, 13], grade = "established" }
+arg3 = { bits = [12, 7], grade = "established" }
+arg1 = { bits = [6, 0], grade = "established" }
+
+[[words.DISPLAY_ID_RANGE.tests]]
+value = 0x1040
+expect = { arg1 = 64, arg3 = 32, arg0 = 0, arg2 = 0 }
+
+[words.GC_LOAD_W4]
+width = 32
+grade = "established"
+
+[words.GC_LOAD_W4.fields]
+opaque_fill = { bits = [31, 31], grade = "established" }
+plane_mask_rg = { bits = [23, 0], grade = "established" }
+
+[words.GC_LOAD_W6]
+width = 32
+grade = "established"
+
+[words.GC_LOAD_W6.fields]
+read_format = { bits = [13, 11], grade = "established" }
+colour_format = { bits = [5, 2], grade = "established" }
+
+[[words.GC_LOAD_W6.tests]]
+value = 0x2804
+expect = { colour_format = 1, read_format = 5 }
+
+[[words.GC_LOAD_W6.tests]]
+value = 0x3804
+expect = { colour_format = 1, read_format = 7 }
+
+[words.GC_LOAD_W7]
+width = 32
+grade = "established"
+
+[words.GC_LOAD_W7.fields]
+read_base = { bits = [23, 18], grade = "established" }
+readback_format = { bits = [17, 14], grade = "established" }
+draw_buffer = { bits = [3, 0], grade = "established" }
+
+[words.ID_FG_LARGE_HI]
+width = 32
+grade = "established"
+
+[words.ID_FG_LARGE_HI.fields]
+value_high12 = { bits = [19, 8], grade = "established" }
+value_low_nibble = { bits = [6, 3], grade = "established" }
+
+[words.ID_FG_SMALL_LO]
+width = 32
+grade = "established"
+
+[words.ID_FG_SMALL_LO.fields]
+value_high12 = { bits = [25, 14], grade = "established" }
+value_low_nibble = { bits = [12, 9], grade = "established" }
+
+[words.ID_MASK_LARGE_HI]
+width = 32
+grade = "established"
+
+[words.ID_MASK_LARGE_HI.fields]
+mask_low_nibble = { bits = [23, 20], grade = "established" }
+mask_high12 = { bits = [11, 0], grade = "established" }
+
+[words.ID_MASK_SMALL_LO]
+width = 32
+grade = "established"
+
+[words.ID_MASK_SMALL_LO.fields]
+mask_low12 = { bits = [23, 12], grade = "established" }
+mask_high_nibble = { bits = [3, 0], grade = "established" }
+
+[words.MODE_BYTE]
+width = 32
+grade = "established"
+
+[words.MODE_BYTE.fields]
+direct_or_opaque = { bits = [4, 4], grade = "established" }
+ci_or_luminance = { bits = [3, 3], grade = "established" }
+rgb_below_24 = { bits = [2, 2], grade = "established" }
+stereo = { bits = [1, 1], grade = "established" }
+back_shown = { bits = [0, 0], grade = "established" }
+
+[words.MODE_BYTE_OVERLAY]
+width = 32
+grade = "established"
+
+[words.MODE_BYTE_OVERLAY.fields]
+back_shown = { bits = [0, 0], grade = "established" }
+
+[words.MODE_BYTE_OVERLAY.fields.code]
+bits = [3, 1]
+grade = "established"
+
+[words.MODE_BYTE_OVERLAY.fields.code.enums]
+reserved_rgb15 = { value = 1, grade = "established" }
+overlay = { value = 2, grade = "established" }
+overlay_back_start = { value = 3, grade = "established" }
+underlay = { value = 6, grade = "established" }
+underlay_back_start = { value = 7, grade = "established" }
+
+[[words.MODE_BYTE_OVERLAY.tests]]
+value = 0x2
+expect = { back_shown = 0, code = 1 }
+
+[[words.MODE_BYTE_OVERLAY.tests]]
+value = 0x5
+expect = { back_shown = 1, code = 2 }
+
+[[words.MODE_BYTE_OVERLAY.tests]]
+value = 0x12
+expect = { back_shown = 0, code = 1 }
+
+[[words.MODE_BYTE_OVERLAY.tests]]
+value = 0x15
+expect = { back_shown = 1, code = 2 }
+
+[words.MS_CONTROL]
+width = 32
+grade = "established"
+
+[words.MS_CONTROL.fields]
+maintain_two = { bits = [11, 11], grade = "established" }
+mask = { bits = [10, 3], grade = "established" }
+enable = { bits = [0, 0], grade = "established" }
+
+[words.MS_CONTROL.fields.optimisation]
+bits = [13, 12]
+grade = "established"
+
+[words.MS_CONTROL.fields.optimisation.enums]
+none = { value = 0, grade = "established" }
+disable = { value = 2, grade = "established" }
+enable = { value = 3, grade = "established" }
+
+[words.MS_CONTROL.fields.mask_op]
+bits = [2, 2]
+grade = "established"
+
+[words.MS_CONTROL.fields.mask_op.enums]
+and_op = { value = 0, grade = "established" }
+replace = { value = 1, grade = "established" }
+
+[words.MS_CONTROL.fields.sample_count]
+bits = [1, 1]
+grade = "established"
+
+[words.MS_CONTROL.fields.sample_count.enums]
+four = { value = 0, grade = "established" }
+eight = { value = 1, grade = "established" }
+
+[words.MS_LOCATIONS]
+width = 32
+grade = "established"
+
+[words.MS_LOCATIONS.fields]
+s3_y = { bits = [23, 21], grade = "established" }
+s3_x = { bits = [20, 18], grade = "established" }
+s2_y = { bits = [17, 15], grade = "established" }
+s2_x = { bits = [14, 12], grade = "established" }
+s1_y = { bits = [11, 9], grade = "established" }
+s1_x = { bits = [8, 6], grade = "established" }
+s0_y = { bits = [5, 3], grade = "established" }
+s0_x = { bits = [2, 0], grade = "established" }
+
+[[words.MS_LOCATIONS.tests]]
+value = 0x7f6280
+expect = { s0_x = 0, s0_y = 0, s1_x = 2, s1_y = 1, s2_x = 6, s2_y = 6, s3_x = 7, s3_y = 3 }
+
+[[words.MS_LOCATIONS.tests]]
+value = 0xc8b640
+expect = { s0_x = 0, s0_y = 0, s1_x = 1, s1_y = 3, s2_x = 3, s2_y = 1, s3_x = 2, s3_y = 6 }
+
+[[words.MS_LOCATIONS.tests]]
+value = 0xd94880
+expect = { s0_x = 0, s0_y = 0, s1_x = 2, s1_y = 4, s2_x = 4, s2_y = 2, s3_x = 6, s3_y = 6 }
+
+[words.OVERLAY_RGB15]
+width = 32
+grade = "established"
+
+[words.OVERLAY_RGB15.fields]
+red = { bits = [14, 10], grade = "established" }
+green = { bits = [9, 5], grade = "established" }
+blue = { bits = [4, 0], grade = "established" }
+
+[words.PIXEL_SETUP_W0]
+width = 32
+grade = "established"
+
+[words.PIXEL_SETUP_W0.fields]
+direct_write = { bits = [4, 4], grade = "established" }
+kind = { bits = [3, 0], grade = "established" }
+
+[words.TEXLOAD_LAYOUT]
+width = 32
+grade = "established"
+
+[words.TEXLOAD_LAYOUT.fields]
+interlaced_download = { bits = [15, 15], grade = "established" }
+t_addr_bits = { bits = [14, 11], grade = "established" }
+s_addr_bits = { bits = [10, 7], grade = "established" }
+layout_mode = { bits = [6, 5], grade = "established" }
+bank = { bits = [3, 3], grade = "established" }
+dma = { bits = [2, 2], grade = "established" }
+
+[words.TEXLOAD_LAYOUT.fields.size_code]
+bits = [1, 0]
+grade = "established"
+
+[words.TEXLOAD_LAYOUT.fields.size_code.enums]
+bits16 = { value = 0, grade = "established" }
+bits32 = { value = 1, grade = "established" }
+slot64 = { value = 2, grade = "established" }
+
+[[words.TEXLOAD_LAYOUT.tests]]
+value = 0x9ad
+expect = { size_code = 1, dma = 1, bank = 1, layout_mode = 1, s_addr_bits = 3, t_addr_bits = 1 }
+
+[[words.TEXLOAD_LAYOUT.tests]]
+value = 0x2181
+expect = { size_code = 1, dma = 0, bank = 0, layout_mode = 0, s_addr_bits = 3, t_addr_bits = 4 }
+
+[[words.TEXLOAD_LAYOUT.tests]]
+value = 0x218d
+expect = { size_code = 1, dma = 1, bank = 1, layout_mode = 0, s_addr_bits = 3, t_addr_bits = 4 }
+
+[[words.TEXLOAD_LAYOUT.tests]]
+value = 0x2204
+expect = { size_code = 0, dma = 1, bank = 0, layout_mode = 0, s_addr_bits = 4, t_addr_bits = 4 }
+
+[words.TEXLOAD_SIZE]
+width = 32
+grade = "established"
+
+[words.TEXLOAD_SIZE.fields]
+r_exp = { bits = [11, 8], grade = "established" }
+t_exp = { bits = [7, 4], grade = "established" }
+s_exp = { bits = [3, 0], grade = "established" }
+
+[[words.TEXLOAD_SIZE.tests]]
+value = 0x23
+expect = { s_exp = 3, t_exp = 2, r_exp = 0 }
+
+[[words.TEXLOAD_SIZE.tests]]
+value = 0x677
+expect = { s_exp = 7, t_exp = 7, r_exp = 6 }
+
+[words.WINDOW_W2]
+width = 32
+grade = "inferred"
+
+[words.WINDOW_W2.fields]
+x_bias = { bits = [31, 16], grade = "inferred" }
+width = { bits = [15, 0], grade = "inferred" }
+
+[words.WINDOW_W3]
+width = 32
+grade = "inferred"
+
+[words.WINDOW_W3.fields]
+y_bias = { bits = [31, 16], grade = "inferred" }
+height = { bits = [15, 0], grade = "inferred" }
+
+[constants]
+DESC_DISTRIBUTOR_PROGRAM = { value = 0x48200020, grade = "established", doc = "write one word of the 1024-word distributor program" }
+DESC_DISTRIBUTOR_STEP = { value = 0x44200020, grade = "inferred", doc = "distributor step register on, at pipe set-up" }
+DESC_ENGINE_REG_ADDRESS = { value = 0x46a00020, grade = "established", doc = "engine register address port (distributor register number 565)" }
+DESC_ENGINE_REG_DATA = { value = 0x46600020, grade = "established", doc = "engine register data port (distributor register number 563)" }
+DESC_ENGINE_TABLE_ENTRY = { value = 0x46200020, grade = "established", doc = "write one handler table entry and advance the index" }
+DESC_ENGINE_TABLE_INDEX = { value = 0x46000020, grade = "established", doc = "set the engine handler table index" }
+DESC_ENTRY_TABLE = { value = 0x42600020, grade = "established", doc = "load the 512-word entry table" }
+DESC_IMAGE_PROCESSOR_WRITE = { value = 0x584fc800, grade = "established", doc = "image-processor register write, same three words" }
+DESC_PRIMITIVE_CLASS_TABLE = { value = 0x42200020, grade = "established", doc = "load the 16-word primitive-class table" }
+DESC_RASTER_BUS_WRITE = { value = 0x58404800, grade = "established", doc = "raster-bus register write, three payload words: bit mask, address word, value" }
+FOG_PARAMETER_COLOUR = { value = 0xb66, grade = "established" }
+FOG_PARAMETER_DENSITY = { value = 0xb62, grade = "established" }
+FOG_PARAMETER_END = { value = 0xb64, grade = "established" }
+FOG_PARAMETER_INDEX = { value = 0xb61, grade = "established" }
+FOG_PARAMETER_MODE = { value = 0xb65, grade = "established" }
+FOG_PARAMETER_OFFSET = { value = 0x8199, grade = "established" }
+FOG_PARAMETER_START = { value = 0xb63, grade = "established" }
+GC_LOAD_W4_BUS_ENABLE = { value = 0xffffff, grade = "established", doc = "the bus mask the load applies; bit 31 is outside it" }
+GC_LOAD_W6_BUS_ENABLE = { value = 0x383c, grade = "established", doc = "the bus mask the load applies, exactly the two fields above" }
+GC_LOAD_W7_BUS_ENABLE = { value = 0xffc00f, grade = "established", doc = "the bus mask the load applies, exactly the three fields above" }
+ID_TABLE_NORMAL_ENTRIES = { value = 0x40, grade = "established", macro = "ID_TABLE_NORMAL_ENTRIES", doc = "established: the display chips hold a 64-entry normal id table" }
+ID_TABLE_OVERLAY_ENTRIES = { value = 0x20, grade = "established", macro = "ID_TABLE_OVERLAY_ENTRIES", doc = "established: and a 32-entry overlay and underlay table" }
+LAYER_MAIN = { value = 0x0, grade = "established", macro = "LAYER_MAIN", doc = "established: frame-buffer layer numbers" }
+LAYER_OVERLAY = { value = 0x1, grade = "established", macro = "LAYER_OVERLAY" }
+LAYER_POPUP = { value = 0x2, grade = "established", macro = "LAYER_POPUP" }
+LIGHT_BLOCK_COUNT = { value = 0x8, grade = "established" }
+LIGHT_BLOCK_FIRST_ADDRESS = { value = 0x2c7, grade = "established" }
+LIGHT_BLOCK_WORDS = { value = 0x23, grade = "established" }
+MODE_BYTE_RESERVED_CI_OPAQUE = { value = 0x15, grade = "established" }
+MODE_BYTE_RESERVED_CI_TRANSPARENT = { value = 0x5, grade = "established" }
+MODE_BYTE_RESERVED_RGB_OPAQUE = { value = 0x12, grade = "established" }
+MODE_BYTE_RESERVED_RGB_TRANSPARENT = { value = 0x2, grade = "established" }
+OVERLAY_ID_WORD_COLOUR_INDEX = { value = 0x3c00, grade = "established" }
+OVERLAY_ID_WORD_RGB15 = { value = 0x3c01, grade = "established" }
+OVERLAY_RGB15_BLUE_BITS = { value = 0x1f, grade = "established", doc = "the advertised blue mask" }
+OVERLAY_RGB15_GREEN_BITS = { value = 0x3e0, grade = "established", doc = "the advertised green mask" }
+OVERLAY_RGB15_RED_BITS = { value = 0x7c00, grade = "established", doc = "the advertised red mask, unshifted" }
+PIXEL_FORMAT_ALPHA = { value = 0x3, grade = "established" }
+PIXEL_FORMAT_BLUE = { value = 0x2, grade = "established" }
+PIXEL_FORMAT_COLOUR_INDEX = { value = 0xb, grade = "established" }
+PIXEL_FORMAT_DEPTH = { value = 0xd, grade = "established" }
+PIXEL_FORMAT_EXT_ABGR = { value = 0x8, grade = "established" }
+PIXEL_FORMAT_EXT_CMYK = { value = 0x9, grade = "established" }
+PIXEL_FORMAT_EXT_CMYKA = { value = 0xa, grade = "established" }
+PIXEL_FORMAT_GREEN = { value = 0x1, grade = "established" }
+PIXEL_FORMAT_LUMINANCE = { value = 0x6, grade = "established" }
+PIXEL_FORMAT_LUMINANCE_ALPHA = { value = 0x7, grade = "established" }
+PIXEL_FORMAT_RED = { value = 0x0, grade = "established" }
+PIXEL_FORMAT_RGB = { value = 0x4, grade = "established" }
+PIXEL_FORMAT_RGBA = { value = 0x5, grade = "established" }
+PIXEL_FORMAT_STENCIL = { value = 0xc, grade = "established" }
+PIXEL_MAP_ALPHA_TO_ALPHA = { value = 0xc79, grade = "established", doc = "record 3, component 3" }
+PIXEL_MAP_BLUE_TO_BLUE = { value = 0xc78, grade = "established", doc = "record 3, component 2" }
+PIXEL_MAP_GREEN_TO_GREEN = { value = 0xc77, grade = "established", doc = "record 3, component 1" }
+PIXEL_MAP_INDEX_TO_ALPHA = { value = 0xc75, grade = "established", doc = "record 2, component 3" }
+PIXEL_MAP_INDEX_TO_BLUE = { value = 0xc74, grade = "established", doc = "record 2, component 2" }
+PIXEL_MAP_INDEX_TO_GREEN = { value = 0xc73, grade = "established", doc = "record 2, component 1" }
+PIXEL_MAP_INDEX_TO_INDEX = { value = 0xc70, grade = "established", doc = "record 0" }
+PIXEL_MAP_INDEX_TO_RED = { value = 0xc72, grade = "established", doc = "record 2, component 0" }
+PIXEL_MAP_RED_TO_RED = { value = 0xc76, grade = "established", doc = "record 3, component 0" }
+PIXEL_MAP_STENCIL_TO_STENCIL = { value = 0xc71, grade = "established", doc = "record 1" }
+PIXEL_PACK_ALIGNMENT = { value = 0xd05, grade = "established" }
+PIXEL_PACK_IMAGE_DEPTH = { value = 0x8131, grade = "established" }
+PIXEL_PACK_IMAGE_HEIGHT = { value = 0x806c, grade = "established" }
+PIXEL_PACK_LSB_FIRST = { value = 0xd01, grade = "established" }
+PIXEL_PACK_ROW_LENGTH = { value = 0xd02, grade = "established" }
+PIXEL_PACK_SKIP_IMAGES = { value = 0x806b, grade = "established" }
+PIXEL_PACK_SKIP_PIXELS = { value = 0xd04, grade = "established" }
+PIXEL_PACK_SKIP_ROWS = { value = 0xd03, grade = "established" }
+PIXEL_PACK_SKIP_VOLUMES = { value = 0x8130, grade = "established" }
+PIXEL_PACK_SWAP_BYTES = { value = 0xd00, grade = "established" }
+PIXEL_TRANSFER_ALPHA_BIAS = { value = 0xd1d, grade = "established" }
+PIXEL_TRANSFER_ALPHA_SCALE = { value = 0xd1c, grade = "established" }
+PIXEL_TRANSFER_BLUE_BIAS = { value = 0xd1b, grade = "established" }
+PIXEL_TRANSFER_BLUE_SCALE = { value = 0xd1a, grade = "established" }
+PIXEL_TRANSFER_DEPTH_BIAS = { value = 0xd1f, grade = "established" }
+PIXEL_TRANSFER_DEPTH_SCALE = { value = 0xd1e, grade = "established" }
+PIXEL_TRANSFER_GREEN_BIAS = { value = 0xd19, grade = "established" }
+PIXEL_TRANSFER_GREEN_SCALE = { value = 0xd18, grade = "established" }
+PIXEL_TRANSFER_INDEX_OFFSET = { value = 0xd13, grade = "established" }
+PIXEL_TRANSFER_INDEX_SHIFT = { value = 0xd12, grade = "established" }
+PIXEL_TRANSFER_MAP_COLOUR = { value = 0xd10, grade = "established" }
+PIXEL_TRANSFER_MAP_STENCIL = { value = 0xd11, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_BIAS = { value = 0x8023, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_ALPHA_SCALE = { value = 0x801f, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_BIAS = { value = 0x8022, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_BLUE_SCALE = { value = 0x801e, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_BIAS = { value = 0x8021, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_GREEN_SCALE = { value = 0x801d, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_RED_BIAS = { value = 0x8020, grade = "established" }
+PIXEL_TRANSFER_POST_CONVOLUTION_RED_SCALE = { value = 0x801c, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_ALPHA_BIAS = { value = 0x80bb, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_ALPHA_SCALE = { value = 0x80b7, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_BLUE_BIAS = { value = 0x80ba, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_BLUE_SCALE = { value = 0x80b6, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_GREEN_BIAS = { value = 0x80b9, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_GREEN_SCALE = { value = 0x80b5, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_RED_BIAS = { value = 0x80b8, grade = "established" }
+PIXEL_TRANSFER_POST_MATRIX_RED_SCALE = { value = 0x80b4, grade = "established" }
+PIXEL_TRANSFER_RED_BIAS = { value = 0xd15, grade = "established" }
+PIXEL_TRANSFER_RED_SCALE = { value = 0xd14, grade = "established" }
+PIXEL_TYPE_BITMAP = { value = 0x7, grade = "established" }
+PIXEL_TYPE_BYTE = { value = 0x0, grade = "established" }
+PIXEL_TYPE_FLOAT = { value = 0x6, grade = "established" }
+PIXEL_TYPE_INT = { value = 0x4, grade = "established" }
+PIXEL_TYPE_PACKED_10_10_10_2 = { value = 0xc, grade = "established" }
+PIXEL_TYPE_PACKED_332 = { value = 0x8, grade = "established" }
+PIXEL_TYPE_PACKED_4444 = { value = 0x9, grade = "established" }
+PIXEL_TYPE_PACKED_5551 = { value = 0xa, grade = "established" }
+PIXEL_TYPE_PACKED_8888 = { value = 0xb, grade = "established" }
+PIXEL_TYPE_SHORT = { value = 0x2, grade = "established" }
+PIXEL_TYPE_UNSIGNED_BYTE = { value = 0x1, grade = "established" }
+PIXEL_TYPE_UNSIGNED_INT = { value = 0x5, grade = "established" }
+PIXEL_TYPE_UNSIGNED_SHORT = { value = 0x3, grade = "established" }
+PIXEL_UNPACK_ALIGNMENT = { value = 0xcf5, grade = "established" }
+PIXEL_UNPACK_IMAGE_DEPTH = { value = 0x8133, grade = "established" }
+PIXEL_UNPACK_IMAGE_HEIGHT = { value = 0x806e, grade = "established" }
+PIXEL_UNPACK_LSB_FIRST = { value = 0xcf1, grade = "established" }
+PIXEL_UNPACK_ROW_LENGTH = { value = 0xcf2, grade = "established" }
+PIXEL_UNPACK_SKIP_IMAGES = { value = 0x806d, grade = "established" }
+PIXEL_UNPACK_SKIP_PIXELS = { value = 0xcf4, grade = "established" }
+PIXEL_UNPACK_SKIP_ROWS = { value = 0xcf3, grade = "established" }
+PIXEL_UNPACK_SKIP_VOLUMES = { value = 0x8132, grade = "established" }
+PIXEL_UNPACK_SWAP_BYTES = { value = 0xcf0, grade = "established" }
+POLYGON_FACE_BACK = { value = 0x405, grade = "established" }
+POLYGON_FACE_BOTH = { value = 0x408, grade = "established" }
+POLYGON_FACE_FRONT = { value = 0x404, grade = "established" }
+POLYGON_MODE_FILL = { value = 0x1b02, grade = "established" }
+POLYGON_MODE_LINE = { value = 0x1b01, grade = "established" }
+POLYGON_MODE_POINT = { value = 0x1b00, grade = "established" }
+TEXENV_COLOUR1_IMAGE = { value = 0x15f1413, grade = "established" }
+TEXENV_COLOUR_IMAGE = { value = 0x15e1402, grade = "established" }
+WINDOW_ID_CI_OVERLAY_OPAQUE = { value = 0x41, grade = "established", macro = "WINDOW_ID_CI_OVERLAY_OPAQUE", doc = "established: colour-index overlay, opaque" }
+WINDOW_ID_CI_OVERLAY_TRANSPARENT = { value = 0x40, grade = "established", macro = "WINDOW_ID_CI_OVERLAY_TRANSPARENT", doc = "established: 2-, 4- and 8-plane colour-index overlay, transparent" }
+WINDOW_ID_DYNAMIC_FIRST = { value = 0x44, grade = "inferred", macro = "WINDOW_ID_DYNAMIC_FIRST", doc = "inferred: ids 68 to 95 are handed out dynamically to other overlay windows" }
+WINDOW_ID_MAIN_FIRST = { value = 0x0, grade = "established", macro = "WINDOW_ID_MAIN_FIRST", doc = "established: main-plane window ids run 0 to 62" }
+WINDOW_ID_MAIN_LAST = { value = 0x3e, grade = "established", macro = "WINDOW_ID_MAIN_LAST" }
+WINDOW_ID_OVERLAY_FIRST = { value = 0x40, grade = "established", macro = "WINDOW_ID_OVERLAY_FIRST", doc = "established: overlay and underlay ids 64 to 95 (7 bits in all)" }
+WINDOW_ID_OVERLAY_LAST = { value = 0x5f, grade = "established", macro = "WINDOW_ID_OVERLAY_LAST" }
+WINDOW_ID_POPUP = { value = 0x3f, grade = "established", macro = "WINDOW_ID_POPUP", doc = "established: fixed popup window id; the popup's painted pattern is overlay group 31" }
+WINDOW_ID_RGB15_OVERLAY_OPAQUE = { value = 0x43, grade = "established", macro = "WINDOW_ID_RGB15_OVERLAY_OPAQUE", doc = "established: 15-bit RGB overlay, opaque" }
+WINDOW_ID_RGB15_OVERLAY_TRANSPARENT = { value = 0x42, grade = "established", macro = "WINDOW_ID_RGB15_OVERLAY_TRANSPARENT", doc = "established: 15-bit RGB overlay, transparent" }

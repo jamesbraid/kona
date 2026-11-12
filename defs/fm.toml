@@ -1,0 +1,101 @@
+# Imported from KONA_FM_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "fm"
+prefix = "FM"
+title = "frame-manager registers on the display bus"
+doc = "Frame-manager registers on the display bus: the swap strobe, the per-channel display ids and the board-level control words."
+from = "back-end definitions table, docs/command-table.md section 6.2"
+
+[c]
+legacy_header = "KONA_FM_DECODE.h"
+legacy_guard = "KONA_FM_DECODE_H"
+
+[spaces.fm_regs]
+unit = "reg"
+
+[registers.swap_strobe]
+offset = 0x80
+access = "w"
+width = 32
+grade = "established"
+space = "fm_regs"
+
+[registers.swap_strobe.fields]
+strobe = { bits = [1, 0], grade = "established" }
+
+[registers.voc_did]
+offset = 0x81
+access = "w"
+width = 32
+grade = "established"
+count = 8
+space = "fm_regs"
+
+[registers.voc_did.fields]
+did = { bits = [5, 0], grade = "established" }
+
+[registers.xwindow]
+offset = 0x8b
+access = "w"
+width = 32
+grade = "established"
+space = "fm_regs"
+
+[registers.xwindow.fields]
+reset_ratio = { bits = [22, 22], grade = "established" }
+sync_source = { bits = [21, 20], grade = "established" }
+x1_inv = { bits = [19, 10], grade = "established" }
+x0_inv = { bits = [9, 0], grade = "established" }
+
+[registers.did_range]
+offset = 0x8c
+access = "w"
+width = 32
+grade = "inferred"
+space = "fm_regs"
+
+[registers.did_range.fields]
+arg_d = { bits = [23, 19], grade = "unknown" }
+arg_c = { bits = [18, 13], grade = "unknown" }
+size_b = { bits = [12, 7], grade = "inferred" }
+size_a = { bits = [6, 0], grade = "inferred" }
+
+[registers.did_status]
+offset = 0x8d
+access = "r"
+width = 32
+grade = "established"
+space = "fm_regs"
+
+[registers.did_status.fields]
+shifting = { bits = [3, 3], grade = "established" }
+
+[registers.clock_select]
+offset = 0x8e
+access = "w"
+width = 32
+grade = "established"
+space = "fm_regs"
+
+[registers.clock_select.fields]
+internal = { bits = [23, 23], grade = "established" }
+arg_22_20 = { bits = [22, 20], grade = "unknown" }
+y1_inv = { bits = [19, 10], grade = "established" }
+y0_inv = { bits = [9, 0], grade = "established" }
+
+[registers.intr_state]
+offset = 0x8f
+access = "w"
+width = 32
+grade = "inferred"
+space = "fm_regs"
+
+[registers.raster_config]
+offset = 0x90
+access = "rw"
+width = 32
+grade = "established"
+space = "fm_regs"
+
+[registers.raster_config.fields]
+stuffing = { bits = [10, 8], grade = "established" }
+boards = { bits = [7, 5], grade = "established" }

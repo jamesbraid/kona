@@ -1,0 +1,519 @@
+// generated from defs/hip.toml by defs-gen - do not edit, change the source
+// host-interface registers
+#![allow(dead_code)]
+
+/// (established)
+pub mod ha_arm_ctrl {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x0;
+    pub mod value { // bits 1:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_idma_pnum {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x10;
+    pub mod page { // bits 28:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1fffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_idma_poff {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x14;
+    pub mod offset { // bits 11:2, established
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_idma_ctrl {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x20;
+    pub mod mode { // bits 1:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_ldma_addr {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x30;
+    pub mod addr { // bits 25:3, established
+        pub const SHIFT: u32 = 3;
+        pub const MASK: u32 = 0x7fffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_ldma_ctrl {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3c;
+    pub mod value { // bits 0:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_ldma_src {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x48;
+    pub mod value { // bits 0:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_ctrl {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x50;
+    pub mod value { // bits 1:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_divert_pc {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x54;
+    pub mod vector { // bits 27:2, established
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3ffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_wc {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x5c;
+}
+/// (established)
+pub mod ha_icu_state {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x68;
+    pub mod value { // bits 1:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_error_pc {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x6c;
+    pub mod vector { // bits 27:2, established
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3ffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_loop_addr {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x70;
+    pub mod value { // bits 8:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1ff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_icu_arrcnt {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x74;
+    pub mod count { // bits 15:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod ha_host_mbox {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x90;
+}
+/// (established)
+pub mod hh_intr_status {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x238;
+    pub mod idma_ov { // bits 11:11, established
+        pub const SHIFT: u32 = 11;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod pio_ov { // bits 10:10, established
+        pub const SHIFT: u32 = 10;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod voc { // bits 9:9, established
+        pub const SHIFT: u32 = 9;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod parity { // bits 8:8, established
+        pub const SHIFT: u32 = 8;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod unused { // bits 7:7, established
+        pub const SHIFT: u32 = 7;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod odma { // bits 6:6, established
+        pub const SHIFT: u32 = 6;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod ge { // bits 5:5, established
+        pub const SHIFT: u32 = 5;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod arm { // bits 4:4, established
+        pub const SHIFT: u32 = 4;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod video { // bits 3:3, established
+        pub const SHIFT: u32 = 3;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod fifo_ov { // bits 2:2, established
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod fifo_lo { // bits 1:1, established
+        pub const SHIFT: u32 = 1;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod fifo_hi { // bits 0:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod hh_arm_mbox {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x240;
+}
+/// (established)
+pub mod hh_arm_ctrl {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x308;
+    pub mod host_access { // bits 0:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod hh_vc_address {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3c0;
+    pub mod value { // bits 15:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0xffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (inferred)
+pub mod hh_vc_ready {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3c8;
+    pub mod ready { // bits 0:0, inferred
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod hh_vc_data {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3d0;
+}
+/// (inferred)
+pub mod hh_vc_data_incr {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3d8;
+}
+/// (established)
+pub mod hh_arm_address {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3e8;
+    pub mod word_address { // bits 27:2, established
+        pub const SHIFT: u32 = 2;
+        pub const MASK: u32 = 0x3ffffff;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
+/// (established)
+pub mod hh_arm_data {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3f0;
+}
+/// (inferred)
+pub mod hh_arm_data_incr {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x3f8;
+}
+/// (established)
+pub mod cmd_descriptor {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x400;
+}
+/// (established)
+pub mod cmd_operand {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x840;
+}
+/// (established)
+pub mod cmd_data {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x8c0;
+}
+/// (established)
+pub mod rbus_odma2_data {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x476;
+}
+/// (inferred)
+pub mod rbus_odma2_flush {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x477;
+}
+/// (established)
+pub mod xg_err_status {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x6c;
+    pub mod idma_response_bad_tnum { // bits 28:28, established
+        pub const SHIFT: u32 = 28;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod idma_response_size { // bits 27:27, established
+        pub const SHIFT: u32 = 27;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod odma_fifo_overflow { // bits 26:26, established
+        pub const SHIFT: u32 = 26;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod mapram_invalid { // bits 13:13, established
+        pub const SHIFT: u32 = 13;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod mapram_parity { // bits 12:12, established
+        pub const SHIFT: u32 = 12;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod response { // bits 9:9, established
+        pub const SHIFT: u32 = 9;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod read_req_timeout { // bits 8:8, established
+        pub const SHIFT: u32 = 8;
+        pub const MASK: u32 = 0x1;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}

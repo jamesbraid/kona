@@ -1,0 +1,698 @@
+{
+ "schema": "defs-flat/1",
+ "source": "defs/hip.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_arm_ctrl",
+   "offset": 0,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_arm_ctrl.value",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_idma_pnum",
+   "offset": 16,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_idma_pnum.page",
+   "hi": 28,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_idma_poff",
+   "offset": 20,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_idma_poff.offset",
+   "hi": 11,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_idma_ctrl",
+   "offset": 32,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_idma_ctrl.mode",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_ldma_addr",
+   "offset": 48,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_ldma_addr.addr",
+   "hi": 25,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_ldma_ctrl",
+   "offset": 60,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_ldma_ctrl.value",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_ldma_src",
+   "offset": 72,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_ldma_src.value",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_ctrl",
+   "offset": 80,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_ctrl.value",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_divert_pc",
+   "offset": 84,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_divert_pc.vector",
+   "hi": 27,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_wc",
+   "offset": 92,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_state",
+   "offset": 104,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_state.value",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_error_pc",
+   "offset": 108,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_error_pc.vector",
+   "hi": 27,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_loop_addr",
+   "offset": 112,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_loop_addr.value",
+   "hi": 8,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_icu_arrcnt",
+   "offset": 116,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "ha_icu_arrcnt.count",
+   "hi": 15,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "ha_host_mbox",
+   "offset": 144,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "arm",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_intr_status",
+   "offset": 568,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.idma_ov",
+   "hi": 11,
+   "lo": 11,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.pio_ov",
+   "hi": 10,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.voc",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.parity",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.unused",
+   "hi": 7,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.odma",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.ge",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.arm",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.video",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.fifo_ov",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.fifo_lo",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_status.fifo_hi",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_mbox",
+   "offset": 576,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_ctrl",
+   "offset": 776,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_ctrl.host_access",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_vc_address",
+   "offset": 960,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_vc_address.value",
+   "hi": 15,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_vc_ready",
+   "offset": 968,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_vc_ready.ready",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_vc_data",
+   "offset": 976,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_vc_data_incr",
+   "offset": 984,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_address",
+   "offset": 1000,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_address.word_address",
+   "hi": 27,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_data",
+   "offset": 1008,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_data_incr",
+   "offset": 1016,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "cmd_descriptor",
+   "offset": 1024,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "cmd_operand",
+   "offset": 2112,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "cmd_data",
+   "offset": 2240,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "rbus_odma2_data",
+   "offset": 1142,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "rbus",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "rbus_odma2_flush",
+   "offset": 1143,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "rbus",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "xg_err_status",
+   "offset": 108,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "xg",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.idma_response_bad_tnum",
+   "hi": 28,
+   "lo": 28,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.idma_response_size",
+   "hi": 27,
+   "lo": 27,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.odma_fifo_overflow",
+   "hi": 26,
+   "lo": 26,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.mapram_invalid",
+   "hi": 13,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.mapram_parity",
+   "hi": 12,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.response",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_err_status.read_req_timeout",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established"
+  }
+ ]
+}

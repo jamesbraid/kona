@@ -1,0 +1,121 @@
+# Imported from KONA_DACIDX_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "dacidx"
+prefix = "DACIDX"
+title = "video DAC and encoder indexed registers"
+doc = "Indexed registers behind the video DAC and encoder ports, and the DAC cursor control word."
+from = "back-end definitions table, docs/command-table.md section 6.6"
+
+[c]
+legacy_header = "KONA_DACIDX_DECODE.h"
+legacy_guard = "KONA_DACIDX_DECODE_H"
+
+[words.COMMAND_1]
+width = 32
+from = "published description of the part the DAC matches"
+doc = """
+Command register 1 (index 0x005 above), 8 bits. Start-up value 0x88: bits 7:6 = 2
+(24-bit bypass colour), bit 3 = 1 (exposes the address register's high byte,
+which the 0x200, 0x300 and 0x400 index spaces need), bits 5:4 = 0 (palette
+select function), bit 0 = 0 (no per-sync calibration). The decode of the value
+against the published description is established; the grade here is inferred
+because the part's identity is: no shipped code reads the part's ID register
+to confirm it."""
+grade = "inferred"
+
+[words.COMMAND_1.fields]
+bypass_colour = { bits = [7, 6], grade = "inferred" }
+palette_select = { bits = [5, 4], grade = "inferred" }
+addr_high = { bits = [3, 3], grade = "inferred" }
+calibrate = { bits = [0, 0], grade = "inferred" }
+
+[[words.COMMAND_1.tests]]
+value = 0x88
+expect = { calibrate = 0, addr_high = 1, palette_select = 0, bypass_colour = 2 }
+
+[words.COMMAND_2]
+width = 32
+from = "published description of the part the DAC matches"
+doc = """
+Command register 2 (index 0x006 above), 8 bits. Start-up value 0xe4: bits 7:4 =
+14 (24-bit true colour), bit 3 = 0 (no pedestal), bit 2 = 1 (sync on green).
+The same start-up routine zeroes indexes 0x007, 0x008, 0x009 and 0x00d, which
+leaves pixel multiplexing at 1:1 and the PLL off. Graded inferred for the same
+reason as command register 1; only a read of the ID register on a real board
+settles the part."""
+grade = "inferred"
+
+[words.COMMAND_2.fields]
+colour_mode = { bits = [7, 4], grade = "inferred" }
+pedestal = { bits = [3, 3], grade = "inferred" }
+sync_on_green = { bits = [2, 2], grade = "inferred" }
+
+[[words.COMMAND_2.tests]]
+value = 0xe4
+expect = { sync_on_green = 1, pedestal = 0, colour_mode = 14 }
+
+[words.CURSOR_CONTROL]
+width = 32
+from = "published description of the part the DAC matches"
+doc = """
+Cursor control (index 0x204 above). The kernel writes 5 (X11 mode, enabled) for
+the channel that owns the cursor and 0 for the rest; start-up value 0. Bits
+7:4 are zero."""
+grade = "established"
+
+[words.CURSOR_CONTROL.fields]
+interlace = { bits = [3, 3], grade = "established" }
+enable = { bits = [2, 2], grade = "established" }
+
+[words.CURSOR_CONTROL.fields.mode]
+bits = [1, 0]
+grade = "established"
+
+[words.CURSOR_CONTROL.fields.mode.enums]
+x11 = { value = 1, grade = "established" }
+xga = { value = 2, grade = "established" }
+
+[[words.CURSOR_CONTROL.tests]]
+value = 0x5
+expect = { mode = 1, enable = 1, interlace = 0 }
+
+[constants]
+CURSOR_COLOUR_2 = { value = 0x304, grade = "established", doc = "the diagnostic names this one: it belongs to colour 2" }
+CURSOR_COLOUR_BASE = { value = 0x303, grade = "inferred", doc = "six 10-bit colour values stream from here; the assignment of the six to colours is inferred" }
+CURSOR_CONTROL = { value = 0x204, grade = "established", doc = "layout below" }
+CURSOR_IMAGE_RAM = { value = 0x400, grade = "established", doc = "image RAM select; 256 words streamed low byte first" }
+CURSOR_X_HIGH = { value = 0x201, grade = "established", doc = "cursor x, high byte" }
+CURSOR_X_LOW = { value = 0x200, grade = "established", doc = "cursor x, low byte; scaled to the channel output size" }
+CURSOR_Y_HIGH = { value = 0x203, grade = "established", doc = "cursor y, high byte" }
+CURSOR_Y_LOW = { value = 0x202, grade = "established", doc = "cursor y, low byte" }
+ENCIDX_ACTIVE = { value = 0x15, grade = "established", macro = "ENCIDX_ACTIVE" }
+ENCIDX_ACTIVE_END = { value = 0x17, grade = "established", macro = "ENCIDX_ACTIVE_END" }
+ENCIDX_ACTIVE_START = { value = 0x16, grade = "established", macro = "ENCIDX_ACTIVE_START" }
+ENCIDX_BREEZEWAY = { value = 0x11, grade = "established", macro = "ENCIDX_BREEZEWAY" }
+ENCIDX_BURST_LENGTH = { value = 0x12, grade = "established", macro = "ENCIDX_BURST_LENGTH" }
+ENCIDX_BURST_PHASE_LSB = { value = 0x26, grade = "established", macro = "ENCIDX_BURST_PHASE_LSB" }
+ENCIDX_BURST_PHASE_MSB = { value = 0x27, grade = "established", macro = "ENCIDX_BURST_PHASE_MSB" }
+ENCIDX_COLOUR_BACK_PORCH = { value = 0x13, grade = "established", macro = "ENCIDX_COLOUR_BACK_PORCH" }
+ENCIDX_COLOUR_BAR_LENGTH = { value = 0x1e, grade = "established", macro = "ENCIDX_COLOUR_BAR_LENGTH" }
+ENCIDX_EQUALIZE_HIGH = { value = 0x1b, grade = "established", macro = "ENCIDX_EQUALIZE_HIGH" }
+ENCIDX_EQUALIZE_LOW = { value = 0x1a, grade = "established", macro = "ENCIDX_EQUALIZE_LOW" }
+ENCIDX_EXT_COLOUR_BACK_PORCH = { value = 0x14, grade = "established", macro = "ENCIDX_EXT_COLOUR_BACK_PORCH" }
+ENCIDX_FORMAT_CONTROL = { value = 0x1, grade = "established", macro = "ENCIDX_FORMAT_CONTROL", doc = "7 bits" }
+ENCIDX_FRONT_PORCH = { value = 0x19, grade = "established", macro = "ENCIDX_FRONT_PORCH" }
+ENCIDX_GLOBAL_CONTROL = { value = 0x0, grade = "established", macro = "ENCIDX_GLOBAL_CONTROL", doc = "5 bits" }
+ENCIDX_HSYNC_TIP = { value = 0x10, grade = "established", macro = "ENCIDX_HSYNC_TIP" }
+ENCIDX_INTERFACE_CONTROL = { value = 0x2, grade = "established", macro = "ENCIDX_INTERFACE_CONTROL" }
+ENCIDX_KEY_CONTROL = { value = 0x4, grade = "established", macro = "ENCIDX_KEY_CONTROL" }
+ENCIDX_KEY_D = { value = 0x5, grade = "established", macro = "ENCIDX_KEY_D" }
+ENCIDX_KEY_E = { value = 0x6, grade = "established", macro = "ENCIDX_KEY_E" }
+ENCIDX_KEY_F = { value = 0x7, grade = "established", macro = "ENCIDX_KEY_F" }
+ENCIDX_SUBCARRIER_FREQ_BYTE1 = { value = 0x23, grade = "established", macro = "ENCIDX_SUBCARRIER_FREQ_BYTE1", doc = "frequency byte 1 (least significant)" }
+ENCIDX_SUBCARRIER_FREQ_BYTE2 = { value = 0x22, grade = "established", macro = "ENCIDX_SUBCARRIER_FREQ_BYTE2" }
+ENCIDX_SUBCARRIER_FREQ_BYTE3 = { value = 0x21, grade = "established", macro = "ENCIDX_SUBCARRIER_FREQ_BYTE3" }
+ENCIDX_SUBCARRIER_FREQ_BYTE4 = { value = 0x20, grade = "established", macro = "ENCIDX_SUBCARRIER_FREQ_BYTE4", doc = "frequency byte 4 (most significant)" }
+ENCIDX_VIDEO_PHASE_LSB = { value = 0x24, grade = "established", macro = "ENCIDX_VIDEO_PHASE_LSB" }
+ENCIDX_VIDEO_PHASE_MSB = { value = 0x25, grade = "established", macro = "ENCIDX_VIDEO_PHASE_MSB" }
+ENCIDX_VSYNC_HIGH = { value = 0x1d, grade = "established", macro = "ENCIDX_VSYNC_HIGH" }
+ENCIDX_VSYNC_LOW = { value = 0x1c, grade = "established", macro = "ENCIDX_VSYNC_LOW" }
+PIXEL_MASK = { value = 0x4, grade = "inferred", doc = "8 bits per the published description (the diagnostic's table mask is 0x3ff but its read-back compares 8 bits); start-up 0xff" }
+START_UP_A = { value = 0x5, grade = "inferred", doc = "command register 1 of the part the DAC matches; start-up value 0x88, layout below" }
+START_UP_B = { value = 0x6, grade = "inferred", doc = "command register 2 of the part the DAC matches; start-up value 0xe4, layout below" }

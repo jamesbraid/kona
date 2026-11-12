@@ -1,0 +1,37 @@
+# Imported from KONA_QUERY_DECODE.h. Review the sources and grades, then maintain by hand.
+unit = "query"
+prefix = "KONA_QUERY"
+title = "host query tokens of the InfiniteReality2 pipe"
+from = "back-end definitions table, docs/command-table.md section 2.13"
+
+[c]
+legacy_header = "KONA_QUERY_DECODE.h"
+legacy_guard = "KONA_QUERY_DECODE_H"
+
+[constants]
+BOARD_CONFIGURATION_BLOCK = { value = 0x1e9, grade = "established" }
+CLIP_PLANE = { value = 0x3c, grade = "established" }
+COLOUR_TABLE = { value = 0xea, grade = "established" }
+COLOUR_TABLE_PARAMETERS = { value = 0xec, grade = "established" }
+CONVOLUTION_FILTER = { value = 0xf4, grade = "established" }
+CURRENT_VERTEX_ATTRIBUTES = { value = 0x3b, grade = "established" }
+DEFORMATION_STATE = { value = 0x1c6, grade = "established" }
+ENGINE_SIDE_TEXTURE_ATTRIBUTES = { value = 0x134, grade = "established" }
+ENGINE_TRANSFORM_ATTRIBUTES = { value = 0x1cb, grade = "established" }
+HISTOGRAM = { value = 0x104, grade = "established" }
+HISTOGRAM_PARAMETERS = { value = 0x105, grade = "established" }
+LIGHT = { value = 0x41, grade = "established" }
+LINE_MODE_LIMIT_TABLE = { value = 0xee, grade = "established" }
+MATERIAL = { value = 0x46, grade = "established" }
+MIN_MAX_PARAMETERS = { value = 0x10a, grade = "established" }
+MIN_MAX_RESULTS = { value = 0x109, grade = "established" }
+PENDING_ERROR = { value = 0x3e, grade = "established" }
+PIXEL_MAP = { value = 0x48, grade = "established" }
+PIXEL_TRANSFORM_PARAMETERS = { value = 0xfa, grade = "established" }
+POLYGON_STIPPLE = { value = 0x4b, grade = "established" }
+RASTER_POSITION_STATE = { value = 0x3d, grade = "established" }
+SEPARABLE_FILTER = { value = 0xf7, grade = "established" }
+STATE = { value = 0x4c, grade = "established" }
+TEXTURE_ENVIRONMENT = { value = 0x4d, grade = "established" }
+TEXTURE_GENERATION = { value = 0x50, grade = "established" }
+TEXTURE_IMAGE = { value = 0x52, grade = "established" }
