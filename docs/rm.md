@@ -671,6 +671,51 @@ as [chips on each board](#chips-on-each-board) reads, and the file is parsed by 
 
 **Established** since, from the firmware's requester set-up and `irsaudit` ([dg.md](dg.md#the-video-requester)): the VOC reads its window in tiles of 160 pixels by 8 lines, counted in groupxels of four pixels. A line is asked for as up to three request words (START, a repeated MIDDLE, END), each holding a tile count, a groupxel count, a valid bit and, for MIDDLE, a repeat count. Each field also gets a first tile address (tile row x tiles per row + x / 160). The XMAP registers the diagnostic's table leaves out (4, 5, 8, 9, 0xa, 0x10 and the indirect ports 0x118-0x11f) are read in [dg.md](dg.md#xmap-registers-memories-and-the-fast-list). The transfer is 10 or 12 bits per component with optional alpha, and 12 only for RGB (`irsaudit`'s format checks). **Inferred:** each XMAP takes one 40-bit pixel per clock, a 10:10:10:10 or 12:12:12 pixel. **Unknown: no shipped software or published source depends on it:** the bit order on the 160 wires, and how a request word on the `vidreq` net is serialised to the IMPs. Routes tried: the netlists, the firmware's requester code (`dgConfigureVideoRequester`), `irsaudit`'s video tests (which check CRC signatures, not wire values), its requester messages and the `.vof` register list.
 
+## Pixel ownership and plane layout with several RM boards
+
+A pipe has one, two or four RM boards; the driver turns any other count into one ([opengl.md](opengl.md)). This section says which board holds which pixel, what sits in each pixel's words, and how the scanout wires divide. Nothing here is read from a running board.
+
+**Established** (published, the InfiniteReality architecture paper, section 2.8; [published-sources.md](published-sources.md)): each board's fragment generator owns two-pixel-wide vertical strips, and the vertex stream goes to every board, so each board sees every primitive and keeps only the fragments in its own strips.
+
+**Unverified.** The diagnostic's screen-to-board routine (`screenx_to_rmx`, `irsaudit` 0x100cef14, 64 bytes, called from `screenxy_to_all` at 0x100cecdc) is read as giving, for N boards:
+
+- owning board = (x / 2) mod N;
+- board-local column = (x mod 2) + ((2 * (x / (2N))) mod 80), integer division;
+- row term = (y / 2) mod 40.
+
+The repository holds only the call list for that routine ([instruction readings](instruction-readings-kona-g15.md)), not its arithmetic, so none of this was re-read from the bytes. Whether a managed area or window origin shifts the phase is unknown. Re-read 0x100cef14 before relying on the formula.
+
+Consequence if the formula holds: pixel ownership depends on the column alone, so a screen tile is not one board's territory when N is above one. The 80 image engines of a board each own one 256K by 32 memory, and their permutation (the table at 0x100cef54 and the image-processor table at 0x100cf050) is not extracted, so which engine holds a pixel is unknown.
+
+**Unverified.** Plane words inside one pixel, from the buffer-configuration handler `arm_buffer_config` (`arm1.u` 0x0c0131a0; the layout bytes it writes are in the [arm1 functions](../ucode/arm1_functions.md)). Sizes are in words, S is the sample count, and planes follow each other in this order:
+
+| Plane | Starts after | Words |
+| --- | --- | --- |
+| Colour buffers | window offset plus 1 at level 0; 0 above level 0 (overlay, inferred) | one per buffer when the colour size is under 12 bits or exactly 16; otherwise buffers times 1.5, rounded up. Buffers: 1 single, 2 double, 3 single with stereo, 4 double with stereo |
+| Depth | colour end | 0 without depth; 1 with no multisampling; otherwise S / 2 for 16-bit depth and 3S / 4 for 24 or 32 bits. A 1-bit stencil with no depth takes 1 |
+| 8-bit stencil | depth end | max(1, S / 4) |
+| 1-bit stencil | shares the depth word | 0 |
+| Multisample colour | stencil end | 3S / 4 (colour under 12 bits or 16), 3S / 2 (12-bit); 0 without multisampling |
+| Accumulation | multisample end | 0 without, and in colour-index mode; otherwise 3 for colour under 12 bits, 2 or 4 for 16 (by mode byte 0xcf1), 4 for 12-bit |
+
+The five base fields go into the image-processor base register (`IMP_ADDR`, 0x1c0b) at bits 0, 6, 13, 19 and 25, unmasked. The bases are word offsets within one pixel's record, shifted per window by the window-validation routine. The physical address function from pixel and word offset to SDRAM row, column and bank is unknown.
+
+**Unverified.** Scanout wires to the display boards by board count. The 160 video wires are shared out by board position, not by pixel:
+
+| Boards | Board 0 | Board 1 | Board 2 | Board 3 |
+| --- | --- | --- | --- | --- |
+| 1 | wires 0-159 | | | |
+| 2 | wires 0-79 | wires 80-159 | | |
+| 4 | even wires 0-78 | even wires 80-158 | odd wires 1-79 | odd wires 81-159 |
+
+Each group of 40 wires feeds one display mapping chip. The wire-to-pixel order is unknown. The netlists `fpln_2voc_2rm_*` and `fpln_2voc_4rm_*` exist with their pin widths in [diags/netmap_chips.tsv](../diags/netmap_chips.tsv), but the repository does not carry their connection lists, so this table is from the netlist reading alone.
+
+**Inferred:** the pixel budget that the driver computes ([opengl.md](opengl.md), `vfmtResolvePixelDepth`) is per-pixel memory in 32-bit words. A pixel holds 64, 32, 16, 8 or 4 words (2048, 1024, 512, 256 or 128 bits) for the five thresholds. Worked case: one board at 1280 by 1024 gives 20,971,520 words over 1,310,720 pixels, which is 16 words or 512 bits per pixel, the figure the architecture paper gives (section 2). Two boards double the pixel count at the same depth, or double the words per pixel.
+
+**Inferred:** a texture write or clip-map update reaches every board, so the boards' texture bytes stay equal, and a texture allocation fails at one board's capacity, not N times it. Texture memory is still one copy per board, so no texture rule depends on N.
+
+**Unknown: no shipped software or published source depends on it:** which board a texture read-back comes from; the phase of the screen-to-board mapping under a managed area; the wire-to-pixel order on the scanout bus.
+
 ## What the published manuals add
 
 Board configurations, memory sizes and a few texture-memory rules from SGI's manuals and datasheets. Labels follow [published-sources.md](published-sources.md); page numbers are PDF page indexes of the stored copies ([docs/sources/](sources/README.md)). Display-side figures are in [dg.md](dg.md#what-the-published-manuals-add).
