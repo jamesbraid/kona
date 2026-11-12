@@ -1099,7 +1099,7 @@
 /*
  * TFP_TEV (index 0x1401): texture environment function, a four-bit alpha function and a four-bit
  * colour function (replace fragment, replace texture, modulate, blend, decal, add, add with a
- * half, sign not established). Established: irsaudit `tbuTexEnv` writes the saved copy at 0x10154b00, `tbuRegReset`
+ * half). Established: irsaudit `tbuTexEnv` writes the saved copy at 0x10154b00, `tbuRegReset`
  * restores 0x22, which is modulate for both, and the shadow start-up value in befsh_init is the
  * same 0x22. No arm1.u routine carries this index as an address word. */
 #define KONA_RM_TFP_TEV                                  0x1401

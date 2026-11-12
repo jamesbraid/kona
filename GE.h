@@ -9278,9 +9278,10 @@ enum kona_kpm_shadow_row {
 /*
  * Diag Sel Register (0x40010), established: `init_ge` in arm1.u writes the address at 0x0c003568
  * and 0x100 at 0x0c003584 just before setting GO, and kpm's `ge11LoadUcode` repeats the same
- * 0x100 at 0x1001be4c. 0x100 is the register's only named field, OUTPUT (bit 8). Inferred: the register picks which internal signals the engine drives
- * on its diagnostic pins and bit 8 turns that output on. kpm dumps it at 0x1001e844. Whether the bit
- * is an input or an output select, and what bit 5 does, are unknown; no program sets bit 5. */
+ * 0x100 at 0x1001be4c. 0x100 is the register's only named field, OUTPUT (bit 8). Inferred: the
+ * register picks which internal signals the engine drives on its diagnostic pins and bit 8 turns
+ * that output on. kpm dumps it at 0x1001e844. Bit 5 is unknown: no program sets it, and a read of
+ * the engine netlist's diagnostic pin logic would settle it. */
 #define KONA_GE11_REG_DIAG_SEL                       0x40010  /* "Diag Sel Register" */
 #define KONA_GE11_DIAGSEL_OUTPUT                0x00000100  /* bits from 8 */
 
@@ -9392,9 +9393,10 @@ enum kona_kpm_shadow_row {
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
 
 /*
- * OFIFO2 B Status Register (0x40034), the last of the six pointer words: half B of output FIFO 2.
- * Established: dumped by kpm at 0x1001e8d4, never written. Inferred: equal pointers mean that half
- * is empty, and a dump taken after a hang shows from the six words which queue backed up. */
+ * OFIFO2 B Status Register (0x40034), the last of the six pointer words and the B half of output
+ * FIFO 2. kpm labels it the B status word, and the A status word at 0x40030 is the other half.
+ * Established: kpm dumps it at 0x1001e8d4, and no program writes it. Inferred: equal pointers mean
+ * that half is empty, and a dump taken after a hang shows from the six words which queue backed up. */
 #define KONA_GE11_REG_OFIFO2_B_STATUS                0x40034  /* "OFIFO2 B Status Register" */
 #define KONA_GE11_OFIFO_WR_PTR                  0x0000007f  /* bits from 0 */
 #define KONA_GE11_OFIFO_RD_PTR                  0x00003f80  /* bits from 7 */
@@ -9405,8 +9407,9 @@ enum kona_kpm_shadow_row {
  * configuration flag allows it, otherwise 0x8e0 at 0x0c0033f4; kpm's `ge11LoadUcode` writes the same
  * pair (0xce0 at 0x1001bd08, 0x8e0 at 0x1001bfd0), and `ge11BypassEnable` writes 0x801 or 0xc01
  * to all eight engines at 0x1001b8bc. Inferred: bits 10-11 follow the board configuration and bit
- * 0 alone puts the output FIFOs in bypass for a diagnostic. The meaning of bits 1-9 is unknown: both
- * KONA values, 0xce0 and 0x8e0, carry the same bits 5-7 (0xe0). */
+ * 0 alone puts the output FIFOs in bypass for a diagnostic. Bits 1-9 are unknown: both KONA values,
+ * 0xce0 and 0x8e0, carry the same bits 5-7 (0xe0), and a read of the FIFO control logic in the
+ * engine netlist would settle the rest. */
 #define KONA_GE11_REG_OFIFO_CONTROL                  0x40038  /* "OFIFO Control Register (trashed)" */
 
 /*

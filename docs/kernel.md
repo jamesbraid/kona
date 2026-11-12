@@ -124,18 +124,18 @@ Every ioctl number the user-space binaries send or the kernel dispatchers handle
 
 | Ioctl number | Name | What it does |
 |---|---|---|
-| 101 (0x65) | `GFX_GETNUM_BOARDS` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2cf4): stores the number of registered graphics boards in the caller's return value and returns 0, so a client can size its scan of the boards. |
-| 102 (0x66) | the get-board-information graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m): copies in a 24-byte request, fails with ENODEV (19) for a board number past the count, and otherwise calls the board driver's information function, which returns the board name, label and screen size to the caller. |
-| 103 (0x67) | `GFX_ATTACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): binds the open connection to a board. It copies the board record, operation table and private state into the connection, calls the board driver's attach function with the user address, and makes the connection the board owner when it has none; a second attach on one connection fails with 16. |
-| 104 (0x68) | `GFX_DETACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2e80): releases the connection's board, refusing with 16 when an IrisGL-mode connection shares its thread group with other threads. |
-| 105 (0x69) | `GFX_IS_MANAGED` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ef0): copies in a 4-byte board number and returns 1 when the board has a managing connection (an X server), 0 otherwise, so setup tools do not re-initialise a live board. |
-| 106 (0x6a) | the initialize graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ff8): board owner only (EPERM otherwise); takes the pipe semaphore, waits for the pending-operation count to drain, calls the board driver's initialise function (operation +24) and unmaps the connection if it was mapped. |
-| 107 (0x6b) | the start graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3078): board owner only; takes the pipe semaphore the same way and calls the board driver's start function (operation +40), the call that lets the pipe run after its microcode is down. |
-| 109 (0x6d) | the blank-screen graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x309c): board owner only; returns 0 without calling the board driver, so on this driver the call has no effect on the display. |
-| 110 (0x6e) | `GFX_MAPALL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2d78): takes the pipe semaphore, calls the board driver's map function (operation +96) with the arguments (connection, 0, -1) and sets connection flag 0x20 whether or not it succeeds, giving diagnostics a mapping of the whole pipe instead of the per-process one. |
-| 111 (0x6f) | `GFX_LABEL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x30d4): board owner only; copies a 16-byte string from the caller into the label field of the board's information record, which is how the X server names the board it manages. |
-| 112 (0x70) | the reattach board graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): the same steps as an attach but without the "already attached" refusal, for a tool that re-opens a board it already holds. |
-| 113 (0x71) | the set diagnostic flag graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2fa0): calls `drv_priv` on the caller's credentials and, if the caller is the super-user, sets connection flag 4, which selects the privileged register mapping described under "What a process maps". |
+| `0x65` (101) | `GFX_GETNUM_BOARDS` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2cf4): stores the number of registered graphics boards in the caller's return value and returns 0, with no argument copied in. |
+| `0x66` (102) | the get-board-information graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m): copies in a 24-byte request, fails with ENODEV (19) for a board number past the count, and otherwise calls the board driver's information function, which fills the caller's buffer. |
+| `0x67` (103) | `GFX_ATTACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): binds the open connection to a board. It copies the board record, operation table and private state into the connection, calls the board driver's attach function with the user address, and makes the connection the board owner when it has none; a second attach on one connection fails with 16. |
+| `0x68` (104) | `GFX_DETACH_BOARD` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2e80): releases the connection's board, refusing with 16 when an IrisGL-mode connection shares its thread group with other threads. |
+| `0x69` (105) | `GFX_IS_MANAGED` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ef0): copies in a 4-byte board number and returns 1 when the board record's +8 field is set, 0 otherwise. |
+| `0x6a` (106) | the initialize graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2ff8): board owner only (EPERM otherwise); takes the pipe semaphore, waits for the pending-operation count to drain, calls the board driver's initialise function (operation +24) and unmaps the connection if it was mapped. |
+| `0x6b` (107) | the start graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3078): board owner only; takes the pipe semaphore the same way and calls the board driver's start function (operation +40), returning what it returns. |
+| `0x6d` (109) | the blank-screen graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x309c): board owner only; returns 0 without calling the board driver, so on this driver the call has no effect on the display. |
+| `0x6e` (110) | `GFX_MAPALL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2d78): takes the pipe semaphore, calls the board driver's map function (operation +96) with the arguments (connection, 0, -1) and sets connection flag 0x20 whether or not it succeeds. The map covers the whole pipe, not the per-process part. |
+| `0x6f` (111) | `GFX_LABEL` | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x30d4): board owner only; copies a 16-byte string from the caller into the label field of the board's information record. |
+| `0x70` (112) | the reattach board graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x3260): the same steps as an attach but without the "already attached" refusal. |
+| `0x71` (113) | the set diagnostic flag graphics-driver request | **Established** (`gfxioctl`, `gfx.o`, 6.5.30m, +0x2fa0): calls `drv_priv` on the caller's credentials and, if the caller is the super-user, sets connection flag 4, which selects the privileged register mapping described under "What a process maps". |
 
 ### Resource manager ioctls
 
@@ -197,7 +197,7 @@ The senders below are read from the call sites of the 6.5.30m user-space binarie
 One entry per ioctl number that the inventory finds in a sender or in the private jump table. Handlers and
 argument sizes are read from the 6.5.30m objects `gfx.o`, `rrm.o` and `kona_ioctl.o`; the sender is the first
 binary and function the inventory finds loading the number into the ioctl call. The entries below are read from the
-disassembly of those objects; they carry no per-entry label because each describes a request, not one routine.
+disassembly of those objects; they carry no per-entry label unless one is given, because each describes a request, not one routine.
 
 ### Generic ioctls (`gfx.o`)
 
@@ -240,7 +240,7 @@ text section.
   At 0x3078: an owner-only call that takes the pipe semaphore in the same way and returns what the
   board's start operation (+40) returns; that operation lets the pipe run once its microcode is loaded. Sent by `main` in `gfxinfo`.
 - 0x6c (ioctl 108).
-  At 0x2fc0: an attached connection's 40-byte request is translated by `copyin_xlate` and passed with the
+  At 0x2fc0: **Established.** An attached connection's 40-byte request is translated by `copyin_xlate` and passed with the
   connection to the board's download operation (+32). For this board that operation is `KONAdownload` in `kona_stubs.o`,
   which returns 0, so the request changes nothing on the pipe. The inventory finds it sent by `gr2_init`
   and `mgras_init` in `gfxinfo`, code for other board families.
