@@ -12,7 +12,7 @@ These entries come from rendered facts for 25 routines in the IGLOO32 build of `
   **Inferred.** Writes a record with one word at cursor+0 and seven halfwords from +0x4 to +0x10. It runs two room tests, one against cursor+32 at 0xec49074 and one against cursor+20 at 0xec490ac. The routine has two gl_comm_flush calls at 0xec40750 (at 0xec490e0, passing its own arguments through, and at 0xec49114, passing cursor+20 as a0). The facts do not show which path is the ordinary one, so the record size is not fully established.
 
 - `gl_d_RGBmode` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec49130
-  **Inferred.** Appends a 4-byte record: a single word stored at the cursor. The room test at 0xec49164 compares comm_endbuffer with cursor+4, and the short-room path calls gl_comm_flush at 0xec40750 with the constant 0x84 as a0. The routine advances comm_curbufpos and returns the cursor address.
+  **Inferred.** Appends a 4-byte record: a single word stored at the cursor. The room test at 0xec49164 compares comm_endbuffer with cursor+4, and the short-room path calls gl_comm_flush at 0xec40750 with the constant 0x84 as a0. The routine advances comm_curbufpos at 0xec49168. The return at 0xec49170 is either 0xecd6c4c, the address of the comm_curbufpos variable, or the gl_comm_flush result, depending on the room test.
 
 - `gl_d_RGBwritemask` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec49190
   **Inferred.** Appends a 12-byte record with the same layout as gl_d_RGBcolor: a word at cursor+0 and halfwords at +0x4, +0x6 and +0x8. The room test at 0xec491d0 compares comm_endbuffer with cursor+12, and the short-room path calls gl_comm_flush at 0xec40750 with the constant 0x85 as a3.
