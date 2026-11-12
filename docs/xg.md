@@ -82,6 +82,14 @@ Each register is the low 32-bit half of a 64-bit slot at 8n (offset 8n + 4); the
 
 **Unknown: no shipped software or published source depends on it:** the pulse width (the two reads between the writes are the only delay), whether the 1-to-0 sequence with the start bit clear stops a running ARM, and what happens to the graphics FIFO contents, the DMA and event counters and the token map. After every pulse the kernel rewrites the registers it relies on and restarts flow control, and the firmware rebuilds the token map and reloads its tables in `init_hip` and `init_ged` each time it starts ([arm1_firmware.md](../ucode/arm1_firmware.md)), so no shipped program reads any of that state across a reset; the only state the driver expects to survive is the map RAM ([above](#what-the-software-expects-of-the-xg-beyond-its-registers)). Routes tried: the 6.5.30m `kona_reset_adaptor`, `KONAinitialize`, `kona_flow_await_returned_credits` and `kona_tport_reset_adaptor`, the ARM firmware's start-up, kpm's table and the 6.5.5 headers. `HH_JTAG_RESET` (0x378) is not accessed by the driver.
 
+## Serial-number records on the one-wire port
+
+**Established** (`kona_extract_nic_info` in `kona_edtinit_hip2.o`, and the printed `gfxinfo -vv` output of published captures). A pipe's description carries 13 one-wire records, in this order: the geometry board (GE), the Ktown board (`KT`), the four raster boards (`RM0`-`RM3`), the four texture boards (`TM0`-`TM3`), the backplane (`BP`), the display generator (DG) and the display option (`DGOPT`). The `gfxinfo` verbose form prints each one as its family code, serial number and part number, and the very verbose form adds revision, group, capability, variety and name. A slot with no board prints "No NIC serial number available". That covers the deskside Ktown, empty RM and TM slots and the backplane.
+
+The parser matches the labels `Revision`, `Capability`, `Variety`, `Laser`, `Part`, `Name`, `Serial` and `Group`, and has a branch for a `Name` that starts with `KTOWN`. The driver does not check what it parsed, so an empty or missing record does not stop the attach.
+
+**Inferred:** the kernel's own chain on the XG one-wire port (`XG_NIC`, 0x9c) carries only the GE and Ktown records. Where the other eleven are read from is unknown. The PROM reads the same chain through its own one-wire accessor at widget offset 0x98, which has its own protocol and is not a plain register read. Whether 0x98 and 0x9c reach the same records is **inferred** from one four-node boot capture, not from the PROM code.
+
 ## What the published manuals add
 
 Labels follow [published-sources.md](published-sources.md); page numbers are PDF page indexes of the stored copies ([docs/sources/](sources/README.md)).
