@@ -591,7 +591,7 @@ usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	dynsym	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
 usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
-usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	dynsym	0	0	understood	docs/dg.md#the-screen-record-and-the-option-channels-konalso-builds	The screen record and the option channels `konal.so` builds
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konavis.so	x-module	board-x-module	shared-object	n32	330796	646e3171b2e67882		0	none	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib32/libfm.so	shared-libraries	shared-library	shared-object	n32	683872	8f1aadd018eaa6a3		791	dynsym+dwarf	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
