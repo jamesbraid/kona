@@ -150,7 +150,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 
 Route b, named:
 - GE and DG generation per product: the identity words are decoded, no shipped binary names the generation; needs published `gfxinfo -v` dumps with part numbers
-- DPLEX first IRIX release (6.5.2 in the datasheet, 6.5.3 in the guide): needs the release notes of those releases
+- DPLEX first IRIX release: inferred 6.5.3 ([dg.md](dg.md), the 1999 guide over the pre-release 1998 datasheet's 6.5.2); establishing it needs the 6.5.2 and 6.5.3 release notes, which the Library does not hold
 - PROM refusal of 0x2020202 EEPROM value: needs the Onyx IO4 base-I/O PROM image
 - board sets KONA, KONAT, KONAS: needs an IP19 or IP25 kernel or published hinv
 - hinv strings per product: hinv not on the media
