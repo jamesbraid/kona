@@ -8,8 +8,8 @@ ioctls	55	0	55	0	54	0	0	0	0	0	100.0	100.0	100.0	100.0			90.0	10	2026-10-29		0
 ucode	4411	0	2963	13	2919	464	1443	3	0	2	67.2	99.9	100.0	67.2			90.0	20	2026-11-02	579	0				
 spec-registers	242	0	208	7	200	0	0	0	0	34	86.0	100.0	100.0	100.0			100.0	8	2026-11-01		0				
 input root manifest	545																								6d50c95c1a1e6021329d9f053d60b24f024214336d25b07f1250a1343beb8571
-input sibling crime																									2fb03185a2a82057aef012d0f931bbdc90a65537
-input sibling odsy																									d26e4eb50277be0cf3bb1ee4f8585f466fdff647
+input sibling crime																									6fcd911f9fd0456881a2a5051d7adca9b729a375
+input sibling odsy																									9d25eb809e9501a1db31bd2e5112ea23651ffd69
 functions in usr/bin/X11/xsetmon	501	0	4	0	4	495	497	0	0	0	0.8	100.0	100.0	0.8							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/gfx.o	62	0	62	0	62	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	
 functions in usr/cpu/sysgen/IP27boot/gfxs.a(gfx_flow.o)	19	0	19	0	19	0	0	0	0	0	100.0	100.0	100.0	100.0							0	0	0	0	

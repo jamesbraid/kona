@@ -33,7 +33,7 @@ The share of understood rows that an independent audit found real when it re-der
 
 Cross-workspace role check: compared 3531 entries with the entries of crime and odsy for the same function and capped 11 at located (the role text is the sibling's, at least 90% alike, and states no offset, immediate value or callee address of its own build).
 
-Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 6d50c95c1a1e6021, 545 files; sibling crime 2fb03185a2a8; sibling odsy d26e4eb50277.
+Inputs (also in [summary.tsv](inventory/summary.tsv)): root manifest 6d50c95c1a1e6021, 545 files; sibling crime 6fcd911f9fd0; sibling odsy 9d25eb809e95.
 
 Function rows rejected as ambiguous, at most named-only: 126 whose name is defined in several compilation units, 2668 whose address another name shares (a row can be in both).
 
