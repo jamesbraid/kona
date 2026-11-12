@@ -5748,9 +5748,14 @@ enum kona_hp_token {
      * deactivate a context; other values print 'Unrecognized diag command'.
      * Payload variable: sub-command 0-11, then its own words: a sub-command
      * number and its arguments. Established: the token map runs
-     * `arm_diag_dispatch` at arm1.u 0x0c037958. No sender found: the string
-     * table of irsaudit is the likely user (docs/arm1_functions.md) but no
-     * call was located; libGLcore, kernel and X module do not send it. */
+     * `arm_diag_dispatch` at arm1.u 0x0c037958. Sender: unknown. Routes
+     * tried: libGLcore, the kernel (the token send table in
+     * kona_kernel/commands.tsv) and the X module do not send it; `irsaudit`
+     * (usr/diags/IR/bin/irsaudit 6.5.30m, disassembled) has no load of 361 or
+     * of the store offset 0x2d20 on a send path (the only 361 is a JTAG field
+     * index passed to `auto_set_jtag_reg_field` at 0x1002e194 in
+     * `init_rm_jtag`), so its sends, if any, take the token from a table.
+     * Next route: the sequencer's token tables in `irsaudit` data. */
     KONA_HP_DIAG_DISPATCH                = 0x169,
 
     /* Read at icu_map.tsv 0x16a; hw_route.tsv; ucode/ged.md pass/register
@@ -7642,9 +7647,22 @@ enum kona_hp_token {
      * offset 0x20000. Payload variable: operation 1-6, then operation
      * arguments: operation number (1 load, 2 read, 3 setup, 4 check, 5
      * identify, 6 invalidate) and address and length. Established: the token
-     * map runs `arm_eeprom_op` at arm1.u 0x0c01a0ec. No sender found; the
-     * ireeprom tool (diags/KONA_bin/ireeprom) is the probable sender but it
-     * was not read. */
+     * map runs `arm_eeprom_op` at arm1.u 0x0c01a0ec. Established (sender,
+     * `ireeprom`, usr/gfx/KONA/bin/ireeprom 6.5.30m): its word writer
+     * `KonWGWrite` (0x10002a4c) is called with 492 and then the operation
+     * number and the arguments, as separate word writes, at 0x100022d8 and
+     * 0x10002504 (`setup_ucode`, operation 4), 0x100024b4 and 0x1000255c
+     * (`setup_ucode`, operation 3 with two global words and 0x4000),
+     * 0x10002ed0 (`write_eeprom`, operation 1 with 0, a running word offset,
+     * a length capped at 4096, then the data), 0x100032f8 (`erase_eeprom`,
+     * operation 1 with 0, a value, 0x1000 and 0), 0x10003460
+     * (`erase_combo`, operation 6), 0x10003b6c and 0x10003e20
+     * (`verify_eeprom`, operation 2), 0x10003bdc (operation 5) and
+     * 0x10003cbc (operation 1). The operation numbers match the list above,
+     * so the names there are corroborated by the tool's own use. `KonWGWrite` waits
+     * until the word at +16904 of the pipe window pointer, masked with
+     * 0xffe, is below 1501, then stores one word (inferred: a FIFO fill
+     * level; the store path chosen by a mode word was not read in full). */
     KONA_HP_EEPROM_OP                    = 0x1ec,
 
     /* Read at arm1.u arm_dmapool_setup 0x0c022398. */

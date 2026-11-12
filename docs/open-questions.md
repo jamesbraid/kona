@@ -314,7 +314,7 @@ No open questions. The reset values of the command water marks in `XG_HI_LO_WATE
 
 ## Host interface (HIP)
 
-No open hardware questions: every unknown in [docs/hip.md](hip.md) is now answered or carries the "no shipped software or published source" label with routes. Answered this pass: the scan controller's reset register is written by no program (the hard-reset procedure of both `kpm` and `irsaudit` is a stub returning -1); every the DMA-write Kona driver request sender passes one vector; the kernel never writes `HH_GFIFO_LO` and needs only a mark below its wait level.
+Answered in [docs/hip.md](hip.md): every unknown there is answered or carries the "no shipped software or published source" label with routes. The command and FIFO formats (`arm_data`, `arm_data_1`) and the `gecomm_*` words stay as the `arm1.u` reader item (route a) in the paragraph below.
 
 [route a] **Where the HIP rows stopped (2026-10-29, rows audit, second pass).** Reset and context are done. Every `hip` spec-register row and every `hip`, `hip-alias` and `user-io` mmio row now grades understood or no-software-dependency under the stricter grader (eleven HIP.h entries lost their name-only readings and repeated sentences), every `kona_intr_hip2.o` and `kona_dma.o` function is understood in both kernels, and the `HH_JTAG_RESET` entry cites the stub hard-reset procedure. Command and FIFO formats waits on the `arm1.u` entries `arm_data` and `arm_data_1` (located); DMA and interrupts wait on `gecomm_pnum`, `gecomm_poff` and `gecomm_len`, whose roles [ucode/arm1_functions.md](../ucode/arm1_functions.md) takes from their names. Next: the arm1.u reader reads what `start_kcomm` and the DMA routine do with those three words and rewrites the entries without the name-derived part.
 
@@ -356,7 +356,7 @@ Where this slice stopped (second pass, after the stricter grader of commit e1496
 
 ## Geometry distributor
 
-**Where this section stopped (2026-10-29, fourth pass).** No open entries. The `irsaudit` sequencer and stress tests are read into [ucode/ged.md](../ucode/ged.md#the-diagnostics-sequencer-and-stress-tests): the register/pixel form's transfer bit, the programs `gedSequencer` and `gedStressTd` build, the registers each test loads and the pointer and data pairs among them. Every such test is checked only by CRC signatures against `irsaudit.*.gold`, so the state-or-token entry choice, transfer ops 1, 3, 5, 6 and 7, the control fields, the small-constant registers and the roles of 0x280-0x2b0 are labelled unknown there with the routes tried.
+Answered in [ucode/ged.md](../ucode/ged.md#the-diagnostics-sequencer-and-stress-tests): the `irsaudit` sequencer and stress tests. The state-or-token entry choice, transfer ops 1, 3, 5, 6 and 7, the control fields, the small-constant registers and the roles of 0x280-0x2b0 are labelled unknown there with the routes tried; the diagnostics check only CRC signatures against `irsaudit.*.gold`.
 
 ## Kernel driver
 
@@ -538,7 +538,7 @@ Corrections still open, for the owners of those files:
 
 - [route a] `docs/inventory/tokens.tsv` misses the senders that pack data into the token word or call `__glkon_get_special*`, and names wrong example emitters for several tokens (`HP_BIND_2D_MIPMAP_TEXTURE`, 0x180, 0x182); a sender scan of `scripts/inventory-config.json` would need those patterns.
 
-[route a] **Where this slice stopped** (2026-10-29, after the subject-only regrade). All 617 rows of [inventory/tokens.tsv](inventory/tokens.tsv) are understood or labelled no-software-dependency. The seven unused X numbers, the 32 vertex-array loop slots and kpm's 15 unnamed rows past 0x1ff each have an entry stating their own map word, record or writer, and kpm's 89 shadow rows are enumerators of `enum kona_kpm_shadow_row` in `GE.h`, each commented with its name record, `befsh_addrs` entry, field layout from kpm's raster table and arm1.u writers. Next: the senders not yet found (`ireeprom` for `EEPROM_OP`, `irsaudit` for `DIAG_DISPATCH`); and the `WG_FLUSH` question under "ARM firmware", which keeps the OpenGL command row partial.
+[route a] **Where this slice stopped** (2026-10-29, after the subject-only regrade). All 617 rows of [inventory/tokens.tsv](inventory/tokens.tsv) are understood or labelled no-software-dependency. The seven unused X numbers, the 32 vertex-array loop slots and kpm's 15 unnamed rows past 0x1ff each have an entry stating their own map word, record or writer, and kpm's 89 shadow rows are enumerators of `enum kona_kpm_shadow_row` in `GE.h`, each commented with its name record, `befsh_addrs` entry, field layout from kpm's raster table and arm1.u writers. Next: the sender not yet found (`irsaudit` for `DIAG_DISPATCH`; the `ireeprom` sender of `EEPROM_OP` is in GE.h); and the `WG_FLUSH` question under "ARM firmware", which keeps the OpenGL command row partial.
 
 ## Engine program, raster bus and tport.bin
 
