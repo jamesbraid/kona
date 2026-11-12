@@ -38,7 +38,7 @@ Chip lists per board are **established** from the diagnostic netlists (`rm.md` "
 | ARM | an ARM-architecture CPU that boots from EEPROM and runs `arm1.u` (1682 symbols, fully disassembled); owns state-heavy commands, display requests, context switching and board bring-up | established, `ucode/arm1_firmware.md`, `ucode/arm1.md` |
 | distributor | runs `ged1b.u`; assembles primitives from vertex attributes and feeds the engines | established program format and token control word, selection rule unknown, `ucode/ged.md` |
 | geometry engines | GE11-family vector processors: transform, lighting, clipping, decomposition, pixel-path stages, texture-coordinate generation, X drawing modules, context save | established word format and routine behaviour, `ucode/ge_isa.md`, `ucode/ge_ops.md`, `ucode/ge_compute.md` |
-| BEF | back-end chip on the GE board: 89-word shadow of raster registers, bus output, external FIFO RAM (4 MB, 16 MB or internal; 16- or 32-bit path) | shadow established, behaviour inferred, `rm.md` "The 89-word register shadow" |
+| BEF | back-end chip on the GE board: 89-word shadow of raster registers, bus output, external FIFO RAM (4 MB, 16 MB or internal; 16- or 32-bit path). The paper's 65,536-vertex FIFO would fill 4 MB at 64 bytes per vertex, so the 4 MB case may be that FIFO (inferred; [published-sources.md](published-sources.md), section 1) | shadow established, behaviour inferred, `rm.md` "The 89-word register shadow" |
 | pg, tg, tf, tm, imp | fixed-function raster, texture and framebuffer chips; no microcode and no chip has a microcode bus | established negative, `rm.md` "No raster microcode" |
 | DG5 | display generator: bridge, video output controllers, XMAPs, DACs, encoder, option boards | established, `dg.md` |
 
