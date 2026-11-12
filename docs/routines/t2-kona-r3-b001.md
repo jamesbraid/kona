@@ -27,7 +27,7 @@ These entries come from rendered facts for 25 routines in the IGLOO32 `libgl.so`
   **Inferred.** Reads the flag word at 0xece8bf0 (gl_inMoveDraw). When the flag is nonzero it calls __iglooNCloseMoveDraw at 0xec92d80 first. It then calls gl_blendfunction at 0xec368d0 with a0 and a1 passed through and returns its result. This is an immediate-mode wrapper that closes an open move-draw batch when one is open.
 
 - `gl_c_blendfunction` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36140
-  **Inferred.** Tests the word at 0xecdd92c. On the nonzero path it calls gl_compile at 0xecb5010 with the constant 0x6 and then gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6930 and a1 through a3 passed through. Its return value is the result of gl_compile. The facts do not show which of the two paths is the compile path.
+  **Inferred.** Tests the word at 0xecdd92c. When it is zero, it calls gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6930 and the entry's arguments passed through, then calls gl_compile at 0xecb5010 with the constant 0x6. When it is nonzero, it calls gl_compile with the constant 0x6 alone. Its return value is the result of gl_compile. The facts do not show what the table holds.
 
 - `gl_n_blendfunction` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec361d0
   **Inferred.** Reads the flag at 0xece8bf0 and closes the move-draw batch with __iglooNCloseMoveDraw at 0xec92d80 when it is nonzero. It reads two words from the argument block at +0x0 and +0x4 and passes them as the first two arguments to gl_blendfunction at 0xec368d0. It returns a0+8, the address just past the 8-byte argument block.
@@ -36,7 +36,7 @@ These entries come from rendered facts for 25 routines in the IGLOO32 `libgl.so`
   **Inferred.** Reads the flag at 0xece8bf0 and, when it is nonzero, calls __iglooNCloseMoveDraw at 0xec92d80 first. It then calls glBlendColorEXT with a0 through a3 passed through and returns the result. The flag test at 0xec3625c skips the close call when the flag is zero.
 
 - `gl_c_blendcolor` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec362c0
-  **Inferred.** Tests the word at 0xecdd930. On the nonzero path it calls gl_compile at 0xecb5010 with the constant 0xa and then gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6940. Its return value is the gl_compile result. The facts do not show what the constant 0xa or the table holds.
+  **Inferred.** Tests the word at 0xecdd930. When it is zero, it calls gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6940 and the entry's arguments passed through, then calls gl_compile at 0xecb5010 with the constant 0xa. When it is nonzero, it calls gl_compile with the constant 0xa alone. Its return value is the gl_compile result. The facts do not show what the constant 0xa or the table holds.
 
 - `gl_n_blendcolor` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36370
   **Inferred.** Reads the flag at 0xece8bf0 and closes the move-draw batch with __iglooNCloseMoveDraw at 0xec92d80 when it is nonzero. It loads four single-precision values from a0 at +0x0, +0x4, +0x8 and +0xc into f12 through f15 and calls glBlendColorEXT. It returns a0+16.
@@ -54,7 +54,7 @@ These entries come from rendered facts for 25 routines in the IGLOO32 `libgl.so`
   **Inferred.** Reads the flag at 0xece8bf0 and, when it is nonzero, calls __iglooNCloseMoveDraw at 0xec92d80 first. It then calls gl_alphafunc at 0xec36660 with a0 and a1 passed through and returns its result.
 
 - `gl_c_afunction` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36570
-  **Inferred.** Tests the word at 0xecdd938. On the nonzero path it calls gl_compile at 0xecb5010 with the constant 0x6 and then gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6960. It returns the gl_compile result. The facts do not show what the table holds.
+  **Inferred.** Tests the word at 0xecdd938. When it is zero, it calls gl_intrptab_insert at 0xec5f9f0 with the table at 0xecd6960 and the entry's arguments passed through, then calls gl_compile at 0xecb5010 with the constant 0x6. When it is nonzero, it calls gl_compile with the constant 0x6 alone. It returns the gl_compile result. The facts do not show what the table holds.
 
 - `gl_n_afunction` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36600
   **Inferred.** Reads the flag at 0xece8bf0 and closes the move-draw batch with __iglooNCloseMoveDraw at 0xec92d80 when it is nonzero. It reads the words at a0+0 and a0+4 and passes them to gl_alphafunc at 0xec36660. It returns a0+8, the address just past the 8-byte argument block.

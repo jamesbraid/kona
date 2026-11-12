@@ -3,7 +3,7 @@
 Roles for targets 150 to 174 of the ranked second-round list. Each one is written from the rendered instruction facts at the cited addresses, with the callees and constants named there. Where the facts leave a question open, the entry says so. Every entry is graded inferred.
 
 - `gl_g_arcs` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3b7d0
-  **Inferred.** Compile path for the arc variant `s`. It calls endpt_cmplr (0xec3b410) on a stack buffer at sp-96, gl_compile (0xecb5010) with opcode 0x14, circle_init (0xec3aae0), and then gl_intrptab_insert (0xec5f9f0) with the table entry at 0xecd6ae0. A word at 0xecdd984 jumps straight to the insert call when it is zero, and a halfword at 0xecdd968 skips circle_init when it is zero.
+  **Inferred.** Compile path for the arc variant `s`. When the word at 0xecdd984 is zero, it calls gl_intrptab_insert (0xec5f9f0) with the table entry at 0xecd6ae0 first. When the halfword at 0xecdd968 is zero, it calls circle_init (0xec3aae0). Then it calls endpt_cmplr (0xec3b410) on a stack buffer at sp-96, and gl_compile (0xecb5010) with opcode 0x14.
 - `gl_n_arcs` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3b8b0
   **Inferred.** Draw path for the arc variant `s`. When the word at 0xece8bf0 (named gl_inMoveDraw in the facts) is nonzero it calls __iglooNCloseMoveDraw (0xec92d80), then calls gl_n_circF_setup (0xec3acd0) and passes its return value to gl_n_arc_draw (0xec3b5e0), the draw callee the plain-arc variants also use. The facts do not say what the setup routine computes.
 - `gl_g_arci` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3b910

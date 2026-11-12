@@ -9,7 +9,7 @@ Roles for targets 100 to 124 of the ranked tier-2 list (round t2list). Each one 
   **Inferred.** Under the same 0xece8bf0 flag it calls __iglooNCloseMoveDraw (0xec92d80), then calls gl_findbasis (0xec428d0) twice, the second time on arg1, and stores the results into gl_wstatep at +0x2dc8 (0xec42f44) and +0x2dcc (0xec42f68). The return value is the result of the last gl_findbasis call at 0xec42f64. It reads as the immediate-mode basis setter that pairs with gl_c_patchbasis and gl_n_patchbasis.
 
 - `gl_c_patchbasis` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec42f70
-  **Inferred.** It is the compile-time form: it calls gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-48, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd7268. The insert is gated by the global at 0xecdda2c (the beq at 0xec42f94). It records the command when display-list compilation is active, and its return value is ret(gl_compile) at 0xec42fc8.
+  **Inferred.** It is the compile-time form. When the global at 0xecdda2c is zero (the beq at 0xec42f94), it calls gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd7268 first, then calls gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-48. When the global is nonzero, it calls gl_compile alone. It records the command when display-list compilation is active, and its return value is ret(gl_compile) at 0xec42fc8.
 
 - `gl_n_patchbasis` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43000
   **Inferred.** Closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag. It calls gl_findbasis (0xec428d0) on the words at [a0] and [a0+4], and stores the results into gl_wstatep at +0x2dc8 and +0x2dcc. It returns a0+8 at 0xec43088, the normal-vector counterpart of gl_i_patchbasis.
@@ -18,7 +18,7 @@ Roles for targets 100 to 124 of the ranked tier-2 list (round t2list). Each one 
   **Inferred.** Closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag. It stores two halfwords into gl_wstatep at +0x2dd4 (0xec430d8) and +0x2dd6 (0xec430ec), and returns one of 0x9fae0 or ret(__iglooNCloseMoveDraw) at 0xec430e8. It reads as the immediate-mode curve-parameter setter, paired with gl_c_patchcurves and gl_n_patchcurves.
 
 - `gl_c_patchcurves` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec430f0
-  **Inferred.** Compile-time form with the same shape as gl_c_patchbasis at 0xec42f70: gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-48, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd7278. The insert is gated by the global at 0xecdda30 (the beq at 0xec43114). The table entry differs from the basis form, and the return is ret(gl_compile) at 0xec43148.
+  **Inferred.** Compile-time form with the same shape as gl_c_patchbasis at 0xec42f70. When the global at 0xecdda30 is zero (the beq at 0xec43114), it calls gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd7278 first, then calls gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-48. When the global is nonzero, it calls gl_compile alone. The table entry differs from the basis form, and the return is ret(gl_compile) at 0xec43148.
 
 - `gl_n_patchcurves` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43180
   **Inferred.** Closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag. It loads the words at arg0 +0x0 and +0x4 and stores halfwords into gl_wstatep at +0x2dd4 (0xec431c8) and +0x2dd6 (0xec431e0). It returns a0+8 at 0xec431dc, the normal-vector counterpart of gl_i_patchcurves.
@@ -63,16 +63,16 @@ Roles for targets 100 to 124 of the ranked tier-2 list (round t2list). Each one 
   **Inferred.** Normal-vector form. It closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag, then calls gl_depthcue (0xec43b60) with a0 = [arg0] and a1 = 0. It returns a0+4 at 0xec43ec8.
 
 - `gl_g_shaderange` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43ed0
-  **Inferred.** Compile-time form for the shade range. It calls gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-64, passing arg2, arg3 and arg1 through, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72d0. The insert is gated by the global at 0xecdda38 (the beq at 0xec43ef4). It returns ret(gl_compile) at 0xec43f30.
+  **Inferred.** Compile-time form for the shade range. When the global at 0xecdda38 is zero (the beq at 0xec43ef4), it calls gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72d0 first. Then it calls gl_compile (0xecb5010) with opcode 0x6 and a stack buffer at sp-64, passing arg2, arg3 and arg1 through. When the global is nonzero, it calls gl_compile alone. It returns ret(gl_compile) at 0xec43f30.
 
 - `gl_n_shaderange` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43f70
   **Inferred.** Normal-vector form. It closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag, reads four 16-bit values from arg0 at +0x0, +0x2, +0x4 and +0x6, and passes them to gl_lshaderange (0xec44410). It returns a0+8 at 0xec43fd0.
 
 - `gl_g_lshaderange` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43fe0
-  **Inferred.** Compile-time form for the local shade range. It calls gl_compile (0xecb5010) with opcode 0x8 and a stack buffer at sp-80, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72e0. The insert is gated by the global at 0xecdda3c (the beq at 0xec44004). It returns ret(gl_compile) at 0xec44040.
+  **Inferred.** Compile-time form for the local shade range. When the global at 0xecdda3c is zero (the beq at 0xec44004), it calls gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72e0 first. Then it calls gl_compile (0xecb5010) with opcode 0x8 and a stack buffer at sp-80. When the global is nonzero, it calls gl_compile alone. It returns ret(gl_compile) at 0xec44040.
 
 - `gl_n_lshaderange` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec44080
   **Inferred.** Normal-vector form for the local shade range. It closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) under the 0xece8bf0 flag. When the global at 0xece8bd8 is nonzero it maps two z values from arg0 (+0x4 and +0x8) through gl_mapzrange (0xecc5b90), then reads two halfwords at +0x0 and +0x2 and passes them to gl_lshaderange (0xec44410). It returns a0+12 at 0xec44124.
 
 - `gl_g_RGBrange` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec44130
-  **Inferred.** Compile-time form for the RGB range. It calls gl_compile (0xecb5010) with opcode 0xa and a stack buffer at sp-112, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72f0. The insert is gated by the global at 0xecdda40 (the beq at 0xec44154). It returns ret(gl_compile) at 0xec441a0, the same compile pattern as gl_g_shaderange with opcode 0xa in place of 0x6.
+  **Inferred.** Compile-time form for the RGB range. When the global at 0xecdda40 is zero (the beq at 0xec44154), it calls gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72f0 first. Then it calls gl_compile (0xecb5010) with opcode 0xa and a stack buffer at sp-112. When the global is nonzero, it calls gl_compile alone. It returns ret(gl_compile) at 0xec441a0, the same compile pattern as gl_g_shaderange with opcode 0xa in place of 0x6.

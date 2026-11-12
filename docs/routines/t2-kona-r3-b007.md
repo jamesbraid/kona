@@ -33,7 +33,7 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Loads the global gl_wstatep and its word at +0xa8, then calls the function pointer found there with the state pointer as a0 and the caller's a0, a2 and a3 passed through. It is an immediate-mode forwarder into the current state's table. The callee is unknown from the facts.
 
 - `gl_c_cpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3eff0
-  **Inferred.** Tests the word at 0xecdd9c8 at 0xec3f010 and takes one of two paths. On the path that records the call it runs gl_compile at 0xec3f02c with opcode size 0x6 and then gl_intrptab_insert at 0xec3f050 with the table entry at 0xecd6bf0. This looks like the display-list-compile variant of the packed colour call. Which of the two paths a zero flag takes is not settled by the facts.
+  **Inferred.** Tests the word at 0xecdd9c8 at 0xec3f010. When it is zero, it calls gl_intrptab_insert at 0xec3f050 with the table entry at 0xecd6bf0 and the entry's arguments passed through, then calls gl_compile at 0xec3f02c with opcode size 0x6. When it is nonzero, it calls gl_compile with opcode size 0x6 alone. This looks like the display-list-compile variant of the packed colour call; the name is the only evidence for that.
 
 - `gl_n_cpack` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f070
   **Inferred.** Loads gl_wstatep and its word at +0xa8, then calls the pointer found there with a0 set to the state pointer and a1 set to the word at the caller's a0+0. It forwards the first word of its argument block into the same dispatch slot that gl_i_cpack uses. The returned value is a0+8.
@@ -48,7 +48,7 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Calls __igloolmcolor at 0xec3f0c0 with a1 set to zero, passing a0, a2 and a3 through. It is the immediate-mode entry for the light-model colour, with no state work of its own.
 
 - `gl_c_lmcolor` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f5c0
-  **Inferred.** Tests the word at 0xecdd9cc at 0xec3f5e0. On the recording path it calls gl_compile at 0xec3f5fc with opcode size 0x4 and then gl_intrptab_insert at 0xec3f620 with the table entry at 0xecd6c00. It is the display-list-compile variant of the light-model colour call. The branch sense for a zero flag is the same as in the packed colour variant and is not settled by the facts.
+  **Inferred.** Tests the word at 0xecdd9cc at 0xec3f5e0. When it is zero, it calls gl_intrptab_insert at 0xec3f620 with the table entry at 0xecd6c00 and the entry's arguments passed through, then calls gl_compile at 0xec3f5fc with opcode size 0x4. When it is nonzero, it calls gl_compile with opcode size 0x4 alone. It is the display-list-compile variant of the light-model colour call.
 
 - `gl_n_lmcolor` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f640
   **Inferred.** Loads the word at a0+0 and calls __igloolmcolor at 0xec3f0c0 with that word as a0 and a1 set to zero. It returns a0+4, so it steps the caller's argument pointer over one word. It is the indirect variant of the light-model colour forwarder.
@@ -57,7 +57,7 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Loads gl_wstatep and its word at +0xac, then calls the pointer found there with the state pointer and the caller's a0, a2 and a3 passed through. It is an immediate-mode colour forwarder into the state table, parallel to gl_i_cpack at 0xec3efb0 but using slot +0xac. The callee is unknown from the facts.
 
 - `gl_c_color` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f6d0
-  **Inferred.** Tests the word at 0xecdd9d0 at 0xec3f6f0. On the recording path it calls gl_compile at 0xec3f710 with opcode size 0x4 and then gl_intrptab_insert at 0xec3f734 with the table entry at 0xecd6c10. It is the display-list-compile variant of the colour call.
+  **Inferred.** Tests the word at 0xecdd9d0 at 0xec3f6f0. When it is zero, it calls gl_intrptab_insert at 0xec3f734 with the table entry at 0xecd6c10 and the entry's arguments passed through, then calls gl_compile at 0xec3f710 with opcode size 0x4. When it is nonzero, it calls gl_compile with opcode size 0x4 alone. It is the display-list-compile variant of the colour call.
 
 - `gl_n_color` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f750
   **Inferred.** Loads the halfword at a0+0 (lhu at 0xec3f770) and calls the state pointer at +0xac with that value as a1, passing a2 and a3 through. It returns a0+4. It forwards one 16-bit colour component into the same slot that gl_i_color uses.
@@ -66,7 +66,7 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Loads gl_wstatep and its word at +0xb0, then calls the pointer found there with the state pointer, the constant 0xa33d0 as a1, and the caller's a2 and a3. It passes the float argument through the fp registers (f13 is set from f12). It is the immediate-mode float colour forwarder. The meaning of the constant 0xa33d0 is not identified in the facts.
 
 - `gl_c_colorf` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f7e0
-  **Inferred.** Tests the word at 0xecdd9d4 at 0xec3f800. On the recording path it calls gl_compile at 0xec3f81c with opcode size 0x4 and then gl_intrptab_insert at 0xec3f840 with the table entry at 0xecd6c20. It is the display-list-compile variant of the float colour call.
+  **Inferred.** Tests the word at 0xecdd9d4 at 0xec3f800. When it is zero, it calls gl_intrptab_insert at 0xec3f840 with the table entry at 0xecd6c20 and the entry's arguments passed through, then calls gl_compile at 0xec3f81c with opcode size 0x4. When it is nonzero, it calls gl_compile with opcode size 0x4 alone. It is the display-list-compile variant of the float colour call.
 
 - `gl_n_colorf` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f860
   **Inferred.** Loads the state word at +0xb0 and the float at a0+0 (lwc1 at 0xec3f880), then calls the state pointer with that float in f13 and the caller's a1, a2 and a3 passed through. It returns a0+4. It is the indirect float colour forwarder.
@@ -75,4 +75,4 @@ Roles for targets 175 to 199 of the ranked second-round list, all in the IGLOO32
   **Inferred.** Loads gl_wstatep and its word at +0xa4, then calls the pointer found there with the state pointer and the caller's a0, a1 and a2 shifted into a1, a2 and a3. It is the immediate-mode RGB colour forwarder. The callee and the meaning of the +0xa4 slot are unknown from the facts.
 
 - `gl_c_RGBcolor` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3f900
-  **Inferred.** Tests the word at 0xecdd9d8 at 0xec3f924. On the recording path it calls gl_compile at 0xec3f94c with opcode size 0x6 and then gl_intrptab_insert at 0xec3f978 with the table entry at 0xecd6c30. The opcode size matches the packed colour variant at 0xec3eff0, not the 0x4 used by the other display-list variants. The facts do not say why.
+  **Inferred.** Tests the word at 0xecdd9d8 at 0xec3f924. When it is zero, it calls gl_intrptab_insert at 0xec3f978 with the table entry at 0xecd6c30 and the entry's arguments passed through, then calls gl_compile at 0xec3f94c with opcode size 0x6. When it is nonzero, it calls gl_compile with opcode size 0x6 alone. The opcode size matches the packed colour variant at 0xec3eff0, not the 0x4 used by the other display-list variants. The facts do not say why.

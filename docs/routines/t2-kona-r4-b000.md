@@ -3,7 +3,7 @@
 Roles for targets 0 to 24 of the ranked tier-2 list, all in the IGLOO32 `libgl.so`. Each role comes from the rendered instruction facts at the cited addresses, so every entry is graded inferred. The grader accepted all 25 rendered entries. Where the facts do not show what a constant, global or callee means, the entry says so.
 
 - `gl_c_swapinterval` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36ce0
-  **Inferred.** Tests the word at abs 0xecdd940 at 0xec36d00. When it is zero, the branch at 0xec36d00 goes to 0xec36d3c. When it is nonzero, it calls gl_compile (0xecb5010) with the constant 4 and a frame at sp-48, then calls gl_intrptab_insert (0xec5f9f0) at 0xec36d44 with the table entry 0xecd6980 and the caller's three arguments. The return value is the gl_compile result. The facts do not show what the constant 4 selects.
+  **Inferred.** Tests the word at abs 0xecdd940 at 0xec36d00. When it is zero, it calls gl_intrptab_insert (0xec5f9f0) at 0xec36d44 with the table entry 0xecd6980 and the caller's three arguments, then calls gl_compile (0xecb5010) with the constant 4 and a frame at sp-48. When it is nonzero, it calls gl_compile alone. The return value is the gl_compile result. The facts do not show what the constant 4 selects.
 - `gl_g_RGBsize` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec36f90
   **Inferred.** Follows gl_wstatep to the pointer at offset 0x114 (276), then reads the word at offset 0x38 of the record that pointer names. It compares that word with 0x10 at 0xec36fb0 and returns it either way. A store at 0xec36fc4 writes a word at offset 0x24 of the record at offset 60 from the same pointer. The facts do not show what the field at 0x38 holds.
 - `gl_backbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec37320

@@ -69,10 +69,10 @@ These entries come from rendered facts for 25 routines: memory accesses, calls, 
   **Inferred.** A GL push-attributes entry, going by its name. It checks the word at 0xecdd8e8: when that word is nonzero it calls gl_compile at 0xecb5010 with the opcode 2, and otherwise it calls gl_intrptab_insert at 0xec5f9f0 with 0xecd67b8 as its first argument. The facts do not show what the compile path records, and the return value is the result of gl_compile.
 
 - `gl_n_pushattributes` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec32d30
-  **Inferred.** The non-compiling push-attributes entry. If the flag word at 0xece8bf0 (gl_inMoveDraw) is nonzero, it calls __iglooNCloseMoveDraw at 0xec92d80 first, then calls _pushattributes at 0xec32e60 with its arguments, and returns a0. The facts show the move-draw check and the two calls, but not what _pushattributes stores.
+  **Inferred.** The push-attributes entry. The name says it does not compile, and the facts do not show that. If the flag word at 0xece8bf0 (gl_inMoveDraw) is nonzero, it calls __iglooNCloseMoveDraw at 0xec92d80 first, then calls _pushattributes at 0xec32e60 with its arguments, and returns a0. The facts show the move-draw check and the two calls, but not what _pushattributes stores.
 
 - `gl_g_popattributes` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec32d90
   **Inferred.** The pop counterpart of gl_g_pushattributes. It checks the word at 0xecdd8ec: a nonzero value calls gl_compile at 0xecb5010 with the opcode 2, and a zero value calls gl_intrptab_insert at 0xec5f9f0 with 0xecd67c8 as its first argument. The return value is the gl_compile result.
 
 - `gl_n_popattributes` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec32e00
-  **Inferred.** The non-compiling pop-attributes entry, mirroring gl_n_pushattributes. It checks the move-draw flag at 0xece8bf0 and calls __iglooNCloseMoveDraw at 0xec92d80 when the flag is set, then calls _popattributes at 0xec33010 and returns a0. The facts do not show what _popattributes restores.
+  **Inferred.** The pop-attributes entry, mirroring gl_n_pushattributes. It checks the move-draw flag at 0xece8bf0 and calls __iglooNCloseMoveDraw at 0xec92d80 when the flag is set, then calls _popattributes at 0xec33010 and returns a0. The facts do not show what _popattributes restores.
