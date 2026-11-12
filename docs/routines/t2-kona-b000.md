@@ -4,76 +4,76 @@ Roles for targets 0 to 24 of the ranked tier-2 list. Each one comes from the ren
 
 - `tpcons_write` in `usr/cpu/sysgen/IP27boot/tport.a(tport.o)` at 0xf24
   **Inferred.** Forwards its four argument registers unchanged to an indirect call at 0xf50. The call target is the word loaded at +0x10 from a data-table entry, and the entry is selected using a word loaded from the bss slot at +0x58; the facts do not show how the selection is computed. The callee is not named in the facts, and the return at 0xf5c passes the callee's result back in v0. The routine is a thin wrapper; the name suggests a console write, but nothing shown confirms it.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `tp_init` in `usr/cpu/sysgen/IP27boot/tport.a(tport.o)` at 0xf64
   **Inferred.** Tests a word at the start of a bss block against 1 (branch at 0xf7c). When it equals 1 the routine continues at 0x105c, where it makes an indirect call at 0x1084, then calls du_keyboard_port (0x108c) and gl_setporthandler with tp_rcv as its second argument (0x1098). Otherwise it checks the console, graphics, monitor and sync-on-green argument strings through is_specified (calls at 0xf88, 0xfc8, 0xff8 and 0x1014) and stores results into bss slots. When tp_tab_size is positive (branch at 0x104c) it then loops over a table with the index in a bss slot, bounded by tp_tab_size (branch at 0x10b4), making one indirect call per pass at 0x10dc. When that call returns nonzero (branch at 0x10e4) it calls tp_initlock (0x10ec), keyboard_init with a1 = 1 (0x10f8), du_keyboard_port (0x1100) and gl_setporthandler with tp_rcv (0x110c). The facts do not establish what the table entries or the word tested at 0xf7c mean.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_TexCoord2i` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda5b8cc
   **Inferred.** Stores three 4-byte words to the fixed address 0x4000 (at 0xda5b8d0, 0xda5b8d4 and 0xda5b8dc) and returns with no calls. The stored values are not in the facts. The name suggests a texture coordinate, but the facts only show the fixed-address writes.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_ReadBuffer` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda5c8a0
   **Inferred.** Stores two 4-byte words to the fixed address 0x4000 (at 0xda5c8a4 and 0xda5c8ac) and returns with no calls. The facts do not show what the two words encode, so the buffer selection the name implies is unconfirmed.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_BlendEquationEXT` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda5cd10
   **Inferred.** Stores two 4-byte words to the fixed address 0x4000 (at 0xda5cd14 and 0xda5cd1c) and returns with no calls. The name points at blend equation state, but the facts do not show which value is stored, so the mapping is unconfirmed.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_ReadInstrumentsSGIX` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda5cf54
   **Inferred.** Stores two 4-byte words to the fixed address 0x4000 (at 0xda5cf58 and 0xda5cf60) and returns with no calls. It has the same shape as __glkonim_StopInstrumentsSGIX at 0xda5cf74. The stored values are not in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_StopInstrumentsSGIX` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda5cf74
   **Inferred.** Stores two 4-byte words to the fixed address 0x4000 (at 0xda5cf78 and 0xda5cf80) and returns with no calls. It mirrors __glkonim_ReadInstrumentsSGIX at 0xda5cf54. The stored values are not in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `glXGetVideoSyncSGI` in `usr/gfx/arch/IP27KONA64/libGL.so` at 0x265995c
   **Inferred.** Reads a pointer from the fixed slot at abs 0x1028 and follows it through two more loads to a record. Two null tests (branches at 0x2659978 and 0x2659984) skip the ioctl at 0x26599b4 with request 0x3fe and return 0x5 at 0x26599e0. The normal path returns 0x0 at 0x26599d4. A word is stored through the a0 pointer at 0x26599d8. The facts do not show what the ioctl returns or what the stored word holds, so the sync-count role comes only from the name.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__glkonim_TexCoord2i` in `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5b8cc
   **Inferred.** The rendered facts match the IP27KONA copy at the same address: the same 20 bytes, the same three stores to 0x4000 and no calls. The entry describes the same code, and the caveat about the stored values applies here too.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `glXGetVideoSyncSGI` in `usr/gfx/arch/IP35KONA64/libGL.so` at 0x215995c
   **Inferred.** The facts match the IP27KONA64 copy at 0x265995c: the same 140 bytes, the same pointer chain from abs 0x1028, the same ioctl with request 0x3fe, and the same 0x0 and 0x5 returns, at addresses offset by the build. The ioctl result and stored word are not established, as in the other build.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `konValidateSwapbuf` in `usr/lib/X11/dyDDX/kona.so` at 0x4b69b0
   **Inferred.** Role (from name): validates a swap-buffer request; the facts do not settle the validation rule. It uses two index words at abs 0x599794 and 0x59b808 (each scaled by 4) to pick entries from a table at +0x84 of the a0 record, and it reads a serial counter (globalSerialNumber). It calls ioctl with request 0x3f4 (call at 0x4b6ae0); a result of -1 falls through to two ErrorF calls and a perror call (0x4b6b04, 0x4b6b20 and 0x4b6b30), and any other result continues at 0x4b6b40. Later it compares the words at +0x18 of two records (branch at 0x4b6bb4), calls FlushClientCaches (0x4b6c58), tests globalSerialNumber against 0x10000000 (branch at 0x4b6c84) and calls rrmSetResourceMask with a1 = 8 and the serial counter and its successor (0x4b6ccc). The facts do not show which branches lead to FlushClientCaches.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__start` in `usr/bin/X11/xsetmon` at 0x1001e5a0
   **Inferred.** Looks like the program startup stub. The bal at 0x1001e5b8 targets __start+32 (0x1001e5c0), the next instruction of the routine itself. It loads three words at offsets 0x3250c, 0x32e18 and 0x32e14 (shown as entry(...) in the facts) and stores words through them; the stored values are not shown, and the store through the first happens only when its loaded word is zero (branch at 0x1001e5ec). It then makes four indirect calls at 0x1001e634, 0x1001e648, 0x1001e688 and 0x1001e6a0. The call at 0x1001e688 passes the values loaded through the three slots as a0, a1 and a2, and the last passes the result of that call as a0. No call names a callee in the facts, so whether any reaches main is not shown.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `main` in `usr/bin/X11/xsetmon` at 0x1003ca70
   **Inferred.** Role (from name): program entry for the monitor-setup window tool. It calls InitEZ__Gv (0x1003ca90), sets the locale (setlocale at 0x1003caa0), sets the toolkit language procedure and fallbacks (XtSetLanguageProc at 0x1003cab4, setFallbacks at 0x1003cac4), and allocates a 0x140-byte object (__nw__GUi at 0x1003cad4). When the allocation returns nonzero (branch at 0x1003cae0) it calls the constructor __ct__7xsetmonGPcPiPPcP16XrmOptionDescReci at 0x1003cb04; the facts show the argument list but not what the constructor does. It then creates the windows (createWindows at 0x1003cb2c), skips one indirect call when a field of the object at +0x88 is null (branch at 0x1003cb40), sets the title (setTitle at 0x1003cb64) and calls exit with 0 at 0x1003cb90. The facts do not show the window contents.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__start` in `usr/diags/IR/bin/irsaudit` at 0x10015380
   **Inferred.** Startup stub with the same shape as the xsetmon startup stub. The bal at 0x10015398 targets __start+32 (0x100153a0), the next instruction of the routine itself. It loads three words at offsets 0x2a7ff8, 0x2a93ec and 0x2a93e8 (shown as entry(...) in the facts) and stores words through them; the stored values are not shown, and the store through the first happens only when its loaded word is zero (branch at 0x100153cc). It makes four indirect calls at 0x10015414, 0x10015428, 0x10015468 and 0x10015480. The call at 0x10015468 passes the values loaded through the three slots as a0, a1 and a2, and the last passes the result of that call as a0. No call names a callee in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `init_rm_jtag` in `usr/diags/IR/bin/irsaudit` at 0x1002d7e0
   **Inferred.** A long setup routine (6016 bytes) for a JTAG chain. It hashes a 0x208-byte block (hash_value at 0x1002d864) and prints debug lines through kt_output_dbug. It selects a chain and isolates the chip (jt_select_chain at 0x1002d8d0, jt_isolate_chip at 0x1002d964 and 0x1002da8c), then builds bit vectors with jt_new_data_bvector. Its first run of auto_set_jtag_reg_field calls, from 0x1002d9c0 to 0x1002dc90, sets thirteen fields with IDs 0x53c to 0x703 and constants such as 0x78, 0x26 and 0x18. The routine makes 147 such calls in all, over 112 distinct IDs from 0x15c to 0x751. It sends the vectors with jt_send_data at seven sites, including 0x1002da6c and 0x1002db60. The facts show the call sequence and constants, not what the registers or the chip do.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `dgMakeVDacFetal` in `usr/diags/IR/bin/irsaudit` at 0x10036fe4
   **Inferred.** Role (from name): programs a video DAC into a default configuration; the facts show only the calls below. It calls dgVDacModeWrite with modes 0x6 and 0x7 (calls at 0x10037018 and 0x10037058). It writes two registers through vcWrite at (a0 << 8) + 0xb00 and (a0 << 8) + 0xb02 with values 0x5 and 0x88 (calls at 0x100370a0 and 0x100370b0). It then makes six dgVDacControlWrite calls with IDs 0x6, 0x7, 0x8, 0xd, 0x9 and 0x204 (calls at 0x100370d4 through 0x10037138). Two loops carry a bound of 0x3e8 (branches at 0x1003702c and 0x10037068); the facts do not show whether they poll or only delay. The facts do not confirm which mode or register each ID selects.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `set_ge11_bypass_pointer` in `usr/diags/IR/bin/irsaudit` at 0x100377c4
   **Inferred.** Role (from name): sets a bypass pointer; the facts show only register writes through ged_host_reg_write. It has four call sites (0x10037814, 0x1003782c, 0x10037840 and 0x10037864), and each invocation reaches three of them: 0x10037814 and 0x10037840 always, and one of 0x1003782c and 0x10037864. The first arguments are 0x235 and 0x233, with values 0x40038, 0xce1, a0 and 0x8e1. The branch at 0x10037820 picks the 0x8e1 call at 0x10037864 when the field at KONAINFO +0x74 is below 5 (unsigned) and the 0xce1 call at 0x1003782c otherwise. The facts do not show what the register IDs or the chosen path mean.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `main` in `usr/diags/IR/bin/irsaudit` at 0x1003eb70
   **Inferred.** Diagnostic entry point (2224 bytes). It calls sort_test_list (0x1003eba4) and parse_args (0x1003ebc0), then makes a run of hash_value calls (0x1003ebe8 to 0x1003eeb8) whose arguments name globals such as DEBUG_LEVEL, TRACE_LEVEL, REPEAT, MAXERR and MAX_ERRORS, with stores to other globals between them; the facts do not show what hash_value does with them. It then calls kt_init_time (0x1003eed8), init_konainfo_BDinfo (0x1003ef44) and kt_init_crashlog (0x1003ef58), prints through kt_output_time, output_revision_info and output_command_line (0x1003ef70 to 0x1003ef9c), and makes six hash_lookup calls (0x1003efb4 to 0x1003f05c), each of which branches to a block calling kt_output_info when its result is nonzero. Next comes init_kona_access (0x1003f094); a result of -1 branches to a block of kt_output_diag and kt_output_abrt calls (0x1003f38c to 0x1003f3f8). Otherwise it calls init_jtag_regs with 1 (0x1003f0b0), and when the fakejtag global is zero it calls init_kona_jtag (0x1003f410, reached from the branch at 0x1003f0dc) before init_konatest_data (0x1003f0fc). run_tests (0x1003f114), a kt_output_dbug call with its result (0x1003f140), tear_down_konatest_data (0x1003f154), kt_output_time and kt_exit_crashlog (0x1003f174) follow, and the routine returns run_tests's result (0x1003f18c). The facts do not say which options are required or how the run result is reported beyond the printed messages.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `i2c_init` in `usr/diags/IR/bin/irsaudit` at 0x10062358
   **Inferred.** Role (from name): initializes an I2C device; the facts show register writes, not the bus protocol. It prints a debug line through kt_output_dbug at 0x10062398, then makes vcWrite calls on the paired registers 0x8801 and 0x8800 with values 0x80, 0x50, 0xa0, 0x14 and 0x80 in that order (calls at 0x100623b4 through 0x100623f4). It reads back 0x8800 with vcRead (0x10062408) and compares the result with 0x50 (branch at 0x10062418). When they are equal it writes 0x80 to 0x8801, 0x50 to 0x8800 and 0xc0 to 0x8801 (calls at 0x10062468 through 0x10062488); otherwise it skips those writes. Both paths then reach a kt_output_dbug call at 0x1006243c. The return value is -1 or 0, and the facts do not tie each value to a path.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `nic_setup` in `usr/diags/IR/bin/irsaudit` at 0x1007af50
   **Inferred.** Makes four 4-byte stores at offsets +0x0, +0x4, +0x8 and +0xc (the base register is not shown in the facts) and calls an unnamed routine at 0x1007abc0 with its four arguments passed through (call at 0x1007af80); the last store sits in the call's delay slot. It returns the callee's result. The stored values and the purpose of the fields are not in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `nic_next` in `usr/diags/IR/bin/irsaudit` at 0x1007af98
   **Inferred.** Role (from name): advances an iterator; nothing in the facts confirms it. It calls an unnamed helper at 0x1007ad28 (call at 0x1007afc8) and tests the result at 0x1007afd4: a nonzero result reaches the return at 0x1007afe0, a zero result continues. The continuing code runs three counted loops bounded by 8, 0x40 and 8 iterations (branches at 0x1007b010, 0x1007b054 and 0x1007b098) and tests a value at 0x1007b0a0. When a1 is nonzero (branch at 0x1007b0c4) it stores six single bytes at offsets +0x3, +0x4, +0x5, +0x0, +0x1 and +0x2, and it stores a byte at +0x0 when a2 (branch at 0x1007b0fc) and when a3 (branch at 0x1007b108) are nonzero. The return values seen are the helper's result, 0x3 and 0x0. The facts do not show the base register of these stores, what the loops compute, or which path returns 0x3.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `init_config` in `usr/diags/IR/bin/irsaudit` at 0x100bdeac
   **Inferred.** Checks a configuration and prints it. It compares a0 with 4 (branch at 0x100bdf0c), a1 with 0x10 (0x100bdf3c), a2 with 2 (0x100bdf48), a5 with 2 (0x100bdf64) and a7 with 4, 5 and 7 (0x100bdf78, 0x100bdf80, 0x100bdf88). Messages go through kt_output_info, and the calls at 0x100bdfac and 0x100be1e0 exit with status 2 after printing. It writes one register through tbRegWrite at 0x1c00 (call at 0x100be198). The facts do not establish which parameter means what or which failures reach each exit.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `init_tf` in `usr/diags/IR/bin/irsaudit` at 0x100c06c8
   **Inferred.** Programs a block of registers from values in the rm record. When the global at 0x102f7248 is zero (branch at 0x100c06f4), it calls tbRegWrite for registers 0x809, 0x806 (twice), 0x140e and 0x140f (calls at 0x100c079c through 0x100c082c). After those calls, if the global at 0x102f7244 is nonzero, it prints two info lines (kt_output_info at 0x100c073c and 0x100c0758). Values come from rm offsets +0x4048 and +0x4030 and constants -0xc001 and -0xd. The register meanings are not in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fcAdapPioWrite64` in `usr/diags/IR/bin/irsaudit` at 0x1013dcec
   **Inferred.** Role (from name): a 64-bit PIO write. The facts show it computing an address and storing a doubleword there. It loads a pointer from KONAINFO, reads the word at offset 6968 of the record that pointer names, adds that word to a0, and stores 8 bytes at the sum plus 0xc000 (store at 0x1013dd1c). It returns that address in v0. The facts do not show the stored value or what the base word holds.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `log2` in `usr/diags/IR/bin/irsaudit` at 0x1014e558
   **Inferred.** Role (from name): integer log base 2 helper. An argument below 2 returns 0 (branch at 0x1014e560, return at 0x1014e584). Larger arguments enter a loop (branch at 0x1014e574 back to 0x1014e56c) that compares a running value with the argument, and the count is returned at 0x1014e57c. The loop's arithmetic is not in the facts, so whether it rounds down or up is not established.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12

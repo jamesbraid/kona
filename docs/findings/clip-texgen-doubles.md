@@ -157,7 +157,7 @@ runs `mUserClipResolve`. 0x3006-0x3fff therefore raise an invalid-enumerant
 error. The common exit of the client's `__glkonim_Enable` (`kon_modes.s`) stores
 token 36 and then the raw name; I did not trace whether any name in
 0x3000-0x3005 takes an early exit that sends nothing, but the processor's
-range is what bounds the pipe. iris's 0x3000-0x3005 match.
+range is what bounds the pipe.
 
 The query token 0x03c takes the same names (0x3000 + n), but its processor
 handler `arm_getclipplane` has no range check; the client's bound is the
@@ -401,4 +401,4 @@ for a zero denominator is unknown".
 - The start-up decode in item 3 and the store offsets in item 1 were done by
   script from the listing text and checked against `mMatrixMultCCW`'s stores
   for the address calibration; the scripts are not committed.
-- Nothing was run on hardware or in an emulator.
+- Nothing was run on hardware.

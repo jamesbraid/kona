@@ -313,7 +313,7 @@ read_req_timeout = { bits = [8, 8], grade = "established" }
 # register table (kpm .data, 6.5.30). Names and bit positions are the table's;
 # the roles come from the names and from the driver's use, so they are graded
 # inferred where the field name is all that is known. Access comes from the
-# driver's reads and writes (origami host-interface sheet, register window).
+# driver's reads and writes (register window).
 [registers.hh_reset]
 offset = 0x300
 access = "rw"

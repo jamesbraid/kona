@@ -639,7 +639,7 @@ Routes tried: `ged1b.u` 6.5.30m (every load, transfer and control word, [ged_lis
 
 ## Engine selection
 
-How the distributor picks among the engines it is allowed to use. What the firmware gives it is now read ([below](#engine-occupancy-mask)); the selection rule inside the distributor is **unknown: no shipped software or published source depends on it**. Routes tried: `arm1.u` start-up (`init_ge_config`, `init_ge`), the 6.5.5 `sys/kona_if.h` header (a round-robin flag no 6.5.30m firmware path tests), and `irsaudit` 6.5.30m `ge12_multige_test`, `ge12_splitge_test` and `ge12_noge_test`, which only drive the engines' scan chains (`jt_select_chain`, `jt_set_global_instruction`, `jt_send_data`, `jt_pack_vector`, `jt_unpack_vector`) and send no primitives, so they predict no assignment. An emulator that keeps the engines' results in command order may choose any rule.
+How the distributor picks among the engines it is allowed to use. What the firmware gives it is now read ([below](#engine-occupancy-mask)); the selection rule inside the distributor is **unknown: no shipped software or published source depends on it**. Routes tried: `arm1.u` start-up (`init_ge_config`, `init_ge`), the 6.5.5 `sys/kona_if.h` header (a round-robin flag no 6.5.30m firmware path tests), and `irsaudit` 6.5.30m `ge12_multige_test`, `ge12_splitge_test` and `ge12_noge_test`, which only drive the engines' scan chains (`jt_select_chain`, `jt_set_global_instruction`, `jt_send_data`, `jt_pack_vector`, `jt_unpack_vector`) and send no primitives, so they predict no assignment. Any rule that keeps the engines' results in command order is consistent with the firmware.
 
 ## Engine occupancy mask
 

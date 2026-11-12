@@ -27,7 +27,7 @@ rows whose first cell matches.
 Replacement text for the "address space" row (cell 2 and grade):
 
 ```
-| address space | texture memory is one physical pool per pipe. The kernel places each owner's blocks disjointly (first-fit, swapping other owners' blocks out to the host under pressure) and tells the pipe each block's offset with MEM_RESERVE; for a texture block the pipe writes the block page, shifted left 18 and arithmetic-shifted right 6 (page bits 13:0 in bits 25:12, bit 13 sign-extended into 31:26), to the global-offset registers 0x101a (draw) and 0x5001 (load). The reserve (key 0) leaves that value in place; swap-out and swap-in each write 0 to both registers once the transfer is done. A program's level addresses in loads and binds are relative to its block, so two contexts with identical table words and level addresses do not alias when their blocks differ (a swap-in moving the region leaves the table words unchanged). That the hardware adds the offset to the level address is inferred from the register use | established for the pool, kernel placement and the register writes; inferred that the offset is added to the level address and that the registers are context-saved | S29, S69 |
+| address space | texture memory is one physical pool per pipe. The kernel places each owner's blocks disjointly (first-fit, swapping other owners' blocks out to the host under pressure) and tells the pipe each block's offset with MEM_RESERVE; for a texture block the pipe writes the block page, shifted left 18 and arithmetic-shifted right 6 (page bits 13:0 in bits 25:12, bit 13 sign-extended into 31:26), to the global-offset registers 0x101a (draw) and 0x5001 (load). The reserve (key 0) leaves that value in place; swap-out and swap-in each write 0 to both registers once the transfer is done. A program's level addresses in loads and binds are relative to its block, so two contexts with identical table words and level addresses do not alias when their blocks differ (a swap-in moving the region leaves the table words unchanged). That the hardware adds the offset to the level address is inferred from the register use | established for the pool, kernel placement and the register writes; inferred that the offset is added to the level address and that the registers are context-saved | S69 |
 ```
 
 In the "address units" row replace the parenthesis
@@ -82,16 +82,15 @@ Replacement text:
   and shifts it into bits 23:21 of the mode word (kon_texture_api.s, 0x0d96850c
   and 0x0d9687e4).
 - Wrong: "holds -n for n in -4..0; Quake GL uses n = 4" contradicts itself. The
-  public value is -4..0 and the stored code is 0..4. That Quake GL stores 4 (public
-  value -4) comes from the recorded session (S66) and was not re-verified here;
-  it is marked recorded-only.
+  public value is -4..0 and the stored code is 0..4. A claim about
+  what one game stores is not established by the library code and is dropped.
 - The texture-mode word row (cell "23:21 detail level") said "negated public
   value inferred"; the library code now establishes the negation.
 
 Replacement text for the detail-level row:
 
 ```
-| detail level code (texture-mode word bits 23:21) | the stored code is the negated public value: the public value is -4..0 and the code 0..4 (a value outside that range is rejected with error -2). Quake GL is reported to store 4 (public value -4); that comes from the recorded session and was not re-checked | established for the negation and the range; the Quake value recorded only | S59 (libGLcore `__glKonTexParameter` 0xd968390), S66 |
+| detail level code (texture-mode word bits 23:21) | the stored code is the negated public value: the public value is -4..0 and the code 0..4 (a value outside that range is rejected with error -2). | established for the negation and the range | S59 (libGLcore `__glKonTexParameter` 0xd968390) |
 ```
 
 In the texture-mode word row replace "23:21 detail level (0-4 from the diagnostic's test vectors; negated public value inferred)" with
@@ -102,7 +101,7 @@ In the texture-mode word row replace "23:21 detail level (0-4 from the diagnosti
 Checked here: the claims about `getS2p7`, the detail-code range and mode-word
 insertion, the three memory handlers and the context-activate path.
 Not re-verified (still as the checker found them): the detail-image-load header
-words and recorded record numbers (S66); the type-equals-kind link for table
+words and their record numbers; the type-equals-kind link for table
 sends; the default-point ordering across the two shipped tables; the kernel
 placement and share-group claims; the negative claim that the pipe has no
 flat-colour state for a missing detail; the luminance row's flag-to-+0x9d0 and

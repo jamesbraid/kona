@@ -1,7 +1,7 @@
 # SGI InfiniteReality (KONA) Reverse Engineering Project
 
 This project reverse-engineers the SGI **InfiniteReality** graphics subsystem (internal name **KONA**).
-The goal is to document its architecture as C headers and notes, so that emulator authors, FPGA builders and the vintage SGI community can work from published findings.
+The goal is to document its architecture as C headers and notes, so that FPGA builders, driver writers and the vintage SGI community can work from published findings.
 
 The layout and working style follow [gr2](https://github.com/techomancer/gr2) and [gr4](https://github.com/techomancer/gr4) by Dominik Behr. Where this file is silent, do what gr4 does.
 
@@ -13,7 +13,7 @@ InfiniteReality (IR, IR2, IR3, IR4) is SGI's high-end graphics pipeline for Onyx
 
 The software on the reference install (IRIX 6.5.30m) spans a kernel driver, three `libGLcore.so` ABIs (o32, N32, 64-bit), IrisGL libraries, six X server modules and a microcode directory.
 
-Facts in this file are labelled **established** (read directly from a binary, with the function or offset), **inferred** (a reasoned reading, with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other emulators.
+Facts in this file are labelled **established** (read directly from a binary, with the function or offset), **inferred** (a reasoned reading, with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other reimplementations of the hardware.
 
 ### Major ASIC and block roles
 
@@ -132,9 +132,11 @@ Readers may open anything:
   diagnostic transcripts, X server logs and screenshots in newsgroup and
   mailing-list posts, web pages, archives and forums.
 
-Running the shipped software under an emulator, to watch which registers it
-touches and what it expects back, is also software evidence. Label what it
-shows as the driver's expectation, not as proof of hardware behaviour.
+What the shipped software touches and what it expects back, read from its
+code, is software evidence. Label it as the driver's expectation, not as proof
+of hardware behaviour. A run on a simulated machine shows only what the
+software does there, so a fact that rests on such a run alone is graded
+inferred or unknown.
 
 Write findings in your own words. Never paste vendor source, HDL or
 proprietary binaries into the repository.
@@ -170,7 +172,7 @@ label to established or inferred.
 Some facts no software reveals, such as the reset value of a register no
 driver reads. When every route is exhausted, label the fact "unknown: no
 shipped software or published source depends on it" and list the routes you
-tried. An emulator author then chooses a value and documents the choice. Never
+tried. A later implementer then chooses a value and documents the choice. Never
 write "needs capture".
 
 An open question is not a stopping point. Record it in
@@ -193,7 +195,7 @@ finished when every inventory table reaches done, not when the rows look full.
 
 When you finish a task, regenerate the inventory, then pick the next entries
 below `understood` and carry on. Hand off only when your assigned area meets
-the definition above, or when the session ends. In that case, say in
+the definition above, or when you must stop. In that case, say in
 `docs/open-questions.md` where you stopped and what comes next.
 
 ---
@@ -204,7 +206,7 @@ Workflow: populate `root/` (IRIX_FILES.md), run the tools above, then read, writ
 
 Roles:
 
-- **Readers** pick work from the rows below `understood` in the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and take each row to `understood`: a role and hardware effect, a label, and a derivation in the same entry. **Opus readers** start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item; **Sonnet readers** work through `undocumented`, then `named-only` and `located` rows by block.
+- **Readers** pick work from the rows below `understood` in the tables in `docs/inventory/`, which are measured from the binaries and so list what is really missing. Take a cluster of related rows (one function family, one register block, one token group, one ioctl) and take each row to `understood`: a role and hardware effect, a label, and a derivation in the same entry. Start with the Priority list in `docs/coverage.md` and use the inventory to find the rows behind each item, then work through `undocumented`, then `named-only` and `located` rows by block.
 - The areas table in `docs/coverage.md` stays as the by-hand view of each block. Keep its rows true when you change them.
 
 Regenerate the inventory in the same commit as any doc or header change that explains an item (`retools/tools/inventory.py`, then commit `docs/inventory/` and the totals in `docs/coverage.md` with it). A row becomes `understood` only through an entry whose subject it is: a table row whose first column is the item, a list item or heading that starts with it, or a header comment on it. That entry carries a label, a role and hardware effect, and a citation specific to the item (its offset, address, callee, archive member, not just a release). Other names in the entry count as mentions. A function is understood only in the binary the entry cites, plus any build with identical code. When more than five entries share one sentence pattern, they count at most as `located`, so read each item and write its own sentence. [docs/inventory/README.md](docs/inventory/README.md) gives the exact rule. Write the name exactly as the binary spells it, and put the explanation under a heading, so the row cites the right section. If the script mis-detects a row, fix `scripts/inventory-config.json` and say why in the commit. `retools/tools/inventory.py` is shared, byte for byte, with the other graphics workspaces; what belongs to this family is in `scripts/inventory-config.json`.
@@ -218,6 +220,6 @@ Output rules:
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
 - Commit what you cite: findings may rest on IRIX binaries, published documents, captures or public open-source code (cited by project, revision and file) only.
 
-Downstream emulator projects consume the headers and docs; they should not need to read the binaries.
+Downstream projects consume the headers and docs; they should not need to read the binaries.
 
 Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`kona_kernel: label the flow-control register`); bodies say why. Do not wait to batch work.

@@ -4,10 +4,8 @@ Scope: the thirteen-word X graphics-context load (token 0x129) and the X
 server's polyline commands (tokens 0x15b-0x15e). Sources: `ddx/kona.so`
 (IRIX 6.5.30m, via `ddx/asm/kona/kon/kon.s`; addresses below are `kona.so`
 virtual addresses), the pipe firmware `ucode/KONA/arm1.u`, the engine program
-`ucode/KONA/ge.u` / `ge.hex` (listings in `ucode/ge_listing/`), and one
-recorded X session (the 4Dwm desktop recording `onyx2-deskside-irix-4dwm.kona.rec`,
-SHA-256 `8c86364169ee8ec55119fb9aa7c330dea4d0243f9501de6f021cbe05d2d8cba0`).
-Grades: **established** (read from bytes or counted in the recording),
+`ucode/KONA/ge.u` / `ge.hex` (listings in `ucode/ge_listing/`).
+Grades: **established** (read from bytes),
 **inferred** (reasoned, reasoning given), **unknown** (with the test that
 would settle it). `docs/command-table.md` is not edited here; the rows to
 adopt are under "Proposed command-table rows".
@@ -23,10 +21,9 @@ adopt are under "Proposed command-table rows".
    (inferred from the mask reading). The handler is engine code, not firmware.
    A second store, to special register 0x23, takes word 0 or word 4 (unsettled,
    word 0 favoured). Whether bit 31 reaches anything is unknown.
-3. In the recorded session the 60 loads with bit 31 set are followed only by
-   the same stipple and fill tokens that plain stippled fills use; no other
-   sender draws their background. Established for the recording; what the
-   board does with them is unknown.
+3. No other sender in `kona.so` draws the background of a bit-31 fill after
+   the load (the background senders that exist are listed in section 3).
+   Inferred from the sender code; what the board does with the bit is unknown.
 4. Last vertex of a polyline command: unknown for the pipe. Established for the
    host-side fallback.
 5. Closing vertex equal to the first point: unknown for the pipe. Established
@@ -38,9 +35,8 @@ adopt are under "Proposed command-table rows".
    inferred). The absolute converter adds them inside its loop to every
    point; the relative converter reads them once before its loop.
 7. A pending data run joins the next drawing command, and a polyline's
-   remainder relies on it. Inferred for lines (sender design); established for
-   points and rectangles in the recording; no polyline command occurs in the
-   recording.
+   remainder relies on it. Inferred for lines (sender design); inferred for
+   points and rectangles (from the sender code); nothing shows it for polylines.
 8. The sender's word counts after the token for 0x15b, 0x15c, 0x15d and 0x15e
    are 1, 7, 2 and 7 (established, all four X server builds). An earlier
    statement of 2, 7, 2, 7 was wrong for 0x15b: it took the map's count of 2,
@@ -157,51 +153,20 @@ words 0 and 4 differ in a marked bit. No such capture is held. Without it the
 honest statement is: bit 31 is dropped on the 0x1c14 path (inferred), and its
 use elsewhere is unknown.
 
-## 3. Where opaque behaviour comes from in the 4Dwm recording
+## 3. Where opaque behaviour could come from
 
-**Method.** The recording's command window writes were parsed as token plus
-payload (word counts from `ucode/icu_map.tsv`; the IP27 module writes every
-token as data at one offset). 1195 `0x129` loads parse; 60 have word 4 bit 31 set
-(21 with word 4 = 0x80ffffff and 24-bit RGB format word 10 = 8, 39 with word 4 =
-0x80f00fff and colour-index format word 10 = 5). Counted over all loads: 1135
-have it clear.
-
-**Established, from those 60 loads.**
-
-- Every one is followed by the stipple sequence (store stipple 0x13d, rotate
-  0x13e, load stipple 0x13c) except one chain cut short by the parser; then
-  clip loads and span tokens (`X_SPANS6` 215, `X_SPANS2` 67, `X_SPANS` 27
-  sends over all 60 chains), plus `X_RECT` 2 and `X_POINT` 1, then load stipple
-  0xffffffff.
-- 74 loads with bit 31 clear have the same stipple sequence and `X_RECT`.
-  Same tokens, different word 4.
-- Foreground and background colour words differ in all but two of the 59
-  stipple-fill loads with bit 31 set; for the bit-31-clear stipple fills the
-  background word is whatever the GC holds.
-- No token in the stream paints a background for these fills: there are no
-  background-colour point commands (`X_BGPOINT` 0x15f-0x161: zero sends; the
-  matching values in the file are payload words), no opaque-bitmap set-up (pixel
-  set-up word 1 = 5: zero of 448; the values seen are 0, 1, 2, 4), and the
-  chains before each bit-31 fill, sampled at four places, hold unrelated fills.
-  A full pairing of each bit-31 fill with a preceding solid fill of its own box
-  was not done.
-
-**Reading.** If the board ignored bit 31, these 60 fills would put foreground
-pixels only, and nothing in the stream would paint the background pixels the X
-protocol requires for opaque stipples and two-colour tiles. That fits the
-sender argument in section 1 (inferred). It cannot show what the board does:
-the recording holds what the server sent, not what the pipe drew. The
-screen comparison of two implementations is the same kind of evidence and is
-not used here. What would settle the board's behaviour is unknown without a
+**Reading.** If the board ignored bit 31, a bit-31 fill would put foreground
+pixels only, and the sender code never follows the load with a separate token
+that paints the background pixels the X protocol requires for opaque stipples
+and two-colour tiles. That fits the sender argument in section 1 (inferred).
+It cannot show what the board does: sender code shows what the server sends,
+not what the pipe draws. What would settle the board's behaviour is a
 raster-side observation (section 2 test).
 
-**Other senders of background pixels that exist in the module but are absent
-from this recording** (all established from the module, none seen in the stream):
+**Senders of background pixels that exist in the module** (established from the module):
 `X_BGPOINT*` from `konBresD` (dashed lines, double-dash), pixel set-up mode 5 from
 `kon_loadNfbOpaqueBitmapGC`, and the image-text pair of a background box under
-`kon_loadImgRectGC` followed by glyphs under `kon_loadImgBitmapGC`. Image text
-may be present: 68 scissor loads and 90 mode-4 glyph set-ups occur, but not told
-apart from plain text here.
+`kon_loadImgRectGC` followed by glyphs under `kon_loadImgBitmapGC`.
 
 ## Word counts of tokens 0x15b-0x15e
 
@@ -257,8 +222,8 @@ and cannot confirm them independently.
 
 **Grades.** Sender word counts 1, 7, 2, 7: established. That the pipe's host
 interface takes in exactly those words (rather than the map's 2, 12, 2, 12):
-inferred, because the shipped server uses these framings and no recording holds
-a polyline token. The absolute single form is the best-supported case against
+inferred, because the shipped server uses these framings and no capture from a
+real pipe is held. The absolute single form is the best-supported case against
 the map count being the framing: a two-word read would consume the next
 token's number as a point after every remainder of two to six points.
 
@@ -324,11 +289,9 @@ not by a name reference in code).
 
 *Tests that would settle it:* (a) decode the operand registers of
 `ge.hex` 0x5045-0x5050 to get the signed per-end shift, then take the rasteriser's
-end rule from a register-level source; or (b) a recording of a real X client
+end rule from a register-level source; or (b) a capture from a real pipe of an X client
 drawing a seven-point and an eight-point XOR polyline plus a closed polygon
-outline, with the resulting pixels read back. The 4Dwm recording contains no
-polyline command: values 0x15b-0x15f appear only as payload words, and every
-`0x129` load chain parses without one.
+outline, with the resulting pixels read back.
 
 ## 6. Relative polylines and the drawable origin
 
@@ -349,7 +312,7 @@ for a second and later relative chunk it adds a running sum to the first point
 before sending (0x4659b0-0x465af0). **Inferred, not tested:** the sum it carries
 covers seven points (offsets 0 to 24 bytes) although the next chunk's first
 point is the seventh, so that point's own delta looks counted twice; no relative
-polyline of more than seven points occurs in the recording, so this is only a
+polyline of more than seven points is traced here, so this is only a
 reading of the code. The relative remainder also advances by 8(n-1) bytes and
 sends two words (0x465d48-0x465d88), where the absolute remainder advances by
 4(n-1) and sends one (0x466024-0x46604c). Points are four bytes, so the
@@ -380,27 +343,19 @@ drawable record's halfwords +8 and +10 (x, y) and +12 and +14 (width, height),
 and `konLineSS` calls it (0x465940) before every line token. For a window
 those are the window's screen position, nonzero unless it sits at the origin;
 a pixmap has zero. Zero comes only from the screen-wide senders, which send
-0, 0, screen width, screen height. In the 4Dwm recording 386 of the 1192
-position loads in the parsed chains are nonzero; all 610 point commands (0x14c
-to 0x14e) happen to follow a zero origin, and 209 rectangle and box commands
-(0x152 to 0x155) follow a nonzero one (201 of 0x152, 4 of 0x153, 3 of 0x154,
-1 of 0x155: 4 boxes). Box senders mostly zero the position first; the
+0, 0, screen width, screen height. Box senders mostly zero the position first; the
 per-routine breakdown is in the drawable-origin row of `command-table.md`
-section 7.18. No line command occurs there, so
-nothing shows a line after a nonzero origin; by the sender code it is the normal
+section 7.18. By the sender code a line after a nonzero origin is the normal
 case.
 
 ## 7. Does a pending data run join a line
 
-**Established (recording).** The `X_DATAk` words are routed to the register-write
+**Inferred.** The `X_DATAk` words are routed to the register-write
 command (`ucode/icu_map.tsv`), yet the sender uses them strictly as a preload for
-the next drawing command. In the recording every one of the 401 data runs is
-immediately followed by a point, rectangle or box token, never by a load or
-another data run: DATA1/POINT 115, DATA2/POINT 88, DATA2/RECT 8, DATA3/POINT 82,
-DATA4/POINT 52, DATA4/RECT 4, DATA4/BOX 2, DATA6/RECT 44, DATA6/BOX 6 (counted
-over the chains that start at a `0x129` load). The run's size plus the closing
-token's payload is the number of items drawn (for example 6 + 2 words = four
-rectangles), so the run joins the command that follows it.
+the next drawing command (points, rectangles and boxes in the senders that
+use them). The run's size plus the closing token's payload is the number of
+items drawn (for example 6 + 2 words = four rectangles), so the run joins the
+command that follows it.
 
 **Inferred for polylines.** `konLineSS` sends a polyline remainder of r points
 as a data run of r-1 points followed by an `X_LINE` carrying one point
@@ -411,8 +366,7 @@ because the final `X_LINE` alone has one point. The engine side agrees in form:
 only quantity that could include the run (`ge_compute.md`, 0x51a2). So a
 polyline continues across the data/line boundary and the run is part of one
 polyline. Not established: whether the run joins a command of a different family
-(a data run followed by a different token), since none was sent in the recording
-and the sender never does it. Test: a hand-built stream with a data run before a
+(a data run followed by a different token), since the sender never does it. Test: a hand-built stream with a data run before a
 point command versus before a line command.
 
 ## Side finding (affects an existing row)
@@ -437,7 +391,7 @@ Section 7.8, the "what the engine does with word 4" row, restate:
 
 Section 7.8, add to "values the X module is seen to put":
 
-| word 4, bit 31 | set by `kon_parseGC` for fill style 3 (opaque stipple), or fill style 1 (tiled) with a pipe tile at private +0x88; sent by `kon_loadGC` and the inline fill copies and by the bitmap loaders, not by the geometry, image-rectangle and image-bitmap loaders. Recording: 60 of 1195 loads, always before stipple store/load tokens and `X_RECT`/`X_SPANS*` | established | `kona.so` 0x53985c, 0x4a644c, 0x5303d8; 4Dwm recording |
+| word 4, bit 31 | set by `kon_parseGC` for fill style 3 (opaque stipple), or fill style 1 (tiled) with a pipe tile at private +0x88; sent by `kon_loadGC` and the inline fill copies and by the bitmap loaders, not by the geometry, image-rectangle and image-bitmap loaders. | established | `kona.so` 0x53985c, 0x4a644c, 0x5303d8 |
 | meaning of word 4 bit 31 | opaque: clear stipple bits paint the background colour of words 2-3 (cached stipples and two-colour tiles use the same fill vector as plain stippled fills) | inferred | `kona.so` 0x554424-0x554534 |
 | word 10, low five bits, bitmap and glyph-image loads | cleared (this replaces the row that says word 6) | established | `kona.so` 0x4f3ac0, 0x4f3b68 |
 
@@ -446,13 +400,10 @@ Polyline rows (near tokens 0x15b-0x15e):
 | polyline chunking | seven points per `X_LINE6`/`X_LINE6_R`, next chunk starts at the previous chunk's last point; remainder is a data run of r-1 points plus a one-word `X_LINE` (0x15b), or for relative a two-word `X_LINE_R` (0x15d). Words after the token: 1, 7, 2, 7 for 0x15b to 0x15e | sender counts established; pipe intake inferred | `kona.so` 0x465dcc-0x466048 |
 | polyline last vertex, closing vertex | pipe: unknown (rasteriser end rule). Host fallback: last vertex sent once as a point unless CapNotLast or closed onto the first point | pipe unknown; fallback established | `kona.so` 0x56ebd0-0x56ed38 |
 | relative polyline anchor | origin from the position load (control words 7, 8), restarted at every command, same converter as relative points; the relative converter reads the words once to seed its sum, the absolute one adds them per point | origin-word reads established; adds and seeding inferred | `ge.u` 0x52a3-0x52b9, 0x52c4-0x52dc, 0x4d7c |
-| data run before a line | joins the line command (one polyline); run followed by points and rectangles joins them in the recording | inferred (lines); established (points, rectangles) | `kona.so` 0x465e68, recording |
+| data run before a line | joins the line command (one polyline); run followed by points and rectangles joins them (sender design) | inferred | `kona.so` 0x465e68 |
 
 ## What was not done
 
 Not traced: the operand registers of the four endpoint adds at `ge.hex` 0x504d-0x5050;
 the rasteriser's end-pixel rule; which GC state selects `konLineSS`; whether
-special register 0x23 has a hardware reader. The recording was parsed with a
-simple token walk (word counts from the token map); a chain that hit an unknown
-token was cut, so the 60 bit-31 loads are a count of parsed loads, not a proof
-that none were missed.
+special register 0x23 has a hardware reader. 

@@ -220,7 +220,7 @@
  * Routes tried: the 6.5.30m kernel (it only carries the bits over), kpm's
  * XG table (masks, no defaults), the strings of kpm, irsaudit, postmortem
  * and ireeprom (no water-mark name beyond kpm's table), the 6.5.5 headers and Linux
- * xwidget.h. An emulator picks values and says so.
+ * xwidget.h. The values are unknown and any implementer must choose and say so.
  */
 /*
  * XG +0x74 is XG_HI_LO_WATER. Established: `kona_reset_adaptor` reads it at +0x1b8 and writes it

@@ -1,6 +1,6 @@
 # What the geometry-engine routines compute
 
-The per-label catalogue in [ge_handlers.md](ge_handlers.md) says where each label sits, what reaches it and which operations its words use. This page goes one step further for the routines an emulator needs first: what each one takes in, what it writes out and the arithmetic between them. Every entry was written after reading the routine's words in [ge_listing/](ge_listing/) (`ge.u`, IRIX 6.5.30m) with the operation codes of [ge_ops.md](ge_ops.md) and the field readings of [ge_isa.md](ge_isa.md).
+The per-label catalogue in [ge_handlers.md](ge_handlers.md) says where each label sits, what reaches it and which operations its words use. This page goes one step further for the routines most needed first: what each one takes in, what it writes out and the arithmetic between them. Every entry was written after reading the routine's words in [ge_listing/](ge_listing/) (`ge.u`, IRIX 6.5.30m) with the operation codes of [ge_ops.md](ge_ops.md) and the field readings of [ge_isa.md](ge_isa.md).
 
 Facts are labelled **established** (read from the words at the addresses given) or **inferred** (with the reasoning). The operation of a word is established when its code is one the diagnostic test fixes; how the two arithmetic units route their register operands (the decoded groups `r148`, `r128` and `r110`) is not mapped, so the order of terms inside a sum, and which partial sum a word extends, come from the memory addresses and offsets the words name, not from a register trace.
 
@@ -3821,8 +3821,7 @@ from engine words 0x13a7-0x13aa (colour) or 0x13ab-0x13ad (normal) with `r95` = 
 ## Engine and context initialisation (ge.S)
 
 Read from the [ge.S listing](ge_listing/ge.S.lst) (`ge.u`, IRIX 6.5.30m). These handlers fill engine state with
-constants rather than compute from operands; the entries say what each one writes, which is what an emulator needs to
-reproduce a freshly initialised engine.
+constants rather than compute from operands; the entries say what each one writes, which is the state of a freshly initialised engine.
 
 - `mgeb_GlobalInitialize` (`ge.S` lines 49-75, at 0xad66): **inferred**, the one-time engine set-up. It calls
   `mGL_REGS_Initialize`, `mGL_EM_Initialize` and `mGL_LightInitialize` (0xad66, 0xad6f, 0xad78), then stages five raster

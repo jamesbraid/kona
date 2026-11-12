@@ -50,7 +50,7 @@ Register access sites: 18380 found, 18372 resolved to an offset and 8 (0.0%) unr
 
 ## Priority
 
-Open problems, most important first. Opus readers take these in order.
+Open problems, most important first. Take these in order.
 
 1. **Geometry, raster and display command formats.** Packet and token layout from libGLcore emission, the kernel driver and the microcode. Start from the command-emission paths in libGLcore and the FIFO accesses found by `analyze_fifo.py`; cross-check against `ge.u` dispatch.
 2. **Texture download and filtering.** How texture memory is loaded (DMA and PIO), texel formats, mipmap layout, filter modes and the arithmetic precision of filtering. Cover every texel path, not only the common one.

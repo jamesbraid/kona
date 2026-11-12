@@ -4,76 +4,76 @@ Roles for targets 100 to 124 of the ranked tier-2 list, all in the IGLOO32 libgl
 
 - `gl_n_font` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec38750
   **Inferred.** Reads a half-word from the address in its first argument and passes it to gl_findfont at 0xec384a0 (call at 0xec3878c, which both paths reach). Before that it tests the flag at 0xece8bf0 (branch at 0xec38774) and, when the flag is nonzero, calls __iglooNCloseMoveDraw at 0xec92d80 with its four arguments. The return at 0xec387a4 gives its first argument plus 4. The name suggests a font lookup, but the facts do not show what the returned pointer is for.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_strwidth` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec387b0
   **Inferred.** Returns 0 at 0xec388a8 when arg0 is zero (branch at 0xec387d0). Otherwise it reads the font record through the global state chain and, when the word at offset 20 of that record is nonzero (branch at 0xec387f8), calls __GLlstrwidth at 0xec38888 with the string pointer from arg0, a first argument of 0 and values read from the font record. When the word at offset 20 is zero it runs a loop over the bytes of the string (loads at 0xec387fc to 0xec3885c). If the font pointer at offset 3016 of the global state is zero (branch at 0xec387dc), it calls set_def_font at 0xec3a710 (call at 0xec388b8). The return at 0xec38878 gives a computed value (one of an unknown value and 0), not a fixed 0. The width units and the loop's meaning are not in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_strwid` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec388e0
   **Inferred.** The same shape as gl_g_strwidth at 0xec387b0, but it calls __GLlstwid at 0xec38a30 with both arg0 and arg1, not __GLlstrwidth. Its default-font path also goes through set_def_font at 0xec3a710 (call at 0xec38a68). The name suggests a wide-character width, but the facts do not show the character size.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_defrasterfont` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec38a80
   **Inferred.** Role (from name): builds a raster font record from its argument block. The facts show these steps. Arg0 zero branches away (0xec38ac0). It looks up the table at 0xecdf180 with gl_find at 0xec38ad8. When gl_find returns nonzero (branch at 0xec38ae0) it removes a record with gl_remove at 0xec35030 (call at 0xec38af8) and passes the result to fntrecfree at 0xec3a290 (call at 0xec38b08). It allocates a new record with fntrecnew at 0xec3a310 (call at 0xec38c28), calls __iglooPixelStorei at 0xecb7050 (calls at 0xec38c5c and 0xec38c6c, only when the word at offset 12 of the new record is nonzero, branch at 0xec38c4c), and calls __iglooNewList at 0xecb7f10, glBitmap and __iglooEndList at 0xecb7f60 (calls at 0xec38e40, 0xec38e88 and 0xec38e94, only when a register that held that word earlier is nonzero, branch at 0xec38e34). It then calls fntwidth at 0xec3a980 and fntdescender at 0xec3a880 (calls at 0xec38f3c and 0xec38f68) with a word from offset 8 of the new record, and inserts the record into the table with gl_insert at 0xec35010 (call at 0xec38f90). It reports error 0x37 through gl_ErrorHandler at 0xec5d440 (call at 0xec38fc8). The glyph-field stores are loops whose meaning the facts do not show.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_deflfont` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec38ff0
   **Inferred.** Role (from name): creates a default font record. It looks up arg0 and arg2 in the table at 0xecdf180 with gl_find at 0xec39134. When gl_find returns zero (branch at 0xec3913c) it allocates a record with fntrecnew at 0xec39154 (first argument 0, arg1 as the second). It calls ras_new at 0xec3a4a0 (call at 0xec3918c), then fntdescender, fntwidth and fntheight in that order (calls at 0xec39414, 0xec39430 and 0xec39448). It calls gl_insert at 0xec35010 on the table (call at 0xec39470) only when a flag that is 0 or 1 is nonzero (branch at 0xec39450). Separately, a path calls gl_ErrorHandler with error 0x37 (call at 0xec394c0), then gl_remove on the table with arg0 and arg2 (call at 0xec394dc) and fntrecfree on its result (call at 0xec394ec). The facts show only these lookups, allocations and measurements, so the purpose is inferred.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_lstrwidth` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39500
   **Inferred.** Walks a multi-byte string with mbgetnext at 0xec39c60 (calls at 0xec39574, 0xec395b8, 0xec395dc and 0xec39624). For each character it looks up the glyph record through gl_find at 0xec39604, using the table from the global state. If the font is missing it calls set_def_font at 0xec3a710 (call at 0xec3965c), and the path that ends at 0xec3968c returns 0. The return value on the other path at 0xec39650 is not derived from the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_lstwid` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec396a0
   **Inferred.** Converts its string arguments with mbmkstr at 0xec39b10 (call at 0xec396e0), measures the result with __GLlstrwidth at 0xec3970c, and frees the converted buffer through gl_free at 0xec39720. Early-exit paths return 0 at 0xec396c8 and 0xec396fc. The return at 0xec39734 passes through the value of __GLlstrwidth.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `mbdrawcharstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39740
   **Inferred.** Draws a multi-byte string one character at a time. It brackets the work with __GLgl_beginstring at 0xec39788 and __GLgl_endstring at 0xec39844, reads each character with mbgetnext at 0xec39c60, looks up its glyph with gl_find at 0xec39818, and draws it through __GLgl_outcharmap at 0xec39830. On one path it draws through __GLgl_outcharmap at 0xec398a0. On the path that reaches 0xec398bc it calls set_def_font at 0xec3a710, which is taken when the font pointer at offset 3016 of the global state is zero (branch at 0xec3977c). The facts do not show the bitmap format or the glyph size.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_c_lchstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec398d0
   **Inferred.** Converts its string with mbmkstr at 0xec39b10 (call at 0xec39904), then calls gl_ecallfunc at 0xec37c00 with the addresses of mbdrawcharstr (0xec39740) and freecharstr (0xec3a6d0) as the first two arguments, the constant 2 as the third, the mbmkstr result as the fourth and its own arg0 as the fifth (call at 0xec39928). When arg1 is zero it skips both and returns at 0xec398f0 (an unknown value or the gl_ecallfunc result). The name suggests a character-list call, but the facts show only the dispatch, and do not show how gl_ecallfunc uses the addresses.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_i_lchstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39940
   **Inferred.** Converts its string with mbmkstr at 0xec39b10 (call at 0xec39974), draws it through mbdrawcharstr at 0xec39740 with a flag of 1 (call at 0xec39990), and frees the buffer with gl_free at 0xec399a0. Its return at 0xec39960 gives either an unknown value or the result of gl_free. The name suggests an immediate-mode variant of gl_c_lchstr at 0xec398d0, which draws directly rather than through the callback table, but the facts do not confirm that.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_c_lcharstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec399b0
   **Inferred.** When arg1 is nonzero it counts with mbstrlen at 0xec39a80 (call at 0xec399e4) and converts the string with mbmkstr at 0xec39b10 using that count as the third argument (call at 0xec399fc). When mbmkstr returns nonzero it calls gl_ecallfunc at 0xec37c00 with the addresses of mbdrawcharstr and freecharstr (call at 0xec39a3c), the same dispatch as gl_c_lchstr at 0xec398d0 with the added count step. The return at 0xec39a18 is one of the mbmkstr result (the zero-result path), an unknown value, or the gl_ecallfunc result.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_i_lcharstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39a50
   **Inferred.** A short routine of 44 bytes. It loads a word from the fixed address 0xecdab88 when arg1 is nonzero (branch at 0xec39a5c) and then tail-branches into mbdrawcharstr at 0xec39740 (branch at 0xec39a74). Its only return in the listing gives the constant 0xa9120 at 0xec39a64. The facts do not show what the constant or the loaded word mean, so the role beyond the tail branch is unclear.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `mbstrlen` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39a80
   **Inferred.** Role (from name): counts the characters in a multi-byte string. It calls mbgetnext at 0xec39c60 (calls at 0xec39aa8 and 0xec39ac8), the second in a loop that repeats while the result is nonzero (branch at 0xec39ad0). It returns 0 at 0xec39b08 when the first mbgetnext result is zero (branch at 0xec39ab0). The return at 0xec39aec gives an unknown value in the facts, so the return contract is not settled by them.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `mbmkstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39b10
   **Inferred.** Copies arg1 into a gl_malloc buffer. It compares arg0 against the constants 0x1, 0x100, 0x10, 0x11 and 0x101 (branches at 0xec39b30 to 0xec39b50), a zero arg0 branches to 0xec39c4c (0xec39b28), and it returns 0 at 0xec39b58 when arg0 matches none of them. It allocates with gl_malloc at 0xec5f4e0 (call at 0xec39c20, second argument read from 0xecdede0) and copies the input with bcopy at 0xec39b6c, then stores single bytes in a loop (stores at 0xec39ba8 to 0xec39bd4) whose purpose the facts do not show. It returns the gl_malloc result at 0xec39bdc and 0 when gl_malloc fails (0xec39c3c).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `mbgetnext` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39c60
   **Inferred.** Role (from name): advances a cursor over a multi-byte string. Arg0 is compared against 0x11, 0x10, 0x1, 0, 0x100 and 0x101 (branches at 0xec39c68 to 0xec39c94), and it returns 0 at 0xec39c9c when arg0 matches none of them. Arg1 holds the address of a pointer: the routine loads through it and stores back to it. The return at 0xec39d24 gives a word read through that pointer, the return at 0xec39d38 gives a half-word and the return at 0xec39ce4 gives either an unknown value or a byte. The facts do not show the meaning of the arg0 values or the lead-byte test.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_free_fonts` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39d40
   **Inferred.** Walks a table of pointers ending at 0xecdf380 (loop branch at 0xec39da4) and, for each nonzero loaded pointer (branch at 0xec39d84), calls fntrecfree at 0xec3a290 (call at 0xec39d90) in an inner loop that repeats while another loaded word is nonzero (branch at 0xec39d98). It then calls fntrecfree on the word read from 0xecdd960 (call at 0xec39db0) and returns the fntrecfree result at 0xec39dd0. The facts do not show what the table or records are.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntfromfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec39de0
   **Inferred.** Parses a binary font file into a font record. It reads an 8-byte header with fread at 0xec39e00, formats a message with sprintf at 0xec39e30, and reports error 0x6d through gl_ErrorHandler at 0xec5d440 (call at 0xec39e44) after formatting that message. The facts do not show what triggers it. It then reads the remaining fields as 2-byte items with further fread calls, starting at 0xec39e6c. The field layout is not settled by the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntread` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a1f0
   **Inferred.** Opens a file with fopen at 0xec3a204 (arg0 and a mode argument at 0xecde0c8). When fopen returns nonzero (branch at 0xec3a20c) it calls fntfromfile at 0xec39de0 (call at 0xec3a21c) with the stream, closes it with fclose at 0xec3a230, stores a word at offset 4 and returns an unknown value at 0xec3a244. When fopen returns zero it formats a message with sprintf at 0xec3a260 using arg0, reports error 0x4b through gl_ErrorHandler at 0xec5d440 (call at 0xec3a274) and returns 0 at 0xec3a284.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntrecfree` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a290
   **Inferred.** Role (from name): releases one font record. Arg0 zero branches to the return (0xec3a298). When the word at offset 12 is nonzero (branch at 0xec3a2ac) it calls glDeleteLists with that word and a word read through offset 8 (call at 0xec3a2bc). It calls fntfree at 0xec3a5d0 on the word at offset 8 (call at 0xec3a2cc) and tail-calls gl_free on arg0 (call at 0xec3a2e8). The return at 0xec3a2f4 gives an unknown value.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntrecnew` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a310
   **Inferred.** Allocates and initializes one font record. It allocates a 16-byte block (gl_malloc at 0xec3a32c) and a 24-byte block (at 0xec3a358), and calls ras_new at 0xec3a4a0 (call at 0xec3a3a0). When arg1 is nonzero (branch at 0xec3a3c0) it allocates a 512-byte block (at 0xec3a3cc) and zeroes it with bzero at 0xec3a400. It allocates a block of 20 times arg0 bytes (at 0xec3a440) and zeroes it (bzero at 0xec3a464). It calls glGenLists at 0xec3a484 only when the word at 0xecda788 equals 1 (branch at 0xec3a478). It returns 0 on its failure paths (0xec3a3f0 and 0xec3a420). The facts do not show the record's field layout.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `ras_new` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a4a0
   **Inferred.** Allocates a raster-state object made of small blocks. It takes three 12-byte or variable-size blocks from gl_malloc (calls at 0xec3a4c8, 0xec3a4fc and 0xec3a554), zeroes two of them with bzero (calls at 0xec3a52c and 0xec3a568), and returns the gl_malloc result at 0xec3a59c. It returns 0 on the failure paths at 0xec3a51c and 0xec3a5bc. The name suggests a raster state, but the facts show only the allocations.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntfree` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a5d0
   **Inferred.** Role (from name): releases the sub-blocks of a font record. Arg0 zero branches to the return (0xec3a5e0). It calls gl_free at 0xec3a5f4 on the word at offset 8 and at 0xec3a608 on the word at offset 20, when each is nonzero. It tail-calls gl_free on arg0 itself at 0xec3a638 and calls gl_free on other loaded pointers at 0xec3a644, 0xec3a658 and 0xec3a698, in loops the facts do not decode. The return at 0xec3a6b4 gives an unknown value. The facts do not show that this mirrors the allocations in fntrecnew at 0xec3a310.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `freecharstr` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a6d0
   **Inferred.** Passes arg1 to gl_free at 0xec3a6f4 with the constant 0xecd16e8 as the second argument and returns the value of gl_free. gl_c_lchstr at 0xec398d0 and gl_c_lcharstr at 0xec399b0 pass its address to gl_ecallfunc after converting a string with mbmkstr, so it is probably the release callback for that converted buffer. The facts do not show how gl_ecallfunc uses it.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `set_def_font` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a710
   **Inferred.** When the word at 0xecdd960 is zero (branch at 0xec3a71c) it calls fntread at 0xec3a1f0 (call at 0xec3a74c) with 0xecd16f8 as the first argument, the global state word as the second and the value read from 0xecdd960 as the third, then loads a word at offset 0x114 and stores a word at offset 0xbc8 (0xec3a760 and 0xec3a764) and returns the fntread result at 0xec3a76c. When the word at 0xecdd960 is nonzero it loads a word at offset 0x114, stores a word at offset 0xbc8 (0xec3a720 and 0xec3a728) and returns an unknown value at 0xec3a730. The facts do not show that 0xecd16f8 names a file.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `fntheight` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3a780
   **Inferred.** Role (from name): a font height query. It loads the words at offsets 8 and 12 of arg0 (at 0xec3a780 and 0xec3a78c) and the half-word at offset 6 of the record at offset 8 (at 0xec3a7a4). When the word at offset 8 is zero (branch at 0xec3a784) it loads the word at offset 20 (at 0xec3a804) and works over a list from there (loads at 0xec3a81c and later). It returns an unknown value at 0xec3a7fc and 0 at 0xec3a874, which is the target of the branch at 0xec3a790 when the word at offset 12 is zero or negative. The facts do not show which field holds the height.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12

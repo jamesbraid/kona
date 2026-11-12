@@ -1,6 +1,6 @@
 # Feedback records, and who runs the stored video combination at power-up
 
-Two questions from an emulator author, answered from the IRIX 6.5.30m
+Two questions about the pipe, answered from the IRIX 6.5.30m
 binaries in `root/` and from published GL behaviour. First configuration only:
 one IP27 Onyx2, one InfiniteReality2 pipe.
 

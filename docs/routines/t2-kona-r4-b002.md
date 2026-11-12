@@ -4,76 +4,76 @@ Roles for targets 50 to 74 of the ranked tier-2 list, all in the IGLOO32 libgl.s
 
 - `gl_comm_default_init` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fa40
   **Inferred.** Startup for the comm layer. It calls gl_util_init (0xec3fa5c) and gl_dgl_default_display (0xec3fa6c), then getenv (0xec3fa80). When getenv returns non-null it converts the value with gl_util_nametoi (0xec3fb4c). When gl_dgl_default_display returned non-null (the branch at 0xec3fa90) it goes on to gl_dgl_info (0xec3fabc), gl_parse_hostname (0xec40f00) and __GLdglopen (0xec3fae0). An open result of zero or more (bgez at 0xec3faec) skips the error path. A negative open result other than -0x22 (the compare at 0xec3faf8) goes to gl_dgl_error (0xec3fb10) and exit (0xec3fb1c) with the open result; -0x22 branches to a separate gl_dgl_error call at 0xec3fb84. It returns the current gfile pointer read from comm_curgfile (0xecdf610).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_get_bufsize` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fba0
   **Inferred.** Sizes and allocates the comm buffer. It reads comm_stdsize (0xecd6c40) and compares it with 0x1000 (0xec3fbf8). Only when the size is not 0x1000 does it call malloc with the size (0xec3fc04); a malloc result of zero goes to gl_dgl_error (0xec3fc28) and exit with code 12 (0xec3fc34). The facts show stores after the malloc (0xec3fc18, 0xec3fc8c, 0xec3fc98) but not their targets, so that comm_buffer and comm_endbuffer are updated is inferred from the buffer pattern. A bcopy of 0x1000 bytes from comm_staticbuff is called at 0xec3fc48 on another path. It also calls getenv (0xec3fcd4) and, when the result is non-null and non-empty, tests a character against 0x6b and 0x4b (ASCII k and K) and 0x6d and 0x4d (ASCII m and M) at 0xec3fd58 to 0xec3fd70; reading that as a size suffix is inferred from the constants.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_io` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fdb0
   **Inferred.** A retry loop around one indirect call through a function pointer (0xec3fe1c), which runs while the count in a3 stays positive (branch at 0xec3fde8). A result below zero (bgez at 0xec3fe24 not taken) loads errno and, when errno equals 4 (0xec3fe34), the loop tries again; otherwise it returns -1 (0xec3fe5c). A zero result takes a different exit (0xec3fdf8). Role (from name): the shape looks like a read or write wrapper that retries after interruption. The callee itself is not named in the facts.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_new_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3fea0
   **Inferred.** Adds a gfile record to the comm_gfiles table. It loops over the table with an end bound of sym(comm_gfiles)+1028 (compare at 0xec3fef0), taking the malloc path when a slot word is zero (branch at 0xec3fee4). It calls malloc for a 0x19c-byte record (0xec3ff10). After the malloc it stores at offsets 0x0, 0x4, 0x8, 0xc, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x74, 0xc4, 0xc8 and 0x194 (0xec3ff28 to 0xec3ff70) and one more store with no offset at 0xec3ff74, whose base register the facts do not name. It returns the malloc result (0xec3ff7c), or 0 on the path at 0xec3ff08.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_local_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec3ff90
   **Inferred.** Scans the comm_gfiles table with the end bound sym(comm_gfiles)+1028 (compares at 0xec3ffc0 and 0xec3ffe0), testing slot words against zero and against 0x1 (0xec3ffcc to 0xec3fff8). One path returns a value the facts do not name (0xec40010). Another calls gl_comm_new_gfile (0xec3fea0) at 0xec4001c, passing its own a0 and a1 through, then makes a store at offset +0x4 (0xec4002c) whose base the facts do not name, and returns the gl_comm_new_gfile result (0xec40034). Role (from name): looks up a local gfile, creating one when none matches.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_free_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40040
   **Inferred.** Releases one gfile record. It loads a word at +0x0 of an address (0xec40044), calls free with its own a0 (0xec4006c) and makes a store at +0x0 (0xec40070). The facts show neither the base nor the value of that store, so that it clears the record's slot in comm_gfiles is inferred from the routine's name and shape. It returns the result of free (0xec4007c).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_close` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40090
   **Inferred.** Loops calling gl_comm_close_gfile (0xec400e0) over the comm_gfiles table (end bound sym(comm_gfiles)+1028, branch at 0xec400f0) and releases the comm buffer. After the loop it loads a word (0xec40128) and calls gl_dgl_info three times (0xec4012c, 0xec40140, 0xec40150). When the last gl_dgl_info result is non-zero (branch at 0xec40158) it goes on through gl_util_timer (0xec40160), a series of __GLgl_dgl_printf and sprintf calls (0xec40170 to 0xec40428); a zero result skips to 0xec40430. It then calls free on the word at 0xecd6c44 (0xec40458) unless that word is null or equals comm_staticbuff (branches at 0xec40448 and 0xec40450). Later stores (0xec4047c, 0xec4048c, 0xec404ac) and a load (0xec40490) follow; their targets are not shown, so resetting comm_curbufpos and comm_buffer and setting comm_endbuffer from comm_stdsize is inferred.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_close_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec404b0
   **Inferred.** Tears down one gfile record. It loads a word at +0x0 of an address (0xec404b8) and tests comm_curgfile (0xecdf610) against zero (0xec404f4). Stores at 0xec404f8, 0xec40510, 0xec40518, 0xec40524, 0xec40530 and 0xec40534 are shown without targets or values; that they update a comm_gfiles slot and comm_curgfile is inferred. When a1 is non-zero it calls gl_comm_flush (0xec40504), and gl_d_dglexit (0xec40520) is called on a path guarded by the a1 tests at 0xec404fc and 0xec40514. It then makes two indirect calls with the words at +0xc and +0x10 (0xec4053c, 0xec40548) and a third with the word at +0xc4 (0xec40560) only when that word is not negative (bltz at 0xec40554). It ends by calling gl_comm_free_gfile (0xec4056c).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_makeroom` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec405a0
   **Inferred.** Works on the comm buffer window. It loads at 0xec405bc and 0xec40628 and stores at 0xec405e8, 0xec40640 and 0xec40648; the facts do not name the targets, so that these read comm_buffer and update comm_endbuffer and comm_curbufpos is inferred. It calls comm_check_bufsize (0xec4060c) with its own a1 and a2 and a word from 0xecdda0c as a4. A branch on a3 being positive (0xec405e4) leads to a path that returns its second argument (0xec405f8). Another path returns a value the facts do not name (0xec40650). Role (from name): makes room in the buffer.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `comm_check_bufsize` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40660
   **Inferred.** Grows the comm buffer when it is too small. It reads comm_stdsize (0xec40674) and comm_buffer (0xec406a4, 0xec406e4), mallocs a new block (0xec406b8), and copies the 0x1000-byte comm_staticbuff into it with bcopy (0xec406d8). A realloc (0xec40724) covers the other path, and a failure reports through gl_dgl_error (0xec40700) and exits with code 12 (0xec40718). It returns 0 (0xec40740).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_callback` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40990
   **Inferred.** Dispatches a callback record at the current position of the comm buffer. It reads comm_buffer (0xec40a00) and comm_curbufpos (0xec40a0c), then calls indirect handlers with words from the record at offsets 0x0 to 0xc (0xec409cc, 0xec40a38, 0xec40a4c). On one path it calls gl_d_dglreturncallback (0xec409e0). It returns the first word of the buffer (0xec40a78).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `comm_fillbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40a80
   **Inferred.** Fills the comm buffer for the current gfile, by name. It loops while a count in a1 is positive (blez at 0xec40aac), reading comm_curgfile (0xec40ab0) and the record words at +0xc and +0x18 (0xec40ac0, 0xec40ad4) and calling gl_comm_io (0xec40adc) with the word at +0x18 as its first argument and the word at +0xc as its second. A negative gl_comm_io result goes to gl_comm_fatal_error (0xec40b3c). The facts show a path that calls gl_dgl_info (0xec40b70), gl_comm_close with 0 (0xec40b7c) and exit with code 5 (0xec40b88), but which condition leads there is not shown. The facts show no copy into the buffer in this routine itself; the fill is done by whatever gl_comm_io's indirect call does.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_read_data` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40b90
   **Inferred.** Reads a reply into the comm buffer, by name. It tests comm_curgfile (0xecdf610) against zero (0xec40bb4); on the zero path it calls gl_comm_default_init (0xec40d00). When its own a0 is non-zero (0xec40bc4) it calls gl_d_dglreturndata (0xec40bd0). It also calls gl_comm_flush (0xec40bdc), comm_fillbuffer twice (0xec40c30, 0xec40c64) and comm_check_bufsize (0xec40c4c), and tests a flag bit 0x10000000 in the first buffer word (0xec40c74). It makes several loads and stores (0xec40c34 to 0xec40cec) whose targets the facts do not name; resetting comm_curbufpos and comm_endbuffer from comm_stdsize is inferred. It returns 0 at 0xec40ce8.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_pushbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40d10
   **Inferred.** Saves the current comm buffer state and starts a new buffer, by name. When comm_save_flag is non-zero (branch at 0xec40d2c) it reports through gl_dgl_internal_error (0xec40d3c); a zero flag skips that call. It loads and stores words (0xec40d48 to 0xec40dbc), with the addresses of comm_save_buffer, comm_save_endbuffer and comm_save_curbufpos in registers at the malloc call, so copying the buffer pointers into those globals and setting comm_save_flag (0xec40d70) is inferred. It calls malloc with the word at 0xecd6c40 (0xec40d9c) and returns the malloc result (0xec40dd8).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_popbuffer` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40de0
   **Inferred.** Restores the comm buffer state saved by gl_comm_pushbuffer, by name. It loads comm_save_flag (0xec40df8) and tests whether it minus one is zero (0xec40e04); when it is not, gl_dgl_internal_error is called (0xec40e14). A store at 0xec40e08 follows the test; its value is not shown, so that it clears the flag is inferred. It calls free on the word at 0xecd6c44 (0xec40e24), then loads several words and stores two (0xec40e54, 0xec40e68) and one more at 0xec40e74, with targets not named in the facts; copying the saved values back into comm_buffer, comm_endbuffer and comm_curbufpos is inferred. It returns the result of free (0xec40e70).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `comm_bad_gfile` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40e80
   **Inferred.** Makes one call to gl_dgl_error (0xec40ea4) with a0 = 0xecdee61, a1 = 0xecd7110 and a2 = 0xa1cf0, and returns 0 (0xec40eb8). Role (from name): reports a bad gfile. The facts do not show which of the arguments is the message text.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_comm_fatal_error` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40ec0
   **Established.** Calls gl_dgl_perror (0xec40ee0) with its own four arguments, reads errno from sym(errno) (0xec40ee4), calls gl_comm_close with 0 (0xec40eec) and then calls exit with the errno value (0xec40ef8). Role (from name): prints an error message and exits.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_parse_hostname` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40f00
   **Inferred.** Calls strchr with 0x3a on its first argument (0xec40f3c), then strchr with 0x2e on the text after that match (0xec40f5c). It calls atoi on the text after the colon match (0xec40f94) only when a1 is non-null (branch at 0xec40f50), and atoi on the text after the dot match (0xec40fa8) only when a2 is non-null (branch at 0xec40f6c). The stores at 0xec40fa4 and 0xec40fb8 follow the atoi calls, and the stores at 0xec40f28 and 0xec40f34 sit on the null-pointer tests for a1 and a2 with values the facts do not show; that the stored values are the atoi results and defaults is inferred. It returns 0 (0xec40f88, 0xec40fc8). The shape matches a host:display.screen name, which is an inference from the delimiters.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_compactify` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec40fd0
   **Inferred.** Rebuilds the GL object table around its live entries, by name. It checks the object with __GLisobj (0xec40fec), looks up its hash entry with gl_findhash (0xec41004) with a1 = -0x1, and calls gl_malloc (0xec41028, 0xec41044, 0xec41280, 0xec412a4) with sizes taken from a word at 0xecdee68 and a word at 0xecdf830; the facts do not name gl_objchunksize, so the chunk-size reading is inferred from the routine's name and shape. gl_free calls with an unknown first argument (0xec41118, 0xec4112c) are in a loop; the later gl_free calls (0xec41328 to 0xec413d0) pass the gl_malloc results or words at +0x4 of them and follow gl_malloc result tests, so they look like cleanup of blocks just allocated. It makes one gl_SetImmediateMode call with 1 (0xec41254) and one gl_replacehash call (0xec4130c).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__iglooGetCopyState` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec413e0
   **Inferred.** Saves the context's copyable state into the caller's record, by name. It gets the current context through __iglooGetCurrentContextInfo (0xec41400) and copies 8-byte words with ld and sd (0xec41444 to 0xec414a8) in a loop (branches at 0xec4144c and 0xec414a4), so the number of words is not fixed by the facts. It then calls __iglooAllocMatrixStacks (0xec414b0) and stores a word at +0x4 (0xec414bc, in the branch delay slot). When the alloc result is non-zero (bne at 0xec414b8) it goes to __iglooGetMatrixStacks (0xec41508) with the alloc result as a0; when it is zero it calls __iglooGetScissor (0xec414d0) with a0+212 to a0+224 and __iglooGetViewport (0xec414e8) with a0+8 to a0+20, and returns the viewport result (0xec414fc).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__iglooSetCopyState` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41520
   **Inferred.** Restores a state record, by name, of the shape __iglooGetCopyState (0xec413e0) fills. It reapplies the viewport through __iglooExtViewport (0xec41558), the depth range through __iglooDepthRange (0xec41568), the scissor through __iglooScissor (0xec41590) and the pixel zoom through __iglooPixelZoom (0xec415e0). It calls __iglooSetEnable with 0xc11 (0xec415a0) and 0xb44 (0xec415d0), taking the flag from the bytes at +0x6a and +0x70; those constants match GL scissor test and cull face. It loads the pointer at +0x4 (0xec415a8) and tests it against zero (0xec415ac); a non-zero pointer reaches __iglooSetMatrixStacks (0xec415b4), and the facts do not show what condition reaches __iglooFreeMatrixStacks (0xec415c0).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__iglooInitCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41600
   **Established.** Calls init_lock (0xec4161c) with a0 = 0xecdda10 and its own a1 to a3 untouched, and returns the result (0xec4162c). Role (from name): initialises the shared critical-section lock.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__iglooBeginCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41640
   **Established.** Takes the shared lock at 0xecdda10 with spin_lock (0xec4165c) and returns its result (0xec4166c).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `__iglooEndCriticalSection` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec41680
   **Established.** Releases the shared lock at 0xecdda10 with release_lock (0xec4169c) and returns its result (0xec416ac).
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12
 - `gl_g_crv` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec416c0
   **Inferred.** Loads 12 single-precision words from offsets 0x0 to 0x2c of an address (lwc1, 0xec416c4 to 0xec41744). It calls rcrv (0xec41750) with a0 = sp-80, so the words are presumably stored into a stack buffer, though the facts show no stores. It returns rcrv's result (0xec41760). The 12-word argument shape suggests a curve or rendering helper, which is inferred from the operands.
-  Reviewed: 2026-11-12 (sonnet)
+  Reviewed: 2026-11-12

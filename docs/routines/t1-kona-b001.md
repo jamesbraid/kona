@@ -8,7 +8,7 @@ These statements come from rendered facts for 13 routines: memory accesses, call
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5b8a4
 
@@ -16,7 +16,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5b8b8
 
@@ -24,7 +24,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5b8cc
 
@@ -32,7 +32,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5baf4
 
@@ -40,7 +40,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5bb08
 
@@ -48,7 +48,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA/libGLcore.so` at 0xda5bb1c
 
@@ -56,7 +56,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGL.so` at 0x214300c
 
@@ -64,7 +64,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGL.so` at 0x215200c
 
@@ -72,7 +72,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGL.so` at 0x215995c
 
@@ -80,7 +80,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGL.so` at 0x21599e8
 
@@ -88,7 +88,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGL.so` at 0x215a158
 
@@ -96,7 +96,7 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12
 
 ### `usr/gfx/arch/IP35KONA64/libGLcore.so` at 0x218fd90
 
@@ -104,4 +104,4 @@ Reviewed: 2026-11-12 (sonnet)
 
 Grade: inferred.
 
-Reviewed: 2026-11-12 (sonnet)
+Reviewed: 2026-11-12

@@ -2,7 +2,7 @@
 
 What the pipe firmware (IRIX 6.5.30m, `arm1.u`, `ge.u`) settles about the fog setters, the fog factor, the polygon-mode token, edge flags, polygon offset in line and point modes, smoothing coverage and the point handler a multisampled window uses. Every fact carries a grade: **established** (read from a binary at the stated address), **inferred** (reasoned, reasoning given) or **unknown** (with what would settle it). Host-side C is never quoted; the host-software fog routines are used only as a reference for the standard fog functions.
 
-Sources read: `ucode/arm1.s` (ARM image, addresses `0x0c......`), `ucode/arm1_functions.md`, the engine listings in `ucode/ge_listing/` (`fog`, `polymode`, `polygon`, `drawtri`, `glExt`, `line`, `point`, `drawpnt`, `aa`, `udecompose`, `mdecompose2` listings; engine addresses are 16-bit instruction addresses of `ge.u`), `docs/ge-shadow-words.md`, `docs/rm.md` and the libGLcore client senders already read in `docs/libglcore-driver-builds.md`. Nothing here is specific to any emulator. The proposed rows at the end are for the owner of `docs/command-table.md` to merge; this file does not edit that table.
+Sources read: `ucode/arm1.s` (ARM image, addresses `0x0c......`), `ucode/arm1_functions.md`, the engine listings in `ucode/ge_listing/` (`fog`, `polymode`, `polygon`, `drawtri`, `glExt`, `line`, `point`, `drawpnt`, `aa`, `udecompose`, `mdecompose2` listings; engine addresses are 16-bit instruction addresses of `ge.u`), `docs/ge-shadow-words.md`, `docs/rm.md` and the libGLcore client senders already read in `docs/libglcore-driver-builds.md`. The proposed rows at the end are for the owner of `docs/command-table.md` to merge; this file does not edit that table.
 
 ## 1. Fog setters, tokens 0x0b7 and 0x0b8
 

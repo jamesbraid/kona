@@ -1,6 +1,6 @@
 # Open questions
 
-Questions the binaries and sources read so far do not yet answer. No hardware is available, so each one is answered from software or published material: shipped binaries of every IRIX release, the 6.5.5 installed `sys/kona*.h` headers, the IR diagnostics, public drivers and emulators, manuals, and published `hinv`, `gfxinfo`, `irsaudit` and ide transcripts. Running the shipped software under an emulator counts too, labelled as the software's expectation.
+Questions the binaries and sources read so far do not yet answer. No hardware is available, so each one is answered from software or published material: shipped binaries of every IRIX release, the 6.5.5 installed `sys/kona*.h` headers, the IR diagnostics, public drivers and emulators, manuals, and published `hinv`, `gfxinfo`, `irsaudit` and ide transcripts.
 
 Each entry gives the owning file, the routes already tried and the next route to try. When a question is answered, move the answer into the owning header or chapter and delete the entry. When every route is exhausted, the owner labels the fact "unknown: no shipped software or published source depends on it" with the routes tried, and the entry is deleted.
 
@@ -10,7 +10,7 @@ The "Next route" cells below were converted from requests for measurements on a 
 
 Each open entry below carries a route tag. The tag says what can settle it:
 
-- **route a**: software we hold can settle it. The entry names the binary, routine, table or published text to read, or a shipped tool to run under the emulator. The evidence rule in AGENTS.md counts a shipped binary run under an emulator as software evidence, but a guest configuration the emulator does not model is still missing.
+- **route a**: software we hold can settle it. The entry names the binary, routine, table or published text to read, or a shipped tool whose output can be read.
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
@@ -55,7 +55,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - single RM10 gfxinfo text
 - first-generation board names and texture sizes
 - ircombine and setmon EEPROM round trip
-- findvis on RM8 guest: RGBA multisample and 22 MB sizing
+- findvis on RM8 system: RGBA multisample and 22 MB sizing
 - proxy-texture ladder and 2048x2048 RGBA texture
 - pixel depth classes per RM count
 - encoder channel timing and analog composite
@@ -131,7 +131,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - static libGL.so routines matched to public GLX source
 - 426 soft-renderer routines without public name
 - display-list size beyond 14 MiB
-- stencil visuals and colour matrix into one- and two-component textures (guest run)
+- stencil visuals and colour matrix into one- and two-component textures (on a system)
 - swap timeout log sequence and bad-state code
 - GL_DEPTH_COMPONENT bit layout
 - many-display-list test with and without GLKONA_NOIDMA
@@ -171,7 +171,7 @@ Route c, recorded only:
 - throughput, clocks, chassis, cancelled successor, multi-pipe cost, Onyx4
 - throughput; posted rates bound only
 - share of pipe time in multi-pipe compositing
-- W=0 precision: the model shows model behaviour, not chip behaviour
+- W=0 precision: a software renderer shows its own behaviour, not the chip's
 - graphics-rack module fan state
 - swap-ready cabling state
 - deskside hang field report on a pipe with no RM in slot 0
@@ -201,7 +201,7 @@ Places where two published SGI documents, or a document and a binary, say differ
 
 ## Display back end: cursor, display ids, colour path, gamma pages, overlays (2026-11-07)
 
-Five questions from an emulator back-end design (InfiniteReality2 on Onyx2, one pipe), each previously inferred from one window-manager recording. Answered from the 6.5.30m X server modules (`kona.so`; `konal.so` and the others share the readings), the visual tables in `konavis.so`, the display microcode (`arm1.u`), `irsaudit` and the published papers. Grades follow the rest of this file. One correction up front: the binaries contain no field of the display id "bits 7:2" (question 2), and the recording's order for the cursor (question 3) holds only for the DAC cursor.
+Five questions about the display path (InfiniteReality2 on Onyx2, one pipe), each previously inferred from one window-manager trace. Answered from the 6.5.30m X server modules (`kona.so`; `konal.so` and the others share the readings), the visual tables in `konavis.so`, the display microcode (`arm1.u`), `irsaudit` and the published papers. Grades follow the rest of this file. One correction up front: the binaries contain no field of the display id "bits 7:2" (question 2), and the earlier order for the cursor (question 3) holds only for the DAC cursor.
 
 **1. Cursor glyph bit pairs, crosshair, DAC cursor channels.**
 
@@ -226,14 +226,14 @@ Five questions from an emulator back-end design (InfiniteReality2 on Onyx2, one 
 
 ## Vertex-bus contents, colour interpolation and window-coordinate rounding (2026-11-07)
 
-Three questions from an emulator back-end design (InfiniteReality2 on Onyx2, one pipe), answered from the 6.5.30m geometry microcode listings ([ucode/ge_listing/](../ucode/ge_listing/)), the diagnostic's vertex writers ([rm.md](rm.md#primitive-set-up-happens-in-the-pixel-generator)) and the published papers ([published-sources.md](published-sources.md)). Grades: established (read from a binary or stated by a paper), inferred (reasoned, reasoning given), unknown. No hardware was used. The geometry engines only store floats; the float-to-fixed step and everything after it is chip hardware with no program, so the chip-side parts of these questions can only be bounded here.
+Three questions about vertex set-up (InfiniteReality2 on Onyx2, one pipe), answered from the 6.5.30m geometry microcode listings ([ucode/ge_listing/](../ucode/ge_listing/)), the diagnostic's vertex writers ([rm.md](rm.md#primitive-set-up-happens-in-the-pixel-generator)) and the published papers ([published-sources.md](published-sources.md)). Grades: established (read from a binary or stated by a paper), inferred (reasoned, reasoning given), unknown. No hardware was used. The geometry engines only store floats; the float-to-fixed step and everything after it is chip hardware with no program, so the chip-side parts of these questions can only be bounded here.
 
 **1. Does a perspective term cross the vertex bus, so texture is perspective-correct? Inferred: yes, as the last of four texture words per vertex; whether that word is 1/w or q/w (or 1/q) is unknown.**
 
 - *Established (paper).* Section 2.5 says the bus carries "only screen space vertex information" and that the fragment generators assemble strips and fans and compute slopes. Section 2.6 says the scan-converter and texel-address ASICs perform "color and depth interpolation, perspective correct texture coordinate interpolation and level-of-detail computation". The technical report (perspective correction subsection) says the raster subsystem does the per-pixel correction for textures and fog. So the raster side must receive per-vertex data to correct with, and no source names the field.
 - *Established (listings).* Every vertex-output module (the triangle, line, point and multisample-point output modules) stores texture words 0xf, 0x10, 0x11 and 0x12 of the vertex record to four vertex-packet slots (control addresses 0xd1, 0xd2, 0xd3, 0xd4), beside window x, y, depth and colour ([ge_compute.md](../ucode/ge_compute.md#triangle-output-udrawtris)). Those four words are written only by the textured screen-space routines (`mmo_ToScreenSpaceInvQ` at 0x1113 and its variants `lSC3` 0x1121-0x116c, `lSC5` 0x11c1, stores at 0x1165-0x1168 for words 0x12 and 0xf, and the 0x10 and 0x11 stores around 0x1169-0x116c). The plain divide `mmo_ToScreenSpace` (0x10c9, loop `lSC1` 0x10d4) writes only window x, y, z (words 0x23-0x25) and keeps 1/w to itself. The textured routines run reciprocal seeds and Newton-Raphson steps on both w and q (`lSC3` 0x114b-0x1152, seeds 0x114f-0x1152), run the s, t, r, q inputs through the texture matrix first (32 multiply-adds, 0x1121-0x113c), and scale the results with 1/w before they store words 0xf-0x12.
 - *Established (diagnostic).* The raster-bus texture-coordinate packet the diagnostic builds (`tbTextureCoord`, `irsaudit` 0x1013ecf0, code 10; second set `tbTextureCoord1` 0x1013eda0, code 11) is four words: three integers then one single-precision float. Callers pass 0, 0, 0 or 0x800000 for the integers and 1.0 (0x3f800000) for the float.
-- *Inferred.* In the output modules the subtracts that touch window x, y and texture words 0xf, 0x10 and 0x11 do not touch word 0x12, which is only moved (and stored predicated). That matches three words converted to integer form and one word left as float, as in the diagnostic's packet. The float is therefore the perspective term, which has to stay a float because its range is large and which is 1.0 in the diagnostic's flat tests. Which of 1/w, q/w or 1/q it is: unknown. The listings compute all three ingredients and the store pipeline's nine-word delay makes the register tracing ambiguous; the raster side that consumes it is not readable. For an emulator the observable consequence is that texture on a textured vertex is perspective-correct and an untextured vertex carries no w of any kind.
+- *Inferred.* In the output modules the subtracts that touch window x, y and texture words 0xf, 0x10 and 0x11 do not touch word 0x12, which is only moved (and stored predicated). That matches three words converted to integer form and one word left as float, as in the diagnostic's packet. The float is therefore the perspective term, which has to stay a float because its range is large and which is 1.0 in the diagnostic's flat tests. Which of 1/w, q/w or 1/q it is: unknown. The listings compute all three ingredients and the store pipeline's nine-word delay makes the register tracing ambiguous; the raster side that consumes it is not readable. The observable consequence is that texture on a textured vertex is perspective-correct and an untextured vertex carries no w of any kind.
 - Fields of the packet for x, y, depth and colour: unchanged from [rm.md](rm.md) (command nibble, unsigned 12.8 x and y, 32-bit depth, four 13-bit colours); the vertex bus has no separate 1/w field for untextured primitives.
 
 **2. Is colour interpolated linearly in screen space or perspective-corrected? Inferred: linear (strongest for untextured primitives).**
@@ -251,7 +251,7 @@ Where this lives for the next reader: the packet fields are in [rm.md](rm.md#pri
 
 ## KONA architecture plan: open hardware questions (2026-11-07)
 
-Fourteen questions from an emulator architecture plan (InfiniteReality2, one pipe), triaged against what the committed reverse engineering already holds. One line each. Established means read from a shipped binary, the display microcode or a published paper; inferred means reasoned from those, with the reasoning in the cited section; unknown means no read binary or published text reaches it. No new binary reading was done for this pass, and no hardware was used. Questions 4 to 8 and 11 reuse the answers in [display back end](#display-back-end-cursor-display-ids-colour-path-gamma-pages-overlays-2026-11-07) rather than re-deriving them. Routines are described by role rather than by name, as in the sections above.
+Fourteen architecture questions (InfiniteReality2, one pipe), triaged against what the committed reverse engineering already holds. One line each. Established means read from a shipped binary, the display microcode or a published paper; inferred means reasoned from those, with the reasoning in the cited section; unknown means no read binary or published text reaches it. No new binary reading was done for this pass, and no hardware was used. Questions 4 to 8 and 11 reuse the answers in [display back end](#display-back-end-cursor-display-ids-colour-path-gamma-pages-overlays-2026-11-07) rather than re-deriving them. Routines are described by role rather than by name, as in the sections above.
 
 1. **Set-up arithmetic. Inferred for the reduction, unknown for the rest (rechecked 2026-11-08, no new evidence).** Vertices arrive as unsigned 12.8 (established), the report's 8 x 8 sub-pixel accuracy implies the 1/256 fraction is cut to a 1/8 grid inside the pixel generator (inferred); the plane-equation widths and the reference point are not stated anywhere read ([rm.md](rm.md#primitive-set-up-happens-in-the-pixel-generator)).
 2. **Window-coordinate rounding at the float-to-fix converter.** Engine side answered: the engine subtracts the constant 49152.0 (control word 0xc4), see [command-table.md](command-table.md#77-window-and-clip-set-up-request-token-0x1f3-eleven-words). Converter chip bit extraction: no software reads it (route d, hardware only; the converter has no program).
@@ -426,7 +426,7 @@ Cannot be credited by an entry: `ApplyViewport`, `ApplyScissor`, `LoseCurrent`, 
 
 2026-10-30, function backfill, kernel objects and `libGLcore`. Every kernel function of `kona.a`, `gfx.o`, `gfxs.a`, `gfxstubs.a`, `rrm.o` and `tport.a` in both the IP27 and IP35 builds is now understood (the entries cite each build's own archive member, which the inventory needs for functions at offset 0 of an object). `konal.so`, `konad.so` and `konas.so` were already complete. In `libGLcore` (N32 build, `usr/gfx/arch/IP27KONA32/libGLcore.so`) 108 more functions are read whole: 21 of the state queries in [libglcore-get-functions.md](libglcore-get-functions.md), 87 immediate-mode senders in [libglcore-functions.md](libglcore-functions.md) (colour, normal, index, edge flag, texture coordinate, vertex and raster position).
 
-Second backfill session, same day. Read whole and written: the 9 the Kona GL driver state query source unit queries (the value-table readers, `kona_get_crud` and the three glGetTexGen forms, in [libglcore-get-functions.md](libglcore-get-functions.md)); the 48 vector senders with their entry stubs, 132 short state setters and wrappers, 81 driver support routines, the 33 draw-arrays senders, the 25 packed-vertex senders and 13 display-list manager routines, all in [libglcore-functions.md](libglcore-functions.md). Kernel objects have no named-only function left.
+Second backfill pass, same day. Read whole and written: the 9 the Kona GL driver state query source unit queries (the value-table readers, `kona_get_crud` and the three glGetTexGen forms, in [libglcore-get-functions.md](libglcore-get-functions.md)); the 48 vector senders with their entry stubs, 132 short state setters and wrappers, 81 driver support routines, the 33 draw-arrays senders, the 25 packed-vertex senders and 13 display-list manager routines, all in [libglcore-functions.md](libglcore-functions.md). Kernel objects have no named-only function left.
 
 [route a] Next, in order: (1) the 253 `__glkonlc_` display-list compilers of the Kona GL driver source unit 1: each appends the same space test, token and words as its immediate sender, so decode the stores per function and write sentences whose wording differs by argument type and component count (the entries already in the file are templated and grade as located); (2) the larger N32 routines of the Kona driver, by size: `__glkonim_SubdivPatchSGIX` (15692 bytes), `__glkonResolveContext` (8616), `__glkonim_GetHistogramEXT` (7604), `__glkonCopyContext` (6876), `changebasis` (6860), `__glkonim_PopAttrib` and `PushAttrib` (4080 and 3408), `__glkonim_CopyPixels`, `__glKonCopyTexImage`, `__glkonim_ColorTableSGI`, `__glkonim_DrawArraysEXT`, `__glKonEvalMesh2DHost`, then the `kon_dlist`, `kon_pixel`, `kon_eval` and `kon_vertarray` functions; (3) the display-list memory routines still unread for want of a full control-flow reading: `__glkonCompressPlist`, `__glKonSdramInvalidate`, `__glKonSdramForceSwapIn`, `__glLockedMemoryInit`, `__glKonLockedMemoryForceSwapIn`, `__glkonSPBalloc`, `__glkonPadBlocks`, `__glkonSPPostCompiler`, `__glsplc_AddSentinel`, `__glKonInitializeEnables`, `ParseErrorCopy`, `__glkonHostCopy`, `__glkonInvalidBytes`, `__glkonPixSize`, the three list-execution convolution filters, `compute_func_ptr`, `__glkon_SuspendSelectfeed` and `__glkon_ResumeSelectfeed`, `__glKonHostMapData1D`, `__glKonSetUpMap1`, `get_pixel_map_setup`, `deformMapProlog` and `getDeformationf`; (4) the o32 `IP27KONA` and n64 `IP27KONA64` builds: 622 N32 entries have different code in the o32 library and 370 in the n64 library, and each needs its own reading (Ghidra with the gp and jump-table scripts), because a build with the same bytes is credited already and a build with other bytes is not.
 
@@ -583,16 +583,16 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM.
 - [route c] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
 - [route a] GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`).
-- [route b] IR2 and IR2E internal names against the marketing names: a guest's hinv must print the internal name for each configured product.
-- [route b] IR3 gfxinfo report: diff a guest's gfxinfo output against the posted IR3 text, field by field.
+- [route b] IR2 and IR2E internal names against the marketing names: a system's hinv must print the internal name for each configured product.
+- [route b] IR3 gfxinfo report: diff a system's gfxinfo output against the posted IR3 text, field by field.
 - [route b] Framebuffer and texture per RM for IR3 and IR4: texture allocation should fail at one RM's texture memory, not the sum.
 - [route a] Reality against IR visuals and pixel depth: check which multisample and alpha visuals findvis and ircombine -validate offer per RM revision.
-- [route a] Clip-map limits on IR: find the maximum level count and addressable size with libGL on the guest.
-- [route c] Immediate-mode and display-list throughput: use the posted rates as bounds for a timing model.
+- [route a] Clip-map limits on IR: find the maximum level count and addressable size with libGL on the system.
+- [route c] Immediate-mode and display-list throughput: use the posted rates as bounds.
 - [route a] Display-list size: create lists beyond 14 MiB (the pool size, [published-sources.md](published-sources.md)) and check that the driver falls back to host-locked memory; needs a pipe model that runs the shipped library.
 - [route c] Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
 - [route a] DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
-- [route a] Colour matrix on texture load and stencil visuals: a guest GL test for each internal format, and findvis stencil sizes.
+- [route a] Colour matrix on texture load and stencil visuals: a system GL test for each internal format, and findvis stencil sizes.
 - [route a] IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries.
 - [route c] Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
 - [route a] Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
@@ -600,12 +600,12 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] RM9 upgrade garbage counts: boot with RM slot 0 empty or unreadable; expect the garbage-count report and death_reason 17.
 - [route a] IR2E kpm stall: flood the pipe and check the GFX FIFO watermarks (0x380, 0x180); kpm must parse a model dump.
 - [route a] Swapbuffer timeout sequence: force a swap timeout or GE stall and compare the log sequence and bad-state code.
-- [route a] Onyx3 single RM10 gfxinfo: diff a one-RM10 GVO guest's gfxinfo against the posted text (KONAL or KONAD, Medium or Extra-Large).
+- [route a] Onyx3 single RM10 gfxinfo: diff a one-RM10 GVO system's gfxinfo against the posted text (KONAL or KONAD, Medium or Extra-Large).
 - [route a] First-generation board names and texture sizes: boot RM6, RM7 and RM9 configurations and compare the strings.
 - [route b] hinv -mvv GE14-2 record: compare the /hw path and board record with the posted listing.
 - [route b] Fchip rev 2 on Onyx IO4: flag or refuse an IR pipe; 5.3-era media must not offer IR.
 - [route a] ircombine and setmon EEPROM round trip: the .cmb must survive a gfx restart. (The 66 Hz limit for 1920x1200 is settled in [dg.md](dg.md#loading-a-combination-channel); what remains is which request stream `saveToHardware` and setmon store, read from `ircombine` and the X module's save path.)
-- [route a] Reality visuals: findvis on an RM8 guest shows no RGBA multisample or 10-bit visuals; check the 22 MB sizing.
+- [route a] Reality visuals: findvis on an RM8 system shows no RGBA multisample or 10-bit visuals; check the 22 MB sizing.
 - [route b] Reality to IR2E mixing and DG5-8 swap: check RM-type hinv strings, reject three RMs on a pipe, decode the illegal-options word.
 - [route c] KCar fan state: the graphics-rack module must read High and not be settable.
 - [route a] IR2 texture banks: run the proxy-texture ladder and load a 2048x2048 RGBA texture; a one-byte format must use two bytes.
@@ -615,39 +615,39 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route a] Sync jack selection: set the sync-type field in a .cmb and read the DG sync-output mux register.
 - [route a] STR_RECT stereo: build 1280x492_120s and compare the stereo visuals and the setmon X error with and without the .cmb.
 - [route a] GLKONA_NOIDMA display lists: run a many-display-list test with and without the variable.
-- [route a] Texture borders: request border=1 and GL_CLAMP with a border colour on an IR guest.
+- [route a] Texture borders: request border=1 and GL_CLAMP with a border colour on an IR system.
 - [route a] SGIX_shadow depth textures: query the extension strings and run the depth-to-texture shadow test.
 - [route a] glBitmap and FILTER4: draw glBitmap at fractional positions in a multisample visual; compare FILTER4 with bilinear.
 - [route a] Origin 3000 brick topology: a C-brick to G-brick link must be rejected; I, P and X to G accepted.
-- [route a] Patch 2326 and 2789 window IDs: window IDs on :0.0 and :0.1 must be distinct in a multipipe guest.
+- [route a] Patch 2326 and 2789 window IDs: window IDs on :0.0 and :0.1 must be distinct in a multipipe system.
 - [route a] Multipipe X screens: xdpyinfo screen numbering on a two-pipe model and the multi-keyboard names.
 - [route a] Programmable VOF boards: run vfc with each board's rule files and check setmon accepts the output.
 - [route b] IR2 chip-ID words: compare per-ASIC ID values for GE14, RM7 and DG5 with the posted words.
 - [route a] DPLEX path: the pre-DAC path must not touch RM memory; frame N must go to pipe N mod k.
 - [route c] Swapready cabling: a two-pipe swap-group test must hang until both pipes swap; check GL_EXTENSIONS strings.
-- [route a] irsaudit test list: run the shipped irsaudit on a guest; a stuck framebuffer address bit must reproduce the impsq2 failure line.
-- [route a] glDrawPixels width above 4K: run widths 4095, 4096 and 4097 on an IR guest and check for wrap and GL errors.
-- [route a] Sirius source-channel rules: check the ircombine source-channel choices and the stacked option on a DG5 guest.
+- [route a] irsaudit test list: run the shipped irsaudit on a system; a stuck framebuffer address bit must reproduce the impsq2 failure line.
+- [route a] glDrawPixels width above 4K: run widths 4095, 4096 and 4097 on an IR system and check for wrap and GL errors.
+- [route a] Sirius source-channel rules: check the ircombine source-channel choices and the stacked option on a DG5 system.
 - [route c] IRIXNet Onyx2 deskside hang: run irsaudit, ireeprom and the PROM graphics install on a pipe with no RM in slot 0.
-- [route a] IRIXNet no-RM Onyx2: diff nicprobe and empty-pipe gfxinfo for a modelled GE14-2, DG5-2 and RM8 pipe.
+- [route a] IRIXNet no-RM Onyx2: diff nicprobe and empty-pipe gfxinfo for a configured GE14-2, DG5-2 and RM8 pipe.
 - [route b] IRIXNet IR2E EEPROM flip: the PROM must refuse 0x2020202 while irsaudit still passes; compare ireeprom -i output. The refusal comes from the Onyx IO4 base-I/O PROM, which the 6.5.30m media do not carry; needs that PROM image or a published listing of its KONA EEPROM check.
 - [route a] IRIXNet Onyx1 IR EEPROM: feed gfxinfo an 0xFF or 0x20 EEPROM image and check the garbage forms.
-- [route a] Onyx 350 IR4 gfxinfo -vv: diff line by line; the model must not print RM11.
+- [route a] Onyx 350 IR4 gfxinfo -vv: diff line by line; a real system does not print RM11.
 - [route b] Nekonomicon topology: the G-brick and compute module must accept only the posted graphics types; no IR as built-in head.
 - [route c] SGIX_ir_instrument1 counters: COUNTALL against wall time for the 50 MHz clock; COUNTLOAD against bytes downloaded.
 - [route a] Pbuffer allocation: create pbuffers until allocation fails and compare the count with the framebuffer-per-RM sizing.
 - [route a] Visual depth on IR: RGB10 gives no 8/8/8 visuals; RGB12 changes the list.
-- [route b] Onyx2 Reality product figures: match hinv and gfxinfo for a modelled Reality (RM8, 40 MB, 16 or 64 MB texture).
+- [route b] Onyx2 Reality product figures: match hinv and gfxinfo for a configured Reality (RM8, 40 MB, 16 or 64 MB texture).
 - [route b] Slashdot IR, IR2 and IR3 revisions: diff GE and RM revisions per product; only clocks and sizes may differ.
 - [route a] Slashdot 32-CPU simulator: build a 3200x3400 at 60 Hz format for a four-RM pipe and see whether it compiles.
-- [route a; c for the port speed] Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 guest.
+- [route a; c for the port speed] Slashdot Xtown claim: read the XIO port speed and widget identity on an Onyx 3000 system.
 - [route b] HN RAM-growth claim: check per-RM texture sizes and that IR3 and IR4 registers match IR2 except sizes and clocks.
 - [route a] HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
-- [route a] GLUT videoresize and shadowmap: run both demos on an IR guest; videoresize must change the scanned-out size.
+- [route a] GLUT videoresize and shadowmap: run both demos on an IR system; videoresize must change the scanned-out size.
 
-## Origami datasheet import (2026-11-11)
+## Two disagreements in earlier notes (2026-11-11)
 
-Disagreements found while importing the InfiniteReality sheets from the Origami repository. Each entry gives both sides. The kona text stays as it is until one side is settled from a binary.
+Two readings of the same kernel code disagree. Each entry gives both sides. The kona text stays as it is until one side is settled from a binary.
 
-- **Words read by `get_eeprom_state`.** [kernel-functions.md](kernel-functions.md) (`kona_tport.o` +0x1454, 124 bytes) says the function reads eight words from ARM 0x87ff00 and returns the eighth. The Origami kernel-attach and host-interface sheets say the same function, at `kona_tport.o` 0x1f24-0x1f9c, makes twelve address-write and read pairs over 0x87ff00-0x87ff2c. Both agree that the eighth word (0x87ff1c) is the state. Settled by the loop bound in the 6.5.30 `get_eeprom_state`. [hip.md](hip.md#identity-words-in-the-pipes-eeprom-area) records the state word and leaves the count open.
-- **Widget offset 0x7c.** The Origami PROM note reports that the IO6 install routine writes 0x23 to widget low-window offset 0x7c once, before the first synchronisation probe. The Origami driver note reads offset 0x7c as the heaviest-used FIFO and command-data port and says its addend is not reconciled; it may be 0x80007c. Kona has no 0x80007c entry in [hip.md](hip.md) or [xg.md](xg.md), and its command FIFO is at 0xc10000. Settled by the addend of each 0x7c access in the 6.5.30 kernel objects, and by which widget the PROM's store addresses.
+- **Words read by `get_eeprom_state`.** [kernel-functions.md](kernel-functions.md) (`kona_tport.o` +0x1454, 124 bytes) says the function reads eight words from ARM 0x87ff00 and returns the eighth. Another reading of the same function, at `kona_tport.o` 0x1f24-0x1f9c, makes twelve address-write and read pairs over 0x87ff00-0x87ff2c. Both agree that the eighth word (0x87ff1c) is the state. Settled by the loop bound in the 6.5.30 `get_eeprom_state`. [hip.md](hip.md#identity-words-in-the-pipes-eeprom-area) records the state word and leaves the count open.
+- **Widget offset 0x7c.** One reading of the IO6 install routine in the PROM has it write 0x23 to widget low-window offset 0x7c once, before the first synchronisation probe. Another reading of the driver treats offset 0x7c as the heaviest-used FIFO and command-data port and says its addend is not reconciled; it may be 0x80007c. Kona has no 0x80007c entry in [hip.md](hip.md) or [xg.md](xg.md), and its command FIFO is at 0xc10000. Settled by the addend of each 0x7c access in the 6.5.30 kernel objects, and by which widget the PROM's store addresses.

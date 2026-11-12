@@ -64,7 +64,7 @@
  * published source depends on it beyond the kernel's use. Routes tried: the
  * kernel kick sites, the firmware (bit 3 is never read), irsaudit (writes
  * PRIV | FORCE once while setting up the video interrupts and never tests
- * it), kpm's tables and dump code and the 6.5.5 kona*.h headers. An emulator may treat
+ * it), kpm's tables and dump code and the 6.5.5 kona*.h headers. Software may treat
  * FORCE like PRIV.
  *
  * ESTABLISHED (kpm's window-base records): 0xc00000 is a second view of the
@@ -73,7 +73,7 @@
  * through the flow-controlled view so that it reaches the host interface in
  * order with the command words it writes through 0xc10000; every other
  * kernel access uses 0x800000. Bits 3-9 of a 0xc00000 address still select
- * the register, so an emulator can decode 0xc00000 + offset as the register
+ * the register, so 0xc00000 + offset decodes as the register
  * at 0x800000 + offset. */
 #define KONA_HIP_KICK_OFFSET          0xc00108
 #define KONA_HIP_GINTR_PRIV           0x10000
