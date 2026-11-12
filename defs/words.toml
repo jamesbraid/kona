@@ -11,7 +11,7 @@ legacy_guard = "KONA_WORDS_DECODE_H"
 
 [words.BIND_CONTROL]
 width = 32
-grade = "established"
+grade = "inferred"
 
 [words.BIND_CONTROL.fields]
 format_index = { bits = [23, 12], grade = "established" }
@@ -56,7 +56,7 @@ s_scale = { bits = [7, 0], grade = "established" }
 
 [words.BIND_MODE]
 width = 32
-grade = "established"
+grade = "inferred"
 
 [words.BIND_MODE.fields]
 first_bank = { bits = [28, 28], grade = "established" }

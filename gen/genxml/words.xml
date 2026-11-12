@@ -69,7 +69,7 @@
     <value name="bits32" value="1" grade="established"/>
     <value name="slot64" value="2" grade="established"/>
   </enum>
-  <struct name="BIND_CONTROL" size="4" grade="established">
+  <struct name="BIND_CONTROL" size="4" grade="inferred">
     <field name="target" start="28" size="4" type="bind_control_target" grade="established"/>
     <field name="mode" start="24" size="4" type="bind_control_mode" grade="established"/>
     <field name="format_index" start="12" size="12" type="uint" grade="established"/>
@@ -84,7 +84,7 @@
     <field name="t_scale" start="8" size="8" type="uint" grade="established"/>
     <field name="s_scale" start="0" size="8" type="uint" grade="established"/>
   </struct>
-  <struct name="BIND_MODE" size="4" grade="established">
+  <struct name="BIND_MODE" size="4" grade="inferred">
     <field name="first_bank" start="28" size="1" type="uint" grade="established"/>
     <field name="mag_channels" start="26" size="2" type="bind_mode_mag_channels" grade="established"/>
     <field name="channel_select" start="24" size="2" type="uint" grade="inferred"/>

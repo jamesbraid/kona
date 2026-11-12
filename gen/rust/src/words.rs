@@ -2,7 +2,7 @@
 // multi-field words of the host command stream
 #![allow(dead_code)]
 
-/// (established)
+/// (inferred)
 pub mod bind_control {
     pub const WIDTH: u32 = 32;
     pub mod target { // bits 31:28, established
@@ -168,7 +168,7 @@ pub mod bind_lod_scale {
         }
     }
 }
-/// (established)
+/// (inferred)
 pub mod bind_mode {
     pub const WIDTH: u32 = 32;
     pub mod first_bank { // bits 28:28, established

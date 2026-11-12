@@ -12,10 +12,10 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 | Word | Width | Grade | Source |
 |---|---|---|---|
-| `BIND_CONTROL` | 32 | established |  |
+| `BIND_CONTROL` | 32 | inferred |  |
 | `BIND_LOD_BOUNDS` | 32 | established |  |
 | `BIND_LOD_SCALE` | 32 | established |  |
-| `BIND_MODE` | 32 | established |  |
+| `BIND_MODE` | 32 | inferred |  |
 | `BIND_PHYS_SIZE` | 32 | established |  |
 | `BIND_SIZE` | 32 | established |  |
 | `DISPLAY_ID_RANGE` | 32 | established |  |

@@ -8,7 +8,7 @@
    "kind": "word",
    "name": "BIND_CONTROL",
    "width": 32,
-   "grade": "established"
+   "grade": "inferred"
   },
   {
    "unit": "words",
@@ -157,7 +157,7 @@
    "kind": "word",
    "name": "BIND_MODE",
    "width": 32,
-   "grade": "established"
+   "grade": "inferred"
   },
   {
    "unit": "words",

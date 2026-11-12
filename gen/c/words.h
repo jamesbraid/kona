@@ -7,7 +7,7 @@
 
 
 /* word BIND_CONTROL: 32 bits */
-#define WORD_BIND_CONTROL_WIDTH                      32 /* established */
+#define WORD_BIND_CONTROL_WIDTH                      32 /* inferred */
 #define WORD_BIND_CONTROL_TARGET_SHIFT               28 /* established */
 #define WORD_BIND_CONTROL_TARGET_MASK                0xfu
 #define WORD_BIND_CONTROL_TARGET_INPLACE             (WORD_BIND_CONTROL_TARGET_MASK << WORD_BIND_CONTROL_TARGET_SHIFT)
@@ -51,7 +51,7 @@
 #define WORD_BIND_LOD_SCALE_S_SCALE_INPLACE          (WORD_BIND_LOD_SCALE_S_SCALE_MASK << WORD_BIND_LOD_SCALE_S_SCALE_SHIFT)
 
 /* word BIND_MODE: 32 bits */
-#define WORD_BIND_MODE_WIDTH                         32 /* established */
+#define WORD_BIND_MODE_WIDTH                         32 /* inferred */
 #define WORD_BIND_MODE_FIRST_BANK_SHIFT              28 /* established */
 #define WORD_BIND_MODE_FIRST_BANK_MASK               0x1u
 #define WORD_BIND_MODE_FIRST_BANK_INPLACE            (WORD_BIND_MODE_FIRST_BANK_MASK << WORD_BIND_MODE_FIRST_BANK_SHIFT)
