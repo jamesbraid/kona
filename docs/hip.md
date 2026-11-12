@@ -170,6 +170,23 @@ Software timers cover the rest: an input DMA that never completes is `kona_idma_
 
 **Inferred.** A host-memory read by the pipe that gets no reply is the XG bit 8 case (0x100 of XG+0x6c); a bad reply to an input DMA is bits 9, 27 or 28. Whether the host-interface chip has a bit of its own for a failed DMA is **unknown: no shipped software or published source depends on it**: no named `HH_INTR_STATUS` bit is a response error, and the driver never reads which cause set an XG error beyond printing it; routes tried: kpm's host-interface table, the kernel's three handlers, `irsaudit`'s DMA tests and the 6.5.5 headers.
 
+### Failure codes not named elsewhere
+
+**Established** from the driver interface header's failure-code list (IRIX 6.5.5). Code 25 is the credit-count death the 6.5.30m driver raises, covered in [kernel-functions.md](kernel-functions.md). The death reason is the first argument of `kona_die` and is what the health report returns. The codes below have no use in the 6.5.30m driver's own dispatch that this document cites, so they are recorded from the header only:
+
+| Code | Meaning |
+|---|---|
+| 0 | Working state, not a failure |
+| 1 | Never initialised: the value set before the pipe is first brought up |
+| 3 | A context-verification check failed |
+| 7 | The graphics FIFO stayed above its high-water mark with no bus I/O in flight |
+| 8 | The graphics FIFO stayed above its high-water mark while bus I/O was in flight |
+| 11 | The output DMA engine overflowed |
+| 19 | A death raised on purpose through the debug request, for testing |
+| 20 | A context-activation request timed out |
+| 23 | The graphics FIFO stayed above its high-water mark (the persistent-condition form of the watermark case, where code 6 is the timeout form) |
+| 24 | The graphics credit count stayed below its bias floor and did not recover |
+
 ### Interrupt facts no software settles
 
 How the pipe decides when to raise PARITY, ODMA, PIO_OV and IDMA_OV beyond what the names say is **unknown: no shipped software or published source depends on it**, with the routes tried at `HH_INTR_STATUS` in [HIP.h](../HIP.h). The XG registers 0x04, 0x24, 0x2c and 0x74 are labelled in [XG.h](../XG.h).

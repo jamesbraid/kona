@@ -90,8 +90,53 @@
 /* ha_host_mbox: rw32, space arm, reset unknown */
 #define HIP_HA_HOST_MBOX_OFFSET                      0x90u /* established */
 
+/* hh_switch: rw32, space hip_regs, reset unknown */
+#define HIP_HH_SWITCH_OFFSET                         0x100u /* established */
+#define HIP_HH_SWITCH_SWITCH_SHIFT                   0 /* inferred */
+#define HIP_HH_SWITCH_SWITCH_MASK                    0x1ffu
+#define HIP_HH_SWITCH_SWITCH_INPLACE                 (HIP_HH_SWITCH_SWITCH_MASK << HIP_HH_SWITCH_SWITCH_SHIFT)
+
+/* hh_rtc: r32, space hip_regs, reset unknown */
+#define HIP_HH_RTC_OFFSET                            0x200u /* established */
+#define HIP_HH_RTC_COUNT_SHIFT                       0 /* inferred */
+#define HIP_HH_RTC_COUNT_MASK                        0xffffffffu
+#define HIP_HH_RTC_COUNT_INPLACE                     (HIP_HH_RTC_COUNT_MASK << HIP_HH_RTC_COUNT_SHIFT)
+
+/* hh_gfifo_level: r32, space hip_regs, reset unknown */
+#define HIP_HH_GFIFO_LEVEL_OFFSET                    0x208u /* established */
+#define HIP_HH_GFIFO_LEVEL_LEVEL_SHIFT               1 /* established */
+#define HIP_HH_GFIFO_LEVEL_LEVEL_MASK                0x3ffu
+#define HIP_HH_GFIFO_LEVEL_LEVEL_INPLACE             (HIP_HH_GFIFO_LEVEL_LEVEL_MASK << HIP_HH_GFIFO_LEVEL_LEVEL_SHIFT)
+
+/* hh_gfifo_hi: rw32, space hip_regs, reset unknown */
+#define HIP_HH_GFIFO_HI_OFFSET                       0x210u /* established */
+#define HIP_HH_GFIFO_HI_THRESHOLD_SHIFT              1 /* established */
+#define HIP_HH_GFIFO_HI_THRESHOLD_MASK               0x3ffu
+#define HIP_HH_GFIFO_HI_THRESHOLD_INPLACE            (HIP_HH_GFIFO_HI_THRESHOLD_MASK << HIP_HH_GFIFO_HI_THRESHOLD_SHIFT)
+
+/* hh_gfifo_lo: rw32, space hip_regs, reset unknown */
+#define HIP_HH_GFIFO_LO_OFFSET                       0x218u /* established */
+#define HIP_HH_GFIFO_LO_THRESHOLD_SHIFT              1 /* established */
+#define HIP_HH_GFIFO_LO_THRESHOLD_MASK               0x3ffu
+#define HIP_HH_GFIFO_LO_THRESHOLD_INPLACE            (HIP_HH_GFIFO_LO_THRESHOLD_MASK << HIP_HH_GFIFO_LO_THRESHOLD_SHIFT)
+
+/* hh_intr_info: rw32, space hip_regs, reset unknown */
+#define HIP_HH_INTR_INFO_OFFSET                      0x220u /* established */
+#define HIP_HH_INTR_INFO_GLOBAL_ENABLE_SHIFT         15 /* established */
+#define HIP_HH_INTR_INFO_GLOBAL_ENABLE_MASK          0x1u
+#define HIP_HH_INTR_INFO_GLOBAL_ENABLE_INPLACE       (HIP_HH_INTR_INFO_GLOBAL_ENABLE_MASK << HIP_HH_INTR_INFO_GLOBAL_ENABLE_SHIFT)
+#define HIP_HH_INTR_INFO_VECTOR_CPU_SHIFT            0 /* inferred */
+#define HIP_HH_INTR_INFO_VECTOR_CPU_MASK             0x7fffu
+#define HIP_HH_INTR_INFO_VECTOR_CPU_INPLACE          (HIP_HH_INTR_INFO_VECTOR_CPU_MASK << HIP_HH_INTR_INFO_VECTOR_CPU_SHIFT)
+
 /* hh_intr_ack: w32, space hip_regs, reset unknown */
 #define HIP_HH_INTR_ACK_OFFSET                       0x228u /* established */
+
+/* hh_intr_enable: rw32, space hip_regs, reset unknown */
+#define HIP_HH_INTR_ENABLE_OFFSET                    0x230u /* established */
+#define HIP_HH_INTR_ENABLE_MASK_SHIFT                0 /* established */
+#define HIP_HH_INTR_ENABLE_MASK_MASK                 0xfffu
+#define HIP_HH_INTR_ENABLE_MASK_INPLACE              (HIP_HH_INTR_ENABLE_MASK_MASK << HIP_HH_INTR_ENABLE_MASK_SHIFT)
 
 /* hh_intr_status: rw32, space hip_regs, reset unknown */
 #define HIP_HH_INTR_STATUS_OFFSET                    0x238u /* established */
@@ -141,6 +186,12 @@
 /* hh_odma_flush: w32, space hip_regs, reset unknown */
 #define HIP_HH_ODMA_FLUSH_OFFSET                     0x298u /* established */
 
+/* hh_pio_hi: rw32, space hip_regs, reset unknown */
+#define HIP_HH_PIO_HI_OFFSET                         0x2c8u /* established */
+#define HIP_HH_PIO_HI_THRESHOLD_SHIFT                0 /* established */
+#define HIP_HH_PIO_HI_THRESHOLD_MASK                 0x1fu
+#define HIP_HH_PIO_HI_THRESHOLD_INPLACE              (HIP_HH_PIO_HI_THRESHOLD_MASK << HIP_HH_PIO_HI_THRESHOLD_SHIFT)
+
 /* hh_reset: rw32, space hip_regs, reset unknown */
 #define HIP_HH_RESET_OFFSET                          0x300u /* established */
 #define HIP_HH_RESET_ARM_START_SHIFT                 1 /* inferred */
@@ -189,6 +240,12 @@
 #define HIP_HH_ARM_STATUS_STALL_MASK                 0x1u
 #define HIP_HH_ARM_STATUS_STALL_INPLACE              (HIP_HH_ARM_STATUS_STALL_MASK << HIP_HH_ARM_STATUS_STALL_SHIFT)
 
+/* hh_arm_stall: w32, space hip_regs, reset unknown */
+#define HIP_HH_ARM_STALL_OFFSET                      0x320u /* established */
+
+/* hh_arm_unstall: w32, space hip_regs, reset unknown */
+#define HIP_HH_ARM_UNSTALL_OFFSET                    0x328u /* established */
+
 /* hh_tbus_status: rw32, space hip_regs, reset unknown */
 #define HIP_HH_TBUS_STATUS_OFFSET                    0x3a8u /* established */
 #define HIP_HH_TBUS_STATUS_STALL_SHIFT               3 /* inferred */
@@ -203,6 +260,12 @@
 #define HIP_HH_TBUS_STATUS_DRAW_SHIFT                0 /* inferred */
 #define HIP_HH_TBUS_STATUS_DRAW_MASK                 0x1u
 #define HIP_HH_TBUS_STATUS_DRAW_INPLACE              (HIP_HH_TBUS_STATUS_DRAW_MASK << HIP_HH_TBUS_STATUS_DRAW_SHIFT)
+
+/* hh_tfifo_hi: rw32, space hip_regs, reset unknown */
+#define HIP_HH_TFIFO_HI_OFFSET                       0x3b0u /* established */
+#define HIP_HH_TFIFO_HI_THRESHOLD_SHIFT              0 /* established */
+#define HIP_HH_TFIFO_HI_THRESHOLD_MASK               0xfu
+#define HIP_HH_TFIFO_HI_THRESHOLD_INPLACE            (HIP_HH_TFIFO_HI_THRESHOLD_MASK << HIP_HH_TFIFO_HI_THRESHOLD_SHIFT)
 
 /* hh_vc_address: rw32, space hip_regs, reset unknown */
 #define HIP_HH_VC_ADDRESS_OFFSET                     0x3c0u /* established */

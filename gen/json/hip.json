@@ -305,6 +305,140 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "hh_switch",
+   "offset": 256,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_switch.switch",
+   "hi": 8,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_rtc",
+   "offset": 512,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_rtc.count",
+   "hi": 31,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_gfifo_level",
+   "offset": 520,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_gfifo_level.level",
+   "hi": 10,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_gfifo_hi",
+   "offset": 528,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_gfifo_hi.threshold",
+   "hi": 10,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_gfifo_lo",
+   "offset": 536,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_gfifo_lo.threshold",
+   "hi": 10,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_intr_info",
+   "offset": 544,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_info.global_enable",
+   "hi": 15,
+   "lo": 15,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_info.vector_cpu",
+   "hi": 14,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "hh_intr_ack",
    "offset": 552,
    "access": "w",
@@ -313,6 +447,27 @@
    "stride": 4,
    "space": "hip_regs",
    "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_intr_enable",
+   "offset": 560,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_intr_enable.mask",
+   "hi": 11,
+   "lo": 0,
    "grade": "established"
   },
   {
@@ -466,6 +621,27 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "hh_pio_hi",
+   "offset": 712,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_pio_hi.threshold",
+   "hi": 4,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "hh_reset",
    "offset": 768,
    "access": "rw",
@@ -609,6 +785,32 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "hh_arm_stall",
+   "offset": 800,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_unstall",
+   "offset": 808,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "hh_tbus_status",
    "offset": 936,
    "access": "rw",
@@ -650,6 +852,27 @@
    "hi": 0,
    "lo": 0,
    "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_tfifo_hi",
+   "offset": 944,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_tfifo_hi.threshold",
+   "hi": 3,
+   "lo": 0,
+   "grade": "established"
   },
   {
    "unit": "hip",

@@ -377,3 +377,122 @@ draw = { bits = [0, 0], grade = "inferred" }
 load = { bits = [1, 1], grade = "inferred" }
 active = { bits = [2, 2], grade = "inferred" }
 stall = { bits = [3, 3], grade = "inferred" }
+
+# Second-revision host-interface registers that the pipe-manager table names
+# and the driver's own accesses confirm. Offsets and field positions are the
+# table's; roles are read from the names, so they are graded inferred.
+[registers.hh_switch]
+offset = 0x100
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30)"
+
+[registers.hh_switch.fields]
+switch = { bits = [8, 0], grade = "inferred" }
+
+[registers.hh_rtc]
+offset = 0x200
+access = "r"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30)"
+
+[registers.hh_rtc.fields]
+count = { bits = [31, 0], grade = "inferred" }
+
+[registers.hh_gfifo_level]
+offset = 0x208
+access = "r"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); driver mask 0x7fe"
+
+[registers.hh_gfifo_level.fields]
+level = { bits = [10, 1], grade = "established" }
+
+[registers.hh_gfifo_hi]
+offset = 0x210
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); driver write of 0x700 at init"
+
+[registers.hh_gfifo_hi.fields]
+threshold = { bits = [10, 1], grade = "established" }
+
+[registers.hh_gfifo_lo]
+offset = 0x218
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30)"
+
+[registers.hh_gfifo_lo.fields]
+threshold = { bits = [10, 1], grade = "established" }
+
+[registers.hh_intr_info]
+offset = 0x220
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); death path clears bit 15"
+
+[registers.hh_intr_info.fields]
+vector_cpu = { bits = [14, 0], grade = "inferred" }
+global_enable = { bits = [15, 15], grade = "established" }
+
+[registers.hh_intr_enable]
+offset = 0x230
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); driver enable-mask writes"
+
+[registers.hh_intr_enable.fields]
+mask = { bits = [11, 0], grade = "established" }
+
+[registers.hh_pio_hi]
+offset = 0x2c8
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30)"
+
+[registers.hh_pio_hi.fields]
+threshold = { bits = [4, 0], grade = "established" }
+
+[registers.hh_tfifo_hi]
+offset = 0x3b0
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); firmware write of 5 after load"
+
+[registers.hh_tfifo_hi.fields]
+threshold = { bits = [3, 0], grade = "established" }
+
+[registers.hh_arm_stall]
+offset = 0x320
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30)"
+
+[registers.hh_arm_unstall]
+offset = 0x328
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+from = "pipe-manager register table (kpm, 6.5.30); firmware load writes 1 before start"

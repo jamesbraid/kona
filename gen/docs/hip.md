@@ -36,15 +36,26 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `ha_icu_loop_addr` | 0x70 | rw | 32 |  | arm | unknown | established |  |
 | `ha_icu_arrcnt` | 0x74 | rw | 32 |  | arm | unknown | established |  |
 | `ha_host_mbox` | 0x90 | rw | 32 |  | arm | unknown | established |  |
+| `hh_switch` | 0x100 | rw | 32 |  | hip_regs | unknown | established |  |
+| `hh_rtc` | 0x200 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_gfifo_level` | 0x208 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_gfifo_hi` | 0x210 | rw | 32 |  | hip_regs | unknown | established |  |
+| `hh_gfifo_lo` | 0x218 | rw | 32 |  | hip_regs | unknown | established |  |
+| `hh_intr_info` | 0x220 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_intr_ack` | 0x228 | w | 32 |  | hip_regs | unknown | established |  |
+| `hh_intr_enable` | 0x230 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_intr_status` | 0x238 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_mbox` | 0x240 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_seqid` | 0x248 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_odma_flush` | 0x298 | w | 32 |  | hip_regs | unknown | established |  |
+| `hh_pio_hi` | 0x2c8 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_reset` | 0x300 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_ctrl` | 0x308 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_status` | 0x310 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_arm_stall` | 0x320 | w | 32 |  | hip_regs | unknown | established |  |
+| `hh_arm_unstall` | 0x328 | w | 32 |  | hip_regs | unknown | established |  |
 | `hh_tbus_status` | 0x3a8 | rw | 32 |  | hip_regs | unknown | established |  |
+| `hh_tfifo_hi` | 0x3b0 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_vc_address` | 0x3c0 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_vc_ready` | 0x3c8 | r | 32 |  | hip_regs | unknown | inferred |  |
 | `hh_vc_data` | 0x3d0 | rw | 32 |  | hip_regs | unknown | established |  |
@@ -141,7 +152,50 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 ### Register `ha_host_mbox`
 
+### Register `hh_switch`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 8:0 | `switch` | inferred |  |  |  |
+
+### Register `hh_rtc`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 31:0 | `count` | inferred |  |  |  |
+
+### Register `hh_gfifo_level`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 10:1 | `level` | established |  |  |  |
+
+### Register `hh_gfifo_hi`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 10:1 | `threshold` | established |  |  |  |
+
+### Register `hh_gfifo_lo`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 10:1 | `threshold` | established |  |  |  |
+
+### Register `hh_intr_info`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 15 | `global_enable` | established |  |  |  |
+| 14:0 | `vector_cpu` | inferred |  |  |  |
+
 ### Register `hh_intr_ack`
+
+### Register `hh_intr_enable`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 11:0 | `mask` | established |  |  |  |
 
 ### Register `hh_intr_status`
 
@@ -165,6 +219,12 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 ### Register `hh_seqid`
 
 ### Register `hh_odma_flush`
+
+### Register `hh_pio_hi`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 4:0 | `threshold` | established |  |  |  |
 
 ### Register `hh_reset`
 
@@ -194,6 +254,10 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | 1 | `remap` | inferred |  |  |  |
 | 0 | `stall` | inferred |  |  |  |
 
+### Register `hh_arm_stall`
+
+### Register `hh_arm_unstall`
+
 ### Register `hh_tbus_status`
 
 | Bits | Field | Grade | Values | Source | Description |
@@ -202,6 +266,12 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | 2 | `active` | inferred |  |  |  |
 | 1 | `load` | inferred |  |  |  |
 | 0 | `draw` | inferred |  |  |  |
+
+### Register `hh_tfifo_hi`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 3:0 | `threshold` | established |  |  |  |
 
 ### Register `hh_vc_address`
 
