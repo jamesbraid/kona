@@ -440,3 +440,32 @@ What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [ucode/arm1_firmware.md](.
 **Established** (the firmware side, `init` and `init_ge_board`). When the ARM starts it clears its RAM window, sets up its exception vectors, reads whether it runs inside a simulator from the first register of its window, scans the boards on the boundary-scan chain, builds the token map, loads the distributor program and tables, downloads the engine start-up stub, configures the raster and display boards and waits for the engines' mailbox handshake (`check_pipe_sync`) before it accepts the first host command. Until then it does not read the token fetch register, so host commands cannot be dispatched (**inferred**: the loop that reads it starts after `init` returns). The order and the register accesses are in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
 
 **Established** (`init_graphics` and `get_eeprom_state` in `kona_tport.o`, 6.5.30m, [kernel-functions.md](kernel-functions.md)): `HH_RESET` bit 0 holds the host interface in reset (the kernel's pulse writes 1 then 0). To start a pipe that does not answer, the kernel writes `HH_INTR_INFO` = 0, `HH_RESET` = 3, a read-back and `HH_RESET` = 2; that bit 1 lets the ARM run, booting from the board's EEPROM, is **inferred** from that sequence and the register's `ARM_START` name. The kernel's pulses are in [xg.md](xg.md). What the reset does to the token map, the FIFOs and the counters is **unknown: no shipped software or published source depends on it**, with the routes in [HIP.h](../HIP.h) at `HH_RESET`.
+
+## Firmware load into the pipe's memories
+
+**Established** (`usr/gfx/gfxinit`, `kona_loaducode` at 0x1000ca5c, which loads the four files in the order given in [setup-tools.md](setup-tools.md)). The kernel does not load firmware: `KONAdownload` returns 0 and does nothing (`kona_stubs.o` at 0x37c). The loader writes the images through the indirect port: `HH_ARM_ADDRESS` (0x3e8) selects an address and `HH_ARM_DATA_INCR` (0x3f8) stores a word and advances by 4. Nothing reads the words back. The loader reads no port and waits for nothing. When a section fails to load, it returns with host access on and the ARM stalled.
+
+The load is ten sections. The start addresses below follow from the file sizes, and each section ends where the next begins, so the table is internally consistent. The `arm1.u` sizes match its AIF header (read-only 0x40248, read-write 0x27c7c, zero-initialised 0x2d4fc; see [data-files.md](data-files.md)).
+
+| # | Source | Bytes in the file | Load address | Grade |
+| --- | --- | --- | --- | --- |
+| 1 | `arm1.u`, read-only image | 0x80-0x402c7 | ARM 0x4000000 | established (exact byte match) |
+| 2 | `arm1.u`, read-write data | 0x402c8-0x67f43 | ARM 0x4040260 | established (exact byte match) |
+| 3 | `arm1.u`, zero-initialised area | 0x2d4fc zero bytes | ARM 0x4067edc | established (size from header) |
+| 4 | `arm1.u`, first 0x2c bytes again | 0x0-0x2b | ARM 0x0 | established |
+| 5 | `geif.u`, whole file | 2048 bytes | ARM 0x40954b8 | established |
+| 6 | `ged1b.u`, first chunk | 0x76-0xf01 | ARM 0x4095cb8 | established |
+| 7 | `ged1b.u`, second chunk | 0xf0a-0x1749 | ARM 0x4096b44 | established |
+| 8 | `ge11.u`, first chunk | 0x79-0x22b48 | ARM 0x4097384 | established |
+| 9 | `ge11.u`, second chunk | 0x22b51-0xb732c | ARM 0x40b9e54 | established |
+| 10 | section directory, 56 words | after section 3 | ARM 0x40953d8 | address established; field names inferred |
+
+Section 4 is the ARM's reset code. Its eleven words zero 128 words over ARM 0xa00000-0xa00fe0 and branch to the image's linked base plus its entry offset (`arm1.u` header words 10 and 3). The ARM first runs after the write to `HH_ARM_UNSTALL` (0x328), which the loader makes last; that order is **inferred**.
+
+After the last data word the loader clears the ARM-access bit (bit 0 of the control register at 0x200050, the `HA_ICU_CTRL` row of the ARM-side register table earlier in this file), writes 5 to `HH_TFIFO_HI` (0x3b0), writes 1 to `HH_ARM_UNSTALL` (0x328) and then calls `KONAstart`. Nothing reads 0x3b0 back. The 0x3b0 write is **inferred** to set the transaction FIFO's high-water mark from the register's name in the pipe-manager table.
+
+## Identity words in the pipe's EEPROM area
+
+**Established** (`get_eeprom_state` in `kona_tport.o`, and the PROM's install check). The state word is read through the indirect port: write 1 to `HH_ARM_CTRL` (0x308), write 0x2000bc to `HH_ARM_ADDRESS` (0x3e8), write 0 to `HH_ARM_DATA` (0x3f0), then for each word address write the address and read `HH_ARM_DATA`. The word addresses run from 0x87ff00 to 0x87ff2c in steps of 4. The function returns the eighth word, at 0x87ff1c. How many words the loop reads is in dispute; see [open-questions.md](open-questions.md#origami-datasheet-import-2026-11-11).
+
+The eighth word is the EEPROM header's state field. **Inferred** from the `ireeprom` image header, where the header sits at flash offset 0x7ff00 and word 7 is the state (1 erased, 2 good, 3 failed comparison). That layout has not been checked against the `ireeprom` binary in this repository. The PROM install routine accepts the pipe only when that word is exactly 2. Any other value makes it print a bad-EEPROM warning and gives the pipe no graphics console. A widget that is present and typed correctly loses its console only when this check and the synchronisation probe both fail.

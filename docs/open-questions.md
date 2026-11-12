@@ -644,3 +644,10 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [route b] HN RAM-growth claim: check per-RM texture sizes and that IR3 and IR4 registers match IR2 except sizes and clocks.
 - [route a] HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
 - [route a] GLUT videoresize and shadowmap: run both demos on an IR guest; videoresize must change the scanned-out size.
+
+## Origami datasheet import (2026-11-11)
+
+Disagreements found while importing the InfiniteReality sheets from the Origami repository. Each entry gives both sides. The kona text stays as it is until one side is settled from a binary.
+
+- **Words read by `get_eeprom_state`.** [kernel-functions.md](kernel-functions.md) (`kona_tport.o` +0x1454, 124 bytes) says the function reads eight words from ARM 0x87ff00 and returns the eighth. The Origami kernel-attach and host-interface sheets say the same function, at `kona_tport.o` 0x1f24-0x1f9c, makes twelve address-write and read pairs over 0x87ff00-0x87ff2c. Both agree that the eighth word (0x87ff1c) is the state. Settled by the loop bound in the 6.5.30 `get_eeprom_state`. [hip.md](hip.md#identity-words-in-the-pipes-eeprom-area) records the state word and leaves the count open.
+- **Widget offset 0x7c.** The Origami PROM note reports that the IO6 install routine writes 0x23 to widget low-window offset 0x7c once, before the first synchronisation probe. The Origami driver note reads offset 0x7c as the heaviest-used FIFO and command-data port and says its addend is not reconciled; it may be 0x80007c. Kona has no 0x80007c entry in [hip.md](hip.md) or [xg.md](xg.md), and its command FIFO is at 0xc10000. Settled by the addend of each 0x7c access in the 6.5.30 kernel objects, and by which widget the PROM's store addresses.
