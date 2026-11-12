@@ -305,6 +305,19 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "hh_intr_ack",
+   "offset": 552,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "hh_intr_status",
    "offset": 568,
    "access": "rw",
@@ -427,6 +440,61 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "hh_seqid",
+   "offset": 584,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_odma_flush",
+   "offset": 664,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_reset",
+   "offset": 768,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_reset.arm_start",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_reset.hip_reset",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "hh_arm_ctrl",
    "offset": 776,
    "access": "rw",
@@ -444,6 +512,144 @@
    "hi": 0,
    "lo": 0,
    "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_arm_status",
+   "offset": 784,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.mode",
+   "hi": 15,
+   "lo": 11,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.nopc",
+   "hi": 10,
+   "lo": 10,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.abort",
+   "hi": 9,
+   "lo": 9,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.nbw",
+   "hi": 8,
+   "lo": 8,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.nrw",
+   "hi": 7,
+   "lo": 7,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.seq",
+   "hi": 6,
+   "lo": 6,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.mreq",
+   "hi": 5,
+   "lo": 5,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.ge_cnt",
+   "hi": 4,
+   "lo": 2,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.remap",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_arm_status.stall",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
+   "name": "hh_tbus_status",
+   "offset": 936,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "hip_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_tbus_status.stall",
+   "hi": 3,
+   "lo": 3,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_tbus_status.active",
+   "hi": 2,
+   "lo": 2,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_tbus_status.load",
+   "hi": 1,
+   "lo": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "hh_tbus_status.draw",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred"
   },
   {
    "unit": "hip",

@@ -308,3 +308,72 @@ mapram_invalid = { bits = [13, 13], grade = "established" }
 mapram_parity = { bits = [12, 12], grade = "established" }
 response = { bits = [9, 9], grade = "established" }
 read_req_timeout = { bits = [8, 8], grade = "established" }
+
+# Host-interface registers at 0x800000 + offset, from the pipe-manager
+# register table (kpm .data, 6.5.30). Names and bit positions are the table's;
+# the roles come from the names and from the driver's use, so they are graded
+# inferred where the field name is all that is known. Access comes from the
+# driver's reads and writes (origami host-interface sheet, register window).
+[registers.hh_reset]
+offset = 0x300
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_reset.fields]
+hip_reset = { bits = [0, 0], grade = "established" }
+arm_start = { bits = [1, 1], grade = "inferred" }
+
+[registers.hh_arm_status]
+offset = 0x310
+access = "r"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_arm_status.fields]
+stall = { bits = [0, 0], grade = "inferred" }
+remap = { bits = [1, 1], grade = "inferred" }
+ge_cnt = { bits = [4, 2], grade = "inferred" }
+mreq = { bits = [5, 5], grade = "inferred" }
+seq = { bits = [6, 6], grade = "inferred" }
+nrw = { bits = [7, 7], grade = "inferred" }
+nbw = { bits = [8, 8], grade = "inferred" }
+abort = { bits = [9, 9], grade = "inferred" }
+nopc = { bits = [10, 10], grade = "inferred" }
+mode = { bits = [15, 11], grade = "inferred" }
+
+[registers.hh_seqid]
+offset = 0x248
+access = "r"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_intr_ack]
+offset = 0x228
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_odma_flush]
+offset = 0x298
+access = "w"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_tbus_status]
+offset = 0x3a8
+access = "rw"
+width = 32
+grade = "established"
+space = "hip_regs"
+
+[registers.hh_tbus_status.fields]
+draw = { bits = [0, 0], grade = "inferred" }
+load = { bits = [1, 1], grade = "inferred" }
+active = { bits = [2, 2], grade = "inferred" }
+stall = { bits = [3, 3], grade = "inferred" }

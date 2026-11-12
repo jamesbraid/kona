@@ -36,9 +36,15 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `ha_icu_loop_addr` | 0x70 | rw | 32 |  | arm | unknown | established |  |
 | `ha_icu_arrcnt` | 0x74 | rw | 32 |  | arm | unknown | established |  |
 | `ha_host_mbox` | 0x90 | rw | 32 |  | arm | unknown | established |  |
+| `hh_intr_ack` | 0x228 | w | 32 |  | hip_regs | unknown | established |  |
 | `hh_intr_status` | 0x238 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_mbox` | 0x240 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_seqid` | 0x248 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_odma_flush` | 0x298 | w | 32 |  | hip_regs | unknown | established |  |
+| `hh_reset` | 0x300 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_ctrl` | 0x308 | rw | 32 |  | hip_regs | unknown | established |  |
+| `hh_arm_status` | 0x310 | r | 32 |  | hip_regs | unknown | established |  |
+| `hh_tbus_status` | 0x3a8 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_vc_address` | 0x3c0 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_vc_ready` | 0x3c8 | r | 32 |  | hip_regs | unknown | inferred |  |
 | `hh_vc_data` | 0x3d0 | rw | 32 |  | hip_regs | unknown | established |  |
@@ -135,6 +141,8 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 ### Register `ha_host_mbox`
 
+### Register `hh_intr_ack`
+
 ### Register `hh_intr_status`
 
 | Bits | Field | Grade | Values | Source | Description |
@@ -154,11 +162,46 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 ### Register `hh_arm_mbox`
 
+### Register `hh_seqid`
+
+### Register `hh_odma_flush`
+
+### Register `hh_reset`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 1 | `arm_start` | inferred |  |  |  |
+| 0 | `hip_reset` | established |  |  |  |
+
 ### Register `hh_arm_ctrl`
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
 | 0 | `host_access` | established |  |  |  |
+
+### Register `hh_arm_status`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 15:11 | `mode` | inferred |  |  |  |
+| 10 | `nopc` | inferred |  |  |  |
+| 9 | `abort` | inferred |  |  |  |
+| 8 | `nbw` | inferred |  |  |  |
+| 7 | `nrw` | inferred |  |  |  |
+| 6 | `seq` | inferred |  |  |  |
+| 5 | `mreq` | inferred |  |  |  |
+| 4:2 | `ge_cnt` | inferred |  |  |  |
+| 1 | `remap` | inferred |  |  |  |
+| 0 | `stall` | inferred |  |  |  |
+
+### Register `hh_tbus_status`
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 3 | `stall` | inferred |  |  |  |
+| 2 | `active` | inferred |  |  |  |
+| 1 | `load` | inferred |  |  |  |
+| 0 | `draw` | inferred |  |  |  |
 
 ### Register `hh_vc_address`
 

@@ -90,6 +90,9 @@
 /* ha_host_mbox: rw32, space arm, reset unknown */
 #define HIP_HA_HOST_MBOX_OFFSET                      0x90u /* established */
 
+/* hh_intr_ack: w32, space hip_regs, reset unknown */
+#define HIP_HH_INTR_ACK_OFFSET                       0x228u /* established */
+
 /* hh_intr_status: rw32, space hip_regs, reset unknown */
 #define HIP_HH_INTR_STATUS_OFFSET                    0x238u /* established */
 #define HIP_HH_INTR_STATUS_IDMA_OV_SHIFT             11 /* established */
@@ -132,11 +135,74 @@
 /* hh_arm_mbox: r32, space hip_regs, reset unknown */
 #define HIP_HH_ARM_MBOX_OFFSET                       0x240u /* established */
 
+/* hh_seqid: r32, space hip_regs, reset unknown */
+#define HIP_HH_SEQID_OFFSET                          0x248u /* established */
+
+/* hh_odma_flush: w32, space hip_regs, reset unknown */
+#define HIP_HH_ODMA_FLUSH_OFFSET                     0x298u /* established */
+
+/* hh_reset: rw32, space hip_regs, reset unknown */
+#define HIP_HH_RESET_OFFSET                          0x300u /* established */
+#define HIP_HH_RESET_ARM_START_SHIFT                 1 /* inferred */
+#define HIP_HH_RESET_ARM_START_MASK                  0x1u
+#define HIP_HH_RESET_ARM_START_INPLACE               (HIP_HH_RESET_ARM_START_MASK << HIP_HH_RESET_ARM_START_SHIFT)
+#define HIP_HH_RESET_HIP_RESET_SHIFT                 0 /* established */
+#define HIP_HH_RESET_HIP_RESET_MASK                  0x1u
+#define HIP_HH_RESET_HIP_RESET_INPLACE               (HIP_HH_RESET_HIP_RESET_MASK << HIP_HH_RESET_HIP_RESET_SHIFT)
+
 /* hh_arm_ctrl: rw32, space hip_regs, reset unknown */
 #define HIP_HH_ARM_CTRL_OFFSET                       0x308u /* established */
 #define HIP_HH_ARM_CTRL_HOST_ACCESS_SHIFT            0 /* established */
 #define HIP_HH_ARM_CTRL_HOST_ACCESS_MASK             0x1u
 #define HIP_HH_ARM_CTRL_HOST_ACCESS_INPLACE          (HIP_HH_ARM_CTRL_HOST_ACCESS_MASK << HIP_HH_ARM_CTRL_HOST_ACCESS_SHIFT)
+
+/* hh_arm_status: r32, space hip_regs, reset unknown */
+#define HIP_HH_ARM_STATUS_OFFSET                     0x310u /* established */
+#define HIP_HH_ARM_STATUS_MODE_SHIFT                 11 /* inferred */
+#define HIP_HH_ARM_STATUS_MODE_MASK                  0x1fu
+#define HIP_HH_ARM_STATUS_MODE_INPLACE               (HIP_HH_ARM_STATUS_MODE_MASK << HIP_HH_ARM_STATUS_MODE_SHIFT)
+#define HIP_HH_ARM_STATUS_NOPC_SHIFT                 10 /* inferred */
+#define HIP_HH_ARM_STATUS_NOPC_MASK                  0x1u
+#define HIP_HH_ARM_STATUS_NOPC_INPLACE               (HIP_HH_ARM_STATUS_NOPC_MASK << HIP_HH_ARM_STATUS_NOPC_SHIFT)
+#define HIP_HH_ARM_STATUS_ABORT_SHIFT                9 /* inferred */
+#define HIP_HH_ARM_STATUS_ABORT_MASK                 0x1u
+#define HIP_HH_ARM_STATUS_ABORT_INPLACE              (HIP_HH_ARM_STATUS_ABORT_MASK << HIP_HH_ARM_STATUS_ABORT_SHIFT)
+#define HIP_HH_ARM_STATUS_NBW_SHIFT                  8 /* inferred */
+#define HIP_HH_ARM_STATUS_NBW_MASK                   0x1u
+#define HIP_HH_ARM_STATUS_NBW_INPLACE                (HIP_HH_ARM_STATUS_NBW_MASK << HIP_HH_ARM_STATUS_NBW_SHIFT)
+#define HIP_HH_ARM_STATUS_NRW_SHIFT                  7 /* inferred */
+#define HIP_HH_ARM_STATUS_NRW_MASK                   0x1u
+#define HIP_HH_ARM_STATUS_NRW_INPLACE                (HIP_HH_ARM_STATUS_NRW_MASK << HIP_HH_ARM_STATUS_NRW_SHIFT)
+#define HIP_HH_ARM_STATUS_SEQ_SHIFT                  6 /* inferred */
+#define HIP_HH_ARM_STATUS_SEQ_MASK                   0x1u
+#define HIP_HH_ARM_STATUS_SEQ_INPLACE                (HIP_HH_ARM_STATUS_SEQ_MASK << HIP_HH_ARM_STATUS_SEQ_SHIFT)
+#define HIP_HH_ARM_STATUS_MREQ_SHIFT                 5 /* inferred */
+#define HIP_HH_ARM_STATUS_MREQ_MASK                  0x1u
+#define HIP_HH_ARM_STATUS_MREQ_INPLACE               (HIP_HH_ARM_STATUS_MREQ_MASK << HIP_HH_ARM_STATUS_MREQ_SHIFT)
+#define HIP_HH_ARM_STATUS_GE_CNT_SHIFT               2 /* inferred */
+#define HIP_HH_ARM_STATUS_GE_CNT_MASK                0x7u
+#define HIP_HH_ARM_STATUS_GE_CNT_INPLACE             (HIP_HH_ARM_STATUS_GE_CNT_MASK << HIP_HH_ARM_STATUS_GE_CNT_SHIFT)
+#define HIP_HH_ARM_STATUS_REMAP_SHIFT                1 /* inferred */
+#define HIP_HH_ARM_STATUS_REMAP_MASK                 0x1u
+#define HIP_HH_ARM_STATUS_REMAP_INPLACE              (HIP_HH_ARM_STATUS_REMAP_MASK << HIP_HH_ARM_STATUS_REMAP_SHIFT)
+#define HIP_HH_ARM_STATUS_STALL_SHIFT                0 /* inferred */
+#define HIP_HH_ARM_STATUS_STALL_MASK                 0x1u
+#define HIP_HH_ARM_STATUS_STALL_INPLACE              (HIP_HH_ARM_STATUS_STALL_MASK << HIP_HH_ARM_STATUS_STALL_SHIFT)
+
+/* hh_tbus_status: rw32, space hip_regs, reset unknown */
+#define HIP_HH_TBUS_STATUS_OFFSET                    0x3a8u /* established */
+#define HIP_HH_TBUS_STATUS_STALL_SHIFT               3 /* inferred */
+#define HIP_HH_TBUS_STATUS_STALL_MASK                0x1u
+#define HIP_HH_TBUS_STATUS_STALL_INPLACE             (HIP_HH_TBUS_STATUS_STALL_MASK << HIP_HH_TBUS_STATUS_STALL_SHIFT)
+#define HIP_HH_TBUS_STATUS_ACTIVE_SHIFT              2 /* inferred */
+#define HIP_HH_TBUS_STATUS_ACTIVE_MASK               0x1u
+#define HIP_HH_TBUS_STATUS_ACTIVE_INPLACE            (HIP_HH_TBUS_STATUS_ACTIVE_MASK << HIP_HH_TBUS_STATUS_ACTIVE_SHIFT)
+#define HIP_HH_TBUS_STATUS_LOAD_SHIFT                1 /* inferred */
+#define HIP_HH_TBUS_STATUS_LOAD_MASK                 0x1u
+#define HIP_HH_TBUS_STATUS_LOAD_INPLACE              (HIP_HH_TBUS_STATUS_LOAD_MASK << HIP_HH_TBUS_STATUS_LOAD_SHIFT)
+#define HIP_HH_TBUS_STATUS_DRAW_SHIFT                0 /* inferred */
+#define HIP_HH_TBUS_STATUS_DRAW_MASK                 0x1u
+#define HIP_HH_TBUS_STATUS_DRAW_INPLACE              (HIP_HH_TBUS_STATUS_DRAW_MASK << HIP_HH_TBUS_STATUS_DRAW_SHIFT)
 
 /* hh_vc_address: rw32, space hip_regs, reset unknown */
 #define HIP_HH_VC_ADDRESS_OFFSET                     0x3c0u /* established */
