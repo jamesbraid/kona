@@ -54,7 +54,7 @@ Roles for targets 100 to 124 of the ranked tier-2 list (round t2list). Each one 
   **Inferred.** Sets up depth-cue fog. It enables 0xb60 through __iglooSetEnable (0xec5cb70) and calls glFogi with 0xb65 and 0x2601, glFogfv with 0xb66, and glFogf with 0xb61. It sets the color-index path with glIndexf and selects the depth-cue color procedures through __iglooSetColorProcsToDepthCue (0xec3e6d0). The branches on gl_wstatep +2904 (0xec43b88) and on the flag at 0xece8bf8 (gl_iglooGouraudCIDepthCue) select the variant.
 
 - `gl_i_depthcue` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43da0
-  **Inferred.** Immediate-mode form. It closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) when the 0xece8bf0 flag is clear, then calls gl_depthcue (0xec43b60) with a0 = arg0 and a1 = 0. It returns ret(gl_depthcue) at 0xec43de8.
+  **Inferred.** Immediate-mode form. It closes move-draw state through __iglooNCloseMoveDraw (0xec92d80) when the 0xece8bf0 flag is nonzero, then calls gl_depthcue (0xec43b60) with a0 = arg0 and a1 = 0. It returns ret(gl_depthcue) at 0xec43de8.
 
 - `gl_c_depthcue` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec43df0
   **Inferred.** Compile-time form with the same shape as gl_c_patchbasis at 0xec42f70, but with opcode 0x4 in place of 0x6. It calls gl_compile (0xecb5010) with a stack buffer at sp-48, then gl_intrptab_insert (0xec5f9f0) with a0 = 0xecd72c0, gated by the global at 0xecdda34 (the beq at 0xec43e10). It returns ret(gl_compile) at 0xec43e40.

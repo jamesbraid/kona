@@ -21,7 +21,7 @@ Roles for targets 200 to 224 of the ranked tier-2 list, all in the IGLOO32 `libg
   **Inferred.** Writes six single-precision values at offsets 0x4 to 0x18 of the current record (0xec47270 to 0xec4725c), a word at +0 (0xec47278), and a halfword at +0x1c (0xec47258). It checks for 32 bytes of room twice (bne at 0xec47250 and 0xec47288, against comm_endbuffer), and calls gl_comm_flush (0xec40750) when the room is short, with the constant 0x50 as a5 in the second call. The name suggests a view transform, and the render gives no argument names for the six values.
 
 - `gl_d_lsbackup` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec47300
-  **Inferred.** Writes words at +4 and +0 of the current record (0xec47320, 0xec47328) and advances comm_curbufpos (0xec4733c). When fewer than 8 bytes remain (bne at 0xec47338), it calls gl_comm_flush (0xec40750) with the constant 0x51 as a1 and 0x9b870 as a2. The returned value is the write position, or the result of the flush.
+  **Inferred.** Writes words at +4 and +0 of the current record (0xec47320, 0xec47328) and advances comm_curbufpos (0xec4733c). When fewer than 8 bytes remain (bne at 0xec47338), it calls gl_comm_flush (0xec40750) with the constant 0x51 as a1 and 0x9b870 as a2. The return value is the address of comm_curbufpos (0xecd6c4c) on the path without a flush, or the result of the flush.
 
 - `gl_d_makeobj` in `usr/gfx/arch/IGLOO32/libgl.so` at 0xec47370
   **Inferred.** Writes words at +4 and +0 of the current record (0xec47390, 0xec47398) and advances comm_curbufpos (0xec473ac). When fewer than 8 bytes remain (bne at 0xec473a8), it calls gl_comm_flush (0xec40750) with the constant 0x52 as a1 and 0x9b800 as a2. The record layout matches gl_d_maketag, and the name suggests an object creation request.
