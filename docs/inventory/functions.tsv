@@ -48523,7 +48523,7 @@ usr/gfx/ircombine	board-tool	n32		0x10082660	100	vfcFormatOPTChannelRev	dynsym	a
 usr/gfx/ircombine	board-tool	n32		0x100828e0	1052	vfmtResolvePixelDepth	dynsym	897ecc202765		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/ircombine	board-tool	n32		0x10083030	84	vfmtMinimalKonaTarget	dynsym	49ae7fe545f9		in	understood	docs/opengl.md#vfmtminimalkonatarget	`vfmtMinimalKonaTarget`
 usr/gfx/ircombine	board-tool	n32		0x10083090	1312	vfmtActualHWToKonaTarget	dynsym	3cce706fbd5d		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
-usr/gfx/ircombine	board-tool	n32		0x100835b0	2656	vfmtIsKonaCombinationValidForTarget	dynsym	f4e1ed01e42b		in	named-only	docs/dg.md#combination-limits-infinitereality-video-format-combiner-users-guide-007-3279-003	Combination limits (InfiniteReality Video Format Combiner User's Guide, 007-3279-003)
+usr/gfx/ircombine	board-tool	n32		0x100835b0	2656	vfmtIsKonaCombinationValidForTarget	dynsym	f4e1ed01e42b		in	named-only	docs/dg.md#the-hardware-description-and-the-option-rules	The hardware description and the option rules
 usr/gfx/ircombine	board-tool	n32		0x10084010	148	vfmtIsKonaCombinationValidForActualHW	dynsym	fced5f360fb0		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/ircombine	board-tool	n32		0x100840b0	144	vfmtSwapRateCloseEnough	dynsym	70b324bfdd92		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/ircombine	board-tool	n32		0x10084140	332	vfmtSyncFormatFrameRatesCompatible	dynsym	c1a358941fcb		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
@@ -48757,7 +48757,7 @@ usr/gfx/setmon	shared-tool	n32		0x10018b3c	152	read_xilinx_file	dynsym	771a2f494
 usr/gfx/setmon	shared-tool	n32		0x10018df0	1052	vfmtResolvePixelDepth	dynsym	29fc4e1e82b1		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/setmon	shared-tool	n32		0x10019540	84	vfmtMinimalKonaTarget	dynsym	49ae7fe545f9		in	understood	docs/opengl.md#vfmtminimalkonatarget	`vfmtMinimalKonaTarget`
 usr/gfx/setmon	shared-tool	n32		0x100195a0	1312	vfmtActualHWToKonaTarget	dynsym	03413d9dea24		in	understood	docs/setup-tool-functions.md#setmon	`setmon`
-usr/gfx/setmon	shared-tool	n32		0x10019ac0	2656	vfmtIsKonaCombinationValidForTarget	dynsym	45943bcaadb9		in	named-only	docs/dg.md#combination-limits-infinitereality-video-format-combiner-users-guide-007-3279-003	Combination limits (InfiniteReality Video Format Combiner User's Guide, 007-3279-003)
+usr/gfx/setmon	shared-tool	n32		0x10019ac0	2656	vfmtIsKonaCombinationValidForTarget	dynsym	45943bcaadb9		in	named-only	docs/dg.md#the-hardware-description-and-the-option-rules	The hardware description and the option rules
 usr/gfx/setmon	shared-tool	n32		0x1001a520	148	vfmtIsKonaCombinationValidForActualHW	dynsym	474c829d6668		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/setmon	shared-tool	n32		0x1001a5c0	144	vfmtSwapRateCloseEnough	dynsym	2c3e67b8a96a		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
 usr/gfx/setmon	shared-tool	n32		0x1001a650	332	vfmtSyncFormatFrameRatesCompatible	dynsym	c74ac8395dd9		in	understood	docs/kona-ddx.md#target-build-readings	Target-build readings
