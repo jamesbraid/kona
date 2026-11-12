@@ -128,6 +128,10 @@ left out, and so are the per-batch instruction readings, which the last line cov
 
 - `docs/instruction-readings-kona-g*.md` (42 batch files): per-instruction readings, one batch per file.
 
+## Hardware definitions
+
+The register, token and word layouts decoded so far are described once, in TOML under `defs/`: one file per unit, each item with a grade (established, inferred or unknown) and a source. `gen/` holds what is generated from them: C headers, a Rust crate, Python decode helpers, flat JSON, a genxml export and one reference page per unit under `gen/docs/`. Do not edit `gen/`; edit the TOML and run `retools/tools/defs/defs-gen`. The `KONA_*_DECODE.h` files at the root are forwarding headers for the old include paths. `retools/tools/defs/ci-check` runs the checks CI runs.
+
 ## Running the tools and reproducing a result
 
 The host needs Podman, git and python3. Everything else runs in a container built from

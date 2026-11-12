@@ -60,6 +60,8 @@ Other public sources in this repository:
 
 Our primary output is a set of C header files at the repository root, one per chip or block, in the style of gr2 and gr4. **The code is the document.** Each header holds register offsets and fields, packet and token formats, state machines and constants, with a comment on every definition saying how it was derived and whether it is established, inferred or unknown.
 
+The register, token and word layouts that already exist as decode headers (the display-bus chips, the host interface interrupt register, the host query and command tokens, the display requests and the multi-field words) are the exception: their facts live in `defs/`, as TOML sources with one file per unit, each item carrying a grade (established, inferred or unknown) and a source. `gen/` is generated from `defs/` and is never edited by hand: `gen/c`, `gen/rust`, `gen/py`, `gen/json` and `gen/genxml` are the machine outputs and `gen/docs/` holds the published reference page for each unit. The `KONA_*_DECODE.h` files at the root are forwarding headers that `defs-gen` writes, so existing includes keep building; do not edit them. To change a fact, edit the TOML, run `retools/tools/defs/defs-gen`, and commit both. `scripts/kona_checks.py` is the repository's own check over those definitions: it compares them with `docs/command-table.md`.
+
 Planned headers (none written yet; `docs/coverage.md` tracks each):
 
 1. **`KONA.h`**: overall address map, topology, board identification and common types.
@@ -209,7 +211,8 @@ Regenerate the inventory in the same commit as any doc or header change that exp
 
 Output rules:
 
-- Findings go in chip headers at the repository root plus `docs/` chapters, written in your own words.
+- Findings go in `defs/` (layouts, tokens and constants that have a unit there), chip headers at the repository root and `docs/` chapters, written in your own words. Never edit `gen/` or a forwarding `KONA_*_DECODE.h` by hand.
+- After a change under `defs/`, run `retools/tools/defs/defs-gen`, then `retools/tools/defs/ci-check` (the check CI runs); `defs-check --build` must print `build: ok`.
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
 - Update `docs/coverage.md` and regenerate `docs/inventory/` in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.

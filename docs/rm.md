@@ -120,7 +120,7 @@ Sources: `arm1.u` 6.5.30m (the output-module records in read-write data, read wi
 | draw texels | `drawtexels` 0x0c02b900 | 0x81 | texel | established |
 | copy pixels to a texture | `arm_copyteximage` 0x0c02c028 (video source: 0x90) | 0x82 | texel | established |
 
-The operation word is a firmware state value, not a host token number: 0x41 and 0x42 here are unrelated to the query and token tables ([KONA_QUERY_DECODE.h](../KONA_QUERY_DECODE.h) uses 0x041 for a different token). Each value is a `mov` immediate stored to pixel state +8 at the address in the second column, read in the `arm1.u` listing ([ucode/arm1.s](../ucode/arm1.s)).
+The operation word is a firmware state value, not a host token number: 0x41 and 0x42 here are unrelated to the query and token tables ([defs/query.toml](../defs/query.toml) uses 0x041 for a different token). Each value is a `mov` immediate stored to pixel state +8 at the address in the second column, read in the `arm1.u` listing ([ucode/arm1.s](../ucode/arm1.s)).
 
 **Inferred** from those values: bit 0x80 means the destination is texture memory, 0x40 the framebuffer and 0x20 the host; the low bits name the source (1 host, 2 framebuffer, 0x10 video). The four tables, read from the image:
 
