@@ -155,6 +155,12 @@
   </struct>
   <struct name="RBUS_ODMA2_FLUSH" size="4" grade="inferred" register="yes" offset="0x477" access="w" space="rbus" reset="unknown">
   </struct>
+  <struct name="XG_CONFIG" size="4" grade="established" register="yes" offset="0x64" access="r" space="xg" reset="unknown">
+    <doc>Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8.</doc>
+    <field name="mapram_type" start="6" size="2" type="uint" grade="established"/>
+    <field name="mapram_size" start="3" size="3" type="uint" grade="established"/>
+    <field name="subsystem" start="0" size="3" type="uint" grade="established"/>
+  </struct>
   <struct name="XG_ERR_STATUS" size="4" grade="established" register="yes" offset="0x6c" access="rw" space="xg" reset="unknown">
     <field name="idma_response_bad_tnum" start="28" size="1" type="uint" grade="established"/>
     <field name="idma_response_size" start="27" size="1" type="uint" grade="established"/>

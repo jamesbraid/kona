@@ -787,6 +787,41 @@ pub mod rbus_odma2_flush {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x477;
 }
+/// Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8. (established)
+pub mod xg_config {
+    pub const WIDTH: u32 = 32;
+    pub const OFFSET: u64 = 0x64;
+    pub mod mapram_type { // bits 7:6, established
+        pub const SHIFT: u32 = 6;
+        pub const MASK: u32 = 0x3;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod mapram_size { // bits 5:3, established
+        pub const SHIFT: u32 = 3;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+    pub mod subsystem { // bits 2:0, established
+        pub const SHIFT: u32 = 0;
+        pub const MASK: u32 = 0x7;
+        pub const fn get(v: u32) -> u32 {
+            (v >> SHIFT) & MASK
+        }
+        pub const fn set(v: u32, x: u32) -> u32 {
+            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
+        }
+    }
+}
 /// (established)
 pub mod xg_err_status {
     pub const WIDTH: u32 = 32;

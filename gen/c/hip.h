@@ -312,6 +312,21 @@
 /* rbus_odma2_flush: w32, space rbus, reset unknown */
 #define HIP_RBUS_ODMA2_FLUSH_OFFSET                  0x477u /* inferred */
 
+/*
+ * Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8.
+ */
+/* xg_config: r32, space xg, reset unknown */
+#define HIP_XG_CONFIG_OFFSET                         0x64u /* established */
+#define HIP_XG_CONFIG_MAPRAM_TYPE_SHIFT              6 /* established */
+#define HIP_XG_CONFIG_MAPRAM_TYPE_MASK               0x3u
+#define HIP_XG_CONFIG_MAPRAM_TYPE_INPLACE            (HIP_XG_CONFIG_MAPRAM_TYPE_MASK << HIP_XG_CONFIG_MAPRAM_TYPE_SHIFT)
+#define HIP_XG_CONFIG_MAPRAM_SIZE_SHIFT              3 /* established */
+#define HIP_XG_CONFIG_MAPRAM_SIZE_MASK               0x7u
+#define HIP_XG_CONFIG_MAPRAM_SIZE_INPLACE            (HIP_XG_CONFIG_MAPRAM_SIZE_MASK << HIP_XG_CONFIG_MAPRAM_SIZE_SHIFT)
+#define HIP_XG_CONFIG_SUBSYSTEM_SHIFT                0 /* established */
+#define HIP_XG_CONFIG_SUBSYSTEM_MASK                 0x7u
+#define HIP_XG_CONFIG_SUBSYSTEM_INPLACE              (HIP_XG_CONFIG_SUBSYSTEM_MASK << HIP_XG_CONFIG_SUBSYSTEM_SHIFT)
+
 /* xg_err_status: rw32, space xg, reset unknown */
 #define HIP_XG_ERR_STATUS_OFFSET                     0x6cu /* established */
 #define HIP_XG_ERR_STATUS_IDMA_RESPONSE_BAD_TNUM_SHIFT 28 /* established */

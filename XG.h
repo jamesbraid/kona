@@ -284,7 +284,10 @@
  * field names from kpm. kona_mapram_map writes 0x20000000 | 4 KB frame
  * number: PAGESIZE = 1, which the driver pairs with its 16 KB page
  * (kona_mapram_pagesizeshiftof returns 14), so INFERRED: page-size code 1 is
- * 16 KB. kona_mapram_init writes 0x10000000 | index: INVALID set. The
+ * 16 KB. The IRIX 6.5-base driver's table names the other codes: 0 is 4 KB,
+ * 2 is 64 KB and 3 is 1 MB (kona_xg_psize_shift_to_index, kona_mapram_hip2.o).
+ * Those names are INFERRED, a driver expectation rather than a hardware fact.
+ * kona_mapram_init writes 0x10000000 | index: INVALID set. The
  * parity bit is the chip's (MAPRAM_ENA_PAR in XG_XT_CTRL).
  */
 #define   KONA_XG_MAP_RAM_PPN             0x0fffffff

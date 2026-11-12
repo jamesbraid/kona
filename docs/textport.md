@@ -87,3 +87,9 @@ difference is the spacing and the first-poll count, not the protocol.
   ([kernel.md](kernel.md)). The reading does not say.
 - The meaning of code 1's argument, and the role of code 7. Neither is
   recorded.
+- A separate reading claims the kernel's `get_graphics_info` checks reply words
+  1 and 2 for a negative value (errors 0x500 and 0x400) and never reads words 3
+  and 4. The disassembly in `kona_kernel/disasm/kona_tport/kona_tport.text.s`
+  (`glabel get_graphics_info`) does not show that: it loads word 3 as the width
+  and word 4 as the height, with 1280 and 1024 as the fallbacks, as
+  [kernel.md](kernel.md) says. That separate reading is not used here.

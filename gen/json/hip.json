@@ -1057,6 +1057,43 @@
   {
    "unit": "hip",
    "kind": "register",
+   "name": "xg_config",
+   "offset": 100,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 4,
+   "space": "xg",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_config.mapram_type",
+   "hi": 7,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_config.mapram_size",
+   "hi": 5,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "field",
+   "name": "xg_config.subsystem",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "hip",
+   "kind": "register",
    "name": "xg_err_status",
    "offset": 108,
    "access": "rw",

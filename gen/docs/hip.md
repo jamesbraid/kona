@@ -68,6 +68,7 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `cmd_data` | 0x8c0 | w | 32 |  | hip_regs | unknown | established |  |
 | `rbus_odma2_data` | 0x476 | w | 32 |  | rbus | unknown | established |  |
 | `rbus_odma2_flush` | 0x477 | w | 32 |  | rbus | unknown | inferred |  |
+| `xg_config` | 0x64 | r | 32 |  | xg | unknown | established |  |
 | `xg_err_status` | 0x6c | rw | 32 |  | xg | unknown | established |  |
 
 ### Register `ha_arm_ctrl`
@@ -308,6 +309,16 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 ### Register `rbus_odma2_data`
 
 ### Register `rbus_odma2_flush`
+
+### Register `xg_config`
+
+Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8.
+
+| Bits | Field | Grade | Values | Source | Description |
+|---|---|---|---|---|---|
+| 7:6 | `mapram_type` | established |  |  |  |
+| 5:3 | `mapram_size` | established |  |  |  |
+| 2:0 | `subsystem` | established |  |  |  |
 
 ### Register `xg_err_status`
 

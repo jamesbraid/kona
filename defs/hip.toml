@@ -309,6 +309,22 @@ mapram_parity = { bits = [12, 12], grade = "established" }
 response = { bits = [9, 9], grade = "established" }
 read_req_timeout = { bits = [8, 8], grade = "established" }
 
+# Widget configuration word. The kernel reads the map RAM size from it at attach.
+# Only reads are seen in the shipped driver code examined, so access is "r".
+# The entry count is the size code shifted left by 15, with code 0 meaning 8.
+[registers.xg_config]
+offset = 0x64
+access = "r"
+width = 32
+grade = "established"
+space = "xg"
+doc = "Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8."
+
+[registers.xg_config.fields]
+subsystem = { bits = [2, 0], grade = "established" }
+mapram_size = { bits = [5, 3], grade = "established" }
+mapram_type = { bits = [7, 6], grade = "established" }
+
 # Host-interface registers at 0x800000 + offset, from the pipe-manager
 # register table (kpm .data, 6.5.30). Names and bit positions are the table's;
 # the roles come from the names and from the driver's use, so they are graded
