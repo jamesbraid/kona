@@ -589,7 +589,7 @@ usr/lib/X11/app-defaults/Dmconf	app-defaults	shared-data	data	-	3525	c70c09a151d
 usr/lib/X11/app-defaults/Ircombine	app-defaults	shared-data	data	-	26754	4fe51f5919b9209d		0		0	0	understood	docs/install-tools.md#x-resource-files	X resource files
 usr/lib/X11/app-defaults/XSetmon	app-defaults	shared-data	data	-	25223	180a7aab0457334c		0		0	0	understood	docs/install-tools.md#x-resource-files	X resource files
 usr/lib/X11/dyDDX/glx.so	x-shared	shared-x-server	shared-object	n32	646360	ac4cc9e24bd36c3a		981	dynsym	0	0	understood	docs/shared-libraries.md#shared-libraries-and-servers-that-carry-the-kona-pipe	Shared libraries and servers that carry the Kona pipe
-usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
+usr/lib/X11/dyDDX/kona.so	x-module	board-x-module	shared-object	n32	1710244	406035a65e13d43d		809	dynsym	0	0	understood	docs/command-table.md#78-x-graphics-context-load-token-0x129-thirteen-words-and-its-companion-loads	7.8 X graphics-context load (token 0x129, thirteen words) and its companion loads
 usr/lib/X11/dyDDX/konad.so	x-module	board-x-module	shared-object	n32	1759116	047e9023d8f39813		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
 usr/lib/X11/dyDDX/konal.so	x-module	board-x-module	shared-object	n32	1759116	37c26ff4e3cdd661		795	dynsym	0	0	understood	docs/dg.md#the-screen-record-and-the-option-channels-konalso-builds	The screen record and the option channels `konal.so` builds
 usr/lib/X11/dyDDX/konas.so	x-module	board-x-module	shared-object	n32	1759116	75425c693f859b1a		795	dynsym	0	0	understood	docs/kona-ddx.md#the-x-module-files	The X module files
