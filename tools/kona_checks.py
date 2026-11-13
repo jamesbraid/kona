@@ -11,15 +11,15 @@ the XMAP and video-output-chip register indices (sections 6.3 to 6.5), whose
 registers devices/xmap/registers.toml and devices/voc/registers.toml must list.
 
 The checks read the loaded model (the unit's constants and the hdr.regs
-dictionary), not header text. The file names in failure messages are the
-generated C headers.
+dictionary), not header text. Failure messages name the unit whose generated
+C header failed.
 """
 import re
 
 TABLE = "formats/token/command-table.md"
 ROW = re.compile(r"^\| (0x[0-9a-f]{3}) \|")
 RUST_CONST = re.compile(r"pub const (\w+): \w+ = (0x[0-9a-fA-F_]+|\d+);")
-FILES = {"query": "generated/c/query.h", "token": "generated/c/token.h"}
+FILES = {"query": "query", "token": "token"}
 RUST_MODULE = "generated/rust/src/%s.rs"
 
 
@@ -119,7 +119,7 @@ def header_requests(hdr):
 
 
 def check_requests(ctx):
-    fn = "generated/c/dispreq.h"
+    fn = "dispreq"
     want = table_requests(ctx.read_doc(TABLE))
     got = {}
     for name, d in header_requests(ctx.hdrs[fn]).items():
@@ -185,7 +185,7 @@ def covered(regs, off):
 
 def check_xmap_voc(ctx):
     text = ctx.read_doc(TABLE)
-    fn = "generated/c/xmap.h"
+    fn = "xmap"
     regs = header_regs(ctx.hdrs[fn], "XMAP")
     direct = table_indices(text, "### 6.3 XMAP direct", "### 6.4")
     for n in sorted(direct):
@@ -206,7 +206,7 @@ def check_xmap_voc(ctx):
     for _name, off, _c in regs:
         if 0x118 <= off and off not in ind:
             ctx.rep.fail(fn, "header XMAP port at 0x%03x is not in the table" % off)
-    fn = "generated/c/voc.h"
+    fn = "voc"
     vregs = header_regs(ctx.hdrs[fn], "VOC")
     vidx = table_indices(text, "### 6.5 Video-output chip", "### 6.6")
     vidx.update(range(0x90, 0x9e))  # the coefficient row names 0x90 and lists 0x90-0x9d
