@@ -1,11 +1,60 @@
 {
   "family": "InfiniteReality (KONA)",
   "siblings": {"odsy": "../odsy", "crime": "../crime"},
-  "review_required": ["docs/routines/t1-*.md", "docs/routines/t2-*.md"],
+  "review_required": ["evidence/routines/t1-*.md", "evidence/routines/t2-*.md"],
   "docs": {
     "prose": [
-      "docs/*.md",
-      "docs/routines/*.md",
+      "platforms/ir/architecture.md",
+      "software/opengl/capability-trees.md",
+      "formats/token/command-table.md",
+      "evidence/coverage.md",
+      "software/diags/data-files.md",
+      "devices/dg/README.md",
+      "software/kernel/diag-messages.md",
+      "software/video/display-file-format.md",
+      "software/video/display-formats.md",
+      "devices/ge/ge-arm-tokens.md",
+      "devices/ge/ge-routed-tokens.md",
+      "devices/ge/ge-shadow-words.md",
+      "devices/ge/README.md",
+      "software/opengl/gl-command-map.md",
+      "devices/hip/README.md",
+      "evidence/hw-explanations-kona-p1.md",
+      "software/userland/install-tools.md",
+      "evidence/instruction-readings-*.md",
+      "software/irisgl/irisgl.md",
+      "software/diags/irsaudit.md",
+      "software/kernel/kernel-functions.md",
+      "software/kernel/kernel-objects.md",
+      "software/kernel/kernel.md",
+      "software/xsgi/kona-ddx.md",
+      "software/xsgi/kona-so-functions.md",
+      "software/diags/kpm.md",
+      "software/irisgl/libfm.md",
+      "software/opengl/libgl.md",
+      "software/opengl/libglcore-driver-builds.md",
+      "software/opengl/libglcore-driver-functions.md",
+      "software/opengl/libglcore-functions.md",
+      "software/opengl/libglcore-get-functions.md",
+      "software/opengl/libglcore-list-records.md",
+      "software/opengl/libglcore.md",
+      "software/opengl/libraries.md",
+      "questions/README.md",
+      "software/opengl/opengl.md",
+      "software/userland/pipe-tool-functions.md",
+      "references/documents/published-sources.md",
+      "devices/rm/README.md",
+      "software/opengl/sample-implementation.md",
+      "software/userland/setup-tool-functions.md",
+      "software/userland/setup-tools.md",
+      "software/userland/shared-libraries.md",
+      "platforms/ir/textport.md",
+      "evidence/tooling-bakeoff.md",
+      "evidence/tooling.md",
+      "software/xsgi/x-server-glx.md",
+      "devices/xg/README.md",
+      "software/xsgi/xserver.md",
+      "evidence/routines/*.md",
       "ucode/*.md",
       "README.md"
     ],
@@ -16,21 +65,21 @@
     ],
     "tables": [
       "*/*.tsv",
-      "docs/*/*.tsv"
+      "software/*/*.tsv"
     ],
     "index": [
       "AGENTS.md",
       "README.md",
-      "IRIX_FILES.md",
-      "docs/coverage.md",
-      "docs/open-questions.md"
+      "evidence/irix-files.md",
+      "evidence/coverage.md",
+      "questions/README.md"
     ],
     "dumps": [
       "ucode/arm1_symbols.tsv",
       "ucode/icu_map.tsv"
     ],
     "skip": [
-      "docs/inventory/*",
+      "evidence/inventory/*",
       "diags/kpm/*"
     ]
   },
@@ -193,9 +242,9 @@
           "hi": "0x800000",
           "docs": [
             "devices/xg/XG.h",
-            "docs/xg.md",
-            "docs/hip.md",
-            "docs/kernel.md"
+            "devices/xg/README.md",
+            "devices/hip/README.md",
+            "software/kernel/kernel.md"
           ]
         },
         {
@@ -204,9 +253,9 @@
           "hi": "0xc00000",
           "docs": [
             "devices/hip/HIP.h",
-            "docs/hip.md",
-            "docs/kernel.md",
-            "docs/xg.md"
+            "devices/hip/README.md",
+            "software/kernel/kernel.md",
+            "devices/xg/README.md"
           ]
         },
         {
@@ -215,8 +264,8 @@
           "hi": "0x1000000",
           "docs": [
             "devices/hip/HIP.h",
-            "docs/hip.md",
-            "docs/kernel.md"
+            "devices/hip/README.md",
+            "software/kernel/kernel.md"
           ]
         }
       ]
@@ -227,8 +276,8 @@
       "docs": [
         "devices/ge/GE.h",
         "devices/hip/HIP.h",
-        "docs/kernel.md",
-        "docs/hip.md",
+        "software/kernel/kernel.md",
+        "devices/hip/README.md",
         "kona_kernel/include/kona_kern.h"
       ]
     },
@@ -243,9 +292,9 @@
           "docs": [
             "devices/ge/GE.h",
             "devices/hip/HIP.h",
-            "docs/opengl.md",
-            "docs/kernel.md",
-            "docs/hip.md"
+            "software/opengl/opengl.md",
+            "software/kernel/kernel.md",
+            "devices/hip/README.md"
           ]
         },
         {
@@ -254,9 +303,9 @@
           "hi": "0x8000",
           "docs": [
             "devices/hip/HIP.h",
-            "docs/hip.md",
-            "docs/kernel.md",
-            "docs/opengl.md"
+            "devices/hip/README.md",
+            "software/kernel/kernel.md",
+            "software/opengl/opengl.md"
           ]
         },
         {
@@ -265,9 +314,9 @@
           "hi": "0xc000",
           "docs": [
             "devices/hip/HIP.h",
-            "docs/hip.md",
-            "docs/kernel.md",
-            "docs/opengl.md"
+            "devices/hip/README.md",
+            "software/kernel/kernel.md",
+            "software/opengl/opengl.md"
           ]
         },
         {
@@ -277,9 +326,9 @@
           "docs": [
             "devices/hip/HIP.h",
             "devices/xg/XG.h",
-            "docs/hip.md",
-            "docs/xg.md",
-            "docs/kernel.md"
+            "devices/hip/README.md",
+            "devices/xg/README.md",
+            "software/kernel/kernel.md"
           ]
         }
       ]
@@ -289,7 +338,7 @@
       "size": "0x100000",
       "docs": [
         "devices/ge/GE.h",
-        "docs/ge.md",
+        "devices/ge/README.md",
         "ucode/ged.md"
       ]
     },
@@ -298,7 +347,7 @@
       "size": "0x100000",
       "docs": [
         "devices/rm/RM.h",
-        "docs/rm.md"
+        "devices/rm/README.md"
       ]
     }
   ],
@@ -314,7 +363,7 @@
       "binaries": [
         "usr/cpu/sysgen/*/kona.a*"
       ],
-      "why": "the per-pipe register base sits at pipe state +0x948 (docs/kernel.md, Registers the driver touches)"
+      "why": "the per-pipe register base sits at pipe state +0x948 (software/kernel/kernel.md, Registers the driver touches)"
     },
     {
       "type": "field",
@@ -340,7 +389,7 @@
         "usr/lib/X11/dyDDX/kona*.so",
         "usr/gfx/KONA/*"
       ],
-      "why": "libGLcore sends every command to process address 0x4000, the start of the per-thread pipe mapping (GE.h, KONA_USER_FIFO_VA; layout from docs/kernel.md)"
+      "why": "libGLcore sends every command to process address 0x4000, the start of the per-thread pipe mapping (GE.h, KONA_USER_FIFO_VA; layout from software/kernel/kernel.md)"
     }
   ],
   "accessors": [
@@ -475,7 +524,17 @@
       }
     ],
     "docs": [
-      "docs/*.md",
+      "devices/*.md",
+      "formats/*.md",
+      "platforms/*.md",
+      "software/*.md",
+      "evidence/coverage.md",
+      "evidence/hw-explanations-kona-p1.md",
+      "evidence/instruction-readings-*.md",
+      "evidence/tooling*.md",
+      "evidence/routines/*.md",
+      "questions/*.md",
+      "references/*.md",
       "ucode/*.md"
     ]
   },

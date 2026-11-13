@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Catalogue the messages that the KONA kernel objects print.
 
-Usage: tools/diag_messages.py [--out docs/diag-messages.tsv] [--doc docs/diag-messages.md]
+Usage: tools/diag_messages.py [--out software/kernel/diag-messages.tsv] [--doc software/kernel/diag-messages.md]
 
 Run it from the repository root inside the toolchain environment (MIPS objdump and
 pyelftools, as for retools/tools/inventory.py). It walks every routine of the kernel objects
@@ -23,7 +23,7 @@ branch that skips the call (the call runs when that branch is not taken), and wh
 the routine touches the board registers or waits on the board. Rows are sorted with
 board-facing messages first.
 
-Each row's "grade" is "mechanical" unless docs/diag-messages-reads.tsv holds a reading
+Each row's "grade" is "mechanical" unless software/kernel/diag-messages-reads.tsv holds a reading
 for it. That file is written by hand: each line gives the item id, the grade "read", the
 condition under which the call runs and a note on what the disassembly shows. A row
 without a reading keeps the mechanical fields only. Its skip_branch is the nearest
@@ -448,9 +448,9 @@ def write_doc(path, rows):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--out', default='docs/diag-messages.tsv')
-    ap.add_argument('--doc', default='docs/diag-messages.md')
-    ap.add_argument('--reads', default='docs/diag-messages-reads.tsv')
+    ap.add_argument('--out', default='software/kernel/diag-messages.tsv')
+    ap.add_argument('--doc', default='software/kernel/diag-messages.md')
+    ap.add_argument('--reads', default='software/kernel/diag-messages-reads.tsv')
     ap.add_argument('--root', default='root/usr/cpu/sysgen/IP27boot')
     args = ap.parse_args()
     scope = []

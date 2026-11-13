@@ -3,7 +3,7 @@ unit = "hip"
 prefix = "HIP"
 title = "host-interface registers"
 doc = "Host-interface chip registers: the interrupt status register and its cause bits."
-from = "docs/hip.md interrupt table"
+from = "devices/hip/README.md interrupt table"
 
 [c]
 legacy_header = "KONA_HIP_DECODE.h"

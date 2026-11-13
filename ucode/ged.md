@@ -98,7 +98,7 @@ x-carrying load and on some end paths (`lines.s` 0x38c, `lineloop.s` 0x18d, `tst
 | 0x212, 0x213 | table B pointer and data, 512 words (same; 0x42400020, 0x42600020). `Activate_GED_Ucode` writes one entry this way |
 | 0x220-0x222 | initial values from the context record (ARM 0x44000020-0x44400020) |
 | 0x230, 0x231 | the 64-entry engine handler table: index, then entries with auto-increment (ARM 0x46000020, 0x46200020) |
-| 0x233, 0x235 | value and address ports to the geometry-engine registers (ARM 0x46600020, 0x46a00020, [docs/ge.md](../docs/ge.md)) |
+| 0x233, 0x235 | value and address ports to the geometry-engine registers (ARM 0x46600020, 0x46a00020, [devices/ge/README.md](../devices/ge/README.md)) |
 | 0x240, 0x241 | program pointer and data, 1024 words (diagnostic 0x48000020, 0x48200020) |
 | 0x242 | cleared before a program is started (`Activate_GED_Ucode`) |
 | 0x280-0x2b0 | set by the diagnostic's sequencer and stress tests; what each test writes is [below](#the-diagnostics-sequencer-and-stress-tests) |

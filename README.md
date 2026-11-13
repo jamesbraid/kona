@@ -2,14 +2,23 @@
 
 Reverse-engineering workspace for SGI InfiniteReality (KONA) graphics.
 
+## Start here
+
+- To use the findings in code (FPGA builders, driver writers, tool authors), take the generated C headers and Rust crate from [generated/c](generated/c) and [generated/rust](generated/rust).
+- To understand one chip, board unit or engine, read its directory under [devices/](devices/): `README.md` says how the hardware works, `registers.toml` holds every graded register, and `registers.md` is the generated table.
+- Software data structures with a definition (the host command tokens, display requests and command words) are under [formats/](formats/), and the boards and the pipe's topology are under [platforms/](platforms/).
+- How IRIX drives the hardware (the kernel driver, the OpenGL and X server code, the diagnostics, the microcode and the tools) is under [software/](software/).
+- What is covered, and what is still open, is in [evidence/coverage.md](evidence/coverage.md) and [questions/README.md](questions/README.md). The routine readings, the generated inventory and the findings are in [evidence/](evidence/), the published sources in [references/documents/](references/documents/), and the third-party source trees, as submodules, in [references/code/](references/code/).
+- The repository's own scripts and configuration are in [tools/](tools/); the shared toolkit is the `retools/` submodule.
+
 The layout and working style follow Dominik Behr's
 [gr2](https://github.com/techomancer/gr2) and
 [gr4](https://github.com/techomancer/gr4). Proprietary IRIX binaries are not
 tracked. Copy them from your own IRIX install into the ignored `root/`
-directory as [IRIX_FILES.md](IRIX_FILES.md) describes; the symlinks into it are
+directory as [evidence/irix-files.md](evidence/irix-files.md) describes; the symlinks into it are
 committed. [AGENTS.md](AGENTS.md) has the project goal, the
 binaries and evidence, the toolchain and the working rules;
-[docs/coverage.md](docs/coverage.md) is the map of what is covered and what is
+[evidence/coverage.md](evidence/coverage.md) is the map of what is covered and what is
 next.
 
 Public sources are submodules under `references/code/`. `linux` carries the IP27 crossbar and widget
@@ -19,74 +28,74 @@ register and command findings rest on the IRIX binaries. Initialise only what yo
 
 ## Documents
 
-Every tracked chapter, grouped by topic. The six generated pages in `ucode/` and `docs/display-formats.md` are
+Every tracked chapter, grouped by topic. The six generated pages in `ucode/` and `software/video/display-formats.md` are
 left out, and so are the per-batch instruction readings, which the last line covers.
 
-### Start here
+### Project files
 
 - [README.md](README.md): Reverse-engineering workspace overview and how to reproduce results
 - [AGENTS.md](AGENTS.md): Project goal, evidence rules, toolchain and working rules
-- [IRIX_FILES.md](IRIX_FILES.md): Proprietary SGI files a reader copies from their own IRIX install
+- [evidence/irix-files.md](evidence/irix-files.md): Proprietary SGI files a reader copies from their own IRIX install
 
 ### Hardware
 
-- [docs/architecture.md](docs/architecture.md): Map of the whole pipe, its blocks and their connections
-- [docs/command-table.md](docs/command-table.md): One canonical table of host tokens and display requests
-- [docs/coverage.md](docs/coverage.md): Map of what the KONA workspace has covered, per block
-- [docs/open-questions.md](docs/open-questions.md): Questions the binaries and sources do not yet answer
-- [docs/hip.md](docs/hip.md): Host interface as the kernel driver shows it: DMA and interrupts
-- [docs/dg.md](docs/dg.md): DG: how the kernel driver reaches the display generator
-- [docs/xg.md](docs/xg.md): XG attach and reset sequence as the kernel driver runs it
-- [docs/textport.md](docs/textport.md): The textport command port as the IO6 PROM speaks it, against the kernel driver's calls
-- [docs/rm.md](docs/rm.md): Raster manager boards and texture memory, from the IR diagnostics
-- [docs/ge.md](docs/ge.md): How the ARM firmware starts, feeds and saves the geometry engines
-- [docs/ge-arm-tokens.md](docs/ge-arm-tokens.md): ARM-run host tokens, read one by one
-- [docs/ge-routed-tokens.md](docs/ge-routed-tokens.md): Host tokens routed to the distributor and engines, not the ARM
-- [docs/ge-shadow-words.md](docs/ge-shadow-words.md): Raster register shadow words named in the host command table
-- [docs/gl-command-map.md](docs/gl-command-map.md): GL entry points mapped to their command words in libGLcore
-- [docs/hw-explanations-kona-p1.md](docs/hw-explanations-kona-p1.md): What each hardware-facing routine does to the pipe, pilot 1
+- [platforms/ir/architecture.md](platforms/ir/architecture.md): Map of the whole pipe, its blocks and their connections
+- [formats/token/command-table.md](formats/token/command-table.md): One canonical table of host tokens and display requests
+- [evidence/coverage.md](evidence/coverage.md): Map of what the KONA workspace has covered, per block
+- [questions/README.md](questions/README.md): Questions the binaries and sources do not yet answer
+- [devices/hip/README.md](devices/hip/README.md): Host interface as the kernel driver shows it: DMA and interrupts
+- [devices/dg/README.md](devices/dg/README.md): DG: how the kernel driver reaches the display generator
+- [devices/xg/README.md](devices/xg/README.md): XG attach and reset sequence as the kernel driver runs it
+- [platforms/ir/textport.md](platforms/ir/textport.md): The textport command port as the IO6 PROM speaks it, against the kernel driver's calls
+- [devices/rm/README.md](devices/rm/README.md): Raster manager boards and texture memory, from the IR diagnostics
+- [devices/ge/README.md](devices/ge/README.md): How the ARM firmware starts, feeds and saves the geometry engines
+- [devices/ge/ge-arm-tokens.md](devices/ge/ge-arm-tokens.md): ARM-run host tokens, read one by one
+- [devices/ge/ge-routed-tokens.md](devices/ge/ge-routed-tokens.md): Host tokens routed to the distributor and engines, not the ARM
+- [devices/ge/ge-shadow-words.md](devices/ge/ge-shadow-words.md): Raster register shadow words named in the host command table
+- [software/opengl/gl-command-map.md](software/opengl/gl-command-map.md): GL entry points mapped to their command words in libGLcore
+- [evidence/hw-explanations-kona-p1.md](evidence/hw-explanations-kona-p1.md): What each hardware-facing routine does to the pipe, pilot 1
 
 ### Kernel driver
 
-- [docs/kernel.md](docs/kernel.md): Kernel driver DMA ioctl structures, driver-side view
-- [docs/kernel-functions.md](docs/kernel-functions.md): Kernel driver: one entry per function, read from disassembly
-- [docs/kernel-objects.md](docs/kernel-objects.md): Kernel driver objects: one entry per archive member
+- [software/kernel/kernel.md](software/kernel/kernel.md): Kernel driver DMA ioctl structures, driver-side view
+- [software/kernel/kernel-functions.md](software/kernel/kernel-functions.md): Kernel driver: one entry per function, read from disassembly
+- [software/kernel/kernel-objects.md](software/kernel/kernel-objects.md): Kernel driver objects: one entry per archive member
 
 ### Client libraries
 
-- [docs/opengl.md](docs/opengl.md): OpenGL driver: contexts, buffer configuration and display commands
-- [docs/libraries.md](docs/libraries.md): Per-build libGL and libGLcore libraries of the Kona driver
-- [docs/libgl.md](docs/libgl.md): The GLX client library libGL.so: function reference
-- [docs/libglcore.md](docs/libglcore.md): libGLcore function reference, grouped by source file
-- [docs/libglcore-functions.md](docs/libglcore-functions.md): libGLcore functions: immediate-mode senders and display-list compilers
-- [docs/libglcore-driver-functions.md](docs/libglcore-driver-functions.md): Large routines of the Kona driver in libGLcore
-- [docs/libglcore-driver-builds.md](docs/libglcore-driver-builds.md): Kona driver routines across the O32 and 64-bit builds
-- [docs/libglcore-get-functions.md](docs/libglcore-get-functions.md): State-query functions of the Kona GL driver
-- [docs/libglcore-list-records.md](docs/libglcore-list-records.md): libGLcore list records and dispatch wrappers, with build paths
-- [docs/irisgl.md](docs/irisgl.md): IrisGL compatibility library libgl.so: function reference
-- [docs/libfm.md](docs/libfm.md): The font-manager library libfm.so: function reference
-- [docs/shared-libraries.md](docs/shared-libraries.md): Shared libraries and servers that carry the Kona pipe
-- [docs/sample-implementation.md](docs/sample-implementation.md): Public OpenGL sample code that libGLcore descends from
-- [docs/capability-trees.md](docs/capability-trees.md): Routine-level call trees for the N32 libGLcore build
+- [software/opengl/opengl.md](software/opengl/opengl.md): OpenGL driver: contexts, buffer configuration and display commands
+- [software/opengl/libraries.md](software/opengl/libraries.md): Per-build libGL and libGLcore libraries of the Kona driver
+- [software/opengl/libgl.md](software/opengl/libgl.md): The GLX client library libGL.so: function reference
+- [software/opengl/libglcore.md](software/opengl/libglcore.md): libGLcore function reference, grouped by source file
+- [software/opengl/libglcore-functions.md](software/opengl/libglcore-functions.md): libGLcore functions: immediate-mode senders and display-list compilers
+- [software/opengl/libglcore-driver-functions.md](software/opengl/libglcore-driver-functions.md): Large routines of the Kona driver in libGLcore
+- [software/opengl/libglcore-driver-builds.md](software/opengl/libglcore-driver-builds.md): Kona driver routines across the O32 and 64-bit builds
+- [software/opengl/libglcore-get-functions.md](software/opengl/libglcore-get-functions.md): State-query functions of the Kona GL driver
+- [software/opengl/libglcore-list-records.md](software/opengl/libglcore-list-records.md): libGLcore list records and dispatch wrappers, with build paths
+- [software/irisgl/irisgl.md](software/irisgl/irisgl.md): IrisGL compatibility library libgl.so: function reference
+- [software/irisgl/libfm.md](software/irisgl/libfm.md): The font-manager library libfm.so: function reference
+- [software/userland/shared-libraries.md](software/userland/shared-libraries.md): Shared libraries and servers that carry the Kona pipe
+- [software/opengl/sample-implementation.md](software/opengl/sample-implementation.md): Public OpenGL sample code that libGLcore descends from
+- [software/opengl/capability-trees.md](software/opengl/capability-trees.md): Routine-level call trees for the N32 libGLcore build
 
 ### X server
 
-- [docs/xserver.md](docs/xserver.md): The SGI X server Xsgi: function reference
-- [docs/kona-ddx.md](docs/kona-ddx.md): The Kona X server module kona.so: function reference
-- [docs/kona-so-functions.md](docs/kona-so-functions.md): The Kona X module: one entry per function
-- [docs/x-server-glx.md](docs/x-server-glx.md): The server-side GLX module glx.so: function reference
+- [software/xsgi/xserver.md](software/xsgi/xserver.md): The SGI X server Xsgi: function reference
+- [software/xsgi/kona-ddx.md](software/xsgi/kona-ddx.md): The Kona X server module kona.so: function reference
+- [software/xsgi/kona-so-functions.md](software/xsgi/kona-so-functions.md): The Kona X module: one entry per function
+- [software/xsgi/x-server-glx.md](software/xsgi/x-server-glx.md): The server-side GLX module glx.so: function reference
 
 ### Diagnostics and setup tools
 
-- [docs/irsaudit.md](docs/irsaudit.md): The irsaudit IR diagnostic: function reference
-- [docs/kpm.md](docs/kpm.md): The kpm diagnostic and boundary-scan library
-- [docs/setup-tools.md](docs/setup-tools.md): Setup and video-configuration tools: function reference
-- [docs/setup-tool-functions.md](docs/setup-tool-functions.md): Setup tools: one entry per function
-- [docs/pipe-tool-functions.md](docs/pipe-tool-functions.md): Pipe tools: one entry per function
-- [docs/install-tools.md](docs/install-tools.md): Installed programs, scripts and config files and what they do
-- [docs/data-files.md](docs/data-files.md): Diagnostic data files, format files and installed tools
-- [docs/diag-messages.md](docs/diag-messages.md): Kernel driver messages and the calls that print them
-- [docs/display-file-format.md](docs/display-file-format.md): Layout of the board's .vfo and .cmb display-format files
+- [software/diags/irsaudit.md](software/diags/irsaudit.md): The irsaudit IR diagnostic: function reference
+- [software/diags/kpm.md](software/diags/kpm.md): The kpm diagnostic and boundary-scan library
+- [software/userland/setup-tools.md](software/userland/setup-tools.md): Setup and video-configuration tools: function reference
+- [software/userland/setup-tool-functions.md](software/userland/setup-tool-functions.md): Setup tools: one entry per function
+- [software/userland/pipe-tool-functions.md](software/userland/pipe-tool-functions.md): Pipe tools: one entry per function
+- [software/userland/install-tools.md](software/userland/install-tools.md): Installed programs, scripts and config files and what they do
+- [software/diags/data-files.md](software/diags/data-files.md): Diagnostic data files, format files and installed tools
+- [software/kernel/diag-messages.md](software/kernel/diag-messages.md): Kernel driver messages and the calls that print them
+- [software/video/display-file-format.md](software/video/display-file-format.md): Layout of the board's .vfo and .cmb display-format files
 
 ### Microcode
 
@@ -105,29 +114,29 @@ left out, and so are the per-batch instruction readings, which the last line cov
 
 ### Findings
 
-- [docs/findings/ir2e-ir3-products.md](docs/findings/ir2e-ir3-products.md): InfiniteReality2E and InfiniteReality3 product facts for the command table
-- [docs/findings/verify-corrections.md](docs/findings/verify-corrections.md): Independent check of the recent texture-load rows in the command table
-- [docs/findings/clip-texgen-doubles.md](docs/findings/clip-texgen-doubles.md): User clip planes, texgen and double-precision colour
-- [docs/findings/curve-quantiser.md](docs/findings/curve-quantiser.md): Curve quantiser getS2p7: the clamp and the halving
-- [docs/findings/dac-cursor.md](docs/findings/dac-cursor.md): DAC cursor index advance, position port and pixel colours
-- [docs/findings/display-chain-rounding.md](docs/findings/display-chain-rounding.md): Rounding in the display chain: colour map, gamma and cursor
-- [docs/findings/feedback-records-and-power-up-combination.md](docs/findings/feedback-records-and-power-up-combination.md): Feedback records and who runs the power-up video combination
-- [docs/findings/fog-polymode-smoothing.md](docs/findings/fog-polymode-smoothing.md): Fog, polygon mode, edge flags and smoothing coverage
-- [docs/findings/gc-word4-polylines.md](docs/findings/gc-word4-polylines.md): X graphics-context word 4 bit 31 and four polyline rules
-- [docs/findings/push-attrib-rdata.md](docs/findings/push-attrib-rdata.md): Why a GL client can wait forever after a push-attributes token
-- [docs/findings/volume-detail-sharpen.md](docs/findings/volume-detail-sharpen.md): Volume textures, detail and sharpen: eight questions, answered from three sources
+- [evidence/findings/ir2e-ir3-products.md](evidence/findings/ir2e-ir3-products.md): InfiniteReality2E and InfiniteReality3 product facts for the command table
+- [evidence/findings/verify-corrections.md](evidence/findings/verify-corrections.md): Independent check of the recent texture-load rows in the command table
+- [evidence/findings/clip-texgen-doubles.md](evidence/findings/clip-texgen-doubles.md): User clip planes, texgen and double-precision colour
+- [evidence/findings/curve-quantiser.md](evidence/findings/curve-quantiser.md): Curve quantiser getS2p7: the clamp and the halving
+- [evidence/findings/dac-cursor.md](evidence/findings/dac-cursor.md): DAC cursor index advance, position port and pixel colours
+- [evidence/findings/display-chain-rounding.md](evidence/findings/display-chain-rounding.md): Rounding in the display chain: colour map, gamma and cursor
+- [evidence/findings/feedback-records-and-power-up-combination.md](evidence/findings/feedback-records-and-power-up-combination.md): Feedback records and who runs the power-up video combination
+- [evidence/findings/fog-polymode-smoothing.md](evidence/findings/fog-polymode-smoothing.md): Fog, polygon mode, edge flags and smoothing coverage
+- [evidence/findings/gc-word4-polylines.md](evidence/findings/gc-word4-polylines.md): X graphics-context word 4 bit 31 and four polyline rules
+- [evidence/findings/push-attrib-rdata.md](evidence/findings/push-attrib-rdata.md): Why a GL client can wait forever after a push-attributes token
+- [evidence/findings/volume-detail-sharpen.md](evidence/findings/volume-detail-sharpen.md): Volume textures, detail and sharpen: eight questions, answered from three sources
 
 ### Sources and tooling
 
-- [docs/published-sources.md](docs/published-sources.md): Published papers, reports and patents on InfiniteReality, one entry each
-- [docs/sources/README.md](docs/sources/README.md): Stored copies of the published sources, with SHA-256 hashes
-- [docs/tooling.md](docs/tooling.md): Ghidra and the assembly-to-C pipeline in this workspace
-- [docs/tooling-bakeoff.md](docs/tooling-bakeoff.md): Ghidra against the pipeline, bake-off on 20 functions
-- [docs/inventory/README.md](docs/inventory/README.md): How the generated inventory tables are produced and read
+- [references/documents/published-sources.md](references/documents/published-sources.md): Published papers, reports and patents on InfiniteReality, one entry each
+- [references/documents/README.md](references/documents/README.md): Stored copies of the published sources, with SHA-256 hashes
+- [evidence/tooling.md](evidence/tooling.md): Ghidra and the assembly-to-C pipeline in this workspace
+- [evidence/tooling-bakeoff.md](evidence/tooling-bakeoff.md): Ghidra against the pipeline, bake-off on 20 functions
+- [evidence/inventory/README.md](evidence/inventory/README.md): How the generated inventory tables are produced and read
 
 ### Instruction readings
 
-- `docs/instruction-readings-kona-g*.md` (42 batch files): per-instruction readings, one batch per file.
+- `evidence/instruction-readings-kona-g*.md` (42 batch files): per-instruction readings, one batch per file.
 
 ## Hardware definitions
 
@@ -144,11 +153,11 @@ numpy, pycparser and spimdisasm, at pinned versions on a pinned Debian base.
 
 `retools/tools/re-run COMMAND` runs `COMMAND` in the image with this repository mounted at `/work`, `root/`
 included; with no command it opens a shell. `root/` is your own copy of the IRIX 6.5.30 files listed in
-[IRIX_FILES.md](IRIX_FILES.md); they are never committed. Fill it from your install or media; the committed symlinks into it then resolve.
+[evidence/irix-files.md](evidence/irix-files.md); they are never committed. Fill it from your install or media; the committed symlinks into it then resolve.
 
 To reproduce a cited result:
 
-- Generated tables under `docs/inventory/` come from `retools/tools/re-run python3 retools/tools/inventory.py`.
+- Generated tables under `evidence/inventory/` come from `retools/tools/re-run python3 retools/tools/inventory.py`.
   `git status --short docs` shows nothing afterwards when your `root/` matches `tools/config/inventory-root.sha256`.
 - A claim an entry marks as established by execution is reproduced by the script in `retools/tools/kona/` that
   the entry names; its docstring says what it reproduces and how to run it, always as

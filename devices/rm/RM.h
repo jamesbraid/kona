@@ -38,11 +38,11 @@
  * layout as TM_TEX_SIZE). INFERRED: each prefix is the netlist chip type
  * of the same letters (pg, tg, tm, imp; TFP and TFT the four tf chips),
  * backed by the firmware's init_pg/init_tf/init_imp writing their own
- * prefixes (docs/rm.md, chips on each board). INFERRED (netlists, tf1.tcbist
+ * prefixes (devices/rm/README.md, chips on each board). INFERRED (netlists, tf1.tcbist
  * RAM list, irsaudit pxid_to_tfnum): all four tf chips answer TFP (the
  * fog/environment half, fed by pg) and TFT (the lookup-table/filter half,
  * fed by tg); the per-chip decode of combined indexes beyond their letters
- * is UNKNOWN, no shipped software depends on it (docs/rm.md).
+ * is UNKNOWN, no shipped software depends on it (devices/rm/README.md).
  *
  * ESTABLISHED (the diagnostic's pixel-id helper, irsaudit 0x100cf0ac, read
  * instruction by instruction): it maps a pixel id to a filter number 0-3 as
@@ -50,7 +50,7 @@
  * filter 1, and the pattern repeats every eight ids. Negative ids give the
  * negated result (the division and remainder truncate toward zero). INFERRED:
  * that the number names one of the four tf chips above. UNKNOWN: how a pixel id
- * derives from a screen position (docs/architecture.md).
+ * derives from a screen position (platforms/ir/architecture.md).
  *
  * INFERRED: registers are up to 48 bits wide. Fields reach bit 47
  * (TM_TEXMAP_1_HIGH at bits 45-47, TFP_FOG_DATA_N3 at 36-47,
@@ -72,7 +72,7 @@
  * 47-32 of TM_DRAW_TEXMAP_* (ucode/ge_listing/ge.S.lst). The vector files
  * agree: 48-bit registers (TFP_FOG_DATA, TFP_A2M_LUT1) carry value in bits
  * 47-32, and for 32-bit registers those bits are 0 or repeat the index
- * (docs/rm.md, "The register-write word"). Broadcast to several raster
+ * (devices/rm/README.md, "The register-write word"). Broadcast to several raster
  * managers is UNKNOWN.
  *
  * Writers cited per register below: ge.u handlers by name and address
@@ -124,7 +124,7 @@
  * samples are doubled, for type 2 negated. The types are the detail function (type 1,
  * __glkonim_DetailTexFuncSGIS) and the sharpen function (type 2,
  * __glkonim_SharpenTexFuncSGIS). INFERRED from the published patents on both features
- * (docs/published-sources.md): detail applies K x (texel - 1/2), so K is twice the GL
+ * (references/documents/published-sources.md): detail applies K x (texel - 1/2), so K is twice the GL
  * function F; sharpen applies A + K x (B - A) with K = -f, so the function is negated.
  * Each sample goes through getS2p7 (0x0d9650d0):
  *   v = trunc(w * 512 + 2.0) >> 2         (about the nearest 1/128)
@@ -271,7 +271,7 @@
  *              of 4 on any of its paths, kon_texture_api.s 0x0d96be7c on);
  *              DoDrawPixelsOrTexels ORs it in for a texel download when
  *              header word 7, the image-by-DMA flag, is nonzero, so it
- *              equals word 7 on every path (docs/opengl.md, "Texel
+ *              equals word 7 on every path (software/opengl/opengl.md, "Texel
  *              download: header word 7 and the load-scissor bit")
  *   bits 3-4   target bank: 1 when the level's even/odd parity equals the
  *              context word at +284, else 0
@@ -315,7 +315,7 @@
  * tables below 20 and row id / 4 of its 21-row B tables from 20 up; each
  * row gives the destination component signature and the raster-bus format
  * codes. Luminance and depth share id 13 because both load as one
- * component with bus code 0x9. Full table: docs/ge.md, "The texel format
+ * component with bus code 0x9. Full table: devices/ge/README.md, "The texel format
  * id".
  *
  * The INFERRED rows 12-16: subloadSimple stores its third and fourth
@@ -2470,7 +2470,7 @@
 
 /*
  * Register-write word on the raster bus and the extra indexes
- * (docs/rm.md, "The register-write word").
+ * (devices/rm/README.md, "The register-write word").
  *
  * ESTABLISHED (irsaudit vector files aaspoke.tbus, tbusdata.Z, 6.5.30m):
  * a mode-1 bus word is {index:16, register:16, value:32}; an ordinary

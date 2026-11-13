@@ -2,7 +2,7 @@
 unit = "dispreq"
 prefix = "DISPREQ"
 title = "display-generator request numbers"
-from = "back-end definitions table, docs/command-table.md section 5"
+from = "back-end definitions table, formats/token/command-table.md section 5"
 
 [c]
 legacy_header = "KONA_DISPREQ_DECODE.h"

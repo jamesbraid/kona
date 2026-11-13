@@ -3,7 +3,7 @@ unit = "dacidx"
 prefix = "DACIDX"
 title = "video DAC and encoder indexed registers"
 doc = "Indexed registers behind the video DAC and encoder ports, and the DAC cursor control word."
-from = "back-end definitions table, docs/command-table.md section 6.6"
+from = "back-end definitions table, formats/token/command-table.md section 6.6"
 
 [c]
 legacy_header = "KONA_DACIDX_DECODE.h"

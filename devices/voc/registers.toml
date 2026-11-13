@@ -3,7 +3,7 @@ unit = "voc"
 prefix = "VOC"
 title = "video-output chip (VOC) registers"
 doc = "Video-output chip registers of channel id 0 on the display bus."
-from = "back-end definitions table, docs/command-table.md section 6.5"
+from = "back-end definitions table, formats/token/command-table.md section 6.5"
 
 [c]
 legacy_header = "KONA_VOC_DECODE.h"

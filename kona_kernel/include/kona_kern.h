@@ -165,7 +165,7 @@
  * slot 181, and on CONTEXT_LOAD load_arm points that token's map entry at
  * arm_context_activate until activate_hip restores it. So the token is the
  * last one the context ran, not HP_CONTEXT_ACTIVATE 0x1fa (the section
- * "Rendering node, drawable and private record" of docs/kernel.md has the
+ * "Rendering node, drawable and private record" of software/kernel/kernel.md has the
  * addresses; the engine half of the store is INFERRED).
  *
  * KONAvalidateclip (kona_context.o 0xf8c-0x1350), ESTABLISHED: sends the
@@ -198,7 +198,7 @@
  * (kona_edtinit_hip2.o 0x1010-0x1018), a constant 17, so every attach
  * writes 34. ESTABLISHED (kpm's XG table): 0x7c is XG_GFX_DET, bit 0
  * DETACH and bits 1-5 RES_TNUM, so 17 is the Xtalk transaction number the
- * pipe returns flow-control credits on (XG.h, docs/kernel.md "Flow-control
+ * pipe returns flow-control credits on (XG.h, software/kernel/kernel.md "Flow-control
  * layer").
  *
  * Nothing in the switch saves pipe state through the host: the kernel only
@@ -241,7 +241,7 @@
  *         to node+64 and calls KONAunmapgfx on every other entry whose word
  *         at +4 has bit 0 set. So +64 holds the same kind of pointer as
  *         that list. The connection's own layout in 6.5.30m (gfxopen
- *         allocates 128 bytes; docs/kernel.md "The graphics connection"):
+ *         allocates 128 bytes; software/kernel/kernel.md "The graphics connection"):
  *         +4 flags (bit 0 mapped, bit 2 privileged, set from drv_priv),
  *         +8 the board's generic record, +16 thread, +24 next connection,
  *         +32 operation table, +40 pipe state, +48 address-space handle.
@@ -270,7 +270,7 @@
  *   +18   p_displaybank, the currently displayed buffer: the two halfwords
  *         VALIDATE_BANK carries are the draw pane's and the read pane's
  *   +20   p_swapbufid, the "display id" (hardware DID): the first payload
- *         word of DISPMODE (docs/dg.md)
+ *         word of DISPMODE (devices/dg/README.md)
  *   +24 p_swapinterval, +28 p_nextswaptime, +32 p_hwi_mode (hardware-
  *         independent display mode)
  *   +96   p_vclip, a struct RRM_ValidateClip (R = pane + 96 above):
@@ -287,7 +287,7 @@
  *         fboffset 0, wid -1, obscured 1, changed 1.
  *   +160  p_swapgroup: pointer to {refcnt, swapcnt, seqid}. KONAschedswapbuf
  *         reloads swapcnt from refcnt when it is 0 and decrements it per
- *         member, which is the countdown docs/dg.md calls a swap group.
+ *         member, which is the countdown devices/dg/README.md calls a swap group.
  *   +168  p_next, the next pane in the swap group; +176 p_swapped (byte).
  * The pane's field types and names are the header's; the offsets are the
  * driver's, so the two agree on every field the driver touches. Fields the
@@ -304,12 +304,12 @@
  *         4; the 64 KB follows from the mapping size below)
  *   +24   the save area's pipe-space address (alloc_gfx_io_space, 64 KB,
  *         16 KB pages): CONTEXT_LOAD/INIT's address pair is built from it
- *   +32..  the select-feedback record (kona.h notes, docs/kernel.md);
+ *   +32..  the select-feedback record (kona.h notes, software/kernel/kernel.md);
  *         +80 is its semaphore, +96 its timeout, +104 its owning
  *         process, nonzero while a feed is in flight (the flag that
  *         kona_start_selectfeed and kona_mem_suspend test)
  *   +208  the per-context DMA pool record; +240 a pointer to the shared pool
- *         object, whose +72 holds the shared pool record (docs/hip.md)
+ *         object, whose +72 holds the shared pool record (devices/hip/README.md)
  *   +112..+136  the retrace record: sequence number, timeout handle,
  *         callback, and the next node in the queue at +136
  *   +248  halfword, -1 at creation

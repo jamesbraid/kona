@@ -4,7 +4,7 @@
  *
  * Labels: ESTABLISHED = read from the module's disassembly at the function
  * named; INFERRED = a reading with its reasoning; UNKNOWN = not settled.
- * docs/opengl.md ("X server module: display emission") has the derivation.
+ * software/opengl/opengl.md ("X server module: display emission") has the derivation.
  * Ioctl argument structures are the 6.5.5 installed headers' (sys/kona.h,
  * sys/rrm.h); only the values the module puts in them are described here.
  */
@@ -75,7 +75,7 @@ struct kona_ddx_cursor_block {
  * hwd_mode bits for a main-buffer visual, ESTABLISHED as the bits
  * konValidateMode sets next to its debug strings; the names are the
  * module's. Overlay and underlay visuals use a different packing
- * (docs/opengl.md). The kernel sends this word as the third DISPMODE word.
+ * (software/opengl/opengl.md). The kernel sends this word as the third DISPMODE word.
  * UNKNOWN: what the display hardware does with each bit.
  */
 #define KONA_DDX_HWD_BACKBUFFER       0x01  /* "starting in backbuffer"     */
@@ -88,7 +88,7 @@ struct kona_ddx_cursor_block {
  * Display-id table, ESTABLISHED (SetDIDMode, FreeID, SetReservedID,
  * konInitDIDState): 36-byte entries from screen private (rrmScreenPrivateIndex)
  * +152, indexed by display id; offsets below are inside an entry.
- * docs/opengl.md ("Frame-buffer layer") has the derivation.
+ * software/opengl/opengl.md ("Frame-buffer layer") has the derivation.
  */
 #define KONA_DDX_DIDENT_SIZE          36
 #define KONA_DDX_DIDENT_FIRST_HOLDER  0   /* head of the window list    */

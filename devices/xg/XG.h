@@ -7,8 +7,8 @@
  *
  * Sources: IRIX 6.5.30m kona.a, members kona_edtinit_hip2.o (kona_attach,
  * kona_reset_adaptor, kona_report_errs) and kona_mapram_hip2.o; the error
- * message strings in the .rodata of kona_edtinit_hip2.o. docs/xg.md has the
- * attach and reset sequence; docs/hip.md the interrupt chapter.
+ * message strings in the .rodata of kona_edtinit_hip2.o. devices/xg/README.md has the
+ * attach and reset sequence; devices/hip/README.md the interrupt chapter.
  *
  * Offsets are from the 16 MB window the driver maps on the pipe. Offsets
  * below 0x800000 are the XG window; the host interface (HIP.h) is at
@@ -92,7 +92,7 @@
 #define   KONA_XG_XT_CTRL_SYS_END         0x00000200
 #define   KONA_XG_XT_CTRL_CLR_TLLP_CNT    0x00000400
 #define   KONA_XG_XT_CTRL_CLR_RLLP_CNT    0x00000800
-#define   KONA_XG_XT_CTRL_LLP_XBAR_CRD    0x0000f000  /* N = 3 or 4 (docs/xg.md) */
+#define   KONA_XG_XT_CTRL_LLP_XBAR_CRD    0x0000f000  /* N = 3 or 4 (devices/xg/README.md) */
 #define   KONA_XG_XT_CTRL_F_BAD_PKT       0x00010000
 #define   KONA_XG_XT_CTRL_INTERRUPT_ENA   0x00020000  /* set last by the driver */
 #define   KONA_XG_XT_CTRL_MAPRAM_ENA_PAR  0x00040000
@@ -132,7 +132,7 @@
  * vector 1 is the geometry-engine handler's and vector 0 the host
  * interface's; and that the barrier bit makes the XG order the interrupt
  * behind the DMA writes before it, which the output-DMA completion that the
- * geometry-engine handler reads needs (docs/hip.md).
+ * geometry-engine handler reads needs (devices/hip/README.md).
  */
 /*
  * XG +0x5c is XG_XT_INTRVEC. Established: `kona_reset_adaptor` writes it at +0x148 with

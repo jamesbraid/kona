@@ -69,7 +69,7 @@
  *
  * ESTABLISHED (kpm's window-base records): 0xc00000 is a second view of the
  * client registers, XG_FC_CLIENT_REGS, beside the plain view at 0x800000 and
- * the graphics FIFO view at 0xc10000 (XG.h, docs/xg.md). INFERRED: the kernel writes the kick
+ * the graphics FIFO view at 0xc10000 (XG.h, devices/xg/README.md). INFERRED: the kernel writes the kick
  * through the flow-controlled view so that it reaches the host interface in
  * order with the command words it writes through 0xc10000; every other
  * kernel access uses 0x800000. Bits 3-9 of a 0xc00000 address still select
@@ -102,7 +102,7 @@
  * each 64-bit slot (offsets 0xc, 0x14, 0x1c, 0x24 ...). Register offset
  * +0xc01c is widget offset 0x1c, which kpm's XG table does not name;
  * INFERRED from the generic Crosstalk widget layout (Linux xwidget.h,
- * docs/xg.md) it is the error lower-address register. kpm only prints it.
+ * devices/xg/README.md) it is the error lower-address register. kpm only prints it.
  *
  * Return data, ESTABLISHED for 6.5.5: the 16 KB area starts with a valid
  * word and a count word, then data, and ends with an instrumentation
@@ -125,7 +125,7 @@
  * Register at user offset 0xc014 (window offset 0x14), established as read: `adapterInspection` in
  * kpm loads it at 0x10012464, but kpm's XG table has no record at offset 0x14, so
  * `assign_register` (0x100121f4) fails and the dump logs an error instead of storing the word.
- * Inferred from the generic Xtalk widget layout (Linux xwidget.h, docs/xg.md): the upper half of
+ * Inferred from the generic Xtalk widget layout (Linux xwidget.h, devices/xg/README.md): the upper half of
  * the error address of the last failed request. */
 #define KONA_USER_XG_ERR_UPPER_ADDR       0xc014
 
@@ -344,7 +344,7 @@
  * `kona_flow_await_returned_credits` at +0x8f0 (kona_flow.o) against its raw software level 0x300,
  * and `kona_die` reads it at +0x118 (kona_crash.o); kpm reads it into its dump at
  * 0x10012af4. Inferred: one level unit is one 32-bit FIFO word, from irsaudit `TEST_intr`
- * (0x10079858), whose high mark of 4 raw (0x10079c94) trips on two words as docs/hip.md reads it. */
+ * (0x10079858), whose high mark of 4 raw (0x10079c94) trips on two words as devices/hip/README.md reads it. */
 #define KONA_HIP1_HH_GFIFO_LEVEL            0x208  /* register mask 0xfff */
 #define KONA_HIP1_GFIFO_LEVEL_ZERO_MASK     0x00000001  /* shift 0 */
 #define KONA_HIP1_GFIFO_LEVEL_MASK          0x00000ffe  /* shift 1 */
@@ -410,7 +410,7 @@
  * enable word and the GE bit, and writes the served set back at +0x1ac; `kona_ge_intr_handler`
  * writes 0x20 at +0x2fc, `kona_arm_intr` writes 0x10 at +0x118 (kona_intr.o), `kona_reset_adaptor`
  * writes 0xfff at +0x15d4 (kona_edtinit_hip2.o), and irsaudit writes 0x3ff or 0xfff then polls it.
- * Inferred write-one-to-clear from those written values; docs/hip.md reads irsaudit `TEST_intr` as
+ * Inferred write-one-to-clear from those written values; devices/hip/README.md reads irsaudit `TEST_intr` as
  * showing that clearing the ARM bit also zeroes the ARM's doorbell at 0x200094. */
 #define KONA_HIP1_HH_INTR_STATUS            0x238  /* register mask 0x3ff */
 #define KONA_HIP1_INTR_BIT_FIFO_HI_MASK     0x00000001  /* shift 0 */
@@ -426,7 +426,7 @@
 /*
  * The causes behind ODMA (6), UNUSED (7), PARITY (8), PIO_OV (10, HIP2) and
  * IDMA_OV (11, HIP2) beyond their names and the kernel's actions
- * (docs/hip.md) are UNKNOWN: no shipped software or published source
+ * (devices/hip/README.md) are UNKNOWN: no shipped software or published source
  * depends on them. No program raises them on purpose: irsaudit raises only
  * ARM, FIFO_HI, FIFO_LO, FIFO_OV, GE, VIDEO and VOC; the kernel only reports
  * the others and kills the pipe (or prints, for ODMA). INFERRED from the
@@ -452,18 +452,18 @@
 
 /*
  * HH_SEQID at 0x800248 (32 bits, read only), established: `kona_video_intr` (kona_video.o) reads
- * it at +0x17ec on every video interrupt and passes it to `kona_nclops_swapped`, and docs/dg.md
+ * it at +0x17ec on every video interrupt and passes it to `kona_nclops_swapped`, and devices/dg/README.md
  * reads the following loop as finishing every queued retrace record whose sequence number is not
  * greater than it; kpm dumps it at 0x10012bd8. Inferred: the pipe copies there the number its
  * RETRACE_SEQID token (DG.h) carried, once the drawing queued before that token is done.
  * No kernel path writes it. Inferred: 0 once the firmware has run init_dg_board (DG.h); the
- * reset value before that is UNKNOWN (docs/dg.md, first tag and hardware tag). */
+ * reset value before that is UNKNOWN (devices/dg/README.md, first tag and hardware tag). */
 #define KONA_HH_SEQID                       0x248  /* register mask 0xffffffff */
 
 /*
  * HH_ODMA_CHANNEL at 0x800250 (1 bits), established as a kpm table entry; read in the dump by
  * kpm 6.5.30m `hipInspectionPreJtag` (0x10012834). Inferred: it selects the output-DMA channel
- * (0 primary, 1 secondary); the firmware sets raster-bus index 0x440, which docs/rm.md pairs
+ * (0 primary, 1 secondary); the firmware sets raster-bus index 0x440, which devices/rm/README.md pairs
  * with it, to 1 before a read-back through the second channel (`start_rdata`, 0x0c0224d4). */
 #define KONA_HH_ODMA_CHANNEL                0x250  /* register mask 0x1 */
 
@@ -471,7 +471,7 @@
  * HH_PACK_MODE at 0x800258 (7 bits), established as a kpm table entry; read in the dump by
  * kpm 6.5.30m `hipInspectionPreJtag` (0x10012834). Inferred: it holds the pixel packing mode
  * of output DMA; the firmware's `__glkonSetupPacker` (0x0c028d20) writes a 7-bit value to
- * the paired raster-bus index 0x441, built from four small fields (docs/rm.md). */
+ * the paired raster-bus index 0x441, built from four small fields (devices/rm/README.md). */
 #define KONA_HH_PACK_MODE                   0x258  /* register mask 0x7f */
 
 /*
@@ -510,7 +510,7 @@
 /*
  * HH_ODMA_OVER at 0x800280 (12 bits), established as a kpm 6.5.30m table entry; kpm clears the
  * secondary copy before programming a transfer and the firmware clears this one when a
- * select-feedback starts (docs/hip.md). Inferred: it records overflow of the output DMA, with
+ * select-feedback starts (devices/hip/README.md). Inferred: it records overflow of the output DMA, with
  * bit 11 the overflow flag of the select-feedback status word. */
 #define KONA_HH_ODMA_OVER                   0x280  /* register mask 0xfff */
 
@@ -802,7 +802,7 @@
  * writes 0x8800 and 0x0b00 in `kona_attach` (kona_edtinit_hip2.o, at +0x1108 and +0x1194), 0x80 in
  * `kona_swap_complete` (kona_video.o, at +0x27c) and 0x103 in `kona_enable_dac_cursor`; irsaudit
  * `vcWrite` (0x1014071c) and `vcRead` (0x10140bac) use it the same way, and kpm reads it back at
- * 0x10012f88. Inferred: the value is an address in the display board's local space, as docs/dg.md
+ * 0x10012f88. Inferred: the value is an address in the display board's local space, as devices/dg/README.md
  * decodes it. */
 #define KONA_HH_VC_ADDRESS                  0x3c0  /* register mask 0xffff */
 
@@ -910,7 +910,7 @@
  * 15 COHERENT, bit 16 GBR, so 0x9000 is COHERENT with page-size code 1, the
  * code every map-RAM entry carries for the 16 KB page. INFERRED: the output
  * register has the same layout, since it has the same 17-bit mask and
- * receives the same word (START_SELECTFEED's A_lo, docs/hip.md). kpm and the
+ * receives the same word (START_SELECTFEED's A_lo, devices/hip/README.md). kpm and the
  * kernel read it only in error dumps (kona_ge_intr).
  */
 
@@ -958,7 +958,7 @@
 #define KONA_HIP2_GV_OVERLAP_DISABLE_MASK   0x00000001  /* shift 0 */
 
 /*
- * DMA, ESTABLISHED from the 6.5.30m kernel driver (kona_dma.o, docs/hip.md).
+ * DMA, ESTABLISHED from the 6.5.30m kernel driver (kona_dma.o, devices/hip/README.md).
  *
  * The kernel starts every DMA by sending a command in the privileged
  * stream (kick sequence in kona_kern.h); the transfer itself is run by the
@@ -1000,7 +1000,7 @@
  * 0x20000000 | ((phys >> 14) << 2). kona_mapram_init writes
  * 0x10000000 | index to every entry and reads each back; a mismatch kills
  * the pipe (reason 21). Number of entries: ((XG+0x64 bits 3-5) or 8) << 15
- * (docs/xg.md attach step 6). The pipe-space address of byte b of a buffer
+ * (devices/xg/README.md attach step 6). The pipe-space address of byte b of a buffer
  * starting at map index i is (i << 14) + (b & 0x3fff) for the first page.
  * INFERRED: 0x20000000 is a valid bit; the low two bits of the entry are
  * the low bits of the 4 KB frame number, which a 16 KB page leaves zero. */
@@ -1010,7 +1010,7 @@
 
 /*
  * Interrupt masks and acknowledge, ESTABLISHED from the 6.5.30m kernel
- * driver (kona_setup.o, kona_intr_hip2.o, kona_flow.o; docs/hip.md).
+ * driver (kona_setup.o, kona_intr_hip2.o, kona_flow.o; devices/hip/README.md).
  *
  * HH_INTR_ENABLE (0x230) is written with the driver's software mask:
  *   reset value     0x100 (PARITY only), written by KONAinitialize;

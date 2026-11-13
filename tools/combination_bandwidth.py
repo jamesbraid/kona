@@ -4,7 +4,7 @@ Usage: combination_bandwidth.py [--class C] FILE.cmb [FILE.cmb ...]
        combination_bandwidth.py [--class C] --mix FMT[*N],FMT[*N],... [--align]
 
 Ports the sums of `vfmtIsKonaCombinationValidForTarget` (kona.so, IRIX 6.5.30m,
-0x428590-0x428fec) that decide "Video bandwidth exceeded" (docs/dg.md, "Video
+0x428590-0x428fec) that decide "Video bandwidth exceeded" (devices/dg/README.md, "Video
 bandwidth check"). Channel fields come from the .cmb; the format fields the check
 reads (swaps per frame, fields per frame, the first field's line skip, old-style
 stereo) come from the .vfo the channel names, found next to the .cmb under

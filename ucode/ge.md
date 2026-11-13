@@ -79,7 +79,7 @@ The 47 name matches are written to [ge_name_matches.tsv](ge_name_matches.tsv) as
 
 ## Precision
 
-**Established:** the per-pixel LOD, sub-texel position and filter-weight arithmetic is not in any microcode. The raster and texture chips have no program in this directory and no microcode bus in the netlists ([docs/rm.md](../docs/rm.md), which also gives the bus widths that bound them). The host-side precision found so far is in `RM.h` (filter weights, sharpen and detail codes, LOD-bias scale), and its register widths bound some values: 16-bit texture-load start and end, 15-bit clipmap centre, 10-bit minimum and maximum level.
+**Established:** the per-pixel LOD, sub-texel position and filter-weight arithmetic is not in any microcode. The raster and texture chips have no program in this directory and no microcode bus in the netlists ([devices/rm/README.md](../devices/rm/README.md), which also gives the bus widths that bound them). The host-side precision found so far is in `RM.h` (filter weights, sharpen and detail codes, LOD-bias scale), and its register widths bound some values: 16-bit texture-load start and end, 15-bit clipmap centre, 10-bit minimum and maximum level.
 
 **Established** (form-15 immediates, [ge_isa.md](ge_isa.md)): the geometry program loads these power-of-two constants, among others, as single-precision floats:
 

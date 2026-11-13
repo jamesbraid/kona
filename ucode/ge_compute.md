@@ -557,7 +557,7 @@ uses the same address for the same vertex word:
 
 `udrawtri.s`, `drawlin.S` and `drawmstpnt.S` are three examples (0x28ac, 0x8955, 0x7a09 for x). So the address names a
 field of the raster-bus vertex packet, as the converter lists at 0x1c4 name the fields of a pixel word
-([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)). The packing itself happens outside the program.
+([devices/rm/README.md](../devices/rm/README.md#pixel-and-texel-data-words)). The packing itself happens outside the program.
 
 **Established** (E by slot, over every store of the drawing modules in `udrawtri.s`, `drawtri.S`, `mdrawtri.S`,
 `drawlin.S`, `drawpnt.S`, `drawmstpnt.S`, `clear.S`, `refplane.S` and `phong.S`):
@@ -571,7 +571,7 @@ field of the raster-bus vertex packet, as the converter lists at 0x1c4 name the 
 | 0x1f5 | 3 or 0 | 19 and 60 |
 | every other slot | 0 | |
 
-**Inferred:** E is the bus-mode code of [docs/rm.md](../docs/rm.md#bus-modes-2-and-3) (0 mode 1, 4 mode 3, 6 mode 2,
+**Inferred:** E is the bus-mode code of [devices/rm/README.md](../devices/rm/README.md#bus-modes-2-and-3) (0 mode 1, 4 mode 3, 6 mode 2,
 2 mode 0), put on the store that completes a 64-bit bus word. A vertex is then two bus words. The first, closed by the high
 depth part, holds command, x, y and depth high in mode 3, and the second, closed by the last colour, holds the rest in
 mode 2. That is the 3, 2 alternation of the vector files' vertex runs, whose mode-3 words carry the command nibble. Bit 0
@@ -581,7 +581,7 @@ in the reference-plane and clear-vertex paths, so its meaning is **unknown**. Wh
 
 **Inferred** (where the command nibble comes from). The command field of the vertex packet gets its value from the 0xd5
 store and from all-ones stores (M = 0x6d8, NOT of register 0x1e, which reads as zero) to the slots 0xd6-0xd9. Matched
-against the commands the IR diagnostic sends ([docs/rm.md](../docs/rm.md#primitive-set-up-happens-in-the-pixel-generator)):
+against the commands the IR diagnostic sends ([devices/rm/README.md](../devices/rm/README.md#primitive-set-up-happens-in-the-pixel-generator)):
 
 | Primitive | 0xd5 | All-ones store | Diagnostic's command |
 |---|---|---|---|
@@ -595,7 +595,7 @@ not traced.
 The multisample fan point `DrawMSTFanPnt` (0x79a3) writes the command value itself. Its 0xd5 store (0x7a06, and 0x7a38 in
 the rim loop 0x7a20-0x7a4a) sends staging word 8 or 9. Its caller `mmo_DrawMSDistAttTablePntPrim` stages 7 in both
 (0x7897, 0x7898) and then 0 in word 8 (0x78a6), so the centre goes with 0 and the rim loop with 7. That is the encoding
-`tbuRoundPoint` uses for its rim points ([docs/rm.md](../docs/rm.md#set-up-arithmetic-what-the-software-fixes)), and it
+`tbuRoundPoint` uses for its rim points ([devices/rm/README.md](../devices/rm/README.md#set-up-arithmetic-what-the-software-fixes)), and it
 is the second witness, from the engine program, that command 7 is the fan rule. GL strips and fans themselves do not reach
 the bus as strips and fans on the independent-triangle path. The decomposers ([below](#decomposers-udecomposes)) turn them
 into a table of triangles, and `lDI1` sends each as 0, 0, 6. The strip loop `lDI3` and the quad loop `lDI4` instead send
@@ -625,7 +625,7 @@ strip loop sends them unchanged. Setting bits 31-29 on a batch's first vertex gi
 the vertex that starts the run again, because a batch that continues a strip resends its two carried vertices first
 ([ged.md](ged.md#vertex-history-fields-x-and-z)). The fan-restore handler ORs the same constant into the saved records
 it brings back. Bit 28 is the swap: the decomposers test it to choose the swapped triangle order, and the diagnostic
-adds it to command 6 to make the fan rule 7 ([docs/rm.md](../docs/rm.md#primitive-set-up-happens-in-the-pixel-generator)).
+adds it to command 6 to make the fan rule 7 ([devices/rm/README.md](../devices/rm/README.md#primitive-set-up-happens-in-the-pixel-generator)).
 
 Which value bits 31-29 hold on the later vertices of a strip is **unknown**. What would settle it: the raw record words of a drawn four-vertex strip read from the raster side of a live pipe, or the engine netlist's record-write stage. For the run to be drawn they must name the
 triangle command: 6 with bit 28 clear for the strip rule, 7 with it set. No engine word puts it there, so the distributor
@@ -834,7 +834,7 @@ Moved from the open-questions file. Grades are per statement.
 
 **All six distances.** Established: the vertex-transform microcode (starting at 0x1218; stores 0x123f-0x124a) computes six plane distances per vertex into special registers 0x10-0x15, and the post-clip flag recompute in the polygon clipper (0xef8f-0xef98) names them: registers 0x10-0x13 are the guard-band-scaled w minus x and minus y (the four guard-band factors sit in control words 0x71-0x74), registers 0x14 and 0x15 are the unscaled w plus the matrix's clip z and zero minus that clip z (the earlier reading, w minus z, was wrong). The hardware turns their signs into clip codes (special register 0x0d) and the clipper's driver calls its Sutherland-Hodgman plane step for each plane a code names. So near and far are geometric clips against the exact planes, while x and y are clipped only at the guard band and the raster stage scissors the rest (the second-chance path at 0x10b8). The window depth that leaves the divide paths is also passed through a minimum (0x10ea, 0x1163), a clamp from above only. Caveats, all inferred: the composite matrix replaces the projection's third row with (z - w) / 2 ([ge_compute.md](../ucode/ge_compute.md#matrix-maintenance-umatrixs)), and with that third row the two z tests cut the exact near and far planes (the paragraph above); the clip codes come from fixed hardware not readable here.
 
-User-clip-plane mode: unknown. The vertex-transform path at 0x1218 was read for the fixed planes only; whether a user-clip-plane mode changes it is recorded in [open-questions.md](../docs/open-questions.md).
+User-clip-plane mode: unknown. The vertex-transform path at 0x1218 was read for the fixed planes only; whether a user-clip-plane mode changes it is recorded in [open-questions.md](../questions/README.md).
 
 ## Polygon clipping (clip.S)
 
@@ -1054,7 +1054,7 @@ the `epilogue_*` code drains the last components. The parameter offsets below us
 ## Fog (fog.S)
 
 **Inferred**, from the words of `fog.S` in the listing and the GL fog model. Fog is applied per pixel by the texture
-filters from a table (`TFP_FOG*`, the `ufog.fog_lut` RAMs of [docs/rm.md](../docs/rm.md#chips-on-each-board)); the engine's
+filters from a table (`TFP_FOG*`, the `ufog.fog_lut` RAMs of [devices/rm/README.md](../devices/rm/README.md#chips-on-each-board)); the engine's
 part is twice over. Per vertex it turns the clip-space depth into an eye distance and evaluates the current fog function
 on it, through a routine whose address the set-up handlers leave in control memory 0xa3c. Per state change it builds and
 downloads the filter's fog table. The parameters live in engine memory from 0x9de (mode), 0x9df (density), 0x9e0 and
@@ -1542,7 +1542,7 @@ live in engine external memory, which `mgeb_EramFill` clears before a transfer.
 **Inferred**, from the words of the three modules. The colour-table code serves `glColorTable` and the colour-index maps:
 it fills ramps, packs tables for the texture filters' look-up RAM (`TFT_TLUT_DATA_*`, [RM.h](../devices/rm/RM.h)) and sends tables
 back to the host. The output modules are the last pixel stage, which clamps, scales to the destination's integer range
-and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)).
+and packs fields for the raster bus ([devices/rm/README.md](../devices/rm/README.md#pixel-and-texel-data-words)).
 
 - `mgeb_ColorTableSetup` (`colortable.S` lines 69-91, at 0x422e): **inferred**, takes the table record operands as input,
   stores 0x8000 and the record words into control memory 0x1ec-0x1ee and calls `uEvalSaveState`, so the table builders
@@ -1612,7 +1612,7 @@ and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-
 - `uPO_8_16C` (`upixout.s` lines 209-212, at 0x284a): **inferred**, entry for 8- and 16-component blocks: four clamps on
   the first input words.
 - `uPO_8_16C_loop` (`upixout.s` lines 216-257, at 0x284e): **inferred**, the packing loop whose stores name the converter
-  list through register 0x12 ([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)): 39 clamp-and-multiply words
+  list through register 0x12 ([devices/rm/README.md](../devices/rm/README.md#pixel-and-texel-data-words)): 39 clamp-and-multiply words
   scale each input into its field.
 - `uPostLoop` (`upixout.s` lines 259-271, at 0x2876): **inferred**, drains the packing pipeline with eight more
   clamp-and-multiply words and four multiplies, the last results of the transfer.
@@ -1899,7 +1899,7 @@ words are at 0x1ec-0x1f3 and 0x453-0x461.
 and pack pixels for the raster bus, the X server's direct pixel and stipple paths, the convolution input and output
 copies, the moves between engine memories, and the set-up handlers that place the raster position and choose which
 engine takes each part of a pixel stream. Output records are the seven-word records of
-[docs/rm.md](../docs/rm.md#pixel-and-texel-data-words), loaded from control memory 0x161-0x169.
+[devices/rm/README.md](../devices/rm/README.md#pixel-and-texel-data-words), loaded from control memory 0x161-0x169.
 
 - `mmo_Pixout_8_16` (`mpixout.S` lines 228-291, at 0xa4b5): **inferred**, the clamping 8- and 16-bit output: it loads the
   record words 0x161-0x169 as input and, by the count, runs `uPO_8_16C` or `uPO_8_16C_LastBlck`, or `mLASTGE` on the
@@ -2545,11 +2545,11 @@ immediate 0). **Inferred** from the words cited, read in `ge_listing/CRAMBlockLo
 
 ## Raster-board commands (raster.S)
 
-The handlers of `raster.S` talk to the raster boards through the engine's bus-output addresses 0x1f4-0x1f8 (`r95` = 0x13 stores with the address as immediate; [docs/rm.md](../docs/rm.md#the-shadow-bit-mask)). Read in full from the [raster.S listing](ge_listing/raster.S.lst) (`ge.u`, IRIX 6.5.30m). Three habits recur. **Established:** most handlers begin by reading three input words (C = 0x1d): the first into address register 0x1a, the third into staging word 0x10. A shadowed register write is four stores: 0x00070000 to 0x1f8 and a bit mask to 0x1f5 (shadow index 7, `BEF_REGSHADOW_BMASK`), then the address word to 0x1f8 and the value to 0x1f5. A direct write to a register puts its index on 0x1f7 and its value on 0x1f5. **Inferred: in this file the `mgesi_` and `mgebi_` handlers end by sending staging word 0x10 to 0x1f4 (E = 2), and the `mges_` handlers do not.** The clearest case is a pair that differs in little else: `mgesi_TbusRegWrite` sends the closing word and `mges_TbusRegWriteNoIncr` does not. So the closing word is taken to increment a per-command count on the raster side, which the name "NoIncr" points to. `mges_TBUS_1`, `mges_NullCommand` and `mges_DiagDeactivate` also have no 0x1f4 store.
+The handlers of `raster.S` talk to the raster boards through the engine's bus-output addresses 0x1f4-0x1f8 (`r95` = 0x13 stores with the address as immediate; [devices/rm/README.md](../devices/rm/README.md#the-shadow-bit-mask)). Read in full from the [raster.S listing](ge_listing/raster.S.lst) (`ge.u`, IRIX 6.5.30m). Three habits recur. **Established:** most handlers begin by reading three input words (C = 0x1d): the first into address register 0x1a, the third into staging word 0x10. A shadowed register write is four stores: 0x00070000 to 0x1f8 and a bit mask to 0x1f5 (shadow index 7, `BEF_REGSHADOW_BMASK`), then the address word to 0x1f8 and the value to 0x1f5. A direct write to a register puts its index on 0x1f7 and its value on 0x1f5. **Inferred: in this file the `mgesi_` and `mgebi_` handlers end by sending staging word 0x10 to 0x1f4 (E = 2), and the `mges_` handlers do not.** The clearest case is a pair that differs in little else: `mgesi_TbusRegWrite` sends the closing word and `mges_TbusRegWriteNoIncr` does not. So the closing word is taken to increment a per-command count on the raster side, which the name "NoIncr" points to. `mges_TBUS_1`, `mges_NullCommand` and `mges_DiagDeactivate` also have no 0x1f4 store.
 
 - `mgesi_TbusRegWrite` (`raster.S` lines 213-228, at 0x39fd): **inferred**, the engine half of the firmware's
   `tbus_regwrite` for the board registers 0x400-0x477
-  ([docs/rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)). Operand 0, the register number, goes to
+  ([devices/rm/README.md](../devices/rm/README.md#host-interface-registers-on-the-raster-bus)). Operand 0, the register number, goes to
   0x1f7 (0x3a05). The clear-pattern register (`r148` = 0x3c0) goes to 0x1f6 (0x3a07), operand 1, the value, to 0x1f5
   (0x3a08), and the saved word to 0x1f4 (0x3a09).
 - `mges_TbusRegWriteNoIncr` (`raster.S` lines 280-292, at 0x39da): **inferred**, the same board-register write without
@@ -2559,7 +2559,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   writes of `TFP_AMASK` (0x1408). It first writes the clear pattern to 0x1408 directly (0x1f7 at 0x39eb, 0x1f5 at
   0x39ec), then sends operand 0 to 0x1f7 and operand 1 to 0x1f6 (0x39ee, 0x39f1). Last it sends a shadowed write whose
   mask is the clear pattern to address word 0x01681408 (0x39f7-0x39fb), so the raster chip gets 0 while the shadow
-  keeps its value (**inferred** from the mask reading in [docs/rm.md](../docs/rm.md#the-shadow-bit-mask)).
+  keeps its value (**inferred** from the mask reading in [devices/rm/README.md](../devices/rm/README.md#the-shadow-bit-mask)).
 - `mgesi_BshRegisterWrite` (`raster.S` lines 450-469, at 0x3991): **established**, the engine half of the firmware's
   four-store raster write. It takes three operands, mask, address word and value, and sends them as one shadowed
   write: 0x00070000 and operand 0 (0x3998, 0x3999), then operand 1 to 0x1f8 and operand 2 to 0x1f5 (0x399b, 0x399c),
@@ -2572,7 +2572,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   same way. It ends with the inverted clear pattern on 0x1f5 under E = 3 (0x398c, 0x398e) and the closing word.
   `arm_bind_2d_clipmap_texture` uses it for five clipmap registers ([GE.h](../devices/ge/GE.h)).
 - `mgesi_IMPbshRegisterWrite` (`raster.S` lines 574-596, at 0x395e): **inferred**, the shadowed write that the GL
-  state handlers use for `IMP_` registers ([docs/rm.md](../docs/rm.md#how-the-arm-firmware-writes-raster-registers)).
+  state handlers use for `IMP_` registers ([devices/rm/README.md](../devices/rm/README.md#how-the-arm-firmware-writes-raster-registers)).
   It brackets the write as `mgesi_IMPtbusRegWrite` does. First `TFP_AMASK` (0x1408) gets the clear pattern directly
   (0x3960-0x3964), then the operand triple goes out as mask, address and value (0x3969-0x396c). Last comes a zero-mask
   shadowed write to address word 0x01681408 (0x396d-0x3970).
@@ -2610,7 +2610,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
 - `mgebi_ErrQuery` (`raster.S` lines 1041-1065, at 0x387d): **inferred**, returns a status word to the host. It reads
   a word with an `r95` = 0x17 word on address register 0x16 (F = 0x1b, 0x387d), which an `r95` = 8 word writes back at
   the end (0x3890), and stages board register 0x476 (0x3883), the reply port of the firmware's read-back paths
-  ([docs/rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)). It sends the register number to 0x1f7 and
+  ([devices/rm/README.md](../devices/rm/README.md#host-interface-registers-on-the-raster-bus)). It sends the register number to 0x1f7 and
   a value to 0x1f5 under a predicate (0x3885-0x3888).
 - `mgesi_Accum` (`raster.S` lines 901-951, at 0x38c0): **inferred**, `glAccum` for the 16-bit accumulation buffer. Its
   inputs are the operation (operand 0, 0x100-0x104) and the float value (operand 1). It compares the operation with
@@ -2782,7 +2782,7 @@ The handlers of `glmodes.S` change no vertex data. They rewrite mode words in en
   0x4ff at 0xf417), converts operands 5-0xa (0xf418-0xf421) and stages 49152.0 (0xf423). The scale and centre results
   go to engine words 0x7e, 0x7f, 0x80, 0x81 and 0x71-0x74 (0xf41d, 0xf427, 0xf42f-0xf434), the x and y scale and offset pairs and the guard-band factors that `uscreen2.s` reads ([Perspective divide and viewport](#perspective-divide-and-viewport-uscreen2s)).
 - `mgesi_SetGeId` (`glmodes.S` lines 47-79, at 0xf435): **inferred**, gives an engine its identity at start-up
-  (`init_ge`, [docs/ge.md](../docs/ge.md)). It stores the engine number (operand 0) to engine word 0x1389 (0xf438,
+  (`init_ge`, [devices/ge/README.md](../devices/ge/README.md)). It stores the engine number (operand 0) to engine word 0x1389 (0xf438,
   0xf441) and tests its low four bits with an AND against 0xf that sets the flags (0xf436-0xf437). Under that
   predicate it stores one of two staged values to word 0x138a (0xf443, 0xf445), the staged constants being 1000000.0
   and 16.0 (0xf439, 0xf43b).
@@ -3418,7 +3418,7 @@ an `r95` = 8 store at that base plus the index in register 0x13, which is saved 
 Read from the [hostio.S listing](ge_listing/hostio.S.lst) (`ge.u`, IRIX 6.5.30m). These handlers program the
 host-interface output DMA through raster-bus register writes, or send data to the output window, register 0x1e
 (0xffff0000 from `bootstrap.s` 0x000e). A bus write puts a register number from [RM.h](../devices/rm/RM.h) on bus address 0x1f7
-and the value on 0x1f5, and 0x1f4 closes the command ([rm.md](../docs/rm.md#data-path)). Board register numbers:
+and the value on 0x1f5, and 0x1f4 closes the command ([rm.md](../devices/rm/README.md#data-path)). Board register numbers:
 0x440 `HIP_ODMA_CHANNEL`, 0x460-0x464 the second channel's page number, offset, length, total and overflow, 0x476
 the shadow read port.
 

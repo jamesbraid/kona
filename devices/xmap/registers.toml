@@ -3,7 +3,7 @@ unit = "xmap"
 prefix = "XMAP"
 title = "XMAP registers and the words written through them"
 doc = "XMAP direct registers, indirect-memory ports and the words written through them."
-from = "back-end definitions table, docs/command-table.md sections 6.3, 6.4 and 7.1 to 7.5"
+from = "back-end definitions table, formats/token/command-table.md sections 6.3, 6.4 and 7.1 to 7.5"
 
 [c]
 legacy_header = "KONA_XMAP_DECODE.h"

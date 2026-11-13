@@ -3,5 +3,5 @@ qemu-irix	public third-party tree whose system call numbers are cross-checked
 /emdash	PostScript glyph name (the em dash character) inside vendor PDF font tables; not a tool name
 /products/storage/	path of a public sgi.com web page in a saved vendor page or in a commit message about it
 SHA-256 and library path, what	message of an already-pushed commit; wording since removed from the files
-URL and library path in docs/sources/README.md	message of an already-pushed commit
-and the library path of its copy, docs/sources/README.md says where	message of an already-pushed commit
+URL and library path in references/documents/README.md	message of an already-pushed commit
+and the library path of its copy, references/documents/README.md says where	message of an already-pushed commit

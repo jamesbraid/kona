@@ -2,7 +2,7 @@
 unit = "token"
 prefix = "KONA_TOKEN"
 title = "host command tokens of the InfiniteReality2 pipe (all but queries)"
-from = "back-end definitions table, docs/command-table.md sections 2 and 3"
+from = "back-end definitions table, formats/token/command-table.md sections 2 and 3"
 
 [c]
 legacy_header = "KONA_TOKEN_DECODE.h"

@@ -18,7 +18,7 @@
  * data writes to HH_VC_DATA (0x3d0), both 32-bit at register-window offset
  * 0x800000 + register. The names below are ours except where a comment
  * cites kpm, irsaudit, the firmware's symbols or the .vof field list.
- * docs/dg.md has the narrative.
+ * devices/dg/README.md has the narrative.
  */
 #ifndef KONA_DG_H
 #define KONA_DG_H
@@ -160,7 +160,7 @@
  * Per-channel register block, ESTABLISHED as addresses: eight blocks,
  * address 0x0b00 + 0x100 * channel + register, registers 0 and 2 written
  * by kona_enable_dac_cursor. kona_attach reads channel 0's register 0
- * (docs/xg.md step 7). The kernel treats channels 0-7 as the ones with a
+ * (devices/xg/README.md step 7). The kernel treats channels 0-7 as the ones with a
  * hardware cursor (kona_determine_cursor_channel, branch on channel < 8).
  */
 /*
@@ -217,7 +217,7 @@
  * result is a signed 16-bit top-left position in output pixels with no bias.
  * `DoDGRqstLoadDacCursor` in arm1.u (at 0x0c007b84) sends ten data writes to
  * the same data port. There is no constant for the position port because it is
- * not an address of its own; see docs/findings/dac-cursor.md.
+ * not an address of its own; see evidence/findings/dac-cursor.md.
  */
 
 /*
@@ -745,7 +745,7 @@ enum kona_vfo_signal {
  *
  * Source: arm1.u (IRIX 6.5.30m). Every load and store whose address the
  * code builds from constants is listed in ucode/dg_access.tsv
- * (scripts/dg_access.py); docs/dg.md ("The firmware's display-bus window")
+ * (scripts/dg_access.py); devices/dg/README.md ("The firmware's display-bus window")
  * has the narrative.
  *
  * ESTABLISHED: bus address A is ARM address 0x00600000 + 4 * A, one 32-bit
@@ -772,7 +772,7 @@ enum kona_vfo_signal {
 /*
  * Block map. ESTABLISHED: the addresses each function family uses. The
  * chip behind each block is INFERRED from the function names and from the
- * chip selects of the bridge chip fm0 (docs/dg.md, netlist dg4_2voc).
+ * chip selects of the bridge chip fm0 (devices/dg/README.md, netlist dg4_2voc).
  */
 /*
  * KONA_DG_DISPMODE_DID: Display-id mode table, one bus address per display
@@ -1296,7 +1296,7 @@ enum kona_vfo_signal {
  * fill it from a .vfo file; the unnamed function at 0x4fcfd0 adds the clock
  * words and sends it through the display-command sender at 0x5341a0) and
  * DoDGRqstLoadFormat (0x0c00a9b0-0x0c00b998) consumes it. Word numbers;
- * docs/dg.md gives each word's source and destination.
+ * devices/dg/README.md gives each word's source and destination.
  */
 #define KONA_LF_VOC_ID                0
 #define KONA_LF_ONE                   1       /* ESTABLISHED: the channel loader (kona.so

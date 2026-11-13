@@ -249,7 +249,7 @@ The three sprite mode routines are entered through consecutive slots chosen by t
 
 ## Raster bus commands (`raster.S`)
 
-These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Control-memory addresses in immediates](ge_ops.md#control-memory-addresses-in-immediates)); [ge_compute.md](ge_compute.md#raster-board-commands-rasters) and [rm.md](../docs/rm.md#the-shadow-bit-mask) say what the words mean to the raster side. How the entries read the words. Operand k is command word k, read with A = 0x1f and D = k. Staging word k is the k-th word of the staging file at address register 0x18, written by a form-15 word with B = 0x18 and E = k (the constant is its immediate) and read with A = 0x18 and D = k. A word with `r95` = 0x13, C = 0x1e and an immediate is an address word: its immediate names a control-memory address. A store word has B = 0x1e and `r213` = 3 (unconditional) or 2 (predicated by the field `r198`). A store word that carries its own immediate with `r95` = 0x13 goes to that address. **Inferred:** a store word with no immediate of its own goes to the address of the nearest earlier address word, and a store word that names no source (no A read, no `r148`) sends the word the last A and D read left in place, the rule of [ge_isa.md](ge_isa.md#unit-2-and-seed-unit-operands). Both readings give `mgesi_TbusRegWrite` and `mges_TbusRegWriteNoIncr` the same bus words, and they give `mgebi_ShadeModel` and `mgesi_IMPbshRegisterWrite` complete (address, value) pairs. A store with `r148` = 0x3c0 and `r110` = 0x4bd sends register 0x1e, zero. Every handler here starts with the framing words, and in these the third C = 0x1d read is stored as staging word 0x10 (a word with `r215` = 3, B = 0x18, E = 0x10), which the closing store to 0x1f4 sends; what that third read delivers is not settled by the words ([ge_compute.md](ge_compute.md#raster-board-commands-rasters) takes it as an input word, the entry of `mgebi_ReferencePlane_Disable` above as a zero), so the closing word's value is not given. The handlers end with the end-of-command wait, whose shadow still runs the words listed after it. "In issue order" means address order.
+These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Control-memory addresses in immediates](ge_ops.md#control-memory-addresses-in-immediates)); [ge_compute.md](ge_compute.md#raster-board-commands-rasters) and [rm.md](../devices/rm/README.md#the-shadow-bit-mask) say what the words mean to the raster side. How the entries read the words. Operand k is command word k, read with A = 0x1f and D = k. Staging word k is the k-th word of the staging file at address register 0x18, written by a form-15 word with B = 0x18 and E = k (the constant is its immediate) and read with A = 0x18 and D = k. A word with `r95` = 0x13, C = 0x1e and an immediate is an address word: its immediate names a control-memory address. A store word has B = 0x1e and `r213` = 3 (unconditional) or 2 (predicated by the field `r198`). A store word that carries its own immediate with `r95` = 0x13 goes to that address. **Inferred:** a store word with no immediate of its own goes to the address of the nearest earlier address word, and a store word that names no source (no A read, no `r148`) sends the word the last A and D read left in place, the rule of [ge_isa.md](ge_isa.md#unit-2-and-seed-unit-operands). Both readings give `mgesi_TbusRegWrite` and `mges_TbusRegWriteNoIncr` the same bus words, and they give `mgebi_ShadeModel` and `mgesi_IMPbshRegisterWrite` complete (address, value) pairs. A store with `r148` = 0x3c0 and `r110` = 0x4bd sends register 0x1e, zero. Every handler here starts with the framing words, and in these the third C = 0x1d read is stored as staging word 0x10 (a word with `r215` = 3, B = 0x18, E = 0x10), which the closing store to 0x1f4 sends; what that third read delivers is not settled by the words ([ge_compute.md](ge_compute.md#raster-board-commands-rasters) takes it as an input word, the entry of `mgebi_ReferencePlane_Disable` above as a zero), so the closing word's value is not given. The handlers end with the end-of-command wait, whose shadow still runs the words listed after it. "In issue order" means address order.
 
 - `geif.u entry 423` (slot 211, established words, inferred meaning): `mgesi_PassThrough` at 0x3a5b, `raster.S` line 39,
   18 words, takes one operand. It stages 0x452 into staging word 2 (0x3a5c), 0x700 into word 1 (0x3a5d, which also
@@ -260,7 +260,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   integer-to-float code M = 0x6f3 (0x3a67, 0x700 becomes 1792.0), 0x1f5 with operand 0 (0x3a69), 0x1f7 with staging
   word 2, now 0x477 (0x3a6a), 0x1f5 with register 0x1e, zero (0x3a6b) and 0x1f4 with staging word 0x10 (0x3a6c).
   So it sends three register-number and value sets, for the board registers 0x452, 0x476 and 0x477
-  ([rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)): 8, then 1792.0 followed by the operand, then
+  ([rm.md](../devices/rm/README.md#host-interface-registers-on-the-raster-bus)): 8, then 1792.0 followed by the operand, then
   zero. It writes no engine word and sets no flag. That register 0x476 gets two 0x1f5 words after one 0x1f7 word is
   read from the words; what the raster side does with the second is not read.
 
@@ -288,7 +288,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   `r198` = 2 and 3 for the two outcomes of its flag-setting AND; in the address-unit table of
   [ge_ops.md](ge_ops.md#address-unit-conditions) the code 0x11 is "result not zero", and whether `r198` shares that
   code space, and so whether these stores depend on the register 0x13 test, is not settled by the words. It writes no engine word. **Inferred:** with the predicates taken as holding, the bus words are the
-  zero-valued write to shadow index 7 that [rm.md](../docs/rm.md#the-shadow-bit-mask) reads for `0x70000` on 0x1f8
+  zero-valued write to shadow index 7 that [rm.md](../devices/rm/README.md#the-shadow-bit-mask) reads for `0x70000` on 0x1f8
   and the closing word, which changes no raster register.
 
 - `geif.u entry 383` (slot 191, established words, inferred meaning): `mges_DiagDeactivate` at 0x3a25, `raster.S`
@@ -312,7 +312,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   earlier) and the second the AND-NOT result, the latest load at least nine words before it; which outcome of the
   AND takes predicate 2 or 3 is not read, and the bit of word 3 that the register 0x1d operand selects is not read
   either. **Inferred:** the first two bus pairs are a shadowed write of the enumerant to `PG_GENERAL`, bit 0 only
-  (mask 1, address word 0x1270800 as [rm.md](../docs/rm.md#how-the-arm-firmware-writes-raster-registers) reads it),
+  (mask 1, address word 0x1270800 as [rm.md](../devices/rm/README.md#how-the-arm-firmware-writes-raster-registers) reads it),
   and word 3 holds the same choice for the drawing modules.
 
 - `geif.u entry 215` (slot 107, established words, inferred meaning): `mgesi_TbusRegWrite` at 0x39fd, `raster.S`
@@ -320,7 +320,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   stores, all unconditional and each carrying its own address: 0x1f7 with operand 0 (0x3a05), 0x1f6 with register
   0x1e, zero (0x3a07), 0x1f5 with operand 1 (0x3a08) and 0x1f4 with staging word 0x10 (0x3a09). It stores no engine
   word, stages nothing else and sets no flag. The board registers are those of
-  [rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus).
+  [rm.md](../devices/rm/README.md#host-interface-registers-on-the-raster-bus).
 
 - `geif.u entry 455` (slot 227, established words, inferred meaning): `mges_TbusRegWriteNoIncr` at 0x39da,
   `raster.S` line 282, nine words, takes two operands. The wait is 0x39de. Three stores, each with its own address:
@@ -350,7 +350,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   0x70000 is staged into word 0 after it (0x3997). Five unconditional stores, each with its own address: 0x1f8 with
   staging word 0, 0x70000 (0x3998), 0x1f5 with operand 0 (0x3999), 0x1f8 with operand 1 (0x399b), 0x1f5 with
   operand 2 (0x399c) and 0x1f4 with staging word 0x10 (0x399d). It writes no engine word and sets no flag.
-  [rm.md](../docs/rm.md#the-shadow-bit-mask) reads the first pair as the write to the shadow's bit-mask slot and the
+  [rm.md](../devices/rm/README.md#the-shadow-bit-mask) reads the first pair as the write to the shadow's bit-mask slot and the
   second as the register write; this handler is the shared form of that sequence.
 
 - `geif.u entry 391` (slot 195, established words, inferred meaning): `mgesi_IMPbshRegisterWrite` at 0x395e,
@@ -369,7 +369,7 @@ These handlers put words on the engine's bus-output addresses 0x1f4-0x1f8 ([Cont
   also reads C = 0x1d). The wait is 0x39af. Three bus stores: 0x1f8 with operand 2 (0x39b3, own address), 0x1f5 with
   operand 1 (0x39b6, address word 0x39b5), in a word that names register 0x13 (C = 0x13, `r176` = 2, E = 0x3f), and
   0x1f4 with staging word 0x10 (0x39b7). The words do not show how a store uses register 0x13 in C.
-  [rm.md](../docs/rm.md#bus-modes-2-and-3) reads it as the bus mode code, **inferred** from the host routine that
+  [rm.md](../devices/rm/README.md#bus-modes-2-and-3) reads it as the bus mode code, **inferred** from the host routine that
   sends the mode as the first operand. It writes no engine word and sets no flag.
 
 - `geif.u entry 1` (slot 0, established words, inferred meaning): `mges_TBUS_1` at 0x399e, `raster.S` line 425,
@@ -468,7 +468,7 @@ Same conventions as the section above. A word that is a store but carries no imm
   (`r222` = 1, register 0x13), after the predicated stores. The wait is 0x388b. It writes no engine word.
   Which load the move at 0x3884 takes, the external-memory read at 0x387d or the C = 0x1d read at 0x3882, is not
   read from the words. **Inferred:** it reports the recorded error word to board register 0x476
-  ([rm.md](../docs/rm.md#host-interface-registers-on-the-raster-bus)) and clears it.
+  ([rm.md](../devices/rm/README.md#host-interface-registers-on-the-raster-bus)) and clears it.
 
 - `geif.u entry 855` (slot 427, established words, inferred meaning): `mgeb_ClipmapXform` at 0x37f9, `raster.S`
   line 1238, 17 words, takes four operands. Operand 0 only sets the flags (a move with `r220` = 1, 0x37fa). The

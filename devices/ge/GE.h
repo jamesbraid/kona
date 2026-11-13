@@ -3,7 +3,7 @@
  *
  * Scope: the host command tokens a client writes into the pipe and the
  * framing of a command, as seen from IRIX 6.5.30m. The geometry engines'
- * own microcode format is not covered yet (see docs/coverage.md).
+ * own microcode format is not covered yet (see evidence/coverage.md).
  *
  * Labels: ESTABLISHED = read directly from a binary at the cited place;
  * INFERRED = a reading with its reasoning; UNKNOWN = not settled.
@@ -124,7 +124,7 @@
  * commands carry their own counts in a header word, or the firmware
  * computes the length from the header and the current pixel-unpack state
  * (pixel, texel and bitmap images). The grammars of the image, pixel-map,
- * evaluator, display-list and vertex-array commands are in docs/ge.md,
+ * evaluator, display-list and vertex-array commands are in devices/ge/README.md,
  * "Variable-length command grammars"; DRAWTEXELS's header is in RM.h.
  */
 #define KONA_HP_BEGIN(glmode)     (KONA_HP_BEGIN_POINTS + (glmode))
@@ -196,7 +196,7 @@ enum kona_hp_token {
      * meanings from the emitter debug strings). Established: the token map
      * runs `arm_buffer_config` at arm1.u 0x0c0131a0. Sent by libGLcore.so
      * kona_writeconfig (kon_context.s); first example in
-     * docs/inventory/tokens.tsv is __glKonCreateContext. */
+     * evidence/inventory/tokens.tsv is __glKonCreateContext. */
     KONA_HP_BUFFER_CONFIG                = 0x001,
 
     /* Read at arm1.u arm_pack 0x0c03949c, table pack_cmd 0x0c039538 (16 pairs
@@ -242,7 +242,7 @@ enum kona_hp_token {
      * double-buffer, stereo, multisample, depth, stencil, accumulation,
      * auxiliary count. Established: the token map runs
      * `arm_readbuffer_config` at arm1.u 0x0c013650. Sent by libGLcore.so
-     * kona_readconfig (kon_context.s); docs/opengl.md names it. */
+     * kona_readconfig (kon_context.s); software/opengl/opengl.md names it. */
     KONA_HP_READBUFFER_CONFIG            = 0x004,
 
     /* Engine handlers whose slots the code of `arm_bitmap_dlist` loads, in
@@ -3607,7 +3607,7 @@ enum kona_hp_token {
     /* Read at icu_map.tsv 0x0e2 (0x5847c8c1, count 3); ged_bound_table.tsv
      * index 15; ge_listing/raster.S.lst mgesi_TBUS_1 0x39ab-0x39b7; arm1.u
      * diag_tbus_1 0x0c037ce8 (three pops, three stores to port 0x840);
-     * docs/rm.md Bus modes 2 and 3. */
+     * devices/rm/README.md Bus modes 2 and 3. */
 
     /* `HP_TBUS_1` (0x0e2). Established: Writes a word to the raster bus with
      * an explicit mode. Routed pass token (command 143, 3 words): handler
@@ -4637,7 +4637,7 @@ enum kona_hp_token {
 
     /* Read at icu_map.tsv 0x129; ged_bound_table.tsv idx 51; ge.u xload.S
      * mgebi_XLoadGC 0x4cf4 (operand reads D=0..12 in ge_listing/xload.S.lst);
-     * kona.so kon_loadGC; docs/opengl.md X module drawing commands. */
+     * kona.so kon_loadGC; software/opengl/opengl.md X module drawing commands. */
 
     /* `HP_X_LOADGC` (0x129). Inferred: Map entry 0x5859db41: pass form,
      * command 179, count 13, 32-bit words. Command 179 selects handler-table
@@ -4759,7 +4759,7 @@ enum kona_hp_token {
      * gamma entries. Established: the token map runs `arm_x_loadgamma` at
      * arm1.u 0x0c03d6fc. Sent by kona.so (X module) konStore24DCColors,
      * konInstall24DCColormap, unnamed function at 0x498ff0; setmon (per
-     * docs/dg.md); stores the first payload word at the FIFO pointer + 32 x
+     * devices/dg/README.md); stores the first payload word at the FIFO pointer + 32 x
      * token and the rest at offset 0. */
     KONA_HP_X_LOADGAMMA                  = 0x12f,
 
@@ -4775,7 +4775,7 @@ enum kona_hp_token {
      * 260 image words): cursor slot address (slot x 260), then 260 cursor
      * image words. Established: the token map runs `arm_x_loadcursor` at
      * arm1.u 0x0c03d9c4. Sent by kona.so (X module) konInit (the 9728 site)
-     * and the helper at 0x526140 named in docs/opengl.md:86-89; stores the
+     * and the helper at 0x526140 named in software/opengl/opengl.md:86-89; stores the
      * first payload word at the FIFO pointer + 32 x token and the rest at
      * offset 0. */
     KONA_HP_X_LOADCURSOR                 = 0x130,
@@ -5026,7 +5026,7 @@ enum kona_hp_token {
     KONA_HP_X_UNUSED5                    = 0x140,
 
     /* Read at icu_map.tsv 0x141; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA1` (0x141). Inferred: Map entry 0x58400041: pass form,
@@ -5050,7 +5050,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA1                      = 0x141,
 
     /* Read at icu_map.tsv 0x142; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA2` (0x142). Inferred: Map entry 0x58400081: pass form,
@@ -5076,7 +5076,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA2                      = 0x142,
 
     /* Read at icu_map.tsv 0x143; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA3` (0x143). Inferred: Map entry 0x584000c1: pass form,
@@ -5100,7 +5100,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA3                      = 0x143,
 
     /* Read at icu_map.tsv 0x144; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA4` (0x144). Inferred: Map entry 0x58400101: pass form,
@@ -5123,7 +5123,7 @@ enum kona_hp_token {
      * at +0. */
     KONA_HP_X_DATA4                      = 0x144,
 
-    /* Read at icu_map.tsv 0x145 vs 0x144; docs/opengl.md; kona.so
+    /* Read at icu_map.tsv 0x145 vs 0x144; software/opengl/opengl.md; kona.so
      * kon_loadClipRects. */
 
     /* `HP_X_BDATA4` (0x145). Inferred: Map entry 0x58401101: pass form,
@@ -5141,7 +5141,7 @@ enum kona_hp_token {
     KONA_HP_X_BDATA4                     = 0x145,
 
     /* Read at icu_map.tsv 0x146; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA5` (0x146). Inferred: Map entry 0x58400141: pass form,
@@ -5165,7 +5165,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA5                      = 0x146,
 
     /* Read at icu_map.tsv 0x147; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA6` (0x147). Inferred: Map entry 0x58400181: pass form,
@@ -5189,7 +5189,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA6                      = 0x147,
 
     /* Read at icu_map.tsv 0x148; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA7` (0x148). Inferred: Map entry 0x584001c1: pass form,
@@ -5212,7 +5212,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA7                      = 0x148,
 
     /* Read at icu_map.tsv 0x149; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA8` (0x149). Inferred: map entry 0x58400201 is a pass-form
@@ -5233,7 +5233,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA8                      = 0x149,
 
     /* Read at icu_map.tsv 0x14a; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA9` (0x14a). Inferred: Map entry 0x58400241: pass form,
@@ -5256,7 +5256,7 @@ enum kona_hp_token {
     KONA_HP_X_DATA9                      = 0x14a,
 
     /* Read at icu_map.tsv 0x14b; hw_route.tsv; ged.md how an entry is chosen;
-     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); docs/opengl.md
+     * ge_handlers.md mgesi_BshRegisterWrite (words 0-2); software/opengl/opengl.md
      * remainder rule. */
 
     /* `HP_X_DATA10` (0x14b). Inferred: Map entry 0x58400281: pass form,
@@ -6108,7 +6108,7 @@ enum kona_hp_token {
      * from 0x183 on so vertex data go to the right handlers. Payload 1: A key
      * word describing which client arrays are enabled: vertex, normal,
      * colour, texture-coordinate, index and edge-flag types and component
-     * counts (docs/ge.md table). Established: the token map runs
+     * counts (devices/ge/README.md table). Established: the token map runs
      * `arm_varray_set_cmds` at arm1.u 0x0c039950. Established: libGLcore.so
      * `update_cmpnd_cmd` stores 1 word after the token. Sent by libGLcore.so
      * update_cmpnd_cmd (kon_vertarray.s 0x0d95af20, li 384). */
@@ -7635,7 +7635,7 @@ enum kona_hp_token {
      * +0x73c. Payload 6: pool page number, offset, length, line length,
      * stride, flags. Established: the token map runs `arm_do_idma` at arm1.u
      * 0x0c022df4. Sent by kona.a(kona_dma.o) kona_idma; libGLcore
-     * SendPixelsToPipe path (docs/ge.md). */
+     * SendPixelsToPipe path (devices/ge/README.md). */
     KONA_HP_DO_IDMA                      = 0x1eb,
 
     /* Read at arm1.u arm_eeprom_op 0x0c01a0ec; eeprom_load 0x0c01a230. */
@@ -7772,7 +7772,7 @@ enum kona_hp_token {
      * and read drawables (halfwords at offset 18 of each, sign-extended).
      * Established: the token map runs `arm_validate_bank` at arm1.u
      * 0x0c013d30. Sent by kona.a(kona_context.o) kona_act_pcx and
-     * KONAvalidateclip (kona_context.s lines near token 500); docs/dg.md line
+     * KONAvalidateclip (kona_context.s lines near token 500); devices/dg/README.md line
      * 48; kona_kern.h lines 142-145. */
     KONA_HP_VALIDATE_BANK                = 0x1f4,
 
@@ -8067,14 +8067,14 @@ enum kona_kpm_spare_token {
  * register shadow mirrors (befsh_addrs[i] in arm1.u, ucode/befshadow.tsv).
  * All 89 agree: 79 names carry exactly the kpm raster index the shadow word
  * holds, the seven PGTG_ZRECT_1.._7 entries are the base register plus one to
- * seven (the suffix rule of docs/rm.md), and the three host-interface names
+ * seven (the suffix rule of devices/rm/README.md), and the three host-interface names
  * HT_PACK_MODE, HT_ODMA_LLEN and HT_ODMA_STRIDE sit on shadow words 0-2, the
  * raster-bus indexes 0x441, 0x455 and 0x456. So 0x210 + i is 0x100 plus the
  * address word's high half 0x110 + i that the ARM sends for that shadow word
- * (docs/rm.md, "The register-write word"). INFERRED: kpm's printing table is
+ * (devices/rm/README.md, "The register-write word"). INFERRED: kpm's printing table is
  * indexed by that high half plus 0x100, which also makes the sixteen spare
  * rows above the names of shadow slots 0x100-0x10f; kpm names only slot 0x10f
- * (PIXELS_STARTGEID). The full table is in docs/rm.md ("Shadow word names").
+ * (PIXELS_STARTGEID). The full table is in devices/rm/README.md ("Shadow word names").
  * The enum below has one enumerator per row (KONA_ plus kpm's name), each
  * with its own comment; the arm1.u functions that write the word sit in a
  * separate paragraph before it.
@@ -8082,7 +8082,7 @@ enum kona_kpm_spare_token {
 
 /* ge_token_comments: shadow rows begin */
 
-/* The 89 enumerators below are shadow words, not host tokens; docs/ge-shadow-words.md
+/* The 89 enumerators below are shadow words, not host tokens; devices/ge/ge-shadow-words.md
  * tabulates each with its register, start-up value, writers and role. */
 
 enum kona_kpm_shadow_row {

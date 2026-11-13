@@ -1,0 +1,54 @@
+window	offset	name	access	sites	binaries	functions	evidence	example	status	doc	section
+command-port	0x0		w4	336	14	KONAdestroyddrn;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;KONAstart;+18 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	devices/ge/GE.h:179	
+hip	0x800208	HIP1_HH_GFIFO_LEVEL;HIP2_HH_GFIFO_LEVEL	r4	14	4	kona_delay_monitor_gfifo;kona_die;kona_flow_await_returned_credits;kona_hiwater_intr;kona_hiwater_timeout	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	devices/hip/HIP.h:348	
+hip	0x800210	HH_GFIFO_HI	w4	2	2	kona_flow_init	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_init	understood	devices/hip/HIP.h:359	
+hip	0x800220	HIP1_HH_INTR_INFO;HIP2_HH_INTR_INFO	r4,w4	6	4	KONAinitialize;kona_die	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	devices/hip/HIP.h:382	
+hip	0x800228	HH_INTR_ACK	w4	4	4	KONAstart;kona_intr_handler	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr_hip2.o):kona_intr_handler	understood	devices/hip/HIP.h:394	
+hip	0x800230	HIP1_HH_INTR_ENABLE;HIP2_HH_INTR_ENABLE	w4	14	4	KONAinitialize;KONAstart;kona_diag_flow;kona_hiwater_intr;kona_lowater_intr	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_diag_flow	understood	devices/hip/HIP.h:404	
+hip	0x800238	HIP1_HH_INTR_STATUS;HIP2_HH_INTR_STATUS	r4,w4	26	10	KONAstart;kona_arm_intr;kona_delay_monitor_gfifo;kona_ge_intr_handler;kona_hiwater_intr;kona_intr_handler;+2 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/hip/HIP.h:415	
+hip	0x800240	HH_ARM_MBOX	r4	4	2	kona_arm_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_arm_intr	understood	devices/hip/HIP.h:451	
+hip	0x800248	HH_SEQID	r4	2	2	kona_video_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_video.o):kona_video_intr	understood	devices/hip/HIP.h:461	
+hip	0x800260	HH_ODMA_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:482	
+hip	0x800268	HIP1_HH_ODMA_POFF;HIP2_HH_ODMA_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:489	
+hip	0x800278	HH_ODMA_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:508	
+hip	0x800298	HH_ODMA_FLUSH	w4	2	2	kona_die	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	devices/hip/HIP.h:538	
+hip	0x8002a0	HH_ODMA2_PNUM	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:545	
+hip	0x8002a8	HIP1_HH_ODMA2_POFF;HIP2_HH_ODMA2_POFF	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:552	
+hip	0x8002b8	HH_ODMA2_TOTAL	r4	2	2	kona_ge_intr	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_intr.o):kona_ge_intr	understood	devices/hip/HIP.h:568	
+hip	0x800300	HH_RESET	r4,w4	16	4	KONAinitialize;kona_flow_await_returned_credits	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_flow.o):kona_flow_await_returned_credits	no-software-dependency	devices/hip/HIP.h:589	
+hip	0x800390	HIP1_HH_FCI_ERR_STAT1;HIP2_HH_GV_ERR_STAT1	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/hip/HIP.h:736	
+hip	0x800398	HIP1_HH_FCI_ERR_STAT2;HIP2_HH_GV_ERR_STAT2	w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/hip/HIP.h:746	
+hip	0x8003a8	HH_TBUS_STATUS	r4,w4	10	6	kona_callout;kona_die;kona_video_intr	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_crash.o):kona_die	understood	devices/hip/HIP.h:783	
+hip	0x8003c0	HH_VC_ADDRESS	w4	94	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	devices/hip/HIP.h:807	
+hip	0x8003d0	HH_VC_DATA	r4,w4	98	6	kona_attach;kona_enable_dac_cursor;kona_nclops_bind;kona_nclops_configure;kona_nclops_destroy;kona_nclops_discover;+3 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	devices/hip/HIP.h:827	
+hip-alias	0xc00108		w4	138	18	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAschedmgrswapbuf;KONAschedswapbuf;KONAsetdisplaymode;+15 more	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	devices/hip/HIP.h:78	
+user-fifo	0x0		w4,w8	17348	6	ChannelRect;ChannelRectSync;CopyConvIsOverlapped;CopyIsOverlapped;DoDrawPixelsOrTexels;Error;+414 more	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:ChannelRect	understood	devices/ge/GE.h:179	
+user-io	0xc00c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:122	
+user-io	0xc014		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:130	
+user-io	0xc01c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:137	
+user-io	0xc024		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:145	
+user-io	0xc02c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:153	
+user-io	0xc034		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:161	
+user-io	0xc03c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:169	
+user-io	0xc064		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:177	
+user-io	0xc06c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/xg/README.md#the-rest-of-the-window	The rest of the window
+user-io	0xc074		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:194	
+user-io	0xc07c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	understood	devices/hip/HIP.h:203	
+user-io	0xc084		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	no-software-dependency	devices/hip/HIP.h:211	
+user-io	0xc08c		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	no-software-dependency	devices/hip/HIP.h:219	
+user-io	0xc094		r4	1	1	adapterInspection	user pipe mapping	usr/gfx/KONA/bin/kpm:adapterInspection	no-software-dependency	devices/hip/HIP.h:227	
+user-io	0xc100		r4	12	6	__glkona_wait_rdata;__glkonim_Flush	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glkona_wait_rdata	understood	devices/hip/HIP.h:239	
+user-io	0x1fce00		r4	6	6	__glXInitThread	user pipe mapping	usr/gfx/arch/IP27KONA/libGL.so:__glXInitThread	understood	devices/hip/HIP.h:247	
+user-io	0x1fce90		r4	4	4	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA/libGLcore.so:__glSoftResetContext	understood	devices/hip/HIP.h:255	
+user-io	0x1fce98		r8	2	2	__glSoftResetContext	user pipe mapping	usr/gfx/arch/IP27KONA64/libGLcore.so:__glSoftResetContext	understood	devices/hip/HIP.h:262	
+xg	0x4		r4	2	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	devices/xg/XG.h:67	
+xg	0x24		r4,w4	8	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:89	
+xg	0x2c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:112	
+xg	0x34		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:118	
+xg	0x3c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:123	
+xg	0x5c		w4	2	2	kona_reset_adaptor	accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:143	
+xg	0x64		r4	4	2	kona_attach	accessor gfx_pio_read_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_attach	understood	devices/xg/XG.h:158	
+xg	0x6c		r4,w4	8	2	kona_report_errs;kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_report_errs	understood	devices/xg/README.md#the-rest-of-the-window	The rest of the window
+xg	0x74		r4,w4	4	2	kona_reset_adaptor	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_edtinit_hip2.o):kona_reset_adaptor	understood	devices/xg/XG.h:230	
+xg	0x7c		r4,w4	166	20	KONAdestroyddrn;KONAmapgfx;KONApcxswap;KONAreleasegfxsema;KONAresume;KONAschedmgrswapbuf;+20 more	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_context.o):KONApcxswap	understood	devices/xg/XG.h:244	
+xg	0x100000		r4,w4	4	2	kona_mapram_init	accessor gfx_pio_read_32;accessor gfx_pio_write_32	usr/cpu/sysgen/IP27boot/kona.a(kona_mapram_hip2.o):kona_mapram_init	understood	devices/xg/XG.h:56	

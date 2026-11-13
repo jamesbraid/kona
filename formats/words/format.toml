@@ -3,7 +3,7 @@ unit = "words"
 prefix = "WORD"
 title = "multi-field words of the host command stream"
 doc = "Bit layouts of the multi-field words of the host command stream, and the engine command descriptor values."
-from = "back-end definitions table, docs/command-table.md sections 4.2, 7.4, 7.6, 7.7, 7.8, 7.10, 7.13 and 7.17"
+from = "back-end definitions table, formats/token/command-table.md sections 4.2, 7.4, 7.6, 7.7, 7.8, 7.10, 7.13 and 7.17"
 
 [c]
 legacy_header = "KONA_WORDS_DECODE.h"

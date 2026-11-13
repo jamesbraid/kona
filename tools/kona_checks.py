@@ -1,6 +1,6 @@
 """kona-specific checks for the hardware definitions in devices/ and formats/.
 
-docs/command-table.md owns the token numbers. The query tokens (section 2.13)
+formats/token/command-table.md owns the token numbers. The query tokens (section 2.13)
 and every other processor-run or routed token (sections 2 and 3) must appear
 in formats/query/format.toml and formats/token/format.toml with the table's value and grade, and
 the generated Rust must carry the same constants.
@@ -16,7 +16,7 @@ forwarding headers at the old *_DECODE.h paths.
 """
 import re
 
-TABLE = "docs/command-table.md"
+TABLE = "formats/token/command-table.md"
 ROW = re.compile(r"^\| (0x[0-9a-f]{3}) \|")
 RUST_CONST = re.compile(r"pub const (\w+): \w+ = (0x[0-9a-fA-F_]+|\d+);")
 FILES = {"query": "KONA_QUERY_DECODE.h", "token": "KONA_TOKEN_DECODE.h"}
