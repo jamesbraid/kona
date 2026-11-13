@@ -1,12 +1,8 @@
-# Imported from KONA_QUERY_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_QUERY_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "query"
 prefix = "KONA_QUERY"
 title = "host query tokens of the InfiniteReality2 pipe"
 from = "back-end definitions table, formats/token/command-table.md section 2.13"
-
-[c]
-legacy_header = "KONA_QUERY_DECODE.h"
-legacy_guard = "KONA_QUERY_DECODE_H"
 
 [constants]
 BOARD_CONFIGURATION_BLOCK = { value = 0x1e9, grade = "established" }

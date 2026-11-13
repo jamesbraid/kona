@@ -1,13 +1,9 @@
-# Imported from KONA_DAC_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_DAC_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "dac"
 prefix = "DAC"
 title = "video DAC and encoder ports on the display bus"
 doc = "Video DAC and encoder ports of the display bus."
 from = "back-end definitions table, formats/token/command-table.md sections 6.2 and 6.6"
-
-[c]
-legacy_header = "KONA_DAC_DECODE.h"
-legacy_guard = "KONA_DAC_DECODE_H"
 
 [registers.index]
 offset = 0xb00

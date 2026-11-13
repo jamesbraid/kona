@@ -1,13 +1,9 @@
-# Imported from KONA_XMAP_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_XMAP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "xmap"
 prefix = "XMAP"
 title = "XMAP registers and the words written through them"
 doc = "XMAP direct registers, indirect-memory ports and the words written through them."
 from = "back-end definitions table, formats/token/command-table.md sections 6.3, 6.4 and 7.1 to 7.5"
-
-[c]
-legacy_header = "KONA_XMAP_DECODE.h"
-legacy_guard = "KONA_XMAP_DECODE_H"
 
 [spaces.xmap_regs]
 unit = "reg"

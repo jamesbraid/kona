@@ -1,12 +1,8 @@
-# Imported from KONA_TOKEN_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_TOKEN_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "token"
 prefix = "KONA_TOKEN"
 title = "host command tokens of the InfiniteReality2 pipe (all but queries)"
 from = "back-end definitions table, formats/token/command-table.md sections 2 and 3"
-
-[c]
-legacy_header = "KONA_TOKEN_DECODE.h"
-legacy_guard = "KONA_TOKEN_DECODE_H"
 
 [constants]
 1D_TEXTURE_IMAGE_LOAD = { value = 0xf, grade = "established" }

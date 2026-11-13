@@ -59,7 +59,6 @@
       "README.md"
     ],
     "headers": [
-      "*.h",
       "devices/*/*.h",
       "software/*/include/*.h"
     ],

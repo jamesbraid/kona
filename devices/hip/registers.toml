@@ -1,13 +1,9 @@
-# Imported from KONA_HIP_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_HIP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "hip"
 prefix = "HIP"
 title = "host-interface registers"
 doc = "Host-interface chip registers: the interrupt status register and its cause bits."
 from = "devices/hip/README.md interrupt table"
-
-[c]
-legacy_header = "KONA_HIP_DECODE.h"
-legacy_guard = "KONA_HIP_DECODE_H"
 
 [spaces.arm]
 

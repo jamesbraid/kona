@@ -1,12 +1,8 @@
-# Imported from KONA_DISPREQ_DECODE.h. Review the sources and grades, then maintain by hand.
+# Imported from the former KONA_DISPREQ_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "dispreq"
 prefix = "DISPREQ"
 title = "display-generator request numbers"
 from = "back-end definitions table, formats/token/command-table.md section 5"
-
-[c]
-legacy_header = "KONA_DISPREQ_DECODE.h"
-legacy_guard = "KONA_DISPREQ_DECODE_H"
 
 [constants]
 AUTO_INITIALISE_FROM_STORED_COMBINATION = { value = 0x2d, grade = "established" }

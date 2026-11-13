@@ -140,7 +140,7 @@ left out, and so are the per-batch instruction readings, which the last line cov
 
 ## Hardware definitions
 
-The register, token and word layouts decoded so far are described once, in TOML: `devices/<unit>/registers.toml` for each chip or board unit and `formats/<name>/format.toml` for each software data structure, every item with a grade (established, inferred or unknown) and a source. `generated/` holds what is generated from them: C headers, a Rust crate, Python decode helpers, flat JSON and a genxml export, and `registers.md` (`format.md`) beside each source is the reference page for the unit. Do not edit `generated/`; edit the TOML and run `retools/tools/defs/defs-gen`. The `KONA_*_DECODE.h` files at the root are forwarding headers for the old include paths. `retools/tools/defs/ci-check` runs the checks CI runs.
+The register, token and word layouts decoded so far are described once, in TOML: `devices/<unit>/registers.toml` for each chip or board unit and `formats/<name>/format.toml` for each software data structure, every item with a grade (established, inferred or unknown) and a source. `generated/` holds what is generated from them: C headers, a Rust crate, Python decode helpers, flat JSON and a genxml export, and `registers.md` (`format.md`) beside each source is the reference page for the unit. Do not edit `generated/`; edit the TOML and run `retools/tools/defs/defs-gen`. `retools/tools/defs/ci-check` runs the checks CI runs.
 
 ## Running the tools and reproducing a result
 
