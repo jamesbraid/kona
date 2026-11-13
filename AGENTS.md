@@ -50,9 +50,9 @@ DWARF status is what `retools/tools/kona/map_binaries.py` reported on the primar
 
 Other public sources in this repository:
 
-- `linux/`: the IP27 platform code for the crossbar and widget side only, with no KONA driver. `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets and the widget identity table, which names part 0xc102 as KONA and has IP35 chip entries), `arch/mips/include/asm/sn/klconfig.h` (`KLTYPE_GFX_KONA`, `KLSTRUCT_GFX`, `lboard_t` and `klinfo_t` layouts), `arch/mips/include/asm/sn/addrs.h` and `arch/mips/include/asm/mach-ip27/spaces.h` (node and widget window addresses, 16 MB per widget), `arch/mips/sgi-ip27/ip27-xtalk.c` and `ip27-klconfig.c` (widget probe and configuration walk), and `arch/mips/pci/pci-xtalk-bridge.c`. Linux has no Origin 350 (IP35) platform; its IP35 names are widget identity entries only. Fetch it shallow: `git submodule update --init --depth 1 linux`.
+- `references/code/linux/`: the IP27 platform code for the crossbar and widget side only, with no KONA driver. `arch/mips/include/asm/xtalk/xwidget.h` (widget header offsets and the widget identity table, which names part 0xc102 as KONA and has IP35 chip entries), `arch/mips/include/asm/sn/klconfig.h` (`KLTYPE_GFX_KONA`, `KLSTRUCT_GFX`, `lboard_t` and `klinfo_t` layouts), `arch/mips/include/asm/sn/addrs.h` and `arch/mips/include/asm/mach-ip27/spaces.h` (node and widget window addresses, 16 MB per widget), `arch/mips/sgi-ip27/ip27-xtalk.c` and `ip27-klconfig.c` (widget probe and configuration walk), and `arch/mips/pci/pci-xtalk-bridge.c`. Linux has no Origin 350 (IP35) platform; its IP35 names are widget identity entries only. Fetch it shallow: `git submodule update --init --depth 1 references/code/linux`.
 - No open KONA driver exists that we know of: the Linux, OpenBSD and GXemul trees checked here have no code that drives InfiniteReality beyond widget identity and board-type constants, so every register and command finding rests on the shipped IRIX binaries, published documents and captures.
-- `docs/sources/`: full copies of the published patents, papers, technical reports, manuals, datasheets and web pages that [docs/published-sources.md](docs/published-sources.md) cites for InfiniteReality and InfiniteReality2, one entry each with its SHA-256 in [docs/sources/README.md](docs/sources/README.md). These are published designers' statements (labelled "established (published)" or "inferred" as that file says), not vendor source. The `sgi-docs/` submodule holds only IRIS GL manuals and no InfiniteReality hardware document, so nothing is skipped on its account.
+- `docs/sources/`: full copies of the published patents, papers, technical reports, manuals, datasheets and web pages that [docs/published-sources.md](docs/published-sources.md) cites for InfiniteReality and InfiniteReality2, one entry each with its SHA-256 in [docs/sources/README.md](docs/sources/README.md). These are published designers' statements (labelled "established (published)" or "inferred" as that file says), not vendor source. The `references/code/sgi-docs/` submodule holds only IRIS GL manuals and no InfiniteReality hardware document, so nothing is skipped on its account.
 
 ---
 
@@ -90,13 +90,13 @@ Local headers capture internal driver structures:
 
 Install these on your workstation:
 
-- **`dwarfdump`**: build `libdwarf-code` (submodule) so that `libdwarf-code/build/src/bin/dwarfdump/dwarfdump` exists. It parses SGI MIPS DWARF-2.
+- **`dwarfdump`**: build the `references/code/libdwarf` submodule so that `references/code/libdwarf/build/src/bin/dwarfdump/dwarfdump` exists. It parses SGI MIPS DWARF-2.
 - **MIPS cross binutils**: `objdump`, `readelf`, `nm`, `gcc` for a big-endian MIPS target, normally `mips-unknown-linux-gnu-`. The scripts also accept `mips64-linux-gnuabi64-` and `mips-linux-gnu-`; set `MIPS_OBJDUMP` or `MIPS_READELF` to name another.
-- **`m2c`**: the assembly-to-C decompiler in the `m2c` submodule, run as `m2c/m2c.py -t mipsn32` (N32) or `-t mips` (o32, 64-bit objects).
-- **`spimdisasm`**: the `spimdisasm` submodule, for object-file disassembly and symbol recovery.
+- **`m2c`**: the assembly-to-C decompiler in the `references/code/m2c` submodule, run as `references/code/m2c/m2c.py -t mipsn32` (N32) or `-t mips` (o32, 64-bit objects).
+- **`spimdisasm`**: the `references/code/spimdisasm` submodule, for object-file disassembly and symbol recovery.
 - **Python 3** with `pyelftools` (the scripts import `elftools`).
 
-Initialise only the submodules you need: `git submodule update --init m2c spimdisasm libdwarf-code`.
+Initialise only the submodules you need: `git submodule update --init references/code/m2c references/code/spimdisasm references/code/libdwarf`.
 
 Tools (from the `retools` submodule: `retools/tools/` shared, `retools/tools/kona/` for this device; run from the repository root, where they find this workspace by the current directory). The files left in `scripts/` are this repository's own data and config:
 
