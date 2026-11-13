@@ -1052,7 +1052,7 @@ Framing common to all eight (**established**, `kona_tport.o` 0x0-0xccc). The fun
 
 Every sequence starts with the same word, 1, then a sub-command number, then its payload. No count word is sent; the payload length is fixed per sub-command. **Inferred:** word 1 is the textport's single entry token and the second word selects the operation. `GE.h` lists token 0x001 as `HP_BUFFER_CONFIG` for the geometry command set; whether the display-ARM textport image dispatches the same word differently is **unknown** ([tport.md](../ucode/tport.md) records the textport token as not identified; the kernel's constants settle token 1 and sub-commands 1 to 6, 8,
 9, 10, 12; sub-commands 7 and
-11 are **unknown**, not used by any function in these objects). The IO6 PROM sends sub-command 7 with two masked arguments; see [textport.md](../../platforms/ir/textport.md).
+11 are **unknown**, not used by any function in these objects). Sub-command 7 is sent by no kernel routine; see [textport.md](../../platforms/ir/textport.md).
 
 - `kona_setcolor` (`kona_tport.o` 0x0): argument color (a1). Sends 1,
   2, color. **Established** (0xb4-0xd4). Void.

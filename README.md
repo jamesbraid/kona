@@ -46,7 +46,7 @@ left out, and so are the per-batch instruction readings, which the last line cov
 - [devices/hip/README.md](devices/hip/README.md): Host interface as the kernel driver shows it: DMA and interrupts
 - [devices/dg/README.md](devices/dg/README.md): DG: how the kernel driver reaches the display generator
 - [devices/xg/README.md](devices/xg/README.md): XG attach and reset sequence as the kernel driver runs it
-- [platforms/ir/textport.md](platforms/ir/textport.md): The textport command port as the IO6 PROM speaks it, against the kernel driver's calls
+- [platforms/ir/textport.md](platforms/ir/textport.md): The textport command port: the kernel driver's calls against the pipe's handler
 - [devices/rm/README.md](devices/rm/README.md): Raster manager boards and texture memory, from the IR diagnostics
 - [devices/ge/README.md](devices/ge/README.md): How the ARM firmware starts, feeds and saves the geometry engines
 - [devices/ge/ge-arm-tokens.md](devices/ge/ge-arm-tokens.md): ARM-run host tokens, read one by one

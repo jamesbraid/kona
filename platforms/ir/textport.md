@@ -1,95 +1,69 @@
-# Textport: the command port as the IO6 PROM speaks it
+# Textport: the command port
 
 The textport is the console path the pipe uses before any X server or GL client
 runs. Its command port is the flow-controlled window offset `0xc10000`
-(`XG_FC_GFX`, see [xg.md](../../devices/xg/README.md)). Two callers write to it: the kernel driver,
-whose routines are in [kernel.md](../../software/kernel/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit),
-and the IO6 PROM, whose fuller grammar is below.
+(`XG_FC_GFX`, see [xg.md](../../devices/xg/README.md)). The kernel driver writes
+to it with the routines in
+[kernel.md](../../software/kernel/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit),
+and the pipe's EEPROM boot program answers it, as read in
+[tport.md](../../software/ucode/tport.md#textport-command-handler).
 
-Every row and rule here is **inferred**. It is what the PROM code sends and waits
-for, read from the PROM image's disassembly and symbol table. It is a software
-expectation, not a measurement of the pipe. The PROM image is not on the IRIX
-6.5.30 media this workspace reads, so these readings are **unverified** against
-it here. The kernel column comes from the kernel routines already documented in
-[kernel.md](../../software/kernel/kernel.md).
+This page only lines the two sides up. Every sender fact is read from the
+kernel objects and every receiver fact from `tport.bin`, both in the 6.5.30m
+files the cited pages already document, and is graded there. A second sender,
+the node PROM, is not covered: no PROM image is among the files this
+workspace reads, so nothing about how the PROM drives the port is recorded.
 
 ## Wire shape
 
-A command is one word `1`, then a command code, then its arguments. There is no
-count word. The payload length is fixed for each code, except code `0xa`, which
-has its own header.
+**Established** (the kernel senders, `kona_tport.o` 0x0-0xccc, and the pipe's
+handler, `tport.bin` +0xed40). A command is one word `1`, then a sub-command
+number, then that sub-command's operands. There is no count word; the
+operand count is fixed for each number except 10, which has its own header.
 
-Before each command the PROM waits until `(window+0x800208) & 0x7fe` is zero. It
-polls at most 5000 times with no delay between polls. The reading does not record
-what the PROM does when the cap runs out.
-
-| Code | Arguments | Kernel routine with the same shape |
+| Number | Kernel sender and operands | Pipe handler (`tport.bin`) |
 |---|---|---|
-| `1` | `x` | `kona_unblank` sends `1, 1, 0`. The meaning of `x` is not recorded. |
-| `2` | `x`, a colour value | `kona_setcolor`: `1, 2, color` |
-| `3` | `a, b<<2, c<<2, d<<2` | `kona_mapcolor`: `1, 3, index, r<<2, g<<2, b<<2` |
-| `4` | `a, b` | `kona_movechar`: `1, 4, x, y` |
-| `5` | `max(a-1,0), max(b-1,0), c, d` | `kona_box`: `1, 5`, with the low edges lowered by one and clamped at zero |
-| `6` | `a, b` | `kona_point`: `1, 6, x, y` |
-| `7` | `a & ~3, b & ~3` | None. The kernel never sends code 7. |
-| `8` | `width, height` | `kona_tportinit`: `1, 8, xsize, ysize` |
-| `9` | `0` | `kona_alive`: `1, 9, 0`. One reply word, `0x1234abcd`. |
-| `0xa` | six signed halfwords, then a packed bitmap | `kona_bitmap`: `1, 10`, then the same header and packing |
-| `0xc` | `0` | `get_graphics_info`: `1, 12, 0`. Five reply words. |
+| 1 | `kona_unblank`: `1, 1, 0` | blank or unblank channel 0 by the flag (+0xeba4) |
+| 2 | `kona_setcolor`: `1, 2, color` | set the drawing colour index (+0xeb48) |
+| 3 | `kona_mapcolor`: `1, 3, index, r<<2, g<<2, b<<2` | define a colour-table entry (+0xeb50) |
+| 4 | `kona_movechar`: `1, 4, x, y` | set the text position (+0xebb8) |
+| 5 | `kona_box`: `1, 5`, low edges lowered by one and clamped at zero | order each pair, draw a rectangle (+0xeb70) |
+| 6 | `kona_point`: `1, 6, x, y` | draw one primitive in the current colour (+0xeb64) |
+| 7 | none: no kernel routine sends it | move the hardware cursor to x, y (+0xebac) |
+| 8 | `kona_tportinit`: `1, 8, xsize, ysize` | reinitialise the console for that size (+0xec6c) |
+| 9 | `kona_alive`: `1, 9, 0`; one reply word, `0x1234abcd` | mailbox check, reports `0x1234abcd` or `0xdeadbabe` (+0xec94) |
+| 10 | `kona_bitmap`: `1, 10`, six header words, then packed bitmap words | draw a 1-bit glyph at the text position (+0xebc4) |
+| 12 | `get_graphics_info`: `1, 12, 0`; five reply words | five-interrupt configuration report (+0xeca8) |
 
-Code 7 is the only code the kernel driver does not send. Its two arguments are
-each masked to a multiple of four, which suggests a grid alignment. Its role is
-not recorded.
+Sub-command 7 is the only one of these the kernel never sends. The pipe-side
+reading above makes it a cursor move, so its role is not open; why the kernel
+does not use it is.
 
-## Drawing entry points
+## Bitmap (number 10)
 
-The PROM calls its drawing routines through one table, in this order: codes 1,
-2, 3, 5, 6, 4, `0xa`, an empty slot, 8, 7.
-
-## Bitmap (code 0xa)
-
-The header is six signed halfwords taken from the caller's descriptor at offsets
-`+0x8`, `+0xa`, `+0xc`, `+0xe`, `+0x10` and `+0x12`. In order they are width,
-height, x origin, y origin, x advance and y advance. The payload is
-`ceil(width*height/32)` words of packed bits. Each source row is padded to 16
-bits, the rows are packed back to back with no row padding, and the most
-significant bit comes first. The kernel's `kona_bitmap` packs the same way
-([kernel.md](../../software/kernel/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit)).
-
-The PROM's symbol table says every bitmap is preceded by a code 4 call that sets
-the origin. Labels then advance from that origin by the header's advance values,
-without a new code 4 for each glyph. This is **inferred** from the symbol's
-description, not from the code that does it. It fits the kernel's `kona_movechar`
-role, which is also recorded as inferred.
+The header is six words: width, height, x origin, y origin, x advance and y
+advance, each a sign-extended halfword of the caller's glyph record. The
+packing of the bitmap words that follow is **established** in the `kona_bitmap`
+entry of [kernel.md](../../software/kernel/kernel.md#textport-drawing-kona_setcolor-kona_mapcolor-kona_point-kona_box-kona_unblank-kona_movechar-kona_bitmap-kona_tportinit).
 
 ## Reply words
 
-The PROM reads reply words from the ARM mailbox one at a time. For each word it:
-
-1. polls window `0x800238` for bit `0x10`, waiting two ticks between polls, up to
-   the cap. A cap of 0 means the default of 5000;
-2. on a hit, reads `0x800240`, writes 0 to `0x800240`, then writes `0x10` to
-   `0x800238` to acknowledge; and
-3. stores the word.
-
-If one word never arrives, the read returns `-1` at once and does not read the
-rest. The sync probe (code 9) uses a cap of 100 on its first attempt. Graphics
-info (code 0xc) uses the default cap.
-
-The kernel's `receive_armdata` does the same steps but waits `us_delay(100)`
-between polls, and its `kona_alive` uses a larger first poll count. The
-difference is the spacing and the first-poll count, not the protocol.
+The reply loop is `receive_armdata` in `kona_tport.o` (0xce8, **established**
+0xd2c-0xd88, see [kernel.md](../../software/kernel/kernel.md#textport-control-and-discovery-kona_alive-receive_armdata-kona_getdesc-get_graphics_info-kona_earlyinit-find_konapipe)).
+For each word it polls window `0x800238` for bit `0x10`, then reads `0x800240`,
+writes 0 to `0x800240` and writes `0x10` to `0x800238`. A timeout returns
+-1 and leaves the words already read in the buffer.
 
 ## Open
 
-- What the PROM does when the FIFO wait hits its cap. The reading does not say.
-- Whether the PROM brackets its words with the kick sequence at `0xc00108`
-  ([kernel.md](../../software/kernel/kernel.md)). The reading does not say.
-- The meaning of code 1's argument, and the role of code 7. Neither is
-  recorded.
+- How the node PROM drives this port: its FIFO wait, retry limits, reply
+  polling and any use of the kick at `0xc00108`. Route: read a published PROM
+  image, which is not on the 6.5.30 media.
+- The role of the first reply words of sub-command 12 (indexes 0 to 2), which
+  the kernel reads and discards.
 - A separate reading claims the kernel's `get_graphics_info` checks reply words
-  1 and 2 for a negative value (errors 0x500 and 0x400) and never reads words 3
-  and 4. The disassembly in `software/kernel/disasm/kona_tport/kona_tport.text.s`
-  (`glabel get_graphics_info`) does not show that: it loads word 3 as the width
-  and word 4 as the height, with 1280 and 1024 as the fallbacks, as
-  [kernel.md](../../software/kernel/kernel.md) says. That separate reading is not used here.
+  1 and 2 for a negative value and never reads words 3 and 4. The disassembly in
+  `software/kernel/disasm/kona_tport/kona_tport.text.s` (`glabel
+  get_graphics_info`) does not show that: it loads word 3 as the width and
+  word 4 as the height, with 1280 and 1024 as the fallbacks, as
+  [kernel.md](../../software/kernel/kernel.md) says. That reading is not used here.
