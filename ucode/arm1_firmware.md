@@ -129,7 +129,7 @@ The rest of kpm's table names the ARM's address map rather than registers: `HA_S
 Three shapes **established** from code:
 
 - **Single command.** `arm_cullface`: read the value (r9 + 0x3c), keep it in RAM (r8 + 0x258), store it to port 0x478, then store the low half of the packed word at r8 + 0x4c (slot 3, `mgeb_CullFace`) to 0x8c0.
-- **Register write through the engines.** `tbus_regwrite(reg, value)` (0x0c015298): reg to 0x474, value to 0x840, slot 107 to 0x8c0. The firmware reaches the raster-board registers (the numbers 0x400-0x477 it writes in `start_rdata`, `finish_rdata`, `check_pipe_sync`, `init_tf`, `init_tm`, `init_imp`) only this way. **Inferred:** the engine handler forwards the word to the raster boards' register bus (the "tbus"); the register map is [RM.h](../RM.h).
+- **Register write through the engines.** `tbus_regwrite(reg, value)` (0x0c015298): reg to 0x474, value to 0x840, slot 107 to 0x8c0. The firmware reaches the raster-board registers (the numbers 0x400-0x477 it writes in `start_rdata`, `finish_rdata`, `check_pipe_sync`, `init_tf`, `init_tm`, `init_imp`) only this way. **Inferred:** the engine handler forwards the word to the raster boards' register bus (the "tbus"); the register map is [RM.h](../devices/rm/RM.h).
 - **Bulk copy.** `load_broadcast_geEram` (0x0c020c04) selects all engines (0x438), forwards the first word, stores `(n-1) | 0xc000000` to 0x200058 and waits for it to drain, so the words go from the host FIFO to the engines' external memory in chunks of up to 0x200 with no ARM loop, then stores slot 131 to 0x8c0.
 
 ### Descriptor port (r9 + 0x400)

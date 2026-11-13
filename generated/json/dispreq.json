@@ -1,0 +1,1999 @@
+{
+ "schema": "defs-flat/1",
+ "source": "formats/dispreq/format.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "AUTO_INITIALISE_FROM_STORED_COMBINATION",
+   "value": 45,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "AUTO_INITIALISE_FROM_STORED_COMBINATION_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BIND_A_CHANNEL_TO_A_WINDOW_ID",
+   "value": 52,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BIND_A_CHANNEL_TO_A_WINDOW_ID_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_CONFIGURATION_READ",
+   "value": 18,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_CONFIGURATION_READ_REPLY_BYTES",
+   "value": 20,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_CONFIGURATION_READ_REPLY_TYPE",
+   "value": 6,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_CONFIGURATION_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_READ",
+   "value": 73,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_READ_REPLY_TYPE",
+   "value": 22,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_SET",
+   "value": 72,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BOARD_RESET_RATIO_SET_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS",
+   "value": 86,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS_READ",
+   "value": 87,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS_READ_REPLY_BYTES",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS_READ_REPLY_TYPE",
+   "value": 29,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUFFER_PARAMETERS_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUS_TRACE",
+   "value": 5,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "BUS_TRACE_WORDS",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_READ",
+   "value": 32,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_READ_REPLY_TYPE",
+   "value": 9,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_SET",
+   "value": 31,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_BLANKING_SET_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_CONFIGURATION_READ",
+   "value": 19,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_CONFIGURATION_READ_REPLY_BYTES",
+   "value": 76,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_CONFIGURATION_READ_REPLY_TYPE",
+   "value": 7,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_CONFIGURATION_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_ENABLES_READ",
+   "value": 66,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_ENABLES_READ_REPLY_BYTES",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_ENABLES_READ_REPLY_TYPE",
+   "value": 19,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_ENABLES_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_READ",
+   "value": 71,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_READ_REPLY_TYPE",
+   "value": 21,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_SET",
+   "value": 70,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FIELD_DOMINANCE_SET_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FORMAT_INFORMATION_READ",
+   "value": 74,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FORMAT_INFORMATION_READ_REPLY_BYTES",
+   "value": 20,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FORMAT_INFORMATION_READ_REPLY_TYPE",
+   "value": 23,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_FORMAT_INFORMATION_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_READ",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_READ_REPLY_TYPE",
+   "value": 5,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_SELECT",
+   "value": 15,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_SELECT_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_READ",
+   "value": 76,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_READ_REPLY_BYTES",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_READ_REPLY_TYPE",
+   "value": 24,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_SET",
+   "value": 75,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_GAMMA_MAP_STATE_SET_WORDS",
+   "value": 5,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESET_RATIOS",
+   "value": 64,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESET_RATIOS_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE",
+   "value": 20,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE_READ",
+   "value": 21,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE_READ_REPLY_BYTES",
+   "value": 72,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE_READ_REPLY_TYPE",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CHANNEL_RESIZE_WORDS",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_ANOTHER_CHANNEL_OUTPUT",
+   "value": 79,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_ANOTHER_CHANNEL_OUTPUT_WORDS",
+   "value": 7,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_CHANNEL_INFORMATION_READ",
+   "value": 58,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_CHANNEL_INFORMATION_READ_REPLY_BYTES",
+   "value": 24,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_CHANNEL_INFORMATION_READ_REPLY_TYPE",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COPY_CHANNEL_INFORMATION_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "COUNT",
+   "value": 93,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_CHANNEL_SELECT",
+   "value": 28,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_CHANNEL_SELECT_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_POSITION",
+   "value": 27,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_POSITION_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_PRIORITY",
+   "value": 30,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_PRIORITY_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_TYPE",
+   "value": 29,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "CURSOR_TYPE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DAC_CURSOR_LOAD",
+   "value": 56,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DAC_CURSOR_LOAD_WORDS",
+   "value": 263,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_READ",
+   "value": 89,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_READ_REPLY_BYTES",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_READ_REPLY_TYPE",
+   "value": 30,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_SET",
+   "value": 88,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DATA_FORMAT_SET_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_CURSOR_FROM_IMAGE",
+   "value": 6,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_CURSOR_FROM_IMAGE_WORDS",
+   "value": 4107,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_SUBSTITUTE_COLOUR_OFF",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_SUBSTITUTE_COLOUR_OFF_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_SUBSTITUTE_COLOUR_SET",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DIAGNOSTIC_SUBSTITUTE_COLOUR_SET_WORDS",
+   "value": 10,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISABLE_A_CHANNEL",
+   "value": 24,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISABLE_A_CHANNEL_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISPLAY_INTERRUPT_STATE_READ",
+   "value": 61,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISPLAY_INTERRUPT_STATE_READ_REPLY_BYTES",
+   "value": 12,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISPLAY_INTERRUPT_STATE_READ_REPLY_TYPE",
+   "value": 17,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DISPLAY_INTERRUPT_STATE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DOUBLE_FREQUENCY_PIXEL_OPTION",
+   "value": 90,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "DOUBLE_FREQUENCY_PIXEL_OPTION_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENABLE_A_CHANNEL",
+   "value": 23,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENABLE_A_CHANNEL_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENABLE_GENLOCK",
+   "value": 26,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENABLE_GENLOCK_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_ENABLE",
+   "value": 77,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_ENABLE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_LOAD",
+   "value": 46,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_LOAD_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN",
+   "value": 47,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN_READ",
+   "value": 48,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN_READ_REPLY_TYPE",
+   "value": 14,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_OUTPUT_GAIN_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_TEST_PATTERN",
+   "value": 51,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "ENCODER_TEST_PATTERN_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FAST_LIST_CHUNK_SIZE",
+   "value": 59,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FAST_LIST_CHUNK_SIZE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FIELD_DOMINANCE_AND_COPY_FLAGS",
+   "value": 57,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FIELD_DOMINANCE_AND_COPY_FLAGS_WORDS",
+   "value": 7,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FIRMWARE_DEBUG_PRINT_MASK",
+   "value": 7,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FIRMWARE_DEBUG_PRINT_MASK_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FRAME_BUFFER_TILE_SET_UP",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "FRAME_BUFFER_TILE_SET_UP_WORDS",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_READ",
+   "value": 69,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_READ_REPLY_TYPE",
+   "value": 20,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_SET",
+   "value": 68,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "GENLOCK_SWITCHING_SET_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_READ",
+   "value": 12,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_READ_REPLY_TYPE",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_SET",
+   "value": 11,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "HORIZONTAL_PHASE_SET_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_READ",
+   "value": 10,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_READ_REPLY_TYPE",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_SELECT",
+   "value": 9,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INPUT_SYNC_SOURCE_SELECT_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_READ",
+   "value": 85,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_READ_REPLY_TYPE",
+   "value": 28,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_SET",
+   "value": 84,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "INTERNAL_GENLOCK_SET_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_A_VIDEO_FORMAT",
+   "value": 22,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_A_VIDEO_FORMAT_WORDS",
+   "value": 383,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_BOARD_LOGIC_SERIALLY",
+   "value": 53,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_BOARD_LOGIC_SERIALLY_WORDS",
+   "value": 1328,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_GENLOCK_PARAMETERS",
+   "value": 25,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOAD_GENLOCK_PARAMETERS_WORDS",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOOP_BACK_TEST",
+   "value": 0,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOOP_BACK_TEST_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOOP_BACK_TEST_REPLY_TYPE",
+   "value": 0,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "LOOP_BACK_TEST_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT",
+   "value": 43,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT_READ",
+   "value": 44,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT_READ_REPLY_TYPE",
+   "value": 13,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MASTER_CLOCK_SELECT_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_COMMAND",
+   "value": 81,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_COMMAND_WORDS",
+   "value": 34,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_IDENTITY_QUERY",
+   "value": 80,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_IDENTITY_QUERY_REPLY_BYTES",
+   "value": 68,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_IDENTITY_QUERY_REPLY_TYPE",
+   "value": 25,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "MONITOR_IDENTITY_QUERY_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_CONTROL_REGISTERS",
+   "value": 55,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_CONTROL_REGISTERS_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_LOGIC_IMAGE_LOAD",
+   "value": 82,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_LOGIC_IMAGE_LOAD_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_LOGIC_IMAGE_LOAD_REPLY_TYPE",
+   "value": 27,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_LOGIC_IMAGE_LOAD_WORDS",
+   "value": 6,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_REPLY_READ",
+   "value": 92,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_REPLY_READ_REPLY_BYTES",
+   "value": 164,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_REPLY_READ_REPLY_TYPE",
+   "value": 31,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_REPLY_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_SIZE_REGISTERS",
+   "value": 54,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_SIZE_REGISTERS_WORDS",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_TWO_WIRE_PACKET",
+   "value": 91,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OPTION_BOARD_TWO_WIRE_PACKET_WORDS",
+   "value": 42,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_READ",
+   "value": 34,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_READ_REPLY_TYPE",
+   "value": 10,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_SET",
+   "value": 33,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_GAIN_SET_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_READ",
+   "value": 38,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_READ_REPLY_TYPE",
+   "value": 12,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_SET",
+   "value": 37,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "OUTPUT_PEDESTAL_SET_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "PLACEMENT_RESOLUTION",
+   "value": 67,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "PLACEMENT_RESOLUTION_WORDS",
+   "value": 9,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "READ_A_DISPLAY_BUS_WORD",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "READ_A_DISPLAY_BUS_WORD_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "READ_A_DISPLAY_BUS_WORD_REPLY_TYPE",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "READ_A_DISPLAY_BUS_WORD_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "REBUILD_DEFAULT_DISPLAY_STATE",
+   "value": 17,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "REBUILD_DEFAULT_DISPLAY_STATE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "RESET_THE_RASTER_BOARDS",
+   "value": 65,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "RESET_THE_RASTER_BOARDS_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "RESIZE_SYNC_TYPE",
+   "value": 78,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "RESIZE_SYNC_TYPE_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_READ",
+   "value": 50,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_READ_REPLY_TYPE",
+   "value": 15,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_SET",
+   "value": 49,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SUB_CARRIER_PHASE_SET_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_READ",
+   "value": 36,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_READ_REPLY_BYTES",
+   "value": 24,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_READ_REPLY_TYPE",
+   "value": 11,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_SELECT",
+   "value": 35,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "SYNC_OUTPUT_SELECT_WORDS",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEMPORARY_BLANK_ALL_CHANNELS",
+   "value": 60,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEMPORARY_BLANK_ALL_CHANNELS_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_COLOUR_INDEX_LOAD",
+   "value": 41,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_COLOUR_INDEX_LOAD_WORDS",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_GLYPH_LOAD",
+   "value": 40,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_GLYPH_LOAD_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_ID_ENTRY_INITIALISE",
+   "value": 39,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "TEXT_PORT_ID_ENTRY_INITIALISE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_READ",
+   "value": 14,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_READ_REPLY_TYPE",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_SET",
+   "value": 13,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VERTICAL_PHASE_SET_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VIDEO_OUTPUT_CHIP_READ_BACK_ENABLE",
+   "value": 42,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "VIDEO_OUTPUT_CHIP_READ_BACK_ENABLE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "WINDOW_SYSTEM_VIDEO_INITIALISE",
+   "value": 83,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "WINDOW_SYSTEM_VIDEO_INITIALISE_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "WRITE_A_DISPLAY_BUS_WORD",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "WRITE_A_DISPLAY_BUS_WORD_WORDS",
+   "value": 2,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT",
+   "value": 62,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT_READ",
+   "value": 63,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT_READ_REPLY_BYTES",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT_READ_REPLY_TYPE",
+   "value": 18,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT_READ_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "dispreq",
+   "kind": "constant",
+   "name": "XMAP_CLOCK_SELECT_WORDS",
+   "value": 1,
+   "count": 1,
+   "grade": "established"
+  }
+ ]
+}

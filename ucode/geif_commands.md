@@ -393,7 +393,7 @@ Same conventions as the section above. A word that is a store but carries no imm
   shift result, which the word at 0x39c6 takes from the unit-1 result five words earlier (0x39c1), and 0x1f4 with
   staging word 0x10 (0x39c7). All are unconditional; the wait is 0x39bf. It writes no engine word and sets no
   flag. **Inferred:** a shadowed write to the alpha-function register with mask 0x8000, so the enable bit of that
-  register ([RM.h](../RM.h)) takes operand 0 shifted to bit 15.
+  register ([RM.h](../devices/rm/RM.h)) takes operand 0 shifted to bit 15.
 
 - `geif.u entry 183` (slot 91, established words, inferred meaning): `mgesi_AlphaFunc` at 0x39c8, `raster.S` line
   307, 18 words, takes two operands, the compare function and the reference value. Staged: 0x15b1407 into word 2
@@ -495,5 +495,5 @@ Same conventions as the section above. A word that is a store but carries no imm
   and the NOT twins 0x3820, 0x3833, 0x3847), which [ge_isa.md](ge_isa.md#forms) infers to be second-thread words.
   The closing store sends staging word 0x10 to 0x1f4 (0x384a). The three register numbers are the no-operation
   registers of the three raster chips that [ge_compute.md](ge_compute.md#raster-board-commands-rasters) names
-  (`IMP_NOP`, `TFP_NOP`, `PG_NOP`), **inferred** from [RM.h](../RM.h). The addresses of the stores that carry none,
+  (`IMP_NOP`, `TFP_NOP`, `PG_NOP`), **inferred** from [RM.h](../devices/rm/RM.h). The addresses of the stores that carry none,
   and what the all-ones words select, are not read from the words.

@@ -3,7 +3,7 @@
 [diag-messages.tsv](diag-messages.tsv) lists every call that prints a message in the KONA
 kernel objects of the IP27 build: one row per call site, with the routine, the call address,
 the print routine, the level or tag the call shows, the format string, and the nearest branch
-that jumps over the call. It is written by [scripts/diag_messages.py](../scripts/diag_messages.py).
+that jumps over the call. It is written by [tools/diag_messages.py](../tools/diag_messages.py).
 The hand readings that the table carries are in [diag-messages-reads.tsv](diag-messages-reads.tsv).
 
 ## Scope

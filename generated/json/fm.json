@@ -1,0 +1,247 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/fm/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "swap_strobe",
+   "offset": 128,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "swap_strobe.strobe",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "voc_did",
+   "offset": 129,
+   "access": "w",
+   "width": 32,
+   "count": 8,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "voc_did.did",
+   "hi": 5,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "xwindow",
+   "offset": 139,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "xwindow.reset_ratio",
+   "hi": 22,
+   "lo": 22,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "xwindow.sync_source",
+   "hi": 21,
+   "lo": 20,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "xwindow.x1_inv",
+   "hi": 19,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "xwindow.x0_inv",
+   "hi": 9,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "did_range",
+   "offset": 140,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "did_range.arg_d",
+   "hi": 23,
+   "lo": 19,
+   "grade": "unknown"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "did_range.arg_c",
+   "hi": 18,
+   "lo": 13,
+   "grade": "unknown"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "did_range.size_b",
+   "hi": 12,
+   "lo": 7,
+   "grade": "inferred"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "did_range.size_a",
+   "hi": 6,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "did_status",
+   "offset": 141,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "did_status.shifting",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "clock_select",
+   "offset": 142,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "clock_select.internal",
+   "hi": 23,
+   "lo": 23,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "clock_select.arg_22_20",
+   "hi": 22,
+   "lo": 20,
+   "grade": "unknown"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "clock_select.y1_inv",
+   "hi": 19,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "clock_select.y0_inv",
+   "hi": 9,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "intr_state",
+   "offset": 143,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "fm",
+   "kind": "register",
+   "name": "raster_config",
+   "offset": 144,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "fm_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "raster_config.stuffing",
+   "hi": 10,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "fm",
+   "kind": "field",
+   "name": "raster_config.boards",
+   "hi": 7,
+   "lo": 5,
+   "grade": "established"
+  }
+ ]
+}

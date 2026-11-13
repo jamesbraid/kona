@@ -498,7 +498,7 @@ The other three addresses belong to the display board's option slot, not to the 
 
 ## Commands the driver sends
 
-**Established** (`retools/tools/kona/kernel_commands.py`, output in [kona_kernel/commands.tsv](../kona_kernel/commands.tsv)). The driver writes one token word and then payload words to its command port, between kicks of `HH_GINTR_INFO` ([kona_kern.h](../kona_kernel/include/kona_kern.h) for the kick values and the payload layouts it has settled). Each row of `commands.tsv` is a constant token written by a named function; tokens built from a variable, and the user-supplied groups of the DMA ioctls, are not listed. The 25 distinct tokens (by name, `GED_NOP` included) and their senders, by token name in [GE.h](../GE.h):
+**Established** (`retools/tools/kona/kernel_commands.py`, output in [kona_kernel/commands.tsv](../kona_kernel/commands.tsv)). The driver writes one token word and then payload words to its command port, between kicks of `HH_GINTR_INFO` ([kona_kern.h](../kona_kernel/include/kona_kern.h) for the kick values and the payload layouts it has settled). Each row of `commands.tsv` is a constant token written by a named function; tokens built from a variable, and the user-supplied groups of the DMA ioctls, are not listed. The 25 distinct tokens (by name, `GED_NOP` included) and their senders, by token name in [GE.h](../devices/ge/GE.h):
 
 | Sender | Tokens |
 |---|---|

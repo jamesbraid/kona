@@ -1,6 +1,6 @@
 # HIP: what the kernel driver shows of the host interface
 
-The hardware-visible side of the 6.5.30m kernel driver's DMA and interrupt handling. Register tables and constants are in [HIP.h](../HIP.h); the driver-side structures are in [kernel.md](kernel.md). Facts are labelled **established** (read from the disassembly, function named), **inferred** (reasoning given) or **unknown**. First configuration only: one IP27 Onyx2, one InfiniteReality2 (HIP2, XG) pipe.
+The hardware-visible side of the 6.5.30m kernel driver's DMA and interrupt handling. Register tables and constants are in [HIP.h](../devices/hip/HIP.h); the driver-side structures are in [kernel.md](kernel.md). Facts are labelled **established** (read from the disassembly, function named), **inferred** (reasoning given) or **unknown**. First configuration only: one IP27 Onyx2, one InfiniteReality2 (HIP2, XG) pipe.
 
 Sources: `kona_kernel/disasm/kona_dma/kona_dma.text.s`, the Kona kernel driver assembly unit 2, the Kona stack assembly unit 13, the Kona kernel driver request-dispatch assembly unit (2), and the 6.5.5 installed header the Kona stack header 6 for the ioctl structures.
 
@@ -62,7 +62,7 @@ The caller commands are a list of groups, each one a token word, a count word n 
 
 ## Where the rest of the DMA path is
 
-The XG-side response errors are in [where a failed host DMA is reported](#where-a-failed-host-dma-is-reported) and [XG.h](../XG.h); the diagnostic mapping (the diagnostic map Kona driver request) is in [kernel.md](kernel.md#diagnostic-map-kona_diag_map); the firmware's programming of the input-DMA registers 0x200010-0x200020 is in [DMA pools](#dma-pools) and [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
+The XG-side response errors are in [where a failed host DMA is reported](#where-a-failed-host-dma-is-reported) and [XG.h](../devices/xg/XG.h); the diagnostic mapping (the diagnostic map Kona driver request) is in [kernel.md](kernel.md#diagnostic-map-kona_diag_map); the firmware's programming of the input-DMA registers 0x200010-0x200020 is in [DMA pools](#dma-pools) and [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
 
 **Established** (`kona_nclops.o`, 6.5.30m; its listing has no reference to the DMA code): the multi-pipe network code has no DMA path of its own, it works through display-port writes ([kernel.md](kernel.md#multi-pipe-dplex-display-port-writes)).
 
@@ -70,7 +70,7 @@ How the input-DMA engine walks a request once 0x200020 starts it (burst sizes, o
 
 ## Interrupts
 
-What raises each interrupt, what the kernel does about it and how it acknowledges. Registers are in HIP.h (`HH_INTR_*`), the XG error bits in [XG.h](../XG.h).
+What raises each interrupt, what the kernel does about it and how it acknowledges. Registers are in HIP.h (`HH_INTR_*`), the XG error bits in [XG.h](../devices/xg/XG.h).
 
 ### Delivery
 
@@ -148,7 +148,7 @@ The codes are the 6.5.5 `KONA_GE_*` events (HIP.h).
 
 **Established.** `HH_GFIFO_HI` is set to 0x700 at initialisation. When a sender finds the FIFO fuller than 0x300 entries it calls `kona_hiwater_intr` (from the flow layer, not from the interrupt handler): it first spins up to `P+2328` microseconds reading `HH_GFIFO_LEVEL`. If the level does not fall it writes 3 to `HH_INTR_STATUS`, sets the FIFO_LO bit in the mask (`P+2368 |= 2`, written to `HH_INTR_ENABLE`), re-reads the level and, if still high, arms a software timeout (`kona_hiwater_timeout`, message tag 2102 and `kona_die` reason 6 if the level is still above the threshold when it expires) and gives up the CPU. The FIFO_LO interrupt calls `kona_lowater_intr`, which cancels the timeout, removes the FIFO_LO bit from the mask and clears status bits 0-1.
 
-**Established** (`kona_kernel/registers.tsv`, 6.5.30m): no kernel path writes `HH_GFIFO_LO`, and the firmware cannot reach it; only `irsaudit`'s `TEST_intr` writes it (0). So the kernel runs with whatever the low-water mark holds after reset. **Inferred:** the flow control works for any mark below the kernel's wait level of 0x300 raw, because FIFO_LO rises once the level is at or below the mark and an empty FIFO always raises it ([HIP.h](../HIP.h) at `HH_GFIFO_LO`). The value after reset is **unknown: no shipped software or published source depends on it** beyond that bound; routes tried: the kernel's register accesses, `kpm`'s dump (prints the mark, writes it never), `irsaudit`, the firmware, the 6.5.5 the Kona kernel driver header 1 flow-control notes. A value of 0 is consistent with that bound.
+**Established** (`kona_kernel/registers.tsv`, 6.5.30m): no kernel path writes `HH_GFIFO_LO`, and the firmware cannot reach it; only `irsaudit`'s `TEST_intr` writes it (0). So the kernel runs with whatever the low-water mark holds after reset. **Inferred:** the flow control works for any mark below the kernel's wait level of 0x300 raw, because FIFO_LO rises once the level is at or below the mark and an empty FIFO always raises it ([HIP.h](../devices/hip/HIP.h) at `HH_GFIFO_LO`). The value after reset is **unknown: no shipped software or published source depends on it** beyond that bound; routes tried: the kernel's register accesses, `kpm`'s dump (prints the mark, writes it never), `irsaudit`, the firmware, the 6.5.5 the Kona kernel driver header 1 flow-control notes. A value of 0 is consistent with that bound.
 
 ### Where a failed host DMA is reported
 
@@ -189,7 +189,7 @@ Software timers cover the rest: an input DMA that never completes is `kona_idma_
 
 ### Interrupt facts no software settles
 
-How the pipe decides when to raise PARITY, ODMA, PIO_OV and IDMA_OV beyond what the names say is **unknown: no shipped software or published source depends on it**, with the routes tried at `HH_INTR_STATUS` in [HIP.h](../HIP.h). The XG registers 0x04, 0x24, 0x2c and 0x74 are labelled in [XG.h](../XG.h).
+How the pipe decides when to raise PARITY, ODMA, PIO_OV and IDMA_OV beyond what the names say is **unknown: no shipped software or published source depends on it**, with the routes tried at `HH_INTR_STATUS` in [HIP.h](../devices/hip/HIP.h). The XG registers 0x04, 0x24, 0x2c and 0x74 are labelled in [XG.h](../devices/xg/XG.h).
 
 **Inferred** (HIP.h at `HH_INTR_ACK`, from `irsaudit` `TEST_intr` clearing a status bit without it): the acknowledge write is an end-of-interrupt strobe whose data is ignored; the kernel always writes it after the status write-back, so it may be accepted and need not be required.
 
@@ -448,15 +448,15 @@ What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [ucode/arm1_firmware.md](.
 
 **Established.** The ARM firmware also sends commands to itself and to the engines using the same entry format: it writes an entry-shaped word to a descriptor port and then the payload ([ucode/arm1.md](../ucode/arm1.md)). The host cannot see that path.
 
-**Established** (irsaudit, [above](#the-token-map-seen-from-the-host)): a stream of single 32-bit words at FIFO offset 0 is split by the token map alone: the first word is a token number, a routed entry's count says how many payload words follow, and an ARM-run command ends when the ARM reads its last word at offset 0x3c. **Established as the software's contract** ([GE.h](../GE.h)): a 64-bit store to the FIFO delivers two words, the one at the lower address (the high half of the register) first; libGLcore's vector forms and the X module's copy helpers depend on that order How the Crosstalk write is split inside the host interface is **unknown: no shipped software or published source depends on it** beyond that order (routes tried: libGLcore, `kona.so`, the kernel, irsaudit's 32-bit-only FIFO tests, kpm and the 6.5.5 headers). The FIFO's depth is under `HH_GFIFO_LEVEL` in [HIP.h](../HIP.h), and the divert path in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command): it needs `ICU_CTRL_DHDIVERT`, which no shipped software sets.
+**Established** (irsaudit, [above](#the-token-map-seen-from-the-host)): a stream of single 32-bit words at FIFO offset 0 is split by the token map alone: the first word is a token number, a routed entry's count says how many payload words follow, and an ARM-run command ends when the ARM reads its last word at offset 0x3c. **Established as the software's contract** ([GE.h](../devices/ge/GE.h)): a 64-bit store to the FIFO delivers two words, the one at the lower address (the high half of the register) first; libGLcore's vector forms and the X module's copy helpers depend on that order How the Crosstalk write is split inside the host interface is **unknown: no shipped software or published source depends on it** beyond that order (routes tried: libGLcore, `kona.so`, the kernel, irsaudit's 32-bit-only FIFO tests, kpm and the 6.5.5 headers). The FIFO's depth is under `HH_GFIFO_LEVEL` in [HIP.h](../devices/hip/HIP.h), and the divert path in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md#refused-tokens-beginend-divert-bad-command): it needs `ICU_CTRL_DHDIVERT`, which no shipped software sets.
 
 ## Reset and start of the ARM
 
-**Established** ([HIP.h](../HIP.h) for the register). The reset register `HH_RESET` (0x300) has a host-interface reset bit and an ARM start bit; the register `HH_ARM_CTRL` (0x308) grants the host access to the ARM's memory and `HH_ARM_STATUS` (0x310) reports stall, remap, abort and processor mode, and the register names (`HH_ARM_STALL`, `HH_ARM_UNSTALL`, `HH_ARM_STEP`, `HH_ARM_ADDRESS`, `HH_ARM_DATA`) suggest the host can load, start, stall and single-step the firmware (**inferred** from the names).
+**Established** ([HIP.h](../devices/hip/HIP.h) for the register). The reset register `HH_RESET` (0x300) has a host-interface reset bit and an ARM start bit; the register `HH_ARM_CTRL` (0x308) grants the host access to the ARM's memory and `HH_ARM_STATUS` (0x310) reports stall, remap, abort and processor mode, and the register names (`HH_ARM_STALL`, `HH_ARM_UNSTALL`, `HH_ARM_STEP`, `HH_ARM_ADDRESS`, `HH_ARM_DATA`) suggest the host can load, start, stall and single-step the firmware (**inferred** from the names).
 
 **Established** (the firmware side, `init` and `init_ge_board`). When the ARM starts it clears its RAM window, sets up its exception vectors, reads whether it runs inside a simulator from the first register of its window, scans the boards on the boundary-scan chain, builds the token map, loads the distributor program and tables, downloads the engine start-up stub, configures the raster and display boards and waits for the engines' mailbox handshake (`check_pipe_sync`) before it accepts the first host command. Until then it does not read the token fetch register, so host commands cannot be dispatched (**inferred**: the loop that reads it starts after `init` returns). The order and the register accesses are in [ucode/arm1_firmware.md](../ucode/arm1_firmware.md).
 
-**Established** (`init_graphics` and `get_eeprom_state` in `kona_tport.o`, 6.5.30m, [kernel-functions.md](kernel-functions.md)): `HH_RESET` bit 0 holds the host interface in reset (the kernel's pulse writes 1 then 0). To start a pipe that does not answer, the kernel writes `HH_INTR_INFO` = 0, `HH_RESET` = 3, a read-back and `HH_RESET` = 2; that bit 1 lets the ARM run, booting from the board's EEPROM, is **inferred** from that sequence and the register's `ARM_START` name. The kernel's pulses are in [xg.md](xg.md). What the reset does to the token map, the FIFOs and the counters is **unknown: no shipped software or published source depends on it**, with the routes in [HIP.h](../HIP.h) at `HH_RESET`.
+**Established** (`init_graphics` and `get_eeprom_state` in `kona_tport.o`, 6.5.30m, [kernel-functions.md](kernel-functions.md)): `HH_RESET` bit 0 holds the host interface in reset (the kernel's pulse writes 1 then 0). To start a pipe that does not answer, the kernel writes `HH_INTR_INFO` = 0, `HH_RESET` = 3, a read-back and `HH_RESET` = 2; that bit 1 lets the ARM run, booting from the board's EEPROM, is **inferred** from that sequence and the register's `ARM_START` name. The kernel's pulses are in [xg.md](xg.md). What the reset does to the token map, the FIFOs and the counters is **unknown: no shipped software or published source depends on it**, with the routes in [HIP.h](../devices/hip/HIP.h) at `HH_RESET`.
 
 ## Firmware load into the pipe's memories
 

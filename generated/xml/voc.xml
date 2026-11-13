@@ -1,0 +1,337 @@
+<?xml version="1.0" ?>
+<!-- generated from devices/voc/registers.toml by defs-gen - do not edit, change the source -->
+<genxml unit="voc" prefix="VOC" title="video-output chip (VOC) registers">
+  <doc>Video-output chip registers of channel id 0 on the display bus.</doc>
+  <space name="voc_regs" unit="reg"/>
+  <enum name="control_pixel_mux">
+    <value name="p4_4" value="0" grade="established"/>
+    <value name="p4_2" value="1" grade="established"/>
+    <value name="p4_1" value="2" grade="established"/>
+    <value name="p4_8" value="3" grade="established"/>
+    <value name="fs_4" value="4" grade="established"/>
+    <value name="fs_2" value="5" grade="established"/>
+    <value name="fs_1" value="6" grade="established"/>
+    <value name="fs_8" value="7" grade="established"/>
+  </enum>
+  <enum name="control_dbuf_mode">
+    <value name="immediate" value="0" grade="established"/>
+    <value name="copy_impreg_load" value="1" grade="established"/>
+    <value name="copy_swap" value="2" grade="established"/>
+    <value name="copy_frame" value="3" grade="established"/>
+  </enum>
+  <enum name="seq_control_reset_source">
+    <value name="none" value="0" grade="established"/>
+    <value name="output_format_a" value="1" grade="established"/>
+    <value name="phase_detector" value="3" grade="established"/>
+  </enum>
+  <enum name="pfd_control_csync_source">
+    <value name="internal" value="0" grade="established"/>
+    <value name="external" value="1" grade="established"/>
+    <value name="output_format" value="2" grade="established"/>
+  </enum>
+  <enum name="pfd_control_clock_select">
+    <value name="host" value="0" grade="established"/>
+    <value name="host_div2" value="1" grade="established"/>
+    <value name="host_div4" value="2" grade="established"/>
+    <value name="fourth" value="3" grade="inferred"/>
+  </enum>
+  <enum name="req_control_pixel_size">
+    <value name="small" value="0" grade="established"/>
+    <value name="medium" value="1" grade="established"/>
+    <value name="large" value="2" grade="established"/>
+    <value name="xlarge" value="3" grade="established"/>
+  </enum>
+  <enum name="genlock_hclock_source">
+    <value name="external" value="0" grade="established"/>
+    <value name="internal" value="1" grade="established"/>
+  </enum>
+  <enum name="genlock_line_ratio_edge">
+    <value name="falling" value="0" grade="established"/>
+    <value name="rising" value="1" grade="established"/>
+  </enum>
+  <enum name="scaler_control_enc_frame_mode">
+    <value name="no_drop" value="0" grade="established"/>
+    <value name="field_drop" value="1" grade="established"/>
+    <value name="frame_drop" value="2" grade="established"/>
+    <value name="low_latency" value="3" grade="established"/>
+  </enum>
+  <enum name="scaler_control_x_filter">
+    <value name="none" value="0" grade="established"/>
+    <value name="minify" value="1" grade="established"/>
+    <value name="magnify" value="2" grade="established"/>
+  </enum>
+  <struct name="STATUS" size="4" grade="established" register="yes" offset="0x200" access="r" space="voc_regs" reset="unknown">
+    <field name="int_host" start="24" size="1" type="uint" grade="established"/>
+    <field name="int_vdrc" start="23" size="1" type="uint" grade="established"/>
+    <field name="int_ext_frame" start="22" size="1" type="uint" grade="established"/>
+    <field name="int_ext_sync_detect" start="21" size="1" type="uint" grade="established"/>
+    <field name="int_ext_sync_loss" start="20" size="1" type="uint" grade="established"/>
+    <field name="int_fifo_under" start="19" size="1" type="uint" grade="established"/>
+    <field name="int_fifo_over" start="18" size="1" type="uint" grade="established"/>
+    <field name="fs_colour_field" start="16" size="2" type="uint" grade="established"/>
+    <field name="vdrc_enable" start="13" size="1" type="uint" grade="established"/>
+    <field name="xmapreg_load" start="12" size="1" type="uint" grade="established"/>
+    <field name="impreg_load" start="11" size="1" type="uint" grade="established"/>
+    <field name="stereo_out" start="10" size="1" type="uint" grade="established"/>
+    <field name="line_start" start="9" size="1" type="uint" grade="established"/>
+    <field name="video_active" start="8" size="1" type="uint" grade="established"/>
+    <field name="frame_start" start="7" size="1" type="uint" grade="established"/>
+    <field name="field" start="6" size="1" type="uint" grade="established"/>
+    <field name="field_start" start="5" size="1" type="uint" grade="established"/>
+    <field name="trisync" start="4" size="1" type="uint" grade="established"/>
+    <field name="cblank" start="3" size="1" type="uint" grade="established"/>
+    <field name="csync" start="2" size="1" type="uint" grade="established"/>
+    <field name="vsync" start="1" size="1" type="uint" grade="established"/>
+    <field name="hsync" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="CONTROL" size="4" grade="established" register="yes" offset="0x201" access="rw" space="voc_regs" reset="unknown">
+    <field name="pixel_mux" start="9" size="3" type="control_pixel_mux" grade="established"/>
+    <field name="ie_host" start="8" size="1" type="uint" grade="established"/>
+    <field name="ie_vdrc" start="7" size="1" type="uint" grade="established"/>
+    <field name="ie_ext_frame" start="6" size="1" type="uint" grade="established"/>
+    <field name="ie_ext_sync_detect" start="5" size="1" type="uint" grade="established"/>
+    <field name="ie_ext_sync_loss" start="4" size="1" type="uint" grade="established"/>
+    <field name="ie_fifo_under" start="3" size="1" type="uint" grade="established"/>
+    <field name="ie_fifo_over" start="2" size="1" type="uint" grade="established"/>
+    <field name="dbuf_mode" start="0" size="2" type="control_dbuf_mode" grade="established"/>
+  </struct>
+  <struct name="DBUF_REQUEST" size="4" grade="established" register="yes" offset="0x202" access="rw" space="voc_regs" reset="unknown">
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="REQ_WINDOW" size="4" grade="established" register="yes" offset="0x203" access="rw" space="voc_regs" reset="unknown">
+    <field name="width_groupxels_m1" start="5" size="10" type="uint" grade="established"/>
+    <field name="channel" start="0" size="5" type="uint" grade="established"/>
+  </struct>
+  <struct name="REQ_ORIGIN" size="4" grade="unknown" register="yes" offset="0x204" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="REQ_SIZE" size="4" grade="unknown" register="yes" offset="0x205" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="SEQ_CONTROL" size="4" grade="established" register="yes" offset="0x206" access="rw" space="voc_regs" reset="unknown">
+    <field name="reset_rate" start="9" size="4" type="uint" grade="established"/>
+    <field name="line_edge_select" start="4" size="5" type="uint" grade="established"/>
+    <field name="clear_state_pointer" start="3" size="1" type="uint" grade="established"/>
+    <field name="reset_source" start="1" size="2" type="seq_control_reset_source" grade="established"/>
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="SEQ_INITIAL" size="4" grade="established" register="yes" offset="0x207" access="rw" space="voc_regs" reset="unknown">
+    <field name="vphase_count" start="19" size="13" type="uint" grade="established"/>
+    <field name="tristate_vsync" start="18" size="1" type="uint" grade="established"/>
+    <field name="tristate_hsync" start="17" size="1" type="uint" grade="established"/>
+    <field name="tristate_csync" start="16" size="1" type="uint" grade="established"/>
+    <field name="initial_levels" start="0" size="14" type="uint" grade="established"/>
+  </struct>
+  <struct name="GENLOCK_VPHASE" size="4" grade="established" register="yes" offset="0x208" access="rw" space="voc_regs" reset="unknown">
+    <field name="hysteresis_enable" start="29" size="1" type="uint" grade="established"/>
+    <field name="hysteresis_width" start="26" size="3" type="uint" grade="established"/>
+    <field name="external_vphase" start="13" size="13" type="uint" grade="established"/>
+    <field name="internal_vphase" start="0" size="13" type="uint" grade="established"/>
+  </struct>
+  <struct name="STATE_TABLE" size="4" grade="established" register="yes" offset="0x209" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="LINE_TYPE_A" size="4" grade="established" register="yes" offset="0x20a" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="LINE_TYPE_B" size="4" grade="established" register="yes" offset="0x20b" access="rw" space="voc_regs" reset="unknown">
+    <field name="length_m3" start="18" size="13" type="uint" grade="established"/>
+    <field name="edge_mask_hi" start="0" size="18" type="uint" grade="established"/>
+  </struct>
+  <struct name="EDGE_SLOT" size="4" grade="established" register="yes" offset="0x20c" access="rw" count="8" stride="1" space="voc_regs" reset="unknown">
+    <field name="position" start="0" size="13" type="uint" grade="established"/>
+  </struct>
+  <struct name="PIXEL_BLANK" size="4" grade="established" register="yes" offset="0x214" access="rw" space="voc_regs" reset="unknown">
+    <field name="enable" start="16" size="1" type="uint" grade="established"/>
+    <field name="last" start="8" size="8" type="uint" grade="established"/>
+    <field name="first" start="0" size="8" type="uint" grade="established"/>
+  </struct>
+  <struct name="PFD_CONTROL" size="4" grade="established" register="yes" offset="0x230" access="rw" space="voc_regs" reset="unknown">
+    <field name="line_count_hi" start="26" size="4" type="uint" grade="established"/>
+    <field name="csync_source" start="24" size="2" type="pfd_control_csync_source" grade="established"/>
+    <field name="line_count" start="16" size="8" type="uint" grade="established"/>
+    <field name="precision" start="5" size="11" type="uint" grade="established"/>
+    <field name="frame_select" start="4" size="1" type="uint" grade="established"/>
+    <field name="clock_select" start="2" size="2" type="pfd_control_clock_select" grade="established"/>
+    <field name="flip" start="1" size="1" type="uint" grade="established"/>
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="SEQ_LOW" size="4" grade="established" register="yes" offset="0x231" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="SEQ_HIGH" size="4" grade="established" register="yes" offset="0x232" access="rw" space="voc_regs" reset="unknown">
+  </struct>
+  <struct name="PFD_DIAG" size="4" grade="established" register="yes" offset="0x233" access="rw" space="voc_regs" reset="unknown">
+    <field name="previous" start="12" size="12" type="uint" grade="established"/>
+    <field name="duration" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="FRAME_DURATION" size="4" grade="established" register="yes" offset="0x234" access="rw" space="voc_regs" reset="unknown">
+    <field name="duration" start="0" size="20" type="uint" grade="established"/>
+  </struct>
+  <struct name="SYNC_DETECT_CONTROL" size="4" grade="established" register="yes" offset="0x243" access="rw" space="voc_regs" reset="unknown">
+    <field name="frame_ref_select" start="18" size="1" type="uint" grade="established"/>
+    <field name="frames_on" start="15" size="3" type="uint" grade="established"/>
+    <field name="frames_off" start="12" size="3" type="uint" grade="established"/>
+    <field name="line_count" start="1" size="11" type="uint" grade="established"/>
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="REQ_CONTROL" size="4" grade="established" register="yes" offset="0x244" access="rw" space="voc_regs" reset="unknown">
+    <field name="interlaced_cursor" start="23" size="1" type="uint" grade="established"/>
+    <field name="arbiter_status" start="22" size="1" type="uint" grade="established"/>
+    <field name="fifo_balance" start="11" size="11" type="uint" grade="established"/>
+    <field name="transfer_z" start="10" size="1" type="uint" grade="established"/>
+    <field name="transfer_alpha" start="9" size="1" type="uint" grade="established"/>
+    <field name="transfer_size" start="8" size="1" type="uint" grade="inferred"/>
+    <field name="dither" start="7" size="1" type="uint" grade="established"/>
+    <field name="pixel_size" start="5" size="2" type="req_control_pixel_size" grade="established"/>
+    <field name="request_done" start="4" size="1" type="uint" grade="established"/>
+    <field name="ext_request" start="3" size="1" type="uint" grade="established"/>
+    <field name="ext_request_enable" start="2" size="1" type="uint" grade="established"/>
+    <field name="read_enable" start="1" size="1" type="uint" grade="established"/>
+    <field name="enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="TILES_PER_ROW" size="4" grade="established" register="yes" offset="0x245" access="rw" space="voc_regs" reset="unknown">
+    <field name="tiles" start="0" size="5" type="uint" grade="established"/>
+  </struct>
+  <struct name="LINE_START" size="4" grade="established" register="yes" offset="0x247" access="rw" space="voc_regs" reset="unknown">
+    <field name="valid" start="14" size="1" type="uint" grade="established"/>
+    <field name="groupxels_m1" start="3" size="11" type="uint" grade="established"/>
+    <field name="tiles_m1" start="0" size="3" type="uint" grade="established"/>
+  </struct>
+  <struct name="LINE_MIDDLE" size="4" grade="established" register="yes" offset="0x248" access="rw" space="voc_regs" reset="unknown">
+    <field name="repeat_count" start="15" size="8" type="uint" grade="established"/>
+    <field name="valid" start="14" size="1" type="uint" grade="established"/>
+    <field name="groupxels_m1" start="3" size="11" type="uint" grade="established"/>
+    <field name="tiles_m1" start="0" size="3" type="uint" grade="established"/>
+  </struct>
+  <struct name="LINE_END" size="4" grade="established" register="yes" offset="0x249" access="rw" space="voc_regs" reset="unknown">
+    <field name="valid" start="14" size="1" type="uint" grade="established"/>
+    <field name="groupxels_m1" start="3" size="11" type="uint" grade="established"/>
+    <field name="tiles_m1" start="0" size="3" type="uint" grade="established"/>
+  </struct>
+  <struct name="PAN" size="4" grade="established" register="yes" offset="0x24a" access="rw" space="voc_regs" reset="unknown">
+    <field name="pixel_offset" start="6" size="2" type="uint" grade="established"/>
+    <field name="groupxel_offset" start="0" size="6" type="uint" grade="established"/>
+    <test value="0xc3" kind="example">
+      <expect field="groupxel_offset" value="3"/>
+      <expect field="pixel_offset" value="3"/>
+    </test>
+  </struct>
+  <struct name="Z_REQUEST" size="4" grade="established" register="yes" offset="0x24b" access="rw" space="voc_regs" reset="unknown">
+    <field name="enable" start="4" size="1" type="uint" grade="established"/>
+    <field name="field_count" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="FIELD_START0" size="4" grade="inferred" register="yes" offset="0x250" access="rw" count="8" stride="1" space="voc_regs" reset="unknown">
+    <field name="skip" start="20" size="4" type="uint" grade="established"/>
+    <field name="first_tile" start="7" size="13" type="uint" grade="established"/>
+    <field name="start_line" start="0" size="7" type="uint" grade="established"/>
+  </struct>
+  <struct name="FIELD_START1" size="4" grade="inferred" register="yes" offset="0x258" access="rw" count="8" stride="1" space="voc_regs" reset="unknown">
+    <field name="skip" start="20" size="4" type="uint" grade="established"/>
+    <field name="first_tile" start="7" size="13" type="uint" grade="established"/>
+    <field name="start_line" start="0" size="7" type="uint" grade="established"/>
+  </struct>
+  <struct name="FIELD_PATTERN" size="4" grade="inferred" register="yes" offset="0x260" access="rw" count="8" stride="1" space="voc_regs" reset="unknown">
+    <field name="next_cursor_offset" start="24" size="4" type="uint" grade="established"/>
+    <field name="active_lines" start="12" size="12" type="uint" grade="established"/>
+    <field name="colour3" start="10" size="2" type="uint" grade="established"/>
+    <field name="eye3" start="9" size="1" type="uint" grade="established"/>
+    <field name="colour2" start="7" size="2" type="uint" grade="established"/>
+    <field name="eye2" start="6" size="1" type="uint" grade="established"/>
+    <field name="colour1" start="4" size="2" type="uint" grade="established"/>
+    <field name="eye1" start="3" size="1" type="uint" grade="established"/>
+    <field name="colour0" start="1" size="2" type="uint" grade="established"/>
+    <field name="eye0" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="PLL_CONTROL" size="4" grade="established" register="yes" offset="0x270" access="rw" space="voc_regs" reset="unknown">
+    <field name="exec_write_external" start="4" size="1" type="uint" grade="established"/>
+    <field name="exec_write_internal" start="3" size="1" type="uint" grade="established"/>
+    <field name="exec_read" start="2" size="1" type="uint" grade="established"/>
+    <field name="auto_update" start="1" size="1" type="uint" grade="established"/>
+    <field name="ready" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="PLL_ADDRESS" size="4" grade="established" register="yes" offset="0x271" access="rw" space="voc_regs" reset="unknown">
+    <field name="address" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="PLL_READBACK" size="4" grade="established" register="yes" offset="0x272" access="r" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="11" type="uint" grade="established"/>
+  </struct>
+  <struct name="PLL_DATA" size="4" grade="established" register="yes" offset="0x273" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="11" type="uint" grade="established"/>
+  </struct>
+  <struct name="GENLOCK_HCLOCK" size="4" grade="established" register="yes" offset="0x281" access="rw" space="voc_regs" reset="unknown">
+    <field name="h_divider" start="2" size="10" type="uint" grade="established"/>
+    <field name="auto_clock" start="1" size="1" type="uint" grade="established"/>
+    <field name="source" start="0" size="1" type="genlock_hclock_source" grade="established"/>
+  </struct>
+  <struct name="GENLOCK_LINE_RATIO" size="4" grade="established" register="yes" offset="0x282" access="rw" space="voc_regs" reset="unknown">
+    <field name="divider" start="14" size="8" type="uint" grade="established"/>
+    <field name="line_length" start="1" size="13" type="uint" grade="established"/>
+    <field name="edge" start="0" size="1" type="genlock_line_ratio_edge" grade="established"/>
+  </struct>
+  <struct name="HMASK2" size="4" grade="established" register="yes" offset="0x283" access="rw" space="voc_regs" reset="unknown">
+    <field name="width" start="13" size="13" type="uint" grade="established"/>
+    <field name="start" start="0" size="13" type="uint" grade="established"/>
+  </struct>
+  <struct name="BACKPORCH_CLAMP" size="4" grade="established" register="yes" offset="0x284" access="rw" space="voc_regs" reset="unknown">
+    <field name="width" start="14" size="8" type="uint" grade="established"/>
+    <field name="delay" start="1" size="13" type="uint" grade="established"/>
+    <field name="edge" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="FIFO_CONTROL" size="4" grade="established" register="yes" offset="0x28a" access="rw" space="voc_regs" reset="unknown">
+    <field name="int_source_odd" start="15" size="1" type="uint" grade="established"/>
+    <field name="ext_control_enable" start="14" size="1" type="uint" grade="established"/>
+    <field name="field_reset_enable" start="13" size="1" type="uint" grade="established"/>
+    <field name="frame_reset_enable" start="12" size="1" type="uint" grade="established"/>
+    <field name="high_water" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="FIFO_POINTER" size="4" grade="established" register="yes" offset="0x28b" access="rw" space="voc_regs" reset="unknown">
+    <field name="read_ptr" start="11" size="11" type="uint" grade="established"/>
+    <field name="write_ptr" start="0" size="11" type="uint" grade="established"/>
+  </struct>
+  <struct name="SAC_CONTROL" size="4" grade="established" register="yes" offset="0x28d" access="rw" space="voc_regs" reset="unknown">
+    <field name="output_enable" start="1" size="1" type="uint" grade="established"/>
+    <field name="input_enable" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="SCALER_CONTROL" size="4" grade="established" register="yes" offset="0x28f" access="rw" space="voc_regs" reset="unknown">
+    <field name="first_field_inhibit" start="19" size="2" type="uint" grade="established"/>
+    <field name="vminify_kick" start="15" size="4" type="uint" grade="established"/>
+    <field name="enc_stereo_mode" start="14" size="1" type="uint" grade="established"/>
+    <field name="enc_frame_mode" start="12" size="2" type="scaler_control_enc_frame_mode" grade="established"/>
+    <field name="fifo_read_clock" start="11" size="1" type="uint" grade="established"/>
+    <field name="enc_fb_write_clock_enable" start="10" size="1" type="uint" grade="established"/>
+    <field name="enc_field_dominance" start="9" size="1" type="uint" grade="established"/>
+    <field name="field_out_select" start="8" size="1" type="uint" grade="established"/>
+    <field name="interlace" start="7" size="1" type="uint" grade="established"/>
+    <field name="seg_preload" start="5" size="2" type="uint" grade="established"/>
+    <field name="x_magnify_start_pair" start="4" size="1" type="uint" grade="established"/>
+    <field name="y_filter" start="2" size="2" type="uint" grade="established"/>
+    <field name="x_filter" start="0" size="2" type="scaler_control_x_filter" grade="established"/>
+  </struct>
+  <struct name="X_COEFF_MAX" size="4" grade="established" register="yes" offset="0x290" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="20" type="uint" grade="established"/>
+  </struct>
+  <struct name="X_SLOPE" size="4" grade="established" register="yes" offset="0x291" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="21" type="uint" grade="established"/>
+  </struct>
+  <struct name="X_DELTA" size="4" grade="established" register="yes" offset="0x292" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="24" type="uint" grade="established"/>
+  </struct>
+  <struct name="X_SEG_START" size="4" grade="established" register="yes" offset="0x293" access="rw" count="4" stride="1" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="24" type="uint" grade="established"/>
+  </struct>
+  <struct name="Y_COEFF_MAX" size="4" grade="established" register="yes" offset="0x297" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="20" type="uint" grade="established"/>
+  </struct>
+  <struct name="Y_SLOPE" size="4" grade="established" register="yes" offset="0x298" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="21" type="uint" grade="established"/>
+  </struct>
+  <struct name="Y_DELTA" size="4" grade="established" register="yes" offset="0x299" access="rw" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="24" type="uint" grade="established"/>
+  </struct>
+  <struct name="Y_SEG_START" size="4" grade="established" register="yes" offset="0x29a" access="rw" count="4" stride="1" space="voc_regs" reset="unknown">
+    <field name="value" start="0" size="24" type="uint" grade="established"/>
+  </struct>
+  <constant name="BASE_ADDRESS" value="0x200" grade="established"/>
+  <constant name="BASE_IDS" value="0x8" grade="established"/>
+  <constant name="EDGE_SLOTS" value="0x8" grade="established"/>
+  <constant name="EDGE_SLOT_UNUSED" value="0x1fff" grade="established"/>
+  <constant name="GROUPXEL_PIXELS" value="0x4" grade="established"/>
+  <constant name="ID_STRIDE" value="0x100" grade="established"/>
+  <constant name="PAN_GROUPXELS" value="0xa0" grade="established"/>
+</genxml>

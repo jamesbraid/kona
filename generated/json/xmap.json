@@ -1,0 +1,821 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/xmap/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "cursor_channel",
+   "offset": 256,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cursor_channel.channel",
+   "hi": 4,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "cursor_base",
+   "offset": 257,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cursor_base.base",
+   "hi": 16,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "cursor_pos",
+   "offset": 258,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cursor_pos.y",
+   "hi": 25,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cursor_pos.x",
+   "hi": 12,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "cursor_mode",
+   "offset": 259,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cursor_mode.mode",
+   "hi": 8,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "cursor_mode.mode.off",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "cursor_mode.mode.crosshair",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "cursor_mode.mode.glyph",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "copy_strobe",
+   "offset": 260,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "copy_strobe.force_cursor_pos",
+   "hi": 2,
+   "lo": 2,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "copy_strobe.copy",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "subst_enable",
+   "offset": 261,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "subst_enable.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "subst_low",
+   "offset": 262,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "subst_high",
+   "offset": 263,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "subst_high.mode",
+   "hi": 11,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "subst_high.colour_high",
+   "hi": 9,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "read_select",
+   "offset": 264,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "read_select.chip",
+   "hi": 1,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "unread_09",
+   "offset": 265,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "crc_status",
+   "offset": 266,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "board_count",
+   "offset": 267,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "board_count.code",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "board_count.code.one_board",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "board_count.code.two_boards",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "board_count.code.four_boards",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "di_compare_addr",
+   "offset": 268,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "di_compare_addr.addr",
+   "hi": 5,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "imp_delay",
+   "offset": 269,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "imp_delay.delay",
+   "hi": 8,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "pipe_delay",
+   "offset": 270,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "pipe_delay.delay",
+   "hi": 2,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "fastlist_config",
+   "offset": 271,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "fastlist_config.fixed",
+   "hi": 9,
+   "lo": 5,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "fastlist_config.chunk_size",
+   "hi": 4,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "unread_10",
+   "offset": 272,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "readback_addr",
+   "offset": 273,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "readback_addr.addr",
+   "hi": 18,
+   "lo": 0,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "readback_data",
+   "offset": 274,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "ind_addr",
+   "offset": 280,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "ind_addr.flag",
+   "hi": 18,
+   "lo": 18,
+   "grade": "unknown"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "ind_addr.page",
+   "hi": 17,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "ind_addr.colour",
+   "hi": 13,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "ind_addr.colour.red",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "ind_addr.colour.green",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "enum_value",
+   "name": "ind_addr.colour.blue",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "ind_addr.entry",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "cmap_data",
+   "offset": 281,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cmap_data.red",
+   "hi": 29,
+   "lo": 20,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cmap_data.green",
+   "hi": 19,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "cmap_data.blue",
+   "hi": 9,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "unused_1a",
+   "offset": 282,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "gamma_data",
+   "offset": 283,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "gamma_data.entry",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "did_data",
+   "offset": 284,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "did_data.cmap_base",
+   "hi": 23,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "did_data.planes_minus_1",
+   "hi": 6,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "did_data.luminance",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "did_data.grey",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "chan_setup",
+   "offset": 285,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "chan_setup.alpha_to_blue",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "chan_setup.no_gamma",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "chan_setup.ext_gamma",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "field",
+   "name": "chan_setup.gamma_page",
+   "hi": 3,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "table_close",
+   "offset": 286,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "register",
+   "name": "flush",
+   "offset": 287,
+   "access": "w",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "xmap_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CMAP_LOAD_PIECE_WORDS",
+   "value": 512,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "COUNT",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_COLOUR_WORD",
+   "value": 256,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_CROSSHAIR_BLOCK",
+   "value": 9884,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_HOT_SPOT_CROSSHAIR",
+   "value": 32,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_IMAGE_WORDS",
+   "value": 256,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_POS_BIAS",
+   "value": 32,
+   "count": 1,
+   "grade": "inferred"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_PRIORITY_NONE",
+   "value": 32,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_SLOTS",
+   "value": 39,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "CURSOR_SLOT_WORDS",
+   "value": 260,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "DID_ENTRIES",
+   "value": 128,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "EXT_GAMMA_ENTRIES",
+   "value": 1024,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "EXT_GAMMA_MARKER",
+   "value": 3735944941,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "GAMMA_ENTRIES_PER_PAGE",
+   "value": 4096,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "GAMMA_PAGES",
+   "value": 16,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "xmap",
+   "kind": "constant",
+   "name": "TRAILING_FLUSH_WRITES",
+   "value": 3,
+   "count": 1,
+   "grade": "established"
+  }
+ ]
+}

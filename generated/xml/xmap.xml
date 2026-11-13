@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<!-- generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source -->
+<genxml unit="xmap" prefix="XMAP" title="XMAP registers and the words written through them">
+  <doc>XMAP direct registers, indirect-memory ports and the words written through them.</doc>
+  <space name="xmap_regs" unit="reg"/>
+  <enum name="cursor_mode_mode">
+    <value name="off" value="0" grade="established"/>
+    <value name="crosshair" value="1" grade="established"/>
+    <value name="glyph" value="2" grade="established"/>
+  </enum>
+  <enum name="board_count_code">
+    <value name="one_board" value="0" grade="established"/>
+    <value name="two_boards" value="1" grade="established"/>
+    <value name="four_boards" value="2" grade="established"/>
+  </enum>
+  <enum name="ind_addr_colour">
+    <value name="red" value="0" grade="established"/>
+    <value name="green" value="1" grade="established"/>
+    <value name="blue" value="2" grade="established"/>
+  </enum>
+  <struct name="CURSOR_CHANNEL" size="4" grade="established" register="yes" offset="0x100" access="w" space="xmap_regs" reset="unknown">
+    <field name="channel" start="0" size="5" type="uint" grade="established"/>
+  </struct>
+  <struct name="CURSOR_BASE" size="4" grade="established" register="yes" offset="0x101" access="w" space="xmap_regs" reset="unknown">
+    <field name="base" start="0" size="17" type="uint" grade="established"/>
+  </struct>
+  <struct name="CURSOR_POS" size="4" grade="established" register="yes" offset="0x102" access="w" space="xmap_regs" reset="unknown">
+    <field name="y" start="13" size="13" type="uint" grade="established"/>
+    <field name="x" start="0" size="13" type="uint" grade="established"/>
+    <test value="0x2001" kind="example">
+      <expect field="x" value="1"/>
+      <expect field="y" value="1"/>
+    </test>
+  </struct>
+  <struct name="CURSOR_MODE" size="4" grade="established" register="yes" offset="0x103" access="w" space="xmap_regs" reset="unknown">
+    <field name="mode" start="0" size="9" type="cursor_mode_mode" grade="established"/>
+  </struct>
+  <struct name="COPY_STROBE" size="4" grade="established" register="yes" offset="0x104" access="w" space="xmap_regs" reset="unknown">
+    <field name="force_cursor_pos" start="2" size="1" type="uint" grade="inferred"/>
+    <field name="copy" start="0" size="1" type="uint" grade="established"/>
+  </struct>
+  <struct name="SUBST_ENABLE" size="4" grade="inferred" register="yes" offset="0x105" access="w" space="xmap_regs" reset="unknown">
+    <field name="enable" start="0" size="1" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="SUBST_LOW" size="4" grade="established" register="yes" offset="0x106" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="SUBST_HIGH" size="4" grade="established" register="yes" offset="0x107" access="w" space="xmap_regs" reset="unknown">
+    <field name="mode" start="10" size="2" type="uint" grade="established"/>
+    <field name="colour_high" start="0" size="10" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="READ_SELECT" size="4" grade="inferred" register="yes" offset="0x108" access="w" space="xmap_regs" reset="unknown">
+    <field name="chip" start="0" size="2" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="UNREAD_09" size="4" grade="unknown" register="yes" offset="0x109" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="CRC_STATUS" size="4" grade="unknown" register="yes" offset="0x10a" access="r" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="BOARD_COUNT" size="4" grade="established" register="yes" offset="0x10b" access="w" space="xmap_regs" reset="unknown">
+    <field name="code" start="0" size="2" type="board_count_code" grade="established"/>
+  </struct>
+  <struct name="DI_COMPARE_ADDR" size="4" grade="inferred" register="yes" offset="0x10c" access="w" space="xmap_regs" reset="unknown">
+    <field name="addr" start="0" size="6" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="IMP_DELAY" size="4" grade="inferred" register="yes" offset="0x10d" access="w" space="xmap_regs" reset="unknown">
+    <field name="delay" start="0" size="9" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="PIPE_DELAY" size="4" grade="inferred" register="yes" offset="0x10e" access="w" space="xmap_regs" reset="unknown">
+    <field name="delay" start="0" size="3" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="FASTLIST_CONFIG" size="4" grade="inferred" register="yes" offset="0x10f" access="w" space="xmap_regs" reset="unknown">
+    <field name="fixed" start="5" size="5" type="uint" grade="inferred"/>
+    <field name="chunk_size" start="0" size="5" type="uint" grade="inferred"/>
+    <test value="0x339" kind="vector">
+      <expect field="chunk_size" value="25"/>
+      <expect field="fixed" value="25"/>
+    </test>
+  </struct>
+  <struct name="UNREAD_10" size="4" grade="unknown" register="yes" offset="0x110" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="READBACK_ADDR" size="4" grade="inferred" register="yes" offset="0x111" access="w" space="xmap_regs" reset="unknown">
+    <field name="addr" start="0" size="19" type="uint" grade="inferred"/>
+  </struct>
+  <struct name="READBACK_DATA" size="4" grade="inferred" register="yes" offset="0x112" access="r" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="IND_ADDR" size="4" grade="established" register="yes" offset="0x118" access="w" space="xmap_regs" reset="unknown">
+    <field name="flag" start="18" size="1" type="uint" grade="unknown"/>
+    <field name="page" start="14" size="4" type="uint" grade="established"/>
+    <field name="colour" start="12" size="2" type="ind_addr_colour" grade="established"/>
+    <field name="entry" start="0" size="12" type="uint" grade="established"/>
+    <test value="0x40000" kind="example">
+      <expect field="entry" value="0"/>
+      <expect field="colour" value="0"/>
+      <expect field="page" value="0"/>
+      <expect field="flag" value="1"/>
+    </test>
+  </struct>
+  <struct name="CMAP_DATA" size="4" grade="established" register="yes" offset="0x119" access="w" space="xmap_regs" reset="unknown">
+    <field name="red" start="20" size="10" type="uint" grade="established"/>
+    <field name="green" start="10" size="10" type="uint" grade="established"/>
+    <field name="blue" start="0" size="10" type="uint" grade="established"/>
+  </struct>
+  <struct name="UNUSED_1A" size="4" grade="unknown" register="yes" offset="0x11a" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="GAMMA_DATA" size="4" grade="established" register="yes" offset="0x11b" access="w" space="xmap_regs" reset="unknown">
+    <field name="entry" start="0" size="12" type="uint" grade="established"/>
+  </struct>
+  <struct name="DID_DATA" size="4" grade="established" register="yes" offset="0x11c" access="w" space="xmap_regs" reset="unknown">
+    <field name="cmap_base" start="7" size="17" type="uint" grade="established"/>
+    <field name="planes_minus_1" start="3" size="4" type="uint" grade="established"/>
+    <field name="luminance" start="2" size="1" type="uint" grade="established"/>
+    <field name="grey" start="1" size="1" type="uint" grade="established"/>
+    <test value="0x80050" kind="vector">
+      <expect field="grey" value="0"/>
+      <expect field="luminance" value="0"/>
+      <expect field="planes_minus_1" value="10"/>
+      <expect field="cmap_base" value="4096"/>
+    </test>
+  </struct>
+  <struct name="CHAN_SETUP" size="4" grade="established" register="yes" offset="0x11d" access="w" space="xmap_regs" reset="unknown">
+    <field name="alpha_to_blue" start="6" size="1" type="uint" grade="established"/>
+    <field name="no_gamma" start="5" size="1" type="uint" grade="established"/>
+    <field name="ext_gamma" start="4" size="1" type="uint" grade="established"/>
+    <field name="gamma_page" start="0" size="4" type="uint" grade="established"/>
+  </struct>
+  <struct name="TABLE_CLOSE" size="4" grade="inferred" register="yes" offset="0x11e" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <struct name="FLUSH" size="4" grade="inferred" register="yes" offset="0x11f" access="w" space="xmap_regs" reset="unknown">
+  </struct>
+  <constant name="CMAP_LOAD_PIECE_WORDS" value="0x200" grade="established"/>
+  <constant name="COUNT" value="0x4" grade="established"/>
+  <constant name="CURSOR_COLOUR_WORD" value="0x100" grade="established"/>
+  <constant name="CURSOR_CROSSHAIR_BLOCK" value="0x269c" grade="established"/>
+  <constant name="CURSOR_HOT_SPOT_CROSSHAIR" value="0x20" grade="established"/>
+  <constant name="CURSOR_IMAGE_WORDS" value="0x100" grade="established"/>
+  <constant name="CURSOR_POS_BIAS" value="0x20" grade="inferred"/>
+  <constant name="CURSOR_PRIORITY_NONE" value="0x20" grade="established"/>
+  <constant name="CURSOR_SLOTS" value="0x27" grade="established"/>
+  <constant name="CURSOR_SLOT_WORDS" value="0x104" grade="established"/>
+  <constant name="DID_ENTRIES" value="0x80" grade="established"/>
+  <constant name="EXT_GAMMA_ENTRIES" value="0x400" grade="established"/>
+  <constant name="EXT_GAMMA_MARKER" value="0xdeadfeed" grade="established"/>
+  <constant name="GAMMA_ENTRIES_PER_PAGE" value="0x1000" grade="established"/>
+  <constant name="GAMMA_PAGES" value="0x10" grade="established"/>
+  <constant name="TRAILING_FLUSH_WRITES" value="0x3" grade="established"/>
+</genxml>

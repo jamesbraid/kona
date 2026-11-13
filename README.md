@@ -131,7 +131,7 @@ left out, and so are the per-batch instruction readings, which the last line cov
 
 ## Hardware definitions
 
-The register, token and word layouts decoded so far are described once, in TOML under `defs/`: one file per unit, each item with a grade (established, inferred or unknown) and a source. `gen/` holds what is generated from them: C headers, a Rust crate, Python decode helpers, flat JSON, a genxml export and one reference page per unit under `gen/docs/`. Do not edit `gen/`; edit the TOML and run `retools/tools/defs/defs-gen`. The `KONA_*_DECODE.h` files at the root are forwarding headers for the old include paths. `retools/tools/defs/ci-check` runs the checks CI runs.
+The register, token and word layouts decoded so far are described once, in TOML: `devices/<unit>/registers.toml` for each chip or board unit and `formats/<name>/format.toml` for each software data structure, every item with a grade (established, inferred or unknown) and a source. `generated/` holds what is generated from them: C headers, a Rust crate, Python decode helpers, flat JSON and a genxml export, and `registers.md` (`format.md`) beside each source is the reference page for the unit. Do not edit `generated/`; edit the TOML and run `retools/tools/defs/defs-gen`. The `KONA_*_DECODE.h` files at the root are forwarding headers for the old include paths. `retools/tools/defs/ci-check` runs the checks CI runs.
 
 ## Running the tools and reproducing a result
 
@@ -149,11 +149,11 @@ included; with no command it opens a shell. `root/` is your own copy of the IRIX
 To reproduce a cited result:
 
 - Generated tables under `docs/inventory/` come from `retools/tools/re-run python3 retools/tools/inventory.py`.
-  `git status --short docs` shows nothing afterwards when your `root/` matches `scripts/inventory-root.sha256`.
+  `git status --short docs` shows nothing afterwards when your `root/` matches `tools/config/inventory-root.sha256`.
 - A claim an entry marks as established by execution is reproduced by the script in `retools/tools/kona/` that
   the entry names; its docstring says what it reproduces and how to run it, always as
   `retools/tools/re-run python3 retools/tools/kona/NAME.py ...`.
-- The shared tooling (container definitions, wrappers, Ghidra scripts, the inventory, fact sheet and claim checker, and the device extractors) is the `retools/` submodule (sgi-retools); tools are run by their `retools/tools/` path from this repository's root (they find the workspace from the current directory), so a change to them is made there and the pin here moves with a commit. `scripts/` and `tools/` here hold only this repository's own config and data, and `ghidra/{processors,import,types}/kona-*` are links into `retools/ghidra/` (the Ghidra tests run them by those workspace paths). The optional Ghidra image is built from `retools/tools/Containerfile.ghidra` by
+- The shared tooling (container definitions, wrappers, Ghidra scripts, the inventory, fact sheet and claim checker, and the device extractors) is the `retools/` submodule (sgi-retools); tools are run by their `retools/tools/` path from this repository's root (they find the workspace from the current directory), so a change to them is made there and the pin here moves with a commit. `tools/` here holds only this repository's own scripts, config and data, and `ghidra/{processors,import,types}/kona-*` are links into `retools/ghidra/` (the Ghidra tests run them by those workspace paths). The optional Ghidra image is built from `retools/tools/Containerfile.ghidra` by
   `retools/tools/re-run --ghidra COMMAND`, and `retools/tools/re-run --ghidra-export OBJECT` writes decompiled C and
   function-similarity output as JSON (see `ghidra/README.md`); nothing else needs it. `retools/tools/README-analysis.md`
   describes the `.mdebug` importer and the kernel table extractors.

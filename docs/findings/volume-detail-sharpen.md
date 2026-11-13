@@ -12,7 +12,7 @@ Sources used (names as the command table uses them where it has one):
 | CL | OpenGL client library `libGLcore.so` (64-bit build), [libglcore/asm/texture/kon_texture_api.s](../../libglcore/asm/texture/kon_texture_api.s); addresses are `0x0d......` |
 | DG | the IR diagnostic `irsaudit`, disassembly of `usr/diags/IR/bin/irsaudit` (the local install, not tracked); addresses are `0x10......` |
 | TV | the diagnostic's stored raster-bus vectors `tbusdata.Z`, blocks `tex2d_detail.tbus` and `projtex.tbus` (S61); line numbers are in the decompressed file |
-| RM | [RM.h](../../RM.h), the register table read from the diagnostic tool `kpm` |
+| RM | [RM.h](../../devices/rm/RM.h), the register table read from the diagnostic tool `kpm` |
 | SP-D | SGIS_detail_texture specification, revision 1.31 (1995-07-09) |
 | SP-S | SGIS_sharpen_texture specification, revision 1.16 (1995-07-09); read only through a secondary summary, so used for the sign convention only |
 | P-D, P-S, P-3 | US 5,471,572 (adding detail), US 5,438,654 (sharpening), US 5,490,240 (3D textures); [published-sources.md](../published-sources.md) sources 14, 13, 8 |

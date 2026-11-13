@@ -35,4 +35,4 @@ The fact sheet did not evaluate the masked byte words of three senders, so each 
 - Located senders include the texture, pixel and transform senders that send through helpers. The helpers were not followed.
 - Some located senders make an indirect call through a context pointer (the eval-coordinate and eval-point senders, for example). The row says indirect call; the target was not followed.
 - The rectangle senders store KONA_HP_BEGIN_RECT (0x003), then a count word, then four vertex calls, then END. The count is the number of command words that follow it: the four vertices and the END send 22 words for double (4 x 5 + 2), 14 for float and int (4 x 3 + 2) and 10 for short (4 x 2 + 2), where `Vertex2d`, `Vertex2f` and `Vertex2s` send 5, 3 and 2. Those count values are also the numbers of KONA_HP_TEXBIND, KONA_HP_TEXPARAMETERI and KONA_HP_LIGHTMODELI, so read the words by position, not by name.
-- Token names are the `KONA_HP_*` names in [GE.h](../GE.h). A name is the first one listed for the value.
+- Token names are the `KONA_HP_*` names in [GE.h](../devices/ge/GE.h). A name is the first one listed for the value.

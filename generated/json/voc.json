@@ -1,0 +1,2276 @@
+{
+ "schema": "defs-flat/1",
+ "source": "devices/voc/registers.toml",
+ "profile": "public",
+ "rows": [
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "status",
+   "offset": 512,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_host",
+   "hi": 24,
+   "lo": 24,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_vdrc",
+   "hi": 23,
+   "lo": 23,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_ext_frame",
+   "hi": 22,
+   "lo": 22,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_ext_sync_detect",
+   "hi": 21,
+   "lo": 21,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_ext_sync_loss",
+   "hi": 20,
+   "lo": 20,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_fifo_under",
+   "hi": 19,
+   "lo": 19,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.int_fifo_over",
+   "hi": 18,
+   "lo": 18,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.fs_colour_field",
+   "hi": 17,
+   "lo": 16,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.vdrc_enable",
+   "hi": 13,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.xmapreg_load",
+   "hi": 12,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.impreg_load",
+   "hi": 11,
+   "lo": 11,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.stereo_out",
+   "hi": 10,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.line_start",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.video_active",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.frame_start",
+   "hi": 7,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.field",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.field_start",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.trisync",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.cblank",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.csync",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.vsync",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "status.hsync",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "control",
+   "offset": 513,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.pixel_mux",
+   "hi": 11,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.p4_4",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.p4_2",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.p4_1",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.p4_8",
+   "value": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.fs_4",
+   "value": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.fs_2",
+   "value": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.fs_1",
+   "value": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.pixel_mux.fs_8",
+   "value": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_host",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_vdrc",
+   "hi": 7,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_ext_frame",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_ext_sync_detect",
+   "hi": 5,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_ext_sync_loss",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_fifo_under",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.ie_fifo_over",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "control.dbuf_mode",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.dbuf_mode.immediate",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.dbuf_mode.copy_impreg_load",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.dbuf_mode.copy_swap",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "control.dbuf_mode.copy_frame",
+   "value": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "dbuf_request",
+   "offset": 514,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "dbuf_request.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "req_window",
+   "offset": 515,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_window.width_groupxels_m1",
+   "hi": 14,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_window.channel",
+   "hi": 4,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "req_origin",
+   "offset": 516,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "req_size",
+   "offset": 517,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "unknown"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "seq_control",
+   "offset": 518,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_control.reset_rate",
+   "hi": 12,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_control.line_edge_select",
+   "hi": 8,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_control.clear_state_pointer",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_control.reset_source",
+   "hi": 2,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "seq_control.reset_source.none",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "seq_control.reset_source.output_format_a",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "seq_control.reset_source.phase_detector",
+   "value": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_control.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "seq_initial",
+   "offset": 519,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_initial.vphase_count",
+   "hi": 31,
+   "lo": 19,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_initial.tristate_vsync",
+   "hi": 18,
+   "lo": 18,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_initial.tristate_hsync",
+   "hi": 17,
+   "lo": 17,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_initial.tristate_csync",
+   "hi": 16,
+   "lo": 16,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "seq_initial.initial_levels",
+   "hi": 13,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "genlock_vphase",
+   "offset": 520,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_vphase.hysteresis_enable",
+   "hi": 29,
+   "lo": 29,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_vphase.hysteresis_width",
+   "hi": 28,
+   "lo": 26,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_vphase.external_vphase",
+   "hi": 25,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_vphase.internal_vphase",
+   "hi": 12,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "state_table",
+   "offset": 521,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "line_type_a",
+   "offset": 522,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "line_type_b",
+   "offset": 523,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_type_b.length_m3",
+   "hi": 30,
+   "lo": 18,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_type_b.edge_mask_hi",
+   "hi": 17,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "edge_slot",
+   "offset": 524,
+   "access": "rw",
+   "width": 32,
+   "count": 8,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "edge_slot.position",
+   "hi": 12,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pixel_blank",
+   "offset": 532,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pixel_blank.enable",
+   "hi": 16,
+   "lo": 16,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pixel_blank.last",
+   "hi": 15,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pixel_blank.first",
+   "hi": 7,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pfd_control",
+   "offset": 560,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.line_count_hi",
+   "hi": 29,
+   "lo": 26,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.csync_source",
+   "hi": 25,
+   "lo": 24,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.csync_source.internal",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.csync_source.external",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.csync_source.output_format",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.line_count",
+   "hi": 23,
+   "lo": 16,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.precision",
+   "hi": 15,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.frame_select",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.clock_select",
+   "hi": 3,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.clock_select.host",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.clock_select.host_div2",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.clock_select.host_div4",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "pfd_control.clock_select.fourth",
+   "value": 3,
+   "grade": "inferred"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.flip",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_control.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "seq_low",
+   "offset": 561,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "seq_high",
+   "offset": 562,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pfd_diag",
+   "offset": 563,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_diag.previous",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pfd_diag.duration",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "frame_duration",
+   "offset": 564,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "frame_duration.duration",
+   "hi": 19,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "sync_detect_control",
+   "offset": 579,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sync_detect_control.frame_ref_select",
+   "hi": 18,
+   "lo": 18,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sync_detect_control.frames_on",
+   "hi": 17,
+   "lo": 15,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sync_detect_control.frames_off",
+   "hi": 14,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sync_detect_control.line_count",
+   "hi": 11,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sync_detect_control.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "req_control",
+   "offset": 580,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.interlaced_cursor",
+   "hi": 23,
+   "lo": 23,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.arbiter_status",
+   "hi": 22,
+   "lo": 22,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.fifo_balance",
+   "hi": 21,
+   "lo": 11,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.transfer_z",
+   "hi": 10,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.transfer_alpha",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.transfer_size",
+   "hi": 8,
+   "lo": 8,
+   "grade": "inferred"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.dither",
+   "hi": 7,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.pixel_size",
+   "hi": 6,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "req_control.pixel_size.small",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "req_control.pixel_size.medium",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "req_control.pixel_size.large",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "req_control.pixel_size.xlarge",
+   "value": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.request_done",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.ext_request",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.ext_request_enable",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.read_enable",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "req_control.enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "tiles_per_row",
+   "offset": 581,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "tiles_per_row.tiles",
+   "hi": 4,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "line_start",
+   "offset": 583,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_start.valid",
+   "hi": 14,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_start.groupxels_m1",
+   "hi": 13,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_start.tiles_m1",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "line_middle",
+   "offset": 584,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_middle.repeat_count",
+   "hi": 22,
+   "lo": 15,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_middle.valid",
+   "hi": 14,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_middle.groupxels_m1",
+   "hi": 13,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_middle.tiles_m1",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "line_end",
+   "offset": 585,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_end.valid",
+   "hi": 14,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_end.groupxels_m1",
+   "hi": 13,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "line_end.tiles_m1",
+   "hi": 2,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pan",
+   "offset": 586,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pan.pixel_offset",
+   "hi": 7,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pan.groupxel_offset",
+   "hi": 5,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "z_request",
+   "offset": 587,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "z_request.enable",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "z_request.field_count",
+   "hi": 3,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "field_start0",
+   "offset": 592,
+   "access": "rw",
+   "width": 32,
+   "count": 8,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start0.skip",
+   "hi": 23,
+   "lo": 20,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start0.first_tile",
+   "hi": 19,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start0.start_line",
+   "hi": 6,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "field_start1",
+   "offset": 600,
+   "access": "rw",
+   "width": 32,
+   "count": 8,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start1.skip",
+   "hi": 23,
+   "lo": 20,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start1.first_tile",
+   "hi": 19,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_start1.start_line",
+   "hi": 6,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "field_pattern",
+   "offset": 608,
+   "access": "rw",
+   "width": 32,
+   "count": 8,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "inferred"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.next_cursor_offset",
+   "hi": 27,
+   "lo": 24,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.active_lines",
+   "hi": 23,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.colour3",
+   "hi": 11,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.eye3",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.colour2",
+   "hi": 8,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.eye2",
+   "hi": 6,
+   "lo": 6,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.colour1",
+   "hi": 5,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.eye1",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.colour0",
+   "hi": 2,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "field_pattern.eye0",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pll_control",
+   "offset": 624,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_control.exec_write_external",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_control.exec_write_internal",
+   "hi": 3,
+   "lo": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_control.exec_read",
+   "hi": 2,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_control.auto_update",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_control.ready",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pll_address",
+   "offset": 625,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_address.address",
+   "hi": 3,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pll_readback",
+   "offset": 626,
+   "access": "r",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_readback.value",
+   "hi": 10,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "pll_data",
+   "offset": 627,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "pll_data.value",
+   "hi": 10,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "genlock_hclock",
+   "offset": 641,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_hclock.h_divider",
+   "hi": 11,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_hclock.auto_clock",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_hclock.source",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "genlock_hclock.source.external",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "genlock_hclock.source.internal",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "genlock_line_ratio",
+   "offset": 642,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_line_ratio.divider",
+   "hi": 21,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_line_ratio.line_length",
+   "hi": 13,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "genlock_line_ratio.edge",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "genlock_line_ratio.edge.falling",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "genlock_line_ratio.edge.rising",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "hmask2",
+   "offset": 643,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "hmask2.width",
+   "hi": 25,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "hmask2.start",
+   "hi": 12,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "backporch_clamp",
+   "offset": 644,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "backporch_clamp.width",
+   "hi": 21,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "backporch_clamp.delay",
+   "hi": 13,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "backporch_clamp.edge",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "fifo_control",
+   "offset": 650,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_control.int_source_odd",
+   "hi": 15,
+   "lo": 15,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_control.ext_control_enable",
+   "hi": 14,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_control.field_reset_enable",
+   "hi": 13,
+   "lo": 13,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_control.frame_reset_enable",
+   "hi": 12,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_control.high_water",
+   "hi": 11,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "fifo_pointer",
+   "offset": 651,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_pointer.read_ptr",
+   "hi": 21,
+   "lo": 11,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "fifo_pointer.write_ptr",
+   "hi": 10,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "sac_control",
+   "offset": 653,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sac_control.output_enable",
+   "hi": 1,
+   "lo": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "sac_control.input_enable",
+   "hi": 0,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "scaler_control",
+   "offset": 655,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.first_field_inhibit",
+   "hi": 20,
+   "lo": 19,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.vminify_kick",
+   "hi": 18,
+   "lo": 15,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.enc_stereo_mode",
+   "hi": 14,
+   "lo": 14,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.enc_frame_mode",
+   "hi": 13,
+   "lo": 12,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.enc_frame_mode.no_drop",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.enc_frame_mode.field_drop",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.enc_frame_mode.frame_drop",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.enc_frame_mode.low_latency",
+   "value": 3,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.fifo_read_clock",
+   "hi": 11,
+   "lo": 11,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.enc_fb_write_clock_enable",
+   "hi": 10,
+   "lo": 10,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.enc_field_dominance",
+   "hi": 9,
+   "lo": 9,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.field_out_select",
+   "hi": 8,
+   "lo": 8,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.interlace",
+   "hi": 7,
+   "lo": 7,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.seg_preload",
+   "hi": 6,
+   "lo": 5,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.x_magnify_start_pair",
+   "hi": 4,
+   "lo": 4,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.y_filter",
+   "hi": 3,
+   "lo": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "scaler_control.x_filter",
+   "hi": 1,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.x_filter.none",
+   "value": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.x_filter.minify",
+   "value": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "enum_value",
+   "name": "scaler_control.x_filter.magnify",
+   "value": 2,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "x_coeff_max",
+   "offset": 656,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "x_coeff_max.value",
+   "hi": 19,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "x_slope",
+   "offset": 657,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "x_slope.value",
+   "hi": 20,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "x_delta",
+   "offset": 658,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "x_delta.value",
+   "hi": 23,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "x_seg_start",
+   "offset": 659,
+   "access": "rw",
+   "width": 32,
+   "count": 4,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "x_seg_start.value",
+   "hi": 23,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "y_coeff_max",
+   "offset": 663,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "y_coeff_max.value",
+   "hi": 19,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "y_slope",
+   "offset": 664,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "y_slope.value",
+   "hi": 20,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "y_delta",
+   "offset": 665,
+   "access": "rw",
+   "width": 32,
+   "count": 1,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "y_delta.value",
+   "hi": 23,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "register",
+   "name": "y_seg_start",
+   "offset": 666,
+   "access": "rw",
+   "width": 32,
+   "count": 4,
+   "stride": 1,
+   "space": "voc_regs",
+   "reset": "unknown",
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "field",
+   "name": "y_seg_start.value",
+   "hi": 23,
+   "lo": 0,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "BASE_ADDRESS",
+   "value": 512,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "BASE_IDS",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "EDGE_SLOTS",
+   "value": 8,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "EDGE_SLOT_UNUSED",
+   "value": 8191,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "GROUPXEL_PIXELS",
+   "value": 4,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "ID_STRIDE",
+   "value": 256,
+   "count": 1,
+   "grade": "established"
+  },
+  {
+   "unit": "voc",
+   "kind": "constant",
+   "name": "PAN_GROUPXELS",
+   "value": 160,
+   "count": 1,
+   "grade": "established"
+  }
+ ]
+}

@@ -1540,7 +1540,7 @@ live in engine external memory, which `mgeb_EramFill` clears before a transfer.
 ## Colour tables and pixel output (colortable.S, upixout.s, upixelSetup.s)
 
 **Inferred**, from the words of the three modules. The colour-table code serves `glColorTable` and the colour-index maps:
-it fills ramps, packs tables for the texture filters' look-up RAM (`TFT_TLUT_DATA_*`, [RM.h](../RM.h)) and sends tables
+it fills ramps, packs tables for the texture filters' look-up RAM (`TFT_TLUT_DATA_*`, [RM.h](../devices/rm/RM.h)) and sends tables
 back to the host. The output modules are the last pixel stage, which clamps, scales to the destination's integer range
 and packs fields for the raster bus ([docs/rm.md](../docs/rm.md#pixel-and-texel-data-words)).
 
@@ -2570,7 +2570,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   each pass then sends the next two words to 0x1f8 and 0x1f5 (0x3984, 0x3985), so the input is a list of (mask,
   address, value) triples. The thread-B words at 0x3986-0x398a send the triple at offsets 9-0xb from register 0x13 the
   same way. It ends with the inverted clear pattern on 0x1f5 under E = 3 (0x398c, 0x398e) and the closing word.
-  `arm_bind_2d_clipmap_texture` uses it for five clipmap registers ([GE.h](../GE.h)).
+  `arm_bind_2d_clipmap_texture` uses it for five clipmap registers ([GE.h](../devices/ge/GE.h)).
 - `mgesi_IMPbshRegisterWrite` (`raster.S` lines 574-596, at 0x395e): **inferred**, the shadowed write that the GL
   state handlers use for `IMP_` registers ([docs/rm.md](../docs/rm.md#how-the-arm-firmware-writes-raster-registers)).
   It brackets the write as `mgesi_IMPtbusRegWrite` does. First `TFP_AMASK` (0x1408) gets the clear pattern directly
@@ -2587,7 +2587,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
 - `mgesi_AlphaTest` (`raster.S` lines 352-377, at 0x39b8): **inferred**, `glEnable`/`glDisable` of the alpha test. It
   takes the enable flag as operand 0, shifts it left (unit-1 0x5f, 0x39c1), and writes the result to `TFP_AFUNC`
   (address word 0x015b1407) through the shadow with mask 0x8000 (0x39bd, 0x39c2-0x39c6). The output is bit 15 of
-  `TFP_AFUNC`, the enable bit of [RM.h](../RM.h), set or cleared.
+  `TFP_AFUNC`, the enable bit of [RM.h](../devices/rm/RM.h), set or cleared.
 - `mgesi_AlphaFunc` (`raster.S` lines 307-337, at 0x39c8): **inferred**, `glAlphaFunc`. Its inputs are the function and
   the reference value. It writes `TFP_AFUNC` (address word 0x15b1407, staged at 0x39c9) through the shadow with mask
   0x7fff (0x39cb), which covers the twelve-bit reference and the three-bit function, sending the words to bus addresses
@@ -2596,7 +2596,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   value. Word 0xc5 is the colour scale `mgeb_RGBA_Mode` sets to just under 4096.0, so a reference of 1.0 produces the
   field's top value 0xfff.
 - `mgebi_ShadeModel` (`raster.S` lines 167-197, at 0x3a0a): **inferred**, `glShadeModel` (operand 0,
-  0x1d00 flat or 0x1d01 smooth, [GE.h](../GE.h)). It tests the operand with an AND that sets the flags (0x3a12) and,
+  0x1d00 flat or 0x1d01 smooth, [GE.h](../devices/ge/GE.h)). It tests the operand with an AND that sets the flags (0x3a12) and,
   under that predicate (`r198` = 0x11), writes `PG_GENERAL` (address word 0x01270800) through the shadow with mask 1,
   its flat-shading bit (0x3a0e, 0x3a10-0x3a17). It also updates engine word 3 with an OR or the code-0x51 combine,
   storing on either side of the test (0x3a18-0x3a24). The output is the pixel generator's shading mode and a mode bit
@@ -2618,7 +2618,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   flag-setting subtract (0x38c4, 0x38c8). It stages the scales 1024.0 and 4096.0 (0x38ce, 0x38d0) and selects between
   them under predicates (0x38d4-0x38d6). The output is a write of `IMP_ACCUM` (0x1c0e) on the bus (0x38d9) after
   `TFP_AMASK` (0x1408) is cleared (0x38d7-0x38d8), followed by format words built by an OR and a multiply-and-convert
-  store (0x38de, 0x38df) and a zero-mask shadowed write of 0x01681408 (0x38e0-0x38e3). [RM.h](../RM.h) gives
+  store (0x38de, 0x38df) and a zero-mask shadowed write of 0x01681408 (0x38e0-0x38e3). [RM.h](../devices/rm/RM.h) gives
   `IMP_ACCUM` a 13-bit value field, which is where the scaled value is inferred to go.
 - `mgesi_Accum32` (`raster.S` lines 970-1027, at 0x3894): **inferred**, the 32-bit accumulation-buffer form that
   `arm_accum` picks when the buffer depth is 0x20. Inputs, comparison with `GL_RETURN` and output register are those
@@ -2633,7 +2633,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   address words 0x013d1c14 and 0x013e1c15 (staged 0x38f0, 0x38f6; sent to bus address 0x1f8 at 0x38f2 and 0x38f8). The
   format words 0xc0000 and 0x400c0c00 (0x38f3, 0x38f5) go out with the four scaled values, which are its results
   (register moves 0x38f4, 0x38f7, 0x38fa and 0x38fb). With the 4096 scale each component becomes a twelve-bit field, two
-  per 24-bit value. kpm names those two indexes `IMP_WMASK_BIT` ([RM.h](../RM.h)), so the blend colour shares slots with
+  per 24-bit value. kpm names those two indexes `IMP_WMASK_BIT` ([RM.h](../devices/rm/RM.h)), so the blend colour shares slots with
   that name.
 - `mgeb_CI_Mode` (`raster.S` lines 754-818, at 0x38fd): **inferred**, switches the context to colour-index mode. Its
   input is the index width (operand 0) and a second operand. From operand 0 it builds an integer with a
@@ -2666,7 +2666,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   the texture-coordinate transform, to `mmo_DirtyTextureAndScreenModule` (0xf494) (0x37fd, 0x380a), as the
   texture-matrix handlers do ([Matrix operations per matrix](#matrix-operations-per-matrix-matrixfuncs)).
 - `mgeb_SetCurrentRaster` (`raster.S` lines 1086-1132, at 0x384b): **inferred**, loads the context's raster position,
-  the fifteen floats `arm_set_current_raster` forwards ([GE.h](../GE.h)). It multiplies operand 4 by 16.0
+  the fifteen floats `arm_set_current_raster` forwards ([GE.h](../devices/ge/GE.h)). It multiplies operand 4 by 16.0
   (0x384e-0x384f). It tests bit 11 (0x800) of engine word 3, the colour-index flag `mgeb_CI_Mode` sets, with a
   flag-setting AND (0x3851), moves a different value into register 0x1c under that predicate (0x3853), and subtracts
   operand 0xe from a register (0x3854). It copies operands 1-3 and 5-0xd into engine words 0x23 and 0x28-0x34 (moves
@@ -3417,7 +3417,7 @@ an `r95` = 8 store at that base plus the index in register 0x13, which is saved 
 
 Read from the [hostio.S listing](ge_listing/hostio.S.lst) (`ge.u`, IRIX 6.5.30m). These handlers program the
 host-interface output DMA through raster-bus register writes, or send data to the output window, register 0x1e
-(0xffff0000 from `bootstrap.s` 0x000e). A bus write puts a register number from [RM.h](../RM.h) on bus address 0x1f7
+(0xffff0000 from `bootstrap.s` 0x000e). A bus write puts a register number from [RM.h](../devices/rm/RM.h) on bus address 0x1f7
 and the value on 0x1f5, and 0x1f4 closes the command ([rm.md](../docs/rm.md#data-path)). Board register numbers:
 0x440 `HIP_ODMA_CHANNEL`, 0x460-0x464 the second channel's page number, offset, length, total and overflow, 0x476
 the shadow read port.
@@ -3474,7 +3474,7 @@ the shadow read port.
 Read from the [clear.S listing](ge_listing/clear.S.lst) (`ge.u`, IRIX 6.5.30m). Each clear handler converts the clear
 value from the command into the raster format and writes it as raster-bus registers: the register number goes on
 bus address 0x1f7 (or 0x1f8 for a high half), the value on 0x1f6 or 0x1f5, or through `r95` = 0x20 stores, which
-take a unit result into the engine's conversion-and-merge block. Register numbers from [RM.h](../RM.h):
+take a unit result into the engine's conversion-and-merge block. Register numbers from [RM.h](../devices/rm/RM.h):
 0x1c09 `IMP_DEPTH_CLEAR`, 0x1c12 `IMP_CLEAR_COLOR` and 0x1c13 its second word. Float constants are written as their
 values.
 
