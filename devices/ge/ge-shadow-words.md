@@ -1,6 +1,6 @@
 # Shadow word map
 
-The register-state rows `0x210`-`0x268` of the host command-name table are not host tokens. Each names one of the 89 words of the raster register shadow that the ARM firmware keeps for the raster managers; the words and their start-up values are read in [rm.md](../rm/README.md#shadow-word-names). This page gives one row per word: the shadow word number, the raster register it mirrors, its start-up value, the `befsh_addrs` entry that names the register, the first place arm1.u writes it, and the host tokens whose handlers write it (found by matching the functions that load the word's address constant against the handler table in `ucode/arm1_handlers.tsv`). That match sees only words an ARM handler loads itself. A word an ARM handler reaches by sending operands to an engine handler, which then writes the register (the alpha function is the audited case), shows as "none" or "internal routines only" even though a host token drives it; for those rows the engine-handler writers in [ge_compute.md](../../ucode/ge_compute.md) are the check.
+The register-state rows `0x210`-`0x268` of the host command-name table are not host tokens. Each names one of the 89 words of the raster register shadow that the ARM firmware keeps for the raster managers; the words and their start-up values are read in [rm.md](../rm/README.md#shadow-word-names). This page gives one row per word: the shadow word number, the raster register it mirrors, its start-up value, the `befsh_addrs` entry that names the register, the first place arm1.u writes it, and the host tokens whose handlers write it (found by matching the functions that load the word's address constant against the handler table in `software/ucode/arm1_handlers.tsv`). That match sees only words an ARM handler loads itself. A word an ARM handler reaches by sending operands to an engine handler, which then writes the register (the alpha function is the audited case), shows as "none" or "internal routines only" even though a host token drives it; for those rows the engine-handler writers in [ge_compute.md](../../software/ucode/ge_compute.md) are the check.
 
 The role column is **inferred** from the field layout in the diagnostic tool's own raster table unless it says established; the other columns are read from the firmware image (**established**).
 
@@ -98,7 +98,7 @@ The role column is **inferred** from the field layout in the diagnostic tool's o
 
 ## Words each host token writes
 
-The inverse of the last-but-one column, for tokens whose handler loads the address constant of a shadow word (**established**: the handler function is the one arm1.u names for the token in `ucode/arm1_handlers.tsv`).
+The inverse of the last-but-one column, for tokens whose handler loads the address constant of a shadow word (**established**: the handler function is the one arm1.u names for the token in `software/ucode/arm1_handlers.tsv`).
 
 | Host token | Shadow words written | Grade |
 |---|---|---|

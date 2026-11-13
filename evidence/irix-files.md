@@ -5,7 +5,7 @@ install into a local `root/` directory. They are not tracked in source control.
 Paths only: this repository holds no file contents.
 
 `root/` mirrors the IRIX filesystem. The top-level binary directories
-(`kona_kernel/`, `libglcore/`, `irisgl/`, `ddx/`, `ucode/`, `diags/`) hold
+(`software/kernel/`, `software/opengl/`, `software/irisgl/`, `software/xsgi/`, `software/ucode/`, `software/diags/`) hold
 relative symlinks into `root/`.
 
 Two releases are listed:
@@ -95,12 +95,12 @@ to inventory (each line is a path and the reason):
 
 | Group | Files | Location under `root/` |
 |---|---|---|
-| Kernel (`kona_kernel/`) | `kona.a` (members extracted with `ar x`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` (also reached as `var/sysgen/boot/`) |
-| OpenGL core (`libglcore/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/` (also `IP27KONA/`, `IP27KONA32/`, and the `IP35KONA*` twins) |
-| IrisGL (`irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
-| X server modules (`ddx/`) | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so` | `usr/lib/X11/dyDDX/` |
-| Microcode and tables (`ucode/`) | `ge.u`, `ge.hex`, `ge11.u`, `ged1b.u`, `geif.u`, `ge_kpm.hex`, `ge_symbols`, `arm1.u`, `arm1_kpm.u`, `tport.bin`, `dg4/`, `vof/` | `usr/gfx/ucode/KONA/` |
-| Diagnostics and tools (`diags/`) | `irsaudit`, `ge_diag_init.*`, `arm1_nic.u`, `dgo.mcs`, `ireeprom`, `kpm`, `postmortem` | `usr/diags/IR/`, `usr/gfx/KONA/bin/` |
+| Kernel (`software/kernel/`) | `kona.a` (members extracted with `ar x`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` (also reached as `var/sysgen/boot/`) |
+| OpenGL core (`software/opengl/`) | `libGLcore.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/` (also `IP27KONA/`, `IP27KONA32/`, and the `IP35KONA*` twins) |
+| IrisGL (`software/irisgl/`) | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` |
+| X server modules (`software/xsgi/`) | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so` | `usr/lib/X11/dyDDX/` |
+| Microcode and tables (`software/ucode/`) | `ge.u`, `ge.hex`, `ge11.u`, `ged1b.u`, `geif.u`, `ge_kpm.hex`, `ge_symbols`, `arm1.u`, `arm1_kpm.u`, `tport.bin`, `dg4/`, `vof/` | `usr/gfx/ucode/KONA/` |
+| Diagnostics and tools (`software/diags/`) | `irsaudit`, `ge_diag_init.*`, `arm1_nic.u`, `dgo.mcs`, `ireeprom`, `kpm`, `postmortem` | `usr/diags/IR/`, `usr/gfx/KONA/bin/` |
 | Origin 350 kernel (`IP35boot`) | `kona.a`, `gfx.o`, `gfxs.a`, `gfxstubs.a`, `rrm.o`, `tport.a` | `usr/cpu/sysgen/IP35boot/` |
 | Textport driver | `tport.a` (IP27 and IP35) | `usr/cpu/sysgen/IP27boot/`, `usr/cpu/sysgen/IP35boot/` |
 | Graphics tools | `gfxinfo` (a link to `gfxinit`), `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx`, `stopgfx`, `xsetmon` and the `Ircombine`, `Dmconf`, `XSetmon` resource files | `usr/gfx/`, `usr/bin/X11/`, `usr/lib/X11/app-defaults/` |
@@ -111,7 +111,7 @@ to inventory (each line is a path and the reason):
 The rows from the Origin 350 kernel down were added from a listing of the 6.5.30 installation media
 (`instigator extract` of the three 6.5.30 discs) and extracted from it; they were not checked on an
 installed system, unlike the rest of section 1. The diagnostic directory `usr/diags/IR` also holds
-`bin/hyper`, `ucode/arm1_nic.u`, `ucode/diag_arm_init.u` and the netlist and BIST data files.
+`bin/hyper`, `software/ucode/arm1_nic.u`, `software/ucode/diag_arm_init.u` and the netlist and BIST data files.
 Searched and left out because they name no InfiniteReality symbol: `usr/stand/ide`,
 `stand/ideloader`, `usr/etc/videod` and the `libvl.so.1` builds. The 6.5.30 media carries no PROM image.
 
@@ -149,32 +149,32 @@ lines are `LINK TARGET`, relative to the repository root. `libGLcore.so` exists 
 `IP27KONA32` N32 and `IP27KONA64` 64-bit.
 
 ```archives
-root/usr/cpu/sysgen/IP27boot/kona.a kona_kernel
+root/usr/cpu/sysgen/IP27boot/kona.a software/kernel
 ```
 
 ```links
-kona_kernel/kona.a root/usr/cpu/sysgen/IP27boot/kona.a
-kona_kernel/gfx.o root/usr/cpu/sysgen/IP27boot/gfx.o
-kona_kernel/rrm.o root/usr/cpu/sysgen/IP27boot/rrm.o
-kona_kernel/kernel.o root/usr/cpu/sysgen/IP27boot/kernel.o
-kona_kernel/gfxs.a root/usr/cpu/sysgen/IP27boot/gfxs.a
-kona_kernel/gfxstubs.a root/usr/cpu/sysgen/IP27boot/gfxstubs.a
-libglcore/libGLcore.so root/usr/gfx/arch/IP27KONA64/libGLcore.so
-libglcore/libGL.so root/usr/gfx/arch/IP27KONA64/libGL.so
-libglcore/libGLcore_n32.so root/usr/gfx/arch/IP27KONA32/libGLcore.so
-libglcore/libGLcore_o32.so root/usr/gfx/arch/IP27KONA/libGLcore.so
-irisgl/libgl.so root/usr/gfx/arch/IGLOO32/libgl.so
-irisgl/libfm.so root/usr/lib32/libfm.so
-ddx/kona.so root/usr/lib/X11/dyDDX/kona.so
-ddx/konad.so root/usr/lib/X11/dyDDX/konad.so
-ddx/konal.so root/usr/lib/X11/dyDDX/konal.so
-ddx/konas.so root/usr/lib/X11/dyDDX/konas.so
-ddx/konavis.so root/usr/lib/X11/dyDDX/konavis.so
-ddx/glx.so root/usr/lib/X11/dyDDX/glx.so
-ddx/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
-ucode/KONA root/usr/gfx/ucode/KONA
-diags/IR root/usr/diags/IR
-diags/KONA_bin root/usr/gfx/KONA/bin
+software/kernel/kona.a root/usr/cpu/sysgen/IP27boot/kona.a
+software/kernel/gfx.o root/usr/cpu/sysgen/IP27boot/gfx.o
+software/kernel/rrm.o root/usr/cpu/sysgen/IP27boot/rrm.o
+software/kernel/kernel.o root/usr/cpu/sysgen/IP27boot/kernel.o
+software/kernel/gfxs.a root/usr/cpu/sysgen/IP27boot/gfxs.a
+software/kernel/gfxstubs.a root/usr/cpu/sysgen/IP27boot/gfxstubs.a
+software/opengl/libGLcore.so root/usr/gfx/arch/IP27KONA64/libGLcore.so
+software/opengl/libGL.so root/usr/gfx/arch/IP27KONA64/libGL.so
+software/opengl/libGLcore_n32.so root/usr/gfx/arch/IP27KONA32/libGLcore.so
+software/opengl/libGLcore_o32.so root/usr/gfx/arch/IP27KONA/libGLcore.so
+software/irisgl/libgl.so root/usr/gfx/arch/IGLOO32/libgl.so
+software/irisgl/libfm.so root/usr/lib32/libfm.so
+software/xsgi/kona.so root/usr/lib/X11/dyDDX/kona.so
+software/xsgi/konad.so root/usr/lib/X11/dyDDX/konad.so
+software/xsgi/konal.so root/usr/lib/X11/dyDDX/konal.so
+software/xsgi/konas.so root/usr/lib/X11/dyDDX/konas.so
+software/xsgi/konavis.so root/usr/lib/X11/dyDDX/konavis.so
+software/xsgi/glx.so root/usr/lib/X11/dyDDX/glx.so
+software/xsgi/Xsgi root/usr/gfx/arch/GENERIC/Xsgi
+software/ucode/KONA root/usr/gfx/ucode/KONA
+software/diags/IR root/usr/diags/IR
+software/diags/KONA_bin root/usr/gfx/KONA/bin
 ```
 
 ## 5. Debug information by release

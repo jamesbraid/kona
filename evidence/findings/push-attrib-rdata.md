@@ -6,10 +6,10 @@ at 0x8003a8 is, and which requests the `cycles` demo makes. Sources, all
 IRIX 6.5.30m unless stated: the N32 `libGLcore.so`
 (`usr/gfx/arch/IP27KONA32`, addresses are its virtual addresses; the 64-bit
 build was cross-read through `software/opengl/libglcore-driver-builds.md`; the o32 build
-was not read), the pipe firmware `ucode/arm1.s` (ARM addresses 0x0c......),
-the engine listings in `ucode/ge_listing/`, the kernel objects
+was not read), the pipe firmware `software/ucode/arm1.s` (ARM addresses 0x0c......),
+the engine listings in `software/ucode/ge_listing/`, the kernel objects
 `kona_video.o`, `kona_timeout.o` and `kona_crash.o` (text offsets from
-`kona_kernel/disasm/`), and the demo binary `cycles` from the 6.5 base
+`software/kernel/disasm/`), and the demo binary `cycles` from the 6.5 base
 applications disc (SHA-256
 `b49909e9ae6bd1c4b0504df0a01adbbc5b2c3fb543ea25d8604963e2efab256c`;
 `usr/demos/General_Demos/cycles/cycles`, an N32 dynamic executable; the
@@ -46,7 +46,7 @@ given), **unknown** (with the test that would settle it).
 ### The client side (established)
 
 `__glkonim_PushAttrib` (0xd95d8b0, 3408 bytes; assembly in
-`libglcore/asm/KONA/kon_attrib.s` from line 242):
+`software/opengl/asm/KONA/kon_attrib.s` from line 242):
 
 - Inside a begin block (word at process address 0x1018 equal to 1) it raises
   error 0x502 and sends nothing (0xd95d8b0 area, `beq` on 4120).
@@ -104,7 +104,7 @@ given), **unknown** (with the test that would settle it).
   open and close.
 - Which engine handler writes the completion word: the closing
   `mgesi_FinishRdata` (`hostio.S` lines 409-467, entry 0x6a32, listing
-  `ucode/ge_listing/hostio.S.lst`). It restores the second output channel's
+  `software/ucode/ge_listing/hostio.S.lst`). It restores the second output channel's
   registers (0x460-0x464, 0x440, 0x476) and ends in a group-31 transfer. The
   table's completion-rule row already records that the literal last word is
   taken from an operand the caller supplies and that this operand was not

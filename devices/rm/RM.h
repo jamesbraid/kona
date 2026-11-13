@@ -13,11 +13,11 @@
  *            the register before it (value = low bit, width = bits),
  *            kind 3 = named value of the field before it. Extracted by
  *            scripts/extract_kpm_tables.py into
- *            diags/kpm/raster_registers.tsv; the defines at the end of this
+ *            software/diags/kpm/raster_registers.tsv; the defines at the end of this
  *            file are that table, one line per record.
  *   libGLcore /usr/gfx/arch/IP27KONA32/libGLcore.so (N32):
- *            libglcore/asm/texture/kon_texture_api.s and
- *            libglcore/decomp/ (m2c output).
+ *            software/opengl/asm/texture/kon_texture_api.s and
+ *            software/opengl/decomp/ (m2c output).
  */
 #ifndef KONA_RM_H
 #define KONA_RM_H
@@ -69,14 +69,14 @@
  * 64-bit bus word is index in bits 62-48 and a 48-bit value in bits 47-0.
  * The engine program builds the same high word: mGL_EX_Initialize stores
  * 0x10040000-0x100b0000 as templates whose low half takes value bits
- * 47-32 of TM_DRAW_TEXMAP_* (ucode/ge_listing/ge.S.lst). The vector files
+ * 47-32 of TM_DRAW_TEXMAP_* (software/ucode/ge_listing/ge.S.lst). The vector files
  * agree: 48-bit registers (TFP_FOG_DATA, TFP_A2M_LUT1) carry value in bits
  * 47-32, and for 32-bit registers those bits are 0 or repeat the index
  * (devices/rm/README.md, "The register-write word"). Broadcast to several raster
  * managers is UNKNOWN.
  *
  * Writers cited per register below: ge.u handlers by name and address
- * (ucode/ge_listing/), irsaudit functions by name and address (IRIX
+ * (software/ucode/ge_listing/), irsaudit functions by name and address (IRIX
  * 6.5.30m, usr/diags/IR/bin/irsaudit), the vector files aaspoke.tbus and
  * tbusdata.Z, and tbuRegReset (0x10154cb4), the diagnostic routine that
  * puts every state register it has touched back to a fixed value. That
@@ -177,7 +177,7 @@
  * TML_SYNC_WAITDRAW.
  *
  * ESTABLISHED (libGLcore_n32.so 6.5.30m, DoDrawPixelsOrTexels, asm
- * libglcore/asm/KONA/kon_pixel.s line 3015): texel downloads go out as
+ * software/opengl/asm/KONA/kon_pixel.s line 3015): texel downloads go out as
  * token 0x174 (KONA_HP_DRAWTEXELS) followed by 20 header words, then the image
  * through __glKonSendData; pixel draws use token 0x3a (KONA_HP_DRAWPIXELS)
  * followed by 8 header words. The 20 is a count of the stores to the 0x4000
@@ -2481,7 +2481,7 @@
  * ESTABLISHED (arm1.u, 64 of 64 constants): the address word the ARM
  * hands to the engines' register-write handler is
  * (KONA_RM_BEF_SHADOW_SLOT0 + i) << 16 | register, i = word of the
- * 89-word shadow (ucode/befshadow.tsv). 0x10f marks a write not shadowed.
+ * 89-word shadow (software/ucode/befshadow.tsv). 0x10f marks a write not shadowed.
  */
 #define KONA_RM_BUSWORD_INDEX(w)            (((w) >> 48) & 0xffff)
 #define KONA_RM_BUSWORD_REG(w)              (((w) >> 32) & 0xffff)

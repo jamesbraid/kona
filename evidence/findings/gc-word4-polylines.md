@@ -1,10 +1,10 @@
 # X graphics-context word 4 bit 31, and four polyline rules
 
 Scope: the thirteen-word X graphics-context load (token 0x129) and the X
-server's polyline commands (tokens 0x15b-0x15e). Sources: `ddx/kona.so`
-(IRIX 6.5.30m, via `ddx/asm/kona/kon/kon.s`; addresses below are `kona.so`
-virtual addresses), the pipe firmware `ucode/KONA/arm1.u`, the engine program
-`ucode/KONA/ge.u` / `ge.hex` (listings in `ucode/ge_listing/`).
+server's polyline commands (tokens 0x15b-0x15e). Sources: `software/xsgi/kona.so`
+(IRIX 6.5.30m, via `software/xsgi/asm/kona/kon/kon.s`; addresses below are `kona.so`
+virtual addresses), the pipe firmware `software/ucode/KONA/arm1.u`, the engine program
+`software/ucode/KONA/ge.u` / `ge.hex` (listings in `software/ucode/ge_listing/`).
 Grades: **established** (read from bytes),
 **inferred** (reasoned, reasoning given), **unknown** (with the test that
 would settle it). `formats/token/command-table.md` is not edited here; the rows to
@@ -134,14 +134,14 @@ Two things are open:
   write constants to it (35 writes in `entry.S`), so a hardware reader is
   plausible and unseen.
 - *Source word.* Stores with `r95` = 4 send the lane-0 store-data register
-  loaded nine words earlier (`ucode/ge_isa.md`, "The store-data register",
+  loaded nine words earlier (`software/ucode/ge_isa.md`, "The store-data register",
   inferred). The loading words at 0x4d01, 0x4d03, 0x4d04 and 0x4d05 read input
   words 0, 1, 2 and 3 (A = 0x1f, D = 0-3), and the four `r95` = 4 stores at
   0x4d0a, 0x4d0c, 0x4d0d and 0x4d0e sit exactly nine words after them. Read
   that way, 0x4d0a stores word 0 (the foreground colour high half), not word
   4, which is consistent with the other three stores taking words 1, 2 and 3.
   The same instruction word also names input word 4 through A/D, which is the
-  direct reading and the one `ucode/ge_compute.md` adopts. The fit is exact
+  direct reading and the one `software/ucode/ge_compute.md` adopts. The fit is exact
   for all four stores, so word 0 is the more likely source (inferred, because
   the store-data rule is itself inferred). If word 0 is right, word 4 reaches
   the board only on the bus data word, under the mask, and bit 31 reaches no
@@ -351,7 +351,7 @@ case.
 ## 7. Does a pending data run join a line
 
 **Inferred.** The `X_DATAk` words are routed to the register-write
-command (`ucode/icu_map.tsv`), yet the sender uses them strictly as a preload for
+command (`software/ucode/icu_map.tsv`), yet the sender uses them strictly as a preload for
 the next drawing command (points, rectangles and boxes in the senders that
 use them). The run's size plus the closing token's payload is the number of
 items drawn (for example 6 + 2 words = four rectangles), so the run joins the

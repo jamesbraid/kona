@@ -8,4 +8,4 @@ The values are in [registers.toml](registers.toml), each graded and sourced, and
 
 ## Used by
 
-- [ARM firmware (arm1.u) functions and data, one entry per symbol](../../ucode/arm1_functions.md)
+- [ARM firmware (arm1.u) functions and data, one entry per symbol](../../software/ucode/arm1_functions.md)

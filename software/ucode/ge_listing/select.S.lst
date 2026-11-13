@@ -1,0 +1,180 @@
+# select.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mgeb_EndSelectMode:
+c002: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:252
+c007: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:247
+c008: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:245
+c009: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:248
+c00a: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:249
+c00b: 782071e7c0dfffffff f15 imm=dfffffff r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:255
+c00c: 2e00c1320d8041ffa5 f5  imm=1b A=18 C=1e M=6d0 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; select.S:256
+c00d: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c00d seq=1cfdf r25=3e3fc00  ; select.S:262
+c012: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:261
+c015: 77fa43e7c880f8001b f14 imm=1b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; select.S:259
+mgeb_BgnSelectMode:
+c016: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:219
+c01b: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:214
+c01c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:212
+c01d: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:215
+c01e: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:216
+c01f: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; select.S:229
+c021: 782071e7c020000000 f15 imm=20000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:222
+c022: 2e00c1320d8043ffa5 f5  imm=1b A=18 C=1e M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; select.S:223
+c023: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c023 seq=1cfdf r25=3e3fc00  ; select.S:233
+c027: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:232
+c028: 77fa476fc880f80a87 f14 imm=a87 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; select.S:230
+c02b: 77fa43e7c880f8001b f14 imm=1b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; select.S:226
+mgeb_LoadName:
+c02c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:165
+c02d: 782071e7c020000000 f15 imm=20000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:172
+c02e: 2e0081320d8051ffa5 f5  imm=1b r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; select.S:173
+c03a: 77f64007c100f8c07d f14 xfer5 c4 cc=2 -> c07d imm=c07d cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:176
+c040: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:167
+c041: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:168
+c042: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:169
+c043: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:179
+c04a: 68000007e86fcaf8a0 f13 r220=1 M=6ca r110=7bd r62=1ffc000178  ; select.S:179
+c056: 77f64007c000f8d4f4 f14 xfer5 c4 cc=0 -> d4f4 <mErrInvalidOperation> imm=d4f4 cc=0 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:180
+c057: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:183
+c060: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:186
+c067: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; select.S:187
+c070: 76003607ca04980000 f14 r217=1 A=18 G=13 r99=8 r62=1ffc884170  ; select.S:188
+c073: 7fc08007e000000000 f15 A=1f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; select.S:190
+c078: 77fa413fc881980a46 f14 imm=a46 r219=1 C=13 F=3f G=13 r71=1 r62=1ffc33c170  ; select.S:189
+c07c: 74f4616fca00f80000 f14 r211=3 A=13 C=16 r176=0 F=3f r95=8 r62=1ffcb18170  ; select.S:192
+c07d: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c07d seq=1cfdf r25=3e3fc00  ; select.S:197
+c082: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:196
+mgeb_PushName:
+c086: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:113
+c087: 782071e7c020000000 f15 imm=20000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:120
+c088: 2e0081320d8051ffa5 f5  imm=1b r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; select.S:121
+c094: 77f64007c100f8c0d7 f14 xfer5 c4 cc=2 -> c0d7 imm=c0d7 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:124
+c09a: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:115
+c09b: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:116
+c09c: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:117
+c09d: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:129
+c0a3: 782071e7c100000040 f15 imm=40 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; select.S:127
+c0a4: 6e018007e86fc2ffa5 f13 r220=1 A=18 D=1 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; select.S:128
+c0b0: 77f64007c000f8d4de f14 xfer5 c4 cc=0 -> d4de <mErrStackOverflow> imm=d4de cc=0 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:130
+c0b1: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:133
+c0ba: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:136
+c0c0: 782071e7c100000001 f15 imm=1 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; select.S:137
+c0c1: 3601b007c0fd40ffa5 f6  r213=3 A=18 B=18 D=1 M=6c0 r110=6fd r99=a r62=1ffccc017c r25=3ee9c00  ; select.S:138
+c0ca: 76003607ca04980000 f14 r217=1 A=18 G=13 r99=8 r62=1ffc884170  ; select.S:143
+c0cd: 7fc08007e000000000 f15 A=1f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; select.S:145
+c0d2: 77fa413fc881980a46 f14 imm=a46 r219=1 C=13 F=3f G=13 r71=1 r62=1ffc33c170  ; select.S:144
+c0d4: 77fa476fc880f80a87 f14 imm=a87 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; select.S:140
+c0d6: 74f4616fca00f80000 f14 r211=3 A=13 C=16 r176=0 F=3f r95=8 r62=1ffcb18170  ; select.S:147
+c0d7: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c0d7 seq=1cfdf r25=3e3fc00  ; select.S:152
+c0dc: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:151
+mgeb_PopName:
+c0e0: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:70
+c0e1: 782071e7c020000000 f15 imm=20000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:77
+c0e2: 2e0081320d8051ffa5 f5  imm=1b r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; select.S:78
+c0ee: 77f64007c100f8c125 f14 xfer5 c4 cc=2 -> c125 imm=c125 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:81
+c0f4: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:72
+c0f5: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:73
+c0f6: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:74
+c0f7: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:84
+c0fe: 68000007e86fcaf8a0 f13 r220=1 M=6ca r110=7bd r62=1ffc000178  ; select.S:84
+c10a: 77f64007c000f8d4c8 f14 xfer5 c4 cc=0 -> d4c8 <mErrStackUnderflow> imm=d4c8 cc=0 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:85
+c10b: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:88
+c114: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:93
+c11a: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:91
+c11b: 6e008007e83fc2ffc5 f13 A=18 M=6c2 r110=7bd r99=a r62=1ffc88017c r25=3ea9c00  ; select.S:92
+c124: 77fa476fc880f80a87 f14 imm=a87 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; select.S:95
+c125: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c125 seq=1cfdf r25=3e3fc00  ; select.S:100
+c12a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:99
+mgeb_InitNames:
+c12e: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:36
+c12f: 782071e7c020000000 f15 imm=20000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:43
+c130: 2e0081320d8051ffa5 f5  imm=1b r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; select.S:44
+c13c: 77f64007c100f8c150 f14 xfer5 c4 cc=2 -> c150 imm=c150 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:47
+c13d: 77f20007c880f8c159 f14 xfer4 c0 cc=11 -> c159 <mSelectFlush> imm=c159 seq=4fe0 r71=1 r25=3e39c00  ; select.S:50
+c142: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; select.S:38
+c143: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:39
+c144: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; select.S:40
+c146: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; select.S:53
+c14f: 77fa476fc880f80a87 f14 imm=a87 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; select.S:53
+c150: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> c150 seq=1cfdf r25=3e3fc00  ; select.S:58
+c155: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; select.S:57
+mSelectFlush:
+c159: 700a67e7ca00f802a9 f14 imm=2a9 C=1e r95=14 r71=1 r62=1ffc218170  ; select.S:282
+c15d: 77fa4f6fc880f80a8b f14 imm=a8b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:289
+c160: 60003007ea0101de80 f12 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; select.S:283
+c163: 782071e7c400000001 f15 imm=1 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; select.S:287
+c164: 6e048007ec3e40ffa5 f13 cc=91 A=18 D=4 Q=1c M=6c0 r110=6fd r99=a r62=1ffc88057c r25=3ea9c00  ; select.S:288
+c169: 76013607ca04680000 f14 r217=1 A=18 D=1 G=d r99=8 r62=1ffc884170  ; select.S:284
+c16d: 77fa476fc880f80a8b f14 imm=a8b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; select.S:290
+c171: 77fa4ed74880f80000 f14 C=d F=1d r95=17 r62=1ffc218170  ; select.S:295
+c177: 782071e7c000001000 f15 imm=1000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:293
+c178: 6e008007e86fd0ffa5 f13 r220=1 A=18 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; select.S:294
+c184: 77f64007c100f8c1fe f14 xfer5 c4 cc=2 -> c1fe imm=c1fe cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; select.S:296
+c18d: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:303
+c193: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; select.S:299
+c194: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; select.S:303
+c19d: 76003607ca04780000 f14 r217=1 A=18 G=f r99=8 r62=1ffc884170  ; select.S:304
+c1a5: 77fa40f6c881780000 f14 r219=1 C=f F=1b G=f r62=1ffc23c170  ; select.S:306
+c1a9: 700024ffca01780000 f14 r219=1 C=f r176=2 F=3f G=f r62=1ffc33c170  ; select.S:307
+c1ad: 700024ffca01780000 f14 r219=1 C=f r176=2 F=3f G=f r62=1ffc33c170  ; select.S:308
+c1ae: 782071e7c200000452 f15 imm=452 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; select.S:300
+c1af: 2e02bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; select.S:301
+c1b0: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; select.S:311
+c1b1: 782070f7c000000000 f15 r215=3 B=18 C=f r62=1ffc658170  ; select.S:309
+c1b2: 0e00bc041f02c4f6a0 f1  r213=3 A=18 B=1e M=6ca r99=8 seq=6fe5 r62=1ffccc0178 r25=3e69c00  ; select.S:310
+c1b3: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; select.S:314
+c1b4: 77f9cde7c888f801f7 f14 imm=1f7 C=1e r95=13 seq=6fde r71=1 r62=1ffc218170 r25=3e2fc00  ; select.S:315
+c1b5: 782071e7c000000476 f15 imm=476 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; select.S:319
+c1b6: 6600bcd7ea002fdd80 f12 r213=3 A=18 B=1e C=d M=6ca r99=8 r95=17 r62=1ffced8178 r25=3e69c00  ; select.S:320
+c1b7: e0003c07ea0001dd80 f12 w71=1 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; select.S:322
+c1b8: 7039ced78888f80000 f14 C=d F=1e r95=17 seq=605e r62=1ffc218170 r25=3e2fc00  ; select.S:325
+c1b9: 782071e7c2497fffff f15 imm=497fffff r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; select.S:329
+c1ba: 77fa4f6fc880f80a87 f14 imm=a87 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; select.S:332
+c1bb: 782071e7c15020000c f15 imm=5020000c r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; select.S:327
+c1bc: 1803417d5f3444f8a0 f3  imm=1f5 cc=91 C=1e Q=1a M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; select.S:317
+c1bd: 6e018007ec2ccaf6a0 f13 cc=91 A=18 D=1 Q=19 M=6ca r99=8 r62=1ffc880578  ; select.S:328
+c1be: 6e028007ec2de6ffa5 f13 cc=91 A=18 D=2 Q=1b M=6e6 r110=6fd r99=8 r62=1ffc88057c  ; select.S:335
+c1bf: 68000007ec2e66ffa5 f13 cc=91 Q=1c M=6e6 r110=6fd r62=1ffc00057c  ; select.S:337
+c1c0: 28003d32fac044941c f5  imm=1f5 r213=3 B=1e C=1e r148=380 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; select.S:331
+c1c1: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; select.S:332
+c1ca: 76003607ca04780000 f14 r217=1 A=18 G=f r99=8 r62=1ffc884170  ; select.S:340
+c1cd: 77fa416fc881700a47 f14 imm=a47 r219=1 C=16 F=3f G=e r71=1 r62=1ffc33c170  ; select.S:343
+c1cf: 60003c07ea0001daba f12 r213=3 B=1e r148=1a M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; select.S:333
+c1d0: 60003c07ea0001c73b f12 r213=3 B=1e r148=379 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; select.S:336
+c1d1: 60003c07ea0001c73c f12 r213=3 B=1e r148=399 M=6ca r110=4bc r62=1ffc443178 r25=3e69c00  ; select.S:337
+c1d2: 77fa40f948c1780000 f14 r222=1 r219=1 C=f F=25 G=f r62=1ffc23c170  ; select.S:345
+c1d3: 77fa4007c884f80000 f14 seq=6fe5  ; select.S:338
+c1d4: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; select.S:346
+c1d5: 700a66e7ca00f80000 f14 C=e r95=14 r62=1ffc218170  ; select.S:350
+c1d7: 700ae6e78a00f80000 f14 C=e F=1e r95=15 r62=1ffc218170  ; select.S:351
+c1d9: 700b66e74a00f80000 f14 C=e F=1d r95=16 r62=1ffc218170  ; select.S:352
+c1db: 700a66e70a00f80000 f14 C=e F=1c r95=14 r62=1ffc218170  ; select.S:355
+c1dd: 700ae6e6ca00f80000 f14 C=e F=1b r95=15 r62=1ffc218170  ; select.S:356
+c1de: 77fa40f948c1780000 f14 r222=1 r219=1 C=f F=25 G=f r62=1ffc23c170  ; select.S:361
+c1df: 700b66e68a00f80000 f14 C=e F=1a r95=16 r62=1ffc218170  ; select.S:357
+c1e0: 77f64007c88cf8c1d5 f14 xfer5 c7 cc=11 -> c1d5 imm=c1d5 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; select.S:362
+c1e1: 60003c07ea0101daba f12 r213=3 B=1e E=1 r148=1a M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; select.S:353
+c1e5: 77fa40e64881700000 f14 r219=1 C=e F=19 G=e r62=1ffc23c170  ; select.S:360
+c1e7: e0003c07ea0101daba f12 w71=1 r213=3 B=1e E=1 r148=1a M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; select.S:358
+c1e8: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; select.S:364
+c1e9: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; select.S:365
+c1ea: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; select.S:366
+c1eb: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:370
+c1ec: 782071e7c200000477 f15 imm=477 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; select.S:373
+c1ed: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; select.S:380
+c1ee: 2e02bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; select.S:374
+c1ef: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; select.S:387
+c1f0: 782071e7c24f7fffff f15 imm=4f7fffff r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; select.S:384
+c1f1: 7e028007e000000000 f15 A=18 D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; select.S:385
+c1f6: 77fa46d74880f80000 f14 r211=3 C=d F=1d r95=8 r62=1ffc218170  ; select.S:381
+c1f8: 77fa46d78880f80000 f14 r211=3 C=d F=1e r95=8 r62=1ffc218170  ; select.S:387
+c1fa: 77fa46d7c880f80000 f14 r211=3 C=d r95=8 r62=1ffc218170  ; select.S:386
+c1fd: 18137d7d5f02c4941e f3  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 seq=6fe5 r71=1 r62=1ffc65a178 r25=3e69c00  ; select.S:376
+c1fe: 77fa4fe7c880f81389 f14 imm=1389 C=1e r95=17 r71=1 r62=1ffc218170  ; select.S:398
+c201: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; select.S:401
+c204: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; select.S:393
+c205: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; select.S:398
+c206: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; select.S:395
+c207: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; select.S:395
+c208: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; select.S:395
+c209: 28003d32fa4244f400 f5  imm=1f4 r213=3 B=1e C=1e E=2 r128=5 M=6ca r110=5bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; select.S:399

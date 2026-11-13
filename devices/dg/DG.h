@@ -6,7 +6,7 @@
  * INFERRED = a reading with its reasoning; UNKNOWN = not settled.
  *
  * Sources:
- *   kernel   IRIX 6.5.30m kona.a, member kona_video.o (kona_kernel/disasm/
+ *   kernel   IRIX 6.5.30m kona.a, member kona_video.o (software/kernel/disasm/
  *            kona_video/kona_video.text.s) and kona_intr_hip2.o. Functions
  *            are named in each comment.
  *   kona.h   IRIX 6.5.5 /usr/include/sys/kona.h (installed system header),
@@ -300,12 +300,12 @@
 #define KONA_CHANNEL_NONE             32      /* the value kept when no channel owns the cursor */
 
 /*
- * Video-format table files (ucode/KONA/dg4/vfo/*.vfo, dg4/cmb/*.cmb).
+ * Video-format table files (software/ucode/KONA/dg4/vfo/*.vfo, dg4/cmb/*.cmb).
  *
  * These are host-side files, not registers; they are here because they set
  * the numbers the display generator's timing sequencer is loaded with.
  * ESTABLISHED from the 74 .vfo and 26 .cmb files (scripts/sdb_dump.py
- * --check); the container layout is in ucode/dg.md. Roles marked INFERRED
+ * --check); the container layout is in software/ucode/dg.md. Roles marked INFERRED
  * rest on the value patterns and on the register names in vof/*.vof.
  */
 
@@ -744,7 +744,7 @@ enum kona_vfo_signal {
  * The display bus as the ARM firmware addresses it.
  *
  * Source: arm1.u (IRIX 6.5.30m). Every load and store whose address the
- * code builds from constants is listed in ucode/dg_access.tsv
+ * code builds from constants is listed in software/ucode/dg_access.tsv
  * (scripts/dg_access.py); devices/dg/README.md ("The firmware's display-bus window")
  * has the narrative.
  *

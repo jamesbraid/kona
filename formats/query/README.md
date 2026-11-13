@@ -8,4 +8,4 @@ The values are in [format.toml](format.toml), each graded and sourced, and the g
 
 ## Used by
 
-- [How the ARM firmware (arm1.u) is built and what each token handler does](../../ucode/arm1_firmware.md)
+- [How the ARM firmware (arm1.u) is built and what each token handler does](../../software/ucode/arm1_firmware.md)

@@ -21,7 +21,7 @@ root
 root/
 
 # Ghidra module build output and test dumps
-/ghidra/processors/kona-ge/data/languages/*.sla
-/ghidra/processors/kona-ged/data/languages/*.sla
+/tools/ghidra/processors/kona-ge/data/languages/*.sla
+/tools/ghidra/processors/kona-ged/data/languages/*.sla
 /.cache/
 .re-leak-terms

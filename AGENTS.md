@@ -36,12 +36,12 @@ The subdirectories below contain relative symbolic links resolving into `root/` 
 
 | Directory | Symlinked files | Target in `root/` | DWARF status (6.5.30m) |
 |---|---|---|---|
-| `kona_kernel/` | `kona.a` members (28 `kona_*.o`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` | **DWARF** in all 31 objects |
-| `libglcore/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/`, `IP27KONA32/`, `IP27KONA/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 163 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; `dwarfdump` reads both |
-| `irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | **DWARF** (160 and 61 compilation units) |
-| `ddx/` | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | Stripped; dynamic symbols only (`kona.so`: 819 functions). `konavis.so` has no code section |
-| `ucode/` | `KONA/` microcode, tables and listings (`ge.u`, `ge11.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/`, `vof/`) | `usr/gfx/ucode/KONA/` | Data |
-| `diags/` | `IR/` diagnostics (`irsaudit`, microcode, test vectors), `KONA_bin/` (`ireeprom`, `kpm`, `postmortem`) | `usr/diags/IR/`, `usr/gfx/KONA/bin/` | Stripped |
+| `software/kernel/` | `kona.a` members (28 `kona_*.o`), `gfx.o`, `rrm.o`, `kernel.o`, `gfxs.a`, `gfxstubs.a` | `usr/cpu/sysgen/IP27boot/` | **DWARF** in all 31 objects |
+| `software/opengl/` | `libGLcore.so` (64-bit), `libGLcore_n32.so`, `libGLcore_o32.so`, `libGL.so` | `usr/gfx/arch/IP27KONA64/`, `IP27KONA32/`, `IP27KONA/` | **DWARF** in the 64-bit and N32 libGLcore (N32: 163 compilation units) and libGL; o32 stripped. `pyelftools` cannot read the 64-bit DWARF header, so the extractor uses its symbol table; `dwarfdump` reads both |
+| `software/irisgl/` | `libgl.so`, `libfm.so` | `usr/gfx/arch/IGLOO32/`, `usr/lib32/` | **DWARF** (160 and 61 compilation units) |
+| `software/xsgi/` | `kona.so`, `konad.so`, `konal.so`, `konas.so`, `konavis.so`, `glx.so`, `Xsgi` | `usr/lib/X11/dyDDX/`, `usr/gfx/arch/GENERIC/` | Stripped; dynamic symbols only (`kona.so`: 819 functions). `konavis.so` has no code section |
+| `software/ucode/` | `KONA/` microcode, tables and listings (`ge.u`, `ge11.u`, `geif.u`, `arm1.u`, `tport.bin`, `dg4/`, `vof/`) | `usr/gfx/ucode/KONA/` | Data |
+| `software/diags/` | `IR/` diagnostics (`irsaudit`, microcode, test vectors), `KONA_bin/` (`ireeprom`, `kpm`, `postmortem`) | `usr/diags/IR/`, `usr/gfx/KONA/bin/` | Stripped |
 
 The scope is wider than the six directories: evidence/irix-files.md also lists the Origin 350 (IP35) twins of the kernel objects, the textport driver `tport.a`, the `gfxinfo`, `gfxtopology`, `hyperpipeinfo`, `ircombine`, `sgcombine`, `setmon`, `dmconf`, `startgfx` and `stopgfx` tools, the o32 IrisGL library, the `xsetmon` client and its resource files, the video-format compiler `sdbutil` with the `dg4`, `dg4_ddo_gvo`, `dplex` and `voc1` rule files, and the driver's tuning files. They have no symlink directory; `retools/tools/inventory.py` reads them from `root/`. Files on the 6.5.30 media that name no InfiniteReality symbol (`usr/stand/ide`, `stand/ideloader`, `videod`, `libvl.so.1`) are out of scope, and no PROM image is on that media.
 
@@ -79,10 +79,10 @@ Planned headers (none written yet; `evidence/coverage.md` tracks each):
 
 Local headers capture internal driver structures:
 
-- `kona_kernel/include/kona_kern.h`: kernel driver structures (attach state, ioctl arguments, DMA buffers, context and swap state).
-- `libglcore/include/glcore_kona.h`: OpenGL driver context and hardware state shadowing.
-- `ddx/include/kona_ddx.h`: X server module structures (screen, window and GC private data).
-- `irisgl/include/igloo.h`: IrisGL layer structures and dispatch.
+- `software/kernel/include/kona_kern.h`: kernel driver structures (attach state, ioctl arguments, DMA buffers, context and swap state).
+- `software/opengl/include/glcore_kona.h`: OpenGL driver context and hardware state shadowing.
+- `software/xsgi/include/kona_ddx.h`: X server module structures (screen, window and GC private data).
+- `software/irisgl/include/igloo.h`: IrisGL layer structures and dispatch.
 
 ---
 
@@ -101,10 +101,10 @@ Initialise only the submodules you need: `git submodule update --init references
 Tools (from the `retools` submodule: `retools/tools/` shared, `retools/tools/kona/` for this device; run from the repository root, where they find this workspace by the current directory). The files in `tools/` are this repository's own scripts and, in `tools/config/`, its data and config:
 
 - `map_binaries.py`: catalogue every linked binary (sections, functions, DWARF compilation units) into `tools/config/binaries_manifest.json`.
-- `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `kona_kernel/disasm/`. Unpack archives (`.a`) with `ar x` first.
+- `disasm_kernel.py`: disassemble the kernel `.o` objects into m2c-ready assembly under `software/kernel/disasm/`. Unpack archives (`.a`) with `ar x` first.
 - `resolve_got.py`, `clean_asm.py`: resolve `$gp`-relative GOT loads to symbol names.
-- `extract_libglcore_kona.py`: extract compilation units, types and functions from `libGLcore.so` into `libglcore/asm/` and `manifest.json`, and write `libglcore/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
-- `extract_kona_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `ddx/groups.json`.
+- `extract_libglcore_kona.py`: extract compilation units, types and functions from `libGLcore.so` into `software/opengl/asm/` and `manifest.json`, and write `software/opengl/decompile_libglcore.sh`. A binary without DWARF falls back to its symbol table.
+- `extract_kona_ddx.py`: the same for an X server module, grouped by function-name prefix or by your own `software/xsgi/groups.json`.
 - `inventory.py`: measure coverage from the binaries. It lists every binary, function, MMIO offset, command token, ioctl, microcode routine and listed register in scope into [evidence/inventory/](evidence/inventory/README.md), gives each a status (documented, no-software-dependency, named-only or undocumented, with the doc and section that explains it) and rewrites the totals at the top of `evidence/coverage.md`. Run it inside the build image with this workspace mounted; it needs the MIPS binutils and `pyelftools`.
 - `analyze_fifo.py`, `extract_gl_tokens.py`: find accesses to a hardware address window in the assembly, and map the first FIFO word each decompiled GL function stores to that function. Both take the address window or FIFO address you found as arguments; none is built in.
 - `retools/ghidra/scripts/`: Ghidra headless scripts for IRIX code (gp and jump-table recovery, register-window stores, call edges, struct typing, bulk decompile), with the rules for choosing between Ghidra and the pipeline in [retools/ghidra/scripts/README.md](retools/ghidra/scripts/README.md). Shared, byte for byte, with the other graphics workspaces.
@@ -222,4 +222,4 @@ Output rules:
 
 Downstream projects consume the headers and docs; they should not need to read the binaries.
 
-Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`kona_kernel: label the flow-control register`); bodies say why. Do not wait to batch work.
+Commit small and often, straight to `main`. Subjects are lowercase, component-prefixed imperatives (`kernel: label the flow-control register`); bodies say why. Do not wait to batch work.

@@ -55,16 +55,15 @@
       "devices/xg/README.md",
       "software/xsgi/xserver.md",
       "evidence/routines/*.md",
-      "ucode/*.md",
+      "software/ucode/*.md",
       "README.md"
     ],
     "headers": [
       "*.h",
       "devices/*/*.h",
-      "*/include/*.h"
+      "software/*/include/*.h"
     ],
     "tables": [
-      "*/*.tsv",
       "software/*/*.tsv"
     ],
     "index": [
@@ -75,12 +74,12 @@
       "questions/README.md"
     ],
     "dumps": [
-      "ucode/arm1_symbols.tsv",
-      "ucode/icu_map.tsv"
+      "software/ucode/arm1_symbols.tsv",
+      "software/ucode/icu_map.tsv"
     ],
     "skip": [
       "evidence/inventory/*",
-      "diags/kpm/*"
+      "software/diags/kpm/*"
     ]
   },
   "prepare": [
@@ -278,7 +277,7 @@
         "devices/hip/HIP.h",
         "software/kernel/kernel.md",
         "devices/hip/README.md",
-        "kona_kernel/include/kona_kern.h"
+        "software/kernel/include/kona_kern.h"
       ]
     },
     {
@@ -339,7 +338,7 @@
       "docs": [
         "devices/ge/GE.h",
         "devices/ge/README.md",
-        "ucode/ged.md"
+        "software/ucode/ged.md"
       ]
     },
     {
@@ -376,7 +375,7 @@
       "binaries": [
         "usr/cpu/sysgen/*/kona.a*"
       ],
-      "why": "the address the kernel writes command words to sits at pipe state +0x900 (kona_kernel/include/kona_kern.h, KONA_SC_FIFO_PORT); which register window it points into is not settled"
+      "why": "the address the kernel writes command words to sits at pipe state +0x900 (software/kernel/include/kona_kern.h, KONA_SC_FIFO_PORT); which register window it points into is not settled"
     },
     {
       "type": "constant",
@@ -535,7 +534,7 @@
       "evidence/routines/*.md",
       "questions/*.md",
       "references/*.md",
-      "ucode/*.md"
+      "software/ucode/*.md"
     ]
   },
   "ucode": [
@@ -559,7 +558,7 @@
       "type": "table",
       "program": "arm1.u",
       "kind": "display command",
-      "file": "ucode/dg_dispatch.tsv",
+      "file": "software/ucode/dg_dispatch.tsv",
       "pointer": true,
       "columns": {
         "address": "command",
@@ -586,7 +585,7 @@
       "type": "table",
       "program": "ged1b.u",
       "kind": "table B entry",
-      "file": "ucode/ged_banks.tsv",
+      "file": "software/ucode/ged_banks.tsv",
       "pointer": true,
       "columns": {
         "address": "n",

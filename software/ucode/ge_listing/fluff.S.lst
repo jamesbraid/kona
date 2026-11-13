@@ -1,0 +1,484 @@
+# fluff.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_Punt:
+e3d2: 77fa49e7c880f80018 f14 imm=18 C=1e r95=2 r71=1 r62=1ffc218170  ; fluff.S:1002
+e3d7: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:999
+e3d8: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:1003
+e3df: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:996
+e3e0: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:1000
+mmo_MultipassModule:
+e3e1: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:1038
+e3e2: 782071e7c000000080 f15 imm=80 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:1040
+e3e3: 2e0081320c8051ffa5 f5  imm=19 r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; fluff.S:1041
+e3ef: 77f64007c180f8e407 f14 xfer5 c4 cc=3 -> e407 imm=e407 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:1045
+e3f5: 77f20007c880f8103a f14 xfer4 c0 cc=11 -> 103a <mCramToEram> imm=103a seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:1053
+e3f8: 77fa41e7c88100002f f14 imm=2f r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; fluff.S:1050
+e3f9: 77fa41e7c881081505 f14 imm=1505 r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; fluff.S:1051
+e3fa: 77fa41e7c881100020 f14 imm=20 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:1052
+e3fe: 77f24007c880f8e43b f14 xfer4 c4 cc=11 -> e43b imm=e43b seq=4fe4 r71=1 r25=3e39c00  ; fluff.S:1055
+e407: 782071e7c100000010 f15 imm=10 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; fluff.S:1060
+e408: 2e01b1323ec246ffc5 f5  imm=7d r213=3 A=18 B=18 C=1e D=1 E=2 M=6c2 r110=7bd r99=8 r95=13 r71=1 r62=1ffced817c r25=3e69c00  ; fluff.S:1061
+e411: 76023607ca04000000 f14 r217=1 A=18 D=2 G=0 r99=8 r62=1ffc884170  ; fluff.S:1064
+e414: 77f20007c880f8104f f14 xfer4 c0 cc=11 -> 104f <mEramToCram> imm=104f seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:1068
+e417: 77fa41e7c88108002f f14 imm=2f r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; fluff.S:1066
+e418: 77fa41e7c881100010 f14 imm=10 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:1067
+e419: 7000216fca01000000 f14 r219=1 C=16 r176=0 F=3f G=0 r62=1ffcb3c170  ; fluff.S:1065
+e41d: 77fa4f6fc880f8069f f14 imm=69f C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:1073
+e423: 782071e7c100000010 f15 imm=10 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; fluff.S:1071
+e424: 6601b007ea0201bff8 f12 r213=3 A=18 B=18 D=1 E=2 M=6c2 r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; fluff.S:1072
+e42d: 76023607ca04000000 f14 r217=1 A=18 D=2 G=0 r99=8 r62=1ffc884170  ; fluff.S:1075
+e430: 77f20007c880f8104f f14 xfer4 c0 cc=11 -> 104f <mEramToCram> imm=104f seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:1079
+e433: 77fa41e7c88108003f f14 imm=3f r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; fluff.S:1077
+e434: 77fa41e7c881100010 f14 imm=10 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:1078
+e435: 7000216fca01000000 f14 r219=1 C=16 r176=0 F=3f G=0 r62=1ffcb3c170  ; fluff.S:1076
+e439: 60003807ea2b01c01d f12 r213=3 B=1c E=2b r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:1082
+e43a: 60003807ea2901c01d f12 r213=3 B=1c E=29 r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:1083
+e43b: 77fa4097c8c0f80000 f14 r222=1 C=9 r62=1ffc218170  ; fluff.S:1088
+e43c: 77fa40978881480000 f14 r219=1 C=9 F=1e G=9 r62=1ffc23c170  ; fluff.S:1088
+e43d: 700027e74a82480000 f14 r219=2 r198=15 C=1e F=1d G=9 r71=1 r62=1ffd23c170  ; fluff.S:1088
+e441: 724161efca00f800da f14 imm=da A=9 C=1e r176=0 F=3f r95=2 r71=1 r62=1ffcb18170  ; fluff.S:1088
+e447: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:1089
+mdc_finish:
+e450: 782071e7c000000008 f15 imm=8 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:83
+e451: 2e0081320c8051ffa5 f5  imm=19 r220=1 A=18 C=1e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; fluff.S:84
+e453: 60003807c12a01c01e f12 r213=2 r198=2 B=1c E=2a r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:85
+e454: 60003807ea0b01c010 f12 r213=3 B=1c E=b r148=200 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:81
+e455: 782071e7c10000e623 f15 imm=e623 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; fluff.S:89
+e456: 6e01a7b4286fc2ffa5 f13 r220=1 A=18 C=1b D=1 F=10 M=6c2 r110=6fd r99=8 r95=13 r62=1ffca9817c  ; fluff.S:90
+e459: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> e459 seq=1cfdf r25=3e3fc00  ; fluff.S:105
+e45a: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; fluff.S:94
+e45c: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; fluff.S:104
+e45d: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; fluff.S:94
+e45e: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:94
+e45f: 60003c07c18001c01e f12 r213=2 r198=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:94
+e460: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:96
+e461: 6610bc07c18201dd80 f12 r213=2 r198=3 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; fluff.S:96
+mdc_evaluator:
+e462: 77fa4977c880f80000 f14 C=17 r95=2 r62=1ffc218170  ; fluff.S:239
+e463: 60003807ea0b01c010 f12 r213=3 B=1c E=b r148=200 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:237
+e468: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:240
+e46d: 77fa41780881b80000 f14 r219=1 C=17 F=20 G=17 r62=1ffc23c170  ; fluff.S:239
+mdc_multipass:
+e471: 77f64007f700f8e49b f14 xfer5 c4 cc=6e -> e49b imm=e49b cc=6e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:169
+e479: 782071e7c000000080 f15 imm=80 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:167
+e47a: 782071e7c9fffffff7 f15 imm=fffffff7 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; fluff.S:193
+e47b: 4e09b807cb1a84d410 f9  r213=3 A=18 B=1c D=9 E=b r148=200 M=6d0 r110=4bd r99=8 r62=1ffccc217c r25=3e69c00  ; fluff.S:194
+e487: 77fa41b5c881480000 f14 r219=1 C=1b F=17 G=9 r62=1ffc23c170  ; fluff.S:199
+e488: 700027e7f7024800da f14 imm=da r219=2 r198=6e C=1e G=9 r71=1 r62=1ffd23c170  ; fluff.S:200
+e48a: 600039b76a0d27de80 f12 r213=3 B=1c C=1b E=d F=1d M=6ca r110=7bd r95=13 r62=1ffc658178 r25=3e69c00  ; fluff.S:180
+e48b: 77fa4db78880f80000 f14 C=1b F=1e r95=13 r62=1ffc218170  ; fluff.S:181
+e48c: 60003897ea0e05de80 f12 r213=3 B=1c C=9 E=e M=6ca r110=7bd r95=2 r62=1ffc658178 r25=3e69c00  ; fluff.S:181
+e48d: 600039b7ea0c27de80 f12 r213=3 B=1c C=1b E=c M=6ca r110=7bd r95=13 r62=1ffc658178 r25=3e69c00  ; fluff.S:182
+e48e: 6e00a7b5686fcaf8a0 f13 r220=1 A=18 C=1b F=15 M=6ca r110=7bd r99=8 r95=13 r62=1ffca98178  ; fluff.S:174
+e48f: 280041320c8043ffa5 f5  imm=19 C=1e M=6d4 r110=6fd r99=2 r95=13 r71=1 r62=1ffc21817c r25=3ea9c00  ; fluff.S:175
+e490: 782071e7c00000ca01 f15 imm=ca01 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:187
+e491: 7e008007e000000000 f15 A=18 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:188
+e492: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:202
+e497: 77fa41e7c881480000 f14 r219=1 C=1e G=9 r71=1 r62=1ffc23c170  ; fluff.S:198
+e499: 77fa43e7c880f80019 f14 imm=19 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:177
+e49a: 702267b54100f80000 f14 r211=2 r198=2 C=1b F=15 r95=4 r62=1ffd218170  ; fluff.S:189
+e49b: 77fa4de7c880f80019 f14 imm=19 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:208
+e49c: 6e008007e83fd1ffa5 f13 A=18 M=6d1 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; fluff.S:207
+e49d: 77f20007c880f8104f f14 xfer4 c0 cc=11 -> 104f <mEramToCram> imm=104f seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:216
+e4a0: 77fa41e7c881001505 f14 imm=1505 r219=1 C=1e G=0 r71=1 r62=1ffc23c170  ; fluff.S:213
+e4a1: 77fa41e7c88108002f f14 imm=2f r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; fluff.S:214
+e4a2: 77fa41e7c881100020 f14 imm=20 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:215
+e4a5: 77fa43e7c880f80019 f14 imm=19 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:210
+e4a6: 60003807ea2b01c01d f12 r213=3 B=1c E=2b r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:219
+e4a7: 60003807ea2901c01d f12 r213=3 B=1c E=29 r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:220
+e4ac: 77f64007f400f8e462 f14 xfer5 c4 cc=68 -> e462 <mdc_evaluator> imm=e462 cc=68 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:224
+e4ad: 77f24007c880f8e450 f14 xfer4 c4 cc=11 -> e450 <mdc_finish> imm=e450 seq=4fe4 r71=1 r25=3e39c00  ; fluff.S:225
+mdc_sprite:
+e4b6: 77f20007c880f8104f f14 xfer4 c0 cc=11 -> 104f <mEramToCram> imm=104f seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:140
+e4b9: 77fa41e3c8810014d5 f14 imm=14d5 r219=1 C=1e F=f G=0 r71=1 r62=1ffc23c170  ; fluff.S:137
+e4ba: 77fa41e7c88108002f f14 imm=2f r219=1 C=1e G=1 r71=1 r62=1ffc23c170  ; fluff.S:138
+e4bb: 77fa41e7c881100010 f14 imm=10 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:139
+e4bf: 60003807ea2b01c01d f12 r213=3 B=1c E=2b r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:143
+e4c0: 60003807ea2901c01d f12 r213=3 B=1c E=29 r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:144
+e4c5: 77f64007f300f8e471 f14 xfer5 c4 cc=66 -> e471 <mdc_multipass> imm=e471 cc=66 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:146
+e4c6: 77f64007f400f8e462 f14 xfer5 c4 cc=68 -> e462 <mdc_evaluator> imm=e462 cc=68 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:147
+e4c7: 77f24007c880f8e450 f14 xfer4 c4 cc=11 -> e450 <mdc_finish> imm=e450 seq=4fe4 r71=1 r25=3e39c00  ; fluff.S:148
+mdc_polymode_or_clip:
+e4d0: 60003807ea0b01c010 f12 r213=3 B=1c E=b r148=200 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:121
+e4d5: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:123
+e4da: 77fa41780881b80000 f14 r219=1 C=17 F=20 G=17 r62=1ffc23c170  ; fluff.S:118
+mmo_Vn2ToSave:
+e4de: 77fa41afc8810410c8 f14 imm=10c8 r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:625
+e4e1: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:622
+e4e2: 781b8007e000000000 f15 D=1b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:627
+e4e4: 781c8007e000000000 f15 D=1c M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:628
+e4e6: 781d8007e000000000 f15 D=1d M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:629
+e4e8: 781e8007e000000000 f15 D=1e M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:630
+e4e9: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:619
+e4ea: 281fc042068044f6a0 f5  imm=d r211=3 C=1e D=1f M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:623
+e4eb: 77fa476fc880f80035 f14 imm=35 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:627
+e4ec: 68208007e83fcaf6a0 f13 D=20 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:632
+e4ed: 77fa476fc880f80036 f14 imm=36 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:628
+e4ee: 2821c0220c0044f6a0 f5  imm=18 C=1e D=21 M=6ca r99=a r95=2 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:633
+e4ef: 77fa476fc880f80037 f14 imm=37 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:629
+e4f0: 68228007e83fcaf6a0 f13 D=22 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:634
+e4f1: 77fa476fc880f80038 f14 imm=38 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:630
+e4f3: 77fa476fc880f80039 f14 imm=39 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:631
+e4f4: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:637
+e4f5: 77fa476fc880f8003a f14 imm=3a r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:632
+e4f7: 77fa476fc880f8003b f14 imm=3b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:633
+e4f9: 77fa476fc880f8003c f14 imm=3c r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:634
+mmo_V0ToSaveAndIgnore:
+e4fd: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:825
+e4fe: 7fdb8007e000000000 f15 A=1f D=1b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:828
+e500: 7fdc8007e000000000 f15 A=1f D=1c M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:829
+e502: 7fdd8007e000000000 f15 A=1f D=1d M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:830
+e504: 7fde8007e000000000 f15 A=1f D=1e M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:831
+e505: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:822
+e506: 2fdfc042068044f6a0 f5  imm=d r211=3 A=1f C=1e D=1f M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:826
+e507: 77fa476fc880f80035 f14 imm=35 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:828
+e508: 6fe08007e83fcaf6a0 f13 A=1f D=20 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:833
+e509: 77fa476fc880f80036 f14 imm=36 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:829
+e50a: 2fe1c0220c0044f6a0 f5  imm=18 A=1f C=1e D=21 M=6ca r99=a r95=2 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:834
+e50b: 77fa476fc880f80037 f14 imm=37 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:830
+e50c: 6fe28007e83fcaf6a0 f13 A=1f D=22 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:835
+e50d: 77fa476fc880f80038 f14 imm=38 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:831
+e50f: 77fa476fc880f80039 f14 imm=39 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:832
+e510: 77f1c19808adc80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=19 F=20 G=19 seq=14fdf r62=1ffc23c170 r25=3e3fc00  ; fluff.S:837
+e511: 77fa476fc880f8003a f14 imm=3a r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:833
+e512: 77fa4109c881840000 f14 r219=1 C=10 r162=1 F=27 G=10 r62=1ffc23c170  ; fluff.S:838
+e513: 77fa476fc880f8003b f14 imm=3b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:834
+e514: 77fa4119c8818c0000 f14 r219=1 C=11 r162=1 F=27 G=11 r62=1ffc23c170  ; fluff.S:839
+e515: 77fa476fc880f8003c f14 imm=3c r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:835
+mmo_V0ToSave_SaveExtra:
+e519: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:895
+e51a: 7fdb8007e000000000 f15 A=1f D=1b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:898
+e51c: 7fdc8007e000000000 f15 A=1f D=1c M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:899
+e51e: 7fdd8007e000000000 f15 A=1f D=1d M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:900
+e520: 7fde8007e000000000 f15 A=1f D=1e M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:901
+e521: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:892
+e522: 2fdfc042068044f6a0 f5  imm=d r211=3 A=1f C=1e D=1f M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:896
+e523: 77fa476fc880f80035 f14 imm=35 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:898
+e524: 6fe08007e83fcaf6a0 f13 A=1f D=20 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:903
+e525: 77fa476fc880f80036 f14 imm=36 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:899
+e526: 6fe18007e83fcaf6a0 f13 A=1f D=21 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:904
+e527: 77fa476fc880f80037 f14 imm=37 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:900
+e528: 6fe28007e83fcaf6a0 f13 A=1f D=22 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:905
+e529: 77fa476fc880f80038 f14 imm=38 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:901
+e52a: 77fa41afc88104102c f14 imm=102c r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:907
+e52b: 77fa476fc880f80039 f14 imm=39 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:902
+e52c: 77f20007c880f81025 f14 xfer4 c0 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:910
+e52d: 77fa476fc880f8003a f14 imm=3a r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:903
+e52e: 77fa416fc88108003d f14 imm=3d r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; fluff.S:908
+e52f: 77fa476fc880f8003b f14 imm=3b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:904
+e530: 77fa41e7c881100027 f14 imm=27 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:909
+e531: 77fa476fc880f8003c f14 imm=3c r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:905
+e535: 77fa49e7c880f80018 f14 imm=18 C=1e r95=2 r71=1 r62=1ffc218170  ; fluff.S:912
+e53b: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:913
+mmo_V0ToSave:
+e544: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:731
+e545: 7fdb8007e000000000 f15 A=1f D=1b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:734
+e547: 7fdc8007e000000000 f15 A=1f D=1c M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:735
+e549: 7fdd8007e000000000 f15 A=1f D=1d M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:736
+e54b: 7fde8007e000000000 f15 A=1f D=1e M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:737
+e54c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:721
+e54d: 2fdfc042068044f6a0 f5  imm=d r211=3 A=1f C=1e D=1f M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:732
+e54e: 77fa476fc880f80035 f14 imm=35 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:734
+e54f: 6fe08007e83fcaf6a0 f13 A=1f D=20 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:739
+e550: 77fa476fc880f80036 f14 imm=36 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:735
+e551: 2fe1c0220c0044f6a0 f5  imm=18 A=1f C=1e D=21 M=6ca r99=a r95=2 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:740
+e552: 77fa476fc880f80037 f14 imm=37 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:736
+e553: 6fe28007e83fcaf6a0 f13 A=1f D=22 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:741
+e554: 77fa476fc880f80038 f14 imm=38 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:737
+e556: 77fa476fc880f80039 f14 imm=39 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:738
+e557: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:744
+e558: 77fa476fc880f8003a f14 imm=3a r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:739
+e55a: 77fa476fc880f8003b f14 imm=3b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:740
+e55c: 77fa476fc880f8003c f14 imm=3c r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:741
+mmo_SaveToVn1:
+e560: 77fa4f6fc880f80035 f14 imm=35 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:766
+e561: 77fa4de7c880f80018 f14 imm=18 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:761
+e562: 77fa4f6fc880f80036 f14 imm=36 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:767
+e563: 77fa41afc881041164 f14 imm=1164 r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:764
+e564: 77fa4f6fc880f80037 f14 imm=37 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:768
+e565: 280040220c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=2 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:761
+e566: 7039cf6fc88cf80038 f14 imm=38 C=16 F=3f r95=17 seq=605f r71=1 r62=1ffc318170 r25=3e2fc00  ; fluff.S:758
+e567: 60000007ea1b01de80 f12 r213=3 E=1b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:766
+e568: 77fa4f6fc880f80039 f14 imm=39 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:770
+e569: 60000007ea1c01de80 f12 r213=3 E=1c M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:767
+e56a: 77fa4f6fc880f8003a f14 imm=3a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:771
+e56b: 60000007ea1d01de80 f12 r213=3 E=1d M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:768
+e56c: 77fa4f6fc880f8003b f14 imm=3b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:772
+e56d: 60000007ea1e01de80 f12 r213=3 E=1e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:769
+e56e: 77fa4f6fc880f8003c f14 imm=3c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:773
+e570: 60000007ea1f01de80 f12 r213=3 E=1f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:770
+e572: 60000007ea2001de80 f12 r213=3 E=20 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:771
+e574: 60000007ea2101de80 f12 r213=3 E=21 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:772
+e575: 1c500007c8ef44f8a0 f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 E=22 M=6ca r110=7bd seq=14fdf r62=1ffc440178 r25=3e7fc00  ; fluff.S:773
+e57d: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:762
+mmo_SaveToV0AndVn2ToSave:
+e57e: 77fa4f6fc880f80035 f14 imm=35 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:687
+e580: 77fa4f6fc880f80036 f14 imm=36 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:688
+e582: 77fa4f6fc880f80037 f14 imm=37 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:689
+e584: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:684
+e585: 7039cf6fc88cf80038 f14 imm=38 C=16 F=3f r95=17 seq=605f r71=1 r62=1ffc318170 r25=3e2fc00  ; fluff.S:681
+e586: 60003e07ea1b01de80 f12 r213=3 B=1f E=1b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:687
+e587: 60003e07ea1c01de80 f12 r213=3 B=1f E=1c M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:688
+e588: 77fa4f6fc880f80039 f14 imm=39 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:691
+e589: 60003e07ea1d01de80 f12 r213=3 B=1f E=1d M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:689
+e58a: 77fa41afc8810410c8 f14 imm=10c8 r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:696
+e58b: 77fa4f6fc880f8003a f14 imm=3a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:692
+e58c: 60003e07ea1e01de80 f12 r213=3 B=1f E=1e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:690
+e58d: 77fa4f6fc880f8003b f14 imm=3b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:693
+e58e: 781b8007e000000000 f15 D=1b M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:698
+e58f: 60003e07ea1f01de80 f12 r213=3 B=1f E=1f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:691
+e590: 781c8007e000000000 f15 D=1c M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:699
+e591: 77fa4f6fc880f8003c f14 imm=3c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:694
+e592: 781d8007e000000000 f15 D=1d M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:700
+e593: 60003e07ea2001de80 f12 r213=3 B=1f E=20 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:692
+e594: 781e8007e000000000 f15 D=1e M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:701
+e595: 60003e07ea2101de80 f12 r213=3 B=1f E=21 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:693
+e596: 281fc042068044f6a0 f5  imm=d r211=3 C=1e D=1f M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:685
+e597: 77fa476fc880f80035 f14 imm=35 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:698
+e598: 68208007e83fcaf6a0 f13 D=20 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:703
+e599: 77fa476fc880f80036 f14 imm=36 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:699
+e59a: 2821c0220c0044f6a0 f5  imm=18 C=1e D=21 M=6ca r99=a r95=2 r71=1 r62=1ffca98178 r25=3ea9c00  ; fluff.S:704
+e59b: 77fa476fc880f80037 f14 imm=37 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:700
+e59c: 68228007e83fcaf6a0 f13 D=22 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:705
+e59d: 77fa476fc880f80038 f14 imm=38 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:701
+e59f: 77fa476fc880f80039 f14 imm=39 r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:702
+e5a0: 1c503e07c8ef44f8a0 f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 B=1f E=22 M=6ca r110=7bd seq=14fdf r62=1ffc440178 r25=3e7fc00  ; fluff.S:694
+e5a1: 77fa476fc880f8003a f14 imm=3a r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:703
+e5a3: 77fa476fc880f8003b f14 imm=3b r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:704
+e5a5: 77fa476fc880f8003c f14 imm=3c r211=3 C=16 F=3f r95=8 r71=1 r62=1ffc318170  ; fluff.S:705
+mmo_SaveToV0_SaveExtra:
+e5a9: 77fa4f6fc880f80035 f14 imm=35 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:932
+e5ab: 77fa4f6fc880f80036 f14 imm=36 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:933
+e5ad: 77fa4f6fc880f80037 f14 imm=37 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:934
+e5ae: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:929
+e5af: 7039cf6fc88cf80038 f14 imm=38 C=16 F=3f r95=17 seq=605f r71=1 r62=1ffc318170 r25=3e2fc00  ; fluff.S:926
+e5b0: 60003e07ea1b01de80 f12 r213=3 B=1f E=1b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:932
+e5b1: 77fa4f6fc880f80039 f14 imm=39 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:936
+e5b2: 60003e07ea1c01de80 f12 r213=3 B=1f E=1c M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:933
+e5b3: 77fa4f6fc880f8003a f14 imm=3a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:937
+e5b4: 60003e07ea1d01de80 f12 r213=3 B=1f E=1d M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:934
+e5b5: 77fa4f6fc880f8003b f14 imm=3b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:938
+e5b6: 60003e07ea1e01de80 f12 r213=3 B=1f E=1e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:935
+e5b7: 77fa4f6fc880f8003c f14 imm=3c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:939
+e5b9: 60003e07ea1f01de80 f12 r213=3 B=1f E=1f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:936
+e5bb: 60003e07ea2001de80 f12 r213=3 B=1f E=20 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:937
+e5bd: 60003e07ea2101de80 f12 r213=3 B=1f E=21 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:938
+e5be: 60003e07ea2201de80 f12 r213=3 B=1f E=22 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:939
+e5bf: 77f20007c880f81025 f14 xfer4 c0 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:944
+e5c2: 77fa41afc88104102c f14 imm=102c r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:941
+e5c3: 77fa416fc88108003d f14 imm=3d r219=1 C=16 F=3f G=1 r71=1 r62=1ffc33c170  ; fluff.S:942
+e5c4: 77fa41e7c881100027 f14 imm=27 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:943
+e5c7: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:930
+e5c8: 77fa49e7c880f80018 f14 imm=18 C=1e r95=2 r71=1 r62=1ffc218170  ; fluff.S:946
+e5ce: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:947
+mmo_SaveToV0_RestoreExtra:
+e5d7: 77fa4f6fc880f80035 f14 imm=35 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:965
+e5d9: 77fa4f6fc880f80036 f14 imm=36 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:966
+e5da: 77fa4de7c880f80018 f14 imm=18 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:962
+e5db: 77fa4f6fc880f80037 f14 imm=37 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:967
+e5dc: 280040220c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=2 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:962
+e5dd: 7039cf6fc88cf80038 f14 imm=38 C=16 F=3f r95=17 seq=605f r71=1 r62=1ffc318170 r25=3e2fc00  ; fluff.S:959
+e5de: 60003e07ea1b01de80 f12 r213=3 B=1f E=1b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:965
+e5df: 77fa4f6fc880f80039 f14 imm=39 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:969
+e5e0: 60003e07ea1c01de80 f12 r213=3 B=1f E=1c M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:966
+e5e1: 77fa4f6fc880f8003a f14 imm=3a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:970
+e5e2: 60003e07ea1d01de80 f12 r213=3 B=1f E=1d M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:967
+e5e3: 77fa4f6fc880f8003b f14 imm=3b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:971
+e5e4: 60003e07ea1e01de80 f12 r213=3 B=1f E=1e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:968
+e5e5: 77fa4f6fc880f8003c f14 imm=3c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:972
+e5e6: 60003e07ea1f01de80 f12 r213=3 B=1f E=1f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:969
+e5e7: 77fa4f6fc880f80058 f14 imm=58 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:974
+e5e8: 60003e07ea2001de80 f12 r213=3 B=1f E=20 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:970
+e5e9: 77fa4f6fc880f80059 f14 imm=59 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:975
+e5ea: 60003e07ea2101de80 f12 r213=3 B=1f E=21 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:971
+e5eb: 77fa4f6fc880f8005a f14 imm=5a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:976
+e5ec: 60003e07ea2201de80 f12 r213=3 B=1f E=22 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:972
+e5ed: 77fa4f6fc880f8005b f14 imm=5b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:977
+e5ee: 28003ff4847f44f8a0 f5  imm=108 r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:974
+e5ef: 77fa4f6fc880f8005c f14 imm=5c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:978
+e5f0: 28003ff4867f44f8a0 f5  imm=10c r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:975
+e5f1: 77fa4f6fc880f8005d f14 imm=5d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:979
+e5f2: 28003ff4887f44f8a0 f5  imm=110 r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:976
+e5f3: 77fa4f6fc880f8005e f14 imm=5e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:980
+e5f4: 28003ff48a7f44f8a0 f5  imm=114 r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:977
+e5f5: 77fa4f6fc880f8005f f14 imm=5f C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:981
+e5f7: 28003ff48c7f44f8a0 f5  imm=118 r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:978
+e5f9: 28003ff48e7f44f8a0 f5  imm=11c r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:979
+e5fb: 28003ff4907f44f8a0 f5  imm=120 r213=3 B=1f E=3f M=6ca r110=7bd r71=1 r62=1ffc540178 r25=3e69c00  ; fluff.S:980
+e5fc: 1ff07e4908ef44f8a0 f3  xfer4 c31 cc=11 -> 0124 imm=124 r213=3 B=1f E=3f M=6ca r110=7bd seq=14fdf r71=1 r62=1ffc540178 r25=3e7fc00  ; fluff.S:981
+e604: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:963
+mmo_SaveToV0:
+e605: 77fa4f6fc880f80035 f14 imm=35 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:656
+e607: 77fa4f6fc880f80036 f14 imm=36 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:657
+e608: 77fa4de7c880f80018 f14 imm=18 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:653
+e609: 77fa4f6fc880f80037 f14 imm=37 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:658
+e60a: 280040220c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=2 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:653
+e60b: 7039cf6fc88cf80038 f14 imm=38 C=16 F=3f r95=17 seq=605f r71=1 r62=1ffc318170 r25=3e2fc00  ; fluff.S:650
+e60c: 60003e07ea1b01de80 f12 r213=3 B=1f E=1b M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:656
+e60d: 77fa4f6fc880f80039 f14 imm=39 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:660
+e60e: 60003e07ea1c01de80 f12 r213=3 B=1f E=1c M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:657
+e60f: 77fa4f6fc880f8003a f14 imm=3a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:661
+e610: 60003e07ea1d01de80 f12 r213=3 B=1f E=1d M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:658
+e611: 77fa4f6fc880f8003b f14 imm=3b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:662
+e612: 60003e07ea1e01de80 f12 r213=3 B=1f E=1e M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:659
+e613: 77fa4f6fc880f8003c f14 imm=3c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; fluff.S:663
+e615: 60003e07ea1f01de80 f12 r213=3 B=1f E=1f M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:660
+e617: 60003e07ea2001de80 f12 r213=3 B=1f E=20 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:661
+e619: 60003e07ea2101de80 f12 r213=3 B=1f E=21 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; fluff.S:662
+e61a: 1c503e07c8ef44f8a0 f3  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 B=1f E=22 M=6ca r110=7bd seq=14fdf r62=1ffc440178 r25=3e7fc00  ; fluff.S:663
+e622: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:654
+mmo_SaveRasterPos:
+e623: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:459
+e624: 77e63607ca00f80000 f14 A=1f D=26 r99=8 r62=1ffc880170  ; fluff.S:464
+e625: 782071e7c000000004 f15 imm=4 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:462
+e626: 6e004007e86fd0ffa5 f13 r220=1 A=18 M=6d0 r110=6fd r99=4 r62=1ffc88017c  ; fluff.S:463
+e632: 77f64007c190f8001e f14 xfer5.rel c4 cc=3 -> e650 imm=1e cc=3 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:466
+e633: 57e67e07fe36a73400 f10 r213=3 B=1f E=26 M=6d4 r110=6fd r62=1ffc44017c r25=3e69c00  ; fluff.S:465
+e63b: 28000132038054f8a0 f5  imm=7 r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; fluff.S:469
+e647: 77f5c007c10cf81113 f14 xfer5 c31 cc=2 -> 1113 <mmo_ToScreenSpaceInvQ> imm=1113 cc=2 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; fluff.S:470
+e650: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:473
+e651: 2fcb81322f8008ffe5 f5  imm=5f A=1f C=1e D=b M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; fluff.S:476
+e652: 28000132300008ffe5 f5  imm=60 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; fluff.S:477
+e653: 28000132308008ffe5 f5  imm=61 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; fluff.S:478
+e654: 28000132310008ffe5 f5  imm=62 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; fluff.S:479
+e655: 2fcc8132318027ee9e f5  imm=63 A=1f C=1e D=c r148=3c0 r128=2c M=460 r110=47d r99=8 r95=13 r71=1 r62=1ffca9a1ff  ; fluff.S:476
+e656: 28000132320027ee9e f5  imm=64 C=1e r148=3c0 r128=2c M=460 r110=47d r95=13 r71=1 r62=1ffc21a1ff  ; fluff.S:477
+e657: 28000132328027ee9e f5  imm=65 C=1e r148=3c0 r128=2c M=460 r110=47d r95=13 r71=1 r62=1ffc21a1ff  ; fluff.S:478
+e658: 28000132330027ee9e f5  imm=66 C=1e r148=3c0 r128=2c M=460 r110=47d r95=13 r71=1 r62=1ffc21a1ff  ; fluff.S:479
+e659: 2fcd8132338027fa20 f5  imm=67 A=1f C=1e D=d r128=4 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffca981ff  ; fluff.S:480
+e65a: 28000132340027fa20 f5  imm=68 C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:481
+e65b: 28000132348027fa20 f5  imm=69 C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:482
+e65c: 28000132350027fa20 f5  imm=6a C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:483
+e65d: 2fce8132358027fa20 f5  imm=6b A=1f C=1e D=e r128=4 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffca981ff  ; fluff.S:484
+e65e: 28000132360027fa20 f5  imm=6c C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:485
+e65f: 28000132368027fa20 f5  imm=6d C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:486
+e660: 28000132370027fa20 f5  imm=6e C=1e r128=4 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; fluff.S:487
+e661: 60003e07ea1f011fa0 f12 r213=3 B=1f E=1f r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; fluff.S:488
+e662: 60003e07ea20011fa0 f12 r213=3 B=1f E=20 r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; fluff.S:489
+e663: 60003e07ea21011fa0 f12 r213=3 B=1f E=21 r128=4 M=6e0 r110=57d r62=1ffc4401fc r25=3e69c00  ; fluff.S:490
+e664: 60003f66aa222f1fa0 f12 r213=3 B=1f C=16 E=22 F=1a r128=4 M=6e0 r110=57d r95=17 r62=1ffc6581fc r25=3e69c00  ; fluff.S:491
+e666: 77fa4f664880f80000 f14 C=16 F=19 r95=17 r62=1ffc218170  ; fluff.S:503
+e667: 77fa4de7c880f800c4 f14 imm=c4 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:500
+e668: 180831e7fdd1c4f8a0 f3  imm=fffffffb r215=3 B=18 C=1e M=6ca r110=7bd r71=1 r62=1ffc658178  ; fluff.S:500
+e669: 6fe68007e82fcaf8a0 f13 A=1f D=26 M=6ca r110=7bd r99=8 r62=1ffc880178  ; fluff.S:501
+e66a: 6e004007ec2c50ffc5 f13 cc=91 A=18 Q=18 M=6d0 r110=7bd r99=4 r62=1ffc88057c  ; fluff.S:509
+e66c: 68000007ec2ce0ff60 f13 cc=91 Q=19 r128=5 M=6e0 r110=5fd r62=1ffc00057c  ; fluff.S:502
+e66d: 6fd78007ec2be0ff60 f13 cc=91 A=1f D=17 Q=17 r128=5 M=6e0 r110=5fd r99=8 r62=1ffc88057c  ; fluff.S:503
+e66e: 6fda4007e86fe0ffc5 f13 r220=1 A=1f D=1a M=6e0 r110=7bd r99=4 r62=1ffc88017c  ; fluff.S:512
+e670: 60003e07c22601d040 f12 r213=2 r198=4 B=1f E=26 r128=15 M=6ca r110=5bd r62=1ffd440178 r25=3e69c00  ; fluff.S:514
+e671: 68000007e86fe2ffc5 f13 r220=1 M=6e2 r110=7bd r62=1ffc00017c  ; fluff.S:515
+e672: 6fd88007e86fe0ffc5 f13 r220=1 A=1f D=18 M=6e0 r110=7bd r99=8 r62=1ffc88017c  ; fluff.S:516
+e673: 60003e07c22601c018 f12 r213=2 r198=4 B=1f E=26 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:515
+e674: 60003e07c22601c018 f12 r213=2 r198=4 B=1f E=26 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:517
+e675: 68000007e86fe2ffc5 f13 r220=1 M=6e2 r110=7bd r62=1ffc00017c  ; fluff.S:518
+e676: 6fd98007e86fe0ffc5 f13 r220=1 A=1f D=19 M=6e0 r110=7bd r99=8 r62=1ffc88017c  ; fluff.S:519
+e677: 60003e07c22601c018 f12 r213=2 r198=4 B=1f E=26 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:518
+e678: 60003e07c22601c018 f12 r213=2 r198=4 B=1f E=26 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:520
+e679: 68000007e86fe2ecbe f13 r220=1 r148=3c0 M=6e2 r110=4bd r62=1ffc00217c  ; fluff.S:521
+e67a: 67cfbe07ea0f015d9a f12 r213=3 A=1f B=1f D=f E=f r148=1a M=6e2 r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; fluff.S:495
+e67b: 67d0be07ea10015d9b f12 r213=3 A=1f B=1f D=10 E=10 r148=1b M=6e2 r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; fluff.S:496
+e67c: 67d1be07ea11015d9c f12 r213=3 A=1f B=1f D=11 E=11 r148=1c M=6e2 r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; fluff.S:497
+e67d: 67e3be07ea23015d99 f12 r213=3 A=1f B=1f D=23 E=23 r148=19 M=6e2 r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; fluff.S:504
+e67e: 67e4be07ea24015d97 f12 r213=3 A=1f B=1f D=24 E=24 r148=17 M=6e2 r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; fluff.S:505
+e67f: 2fe5bf32636549ffa5 f5  imm=c6 r213=3 A=1f B=1f C=1e D=25 E=25 M=6e0 r110=6fd r99=8 r95=13 r71=1 r62=1ffced817c r25=3e69c00  ; fluff.S:523
+e680: 60003e07c22601c018 f12 r213=2 r198=4 B=1f E=26 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:521
+e681: 77f20007c880f81025 f14 xfer4 c0 cc=11 -> 1025 <mWramToEram> imm=1025 seq=4fe0 r71=1 r25=3e39c00  ; fluff.S:564
+e684: 77fa41f00881040000 f14 r219=1 C=1f r162=1 F=0 G=0 r62=1ffc23c170  ; fluff.S:561
+e685: 77fa41644881080000 f14 r219=1 C=16 F=11 G=1 r62=1ffc23c170  ; fluff.S:562
+e686: 77fa41e7c881100027 f14 imm=27 r219=1 C=1e G=2 r71=1 r62=1ffc23c170  ; fluff.S:563
+e68a: 782071e7c320000000 f15 imm=20000000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; fluff.S:570
+e68b: 2e0381320d8051ffa5 f5  imm=1b r220=1 A=18 C=1e D=3 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; fluff.S:571
+e692: 77fa49e7c880f8001a f14 imm=1a C=1e r95=2 r71=1 r62=1ffc218170  ; fluff.S:567
+e697: 77f64007c180f8bf2f f14 xfer5 c4 cc=3 -> bf2f <mmo_SelectRasterPos> imm=bf2f cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:595
+e698: 77f5c007fa2cf80000 f14 xfer5 c31 cc=74 -> 0000 <HereWeGo> cc=74 seq=15fdf r62=1ffe000170 r25=3e3fc00  ; fluff.S:602
+e69c: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> e69c seq=1cfdf r25=3e3fc00  ; fluff.S:605
+e6a1: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; fluff.S:604
+mmo_DirtyMultipassModule:
+e6a5: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:1016
+e6a6: 782071e7c00000e3e1 f15 imm=e3e1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:1018
+e6a7: 7e008007e000000000 f15 A=18 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:1019
+e6b0: 727261efca00f800da f14 imm=da r211=3 A=9 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffcb18170  ; fluff.S:1021
+e6b1: 724161efca00f800da f14 imm=da A=9 C=1e r176=0 F=3f r95=2 r71=1 r62=1ffcb18170  ; fluff.S:1021
+e6b7: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:1023
+e6bd: 77fa4097c8c0f80000 f14 r222=1 C=9 r62=1ffc218170  ; fluff.S:1021
+e6bf: 702267e7ca80f800db f14 imm=db r211=2 r198=15 C=1e r95=4 r71=1 r62=1ffd218170  ; fluff.S:1021
+mmo_CopyV0ToVn1AndIgnore:
+e6c0: 77fa41afc881041164 f14 imm=1164 r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:863
+e6c2: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:860
+e6c3: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:857
+e6c4: 67db8007ea1b01dd80 f12 r213=3 A=1f D=1b E=1b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:865
+e6c5: 2fdc80220c5c44f6a0 f5  imm=18 r213=3 A=1f C=1e D=1c E=1c M=6ca r99=8 r95=2 r71=1 r62=1ffced8178 r25=3e69c00  ; fluff.S:866
+e6c6: 67dd8007ea1d01dd80 f12 r213=3 A=1f D=1d E=1d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:867
+e6c7: 67de8007ea1e01dd80 f12 r213=3 A=1f D=1e E=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:868
+e6c8: 67df8007ea1f01dd80 f12 r213=3 A=1f D=1f E=1f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:869
+e6c9: 67e08007ea2001dd80 f12 r213=3 A=1f D=20 E=20 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:870
+e6ca: 67e18007ea2101dd80 f12 r213=3 A=1f D=21 E=21 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:871
+e6cb: 0fe2811408ef44f6a0 f1  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 A=1f D=22 E=22 M=6ca r99=8 seq=14fdf r62=1ffccc0178 r25=3e7fc00  ; fluff.S:872
+e6ce: 77fa41980881c80000 f14 r219=1 C=19 F=20 G=19 r62=1ffc23c170  ; fluff.S:874
+e6cf: 77fa4109c881840000 f14 r219=1 C=10 r162=1 F=27 G=10 r62=1ffc23c170  ; fluff.S:875
+e6d0: 77fa4119c8818c0000 f14 r219=1 C=11 r162=1 F=27 G=11 r62=1ffc23c170  ; fluff.S:876
+e6d3: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:861
+mmo_CopyV0ToVn1:
+e6d4: 77fa41afc881041164 f14 imm=1164 r219=1 C=1a r162=1 F=3f G=0 r71=1 r62=1ffc33c170  ; fluff.S:796
+e6d6: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:793
+e6d7: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:790
+e6d8: 67db8007ea1b01dd80 f12 r213=3 A=1f D=1b E=1b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:798
+e6d9: 2fdc80220c5c44f6a0 f5  imm=18 r213=3 A=1f C=1e D=1c E=1c M=6ca r99=8 r95=2 r71=1 r62=1ffced8178 r25=3e69c00  ; fluff.S:799
+e6da: 67dd8007ea1d01dd80 f12 r213=3 A=1f D=1d E=1d M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:800
+e6db: 67de8007ea1e01dd80 f12 r213=3 A=1f D=1e E=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:801
+e6dc: 67df8007ea1f01dd80 f12 r213=3 A=1f D=1f E=1f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:802
+e6dd: 67e08007ea2001dd80 f12 r213=3 A=1f D=20 E=20 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:803
+e6de: 67e18007ea2101dd80 f12 r213=3 A=1f D=21 E=21 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; fluff.S:804
+e6df: 0fe2811408ef44f6a0 f1  xfer4 c31 cc=11 -> 0000 <HereWeGo> r213=3 A=1f D=22 E=22 M=6ca r99=8 seq=14fdf r62=1ffccc0178 r25=3e7fc00  ; fluff.S:805
+e6e7: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:794
+mmo_AbortGeometry:
+e6e8: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:264
+e6e9: 782071e7ce00000010 f15 imm=10 r215=3 B=18 C=1e E=e r71=1 r62=1ffc658170  ; fluff.S:268
+e6ea: 2e0e8132018051ffa5 f5  imm=3 r220=1 A=18 C=1e D=e M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; fluff.S:269
+e6eb: 28000132068051f8bd f5  imm=d r220=1 C=1e r148=1d M=6d0 r110=73d r95=13 r71=1 r62=1ffc21917c  ; fluff.S:277
+e6f6: 77f64007c190f80020 f14 xfer5.rel c4 cc=3 -> e716 imm=20 cc=3 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:274
+e6f7: 77f64007c190f8001f f14 xfer5.rel c4 cc=3 -> e716 imm=1f cc=3 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:281
+e700: 77fa49e7c880f8001a f14 imm=1a C=1e r95=2 r71=1 r62=1ffc218170  ; fluff.S:315
+e702: 782071e7c10000e623 f15 imm=e623 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; fluff.S:288
+e703: 6e01a7b4286fc2ffa5 f13 r220=1 A=18 C=1b D=1 F=10 M=6c2 r110=6fd r99=8 r95=13 r62=1ffca9817c  ; fluff.S:289
+e706: 77f5c007fa2cf80000 f14 xfer5 c31 cc=74 -> 0000 <HereWeGo> cc=74 seq=15fdf r62=1ffe000170 r25=3e3fc00  ; fluff.S:318
+e70d: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> e70d seq=1cfdf r25=3e3fc00  ; fluff.S:335
+e70f: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; fluff.S:321
+e710: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; fluff.S:334
+e711: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; fluff.S:321
+e712: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:321
+e713: 60003c07c18001c01e f12 r213=2 r198=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; fluff.S:321
+e714: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; fluff.S:323
+e715: 6610bc07c18201dd80 f12 r213=2 r198=3 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; fluff.S:323
+e716: 28000132068051f8bd f5  imm=d r220=1 C=1e r148=1d M=6d0 r110=73d r95=13 r71=1 r62=1ffc21917c  ; fluff.S:347
+e718: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; fluff.S:355
+e71c: 60003807ea0d01c01e f12 r213=3 B=1c E=d r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:343
+e71e: 60003807ea0e01c01e f12 r213=3 B=1c E=e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:344
+e71f: 782071e7c20000e3d2 f15 imm=e3d2 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; fluff.S:358
+e720: 28003822064c44941e f5  imm=c r213=3 B=1c C=1e E=c r148=3c0 M=6ca r110=4bd r95=2 r71=1 r62=1ffc65a178 r25=3e69c00  ; fluff.S:345
+e721: 702267e7c100f80018 f14 imm=18 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; fluff.S:356
+e722: 7e028007e000000000 f15 A=18 D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:359
+e723: 280041320c0044f8a0 f5  imm=18 C=1e M=6ca r110=7bd r99=2 r95=13 r71=1 r62=1ffc218178 r25=3ea9c00  ; fluff.S:363
+e725: 782071e7c00000e730 f15 imm=e730 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; fluff.S:367
+e726: 7e008007e000000000 f15 A=18 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; fluff.S:368
+e727: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; fluff.S:373
+e72b: 702267e7c100f8000d f14 imm=d r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; fluff.S:360
+e72c: 77fa47e7c880f814d5 f14 imm=14d5 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; fluff.S:364
+e72f: 77fa43e7c880f80018 f14 imm=18 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:369
+e730: 77fa4fe7c880f814d5 f14 imm=14d5 C=1e r95=17 r71=1 r62=1ffc218170  ; fluff.S:379
+e737: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; fluff.S:379
+e738: 77f24007c890fbffc8 f14 xfer4.rel c4 cc=11 -> e700 imm=ffffffc8 seq=cfe4 r71=1 r25=3e39c00  ; fluff.S:383
+e73f: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:376
+e740: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; fluff.S:380
+mDispatchCentral:
+e741: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; fluff.S:53
+e742: 280039320ccb44f8a0 f5  imm=19 r213=3 B=1c C=1e E=b M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; fluff.S:58
+e74a: 7f2b8007c000000000 f15 A=1c D=b r99=8 r62=1ffc880170  ; fluff.S:57
+e74e: 68000007ec284af6a0 f13 cc=91 Q=10 M=6ca r62=1ffc000578  ; fluff.S:57
+e74f: 60003807ea0901c01e f12 r213=3 B=1c E=9 r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; fluff.S:55
+e750: 77f64007f000f8e4d0 f14 xfer5 c4 cc=60 -> e4d0 <mdc_polymode_or_clip> imm=e4d0 cc=60 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:63
+e751: 77f64007f100f8e4d0 f14 xfer5 c4 cc=62 -> e4d0 <mdc_polymode_or_clip> imm=e4d0 cc=62 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:64
+e752: 77f64007f200f8e4b6 f14 xfer5 c4 cc=64 -> e4b6 <mdc_sprite> imm=e4b6 cc=64 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:65
+e753: 77f64977f300f8e471 f14 xfer5 c4 cc=66 -> e471 <mdc_multipass> imm=e471 cc=66 C=17 r95=2 seq=5fe4 r71=1 r62=1ffe218170 r25=3e39c00  ; fluff.S:61
+e754: 77f64007f400f8e462 f14 xfer5 c4 cc=68 -> e462 <mdc_evaluator> imm=e462 cc=68 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; fluff.S:67
+e755: 77f24007c880f8e450 f14 xfer4 c4 cc=11 -> e450 <mdc_finish> imm=e450 seq=4fe4 r71=1 r25=3e39c00  ; fluff.S:68

@@ -8,7 +8,7 @@ Functions. Twenty functions with a documented, labelled behaviour: 6 from the ke
 
 Ground truth. Each function's documented behaviour was split into checkable claims: constants, structure offsets, callee names, return values and control shape (266 claims in all, 2 to 61 per function). A claim counts as present when the output holds that value or name; small constants can match by accident, and a wrong operation that keeps the same tokens is not caught. Eleven functions (K1 to K4, N1 to N4, X3, X4, B1) were also read in full against the assembly for wrong operations that the token check cannot see; the rest (K5, K6, N5, N6, X1, X2, B2 to B4) got the token check and targeted reading of the calls and constants. The jump-table function in the N32 library is documented from the public sample implementation, so its claims were taken from that source.
 
-Tools. The pipeline as the repository ships it, on the committed per-object assembly (`kona_kernel/disasm`, `libglcore/asm`) and on assembly extracted with the same extractors for the o32, 64-bit and X-module builds. Ghidra 12.1 headless, default analysis, no types. Ghidra with the two scripts. Wall time per function for the pipeline; decompile time per function and analysis time per binary for Ghidra.
+Tools. The pipeline as the repository ships it, on the committed per-object assembly (`software/kernel/disasm`, `software/opengl/asm`) and on assembly extracted with the same extractors for the o32, 64-bit and X-module builds. Ghidra 12.1 headless, default analysis, no types. Ghidra with the two scripts. Wall time per function for the pipeline; decompile time per function and analysis time per binary for Ghidra.
 
 Readability rubric (1 to 5).
 

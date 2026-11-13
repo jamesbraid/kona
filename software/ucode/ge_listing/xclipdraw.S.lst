@@ -1,0 +1,591 @@
+# xclipdraw.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_XclipDrawLines:
+4ead: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; xclipdraw.S:327
+4eae: 280031320b4144f8a0 f5  imm=16 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; xclipdraw.S:344
+4eb4: 77fa4de7c880f8000b f14 imm=b C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:329
+4eb5: 754021efca01988000 f14 imm=8000 r219=1 A=15 C=1e r176=0 F=3f G=13 r71=1 r62=1ffcb3c170  ; xclipdraw.S:340
+4eb6: 77fa412948c1800000 f14 r222=1 r219=1 C=12 F=25 G=10 r62=1ffc23c170  ; xclipdraw.S:349
+4eb7: 18a871009f3044f8a0 f3  imm=2 r215=3 cc=91 B=18 C=1e E=5 Q=18 M=6ca r110=7bd r71=1 r62=1ffc658578  ; xclipdraw.S:329
+4eb8: 16019b032e3e0d9400 f2  imm=c r217=1 A=18 C=1e D=1 G=e r99=8 r95=13 r71=1 r62=1ffca9c170  ; xclipdraw.S:330
+4eb9: 18c871011f2e44f8a0 f3  imm=4 r215=3 cc=91 B=18 C=1e E=6 Q=17 M=6ca r110=7bd r71=1 r62=1ffc658578  ; xclipdraw.S:330
+4eba: 782071e7c83f000000 f15 imm=3f000000 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; xclipdraw.S:338
+4ebb: 180341001f2c44f8a0 f3  cc=91 C=1e Q=16 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:331
+4ebc: 188b71005f2a44f8a0 f3  imm=1 r215=3 cc=91 B=18 C=1e E=4 Q=15 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658578  ; xclipdraw.S:332
+4ebd: 7540213fff82980000 f14 r219=2 r198=7f A=15 C=13 r176=0 F=3f G=13 r62=1ffdb3c170  ; xclipdraw.S:341
+4ebe: 18e831e7c4578d9400 f3  imm=8 r215=3 B=18 C=1e E=7 seq=6fe7 r71=1 r62=1ffc658170 r25=3e2bc00  ; xclipdraw.S:337
+4ebf: 77fa41e7c881780017 f14 imm=17 r219=1 C=1e G=f r71=1 r62=1ffc23c170  ; xclipdraw.S:355
+4ec0: 380038e82cc444941e f7  r219=1 r213=3 B=1c C=e E=2c F=20 G=11 r148=3c0 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; xclipdraw.S:354
+4ec1: 68000007ec2cca941e f13 cc=91 r148=3c0 Q=19 M=6ca r110=4bd r62=1ffc002578  ; xclipdraw.S:361
+4ec2: 68000007ec2d4a941e f13 cc=91 r148=3c0 Q=1a M=6ca r110=4bd r62=1ffc002578  ; xclipdraw.S:361
+4ec3: 68000007ec2dca941e f13 cc=91 r148=3c0 Q=1b M=6ca r110=4bd r62=1ffc002578  ; xclipdraw.S:362
+4ec4: 68000007ec2e4a941e f13 cc=91 r148=3c0 Q=1c M=6ca r110=4bd r62=1ffc002578  ; xclipdraw.S:362
+4ec5: 6cc08007ec204af6a0 f13 cc=91 A=13 Q=0 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:365
+4ec6: 680026f7e86fe2ffa5 f13 r220=1 C=f M=6e2 r110=6fd r95=13 r62=1ffc21817c  ; xclipdraw.S:364
+4ec7: 6cc68007ec224af6a0 f13 cc=91 A=13 D=6 Q=4 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:365
+4ec8: e8000007e86fe2ffa5 f13 w71=1 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:365
+4ec9: 6e048007c22cd4ecb9 f13 cc=111 r198=4 A=18 D=4 r148=320 Q=19 M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:366
+4eca: e8000007c22d54ecba f13 w71=1 cc=111 r198=4 r148=340 Q=1a M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:366
+4ecb: 6cc28007ec214af6a0 f13 cc=91 A=13 D=2 Q=2 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:367
+4ecc: 68000007e86fe2ffa5 f13 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:367
+4ecd: 6cc88007ec234af6a0 f13 cc=91 A=13 D=8 Q=6 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:367
+4ece: e8000007e86fe2ffa5 f13 w71=1 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:367
+4ecf: 6e048007c22dd4ecbb f13 cc=111 r198=4 A=18 D=4 r148=360 Q=1b M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:368
+4ed0: 680026f7686fe2f8a0 f13 r220=1 C=f F=1d M=6e2 r110=73d r95=13 r62=1ffc21917c  ; xclipdraw.S:370
+4ed1: e8000007c22e54ecbc f13 w71=1 cc=111 r198=4 r148=380 Q=1c M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:368
+4ed2: e8000007e86fe2f8a4 f13 w71=1 r220=1 r148=4 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:371
+4ed3: 57c07007e03713b402 f10 r213=3 cc=91 B=18 r148=40 Q=10 M=6e2 r110=43d r62=1ffc44357c r25=3e69c00  ; xclipdraw.S:388
+4ed4: d7c27007de3711ac80 f10 w71=1 r213=3 cc=91 B=18 E=2 r148=4 Q=f r128=1d M=6e2 r110=53d r62=1ffc44157c r25=3e69c00  ; xclipdraw.S:390
+4ed5: 6e058007c22cd4ecb9 f13 cc=111 r198=4 A=18 D=5 r148=320 Q=19 M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:372
+4ed6: 68000007e86fe2f8a2 f13 r220=1 r148=2 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:373
+4ed7: e8000007c22d54ecba f13 w71=1 cc=111 r198=4 r148=340 Q=1a M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:372
+4ed8: e8000007e86fe2f8a6 f13 w71=1 r220=1 r148=6 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:373
+4ed9: 6e058007c22dd4ecbb f13 cc=111 r198=4 A=18 D=5 r148=360 Q=1b M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:374
+4eda: e8000007c22e54ecbc f13 w71=1 cc=111 r198=4 r148=380 Q=1c M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:374
+4edb: 6cc18007ec20caf6a0 f13 cc=91 A=13 D=1 Q=1 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:377
+4edc: 680026f7a86fe2ffa5 f13 r220=1 C=f F=1e M=6e2 r110=6fd r95=13 r62=1ffc21817c  ; xclipdraw.S:376
+4edd: 6cc78007ec22caf6a0 f13 cc=91 A=13 D=7 Q=5 M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:377
+4ede: e8000007e86fe2ffa5 f13 w71=1 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:377
+4edf: 6e068007c22cd4ecb9 f13 cc=111 r198=4 A=18 D=6 r148=320 Q=19 M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:378
+4ee0: e8000007c22d54ecba f13 w71=1 cc=111 r198=4 r148=340 Q=1a M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:378
+4ee1: 6cc38007ec21cae410 f13 cc=91 A=13 D=3 r148=200 Q=3 M=6ca r110=6bf r99=8 r62=1ffc882478  ; xclipdraw.S:379
+4ee2: 68000007e86fe2ffa5 f13 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:379
+4ee3: 5cc9a607ce2657c6b0 f11 cc=291 A=13 D=9 r148=10 P=13 Q=7 M=4ca r110=685 r99=8 r62=1ffc881d7b  ; xclipdraw.S:379
+4ee4: e8000007e86fe2ffa5 f13 w71=1 r220=1 M=6e2 r110=6fd r62=1ffc00017c  ; xclipdraw.S:379
+4ee5: 6e068007c22dd4ecbb f13 cc=111 r198=4 A=18 D=6 r148=360 Q=1b M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:380
+4ee6: 680026f7286fe2f8a1 f13 r220=1 C=f F=1c r148=1 M=6e2 r110=73d r95=13 r62=1ffc21917c  ; xclipdraw.S:382
+4ee7: e8000007c22e54ecbc f13 w71=1 cc=111 r198=4 r148=380 Q=1c M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:380
+4ee8: e8000007e86fe2f8a5 f13 w71=1 r220=1 r148=5 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:383
+4ee9: 57c17007e23713b423 f10 r213=3 cc=91 B=18 E=1 r148=61 Q=11 M=6e2 r110=43d r62=1ffc44357c r25=3e69c00  ; xclipdraw.S:389
+4eea: 6e078007c22cd4ecb9 f13 cc=111 r198=4 A=18 D=7 r148=320 Q=19 M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:384
+4eeb: 68000007e86fe2f8a3 f13 r220=1 r148=3 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:385
+4eec: e8000007c22d54ecba f13 w71=1 cc=111 r198=4 r148=340 Q=1a M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:384
+4eed: e8000007e86fe2f8a7 f13 w71=1 r220=1 r148=7 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:385
+4eee: 6e078007c22dd4ecbb f13 cc=111 r198=4 A=18 D=7 r148=360 Q=1b M=6d4 r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:386
+4eef: e8000007c22e54ecbc f13 w71=1 cc=111 r198=4 r148=380 Q=1c M=6d4 r110=4bd r62=1ffd00257c  ; xclipdraw.S:386
+4ef1: 68000007e80fe8b40f f13 r148=1e0 r110=6bf r62=1ffc002070  ; xclipdraw.S:395
+4ef2: d7c37007e43713b4a7 f10 w71=1 r213=3 cc=91 B=18 E=3 r148=e5 Q=12 M=6e2 r110=43d r62=1ffc44357c r25=3e69c00  ; xclipdraw.S:391
+4ef3: 68000007ec0a48e5f1 f13 cc=211 r148=22f P=14 M=4ff r110=687 r62=1ffc003873  ; xclipdraw.S:394
+4ef4: 000000000000000000 f0  nop
+4ef5: 68000007ec09c8f4b1 f13 cc=211 r148=11 P=13 M=4ff r110=685 r62=1ffc001973
+4ef6: 68000007e86fd09779 f13 r220=1 r148=33b M=6d0 r110=43d r62=1ffc00317c  ; xclipdraw.S:404
+4ef7: e8000007e86fd0979a f13 w71=1 r220=1 r148=35c M=6d0 r110=43d r62=1ffc00317c  ; xclipdraw.S:405
+4ef8: 68000007e80fe88800 f13 r128=15  ; xclipdraw.S:396
+4ef9: 68000007e80fe8b410 f13 r148=200 r110=6bf r62=1ffc002070  ; xclipdraw.S:393
+4efa: 68000007e80fc8e64f f13 r148=1f2 M=4ff r110=687 r62=1ffc003073  ; xclipdraw.S:395
+4efb: 68000007ec0740e671 f13 cc=211 r148=233 P=e M=47f r110=687 r62=1ffc003873  ; xclipdraw.S:394
+4efc: 68000007ec09c0e692 f13 cc=211 r148=254 P=13 M=47f r110=687 r62=1ffc003873  ; xclipdraw.S:396
+4efd: 68000007ec0a40f4b3 f13 cc=211 r148=13 P=14 M=47f r110=685 r62=1ffc001973
+4efe: 68000007ec0740fea5 f13 cc=211 P=e r128=2c M=47f r110=689 r62=1ffc0009f3
+4eff: 68000007e80fc8f690 f13 r148=10 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; xclipdraw.S:393
+4f00: 68000007e80fc8f68f f13 r148=f r128=25 M=4ff r110=6a5 r62=1ffc001173  ; xclipdraw.S:395
+4f01: 68000007e80fc8f691 f13 r148=11 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; xclipdraw.S:394
+4f02: 68000007e80fc8f692 f13 r148=12 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; xclipdraw.S:396
+4f03: 77e24007c180f85070 f14 xfer0 c4 cc=3 -> 5070 imm=5070 cc=3 seq=fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:417
+4f04: 68000007e80fc0c5ae f13 r148=1c0 M=47f r110=699 r62=1ffc0021f3  ; xclipdraw.S:393
+4f05: 68000007e80fc0c5b3 f13 r148=260 M=47f r110=699 r62=1ffc0021f3  ; xclipdraw.S:395
+4f06: 68000007e80fc0c5b4 f13 r148=280 M=47f r110=699 r62=1ffc0021f3  ; xclipdraw.S:394
+4f07: 68000007e80fc0c5ae f13 r148=1c0 M=47f r110=699 r62=1ffc0021f3  ; xclipdraw.S:396
+4f08: 68000007ec08c0c4b1 f13 cc=211 r148=220 P=11 r128=2c M=47f r110=699 r62=1ffc0029f3  ; xclipdraw.S:400
+4f09: 68000007ec09c0c4b2 f13 cc=211 r148=240 P=13 r128=2c M=47f r110=699 r62=1ffc0029f3  ; xclipdraw.S:401
+4f0a: 68000007ec06c0c4b0 f13 cc=211 r148=200 P=d r128=2c M=47f r110=699 r62=1ffc0029f3  ; xclipdraw.S:398
+4f0b: 68000007ec07c0c4af f13 cc=211 r148=1e0 P=f r128=2c M=47f r110=699 r62=1ffc0029f3  ; xclipdraw.S:399
+4f0c: 68000007e86fd49779 f13 r220=1 r148=33b M=6d4 r110=43d r62=1ffc00317c  ; xclipdraw.S:419
+4f0d: e8000007e86fd4979a f13 w71=1 r220=1 r148=35c M=6d4 r110=43d r62=1ffc00317c  ; xclipdraw.S:420
+4f19: 77e24007c100f85020 f14 xfer0 c4 cc=2 -> 5020 imm=5020 cc=2 seq=fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:421
+4f22: 68000007e82fd69779 f13 r148=33b M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:440
+4f23: 68000007e82fd6979a f13 r148=35c M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:440
+4f26: 6e048007e86fd0ff40 f13 r220=1 A=18 D=4 r128=5 M=6d0 r110=5bd r99=8 r62=1ffc88017c  ; xclipdraw.S:439
+4f27: e8000007e86fd0ff40 f13 w71=1 r220=1 r128=5 M=6d0 r110=5bd r62=1ffc00017c  ; xclipdraw.S:441
+4f2b: 680026f7ec2a4af8a0 f13 cc=91 C=f Q=14 M=6ca r110=7bd r95=13 r62=1ffc218578  ; xclipdraw.S:425
+4f2f: 198831e7cfd1cef400 f3  imm=1f r215=3 B=18 C=1e E=c r128=5 M=6e2 r110=53d r71=1 r62=1ffc65917c  ; xclipdraw.S:430
+4f30: 19a831e7cf51cef424 f3  imm=1e r215=3 B=18 C=1e E=d r148=4 r128=d M=6e2 r110=53d r71=1 r62=1ffc65917c  ; xclipdraw.S:431
+4f31: 19c831e7ced1cef442 f3  imm=1d r215=3 B=18 C=1e E=e r148=2 r128=15 M=6e2 r110=53d r71=1 r62=1ffc65917c  ; xclipdraw.S:432
+4f32: 19e831e7ce51cef466 f3  imm=1c r215=3 B=18 C=1e E=f r148=6 r128=1d M=6e2 r110=53d r71=1 r62=1ffc65917c  ; xclipdraw.S:433
+4f33: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; xclipdraw.S:442
+4f34: 68000007e86fd0ecb9 f13 r220=1 r148=320 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:445
+4f35: e8000007e86fd0ecba f13 w71=1 r220=1 r148=340 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:445
+4f36: 68000007e80fc0f671 f13 r148=11 r128=1d M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:449
+4f37: 68000007e80fc0f673 f13 r148=13 r128=1d M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:449
+4f38: 68000007e80fc0f671 f13 r148=11 r128=1d M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:455
+4f39: 68000007e80fc0f673 f13 r148=13 r128=1d M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:455
+4f3a: 68000007c1a0e0f481 f13 cc=111 r198=3 r148=1 Q=1 r128=25 M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:450
+4f3b: e8000007c1a2e0f485 f13 w71=1 cc=111 r198=3 r148=5 Q=5 r128=25 M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:450
+4f3c: 68000007c121e0f483 f13 cc=111 r198=2 r148=3 Q=3 r128=25 M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:456
+4f3d: e8000007c123e0f487 f13 w71=1 cc=111 r198=2 r148=7 Q=7 r128=25 M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:456
+4f3e: 680026f7ac294af8a0 f13 cc=91 C=f F=1e Q=12 M=6ca r110=7bd r95=13 r62=1ffc218578  ; xclipdraw.S:426
+4f42: 580020f7199716c8a1 f11 cc=291 C=f F=1c r148=20 P=10 Q=c r128=28 M=2e2 r110=47d r95=13 r62=1ffc21adfd  ; xclipdraw.S:428
+4f43: 68000007ec2762c1a5 f13 cc=91 r148=a0 Q=e r128=29 M=6e2 r110=47d r62=1ffc0025fc  ; xclipdraw.S:461
+4f44: 68000007ec2662c2a3 f13 cc=91 r148=60 Q=c r128=2a M=6e2 r110=47d r62=1ffc0025fc  ; xclipdraw.S:464
+4f45: 68000007ec2762c3a7 f13 cc=91 r148=e0 Q=e r128=2b M=6e2 r110=47d r62=1ffc0025fc  ; xclipdraw.S:464
+4f46: 68000007ec2662f481 f13 cc=91 r148=1 Q=c r128=25 M=6e2 r110=53d r62=1ffc00157c  ; xclipdraw.S:469
+4f47: 68000007ec2762f4a5 f13 cc=91 r148=5 Q=e M=6e2 r110=53d r62=1ffc00157c  ; xclipdraw.S:469
+4f48: 68000007ec2662f4c3 f13 cc=91 r148=3 Q=c r128=35 M=6e2 r110=53d r62=1ffc00157c  ; xclipdraw.S:473
+4f49: 68000007ec2762f4e7 f13 cc=91 r148=7 Q=e r128=3d M=6e2 r110=53d r62=1ffc00157c  ; xclipdraw.S:473
+4f4a: 68000007ec265097ac f13 cc=91 r148=19d Q=c M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:462
+4f4b: 68000007ec275097ae f13 cc=91 r148=1dd Q=e M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:462
+4f4c: 68000007ec265097ac f13 cc=91 r148=19d Q=c M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:465
+4f4d: 68000007ec275097ae f13 cc=91 r148=1dd Q=e M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:465
+4f4e: 68000007ec265097ac f13 cc=91 r148=19d Q=c M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:470
+4f4f: 68000007ec275097ae f13 cc=91 r148=1dd Q=e M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:470
+4f50: 68000007ec265097ac f13 cc=91 r148=19d Q=c M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:474
+4f51: 68000007ec275097ae f13 cc=91 r148=1dd Q=e M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:474
+4f52: 6e0e8007c1acddecac f13 cc=111 r198=3 A=18 D=e r148=180 Q=19 M=6dd r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:460
+4f53: e8000007c1ad5decae f13 w71=1 cc=111 r198=3 r148=1c0 Q=1a M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:463
+4f54: 68000007c12dddecac f13 cc=111 r198=2 r148=180 Q=1b M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:466
+4f55: e8000007c12e5decae f13 w71=1 cc=111 r198=2 r148=1c0 Q=1c M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:466
+4f56: 6e0f8007e82fddecac f13 A=18 D=f r148=180 M=6dd r110=4bd r99=8 r62=1ffc88217c  ; xclipdraw.S:468
+4f57: 68000007e82fddecae f13 r148=1c0 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:471
+4f58: 68000007e82fddecac f13 r148=180 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:475
+4f59: 68000007e82fddecae f13 r148=1c0 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:475
+4f5a: 68000007c1acd4c0b9 f13 cc=111 r198=3 r148=320 Q=19 r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:472
+4f5b: e8000007c1ad54c0ba f13 w71=1 cc=111 r198=3 r148=340 Q=1a r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:472
+4f5c: 68000007c12dd4c0bb f13 cc=111 r198=2 r148=360 Q=1b r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:476
+4f5d: e8000007c12e54c0bc f13 w71=1 cc=111 r198=2 r148=380 Q=1c r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:476
+4f62: 68000007c1a04a9414 f13 cc=111 r198=3 r148=280 Q=0 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:451
+4f63: e8000007c1a24a9414 f13 w71=1 cc=111 r198=3 r148=280 Q=4 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:451
+4f64: 68000007e82fd69779 f13 r148=33b M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:485
+4f65: 58001cf77f96b5379a f11 cc=211 C=f F=1d r148=35c P=e M=2d6 r110=43d r95=13 r62=1ffc21b97d  ; xclipdraw.S:427
+4f66: 68000007c1214a9414 f13 cc=111 r198=2 r148=280 Q=2 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:457
+4f67: e8000007c1234a9414 f13 w71=1 cc=111 r198=2 r148=280 Q=6 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:457
+4f68: 6e058007e86fd0ff40 f13 r220=1 A=18 D=5 r128=5 M=6d0 r110=5bd r99=8 r62=1ffc88017c  ; xclipdraw.S:484
+4f69: e8000007e86fd0ff40 f13 w71=1 r220=1 r128=5 M=6d0 r110=5bd r62=1ffc00017c  ; xclipdraw.S:486
+4f6d: 68000007e82fe2940e f13 r148=1c0 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:493
+4f6e: 68000007e82fe2948e f13 r148=1c4 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:493
+4f6f: 68000007e82fe2944e f13 r148=1c2 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:499
+4f70: 68000007e82fe294ce f13 r148=1c6 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:499
+4f71: 68000007e80fc0f611 f13 r148=11 r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:494
+4f72: 68000007e80fc0f613 f13 r148=13 r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:494
+4f73: 68000007e80fc0f611 f13 r148=11 r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:500
+4f74: 18000007df0288f613 f3  r148=13 r128=5 M=47f r110=6a5 seq=6fe5 r62=1ffc001173  ; xclipdraw.S:478
+4f75: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; xclipdraw.S:487
+4f76: 68000007e86fd0ecb9 f13 r220=1 r148=320 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:490
+4f77: e8000007e86fd0ecba f13 w71=1 r220=1 r148=340 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:490
+4f78: 68000007c1a0e0f4e1 f13 cc=111 r198=3 r148=1 Q=1 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:495
+4f79: e8000007c1a2e0f4e5 f13 w71=1 cc=111 r198=3 r148=5 Q=5 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:495
+4f7a: 68000007c121e0f4e3 f13 cc=111 r198=2 r148=3 Q=3 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:501
+4f7b: e8000007c123e0f4e7 f13 w71=1 cc=111 r198=2 r148=7 Q=7 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:501
+4f80: 68000007ec29e29641 f13 cc=91 r148=32 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:506
+4f81: 68000007ec28e29645 f13 cc=91 r148=b2 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:506
+4f82: 68000007ec29e29643 f13 cc=91 r148=72 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:509
+4f83: 68000007ec28e29647 f13 cc=91 r148=f2 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:509
+4f84: 68000007ec29e29430 f13 cc=91 r148=201 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:514
+4f85: 68000007ec28e294b0 f13 cc=91 r148=205 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:514
+4f86: 68000007ec29e29470 f13 cc=91 r148=203 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:518
+4f87: 68000007ec28e294f0 f13 cc=91 r148=207 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:518
+4f88: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:507
+4f89: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:507
+4f8a: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:510
+4f8b: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:510
+4f8c: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:515
+4f8d: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:515
+4f8e: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:519
+4f8f: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:519
+4f90: 6e0e8007c1acddecb3 f13 cc=111 r198=3 A=18 D=e r148=260 Q=19 M=6dd r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:505
+4f91: e8000007c1ad5decb1 f13 w71=1 cc=111 r198=3 r148=220 Q=1a M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:508
+4f92: 68000007c12dddecb3 f13 cc=111 r198=2 r148=260 Q=1b M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:511
+4f93: e8000007c12e5decb1 f13 w71=1 cc=111 r198=2 r148=220 Q=1c M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:511
+4f94: 6e0f8007e82fddecb3 f13 A=18 D=f r148=260 M=6dd r110=4bd r99=8 r62=1ffc88217c  ; xclipdraw.S:513
+4f95: 68000007e82fddecb1 f13 r148=220 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:516
+4f96: 68000007e82fddecb3 f13 r148=260 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:520
+4f97: 68000007e82fddecb1 f13 r148=220 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:520
+4f98: 68000007c1acd4c0b9 f13 cc=111 r198=3 r148=320 Q=19 r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:517
+4f99: e8000007c1ad54c0ba f13 w71=1 cc=111 r198=3 r148=340 Q=1a r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:517
+4f9a: 68000007c12dd4c0bb f13 cc=111 r198=2 r148=360 Q=1b r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:521
+4f9b: e8000007c12e54c0bc f13 w71=1 cc=111 r198=2 r148=380 Q=1c r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:521
+4fa1: 68000007c1a04a940e f13 cc=111 r198=3 r148=1c0 Q=0 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:496
+4fa2: 68000007e82fd69779 f13 r148=33b M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:530
+4fa3: 68000007e82fd6979a f13 r148=35c M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:530
+4fa4: e8000007c1a24a940e f13 w71=1 cc=111 r198=3 r148=1c0 Q=4 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:496
+4fa5: 68000007c1214a940e f13 cc=111 r198=2 r148=1c0 Q=2 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:502
+4fa6: 6e068007e86fd0ff40 f13 r220=1 A=18 D=6 r128=5 M=6d0 r110=5bd r99=8 r62=1ffc88017c  ; xclipdraw.S:529
+4fa7: e8000007e86fd0ff40 f13 w71=1 r220=1 r128=5 M=6d0 r110=5bd r62=1ffc00017c  ; xclipdraw.S:531
+4fa8: e8000007c1234a940e f13 w71=1 cc=111 r198=2 r148=1c0 Q=6 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:502
+4fab: 68000007e82fe29432 f13 r148=241 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:538
+4fac: 68000007e82fe294b2 f13 r148=245 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:538
+4fad: 68000007e82fe29472 f13 r148=243 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:544
+4fae: 68000007e82fe294f2 f13 r148=247 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:544
+4faf: 68000007e80fc0f60d f13 r148=d r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:539
+4fb0: 68000007e80fc0f60f f13 r148=f r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:539
+4fb1: 68000007e80fc0f60d f13 r148=d r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:545
+4fb2: 18000007df0288f60f f3  r148=f r128=5 M=47f r110=6a5 seq=6fe5 r62=1ffc001173  ; xclipdraw.S:523
+4fb3: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; xclipdraw.S:532
+4fb4: 68000007e86fd0ecb9 f13 r220=1 r148=320 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:535
+4fb5: e8000007e86fd0ecba f13 w71=1 r220=1 r148=340 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:535
+4fb6: 68000007c1a060f4e0 f13 cc=111 r198=3 Q=0 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:540
+4fb7: e8000007c1a260f4e4 f13 w71=1 cc=111 r198=3 r148=4 Q=4 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:540
+4fb8: 68000007c12160f4e2 f13 cc=111 r198=2 r148=2 Q=2 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:546
+4fb9: e8000007c12360f4e6 f13 w71=1 cc=111 r198=2 r148=6 Q=6 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:546
+4fbe: 68000007ec28e29680 f13 cc=91 r148=14 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:551
+4fbf: 68000007ec29e29684 f13 cc=91 r148=94 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:551
+4fc0: 68000007ec28e29682 f13 cc=91 r148=54 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:554
+4fc1: 68000007ec29e29686 f13 cc=91 r148=d4 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:554
+4fc2: 68000007ec28e2940e f13 cc=91 r148=1c0 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:559
+4fc3: 68000007ec29e2948e f13 cc=91 r148=1c4 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:559
+4fc4: 68000007ec28e2944e f13 cc=91 r148=1c2 Q=11 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:563
+4fc5: 68000007ec29e294ce f13 cc=91 r148=1c6 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:563
+4fc6: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:552
+4fc7: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:552
+4fc8: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:555
+4fc9: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:555
+4fca: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:560
+4fcb: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:560
+4fcc: 68000007ec28d097b1 f13 cc=91 r148=23d Q=11 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:564
+4fcd: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:564
+4fce: 6e0c8007c1acddecb1 f13 cc=111 r198=3 A=18 D=c r148=220 Q=19 M=6dd r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:550
+4fcf: e8000007c1ad5decb3 f13 w71=1 cc=111 r198=3 r148=260 Q=1a M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:553
+4fd0: 68000007c12dddecb1 f13 cc=111 r198=2 r148=220 Q=1b M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:556
+4fd1: e8000007c12e5decb3 f13 w71=1 cc=111 r198=2 r148=260 Q=1c M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:556
+4fd2: 6e0d8007e82fddecb1 f13 A=18 D=d r148=220 M=6dd r110=4bd r99=8 r62=1ffc88217c  ; xclipdraw.S:558
+4fd3: 68000007e82fddecb3 f13 r148=260 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:561
+4fd4: 68000007e82fddecb1 f13 r148=220 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:565
+4fd5: 68000007e82fddecb3 f13 r148=260 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:565
+4fd6: 68000007c1acd4c0b9 f13 cc=111 r198=3 r148=320 Q=19 r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:562
+4fd7: e8000007c1ad54c0ba f13 w71=1 cc=111 r198=3 r148=340 Q=1a r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:562
+4fd8: 68000007c12dd4c0bb f13 cc=111 r198=2 r148=360 Q=1b r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:566
+4fd9: e8000007c12e54c0bc f13 w71=1 cc=111 r198=2 r148=380 Q=1c r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:566
+4fde: 68000007c1a0ca9412 f13 cc=111 r198=3 r148=240 Q=1 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:541
+4fdf: e8000007c1a2ca9412 f13 w71=1 cc=111 r198=3 r148=240 Q=5 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:541
+4fe0: 68000007e82fd69779 f13 r148=33b M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:575
+4fe1: 68000007e82fd6979a f13 r148=35c M=6d6 r110=43d r62=1ffc00317c  ; xclipdraw.S:575
+4fe2: 68000007c121ca9412 f13 cc=111 r198=2 r148=240 Q=3 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:547
+4fe3: e8000007c123ca9412 f13 w71=1 cc=111 r198=2 r148=240 Q=7 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:547
+4fe4: 6e078007e86fd0ff40 f13 r220=1 A=18 D=7 r128=5 M=6d0 r110=5bd r99=8 r62=1ffc88017c  ; xclipdraw.S:574
+4fe5: e8000007e86fd0ff40 f13 w71=1 r220=1 r128=5 M=6d0 r110=5bd r62=1ffc00017c  ; xclipdraw.S:576
+4fe9: 68000007e82fe29430 f13 r148=201 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:583
+4fea: 68000007e82fe294b0 f13 r148=205 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:583
+4feb: 68000007e82fe29470 f13 r148=203 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:589
+4fec: 68000007e82fe294f0 f13 r148=207 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:589
+4fed: 68000007e80fc0f60d f13 r148=d r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:584
+4fee: 68000007e80fc0f60f f13 r148=f r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:584
+4fef: 68000007e80fc0f60d f13 r148=d r128=5 M=47f r110=6a5 r62=1ffc001173  ; xclipdraw.S:590
+4ff0: 18000007df0288f60f f3  r148=f r128=5 M=47f r110=6a5 seq=6fe5 r62=1ffc001173  ; xclipdraw.S:568
+4ff1: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; xclipdraw.S:577
+4ff2: 68000007e86fd0ecb9 f13 r220=1 r148=320 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:580
+4ff3: e8000007e86fd0ecba f13 w71=1 r220=1 r148=340 M=6d0 r110=4bd r62=1ffc00217c  ; xclipdraw.S:580
+4ff4: 68000007c1a060f4e0 f13 cc=111 r198=3 Q=0 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:585
+4ff5: e8000007c1a260f4e4 f13 w71=1 cc=111 r198=3 r148=4 Q=4 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:585
+4ff6: 68000007c12160f4e2 f13 cc=111 r198=2 r148=2 Q=2 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:591
+4ff7: e8000007c12360f4e6 f13 w71=1 cc=111 r198=2 r148=6 Q=6 r128=3d M=6e0 r110=53d r62=1ffd00157c  ; xclipdraw.S:591
+4ffc: 68000007ec2a629680 f13 cc=91 r148=14 Q=14 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:596
+4ffd: 68000007ec29e29684 f13 cc=91 r148=94 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:596
+4ffe: 68000007ec2a629682 f13 cc=91 r148=54 Q=14 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:599
+4fff: 68000007ec29e29686 f13 cc=91 r148=d4 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:599
+5000: 68000007ec2a62940e f13 cc=91 r148=1c0 Q=14 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:604
+5001: 68000007ec29e2948e f13 cc=91 r148=1c4 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:604
+5002: 68000007ec2a62944e f13 cc=91 r148=1c2 Q=14 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:608
+5003: 68000007ec29e294ce f13 cc=91 r148=1c6 Q=13 M=6e2 r110=43d r62=1ffc00357c  ; xclipdraw.S:608
+5004: 68000007ec2a5097b4 f13 cc=91 r148=29d Q=14 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:597
+5005: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:597
+5006: 68000007ec2a5097b4 f13 cc=91 r148=29d Q=14 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:600
+5007: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:600
+5008: 68000007ec2a5097b4 f13 cc=91 r148=29d Q=14 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:605
+5009: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:605
+500a: 68000007ec2a5097b4 f13 cc=91 r148=29d Q=14 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:609
+500b: 68000007ec29d097b3 f13 cc=91 r148=27d Q=13 M=6d0 r110=43d r62=1ffc00357c  ; xclipdraw.S:609
+500c: 6e0c8007c1acddecb4 f13 cc=111 r198=3 A=18 D=c r148=280 Q=19 M=6dd r110=4bd r99=8 r62=1ffd88257c  ; xclipdraw.S:595
+500d: e8000007c1ad5decb3 f13 w71=1 cc=111 r198=3 r148=260 Q=1a M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:598
+500e: 68000007c12dddecb4 f13 cc=111 r198=2 r148=280 Q=1b M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:601
+500f: e8000007c12e5decb3 f13 w71=1 cc=111 r198=2 r148=260 Q=1c M=6dd r110=4bd r62=1ffd00257c  ; xclipdraw.S:601
+5010: 6e0d8007e82fddecb4 f13 A=18 D=d r148=280 M=6dd r110=4bd r99=8 r62=1ffc88217c  ; xclipdraw.S:603
+5011: 68000007e82fddecb3 f13 r148=260 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:606
+5012: 68000007e82fddecb4 f13 r148=280 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:610
+5013: 68000007e82fddecb3 f13 r148=260 M=6dd r110=4bd r62=1ffc00217c  ; xclipdraw.S:610
+5014: 68000007c1acd4c0b9 f13 cc=111 r198=3 r148=320 Q=19 r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:607
+5015: e8000007c1ad54c0ba f13 w71=1 cc=111 r198=3 r148=340 Q=1a r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:607
+5016: 68000007c12dd4c0bb f13 cc=111 r198=2 r148=360 Q=1b r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:611
+5017: e8000007c12e54c0bc f13 w71=1 cc=111 r198=2 r148=380 Q=1c r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; xclipdraw.S:611
+501a: 68000007c1a0ca9410 f13 cc=111 r198=3 r148=200 Q=1 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:586
+501b: e8000007c1a2ca9410 f13 w71=1 cc=111 r198=3 r148=200 Q=5 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:586
+501c: 68000007c121ca9410 f13 cc=111 r198=2 r148=200 Q=3 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:592
+501d: e8000007c123ca9410 f13 w71=1 cc=111 r198=2 r148=200 Q=7 M=6ca r110=4bd r62=1ffd002578  ; xclipdraw.S:592
+501e: 68000007e86fd49779 f13 r220=1 r148=33b M=6d4 r110=43d r62=1ffc00317c  ; xclipdraw.S:616
+501f: 98000007df02d3979a f3  w71=1 r220=1 r148=35c M=6d4 r110=43d seq=6fe5 r62=1ffc00317c  ; xclipdraw.S:613
+5020: 6e00c007e80fc0ffe5 f13 A=18 M=47f r99=c r62=1ffc880173  ; xclipdraw.S:621
+5021: 6e01c007e80fc0ffe5 f13 A=18 D=1 M=47f r99=c r62=1ffc880173  ; xclipdraw.S:622
+5022: 6e02c007e80fc0ffe5 f13 A=18 D=2 M=47f r99=c r62=1ffc880173  ; xclipdraw.S:625
+5023: 6e03c007e80fc0ffe5 f13 A=18 D=3 M=47f r99=c r62=1ffc880173  ; xclipdraw.S:626
+5026: 68000007ec2e60feae f13 cc=91 Q=1c r128=35 M=6e0 r110=57d r62=1ffc0005fc  ; xclipdraw.S:623
+5027: 68000007ec2de0fea5 f13 cc=91 Q=1b r128=2c M=6e0 r110=57d r62=1ffc0005fc  ; xclipdraw.S:627
+502b: 68000007e80fe80400 f13 r128=d r110=2bd  ; xclipdraw.S:629
+502c: 68000007e80fe80400 f13 r128=d r110=2bd  ; xclipdraw.S:630
+502d: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+502e: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+5031: 68000007e80fd0c4bc f13 r148=380 r128=2c M=57f r110=699 r62=1ffc0021f3  ; xclipdraw.S:629
+5032: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; xclipdraw.S:630
+5033: 28003d3209404537dc f5  imm=12 r213=3 B=1e C=1e r148=39e M=6cb r110=23f r95=13 r71=1 r62=1ffc65b074 r25=3e69c00  ; xclipdraw.S:629
+5034: b8003c07c0fc4537db f7  w71=1 r213=3 B=1e r148=37e M=6cb r110=23f r62=1ffc443074 r25=3e69c00  ; xclipdraw.S:630
+5035: 18137d03df34263300 f3  imm=f r213=3 cc=211 B=1e C=1e r148=18 P=1a r128=2c M=460 r110=409 r95=13 r71=1 r62=1ffc65b9ff r25=3e69c00  ; xclipdraw.S:644
+5036: d6407c07fe23063304 f10 w71=1 r213=3 cc=211 B=1e r148=98 P=19 r128=2c M=460 r110=409 r62=1ffc4439ff r25=3e69c00  ; xclipdraw.S:644
+5037: 28003d3208404e9437 f5  imm=10 r213=3 B=1e C=1e r148=2e1 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:644
+5038: e0003c07ea000140b7 f12 w71=1 r213=3 B=1e r148=2e5 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:644
+5039: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; xclipdraw.S:629
+503a: 28000132088008fee4 f5  imm=11 C=1e r128=24 M=47f r110=6a9 r95=13 r71=1 r62=1ffc2181f3  ; xclipdraw.S:630
+503b: 60003c07c10401c01e f12 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:644
+503c: e0003c07c10401c01e f12 w71=1 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:644
+503d: 68000007e80fd0c4bc f13 r148=380 r128=2c M=57f r110=699 r62=1ffc0021f3  ; xclipdraw.S:629
+503e: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; xclipdraw.S:630
+503f: 28003d32fc40449416 f5  imm=1f8 r213=3 B=1e C=1e r148=2c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:644
+5040: e0003c07ea0001c016 f12 w71=1 r213=3 B=1e r148=2c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:644
+5041: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; xclipdraw.S:629
+5042: 28000132fa8008c4b9 f5  imm=1f5 C=1e r148=320 r128=2c M=47f r110=699 r95=13 r71=1 r62=1ffc21a1f3  ; xclipdraw.S:630
+5043: 60003c07c10601c015 f12 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:644
+5044: e0003c07c10601c015 f12 w71=1 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:644
+5045: 6e088007e80fc0ff25 f13 A=18 D=8 r128=2c M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; xclipdraw.S:632
+5046: 68000007e80fc0ff25 f13 r128=2c M=47f r110=6b9 r62=1ffc0001f3  ; xclipdraw.S:634
+5047: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:646
+5048: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:647
+5049: 6e018007e80fc0ff25 f13 A=18 D=1 r128=2c M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; xclipdraw.S:637
+504a: 6e038007e80fc0ff25 f13 A=18 D=3 r128=2c M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; xclipdraw.S:639
+504b: 6e008007e80fc0ff35 f13 A=18 r128=2e M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; xclipdraw.S:636
+504c: 6e028007e80fc0ff35 f13 A=18 D=2 r128=2e M=47f r110=6b9 r99=8 r62=1ffc8801f3  ; xclipdraw.S:638
+504d: 68000007e82fe2c4a2 f13 r148=40 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; xclipdraw.S:637
+504e: 68000007e82fe2c4a6 f13 r148=c0 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; xclipdraw.S:639
+504f: 68000007e82fe0c4a3 f13 r148=60 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; xclipdraw.S:636
+5050: 68000007e82fe0c4a7 f13 r148=e0 r128=2c M=6e0 r110=47d r62=1ffc0021fc  ; xclipdraw.S:638
+5051: 28003d3207c049f418 f5  imm=f r213=3 B=1e C=1e r148=18 r128=5 M=6e0 r110=53d r95=13 r71=1 r62=1ffc65917c r25=3e69c00  ; xclipdraw.S:648
+5052: e0003c07ea00011018 f12 w71=1 r213=3 B=1e r148=18 r128=5 M=6e0 r110=53d r62=1ffc44117c r25=3e69c00  ; xclipdraw.S:648
+5053: 28003d3208404ec0b7 f5  imm=10 r213=3 B=1e C=1e r148=2e0 r128=28 M=6e2 r110=47d r95=13 r71=1 r62=1ffc65a1fc r25=3e69c00  ; xclipdraw.S:648
+5054: e0003c07ea00015c17 f12 w71=1 r213=3 B=1e r148=2e0 r128=28 M=6e2 r110=47d r62=1ffc4421fc r25=3e69c00  ; xclipdraw.S:648
+5055: 77fa4de7c880f80011 f14 imm=11 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:648
+5056: 60003c07c10401c01e f12 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:648
+5057: e0003c07c10401c01e f12 w71=1 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:648
+5058: 28003d32fc40449416 f5  imm=1f8 r213=3 B=1e C=1e r148=2c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:648
+5059: e0003c07ea0001c016 f12 w71=1 r213=3 B=1e r148=2c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:648
+505a: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:648
+505b: 60003c07c10601c015 f12 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:648
+505c: e0003c07c10601c015 f12 w71=1 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:648
+505d: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:650
+505e: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:651
+505f: 28003d320a4042941e f5  imm=14 r213=3 B=1e C=1e r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:652
+5060: d7c07c07fe36c2b41e f10 w71=1 r213=3 B=1e r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:653
+5061: 28003d3207c0499702 f5  imm=f r213=3 B=1e C=1e r148=58 M=6e0 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:654
+5062: e0003c07ea00010306 f12 w71=1 r213=3 B=1e r148=d8 M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:654
+5063: 28003d3208404e9477 f5  imm=10 r213=3 B=1e C=1e r148=2e3 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:654
+5064: e0003c07ea000140f7 f12 w71=1 r213=3 B=1e r148=2e7 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:654
+5065: 77fa4de7c880f80011 f14 imm=11 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:654
+5066: 60003c07c10401c01e f12 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:654
+5067: e0003c07c10401c01e f12 w71=1 r213=2 r198=2 B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:654
+5068: 28003d32fc40449416 f5  imm=1f8 r213=3 B=1e C=1e r148=2c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:654
+5069: e0003c07ea0001c016 f12 w71=1 r213=3 B=1e r148=2c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:654
+506a: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:654
+506b: 60003c07c10601c015 f12 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:654
+506c: e0003c07c10601c015 f12 w71=1 r213=2 r198=2 B=1e E=6 r148=2a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:654
+506d: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; xclipdraw.S:657
+506e: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:658
+506f: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:659
+5070: 77fa411808c1880000 f14 r222=1 r219=1 C=11 F=20 G=11 r62=1ffc23c170  ; xclipdraw.S:666
+5072: 77f64007c880f84ec1 f14 xfer5 c4 cc=11 -> 4ec1 imm=4ec1 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:667
+5077: 77fa40f6c881780000 f14 r219=1 C=f F=1b G=f r62=1ffc23c170  ; xclipdraw.S:664
+507b: 77fa410948c1800000 f14 r222=1 r219=1 C=10 F=25 G=10 r62=1ffc23c170  ; xclipdraw.S:673
+507d: 77f64133088d9c4ebf f14 xfer5 c7 cc=11 -> 4ebf imm=4ebf r219=1 C=13 r162=1 F=c G=13 seq=5fe7 r71=1 r62=1ffe23c170 r25=3e3bc00  ; xclipdraw.S:670
+5081: 700027333f829c0000 f14 r219=2 r198=7f C=13 r162=1 F=c G=13 r62=1ffd23c170  ; xclipdraw.S:671
+5082: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> 5082 seq=1cfe5 r25=3e39c00  ; xclipdraw.S:676
+5085: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; xclipdraw.S:676
+5086: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; xclipdraw.S:676
+5087: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; xclipdraw.S:676
+5088: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:676
+5089: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:676
+508a: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:676
+mmo_XclipDrawRects:
+508b: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; xclipdraw.S:170
+508c: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; xclipdraw.S:173
+508d: 782071e7c2012f080a f15 imm=12f080a r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; xclipdraw.S:175
+508e: 782071e7c100000040 f15 imm=40 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; xclipdraw.S:174
+508f: 6e018007ec2e4af6a0 f13 cc=91 A=18 D=1 Q=1c M=6ca r99=8 r62=1ffc880578  ; xclipdraw.S:178
+5090: 18034102df3644f8a0 f3  imm=b cc=91 C=1e Q=1b M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:180
+5091: 180341031f3444f8a0 f3  imm=c cc=91 C=1e Q=1a M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:181
+5092: 180341001f3244f8a0 f3  cc=91 C=1e Q=19 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:182
+5093: 180341005f3044f8a0 f3  imm=1 cc=91 C=1e Q=18 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:183
+5094: 280031320b4444f8a0 f5  imm=16 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; xclipdraw.S:191
+509c: 754021efca01988000 f14 imm=8000 r219=1 A=15 C=1e r176=0 F=3f G=13 r71=1 r62=1ffcb3c170  ; xclipdraw.S:187
+509d: 76043607ca04700000 f14 r217=1 A=18 D=4 G=e r99=8 r62=1ffc884170  ; xclipdraw.S:193
+509f: 77fa412948c1800000 f14 r222=1 r219=1 C=12 F=25 G=10 r62=1ffc23c170  ; xclipdraw.S:198
+50a0: 1540013fd32e42941e f2  r219=1 cc=91 A=15 C=13 r176=0 F=3f G=13 r148=3c0 Q=17 M=6d8 r110=4bd r62=1ffcb3e578  ; xclipdraw.S:188
+50a1: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; xclipdraw.S:199
+50a2: 77fa41e7c881780017 f14 imm=17 r219=1 C=1e G=f r71=1 r62=1ffc23c170  ; xclipdraw.S:204
+50a5: 77fa40e808c1880000 f14 r222=1 r219=1 C=e F=20 G=11 r62=1ffc23c170  ; xclipdraw.S:206
+50a6: 5cc090f7cf96575400 f11 cc=291 A=13 C=f P=8 Q=7 M=2ca r99=8 r95=13 r62=1ffca98d79  ; xclipdraw.S:210
+50a7: 5ccc92f78b96575400 f11 cc=291 A=13 C=f D=c F=1e P=9 Q=5 M=2ca r99=8 r95=13 r62=1ffca98d79  ; xclipdraw.S:215
+50a8: 6cc1a6f76c254af8a0 f13 cc=91 A=13 C=f D=1 F=1d Q=a M=6ca r110=7bd r99=8 r95=13 r62=1ffca98578  ; xclipdraw.S:211
+50a9: d0eb7a07fe1256541d f10 w71=1 r213=3 cc=211 B=1d E=2b r148=3a0 P=3 M=24a r110=4bd r62=1ffc44297a r25=3e69c00  ; xclipdraw.S:211
+50aa: 52e37af73f9655341d f10 r213=3 cc=211 B=1d C=f E=23 F=1c r148=3a0 P=b M=2ca r110=4bd r95=13 r62=1ffc65a979 r25=3e69c00  ; xclipdraw.S:223
+50ab: 2ccdbd32094044941e f5  imm=12 r213=3 A=13 B=1e C=1e D=d r148=3c0 M=6ca r110=4bd r99=8 r95=13 r71=1 r62=1ffceda178 r25=3e69c00  ; xclipdraw.S:216
+50ac: d1807c07fe1256541e f10 w71=1 r213=3 cc=211 B=1e r148=3c0 P=6 M=24a r110=4bd r62=1ffc44297a r25=3e69c00  ; xclipdraw.S:216
+50ad: 68000007ec2068febb f13 cc=91 Q=0 r128=1f M=6e8 r110=57d r62=1ffc0005fc  ; xclipdraw.S:237
+50ae: 5cc28407c813471d68 f11 cc=291 A=13 D=2 r148=8 P=2 Q=4 r128=1d M=268 r110=53d r99=8 r62=1ffc881d7e  ; xclipdraw.S:212
+50af: 5cc3ac07c213471dc9 f11 cc=291 A=13 D=3 r148=9 P=16 Q=1 r128=35 M=268 r110=53d r99=8 r62=1ffc881d7e  ; xclipdraw.S:213
+50b0: 5cce8c07ca13471d89 f11 cc=291 A=13 D=e r148=9 P=6 Q=5 r128=25 M=268 r110=53d r99=8 r62=1ffc881d7e  ; xclipdraw.S:217
+50b1: 2ccfbd3207c049f41b f5  imm=f r213=3 A=13 B=1e C=1e D=f r148=1b r128=5 M=6e0 r110=53d r99=8 r95=13 r71=1 r62=1ffced917c r25=3e69c00  ; xclipdraw.S:218
+50b2: d5407c07fe13071d1b f10 w71=1 r213=3 cc=211 B=1e r148=1b P=15 r128=5 M=260 r110=53d r62=1ffc44197e r25=3e69c00  ; xclipdraw.S:218
+50b3: e8000007e86fe294aa f13 w71=1 r220=1 r148=145 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:229
+50b4: 28003d3208404ec1ba f5  imm=10 r213=3 B=1e C=1e r148=340 r128=29 M=6e2 r110=47d r95=13 r71=1 r62=1ffc65a1fc r25=3e69c00  ; xclipdraw.S:245
+50b5: e0003a07c22b01c01e f12 w71=1 r213=2 r198=4 B=1d E=2b r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:229
+50b6: e8000007e86fe294cb f13 w71=1 r220=1 r148=166 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:231
+50b7: e8000007e86fe2f4e8 f13 w71=1 r220=1 r148=8 r128=3d M=6e2 r110=53d r62=1ffc00117c  ; xclipdraw.S:233
+50b8: e0003a07c22b01c01e f12 w71=1 r213=2 r198=4 B=1d E=2b r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:231
+50b9: e0003a07c22b01c01e f12 w71=1 r213=2 r198=4 B=1d E=2b r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:233
+50ba: e8000007e86fe29535 f13 w71=1 r220=1 r148=2a9 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:235
+50bb: 68000007e86fe294ea f13 r220=1 r148=147 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:228
+50bc: 68000007e86fe2946b f13 r220=1 r148=163 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:230
+50bd: 60003a07c22301c01e f12 r213=2 r198=4 B=1d E=23 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:228
+50be: 60003a07c22301c01e f12 r213=2 r198=4 B=1d E=23 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:230
+50bf: 68000007e86fe29502 f13 r220=1 r148=48 M=6e2 r110=43d r62=1ffc00317c  ; xclipdraw.S:232
+50c0: 3800011800465e9536 f7  r222=1 r220=1 r219=1 C=11 F=20 G=11 r148=2c9 M=6e2 r110=43d r62=1ffc23f17c  ; xclipdraw.S:234
+50c1: 60003a07c22301c01e f12 r213=2 r198=4 B=1d E=23 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:232
+50c2: 60003a07c22301c01e f12 r213=2 r198=4 B=1d E=23 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:234
+50c3: e0003a07c22b01c01e f12 w71=1 r213=2 r198=4 B=1d E=2b r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:235
+50c4: e0003c07ea000140ba f12 w71=1 r213=3 B=1e r148=345 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:245
+50c5: 180341045f064f9576 f3  imm=11 cc=91 C=1e r148=2cb Q=3 M=6e6 r110=43d r95=13 r71=1 r62=1ffc21b57c  ; xclipdraw.S:240
+50c6: 60003c07e60401c01e f12 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:245
+50c7: e0003c07e60401c01e f12 w71=1 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:245
+50c8: 28003d32fc40449419 f5  imm=1f8 r213=3 B=1e C=1e r148=320 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:245
+50c9: e0003c07ea0001c019 f12 w71=1 r213=3 B=1e r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:245
+50ca: 1803417d5f0e4f9575 f3  imm=1f5 cc=91 C=1e r148=2ab Q=7 M=6e6 r110=43d r95=13 r71=1 r62=1ffc21b57c  ; xclipdraw.S:240
+50cb: 60003c07e60601c018 f12 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:245
+50cc: e0003c07e60601c018 f12 w71=1 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:245
+50cd: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:247
+50ce: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:248
+50cf: 28003d3207c0499760 f5  imm=f r213=3 B=1e C=1e r148=1b M=6e0 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:249
+50d0: e0003c07ea00010364 f12 w71=1 r213=3 B=1e r148=9b M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:249
+50d1: 28003d3208404e947a f5  imm=10 r213=3 B=1e C=1e r148=343 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:249
+50d2: e0003c07ea000140fa f12 w71=1 r213=3 B=1e r148=347 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:249
+50d3: 180341045f044f9542 f3  imm=11 cc=91 C=1e r148=4a Q=2 M=6e6 r110=43d r95=13 r71=1 r62=1ffc21b57c  ; xclipdraw.S:239
+50d4: 60003c07e60401c01e f12 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:249
+50d5: e0003c07e60401c01e f12 w71=1 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:249
+50d6: 28003d32fc40449419 f5  imm=1f8 r213=3 B=1e C=1e r148=320 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:249
+50d7: e0003c07ea0001c019 f12 w71=1 r213=3 B=1e r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:249
+50d8: 1803417d5f0c4f9546 f3  imm=1f5 cc=91 C=1e r148=ca Q=6 M=6e6 r110=43d r95=13 r71=1 r62=1ffc21b57c  ; xclipdraw.S:239
+50d9: 60003c07e60601c018 f12 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:249
+50da: e0003c07e60601c018 f12 w71=1 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:249
+50db: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:251
+50dc: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:252
+50dd: 28003d3209c042941e f5  imm=13 r213=3 B=1e C=1e r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:253
+50de: d7c07c07fe36c2b41e f10 w71=1 r213=3 B=1e r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:254
+50df: 28003d3207c0499762 f5  imm=f r213=3 B=1e C=1e r148=5b M=6e0 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:255
+50e0: e0003c07ea00010366 f12 w71=1 r213=3 B=1e r148=db M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:255
+50e1: 28003d3208404e943a f5  imm=10 r213=3 B=1e C=1e r148=341 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:255
+50e2: e0003c07ea000140ba f12 w71=1 r213=3 B=1e r148=345 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:255
+50e3: 77fa4de7c880f80011 f14 imm=11 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:255
+50e4: 60003c07e60401c01e f12 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:255
+50e5: e0003c07e60401c01e f12 w71=1 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:255
+50e6: 28003d32fc40449419 f5  imm=1f8 r213=3 B=1e C=1e r148=320 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:255
+50e7: e0003c07ea0001c019 f12 w71=1 r213=3 B=1e r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:255
+50e8: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:255
+50e9: 60003c07e60601c018 f12 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:255
+50ea: e0003c07e60601c018 f12 w71=1 r213=2 r198=4c B=1e E=6 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:255
+50eb: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:257
+50ec: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:258
+50ed: 28003d3209c042941e f5  imm=13 r213=3 B=1e C=1e r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:259
+50ee: d7c07c07fe36c2b41e f10 w71=1 r213=3 B=1e r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:260
+50ef: 28003d3207c0499762 f5  imm=f r213=3 B=1e C=1e r148=5b M=6e0 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:261
+50f0: e0003c07ea00010366 f12 w71=1 r213=3 B=1e r148=db M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:261
+50f1: 28003d3208404e947a f5  imm=10 r213=3 B=1e C=1e r148=343 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:261
+50f2: e0003c07ea000140fa f12 w71=1 r213=3 B=1e r148=347 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:261
+50f3: 77fa4de7c880f80011 f14 imm=11 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:261
+50f4: 60003c07e60401c01e f12 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:261
+50f5: e0003c07e60401c01e f12 w71=1 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:261
+50f6: 28003d32fc40449419 f5  imm=1f8 r213=3 B=1e C=1e r148=320 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:261
+50f7: e0003c07ea0001c019 f12 w71=1 r213=3 B=1e r148=320 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:261
+50f8: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:261
+50f9: 60003c07e60701c018 f12 r213=2 r198=4c B=1e E=7 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:261
+50fa: e0003c07e60701c018 f12 w71=1 r213=2 r198=4c B=1e E=7 r148=300 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:261
+50fb: 60003c07e68301c017 f12 r213=2 r198=4d B=1e E=3 r148=2e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:264
+50fc: e0003c07e68301c017 f12 w71=1 r213=2 r198=4d B=1e E=3 r148=2e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:265
+50fd: 77f64007c880f850a6 f14 xfer5 c4 cc=11 -> 50a6 imm=50a6 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:272
+5102: 77f940f6c889780000 f14 r219=1 C=f F=1b G=f seq=6fd6 r62=1ffc23c170 r25=3e2bc00  ; xclipdraw.S:267
+5103: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:267
+5104: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:267
+5106: 77fa410948c1800000 f14 r222=1 r219=1 C=10 F=25 G=10 r62=1ffc23c170  ; xclipdraw.S:277
+5108: 77f64007c88cf850a2 f14 xfer5 c7 cc=11 -> 50a2 imm=50a2 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; xclipdraw.S:278
+5109: 77f64007f390f8001e f14 xfer5.rel c4 cc=67 -> 5127 imm=1e cc=67 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:282
+510d: 77fa413608819c0000 f14 r219=1 C=13 r162=1 F=18 G=13 r62=1ffc23c170  ; xclipdraw.S:275
+5110: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; xclipdraw.S:280
+5112: 68000007e86fca941c f13 r220=1 r148=380 M=6ca r110=4bd r62=1ffc002178  ; xclipdraw.S:284
+5117: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; xclipdraw.S:286
+5118: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:288
+5119: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:289
+511a: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:290
+511b: 28003d32fac044941c f5  imm=1f5 r213=3 B=1e C=1e r148=380 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:291
+511c: 68000007ec2e4a941e f13 cc=91 r148=3c0 Q=1c M=6ca r110=4bd r62=1ffc002578  ; xclipdraw.S:295
+511d: 180341009f3244f8a0 f3  imm=2 cc=91 C=1e Q=19 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:293
+511e: 77f5c007c18cf85094 f14 xfer5 c31 cc=3 -> 5094 imm=5094 cc=3 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; xclipdraw.S:297
+511f: 18034100df3044f8a0 f3  imm=3 cc=91 C=1e Q=18 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:294
+5127: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> 5127 seq=1cfe5 r25=3e39c00  ; xclipdraw.S:301
+512b: 7039c1a7c88df80000 f14 r219=1 C=1a seq=605f r62=1ffc23c170 r25=3e2fc00  ; xclipdraw.S:301
+512c: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; xclipdraw.S:301
+512d: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:301
+512e: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:301
+512f: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:301
+mmo_XclipDrawPoints:
+5130: 77f9c12948c9800000 f14 r222=1 r219=1 C=12 F=25 G=10 seq=6fde r62=1ffc23c170 r25=3e2fc00  ; xclipdraw.S:70
+5131: 280031320b4044f8a0 f5  imm=16 r213=3 B=18 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; xclipdraw.S:82
+5132: 782071e7c13f000000 f15 imm=3f000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; xclipdraw.S:89
+5133: 180341001f3644f8a0 f3  cc=91 C=1e Q=1b M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:74
+5134: 180341005f3844f8a0 f3  imm=1 cc=91 C=1e Q=1c M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:75
+5135: 18034102df3444f8a0 f3  imm=b cc=91 C=1e Q=1a M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:72
+5136: 754021efca01988000 f14 imm=8000 r219=1 A=15 C=1e r176=0 F=3f G=13 r71=1 r62=1ffcb3c170  ; xclipdraw.S:79
+5137: 180341031f3244f8a0 f3  imm=c cc=91 C=1e Q=19 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; xclipdraw.S:73
+5138: 77fa4de7c880f80002 f14 imm=2 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:76
+5139: 68000007fc2dcaf8a0 f13 cc=111 r198=78 Q=1b M=6ca r110=7bd r62=1ffd000578  ; xclipdraw.S:76
+513a: 76003607ca04700000 f14 r217=1 A=18 G=e r99=8 r62=1ffc884170  ; xclipdraw.S:84
+513b: 18034100df2e42941e f3  imm=3 cc=91 C=1e r148=3c0 Q=17 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc21a578  ; xclipdraw.S:77
+513c: 68000007fc2e4af8a0 f13 cc=111 r198=78 Q=1c M=6ca r110=7bd r62=1ffd000578  ; xclipdraw.S:77
+513d: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; xclipdraw.S:92
+513e: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; xclipdraw.S:96
+513f: 6cc08007ec2060ffa5 f13 cc=91 A=13 Q=0 M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; xclipdraw.S:97
+5140: 6cc68007ec2260ffa5 f13 cc=91 A=13 D=6 Q=4 M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; xclipdraw.S:99
+5141: 6cc18007ec20e0ffa5 f13 cc=91 A=13 D=1 Q=1 M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; xclipdraw.S:98
+5142: 6cc78007ec22e0ffa5 f13 cc=91 A=13 D=7 Q=5 M=6e0 r110=6fd r99=8 r62=1ffc88057c  ; xclipdraw.S:100
+5143: 77fa41e7c881780017 f14 imm=17 r219=1 C=1e G=f r71=1 r62=1ffc23c170  ; xclipdraw.S:106
+5145: e0003a07ea2b01c01e f12 w71=1 r213=3 B=1d E=2b r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:103
+5146: 38003ae823c644941e f7  r222=1 r219=1 r213=3 B=1d C=e E=23 F=20 G=11 r148=3c0 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; xclipdraw.S:102
+5147: 680026f7ec2b62eea0 f13 cc=91 C=f Q=16 M=6e2 r110=4fd r95=13 r62=1ffc21a57c  ; xclipdraw.S:111
+5148: 68000007ec2c62eea4 f13 cc=91 r148=80 Q=18 M=6e2 r110=4fd r62=1ffc00257c  ; xclipdraw.S:112
+5149: 680026f7a82fe2eea1 f13 C=f F=1e r148=20 M=6e2 r110=4fd r95=13 r62=1ffc21a17c  ; xclipdraw.S:113
+514a: 68000007e82fe2eea5 f13 r148=a0 M=6e2 r110=4fd r62=1ffc00217c  ; xclipdraw.S:114
+514b: 680026f7682fe2f8a0 f13 C=f F=1d M=6e2 r110=73d r95=13 r62=1ffc21917c  ; xclipdraw.S:115
+514c: 68000007e82fe2f8a4 f13 r148=4 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:116
+514d: 680026f7282fe2f8a1 f13 C=f F=1c r148=1 M=6e2 r110=73d r95=13 r62=1ffc21917c  ; xclipdraw.S:117
+514e: 68000007e82fe2f8a5 f13 r148=5 M=6e2 r110=73d r62=1ffc00117c  ; xclipdraw.S:118
+514f: 68000007e82fd4c2b6 f13 r148=2c0 r128=2a M=6d4 r110=47d r62=1ffc0021fc  ; xclipdraw.S:120
+5150: 68000007e82fd4c2b8 f13 r148=300 r128=2a M=6d4 r110=47d r62=1ffc0021fc  ; xclipdraw.S:121
+5151: 68000007e82fd4fe82 f13 r128=10 M=6d4 r110=57d r62=1ffc0001fc  ; xclipdraw.S:122
+5152: 68000007e82fd4fe82 f13 r128=10 M=6d4 r110=57d r62=1ffc0001fc  ; xclipdraw.S:123
+5155: 68000007e86fd4fe82 f13 r220=1 r128=10 M=6d4 r110=57d r62=1ffc0001fc  ; xclipdraw.S:124
+5156: e8000007e86fd4fe82 f13 w71=1 r220=1 r128=10 M=6d4 r110=57d r62=1ffc0001fc  ; xclipdraw.S:125
+5157: 60003a07c2a301c01d f12 r213=2 r198=5 B=1d E=23 r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:127
+5158: e0003a07c2ab01c01d f12 w71=1 r213=2 r198=5 B=1d E=2b r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:128
+515b: 77fa411808c1880000 f14 r222=1 r219=1 C=11 F=20 G=11 r62=1ffc23c170  ; xclipdraw.S:132
+515d: 77f64007c880f85147 f14 xfer5 c4 cc=11 -> 5147 imm=5147 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; xclipdraw.S:133
+5162: 77fa40f6c881780000 f14 r219=1 C=f F=1b G=f r62=1ffc23c170  ; xclipdraw.S:130
+5166: 77fa410948c1800000 f14 r222=1 r219=1 C=10 F=25 G=10 r62=1ffc23c170  ; xclipdraw.S:151
+5167: 28003d32094044941e f5  imm=12 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:136
+5168: e0003c07ea0001c01e f12 w71=1 r213=3 B=1e r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:137
+5169: 28003d320ac042941e f5  imm=15 r213=3 B=1e C=1e r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:138
+516a: d7c07c07fe36c2b41e f10 w71=1 r213=3 B=1e r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:139
+516b: 28003d3207c0499740 f5  imm=f r213=3 B=1e C=1e r148=1a M=6e0 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:140
+516c: e0003c07ea00010344 f12 w71=1 r213=3 B=1e r148=9a M=6e0 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:140
+516d: 28003d3208404e9439 f5  imm=10 r213=3 B=1e C=1e r148=321 M=6e2 r110=43d r95=13 r71=1 r62=1ffc65b17c r25=3e69c00  ; xclipdraw.S:140
+516e: e0003c07ea000140b9 f12 w71=1 r213=3 B=1e r148=325 M=6e2 r110=43d r62=1ffc44317c r25=3e69c00  ; xclipdraw.S:140
+516f: 77fa4de7c880f80011 f14 imm=11 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:140
+5170: 60003c07e60401c01e f12 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:140
+5171: e0003c07e60401c01e f12 w71=1 r213=2 r198=4c B=1e E=4 r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:140
+5172: 28003d32fc4044941b f5  imm=1f8 r213=3 B=1e C=1e r148=360 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:140
+5173: e0003c07ea0001c01b f12 w71=1 r213=3 B=1e r148=360 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:140
+5174: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; xclipdraw.S:140
+5175: 60003c07e60701c01c f12 r213=2 r198=4c B=1e E=7 r148=380 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:140
+5176: e0003c07e60701c01c f12 w71=1 r213=2 r198=4c B=1e E=7 r148=380 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:140
+5177: 60003c07e68301c017 f12 r213=2 r198=4d B=1e E=3 r148=2e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:143
+5178: e0003c07e68301c017 f12 w71=1 r213=2 r198=4d B=1e E=3 r148=2e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; xclipdraw.S:144
+5179: 77f64007c88cf8513e f14 xfer5 c7 cc=11 -> 513e imm=513e seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; xclipdraw.S:152
+517d: 77f94007c888f80000 f14 seq=6fd6 r25=3e2bc00  ; xclipdraw.S:146
+517e: 77f2413308b59c0000 f14 xfer4.rel c5 cc=11 -> 517e r219=1 C=13 r162=1 F=c G=13 seq=1cfe5 r62=1ffc23c170 r25=3e39c00  ; xclipdraw.S:149
+517f: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:146
+5180: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; xclipdraw.S:146
+5181: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; xclipdraw.S:154
+5182: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; xclipdraw.S:154
+5183: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; xclipdraw.S:154
+5184: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:154
+5185: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; xclipdraw.S:154
+5186: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; xclipdraw.S:154

@@ -1,0 +1,39 @@
+# video.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mgesi_VCbusWriteMultiple:
+52e8: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; video.S:67
+52e9: 77fa41d7c881c80000 f14 r219=1 C=1d G=19 r62=1ffc23c170  ; video.S:68
+52ea: 77f9cde7c888f801f7 f14 imm=1f7 C=1e r95=13 seq=6fde r71=1 r62=1ffc218170 r25=3e2fc00  ; video.S:65
+52eb: 782071e7c000000411 f15 imm=411 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; video.S:71
+52ec: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; video.S:69
+52ed: 3e00bd9800bc44f6a0 f7  r219=1 r213=3 A=18 B=1e C=19 F=20 G=f M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; video.S:72
+52ee: e0003c07ea0001dd80 f12 w71=1 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; video.S:73
+52ef: 2fc0bd32fb4044f6a0 f5  imm=1f6 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:74
+52f0: b8003df040bd44f6a0 f7  w71=1 r219=1 r213=3 B=1e C=1f r162=1 F=1 G=f M=6ca r62=1ffc67c178 r25=3e69c00  ; video.S:75
+52f1: 7059c0f948c9700000 f14 r222=1 r219=1 C=f F=25 G=e seq=609e r62=1ffc23c170 r25=3e2fc00  ; video.S:78
+52f2: 7099c1f0888f7c0000 f14 r219=3 C=1f r162=1 F=2 G=f seq=611f r62=1ffc23c170 r25=3e2fc00  ; video.S:79
+52f3: 77fa41f0c8877c0000 f14 r219=3 C=1f r162=1 F=3 G=f seq=6fe5 r62=1ffc23c170  ; video.S:81
+52f4: 77fa4de7c88cf801f5 f14 imm=1f5 C=1e r95=13 seq=6fe7 r71=1 r62=1ffc218170 r25=3e2bc00  ; video.S:84
+52f5: 77fa40e948c1700000 f14 r222=1 r219=1 C=e F=25 G=e r62=1ffc23c170  ; video.S:96
+52f7: 77f64007c89cfbfffe f14 xfer5.rel c7 cc=11 -> 52f5 imm=fffffffe seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; video.S:97
+52fc: 77f240f188b57c0000 f14 xfer4.rel c5 cc=11 -> 52fc r219=1 C=f r162=1 F=6 G=f seq=1cfe5 r62=1ffc23c170 r25=3e39c00  ; video.S:94
+52fd: 63c0bc07ea0101dd80 f12 r213=3 A=f B=1e E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; video.S:91
+52fe: e3c3bc07ea0101dd80 f12 w71=1 r213=3 A=f B=1e D=3 E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; video.S:92
+52ff: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; video.S:100
+5300: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; video.S:101
+5301: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; video.S:108
+5302: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; video.S:102
+5303: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; video.S:105
+5304: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:106
+mgesi_VCbusWrite:
+5305: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; video.S:35
+5306: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; video.S:36
+5307: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; video.S:33
+5308: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; video.S:37
+5309: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 5309 seq=1cfdf r25=3e3fc00  ; video.S:50
+530c: 782071e7c000000411 f15 imm=411 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; video.S:39
+530d: 2e00bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:42
+530e: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; video.S:49
+530f: 2fc0bd32fb4044f6a0 f5  imm=1f6 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:43
+5310: 2fc1bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:44
+5311: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; video.S:47

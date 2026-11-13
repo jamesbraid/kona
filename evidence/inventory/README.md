@@ -198,7 +198,7 @@ A derivation citation must tie the entry to its own item. Each of these counts, 
 
 - an offset (`+0x1a4`, "offset 0x40"), or a hex address after "address", "at", "entry", "record" or `@`. A table row's own address, slot or index cell is its identity, not a derivation: a number that is the row's own cell (or its low 20 bits) does not count, only a different location does;
 - a callee or caller written in code (`calls`, `calling`, `called from` or `called by` followed by a backticked name; every name of a list such as ``calls `a`, `b` and `c` `` counts, and none of them is an extra item on the line);
-- a source file or a path with at least two slashes (the Odyssey kernel driver initialization source unit, `libglcore/asm/ODYSSEY/x.s`);
+- a source file or a path with at least two slashes (the Odyssey kernel driver initialization source unit, `software/opengl/asm/ODYSSEY/x.s`);
 - a binary or object file name (`odsy.o`, `libGLcore.so`) together with a backticked routine of it other than the subject.
 
 A release or patch number (`6.5.30m`, `patch 4103`), a binary name alone, and a link to another page are not citations: every item of a build shares them.
@@ -421,6 +421,6 @@ A load or store through a window base is a site. When its offset is a constant i
 - `user-pipe` is the per-thread mapping that libGLcore and the `kpm` tools reach at process address 0x4000, with the layout of [../kernel.md](../../software/kernel/kernel.md): `user-fifo` (the 16 KB command FIFO), `user-hip`, `user-return` and `user-io` (from 0xc000).
 - Tokens come from kpm's command-name table, the `KONA_HP_*` names in `GE.h` and the ARM firmware's token map. Code adds sites for the first constant each function stores to the user FIFO or the kernel command port, for known tokens only, because the stream mixes tokens with payload words.
 - `spec-registers.tsv` holds kpm's register tables: host interface (at its `hip` offset), geometry engine and raster index.
-- `ucode.tsv` holds the `arm1.u` symbols and display-command table, the `ge.u` labels, all 1024 entries of `geif.u` (entry 2k+1 is the handler of dispatch slot k; every even entry is 0) and the 512 entries of the distributor program's table B (`ged1b.u`, from `ucode/ged_banks.tsv`). The display commands, the `geif.u` entries and the table B entries are pointer tables: each row is credited only by an entry of its own.
+- `ucode.tsv` holds the `arm1.u` symbols and display-command table, the `ge.u` labels, all 1024 entries of `geif.u` (entry 2k+1 is the handler of dispatch slot k; every even entry is 0) and the 512 entries of the distributor program's table B (`ged1b.u`, from `software/ucode/ged_banks.tsv`). The display commands, the `geif.u` entries and the table B entries are pointer tables: each row is credited only by an entry of its own.
 - Ioctls: the jump table of `KONAprivate`, and calls to `ioctl` and `__glKon_ioctl` with a constant command in 100-199, 1000-1999 or 10000-10199.
 - Not seen: the X modules' FIFO stores through the pointer at screen private +8, which carry the token in the store address ([../opengl.md](../../software/opengl/opengl.md)). The driver state page at process address 0x1000 is shared memory, not a register window, and is not counted.

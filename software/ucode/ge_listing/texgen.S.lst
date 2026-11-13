@@ -1,0 +1,1266 @@
+# texgen.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mgeb_TexGen:
+cabe: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; texgen.S:688
+cabf: 77c12fd7ca01d00000 f14 r219=1 A=1f C=1d D=1 G=1a r99=4 r62=1ffcabc170  ; texgen.S:690
+cac0: 782071e7c200002500 f15 imm=2500 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:696
+cac1: 6e0281d7e86fc2ffc5 f13 r220=1 A=18 C=1d D=2 M=6c2 r110=7bd r99=8 r62=1ffca8017c  ; texgen.S:691
+cac2: 782071e7c300002402 f15 imm=2402 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:697
+cac3: 782071e7c400002401 f15 imm=2401 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texgen.S:698
+cac4: 782071e7c500002400 f15 imm=2400 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; texgen.S:699
+cac5: 782071e7c6000081f3 f15 imm=81f3 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; texgen.S:700
+cac6: 782071e7c7000081f2 f15 imm=81f2 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; texgen.S:701
+cac7: 782071e7c800002501 f15 imm=2501 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; texgen.S:702
+cac8: 782071e7c900002502 f15 imm=2502 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; texgen.S:703
+cac9: 77c037d7ca04500000 f14 r217=1 A=1f C=1d G=a r99=8 r62=1ffca84170  ; texgen.S:692
+caca: 782071e7ca000081f7 f15 imm=81f7 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; texgen.S:704
+cacb: 782071e7cb000081f6 f15 imm=81f6 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; texgen.S:705
+cacc: 782071e7cc00002001 f15 imm=2001 r215=3 B=18 C=1e E=c r71=1 r62=1ffc658170  ; texgen.S:706
+cacd: 77f64007c190f8002d f14 xfer5.rel c4 cc=3 -> cafa imm=2d cc=3 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:721
+cace: 782071e7cd00000001 f15 imm=1 r215=3 B=18 C=1e E=d r71=1 r62=1ffc658170  ; texgen.S:707
+cacf: 77fa418408819c0000 f14 r219=1 C=18 r162=1 F=10 G=13 r62=1ffc23c170  ; texgen.S:694
+cad0: 782071e7ce000081f1 f15 imm=81f1 r215=3 B=18 C=1e E=e r71=1 r62=1ffc658170  ; texgen.S:708
+cad1: 77fa40afc88153e000 f14 imm=ffffe000 r219=1 C=a F=3f G=a r71=1 r62=1ffc33c170  ; texgen.S:715
+cad2: 782071e7cf000081f0 f15 imm=81f0 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; texgen.S:709
+cad3: 782067e7c0000081f5 f15 imm=81f5 r215=3 B=13 C=1e r71=1 r62=1ffc658170  ; texgen.S:710
+cad4: 782067e7c1000081f4 f15 imm=81f4 r215=3 B=13 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:711
+cad5: 758020afca01500000 f14 r219=1 A=16 C=a r176=0 F=3f G=a r62=1ffcb3c170  ; texgen.S:716
+cad6: 77c02e07ca00f80000 f14 A=1f r99=4 r62=1ffc880170  ; texgen.S:724
+cad7: 6e0c8007e82fc2ffc5 f13 A=18 D=c M=6c2 r110=7bd r99=8 r62=1ffc88017c  ; texgen.S:725
+cad9: 77c22e07ca00f80000 f14 A=1f D=2 r99=4 r62=1ffc880170  ; texgen.S:730
+cada: 6e038007e86fc2ffa5 f13 r220=1 A=18 D=3 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:731
+cadb: 6e0d8007e84f88ff05 f13 r221=1 A=18 D=d r128=28 M=ff r110=6b9 r99=8 r62=1ffc8801f3  ; texgen.S:727
+cadc: 6e048007e86fc2ffa5 f13 r220=1 A=18 D=4 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:732
+cadd: 6e058007e86fc2ffa5 f13 r220=1 A=18 D=5 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:733
+cade: 6e068007e86fc2ffa5 f13 r220=1 A=18 D=6 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:734
+cadf: 6e078007e86fc2ffa5 f13 r220=1 A=18 D=7 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:735
+cae0: 6e0e8007e86fc2ffa5 f13 r220=1 A=18 D=e M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:736
+cae1: 6e0f8007e86fc2ffa5 f13 r220=1 A=18 D=f M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:737
+cae7: 77f64007c100f8cd59 f14 xfer5 c4 cc=2 -> cd59 <mTexGenSph> imm=cd59 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:731
+cae8: 77f64007c100f8cd3f f14 xfer5 c4 cc=2 -> cd3f <mTexGenObjLin> imm=cd3f cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:732
+cae9: 77f64007c100f8cd21 f14 xfer5 c4 cc=2 -> cd21 <mTexGenEyeLin> imm=cd21 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:733
+caea: 77f64007c100f8ccb1 f14 xfer5 c4 cc=2 -> ccb1 <mTexGenObjLineDist> imm=ccb1 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:734
+caeb: 77f64007c100f8cccb f14 xfer5 c4 cc=2 -> cccb <mTexGenEyeLineDist> imm=cccb cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:735
+caec: 77f64007c100f8cce9 f14 xfer5 c4 cc=2 -> cce9 <mTexGenObjPointDist> imm=cce9 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:736
+caed: 77f64007c100f8cd03 f14 xfer5 c4 cc=2 -> cd03 <mTexGenEyePointDist> imm=cd03 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:737
+caf1: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> caf1 seq=1cfdf r25=3e3fc00  ; texgen.S:748
+caf6: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:747
+cafa: 77c12e07ca00f80000 f14 A=1f D=1 r99=4 r62=1ffc880170  ; texgen.S:751
+cafb: 6e088007e86fc2ffa5 f13 r220=1 A=18 D=8 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:752
+cafc: 6e098007e86fc2ffa5 f13 r220=1 A=18 D=9 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:753
+cafd: 6e0a8007e86fc2ffa5 f13 r220=1 A=18 D=a M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:754
+cafe: 6e0b8007e86fc2ffa5 f13 r220=1 A=18 D=b M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:755
+caff: 6e108007e86fc2ffa5 f13 r220=1 A=18 D=10 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:756
+cb00: 6e118007e86fc2ffa5 f13 r220=1 A=18 D=11 M=6c2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:757
+cb07: 77f64007c100f8cc9e f14 xfer5 c4 cc=2 -> cc9e <mTexGenObjPlane> imm=cc9e cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:752
+cb08: 77f64007c100f8cc6e f14 xfer5 c4 cc=2 -> cc6e <mTexGenEyePlane> imm=cc6e cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:753
+cb09: 77f64007c100f8cbbe f14 xfer5 c4 cc=2 -> cbbe <mTexGenObjLine> imm=cbbe cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:754
+cb0a: 77f64007c100f8cb59 f14 xfer5 c4 cc=2 -> cb59 <mTexGenEyeLine> imm=cb59 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:755
+cb0b: 77f64007c100f8cc43 f14 xfer5 c4 cc=2 -> cc43 <mTexGenObjPoint> imm=cc43 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:756
+cb0c: 77f64007c100f8cbff f14 xfer5 c4 cc=2 -> cbff <mTexGenEyePoint> imm=cbff cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:757
+cb10: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cb10 seq=1cfdf r25=3e3fc00  ; texgen.S:767
+cb15: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:766
+mgeb_TexGen_Disable:
+cb19: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; texgen.S:654
+cb20: 77fa416fc8819803df f14 imm=3df r219=1 C=16 F=3f G=13 r71=1 r62=1ffc33c170  ; texgen.S:658
+cb21: 77fa41afc881d3f3a0 f14 imm=fffff3a0 r219=1 C=1a F=3f G=1a r71=1 r62=1ffc33c170  ; texgen.S:656
+cb25: 768be13fca00f80000 f14 A=1a C=13 r176=0 F=3f r95=17 r62=1ffcb18170  ; texgen.S:662
+cb2a: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; texgen.S:648
+cb2b: 782071e7c260000000 f15 imm=60000000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:660
+cb2c: 6e028007e83fd1ffa5 f13 A=18 D=2 M=6d1 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:661
+cb30: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:666
+cb34: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; texgen.S:650
+cb35: 76b4613fca00f80000 f14 r211=3 A=1a C=13 r176=0 F=3f r95=8 r62=1ffcb18170  ; texgen.S:664
+cb37: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texgen.S:651
+cb38: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texgen.S:652
+mgeb_TexGen_Enable:
+cb39: 77c03607ca04d00000 f14 r217=1 A=1f G=1a r99=8 r62=1ffc884170  ; texgen.S:623
+cb40: 77fa416fc8819803df f14 imm=3df r219=1 C=16 F=3f G=13 r71=1 r62=1ffc33c170  ; texgen.S:627
+cb41: 77fa41afc881d3f3a0 f14 imm=fffff3a0 r219=1 C=1a F=3f G=1a r71=1 r62=1ffc33c170  ; texgen.S:625
+cb45: 768be13fca00f80000 f14 A=1a C=13 r176=0 F=3f r95=17 r62=1ffcb18170  ; texgen.S:631
+cb4a: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; texgen.S:617
+cb4b: 782071e7c260000000 f15 imm=60000000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:629
+cb4c: 6e028007e83fd4ffa5 f13 A=18 D=2 M=6d4 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:630
+cb50: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:635
+cb54: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; texgen.S:619
+cb55: 76b4613fca00f80000 f14 r211=3 A=1a C=13 r176=0 F=3f r95=8 r62=1ffcb18170  ; texgen.S:633
+cb57: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texgen.S:620
+cb58: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texgen.S:621
+mTexGenEyeLine:
+cb59: 77f60007fb00f80ee7 f14 xfer5 c0 cc=76 -> 0ee7 <mMatrixInverse> imm=ee7 cc=76 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:556
+cb62: 17c69b07df2e08ffe5 f2  imm=1f cc=211 A=1f C=1e D=6 P=17 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:576
+cb63: 180341081f3008ffe5 f3  imm=20 cc=211 C=1e P=18 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:577
+cb64: 180341085f2c08ffe5 f3  imm=21 cc=211 C=1e P=16 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:578
+cb65: 17c79b08df3408ffe5 f2  imm=23 cc=211 A=1f C=1e D=7 P=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:579
+cb66: 180341091f3608ffe5 f3  imm=24 cc=211 C=1e P=1b M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:580
+cb67: 180341095f3208ffe5 f3  imm=25 cc=211 C=1e P=19 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:581
+cb68: 17c29b0bdf1608ffe5 f2  imm=2f cc=211 A=1f C=1e D=2 P=b M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:559
+cb69: 1803410c1f1808ffe5 f3  imm=30 cc=211 C=1e P=c M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:560
+cb6a: 1803410c5f1a08ffe5 f3  imm=31 cc=211 C=1e P=d M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:561
+cb6b: 1803410c9f3808ffe5 f3  imm=32 cc=211 C=1e P=1c M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:562
+cb6c: 17c39b0cdf1c08ffe5 f2  imm=33 cc=211 A=1f C=1e D=3 P=e M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:563
+cb6d: 1803410d1f1e08ffe5 f3  imm=34 cc=211 C=1e P=f M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:564
+cb6e: 1803410d5f2008ffe5 f3  imm=35 cc=211 C=1e P=10 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:565
+cb6f: 1803410d9f2208ffe5 f3  imm=36 cc=211 C=1e P=11 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:566
+cb70: 17c49b0ddf2408ffe5 f2  imm=37 cc=211 A=1f C=1e D=4 P=12 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:567
+cb71: 1803410e1f2608ffe5 f3  imm=38 cc=211 C=1e P=13 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:568
+cb72: 1803410e5f2808ffe5 f3  imm=39 cc=211 C=1e P=14 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:569
+cb73: 1803410e9f2a08ffe5 f3  imm=3a cc=211 C=1e P=15 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:570
+cb74: 17c59b0edf2c08ffe5 f2  imm=3b cc=211 A=1f C=1e D=5 P=16 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:571
+cb75: 1803410f1f2e08ffe5 f3  imm=3c cc=211 C=1e P=17 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:572
+cb76: 1803410f5f302783d6 f3  imm=3d cc=211 C=1e r148=2de P=18 M=460 r110=43d r95=13 r71=1 r62=1ffc21b97f  ; texgen.S:573
+cb77: 1803410f9f322783d7 f3  imm=3e cc=211 C=1e r148=2fe P=19 M=460 r110=43d r95=13 r71=1 r62=1ffc21b97f  ; texgen.S:574
+cb78: 2fc8813213802783d8 f5  imm=27 A=1f C=1e D=8 r148=31e M=460 r110=43d r99=8 r95=13 r71=1 r62=1ffca9b17f  ; texgen.S:577
+cb79: 28000132140008ffe5 f5  imm=28 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; texgen.S:583
+cb7a: 28000132148027ee19 f5  imm=29 C=1e r148=320 r128=28 M=460 r110=47d r95=13 r71=1 r62=1ffc21a1ff  ; texgen.S:581
+cb7b: 68000007e82fe0c0ba f13 r148=340 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:579
+cb7c: 68000007e82fe0c0bb f13 r148=360 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:580
+cb7e: 68000007ec2d60fe84 f13 cc=91 Q=1a r128=20 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:584
+cb7f: 68000007ec2de0fe87 f13 cc=91 Q=1b r128=38 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:582
+cb80: 68000007ec2e60fe87 f13 cc=91 Q=1c r128=38 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:583
+cb83: 58003e07fe230303dc f11 r148=39e r128=0 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:562
+cb84: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:587
+cb87: 68000007e82fe0c0b1 f13 r148=220 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:566
+cb88: 58003e07fe2300975a f11 r148=35a r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:588
+cb8b: 68000007e82fe0c0b5 f13 r148=2a0 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:570
+cb8c: 68000007ec2ae0fea0 f13 cc=91 Q=15 r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:590
+cb8e: 68000007ec2ce097cb f13 cc=91 r148=17e Q=19 M=6e0 r110=43d r62=1ffc00357c  ; texgen.S:559
+cb8f: 68000007ec28e0c0b9 f13 cc=91 r148=320 Q=11 r128=28 M=6e0 r110=47d r62=1ffc0025fc  ; texgen.S:574
+cb91: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:591
+cb92: 000000000000000000 f0  nop
+cb93: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cb94: 68000007e80fe88400 f13 r128=d  ; texgen.S:597
+cb95: 68000007e82fe097cc f13 r148=19e M=6e0 r110=43d r62=1ffc00317c  ; texgen.S:560
+cb96: 58003e07fe27062f2e f11 r148=1d9 r128=2b M=4e0 r110=409 r62=1ffc0031ff  ; texgen.S:563
+cb97: 68000007e80fd0c4b5 f13 r148=2a0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:591
+cb98: 68000007e80fe8b411 f13 r148=220 r110=6bf r62=1ffc002070  ; texgen.S:597
+cb99: 68000007e80fe83415 f13 r148=2a0 r110=2bf r62=1ffc002070  ; texgen.S:591
+cb9a: 68000007ec0cc0fea5 f13 cc=211 P=19 r128=2c M=47f r110=689 r62=1ffc0009f3
+cb9b: 68000007ec0b40fea5 f13 cc=211 P=16 r128=2c M=47f r110=689 r62=1ffc0009f3
+cb9c: 68000007e82fe0c3af f13 r148=1e0 r128=2b M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:564
+cb9d: 68000007e82fe0c3b2 f13 r148=240 r128=2b M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:567
+cb9e: 68000007e80fc8f691 f13 r148=11 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; texgen.S:597
+cb9f: 58003e07fe230393cd f11 r148=1be r128=24 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:561
+cba0: 68000007e82fe0c0b3 f13 r148=260 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:568
+cba1: 68000007e82fe0c0b6 f13 r148=2c0 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:571
+cba2: 68000007ec0cc0c4b9 f13 cc=211 r148=320 P=19 r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:597
+cba3: 68000007e80fd0c4b5 f13 r148=2a0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:591
+cba4: 68000007e82fe0c1b0 f13 r148=200 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:565
+cba5: 68000007e82fe0c1b7 f13 r148=2e0 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:572
+cba6: 68000007e81fc0fee1 f13 r128=c M=47f r110=6a9 r99=2 r95=40 r62=1ffc0001f3 r25=3ea9c00  ; texgen.S:598
+cba7: 68000007ec0e40c4b6 f13 cc=211 r148=2c0 P=1c r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:591
+cba8: 68000007e82fe0c0b4 f13 r148=280 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:569
+cba9: 68000007e81fc0fef8 f13 r128=7 M=47f r110=6a9 r99=2 r95=40 r62=1ffc0001f3 r25=3ea9c00  ; texgen.S:599
+cbab: 68000007e81fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:593
+cbac: 68000007e82fe0c0b8 f13 r148=300 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:573
+cbad: 68000007e81fc0c6bc f13 r148=380 r128=2e M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:594
+cbaf: 68000007e81fc0979a f13 r148=35c M=47f r110=695 r99=2 r95=40 r62=1ffc003173 r25=3ea9c00  ; texgen.S:595
+cbb0: 72b461efca00f8043b f14 imm=43b r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:598
+cbb1: 68000007e81fc0f639 f13 r148=19 r128=d M=47f r110=6a5 r99=2 r95=40 r62=1ffc001173 r25=3ea9c00  ; texgen.S:600
+cbb2: 72b461efca00f8043f f14 imm=43f r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:599
+cbb4: 72b461efca00f80447 f14 imm=447 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:593
+cbb5: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cbb5 seq=1cfdf r25=3e3fc00  ; texgen.S:603
+cbb6: 72b461efca00f8044b f14 imm=44b r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:594
+cbb8: 72b461efca00f8044f f14 imm=44f r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:595
+cbb9: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:602
+cbba: 72b461efca00f80443 f14 imm=443 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:600
+mTexGenObjLine:
+cbbe: 6fc68007ec2bcaf6a0 f13 cc=91 A=1f D=6 Q=17 M=6ca r99=8 r62=1ffc880578  ; texgen.S:518
+cbbf: 6fc78007ec2b4af6a0 f13 cc=91 A=1f D=7 Q=16 M=6ca r99=8 r62=1ffc880578  ; texgen.S:519
+cbc0: 6fc28007ec2c4af6a0 f13 cc=91 A=1f D=2 Q=18 M=6ca r99=8 r62=1ffc880578  ; texgen.S:513
+cbc1: 6fc38007ec2ccaf6a0 f13 cc=91 A=1f D=3 Q=19 M=6ca r99=8 r62=1ffc880578  ; texgen.S:514
+cbc2: 6fc48007ec2acaf6a0 f13 cc=91 A=1f D=4 Q=15 M=6ca r99=8 r62=1ffc880578  ; texgen.S:515
+cbc3: 6fc58007ec2e4af6a0 f13 cc=91 A=1f D=5 Q=1c M=6ca r99=8 r62=1ffc880578  ; texgen.S:516
+cbc4: 5fc8be07f422570240 f11 cc=91 A=1f D=8 Q=1a r128=12 M=44a r110=6a9 r99=8 r62=1ffc8805fb  ; texgen.S:520
+cbc5: 68000007e80fc0fed2 f13 r128=12 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:523
+cbc8: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:525
+cbc9: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:524
+cbcd: 68000007ec2de0fea8 f13 cc=91 Q=1b r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:526
+cbd2: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:527
+cbd3: 000000000000000000 f0  nop
+cbd4: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cbd5: 68000007e80fe8b41c f13 r148=380 r110=6bf r62=1ffc002070  ; texgen.S:533
+cbd6: 000000000000000000 f0  nop
+cbd7: 68000007e80fc8f4bc f13 r148=1c M=4ff r110=685 r62=1ffc001173
+cbd8: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:527
+cbd9: 68000007e80fe8b41c f13 r148=380 r110=6bf r62=1ffc002070  ; texgen.S:533
+cbda: 68000007e80fe8341b f13 r148=360 r110=2bf r62=1ffc002070  ; texgen.S:527
+cbdb: 68000007ec0a40fea5 f13 cc=211 P=14 r128=2c M=47f r110=689 r62=1ffc0009f3
+cbdc: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+cbdf: 68000007e80fc8f69c f13 r148=1c r128=25 M=4ff r110=6a5 r62=1ffc001173  ; texgen.S:533
+cbe0: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:527
+cbe3: 68000007ec0e40c4b4 f13 cc=211 r148=280 P=1c r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:533
+cbe4: 68000007e80fd0c4bb f13 r148=360 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:527
+cbe7: 68000007e81fc0c4b8 f13 r148=300 r128=2c M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:534
+cbe8: 68000007ec0dc0c4bc f13 cc=211 r148=380 P=1b r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:527
+cbea: 68000007e81fc0c7b9 f13 r148=320 r128=2f M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:535
+cbec: 68000007e81fc0c4b7 f13 r148=2e0 r128=2c M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:529
+cbee: 68000007e81fc0c6b6 f13 r148=2c0 r128=2e M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:530
+cbf0: 68000007e81fc0977a f13 r148=35b M=47f r110=695 r99=2 r95=40 r62=1ffc003173 r25=3ea9c00  ; texgen.S:531
+cbf1: 72b461efca00f80423 f14 imm=423 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:534
+cbf2: 68000007e81fc09795 f13 r148=2bc M=47f r110=695 r99=2 r95=40 r62=1ffc003173 r25=3ea9c00  ; texgen.S:536
+cbf3: 72b461efca00f80427 f14 imm=427 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:535
+cbf5: 72b461efca00f8042f f14 imm=42f r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:529
+cbf6: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cbf6 seq=1cfdf r25=3e3fc00  ; texgen.S:539
+cbf7: 72b461efca00f80433 f14 imm=433 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:530
+cbf9: 72b461efca00f80437 f14 imm=437 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:531
+cbfa: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:538
+cbfb: 72b461efca00f8042b f14 imm=42b r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:536
+mTexGenEyePoint:
+cbff: 77f60007fb00f80ee7 f14 xfer5 c0 cc=76 -> 0ee7 <mMatrixInverse> imm=ee7 cc=76 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:469
+cc08: 2fc28132190008ffe5 f5  imm=32 A=1f C=1e D=2 M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; texgen.S:472
+cc09: 1803410bdf2208ffe5 f3  imm=2f cc=211 C=1e P=11 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:472
+cc0a: 1803410c1f3808ffe5 f3  imm=30 cc=211 C=1e P=1c M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:473
+cc0b: 1803410c5f3608ffe5 f3  imm=31 cc=211 C=1e P=1b M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:474
+cc0c: 2fc381321b0008ffe5 f5  imm=36 A=1f C=1e D=3 M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; texgen.S:476
+cc0d: 1803410cdf3408ffe5 f3  imm=33 cc=211 C=1e P=1a M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:476
+cc0e: 1803410d1f3208ffe5 f3  imm=34 cc=211 C=1e P=19 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:477
+cc0f: 1803410d5f3027c4fe f3  imm=35 cc=211 C=1e r148=1e P=18 r128=3d M=460 r110=53d r95=13 r71=1 r62=1ffc21997f  ; texgen.S:475
+cc10: 2fc481321d0008ffe5 f5  imm=3a A=1f C=1e D=4 M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; texgen.S:480
+cc11: 1803410ddf2e08ffe5 f3  imm=37 cc=211 C=1e P=17 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:480
+cc12: 1803410e1f2c08ffe5 f3  imm=38 cc=211 C=1e P=16 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:481
+cc13: 1803410e5f2a27fa07 f3  imm=39 cc=211 C=1e P=15 r128=38 M=460 r110=57d r95=13 r71=1 r62=1ffc2189ff  ; texgen.S:479
+cc14: 17c59b0edf2808ffe5 f2  imm=3b cc=211 A=1f C=1e D=5 P=14 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; texgen.S:484
+cc15: 1803410f1f2608ffe5 f3  imm=3c cc=211 C=1e P=13 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:485
+cc16: 1803410f5f2408ffe5 f3  imm=3d cc=211 C=1e P=12 M=47f r95=13 r71=1 r62=1ffc218973  ; texgen.S:486
+cc17: 280001321f0027fa07 f5  imm=3e C=1e r128=38 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:483
+cc1b: 68000007ec28e0fe84 f13 cc=91 Q=11 r128=20 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:487
+cc20: 68000007e80fe88400 f13 r128=d  ; texgen.S:489
+cc21: 68000007e82fe097d1 f13 r148=23e M=6e0 r110=43d r62=1ffc00317c  ; texgen.S:472
+cc22: 58003e07fe27062fdc f11 r148=39e r128=2b M=4e0 r110=409 r62=1ffc0031ff  ; texgen.S:473
+cc23: 68000007e82fe097db f13 r148=37e M=6e0 r110=43d r62=1ffc00317c  ; texgen.S:474
+cc24: 68000007e80fe8b411 f13 r148=220 r110=6bf r62=1ffc002070  ; texgen.S:489
+cc25: 68000007e82fe0c0ba f13 r148=340 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:476
+cc26: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+cc27: 68000007e82fe0c1b9 f13 r148=320 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:477
+cc28: 68000007e82fe0c1b8 f13 r148=300 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:478
+cc29: 68000007e82fe0c0b7 f13 r148=2e0 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:480
+cc2a: 68000007e80fc8f691 f13 r148=11 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; texgen.S:489
+cc2b: 68000007e82fe0c0b6 f13 r148=2c0 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:481
+cc2c: 68000007e82fe0c0b5 f13 r148=2a0 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:482
+cc2d: 68000007e82fe0c0b4 f13 r148=280 r128=28 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:484
+cc2e: 68000007ec0e40c4bc f13 cc=211 r148=380 P=1c r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:489
+cc30: 68000007e82fe0c1b3 f13 r148=260 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:485
+cc31: 68000007e82fe0c1b2 f13 r148=240 r128=29 M=6e0 r110=47d r62=1ffc0021fc  ; texgen.S:486
+cc32: 68000007e81fc0fee1 f13 r128=c M=47f r110=6a9 r99=2 r95=40 r62=1ffc0001f3 r25=3ea9c00  ; texgen.S:490
+cc34: 68000007e81fc0fef0 f13 r128=6 M=47f r110=6a9 r99=2 r95=40 r62=1ffc0001f3 r25=3ea9c00  ; texgen.S:491
+cc36: 68000007e81fc0f63c f13 r148=1c r128=d M=47f r110=6a5 r99=2 r95=40 r62=1ffc001173 r25=3ea9c00  ; texgen.S:492
+cc3a: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cc3a seq=1cfdf r25=3e3fc00  ; texgen.S:495
+cc3b: 72b461efca00f80413 f14 imm=413 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:490
+cc3d: 72b461efca00f80417 f14 imm=417 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:491
+cc3e: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:494
+cc3f: 72b461efca00f8041b f14 imm=41b r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:492
+mTexGenObjPoint:
+cc43: 6fc28007ec2e4af6a0 f13 cc=91 A=1f D=2 Q=1c M=6ca r99=8 r62=1ffc880578  ; texgen.S:443
+cc44: 6fc38007ec2dcaf6a0 f13 cc=91 A=1f D=3 Q=1b M=6ca r99=8 r62=1ffc880578  ; texgen.S:444
+cc45: 6fc48007ec2d4af6a0 f13 cc=91 A=1f D=4 Q=1a M=6ca r99=8 r62=1ffc880578  ; texgen.S:445
+cc46: 6fc58007ec2ccaf6a0 f13 cc=91 A=1f D=5 Q=19 M=6ca r99=8 r62=1ffc880578  ; texgen.S:446
+cc4b: 68000007e80fe88400 f13 r128=d  ; texgen.S:448
+cc4c: 000000000000000000 f0  nop
+cc4d: 68000007e80fc8fe9d f13 r128=2b M=4ff r110=689 r62=1ffc0001f3
+cc4f: 68000007e80fe8b419 f13 r148=320 r110=6bf r62=1ffc002070  ; texgen.S:448
+cc50: 000000000000000000 f0  nop
+cc51: 68000007ec0cc0fea5 f13 cc=211 P=19 r128=2c M=47f r110=689 r62=1ffc0009f3
+cc55: 68000007e80fc8f699 f13 r148=19 r128=25 M=4ff r110=6a5 r62=1ffc001173  ; texgen.S:448
+cc59: 68000007ec0e40c4b9 f13 cc=211 r148=320 P=1c r128=2c M=47f r110=699 r62=1ffc0029f3  ; texgen.S:448
+cc5d: 68000007e81fc0c4bc f13 r148=380 r128=2c M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:449
+cc5f: 68000007e81fc0c6bb f13 r148=360 r128=2e M=47f r110=699 r99=2 r95=40 r62=1ffc0021f3 r25=3ea9c00  ; texgen.S:450
+cc61: 68000007e81fc0979a f13 r148=35c M=47f r110=695 r99=2 r95=40 r62=1ffc003173 r25=3ea9c00  ; texgen.S:451
+cc65: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cc65 seq=1cfdf r25=3e3fc00  ; texgen.S:454
+cc66: 72b461efca00f80403 f14 imm=403 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:449
+cc68: 72b461efca00f80407 f14 imm=407 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:450
+cc69: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:453
+cc6a: 72b461efca00f8040b f14 imm=40b r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:451
+mTexGenEyePlane:
+cc6e: 77f60007fb00f80ee7 f14 xfer5 c0 cc=76 -> 0ee7 <mMatrixInverse> imm=ee7 cc=76 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:402
+cc77: 2fc281320f8008ffe5 f5  imm=1f A=1f C=1e D=2 M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; texgen.S:405
+cc78: 28000132100008ffe5 f5  imm=20 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; texgen.S:406
+cc79: 28000132108008ffe5 f5  imm=21 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; texgen.S:407
+cc7a: 28000132110008ffe5 f5  imm=22 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; texgen.S:408
+cc7b: 2fc38132118027c49e f5  imm=23 A=1f C=1e D=3 r148=1e r128=25 M=460 r110=53d r99=8 r95=13 r71=1 r62=1ffca9917f  ; texgen.S:405
+cc7c: 28000132120008ffe5 f5  imm=24 C=1e M=47f r95=13 r71=1 r62=1ffc218173  ; texgen.S:410
+cc7d: 28000132128027c4be f5  imm=25 C=1e r148=1e M=460 r110=53d r95=13 r71=1 r62=1ffc21917f  ; texgen.S:406
+cc7e: 28000132130027c4be f5  imm=26 C=1e r148=1e M=460 r110=53d r95=13 r71=1 r62=1ffc21917f  ; texgen.S:407
+cc7f: 2fc48132138027fa04 f5  imm=27 A=1f C=1e D=4 r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffca981ff  ; texgen.S:409
+cc80: 28000132140027c4de f5  imm=28 C=1e r148=1e r128=35 M=460 r110=53d r95=13 r71=1 r62=1ffc21917f  ; texgen.S:408
+cc81: 28000132148027fa05 f5  imm=29 C=1e r128=28 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:410
+cc82: 28000132150027fa05 f5  imm=2a C=1e r128=28 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:411
+cc83: 2fc58132158027fa04 f5  imm=2b A=1f C=1e D=5 r128=20 M=460 r110=57d r99=8 r95=13 r71=1 r62=1ffca981ff  ; texgen.S:413
+cc84: 68000007e82fe0fe86 f13 r128=30 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:412
+cc85: 28000132160027fa05 f5  imm=2c C=1e r128=28 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:414
+cc86: 28000132168027fa05 f5  imm=2d C=1e r128=28 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:415
+cc87: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:417
+cc88: 28000132170027fa06 f5  imm=2e C=1e r128=30 M=460 r110=57d r95=13 r71=1 r62=1ffc2181ff  ; texgen.S:416
+cc89: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:418
+cc8a: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:419
+cc8b: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; texgen.S:422
+cc8c: 68000007e82fe0fe84 f13 r128=20 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:420
+cc8d: 68000007e83fcaf400 f13 r128=5 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; texgen.S:423
+cc8f: 68000007e83fcaf420 f13 r128=d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; texgen.S:424
+cc91: 68000007e83fcaf420 f13 r128=d M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; texgen.S:425
+cc94: 72b461efca00f803f3 f14 imm=3f3 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:422
+cc95: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cc95 seq=1cfdf r25=3e3fc00  ; texgen.S:428
+cc96: 72b461efca00f803f7 f14 imm=3f7 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:423
+cc98: 72b461efca00f803fb f14 imm=3fb r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:424
+cc99: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:427
+cc9a: 72b461efca00f803ff f14 imm=3ff r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:425
+mTexGenObjPlane:
+cc9e: 7fc28007e000000000 f15 A=1f D=2 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:382
+cca0: 7fc38007e000000000 f15 A=1f D=3 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:383
+cca2: 7fc48007e000000000 f15 A=1f D=4 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:384
+cca4: 7fc58007e000000000 f15 A=1f D=5 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:385
+cca7: 72b461efca00f803e3 f14 imm=3e3 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:382
+cca8: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> cca8 seq=1cfdf r25=3e3fc00  ; texgen.S:388
+cca9: 72b461efca00f803e7 f14 imm=3e7 r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:383
+ccab: 72b461efca00f803eb f14 imm=3eb r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:384
+ccac: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texgen.S:387
+ccad: 72b461efca00f803ef f14 imm=3ef r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:385
+mTexGenObjLineDist:
+ccb1: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:361
+ccb7: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:357
+ccb8: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:362
+ccbb: 782071e7c20000cd7e f15 imm=cd7e r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:358
+ccbc: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:365
+ccbd: 782071e7c30000ce0b f15 imm=ce0b r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:359
+ccbe: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:366
+ccc2: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:368
+ccc5: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:365
+ccc7: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:366
+mTexGenEyeLineDist:
+cccb: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:333
+ccd1: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:328
+ccd2: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:334
+ccd5: 782071e7c408000000 f15 imm=8000000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texgen.S:331
+ccd6: 6e048007e82fd4ff40 f13 A=18 D=4 r128=5 M=6d4 r110=5bd r99=8 r62=1ffc88017c  ; texgen.S:337
+ccd9: 782071e7c20000cf4e f15 imm=cf4e r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:329
+ccda: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:340
+ccdb: 782071e7c30000cfdb f15 imm=cfdb r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:330
+ccdc: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:341
+cce0: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:343
+cce3: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:340
+cce5: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:341
+mTexGenObjPointDist:
+cce9: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:306
+ccef: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:302
+ccf0: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:307
+ccf3: 782071e7c20000ce98 f15 imm=ce98 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:303
+ccf4: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:310
+ccf5: 782071e7c30000cef3 f15 imm=cef3 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:304
+ccf6: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:311
+ccfa: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:313
+ccfd: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:310
+ccff: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:311
+mTexGenEyePointDist:
+cd03: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:278
+cd09: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:273
+cd0a: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:279
+cd0d: 782071e7c408000000 f15 imm=8000000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texgen.S:276
+cd0e: 6e048007e82fd4ff40 f13 A=18 D=4 r128=5 M=6d4 r110=5bd r99=8 r62=1ffc88017c  ; texgen.S:282
+cd11: 782071e7c20000d068 f15 imm=d068 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:274
+cd12: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:285
+cd13: 782071e7c30000d0c3 f15 imm=d0c3 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:275
+cd14: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:286
+cd18: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:288
+cd1b: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:285
+cd1d: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:286
+mTexGenEyeLin:
+cd21: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:249
+cd27: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:244
+cd28: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:250
+cd2b: 782071e7c408000000 f15 imm=8000000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texgen.S:247
+cd2c: 6e044007e82fd4ff60 f13 A=18 D=4 r128=5 M=6d4 r110=5fd r99=4 r62=1ffc88017c  ; texgen.S:253
+cd2f: 782071e7c200000bea f15 imm=bea r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:245
+cd30: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:256
+cd31: 782071e7c300000c0d f15 imm=c0d r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:246
+cd32: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:257
+cd36: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:259
+cd39: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:256
+cd3b: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:257
+mTexGenObjLin:
+cd3f: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:223
+cd45: 782071e7c160000000 f15 imm=60000000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:219
+cd46: 6e018007e82fd0ffa5 f13 A=18 D=1 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:224
+cd49: 782071e7c200000c30 f15 imm=c30 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:220
+cd4a: 6e028007e83fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:227
+cd4b: 782071e7c300000c53 f15 imm=c53 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:221
+cd4c: 6e038007e83fd4ff42 f13 A=18 D=3 r128=15 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:228
+cd50: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:230
+cd53: 72a461efc400f803df f14 imm=3df r211=2 r198=8 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:227
+cd55: 72a461efc480f803df f14 imm=3df r211=2 r198=9 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffdb18170  ; texgen.S:228
+mTexGenSph:
+cd59: 77f64007c480f8d11e f14 xfer5 c4 cc=9 -> d11e <mTexGenResolve> imm=d11e cc=9 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:189
+cd62: 728be1efca00f803df f14 imm=3df A=a C=1e r176=0 F=3f r95=17 r71=1 r62=1ffcb18170  ; texgen.S:195
+cd68: 782071e7c060000000 f15 imm=60000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:191
+cd69: 6e008007e82fd0ffa5 f13 A=18 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:196
+cd6c: 782071e7c20c000000 f15 imm=c000000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:193
+cd6d: 6e028007e82fd4ff40 f13 A=18 D=2 r128=5 M=6d4 r110=5bd r99=8 r62=1ffc88017c  ; texgen.S:199
+cd70: 782071e7c100000b85 f15 imm=b85 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:192
+cd71: 6e018007e83fd4ff40 f13 A=18 D=1 r128=5 M=6d4 r110=5bd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:201
+cd75: 77f24007c880f8d11e f14 xfer4 c4 cc=11 -> d11e <mTexGenResolve> imm=d11e seq=4fe4 r71=1 r25=3e39c00  ; texgen.S:205
+cd7a: 72b461efca00f803df f14 imm=3df r211=3 A=a C=1e r176=0 F=3f r95=8 r71=1 r62=1ffcb18170  ; texgen.S:203
+mmo_TexGenObjLine_ST:
+cd7e: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1057
+cd7f: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1058
+cd80: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1065
+cd81: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1063
+cd82: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1062
+cd83: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1068
+cd84: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1060
+cd85: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1063
+cd86: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1066
+cd87: 77fa4f6fc880f80423 f14 imm=423 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1073
+cd8b: 77fa4f6fc880f80427 f14 imm=427 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1075
+cd8e: 6b408007ec2de2ffa5 f13 cc=91 A=d Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1073
+cd8f: 77fa4f6fc880f8042b f14 imm=42b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1077
+cd90: 6b008007ec2e62ffa5 f13 cc=91 A=c Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1074
+cd91: 77fa4f6fc880f8042f f14 imm=42f C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1080
+cd92: 6b418007ec2be2ffa5 f13 cc=91 A=d D=1 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1075
+cd93: 77fa4f6fc880f80433 f14 imm=433 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1081
+cd94: 6b018007ec2b62ffa5 f13 cc=91 A=c D=1 Q=16 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1076
+cd95: 77fa4f6fc880f80437 f14 imm=437 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1082
+cd96: 6b428007ec2ae2ffa5 f13 cc=91 A=d D=2 Q=15 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1077
+cd97: 6b028007ec2a62ffa5 f13 cc=91 A=c D=2 Q=14 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1078
+cd99: 68000007ec28caf8a0 f13 cc=91 Q=11 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1080
+cd9b: 68000007ec284af8a0 f13 cc=91 Q=10 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1081
+cd9c: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1082
+cd9e: 68000007e80fc0c1bb f13 r148=360 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1084
+cd9f: 68000007e80fc0c0b7 f13 r148=2e0 r128=28 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1086
+cda0: 68000007e80fc0c3bc f13 r148=380 r128=2b M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1085
+cda1: 68000007e80fc0c2b6 f13 r148=2c0 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1087
+cda3: 77fa4f6fc880f80424 f14 imm=424 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1128
+cda4: 58003e07fe2300bb15 f11 r148=2b8 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1088
+cda5: 58003e07fe23009714 f11 r148=298 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1089
+cda7: 77fa4f6fc880f80428 f14 imm=428 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1130
+cda8: 68000007ec2ce0fea0 f13 cc=91 Q=19 r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1093
+cda9: 68000007ec2d60fea0 f13 cc=91 Q=1a r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1094
+cdaa: 6b408007ec29e2ffa5 f13 cc=91 A=d Q=13 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1128
+cdab: 77fa4f6fc880f8042c f14 imm=42c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1132
+cdac: 6b008007ec2962ffa5 f13 cc=91 A=c Q=12 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1129
+cdad: 77fa4f6fc880f80430 f14 imm=430 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1135
+cdae: 6b418007ec2c62ffa5 f13 cc=91 A=d D=1 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1130
+cdaf: 77fa4f6fc880f80434 f14 imm=434 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1136
+cdb0: 6b018007ec28e2ffa5 f13 cc=91 A=c D=1 Q=11 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1131
+cdb1: 77fa4f6fc880f80438 f14 imm=438 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1137
+cdb2: 6b428007ec2ce2ffa5 f13 cc=91 A=d D=2 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1132
+cdb3: 5b02b607f423173719 f11 cc=291 A=c D=2 r148=338 P=1b Q=1a M=462 r110=6d5 r99=8 r62=1ffc883d7f  ; texgen.S:1100
+cdb4: 68000007ec0e40971a f13 cc=211 r148=358 P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1101
+cdb5: 58003e07e022559639 f11 cc=91 r148=331 Q=10 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1096
+cdb6: 68000007e80fc0963a f13 r148=351 M=47f r110=695 r62=1ffc003173  ; texgen.S:1097
+cdb7: 58003e07ee22559619 f11 cc=91 r148=330 Q=17 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1098
+cdb8: 58003e07ec2255961a f11 cc=91 r148=350 Q=16 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1099
+cdb9: 68000007e82fe2c4bb f13 r148=360 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1103
+cdba: 68000007ec2de2c4bc f13 cc=91 r148=380 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1104
+cdbb: 68000007e80fc0c2b3 f13 r148=260 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1139
+cdbc: 68000007e80fc0c1b8 f13 r148=300 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1141
+cdbd: 68000007e82fe2c6b7 f13 r148=2e0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1105
+cdbe: 68000007e82fe2c6b6 f13 r148=2c0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1106
+cdbf: 58003e07f623134b75 f11 cc=91 r148=2bb Q=1b r128=12 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1107
+cdc0: 58003e07fe230096d9 f11 r148=336 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1143
+cdc1: 58003e07f823130394 f11 cc=91 r148=29c Q=1c r128=0 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1108
+cdc2: 68000007e80fc09612 f13 r148=250 M=47f r110=695 r62=1ffc003173  ; texgen.S:1140
+cdc3: 68000007e80fc096f1 f13 r148=237 M=47f r110=695 r62=1ffc003173  ; texgen.S:1142
+cdc4: 58003e07f62300837b f11 cc=91 r148=37b Q=1b r128=4 M=460 r110=555 r62=1ffc0035ff  ; texgen.S:1111
+cdc5: 68000007e80fc0fedb f13 r128=1b M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1113
+cdc6: 68000007ec2e60feaf f13 cc=91 Q=1c r128=3d M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1117
+cdc7: 58003e07fe230096da f11 r148=356 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1144
+cdc8: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1155
+cdc9: 58003207f62300977b f11 cc=291 r148=37b P=19 Q=1b r128=2c M=460 r110=555 r62=1ffc003dff  ; texgen.S:1114
+cdca: 68000007e80fc0f650 f13 r148=10 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1151
+cdcb: 58002e07fe2300839c f11 cc=211 r148=39c P=17 r128=4 M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1115
+cdcc: 68000007ec2c62c4b9 f13 cc=91 r148=320 Q=18 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1162
+cdcd: 68000007e80fc096fb f13 r148=377 M=47f r110=695 r62=1ffc003173  ; texgen.S:1153
+cdce: 68000007ec2d62c4b3 f13 cc=91 r148=260 Q=1a r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1158
+cdcf: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1156
+cdd0: 68000007e80fc0f630 f13 r148=10 r128=d M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1152
+cdd1: 68000007e80fc0f657 f13 r148=17 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1154
+cdd2: 68000007e82fe2c5b8 f13 r148=300 M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1160
+cdd3: 68000007ec2de2c4ba f13 cc=91 r148=340 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1163
+cdd4: 68000007e82fe2c4b2 f13 r148=240 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1159
+cdd5: 68000007e82fe2c4b1 f13 r148=220 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1161
+cdd6: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1165
+cdd7: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1167
+cdd8: 58003e07f0230302fb f11 cc=91 r148=377 Q=18 r128=0 M=460 r110=429 r62=1ffc0035ff  ; texgen.S:1120
+cdd9: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1168
+cdda: 68000007ec2ce0973c f13 cc=91 r148=399 Q=19 M=6e0 r110=43d r62=1ffc00357c  ; texgen.S:1119
+cddc: 58003e07fe2300bb18 f11 r148=318 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1169
+cddd: 58003e07fe2300977b f11 r148=37b r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1170
+cddf: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1122
+cde0: 68000007ec2be05418 f13 cc=91 r148=300 Q=17 r128=4 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1123
+cde1: 58003e07ec2307f420 f11 cc=91 Q=16 r128=4 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1175
+cde2: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cde5: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1122
+cde6: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1123
+cde7: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1122
+cde8: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1123
+cde9: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+cdea: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+cdeb: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1177
+cdec: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1178
+cded: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1177
+cdee: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1178
+cdef: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+cdf0: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+cdf1: 68000007e80fc096b5 f13 r148=2b5 M=47f r110=695 r62=1ffc003173  ; texgen.S:1122
+cdf2: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1123
+cdf3: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1177
+cdf4: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1178
+cdf5: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1122
+cdf6: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1123
+cdf7: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1177
+cdf8: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1178
+cdf9: 68000007e80fc0c4b5 f13 r148=2a0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1122
+cdfa: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1123
+cdfb: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1177
+cdfc: 380000b9402e08c4bc f7  r222=1 r219=1 C=b F=25 G=b r148=380 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1178
+cdfd: 60001a07ff0b009c99 f12 r213=2 r198=7e B=d E=b r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1125
+cdfe: e0001807ff0b009c98 f12 w71=1 r213=2 r198=7e B=c E=b r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1126
+cdff: 60001a07fe0c009c97 f12 r213=2 r198=7c B=d E=c r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1180
+ce00: e0001807fe0c009c96 f12 w71=1 r213=2 r198=7c B=c E=c r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1181
+ce01: 77f64007c88cf8cd87 f14 xfer5 c7 cc=11 -> cd87 imm=cd87 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1187
+ce02: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1189
+ce05: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1183
+ce06: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1184
+mmo_TexGenObjLine_RQ:
+ce0b: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1216
+ce0c: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1217
+ce0d: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1224
+ce0e: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1222
+ce0f: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1221
+ce10: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1227
+ce11: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1219
+ce12: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1222
+ce13: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1225
+ce14: 77fa4f6fc880f80425 f14 imm=425 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1232
+ce18: 77fa4f6fc880f80429 f14 imm=429 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1234
+ce1b: 6b408007ec2de2ffa5 f13 cc=91 A=d Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1232
+ce1c: 77fa4f6fc880f8042d f14 imm=42d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1236
+ce1d: 6b008007ec2e62ffa5 f13 cc=91 A=c Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1233
+ce1e: 77fa4f6fc880f80431 f14 imm=431 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1239
+ce1f: 6b418007ec2be2ffa5 f13 cc=91 A=d D=1 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1234
+ce20: 77fa4f6fc880f80435 f14 imm=435 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1240
+ce21: 6b018007ec2b62ffa5 f13 cc=91 A=c D=1 Q=16 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1235
+ce22: 77fa4f6fc880f80439 f14 imm=439 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1241
+ce23: 6b428007ec2ae2ffa5 f13 cc=91 A=d D=2 Q=15 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1236
+ce24: 6b028007ec2a62ffa5 f13 cc=91 A=c D=2 Q=14 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1237
+ce26: 68000007ec28caf8a0 f13 cc=91 Q=11 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1239
+ce28: 68000007ec284af8a0 f13 cc=91 Q=10 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1240
+ce29: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1241
+ce2b: 68000007e80fc0c1bb f13 r148=360 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1243
+ce2c: 68000007e80fc0c0b7 f13 r148=2e0 r128=28 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1245
+ce2d: 68000007e80fc0c3bc f13 r148=380 r128=2b M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1244
+ce2e: 68000007e80fc0c2b6 f13 r148=2c0 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1246
+ce30: 77fa4f6fc880f80426 f14 imm=426 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1287
+ce31: 58003e07fe2300bb15 f11 r148=2b8 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1247
+ce32: 58003e07fe23009714 f11 r148=298 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1248
+ce34: 77fa4f6fc880f8042a f14 imm=42a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1289
+ce35: 68000007ec2ce0fea0 f13 cc=91 Q=19 r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1252
+ce36: 68000007ec2d60fea0 f13 cc=91 Q=1a r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1253
+ce37: 6b408007ec29e2ffa5 f13 cc=91 A=d Q=13 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1287
+ce38: 77fa4f6fc880f8042e f14 imm=42e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1291
+ce39: 6b008007ec2962ffa5 f13 cc=91 A=c Q=12 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1288
+ce3a: 77fa4f6fc880f80432 f14 imm=432 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1294
+ce3b: 6b418007ec2c62ffa5 f13 cc=91 A=d D=1 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1289
+ce3c: 77fa4f6fc880f80436 f14 imm=436 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1295
+ce3d: 6b018007ec28e2ffa5 f13 cc=91 A=c D=1 Q=11 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1290
+ce3e: 77fa4f6fc880f8043a f14 imm=43a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1296
+ce3f: 6b428007ec2ce2ffa5 f13 cc=91 A=d D=2 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1291
+ce40: 5b02b607f423173719 f11 cc=291 A=c D=2 r148=338 P=1b Q=1a M=462 r110=6d5 r99=8 r62=1ffc883d7f  ; texgen.S:1259
+ce41: 68000007ec0e40971a f13 cc=211 r148=358 P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1260
+ce42: 58003e07e022559639 f11 cc=91 r148=331 Q=10 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1255
+ce43: 68000007e80fc0963a f13 r148=351 M=47f r110=695 r62=1ffc003173  ; texgen.S:1256
+ce44: 58003e07ee22559619 f11 cc=91 r148=330 Q=17 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1257
+ce45: 58003e07ec2255961a f11 cc=91 r148=350 Q=16 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1258
+ce46: 68000007e82fe2c4bb f13 r148=360 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1262
+ce47: 68000007ec2de2c4bc f13 cc=91 r148=380 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1263
+ce48: 68000007e80fc0c2b3 f13 r148=260 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1298
+ce49: 68000007e80fc0c1b8 f13 r148=300 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1300
+ce4a: 68000007e82fe2c6b7 f13 r148=2e0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1264
+ce4b: 68000007e82fe2c6b6 f13 r148=2c0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1265
+ce4c: 58003e07f623134b75 f11 cc=91 r148=2bb Q=1b r128=12 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1266
+ce4d: 58003e07fe230096d9 f11 r148=336 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1302
+ce4e: 58003e07f823130394 f11 cc=91 r148=29c Q=1c r128=0 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1267
+ce4f: 68000007e80fc09612 f13 r148=250 M=47f r110=695 r62=1ffc003173  ; texgen.S:1299
+ce50: 68000007e80fc096f1 f13 r148=237 M=47f r110=695 r62=1ffc003173  ; texgen.S:1301
+ce51: 58003e07f62300837b f11 cc=91 r148=37b Q=1b r128=4 M=460 r110=555 r62=1ffc0035ff  ; texgen.S:1270
+ce52: 68000007e80fc0fedb f13 r128=1b M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1272
+ce53: 68000007ec2e60feaf f13 cc=91 Q=1c r128=3d M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1276
+ce54: 58003e07fe230096da f11 r148=356 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1303
+ce55: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1314
+ce56: 58003207f62300977b f11 cc=291 r148=37b P=19 Q=1b r128=2c M=460 r110=555 r62=1ffc003dff  ; texgen.S:1273
+ce57: 68000007e80fc0f650 f13 r148=10 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1310
+ce58: 58002e07fe2300839c f11 cc=211 r148=39c P=17 r128=4 M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1274
+ce59: 68000007ec2c62c4b9 f13 cc=91 r148=320 Q=18 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1321
+ce5a: 68000007e80fc096fb f13 r148=377 M=47f r110=695 r62=1ffc003173  ; texgen.S:1312
+ce5b: 68000007ec2d62c4b3 f13 cc=91 r148=260 Q=1a r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1317
+ce5c: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1315
+ce5d: 68000007e80fc0f630 f13 r148=10 r128=d M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1311
+ce5e: 68000007e80fc0f657 f13 r148=17 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1313
+ce5f: 68000007e82fe2c5b8 f13 r148=300 M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1319
+ce60: 68000007ec2de2c4ba f13 cc=91 r148=340 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1322
+ce61: 68000007e82fe2c4b2 f13 r148=240 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1318
+ce62: 68000007e82fe2c4b1 f13 r148=220 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1320
+ce63: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1324
+ce64: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1326
+ce65: 58003e07f0230302fb f11 cc=91 r148=377 Q=18 r128=0 M=460 r110=429 r62=1ffc0035ff  ; texgen.S:1279
+ce66: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1327
+ce67: 68000007ec2ce0973c f13 cc=91 r148=399 Q=19 M=6e0 r110=43d r62=1ffc00357c  ; texgen.S:1278
+ce69: 58003e07fe2300bb18 f11 r148=318 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1328
+ce6a: 58003e07fe2300977b f11 r148=37b r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1329
+ce6c: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1281
+ce6d: 68000007ec2be05418 f13 cc=91 r148=300 Q=17 r128=4 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1282
+ce6e: 58003e07ec2307f420 f11 cc=91 Q=16 r128=4 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1334
+ce6f: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+ce72: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1281
+ce73: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1282
+ce74: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1281
+ce75: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1282
+ce76: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+ce77: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+ce78: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1336
+ce79: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1337
+ce7a: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1336
+ce7b: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1337
+ce7c: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+ce7d: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+ce7e: 68000007e80fc096b5 f13 r148=2b5 M=47f r110=695 r62=1ffc003173  ; texgen.S:1281
+ce7f: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1282
+ce80: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1336
+ce81: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1337
+ce82: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1281
+ce83: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1282
+ce84: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1336
+ce85: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1337
+ce86: 68000007e80fc0c4b5 f13 r148=2a0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1281
+ce87: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1282
+ce88: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1336
+ce89: 380000b9402e08c4bc f7  r222=1 r219=1 C=b F=25 G=b r148=380 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1337
+ce8a: 60001a07ff0d009c99 f12 r213=2 r198=7e B=d E=d r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1284
+ce8b: e0001807ff0d009c98 f12 w71=1 r213=2 r198=7e B=c E=d r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1285
+ce8c: 60001a07fe0e009c97 f12 r213=2 r198=7c B=d E=e r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1339
+ce8d: e0001807fe0e009c96 f12 w71=1 r213=2 r198=7c B=c E=e r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1340
+ce8e: 77f64007c88cf8ce14 f14 xfer5 c7 cc=11 -> ce14 imm=ce14 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1346
+ce8f: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1348
+ce92: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1342
+ce93: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1343
+mmo_TexGenObjPoint_ST:
+ce98: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:870
+ce99: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:871
+ce9a: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:878
+ce9b: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:876
+ce9c: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:875
+ce9d: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:881
+ce9e: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:873
+ce9f: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:876
+cea0: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:879
+cea1: 77fa4f6fc880f80403 f14 imm=403 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:886
+cea4: 77fa4f6fc880f80407 f14 imm=407 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:888
+cea7: 77fa4f6fc880f8040b f14 imm=40b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:890
+cea8: 6b408007ec2be2ffa5 f13 cc=91 A=d Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:886
+cea9: 6b008007ec2de2ffa5 f13 cc=91 A=c Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:887
+ceaa: 77fa4f6fc880f80404 f14 imm=404 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:909
+ceab: 6b418007ec2e62ffa5 f13 cc=91 A=d D=1 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:888
+ceac: 77fa4f6fc880f80408 f14 imm=408 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:911
+cead: 6b018007ec2d62ffa5 f13 cc=91 A=c D=1 Q=1a M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:889
+ceae: 6b428007ec2ce2ffa5 f13 cc=91 A=d D=2 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:890
+ceaf: 77fa4f6fc880f8040c f14 imm=40c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:913
+ceb0: 6b028007ec2c62ffa5 f13 cc=91 A=c D=2 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:891
+ceb1: 6b408007e82fe2ffa5 f13 A=d M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:909
+ceb2: 6b008007ec2be2ffa5 f13 cc=91 A=c Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:910
+ceb3: 6b418007e82fe2ffa5 f13 A=d D=1 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:911
+ceb5: 6b018007ec2e62ffa5 f13 cc=91 A=c D=1 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:912
+ceb6: 5b42be07fe2317f749 f11 A=d D=2 r128=9 M=462 r110=6e9 r99=8 r62=1ffc8801ff  ; texgen.S:913
+ceb7: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:917
+ceb8: 68000007e80fc096f7 f13 r148=2f7 M=47f r110=695 r62=1ffc003173  ; texgen.S:892
+ceb9: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:894
+ceba: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:919
+cebb: 58003607fe2300977b f11 cc=211 r148=37b P=1b r128=2c M=460 r110=555 r62=1ffc0039ff  ; texgen.S:893
+cebc: 68000007ec0e40975a f13 cc=211 r148=35a P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:895
+cebd: 68000007e80fc09739 f13 r148=339 M=47f r110=695 r62=1ffc003173  ; texgen.S:896
+cebe: 68000007e82fe0feae f13 r128=35 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:898
+cebf: 68000007ec2c60fea8 f13 cc=91 Q=18 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:923
+cec0: 5b02be07fe231736f7 f11 A=c D=2 r148=2f7 M=462 r110=6d5 r99=8 r62=1ffc88317f  ; texgen.S:914
+cec1: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:918
+cec2: 68000007ec2ce0fea8 f13 cc=91 Q=19 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:900
+cec3: 68000007e80fc09718 f13 r148=318 M=47f r110=695 r62=1ffc003173  ; texgen.S:897
+cec4: 58003e07fe2303039b f11 r148=37c r128=0 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:899
+cec5: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:922
+cec7: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:903
+cec8: 68000007ec2be05518 f13 cc=91 r148=300 Q=17 r128=5 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:901
+cec9: 58003e07ec2307f428 f11 cc=91 Q=16 r128=5 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:924
+ceca: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cecd: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:903
+cece: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:926
+cecf: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:903
+ced0: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:926
+ced1: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+ced2: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+ced3: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:904
+ced4: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:927
+ced5: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:904
+ced6: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:927
+ced7: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+ced8: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+ced9: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:903
+ceda: 68000007e80fc0977b f13 r148=37b M=47f r110=695 r62=1ffc003173  ; texgen.S:926
+cedb: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:904
+cedc: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:927
+cedd: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:903
+cede: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:926
+cedf: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:904
+cee0: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:927
+cee1: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:903
+cee2: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:926
+cee3: 68000007e80fc0c4bc f13 r148=380 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:904
+cee4: 380000b9402e08c4b5 f7  r222=1 r219=1 C=b F=25 G=b r148=2a0 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:927
+cee5: 60001a07ff0b009c99 f12 r213=2 r198=7e B=d E=b r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:906
+cee6: 60001a07fe0c009c98 f12 r213=2 r198=7c B=d E=c r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:929
+cee7: e0001807ff0b009c97 f12 w71=1 r213=2 r198=7e B=c E=b r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:907
+cee8: e0001807fe0c009c96 f12 w71=1 r213=2 r198=7c B=c E=c r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:930
+cee9: 77f64007c88cf8cea1 f14 xfer5 c7 cc=11 -> cea1 imm=cea1 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:936
+ceea: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:938
+ceed: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:932
+ceee: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:933
+mmo_TexGenObjPoint_RQ:
+cef3: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:961
+cef4: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:962
+cef5: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:969
+cef6: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:967
+cef7: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:966
+cef8: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:972
+cef9: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:964
+cefa: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:967
+cefb: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:970
+cefc: 77fa4f6fc880f80405 f14 imm=405 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:977
+ceff: 77fa4f6fc880f80409 f14 imm=409 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:979
+cf02: 77fa4f6fc880f8040d f14 imm=40d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:981
+cf03: 6b408007ec2be2ffa5 f13 cc=91 A=d Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:977
+cf04: 6b008007ec2de2ffa5 f13 cc=91 A=c Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:978
+cf05: 77fa4f6fc880f80406 f14 imm=406 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1000
+cf06: 6b418007ec2e62ffa5 f13 cc=91 A=d D=1 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:979
+cf07: 77fa4f6fc880f8040a f14 imm=40a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1002
+cf08: 6b018007ec2d62ffa5 f13 cc=91 A=c D=1 Q=1a M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:980
+cf09: 6b428007ec2ce2ffa5 f13 cc=91 A=d D=2 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:981
+cf0a: 77fa4f6fc880f8040e f14 imm=40e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1004
+cf0b: 6b028007ec2c62ffa5 f13 cc=91 A=c D=2 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:982
+cf0c: 6b408007e82fe2ffa5 f13 A=d M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1000
+cf0d: 6b008007ec2be2ffa5 f13 cc=91 A=c Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1001
+cf0e: 6b418007e82fe2ffa5 f13 A=d D=1 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1002
+cf10: 6b018007ec2e62ffa5 f13 cc=91 A=c D=1 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1003
+cf11: 5b42be07fe2317f749 f11 A=d D=2 r128=9 M=462 r110=6e9 r99=8 r62=1ffc8801ff  ; texgen.S:1004
+cf12: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1008
+cf13: 68000007e80fc096f7 f13 r148=2f7 M=47f r110=695 r62=1ffc003173  ; texgen.S:983
+cf14: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:985
+cf15: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1010
+cf16: 58003607fe2300977b f11 cc=211 r148=37b P=1b r128=2c M=460 r110=555 r62=1ffc0039ff  ; texgen.S:984
+cf17: 68000007ec0e40975a f13 cc=211 r148=35a P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:986
+cf18: 68000007e80fc09739 f13 r148=339 M=47f r110=695 r62=1ffc003173  ; texgen.S:987
+cf19: 68000007e82fe0feae f13 r128=35 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:989
+cf1a: 68000007ec2c60fea8 f13 cc=91 Q=18 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1014
+cf1b: 5b02be07fe231736f7 f11 A=c D=2 r148=2f7 M=462 r110=6d5 r99=8 r62=1ffc88317f  ; texgen.S:1005
+cf1c: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:1009
+cf1d: 68000007ec2ce0fea8 f13 cc=91 Q=19 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:991
+cf1e: 68000007e80fc09718 f13 r148=318 M=47f r110=695 r62=1ffc003173  ; texgen.S:988
+cf1f: 58003e07fe2303039b f11 r148=37c r128=0 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:990
+cf20: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:1013
+cf22: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:994
+cf23: 68000007ec2be05518 f13 cc=91 r148=300 Q=17 r128=5 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:992
+cf24: 58003e07ec2307f428 f11 cc=91 Q=16 r128=5 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1015
+cf25: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cf28: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:994
+cf29: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1017
+cf2a: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:994
+cf2b: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1017
+cf2c: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+cf2d: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+cf2e: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:995
+cf2f: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1018
+cf30: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:995
+cf31: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1018
+cf32: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+cf33: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+cf34: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:994
+cf35: 68000007e80fc0977b f13 r148=37b M=47f r110=695 r62=1ffc003173  ; texgen.S:1017
+cf36: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:995
+cf37: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1018
+cf38: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:994
+cf39: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1017
+cf3a: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:995
+cf3b: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1018
+cf3c: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:994
+cf3d: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1017
+cf3e: 68000007e80fc0c4bc f13 r148=380 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:995
+cf3f: 380000b9402e08c4b5 f7  r222=1 r219=1 C=b F=25 G=b r148=2a0 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1018
+cf40: 60001a07ff0d009c99 f12 r213=2 r198=7e B=d E=d r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:997
+cf41: 60001a07fe0e009c98 f12 r213=2 r198=7c B=d E=e r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1020
+cf42: e0001807ff0d009c97 f12 w71=1 r213=2 r198=7e B=c E=d r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:998
+cf43: e0001807fe0e009c96 f12 w71=1 r213=2 r198=7c B=c E=e r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1021
+cf44: 77f64007c88cf8cefc f14 xfer5 c7 cc=11 -> cefc imm=cefc seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1027
+cf45: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1029
+cf48: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1023
+cf49: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1024
+mmo_TexGenEyeLine_ST:
+cf4e: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1559
+cf4f: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1560
+cf50: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1567
+cf51: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1565
+cf52: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1564
+cf53: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1570
+cf54: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1562
+cf55: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1565
+cf56: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1568
+cf57: 77fa4f6fc880f8043b f14 imm=43b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1575
+cf5b: 77fa4f6fc880f8043f f14 imm=43f C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1577
+cf5e: 6b538007ec2de2ffa5 f13 cc=91 A=d D=13 Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1575
+cf5f: 77fa4f6fc880f80443 f14 imm=443 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1579
+cf60: 6b138007ec2e62ffa5 f13 cc=91 A=c D=13 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1576
+cf61: 77fa4f6fc880f80447 f14 imm=447 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1582
+cf62: 6b548007ec2be2ffa5 f13 cc=91 A=d D=14 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1577
+cf63: 77fa4f6fc880f8044b f14 imm=44b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1583
+cf64: 6b148007ec2b62ffa5 f13 cc=91 A=c D=14 Q=16 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1578
+cf65: 77fa4f6fc880f8044f f14 imm=44f C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1584
+cf66: 6b558007ec2ae2ffa5 f13 cc=91 A=d D=15 Q=15 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1579
+cf67: 6b158007ec2a62ffa5 f13 cc=91 A=c D=15 Q=14 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1580
+cf69: 68000007ec28caf8a0 f13 cc=91 Q=11 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1582
+cf6b: 68000007ec284af8a0 f13 cc=91 Q=10 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1583
+cf6c: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1584
+cf6e: 68000007e80fc0c1bb f13 r148=360 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1586
+cf6f: 68000007e80fc0c0b7 f13 r148=2e0 r128=28 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1588
+cf70: 68000007e80fc0c3bc f13 r148=380 r128=2b M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1587
+cf71: 68000007e80fc0c2b6 f13 r148=2c0 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1589
+cf73: 77fa4f6fc880f8043c f14 imm=43c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1630
+cf74: 58003e07fe2300bb15 f11 r148=2b8 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1590
+cf75: 58003e07fe23009714 f11 r148=298 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1591
+cf77: 77fa4f6fc880f80440 f14 imm=440 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1632
+cf78: 68000007ec2ce0fea0 f13 cc=91 Q=19 r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1595
+cf79: 68000007ec2d60fea0 f13 cc=91 Q=1a r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1596
+cf7a: 6b538007ec29e2ffa5 f13 cc=91 A=d D=13 Q=13 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1630
+cf7b: 77fa4f6fc880f80444 f14 imm=444 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1634
+cf7c: 6b138007ec2962ffa5 f13 cc=91 A=c D=13 Q=12 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1631
+cf7d: 77fa4f6fc880f80448 f14 imm=448 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1637
+cf7e: 6b548007ec2c62ffa5 f13 cc=91 A=d D=14 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1632
+cf7f: 77fa4f6fc880f8044c f14 imm=44c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1638
+cf80: 6b148007ec28e2ffa5 f13 cc=91 A=c D=14 Q=11 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1633
+cf81: 77fa4f6fc880f80450 f14 imm=450 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1639
+cf82: 6b558007ec2ce2ffa5 f13 cc=91 A=d D=15 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1634
+cf83: 5b15b607f423173719 f11 cc=291 A=c D=15 r148=338 P=1b Q=1a M=462 r110=6d5 r99=8 r62=1ffc883d7f  ; texgen.S:1602
+cf84: 68000007ec0e40971a f13 cc=211 r148=358 P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1603
+cf85: 58003e07e022559639 f11 cc=91 r148=331 Q=10 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1598
+cf86: 68000007e80fc0963a f13 r148=351 M=47f r110=695 r62=1ffc003173  ; texgen.S:1599
+cf87: 58003e07ee22559619 f11 cc=91 r148=330 Q=17 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1600
+cf88: 58003e07ec2255961a f11 cc=91 r148=350 Q=16 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1601
+cf89: 68000007e82fe2c4bb f13 r148=360 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1605
+cf8a: 68000007ec2de2c4bc f13 cc=91 r148=380 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1606
+cf8b: 68000007e80fc0c2b3 f13 r148=260 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1641
+cf8c: 68000007e80fc0c1b8 f13 r148=300 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1643
+cf8d: 68000007e82fe2c6b7 f13 r148=2e0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1607
+cf8e: 68000007e82fe2c6b6 f13 r148=2c0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1608
+cf8f: 58003e07f623134b75 f11 cc=91 r148=2bb Q=1b r128=12 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1609
+cf90: 58003e07fe230096d9 f11 r148=336 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1645
+cf91: 58003e07f823130394 f11 cc=91 r148=29c Q=1c r128=0 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1610
+cf92: 68000007e80fc09612 f13 r148=250 M=47f r110=695 r62=1ffc003173  ; texgen.S:1642
+cf93: 68000007e80fc096f1 f13 r148=237 M=47f r110=695 r62=1ffc003173  ; texgen.S:1644
+cf94: 58003e07f62300837b f11 cc=91 r148=37b Q=1b r128=4 M=460 r110=555 r62=1ffc0035ff  ; texgen.S:1613
+cf95: 68000007e80fc0fedb f13 r128=1b M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1615
+cf96: 68000007ec2e60feaf f13 cc=91 Q=1c r128=3d M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1619
+cf97: 58003e07fe230096da f11 r148=356 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1646
+cf98: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1657
+cf99: 58003207f62300977b f11 cc=291 r148=37b P=19 Q=1b r128=2c M=460 r110=555 r62=1ffc003dff  ; texgen.S:1616
+cf9a: 68000007e80fc0f650 f13 r148=10 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1653
+cf9b: 58002e07fe2300839c f11 cc=211 r148=39c P=17 r128=4 M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1617
+cf9c: 68000007ec2c62c4b9 f13 cc=91 r148=320 Q=18 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1664
+cf9d: 68000007e80fc096fb f13 r148=377 M=47f r110=695 r62=1ffc003173  ; texgen.S:1655
+cf9e: 68000007ec2d62c4b3 f13 cc=91 r148=260 Q=1a r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1660
+cf9f: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1658
+cfa0: 68000007e80fc0f630 f13 r148=10 r128=d M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1654
+cfa1: 68000007e80fc0f657 f13 r148=17 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1656
+cfa2: 68000007e82fe2c5b8 f13 r148=300 M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1662
+cfa3: 68000007ec2de2c4ba f13 cc=91 r148=340 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1665
+cfa4: 68000007e82fe2c4b2 f13 r148=240 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1661
+cfa5: 68000007e82fe2c4b1 f13 r148=220 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1663
+cfa6: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1667
+cfa7: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1669
+cfa8: 58003e07f0230302fb f11 cc=91 r148=377 Q=18 r128=0 M=460 r110=429 r62=1ffc0035ff  ; texgen.S:1622
+cfa9: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1670
+cfaa: 68000007ec2ce0973c f13 cc=91 r148=399 Q=19 M=6e0 r110=43d r62=1ffc00357c  ; texgen.S:1621
+cfac: 58003e07fe2300bb18 f11 r148=318 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1671
+cfad: 58003e07fe2300977b f11 r148=37b r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1672
+cfaf: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1624
+cfb0: 68000007ec2be05418 f13 cc=91 r148=300 Q=17 r128=4 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1625
+cfb1: 58003e07ec2307f420 f11 cc=91 Q=16 r128=4 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1677
+cfb2: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+cfb5: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1624
+cfb6: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1625
+cfb7: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1624
+cfb8: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1625
+cfb9: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+cfba: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+cfbb: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1679
+cfbc: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1680
+cfbd: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1679
+cfbe: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1680
+cfbf: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+cfc0: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+cfc1: 68000007e80fc096b5 f13 r148=2b5 M=47f r110=695 r62=1ffc003173  ; texgen.S:1624
+cfc2: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1625
+cfc3: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1679
+cfc4: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1680
+cfc5: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1624
+cfc6: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1625
+cfc7: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1679
+cfc8: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1680
+cfc9: 68000007e80fc0c4b5 f13 r148=2a0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1624
+cfca: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1625
+cfcb: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1679
+cfcc: 380000b9402e08c4bc f7  r222=1 r219=1 C=b F=25 G=b r148=380 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1680
+cfcd: 60001a07ff0b009c99 f12 r213=2 r198=7e B=d E=b r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1627
+cfce: e0001807ff0b009c98 f12 w71=1 r213=2 r198=7e B=c E=b r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1628
+cfcf: 60001a07fe0c009c97 f12 r213=2 r198=7c B=d E=c r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1682
+cfd0: e0001807fe0c009c96 f12 w71=1 r213=2 r198=7c B=c E=c r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1683
+cfd1: 77f64007c88cf8cf57 f14 xfer5 c7 cc=11 -> cf57 imm=cf57 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1689
+cfd2: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1691
+cfd5: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1685
+cfd6: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1686
+mmo_TexGenEyeLine_RQ:
+cfdb: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1718
+cfdc: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1719
+cfdd: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1726
+cfde: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1724
+cfdf: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1723
+cfe0: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1729
+cfe1: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1721
+cfe2: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1724
+cfe3: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1727
+cfe4: 77fa4f6fc880f8043d f14 imm=43d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1734
+cfe8: 77fa4f6fc880f80441 f14 imm=441 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1736
+cfeb: 6b538007ec2de2ffa5 f13 cc=91 A=d D=13 Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1734
+cfec: 77fa4f6fc880f80445 f14 imm=445 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1738
+cfed: 6b138007ec2e62ffa5 f13 cc=91 A=c D=13 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1735
+cfee: 77fa4f6fc880f80449 f14 imm=449 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1741
+cfef: 6b548007ec2be2ffa5 f13 cc=91 A=d D=14 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1736
+cff0: 77fa4f6fc880f8044d f14 imm=44d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1742
+cff1: 6b148007ec2b62ffa5 f13 cc=91 A=c D=14 Q=16 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1737
+cff2: 77fa4f6fc880f80451 f14 imm=451 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1743
+cff3: 6b558007ec2ae2ffa5 f13 cc=91 A=d D=15 Q=15 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1738
+cff4: 6b158007ec2a62ffa5 f13 cc=91 A=c D=15 Q=14 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1739
+cff6: 68000007ec28caf8a0 f13 cc=91 Q=11 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1741
+cff8: 68000007ec284af8a0 f13 cc=91 Q=10 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1742
+cff9: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:1743
+cffb: 68000007e80fc0c1bb f13 r148=360 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1745
+cffc: 68000007e80fc0c0b7 f13 r148=2e0 r128=28 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1747
+cffd: 68000007e80fc0c3bc f13 r148=380 r128=2b M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1746
+cffe: 68000007e80fc0c2b6 f13 r148=2c0 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1748
+d000: 77fa4f6fc880f8043e f14 imm=43e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1789
+d001: 58003e07fe2300bb15 f11 r148=2b8 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1749
+d002: 58003e07fe23009714 f11 r148=298 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1750
+d004: 77fa4f6fc880f80442 f14 imm=442 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1791
+d005: 68000007ec2ce0fea0 f13 cc=91 Q=19 r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1754
+d006: 68000007ec2d60fea0 f13 cc=91 Q=1a r128=4 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1755
+d007: 6b538007ec29e2ffa5 f13 cc=91 A=d D=13 Q=13 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1789
+d008: 77fa4f6fc880f80446 f14 imm=446 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1793
+d009: 6b138007ec2962ffa5 f13 cc=91 A=c D=13 Q=12 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1790
+d00a: 77fa4f6fc880f8044a f14 imm=44a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1796
+d00b: 6b548007ec2c62ffa5 f13 cc=91 A=d D=14 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1791
+d00c: 77fa4f6fc880f8044e f14 imm=44e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1797
+d00d: 6b148007ec28e2ffa5 f13 cc=91 A=c D=14 Q=11 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1792
+d00e: 77fa4f6fc880f80452 f14 imm=452 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1798
+d00f: 6b558007ec2ce2ffa5 f13 cc=91 A=d D=15 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1793
+d010: 5b15b607f423173719 f11 cc=291 A=c D=15 r148=338 P=1b Q=1a M=462 r110=6d5 r99=8 r62=1ffc883d7f  ; texgen.S:1761
+d011: 68000007ec0e40971a f13 cc=211 r148=358 P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1762
+d012: 58003e07e022559639 f11 cc=91 r148=331 Q=10 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1757
+d013: 68000007e80fc0963a f13 r148=351 M=47f r110=695 r62=1ffc003173  ; texgen.S:1758
+d014: 58003e07ee22559619 f11 cc=91 r148=330 Q=17 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1759
+d015: 58003e07ec2255961a f11 cc=91 r148=350 Q=16 M=44a r110=795 r62=1ffc00357b  ; texgen.S:1760
+d016: 68000007e82fe2c4bb f13 r148=360 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1764
+d017: 68000007ec2de2c4bc f13 cc=91 r148=380 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1765
+d018: 68000007e80fc0c2b3 f13 r148=260 r128=2a M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1800
+d019: 68000007e80fc0c1b8 f13 r148=300 r128=29 M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1802
+d01a: 68000007e82fe2c6b7 f13 r148=2e0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1766
+d01b: 68000007e82fe2c6b6 f13 r148=2c0 r128=2e M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1767
+d01c: 58003e07f623134b75 f11 cc=91 r148=2bb Q=1b r128=12 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1768
+d01d: 58003e07fe230096d9 f11 r148=336 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1804
+d01e: 58003e07f823130394 f11 cc=91 r148=29c Q=1c r128=0 M=462 r110=429 r62=1ffc0035ff  ; texgen.S:1769
+d01f: 68000007e80fc09612 f13 r148=250 M=47f r110=695 r62=1ffc003173  ; texgen.S:1801
+d020: 68000007e80fc096f1 f13 r148=237 M=47f r110=695 r62=1ffc003173  ; texgen.S:1803
+d021: 58003e07f62300837b f11 cc=91 r148=37b Q=1b r128=4 M=460 r110=555 r62=1ffc0035ff  ; texgen.S:1772
+d022: 68000007e80fc0fedb f13 r128=1b M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1774
+d023: 68000007ec2e60feaf f13 cc=91 Q=1c r128=3d M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1778
+d024: 58003e07fe230096da f11 r148=356 r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1805
+d025: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1816
+d026: 58003207f62300977b f11 cc=291 r148=37b P=19 Q=1b r128=2c M=460 r110=555 r62=1ffc003dff  ; texgen.S:1775
+d027: 68000007e80fc0f650 f13 r148=10 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1812
+d028: 58002e07fe2300839c f11 cc=211 r148=39c P=17 r128=4 M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1776
+d029: 68000007ec2c62c4b9 f13 cc=91 r148=320 Q=18 r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1823
+d02a: 68000007e80fc096fb f13 r148=377 M=47f r110=695 r62=1ffc003173  ; texgen.S:1814
+d02b: 68000007ec2d62c4b3 f13 cc=91 r148=260 Q=1a r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1819
+d02c: 68000007e80fc0f616 f13 r148=16 r128=5 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1817
+d02d: 68000007e80fc0f630 f13 r148=10 r128=d M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1813
+d02e: 68000007e80fc0f657 f13 r148=17 r128=15 M=47f r110=6a5 r62=1ffc001173  ; texgen.S:1815
+d02f: 68000007e82fe2c5b8 f13 r148=300 M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1821
+d030: 68000007ec2de2c4ba f13 cc=91 r148=340 Q=1b r128=2c M=6e2 r110=47d r62=1ffc0025fc  ; texgen.S:1824
+d031: 68000007e82fe2c4b2 f13 r148=240 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1820
+d032: 68000007e82fe2c4b1 f13 r148=220 r128=2c M=6e2 r110=47d r62=1ffc0021fc  ; texgen.S:1822
+d033: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1826
+d034: 68000007e80fc0fec9 f13 r128=9 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1828
+d035: 58003e07f0230302fb f11 cc=91 r148=377 Q=18 r128=0 M=460 r110=429 r62=1ffc0035ff  ; texgen.S:1781
+d036: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1829
+d037: 68000007ec2ce0973c f13 cc=91 r148=399 Q=19 M=6e0 r110=43d r62=1ffc00357c  ; texgen.S:1780
+d039: 58003e07fe2300bb18 f11 r148=318 r128=35 M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1830
+d03a: 58003e07fe2300977b f11 r148=37b r128=2c M=460 r110=555 r62=1ffc0031ff  ; texgen.S:1831
+d03c: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1783
+d03d: 68000007ec2be05418 f13 cc=91 r148=300 Q=17 r128=4 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1784
+d03e: 58003e07ec2307f420 f11 cc=91 Q=16 r128=4 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1836
+d03f: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+d042: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1783
+d043: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1784
+d044: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1783
+d045: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1784
+d046: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+d047: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+d048: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1838
+d049: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1839
+d04a: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1838
+d04b: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1839
+d04c: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+d04d: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+d04e: 68000007e80fc096b5 f13 r148=2b5 M=47f r110=695 r62=1ffc003173  ; texgen.S:1783
+d04f: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1784
+d050: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1838
+d051: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1839
+d052: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1783
+d053: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1784
+d054: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1838
+d055: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1839
+d056: 68000007e80fc0c4b5 f13 r148=2a0 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1783
+d057: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1784
+d058: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1838
+d059: 380000b9402e08c4bc f7  r222=1 r219=1 C=b F=25 G=b r148=380 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1839
+d05a: 60001a07ff0d009c99 f12 r213=2 r198=7e B=d E=d r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1786
+d05b: e0001807ff0d009c98 f12 w71=1 r213=2 r198=7e B=c E=d r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1787
+d05c: 60001a07fe0e009c97 f12 r213=2 r198=7c B=d E=e r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1841
+d05d: e0001807fe0e009c96 f12 w71=1 r213=2 r198=7c B=c E=e r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1842
+d05e: 77f64007c88cf8cfe4 f14 xfer5 c7 cc=11 -> cfe4 imm=cfe4 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1848
+d05f: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1850
+d062: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1844
+d063: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1845
+mmo_TexGenEyePoint_ST:
+d068: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1372
+d069: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1373
+d06a: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1380
+d06b: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1378
+d06c: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1377
+d06d: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1383
+d06e: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1375
+d06f: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1378
+d070: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1381
+d071: 77fa4f6fc880f80413 f14 imm=413 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1388
+d074: 77fa4f6fc880f80417 f14 imm=417 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1390
+d077: 77fa4f6fc880f8041b f14 imm=41b C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1392
+d078: 6b538007ec2be2ffa5 f13 cc=91 A=d D=13 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1388
+d079: 6b138007ec2de2ffa5 f13 cc=91 A=c D=13 Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1389
+d07a: 77fa4f6fc880f80414 f14 imm=414 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1411
+d07b: 6b548007ec2e62ffa5 f13 cc=91 A=d D=14 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1390
+d07c: 77fa4f6fc880f80418 f14 imm=418 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1413
+d07d: 6b148007ec2d62ffa5 f13 cc=91 A=c D=14 Q=1a M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1391
+d07e: 6b558007ec2ce2ffa5 f13 cc=91 A=d D=15 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1392
+d07f: 77fa4f6fc880f8041c f14 imm=41c C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1415
+d080: 6b158007ec2c62ffa5 f13 cc=91 A=c D=15 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1393
+d081: 6b538007e82fe2ffa5 f13 A=d D=13 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1411
+d082: 6b138007ec2be2ffa5 f13 cc=91 A=c D=13 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1412
+d083: 6b548007e82fe2ffa5 f13 A=d D=14 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1413
+d085: 6b148007ec2e62ffa5 f13 cc=91 A=c D=14 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1414
+d086: 5b55be07fe2317f749 f11 A=d D=15 r128=9 M=462 r110=6e9 r99=8 r62=1ffc8801ff  ; texgen.S:1415
+d087: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1419
+d088: 68000007e80fc096f7 f13 r148=2f7 M=47f r110=695 r62=1ffc003173  ; texgen.S:1394
+d089: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:1396
+d08a: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1421
+d08b: 58003607fe2300977b f11 cc=211 r148=37b P=1b r128=2c M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1395
+d08c: 68000007ec0e40975a f13 cc=211 r148=35a P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1397
+d08d: 68000007e80fc09739 f13 r148=339 M=47f r110=695 r62=1ffc003173  ; texgen.S:1398
+d08e: 68000007e82fe0feae f13 r128=35 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:1400
+d08f: 68000007ec2c60fea8 f13 cc=91 Q=18 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1425
+d090: 5b15be07fe231736f7 f11 A=c D=15 r148=2f7 M=462 r110=6d5 r99=8 r62=1ffc88317f  ; texgen.S:1416
+d091: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:1420
+d092: 68000007ec2ce0fea8 f13 cc=91 Q=19 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1402
+d093: 68000007e80fc09718 f13 r148=318 M=47f r110=695 r62=1ffc003173  ; texgen.S:1399
+d094: 58003e07fe2303039b f11 r148=37c r128=0 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:1401
+d095: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:1424
+d097: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1405
+d098: 68000007ec2be05518 f13 cc=91 r148=300 Q=17 r128=5 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1403
+d099: 58003e07ec2307f428 f11 cc=91 Q=16 r128=5 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1426
+d09a: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+d09d: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1405
+d09e: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1428
+d09f: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1405
+d0a0: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1428
+d0a1: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+d0a2: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+d0a3: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1406
+d0a4: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1429
+d0a5: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1406
+d0a6: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1429
+d0a7: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+d0a8: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+d0a9: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1405
+d0aa: 68000007e80fc0977b f13 r148=37b M=47f r110=695 r62=1ffc003173  ; texgen.S:1428
+d0ab: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1406
+d0ac: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1429
+d0ad: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1405
+d0ae: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1428
+d0af: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1406
+d0b0: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1429
+d0b1: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1405
+d0b2: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1428
+d0b3: 68000007e80fc0c4bc f13 r148=380 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1406
+d0b4: 380000b9402e08c4b5 f7  r222=1 r219=1 C=b F=25 G=b r148=2a0 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1429
+d0b5: 60001a07ff0b009c99 f12 r213=2 r198=7e B=d E=b r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1408
+d0b6: 60001a07fe0c009c98 f12 r213=2 r198=7c B=d E=c r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1431
+d0b7: e0001807ff0b009c97 f12 w71=1 r213=2 r198=7e B=c E=b r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1409
+d0b8: e0001807fe0c009c96 f12 w71=1 r213=2 r198=7c B=c E=c r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1432
+d0b9: 77f64007c88cf8d071 f14 xfer5 c7 cc=11 -> d071 imm=d071 seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1438
+d0ba: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1440
+d0bd: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1434
+d0be: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1435
+mmo_TexGenEyePoint_RQ:
+d0c3: 77fa410008816c0000 f14 r219=1 C=10 r162=1 F=0 G=d r62=1ffc23c170  ; texgen.S:1463
+d0c4: 77fa41100881640000 f14 r219=1 C=11 r162=1 F=0 G=c r62=1ffc23c170  ; texgen.S:1464
+d0c5: 77fa48e78880f80000 f14 C=e F=1e r95=2 r62=1ffc218170  ; texgen.S:1471
+d0c6: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:1469
+d0c7: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:1468
+d0c8: 77fa419948c1580000 f14 r222=1 r219=1 C=19 F=25 G=b r62=1ffc23c170  ; texgen.S:1474
+d0c9: 4e00b8e7ef5aff3c00 f9  r213=3 A=18 B=1c C=e E=2f M=6df r110=7bd r99=8 r95=13 r62=1ffced817c r25=3e69c00  ; texgen.S:1466
+d0ca: 4e01b807ee1aff3c00 f9  r213=3 A=18 B=1c D=1 E=2e M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:1469
+d0cb: 77fa40e7888d700000 f14 r219=1 C=e F=1e G=e seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; texgen.S:1472
+d0cc: 77fa4f6fc880f80415 f14 imm=415 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1479
+d0cf: 77fa4f6fc880f80419 f14 imm=419 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1481
+d0d2: 77fa4f6fc880f8041d f14 imm=41d C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1483
+d0d3: 6b538007ec2be2ffa5 f13 cc=91 A=d D=13 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1479
+d0d4: 6b138007ec2de2ffa5 f13 cc=91 A=c D=13 Q=1b M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1480
+d0d5: 77fa4f6fc880f80416 f14 imm=416 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1502
+d0d6: 6b548007ec2e62ffa5 f13 cc=91 A=d D=14 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1481
+d0d7: 77fa4f6fc880f8041a f14 imm=41a C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1504
+d0d8: 6b148007ec2d62ffa5 f13 cc=91 A=c D=14 Q=1a M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1482
+d0d9: 6b558007ec2ce2ffa5 f13 cc=91 A=d D=15 Q=19 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1483
+d0da: 77fa4f6fc880f8041e f14 imm=41e C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:1506
+d0db: 6b158007ec2c62ffa5 f13 cc=91 A=c D=15 Q=18 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1484
+d0dc: 6b538007e82fe2ffa5 f13 A=d D=13 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1502
+d0dd: 6b138007ec2be2ffa5 f13 cc=91 A=c D=13 Q=17 M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1503
+d0de: 6b548007e82fe2ffa5 f13 A=d D=14 M=6e2 r110=6fd r99=8 r62=1ffc88017c  ; texgen.S:1504
+d0e0: 6b148007ec2e62ffa5 f13 cc=91 A=c D=14 Q=1c M=6e2 r110=6fd r99=8 r62=1ffc88057c  ; texgen.S:1505
+d0e1: 5b55be07fe2317f749 f11 A=d D=15 r128=9 M=462 r110=6e9 r99=8 r62=1ffc8801ff  ; texgen.S:1506
+d0e2: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1510
+d0e3: 68000007e80fc096f7 f13 r148=2f7 M=47f r110=695 r62=1ffc003173  ; texgen.S:1485
+d0e4: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:1487
+d0e5: 68000007e80fc0fec0 f13 r128=0 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1512
+d0e6: 58003607fe2300977b f11 cc=211 r148=37b P=1b r128=2c M=460 r110=555 r62=1ffc0039ff  ; texgen.S:1486
+d0e7: 68000007ec0e40975a f13 cc=211 r148=35a P=1c M=47f r110=695 r62=1ffc003973  ; texgen.S:1488
+d0e8: 68000007e80fc09739 f13 r148=339 M=47f r110=695 r62=1ffc003173  ; texgen.S:1489
+d0e9: 68000007e82fe0feae f13 r128=35 M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:1491
+d0ea: 68000007ec2c60fea8 f13 cc=91 Q=18 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1516
+d0eb: 5b15be07fe231736f7 f11 A=c D=15 r148=2f7 M=462 r110=6d5 r99=8 r62=1ffc88317f  ; texgen.S:1507
+d0ec: 68000007e80fc0979c f13 r148=39c M=47f r110=695 r62=1ffc003173  ; texgen.S:1511
+d0ed: 68000007ec2ce0fea8 f13 cc=91 Q=19 r128=5 M=6e0 r110=57d r62=1ffc0005fc  ; texgen.S:1493
+d0ee: 68000007e80fc09718 f13 r148=318 M=47f r110=695 r62=1ffc003173  ; texgen.S:1490
+d0ef: 58003e07fe2303039b f11 r148=37c r128=0 M=460 r110=429 r62=1ffc0031ff  ; texgen.S:1492
+d0f0: 68000007e82fe0fea5 f13 r128=2c M=6e0 r110=57d r62=1ffc0001fc  ; texgen.S:1515
+d0f2: 68000007e80fe80400 f13 r128=d r110=2bd  ; texgen.S:1496
+d0f3: 68000007ec2be05518 f13 cc=91 r148=300 Q=17 r128=5 M=6e0 r110=17f r62=1ffc0025fc  ; texgen.S:1494
+d0f4: 58003e07ec2307f428 f11 cc=91 Q=16 r128=5 M=460 r110=541 r62=1ffc0005ff  ; texgen.S:1517
+d0f5: 68000007e80fc0ff45 f13 M=47f r110=681 r62=1ffc000173
+d0f8: 68000007e80fd04439 f13 r148=320 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1496
+d0f9: 68000007e80fd04438 f13 r148=300 r128=c M=57f r110=299 r62=1ffc0021f3  ; texgen.S:1519
+d0fa: 68000007e80fc07d99 f13 r148=320 M=47f r110=283 r62=1ffc002073  ; texgen.S:1496
+d0fb: 68000007e80fc07d98 f13 r148=300 M=47f r110=283 r62=1ffc002073  ; texgen.S:1519
+d0fc: 68000007ec0d40fea5 f13 cc=211 P=1a r128=2c M=47f r110=689 r62=1ffc0009f3
+d0fd: 68000007ec0dc0fea5 f13 cc=211 P=1b r128=2c M=47f r110=689 r62=1ffc0009f3
+d0fe: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1497
+d0ff: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1520
+d100: 68000007e80fe83417 f13 r148=2e0 r110=2bf r62=1ffc002070  ; texgen.S:1497
+d101: 68000007e80fe83416 f13 r148=2c0 r110=2bf r62=1ffc002070  ; texgen.S:1520
+d102: 68000007ec0e40fea5 f13 cc=211 P=1c r128=2c M=47f r110=689 r62=1ffc0009f3
+d103: 68000007ec0ac0fea5 f13 cc=211 P=15 r128=2c M=47f r110=689 r62=1ffc0009f3
+d104: 68000007e80fc0975a f13 r148=35a M=47f r110=695 r62=1ffc003173  ; texgen.S:1496
+d105: 68000007e80fc0977b f13 r148=37b M=47f r110=695 r62=1ffc003173  ; texgen.S:1519
+d106: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1497
+d107: 68000007e80fc0fee4 f13 r128=24 M=47f r110=6a9 r62=1ffc0001f3  ; texgen.S:1520
+d108: 68000007e80fd0c4b9 f13 r148=320 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1496
+d109: 68000007e80fd0c4b8 f13 r148=300 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1519
+d10a: 68000007e80fd0c4b7 f13 r148=2e0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1497
+d10b: 68000007e80fd0c4b6 f13 r148=2c0 r128=2c M=57f r110=699 r62=1ffc0021f3  ; texgen.S:1520
+d10c: 68000007e80fc0c4ba f13 r148=340 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1496
+d10d: 68000007e80fc0c4bb f13 r148=360 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1519
+d10e: 68000007e80fc0c4bc f13 r148=380 r128=2c M=47f r110=699 r62=1ffc0021f3  ; texgen.S:1497
+d10f: 380000b9402e08c4b5 f7  r222=1 r219=1 C=b F=25 G=b r148=2a0 r128=2c M=47f r110=699 r62=1ffc23e1f3  ; texgen.S:1520
+d110: 60001a07ff0d009c99 f12 r213=2 r198=7e B=d E=d r148=320 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1499
+d111: 60001a07fe0e009c98 f12 r213=2 r198=7c B=d E=e r148=300 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1522
+d112: e0001807ff0d009c97 f12 w71=1 r213=2 r198=7e B=c E=d r148=2e0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1500
+d113: e0001807fe0e009c96 f12 w71=1 r213=2 r198=7c B=c E=e r148=2c0 r128=2c M=47f r110=699 r95=20 r62=1ffd4421f3 r25=3e69c00  ; texgen.S:1523
+d114: 77f64007c88cf8d0cc f14 xfer5 c7 cc=11 -> d0cc imm=d0cc seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; texgen.S:1529
+d115: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; texgen.S:1531
+d118: 74c020dfca016c0000 f14 r219=1 A=13 C=d r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; texgen.S:1525
+d119: 74c020cfca01640000 f14 r219=1 A=13 C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; texgen.S:1526
+mTexGenResolve:
+d11e: 77fa4f6fc880f803df f14 imm=3df C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:57
+d121: 77fa4f6fc880f803e0 f14 imm=3e0 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:59
+d122: 782071e7c12c03ffff f15 imm=2c03ffff r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texgen.S:41
+d123: 782071e7c220000000 f15 imm=20000000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texgen.S:42
+d124: 782071e7cb00000001 f15 imm=1 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; texgen.S:51
+d125: 68000007ea2dcaf8a0 f13 cc=191 Q=1b M=6ca r110=7bd r62=1ffc000578  ; texgen.S:57
+d126: 4e0bb807ec1aff3c00 f9  r213=3 A=18 B=1c D=b E=2c M=6df r110=7bd r99=8 r62=1ffccc017c r25=3e69c00  ; texgen.S:56
+d127: 77fa4f6fc880f803e1 f14 imm=3e1 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:61
+d128: 57ed7807fe36ff3c00 f10 r213=3 B=1c E=2d M=6df r110=7bd r62=1ffc44017c r25=3e69c00  ; texgen.S:60
+d129: 77fa4f6fc880f803e2 f14 imm=3e2 C=16 F=3f r95=17 r71=1 r62=1ffc318170  ; texgen.S:63
+d12a: 782071e7c300000002 f15 imm=2 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texgen.S:43
+d12b: 782071e7c408000000 f15 imm=8000000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texgen.S:44
+d12c: 782071e7c04c03ffff f15 imm=4c03ffff r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texgen.S:40
+d12d: 68000007ea2ccaf8a0 f13 cc=191 Q=19 M=6ca r110=7bd r62=1ffc000578  ; texgen.S:59
+d12e: 68000007ea2d4af8a0 f13 cc=191 Q=1a M=6ca r110=7bd r62=1ffc000578  ; texgen.S:61
+d12f: 57ee7807fe36ff3c00 f10 r213=3 B=1c E=2e M=6df r110=7bd r62=1ffc44017c r25=3e69c00  ; texgen.S:62
+d130: 57ef7807fe36ff3c00 f10 r213=3 B=1c E=2f M=6df r110=7bd r62=1ffc44017c r25=3e69c00  ; texgen.S:64
+d131: 6e008007ec3e50ecbb f13 cc=91 A=18 r148=360 Q=1c M=6d0 r110=4bd r99=a r62=1ffc88257c r25=3ea9c00  ; texgen.S:73
+d132: 782071e7c504000000 f15 imm=4000000 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; texgen.S:45
+d133: 782071e7c80000f449 f15 imm=f449 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; texgen.S:48
+d134: 782071e7c90000f494 f15 imm=f494 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; texgen.S:49
+d135: 782071e7ca00001113 f15 imm=1113 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; texgen.S:50
+d136: 77f641b7fd91980014 f14 xfer5.rel c4 cc=7b -> d14a imm=14 r219=1 cc=7b C=1b G=13 seq=dfe4 r71=1 r62=1ffe23c170 r25=3e39c00  ; texgen.S:53
+d138: 68000007ec2e4297bd f13 cc=91 r148=3bd Q=1c M=6c2 r110=43d r62=1ffc00357c  ; texgen.S:54
+d139: 68000007ea2dcaf8a0 f13 cc=191 Q=1b M=6ca r110=7bd r62=1ffc000578  ; texgen.S:63
+d13a: 74e261effc00f80078 f14 imm=78 r211=2 r198=78 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:75
+d13b: 18c831e7c151d6973b f3  imm=2 r220=1 r215=3 B=18 C=1e E=6 r148=379 M=6c2 r110=43d r71=1 r62=1ffc65b17c  ; texgen.S:46
+d13c: 68000007fc2e54f41c f13 cc=111 r198=78 r148=1c Q=1c r128=5 M=6d4 r110=53d r62=1ffd00157c  ; texgen.S:76
+d13d: 18ec31e7c0d1c49419 f3  imm=1 r215=3 B=18 C=1e E=7 r148=320 M=6ca r110=4bd r99=2 r71=1 r62=1ffc65a178 r25=3ea9c00  ; texgen.S:47
+d13e: 70002737bc02980000 f14 r219=2 r198=78 C=13 F=1e G=13 r62=1ffd23c170  ; texgen.S:77
+d13f: 6e018007ec3cd0ecb9 f13 cc=91 A=18 D=1 r148=320 Q=19 M=6d0 r110=4bd r99=a r62=1ffc88257c r25=3ea9c00  ; texgen.S:93
+d146: 74e261efc100f80077 f14 imm=77 r211=2 r198=2 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:91
+d147: 68000007c1ae54973c f13 cc=111 r198=3 r148=399 Q=1c M=6d4 r110=43d r62=1ffd00357c  ; texgen.S:96
+d148: 74e261efc180f80078 f14 imm=78 r211=2 r198=3 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:95
+d149: 700027378182980000 f14 r219=2 r198=3 C=13 F=1e G=13 r62=1ffd23c170  ; texgen.S:97
+d14a: 6e008007e83fd0ecba f13 A=18 r148=340 M=6d0 r110=4bd r99=a r62=1ffc88217c r25=3ea9c00  ; texgen.S:107
+d14e: 77f64007ff90f80015 f14 xfer5.rel c4 cc=7f -> d163 imm=15 cc=7f seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texgen.S:123
+d14f: 68000007fe2e54c1bc f13 cc=111 r198=7c r148=380 Q=1c r128=29 M=6d4 r110=47d r62=1ffd0025fc  ; texgen.S:110
+d153: 74e261effe00f80078 f14 imm=78 r211=2 r198=7c A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:109
+d154: 68000007e86fc2977a f13 r220=1 r148=35b M=6c2 r110=43d r62=1ffc00317c  ; texgen.S:105
+d155: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texgen.S:122
+d156: 70002737be02980000 f14 r219=2 r198=7c C=13 F=1e G=13 r62=1ffd23c170  ; texgen.S:111
+d157: 6e018007e83fd0ecbb f13 A=18 D=1 r148=360 M=6d0 r110=4bd r99=a r62=1ffc88217c r25=3ea9c00  ; texgen.S:127
+d15b: 68000007c1ae54c0bc f13 cc=111 r198=3 r148=380 Q=1c r128=28 M=6d4 r110=47d r62=1ffd0025fc  ; texgen.S:130
+d15f: 74e261efc100f80077 f14 imm=77 r211=2 r198=2 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:125
+d161: 74e261efc180f80078 f14 imm=78 r211=2 r198=3 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffdb18170  ; texgen.S:129
+d162: 700027378182980000 f14 r219=2 r198=3 C=13 F=1e G=13 r62=1ffd23c170  ; texgen.S:131
+d163: 6e048007e86fd0f6bc f13 r220=1 A=18 D=4 r148=1c M=6d0 r110=63d r99=8 r62=1ffc88117c  ; texgen.S:150
+d164: 2e06c132020043ffc5 f5  imm=4 A=18 C=1e D=6 M=6d4 r110=7bd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; texgen.S:152
+d165: 2e058132038051f6bc f5  imm=7 r220=1 A=18 C=1e D=5 r148=1c M=6d0 r110=63d r99=8 r95=13 r71=1 r62=1ffca9917c  ; texgen.S:142
+d166: 6e038007e83fd1ffa5 f13 A=18 D=3 M=6d1 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; texgen.S:143
+d167: 68000007e83fd4ffa5 f13 M=6d4 r110=6fd r99=2 r62=1ffc00017c r25=3ea9c00  ; texgen.S:146
+d168: 7e0a8007e000000000 f15 A=18 D=a M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:137
+d169: 7e088007e000000000 f15 A=18 D=8 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:166
+d16a: 2e07c132028043ffc5 f5  imm=5 A=18 C=1e D=7 M=6d4 r110=7bd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; texgen.S:160
+d16b: 7e098007e000000000 f15 A=18 D=9 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texgen.S:171
+d16c: 77f1c1a7c8bdf80000 f14 xfer4.rel c31 cc=11 -> d16c r219=1 C=1a seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; texgen.S:175
+d16d: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; texgen.S:134
+d16e: 702267e7c180f80004 f14 imm=4 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; texgen.S:155
+d16f: 702267e7c800f80007 f14 imm=7 r211=2 r198=10 C=1e r95=4 r71=1 r62=1ffd218170  ; texgen.S:145
+d170: 702267e7c880f80007 f14 imm=7 r211=2 r198=11 C=1e r95=4 r71=1 r62=1ffd218170  ; texgen.S:147
+d171: 74f261efca00f80078 f14 imm=78 r211=3 A=13 C=1e r176=0 F=3f r95=4 r71=1 r62=1ffcb18170  ; texgen.S:139
+d172: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; texgen.S:168
+d173: 702267e7c180f80005 f14 imm=5 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; texgen.S:163
+d174: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; texgen.S:173

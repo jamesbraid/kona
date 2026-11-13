@@ -1,0 +1,236 @@
+# uevalcoord.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mges_EvalCoord:
+uges_EvalCoord:
+03a0: 380039d024e944941d f7  r219=1 r213=3 B=1c C=1d E=24 r162=1 F=0 G=1a r148=3a0 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; uevalcoord.s:61
+03a1: 77fa41d00881cc0000 f14 r219=1 C=1d r162=1 F=0 G=19 r62=1ffc23c170  ; uevalcoord.s:62
+03a2: 782001d01000000000 f15 C=1d r162=1 F=0 r62=1ffc218170  ; uevalcoord.s:63
+03a3: 77fa41dfc8c0fffff9 f14 imm=fffffff9 r222=1 C=1d r162=1 F=3f r71=1 r62=1ffc318170  ; uevalcoord.s:64
+03a4: 77fa41f008810c0000 f14 r219=1 C=1f r162=1 F=0 G=1 r62=1ffc23c170  ; uevalcoord.s:65
+03a5: 7480219fca01940000 f14 r219=1 A=12 C=19 r176=0 r162=1 F=3f G=12 r62=1ffcb3c170  ; uevalcoord.s:66
+03a6: 700027903482940000 f14 r219=2 r198=69 C=19 r162=1 F=0 G=12 r62=1ffd23c170  ; uevalcoord.s:67
+03a7: 77f5c007cabcf80000 f14 xfer5.rel c31 cc=15 -> 03a7 cc=15 seq=1dfdf r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:68
+03a8: 000000000000000000 f0  nop  ; uevalcoord.s:69
+03a9: 000000000000000000 f0  nop  ; uevalcoord.s:70
+03aa: 19a83120007e0d9400 f3  r219=1 r215=3 B=18 C=12 E=d r162=1 F=0 G=0 r62=1ffc67c170  ; uevalcoord.s:71
+evalcoord2dloop:
+03ab: 782071e7c004000000 f15 imm=4000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; uevalcoord.s:80
+03ac: 76002e07ca00f80000 f14 A=18 r99=4 r62=1ffc880170  ; uevalcoord.s:81
+03ad: 68668007e86fd0ffa5 f13 r220=1 A=1 D=26 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; uevalcoord.s:82
+03ae: 782070001e00000000 f15 r215=3 B=18 E=e r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:83
+03af: 782070101f00000000 f15 r215=3 B=18 C=1 E=f r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:84
+03b0: 000000000000000000 f0  nop  ; uevalcoord.s:85
+03b1: 000000000000000000 f0  nop  ; uevalcoord.s:86
+03b2: 000000000000000000 f0  nop  ; uevalcoord.s:87
+03b3: 000000000000000000 f0  nop  ; uevalcoord.s:88
+03b4: 000000000000000000 f0  nop  ; uevalcoord.s:89
+03b5: 000000000000000000 f0  nop  ; uevalcoord.s:90
+03b6: 000000000000000000 f0  nop  ; uevalcoord.s:91
+03b7: 77fa400808c1000000 f14 r222=1 r219=1 F=20 G=0 r62=1ffc23c170  ; uevalcoord.s:92
+03b8: 77fa4019c8810c0000 f14 r219=1 C=1 r162=1 F=27 G=1 r62=1ffc23c170  ; uevalcoord.s:93
+03b9: 77f58007c18cf8043f f14 xfer5 c27 cc=3 -> 043f <uEvalCoord2D> imm=43f cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:94
+03ba: 77f5c007ca0cf803ab f14 xfer5 c31 cc=14 -> 03ab <evalcoord2dloop> imm=3ab cc=14 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:95
+03bb: 000000000000000000 f0  nop  ; uevalcoord.s:96
+03bc: 000000000000000000 f0  nop  ; uevalcoord.s:97
+03bd: 000000000000000000 f0  nop  ; uevalcoord.s:98
+03be: 000000000000000000 f0  nop  ; uevalcoord.s:99
+03bf: 000000000000000000 f0  nop  ; uevalcoord.s:100
+03c0: 000000000000000000 f0  nop  ; uevalcoord.s:101
+03c1: 000000000000000000 f0  nop  ; uevalcoord.s:102
+03c2: 000000000000000000 f0  nop  ; uevalcoord.s:103
+03c3: 760e3607ca04000000 f14 r217=1 A=18 D=e G=0 r99=8 r62=1ffc884170  ; uevalcoord.s:104
+03c4: 760f3607ca04080000 f14 r217=1 A=18 D=f G=1 r99=8 r62=1ffc884170  ; uevalcoord.s:105
+03c5: 000000000000000000 f0  nop  ; uevalcoord.s:106
+03c6: 000000000000000000 f0  nop  ; uevalcoord.s:107
+03c7: 000000000000000000 f0  nop  ; uevalcoord.s:108
+03c8: 000000000000000000 f0  nop  ; uevalcoord.s:109
+03c9: 000000000000000000 f0  nop  ; uevalcoord.s:110
+03ca: 000000000000000000 f0  nop  ; uevalcoord.s:111
+03cb: 77fa400808c1000000 f14 r222=1 r219=1 F=20 G=0 r62=1ffc23c170  ; uevalcoord.s:112
+03cc: 77fa4019c8810c0000 f14 r219=1 C=1 r162=1 F=27 G=1 r62=1ffc23c170  ; uevalcoord.s:113
+03cd: 000000000000000000 f0  nop  ; uevalcoord.s:114
+03ce: 77f5c007ca0cf803ab f14 xfer5 c31 cc=14 -> 03ab <evalcoord2dloop> imm=3ab cc=14 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:115
+03cf: 000000000000000000 f0  nop  ; uevalcoord.s:116
+03d0: 000000000000000000 f0  nop  ; uevalcoord.s:117
+03d1: 000000000000000000 f0  nop  ; uevalcoord.s:118
+03d2: 000000000000000000 f0  nop  ; uevalcoord.s:119
+03d3: 000000000000000000 f0  nop  ; uevalcoord.s:120
+03d4: 000000000000000000 f0  nop  ; uevalcoord.s:121
+03d5: 000000000000000000 f0  nop  ; uevalcoord.s:122
+03d6: 000000000000000000 f0  nop  ; uevalcoord.s:123
+03d7: 77fa41f008810c0000 f14 r219=1 C=1f r162=1 F=0 G=1 r62=1ffc23c170  ; uevalcoord.s:124
+03d8: 760d3607ca04000000 f14 r217=1 A=18 D=d G=0 r99=8 r62=1ffc884170  ; uevalcoord.s:125
+evalcoord1dloop:
+03d9: 782071e7c002000000 f15 imm=2000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; uevalcoord.s:127
+03da: 76002e07ca00f80000 f14 A=18 r99=4 r62=1ffc880170  ; uevalcoord.s:128
+03db: 68668007e86fd0ffa5 f13 r220=1 A=1 D=26 M=6d0 r110=6fd r99=8 r62=1ffc88017c  ; uevalcoord.s:129
+03dc: 000000000000000000 f0  nop  ; uevalcoord.s:130
+03dd: 000000000000000000 f0  nop  ; uevalcoord.s:131
+03de: 000000000000000000 f0  nop  ; uevalcoord.s:132
+03df: 000000000000000000 f0  nop  ; uevalcoord.s:133
+03e0: 782070001e00000000 f15 r215=3 B=18 E=e r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:134
+03e1: 782070101f00000000 f15 r215=3 B=18 C=1 E=f r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:135
+03e2: 000000000000000000 f0  nop  ; uevalcoord.s:136
+03e3: 000000000000000000 f0  nop  ; uevalcoord.s:137
+03e4: 000000000000000000 f0  nop  ; uevalcoord.s:138
+03e5: 77fa400808c1000000 f14 r222=1 r219=1 F=20 G=0 r62=1ffc23c170  ; uevalcoord.s:139
+03e6: 77fa4019c8810c0000 f14 r219=1 C=1 r162=1 F=27 G=1 r62=1ffc23c170  ; uevalcoord.s:140
+03e7: 77f58007c18cf80406 f14 xfer5 c27 cc=3 -> 0406 <uEvalCoord1D> imm=406 cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:141
+03e8: 77f5c007ca0cf803d9 f14 xfer5 c31 cc=14 -> 03d9 <evalcoord1dloop> imm=3d9 cc=14 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:142
+03e9: 000000000000000000 f0  nop  ; uevalcoord.s:143
+03ea: 000000000000000000 f0  nop  ; uevalcoord.s:144
+03eb: 000000000000000000 f0  nop  ; uevalcoord.s:145
+03ec: 000000000000000000 f0  nop  ; uevalcoord.s:146
+03ed: 000000000000000000 f0  nop  ; uevalcoord.s:147
+03ee: 000000000000000000 f0  nop  ; uevalcoord.s:148
+03ef: 000000000000000000 f0  nop  ; uevalcoord.s:149
+03f0: 000000000000000000 f0  nop  ; uevalcoord.s:150
+03f1: 760e3607ca04000000 f14 r217=1 A=18 D=e G=0 r99=8 r62=1ffc884170  ; uevalcoord.s:151
+03f2: 760f3607ca04080000 f14 r217=1 A=18 D=f G=1 r99=8 r62=1ffc884170  ; uevalcoord.s:152
+03f3: 000000000000000000 f0  nop  ; uevalcoord.s:153
+03f4: 000000000000000000 f0  nop  ; uevalcoord.s:154
+03f5: 000000000000000000 f0  nop  ; uevalcoord.s:155
+03f6: 000000000000000000 f0  nop  ; uevalcoord.s:156
+03f7: 000000000000000000 f0  nop  ; uevalcoord.s:157
+03f8: 000000000000000000 f0  nop  ; uevalcoord.s:158
+03f9: 77fa400808c1000000 f14 r222=1 r219=1 F=20 G=0 r62=1ffc23c170  ; uevalcoord.s:159
+03fa: 77fa4019c8810c0000 f14 r219=1 C=1 r162=1 F=27 G=1 r62=1ffc23c170  ; uevalcoord.s:160
+03fb: 760d3607ca04900000 f14 r217=1 A=18 D=d G=12 r99=8 r62=1ffc884170  ; uevalcoord.s:161
+03fc: 77f5c007ca0cf803d9 f14 xfer5 c31 cc=14 -> 03d9 <evalcoord1dloop> imm=3d9 cc=14 seq=5fdf r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:162
+03fd: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 03fd seq=1cfdf r25=3e3fc00  ; uevalcoord.s:168
+03fe: 000000000000000000 f0  nop  ; uevalcoord.s:172
+03ff: 000000000000000000 f0  nop  ; uevalcoord.s:173
+0400: 000000000000000000 f0  nop  ; uevalcoord.s:174
+0401: 000000000000000000 f0  nop  ; uevalcoord.s:175
+0402: 000000000000000000 f0  nop  ; uevalcoord.s:176
+0403: 000000000000000000 f0  nop  ; uevalcoord.s:177
+0404: 000000000000000000 f0  nop  ; uevalcoord.s:178
+0405: 000000000000000000 f0  nop  ; uevalcoord.s:183
+uEvalCoord1D:
+0406: 28000130f60044f8a0 f5  imm=1ec C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:195
+0407: 77fa4b778881b80000 f14 r219=1 r211=3 C=17 F=1e G=17 r95=7 r62=1ffc23c170  ; uevalcoord.s:196
+0408: 760f3607ca04200000 f14 r217=1 A=18 D=f G=4 r99=8 r62=1ffc884170  ; uevalcoord.s:197
+0409: 000000000000000000 f0  nop  ; uevalcoord.s:198
+040a: 28000130f70051ff60 f5  imm=1ee r220=1 C=1b F=3f r128=5 M=6d0 r110=5fd r95=13 r71=1 r62=1ffc31817c  ; uevalcoord.s:199
+040b: 28000130f68054f8a0 f5  imm=1ed r220=1 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:200
+040c: 000000000000000000 f0  nop  ; uevalcoord.s:201
+040d: 000000000000000000 f0  nop  ; uevalcoord.s:202
+040e: 000000000000000000 f0  nop  ; uevalcoord.s:203
+040f: 000000000000000000 f0  nop  ; uevalcoord.s:204
+0410: 69008007ec29caf6a0 f13 cc=91 A=4 Q=13 M=6ca r99=8 r62=1ffc880578  ; uevalcoord.s:205
+0411: 000000000000000000 f0  nop  ; uevalcoord.s:206
+0412: 60000807ea0301c01f f12 r213=3 B=4 E=3 r148=3e0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; uevalcoord.s:207
+0413: 000000000000000000 f0  nop  ; uevalcoord.s:208
+0414: 28000130f88054f8a0 f5  imm=1f1 r220=1 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:209
+0415: 000000000000000000 f0  nop  ; uevalcoord.s:210
+0416: 77f58007c18cf809da f14 xfer5 c27 cc=3 -> 09da <uEvalSwapState2D> imm=9da cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:211
+0417: 77f58007c10cf8099b f14 xfer5 c27 cc=2 -> 099b <uEvalLoadState1D> imm=99b cc=2 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:212
+0418: 7059c1e0088d2c8010 f14 imm=8010 r219=1 C=1e r162=1 F=0 G=5 seq=609f r71=1 r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:213
+0419: 77fa41e008832c8080 f14 imm=8080 r219=3 C=1e r162=1 F=0 G=5 r71=1 r62=1ffc23c170  ; uevalcoord.s:214
+041a: 7099c1e0088d348160 f14 imm=8160 r219=1 C=1e r162=1 F=0 G=6 seq=611f r71=1 r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:215
+041b: 77fa41e008832c80f0 f14 imm=80f0 r219=3 C=1e r162=1 F=0 G=5 r71=1 r62=1ffc23c170  ; uevalcoord.s:216
+041c: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; uevalcoord.s:217
+041d: 000000000000000000 f0  nop  ; uevalcoord.s:218
+041e: 000000000000000000 f0  nop  ; uevalcoord.s:219
+041f: 000000000000000000 f0  nop  ; uevalcoord.s:220
+0420: 77f58007c18cf80484 f14 xfer5 c27 cc=3 -> 0484 <uEvalChangeBasis1D> imm=484 cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:221
+0421: 69418007e82fe2ecb3 f13 A=5 D=1 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:222
+0422: 69818007e82fe2ecb3 f13 A=6 D=1 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:223
+0423: 69428007e86fe2ecb3 f13 r220=1 A=5 D=2 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:224
+0424: e9828007e86fe2ecb3 f13 w71=1 r220=1 A=6 D=2 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:225
+0425: 61438a07ea12009fe8 f12 r213=3 A=5 B=5 D=3 E=12 r128=28 M=47f r110=6b9 r99=8 r95=20 r62=1ffccc01f3 r25=3e69c00  ; uevalcoord.s:226
+0426: 49838c07d298456000 f9  r213=3 A=6 B=6 D=3 E=12 r128=28 M=688 r110=67d r99=8 r95=20 r62=1ffccc01fc r25=3e69c00  ; uevalcoord.s:227
+0427: 60000a07c11201c01f f12 r213=2 r198=2 B=5 E=12 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:228
+0428: e0000c07c11201c01f f12 w71=1 r213=2 r198=2 B=6 E=12 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:229
+0429: 77fa456fc881000453 f14 imm=453 r219=1 C=16 F=3f G=0 r95=1 r71=1 r62=1ffc33c170  ; uevalcoord.s:230
+042a: 760f3607ca04200000 f14 r217=1 A=18 D=f G=4 r99=8 r62=1ffc884170  ; uevalcoord.s:231
+042b: 7059c1b0088d1c0000 f14 r219=1 C=1b r162=1 F=0 G=3 seq=609f r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:232
+042c: 77fa41b048831c0000 f14 r219=3 C=1b r162=1 F=1 G=3 r62=1ffc23c170  ; uevalcoord.s:233
+042d: 7099c1e0088d0c8010 f14 imm=8010 r219=1 C=1e r162=1 F=0 G=1 seq=611f r71=1 r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:234
+042e: 77fa41b088831c0000 f14 r219=3 C=1b r162=1 F=2 G=3 r62=1ffc23c170  ; uevalcoord.s:235
+042f: 77f9c1e0088d548080 f14 imm=8080 r219=1 C=1e r162=1 F=0 G=a seq=6fdf r71=1 r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:236
+0430: 77fa41e008815c80f0 f14 imm=80f0 r219=1 C=1e r162=1 F=0 G=b r71=1 r62=1ffc23c170  ; uevalcoord.s:237
+0431: 77fa41e00881348160 f14 imm=8160 r219=1 C=1e r162=1 F=0 G=6 r71=1 r62=1ffc23c170  ; uevalcoord.s:238
+0432: 782042401f00000000 f15 r215=3 B=1 C=4 E=f r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:239
+0433: 78205442df00000000 f15 r215=3 B=a C=4 E=f r162=1 F=b r62=1ffc658170  ; uevalcoord.s:240
+0434: 782056411f00000000 f15 r215=3 B=b C=4 E=f r162=1 F=4 r62=1ffc658170  ; uevalcoord.s:241
+0435: 78204c421f00000000 f15 r215=3 B=6 C=4 E=f r162=1 F=8 r62=1ffc658170  ; uevalcoord.s:242
+0436: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; uevalcoord.s:243
+0437: 68000007ec2071941f f13 cc=91 r148=3e0 Q=0 M=6f1 r110=4bd r62=1ffc002578  ; uevalcoord.s:244
+0438: 6a998007e86fcaf6a0 f13 r220=1 A=a D=19 M=6ca r99=8 r62=1ffc880178  ; uevalcoord.s:245
+0439: 77fa41b78881100000 f14 r219=1 C=1b F=1e G=2 r62=1ffc23c170  ; uevalcoord.s:246
+043a: 60000807c18c01c01e f12 r213=2 r198=3 B=4 E=c r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:247
+043b: 60000807c18d01c01e f12 r213=2 r198=3 B=4 E=d r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:248
+043c: 60000807c18e01c01f f12 r213=2 r198=3 B=4 E=e r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:249
+043d: 782071b78200000000 f15 r215=3 B=18 C=1b E=2 F=1e r62=1ffc658170  ; uevalcoord.s:250
+043e: 670fb007ea0101dd80 f12 r213=3 A=1c B=18 D=f E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; uevalcoord.s:251
+uEvalCoord2D:
+043f: 28000130f60044f8a0 f5  imm=1ec C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:264
+0440: 77fa4b778881b80000 f14 r219=1 r211=3 C=17 F=1e G=17 r95=7 r62=1ffc23c170  ; uevalcoord.s:265
+0441: 760f3607ca04200000 f14 r217=1 A=18 D=f G=4 r99=8 r62=1ffc884170  ; uevalcoord.s:266
+0442: 77fa41e008812c8028 f14 imm=8028 r219=1 C=1e r162=1 F=0 G=5 r71=1 r62=1ffc23c170  ; uevalcoord.s:267
+0443: 28000130f68051ff60 f5  imm=1ed r220=1 C=1b F=3f r128=5 M=6d0 r110=5fd r95=13 r71=1 r62=1ffc31817c  ; uevalcoord.s:268
+0444: 28000130f70054f8a0 f5  imm=1ee r220=1 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:269
+0445: 77fa41b008813c0000 f14 r219=1 C=1b r162=1 F=0 G=7 r62=1ffc23c170  ; uevalcoord.s:270
+0446: 7059c1b0088d1c0000 f14 r219=1 C=1b r162=1 F=0 G=3 seq=609f r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:271
+0447: 77fa41e008832c8098 f14 imm=8098 r219=3 C=1e r162=1 F=0 G=5 r71=1 r62=1ffc23c170  ; uevalcoord.s:272
+0448: 77fa41b2c8833c0000 f14 r219=3 C=1b r162=1 F=b G=7 r62=1ffc23c170  ; uevalcoord.s:273
+0449: 77fa41b048831c0000 f14 r219=3 C=1b r162=1 F=1 G=3 r62=1ffc23c170  ; uevalcoord.s:274
+044a: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; uevalcoord.s:275
+044b: 77fa41e008832c8108 f14 imm=8108 r219=3 C=1e r162=1 F=0 G=5 r71=1 r62=1ffc23c170  ; uevalcoord.s:276
+044c: 77fa41b108833c0000 f14 r219=3 C=1b r162=1 F=4 G=7 r62=1ffc23c170  ; uevalcoord.s:277
+044d: 28000130f90054f8a0 f5  imm=1f2 r220=1 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc318178  ; uevalcoord.s:278
+044e: 77f9c1b0888f1c0000 f14 r219=3 C=1b r162=1 F=2 G=3 seq=6fdf r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:279
+044f: 77f58007c18cf809bf f14 xfer5 c27 cc=3 -> 09bf <uEvalSwapState1D> imm=9bf cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:280
+0450: 77f58007c10cf809ad f14 xfer5 c27 cc=2 -> 09ad <uEvalLoadState2D> imm=9ad cc=2 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:281
+0451: 69008007ec29caf6a0 f13 cc=91 A=4 Q=13 M=6ca r99=8 r62=1ffc880578  ; uevalcoord.s:282
+0452: 69018007ec2a4af6a0 f13 cc=91 A=4 D=1 Q=14 M=6ca r99=8 r62=1ffc880578  ; uevalcoord.s:283
+0453: 782070501a00000000 f15 r215=3 B=18 C=5 E=a r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:284
+0454: 61c0304fea4b40c000 f12 r215=3 A=7 B=18 C=4 r176=0 E=b r162=1 F=3f r62=1ffcf58170  ; uevalcoord.s:285
+0455: 782070301c00000000 f15 r215=3 B=18 C=3 E=c r162=1 F=0 r62=1ffc658170  ; uevalcoord.s:286
+0456: 000000000000000000 f0  nop  ; uevalcoord.s:287
+0457: 60000807ea0301c01f f12 r213=3 B=4 E=3 r148=3e0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; uevalcoord.s:288
+0458: 000000000000000000 f0  nop  ; uevalcoord.s:289
+0459: 77f58007c18cf804e5 f14 xfer5 c27 cc=3 -> 04e5 <uEvalChangeBasis2D> imm=4e5 cc=3 seq=5fdb r71=1 r62=1ffe000170 r25=3e3fc00  ; uevalcoord.s:290
+045a: 69418007e82fe2ecb3 f13 A=5 D=1 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:291
+045b: 69448007e82fe2ecb4 f13 A=5 D=4 r148=280 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:292
+045c: 69428007e86fe2ecb3 f13 r220=1 A=5 D=2 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:293
+045d: e9458007e86fe2ecb4 f13 w71=1 r220=1 A=5 D=5 r148=280 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:294
+045e: 61438a07ea12009fe8 f12 r213=3 A=5 B=5 D=3 E=12 r128=28 M=47f r110=6b9 r99=8 r95=20 r62=1ffccc01f3 r25=3e69c00  ; uevalcoord.s:295
+045f: 61468a07ea11009fe8 f12 r213=3 A=5 B=5 D=6 E=11 r128=28 M=47f r110=6b9 r99=8 r95=20 r62=1ffccc01f3 r25=3e69c00  ; uevalcoord.s:296
+0460: 60000a07c11201c01f f12 r213=2 r198=2 B=5 E=12 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:297
+0461: e0000a07c11101c01f f12 w71=1 r213=2 r198=2 B=5 E=11 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:298
+0462: 77fa41e00881548098 f14 imm=8098 r219=1 C=1e r162=1 F=0 G=a r71=1 r62=1ffc23c170  ; uevalcoord.s:299
+0463: 77fa456fc881000458 f14 imm=458 r219=1 C=16 F=3f G=0 r95=1 r71=1 r62=1ffc33c170  ; uevalcoord.s:300
+0464: 7139c1e0088d348178 f14 imm=8178 r219=1 C=1e r162=1 F=0 G=6 seq=625f r71=1 r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:301
+0465: 77fa41e00881448000 f14 imm=8000 r219=1 C=1e r162=1 F=0 G=8 r71=1 r62=1ffc23c170  ; uevalcoord.s:302
+0466: 760f3607ca04200000 f14 r217=1 A=18 D=f G=4 r99=8 r62=1ffc884170  ; uevalcoord.s:303
+0467: 760a3607ca04280000 f14 r217=1 A=18 D=a G=5 r99=8 r62=1ffc884170  ; uevalcoord.s:304
+0468: 760c3607ca04180000 f14 r217=1 A=18 D=c G=3 r99=8 r62=1ffc884170  ; uevalcoord.s:305
+0469: 69818007e82fe2ecb3 f13 A=6 D=1 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:306
+046a: 69848007e82fe2ecb4 f13 A=6 D=4 r148=280 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:307
+046b: 69828007e86fe2ecb3 f13 r220=1 A=6 D=2 r148=260 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:308
+046c: e9858007e86fe2ecb4 f13 w71=1 r220=1 A=6 D=5 r148=280 M=6e2 r110=4bd r99=8 r62=1ffc88217c  ; uevalcoord.s:309
+046d: 61838c07ea12009fe8 f12 r213=3 A=6 B=6 D=3 E=12 r128=28 M=47f r110=6b9 r99=8 r95=20 r62=1ffccc01f3 r25=3e69c00  ; uevalcoord.s:310
+046e: 61868c07ea11009fe8 f12 r213=3 A=6 B=6 D=6 E=11 r128=28 M=47f r110=6b9 r99=8 r95=20 r62=1ffccc01f3 r25=3e69c00  ; uevalcoord.s:311
+046f: 60000c07c11201c01f f12 r213=2 r198=2 B=6 E=12 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:312
+0470: e0000c07c11101c01f f12 w71=1 r213=2 r198=2 B=6 E=11 r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:313
+0471: 78207044d300000000 f15 r215=3 B=18 C=4 E=3 r162=1 F=13 r62=1ffc658170  ; uevalcoord.s:314
+0472: 6a008007e86fcaf6a0 f13 r220=1 A=8 M=6ca r99=8 r62=1ffc880178  ; uevalcoord.s:315
+0473: 78204c421f00000000 f15 r215=3 B=6 C=4 E=f r162=1 F=8 r62=1ffc658170  ; uevalcoord.s:316
+0474: 61528c07c19201dd80 f12 r213=2 r198=3 A=5 B=6 D=12 E=12 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; uevalcoord.s:317
+0475: 66038c07c18f01dd80 f12 r213=2 r198=3 A=18 B=6 D=3 E=f M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; uevalcoord.s:318
+0476: 6a998007e86fcaf6a0 f13 r220=1 A=a D=19 M=6ca r99=8 r62=1ffc880178  ; uevalcoord.s:319
+0477: 000000000000000000 f0  nop  ; uevalcoord.s:320
+0478: 60000807c18c01c01e f12 r213=2 r198=3 B=4 E=c r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:321
+0479: 60000807c18d01c01e f12 r213=2 r198=3 B=4 E=d r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:322
+047a: 60000807c18e01c01f f12 r213=2 r198=3 B=4 E=e r148=3e0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; uevalcoord.s:323
+047b: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; uevalcoord.s:324
+047c: 68000007ec2071941f f13 cc=91 r148=3e0 Q=0 M=6f1 r110=4bd r62=1ffc002578  ; uevalcoord.s:325
+047d: 77fa41e008814c8004 f14 imm=8004 r219=1 C=1e r162=1 F=0 G=9 r71=1 r62=1ffc23c170  ; uevalcoord.s:326
+047e: 77f9c1b7888d100000 f14 r219=1 C=1b F=1e G=2 seq=6fdf r62=1ffc23c170 r25=3e2fc00  ; uevalcoord.s:327
+047f: 660b8a07ea0f01dd80 f12 r213=3 A=18 B=5 D=b E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; uevalcoord.s:328
+0480: 77fa41e008810c8028 f14 imm=8028 r219=1 C=1e r162=1 F=0 G=1 r71=1 r62=1ffc23c170  ; uevalcoord.s:329
+0481: 78205245d000000000 f15 r215=3 B=9 C=4 r162=1 F=17 r62=1ffc658170  ; uevalcoord.s:330
+0482: 782071b74200000000 f15 r215=3 B=18 C=1b E=2 F=1d r62=1ffc658170  ; uevalcoord.s:331
+0483: 670fb007ea0101dd80 f12 r213=3 A=1c B=18 D=f E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; uevalcoord.s:332

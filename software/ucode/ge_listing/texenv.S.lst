@@ -1,0 +1,159 @@
+# texenv.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mgebi_TexEnvComps:
+5857: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; texenv.S:238
+5858: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texenv.S:239
+5859: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; texenv.S:236
+585a: 1a0831d7d13e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=11 r62=1ffc67c170  ; texenv.S:240
+585d: 7fc08007e000000000 f15 A=1f M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; texenv.S:243
+585e: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; texenv.S:249
+5861: 77f60007ca00f8594d f14 xfer5 c0 cc=14 -> 594d <mValidateTexenvMode> imm=594d cc=14 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:250
+5866: 77fa47e7c880f80294 f14 imm=294 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:246
+586a: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; texenv.S:254
+586b: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:254
+586c: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; texenv.S:254
+586d: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; texenv.S:254
+586e: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; texenv.S:255
+586f: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; texenv.S:255
+5870: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 5870 seq=1cfdf r25=3e3fc00  ; texenv.S:258
+5874: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; texenv.S:253
+5875: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texenv.S:257
+mgebi_TexEnv:
+5879: 6fc08007ec2c4af6a0 f13 cc=91 A=1f Q=18 M=6ca r99=8 r62=1ffc880578  ; texenv.S:137
+587a: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; texenv.S:130
+587b: 6fc18007ec2d4af6a0 f13 cc=91 A=1f D=1 Q=1a M=6ca r99=8 r62=1ffc880578  ; texenv.S:138
+587c: 782071e7c100002200 f15 imm=2200 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texenv.S:141
+587d: 6e018007e86fc2ff40 f13 r220=1 A=18 D=1 r128=5 M=6c2 r110=5bd r99=8 r62=1ffc88017c  ; texenv.S:146
+5889: 77f64007c180f858c3 f14 xfer5 c4 cc=3 -> 58c3 imm=58c3 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:146
+588a: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; texenv.S:132
+588b: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; texenv.S:133
+588d: 1a0831d7d13e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=11 r62=1ffc67c170  ; texenv.S:134
+588f: 782071e7c200002201 f15 imm=2201 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texenv.S:142
+5890: 782071e7c3000080be f15 imm=80be r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texenv.S:143
+5891: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; texenv.S:135
+5892: 68000007ec2df1941a f13 cc=91 r148=340 Q=1b M=6f1 r110=4bd r62=1ffc002578  ; texenv.S:148
+5893: 782071e7c100002100 f15 imm=2100 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texenv.S:152
+5894: 782071e7c200002101 f15 imm=2101 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texenv.S:153
+5895: 782071e7c300000be2 f15 imm=be2 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texenv.S:154
+5896: 782071e7c400008062 f15 imm=8062 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texenv.S:155
+5897: 782071e7c500001e01 f15 imm=1e01 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; texenv.S:156
+5898: 18c871411f3844941e f3  imm=104 r215=3 cc=91 B=18 C=1e E=6 r148=3c0 Q=1c M=6ca r110=4bd r71=1 r62=1ffc65a578  ; texenv.S:150
+5899: 6e018007e86fc2ff43 f13 r220=1 A=18 D=1 r128=1d M=6c2 r110=5bd r99=8 r62=1ffc88017c  ; texenv.S:160
+589a: 6e028007e86fc2ecbb f13 r220=1 A=18 D=2 r148=360 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:161
+589b: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:160
+589c: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:161
+589d: 6e038007e86fc2ecbb f13 r220=1 A=18 D=3 r148=360 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:162
+589e: 6e048007e86fc2ecbb f13 r220=1 A=18 D=4 r148=360 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:163
+589f: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:162
+58a0: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:163
+58a1: 6e058007e86fc2ecbb f13 r220=1 A=18 D=5 r148=360 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:164
+58a2: 6e068007e86fc2ecbb f13 r220=1 A=18 D=6 r148=360 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:165
+58a3: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:164
+58a4: 68000007c12e58941e f13 cc=111 r198=2 r148=3c0 Q=1c M=6d8 r110=4bd r62=1ffd002578  ; texenv.S:165
+58ac: 68000007e86fc297dc f13 r220=1 r148=39e M=6c2 r110=43d r62=1ffc00317c  ; texenv.S:166
+58b7: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:149
+58b8: 77f64007c100f85933 f14 xfer5 c4 cc=2 -> 5933 imm=5933 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:166
+58ba: 77f24007c880f85921 f14 xfer4 c4 cc=11 -> 5921 imm=5921 seq=4fe4 r71=1 r25=3e39c00  ; texenv.S:168
+58c1: 77fa47e7c880f80293 f14 imm=293 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:167
+58c3: 6fc28007ec2ccaf6a0 f13 cc=91 A=1f D=2 Q=19 M=6ca r99=8 r62=1ffc880578  ; texenv.S:171
+58c4: 6fc38007ec2dcaf6a0 f13 cc=91 A=1f D=3 Q=1b M=6ca r99=8 r62=1ffc880578  ; texenv.S:172
+58c5: 6fc48007ec2e4af6a0 f13 cc=91 A=1f D=4 Q=1c M=6ca r99=8 r62=1ffc880578  ; texenv.S:173
+58c6: 6e028007e86fc2ecb8 f13 r220=1 A=18 D=2 r148=300 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:174
+58d2: 77f64007c180f858fc f14 xfer5 c4 cc=3 -> 58fc imm=58fc cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:174
+58db: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:177
+58dc: 180341315f3044f8a0 f3  imm=c5 cc=91 C=1e Q=18 M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; texenv.S:183
+58dd: 782071e7c0000c0c00 f15 imm=c0c00 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texenv.S:184
+58de: 782071e7c1400c0000 f15 imm=400c0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; texenv.S:185
+58df: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:178
+58e0: 782071e7c2000c0c00 f15 imm=c0c00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texenv.S:186
+58e1: 782071e7c3400c0000 f15 imm=400c0000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; texenv.S:187
+58e2: 782071e7c400070000 f15 imm=70000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; texenv.S:188
+58e3: 782071e7c500ffffff f15 imm=ffffff r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; texenv.S:189
+58e4: 782071e7c6015e1402 f15 imm=15e1402 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; texenv.S:190
+58e5: 782071e7c7015f1413 f15 imm=15f1413 r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; texenv.S:191
+58e6: 77fa47e7c880f8028b f14 imm=28b r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:177
+58e7: 2e04bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=4 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:194
+58e8: 77fa47e7c880f8028c f14 imm=28c r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:178
+58e9: 28004132fa8044941b f5  imm=1f5 C=1e r148=360 M=6ca r110=4bd r99=2 r95=13 r71=1 r62=1ffc21a178 r25=3ea9c00  ; texenv.S:179
+58ea: 6605bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=5 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; texenv.S:195
+58eb: 2e06bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=6 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:196
+58ec: 66007c07ea0000831a f12 r213=3 A=18 B=1e r148=358 M=47f r110=695 r99=4 r95=20 r62=1ffccc3173 r25=3e69c00  ; texenv.S:197
+58ed: 66017c07c880008319 f12 r213=2 r198=11 A=18 B=1e D=1 r148=338 M=47f r110=695 r99=4 r95=20 r62=1ffdcc3173 r25=3e69c00  ; texenv.S:198
+58ee: 2e04bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=4 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:201
+58ef: 28004132fa8044941c f5  imm=1f5 C=1e r148=380 M=6ca r110=4bd r99=2 r95=13 r71=1 r62=1ffc21a178 r25=3ea9c00  ; texenv.S:180
+58f0: 6605bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=5 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; texenv.S:202
+58f1: 2e07bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=7 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:203
+58f2: 66027c07ea0000831b f12 r213=3 A=18 B=1e D=2 r148=378 M=47f r110=695 r99=4 r95=20 r62=1ffccc3173 r25=3e69c00  ; texenv.S:204
+58f3: 77f24007c880f85942 f14 xfer4 c4 cc=11 -> 5942 <mTexEnvDone> imm=5942 seq=4fe4 r71=1 r25=3e39c00  ; texenv.S:207
+58f4: 66037c07c88000831c f12 r213=2 r198=11 A=18 B=1e D=3 r148=398 M=47f r110=695 r99=4 r95=20 r62=1ffdcc3173 r25=3e69c00  ; texenv.S:205
+58f6: 77fa47e7c880f8028d f14 imm=28d r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:179
+58f8: 77fa47e7c880f8028e f14 imm=28e r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:180
+58fc: 6e038007e86fc2ecb8 f13 r220=1 A=18 D=3 r148=300 M=6c2 r110=4bd r99=8 r62=1ffc88217c  ; texenv.S:211
+5908: 77f64007c180f85942 f14 xfer5 c4 cc=3 -> 5942 <mTexEnvDone> imm=5942 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:211
+5911: 68000007e83fca941a f13 r148=340 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:212
+5913: 68000007e83fca9419 f13 r148=320 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:213
+5915: 68000007e83fca941b f13 r148=360 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:214
+5917: 68000007e83fca941c f13 r148=380 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; texenv.S:215
+591a: 77fa47e7c880f8028f f14 imm=28f r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:212
+591c: 77fa47e7c880f80290 f14 imm=290 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:213
+591e: 77fa47e7c880f80291 f14 imm=291 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:214
+5920: 77fa47e7c880f80292 f14 imm=292 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; texenv.S:215
+5921: 77f60007ca00f8594d f14 xfer5 c0 cc=14 -> 594d <mValidateTexenvMode> imm=594d cc=14 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:218
+592a: 77f24007c880f85942 f14 xfer4 c4 cc=11 -> 5942 <mTexEnvDone> imm=5942 seq=4fe4 r71=1 r25=3e39c00  ; texenv.S:221
+5930: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; texenv.S:220
+5933: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; texenv.S:226
+5934: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:226
+5935: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; texenv.S:226
+5936: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; texenv.S:226
+5937: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; texenv.S:227
+5938: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; texenv.S:227
+5939: 77f24007c880f8d520 f14 xfer4 c4 cc=11 -> d520 <mErrInvalidEnum> imm=d520 seq=4fe4 r71=1 r25=3e39c00  ; texenv.S:228
+mTexEnvDone:
+5942: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; texenv.S:111
+5943: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; texenv.S:111
+5944: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 5944 seq=1cfdf r25=3e3fc00  ; texenv.S:114
+5949: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; texenv.S:113
+mValidateTexenvMode:
+594d: 77fa4fe7c880f80293 f14 imm=293 C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:54
+594f: 77fa4fe7c880f8028f f14 imm=28f C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:67
+5952: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; texenv.S:44
+5953: 782071e7c000002100 f15 imm=2100 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texenv.S:47
+5954: 68000007ec2dcaf8a0 f13 cc=91 Q=1b M=6ca r110=7bd r62=1ffc000578  ; texenv.S:54
+5955: 7e00f1e7c100002101 f15 imm=2101 r215=3 A=18 B=18 C=1e E=1 M=6ca r99=8 r71=1 r62=1ffced8178  ; texenv.S:47
+5956: 68000007ec2e4af8a0 f13 cc=91 Q=1c M=6ca r110=7bd r62=1ffc000578  ; texenv.S:67
+5957: 77fa4fe7c880f80290 f14 imm=290 C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:68
+5958: 7e01f1e7c200000be2 f15 imm=be2 r215=3 A=18 B=18 C=1e D=1 E=2 M=6ca r99=8 r71=1 r62=1ffced8178  ; texenv.S:48
+5959: 7e02f1e7c300008062 f15 imm=8062 r215=3 A=18 B=18 C=1e D=2 E=3 M=6ca r99=8 r71=1 r62=1ffced8178  ; texenv.S:49
+595a: 7e03f1e7c400001e01 f15 imm=1e01 r215=3 A=18 B=18 C=1e D=3 E=4 M=6ca r99=8 r71=1 r62=1ffced8178  ; texenv.S:50
+595b: 7e048007c000000000 f15 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; texenv.S:51
+595c: 68000007e86fc2c3bb f13 r220=1 r148=360 r128=2b M=6c2 r110=47d r62=1ffc0021fc  ; texenv.S:58
+595d: 68000007e86fc2c1bb f13 r220=1 r148=360 r128=29 M=6c2 r110=47d r62=1ffc0021fc  ; texenv.S:59
+595e: 68000007e86fc2c1bb f13 r220=1 r148=360 r128=29 M=6c2 r110=47d r62=1ffc0021fc  ; texenv.S:60
+595f: 68000007e86fc2c1bb f13 r220=1 r148=360 r128=29 M=6c2 r110=47d r62=1ffc0021fc  ; texenv.S:61
+5960: 68000007e86fc2c1bb f13 r220=1 r148=360 r128=29 M=6c2 r110=47d r62=1ffc0021fc  ; texenv.S:62
+5964: 77fa4fe7c880f80291 f14 imm=291 C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:69
+5965: 18004100133e43eebc f3  r219=1 C=1e G=13 r148=380 M=6d4 r110=4fd r71=1 r62=1ffc23e17c  ; texenv.S:57
+5966: 77fa4fe7c880f80292 f14 imm=292 C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:70
+5967: 700027e7c102987387 f14 imm=7387 r219=2 r198=2 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:58
+5968: 700027e7c10298738c f14 imm=738c r219=2 r198=2 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:59
+5969: 700027e7c102987391 f14 imm=7391 r219=2 r198=2 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:60
+596a: 700027e7c102987396 f14 imm=7396 r219=2 r198=2 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:61
+596b: 700027e7c102987396 f14 imm=7396 r219=2 r198=2 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:62
+596c: 68000007e82fd4ff63 f13 r128=1d M=6d4 r110=5fd r62=1ffc00017c  ; texenv.S:69
+596f: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; texenv.S:63
+5971: 68000007e86fd4ff61 f13 r220=1 r128=d M=6d4 r110=5fd r62=1ffc00017c  ; texenv.S:70
+5972: 77f64007ca10f8000b f14 xfer5.rel c4 cc=14 -> 597d imm=b cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; texenv.S:63
+597b: 77fa41e7c88198739b f14 imm=739b r219=1 C=1e G=13 r71=1 r62=1ffc23c170  ; texenv.S:72
+597c: 700027e7c1829873a0 f14 imm=73a0 r219=2 r198=3 C=1e G=13 r71=1 r62=1ffd23c170  ; texenv.S:73
+597d: 77fa4fe7c880f80294 f14 imm=294 C=1e r95=17 r71=1 r62=1ffc218170  ; texenv.S:78
+5984: 60003007ea0501de80 f12 r213=3 B=18 E=5 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; texenv.S:78
+598d: 76053607ca04900000 f14 r217=1 A=18 D=5 G=12 r99=8 r62=1ffc884170  ; texenv.S:78
+5995: 748be13fca00f80000 f14 A=12 C=13 r176=0 F=3f r95=17 r62=1ffcb18170  ; texenv.S:81
+5999: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; texenv.S:98
+599a: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; texenv.S:84
+599b: 782071e7c2015d1401 f15 imm=15d1401 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; texenv.S:86
+599c: 1828713fdf3e44f8a0 f3  imm=ff r215=3 B=18 C=1e E=1 M=6ca r110=7bd r71=1 r62=1ffc658178  ; texenv.S:81
+599d: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:89
+599e: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:90
+599f: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; texenv.S:93
+59a0: 18137d7d5f02c4f400 f3  imm=1f5 r213=3 B=1e C=1e r128=5 M=6ca r110=5bd r95=13 seq=6fe5 r71=1 r62=1ffc658178 r25=3e69c00  ; texenv.S:94

@@ -41,7 +41,7 @@ Binaries read for this note: the kernel video object (`kona_video.o`, functions
 0x53b6c0 and its only caller 0x4b78ac), and the diagnostic `irsaudit`
 (`vdac_regs` 0x101fffc0, `TEST_dacreg` 0x100957a0 and its walker 0x10095918,
 `vcWrite` 0x1014071c). All 6.5.30m. The ARM display firmware was not re-read in
-this pass; its behaviour below is quoted from `ucode/arm1_functions.md`.
+this pass; its behaviour below is quoted from `software/ucode/arm1_functions.md`.
 
 ## Answers at a glance
 

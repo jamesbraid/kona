@@ -1,7 +1,7 @@
 {
   "kona_kernel": [
     {
-      "path": "kona_kernel/gfx.o",
+      "path": "software/kernel/gfx.o",
       "filename": "gfx.o",
       "size": 53816,
       "sections": {
@@ -427,7 +427,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/gfx_io_space.o",
+      "path": "software/kernel/gfx_io_space.o",
       "filename": "gfx_io_space.o",
       "size": 9460,
       "sections": {
@@ -517,17 +517,17 @@
       "type": "ET_REL"
     },
     {
-      "filename": "kona_kernel/gfxs.a",
+      "filename": "software/kernel/gfxs.a",
       "size": 80964,
       "type": "data"
     },
     {
-      "filename": "kona_kernel/gfxstubs.a",
+      "filename": "software/kernel/gfxstubs.a",
       "size": 9508,
       "type": "data"
     },
     {
-      "path": "kona_kernel/kernel.o",
+      "path": "software/kernel/kernel.o",
       "filename": "kernel.o",
       "size": 1248568,
       "sections": {
@@ -7245,12 +7245,12 @@
       "type": "ET_REL"
     },
     {
-      "filename": "kona_kernel/kona.a",
+      "filename": "software/kernel/kona.a",
       "size": 363668,
       "type": "data"
     },
     {
-      "path": "kona_kernel/kona_attach.o",
+      "path": "software/kernel/kona_attach.o",
       "filename": "kona_attach.o",
       "size": 7524,
       "sections": {
@@ -7315,7 +7315,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_context.o",
+      "path": "software/kernel/kona_context.o",
       "filename": "kona_context.o",
       "size": 19828,
       "sections": {
@@ -7405,7 +7405,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_crash.o",
+      "path": "software/kernel/kona_crash.o",
       "filename": "kona_crash.o",
       "size": 9844,
       "sections": {
@@ -7469,7 +7469,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_ddrn.o",
+      "path": "software/kernel/kona_ddrn.o",
       "filename": "kona_ddrn.o",
       "size": 10724,
       "sections": {
@@ -7533,7 +7533,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_debug.o",
+      "path": "software/kernel/kona_debug.o",
       "filename": "kona_debug.o",
       "size": 5508,
       "sections": {
@@ -7585,7 +7585,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_dma.o",
+      "path": "software/kernel/kona_dma.o",
       "filename": "kona_dma.o",
       "size": 26372,
       "sections": {
@@ -7771,7 +7771,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_edtinit.o",
+      "path": "software/kernel/kona_edtinit.o",
       "filename": "kona_edtinit.o",
       "size": 12468,
       "sections": {
@@ -7857,7 +7857,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_edtinit_hip2.o",
+      "path": "software/kernel/kona_edtinit_hip2.o",
       "filename": "kona_edtinit_hip2.o",
       "size": 22228,
       "sections": {
@@ -7959,7 +7959,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_flow.o",
+      "path": "software/kernel/kona_flow.o",
       "filename": "kona_flow.o",
       "size": 15412,
       "sections": {
@@ -8089,7 +8089,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_frs.o",
+      "path": "software/kernel/kona_frs.o",
       "filename": "kona_frs.o",
       "size": 5028,
       "sections": {
@@ -8141,7 +8141,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_genlock.o",
+      "path": "software/kernel/kona_genlock.o",
       "filename": "kona_genlock.o",
       "size": 4596,
       "sections": {
@@ -8187,7 +8187,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_geprint.o",
+      "path": "software/kernel/kona_geprint.o",
       "filename": "kona_geprint.o",
       "size": 9156,
       "sections": {
@@ -8239,7 +8239,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_info.o",
+      "path": "software/kernel/kona_info.o",
       "filename": "kona_info.o",
       "size": 4596,
       "sections": {
@@ -8285,7 +8285,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_intr.o",
+      "path": "software/kernel/kona_intr.o",
       "filename": "kona_intr.o",
       "size": 9268,
       "sections": {
@@ -8342,7 +8342,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_intr_hip2.o",
+      "path": "software/kernel/kona_intr_hip2.o",
       "filename": "kona_intr_hip2.o",
       "size": 8148,
       "sections": {
@@ -8405,7 +8405,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_ioctl.o",
+      "path": "software/kernel/kona_ioctl.o",
       "filename": "kona_ioctl.o",
       "size": 14452,
       "sections": {
@@ -8459,7 +8459,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_map.o",
+      "path": "software/kernel/kona_map.o",
       "filename": "kona_map.o",
       "size": 9044,
       "sections": {
@@ -8522,7 +8522,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_mapram_hip2.o",
+      "path": "software/kernel/kona_mapram_hip2.o",
       "filename": "kona_mapram_hip2.o",
       "size": 7492,
       "sections": {
@@ -8597,7 +8597,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_mem.o",
+      "path": "software/kernel/kona_mem.o",
       "filename": "kona_mem.o",
       "size": 32148,
       "sections": {
@@ -8783,7 +8783,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_nclops.o",
+      "path": "software/kernel/kona_nclops.o",
       "filename": "kona_nclops.o",
       "size": 24468,
       "sections": {
@@ -8909,7 +8909,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_sched.o",
+      "path": "software/kernel/kona_sched.o",
       "filename": "kona_sched.o",
       "size": 6692,
       "sections": {
@@ -8961,7 +8961,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_setup.o",
+      "path": "software/kernel/kona_setup.o",
       "filename": "kona_setup.o",
       "size": 8644,
       "sections": {
@@ -9018,7 +9018,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_share.o",
+      "path": "software/kernel/kona_share.o",
       "filename": "kona_share.o",
       "size": 5636,
       "sections": {
@@ -9070,7 +9070,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_stubs.o",
+      "path": "software/kernel/kona_stubs.o",
       "filename": "kona_stubs.o",
       "size": 4372,
       "sections": {
@@ -9115,7 +9115,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_timeout.o",
+      "path": "software/kernel/kona_timeout.o",
       "filename": "kona_timeout.o",
       "size": 12836,
       "sections": {
@@ -9223,7 +9223,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_tport.o",
+      "path": "software/kernel/kona_tport.o",
       "filename": "kona_tport.o",
       "size": 24756,
       "sections": {
@@ -9391,7 +9391,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/kona_video.o",
+      "path": "software/kernel/kona_video.o",
       "filename": "kona_video.o",
       "size": 26916,
       "sections": {
@@ -9565,7 +9565,7 @@
       "type": "ET_REL"
     },
     {
-      "path": "kona_kernel/rrm.o",
+      "path": "software/kernel/rrm.o",
       "filename": "rrm.o",
       "size": 63984,
       "sections": {
@@ -10052,7 +10052,7 @@
   ],
   "libglcore": [
     {
-      "path": "libglcore/libGL.so",
+      "path": "software/opengl/libGL.so",
       "filename": "libGL.so",
       "size": 567424,
       "sections": {
@@ -14639,7 +14639,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "libglcore/libGLcore.so",
+      "path": "software/opengl/libGLcore.so",
       "filename": "libGLcore.so",
       "size": 3434096,
       "sections": {
@@ -40937,7 +40937,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "libglcore/libGLcore_n32.so",
+      "path": "software/opengl/libGLcore_n32.so",
       "filename": "libGLcore_n32.so",
       "size": 3105592,
       "sections": {
@@ -67885,7 +67885,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "libglcore/libGLcore_o32.so",
+      "path": "software/opengl/libGLcore_o32.so",
       "filename": "libGLcore_o32.so",
       "size": 2892600,
       "sections": {
@@ -94005,7 +94005,7 @@
   ],
   "irisgl": [
     {
-      "path": "irisgl/libfm.so",
+      "path": "software/irisgl/libfm.so",
       "filename": "libfm.so",
       "size": 683872,
       "sections": {
@@ -97847,7 +97847,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "irisgl/libgl.so",
+      "path": "software/irisgl/libgl.so",
       "filename": "libgl.so",
       "size": 1833076,
       "sections": {
@@ -118186,7 +118186,7 @@
   ],
   "ddx": [
     {
-      "path": "ddx/Xsgi",
+      "path": "software/xsgi/Xsgi",
       "filename": "Xsgi",
       "size": 3120928,
       "sections": {
@@ -136737,7 +136737,7 @@
       "type": "ET_EXEC"
     },
     {
-      "path": "ddx/glx.so",
+      "path": "software/xsgi/glx.so",
       "filename": "glx.so",
       "size": 646360,
       "sections": {
@@ -144653,7 +144653,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "ddx/kona.so",
+      "path": "software/xsgi/kona.so",
       "filename": "kona.so",
       "size": 1710244,
       "sections": {
@@ -149606,7 +149606,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "ddx/konad.so",
+      "path": "software/xsgi/konad.so",
       "filename": "konad.so",
       "size": 1759116,
       "sections": {
@@ -154475,7 +154475,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "ddx/konal.so",
+      "path": "software/xsgi/konal.so",
       "filename": "konal.so",
       "size": 1759116,
       "sections": {
@@ -159344,7 +159344,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "ddx/konas.so",
+      "path": "software/xsgi/konas.so",
       "filename": "konas.so",
       "size": 1759116,
       "sections": {
@@ -164213,7 +164213,7 @@
       "type": "ET_DYN"
     },
     {
-      "path": "ddx/konavis.so",
+      "path": "software/xsgi/konavis.so",
       "filename": "konavis.so",
       "size": 330796,
       "sections": {
@@ -164242,609 +164242,609 @@
   ],
   "ucode": [
     {
-      "filename": "ucode/KONA/arm1.u",
+      "filename": "software/ucode/KONA/arm1.u",
       "size": 465452,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/arm1_kpm.u",
+      "filename": "software/ucode/KONA/arm1_kpm.u",
       "size": 7176,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1024x768_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1024x768_60.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1200x900_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1200x900_72.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x1024+1920x1080_72.cmb",
       "size": 3688,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x1024+4@640x480_60.cmb",
       "size": 7936,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x1024+NTSC_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x1024+NTSC_60.cmb",
       "size": 3688,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x1024_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x1024_60.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x1024_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x1024_72.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x492_120s.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x492_120s.cmb",
       "size": 2276,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1280x907+5@640x453_60.cmb",
       "size": 10768,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1600x1024_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1600x1024_60.cmb",
       "size": 2312,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1600x1024_60p.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1600x1024_60p.cmb",
       "size": 2316,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1600x1200_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1600x1200_60.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1920x1035_30i.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1920x1035_30i.cmb",
       "size": 2276,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1920x1080_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1920x1080_72.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/1920x1200_66.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/1920x1200_66.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/2048x1120_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/2048x1120_72.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/2@1280x1024_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/2@1280x1024_60.cmb",
       "size": 3688,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/2@1280x1024_72.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/2@1280x1024_72.cmb",
       "size": 3688,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/3@1024x768_60+1280x959_30i.cmb",
       "size": 6520,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/3@1280x1024_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/3@1280x1024_60.cmb",
       "size": 5104,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/640x480_120s.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/640x480_120s.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/640x512_120s.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/640x512_120s.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/7@800x600_60+NTSC.cmb",
       "size": 12184,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/8@640x480_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/8@640x480_60.cmb",
       "size": 12184,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/8@800x600_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/8@800x600_60.cmb",
       "size": 12184,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/cmb/960x680_60.cmb",
+      "filename": "software/ucode/KONA/dg4/cmb/960x680_60.cmb",
       "size": 2272,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_120_20e21s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_120_20e21s.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_120s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_120s.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_50.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_50.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_60.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_96_20e21s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_96_20e21s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1024x768_96s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1024x768_96s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1080x809_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1080x809_30i.vfo",
       "size": 18312,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1120x840_96_20e21s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1120x840_96_20e21s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1120x840_96s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1120x840_96s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1200x900_72.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1200x900_72.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_114s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_114s.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_120s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_120s.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_180qi.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_180qi.vfo",
       "size": 19564,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_25r2.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_25r2.vfo",
       "size": 18320,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_25r3.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_25r3.vfo",
       "size": 18628,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_30r2.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_30r2.vfo",
       "size": 18324,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_50.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_50.vfo",
       "size": 17992,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_60.vfo",
       "size": 17992,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x1024_72.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x1024_72.vfo",
       "size": 17992,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x492_120s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x492_120s.vfo",
       "size": 18320,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x720_5994p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x720_5994p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x720_60p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x720_60p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1280x959_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1280x959_30i.vfo",
       "size": 18312,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1500x1200_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1500x1200_60.vfo",
       "size": 18092,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1600x1024_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1600x1024_60.vfo",
       "size": 17996,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1600x1024_60p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1600x1024_60p.vfo",
       "size": 17996,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1600x1200_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1600x1200_60.vfo",
       "size": 17992,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1760x1100_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1760x1100_60.vfo",
       "size": 18016,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1035_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1035_30i.vfo",
       "size": 18532,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_2398p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_2398p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_2398psf.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_2398psf.vfo",
       "size": 18308,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_24p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_24p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_24psf.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_24psf.vfo",
       "size": 18308,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_25i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_25i.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_30i.vfo",
       "size": 18532,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_5994i_bilevel.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_5994i_bilevel.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_60.vfo",
       "size": 18008,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_60i_bilevel.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_60i_bilevel.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1080_72.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1080_72.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1200_2398r2.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1200_2398r2.vfo",
       "size": 18324,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1200_24r2.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1200_24r2.vfo",
       "size": 18324,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1200_50.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1200_50.vfo",
       "size": 18016,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1200_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1200_60.vfo",
       "size": 18016,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/1920x1200_66.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/1920x1200_66.vfo",
       "size": 18016,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/2048x1120_72.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/2048x1120_72.vfo",
       "size": 18012,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x480_120s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x480_120s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x480_180q.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x480_180q.vfo",
       "size": 18628,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x480_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x480_60.vfo",
       "size": 18008,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x486_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x486_30i.vfo",
       "size": 18380,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x512_120s.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x512_120s.vfo",
       "size": 18300,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x512_180q.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x512_180q.vfo",
       "size": 18628,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/640x512_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/640x512_60.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/646x486_30i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/646x486_30i.vfo",
       "size": 18388,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/646x486_30if.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/646x486_30if.vfo",
       "size": 18404,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/768x576_25i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/768x576_25i.vfo",
       "size": 18380,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/768x576_25if.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/768x576_25if.vfo",
       "size": 18404,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/800x600_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/800x600_60.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/960x620_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/960x620_60.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/960x680_60.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/960x680_60.vfo",
       "size": 18088,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/CCIR601_525.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/CCIR601_525.vfo",
       "size": 18388,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo",
       "size": 17952,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/CCIR601_625.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/CCIR601_625.vfo",
       "size": 18388,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/CCIR601_625_DGO.vfo",
       "size": 18388,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1280x720_5994p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1280x720_60p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1280x720_60p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398p.vfo",
       "size": 18004,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398psf.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_2398psf.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_24p.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24p.vfo",
       "size": 18000,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_24psf.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_24psf.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_50i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_50i.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_5994i.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_1920x1080_60i.vfo",
       "size": 18304,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_720x486_5994i.vfo",
       "size": 18384,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo",
+      "filename": "software/ucode/KONA/dg4/vfo/HDGVO_720x576_50i.vfo",
       "size": 18384,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dg4/vfo/README",
+      "filename": "software/ucode/KONA/dg4/vfo/README",
       "size": 86997,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/dgo1/dgo.mcs",
+      "filename": "software/ucode/KONA/dgo1/dgo.mcs",
       "size": 93912,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ge.hex",
+      "filename": "software/ucode/KONA/ge.hex",
       "size": 1563025,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ge.u",
+      "filename": "software/ucode/KONA/ge.u",
       "size": 2526129,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ge11.u",
+      "filename": "software/ucode/KONA/ge11.u",
       "size": 1275741,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ge_kpm.hex",
+      "filename": "software/ucode/KONA/ge_kpm.hex",
       "size": 4650,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ge_symbols",
+      "filename": "software/ucode/KONA/ge_symbols",
       "size": 67100,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/ged1b.u",
+      "filename": "software/ucode/KONA/ged1b.u",
       "size": 14411,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/geif.u",
+      "filename": "software/ucode/KONA/geif.u",
       "size": 2048,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/tport.bin",
+      "filename": "software/ucode/KONA/tport.bin",
       "size": 127889,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/1280x1024.monitor",
+      "filename": "software/ucode/KONA/vof/1280x1024.monitor",
       "size": 295,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/640x480_60.vof",
+      "filename": "software/ucode/KONA/vof/640x480_60.vof",
       "size": 6775,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/default.monitor",
+      "filename": "software/ucode/KONA/vof/default.monitor",
       "size": 263,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/default.vof",
+      "filename": "software/ucode/KONA/vof/default.vof",
       "size": 7588,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/ntsc.monitor",
+      "filename": "software/ucode/KONA/vof/ntsc.monitor",
       "size": 294,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/vga.monitor",
+      "filename": "software/ucode/KONA/vof/vga.monitor",
       "size": 259,
       "type": "data"
     },
     {
-      "filename": "ucode/KONA/vof/vga.vof",
+      "filename": "software/ucode/KONA/vof/vga.vof",
       "size": 7029,
       "type": "data"
     }
   ],
   "diags": [
     {
-      "filename": "diags/IR/bin/availmon",
+      "filename": "software/diags/IR/bin/availmon",
       "size": 1140,
       "type": "data"
     },
     {
-      "path": "diags/IR/bin/hyper",
+      "path": "software/diags/IR/bin/hyper",
       "filename": "hyper",
       "size": 38544,
       "sections": {
@@ -165374,7 +165374,7 @@
       "type": "ET_EXEC"
     },
     {
-      "path": "diags/IR/bin/irsaudit",
+      "path": "software/diags/IR/bin/irsaudit",
       "filename": "irsaudit",
       "size": 2967860,
       "sections": {
@@ -173045,1492 +173045,1492 @@
       "type": "ET_EXEC"
     },
     {
-      "filename": "diags/IR/data/1280x1024_60.vfo",
+      "filename": "software/diags/IR/data/1280x1024_60.vfo",
       "size": 17920,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/160x100_5000.vfo",
+      "filename": "software/diags/IR/data/160x100_5000.vfo",
       "size": 17967,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/CCIR601_525_DGO.vfo",
+      "filename": "software/diags/IR/data/CCIR601_525_DGO.vfo",
       "size": 17920,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/aaspoke.tbus",
+      "filename": "software/diags/IR/data/aaspoke.tbus",
       "size": 23268,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bef1.qtcbist",
+      "filename": "software/diags/IR/data/bef1.qtcbist",
       "size": 6739,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bef1.tcbist",
+      "filename": "software/diags/IR/data/bef1.tcbist",
       "size": 38120,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bef1_256Kx16.sdbist",
+      "filename": "software/diags/IR/data/bef1_256Kx16.sdbist",
       "size": 9261,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln.netmap.Z",
+      "filename": "software/diags/IR/data/bpln.netmap.Z",
       "size": 110673,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln.short.Z",
+      "filename": "software/diags/IR/data/bpln.short.Z",
       "size": 9446,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln.stuck.Z",
+      "filename": "software/diags/IR/data/bpln.stuck.Z",
       "size": 1228,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilo.netmap.Z",
+      "filename": "software/diags/IR/data/bpln_hilo.netmap.Z",
       "size": 111365,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilo.short.Z",
+      "filename": "software/diags/IR/data/bpln_hilo.short.Z",
       "size": 9469,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilo.stuck.Z",
+      "filename": "software/diags/IR/data/bpln_hilo.stuck.Z",
       "size": 1230,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilolite.netmap.Z",
+      "filename": "software/diags/IR/data/bpln_hilolite.netmap.Z",
       "size": 81167,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilolite.short.Z",
+      "filename": "software/diags/IR/data/bpln_hilolite.short.Z",
       "size": 7274,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_hilolite.stuck.Z",
+      "filename": "software/diags/IR/data/bpln_hilolite.stuck.Z",
       "size": 995,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_oheo.netmap.Z",
+      "filename": "software/diags/IR/data/bpln_oheo.netmap.Z",
       "size": 116785,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_oheo.short.Z",
+      "filename": "software/diags/IR/data/bpln_oheo.short.Z",
       "size": 10481,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/bpln_oheo.stuck.Z",
+      "filename": "software/diags/IR/data/bpln_oheo.stuck.Z",
       "size": 1418,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc.netmap.Z",
       "size": 23726,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc.short.Z",
       "size": 3776,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc.stuck.Z",
       "size": 936,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dacsamp.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dacsamp.netmap.Z",
       "size": 24302,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dacsamp.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dacsamp.short.Z",
       "size": 4880,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dacsamp.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dacsamp.stuck.Z",
       "size": 1015,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp.netmap.Z",
       "size": 47072,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp.short.Z",
       "size": 10194,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp.stuck.Z",
       "size": 2144,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.netmap.Z",
       "size": 47930,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.short.Z",
       "size": 10712,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dplex_dacsamp_lvds.stuck.Z",
       "size": 2212,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dvp.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dvp.netmap.Z",
       "size": 30281,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dvp.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dvp.short.Z",
       "size": 4633,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_dvp.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_dvp.stuck.Z",
       "size": 1083,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_hdgvo.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_hdgvo.netmap.Z",
       "size": 30748,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_hdgvo.short.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_hdgvo.short.Z",
       "size": 4364,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_2voc_hdgvo.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_2voc_hdgvo.stuck.Z",
       "size": 1068,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_8voc.netmap.Z",
       "size": 49108,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc.short.Z",
+      "filename": "software/diags/IR/data/dg4_8voc.short.Z",
       "size": 6963,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_8voc.stuck.Z",
       "size": 3313,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dacsamp.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dacsamp.netmap.Z",
       "size": 51438,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dacsamp.short.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dacsamp.short.Z",
       "size": 10465,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dacsamp.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dacsamp.stuck.Z",
       "size": 3581,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dvp.netmap.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dvp.netmap.Z",
       "size": 58825,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dvp.short.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dvp.short.Z",
       "size": 7888,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/dg4_8voc_dvp.stuck.Z",
+      "filename": "software/diags/IR/data/dg4_8voc_dvp.stuck.Z",
       "size": 3536,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fm2.qtcbist",
+      "filename": "software/diags/IR/data/fm2.qtcbist",
       "size": 805,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fm2.tcbist",
+      "filename": "software/diags/IR/data/fm2.tcbist",
       "size": 4290,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fm2null.qtcbist",
+      "filename": "software/diags/IR/data/fm2null.qtcbist",
       "size": 826,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fm2null.tcbist",
+      "filename": "software/diags/IR/data/fm2null.tcbist",
       "size": 4397,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc.netmap.Z",
       "size": 133686,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc.short.Z",
       "size": 11482,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc.stuck.Z",
       "size": 1475,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_0.netmap.Z",
       "size": 133048,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_0.short.Z",
       "size": 10325,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_0.stuck.Z",
       "size": 1502,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_1.netmap.Z",
       "size": 132842,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_1.short.Z",
       "size": 10337,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_2rm_1.stuck.Z",
       "size": 1523,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_0.netmap.Z",
       "size": 132330,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_0.short.Z",
       "size": 10182,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_0.stuck.Z",
       "size": 1470,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_1.netmap.Z",
       "size": 132529,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_1.short.Z",
       "size": 10226,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_1.stuck.Z",
       "size": 1468,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_2.netmap.Z",
       "size": 132281,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_2.short.Z",
       "size": 10194,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_2.stuck.Z",
       "size": 1476,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_3.netmap.Z",
       "size": 132633,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_3.short.Z",
       "size": 10165,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_2voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_2voc_4rm_3.stuck.Z",
       "size": 1490,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc.netmap.Z",
       "size": 151433,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc.short.Z",
       "size": 12631,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc.stuck.Z",
       "size": 1626,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_0.netmap.Z",
       "size": 151017,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_0.short.Z",
       "size": 11278,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_0.stuck.Z",
       "size": 1659,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_1.netmap.Z",
       "size": 151056,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_1.short.Z",
       "size": 11312,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_2rm_1.stuck.Z",
       "size": 1670,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_0.netmap.Z",
       "size": 150622,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_0.short.Z",
       "size": 11170,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_0.stuck.Z",
       "size": 1600,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_1.netmap.Z",
       "size": 150737,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_1.short.Z",
       "size": 11216,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_1.stuck.Z",
       "size": 1616,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_2.netmap.Z",
       "size": 150623,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_2.short.Z",
       "size": 11164,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_2.stuck.Z",
       "size": 1627,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_3.netmap.Z",
       "size": 150941,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_3.short.Z",
       "size": 11208,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_8voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_8voc_4rm_3.stuck.Z",
       "size": 1627,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc.netmap.Z",
       "size": 153451,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc.short.Z",
       "size": 24538,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc.stuck.Z",
       "size": 2902,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_0.netmap.Z",
       "size": 147438,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_0.short.Z",
       "size": 24379,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_0.stuck.Z",
       "size": 2959,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_1.netmap.Z",
       "size": 147424,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_1.short.Z",
       "size": 24414,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_2rm_1.stuck.Z",
       "size": 2969,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_0.netmap.Z",
       "size": 147756,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_0.short.Z",
       "size": 24417,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_0.stuck.Z",
       "size": 2917,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_1.netmap.Z",
       "size": 147909,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_1.short.Z",
       "size": 24482,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_1.stuck.Z",
       "size": 2933,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_2.netmap.Z",
       "size": 147810,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_2.short.Z",
       "size": 24482,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_2.stuck.Z",
       "size": 2936,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_3.netmap.Z",
       "size": 147899,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_3.short.Z",
       "size": 24415,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_2voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_2voc_4rm_3.stuck.Z",
       "size": 2930,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc.netmap.Z",
       "size": 171755,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc.short.Z",
       "size": 25843,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc.stuck.Z",
       "size": 3079,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_0.netmap.Z",
       "size": 165621,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_0.short.Z",
       "size": 25752,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_0.stuck.Z",
       "size": 3127,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_1.netmap.Z",
       "size": 165585,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_1.short.Z",
       "size": 25768,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_2rm_1.stuck.Z",
       "size": 3134,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_0.netmap.Z",
       "size": 165953,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_0.short.Z",
       "size": 25831,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_0.stuck.Z",
       "size": 3091,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_1.netmap.Z",
       "size": 166168,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_1.short.Z",
       "size": 25831,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_1.stuck.Z",
       "size": 3095,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_2.netmap.Z",
       "size": 165990,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_2.short.Z",
       "size": 25772,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_2.stuck.Z",
       "size": 3100,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_3.netmap.Z",
       "size": 166081,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_3.short.Z",
       "size": 25847,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm11_8voc_4rm_3.stuck.Z",
       "size": 3110,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc.netmap.Z",
       "size": 86443,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc.short.Z",
       "size": 5564,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc.stuck.Z",
       "size": 986,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_0.netmap.Z",
       "size": 86027,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_0.short.Z",
       "size": 4877,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_0.stuck.Z",
       "size": 997,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_1.netmap.Z",
       "size": 85901,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_1.short.Z",
       "size": 4876,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_2voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_2voc_2rm_1.stuck.Z",
       "size": 1003,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc.netmap.Z",
       "size": 105873,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc.short.Z",
       "size": 6499,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc.stuck.Z",
       "size": 1142,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_0.netmap.Z",
       "size": 105327,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_0.short.Z",
       "size": 5637,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_0.stuck.Z",
       "size": 1142,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_1.netmap.Z",
       "size": 105345,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_1.short.Z",
       "size": 5626,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rm8_8voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rm8_8voc_2rm_1.stuck.Z",
       "size": 1151,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc.netmap.Z",
       "size": 149564,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc.short.Z",
       "size": 27579,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc.stuck.Z",
       "size": 2885,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_0.netmap.Z",
       "size": 149721,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_0.short.Z",
       "size": 27092,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_0.stuck.Z",
       "size": 2923,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_1.netmap.Z",
       "size": 149755,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_1.short.Z",
       "size": 27110,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_2rm_1.stuck.Z",
       "size": 2933,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_0.netmap.Z",
       "size": 149754,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_0.short.Z",
       "size": 27005,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_0.stuck.Z",
       "size": 2918,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_1.netmap.Z",
       "size": 149597,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_1.short.Z",
       "size": 27062,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_1.stuck.Z",
       "size": 2875,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_2.netmap.Z",
       "size": 149570,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_2.short.Z",
       "size": 27033,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_2.stuck.Z",
       "size": 2909,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_3.netmap.Z",
       "size": 149667,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_3.short.Z",
       "size": 27093,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_2voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_2voc_4rm_3.stuck.Z",
       "size": 2899,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc.netmap.Z",
       "size": 167684,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc.short.Z",
       "size": 29103,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc.stuck.Z",
       "size": 3049,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_0.netmap.Z",
       "size": 167828,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_0.short.Z",
       "size": 28706,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_0.stuck.Z",
       "size": 3097,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_1.netmap.Z",
       "size": 167921,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_1.short.Z",
       "size": 28668,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_2rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_2rm_1.stuck.Z",
       "size": 3085,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_0.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_0.netmap.Z",
       "size": 167882,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_0.short.Z",
       "size": 28595,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_0.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_0.stuck.Z",
       "size": 3064,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_1.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_1.netmap.Z",
       "size": 167777,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_1.short.Z",
       "size": 28635,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_1.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_1.stuck.Z",
       "size": 3071,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_2.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_2.netmap.Z",
       "size": 167730,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_2.short.Z",
       "size": 28586,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_2.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_2.stuck.Z",
       "size": 3074,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_3.netmap.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_3.netmap.Z",
       "size": 167663,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_3.short.Z",
       "size": 28652,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/fpln_rmtm7_8voc_4rm_3.stuck.Z",
+      "filename": "software/diags/IR/data/fpln_rmtm7_8voc_4rm_3.stuck.Z",
       "size": 3089,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_4ge.netmap.Z",
+      "filename": "software/diags/IR/data/ge12_4ge.netmap.Z",
       "size": 29182,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_4ge.short.Z",
+      "filename": "software/diags/IR/data/ge12_4ge.short.Z",
       "size": 4693,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_4ge.stuck.Z",
+      "filename": "software/diags/IR/data/ge12_4ge.stuck.Z",
       "size": 1179,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_btm4ges.netmap.Z",
+      "filename": "software/diags/IR/data/ge12_btm4ges.netmap.Z",
       "size": 40115,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_btm4ges.short.Z",
+      "filename": "software/diags/IR/data/ge12_btm4ges.short.Z",
       "size": 5813,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_btm4ges.stuck.Z",
+      "filename": "software/diags/IR/data/ge12_btm4ges.stuck.Z",
       "size": 1455,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_noge.netmap.Z",
+      "filename": "software/diags/IR/data/ge12_noge.netmap.Z",
       "size": 13551,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_noge.short.Z",
+      "filename": "software/diags/IR/data/ge12_noge.short.Z",
       "size": 1737,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_noge.stuck.Z",
+      "filename": "software/diags/IR/data/ge12_noge.stuck.Z",
       "size": 359,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_top4ges.netmap.Z",
+      "filename": "software/diags/IR/data/ge12_top4ges.netmap.Z",
       "size": 40089,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_top4ges.short.Z",
+      "filename": "software/diags/IR/data/ge12_top4ges.short.Z",
       "size": 5800,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge12_top4ges.stuck.Z",
+      "filename": "software/diags/IR/data/ge12_top4ges.stuck.Z",
       "size": 1451,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_2ge.netmap.Z",
+      "filename": "software/diags/IR/data/ge14_2ge.netmap.Z",
       "size": 22067,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_2ge.short.Z",
+      "filename": "software/diags/IR/data/ge14_2ge.short.Z",
       "size": 3301,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_2ge.stuck.Z",
+      "filename": "software/diags/IR/data/ge14_2ge.stuck.Z",
       "size": 845,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_4ge.netmap.Z",
+      "filename": "software/diags/IR/data/ge14_4ge.netmap.Z",
       "size": 29617,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_4ge.short.Z",
+      "filename": "software/diags/IR/data/ge14_4ge.short.Z",
       "size": 4642,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_4ge.stuck.Z",
+      "filename": "software/diags/IR/data/ge14_4ge.stuck.Z",
       "size": 1186,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_btm4ges.netmap.Z",
+      "filename": "software/diags/IR/data/ge14_btm4ges.netmap.Z",
       "size": 40524,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_btm4ges.short.Z",
+      "filename": "software/diags/IR/data/ge14_btm4ges.short.Z",
       "size": 5788,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_btm4ges.stuck.Z",
+      "filename": "software/diags/IR/data/ge14_btm4ges.stuck.Z",
       "size": 1472,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_noge.netmap.Z",
+      "filename": "software/diags/IR/data/ge14_noge.netmap.Z",
       "size": 13987,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_noge.short.Z",
+      "filename": "software/diags/IR/data/ge14_noge.short.Z",
       "size": 1730,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_noge.stuck.Z",
+      "filename": "software/diags/IR/data/ge14_noge.stuck.Z",
       "size": 360,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_top4ges.netmap.Z",
+      "filename": "software/diags/IR/data/ge14_top4ges.netmap.Z",
       "size": 40554,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_top4ges.short.Z",
+      "filename": "software/diags/IR/data/ge14_top4ges.short.Z",
       "size": 5751,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ge14_top4ges.stuck.Z",
+      "filename": "software/diags/IR/data/ge14_top4ges.stuck.Z",
       "size": 1464,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ged1.qtcbist",
+      "filename": "software/diags/IR/data/ged1.qtcbist",
       "size": 5126,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ged1.tcbist",
+      "filename": "software/diags/IR/data/ged1.tcbist",
       "size": 22551,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ged1b.qtcbist",
+      "filename": "software/diags/IR/data/ged1b.qtcbist",
       "size": 4910,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/ged1b.tcbist",
+      "filename": "software/diags/IR/data/ged1b.tcbist",
       "size": 22335,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1.qtcbist",
+      "filename": "software/diags/IR/data/hip1.qtcbist",
       "size": 2483,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1.tcbist",
+      "filename": "software/diags/IR/data/hip1.tcbist",
       "size": 9453,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1_2Mx8.sdbist",
+      "filename": "software/diags/IR/data/hip1_2Mx8.sdbist",
       "size": 4878,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1b.qtcbist",
+      "filename": "software/diags/IR/data/hip1b.qtcbist",
       "size": 1657,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1b.tcbist",
+      "filename": "software/diags/IR/data/hip1b.tcbist",
       "size": 5142,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/hip1b_2Mx8.sdbist",
+      "filename": "software/diags/IR/data/hip1b_2Mx8.sdbist",
       "size": 4878,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/imp8_256Kx16.sdbist",
+      "filename": "software/diags/IR/data/imp8_256Kx16.sdbist",
       "size": 8231,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/imp8d_16Mx16.sdbist",
+      "filename": "software/diags/IR/data/imp8d_16Mx16.sdbist",
       "size": 17544,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/irsaudit.h.gold.Z",
+      "filename": "software/diags/IR/data/irsaudit.h.gold.Z",
       "size": 2898069,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/irsaudit.hl.gold.Z",
+      "filename": "software/diags/IR/data/irsaudit.hl.gold.Z",
       "size": 459771,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/irsaudit.k.gold.Z",
+      "filename": "software/diags/IR/data/irsaudit.k.gold.Z",
       "size": 1094439,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/irsaudit.oh.gold.Z",
+      "filename": "software/diags/IR/data/irsaudit.oh.gold.Z",
       "size": 610603,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/pg2.qtcbist",
+      "filename": "software/diags/IR/data/pg2.qtcbist",
       "size": 3170,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/pg2.tcbist",
+      "filename": "software/diags/IR/data/pg2.tcbist",
       "size": 20595,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/pg2b.qtcbist",
+      "filename": "software/diags/IR/data/pg2b.qtcbist",
       "size": 3206,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/pg2b.tcbist",
+      "filename": "software/diags/IR/data/pg2b.tcbist",
       "size": 20595,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm10.netmap.Z",
+      "filename": "software/diags/IR/data/rm10.netmap.Z",
       "size": 64125,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm10.short.Z",
+      "filename": "software/diags/IR/data/rm10.short.Z",
       "size": 4165,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm10.stuck.Z",
+      "filename": "software/diags/IR/data/rm10.stuck.Z",
       "size": 839,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm11.netmap.Z",
+      "filename": "software/diags/IR/data/rm11.netmap.Z",
       "size": 124417,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm11.short.Z",
+      "filename": "software/diags/IR/data/rm11.short.Z",
       "size": 20907,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm11.stuck.Z",
+      "filename": "software/diags/IR/data/rm11.stuck.Z",
       "size": 2434,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm6.netmap.Z",
+      "filename": "software/diags/IR/data/rm6.netmap.Z",
       "size": 126017,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm6.short.Z",
+      "filename": "software/diags/IR/data/rm6.short.Z",
       "size": 22714,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm6.stuck.Z",
+      "filename": "software/diags/IR/data/rm6.stuck.Z",
       "size": 2360,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm7.netmap.Z",
+      "filename": "software/diags/IR/data/rm7.netmap.Z",
       "size": 69213,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm7.short.Z",
+      "filename": "software/diags/IR/data/rm7.short.Z",
       "size": 5335,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm7.stuck.Z",
+      "filename": "software/diags/IR/data/rm7.stuck.Z",
       "size": 814,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm8.netmap.Z",
+      "filename": "software/diags/IR/data/rm8.netmap.Z",
       "size": 79181,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm8.short.Z",
+      "filename": "software/diags/IR/data/rm8.short.Z",
       "size": 16929,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rm8.stuck.Z",
+      "filename": "software/diags/IR/data/rm8.stuck.Z",
       "size": 1902,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rmtm7.netmap.Z",
+      "filename": "software/diags/IR/data/rmtm7.netmap.Z",
       "size": 126335,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rmtm7.short.Z",
+      "filename": "software/diags/IR/data/rmtm7.short.Z",
       "size": 22972,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/rmtm7.stuck.Z",
+      "filename": "software/diags/IR/data/rmtm7.stuck.Z",
       "size": 2374,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tbusdata.Z",
+      "filename": "software/diags/IR/data/tbusdata.Z",
       "size": 1281374,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tf1.qtcbist",
+      "filename": "software/diags/IR/data/tf1.qtcbist",
       "size": 3905,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tf1.tcbist",
+      "filename": "software/diags/IR/data/tf1.tcbist",
       "size": 14360,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tf1c.qtcbist",
+      "filename": "software/diags/IR/data/tf1c.qtcbist",
       "size": 3945,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tf1c.tcbist",
+      "filename": "software/diags/IR/data/tf1c.tcbist",
       "size": 14378,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tg1.qtcbist",
+      "filename": "software/diags/IR/data/tg1.qtcbist",
       "size": 1505,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tg1.tcbist",
+      "filename": "software/diags/IR/data/tg1.tcbist",
       "size": 8475,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tg2.qtcbist",
+      "filename": "software/diags/IR/data/tg2.qtcbist",
       "size": 1520,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tg2.tcbist",
+      "filename": "software/diags/IR/data/tg2.tcbist",
       "size": 8475,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1_1Mx16.sdbist",
+      "filename": "software/diags/IR/data/tm1_1Mx16.sdbist",
       "size": 5681,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1_256Kx16.sdbist",
+      "filename": "software/diags/IR/data/tm1_256Kx16.sdbist",
       "size": 5333,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1_2Mx8.sdbist",
+      "filename": "software/diags/IR/data/tm1_2Mx8.sdbist",
       "size": 5681,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1_4Mx8.sdbist",
+      "filename": "software/diags/IR/data/tm1_4Mx8.sdbist",
       "size": 5681,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1c.qtcbist",
+      "filename": "software/diags/IR/data/tm1c.qtcbist",
       "size": 126,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1c.tcbist",
+      "filename": "software/diags/IR/data/tm1c.tcbist",
       "size": 126,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm1c_16Mx16.sdbist",
+      "filename": "software/diags/IR/data/tm1c_16Mx16.sdbist",
       "size": 6282,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm7.netmap.Z",
+      "filename": "software/diags/IR/data/tm7.netmap.Z",
       "size": 52305,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm7.short.Z",
+      "filename": "software/diags/IR/data/tm7.short.Z",
       "size": 11250,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm7.stuck.Z",
+      "filename": "software/diags/IR/data/tm7.stuck.Z",
       "size": 1213,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm9.netmap.Z",
+      "filename": "software/diags/IR/data/tm9.netmap.Z",
       "size": 55798,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm9.short.Z",
+      "filename": "software/diags/IR/data/tm9.short.Z",
       "size": 11395,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tm9.stuck.Z",
+      "filename": "software/diags/IR/data/tm9.stuck.Z",
       "size": 1209,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/tvo.vfo",
+      "filename": "software/diags/IR/data/tvo.vfo",
       "size": 17988,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/voc1.qtcbist",
+      "filename": "software/diags/IR/data/voc1.qtcbist",
       "size": 5508,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/voc1.tcbist",
+      "filename": "software/diags/IR/data/voc1.tcbist",
       "size": 33388,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/voc1b.qtcbist",
+      "filename": "software/diags/IR/data/voc1b.qtcbist",
       "size": 6832,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/voc1b.tcbist",
+      "filename": "software/diags/IR/data/voc1b.tcbist",
       "size": 37378,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/xmap8.qtcbist",
+      "filename": "software/diags/IR/data/xmap8.qtcbist",
       "size": 2954,
       "type": "data"
     },
     {
-      "filename": "diags/IR/data/xmap8.tcbist",
+      "filename": "software/diags/IR/data/xmap8.tcbist",
       "size": 13409,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/arm1.u",
+      "filename": "software/diags/IR/ucode/arm1.u",
       "size": 40072,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/arm1_nic.u",
+      "filename": "software/diags/IR/ucode/arm1_nic.u",
       "size": 13400,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/dgo.mcs",
+      "filename": "software/diags/IR/ucode/dgo.mcs",
       "size": 93912,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/diag_arm_init.u",
+      "filename": "software/diags/IR/ucode/diag_arm_init.u",
       "size": 520,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/ge.hex",
+      "filename": "software/diags/IR/ucode/ge.hex",
       "size": 363650,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/ge.u",
+      "filename": "software/diags/IR/ucode/ge.u",
       "size": 571281,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/ge_diag_init.hex",
+      "filename": "software/diags/IR/ucode/ge_diag_init.hex",
       "size": 7075,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/ge_diag_init.u",
+      "filename": "software/diags/IR/ucode/ge_diag_init.u",
       "size": 12082,
       "type": "data"
     },
     {
-      "filename": "diags/IR/ucode/geif.u",
+      "filename": "software/diags/IR/ucode/geif.u",
       "size": 2048,
       "type": "data"
     },
     {
-      "path": "diags/KONA_bin/ireeprom",
+      "path": "software/diags/KONA_bin/ireeprom",
       "filename": "ireeprom",
       "size": 150304,
       "sections": {
@@ -174833,7 +174833,7 @@
       "type": "ET_EXEC"
     },
     {
-      "path": "diags/KONA_bin/kpm",
+      "path": "software/diags/KONA_bin/kpm",
       "filename": "kpm",
       "size": 1388788,
       "sections": {
@@ -178016,7 +178016,7 @@
       "type": "ET_EXEC"
     },
     {
-      "filename": "diags/KONA_bin/postmortem",
+      "filename": "software/diags/KONA_bin/postmortem",
       "size": 1545,
       "type": "data"
     }

@@ -12,10 +12,10 @@
  *   kpm      /usr/gfx/KONA/bin/kpm, N32 executable. Its .data holds a
  *            table of string pointers naming every command token, indexed
  *            by token value, at vaddr 0x100ba838 (617 entries). Extracted
- *            by scripts/extract_kpm_tables.py into diags/kpm/hp_commands.tsv.
+ *            by scripts/extract_kpm_tables.py into software/diags/kpm/hp_commands.tsv.
  *   libGLcore /usr/gfx/arch/IP27KONA32/libGLcore.so (N32), disassembled
- *            per compilation unit under libglcore/asm/.
- *   kernel   kona.a members under kona_kernel/disasm/.
+ *            per compilation unit under software/opengl/asm/.
+ *   kernel   kona.a members under software/kernel/disasm/.
  *
  * The GE11 revision program is gevers_ucode in the 6.5.30m kernel unix.
  */
@@ -27,7 +27,7 @@
  *
  * ESTABLISHED: libGLcore writes every command to the single process virtual
  * address 0x4000, in 32-bit (sw, swc1) and 64-bit (sd, sdc1) stores, and never
- * reads it. Example: __glkonim_Color3f (libglcore/asm/kon/kon_cfuncs.s,
+ * reads it. Example: __glkonim_Color3f (software/opengl/asm/kon/kon_cfuncs.s,
  * 0x0da65200) is "sw 99 -> 0x4000; swc1 r,g,b -> 0x4000".
  *
  * INFERRED: 0x4000 is the start of the per-thread graphics region whose
@@ -82,7 +82,7 @@
  * ESTABLISHED: a command with no arguments still sends one zero payload
  * word (End, PushMatrix 0xd9, LoadIdentity 0xd2, Flush 0xc7).
  *
- * Fixed payloads, ESTABLISHED: libglcore/payloads.tsv (written by
+ * Fixed payloads, ESTABLISHED: software/opengl/payloads.tsv (written by
  * scripts/extract_payloads.py) lists 176 straight-line emitters covering 118
  * tokens with the word count and type of every payload item. Highlights:
  *   COLOR3F/NORMAL3F/VERTEX3F/TEXCOORD3F  3 floats; the 4-component forms 4
@@ -142,7 +142,7 @@
  * (kona_idma), 0x1ee VALIDATE_READCLIP, 0x1f3 VALIDATE_CLIP and
  * 0x1f4 VALIDATE_BANK (kona_act_pcx), 0x1f1 PIPE_SETUP (KONAstart),
  * 0x1f2 RDATA_SETUP, 0x1f9 CONTEXT_LOAD, 0x1fc CONTEXT_DEACTIVATE and
- * 0x1fd CONTEXT_INIT (KONApcxswap). See kona_kernel/include/kona_kern.h.
+ * 0x1fd CONTEXT_INIT (KONApcxswap). See software/kernel/include/kona_kern.h.
  *
  * Per token (comment paragraphs written by scripts/ge_token_comments.py,
  * which holds the hand-read role of each token): the kpm name and value,
@@ -152,12 +152,12 @@
  * arm1.u handler the token map runs and its address, or for a routed token
  * its map entry, command number (bits 15-23), count field (bits 6-8 in the
  * geometry form, bits 6-10 otherwise) and type, and the engine handler the
- * handler table binds to that number where one is bound (ucode/icu_map.tsv,
- * ucode/hw_route.tsv, ucode/arm1.md, ucode/ged.md). "libGLcore.so f stores
- * n words" is the fixed payload from libglcore/payloads.tsv. A separate
+ * handler table binds to that number where one is bound (software/ucode/icu_map.tsv,
+ * software/ucode/hw_route.tsv, software/ucode/arm1.md, software/ucode/ged.md). "libGLcore.so f stores
+ * n words" is the fixed payload from software/opengl/payloads.tsv. A separate
  * unlabelled paragraph above lists the engine handlers whose slots the ARM
  * handler's code loads; it names them and does not explain them. What each
- * engine handler computes is in ucode/ge_handlers.md by module. Tokens
+ * engine handler computes is in software/ucode/ge_handlers.md by module. Tokens
  * that still lack a hand-read role show the routing facts under "Route:".
  */
 enum kona_hp_token {
@@ -475,7 +475,7 @@ enum kona_hp_token {
      * touching the engines. Payload 0 (payload not read): nothing is read;
      * libGLcore never sends this token, TexGend and TexGendv send token 20
      * instead. Established: the token map runs `arm_texgend` at arm1.u
-     * 0x0c024d50. No sender found (searched libglcore/asm for a store of 19
+     * 0x0c024d50. No sender found (searched software/opengl/asm for a store of 19
      * to the FIFO window; the only hit is an unrelated evaluator function). */
     KONA_HP_TEXGEND                      = 0x013,
 
@@ -508,7 +508,7 @@ enum kona_hp_token {
      * (payload not read): nothing is read; libGLcore never sends this token,
      * TexGeni sends token 20 with an integer mode. Established: the token map
      * runs `arm_texgeni` at arm1.u 0x0c024d94. No sender found (searched
-     * libglcore/asm for a store of 21 to the FIFO window). */
+     * software/opengl/asm for a store of 21 to the FIFO window). */
     KONA_HP_TEXGENI                      = 0x015,
 
     /* Read at arm1.u arm_texbind 0x0c036ae4, GetTexManageBindParam 0x0c036a10
@@ -522,7 +522,7 @@ enum kona_hp_token {
      * texture width and height, a format code, then texture-object fields
      * (size, border and filter state, a table of addresses) and 15 further
      * words. Established: the token map runs `arm_texbind` at arm1.u
-     * 0x0c036ae4. No sender found (searched libglcore/asm for a store of 22;
+     * 0x0c036ae4. No sender found (searched software/opengl/asm for a store of 22;
      * the only hits are Rect; also did not search the X modules or the
      * kernel). */
     KONA_HP_TEXBIND                      = 0x016,
@@ -706,7 +706,7 @@ enum kona_hp_token {
 
     /* Read at arm1.u arm_enable 0x0c023380; tables e0 0x04046fe8, e0a
      * 0x04047b30, e1 0x04047b38, e2 0x04047b50, e3 0x04047b70,
-     * e4 0x04048254; routines listed in ucode/arm1_functions.md. */
+     * e4 0x04048254; routines listed in software/ucode/arm1_functions.md. */
 
     /* `HP_ENABLE` (0x024). Established: Checks the number against six ranges
      * (0x0b10-0x0de1, 0x2a01-0x2a02,
@@ -4650,7 +4650,7 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x5859db41:
      * command 179, count field 13 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgebi_XLoadGC` (index 51 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadGC and 15 other
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) kon_loadGC and 15 other
      * functions (kon_loadAccelGC, kon_loadNfbBitmapGC, kon_loadImgRectGC,
      * konPolyFillRectSolid, ...); the first payload word is stored at FIFO
      * pointer + 0x2520 (32 x token), the rest at +0. */
@@ -4669,7 +4669,7 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x585a5901:
      * command 180, count field 4 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgebi_XLoadPosition` (index 52 of the handler table).
-     * Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadGC and 42
+     * Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s) kon_loadGC and 42
      * drawing functions (konPolyFillRect*, konFillSpans*, glyph routines,
      * kon_drawDid, konInit); the first payload word is stored at FIFO pointer
      * + 0x2540 (32 x token), the rest at +0. */
@@ -4689,14 +4689,14 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x585ad141:
      * command 181, count field 5 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgeb_XLoadClip` (index 53 of the handler table). Sent
-     * by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadClipRects and
+     * by kona.so (X module, software/xsgi/asm/kona/kon/kon.s) kon_loadClipRects and
      * about 39 drawing/glyph functions; the first payload word is stored at
      * FIFO pointer + 0x2560 (32 x token), the rest at +0. */
     KONA_HP_X_LOADCLIP                   = 0x12b,
 
     /* Engine handlers whose slots the code of `arm_x_loadclip_arm` loads, in
      * order: `mgeb_XLoadClip`. Read at arm1.u arm_x_loadclip_arm 0x0c03d5b0;
-     * ucode/hw_route.tsv row 0x12b (command 181, index 53 = mgeb_XLoadClip). */
+     * software/ucode/hw_route.tsv row 0x12b (command 181, index 53 = mgeb_XLoadClip). */
 
     /* `HP_X_LOADCLIP_ARM` (0x12c). Inferred: Reads the count n at the +0x40
      * port, sends it to all engines as data, starts the pass-through counter
@@ -4722,7 +4722,7 @@ enum kona_hp_token {
      * code, arm1.u token-map entry 0x585b4901: command 182, count field 4
      * (bits 6-10, 0 read as 32), single floats; engine handler
      * `mgesi_XLoadScissor` (index 54 of the handler table). Sent by kona.so
-     * (X module, ddx/asm/kona/kon/kon.s) the 14 glyph routines
+     * (X module, software/xsgi/asm/kona/kon/kon.s) the 14 glyph routines
      * (konImageGlyphBlt*, konPolyGlyphBltSolid*); the first payload word is
      * stored at FIFO pointer + 0x25a0 (32 x token), the rest at +0. */
     KONA_HP_X_LOADSCISSOR                = 0x12d,
@@ -5044,7 +5044,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400041: command 128, count field 1 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
+     * software/xsgi/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
      * konBresS, konDrawPoints; the first payload word is stored at FIFO
      * pointer + 0x2820 (32 x token), the rest at +0. */
     KONA_HP_X_DATA1                      = 0x141,
@@ -5068,7 +5068,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400081: command 128, count field 2 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
+     * software/xsgi/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
      * konBresS, konDrawPoints, konValidateClip,
      * konDrawSolidRects, konSolidFillRects, konTiledCAccelFillRects,
      * konPolyFillRect* and others (14 functions); the first payload word is
@@ -5094,7 +5094,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x584000c1: command 128, count field 3 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
+     * software/xsgi/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
      * konBresS, konDrawPoints; the first payload word is stored at FIFO
      * pointer + 0x2860 (32 x token), the rest at +0. */
     KONA_HP_X_DATA3                      = 0x143,
@@ -5118,7 +5118,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400101: command 128, count field 4 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) the same 14 functions as X_DATA2; the first
+     * software/xsgi/asm/kona/kon/kon.s) the same 14 functions as X_DATA2; the first
      * payload word is stored at FIFO pointer + 0x2880 (32 x token), the rest
      * at +0. */
     KONA_HP_X_DATA4                      = 0x144,
@@ -5134,7 +5134,7 @@ enum kona_hp_token {
      * y2 (rectangles 2..n of an X_LOADCLIP list). Established: routed by the
      * host interface with no ARM code, arm1.u token-map entry 0x58401101:
      * command 128, count field 4 (bits 6-10, 0 read as 32), single floats.
-     * Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) kon_loadClipRects,
+     * Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s) kon_loadClipRects,
      * konPolyFillRectSolid, konPolyFillRectStippledC,
      * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
      * pointer + 0x28a0 (32 x token), the rest at +0. */
@@ -5159,7 +5159,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400141: command 128, count field 5 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
+     * software/xsgi/asm/kona/kon/kon.s) konBresD, konLineSS, konPolyPoint,
      * konBresS, konDrawPoints; the first payload word is stored at FIFO
      * pointer + 0x28c0 (32 x token), the rest at +0. */
     KONA_HP_X_DATA5                      = 0x146,
@@ -5183,7 +5183,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400181: command 128, count field 6 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) 13 functions: the point and line routines plus
+     * software/xsgi/asm/kona/kon/kon.s) 13 functions: the point and line routines plus
      * the rectangle fill routines; the first payload word is stored at FIFO
      * pointer + 0x28e0 (32 x token), the rest at +0. */
     KONA_HP_X_DATA6                      = 0x147,
@@ -5207,7 +5207,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x584001c1: command 128, count field 7 (bits
      * 6-10, 0 read as 32), single floats. No sender found: no store at
-     * pointer + 0x2900 in kona.so (ddx/asm/kona, all groups), libGLcore,
+     * pointer + 0x2900 in kona.so (software/xsgi/asm/kona, all groups), libGLcore,
      * kernel objects or irsaudit. */
     KONA_HP_X_DATA7                      = 0x148,
 
@@ -5251,7 +5251,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400241: command 128, count field 9 (bits
      * 6-10, 0 read as 32), single floats. No sender found: no store at
-     * pointer + 0x2940 in kona.so (ddx/asm/kona, all groups), libGLcore,
+     * pointer + 0x2940 in kona.so (software/xsgi/asm/kona, all groups), libGLcore,
      * kernel objects or irsaudit. */
     KONA_HP_X_DATA9                      = 0x14a,
 
@@ -5274,7 +5274,7 @@ enum kona_hp_token {
      * command. Established: routed by the host interface with no ARM code,
      * arm1.u token-map entry 0x58400281: command 128, count field 10 (bits
      * 6-10, 0 read as 32), single floats. Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) the same 8 rectangle routines as X_DATA8; the
+     * software/xsgi/asm/kona/kon/kon.s) the same 8 rectangle routines as X_DATA8; the
      * first payload word is stored at FIFO pointer + 0x2960 (32 x token), the
      * rest at +0. */
     KONA_HP_X_DATA10                     = 0x14b,
@@ -5292,7 +5292,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x58554841: command 170, count field 1 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XPoint` (index 42 of
-     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * the handler table). Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s)
      * konPolyPoint, konDrawPoints, konBresS,
      * konBresD, konSlowLineSS; the first payload word is stored at FIFO
      * pointer + 0x2980 (32 x token), the rest at +0. */
@@ -5310,7 +5310,7 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x58554981:
      * command 170, count field 6 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XPoint` (index 42 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
      * konBresS, konBresD; the first payload word is stored at FIFO pointer +
      * 0x29a0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT6                     = 0x14d,
@@ -5327,7 +5327,7 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x58554e01:
      * command 170, count field 24 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XPoint` (index 42 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konPolyPoint, konDrawPoints,
      * konBresS, konBresD; the first payload word is stored at FIFO pointer +
      * 0x29c0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT24                    = 0x14e,
@@ -5344,7 +5344,7 @@ enum kona_hp_token {
      * interface with no ARM code, arm1.u token-map entry 0x5855c841: command
      * 171, count field 1 (bits 6-10, 0 read as 32), single floats; engine
      * handler `mgesi_XPointRel` (index 43 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konPolyPoint
      * (CoordModePrevious); the first payload word is stored at FIFO pointer +
      * 0x29e0 (32 x token), the rest at +0. */
     KONA_HP_X_POINT_R                    = 0x14f,
@@ -5361,7 +5361,7 @@ enum kona_hp_token {
      * interface with no ARM code, arm1.u token-map entry 0x5855c981: command
      * 171, count field 6 (bits 6-10, 0 read as 32), single floats; engine
      * handler `mgesi_XPointRel` (index 43 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) konPolyPoint
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konPolyPoint
      * (CoordModePrevious); the first payload word is stored at FIFO pointer +
      * 0x2a00 (32 x token), the rest at +0. */
     KONA_HP_X_POINT6_R                   = 0x150,
@@ -5393,7 +5393,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x58564881: command 172, count field 2 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XRect` (index 44 of
-     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * the handler table). Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s)
      * konPolyFillRectSolid, konPolyFillRectStippledC,
      * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
      * pointer + 0x2a40 (32 x token), the rest at +0. */
@@ -5410,7 +5410,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x58564b01: command 172, count field 12 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XRect` (index 44 of
-     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * the handler table). Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s)
      * konPolyFillRectSolid, konPolyFillRectStippledC,
      * konPolyFillRectTiledCAccel; the first payload word is stored at FIFO
      * pointer + 0x2a60 (32 x token), the rest at +0. */
@@ -5428,7 +5428,7 @@ enum kona_hp_token {
      * ARM code, arm1.u token-map entry 0x5856c881: command 173, count field 2
      * (bits 6-10, 0 read as 32), single floats; engine handler `mgesi_XBox`
      * (index 45 of the handler table). Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konDrawSolidRects, konSolidFillRects,
+     * software/xsgi/asm/kona/kon/kon.s) konDrawSolidRects, konSolidFillRects,
      * konTiledCAccelFillRects, konValidateClip, konStippledCFillRects, glyph
      * routines, konSlowSegmentSS, konSlowLineSS; the first payload word is
      * stored at FIFO pointer + 0x2a80 (32 x token), the rest at +0. */
@@ -5445,7 +5445,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x5856cb01: command 173, count field 12 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XBox` (index 45 of
-     * the handler table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s)
+     * the handler table). Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s)
      * konDrawSolidRects, konSolidFillRects, konTiledCAccelFillRects,
      * konValidateClip, konStippledCFillRects; the first payload word is
      * stored at FIFO pointer + 0x2aa0 (32 x token), the rest at +0. */
@@ -5463,7 +5463,7 @@ enum kona_hp_token {
      * interface with no ARM code, arm1.u token-map entry 0x585748c1: command
      * 174, count field 3 (bits 6-10, 0 read as 32), single floats; engine
      * handler `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so
-     * (X module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * (X module, software/xsgi/asm/kona/kon/kon.s) konFillSpansSolid,
      * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS,
      * konPolyGlyphBltSolidTE16; the first payload word is stored at FIFO
      * pointer + 0x2ac0 (32 x token), the rest at +0. */
@@ -5481,7 +5481,7 @@ enum kona_hp_token {
      * with no ARM code, arm1.u token-map entry 0x58574941: command 174, count
      * field 5 (bits 6-10, 0 read as 32), single floats; engine handler
      * `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so (X
-     * module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * module, software/xsgi/asm/kona/kon/kon.s) konFillSpansSolid,
      * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS; the first
      * payload word is stored at FIFO pointer + 0x2ae0 (32 x token), the rest
      * at +0. */
@@ -5499,7 +5499,7 @@ enum kona_hp_token {
      * interface with no ARM code, arm1.u token-map entry 0x58574b41: command
      * 174, count field 13 (bits 6-10, 0 read as 32), single floats; engine
      * handler `mgesi_XSpans` (index 46 of the handler table). Sent by kona.so
-     * (X module, ddx/asm/kona/kon/kon.s) konFillSpansSolid,
+     * (X module, software/xsgi/asm/kona/kon/kon.s) konFillSpansSolid,
      * konFillSpansStippledC, konFillSpansTiledCAccel, konSolidFS; the first
      * payload word is stored at FIFO pointer + 0x2b00 (32 x token), the rest
      * at +0. */
@@ -5517,7 +5517,7 @@ enum kona_hp_token {
      * token-map entry 0x5857c881: command 175, count field 2 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XSegment` (index 47
      * of the handler table). Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konSegmentSS, konSolidZeroSeg (one X_SEGMENT
+     * software/xsgi/asm/kona/kon/kon.s) konSegmentSS, konSolidZeroSeg (one X_SEGMENT
      * per segment); the first payload word is stored at FIFO pointer + 0x2b20
      * (32 x token), the rest at +0. */
     KONA_HP_X_SEGMENT                    = 0x159,
@@ -5550,7 +5550,7 @@ enum kona_hp_token {
      * the host interface with no ARM code, arm1.u token-map entry 0x58584881:
      * command 176, count field 2 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XLine` (index 48 of the handler table). Sent by
-     * kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS; the first payload
+     * kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konLineSS; the first payload
      * word is stored at FIFO pointer + 0x2b60 (32 x token), the rest at +0. */
     KONA_HP_X_LINE                       = 0x15b,
 
@@ -5567,7 +5567,7 @@ enum kona_hp_token {
      * by the host interface with no ARM code, arm1.u token-map entry
      * 0x58584b01: command 176, count field 12 (bits 6-10, 0 read as 32),
      * single floats; engine handler `mgesi_XLine` (index 48 of the handler
-     * table). Sent by kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS;
+     * table). Sent by kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konLineSS;
      * the first payload word is stored at FIFO pointer + 0x2b80 (32 x token),
      * the rest at +0. */
     KONA_HP_X_LINE6                      = 0x15c,
@@ -5584,7 +5584,7 @@ enum kona_hp_token {
      * host interface with no ARM code, arm1.u token-map entry 0x5858c881:
      * command 177, count field 2 (bits 6-10, 0 read as 32), single floats;
      * engine handler `mgesi_XLineRel` (index 49 of the handler table). Sent
-     * by kona.so (X module, ddx/asm/kona/kon/kon.s) konLineSS
+     * by kona.so (X module, software/xsgi/asm/kona/kon/kon.s) konLineSS
      * (CoordModePrevious); the first payload word is stored at FIFO pointer +
      * 0x2ba0 (32 x token), the rest at +0. */
     KONA_HP_X_LINE_R                     = 0x15d,
@@ -5601,7 +5601,7 @@ enum kona_hp_token {
      * token-map entry 0x5858cb01: command 177, count field 12 (bits 6-10, 0
      * read as 32), single floats; engine handler `mgesi_XLineRel` (index 49
      * of the handler table). Sent by kona.so (X module,
-     * ddx/asm/kona/kon/kon.s) konLineSS (CoordModePrevious); the first
+     * software/xsgi/asm/kona/kon/kon.s) konLineSS (CoordModePrevious); the first
      * payload word is stored at FIFO pointer + 0x2bc0 (32 x token), the rest
      * at +0. */
     KONA_HP_X_LINE6_R                    = 0x15e,
@@ -5617,7 +5617,7 @@ enum kona_hp_token {
      * with no ARM code, arm1.u token-map entry 0x58594841: command 178, count
      * field 1 (bits 6-10, 0 read as 32), single floats; engine handler
      * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
-     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * module, software/xsgi/asm/kona/kon/kon.s) konBresD; the first payload word is
      * stored at FIFO pointer + 0x2be0 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT                    = 0x15f,
 
@@ -5632,7 +5632,7 @@ enum kona_hp_token {
      * with no ARM code, arm1.u token-map entry 0x58594981: command 178, count
      * field 6 (bits 6-10, 0 read as 32), single floats; engine handler
      * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
-     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * module, software/xsgi/asm/kona/kon/kon.s) konBresD; the first payload word is
      * stored at FIFO pointer + 0x2c00 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT6                   = 0x160,
 
@@ -5647,7 +5647,7 @@ enum kona_hp_token {
      * with no ARM code, arm1.u token-map entry 0x58594e01: command 178, count
      * field 24 (bits 6-10, 0 read as 32), single floats; engine handler
      * `mgesi_XBgPoint` (index 50 of the handler table). Sent by kona.so (X
-     * module, ddx/asm/kona/kon/kon.s) konBresD; the first payload word is
+     * module, software/xsgi/asm/kona/kon/kon.s) konBresD; the first payload word is
      * stored at FIFO pointer + 0x2c20 (32 x token), the rest at +0. */
     KONA_HP_X_BGPOINT24                  = 0x161,
 
@@ -5750,7 +5750,7 @@ enum kona_hp_token {
      * number and its arguments. Established: the token map runs
      * `arm_diag_dispatch` at arm1.u 0x0c037958. Sender: unknown. Routes
      * tried: libGLcore, the kernel (the token send table in
-     * kona_kernel/commands.tsv) and the X module do not send it; `irsaudit`
+     * software/kernel/commands.tsv) and the X module do not send it; `irsaudit`
      * (usr/diags/IR/bin/irsaudit 6.5.30m, disassembled) has no load of 361 or
      * of the store offset 0x2d20 on a send path (the only 361 is a JTAG field
      * index passed to `auto_set_jtag_reg_field` at 0x1002e194 in
@@ -5758,7 +5758,7 @@ enum kona_hp_token {
      * Next route: the sequencer's token tables in `irsaudit` data. */
     KONA_HP_DIAG_DISPATCH                = 0x169,
 
-    /* Read at icu_map.tsv 0x16a; hw_route.tsv; ucode/ged.md pass/register
+    /* Read at icu_map.tsv 0x16a; hw_route.tsv; software/ucode/ged.md pass/register
      * forms. */
 
     /* `HP_DIAG_RESERVED0` (0x16a). Inferred: Map entry 0x00200061:
@@ -5794,8 +5794,8 @@ enum kona_hp_token {
      * Payload 2 + n: list address, byte length L, then L/4 words of list data
      * in the stream. Established: the token map runs `arm_copylist_ldma` at
      * arm1.u 0x0c014dd8. Sent by libGLcore.so: no stored constant 364 found
-     * in libglcore/asm (searched li 364 in KONA, PIXMAP, kon, dlist); kernel
-     * commands.tsv and ddx/asm not matched either. */
+     * in software/opengl/asm (searched li 364 in KONA, PIXMAP, kon, dlist); kernel
+     * commands.tsv and software/xsgi/asm not matched either. */
     KONA_HP_COPYLIST_LDMA                = 0x16c,
 
     /* Read at arm1.u arm_execlist_ldma 0x0c014f90. */
@@ -5841,7 +5841,7 @@ enum kona_hp_token {
      * 3 words after the token. Sent by libGLcore.so __glSdramMemmove
      * (kon_dlist.s 0x0d94a600) stores token 367, a0, a1, a2 and returns a0
      * (memmove order: destination, source), the reverse of the firmware
-     * order. The libGLcore listings (libglcore/asm) hold no call, branch or
+     * order. The libGLcore listings (software/opengl/asm) hold no call, branch or
      * GOT-resolved load of __glSdramMemmove, and its address appears in
      * libGLcore_n32.so only in debug sections, not as a data word; so no
      * shipped software was found to send the token. */
@@ -5869,7 +5869,7 @@ enum kona_hp_token {
      * __glKonExecuteIDMAn (kon_dlist.s) stores token 369. */
     KONA_HP_EXECLIST_IDMA_N              = 0x171,
 
-    /* Read at icu_map.tsv 0x172; kona_kernel/commands.tsv; kona_kern.h
+    /* Read at icu_map.tsv 0x172; software/kernel/commands.tsv; kona_kern.h
      * comment on kona_act_pcx; kona.a kona_context.o KONAvalidateclip. */
 
     /* `HP_GED_NOP` (0x172). Inferred: Map entry 0x00300071: register/pixel
@@ -5881,7 +5881,7 @@ enum kona_hp_token {
      * interface with no ARM code, arm1.u token-map entry 0x00300071: command
      * 96, count field 1 (bits 6-10, 0 read as 32), untyped words. Sent by
      * kona.a (kernel): KONAvalidateclip, kona_dmapool, kona_mem_alloc,
-     * kona_mem_free, KONAschedswapbuf (kona_kernel/commands.tsv); libGLcore:
+     * kona_mem_free, KONAschedswapbuf (software/kernel/commands.tsv); libGLcore:
      * none found. */
     KONA_HP_GED_NOP                      = 0x172,
 
@@ -5984,7 +5984,7 @@ enum kona_hp_token {
      * 0x58505d81: command 160, count field 22 (bits 6-10, 0 read as 32),
      * single floats; engine handler `mgebi_Bind2dMipmapTexture` (index 32 of
      * the handler table). Sent by libGLcore bind2DMipmapTexture
-     * (libglcore/asm/texture/kon_texture_api.s): sends HP_BIND_LINEAR_TEXTURE
+     * (software/opengl/asm/texture/kon_texture_api.s): sends HP_BIND_LINEAR_TEXTURE
      * (262) or HP_BIND_TEXTURE (469 when the format nibble of the word at
      * +116 is 3) with five words, then this token and 22 words. */
     KONA_HP_BIND_2D_MIPMAP_TEXTURE       = 0x179,
@@ -6610,7 +6610,7 @@ enum kona_hp_token {
      * the host interface with no ARM code, arm1.u token-map entry 0xd86740c7:
      * command 206, geometry form, count field 3 (bits 6-8), single floats.
      * Sent by libGLcore __glkonSendPackedVertexV3F
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6633,7 +6633,7 @@ enum kona_hp_token {
      * code, arm1.u token-map entry 0xd8674107: command 206, geometry form,
      * count field 4 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6656,7 +6656,7 @@ enum kona_hp_token {
      * no ARM code, arm1.u token-map entry 0xd8674107: command 206, geometry
      * form, count field 4 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_N3S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6679,7 +6679,7 @@ enum kona_hp_token {
      * arm1.u token-map entry 0xd8674147: command 206, geometry form, count
      * field 5 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB_N3S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6701,7 +6701,7 @@ enum kona_hp_token {
      * routed by the host interface with no ARM code, arm1.u token-map entry
      * 0xd8674147: command 206, geometry form, count field 5 (bits 6-8),
      * single floats. Sent by libGLcore __glkonSendPackedVertexV3F_T2F
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6724,7 +6724,7 @@ enum kona_hp_token {
      * token-map entry 0xd8674187: command 206, geometry form, count field 6
      * (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB_T2F
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6747,7 +6747,7 @@ enum kona_hp_token {
      * token-map entry 0xd8674187: command 206, geometry form, count field 6
      * (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_N3S_T2F
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6770,7 +6770,7 @@ enum kona_hp_token {
      * arm1.u token-map entry 0xd86741c7: command 206, geometry form, count
      * field 7 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB_N3S_T2F
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6793,7 +6793,7 @@ enum kona_hp_token {
      * code, arm1.u token-map entry 0xd8674107: command 206, geometry form,
      * count field 4 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_T2S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6816,7 +6816,7 @@ enum kona_hp_token {
      * arm1.u token-map entry 0xd8674147: command 206, geometry form, count
      * field 5 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB_T2S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6839,7 +6839,7 @@ enum kona_hp_token {
      * arm1.u token-map entry 0xd8674147: command 206, geometry form, count
      * field 5 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_N3S_T2S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6862,7 +6862,7 @@ enum kona_hp_token {
      * code, arm1.u token-map entry 0xd8674187: command 206, geometry form,
      * count field 6 (bits 6-8), single floats. Sent by libGLcore
      * __glkonSendPackedVertexV3F_C4UB_N3S_T2S
-     * (libglcore/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
+     * (software/opengl/asm/KONA.IP27/kon_spvertarray.s), per vertex inside a
      * glBegin set up by __glKonSendPackedVertex, which sends HP_PVERTEX_SETUP
      * (439) first and HP_PVERTEX_CLEANUP (463) after; also used by
      * __glkonim_SubdivPatchSGIX for the T2F forms. */
@@ -6971,7 +6971,7 @@ enum kona_hp_token {
      * `mgebi_ReferencePlane` (index 16 of the handler table). Established:
      * libGLcore.so `__glkonim_ReferencePlaneSGIX` stores 8 words after the
      * token. Sent by libGLcore __glkonim_ReferencePlaneSGIX
-     * (libglcore/asm/kon/kon_cfuncs.s): token 445, four sdc1 stores. */
+     * (software/opengl/asm/kon/kon_cfuncs.s): token 445, four sdc1 stores. */
     KONA_HP_REFERENCE_PLANE              = 0x1bd,
 
     /* Read at icu_map.tsv 0x1be; ged.md pass/register forms; libGLcore
@@ -7133,7 +7133,7 @@ enum kona_hp_token {
      * 0x3f, then the third word. Payload 3: a texture-compare word, a value
      * doubled and sent as a count, and a third word. Established: the token
      * map runs `arm_shadow_texture` at arm1.u 0x0c026218. No sender found
-     * (searched libglcore/asm for a store of 455; setShadowRegs in
+     * (searched software/opengl/asm for a store of 455; setShadowRegs in
      * texture/kon_texture_api.s only keeps state). */
     KONA_HP_SHADOW_TEXTURE               = 0x1c7,
 
@@ -7377,7 +7377,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x00600077: command 192, count field 1 (bits 6-10, 0
      * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
-     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * (software/opengl/asm/KONA/kon_dlist.s): pads the unused tail of display-list
      * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
      * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP2                        = 0x1d8,
@@ -7393,7 +7393,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x006000f7: command 192, count field 3 (bits 6-10, 0
      * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
-     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * (software/opengl/asm/KONA/kon_dlist.s): pads the unused tail of display-list
      * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
      * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP4                        = 0x1d9,
@@ -7409,7 +7409,7 @@ enum kona_hp_token {
      * Established: routed by the host interface with no ARM code, arm1.u
      * token-map entry 0x00600137: command 192, count field 4 (bits 6-10, 0
      * read as 32), untyped words. Sent by libGLcore __glkonPadBlocks
-     * (libglcore/asm/KONA/kon_dlist.s): pads the unused tail of display-list
+     * (software/opengl/asm/KONA/kon_dlist.s): pads the unused tail of display-list
      * blocks: stores of SKIP4 (473) in 4-word groups, with SKIP2 (472) and
      * SKIP5 (474) stores in the remainder paths. */
     KONA_HP_SKIP5                        = 0x1da,
@@ -7608,8 +7608,8 @@ enum kona_hp_token {
      * to register 0x476, finish_rdata. Pure firmware data, no engine
      * involved. Payload 1 (read and dropped): none used. Established: the
      * token map runs `arm_getconfig` at arm1.u 0x0c022474. No sender found
-     * (searched libglcore/asm for 489/0x1e9, ddx/asm, kona_kernel/disasm and
-     * diags/kpm; only kpm's name table lists it). */
+     * (searched software/opengl/asm for 489/0x1e9, software/xsgi/asm, software/kernel/disasm and
+     * software/diags/kpm; only kpm's name table lists it). */
     KONA_HP_GETCONFIG                    = 0x1e9,
 
     /* Read at arm1.u arm_pipe_sync 0x0c0042c0; check_pipe_sync 0x0c002f7c. */
@@ -7690,7 +7690,7 @@ enum kona_hp_token {
      * resource word (R+8, R+12, R+60). Established: the token map runs
      * `arm_validate_readclip` at arm1.u 0x0c018574. Sent by
      * kona.a(kona_context.o) KONAvalidateclip and kona_act_pcx; payload
-     * layout in kona_kernel/include/kona_kern.h. */
+     * layout in software/kernel/include/kona_kern.h. */
     KONA_HP_VALIDATE_READCLIP            = 0x1ee,
 
     /* Read at arm1.u arm_ged_verif_load 0x0c012ae4; compute_gedxfermask
@@ -7760,7 +7760,7 @@ enum kona_hp_token {
      * +0..+12, R+60, R+40, R+44). Established: the token map runs
      * `arm_validate_clip` at arm1.u 0x0c018168. Sent by
      * kona.a(kona_context.o) KONAvalidateclip and kona_act_pcx;
-     * kona_kernel/include/kona_kern.h lines 136-138. */
+     * software/kernel/include/kona_kern.h lines 136-138. */
     KONA_HP_VALIDATE_CLIP                = 0x1f3,
 
     /* Read at arm1.u arm_validate_bank 0x0c013d30 (resolve_banks 0x0c01392c). */
@@ -7935,7 +7935,7 @@ enum kona_hp_token {
  * kpm's name table continues for 16 entries past 0x1ff. ESTABLISHED: entries
  * 0x200-0x20e print as "**** 0x0" to "**** 0xe" and 0x20f as
  * "**** PIXELS_STARTGEID". The firmware token map has 512 entries
- * (ucode/icu_map.tsv) and the host-interface table is indexed by a 9-bit
+ * (software/ucode/icu_map.tsv) and the host-interface table is indexed by a 9-bit
  * token, so these numbers are not host tokens. INFERRED: spare rows of
  * kpm's printing table. The names below are this header's, not kpm's.
  */
@@ -8064,7 +8064,7 @@ enum kona_kpm_spare_token {
  * indices 0x210-0x268 (the same vaddr arithmetic). They name raster and
  * host-interface registers rather than commands. ESTABLISHED: entry 0x210 + i
  * names the raster register that word i of the geometry board's 89-word
- * register shadow mirrors (befsh_addrs[i] in arm1.u, ucode/befshadow.tsv).
+ * register shadow mirrors (befsh_addrs[i] in arm1.u, software/ucode/befshadow.tsv).
  * All 89 agree: 79 names carry exactly the kpm raster index the shadow word
  * holds, the seven PGTG_ZRECT_1.._7 entries are the base register plus one to
  * seven (the suffix rule of devices/rm/README.md), and the three host-interface names
@@ -9207,12 +9207,12 @@ enum kona_kpm_shadow_row {
 
 /*
  * Leads not yet read (UNKNOWN until they are):
- *  - Microcode: ucode/ge.md describes the program files (one 62521-word
+ *  - Microcode: software/ucode/ge.md describes the program files (one 62521-word
  *    program of 72-bit instructions in three encodings) and geif.u, a
  *    1024-entry table whose odd entries are the handlers for 452 geometry-
  *    engine command slots. The instruction fields are mapped in
- *    ucode/ge_isa.md.
- *  - Token routing, ESTABLISHED (ucode/arm1.md, ucode/icu_map.tsv): the ARM
+ *    software/ucode/ge_isa.md.
+ *  - Token routing, ESTABLISHED (software/ucode/arm1.md, software/ucode/icu_map.tsv): the ARM
  *    firmware builds a 512-entry map indexed by token. 306 tokens run an
  *    ARM handler, which sends a geif.u slot's handler address to the
  *    engine (CULLFACE slot 3, FRONTFACE 15, MATRIXMODE 51); 206 are routed
@@ -9220,9 +9220,9 @@ enum kona_kpm_shadow_row {
  *    and, INFERRED, a payload word count in bits 6-10 and a component
  *    type in bits 29-30 (2 single, 3 double). For 54 of them, ESTABLISHED,
  *    the handler is entry (number & 63) of a 64-entry handler table the ARM
- *    loads at start-up (ucode/hw_route.tsv, ucode/ged_bound_table.tsv); for
+ *    loads at start-up (software/ucode/hw_route.tsv, software/ucode/ged_bound_table.tsv); for
  *    the other 152 (vertex, primitive, begin/end) it is UNKNOWN. 47 name
- *    matches are in ucode/ge_name_matches.tsv.
+ *    matches are in software/ucode/ge_name_matches.tsv.
  */
 
 /*
@@ -9230,7 +9230,7 @@ enum kona_kpm_shadow_row {
  *
  * ESTABLISHED: kpm's table of 24-byte records {kind, address, name, value,
  * mask, shift} from vaddr 0x100bb2a8 (64 records, 15 registers at
- * 0x40000-0x40038), extracted to diags/kpm/ge_registers.tsv. The defines
+ * 0x40000-0x40038), extracted to software/diags/kpm/ge_registers.tsv. The defines
  * below give each register's address with kpm's description, and each
  * field's mask. The record's value column restates the field's position,
  * not a reset or test value: of the 49 field records it equals the mask in
@@ -9432,7 +9432,7 @@ enum kona_kpm_shadow_row {
 
 /*
  * Geometry-engine special registers, ESTABLISHED: kpm's {number, name}
- * list at vaddr 0x100bb1e0 (diags/kpm/ge_special_registers.tsv), ended by
+ * list at vaddr 0x100bb1e0 (software/diags/kpm/ge_special_registers.tsv), ended by
  * a -1 number. INFERRED: these are microcode-visible special registers
  * (identity, the input word FIFO pointers, FPU and lookup modes, flags,
  * cull and clip state, sort state), numbered as the microcode addresses them.
@@ -9443,7 +9443,7 @@ enum kona_kpm_shadow_row {
  * INFERRED from that heading: numbers 0x40 and up are per-core copies and the
  * lower numbers are shared by the cores of one engine. The record also holds 32
  * address and 32 data registers (words +10632 and +10760), a separate numbering from these.
- * INFERRED (production `ge.u`, 6.5.30m; ucode/ge_isa.md): engine code reaches special n at
+ * INFERRED (production `ge.u`, 6.5.30m; software/ucode/ge_isa.md): engine code reaches special n at
  * engine address 0xfffe0000 + 4n. `HereWeGo` loads address register 0x1c with 0xfffe0000
  * (0x000c) and 0x1d with 0xfffe0100 (0x000d), and no later word reloads either, so source A =
  * 0x1c with offset D = n reads special n, B = 0x1c with E = n writes it, and 0x1d with offset k
@@ -9603,7 +9603,7 @@ enum kona_kpm_shadow_row {
 
 
 /*
- * Routed token-map entries are distributor control words (ucode/ged.md).
+ * Routed token-map entries are distributor control words (software/ucode/ged.md).
  *
  * ESTABLISHED (irsaudit Compact_HIP_*_Control / Compact_GED_*_Control,
  * 6.5.30m; checked against all 206 routed entries of arm1.u's map):
@@ -9631,7 +9631,7 @@ enum kona_kpm_shadow_row {
 #define KONA_REGPIX_REG(e)              (((e) >> 21) & 0x3ff)
 
 /*
- * Geometry-engine operation ids (ucode/ge_ops.md, ucode/ge_inst_results.tsv).
+ * Geometry-engine operation ids (software/ucode/ge_ops.md, software/ucode/ge_inst_results.tsv).
  *
  * ESTABLISHED: the IR diagnostic's engine test (ge_inst.s in
  * usr/diags/IR/ucode/ge.u, 6.5.30m) produces 172 words that irsaudit
@@ -9639,7 +9639,7 @@ enum kona_kpm_shadow_row {
  * expected result for known constant operands. Unit 1 writes register Q
  * and takes its code in M[6:0] (M = 0x680 | code); unit 2 writes P and
  * takes its code in M[10:4] (M = code << 4 | 0x7f). INFERRED (counted
- * over every ge.u word, ucode/ge_ops.md "How one M names two operations"):
+ * over every ge.u word, software/ucode/ge_ops.md "How one M names two operations"):
  * M[10:7] = k selects unit 2's code k << 3 | 7 (k = 0xd idle) and M[6:0]
  * unit 1's (0x7f idle), so one word drives both units; form 11 nearly
  * always does (M = 0x460: multiply and add). Unit-2 code 0x0f occurs only
@@ -9692,7 +9692,7 @@ enum kona_kpm_shadow_row {
  * UNKNOWN and so is bit 8 of the condition word. In production
  * cc 0x14/0x15 continue and leave the pixel-path loops, 0x10 is the
  * abort or error test, and 0x11 is the end-of-command wait (condition
- * group 31) or the loop count not yet zero (group 7). ucode/ge_ops.md.
+ * group 31) or the loop count not yet zero (group 7). software/ucode/ge_ops.md.
  */
 #define KONA_GE_FLAG_LE0                0x8
 #define KONA_GE_FLAG_ZERO               0x4

@@ -1,0 +1,17 @@
+{
+  "target": "software/xsgi/kona.so",
+  "total_funcs": 809,
+  "total_objects": 133,
+  "modules": {
+    "cfb": 247,
+    "kon": 160,
+    "mfb": 68,
+    "mi": 113,
+    "misc": 14,
+    "nfb": 112,
+    "other": 41,
+    "rrm": 27,
+    "vfmt": 19,
+    "xdr": 8
+  }
+}

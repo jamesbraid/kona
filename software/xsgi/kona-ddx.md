@@ -1,6 +1,6 @@
 # The Kona X server module (`kona.so`): function reference
 
-Sources: `usr/lib/X11/dyDDX/kona.so` (6.5.30m; `konad.so`, `konal.so` and `konas.so` carry the same function names with different bytes for most of them, which relocation alone would explain; they also frame commands differently, writing each token word and then its payload at FIFO offset 0 ([arm1_firmware.md](../../ucode/arm1_firmware.md)). The entries in this file describe `kona.so` only; which build a given server loads is answered in [arm1_firmware.md](../../ucode/arm1_firmware.md): an IP27 server loads `konal.so` and an IP35 server `konad.so`) and the per-module assembly in [ddx/asm/kona/](../../ddx/asm/kona/). The X server loads the module as the device-dependent part of the Kona screen: it layers a Kona-specific drawing and window layer (`kon*`) over SGI's new frame-buffer layer (`nfb*`), the generic colour and mono frame-buffer code (`cfb*`, `mfb*`) and the machine-independent code (`mi*`). Roles are **inferred** from the function names and from the neighbouring documents ([opengl.md](../opengl/opengl.md), [dg.md](../../devices/dg/README.md)); the functions those documents already read in detail are not repeated. Where a function is the standard routine of the same name in the X11 sample server (the `mi`, `mfb` and `cfb` layers), the table says so and nothing more.
+Sources: `usr/lib/X11/dyDDX/kona.so` (6.5.30m; `konad.so`, `konal.so` and `konas.so` carry the same function names with different bytes for most of them, which relocation alone would explain; they also frame commands differently, writing each token word and then its payload at FIFO offset 0 ([arm1_firmware.md](../ucode/arm1_firmware.md)). The entries in this file describe `kona.so` only; which build a given server loads is answered in [arm1_firmware.md](../ucode/arm1_firmware.md): an IP27 server loads `konal.so` and an IP35 server `konad.so`) and the per-module assembly in [software/xsgi/asm/kona/](asm/kona/). The X server loads the module as the device-dependent part of the Kona screen: it layers a Kona-specific drawing and window layer (`kon*`) over SGI's new frame-buffer layer (`nfb*`), the generic colour and mono frame-buffer code (`cfb*`, `mfb*`) and the machine-independent code (`mi*`). Roles are **inferred** from the function names and from the neighbouring documents ([opengl.md](../opengl/opengl.md), [dg.md](../../devices/dg/README.md)); the functions those documents already read in detail are not repeated. Where a function is the standard routine of the same name in the X11 sample server (the `mi`, `mfb` and `cfb` layers), the table says so and nothing more.
 
 One entry per function for the stereo wrappers, context hooks, caches, cursor and resource-manager hooks is in [kona-so-functions.md](kona-so-functions.md).
 
@@ -85,7 +85,7 @@ One entry per function for the stereo wrappers, context hooks, caches, cursor an
   caller enables the cursor, or supplies zero mode when disabling it, then sends
   the four-word request through the screen's driver connection. A failed request
   prints an error and returns through the module's error path; the routine does
-  not write a graphics register. The complete body is in `ddx/asm/kona/kon/kon.s`
+  not write a graphics register. The complete body is in `software/xsgi/asm/kona/kon/kon.s`
   at the cited address.
 - `konReloadAllGammas` (`kona.so` 0x464060, 96 bytes): **Established.** It
   indexes the screen's video-control private record through `vcScreenPrivateIndex`
@@ -93,42 +93,42 @@ One entry per function for the stereo wrappers, context hooks, caches, cursor an
   green and blue `X_LOADGAMMA` display requests; this wrapper emits no request or
   register access itself. Its only condition is the loader's handling of the
   screen record, and it returns after that call. The complete body is in
-  `ddx/asm/kona/kon/kon.s` at the cited address.
+  `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 - `konTempBlankAllChannels` (`kona.so` 0x4657a0, 104 bytes): **Established.**
   It forwards the caller's blank value and screen pointer to the display-request
   helper with request number 60 and a four-word request shape. The helper therefore
   controls whether all video channels are blanked; this wrapper has no direct
   register access and returns after the helper call. The complete body is in
-  `ddx/asm/kona/kon/kon.s` at the cited address.
+  `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 - `konProbe` (`kona.so` 0x49adb0, 328 bytes): **Established.** It rejects a
   null probe argument, accepts only board type 3, reads the board-name byte at
   +12, and either asks for the board name and searches for the first matching
   typed board or writes a discovered name byte back after the fallback lookup.
   It returns false for a missing or invalid board and true only when the resulting
   name is nonzero; failures are reported with `ErrorF`. It writes no device
-  register. The complete body is in `ddx/asm/kona/kon/kon.s` at the cited address.
+  register. The complete body is in `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 - `konQueryMaxSwapBarrier` (`kona.so` 0x44f1b0, 24 bytes): **Established.** It
   ignores the screen argument and returns the constant 1, so the module advertises
   one maximum swap barrier. It performs no allocation, ioctl or pipe write. The
-  complete body is in `ddx/asm/kona/kon/kon.s` at the cited address.
+  complete body is in `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 - `konStoreFakeColors` (`kona.so` 0x460c60, 28 bytes): **Established.** It
   accepts the colormap, colour count and colour array arguments, saves them only
   in its stack frame, and returns without changing a colormap slot or sending a
-  display request. The complete body is in `ddx/asm/kona/kon/kon.s` at the cited
+  display request. The complete body is in `software/xsgi/asm/kona/kon/kon.s` at the cited
   address.
 - `konClearHWColormap` (`kona.so` 0x4a25a0, 20 bytes): **Established.** It
   accepts the colormap argument, does not dereference it, and returns immediately.
   No hardware colour-map memory, pipe word or ioctl is changed. The complete body
-  is in `ddx/asm/kona/kon/kon.s` at the cited address.
+  is in `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 - `konSetSpans` (`kona.so` 0x4655c0, 104 bytes): **Established.** It saves the
   drawable, graphics context, source span, span count, coordinate and width
   arguments, reports the unsupported operation through `ErrorF`, and returns
   without emitting a span token or modifying the pipe. The complete body is in
-  `ddx/asm/kona/kon/kon.s` at the cited address.
+  `software/xsgi/asm/kona/kon/kon.s` at the cited address.
 
 ## kona.so functions from 0x4cdd80
 
-One entry per function, read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` through [ddx/asm/kona/](../../ddx/asm/kona/), with callees resolved through the module's global offset table. Offsets after "+" are byte offsets into the record named. Whether the same functions in `konal.so` differ is covered in a separate section.
+One entry per function, read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` through [software/xsgi/asm/kona/](asm/kona/), with callees resolved through the module's global offset table. Offsets after "+" are byte offsets into the record named. Whether the same functions in `konal.so` differ is covered in a separate section.
 
 ### Kona drawing, glyph, copy and image routines (`kon*`)
 
@@ -895,7 +895,7 @@ The 8-bit, 16-bit and 32-bit host drawing paths the module falls back to when a 
 
 ## konal.so functions below the split
 
-The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/konal.so` (6.5.30m; established, see the refused-tokens section of [arm1_firmware.md](../../ucode/arm1_firmware.md)). Each entry below is the `konal.so` build of a function that kona.so has below 0x4cdd80, read from konal.so's own disassembly (extracted with `retools/tools/kona/extract_kona_ddx.py`) and compared word by word with the kona.so build. konal.so is linked at a different base, so its addresses start at 0x13a6e30 and the global-pointer constants, table slots and addresses of static data differ throughout. Of the 379 functions below the split whose bytes differ from kona.so, 338 have the same opcode, register and branch fields in every word: only 16-bit immediates change, and each entry says how many words and of what kind. Of the other 41, 40 are `kon*` pipe writers and loaders, where konal.so frames commands differently, and one is `rrmProcessRequestQueue`, whose only change is a call made through a register. It stores the token number as a word at the FIFO pointer (screen private +8) at offset 0, followed by the payload words, also at offset 0, where kona.so stores the first payload word 32 times the token above the pointer. konal.so has no `KonSeqData*_ip19` calls, so bulk payloads are stored word by word inline, and where kona.so stores `HP_WG_FLUSH_1` konal.so reads a word through the pointer at screen private +16. A further 26 functions below the split have identical bytes in both builds and are covered by the kona.so entries. Entries describe the function as read in konal.so, using the kona.so entry for the unchanged parts.
+The IP27 kernel names the pipe KONAL and the X server loads `usr/lib/X11/dyDDX/konal.so` (6.5.30m; established, see the refused-tokens section of [arm1_firmware.md](../ucode/arm1_firmware.md)). Each entry below is the `konal.so` build of a function that kona.so has below 0x4cdd80, read from konal.so's own disassembly (extracted with `retools/tools/kona/extract_kona_ddx.py`) and compared word by word with the kona.so build. konal.so is linked at a different base, so its addresses start at 0x13a6e30 and the global-pointer constants, table slots and addresses of static data differ throughout. Of the 379 functions below the split whose bytes differ from kona.so, 338 have the same opcode, register and branch fields in every word: only 16-bit immediates change, and each entry says how many words and of what kind. Of the other 41, 40 are `kon*` pipe writers and loaders, where konal.so frames commands differently, and one is `rrmProcessRequestQueue`, whose only change is a call made through a register. It stores the token number as a word at the FIFO pointer (screen private +8) at offset 0, followed by the payload words, also at offset 0, where kona.so stores the first payload word 32 times the token above the pointer. konal.so has no `KonSeqData*_ip19` calls, so bulk payloads are stored word by word inline, and where kona.so stores `HP_WG_FLUSH_1` konal.so reads a word through the pointer at screen private +16. A further 26 functions below the split have identical bytes in both builds and are covered by the kona.so entries. Entries describe the function as read in konal.so, using the kona.so entry for the unchanged parts.
 
 ### Video format files
 
@@ -4311,7 +4311,7 @@ Read from the 6.5.30m `usr/lib/X11/dyDDX/kona.so` disassembly (callee names reso
 
 ## konal.so functions matching the kona.so range from 0x4cdd80
 
-The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `ddx/konal.so`; established, see the refused-tokens section of [arm1_firmware.md](../../ucode/arm1_firmware.md)). Each entry below is the `konal.so` build of a function that kona.so has at 0x4cdd80 or above, read from its own disassembly (extracted with `retools/tools/kona/extract_kona_ddx.py`, sections by prefix as for kona.so). konal.so is linked at a different base, so its addresses start at 0x1400000 and every function has a different byte hash from its kona.so twin. Comparing the two instruction by instruction with relocated addresses ignored shows that 293 of the 347 functions are the same code. The 54 that differ are all `kon*` pipe writers and loaders. In konal.so a command is the token number stored as a word at the FIFO pointer (screen private +0x8) at offset 0, followed by the payload words, also at offset 0; kona.so stores the first payload word at the pipe address 32 times the token above the pointer. konal.so also has no `KonSeqData*_ip19` helpers: it stores bulk words inline one by one. Where kona.so sends `HP_WG_FLUSH_1`, konal.so reads a word through the pointer at +0x10 of the screen private.
+The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `software/xsgi/konal.so`; established, see the refused-tokens section of [arm1_firmware.md](../ucode/arm1_firmware.md)). Each entry below is the `konal.so` build of a function that kona.so has at 0x4cdd80 or above, read from its own disassembly (extracted with `retools/tools/kona/extract_kona_ddx.py`, sections by prefix as for kona.so). konal.so is linked at a different base, so its addresses start at 0x1400000 and every function has a different byte hash from its kona.so twin. Comparing the two instruction by instruction with relocated addresses ignored shows that 293 of the 347 functions are the same code. The 54 that differ are all `kon*` pipe writers and loaders. In konal.so a command is the token number stored as a word at the FIFO pointer (screen private +0x8) at offset 0, followed by the payload words, also at offset 0; kona.so stores the first payload word at the pipe address 32 times the token above the pointer. konal.so also has no `KonSeqData*_ip19` helpers: it stores bulk words inline one by one. Where kona.so sends `HP_WG_FLUSH_1`, konal.so reads a word through the pointer at +0x10 of the screen private.
 
 - `cfbFillPoly1RectGeneral` (`konal.so` 0x1456980, 3304 bytes): **Established.** Polygon fill for
   8-bit pixels in one clip rectangle under any raster op. It indexes the GC private array at gc

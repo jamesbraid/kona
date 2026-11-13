@@ -8,8 +8,8 @@ Sources used (names as the command table uses them where it has one):
 
 | Tag | Source |
 |---|---|
-| FW | pipe firmware `arm1.u` 6.5.30m, [ucode/arm1.s](../../ucode/arm1.s); addresses are firmware addresses (`0x0c......`) |
-| CL | OpenGL client library `libGLcore.so` (64-bit build), [libglcore/asm/texture/kon_texture_api.s](../../libglcore/asm/texture/kon_texture_api.s); addresses are `0x0d......` |
+| FW | pipe firmware `arm1.u` 6.5.30m, [software/ucode/arm1.s](../../software/ucode/arm1.s); addresses are firmware addresses (`0x0c......`) |
+| CL | OpenGL client library `libGLcore.so` (64-bit build), [software/opengl/asm/texture/kon_texture_api.s](../../software/opengl/asm/texture/kon_texture_api.s); addresses are `0x0d......` |
 | DG | the IR diagnostic `irsaudit`, disassembly of `usr/diags/IR/bin/irsaudit` (the local install, not tracked); addresses are `0x10......` |
 | TV | the diagnostic's stored raster-bus vectors `tbusdata.Z`, blocks `tex2d_detail.tbus` and `projtex.tbus` (S61); line numbers are in the decompressed file |
 | RM | [RM.h](../../devices/rm/RM.h), the register table read from the diagnostic tool `kpm` |

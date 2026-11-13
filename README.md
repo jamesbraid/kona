@@ -28,7 +28,7 @@ register and command findings rest on the IRIX binaries. Initialise only what yo
 
 ## Documents
 
-Every tracked chapter, grouped by topic. The six generated pages in `ucode/` and `software/video/display-formats.md` are
+Every tracked chapter, grouped by topic. The six generated pages in `software/ucode/` and `software/video/display-formats.md` are
 left out, and so are the per-batch instruction readings, which the last line covers.
 
 ### Project files
@@ -99,18 +99,18 @@ left out, and so are the per-batch instruction readings, which the last line cov
 
 ### Microcode
 
-- [ucode/arm1.md](ucode/arm1.md): ARM firmware arm1.u and the host-token map
-- [ucode/arm1_firmware.md](ucode/arm1_firmware.md): Structure of the ARM firmware: start-up, loop and handlers
-- [ucode/arm1_functions.md](ucode/arm1_functions.md): Named functions and data of arm1.u, one row per symbol
-- [ucode/dg.md](ucode/dg.md): Display tables: video formats, combinations, VOF sources and option images
-- [ucode/ged.md](ucode/ged.md): The distributor: instruction set, registers and dispatch
-- [ucode/ge.md](ucode/ge.md): Geometry-engine microcode files and how they relate
-- [ucode/ge_isa.md](ucode/ge_isa.md): How the 72-bit geometry-engine instruction word is laid out
-- [ucode/ge_ops.md](ucode/ge_ops.md): Operation codes of the geometry-engine program
-- [ucode/ge_compute.md](ucode/ge_compute.md): What the geometry-engine routines compute, label by label
-- [ucode/ge_handlers.md](ucode/ge_handlers.md): Geometry-engine labels: what each does and what reaches it
-- [ucode/geif_commands.md](ucode/geif_commands.md): Geometry-engine commands read one by one from geif.u
-- [ucode/tport.md](ucode/tport.md): tport.bin: a second ARM image with display-generator code
+- [software/ucode/arm1.md](software/ucode/arm1.md): ARM firmware arm1.u and the host-token map
+- [software/ucode/arm1_firmware.md](software/ucode/arm1_firmware.md): Structure of the ARM firmware: start-up, loop and handlers
+- [software/ucode/arm1_functions.md](software/ucode/arm1_functions.md): Named functions and data of arm1.u, one row per symbol
+- [software/ucode/dg.md](software/ucode/dg.md): Display tables: video formats, combinations, VOF sources and option images
+- [software/ucode/ged.md](software/ucode/ged.md): The distributor: instruction set, registers and dispatch
+- [software/ucode/ge.md](software/ucode/ge.md): Geometry-engine microcode files and how they relate
+- [software/ucode/ge_isa.md](software/ucode/ge_isa.md): How the 72-bit geometry-engine instruction word is laid out
+- [software/ucode/ge_ops.md](software/ucode/ge_ops.md): Operation codes of the geometry-engine program
+- [software/ucode/ge_compute.md](software/ucode/ge_compute.md): What the geometry-engine routines compute, label by label
+- [software/ucode/ge_handlers.md](software/ucode/ge_handlers.md): Geometry-engine labels: what each does and what reaches it
+- [software/ucode/geif_commands.md](software/ucode/geif_commands.md): Geometry-engine commands read one by one from geif.u
+- [software/ucode/tport.md](software/ucode/tport.md): tport.bin: a second ARM image with display-generator code
 
 ### Findings
 
@@ -162,9 +162,9 @@ To reproduce a cited result:
 - A claim an entry marks as established by execution is reproduced by the script in `retools/tools/kona/` that
   the entry names; its docstring says what it reproduces and how to run it, always as
   `retools/tools/re-run python3 retools/tools/kona/NAME.py ...`.
-- The shared tooling (container definitions, wrappers, Ghidra scripts, the inventory, fact sheet and claim checker, and the device extractors) is the `retools/` submodule (sgi-retools); tools are run by their `retools/tools/` path from this repository's root (they find the workspace from the current directory), so a change to them is made there and the pin here moves with a commit. `tools/` here holds only this repository's own scripts, config and data, and `ghidra/{processors,import,types}/kona-*` are links into `retools/ghidra/` (the Ghidra tests run them by those workspace paths). The optional Ghidra image is built from `retools/tools/Containerfile.ghidra` by
+- The shared tooling (container definitions, wrappers, Ghidra scripts, the inventory, fact sheet and claim checker, and the device extractors) is the `retools/` submodule (sgi-retools); tools are run by their `retools/tools/` path from this repository's root (they find the workspace from the current directory), so a change to them is made there and the pin here moves with a commit. `tools/` here holds only this repository's own scripts, config and data, and `tools/ghidra/{processors,import,types}/kona-*` are links into `retools/ghidra/` (the Ghidra tests run them by those workspace paths). The optional Ghidra image is built from `retools/tools/Containerfile.ghidra` by
   `retools/tools/re-run --ghidra COMMAND`, and `retools/tools/re-run --ghidra-export OBJECT` writes decompiled C and
-  function-similarity output as JSON (see `ghidra/README.md`); nothing else needs it. `retools/tools/README-analysis.md`
+  function-similarity output as JSON (see `tools/ghidra/README.md`); nothing else needs it. `retools/tools/README-analysis.md`
   describes the `.mdebug` importer and the kernel table extractors.
 
 Licence: BSD-3-Clause, see [LICENSE](LICENSE). The scripts descend from gr4's

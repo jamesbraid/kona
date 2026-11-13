@@ -1,0 +1,544 @@
+# mshortcircuit.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_Short_Complex_To_16:
+9805: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1734
+9806: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1735
+9807: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1737
+9808: 28003132b14344f8a0 f5  imm=162 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1739
+9809: 180341595f3844f8a0 f3  imm=165 cc=91 C=1e Q=1c M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; mshortcircuit.S:1741
+980a: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1744
+980c: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1745
+9810: 76013607ca04600000 f14 r217=1 A=18 D=1 G=c r99=8 r62=1ffc884170  ; mshortcircuit.S:1747
+9811: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1748
+9812: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; mshortcircuit.S:1749
+9813: 76073607ca04680000 f14 r217=1 A=18 D=7 G=d r99=8 r62=1ffc884170  ; mshortcircuit.S:1750
+9814: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1754
+9815: 76083607ca04700000 f14 r217=1 A=18 D=8 G=e r99=8 r62=1ffc884170  ; mshortcircuit.S:1751
+981b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1753
+981c: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1760
+981d: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1761
+9820: 7099c937c88cf80000 f14 C=13 r95=2 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1756
+9821: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1763
+9822: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; mshortcircuit.S:1765
+9824: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1766
+9825: 4c00bd27c05aedd780 f9  r213=3 A=10 B=1e C=12 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1770
+9826: 77fa40f808c1780000 f14 r222=1 r219=1 C=f F=20 G=f r62=1ffc23c170  ; mshortcircuit.S:1781
+9827: 4c02bd27805aedd780 f9  r213=3 A=10 B=1e C=12 D=2 F=1e r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1771
+9828: 4c04bd27405aedd780 f9  r213=3 A=10 B=1e C=12 D=4 F=1d r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1772
+9829: 77f64007ca00f89825 f14 xfer5 c4 cc=14 -> 9825 imm=9825 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1782
+982a: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:1783
+982b: 4c069b27005aedd780 f9  r213=3 A=10 B=d C=12 D=6 F=1c r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1773
+982c: 4c08bd27c05aedd780 f9  r213=3 A=10 B=1e C=12 D=8 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1775
+982d: 4c0abd27805aedd780 f9  r213=3 A=10 B=1e C=12 D=a F=1e r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1776
+982e: 77fa41040881840000 f14 r219=1 C=10 r162=1 F=10 G=10 r62=1ffc23c170  ; mshortcircuit.S:1780
+982f: 4c0cbd27405aedd780 f9  r213=3 A=10 B=1e C=12 D=c F=1d r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1777
+9830: 7c2e8007c000000000 f15 A=10 D=e r99=8 r62=1ffc880170  ; mshortcircuit.S:1778
+9831: 57c05d273fb6edd780 f10 r213=3 B=e C=12 F=1c r148=1c M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:1778
+mmo_Short_Complex_To_8:
+9833: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1618
+9834: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1620
+9835: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1623
+9836: 28003132b14344f8a0 f5  imm=162 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1626
+9837: 180341595f3844f8a0 f3  imm=165 cc=91 C=1e Q=1c M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; mshortcircuit.S:1629
+9838: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1632
+983a: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1633
+983e: 76013607ca04600000 f14 r217=1 A=18 D=1 G=c r99=8 r62=1ffc884170  ; mshortcircuit.S:1635
+983f: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1636
+9840: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; mshortcircuit.S:1637
+9841: 76073607ca04700000 f14 r217=1 A=18 D=7 G=e r99=8 r62=1ffc884170  ; mshortcircuit.S:1638
+9842: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1642
+9843: 76083607ca04680000 f14 r217=1 A=18 D=8 G=d r99=8 r62=1ffc884170  ; mshortcircuit.S:1639
+9849: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1641
+984a: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1648
+984b: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1649
+984e: 7099c937c88cf80000 f14 C=13 r95=2 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1644
+984f: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1651
+9850: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; mshortcircuit.S:1653
+9852: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1654
+9853: 77fa41040881640000 f14 r219=1 C=10 r162=1 F=10 G=c r62=1ffc23c170  ; mshortcircuit.S:1671
+9854: 4c00bd27c05aedd780 f9  r213=3 A=10 B=1e C=12 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1663
+9855: 4c02bd27805aedd780 f9  r213=3 A=10 B=1e C=12 D=2 F=1e r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1664
+9856: 4c04bd27405aedd780 f9  r213=3 A=10 B=1e C=12 D=4 F=1d r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1665
+9857: 4c06bd27005aedd780 f9  r213=3 A=10 B=1e C=12 D=6 F=1c r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1666
+9858: 4c08bd26c05aedd780 f9  r213=3 A=10 B=1e C=12 D=8 F=1b r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1667
+9859: 4c0abd26805aedd780 f9  r213=3 A=10 B=1e C=12 D=a F=1a r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1668
+985a: 4c0cbd26405aedd780 f9  r213=3 A=10 B=1e C=12 D=c F=19 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1669
+985b: 77fa40f808c1780000 f14 r222=1 r219=1 C=f F=20 G=f r62=1ffc23c170  ; mshortcircuit.S:1688
+985c: 4c0e9d26005aedd780 f9  r213=3 A=10 B=e C=12 D=e F=18 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1670
+985d: 4b00bd27c05aedd780 f9  r213=3 A=c B=1e C=12 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1678
+985e: 77f64007ca00f89853 f14 xfer5 c4 cc=14 -> 9853 imm=9853 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1689
+985f: 77f240c408a1840000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> r219=1 C=c r162=1 F=10 G=10 seq=14fe4 r62=1ffc23c170 r25=3e39c00  ; mshortcircuit.S:1686
+9860: 4b02bd27805aedd780 f9  r213=3 A=c B=1e C=12 D=2 F=1e r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1679
+9861: 4b04bd27405aedd780 f9  r213=3 A=c B=1e C=12 D=4 F=1d r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1680
+9862: 4b06bd27005aedd780 f9  r213=3 A=c B=1e C=12 D=6 F=1c r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1681
+9863: 4b08bd26c05aedd780 f9  r213=3 A=c B=1e C=12 D=8 F=1b r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1682
+9864: 4b0abd26805aedd780 f9  r213=3 A=c B=1e C=12 D=a F=1a r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1683
+9865: 4b0cbd26405aedd780 f9  r213=3 A=c B=1e C=12 D=c F=19 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1684
+9866: 4b0e9b26005aedd780 f9  r213=3 A=c B=d C=12 D=e F=18 r148=1c M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1685
+mmo_shortBGRApass:
+9868: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1269
+9869: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1270
+986a: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1272
+986b: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1274
+986c: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1276
+986d: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1278
+986e: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1280
+986f: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1282
+9870: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1284
+9872: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:1287
+9873: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1289
+9874: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:1291
+9875: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:1293
+9876: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:1295
+9877: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:1297
+9878: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:1299
+9879: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:1301
+987a: 68000007ec22ca941e f13 cc=91 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:1304
+987b: 68000007ec214a941e f13 cc=91 r148=3c0 Q=2 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:1312
+987c: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1308
+987d: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:1328
+987e: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1309
+987f: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:1317
+9880: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1318
+9881: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1319
+9882: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:1320
+9883: 68000007ec21ca941e f13 cc=91 r148=3c0 Q=3 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:1313
+9884: 68000007ec224a941e f13 cc=91 r148=3c0 Q=4 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:1314
+9885: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1322
+9886: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1323
+9887: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1326
+mmo_short16toRGB5A1:
+988b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1177
+988c: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1178
+988d: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1180
+988e: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1182
+988f: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1184
+9890: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1186
+9891: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1188
+9893: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1190
+9894: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1192
+9895: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:1195
+9896: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1197
+9897: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:1199
+9898: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:1201
+9899: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:1203
+989a: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:1205
+989c: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:1207
+989d: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:1209
+989e: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1212
+989f: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1216
+98a0: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:1220
+98a1: 782071e7cf0000000b f15 imm=b r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:1221
+98a2: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:1240
+98a3: 6e0f4007ec21caf8a0 f13 cc=91 A=18 D=f Q=3 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1222
+98a4: 19c87103df0444f8a0 f3  imm=f r215=3 cc=91 B=18 C=1e E=e Q=2 M=6ca r110=7bd r71=1 r62=1ffc658578  ; mshortcircuit.S:1223
+98a5: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1230
+98a6: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1231
+98a7: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:1232
+98a8: 6e0e4007ec22caf8a0 f13 cc=91 A=18 D=e Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1227
+98a9: 68000007ec224af420 f13 cc=91 Q=4 r128=d M=6ca r110=5bd r62=1ffc000578  ; mshortcircuit.S:1225
+98aa: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1234
+98ab: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1235
+98ac: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1238
+mmo_short8toRGB5A1:
+98b0: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:1081
+98b1: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1082
+98b2: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1084
+98b3: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1086
+98b4: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1088
+98b5: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1090
+98b6: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1092
+98b8: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1094
+98b9: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:1096
+98ba: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:1099
+98bb: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1101
+98bc: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:1103
+98bd: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:1105
+98be: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:1107
+98bf: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:1109
+98c1: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:1111
+98c2: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:1113
+98c3: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1116
+98c4: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1120
+98c5: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:1125
+98c6: 782071e7cf00000003 f15 imm=3 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:1126
+98c7: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:1145
+98c8: 6e0f4007ec21caf8a0 f13 cc=91 A=18 D=f Q=3 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1127
+98c9: 19c87101df0444f8a0 f3  imm=7 r215=3 cc=91 B=18 C=1e E=e Q=2 M=6ca r110=7bd r71=1 r62=1ffc658578  ; mshortcircuit.S:1128
+98ca: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1135
+98cb: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1136
+98cc: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:1137
+98cd: 6e0e4007ec22caf8a0 f13 cc=91 A=18 D=e Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1132
+98ce: 68000007ec224af420 f13 cc=91 Q=4 r128=d M=6ca r110=5bd r62=1ffc000578  ; mshortcircuit.S:1130
+98cf: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1139
+98d0: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1140
+98d1: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1143
+mmo_shortLA16toL12A4:
+98d5: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:984
+98d6: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:985
+98d7: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:987
+98d8: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:989
+98d9: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:991
+98da: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:993
+98db: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:995
+98dd: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:997
+98de: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:999
+98df: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:1002
+98e0: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:1004
+98e1: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:1006
+98e2: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:1008
+98e3: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:1010
+98e4: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:1012
+98e6: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:1014
+98e7: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:1016
+98e8: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:1019
+98e9: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1024
+98ea: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:1028
+98eb: 782071e7cf00000004 f15 imm=4 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:1029
+98ec: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:1048
+98ed: 6e0f4007ec214af8a0 f13 cc=91 A=18 D=f Q=2 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1030
+98ee: 19c871031f0844f8a0 f3  imm=c r215=3 cc=91 B=18 C=1e E=e Q=4 M=6ca r110=7bd r71=1 r62=1ffc658578  ; mshortcircuit.S:1032
+98ef: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1038
+98f0: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1039
+98f1: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:1040
+98f2: 6e0e4007ec21caf8a0 f13 cc=91 A=18 D=e Q=3 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:1034
+98f3: 68000007ec22caf8a0 f13 cc=91 Q=5 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:1036
+98f4: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:1042
+98f5: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:1043
+98f6: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:1046
+mmo_shortLA8toL12A4:
+98fa: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:409
+98fb: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:410
+98fc: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:412
+98fd: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:414
+98fe: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:416
+98ff: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:418
+9900: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:420
+9902: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:422
+9903: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:424
+9904: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:427
+9905: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:429
+9906: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:431
+9907: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:433
+9908: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:435
+9909: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:437
+990b: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:439
+990c: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:441
+990d: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:444
+990e: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:448
+990f: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:451
+9910: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:469
+9911: 19e871011f0444941e f3  imm=4 r215=3 cc=91 B=18 C=1e E=f r148=3c0 Q=2 M=6ca r110=4bd r71=1 r62=1ffc65a578  ; mshortcircuit.S:452
+9912: 6e0f4007ec22caf8a0 f13 cc=91 A=18 D=f Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:453
+9913: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:459
+9914: 77f64007c180f89a57 f14 xfer5 c4 cc=3 -> 9a57 <mMerge4_8C> imm=9a57 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:460
+9915: 77f24007c880f89a3d f14 xfer4 c4 cc=11 -> 9a3d <mMerge4_8C_LastBlk> imm=9a3d seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:461
+9916: 68000007ec21caf8a0 f13 cc=91 Q=3 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:455
+9917: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:456
+9918: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:463
+9919: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:464
+991a: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:467
+mmo_short16to8:
+991e: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:891
+991f: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:892
+9920: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:894
+9921: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:896
+9922: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:898
+9923: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:900
+9924: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:902
+9926: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:904
+9927: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:906
+9928: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:909
+9929: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:911
+992a: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:913
+992b: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:915
+992c: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:917
+992d: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:919
+992f: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:921
+9930: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:923
+9931: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:926
+9932: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:930
+9933: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:933
+9934: 782071e7cf00000008 f15 imm=8 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:934
+9935: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:951
+9936: 6e0f4007ec22caf8a0 f13 cc=91 A=18 D=f Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:935
+9937: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:936
+9938: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:941
+9939: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:942
+993a: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:943
+993b: 68000007ec21caf8a0 f13 cc=91 Q=3 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:937
+993c: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:938
+993d: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:945
+993e: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:946
+993f: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:949
+mmo_short16to4:
+9943: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:798
+9944: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:799
+9945: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:801
+9946: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:803
+9947: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:805
+9948: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:807
+9949: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:809
+994b: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:811
+994c: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:813
+994d: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:816
+994e: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:818
+994f: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:820
+9950: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:822
+9951: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:824
+9952: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:826
+9954: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:828
+9955: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:830
+9956: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:833
+9957: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:837
+9958: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:840
+9959: 782071e7cf0000000c f15 imm=c r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:841
+995a: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:858
+995b: 6e0f4007ec22caf8a0 f13 cc=91 A=18 D=f Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:842
+995c: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:843
+995d: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:848
+995e: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:849
+995f: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:850
+9960: 68000007ec21caf8a0 f13 cc=91 Q=3 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:844
+9961: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:845
+9962: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:852
+9963: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:853
+9964: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:856
+mmo_short8to4:
+9968: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:705
+9969: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:706
+996a: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:708
+996b: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:710
+996c: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:712
+996d: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:714
+996e: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:716
+9970: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:718
+9971: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:720
+9972: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:723
+9973: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:725
+9974: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:727
+9975: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:729
+9976: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:731
+9977: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:733
+9979: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:735
+997a: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:737
+997b: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:740
+997c: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:744
+997d: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:747
+997e: 782071e7cf00000004 f15 imm=4 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mshortcircuit.S:748
+997f: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:765
+9980: 6e0f4007ec22caf8a0 f13 cc=91 A=18 D=f Q=5 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mshortcircuit.S:749
+9981: 68000007ec214af8a0 f13 cc=91 Q=2 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:750
+9982: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:755
+9983: 77f64007c180f89a10 f14 xfer5 c4 cc=3 -> 9a10 <mMerge8_16C> imm=9a10 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:756
+9984: 77f24007c880f899f5 f14 xfer4 c4 cc=11 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:757
+9985: 68000007ec21caf8a0 f13 cc=91 Q=3 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:751
+9986: 68000007ec224af8a0 f13 cc=91 Q=4 M=6ca r110=7bd r62=1ffc000578  ; mshortcircuit.S:752
+9987: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:759
+9988: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:760
+9989: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:763
+mmo_short8to16:
+998d: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:318
+998e: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:319
+998f: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:321
+9990: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:323
+9991: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:325
+9992: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:327
+9993: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:329
+9994: 28003132b44944f8a0 f5  imm=168 r213=3 B=18 C=1e E=9 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:331
+9995: 28003132b4ca44f8a0 f5  imm=169 r213=3 B=18 C=1e E=a M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:333
+9997: 76013607ca04200000 f14 r217=1 A=18 D=1 G=4 r99=8 r62=1ffc884170  ; mshortcircuit.S:336
+9998: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:338
+9999: 76033607ca04280000 f14 r217=1 A=18 D=3 G=5 r99=8 r62=1ffc884170  ; mshortcircuit.S:340
+999a: 76043607ca04300000 f14 r217=1 A=18 D=4 G=6 r99=8 r62=1ffc884170  ; mshortcircuit.S:342
+999b: 76073607ca04000000 f14 r217=1 A=18 D=7 G=0 r99=8 r62=1ffc884170  ; mshortcircuit.S:344
+999c: 76083607ca04080000 f14 r217=1 A=18 D=8 G=1 r99=8 r62=1ffc884170  ; mshortcircuit.S:346
+999d: 76093607ca04100000 f14 r217=1 A=18 D=9 G=2 r99=8 r62=1ffc884170  ; mshortcircuit.S:348
+999e: 760a3607ca04180000 f14 r217=1 A=18 D=a G=3 r99=8 r62=1ffc884170  ; mshortcircuit.S:350
+999f: 68000007ec22ca941e f13 cc=91 r148=3c0 Q=5 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:353
+99a0: 68000007ec214a941e f13 cc=91 r148=3c0 Q=2 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:360
+99a1: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:356
+99a2: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:376
+99a3: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:357
+99a4: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mshortcircuit.S:365
+99a5: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:366
+99a6: 77f64007c180f89a57 f14 xfer5 c4 cc=3 -> 9a57 <mMerge4_8C> imm=9a57 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:367
+99a7: 77f24007c880f89a3d f14 xfer4 c4 cc=11 -> 9a3d <mMerge4_8C_LastBlk> imm=9a3d seq=4fe4 r71=1 r25=3e39c00  ; mshortcircuit.S:368
+99a8: 68000007ec21ca941e f13 cc=91 r148=3c0 Q=3 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:361
+99a9: 68000007ec224a941e f13 cc=91 r148=3c0 Q=4 M=6ca r110=4bd r62=1ffc002578  ; mshortcircuit.S:362
+99aa: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:370
+99ab: 7100210fca03840000 f14 r219=3 A=4 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:371
+99ac: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:374
+mmo_shortpass8W:
+99b0: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:172
+99b1: 28003132b0c144f8a0 f5  imm=161 r213=3 B=18 C=1e E=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:173
+99b2: 28003132b24244f8a0 f5  imm=164 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:175
+99b3: 28003132b14354f8a0 f5  imm=162 r220=1 r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:177
+99b4: 28003132b1c444f8a0 f5  imm=163 r213=3 B=18 C=1e E=4 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:179
+99b6: 28003132b34744f8a0 f5  imm=166 r213=3 B=18 C=1e E=7 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:181
+99b7: 28003132b3c844f8a0 f5  imm=167 r213=3 B=18 C=1e E=8 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:183
+99b9: 77fa41f7c881800000 f14 r219=1 C=1f G=10 r62=1ffc23c170  ; mshortcircuit.S:200
+99ba: 76013607ca04580000 f14 r217=1 A=18 D=1 G=b r99=8 r62=1ffc884170  ; mshortcircuit.S:186
+99bb: 76023607ca04900000 f14 r217=1 A=18 D=2 G=12 r99=8 r62=1ffc884170  ; mshortcircuit.S:188
+99bc: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; mshortcircuit.S:190
+99bd: 76043607ca04700000 f14 r217=1 A=18 D=4 G=e r99=8 r62=1ffc884170  ; mshortcircuit.S:192
+99be: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mshortcircuit.S:201
+99bf: 76073607ca04600000 f14 r217=1 A=18 D=7 G=c r99=8 r62=1ffc884170  ; mshortcircuit.S:194
+99c0: 76083607ca04680000 f14 r217=1 A=18 D=8 G=d r99=8 r62=1ffc884170  ; mshortcircuit.S:196
+99c1: 6e048007e86fcaf6a0 f13 r220=1 A=18 D=4 M=6ca r99=8 r62=1ffc880178  ; mshortcircuit.S:214
+99c2: 72c0210fca03840000 f14 r219=3 A=b C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:202
+99c3: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mshortcircuit.S:204
+99c4: 77f64007ff00f8a4d4 f14 xfer5 c4 cc=7e -> a4d4 <mLASTGE> imm=a4d4 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:205
+99c5: 77f64007c100f899e3 f14 xfer5 c4 cc=2 -> 99e3 imm=99e3 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:206
+99c8: 7099c117c8ccf80000 f14 r222=1 C=11 seq=611f r62=1ffc218170 r25=3e2fc00  ; mshortcircuit.S:208
+99c9: 72c0210fca03840000 f14 r219=3 A=b C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mshortcircuit.S:209
+99cb: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mshortcircuit.S:212
+99ce: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:220
+99d3: 6400bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:225
+99d4: 77fa4d278880f80000 f14 C=12 F=1e r95=13 r62=1ffc218170  ; mshortcircuit.S:229
+99d5: 3c0198f800be44f6a0 f7  r222=1 r219=1 r213=3 A=10 B=c C=f D=1 F=20 G=f M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mshortcircuit.S:228
+99d6: 6402bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 D=2 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:231
+99d7: 7c238007c000000000 f15 A=10 D=3 r99=8 r62=1ffc880170  ; mshortcircuit.S:234
+99d8: 77f64007ca10fbfffb f14 xfer5.rel c4 cc=14 -> 99d3 imm=fffffffb cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:256
+99d9: 77f64007c190f8000a f14 xfer5.rel c4 cc=3 -> 99e3 imm=a cc=3 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:257
+99da: 18131b2788e144f6a0 f3  xfer4 c4 cc=11 -> 0000 <HereWeGo> r213=3 B=d C=12 F=1e M=6ca r95=13 seq=14fe4 r62=1ffc658178 r25=3e79c00  ; mshortcircuit.S:235
+99db: 6404bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 D=4 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:239
+99dc: 77fa4d278880f80000 f14 C=12 F=1e r95=13 r62=1ffc218170  ; mshortcircuit.S:243
+99dd: 3c05990200c144f6a0 f7  r219=1 r213=3 A=10 B=c C=10 D=5 r162=1 F=8 G=10 M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mshortcircuit.S:242
+99de: 6406bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 D=6 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:245
+99df: 7c278007c000000000 f15 A=10 D=7 r99=8 r62=1ffc880170  ; mshortcircuit.S:248
+99e0: 60001b27aa0027dd80 f12 r213=3 B=d C=12 F=1e M=6ca r95=13 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:249
+99e3: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:264
+99e8: 77fa40e808c1700000 f14 r222=1 r219=1 C=e F=20 G=e r62=1ffc23c170  ; mshortcircuit.S:281
+99eb: 77f64007ca10fbfffd f14 xfer5.rel c4 cc=14 -> 99e8 imm=fffffffd cc=14 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:284
+99ec: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:287
+99ee: 6400bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:268
+99ef: 77fa4d278880f80000 f14 C=12 F=1e r95=13 r62=1ffc218170  ; mshortcircuit.S:272
+99f0: 3c01990100c144f6a0 f7  r219=1 r213=3 A=10 B=c C=10 D=1 r162=1 F=4 G=10 M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mshortcircuit.S:271
+99f1: 6402bd27ea0027dd80 f12 r213=3 A=10 B=1e C=12 D=2 M=6ca r99=8 r95=13 r62=1ffced8178 r25=3e69c00  ; mshortcircuit.S:274
+99f2: 7c238007c000000000 f15 A=10 D=3 r99=8 r62=1ffc880170  ; mshortcircuit.S:277
+99f3: 60001b27aa0027dd80 f12 r213=3 B=d C=12 F=1e M=6ca r95=13 r62=1ffc658178 r25=3e69c00  ; mshortcircuit.S:278
+mMerge8_16C_LastBlk:
+99f5: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:1491
+99fa: 77fa406808c1300000 f14 r222=1 r219=1 C=6 F=20 G=6 r62=1ffc23c170  ; mshortcircuit.S:1547
+99fb: 4c00bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1496
+99fc: 4c01bd27805aedd460 f9  r213=3 A=10 B=1e C=12 D=1 F=1e r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1499
+99fd: 4c02bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=2 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1502
+99fe: 4c03bd27005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=3 F=1c r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1505
+99ff: 4c04bd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=4 F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1508
+9a00: 4c05bd26805aedd460 f9  r213=3 A=10 B=1e C=12 D=5 F=1a r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1511
+9a01: 4c06bd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=6 F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1514
+9a02: 4c078126005aedd4a0 f9  r213=3 A=10 C=12 D=7 F=18 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1517
+9a03: 4c08bd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=8 F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1522
+9a04: 4c09bd25805aedd460 f9  r213=3 A=10 B=1e C=12 D=9 F=16 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1525
+9a05: 4c0abd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=a F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1528
+9a06: 77f64007ca00f899fa f14 xfer5 c4 cc=14 -> 99fa imm=99fa cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1550
+9a07: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:1553
+9a08: 4c0bbd25005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=b F=14 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1531
+9a09: 4c0cbd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=c F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1534
+9a0a: 4c0dbd24805aedd460 f9  r213=3 A=10 B=1e C=12 D=d F=12 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1537
+9a0b: 77fa41040881840000 f14 r219=1 C=10 r162=1 F=10 G=10 r62=1ffc23c170  ; mshortcircuit.S:1548
+9a0c: 4c0ebd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=e F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1540
+9a0d: 7c2f8007c000000000 f15 A=10 D=f r99=8 r62=1ffc880170  ; mshortcircuit.S:1543
+9a0e: 57c043243fb6edd4a0 f10 r213=3 B=1 C=12 F=10 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:1544
+mMerge8_16C:
+9a10: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:1352
+9a15: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; mshortcircuit.S:1364
+9a16: 4c00bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1366
+9a17: 4c01bd27805aedd460 f9  r213=3 A=10 B=1e C=12 D=1 F=1e r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1372
+9a18: 4c02bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=2 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1375
+9a19: 4c03bd27005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=3 F=1c r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1378
+9a1a: 4c04bd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=4 F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1381
+9a1b: 4c05bd26805aedd460 f9  r213=3 A=10 B=1e C=12 D=5 F=1a r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1384
+9a1c: 4c06bd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=6 F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1387
+9a1d: 4c078126005aedd4a0 f9  r213=3 A=10 C=12 D=7 F=18 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1390
+9a1e: 4c08bd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=8 F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1395
+9a1f: 4c09bd25805aedd460 f9  r213=3 A=10 B=1e C=12 D=9 F=16 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1398
+9a20: 4c0abd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=a F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1401
+9a21: 4c0bbd25005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=b F=14 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1404
+9a22: 4c0cbd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=c F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1407
+9a23: 4c0dbd24805aedd460 f9  r213=3 A=10 B=1e C=12 D=d F=12 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1410
+9a24: 4c0ebd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=e F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1413
+9a25: 4c0f8324005aedd4a0 f9  r213=3 A=10 B=1 C=12 D=f F=10 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1416
+9a26: 4c10bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 D=10 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1421
+9a27: 4c11bd27805aedd460 f9  r213=3 A=10 B=1e C=12 D=11 F=1e r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1424
+9a28: 4c12bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=12 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1427
+9a29: 4c13bd27005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=13 F=1c r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1430
+9a2a: 4c14bd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=14 F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1433
+9a2b: 4c15bd26805aedd460 f9  r213=3 A=10 B=1e C=12 D=15 F=1a r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1436
+9a2c: 4c16bd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=16 F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1439
+9a2d: 4c178526005aedd4a0 f9  r213=3 A=10 B=2 C=12 D=17 F=18 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1442
+9a2e: 4c18bd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=18 F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1447
+9a2f: 4c19bd25805aedd460 f9  r213=3 A=10 B=1e C=12 D=19 F=16 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1450
+9a30: 4c1abd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=1a F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1453
+9a31: 4c1bbd25005aedd4a0 f9  r213=3 A=10 B=1e C=12 D=1b F=14 r148=5 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1456
+9a32: 77f64007ca00f89a15 f14 xfer5 c4 cc=14 -> 9a15 imm=9a15 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1475
+9a33: 77f64007c180f899f5 f14 xfer5 c4 cc=3 -> 99f5 <mMerge8_16C_LastBlk> imm=99f5 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:1476
+9a34: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:1479
+9a35: 4c1cbd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=1c F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1459
+9a36: 4c1dbd24805aedd460 f9  r213=3 A=10 B=1e C=12 D=1d F=12 r148=3 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1462
+9a37: 77fa41080881840000 f14 r219=1 C=10 r162=1 F=20 G=10 r62=1ffc23c170  ; mshortcircuit.S:1473
+9a38: 4c1ebd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=1e F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:1465
+9a39: 7c3f8007c000000000 f15 A=10 D=1f r99=8 r62=1ffc880170  ; mshortcircuit.S:1468
+9a3a: 57c047243fb6edd4a0 f10 r213=3 B=3 C=12 F=10 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:1469
+mMerge4_8C_LastBlk:
+9a3d: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:616
+9a42: 77fa406808c1300000 f14 r222=1 r219=1 C=6 F=20 G=6 r62=1ffc23c170  ; mshortcircuit.S:670
+9a43: 4c00bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:627
+9a44: 57c07d27bfb6edd460 f10 r213=3 B=1e C=12 F=1e r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:630
+9a45: 4c01bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=1 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:632
+9a46: 57c07d273fb6edd4a0 f10 r213=3 B=1e C=12 F=1c r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:635
+9a47: 4c02bd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=2 F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:637
+9a48: 57c07d26bfb6edd460 f10 r213=3 B=1e C=12 F=1a r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:640
+9a49: 4c03bd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=3 F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:642
+9a4a: 57c041263fb6edd4a0 f10 r213=3 C=12 F=18 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:645
+9a4b: 4c04bd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=4 F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:649
+9a4c: 57c07d25bfb6edd460 f10 r213=3 B=1e C=12 F=16 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:652
+9a4d: 77f64007ca00f89a42 f14 xfer5 c4 cc=14 -> 9a42 imm=9a42 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:673
+9a4e: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:676
+9a4f: 4c05bd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=5 F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:654
+9a50: 57c07d253fb6edd4a0 f10 r213=3 B=1e C=12 F=14 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:657
+9a51: 4c06bd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=6 F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:659
+9a52: 77fa41020881840000 f14 r219=1 C=10 r162=1 F=8 G=10 r62=1ffc23c170  ; mshortcircuit.S:671
+9a53: 57c07d24bfb6edd460 f10 r213=3 B=1e C=12 F=12 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:662
+9a54: 4c07bd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=7 F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:664
+9a55: 57c043243fb6edd4a0 f10 r213=3 B=1 C=12 F=10 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:667
+mMerge4_8C:
+9a57: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mshortcircuit.S:494
+9a5c: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; mshortcircuit.S:505
+9a5d: 4c00bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:510
+9a5e: 57c07d27bfb6edd460 f10 r213=3 B=1e C=12 F=1e r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:513
+9a5f: 4c01bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=1 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:515
+9a60: 57c07d273fb6edd4a0 f10 r213=3 B=1e C=12 F=1c r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:518
+9a61: 4c02bd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=2 F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:520
+9a62: 57c07d26bfb6edd460 f10 r213=3 B=1e C=12 F=1a r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:523
+9a63: 4c03bd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=3 F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:525
+9a64: 57c041263fb6edd4a0 f10 r213=3 C=12 F=18 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:528
+9a65: 4c04bd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=4 F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:532
+9a66: 57c07d25bfb6edd460 f10 r213=3 B=1e C=12 F=16 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:535
+9a67: 4c05bd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=5 F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:537
+9a68: 57c07d253fb6edd4a0 f10 r213=3 B=1e C=12 F=14 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:540
+9a69: 4c06bd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=6 F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:542
+9a6a: 57c07d24bfb6edd460 f10 r213=3 B=1e C=12 F=12 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:545
+9a6b: 4c07bd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=7 F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:547
+9a6c: 57c043243fb6edd4a0 f10 r213=3 B=1 C=12 F=10 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:550
+9a6d: 4c08bd27c05aedd440 f9  r213=3 A=10 B=1e C=12 D=8 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:554
+9a6e: 57c07d27bfb6edd460 f10 r213=3 B=1e C=12 F=1e r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:557
+9a6f: 4c09bd27405aedd480 f9  r213=3 A=10 B=1e C=12 D=9 F=1d r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:559
+9a70: 57c07d273fb6edd4a0 f10 r213=3 B=1e C=12 F=1c r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:562
+9a71: 4c0abd26c05aedd440 f9  r213=3 A=10 B=1e C=12 D=a F=1b r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:564
+9a72: 57c07d26bfb6edd460 f10 r213=3 B=1e C=12 F=1a r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:567
+9a73: 4c0bbd26405aedd480 f9  r213=3 A=10 B=1e C=12 D=b F=19 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:569
+9a74: 57c045263fb6edd4a0 f10 r213=3 B=2 C=12 F=18 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:572
+9a75: 4c0cbd25c05aedd440 f9  r213=3 A=10 B=1e C=12 D=c F=17 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:576
+9a76: 57c07d25bfb6edd460 f10 r213=3 B=1e C=12 F=16 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:579
+9a77: 4c0dbd25405aedd480 f9  r213=3 A=10 B=1e C=12 D=d F=15 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:581
+9a78: 77f64007ca00f89a5c f14 xfer5 c4 cc=14 -> 9a5c imm=9a5c cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:600
+9a79: 77f64007c180f89a3d f14 xfer5 c4 cc=3 -> 9a3d <mMerge4_8C_LastBlk> imm=9a3d cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mshortcircuit.S:601
+9a7a: 77f24007c8a0f80000 f14 xfer4 c4 cc=11 -> 0000 <HereWeGo> seq=14fe4 r25=3e39c00  ; mshortcircuit.S:604
+9a7b: 57c07d253fb6edd4a0 f10 r213=3 B=1e C=12 F=14 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:584
+9a7c: 4c0ebd24c05aedd440 f9  r213=3 A=10 B=1e C=12 D=e F=13 r148=2 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:586
+9a7d: 77fa41040881840000 f14 r219=1 C=10 r162=1 F=10 G=10 r62=1ffc23c170  ; mshortcircuit.S:598
+9a7e: 57c07d24bfb6edd460 f10 r213=3 B=1e C=12 F=12 r148=3 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:589
+9a7f: 4c0fbd24405aedd480 f9  r213=3 A=10 B=1e C=12 D=f F=11 r148=4 M=6dd r110=63d r99=8 r95=13 r62=1ffced917c r25=3e69c00  ; mshortcircuit.S:591
+9a80: 57c047243fb6edd4a0 f10 r213=3 B=3 C=12 F=10 r148=5 M=6dd r110=63d r95=13 r62=1ffc65917c r25=3e69c00  ; mshortcircuit.S:594

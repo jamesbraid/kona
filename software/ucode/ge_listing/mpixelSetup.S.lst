@@ -1,0 +1,1112 @@
+# mpixelSetup.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_I2F_Scale_Skip:
+a532: 77fa4fe7c880f80bfc f14 imm=bfc C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2556
+a534: 77fa4fe7c880f80bfd f14 imm=bfd C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2559
+a536: 77fa4fe7c880f80bfe f14 imm=bfe C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2562
+a539: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2549
+a53a: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2557
+a53c: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2560
+a53d: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2563
+a53e: 77fa4fe7c880f80bff f14 imm=bff C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2565
+a545: 60003007ea0101de80 f12 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2566
+a546: 760bf7e7ca04680c00 f14 imm=c00 r217=1 A=18 C=1e G=d r99=8 r95=17 r71=1 r62=1ffca9c170  ; mpixelSetup.S:2568
+a547: 76023607ca04700000 f14 r217=1 A=18 D=2 G=e r99=8 r62=1ffc884170  ; mpixelSetup.S:2571
+a548: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; mpixelSetup.S:2573
+a54c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2579
+a54d: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mpixelSetup.S:2582
+a54e: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2583
+a54f: 16019137ee3844f8a0 f2  r217=1 cc=91 A=18 C=13 D=1 G=e Q=1c M=6ca r110=7bd r99=8 r95=2 r62=1ffca9c578  ; mpixelSetup.S:2552
+a550: 738020ffca037c0000 f14 r219=3 A=e C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; mpixelSetup.S:2584
+a551: 7099c0f7c88d680000 f14 r219=1 C=f G=d seq=611f r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:2577
+a552: 7340210fca03840000 f14 r219=3 A=d C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2586
+a554: 738020ffca037c0000 f14 r219=3 A=e C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; mpixelSetup.S:2587
+a555: 70f9c137488d980000 f14 r219=1 C=13 F=1d G=13 seq=61df r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:2553
+a556: 6c008007e82ff3f6a0 f13 A=10 M=6f3 r99=8 r62=1ffc880178  ; mpixelSetup.S:2598
+a557: 6c028007e82ff3f6a0 f13 A=10 D=2 M=6f3 r99=8 r62=1ffc880178  ; mpixelSetup.S:2599
+a558: 6c048007e82ff3f6a0 f13 A=10 D=4 M=6f3 r99=8 r62=1ffc880178  ; mpixelSetup.S:2600
+a559: 6c068007e82ff3f6a0 f13 A=10 D=6 M=6f3 r99=8 r62=1ffc880178  ; mpixelSetup.S:2601
+a55a: 60001e07ea0000901c f12 r213=3 B=f r148=1c r128=5 M=47f r110=6a5 r95=20 r62=1ffc441173 r25=3e69c00  ; mpixelSetup.S:2598
+a55b: 4c089e07c1939eed1c f9  r213=3 A=10 B=f D=8 E=1 r148=1c r128=5 M=473 r110=6a5 r99=8 r95=20 r62=1ffccc117b r25=3e69c00  ; mpixelSetup.S:2599
+a55c: 4c0a9e07c2939eed1c f9  r213=3 A=10 B=f D=a E=2 r148=1c r128=5 M=473 r110=6a5 r99=8 r95=20 r62=1ffccc117b r25=3e69c00  ; mpixelSetup.S:2600
+a55d: 4c0c9e07c3939eed1c f9  r213=3 A=10 B=f D=c E=3 r148=1c r128=5 M=473 r110=6a5 r99=8 r95=20 r62=1ffccc117b r25=3e69c00  ; mpixelSetup.S:2601
+a55e: 6c0e8007e82ff3f6a0 f13 A=10 D=e M=6f3 r99=8 r62=1ffc880178  ; mpixelSetup.S:2606
+a55f: 60001e07ea0400901c f12 r213=3 B=f E=4 r148=1c r128=5 M=47f r110=6a5 r95=20 r62=1ffc441173 r25=3e69c00  ; mpixelSetup.S:2603
+a560: 38001ee805ba08f61c f7  r222=1 r219=1 r213=3 B=f C=e E=5 F=20 G=e r148=1c r128=5 M=47f r110=6a5 r95=20 r62=1ffc67d173 r25=3e69c00  ; mpixelSetup.S:2604
+a561: 60001e07ea0600901c f12 r213=3 B=f E=6 r148=1c r128=5 M=47f r110=6a5 r95=20 r62=1ffc441173 r25=3e69c00  ; mpixelSetup.S:2605
+a562: 60001e07ea0700901c f12 r213=3 B=f E=7 r148=1c r128=5 M=47f r110=6a5 r95=20 r62=1ffc441173 r25=3e69c00  ; mpixelSetup.S:2606
+a563: 77f64007ca00f8a556 f14 xfer5 c4 cc=14 -> a556 imm=a556 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:2612
+a567: 70f1c10408ad840000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=10 r162=1 F=10 G=10 seq=141df r62=1ffc23c170 r25=3e3fc00  ; mpixelSetup.S:2608
+a568: 77fa40f208817c0000 f14 r219=1 C=f r162=1 F=8 G=f r62=1ffc23c170  ; mpixelSetup.S:2609
+a56c: 77fa40d7c881800000 f14 r219=1 C=d G=10 r62=1ffc23c170  ; mpixelSetup.S:2614
+mmo_Shift_Skip:
+a570: 77fa4fe7c880f80bfc f14 imm=bfc C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2433
+a572: 77fa4fe7c880f80bfd f14 imm=bfd C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2436
+a574: 77fa4fe7c880f80bfe f14 imm=bfe C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2439
+a577: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2426
+a578: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2434
+a57a: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2437
+a57b: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2440
+a57f: 77fa4fe7c880f80bff f14 imm=bff C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2442
+a583: 77fa4fe7c880f80c00 f14 imm=c00 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2445
+a584: 76023607ca04680000 f14 r217=1 A=18 D=2 G=d r99=8 r62=1ffc884170  ; mpixelSetup.S:2448
+a585: 76003607ca04700000 f14 r217=1 A=18 G=e r99=8 r62=1ffc884170  ; mpixelSetup.S:2449
+a586: 0e03b00c2f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=3 E=1 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; mpixelSetup.S:2443
+a58a: 68000007ec2e4af8a0 f13 cc=91 Q=1c M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:2446
+a58b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2456
+a58c: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mpixelSetup.S:2459
+a58d: 7380210fca03840000 f14 r219=3 A=e C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2460
+a58e: 734020ffca037c0000 f14 r219=3 A=d C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; mpixelSetup.S:2461
+a58f: 16019137ee3e0d9400 f2  r217=1 A=18 C=13 D=1 G=e r99=8 r95=2 r62=1ffca9c170  ; mpixelSetup.S:2429
+a590: 7099c0f7c88d680000 f14 r219=1 C=f G=d seq=611f r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:2454
+a591: 7380210fca03840000 f14 r219=3 A=e C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2463
+a592: 734020ffca037c0000 f14 r219=3 A=d C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; mpixelSetup.S:2464
+a595: 70f9c137488d980000 f14 r219=1 C=13 F=1d G=13 seq=61df r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:2430
+a596: 4c009e07c01aedd780 f9  r213=3 A=10 B=f r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2475
+a597: 4c029e07c11aedd780 f9  r213=3 A=10 B=f D=2 E=1 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2476
+a598: 4c049e07c21aedd780 f9  r213=3 A=10 B=f D=4 E=2 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2477
+a599: 4c069e07c31aedd780 f9  r213=3 A=10 B=f D=6 E=3 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2478
+a59a: 4c089e07c41aedd780 f9  r213=3 A=10 B=f D=8 E=4 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2480
+a59b: 4c0a9e07c51aedd780 f9  r213=3 A=10 B=f D=a E=5 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2481
+a59c: 77fa40e808c1700000 f14 r222=1 r219=1 C=e F=20 G=e r62=1ffc23c170  ; mpixelSetup.S:2488
+a59d: 4c0c9e07c61aedd780 f9  r213=3 A=10 B=f D=c E=6 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2482
+a59e: 4c0e9e07c71aedd780 f9  r213=3 A=10 B=f D=e E=7 r148=1c M=6dd r110=63d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:2483
+a59f: 77f64007ca00f8a596 f14 xfer5 c4 cc=14 -> a596 imm=a596 cc=14 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:2489
+a5a3: 70f1c10408ad840000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r219=1 C=10 r162=1 F=10 G=10 seq=141df r62=1ffc23c170 r25=3e3fc00  ; mpixelSetup.S:2485
+a5a4: 77fa40f208817c0000 f14 r219=1 C=f r162=1 F=8 G=f r62=1ffc23c170  ; mpixelSetup.S:2486
+a5a8: 77fa40d7c881800000 f14 r219=1 C=d G=10 r62=1ffc23c170  ; mpixelSetup.S:2491
+mgeb_EramToEram:
+a5ac: 77c03607ca04000000 f14 r217=1 A=1f G=0 r99=8 r62=1ffc884170  ; mpixelSetup.S:2107
+a5ad: 77c13607ca04080000 f14 r217=1 A=1f D=1 G=1 r99=8 r62=1ffc884170  ; mpixelSetup.S:2108
+a5ae: 77f20007c880f8d47f f14 xfer4 c0 cc=11 -> d47f <mEramToEram> imm=d47f seq=4fe0 r71=1 r25=3e39c00  ; mpixelSetup.S:2111
+a5af: 77c23607ca04100000 f14 r217=1 A=1f D=2 G=2 r99=8 r62=1ffc884170  ; mpixelSetup.S:2109
+a5b2: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:2103
+a5b4: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2104
+a5b5: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2105
+a5b7: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a5b7 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:2114
+a5bc: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:2113
+mgeb_EramToCram:
+a5c0: 77c03607ca04000000 f14 r217=1 A=1f G=0 r99=8 r62=1ffc884170  ; mpixelSetup.S:2080
+a5c1: 77c13607ca04080000 f14 r217=1 A=1f D=1 G=1 r99=8 r62=1ffc884170  ; mpixelSetup.S:2081
+a5c2: 77f20007c880f8104f f14 xfer4 c0 cc=11 -> 104f <mEramToCram> imm=104f seq=4fe0 r71=1 r25=3e39c00  ; mpixelSetup.S:2084
+a5c3: 77c23607ca04100000 f14 r217=1 A=1f D=2 G=2 r99=8 r62=1ffc884170  ; mpixelSetup.S:2082
+a5c6: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:2076
+a5c8: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2077
+a5c9: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2078
+a5cb: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a5cb seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:2087
+a5d0: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:2086
+mgeb_CramToEram:
+a5d4: 77c03607ca04000000 f14 r217=1 A=1f G=0 r99=8 r62=1ffc884170  ; mpixelSetup.S:2054
+a5d5: 77c13607ca04080000 f14 r217=1 A=1f D=1 G=1 r99=8 r62=1ffc884170  ; mpixelSetup.S:2055
+a5d6: 77f20007c880f8103a f14 xfer4 c0 cc=11 -> 103a <mCramToEram> imm=103a seq=4fe0 r71=1 r25=3e39c00  ; mpixelSetup.S:2058
+a5d7: 77c23607ca04100000 f14 r217=1 A=1f D=2 G=2 r99=8 r62=1ffc884170  ; mpixelSetup.S:2056
+a5da: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:2050
+a5dc: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2051
+a5dd: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2052
+a5df: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a5df seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:2061
+a5e4: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:2060
+mgeb_LoadCram:
+a5e8: 77f20007c880f8d191 f14 xfer4 c0 cc=11 -> d191 <mWramToCram> imm=d191 seq=4fe0 r71=1 r25=3e39c00  ; mpixelSetup.S:2032
+a5e9: 77c03607ca04080000 f14 r217=1 A=1f G=1 r99=8 r62=1ffc884170  ; mpixelSetup.S:2028
+a5ea: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:2024
+a5eb: 77fa41d80881100000 f14 r219=1 C=1d F=20 G=2 r62=1ffc23c170  ; mpixelSetup.S:2025
+a5ec: 77fa41f04881040000 f14 r219=1 C=1f r162=1 F=1 G=0 r62=1ffc23c170  ; mpixelSetup.S:2030
+a5ef: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:2026
+a5f1: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a5f1 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:2035
+a5f6: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:2034
+mmo_PixStreamBrdcastCore0ANextGE:
+a5fa: 76303607ca04980000 f14 r217=1 A=18 D=30 G=13 r99=8 r62=1ffc884170  ; mpixelSetup.S:1999
+a5fb: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1995
+a5fc: 780071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f M=6ca r71=1 r62=1ffc658178  ; mpixelSetup.S:1999
+a5fd: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:2001
+a5fe: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:2001
+a5ff: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:2001
+a600: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:2002
+a601: 60003c07c88201d020 f12 r213=2 r198=11 B=1e E=2 r128=d M=6ca r110=5bd r62=1ffd440178 r25=3e69c00  ; mpixelSetup.S:2002
+a602: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a602 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:2004
+a606: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1997
+a607: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; mpixelSetup.S:1999
+mmo_PixStreamNextGE:
+a60b: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a60b <mmo_PixStreamNextGE> seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:1980
+a60f: 77f9c1a0088dfc0000 f14 r219=1 C=1a r162=1 F=0 seq=6fdf r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1966
+a610: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1970
+a611: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1972
+a612: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1975
+a613: 2e30bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=30 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1976
+mmo_PixStreamNextGE_BEFWAR:
+a614: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1915
+a615: 782071e7c200070000 f15 imm=70000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1919
+a616: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; mpixelSetup.S:1921
+a617: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1923
+a618: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1925
+a619: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1928
+a61a: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1931
+a61b: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1932
+a61c: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1933
+a61d: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1934
+a61e: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1935
+a61f: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1936
+a620: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1937
+a621: 77f1c1a008bdfc0000 f14 xfer4.rel c31 cc=11 -> a621 r219=1 C=1a r162=1 F=0 seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; mpixelSetup.S:1917
+a622: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1938
+a623: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1939
+a624: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1940
+a625: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1941
+a626: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1944
+a627: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1945
+a628: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1948
+a629: 2e30bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=30 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1949
+mmo_SetupHip:
+a62a: 77fa4fe7c880f80dc7 f14 imm=dc7 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:1680
+a62c: 77fa4fe7c880f80dc9 f14 imm=dc9 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:1682
+a631: 70f9c007c888f80000 f14 seq=61de r25=3e2fc00  ; mpixelSetup.S:1673
+a632: 60003007ea0a01de80 f12 r213=3 B=18 E=a M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1680
+a633: 60003007ea0801de80 f12 r213=3 B=18 E=8 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1682
+a634: 77fa4fe7c880f80dc6 f14 imm=dc6 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:1679
+a636: 782071e7c40000000c f15 imm=c r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:1721
+a637: 77fa4fe7c880f80dc8 f14 imm=dc8 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:1681
+a638: 782071e7cbfffff000 f15 imm=fffff000 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; mpixelSetup.S:1725
+a639: 782071e7c500000fff f15 imm=fff r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; mpixelSetup.S:1723
+a63a: 6e058007ec2c4af6a0 f13 cc=91 A=18 D=5 Q=18 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1724
+a63b: 60003007ea0901de80 f12 r213=3 B=18 E=9 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1679
+a63c: 6e0a8007ec2d4af6a0 f13 cc=91 A=18 D=a Q=1a M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1685
+a63d: 6e088007ec2dcaf6a0 f13 cc=91 A=18 D=8 Q=1b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1686
+a63e: 60003007ea0701de80 f12 r213=3 B=18 E=7 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1681
+a63f: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1754
+a640: 18083117dfbe0d9400 f3  r222=1 r215=3 B=18 C=11 r62=1ffc658170  ; mpixelSetup.S:1755
+a641: 6e008007e80f88ff05 f13 A=18 r128=28 M=ff r110=6b9 r99=8 r62=1ffc8801f3  ; mpixelSetup.S:1756
+a642: 68000007ec2e50f458 f13 cc=91 r148=18 Q=1c r128=15 M=6d0 r110=53d r62=1ffc00157c  ; mpixelSetup.S:1728
+a645: 6e048007ec2ccaf6a0 f13 cc=91 A=18 D=4 Q=19 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1722
+a646: 68000007e82fc0fe85 f13 r128=28 M=6c0 r110=57d r62=1ffc0001fc  ; mpixelSetup.S:1758
+a647: 7e0b8007c000000000 f15 A=18 D=b M=6ca r99=8 r62=1ffc880178  ; mpixelSetup.S:1726
+a649: 6e098007ec2d4af6a0 f13 cc=91 A=18 D=9 Q=1a M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1684
+a64a: 68000007e82fddfe88 f13 r128=1 M=6dd r110=57d r62=1ffc0001fc  ; mpixelSetup.S:1759
+a64b: 68000007ec2bd0f41a f13 cc=91 r148=1a Q=17 r128=5 M=6d0 r110=53d r62=1ffc00157c  ; mpixelSetup.S:1727
+a64c: 68000007e82fd0f458 f13 r148=18 r128=15 M=6d0 r110=53d r62=1ffc00117c  ; mpixelSetup.S:1762
+a64e: 68000007e83fc0fe88 f13 r128=1 M=6c0 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; mpixelSetup.S:1760
+a650: 68000007e83fd4fe88 f13 r128=1 M=6d4 r110=57d r99=2 r62=1ffc0001fc r25=3ea9c00  ; mpixelSetup.S:1763
+a657: 77fa47e7c880f80dc6 f14 imm=dc6 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1761
+a659: 70f9c7e7c88cf80dc7 f14 imm=dc7 r211=3 C=1e r95=8 seq=61df r71=1 r62=1ffc218170 r25=3e2fc00  ; mpixelSetup.S:1764
+a65a: 68000007ea2e40977c f13 cc=191 r148=39b Q=1c M=6c0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:1767
+a661: 70d9c007c88cf80000 f14 seq=619f r25=3e2fc00  ; mpixelSetup.S:1768
+a662: 68000007ea2e40977c f13 cc=191 r148=39b Q=1c M=6c0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:1769
+a669: 7099c007c88cf80000 f14 seq=611f r25=3e2fc00  ; mpixelSetup.S:1770
+a66a: 68000007ea2e40977c f13 cc=191 r148=39b Q=1c M=6c0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:1771
+a66b: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; mpixelSetup.S:1772
+a66c: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1781
+a66d: 6e078007ea2b4af6a0 f13 cc=191 A=18 D=7 Q=16 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1785
+a66e: 782071e7c200000007 f15 imm=7 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1787
+a66f: 6e028007ea2dcaf6a0 f13 cc=191 A=18 D=2 Q=1b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1788
+a670: 782071e7c342000000 f15 imm=42000000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1796
+a671: 782071e7c102103000 f15 imm=2103000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:1782
+a672: 782071e7c600400000 f15 imm=400000 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; mpixelSetup.S:1779
+a673: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1793
+a674: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:1797
+a675: 782071e7c200000477 f15 imm=477 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1795
+a676: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1797
+a677: 6e034007e86fd09776 f13 r220=1 A=18 D=3 r148=2db M=6d0 r110=43d r99=4 r62=1ffc88317c  ; mpixelSetup.S:1790
+a678: 6600bc07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1799
+a679: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1801
+a67a: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1802
+a67b: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1803
+a67d: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1804
+a67e: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1805
+a680: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1806
+a681: 60003c07ea0001dd80 f12 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1807
+a682: 6e064007ec2ddd973c f13 cc=91 A=18 D=6 r148=399 Q=1b M=6dd r110=43d r99=4 r62=1ffc88357c  ; mpixelSetup.S:1813
+a683: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; mpixelSetup.S:1810
+a684: 782071e7c200000441 f15 imm=441 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1815
+a685: 6602bc07ea0001c01e f12 r213=3 A=18 B=1e D=2 r148=3c0 M=6ca r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1814
+a686: 66017c07ea0001dd80 f12 r213=3 A=18 B=1e D=1 M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1817
+a687: 7e20f1e7c342030300 f15 imm=42030300 r215=3 A=18 B=18 C=1e E=3 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:1816
+a688: 66037c07ea0001dd80 f12 r213=3 A=18 B=1e D=3 M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1819
+a689: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1823
+a68a: 782071e7c201100441 f15 imm=1100441 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1825
+a68b: 782071e7c300070000 f15 imm=70000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1826
+a68c: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1827
+a68d: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1829
+a68e: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1831
+a68f: 18137d7d5f02c4941e f3  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 seq=6fe5 r71=1 r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1833
+a690: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1841
+a691: 68000007e82fc0977a f13 r148=35b M=6c0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:1840
+a692: 782071e7c3421d0000 f15 imm=421d0000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1844
+a693: 782071e7c200000450 f15 imm=450 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1843
+a694: 6e014007e82fd0971c f13 A=18 D=1 r148=398 M=6d0 r110=43d r99=4 r62=1ffc88317c  ; mpixelSetup.S:1845
+a695: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1845
+a696: 66037c07ea0001d020 f12 r213=3 A=18 B=1e D=3 r128=d M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1847
+a697: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1862
+a698: 68000007e82fd4f417 f13 r148=17 r128=5 M=6d4 r110=53d r62=1ffc00117c  ; mpixelSetup.S:1861
+a699: 782071e7c200000451 f15 imm=451 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1864
+a69a: 782071e7c3420c0000 f15 imm=420c0000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1865
+a69b: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:1866
+a69c: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1866
+a69d: 66037c07ea0001d020 f12 r213=3 A=18 B=1e D=3 r128=d M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1868
+a69e: 66067d37ea0005c01e f12 r213=3 A=18 B=1e C=13 D=6 r148=3c0 M=6ca r110=4bd r99=4 r95=2 r62=1ffceda178 r25=3e69c00  ; mpixelSetup.S:1676
+a6a0: 782071e7c200000453 f15 imm=453 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1883
+a6a1: 782071e7c342200000 f15 imm=42200000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1884
+a6a2: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:1885
+a6a3: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1885
+a6a4: 16034007c8e30d9400 f2  xfer4 c5 cc=11 -> 0000 <HereWeGo> A=18 D=3 r99=4 seq=14fe5 r62=1ffc880170 r25=3e39c00  ; mpixelSetup.S:1887
+a6a5: 6607bc07ea0001dd80 f12 r213=3 A=18 B=1e D=7 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1887
+a6a6: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1891
+a6a7: 782071e7c200000452 f15 imm=452 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1893
+a6a8: 782071e7c342200000 f15 imm=42200000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1894
+a6a9: 76012f374a01980000 f14 r219=1 A=18 C=13 D=1 F=1d G=13 r99=4 r62=1ffcabc170  ; mpixelSetup.S:1677
+a6aa: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1895
+a6ab: 76032e07ca00f80000 f14 A=18 D=3 r99=4 r62=1ffc880170  ; mpixelSetup.S:1897
+a6ac: 6607bc07ea0001dd80 f12 r213=3 A=18 B=1e D=7 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1897
+mmo_PixLineNextGE:
+a6ad: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; mpixelSetup.S:1608
+a6ae: 16308007ef3844f6a0 f2  r217=1 cc=91 A=18 D=30 G=f Q=1c M=6ca r99=8 r62=1ffc884578  ; mpixelSetup.S:1609
+a6af: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mpixelSetup.S:1618
+a6b0: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1618
+a6b1: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1618
+a6b2: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1618
+a6b3: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1619
+a6b4: 60003c07c88201d040 f12 r213=2 r198=11 B=1e E=2 r128=15 M=6ca r110=5bd r62=1ffd440178 r25=3e69c00  ; mpixelSetup.S:1620
+a6b5: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a6b5 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:1631
+a6b7: 782071e7c0430e0000 f15 imm=430e0000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1622
+a6b9: 76002fa00a01fc0000 f14 r219=1 A=18 C=1a r162=1 F=0 r99=4 r62=1ffcabc170  ; mpixelSetup.S:1567
+a6ba: 40003cf7c26008c01c f8  r222=1 r213=3 B=1e C=f E=2 r148=380 M=6ca r110=4bd r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1617
+a6bb: 782071e7c042200000 f15 imm=42200000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1626
+a6bc: 4e007c07c31ac2b41e f9  r213=3 A=18 B=1e E=3 r148=3c0 M=6d8 r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:1627
+a6bd: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1629
+mgesi_PixConv5GVEntry:
+a6be: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1513
+a6bf: 1803415a9f3644f8a0 f3  imm=16a cc=91 C=1e Q=1b M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; mpixelSetup.S:1522
+a6c0: 782071e7c100000002 f15 imm=2 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:1516
+a6c1: 2e018132b58056ffc5 f5  imm=16b r220=1 A=18 C=1e D=1 M=6c2 r110=7bd r99=8 r95=13 r71=1 r62=1ffca9817c  ; mpixelSetup.S:1517
+a6c2: 68000007ec2e4af8a0 f13 cc=91 Q=1c M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:1520
+a6c3: 28003932b66c46ff60 f5  imm=16c r213=3 B=1c C=1e E=2c r128=5 M=6c2 r110=5fd r95=13 r71=1 r62=1ffc65817c r25=3e69c00  ; mpixelSetup.S:1524
+a6c5: 28003132b6c344f8a0 f5  imm=16d r213=3 B=18 C=1e E=3 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mpixelSetup.S:1531
+a6c6: 68000007e82ff1941f f13 r148=3e0 M=6f1 r110=4bd r62=1ffc002178  ; mpixelSetup.S:1538
+a6c7: 77fa49e7c880f80129 f14 imm=129 C=1e r95=2 r71=1 r62=1ffc218170  ; mpixelSetup.S:1508
+a6c8: 60003807ea2f01c01e f12 r213=3 B=1c E=2f r148=3c0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1528
+a6ca: 68000007e83fc0c0bb f13 r148=360 r128=28 M=6c0 r110=47d r99=2 r62=1ffc0021fc r25=3ea9c00  ; mpixelSetup.S:1539
+a6cb: 180401d01a7e40c1bc f3  r219=1 C=1d r162=1 F=0 G=1a r148=380 r128=29 M=6c0 r110=47d r99=2 r62=1ffc23e1fc r25=3ea9c00  ; mpixelSetup.S:1503
+a6cc: 680001d7e83fca941e f13 C=1d r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc202178 r25=3ea9c00  ; mpixelSetup.S:1504
+a6cd: 70f5c1e742ad980129 f14 xfer5 c31 cc=5 -> 0129 imm=129 r219=1 cc=5 C=1e F=1d G=13 seq=151df r71=1 r62=1ffe23c170 r25=3e3fc00  ; mpixelSetup.S:1509
+a6ce: 76033607ca04780000 f14 r217=1 A=18 D=3 G=f r99=8 r62=1ffc884170  ; mpixelSetup.S:1533
+a6cf: 600031d7ea7000c000 f12 r215=3 B=18 C=1d E=30 r62=1ffc658170  ; mpixelSetup.S:1536
+a6d0: 77fa41ffc881810000 f14 imm=10000 r219=1 C=1f F=3f G=10 r71=1 r62=1ffc33c170  ; mpixelSetup.S:1510
+a6d1: 70f5c1e7fcad880003 f14 xfer5 c31 cc=79 -> 0003 imm=3 r219=1 cc=79 C=1e G=11 seq=151df r71=1 r62=1ffe23c170 r25=3e3fc00  ; mpixelSetup.S:1511
+a6d2: 70f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a6d2 seq=1c1df r25=3e3fc00  ; mpixelSetup.S:1552
+a6d3: 77fa43e7c880f8016a f14 imm=16a r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1540
+a6d4: 77fa43e7c880f8016b f14 imm=16b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1542
+a6d5: 702267e7c280f8016b f14 imm=16b r211=2 r198=5 C=1e r95=4 r71=1 r62=1ffd218170  ; mpixelSetup.S:1544
+a6d6: 77fa40f7c881880000 f14 r219=1 C=f G=11 r62=1ffc23c170  ; mpixelSetup.S:1548
+mgeb_PixEndPolygonStipple:
+a6db: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1464
+a6dc: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1465
+a6dd: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1466
+a6df: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a6df seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1475
+a6e1: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1462
+a6e2: 7059c1e0088fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=0 G=18 seq=609f r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1469
+a6e3: 7099c1e4488fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=11 G=18 seq=611f r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1471
+a6e4: 77fa41e88883c48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=22 G=18 r71=1 r62=1ffc23c170  ; mpixelSetup.S:1473
+mgeb_PixEndRGBStream:
+a6e8: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1419
+a6e9: 782071e7c200070000 f15 imm=70000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1427
+a6ea: 782071e7c000000014 f15 imm=14 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1422
+a6eb: 6600b807ea0a01dd80 f12 r213=3 A=18 B=1c E=a M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1423
+a6ec: 7e228007c000000000 f15 A=18 D=2 r99=8 r62=1ffc880170  ; mpixelSetup.S:1428
+a6ed: 7059c1e0088dc48d2c f14 imm=8d2c r219=1 C=1e r162=1 F=0 G=18 seq=609f r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1431
+a6ee: 7099c1e4488fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=11 G=18 seq=611f r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1433
+a6ef: 77f9c1e8888fc48d2c f14 imm=8d2c r219=3 C=1e r162=1 F=22 G=18 seq=6fdf r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1435
+a6f0: 28003d32fc4044f6a0 f5  imm=1f8 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; mpixelSetup.S:1439
+a6f1: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1441
+a6f2: 57c07dd7fe378ab41e f10 r213=3 B=1e C=1d r148=3c0 M=6f1 r110=4bd r62=1ffc642178 r25=3e69c00  ; mpixelSetup.S:1415
+a6f3: 57c07dd7fe378ab41e f10 r213=3 B=1e C=1d r148=3c0 M=6f1 r110=4bd r62=1ffc642178 r25=3e69c00  ; mpixelSetup.S:1416
+a6f4: 57c07dd7fe378ab41e f10 r213=3 B=1e C=1d r148=3c0 M=6f1 r110=4bd r62=1ffc642178 r25=3e69c00  ; mpixelSetup.S:1417
+a6f5: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1445
+a6f6: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a6f6 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:1455
+a6f7: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1446
+a6f8: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1447
+a6f9: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1448
+a6fa: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1449
+a6fb: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1450
+a6fc: 57c07c07fe378ab41e f10 r213=3 B=1e r148=3c0 M=6f1 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1451
+a6fd: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1452
+a6fe: d7c37c07fe36c2b41e f10 w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:1453
+mgebi_PixEndTransparentBitmap:
+a6ff: 700a67e7ca00f80031 f14 imm=31 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1391
+a701: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1393
+a706: 6fc08007e83fe0ffa5 f13 A=1f M=6e0 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1390
+a708: 6fc18007e83fe0ffa5 f13 A=1f D=1 M=6e0 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1392
+a70c: 77f24007c884f8a71e f14 xfer4 c5 cc=11 -> a71e <DoFlushPGPCache> imm=a71e seq=4fe5 r71=1 r25=3e39c00  ; mpixelSetup.S:1397
+a70e: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1384
+a70f: 77fa47e7c880f80031 f14 imm=31 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1391
+a710: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:1386
+a711: 77fa47e7c880f80032 f14 imm=32 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1393
+a712: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1387
+a714: 1a0831d7d33e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=13 r62=1ffc67c170  ; mpixelSetup.S:1388
+mgesi_FlushPGPCache:
+a715: 77f24007c884f8a71e f14 xfer4 c5 cc=11 -> a71e <DoFlushPGPCache> imm=a71e seq=4fe5 r71=1 r25=3e39c00  ; mpixelSetup.S:1376
+a71a: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:1372
+a71b: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1373
+a71c: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1371
+a71d: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; mpixelSetup.S:1374
+DoFlushPGPCache:
+a71e: 76103607ca04980000 f14 r217=1 A=18 D=10 G=13 r99=8 r62=1ffc884170  ; mpixelSetup.S:1328
+a71f: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1326
+a720: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1332
+a721: 782071e7c101661410 f15 imm=1661410 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:1333
+a722: 782071e7c200003ff1 f15 imm=3ff1 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1340
+a723: 782071e7c301243fd3 f15 imm=1243fd3 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1346
+a724: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1334
+a725: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1335
+a726: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; mpixelSetup.S:1329
+a727: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1335
+a728: 2e01bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1336
+a729: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1337
+a72a: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1337
+a72b: 2e02bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1341
+a72c: 28003d32fb4044941e f5  imm=1f6 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; mpixelSetup.S:1342
+a72d: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1343
+a72e: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1343
+a72f: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1347
+a730: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1348
+a731: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1348
+a732: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1349
+a733: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1350
+a734: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1350
+a735: 782071e7c301133fc2 f15 imm=1133fc2 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1353
+a736: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1354
+a737: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1355
+a738: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1355
+a739: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; mpixelSetup.S:1356
+a73a: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1357
+a73b: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:1357
+a73c: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; mpixelSetup.S:1359
+a73d: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1359
+a73e: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a73e seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1364
+a743: 77fa41a00881fc0000 f14 r219=1 C=1a r162=1 F=0 r62=1ffc23c170  ; mpixelSetup.S:1362
+mgeb_TransparentBitmapSetup:
+a747: 700a67e7ca00f80031 f14 imm=31 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1306
+a749: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1308
+a74d: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1299
+a74e: 7fe08007c000000000 f15 A=1f r99=8 r62=1ffc880170  ; mpixelSetup.S:1306
+a74f: 180c31e7c0d1ceffc5 f3  imm=1 r215=3 B=18 C=1e M=6e2 r110=7bd r99=2 r71=1 r62=1ffc65817c r25=3ea9c00  ; mpixelSetup.S:1307
+a750: 6fc18007e83fe2ffc5 f13 A=1f D=1 M=6e2 r110=7bd r99=a r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1308
+a751: 6600b807ea0801dd80 f12 r213=3 A=18 B=1c E=8 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1314
+a752: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; mpixelSetup.S:1301
+a753: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1302
+a754: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1303
+a756: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a756 seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1317
+a758: 77fa47e7c880f80031 f14 imm=31 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1307
+a75a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1311
+a75b: 77fa47e7c880f80032 f14 imm=32 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1309
+mgeb_PixPolygonStippleSetup:
+a75f: 28000132f60054f8a0 f5  imm=1ec r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; mpixelSetup.S:1277
+a764: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1267
+a765: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1273
+a766: 6600b807ea0801dd80 f12 r213=3 A=18 B=1c E=8 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1273
+a76b: 77f60007c180f80962 f14 xfer5 c0 cc=3 -> 0962 <uEvalSaveState> imm=962 cc=3 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:1279
+a770: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; mpixelSetup.S:1268
+a772: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1269
+a773: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1270
+a774: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; mpixelSetup.S:1285
+a776: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a776 seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1290
+a77a: 77fa41e00881c48000 f14 imm=8000 r219=1 C=1e r162=1 F=0 G=18 r71=1 r62=1ffc23c170  ; mpixelSetup.S:1283
+a77b: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1289
+a77d: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1286
+a77e: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1287
+mgebi_PixCurGEIDSetup:
+a77f: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:1226
+a780: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1227
+a781: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1224
+a782: 1a0831d7cf3e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=f r62=1ffc67c170  ; mpixelSetup.S:1228
+a783: 782071e7c4010f087f f15 imm=10f087f r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:1245
+a784: 782071e7c042200000 f15 imm=42200000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1239
+a785: 782071e7c3ffffffff f15 imm=ffffffff r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:1244
+a786: 782071e7c102202000 f15 imm=2202000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:1240
+a787: 782071e7c200070000 f15 imm=70000 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:1243
+a788: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:1247
+a789: 6602bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1247
+a78a: 76002e07ca00f80000 f14 A=18 r99=4 r62=1ffc880170  ; mpixelSetup.S:1248
+a78b: 6603bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=3 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1248
+a78c: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:1250
+a78d: 6604bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=4 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1250
+a78e: 76002ef7ca40f80000 f14 r222=1 A=18 C=f r99=4 r62=1ffca98170  ; mpixelSetup.S:1234
+a78f: 6610bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e D=10 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1251
+a790: 28004132fa0044941e f5  imm=1f4 C=1e r148=3c0 M=6ca r110=4bd r99=2 r95=13 r71=1 r62=1ffc21a178 r25=3ea9c00  ; mpixelSetup.S:1231
+a791: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:1253
+a792: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a792 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:1257
+a797: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1256
+a79a: 77fa43e7c880f8016f f14 imm=16f r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1232
+mgeb_PixLastGECounterSetup:
+a79b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1197
+a79c: 3fc081d000694df6a0 f7  r219=1 A=1f C=1d r162=1 F=0 G=1a M=6f3 r99=8 r62=1ffcabc178  ; mpixelSetup.S:1198
+a79d: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1199
+a79e: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1200
+a79f: 782071e7c03f000000 f15 imm=3f000000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:1205
+a7a0: 6e004007e83fe2ff60 f13 A=18 r128=5 M=6e2 r110=5fd r99=6 r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1206
+a7a1: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> a7a1 seq=1cfdf r25=3e3fc00  ; mpixelSetup.S:1211
+a7a6: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1210
+a7a9: 77fa43e7c880f8016e f14 imm=16e r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1208
+mgeb_PixDrawColorSetup:
+a7aa: 28000132f60054f8a0 f5  imm=1ec r220=1 C=1e M=6ca r110=7bd r95=13 r71=1 r62=1ffc218178  ; mpixelSetup.S:1151
+a7b5: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:1144
+a7b6: 77f60007c180f80962 f14 xfer5 c0 cc=3 -> 0962 <uEvalSaveState> imm=962 cc=3 seq=5fe0 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:1153
+a7bb: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; mpixelSetup.S:1145
+a7bd: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1146
+a7be: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1147
+a7bf: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; mpixelSetup.S:1158
+a7c0: 7039c1e0088fc48000 f14 imm=8000 r219=3 C=1e r162=1 F=0 G=18 seq=605f r71=1 r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:1159
+a7c1: 67c0b807ea0801dd80 f12 r213=3 A=1f B=1c E=8 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1177
+a7c4: 68000007e83fca941e f13 r148=3c0 M=6ca r110=4bd r99=2 r62=1ffc002178 r25=3ea9c00  ; mpixelSetup.S:1162
+a7c5: 67c27807ea0a01de80 f12 r213=3 A=1f B=1c D=2 E=a M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:1169
+a7c6: 0fc1784c08ff44f8a0 f1  xfer4.rel c31 cc=11 -> a7c6 r213=3 A=1f B=1c D=1 E=9 M=6ca r110=7bd r99=4 seq=1cfdf r62=1ffccc0178 r25=3e7fc00  ; mpixelSetup.S:1173
+a7ca: 77fa41b70881880000 f14 r219=1 C=1b F=1c G=11 r62=1ffc23c170  ; mpixelSetup.S:1181
+a7cb: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1183
+a7cd: 77fa43e7c880f801ed f14 imm=1ed r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1163
+a7ce: 77fa43e7c880f801ee f14 imm=1ee r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; mpixelSetup.S:1164
+mgeb_BitmapApplyMove:
+a7cf: 700a67e7ca00f80031 f14 imm=31 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1108
+a7d1: 7fe08007c000000000 f15 A=1f r99=8 r62=1ffc880170  ; mpixelSetup.S:1107
+a7d2: 6fc24007e82fe0ffa5 f13 A=1f D=2 M=6e0 r110=6fd r99=4 r62=1ffc88017c  ; mpixelSetup.S:1107
+a7d4: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1110
+a7d6: 6fc18007e83fe0ff60 f13 A=1f D=1 r128=5 M=6e0 r110=5fd r99=a r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1108
+a7d7: 6fc34007e82fe0ffa5 f13 A=1f D=3 M=6e0 r110=6fd r99=4 r62=1ffc88017c  ; mpixelSetup.S:1109
+a7db: 180401d7da3e49ff60 f3  r219=1 C=1d G=1a r128=5 M=6e0 r110=5fd r99=2 r62=1ffc23c17c r25=3ea9c00  ; mpixelSetup.S:1103
+a7dc: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1104
+a7dd: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1105
+a7df: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a7df seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1113
+a7e1: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1101
+a7e2: 77fa47e7c880f80031 f14 imm=31 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1108
+a7e3: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1112
+a7e4: 77fa47e7c880f80032 f14 imm=32 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1110
+mgeb_BitmapApplyOrig:
+a7e8: 700a67e7ca00f80031 f14 imm=31 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1076
+a7ea: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:1078
+a7ef: 6fc08007e83fe2ffc5 f13 A=1f M=6e2 r110=7bd r99=a r62=1ffc88017c r25=3ea9c00  ; mpixelSetup.S:1076
+a7f1: 17c1a1d7da3e4effc5 f2  r219=1 A=1f C=1d D=1 G=1a M=6e2 r110=7bd r99=a r62=1ffcabc17c r25=3ea9c00  ; mpixelSetup.S:1072
+a7f2: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1073
+a7f3: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:1074
+a7f5: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a7f5 seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:1082
+a7f7: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:1070
+a7f8: 77fa47e7c880f80031 f14 imm=31 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1077
+a7f9: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1081
+a7fa: 77fa47e7c880f80032 f14 imm=32 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; mpixelSetup.S:1079
+mgeb_FlipYConvKern:
+a7fe: 77c33607ca04580000 f14 r217=1 A=1f D=3 G=b r99=8 r62=1ffc884170  ; mpixelSetup.S:992
+a801: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:980
+a802: 7fe28007c000000000 f15 A=1f D=2 r99=8 r62=1ffc880170  ; mpixelSetup.S:991
+a803: 180871001f3244f6a0 f3  r215=3 cc=91 B=18 C=1e Q=19 M=6ca r71=1 r62=1ffc658578  ; mpixelSetup.S:986
+a804: 7e008007c000000000 f15 A=18 M=6ca r99=8 r62=1ffc880178  ; mpixelSetup.S:987
+a806: 782070b01100000000 f15 r215=3 B=18 C=b E=1 r162=1 F=0 r62=1ffc658170  ; mpixelSetup.S:994
+a807: 6e018007ec2c4af6a0 f13 cc=91 A=18 D=1 Q=18 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:995
+a808: 184871005f3446ff40 f3  imm=1 r215=3 cc=91 B=18 C=1e E=2 Q=1a r128=5 M=6c2 r110=5bd r71=1 r62=1ffc65857c  ; mpixelSetup.S:996
+a809: 77c03607ca04600000 f14 r217=1 A=1f G=c r99=8 r62=1ffc884170  ; mpixelSetup.S:989
+a80a: 6fc18007ec2dcaf6a0 f13 cc=91 A=1f D=1 Q=1b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:990
+a80b: 6e028007ec2e4af6a0 f13 cc=91 A=18 D=2 Q=1c M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:1001
+a80f: 68000007e82fc2c0b9 f13 r148=320 r128=28 M=6c2 r110=47d r62=1ffc0021fc  ; mpixelSetup.S:1003
+a813: 68000007e80f88f618 f13 r148=18 r128=5 M=ff r110=6a5 r62=1ffc001173  ; mpixelSetup.S:1004
+a816: 60003007ea0101c01a f12 r213=3 B=18 E=1 r148=340 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:997
+a817: 60003007ea0001d080 f12 r213=3 B=18 r128=25 M=6ca r110=5bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:1005
+a81e: 68000007ec2d5becb9 f13 cc=91 r148=320 Q=1a M=6db r110=4bd r62=1ffc00257c  ; mpixelSetup.S:1002
+a81f: 76013607ca04500000 f14 r217=1 A=18 D=1 G=a r99=8 r62=1ffc884170  ; mpixelSetup.S:998
+a820: 76003607ca04d00000 f14 r217=1 A=18 G=1a r99=8 r62=1ffc884170  ; mpixelSetup.S:1006
+a827: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:982
+a828: 768020cfca016c0000 f14 r219=1 A=1a C=c r176=0 r162=1 F=3f G=d r62=1ffcb3c170  ; mpixelSetup.S:1007
+a829: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:983
+a82a: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:984
+a82b: 77fa40c00881740000 f14 r219=1 C=c r162=1 F=0 G=e r62=1ffc23c170  ; mpixelSetup.S:1011
+a82c: 77fa40d008817c0000 f14 r219=1 C=d r162=1 F=0 G=f r62=1ffc23c170  ; mpixelSetup.S:1012
+a82d: 60003807ea2c01a35c f12 r213=3 B=1c E=2c r148=39a M=6c2 r110=43d r62=1ffc44317c r25=3e69c00  ; mpixelSetup.S:1014
+a82e: 68000007ec2cca941b f13 cc=91 r148=360 Q=19 M=6ca r110=4bd r62=1ffc002578  ; mpixelSetup.S:1015
+a82f: 700a66e7ca00f80000 f14 C=e r95=14 r62=1ffc218170  ; mpixelSetup.S:1020
+a831: 700a66e78a00f80000 f14 C=e F=1e r95=14 r62=1ffc218170  ; mpixelSetup.S:1021
+a833: 700a66e74a00f80000 f14 C=e F=1d r95=14 r62=1ffc218170  ; mpixelSetup.S:1022
+a835: 700a66e70a00f80000 f14 C=e F=1c r95=14 r62=1ffc218170  ; mpixelSetup.S:1023
+a836: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; mpixelSetup.S:1020
+a837: 700a66f7ca00f80000 f14 C=f r95=14 r62=1ffc218170  ; mpixelSetup.S:1024
+a838: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; mpixelSetup.S:1021
+a839: 700a66f78a00f80000 f14 C=f F=1e r95=14 r62=1ffc218170  ; mpixelSetup.S:1025
+a83a: 40000007c00080f000 f8  r128=5 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1022
+a83b: 700a66f74a00f80000 f14 C=f F=1d r95=14 r62=1ffc218170  ; mpixelSetup.S:1026
+a83c: 40000007c00080f000 f8  r128=5 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1023
+a83d: 700a66f70a00f80000 f14 C=f F=1c r95=14 r62=1ffc218170  ; mpixelSetup.S:1027
+a83e: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1024
+a840: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1025
+a841: 68000007ec6cc29799 f13 r220=1 cc=91 r148=33c Q=19 M=6c2 r110=43d r62=1ffc00357c  ; mpixelSetup.S:1018
+a842: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1026
+a843: 77fa46f7c880f80000 f14 r211=3 C=f r95=8 r62=1ffc218170  ; mpixelSetup.S:1028
+a844: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:1027
+a845: 77fa46f78880f80000 f14 r211=3 C=f F=1e r95=8 r62=1ffc218170  ; mpixelSetup.S:1029
+a846: 68000007e83fcaf480 f13 r128=25 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:1034
+a847: 77fa46f74880f80000 f14 r211=3 C=f F=1d r95=8 r62=1ffc218170  ; mpixelSetup.S:1030
+a848: 68000007e83fcaf480 f13 r128=25 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:1035
+a849: 77fa46f70880f80000 f14 r211=3 C=f F=1c r95=8 r62=1ffc218170  ; mpixelSetup.S:1031
+a84b: 77fa46e7c880f80000 f14 r211=3 C=e r95=8 r62=1ffc218170  ; mpixelSetup.S:1032
+a84d: 77f646e78080f8a82f f14 xfer5 c4 cc=1 -> a82f imm=a82f r211=3 cc=1 C=e F=1e r95=8 seq=5fe4 r71=1 r62=1ffe218170 r25=3e39c00  ; mpixelSetup.S:1033
+a84f: 77fa46e74880f80000 f14 r211=3 C=e F=1d r95=8 r62=1ffc218170  ; mpixelSetup.S:1034
+a850: 77fa40f6c881780000 f14 r219=1 C=f F=1b G=f r62=1ffc23c170  ; mpixelSetup.S:1038
+a851: 77fa46e70880f80000 f14 r211=3 C=e F=1c r95=8 r62=1ffc218170  ; mpixelSetup.S:1035
+a852: 77fa40e6c881700000 f14 r219=1 C=e F=1b G=e r62=1ffc23c170  ; mpixelSetup.S:1037
+a856: 72c020cfca01640000 f14 r219=1 A=b C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; mpixelSetup.S:1044
+a857: 77f64007fc00f8a82d f14 xfer5 c4 cc=78 -> a82d imm=a82d cc=78 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:1049
+a858: 128000dfcd3446979a f2  r219=1 cc=91 A=a C=d r176=0 F=3f G=d r148=35c Q=1a M=6c2 r110=43d r62=1ffcb3f57c  ; mpixelSetup.S:1043
+a85b: 77f240c008b5740000 f14 xfer4.rel c5 cc=11 -> a85b r219=1 C=c r162=1 F=0 G=e seq=1cfe5 r62=1ffc23c170 r25=3e39c00  ; mpixelSetup.S:1046
+a85c: 77fa40d008817c0000 f14 r219=1 C=d r162=1 F=0 G=f r62=1ffc23c170  ; mpixelSetup.S:1047
+a860: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:1052
+mgeb_FlipXConvKern:
+a864: 6fc18007ec2dcaf6a0 f13 cc=91 A=1f D=1 Q=1b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:906
+a865: 77c03607ca04780000 f14 r217=1 A=1f G=f r99=8 r62=1ffc884170  ; mpixelSetup.S:905
+a866: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:899
+a867: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:910
+a868: 6fc28007ec2e4af6a0 f13 cc=91 A=1f D=2 Q=1c M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:907
+a869: 77c33607ca04600000 f14 r217=1 A=1f D=3 G=c r99=8 r62=1ffc884170  ; mpixelSetup.S:908
+a86a: 6e008007e82fc0ff85 f13 A=18 M=6c0 r99=8 r62=1ffc88017c  ; mpixelSetup.S:911
+a86e: 68000007e82fdfc0bb f13 r148=360 r128=28 M=6df r110=47d r62=1ffc0021fc  ; mpixelSetup.S:914
+a872: 60003007ea0101d000 f12 r213=3 B=18 E=1 r128=5 M=6ca r110=5bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:915
+a879: 68000007ec2dcaf6a0 f13 cc=91 Q=1b M=6ca r62=1ffc000578  ; mpixelSetup.S:911
+a87a: 68000007ec2d5becbb f13 cc=91 r148=360 Q=1a M=6db r110=4bd r62=1ffc00257c  ; mpixelSetup.S:912
+a87b: 76013607ca04d00000 f14 r217=1 A=18 D=1 G=1a r99=8 r62=1ffc884170  ; mpixelSetup.S:916
+a881: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:901
+a882: 77fa40f00881740000 f14 r219=1 C=f r162=1 F=0 G=e r62=1ffc23c170  ; mpixelSetup.S:920
+a883: 77fa41a8c881580000 f14 r219=1 C=1a F=23 G=b r62=1ffc23c170  ; mpixelSetup.S:917
+a884: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:902
+a885: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:903
+a886: 60003807ea2c01a39b f12 r213=3 B=1c E=2c r148=37c M=6c2 r110=43d r62=1ffc44317c r25=3e69c00  ; mpixelSetup.S:922
+a887: 12c000efcd7244941a f2  r219=1 cc=91 A=b C=e r176=0 r162=1 F=3f G=d r148=340 Q=19 M=6ca r110=4bd r62=1ffcb3e578  ; mpixelSetup.S:923
+a888: 700a66e7ca00f80000 f14 C=e r95=14 r62=1ffc218170  ; mpixelSetup.S:929
+a88a: 700a66e78a00f80000 f14 C=e F=1e r95=14 r62=1ffc218170  ; mpixelSetup.S:930
+a88c: 700a66e74a00f80000 f14 C=e F=1d r95=14 r62=1ffc218170  ; mpixelSetup.S:931
+a88e: 700a66e70a00f80000 f14 C=e F=1c r95=14 r62=1ffc218170  ; mpixelSetup.S:932
+a88f: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; mpixelSetup.S:929
+a890: 700a66d7ca00f80000 f14 C=d r95=14 r62=1ffc218170  ; mpixelSetup.S:933
+a891: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; mpixelSetup.S:930
+a892: 700a66d78a00f80000 f14 C=d F=1e r95=14 r62=1ffc218170  ; mpixelSetup.S:934
+a893: 40000007c00080f000 f8  r128=5 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:931
+a894: 700a66d74a00f80000 f14 C=d F=1d r95=14 r62=1ffc218170  ; mpixelSetup.S:935
+a895: 40000007c00080f000 f8  r128=5 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:932
+a896: 700a66d70a00f80000 f14 C=d F=1c r95=14 r62=1ffc218170  ; mpixelSetup.S:936
+a897: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:933
+a899: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:934
+a89a: 68000007ec6cc29779 f13 r220=1 cc=91 r148=33b Q=19 M=6c2 r110=43d r62=1ffc00357c  ; mpixelSetup.S:927
+a89b: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:935
+a89c: 77fa46d7c880f80000 f14 r211=3 C=d r95=8 r62=1ffc218170  ; mpixelSetup.S:937
+a89d: 40000007c00080f080 f8  r128=25 M=2ca r110=5bd r99=2 r62=1ffc000179 r25=3ea9c00  ; mpixelSetup.S:936
+a89e: 77fa46d78880f80000 f14 r211=3 C=d F=1e r95=8 r62=1ffc218170  ; mpixelSetup.S:938
+a89f: 68000007e83fcaf480 f13 r128=25 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:943
+a8a0: 77fa46d74880f80000 f14 r211=3 C=d F=1d r95=8 r62=1ffc218170  ; mpixelSetup.S:939
+a8a1: 68000007e83fcaf480 f13 r128=25 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:944
+a8a2: 77fa46d70880f80000 f14 r211=3 C=d F=1c r95=8 r62=1ffc218170  ; mpixelSetup.S:940
+a8a4: 77fa46e7c880f80000 f14 r211=3 C=e r95=8 r62=1ffc218170  ; mpixelSetup.S:941
+a8a6: 77f646e78080f8a888 f14 xfer5 c4 cc=1 -> a888 imm=a888 r211=3 cc=1 C=e F=1e r95=8 seq=5fe4 r71=1 r62=1ffe218170 r25=3e39c00  ; mpixelSetup.S:942
+a8a8: 77fa46e74880f80000 f14 r211=3 C=e F=1d r95=8 r62=1ffc218170  ; mpixelSetup.S:943
+a8a9: 77fa40d8c881680000 f14 r219=1 C=d F=23 G=d r62=1ffc23c170  ; mpixelSetup.S:947
+a8aa: 77fa46e70880f80000 f14 r211=3 C=e F=1c r95=8 r62=1ffc218170  ; mpixelSetup.S:944
+a8ab: 77fa40e6c881700000 f14 r219=1 C=e F=1b G=e r62=1ffc23c170  ; mpixelSetup.S:946
+a8ae: 77f64007fc00f8a886 f14 xfer5 c4 cc=78 -> a886 imm=a886 cc=78 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:956
+a8af: 130000ffcf7846977c f2  r219=1 cc=91 A=c C=f r176=0 r162=1 F=3f G=f r148=39b Q=1c M=6c2 r110=43d r62=1ffcb3f57c  ; mpixelSetup.S:952
+a8b2: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a8b2 seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:960
+a8b3: 77fa40f00881740000 f14 r219=1 C=f r162=1 F=0 G=e r62=1ffc23c170  ; mpixelSetup.S:954
+a8b7: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:959
+mgeb_StrideEramToCram:
+a8bb: 77c23607ca04500000 f14 r217=1 A=1f D=2 G=a r99=8 r62=1ffc884170  ; mpixelSetup.S:840
+a8c1: 77c03607ca04600000 f14 r217=1 A=1f G=c r99=8 r62=1ffc884170  ; mpixelSetup.S:838
+a8c2: 77c13607ca04700000 f14 r217=1 A=1f D=1 G=e r99=8 r62=1ffc884170  ; mpixelSetup.S:839
+a8c3: 700024afca017c0000 f14 r219=1 C=a r176=2 r162=1 F=3f G=f r62=1ffc33c170  ; mpixelSetup.S:842
+a8c4: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; mpixelSetup.S:833
+a8c5: 77c33607ca04680000 f14 r217=1 A=1f D=3 G=d r99=8 r62=1ffc884170  ; mpixelSetup.S:841
+a8c7: 728020ffca017c0000 f14 r219=1 A=a C=f r176=0 r162=1 F=3f G=f r62=1ffcb3c170  ; mpixelSetup.S:843
+a8c8: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:834
+a8c9: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:835
+a8ca: 70f9c0e948c9580000 f14 r222=1 r219=1 C=e F=25 G=b seq=61de r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:837
+a8cb: 700024ffca014c0000 f14 r219=1 C=f r176=2 r162=1 F=3f G=9 r62=1ffc33c170  ; mpixelSetup.S:844
+a8cc: 73c020cfca03740000 f14 r219=3 A=f C=c r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:846
+a8cd: 70d9c0d7088f780000 f14 r219=3 C=d F=1c G=f seq=619f r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:845
+a8ce: 728020cfca03640000 f14 r219=3 A=a C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; mpixelSetup.S:849
+a8cf: 77fa40d78883680000 f14 r219=3 C=d F=1e G=d r62=1ffc23c170  ; mpixelSetup.S:850
+a8d0: 728020efca03740000 f14 r219=3 A=a C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:851
+a8d1: 7099c0f7888f780000 f14 r219=3 C=f F=1e G=f seq=611f r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:852
+a8d2: 728020cfca03640000 f14 r219=3 A=a C=c r176=0 r162=1 F=3f G=c r62=1ffcb3c170  ; mpixelSetup.S:854
+a8d3: 77fa40d78883680000 f14 r219=3 C=d F=1e G=d r62=1ffc23c170  ; mpixelSetup.S:855
+a8d4: 728020efca03740000 f14 r219=3 A=a C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:856
+a8d5: 77fa40f7888f780000 f14 r219=3 C=f F=1e G=f seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; mpixelSetup.S:857
+a8d6: 700a66c7ca00f80000 f14 C=c r95=14 r62=1ffc218170  ; mpixelSetup.S:865
+a8d8: 700ae6c7ca00f80000 f14 C=c r95=15 r62=1ffc218170  ; mpixelSetup.S:866
+a8da: 700b66c7ca00f80000 f14 C=c r95=16 r62=1ffc218170  ; mpixelSetup.S:867
+a8dc: 700a66e7ca00f80000 f14 C=e r95=14 r62=1ffc218170  ; mpixelSetup.S:868
+a8dd: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:865
+a8df: 700ae6e7ca00f80000 f14 C=e r95=15 r62=1ffc218170  ; mpixelSetup.S:869
+a8e0: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:866
+a8e1: 700b66e7ca00f80000 f14 C=e r95=16 r62=1ffc218170  ; mpixelSetup.S:870
+a8e2: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:867
+a8e3: 68000007e83fcaf8a0 f13 M=6ca r110=7bd r99=2 r62=1ffc000178 r25=3ea9c00  ; mpixelSetup.S:868
+a8e6: 77fa42d7c880f80000 f14 r211=3 C=d r95=4 r62=1ffc218170  ; mpixelSetup.S:865
+a8e7: 124020cfcc7e44f8a0 f2  r219=1 A=9 C=c r176=0 r162=1 F=3f G=c M=6ca r110=7bd r99=2 r62=1ffcb3c178 r25=3ea9c00  ; mpixelSetup.S:869
+a8e8: 180400b94bbe44f8a0 f3  r222=1 r219=1 C=b F=25 G=b M=6ca r110=7bd r99=2 r62=1ffc23c178 r25=3ea9c00  ; mpixelSetup.S:870
+a8e9: 7032e6d7ca00f80000 f14 r211=3 C=d r95=5 r62=1ffc218170  ; mpixelSetup.S:866
+a8ea: 77f64007c89cfbffec f14 xfer5.rel c7 cc=11 -> a8d6 imm=ffffffec seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; mpixelSetup.S:876
+a8eb: 703366d7ca00f80000 f14 r211=3 C=d r95=6 r62=1ffc218170  ; mpixelSetup.S:867
+a8ec: f7fa42f7c880f80000 f14 w71=1 r211=3 C=f r95=4 r62=1ffc218170  ; mpixelSetup.S:868
+a8ed: 724020efca01740000 f14 r219=1 A=9 C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:873
+a8ee: 77f240d648b5680000 f14 xfer4.rel c5 cc=11 -> a8ee r219=1 C=d F=19 G=d seq=1cfe5 r62=1ffc23c170 r25=3e39c00  ; mpixelSetup.S:872
+a8ef: 77fa40f64881780000 f14 r219=1 C=f F=19 G=f r62=1ffc23c170  ; mpixelSetup.S:874
+a8f0: f032e6f7ca00f80000 f14 w71=1 r211=3 C=f r95=5 r62=1ffc218170  ; mpixelSetup.S:869
+a8f1: f03366f7ca00f80000 f14 w71=1 r211=3 C=f r95=6 r62=1ffc218170  ; mpixelSetup.S:870
+a8f3: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:879
+mgesi_PixQueryCopyOverlap:
+a8f7: 6fc08007ec2e73f6a0 f13 cc=91 A=1f Q=1c M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:667
+a8f8: 6fc28007ec2d73f6a0 f13 cc=91 A=1f D=2 Q=1a M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:669
+a8f9: 6fc18007ec2df3f6a0 f13 cc=91 A=1f D=1 Q=1b M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:668
+a8fa: 700a67e7ca00f80c01 f14 imm=c01 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:682
+a8fb: 6fc38007ec2a73f6a0 f13 cc=91 A=1f D=3 Q=14 M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:670
+a8fc: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:659
+a8fd: 782071e7c03a800000 f15 imm=3a800000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:688
+a8fe: 2fc4814218804df6a0 f5  imm=31 A=1f C=1e D=4 M=6f3 r99=8 r95=14 r71=1 r62=1ffca98178  ; mpixelSetup.S:671
+a8ff: 68000007ec2d60fe82 f13 cc=91 Q=1a r128=10 M=6e0 r110=57d r62=1ffc0005fc  ; mpixelSetup.S:673
+a900: 68000007e82fe0975c f13 r148=39a M=6e0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:672
+a901: 182871005f2644f8a0 f3  imm=1 r215=3 cc=91 B=18 C=1e E=1 Q=13 M=6ca r110=7bd r71=1 r62=1ffc658578  ; mpixelSetup.S:683
+a902: 700a67e7ca00f80c02 f14 imm=c02 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:684
+a903: 5e01b807ec2257541a f11 cc=291 A=18 D=1 r148=340 P=1c Q=16 M=44a r110=69d r99=8 r62=1ffc882d7b  ; mpixelSetup.S:682
+a904: 68000007ec2c66c0bc f13 cc=91 r148=380 Q=18 r128=28 M=6e6 r110=47d r62=1ffc0025fc  ; mpixelSetup.S:675
+a905: 68000007ec2ae0ff1d f13 cc=91 Q=15 r128=2b M=6e0 r110=77d r62=1ffc0005fc  ; mpixelSetup.S:699
+a906: 68000007e86fe4f43f f13 r220=1 r148=1f r128=d M=6e4 r110=53d r62=1ffc00117c  ; mpixelSetup.S:690
+a907: 68000007ec2ce8c3bc f13 cc=91 r148=380 Q=19 r128=2b M=6e8 r110=47d r62=1ffc0025fc  ; mpixelSetup.S:676
+a908: 6e008007c02c60ff40 f13 cc=111 r198=0 A=18 Q=18 r128=5 M=6e0 r110=5bd r99=8 r62=1ffd88057c  ; mpixelSetup.S:689
+a909: 68000007ec2bcaf8a0 f13 cc=91 Q=17 M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:685
+a90a: 68000007ec2d66975b f13 cc=91 r148=37a Q=1a M=6e6 r110=43d r62=1ffc00357c  ; mpixelSetup.S:677
+a90b: 68000007ec2de8975b f13 cc=91 r148=37a Q=1b M=6e8 r110=43d r62=1ffc00357c  ; mpixelSetup.S:678
+a90c: 68000007c2ace0ff41 f13 cc=111 r198=5 Q=19 r128=d M=6e0 r110=5bd r62=1ffd00057c  ; mpixelSetup.S:692
+a90d: 68000007e86fe4f41f f13 r220=1 r148=1f r128=5 M=6e4 r110=53d r62=1ffc00117c  ; mpixelSetup.S:693
+a90e: 68000007ec2e71941e f13 cc=91 r148=3c0 Q=1c M=6f1 r110=4bd r62=1ffc002578  ; mpixelSetup.S:722
+a90f: 68000007c02d60ff41 f13 cc=111 r198=0 Q=1a r128=d M=6e0 r110=5bd r62=1ffd00057c  ; mpixelSetup.S:694
+a910: 68000007e86fe296b8 f13 r220=1 r148=315 M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:723
+a911: 68000007c2ade0ff42 f13 cc=111 r198=5 Q=1b r128=15 M=6e0 r110=5bd r62=1ffd00057c  ; mpixelSetup.S:695
+a912: 68000007c0ae40f416 f13 cc=111 r198=1 r148=16 Q=1c r128=5 M=6c0 r110=53d r62=1ffd00157c  ; mpixelSetup.S:724
+a914: 68000007ec2c609795 f13 cc=91 r148=2bc Q=18 M=6e0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:701
+a918: 68000007e86fe2c0b8 f13 r220=1 r148=300 r128=28 M=6e2 r110=47d r62=1ffc0021fc  ; mpixelSetup.S:725
+a91a: 68000007c0ae4096dc f13 cc=111 r198=1 r148=396 Q=1c M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:726
+a91e: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:700
+a920: 68000007e86fe296b9 f13 r220=1 r148=335 M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:727
+a922: 68000007c0ae4096dc f13 cc=111 r198=1 r148=396 Q=1c M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:728
+a924: 68000007ec0cc0eeb4 f13 cc=211 r148=280 P=19 M=47f r110=69d r62=1ffc002973  ; mpixelSetup.S:684
+a925: 68000007ec2c4af8a0 f13 cc=91 Q=18 M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:700
+a927: 68000007ec2cf1941e f13 cc=91 r148=3c0 Q=19 M=6f1 r110=4bd r62=1ffc002578  ; mpixelSetup.S:737
+a928: 68000007e86fe29719 f13 r220=1 r148=338 M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:729
+a929: 68000007e86fe2c0ba f13 r220=1 r148=340 r128=28 M=6e2 r110=47d r62=1ffc0021fc  ; mpixelSetup.S:738
+a92a: 68000007c0ae4096dc f13 cc=111 r198=1 r148=396 Q=1c M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:730
+a92b: 68000007c0acc0f416 f13 cc=111 r198=1 r148=16 Q=19 r128=5 M=6c0 r110=53d r62=1ffd00157c  ; mpixelSetup.S:739
+a92d: 68000007ec2d609738 f13 cc=91 r148=319 Q=1a M=6e0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:702
+a931: 68000007e86fe2c0ba f13 r220=1 r148=340 r128=28 M=6e2 r110=47d r62=1ffc0021fc  ; mpixelSetup.S:740
+a933: 68000007c0acc096d9 f13 cc=111 r198=1 r148=336 Q=19 M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:741
+a939: 68000007e86fe2971b f13 r220=1 r148=378 M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:742
+a93b: 68000007c0acc096d9 f13 cc=111 r198=1 r148=336 Q=19 M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:743
+a941: 68000007e86fe2975b f13 r220=1 r148=37a M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:744
+a943: 68000007c0acc096d9 f13 cc=111 r198=1 r148=336 Q=19 M=6c0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:745
+a944: 68000007e86fe297d3 f13 r220=1 r148=27e M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:753
+a945: 68000007e86fe297d7 f13 r220=1 r148=2fe M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:755
+a946: 68000007e86fe297f3 f13 r220=1 r148=27f M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:758
+a947: 68000007e86fe297f7 f13 r220=1 r148=2ff M=6e2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:760
+a949: 782071e7c200000003 f15 imm=3 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:719
+a94a: 7e028007c000000000 f15 A=18 D=2 M=6ca r99=8 r62=1ffc880178  ; mpixelSetup.S:720
+a94d: 68000007ec2d4096d6 f13 cc=91 r148=2d6 Q=1a M=6c0 r110=43d r62=1ffc00357c  ; mpixelSetup.S:721
+a94e: 68000007ea2e50c0bc f13 cc=191 r148=380 Q=1c r128=28 M=6d0 r110=47d r62=1ffc0025fc  ; mpixelSetup.S:731
+a94f: 68000007ec2cd0c1b9 f13 cc=91 r148=320 Q=19 r128=29 M=6d0 r110=47d r62=1ffc0025fc  ; mpixelSetup.S:746
+a950: 77f64007c200f8a976 f14 xfer5 c4 cc=4 -> a976 imm=a976 cc=4 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:754
+a951: 77f64007c200f8a976 f14 xfer5 c4 cc=4 -> a976 imm=a976 cc=4 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:756
+a952: 77f64007c180f8a983 f14 xfer5 c4 cc=3 -> a983 imm=a983 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:759
+a953: 77f64007c180f8a983 f14 xfer5 c4 cc=3 -> a983 imm=a983 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:761
+a955: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; mpixelSetup.S:661
+a956: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:662
+a957: 68000007ec2df1941e f13 cc=91 r148=3c0 Q=1b M=6f1 r110=4bd r62=1ffc002578  ; mpixelSetup.S:752
+a958: 1a0831d7cf3e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=f r62=1ffc67c170  ; mpixelSetup.S:663
+a95c: 68000007e82fdf9759 f13 r148=33a M=6df r110=43d r62=1ffc00317c  ; mpixelSetup.S:772
+a960: 68000007e82fd4f41c f13 r148=1c r128=5 M=6d4 r110=53d r62=1ffc00117c  ; mpixelSetup.S:773
+a961: 782071e7c142200000 f15 imm=42200000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:776
+a962: 782071e7c002103000 f15 imm=2103000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:775
+a963: 782071e7c200000430 f15 imm=430 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:777
+a964: 6e004007e82fd4f41b f13 A=18 r148=1b r128=5 M=6d4 r110=53d r99=4 r62=1ffc88117c  ; mpixelSetup.S:774
+a965: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:778
+a966: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:779
+a967: 782071e7c200000434 f15 imm=434 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:780
+a968: 6602bc07ea0001d000 f12 r213=3 A=18 B=1e D=2 r128=5 M=6ca r110=5bd r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:779
+a969: 66007c07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:781
+a96a: 66017c07ea0001c016 f12 r213=3 A=18 B=1e D=1 r148=2c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:782
+a96b: 7e30f1e7c0430e0000 f15 imm=430e0000 r215=3 A=18 B=18 C=1e D=10 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:787
+a96c: 66007c07c88201dd80 f12 r213=2 r198=11 A=18 B=1e E=2 M=6ca r99=4 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:788
+a96d: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> a96d seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:793
+a972: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:792
+a973: 77fa40f7c8c0f80000 f14 r222=1 C=f r62=1ffc218170  ; mpixelSetup.S:786
+a976: 68000007e86fca941c f13 r220=1 r148=380 M=6ca r110=4bd r62=1ffc002178  ; mpixelSetup.S:799
+a978: 68000007c0adca9419 f13 cc=111 r198=1 r148=320 Q=1b M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:800
+a97a: 77f24007c880f8a95c f14 xfer4 c4 cc=11 -> a95c imm=a95c seq=4fe4 r71=1 r25=3e39c00  ; mpixelSetup.S:803
+a980: 68000007e86fca941b f13 r220=1 r148=360 M=6ca r110=4bd r62=1ffc002178  ; mpixelSetup.S:801
+a981: 782071e7c300000010 f15 imm=10 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:797
+a982: 6e038007c0adcaf6a0 f13 cc=111 r198=1 A=18 D=3 Q=1b M=6ca r99=8 r62=1ffd880578  ; mpixelSetup.S:798
+a983: 68000007e86fc2975c f13 r220=1 r148=39a M=6c2 r110=43d r62=1ffc00317c  ; mpixelSetup.S:809
+a984: 186831e7c851d69759 f3  imm=10 r220=1 r215=3 B=18 C=1e E=3 r148=33a M=6c2 r110=43d r71=1 r62=1ffc65b17c  ; mpixelSetup.S:807
+a985: 6e038007c12dcaf6a0 f13 cc=111 r198=2 A=18 D=3 Q=1b M=6ca r99=8 r62=1ffd880578  ; mpixelSetup.S:808
+a987: 77f24007c880f8a95c f14 xfer4 c4 cc=11 -> a95c imm=a95c seq=4fe4 r71=1 r25=3e39c00  ; mpixelSetup.S:813
+a988: 68000007c12dcaf6a0 f13 cc=111 r198=2 Q=1b M=6ca r62=1ffd000578  ; mpixelSetup.S:812
+mgesi_PixRasterPosSetup:
+a990: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mpixelSetup.S:143
+a991: 6fc08007ec274af6a0 f13 cc=91 A=1f Q=e M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:164
+a992: 782071e7c000000000 f15 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:181
+a993: 760a6fe7ca00f80c01 f14 imm=c01 A=18 C=1e r99=4 r95=14 r71=1 r62=1ffca98170  ; mpixelSetup.S:178
+a994: 6fc88007ec25caf6a0 f13 cc=91 A=1f D=8 Q=b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:172
+a995: 6fc58007ec26c2ff60 f13 cc=91 A=1f D=5 Q=d r128=5 M=6c2 r110=5fd r99=8 r62=1ffc88057c  ; mpixelSetup.S:169
+a996: 194871005f1e44f6a0 f3  imm=1 r215=3 cc=91 B=18 C=1e E=a Q=f M=6ca r71=1 r62=1ffc658578  ; mpixelSetup.S:169
+a997: 6e0a8007ec264af6a0 f13 cc=91 A=18 D=a Q=c M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:211
+a998: 6fc38007ec2b4af6a0 f13 cc=91 A=1f D=3 Q=16 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:167
+a999: 6fc68007ec29f3f6a0 f13 cc=91 A=1f D=6 Q=13 M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:170
+a99a: 700a67e7ca00f80c02 f14 imm=c02 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:179
+a99b: 6fc28007ec2e4af6a0 f13 cc=91 A=1f D=2 Q=1c M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:166
+a99c: 700a67e7ca00f80031 f14 imm=31 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:176
+a99d: 68000007ec2a73f6a0 f13 cc=91 Q=14 M=6f3 r62=1ffc000578  ; mpixelSetup.S:166
+a99e: 700a67e7ca00f80032 f14 imm=32 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:177
+a99f: 68000007ec2bcaf8a0 f13 cc=91 Q=17 M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:178
+a9a0: 782071e7c300000400 f15 imm=400 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:184
+a9a1: 68000007ec2ccaf8a0 f13 cc=91 Q=19 M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:179
+a9a2: 700a67e7ca00f80005 f14 imm=5 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:190
+a9a3: 6fc78007ec2df3f6a0 f13 cc=91 A=1f D=7 Q=1b M=6f3 r99=8 r62=1ffc880578  ; mpixelSetup.S:171
+a9a4: 28000142030044f8a0 f5  imm=6 C=1e M=6ca r110=7bd r95=14 r71=1 r62=1ffc218178  ; mpixelSetup.S:176
+a9a5: 68000007e82fcaf8a0 f13 M=6ca r110=7bd r62=1ffc000178  ; mpixelSetup.S:177
+a9a6: 700a67e7ca00f80c03 f14 imm=c03 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:197
+a9a7: 16039b00df2041ffa5 f2  imm=3 cc=91 A=18 C=1e D=3 Q=10 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9857c  ; mpixelSetup.S:186
+a9a8: 700a67e7ca00f80c04 f14 imm=c04 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:198
+a9a9: 68000007ec2c60ff61 f13 cc=91 Q=18 r128=d M=6e0 r110=5fd r62=1ffc00057c  ; mpixelSetup.S:190
+a9aa: 700a67e7ca00f80c05 f14 imm=c05 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:199
+a9ac: 68000007ec2d60ff63 f13 cc=91 Q=1a r128=1d M=6e0 r110=5fd r62=1ffc00057c  ; mpixelSetup.S:191
+a9ad: 68000007ec2acaf8a0 f13 cc=91 Q=15 M=6ca r110=7bd r62=1ffc000578  ; mpixelSetup.S:197
+a9ae: 700a67e7ca00f80034 f14 imm=34 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:216
+a9af: 68000007ec28f3f8a0 f13 cc=91 Q=11 M=6f3 r110=7bd r62=1ffc000578  ; mpixelSetup.S:198
+a9b0: 68000007e86fca940d f13 r220=1 r148=1a0 M=6ca r110=4bd r62=1ffc002178  ; mpixelSetup.S:202
+a9b1: 192871011f244df8a0 f3  imm=4 r215=3 cc=91 B=18 C=1e E=9 Q=12 M=6f3 r110=7bd r71=1 r62=1ffc658578  ; mpixelSetup.S:199
+a9b2: 68000007c12bca941f f13 cc=111 r198=2 r148=3e0 Q=17 M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:203
+a9b3: 68000007c12cca941f f13 cc=111 r198=2 r148=3e0 Q=19 M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:204
+a9b4: 68000007c12aca941e f13 cc=111 r198=2 r148=3c0 Q=15 M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:205
+a9b5: 6e098007e86fd0ffc5 f13 r220=1 A=18 D=9 M=6d0 r110=7bd r99=8 r62=1ffc88017c  ; mpixelSetup.S:217
+a9b6: 68000007e86fd0958b f13 r220=1 r148=16c M=6d0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:233
+a9b7: 68000007c12b4a940f f13 cc=111 r198=2 r148=1e0 Q=16 M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:219
+a9b8: 68000007c1ae73941c f13 cc=111 r198=3 r148=380 Q=1c M=6f3 r110=4bd r62=1ffd002578  ; mpixelSetup.S:235
+a9c0: 68000007c1ae60967c f13 cc=111 r198=3 r148=393 Q=1c M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:236
+a9c8: 68000007c18e4096fc f13 cc=411 r198=3 r148=397 P=1c M=47f r110=695 r62=1ffd003973  ; mpixelSetup.S:237
+a9c9: 68000007c1abd497b7 f13 cc=111 r198=3 r148=2fd Q=17 M=6d4 r110=43d r62=1ffd00357c  ; mpixelSetup.S:239
+a9d0: 68000007c1ac609798 f13 cc=111 r198=3 r148=31c Q=18 M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:238
+a9d1: 68000007c10e4096f3 f13 cc=411 r198=2 r148=277 P=1c M=47f r110=695 r62=1ffd003973  ; mpixelSetup.S:241
+a9d2: 782071e7cb00000002 f15 imm=2 r215=3 B=18 C=1e E=b r71=1 r62=1ffc658170  ; mpixelSetup.S:212
+a9d3: 782071e7c047400000 f15 imm=47400000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:192
+a9d4: 6e0b8007ec25caf6a0 f13 cc=91 A=18 D=b Q=b M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:213
+a9d5: 6e008007ec29e0ecb8 f13 cc=91 A=18 r148=300 Q=13 M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; mpixelSetup.S:193
+a9d6: 68000007e82fdf96b6 f13 r148=2d5 M=6df r110=43d r62=1ffc00317c  ; mpixelSetup.S:223
+a9d8: 68000007e86fd0c0ab f13 r220=1 r148=160 r128=28 M=6d0 r110=47d r62=1ffc0021fc  ; mpixelSetup.S:244
+a9d9: 68000007c12c609798 f13 cc=111 r198=2 r148=31c Q=18 M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:242
+a9da: 68000007c1ae73f400 f13 cc=111 r198=3 Q=1c r128=5 M=6f3 r110=5bd r62=1ffd000578  ; mpixelSetup.S:246
+a9e2: 68000007c1ae60977c f13 cc=111 r198=3 r148=39b Q=1c M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:247
+a9ea: 68000007c18e40973c f13 cc=411 r198=3 r148=399 P=1c M=47f r110=695 r62=1ffd003973  ; mpixelSetup.S:248
+a9eb: 68000007c1acd497b9 f13 cc=111 r198=3 r148=33d Q=19 M=6d4 r110=43d r62=1ffd00357c  ; mpixelSetup.S:250
+a9f2: 68000007c1ad60979a f13 cc=111 r198=3 r148=35c Q=1a M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:249
+a9f3: 68000007c10e40973b f13 cc=411 r198=2 r148=379 P=1c M=47f r110=695 r62=1ffd003973  ; mpixelSetup.S:252
+a9f7: 782071e7c941000000 f15 imm=41000000 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; mpixelSetup.S:257
+a9f8: 68000007ec2a60ecba f13 cc=91 r148=340 Q=14 M=6e0 r110=4bd r62=1ffc00257c  ; mpixelSetup.S:195
+a9f9: 68000007e80fc096f4 f13 r148=297 M=47f r110=695 r62=1ffc003173  ; mpixelSetup.S:259
+a9fa: 68000007e86fd097b7 f13 r220=1 r148=2fd M=6d0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:263
+a9fb: 68000007c12d60979a f13 cc=111 r198=2 r148=35c Q=1a M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:253
+a9fc: 6e094007c18e40eeb8 f13 cc=411 r198=3 A=18 D=9 r148=300 P=1c M=47f r110=69d r99=4 r62=1ffd882973  ; mpixelSetup.S:258
+aa00: 68000007ec0540ffa7 f13 cc=211 P=a r128=3d M=47f r110=6ad r62=1ffc000973  ; mpixelSetup.S:260
+aa04: 68000007c1ade0c4bc f13 cc=111 r198=3 r148=380 Q=1b r128=2c M=6e0 r110=47d r62=1ffd0025fc  ; mpixelSetup.S:266
+aa05: 68000007c10dc0eeb8 f13 cc=411 r198=2 r148=300 P=1b M=47f r110=69d r62=1ffd002973  ; mpixelSetup.S:269
+aa0d: 68000007c12e60955b f13 cc=111 r198=2 r148=36a Q=1c M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:270
+aa10: 782071e7cd02103000 f15 imm=2103000 r215=3 B=18 C=1e E=d r71=1 r62=1ffc658170  ; mpixelSetup.S:158
+aa11: 782071e7c000003fc2 f15 imm=3fc2 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:279
+aa12: 68000007ec0e40eeb1 f13 cc=211 r148=220 P=1c M=47f r110=69d r62=1ffc002973  ; mpixelSetup.S:261
+aa13: 68000007ec0dc0eeb2 f13 cc=211 r148=240 P=1b M=47f r110=69d r62=1ffc002973  ; mpixelSetup.S:262
+aa14: 68000007e82ff9941b f13 r148=360 M=6f9 r110=4bd r62=1ffc002178  ; mpixelSetup.S:273
+aa15: 6e008007e82ff9941c f13 A=18 r148=380 M=6f9 r110=4bd r99=8 r62=1ffc882178  ; mpixelSetup.S:275
+aa16: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:283
+aa17: 782071e7c1000f0000 f15 imm=f0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:280
+aa18: 68000007e82fe8feb0 f13 r128=6 M=6e8 r110=57d r62=1ffc0001fc  ; mpixelSetup.S:274
+aa19: 68000007e82fe6feb0 f13 r128=6 M=6e6 r110=57d r62=1ffc0001fc  ; mpixelSetup.S:276
+aa1a: 782071e7c2400f0f00 f15 imm=400f0f00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:281
+aa1b: 782071e7c00000000b f15 imm=b r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:303
+aa1c: 4e017c07c01b31a360 f9  r213=3 A=18 B=1e D=1 r148=1b r128=5 M=6e6 r110=53d r99=4 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:284
+aa1d: 4e027c07c01b41a380 f9  r213=3 A=18 B=1e D=2 r148=1c r128=5 M=6e8 r110=53d r99=4 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:285
+aa1e: 6e004007e86fc2eeae f13 r220=1 A=18 r148=1c0 M=6c2 r110=4fd r99=4 r62=1ffc88217c  ; mpixelSetup.S:303
+aa28: 782071e7ce42200000 f15 imm=42200000 r215=3 B=18 C=1e E=e r71=1 r62=1ffc658170  ; mpixelSetup.S:159
+aa29: 6fc18007ec2e4af6a0 f13 cc=91 A=1f D=1 Q=1c M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:165
+aa2a: 77f64007c100f8ab1e f14 xfer5 c4 cc=2 -> ab1e imm=ab1e cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:305
+aa2b: 6fc48007ec2b4af6a0 f13 cc=91 A=1f D=4 Q=16 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:168
+aa2c: 190871029f244df6a0 f3  imm=a r215=3 cc=91 B=18 C=1e E=8 Q=12 M=6f3 r71=1 r62=1ffc658578  ; mpixelSetup.S:168
+aa2d: 160881d01a6244f6a0 f2  r219=1 cc=91 A=18 C=1d D=8 r162=1 F=0 G=1a Q=11 M=6ca r99=8 r62=1ffcabc578  ; mpixelSetup.S:145
+aa2e: 68000007e82fdf96af f13 r148=1f5 M=6df r110=43d r62=1ffc00317c  ; mpixelSetup.S:224
+aa2f: 782071e7cf02202000 f15 imm=2202000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; mpixelSetup.S:160
+aa30: 600039d7ea2f01c01e f12 r213=3 B=1c C=1d E=2f r148=3c0 M=6ca r110=4bd r62=1ffc642178 r25=3e69c00  ; mpixelSetup.S:146
+aa31: 1888713fdf364695f6 f3  imm=ff r215=3 cc=91 B=18 C=1e E=4 r148=2cf Q=1b M=6c2 r110=43d r71=1 r62=1ffc65b57c  ; mpixelSetup.S:185
+aa32: 1a0831d7cf1e4df400 f3  r219=1 r215=3 cc=91 B=18 C=1d E=10 G=f Q=f r128=5 M=6f3 r110=5bd r62=1ffc67c578  ; mpixelSetup.S:147
+aa33: 68000007e86fca940d f13 r220=1 r148=1a0 M=6ca r110=4bd r62=1ffc002178  ; mpixelSetup.S:306
+aa3f: 77f64007c100f8ab21 f14 xfer5 c4 cc=2 -> ab21 imm=ab21 cc=2 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:307
+aa48: 782071e7c000003fd3 f15 imm=3fd3 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:312
+aa49: 782071e7c10000000c f15 imm=c r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:313
+aa4a: 760d2e07ca00f80000 f14 A=18 D=d r99=4 r62=1ffc880170  ; mpixelSetup.S:314
+aa4b: 782071e7c200000806 f15 imm=806 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:318
+aa4c: 782071e7c300400000 f15 imm=400000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:323
+aa4d: 782071e7c403013d00 f15 imm=3013d00 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:326
+aa4e: 782071e7c550140000 f15 imm=50140000 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; mpixelSetup.S:329
+aa4f: 782071e7c600400000 f15 imm=400000 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; mpixelSetup.S:334
+aa50: 6600bc07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:314
+aa51: 760e2e07ca00f80000 f14 A=18 D=e r99=4 r62=1ffc880170  ; mpixelSetup.S:315
+aa52: 6601bc07ea0001dd80 f12 r213=3 A=18 B=1e D=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:315
+aa53: 760d2e07ca00f80000 f14 A=18 D=d r99=4 r62=1ffc880170  ; mpixelSetup.S:319
+aa54: 6602bc07ea0001dd80 f12 r213=3 A=18 B=1e D=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:319
+aa55: 4e0e7c07c01b8ab41e f9  r213=3 A=18 B=1e D=e r148=3c0 M=6f1 r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:320
+aa56: 66037c07ea0001c01e f12 r213=3 A=18 B=1e D=3 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:324
+aa57: 4e047c07c01ac2b41e f9  r213=3 A=18 B=1e D=4 r148=3c0 M=6d8 r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:327
+aa59: 6e054007ec284af8a0 f13 cc=91 A=18 D=5 Q=10 M=6ca r110=7bd r99=4 r62=1ffc880578  ; mpixelSetup.S:330
+aa5a: 700a67e7ca00f80033 f14 imm=33 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:332
+aa5b: 782071e7c7500c340c f15 imm=500c340c r215=3 B=18 C=1e E=7 r71=1 r62=1ffc658170  ; mpixelSetup.S:336
+aa5f: 68000007e86fca9410 f13 r220=1 r148=200 M=6ca r110=4bd r62=1ffc002178  ; mpixelSetup.S:362
+aa60: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:342
+aa61: 6600bc07ea0401dab0 f12 r213=3 A=18 B=1e E=4 r148=10 M=6ca r110=7bc r99=8 r62=1ffccc1178 r25=3e69c00  ; mpixelSetup.S:332
+aa62: 782071e7c1012b0806 f15 imm=12b0806 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:343
+aa63: 782071e7c000003ff8 f15 imm=3ff8 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:352
+aa64: 66067c07ea0001c01e f12 r213=3 A=18 B=1e D=6 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:335
+aa65: 66077c07ea0601d000 f12 r213=3 A=18 B=1e D=7 E=6 r128=5 M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:337
+aa66: 660f7c07ea0001dd80 f12 r213=3 A=18 B=1e D=f M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:344
+aa67: 760e2e07ca00f80000 f14 A=18 D=e r99=4 r62=1ffc880170  ; mpixelSetup.S:345
+aa68: 4e01bc07c01b8ab41e f9  r213=3 A=18 B=1e D=1 r148=3c0 M=6f1 r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:345
+aa69: 660f7c07ea0001dd80 f12 r213=3 A=18 B=1e D=f M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:346
+aa6a: 4e0e7c07c01b8ab41e f9  r213=3 A=18 B=1e D=e r148=3c0 M=6f1 r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:347
+aa6b: 7e20f1e7c142050000 f15 imm=42050000 r215=3 A=18 B=18 C=1e E=1 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:353
+aa6c: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:354
+aa6d: 66017c07ea0001c00e f12 r213=3 A=18 B=1e D=1 r148=1c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:355
+aa6e: 77f84007c188f80000 f14 cc=3 seq=6fc6 r62=1ffe000170 r25=3e2bc00  ; mpixelSetup.S:363
+aa6f: 6e044007e86fd0eeb3 f13 r220=1 A=18 D=4 r148=260 M=6d0 r110=4fd r99=4 r62=1ffc88217c  ; mpixelSetup.S:364
+aa70: 68000007e86fd0eeb4 f13 r220=1 r148=280 M=6d0 r110=4fd r62=1ffc00217c  ; mpixelSetup.S:367
+aa71: 60003807c1af01c01d f12 r213=2 r198=3 B=1c E=2f r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:366
+aa72: 60003807c1af01c01d f12 r213=2 r198=3 B=1c E=2f r148=3a0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; mpixelSetup.S:368
+aa75: 68000007e86fe497f7 f13 r220=1 r148=2ff M=6e4 r110=43d r62=1ffc00317c  ; mpixelSetup.S:371
+aa76: 68000007e86fe497f9 f13 r220=1 r148=33f M=6e4 r110=43d r62=1ffc00317c  ; mpixelSetup.S:373
+aa7f: 77fa4007c884f80000 f14 seq=6fe5  ; mpixelSetup.S:369
+aa80: 77f64007ff00f8aac7 f14 xfer5 c4 cc=7e -> aac7 imm=aac7 cc=7e seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:370
+aa81: 77f64007c180f8aac7 f14 xfer5 c4 cc=3 -> aac7 imm=aac7 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:372
+aa82: 77f64007c180f8aac7 f14 xfer5 c4 cc=3 -> aac7 imm=aac7 cc=3 seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:374
+aa83: 77f64007f500f8aac7 f14 xfer5 c4 cc=6a -> aac7 imm=aac7 cc=6a seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:375
+aa8c: 782071e7c83f008000 f15 imm=3f008000 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; mpixelSetup.S:384
+aa8d: 782071e7c93eff0000 f15 imm=3eff0000 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; mpixelSetup.S:386
+aa8e: 6e088007ec2a4af6a0 f13 cc=91 A=18 D=8 Q=14 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:385
+aa8f: 68000007e86fd097b7 f13 r220=1 r148=2fd M=6d0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:389
+aa90: 6e098007ec2bcaf6a0 f13 cc=91 A=18 D=9 Q=17 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:387
+aa92: 68000007c1ac62c0b8 f13 cc=111 r198=3 r148=300 Q=18 r128=28 M=6e2 r110=47d r62=1ffd0025fc  ; mpixelSetup.S:391
+aa93: 782071e7c000003fcc f15 imm=3fcc r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:411
+aa94: 68000007c12c60c0b8 f13 cc=111 r198=2 r148=300 Q=18 r128=28 M=6e0 r110=47d r62=1ffd0025fc  ; mpixelSetup.S:396
+aa95: 782071e7c1020c0000 f15 imm=20c0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:412
+aa96: 782071e7c2020c0c00 f15 imm=20c0c00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:413
+aa97: 782071e7c302021800 f15 imm=2021800 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:414
+aa98: 68000007c1aa4a940c f13 cc=111 r198=3 r148=180 Q=14 M=6ca r110=4bd r62=1ffd002578  ; mpixelSetup.S:393
+aa99: 68000007c12a71941e f13 cc=111 r198=2 r148=3c0 Q=14 M=6f1 r110=4bd r62=1ffd002578  ; mpixelSetup.S:398
+aa9a: 68000007c1ace29658 f13 cc=111 r198=3 r148=312 Q=19 M=6e2 r110=43d r62=1ffd00357c  ; mpixelSetup.S:392
+aa9b: 68000007e86fd097b9 f13 r220=1 r148=33d M=6d0 r110=43d r62=1ffc00317c  ; mpixelSetup.S:400
+aa9c: 68000007c12ce09658 f13 cc=111 r198=2 r148=312 Q=19 M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:397
+aa9d: 6e0d4007c1ade2969a f13 cc=111 r198=3 A=18 D=d r148=354 Q=1b M=6e2 r110=43d r99=4 r62=1ffd88357c  ; mpixelSetup.S:402
+aa9e: 6600bc07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:419
+aa9f: 782071e7c402011a00 f15 imm=2011a00 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:415
+aaa0: 782071e7c500011b00 f15 imm=11b00 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; mpixelSetup.S:416
+aaa1: 68000007c1aa549574 f13 cc=111 r198=3 r148=28b Q=14 M=6d4 r110=43d r62=1ffd00357c  ; mpixelSetup.S:404
+aaa2: 66017c07ea0001c01b f12 r213=3 A=18 B=1e D=1 r148=360 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:420
+aaa3: 782071e7c642011c00 f15 imm=42011c00 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; mpixelSetup.S:417
+aaa4: 66027c07ea0001a2dc f12 r213=3 A=18 B=1e D=2 r148=396 M=6c2 r110=43d r99=4 r62=1ffccc317c r25=3e69c00  ; mpixelSetup.S:421
+aaa5: 68000007c1ade295fb f13 cc=111 r198=3 r148=36f Q=1b M=6e2 r110=43d r62=1ffd00357c  ; mpixelSetup.S:403
+aaa6: 68000007c12de096fa f13 cc=111 r198=2 r148=357 Q=1b M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:407
+aaa7: 782071e7c000003fcd f15 imm=3fcd r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:428
+aaa8: 782071e7c1020c0000 f15 imm=20c0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:429
+aaa9: 66037c07ea0001c014 f12 r213=3 A=18 B=1e D=3 r148=280 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:422
+aaaa: 66047c07ea0001c01e f12 r213=3 A=18 B=1e D=4 r148=3c0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:423
+aaab: 7e20f1e7c2400c0c00 f15 imm=400c0c00 r215=3 A=18 B=18 C=1e E=2 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:430
+aaac: 66057c07ea0001c01f f12 r213=3 A=18 B=1e D=5 r148=3e0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:424
+aaad: 782071e7c000003fce f15 imm=3fce r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:437
+aaae: 68000007c12de095fb f13 cc=111 r198=2 r148=36f Q=1b M=6e0 r110=43d r62=1ffd00357c  ; mpixelSetup.S:408
+aaaf: 66067c07ea0001c015 f12 r213=3 A=18 B=1e D=6 r148=2a0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:425
+aab0: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:432
+aab1: 66017c07ea0001c01c f12 r213=3 A=18 B=1e D=1 r148=380 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:433
+aab2: 66027c07ea0001c018 f12 r213=3 A=18 B=1e D=2 r148=300 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:434
+aab3: 7e20f1e7c1000c0000 f15 imm=c0000 r215=3 A=18 B=18 C=1e E=1 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:438
+aab4: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:441
+aab5: 782071e7c2400c0c00 f15 imm=400c0c00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:439
+aab6: 66017c07ea0001c01b f12 r213=3 A=18 B=1e D=1 r148=360 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:442
+aab7: 66027c07ea0001c019 f12 r213=3 A=18 B=1e D=2 r148=320 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:443
+aab8: 782071e7c000003fd3 f15 imm=3fd3 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:449
+aab9: 760d2e07ca00f80000 f14 A=18 D=d r99=4 r62=1ffc880170  ; mpixelSetup.S:451
+aaba: 6600bc07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:451
+aabb: 660e7c07ea0001c011 f12 r213=3 A=18 B=1e D=e r148=220 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:452
+aabc: 7e30f1e7c0430e0000 f15 imm=430e0000 r215=3 A=18 B=18 C=1e D=10 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:458
+aabd: 66007c07c88201dd80 f12 r213=2 r198=11 A=18 B=1e E=2 M=6ca r99=4 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:459
+aabe: 77f24007c8b4f80000 f14 xfer4.rel c5 cc=11 -> aabe seq=1cfe5 r25=3e39c00  ; mpixelSetup.S:464
+aac3: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; mpixelSetup.S:463
+aac4: 77fa40f7c8c0f80000 f14 r222=1 C=f r62=1ffc218170  ; mpixelSetup.S:457
+aac7: 77f64007f500f8ab35 f14 xfer5 c4 cc=6a -> ab35 imm=ab35 cc=6a seq=5fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mpixelSetup.S:473
+aad0: 782071e7c53df80000 f15 imm=3df80000 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; mpixelSetup.S:477
+aad1: 782071e7c000003fcc f15 imm=3fcc r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:485
+aad2: 782071e7c1020c0000 f15 imm=20c0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:486
+aad3: 782071e7c2020c0c00 f15 imm=20c0c00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:487
+aad4: 782071e7c300011a00 f15 imm=11a00 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:488
+aad5: 760d2e07ca00f80000 f14 A=18 D=d r99=4 r62=1ffc880170  ; mpixelSetup.S:491
+aad6: 6600bc07ea0001dd80 f12 r213=3 A=18 B=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:491
+aad7: 66017c07ea0001c01b f12 r213=3 A=18 B=1e D=1 r148=360 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:492
+aad8: 66027c07ea0001a2dc f12 r213=3 A=18 B=1e D=2 r148=396 M=6c2 r110=43d r99=4 r62=1ffccc317c r25=3e69c00  ; mpixelSetup.S:493
+aad9: 782071e7c442011c00 f15 imm=42011c00 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:489
+aada: 782071e7ca3f000000 f15 imm=3f000000 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; mpixelSetup.S:506
+aadb: 6e058007ec2d60ecb8 f13 cc=91 A=18 D=5 r148=300 Q=1a M=6e0 r110=4bd r99=8 r62=1ffc88257c  ; mpixelSetup.S:478
+aadc: 782071e7c000003fcd f15 imm=3fcd r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:498
+aadd: 6e034007ec2de0ecba f13 cc=91 A=18 D=3 r148=340 Q=1b M=6e0 r110=4bd r99=4 r62=1ffc88257c  ; mpixelSetup.S:480
+aade: 6600bc07ea0001c01f f12 r213=3 A=18 B=1e r148=3e0 M=6ca r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:494
+aadf: 66047c07ea0001c015 f12 r213=3 A=18 B=1e D=4 r148=2a0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:495
+aae0: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:501
+aae1: 782071e7c1420c0000 f15 imm=420c0000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:499
+aae2: 782071e7c2400c0c03 f15 imm=400c0c03 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:568
+aae3: 782071e7c000003fc4 f15 imm=3fc4 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:515
+aae4: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:502
+aae5: 6600bc07ea0001c01c f12 r213=3 A=18 B=1e r148=380 M=6ca r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:502
+aae6: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:517
+aae7: 6e0a4007ec0e40eeb7 f13 cc=211 A=18 D=a r148=2e0 P=1c M=47f r110=69d r99=4 r62=1ffc882973  ; mpixelSetup.S:507
+aae8: 68000007ec0b40eeb9 f13 cc=211 r148=320 P=16 M=47f r110=69d r62=1ffc002973  ; mpixelSetup.S:509
+aae9: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:516
+aaea: 782071e7c000003fc5 f15 imm=3fc5 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:521
+aaeb: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:518
+aaec: 6600bc07ea0001c01a f12 r213=3 A=18 B=1e r148=340 M=6ca r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:518
+aaed: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:523
+aaee: 68000007ec0c4096f2 f13 cc=211 r148=257 P=18 M=47f r110=695 r62=1ffc003973  ; mpixelSetup.S:511
+aaef: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:522
+aaf0: 782071e7c000003fc6 f15 imm=3fc6 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:527
+aaf1: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:524
+aaf2: 6600bc07ea00011c9a f12 r213=3 A=18 B=1e r148=340 r128=2c M=6e0 r110=47d r99=8 r62=1ffccc21fc r25=3e69c00  ; mpixelSetup.S:524
+aaf3: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:529
+aaf5: 68000007e80fc0972f f13 r148=1f9 M=47f r110=695 r62=1ffc003173  ; mpixelSetup.S:512
+aaf6: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:528
+aaf7: 782071e7c000003fc7 f15 imm=3fc7 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:533
+aaf8: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:530
+aaf9: 3600bc07c0f049c4bb f6  r213=3 cc=91 A=18 B=1e r148=360 Q=1c r128=2c M=6e0 r110=47d r99=8 r62=1ffccc25fc r25=3e69c00  ; mpixelSetup.S:530
+aafa: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:535
+aafc: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:534
+aafd: 782071e7c000003fc8 f15 imm=3fc8 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:539
+aafe: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:536
+aaff: 6600bc07ea0001039a f12 r213=3 A=18 B=1e r148=35c M=6e0 r110=43d r99=8 r62=1ffccc317c r25=3e69c00  ; mpixelSetup.S:536
+ab00: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:541
+ab03: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:540
+ab04: 782071e7c000003fc9 f15 imm=3fc9 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:545
+ab05: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:542
+ab06: 6600bc07ea00011078 f12 r213=3 A=18 B=1e r148=18 r128=1d M=6e0 r110=53d r99=8 r62=1ffccc117c r25=3e69c00  ; mpixelSetup.S:542
+ab07: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:547
+ab09: 782071e7c140200014 f15 imm=40200014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:546
+ab0a: 782071e7c000003fca f15 imm=3fca r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:551
+ab0b: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:548
+ab0c: 6600bc07ea000102dc f12 r213=3 A=18 B=1e r148=396 M=6e0 r110=43d r99=8 r62=1ffccc317c r25=3e69c00  ; mpixelSetup.S:548
+ab0d: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:553
+ab10: 782071e7c1401c0014 f15 imm=401c0014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:552
+ab11: 782071e7c000003fcb f15 imm=3fcb r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:557
+ab12: 66017c07ea0001c017 f12 r213=3 A=18 B=1e D=1 r148=2e0 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:554
+ab13: 7e20f1e7c33ff00000 f15 imm=3ff00000 r215=3 A=18 B=18 C=1e E=3 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:559
+ab14: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:559
+ab15: 77f24007c880f8aab8 f14 xfer4 c4 cc=11 -> aab8 imm=aab8 seq=4fe4 r71=1 r25=3e39c00  ; mpixelSetup.S:575
+ab16: 782071e7c1401c0014 f15 imm=401c0014 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:558
+ab17: 782071e7c000003fd2 f15 imm=3fd2 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:566
+ab18: 76012e07ca00f80000 f14 A=18 D=1 r99=4 r62=1ffc880170  ; mpixelSetup.S:560
+ab19: 6600bc07ea0001c019 f12 r213=3 A=18 B=1e r148=320 M=6ca r110=4bd r99=8 r62=1ffccc2178 r25=3e69c00  ; mpixelSetup.S:560
+ab1a: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:571
+ab1b: 7e23f1e7c1000c0003 f15 imm=c0003 r215=3 A=18 B=18 C=1e D=3 E=1 r99=8 r71=1 r62=1ffced8170  ; mpixelSetup.S:567
+ab1c: 4e017c07c01b0cd417 f9  r213=3 A=18 B=1e D=1 r148=2e0 M=6e1 r110=4bd r99=4 r62=1ffccc217c r25=3e69c00  ; mpixelSetup.S:572
+ab1d: 4e027c07c01b0cd419 f9  r213=3 A=18 B=1e D=2 r148=320 M=6e1 r110=4bd r99=4 r62=1ffccc217c r25=3e69c00  ; mpixelSetup.S:573
+ab1e: 60003807ea2f01c01d f12 r213=3 B=1c E=2f r148=3a0 M=6ca r110=4bd r62=1ffc442178 r25=3e69c00  ; mpixelSetup.S:580
+ab1f: 782071e7c500000004 f15 imm=4 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; mpixelSetup.S:581
+ab20: 6e058007ec28d4ecb1 f13 cc=91 A=18 D=5 r148=220 Q=11 M=6d4 r110=4bd r99=8 r62=1ffc88257c  ; mpixelSetup.S:581
+ab21: 180341315f1a44f8a0 f3  imm=c5 cc=91 C=1e Q=d M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; mpixelSetup.S:585
+ab22: 700a67e7ca00f8002c f14 imm=2c C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:591
+ab23: 782071e7c000000803 f15 imm=803 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:586
+ab24: 700a67e7ca00f8002b f14 imm=2b C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:592
+ab25: 782071e7c1100c2400 f15 imm=100c2400 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; mpixelSetup.S:587
+ab26: 700a67e7ca00f8002a f14 imm=2a C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:593
+ab27: 782071e7c2100c1800 f15 imm=100c1800 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; mpixelSetup.S:588
+ab28: 700a67e7ca00f80029 f14 imm=29 C=1e r95=14 r71=1 r62=1ffc218170  ; mpixelSetup.S:594
+ab29: 782071e7c3100c0c00 f15 imm=100c0c00 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; mpixelSetup.S:589
+ab2a: 68000007e80fc0eead f13 r148=1a0 M=47f r110=69d r62=1ffc002173  ; mpixelSetup.S:591
+ab2b: 68000007e80fc0eead f13 r148=1a0 M=47f r110=69d r62=1ffc002173  ; mpixelSetup.S:592
+ab2c: 77f24007c880f8aa48 f14 xfer4 c4 cc=11 -> aa48 imm=aa48 seq=4fe4 r71=1 r25=3e39c00  ; mpixelSetup.S:602
+ab2d: 782071e7c4500c0000 f15 imm=500c0000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; mpixelSetup.S:590
+ab2e: 68000007e80fc0eead f13 r148=1a0 M=47f r110=69d r62=1ffc002173  ; mpixelSetup.S:593
+ab2f: 6e008007e80fc0eead f13 A=18 r148=1a0 M=47f r110=69d r99=8 r62=1ffc882173  ; mpixelSetup.S:594
+ab30: 660d7c07ea0001dd80 f12 r213=3 A=18 B=1e D=d M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:596
+ab31: 66017c07ea0001d0e0 f12 r213=3 A=18 B=1e D=1 r128=3d M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:597
+ab32: 66027c07ea0001d0e0 f12 r213=3 A=18 B=1e D=2 r128=3d M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:598
+ab33: 66037c07ea0001d0a0 f12 r213=3 A=18 B=1e D=3 M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:599
+ab34: 66047c07ea0001d0a0 f12 r213=3 A=18 B=1e D=4 M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:600
+ab35: 782071e7c800000001 f15 imm=1 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; mpixelSetup.S:608
+ab36: 782071e7c000200015 f15 imm=200015 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:612
+ab37: 6e008007ec29caf6a0 f13 cc=91 A=18 Q=13 M=6ca r99=8 r62=1ffc880578  ; mpixelSetup.S:612
+ab38: 6e088007ec28d4ecb1 f13 cc=91 A=18 D=8 r148=220 Q=11 M=6d4 r110=4bd r99=8 r62=1ffc88257c  ; mpixelSetup.S:608
+ab39: 782071e7c040202015 f15 imm=40202015 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:614
+ab3a: 7e208007c000000000 f15 A=18 r99=8 r62=1ffc880170  ; mpixelSetup.S:614
+ab3b: 1803c1079f2844f6a0 f3  imm=1e cc=91 C=1e Q=14 M=6ca r95=17 r71=1 r62=1ffc218578  ; mpixelSetup.S:613
+ab3c: 782071e7c000202015 f15 imm=202015 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:616
+ab3d: 7e208007c000000000 f15 A=18 r99=8 r62=1ffc880170  ; mpixelSetup.S:616
+ab3e: 1803c1075f2644f6a0 f3  imm=1d cc=91 C=1e Q=13 M=6ca r95=17 r71=1 r62=1ffc218578  ; mpixelSetup.S:615
+ab3f: 782071e7c042200000 f15 imm=42200000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; mpixelSetup.S:618
+ab40: 16009f07df2844f6a0 f2  imm=1f cc=91 A=18 C=1e Q=14 M=6ca r99=8 r95=17 r71=1 r62=1ffca98578  ; mpixelSetup.S:617
+ab41: 77f24007c880f8aad0 f14 xfer4 c4 cc=11 -> aad0 imm=aad0 seq=4fe4 r71=1 r25=3e39c00  ; mpixelSetup.S:621
+ab42: 77fa4fe7c880f80020 f14 imm=20 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:619
+ab44: 60003c07ea0001dab3 f12 r213=3 B=1e r148=13 M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; mpixelSetup.S:613
+ab46: 60003c07ea0401dab4 f12 r213=3 B=1e E=4 r148=14 M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; mpixelSetup.S:615
+ab48: 60003c07ea0001dab3 f12 r213=3 B=1e r148=13 M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; mpixelSetup.S:617
+ab49: 60003c07ea0401dab4 f12 r213=3 B=1e E=4 r148=14 M=6ca r110=7bc r62=1ffc441178 r25=3e69c00  ; mpixelSetup.S:619
+ab4a: 77fa49e7c880f80129 f14 imm=129 C=1e r95=2 r71=1 r62=1ffc218170  ; mpixelSetup.S:81
+ab50: 70f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=141df r25=3e3fc00  ; mpixelSetup.S:85
+ab52: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; mpixelSetup.S:74
+ab53: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; mpixelSetup.S:75
+ab54: 77fa41e74881980129 f14 imm=129 r219=1 C=1e F=1d G=13 r71=1 r62=1ffc23c170  ; mpixelSetup.S:82
+ab55: 7039c1ffc88d810000 f14 imm=10000 r219=1 C=1f F=3f G=10 seq=605f r71=1 r62=1ffc33c170 r25=3e2fc00  ; mpixelSetup.S:73
+ab56: 1e0831d7cf3e0d9400 f3  r219=1 r215=3 B=18 C=1d E=30 G=f r62=1ffc67c170  ; mpixelSetup.S:76
+ab57: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mpixelSetup.S:78
+mmo_CopyFifoLine:
+ab59: 77fa4fe7c880f80c00 f14 imm=c00 C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2246
+ab5b: 77fa4fe7c880f80bfc f14 imm=bfc C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2248
+ab5d: 77fa4fe7c880f80bff f14 imm=bff C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2250
+ab60: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2239
+ab61: 60003007ea0401de80 f12 r213=3 B=18 E=4 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2247
+ab62: 77fa4fe7c880f80bfd f14 imm=bfd C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2252
+ab63: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2249
+ab64: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2251
+ab65: 77fa4fe7c880f80bfe f14 imm=bfe C=1e r95=17 r71=1 r62=1ffc218170  ; mpixelSetup.S:2254
+ab69: 38003007c1fc54f8a0 f7  r220=1 r213=3 B=18 E=1 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mpixelSetup.S:2253
+ab6c: 0e04b0142f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 D=4 E=2 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; mpixelSetup.S:2255
+ab6e: 76033607ca04500000 f14 r217=1 A=18 D=3 G=a r99=8 r62=1ffc884170  ; mpixelSetup.S:2256
+ab6f: 76003607ca04600000 f14 r217=1 A=18 G=c r99=8 r62=1ffc884170  ; mpixelSetup.S:2258
+ab72: 76013607ca04780000 f14 r217=1 A=18 D=1 G=f r99=8 r62=1ffc884170  ; mpixelSetup.S:2262
+ab74: 700024ffca01700000 f14 r219=1 C=f r176=2 F=3f G=e r62=1ffc33c170  ; mpixelSetup.S:2268
+ab75: 76023607ca04680000 f14 r217=1 A=18 D=2 G=d r99=8 r62=1ffc884170  ; mpixelSetup.S:2264
+ab76: 76d9c007c88cf80000 f14 seq=6d9f r25=3e2fc00  ; mpixelSetup.S:2271
+ab77: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2272
+ab78: 728020efca03740000 f14 r219=3 A=a C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:2273
+ab79: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mpixelSetup.S:2275
+ab7a: 77f640e7c00158ab8c f14 xfer5 c4 cc=0 -> ab8c imm=ab8c r219=1 cc=0 C=e G=b seq=5fe4 r71=1 r62=1ffe23c170 r25=3e39c00  ; mpixelSetup.S:2269
+ab7c: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; mpixelSetup.S:2242
+ab7d: 7499c007c88cf80000 f14 seq=691f r25=3e2fc00  ; mpixelSetup.S:2281
+ab7e: 7300210fca03840000 f14 r219=3 A=c C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mpixelSetup.S:2282
+ab7f: 728020efca03740000 f14 r219=3 A=a C=e r176=0 r162=1 F=3f G=e r62=1ffcb3c170  ; mpixelSetup.S:2283
+ab80: 77fa40f808c1780000 f14 r222=1 r219=1 C=f F=20 G=f r62=1ffc23c170  ; mpixelSetup.S:2278
+ab81: 70f9c137488d980000 f14 r219=1 C=13 F=1d G=13 seq=61df r62=1ffc23c170 r25=3e2fc00  ; mpixelSetup.S:2243
+ab83: 77f64107ca0150ab83 f14 xfer5 c4 cc=14 -> ab83 imm=ab83 r219=1 cc=14 C=10 G=a seq=5fe4 r71=1 r62=1ffe23c170 r25=3e39c00  ; mpixelSetup.S:2292
+ab84: 3c009ce7c0b044f6a0 f7  r219=1 r213=3 A=10 B=e C=e G=c M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mpixelSetup.S:2295
+ab85: 64019c07ea0101dd80 f12 r213=3 A=10 B=e D=1 E=1 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:2297
+ab86: 3c029cf802be44f6a0 f7  r222=1 r219=1 r213=3 A=10 B=e C=f D=2 E=2 F=20 G=f M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mpixelSetup.S:2299
+ab87: 3c039d0203c144f6a0 f7  r219=1 r213=3 A=10 B=e C=10 D=3 E=3 r162=1 F=8 G=10 M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mpixelSetup.S:2301
+ab88: 3a8498e204b944f6a0 f7  r219=1 r213=3 A=a B=c C=e D=4 E=4 r162=1 F=8 G=e M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mpixelSetup.S:2306
+ab89: 62859807ea0501dd80 f12 r213=3 A=a B=c D=5 E=5 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:2308
+ab8a: 62869807ea0601dd80 f12 r213=3 A=a B=c D=6 E=6 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:2310
+ab8b: 62879807ea0701dd80 f12 r213=3 A=a B=c D=7 E=7 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mpixelSetup.S:2312
+ab8c: 64009c07ca0001dd80 f12 r213=2 A=10 B=e M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2328
+ab8d: 64019c07ca0101dd80 f12 r213=2 A=10 B=e D=1 E=1 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2332
+ab8e: 64029c07ca0201dd80 f12 r213=2 A=10 B=e D=2 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2336
+ab8f: 64039c07ca0301dd80 f12 r213=2 A=10 B=e D=3 E=3 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2340
+ab90: 64049c07ca0401dd80 f12 r213=2 A=10 B=e D=4 E=4 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2344
+ab92: 64059c07ca0501dd80 f12 r213=2 A=10 B=e D=5 E=5 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; mpixelSetup.S:2348
+ab93: 44069cd7c64008dd80 f8  r222=1 r213=2 A=10 B=e C=d D=6 E=6 M=6ca r99=8 r62=1ffded8178 r25=3e69c00  ; mpixelSetup.S:2329
+ab94: 70f1c0d808ecf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> r222=1 C=d F=20 seq=141df r62=1ffc218170 r25=3e3fc00  ; mpixelSetup.S:2333
+ab95: 77fa40d848c0f80000 f14 r222=1 C=d F=21 r62=1ffc218170  ; mpixelSetup.S:2337
+ab96: 77fa40d888c0f80000 f14 r222=1 C=d F=22 r62=1ffc218170  ; mpixelSetup.S:2341
+ab97: 77fa40d8c8c0f80000 f14 r222=1 C=d F=23 r62=1ffc218170  ; mpixelSetup.S:2345
+ab98: 77fa40d908c0f80000 f14 r222=1 C=d F=24 r62=1ffc218170  ; mpixelSetup.S:2349
+ab99: 77fa40b7c881800000 f14 r219=1 C=b G=10 r62=1ffc23c170  ; mpixelSetup.S:2356
+ab9a: 77fa40d948c0f80000 f14 r222=1 C=d F=25 r62=1ffc218170  ; mpixelSetup.S:2353

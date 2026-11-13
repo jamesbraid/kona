@@ -21,7 +21,7 @@
  *
  * Register names and fields, ESTABLISHED: the kpm diagnostic
  * (/usr/gfx/KONA/bin/kpm, 6.5.30m) carries an XG register table of 98
- * records, extracted to diags/kpm/xg_registers.tsv by
+ * records, extracted to software/diags/kpm/xg_registers.tsv by
  * scripts/extract_kpm_tables.py: every register's window offset, name and
  * mask, every field's mask and shift, and the three window bases. The names
  * below are kpm's. kpm names the generic Xtalk control register at 0x24

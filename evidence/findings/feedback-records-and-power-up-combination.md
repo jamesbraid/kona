@@ -15,7 +15,7 @@ rows to apply there.
 
 **Established: the pipe builds the whole record, and the host library does not
 rewrite it.** Three facts from `usr/gfx/arch/IP27KONA32/libGLcore.so`
-(`libglcore/asm/KONA/kon_select.s`):
+(`software/opengl/asm/KONA/kon_select.s`):
 
 - `__glkonim_FeedbackBuffer` (0xd95cf30) stores the application's buffer
   pointer at context +4872 and a second copy of the same pointer at +31592
@@ -70,7 +70,7 @@ colour paths in the library's software renderer (below).
 ### 1.3 Order of the values inside a vertex
 
 **Inferred, from the library's own software renderer.** The same library
-ships a software feedback path (`libglcore/asm/soft/so_feedback.s`, routine
+ships a software feedback path (`software/opengl/asm/soft/so_feedback.s`, routine
 `feedback`, 0xd9d66e0) that must fill the same array for the same call.
 It emits, in order:
 
@@ -90,7 +90,7 @@ pipe's microcode emits the identical order, only that the host accepts nothing
 else, since `ResolveFeedback` never reorders. **Unknown:** the order the
 geometry engine actually writes, and where in a 3D-colour-texture vertex the
 colour sits relative to the texture coordinates, until an operand-level read
-of `mFeedbackVertex` (`ucode/ge_listing/feedback.S.lst`, 0xb93f, source lines
+of `mFeedbackVertex` (`software/ucode/ge_listing/feedback.S.lst`, 0xb93f, source lines
 611-706) binds the final stores to registers, or a recorded feedback buffer
 exists. What would settle it: a captured DMA buffer from a feedback run with a
 known triangle, colour and texture coordinate, or tracing the register named by
@@ -259,6 +259,6 @@ Replace the row for display request 45 (`| 45 | auto-initialise from the stored 
 ```
 
 Evidence keys to add if the applier wants them separate: the new rows
-cite `ucode/ge_listing/feedback.S.lst`, `libglcore/asm/soft/so_feedback.s`,
-`libglcore/asm/KONA/kon_select.s`, and for section 2 `ucode/arm1.s` and
-`ucode/tport.s`; all under S35 and S5.
+cite `software/ucode/ge_listing/feedback.S.lst`, `software/opengl/asm/soft/so_feedback.s`,
+`software/opengl/asm/KONA/kon_select.s`, and for section 2 `software/ucode/arm1.s` and
+`software/ucode/tport.s`; all under S35 and S5.

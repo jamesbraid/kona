@@ -1,6 +1,6 @@
 # Routed host tokens
 
-Tokens whose token-map word has bit 0 set never reach an ARM handler: the host interface forwards them to the geometry distributor or to the engines. [ge.md](README.md) and [ucode/ged.md](../../ucode/ged.md) give the layout of the map word; this page decodes it per token and says what each one does for the pipe. Every row cites its map word. The map word fields are **established** (decoded from `ucode/icu_map.tsv`, which is read from the ARM image); the effect column is **inferred** from those fields, the distributor and engine listings, and the library routine that sends the token.
+Tokens whose token-map word has bit 0 set never reach an ARM handler: the host interface forwards them to the geometry distributor or to the engines. [ge.md](README.md) and [software/ucode/ged.md](../../software/ucode/ged.md) give the layout of the map word; this page decodes it per token and says what each one does for the pipe. Every row cites its map word. The map word fields are **established** (decoded from `software/ucode/icu_map.tsv`, which is read from the ARM image); the effect column is **inferred** from those fields, the distributor and engine listings, and the library routine that sends the token.
 
 In the geometry form (map bit 31 set) the fields are: the word offset of the attribute in the vertex record, the vertex flag, the float, unsigned and normalise flags, how many trailing components the hardware fills with defaults, how many bytes of the last data word are valid, and the component size. "Count" is the map word's count field as read, not a payload length.
 
@@ -72,7 +72,7 @@ Each token carries one attribute of the current vertex. Vertex data are not conv
 
 ## Primitive begin tokens
 
-A begin token runs a short stub in the distributor (one per primitive class). The stub loads the class register r48, the handler register r62 and the first vertex state into r49; the distributor tables are described in [ucode/ged.md](../../ucode/ged.md#how-an-entry-is-chosen). All ten tokens carry one zero payload word, because the primitive is chosen by the token number.
+A begin token runs a short stub in the distributor (one per primitive class). The stub loads the class register r48, the handler register r62 and the first vertex state into r49; the distributor tables are described in [software/ucode/ged.md](../../software/ucode/ged.md#how-an-entry-is-chosen). All ten tokens carry one zero payload word, because the primitive is chosen by the token number.
 
 | Token | Map word | Command | Entry number | Stub address | Class register | Engine handler | Effect | Grade |
 |---|---|---|---|---|---|---|---|---|

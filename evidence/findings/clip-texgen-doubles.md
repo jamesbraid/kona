@@ -1,9 +1,9 @@
 # User clip planes, coordinate generation and double-precision colour (2026-11-10)
 
 Five open questions about the pipe, answered from the firmware image
-(`ucode/arm1.s`, `ucode/arm1_functions.md`), the geometry-engine listings
-(`ucode/ge_listing/`), the client senders in libGLcore (`libglcore/asm/`) and
-the existing notes in `ucode/ge_compute.md`. Everything is in the repository's
+(`software/ucode/arm1.s`, `software/ucode/arm1_functions.md`), the geometry-engine listings
+(`software/ucode/ge_listing/`), the client senders in libGLcore (`software/opengl/asm/`) and
+the existing notes in `software/ucode/ge_compute.md`. Everything is in the repository's
 own words. Grades follow `AGENTS.md`: established means read directly from a
 binary at the cited place; inferred means a reasoned reading, with the
 reasoning; unknown names what would settle it.
@@ -27,7 +27,7 @@ label for these readings yet.
 
 ### What the client sends - established
 
-`__glkonim_ClipPlane` (`libglcore/asm/kon/kon_cfuncs.s`, 0x0da65d50, 88 bytes)
+`__glkonim_ClipPlane` (`software/opengl/asm/kon/kon_cfuncs.s`, 0x0da65d50, 88 bytes)
 first checks the plane name against 0x3000 and 0x3006 (`sltiu` with 12288 and
 12294). Out of range it sends the set-error token 0xe4 with 0x500 and stops.
 Otherwise it stores token 0xb4 (180), the plane name, then four 64-bit stores
@@ -40,7 +40,7 @@ sender checks that count; see item 2).
 
 ### What the processor does - established
 
-`arm_clipplane` (`arm1.u` +0x18cc0, `ucode/arm1.s` 0x0c018cc0-0x0c018d28) reads
+`arm_clipplane` (`arm1.u` +0x18cc0, `software/ucode/arm1.s` 0x0c018cc0-0x0c018d28) reads
 nine words, not eight: eight reads at the data port and the ninth, last word,
 through the offset-0x3c port. It selects all engines (port 0x428), sends the
 plane name through port 0x8c0, writes the descriptor 0x78601000, forwards seven
@@ -141,7 +141,7 @@ Section 2.10 (replace the existing 0x0b4 row; payload corrected from 8 to 9):
 The enable (0x024) and disable (0x025) handlers accept 0x3000-0x3005, the six
 clip planes, and no other value in the 0x3000-0x3fff block.
 
-`arm_enable` (`ucode/arm1.s` 0x0c023380-0x0c023444) dispatches by range on the
+`arm_enable` (`software/ucode/arm1.s` 0x0c023380-0x0c023444) dispatches by range on the
 word at the port: 0xb10-0xde1 (large table `e0`), the two values 0x2a01 and
 0x2a02 (table `e0a`), then `sub r1, r0, #0x3000; cmp r1, #5; bhi` at
 0x0c0233c4-0x0c0233cc into the six-entry table `e1` (0x04047b38), then 0x4000-
@@ -326,7 +326,7 @@ the limit to 0..1 happens later, in the vertex colour pass, for both.
   stores token 98 (0x62) and three 64-bit stores; `__glkonim_Color4d`
   (0x0da65340) stores token 106 (0x6a) and four. No arithmetic, no clamp, no
   conversion. `__glkonim_Color3f`/`4f` store token 99/107 and single words.
-- **Established (map words):** `ucode/icu_map.tsv`: 0x062 entry 0xfa485187 and
+- **Established (map words):** `software/ucode/icu_map.tsv`: 0x062 entry 0xfa485187 and
   0x06a entry 0xf8485007 are routed (hardware) entries with command 144, the
   same as the float forms 0x063 (0xda4850c7) and 0x06b (0xd8485107). The
   difference is the component-size field (bits 29-30: 3 for double, 2 for
@@ -390,14 +390,14 @@ is (0, 0, -1), i.e. when the eye normal is perpendicular to the view direction
   of these is done here.
 
 No proposed table row: the table does not list vertex-module arithmetic. If
-`ucode/ge_compute.md` is amended, the sphere-map entry could add "the result
+`software/ucode/ge_compute.md` is amended, the sphere-map entry could add "the result
 for a zero denominator is unknown".
 
 ## Method notes
 
-- The ARM listings are `ucode/arm1.s` (byte offsets are the image's `+0x...`).
+- The ARM listings are `software/ucode/arm1.s` (byte offsets are the image's `+0x...`).
 - The engine addresses are word addresses in the production `ge.u`; the
-  listings in `ucode/ge_listing/` give them in the first column.
+  listings in `software/ucode/ge_listing/` give them in the first column.
 - The start-up decode in item 3 and the store offsets in item 1 were done by
   script from the listing text and checked against `mMatrixMultCCW`'s stores
   for the address calibration; the scripts are not committed.

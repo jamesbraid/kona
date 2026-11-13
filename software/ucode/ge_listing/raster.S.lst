@@ -1,0 +1,545 @@
+# raster.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mgeb_ClipmapXform:
+37f9: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:1238
+37fa: 6fc08007e86fcaf6a0 f13 r220=1 A=1f M=6ca r99=8 r62=1ffc880178  ; raster.S:1248
+37fb: 17c1a1d7da3e44f6a0 f2  r219=1 A=1f C=1d D=1 G=1a M=6ca r99=a r62=1ffcabc178 r25=3ea9c00  ; raster.S:1240
+37fc: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:1241
+37fd: 7fc2f1e7e10000f494 f15 imm=f494 r215=3 A=1f B=18 C=1e D=2 E=1 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:1245
+37fe: 7fc3f1e7e002000000 f15 imm=2000000 r215=3 A=1f B=18 C=1e D=3 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:1244
+37ff: 2e00c132018043ffa5 f5  imm=3 A=18 C=1e M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; raster.S:1251
+3800: 680001d7e83fd1ffa5 f13 C=1d M=6d1 r110=6fd r99=2 r62=1ffc20017c r25=3ea9c00  ; raster.S:1242
+3801: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; raster.S:1262
+3802: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3802 seq=1cfdf r25=3e3fc00  ; raster.S:1267
+3804: 77fa43e7c880f80075 f14 imm=75 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:1257
+3805: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:1266
+3806: 77fa43e7c880f80076 f14 imm=76 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:1258
+3807: 77fa43e7c880f80077 f14 imm=77 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:1259
+3808: 77fa43e7c880f80003 f14 imm=3 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:1253
+3809: 702267e7c100f80003 f14 imm=3 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; raster.S:1254
+380a: 77fa43e7c880f8000d f14 imm=d r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:1264
+mgesi_FlushRM:
+380b: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; raster.S:1149
+380c: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:1151
+380d: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:1152
+380e: 77f9c1e7c8c9780008 f14 imm=8 r222=1 r219=1 C=1e G=f seq=6fde r71=1 r62=1ffc23c170 r25=3e2fc00  ; raster.S:1149
+380f: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:1153
+3810: 782071e7c000001c3a f15 imm=1c3a r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:1156
+3811: 2e00bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1156
+3812: e0003c07ea0001dd80 f12 w71=1 r213=3 B=1e M=6ca r62=1ffc440178 r25=3e69c00  ; raster.S:1158
+3813: 77fa4de7c88cf801f5 f14 imm=1f5 C=1e r95=13 seq=6fe7 r71=1 r62=1ffc218170 r25=3e2bc00  ; raster.S:1159
+3814: 77fa40f948c1780000 f14 r222=1 r219=1 C=f F=25 G=f r62=1ffc23c170  ; raster.S:1167
+3816: 77f64007c89cfbfffe f14 xfer5.rel c7 cc=11 -> 3814 imm=fffffffe seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; raster.S:1168
+381b: 28003d32fac144f6a0 f5  imm=1f5 r213=3 B=1e C=1e E=1 M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:1164
+381d: e0003c07ea0101dd80 f12 w71=1 r213=3 B=1e E=1 M=6ca r62=1ffc440178 r25=3e69c00  ; raster.S:1165
+381e: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; raster.S:1170
+381f: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; raster.S:1171
+3820: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; raster.S:1172
+3821: 77fa4007c884f80000 f14 seq=6fe5  ; raster.S:1174
+3822: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; raster.S:1175
+3823: 77f9c1e7c8c97800b0 f14 imm=b0 r222=1 r219=1 C=1e G=f seq=6fde r71=1 r62=1ffc23c170 r25=3e2fc00  ; raster.S:1175
+3824: 782071e7c100001411 f15 imm=1411 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:1178
+3825: 2e01bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1178
+3826: c0003c07c06010dd80 f8  w71=1 r213=3 B=1e M=6ca seq=6fe7 r62=1ffc440178 r25=3e6bc00  ; raster.S:1180
+3827: 77fa40f948c1780000 f14 r222=1 r219=1 C=f F=25 G=f r62=1ffc23c170  ; raster.S:1189
+3829: 77f64007c89cfbfffe f14 xfer5.rel c7 cc=11 -> 3827 imm=fffffffe seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; raster.S:1190
+382e: 28003d32fac144f6a0 f5  imm=1f5 r213=3 B=1e C=1e E=1 M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:1186
+3830: e0003c07ea0101dd80 f12 w71=1 r213=3 B=1e E=1 M=6ca r62=1ffc440178 r25=3e69c00  ; raster.S:1187
+3831: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; raster.S:1192
+3832: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; raster.S:1193
+3833: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; raster.S:1194
+3834: 77fa4007c884f80000 f14 seq=6fe5  ; raster.S:1196
+3835: 77f9c007c888f80000 f14 seq=6fde r25=3e2fc00  ; raster.S:1197
+3836: 77f9c1e7c8c9780056 f14 imm=56 r222=1 r219=1 C=1e G=f seq=6fde r71=1 r62=1ffc23c170 r25=3e2fc00  ; raster.S:1197
+3837: 782071e7c20000087f f15 imm=87f r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:1200
+3838: 2e02bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1200
+3839: c0003c07c06010dd80 f8  w71=1 r213=3 B=1e M=6ca seq=6fe7 r62=1ffc440178 r25=3e6bc00  ; raster.S:1202
+383a: 77fa40f948c1780000 f14 r222=1 r219=1 C=f F=25 G=f r62=1ffc23c170  ; raster.S:1210
+383c: 77f64007c89cfbfffe f14 xfer5.rel c7 cc=11 -> 383a imm=fffffffe seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; raster.S:1211
+3842: 18337d7d48ff44f6a0 f3  xfer4.rel c31 cc=11 -> 3a37 imm=1f5 r213=3 B=1e C=1e E=1 M=6ca r95=13 seq=1cfdf r71=1 r62=1ffc658178 r25=3e7fc00  ; raster.S:1207
+3843: e0003c07ea0101dd80 f12 w71=1 r213=3 B=1e E=1 M=6ca r62=1ffc440178 r25=3e69c00  ; raster.S:1208
+3844: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; raster.S:1213
+3845: 57c37c07fe36c2b41e f10 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd r62=1ffc442178 r25=3e69c00  ; raster.S:1214
+3846: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:1224
+3847: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; raster.S:1215
+3848: 77fa4007c884f80000 f14 seq=6fe5  ; raster.S:1217
+3849: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:1218
+384a: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1221
+mgeb_SetCurrentRaster:
+384b: 7fc48007c000000000 f15 A=1f D=4 M=6ca r99=8 r62=1ffc880178  ; raster.S:1093
+384d: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:1086
+384e: 7fe0f1e7c041800000 f15 imm=41800000 r215=3 A=1f B=18 C=1e r99=8 r71=1 r62=1ffced8170  ; raster.S:1092
+384f: 5e007e07f82257b800 f11 cc=91 A=18 Q=1c r128=5 M=44a r110=6ad r99=4 r62=1ffc88057b  ; raster.S:1092
+3850: 782071e7c100000800 f15 imm=800 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:1097
+3851: 2e018132018051ffa5 f5  imm=3 r220=1 A=18 C=1e D=1 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; raster.S:1097
+3853: 68000007c1ae4af480 f13 cc=111 r198=3 Q=1c r128=25 M=6ca r110=5bd r62=1ffd000578  ; raster.S:1099
+3854: 6fce4007e86fe2eebf f13 r220=1 A=1f D=e r148=3e0 M=6e2 r110=4fd r99=4 r62=1ffc88217c  ; raster.S:1127
+3855: 6fc14007e83fcaf8a0 f13 A=1f D=1 M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1103
+3857: 6fc24007e83fcaf8a0 f13 A=1f D=2 M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1104
+3859: 6fc34007e83fcaf8a0 f13 A=1f D=3 M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1105
+385c: 6fc54007e83fcaf8a0 f13 A=1f D=5 M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1111
+385e: 2fc6408a150044f8a0 f5  imm=2a r211=3 A=1f C=1e D=6 M=6ca r110=7bd r99=6 r95=8 r71=1 r62=1ffca98178 r25=3ea9c00  ; raster.S:1103
+385f: 782071e7c200000004 f15 imm=4 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:1126
+3860: 2fc7408a158044f8a0 f5  imm=2b r211=3 A=1f C=1e D=7 M=6ca r110=7bd r99=6 r95=8 r71=1 r62=1ffca98178 r25=3ea9c00  ; raster.S:1104
+3861: 6e028007ec2dcaf6a0 f13 cc=91 A=18 D=2 Q=1b M=6ca r99=8 r62=1ffc880578  ; raster.S:1126
+3862: 2fc8408a160044f8a0 f5  imm=2c r211=3 A=1f C=1e D=8 M=6ca r110=7bd r99=6 r95=8 r71=1 r62=1ffca98178 r25=3ea9c00  ; raster.S:1105
+3863: 68000007c1adca941e f13 cc=111 r198=3 r148=3c0 Q=1b M=6ca r110=4bd r62=1ffd002578  ; raster.S:1128
+3864: 6fc94007e83fcaf8a0 f13 A=1f D=9 M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1117
+3865: 77fa47e7c880f8002d f14 imm=2d r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1111
+3866: 6fca4007e83fcaf8a0 f13 A=1f D=a M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1118
+3867: 77fa47e7c880f8002e f14 imm=2e r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1112
+3868: 6fcb4007e83fcaf8a0 f13 A=1f D=b M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1119
+3869: 77fa47e7c880f8002f f14 imm=2f r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1113
+386a: 6fcc4007e83fcaf8a0 f13 A=1f D=c M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1120
+386b: 77fa47e7c880f80030 f14 imm=30 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1114
+386c: 6fcd4007e83fcaf8a0 f13 A=1f D=d M=6ca r110=7bd r99=6 r62=1ffc880178 r25=3ea9c00  ; raster.S:1123
+386d: 77fa47e7c880f80031 f14 imm=31 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1117
+386e: 180401d7da3e44941c f3  r219=1 C=1d G=1a r148=380 M=6ca r110=4bd r99=2 r62=1ffc23e178 r25=3ea9c00  ; raster.S:1088
+386f: 77fa47e7c880f80032 f14 imm=32 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1118
+3870: 680001d7e83fca941b f13 C=1d r148=360 M=6ca r110=4bd r99=2 r62=1ffc202178 r25=3ea9c00  ; raster.S:1089
+3871: 77fa47e7c880f80033 f14 imm=33 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1119
+3872: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:1090
+3873: 77fa47e7c880f80028 f14 imm=28 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1120
+3874: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3874 seq=1cfdf r25=3e3fc00  ; raster.S:1132
+3875: 77fa47e7c880f80023 f14 imm=23 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1123
+3877: 77fa47e7c880f80029 f14 imm=29 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1102
+3878: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:1131
+3879: 77fa47e7c880f80034 f14 imm=34 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:1129
+mgebi_ErrQuery:
+387d: 77fa4f66c880f80000 f14 C=16 F=1b r95=17 r62=1ffc218170  ; raster.S:1052
+387f: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:1043
+3880: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:1044
+3881: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:1041
+3882: 1a0831d7d33e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=13 r62=1ffc67c170  ; raster.S:1045
+3883: 782071e7c000000476 f15 imm=476 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:1048
+3884: 182831e7c051c4f8a0 f3  r215=3 B=18 C=1e E=1 M=6ca r110=7bd r71=1 r62=1ffc658178  ; raster.S:1052
+3885: 2e01c132fb8044f6a0 f5  imm=1f7 A=18 C=1e D=1 M=6ca r99=a r95=13 r71=1 r62=1ffca98178 r25=3ea9c00  ; raster.S:1050
+3886: 6600bc07c88001dd80 f12 r213=2 r198=11 A=18 B=1e M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; raster.S:1049
+3887: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:1053
+3888: 60003c07c88001d000 f12 r213=2 r198=11 B=1e r128=5 M=6ca r110=5bd r62=1ffd440178 r25=3e69c00  ; raster.S:1053
+3889: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:1061
+388a: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; raster.S:1061
+388b: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 388b seq=1cfdf r25=3e3fc00  ; raster.S:1065
+388e: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; raster.S:1046
+388f: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:1064
+3890: 77fa4766c880f80000 f14 r211=3 C=16 F=1b r95=8 r62=1ffc218170  ; raster.S:1058
+mgesi_Accum32:
+3894: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:970
+3895: 7fe08007c000000000 f15 A=1f r99=8 r62=1ffc880170  ; raster.S:999
+3896: 18a871409f3644f6a0 f3  imm=102 r215=3 cc=91 B=18 C=1e E=5 Q=1b M=6ca r71=1 r62=1ffc658578  ; raster.S:985
+3897: 6e054007ec2e42ffa5 f13 cc=91 A=18 D=5 Q=1c M=6c2 r110=6fd r99=4 r62=1ffc88057c  ; raster.S:999
+3898: 6fc18007e82feef6a0 f13 A=1f D=1 M=6ee r99=8 r62=1ffc880178  ; raster.S:1000
+389c: 68000007e86fe2f41f f13 r220=1 r148=1f r128=5 M=6e2 r110=53d r62=1ffc00117c  ; raster.S:1000
+389e: 68000007c22e54f47d f13 cc=111 r198=4 r148=1d Q=1c r128=1d M=6d4 r110=53d r62=1ffd00157c  ; raster.S:1000
+38a1: 782071e7ca40031303 f15 imm=40031303 r215=3 B=18 C=1e E=a r71=1 r62=1ffc658170  ; raster.S:990
+38a2: 782071e7c845800000 f15 imm=45800000 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; raster.S:988
+38a3: 182871401f3444f6a0 f3  imm=100 r215=3 cc=91 B=18 C=1e E=1 Q=1a M=6ca r71=1 r62=1ffc658578  ; raster.S:982
+38a4: 7e28f1e7cb00001408 f15 imm=1408 r215=3 A=18 B=18 C=1e D=8 E=b r99=8 r71=1 r62=1ffced8170  ; raster.S:992
+38a5: 18e8710e1f3644f6a0 f3  imm=38 r215=3 cc=91 B=18 C=1e E=7 Q=1b M=6ca r71=1 r62=1ffc658578  ; raster.S:987
+38a6: 192831e7d851d4941c f3  imm=30 r220=1 r215=3 B=18 C=1e E=9 r148=380 M=6ca r110=4bd r71=1 r62=1ffc65a178  ; raster.S:989
+38a7: 782071e7c644800000 f15 imm=44800000 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; raster.S:986
+38a8: 6e064007c12dcaf8a0 f13 cc=111 r198=2 A=18 D=6 Q=1b M=6ca r110=7bd r99=4 r62=1ffd880578  ; raster.S:1007
+38a9: 160941d7da3844f8a0 f2  r219=1 cc=91 A=18 C=1d D=9 G=1a Q=1c M=6ca r110=7bd r99=4 r62=1ffcabc578  ; raster.S:972
+38aa: 6e074007c12e4af8a0 f13 cc=111 r198=2 A=18 D=7 Q=1c M=6ca r110=7bd r99=4 r62=1ffd880578  ; raster.S:1006
+38ab: 6e014007ec2cc2eebb f13 cc=91 A=18 D=1 r148=360 Q=19 M=6c2 r110=4fd r99=4 r62=1ffc88257c  ; raster.S:1010
+38ac: 2e0bbd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=b M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:992
+38ad: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:1027
+38ae: 782071e7c000001c0e f15 imm=1c0e r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:981
+38af: 7e20f1e7c3000d0000 f15 imm=d0000 r215=3 A=18 B=18 C=1e E=3 r99=8 r71=1 r62=1ffced8170  ; raster.S:984
+38b0: 782071e7c202060d00 f15 imm=2060d00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:983
+38b1: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:1020
+38b2: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:992
+38b3: 60003dd7ea0001c01e f12 r213=3 B=1e C=1d r148=3c0 M=6ca r110=4bd r62=1ffc642178 r25=3e69c00  ; raster.S:973
+38b4: 28003d32fbc044f6a0 f5  imm=1f7 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:995
+38b5: 600031d7ea5000837a f12 r215=3 B=18 C=1d E=10 r148=35b M=47f r110=695 r62=1ffc65b173  ; raster.S:974
+38b6: 782071e7c101681408 f15 imm=1681408 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:1021
+38b7: 18137d7d88ff44941e f3  xfer4.rel c31 cc=11 -> 3aad imm=1f6 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 seq=1cfdf r71=1 r62=1ffc65a178 r25=3e7fc00  ; raster.S:996
+38b8: 4e027c07c01aa3b799 f9  r213=3 A=18 B=1e D=2 r148=33c M=6d4 r110=43d r99=4 r62=1ffccc317c r25=3e69c00  ; raster.S:1011
+38b9: 66037c07ea0001d080 f12 r213=3 A=18 B=1e D=3 r128=25 M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; raster.S:1015
+38ba: 660a7c07ea0001d0a0 f12 r213=3 A=18 B=1e D=a M=6ca r110=5bd r99=4 r62=1ffccc0178 r25=3e69c00  ; raster.S:1018
+38bb: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1021
+38bc: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:1021
+38bd: 2e01bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1021
+38be: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:1021
+38bf: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:1024
+mgesi_Accum:
+38c0: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:901
+38c1: 7fe08007c000000000 f15 A=1f r99=8 r62=1ffc880170  ; raster.S:927
+38c2: 18a871409f3644f6a0 f3  imm=102 r215=3 cc=91 B=18 C=1e E=5 Q=1b M=6ca r71=1 r62=1ffc658578  ; raster.S:915
+38c3: 6e054007ec2e42ffa5 f13 cc=91 A=18 D=5 Q=1c M=6c2 r110=6fd r99=4 r62=1ffc88057c  ; raster.S:927
+38c4: 6fc18007e82feef6a0 f13 A=1f D=1 M=6ee r99=8 r62=1ffc880178  ; raster.S:928
+38c8: 380001d7c0685ef41f f7  r220=1 r219=1 C=1d G=1a r148=1f r128=5 M=6e2 r110=53d r62=1ffc23d17c  ; raster.S:903
+38c9: 782071e7c000001c0e f15 imm=1c0e r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:911
+38ca: 680001d7c22e54f47d f13 cc=111 r198=4 C=1d r148=1d Q=1c r128=1d M=6d4 r110=53d r62=1ffd20157c  ; raster.S:904
+38cb: 782071e7c100000100 f15 imm=100 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:912
+38cc: 782071e7c202040d00 f15 imm=2040d00 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:913
+38cd: 782071e7c3400d0000 f15 imm=400d0000 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; raster.S:914
+38ce: 782071e7c644800000 f15 imm=44800000 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; raster.S:916
+38cf: 18e871021f3644941e f3  imm=8 r215=3 cc=91 B=18 C=1e E=7 r148=3c0 Q=1b M=6ca r110=4bd r71=1 r62=1ffc65a578  ; raster.S:917
+38d0: 782071e7c845800000 f15 imm=45800000 r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; raster.S:918
+38d1: 782071e7c900001408 f15 imm=1408 r215=3 B=18 C=1e E=9 r71=1 r62=1ffc658170  ; raster.S:920
+38d2: 1a0831d7df3e54941c f3  r220=1 r215=3 B=18 C=1d E=10 r148=380 M=6ca r110=4bd r62=1ffc65a178  ; raster.S:905
+38d3: 6e074007ec2ccaf6a0 f13 cc=91 A=18 D=7 Q=19 M=6ca r99=4 r62=1ffc880578  ; raster.S:928
+38d4: 6e088007c12dcaf8a0 f13 cc=111 r198=2 A=18 D=8 Q=1b M=6ca r110=7bd r99=8 r62=1ffd880578  ; raster.S:933
+38d5: 5e017807f41217781b f11 cc=291 A=18 D=1 r148=360 P=1c Q=1a M=242 r110=4fd r99=4 r62=1ffc882d7e  ; raster.S:933
+38d6: 6e064007c12e4af8a0 f13 cc=111 r198=2 A=18 D=6 Q=1c M=6ca r110=7bd r99=4 r62=1ffd880578  ; raster.S:935
+38d7: 2e09bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:920
+38d8: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:920
+38d9: 2e00bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:922
+38da: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:951
+38db: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:944
+38dc: 18137d7d88ff44941e f3  xfer4.rel c31 cc=11 -> 3ad2 imm=1f6 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 seq=1cfdf r71=1 r62=1ffc65a178 r25=3e7fc00  ; raster.S:924
+38dd: 782071e7c101681408 f15 imm=1681408 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:945
+38de: 4e027c07c01aa3b77a f9  r213=3 A=18 B=1e D=2 r148=35b M=6d4 r110=43d r99=4 r62=1ffccc317c r25=3e69c00  ; raster.S:939
+38df: 66037c07ea00008399 f12 r213=3 A=18 B=1e D=3 r148=33c M=47f r110=695 r99=4 r95=20 r62=1ffccc3173 r25=3e69c00  ; raster.S:942
+38e0: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:945
+38e1: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:945
+38e2: 2e01bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:945
+38e3: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:945
+38e4: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:948
+mgesi_UserColor:
+38e5: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:842
+38e6: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:843
+38e7: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:840
+38e8: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:844
+38e9: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:851
+38ea: 17c09b315f3208ffe5 f2  imm=c5 cc=211 A=1f C=1e P=19 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; raster.S:864
+38eb: 17c19b315f3408ffe5 f2  imm=c5 cc=211 A=1f C=1e D=1 P=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; raster.S:866
+38ec: 17c29b315f3608ffe5 f2  imm=c5 cc=211 A=1f C=1e D=2 P=1b M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; raster.S:873
+38ed: 17c39b315f3808ffe5 f2  imm=c5 cc=211 A=1f C=1e D=3 P=1c M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; raster.S:875
+38ee: 782071e7c100ffffff f15 imm=ffffff r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:852
+38ef: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:857
+38f0: 782071e7c2013d1c14 f15 imm=13d1c14 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:853
+38f1: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:858
+38f2: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:861
+38f3: 782071e7c4000c0000 f15 imm=c0000 r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; raster.S:864
+38f4: 0e047c0408ff449419 f1  xfer4.rel c31 cc=11 -> 38f4 r213=3 A=18 B=1e D=4 r148=320 M=6ca r110=4bd r99=4 seq=1cfdf r62=1ffccc2178 r25=3e7fc00  ; raster.S:865
+38f5: 782071e7c5400c0c00 f15 imm=400c0c00 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; raster.S:866
+38f6: 782071e7c3013e1c15 f15 imm=13e1c15 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; raster.S:854
+38f7: 66057c07ea0001c01a f12 r213=3 A=18 B=1e D=5 r148=340 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; raster.S:867
+38f8: 2e03bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:870
+38f9: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:882
+38fa: 66047c07ea0001c01b f12 r213=3 A=18 B=1e D=4 r148=360 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; raster.S:874
+38fb: 66057c07ea0001c01c f12 r213=3 A=18 B=1e D=5 r148=380 M=6ca r110=4bd r99=4 r62=1ffccc2178 r25=3e69c00  ; raster.S:876
+38fc: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:880
+mgeb_CI_Mode:
+38fd: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:754
+38fe: 782071e7c041800000 f15 imm=41800000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:768
+38ff: 6e008007e82ff1f6a0 f13 A=18 M=6f1 r99=8 r62=1ffc880178  ; raster.S:775
+3900: 7fe0f1e7c100000001 f15 imm=1 r215=3 A=1f B=18 C=1e E=1 r99=8 r71=1 r62=1ffced8170  ; raster.S:769
+3901: 6e014007e82fdfffc5 f13 A=18 D=1 M=6df r110=7bd r99=4 r62=1ffc88017c  ; raster.S:773
+3903: 78000007e000000000 f15 M=6ca r99=2 r62=1ffc000178 r25=3ea9c00  ; raster.S:771
+3905: 68000007e80f88fed0 f13 r128=2 M=ff r110=6a9 r62=1ffc0001f3  ; raster.S:777
+3906: 760137d7ca01d00000 f14 r219=1 A=18 C=1d D=1 G=1a r99=8 r62=1ffcabc170  ; raster.S:756
+3907: 782071e7c200000800 f15 imm=800 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:761
+3908: 782071e7c13d800000 f15 imm=3d800000 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:806
+3909: 18cc31e7c851c6ff44 f3  imm=10 r215=3 B=18 C=1e E=6 r128=25 M=6c2 r110=5bd r99=2 r71=1 r62=1ffc65817c r25=3ea9c00  ; raster.S:779
+390a: 7e01f1e7e70000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=1 E=7 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:794
+390b: 7e07f1e7e40000f50d f15 imm=f50d r215=3 A=18 B=18 C=1e D=7 E=4 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:790
+390c: 77fa47e7c880f80a42 f14 imm=a42 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:772
+390d: 2e02c132018043ffa5 f5  imm=3 A=18 C=1e D=2 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; raster.S:762
+390e: 2e06c132420043ffa5 f5  imm=84 A=18 C=1e D=6 M=6d4 r110=6fd r99=a r95=13 r71=1 r62=1ffca9817c r25=3ea9c00  ; raster.S:783
+390f: 7e04f1e7e30000d5a6 f15 imm=d5a6 r215=3 A=18 B=18 C=1e D=4 E=3 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:791
+3910: 7e0381d7e000000000 f15 A=18 C=1d D=3 M=6ca r99=a r62=1ffca80178 r25=3ea9c00  ; raster.S:757
+3911: 6fc181d7e82ff3f6a0 f13 A=1f C=1d D=1 M=6f3 r99=8 r62=1ffca80178  ; raster.S:758
+3912: 77fa47e7c880f80a41 f14 imm=a41 r211=3 C=1e r95=8 r71=1 r62=1ffc218170  ; raster.S:780
+3913: 77fa43e7c880f800c5 f14 imm=c5 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:809
+3914: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:797
+3915: 28000132628008ffa0 f5  imm=c5 C=1e r128=5 M=47f r110=6ad r95=13 r71=1 r62=1ffc218173  ; raster.S:813
+3916: 77fa43e7c880f80003 f14 imm=3 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:765
+3917: 77fa43e7c880f80084 f14 imm=84 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:787
+3918: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:793
+3919: 68000007e83fcaf480 f13 r128=25 M=6ca r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; raster.S:814
+391a: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 391a seq=1cfdf r25=3e3fc00  ; raster.S:818
+391f: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:817
+3921: 77fa43e7c880f800a1 f14 imm=a1 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:803
+3922: 77fa43e7c880f800c5 f14 imm=c5 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:815
+mgeb_RGBA_Mode:
+3923: 7039cde7c88cf80084 f14 imm=84 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; raster.S:682
+3924: 782071e7c600000010 f15 imm=10 r215=3 B=18 C=1e E=6 r71=1 r62=1ffc658170  ; raster.S:697
+3925: 6e068007e83fd1ffa5 f13 A=18 D=6 M=6d1 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; raster.S:698
+3927: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:684
+3928: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:685
+3929: 782071e7c40000f50d f15 imm=f50d r215=3 B=18 C=1e E=4 r71=1 r62=1ffc658170  ; raster.S:703
+392a: 782071e7c500000008 f15 imm=8 r215=3 B=18 C=1e E=5 r71=1 r62=1ffc658170  ; raster.S:719
+392b: 782071e7c200000800 f15 imm=800 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:689
+392c: 782071e7c80000da3c f15 imm=da3c r215=3 B=18 C=1e E=8 r71=1 r62=1ffc658170  ; raster.S:713
+392d: 77fa4de7c880f80003 f14 imm=3 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:691
+392e: 2e08c042420044f6a0 f5  imm=84 r211=3 A=18 C=1e D=8 M=6ca r99=a r95=4 r71=1 r62=1ffca98178 r25=3ea9c00  ; raster.S:700
+392f: 6e0281d7e83fd1ffa5 f13 A=18 C=1d D=2 M=6d1 r110=6fd r99=a r62=1ffca8017c r25=3ea9c00  ; raster.S:686
+3930: 2e058132420051ffa5 f5  imm=84 r220=1 A=18 C=1e D=5 M=6d0 r110=6fd r99=8 r95=13 r71=1 r62=1ffca9817c  ; raster.S:720
+3931: 7e04f1e7e70000f547 f15 imm=f547 r215=3 A=18 B=18 C=1e D=4 E=7 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:704
+3932: 7e07f1e7e90000d831 f15 imm=d831 r215=3 A=18 B=18 C=1e D=7 E=9 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:708
+3933: 7e09f1e7e1457ffff8 f15 imm=457ffff8 r215=3 A=18 B=18 C=1e D=9 E=1 M=6ca r99=a r71=1 r62=1ffced8178 r25=3ea9c00  ; raster.S:726
+3934: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; raster.S:732
+3935: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3935 seq=1cfdf r25=3e3fc00  ; raster.S:737
+3937: 77fa43e7c880f800a1 f14 imm=a1 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:716
+3938: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:736
+3939: 77fa43e7c880f80003 f14 imm=3 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:693
+393a: 77fa43e7c880f8000c f14 imm=c r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:706
+393b: 77fa43e7c880f8000b f14 imm=b r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:710
+393c: 702267e7c180f800a1 f14 imm=a1 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; raster.S:728
+393d: 77fa43e7c880f800c5 f14 imm=c5 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:734
+mgeb_Disable_Normalize:
+393e: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:647
+393f: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:648
+3940: 7039cde7c88cf80003 f14 imm=3 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; raster.S:645
+3941: 782071e7c10000f449 f15 imm=f449 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:652
+3942: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:651
+3943: 6e0081d7e83fd1ffa5 f13 A=18 C=1d M=6d1 r110=6fd r99=a r62=1ffca8017c r25=3ea9c00  ; raster.S:649
+3944: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; raster.S:660
+3945: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3945 seq=1cfdf r25=3e3fc00  ; raster.S:665
+394a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:664
+394c: 77fa43e7c880f80003 f14 imm=3 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:657
+394d: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:662
+mgeb_Enable_Normalize:
+394e: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:614
+394f: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:615
+3950: 7039cde7c88cf80003 f14 imm=3 C=1e r95=13 seq=605f r71=1 r62=1ffc218170 r25=3e2fc00  ; raster.S:612
+3951: 782071e7c10000f449 f15 imm=f449 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:619
+3952: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:618
+3953: 6e0081d7e83fd4ffa5 f13 A=18 C=1d M=6d4 r110=6fd r99=a r62=1ffca8017c r25=3ea9c00  ; raster.S:616
+3954: 7e018007e000000000 f15 A=18 D=1 M=6ca r99=a r62=1ffc880178 r25=3ea9c00  ; raster.S:627
+3955: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3955 seq=1cfdf r25=3e3fc00  ; raster.S:632
+395a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:631
+395c: 77fa43e7c880f80003 f14 imm=3 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:624
+395d: 77fa43e7c880f80008 f14 imm=8 r211=3 C=1e r95=4 r71=1 r62=1ffc218170  ; raster.S:629
+mgesi_IMPbshRegisterWrite:
+395e: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:574
+395f: 782071e7c201681408 f15 imm=1681408 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:591
+3960: 77fa4de7c880f801f7 f14 imm=1f7 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:583
+3961: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:581
+3962: 782071e7c100001408 f15 imm=1408 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:583
+3963: 3e01bdd7c0e844f6a0 f7  r219=1 r213=3 A=18 B=1e C=1d D=1 G=1a M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; raster.S:576
+3964: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:583
+3965: 77fa4de7c880f801f8 f14 imm=1f8 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:586
+3966: 6600bdd7ea0001dd80 f12 r213=3 A=18 B=1e C=1d M=6ca r99=8 r62=1ffcec0178 r25=3e69c00  ; raster.S:577
+3967: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:587
+3968: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:578
+3969: 0fc0bc0408ff44f6a0 f1  xfer4.rel c31 cc=11 -> 3969 r213=3 A=1f B=1e M=6ca r99=8 seq=1cfdf r62=1ffccc0178 r25=3e7fc00  ; raster.S:587
+396a: 2fc1bd32fc4044f6a0 f5  imm=1f8 r213=3 A=1f B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:588
+396b: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:596
+396c: 2fc2bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:589
+396d: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:591
+396e: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:591
+396f: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:591
+3970: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:591
+3971: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:594
+mgesi_BshRegisterWriteN:
+3972: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:485
+3973: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:487
+3974: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:488
+3975: 77c03607ca04980000 f14 r217=1 A=1f G=13 r99=8 r62=1ffc884170  ; raster.S:493
+3976: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:489
+3977: 77f9c007c88cf80000 f14 seq=6fdf r25=3e2fc00  ; raster.S:491
+3978: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:498
+3979: 6e008007ec2e4af6a0 f13 cc=91 A=18 Q=1c M=6ca r99=8 r62=1ffc880578  ; raster.S:499
+397a: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; raster.S:502
+397b: 7059c1f0488f9c0000 f14 r219=3 C=1f r162=1 F=1 G=13 seq=609f r62=1ffc23c170 r25=3e2fc00  ; raster.S:503
+397c: 77fa41f108839c0000 f14 r219=3 C=1f r162=1 F=4 G=13 r62=1ffc23c170  ; raster.S:505
+397d: 7099c13948cd900000 f14 r222=1 r219=1 C=13 F=25 G=12 seq=611f r62=1ffc23c170 r25=3e2fc00  ; raster.S:495
+397e: 77fa41f1c8839c0000 f14 r219=3 C=1f r162=1 F=7 G=13 r62=1ffc23c170  ; raster.S:507
+397f: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; raster.S:509
+3980: 77fa4de7c880f801f8 f14 imm=1f8 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:513
+3981: 38003d2940ca44941c f7  r222=1 r219=1 r213=3 B=1e C=12 F=25 G=12 r148=380 M=6ca r110=4bd r62=1ffc67e178 r25=3e69c00  ; raster.S:514
+3982: 2cc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=13 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:515
+3983: 77f64007c89cfbfffd f14 xfer5.rel c7 cc=11 -> 3980 imm=fffffffd seq=dfe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; raster.S:542
+3984: 2cc1bd32fc4044f6a0 f5  imm=1f8 r213=3 A=13 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:519
+3985: 2cc2bd32fac144f6a0 f5  imm=1f5 r213=3 A=13 B=1e C=1e D=2 E=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:523
+3986: a8003d32fc4044941c f5  imm=1f8 w71=1 r213=3 B=1e C=1e r148=380 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:527
+3987: acc9bd32fac044f6a0 f5  imm=1f5 w71=1 r213=3 A=13 B=1e C=1e D=9 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:529
+3988: 77f1c13488bd9c0000 f14 xfer4.rel c31 cc=11 -> 3988 r219=1 C=13 r162=1 F=12 G=13 seq=1cfdf r62=1ffc23c170 r25=3e3fc00  ; raster.S:540
+3989: accabd32fc4044f6a0 f5  imm=1f8 w71=1 r213=3 A=13 B=1e C=1e D=a M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:533
+398a: accbbd32fac144f6a0 f5  imm=1f5 w71=1 r213=3 A=13 B=1e C=1e D=b E=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:537
+398b: 77f94007c88cf80000 f14 seq=6fd7 r25=3e2bc00  ; raster.S:545
+398c: 28003d32fac342941e f5  imm=1f5 r213=3 B=1e C=1e E=3 r148=3c0 M=6d8 r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:546
+398d: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:558
+398e: 98703c07df02c2941e f3  w71=1 r213=3 B=1e E=3 r148=3c0 M=6d8 r110=4bd seq=6fe5 r62=1ffc442178 r25=3e69c00  ; raster.S:548
+398f: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:551
+3990: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:554
+mgesi_BshRegisterWrite:
+3991: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:452
+3992: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:453
+3993: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:450
+3994: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:454
+3995: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3995 seq=1cfdf r25=3e3fc00  ; raster.S:469
+3997: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:457
+3998: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:460
+3999: 2fc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:461
+399a: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:468
+399b: 2fc1bd32fc4044f6a0 f5  imm=1f8 r213=3 A=1f B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:462
+399c: 2fc2bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:463
+399d: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:466
+mges_TBUS_1:
+399e: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:425
+399f: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:426
+39a0: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:427
+39a1: 77c03607ca04980000 f14 r217=1 A=1f G=13 r99=8 r62=1ffc884170  ; raster.S:429
+39a2: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 39a2 seq=1cfdf r25=3e3fc00  ; raster.S:434
+39a7: 7039c1a7c88df80000 f14 r219=1 C=1a seq=605f r62=1ffc23c170 r25=3e2fc00  ; raster.S:423
+39a8: 2fc2bd32fc4044f6a0 f5  imm=1f8 r213=3 A=1f B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:430
+39a9: 2fc18132fa800d9400 f5  imm=1f5 A=1f C=1e D=1 r99=8 r95=13 r71=1 r62=1ffca98170  ; raster.S:431
+39aa: 40003d37ff6000dd80 f8  r213=3 B=1e C=13 r176=2 E=3f M=6ca r62=1ffc740178 r25=3e69c00  ; raster.S:431
+mgesi_TBUS_1:
+39ab: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:396
+39ac: 77c037d7ca04980000 f14 r217=1 A=1f C=1d G=13 r99=8 r62=1ffca84170  ; raster.S:397
+39ad: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:394
+39ae: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:398
+39af: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 39af seq=1cfdf r25=3e3fc00  ; raster.S:408
+39b3: 2fc2bd32fc4044f6a0 f5  imm=1f8 r213=3 A=1f B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:401
+39b4: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:407
+39b5: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:402
+39b6: 47c1bd37ff6000dd80 f8  r213=3 A=1f B=1e C=13 r176=2 D=1 E=3f M=6ca r99=8 r62=1ffcfc0178 r25=3e69c00  ; raster.S:402
+39b7: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:405
+mgesi_AlphaTest:
+39b8: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:352
+39b9: 782071e7c2015b1407 f15 imm=15b1407 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:361
+39ba: 782071e7c30000000f f15 imm=f r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; raster.S:362
+39bb: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; raster.S:354
+39bc: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:355
+39bd: 7e03f1e7c100008000 f15 imm=8000 r215=3 A=18 B=18 C=1e D=3 E=1 M=6ca r99=8 r71=1 r62=1ffced8178  ; raster.S:360
+39be: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:356
+39bf: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 39bf seq=1cfdf r25=3e3fc00  ; raster.S:377
+39c0: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:359
+39c1: 6fc08007e82fdffec5 f13 A=1f r128=28 M=6df r110=67d r99=8 r62=1ffc8801fc  ; raster.S:370
+39c2: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:365
+39c3: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:366
+39c4: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:376
+39c5: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:369
+39c6: 28003d32fac044f420 f5  imm=1f5 r213=3 B=1e C=1e r128=d M=6ca r110=5bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:371
+39c7: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:374
+mgesi_AlphaFunc:
+39c8: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:307
+39c9: 782071e7c2015b1407 f15 imm=15b1407 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:318
+39ca: 180341315f3844f8a0 f3  imm=c5 cc=91 C=1e Q=1c M=6ca r110=7bd r95=13 r71=1 r62=1ffc218578  ; raster.S:330
+39cb: 782071e7c100007fff f15 imm=7fff r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:317
+39cc: 77fa4de7c880f801f8 f14 imm=1f8 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:323
+39cd: 77fa41d00881d40000 f14 r219=1 C=1d r162=1 F=0 G=1a r62=1ffc23c170  ; raster.S:309
+39ce: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:310
+39cf: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:316
+39d0: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:311
+39d1: 0e00bc0408ff44f6a0 f1  xfer4.rel c31 cc=11 -> 39d1 r213=3 A=18 B=1e M=6ca r99=8 seq=1cfdf r62=1ffccc0178 r25=3e7fc00  ; raster.S:323
+39d2: 2e01bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:324
+39d3: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:327
+39d4: 7fe1f1e7c4000c0000 f15 imm=c0000 r215=3 A=1f B=18 C=1e D=1 E=4 r99=8 r71=1 r62=1ffced8170  ; raster.S:320
+39d5: 66047c07ea00009e9c f12 r213=3 A=18 B=1e D=4 r148=1c M=47f r110=6b5 r99=4 r95=20 r62=1ffccc1173 r25=3e69c00  ; raster.S:331
+39d6: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:337
+39d7: 7fe0f1e7c342030c00 f15 imm=42030c00 r215=3 A=1f B=18 C=1e E=3 r99=8 r71=1 r62=1ffced8170  ; raster.S:319
+39d8: 66037c07ea0001dd80 f12 r213=3 A=18 B=1e D=3 M=6ca r99=4 r62=1ffccc0178 r25=3e69c00  ; raster.S:332
+39d9: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:335
+mges_TbusRegWriteNoIncr:
+39da: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:282
+39db: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:283
+39dc: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:280
+39dd: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:284
+39de: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 39de seq=1cfdf r25=3e3fc00  ; raster.S:292
+39e3: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:291
+39e4: 2fc0bd32fbc044f6a0 f5  imm=1f7 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:287
+39e5: 2fc1bd32fb4044941e f5  imm=1f6 r213=3 A=1f B=1e C=1e D=1 r148=3c0 M=6ca r110=4bd r99=8 r95=13 r71=1 r62=1ffceda178 r25=3e69c00  ; raster.S:288
+39e6: 28003d32fac044f6a0 f5  imm=1f5 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:289
+mgesi_IMPtbusRegWrite:
+39e7: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:242
+39e8: 782071e7c101681408 f15 imm=1681408 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:261
+39e9: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:244
+39ea: 782071e7c000001408 f15 imm=1408 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:248
+39eb: 2e00bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:248
+39ec: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:248
+39ed: 77fa4de7c880f801f7 f14 imm=1f7 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:251
+39ee: 67c0bdd7ea0001dd80 f12 r213=3 A=1f B=1e C=1d M=6ca r99=8 r62=1ffcec0178 r25=3e69c00  ; raster.S:245
+39ef: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:266
+39f0: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:246
+39f1: 2fc1bd32fb4044941e f5  imm=1f6 r213=3 A=1f B=1e C=1e D=1 r148=3c0 M=6ca r110=4bd r99=8 r95=13 r71=1 r62=1ffceda178 r25=3e69c00  ; raster.S:252
+39f2: 28003d32fac044f6a0 f5  imm=1f5 r213=3 B=1e C=1e M=6ca r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; raster.S:253
+39f3: 77fa4de7c880f801f8 f14 imm=1f8 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:256
+39f4: 0e00bc0408ff44f6a0 f1  xfer4.rel c31 cc=11 -> 39f4 r213=3 A=18 B=1e M=6ca r99=8 seq=1cfdf r62=1ffccc0178 r25=3e7fc00  ; raster.S:256
+39f5: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:257
+39f6: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:258
+39f7: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:260
+39f8: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:261
+39f9: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:261
+39fa: 2e01bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:261
+39fb: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:261
+39fc: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:264
+mgesi_TbusRegWrite:
+39fd: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:215
+39fe: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:216
+39ff: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:213
+3a00: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:217
+3a01: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3a01 seq=1cfdf r25=3e3fc00  ; raster.S:228
+3a05: 2fc0bd32fbc044f6a0 f5  imm=1f7 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:220
+3a06: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:227
+3a07: 28003d32fb4044941e f5  imm=1f6 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:221
+3a08: 2fc1bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e D=1 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:222
+3a09: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:225
+mgebi_ShadeModel:
+3a0a: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:169
+3a0b: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:170
+3a0c: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:167
+3a0d: 1a0831d7d33e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=13 r62=1ffc67c170  ; raster.S:171
+3a0e: 782071e7c100000001 f15 imm=1 r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; raster.S:176
+3a0f: 782071e7c000070000 f15 imm=70000 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:175
+3a10: 2e00bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:180
+3a11: 7e21f1e7c201270800 f15 imm=1270800 r215=3 A=18 B=18 C=1e D=1 E=2 r99=8 r71=1 r62=1ffced8170  ; raster.S:177
+3a12: 6fc04007e86fd0ffa5 f13 r220=1 A=1f M=6d0 r110=6fd r99=4 r62=1ffc88017c  ; raster.S:183
+3a13: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:181
+3a14: 60003c07c88001dd80 f12 r213=2 r198=11 B=1e M=6ca r62=1ffd440178 r25=3e69c00  ; raster.S:181
+3a15: 2e02bd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:186
+3a16: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:187
+3a17: 67c0bc07c88001dd80 f12 r213=2 r198=11 A=1f B=1e M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; raster.S:187
+3a18: 28004132018043eebd f5  imm=3 C=1e r148=3a0 M=6d4 r110=4fd r99=2 r95=13 r71=1 r62=1ffc21a17c r25=3ea9c00  ; raster.S:190
+3a19: 68000007e83fd1eebd f13 r148=3a0 M=6d1 r110=4fd r99=2 r62=1ffc00217c r25=3ea9c00  ; raster.S:192
+3a1a: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:195
+3a1b: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; raster.S:195
+3a1c: 77f1c137c8fcf80000 f14 xfer4.rel c31 cc=11 -> 3a1c r222=1 C=13 seq=1cfdf r62=1ffc218170 r25=3e3fc00  ; raster.S:172
+3a20: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:197
+3a21: 702267e7c100f80003 f14 imm=3 r211=2 r198=2 C=1e r95=4 r71=1 r62=1ffd218170  ; raster.S:191
+3a24: 702267e7c180f80003 f14 imm=3 r211=2 r198=3 C=1e r95=4 r71=1 r62=1ffd218170  ; raster.S:192
+mges_DiagDeactivate:
+3a25: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:146
+3a26: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:147
+3a27: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:148
+3a29: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3a29 seq=1cfdf r25=3e3fc00  ; raster.S:151
+3a2e: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:150
+3a30: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:144
+mgebi_NullCommand:
+3a32: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:119
+3a33: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:120
+3a34: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:117
+3a35: 1a0831d7d33e0d9400 f3  r219=1 r215=3 B=18 C=1d E=10 G=13 r62=1ffc67c170  ; raster.S:121
+3a36: 782071e7cf00070000 f15 imm=70000 r215=3 B=18 C=1e E=f r71=1 r62=1ffc658170  ; raster.S:125
+3a37: 2e0fbd32fc4044f6a0 f5  imm=1f8 r213=3 A=18 B=1e C=1e D=f M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:125
+3a38: 77fa4de7c880f801f5 f14 imm=1f5 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:125
+3a39: 60003c07c88001c01e f12 r213=2 r198=11 B=1e r148=3c0 M=6ca r110=4bd r62=1ffd442178 r25=3e69c00  ; raster.S:125
+3a3a: 77fa4de7c880f801f4 f14 imm=1f4 C=1e r95=13 r71=1 r62=1ffc218170  ; raster.S:127
+3a3b: 6610bc07c88201dd80 f12 r213=2 r198=11 A=18 B=1e D=10 E=2 M=6ca r99=8 r62=1ffdcc0178 r25=3e69c00  ; raster.S:127
+3a3c: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3a3c seq=1cfdf r25=3e3fc00  ; raster.S:131
+3a40: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:130
+3a41: 77fa4137c8c0f80000 f14 r222=1 C=13 r62=1ffc218170  ; raster.S:123
+mges_NullCommand:
+3a45: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:98
+3a46: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:99
+3a47: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:100
+3a49: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 3a49 seq=1cfdf r25=3e3fc00  ; raster.S:103
+3a4e: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:102
+3a50: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:96
+mgeb_DeathCommand:
+3a52: 77f24007c890f80000 f14 xfer4.rel c4 cc=11 -> 3a52 <mgeb_DeathCommand> seq=cfe4 r71=1 r25=3e39c00  ; raster.S:83
+mgesi_PassThrough:
+3a5b: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; raster.S:39
+3a5c: 782071e7c200000452 f15 imm=452 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:46
+3a5d: 7e22f1e7c100000700 f15 imm=700 r215=3 A=18 B=18 C=1e D=2 E=1 r99=8 r71=1 r62=1ffced8170  ; raster.S:47
+3a5e: 782071e7c000000476 f15 imm=476 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; raster.S:53
+3a5f: 782071e7c200000477 f15 imm=477 r215=3 B=18 C=1e E=2 r71=1 r62=1ffc658170  ; raster.S:64
+3a60: 77fa41d7c881d00000 f14 r219=1 C=1d G=1a r62=1ffc23c170  ; raster.S:41
+3a61: 782001d7c000000000 f15 C=1d r62=1ffc200170  ; raster.S:42
+3a62: 782071e7c300000008 f15 imm=8 r215=3 B=18 C=1e E=3 r71=1 r62=1ffc658170  ; raster.S:49
+3a63: 600031d7ea5000c000 f12 r215=3 B=18 C=1d E=10 r62=1ffc658170  ; raster.S:43
+3a64: 18137d7dc8ff44f6a0 f3  xfer4.rel c31 cc=11 -> 3c5b imm=1f7 r213=3 B=1e C=1e M=6ca r95=13 seq=1cfdf r71=1 r62=1ffc658178 r25=3e7fc00  ; raster.S:48
+3a65: 2e03bd32fac044f6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=3 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:50
+3a66: 2e00bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:56
+3a67: 2e01bd32fac04df6a0 f5  imm=1f5 r213=3 A=18 B=1e C=1e D=1 M=6f3 r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:58
+3a68: 77fa41a7c881f80000 f14 r219=1 C=1a r62=1ffc23c170  ; raster.S:73
+3a69: 2fc0bd32fac044f6a0 f5  imm=1f5 r213=3 A=1f B=1e C=1e M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:60
+3a6a: 2e02bd32fbc044f6a0 f5  imm=1f7 r213=3 A=18 B=1e C=1e D=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:65
+3a6b: 28003d32fac044941e f5  imm=1f5 r213=3 B=1e C=1e r148=3c0 M=6ca r110=4bd r95=13 r71=1 r62=1ffc65a178 r25=3e69c00  ; raster.S:67
+3a6c: 2e10bd32fa4244f6a0 f5  imm=1f4 r213=3 A=18 B=1e C=1e D=10 E=2 M=6ca r99=8 r95=13 r71=1 r62=1ffced8178 r25=3e69c00  ; raster.S:70

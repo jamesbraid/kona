@@ -1,0 +1,145 @@
+# histogram.s: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_Histogram:
+umo_Histogram:
+13b4: 77fa41e7c881420028 f14 imm=fffe0028 r219=1 C=1e G=8 r71=1 r62=1ffc23c170  ; histogram.s:46
+13b5: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; histogram.s:49
+13b6: 28003130bd4044f8a0 f5  imm=17a r213=3 B=18 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:50
+13b7: 28003130bcc144f8a0 f5  imm=179 r213=3 B=18 C=1b E=1 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:51
+13b8: 28003130bac244f8a0 f5  imm=175 r213=3 B=18 C=1b E=2 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:52
+13b9: 28003130ba4344f8a0 f5  imm=174 r213=3 B=18 C=1b E=3 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:53
+13ba: 28003130bb4444f8a0 f5  imm=176 r213=3 B=18 C=1b E=4 F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:54
+13bb: 28001130bdc044f8a0 f5  imm=17b r213=3 B=8 C=1b F=3f M=6ca r110=7bd r95=13 r71=1 r62=1ffc758178 r25=3e69c00  ; histogram.s:55
+13bc: 77fa4007c884f80000 f14 seq=6fe5  ; histogram.s:56
+13bd: 77fa4937c880f80000 f14 C=13 r95=2 r62=1ffc218170  ; histogram.s:59
+13be: 77fa41374881980000 f14 r219=1 C=13 F=1d G=13 r62=1ffc23c170  ; histogram.s:60
+13bf: 1803405ddf0044f8a0 f3  imm=177 cc=91 C=1b F=3f Q=0 M=6ca r110=7bd r95=13 r71=1 r62=1ffc318578  ; histogram.s:62
+13c0: 1803405e1f0244f8a0 f3  imm=178 cc=91 C=1b F=3f Q=1 M=6ca r110=7bd r95=13 r71=1 r62=1ffc318578  ; histogram.s:63
+13c1: 76003607ca04000000 f14 r217=1 A=18 G=0 r99=8 r62=1ffc884170  ; histogram.s:64
+13c2: 76013607ca04080000 f14 r217=1 A=18 D=1 G=1 r99=8 r62=1ffc884170  ; histogram.s:65
+13c3: 76023607ca04180000 f14 r217=1 A=18 D=2 G=3 r99=8 r62=1ffc884170  ; histogram.s:66
+13c4: 76033607ca04100000 f14 r217=1 A=18 D=3 G=2 r99=8 r62=1ffc884170  ; histogram.s:67
+13c5: 76043607ca04200000 f14 r217=1 A=18 D=4 G=4 r99=8 r62=1ffc884170  ; histogram.s:68
+13c6: 77fa4107c881380000 f14 r219=1 C=10 G=7 r62=1ffc23c170  ; histogram.s:71
+13c7: 000000000000000000 f0  nop  ; histogram.s:72
+13c8: 000000000000000000 f0  nop  ; histogram.s:73
+13c9: 70d9c007c888f80000 f14 seq=619e r25=3e2fc00  ; histogram.s:76
+13ca: 7040210fca03840000 f14 r219=3 A=1 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; histogram.s:77
+13cb: 77fa4007c884f80000 f14 seq=6fe5  ; histogram.s:78
+13cc: 77fa4037c881280000 f14 r219=1 C=3 G=5 r62=1ffc23c170  ; histogram.s:80
+13cd: 7580202fca01100000 f14 r219=1 A=16 C=2 r176=0 F=3f G=2 r62=1ffcb3c170  ; histogram.s:81
+13ce: 7099c007c888f80000 f14 seq=611e r25=3e2fc00  ; histogram.s:83
+13cf: 7040210fca03840000 f14 r219=3 A=1 C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; histogram.s:84
+13d0: 77fa4007c884f80000 f14 seq=6fe5  ; histogram.s:85
+13d1: 77fa4e27c880f80000 f14 C=2 r95=17 r62=1ffc218170  ; histogram.s:87
+13d2: 000000000000000000 f0  nop  ; histogram.s:88
+13d3: 000000000000000000 f0  nop  ; histogram.s:89
+13d4: 000000000000000000 f0  nop  ; histogram.s:90
+13d5: 000000000000000000 f0  nop  ; histogram.s:91
+13d6: 000000000000000000 f0  nop  ; histogram.s:92
+13d7: 000000000000000000 f0  nop  ; histogram.s:93
+13d8: 60003007ea0301de80 f12 r213=3 B=18 E=3 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; histogram.s:94
+13d9: 000000000000000000 f0  nop  ; histogram.s:95
+13da: 000000000000000000 f0  nop  ; histogram.s:96
+13db: 000000000000000000 f0  nop  ; histogram.s:97
+13dc: 000000000000000000 f0  nop  ; histogram.s:98
+13dd: 000000000000000000 f0  nop  ; histogram.s:99
+13de: 000000000000000000 f0  nop  ; histogram.s:100
+13df: 000000000000000000 f0  nop  ; histogram.s:101
+13e0: 000000000000000000 f0  nop  ; histogram.s:102
+13e1: 76033607ca04100000 f14 r217=1 A=18 D=3 G=2 r99=8 r62=1ffc884170  ; histogram.s:103
+13e2: 000000000000000000 f0  nop  ; histogram.s:104
+13e3: 000000000000000000 f0  nop  ; histogram.s:105
+13e4: 000000000000000000 f0  nop  ; histogram.s:106
+13e5: 000000000000000000 f0  nop  ; histogram.s:107
+13e6: 000000000000000000 f0  nop  ; histogram.s:108
+13e7: 000000000000000000 f0  nop  ; histogram.s:109
+13e8: 000000000000000000 f0  nop  ; histogram.s:110
+13e9: 77fa4027c881300000 f14 r219=1 C=2 G=6 r62=1ffc23c170  ; histogram.s:111
+13ea: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; histogram.s:114
+13eb: 000000000000000000 f0  nop  ; histogram.s:115
+13ec: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; histogram.s:116
+13ed: 000000000000000000 f0  nop  ; histogram.s:121
+13ee: 6c008007e80fc0f8a0 f13 A=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; histogram.s:122
+13ef: 000000000000000000 f0  nop  ; histogram.s:123
+13f0: 000000000000000000 f0  nop  ; histogram.s:124
+13f1: 000000000000000000 f0  nop  ; histogram.s:125
+13f2: 68000007e82fe6f481 f13 r148=1 r128=25 M=6e6 r110=53d r62=1ffc00117c  ; histogram.s:126
+13f3: 000000000000000000 f0  nop  ; histogram.s:127
+13f4: 000000000000000000 f0  nop  ; histogram.s:128
+13f5: 000000000000000000 f0  nop  ; histogram.s:129
+13f6: 68000007e83ff1f400 f13 r128=5 M=6f1 r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; histogram.s:130
+13f7: 000000000000000000 f0  nop  ; histogram.s:131
+13f8: 000000000000000000 f0  nop  ; histogram.s:132
+13f9: 000000000000000000 f0  nop  ; histogram.s:133
+13fa: 000000000000000000 f0  nop  ; histogram.s:134
+13fb: 77fa41004881840000 f14 r219=1 C=10 r162=1 F=1 G=10 r62=1ffc23c170  ; histogram.s:135
+13fc: 000000000000000000 f0  nop  ; histogram.s:136
+13fd: 000000000000000000 f0  nop  ; histogram.s:137
+13fe: 000000000000000000 f0  nop  ; histogram.s:138
+mainloop_hist:
+13ff: 70366667ca00f80000 f14 r211=3 C=6 r95=c r62=1ffc218170  ; histogram.s:142
+1400: 000000000000000000 f0  nop  ; histogram.s:143
+1401: 6c008007e80fc0f8a0 f13 A=10 M=47f r110=6b5 r99=8 r62=1ffc881173  ; histogram.s:144
+1402: 000000000000000000 f0  nop  ; histogram.s:145
+1403: 000000000000000000 f0  nop  ; histogram.s:146
+1404: 000000000000000000 f0  nop  ; histogram.s:147
+1405: 68000007e82fe6f481 f13 r148=1 r128=25 M=6e6 r110=53d r62=1ffc00117c  ; histogram.s:148
+1406: 000000000000000000 f0  nop  ; histogram.s:149
+1407: 7036e667ca00f80000 f14 r211=3 C=6 r95=d r62=1ffc218170  ; histogram.s:150
+1408: 000000000000000000 f0  nop  ; histogram.s:151
+1409: 68000007e83ff1f400 f13 r128=5 M=6f1 r110=5bd r99=2 r62=1ffc000178 r25=3ea9c00  ; histogram.s:152
+140a: 77fa400808c1000000 f14 r222=1 r219=1 F=20 G=0 r62=1ffc23c170  ; histogram.s:153
+140b: 77fa41004881840000 f14 r219=1 C=10 r162=1 F=1 G=10 r62=1ffc23c170  ; histogram.s:154
+140c: 000000000000000000 f0  nop  ; histogram.s:155
+140d: 3800086fc0188d9400 f7  r219=1 B=4 C=6 r176=1 F=3f G=6 r62=1ffc73c170  ; histogram.s:156
+140e: 77ee4007ca10fbfff1 f14 xfer3.rel c4 cc=14 -> 13ff <mainloop_hist> imm=fffffff1 cc=14 seq=bfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; histogram.s:157
+140f: 70376667ca00f80000 f14 r211=3 C=6 r95=e r62=1ffc218170  ; histogram.s:158
+1410: 77fa405808c1280000 f14 r222=1 r219=1 C=5 F=20 G=5 r62=1ffc23c170  ; histogram.s:159
+1411: 000000000000000000 f0  nop  ; histogram.s:160
+1412: 000000000000000000 f0  nop  ; histogram.s:161
+1413: 70002627ca82300000 f14 r219=2 r198=15 C=2 G=6 r62=1ffd23c170  ; histogram.s:162
+1414: 70002637ca82280000 f14 r219=2 r198=15 C=3 G=5 r62=1ffd23c170  ; histogram.s:163
+1415: 000000000000000000 f0  nop  ; histogram.s:164
+1416: 000000000000000000 f0  nop  ; histogram.s:165
+epilogue_hist:
+1417: 70f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=141df r25=3e3fc00  ; histogram.s:176
+1418: 000000000000000000 f0  nop  ; histogram.s:177
+1419: 000000000000000000 f0  nop  ; histogram.s:178
+141a: 000000000000000000 f0  nop  ; histogram.s:179
+141b: 000000000000000000 f0  nop  ; histogram.s:180
+141c: 77fa4077c881800000 f14 r219=1 C=7 G=10 r62=1ffc23c170  ; histogram.s:183
+141d: 000000000000000000 f0  nop  ; histogram.s:184
+141e: 000000000000000000 f0  nop  ; histogram.s:185
+141f: 000000000000000000 f0  nop  ; histogram.s:186
+uge_HistogramFill:
+1420: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; histogram.s:195
+1421: 77c03607ca04000000 f14 r217=1 A=1f G=0 r99=8 r62=1ffc884170  ; histogram.s:196
+1422: 77c13607ca04080000 f14 r217=1 A=1f D=1 G=1 r99=8 r62=1ffc884170  ; histogram.s:197
+1423: 77c23607ca04100000 f14 r217=1 A=1f D=2 G=2 r99=8 r62=1ffc884170  ; histogram.s:198
+1424: 000000000000000000 f0  nop  ; histogram.s:199
+1425: 000000000000000000 f0  nop  ; histogram.s:200
+1426: 000000000000000000 f0  nop  ; histogram.s:201
+1427: 000000000000000000 f0  nop  ; histogram.s:202
+1428: 000000000000000000 f0  nop  ; histogram.s:203
+1429: 77fa4e07c880f80000 f14 r95=17 r62=1ffc218170  ; histogram.s:204
+142a: 000000000000000000 f0  nop  ; histogram.s:205
+142b: 77fa4e17c880f80000 f14 C=1 r95=17 r62=1ffc218170  ; histogram.s:206
+142c: 000000000000000000 f0  nop  ; histogram.s:207
+142d: 77fa4e27c880f80000 f14 C=2 r95=17 r62=1ffc218170  ; histogram.s:208
+142e: 000000000000000000 f0  nop  ; histogram.s:209
+142f: 000000000000000000 f0  nop  ; histogram.s:210
+1430: 6fc38007e83fc0ffa5 f13 A=1f D=3 M=6c0 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; histogram.s:211
+1431: 000000000000000000 f0  nop  ; histogram.s:212
+1432: 6fc48007e83fc0ffa5 f13 A=1f D=4 M=6c0 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; histogram.s:213
+1433: 000000000000000000 f0  nop  ; histogram.s:214
+1434: 6fc58007e83fc0ffa5 f13 A=1f D=5 M=6c0 r110=6fd r99=a r62=1ffc88017c r25=3ea9c00  ; histogram.s:215
+1435: 77f1c007c8bcf80000 f14 xfer4.rel c31 cc=11 -> 1435 seq=1cfdf r25=3e3fc00  ; histogram.s:218
+1436: 77fa41f18881fc0000 f14 r219=1 C=1f r162=1 F=6 r62=1ffc23c170  ; histogram.s:222
+1437: 000000000000000000 f0  nop  ; histogram.s:223
+1438: 000000000000000000 f0  nop  ; histogram.s:224
+1439: 77fa4607c880f80000 f14 r211=3 r95=8 r62=1ffc218170  ; histogram.s:225
+143a: 000000000000000000 f0  nop  ; histogram.s:226
+143b: 77fa4617c880f80000 f14 r211=3 C=1 r95=8 r62=1ffc218170  ; histogram.s:227
+143c: 000000000000000000 f0  nop  ; histogram.s:228
+143d: 77fa4627c880f80000 f14 r211=3 C=2 r95=8 r62=1ffc218170  ; histogram.s:229

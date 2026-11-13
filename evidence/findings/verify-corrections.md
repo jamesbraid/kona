@@ -2,8 +2,8 @@
 
 An independent check of the recently added rows in `formats/token/command-table.md`
 found four faulty claims. Each was re-checked against the primary source
-(the pipe firmware disassembly `ucode/arm1.s`, the N32 libGLcore assembly
-`libglcore/asm/texture/kon_texture_api.s`, and the repo's own register notes).
+(the pipe firmware disassembly `software/ucode/arm1.s`, the N32 libGLcore assembly
+`software/opengl/asm/texture/kon_texture_api.s`, and the repo's own register notes).
 Result: 3 confirmed, 1 partly right, 0 rejected. Readers who relied on the old
 text should use the replacement rows below; the table applier replaces the
 rows whose first cell matches.
@@ -45,7 +45,7 @@ In its grade cell, "established for the allocator, inferred for the hardware uni
   rewritten from that shadow on a switch. `devices/rm/README.md` grades it inferred, and
   records that the only routine walking the 89 slots out to the raster bus is
   the reload that `reset_imps` sends, not a context switch
-  (ucode/geif_entries.md rows 374-377 agree). `arm_context_activate`
+  (software/ucode/geif_entries.md rows 374-377 agree). `arm_context_activate`
   (arm1.s 0x0c0209dc-0x0c020bc8) calls the private, current-engine, engine
   register, engine FIFO, distributor and host-interface restores and, for some
   pixel modes, `PixelRestore` (0x0c0290dc), which writes pixel-mode state, not the

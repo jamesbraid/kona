@@ -4,7 +4,7 @@ The MIPS binaries go through the pipeline in [AGENTS.md](../AGENTS.md) or Ghidra
 
 ## Ghidra processor module for the geometry-engine microcode
 
-The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `ghidra/processors/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the kernel ([ucode/ge_isa.md](../ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
+The sections above cover the MIPS binaries. The geometry-engine microcode is not MIPS code, and no stock Ghidra processor reads it. `tools/ghidra/processors/kona-ge/` is a Ghidra extension that disassembles and decompiles the geometry-engine microcode: KONA's `ge.u`, `ge11.u` and `ge.hex`, the IR diagnostic programs, and the `gevers_ucode` program in the kernel ([software/ucode/ge_isa.md](../software/ucode/ge_isa.md#engine-facts-read-from-konas-own-binaries)). Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -16,7 +16,7 @@ The sections above cover the MIPS binaries. The geometry-engine microcode is not
 
 ### How the decode works
 
-The chip stores a 72-bit word W, but the decode from W to its control fields is not known as logic: `ge.u` holds each word's 256-bit decoded record, 205 of whose bits vary and most of which are not slices of W ([ucode/ge_isa.md](../ucode/ge_isa.md#two-encodings-one-program)). So the module decodes the record, which `retools/tools/kona/ge_disasm.py` also reads:
+The chip stores a 72-bit word W, but the decode from W to its control fields is not known as logic: `ge.u` holds each word's 256-bit decoded record, 205 of whose bits vary and most of which are not slices of W ([software/ucode/ge_isa.md](../software/ucode/ge_isa.md#two-encodings-one-program)). So the module decodes the record, which `retools/tools/kona/ge_disasm.py` also reads:
 
 - code space `code` has an 8-byte address unit, one microcode word each, holding W[63:0]; Ghidra addresses are word addresses, as in the listings;
 - the import script writes every record group, W[71:64] and the form into the context register at each word;
@@ -28,11 +28,11 @@ Address spaces: `wram`, `cram` and `eram` are the engine's three memories. `dmem
 
 ### What the semantics cover
 
-Each operation carries its label from [ucode/ge_ops.md](../ucode/ge_ops.md) in the spec, as established or inferred. Unit-1 codes 0x20, 0x22, 0x40, 0x42, 0x4a, 0x4b, 0x50, 0x54, 0x56, 0x58, 0x5b, 0x5d, 0x5f, 0x60, 0x62, 0x66, 0x68, 0x71, 0x73 and 0x7c are covered. So are unit-2 codes 0x07, 0x0f, 0x27, 0x37, 0x47, 0x4f and 0x57, and the two seeds. Several operations are named pcodeops because a detail is unknown: saturation of the integer add and subtract, double precision (its two-word pairing is unmapped), rounding of 0x71, NaN in the clamp, and the seed table. Codes with no reading, among them unit-1 0x51 and unit-2 0x2f and 0x3f, become `u1_op(code, …)` or `u2_op(code, …)`.
+Each operation carries its label from [software/ucode/ge_ops.md](../software/ucode/ge_ops.md) in the spec, as established or inferred. Unit-1 codes 0x20, 0x22, 0x40, 0x42, 0x4a, 0x4b, 0x50, 0x54, 0x56, 0x58, 0x5b, 0x5d, 0x5f, 0x60, 0x62, 0x66, 0x68, 0x71, 0x73 and 0x7c are covered. So are unit-2 codes 0x07, 0x0f, 0x27, 0x37, 0x47, 0x4f and 0x57, and the two seeds. Several operations are named pcodeops because a detail is unknown: saturation of the integer add and subtract, double precision (its two-word pairing is unmapped), rounding of 0x71, NaN in the clamp, and the seed table. Codes with no reading, among them unit-1 0x51 and unit-2 0x2f and 0x3f, become `u1_op(code, …)` or `u2_op(code, …)`.
 
-Unit 1's operand ports follow [ucode/ge_isa.md](../ucode/ge_isa.md#operand-ports-and-result-forwarding): register, forwarded result four to seven words back, the word read through A and D, or the loaded word. Unit 2's ports and the seed unit follow [Unit-2 and seed-unit operands](../ucode/ge_isa.md#unit-2-and-seed-unit-operands): seed result two words back, register, forwarded result, or a memory word (the A/D word on port 1, the loaded word on port 2). The seed unit runs in every word; its 7-bit table is unknown, so the spec stands in the exact 1/x and 1/sqrt(x). A word with `r99` bit 1 loads the store-data register with its unit result, and the stores with `r211` and `r95` = 4 or 5 send the value it held nine words earlier ([The store-data register](../ucode/ge_isa.md#the-store-data-register)).
+Unit 1's operand ports follow [software/ucode/ge_isa.md](../software/ucode/ge_isa.md#operand-ports-and-result-forwarding): register, forwarded result four to seven words back, the word read through A and D, or the loaded word. Unit 2's ports and the seed unit follow [Unit-2 and seed-unit operands](../software/ucode/ge_isa.md#unit-2-and-seed-unit-operands): seed result two words back, register, forwarded result, or a memory word (the A/D word on port 1, the loaded word on port 2). The seed unit runs in every word; its 7-bit table is unknown, so the spec stands in the exact 1/x and 1/sqrt(x). A word with `r99` bit 1 loads the store-data register with its unit result, and the stores with `r211` and `r95` = 4 or 5 send the value it held nine words earlier ([The store-data register](../software/ucode/ge_isa.md#the-store-data-register)).
 
-Lanes follow [Lanes](../ucode/ge_isa.md#lanes). Every word runs in all three lanes, each on its own registers, address registers, unit results and store-data register. The lane mask, R80-78 of the last word before it with R77 clear, gates the address-register loads with `r219` = 3 and the stores with `r213` and `r215`: a lane outside the mask does neither. The import computes the mask for each word into the context fields `flm0`-`flm2`. It carries the setting in address order and takes all three lanes at word 0, at each `geif.u` handler and at each call target, where the caller's setting is not known. A store with `r211` and `r95` = 4, 5 or 6 sends lane 0, 1 or 2's store-data register to CRAM, and one with `r95` = 8, 9 or 0xa sends it to ERAM; reads with `r95` = 0x10-0x12 and 0x14-0x16 load a CRAM or ERAM word into lane 0, 1 or 2 alone. A store with `r211` and `r95` = 7 sends the transfer-target register `LR` to CRAM by the same addressing, and a word with `r95` = 2 reloads `LR` from there: the software link stack at register 0x17 plus 1 that nested calls use ([Calls, returns and the end of a command](../ucode/ge_isa.md#calls-returns-and-the-end-of-a-command)). A call writes `LR` and a return goes to it. Its address comes from lane 0's C, because which lane's register addresses the one store a word makes is unknown. The flags and address conditions that transfers test are lane 0's. The address unit adds `0x1f - F` to C for F = 0x18-0x1e, and with `r162` = 1 it adds F itself. Transfers take effect after four delay slots, and returns and the end of a command after eight. Conditions read the condition word twelve words back and address conditions two words back. Ghidra cannot nest delay slots, so the import gives a transfer only the words before the next transfer as delay slots.
+Lanes follow [Lanes](../software/ucode/ge_isa.md#lanes). Every word runs in all three lanes, each on its own registers, address registers, unit results and store-data register. The lane mask, R80-78 of the last word before it with R77 clear, gates the address-register loads with `r219` = 3 and the stores with `r213` and `r215`: a lane outside the mask does neither. The import computes the mask for each word into the context fields `flm0`-`flm2`. It carries the setting in address order and takes all three lanes at word 0, at each `geif.u` handler and at each call target, where the caller's setting is not known. A store with `r211` and `r95` = 4, 5 or 6 sends lane 0, 1 or 2's store-data register to CRAM, and one with `r95` = 8, 9 or 0xa sends it to ERAM; reads with `r95` = 0x10-0x12 and 0x14-0x16 load a CRAM or ERAM word into lane 0, 1 or 2 alone. A store with `r211` and `r95` = 7 sends the transfer-target register `LR` to CRAM by the same addressing, and a word with `r95` = 2 reloads `LR` from there: the software link stack at register 0x17 plus 1 that nested calls use ([Calls, returns and the end of a command](../software/ucode/ge_isa.md#calls-returns-and-the-end-of-a-command)). A call writes `LR` and a return goes to it. Its address comes from lane 0's C, because which lane's register addresses the one store a word makes is unknown. The flags and address conditions that transfers test are lane 0's. The address unit adds `0x1f - F` to C for F = 0x18-0x1e, and with `r162` = 1 it adds F itself. Transfers take effect after four delay slots, and returns and the end of a command after eight. Conditions read the condition word twelve words back and address conditions two words back. Ghidra cannot nest delay slots, so the import gives a transfer only the words before the next transfer as delay slots.
 
 Not modelled:
 
@@ -46,17 +46,17 @@ Not modelled:
 From the repository root, with `root/` populated and Ghidra's `support/` directory (`sleigh`, `analyzeHeadless`) on `PATH`:
 
 ```sh
-python3 ghidra/processors/kona-ge/tools/gen_slaspec.py      # after editing the generator
-ghidra/processors/kona-ge/tests/run-ghidra.sh .cache/kona-ge  # needs Ghidra
-python3 ghidra/processors/kona-ge/tests/check.py .cache/kona-ge  # needs Python 3 only
+python3 tools/ghidra/processors/kona-ge/tools/gen_slaspec.py      # after editing the generator
+tools/ghidra/processors/kona-ge/tests/run-ghidra.sh .cache/kona-ge  # needs Ghidra
+python3 tools/ghidra/processors/kona-ge/tests/check.py .cache/kona-ge  # needs Python 3 only
 ```
 
-`run-ghidra.sh` installs the module as a user extension in a temporary settings directory and compiles the spec. It then imports each program. To use the module interactively, copy or link `ghidra/processors/kona-ge` into Ghidra's `Extensions` directory, run `sleigh` on the spec, and import a program with the recipe:
+`run-ghidra.sh` installs the module as a user extension in a temporary settings directory and compiles the spec. It then imports each program. To use the module interactively, copy or link `tools/ghidra/processors/kona-ge` into Ghidra's `Extensions` directory, run `sleigh` on the spec, and import a program with the recipe:
 
 ```sh
-analyzeHeadless PROJDIR PROJ -import ucode/KONA/ge.u -loader BinaryLoader \
+analyzeHeadless PROJDIR PROJ -import software/ucode/KONA/ge.u -loader BinaryLoader \
   -processor KONA-GE:BE:32:default \
-  -scriptPath ghidra/processors/kona-ge/ghidra_scripts -preScript KonaGEImport.java
+  -scriptPath tools/ghidra/processors/kona-ge/ghidra_scripts -preScript KonaGEImport.java
 ```
 
 The script also does the following:
@@ -64,7 +64,7 @@ The script also does the following:
 - names words from `ge_symbols`;
 - puts the `ge.u` line table in end-of-line comments as `file:line`;
 - marks entry points at word 0 and at every `geif.u` handler;
-- adds a function at every code address the program stores as a constant (form-15 constant stores, 0x100 or above, naming a `ge_symbols` label), the way modules are chained ([ucode/ge_handlers.md](../ucode/ge_handlers.md#how-to-read-the-entries)).
+- adds a function at every code address the program stores as a constant (form-15 constant stores, 0x100 or above, naming a `ge_symbols` label), the way modules are chained ([software/ucode/ge_handlers.md](../software/ucode/ge_handlers.md#how-to-read-the-entries)).
 
 Ghidra's analysis finds the call targets.
 
@@ -77,57 +77,57 @@ From `check.py` against IRIX 6.5.30m `usr/gfx/ucode/KONA/` and `usr/diags/IR/uco
 - **(c) passes.** All 508 routine entries among the `ge_compute.md` subjects are function entries; 738 functions are found in all. A routine entry here is a label reached by a slot, an ARM load, the distributor table, an address constant or a call word. The 257 loop heads and branch targets among the subjects are left out.
 - **(d) passes.** The decompiler output is readable C with typed memory references.
   - `mmo_Clamp`: each of the 24 loop inputs is clamped, and the clamped value is multiplied by its scale. The check follows the clamped value through the variable the decompiler holds it in.
-  - `uMatrixMultCCC`: it reads the projection, the four subtracts feed the multiplies by 0.5 that rebuild the third row, and all 16 stores to 0x4f-0x5e carry a sum of four products of the modelview and the staged matrix. The staging stores come from lane 0 alone. The eight odd-numbered results come from lane 1, which reads the staged matrix four words on, at 0x8d30-0x8d3e; that offset does not fit a matrix product ([Lanes](../ucode/ge_isa.md#lanes)).
+  - `uMatrixMultCCC`: it reads the projection, the four subtracts feed the multiplies by 0.5 that rebuild the third row, and all 16 stores to 0x4f-0x5e carry a sum of four products of the modelview and the staged matrix. The staging stores come from lane 0 alone. The eight odd-numbered results come from lane 1, which reads the staged matrix four words on, at 0x8d30-0x8d3e; that offset does not fit a matrix product ([Lanes](../software/ucode/ge_isa.md#lanes)).
   - `mMatrixMultCCW`: its 32 multiply words give 64 products in 16 sums of four, and all 16 words of C are stored. Lane 0 reads W's words 0-7 and its sums go to C + k; lane 1 reads words 8-0xf through its own register 0xb, which 0xeb1 raises by 8, and its sums go to C + 8 + k.
   - `mClipTriFlush`: the word read from control word 0xe with `r95` = 2 (0xf1e4) is pushed to the word above register 0x17 by the `r95` = 7 store at 0xf1e6.
 - **Imports pass.** `ge11.u` and `ge.hex` import to the same listing as `ge.u`, and `ge_diag_init.hex` decodes all 283 words.
 
 ## ARM firmware import
 
-The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF layout ([ucode/arm1.md](../ucode/arm1.md)). Ghidra's stock ARM processor reads the code, but a raw import puts the AIF header at the load address, has no address map and no names. `ghidra/import/kona-arm/` holds an import script that fixes that for every ARM image on the media: `arm1.u`, `arm1_kpm.u` and `tport.bin` from `usr/gfx/ucode/KONA/`, and `arm1.u`, `arm1_nic.u` and `diag_arm_init.u` from `usr/diags/IR/ucode/`.
+The host-interface ARM runs its own firmware, a big-endian ARMv4 image in AIF layout ([software/ucode/arm1.md](../software/ucode/arm1.md)). Ghidra's stock ARM processor reads the code, but a raw import puts the AIF header at the load address, has no address map and no names. `tools/ghidra/import/kona-arm/` holds an import script that fixes that for every ARM image on the media: `arm1.u`, `arm1_kpm.u` and `tport.bin` from `usr/gfx/ucode/KONA/`, and `arm1.u`, `arm1_nic.u` and `diag_arm_init.u` from `usr/diags/IR/ucode/`.
 
 | Path | What it is |
 |---|---|
 | `ghidra_scripts/KonaArmImport.java` | The import recipe, run as a pre-script on a raw import |
 | `tables.tsv` | The documented data tables the script lays, per image, with the page that documents each |
 | `tests/run-ghidra.sh`, `tests/DumpArm.java` | Imports all six images, analyses them and dumps functions, the token list, data and references |
-| `tests/check.py` | Compares the dumps with `ucode/arm1.s`, `ucode/tport.s`, `ucode/icu_map.tsv` and `ucode/arm1_handlers.tsv` |
+| `tests/check.py` | Compares the dumps with `software/ucode/arm1.s`, `software/ucode/tport.s`, `software/ucode/icu_map.tsv` and `software/ucode/arm1_handlers.tsv` |
 
-Import recipe, from the repository root (the script's argument is the repository root; it reads `ucode/` and `ghidra/import/kona-arm/tables.tsv` from there):
+Import recipe, from the repository root (the script's argument is the repository root; it reads `software/ucode/` and `tools/ghidra/import/kona-arm/tables.tsv` from there):
 
 ```sh
-analyzeHeadless PROJDIR PROJ -import ucode/KONA/arm1.u -loader BinaryLoader \
+analyzeHeadless PROJDIR PROJ -import software/ucode/KONA/arm1.u -loader BinaryLoader \
   -processor ARM:BE:32:v4 \
-  -scriptPath ghidra/import/kona-arm/ghidra_scripts -preScript KonaArmImport.java "$(pwd)"
+  -scriptPath tools/ghidra/import/kona-arm/ghidra_scripts -preScript KonaArmImport.java "$(pwd)"
 ```
 
 The processor is `ARM:BE:32:v4`: the images use the ARMv4 halfword transfers and no Thumb or `bx`. What the script does:
 
-- Memory. The read-only part goes at the image base (0x0c000000, or 0 for `diag_arm_init.u`), the read-write part at the data base and the zero-initialised part after it, all read from the AIF header; `tport.bin`'s 20-byte EEPROM file header is skipped. Around them it adds the ARM address map kpm names ([ucode/arm1_firmware.md](../ucode/arm1_firmware.md#control-and-status-registers)): SRAM at 0 (the state block, r8 + offset; mapped to 0x1000, the stack top), the host-interface registers at 0x200000, the payload ports and next-handler fetch at 0x200200, the engine descriptor and data ports at 0x200600, the token map at 0x400000, the display bus at 0x600000, the EEPROM at 0x800000 and the cache tags at 0xa00000. The register and port blocks are volatile. The display-bus, EEPROM and SDRAM sizes are the distance to the next region, not a documented size.
+- Memory. The read-only part goes at the image base (0x0c000000, or 0 for `diag_arm_init.u`), the read-write part at the data base and the zero-initialised part after it, all read from the AIF header; `tport.bin`'s 20-byte EEPROM file header is skipped. Around them it adds the ARM address map kpm names ([software/ucode/arm1_firmware.md](../software/ucode/arm1_firmware.md#control-and-status-registers)): SRAM at 0 (the state block, r8 + offset; mapped to 0x1000, the stack top), the host-interface registers at 0x200000, the payload ports and next-handler fetch at 0x200200, the engine descriptor and data ports at 0x200600, the token map at 0x400000, the display bus at 0x600000, the EEPROM at 0x800000 and the cache tags at 0xa00000. The register and port blocks are volatile. The display-bus, EEPROM and SDRAM sizes are the distance to the next region, not a documented size.
 - Base registers. r8 = 0 and r9 = 0x200200 are set over the code after the start-up sequence that loads them, so every r9-relative store resolves to a named register or port.
-- Names. `arm1.u` takes its 1682 debug-table symbols; a symbol with flags 2 or 3 in the read-only part starts a function unless it is a linker mark, the area name `ucode` or one of the documented tables. An image without symbols gets names for its call targets by matching their words against `arm1.u` with branch and pc-relative offsets masked (the rule of `retools/tools/kona/arm1_disasm.py --tport`), `DoDGRqst<name>` for its display-request handlers, and, for `tport.bin`, the labels of [ucode/tport.md](../ucode/tport.md#unnamed-functions).
-- Registers. Every ARM-side register of [ucode/arm1_registers.tsv](../ucode/arm1_registers.tsv) is labelled and typed as a 32-bit structure of its kpm fields; the layouts (`HA_ICU_MAP_A`, `_G`, `_N`, `HA_GED_CTRL_ADDR`) become types only. The descriptor and data ports are labelled by their decoded select and tag (`HA_GED_CTRL_T1_S12` is 0x200670).
+- Names. `arm1.u` takes its 1682 debug-table symbols; a symbol with flags 2 or 3 in the read-only part starts a function unless it is a linker mark, the area name `ucode` or one of the documented tables. An image without symbols gets names for its call targets by matching their words against `arm1.u` with branch and pc-relative offsets masked (the rule of `retools/tools/kona/arm1_disasm.py --tport`), `DoDGRqst<name>` for its display-request handlers, and, for `tport.bin`, the labels of [software/ucode/tport.md](../software/ucode/tport.md#unnamed-functions).
+- Registers. Every ARM-side register of [software/ucode/arm1_registers.tsv](../software/ucode/arm1_registers.tsv) is labelled and typed as a 32-bit structure of its kpm fields; the layouts (`HA_ICU_MAP_A`, `_G`, `_N`, `HA_GED_CTRL_ADDR`) become types only. The descriptor and data ports are labelled by their decoded select and tag (`HA_GED_CTRL_T1_S12` is 0x200670).
 - Token table. In `arm1.u` the static list at `vector_end` is typed entry by entry: an ARM entry as {flags, handler pointer}, a routed entry as `HA_ICU_MAP_G` (geometry form) or `HA_ICU_MAP_N`. Each entry, its slot in `icu_map` and its slot in the hardware map at 0x400000 are labelled with the token number and kpm name, and each handler gets a plate comment listing its tokens and group.
 - Data tables. `hipwc`, `vector_start`, the `x$constdata` tables, `DGDispatchTable`, the three vertex-array tables, `gepc`, `icu_map` and `tport.bin`'s request table, as listed in `tables.tsv`.
 
 Test, from the repository root:
 
 ```sh
-ghidra/import/kona-arm/tests/run-ghidra.sh .cache/kona-arm      # needs Ghidra, about 80 s
-python3 ghidra/import/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3 only
+tools/ghidra/import/kona-arm/tests/run-ghidra.sh .cache/kona-arm      # needs Ghidra, about 80 s
+python3 tools/ghidra/import/kona-arm/tests/check.py .cache/kona-arm   # needs Python 3 only
 ```
 
 Results against IRIX 6.5.30m:
 
-- `arm1.u`: all 1189 function symbols of `ucode/arm1.s` are Ghidra functions with an `arm1.s` name. Analysis adds one function, 0x0c040168, the shared divide loop inside `__rt_divtest` that has no symbol of its own. All 512 tokens sit in the typed list with the entry of `icu_map.tsv`, and all 306 ARM-run handlers resolve to the address and name in `arm1_handlers.tsv`. Code references reach the host-interface registers (662), the payload ports (993) and the engine ports (5111).
-- `tport.bin`: all 225 call targets that `ucode/tport.s` labels as code are functions named as the Kona stack text-port assembly unit names them, or as `tport.md` labels a `fn_` target; the two labels `tport.md` marks as strings stay data. Analysis adds 13 functions no call reaches.
+- `arm1.u`: all 1189 function symbols of `software/ucode/arm1.s` are Ghidra functions with an `arm1.s` name. Analysis adds one function, 0x0c040168, the shared divide loop inside `__rt_divtest` that has no symbol of its own. All 512 tokens sit in the typed list with the entry of `icu_map.tsv`, and all 306 ARM-run handlers resolve to the address and name in `arm1_handlers.tsv`. Code references reach the host-interface registers (662), the payload ports (993) and the engine ports (5111).
+- `tport.bin`: all 225 call targets that `software/ucode/tport.s` labels as code are functions named as the Kona stack text-port assembly unit names them, or as `tport.md` labels a `fn_` target; the two labels `tport.md` marks as strings stay data. Analysis adds 13 functions no call reaches.
 - `arm1_kpm.u`, `arm1_nic.u`, the diagnostic `arm1.u` and `diag_arm_init.u` import with their host-interface references resolved; they have no listing to compare names against.
 
 Limits: the diagnostic images' functions that match nothing in `arm1.u` stay `fn_<address>`, and `tport.bin`'s own token map (built at +0x3b0 with 8-byte entries) is not typed.
 
 ## Ghidra processor module for the distributor program
 
-`ghidra/processors/kona-ged/` is a Ghidra extension for the distributor program `ged1b.u` (`usr/gfx/ucode/KONA/`), the 931-word program the ARM loads into the distributor at start-up. The word format is the one the IR diagnostic packs ([ucode/ged.md](../ucode/ged.md#word-format)): bits 31-30 pick control, transfer, load or the unused type 3, and the module decodes every field of each. Built and tested with Ghidra 12.1.3.
+`tools/ghidra/processors/kona-ged/` is a Ghidra extension for the distributor program `ged1b.u` (`usr/gfx/ucode/KONA/`), the 931-word program the ARM loads into the distributor at start-up. The word format is the one the IR diagnostic packs ([software/ucode/ged.md](../software/ucode/ged.md#word-format)): bits 31-30 pick control, transfer, load or the unused type 3, and the module decodes every field of each. Built and tested with Ghidra 12.1.3.
 
 | Path | What it is |
 |---|---|
@@ -141,7 +141,7 @@ Mnemonics and operands follow `retools/tools/kona/ged_disasm.py`: `ctl` with eac
 
 Addresses are bytes: program word i is at 4 x i, and the table block is at 0x1000 (word 0x400), where the ARM's loader puts it. Registers `r0`-`r255` are the distributor registers by number.
 
-Semantics carry only what [ucode/ged.md](../ucode/ged.md#what-each-type-does) reads from the program:
+Semantics carry only what [software/ucode/ged.md](../software/ucode/ged.md#what-each-type-does) reads from the program:
 
 - a transfer jumps to its target after one delay slot (inferred); op 0 is unconditional (inferred), and the condition of ops 1-7 is the opaque `ged_cond(word, register, value)`, since its kind is unknown;
 - load op 0 sets the register to the immediate and `move` copies the register the immediate names (inferred); other load ops are the opaque `ged_load`;
@@ -149,36 +149,36 @@ Semantics carry only what [ucode/ged.md](../ucode/ged.md#what-each-type-does) re
 
 A transfer whose next word is also a transfer is decoded without a delay slot, because Ghidra cannot decode a transfer inside one. The import sets this per word through the context bit `nodly`; 29 transfers have it. What the hardware does there is not known.
 
-Import recipe (the argument is the repository root, for `ucode/ged_relocs.tsv`):
+Import recipe (the argument is the repository root, for `software/ucode/ged_relocs.tsv`):
 
 ```sh
-analyzeHeadless PROJDIR PROJ -import ucode/KONA/ged1b.u -loader BinaryLoader \
+analyzeHeadless PROJDIR PROJ -import software/ucode/KONA/ged1b.u -loader BinaryLoader \
   -processor KONA-GED:BE:32:default \
-  -scriptPath ghidra/processors/kona-ged/ghidra_scripts -preScript KonaGEDImport.java "$(pwd)"
+  -scriptPath tools/ghidra/processors/kona-ged/ghidra_scripts -preScript KonaGEDImport.java "$(pwd)"
 ```
 
-The script maps the program and the table block, puts the line table in end-of-line comments as `file:line` with the relocated engine handler of each slot word ([ucode/ged_relocs.tsv](../ucode/ged_relocs.tsv)), and decodes every word on its own. It types table A (16 words, `table_A`, each nonzero entry commented with the table B base 8 x A[class]) and table B (512 words, `table_B`) as data, adds a reference from every table B entry to its program word, and labels each word a table B entry starts (`B_<first index>`, with every index in a comment) as an entry point and function.
+The script maps the program and the table block, puts the line table in end-of-line comments as `file:line` with the relocated engine handler of each slot word ([software/ucode/ged_relocs.tsv](../software/ucode/ged_relocs.tsv)), and decodes every word on its own. It types table A (16 words, `table_A`, each nonzero entry commented with the table B base 8 x A[class]) and table B (512 words, `table_B`) as data, adds a reference from every table B entry to its program word, and labels each word a table B entry starts (`B_<first index>`, with every index in a comment) as an entry point and function.
 
 Test, from the repository root:
 
 ```sh
-ghidra/processors/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghidra
-python3 ghidra/processors/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
+tools/ghidra/processors/kona-ged/tests/run-ghidra.sh .cache/kona-ged       # needs Ghidra
+python3 tools/ghidra/processors/kona-ged/tests/check.py .cache/kona-ged    # needs Python 3 only
 ```
 
 Result against IRIX 6.5.30m: all 931 words match `retools/tools/kona/ged_disasm.py` in mnemonic and operands (210 control, 248 transfer, 473 load), and all 206 words a table B entry starts are function entries.
 
-The 24-bit control word that a routed token-map entry or an ARM descriptor carries (geometry, pass and register/pixel forms, [ucode/ged.md](../ucode/ged.md#the-token-map-entry-is-the-distributors-control-word)) is not a program word, so the module does not decode it. The `kona_entry_*` types of [Data types](#data-types-for-the-documented-structures) describe it where it occurs.
+The 24-bit control word that a routed token-map entry or an ARM descriptor carries (geometry, pass and register/pixel forms, [software/ucode/ged.md](../software/ucode/ged.md#the-token-map-entry-is-the-distributors-control-word)) is not a program word, so the module does not decode it. The `kona_entry_*` types of [Data types](#data-types-for-the-documented-structures) describe it where it occurs.
 
 ## Data types for the documented structures
 
-`ghidra/types/kona-types/ghidra_scripts/KonaTypes.java` adds the structures the documents establish to any program, under `/KONA/types`, and applies them where their address is fixed. Run it as a post-script after analysis; its argument is the repository root.
+`tools/ghidra/types/kona-types/ghidra_scripts/KonaTypes.java` adds the structures the documents establish to any program, under `/KONA/types`, and applies them where their address is fixed. Run it as a post-script after analysis; its argument is the repository root.
 
 | Type | Built from |
 |---|---|
-| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](../ghidra/types/kona-types/arm_state.tsv): one row per field with its status and source page) |
-| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](../ghidra/types/kona-types/vertex_record.tsv), from [ucode/ge_compute.md](../ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
-| `kona_entry_geom`, `kona_entry_pass`, `kona_entry_regpix` | a routed token-map entry in its three forms, the host-interface bits as kpm names them and the 24-bit distributor control word split as [ucode/ged.md](../ucode/ged.md#the-token-map-entry-is-the-distributors-control-word) decodes it; each field's comment carries its status |
+| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](../tools/ghidra/types/kona-types/arm_state.tsv): one row per field with its status and source page) |
+| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](../tools/ghidra/types/kona-types/vertex_record.tsv), from [software/ucode/ge_compute.md](../software/ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
+| `kona_entry_geom`, `kona_entry_pass`, `kona_entry_regpix` | a routed token-map entry in its three forms, the host-interface bits as kpm names them and the 24-bit distributor control word split as [software/ucode/ged.md](../software/ucode/ged.md#the-token-map-entry-is-the-distributors-control-word) decodes it; each field's comment carries its status |
 | `kona_ge_special` | enum of the geometry-engine special registers, `KONA_GE11_SR_*` in [GE.h](../devices/ge/GE.h) |
 | `kona_hh_reg` | enum of the host-interface registers at their kernel window offset 0x800000 + register, the `KONA_*HH_*` registers of [HIP.h](../devices/hip/HIP.h) |
 
@@ -191,8 +191,8 @@ Where it applies them:
 Test, from the repository root:
 
 ```sh
-ghidra/types/kona-types/tests/run-ghidra.sh .cache/kona-types      # needs Ghidra, about 50 s
-python3 ghidra/types/kona-types/tests/check.py .cache/kona-types   # needs Python 3 only
+tools/ghidra/types/kona-types/tests/run-ghidra.sh .cache/kona-types      # needs Ghidra, about 50 s
+python3 tools/ghidra/types/kona-types/tests/check.py .cache/kona-types   # needs Python 3 only
 ```
 
 Results against IRIX 6.5.30m: `kona_arm_state` is laid at SRAM 0 in `arm1.u`, and all 206 routed token-list entries carry the type of their form: 121 geometry, 71 pass and 14 register/pixel, the split ged.md gives. Over the 27 `kona_*.o` kernel objects the script names 223 register accesses, 78 distinct function and register pairs. All 49 function and register pairs that the inventory's `mmio.tsv` lists for the host-interface window (from the objdump scan, which shares no code with this script) are among them.

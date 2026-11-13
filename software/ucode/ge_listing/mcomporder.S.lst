@@ -1,0 +1,65 @@
+# mcomporder.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mmo_ReverseComp4Order:
+6b2f: 77fa4fe7c880f80bae f14 imm=bae C=1e r95=17 r71=1 r62=1ffc218170  ; mcomporder.S:65
+6b34: 7039c007c888f80000 f14 seq=605e r25=3e2fc00  ; mcomporder.S:58
+6b35: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mcomporder.S:63
+6b36: 60003007ea0001de80 f12 r213=3 B=18 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mcomporder.S:65
+6b37: 77fa4fe7c880f80baf f14 imm=baf C=1e r95=17 r71=1 r62=1ffc218170  ; mcomporder.S:66
+6b39: 77fa4fe7c880f80bb0 f14 imm=bb0 C=1e r95=17 r71=1 r62=1ffc218170  ; mcomporder.S:67
+6b3f: 0e00b00c2f3e44f8a0 f1  r217=1 r213=3 A=18 B=18 E=1 G=f M=6ca r110=7bd r99=8 r62=1ffccc4178 r25=3e69c00  ; mcomporder.S:66
+6b40: 60003007ea0201de80 f12 r213=3 B=18 E=2 M=6ca r110=7bd r62=1ffc440178 r25=3e69c00  ; mcomporder.S:67
+6b45: 70f9c007c88cf80000 f14 seq=61df r25=3e2fc00  ; mcomporder.S:72
+6b46: 70d9c107c88d700000 f14 r219=1 C=10 G=e seq=619f r62=1ffc23c170 r25=3e2fc00  ; mcomporder.S:69
+6b47: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mcomporder.S:78
+6b48: 76013607ca04780000 f14 r217=1 A=18 D=1 G=f r99=8 r62=1ffc884170  ; mcomporder.S:74
+6b49: 76023607ca04680000 f14 r217=1 A=18 D=2 G=d r99=8 r62=1ffc884170  ; mcomporder.S:75
+6b4a: 7099c937c88cf80000 f14 C=13 r95=2 seq=611f r62=1ffc218170 r25=3e2fc00  ; mcomporder.S:60
+6b4b: 73c0210fca03840000 f14 r219=3 A=f C=10 r176=0 r162=1 F=3f G=10 r62=1ffcb3c170  ; mcomporder.S:80
+6b4c: 77fa4117c8c0f80000 f14 r222=1 C=11 r62=1ffc218170  ; mcomporder.S:82
+6b4e: 77fa4137488d980000 f14 r219=1 C=13 F=1d G=13 seq=6fe7 r62=1ffc23c170 r25=3e2bc00  ; mcomporder.S:61
+6b4f: 64036007ea0001de80 f12 r213=3 A=10 B=10 D=3 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:89
+6b50: 6400a007ea0301dd80 f12 r213=3 A=10 B=10 E=3 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:89
+6b51: 64026007ea0101de80 f12 r213=3 A=10 B=10 D=2 E=1 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:89
+6b52: 6401a007ea0201dd80 f12 r213=3 A=10 B=10 D=1 E=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:89
+6b53: 64076007ea0401de80 f12 r213=3 A=10 B=10 D=7 E=4 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:90
+6b54: 6404a007ea0701dd80 f12 r213=3 A=10 B=10 D=4 E=7 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:90
+6b55: 64066007ea0501de80 f12 r213=3 A=10 B=10 D=6 E=5 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:90
+6b56: 6405a007ea0601dd80 f12 r213=3 A=10 B=10 D=5 E=6 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:90
+6b57: 640b6007ea0801de80 f12 r213=3 A=10 B=10 D=b E=8 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:91
+6b58: 6408a007ea0b01dd80 f12 r213=3 A=10 B=10 D=8 E=b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:91
+6b59: 640a6007ea0901de80 f12 r213=3 A=10 B=10 D=a E=9 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:91
+6b5a: 6409a007ea0a01dd80 f12 r213=3 A=10 B=10 D=9 E=a M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:91
+6b5b: 640f6007ea0c01de80 f12 r213=3 A=10 B=10 D=f E=c M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:92
+6b5c: 640ca007ea0f01dd80 f12 r213=3 A=10 B=10 D=c E=f M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:92
+6b5d: 640e6007ea0d01de80 f12 r213=3 A=10 B=10 D=e E=d M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:92
+6b5e: 640da007ea0e01dd80 f12 r213=3 A=10 B=10 D=d E=e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:92
+6b5f: 64136007ea1001de80 f12 r213=3 A=10 B=10 D=13 E=10 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:93
+6b60: 6410a007ea1301dd80 f12 r213=3 A=10 B=10 D=10 E=13 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:93
+6b61: 64126007ea1101de80 f12 r213=3 A=10 B=10 D=12 E=11 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:93
+6b62: 6411a007ea1201dd80 f12 r213=3 A=10 B=10 D=11 E=12 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:93
+6b63: 64176007ea1401de80 f12 r213=3 A=10 B=10 D=17 E=14 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:94
+6b64: 6414a007ea1701dd80 f12 r213=3 A=10 B=10 D=14 E=17 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:94
+6b65: 64166007ea1501de80 f12 r213=3 A=10 B=10 D=16 E=15 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:94
+6b66: 6415a007ea1601dd80 f12 r213=3 A=10 B=10 D=15 E=16 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:94
+6b67: 641b6007ea1801de80 f12 r213=3 A=10 B=10 D=1b E=18 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:95
+6b68: 6418a007ea1b01dd80 f12 r213=3 A=10 B=10 D=18 E=1b M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:95
+6b69: 641a6007ea1901de80 f12 r213=3 A=10 B=10 D=1a E=19 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:95
+6b6a: 6419a007ea1a01dd80 f12 r213=3 A=10 B=10 D=19 E=1a M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:95
+6b6b: 641f6007ea1c01de80 f12 r213=3 A=10 B=10 D=1f E=1c M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:96
+6b6c: 3c1ca0f81fbe44f6a0 f7  r222=1 r219=1 r213=3 A=10 B=10 C=f D=1c E=1f F=20 G=f M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mcomporder.S:87
+6b6d: 641e6007ea1d01de80 f12 r213=3 A=10 B=10 D=1e E=1d M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:96
+6b6e: 641da007ea1e01dd80 f12 r213=3 A=10 B=10 D=1d E=1e M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:96
+6b6f: 77ee4007ca00f86b4f f14 xfer3 c4 cc=14 -> 6b4f imm=6b4f cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mcomporder.S:99
+6b74: 77fa41080881840000 f14 r219=1 C=10 r162=1 F=20 G=10 r62=1ffc23c170  ; mcomporder.S:98
+6b78: 77fa40d7c8c0f80000 f14 r222=1 C=d r62=1ffc218170  ; mcomporder.S:101
+6b7b: 77ee4007ca80f86b91 f14 xfer3 c4 cc=15 -> 6b91 imm=6b91 cc=15 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mcomporder.S:102
+6b84: 64036007ea0001de80 f12 r213=3 A=10 B=10 D=3 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:107
+6b85: 3c00a0d803be44f6a0 f7  r222=1 r219=1 r213=3 A=10 B=10 C=d E=3 F=20 G=f M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; mcomporder.S:105
+6b86: 64026007ea0101de80 f12 r213=3 A=10 B=10 D=2 E=1 M=6ca r110=7bd r99=4 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:107
+6b87: 6401a007ea0201dd80 f12 r213=3 A=10 B=10 D=1 E=2 M=6ca r99=8 r62=1ffccc0178 r25=3e69c00  ; mcomporder.S:107
+6b88: 77ee4007ca00f86b84 f14 xfer3 c4 cc=14 -> 6b84 imm=6b84 cc=14 seq=3fe4 r71=1 r62=1ffe000170 r25=3e39c00  ; mcomporder.S:110
+6b8d: 77fa41010881840000 f14 r219=1 C=10 r162=1 F=4 G=10 r62=1ffc23c170  ; mcomporder.S:109
+6b91: 77f24007c8a4f80000 f14 xfer4 c5 cc=11 -> 0000 <HereWeGo> seq=14fe5 r25=3e39c00  ; mcomporder.S:115
+6b96: 77fa40e7c881800000 f14 r219=1 C=e G=10 r62=1ffc23c170  ; mcomporder.S:114
+6b98: 7039c007c88cf80000 f14 seq=605f r25=3e2fc00  ; mcomporder.S:113

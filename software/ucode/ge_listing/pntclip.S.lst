@@ -1,0 +1,85 @@
+# pntclip.S: geometry-engine instructions attributed to this source by the ge.u line table
+# (unlisted words follow the previous attributed one). Fields per software/ucode/ge_isa.md.
+mClipPntUserAndFrustum:
+e75e: 28003132514254f8a0 f5  imm=a2 r220=1 r213=3 B=18 C=1e E=2 M=6ca r110=7bd r95=13 r71=1 r62=1ffc658178 r25=3e69c00  ; pntclip.S:54
+e763: 782071e7c10000003f f15 imm=3f r215=3 B=18 C=1e E=1 r71=1 r62=1ffc658170  ; pntclip.S:46
+e764: 782071e7c00000003f f15 imm=3f r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; pntclip.S:45
+e765: 3e00b8f7cdb444f6a0 f7  r219=1 r213=3 A=18 B=1c C=f E=d G=d M=6ca r99=8 r62=1ffcefc178 r25=3e69c00  ; pntclip.S:47
+e766: 2e01b82207ce44f6a0 f5  imm=f r213=3 A=18 B=1c C=1e D=1 E=e M=6ca r99=8 r95=2 r71=1 r62=1ffced8178 r25=3e69c00  ; pntclip.S:48
+e767: 76023607ca04480000 f14 r217=1 A=18 D=2 G=9 r99=8 r62=1ffc884170  ; pntclip.S:55
+e768: 77fa412948c1580000 f14 r222=1 r219=1 C=12 F=25 G=b r62=1ffc23c170  ; pntclip.S:59
+e76a: 77fa4007c88cf80000 f14 seq=6fe7 r25=3e2bc00  ; pntclip.S:60
+e76b: 73403607ca04400000 f14 r217=1 A=d G=8 r99=8 r62=1ffc884170  ; pntclip.S:64
+e76d: 734f3607ca04500000 f14 r217=1 A=d D=f G=a r99=8 r62=1ffc884170  ; pntclip.S:65
+e773: 2a1a8132388008ffe5 f5  imm=71 A=8 C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:69
+e774: 2a1a8132390008ffe5 f5  imm=72 A=8 C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:70
+e775: 2a9a8132388008ffe5 f5  imm=71 A=a C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:82
+e776: 2a9a8132390008ffe5 f5  imm=72 A=a C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:83
+e777: 121a9b1cdf3208ffe5 f2  imm=73 cc=211 A=8 C=1e D=1a P=19 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; pntclip.S:71
+e778: 6a178007ec2b62feed f13 cc=91 A=8 D=17 Q=16 M=6e2 r110=67d r99=8 r62=1ffc8805fc  ; pntclip.S:74
+e779: 68000007ec2be2ff45 f13 cc=91 Q=17 M=6e2 r110=5bd r62=1ffc00057c  ; pntclip.S:75
+e77a: 129a9b1cdf3008ffe5 f2  imm=73 cc=211 A=a C=1e D=1a P=18 M=47f r99=8 r95=13 r71=1 r62=1ffca98973  ; pntclip.S:84
+e77b: 6a978007ec2ce2fef5 f13 cc=91 A=a D=17 Q=19 r128=2e M=6e2 r110=67d r99=8 r62=1ffc8805fc  ; pntclip.S:87
+e77c: 68000007ec2be2ff46 f13 cc=91 Q=17 r128=35 M=6e2 r110=5bd r62=1ffc00057c  ; pntclip.S:88
+e77d: 2a1a81323a0008ffe5 f5  imm=74 A=8 C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:72
+e77f: 2a9a81323a0008ffe5 f5  imm=74 A=a C=1e D=1a M=47f r99=8 r95=13 r71=1 r62=1ffca98173  ; pntclip.S:85
+e780: 6a188007e82fe2f6b9 f13 A=8 D=18 r148=19 M=6e2 r110=63d r99=8 r62=1ffc88117c  ; pntclip.S:76
+e781: 68000007ec2ce2ff44 f13 cc=91 Q=19 r128=25 M=6e2 r110=5bd r62=1ffc00057c  ; pntclip.S:77
+e782: 68000007e82fd496f6 f13 r148=2d7 M=6d4 r110=43d r62=1ffc00317c  ; pntclip.S:75
+e783: 6a988007e82fe2f6b8 f13 A=a D=18 r148=18 M=6e2 r110=63d r99=8 r62=1ffc88117c  ; pntclip.S:89
+e784: 68000007e82fd496f9 f13 r148=337 M=6d4 r110=43d r62=1ffc00317c  ; pntclip.S:88
+e785: 68000007e82fe2ff46 f13 r128=35 M=6e2 r110=5bd r62=1ffc00017c  ; pntclip.S:90
+e786: 6a1a4007e82fd4fe90 f13 A=8 D=1a r128=2 M=6d4 r110=57d r99=4 r62=1ffc8801fc  ; pntclip.S:73
+e787: 6a198007e82fe0ffc5 f13 A=8 D=19 M=6e0 r110=7bd r99=8 r62=1ffc88017c  ; pntclip.S:78
+e788: 68000007e82fd4fe88 f13 r128=1 M=6d4 r110=57d r62=1ffc0001fc  ; pntclip.S:89
+e789: 68000007ec2ce2ecbe f13 cc=91 r148=3c0 Q=19 M=6e2 r110=4bd r62=1ffc00257c  ; pntclip.S:79
+e78a: 6a9a4007e82fd4f419 f13 A=a D=1a r148=19 r128=5 M=6d4 r110=53d r99=4 r62=1ffc88117c  ; pntclip.S:77
+e78b: 6a998007e82fe0ffc5 f13 A=a D=19 M=6e0 r110=7bd r99=8 r62=1ffc88017c  ; pntclip.S:91
+e78c: 68000007e82fd4fe98 f13 r128=3 M=6d4 r110=57d r62=1ffc0001fc  ; pntclip.S:90
+e78e: 68000007e82fd4fe98 f13 r128=3 M=6d4 r110=57d r62=1ffc0001fc  ; pntclip.S:78
+e78f: 68000007e82fe2ecbe f13 r148=3c0 M=6e2 r110=4bd r62=1ffc00217c  ; pntclip.S:92
+e790: 68000007e82fd4fe88 f13 r128=1 M=6d4 r110=57d r62=1ffc0001fc  ; pntclip.S:91
+e792: 77f64007c010f8002b f14 xfer5.rel c4 cc=0 -> e7bd imm=2b cc=0 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; pntclip.S:118
+e793: 68000007ec2b54f439 f13 cc=91 r148=19 Q=16 r128=d M=6d4 r110=53d r62=1ffc00157c  ; pntclip.S:79
+e794: 68000007ec2c54fe88 f13 cc=91 Q=18 r128=1 M=6d4 r110=57d r62=1ffc0005fc  ; pntclip.S:92
+e797: 77fa41e7c8816000a3 f14 imm=a3 r219=1 C=1e G=c r71=1 r62=1ffc23c170  ; pntclip.S:114
+e79a: 77fa40984881700000 f14 r219=1 C=9 F=21 G=e r62=1ffc23c170  ; pntclip.S:115
+e79b: 6a13a6c7ec0cc0ffe5 f13 cc=211 A=8 C=c D=13 P=19 M=47f r99=8 r95=13 r62=1ffca98973  ; pntclip.S:122
+e79c: 6a938007ec0bc0ffe5 f13 cc=211 A=a D=13 P=17 M=47f r99=8 r62=1ffc880973  ; pntclip.S:123
+e79d: 6a14a6c7a80fc0ffe5 f13 A=8 C=c D=14 F=1e M=47f r99=8 r95=13 r62=1ffca98173  ; pntclip.S:126
+e79e: 6a948007e80fc0ffe5 f13 A=a D=14 M=47f r99=8 r62=1ffc880173  ; pntclip.S:127
+e79f: 6a13a6c6e80fc0ffe5 f13 A=8 C=c D=13 F=1b M=47f r99=8 r95=13 r62=1ffca98173  ; pntclip.S:124
+e7a0: 6a938007ec0cc0ffe5 f13 cc=211 A=a D=13 P=19 M=47f r99=8 r62=1ffc880973  ; pntclip.S:125
+e7a1: 6a14a6c6a80fc0ffe5 f13 A=8 C=c D=14 F=1a M=47f r99=8 r95=13 r62=1ffca98173  ; pntclip.S:128
+e7a2: 6a948007e80fc0ffe5 f13 A=a D=14 M=47f r99=8 r62=1ffc880173  ; pntclip.S:129
+e7a3: 5a15bec77fa307eed9 f11 A=8 C=c D=15 F=1d r148=320 r128=2e M=460 r110=47d r99=8 r95=13 r62=1ffca9a1ff  ; pntclip.S:126
+e7a4: 6a958007e80fc0ffe5 f13 A=a D=15 M=47f r99=8 r62=1ffc880173  ; pntclip.S:131
+e7a5: 5a15bec67fa307eef7 f11 A=8 C=c D=15 F=19 r148=2e0 r128=2f M=460 r110=47d r99=8 r95=13 r62=1ffca9a1ff  ; pntclip.S:127
+e7a6: 5a95be07fe2307fa2f f11 A=a D=15 r128=3d M=460 r110=57d r99=8 r62=1ffc8801ff  ; pntclip.S:128
+e7a7: 5a16bec73fa307fa20 f11 A=8 C=c D=16 F=1c r128=4 M=460 r110=57d r99=8 r95=13 r62=1ffca981ff  ; pntclip.S:130
+e7a8: 68000007e82fe0c6b9 f13 r148=320 r128=2e M=6e0 r110=47d r62=1ffc0021fc  ; pntclip.S:129
+e7a9: 5a96be07fe2307fa28 f11 A=a D=16 r128=5 M=460 r110=57d r99=8 r62=1ffc8801ff  ; pntclip.S:131
+e7aa: 5a16bec63fa307fa28 f11 A=8 C=c D=16 F=18 r128=5 M=460 r110=57d r99=8 r95=13 r62=1ffca981ff  ; pntclip.S:132
+e7ab: 68000007e82fe0fea0 f13 r128=4 M=6e0 r110=57d r62=1ffc0001fc  ; pntclip.S:134
+e7ac: 5a96be07fe2307fa30 f11 A=a D=16 r128=6 M=460 r110=57d r99=8 r62=1ffc8801ff  ; pntclip.S:133
+e7ad: 68000007e82fe0fea0 f13 r128=4 M=6e0 r110=57d r62=1ffc0001fc  ; pntclip.S:135
+e7ae: 68000007e82fe0fea0 f13 r128=4 M=6e0 r110=57d r62=1ffc0001fc  ; pntclip.S:136
+e7af: 68000007e82fd4c0b6 f13 r148=2c0 r128=28 M=6d4 r110=47d r62=1ffc0021fc  ; pntclip.S:139
+e7b0: 68000007e82fe0fea0 f13 r128=4 M=6e0 r110=57d r62=1ffc0001fc  ; pntclip.S:137
+e7b1: 68000007e82fd4c0b8 f13 r148=300 r128=28 M=6d4 r110=47d r62=1ffc0021fc  ; pntclip.S:140
+e7b2: 77fa40e848c1700000 f14 r222=1 r219=1 C=e F=21 G=e r62=1ffc23c170  ; pntclip.S:145
+e7b3: 68000007ec2b54fe88 f13 cc=91 Q=16 r128=1 M=6d4 r110=57d r62=1ffc0005fc  ; pntclip.S:141
+e7b4: 77f64007c890fbffe7 f14 xfer5.rel c4 cc=11 -> e79b imm=ffffffe7 seq=dfe4 r71=1 r62=1ffe000170 r25=3e39c00  ; pntclip.S:146
+e7b5: 68000007ec2c54fe88 f13 cc=91 Q=18 r128=1 M=6d4 r110=57d r62=1ffc0005fc  ; pntclip.S:142
+e7b9: 77fa40c5c881600000 f14 r219=1 C=c F=17 G=c r62=1ffc23c170  ; pntclip.S:144
+e7bd: 68000007e82fd097b6 f13 r148=2dd M=6d0 r110=43d r62=1ffc00317c  ; pntclip.S:151
+e7be: 68000007e82fd097b8 f13 r148=31d M=6d0 r110=43d r62=1ffc00317c  ; pntclip.S:152
+e7c0: 782071e7c000000001 f15 imm=1 r215=3 B=18 C=1e r71=1 r62=1ffc658170  ; pntclip.S:155
+e7c1: 6e008007e82fddff40 f13 A=18 r128=5 M=6dd r110=5bd r99=8 r62=1ffc88017c  ; pntclip.S:156
+e7c2: 68000007e82fddff40 f13 r128=5 M=6dd r110=5bd r62=1ffc00017c  ; pntclip.S:158
+e7c4: 77fa40b948c1580000 f14 r222=1 r219=1 C=b F=25 G=b r62=1ffc23c170  ; pntclip.S:167
+e7c5: 4b449a07c41a8c2000 f9  r213=3 A=d B=d D=4 E=4 r128=5 M=6d1 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; pntclip.S:161
+e7c6: cb539a07d31a8c2000 f9  w71=1 r213=3 A=d B=d D=13 E=13 r128=5 M=6d1 r110=5bd r99=8 r62=1ffccc017c r25=3e69c00  ; pntclip.S:162
+e7c7: 77f64007c88cf8e76b f14 xfer5 c7 cc=11 -> e76b imm=e76b seq=5fe7 r71=1 r62=1ffe000170 r25=3e3bc00  ; pntclip.S:168
+e7c8: 77f1c007c8acf80000 f14 xfer4 c31 cc=11 -> 0000 <HereWeGo> seq=14fdf r25=3e3fc00  ; pntclip.S:169
+e7cc: 77fa40dfc881680078 f14 imm=78 r219=1 C=d F=3f G=d r71=1 r62=1ffc33c170  ; pntclip.S:165

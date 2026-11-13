@@ -1,0 +1,1103 @@
+# Every ge_symbols label of ge.u (IRIX 6.5.30m) with what reaches it. Produced by
+# scripts/ge_catalogue.py; explained in software/ucode/ge_handlers.md.
+address	label	source	line	span	slots	arm	tokens	ged	from	consts
+0x0000	HereWeGo	bootstrap.s	20	83						
+0x0053	mgeb_EvalMapSpec1D	ueval1D.s	114	73	146	init_ged		table 27		
+0x0053	ugeb_EvalMapSpec1D	ueval1D.s	114	73	146	init_ged		table 27		
+0x009c	mgeb_EvalMapData1D	ueval1D.s	220	38	13	arm_mapdata1d	HP_MAPDATA1D			
+0x009c	ugeb_EvalMapData1D	ueval1D.s	220	38	13	arm_mapdata1d	HP_MAPDATA1D			
+0x00c2	levaldata1dloop	ueval1D.s	259	15						
+0x00d1	mgeb_EvalGrid1D	ueval1D.s	292	16	144	init_ged		table 25		
+0x00d1	ugeb_EvalGrid1D	ueval1D.s	292	16	144	init_ged		table 25		
+0x00e1	mgesi_EvalStrip1D	ueval1D.s	324	118	103	arm_evalstrip1d	HP_EVALSTRIP1D			
+0x00e1	ugesi_EvalStrip1D	ueval1D.s	324	118	103	arm_evalstrip1d	HP_EVALSTRIP1D			
+0x0157	lstrip1dreturn	ueval1D.s	443	15						mgesi_EvalStrip1D
+0x0166	umo_EvalEntry1D	ueval1D.s	470	22					mmo_Lutout	mgeb_EvalMapSpec1D
+0x017c	umo_EvalDecomposeLines1D	ueval1D.s	504	15						mGL_EM_Initialize
+0x018b	mgeb_EvalMapSpec2D	ueval2D.s	178	122	147	init_ged		table 28		
+0x018b	ugeb_EvalMapSpec2D	ueval2D.s	178	122	147	init_ged		table 28		
+0x0205	mgeb_EvalMapData2D	ueval2D.s	334	38	14	arm_mapdata2d	HP_MAPDATA2D			
+0x0205	ugeb_EvalMapData2D	ueval2D.s	334	38	14	arm_mapdata2d	HP_MAPDATA2D			
+0x022b	levaldata2dloop	ueval2D.s	373	15						
+0x023a	mgeb_EvalGrid2D	ueval2D.s	405	26	145	init_ged		table 26		
+0x023a	ugeb_EvalGrid2D	ueval2D.s	405	26	145	init_ged		table 26		
+0x0254	mgesi_EvalStrip2D	ueval2D.s	461	111	104	arm_evalstrip2d	HP_EVALSTRIP2D			
+0x0254	ugesi_EvalStrip2D	ueval2D.s	461	111	104	arm_evalstrip2d	HP_EVALSTRIP2D			
+0x02c3	lstrip2dloop	ueval2D.s	573	46					lstrip2dreturn	
+0x02f1	lstrip2dreturn	ueval2D.s	620	38						lstrip2dloop
+0x0317	umo_EvalEntry2D	ueval2D.s	697	30						mgeb_EvalMapSpec2D
+0x0335	umo_EvalDecomposePoints	ueval2D.s	750	15						mGL_EM_Initialize
+0x0344	umo_EvalDecomposeLines2D	ueval2D.s	777	55						mGL_EM_Initialize
+0x037b	umo_EvalDecomposeFill	ueval2D.s	844	37						mGL_EM_Initialize
+0x03a0	mges_EvalCoord	uevalcoord.s	61	11	192			reloc		
+0x03a0	uges_EvalCoord	uevalcoord.s	61	11	192			reloc		
+0x03ab	evalcoord2dloop	uevalcoord.s	80	46						
+0x03d9	evalcoord1dloop	uevalcoord.s	127	45						
+0x0406	uEvalCoord1D	uevalcoord.s	195	57					evalcoord1dloop	
+0x043f	uEvalCoord2D	uevalcoord.s	264	69					evalcoord2dloop	
+0x0484	uEvalChangeBasis1D	uevalbasis.s	102	34					mgesi_EvalStrip1D,uEvalCoord1D	
+0x04a6	eval_texturechangebasis	uevalbasis.s	137	16						uEvalChangeBasis1D
+0x04b6	eval_colorchangebasis	uevalbasis.s	154	16						uEvalChangeBasis1D
+0x04c6	eval_normalchangebasis	uevalbasis.s	171	16						uEvalChangeBasis1D
+0x04d6	eval_changebasis1ddone	uevalbasis.s	188	15						uEvalChangeBasis1D
+0x04e5	uEvalChangeBasis2D	uevalbasis.s	239	34					mgesi_EvalStrip2D,uEvalCoord2D	
+0x0507	eval_geomchangebasisv	uevalbasis.s	274	16						uEvalChangeBasis2D
+0x0517	eval_texturechangebasisu	uevalbasis.s	291	16						uEvalChangeBasis2D
+0x0527	eval_texturechangebasisv	uevalbasis.s	308	16						uEvalChangeBasis2D
+0x0537	eval_colorchangebasisu	uevalbasis.s	325	16						uEvalChangeBasis2D
+0x0547	eval_colorchangebasisv	uevalbasis.s	342	16						uEvalChangeBasis2D
+0x0557	eval_normalchangebasisu	uevalbasis.s	359	16						uEvalChangeBasis2D
+0x0567	eval_normalchangebasisv	uevalbasis.s	376	16						uEvalChangeBasis2D
+0x0577	eval_changebasis2ddone	uevalbasis.s	393	15						uEvalChangeBasis2D
+0x0586	umo_EvalPolyV	eval.s	186	19						mGL_EM_Initialize
+0x0599	lPOLYVUORDERLOOP	eval.s	206	20					lPOLYVVORDERLOOP	
+0x05ad	lPOLYVVORDERLOOP	eval.s	227	29						
+0x05ca	umo_EvalPolyU	eval.s	290	37						mGL_EM_Initialize
+0x05ef	lPOLYUUORDERLOOP	eval.s	328	26						
+0x0609	umo_EvalPolyVdV	eval.s	394	28						mGL_EM_Initialize
+0x0625	lPOLYVDVUORDERLOOP	eval.s	423	16					lPOLYVDVVORDERLOOP	
+0x0635	lPOLYVDVVORDERLOOP	eval.s	440	41						
+0x065e	umo_EvalPolyUdU	eval.s	520	22						mGL_EM_Initialize
+0x0674	lPOLYUDUUSIZELOOP	eval.s	543	16					lPOLYUDUUORDERLOOP	
+0x0684	lPOLYUDUUORDERLOOP	eval.s	560	41						
+0x06ad	umo_EvalComputeNormals3D	eval.s	628	83						mGL_EM_Initialize
+0x0700	umo_EvalComputeNormals4D	eval.s	748	111						mGL_EM_Initialize,mgesi_PassThrough
+0x076f	umo_EvalPoly1V	eval1.s	84	20						mGL_EM_Initialize
+0x0783	lPOLY1VLOOP	eval1.s	104	11						
+0x078e	umo_EvalPoly1U	eval1.s	144	22						mGL_EM_Initialize
+0x07a4	umo_EvalPoly1VdV	eval1.s	192	13						mGL_EM_Initialize
+0x07b1	lPOLY1VDVLOOP	eval1.s	205	18						
+0x07c3	umo_EvalPoly1UdU	eval1.s	250	34						mGL_EM_Initialize
+0x07e5	umo_EvalPoly2V	eval2.s	117	21						mGL_EM_Initialize
+0x07fa	lPOLY2VLOOP	eval2.s	139	22						
+0x0810	umo_EvalPoly2U	eval2.s	189	35						mGL_EM_Initialize,mgebi_XSetupWindow
+0x0833	umo_EvalPoly2VdV	eval2.s	253	24						mGL_EM_Initialize
+0x084b	lPOLY2VDVLOOP	eval2.s	278	26						
+0x0865	umo_EvalPoly2UdU	eval2.s	333	13						mGL_EM_Initialize
+0x0872	lPOLY2UDULOOP	eval2.s	347	17						
+0x0883	umo_EvalPoly4V	eval4.s	134	17						mGL_EM_Initialize
+0x0894	lPOLY4VLOOP	eval4.s	152	41						
+0x08bd	umo_EvalPoly4U	eval4.s	220	53						mGL_EM_Initialize
+0x08f2	umo_EvalPoly4VdV	eval4.s	307	18						mGL_EM_Initialize,mgeb_PushMatrix_Color
+0x0904	lPOLY4VDVLOOP	eval4.s	326	41						
+0x092d	umo_EvalPoly4UdU	eval4.s	400	13						mGL_EM_Initialize
+0x093a	lPOLY4UDULOOP	eval4.s	414	40						
+0x0962	uEvalSaveState	evalmisc.s	55	21					mClipLinUserAndFrustum,mClipTriUserAndFrustum,mgeb_ColorTableSetup,mgeb_PixDrawColorSetup,mgeb_PixDrawColorSetup_FFT,mgeb_PixPolygonStippleSetup,mges_ContextDeactivate	
+0x0977	uEvalSaveState1D	evalmisc.s	92	18					mgeb_EvalMapSpec2D	
+0x0989	uEvalSaveState2D	evalmisc.s	126	18					mgeb_EvalMapSpec1D	
+0x099b	uEvalLoadState1D	evalmisc.s	160	18					mgeb_EvalMapData1D,mgesi_EvalStrip1D,uEvalCoord1D	
+0x09ad	uEvalLoadState2D	evalmisc.s	194	18					lstrip2dreturn,mgeb_EvalMapData2D,mgesi_EvalStrip2D,uEvalCoord2D	
+0x09bf	uEvalSwapState1D	evalmisc.s	228	27					mgeb_EvalMapData2D,mgesi_EvalStrip2D,uEvalCoord2D	
+0x09da	uEvalSwapState2D	evalmisc.s	272	27					mgeb_EvalMapData1D,mgesi_EvalStrip1D,uEvalCoord1D	
+0x09f5	uEvalChangeBasis1and2	evalbasis.s	92	15						mGL_EM_Initialize
+0x0a04	uEvalChangeBasis3	evalbasis.s	128	8						mGL_EM_Initialize
+0x0a0c	lCB3LOOP	evalbasis.s	137	22						
+0x0a22	uEvalChangeBasis4	evalbasis.s	181	16						mGL_EM_Initialize
+0x0a32	lCB4POLYLOOP	evalbasis.s	198	22						
+0x0a48	uEvalChangeBasis5	evalbasis.s	243	26						mGL_EM_Initialize
+0x0a62	lCB5LOOP	evalbasis.s	270	24						
+0x0a7a	uEvalChangeBasis6	evalbasis.s	318	31						mGL_EM_Initialize
+0x0a99	lCB6MATRIXLOOP	evalbasis.s	350	1					lCB6LOOP	
+0x0a9a	lCB6LOOP	evalbasis.s	352	28						
+0x0ab6	uEvalChangeBasis7	evalbasis.s	405	40						mGL_EM_Initialize
+0x0ade	lCB7LOOP	evalbasis.s	446	30						
+0x0afc	uEvalChangeBasis8	evalbasis.s	502	51						mGL_EM_Initialize
+0x0b2f	lCB8MATRIXLOOP	evalbasis.s	554	2					lCB8LOOP	
+0x0b31	lCB8LOOP	evalbasis.s	557	31						
+0x0b50	uEvalChangeBasis4x4	evalbasis.s	613	10						
+0x0b5a	lCB4X4LOOP	evalbasis.s	624	43						
+0x0b85	mmo_TexGenSphere_ST	utexgen.s	45	9						mTexGenSph
+0x0b85	umo_TexGenSphere_ST	utexgen.s	45	9						mTexGenSph
+0x0b8e	lTGLOOP2	utexgen.s	55	92						
+0x0bea	mmo_TexGenEyeLinear_ST	utexgen.s	154	14						mGL_EX_Initialize,mTexGenEyeLin
+0x0bea	umo_TexGenEyeLinear_ST	utexgen.s	154	14						mGL_EX_Initialize,mTexGenEyeLin
+0x0bf8	lXF8	utexgen.s	169	21						
+0x0c0d	mmo_TexGenEyeLinear_RQ	utexgen.s	197	14						mGL_EX_Initialize,mTexGenEyeLin
+0x0c0d	umo_TexGenEyeLinear_RQ	utexgen.s	197	14						mGL_EX_Initialize,mTexGenEyeLin
+0x0c1b	lXF9	utexgen.s	212	21						
+0x0c30	mmo_TexGenObjLinear_ST	utexgen.s	240	14						mTexGenObjLin
+0x0c30	umo_TexGenObjLinear_ST	utexgen.s	240	14						mTexGenObjLin
+0x0c3e	lXF10	utexgen.s	255	21						
+0x0c53	mmo_TexGenObjLinear_RQ	utexgen.s	283	14						mTexGenObjLin
+0x0c53	umo_TexGenObjLinear_RQ	utexgen.s	283	14						mTexGenObjLin
+0x0c61	lXF11	utexgen.s	298	21						
+0x0c76	mmo_FaceCull	ucull.s	29	17						mLiPushMtrlInit,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0c76	umo_FaceCull	ucull.s	29	17						mLiPushMtrlInit,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0c87	lCU1	ucull.s	47	54						
+0x0cbd	lCU2	ucull.s	104	9					lCU1	
+0x0cc6	mmo_DecomposeTriangleStrip	udecompose.s	20	11						mgesi_TriangleStrip,mgesi_TriangleStripRestore,mgesi_TriangleStripRestoreSave,mgesi_TriangleStripSave,mgesi_TriangleStripWithSwapOdd
+0x0cc6	umo_DecomposeTriangleStrip	udecompose.s	20	11						mgesi_TriangleStrip,mgesi_TriangleStripRestore,mgesi_TriangleStripRestoreSave,mgesi_TriangleStripSave,mgesi_TriangleStripWithSwapOdd
+0x0cd1	lDE2	udecompose.s	32	10						
+0x0cdb	mmo_DecomposeTriangles	udecompose.s	49	10						
+0x0cdb	umo_DecomposeTriangles	udecompose.s	49	10						
+0x0ce5	lDE9	udecompose.s	60	21						
+0x0cfa	mmo_DecomposeLineStrip	udecompose.s	90	11						mgesi_LineStrip,mgesi_LineStripCopyAndIgnoreV0,mgesi_LineStripCopyV0,mgesi_LineStripRestoreV0,mgesi_LineStripSaveAndIgnoreV0,mgesi_LineStripSaveV0
+0x0cfa	umo_DecomposeLineStrip	udecompose.s	90	11						mgesi_LineStrip,mgesi_LineStripCopyAndIgnoreV0,mgesi_LineStripCopyV0,mgesi_LineStripRestoreV0,mgesi_LineStripSaveAndIgnoreV0,mgesi_LineStripSaveV0
+0x0d05	lDE3	udecompose.s	102	11						
+0x0d10	mmo_DecomposePoints	udecompose.s	120	9						mgeb_RasterPos,mgesi_Points
+0x0d10	umo_DecomposePoints	udecompose.s	120	9						mgeb_RasterPos,mgesi_Points
+0x0d19	lDE6	udecompose.s	131	12						
+0x0d25	mmo_DecomposeTriangleFan	udecompose.s	150	11						mgesi_TfanPoly,mgesi_TfanPolyEnd,mgesi_TfanPolyRestore,mgesi_TfanPolyRestoreEdge,mgesi_TfanPolyRestoreEnd,mgesi_TfanPolyRestoreSave,mgesi_TfanPolySave
+0x0d25	umo_DecomposeTriangleFan	udecompose.s	150	11						mgesi_TfanPoly,mgesi_TfanPolyEnd,mgesi_TfanPolyRestore,mgesi_TfanPolyRestoreEdge,mgesi_TfanPolyRestoreEnd,mgesi_TfanPolyRestoreSave,mgesi_TfanPolySave
+0x0d30	lDE7	udecompose.s	162	11						
+0x0d3b	umo_DummyDecompose	udecompose2.s	13	15						
+0x0d4a	umo_DecomposeSimpleTriangleStrip	udecompose2.s	41	13						
+0x0d57	lDE4	udecompose2.s	55	18						
+0x0d69	mmo_LiColorClamp	ulight.s	35	9						mGL_CM_Initialize,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0d69	umo_LiColorClamp	ulight.s	35	9						mGL_CM_Initialize,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0d72	lLI2	ulight.s	46	10						
+0x0d7c	mmo_LighterSimple	ulight.s	67	13						mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0d7c	umo_LighterSimple	ulight.s	67	13						mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0x0d89	lLI1	ulight.s	81	64						
+0x0dc9	mLiPwrTable	ulight.s	192	44					mLiSwichSpotPrwTableSub,mLiUpdateShin,mgeb_LightSpotExp	
+0x0dc9	uLiPwrTable	ulight.s	192	44						
+0x0df5	lPT1	ulight.s	240	30						
+0x0e13	mSinCos	umath.s	24	79					DrawMSTFanPnt,mgeb_LightSpotCutAng,mgebi_PointSize_MS	
+0x0e13	uSinCos	umath.s	24	79						
+0x0e62	uMatrixMultCCC	umatrix.s	39	78					mmo_ObjToClipSpace,mmo_ObjToClipSpaceN2E,mmo_ObjToClipSpaceN2EN	
+0x0eb0	mMatrixMultCCW	umatrix.s	209	55					mFrustum,mOrtho,mRotate,mgeb_MultMatrix_Color,mgeb_MultMatrix_Modelview,mgeb_MultMatrix_Projection,mgeb_MultMatrix_Texture	
+0x0eb0	uMatrixMultCCW	umatrix.s	209	55						
+0x0ee7	mMatrixInverse	umatrix.s	314	113					mTexGenEyeLine,mTexGenEyePlane,mTexGenEyePoint,mgeb_LightSpotDir,mgeb_UserClipPlane,mmo_ObjToClipSpaceN2E,mmo_ObjToClipSpaceN2EN	
+0x0ee7	uMatrixInverse	umatrix.s	314	113						
+0x0f58	mMatrixAdjoint	umatrix.s	435	88					mSpriteAxial,mSpriteObject,mgebi_ReferencePlane	
+0x0f58	uMatrixAdjoint	umatrix.s	435	88						
+0x0fb0	mRotate	umatrix.s	557	99					mgeb_Rotate_Color,mgeb_Rotate_Modelview,mgeb_Rotate_Projection,mgeb_Rotate_Texture	
+0x0fb0	uRotate	umatrix.s	557	99						
+0x1013	uWramToCram	umemove.s	18	8						
+0x101b	lW2C	umemove.s	27	10						
+0x1025	mWramToEram	umemove.s	45	8					SaveClipState,mgeb_ContextLoadEram,mgeb_InitFFTFactors,mgeb_LoadEram,mgesi_LoadEram,mmo_SaveRasterPos,mmo_SaveToV0_SaveExtra,mmo_V0ToSave_SaveExtra,uEvalSaveState,uEvalSaveState1D,uEvalSaveState2D,uEvalSwapState1D,uEvalSwapState2D	
+0x1025	uWramToEram	umemove.s	45	8						
+0x102d	lW2E	umemove.s	54	13						
+0x103a	mCramToEram	umemove.s	75	7					mgeb_CramToEram,mgeb_SwapOutGL,mmo_DirtySpriteModule,mmo_MultipassModule	
+0x103a	uCramToEram	umemove.s	75	7						
+0x1041	lC2E	umemove.s	83	14						
+0x104f	mEramToCram	umemove.s	105	17					mdc_multipass,mdc_sprite,mgeb_EramToCram,mgeb_SwapInGL,mmo_MultipassModule	
+0x104f	uEramToCram	umemove.s	105	17						
+0x1060	lE2C	umemove.s	123	20						
+0x1074	mClearEram	umemove.s	151	8					mDebugInitialize,mges_ContextDeactivate	
+0x1074	uClearEram	umemove.s	151	8						
+0x107c	lcE	umemove.s	160	13						
+0x1089	mCramToFifo	umemove.s	183	6					mges_ContextDeactivate	
+0x1089	uCramToFifo	umemove.s	183	6						
+0x108f	lC2F	umemove.s	190	12						
+0x109b	mEramToFifo	umemove.s	210	10					mges_ContextDeactivate	
+0x109b	uEramToFifo	umemove.s	210	10						
+0x10a5	lE2F	umemove.s	221	19						
+0x10b8	uSecondChance	uscreen2.s	66	1					mmo_ToScreenSpace	
+0x10b9	lSC2	uscreen2.s	69	16						
+0x10c9	mmo_ToScreenSpace	uscreen2.s	91	2						mGL_CM_Initialize,mmo_DirtyTextureAndScreenModule
+0x10c9	umo_ToScreenSpace	uscreen2.s	91	2						mGL_CM_Initialize,mmo_DirtyTextureAndScreenModule
+0x10cb	uBack	uscreen2.s	94	9					lSC2	
+0x10d4	lSC1	uscreen2.s	104	44						
+0x1100	uSecondChanceInvQ	uscreen2.s	156	3					mmo_ToScreenSpaceInvQ	
+0x1103	lSC4	uscreen2.s	161	16						
+0x1113	mmo_ToScreenSpaceInvQ	uscreen2.s	183	2					mmo_SaveRasterPos	mTexGenResolve,mmo_DirtyTextureAndScreenModule
+0x1113	umo_ToScreenSpaceInvQ	uscreen2.s	183	2						mTexGenResolve,mmo_DirtyTextureAndScreenModule
+0x1115	uBackInvQ	uscreen2.s	186	12					lSC4	
+0x1121	lSC3	uscreen2.s	199	130						
+0x11a3	uSecondChanceInvQ2DI	uscreen2.s	338	3					mmo_ToScreenSpaceInvQ2DI	
+0x11a6	lSC6	uscreen2.s	343	16						
+0x11b6	mmo_ToScreenSpaceInvQ2DI	uscreen2.s	365	2						mmo_DirtyTextureAndScreenModule
+0x11b6	umo_ToScreenSpaceInvQ2DI	uscreen2.s	365	2						mmo_DirtyTextureAndScreenModule
+0x11b8	uBackInvQ2DI	uscreen2.s	368	9					lSC6	
+0x11c1	lSC5	uscreen2.s	378	87						
+0x1218	mmo_ObjToClipSpace	uxform.s	44	7						mGL_CM_Initialize,mmo_DirtyXformAndObjToClipModule
+0x1218	umo_ObjToClipSpace	uxform.s	44	7						mGL_CM_Initialize,mmo_DirtyXformAndObjToClipModule
+0x121f	lXF1	uxform.s	52	45						
+0x124c	mmo_ObjToClipSpaceN2E	uxform.s	104	8						mmo_DirtyXformAndObjToClipModule
+0x124c	umo_ObjToClipSpaceN2E	uxform.s	104	8						mmo_DirtyXformAndObjToClipModule
+0x1254	lXF2	uxform.s	113	63						
+0x1293	mmo_ObjToClipSpaceN2EN	uxform.s	183	8						mmo_DirtyXformAndObjToClipModule
+0x1293	umo_ObjToClipSpaceN2EN	uxform.s	183	8						mmo_DirtyXformAndObjToClipModule
+0x129b	lXF3	uxform.s	192	99						
+0x12fe	mmo_ObjToEyeSpace	uxform.s	558	6						mmo_DirtyXformAndObjToClipModule
+0x12fe	umo_ObjToEyeSpace	uxform.s	558	6						mmo_DirtyXformAndObjToClipModule
+0x1304	lXF5	uxform.s	565	33						
+0x1325	mmo_ObjToEyeSpaceAndTwoUserTR	uxform.s	605	6						mmo_DirtyXformAndObjToClipModule
+0x1325	umo_ObjToEyeSpaceAndTwoUserTR	uxform.s	605	6						mmo_DirtyXformAndObjToClipModule
+0x132b	lXF12	uxform.s	612	49						
+0x135c	mmo_ObjToEyeSpaceAndSixUserTR	uxform.s	668	6						mmo_DirtyXformAndObjToClipModule
+0x135c	umo_ObjToEyeSpaceAndSixUserTR	uxform.s	668	6						mmo_DirtyXformAndObjToClipModule
+0x1362	lXF7	uxform.s	675	82						
+0x13b4	mmo_Histogram	histogram.s	46	75	286	AddHistogram				
+0x13b4	umo_Histogram	histogram.s	46	75	286	AddHistogram				
+0x13ff	mainloop_hist	histogram.s	142	24						
+0x1417	epilogue_hist	histogram.s	176	9						
+0x1420	uge_HistogramFill	histogram.s	195	30						
+0x143e	mmo_Minmax	minmax.s	62	52	298	AddMinMax				
+0x143e	umo_Minmax	minmax.s	62	52	298	AddMinMax				
+0x1472	mainloop_mm	minmax.s	129	27						
+0x148d	epilogue_mm	minmax.s	159	139					mmo_Minmax	
+0x1518	merge2_mm	minmax.s	318	54						
+0x154e	merge1_mm	minmax.s	381	49					epilogue_mm	
+0x157f	merge3_mm	minmax.s	438	46					epilogue_mm	
+0x15ad	merge4_mm	minmax.s	492	46					epilogue_mm	
+0x15db	uge_MinmaxFill	minmax.s	544	30						
+0x15f9	mgeb_CRAMBlockLoad	CRAMBlockLoad.s	50	26	127					
+0x15f9	ugeb_CRAMBlockLoad	CRAMBlockLoad.s	50	26	127					
+0x1613	mainloop_cbl	CRAMBlockLoad.s	103	9						
+0x161c	post_loop_cbl	CRAMBlockLoad.s	118	7						
+0x1623	epilogue_cbl	CRAMBlockLoad.s	148	16					mgeb_CRAMBlockLoad	
+0x1633	mmo_Clamp	clamp.s	43	100	254	AddClamp				
+0x1633	umo_Clamp	clamp.s	43	100	254	AddClamp				
+0x1697	mainloop_clamp	clamp.s	167	29						
+0x16b4	epilogue_clamp	clamp.s	199	51					mmo_Clamp	
+0x16e7	mgeb_ERAMBlockClear	ERAMBlockClear.s	43	36	136					
+0x16e7	ugeb_ERAMBlockClear	ERAMBlockClear.s	43	36	136					
+0x170b	mainloop_ebc	ERAMBlockClear.s	93	9						
+0x1714	epilogue_ebc	ERAMBlockClear.s	118	10					mgeb_ERAMBlockClear	
+0x171e	mmo_Expand	expand.s	69	66	256	AddExpand2RGBA				
+0x171e	umo_Expand	expand.s	69	66	256	AddExpand2RGBA				
+0x1760	expand_rgb	expand.s	163	8						
+0x1768	mainloop_exp_rgb	expand.s	174	29						
+0x1785	epilogue_exp_rgb	expand.s	206	30					expand_rgb	
+0x17a3	expand_la	expand.s	248	8					mmo_Expand	
+0x17ab	mainloop_exp_la	expand.s	259	29						
+0x17c8	epilogue_exp_la	expand.s	291	30					expand_la	
+0x17e6	expand_l	expand.s	333	9					mmo_Expand	
+0x17ef	mainloop_exp_l	expand.s	345	29						
+0x180c	epilogue_exp_l	expand.s	377	30					expand_l	
+0x182a	expand_ci	expand.s	418	20					mmo_Expand	
+0x183e	mainloop_exp_ci	expand.s	443	29						
+0x185b	epilogue_exp_ci	expand.s	475	30					expand_ci	
+0x1879	expand_ci2	expand.s	517	8					expand_ci	
+0x1881	mainloop_exp_ci2	expand.s	528	29						
+0x189e	epilogue_exp_ci2	expand.s	560	41					expand_ci2	
+0x18c7	expand_single	expand.s	616	24					mmo_Expand	
+0x18df	mainloop_exp_single	expand.s	650	29						
+0x18fc	epilogue_exp_single	expand.s	682	50					expand_single	
+0x192e	mmo_ShiftAdd	shiftadd.s	33	55	329	AddCopyFloat,AddShiftAdd,AddUnsignedIntShift				
+0x192e	umo_ShiftAdd	shiftadd.s	33	55	329	AddCopyFloat,AddShiftAdd,AddUnsignedIntShift				
+0x1965	shift_left	shiftadd.s	111	9						
+0x196e	mainloop_sa_ls	shiftadd.s	123	19						
+0x1981	epilogue_sa_ls	shiftadd.s	145	26					shift_left	
+0x199b	shift_right	shiftadd.s	175	9					mmo_ShiftAdd	
+0x19a4	mainloop_sa_rs	shiftadd.s	187	19						
+0x19b7	epilogue_sa_rs	shiftadd.s	209	26					shift_right	
+0x19d1	umo_ShiftAdd_RGB	shiftadd.s	247	55						
+0x1a08	shift_left_rgb	shiftadd.s	325	9						
+0x1a11	mainloop_sa_ls_rgb	shiftadd.s	337	21						
+0x1a26	epilogue_sa_ls_rgb	shiftadd.s	361	20					shift_left_rgb	
+0x1a3a	shift_right_rgb	shiftadd.s	390	9					umo_ShiftAdd_RGB	
+0x1a43	mainloop_sa_rs_rgb	shiftadd.s	402	21						
+0x1a58	epilogue_sa_rs_rgb	shiftadd.s	426	20					shift_right_rgb	
+0x1a6c	umo_ShiftAdd_Luminance	shiftadd.s	463	55						
+0x1aa3	shift_left_luminance	shiftadd.s	541	9						
+0x1aac	mainloop_sa_ls_luminance	shiftadd.s	553	21						
+0x1ac1	epilogue_sa_ls_luminance	shiftadd.s	577	20					shift_left_luminance	
+0x1ad5	shift_right_luminance	shiftadd.s	606	9					umo_ShiftAdd_Luminance	
+0x1ade	mainloop_sa_rs_luminance	shiftadd.s	618	21						
+0x1af3	epilogue_sa_rs_luminance	shiftadd.s	642	20					shift_right_luminance	
+0x1b07	mmo_Mask	mask.s	29	55	297	loadIndexPath				
+0x1b07	umo_Mask	mask.s	29	55	297	loadIndexPath				
+0x1b3e	mainloop_mask	mask.s	107	29						
+0x1b5b	epilogue_mask	mask.s	139	50					mmo_Mask	
+0x1b8d	mmo_LUT16	LUT.s	77	137	289	AddLuminanceLut				
+0x1b8d	umo_LUT16	LUT.s	77	137	289	AddLuminanceLut				
+0x1c16	mainloop_lut	LUT.s	246	83						
+0x1c69	postmainloop_lut	LUT.s	332	4						
+0x1c6d	epilogue_lut	LUT.s	339	168					mmo_LUT16	
+0x1d15	umo_LUT16RGBA_AlphaOnly	LUT.s	518	137						
+0x1d9e	mainloop_lut_rgba_alpha_only	LUT.s	687	35						
+0x1dc1	postmainloop_lut_rgba_alpha_only	LUT.s	725	4						
+0x1dc5	epilogue_lut_rgba_alpha_only	LUT.s	732	73					umo_LUT16RGBA_AlphaOnly	
+0x1e0e	umo_LUT16LA_AlphaOnly	LUT.s	817	137						
+0x1e97	mainloop_lut_la_alpha_only	LUT.s	986	35						
+0x1eba	postmainloop_lut_la_alpha_only	LUT.s	1024	4						
+0x1ebe	epilogue_lut_la_alpha_only	LUT.s	1031	73					umo_LUT16LA_AlphaOnly	
+0x1f07	mmo_ScaleBias	scalebias.s	67	112	328	AddF2ISignScaleBias,AddPostClrMtrxScaleBias,AddPostClrMtrxScaleBias1Cmpnt,AddScaleBias,AddScaleBias1Cmpnt,AddSignedBias				
+0x1f07	umo_ScaleBias	scalebias.s	67	112	328	AddF2ISignScaleBias,AddPostClrMtrxScaleBias,AddPostClrMtrxScaleBias1Cmpnt,AddScaleBias,AddScaleBias1Cmpnt,AddSignedBias				
+0x1f77	umo_DepthFinalCont	scalebias.s	198	11					umo_DepthFinal	
+0x1f82	mainloop_sb	scalebias.s	217	29						
+0x1f9f	epilogue_sb	scalebias.s	249	51					umo_DepthFinalCont	
+0x1fd2	umo_DepthFinal	scalebias.s	313	59						
+0x200d	mmo_IntToFloat	inttofloat.s	31	70	287	AddInt2Float				
+0x200d	umo_IntToFloat	inttofloat.s	31	70	287	AddInt2Float				
+0x2053	mainloop_i2f	inttofloat.s	127	29						
+0x2070	epilogue_i2f	inttofloat.s	159	51					mmo_IntToFloat	
+0x20a3	mmo_GeneralConvolve3x3_124	conv3x3.s	127	93	283					
+0x20a3	umo_GeneralConvolve3x3_124	conv3x3.s	127	93	283					
+0x2100	normal_path_conv3	conv3x3.s	246	74					mmo_GeneralConvolve3x3_124	mValidateTexenvMode,mgebi_TexEnv
+0x214a	mainloop_conv3	conv3x3.s	345	37						
+0x216f	epilogue_conv3	conv3x3.s	393	26					normal_path_conv3	
+0x2189	mmo_GeneralConvolve5x5_124	conv5x5.s	110	130	284					
+0x2189	umo_GeneralConvolve5x5_124	conv5x5.s	110	130	284					
+0x220b	normal_path_conv5	conv5x5.s	275	90					mmo_GeneralConvolve5x5_124	
+0x2265	mainloop_conv5	conv5x5.s	399	109						
+0x22d2	epilogue_conv5	conv5x5.s	550	91					normal_path_conv5	
+0x232d	mmo_GeneralConvolve7x7_124	conv7x7.s	116	143	285					
+0x232d	umo_GeneralConvolve7x7_124	conv7x7.s	116	143	285					
+0x23bc	normal_path_conv7	conv7x7.s	295	123					mmo_GeneralConvolve7x7_124	
+0x2437	mainloop_conv7	conv7x7.s	456	217						
+0x2510	epilogue_conv7	conv7x7.s	734	144					normal_path_conv7	
+0x25a0	umo_BitmapToFloat	bitmaptofloat.s	56	69						
+0x25e5	mainloop_b2f_lsb_first	bitmaptofloat.s	150	20						
+0x25f9	epilogue_b2f_lsb_first	bitmaptofloat.s	173	39					umo_BitmapToFloat	
+0x2620	b2f_msb_first	bitmaptofloat.s	219	13					umo_BitmapToFloat	
+0x262d	mainloop_b2f_msb_first	bitmaptofloat.s	240	21						
+0x2642	epilogue_b2f_msb_first	bitmaptofloat.s	264	39					b2f_msb_first	
+0x2669	umo_BitmapToInt	bitmaptoint.s	45	58						
+0x26a3	mainloop_b2i_lsb_first	bitmaptoint.s	126	35						
+0x26c6	epilogue_b2i_lsb_first	bitmaptoint.s	164	49					umo_BitmapToInt	
+0x26f7	b2i_msb_first	bitmaptoint.s	218	8					umo_BitmapToInt	
+0x26ff	mainloop_b2i_msb_first	bitmaptoint.s	232	35						
+0x2722	epilogue_b2i_msb_first	bitmaptoint.s	270	49					b2i_msb_first	
+0x2753	mmo_FloatToInt	floattoint.s	30	41	288	AddF2I				
+0x2753	umo_FloatToInt	floattoint.s	30	41	288	AddF2I				
+0x277c	mainloop_f2i	floattoint.s	94	29						
+0x2799	epilogue_f2i	floattoint.s	126	51					mmo_FloatToInt	
+0x27cc	MemRegInit	bootinit.s	9	9					HereWeGo	
+0x27d5	mgesi_PixDrawColorEntry	upixelSetup.s	51	16	212	CompGedReg,SetupGED_ColorStream,SetupGED_FFT,__glkonSendConvKernToHost,init_ged_regs				
+0x27d5	ugesi_PixDrawColorEntry	upixelSetup.s	51	16	212	CompGedReg,SetupGED_ColorStream,SetupGED_FFT,__glkonSendConvKernToHost,init_ged_regs				
+0x27e5	umo_Pixout32_8_16	upixout.s	60	30	308					
+0x2803	loop32_8_16	upixout.s	100	46						
+0x2831	uPO_2_4C	upixout.s	170	4					mmo_Pixout_2_4	
+0x2835	uPO_2_4C_loop	upixout.s	178	12						
+0x2841	uPO_2_4C_LastBlck	upixout.s	194	9					mmo_Pixout_2_4	
+0x284a	uPO_8_16C	upixout.s	209	4					mmo_Pixout_8_16	
+0x284e	uPO_8_16C_loop	upixout.s	216	40						
+0x2876	uPostLoop	upixout.s	259	13					uPO_8_16C_LastBlck	
+0x2883	uPO_8_16C_LastBlck	upixout.s	275	9					mmo_Pixout_8_16	
+0x288c	mmo_DrawTri	udrawtri.s	42	12						mGL_CM_Initialize,mgeb_PolygonSetup_Render
+0x288c	umo_DrawTri	udrawtri.s	42	12						mGL_CM_Initialize,mgeb_PolygonSetup_Render
+0x2898	uDTList	udrawtri.s	55	5					mmo_DrawTri	
+0x289d	lDI3	udrawtri.s	63	45						
+0x28ca	mmo_DrawQuad	udrawtri.s	115	12						mGL_CM_Initialize,mgeb_PolygonSetup_Render
+0x28ca	umo_DrawQuad	udrawtri.s	115	12						mGL_CM_Initialize,mgeb_PolygonSetup_Render
+0x28d6	uDQList	udrawtri.s	128	5					mmo_DrawQuad	
+0x28db	lDI4	udrawtri.s	136	46						
+0x2909	mmo_DrawTriPrim	udrawtri.s	189	5					mmo_DrawQuad,mmo_DrawTri	
+0x2909	umo_DrawTriPrim	udrawtri.s	189	5						
+0x290e	lDI1	udrawtri.s	197	124						
+0x298a	uColorMatrix	ucolormatrix.s	59	4					mmo_ColorMatrix	
+0x298e	clrmtrixloop	ucolormatrix.s	68	20						
+0x29a2	uSepConv3_124	usepconv3x3.s	68	7					mmo_SepConvolve3x3_124	
+0x29a9	RowConv3Loop	usepconv3x3.s	80	16						
+0x29b9	ColumnConv3Loop	usepconv3x3.s	108	13						
+0x29c6	uSepConv5_124	usepconv5x5.s	78	9					mmo_SepConvolve5x5_124	
+0x29cf	RowConv5Loop	usepconv5x5.s	91	29						
+0x29ec	ColumnConv5Loop	usepconv5x5.s	133	21						
+0x2a01	uFastSepConv5_124	usepconv5x5.s	188	47					mmo_FastSepConvolve5x5_124	
+0x2a30	FastRowConv5Loop	usepconv5x5.s	243	24						
+0x2a48	FastRowConv5Epilog	usepconv5x5.s	280	11						
+0x2a53	FastColumnConv5Loop	usepconv5x5.s	301	21						
+0x2a68	uSepConv7_124	usepconv7x7.s	82	11					mmo_SepConvolve7x7_124	
+0x2a73	RowConv7Loop	usepconv7x7.s	97	39						
+0x2a9a	ColumnConv7Loop	usepconv7x7.s	149	30						
+0x2ab8	mmo_DeformCoord	udeform.s	51	19						mmo_DirtyDeformModule
+0x2ab8	umo_DeformCoord	udeform.s	51	19						mmo_DirtyDeformModule
+0x2acb	loopDC	udeform.s	71	28						
+0x2ae7	mmo_DeformCoordTexture	udeform.s	107	26						mmo_DirtyDeformModule
+0x2ae7	umo_DeformCoordTexture	udeform.s	107	26						mmo_DirtyDeformModule
+0x2b01	loopDCT	udeform.s	134	49						
+0x2b32	mmo_DeformTexture	udeform.s	193	19						mmo_DirtyDeformModule
+0x2b32	umo_DeformTexture	udeform.s	193	19						mmo_DirtyDeformModule
+0x2b45	loopDT	udeform.s	213	28						
+0x2b61	mmo_DeformCoordNormal	udeform.s	252	24						mmo_DirtyDeformModule
+0x2b61	umo_DeformCoordNormal	udeform.s	252	24						mmo_DirtyDeformModule
+0x2b79	loopDCN	udeform.s	277	46						
+0x2ba7	mmo_DeformCoordNormalTexture	udeform.s	334	30						mmo_DirtyDeformModule
+0x2ba7	umo_DeformCoordNormalTexture	udeform.s	334	30						mmo_DirtyDeformModule
+0x2bc5	loopDCNT	udeform.s	365	67						
+0x2c08	mDeformation3_1Inverse	udeform.s	453	99					mmo_DeformCoordNormal,mmo_DeformCoordNormalTexture	
+0x2c08	uDeformation3_1Inverse	udeform.s	453	99						
+0x2c6b	mmo_UnpackVertexV3F	uunpack.s	44	13	379					mGL_EM_Initialize
+0x2c6b	umo_UnpackVertexV3F	uunpack.s	44	13	379					mGL_EM_Initialize
+0x2c78	V3Floop	uunpack.s	60	11						
+0x2c83	mmo_UnpackVertexV3F_C4UB	uunpack.s	78	17	380					mGL_EM_Initialize
+0x2c83	umo_UnpackVertexV3F_C4UB	uunpack.s	78	17	380					mGL_EM_Initialize
+0x2c94	V3F_C4UBloop	uunpack.s	97	25						
+0x2cad	umo_UnpackVertexV3F_N3S	uunpack.s	129	18						
+0x2cbf	V3F_N3Sloop	uunpack.s	150	52						
+0x2cf3	mmo_UnpackVertexV3F_T2F	uunpack.s	209	12	383					mGL_EM_Initialize
+0x2cf3	umo_UnpackVertexV3F_T2F	uunpack.s	209	12	383					mGL_EM_Initialize
+0x2cff	V3F_T2Floop	uunpack.s	223	19						
+0x2d12	mmo_UnpackVertexV3F_C4UB_T2F	uunpack.s	249	10	384					mGL_EM_Initialize
+0x2d12	umo_UnpackVertexV3F_C4UB_T2F	uunpack.s	249	10	384					mGL_EM_Initialize
+0x2d1c	V3F_C4UB_T2Floop	uunpack.s	261	38						
+0x2d42	umo_UnpackVertexV3F_N3S_T2F	uunpack.s	306	18						
+0x2d54	V3F_N3S_T2Floop	uunpack.s	327	58						
+0x2d8e	mmo_UnpackVertexV3F_T2S	uunpack.s	392	14	387					mGL_EM_Initialize
+0x2d8e	umo_UnpackVertexV3F_T2S	uunpack.s	392	14	387					mGL_EM_Initialize
+0x2d9c	V3F_T2Sloop	uunpack.s	408	25						
+0x2db5	mmo_UnpackVertexV3F_C4UB_T2S	uunpack.s	440	10	388					mGL_EM_Initialize
+0x2db5	umo_UnpackVertexV3F_C4UB_T2S	uunpack.s	440	10	388					mGL_EM_Initialize
+0x2dbf	V3F_C4UB_T2Sloop	uunpack.s	452	43						
+0x2dea	umo_UnpackVertexV3F_N3S_T2S	uunpack.s	502	18						
+0x2dfc	V3F_N3S_T2Sloop	uunpack.s	523	64						
+0x3000	mgeb_PixDrawColorSetup_FFT	fft.S	2191	15	451	SetupGE_FFT				
+0x3026	mmo_Transpose	fft.S	2050	43	450	SetupGE_FFT				
+0x3051	mgesi_PixRasterPosSetup_FFT	fft.S	1667	105	452	SetupRM_FFT				
+0x30d4	mmo_Complex_Sort_Out	fft.S	1489	55	449					
+0x3133	mmo_Complex_Out	fft.S	1385	30	448					
+0x315b	mmo_FFT_256	fft.S	1219	349	447	SetupGE_FFT				
+0x330f	mmo_FFT_128	fft.S	1155	293	446	SetupGE_FFT				
+0x3488	mmo_FFT_64	fft.S	1090	245	445					
+0x35c1	mmo_FFT_32	fft.S	1027	190	444	SetupGE_FFT				
+0x36c0	mmo_FFT_16	fft.S	941	139	443	SetupGE_FFT				
+0x375e	mmo_FFT_8	fft.S	858	62	442					
+0x37aa	mmo_FFT_4	fft.S	810	25	441					
+0x37cb	mmo_FFT_2	fft.S	764	11	440					
+0x37de	mgeb_InitFFTFactors	push_attrib.S	36	13	431	arm_load_ge_xform_attrib	HP_LOAD_GE_XFORM_ATTRIB			
+0x37de	mgeb_RestoreXformAttribs	push_attrib.S	36	13	431	arm_load_ge_xform_attrib	HP_LOAD_GE_XFORM_ATTRIB			
+0x37f9	mgeb_ClipmapXform	raster.S	1238	17	427	arm_bind_2d_clipmap_texture	HP_BIND_2D_CLIPMAP_TEXTURE			
+0x380b	mgesi_FlushRM	raster.S	1149	46	399	arm_finish,arm_flush_raster,reset_imps	HP_FINISH,HP_FLUSH_RASTER			
+0x384b	mgeb_SetCurrentRaster	raster.S	1093	39	366	arm_set_current_raster	HP_SET_CURRENT_RASTER			
+0x387d	mgebi_ErrQuery	raster.S	1052	17	339	arm_geterror	HP_GETERROR			
+0x3894	mgesi_Accum32	raster.S	970	38	434					
+0x38c0	mgesi_Accum	raster.S	901	34	337					
+0x38e5	mgesi_UserColor	raster.S	842	24	342	arm_blendcolor,color_pop	HP_BLENDCOLOR			
+0x38fd	mgeb_CI_Mode	raster.S	754	31	334	arm_buffer_config	HP_BUFFER_CONFIG			
+0x3923	mgeb_RGBA_Mode	raster.S	682	25	333	arm_buffer_config	HP_BUFFER_CONFIG			
+0x393e	mgeb_Disable_Normalize	raster.S	647	11	7	d_normalize				
+0x394e	mgeb_Enable_Normalize	raster.S	614	11	11	e_normalize				
+0x395e	mgesi_IMPbshRegisterWrite	raster.S	574	20	195	init_ged		table 31		
+0x3972	mgesi_BshRegisterWriteN	raster.S	485	31	102	arm_bind_2d_clipmap_texture,arm_bind_3d_mipmap_texture,arm_bind_3d_texture,arm_bind_bicubic_texture,arm_shadow_texture	HP_BIND_2D_CLIPMAP_TEXTURE,HP_BIND_3D_MIPMAP_TEXTURE,HP_BIND_3D_TEXTURE,HP_BIND_BICUBIC_TEXTURE,HP_SHADOW_TEXTURE			
+0x3991	mgesi_BshRegisterWrite	raster.S	452	12	194	init_ged		table 0		
+0x399e	mges_TBUS_1	raster.S	425	9	0	arm_context_activate,deactivate_arm,diag_tbus_1,diag_tbus_1_noid,init_simulator_hacks	HP_CONTEXT_ACTIVATE			
+0x39ab	mgesi_TBUS_1	raster.S	396	10	225	init_ged		table 15		
+0x39b8	mgesi_AlphaTest	raster.S	352	16	92	color_pop,d_alpha_test,e_alpha_test				
+0x39c8	mgesi_AlphaFunc	raster.S	307	18	91	arm_alphafunc,color_pop	HP_ALPHAFUNC			
+0x39da	mges_TbusRegWriteNoIncr	raster.S	282	9	227	tbus_regwritenoincr				
+0x39e7	mgesi_IMPtbusRegWrite	raster.S	242	22	108					
+0x39fd	mgesi_TbusRegWrite	raster.S	215	10	107	SetupReadbackTF,arm_bind_linear_texture,arm_bind_texture,arm_blendcolor,arm_buffer_config,arm_clear,arm_colormask,arm_validate_clip,color_init,color_pop,init_imp,init_multisample,init_simulator_hacks,masked_clear,masked_word_clear,resolve_banks,stencil_pop,tbus_regwrite,update_texbind_id,update_texload_id,word_clear,x_initregs	HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE,HP_BLENDCOLOR,HP_BUFFER_CONFIG,HP_CLEAR,HP_COLORMASK,HP_VALIDATE_CLIP			
+0x3a0a	mgebi_ShadeModel	raster.S	169	22	99	arm_shademodel,light_pop	HP_SHADEMODEL			
+0x3a25	mges_DiagDeactivate	raster.S	146	6	191	arm_ged_verif_dump,diag_ged_deactivate_context	HP_GED_VERIF_DUMP			
+0x3a32	mgebi_NullCommand	raster.S	119	13	176	PixEndRGBLine,PixelRestore,SetupGE_ColorLine,SetupGE_LuminanceLine,activate_setcurrentge,arm_context_mopup,diag_ged_nextge	HP_CONTEXT_MOPUP	reloc		
+0x3a45	mges_NullCommand	raster.S	98	6	193	init_ged		reloc,table 14		
+0x3a52	mgeb_DeathCommand	raster.S	83	1	404					
+0x3a5b	mgesi_PassThrough	raster.S	39	18	211	arm_passthrough	HP_PASSTHROUGH			
+0x3a6d	mgesi_LutUpload	colortable.S	1213	47	210	do_getcolortable				
+0x3aae	mmo_LUT_I2I_16	colortable.S	1071	113	292	AddIndexLut				
+0x3b81	mmo_LUT_I2C_16	colortable.S	958	101	291	AddIndexLut				
+0x3c18	mmo_LUT16_big	colortable.S	809	320	290					
+0x3ea8	mmo_TLutDownloadI	colortable.S	744	33	332	PixValidateTexColorTable				
+0x3edb	mmo_TLutDownloadLA	colortable.S	699	39	331	PixValidateTexColorTable				
+0x3f10	mmo_TLutDownloadRGBA	colortable.S	647	38	330	PixValidateTexColorTable				
+0x3f49	mTLutDownloadDone	colortable.S	628	6					mmo_TLutDownloadI,mmo_TLutDownloadLA,mmo_TLutDownloadRGBA	
+0x3f52	mgesi_TLutDownload	colortable.S	589	32	226	PixValidateTexColorTable				
+0x3f87	mgeb_PixMapOutputRGBA	colortable.S	520	43	161	do_pixelmap				
+0x3fd8	mgeb_PixMapOutputI	colortable.S	456	39	160					
+0x4022	mgeb_LutRamp1	colortable.S	379	41	156	PixEndColorTable				
+0x4074	mgeb_LutRamp3	colortable.S	302	192	157	PixEndColorTable				
+0x416c	mmo_LutoutI	colortable.S	239	13	296	U_uLutOutput				
+0x418e	mmo_LutoutLA	colortable.S	208	19	295	U_uLutOutput				
+0x41b5	mmo_LutoutRGBA	colortable.S	174	25	294	U_uLutOutput				
+0x41e0	mLutoutDone	colortable.S	151	8					mmo_LutoutI,mmo_LutoutLA,mmo_LutoutRGBA	
+0x41fb	mmo_Lutout	colortable.S	110	26	293	AddLutOutput				
+0x422e	mgeb_ColorTableSetup	colortable.S	80	13	128	SetupGE_ColorTable				
+0x424e	mgebi_TextureScaleBias	texture.S	790	34	429	init_ged		table 33		
+0x4278	mgesi_FillTMLoadFifo	texture.S	721	27	123	SetupSubtexload,activate_texture,arm_bind_detail_texture,arm_bind_linear_texture,arm_bind_texture,arm_free_arm_tex_cache,update_texbind_id,update_texload_id	HP_BIND_DETAIL_TEXTURE,HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE,HP_FREE_ARM_TEX_CACHE			
+0x4293	mgesi_RestoreTextureAddress	texture.S	644	35	430	activate_texture				
+0x42d3	mgebi_Bind2dMipmapTexture	texture.S	367	192	428	init_ged		table 32		
+0x43ae	mgeb_SkipNextTextureAddr	texture.S	301	9	122	arm_bind_linear_texture,arm_bind_texture	HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE			
+0x43bd	mgebi_UpdateTexturing	texture.S	170	49	101	arm_bind_linear_texture,arm_bind_texture	HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE			
+0x43f3	mgebi_Texture	texture.S	85	29	100	arm_active_texture,arm_bind_linear_texture,arm_bind_texture,arm_getconvolutionfilter,arm_getseparablefilter,arm_readpixels,d_texture_1d,d_texture_2d,d_texture_3d,e_texture_1d,e_texture_2d,e_texture_3d,videoReadPixels	HP_ACTIVE_TEXTURE,HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE,HP_GETCONVOLUTIONFILTER,HP_GETSEPARABLEFILTER,HP_READPIXELS			
+0x4414	mgesi_SubdivEntry	subdiv.S	82	7	426			reloc		
+0x4421	mges_SubdivTag	subdiv.S	59	6	425	arm_subdiv_patch	HP_SUBDIV_PATCH			
+0x442e	mgeb_Subdiv	subdiv.S	36	6	424	arm_subdiv_patch_parameter	HP_SUBDIV_PATCH_PARAMETER			
+0x443b	mgeb_EramMinmaxToCramMinmax	histogram.S	313	24	143	MinmaxRestore,init_per_ge_context				
+0x4472	mmo_CramMinmaxToEramMinmax	histogram.S	271	23	300	AddMinMax				
+0x449d	mgesi_HistogramUpload	histogram.S	175	65	201					
+0x4503	mgeb_EramIndirectFill	histogram.S	113	15	141	reset_histogram,reset_minmax				
+0x4530	mgeb_EramFill	histogram.S	77	10	140	AddConvolutionOutput,init_per_ge_context				
+0x4544	DoEramFill	histogram.S	38	11					mgeb_EramFill,mgeb_EramIndirectFill	
+0x4786	mgesi_GetDeformationsMask	deform.S	559	17	410	get_deformations_mask				
+0x479b	mgesi_GetDeformation	deform.S	447	74	409	arm_get_deformation	HP_GET_DEFORMATION			
+0x4806	mgeb_LoadIdentityDeformation	deform.S	344	23	408	init_ged		table 30		
+0x482e	mgeb_DeformationMap3_1	deform.S	129	119	407	init_ged		table 29		
+0x48d8	mmo_DirtyDeformModule	deform.S	50	22						mgeb_DeformationMap3_1,mmo_DirtyPrePathModule
+0x4905	mgesi_StopInstruments	pi.S	81	70	421	arm_read_instruments,arm_stop_instruments	HP_READ_INSTRUMENTS,HP_STOP_INSTRUMENTS			
+0x494f	mgesi_StartInstruments	pi.S	37	18	420	arm_read_instruments,arm_start_instruments	HP_READ_INSTRUMENTS,HP_START_INSTRUMENTS			
+0x4961	mgesi_PrintNum	debug.S	548	191	351	arm_gerollcall	HP_GEROLLCALL			
+0x4a8d	mmo_DebugGE	debug.S	217	4	281					
+0x4a9c	mgeb_DebugDrain	debug.S	148	6	350	arm_slop	HP_SLOP			
+0x4aa9	mPrintf	debug.S	294	270					MSPoint_Print_Scratch_Tables,mgesi_PipeSetup,mgesi_PrintNum	
+0x4c70	mgesi_XPixRmSetup	xload.S	554	72	116	XPixSetupRM,arm_x_pix_write	HP_X_PIX_WRITE			
+0x4cc0	mgeb_XLoadClip	xload.S	447	42	363	arm_x_loadclip_arm,init_ged	HP_X_LOADCLIP_ARM	table 53		
+0x4cf4	mgebi_XLoadGC	xload.S	307	72	362	init_ged		table 51		
+0x4d43	mgesi_XLoadScissor	xload.S	195	57	361	init_ged		table 54		
+0x4d7c	mgebi_XLoadPosition	xload.S	62	96	360	arm_x_loadpos,init_ged		table 52		
+0x4deb	mgeb_XSetupClip	xsetup.S	231	47	359	arm_slop	HP_SLOP			
+0x4e22	mgeb_XSetupColors	xsetup.S	199	12	358	arm_slop	HP_SLOP			
+0x4e30	mgebi_XSetupWindow	xsetup.S	40	101	357	arm_slop	HP_SLOP			
+0x4ead	mmo_XclipDrawLines	xclipdraw.S	327	386					mAbsX,mRelX	
+0x508b	mmo_XclipDrawRects	xclipdraw.S	170	129					mAbsX,mgesi_XRect,mgesi_XSpans	
+0x5130	mmo_XclipDrawPoints	xclipdraw.S	70	71					mAbsX,mRelX	
+0x5187	mgesi_XLineRel	xentry.S	476	7	250	arm_slop,init_ged	HP_SLOP	table 49		
+0x5196	mgesi_XLine	xentry.S	447	8	249	arm_slop,init_ged	HP_SLOP	table 48		
+0x51a6	mgesi_XSegmentRel	xentry.S	405	10	248	arm_slop	HP_SLOP			
+0x51bd	mgesi_XSegment	xentry.S	370	11	247	arm_slop,init_ged	HP_SLOP	table 47		
+0x51d4	mgesi_XSpans	xentry.S	297	43	246	arm_slop,init_ged	HP_SLOP	table 46		
+0x520c	mgesi_XBox	xentry.S	252	9	245	arm_slop,init_ged	HP_SLOP	table 45		
+0x5223	mgesi_XRect	xentry.S	163	49	244	arm_slop,init_ged	HP_SLOP	table 44		
+0x5265	mgesi_XBgPointRel	xentry.S	139	7	243					
+0x5274	mgesi_XBgPoint	xentry.S	112	8	242	init_ged		table 50		
+0x5284	mgesi_XPointRel	xentry.S	86	7	241	arm_slop,init_ged	HP_SLOP	table 43		
+0x5293	mgesi_XPoint	xentry.S	59	8	240	arm_slop,init_ged	HP_SLOP	table 42		
+0x52a3	mRelX	xentry.S	552	19					mgesi_XBgPointRel,mgesi_XLineRel,mgesi_XPointRel,mgesi_XSegmentRel	
+0x52c4	mAbsX	xentry.S	499	26					mgesi_XBgPoint,mgesi_XBox,mgesi_XLine,mgesi_XPoint,mgesi_XSegment	
+0x52e8	mgesi_VCbusWriteMultiple	video.S	67	24	252	arm_x_loadcmap,arm_x_loadcursor,arm_x_loadcursorcolor,arm_x_loadgamma	HP_X_LOADCMAP,HP_X_LOADCURSOR,HP_X_LOADCURSORCOLOR,HP_X_LOADGAMMA			
+0x5305	mgesi_VCbusWrite	video.S	35	11	251	arm_dispmode,arm_dplex_swap,arm_retrace_seqid,arm_swap_cntrl,arm_x_loadcmap,arm_x_loadcursor,arm_x_loadcursorcolor,arm_x_loadgamma,arm_x_loadxmap_config,arm_x_loadxmap_did,dgResolveXMapChannelFormat,init_simulator_hacks	HP_DISPMODE,HP_DPLEX_SWAP,HP_RETRACE_SEQID,HP_SWAP_CNTRL,HP_X_LOADCMAP,HP_X_LOADCURSOR,HP_X_LOADCURSORCOLOR,HP_X_LOADGAMMA,HP_X_LOADXMAP_CONFIG,HP_X_LOADXMAP_DID			
+0x5312	mmo_UnpackVertexV3F_C4UB_T2S_LGT	munpack.S	752	75	396					mGL_EM_Initialize
+0x5368	mmo_UnpackVertexV3F_T2S_LGT	munpack.S	720	53	395					mGL_EM_Initialize
+0x53a8	mmo_UnpackVertexV3F_C4UB_T2F_LGT	munpack.S	689	67	394					mGL_EM_Initialize
+0x53f6	mmo_UnpackVertexV3F_T2F_LGT	munpack.S	659	44	393					mGL_EM_Initialize
+0x542c	mmo_UnpackVertexV3F_C4UB_LGT	munpack.S	632	59	392					mGL_EM_Initialize
+0x5470	mmo_UnpackVertexV3F_LGT	munpack.S	605	36	391					mGL_EM_Initialize
+0x549e	mmo_UnpackVertexV3F_C4UB_N3S_T2S	munpack.S	573	96	390					mGL_EM_Initialize
+0x5504	mmo_UnpackVertexV3F_N3S_T2S	munpack.S	533	189	389					mGL_EM_Initialize
+0x55da	mmo_UnpackVertexV3F_C4UB_N3S_T2F	munpack.S	440	91	386					mGL_EM_Initialize
+0x563d	mmo_UnpackVertexV3F_N3S_T2F	munpack.S	407	159	385					mGL_EM_Initialize
+0x56ff	mmo_UnpackVertexV3F_C4UB_N3S	munpack.S	323	82	382					mGL_EM_Initialize
+0x5757	mmo_UnpackVertexV3F_N3S	munpack.S	291	141	381					mGL_EM_Initialize
+0x580a	mgeb_RestoreNormal	unpack.S	133	11	378	init_ged		table 63		
+0x581b	mgeb_RestoreColor	unpack.S	105	13	377	init_ged		table 62		
+0x582e	mgeb_DisableUnpack	unpack.S	80	10	120	init_ged		table 61		
+0x583e	mgeb_EnableUnpack	unpack.S	42	11	119	init_ged		table 60		
+0x5857	mgebi_TexEnvComps	texenv.S	238	17	110	arm_bind_linear_texture,arm_bind_texture,initTextureState,texture_pop	HP_BIND_LINEAR_TEXTURE,HP_BIND_TEXTURE			
+0x5879	mgebi_TexEnv	texenv.S	137	89	109	arm_texenvf,arm_texenvi,initTextureState	HP_TEXENVF,HP_TEXENVI			
+0x5942	mTexEnvDone	texenv.S	111	4					mgebi_TexEnv	
+0x594d	mValidateTexenvMode	texenv.S	54	43					mgebi_TexEnv,mgebi_TexEnvComps	
+0x59a2	mgebi_ReferencePlane	refplane.S	127	239	376	init_ged		table 16		
+0x5b15	mgebi_ReferencePlane_Disable	refplane.S	75	21	118	d_reference_plane				
+0x5b2f	mgebi_ReferencePlane_Enable	refplane.S	41	13	117	activate_private,e_reference_plane,resolve_viewport				
+0x5b4c	mRefPlane	refplane.S	464	73					mgebi_ReferencePlane,mgebi_ReferencePlane_Enable	
+0x5b96	mgeb_SetMSPointTables	point.S	1871	11	423	arm_samplepattern,init_multisample	HP_SAMPLEPATTERN			
+0x5bab	mgeb_ComputeMSPointTables	point.S	1572	77	422	initMSPointTablesGlobal				
+0x5c5a	MSPoint_Pack	point.S	1428	74					mgeb_ComputeMSPointTables	
+0x5ccc	MSPoint_Sort	point.S	1200	118					mgeb_ComputeMSPointTables	
+0x5d94	MSPoint_Init	point.S	1056	180					mgeb_ComputeMSPointTables	
+0x5e9e	MSPoint_Init_Samples	point.S	927	66					mgeb_ComputeMSPointTables	
+0x5fbe	MSPoint_Print_Scratch_Tables	point.S	858	120						
+0x6094	mgebi_PointSize_MS	point.S	589	95	98					
+0x612c	mgebi_PointSize_AlphaAA	point.S	396	51	97					
+0x6163	mgebi_PointSize_Aliased	point.S	177	81	177					
+0x61c6	mgebi_PointSize_Feedback	point.S	69	16	178					
+0x61e0	mgebi_PointSize_Select	point.S	37	16	179					
+0x61fa	mgeb_PolygonSetup_Feedback	polygon.S	115	10	162					
+0x6208	mgeb_PolygonSetup_Select	polygon.S	84	11	164					
+0x6216	mgeb_PolygonSetup_Render	polygon.S	37	28	163					
+0x6237	mPolymodeSetup	polygon.S	156	23					mgeb_PolygonSetup_Feedback,mgeb_PolygonSetup_Render,mgeb_PolygonSetup_Select	
+0x6257	mgeb_LineWidth_Aliased	line.S	1668	41	93					
+0x6289	mgeb_LineWidth_Feedback	line.S	1604	9	174					
+0x6298	mgeb_LineWidth_Select	line.S	1572	9	175					
+0x62a7	mgeb_LineStipple	line.S	1520	31	40	arm_linestipple,line_pop	HP_LINESTIPPLE			
+0x62dc	mgeb_LineWidth_MS	line.S	1424	28	95					
+0x6300	mgeb_InitAALineTables	line.S	1325	14	400	initAALineTablesGlobal				
+0x6319	mgeb_DownLoadAALineTable	line.S	1190	50	375	d_polygon_stipple,downLoadAALineTable				
+0x6379	mgeb_LineWidth_AlphaAA	line.S	1014	73	94	ResolveLine				
+0x63d4	mGenerateAALineTable8	line.S	854	57					mgeb_DownLoadAALineTable	
+0x6432	mGenerateAALineTable4	line.S	702	70					mgeb_DownLoadAALineTable	
+0x64af	mGenerateAALineTable	line.S	550	62					mgeb_DownLoadAALineTable,mgeb_InitAALineTables,mmo_DrawTriPrimOffset	
+0x652d	mDownLoadAALineTable8	line.S	435	56					mGenerateAALineTable8,mgeb_DownLoadAALineTable	
+0x6579	mDownLoadAALineTable4	line.S	328	76					mGenerateAALineTable4,mgeb_DownLoadAALineTable	
+0x65db	mDownLoadAALineTable	line.S	216	59					mGenerateAALineTable,mgeb_DownLoadAALineTable,mmo_DrawTriPrimOffset	
+0x6622	mgeb_ContextDestroy	ctx_load.S	590	90	129	arm_context_destroy	HP_CONTEXT_DESTROY			
+0x668a	mges_ContextLoadFifo	ctx_load.S	564	5	189	activate_gefifo				
+0x6697	mgeb_ContextLoadRegs	ctx_load.S	484	67	132	activate_geregs				
+0x66ed	mgeb_ContextLoadFlagRegs	ctx_load.S	457	10	133	arm_context_activate	HP_CONTEXT_ACTIVATE			
+0x66ff	mgeb_ContextLoadWram	ctx_load.S	437	6	134	arm_context_load	HP_CONTEXT_LOAD			
+0x670c	mgeb_ContextLoadEram	ctx_load.S	419	9	131	arm_context_init,arm_x_init,init_geBefAddrs,load_broadcast_geEram	HP_CONTEXT_INIT,HP_X_INIT			
+0x671e	mgeb_ContextLoadCram	ctx_load.S	387	9	130	arm_context_load	HP_CONTEXT_LOAD			
+0x6730	mges_ContextReloadFromBEF	ctx_load.S	297	40	188	reset_imps				
+0x6760	mges_ContextLoadBEF	ctx_load.S	208	41	187	arm_context_load,init_befshadow	HP_CONTEXT_LOAD			
+0x6795	mges_ContextLoadODMA	ctx_load.S	145	20	190	arm_context_load	HP_CONTEXT_LOAD			
+0x67a9	mLiUpdateMtrlState	ctx_load.S	670	27					mgeb_ContextLoadRegs	
+0x67d0	mges_ContextDeactFinish	ctx_deact.S	784	125	182	arm_context_deactivate	HP_CONTEXT_DEACTIVATE			
+0x6859	mges_ContextDeactStoreValue	ctx_deact.S	752	6	181	deactivate_arm,deactivate_ged_ge				
+0x6866	mges_ContextDeactSection	ctx_deact.S	699	20	184	deact_section				
+0x6886	mgeb_ContextDeactReconfigureFifo	ctx_deact.S	633	49	185	arm_context_deactivate,arm_context_mopup	HP_CONTEXT_DEACTIVATE,HP_CONTEXT_MOPUP			
+0x68ba	mges_ContextDeactGED	ctx_deact.S	585	21	183	arm_context_deactivate	HP_CONTEXT_DEACTIVATE			
+0x68da	mges_ContextDeactivate	ctx_deact.S	217	240	186	deactivate_ge				
+0x6a32	mgesi_FinishRdata	hostio.S	409	37	414	arm_get_deformation,arm_get_ge_texture_attrib,arm_get_ge_xform_attrib,arm_getclipplane,arm_getcurrent,arm_geterror,arm_getraster,arm_gettexgenfv,arm_getv,arm_pushattrib	HP_GETCLIPPLANE,HP_GETCURRENT,HP_GETERROR,HP_GETRASTER,HP_GETTEXGENFV,HP_GETV,HP_GET_DEFORMATION,HP_GET_GE_TEXTURE_ATTRIB,HP_GET_GE_XFORM_ATTRIB,HP_PUSHATTRIB			
+0x6a57	mgesi_StartRdata	hostio.S	346	34	413	arm_get_deformation,arm_get_ge_texture_attrib,arm_get_ge_xform_attrib,arm_getclipplane,arm_getcurrent,arm_geterror,arm_getraster,arm_gettexgenfv,arm_getv,arm_pushattrib	HP_GETCLIPPLANE,HP_GETCURRENT,HP_GETERROR,HP_GETRASTER,HP_GETTEXGENFV,HP_GETV,HP_GET_DEFORMATION,HP_GET_GE_TEXTURE_ATTRIB,HP_GET_GE_XFORM_ATTRIB,HP_PUSHATTRIB			
+0x6a79	mgesi_SlopReadWord	hostio.S	322	10	401	slop_readword				
+0x6a86	mgesi_LastVertex2ODMA	hostio.S	288	17	202	arm_slop	HP_SLOP			
+0x6a9e	mgesi_SR2ODMA	hostio.S	263	13	223	arm_slop	HP_SLOP			
+0x6ab0	mgesi_LoadEram	hostio.S	232	12	209					
+0x6ac2	mgeb_LoadEram	hostio.S	208	8	42	InitMSPointsGlobal,WriteEram,arm_texgen_pop,arm_x_storestipple	HP_TEXGEN_POP,HP_X_STORESTIPPLE			
+0x6ad4	mgesi_WramFifo2ODMA	hostio.S	162	23	239	mem_swapout_arm,mem_swapout_sarm				
+0x6af0	mgesi_Eram2ODMA	hostio.S	137	28	197	arm_getclipplane,arm_getpolygonstipple,arm_gettexenvfv,arm_gettexgenfv,arm_getv,arm_pushattrib,arm_slop,ge_texture_attrib_to_host,ge_xform_attrib_to_host,special_get	HP_GETCLIPPLANE,HP_GETPOLYGONSTIPPLE,HP_GETTEXENVFV,HP_GETTEXGENFV,HP_GETV,HP_PUSHATTRIB,HP_SLOP			
+0x6b13	mgesi_Cram2ODMA	hostio.S	115	25	196	arm_getv,arm_slop	HP_GETV,HP_SLOP			
+0x6b2f	mmo_ReverseComp4Order	mcomporder.S	65	62	280	AddCompOrder				
+0x6b9a	mmo_SumRGB2L	msum.S	78	65	263	AddSumRGB2L				
+0x6c0b	mmo_Expand32_2_4	mexpand.S	132	52	258					
+0x6c55	mmo_Expand32_1_4	mexpand.S	43	53	257					
+0x6c9f	mgeb_SwapInGL	m_pipecontrol.S	119	9	340					
+0x6cb3	mgeb_SwapOutGL	m_pipecontrol.S	97	9	341					
+0x6cc7	mmo_PixEndStream	m_pipecontrol.S	51	16	305					
+0x6cf0	mgeb_InitFogGlobal	fog.S	2821	208	355	InitFogGlobal				
+0x6e20	mgesi_GetFogFunc	fog.S	2742	23	356					
+0x6e4b	mgeb_FogFunc	fog.S	2647	45	114	arm_fogfunc,initFogState	HP_FOGFUNC			
+0x6ebf	mgeb_FogRestore	fog.S	2608	13	354	fogRestore				
+0x6eea	mgebi_FogOffsetEnableDisable	fog.S	2557	20	115	d_fog_offset,e_fog_offset				
+0x6f05	mgebi_FogDisable	fog.S	2505	18	113	d_fog				
+0x6f1e	mgeb_FogEnable	fog.S	2418	51	112	e_fog				
+0x6fa5	mgeb_Fogi	fog.S	2364	4	353	init_ged		table 2		
+0x6fb2	mgeb_Fogf	fog.S	2079	211	352	init_ged		table 1	mgeb_Fogi	
+0x7146	mLoadFineTable	fog.S	1799	11						mgeb_InitFogGlobal
+0x715c	mLoadOneBigTable	fog.S	1736	27					mLoadFogTable	
+0x7187	mStartFogDownload	fog.S	1660	41					mLoadFineTable,mLoadFogTable,mLoadOneBigTable	
+0x71c8	mDefineFineMode	fog.S	1222	129					mDefineCoarseMode	
+0x730b	mLinearApproxParamsGSS	fog.S	1138	17						mStartGSS
+0x7332	mLinearApproxErrorGSS	fog.S	1089	18						mLinearApproxParamsGSS
+0x7360	mGetInternalPointsGSS	fog.S	1065	7					mLinearApproxErrorGSS,mLinearApproxParamsGSS	
+0x7372	mSplineFog	fog.S	932	10					mSplineFogGSS	mLoadFogTable,mgeb_Fogf
+0x7390	mUpdateSplineIntervals	fog.S	856	34					mSplineFog,mSplineFogGSS	
+0x73ec	mInitSplineFog	fog.S	826	15						mgeb_Fogf
+0x7404	mSplineSlopeAndOffset	fog.S	777	28					mInitSplineFog,mUpdateSplineIntervals	
+0x7431	mExpFog	fog.S	686	49						mgeb_Fogf
+0x748a	mInitExpFog	fog.S	644	14						mgeb_Fogf
+0x74a8	mLinearFog	fog.S	580	9						mgeb_Fogf
+0x74be	mInitLinearFog	fog.S	556	15						mgeb_Fogf
+0x74e4	mOneBigTblSpecialEntry	fog.S	522	8						mgeb_InitFogGlobal
+0x74f3	mSendOneBigTblSpecialEntry	fog.S	484	12						mOneBigTblSpecialEntry
+0x74ff	mCoarseTblSpecialEntry	fog.S	448	23						mgeb_InitFogGlobal
+0x7534	mSplineFogGSS	fog.S	972	31						mCoarseTblSpecialEntry,mLoadFogTable
+0x7595	mSendCoarseTblSpecialEntry	fog.S	389	14						mCoarseTblSpecialEntry
+0x75ab	mFineTblSpecialEntry	fog.S	358	7						mLoadFineTable,mgeb_InitFogGlobal
+0x75ba	mSendFineTblSpecialEntry	fog.S	344	3						mFineTblSpecialEntry
+0x75c3	mFinishFogDownload	fog.S	316	7					mLoadFogTable,mSendFineTblSpecialEntry,mSendOneBigTblSpecialEntry	mgeb_InitFogGlobal
+0x75d2	mSendFog	fog.S	247	22						mStartFogDownload
+0x7604	mZclipToEye	fog.S	202	29					mCoarseTblSpecialEntry,mFineTblSpecialEntry,mGetInternalPointsGSS,mInitExpFog,mInitLinearFog,mOneBigTblSpecialEntry,mSendFog	mLoadFogTable
+0x7631	mDummy	fog.S	180	1						
+0x763a	mResolveFogTable	fog.S	2782	6					mMatrixMultCCW,mgeb_DepthRange,mgeb_LoadIdentity_Projection,mgeb_LoadMatrix_Projection,mgeb_PopMatrix_Projection,mgeb_PushMatrix_Projection,mgeb_Scale_Projection,mgeb_Translate_Projection	
+0x765c	mSetFogOffset	fog.S	1992	38					mResolveFogTable,mgeb_FogEnable,mgeb_Fogf	
+0x76a2	mLoadFogTable	fog.S	1835	90					mResolveFogTable,mgeb_FogEnable,mgeb_FogFunc,mgeb_FogRestore,mgeb_Fogf	
+0x7771	mDefineCoarseMode	fog.S	1490	85					mLoadFogTable	
+0x783f	mStartGSS	fog.S	1167	10					mDefineCoarseMode,mDefineFineMode	
+0x7855	mmo_DrawMSDistAttTablePntPrim	drawmstpnt.S	4198	138						mgebi_PointSize_MS
+0x79a3	DrawMSTFanPnt	drawmstpnt.S	4019	144					mmo_DrawMSDistAttTablePntPrim	
+0x7a54	DrawMSTablePnt	drawmstpnt.S	3079	268					mmo_DrawMSDistAttTablePntPrim	
+0x7c28	mmo_DrawMSTablePntPrim1	drawmstpnt.S	1382	384						mgebi_PointSize_MS
+0x7e6f	mmo_DrawMSTablePntPrim	drawmstpnt.S	662	450						mgebi_PointSize_MS
+0x810b	RestoreClipState	drawmstpnt.S	285	9					mmo_DrawMSDistAttTablePntPrim,mmo_DrawMSTablePntPrim,mmo_DrawMSTablePntPrim1	
+0x8123	SaveClipState	drawmstpnt.S	269	9					mmo_DrawMSDistAttTablePntPrim,mmo_DrawMSTablePntPrim,mmo_DrawMSTablePntPrim1	
+0x813b	mmo_DrawMSDistAttPntPrim	drawpnt.S	1474	283						mgebi_PointSize_MS
+0x82a7	mmo_DrawMSPntPrim	drawpnt.S	1264	154						mgebi_PointSize_MS
+0x8357	mmo_DrawDistAttPntPrim	drawpnt.S	362	214						mgebi_PointSize_Aliased
+0x8465	mmo_DrawPntPrim	drawpnt.S	199	79						mGL_CM_Initialize,mgebi_PointSize_Aliased
+0x84be	mmo_DrawAAPntPrim	drawpnt.S	768	219						mgebi_PointSize_AlphaAA
+0x8669	mmo_DirtySpriteModule	sprite.S	109	6						mmo_DirtyPrePathModule
+0x8676	mSpriteRotateMatrix	sprite.S	466	54					mSpriteAxial,mSpriteObject	
+0x86d3	mSpriteObject	sprite.S	235	170	372				mSpriteEye	
+0x87f7	mSpriteEye	sprite.S	365	1	373					
+0x8800	mSpriteAxial	sprite.S	167	86	371	initSpriteState				
+0x8894	mSpriteRotateV0OntoV1	sprite.S	390	59					mSpriteAxial,mSpriteObject	
+0x88e9	mMatrixMultCCWNoFetch	sprite.S	605	63					mSpriteRotateMatrix,mSpriteRotateV0OntoV1	
+0x892b	mDrawLinPrim	drawlin.S	165	136					mmo_DrawLinPrim	
+0x89bc	mDrawLinList	drawlin.S	318	105					mmo_DrawLinPrim	
+0x8a2d	mmo_DrawMSLinPrim	drawlin.S	482	211						mgeb_LineWidth_MS
+0x8b08	mmo_DrawLinStipplePrim	drawlin.S	806	516						mgeb_LineWidth_Aliased,mgeb_LineWidth_AlphaAA,mgeb_LineWidth_MS
+0x8db0	mmo_DrawLinPrim	drawlin.S	111	14						mGL_CM_Initialize,mgeb_LineWidth_Aliased,mgeb_LineWidth_AlphaAA
+0x8dc0	mmo_DrawTriPrimOffset	drawtri.S	127	224						mgeb_PolygonSetup_Render
+0x903c	AA_Response_Max	aa.S	337	2						
+0x9045	AA_Response_Step	aa.S	264	11					mGenerateAALineTable,mGenerateAALineTable4,mGenerateAALineTable8,mmo_DrawAAPntPrim	
+0x9059	AA_Response	aa.S	133	65					mGenerateAALineTable,mGenerateAALineTable4,mGenerateAALineTable8,mmo_DrawAAPntPrim	
+0x90a3	mgesi_ClearVertex	clear.S	658	31	349	masked_clear				
+0x90c4	mgesi_ClearAccumWord32	clear.S	627	26	432	accum_clear32				
+0x90ea	mgesi_ClearAccumWord	clear.S	551	14	348	accum_clear				
+0x90f8	mgesi_ClearAccum32	clear.S	487	35	433	accum_clear32				
+0x911b	mgesi_ClearAccum	clear.S	424	29	347	accum_clear				
+0x9138	mgesi_ClearDepth32	clear.S	363	29	345	arm_cleardepth,depth_pop	HP_CLEARDEPTH			
+0x9156	mgesi_OverlayClearIndex	clear.S	275	36	344	overlay_clear				
+0x918f	mgesi_OverlayClearColor	clear.S	210	26	343	overlay_clear				
+0x91a9	mgesi_ClearIndex	clear.S	166	13	346	arm_clear	HP_CLEAR			
+0x91b6	mgesi_ClearLA16	clear.S	97	24	402	arm_clear	HP_CLEAR			
+0x91ce	mgesi_ClearColor	clear.S	43	21	336	arm_clear	HP_CLEAR			
+0x91e3	mmo_ExtractL12A4	mextract.S	71	143	282	AddExtract				
+0x9296	mmo_DrawTriPrimPhong	phong.S	85	523						
+0x952c	normalize_and_light	phong.S	727	35					mmo_DrawTriPrimPhong	
+0x9562	mgesi_GetSpecial	get.S	180	54	397	arm_pushattrib,special_get	HP_PUSHATTRIB			
+0x959a	mgesi_GetRaster	get.S	99	51	200	arm_copyconvisoverlapped,arm_getraster,arm_pushattrib	HP_COPYCONVISOVERLAPPED,HP_GETRASTER,HP_PUSHATTRIB			
+0x95cd	mgesi_GetCurrent	get.S	39	24	222	getcurrent				
+0x95e5	mmo_SepConvolve7x7_124	msepconv.S	1190	111	317					
+0x9654	mmo_FastSepConvolve5x5_124	msepconv.S	769	88	316	AddFastSep5Convolution				
+0x96ac	mmo_SepConvolve5x5_124	msepconv.S	424	99	315					
+0x9710	mmo_SepConvolve3x3_124	msepconv.S	107	86	314					
+0x9767	mmo_ColorMatrix	mcolormatrix.S	55	43	253	AddColorMatrix				
+0x9793	mmo_DecompressZ16	mdecompress.S	68	106	255	AddDecompressZ				
+0x9805	mmo_Short_Complex_To_16	mshortcircuit.S	1734	33	437					
+0x9833	mmo_Short_Complex_To_8	mshortcircuit.S	1618	40	436					
+0x9868	mmo_shortBGRApass	mshortcircuit.S	1269	31	327					
+0x988b	mmo_short16toRGB5A1	mshortcircuit.S	1177	32	326					
+0x98b0	mmo_short8toRGB5A1	mshortcircuit.S	1081	32	325					
+0x98d5	mmo_shortLA16toL12A4	mshortcircuit.S	984	32	324					
+0x98fa	mmo_shortLA8toL12A4	mshortcircuit.S	409	31	323					
+0x991e	mmo_short16to8	mshortcircuit.S	891	32	322					
+0x9943	mmo_short16to4	mshortcircuit.S	798	32	321					
+0x9968	mmo_short8to4	mshortcircuit.S	705	32	320					
+0x998d	mmo_short8to16	mshortcircuit.S	318	31	319					
+0x99b0	mmo_shortpass8W	mshortcircuit.S	172	48	318					
+0x99f5	mMerge8_16C_LastBlk	mshortcircuit.S	1491	22					mMerge8_16C,mmo_short16to4,mmo_short16to8,mmo_short16toRGB5A1,mmo_short8to4,mmo_short8toRGB5A1,mmo_shortBGRApass,mmo_shortLA16toL12A4	
+0x9a10	mMerge8_16C	mshortcircuit.S	1352	39					mmo_short16to4,mmo_short16to8,mmo_short16toRGB5A1,mmo_short8to4,mmo_short8toRGB5A1,mmo_shortBGRApass,mmo_shortLA16toL12A4	
+0x9a3d	mMerge4_8C_LastBlk	mshortcircuit.S	616	21					mMerge4_8C,mmo_short8to16,mmo_shortLA8toL12A4	
+0x9a57	mMerge4_8C	mshortcircuit.S	494	38					mmo_short8to16,mmo_shortLA8toL12A4	
+0x9a83	mgesi_XPolygonStippleDownload	mpixout.S	3010	9	216	arm_x_loadstipple	HP_X_LOADSTIPPLE			
+0x9a98	mgeb_XPolygonStippleRotate	mpixout.S	2955	40	165	arm_x_rotatestipple	HP_X_ROTATESTIPPLE			
+0x9ae9	mod	mpixout.S	2905	12					mgeb_XPolygonStippleRotate	
+0x9b4a	mgesi_TransparentBitmap	mpixout.S	2838	48	111	arm_bitmap_dlist	HP_BITMAP_DLIST			
+0x9b8f	mmo_X_DrawBitmapOpaque	mpixout.S	2561	125	370					
+0x9c14	mmo_X_pixout_4Comp	mpixout.S	2459	59	369					
+0x9c54	mmo_X_pixout_4	mpixout.S	2359	122	368					
+0x9cd5	mmo_X_pixout_8_16	mpixout.S	2256	122	367					
+0x9d56	mgesi_PolygonStippleDownload	mpixout.S	2212	9	215	PolygonStippleGLRotate,downLoadPolygonStipple				
+0x9d6b	mDoPolygonStippleDownload	mpixout.S	2160	39					mgesi_PolygonStippleDownload,mgesi_XPolygonStippleDownload,mmo_DrawTriPrimOffset	
+0x9dae	mDoPolygonStippleDownloadInner	mpixout.S	2112	26					mDoPolygonStippleDownload	
+0x9ddc	mgeb_PolygonStippleRotate	mpixout.S	2085	13	65	PolygonStippleGLRotate,arm_getpolygonstipple	HP_GETPOLYGONSTIPPLE			
+0x9df3	mDoPolygonStippleRotate	mpixout.S	1988	80					mgeb_PolygonStippleRotate,mgeb_XPolygonStippleRotate	
+0x9eb1	mmo_PolygonStippleOut	mpixout.S	1940	23	313	AddPolygonStippleOutput				
+0x9eeb	mmo_loadConvRGB	mpixout.S	1899	16	278	InitPixGEState				
+0x9f19	mmo_loadConvRGBA	mpixout.S	1863	18	279	InitPixGEState				
+0x9f49	mmo_loadConvI	mpixout.S	1829	15	275	InitPixGEState				
+0x9f79	mmo_loadConvLA	mpixout.S	1794	16	277	InitPixGEState				
+0x9fa9	mmo_loadConvL	mpixout.S	1760	14	276	InitPixGEState				
+0x9fd7	mmo_loadConvA	mpixout.S	1726	13	274	InitPixGEState				
+0xa002	mmo_ConvolveOut	mpixout.S	1678	11	266	AddConvolutionOutput				
+0xa018	mmo_unloadConvRGB	mpixout.S	1645	18	272	InitPixGEState				
+0xa049	mmo_unloadConvRGBA	mpixout.S	1612	19	273	InitPixGEState				
+0xa07c	mmo_unloadConvI	mpixout.S	1578	16	269	InitPixGEState				
+0xa0a9	mmo_unloadConvLA	mpixout.S	1539	17	271	InitPixGEState				
+0xa0d8	mmo_unloadConvL	mpixout.S	1505	16	270	InitPixGEState				
+0xa105	mmo_unloadConvA	mpixout.S	1467	16	268	InitPixGEState				
+0xa132	mmo_ConvEramToWram	mpixout.S	1412	19	265	AddCopyEramToWram				
+0xa154	mmo_ArbClamp	mpixout.S	1332	90	264	AddArbClamp				
+0xa1c2	mmo_PixoutMerge2_4C	mpixout.S	1128	68	307					
+0xa214	mmo_PixoutCI_4_8	mpixout.S	1034	77	306					
+0xa276	mmo_Pixout_32NC	mpixout.S	859	92	262					
+0xa2d5	mmo_Pixout_32	mpixout.S	687	102	261					
+0xa33f	mmo_Pixout_RGB_in_RGBANC	mpixout.S	595	57	260					
+0xa395	mmo_Pixout_RGB_in_RGBA	mpixout.S	507	60	259					
+0xa3e8	mmo_Pixout_2_4	mpixout.S	404	27	311					
+0xa407	mmo_Pixout_2_4NC	mpixout.S	308	50	312					
+0xa44e	mmo_Pixout_8_16NC	mpixout.S	90	85	310					
+0xa4b5	mmo_Pixout_8_16	mpixout.S	228	27	309					
+0xa4d4	mLASTGE	mpixout.S	2711	69					mmo_Pixout_2_4,mmo_Pixout_2_4NC,mmo_Pixout_8_16,mmo_Pixout_8_16NC,mmo_Short_Complex_To_16,mmo_Short_Complex_To_8,mmo_short16to4,mmo_short16to8,mmo_short16toRGB5A1,mmo_short8to16,mmo_short8to4,mmo_short8toRGB5A1,mmo_shortBGRApass,mmo_shortLA16toL12A4,mmo_shortLA8toL12A4,mmo_shortpass8W	
+0xa532	mmo_I2F_Scale_Skip	mpixelSetup.S	2556	38	439	AddI2FScaleRealFifo				
+0xa570	mmo_Shift_Skip	mpixelSetup.S	2433	35	438	AddShiftRealFifo				
+0xa5ac	mgeb_EramToEram	mpixelSetup.S	2107	9	142	mem_copydown_ge				
+0xa5c0	mgeb_EramToCram	mpixelSetup.S	2080	9	411	CopyEramToCram				
+0xa5d4	mgeb_CramToEram	mpixelSetup.S	2054	9	412	CopyCramToEram				
+0xa5e8	mgeb_LoadCram	mpixelSetup.S	2032	8	41	SetupGE_FFT,WriteCram,XWriteCram,arm_slop	HP_SLOP			
+0xa5fa	mmo_PixStreamBrdcastCore0ANextGE	mpixelSetup.S	1999	11	302	loadColorTablePath,loadConvolutionPath,loadPolygonStipplePath				
+0xa60b	mmo_PixStreamNextGE	mpixelSetup.S	1980	6	304	SetupGE_FFT,loadBitmapPath,loadColorPath,loadConvolutionReadPath,loadDepthPath,loadIndexPath,loadLuminancePath,loadShortCircuitPath,loadStencilPath				
+0xa614	mmo_PixStreamNextGE_BEFWAR	mpixelSetup.S	1915	22	303	SetupGE_FFT,loadBitmapPath,loadColorPath,loadConvolutionReadPath,loadDepthPath,loadIndexPath,loadLuminancePath,loadShortCircuitPath,loadStencilPath				
+0xa62a	mmo_SetupHip	mpixelSetup.S	1680	98	299	AddHipSetter				
+0xa6ad	mmo_PixLineNextGE	mpixelSetup.S	1608	15	301	loadColorPath,loadLuminancePath			FastRowConv5Epilog	
+0xa6be	mgesi_PixConv5GVEntry	mpixelSetup.S	1513	23	105					
+0xa6db	mgeb_PixEndPolygonStipple	mpixelSetup.S	1464	8	60	PixEndConvolve,PixEndPolygonStipple				
+0xa6e8	mgeb_PixEndRGBStream	mpixelSetup.S	1419	23	61	BitmapEndStream,CommonPixEnd,PixEndColorTable,PixEndReadConvolve,PixEndTexColorTable,PixEnd_FFT,arm_x_pix_copy,arm_x_pix_finish,arm_x_pix_read	HP_X_PIX_COPY,HP_X_PIX_FINISH,HP_X_PIX_READ			
+0xa6ff	mgebi_PixEndTransparentBitmap	mpixelSetup.S	1391	11	96	arm_bitmap_dlist	HP_BITMAP_DLIST			
+0xa715	mgesi_FlushPGPCache	mpixelSetup.S	1376	5	398	BitmapEndStream,CommonPixEnd,PixEndConvolve,PixEndReadConvolve,PixEnd_FFT				
+0xa71e	DoFlushPGPCache	mpixelSetup.S	1328	34					mgebi_PixEndTransparentBitmap,mgesi_FlushPGPCache	
+0xa747	mgeb_TransparentBitmapSetup	mpixelSetup.S	1306	14	88	arm_bitmap_dlist	HP_BITMAP_DLIST			
+0xa75f	mgeb_PixPolygonStippleSetup	mpixelSetup.S	1277	14	62	SetupGE_PolygonStipple				
+0xa77f	mgebi_PixCurGEIDSetup	mpixelSetup.S	1226	22	121	PixelRestore,SendPixelsToPipe,StartRbus,XPixelRestore,arm_x_pix_write	HP_X_PIX_WRITE			
+0xa79b	mgeb_PixLastGECounterSetup	mpixelSetup.S	1197	9	403	PixelRestore,SetupGE_FFT				
+0xa7aa	mgeb_PixDrawColorSetup	mpixelSetup.S	1151	16	59	SetupGE_IndexStream,SetupGE_PerRect,X_PixSetupGE				
+0xa7cf	mgeb_BitmapApplyMove	mpixelSetup.S	1108	14	2	BitmapEndStream,arm_bitmap	HP_BITMAP			
+0xa7e8	mgeb_BitmapApplyOrig	mpixelSetup.S	1076	11	1	SetupGE_FFT,do_bitmap				
+0xa7fe	mgeb_FlipYConvKern	mpixelSetup.S	992	61	149	__glkonFixConvKernDirection				
+0xa864	mgeb_FlipXConvKern	mpixelSetup.S	906	53	148	__glkonFixConvKernDirection				
+0xa8bb	mgeb_StrideEramToCram	mpixelSetup.S	840	44	172					
+0xa8f7	mgesi_PixQueryCopyOverlap	mpixelSetup.S	667	93	213	QueryOverlap				
+0xa990	mgesi_PixRasterPosSetup	mpixelSetup.S	143	315	106	PixelRestore,SetupPGTG,arm_bitmap_dlist,do_bitmap	HP_BITMAP_DLIST			
+0xab59	mmo_CopyFifoLine	mpixelSetup.S	2246	50	267	AddCopyFifoLine				
+0xab9d	mgesi_PipeSetup	ge.S	1023	224	374	arm_pipe_setup,init_simulator_hacks	HP_PIPE_SETUP			
+0xad1c	mgeb_XContextInitialize	ge.S	114	11	364	arm_slop,arm_x_init	HP_SLOP,HP_X_INIT			
+0xad39	mgeb_GLContextInitialize	ge.S	90	9	365	context_init				
+0xad66	mgeb_GlobalInitialize	ge.S	54	19	152	init_ge				
+0xad90	mDebugInitialize	ge.S	985	16						
+0xadaf	mX_CM_Initialize	ge.S	279	52					mgeb_XContextInitialize	
+0xade8	mX_REGS_Initialize	ge.S	132	25					mgeb_XContextInitialize	
+0xae09	mGL_EX_Initialize	ge.S	941	715					mgeb_GLContextInitialize	
+0xb0f4	mGL_EM_Initialize	ge.S	496	178					mgeb_GlobalInitialize	
+0xb1ac	mGL_CM_Initialize	ge.S	332	165					mgeb_GLContextInitialize	
+0xb25a	mGL_REGS_Initialize	ge.S	200	26					mgeb_GLContextInitialize,mgeb_GlobalInitialize	
+0xb27b	mgeb_Disable_EnablePolyOffsetExt	glExt.S	118	32	6	d_polygonoffset,d_polygonoffsetline,d_polygonoffsetpoint,e_polygonoffset,e_polygonoffsetline,e_polygonoffsetpoint,polygon_pop				
+0xb2ab	mgeb_PolygonOffset	glExt.S	93	13	435	arm_polygonoffset	HP_POLYGONOFFSET			
+0xb2c3	mgeb_PolygonOffsetExt	glExt.S	64	9	64	arm_polygonoffsetext	HP_POLYGONOFFSETEXT			
+0xb2d2	mgeb_RasterPos	entry.S	1044	42	169			reloc		
+0xb2fe	mgesi_Points	entry.S	1019	20	214			reloc		
+0xb312	mgesi_LineStripRestoreV0	entry.S	990	24	206			reloc		
+0xb32a	mgesi_LineStripCopyAndIgnoreV0	entry.S	965	24	204			reloc		
+0xb342	mgesi_LineStripCopyV0	entry.S	939	24	205			reloc		
+0xb35a	mgesi_LineStripSaveAndIgnoreV0	entry.S	914	24	207			reloc		
+0xb372	mgesi_LineStripSaveV0	entry.S	888	24	208			reloc		
+0xb38a	mgesi_LineStrip	entry.S	865	20	203			reloc		
+0xb39e	mgesi_TfanPolyRestoreEnd	entry.S	820	36	231			reloc		
+0xb3cf	mgesi_TfanPolyEnd	entry.S	778	33	229			reloc		
+0xb3fc	mgesi_TfanPolyRestoreSave	entry.S	728	45	232			reloc		
+0xb430	mgesi_TfanPolyRestoreEdge	entry.S	635	72	338			reloc		
+0xb48b	mgesi_TfanPolyRestore	entry.S	581	39	230			reloc		
+0xb4bd	mgesi_TfanPolySave	entry.S	526	45	233			reloc		
+0xb4f1	mgesi_TfanPoly	entry.S	476	36	228			reloc		
+0xb51f	mgeb_SetTfanPolyMode	entry.S	445	9	171			reloc		
+0xb531	mgesi_Quads	entry.S	419	20	221			reloc		
+0xb545	mgesi_QuadStripRestoreSave	entry.S	387	27	219			reloc		
+0xb560	mgesi_QuadStripRestore	entry.S	358	27	218			reloc		
+0xb57b	mgesi_QuadStripSave	entry.S	330	27	220			reloc		
+0xb596	mgesi_QuadStrip	entry.S	304	24	217			reloc		
+0xb5ae	mgesi_Triangles	entry.S	281	24	238			reloc		
+0xb5c6	mgesi_TriangleStripRestoreSaveWithSwapOdd	entry.S	254	24	417			reloc		
+0xb5de	mgesi_TriangleStripRestoreWithSwapOdd	entry.S	230	24	416			reloc		
+0xb5f6	mgesi_TriangleStripSaveWithSwapOdd	entry.S	207	24	415			reloc		
+0xb60e	mgesi_TriangleStripWithSwapOdd	entry.S	184	25	418			reloc		
+0xb627	mgesi_TriangleStripRestoreSave	entry.S	158	31	236			reloc		
+0xb64d	mgesi_TriangleStripRestore	entry.S	131	31	235			reloc		
+0xb673	mgesi_TriangleStripSave	entry.S	105	31	237			reloc		
+0xb699	mgesi_TriangleStrip	entry.S	81	28	234			reloc		
+0xb6bc	mgesi_FeedbackPixel	feedback.S	737	65	419	PixelRestore,SetupRM,arm_bitmap_dlist,do_bitmap	HP_BITMAP_DLIST			
+0xb720	mgeb_EndFeedbackMode	feedback.S	131	9	138	arm_rendermode	HP_RENDERMODE			
+0xb72f	mgeb_BgnFeedbackMode	feedback.S	59	32	125	arm_rendermode	HP_RENDERMODE			
+0xb76e	mmo_FeedbackTriangle	feedback.S	166	80						mgeb_PolygonSetup_Feedback
+0xb80f	mmo_FeedbackPoint	feedback.S	479	72						mgebi_PointSize_Feedback
+0xb89a	mmo_FeedbackLine	feedback.S	320	85						mgeb_LineWidth_Feedback
+0xb93f	mFeedbackVertex	feedback.S	612	85					mmo_FeedbackLine,mmo_FeedbackPoint,mmo_FeedbackTriangle	
+0xb99d	mgeb_PopMatrix_Color	matrixfunc.S	1692	50	66	arm_popmatrix				
+0xb9ed	mgeb_PopMatrix_Texture	matrixfunc.S	1622	47	69	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xba3a	mgeb_PopMatrix_Projection	matrixfunc.S	1553	47	68	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xba88	mgeb_PopMatrix_Modelview	matrixfunc.S	1488	46	67	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 8		
+0xbacd	mgeb_PushMatrix_Color	matrixfunc.S	1418	47	70	arm_pushmatrix				
+0xbb0a	mgeb_PushMatrix_Texture	matrixfunc.S	1355	45	73	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbb45	mgeb_PushMatrix_Projection	matrixfunc.S	1291	46	72	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbb81	mgeb_PushMatrix_Modelview	matrixfunc.S	1226	44	71	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 9		
+0xbbb5	mgeb_Ortho_Color	matrixfunc.S	1197	10	159	arm_ortho				
+0xbbc3	mgeb_Ortho_Texture	matrixfunc.S	1171	9	58	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbbd1	mgeb_Ortho_Projection	matrixfunc.S	1149	7	57	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbbe0	mgeb_Ortho_Modelview	matrixfunc.S	1121	8	56	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 7		
+0xbbf0	mgeb_Frustum_Color	matrixfunc.S	1092	10	150	arm_frustum				
+0xbbfe	mgeb_Frustum_Texture	matrixfunc.S	1066	9	17	arm_matrixmode,init_ged_ucode,xform_restore	HP_MATRIXMODE			
+0xbc0c	mgeb_Frustum_Projection	matrixfunc.S	1044	7	16	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbc1b	mgeb_Frustum_Modelview	matrixfunc.S	1016	8	151	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 5		
+0xbc2b	mgeb_Translate_Color	matrixfunc.S	966	30	173	arm_translated,arm_translatef				
+0xbc4b	mgeb_Translate_Texture	matrixfunc.S	920	29	87	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbc6a	mgeb_Translate_Projection	matrixfunc.S	872	28	86	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbc89	mgeb_Translate_Modelview	matrixfunc.S	823	27	85	init_ged,xform_init		table 12		
+0xbca7	mgeb_Scale_Color	matrixfunc.S	775	32	170	arm_scaled,arm_scalef				
+0xbcc8	mgeb_Scale_Texture	matrixfunc.S	743	30	80	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbce6	mgeb_Scale_Projection	matrixfunc.S	695	29	79	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbd05	mgeb_Scale_Modelview	matrixfunc.S	651	28	78	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 11		
+0xbd23	mgeb_Rotate_Color	matrixfunc.S	622	10	74	arm_rotated,arm_rotatef				
+0xbd31	mgeb_Rotate_Texture	matrixfunc.S	596	9	77	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbd3f	mgeb_Rotate_Projection	matrixfunc.S	574	7	76	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbd4e	mgeb_Rotate_Modelview	matrixfunc.S	546	8	75	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 10		
+0xbd5e	mgeb_MultMatrix_Color	matrixfunc.S	515	11	52	arm_multmatrixd,arm_multmatrixf				
+0xbd6c	mgeb_MultMatrix_Texture	matrixfunc.S	494	10	55	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbd7a	mgeb_MultMatrix_Projection	matrixfunc.S	465	8	54	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbd89	mgeb_MultMatrix_Modelview	matrixfunc.S	436	9	53	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 6		
+0xbd99	mgeb_LoadMatrix_Color	matrixfunc.S	392	28	47	arm_loadmatrixd,arm_loadmatrixf				
+0xbdb5	mgeb_LoadMatrix_Texture	matrixfunc.S	358	27	50	arm_matrixmode,xform_restore	HP_MATRIXMODE			
+0xbdd0	mgeb_LoadMatrix_Projection	matrixfunc.S	315	27	49	arm_getpolygonstipple,arm_matrixmode,xform_restore	HP_GETPOLYGONSTIPPLE,HP_MATRIXMODE			
+0xbdec	mgeb_LoadMatrix_Modelview	matrixfunc.S	271	28	48	arm_getpolygonstipple,arm_matrixmode,init_ged,xform_init,xform_restore	HP_GETPOLYGONSTIPPLE,HP_MATRIXMODE	table 4		
+0xbe08	mgeb_LoadIdentity_Color	matrixfunc.S	219	23	43	arm_loadidentity				
+0xbe22	mgeb_LoadIdentity_Texture	matrixfunc.S	187	22	46	arm_matrixmode,xform_init,xform_restore	HP_MATRIXMODE			
+0xbe3c	mgeb_LoadIdentity_Projection	matrixfunc.S	132	21	45	arm_matrixmode,xform_init,xform_restore	HP_MATRIXMODE			
+0xbe57	mgeb_LoadIdentity_Modelview	matrixfunc.S	68	36	44	arm_matrixmode,init_ged,xform_init,xform_restore	HP_MATRIXMODE	table 3		
+0xbe80	mgeb_MatrixMode	matrixfunc.S	40	9	51	arm_matrixmode,xform_init	HP_MATRIXMODE			
+0xbe8f	mRecordHit	selectmods.S	316	34					mmo_SelectLine,mmo_SelectPoint,mmo_SelectRasterPos,mmo_SelectTriangle	
+0xbecc	mmo_SelectTriangle	selectmods.S	70	42						mgeb_PolygonSetup_Select
+0xbf2f	mmo_SelectRasterPos	selectmods.S	261	24					mmo_SaveRasterPos	
+0xbf6d	mmo_SelectPoint	selectmods.S	203	26						mgebi_PointSize_Select
+0xbfaf	mmo_SelectLine	selectmods.S	138	34						mgeb_LineWidth_Select
+0xc002	mgeb_EndSelectMode	select.S	252	10	139	arm_rendermode	HP_RENDERMODE			
+0xc016	mgeb_BgnSelectMode	select.S	219	12	126	arm_rendermode	HP_RENDERMODE			
+0xc02c	mgeb_LoadName	select.S	165	19	155	arm_loadname	HP_LOADNAME			
+0xc086	mgeb_PushName	select.S	113	22	168	arm_pushname	HP_PUSHNAME			
+0xc0e0	mgeb_PopName	select.S	70	17	167	arm_popname	HP_POPNAME			
+0xc12e	mgeb_InitNames	select.S	36	12	153	arm_initnames	HP_INITNAMES			
+0xc159	mSelectFlush	select.S	282	79					mgeb_BgnSelectMode,mgeb_EndSelectMode,mgeb_InitNames,mgeb_LoadName,mgeb_PopName,mgeb_PushName	
+0xc20a	mgeb_PopAttrLights	getlight.S	593	64	166	arm_poplights	HP_POPLIGHTS			
+0xc255	mgesi_PushAttrLights	getlight.S	470	34	180	init_ged		table 34		
+0xc284	mgesi_LiGetMaterial	getlight.S	275	67	199	arm_getmaterialfv,material_push	HP_GETMATERIALFV			
+0xc2d2	mgesi_LiGetLight	getlight.S	89	68	198	arm_getlightfv	HP_GETLIGHTFV			
+0xc321	mLiLocalLight	generallight2.S	1097	175					mLiPrmMtrlFrntClrAccmEnd	mLiDirtyLocLiVwrLiSrcInit,mmo_LighterGeneral
+0xc3db	mLiInfVInfLi	generallight2.S	91	72						mGL_CtxLightInitialize,mLiDirtyLocLiVwrLiSrcInit
+0xc426	mLiLocVInfLi	generallight2.S	403	104						mLiDirtyLocLiVwrLiSrcInit
+0xc493	mLiLocVInfLiInit	generallight2.S	761	104						mLiDirtyLocLiVwrLiSrcInit
+0xc500	mgeb_LightPos	lightsource.S	750	165	35	light_pos				
+0xc5cd	mgeb_LightSpotDir	lightsource.S	626	52	38	light_sdir				
+0xc626	mgeb_LightSpotExp	lightsource.S	450	74	39	light_pop,light_sexp				
+0xc697	mgeb_LightSpotCutAng	lightsource.S	350	27	37	light_pop,light_scut				
+0xc6cb	mgeb_LightK2	lightsource.S	307	6	31	light_k2,light_pop				
+0xc6d8	mgeb_LightK1	lightsource.S	269	6	30	light_k1,light_pop				
+0xc6e5	mgeb_LightK0	lightsource.S	231	6	29	light_k0,light_pop				
+0xc6f2	mgeb_LightSpec	lightsource.S	209	8	36	light_pop,light_spec				
+0xc6fb	mgeb_LightDiff	lightsource.S	176	8	28	light_diff,light_pop				
+0xc704	mgeb_LightAmb	lightsource.S	143	8	27	light_amb,light_pop				
+0xc70d	mLightColor	lightsource.S	71	18					mgeb_LightAmb,mgeb_LightDiff,mgeb_LightSpec	
+0xc721	mgeb_LiClrMtrlFrontBack	lightmodel.S	543	55	20	colormaterial_frontback				
+0xc75b	mgeb_LiClrMtrlBack	lightmodel.S	416	55	18	AddOutput,colormaterial_back				
+0xc795	mgeb_LiClrMtrlFront	lightmodel.S	289	55	19	colormaterial_front				
+0xc7cf	mgeb_LightModelGAmb	lightmodel.S	228	17	33	light_pop,lightmodel_gamb				
+0xc7e1	mgeb_LightModelLocV	lightmodel.S	152	26	34	light_pop,lightmodel_locv				
+0xc7fb	mgeb_LightModel2Side	lightmodel.S	59	28	32	light_pop,lightmodel_2side				
+0xc989	mmo_DecomposeTriangleStripWithSwapOdd	mdecompose2.S	501	26						mgesi_TriangleStripRestoreSaveWithSwapOdd,mgesi_TriangleStripRestoreWithSwapOdd,mgesi_TriangleStripSaveWithSwapOdd,mgesi_TriangleStripWithSwapOdd
+0xc9b2	mmo_DecomposeTriangleStripWithSwapEven	mdecompose2.S	410	34						mgesi_TriangleStrip,mgesi_TriangleStripRestore,mgesi_TriangleStripRestoreSave,mgesi_TriangleStripSave
+0xc9e1	mmo_DummyDecomposeQuadStrip	mdecompose2.S	222	31						mgesi_QuadStrip,mgesi_QuadStripRestore,mgesi_QuadStripRestoreSave,mgesi_QuadStripSave
+0xca01	mmo_DummyDecompose	mdecompose2.S	37	7						mdc_multipass,mgesi_TfanPoly,mgesi_TfanPolyEnd,mgesi_TfanPolyRestore,mgesi_TfanPolyRestoreEdge,mgesi_TfanPolyRestoreEnd,mgesi_TfanPolyRestoreSave,mgesi_TfanPolySave,mgesi_TriangleStrip,mgesi_TriangleStripRestore,mgesi_TriangleStripRestoreSave,mgesi_TriangleStripSave,mgesi_TriangleStripWithSwapOdd,mgesi_Triangles
+0xca10	mmo_DecomposeSimpleTriangles	mdecompose2.S	350	38						mgesi_Triangles
+0xca3a	mmo_DecomposeQuads	mdecompose2.S	132	37						mgesi_Quads
+0xca60	mmo_DecomposeQuadStrip	mdecompose2.S	281	34						mgesi_QuadStrip,mgesi_QuadStripRestore,mgesi_QuadStripRestoreSave,mgesi_QuadStripSave
+0xca86	mmo_DecomposePolygon	mdecompose2.S	53	37						mgesi_TfanPoly,mgesi_TfanPolyEnd,mgesi_TfanPolyRestore,mgesi_TfanPolyRestoreEdge,mgesi_TfanPolyRestoreEnd,mgesi_TfanPolyRestoreSave,mgesi_TfanPolySave
+0xcabe	mgeb_TexGen	texgen.S	688	59	82	arm_texgenf,texture_pop	HP_TEXGENF			
+0xcb19	mgeb_TexGen_Disable	texgen.S	654	12	83	d_texgen_q,d_texgen_r,d_texgen_s,d_texgen_t				
+0xcb39	mgeb_TexGen_Enable	texgen.S	623	12	84	e_texgen_q,e_texgen_r,e_texgen_s,e_texgen_t				
+0xcb59	mTexGenEyeLine	texgen.S	556	77					mgeb_TexGen	
+0xcbbe	mTexGenObjLine	texgen.S	518	41					mgeb_TexGen	
+0xcbff	mTexGenEyePoint	texgen.S	469	43					mgeb_TexGen	
+0xcc43	mTexGenObjPoint	texgen.S	443	20					mgeb_TexGen	
+0xcc6e	mTexGenEyePlane	texgen.S	402	32					mgeb_TexGen	
+0xcc9e	mTexGenObjPlane	texgen.S	382	10					mgeb_TexGen	
+0xccb1	mTexGenObjLineDist	texgen.S	361	10					mgeb_TexGen	
+0xcccb	mTexGenEyeLineDist	texgen.S	333	12					mgeb_TexGen	
+0xcce9	mTexGenObjPointDist	texgen.S	306	10					mgeb_TexGen	
+0xcd03	mTexGenEyePointDist	texgen.S	278	12					mgeb_TexGen	
+0xcd21	mTexGenEyeLin	texgen.S	249	12					mgeb_TexGen	
+0xcd3f	mTexGenObjLin	texgen.S	223	10					mgeb_TexGen	
+0xcd59	mTexGenSph	texgen.S	189	10					mgeb_TexGen	
+0xcd7e	mmo_TexGenObjLine_ST	texgen.S	1057	121						mTexGenObjLineDist
+0xce0b	mmo_TexGenObjLine_RQ	texgen.S	1216	121						mTexGenObjLineDist
+0xce98	mmo_TexGenObjPoint_ST	texgen.S	870	77						mTexGenObjPointDist
+0xcef3	mmo_TexGenObjPoint_RQ	texgen.S	961	77						mTexGenObjPointDist
+0xcf4e	mmo_TexGenEyeLine_ST	texgen.S	1559	121						mTexGenEyeLineDist
+0xcfdb	mmo_TexGenEyeLine_RQ	texgen.S	1718	121						mTexGenEyeLineDist
+0xd068	mmo_TexGenEyePoint_ST	texgen.S	1372	77						mTexGenEyePointDist
+0xd0c3	mmo_TexGenEyePoint_RQ	texgen.S	1463	77						mTexGenEyePointDist
+0xd11e	mTexGenResolve	texgen.S	57	65					mTexGenEyeLin,mTexGenEyeLineDist,mTexGenEyePointDist,mTexGenObjLin,mTexGenObjLineDist,mTexGenObjPointDist,mTexGenSph,mgeb_TexGen_Disable,mgeb_TexGen_Enable	
+0xd191	mWramToCram	mmemove.S	33	17					mgeb_ContextLoadCram,mgeb_LoadCram	
+0xd1a9	mWramToFifo	mmemove.S	271	102					mges_ContextDeactGED,mges_ContextDeactSection,mges_ContextDeactivate	
+0xd23f	mSinCosAB	mmath.S	115	119					DrawMSTFanPnt,mmo_DrawMSDistAttPntPrim	
+0xd308	minv	math.S	56	9						
+0xd31e	msqrt	math.S	34	12						
+0xd340	misqrt	math.S	13	11						
+0xd35e	mMatrixCopyCC	matrix.S	117	32						
+0xd380	mMatrixCopyCW	matrix.S	87	25						
+0xd399	mMatrixTransposeWW	matrix.S	34	12						
+0xd3ad	mOrtho	matrix.S	233	64					mgeb_Ortho_Color,mgeb_Ortho_Modelview,mgeb_Ortho_Projection,mgeb_Ortho_Texture	
+0xd3f7	mMatrixLoadIdentityC	matrix.S	54	17						
+0xd410	mFrustum	matrix.S	151	67					mgeb_Frustum_Color,mgeb_Frustum_Modelview,mgeb_Frustum_Projection,mgeb_Frustum_Texture	
+0xd45d	mEramToWram	memove.S	68	18					RestoreClipState,mgesi_TfanPolyRestoreEdge,uEvalLoadState1D,uEvalLoadState2D,uEvalSwapState1D,uEvalSwapState2D	
+0xd47f	mEramToEram	memove.S	108	24					mLiUpdateShin,mgeb_EramToEram	
+0xd4a2	mCramToWram	memove.S	32	16						
+0xd4b9	mge_ErrNoError	err.S	32	10						
+0xd4c8	mErrStackUnderflow	err.S	146	9					mgeb_PopMatrix_Color,mgeb_PopMatrix_Modelview,mgeb_PopMatrix_Projection,mgeb_PopMatrix_Texture,mgeb_PopName	
+0xd4de	mErrStackOverflow	err.S	123	9					mgeb_PushMatrix_Color,mgeb_PushMatrix_Modelview,mgeb_PushMatrix_Projection,mgeb_PushMatrix_Texture,mgeb_PushName	
+0xd4f4	mErrInvalidOperation	err.S	100	9					mgeb_LoadName	
+0xd50a	mErrInvalidValue	err.S	77	9					mFrustum,mLiPushMtrlShin,mLiSetMShininess,mOrtho,mgeb_LightSpotCutAng,mgeb_LightSpotExp	
+0xd520	mErrInvalidEnum	err.S	54	9					mgeb_Fogf,mgeb_Material,mgebi_TexEnv	
+0xd536	mLiPrimMtrlIndxFinalLi	indxirislight.S	65	23						mLiPrimMtrlInit
+0xd54e	mLiIrisColoring	indxirislight.S	393	66					lLI1	mmo_LighterGeneral
+0xd5a6	mLiIndexFinalLi	indxirislight.S	134	22						mgeb_CI_Mode
+0xd5c4	mLiFinalLiEquIndx	indxirislight.S	192	62					mLiIndexFinalLi	mLiPrimMtrlIndxFinalLi
+0xd60e	mLiPrimShinLoop	primmtrllight.S	218	74					mLiEndPrimShinLp	mLiPrimMtrlCopyEnd,mLiPrimMtrlInit
+0xd667	mLiPrmMtrlBackClrAccmEnd	primmtrllight.S	561	8						mLiPrmMtrlBackClrInitAccm
+0xd676	mLiPrmMtrlBackClrInitAccm	primmtrllight.S	487	20						mLiPrimShinLoop,mLiPrmMtrlBackClrAccmEnd
+0xd690	mLiPrmMtrlFrntClrAccmEnd	primmtrllight.S	432	13						mLiPrimShinLoop
+0xd6a7	mLiPrimMtrlCpFrntEnd	primmtrllight.S	1111	29						mLiPrimMtrlInit
+0xd6c4	mLiPrimMtrlCopyEnd	primmtrllight.S	1174	40						mLiPrimMtrlInit
+0xd6ef	mLiPrimMtrlInit	primmtrllight.S	57	51					mmo_LighterGeneral	
+0xd726	mLiPrimMtrlFinalLi	primmtrllight.S	737	30						mLiPrimMtrlInit
+0xd745	mLiPrimMtrlCopyStckCmpn	primmtrllight.S	831	62					mLiPrimMtrlIndxFinalLi	mLiPrimMtrlFinalLi,mLiPrimMtrlIndxFinalLi
+0xd786	mLiPrimMtrlCopyCmpn	primmtrllight.S	1052	16					mLiPrimMtrlIndxFinalLi	mLiPrimMtrlFinalLi,mLiPrimMtrlIndxFinalLi
+0xd796	mLiFinalLiEqu	primmtrllight.S	1511	63					mLiColorMtrlCopy	mLiPrimMtrlInit
+0xd7d9	mLiEndPrimShinLp	primmtrllight.S	604	33					mLiPrmMtrlFrntClrAccmEnd	mLiPrmMtrlBackClrInitAccm
+0xd808	mLiColorMtrlCopy	primmtrllight.S	1403	36					mLiClrMtrlFinalLi	mLiPrimMtrlInit
+0xd831	mLiClrMtrlFinalLi	primmtrllight.S	1304	43						mgeb_LiEnableClrMtrl,mgeb_RGBA_Mode
+0xd85e	mmo_LighterGeneral	generallight.S	147	30					mLiUpdateMtrlState	mLiPushMtrlInit,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0xd87e	mmo_LiColorMask	generallight.S	41	26						mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0xd8a0	mLiVtxLoop	generallight.S	295	27					mLiPrimMtrlInit,mmo_LighterGeneral	mmo_LighterGeneral
+0xd8bc	mLiLocalViewer	generallight.S	820	61					mLiDirtyLocLiVwrLiSrcInit	mLiDirtyLocLiVwrLiSrcInit
+0xd901	mLiNoLightSrc	generallight.S	492	23					mLiDirtyLocLiVwrLiSrcInit	mGL_CtxLightInitialize,mLiDirtyLocLiVwrLiSrcInit
+0xd91a	mLiBackClrInit	generallight.S	1479	33						mLiPrimShinLoop,mLiVtxLoop
+0xd943	mLiLocLiFrnClrInit	generallight.S	1146	48						mLiVtxLoop
+0xd973	mLiBackClrAccum	generallight.S	1326	41						mLiBackClrInit,mLiPrmMtrlBackClrAccmEnd
+0xd9a2	mLiDirtyLocLiVwrLiSrcInit	generallight.S	373	27						mgeb_LiDisableLightS,mgeb_LiEnableLightS,mgeb_LightModelLocV,mgeb_LightPos,mgeb_PopAttrLights
+0xd9c1	mLiLocLiFrnClrAccum	generallight.S	947	54						mLiInfVInfLiInit,mLiLocLiFrnClrInit,mLiLocVInfLiInit,mLiPrmMtrlBackClrInitAccm,mLiPrmMtrlFrntClrAccmEnd
+0xd9f7	mLiInfVInfLiInit	generallight.S	566	68					mLiDirtyLocLiVwrLiSrcInit	mLiDirtyLocLiVwrLiSrcInit
+0xda3c	mLiFinalLi	generallight.S	1585	43						mGL_CtxLightInitialize,mgeb_LiDisableClrMtrl,mgeb_RGBA_Mode
+0xda68	mmo_DrawTriPolymodePrim	polymode.S	80	306						mPolymodeSetup
+0xdc9c	mgeb_LiDisableClrMtrl	lightenables.S	967	33	21	SetupGE_FFT,d_colormaterial				
+0xdcc0	mgeb_LiDisableLightS	lightenables.S	832	60	22	d_light0,d_light1,d_light2,d_light3,d_light4,d_light5,d_light6,d_light7,slop_readword				
+0xdd0d	mgeb_LiDisableLighting	lightenables.S	722	30	23	PixelRestore,SetupGE_ColorLine,SetupGE_LuminanceLine,d_lighting				
+0xdd2b	mgeb_LiEnableClrMtrl	lightenables.S	665	16	24	e_colormaterial				
+0xdd3e	mgeb_LiEnableLightS	lightenables.S	546	49	25	e_light0,e_light1,e_light2,e_light3,e_light4,e_light5,e_light6,e_light7,init_ge				
+0xdd83	mgeb_LiReCmpPwrTable	lightenables.S	462	18	154	ReCompPwrTable				
+0xdda1	mgeb_LiEnableLighting	lightenables.S	77	34	26	e_lighting				
+0xddc5	mLiSwichSpotPrwTable2	lightenables.S	319	52					mLiSwichSpotPrwTable	
+0xde2a	mLiSwichSpotPrwTableSub	lightenables.S	418	10					mLiSwichSpotPrwTable2	
+0xde3f	mLiSwichSpotPrwTable	lightenables.S	185	78					mgeb_LiEnableLighting,mgeb_LiReCmpPwrTable	
+0xde94	mgeb_Material	material.S	54	80	158			reloc		
+0xdef0	mLiUpdateMtrlColor	material.S	406	37					mgeb_LiClrMtrlBack,mgeb_LiClrMtrlFront,mgeb_LiClrMtrlFrontBack,mgeb_LiDisableClrMtrl	
+0xdf27	mLiSetMShininess	material.S	322	26					mgeb_Material	
+0xdf4c	mLiSetMAmbDiff	material.S	268	26					mLiUpdateMtrlColor,mgeb_Material	
+0xdf72	mLiPushMtrlShin	material.S	742	33					mLiPushMaterial	
+0xdf9c	mLiPushMtrlInit2	material.S	946	11						mLiPushMtrlInit
+0xdfb1	mLiPushMtrlInit	material.S	822	46					mgeb_Material	
+0xdfe4	mLiPushMtrlDiff	material.S	689	31					mLiPushMaterial	
+0xe009	mLiPushMtrlASEI	material.S	612	30					mLiPushMaterial,mLiPushMtrlDiff	
+0xe036	mLiPushMaterial	material.S	532	24					mLiPushMtrlInit,mLiPushMtrlInit2,mgeb_Material	
+0xe05a	mGL_LightInitialize	lightsubroutines.S	1087	292					mgeb_GlobalInitialize	
+0xe184	mGL_CtxLightInitialize	lightsubroutines.S	896	236					mgeb_GLContextInitialize	
+0xe27a	mLiUpdateShin	lightsubroutines.S	674	143					mLiEndPrimShinLp,mLiPushMtrlInit,mmo_DirtyCullAndLightModule,mmo_DirtyLightModule	
+0xe334	mLiDirtySimLiCRAM	lightsubroutines.S	108	78					mmo_DirtyCullAndLightModule,mmo_DirtyLightModule	mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0xe391	mLiDirtyGenLiCRAM	lightsubroutines.S	320	52					mmo_DirtyCullAndLightModule,mmo_DirtyLightModule	mmo_DirtyCullAndLightModule,mmo_DirtyLightModule
+0xe3d2	mmo_Punt	fluff.S	1002	5						mmo_AbortGeometry
+0xe3e1	mmo_MultipassModule	fluff.S	1038	31						mmo_DirtyMultipassModule
+0xe450	mdc_finish	fluff.S	83	14					mDispatchCentral,mdc_multipass,mdc_sprite	
+0xe462	mdc_evaluator	fluff.S	239	4					mDispatchCentral,mdc_multipass,mdc_sprite	
+0xe471	mdc_multipass	fluff.S	169	29					mDispatchCentral,mdc_sprite	
+0xe4b6	mdc_sprite	fluff.S	140	9					mDispatchCentral	
+0xe4d0	mdc_polymode_or_clip	fluff.S	121	3					mDispatchCentral	
+0xe4de	mmo_Vn2ToSave	fluff.S	625	20						mgesi_QuadStripSave,mgesi_TriangleStripSave,mgesi_TriangleStripSaveWithSwapOdd
+0xe4fd	mmo_V0ToSaveAndIgnore	fluff.S	825	21						mgesi_LineStripSaveAndIgnoreV0
+0xe519	mmo_V0ToSave_SaveExtra	fluff.S	895	24						mgesi_TfanPolySave
+0xe544	mmo_V0ToSave	fluff.S	731	19						mgesi_LineStripSaveV0,mgesi_TfanPolySave
+0xe560	mmo_SaveToVn1	fluff.S	766	20						mgesi_LineStripRestoreV0
+0xe57e	mmo_SaveToV0AndVn2ToSave	fluff.S	687	34						mgesi_QuadStripRestoreSave,mgesi_TriangleStripRestoreSave,mgesi_TriangleStripRestoreSaveWithSwapOdd
+0xe5a9	mmo_SaveToV0_SaveExtra	fluff.S	932	24						mgesi_TfanPolyRestoreSave
+0xe5d7	mmo_SaveToV0_RestoreExtra	fluff.S	965	35						mgesi_TfanPolyRestoreEdge
+0xe605	mmo_SaveToV0	fluff.S	656	19						mgesi_QuadStripRestore,mgesi_TfanPolyRestore,mgesi_TfanPolyRestoreEnd,mgesi_TfanPolyRestoreSave,mgesi_TriangleStripRestore,mgesi_TriangleStripRestoreWithSwapOdd
+0xe623	mmo_SaveRasterPos	fluff.S	459	65						mRecordHit,mdc_finish,mgeb_RasterPos,mmo_AbortGeometry
+0xe6a5	mmo_DirtyMultipassModule	fluff.S	1016	8						mmo_DirtyPrePathModule
+0xe6c0	mmo_CopyV0ToVn1AndIgnore	fluff.S	863	15						mgesi_LineStripCopyAndIgnoreV0
+0xe6d4	mmo_CopyV0ToVn1	fluff.S	796	12						mgesi_LineStripCopyV0
+0xe6e8	mmo_AbortGeometry	fluff.S	264	38					lCU2,mmo_DecomposeLineStrip,mmo_DecomposePoints,mmo_DecomposePolygon,mmo_DecomposeQuadStrip,mmo_DecomposeQuads,mmo_DecomposeSimpleTriangles,mmo_DecomposeTriangleFan,mmo_DecomposeTriangleStrip,mmo_DecomposeTriangleStripWithSwapEven,mmo_DecomposeTriangleStripWithSwapOdd,mmo_DecomposeTriangles,mmo_DummyDecomposeQuadStrip,mmo_LiColorClamp,mmo_LiColorMask,mmo_LighterGeneral,mmo_LighterSimple,umo_DecomposeSimpleTriangleStrip	
+0xe741	mDispatchCentral	fluff.S	53	11						mGL_CM_Initialize
+0xe75e	mClipPntUserAndFrustum	pntclip.S	54	82						mGL_EM_Initialize,mmo_DecomposePoints
+0xe8a6	mMatrixMultCCC	mmatrix.S	36	343					mgebi_ReferencePlane	
+0xea1c	mClipLinUserAndFrustum	linclip.S	695	230						mGL_EM_Initialize,mmo_DecomposeLineStrip
+0xebbf	mClipLineToPlane	linclip.S	89	338					mClipLinUserAndFrustum	
+0xed2c	mClipLinFlush	linclip.S	1028	30					mClipLinUserAndFrustum	
+0xed52	mClipTriUserAndFrustum	clip.S	1080	218						mGL_EM_Initialize,mmo_DecomposePolygon,mmo_DecomposeQuadStrip,mmo_DecomposeQuads,mmo_DecomposeSimpleTriangles,mmo_DecomposeTriangleFan,mmo_DecomposeTriangleStrip,mmo_DecomposeTriangleStripWithSwapEven,mmo_DecomposeTriangleStripWithSwapOdd,mmo_DecomposeTriangles,mmo_DummyDecompose,mmo_DummyDecomposeQuadStrip,umo_DecomposeSimpleTriangleStrip,umo_DummyDecompose
+0xef7e	mPerTriClipFlagsFrustum	clip.S	924	29					mClipTriUserAndFrustum	
+0xefb5	mClipPolyToPlane	clip.S	93	229					mClipTriUserAndFrustum	
+0xf14f	mClipTriFlushSR	clip.S	1603	42					mClipTriUserAndFrustum	
+0xf182	mEyeToClipAfterUserClip	clip.S	712	77					mClipLinUserAndFrustum,mClipTriUserAndFrustum	
+0xf1dc	mClipTriFlush	clip.S	1700	36					mClipTriUserAndFrustum	
+0xf20a	mSetClipVertsFree	clip.S	860	16					mClipTriUserAndFrustum	
+0xf21b	mgeb_PointParameter	glmodes.S	1524	50	63	arm_pointparameterf,arm_pointparameterfv	HP_POINTPARAMETERF,HP_POINTPARAMETERFV			
+0xf280	mgeb_Disable_Multipass	glmodes.S	1447	15	135	d_multipass				
+0xf293	mgeb_Enable_Multipass	glmodes.S	1403	15	137	e_multipass				
+0xf2a6	mgeb_DisableSprite	glmodes.S	1364	15	8	d_sprite				
+0xf2b9	mgeb_EnableSprite	glmodes.S	1318	15	12	e_sprite				
+0xf2cc	mgeb_Sprite	glmodes.S	1263	35	81	arm_spriteparameterfv,initSpriteState,resolveSpriteMode,sprite_pop	HP_SPRITEPARAMETERFV			
+0xf320	mgeb_ClearLMCFlag	glmodes.S	714	9	406	arm_irisgl_mode	HP_IRISGL_MODE			
+0xf32f	mgeb_SetLMCFlag	glmodes.S	687	9	405	arm_irisgl_mode	HP_IRISGL_MODE			
+0xf33e	mgeb_Disable_Cull_Face	glmodes.S	643	16	5	d_cull_face				
+0xf352	mgeb_Enable_Cull_Face	glmodes.S	619	17	10	e_cull_face				
+0xf366	mgeb_CullFace	glmodes.S	546	20	3	arm_context_activate,arm_cullface,polygon_pop,prim_init	HP_CONTEXT_ACTIVATE,HP_CULLFACE			
+0xf37c	mgeb_DisableUserClipPlane	glmodes.S	420	10	4	arm_context_activate,d_clip_plane0,d_clip_plane1,d_clip_plane2,d_clip_plane3,d_clip_plane4,d_clip_plane5	HP_CONTEXT_ACTIVATE			
+0xf390	mgeb_EnableUserClipPlane	glmodes.S	393	10	9	e_clip_plane0,e_clip_plane1,e_clip_plane2,e_clip_plane3,e_clip_plane4,e_clip_plane5				
+0xf3a4	mgeb_UserClipPlane	glmodes.S	329	43	89	arm_clipplane	HP_CLIPPLANE			
+0xf3db	mgeb_FrontFace	glmodes.S	293	10	15	arm_frontface,polygon_pop,prim_init	HP_FRONTFACE			
+0xf3ea	mgeb_DepthRange	glmodes.S	233	21	335	arm_depthrange,depth_init,viewport_pop	HP_DEPTHRANGE			
+0xf404	mgeb_ViewPort	glmodes.S	107	47	90	resolve_viewport				
+0xf435	mgesi_SetGeId	glmodes.S	47	15	224	init_ge				
+0xf449	mmo_DirtyXformAndObjToClipModule	glmodes.S	1032	38						mTexGenResolve,mUserClipResolve,mgeb_Disable_Normalize,mgeb_Enable_Normalize,mgeb_LiDisableLightS,mgeb_LiDisableLighting,mgeb_LiEnableLightS,mgeb_LiEnableLighting,mgeb_LightModelLocV,mgeb_LightPos,mgeb_PointParameter,mgeb_PopAttrLights
+0xf494	mmo_DirtyTextureAndScreenModule	glmodes.S	1136	54						mTexGenResolve,mgeb_ClipmapXform,mgeb_Frustum_Texture,mgeb_LoadIdentity_Texture,mgeb_LoadMatrix_Texture,mgeb_MultMatrix_Texture,mgeb_Ortho_Texture,mgeb_PopMatrix_Texture,mgeb_Rotate_Texture,mgeb_Scale_Texture,mgeb_Translate_Texture,mgebi_Texture,mgebi_UpdateTexturing
+0xf4e4	mmo_DirtyPrePathModule	glmodes.S	1637	25						mGL_CM_Initialize,mgeb_DeformationMap3_1,mgeb_DisableSprite,mgeb_Disable_Multipass,mgeb_EnableSprite,mgeb_Enable_Multipass,mgeb_LiDisableLighting,mgeb_LiEnableLighting,mgeb_LoadIdentityDeformation,mmo_DirtyXformAndObjToClipModule
+0xf50d	mmo_DirtyLightModule	glmodes.S	899	52						mGL_CtxLightInitialize,mLiPrimMtrlInit,mLiUpdateMtrlColor,mLiUpdateShin,mLightColor,mgeb_CI_Mode,mgeb_LiDisableClrMtrl,mgeb_LiDisableLightS,mgeb_LiDisableLighting,mgeb_LiEnableClrMtrl,mgeb_LiEnableLightS,mgeb_LiEnableLighting,mgeb_LiReCmpPwrTable,mgeb_LightModel2Side,mgeb_LightModelGAmb,mgeb_LightModelLocV,mgeb_LightPos,mgeb_Material,mgeb_PopAttrLights,mgeb_RGBA_Mode
+0xf547	mmo_DirtyCullAndLightModule	glmodes.S	754	52						mGL_CtxLightInitialize,mLiPrimMtrlInit,mLiUpdateMtrlColor,mLiUpdateShin,mLightColor,mPolymodeSetup,mgeb_CI_Mode,mgeb_Disable_Cull_Face,mgeb_Enable_Cull_Face,mgeb_LiDisableClrMtrl,mgeb_LiDisableLightS,mgeb_LiDisableLighting,mgeb_LiEnableClrMtrl,mgeb_LiEnableLightS,mgeb_LiEnableLighting,mgeb_LiReCmpPwrTable,mgeb_LightModel2Side,mgeb_LightModelGAmb,mgeb_LightModelLocV,mgeb_LightPos,mgeb_Material,mgeb_PopAttrLights,mgeb_RGBA_Mode
+0xf583	mUserClipResolve	glmodes.S	441	69					mgeb_DisableUserClipPlane,mgeb_EnableUserClipPlane,mgeb_UserClipPlane	

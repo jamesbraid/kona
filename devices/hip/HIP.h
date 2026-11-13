@@ -9,10 +9,10 @@
  *   kpm      IRIX 6.5.30m /usr/gfx/KONA/bin/kpm. Its .data holds a table of
  *            60-byte records {kind, offset, name[32], 0, 0, mask, 0, shift}
  *            from vaddr 0x100b4820 (181 records): kind 1 = register, kind 2 =
- *            field. Extracted to diags/kpm/hip_registers.tsv. Names carry a
+ *            field. Extracted to software/diags/kpm/hip_registers.tsv. Names carry a
  *            HIP1_ or HIP2_ prefix where the two host-interface chip
  *            generations differ; HH_ names are common to both.
- *   kernel   IRIX 6.5.30m kona.a, disassembled under kona_kernel/disasm/.
+ *   kernel   IRIX 6.5.30m kona.a, disassembled under software/kernel/disasm/.
  *   kona.h   IRIX 6.5.5 /usr/include/sys/kona.h and kona_if.h (installed
  *            system headers, revision 1.71 of 1998-12-10). Facts from them
  *            are labelled with the release.
@@ -53,7 +53,7 @@
  *   0x10000 = PRIV           written before payload words, and before the
  *                            token when the caller's own context is current;
  *   0                        written when the packet is done.
- * ESTABLISHED (kpm 6.5.30m, its ARM-side table, ucode/arm1_registers.tsv):
+ * ESTABLISHED (kpm 6.5.30m, its ARM-side table, software/ucode/arm1_registers.tsv):
  * the ARM sees the two bits as ICU_STATUS_PRIV and ICU_STATUS_FORCE, bits 2
  * and 3 of its register 0x200060. The firmware refuses the privileged
  * tokens when PRIV is clear and never reads FORCE. INFERRED: PRIV marks the
@@ -291,7 +291,7 @@
  * HIP1_HH_GFIFO at 0x800000 (32-bit, write only), first-generation host interface only.
  * Whether any software pushes command words here is unknown; the user FIFO page is mapped from
  * the flow-controlled window at 0xc10000 instead. No shipped binary touches offset 0: the
- * kernel access list (kona_kernel/registers.tsv) has no entry, and kpm's `hipInspectionPreJtag`
+ * kernel access list (software/kernel/registers.tsv) has no entry, and kpm's `hipInspectionPreJtag`
  * (0x10012834) does not read it. Inferred: each store appends one word to the graphics FIFO whose
  * fill HH_GFIFO_LEVEL (0x208) counts. */
 #define KONA_HIP1_HH_GFIFO                  0x000  /* register mask 0xffffffff */
@@ -300,7 +300,7 @@
  * HH_SWITCH at 0x800100 (mask 0x1ff), 6.5.30m. What its nine bits switch is unknown, since no
  * shipped software or published source reads or writes the register. kpm's register table gives it a nine-bit mask and no field names, and
  * no program loads or stores the offset. Routes tried for this switch register: the kernel's
- * access list (kona_kernel/registers.tsv), the 0x10012834 dump routine of kpm, which skips it,
+ * access list (software/kernel/registers.tsv), the 0x10012834 dump routine of kpm, which skips it,
  * irsaudit, ireeprom, gfxinfo and the 6.5.5 kona headers. */
 #define KONA_HH_SWITCH                      0x100  /* register mask 0x1ff */
 
@@ -576,7 +576,7 @@
 /*
  * HH_RESET at 0x800300 (2 bits). Bit 0 holds the host interface in reset, established from the
  * kernel pulse (write 1, read back, write 0). Bit 1 is named ARM_START in kpm's table
- * (diags/kpm/hip_registers.tsv). Established: `init_graphics` (kona_tport.o) starts a pipe that
+ * (software/diags/kpm/hip_registers.tsv). Established: `init_graphics` (kona_tport.o) starts a pipe that
  * does not answer by writing HH_INTR_INFO 0, then HH_RESET 3 and 2 (+0x13ec); that bit 1
  * lets the ARM run, booting from the EEPROM, is inferred from that sequence and the name.
  * `KONAinitialize` (kona_setup.o) writes 1 at +0x58, reads back at
@@ -657,7 +657,7 @@
  * the name: it holds the data word the ARM drives on its bus in the current cycle. Which cycle it
  * latches and when it updates is unknown: no shipped software or published source depends on it.
  * Routes tried: kpm's dump, display and analysis code, the kernel's register accesses
- * (kona_kernel/registers.tsv has none), the firmware and the 6.5.5 headers. */
+ * (software/kernel/registers.tsv has none), the firmware and the 6.5.5 headers. */
 #define KONA_HH_CURR_DATA_FM_ARM            0x340  /* register mask 0xffffffff */
 
 /*
@@ -811,7 +811,7 @@
  * (0x10012834) reads it into its dump at 0x10012fac and prints the word raw; the ARM-side twin in
  * kpm's ARM table is HA_VCBUS_FREADY at 0x2000f0. When the bit is set is unknown, because no
  * shipped software or published source polls it before a display-bus access. Routes
- * tried: the kernel access list (kona_kernel/registers.tsv; the display writes never poll it),
+ * tried: the kernel access list (software/kernel/registers.tsv; the display writes never poll it),
  * irsaudit's `vcWrite` and `vcRead` (no access to offset 968), arm1.s `DoDGRqstVCWrite` and
  * `DoDGRqstVCRead` (0x0c012200, 0x0c012250; they store and load through 0x600000 without polling a
  * ready bit), and the 6.5.5 headers. */
