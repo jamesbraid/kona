@@ -391,18 +391,12 @@ active = { bits = [2, 2], grade = "inferred" }
 stall = { bits = [3, 3], grade = "inferred" }
 
 # Second-revision host-interface registers that the pipe-manager table names
-# and the driver's own accesses confirm. Offsets and field positions are the
-# table's; roles are read from the names, so they are graded inferred.
-[registers.hh_switch]
-offset = 0x100
-access = "rw"
-width = 32
-grade = "established"
-space = "hip_regs"
-from = "pipe-manager register table (kpm, 6.5.30)"
-
-[registers.hh_switch.fields]
-switch = { bits = [8, 0], grade = "inferred" }
+# and a shipped program reads or writes. Offsets and field positions are the
+# table's second-revision (HIP2) entries; the first revision has narrower or
+# different fields at some of these offsets (devices/hip/HIP.h). Roles are
+# read from the names, so they are graded inferred. HH_SWITCH (0x100) and
+# HH_PIO_HI (0x2c8) are left out: no shipped program loads or stores them,
+# so their access is unknown (see HIP.h).
 
 [registers.hh_rtc]
 offset = 0x200
@@ -471,24 +465,13 @@ from = "pipe-manager register table (kpm, 6.5.30); driver enable-mask writes"
 [registers.hh_intr_enable.fields]
 mask = { bits = [11, 0], grade = "established" }
 
-[registers.hh_pio_hi]
-offset = 0x2c8
-access = "rw"
-width = 32
-grade = "established"
-space = "hip_regs"
-from = "pipe-manager register table (kpm, 6.5.30)"
-
-[registers.hh_pio_hi.fields]
-threshold = { bits = [4, 0], grade = "established" }
-
 [registers.hh_tfifo_hi]
 offset = 0x3b0
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
-from = "pipe-manager register table (kpm, 6.5.30); firmware write of 5 after load"
+from = "pipe-manager register table (kpm, 6.5.30); hipReset (0x10017204) writes 5"
 
 [registers.hh_tfifo_hi.fields]
 threshold = { bits = [3, 0], grade = "established" }
@@ -507,4 +490,4 @@ access = "w"
 width = 32
 grade = "established"
 space = "hip_regs"
-from = "pipe-manager register table (kpm, 6.5.30); firmware load writes 1 before start"
+from = "pipe-manager register table (kpm, 6.5.30); irsaudit UnStallArm (0x10038594) writes 1"

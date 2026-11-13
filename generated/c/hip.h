@@ -90,12 +90,6 @@
 /* ha_host_mbox: rw32, space arm, reset unknown */
 #define HIP_HA_HOST_MBOX_OFFSET                      0x90u /* established */
 
-/* hh_switch: rw32, space hip_regs, reset unknown */
-#define HIP_HH_SWITCH_OFFSET                         0x100u /* established */
-#define HIP_HH_SWITCH_SWITCH_SHIFT                   0 /* inferred */
-#define HIP_HH_SWITCH_SWITCH_MASK                    0x1ffu
-#define HIP_HH_SWITCH_SWITCH_INPLACE                 (HIP_HH_SWITCH_SWITCH_MASK << HIP_HH_SWITCH_SWITCH_SHIFT)
-
 /* hh_rtc: r32, space hip_regs, reset unknown */
 #define HIP_HH_RTC_OFFSET                            0x200u /* established */
 #define HIP_HH_RTC_COUNT_SHIFT                       0 /* inferred */
@@ -185,12 +179,6 @@
 
 /* hh_odma_flush: w32, space hip_regs, reset unknown */
 #define HIP_HH_ODMA_FLUSH_OFFSET                     0x298u /* established */
-
-/* hh_pio_hi: rw32, space hip_regs, reset unknown */
-#define HIP_HH_PIO_HI_OFFSET                         0x2c8u /* established */
-#define HIP_HH_PIO_HI_THRESHOLD_SHIFT                0 /* established */
-#define HIP_HH_PIO_HI_THRESHOLD_MASK                 0x1fu
-#define HIP_HH_PIO_HI_THRESHOLD_INPLACE              (HIP_HH_PIO_HI_THRESHOLD_MASK << HIP_HH_PIO_HI_THRESHOLD_SHIFT)
 
 /* hh_reset: rw32, space hip_regs, reset unknown */
 #define HIP_HH_RESET_OFFSET                          0x300u /* established */

@@ -172,20 +172,9 @@ Software timers cover the rest: an input DMA that never completes is `kona_idma_
 
 ### Failure codes not named elsewhere
 
-**Established** from the driver interface header's failure-code list (IRIX 6.5.5). Code 25 is the credit-count death the 6.5.30m driver raises, covered in [kernel-functions.md](../../software/kernel/kernel-functions.md). The death reason is the first argument of `kona_die` and is what the health report returns. The codes below have no use in the 6.5.30m driver's own dispatch that this document cites, so they are recorded from the header only:
+**Established** (6.5.30m `kona.a`). The death reason is the second argument of `kona_die` and is what the health report returns ([kernel.md](../../software/kernel/kernel.md)). The word starts at 1 in `kona_alloc_bdata` (`kona_edtinit.o`, "never initialised") and `KONAinitialize` (`kona_setup.o`) clears it to 0, which means working (`software/kernel/include/kona_kern.h` records the same). The reasons the driver raises are 2, 4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22 and 25; the interrupt causes among them are in [kernel-functions.md](../../software/kernel/kernel-functions.md), and each site is in the `kona_die` callers of `software/kernel/disasm/`.
 
-| Code | Meaning |
-|---|---|
-| 0 | Working state, not a failure |
-| 1 | Never initialised: the value set before the pipe is first brought up |
-| 3 | A context-verification check failed |
-| 7 | The graphics FIFO stayed above its high-water mark with no bus I/O in flight |
-| 8 | The graphics FIFO stayed above its high-water mark while bus I/O was in flight |
-| 11 | The output DMA engine overflowed |
-| 19 | A death raised on purpose through the debug request, for testing |
-| 20 | A context-activation request timed out |
-| 23 | The graphics FIFO stayed above its high-water mark (the persistent-condition form of the watermark case, where code 6 is the timeout form) |
-| 24 | The graphics credit count stayed below its bias floor and did not recover |
+**Unknown: codes 3, 7, 8, 11, 19, 20, 23 and 24.** An earlier reading attributed meanings to them from a 6.5.5 driver header. No 6.5.30m driver path raises these codes and that header is not among the files this repository reads, so no meaning is recorded. Route: the 6.5.5 installed header, once it is read here.
 
 ### Interrupt facts no software settles
 

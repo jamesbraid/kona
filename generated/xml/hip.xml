@@ -49,9 +49,6 @@
   </struct>
   <struct name="HA_HOST_MBOX" size="4" grade="established" register="yes" offset="0x90" access="rw" space="arm" reset="unknown">
   </struct>
-  <struct name="HH_SWITCH" size="4" grade="established" register="yes" offset="0x100" access="rw" space="hip_regs" reset="unknown">
-    <field name="switch_" start="0" size="9" type="uint" grade="inferred"/>
-  </struct>
   <struct name="HH_RTC" size="4" grade="established" register="yes" offset="0x200" access="r" space="hip_regs" reset="unknown">
     <field name="count" start="0" size="32" type="uint" grade="inferred"/>
   </struct>
@@ -92,9 +89,6 @@
   <struct name="HH_SEQID" size="4" grade="established" register="yes" offset="0x248" access="r" space="hip_regs" reset="unknown">
   </struct>
   <struct name="HH_ODMA_FLUSH" size="4" grade="established" register="yes" offset="0x298" access="w" space="hip_regs" reset="unknown">
-  </struct>
-  <struct name="HH_PIO_HI" size="4" grade="established" register="yes" offset="0x2c8" access="rw" space="hip_regs" reset="unknown">
-    <field name="threshold" start="0" size="5" type="uint" grade="established"/>
   </struct>
   <struct name="HH_RESET" size="4" grade="established" register="yes" offset="0x300" access="rw" space="hip_regs" reset="unknown">
     <field name="arm_start" start="1" size="1" type="uint" grade="inferred"/>

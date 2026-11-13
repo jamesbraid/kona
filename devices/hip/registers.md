@@ -36,7 +36,6 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `ha_icu_loop_addr` | 0x70 | rw | 32 |  | arm | unknown | established |  |
 | `ha_icu_arrcnt` | 0x74 | rw | 32 |  | arm | unknown | established |  |
 | `ha_host_mbox` | 0x90 | rw | 32 |  | arm | unknown | established |  |
-| `hh_switch` | 0x100 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_rtc` | 0x200 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_gfifo_level` | 0x208 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_gfifo_hi` | 0x210 | rw | 32 |  | hip_regs | unknown | established |  |
@@ -48,7 +47,6 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `hh_arm_mbox` | 0x240 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_seqid` | 0x248 | r | 32 |  | hip_regs | unknown | established |  |
 | `hh_odma_flush` | 0x298 | w | 32 |  | hip_regs | unknown | established |  |
-| `hh_pio_hi` | 0x2c8 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_reset` | 0x300 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_ctrl` | 0x308 | rw | 32 |  | hip_regs | unknown | established |  |
 | `hh_arm_status` | 0x310 | r | 32 |  | hip_regs | unknown | established |  |
@@ -153,12 +151,6 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 ### Register `ha_host_mbox`
 
-### Register `hh_switch`
-
-| Bits | Field | Grade | Values | Source | Description |
-|---|---|---|---|---|---|
-| 8:0 | `switch` | inferred |  |  |  |
-
 ### Register `hh_rtc`
 
 | Bits | Field | Grade | Values | Source | Description |
@@ -220,12 +212,6 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 ### Register `hh_seqid`
 
 ### Register `hh_odma_flush`
-
-### Register `hh_pio_hi`
-
-| Bits | Field | Grade | Values | Source | Description |
-|---|---|---|---|---|---|
-| 4:0 | `threshold` | established |  |  |  |
 
 ### Register `hh_reset`
 

@@ -208,21 +208,6 @@ pub mod ha_host_mbox {
     pub const OFFSET: u64 = 0x90;
 }
 /// (established)
-pub mod hh_switch {
-    pub const WIDTH: u32 = 32;
-    pub const OFFSET: u64 = 0x100;
-    pub mod switch { // bits 8:0, inferred
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0x1ff;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
-}
-/// (established)
 pub mod hh_rtc {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x200;
@@ -466,21 +451,6 @@ pub mod hh_seqid {
 pub mod hh_odma_flush {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x298;
-}
-/// (established)
-pub mod hh_pio_hi {
-    pub const WIDTH: u32 = 32;
-    pub const OFFSET: u64 = 0x2c8;
-    pub mod threshold { // bits 4:0, established
-        pub const SHIFT: u32 = 0;
-        pub const MASK: u32 = 0x1f;
-        pub const fn get(v: u32) -> u32 {
-            (v >> SHIFT) & MASK
-        }
-        pub const fn set(v: u32, x: u32) -> u32 {
-            (v & !(MASK << SHIFT)) | ((x & MASK) << SHIFT)
-        }
-    }
 }
 /// (established)
 pub mod hh_reset {

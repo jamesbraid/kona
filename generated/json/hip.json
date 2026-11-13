@@ -305,27 +305,6 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_switch",
-   "offset": 256,
-   "access": "rw",
-   "width": 32,
-   "count": 1,
-   "stride": 4,
-   "space": "hip_regs",
-   "reset": "unknown",
-   "grade": "established"
-  },
-  {
-   "unit": "hip",
-   "kind": "field",
-   "name": "hh_switch.switch",
-   "hi": 8,
-   "lo": 0,
-   "grade": "inferred"
-  },
-  {
-   "unit": "hip",
-   "kind": "register",
    "name": "hh_rtc",
    "offset": 512,
    "access": "r",
@@ -616,27 +595,6 @@
    "stride": 4,
    "space": "hip_regs",
    "reset": "unknown",
-   "grade": "established"
-  },
-  {
-   "unit": "hip",
-   "kind": "register",
-   "name": "hh_pio_hi",
-   "offset": 712,
-   "access": "rw",
-   "width": 32,
-   "count": 1,
-   "stride": 4,
-   "space": "hip_regs",
-   "reset": "unknown",
-   "grade": "established"
-  },
-  {
-   "unit": "hip",
-   "kind": "field",
-   "name": "hh_pio_hi.threshold",
-   "hi": 4,
-   "lo": 0,
    "grade": "established"
   },
   {
