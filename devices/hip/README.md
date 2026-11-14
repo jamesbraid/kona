@@ -433,6 +433,23 @@ What the pipe's own firmware (`arm1.u`, IRIX 6.5.30m; [software/ucode/arm1_firmw
 
 **Established.** A host command is a token number from 0 to 0x1ff followed by its payload words (GE.h lists the 512 token names). The host-interface hardware looks the token up in a 512-entry table the ARM builds at start-up ([software/ucode/arm1.md](../../software/ucode/arm1.md), [software/ucode/icu_map.tsv](../../software/ucode/icu_map.tsv)). An entry tells the hardware one of two things: run this ARM routine (306 tokens, the routine's address is the entry shifted left four bits), or route the command (206 tokens), with a payload word count in bits 6-10 (0 meaning 32), a command number in bits 15-23 and a type in bits 29-30 (2 single precision, 3 double precision). Bits 1-2 mark whether the token may arrive between a begin and its end.
 
+<!-- Question: which side runs a given host token, the hardware map or the ARM?
+Evidence: platforms/ir/architecture.md section 2 (206 routed, 306 ARM-run;
+54 + 152 routed split), software/ucode/arm1_firmware.md. -->
+```mermaid
+flowchart LR
+  tok["host token, 512 map entries"] --> map["host interface (HIP) token map"]
+  map -- "306 ARM-run" --> arm["ARM firmware handler"]
+  map -- "54 routed: handler index = command & 63" --> eng["engine handler table"]
+  map -- "152 routed: vertex, begin/end, primitives" --> ged["distributor program"]
+  arm -. "54 point at the bad-command handler" .-> bad["never reached by a working driver"]
+  arm -- "handler address to port 0x8c0" --> ge["geometry engines"]
+  eng --> ge
+  ged --> ge
+  arm -. "can switch routed matrix tokens to ARM and back" .-> map
+```
+
+
 **Established.** An ARM routine reads the payload itself: one word per read of a payload port, the last word of the command with a read at offset 0x3c of the register window. No length is stored for an ARM-run token; the routine knows it. A token whose routine is the firmware's bad-command handler (54 of the 306, including the `TEXIMAGE*` and `GETINTEGERV` tokens) is never sent by a working driver. The pipe answers a host query by sending words back through the output DMA, set up by RDATA_SETUP and the ARM's register writes ([software/ucode/arm1_firmware.md](../../software/ucode/arm1_firmware.md)), and events through one mailbox word per interrupt.
 
 **Established.** The ARM firmware also sends commands to itself and to the engines using the same entry format: it writes an entry-shaped word to a descriptor port and then the payload ([software/ucode/arm1.md](../../software/ucode/arm1.md)). The host cannot see that path.
