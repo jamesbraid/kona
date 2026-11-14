@@ -13,7 +13,7 @@ InfiniteReality (IR, IR2, IR3, IR4) is SGI's high-end graphics pipeline for Onyx
 
 The software on the reference install (IRIX 6.5.30m) spans a kernel driver, three `libGLcore.so` ABIs (o32, N32, 64-bit), IrisGL libraries, six X server modules and a microcode directory.
 
-Facts in this file are labelled **established** (read directly from a binary, with the function or offset), **inferred** (a reasoned reading, with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other reimplementations of the hardware.
+Facts in this file are labelled **established** (read directly from a binary or the IRIX source, with the function, offset or path), **inferred** (a reasoned reading, with the reasoning) or **unknown**. Anything unlabelled is unknown. Do not fill gaps from memory, from other SGI graphics families or from other reimplementations of the hardware.
 
 ### Major ASIC and block roles
 
@@ -113,6 +113,22 @@ The scripts descend from gr4's and carry its BSD-3 notice ([retools/tools/LICENS
 
 ---
 
+## Evidence order
+
+For a register or behaviour fact, take it from the highest source that states it and grade it by that source:
+
+1. IRIX source (public `irix-657m-src` tree): read it, write the fact in your own words, never copy source text, cite the path in the tree. A fact it defines is `established`.
+2. Shipped binaries (PROMs, kernels, libraries): confirm the source matches what shipped, and the release differences (6.5.7 source, 6.5.22 and 6.5.30 binaries).
+3. Public Linux, OpenBSD and NetBSD headers and drivers: `established` once the IRIX source confirms them.
+4. Published SGI and vendor manuals.
+5. Notes from other projects (Origami datasheets, QEMU manual pages, emulator code): may confirm or contradict, never supply a fact. A fact resting only on one stays `unknown`, with the note named.
+
+Reset values: `established` when the source states a power-on default or PROM code relies on a reset state; `inferred` when the PROM depends on a value before its first write (cite the PROM address); a read after firmware initialisation is not a reset value and can only rule values out; otherwise `unknown`. A physical hardware read is a last resort, needs the repository owner's approval, and counts as a reset value only for a register firmware provably never writes. Emulator runs are model behaviour, never hardware evidence.
+
+Full text and the checks that enforce it: `retools/tools/README-analysis.md#evidence-order`.
+
+---
+
 ## 6. Evidence: software only, any source
 
 No hardware is available for this work. Do not plan, request or wait for
@@ -124,7 +140,7 @@ Readers may open anything:
 
 - every shipped binary on every IRIX release, and any disassembly or
   decompilation of it;
-- the IRIX source tree linked from this repository (hint only, never evidence);
+- the IRIX source tree linked from this repository (ranked in the evidence order above);
 - vendor specifications, including any embedded source code or HDL pages;
 - public drivers and emulators: Linux, NetBSD, OpenBSD, MAME and others;
 - manuals, release notes and man pages;
@@ -141,23 +157,21 @@ inferred or unknown.
 Write findings in your own words. Never paste vendor source, HDL or
 proprietary binaries into the repository.
 
-Source trees are hints only. The linked IRIX source tree may suggest where to
-look in a binary or a published document, but a hint is never evidence. Do not
-cite it by path, release or file name, and do not compare a routine with it in
-committed text. Every fact must be confirmed at an address in a shipped 6.5.30
-binary or in a published document or capture; otherwise it is graded inferred
-or unknown. No source text, comments, macro bodies, file layout, source paths or
-internal identifiers from the source tree go into the repository. Symbol names
-in a shipped binary's own symbol table or debug information, and names in
-published headers and manuals, are fine.
+The linked IRIX source tree is ranked by the evidence order above: a fact it
+states is `established` when written in your own words with its path in the
+tree cited. Do not compare a routine with it in committed text. Never copy
+source text, comments, macro bodies or internal identifiers from the source
+tree into the repository. Symbol names in a shipped binary's own symbol table
+or debug information, and names in published headers and manuals, are fine.
 
 Before you call a fact unknown, search the shipped binaries and the published
 documents and captures for the device, its diagnostics and its PROM code, and
-list those routes among the routes tried. Searches of the source tree may
-suggest where to look; they are not among the routes tried.
+list those routes among the routes tried. Searches of the source tree
+count among the routes tried.
 
 Label honestly. Use "established" only for what you read in full: the whole
-function body or table in a shipped binary, or the passage in a published document or capture. A reading built from call lists,
+function body or table in a shipped binary, the passage of IRIX source read in
+full, or the passage in a published document or capture. A reading built from call lists,
 register-store summaries, a sibling build or a name is "inferred". Never
 reword or reformat an entry to change its grade. Independent audits sample
 entries against the binaries, and their measured rates are published beside
@@ -218,7 +232,7 @@ Output rules:
 - Label every fact established, inferred or unknown, with its derivation: binary and release, function or offset, or the published document or capture.
 - Update `evidence/coverage.md` and regenerate `evidence/inventory/` in the same commit as the finding.
 - Commit disassembly, decompiled C and traces you produce as data; keep the proprietary binaries in `root/`. Flat `*_disasm.txt` and `*_dwarfdump.txt` dumps are gitignored.
-- Commit what you cite: findings may rest on IRIX binaries, published documents, captures or public open-source code (cited by project, revision and file) only.
+- Commit what you cite: findings may rest on IRIX binaries, the IRIX source tree, published documents, captures or public open-source code (cited by project, revision and file) only.
 
 Downstream projects consume the headers and docs; they should not need to read the binaries.
 
