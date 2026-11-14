@@ -131,7 +131,7 @@ specification leaves the case undefined, so no behaviour is wrong.
 Section 2.10 (replace the existing 0x0b4 row; payload corrected from 8 to 9):
 
 ```
-| 0x0b4 | set a user clip plane: the plane name (0x3000 + n, n below 6), then the four plane coefficients as doubles (eight words, the high word of each double first); the pipe's engine multiplies them at the call by the 16-word inverse-model-view block at engine words 0x1f-0x2e and stores the eye-space plane at 0x90a + 4n, the unmultiplied operands at 0x922 + 4n; the client and the processor do no arithmetic | 9 | y | established for the word layout, the multiplier and the stored places; inferred that the block is the inverse model-view; singular behaviour unknown | S3, [findings](findings/clip-texgen-doubles.md#1-token-0x0b4-the-user-clip-plane) |
+| 0x0b4 | set a user clip plane: the plane name (0x3000 + n, n below 6), then the four plane coefficients as doubles (eight words, the high word of each double first); the pipe's engine multiplies them at the call by the 16-word inverse-model-view block at engine words 0x1f-0x2e and stores the eye-space plane at 0x90a + 4n, the unmultiplied operands at 0x922 + 4n; the client and the processor do no arithmetic | 9 | y | established for the word layout, the multiplier and the stored places; inferred that the block is the inverse model-view; singular behaviour unknown | S3, [findings](clip-texgen-doubles.md#1-token-0x0b4-the-user-clip-plane) |
 ```
 
 ## 2. Clip-plane enables on the generic enable token
@@ -169,8 +169,8 @@ practical limit for a context that reports six.
 Section 2.8 (replace both rows):
 
 ```
-| 0x024 | enable a capability; the one word is a GL capability number. User clip planes are 0x3000-0x3005 (planes 0 to 5) and nothing else in 0x3000-0x3fff; any other unlisted number is an invalid-enumerant error | 1 | y | established for the clip-plane range and the error, inferred for the other capability ranges | S3, [findings](findings/clip-texgen-doubles.md#2-clip-plane-enables-on-the-generic-enable-token) |
-| 0x025 | disable a capability; same ranges as 0x024, with the matching disable routines | 1 | y | established for the clip-plane range and the error, inferred for the other capability ranges | S3, [findings](findings/clip-texgen-doubles.md#2-clip-plane-enables-on-the-generic-enable-token) |
+| 0x024 | enable a capability; the one word is a GL capability number. User clip planes are 0x3000-0x3005 (planes 0 to 5) and nothing else in 0x3000-0x3fff; any other unlisted number is an invalid-enumerant error | 1 | y | established for the clip-plane range and the error, inferred for the other capability ranges | S3, [findings](clip-texgen-doubles.md#2-clip-plane-enables-on-the-generic-enable-token) |
+| 0x025 | disable a capability; same ranges as 0x024, with the matching disable routines | 1 | y | established for the clip-plane range and the error, inferred for the other capability ranges | S3, [findings](clip-texgen-doubles.md#2-clip-plane-enables-on-the-generic-enable-token) |
 ```
 
 Section 2.13 query row for 0x03c: append "; the processor does not range-check
@@ -305,7 +305,7 @@ The point and line blocks at 0x403-0x42e start at 0.0 except 0x40f-0x412 and
 Section 2.11 (replace the 0x014 row):
 
 ```
-| 0x014 | texture-coordinate generation, float form (nine words): coordinate 0x2000-0x2003 (s, t, r, q); name 0x2500 (mode), 0x2501 (object plane), 0x2502 (eye plane), 0x81f4-0x81f7 (point and line reference forms); seven value words. A mode value is accepted when it is 0x2400, 0x2401, 0x2402 or 0x81f0-0x81f3 and is checked without reference to the coordinate, so sphere map on r or q is not an error; any other coordinate, name or mode value is an invalid-enumerant error. An eye plane is multiplied at the call by the 16-word inverse-model-view block (the same block as a clip plane); an object plane is stored unchanged | 9 | y | established for the sender, the processor's checks and the eye-plane multiply; inferred for the equations, start-up planes and the engine ignoring sphere map on r or q | S3, S59, S60, [findings](findings/clip-texgen-doubles.md#3-token-0x014-coordinate-generation) |
+| 0x014 | texture-coordinate generation, float form (nine words): coordinate 0x2000-0x2003 (s, t, r, q); name 0x2500 (mode), 0x2501 (object plane), 0x2502 (eye plane), 0x81f4-0x81f7 (point and line reference forms); seven value words. A mode value is accepted when it is 0x2400, 0x2401, 0x2402 or 0x81f0-0x81f3 and is checked without reference to the coordinate, so sphere map on r or q is not an error; any other coordinate, name or mode value is an invalid-enumerant error. An eye plane is multiplied at the call by the 16-word inverse-model-view block (the same block as a clip plane); an object plane is stored unchanged | 9 | y | established for the sender, the processor's checks and the eye-plane multiply; inferred for the equations, start-up planes and the engine ignoring sphere map on r or q | S3, S59, S60, [findings](clip-texgen-doubles.md#3-token-0x014-coordinate-generation) |
 ```
 
 Section 7.14, append to the "Coordinate generation" paragraph:
@@ -353,8 +353,8 @@ the limit to 0..1 happens later, in the vertex colour pass, for both.
 Section 3.2 (replace the two double rows):
 
 ```
-| 0x062 | set current colour, 3 components, double: three doubles narrowed to single precision by the distributor, then handled as the float form (command 144); no scale or clamp at entry, alpha filled by the hardware; the 0..1 limit comes from the later colour pass | geometry | yes | no | 144 | 6 | established for the word layout, command and absence of scale or clamp at entry; inferred for the narrowing and the later limit | S1, S4, [findings](findings/clip-texgen-doubles.md#4-colour-double-forms-0x062-and-0x06a) |
-| 0x06a | set current colour, 4 components, double: four doubles narrowed to single precision by the distributor, then handled as the float form (command 144); no scale or clamp at entry; the 0..1 limit comes from the later colour pass | geometry | yes | no | 144 | 8 | established for the word layout, command and absence of scale or clamp at entry; inferred for the narrowing and the later limit | S1, S4, [findings](findings/clip-texgen-doubles.md#4-colour-double-forms-0x062-and-0x06a) |
+| 0x062 | set current colour, 3 components, double: three doubles narrowed to single precision by the distributor, then handled as the float form (command 144); no scale or clamp at entry, alpha filled by the hardware; the 0..1 limit comes from the later colour pass | geometry | yes | no | 144 | 6 | established for the word layout, command and absence of scale or clamp at entry; inferred for the narrowing and the later limit | S1, S4, [findings](clip-texgen-doubles.md#4-colour-double-forms-0x062-and-0x06a) |
+| 0x06a | set current colour, 4 components, double: four doubles narrowed to single precision by the distributor, then handled as the float form (command 144); no scale or clamp at entry; the 0..1 limit comes from the later colour pass | geometry | yes | no | 144 | 8 | established for the word layout, command and absence of scale or clamp at entry; inferred for the narrowing and the later limit | S1, S4, [findings](clip-texgen-doubles.md#4-colour-double-forms-0x062-and-0x06a) |
 ```
 
 ## 5. Sphere map when the reflection denominator is zero

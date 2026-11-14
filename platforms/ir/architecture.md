@@ -2,7 +2,7 @@
 
 A map of the whole pipe, written from the chapters of this repository so that a reader can see how the blocks connect, which boundaries are the best documented and where the family sits among the other SGI graphics designs. It adds no new reading: every claim points to the chapter, header or binary address that holds the evidence, and carries that evidence's label.
 
-Labels follow `AGENTS.md`: **established** (read in a binary or in a published document), **inferred** (a reasoned reading, with the reasoning in the cited chapter) and **unknown** (no shipped software or published source settles it). Configuration read: one IP27 Onyx2 with one InfiniteReality2 pipe, IRIX 6.5.30m. Binaries for InfiniteReality3 and InfiniteReality4 are not held, so statements about those rest on published documents and on the board names the tools print. Paths in the citations are under `docs/` unless they start with `software/ucode/` or name a root header.
+Labels follow `AGENTS.md`: **established** (read in a binary or in a published document), **inferred** (a reasoned reading, with the reasoning in the cited chapter) and **unknown** (no shipped software or published source settles it). Configuration read: one IP27 Onyx2 with one InfiniteReality2 pipe, IRIX 6.5.30m. Binaries for InfiniteReality3 and InfiniteReality4 are not held, so statements about those rest on published documents and on the board names the tools print. Citations name chapters by file name (`rm.md`, `xg.md`): find them by name under `devices/`, `formats/`, `platforms/` and `software/`; paths that start with `software/` are from the repository root.
 
 ## 1. What the pipe is made of
 
