@@ -7,4 +7,5 @@
 | Page | Title | Summary |
 |---|---|---|
 | [architecture.md](ir/architecture.md) | InfiniteReality (KONA) architecture overview | A map of the whole pipe, written from the chapters of this repository so that a reader can see how the blocks... |
+| [ir2e-ir3-products.md](ir/ir2e-ir3-products.md) | InfiniteReality2E and InfiniteReality3 product facts for the KONA command table | Worked 2026-11-10 against a shallow kona clone. |
 | [textport.md](ir/textport.md) | Textport: the command port | The textport is the console path the pipe uses before any X server or GL client runs. |
