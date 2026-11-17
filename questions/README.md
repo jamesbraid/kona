@@ -282,6 +282,17 @@ Fourteen architecture questions (InfiniteReality2, one pipe), triaged against wh
 
 Candidates for a dedicated pass later: question 6 (the DAC cursor image, readable if a caller of the cursor-load request exists in the X module or a diagnostic), question 13 (the read-back companion of the window and clip request), question 12 (trace which registers the word 19 record field reaches), and question 3 (confirm the sign-to-code step if a chip description turns up). Questions 1, 2, 5, 7, 9 and 11 are raster-chip or XMAP behaviour with no program to read and are likely to stay unknown.
 
+## Raster rules open items (2026-11-17)
+
+Findings and routes tried are in [devices/rm/raster-rules.md](../devices/rm/raster-rules.md). What is still open, with the next route:
+
+1. **CRC polynomial, seed and sampling of the chip signature registers.** Unknown: no shipped software holds it. Routes tried: `jtcrc_*` readers (bit copies only), the `*_crc_info` register tables (widths only), the gold files, the netlists (pin names only), a first probe of standard 64-bit CRCs over `aaspoke.tbus` and `fog1`. Next: a wider search for the 64-bit raster-bus register on the exactly known vector streams (free polynomial, parallel or serial update, mode bits, a setup prefix), starting with the `rm_crc_reg` register-write stream.
+2. **1/256 to 1/8 vertex reduction (truncate or round) and the tie owner.** Unknown. Routes tried: geometry microcode, firmware, diagnostic, manuals and published papers. Next: item 1, then the `crc_imptest1` rectangle (whole-pixel edges) and its random fractional vertices.
+3. **Window set-up bias and the guard-band factor values for a real window.** The arithmetic that makes engine words 0x71-0x74 is read; the bias word was not found in a recording. Next: find the route by which the kernel's clip request reaches the pipe, then read the bias from a boot recording of the model or from the kernel's request builder.
+4. **Reciprocal and reciprocal-square-root seed tables.** Four data points only; a midpoint-rounded 7-bit table fits the two reciprocal points. Next: any further diagnostic expected value that passes through the seed unit.
+5. **Depth and colour rounding into the stored words.** Unknown; the image-processor DRAM-bus signatures cover the stored words once item 1 is solved.
+6. **Coordinates of `fog`, `rm_crc_tri`, `rm_crc_pgtest` and `rm_crc_pgtest1`.** Not traced: they go through helpers. Next: read the helpers to see whether they send fractional vertices.
+
 ## Geometry engine program
 
 | Question | Owner | Routes tried | Next route |

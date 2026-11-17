@@ -513,7 +513,7 @@ rasterisation, pixel centre, vertex bus and scan converter (the hits give perfor
 set-up arithmetic); and a second search of the 6.5.5 `sys/kona*.h` headers for sub-pixel,
 slope, fraction, sample and scan terms (none). The next route is the image-processor CRC: a
 signature of a clear (the gold file's `clearfb` lines), whose input is one known colour repeated, may fix the
-register's polynomial, after which a one-triangle test's signature would discriminate between candidate edge rules.
+register's polynomial, after which a one-triangle test's signature would discriminate between candidate edge rules. [raster-rules.md](raster-rules.md) records what the CRC registers cover, which gold tests carry known input, and the other raster rules.
 
 ## Moving data in and out of the raster boards
 
