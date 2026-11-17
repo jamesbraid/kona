@@ -2,10 +2,10 @@
 
 Everything that runs inside Ghidra lives here. Each component has its own
 acceptance test; run them from the repository root, inside the Ghidra image,
-with `root/` populated ([evidence/irix-files.md](../../evidence/irix-files.md)). The checkers need
+with `root/` populated ([references/irix-files.md](../../references/irix-files.md)). The checkers need
 only Python 3 and run in the ordinary toolchain image. The comparison of Ghidra
 with the assembly-to-C pipeline, and the failure modes of both, are in
-[evidence/tooling.md](../../evidence/tooling.md).
+[tools/tooling.md](../tooling.md).
 
 ```
 tools/ghidra/

@@ -1,6 +1,6 @@
 # Volume textures, detail and sharpen: eight questions settled from the firmware, the client and the diagnostics
 
-Scope: InfiniteReality (KONA) texture state for 3D (volume) textures, the detail and sharpen magnification filters, and the filter-curve table. Everything here is read from shipped binaries, the diagnostic's stored raster-bus vectors, and published specifications, patents and papers. Nothing here is copied from vendor source. [command-table.md](../../formats/token/command-table.md) is not edited by this change; its other writer should take the rows under "Proposed rows" in each section.
+Scope: InfiniteReality (KONA) texture state for 3D (volume) textures, the detail and sharpen magnification filters, and the filter-curve table. Everything here is read from shipped binaries, the diagnostic's stored raster-bus vectors, and published specifications, patents and papers. Nothing here is copied from vendor source. [command-table.md](command-table.md) is not edited by this change; its other writer should take the rows under "Proposed rows" in each section.
 
 Grades follow the table's convention: **established** (a binary or stored vector shows it directly), **inferred** (a consistent reading, a patent or a published specification says it), **unknown** (nothing shipped answers it). Every unknown names the test that would settle it.
 

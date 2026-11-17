@@ -176,8 +176,8 @@ The 24-bit control word that a routed token-map entry or an ARM descriptor carri
 
 | Type | Built from |
 |---|---|
-| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](../tools/ghidra/types/kona-types/arm_state.tsv): one row per field with its status and source page) |
-| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](../tools/ghidra/types/kona-types/vertex_record.tsv), from [software/ucode/ge_compute.md](../software/ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
+| `kona_arm_state` | the ARM firmware's state block, SRAM at r8 = 0 ([arm_state.tsv](ghidra/types/kona-types/arm_state.tsv): one row per field with its status and source page) |
+| `kona_vertex_record` | the geometry engines' vertex record in words ([vertex_record.tsv](ghidra/types/kona-types/vertex_record.tsv), from [software/ucode/ge_compute.md](../software/ucode/ge_compute.md)); words 0xf-0x12 are a union of the eye-space normal and the projected texture results |
 | `kona_entry_geom`, `kona_entry_pass`, `kona_entry_regpix` | a routed token-map entry in its three forms, the host-interface bits as kpm names them and the 24-bit distributor control word split as [software/ucode/ged.md](../software/ucode/ged.md#the-token-map-entry-is-the-distributors-control-word) decodes it; each field's comment carries its status |
 | `kona_ge_special` | enum of the geometry-engine special registers, `KONA_GE11_SR_*` in [GE.h](../devices/ge/GE.h) |
 | `kona_hh_reg` | enum of the host-interface registers at their kernel window offset 0x800000 + register, the `KONA_*HH_*` registers of [HIP.h](../devices/hip/HIP.h) |

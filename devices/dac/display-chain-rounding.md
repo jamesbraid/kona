@@ -81,7 +81,7 @@ The note for the gamma address in section 7.3 says colour 3 is "turned into 2". 
 
 Replace the "padding rule widening a 10-bit colour-map output to the 12-bit gamma index" row in section 7.3 with:
 
-| padding rule widening a 10-bit colour-map output to the 12-bit gamma index | the colour-map output occupies index bits 11:2 and the low two bits repeat its top two bits (index = c << 2 \| c >> 8). The diagnostic's address legaliser forces index bits 1:0 to equal bits 11:10 whenever those are non-zero and never forces them to zero; no loader pre-compensates a widening rule, and no shipped test reads the widened entry back. Zero fill and an 8-bit-based widening (v << 4 \| v >> 4) conflict with the legaliser. Applies to legacy addressing (flag bit 18 clear). What would settle it: marker-table probe (0x3ff selecting entry 0xfff against 0xffc; evidence/findings/display-chain-rounding.md, question 1) | replication | inferred | S9, S72 |
+| padding rule widening a 10-bit colour-map output to the 12-bit gamma index | the colour-map output occupies index bits 11:2 and the low two bits repeat its top two bits (index = c << 2 \| c >> 8). The diagnostic's address legaliser forces index bits 1:0 to equal bits 11:10 whenever those are non-zero and never forces them to zero; no loader pre-compensates a widening rule, and no shipped test reads the widened entry back. Zero fill and an 8-bit-based widening (v << 4 \| v >> 4) conflict with the legaliser. Applies to legacy addressing (flag bit 18 clear). What would settle it: marker-table probe (0x3ff selecting entry 0xfff against 0xffc; devices/dac/display-chain-rounding.md, question 1) | replication | inferred | S9, S72 |
 
 Add this NEW row after it (question 2):
 

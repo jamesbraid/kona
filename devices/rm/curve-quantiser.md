@@ -2,11 +2,11 @@
 
 Scope: the routine in the N32 build of the client library `libGLcore` (IP27KONA32) that turns one detail or sharpen curve sample into a 10-bit code for token 0x17e. Settled by disassembling the shipped binary. No vendor source was read. Addresses are virtual addresses in that build.
 
-Not re-checked here: the IP27KONA and IP27KONA64 builds that [rm.md](../../devices/rm/README.md) also cites, and the sign and sample grid of the curve (both stay as the command-table row has them).
+Not re-checked here: the IP27KONA and IP27KONA64 builds that [rm.md](README.md) also cites, and the sign and sample grid of the curve (both stay as the command-table row has them).
 
 ## Answer
 
-The description in [rm.md](../../devices/rm/README.md) and in [verify-corrections.md](verify-corrections.md) (commit e5ad18d) is right. The clamp is asymmetric, -1024 to 1023, and the routine does halve the value while it lies outside -128 to 127, counting the halvings. The "+/-0x3ff" bound is wrong. It was the text of the command-table row before e5ad18d; that commit already replaced it.
+The description in [rm.md](README.md) and in [verify-corrections.md](../../formats/token/verify-corrections.md) (commit e5ad18d) is right. The clamp is asymmetric, -1024 to 1023, and the routine does halve the value while it lies outside -128 to 127, counting the halvings. The "+/-0x3ff" bound is wrong. It was the text of the command-table row before e5ad18d; that commit already replaced it.
 
 ## Evidence
 
@@ -59,6 +59,6 @@ The table cell has no unescaped `|`, and the output encoding is written with "OR
 
 ## Superseded
 
-Nothing in this file contradicts a findings file. Both [volume-detail-sharpen.md](volume-detail-sharpen.md) section 3 (commit 7b8cb0c) and verify-corrections.md already state the -1024..1023 bound and the halving, and this listing confirms both.
+Nothing in this file contradicts a findings file. Both [volume-detail-sharpen.md](../../formats/token/volume-detail-sharpen.md) section 3 (commit 7b8cb0c) and verify-corrections.md already state the -1024..1023 bound and the halving, and this listing confirms both.
 
 The one superseded text is the pre-e5ad18d command-table row, which read "clamped to +/-0x3ff". That row is gone from HEAD, which carries the replacement above.

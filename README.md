@@ -65,7 +65,7 @@ tools/setup-clone.sh --root /path/to/your/irix/files
 retools/tools/re-run retools/tools/defs/ci-check
 ```
 
-You'll need Podman, git, python3 and your own IRIX files. [evidence/irix-files.md](evidence/irix-files.md) lists
+You'll need Podman, git, python3 and your own IRIX files. [references/irix-files.md](references/irix-files.md) lists
 which ones.
 
 ## How far along
@@ -73,7 +73,7 @@ which ones.
 The tokens and ioctls are done. Most of the functions aren't. The open questions are in [questions/](questions/README.md).
 If you spot a mistake or have a manual we don't, [open an issue](https://github.com/jamesbraid/kona/issues).
 
-<!-- readme-coverage:begin: generated from evidence/inventory/summary.tsv -->
+<!-- readme-coverage:begin: generated from generated/inventory/summary.tsv -->
 | Table | Rows | % understood | % located or better | Audited real (sample) |
 |---|---:|---:|---:|---:|
 | tokens | 617 | 99.8 | 100.0 | 95.5% (89) |

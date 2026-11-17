@@ -16,7 +16,7 @@ In the N32 libGLcore the debug records carry the compile line `-D__GL_USEASMCODE
 
 ## Which IRIX subsystems install the IP35 Kona files
 
-**Established** (the `.idb` manifests of the IRIX 6.5.22 overlay discs, product `eoe_6522m` and `x_eoe_6522m`, read as install records: destination, subsystem and the `mach()` condition `inst` tests; the 6.5.30 discs were not read for this, and evidence/irix-files.md records that the 6.5.30m reference install selected `eoe.sw.gfx`, `eoe.sw64.gfx` and `x_eoe.sw.Server`). A file lands only when the machine `inst` runs on has the named attributes.
+**Established** (the `.idb` manifests of the IRIX 6.5.22 overlay discs, product `eoe_6522m` and `x_eoe_6522m`, read as install records: destination, subsystem and the `mach()` condition `inst` tests; the 6.5.30 discs were not read for this, and references/irix-files.md records that the 6.5.30m reference install selected `eoe.sw.gfx`, `eoe.sw64.gfx` and `x_eoe.sw.Server`). A file lands only when the machine `inst` runs on has the named attributes.
 
 | Files | Subsystem | `mach()` condition |
 |---|---|---|

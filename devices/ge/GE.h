@@ -3,7 +3,7 @@
  *
  * Scope: the host command tokens a client writes into the pipe and the
  * framing of a command, as seen from IRIX 6.5.30m. The geometry engines'
- * own microcode format is not covered yet (see evidence/coverage.md).
+ * own microcode format is not covered yet (see COVERAGE.md).
  *
  * Labels: ESTABLISHED = read directly from a binary at the cited place;
  * INFERRED = a reading with its reasoning; UNKNOWN = not settled.
@@ -196,7 +196,7 @@ enum kona_hp_token {
      * meanings from the emitter debug strings). Established: the token map
      * runs `arm_buffer_config` at arm1.u 0x0c0131a0. Sent by libGLcore.so
      * kona_writeconfig (kon_context.s); first example in
-     * evidence/inventory/tokens.tsv is __glKonCreateContext. */
+     * generated/inventory/tokens.tsv is __glKonCreateContext. */
     KONA_HP_BUFFER_CONFIG                = 0x001,
 
     /* Read at arm1.u arm_pack 0x0c03949c, table pack_cmd 0x0c039538 (16 pairs

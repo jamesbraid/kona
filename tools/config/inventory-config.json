@@ -7,7 +7,7 @@
       "platforms/ir/architecture.md",
       "software/opengl/capability-trees.md",
       "formats/token/command-table.md",
-      "evidence/coverage.md",
+      "COVERAGE.md",
       "software/diags/data-files.md",
       "devices/dg/README.md",
       "software/kernel/diag-messages.md",
@@ -49,8 +49,8 @@
       "software/userland/setup-tools.md",
       "software/userland/shared-libraries.md",
       "platforms/ir/textport.md",
-      "evidence/tooling-bakeoff.md",
-      "evidence/tooling.md",
+      "tools/tooling-bakeoff.md",
+      "tools/tooling.md",
       "software/xsgi/x-server-glx.md",
       "devices/xg/README.md",
       "software/xsgi/xserver.md",
@@ -68,8 +68,8 @@
     "index": [
       "AGENTS.md",
       "README.md",
-      "evidence/irix-files.md",
-      "evidence/coverage.md",
+      "references/irix-files.md",
+      "COVERAGE.md",
       "questions/README.md"
     ],
     "dumps": [
@@ -77,7 +77,7 @@
       "software/ucode/icu_map.tsv"
     ],
     "skip": [
-      "evidence/inventory/*",
+      "generated/inventory/*",
       "software/diags/kpm/*"
     ]
   },
@@ -526,7 +526,7 @@
       "formats/*.md",
       "platforms/*.md",
       "software/*.md",
-      "evidence/coverage.md",
+      "COVERAGE.md",
       "evidence/hw-explanations-kona-p1.md",
       "evidence/instruction-readings-*.md",
       "evidence/tooling*.md",

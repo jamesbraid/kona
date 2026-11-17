@@ -217,7 +217,7 @@
  * result is a signed 16-bit top-left position in output pixels with no bias.
  * `DoDGRqstLoadDacCursor` in arm1.u (at 0x0c007b84) sends ten data writes to
  * the same data port. There is no constant for the position port because it is
- * not an address of its own; see evidence/findings/dac-cursor.md.
+ * not an address of its own; see devices/dac/dac-cursor.md.
  */
 
 /*

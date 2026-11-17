@@ -16,7 +16,7 @@ Notation: `P` is the driver's pipe state (offset 2376 holds the base of a 16 MB 
 6. Reads XG window+0x04 and stores its bits 28-31 at `P+2196`; reads XG window+0x64, takes bits 3-5 (default 8 when zero) and stores them shifted left by 15 at `P+2312`.
 7. Writes 0x0b00 to `HH_VC_ADDRESS` again, reads `HH_VC_DATA`, and uses bits 0-1 of the first value read to pick one of several board-name comparisons (`strncmp` against a name string, then `kona_extract_nic_info`, `kona_init_board_mapping`, `kona_inventory_board`).
 
-**Unknown:** what the video-controller indirect register (`HH_VC_ADDRESS` 0x8800 and 0x0b00) holds, and what the values chosen by bits 0-1 mean. *Test that would settle it:* a trace of the two attach-time reads on a live pipe of each product (IR2, IR3, IR4), or the frame-manager chip's decode table; the required values per product are in [findings/ir2e-ir3-products.md](../../evidence/findings/ir2e-ir3-products.md) (Q5). The shipped binaries do not answer it: the kernel only consumes the bits.
+**Unknown:** what the video-controller indirect register (`HH_VC_ADDRESS` 0x8800 and 0x0b00) holds, and what the values chosen by bits 0-1 mean. *Test that would settle it:* a trace of the two attach-time reads on a live pipe of each product (IR2, IR3, IR4), or the frame-manager chip's decode table; the required values per product are in [findings/ir2e-ir3-products.md](../../platforms/ir/ir2e-ir3-products.md) (Q5). The shipped binaries do not answer it: the kernel only consumes the bits.
 
 ## Reset, `kona_reset_adaptor`
 
