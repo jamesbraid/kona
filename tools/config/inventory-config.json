@@ -1,7 +1,6 @@
 {
   "family": "InfiniteReality (KONA)",
   "siblings": {"odsy": "../odsy", "crime": "../crime"},
-  "review_required": ["evidence/routines/t1-*.md", "evidence/routines/t2-*.md"],
   "docs": {
     "prose": [
       "platforms/ir/architecture.md",
@@ -19,9 +18,12 @@
       "devices/ge/README.md",
       "software/opengl/gl-command-map.md",
       "devices/hip/README.md",
-      "evidence/hw-explanations-kona-p1.md",
+      "devices/*/readings/*.md",
+      "platforms/*/readings/*.md",
+      "software/*/readings/*.md",
+      "software/*/*/readings/*.md",
+      "references/*.md",
       "software/userland/install-tools.md",
-      "evidence/instruction-readings-*.md",
       "software/irisgl/irisgl.md",
       "software/diags/irsaudit.md",
       "software/kernel/kernel-functions.md",
@@ -54,7 +56,6 @@
       "software/xsgi/x-server-glx.md",
       "devices/xg/README.md",
       "software/xsgi/xserver.md",
-      "evidence/routines/*.md",
       "software/ucode/*.md",
       "README.md"
     ],
@@ -527,12 +528,13 @@
       "platforms/*.md",
       "software/*.md",
       "COVERAGE.md",
-      "evidence/hw-explanations-kona-p1.md",
-      "evidence/instruction-readings-*.md",
-      "evidence/tooling*.md",
-      "evidence/routines/*.md",
-      "questions/*.md",
+      "devices/*/readings/*.md",
+      "platforms/*/readings/*.md",
+      "software/*/readings/*.md",
+      "software/*/*/readings/*.md",
       "references/*.md",
+      "tools/tooling*.md",
+      "questions/*.md",
       "software/ucode/*.md"
     ]
   },
