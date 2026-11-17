@@ -1,0 +1,15 @@
+{
+ "default": "software/userland",
+ "rules": [
+  {"match": "^usr/cpu/sysgen/IP\\d+boot/tport\\.a", "dir": "platforms/ir"},
+  {"match": "^usr/cpu/sysgen/(IP\\d+)boot/", "dir": "software/kernel/{1}"},
+  {"match": "^usr/diags/", "dir": "software/diags"},
+  {"match": "^usr/gfx/KONA/bin/kpm$", "dir": "software/diags"},
+  {"match": "^usr/gfx/ucode/", "dir": "software/ucode"},
+  {"match": "^usr/gfx/arch/IGLOO", "dir": "software/irisgl"},
+  {"match": "^usr/gfx/arch/IP\\d+KONA", "dir": "software/opengl"},
+  {"match": "^usr/gfx/arch/GENERIC/Xsgi$", "dir": "software/xsgi"},
+  {"match": "^usr/lib/X11/", "dir": "software/xsgi"},
+  {"match": "^usr/lib32/libfm\\.so$", "dir": "software/irisgl"}
+ ]
+}
