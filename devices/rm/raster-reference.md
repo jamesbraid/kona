@@ -116,7 +116,7 @@ Row ids are for the open-items list in [questions/README.md](../../questions/REA
 
 | Id | Stage | Grade | Fact | Source | Settle |
 |---|---|---|---|---|---|
-| S1 | Signature registers | unknown | The chips' running CRCs cover pin buses; widths and covered buses are known per chip, the polynomial, seed, sampled cycles and word layout are not; a first probe with standard 64-bit polynomials over `aaspoke` and `fog1` found no match. | [raster-rules.md](raster-rules.md#1-the-crc-route) | A wider search on the exactly known streams; a published self-test description. |
+| S1 | Signature registers | unknown | The chips' running CRCs cover pin buses; widths and covered buses are known per chip, the polynomial, seed, sampled cycles and word layout are not; a search for any degree-64 feedback polynomial, with an unknown common seed, trailer and final xor, over `aaspoke`, `fog1`, `msalpha`, `samplemask` and `linesRus` (word subsets, 64 bit-order pairs, update steps of 1 to 64 bits per word, lanes, chunked words, mode bits folded in) found no match; the raster-bus value is an affine function of the stream with test-independent offsets per configuration, so the held streams lack a common trailer. | [raster-rules.md](raster-rules.md#search-for-the-raster-bus-signature-arithmetic-2026-11-18) | The diagnostic's own trailer and set-up writes added to the held streams; what `initCRCreg` writes to the CRC mode register. |
 
 ## The depth buffer and the QEMU manual page
 
