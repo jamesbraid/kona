@@ -293,6 +293,21 @@ Findings and routes tried are in [devices/rm/raster-rules.md](../devices/rm/rast
 5. **Depth and colour rounding into the stored words.** Unknown; the image-processor DRAM-bus signatures cover the stored words once item 1 is solved.
 6. **Coordinates of `fog`, `rm_crc_tri`, `rm_crc_pgtest` and `rm_crc_pgtest1`.** Not traced: they go through helpers. Next: read the helpers to see whether they send fractional vertices.
 
+## Raster reference open items (2026-11-18)
+
+Row ids refer to [devices/rm/raster-reference.md](../devices/rm/raster-reference.md). Rows already open in the section above (CRC, snap, tie, guard-band bias, seed tables, depth and colour rounding) are not repeated. Each item below is unknown with the routes tried in its row; "next" is the cheapest route left.
+
+1. **V5, C2: float-to-fixed converters** (x, y to 12.8, depth to the 32-bit word, colour to the 13-bit field) and engine unit-1 code 0x71. Next: any diagnostic expected word that passes through code 0x71 with a non-integer result; otherwise the vertex-vector signatures once decoded.
+2. **D3: size and compress meaning in `IMP_SZ1`.** The firmware sets size 32 with compress 1 for a multisampled width-32 buffer when state byte 0xcf1 is 2, while the clear handler tests only width 32. Next: read `arm_buffer_config` and `arm_cleardepth` side by side for the byte 0xcf1 case, then `depth_pop`.
+3. **T3: stencil increment and decrement** (saturate or wrap; 1-bit case). Next: a stencil-op vector among the gold tests, or the image-processor DRAM signatures once decoded.
+4. **A2, F5: alpha-test and fog float-to-12-bit steps** and the order of fog, texture environment and alpha test inside the filter chip. Next: interpret `mSendFog` and `mFinishFogDownload` on a known table; then the filter chip's netlist data path.
+5. **B2, B3: blend arithmetic and the two `IMP_BL` bits (28 and 29).** Next: search the diagnostic's writers of `IMP_BL` for a value with either bit set; then the `msalpha` vector.
+6. **X1: which of 1/w, q/w or 1/q the fourth texture word is.** Next: trace the three candidate terms through the engine listings with the store delay modelled, and the `projtex` vector.
+7. **X2, X4, X6: perspective-divide width, per-pixel LOD and filter-weight precision and rounding.** No program; next: `tex2d_detail` and `projtex` signatures once decoded.
+8. **P3, P4, P7: aliased-line pixel rule, `PGTG_LBSIZE` meaning, stipple phase.** Next: the `linesRus` and `aaspoke` vectors.
+9. **E2, E5: sample origin inside the pixel and the resolve arithmetic.** Next: `crc_imptest1` rectangle with `samplemask`.
+10. **G2: whether the image engines dither when narrowing 12-bit colour, and the display-channel noise pattern (G3).** No register or microcode names a raster dither; next: the display board's output-chip netlists for the pattern.
+
 ## Geometry engine program
 
 | Question | Owner | Routes tried | Next route |
