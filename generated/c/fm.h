@@ -1,4 +1,7 @@
 /* generated from devices/fm/registers.toml by defs-gen - do not edit, change the source */
+/* SPDX-License-Identifier: BSD-3-Clause */
+/* defs-gen 2 */
+/* input sha256 242f0ec1d27be8f3875a641072b4d620014e652a4d74b13f5f6eba8cdf2f6ecd */
 /* frame-manager registers on the display bus */
 #ifndef FM_GEN_H
 #define FM_GEN_H

@@ -1,5 +1,6 @@
 # Imported from the former KONA_FM_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "fm"
+name_source = "imported-unchecked"
 prefix = "FM"
 title = "frame-manager registers on the display bus"
 doc = "Frame-manager registers on the display bus: the swap strobe, the per-channel display ids and the board-level control words."

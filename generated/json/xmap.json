@@ -1,4 +1,7 @@
 {
+ "license": "BSD-3-Clause",
+ "generator": "defs-gen 2",
+ "input_sha256": "7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d",
  "schema": "defs-flat/1",
  "source": "devices/xmap/registers.toml",
  "profile": "public",

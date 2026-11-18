@@ -1,4 +1,7 @@
 <!-- generated from devices/voc/registers.toml by defs-gen - do not edit, change the source -->
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+<!-- defs-gen 2 -->
+<!-- input sha256 98162baab56e42fba2a078087b3d2d049406bb1aa71705345d8c2cd55a5698f6 -->
 
 # video-output chip (VOC) registers
 

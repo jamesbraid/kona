@@ -1,4 +1,5 @@
 [project]
+license = "BSD-3-Clause"
 name = "kona"
 plugin = "tools/kona_checks.py"
 
@@ -770,3 +771,14 @@ binds = [
   ["F", "HIP.xg_err_status.read_req_timeout", 1],
   ["F", "HIP.xg_err_status.response", 2],
 ]
+
+[gen.qemu]
+board = "KONA"
+
+[gen.qemu.units.hip]
+
+[gen.qemu.units.fm]
+
+[gen.qemu.units.xmap]
+
+[gen.qemu.units.token]

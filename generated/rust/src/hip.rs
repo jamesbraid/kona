@@ -1,4 +1,7 @@
 // generated from devices/hip/registers.toml by defs-gen - do not edit, change the source
+// SPDX-License-Identifier: BSD-3-Clause
+// defs-gen 2
+// input sha256 a0deff38dbd64c58a49a141323a20c301046fe146b6e74ad7530d4b80a7ce107
 // host-interface registers
 #![allow(dead_code)]
 

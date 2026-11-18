@@ -1,4 +1,7 @@
 /* generated from formats/dispreq/format.toml by defs-gen - do not edit, change the source */
+/* SPDX-License-Identifier: BSD-3-Clause */
+/* defs-gen 2 */
+/* input sha256 bb62cea176212a78b8de3097d0ed01e157433410d1a57168a516b7aa2ae622ae */
 /* display-generator request numbers */
 #ifndef DISPREQ_GEN_H
 #define DISPREQ_GEN_H

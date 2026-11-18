@@ -1,4 +1,7 @@
 """generated from devices/dacidx/registers.toml by defs-gen - do not edit, change the source
+SPDX-License-Identifier: BSD-3-Clause
+defs-gen 2
+input sha256 f08a1dde64fe90ff43f74fc39523d93294126a8bcb522ccf2ae8e9bfb0c766c6
 video DAC and encoder indexed registers"""
 
 UNIT = 'dacidx'

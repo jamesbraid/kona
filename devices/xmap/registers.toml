@@ -1,5 +1,6 @@
 # Imported from the former KONA_XMAP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "xmap"
+name_source = "imported-unchecked"
 prefix = "XMAP"
 title = "XMAP registers and the words written through them"
 doc = "XMAP direct registers, indirect-memory ports and the words written through them."

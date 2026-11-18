@@ -1,4 +1,7 @@
 // generated from devices/dac/registers.toml by defs-gen - do not edit, change the source
+// SPDX-License-Identifier: BSD-3-Clause
+// defs-gen 2
+// input sha256 f7c24ebd520dd0789feb31463f403cfc3a6eec6b3e205f20fc6514d7c15563ca
 // video DAC and encoder ports on the display bus
 #![allow(dead_code)]
 

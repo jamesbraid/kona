@@ -1,5 +1,8 @@
 <?xml version="1.0" ?>
 <!-- generated from formats/token/format.toml by defs-gen - do not edit, change the source -->
+<!-- SPDX-License-Identifier: BSD-3-Clause -->
+<!-- defs-gen 2 -->
+<!-- input sha256 5a0bb22a0b12d0937976e29032161795df9702484bb9aa3ea1e955b2f69640d3 -->
 <genxml unit="token" prefix="KONA_TOKEN" title="host command tokens of the InfiniteReality2 pipe (all but queries)">
   <constant name="1D_TEXTURE_IMAGE_LOAD" value="0xf" grade="established"/>
   <constant name="2D_TEXTURE_IMAGE_LOAD" value="0x10" grade="established"/>

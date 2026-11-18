@@ -1,5 +1,6 @@
 # Imported from the former KONA_HIP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "hip"
+name_source = "imported-unchecked"
 prefix = "HIP"
 title = "host-interface registers"
 doc = "Host-interface chip registers: the interrupt status register and its cause bits."
