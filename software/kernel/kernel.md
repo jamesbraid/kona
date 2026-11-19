@@ -1432,7 +1432,7 @@ The driver keeps its own timeout list per pipe instead of using the kernel's dir
   `kona_delay_monitor_gfifo` with the time left and, when that returns zero, runs `kona_callout` and waits another 500000 us (0x7a120, the watchdog tick). When the loop ends, drained or dead, it cancels the high-water timeout at `P+2336` (`kona_untimeout`, 0x778); a pipe still alive is then re-armed with `kona_sched_tick` (0x7e4) and, if that fails, killed with reason 9
   (`KONA_DIE_SET_TIMEOUT_FAILED`). It drops the lock and clears the wait flag on every path.
 - `kona_callout(P)` is the watchdog. It does nothing while a kernel debugger holds the CPU. If the pipe is alive it reads `HH_TBUS_STATUS` and counts the pipe as active when
-  `TBUS_ACTIVE` (bit 2) is set, or when the ARM interrupt handler has set `P+5464` since the last tick. A pipe with neither, and with the `kona_full_timeouts` tunable clear, gets "Pipe hung: no TBUS or ARM activity"
+  `TBUS_ACTIVE` (bit 2) is set, or when the ARM interrupt handler has set `P+5464` since the last tick. A pipe with neither, and with the `kona_full_timeouts` tunable clear (it is 1 as shipped, so this path is off), gets "Pipe hung: no TBUS or ARM activity"
   (`cmn_err_tag` 2112). It then writes 4 to `HH_TBUS_STATUS`, clears `P+5464` and calls
   `kona_timein(P, hung)`.
 - `kona_timein(P, force)` (0xc8) decrements the first record's remaining ticks and fires every record that reaches zero. With `force` set, it fires every record on the list at once. To fire, it unlinks the record, calls the record's interrupt-level routine, calls the handler with (P, the three arguments), restores the level and frees the record.

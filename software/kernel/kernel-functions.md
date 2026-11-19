@@ -169,7 +169,7 @@ The map RAM is an array of 32-bit entries at window offset 0x100000 (stride 4), 
   **Established.** The pipe watchdog that runs from every timer tick.
   It does nothing while a kernel debugger holds the current CPU.
   Otherwise, if the pipe is alive, it reads `HH_TBUS_STATUS` (0x8003a8) and counts the pipe as active when bit 2 is set or the ARM interrupt handler has set the activity flag (+5464).
-  A live pipe with no activity logs "pipe hung" (tag 2112) and forces every timeout to fire, unless the `kona_full_timeouts` tunable is set (0x278-0x290), in which case it neither logs nor forces.
+  A live pipe with no activity logs "pipe hung" (tag 2112) and forces every timeout to fire, unless the `kona_full_timeouts` tunable is set (0x278-0x290), in which case it neither logs nor forces. The shipped value is 1 (`.sdata` of both the IP27 and IP35 objects), so as shipped it never logs or forces.
   A dead pipe skips the read and the log.
   It writes 4 to `HH_TBUS_STATUS` and clears the activity flag, then calls `kona_timein`.
 - `kona_timeout` (`kona_timeout.o` +0x3f0, 400 bytes): **Established.** Schedules a handler to run after a number of ticks: takes a record from
