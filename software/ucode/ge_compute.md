@@ -2648,7 +2648,7 @@ The handlers of `raster.S` talk to the raster boards through the engine's bus-ou
   chained](#how-the-vertex-path-is-chained-successor-words).
 - `mgeb_RGBA_Mode` (`raster.S` lines 682-737, at 0x3923): **inferred**, the RGBA counterpart. It undoes
   `mgeb_CI_Mode`'s flags: code 0x51 takes 0x800 out of engine word 3 (0x392f) and 0x10 out of word 0x84 (0x3925,
-  stored at 0x392e). It sets the colour scale word 0xc5 to 0x457ffff8, 4095.9998, so that a colour of 1.0 converts to
+  stored at 0x392e). It sets the colour scale word 0xc5 to 0x457ffff8, 4095.998 (2^12 less 2^-9), so that a colour of 1.0 converts to
   0xfff (0x3933, 0x393d). It points successor words 0xb and 0xc at `mmo_DirtyCullAndLightModule` and
   `mmo_DirtyLightModule` and word 0xa1 at `mLiFinalLi` (0xda3c). Under the predicate set by ANDing word 0x84 with 8
   (0x3930) it stores `mLiClrMtrlFinalLi` (0xd831) there instead (0x393c).
