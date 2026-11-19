@@ -176,6 +176,20 @@ Software timers cover the rest: an input DMA that never completes is `kona_idma_
 
 **Unknown: codes 3, 7, 8, 11, 19, 20, 23 and 24.** An earlier reading attributed meanings to them from a 6.5.5 driver header. No 6.5.30m driver path raises these codes and that header is not among the files this repository reads, so no meaning is recorded. Route: the 6.5.5 installed header, once it is read here.
 
+### What the retrace interrupt writes: 0x800228 and 0x8003a8
+
+A guest that counts register writes sees two host-interface offsets written at the retrace rate (about 60 a second). Both come from the one path in `kona_intr_handler` that serves the VIDEO cause (bit 3 of `HH_INTR_STATUS`).
+
+**`HH_INTR_ACK`, 0x800228 (`host_intr_ack` in registers.toml).** **Established** (software expectation: `kona_intr_handler` `kona_intr_hip2.o` +0x1cc, `KONAstart` +0x42c, 6.5.30m; `irsaudit` `TEST_intr` 0x10079ef8). Write-only, 32 bits, no field layout: the value is ignored as far as any shipped software shows. The handler writes 0xbadc0ffe once per interrupt, after it has written the served cause bits back to `HH_INTR_STATUS` (write-one-to-clear, inferred) and before it drops its lock. `KONAstart` writes the same word once after a stray parity status; the diagnostic writes 0 after each status write-back. Side effects: **inferred** end-of-interrupt strobe that re-arms the line; **unknown** whether the hardware needs it (the diagnostic clears a cause without it) and whether it ever clears a pending cause by itself. A model that accepts and drops the write is consistent with every caller read; reads of this offset are never made.
+
+**`HH_TBUS_STATUS`, 0x8003a8 (`host_tbus_status` in registers.toml).** **Established** (software expectation: `kona_video_intr` `kona_video.o` +0x17b8, `kona_callout` `kona_timeout.o` +0x1b4, `kona_die` `kona_crash.o`, kpm `setup_dma`). Four sticky status bits, mask 0xf: DRAW bit 0, LOAD bit 1, ACTIVE bit 2, STALL bit 3 (names are kpm's; the bit meanings beyond ACTIVE are **unknown**: no software reads DRAW, LOAD or STALL, and nothing says what sets them). Writes in the field:
+
+- `kona_video_intr` writes 1 on every retrace, after the swap strobe (written only when no swap is queued) and before it walks the retrace queue. This is the 60 Hz write.
+- `kona_callout`, the pipe watchdog, reads the register once per driver timer tick, treats the pipe as busy when bit 2 is set (or when the ARM-event handler has set a software activity flag), then writes 4. The timer re-arms every 500 ms while the driver's timeout list is non-empty. A live pipe with neither signal is logged as "pipe hung" and every timeout is forced. A model that always reads 0 will trip this whenever a timeout is pending and no ARM event has arrived since the last tick.
+- `kona_die` reads it into the health record and writes 8; kpm's `setup_dma` writes 1.
+
+Side effect: **inferred** write-one-to-clear, because every writer stores exactly the bit it tested or wants cleared (1 after a retrace, 4 after reading ACTIVE, 8 on death). Whether writing 1 clears DRAW, or acknowledges something else, is **unknown**; the reset value and what sets ACTIVE are **unknown: no shipped software or published source depends on them** (routes tried: `kona.a` readers and writers, kpm register tables, `irsaudit`). The 60 Hz write rate seen in a guest matches the retrace (video) interrupt, not the watchdog.
+
 ### Interrupt facts no software settles
 
 How the pipe decides when to raise PARITY, ODMA, PIO_OV and IDMA_OV beyond what the names say is **unknown: no shipped software or published source depends on it**, with the routes tried at `HH_INTR_STATUS` in [HIP.h](HIP.h). The XG registers 0x04, 0x24, 0x2c and 0x74 are labelled in [XG.h](../xg/XG.h).
