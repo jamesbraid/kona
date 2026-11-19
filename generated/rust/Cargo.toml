@@ -3,7 +3,7 @@
 # defs-gen 2
 # input sha256 b562c770061315c9095cdf40baa7845e5791e6db5a897ecf5c55c444fec15045
 [package]
-name = "hwdefs"
+name = "kona-defs"
 version = "0.1.0"
 edition = "2021"
 publish = false
