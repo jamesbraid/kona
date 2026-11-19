@@ -1,7 +1,7 @@
 <!-- generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d -->
+<!-- input sha256 53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42 -->
 
 # XMAP registers and the words written through them
 
@@ -33,19 +33,19 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | `unread_09` | 0x109 | w | 32 |  | xmap_regs | unknown | unknown |  |
 | `crc_status` | 0x10a | r | 32 |  | xmap_regs | unknown | unknown |  |
 | `board_count` | 0x10b | w | 32 |  | xmap_regs | unknown | established |  |
-| `di_compare_addr` | 0x10c | w | 32 |  | xmap_regs | unknown | inferred |  |
-| `imp_delay` | 0x10d | w | 32 |  | xmap_regs | unknown | inferred |  |
+| `display_id_compare_addr` | 0x10c | w | 32 |  | xmap_regs | unknown | inferred |  |
+| `image_processor_delay` | 0x10d | w | 32 |  | xmap_regs | unknown | inferred |  |
 | `pipe_delay` | 0x10e | w | 32 |  | xmap_regs | unknown | inferred |  |
-| `fastlist_config` | 0x10f | w | 32 |  | xmap_regs | unknown | inferred |  |
+| `list_chunk_config` | 0x10f | w | 32 |  | xmap_regs | unknown | inferred |  |
 | `unread_10` | 0x110 | w | 32 |  | xmap_regs | unknown | unknown |  |
 | `readback_addr` | 0x111 | w | 32 |  | xmap_regs | unknown | inferred |  |
 | `readback_data` | 0x112 | r | 32 |  | xmap_regs | unknown | inferred |  |
-| `ind_addr` | 0x118 | w | 32 |  | xmap_regs | unknown | established |  |
+| `indirect_addr` | 0x118 | w | 32 |  | xmap_regs | unknown | established |  |
 | `cmap_data` | 0x119 | w | 32 |  | xmap_regs | unknown | established |  |
 | `unused_1a` | 0x11a | w | 32 |  | xmap_regs | unknown | unknown |  |
 | `gamma_data` | 0x11b | w | 32 |  | xmap_regs | unknown | established |  |
-| `did_data` | 0x11c | w | 32 |  | xmap_regs | unknown | established |  |
-| `chan_setup` | 0x11d | w | 32 |  | xmap_regs | unknown | established |  |
+| `display_id_data` | 0x11c | w | 32 |  | xmap_regs | unknown | established |  |
+| `channel_setup` | 0x11d | w | 32 |  | xmap_regs | unknown | established |  |
 | `table_close` | 0x11e | w | 32 |  | xmap_regs | unknown | inferred |  |
 | `flush` | 0x11f | w | 32 |  | xmap_regs | unknown | inferred |  |
 
@@ -112,13 +112,17 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|---|---|
 | 1:0 | `code` | established | one_board=0, two_boards=1, four_boards=2 |  |  |
 
-### Register `di_compare_addr`
+### Register `display_id_compare_addr`
+
+formerly di_compare_addr
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
 | 5:0 | `addr` | inferred |  |  |  |
 
-### Register `imp_delay`
+### Register `image_processor_delay`
+
+formerly imp_delay
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -130,7 +134,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|---|---|
 | 2:0 | `delay` | inferred |  |  |  |
 
-### Register `fastlist_config`
+### Register `list_chunk_config`
+
+formerly fastlist_config
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -147,7 +153,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 ### Register `readback_data`
 
-### Register `ind_addr`
+### Register `indirect_addr`
+
+formerly ind_addr
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -172,7 +180,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|---|---|
 | 11:0 | `entry` | established |  |  |  |
 
-### Register `did_data`
+### Register `display_id_data`
+
+formerly did_data
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -181,7 +191,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | 2 | `luminance` | established |  |  |  |
 | 1 | `grey` | established |  |  |  |
 
-### Register `chan_setup`
+### Register `channel_setup`
+
+formerly chan_setup
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -198,8 +210,8 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 
 | Constant | Value | Grade | Source | Description |
 |---|---|---|---|---|
+| `CHIP_SELECT_COUNT` | 0x4 | established |  | XMAP chips selected by the read chip select; formerly COUNT |
 | `CMAP_LOAD_PIECE_WORDS` | 0x200 | established |  | colour-map and cursor loads are sent in pieces of this many words |
-| `COUNT` | 0x4 | established |  | XMAP chips selected by the read chip select |
 | `CURSOR_COLOUR_WORD` | 0x100 | established |  | first colour word of a slot; four words, pixel values 3, 2, 1, 0 |
 | `CURSOR_CROSSHAIR_BLOCK` | 0x269c | established |  | address of the crosshair slot; its colour block follows at +256 |
 | `CURSOR_HOT_SPOT_CROSSHAIR` | 0x20 | established |  | crosshair mode hot spot, both axes |
@@ -222,6 +234,6 @@ A vector is a value recorded from a source. An example only shows the layout.
 | Target | Value | Kind | Decoded |
 |---|---|---|---|
 | `cursor_pos` | 0x2001 | example | x=1, y=1 |
-| `fastlist_config` | 0x339 | vector | chunk_size=25, fixed=25 |
-| `ind_addr` | 0x40000 | example | entry=0, colour=0, page=0, flag=1 |
-| `did_data` | 0x80050 | vector | grey=0, luminance=0, planes_minus_1=10, cmap_base=4096 |
+| `list_chunk_config` | 0x339 | vector | chunk_size=25, fixed=25 |
+| `indirect_addr` | 0x40000 | example | entry=0, colour=0, page=0, flag=1 |
+| `display_id_data` | 0x80050 | vector | grey=0, luminance=0, planes_minus_1=10, cmap_base=4096 |

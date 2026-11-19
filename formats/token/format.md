@@ -1,7 +1,7 @@
 <!-- generated from formats/token/format.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 5a0bb22a0b12d0937976e29032161795df9702484bb9aa3ea1e955b2f69640d3 -->
+<!-- input sha256 7258358a7942bbf8a1024234073f68c73b9cf71d14601d77747d2c5962f4c59a -->
 
 # host command tokens of the InfiniteReality2 pipe (all but queries)
 

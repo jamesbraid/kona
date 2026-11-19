@@ -1,7 +1,7 @@
 {
  "license": "BSD-3-Clause",
  "generator": "defs-gen 2",
- "input_sha256": "a0deff38dbd64c58a49a141323a20c301046fe146b6e74ad7530d4b80a7ce107",
+ "input_sha256": "dcce6a52f9cfe35eb46b1d30b314bef85e1228becc0c56750a4ccf9b965e5a7d",
  "schema": "defs-flat/1",
  "source": "devices/hip/registers.toml",
  "profile": "public",
@@ -9,7 +9,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_arm_ctrl",
+   "name": "armspace_arm_ctrl",
    "offset": 0,
    "access": "rw",
    "width": 32,
@@ -22,7 +22,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_arm_ctrl.value",
+   "name": "armspace_arm_ctrl.value",
    "hi": 1,
    "lo": 0,
    "grade": "established"
@@ -30,7 +30,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_idma_pnum",
+   "name": "armspace_idma_pnum",
    "offset": 16,
    "access": "rw",
    "width": 32,
@@ -43,7 +43,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_idma_pnum.page",
+   "name": "armspace_idma_pnum.page",
    "hi": 28,
    "lo": 0,
    "grade": "established"
@@ -51,7 +51,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_idma_poff",
+   "name": "armspace_idma_poff",
    "offset": 20,
    "access": "rw",
    "width": 32,
@@ -64,7 +64,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_idma_poff.offset",
+   "name": "armspace_idma_poff.offset",
    "hi": 11,
    "lo": 2,
    "grade": "established"
@@ -72,7 +72,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_idma_ctrl",
+   "name": "armspace_idma_ctrl",
    "offset": 32,
    "access": "rw",
    "width": 32,
@@ -85,7 +85,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_idma_ctrl.mode",
+   "name": "armspace_idma_ctrl.mode",
    "hi": 1,
    "lo": 0,
    "grade": "established"
@@ -93,7 +93,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_ldma_addr",
+   "name": "armspace_ldma_addr",
    "offset": 48,
    "access": "rw",
    "width": 32,
@@ -106,7 +106,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_ldma_addr.addr",
+   "name": "armspace_ldma_addr.addr",
    "hi": 25,
    "lo": 3,
    "grade": "established"
@@ -114,7 +114,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_ldma_ctrl",
+   "name": "armspace_ldma_ctrl",
    "offset": 60,
    "access": "rw",
    "width": 32,
@@ -127,7 +127,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_ldma_ctrl.value",
+   "name": "armspace_ldma_ctrl.value",
    "hi": 0,
    "lo": 0,
    "grade": "established"
@@ -135,7 +135,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_ldma_src",
+   "name": "armspace_ldma_src",
    "offset": 72,
    "access": "rw",
    "width": 32,
@@ -148,7 +148,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_ldma_src.value",
+   "name": "armspace_ldma_src.value",
    "hi": 0,
    "lo": 0,
    "grade": "established"
@@ -156,7 +156,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_ctrl",
+   "name": "armspace_icu_ctrl",
    "offset": 80,
    "access": "rw",
    "width": 32,
@@ -169,7 +169,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_ctrl.value",
+   "name": "armspace_icu_ctrl.value",
    "hi": 1,
    "lo": 0,
    "grade": "established"
@@ -177,7 +177,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_divert_pc",
+   "name": "armspace_icu_divert_pc",
    "offset": 84,
    "access": "rw",
    "width": 32,
@@ -190,7 +190,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_divert_pc.vector",
+   "name": "armspace_icu_divert_pc.vector",
    "hi": 27,
    "lo": 2,
    "grade": "established"
@@ -198,7 +198,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_wc",
+   "name": "armspace_icu_wc",
    "offset": 92,
    "access": "rw",
    "width": 32,
@@ -211,7 +211,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_state",
+   "name": "armspace_icu_state",
    "offset": 104,
    "access": "rw",
    "width": 32,
@@ -224,7 +224,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_state.value",
+   "name": "armspace_icu_state.value",
    "hi": 1,
    "lo": 0,
    "grade": "established"
@@ -232,7 +232,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_error_pc",
+   "name": "armspace_icu_error_pc",
    "offset": 108,
    "access": "rw",
    "width": 32,
@@ -245,7 +245,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_error_pc.vector",
+   "name": "armspace_icu_error_pc.vector",
    "hi": 27,
    "lo": 2,
    "grade": "established"
@@ -253,7 +253,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_loop_addr",
+   "name": "armspace_icu_loop_addr",
    "offset": 112,
    "access": "rw",
    "width": 32,
@@ -266,7 +266,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_loop_addr.value",
+   "name": "armspace_icu_loop_addr.value",
    "hi": 8,
    "lo": 0,
    "grade": "established"
@@ -274,7 +274,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_icu_arrcnt",
+   "name": "armspace_icu_arrcnt",
    "offset": 116,
    "access": "rw",
    "width": 32,
@@ -287,7 +287,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "ha_icu_arrcnt.count",
+   "name": "armspace_icu_arrcnt.count",
    "hi": 15,
    "lo": 0,
    "grade": "established"
@@ -295,7 +295,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "ha_host_mbox",
+   "name": "armspace_host_mbox",
    "offset": 144,
    "access": "rw",
    "width": 32,
@@ -308,7 +308,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_rtc",
+   "name": "host_rtc",
    "offset": 512,
    "access": "r",
    "width": 32,
@@ -321,7 +321,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_rtc.count",
+   "name": "host_rtc.count",
    "hi": 31,
    "lo": 0,
    "grade": "inferred"
@@ -329,7 +329,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_gfifo_level",
+   "name": "host_gfifo_level",
    "offset": 520,
    "access": "r",
    "width": 32,
@@ -342,7 +342,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_gfifo_level.level",
+   "name": "host_gfifo_level.level",
    "hi": 10,
    "lo": 1,
    "grade": "established"
@@ -350,7 +350,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_gfifo_hi",
+   "name": "host_gfifo_hi",
    "offset": 528,
    "access": "rw",
    "width": 32,
@@ -363,7 +363,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_gfifo_hi.threshold",
+   "name": "host_gfifo_hi.threshold",
    "hi": 10,
    "lo": 1,
    "grade": "established"
@@ -371,7 +371,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_gfifo_lo",
+   "name": "host_gfifo_lo",
    "offset": 536,
    "access": "rw",
    "width": 32,
@@ -384,7 +384,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_gfifo_lo.threshold",
+   "name": "host_gfifo_lo.threshold",
    "hi": 10,
    "lo": 1,
    "grade": "established"
@@ -392,7 +392,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_intr_info",
+   "name": "host_intr_info",
    "offset": 544,
    "access": "rw",
    "width": 32,
@@ -405,7 +405,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_info.global_enable",
+   "name": "host_intr_info.global_enable",
    "hi": 15,
    "lo": 15,
    "grade": "established"
@@ -413,7 +413,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_info.vector_cpu",
+   "name": "host_intr_info.vector_cpu",
    "hi": 14,
    "lo": 0,
    "grade": "inferred"
@@ -421,7 +421,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_intr_ack",
+   "name": "host_intr_ack",
    "offset": 552,
    "access": "w",
    "width": 32,
@@ -434,7 +434,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_intr_enable",
+   "name": "host_intr_enable",
    "offset": 560,
    "access": "rw",
    "width": 32,
@@ -447,7 +447,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_enable.mask",
+   "name": "host_intr_enable.mask",
    "hi": 11,
    "lo": 0,
    "grade": "established"
@@ -455,7 +455,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_intr_status",
+   "name": "host_intr_status",
    "offset": 568,
    "access": "rw",
    "width": 32,
@@ -468,7 +468,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.idma_ov",
+   "name": "host_intr_status.idma_ov",
    "hi": 11,
    "lo": 11,
    "grade": "established"
@@ -476,7 +476,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.pio_ov",
+   "name": "host_intr_status.pio_ov",
    "hi": 10,
    "lo": 10,
    "grade": "established"
@@ -484,7 +484,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.voc",
+   "name": "host_intr_status.voc",
    "hi": 9,
    "lo": 9,
    "grade": "established"
@@ -492,7 +492,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.parity",
+   "name": "host_intr_status.parity",
    "hi": 8,
    "lo": 8,
    "grade": "established"
@@ -500,7 +500,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.unused",
+   "name": "host_intr_status.unused",
    "hi": 7,
    "lo": 7,
    "grade": "established"
@@ -508,7 +508,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.odma",
+   "name": "host_intr_status.odma",
    "hi": 6,
    "lo": 6,
    "grade": "established"
@@ -516,7 +516,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.ge",
+   "name": "host_intr_status.ge",
    "hi": 5,
    "lo": 5,
    "grade": "established"
@@ -524,7 +524,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.arm",
+   "name": "host_intr_status.arm",
    "hi": 4,
    "lo": 4,
    "grade": "established"
@@ -532,7 +532,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.video",
+   "name": "host_intr_status.video",
    "hi": 3,
    "lo": 3,
    "grade": "established"
@@ -540,7 +540,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.fifo_ov",
+   "name": "host_intr_status.fifo_ov",
    "hi": 2,
    "lo": 2,
    "grade": "established"
@@ -548,7 +548,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.fifo_lo",
+   "name": "host_intr_status.fifo_lo",
    "hi": 1,
    "lo": 1,
    "grade": "established"
@@ -556,7 +556,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_intr_status.fifo_hi",
+   "name": "host_intr_status.fifo_hi",
    "hi": 0,
    "lo": 0,
    "grade": "established"
@@ -564,7 +564,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_mbox",
+   "name": "host_arm_mbox",
    "offset": 576,
    "access": "r",
    "width": 32,
@@ -577,7 +577,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_seqid",
+   "name": "host_seqid",
    "offset": 584,
    "access": "r",
    "width": 32,
@@ -590,7 +590,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_odma_flush",
+   "name": "host_odma_flush",
    "offset": 664,
    "access": "w",
    "width": 32,
@@ -603,7 +603,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_reset",
+   "name": "host_reset",
    "offset": 768,
    "access": "rw",
    "width": 32,
@@ -616,7 +616,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_reset.arm_start",
+   "name": "host_reset.arm_start",
    "hi": 1,
    "lo": 1,
    "grade": "inferred"
@@ -624,7 +624,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_reset.hip_reset",
+   "name": "host_reset.hip_reset",
    "hi": 0,
    "lo": 0,
    "grade": "established"
@@ -632,7 +632,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_ctrl",
+   "name": "host_arm_ctrl",
    "offset": 776,
    "access": "rw",
    "width": 32,
@@ -645,7 +645,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_ctrl.host_access",
+   "name": "host_arm_ctrl.host_access",
    "hi": 0,
    "lo": 0,
    "grade": "established"
@@ -653,7 +653,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_status",
+   "name": "host_arm_status",
    "offset": 784,
    "access": "r",
    "width": 32,
@@ -666,7 +666,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.mode",
+   "name": "host_arm_status.mode",
    "hi": 15,
    "lo": 11,
    "grade": "inferred"
@@ -674,7 +674,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.nopc",
+   "name": "host_arm_status.nopc",
    "hi": 10,
    "lo": 10,
    "grade": "inferred"
@@ -682,7 +682,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.abort",
+   "name": "host_arm_status.abort",
    "hi": 9,
    "lo": 9,
    "grade": "inferred"
@@ -690,7 +690,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.nbw",
+   "name": "host_arm_status.nbw",
    "hi": 8,
    "lo": 8,
    "grade": "inferred"
@@ -698,7 +698,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.nrw",
+   "name": "host_arm_status.nrw",
    "hi": 7,
    "lo": 7,
    "grade": "inferred"
@@ -706,7 +706,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.seq",
+   "name": "host_arm_status.seq",
    "hi": 6,
    "lo": 6,
    "grade": "inferred"
@@ -714,7 +714,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.mreq",
+   "name": "host_arm_status.mreq",
    "hi": 5,
    "lo": 5,
    "grade": "inferred"
@@ -722,7 +722,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.ge_cnt",
+   "name": "host_arm_status.ge_cnt",
    "hi": 4,
    "lo": 2,
    "grade": "inferred"
@@ -730,7 +730,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.remap",
+   "name": "host_arm_status.remap",
    "hi": 1,
    "lo": 1,
    "grade": "inferred"
@@ -738,7 +738,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_status.stall",
+   "name": "host_arm_status.stall",
    "hi": 0,
    "lo": 0,
    "grade": "inferred"
@@ -746,7 +746,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_stall",
+   "name": "host_arm_stall",
    "offset": 800,
    "access": "w",
    "width": 32,
@@ -759,7 +759,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_unstall",
+   "name": "host_arm_unstall",
    "offset": 808,
    "access": "w",
    "width": 32,
@@ -772,7 +772,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_tbus_status",
+   "name": "host_tbus_status",
    "offset": 936,
    "access": "rw",
    "width": 32,
@@ -785,7 +785,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_tbus_status.stall",
+   "name": "host_tbus_status.stall",
    "hi": 3,
    "lo": 3,
    "grade": "inferred"
@@ -793,7 +793,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_tbus_status.active",
+   "name": "host_tbus_status.active",
    "hi": 2,
    "lo": 2,
    "grade": "inferred"
@@ -801,7 +801,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_tbus_status.load",
+   "name": "host_tbus_status.load",
    "hi": 1,
    "lo": 1,
    "grade": "inferred"
@@ -809,7 +809,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_tbus_status.draw",
+   "name": "host_tbus_status.draw",
    "hi": 0,
    "lo": 0,
    "grade": "inferred"
@@ -817,7 +817,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_tfifo_hi",
+   "name": "host_tfifo_hi",
    "offset": 944,
    "access": "rw",
    "width": 32,
@@ -830,7 +830,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_tfifo_hi.threshold",
+   "name": "host_tfifo_hi.threshold",
    "hi": 3,
    "lo": 0,
    "grade": "established"
@@ -838,7 +838,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_vc_address",
+   "name": "host_vc_address",
    "offset": 960,
    "access": "rw",
    "width": 32,
@@ -851,7 +851,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_vc_address.value",
+   "name": "host_vc_address.value",
    "hi": 15,
    "lo": 0,
    "grade": "established"
@@ -859,7 +859,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_vc_ready",
+   "name": "host_vc_ready",
    "offset": 968,
    "access": "r",
    "width": 32,
@@ -872,7 +872,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_vc_ready.ready",
+   "name": "host_vc_ready.ready",
    "hi": 0,
    "lo": 0,
    "grade": "inferred"
@@ -880,7 +880,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_vc_data",
+   "name": "host_vc_data",
    "offset": 976,
    "access": "rw",
    "width": 32,
@@ -893,7 +893,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_vc_data_incr",
+   "name": "host_vc_data_incr",
    "offset": 984,
    "access": "rw",
    "width": 32,
@@ -906,7 +906,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_address",
+   "name": "host_arm_address",
    "offset": 1000,
    "access": "rw",
    "width": 32,
@@ -919,7 +919,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "hh_arm_address.word_address",
+   "name": "host_arm_address.word_address",
    "hi": 27,
    "lo": 2,
    "grade": "established"
@@ -927,7 +927,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_data",
+   "name": "host_arm_data",
    "offset": 1008,
    "access": "rw",
    "width": 32,
@@ -940,7 +940,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "hh_arm_data_incr",
+   "name": "host_arm_data_incr",
    "offset": 1016,
    "access": "rw",
    "width": 32,
@@ -1018,7 +1018,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "xg_config",
+   "name": "widget_config",
    "offset": 100,
    "access": "r",
    "width": 32,
@@ -1031,7 +1031,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_config.mapram_type",
+   "name": "widget_config.mapram_type",
    "hi": 7,
    "lo": 6,
    "grade": "established"
@@ -1039,7 +1039,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_config.mapram_size",
+   "name": "widget_config.mapram_size",
    "hi": 5,
    "lo": 3,
    "grade": "established"
@@ -1047,7 +1047,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_config.subsystem",
+   "name": "widget_config.subsystem",
    "hi": 2,
    "lo": 0,
    "grade": "established"
@@ -1055,7 +1055,7 @@
   {
    "unit": "hip",
    "kind": "register",
-   "name": "xg_err_status",
+   "name": "widget_err_status",
    "offset": 108,
    "access": "rw",
    "width": 32,
@@ -1068,7 +1068,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.idma_response_bad_tnum",
+   "name": "widget_err_status.idma_response_bad_tnum",
    "hi": 28,
    "lo": 28,
    "grade": "established"
@@ -1076,7 +1076,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.idma_response_size",
+   "name": "widget_err_status.idma_response_size",
    "hi": 27,
    "lo": 27,
    "grade": "established"
@@ -1084,7 +1084,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.odma_fifo_overflow",
+   "name": "widget_err_status.odma_fifo_overflow",
    "hi": 26,
    "lo": 26,
    "grade": "established"
@@ -1092,7 +1092,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.mapram_invalid",
+   "name": "widget_err_status.mapram_invalid",
    "hi": 13,
    "lo": 13,
    "grade": "established"
@@ -1100,7 +1100,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.mapram_parity",
+   "name": "widget_err_status.mapram_parity",
    "hi": 12,
    "lo": 12,
    "grade": "established"
@@ -1108,7 +1108,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.response",
+   "name": "widget_err_status.response",
    "hi": 9,
    "lo": 9,
    "grade": "established"
@@ -1116,7 +1116,7 @@
   {
    "unit": "hip",
    "kind": "field",
-   "name": "xg_err_status.read_req_timeout",
+   "name": "widget_err_status.read_req_timeout",
    "hi": 8,
    "lo": 8,
    "grade": "established"

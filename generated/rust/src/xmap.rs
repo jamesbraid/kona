@@ -1,7 +1,7 @@
 // generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d
+// input sha256 53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42
 // XMAP registers and the words written through them
 #![allow(dead_code)]
 
@@ -241,8 +241,8 @@ pub mod board_count {
         }
     }
 }
-/// (inferred)
-pub mod di_compare_addr {
+/// formerly di_compare_addr (inferred)
+pub mod display_id_compare_addr {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x10c;
     pub mod addr { // bits 5:0, inferred
@@ -256,8 +256,8 @@ pub mod di_compare_addr {
         }
     }
 }
-/// (inferred)
-pub mod imp_delay {
+/// formerly imp_delay (inferred)
+pub mod image_processor_delay {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x10d;
     pub mod delay { // bits 8:0, inferred
@@ -286,8 +286,8 @@ pub mod pipe_delay {
         }
     }
 }
-/// (inferred)
-pub mod fastlist_config {
+/// formerly fastlist_config (inferred)
+pub mod list_chunk_config {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x10f;
     pub mod fixed { // bits 9:5, inferred
@@ -336,8 +336,8 @@ pub mod readback_data {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x112;
 }
-/// (established)
-pub mod ind_addr {
+/// formerly ind_addr (established)
+pub mod indirect_addr {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x118;
     pub mod flag { // bits 18:18, unknown
@@ -464,8 +464,8 @@ pub mod gamma_data {
         }
     }
 }
-/// (established)
-pub mod did_data {
+/// formerly did_data (established)
+pub mod display_id_data {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x11c;
     pub mod cmap_base { // bits 23:7, established
@@ -509,8 +509,8 @@ pub mod did_data {
         }
     }
 }
-/// (established)
-pub mod chan_setup {
+/// formerly chan_setup (established)
+pub mod channel_setup {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x11d;
     pub mod alpha_to_blue { // bits 6:6, established
@@ -564,8 +564,8 @@ pub mod flush {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x11f;
 }
+pub const CHIP_SELECT_COUNT: u32 = 0x4; // established
 pub const CMAP_LOAD_PIECE_WORDS: u32 = 0x200; // established
-pub const COUNT: u32 = 0x4; // established
 pub const CURSOR_COLOUR_WORD: u32 = 0x100; // established
 pub const CURSOR_CROSSHAIR_BLOCK: u32 = 0x269c; // established
 pub const CURSOR_HOT_SPOT_CROSSHAIR: u32 = 0x20; // established
@@ -586,16 +586,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn fastlist_config_339() {
-        assert_eq!(fastlist_config::chunk_size::get(0x339), 25);
-        assert_eq!(fastlist_config::fixed::get(0x339), 25);
+    fn list_chunk_config_339() {
+        assert_eq!(list_chunk_config::chunk_size::get(0x339), 25);
+        assert_eq!(list_chunk_config::fixed::get(0x339), 25);
     }
 
     #[test]
-    fn did_data_80050() {
-        assert_eq!(did_data::grey::get(0x80050), 0);
-        assert_eq!(did_data::luminance::get(0x80050), 0);
-        assert_eq!(did_data::planes_minus_1::get(0x80050), 10);
-        assert_eq!(did_data::cmap_base::get(0x80050), 4096);
+    fn display_id_data_80050() {
+        assert_eq!(display_id_data::grey::get(0x80050), 0);
+        assert_eq!(display_id_data::luminance::get(0x80050), 0);
+        assert_eq!(display_id_data::planes_minus_1::get(0x80050), 10);
+        assert_eq!(display_id_data::cmap_base::get(0x80050), 4096);
     }
 }

@@ -2,7 +2,7 @@
 <!-- generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d -->
+<!-- input sha256 53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42 -->
 <genxml unit="xmap" prefix="XMAP" title="XMAP registers and the words written through them">
   <doc>XMAP direct registers, indirect-memory ports and the words written through them.</doc>
   <space name="xmap_regs" unit="reg"/>
@@ -16,7 +16,7 @@
     <value name="two_boards" value="1" grade="established"/>
     <value name="four_boards" value="2" grade="established"/>
   </enum>
-  <enum name="ind_addr_colour">
+  <enum name="indirect_addr_colour">
     <value name="red" value="0" grade="established"/>
     <value name="green" value="1" grade="established"/>
     <value name="blue" value="2" grade="established"/>
@@ -61,16 +61,19 @@
   <struct name="BOARD_COUNT" size="4" grade="established" register="yes" offset="0x10b" access="w" space="xmap_regs" reset="unknown">
     <field name="code" start="0" size="2" type="board_count_code" grade="established"/>
   </struct>
-  <struct name="DI_COMPARE_ADDR" size="4" grade="inferred" register="yes" offset="0x10c" access="w" space="xmap_regs" reset="unknown">
+  <struct name="DISPLAY_ID_COMPARE_ADDR" size="4" grade="inferred" register="yes" offset="0x10c" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly di_compare_addr</doc>
     <field name="addr" start="0" size="6" type="uint" grade="inferred"/>
   </struct>
-  <struct name="IMP_DELAY" size="4" grade="inferred" register="yes" offset="0x10d" access="w" space="xmap_regs" reset="unknown">
+  <struct name="IMAGE_PROCESSOR_DELAY" size="4" grade="inferred" register="yes" offset="0x10d" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly imp_delay</doc>
     <field name="delay" start="0" size="9" type="uint" grade="inferred"/>
   </struct>
   <struct name="PIPE_DELAY" size="4" grade="inferred" register="yes" offset="0x10e" access="w" space="xmap_regs" reset="unknown">
     <field name="delay" start="0" size="3" type="uint" grade="inferred"/>
   </struct>
-  <struct name="FASTLIST_CONFIG" size="4" grade="inferred" register="yes" offset="0x10f" access="w" space="xmap_regs" reset="unknown">
+  <struct name="LIST_CHUNK_CONFIG" size="4" grade="inferred" register="yes" offset="0x10f" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly fastlist_config</doc>
     <field name="fixed" start="5" size="5" type="uint" grade="inferred"/>
     <field name="chunk_size" start="0" size="5" type="uint" grade="inferred"/>
     <test value="0x339" kind="vector">
@@ -85,10 +88,11 @@
   </struct>
   <struct name="READBACK_DATA" size="4" grade="inferred" register="yes" offset="0x112" access="r" space="xmap_regs" reset="unknown">
   </struct>
-  <struct name="IND_ADDR" size="4" grade="established" register="yes" offset="0x118" access="w" space="xmap_regs" reset="unknown">
+  <struct name="INDIRECT_ADDR" size="4" grade="established" register="yes" offset="0x118" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly ind_addr</doc>
     <field name="flag" start="18" size="1" type="uint" grade="unknown"/>
     <field name="page" start="14" size="4" type="uint" grade="established"/>
-    <field name="colour" start="12" size="2" type="ind_addr_colour" grade="established"/>
+    <field name="colour" start="12" size="2" type="indirect_addr_colour" grade="established"/>
     <field name="entry" start="0" size="12" type="uint" grade="established"/>
     <test value="0x40000" kind="example">
       <expect field="entry" value="0"/>
@@ -107,7 +111,8 @@
   <struct name="GAMMA_DATA" size="4" grade="established" register="yes" offset="0x11b" access="w" space="xmap_regs" reset="unknown">
     <field name="entry" start="0" size="12" type="uint" grade="established"/>
   </struct>
-  <struct name="DID_DATA" size="4" grade="established" register="yes" offset="0x11c" access="w" space="xmap_regs" reset="unknown">
+  <struct name="DISPLAY_ID_DATA" size="4" grade="established" register="yes" offset="0x11c" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly did_data</doc>
     <field name="cmap_base" start="7" size="17" type="uint" grade="established"/>
     <field name="planes_minus_1" start="3" size="4" type="uint" grade="established"/>
     <field name="luminance" start="2" size="1" type="uint" grade="established"/>
@@ -119,7 +124,8 @@
       <expect field="cmap_base" value="4096"/>
     </test>
   </struct>
-  <struct name="CHAN_SETUP" size="4" grade="established" register="yes" offset="0x11d" access="w" space="xmap_regs" reset="unknown">
+  <struct name="CHANNEL_SETUP" size="4" grade="established" register="yes" offset="0x11d" access="w" space="xmap_regs" reset="unknown">
+    <doc>formerly chan_setup</doc>
     <field name="alpha_to_blue" start="6" size="1" type="uint" grade="established"/>
     <field name="no_gamma" start="5" size="1" type="uint" grade="established"/>
     <field name="ext_gamma" start="4" size="1" type="uint" grade="established"/>
@@ -129,8 +135,8 @@
   </struct>
   <struct name="FLUSH" size="4" grade="inferred" register="yes" offset="0x11f" access="w" space="xmap_regs" reset="unknown">
   </struct>
+  <constant name="CHIP_SELECT_COUNT" value="0x4" grade="established"/>
   <constant name="CMAP_LOAD_PIECE_WORDS" value="0x200" grade="established"/>
-  <constant name="COUNT" value="0x4" grade="established"/>
   <constant name="CURSOR_COLOUR_WORD" value="0x100" grade="established"/>
   <constant name="CURSOR_CROSSHAIR_BLOCK" value="0x269c" grade="established"/>
   <constant name="CURSOR_HOT_SPOT_CROSSHAIR" value="0x20" grade="established"/>

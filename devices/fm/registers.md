@@ -1,7 +1,7 @@
 <!-- generated from devices/fm/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
 <!-- defs-gen 2 -->
-<!-- input sha256 242f0ec1d27be8f3875a641072b4d620014e652a4d74b13f5f6eba8cdf2f6ecd -->
+<!-- input sha256 523ceaa5f3ddaab09ea0cfad0cf267ceb1b592ee7342fb0b09e48b67883e033b -->
 
 # frame-manager registers on the display bus
 
@@ -22,10 +22,10 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 | Register | Offset | Access | Width | Count | Space | Reset | Grade | Source |
 |---|---|---|---|---|---|---|---|---|
 | `swap_strobe` | 0x80 | w | 32 |  | fm_regs | unknown | established |  |
-| `voc_did` | 0x81 | w | 32 | 8 | fm_regs | unknown | established |  |
-| `xwindow` | 0x8b | w | 32 |  | fm_regs | unknown | established |  |
-| `did_range` | 0x8c | w | 32 |  | fm_regs | unknown | inferred |  |
-| `did_status` | 0x8d | r | 32 |  | fm_regs | unknown | established |  |
+| `video_output_display_id` | 0x81 | w | 32 | 8 | fm_regs | unknown | established |  |
+| `frame_window_control` | 0x8b | w | 32 |  | fm_regs | unknown | established |  |
+| `display_id_range` | 0x8c | w | 32 |  | fm_regs | unknown | inferred |  |
+| `display_id_status` | 0x8d | r | 32 |  | fm_regs | unknown | established |  |
 | `clock_select` | 0x8e | w | 32 |  | fm_regs | unknown | established |  |
 | `intr_state` | 0x8f | w | 32 |  | fm_regs | unknown | inferred |  |
 | `raster_config` | 0x90 | rw | 32 |  | fm_regs | unknown | established |  |
@@ -36,7 +36,9 @@ Every item has a grade: established, inferred or unknown. A grade says how the i
 |---|---|---|---|---|---|
 | 1:0 | `strobe` | established |  |  |  |
 
-### Register `voc_did`
+### Register `video_output_display_id`
+
+formerly voc_did
 
 Array of 8 registers, stride 1.
 
@@ -44,7 +46,9 @@ Array of 8 registers, stride 1.
 |---|---|---|---|---|---|
 | 5:0 | `did` | established |  |  |  |
 
-### Register `xwindow`
+### Register `frame_window_control`
+
+formerly xwindow
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -53,7 +57,9 @@ Array of 8 registers, stride 1.
 | 19:10 | `x1_inv` | established |  |  |  |
 | 9:0 | `x0_inv` | established |  |  |  |
 
-### Register `did_range`
+### Register `display_id_range`
+
+formerly did_range
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|
@@ -62,7 +68,9 @@ Array of 8 registers, stride 1.
 | 12:7 | `size_b` | inferred |  |  |  |
 | 6:0 | `size_a` | inferred |  |  |  |
 
-### Register `did_status`
+### Register `display_id_status`
+
+formerly did_status
 
 | Bits | Field | Grade | Values | Source | Description |
 |---|---|---|---|---|---|

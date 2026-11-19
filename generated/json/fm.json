@@ -1,7 +1,7 @@
 {
  "license": "BSD-3-Clause",
  "generator": "defs-gen 2",
- "input_sha256": "242f0ec1d27be8f3875a641072b4d620014e652a4d74b13f5f6eba8cdf2f6ecd",
+ "input_sha256": "523ceaa5f3ddaab09ea0cfad0cf267ceb1b592ee7342fb0b09e48b67883e033b",
  "schema": "defs-flat/1",
  "source": "devices/fm/registers.toml",
  "profile": "public",
@@ -30,7 +30,7 @@
   {
    "unit": "fm",
    "kind": "register",
-   "name": "voc_did",
+   "name": "video_output_display_id",
    "offset": 129,
    "access": "w",
    "width": 32,
@@ -43,7 +43,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "voc_did.did",
+   "name": "video_output_display_id.did",
    "hi": 5,
    "lo": 0,
    "grade": "established"
@@ -51,7 +51,7 @@
   {
    "unit": "fm",
    "kind": "register",
-   "name": "xwindow",
+   "name": "frame_window_control",
    "offset": 139,
    "access": "w",
    "width": 32,
@@ -64,7 +64,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "xwindow.reset_ratio",
+   "name": "frame_window_control.reset_ratio",
    "hi": 22,
    "lo": 22,
    "grade": "established"
@@ -72,7 +72,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "xwindow.sync_source",
+   "name": "frame_window_control.sync_source",
    "hi": 21,
    "lo": 20,
    "grade": "established"
@@ -80,7 +80,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "xwindow.x1_inv",
+   "name": "frame_window_control.x1_inv",
    "hi": 19,
    "lo": 10,
    "grade": "established"
@@ -88,7 +88,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "xwindow.x0_inv",
+   "name": "frame_window_control.x0_inv",
    "hi": 9,
    "lo": 0,
    "grade": "established"
@@ -96,7 +96,7 @@
   {
    "unit": "fm",
    "kind": "register",
-   "name": "did_range",
+   "name": "display_id_range",
    "offset": 140,
    "access": "w",
    "width": 32,
@@ -109,7 +109,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "did_range.arg_d",
+   "name": "display_id_range.arg_d",
    "hi": 23,
    "lo": 19,
    "grade": "unknown"
@@ -117,7 +117,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "did_range.arg_c",
+   "name": "display_id_range.arg_c",
    "hi": 18,
    "lo": 13,
    "grade": "unknown"
@@ -125,7 +125,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "did_range.size_b",
+   "name": "display_id_range.size_b",
    "hi": 12,
    "lo": 7,
    "grade": "inferred"
@@ -133,7 +133,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "did_range.size_a",
+   "name": "display_id_range.size_a",
    "hi": 6,
    "lo": 0,
    "grade": "inferred"
@@ -141,7 +141,7 @@
   {
    "unit": "fm",
    "kind": "register",
-   "name": "did_status",
+   "name": "display_id_status",
    "offset": 141,
    "access": "r",
    "width": 32,
@@ -154,7 +154,7 @@
   {
    "unit": "fm",
    "kind": "field",
-   "name": "did_status.shifting",
+   "name": "display_id_status.shifting",
    "hi": 3,
    "lo": 3,
    "grade": "established"

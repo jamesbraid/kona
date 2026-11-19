@@ -1,7 +1,7 @@
 // generated from devices/fm/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
 // defs-gen 2
-// input sha256 242f0ec1d27be8f3875a641072b4d620014e652a4d74b13f5f6eba8cdf2f6ecd
+// input sha256 523ceaa5f3ddaab09ea0cfad0cf267ceb1b592ee7342fb0b09e48b67883e033b
 // frame-manager registers on the display bus
 #![allow(dead_code)]
 
@@ -20,8 +20,8 @@ pub mod swap_strobe {
         }
     }
 }
-/// (established)
-pub mod voc_did {
+/// formerly voc_did (established)
+pub mod video_output_display_id {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x81;
     pub const COUNT: u32 = 8;
@@ -37,8 +37,8 @@ pub mod voc_did {
         }
     }
 }
-/// (established)
-pub mod xwindow {
+/// formerly xwindow (established)
+pub mod frame_window_control {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x8b;
     pub mod reset_ratio { // bits 22:22, established
@@ -82,8 +82,8 @@ pub mod xwindow {
         }
     }
 }
-/// (inferred)
-pub mod did_range {
+/// formerly did_range (inferred)
+pub mod display_id_range {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x8c;
     pub mod arg_d { // bits 23:19, unknown
@@ -127,8 +127,8 @@ pub mod did_range {
         }
     }
 }
-/// (established)
-pub mod did_status {
+/// formerly did_status (established)
+pub mod display_id_status {
     pub const WIDTH: u32 = 32;
     pub const OFFSET: u64 = 0x8d;
     pub mod shifting { // bits 3:3, established

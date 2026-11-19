@@ -59,7 +59,7 @@ label = "display-id entry colour map base"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+):(\d+) \| colour-map base:'
 binds = [
-  ["F", "XMAP.did_data.cmap_base", 1, 2],
+  ["F", "XMAP.display_id_data.cmap_base", 1, 2],
 ]
 
 [[claims]]
@@ -68,7 +68,7 @@ label = "display-id entry planes"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+):(\d+) \| number of index planes minus 1'
 binds = [
-  ["F", "XMAP.did_data.planes_minus_1", 1, 2],
+  ["F", "XMAP.display_id_data.planes_minus_1", 1, 2],
 ]
 
 [[claims]]
@@ -77,8 +77,8 @@ label = "display-id entry flags"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+) \| luminance visual flag.*?\| (\d+) \| grey visual flag'
 binds = [
-  ["F", "XMAP.did_data.luminance", 1],
-  ["F", "XMAP.did_data.grey", 2],
+  ["F", "XMAP.display_id_data.luminance", 1],
+  ["F", "XMAP.display_id_data.grey", 2],
 ]
 
 [[claims]]
@@ -87,7 +87,7 @@ label = "channel set-up gamma page"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+):(\d+) \| gamma page'
 binds = [
-  ["F", "XMAP.chan_setup.gamma_page", 1, 2],
+  ["F", "XMAP.channel_setup.gamma_page", 1, 2],
 ]
 
 [[claims]]
@@ -96,9 +96,9 @@ label = "channel set-up flags"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+) \| external gamma \|.*?\| (\d+) \| no gamma \|.*?\| (\d+) \| alpha to blue'
 binds = [
-  ["F", "XMAP.chan_setup.ext_gamma", 1],
-  ["F", "XMAP.chan_setup.no_gamma", 2],
-  ["F", "XMAP.chan_setup.alpha_to_blue", 3],
+  ["F", "XMAP.channel_setup.ext_gamma", 1],
+  ["F", "XMAP.channel_setup.no_gamma", 2],
+  ["F", "XMAP.channel_setup.alpha_to_blue", 3],
 ]
 
 [[claims]]
@@ -107,9 +107,9 @@ label = "gamma address entry, colour, page"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+):(\d+) \| entry index.*?\| (\d+):(\d+) \| colour \|.*?\| (\d+):(\d+) \| page'
 binds = [
-  ["F", "XMAP.ind_addr.entry", 1, 2],
-  ["F", "XMAP.ind_addr.colour", 3, 4],
-  ["F", "XMAP.ind_addr.page", 5, 6],
+  ["F", "XMAP.indirect_addr.entry", 1, 2],
+  ["F", "XMAP.indirect_addr.colour", 3, 4],
+  ["F", "XMAP.indirect_addr.page", 5, 6],
 ]
 
 [[claims]]
@@ -118,7 +118,7 @@ label = "gamma address flag"
 doc = "formats/token/command-table.md"
 regex = '\| (\d+) \| extended gamma addressing flag'
 binds = [
-  ["F", "XMAP.ind_addr.flag", 1],
+  ["F", "XMAP.indirect_addr.flag", 1],
 ]
 
 [[claims]]
@@ -560,10 +560,10 @@ label = "video and voc interrupt bits"
 doc = "devices/hip/README.md"
 regex = '\| (\d+) \| VIDEO \|.*?\| (\d+) \| ARM \|.*?\| (\d+) \| PARITY \|.*?\| (\d+) \| VOC \|'
 binds = [
-  ["F", "HIP.hh_intr_status.video", 1],
-  ["F", "HIP.hh_intr_status.arm", 2],
-  ["F", "HIP.hh_intr_status.parity", 3],
-  ["F", "HIP.hh_intr_status.voc", 4],
+  ["F", "HIP.host_intr_status.video", 1],
+  ["F", "HIP.host_intr_status.arm", 2],
+  ["F", "HIP.host_intr_status.parity", 3],
+  ["F", "HIP.host_intr_status.voc", 4],
 ]
 
 [[claims]]
@@ -768,8 +768,8 @@ label = "bridge error bits for a failed host DMA"
 doc = "devices/hip/README.md"
 regex = '\| (\d+), mask 0x100 \| `XTALK_READ_REQ_TIMEOUT`.*?\| (\d+), 0x200 \| `XTALK_RESPONSE`'
 binds = [
-  ["F", "HIP.xg_err_status.read_req_timeout", 1],
-  ["F", "HIP.xg_err_status.response", 2],
+  ["F", "HIP.widget_err_status.read_req_timeout", 1],
+  ["F", "HIP.widget_err_status.response", 2],
 ]
 
 [gen.qemu]

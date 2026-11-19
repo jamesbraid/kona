@@ -1,5 +1,6 @@
 # Imported from the former KONA_TOKEN_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "token"
+name_source = "ours"
 prefix = "KONA_TOKEN"
 title = "host command tokens of the InfiniteReality2 pipe (all but queries)"
 from = "back-end definitions table, formats/token/command-table.md sections 2 and 3"
@@ -219,7 +220,9 @@ READ_INSTRUMENTATION_COUNTERS = { value = 0x1cd, grade = "inferred" }
 READ_PIXEL_RECTANGLE_BACK_HOST = { value = 0x39, grade = "inferred" }
 RECORD_ERROR_CODE = { value = 0xe4, grade = "inferred" }
 REPLACE_TOP_SELECTION_NAME = { value = 0x10d, grade = "inferred" }
+# UNSURE: positional: function unknown
 RESERVED_DIAGNOSTIC_TOKEN_0 = { value = 0x16a, grade = "inferred" }
+# UNSURE: positional: function unknown
 RESERVED_DIAGNOSTIC_TOKEN_1 = { value = 0x16b, grade = "inferred" }
 RESET_HISTOGRAM = { value = 0x103, grade = "inferred" }
 RESET_MIN_MAX_TRACKING = { value = 0x108, grade = "inferred" }
@@ -421,12 +424,19 @@ TEXTURE_PARAMETER_053 = { value = 0x53, grade = "established" }
 TEXTURE_PARAMETER_054 = { value = 0x54, grade = "established" }
 TRANSLATE = { value = 0xde, grade = "established" }
 TRANSLATE_0DF = { value = 0xdf, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_3 = { value = 0x13b, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_4 = { value = 0x13f, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_5 = { value = 0x140, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_6 = { value = 0x162, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_7 = { value = 0x163, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_8 = { value = 0x164, grade = "established" }
+# UNSURE: positional: function unknown
 UNUSED_WINDOW_SYSTEM_SLOT_9 = { value = 0x165, grade = "established" }
 VERTEX_ARRAY_LOOP_ENTRY_0 = { value = 0x183, grade = "inferred" }
 VERTEX_ARRAY_LOOP_ENTRY_1 = { value = 0x184, grade = "inferred" }

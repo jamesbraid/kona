@@ -1,9 +1,9 @@
 /* generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
 /* defs-gen 2 */
-/* input sha256 7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d */
+/* input sha256 53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42 */
 /* XMAP registers and the words written through them */
-/* Names are KONA_XMAP_*; name source: imported-unchecked. */
+/* Names are KONA_XMAP_*; name source: ours. */
 /* Offsets are bytes; registers of a register-indexed space are written as index * size. */
 #ifndef HW_SGI_GPU_KONA_XMAP_REGS_H
 #define HW_SGI_GPU_KONA_XMAP_REGS_H
@@ -46,18 +46,18 @@ REG32(KONA_XMAP_CRC_STATUS, 0x428) /* unknown */
 REG32(KONA_XMAP_BOARD_COUNT, 0x42c) /* established */
 FIELD(KONA_XMAP_BOARD_COUNT, CODE, 0, 2) /* established */
 
-REG32(KONA_XMAP_DI_COMPARE_ADDR, 0x430) /* inferred */
-FIELD(KONA_XMAP_DI_COMPARE_ADDR, ADDR, 0, 6) /* inferred */
+REG32(KONA_XMAP_DISPLAY_ID_COMPARE_ADDR, 0x430) /* inferred */
+FIELD(KONA_XMAP_DISPLAY_ID_COMPARE_ADDR, ADDR, 0, 6) /* inferred */
 
-REG32(KONA_XMAP_IMP_DELAY, 0x434) /* inferred */
-FIELD(KONA_XMAP_IMP_DELAY, DELAY, 0, 9) /* inferred */
+REG32(KONA_XMAP_IMAGE_PROCESSOR_DELAY, 0x434) /* inferred */
+FIELD(KONA_XMAP_IMAGE_PROCESSOR_DELAY, DELAY, 0, 9) /* inferred */
 
 REG32(KONA_XMAP_PIPE_DELAY, 0x438) /* inferred */
 FIELD(KONA_XMAP_PIPE_DELAY, DELAY, 0, 3) /* inferred */
 
-REG32(KONA_XMAP_FASTLIST_CONFIG, 0x43c) /* inferred */
-FIELD(KONA_XMAP_FASTLIST_CONFIG, FIXED, 5, 5) /* inferred */
-FIELD(KONA_XMAP_FASTLIST_CONFIG, CHUNK_SIZE, 0, 5) /* inferred */
+REG32(KONA_XMAP_LIST_CHUNK_CONFIG, 0x43c) /* inferred */
+FIELD(KONA_XMAP_LIST_CHUNK_CONFIG, FIXED, 5, 5) /* inferred */
+FIELD(KONA_XMAP_LIST_CHUNK_CONFIG, CHUNK_SIZE, 0, 5) /* inferred */
 
 REG32(KONA_XMAP_UNREAD_10, 0x440) /* unknown */
 
@@ -66,11 +66,11 @@ FIELD(KONA_XMAP_READBACK_ADDR, ADDR, 0, 19) /* inferred */
 
 REG32(KONA_XMAP_READBACK_DATA, 0x448) /* inferred */
 
-REG32(KONA_XMAP_IND_ADDR, 0x460) /* established */
-FIELD(KONA_XMAP_IND_ADDR, FLAG, 18, 1) /* unknown */
-FIELD(KONA_XMAP_IND_ADDR, PAGE, 14, 4) /* established */
-FIELD(KONA_XMAP_IND_ADDR, COLOUR, 12, 2) /* established */
-FIELD(KONA_XMAP_IND_ADDR, ENTRY, 0, 12) /* established */
+REG32(KONA_XMAP_INDIRECT_ADDR, 0x460) /* established */
+FIELD(KONA_XMAP_INDIRECT_ADDR, FLAG, 18, 1) /* unknown */
+FIELD(KONA_XMAP_INDIRECT_ADDR, PAGE, 14, 4) /* established */
+FIELD(KONA_XMAP_INDIRECT_ADDR, COLOUR, 12, 2) /* established */
+FIELD(KONA_XMAP_INDIRECT_ADDR, ENTRY, 0, 12) /* established */
 
 REG32(KONA_XMAP_CMAP_DATA, 0x464) /* established */
 FIELD(KONA_XMAP_CMAP_DATA, RED, 20, 10) /* established */
@@ -82,24 +82,24 @@ REG32(KONA_XMAP_UNUSED_1A, 0x468) /* unknown */
 REG32(KONA_XMAP_GAMMA_DATA, 0x46c) /* established */
 FIELD(KONA_XMAP_GAMMA_DATA, ENTRY, 0, 12) /* established */
 
-REG32(KONA_XMAP_DID_DATA, 0x470) /* established */
-FIELD(KONA_XMAP_DID_DATA, CMAP_BASE, 7, 17) /* established */
-FIELD(KONA_XMAP_DID_DATA, PLANES_MINUS_1, 3, 4) /* established */
-FIELD(KONA_XMAP_DID_DATA, LUMINANCE, 2, 1) /* established */
-FIELD(KONA_XMAP_DID_DATA, GREY, 1, 1) /* established */
+REG32(KONA_XMAP_DISPLAY_ID_DATA, 0x470) /* established */
+FIELD(KONA_XMAP_DISPLAY_ID_DATA, CMAP_BASE, 7, 17) /* established */
+FIELD(KONA_XMAP_DISPLAY_ID_DATA, PLANES_MINUS_1, 3, 4) /* established */
+FIELD(KONA_XMAP_DISPLAY_ID_DATA, LUMINANCE, 2, 1) /* established */
+FIELD(KONA_XMAP_DISPLAY_ID_DATA, GREY, 1, 1) /* established */
 
-REG32(KONA_XMAP_CHAN_SETUP, 0x474) /* established */
-FIELD(KONA_XMAP_CHAN_SETUP, ALPHA_TO_BLUE, 6, 1) /* established */
-FIELD(KONA_XMAP_CHAN_SETUP, NO_GAMMA, 5, 1) /* established */
-FIELD(KONA_XMAP_CHAN_SETUP, EXT_GAMMA, 4, 1) /* established */
-FIELD(KONA_XMAP_CHAN_SETUP, GAMMA_PAGE, 0, 4) /* established */
+REG32(KONA_XMAP_CHANNEL_SETUP, 0x474) /* established */
+FIELD(KONA_XMAP_CHANNEL_SETUP, ALPHA_TO_BLUE, 6, 1) /* established */
+FIELD(KONA_XMAP_CHANNEL_SETUP, NO_GAMMA, 5, 1) /* established */
+FIELD(KONA_XMAP_CHANNEL_SETUP, EXT_GAMMA, 4, 1) /* established */
+FIELD(KONA_XMAP_CHANNEL_SETUP, GAMMA_PAGE, 0, 4) /* established */
 
 REG32(KONA_XMAP_TABLE_CLOSE, 0x478) /* inferred */
 
 REG32(KONA_XMAP_FLUSH, 0x47c) /* inferred */
 
+#define KONA_XMAP_CHIP_SELECT_COUNT 0x4u /* established */
 #define KONA_XMAP_CMAP_LOAD_PIECE_WORDS 0x200u /* established */
-#define KONA_XMAP_COUNT 0x4u /* established */
 #define KONA_XMAP_CURSOR_COLOUR_WORD 0x100u /* established */
 #define KONA_XMAP_CURSOR_CROSSHAIR_BLOCK 0x269cu /* established */
 #define KONA_XMAP_CURSOR_HOT_SPOT_CROSSHAIR 0x20u /* established */

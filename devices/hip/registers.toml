@@ -1,6 +1,6 @@
 # Imported from the former KONA_HIP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "hip"
-name_source = "imported-unchecked"
+name_source = "ours"
 prefix = "HIP"
 title = "host-interface registers"
 doc = "Host-interface chip registers: the interrupt status register and its cause bits."
@@ -15,158 +15,181 @@ unit = "reg"
 
 [spaces.hip_regs]
 
-[registers.ha_arm_ctrl]
+[registers.armspace_arm_ctrl]
+doc = "formerly ha_arm_ctrl"
 offset = 0x0
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_arm_ctrl.fields]
+[registers.armspace_arm_ctrl.fields]
 value = { bits = [1, 0], grade = "established" }
 
-[registers.ha_idma_pnum]
+[registers.armspace_idma_pnum]
+doc = "formerly ha_idma_pnum"
 offset = 0x10
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_idma_pnum.fields]
+[registers.armspace_idma_pnum.fields]
 page = { bits = [28, 0], grade = "established" }
 
-[registers.ha_idma_poff]
+[registers.armspace_idma_poff]
+doc = "formerly ha_idma_poff"
 offset = 0x14
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_idma_poff.fields]
+[registers.armspace_idma_poff.fields]
 offset = { bits = [11, 2], grade = "established" }
 
-[registers.ha_idma_ctrl]
+[registers.armspace_idma_ctrl]
+doc = "formerly ha_idma_ctrl"
 offset = 0x20
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_idma_ctrl.fields]
+[registers.armspace_idma_ctrl.fields]
 mode = { bits = [1, 0], grade = "established" }
 
-[registers.ha_ldma_addr]
+[registers.armspace_ldma_addr]
+doc = "formerly ha_ldma_addr"
 offset = 0x30
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_ldma_addr.fields]
+[registers.armspace_ldma_addr.fields]
 addr = { bits = [25, 3], grade = "established" }
 
-[registers.ha_ldma_ctrl]
+[registers.armspace_ldma_ctrl]
+doc = "formerly ha_ldma_ctrl"
 offset = 0x3c
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_ldma_ctrl.fields]
+[registers.armspace_ldma_ctrl.fields]
 value = { bits = [0, 0], grade = "established" }
 
-[registers.ha_ldma_src]
+[registers.armspace_ldma_src]
+doc = "formerly ha_ldma_src"
 offset = 0x48
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_ldma_src.fields]
+[registers.armspace_ldma_src.fields]
 value = { bits = [0, 0], grade = "established" }
 
-[registers.ha_icu_ctrl]
+# UNSURE: what the unit abbreviated icu is: not stated by the sources
+[registers.armspace_icu_ctrl]
+doc = "formerly ha_icu_ctrl"
 offset = 0x50
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_ctrl.fields]
+[registers.armspace_icu_ctrl.fields]
 value = { bits = [1, 0], grade = "established" }
 
-[registers.ha_icu_divert_pc]
+# UNSURE: icu unit not described
+[registers.armspace_icu_divert_pc]
+doc = "formerly ha_icu_divert_pc"
 offset = 0x54
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_divert_pc.fields]
+[registers.armspace_icu_divert_pc.fields]
 vector = { bits = [27, 2], grade = "established" }
 
-[registers.ha_icu_wc]
+# UNSURE: icu unit not described
+[registers.armspace_icu_wc]
+doc = "formerly ha_icu_wc"
 offset = 0x5c
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_state]
+# UNSURE: icu unit not described
+[registers.armspace_icu_state]
+doc = "formerly ha_icu_state"
 offset = 0x68
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_state.fields]
+[registers.armspace_icu_state.fields]
 value = { bits = [1, 0], grade = "established" }
 
-[registers.ha_icu_error_pc]
+# UNSURE: icu unit not described
+[registers.armspace_icu_error_pc]
+doc = "formerly ha_icu_error_pc"
 offset = 0x6c
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_error_pc.fields]
+[registers.armspace_icu_error_pc.fields]
 vector = { bits = [27, 2], grade = "established" }
 
-[registers.ha_icu_loop_addr]
+# UNSURE: icu unit not described
+[registers.armspace_icu_loop_addr]
+doc = "formerly ha_icu_loop_addr"
 offset = 0x70
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_loop_addr.fields]
+[registers.armspace_icu_loop_addr.fields]
 value = { bits = [8, 0], grade = "established" }
 
-[registers.ha_icu_arrcnt]
+# UNSURE: icu unit not described
+[registers.armspace_icu_arrcnt]
+doc = "formerly ha_icu_arrcnt"
 offset = 0x74
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.ha_icu_arrcnt.fields]
+[registers.armspace_icu_arrcnt.fields]
 count = { bits = [15, 0], grade = "established" }
 
-[registers.ha_host_mbox]
+[registers.armspace_host_mbox]
+doc = "formerly ha_host_mbox"
 offset = 0x90
 access = "rw"
 width = 32
 grade = "established"
 space = "arm"
 
-[registers.hh_intr_status]
+[registers.host_intr_status]
+doc = "formerly hh_intr_status"
 offset = 0x238
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_intr_status.fields]
+[registers.host_intr_status.fields]
 idma_ov = { bits = [11, 11], grade = "established" }
 pio_ov = { bits = [10, 10], grade = "established" }
 voc = { bits = [9, 9], grade = "established" }
@@ -180,75 +203,88 @@ fifo_ov = { bits = [2, 2], grade = "established" }
 fifo_lo = { bits = [1, 1], grade = "established" }
 fifo_hi = { bits = [0, 0], grade = "established" }
 
-[registers.hh_arm_mbox]
+[registers.host_arm_mbox]
+doc = "formerly hh_arm_mbox"
 offset = 0x240
 access = "r"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_arm_ctrl]
+[registers.host_arm_ctrl]
+doc = "formerly hh_arm_ctrl"
 offset = 0x308
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_arm_ctrl.fields]
+[registers.host_arm_ctrl.fields]
 host_access = { bits = [0, 0], grade = "established" }
 
-[registers.hh_vc_address]
+# UNSURE: vc is not expanded by any source
+[registers.host_vc_address]
+doc = "formerly hh_vc_address"
 offset = 0x3c0
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_vc_address.fields]
+[registers.host_vc_address.fields]
 value = { bits = [15, 0], grade = "established" }
 
-[registers.hh_vc_ready]
+# UNSURE: vc is not expanded by any source
+[registers.host_vc_ready]
+doc = "formerly hh_vc_ready"
 offset = 0x3c8
 access = "r"
 width = 32
 grade = "inferred"
 space = "hip_regs"
 
-[registers.hh_vc_ready.fields]
+[registers.host_vc_ready.fields]
 ready = { bits = [0, 0], grade = "inferred" }
 
-[registers.hh_vc_data]
+# UNSURE: vc is not expanded by any source
+[registers.host_vc_data]
+doc = "formerly hh_vc_data"
 offset = 0x3d0
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_vc_data_incr]
+# UNSURE: vc is not expanded by any source
+[registers.host_vc_data_incr]
+doc = "formerly hh_vc_data_incr"
 offset = 0x3d8
 access = "rw"
 width = 32
 grade = "inferred"
 space = "hip_regs"
 
-[registers.hh_arm_address]
+[registers.host_arm_address]
+doc = "formerly hh_arm_address"
 offset = 0x3e8
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_arm_address.fields]
+[registers.host_arm_address.fields]
 word_address = { bits = [27, 2], grade = "established" }
 
-[registers.hh_arm_data]
+[registers.host_arm_data]
+doc = "formerly hh_arm_data"
 offset = 0x3f0
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_arm_data_incr]
+[registers.host_arm_data_incr]
+doc = "formerly hh_arm_data_incr"
 offset = 0x3f8
 access = "rw"
 width = 32
@@ -276,6 +312,7 @@ width = 32
 grade = "established"
 space = "hip_regs"
 
+# UNSURE: meaning of the 2 in odma2 is unknown
 [registers.rbus_odma2_data]
 offset = 0x476
 access = "w"
@@ -283,6 +320,7 @@ width = 32
 grade = "established"
 space = "rbus"
 
+# UNSURE: meaning of the 2 in odma2 is unknown
 [registers.rbus_odma2_flush]
 offset = 0x477
 access = "w"
@@ -290,14 +328,15 @@ width = 32
 grade = "inferred"
 space = "rbus"
 
-[registers.xg_err_status]
+[registers.widget_err_status]
+doc = "formerly xg_err_status"
 offset = 0x6c
 access = "rw"
 width = 32
 grade = "established"
 space = "xg"
 
-[registers.xg_err_status.fields]
+[registers.widget_err_status.fields]
 idma_response_bad_tnum = { bits = [28, 28], grade = "established" }
 idma_response_size = { bits = [27, 27], grade = "established" }
 odma_fifo_overflow = { bits = [26, 26], grade = "established" }
@@ -309,15 +348,15 @@ read_req_timeout = { bits = [8, 8], grade = "established" }
 # Widget configuration word. The kernel reads the map RAM size from it at attach.
 # Only reads are seen in the shipped driver code examined, so access is "r".
 # The entry count is the size code shifted left by 15, with code 0 meaning 8.
-[registers.xg_config]
+[registers.widget_config]
 offset = 0x64
 access = "r"
 width = 32
 grade = "established"
 space = "xg"
-doc = "Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8."
+doc = "Widget configuration word. The attach code reads the map RAM size code from it; the entry count is that code shifted left by 15, and code 0 means 8; formerly xg_config"
 
-[registers.xg_config.fields]
+[registers.widget_config.fields]
 subsystem = { bits = [2, 0], grade = "established" }
 mapram_size = { bits = [5, 3], grade = "established" }
 mapram_type = { bits = [7, 6], grade = "established" }
@@ -327,65 +366,76 @@ mapram_type = { bits = [7, 6], grade = "established" }
 # the roles come from the names and from the driver's use, so they are graded
 # inferred where the field name is all that is known. Access comes from the
 # driver's reads and writes (register window).
-[registers.hh_reset]
+[registers.host_reset]
+doc = "formerly hh_reset"
 offset = 0x300
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_reset.fields]
+[registers.host_reset.fields]
 hip_reset = { bits = [0, 0], grade = "established" }
 arm_start = { bits = [1, 1], grade = "inferred" }
 
-[registers.hh_arm_status]
+[registers.host_arm_status]
+doc = "formerly hh_arm_status"
 offset = 0x310
 access = "r"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_arm_status.fields]
+[registers.host_arm_status.fields]
 stall = { bits = [0, 0], grade = "inferred" }
 remap = { bits = [1, 1], grade = "inferred" }
 ge_cnt = { bits = [4, 2], grade = "inferred" }
+# UNSURE: cryptic abbreviation
 mreq = { bits = [5, 5], grade = "inferred" }
+# UNSURE: cryptic abbreviation
 seq = { bits = [6, 6], grade = "inferred" }
+# UNSURE: cryptic abbreviation
 nrw = { bits = [7, 7], grade = "inferred" }
+# UNSURE: cryptic abbreviation
 nbw = { bits = [8, 8], grade = "inferred" }
 abort = { bits = [9, 9], grade = "inferred" }
+# UNSURE: cryptic abbreviation
 nopc = { bits = [10, 10], grade = "inferred" }
 mode = { bits = [15, 11], grade = "inferred" }
 
-[registers.hh_seqid]
+[registers.host_seqid]
+doc = "formerly hh_seqid"
 offset = 0x248
 access = "r"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_intr_ack]
+[registers.host_intr_ack]
+doc = "formerly hh_intr_ack"
 offset = 0x228
 access = "w"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_odma_flush]
+[registers.host_odma_flush]
+doc = "formerly hh_odma_flush"
 offset = 0x298
 access = "w"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_tbus_status]
+[registers.host_tbus_status]
+doc = "formerly hh_tbus_status"
 offset = 0x3a8
 access = "rw"
 width = 32
 grade = "established"
 space = "hip_regs"
 
-[registers.hh_tbus_status.fields]
+[registers.host_tbus_status.fields]
 draw = { bits = [0, 0], grade = "inferred" }
 load = { bits = [1, 1], grade = "inferred" }
 active = { bits = [2, 2], grade = "inferred" }
@@ -399,7 +449,8 @@ stall = { bits = [3, 3], grade = "inferred" }
 # HH_PIO_HI (0x2c8) are left out: no shipped program loads or stores them,
 # so their access is unknown (see HIP.h).
 
-[registers.hh_rtc]
+[registers.host_rtc]
+doc = "formerly hh_rtc"
 offset = 0x200
 access = "r"
 width = 32
@@ -407,10 +458,11 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30)"
 
-[registers.hh_rtc.fields]
+[registers.host_rtc.fields]
 count = { bits = [31, 0], grade = "inferred" }
 
-[registers.hh_gfifo_level]
+[registers.host_gfifo_level]
+doc = "formerly hh_gfifo_level"
 offset = 0x208
 access = "r"
 width = 32
@@ -418,10 +470,11 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30); driver mask 0x7fe"
 
-[registers.hh_gfifo_level.fields]
+[registers.host_gfifo_level.fields]
 level = { bits = [10, 1], grade = "established" }
 
-[registers.hh_gfifo_hi]
+[registers.host_gfifo_hi]
+doc = "formerly hh_gfifo_hi"
 offset = 0x210
 access = "rw"
 width = 32
@@ -429,10 +482,11 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30); driver write of 0x700 at init"
 
-[registers.hh_gfifo_hi.fields]
+[registers.host_gfifo_hi.fields]
 threshold = { bits = [10, 1], grade = "established" }
 
-[registers.hh_gfifo_lo]
+[registers.host_gfifo_lo]
+doc = "formerly hh_gfifo_lo"
 offset = 0x218
 access = "rw"
 width = 32
@@ -440,10 +494,11 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30)"
 
-[registers.hh_gfifo_lo.fields]
+[registers.host_gfifo_lo.fields]
 threshold = { bits = [10, 1], grade = "established" }
 
-[registers.hh_intr_info]
+[registers.host_intr_info]
+doc = "formerly hh_intr_info"
 offset = 0x220
 access = "rw"
 width = 32
@@ -451,11 +506,12 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30); death path clears bit 15"
 
-[registers.hh_intr_info.fields]
+[registers.host_intr_info.fields]
 vector_cpu = { bits = [14, 0], grade = "inferred" }
 global_enable = { bits = [15, 15], grade = "established" }
 
-[registers.hh_intr_enable]
+[registers.host_intr_enable]
+doc = "formerly hh_intr_enable"
 offset = 0x230
 access = "rw"
 width = 32
@@ -463,10 +519,12 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30); driver enable-mask writes"
 
-[registers.hh_intr_enable.fields]
+[registers.host_intr_enable.fields]
 mask = { bits = [11, 0], grade = "established" }
 
-[registers.hh_tfifo_hi]
+# UNSURE: tfifo is not expanded by any source
+[registers.host_tfifo_hi]
+doc = "formerly hh_tfifo_hi"
 offset = 0x3b0
 access = "rw"
 width = 32
@@ -474,10 +532,11 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30); hipReset (0x10017204) writes 5"
 
-[registers.hh_tfifo_hi.fields]
+[registers.host_tfifo_hi.fields]
 threshold = { bits = [3, 0], grade = "established" }
 
-[registers.hh_arm_stall]
+[registers.host_arm_stall]
+doc = "formerly hh_arm_stall"
 offset = 0x320
 access = "w"
 width = 32
@@ -485,7 +544,8 @@ grade = "established"
 space = "hip_regs"
 from = "pipe-manager register table (kpm, 6.5.30)"
 
-[registers.hh_arm_unstall]
+[registers.host_arm_unstall]
+doc = "formerly hh_arm_unstall"
 offset = 0x328
 access = "w"
 width = 32

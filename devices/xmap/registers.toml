@@ -1,6 +1,6 @@
 # Imported from the former KONA_XMAP_DECODE.h. Review the sources and grades, then maintain by hand.
 unit = "xmap"
-name_source = "imported-unchecked"
+name_source = "ours"
 prefix = "XMAP"
 title = "XMAP registers and the words written through them"
 doc = "XMAP direct registers, indirect-memory ports and the words written through them."
@@ -110,6 +110,7 @@ space = "xmap_regs"
 [registers.read_select.fields]
 chip = { bits = [1, 0], grade = "inferred" }
 
+# UNSURE: positional: no software reads it
 [registers.unread_09]
 offset = 0x109
 access = "w"
@@ -140,24 +141,26 @@ one_board = { value = 0, grade = "established" }
 two_boards = { value = 1, grade = "established" }
 four_boards = { value = 2, grade = "established" }
 
-[registers.di_compare_addr]
+[registers.display_id_compare_addr]
+doc = "formerly di_compare_addr"
 offset = 0x10c
 access = "w"
 width = 32
 grade = "inferred"
 space = "xmap_regs"
 
-[registers.di_compare_addr.fields]
+[registers.display_id_compare_addr.fields]
 addr = { bits = [5, 0], grade = "inferred" }
 
-[registers.imp_delay]
+[registers.image_processor_delay]
+doc = "formerly imp_delay"
 offset = 0x10d
 access = "w"
 width = 32
 grade = "inferred"
 space = "xmap_regs"
 
-[registers.imp_delay.fields]
+[registers.image_processor_delay.fields]
 delay = { bits = [8, 0], grade = "inferred" }
 
 [registers.pipe_delay]
@@ -170,21 +173,23 @@ space = "xmap_regs"
 [registers.pipe_delay.fields]
 delay = { bits = [2, 0], grade = "inferred" }
 
-[registers.fastlist_config]
+[registers.list_chunk_config]
+doc = "formerly fastlist_config"
 offset = 0x10f
 access = "w"
 width = 32
 grade = "inferred"
 space = "xmap_regs"
 
-[registers.fastlist_config.fields]
+[registers.list_chunk_config.fields]
 fixed = { bits = [9, 5], grade = "inferred" }
 chunk_size = { bits = [4, 0], grade = "inferred" }
 
-[[registers.fastlist_config.tests]]
+[[registers.list_chunk_config.tests]]
 value = 0x339
 expect = { chunk_size = 25, fixed = 25 }
 
+# UNSURE: positional: no software reads it
 [registers.unread_10]
 offset = 0x110
 access = "w"
@@ -209,28 +214,29 @@ width = 32
 grade = "inferred"
 space = "xmap_regs"
 
-[registers.ind_addr]
+[registers.indirect_addr]
+doc = "formerly ind_addr"
 offset = 0x118
 access = "w"
 width = 32
 grade = "established"
 space = "xmap_regs"
 
-[registers.ind_addr.fields]
+[registers.indirect_addr.fields]
 flag = { bits = [18, 18], grade = "unknown" }
 page = { bits = [17, 14], grade = "established" }
 entry = { bits = [11, 0], grade = "established" }
 
-[registers.ind_addr.fields.colour]
+[registers.indirect_addr.fields.colour]
 bits = [13, 12]
 grade = "established"
 
-[registers.ind_addr.fields.colour.enums]
+[registers.indirect_addr.fields.colour.enums]
 red = { value = 0, grade = "established" }
 green = { value = 1, grade = "established" }
 blue = { value = 2, grade = "established" }
 
-[[registers.ind_addr.tests]]
+[[registers.indirect_addr.tests]]
 value = 0x40000
 kind = "example"
 expect = { entry = 0, colour = 0, page = 0, flag = 1 }
@@ -247,6 +253,7 @@ red = { bits = [29, 20], grade = "established" }
 green = { bits = [19, 10], grade = "established" }
 blue = { bits = [9, 0], grade = "established" }
 
+# UNSURE: positional: no software uses it
 [registers.unused_1a]
 offset = 0x11a
 access = "w"
@@ -264,31 +271,33 @@ space = "xmap_regs"
 [registers.gamma_data.fields]
 entry = { bits = [11, 0], grade = "established" }
 
-[registers.did_data]
+[registers.display_id_data]
+doc = "formerly did_data"
 offset = 0x11c
 access = "w"
 width = 32
 grade = "established"
 space = "xmap_regs"
 
-[registers.did_data.fields]
+[registers.display_id_data.fields]
 cmap_base = { bits = [23, 7], grade = "established" }
 planes_minus_1 = { bits = [6, 3], grade = "established" }
 luminance = { bits = [2, 2], grade = "established" }
 grey = { bits = [1, 1], grade = "established" }
 
-[[registers.did_data.tests]]
+[[registers.display_id_data.tests]]
 value = 0x80050
 expect = { grey = 0, luminance = 0, planes_minus_1 = 10, cmap_base = 4096 }
 
-[registers.chan_setup]
+[registers.channel_setup]
+doc = "formerly chan_setup"
 offset = 0x11d
 access = "w"
 width = 32
 grade = "established"
 space = "xmap_regs"
 
-[registers.chan_setup.fields]
+[registers.channel_setup.fields]
 alpha_to_blue = { bits = [6, 6], grade = "established" }
 no_gamma = { bits = [5, 5], grade = "established" }
 ext_gamma = { bits = [4, 4], grade = "established" }
@@ -310,7 +319,7 @@ space = "xmap_regs"
 
 [constants]
 CMAP_LOAD_PIECE_WORDS = { value = 0x200, grade = "established", doc = "colour-map and cursor loads are sent in pieces of this many words" }
-COUNT = { value = 0x4, grade = "established", doc = "XMAP chips selected by the read chip select" }
+CHIP_SELECT_COUNT = { value = 0x4, grade = "established", doc = "XMAP chips selected by the read chip select; formerly COUNT" }
 CURSOR_COLOUR_WORD = { value = 0x100, grade = "established", doc = "first colour word of a slot; four words, pixel values 3, 2, 1, 0" }
 CURSOR_CROSSHAIR_BLOCK = { value = 0x269c, grade = "established", doc = "address of the crosshair slot; its colour block follows at +256" }
 CURSOR_HOT_SPOT_CROSSHAIR = { value = 0x20, grade = "established", doc = "crosshair mode hot spot, both axes" }

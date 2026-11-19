@@ -1,7 +1,7 @@
 {
  "license": "BSD-3-Clause",
  "generator": "defs-gen 2",
- "input_sha256": "7d1ca751b771a952bc1dac0ba700e24754bc6794c64469e56454755895a6ca9d",
+ "input_sha256": "53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42",
  "schema": "defs-flat/1",
  "source": "devices/xmap/registers.toml",
  "profile": "public",
@@ -303,7 +303,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "di_compare_addr",
+   "name": "display_id_compare_addr",
    "offset": 268,
    "access": "w",
    "width": 32,
@@ -316,7 +316,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "di_compare_addr.addr",
+   "name": "display_id_compare_addr.addr",
    "hi": 5,
    "lo": 0,
    "grade": "inferred"
@@ -324,7 +324,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "imp_delay",
+   "name": "image_processor_delay",
    "offset": 269,
    "access": "w",
    "width": 32,
@@ -337,7 +337,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "imp_delay.delay",
+   "name": "image_processor_delay.delay",
    "hi": 8,
    "lo": 0,
    "grade": "inferred"
@@ -366,7 +366,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "fastlist_config",
+   "name": "list_chunk_config",
    "offset": 271,
    "access": "w",
    "width": 32,
@@ -379,7 +379,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "fastlist_config.fixed",
+   "name": "list_chunk_config.fixed",
    "hi": 9,
    "lo": 5,
    "grade": "inferred"
@@ -387,7 +387,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "fastlist_config.chunk_size",
+   "name": "list_chunk_config.chunk_size",
    "hi": 4,
    "lo": 0,
    "grade": "inferred"
@@ -442,7 +442,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "ind_addr",
+   "name": "indirect_addr",
    "offset": 280,
    "access": "w",
    "width": 32,
@@ -455,7 +455,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "ind_addr.flag",
+   "name": "indirect_addr.flag",
    "hi": 18,
    "lo": 18,
    "grade": "unknown"
@@ -463,7 +463,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "ind_addr.page",
+   "name": "indirect_addr.page",
    "hi": 17,
    "lo": 14,
    "grade": "established"
@@ -471,7 +471,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "ind_addr.colour",
+   "name": "indirect_addr.colour",
    "hi": 13,
    "lo": 12,
    "grade": "established"
@@ -479,28 +479,28 @@
   {
    "unit": "xmap",
    "kind": "enum_value",
-   "name": "ind_addr.colour.red",
+   "name": "indirect_addr.colour.red",
    "value": 0,
    "grade": "established"
   },
   {
    "unit": "xmap",
    "kind": "enum_value",
-   "name": "ind_addr.colour.green",
+   "name": "indirect_addr.colour.green",
    "value": 1,
    "grade": "established"
   },
   {
    "unit": "xmap",
    "kind": "enum_value",
-   "name": "ind_addr.colour.blue",
+   "name": "indirect_addr.colour.blue",
    "value": 2,
    "grade": "established"
   },
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "ind_addr.entry",
+   "name": "indirect_addr.entry",
    "hi": 11,
    "lo": 0,
    "grade": "established"
@@ -579,7 +579,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "did_data",
+   "name": "display_id_data",
    "offset": 284,
    "access": "w",
    "width": 32,
@@ -592,7 +592,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "did_data.cmap_base",
+   "name": "display_id_data.cmap_base",
    "hi": 23,
    "lo": 7,
    "grade": "established"
@@ -600,7 +600,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "did_data.planes_minus_1",
+   "name": "display_id_data.planes_minus_1",
    "hi": 6,
    "lo": 3,
    "grade": "established"
@@ -608,7 +608,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "did_data.luminance",
+   "name": "display_id_data.luminance",
    "hi": 2,
    "lo": 2,
    "grade": "established"
@@ -616,7 +616,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "did_data.grey",
+   "name": "display_id_data.grey",
    "hi": 1,
    "lo": 1,
    "grade": "established"
@@ -624,7 +624,7 @@
   {
    "unit": "xmap",
    "kind": "register",
-   "name": "chan_setup",
+   "name": "channel_setup",
    "offset": 285,
    "access": "w",
    "width": 32,
@@ -637,7 +637,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "chan_setup.alpha_to_blue",
+   "name": "channel_setup.alpha_to_blue",
    "hi": 6,
    "lo": 6,
    "grade": "established"
@@ -645,7 +645,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "chan_setup.no_gamma",
+   "name": "channel_setup.no_gamma",
    "hi": 5,
    "lo": 5,
    "grade": "established"
@@ -653,7 +653,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "chan_setup.ext_gamma",
+   "name": "channel_setup.ext_gamma",
    "hi": 4,
    "lo": 4,
    "grade": "established"
@@ -661,7 +661,7 @@
   {
    "unit": "xmap",
    "kind": "field",
-   "name": "chan_setup.gamma_page",
+   "name": "channel_setup.gamma_page",
    "hi": 3,
    "lo": 0,
    "grade": "established"
@@ -695,16 +695,16 @@
   {
    "unit": "xmap",
    "kind": "constant",
-   "name": "CMAP_LOAD_PIECE_WORDS",
-   "value": 512,
+   "name": "CHIP_SELECT_COUNT",
+   "value": 4,
    "count": 1,
    "grade": "established"
   },
   {
    "unit": "xmap",
    "kind": "constant",
-   "name": "COUNT",
-   "value": 4,
+   "name": "CMAP_LOAD_PIECE_WORDS",
+   "value": 512,
    "count": 1,
    "grade": "established"
   },
