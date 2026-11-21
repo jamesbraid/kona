@@ -2,7 +2,7 @@
 
 Three questions about the InfiniteReality2 display path (one Onyx2, one pipe, DG4/DG5 board with XMAP chips). Each is graded established, inferred or unknown, with the evidence tried and, for every unknown, the test that would settle it. This file describes the hardware rule only. Proposed rows for [command-table.md](../../formats/token/command-table.md) are given as text because that file has a single writer; nothing here edits it.
 
-Sources searched, in order: the X server module `kona.so` (gamma and colour-map loaders, `konStore24DCColors`, `konStoreColors`, `konReloadAllGammas`), `setmon` (external gamma form), the diagnostic `irsaudit` (loaders `load_full_gamma`, `load_gamma_table`, `load_full_cmap`, `load_cmap`, address legaliser `make_gamma_addr_legal`; test list and its strings; the `.gold` files), the diagnostic board netlists (`usr/diags/IR/data/dg4_2voc*.netmap`), the published papers and manuals under `references/documents/` (the Montrym 1997 paper, the InfiniteReality technical report, the combiner manual 007-3279-003), the display-generator patents there, and the Library (`--roots techpubs` and an artifacts search). No XMAP datasheet, pin description or ADV716x datasheet exists in any of them (the Library has no ADV716x document; the only published ADV716x text in this project is the register description cited as S67).
+Sources searched, in order: the X server module `kona.so` (gamma and colour-map loaders, `konStore24DCColors`, `konStoreColors`, `konReloadAllGammas`), `setmon` (external gamma form), the diagnostic `irsaudit` (loaders `load_full_gamma`, `load_gamma_table`, `load_full_cmap`, `load_cmap`, address legaliser `make_gamma_addr_legal`; test list and its strings; the `.gold` files), the diagnostic board netlists (`usr/diags/IR/data/dg4_2voc*.netmap`), the published papers and manuals under `references/documents/` (the Montrym 1997 paper, the InfiniteReality technical report, the combiner manual 007-3279-003), the display-generator patents there, and the Library (`--roots techpubs` and an artifacts search). No XMAP datasheet or pin description exists in any of them. The ADV7160/ADV7162 data sheet is held in the Library cache (cited as S67 in `dac-cursor.md`) and is used in section 2.
 
 ## Summary
 
@@ -54,14 +54,14 @@ So the eight-bit value any 8-bit consumer sees is the top eight bits of the same
 **Not established.**
 
 - The VOC sits between the XMAP and the DACs and also does the per-channel resize filtering, on eight-bit data after gamma. At unity size (no resize) it is probably a pass-through. Nothing read proves it adds no rounding or dither. The netlist shows the VOC output nets only as unresolved, not as connected to the DAC pins by name.
-- Whether the DAC (an ADV716x-class part, mode register written 6 then 7: 10-bit palette and DACs, 24-bit bypass colour) widens an eight-bit bypass input to its 10-bit converter by zero fill or replication. The published register description does not say, and no datasheet is held.
+- Whether the DAC (an ADV716x-class part, mode register written 6 then 7: 10-bit palette and DACs, 24-bit bypass colour) widens an eight-bit bypass input to its 10-bit converter by zero fill or replication. The vgadoc register summary does not say; the data sheet does (see the grade below), but only for that part in bypass mode.
 
 **Grade:** truncation (value >> 4) on the XMAP-to-VOC link: established. Truncation end to end to the DAC pins at unity scale: inferred. The DAC-internal widening: inferred zero fill. The ADV7160/ADV7162 data sheet (Library copy `docs/library/cache/graphics/analog-devices/adv7160_7162.pdf` in the origami repository, printed p. 20) says its 24-bit bypass mode maps each 8-bit channel onto the top eight bits of the 10-bit DAC input and leaves the low two bits zero. That applies here only if the board's DAC is that part in bypass mode (mode register written 6 then 7; ADV716x-class by the diagnostic's register layout), so it is inferred, not established.
 
 **Tests.**
 1. Unity-size channel, no resize, dither off. Load gamma page P with identity values (entry i = i) and show colour-map entries or direct pixels yielding gamma outputs 0x0f7, 0x0f8, 0x0ff, 0x100. Read the DAC level or video CRC. Truncation gives 0x0f, 0x0f, 0x0f, 0x10. Round-to-nearest gives 0x0f, 0x10, 0x10, 0x10.
 2. Hold one gamma output of 0x0f8 across a whole frame and check for pixel-to-pixel variation. Any variation is dither downstream of gamma.
-3. For the DAC itself: read the analogue level at DAC input 0xff in bypass colour mode against 10-bit DAC full scale, or compare against the ADV716x datasheet's bypass rule (a document to acquire).
+3. For the DAC itself: read the analogue level at DAC input 0xff in bypass colour mode against 10-bit DAC full scale, or compare against the ADV7160/ADV7162 data sheet's bypass rule (printed p. 20), which would establish the zero fill if the part is confirmed.
 
 ## 3. Cursor colours and gamma
 
