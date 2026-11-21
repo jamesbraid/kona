@@ -27,7 +27,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | gold CRC files | the CRC logs `irsaudit` compares against with `-goldfile`; each is named for the hardware generation it was taken for |  |
 | video formats in the data directory | `.vfo` video-format files the diagnostic loads by name for its video tests, in the binary symbol-database format ([dg.md](../../devices/dg/README.md)) |  |
 
-**Unknown: no shipped software or published source depends on it:** what the gold-file suffix letters `h`, `hl`, `k` and `oh` stand for. Routes tried: the `irsaudit` option text, strings and the file contents.
+**Unknown: no shipped software or published source depends on it:** what the gold-file suffix letters `h`, `hl`, `k` and `oh` stand for. Routes tried: the `irsaudit` option text, strings and the file contents. The configuration tags and the file chooser tie each file to one RM generation, as [irsaudit-releases.md](irsaudit-releases.md#texture-sizes) reads them.
 
 ## Video format, combination and monitor files
 
@@ -86,7 +86,7 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 
 ### Gold CRC logs
 
-**Established** (file contents). Each `irsaudit.*.gold` file is the golden log of CRC words that `irsaudit -goldfile` compares against. Sections begin with `#` and name a test and a configuration tag such as `g2r1t64` or `g4r4t16`; the tag's fields are not spelled out in the files, so their meaning is **unknown**. The `.Z` copy of a log has the same contents as the plain file where both exist.
+**Established** (file contents). Each `irsaudit.*.gold` file is the golden log of CRC words that `irsaudit -goldfile` compares against. Sections begin with `#` and name a test and a configuration tag such as `g2r1t64` or `g4r4t16`; the tag reads `g<engines>r<RMs>t<texture MB>` (**inferred** from the value sets: engines 2, 4 or 8, RMs 0, 1, 2 or 4, texture 0, 16, 64, 256 or 1024; the IR4 log `oh` has only `g4` and `t1024`), and no file spells it out. The `.Z` copy of a log has the same contents as the plain file where both exist.
 
 | File | Holds | Lines | Sections | First section | Last section | Read by | Label |
 |---|---|---|---|---|---|---|---|

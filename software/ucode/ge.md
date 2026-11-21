@@ -14,6 +14,8 @@ What the files in `usr/gfx/ucode/KONA/` (IRIX 6.5.30m, linked as `software/ucode
 
 `ge_kpm.hex` (186 lines) and `ged1b.u` are other programs in the same formats. `ged1b.u` has magic 0x45910003 and the build string "uasm 6.0" ("Thu Jul 20 17:33:26 2006"). Its code is two segments of 32-bit words: a 931-word program at byte address 0 and a 528-word table block at byte address 0x1000 (word 0x400). An earlier reading of 12-byte records was wrong; the ARM firmware loads the program as 1024 32-bit words ([arm1.md](arm1.md)). **Established:** its file-name table lists `dist.s`, `flush.s`, `material.s`, `trigger.s` and one source per primitive type (`tstrip.s`, `points.s`, `lineloop.s`, `linestrip.s`, `quad.s`, `qstrip.s`, `tfanpoly.s`, `tri.s`, `lines.s`), with headers `ged1seq.h`, `ged1if.h` and `ge11exports.h`. **Inferred:** it is the program of the geometry-engine distributor, the stage that assembles primitives from vertices and hands them to the geometry engines, built per primitive type. Nothing in the file names a command-token table. **Established** ([arm1.md](arm1.md)): 83 of its words carry geometry-engine slot numbers that the ARM firmware relocates to handler addresses at load, all of them primitive-assembly handlers ([ged_relocs.tsv](ged_relocs.tsv)).
 
+The IRIX 6.5.0 copies of these files are an earlier build of the same program: 62532 instructions against 62521, 44 differing blocks between instruction addresses 0xa634 and 0xab49 and the same 1100 labels ([irsaudit-releases.md](../diags/irsaudit-releases.md#the-microcode)). No file is specific to one GE generation.
+
 ## Debug tables in the .u files
 
 **Established** (`ge.u`):

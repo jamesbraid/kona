@@ -40,7 +40,7 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - multisample and alpha visuals per RM revision
 - clip-map level count and addressable size
 - DG5 sync source and format round trip
-- GE14/GE16 and RM7/RM9 register and feature dumps (route b: none of these binaries is held)
+- GE16 and RM9 register dumps and the hinv text of IR1 and IR2 pipes (route b: not held; the board-type and microcode comparison is read)
 - 32768 per-texture clip-map limit
 - garbage-count report and death_reason 17 with empty RM slot
 - GFX FIFO watermarks 0x380 and 0x180 in kpm
@@ -608,7 +608,7 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [hardware only] Multi-pipe compositing: read from one pipe and draw to another, and measure the share of pipe time.
 - [hardware only] DG5 sync and genlock: ircombine's sync source and format must round-trip into the downloaded .cmb.
 - [hardware only] Colour matrix on texture load and stencil visuals: a system GL test for each internal format, and findvis stencil sizes.
-- [missing release or binary] IR2 against IR1 features: diff the register and feature dumps of the GE14/GE16 and RM7/RM9 binaries. Located 2026-11-21: the held 6.5.30m root has no binary, microcode image or register dump for any of them. `kona_loaducode` loads the same four microcode files for every pipe, `irsaudit` carries one code path for GE14 and GE16 ("Assuming GE14/16 JTAG chain length is 96"), its data directory holds `rm10`, `rm11` and `tm9` files and none for RM7 or RM9, and the only per-generation files are the netlists in `usr/diags/IR/data` (`ge14_2ge` and `ge14_4ge`, in [data-files.md](../software/diags/data-files.md)). Next: an `irsaudit` or `gfxinfo` of another release, or published `gfxinfo -v` and `hinv -mvv` dumps of an IR1 and an IR2 pipe.
+- [missing release or binary] IR2 against IR1 features: the register and feature dumps of the GE16 and RM9 boards and a running pipe's `gfxinfo -v` and `hinv -mvv` are not held, and neither `irsaudit` build nor any microcode file names "IR2". Read 2026-11-21 ([irsaudit-releases.md](../software/diags/irsaudit-releases.md)): the IRIX 6.5.0 and 6.5.30m `irsaudit` builds give the board-type words (GE 0, 5, 0xc; RM 1, 7, 9, 0xd; TM 6, 0xb, 0xe), tie RM9 to RM7's type with group 1 and the 256 MB TM8, and show one `ge11` microcode program for every GE board with no GE16 image. The RM7 data files were already held. Next: a published `gfxinfo -v` and `hinv -mvv` of an IR1 and an IR2 pipe, or an overlay release between 6.5.0 and 6.5.30m that carries a GE16 or RM9 image.
 - [hardware only] Odyssey W=0 and preclip: test SGIX_vertex_preclip with near-W=0 triangles on the Odyssey model, with IR as the control.
 - [hardware only] Clip-map paper: a clip-map test on the IR model, checking the 32768 per-texture limit and the toroidal sub-load.
 - [hardware only] RM9 upgrade garbage counts: boot with RM slot 0 empty or unreadable; expect the garbage-count report and death_reason 17.
