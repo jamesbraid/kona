@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 119 (hardware-facing 50, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 118 (hardware-facing 49, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -37,7 +37,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - scan-chain net maps and stuck/short vector files; two undocumented microcode images
 - RM.h raster register entries; tbu helpers in irsaudit
 - GE and DG revision per product (decode board id, DG identity word)
-- GE, RM and DG names per product against gfxinfo strings
 - multisample and alpha visuals per RM revision
 - clip-map level count and addressable size
 - DG5 sync source and format round trip
@@ -595,11 +594,10 @@ Limits of the comparison: the target of a pc-relative or table-slot reference to
 
 Leads from posts, forum threads and a talk. Each was checked against the shipped binaries and the repo's chapters on 2026-10-30; the result of each is in its entry in [published-sources.md](../references/documents/published-sources.md#recollections-and-history-leads-unverified), and the settled facts are in [setup-tools.md](../software/userland/setup-tools.md#the-infinitereality-report-of-gfxinfo), [opengl.md](../software/opengl/opengl.md), [libglcore.md](../software/opengl/libglcore.md#the-extension-string) and [display-formats.md](../software/video/display-formats.md). What is still open, with the next software route:
 
-- [missing release or binary] GE and DG generation per product (GE12, GE14, GE16, DG4 against DG5): the identity words are decoded ([setup-tools.md](../software/userland/setup-tools.md#the-infinitereality-report-of-gfxinfo)) but no shipped binary maps a word to a generation name; the names come from the serial chips' part numbers. Route: published `gfxinfo -v` dumps that print both the `brd:` words and the part-number blocks for a pipe of known generation.
+- [missing release or binary] GE and DG generation per product (GE12, GE14, GE16, DG4 against DG5): the identity words are decoded ([setup-tools.md](../software/userland/setup-tools.md#the-infinitereality-report-of-gfxinfo)) but no shipped binary maps a word to a generation name; the names come from the serial chips' part numbers. Route: published `gfxinfo -v` dumps that print both the `brd:` words and the part-number blocks for a pipe of known generation. `gfxinit` prints those part strings as text copied from each board's serial-chip record (`nic_report`), so no table exists to read ([setup-tools.md](../software/userland/setup-tools.md#the-infinitereality-report-of-gfxinfo)).
 - [missing release or binary] Which board sets report KONA, KONAT and KONAS: the 6.5.30m media carry only the IP27 (KONAL) and IP35 (KONAD) kernels. Route: an IP19 or IP25 kernel object from another release, or a published hinv.
 - [missing release or binary] hinv strings per product: `hinv` and its library are not on the media. Route: a published hinv listing, or the `hinv` and `libinvent` of another release.
 - [hardware only] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
-- [software now] GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`). Needs deeper binary RE (attempted 2026-11-21: strings only. `gfxinfo` carries RM2-RM9 and TM0-TM3; `setmon` carries KONA, KONAT, KONAS, KONAL, KONAD; no GE or DG generation name appears in these binaries or in `kona.so` or `konal.so`. Next: read the routine that prints the gfxinfo product line).
 - [missing release or binary] IR2 and IR2E internal names against the marketing names: a system's hinv must print the internal name for each configured product.
 - [missing release or binary] IR3 gfxinfo report: diff a system's gfxinfo output against the posted IR3 text, field by field.
 - [missing release or binary] Framebuffer and texture per RM for IR3 and IR4: texture allocation should fail at one RM's texture memory, not the sum.
