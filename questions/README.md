@@ -14,7 +14,7 @@ Each open entry below carries a route tag. The tag says what can settle it:
 - **route b**: needs a release, binary or document we do not hold. The entry names it.
 - **route c**: only hardware can answer. Recorded only, not scheduled. The entry names the smallest observation.
 
-Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 122 (hardware-facing 53, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9.
+Counts, one per tagged entry (a bullet, a table row, or a paragraph that lists open work): route a 121 (hardware-facing 52, microcode 25, driver and library 44, product and history 0; the queued next-step lists are included under microcode and driver), route b 16, route c 9.
 
 Route a, hardware-facing first, so the register, bus and board items come before the microcode and library ones:
 
@@ -37,7 +37,6 @@ Route a, hardware-facing first, so the register, bus and board items come before
 - scan-chain net maps and stuck/short vector files; two undocumented microcode images
 - RM.h raster register entries; tbu helpers in irsaudit
 - GE and DG revision per product (decode board id, DG identity word)
-- stereo formats without a shipped cmb
 - RM self-test walking-ones sequence per TM
 - GE, RM and DG names per product against gfxinfo strings
 - multisample and alpha visuals per RM revision
@@ -601,7 +600,6 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [missing release or binary] GE and DG generation per product (GE12, GE14, GE16, DG4 against DG5): the identity words are decoded ([setup-tools.md](../software/userland/setup-tools.md#the-infinitereality-report-of-gfxinfo)) but no shipped binary maps a word to a generation name; the names come from the serial chips' part numbers. Route: published `gfxinfo -v` dumps that print both the `brd:` words and the part-number blocks for a pipe of known generation.
 - [missing release or binary] Which board sets report KONA, KONAT and KONAS: the 6.5.30m media carry only the IP27 (KONAL) and IP35 (KONAD) kernels. Route: an IP19 or IP25 kernel object from another release, or a published hinv.
 - [missing release or binary] hinv strings per product: `hinv` and its library are not on the media. Route: a published hinv listing, or the `hinv` and `libinvent` of another release.
-- [software now] Stereo: a shipped `cmb` exists for only three of the eight stereo formats; read what `setmon` does with the other five (`konBuildCmbList`). Needs deeper binary RE (attempted 2026-11-21: `konBuildCmbList` appears only as a string in `usr/gfx/setmon`, which has no `.symtab` or `.mdebug`, and the name is not in its dynamic symbols; `.msym` is not decoded by retools. Next: decode `.msym` or import setmon into Ghidra).
 - [software now] RM self-test: the walking-ones sequence of `TEST_rm_extbist` and the `sdbist_*` registers, per TM. Needs deeper binary RE (attempted 2026-11-21: read the first 160 of 425 instructions of `TEST_rm_extbist` in `usr/diags/IR/irsaudit_disasm.txt`; the loop over four indices calls `jt_read_external_bist_info` and `jt_execute_external_bists`, so the walking pattern sits outside the body. Next: read `jt_execute_external_bists` and the `.sdbist` data format).
 - [hardware only] Not testable from software, so no route: throughput figures, GE and pixel clocks, chassis contents, the cancelled successor's design, multi-pipe composition cost, and the Onyx4 remarks.
 - [software now] GE, RM and DG per product, and the hinv and gfxinfo board names: a pipe's strings must match the product table (`KONA`, `KONAS`, `KONAL`, `KONAD`). Needs deeper binary RE (attempted 2026-11-21: strings only. `gfxinfo` carries RM2-RM9 and TM0-TM3; `setmon` carries KONA, KONAT, KONAS, KONAL, KONAD; no GE or DG generation name appears in these binaries or in `kona.so` or `konal.so`. Next: read the routine that prints the gfxinfo product line).
