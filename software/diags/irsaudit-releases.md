@@ -145,6 +145,10 @@ Sources: `usr/diags/IR/bin/irsaudit` from the discs "IRIX 6.5.2 Installation Too
 
 **Inferred:** the first two values are the host-interface generation (an Onyx IP19 or IP25 host with the HIP1 interface against IP27 and later), not a board property, so `irsaudit` does not use "KONA" and "HILO" for IR1 and IR2 boards. The "HILO" wording on RM7, RM8, RM9, TM7 and DG5 messages says those boards are of the Onyx2 generation; it does not say which marketing name that generation carries.
 
+## Review note
+
+**Review note (2026-11-21, independent review).** Sampled against the 6.5.0, 6.5.2, 6.5.7 and 6.5.30m binaries (the disc hashes match the ones above) and the data and microcode files: the board-identity word fields and Gray-code table (0x1022c858, 6.5.2), the GE type compare 0, 5 and 0xc and the group and revision calls at 0x1005d1a8 and 0x1005d1c8, the GE-count table (1, 2, 4, 8) and BEF messages, the RM7 and RM9 type and group tests and message addresses in 6.5.2, 6.5.7 and 6.5.30m (types 7 and 0xd, group 1 constant at 0x10050f88), the TM8 and RM10 pairing messages in 6.5.7, the golden-file chooser of 6.5.0 and 6.5.30m (the delay-slot reading gives k for 0, hl for 2, oh for 6 and h otherwise in 6.5.30m, and h for 1, hl for 2 and k otherwise in 6.5.0), the board-set value sites in 6.5.2, the symbol counts (1089 to 1170, 160 to 206 tests; 1099 in 6.5.2, 1107 in 6.5.7 and 6.5.8 with no removals), the golden section counts of the three files in both releases, and the microcode and diagnostic file sizes and sha256 prefixes all hold (**established**). Not re-read: the revision text addresses, the chip-revision thresholds and the 6.5.3 to 6.5.6 string scan, which stay as graded.
+
 ## Open
 
 - GE16, RM9 and RM10 register dumps, and the hinv or gfxinfo text of IR1 and IR2 pipes: not held. `irsaudit` supplies the identity words, the group and revision decode, the NIC names, the chain files and the pairing labels above; it has no GE16- or RM9-specific test, so it shows no register-level difference to compare.
