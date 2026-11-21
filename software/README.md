@@ -7,7 +7,7 @@
 | Page | Title | Summary |
 |---|---|---|
 | [data-files.md](diags/data-files.md) | Diagnostic data, format files and installed tools | Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucode/KONA/` and the installed tools... |
-| [irsaudit-releases.md](diags/irsaudit-releases.md) | The IR diagnostic and microcode in IRIX 6.5.0 against 6.5.30m | Sources: the IRIX 6.5 base media (June 1998, called 6.5.0 here) and the 6.5.30m reference tree. |
+| [irsaudit-releases.md](diags/irsaudit-releases.md) | The IR diagnostic and microcode in IRIX 6.5.0, 6.5.2, 6.5.7, 6.5.8 and 6.5.30m | Sources: the IRIX 6.5 base media (June 1998, called 6.5.0 here) and the 6.5.30m reference tree; the 6.5.2, 6.5.7 and... |
 | [irsaudit.md](diags/irsaudit.md) | The IR diagnostic: `irsaudit` function reference | Sources: `usr/diags/IR/bin/irsaudit` (6.5.30m) with its symbols, its option help and its message strings. |
 | [kpm.md](diags/kpm.md) | Diagnostic tools: `kpm` and the boundary-scan library | Sources: `usr/gfx/KONA/bin/kpm` (6.5.30m, an N32 executable with symbols, with the GNU readline code compiled in)... |
 

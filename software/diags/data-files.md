@@ -27,7 +27,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 | gold CRC files | the CRC logs `irsaudit` compares against with `-goldfile`; each is named for the hardware generation it was taken for |  |
 | video formats in the data directory | `.vfo` video-format files the diagnostic loads by name for its video tests, in the binary symbol-database format ([dg.md](../../devices/dg/README.md)) |  |
 
-**Unknown: no shipped software or published source depends on it:** what the gold-file suffix letters `h`, `hl`, `k` and `oh` stand for. Routes tried: the `irsaudit` option text, strings and the file contents. The configuration tags and the file chooser tie each file to one RM generation, as [irsaudit-releases.md](irsaudit-releases.md#texture-sizes) reads them.
+**Unknown: no shipped software or published source depends on it:** what the gold-file suffix letters `h`, `hl`, `k` and `oh` stand for. Routes tried: the `irsaudit` option text, strings and the file contents. The configuration tags and the file chooser tie each file to one board-set value, which `irsaudit` sets from the host type and from RM8 detection, as [irsaudit-releases.md](irsaudit-releases.md#texture-sizes) reads them.
 
 ## Video format, combination and monitor files
 
