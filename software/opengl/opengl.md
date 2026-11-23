@@ -61,6 +61,37 @@ The pipe sees nothing of this; it is host-side capability set-up.
 
 So the text has the form IR`c`[P]/`d`/`n`/`t`/`m`. The reply's first six bytes are copied by `kona_alloc_bdata` from the string "KONAL" (a six-byte `bcopy` to state +204), so byte 4 is 'L' and byte 5 is zero on an IP27 kernel; that makes the 'I' branch unreachable for this kernel and the first character 'L', **inferred** because the pipe-record parser `kona_extract_nic_info` also writes into the record (its byte stores are at small offsets from a base register that was not traced) and may rewrite bytes 4 and 5. The IP35 libGLcore carries "KONAD" where this one carries "KONAL" ([libraries.md](libraries.md)). Which digit is which is **established** by the ARM firmware: the configuration block is the ARM's block at 0x04067edc, in which `init_jtag` (0x0c01af34-0x0c01af80) stores the engine count at +0x54 and the raster-manager count at +0x58 and names them in its messages "numges" and "numrms" (strings at 0x0c01af84 and 0x0c01afa8), so the digit at reply +128 (configuration +88) is the number of raster managers and the last digit, at reply +124 (configuration +84), the number of engines.
 
+#### What `GL_RENDERER` and `GL_VERSION` read for each product
+
+**Established** (software expectation: the 6.5.30 and 6.5 base `usr/gfx/arch/IP27KONA`, `IP35KONA`, `IP25KONA` and `IP19KONA` `libGLcore.so` read in full; the 6.5.22 overlay is not in the media set). Nothing in any of these libraries, or in their `libGL.so`, produces the text "IR2" or "IR3": a search of every KONA `libGLcore.so` for the strings `IR2`, `IR3` and `Infinite` finds none. The product only reaches GL as the board-set number, which picks one letter and one optional suffix of the text built by `GetBoardInfo` (0xd946260 in the 6.5.30 IP27 and IP35 libraries, 0xdaa5e90 in the 6.5 base IP27 library, 0xdaa5e80 in base IP19), so `IR2` is **not** visible in `GL_RENDERER` or `GL_VERSION`. A program that tests for it has to be reading its own string or the hinv and `gfxinfo` text, not GL.
+
+`GL_VERSION` has no board input: the context-reset default `1.1 Irix 6.5` (0xda78ccc in the 6.5.30 IP27 library, stored at 0xd9d0ebc) is never replaced; `libGL.so`'s own `1.3 Irix 6.5` (0xd840b4c, used by `glXGetClientString`) is the GLX client version, not the GL one.
+
+`GL_RENDERER` is `IR` + a platform letter or `E` + `P` for one board set + `/` + the four fields above. The inputs and the grades:
+
+| Piece | Rule | Where |
+|---|---|---|
+| `IR` | always, unless reply byte 5 is `I` (test at 0xd946324) | 0xd946338 to 0xd946348 |
+| platform letter | reply byte 4, which the kernel copies from the name its `kona.a` carries: `L` for IP27 (`KONAL`), `D` for IP35 (`KONAD`), `S` for IP25 (`KONAS`), none for IP19 (`KONA`, so the text is `IR/...`); replaced by `E` when the board-set word (reply +40) is 2 | 0xd94634c to 0xd946378 |
+| `P` | only when the board-set word is 4 | 0xd9463a0 to 0xd9463c0 |
+| field 1 | depth class from `SMLX01234` indexed by reply +180; `T` for board set 2 with +180 equal to 3 | 0xd9463dc to 0xd946428 |
+| field 2 | one digit of `01234` indexed by reply +128 (raster managers) | 0xd946448 to 0xd946468 |
+| field 3 | texture size code at reply +80: `0`, `16`, `64`, `128`, `256`, `512`, `1024` | 0xd946488 to 0xd9464a4 |
+| field 4 | one digit of `012345678` indexed by reply +124 (engines) | 0xd9464c8 to 0xd9464e4 |
+
+Which board-set number each product writes, and so the visible prefix (the platform column is the kernel that ran `gfxinit`):
+
+| Product (board set) | Onyx2, IP27 | Onyx 350 / Onyx3, IP35 | Power Onyx, IP25 | Onyx, IP19 |
+|---|---|---|---|---|
+| InfiniteReality (0) | `IRL/` | `IRD/` | `IRS/` | `IR/` |
+| InfiniteReality2 (1) | `IRL/` | `IRD/` | `IRS/` | `IR/` |
+| "Reality" (2) | `IRE/` | `IRE/` | `IRE/` | `IRE/` |
+| InfiniteReality2E (4) | `IRLP/` | `IRDP/` | `IRSP/` | `IRP/` |
+| InfiniteReality3 (5) | `IRL/` | `IRD/` | `IRS/` | `IR/` |
+| InfiniteReality4 (6) | `IRL/` | `IRD/` | `IRS/` | `IR/` |
+
+The set number is the one in the [product table](../../platforms/ir/ir2e-ir3-products.md#q1-board-set-value-in-block-word-0-which-value-means-which-product); which board kind and kernel combinations exist in the field was not checked (IR3 and IR4 need the IP35 kernel in practice). Two products give the same prefix, so a consumer cannot tell IR2 from IR3 from the first characters of `GL_RENDERER`: it only sees `IR` plus a platform letter, with `P` set apart for IR2E. The digits after the prefix are the firmware block's counts (documented above), so an IR2 with two raster managers reads something like `IRL/L/2/64/2`; the exact digit and size values per board are **inferred** from the counts, not read from a board.
+
 #### `LoseCurrent`
 
 `LoseCurrent` at 0x0d948530 (the Kona GL driver context assembly unit, `IP27KONA32/libGLcore.so`): **Established.** Detaches the context from the thread without writing any command word to the pipe.
