@@ -85,7 +85,7 @@ Two independent mechanisms exist, and only one is required to avoid overflow.
 
 - A command longer than the FIFO, such as an image, needs the poll between chunks, with each chunk smaller than the free space; the level read comes back after the earlier stores have arrived, so poll-then-burst is safe as long as burst size plus level stays under the FIFO's size; until that size is settled, take 1024 words (**inferred**, not demonstrated).
 - A second writer (another CPU, a user mapping) on the same FIFO needs the Hub credit layer or its own mutual exclusion; the credit layer is what lets many user processes write without calling the kernel.
-- An overflow raises `PIO_OV` in `HH_INTR_STATUS` (bit 10), and the kernel kills the pipe ("PIO overflow", reason 13); what the pipe does with the lost words is **unknown: no shipped software or published source depends on it**.
+- An overflow raises `PIO_OV` in `HH_INTR_STATUS` (bit 10), and the kernel kills the pipe ("PIO overflow", reason 13); what the pipe does with the lost words is **unknown: no shipped software or published source depends on it**. A command left half-sent is a different case: [command-cut-short.md](command-cut-short.md).
 - The kernel's hi-water handling uses `HH_GFIFO_HI` = 0x700, a 0x300 raw level as the wait threshold, and the `FIFO_LO` interrupt to wake the waiter ([hip.md](../../devices/hip/README.md#flow-control-the-fifo-interrupts)). A polled driver needs none of these.
 
 **Interrupts.** The kernel connects three vectors (XG error, host interface, geometry engine). A driver that polls can leave the host-interface interrupt masked after `KONAinitialize` (which enables only parity), but then must poll `HH_INTR_STATUS` and `HH_ARM_MBOX` for DMA completion (section 5) and for ARM events: **inferred**, no shipped software runs polled.
@@ -107,6 +107,7 @@ Two independent mechanisms exist, and only one is required to avoid overflow.
 | Question | What would settle it |
 |---|---|
 | What holds the ARM between the reset pulse and the unstall | a run of the loader against an ARM model, or a kpm dump taken between the steps |
+| What the pipe does with a command cut short, and which recovery is safe | answered as far as the shipped code goes in [command-cut-short.md](command-cut-short.md); what `FORCE` does in the host interface is open |
 | Where the textport's engine handlers come from | a saved EEPROM image (`ireeprom -r`) |
 | The meaning of each bit of the 13 GC words and 7 set-up words for 8- and 32-bit pixmaps | tracing `X_PixSetupGE`, `XSetPacker` and the GC consumer in `ge.u` for the format codes in `kon_loadPixmapGC` |
 | Map RAM parity rule, and what the chip does with the page-size code | a published XG description |
