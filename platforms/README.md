@@ -11,3 +11,4 @@
 | [ir2e-ir3-products.md](ir/ir2e-ir3-products.md) | InfiniteReality2E and InfiniteReality3 product facts for the KONA command table | Worked 2026-11-10 against a shallow kona clone. |
 | [non-irix-driver.md](ir/non-irix-driver.md) | Driving an InfiniteReality pipe without IRIX | What a driver that is not IRIX has to do to load the pipe's firmware, draw text, write images, keep the command FIFO... |
 | [textport.md](ir/textport.md) | Textport: the command port | The textport is the console path the pipe uses before any X server or GL client runs. |
+| [x-state-words.md](ir/x-state-words.md) | The X_LOADGC and X_PIX_SETUP words for a plain 8-bit and a 24-bit visual | The 13 graphics-context words (token 0x129) and 7 pixel set-up words (token 0x136) the X server sends for a plain... |
