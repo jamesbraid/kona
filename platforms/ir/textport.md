@@ -54,11 +54,14 @@ For each word it polls window `0x800238` for bit `0x10`, then reads `0x800240`,
 writes 0 to `0x800240` and writes `0x10` to `0x800238`. A timeout returns
 -1 and leaves the words already read in the buffer.
 
+## The PROM as a second sender
+
+**Established** (IO6 PROM image, unpacked `io6prom` segment, board function table at 0xae860): the PROM waits for `HH_GFIFO_LEVEL & 0x7fe` to read zero (at most about 2500 reads, no delay), stores each command to `0xc10000`, and attaches no flow control, kicks nothing and reads no reply. It sends sub-commands 1, 2, 3, 4, 5, 6, 8 and 10 with the kernel's operands, and also sub-command 7 with both coordinates rounded down to a multiple of 4. Details and the kernel's character-cell order are in [the non-IRIX driver page](non-irix-driver.md#2-textport-behaviour).
+
 ## Open
 
-- How the node PROM drives this port: its FIFO wait, retry limits, reply
-  polling and any use of the kick at `0xc00108`. Route: read a published PROM
-  image, which is not on the 6.5.30 media.
+- Which sub-commands the PROM's character routine sends per character, and in what order: the generic console layer above the board
+  function table was not followed.
 - The role of the first reply words of sub-command 12 (indexes 0 to 2), which
   the kernel reads and discards.
 - A separate reading claims the kernel's `get_graphics_info` checks reply words
