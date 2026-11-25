@@ -29,7 +29,7 @@ from unicorn import (Uc, UC_ARCH_MIPS, UC_MODE_MIPS64, UC_MODE_BIG_ENDIAN, UC_HO
                      UcError)
 from unicorn.mips_const import UC_MIPS_REG_SP, UC_MIPS_REG_PC
 
-# Function entry points found by their prologue bytes (file offsets) in each module.
+# Function entry points (file offsets) in the 6.5.30 overlay-media builds of each module.
 LOADPIXMAP = {'kona': 0x101690, 'konal': 0x10b0e0, 'konad': 0x10b100, 'konas': 0x10b0e0}
 PARSEGC = {'kona': 0x137a80}
 GP = {'kona': 0x593bd8}
@@ -149,4 +149,5 @@ def main():
         print('  %-8s %#010x' % (n, v))
 
 
-main()
+if __name__ == '__main__':
+    main()
