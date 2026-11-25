@@ -56,7 +56,7 @@ writes 0 to `0x800240` and writes `0x10` to `0x800238`. A timeout returns
 
 ## The PROM as a second sender
 
-**Established** (IO6 PROM image, unpacked `io6prom` segment, board function table at 0xae860): the PROM waits for `HH_GFIFO_LEVEL & 0x7fe` to read zero (at most about 2500 reads, no delay), stores each command to `0xc10000`, and attaches no flow control, kicks nothing and reads no reply. It sends sub-commands 1, 2, 3, 4, 5, 6, 8 and 10 with the kernel's operands, and also sub-command 7 with both coordinates rounded down to a multiple of 4. Details and the kernel's character-cell order are in [the non-IRIX driver page](non-irix-driver.md#2-textport-behaviour).
+**Established** (IO6 PROM image, unpacked `io6prom` segment, board function table at 0xae860): the PROM waits for `HH_GFIFO_LEVEL & 0x7fe` to read zero (at most about 5000 reads, no delay), stores each command to `0xc10000`, and attaches no flow control, kicks nothing and reads no reply. It sends sub-commands 1, 2, 3, 4, 5, 6, 8 and 10 with the kernel's operands, and also sub-command 7 with both coordinates rounded down to a multiple of 4. Details and the kernel's character-cell order are in [the non-IRIX driver page](non-irix-driver.md#2-textport-behaviour).
 
 ## Open
 

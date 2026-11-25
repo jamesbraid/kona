@@ -283,9 +283,10 @@
  * Map RAM entry (XG_MAP_RAM, 32-bit entries from 0x100000), ESTABLISHED
  * field names from kpm. kona_mapram_map writes 0x20000000 | 4 KB frame
  * number: PAGESIZE = 1, which the driver pairs with its 16 KB page
- * (kona_mapram_pagesizeshiftof returns 14), so INFERRED: page-size code 1 is
- * 16 KB. What codes 0, 2 and 3 stand for is UNKNOWN: the 6.5.30 driver
- * writes only code 1.
+ * (kona_mapram_pagesizeshiftof returns 14). The 6.5-base driver's
+ * kona_xg_psize_shift_to_index maps page shifts 12, 14, 16, 20 to codes
+ * 0, 1, 2, 3 (4 KB, 16 KB, 64 KB, 1 MB): ESTABLISHED as that driver's
+ * expectation, not as chip behaviour. The 6.5.30 driver writes only code 1.
  * kona_mapram_init writes 0x10000000 | index: INVALID set. The
  * parity bit is the chip's (MAPRAM_ENA_PAR in XG_XT_CTRL).
  */

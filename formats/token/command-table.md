@@ -1315,7 +1315,7 @@ X pixel work is a bracket: a seven-word set-up, then a write, read or copy, then
 | write, first word | a header word, read with the last data word; it is kept beside the set-up width and height and passed to the raster set-up | established | S23 |
 | write, direct-write flag clear | the following words are in the command stream and are counted through with the pass-through counter; the bitmap loaders (set-up word 0 = 0) use this with one-bit-per-pixel words | inferred | S23, S20 |
 | write, colour image | the following words are pixels packed in the pixel size and format of the destination | inferred | S21 |
-| write, large band | bands over 4096 bytes go by the driver's DMA-write request instead of the command FIFO | established | S21 |
+| write, large band | source images over 0x8000 bytes (0x9000 in the `konal.so`, `konad.so` and `konas.so` builds) go by the driver's DMA-write request instead of the command FIFO, unless the screen's pixel format excludes it | established | S21 |
 | read, payload | two words: x and y of the block; y is measured from the bottom, so the handler subtracts it from the screen height | established | S23, S20 |
 | read, size | width and height come from words 4 and 5 of the preceding set-up | established | S23, S20 |
 | read, reply | small blocks come back through the read-back area; blocks over 8192 bytes go by the driver's DMA-read request; a flush token with 0xdeadbeef follows the read | established | S20, S21 |

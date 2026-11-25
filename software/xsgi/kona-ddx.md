@@ -159,7 +159,7 @@ These send commands to the pipe. A command is the token's first payload word sto
 - `konDrawMonoImage` (`kona.so` 0x5566f0, 1724 bytes): **Established.**
   Draws a one-bit image by the pixel-write command: it loads a bitmap GC with `kon_loadNfbBitmapGC`, writes `HP_X_LOADPOS` and `HP_X_LOADCLIP`, sends the bitmap words as `HP_X_PIX_WRITE`, ends with `HP_X_PIX_FINISH`, and copies the rows with `bcopy` and `KonSeqData32_ip19`.
 - `konWriteFBSubBlock` (`kona.so` 0x4f9af0, 2216 bytes): **Established.**
-  Writes one band of an image to the frame buffer: it sets `HP_X_PIX_SETUP`, `HP_X_LOADPOS`, then `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, or for blocks over 4096 bytes issues the DMA-write Kona driver request (10001) with the block, reporting failure with `ErrorF` and `perror`. Its words go through `kon_loadImpWordGC` (three sites) and `KonSeqData32_ip19` to `KonSeqData3_ip19`.
+  Writes one band of an image to the frame buffer: it sets `HP_X_PIX_SETUP`, `HP_X_LOADPOS`, then `HP_X_PIX_WRITE` and `HP_X_PIX_FINISH`, or, when the source image is over 0x8000 bytes (width times height times four) and the screen's pixel format allows it, issues the DMA-write Kona driver request (10001) with the block, reporting failure with `ErrorF` and `perror`. Its words go through `kon_loadImpWordGC` (three sites) and `KonSeqData32_ip19` to `KonSeqData3_ip19`.
 - `konReadFBBlock` (`kona.so` 0x52e460, 1900 bytes): **Established.**
   Reads a block of the frame buffer back to the host. It allocates the result with `Xalloc`, sets `HP_X_PIX_SETUP` and `HP_X_LOADPOS`, sends `HP_X_PIX_READ` with the block's x and y, and follows it with `HP_WG_FLUSH_1` carrying 0xdeadbeef. It waits with `sginap` for the pipe to answer, checks it with ioctl 10017 (the check pipe Kona driver request) after waiting 3000 rounds, uses the DMA-read Kona driver request (10000) for blocks over 8192 bytes and copies small ones from the read-back area with `bcopy`.
 - `konFreeFBBlock` (`kona.so` 0x4d2630, 76 bytes): **Established.**
@@ -4817,7 +4817,7 @@ The IP27 kernel names the pipe KONAL and the server loads `konal.so` (6.5.30m, `
 
 - `konWriteFBSubBlock` (`konal.so` 0x1482ed0, 3888 bytes): **Established.** Frame-buffer band write
   in the konal.so build: `HP_X_LOADPOS`, `HP_X_PIX_SETUP`, `HP_X_PIX_WRITE` and
-  `HP_X_PIX_FINISH`, with the DMA-write Kona driver request (10001) for blocks over 4096 bytes and `perror` on
+  `HP_X_PIX_FINISH`, with the DMA-write Kona driver request (10001) for source images over 0x9000 bytes and `perror` on
   failure, as in kona.so, but with the token words at offset 0 and the data words stored inline
   rather than through `KonSeqData32_ip19` to `KonSeqData3_ip19`: 3888 bytes against 2216.
   `kon_loadImpWordGC` is called at three sites.
