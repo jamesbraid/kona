@@ -80,6 +80,8 @@ What raises each interrupt, what the kernel does about it and how it acknowledge
 
 So there are three sources: XG errors (own vector), the geometry-engine bit of `HH_INTR_STATUS` (own vector, own handler), and the rest of `HH_INTR_STATUS` (one vector).
 
+Where the three vectors' packets go (the Hub's widget by target id, the node and register by the programmed address) is in [xg](../xg/README.md#where-the-pipes-interrupt-packets-go).
+
 ### XG errors: `kona_xg_intr_handler`
 
 **Established.** Counts the interrupt, prints "XG error interrupt received", kills the pipe with reason 12 (`kona_die`, see `kona_kern.h`) and calls `kona_report_errs`, which reads XG+0x6c and prints one message per set bit (31 bits, listed in XG.h). It does not clear the register: `kona_reset_adaptor` does that (read, write 0 to XG+0x2c, read, write back). There is no recovery short of reinitialising the pipe.
