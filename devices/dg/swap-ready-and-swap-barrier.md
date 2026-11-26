@@ -12,6 +12,7 @@ Grades and citations as in the genlock page. Display-bus addresses are word addr
 | How is it driven? | One output bit per pipe: display-bus 0x1920 bit 0 (DG5 without DPLEX) or 0x8001 bit 0 (boards the firmware flags as DPLEX), written 1 by the firmware's `SWAP_CNTRL` token; on DPLEX also 0xe500 bit 0 (`SWAP_RDY_DRV`) | established as writes; polarity unknown |
 | How is it sampled? | No register reads the line level. Its only observable effect is that the VOC double-buffered copy ("NEXT to NOW") and the DPLEX `NOW` status do not happen while another pipe holds it low | established (messages), inferred (mechanism) |
 | Does the kernel or X server read it? | No. They count swaps in software (swap group counters, the DPLEX ring token) | established (absence) |
+| Does a client see a swap-group or barrier event? | No. The X server sends none; the only hardware-driven X event is the genlock lock change ([Xsgi events](../../platforms/ir/xsgi-events-and-manager-messages.md)) | established for the routines read |
 | How many barriers? | One | established |
 
 ## 1. The line and its hardware

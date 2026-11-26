@@ -23,7 +23,7 @@ Grades and citations as in the genlock page. "Display bus" is the display-genera
 
 | External input | Register or event that reflects it | Notes and grade |
 |---|---|---|
-| Genlock reference connected on a DG5-2 | VOC status bits 21 (`int_ext_sync_detect`), 20 (`int_ext_sync_loss`); HH_INTR_STATUS bit 9 when enabled | no shipped code reads the VOC bits; level or latch unknown ([genlock page](genlock-and-lock-status.md)) |
+| Genlock reference connected on a DG5-2 | VOC status bits 21 (`int_ext_sync_detect`), 20 (`int_ext_sync_loss`); HH_INTR_STATUS bit 9 when enabled | only the X server's lock handler reads them (chip 1, after a bit 9 interrupt, through display request 61); level or latch unknown ([genlock page](genlock-and-lock-status.md), [events page](../../platforms/ir/xsgi-events-and-manager-messages.md#genlock-and-the-screen-lock-event)) |
 | GVO genlock input and serial links | bus 0xc400 serial stream (third bit = lock, 1 = not locked); 0xcf00 bits 0, 2, 3 | read only by the diagnostics; unknown which signal the chip locks to |
 | Swap-ready cable and other pipes | DPLEX 0xe200 bit 1 (`NOW`) and bit 5; VOC double-buffer copy completion | no level register ([swap page](swap-ready-and-swap-barrier.md)) |
 | DPLEX LVDS cable (neighbour's transmit) | 0xe200 bit 7 (`AUTO_CONFIG_DAT_RCV`) | read by `kona_nclops_discover` and `TEST_ddo3_autoconfig_loopback`; the kernel builds the ring from it ([DPLEX](../../software/kernel/kernel.md#multi-pipe-dplex-display-port-writes)) |
@@ -36,7 +36,7 @@ Grades and citations as in the genlock page. "Display bus" is the display-genera
 
 1. **Display-bus reads and writes.** Every address above is plain storage unless a page says otherwise; `vcRead` of a word the model has no device for must return the last value written (the diagnostics' register tests write patterns and read them back).
 2. **Interrupt causes.** HH_INTR_STATUS bit 3 at each video interrupt and bit 9 on demand, writable-one-to-clear, gated by the enable mask. `vdCheckDgInterrupts` reports a frame interrupt and a VOC interrupt it sees; make both deliverable when the diagnostic enables bits 3 and 9 (`vdEnableDgInterrupts` 0x10130c98).
-3. **No external events needed for the run-time stack.** The kernel, X server and firmware never wait on a sync-detect, lock or swap-ready edge; a model with no external devices passes them with the lines held "no reference, ready".
+3. **No external events needed for the run-time stack.** The kernel, X server and firmware never wait on a sync-detect, lock or swap-ready edge (the server reports lock changes to clients that ask and blocks nothing); a model with no external devices passes them with the lines held "no reference, ready".
 
 ## Open questions and capture proposals
 
