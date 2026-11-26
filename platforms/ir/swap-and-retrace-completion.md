@@ -1,6 +1,6 @@
 # How a buffer swap completes, and what IRIX waits on
 
-What an emulated pipe has to deliver for an IRIX 6.5.30m kernel to treat a buffer swap as done: whether the pipe raises a swap-done interrupt, what the kernel sleeps on until the swap completes, and what advances the retrace tag at 0x800248. First configuration only (IP27 Onyx2, one InfiniteReality2 pipe); the IP35 objects were not re-read here, and earlier pages record identical code for `kona_video.o`, `kona_sched.o` and `rrm.o` apart from one CPU-number address. The page answers questions put by an emulator whose pipe stalls a compositing application on its first swaps.
+What an emulated pipe has to deliver for an IRIX 6.5.30m kernel to treat a buffer swap as done: whether the pipe raises a swap-done interrupt, what the kernel sleeps on until the swap completes, what the flow-control writes of 0x22 and 1 to widget offset 0x7c ask of the pipe, and what advances the retrace tag at 0x800248. First configuration only (IP27 Onyx2, one InfiniteReality2 pipe); the IP35 objects were not re-read here, and earlier pages record identical code for `kona_video.o`, `kona_sched.o` and `rrm.o` apart from one CPU-number address. The page answers questions put by an emulator whose pipe stalls a compositing application on its first swaps.
 
 Ratings: **established** (the whole routine read in the shipped binary or firmware image), **software expectation** (what the driver or firmware assumes the hardware does; no hardware was read, so none of it is observed), **inferred** (reasoning given), **unknown** (routes tried, and what would settle it). The IRIX source tree holds no InfiniteReality kernel driver (`refs/irix-source` has only 6.5.5 and 6.5.7 trees without a `kona` or `rrm` file), so every reading is of `usr/cpu/sysgen/IP27boot/kona.a` and `rrm.o` (6.5.30m; `kona.a` SHA-256 0b4e51c8...29c3c2) and `usr/gfx/ucode/KONA/arm1.u`. Offsets below are within the named member. Companion pages: [the DG chapter](../../devices/dg/README.md#buffer-swap-and-retrace-wait), [the host interface](../../devices/hip/README.md#interrupts), [the non-IRIX driver page](non-irix-driver.md).
 
@@ -53,6 +53,60 @@ So IRIX sleeps on the swap in the page-fault path, not in an ioctl, unless a swa
 2. Make no other interrupt for a swap. A swap-done cause that IRIX does not read would be harmless, but nothing waits for it.
 3. Expect, in every video interrupt with no swap table and no network, one `HH_VC_ADDRESS` 0x80 / `HH_VC_DATA` 2 pair, and one write of 1 to `HH_TBUS_STATUS`. What the strobe does inside the frame manager is **unknown** ([DG.h](../../devices/dg/DG.h) `KONA_DG_SWAP_STROBE`).
 4. If the emulation does raise bit 3 at every retrace and the application still stalls, check that `HH_SEQID` has the tag of the last `RETRACE_SEQID` the pipe consumed and not an older value, and that the write-back of the cause bits and the 0xbadc0ffe acknowledge do not lose a second bit raised between the status read and the write-back (`kona_intr_handler` writes back exactly the bits it served).
+
+## 2. What the writes of 0x22 and 1 to offset 0x7c mean
+
+Offset 0x7c of the pipe's Xtalk window is `XG_GFX_DET`, not a host-interface register (user-mapping offset 0xc07c; [xg](../../devices/xg/README.md)). kpm's table gives it `DETACH` in bit 0 and `RES_TNUM` in bits 5-1 (mask 0x3f; **established**, `software/diags/kpm/xg_registers.tsv`). The driver writes two values only:
+
+- **0x22** is `(tnum << 1) & 0x3e` with tnum 17, the constant `gfx_flow_credit_tnum_get` returns and `kona_attach` stores at pipe state +2248. It is the **attach** (**established**).
+- **1** is **detach**, followed by a read of the same offset whose value no caller looks at (**established**; the discarded read follows the write in every function in the table below).
+
+What the pipe does with them is not in any shipped software. **Inferred** from the field names and from the driver's use: attach tells the XG to return flow-control credits for the writer's stores to the writer's hub on Xtalk transaction number 17, and detach stops that return before another CPU takes the FIFO. **Unknown: no shipped software or published source depends on it:** what the XG does if it receives 0x22 twice without a detach, how many credits it returns at attach, and whether detach discards credits not yet returned. Routes tried: every access to offset 0x7c in `kona.a` (the table below), the kpm XG table, `devices/xg`, the 6.5.5 headers. What would settle it: an XG datasheet or a capture of the credit packets, neither held.
+
+### One attach, in order
+
+**Established** (`gfx_flow_attach_me` 0x6b8, `gfx_flow_attach_me_finish` 0x810 in `gfx_flow.o`; `kona_retrace_activate` +0x4c4-+0x5d0 as the example sender). A sender first flushes its write-gather buffer and asks `gfx_flow_am_i_attached`; only when the CPU is not attached does it do the following, so a CPU that is already attached writes nothing to 0x7c:
+
+1. `gfx_flow_attach_me`: the hub's credit bias for this CPU slice is zeroed, its credit counter is loaded with the credit count saved at the last detach (the full total on the first attach), its page register takes the FIFO page with bit 40, and the pipe's `IIO_IGFX_x` register in the master hub takes widget, node, slice and the valid bit. These are hub registers, not pipe registers.
+2. Write 0x22 to 0x7c.
+3. `kona_flow_await_returned_credits` (`kona_flow.o` +0x754): poll the hub's credit count for up to 1000 steps of 1 us until it reaches the bias. Then require the count not to exceed the total; **a count above the total kills the pipe (reason 25)**. If the wait times out the code does not fail: it reads `HH_GFIFO_LEVEL` (0x800208) and yields the CPU when the level is above 768, else returns.
+4. `gfx_flow_attach_me_finish`: the hub's bias takes its real value.
+
+The packet then goes out between kicks of `HH_GINTR_INFO` (0xc00108): 0x30000, the token, 0x10000, the payload, 0. The attach test runs again before each of the three kicks, so one packet has up to three conditional attach sites (hence three 0x22 writes in the code, one in a running trace).
+
+### One detach, in order
+
+**Established** (`KONAunmapgfx` +0x35c, `KONAsuspend` +0x0 and `KONAreleasegfxsema` +0x938 read in full; `KONApcxswap` and `KONAdestroyddrn` write 1 and read back the same way, their credit wait not re-read): flush the gather buffer; when no writer is parked on the FIFO (word +2344 is zero) and the hub's credit count is below the bias, run the same credit wait as step 3 above; write 1 to 0x7c; read 0x7c back; `gfx_flow_detach_me` clears the `IIO_IGFX_x` valid bit, zeroes the bias, sets the page register to 0xdeadbabe and saves the remaining credit count for the next attach. A detach therefore expects the pipe to have returned the credits for everything written, or the saved count is short and the next attach waits for the rest.
+
+### Who writes what
+
+**Established** (offsets of the `daddiu a0,...,124` that forms the address, `kona.a` 6.5.30m `IP27boot`; the IP35 objects were not re-read).
+
+| Value | Function (member, +offset) | When |
+|---|---|---|
+| 0x22 | `KONAmapgfx` (`kona_map.o` +0x2d8) | a connection is mapped to the pipe, after its faults are validated |
+| 0x22 | `KONAresume` (`kona_sched.o` +0x274) | the scheduler puts a mapped connection back on a CPU |
+| 0x22 | `KONAstart` (+0x2b0, +0x318, +0x380) | the first packet after the pipe is configured |
+| 0x22 | `KONAschedswapbuf` (+0xa70, +0xad8, +0xb40), `KONAschedmgrswapbuf` (+0x1344, +0x13ac, +0x1414), `KONAsetdisplaymode` (+0xee0, +0xf48, +0xfb0), `kona_retrace_activate` (+0x5c4, +0x62c, +0x694) | each of their packet phases, when not attached |
+| 0x22 | `kona_idma`, `kona_dmapool_update_pipe`, `kona_start_selectfeed`, `kona_finish_selectfeed` (`kona_dma.o`); `kona_mem_swapout_func`, `_swapin_func`, `_copydown_func`, `_resume`, `_reserve_func` (`kona_mem.o`); `kona_act_pcx`, `KONAvalidateclip`, `KONApcxswap` (`kona_context.o`); `kona_checkpipe` (`kona_crash.o`); `KONAdestroyddrn` (`kona_ddrn.o`) | every other packet sender, three to seven sites each |
+| 0x22 | `kona_diag_flow` (`kona_flow.o` +0x6a0), `kona_flow_await_returned_credits` (+0x8a8, the recovery re-attach) | diagnostic switch on; credit-recovery path |
+| 0x22, then a read | `kona_fc_attach` (`kona_tport.o` +0x1668; write +0x178c, read +0x1790) | the textport bracket (it loads its own hub credit values, 168 and 36, and does not call the flow layer) |
+| 1, then a read | `KONAunmapgfx` (+0x3bc, read +0x3c8) | the connection is unmapped, which `RRM_SwapBuf` does after every swap it scheduled |
+| 1, then a read | `KONAsuspend` (+0x88 and +0x110, reads +0x94 and +0x11c) | the scheduler takes a mapped, current connection off a CPU |
+| 1, then a read | `KONAreleasegfxsema` (+0x984, read +0x990), `KONApcxswap` (+0x8b0, read +0x8bc), `KONAdestroyddrn` (+0x454, read +0x460) | giving up the pipe, a context switch, destroying a node |
+| 1, then a read | `kona_fc_detach` (`kona_tport.o` +0x179c; write +0x17f4, read +0x1800) | end of the textport bracket |
+
+### Why the last step is normally left open
+
+**Established.** No packet sender detaches. Every sender in the table above returns with the CPU still attached, and the detach comes from the unmap, suspend or release path that runs later, if the connection is the pipe's current mapped one and `gfx_flow_am_i_attached` is true (`KONAunmapgfx` +0x20-+0x3c: current connection, mapped flag, attached; `KONAsuspend` the same tests). In the swap path `RRM_SwapBuf` calls `KONAschedswapbuf` (attached, 0x22 if needed) and then `rrmUnMapGfx`, so the 1 follows within the same ioctl. The thread then sleeps in the fault path (section 1) detached. Seen from the pipe, a batch of 0x22, packets and no 1 is correct until the matching unmap or suspend runs. Nothing in the driver waits for a reply to either write: the only reply it looks for is the credit count in the hub, and that wait is bounded (1000 us) and ends in a yield, not a hang.
+
+### What an emulated pipe has to do
+
+**Approximation guidance, not a hardware fact.**
+
+- Accept 0x22 and 1 at offset 0x7c without effect on the guest-visible registers, and answer the read-backs with any value.
+- If the model also emulates the hub's credit counter, the credits for the writer's stores must come back to the registered CPU slice as the pipe consumes FIFO words, and must never total more than were taken (that kills the pipe, reason 25). A counter that never returns credits does not hang the kernel: each attach gives up after 1000 us, but a hub model that stalls stores at zero credits can hang the CPU in the store itself.
+- Do not require a detach before the guest sleeps. A CPU may sleep attached; the next detach comes from `KONAsuspend`, `KONAunmapgfx` or `KONAreleasegfxsema` when the scheduler or the swap ioctl reaches it.
 
 ## 3. What advances the retrace tag at 0x800248
 
