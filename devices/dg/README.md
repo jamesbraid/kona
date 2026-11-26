@@ -55,6 +55,8 @@ When the marker is reached, `kona_swap_complete` runs. `kona_mswap_complete` is 
 
 ### Retrace sequence
 
+What IRIX sleeps on while a swap is in flight, and whether the pipe raises a swap-done interrupt: [swap-and-retrace-completion](../../platforms/ir/swap-and-retrace-completion.md).
+
 - `kona_retrace_setup` takes the next number from the counter at `P+3528`, stores it in the buffer's retrace record (record +0, record at buffer +112) together with the callback (record +16), and appends the record to a queue whose tail and head are at `P+3536` and `P+3544`.
 - `kona_retrace_activate` arms a software timeout (`kona_timeout`, record +8 holds the handle) and sends the stream command `RETRACE_SEQID` (0x1e7) with the sequence number as its one payload word.
 - The pipe processes the packet in order with the rest of its stream. The driver then waits for a video interrupt. `kona_video_intr` reads `HH_SEQID` (0x800248, HIP.h), and for every queued record whose number is not greater than that value, cancels its timeout and calls its callback with a 0 argument. If the timeout fires first, `kona_retrace_timeout` removes the record and calls the callback with a nonzero argument, and `kona_swap_complete` logs a message (cmn_err tag 2103; `kona_gsync_complete` uses 2104).
