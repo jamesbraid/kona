@@ -17598,3 +17598,80 @@ One entry per routine, filed here from the reading batches by binary.
   The `beql` branch at 0xd840710 targets 0xd840730, is taken when v1(=[[[[0x1014]+276]+216]+1232]) == 0, and falls through when v1(=[[[[0x1014]+276]+216]+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd840714 runs only when taken and is annulled on fall-through.
   The `beql` branch at 0xd840734 targets 0xd84074c, is taken when v0(=[[[[0x1014]+276]+216]+124]) == 0, and falls through when v0(=[[[[0x1014]+276]+216]+124]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd840738 runs only when taken and is annulled on fall-through.
   The return at 0xd840754 has v0 = one of ?, [[[[0x1014]+276]+216]+124], ret(?).
+
+- `__glXOpenGraphics` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd8125ec (o32).
+  Evidence grade: inferred.
+  Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
+  Range: 0xd8125ec-0xd8127e8 (508 bytes).
+  It occupies 508 bytes.
+  The `lw` at 0xd81260c loads 4 bytes from a0 (arg0 at entry) +0x4c.
+  2 such `lw` accesses load 4 bytes from [a0+76] +0x24, including `lw` at 0xd812614, `lw` at 0xd81264c.
+  The `sw` at 0xd81262c stores 4 bytes to [a0+76] +0x28.
+  The `lw` at 0xd812644 loads 4 bytes from abs 0x1014.
+  The `lw` at 0xd81265c loads 4 bytes from ([0x1014] + ([[a0+76]+36] << 0x2)) +0x4.
+  The `jalr` at 0xd812618 calls __glXOpenGraphicsDevice with a0=[[a0+76]+36], a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0xd812638 calls __glXHWAttach with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The return at 0xd812660 has v0 = [([0x1014] + ([[a0+76]+36] << 0x2))+4].
+  The instructions from 0xd812668 to 0xd8127e4 are not reached by any path from the entry, and their branches are not listed.
+
+- `glXGetCurrentReadDrawableSGI` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd8240bc (o32).
+  Evidence grade: inferred.
+  Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
+  Range: 0xd8240bc-0xd8240f8 (60 bytes).
+  It occupies 60 bytes.
+  The `lw` at 0xd8240dc loads 4 bytes from abs 0x1014.
+  The `lw` at 0xd8240e8 loads 4 bytes from [0x1014] +0x114.
+  The `lw` at 0xd8240ec loads 4 bytes from [[0x1014]+276] +0xdc.
+  The `jalr` at 0xd8240d4 calls __glXInitThread with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The return at 0xd8240f0 has v0 = [[[0x1014]+276]+220].
+
+- `DestroyContext` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd8267a0 (o32).
+  Evidence grade: inferred.
+  Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
+  Range: 0xd8267a0-0xd826c7c (1244 bytes).
+  It occupies 1244 bytes.
+  The `lw` at 0xd8267e4 loads 4 bytes from a1 (arg1 at entry) +0x14.
+  The `lbu` at 0xd8267e8 loads 1 byte from a1 (arg1 at entry) +0x1c.
+  The `lw` at 0xd8267f0 loads 4 bytes from a1 (arg1 at entry) +0xd8.
+  The `sw` at 0xd8267f4 stores 4 bytes to a1 (arg1 at entry) +0x14.
+  2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x4d0, including `lw` at 0xd826824, `lw` at 0xd8268b4.
+  4 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x6c, including `lw` at 0xd82682c, `lw` at 0xd826844, `lw` at 0xd826870.
+  The `lw` at 0xd826830 loads 4 bytes from [a0+1232] +0x0.
+  The `lw` at 0xd826848 loads 4 bytes from a0 (arg0 at entry) +0x70.
+  2 such `sw` accesses store 4 bytes to a0 (arg0 at entry) +0x64, including `sw` at 0xd826858, `sw` at 0xd826874.
+  The `sh` at 0xd826880 stores 2 bytes to [a0+108] +0x2.
+  2 such `sb` accesses store 1 byte to [a0+108] +0x0, including `sb` at 0xd826884, `sb` at 0xd8268a8.
+  The `lw` at 0xd826888 loads 4 bytes from a0 (arg0 at entry) +0x60.
+  The `sw` at 0xd826898 stores 4 bytes to a0 (arg0 at entry) +0x6c.
+  The `sw` at 0xd82689c stores 4 bytes to a0 (arg0 at entry) +0x60.
+  The `sb` at 0xd8268a4 stores 1 byte to [a0+108] +0x1.
+  The `sw` at 0xd8268b0 stores 4 bytes to [a0+108] +0x4.
+  2 such `lw` accesses load 4 bytes from a0 (arg0 at entry) +0x7c, including `lw` at 0xd8268bc, `lw` at 0xd8268d4.
+  The `lw` at 0xd8268c0 loads 4 bytes from [a0+1232] +0x4.
+  The `jalr` at 0xd8267c4 calls __glXSetupForCommand with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The `jalr` at 0xd82680c calls __glXFreeContext with a0=a1 at entry (arg1), a1=0x1, a2=a1 at entry (arg1), a3=?.
+  The `jalr` at 0xd826838 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd826864 calls _XFlush with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `jalr` at 0xd8268c8 calls (unknown callee) with a0=a0 at entry (arg0), a1=0x4, a2=?, a3=?.
+  The `jalr` at 0xd8268e4 calls (unknown callee) with a0=a0 at entry (arg0), a1=?, a2=?, a3=?.
+  The `beq` branch at 0xd8267d4 targets 0xd8268f0, is taken when v0(=ret(__glXSetupForCommand)) == 0, and falls through when v0(=ret(__glXSetupForCommand)) != 0.
+  The `beql` branch at 0xd8267dc targets 0xd8268f4, is taken when a2(=a1) == 0, and falls through when a2(=a1) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd8267e0 runs only when taken and is annulled on fall-through.
+  The `bne` branch at 0xd8267f8 targets 0xd82681c, is taken when t7(=[a1+216]) != 0, and falls through when t7(=[a1+216]) == 0.
+  The `bnel` branch at 0xd82681c targets 0xd8268f4, is taken when v0(?) != 0, and falls through when v0(?) == 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd826820 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd826828 targets 0xd826848, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw a0,108(s0)` at 0xd82682c runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd826854 targets 0xd826878, is taken when t8(=[a0+112]) >= t0(=[a0+108]+8) (unsigned), and falls through when t8(=[a0+112]) < t0(=[a0+108]+8) (unsigned); its branch-likely delay slot `sw a0,100(s0)` at 0xd826858 runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8268b8 targets 0xd8268d8, is taken when v1(=[a0+1232]) == 0, and falls through when v1(=[a0+1232]) != 0; its branch-likely delay slot `lw v0,124(s0)` at 0xd8268bc runs only when taken and is annulled on fall-through.
+  The `beql` branch at 0xd8268dc targets 0xd8268f4, is taken when v0(=[a0+124]) == 0, and falls through when v0(=[a0+124]) != 0; its branch-likely delay slot `lw ra,28(sp)` at 0xd8268e0 runs only when taken and is annulled on fall-through.
+  The return at 0xd8268fc has v0 = one of ret(__glXSetupForCommand), ?, [a0+124].
+  The instructions from 0xd826904 to 0xd826c78 are not reached by any path from the entry, and their branches are not listed.
+
+- `glXGetCurrentReadDrawable` in `usr/gfx/arch/IP27KONA/libGL.so` at 0xd83983c (o32).
+  Evidence grade: inferred.
+  Exact binary: `usr/gfx/arch/IP27KONA/libGL.so`.
+  Range: 0xd83983c-0xd839878 (60 bytes).
+  It occupies 60 bytes.
+  The `lw` at 0xd83985c loads 4 bytes from abs 0x1014.
+  The `lw` at 0xd839868 loads 4 bytes from [0x1014] +0x114.
+  The `lw` at 0xd83986c loads 4 bytes from [[0x1014]+276] +0xdc.
+  The `jalr` at 0xd839854 calls __glXInitThread with a0=a0 at entry (arg0), a1=a1 at entry (arg1), a2=a2 at entry (arg2), a3=a3 at entry (arg3).
+  The return at 0xd839870 has v0 = [[[0x1014]+276]+220].
