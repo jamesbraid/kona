@@ -159,3 +159,30 @@ addresses. Every routine here touches only context state; none stores to the com
 
 - `__glFlatRGBASpan` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda03f70
   **Inferred.** Fills a span with one constant colour. The context in a0 supplies the count at +0x7660, the four colour floats at +0x7638 to +0x7644 and the output pointer at +0x7738; the colour is written once per pixel as four floats, 16 bytes apart. The routine returns 0.
+
+- `__glDlistHeapInit` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9916e0
+  **Inferred.** Prepares the display-list block heap in a0. It clears a 12-byte record at the start of a0 with `bzero`, clears a second 12-byte record at the global address 0xda88370, stores the float -1.0 (the immediate 0xbf800000) at +0x00 and zero at +0x08 of that global record, inserts it into the heap with `__glDlistHeapInsert` at 0xd99183c, and returns 1.
+
+- `__glSpanCopy` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a26d8
+  **Inferred.** Copies a span of pixel data. The byte count is the product of the three words at +0x1c, +0xb4 and +0x24 of the description record in a1, and `memcpy` moves that many bytes from a2 to a3.
+
+- `__glLoadPackModes` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9a8b1c
+  **Inferred.** Copies the pixel-store pack settings from the context in a0 into the pack record in a1. The words at context +0x480, +0x484, +0x488 and +0x48c go to +0x84, +0x80, +0x94 and +0x88, and the bytes at +0x478 and +0x479 go to +0x78 and +0x7c. The words at context +0x47c and +0x490 go to +0x8c and +0x90 only when they are positive; otherwise the record's own defaults at +0xa8 and +0xac are used.
+
+- `__glInitLUTCache` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda081d0
+  **Inferred.** Creates the lookup-table cache header. It calls the allocator function pointer at +0x00 of a0 for 16 bytes, stores the result at context +0x6e58, then sets the first word of the new block to 0 and the second to 1.
+
+- `__glBuildAntiAliasIndex` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f8b90
+  **Inferred.** Packs a coverage value into an anti-aliasing colour index and returns it as a float. The float in f12 is truncated and has its low four bits cleared, the float in f14 is multiplied by 15.0 (the immediate 0x41700000), increased by 0.5 and truncated, and the two integers are ORed together.
+
+- `__glClipTriangle` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9fe470
+  **Inferred.** Clips one triangle against the view volume. The three vertex pointers in a1, a2 and a3 are put in an array on the stack and handed with the count 3, the context in a0 and the fifth argument to `__glDoPolygonClip` at 0xd9fdff8.
+
+- `__glEndPolygon` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00edc
+  **Inferred.** Finishes a polygon that was collected vertex by vertex. The vertex count is the distance of the fill pointer at context +0x31c8 from the buffer at +0x31e0, divided by 192 bytes per vertex; with three or more vertices the context function pointer at +0x2f74 is called with the buffer and the count. Either way two pointers read from the global offset table are stored at context +0x2ee4 and +0x2f5c.
+
+- `__glShadeRGBASpan` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda03ec8
+  **Inferred.** Fills a span with a linearly shaded colour. The context in a0 gives the pixel count at +0x7660, the starting colour floats at +0x7638 to +0x7644, the four per-pixel steps at +0x7684 to +0x7690 and the output pointer at +0x7738. Each pixel is written as four floats 16 bytes apart, and the steps are added to the colour after every pixel. The routine returns 0.
+
+- `__glDoBlendMax` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9c916c
+  **Inferred.** Implements the maximum blend for one colour. Each of the four floats at +0x00 to +0x0c of a3 is replaced by the float at the same offset in a2 when the one in a3 is smaller (a compare and a store per component), so a3 ends up holding the componentwise maximum of the two colours.
