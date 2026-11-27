@@ -457,7 +457,7 @@ usr/gfx/gfxinfo	tools	shared-tool	executable	n32	177132	2eec8716f6ad8a43	usr/gfx
 usr/gfx/gfxtopology	tools	shared-tool	data	-	6294	3ece1eb9e90ac3e6		0		0	0	understood	software/userland/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/hyperpipeinfo	board-tools	board-tool	executable	n32	18328	a43eeddde7bbbcbf		4	dynsym	0	0	understood	software/userland/install-tools.md#programs-that-reach-the-pipe	Programs that reach the pipe
 usr/gfx/ircombine	board-tools	board-tool	executable	n32	766080	7016ad16f636dc67		1238	dynsym	0	0	understood	software/userland/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
-usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	understood	software/userland/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
+usr/gfx/setmon	tools	shared-tool	executable	n32	289580	a59868a509468f55		249	dynsym	0	0	understood	software/video/display-formats.md#what-setmon-does-with-a-stereo-format	What `setmon` does with a stereo format
 usr/gfx/sgcombine	tools	shared-tool	executable	n32	230584	77d0273d5f4e91ec		402	dynsym	0	0	understood	software/userland/install-tools.md#setup-and-video-configuration-programs	Setup and video-configuration programs
 usr/gfx/startgfx	tools	shared-tool	data	-	1477	004e5222ef9f8c00		0		0	0	understood	software/userland/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
 usr/gfx/stopgfx	tools	shared-tool	data	-	1654	b802c99472925369		0		0	0	understood	software/userland/install-tools.md#scripts-and-kernel-configuration	Scripts and kernel configuration
