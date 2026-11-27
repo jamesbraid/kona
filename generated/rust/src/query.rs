@@ -1,9 +1,11 @@
-// generated from formats/query/format.toml by defs-gen - do not edit, change the source
+// @generated from formats/query/format.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 c5d700f5bddd5cb6bb1eef603cba8bf3b776935fb5ead4902f146073409f4ac0
 // host query tokens of the InfiniteReality2 pipe
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 pub const BOARD_CONFIGURATION_BLOCK: u32 = 0x1e9; // established
 pub const CLIP_PLANE: u32 = 0x3c; // established

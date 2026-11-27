@@ -1,6 +1,6 @@
 """generated from devices/hip/registers.toml by defs-gen - do not edit, change the source
 SPDX-License-Identifier: BSD-3-Clause
-defs-gen 2
+defs-gen 4
 input sha256 dcce6a52f9cfe35eb46b1d30b314bef85e1228becc0c56750a4ccf9b965e5a7d
 host-interface registers"""
 

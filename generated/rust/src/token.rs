@@ -1,9 +1,11 @@
-// generated from formats/token/format.toml by defs-gen - do not edit, change the source
+// @generated from formats/token/format.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 7258358a7942bbf8a1024234073f68c73b9cf71d14601d77747d2c5962f4c59a
 // host command tokens of the InfiniteReality2 pipe (all but queries)
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 pub const N1D_TEXTURE_IMAGE_LOAD: u32 = 0xf; // established
 pub const N2D_TEXTURE_IMAGE_LOAD: u32 = 0x10; // established

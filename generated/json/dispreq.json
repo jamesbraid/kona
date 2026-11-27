@@ -1,6 +1,6 @@
 {
  "license": "BSD-3-Clause",
- "generator": "defs-gen 2",
+ "generator": "defs-gen 4",
  "input_sha256": "bb62cea176212a78b8de3097d0ed01e157433410d1a57168a516b7aa2ae622ae",
  "schema": "defs-flat/1",
  "source": "formats/dispreq/format.toml",

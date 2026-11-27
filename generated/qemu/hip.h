@@ -1,10 +1,12 @@
-/* generated from devices/hip/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/hip/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 dcce6a52f9cfe35eb46b1d30b314bef85e1228becc0c56750a4ccf9b965e5a7d */
 /* host-interface registers */
 /* Names are KONA_HIP_*; name source: ours. */
-/* Offsets are bytes; registers of a register-indexed space are written as index * size. */
+/* Offsets are bytes; registers of a register-indexed space are written as index
+ * * size. */
 #ifndef HW_SGI_GPU_KONA_HIP_REGS_H
 #define HW_SGI_GPU_KONA_HIP_REGS_H
 
@@ -159,7 +161,8 @@ FIELD(KONA_HIP_WIDGET_CONFIG, MAPRAM_SIZE, 3, 3) /* established */
 FIELD(KONA_HIP_WIDGET_CONFIG, SUBSYSTEM, 0, 3) /* established */
 
 REG32(KONA_HIP_WIDGET_ERR_STATUS, 0x6c) /* established */
-FIELD(KONA_HIP_WIDGET_ERR_STATUS, IDMA_RESPONSE_BAD_TNUM, 28, 1) /* established */
+/* established */
+FIELD(KONA_HIP_WIDGET_ERR_STATUS, IDMA_RESPONSE_BAD_TNUM, 28, 1)
 FIELD(KONA_HIP_WIDGET_ERR_STATUS, IDMA_RESPONSE_SIZE, 27, 1) /* established */
 FIELD(KONA_HIP_WIDGET_ERR_STATUS, ODMA_FIFO_OVERFLOW, 26, 1) /* established */
 FIELD(KONA_HIP_WIDGET_ERR_STATUS, MAPRAM_INVALID, 13, 1) /* established */

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!-- generated from formats/words/format.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
-<!-- defs-gen 2 -->
+<!-- defs-gen 4 -->
 <!-- input sha256 4c53d34c36b24528c33cc2183f711444166a34bebde00e69352e95c5a05224aa -->
 <genxml unit="words" prefix="WORD" title="multi-field words of the host command stream">
   <doc>Bit layouts of the multi-field words of the host command stream, and the engine command descriptor values.</doc>

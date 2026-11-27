@@ -1,6 +1,6 @@
 """generated from formats/token/format.toml by defs-gen - do not edit, change the source
 SPDX-License-Identifier: BSD-3-Clause
-defs-gen 2
+defs-gen 4
 input sha256 7258358a7942bbf8a1024234073f68c73b9cf71d14601d77747d2c5962f4c59a
 host command tokens of the InfiniteReality2 pipe (all but queries)"""
 

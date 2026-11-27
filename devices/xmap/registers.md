@@ -1,6 +1,6 @@
 <!-- generated from devices/xmap/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
-<!-- defs-gen 2 -->
+<!-- defs-gen 4 -->
 <!-- input sha256 53f0452eb91eba4a71c9ad1071de9076b9b3ad4a823092ab999b6633e7bd2c42 -->
 
 # XMAP registers and the words written through them

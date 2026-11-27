@@ -1,6 +1,7 @@
-/* generated from devices/dac/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/dac/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 f7c24ebd520dd0789feb31463f403cfc3a6eec6b3e205f20fc6514d7c15563ca */
 /* video DAC and encoder ports on the display bus */
 #ifndef DAC_GEN_H
@@ -22,7 +23,7 @@
 #define DAC_MODE_OFFSET                              0xb03u /* inferred */
 #define DAC_MODE_STROBE_SHIFT                        0 /* inferred */
 #define DAC_MODE_STROBE_MASK                         0x1u
-#define DAC_MODE_STROBE_INPLACE                      (DAC_MODE_STROBE_MASK << DAC_MODE_STROBE_SHIFT)
+#define DAC_MODE_STROBE_INPLACE (DAC_MODE_STROBE_MASK << DAC_MODE_STROBE_SHIFT)
 
 /* enc_gain: w8, reset unknown */
 #define DAC_ENC_GAIN_OFFSET                          0x1708u /* established */

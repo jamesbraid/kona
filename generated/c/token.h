@@ -1,6 +1,7 @@
-/* generated from formats/token/format.toml by defs-gen - do not edit, change the source */
+/* generated from formats/token/format.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 7258358a7942bbf8a1024234073f68c73b9cf71d14601d77747d2c5962f4c59a */
 /* host command tokens of the InfiniteReality2 pipe (all but queries) */
 #ifndef KONA_TOKEN_GEN_H
@@ -20,7 +21,8 @@
 #define KONA_TOKEN_ALLOCATE_2D_TEXTURE_NAMES         0x123u /* established */
 #define KONA_TOKEN_ALLOCATE_3D_TEXTURE_NAMES         0x124u /* established */
 #define KONA_TOKEN_ASK_WHETHER_CONVOLUTION_COPY_OVERLAPS 0x115u /* inferred */
-#define KONA_TOKEN_ASK_WHETHER_COPY_SOURCE_OVERLAPS_DESTINATION 0x110u /* inferred */
+/* inferred */
+#define KONA_TOKEN_ASK_WHETHER_COPY_SOURCE_OVERLAPS_DESTINATION 0x110u
 #define KONA_TOKEN_BEGIN_PRIMITIVE                   0x3u /* established */
 #define KONA_TOKEN_BEGIN_PRIMITIVE_057               0x57u /* established */
 #define KONA_TOKEN_BEGIN_PRIMITIVE_058               0x58u /* established */
@@ -57,16 +59,24 @@
 #define KONA_TOKEN_CONTEXT_FIFO_SYNCHRONISE          0x1fbu /* inferred */
 #define KONA_TOKEN_CONTEXT_IMAGE_LOAD                0x1f9u /* inferred */
 #define KONA_TOKEN_CONTEXT_INITIALISE                0x1fdu /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_DOUBLE_DEFORMATION_MAP 0x1c2u /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD1D 0x9cu /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD1F 0x9eu /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD2D 0xa0u /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD2F 0xa2u /* inferred */
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_DOUBLE_DEFORMATION_MAP 0x1c2u
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD1D 0x9cu
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD1F 0x9eu
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD2D 0xa0u
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_COORD2F 0xa2u
 #define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_POINT1 0xa4u /* inferred */
 #define KONA_TOKEN_CONTINUATION_ENTRY_EVALUATOR_EVAL_POINT2 0xa6u /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_FLOAT_MATERIAL_PARAMETER 0x98u /* inferred */
-#define KONA_TOKEN_CONTINUATION_ENTRY_INTEGER_FOG_PARAMETER 0xb9u /* established */
-#define KONA_TOKEN_CONTINUATION_ENTRY_INTEGER_MATERIAL_PARAMETER 0x9au /* inferred */
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_FLOAT_MATERIAL_PARAMETER 0x98u
+/* established */
+#define KONA_TOKEN_CONTINUATION_ENTRY_INTEGER_FOG_PARAMETER 0xb9u
+/* inferred */
+#define KONA_TOKEN_CONTINUATION_ENTRY_INTEGER_MATERIAL_PARAMETER 0x9au
 #define KONA_TOKEN_COPY_1D_CONVOLUTION_FILTER_FRAME_BUFFER 0xf2u /* inferred */
 #define KONA_TOKEN_COPY_1D_TEXTURE_IMAGE_FRAME_BUFFER 0xfcu /* established */
 #define KONA_TOKEN_COPY_1D_TEXTURE_SUB_IMAGE_FRAME   0xfeu /* established */
@@ -176,7 +186,8 @@
 #define KONA_TOKEN_MATERIAL                          0x47u /* established */
 #define KONA_TOKEN_MOVE_LIST_LIST_DMA                0x16fu /* inferred */
 #define KONA_TOKEN_MULTIPLY_CURRENT_MATRIX_FRUSTUM   0xd1u /* established */
-#define KONA_TOKEN_MULTIPLY_CURRENT_MATRIX_ORTHOGRAPHIC_PROJECTION 0xd7u /* established */
+/* established */
+#define KONA_TOKEN_MULTIPLY_CURRENT_MATRIX_ORTHOGRAPHIC_PROJECTION 0xd7u
 #define KONA_TOKEN_MULTIPLY_MATRIX                   0xd5u /* established */
 #define KONA_TOKEN_MULTIPLY_MATRIX_0D6               0xd6u /* established */
 #define KONA_TOKEN_MULTI_PURPOSE_DIAGNOSTIC_ENTRY    0x17fu /* inferred */
@@ -227,13 +238,15 @@
 #define KONA_TOKEN_RESERVED_DIAGNOSTIC_TOKEN_1       0x16bu /* inferred */
 #define KONA_TOKEN_RESET_HISTOGRAM                   0x103u /* inferred */
 #define KONA_TOKEN_RESET_MIN_MAX_TRACKING            0x108u /* inferred */
-#define KONA_TOKEN_RESOLVE_WHETHER_PIXEL_FORMAT_SINGLE_COMPONENT 0x116u /* inferred */
+/* inferred */
+#define KONA_TOKEN_RESOLVE_WHETHER_PIXEL_FORMAT_SINGLE_COMPONENT 0x116u
 #define KONA_TOKEN_RESTART_SELECT_FEEDBACK           0x1bcu /* established */
 #define KONA_TOKEN_ROLL_CALL_EVERY_ENGINE            0x1e5u /* inferred */
 #define KONA_TOKEN_ROTATE                            0xdau /* established */
 #define KONA_TOKEN_ROTATE_0DB                        0xdbu /* established */
 #define KONA_TOKEN_ROTATE_WINDOW_SYSTEM_STIPPLE      0x13eu /* inferred */
-#define KONA_TOKEN_SAVE_LIGHT_ATTRIBUTES_ENGINE_ATTRIBUTE_STACK 0x10bu /* inferred */
+/* inferred */
+#define KONA_TOKEN_SAVE_LIGHT_ATTRIBUTES_ENGINE_ATTRIBUTE_STACK 0x10bu
 #define KONA_TOKEN_SCALE                             0xdcu /* established */
 #define KONA_TOKEN_SCALE_0DD                         0xddu /* established */
 #define KONA_TOKEN_SELECT_ACTIVE_TEXTURE_TARGET      0x177u /* established */
@@ -401,7 +414,8 @@
 #define KONA_TOKEN_SUBMIT_VERTEX_094                 0x94u /* inferred */
 #define KONA_TOKEN_SUBMIT_VERTEX_095                 0x95u /* inferred */
 #define KONA_TOKEN_SUBMIT_VERTEX_096                 0x96u /* inferred */
-#define KONA_TOKEN_SUSPEND_PIXEL_MODE_STATE_AROUND_TRANSFER 0x111u /* established */
+/* established */
+#define KONA_TOKEN_SUSPEND_PIXEL_MODE_STATE_AROUND_TRANSFER 0x111u
 #define KONA_TOKEN_SWAP_CONTROL                      0x1dbu /* inferred */
 #define KONA_TOKEN_SWAP_REQUEST_MULTI_PIPE_DISPLAY_OPTION 0x166u /* inferred */
 #define KONA_TOKEN_SWAP_TRIANGLE_MESH_VERTEX         0x1a9u /* inferred */
@@ -468,7 +482,8 @@
 #define KONA_TOKEN_VERTEX_ARRAY_TEAR_DOWN            0x1a3u /* inferred */
 #define KONA_TOKEN_WHETHER_NAME_TEXTURE              0x125u /* established */
 #define KONA_TOKEN_WINDOW_CLIP_SET_UP                0x1f3u /* inferred */
-#define KONA_TOKEN_WINDOW_CREATED_DESTROYED_NOTICE_COLOUR_MAP 0x133u /* inferred */
+/* inferred */
+#define KONA_TOKEN_WINDOW_CREATED_DESTROYED_NOTICE_COLOUR_MAP 0x133u
 #define KONA_TOKEN_WINDOW_READ_CLIP_SET_UP           0x1eeu /* inferred */
 #define KONA_TOKEN_WINDOW_SYSTEM_10_WORD_DATA_PRELOAD 0x14bu /* inferred */
 #define KONA_TOKEN_WINDOW_SYSTEM_1_WORD_DATA_PRELOAD 0x141u /* inferred */
@@ -483,7 +498,8 @@
 #define KONA_TOKEN_WINDOW_SYSTEM_CLIP_LIST_LOAD      0x12cu /* inferred */
 #define KONA_TOKEN_WINDOW_SYSTEM_CLIP_LOAD           0x12bu /* established */
 #define KONA_TOKEN_WINDOW_SYSTEM_CONTEXT_INITIALISE  0x128u /* inferred */
-#define KONA_TOKEN_WINDOW_SYSTEM_DRAWABLE_ORIGIN_SIZE_LOAD 0x12au /* established */
+/* established */
+#define KONA_TOKEN_WINDOW_SYSTEM_DRAWABLE_ORIGIN_SIZE_LOAD 0x12au
 #define KONA_TOKEN_WINDOW_SYSTEM_FOUR_WORD_DATA_PRELOAD 0x145u /* inferred */
 #define KONA_TOKEN_WINDOW_SYSTEM_GRAPHICS_CONTEXT_LOAD 0x129u /* established */
 #define KONA_TOKEN_WINDOW_SYSTEM_PIXEL_COPY          0x137u /* inferred */

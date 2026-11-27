@@ -1,9 +1,11 @@
-// generated from formats/dispreq/format.toml by defs-gen - do not edit, change the source
+// @generated from formats/dispreq/format.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 bb62cea176212a78b8de3097d0ed01e157433410d1a57168a516b7aa2ae622ae
 // display-generator request numbers
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 pub const AUTO_INITIALISE_FROM_STORED_COMBINATION: u32 = 0x2d; // established
 pub const AUTO_INITIALISE_FROM_STORED_COMBINATION_WORDS: u32 = 0x1; // established

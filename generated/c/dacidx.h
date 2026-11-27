@@ -1,6 +1,7 @@
-/* generated from devices/dacidx/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/dacidx/registers.toml by defs-gen - do not edit,
+ * change the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 f08a1dde64fe90ff43f74fc39523d93294126a8bcb522ccf2ae8e9bfb0c766c6 */
 /* video DAC and encoder indexed registers */
 #ifndef DACIDX_GEN_H
@@ -10,10 +11,12 @@
 
 
 /*
- * Command register 1 (index 0x005 above), 8 bits. Start-up value 0x88: bits 7:6 = 2
+ * Command register 1 (index 0x005 above), 8 bits. Start-up value 0x88: bits 7:6
+ * = 2
  * (24-bit bypass colour), bit 3 = 1 (exposes the address register's high byte,
  * which the 0x200, 0x300 and 0x400 index spaces need), bits 5:4 = 0 (palette
- * select function), bit 0 = 0 (no per-sync calibration). The decode of the value
+ * select function), bit 0 = 0 (no per-sync calibration). The decode of the
+ * value
  * against the published description is established; the grade here is inferred
  * because the part's identity is: no shipped code reads the part's ID register
  * to confirm it.
@@ -22,22 +25,24 @@
 #define DACIDX_COMMAND_1_WIDTH                       32 /* inferred */
 #define DACIDX_COMMAND_1_BYPASS_COLOUR_SHIFT         6 /* inferred */
 #define DACIDX_COMMAND_1_BYPASS_COLOUR_MASK          0x3u
-#define DACIDX_COMMAND_1_BYPASS_COLOUR_INPLACE       (DACIDX_COMMAND_1_BYPASS_COLOUR_MASK << DACIDX_COMMAND_1_BYPASS_COLOUR_SHIFT)
+#define DACIDX_COMMAND_1_BYPASS_COLOUR_INPLACE (DACIDX_COMMAND_1_BYPASS_COLOUR_MASK << DACIDX_COMMAND_1_BYPASS_COLOUR_SHIFT)
 #define DACIDX_COMMAND_1_PALETTE_SELECT_SHIFT        4 /* inferred */
 #define DACIDX_COMMAND_1_PALETTE_SELECT_MASK         0x3u
-#define DACIDX_COMMAND_1_PALETTE_SELECT_INPLACE      (DACIDX_COMMAND_1_PALETTE_SELECT_MASK << DACIDX_COMMAND_1_PALETTE_SELECT_SHIFT)
+#define DACIDX_COMMAND_1_PALETTE_SELECT_INPLACE (DACIDX_COMMAND_1_PALETTE_SELECT_MASK << DACIDX_COMMAND_1_PALETTE_SELECT_SHIFT)
 #define DACIDX_COMMAND_1_ADDR_HIGH_SHIFT             3 /* inferred */
 #define DACIDX_COMMAND_1_ADDR_HIGH_MASK              0x1u
-#define DACIDX_COMMAND_1_ADDR_HIGH_INPLACE           (DACIDX_COMMAND_1_ADDR_HIGH_MASK << DACIDX_COMMAND_1_ADDR_HIGH_SHIFT)
+#define DACIDX_COMMAND_1_ADDR_HIGH_INPLACE (DACIDX_COMMAND_1_ADDR_HIGH_MASK << DACIDX_COMMAND_1_ADDR_HIGH_SHIFT)
 #define DACIDX_COMMAND_1_CALIBRATE_SHIFT             0 /* inferred */
 #define DACIDX_COMMAND_1_CALIBRATE_MASK              0x1u
-#define DACIDX_COMMAND_1_CALIBRATE_INPLACE           (DACIDX_COMMAND_1_CALIBRATE_MASK << DACIDX_COMMAND_1_CALIBRATE_SHIFT)
+#define DACIDX_COMMAND_1_CALIBRATE_INPLACE (DACIDX_COMMAND_1_CALIBRATE_MASK << DACIDX_COMMAND_1_CALIBRATE_SHIFT)
 
 /*
- * Command register 2 (index 0x006 above), 8 bits. Start-up value 0xe4: bits 7:4 =
+ * Command register 2 (index 0x006 above), 8 bits. Start-up value 0xe4: bits 7:4
+ * =
  * 14 (24-bit true colour), bit 3 = 0 (no pedestal), bit 2 = 1 (sync on green).
  * The same start-up routine zeroes indexes 0x007, 0x008, 0x009 and 0x00d, which
- * leaves pixel multiplexing at 1:1 and the PLL off. Graded inferred for the same
+ * leaves pixel multiplexing at 1:1 and the PLL off. Graded inferred for the
+ * same
  * reason as command register 1; only a read of the ID register on a real board
  * settles the part.
  */
@@ -45,16 +50,17 @@
 #define DACIDX_COMMAND_2_WIDTH                       32 /* inferred */
 #define DACIDX_COMMAND_2_COLOUR_MODE_SHIFT           4 /* inferred */
 #define DACIDX_COMMAND_2_COLOUR_MODE_MASK            0xfu
-#define DACIDX_COMMAND_2_COLOUR_MODE_INPLACE         (DACIDX_COMMAND_2_COLOUR_MODE_MASK << DACIDX_COMMAND_2_COLOUR_MODE_SHIFT)
+#define DACIDX_COMMAND_2_COLOUR_MODE_INPLACE (DACIDX_COMMAND_2_COLOUR_MODE_MASK << DACIDX_COMMAND_2_COLOUR_MODE_SHIFT)
 #define DACIDX_COMMAND_2_PEDESTAL_SHIFT              3 /* inferred */
 #define DACIDX_COMMAND_2_PEDESTAL_MASK               0x1u
-#define DACIDX_COMMAND_2_PEDESTAL_INPLACE            (DACIDX_COMMAND_2_PEDESTAL_MASK << DACIDX_COMMAND_2_PEDESTAL_SHIFT)
+#define DACIDX_COMMAND_2_PEDESTAL_INPLACE (DACIDX_COMMAND_2_PEDESTAL_MASK << DACIDX_COMMAND_2_PEDESTAL_SHIFT)
 #define DACIDX_COMMAND_2_SYNC_ON_GREEN_SHIFT         2 /* inferred */
 #define DACIDX_COMMAND_2_SYNC_ON_GREEN_MASK          0x1u
-#define DACIDX_COMMAND_2_SYNC_ON_GREEN_INPLACE       (DACIDX_COMMAND_2_SYNC_ON_GREEN_MASK << DACIDX_COMMAND_2_SYNC_ON_GREEN_SHIFT)
+#define DACIDX_COMMAND_2_SYNC_ON_GREEN_INPLACE (DACIDX_COMMAND_2_SYNC_ON_GREEN_MASK << DACIDX_COMMAND_2_SYNC_ON_GREEN_SHIFT)
 
 /*
- * Cursor control (index 0x204 above). The kernel writes 5 (X11 mode, enabled) for
+ * Cursor control (index 0x204 above). The kernel writes 5 (X11 mode, enabled)
+ * for
  * the channel that owns the cursor and 0 for the rest; start-up value 0. Bits
  * 7:4 are zero.
  */
@@ -62,13 +68,13 @@
 #define DACIDX_CURSOR_CONTROL_WIDTH                  32 /* established */
 #define DACIDX_CURSOR_CONTROL_INTERLACE_SHIFT        3 /* established */
 #define DACIDX_CURSOR_CONTROL_INTERLACE_MASK         0x1u
-#define DACIDX_CURSOR_CONTROL_INTERLACE_INPLACE      (DACIDX_CURSOR_CONTROL_INTERLACE_MASK << DACIDX_CURSOR_CONTROL_INTERLACE_SHIFT)
+#define DACIDX_CURSOR_CONTROL_INTERLACE_INPLACE (DACIDX_CURSOR_CONTROL_INTERLACE_MASK << DACIDX_CURSOR_CONTROL_INTERLACE_SHIFT)
 #define DACIDX_CURSOR_CONTROL_ENABLE_SHIFT           2 /* established */
 #define DACIDX_CURSOR_CONTROL_ENABLE_MASK            0x1u
-#define DACIDX_CURSOR_CONTROL_ENABLE_INPLACE         (DACIDX_CURSOR_CONTROL_ENABLE_MASK << DACIDX_CURSOR_CONTROL_ENABLE_SHIFT)
+#define DACIDX_CURSOR_CONTROL_ENABLE_INPLACE (DACIDX_CURSOR_CONTROL_ENABLE_MASK << DACIDX_CURSOR_CONTROL_ENABLE_SHIFT)
 #define DACIDX_CURSOR_CONTROL_MODE_SHIFT             0 /* established */
 #define DACIDX_CURSOR_CONTROL_MODE_MASK              0x3u
-#define DACIDX_CURSOR_CONTROL_MODE_INPLACE           (DACIDX_CURSOR_CONTROL_MODE_MASK << DACIDX_CURSOR_CONTROL_MODE_SHIFT)
+#define DACIDX_CURSOR_CONTROL_MODE_INPLACE (DACIDX_CURSOR_CONTROL_MODE_MASK << DACIDX_CURSOR_CONTROL_MODE_SHIFT)
 #define DACIDX_CURSOR_CONTROL_MODE_X11               1 /* established */
 #define DACIDX_CURSOR_CONTROL_MODE_XGA               2 /* established */
 

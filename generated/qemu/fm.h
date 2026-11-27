@@ -1,10 +1,12 @@
-/* generated from devices/fm/registers.toml by defs-gen - do not edit, change the source */
+/* generated from devices/fm/registers.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 523ceaa5f3ddaab09ea0cfad0cf267ceb1b592ee7342fb0b09e48b67883e033b */
 /* frame-manager registers on the display bus */
 /* Names are KONA_FM_*; name source: ours. */
-/* Offsets are bytes; registers of a register-indexed space are written as index * size. */
+/* Offsets are bytes; registers of a register-indexed space are written as index
+ * * size. */
 #ifndef HW_SGI_GPU_KONA_FM_REGS_H
 #define HW_SGI_GPU_KONA_FM_REGS_H
 

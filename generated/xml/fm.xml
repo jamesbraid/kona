@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!-- generated from devices/fm/registers.toml by defs-gen - do not edit, change the source -->
 <!-- SPDX-License-Identifier: BSD-3-Clause -->
-<!-- defs-gen 2 -->
+<!-- defs-gen 4 -->
 <!-- input sha256 523ceaa5f3ddaab09ea0cfad0cf267ceb1b592ee7342fb0b09e48b67883e033b -->
 <genxml unit="fm" prefix="FM" title="frame-manager registers on the display bus">
   <doc>Frame-manager registers on the display bus: the swap strobe, the per-channel display ids and the board-level control words.</doc>

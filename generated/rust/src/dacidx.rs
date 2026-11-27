@@ -1,9 +1,11 @@
-// generated from devices/dacidx/registers.toml by defs-gen - do not edit, change the source
+// @generated from devices/dacidx/registers.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 f08a1dde64fe90ff43f74fc39523d93294126a8bcb522ccf2ae8e9bfb0c766c6
 // video DAC and encoder indexed registers
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 /// Command register 1 (index 0x005 above), 8 bits. Start-up value 0x88: bits 7:6 = 2 (24-bit bypass colour), bit 3 = 1 (exposes the address register's hi (inferred)
 pub mod command_1 {

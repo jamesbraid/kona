@@ -1,9 +1,11 @@
-// generated from formats/words/format.toml by defs-gen - do not edit, change the source
+// @generated from formats/words/format.toml by defs-gen - do not edit, change the source
 // SPDX-License-Identifier: BSD-3-Clause
-// defs-gen 2
+// defs-gen 4
 // input sha256 4c53d34c36b24528c33cc2183f711444166a34bebde00e69352e95c5a05224aa
 // multi-field words of the host command stream
 #![allow(dead_code)]
+#![allow(clippy::doc_markdown)]
+#![cfg_attr(rustfmt, rustfmt_skip)]
 
 /// (inferred)
 pub mod bind_control {

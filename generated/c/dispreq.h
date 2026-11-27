@@ -1,6 +1,7 @@
-/* generated from formats/dispreq/format.toml by defs-gen - do not edit, change the source */
+/* generated from formats/dispreq/format.toml by defs-gen - do not edit, change
+ * the source */
 /* SPDX-License-Identifier: BSD-3-Clause */
-/* defs-gen 2 */
+/* defs-gen 4 */
 /* input sha256 bb62cea176212a78b8de3097d0ed01e157433410d1a57168a516b7aa2ae622ae */
 /* display-generator request numbers */
 #ifndef DISPREQ_GEN_H
@@ -10,7 +11,8 @@
 
 
 #define DISPREQ_AUTO_INITIALISE_FROM_STORED_COMBINATION 0x2du /* established */
-#define DISPREQ_AUTO_INITIALISE_FROM_STORED_COMBINATION_WORDS 0x1u /* established */
+/* established */
+#define DISPREQ_AUTO_INITIALISE_FROM_STORED_COMBINATION_WORDS 0x1u
 #define DISPREQ_BIND_A_CHANNEL_TO_A_WINDOW_ID        0x34u /* established */
 #define DISPREQ_BIND_A_CHANNEL_TO_A_WINDOW_ID_WORDS  0x2u /* established */
 #define DISPREQ_BOARD_CONFIGURATION_READ             0x12u /* established */
@@ -52,8 +54,10 @@
 #define DISPREQ_CHANNEL_FIELD_DOMINANCE_SET          0x46u /* established */
 #define DISPREQ_CHANNEL_FIELD_DOMINANCE_SET_WORDS    0x2u /* established */
 #define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ      0x4au /* established */
-#define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ_REPLY_BYTES 0x14u /* established */
-#define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ_REPLY_TYPE 0x17u /* established */
+/* established */
+#define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ_REPLY_BYTES 0x14u
+/* established */
+#define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ_REPLY_TYPE 0x17u
 #define DISPREQ_CHANNEL_FORMAT_INFORMATION_READ_WORDS 0x1u /* established */
 #define DISPREQ_CHANNEL_GAMMA_MAP_READ               0x10u /* established */
 #define DISPREQ_CHANNEL_GAMMA_MAP_READ_REPLY_BYTES   0x4u /* established */
@@ -78,7 +82,8 @@
 #define DISPREQ_COPY_ANOTHER_CHANNEL_OUTPUT          0x4fu /* established */
 #define DISPREQ_COPY_ANOTHER_CHANNEL_OUTPUT_WORDS    0x7u /* established */
 #define DISPREQ_COPY_CHANNEL_INFORMATION_READ        0x3au /* established */
-#define DISPREQ_COPY_CHANNEL_INFORMATION_READ_REPLY_BYTES 0x18u /* established */
+/* established */
+#define DISPREQ_COPY_CHANNEL_INFORMATION_READ_REPLY_BYTES 0x18u
 #define DISPREQ_COPY_CHANNEL_INFORMATION_READ_REPLY_TYPE 0x10u /* established */
 #define DISPREQ_COPY_CHANNEL_INFORMATION_READ_WORDS  0x1u /* established */
 #define DISPREQ_COUNT                                0x5du /* established */
