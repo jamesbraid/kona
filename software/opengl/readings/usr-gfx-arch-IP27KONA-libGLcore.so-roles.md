@@ -186,3 +186,78 @@ addresses. Every routine here touches only context state; none stores to the com
 
 - `__glDoBlendMax` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9c916c
   **Inferred.** Implements the maximum blend for one colour. Each of the four floats at +0x00 to +0x0c of a3 is replaced by the float at the same offset in a2 when the one in a3 is smaller (a compare and a store per component), so a3 ends up holding the componentwise maximum of the two colours.
+
+- `__glim_Color3d` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb718
+  **Inferred.** Sets the current colour in the context from three doubles. The doubles in f12 and f14 and the third one on the caller's stack are converted to floats and stored at context +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc is set from the float at +0xdd8, then the context function pointer at +0x2f18 is called with the context in a0, and the third component's store sits in that call's delay slot. The mode word at 0x1018 is not read.
+
+- `__glim_Color3dv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb774
+  **Inferred.** Sets the current colour in the context from the vector of three doubles whose address is in a0. The doubles at offsets 0, 8 and 16 are converted to floats and stored at context +0x1b0, +0x1b4 and +0x1b8, the alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3i` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb7dc
+  **Inferred.** Sets the current colour in the context from three int arguments. Each int c is turned into (2c + 1) times the float at context +0xdf0 (the constants 2.0 and 1.0 are built at 0xd9cb7f0 and 0xd9cb7fc) and stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3iv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb87c
+  **Inferred.** Sets the current colour in the context from the vector of three ints whose address is in a0. Each int c is turned into (2c + 1) times the float at context +0xdf0 and stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3ui` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb92c
+  **Inferred.** Sets the current colour in the context from three unsigned int arguments. Each value is converted to a float, 2^32 (the constant 0x4f800000) is added when the value's sign bit is set, and the result is multiplied by the float at context +0xdf0 before it is stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3uiv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cb9e0
+  **Inferred.** Sets the current colour in the context from the vector of three unsigned ints whose address is in a0. Each value is converted as in the scalar form (2^32 added for a set sign bit, then multiplied by the float at context +0xdf0) and stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3s` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cbaa0
+  **Inferred.** Sets the current colour in the context from three short arguments, sign-extended from 16 bits. Each short c is turned into (2c + 1) times the float at context +0xde8 and stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Color3sv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cbb50
+  **Inferred.** Sets the current colour in the context from the vector of three shorts whose address is in a0. Each short c, read at offsets 0, 2 and 4 of the vector, is turned into (2c + 1) times the float at context +0xde8 and stored at +0x1b0, +0x1b4 and +0x1b8. The alpha slot at +0x1bc takes the float at +0xdd8, and the context function pointer at +0x2f18 is called. The mode word at 0x1018 is not read.
+
+- `__glim_Indexdv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cc7b8
+  **Inferred.** Sets the current colour index in the context from the double at a0. The double is converted to a float and stored at context +0x1c0. It is a leaf routine: it calls nothing and does not read the mode word at 0x1018.
+
+- `__glim_Indexfv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cc7cc
+  **Inferred.** Sets the current colour index in the context from the float at a0. The float is copied unchanged to context +0x1c0. It is a leaf routine: it calls nothing and does not read the mode word at 0x1018.
+
+- `__glim_Indexiv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cc7dc
+  **Inferred.** Sets the current colour index in the context from the int at a0. The int is converted to a float and stored at context +0x1c0, with no scale applied. It is a leaf routine: it calls nothing and does not read the mode word at 0x1018.
+
+- `__glim_Indexsv` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9cc7f8
+  **Inferred.** Sets the current colour index in the context from the short at a0, sign-extended from 16 bits. The short is converted to a float and stored at context +0x1c0, with no scale applied. It is a leaf routine: it calls nothing and does not read the mode word at 0x1018.
+
+- `__glDoStore_A` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda094bc
+  **Inferred.** Store helper for the alpha case. The pixel record at a1 holds x at offset 0, y at offset 4 and a float at offset 0x18. The pixel is dropped unless x and y lie inside the box whose lower bounds are the words at context +0x743c and +0x7440 and whose upper bounds are at +0x7444 and +0x7448. The float at 0x18 times the float at context +0xe88 is truncated to an index into the byte table at context +0x7854, and when that byte is non-zero the context function pointer at +0x317c is called with the original arguments.
+
+- `__glDoStore_S` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda0956c
+  **Inferred.** Store helper for the stencil case. It applies the same box test to the pixel record at a1 (x at offset 0, y at offset 4) and returns when the pixel is outside. Otherwise it calls the function pointer at context +0x7a20 with the address ctx+0x79bc and x; a non-zero result selects the function at +0x7a2c and zero selects the one at +0x7a24, which is called the same way. The context function pointer at +0x317c is then called with the original arguments.
+
+- `__glDoStore_D` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda09670
+  **Inferred.** Store helper for the depth case. It applies the same box test to the pixel record at a1 and returns when the pixel is outside. Otherwise it calls the function pointer at context +0x7aa8 with the address ctx+0x7a34, x, y and the word at record offset 8 as the fourth argument. When that returns zero the routine returns, and when it is non-zero the context function pointer at +0x317c is called with the original arguments.
+
+- `__glMatValidateV1` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00600
+  **Inferred.** Re-validates the record that context +0x31cc points to. The mask word at context +0x6df0 is ANDed with the complement of the record's first word, and when any bit is left the function at record +0xc is called with the context, the record and the mask. When no bit is left it returns without a call.
+
+- `__glMatValidateV1V2` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda00654
+  **Inferred.** Re-validates the two records at context +0x31cc and +0x31d0 in that order. The test is the one of the single-record routine: mask at +0x6df0 AND NOT the record's first word, and a non-zero result calls the function at record +0xc with the context, the record and the mask. Each record is tested on its own.
+
+- `__glMatValidateV1V2V3` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda006e0
+  **Inferred.** Re-validates the three records at context +0x31cc, +0x31d0 and +0x31d4 in that order. Each record gets the same mask test as the single-record routine, and a non-zero result calls the function at record +0xc with the context, the record and the mask.
+
+- `__glMatValidateV2V3` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda007a4
+  **Inferred.** Re-validates the two records at context +0x31d0 and +0x31d4 in that order. Each record gets the same mask test as the single-record routine, and a non-zero result calls the function at record +0xc with the context, the record and the mask.
+
+- `__glMatValidateVbuf0N` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xda004e0
+  **Inferred.** Walks the vertex buffer from context +0x31e0 up to the fill pointer at +0x31c8 in 0xc0-byte steps. Each record gets the mask test of the single-record routine (mask at +0x6df0 AND NOT the record's first word), and a non-zero result calls the function at record +0xc with the context, the record and the mask. A buffer that is already empty returns without a call.
+
+- `__glNamesGenNames` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f5934
+  **Inferred.** Hands out a run of consecutive names into a caller's array. It returns at once when the array pointer in a3 is null. Otherwise it calls `__glNamesGenRange` at 0xd9f5158 with the same four arguments, takes the value it returns as the first name, and writes that name and the consecutive values after it into the a2 words at a3, four words per loop pass.
+
+- `__glFogLitRGBColor` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9e6324
+  **Inferred.** Blends one RGB colour toward the fog colour. The routine first calls the context function pointer at +0x2f20, then takes the float at a2+0xb0 as the fog factor f. The three floats at offsets +0x90, +0x94 and +0x98 of the record at a2 + 16 times a1 become f times the colour plus (1 - f) times the fog colour, the three floats at context +0x638, +0x63c and +0x640. The value 1 - f is the float at context +0xdd8 minus f.
+
+- `__glFogLitCIColor` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9e6b9c
+  **Inferred.** Blends one colour index toward the fog index. The routine first calls the context function pointer at +0x2f20, then the index at offset +0x90 of the record at a2 + 16 times a1 has (1 - f) times the fog index at context +0x658 added to it, with f taken from a2+0xb0 and 1 - f computed from the float at +0xdd8 as in the RGB form. The result is then clamped to (1 << the word at context +0xcb4) - 1, which is stored at +0x90 when the index is larger.
+
+- `__glDlistHeapRemove` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd991940
+  **Inferred.** Removes one item from a binary heap of display-list entries. The heap's count word at a0 is decremented and the last element, taken from the array at a0+8, is moved into the slot the item held (the index stored at item+4). That element's index word is set to the slot, and the item's index word at +4 is cleared. If the item's key at a1 is below the key of the element now in the slot, the routine calls `downheap` at 0xd991ba8, otherwise `upheap` at 0xd991b04, each with the slot index.
+
+- `__glNamesNewArray` in `usr/gfx/arch/IP27KONA/libGLcore.so` at 0xd9f2300
+  **Inferred.** Creates one names-array object for the name table. The allocator is the function pointer at offset 0 of a0, called for 0x64 bytes; a null result reports 0x505 through `__glSetError` at 0xd9d1af8 and returns 0. Otherwise the object gets +0x0 = 0, +0x4 = 0, +0x8 = 1, +0xc = the table entry at 0x954 past the table base plus 24 times a1, +0x10 = 16 and +0x14 = 3. It then allocates 16 blocks of 0x18 bytes, storing their pointers from +0x18, and 3 blocks of 0x14 bytes, storing theirs from +0x58. A null block stops its loop and writes the count so far at +0x10 or +0x14. The object is returned in v0.
