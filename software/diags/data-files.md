@@ -31,7 +31,7 @@ Sources: the files of `usr/diags/IR/data/`, `usr/diags/IR/ucode/`, `usr/gfx/ucod
 
 ## Video format, combination and monitor files
 
-**Established** (`usr/gfx/ucode/KONA/dg4/vfo/README` and the file headers). A `.vfo` file is a compiled video format in the symbol-database binary format whose header names the `dVideoFormatCompiler` program; the `README` beside them is a generated listing of every format with its timing (total and active lines and pixels, frame rate, fields per frame, pixel clock, sync and porch lengths, the line analysis), so the numbers need not be repeated here. A `.cmb` file is a "Kona video format combination": which format each channel of the pipe drives, named by the formats' `.vfo` files (`1280x1024+NTSC_60.cmb` combines a 1280x1024 channel with an NTSC channel; a leading `2@`, `3@` or `8@` is a channel count). The `.monitor` and `.vof` files under `vof/` describe the video output format in the older text syntax (`default.monitor` is a fake display with field and porch counts).
+**Established** (`usr/gfx/ucode/KONA/dg4/vfo/README` and the file headers). A `.vfo` file is a compiled video format in the symbol-database binary format whose producer field names the `VideoFormatCompiler` program (a raw dump reads `dVideoFormatCompiler` because the field follows the count word 100, the byte `d`); the `README` beside them is a generated listing of every format with its timing (total and active lines and pixels, frame rate, fields per frame, pixel clock, sync and porch lengths, the line analysis), so the numbers need not be repeated here. A `.cmb` file is a "Kona video format combination": which format each channel of the pipe drives, named by the formats' `.vfo` files (`1280x1024+NTSC_60.cmb` combines a 1280x1024 channel with an NTSC channel; a leading `2@`, `3@` or `8@` is a channel count). The `.monitor` and `.vof` files under `vof/` describe the video output format in the older text syntax (`default.monitor` is a fake display with field and porch counts).
 
 | Group | Role | Files |
 |---|---|---|
@@ -484,7 +484,7 @@ One row per file in `usr/diags/IR/data/` and the listings beside it. A script re
 | `usr/diags/IR/data/CCIR601_525_DGO.vfo` | video format whose header names `CCIR601_525_DGO` | 17920 | 67 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
 | `usr/diags/IR/data/tvo.vfo` | video format whose header holds `1024x768_60` | 17988 | 67 | `usr/diags/IR/bin/irsaudit` (names `tvo.vfo`) | inferred |
 | `usr/gfx/ucode/KONA/dg4/vfo/1280x1024_60.vfo` | video format whose header holds `1280x1024_60@N`, a different build from the data-directory copy | 17992 | 68 | `usr/diags/IR/bin/irsaudit` (names `1280x1024_60.vfo`) | inferred |
-| `usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo` | video format whose header only names the `dVideoFormatCompiler` program, a different build from the data-directory copy | 17952 | 65 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
+| `usr/gfx/ucode/KONA/dg4/vfo/CCIR601_525_DGO.vfo` | video format whose producer field only names the `VideoFormatCompiler` program, a different build from the data-directory copy | 17952 | 65 | `usr/diags/IR/bin/irsaudit` (names `CCIR601_525_DGO.vfo`) | inferred |
 
 ### Option-board Xilinx image
 

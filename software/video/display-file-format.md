@@ -2,6 +2,8 @@
 
 The display-format files of the board (`.vfo` video formats and `.cmb` combinations under `usr/gfx/ucode/KONA/dg4/`, and the diagnostics' copies under `usr/diags/IR/data/`) share one binary container. This chapter derives the container and how the X module reads a video format into the 1532-byte `LoadFormat` payload. The decoded parameters of every file are in [display-formats.md](display-formats.md), written by `retools/tools/kona/display_formats.py`, which applies what is derived here. The meaning of the fields as timing, and the request they feed, are in [software/ucode/dg.md](../ucode/dg.md) and [dg.md](../../devices/dg/README.md#the-loadformat-request-383-words).
 
+The cross-board view (which boards use this container, where the files sit on the media, the compiler and the programs that read them) is in kudzu `software/video/video-format-files.md`; an independent reading of `sdbutil` agrees with the container below.
+
 Sources: the 6.5.30m binary `usr/lib/X11/dyDDX/konal.so` (the X module an IP27 system loads), read with `objdump` and a GOT-resolving annotator; addresses below are its file addresses. The same functions with the same sizes are in `kona.so`, `konad.so` and `konas.so` ([kona-ddx.md](../xsgi/kona-ddx.md#symbol-database-reader-and-writer)). Labels: **established** (read from the code and checked on all 104 container files), **inferred** (a reading with its reason).
 
 ## Which routines read the files
