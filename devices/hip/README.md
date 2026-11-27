@@ -121,7 +121,7 @@ After the table the handler writes the served bits back to `HH_INTR_STATUS` and 
 | 0x103 | context-activate done: wake `P+5296`, cancel the timeout at `P+5312` | established |
 | other | message "unknown reason for ARM interrupt" (tag 2100) | established |
 
-The values are the 6.5.5 `KONA_ARM_*` events (HIP.h). The mailbox is read as a plain 32-bit register; the driver never writes it.
+The values are the 6.5.5 `KONA_ARM_*` events (HIP.h). The mailbox is read as a plain 32-bit register; only the text-port code stores to it, writing 0 (`receive_armdata` and `kona_alive` in `kona_tport.o`).
 
 ### Geometry-engine events: `kona_ge_intr_handler`, `kona_ge_intr`
 

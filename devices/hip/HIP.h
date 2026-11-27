@@ -446,8 +446,9 @@
  * an event code (0 text print, 0x100, 0x102 and 0x103 for the KONA_ARM_EV values) and, for a text
  * print, reads it again at +0x17c once per character after writing 0x10 to HH_INTR_STATUS to let
  * the firmware send the next; irsaudit `TEST_mbox` (0x1007a720) posts a test word from the host
- * side of ARM space and reads it back here at 0x1007a7f4; kpm dumps it at 0x10012bb4. The host
- * never writes it. */
+ * side of ARM space and reads it back here at 0x1007a7f4; kpm dumps it at 0x10012bb4. Host
+ * software does store 0 to it (`receive_armdata` +0xd80 and `kona_alive` +0xe78 in kona_tport.o,
+ * and the IO6 PROM's install probe); whether the chip accepts the store is unknown. */
 #define KONA_HH_ARM_MBOX                    0x240  /* register mask 0xffffffff */
 
 /*
