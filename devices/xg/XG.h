@@ -240,7 +240,8 @@
  * and detaches with 1, read back at once to push it out (`KONAreleasegfxsema` at 0x980 and 0x98c);
  * every packet sender in kona.a brackets its writes this way. Inferred: RES_TNUM is the crossbar
  * transaction number on which the pipe returns flow-control credits to the hub, and DETACH stops
- * the credit return before another process may own the pipe. */
+ * the credit return before another process may own the pipe.
+ * The IO6 PROM stores 0x23 here once at install (detach set, tnum 17; io6prom 0xc000000011c2b8d8). */
 #define KONA_XG_GFX_DET               0x7c
 #define   KONA_XG_GFX_DET_DETACH          0x01
 #define   KONA_XG_GFX_DET_RES_TNUM        0x3e
@@ -267,7 +268,8 @@
 #define KONA_XG_MAP_ADDR              0x94
 #define   KONA_XG_MAP_ADDR_ADDR           0x3ffff
 
-/* XG_NIC: the one-wire serial-number ("number in a can") port */
+/* XG_NIC: the one-wire serial-number ("number in a can") port. The node PROM drives the same bit
+ * layout at +0x98 with 32-bit accesses (ip27prom accessor 0x1fc05bc8); whether it is this register is unknown. */
 #define KONA_XG_NIC                   0x9c
 #define   KONA_XG_NIC_RD_DATA             0x00001
 #define   KONA_XG_NIC_DONE                0x00002

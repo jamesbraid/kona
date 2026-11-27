@@ -659,12 +659,11 @@ Leads from posts, forum threads and a talk. Each was checked against the shipped
 - [hardware only] HN frame scheduler: run the frame scheduler with a vertical-retrace interrupt; the period must follow the video format.
 - [hardware only] GLUT videoresize and shadowmap: run both demos on an IR system; videoresize must change the scanned-out size.
 
-## Two disagreements in earlier notes (2026-11-11)
+## A disagreement in earlier notes (2026-11-11)
 
-Two readings of the same kernel code disagree. Each entry gives both sides. The kona text stays as it is until one side is settled from a binary.
+Two readings of the same kernel code disagree. The entry gives both sides. The kona text stays as it is until one side is settled from a binary.
 
 - **Words read by `get_eeprom_state`.** [kernel-functions.md](../software/kernel/kernel-functions.md) (`kona_tport.o` +0x1454, 124 bytes) says the function reads eight words from ARM 0x87ff00 and returns the eighth. Another reading of the same function, at `kona_tport.o` 0x1f24-0x1f9c, makes twelve address-write and read pairs over 0x87ff00-0x87ff2c. Both agree that the eighth word (0x87ff1c) is the state. Settled by the loop bound in the 6.5.30 `get_eeprom_state`. [hip.md](../devices/hip/README.md#identity-words-in-the-pipes-eeprom-area) records the state word and leaves the count open.
-- **Widget offset 0x7c.** One reading of the IO6 install routine in the PROM has it write 0x23 to widget low-window offset 0x7c once, before the first synchronisation probe. Another reading of the driver treats offset 0x7c as the heaviest-used FIFO and command-data port and says its addend is not reconciled; it may be 0x80007c. Kona has no 0x80007c entry in [hip.md](../devices/hip/README.md) or [xg.md](../devices/xg/README.md), and its command FIFO is at 0xc10000. Settled by the addend of each 0x7c access in the 6.5.30 kernel objects, and by which widget the PROM's store addresses.
 
 <!-- keep -->
 11. **G4: colour-map entry widening to the 12-bit gamma index.** Replication of the top two bits is inferred from the diagnostic's address legaliser, not measured. Routes tried: X server loaders, `irsaudit` loaders and legaliser, netlists, the published papers, the Library (no XMAP or ADV716x datasheet). Next: the marker-gamma-page probe in [devices/dac/display-chain-rounding.md](../devices/dac/display-chain-rounding.md#1-widening-the-colour-map-output-to-the-gamma-index), or a datasheet for the XMAP if one is ever found.
