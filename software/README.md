@@ -33,6 +33,7 @@
 |---|---|---|
 | [capability-trees.md](opengl/capability-trees.md) | __glim_Enable (IP27KONA32) | Binary `root/usr/gfx/arch/IP27KONA32/libGLcore.so`, routine at 0xd9c1520, 3244 bytes. |
 | [gl-command-map.md](opengl/gl-command-map.md) | GL entry point to command word map | gl-command-map.tsv gives one row per public GL entry stub in the N32 `libGLcore.so` of IRIX 6.5.30m... |
+| [gl-token-catalogue.md](opengl/gl-token-catalogue.md) | GL tokens for the entry points the command map left located | gl-command-map.md found 505 public GL entry points in the N32 `libGLcore.so` of IRIX 6.5.30m... |
 | [libgl.md](opengl/libgl.md) | The GLX client library (`libGL.so`): function reference | Sources: `usr/gfx/arch/IP27KONA/libGL.so` (6.5.30m N32; the other builds under `usr/gfx/arch/` have the same names). |
 | [libglcore-driver-builds.md](opengl/libglcore-driver-builds.md) | libGLcore: the Kona driver in the O32 and 64-bit builds | The Kona driver routines of libglcore-driver-functions.md and libglcore-functions.md were read in the N32 build of... |
 | [libglcore-driver-functions.md](opengl/libglcore-driver-functions.md) | libGLcore: the large routines of the Kona driver | Read from the IP27 Kona N32 build of the 6.5.30m `libGLcore.so` (`usr/gfx/arch/IP27KONA32/libGLcore.so`... |
