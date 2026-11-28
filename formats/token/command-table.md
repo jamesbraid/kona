@@ -1254,10 +1254,10 @@ Values the X module is seen to put in the words. These are what the X module sen
 | word 4, bit 31 | set by the X server's graphics-context parser (`kona.so` 0x539818-0x539874) when the fill style is opaque-stippled, or tiled with a tile held in the pipe (private word +0x88 non-zero); passed on by the plain loader (0x4a644c), the inline rectangle-fill copies and the bitmap loaders, masked to 24 bits and so not sent by the geometry, image-rectangle and image-bitmap loaders (0x5303d8, each ANDs with 0x00ffffff). | established | S21 |
 | meaning of word 4 bit 31 | opaque: clear stipple bits paint the background colour of words 2 and 3. A stipple that fits the pipe's stipple cache gets the same fill vector whether stippled or opaque-stippled (the window validator, `kona.so` 0x554424-0x554534), so this bit is the one difference on the wire. A reading of how the sender is built, not an observation of the board | inferred | S21 |
 | what the pipe does with word 4 bit 31 | the engine forwards word 4 whole behind the mask word 0x00ffffff (`ge.u` 0x4d02, 0x4d0f-0x4d12), so the bit is probably dropped on the 0x1c14 path; whether the special register 0x23 store carries word 4 (and so the bit) and whether anything reads that register is not shown. Would be settled by a raster-side or engine-side observation after loads whose words 0 and 4 differ in a marked bit | unknown | S22, S48 |
-| word 6, low bits, display-id painting | 0x8 (colour format 2, bits 5:2 = LA16) | established | S20, S48 |
-| word 7, low nibble, display-id painting | 1 (draw buffer 1) | established | S20, S48 |
-| word 8, low six bits, display-id painting | 0 (colour base 0) | established | S20, S48 |
-| word 9, bits 4:1, display-id painting | 3 | established | S20 |
+| word 6, display-id painting | whole word 0x8 (colour format 2 in bits 5:2, read as LA16; no other bit set; the routine zeroes its locals first, [display-id-painting.md](../../platforms/ir/display-id-painting.md)) | established | S20, S48 |
+| word 7, display-id painting | whole word 0x1 (draw buffer 1) | established | S20, S48 |
+| word 8, display-id painting | whole word 0 (colour base 0) | established | S20, S48 |
+| word 9, display-id painting | whole word 0x6 (logic-op code 3 in bits 4:1, no enable bit) | established | S20 |
 | words 10, 11, 12, display-id painting | 0, 1, 1 (bus code 0, both luminance-alpha flags on) | established | S20, S48 |
 | words 0-5, display-id painting | the id and plane mask are placed by the larger-pixel or smaller-pixel layout of section 7.6 (larger: word 0 and mask word 4; smaller: word 1 and mask word 5) | established | S20, S8 |
 | clear load | operation argument 3 (copy) and a plane mask of all ones go to the generic loader | established | S21 |
