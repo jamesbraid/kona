@@ -12,8 +12,8 @@ Binaries read (6.5.30m): `usr/cpu/sysgen/IP35boot/kona.a` (disassembled whole), 
 |---|---|---|---|---|
 | board set stored in word 0 of the record | 5 | 6 | established | `arm1.u` 0x0c01acac-0x0c01ad48; `kona_attach` (object offsets 0x1360 and 0x1374) |
 | kernel inventory type (`hinv` text) | 22 | 23 | established | `kona_attach` +0x1368, +0x1378; RE note `ir2e-ir3-products.md` |
-| other kernel reads of the board set | none | none | established (negative) | scan of every load at pipe-state offsets 244 to 2155 in `IP35boot/kona.a`: nothing loads +244 |
-| kernel reads of the texture size code | none | none | established (negative) | same scan: no load at +280 to +319 |
+| other reads of the board set in `kona.a` | none | none | established (negative) | scan of every load at pipe-state offsets 244 to 2155 in `IP35boot/kona.a`: nothing loads +244 |
+| reads of the texture size code in `kona.a` | none | none | established (negative) | same scan: no load at +280 to +319 |
 | X server class from board set | 1 | 3 | established | `konad.so` 0x4277f0 (`vfmtActualHWToKonaTarget`), tests at 0x427c20-0x427c48, class stores at 0x427c7c (3) and 0x427c90 (1) |
 | raster-memory constant per RM, in 32-bit words | 5 x 2^22 = 20,971,520 | 5 x 2^27 = 671,088,640 | established (constant); inferred (word size) | `konad.so` 0x427040 shifts 0x16 and 0x1b; `arm1.u` 0x0c0112a4-0x0c0112b0 |
 | X visual table chosen | `konVisualInfo_imp8c` | `konVisualInfo_imp8c` (the same) | established | `konad.so` `konInit` jump table at file 0x18e570 |
@@ -25,9 +25,9 @@ Binaries read (6.5.30m): `usr/cpu/sysgen/IP35boot/kona.a` (disassembled whole), 
 
 ## 1. The board-set number and who reads it
 
-Two deciders write the number, as the existing product page grades. The pipe firmware classifies the raster-slot identity words (type = bits 15:9): any type 0xb gives 5, any type 0xe gives 6, and it prints an error for IR4 slots mixed with older ones (`arm1.u` `init_kona_jtag_chain`, 0x0c01acac-0x0c01ad48). The kernel decides from the two attach reads. Both are established there; this page adds the consumers.
+Two deciders write the number, as the existing product page grades. The pipe firmware classifies the raster-slot identity words (type = bits 15:9): any type 0xe gives 6, and type 0xb with no type 6 gives 5, and it prints an error for IR4 slots mixed with older ones (`arm1.u` `init_kona_jtag_chain`, 0x0c01acac-0x0c01ad48). The kernel decides from the two attach reads. Both are established there; this page adds the consumers.
 
-- **Kernel (`IP35boot/kona.a`).** `kona_attach` (starts at object offset 0xed4 in the `IP35boot/kona.a` member that holds it) is the only place that stores the number (pipe state +244; the 5 and 6 at 0x1360 and 0x1374) and the inventory type (+2188; 22 at 0x1368, 23 at 0x1378). `kona_inventory_board` reads +2188 for `add_to_inventory`. Established, binary. A scan of every load from pipe-state offsets 244 to 2155 (outside stack and global-pointer bases) finds none at +244 (board set) and none at +280 to +319 (the per-RM `present` and `texram` words). The kernel therefore never branches on board set or texture size after attach. The record it later gets from `gfxinit` (ioctl 10006, 1912 bytes copied to +244) overwrites its own number with the firmware's. Established (negative), binary.
+- **Kernel (`IP35boot/kona.a`).** `kona_attach` (starts at object offset 0xed4 in the `IP35boot/kona.a` member that holds it) is the only place that stores the number (pipe state +244; the 5 and 6 at 0x1360 and 0x1374) and the inventory type (+2188; 22 at 0x1368, 23 at 0x1378). `kona_inventory_board` reads +2188 for `add_to_inventory`. Established, binary. A scan of every load from pipe-state offsets 244 to 2155 (outside stack and global-pointer bases) finds none at +244 (board set) and none at +280 to +319 (the per-RM `present` and `texram` words). So nothing in `kona.a` loads either word after attach through a fixed offset. A read through a derived pointer, or in another kernel archive, is not excluded by this scan. The record it later gets from `gfxinit` (ioctl 10006, 1912 bytes copied to +244) overwrites its own number with the firmware's. Established (negative), binary.
 - **Display-bus reads.** The 0x8800 selector is written to widget +0x8003c0 and the result read from +0x8003d0 at object offsets 0x1244-0x1264; the 0x0b00 read follows at 0xf94 (reached by a jump back, so it runs second). Same as the product page. The kernel also reads widget +0x64 at 0xf5c: a nonzero low three bits (the subsystem field) jump to the semaphore release at 0x1064 and no board is registered; bits 5:3 (map-RAM size) are read at 0xf88 and 0x12b8. None of this depends on IR3 against IR4. Established, binary.
 - **Pipe firmware (`arm1.u`).** Every branch on the board-set word that differs for 6 is listed in section 7.
 - **X server.** `vfmtActualHWToKonaTarget` (`konad.so` 0x4277f0, 0x520 bytes; same body in `kona.so` 0x428070 and `konal.so` 0x13a77f0) asks the kernel for the 1952-byte board record (ioctl 102), refuses a name other than `KONA`, copies the record's word at +40 and maps it to a class: 0 to 0, 2 to 2, 6 to 3, anything else to 1. IR3 is class 1, IR4 is class 3. Established, binary. The only other class tests in `vfmt` are for class 2 (Reality). The existing reading of `vfmtIsKonaCombinationValidForTarget` (`software/xsgi/kona-ddx.md`) names only class 2 as special; class 3 changes the budget below and nothing else I found.
@@ -36,7 +36,7 @@ Two deciders write the number, as the existing product page grades. The pipe fir
 
 ## 2. Texture size code
 
-Code 6 means 1024 MB and 4 means 256 MB, in the same ladder `gfxinfo` prints (0 none, 1 16, 2 64, 3 128, 4 256, 5 512, 6 1024). The firmware takes it from bits 18:16 of the raster-slot identity word (RM identity `0x03041606` on the IR3 capture is code 4, `0x03061c04` on the IR4 captures is code 6; type bits 15:9 are 0xb and 0xe). `libGLcore.so` `GetBoardInfo` indexes a seven-entry pointer table at 0xda81278 (IP35KONA32) with the word at reply +80, giving the strings "256" and "1024" for codes 4 and 6. The kernel and the X server never read it (section 1). Established, binary and capture. The low nine bits of the identity word (0x006 on IR3, 0x004 on IR4) have no reader; unknown, as in the product page.
+Code 6 means 1024 MB and 4 means 256 MB, in the same ladder `gfxinfo` prints (0 none, 1 16, 2 64, 3 128, 4 256, 5 512, 6 1024). The firmware takes it from bits 18:16 of the raster-slot identity word (RM identity `0x03041606` on the IR3 capture is code 4, `0x03061c04` on the IR4 captures is code 6; type bits 15:9 are 0xb and 0xe). `libGLcore.so` `GetBoardInfo` indexes a seven-entry pointer table at 0xda81278 (IP35KONA32) with the word at reply +80, giving the strings "256" and "1024" for codes 4 and 6. `kona.a` (by the scan above) and the X server never read it (section 1). Established, binary and capture. The low nine bits of the identity word (0x006 on IR3, 0x004 on IR4) have no reader; unknown, as in the product page.
 
 ## 3. The raster-memory budget (pixel-depth rule)
 
@@ -62,8 +62,8 @@ The layout is the 6.5.5 `kona_config` (RE note `software/kernel/kernel.md`, "The
 | 140 | pixel depth | loaded combination | loaded combination | established, `GetBoardInfo` +180 |
 | 256 | `id.ge.board` | GE16-4 word `0x80f61806` | the same word | capture (IR3 rack and both IR4 dumps show it unchanged) |
 | 276 + 140 r | `id.rm[r].board` | `0x03041606` (type 0xb) | `0x03061c04` (type 0xe) | capture; type test `arm1.u` 0x0c01acac-0x0c01acd4 |
-| +4 | `pg` | chip type 0x30 word (`15032057`) | chip type 0x35 word (`05032057`) | established, `init_config` 0x0c01da50 against 0x0c01db64 |
-| +8 | `tg` | chip type 0x31 (`15431057`) | chip type 0x36 (`35431057`) | established, 0x0c01da68 against 0x0c01db90 |
+| +4 | `pg` | chip type 0x30 word (`15032057`) | chip type 0x35 word (`05032057`) | established, `init_config` 0x0c01da2c against 0x0c01db64 |
+| +8 | `tg` | chip type 0x31 (`15431057`) | chip type 0x36 (`35431057`) | established, 0x0c01da5c against 0x0c01db94 |
 | +12..+27 | `tf[4]` | chip type 0x33 | chip type 0x38 | established, 0x0c01da80 against 0x0c01dbb8 |
 | +28..+59 | `tm[8]` | chip type 0x32 | chip type 0x37 | established, 0x0c01dabc against 0x0c01dbf4 |
 | +60..+139 | `imp[20]` | twenty words, chip type 0x34 | ten words (`imp[0]` to `imp[9]`), chip type 0x39; the other ten are not written | established, 0x0c01db14-0x0c01db44 against 0x0c01dc28-0x0c01dc60 |
@@ -95,7 +95,7 @@ All established, binary (6.5.30m `arm1.u`, addresses are image addresses in `sof
 
 `GetBoardInfo` (`libGLcore.so` N32, 0xd947f60 to 0xd9481ac) is instruction-for-instruction the same in the IP35KONA32 and IP27KONA32 builds (checked by comparing the disassembly). It asks ioctl 102 for 1952 bytes and builds, with `strcat` and one-character `strncat` calls:
 
-`IR` + platform letter + (`P` only if board set 4) + `/` + depth letter + `/` + RM digit + `/` + texture size + `/` + engine digit.
+`IR` + platform letter + (`P` only if board set 4; a reply byte 5 of `I` at 0xd947fe4 swaps the `IR` and letter for the reply's own text, and set 2 at depth code 3 prints `T` for `X`; set 2 is neither IR3 nor IR4, and byte 5 is inferred to be zero after `KONAD`) + `/` + depth letter + `/` + RM digit + `/` + texture size + `/` + engine digit.
 
 - Platform letter: reply byte 4, which is `D` for an IP35 kernel (`kona.a` carries "KONAD"), `L` on IP27; `E` replaces it for board set 2.
 - Depth letter: "SMLX" indexed by reply +180 (record +140, the pixel depth word).
