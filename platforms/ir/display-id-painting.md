@@ -1,6 +1,6 @@
 # Painting a window's display-id planes, and the per-pixel window test
 
-What a driver must send to mark the pixels a window owns, and what the pipe compares per pixel afterwards. It answers request K6 of the NT 4.0 InfiniteReality design (graphics-kona section 9: "painting a window's display-id planes: the GC words, the plane write mask, DID width, and what the pipe tests per pixel"). Most of the facts were already in [command-table.md](../../formats/token/command-table.md) sections 7.6, 7.7, 7.8 and 10 and in [kona-ddx.md](../../software/xsgi/kona-ddx.md). This page reads the one routine that was only summarised there in full, and puts the answer in the order a driver needs it.
+What a driver must send to mark the pixels a window owns, and what the pipe compares per pixel afterwards. Most of the facts were already in [command-table.md](../../formats/token/command-table.md) sections 7.6, 7.7, 7.8 and 10 and in [kona-ddx.md](../../software/xsgi/kona-ddx.md). This page reads the one routine that was only summarised there in full, and puts the answer in the order a driver needs it.
 
 Labels are **established** (read in full from a binary, with address), **inferred** or **unknown**. Everything is for IRIX 6.5.30m, one InfiniteReality2 pipe on an IP27 host. No hardware was read.
 
@@ -18,9 +18,9 @@ Labels are **established** (read in full from a binary, with address), **inferre
 
 ## The routine that paints
 
-`kon_drawDid` in `konal.so` (IP27 build, 0x13f1770 to 0x13f1a1c) is **established**, read in full. It draws nothing itself: it loads clip, position and graphics context, and its caller sends the boxes. Its arguments are the converted id `v`, the converted plane mask `m`, the screen record and the command pointer. The same routine in `kona.so` (0x4715c0) is recorded in [kona-ddx.md](../../software/xsgi/kona-ddx.md) as differing only in how the token words are stored; it was not re-read here.
+`kon_drawDid` in `konal.so` (IP27 build, 0x13f1770 to 0x13f1a1c) is **established**, read in full. It draws nothing itself: it loads clip, position and graphics context, and its caller sends the boxes. Its arguments are the id `v` and plane mask `m` that `konDrawDID` computes, the screen record and the command pointer. The id conversion, the mask and the refusal of ids 96 and up are not in `kon_drawDid`. The same routine in `kona.so` (0x4715c0) is recorded in [kona-ddx.md](../../software/xsgi/kona-ddx.md) as differing only in how the token words are stored; it was not re-read here.
 
-The caller is `konDrawDID` (`kona.so` 0x53e7b0, read in full there). It converts the display id and sends the boxes. **Established:**
+The caller is `konDrawDID` (`kona.so` 0x53e7b0, read in full there). It converts the display id into `v` and `m`, refuses ids of 96 and up, and sends the boxes. **Established:**
 
 | Display id | `v` (painted value) | `m` (plane mask value) |
 |---|---|---|
@@ -52,7 +52,7 @@ Wire sequence for one paint. The token numbers are the pipe's; `konal.so` stores
 | 11 | `colfmt` | `0x1` | established |
 | 12 | `pixfmt` | `0x1` | established |
 
-The routine zeroes eight locals first (0x13f1798 to 0x13f17b4) and then edits only the bits named, so words 6 to 9 are whole-word values, not just "low bits" as the older rows in [command-table.md section 7.8](../../formats/token/command-table.md#78-x-graphics-context-load-token-0x129-thirteen-words-and-its-companion-loads) read. Painting uses a fixed luminance-alpha 16 format whatever the desktop's colour mode is, so the same words serve the 8-bit and 24-bit desktops; the pixel-write set in [x-state-words.md](x-state-words.md) is a different set. Layouts A and B are the two places the id can sit in the 64-bit foreground and write mask, [section 7.6](../../formats/token/command-table.md#76-pixel-id-placement-and-window-kinds). Worked values, computed from the formulas above by a short script (not from a capture):
+The routine zeroes eight locals first (0x13f1798 to 0x13f17b4) and then edits only the bits named, so words 6 to 9 are whole-word values, not just "low bits" as the older rows in [command-table.md section 7.8](../../formats/token/command-table.md#78-x-graphics-context-load-token-0x129-thirteen-words-and-its-companion-loads) read. Painting uses a fixed luminance-alpha 16 format whatever the desktop's colour mode is. **Inferred:** the same words therefore serve the 8-bit and 24-bit desktops; the pixel-write set in [x-state-words.md](x-state-words.md) is a different set. Layouts A and B are the two places the id can sit in the 64-bit foreground and write mask, [section 7.6](../../formats/token/command-table.md#76-pixel-id-placement-and-window-kinds). Worked values, computed from the formulas above by a short script (not from a capture):
 
 | Display id | `v`, `m` | Layout A, words 0, 4 | Layout B, words 1, 5 |
 |---|---|---|---|
@@ -65,7 +65,7 @@ The routine zeroes eight locals first (0x13f1798 to 0x13f17b4) and then edits on
 
 The unused word of each pair is 0 (word 1 and 5 in layout A, words 0 and 4 in layout B).
 
-One existing claim does not fit this routine. [Section 7.8](../../formats/token/command-table.md#78-x-graphics-context-load-token-0x129-thirteen-words-and-its-companion-loads) says, as an inference, that a zero in word 2 makes the engine skip the raster-register part of the load. This routine sends word 2 as zero and the painting works, and every pixmap load in [x-state-words.md](x-state-words.md) also sends zero in words 2 and 3. So the engine's test cannot be a plain zero test of the word as the X module sends it. What would settle it: the engine routine `mgebi_XLoadGC` (`ge.u` 0x4cf4 to 0x4d13, [xload.S.lst](../../software/ucode/ge_listing/xload.S.lst)) read for which stored value its branch tests; this page did not re-read it.
+One existing claim does not fit this routine. [Section 7.8](../../formats/token/command-table.md#78-x-graphics-context-load-token-0x129-thirteen-words-and-its-companion-loads) says, as an inference, that a zero in word 2 makes the engine skip the raster-register part of the load. This routine sends word 2 as zero and the painting works, and every pixmap load in [x-state-words.md](x-state-words.md) also sends zero in words 2 and 3. **Inferred:** so the engine's test cannot be a plain zero test of the word as the X module sends it. What would settle it: the engine routine `mgebi_XLoadGC` (`ge.u` 0x4cf4 to 0x4d13, [xload.S.lst](../../software/ucode/ge_listing/xload.S.lst)) read for which stored value its branch tests; this page did not re-read it.
 
 ## What the pipe tests per pixel
 
@@ -83,5 +83,5 @@ For a GL window: paint the window's id planes (clip, position, graphics context,
 |---|---|
 | What sets bit 2 at +148 of the pipe record, and so which layout a given board and depth uses | the store to that field in the module's screen set-up (`konInit`, `kona.so` 0x56ed50) and the visual-set choice it follows |
 | What `konValidateVisual` (`kona.so` 0x52cc30) repaints and with which ids | a read of the whole function and of the routine at 0x4b1cf0, whose five call sites were not read |
-| Whether painting is safe while a GL context is current | [x-tokens-and-gl-contexts.md](x-tokens-and-gl-contexts.md) (request K8) |
+| Whether painting is safe while a GL context is current | [x-tokens-and-gl-contexts.md](x-tokens-and-gl-contexts.md) |
 | Bit positions of the per-pixel compare | the image-processor netlist, or the one-bit capture above |

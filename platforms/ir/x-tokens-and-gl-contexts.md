@@ -1,6 +1,6 @@
 # X tokens while a GL context is current, and two GL contexts switched back to back
 
-What the pipe does when an X drawing or load token arrives while a GL context is the one the pipe runs, and what happens across a switch between two GL contexts. It answers request K8 of the NT 4.0 InfiniteReality design (graphics-kona section 9). No shipped software or published source states the interaction as a rule, so most of this page is what the pieces say when read together; each row says how it is known.
+What the pipe does when an X drawing or load token arrives while a GL context is the one the pipe runs, and what happens across a switch between two GL contexts. No shipped software or published source states the interaction as a rule, so most of this page is what the pieces say when read together; each row says how it is known.
 
 Labels are **established** (read in full from a binary, with address), **inferred** or **unknown**. IRIX 6.5.30m, one InfiniteReality2 pipe on an IP27 host. No hardware was read.
 
@@ -13,7 +13,7 @@ Labels are **established** (read in full from a binary, with address), **inferre
 | Inside a begin/end pair? | Every X load, drawing and pixel token is marked illegal between begin and end. The host interface sends it to `arm_bgnend`, which records an invalid-operation error in the context, reads and discards the token's payload by a per-token count, and carries on | established |
 | What of the GL state do the X loads overwrite? | the nine raster registers and four engine words that `X_LOADGC` names, so a GL context that receives one has its colour format, read format, draw buffer, read-back format, colour base, logic-op code and bus pixel format replaced. Nothing found restores them | established for the writes; inferred that nothing restores them |
 | What of the GL state do the X tokens leave alone? | depth test and stencil enables, blend enable, alpha test, fog, texturing, multisample and the window-id test register. An X fill in a GL context may therefore be depth-, stencil-, blend- or id-tested as that context left them | inferred |
-| Two GL contexts back to back | the kernel sends deactivate, waits for the pipe's event, then load (a context seen before) or init (a new one), then clip and bank packets, then the saved activate token. The pipe saves and restores per-context state itself; no host-written state crosses the switch | established |
+| Two GL contexts back to back | the kernel sends deactivate, waits for the pipe's event, then load (a context seen before) or init (a new one), then clip and bank packets, then the saved activate token. The pipe saves and restores per-context state itself. No host-written state crosses the switch: inferred, since the body shows only that no packet separates two switches. Whether the raster registers are rewritten at switch-in is unknown (next row) | established for the packet sequence; inferred for the no-host-state claim |
 | What does not survive a switch | the 513-entry texture load and bind id tables are reset at every activation, so every texture must be bound again; and the raster registers themselves are not shown to be rewritten from the saved shadow | established for the id reset; the raster rewrite unknown |
 
 ## IRIX never mixes them: the control flow
