@@ -14,4 +14,5 @@
 | [swap-and-retrace-completion.md](ir/swap-and-retrace-completion.md) | How a buffer swap completes, and what IRIX waits on | What an emulated pipe has to deliver for an IRIX 6.5.30m kernel to treat a buffer swap as done: whether the pipe... |
 | [textport.md](ir/textport.md) | Textport: the command port | The textport is the console path the pipe uses before any X server or GL client runs. |
 | [x-state-words.md](ir/x-state-words.md) | The X_LOADGC and X_PIX_SETUP words for a plain 8-bit and a 24-bit visual | The 13 graphics-context words (token 0x129) and 7 pixel set-up words (token 0x136) the X server sends for a plain... |
+| [x-tokens-and-gl-contexts.md](ir/x-tokens-and-gl-contexts.md) | X tokens while a GL context is current, and two GL contexts switched back to back | What the pipe does when an X drawing or load token arrives while a GL context is the one the pipe runs, and what... |
 | [xsgi-events-and-manager-messages.md](ir/xsgi-events-and-manager-messages.md) | What Xsgi sends a client, and how the kernel's manager messages reach it | Which X events the shipped X server (`Xsgi`, `glx.so`, `kona.so`, `konal.so`) sends for buffer swaps, swap groups... |
