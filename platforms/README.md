@@ -10,6 +10,7 @@
 | [command-cut-short.md](ir/command-cut-short.md) | What the pipe does when a host command is cut short | A command cut short by a bug check swallows the words that follow it, and only an exact zero pad or a forced... |
 | [display-id-painting.md](ir/display-id-painting.md) | Painting a window's display-id planes, and the per-pixel window test | What a driver must send to mark the pixels a window owns, and what the pipe compares per pixel afterwards. |
 | [ir2e-ir3-products.md](ir/ir2e-ir3-products.md) | InfiniteReality2E and InfiniteReality3 product facts for the KONA command table | Worked 2026-11-10 against a shallow kona clone. |
+| [ir4-against-ir3.md](ir/ir4-against-ir3.md) | InfiniteReality4 against InfiniteReality3: what the shipped software does differently | Read 2026-11-28 against kona at fb7d66a5. |
 | [non-irix-driver.md](ir/non-irix-driver.md) | Driving an InfiniteReality pipe without IRIX | What a driver that is not IRIX has to do to load the pipe's firmware, draw text, write images, keep the command FIFO... |
 | [swap-and-retrace-completion.md](ir/swap-and-retrace-completion.md) | How a buffer swap completes, and what IRIX waits on | What an emulated pipe has to deliver for an IRIX 6.5.30m kernel to treat a buffer swap as done: whether the pipe... |
 | [textport.md](ir/textport.md) | Textport: the command port | The textport is the console path the pipe uses before any X server or GL client runs. |
