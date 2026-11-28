@@ -9,6 +9,7 @@
 | [architecture.md](ir/architecture.md) | InfiniteReality (KONA) architecture overview | A map of the whole pipe, written from the chapters of this repository so that a reader can see how the blocks... |
 | [command-cut-short.md](ir/command-cut-short.md) | What the pipe does when a host command is cut short | A command cut short by a bug check swallows the words that follow it, and only an exact zero pad or a forced... |
 | [display-id-painting.md](ir/display-id-painting.md) | Painting a window's display-id planes, and the per-pixel window test | What a driver must send to mark the pixels a window owns, and what the pipe compares per pixel afterwards. |
+| [framebuffer-depth-and-visuals.md](ir/framebuffer-depth-and-visuals.md) | Frame-buffer size, pixel depth, the visuals each depth exports, and histogram and minmax read-back | Read 2026-11-28 against kona at 90714b4d: how the shipped IRIX 6.5.30m software sizes the InfiniteReality frame... |
 | [ir2e-ir3-products.md](ir/ir2e-ir3-products.md) | InfiniteReality2E and InfiniteReality3 product facts for the KONA command table | Worked 2026-11-10 against a shallow kona clone. |
 | [ir4-against-ir3.md](ir/ir4-against-ir3.md) | InfiniteReality4 against InfiniteReality3: what the shipped software does differently | Read 2026-11-28 against kona at fb7d66a5. |
 | [non-irix-driver.md](ir/non-irix-driver.md) | Driving an InfiniteReality pipe without IRIX | What a driver that is not IRIX has to do to load the pipe's firmware, draw text, write images, keep the command FIFO... |
